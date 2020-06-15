@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 831D81F9AD4
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 16:51:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BA631F9B05
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 16:55:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D98046E334;
-	Mon, 15 Jun 2020 14:51:01 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C6C876E330;
- Mon, 15 Jun 2020 14:51:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C4849A00EF;
- Mon, 15 Jun 2020 14:51:00 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Mon, 15 Jun 2020 14:51:00 -0000
-Message-ID: <159223266080.16139.7266345127297276860@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC16F6E33A;
+	Mon, 15 Jun 2020 14:55:02 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D4536E33A
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 14:55:01 +0000 (UTC)
+IronPort-SDR: BJgrN0exViIlj4CsHX9ygF1jbtmCOJu78oOtl8o2MG+W10sZ4UXTpCTahi7zJis6ZgZWyMamZW
+ hurrklZvUOrQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2020 07:55:00 -0700
+IronPort-SDR: JwfiIOi6rJm3+rQ+Ti1mbgUyvPGRsbnMYkAL6DiYPEOt7Qw8S/Zpg1pvQKIIBZtO6BCykTL0YI
+ fgt8StxRvW4g==
+X-IronPort-AV: E=Sophos;i="5.73,514,1583222400"; d="scan'208";a="449420774"
+Received: from unknown (HELO [10.249.37.34]) ([10.249.37.34])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2020 07:54:59 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
 References: <20200615140928.27336-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20200615140928.27336-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Remove_redundant_i915=5Frequest=5Fawait=5Fobject_in_bl?=
- =?utf-8?q?it_clears?=
+ <159223143519.2981.2404611553306232536@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <1264692d-8fa6-7731-548a-923c6279d537@linux.intel.com>
+Date: Mon, 15 Jun 2020 15:54:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
+MIME-Version: 1.0
+In-Reply-To: <159223143519.2981.2404611553306232536@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove redundant
+ i915_request_await_object in blit clears
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,170 +51,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: Remove redundant i915_request_await_object in blit clears
-URL   : https://patchwork.freedesktop.org/series/78374/
-State : success
+On 15/06/2020 15:30, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-06-15 15:09:28)
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> One i915_request_await_object is enough and we keep the one under the
+>> object lock so it is final.
+>>
+>> At the same time move async clflushing setup under the same locked
+>> section and consolidate common code into a helper function.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
+>> ---
+>>   .../gpu/drm/i915/gem/i915_gem_object_blt.c    | 35 +++++++------------
+>>   1 file changed, 13 insertions(+), 22 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+>> index f457d7130491..7d8b396e265a 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+>> @@ -126,6 +126,17 @@ void intel_emit_vma_release(struct intel_context *ce, struct i915_vma *vma)
+>>          intel_engine_pm_put(ce->engine);
+>>   }
+>>   
+>> +static int
+>> +move_obj_to_gpu(struct drm_i915_gem_object *obj,
+>> +               struct i915_request *rq,
+>> +               bool write)
+>> +{
+>> +       if (obj->cache_dirty & ~obj->cache_coherent)
+>> +               i915_gem_clflush_object(obj, 0);
+>> +
+>> +       return i915_request_await_object(rq, obj, write);
+>> +}
+>> +
+>>   int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
+>>                               struct intel_context *ce,
+>>                               u32 value)
+>> @@ -143,12 +154,6 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
+>>          if (unlikely(err))
+>>                  return err;
+>>   
+>> -       if (obj->cache_dirty & ~obj->cache_coherent) {
+>> -               i915_gem_object_lock(obj);
+>> -               i915_gem_clflush_object(obj, 0);
+>> -               i915_gem_object_unlock(obj);
+>> -       }
+>> -
+>>          batch = intel_emit_vma_fill_blt(ce, vma, value);
+>>          if (IS_ERR(batch)) {
+>>                  err = PTR_ERR(batch);
+>> @@ -165,10 +170,6 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
+>>          if (unlikely(err))
+>>                  goto out_request;
+>>   
+>> -       err = i915_request_await_object(rq, obj, true);
+>> -       if (unlikely(err))
+>> -               goto out_request;
+>> -
+>>          if (ce->engine->emit_init_breadcrumb) {
+>>                  err = ce->engine->emit_init_breadcrumb(rq);
+>>                  if (unlikely(err))
+>> @@ -176,7 +177,7 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
+>>          }
+>>   
+>>          i915_vma_lock(vma);
+>> -       err = i915_request_await_object(rq, vma->obj, true);
+>> +       err = move_obj_to_gpu(vma->obj, rq, true);
+>>          if (err == 0)
+>>                  err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
+>>          i915_vma_unlock(vma);
+> 
+> Ah, but here it's also the wrong side of init_breadcrumb.
 
-== Summary ==
+Why it is important to mark the object as active on the failure path? We 
+skip the payload, no?
 
-CI Bug Log - changes from CI_DRM_8627 -> Patchwork_17949
-====================================================
+Regards,
 
-Summary
--------
+Tvrtko
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17949 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-byt-n2820:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-byt-n2820/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-byt-n2820/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-whl-u:           [PASS][3] -> [DMESG-WARN][4] ([i915#95])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-tgl-y/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-tgl-y/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-guc:         [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-tgl-y:           [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][11] ([i915#1888]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@gem_flink_basic@flink-lifetime:
-    - fi-tgl-y:           [DMESG-WARN][13] ([i915#402]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_busy@basic@modeset:
-    - {fi-tgl-dsi}:       [DMESG-WARN][19] ([i915#1982]) -> [PASS][20] +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-tgl-dsi/igt@kms_busy@basic@modeset.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-tgl-dsi/igt@kms_busy@basic@modeset.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [DMESG-WARN][21] ([i915#1982]) -> [PASS][22] +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [DMESG-WARN][23] ([i915#402]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-kbl-x1275:       [DMESG-WARN][25] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][26] ([i915#1982] / [i915#62] / [i915#92] / [i915#95])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [DMESG-FAIL][27] ([i915#62]) -> [SKIP][28] ([fdo#109271])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-kbl-x1275:       [DMESG-WARN][29] ([i915#62] / [i915#92]) -> [DMESG-WARN][30] ([i915#62] / [i915#92] / [i915#95])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][31] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][32] ([i915#62] / [i915#92]) +4 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8627/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (50 -> 44)
-------------------------------
-
-  Additional (1): fi-gdg-551 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8627 -> Patchwork_17949
-
-  CI-20190529: 20190529
-  CI_DRM_8627: 593c112156feb0f6159814f2276a32c90f243823 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5710: f524eee47930601ad7b4cba9d40c26d68dc7d250 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17949: 3c89ad48e5ffb2be20173ef5a9e42950d696d223 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3c89ad48e5ff drm/i915: Remove redundant i915_request_await_object in blit clears
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17949/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
