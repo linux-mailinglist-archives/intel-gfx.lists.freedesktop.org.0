@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487251F9993
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 16:05:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 298491F99A5
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2020 16:09:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5696189C80;
-	Mon, 15 Jun 2020 14:05:05 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E5E1189C09;
- Mon, 15 Jun 2020 14:05:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D74E4A00E7;
- Mon, 15 Jun 2020 14:05:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7337C89C51;
+	Mon, 15 Jun 2020 14:09:37 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26C7989C51
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 14:09:36 +0000 (UTC)
+IronPort-SDR: JuiMIBPgRGFGCRRZFY15YGvviYXeVeMqbGNsUHWapkigpE3UfgMIVvHEI/46k5xIipwgy/tFRC
+ pJC5M/I31Zpg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2020 07:09:35 -0700
+IronPort-SDR: MoFMc1TJUcJyw2l7aVcnqzHlFq1/PblJIm7Bm2R3NOXBM4d8Wc20OCe7FarocuTvldnKlFJf3r
+ /QrSvy0LU03w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,514,1583222400"; d="scan'208";a="308136379"
+Received: from unknown (HELO localhost.localdomain) ([10.249.37.34])
+ by orsmga008.jf.intel.com with ESMTP; 15 Jun 2020 07:09:34 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Mon, 15 Jun 2020 15:09:28 +0100
+Message-Id: <20200615140928.27336-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 15 Jun 2020 14:05:04 -0000
-Message-ID: <159222990487.16139.14419149165638415238@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200615123920.17749-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200615123920.17749-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B01/10=5D_drm/i915/selftests=3A_Disable_?=
- =?utf-8?q?preemptive_heartbeats_over_preemption_tests_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915: Remove redundant
+ i915_request_await_object in blit clears
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,72 +45,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Series: series starting with [01/10] drm/i915/selftests: Disable preemptive heartbeats over preemption tests (rev2)
-URL   : https://patchwork.freedesktop.org/series/78371/
-State : warning
+One i915_request_await_object is enough and we keep the one under the
+object lock so it is final.
 
-== Summary ==
+At the same time move async clflushing setup under the same locked
+section and consolidate common code into a helper function.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_display.c:1222:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1225:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1228:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1231:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2269:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2270:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2271:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2272:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2273:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
+---
+ .../gpu/drm/i915/gem/i915_gem_object_blt.c    | 35 +++++++------------
+ 1 file changed, 13 insertions(+), 22 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+index f457d7130491..7d8b396e265a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+@@ -126,6 +126,17 @@ void intel_emit_vma_release(struct intel_context *ce, struct i915_vma *vma)
+ 	intel_engine_pm_put(ce->engine);
+ }
+ 
++static int
++move_obj_to_gpu(struct drm_i915_gem_object *obj,
++		struct i915_request *rq,
++		bool write)
++{
++	if (obj->cache_dirty & ~obj->cache_coherent)
++		i915_gem_clflush_object(obj, 0);
++
++	return i915_request_await_object(rq, obj, write);
++}
++
+ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
+ 			     struct intel_context *ce,
+ 			     u32 value)
+@@ -143,12 +154,6 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
+ 	if (unlikely(err))
+ 		return err;
+ 
+-	if (obj->cache_dirty & ~obj->cache_coherent) {
+-		i915_gem_object_lock(obj);
+-		i915_gem_clflush_object(obj, 0);
+-		i915_gem_object_unlock(obj);
+-	}
+-
+ 	batch = intel_emit_vma_fill_blt(ce, vma, value);
+ 	if (IS_ERR(batch)) {
+ 		err = PTR_ERR(batch);
+@@ -165,10 +170,6 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
+ 	if (unlikely(err))
+ 		goto out_request;
+ 
+-	err = i915_request_await_object(rq, obj, true);
+-	if (unlikely(err))
+-		goto out_request;
+-
+ 	if (ce->engine->emit_init_breadcrumb) {
+ 		err = ce->engine->emit_init_breadcrumb(rq);
+ 		if (unlikely(err))
+@@ -176,7 +177,7 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
+ 	}
+ 
+ 	i915_vma_lock(vma);
+-	err = i915_request_await_object(rq, vma->obj, true);
++	err = move_obj_to_gpu(vma->obj, rq, true);
+ 	if (err == 0)
+ 		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
+ 	i915_vma_unlock(vma);
+@@ -317,16 +318,6 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
+ 	return ERR_PTR(err);
+ }
+ 
+-static int move_to_gpu(struct i915_vma *vma, struct i915_request *rq, bool write)
+-{
+-	struct drm_i915_gem_object *obj = vma->obj;
+-
+-	if (obj->cache_dirty & ~obj->cache_coherent)
+-		i915_gem_clflush_object(obj, 0);
+-
+-	return i915_request_await_object(rq, obj, write);
+-}
+-
+ int i915_gem_object_copy_blt(struct drm_i915_gem_object *src,
+ 			     struct drm_i915_gem_object *dst,
+ 			     struct intel_context *ce)
+@@ -375,7 +366,7 @@ int i915_gem_object_copy_blt(struct drm_i915_gem_object *src,
+ 		goto out_request;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(vma); i++) {
+-		err = move_to_gpu(vma[i], rq, i);
++		err = move_obj_to_gpu(vma[i]->obj, rq, i);
+ 		if (unlikely(err))
+ 			goto out_unlock;
+ 	}
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
