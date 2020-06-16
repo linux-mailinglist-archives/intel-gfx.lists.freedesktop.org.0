@@ -1,35 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E8791FAAFE
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:21:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A05FF1FAB03
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:23:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C61B86E855;
-	Tue, 16 Jun 2020 08:21:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBEE56E84F;
+	Tue, 16 Jun 2020 08:23:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 759F66E855;
- Tue, 16 Jun 2020 08:21:40 +0000 (UTC)
-Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
- by youngberry.canonical.com with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <colin.king@canonical.com>)
- id 1jl6qX-0004KJ-Aq; Tue, 16 Jun 2020 08:21:29 +0000
-From: Colin King <colin.king@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Date: Tue, 16 Jun 2020 09:21:29 +0100
-Message-Id: <20200616082129.65517-1-colin.king@canonical.com>
-X-Mailer: git-send-email 2.27.0.rc0
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH][next] drm/i915: fix a couple of spelling
- mistakes in kernel parameter help text
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3608B6E84F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 08:23:27 +0000 (UTC)
+IronPort-SDR: BEEeDauhnjdxqKzZXyNBcdPYAfCqUH1b8XISAUP2XawfjvjAryqw4w3lCV84ZQqWaQPmvI3g5S
+ SntlYJMYNWHg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 01:23:26 -0700
+IronPort-SDR: E2JR1M8xrI3N1uio8S1xiqJOV952TY9ZD+73sUXmF4X7UqTF2NOZGNOYv8iJuES6Pnp8YUoC3k
+ CzNjIc3ULfjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="449720799"
+Received: from joeydesktop.sh.intel.com ([10.239.53.104])
+ by orsmga005.jf.intel.com with ESMTP; 16 Jun 2020 01:23:25 -0700
+From: Shaofeng Tang <shaofeng.tang@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 16 Jun 2020 16:29:20 +0800
+Message-Id: <1592296160-3784-1-git-send-email-shaofeng.tang@intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [Intel-gfx] [PATCH] drm/i915/gvt: query if vgpu is active via
+ GETPARAM IOCTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,39 +44,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Shaofeng Tang <shaofeng.tang@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Colin Ian King <colin.king@canonical.com>
+[Why]
+Query if vgpu is active, it is useful to the user.
+Currently, only the primary plane is usable when vgpu is active.
+The value of vgpu active is useful for user to determine
+how many planes can be used. also useful for user to
+determine different behaviors according to vgpu is active or not.
 
-There are a couple of spelling mistakes in kernel parameter help text,
-namely "helpfull" and "paramters".  Fix them.
+[How]
+Add a switch-case in the IOCTL 'i915_getparam_ioctl' to
+return 'intel_vgpu_active'
 
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Signed-off-by: Shaofeng Tang <shaofeng.tang@intel.com>
 ---
- drivers/gpu/drm/i915/i915_params.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_getparam.c | 3 +++
+ include/uapi/drm/i915_drm.h          | 6 ++++++
+ tools/include/uapi/drm/i915_drm.h    | 6 ++++++
+ 3 files changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index a7b61e6ec508..8d8db9ff0a48 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -99,8 +99,8 @@ i915_param_named_unsafe(enable_psr, int, 0400,
+diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+index d042644..c50555b 100644
+--- a/drivers/gpu/drm/i915/i915_getparam.c
++++ b/drivers/gpu/drm/i915/i915_getparam.c
+@@ -161,6 +161,9 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+ 	case I915_PARAM_PERF_REVISION:
+ 		value = i915_perf_ioctl_version();
+ 		break;
++	case I915_PARAM_IS_GVT:
++		value = intel_vgpu_active(i915);
++		break;
+ 	default:
+ 		DRM_DEBUG("Unknown parameter %d\n", param->param);
+ 		return -EINVAL;
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 14b67cd..74f06e2 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -619,6 +619,12 @@ enum drm_i915_pmu_engine_sample {
+  */
+ #define I915_PARAM_PERF_REVISION	54
  
- i915_param_named(psr_safest_params, bool, 0400,
- 	"Replace PSR VBT parameters by the safest and not optimal ones. This "
--	"is helpfull to detect if PSR issues are related to bad values set in "
--	" VBT. (0=use VBT paramters, 1=use safest parameters)");
-+	"is helpful to detect if PSR issues are related to bad values set in "
-+	" VBT. (0=use VBT parameters, 1=use safest parameters)");
++/*
++ * Query whether GVT is active. The value returned helps userspace application
++ * to determine what KMS resources are workable.
++ */
++#define I915_PARAM_IS_GVT	55
++
+ /* Must be kept compact -- no holes and well documented */
  
- i915_param_named_unsafe(force_probe, charp, 0400,
- 	"Force probe the driver for specified devices. "
+ typedef struct drm_i915_getparam {
+diff --git a/tools/include/uapi/drm/i915_drm.h b/tools/include/uapi/drm/i915_drm.h
+index 2813e57..ecaad82 100644
+--- a/tools/include/uapi/drm/i915_drm.h
++++ b/tools/include/uapi/drm/i915_drm.h
+@@ -619,6 +619,12 @@ enum drm_i915_pmu_engine_sample {
+  */
+ #define I915_PARAM_PERF_REVISION	54
+ 
++/*
++ * Query whether GVT is active. The value returned helps userspace application
++ * to determine what KMS resources are workable.
++ */
++#define I915_PARAM_IS_GVT      55
++
+ /* Must be kept compact -- no holes and well documented */
+ 
+ typedef struct drm_i915_getparam {
 -- 
-2.27.0.rc0
+1.9.1
 
 _______________________________________________
 Intel-gfx mailing list
