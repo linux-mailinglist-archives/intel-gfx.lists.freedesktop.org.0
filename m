@@ -1,42 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BC8F1FA848
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 07:31:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 431EF1FA917
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 08:50:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8C2D6E5C8;
-	Tue, 16 Jun 2020 05:31:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E76B6E7D9;
+	Tue, 16 Jun 2020 06:50:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C238D6E5C5;
- Tue, 16 Jun 2020 05:31:40 +0000 (UTC)
-IronPort-SDR: lueDwyrcwFsGn45NslvZzJm9SeqlrvrTDoWI54bl0N9YIWhYXNCG5QFFjhPsvgFIZyEwGTm4IY
- zCKIS7BghFnQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2020 22:31:40 -0700
-IronPort-SDR: vLeZW3l4xyMeeH6OQEii/0blYQju0pRhEQGqDWz4i1ugGOsm03/ymB9X4s1Xq1R+xDfO57z3Rf
- lquaaSpJheKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,517,1583222400"; d="scan'208";a="476303682"
-Received: from xsang-optiplex-9020.sh.intel.com (HELO xsang-OptiPlex-9020)
- ([10.239.159.140])
- by fmsmga005.fm.intel.com with ESMTP; 15 Jun 2020 22:31:38 -0700
-Date: Tue, 16 Jun 2020 13:43:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <20200616054303.GI23105@xsang-OptiPlex-9020>
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com
+ [IPv6:2607:f8b0:4864:20::243])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D727F6E282
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 06:50:17 +0000 (UTC)
+Received: by mail-oi1-x243.google.com with SMTP id s21so18325862oic.9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 23:50:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=p1UoLdKQMCzYoAZ/D8UrzFaEab44Bxka143HkowSuzw=;
+ b=iyh1tyE9MrCkqjSMAA4FhoQonxxQ2zQlDDeTrqh7uoTXIBC2zy46JVLwRTvB20xfya
+ bIVWLegmkirreqPEYVdswS8PAjTQbqmPqQrS1E6728sX+3zJOqEiVQW1KmUcVBlJ2NFJ
+ qDUr/nzds9+Yf/EPW5mQFxEtxLmyPC4veUlig=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=p1UoLdKQMCzYoAZ/D8UrzFaEab44Bxka143HkowSuzw=;
+ b=m5pQlPIVA2u9HTzanyQE0HgQmwYGBwmYtjmnC/eYCp+9z9vNIivVXGCFXEOv2s42LS
+ 29mi9zzHS9cEKsBhwvejv2V9D4mwUlurtKyvdfjQnqlYbiE5uKRSWvQJ8TgQD9pPVY2Y
+ CDkordM60xgvteVQHAJLAsMTDAQBUHK7MnsueA4E67lg1UCqvcyYOY1VHdNKLSkH//9n
+ YQ3CK/hbIrt1Dsh/0X6B+yt/bygF+GMCJrrERUKEFOq5xSSLC7WhYhKC1DAIUuDTKQe6
+ WLOjGpdRl+HdwnNWZT2nB4evWbifpPnTnmSNaBPhk7e0eYWI1XSYxCT6geMtU6WIIpcU
+ QH2A==
+X-Gm-Message-State: AOAM531PlLR06mk8lSw48U+Rsngw3um9dotm/Rw0feoQpSI5l7Oy1o5s
+ gqFR0Xj+2et9JAyl4KgIY+AtsRU5UfCvuLBvHa0ANQ==
+X-Google-Smtp-Source: ABdhPJxk4LxI/qfTW71gXCau+MVPL/D4lFtFfgLCLJFzKN1XPmHFeIqmC0DTEiAAz+L8nIM8mdklP8z632xuBKzcXP4=
+X-Received: by 2002:aca:ed42:: with SMTP id l63mr2119085oih.101.1592290217127; 
+ Mon, 15 Jun 2020 23:50:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200612230444.10121-4-manasi.d.navare@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v6 3/3] drm/i915/dp: Expose connector VRR
- monitor range via debugfs
+References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
+ <20200612160056.2082681-7-daniel.vetter@ffwll.ch>
+ <CACvgo51AVVOxhGK2Uin=ZLgPpihJiEsnc6pvAyKqFKPvLdOzLA@mail.gmail.com>
+In-Reply-To: <CACvgo51AVVOxhGK2Uin=ZLgPpihJiEsnc6pvAyKqFKPvLdOzLA@mail.gmail.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Tue, 16 Jun 2020 08:50:06 +0200
+Message-ID: <CAKMK7uEEkH+8BuFcFUVTv6p8swZZTwcho-HNx5GdZTO1vHDoeg@mail.gmail.com>
+To: Emil Velikov <emil.l.velikov@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/mipi-dbi: Remove ->enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,119 +59,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Cc: David Lechner <david@lechnology.com>, David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Manasi,
+On Mon, Jun 15, 2020 at 11:35 PM Emil Velikov <emil.l.velikov@gmail.com> wrote:
+>
+> Hi Daniel,
+>
+> On Fri, 12 Jun 2020 at 17:01, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> >
+> > The atomic helpers try really hard to not lose track of things,
+> > duplicating enabled tracking in the driver is at best confusing.
+> > Double-enabling or disabling is a bug in atomic helpers.
+> >
+> > In the fb_dirty function we can just assume that the fb always exists,
+> > simple display pipe helpers guarantee that the crtc is only enabled
+> > together with the output, so we always have a primary plane around.
+> >
+> > Now in the update function we need to be a notch more careful, since
+> > that can also get called when the crtc is off. And we don't want to
+> > upload frames when that's the case, so filter that out too.
+> >
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: David Airlie <airlied@linux.ie>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: David Lechner <david@lechnology.com>
+> > ---
+> >  drivers/gpu/drm/drm_mipi_dbi.c | 16 ++++++----------
+> >  drivers/gpu/drm/tiny/ili9225.c | 12 +++---------
+> >  drivers/gpu/drm/tiny/st7586.c  | 11 +++--------
+> >  include/drm/drm_mipi_dbi.h     |  5 -----
+> >  4 files changed, 12 insertions(+), 32 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
+> > index fd8d672972a9..79532b9a324a 100644
+> > --- a/drivers/gpu/drm/drm_mipi_dbi.c
+> > +++ b/drivers/gpu/drm/drm_mipi_dbi.c
+> > @@ -268,7 +268,7 @@ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
+> >         bool full;
+> >         void *tr;
+> >
+> > -       if (!dbidev->enabled)
+> > +       if (WARN_ON(!fb))
+> >                 return;
+> >
+> AFAICT no other driver has such WARN_ON. Let's drop that - it is
+> pretty confusing and misleading as-is.
 
-Thank you for the patch! Perhaps something to improve:
+Yeah, this is a helper library which might be used wrongly by drivers.
+That's why I put it in - if you don't put all the various calls
+together correctly, this should at least catch one case. So really
+would like to keep this, can I convince you?
+-Daniel
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-tip/drm-tip drm-exynos/exynos-drm-next linus/master next-20200613]
-[cannot apply to tegra-drm/drm/tegra/for-next drm/drm-next v5.7]
-[if your patch is applied to the wrong git tree, please drop us a note to help
-improve the system. BTW, we also suggest to use '--base' option to specify the
-base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
-
-url:    https://github.com/0day-ci/linux/commits/Manasi-Navare/VRR-capable-attach-prop-in-i915-DPCD-helper-VRR-debugfs/20200613-070517
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-:::::: branch date: 2 days ago
-:::::: commit date: 2 days ago
-compiler: gcc-9 (Debian 9.3.0-13) 9.3.0
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> With that, patches 7/8 and 8/8 are:
+> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
+>
+> -Emil
 
 
-cppcheck warnings: (new ones prefixed by >>)
 
->> drivers/gpu/drm/i915/display/intel_display_debugfs.c:2258:0: warning: Invalid number of character '{' when no macros are defined. [syntaxError]
-   
-   ^
->> drivers/gpu/drm/i915/display/intel_display_debugfs.c:2258:0: warning: Invalid number of character '{' when these macros are defined: 'CONFIG_DEBUG_FS'. [syntaxError]
-   
-   ^
->> drivers/gpu/drm/i915/display/intel_display_debugfs.c:2258:0: warning: Invalid number of character '{' when these macros are defined: 'CONFIG_DRM_FBDEV_EMULATION'. [syntaxError]
-   
-   ^
-
-# https://github.com/0day-ci/linux/commit/670af3cf7a3a36bb87776fbfd7f913cd33681bbc
-git remote add linux-review https://github.com/0day-ci/linux
-git remote update linux-review
-git checkout 670af3cf7a3a36bb87776fbfd7f913cd33681bbc
-vim +2258 drivers/gpu/drm/i915/display/intel_display_debugfs.c
-
-670af3cf7a3a36 Bhanuprakash Modem 2020-06-12  2202  
-926b005cd8c4e3 Jani Nikula        2020-02-11  2203  /**
-926b005cd8c4e3 Jani Nikula        2020-02-11  2204   * intel_connector_debugfs_add - add i915 specific connector debugfs files
-926b005cd8c4e3 Jani Nikula        2020-02-11  2205   * @connector: pointer to a registered drm_connector
-926b005cd8c4e3 Jani Nikula        2020-02-11  2206   *
-926b005cd8c4e3 Jani Nikula        2020-02-11  2207   * Cleanup will be done by drm_connector_unregister() through a call to
-926b005cd8c4e3 Jani Nikula        2020-02-11  2208   * drm_debugfs_connector_remove().
-926b005cd8c4e3 Jani Nikula        2020-02-11  2209   *
-926b005cd8c4e3 Jani Nikula        2020-02-11  2210   * Returns 0 on success, negative error codes on error.
-926b005cd8c4e3 Jani Nikula        2020-02-11  2211   */
-926b005cd8c4e3 Jani Nikula        2020-02-11  2212  int intel_connector_debugfs_add(struct drm_connector *connector)
-926b005cd8c4e3 Jani Nikula        2020-02-11  2213  {
-926b005cd8c4e3 Jani Nikula        2020-02-11  2214  	struct dentry *root = connector->debugfs_entry;
-926b005cd8c4e3 Jani Nikula        2020-02-11  2215  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
-926b005cd8c4e3 Jani Nikula        2020-02-11  2216  
-926b005cd8c4e3 Jani Nikula        2020-02-11  2217  	/* The connector must have been registered beforehands. */
-926b005cd8c4e3 Jani Nikula        2020-02-11  2218  	if (!root)
-926b005cd8c4e3 Jani Nikula        2020-02-11  2219  		return -ENODEV;
-926b005cd8c4e3 Jani Nikula        2020-02-11  2220  
-926b005cd8c4e3 Jani Nikula        2020-02-11  2221  	if (connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
-926b005cd8c4e3 Jani Nikula        2020-02-11  2222  		debugfs_create_file("i915_panel_timings", S_IRUGO, root,
-926b005cd8c4e3 Jani Nikula        2020-02-11  2223  				    connector, &i915_panel_fops);
-926b005cd8c4e3 Jani Nikula        2020-02-11  2224  		debugfs_create_file("i915_psr_sink_status", S_IRUGO, root,
-926b005cd8c4e3 Jani Nikula        2020-02-11  2225  				    connector, &i915_psr_sink_status_fops);
-926b005cd8c4e3 Jani Nikula        2020-02-11  2226  	}
-926b005cd8c4e3 Jani Nikula        2020-02-11  2227  
-926b005cd8c4e3 Jani Nikula        2020-02-11  2228  	if (connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
-926b005cd8c4e3 Jani Nikula        2020-02-11  2229  	    connector->connector_type == DRM_MODE_CONNECTOR_HDMIA ||
-926b005cd8c4e3 Jani Nikula        2020-02-11  2230  	    connector->connector_type == DRM_MODE_CONNECTOR_HDMIB) {
-926b005cd8c4e3 Jani Nikula        2020-02-11  2231  		debugfs_create_file("i915_hdcp_sink_capability", S_IRUGO, root,
-926b005cd8c4e3 Jani Nikula        2020-02-11  2232  				    connector, &i915_hdcp_sink_capability_fops);
-926b005cd8c4e3 Jani Nikula        2020-02-11  2233  	}
-926b005cd8c4e3 Jani Nikula        2020-02-11  2234  
-926b005cd8c4e3 Jani Nikula        2020-02-11  2235  	if (INTEL_GEN(dev_priv) >= 10 &&
-926b005cd8c4e3 Jani Nikula        2020-02-11  2236  	    (connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
-926b005cd8c4e3 Jani Nikula        2020-02-11  2237  	     connector->connector_type == DRM_MODE_CONNECTOR_eDP))
-926b005cd8c4e3 Jani Nikula        2020-02-11  2238  		debugfs_create_file("i915_dsc_fec_support", S_IRUGO, root,
-926b005cd8c4e3 Jani Nikula        2020-02-11  2239  				    connector, &i915_dsc_fec_support_fops);
-926b005cd8c4e3 Jani Nikula        2020-02-11  2240  
-670af3cf7a3a36 Bhanuprakash Modem 2020-06-12  2241  		if (INTEL_GEN(dev_priv) >= 12)
-670af3cf7a3a36 Bhanuprakash Modem 2020-06-12  2242  			debugfs_create_file("vrr_range", S_IRUGO,
-670af3cf7a3a36 Bhanuprakash Modem 2020-06-12  2243  					    root, connector, &vrr_range_fops);
-670af3cf7a3a36 Bhanuprakash Modem 2020-06-12  2244  	}
-670af3cf7a3a36 Bhanuprakash Modem 2020-06-12  2245  
-8806211fe7b306 Anshuman Gupta     2020-04-15  2246  	/* Legacy panels doesn't lpsp on any platform */
-8806211fe7b306 Anshuman Gupta     2020-04-15  2247  	if ((INTEL_GEN(dev_priv) >= 9 || IS_HASWELL(dev_priv) ||
-8806211fe7b306 Anshuman Gupta     2020-04-15  2248  	     IS_BROADWELL(dev_priv)) &&
-8806211fe7b306 Anshuman Gupta     2020-04-15  2249  	     (connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
-8806211fe7b306 Anshuman Gupta     2020-04-15  2250  	     connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
-8806211fe7b306 Anshuman Gupta     2020-04-15  2251  	     connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
-8806211fe7b306 Anshuman Gupta     2020-04-15  2252  	     connector->connector_type == DRM_MODE_CONNECTOR_HDMIA ||
-8806211fe7b306 Anshuman Gupta     2020-04-15  2253  	     connector->connector_type == DRM_MODE_CONNECTOR_HDMIB))
-8806211fe7b306 Anshuman Gupta     2020-04-15  2254  		debugfs_create_file("i915_lpsp_capability", 0444, root,
-8806211fe7b306 Anshuman Gupta     2020-04-15  2255  				    connector, &i915_lpsp_capability_fops);
-8806211fe7b306 Anshuman Gupta     2020-04-15  2256  
-926b005cd8c4e3 Jani Nikula        2020-02-11  2257  	return 0;
-926b005cd8c4e3 Jani Nikula        2020-02-11 @2258  }
-
-:::::: The code at line 2258 was first introduced by commit
-:::::: 926b005cd8c4e325ab918edea0fbdd1d25d1ba28 drm/i915: split out display debugfs to a separate file
-
-:::::: TO: Jani Nikula <jani.nikula@intel.com>
-:::::: CC: Jani Nikula <jani.nikula@intel.com>
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
