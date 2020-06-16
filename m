@@ -1,40 +1,116 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C88DD1FC0B1
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 23:12:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8055B1FC105
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 23:31:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E5CB6E99C;
-	Tue, 16 Jun 2020 21:11:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 728196E1F8;
+	Tue, 16 Jun 2020 21:31:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA6A6E93B;
- Tue, 16 Jun 2020 21:11:52 +0000 (UTC)
-IronPort-SDR: 1jnM+SLs88gSDZMSCcrUIMYmi0EPuKwfsIEYu7zl59GVAc5DhxWuWxK+tSDRjD94V/WmPP3o/N
- JKcW9VgK+gbA==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8A296E1F8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 21:31:48 +0000 (UTC)
+IronPort-SDR: T1fqR9+JbTNEanuRvGCL3lClDaUunK5H25XHPGddn5Cdfk/MwXPUwFQzzs4AKMS9IWBnXvHWB2
+ 5QdaKG+ys8PQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 14:11:52 -0700
-IronPort-SDR: 0uisvkeuX4QnnT7E4MsEs84glmVJQEpFgRRW4M42qpaulOk2YlrAaeJXz5O+4Hk37yrtrey0p3
- h/NaYtpHklpw==
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 14:31:47 -0700
+IronPort-SDR: CN80eXHKAoagjampzPj9GXq3jxzVdRgGQklWE8t9mk37DiGgHHeSNs2WZ8T3zzQE1kq8SpjaCA
+ bEmdRNNBupmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,519,1583222400"; d="scan'208";a="273288328"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga003.jf.intel.com with ESMTP; 16 Jun 2020 14:11:50 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Jun 2020 00:11:46 +0300
-Message-Id: <20200616211146.23027-3-imre.deak@intel.com>
-X-Mailer: git-send-email 2.23.1
-In-Reply-To: <20200616141855.746-6-imre.deak@intel.com>
-References: <20200616141855.746-6-imre.deak@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,519,1583222400"; d="scan'208";a="476591366"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+ by fmsmga006.fm.intel.com with ESMTP; 16 Jun 2020 14:31:47 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 16 Jun 2020 14:31:47 -0700
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 16 Jun 2020 14:31:46 -0700
+Received: from ORSEDG002.ED.cps.intel.com (10.7.248.5) by
+ orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Tue, 16 Jun 2020 14:31:46 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
+ edgegateway.intel.com (134.134.137.101) with Microsoft SMTP Server
+ (TLS) id 14.3.439.0; Tue, 16 Jun 2020 14:31:46 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X0ys/kOT7ykkss8lCO2z4gB12mMY16c+a0PIIl9RWkHE17C01qgSAuynCuswoo0ytNk7XerbyPFyNhiDNCgr6PTZTqeDHs7Be4cg1nnADkOtp0tY9bS7vIj8oZziQehFGQ7BGFwwjPTXtGQEiuVNEFNhJ8xmVmGPnVJqwIuDLiBD8PGGzGfx0C3XQFRlOgTzExh30J5KfAATkEb6uBQilpz/e/rwYps7wQ6L+l4bJFWyiYDu8hMXruaJtdo2K6aKQ5srEnJYDZTNTzg3SH2ZH+NQABPMWVn8DHz4rJJb5qivSNvjT9AAvISUbGH1QlUKeSa5FuMUUU9zvnPpPrcHBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hT8rUCc540/ZNLXr8nbjzcK2kTT5K2ZHJkL/JcCbYEY=;
+ b=Ub7EZBY4RiRZsBk62MbuF6J8xgpkBVbeIitypG92lb5x45AGRsBM40Ep4V1r45Io3SXh5MouQ7d0V5m9JcZjTY5OcGvjGoysOcngqpyg0OxZ5GntSsdVT7VtG4FIOGlYkr6S0EqI7+flXWE+5s197pRK1nlO7LVcpTZgDHdds6qtlcz2MCIUNK7AnW0EZThdqk41mnUa0gYg9bZlpqnqtD2rrweLiK2O/0AQvYtzUkst/9daHM5YiTwt4X6/eCzqBpPoRXQZyJkxvMAgZJygRarSEd1tP3UOjruPRg0qzI3/R8S6jvjW4QlPKtbzGZZtztGcfWNXswtUZYyWgJXPgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hT8rUCc540/ZNLXr8nbjzcK2kTT5K2ZHJkL/JcCbYEY=;
+ b=cHGk/yfJovxHnsz3FAidaAFguEXkZsbmyJ//0/Dq4G2eOcYUyEVcYq21QvAWUBtH78YtDLBObdhsJyU7j0oDaeddk+4wB+M5BzJKXjq3YIY4PLSE8FX6I77APQmFdA8ezXrnPHhYWq2QU1+YicF77yJ9xQUbGatfp/s0OOG7pO4=
+Received: from BYAPR11MB3799.namprd11.prod.outlook.com (2603:10b6:a03:fb::19)
+ by BY5PR11MB3880.namprd11.prod.outlook.com (2603:10b6:a03:184::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.22; Tue, 16 Jun
+ 2020 21:31:45 +0000
+Received: from BYAPR11MB3799.namprd11.prod.outlook.com
+ ([fe80::60fb:1a14:be44:9b0b]) by BYAPR11MB3799.namprd11.prod.outlook.com
+ ([fe80::60fb:1a14:be44:9b0b%3]) with mapi id 15.20.3088.029; Tue, 16 Jun 2020
+ 21:31:45 +0000
+From: "Abodunrin, Akeem G" <akeem.g.abodunrin@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/gt: Decouple completed requests on
+ unwind
+Thread-Index: AQHWRBDEvweiw71+MUiPdAzRQhejZqjbwfhw
+Date: Tue, 16 Jun 2020 21:31:45 +0000
+Message-ID: <BYAPR11MB379930B74EC336F26E655B0FA99D0@BYAPR11MB3799.namprd11.prod.outlook.com>
+References: <20200616190136.19905-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200616190136.19905-1-chris@chris-wilson.co.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+authentication-results: chris-wilson.co.uk; dkim=none (message not signed)
+ header.d=none;chris-wilson.co.uk; dmarc=none action=none
+ header.from=intel.com;
+x-originating-ip: [192.55.52.200]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a62d75e2-44c3-4554-28c4-08d8123cab6d
+x-ms-traffictypediagnostic: BY5PR11MB3880:
+x-microsoft-antispam-prvs: <BY5PR11MB38805667CA9DBEB14F194FC9A99D0@BY5PR11MB3880.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 04362AC73B
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: P0bhu92V5WJeQkSrKAErUMyn1k2UrtbyMi6z8itWx59FyxlzRu3ATujSB2S4lTnS16VIimYO9k1Vv9+Y6YoXI+F7RoEuZ9+A9ASoGy8/RkhF/wg8YRsNV8rQzQV/wwlo9PHMaU4I+p40C6Y0khbgiEx9S7AL82XxCQVFcW1psCSsdxUjKTRqJgaNwVD3ePFDqaoaDEHEZMQShG+al62QM/cJ26gTSLhXRBvw9wox+l/W3Bm1GcnLdqIpqXO9rJY08rD1fiAUhsqx1pX3/StSG/jQWoMGgNhEXrQD5Quvr8gwm4bmFmmXgGvz6QXT/OH9mN8cpBMObK+mC+CIvmTcyEJq0Gl7sWD/ex3RwRXr1iswzWT6QiLTY009Z8eUmaisUJ/z6zkVfCWdTqk7ztvMZqa9Jqle3X1sDqJKoLO4FpY=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB3799.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(346002)(376002)(39860400002)(136003)(396003)(366004)(2906002)(52536014)(9686003)(966005)(55016002)(26005)(5660300002)(6506007)(53546011)(478600001)(110136005)(86362001)(8676002)(8936002)(7696005)(316002)(66476007)(66946007)(186003)(76116006)(66556008)(33656002)(64756008)(66446008)(71200400001)(83380400001)(21314003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: 1LKiyN1Vg7qAxvOex5fPqfW3UYFtbysHUSuE6EAlN1GX7QSxmxAL4SGOielK50ijTG51GSCPhJsDvqpXGMDRnGRDkU546tRAHseL76yFvpql4VveqW5pIv6mOldoevdOQoEECMtKS69zrw9PUJ4e1FywzagN8cf2Ud0w7kQCTRUytNsWXjsaRD1cu1ytvwYnw9gJuJmfimnSRFd85REjC8GXdDmYh0uw1sTe28Kuly257LmW9iFbAVojS6wFqxyYKimpc40ZvQ2AG+Vl6Hyb6Y16WFpnqgGHaGtmhTILijaIaUovXN6q2dbwxVixsMJdPky8P8FhlxI7o9AIHSwTL+V+mJT+JUJCIninLvofXWdgBoXdaBQY5YpT6O5dVkeI72l8jxF80ju4PeZYUGQzTk0BTShwF7BSzWzo6hS2tqBeRJwzEIdYnTr6PzEfJMQTvHQdIr4w86N4f676ewAl0iG1Dx7C9f1FBCe1jzNKX6A=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 6/6] drm/i915/dp_mst: Ensure the DPCD ACT
- sent flag is cleared before waiting for it
+X-MS-Exchange-CrossTenant-Network-Message-Id: a62d75e2-44c3-4554-28c4-08d8123cab6d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2020 21:31:45.5191 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: n5TQu+1EYA52nwvmFyGyTPSp5nkPJxME8p/iSiKKhzlQOaewQykxsh3hbhATAqpWFoEmSo3PTBHxkvI+CPtOKKvS3sP52NEHa9+8tOOXHWY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB3880
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Decouple completed requests on
+ unwind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,85 +123,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXRtLCB3ZSBjbGVhciB0aGUgQUNUIHNlbnQgZmxhZyBpbiB0aGUgc2luaydzIERQQ0QgYmVmb3Jl
-IHVwZGF0aW5nIHRoZQpzaW5rJ3MgcGF5bG9hZCB0YWJsZSwgYWxvbmcgY2xlYXJpbmcgdGhlIHBh
-eWxvYWQgdGFibGUgdXBkYXRlZCBmbGFnLgpUaGUgc2luayBpcyBzdXBwb3NlZCB0byBzZXQgdGhp
-cyBmbGFnIG9uY2UgaXQgZGV0ZWN0cyB0aGF0IHRoZSBzb3VyY2UKaGFzIGNvbXBsZXRlZCB0aGUg
-QUNUIHNlcXVlbmNlIChhZnRlciBkZXRlY3RpbmcgdGhlIDQgcmVxdWlyZWQgQUNUIE1UUEgKc3lt
-Ym9scyBzZW50IGJ5IHRoZSBzb3VyY2UpLiBBcyBvcHBvc2VkIHRvIHRoaXMgMiBERUxMIG1vbml0
-b3JzIEkgaGF2ZQpzZXQgdGhlIGZsYWcgYWxyZWFkeSBhbG9uZyB0aGUgcGF5bG9hZCB0YWJsZSB1
-cGRhdGVkIGZsYWcsIHdoaWNoIGlzIG5vdApxdWl0ZSBjb3JyZWN0LgoKVG8gYmUgc3VyZSB0aGF0
-IHRoZSBzaW5rIGhhcyBkZXRlY3RlZCB0aGUgQUNUIE1UUEggc3ltYm9scyBiZWZvcmUKY29udGlu
-dWluZyBlbmFibGluZyB0aGUgZW5jb2RlciwgY2xlYXIgdGhlIEFDVCBzZW50IGZsYWcgYmVmb3Jl
-IGVuYWJsaW5nCm9yIGRpc2FibGluZyB0aGUgdHJhbnNjb2RlciBWQyBwYXlsb2FkIGFsbG9jYXRp
-b24gKHdoaWNoIGlzIHdoYXQgc3RhcnRzCnRoZSBBQ1Qgc2VxdWVuY2UpLgoKdjIgKFZpbGxlKToK
-LSBVc2UgdGhlIGNvcnJlY3QgYml0IHRvIGNsZWFyIHRoZSBmbGFncy4KLSBBZGQgY29kZSBjb21t
-ZW50IGV4cGxhaW5pbmcgdGhlIGNsZWFyaW5nIHNlbWFudGljcyBvZiB0aGUgQUNUIGhhbmRsZWQK
-ICBmbGFnLgoKQ2M6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNjOiBWaWxsZSBTeXJq
-w6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpDYzogZHJpLWRldmVsQGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRl
-bC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYyAgICAgICB8
-IDM4ICsrKysrKysrKysrKysrKysrKystLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kcF9tc3QuYyB8ICAyICsrCiBpbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oICAg
-ICAgICAgICAgIHwgIDIgKysKIDMgZmlsZXMgY2hhbmdlZCwgNDAgaW5zZXJ0aW9ucygrKSwgMiBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3Bv
-bG9neS5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYwppbmRleCBiMmY1
-YTg0YjRjZmIuLjFmNWQxNDEyOGMxYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9k
-cF9tc3RfdG9wb2xvZ3kuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9n
-eS5jCkBAIC00Mzc3LDYgKzQzNzcsNDEgQEAgdm9pZCBkcm1fZHBfbXN0X2RlYWxsb2NhdGVfdmNw
-aShzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgKm1nciwKIH0KIEVYUE9SVF9TWU1CT0wo
-ZHJtX2RwX21zdF9kZWFsbG9jYXRlX3ZjcGkpOwogCisvKioKKyAqIGRybV9kcF9jbGVhcl9wYXls
-b2FkX3N0YXR1cygpIC0gQ2xlYXJzIHRoZSBwYXlsb2FkIHRhYmxlIHN0YXR1cyBmbGFncworICog
-QG1ncjogbWFuYWdlciB0byB1c2UKKyAqCisgKiBDbGVhcnMgdGhlIHBheWxvYWQgdGFibGUgQUNU
-IGhhbmRsZWQgYW5kIHRhYmxlIHVwZGF0ZWQgZmxhZ3MgaW4gdGhlIE1TVCBodWIncworICogRFBD
-RC4gVGhpcyBmdW5jdGlvbiBtdXN0IGJlIGNhbGxlZCBiZWZvcmUgdXBkYXRpbmcgdGhlIHBheWxv
-YWQgdGFibGUgb3IKKyAqIHN0YXJ0aW5nIHRoZSBBQ1Qgc2VxdWVuY2UgYW5kIHdhaXRpbmcgZm9y
-IHRoZSBjb3JyZXNwb25kaW5nIGZsYWdzIHRvIGdldAorICogc2V0IGJ5IHRoZSBodWIuCisgKgor
-ICogUmV0dXJuczoKKyAqIDAgaWYgdGhlIGZsYWdzIGdvdCBjbGVhcmVkIHN1Y2Nlc3NmdWxseSwg
-b3RoZXJ3aXNlIGEgbmVnYXRpdmUgZXJyb3IgY29kZS4KKyAqLworaW50IGRybV9kcF9jbGVhcl9w
-YXlsb2FkX3N0YXR1cyhzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgKm1ncikKK3sKKwlp
-bnQgcmV0OworCisJLyoKKwkgKiBOb3RlIHRoYXQgdGhlIGZvbGxvd2luZyBpcyBiYXNlZCBvbiB0
-aGUgRFAgU3RhbmRhcmQgc3RhdGluZyB0aGF0CisJICogd3JpdGluZyB0aGUgRFBfUEFZTE9BRF9U
-QUJMRV9VUERBVEVEIGJpdCBhbG9uZSB3aWxsIGNsZWFyIGJvdGggdGhlCisJICogRFBfUEFZTE9B
-RF9UQUJMRV9VUERBVEVEIGFuZCB0aGUgRFBfUEFZTE9BRF9BQ1RfSEFORExFRCBmbGFncy4gVGhp
-cworCSAqIHNlZW1zIHRvIGJlIGFsc28gdGhlIG9ubHkgd2F5IHRvIGNsZWFyIERQX1BBWUxPQURf
-QUNUX0hBTkRMRUQuCisJICovCisJcmV0ID0gZHJtX2RwX2RwY2Rfd3JpdGViKG1nci0+YXV4LCBE
-UF9QQVlMT0FEX1RBQkxFX1VQREFURV9TVEFUVVMsCisJCQkJIERQX1BBWUxPQURfVEFCTEVfVVBE
-QVRFRCk7CisJaWYgKHJldCA8IDApIHsKKwkJRFJNX0RFQlVHX0RSSVZFUigiQ2FuJ3QgY2xlYXIg
-dGhlIEFDVCBoYW5kbGVkL3RhYmxlIHVwZGF0ZWQgZmxhZ3MgKCVkKVxuIiwKKwkJCQkgcmV0KTsK
-KwkJcmV0dXJuIHJldDsKKwl9CisJV0FSTl9PTihyZXQgIT0gMSk7CisKKwlyZXR1cm4gMDsKK30K
-K0VYUE9SVF9TWU1CT0woZHJtX2RwX2NsZWFyX3BheWxvYWRfc3RhdHVzKTsKKwogc3RhdGljIGlu
-dCBkcm1fZHBfZHBjZF93cml0ZV9wYXlsb2FkKHN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21n
-ciAqbWdyLAogCQkJCSAgICAgaW50IGlkLCBzdHJ1Y3QgZHJtX2RwX3BheWxvYWQgKnBheWxvYWQp
-CiB7CkBAIC00Mzg0LDggKzQ0MTksNyBAQCBzdGF0aWMgaW50IGRybV9kcF9kcGNkX3dyaXRlX3Bh
-eWxvYWQoc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyICptZ3IsCiAJaW50IHJldDsKIAlp
-bnQgcmV0cmllcyA9IDA7CiAKLQlkcm1fZHBfZHBjZF93cml0ZWIobWdyLT5hdXgsIERQX1BBWUxP
-QURfVEFCTEVfVVBEQVRFX1NUQVRVUywKLQkJCSAgIERQX1BBWUxPQURfVEFCTEVfVVBEQVRFRCk7
-CisJZHJtX2RwX2NsZWFyX3BheWxvYWRfc3RhdHVzKG1ncik7CiAKIAlwYXlsb2FkX2FsbG9jWzBd
-ID0gaWQ7CiAJcGF5bG9hZF9hbGxvY1sxXSA9IHBheWxvYWQtPnN0YXJ0X3Nsb3Q7CmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYwppbmRleCA5MzA4YjU5MjA3ODAu
-LjNjNGIwZmIxMGQ4YiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kcF9tc3QuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-X21zdC5jCkBAIC0zMjMsNiArMzIzLDggQEAgc3RhdGljIHZvaWQgY2xlYXJfYWN0X3NlbnQoc3Ry
-dWN0IGludGVsX2RwICppbnRlbF9kcCkKIAogCWludGVsX2RlX3dyaXRlKGk5MTUsIGludGVsX2Rw
-LT5yZWdzLmRwX3RwX3N0YXR1cywKIAkJICAgICAgIERQX1RQX1NUQVRVU19BQ1RfU0VOVCk7CisK
-Kwlkcm1fZHBfY2xlYXJfcGF5bG9hZF9zdGF0dXMoJmludGVsX2RwLT5tc3RfbWdyKTsKIH0KIAog
-c3RhdGljIHZvaWQgd2FpdF9mb3JfYWN0X3NlbnQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkK
-ZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVyLmggYi9pbmNsdWRlL2Ry
-bS9kcm1fZHBfbXN0X2hlbHBlci5oCmluZGV4IDhiOWViNGRiMzM4MS4uMmZhY2I4NzYyNGJmIDEw
-MDY0NAotLS0gYS9pbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oCisrKyBiL2luY2x1ZGUv
-ZHJtL2RybV9kcF9tc3RfaGVscGVyLmgKQEAgLTc2Myw2ICs3NjMsOCBAQCBpbnQgZHJtX2RwX2Zp
-bmRfdmNwaV9zbG90cyhzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgKm1nciwKIAkJCSAg
-IGludCBwYm4pOwogCiAKK2ludCBkcm1fZHBfY2xlYXJfcGF5bG9hZF9zdGF0dXMoc3RydWN0IGRy
-bV9kcF9tc3RfdG9wb2xvZ3lfbWdyICptZ3IpOworCiBpbnQgZHJtX2RwX3VwZGF0ZV9wYXlsb2Fk
-X3BhcnQxKHN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyKTsKIAogCi0tIAoyLjIz
-LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+
+
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Chris
+> Wilson
+> Sent: Tuesday, June 16, 2020 12:02 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Subject: [Intel-gfx] [PATCH] drm/i915/gt: Decouple completed requests on
+> unwind
+> 
+> Since the introduction of preempt-to-busy, requests can complete in the
+> background, even while they are not on the engine->active.requests list.
+> As such, the engine->active.request list itself is not in strict retirement order,
+> and we have to scan the entire list while unwinding to not miss any.
+> However, if the request is completed we currently leave it on the list [until
+> retirement], but we could just as simply remove it and stop treating it as
+> active. We would only have to then traverse it once while unwinding in quick
+> succession.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_lrc.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index e866b8d721ed..4eb397b0e14d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1114,8 +1114,10 @@ __unwind_incomplete_requests(struct
+> intel_engine_cs *engine)
+>  	list_for_each_entry_safe_reverse(rq, rn,
+>  					 &engine->active.requests,
+>  					 sched.link) {
+> -		if (i915_request_completed(rq))
+> -			continue; /* XXX */
+> +		if (i915_request_completed(rq)) {
+> +			list_del_init(&rq->sched.link);
+
+Albeit this seems like a valid approach to resolve inconsistence in the list of requests that are active or retired, but we can't just delete completed requests from the list until full retirement is done - otherwise we stand the risk of out-of-the-order list, and could lead to inconsistence (which is the original problem you intend to resolve). Have you thought about locking mechanism?
+
+Regards,
+~Akeem
+> +			continue;
+> +		}
+> 
+>  		__i915_request_unsubmit(rq);
+> 
+> --
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
