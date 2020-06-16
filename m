@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7F4C1FBEA7
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 21:01:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B43021FBEAD
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 21:03:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C82A6E962;
-	Tue, 16 Jun 2020 19:01:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 167C76E960;
+	Tue, 16 Jun 2020 19:03:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D4B46E92C
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 19:01:44 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21517457-1500050 
- for multiple; Tue, 16 Jun 2020 20:01:38 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Jun 2020 20:01:36 +0100
-Message-Id: <20200616190136.19905-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0A7B76E92C;
+ Tue, 16 Jun 2020 19:03:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0282FA0009;
+ Tue, 16 Jun 2020 19:03:29 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Decouple completed requests on
- unwind
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Colin Ian King" <colin.king@canonical.com>
+Date: Tue, 16 Jun 2020 19:03:29 -0000
+Message-ID: <159233420999.4595.17677590135204023959@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200616114221.73971-1-colin.king@canonical.com>
+In-Reply-To: <20200616114221.73971-1-colin.king@canonical.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display=3A_fix_missing_null_check_on_allocated_dsb?=
+ =?utf-8?q?_object?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,45 +39,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since the introduction of preempt-to-busy, requests can complete in the
-background, even while they are not on the engine->active.requests list.
-As such, the engine->active.request list itself is not in strict
-retirement order, and we have to scan the entire list while unwinding to
-not miss any. However, if the request is completed we currently leave it
-on the list [until retirement], but we could just as simply remove it
-and stop treating it as active. We would only have to then traverse it
-once while unwinding in quick succession.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Series: drm/i915/display: fix missing null check on allocated dsb object
+URL   : https://patchwork.freedesktop.org/series/78414/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index e866b8d721ed..4eb397b0e14d 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1114,8 +1114,10 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
- 	list_for_each_entry_safe_reverse(rq, rn,
- 					 &engine->active.requests,
- 					 sched.link) {
--		if (i915_request_completed(rq))
--			continue; /* XXX */
-+		if (i915_request_completed(rq)) {
-+			list_del_init(&rq->sched.link);
-+			continue;
-+		}
- 
- 		__i915_request_unsubmit(rq);
- 
--- 
-2.20.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+f48c185da47b drm/i915/display: fix missing null check on allocated dsb object
+-:27: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#27: FILE: drivers/gpu/drm/i915/display/intel_dsb.c:275:
++	if (!dsb) {
++		drm_err(&i915->drm, "DSB object creation failed\n");
+
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
