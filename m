@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051D51FC27B
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 01:58:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FD081FC27D
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 01:58:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C7196E0E6;
-	Tue, 16 Jun 2020 23:58:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BFCC6E9D0;
+	Tue, 16 Jun 2020 23:58:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC6BA6E0E6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5CF46E20B
  for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 23:58:21 +0000 (UTC)
-IronPort-SDR: TwGg+csQ5OLZ4HvNKCAucXHF3abgjuR3t0kv5GM+352+QZblzTv6Xoot7To8NmCBWdKOwoZZOe
- uoNwsKW0Uvrg==
+IronPort-SDR: SrrQmSGTBAVRuS3F3CzqfyyzUut9SGmAo1sf1ct06futqJbzEzcJJzUCqpNO4leQoLM7DsAjvG
+ 04SOZ/1PqkKA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Jun 2020 16:58:21 -0700
-IronPort-SDR: ZJQED6mKGOxhU3XNA/MCu2D2i8jjKtYHLk54Uxyz8MxPoVIEpuiYYYNdQWedcJBtXgAHW6lRa1
- eeqV/klfzeRw==
+IronPort-SDR: W5g11JC/afHZgIe3Ytvzm3BkAHFbdj6oCVklVwitFv7AmTEx0wMBRgR3jKFpPLOeZvS/e71EoW
+ I0lS+OFXfq1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,520,1583222400"; d="scan'208";a="277097152"
+X-IronPort-AV: E=Sophos;i="5.73,520,1583222400"; d="scan'208";a="277097156"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
- by orsmga006.jf.intel.com with ESMTP; 16 Jun 2020 16:58:20 -0700
+ by orsmga006.jf.intel.com with ESMTP; 16 Jun 2020 16:58:21 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Jun 2020 16:58:08 -0700
-Message-Id: <20200616235810.3848540-4-matthew.d.roper@intel.com>
+Date: Tue, 16 Jun 2020 16:58:09 -0700
+Message-Id: <20200616235810.3848540-5-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200616235810.3848540-1-matthew.d.roper@intel.com>
 References: <20200616235810.3848540-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 3/5] drm/i915/rkl: Handle HTI
+Subject: [Intel-gfx] [PATCH v6 4/5] drm/i915/rkl: Add initial workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,176 +46,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If HTI (also sometimes called HDPORT) is enabled at startup, it may be
-using some of the PHYs and DPLLs making them unavailable for general
-usage.  Let's read out the HDPORT_STATE register and avoid making use of
-resources that HTI is already using.
+RKL and TGL share some general gen12 workarounds, but each platform also
+has its own platform-specific workarounds.
 
 v2:
- - Fix minor checkpatch warnings
+ - Add Wa_1604555607 for RKL.  This makes RKL's ctx WA list identical to
+   TGL's, so we'll have both functions call the tgl_ function for now;
+   this workaround isn't listed for DG1 so we don't want to add it to
+   the general gen12_ function.
 
-Bspec: 49189
-Bspec: 53707
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 30 ++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 21 +++++++++++++
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  1 +
- drivers/gpu/drm/i915/i915_drv.h               |  3 ++
- drivers/gpu/drm/i915/i915_reg.h               |  6 ++++
- 5 files changed, 57 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_sprite.c |  5 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 88 +++++++++++++--------
+ 2 files changed, 59 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6c2bb3354b86..f16512eddc58 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -46,6 +46,7 @@
- #include "display/intel_ddi.h"
- #include "display/intel_dp.h"
- #include "display/intel_dp_mst.h"
-+#include "display/intel_dpll_mgr.h"
- #include "display/intel_dsi.h"
- #include "display/intel_dvo.h"
- #include "display/intel_gmbus.h"
-@@ -16814,6 +16815,13 @@ static void intel_pps_init(struct drm_i915_private *dev_priv)
- 	intel_pps_unlock_regs_wa(dev_priv);
- }
- 
-+static bool hti_uses_phy(u32 hdport_state, enum phy phy)
-+{
-+	return hdport_state & HDPORT_ENABLED &&
-+		(hdport_state & HDPORT_PHY_USED_DP(phy) ||
-+		 hdport_state & HDPORT_PHY_USED_HDMI(phy));
-+}
-+
- static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index 3cd461bf9131..63ac79f88fa2 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -2842,8 +2842,9 @@ static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
+ static bool gen12_plane_supports_mc_ccs(struct drm_i915_private *dev_priv,
+ 					enum plane_id plane_id)
  {
- 	struct intel_encoder *encoder;
-@@ -16825,10 +16833,22 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 		return;
+-	/* Wa_14010477008:tgl[a0..c0] */
+-	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
++	/* Wa_14010477008:tgl[a0..c0],rkl[all] */
++	if (IS_ROCKETLAKE(dev_priv) ||
++	    IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
+ 		return false;
  
- 	if (IS_ROCKETLAKE(dev_priv)) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
--		intel_ddi_init(dev_priv, PORT_E);	/* DDI TC2 */
-+		/*
-+		 * If HTI (aka HDPORT) is enabled at boot, it may have taken
-+		 * over some of the PHYs and made them unavailable to the
-+		 * driver.  In that case we should skip initializing the
-+		 * corresponding outputs.
-+		 */
-+		u32 hdport_state = intel_de_read(dev_priv, HDPORT_STATE);
-+
-+		if (!hti_uses_phy(hdport_state, PHY_A))
-+			intel_ddi_init(dev_priv, PORT_A);
-+		if (!hti_uses_phy(hdport_state, PHY_B))
-+			intel_ddi_init(dev_priv, PORT_B);
-+		if (!hti_uses_phy(hdport_state, PHY_C))
-+			intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
-+		if (!hti_uses_phy(hdport_state, PHY_D))
-+			intel_ddi_init(dev_priv, PORT_E);	/* DDI TC2 */
- 	} else if (INTEL_GEN(dev_priv) >= 12) {
- 		intel_ddi_init(dev_priv, PORT_A);
- 		intel_ddi_init(dev_priv, PORT_B);
-@@ -18376,6 +18396,8 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
- 
- 	intel_dpll_readout_hw_state(dev_priv);
- 
-+	dev_priv->hti_pll_mask = intel_get_hti_plls(dev_priv);
-+
- 	for_each_intel_encoder(dev, encoder) {
- 		pipe = 0;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index b5f4d4cef682..6f59f9ec453b 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -265,6 +265,24 @@ void intel_disable_shared_dpll(const struct intel_crtc_state *crtc_state)
- 	mutex_unlock(&dev_priv->dpll.lock);
+ 	return plane_id < PLANE_SPRITE4;
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 2da366821dda..741710ca2b9a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -596,8 +596,8 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN11_DIS_PICK_2ND_EU);
  }
  
-+/*
-+ * HTI (aka HDPORT) may be using some of the platform's PLL's, making them
-+ * unavailable for use.
-+ */
-+u32 intel_get_hti_plls(struct drm_i915_private *dev_priv)
-+{
-+	u32 hdport_state;
-+
-+	if (!IS_ROCKETLAKE(dev_priv))
-+		return 0;
-+
-+	hdport_state = intel_de_read(dev_priv, HDPORT_STATE);
-+	if (!(hdport_state & HDPORT_ENABLED))
-+		return 0;
-+
-+	return REG_FIELD_GET(HDPORT_DPLL_USED_MASK, hdport_state);
+-static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+-				     struct i915_wa_list *wal)
++static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
++				       struct i915_wa_list *wal)
+ {
+ 	/*
+ 	 * Wa_1409142259:tgl
+@@ -607,12 +607,28 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	 * Wa_1409207793:tgl
+ 	 * Wa_1409178076:tgl
+ 	 * Wa_1408979724:tgl
++	 * Wa_14010443199:rkl
++	 * Wa_14010698770:rkl
+ 	 */
+ 	WA_SET_BIT_MASKED(GEN11_COMMON_SLICE_CHICKEN3,
+ 			  GEN12_DISABLE_CPS_AWARE_COLOR_PIPE);
+ 
++	/* WaDisableGPGPUMidThreadPreemption:gen12 */
++	WA_SET_FIELD_MASKED(GEN8_CS_CHICKEN1,
++			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
++			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
 +}
 +
- static struct intel_shared_dpll *
- intel_find_shared_dpll(struct intel_atomic_state *state,
- 		       const struct intel_crtc *crtc,
-@@ -280,6 +298,9 @@ intel_find_shared_dpll(struct intel_atomic_state *state,
- 
- 	drm_WARN_ON(&dev_priv->drm, dpll_mask & ~(BIT(I915_NUM_PLLS) - 1));
- 
-+	/* Eliminate DPLLs from consideration if reserved by HTI */
-+	dpll_mask &= ~dev_priv->hti_pll_mask;
-+
- 	for_each_set_bit(i, &dpll_mask, I915_NUM_PLLS) {
- 		pll = &dev_priv->dpll.shared_dplls[i];
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index 5d9a2bc371e7..ac2238646fe7 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -390,6 +390,7 @@ void intel_shared_dpll_swap_state(struct intel_atomic_state *state);
- void intel_shared_dpll_init(struct drm_device *dev);
- void intel_dpll_readout_hw_state(struct drm_i915_private *dev_priv);
- void intel_dpll_sanitize_state(struct drm_i915_private *dev_priv);
-+u32 intel_get_hti_plls(struct drm_i915_private *dev_priv);
- 
- void intel_dpll_dump_hw_state(struct drm_i915_private *dev_priv,
- 			      const struct intel_dpll_hw_state *hw_state);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 5649f8e502fe..b836032fa0de 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1037,6 +1037,9 @@ struct drm_i915_private {
- 
- 	struct intel_l3_parity l3_parity;
- 
-+	/* Mask of PLLs reserved for use by HTI and unavailable to driver. */
-+	u32 hti_pll_mask;
++static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
++				     struct i915_wa_list *wal)
++{
++	gen12_ctx_workarounds_init(engine, wal);
 +
  	/*
- 	 * edram size in MB.
- 	 * Cannot be determined by PCIID. You must always read a register.
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 45bda5819abd..90f11517f656 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2909,6 +2909,12 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define MBUS_BBOX_CTL_S1		_MMIO(0x45040)
- #define MBUS_BBOX_CTL_S2		_MMIO(0x45044)
+-	 * Wa_1604555607:gen12 and Wa_1608008084:gen12
++	 * Wa_1604555607:tgl,rkl
++	 *
++	 * Note that the implementation of this workaround is further modified
++	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
+ 	 * FF_MODE2 register will return the wrong value when read. The default
+ 	 * value for this register is zero for all fields and there are no bit
+ 	 * masks. So instead of doing a RMW we should just write the GS Timer
+@@ -623,11 +639,6 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	       FF_MODE2_GS_TIMER_MASK | FF_MODE2_TDS_TIMER_MASK,
+ 	       FF_MODE2_GS_TIMER_224  | FF_MODE2_TDS_TIMER_128,
+ 	       0);
+-
+-	/* WaDisableGPGPUMidThreadPreemption:tgl */
+-	WA_SET_FIELD_MASKED(GEN8_CS_CHICKEN1,
+-			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
+-			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
+ }
  
-+#define HDPORT_STATE			_MMIO(0x45050)
-+#define   HDPORT_DPLL_USED_MASK		REG_GENMASK(14, 12)
-+#define   HDPORT_PHY_USED_DP(phy)	REG_BIT(2 * (phy) + 2)
-+#define   HDPORT_PHY_USED_HDMI(phy)	REG_BIT(2 * (phy) + 1)
-+#define   HDPORT_ENABLED		REG_BIT(0)
+ static void
+@@ -642,8 +653,10 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
+ 
+ 	wa_init_start(wal, name, engine->name);
+ 
+-	if (IS_GEN(i915, 12))
++	if (IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915))
+ 		tgl_ctx_workarounds_init(engine, wal);
++	else if (IS_GEN(i915, 12))
++		gen12_ctx_workarounds_init(engine, wal);
+ 	else if (IS_GEN(i915, 11))
+ 		icl_ctx_workarounds_init(engine, wal);
+ 	else if (IS_CANNONLAKE(i915))
+@@ -1176,9 +1189,16 @@ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ }
+ 
+ static void
+-tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
++gen12_gt_workarounds_init(struct drm_i915_private *i915,
++			  struct i915_wa_list *wal)
+ {
+ 	wa_init_mcr(i915, wal);
++}
 +
- /* Make render/texture TLB fetches lower priorty than associated data
-  *   fetches. This is not turned on by default
-  */
++static void
++tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
++{
++	gen12_gt_workarounds_init(i915, wal);
+ 
+ 	/* Wa_1409420604:tgl */
+ 	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
+@@ -1196,8 +1216,10 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ static void
+ gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+-	if (IS_GEN(i915, 12))
++	if (IS_TIGERLAKE(i915))
+ 		tgl_gt_workarounds_init(i915, wal);
++	else if (IS_GEN(i915, 12))
++		gen12_gt_workarounds_init(i915, wal);
+ 	else if (IS_GEN(i915, 11))
+ 		icl_gt_workarounds_init(i915, wal);
+ 	else if (IS_CANNONLAKE(i915))
+@@ -1629,18 +1651,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 			    GEN9_CTX_PREEMPT_REG,
+ 			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
+ 
+-		/*
+-		 * Wa_1607030317:tgl
+-		 * Wa_1607186500:tgl
+-		 * Wa_1607297627:tgl there is 3 entries for this WA on BSpec, 2
+-		 * of then says it is fixed on B0 the other one says it is
+-		 * permanent
+-		 */
+-		wa_masked_en(wal,
+-			     GEN6_RC_SLEEP_PSMI_CONTROL,
+-			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
+-			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
+-
+ 		/*
+ 		 * Wa_1606679103:tgl
+ 		 * (see also Wa_1606682166:icl)
+@@ -1659,24 +1669,38 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 			    VSUNIT_CLKGATE_DIS_TGL);
+ 	}
+ 
+-	if (IS_TIGERLAKE(i915)) {
+-		/* Wa_1606931601:tgl */
++	if (IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
++		/* Wa_1606931601:tgl,rkl */
+ 		wa_masked_en(wal, GEN7_ROW_CHICKEN2, GEN12_DISABLE_EARLY_READ);
+ 
+-		/* Wa_1409804808:tgl */
++		/* Wa_1409804808:tgl,rkl */
+ 		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
+ 			     GEN12_PUSH_CONST_DEREF_HOLD_DIS);
+ 
+-		/* Wa_1606700617:tgl */
+-		wa_masked_en(wal,
+-			     GEN9_CS_DEBUG_MODE1,
+-			     FF_DOP_CLOCK_GATE_DISABLE);
+-
+ 		/*
+ 		 * Wa_1409085225:tgl
+-		 * Wa_14010229206:tgl
++		 * Wa_14010229206:tgl,rkl
+ 		 */
+ 		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
++
++		/*
++		 * Wa_1607030317:tgl
++		 * Wa_1607186500:tgl
++		 * Wa_1607297627:tgl,rkl there are multiple entries for this
++		 * WA in the BSpec; some indicate this is an A0-only WA,
++		 * others indicate it applies to all steppings.
++		 */
++		wa_masked_en(wal,
++			     GEN6_RC_SLEEP_PSMI_CONTROL,
++			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
++			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
++	}
++
++	if (IS_TIGERLAKE(i915)) {
++		/* Wa_1606700617:tgl */
++		wa_masked_en(wal,
++			     GEN9_CS_DEBUG_MODE1,
++			     FF_DOP_CLOCK_GATE_DISABLE);
+ 	}
+ 
+ 	if (IS_GEN(i915, 11)) {
 -- 
 2.24.1
 
