@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 665CB1FAB83
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42B2A1FAB7A
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:41:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFA296E860;
-	Tue, 16 Jun 2020 08:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA616E85C;
+	Tue, 16 Jun 2020 08:41:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2984D6E86B
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 08:42:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C1B36E859
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 08:41:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21509967-1500050 
- for multiple; Tue, 16 Jun 2020 09:41:43 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21509968-1500050 
+ for multiple; Tue, 16 Jun 2020 09:41:44 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Jun 2020 09:41:33 +0100
-Message-Id: <20200616084141.3722-1-chris@chris-wilson.co.uk>
+Date: Tue, 16 Jun 2020 09:41:34 +0100
+Message-Id: <20200616084141.3722-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200616084141.3722-1-chris@chris-wilson.co.uk>
+References: <20200616084141.3722-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/9] drm/i915/selftests: Exercise far preemption
- rollbacks
+Subject: [Intel-gfx] [PATCH 2/9] drm/i915/selftests: Use friendly request
+ names for live_timeslice_rewind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,194 +45,65 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Not too long ago, we realised we had issues with a rolling back a
-context so far for a preemption request we considered the resubmit not
-to be a rollback but a forward roll. This means we would issue a lite
-restore instead of forcing a full restore, continuing execution of the
-old requests rather than causing a preemption. Add a selftest to
-exercise such a far rollback, such that if we were to skip the full
-restore, we would execute invalid instructions in the ring and hang.
+Rather than mixing [012] and (A1, A2, B2) for the request indices, use
+the enums throughout.
 
-Note that while I was able to confirm that this causes us to do a
-lite-restore preemption rollback (with commit e36ba817fa96 ("drm/i915/gt:
-Incrementally check for rewinding") disabled), it did not trick the HW
-into rolling past the old RING_TAIL. Myybe on other HW.
-
-References: e36ba817fa96 ("drm/i915/gt: Incrementally check for rewinding")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 150 +++++++++++++++++++++++++
- 1 file changed, 150 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 91543494f595..3d088116a055 100644
+index 3d088116a055..72d52c9c042f 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -363,6 +363,155 @@ static int live_unlite_preempt(void *arg)
- 	return live_unlite_restore(arg, I915_USER_PRIORITY(I915_PRIORITY_MAX));
- }
+@@ -1176,18 +1176,18 @@ static int live_timeslice_rewind(void *arg)
+ 			goto err;
+ 		}
  
-+static int live_unlite_ring(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *engine;
-+	struct igt_spinner spin;
-+	enum intel_engine_id id;
-+	int err = 0;
-+
-+	/*
-+	 * Setup a preemption event that will cause almost the entire ring
-+	 * to be unwound, potentially fooling our intel_ring_direction()
-+	 * into emitting a forward lite-restore instead of the rollback.
-+	 */
-+
-+	if (igt_spinner_init(&spin, gt))
-+		return -ENOMEM;
-+
-+	for_each_engine(engine, gt, id) {
-+		struct intel_context *ce[2] = {};
-+		struct i915_request *rq;
-+		struct igt_live_test t;
-+		int n;
-+
-+		if (!intel_engine_has_preemption(engine))
-+			continue;
-+
-+		if (!intel_engine_can_store_dword(engine))
-+			continue;
-+
-+		if (igt_live_test_begin(&t, gt->i915, __func__, engine->name)) {
-+			err = -EIO;
-+			break;
-+		}
-+		engine_heartbeat_disable(engine);
-+
-+		for (n = 0; n < ARRAY_SIZE(ce); n++) {
-+			struct intel_context *tmp;
-+
-+			tmp = intel_context_create(engine);
-+			if (IS_ERR(tmp)) {
-+				err = PTR_ERR(tmp);
-+				goto err_ce;
-+			}
-+
-+			err = intel_context_pin(tmp);
-+			if (err) {
-+				intel_context_put(tmp);
-+				goto err_ce;
-+			}
-+
-+			memset32(tmp->ring->vaddr,
-+				 0xdeadbeef, /* trigger a hang if executed */
-+				 tmp->ring->vma->size / sizeof(u32));
-+
-+			ce[n] = tmp;
-+		}
-+
-+		rq = igt_spinner_create_request(&spin, ce[0], MI_ARB_CHECK);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto err_ce;
-+		}
-+
-+		i915_request_get(rq);
-+		rq->sched.attr.priority = I915_PRIORITY_BARRIER;
-+		i915_request_add(rq);
-+
-+		if (!igt_wait_for_spinner(&spin, rq)) {
-+			intel_gt_set_wedged(gt);
-+			i915_request_put(rq);
-+			err = -ETIME;
-+			goto err_ce;
-+		}
-+
-+		/* Fill the ring, until we will cause a wrap */
-+		n = 0;
-+		while (intel_ring_direction(ce[0]->ring,
-+					    rq->wa_tail,
-+					    ce[0]->ring->tail) <= 0) {
-+			struct i915_request *tmp;
-+
-+			tmp = intel_context_create_request(ce[0]);
-+			if (IS_ERR(tmp)) {
-+				err = PTR_ERR(tmp);
-+				i915_request_put(rq);
-+				goto err_ce;
-+			}
-+
-+			i915_request_add(tmp);
-+			intel_engine_flush_submission(engine);
-+			n++;
-+		}
-+		intel_engine_flush_submission(engine);
-+		pr_debug("%s: Filled ring with %d nop tails {size:%x, tail:%x, emit:%x, rq.tail:%x}\n",
-+			 engine->name, n,
-+			 ce[0]->ring->size,
-+			 ce[0]->ring->tail,
-+			 ce[0]->ring->emit,
-+			 rq->tail);
-+		GEM_BUG_ON(intel_ring_direction(ce[0]->ring,
-+						rq->tail,
-+						ce[0]->ring->tail) <= 0);
-+		i915_request_put(rq);
-+
-+		/* Create a second request to preempt the first ring */
-+		rq = intel_context_create_request(ce[1]);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto err_ce;
-+		}
-+
-+		rq->sched.attr.priority = I915_PRIORITY_BARRIER;
-+		i915_request_get(rq);
-+		i915_request_add(rq);
-+
-+		err = wait_for_submit(engine, rq, HZ / 2);
-+		i915_request_put(rq);
-+		if (err) {
-+			pr_err("%s: preemption request was not submited\n",
-+			       engine->name);
-+			err = -ETIME;
-+		}
-+
-+		pr_debug("%s: ring[0]:{ tail:%x, emit:%x }, ring[1]:{ tail:%x, emit:%x }\n",
-+			 engine->name,
-+			 ce[0]->ring->tail, ce[0]->ring->emit,
-+			 ce[1]->ring->tail, ce[1]->ring->emit);
-+
-+err_ce:
-+		intel_engine_flush_submission(engine);
-+		igt_spinner_end(&spin);
-+		for (n = 0; n < ARRAY_SIZE(ce); n++) {
-+			if (IS_ERR_OR_NULL(ce[n]))
-+				break;
-+
-+			intel_context_unpin(ce[n]);
-+			intel_context_put(ce[n]);
-+		}
-+		engine_heartbeat_enable(engine);
-+		if (igt_live_test_end(&t))
-+			err = -EIO;
-+		if (err)
-+			break;
-+	}
-+
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-+
- static int live_pin_rewind(void *arg)
- {
- 	struct intel_gt *gt = arg;
-@@ -4374,6 +4523,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_sanitycheck),
- 		SUBTEST(live_unlite_switch),
- 		SUBTEST(live_unlite_preempt),
-+		SUBTEST(live_unlite_ring),
- 		SUBTEST(live_pin_rewind),
- 		SUBTEST(live_hold_reset),
- 		SUBTEST(live_error_interrupt),
+-		rq[0] = create_rewinder(ce, NULL, slot, X);
+-		if (IS_ERR(rq[0])) {
++		rq[A1] = create_rewinder(ce, NULL, slot, X);
++		if (IS_ERR(rq[A1])) {
+ 			intel_context_put(ce);
+ 			goto err;
+ 		}
+ 
+-		rq[1] = create_rewinder(ce, NULL, slot, Y);
++		rq[A2] = create_rewinder(ce, NULL, slot, Y);
+ 		intel_context_put(ce);
+-		if (IS_ERR(rq[1]))
++		if (IS_ERR(rq[A2]))
+ 			goto err;
+ 
+-		err = wait_for_submit(engine, rq[1], HZ / 2);
++		err = wait_for_submit(engine, rq[A2], HZ / 2);
+ 		if (err) {
+ 			pr_err("%s: failed to submit first context\n",
+ 			       engine->name);
+@@ -1200,12 +1200,12 @@ static int live_timeslice_rewind(void *arg)
+ 			goto err;
+ 		}
+ 
+-		rq[2] = create_rewinder(ce, rq[0], slot, Z);
++		rq[B1] = create_rewinder(ce, rq[A1], slot, Z);
+ 		intel_context_put(ce);
+ 		if (IS_ERR(rq[2]))
+ 			goto err;
+ 
+-		err = wait_for_submit(engine, rq[2], HZ / 2);
++		err = wait_for_submit(engine, rq[B1], HZ / 2);
+ 		if (err) {
+ 			pr_err("%s: failed to submit second context\n",
+ 			       engine->name);
+@@ -1213,6 +1213,7 @@ static int live_timeslice_rewind(void *arg)
+ 		}
+ 
+ 		/* ELSP[] = { { A:rq1, A:rq2 }, { B:rq1 } } */
++		ENGINE_TRACE(engine, "forcing tasklet for rewind\n");
+ 		if (i915_request_is_active(rq[A2])) { /* semaphore yielded! */
+ 			/* Wait for the timeslice to kick in */
+ 			del_timer(&engine->execlists.timer);
 -- 
 2.20.1
 
