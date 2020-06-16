@@ -2,41 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1701D1FACCA
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 11:37:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 224B21FACCC
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 11:37:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56E846E888;
-	Tue, 16 Jun 2020 09:37:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 002626E887;
+	Tue, 16 Jun 2020 09:37:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E324A6E887
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 09:37:41 +0000 (UTC)
-IronPort-SDR: FjYXY9mmG7GIa5ZGCzl7iSfElQqVFnM674k4bQRiZqTJU8VAaIuVG02zOlm30/27D/0rY5G03/
- lsEZirmnfehA==
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69A616E88C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 09:37:43 +0000 (UTC)
+IronPort-SDR: vNthLIu0eqANrmYFMQiy/0D5mAsuafo2XF3TLWjBEhxwe7EGM8w9L7O1VLdPgxQsdx+NUN0ZW+
+ BqylgiTgrLVA==
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 02:37:41 -0700
-IronPort-SDR: cp+QANsUSKKRF9ARiSwqbubf0os8s1AI41FDNCx7AXTCVEI8fmlJ/0mvTvkbQZjOBUYMMY1iUm
- 0Jd1fdu0O55w==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 02:37:42 -0700
+IronPort-SDR: OOsNOfZnNuAMWXhIeuIYixW8TsK6Fq0dQjUHNi20NLEsH65vSgd6Izk4YkPTIAvKF3DRBU9xC6
+ QwGy67dd5Vmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="273088329"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga003.jf.intel.com with ESMTP; 16 Jun 2020 02:37:39 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 0C61D5C2C1C; Tue, 16 Jun 2020 12:35:00 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200616084141.3722-4-chris@chris-wilson.co.uk>
-References: <20200616084141.3722-1-chris@chris-wilson.co.uk>
- <20200616084141.3722-4-chris@chris-wilson.co.uk>
-Date: Tue, 16 Jun 2020 12:35:00 +0300
-Message-ID: <871rmf9wvv.fsf@gaia.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; 
+ d="asc'?scan'208";a="317169793"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+ by FMSMGA003.fm.intel.com with ESMTP; 16 Jun 2020 02:37:41 -0700
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 16 Jun 2020 10:37:41 +0100
+Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
+ IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 16 Jun 2020 10:37:40 +0100
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9]) by
+ irsmsx603.ger.corp.intel.com ([163.33.146.9]) with mapi id 15.01.1713.004;
+ Tue, 16 Jun 2020 10:37:40 +0100
+From: "Peres, Martin" <martin.peres@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [CI] Pre-merge testing disabled
+Thread-Index: AQHWQ8HHPuUoGvu9/E2ywmGXVaiung==
+Date: Tue, 16 Jun 2020 09:37:40 +0000
+Message-ID: <c80cb85e77c74b949ab75778b330494b@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.249.37.29]
+Content-Type: multipart/mixed;
+ boundary="_002_c80cb85e77c74b949ab75778b330494bintelcom_"
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915/execlists: Replace direct
- submit with direct call to tasklet
+Subject: [Intel-gfx] [CI] Pre-merge testing disabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,331 +64,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+--_002_c80cb85e77c74b949ab75778b330494bintelcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-> Rather than having special case code for opportunistically calling
-> process_csb() and performing a direct submit while holding the engine
-> spinlock for submitting the request, simply call the tasklet directly.
-> This allows us to retain the direct submission path, including the CS
-> draining to allow fast/immediate submissions, without requiring any
-> duplicated code paths.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine.h        |  1 +
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 27 +++----
->  drivers/gpu/drm/i915/gt/intel_lrc.c           | 78 +++++++------------
->  drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  1 +
->  drivers/gpu/drm/i915/selftests/i915_request.c |  6 +-
->  5 files changed, 46 insertions(+), 67 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index 791897f8d847..c77b3c0d2b3b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -210,6 +210,7 @@ int intel_engine_resume(struct intel_engine_cs *engine);
->  
->  int intel_ring_submission_setup(struct intel_engine_cs *engine);
->  
-> +void __intel_engine_stop_cs(struct intel_engine_cs *engine);
->  int intel_engine_stop_cs(struct intel_engine_cs *engine);
->  void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine);
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 045179c65c44..fbb8ac659b82 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -903,33 +903,34 @@ static unsigned long stop_timeout(const struct intel_engine_cs *engine)
->  	return READ_ONCE(engine->props.stop_timeout_ms);
->  }
->  
-> -int intel_engine_stop_cs(struct intel_engine_cs *engine)
-> +void __intel_engine_stop_cs(struct intel_engine_cs *engine)
->  {
->  	struct intel_uncore *uncore = engine->uncore;
-> -	const u32 base = engine->mmio_base;
-> -	const i915_reg_t mode = RING_MI_MODE(base);
-> -	int err;
-> +	const i915_reg_t mode = RING_MI_MODE(engine->mmio_base);
->  
-> +	intel_uncore_write_fw(uncore, mode, _MASKED_BIT_ENABLE(STOP_RING));
-> +	intel_uncore_posting_read_fw(uncore, mode);
-> +}
-> +
-> +int intel_engine_stop_cs(struct intel_engine_cs *engine)
-> +{
->  	if (INTEL_GEN(engine->i915) < 3)
->  		return -ENODEV;
->  
->  	ENGINE_TRACE(engine, "\n");
->  
-> -	intel_uncore_write_fw(uncore, mode, _MASKED_BIT_ENABLE(STOP_RING));
-> +	__intel_engine_stop_cs(engine);
->  
-> -	err = 0;
-> -	if (__intel_wait_for_register_fw(uncore,
-> -					 mode, MODE_IDLE, MODE_IDLE,
-> +	if (__intel_wait_for_register_fw(engine->uncore,
-> +					 RING_MI_MODE(engine->mmio_base),
-> +					 MODE_IDLE, MODE_IDLE,
->  					 1000, stop_timeout(engine),
->  					 NULL)) {
->  		ENGINE_TRACE(engine, "timed out on STOP_RING -> IDLE\n");
-> -		err = -ETIMEDOUT;
-> +		return -ETIMEDOUT;
->  	}
->  
-> -	/* A final mmio read to let GPU writes be hopefully flushed to memory */
-> -	intel_uncore_posting_read_fw(uncore, mode);
-> -
-> -	return err;
-> +	return 0;
->  }
->  
->  void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index e866b8d721ed..40c5085765da 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2703,16 +2703,6 @@ static void process_csb(struct intel_engine_cs *engine)
->  	invalidate_csb_entries(&buf[0], &buf[num_entries - 1]);
->  }
->  
-> -static void __execlists_submission_tasklet(struct intel_engine_cs *const engine)
-> -{
-> -	lockdep_assert_held(&engine->active.lock);
-> -	if (!READ_ONCE(engine->execlists.pending[0])) {
-> -		rcu_read_lock(); /* protect peeking at execlists->active */
-> -		execlists_dequeue(engine);
-> -		rcu_read_unlock();
-> -	}
-> -}
-> -
->  static void __execlists_hold(struct i915_request *rq)
->  {
->  	LIST_HEAD(list);
-> @@ -3102,7 +3092,7 @@ static bool preempt_timeout(const struct intel_engine_cs *const engine)
->  	if (!timer_expired(t))
->  		return false;
->  
-> -	return READ_ONCE(engine->execlists.pending[0]);
-> +	return engine->execlists.pending[0];
+Hello world,=0A=
+=0A=
+Due to changes in our global data policy rules, the bucket used to store=0A=
+the CI results became private, which prevents us from providing any=0A=
+testing result.=0A=
+=0A=
+We have received a notice on Sunday about this change, notified them on=0A=
+Monday that we wanted to keep our storage public and ended up on Tuesday=0A=
+with a private bucket.=0A=
+=0A=
+We are working as fast as possible to address this, but we cannot give=0A=
+any ETA. We'll be updating you in this thread.=0A=
+=0A=
+Sorry for the inconvenience,=0A=
+Martin=0A=
 
-Sometimes I yearn for intel_execlists_request_pending() but it would
-be wonky and the port0 is quite core to the lrc...
+--_002_c80cb85e77c74b949ab75778b330494bintelcom_
+Content-Type: application/pgp-keys; name="pEpkey.asc"
+Content-Description: pEpkey.asc
+Content-Disposition: attachment; filename="pEpkey.asc"; size=1774;
+	creation-date="Tue, 16 Jun 2020 09:37:40 GMT";
+	modification-date="Tue, 16 Jun 2020 09:37:40 GMT"
+Content-Transfer-Encoding: base64
 
-Overall this patch makes things more straightfoward.
+LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCgptUUVOQkYzazA1Z0JDQUN5WmhP
+WGExNGJUY3lUUWtjMVV5R2ZjNGx4ckhQREw1YXVPbkM3cUVIWkw1b3ZWd3NDCmF1ZlFaOVFKVWwx
+NHh1OCt4dUl6UGoyWXhEbjFBeVJFN0RzSXNxNjVIaDlRa2YxQytFNmtHeHBDS2VXeFpEalIKS0xE
+a2pQWmdRTTdOeHNFWkRkemNaTlFLUEt3OXBXUUovRCtrSUlyNDJYaERhbktyQ1pHV3Vxc3VwVGI4
+YmM2agp3ZnBxVzV2eUp2WnVMSHcrTURhRVhoZ1Z0SlVWYVdSWENXbXFZQU1YWFlMMGh5NHVjRDZz
+UWl3U2psK3JUU2NIClhqSHdhWURWWTI5bVFlR3lWMDMyeXBFWFQzWG1DVTJVT0hhNENNaktLR3ZK
+MjRBU2Q5SFkyWHo4cmNyR1pTbGsKRkhMTGRwNUNET2wrRFU2Vjc5SWs5a3pPMFVxK0hXWDRtc2Z4
+QUJFQkFBRzBLMDFoY25ScGJpQlFaWEpsY3lBOApiV0Z5ZEdsdUxuQmxjbVZ6UUd4cGJuVjRMbWx1
+ZEdWc0xtTnZiVDZKQVZRRUV3RUlBRDRXSVFSTjlzUS9iN0dPClhRdkh5WUVDditaL002VXplUVVD
+WGVUVG1RSWJBd1VKQWVFemdBVUxDUWdIQWdZVkNna0lDd0lFRmdJREFRSWUKQVFJWGdBQUtDUkFD
+ditaL002VXplUmJ3Qi85ZHhZaG01WU14eGlSa2tZRVBrOE9DUGZjOGJwazF6RFc5Nkc0MgpLYVoz
+RlRPRGNSMktjelg1ZVRMRFYwdklNRndqMmw0UXAvRFpzbVlsNzlKNDNhbHg1RHRIQUZJMlJHSis2
+dXJhClFZMkovVXUvUWt5eEdrMTRpQUFzYytaalJSdWllQ1h0Wkc2THRMYmdsTUZCWUd4dzlWVEow
+L0xhNHJjUVk3UksKOW1KM1QwWUxKMkJNNlVha3lUWEdzbnN0aWtOa2wzU0JKVDBJc1B1bVdGL240
+a25penZQcG5BTGNQWGwwS3VtUwpuZDZ1b2dPT3VrQ0t4Z0RUWm1qRG9meDVvN1pveDI5blNkdjR3
+aVJMOHVBeDRrY0pPOUxPOFhBN0lITzd6SXRTCmpXbWRXRmN4QTVicFRkRWR0TThIQWlCQkFaNU44
+WXVraENuejltT0FFOXZLOXZydHVRRU5CRjNrMDVrQkNBREwKR3JGN1NBblB5NVo2R2ZlelZDclFm
+dUlHSmhPemxuY0c2aFdHYU05YzlDVEtxSGZDNHROV1VFeHJmam5YNjBtRgpJbUx2aHhlRlZDOWJv
+QS9jNGFVTmhEYy9NOUtqc08ycWRyd2d4QXl3bnIraVJqbzNORUJWQkF3T2NldWRRM0xPClZmZW5k
+b296d3lqd3ZZRFV2QzNUcWtjajBsNmE2R3JqZTZWMVVTQ3RIL0ZlR2NONG9EMnZPOW1yWFlQb2hr
+V2cKU3B2QUpPSEs5bk5nMUtaTjcvcDlXNUZMMlZZN2pIbHErd1gxZDBTRytRNlhjVHNEQUEyOStO
+YmM1Qk0vcTJJTAphV1Fva0I0bzBaRjNsakZiN2RYZDNRZEpNWDdvNXRURzFMUi9TalZmbkZGckMw
+K1IrZGhlRUVldGxVckRMRmF0CnhnRTdvREVPLzA4c2g5eHJPdzdMQUJFQkFBR0pBVHdFR0FFSUFD
+WVdJUVJOOXNRL2I3R09YUXZIeVlFQ3YrWi8KTTZVemVRVUNYZVRUbVFJYkRBVUpBZUV6Z0FBS0NS
+QUN2K1ovTTZVemVTMVRCLzlNbTFYTUhpbWtFbW15ZXNiMQpxdHFUY2htV2Q1NWhiRkIxMDRSbUx5
+c0VrSU43Q3IweVNEZjBZRWxxd2QvSDlGWWVLUTVEWWJWWS9CclhjeGYzCmNKVDJBZ01Zdk54bHZ5
+NHluR1F4Yy9YbXRzMGZVSno5cmRVVmZxZlFKbDlHZkR1U3dpQnhmb3BlN21aR2NIZWcKNzBaQTg3
+Q0xJQ0FVbi9uRFpSekZuUHNhdUxJSU9sMGhxVWtJUml3WVp0WW9WZnNoVGhTNzNEcXNGS2U0Y25r
+eApZcGVCRXNsYUduZnRMUC9uWDl6dkZ4SXJYUXBPdHJ2eWdkWklhMVMrZXhYM2NXMHNPYm02Zjk0
+T3Q1Mjl3V3pTCnhJRjBvRnZPY3NlZ2ErL3FPK1hSNHNjbUJ1K3NUVU5FQnA1NWYyc0ptOWllVlU5
+SXUwM2JYVnBMZGV3dTNtMEIKTTVtaAo9YzJPTwotLS0tLUVORCBQR1AgUFVCTElDIEtFWSBCTE9D
+Sy0tLS0tCg==
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+--_002_c80cb85e77c74b949ab75778b330494bintelcom_
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
->  }
->  
->  /*
-> @@ -3112,7 +3102,6 @@ static bool preempt_timeout(const struct intel_engine_cs *const engine)
->  static void execlists_submission_tasklet(unsigned long data)
->  {
->  	struct intel_engine_cs * const engine = (struct intel_engine_cs *)data;
-> -	bool timeout = preempt_timeout(engine);
->  
->  	process_csb(engine);
->  
-> @@ -3122,16 +3111,17 @@ static void execlists_submission_tasklet(unsigned long data)
->  			execlists_reset(engine, "CS error");
->  	}
->  
-> -	if (!READ_ONCE(engine->execlists.pending[0]) || timeout) {
-> +	if (unlikely(preempt_timeout(engine)))
-> +		execlists_reset(engine, "preemption time out");
-> +
-> +	if (!engine->execlists.pending[0]) {
->  		unsigned long flags;
->  
-> +		rcu_read_lock(); /* protect peeking at execlists->active */
->  		spin_lock_irqsave(&engine->active.lock, flags);
-> -		__execlists_submission_tasklet(engine);
-> +		execlists_dequeue(engine);
->  		spin_unlock_irqrestore(&engine->active.lock, flags);
-> -
-> -		/* Recheck after serialising with direct-submission */
-> -		if (unlikely(timeout && preempt_timeout(engine)))
-> -			execlists_reset(engine, "preemption time out");
-> +		rcu_read_unlock();
->  	}
->  }
->  
-> @@ -3163,26 +3153,16 @@ static void queue_request(struct intel_engine_cs *engine,
->  	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
->  }
->  
-> -static void __submit_queue_imm(struct intel_engine_cs *engine)
-> -{
-> -	struct intel_engine_execlists * const execlists = &engine->execlists;
-> -
-> -	if (reset_in_progress(execlists))
-> -		return; /* defer until we restart the engine following reset */
-> -
-> -	__execlists_submission_tasklet(engine);
-> -}
-> -
-> -static void submit_queue(struct intel_engine_cs *engine,
-> +static bool submit_queue(struct intel_engine_cs *engine,
->  			 const struct i915_request *rq)
->  {
->  	struct intel_engine_execlists *execlists = &engine->execlists;
->  
->  	if (rq_prio(rq) <= execlists->queue_priority_hint)
-> -		return;
-> +		return false;
->  
->  	execlists->queue_priority_hint = rq_prio(rq);
-> -	__submit_queue_imm(engine);
-> +	return true;
->  }
->  
->  static bool ancestor_on_hold(const struct intel_engine_cs *engine,
-> @@ -3196,20 +3176,22 @@ static void flush_csb(struct intel_engine_cs *engine)
->  {
->  	struct intel_engine_execlists *el = &engine->execlists;
->  
-> -	if (READ_ONCE(el->pending[0]) && tasklet_trylock(&el->tasklet)) {
-> -		if (!reset_in_progress(el))
-> -			process_csb(engine);
-> -		tasklet_unlock(&el->tasklet);
-> +	if (!tasklet_trylock(&el->tasklet)) {
-> +		tasklet_hi_schedule(&el->tasklet);
-> +		return;
->  	}
-> +
-> +	if (!reset_in_progress(el))
-> +		execlists_submission_tasklet((unsigned long)engine);
-> +
-> +	tasklet_unlock(&el->tasklet);
->  }
->  
->  static void execlists_submit_request(struct i915_request *request)
->  {
->  	struct intel_engine_cs *engine = request->engine;
->  	unsigned long flags;
-> -
-> -	/* Hopefully we clear execlists->pending[] to let us through */
-> -	flush_csb(engine);
-> +	bool submit = false;
->  
->  	/* Will be called from irq-context when using foreign fences. */
->  	spin_lock_irqsave(&engine->active.lock, flags);
-> @@ -3224,10 +3206,13 @@ static void execlists_submit_request(struct i915_request *request)
->  		GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
->  		GEM_BUG_ON(list_empty(&request->sched.link));
->  
-> -		submit_queue(engine, request);
-> +		submit = submit_queue(engine, request);
->  	}
->  
->  	spin_unlock_irqrestore(&engine->active.lock, flags);
-> +
-> +	if (submit)
-> +		flush_csb(engine);
->  }
->  
->  static void __execlists_context_fini(struct intel_context *ce)
-> @@ -4113,7 +4098,6 @@ static int execlists_resume(struct intel_engine_cs *engine)
->  static void execlists_reset_prepare(struct intel_engine_cs *engine)
->  {
->  	struct intel_engine_execlists * const execlists = &engine->execlists;
-> -	unsigned long flags;
->  
->  	ENGINE_TRACE(engine, "depth<-%d\n",
->  		     atomic_read(&execlists->tasklet.count));
-> @@ -4130,10 +4114,6 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
->  	__tasklet_disable_sync_once(&execlists->tasklet);
->  	GEM_BUG_ON(!reset_in_progress(execlists));
->  
-> -	/* And flush any current direct submission. */
-> -	spin_lock_irqsave(&engine->active.lock, flags);
-> -	spin_unlock_irqrestore(&engine->active.lock, flags);
-> -
->  	/*
->  	 * We stop engines, otherwise we might get failed reset and a
->  	 * dead gpu (on elk). Also as modern gpu as kbl can suffer
-> @@ -4147,7 +4127,7 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
->  	 * FIXME: Wa for more modern gens needs to be validated
->  	 */
->  	ring_set_paused(engine, 1);
-> -	intel_engine_stop_cs(engine);
-> +	__intel_engine_stop_cs(engine);
->  
->  	engine->execlists.reset_ccid = active_ccid(engine);
->  }
-> @@ -4377,12 +4357,12 @@ static void execlists_reset_finish(struct intel_engine_cs *engine)
->  	 * to sleep before we restart and reload a context.
->  	 */
->  	GEM_BUG_ON(!reset_in_progress(execlists));
-> -	if (!RB_EMPTY_ROOT(&execlists->queue.rb_root))
-> -		execlists->tasklet.func(execlists->tasklet.data);
-> +	GEM_BUG_ON(engine->execlists.pending[0]);
->  
-> +	/* And kick in case we missed a new request submission. */
->  	if (__tasklet_enable(&execlists->tasklet))
-> -		/* And kick in case we missed a new request submission. */
-> -		tasklet_hi_schedule(&execlists->tasklet);
-> +		flush_csb(engine);
-> +
->  	ENGINE_TRACE(engine, "depth->%d\n",
->  		     atomic_read(&execlists->tasklet.count));
->  }
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> index 7461936d549d..355ee8562bc1 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> @@ -1597,6 +1597,7 @@ static int __igt_atomic_reset_engine(struct intel_engine_cs *engine,
->  
->  	p->critical_section_end();
->  	tasklet_enable(t);
-> +	tasklet_hi_schedule(t);
->  
->  	if (err)
->  		pr_err("i915_reset_engine(%s:%s) failed under %s\n",
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-> index 92c628f18c60..4f1b82c7eeaf 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_request.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-> @@ -1925,9 +1925,7 @@ static int measure_inter_request(struct intel_context *ce)
->  		intel_ring_advance(rq, cs);
->  		i915_request_add(rq);
->  	}
-> -	local_bh_disable();
->  	i915_sw_fence_commit(submit);
-> -	local_bh_enable();
->  	intel_engine_flush_submission(ce->engine);
->  	heap_fence_put(submit);
->  
-> @@ -2213,11 +2211,9 @@ static int measure_completion(struct intel_context *ce)
->  		intel_ring_advance(rq, cs);
->  
->  		dma_fence_add_callback(&rq->fence, &cb.base, signal_cb);
-> -
-> -		local_bh_disable();
->  		i915_request_add(rq);
-> -		local_bh_enable();
->  
-> +		intel_engine_flush_submission(ce->engine);
->  		if (wait_for(READ_ONCE(sema[i]) == -1, 50)) {
->  			err = -EIO;
->  			goto err;
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--_002_c80cb85e77c74b949ab75778b330494bintelcom_--
