@@ -1,52 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 431EF1FA917
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 08:50:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E8791FAAFE
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:21:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E76B6E7D9;
-	Tue, 16 Jun 2020 06:50:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C61B86E855;
+	Tue, 16 Jun 2020 08:21:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com
- [IPv6:2607:f8b0:4864:20::243])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D727F6E282
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 06:50:17 +0000 (UTC)
-Received: by mail-oi1-x243.google.com with SMTP id s21so18325862oic.9
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 23:50:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=p1UoLdKQMCzYoAZ/D8UrzFaEab44Bxka143HkowSuzw=;
- b=iyh1tyE9MrCkqjSMAA4FhoQonxxQ2zQlDDeTrqh7uoTXIBC2zy46JVLwRTvB20xfya
- bIVWLegmkirreqPEYVdswS8PAjTQbqmPqQrS1E6728sX+3zJOqEiVQW1KmUcVBlJ2NFJ
- qDUr/nzds9+Yf/EPW5mQFxEtxLmyPC4veUlig=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=p1UoLdKQMCzYoAZ/D8UrzFaEab44Bxka143HkowSuzw=;
- b=m5pQlPIVA2u9HTzanyQE0HgQmwYGBwmYtjmnC/eYCp+9z9vNIivVXGCFXEOv2s42LS
- 29mi9zzHS9cEKsBhwvejv2V9D4mwUlurtKyvdfjQnqlYbiE5uKRSWvQJ8TgQD9pPVY2Y
- CDkordM60xgvteVQHAJLAsMTDAQBUHK7MnsueA4E67lg1UCqvcyYOY1VHdNKLSkH//9n
- YQ3CK/hbIrt1Dsh/0X6B+yt/bygF+GMCJrrERUKEFOq5xSSLC7WhYhKC1DAIUuDTKQe6
- WLOjGpdRl+HdwnNWZT2nB4evWbifpPnTnmSNaBPhk7e0eYWI1XSYxCT6geMtU6WIIpcU
- QH2A==
-X-Gm-Message-State: AOAM531PlLR06mk8lSw48U+Rsngw3um9dotm/Rw0feoQpSI5l7Oy1o5s
- gqFR0Xj+2et9JAyl4KgIY+AtsRU5UfCvuLBvHa0ANQ==
-X-Google-Smtp-Source: ABdhPJxk4LxI/qfTW71gXCau+MVPL/D4lFtFfgLCLJFzKN1XPmHFeIqmC0DTEiAAz+L8nIM8mdklP8z632xuBKzcXP4=
-X-Received: by 2002:aca:ed42:: with SMTP id l63mr2119085oih.101.1592290217127; 
- Mon, 15 Jun 2020 23:50:17 -0700 (PDT)
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 759F66E855;
+ Tue, 16 Jun 2020 08:21:40 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1jl6qX-0004KJ-Aq; Tue, 16 Jun 2020 08:21:29 +0000
+From: Colin King <colin.king@canonical.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Date: Tue, 16 Jun 2020 09:21:29 +0100
+Message-Id: <20200616082129.65517-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.27.0.rc0
 MIME-Version: 1.0
-References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
- <20200612160056.2082681-7-daniel.vetter@ffwll.ch>
- <CACvgo51AVVOxhGK2Uin=ZLgPpihJiEsnc6pvAyKqFKPvLdOzLA@mail.gmail.com>
-In-Reply-To: <CACvgo51AVVOxhGK2Uin=ZLgPpihJiEsnc6pvAyKqFKPvLdOzLA@mail.gmail.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Tue, 16 Jun 2020 08:50:06 +0200
-Message-ID: <CAKMK7uEEkH+8BuFcFUVTv6p8swZZTwcho-HNx5GdZTO1vHDoeg@mail.gmail.com>
-To: Emil Velikov <emil.l.velikov@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm/mipi-dbi: Remove ->enabled
+Subject: [Intel-gfx] [PATCH][next] drm/i915: fix a couple of spelling
+ mistakes in kernel parameter help text
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,81 +42,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Lechner <david@lechnology.com>, David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 15, 2020 at 11:35 PM Emil Velikov <emil.l.velikov@gmail.com> wrote:
->
-> Hi Daniel,
->
-> On Fri, 12 Jun 2020 at 17:01, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> >
-> > The atomic helpers try really hard to not lose track of things,
-> > duplicating enabled tracking in the driver is at best confusing.
-> > Double-enabling or disabling is a bug in atomic helpers.
-> >
-> > In the fb_dirty function we can just assume that the fb always exists,
-> > simple display pipe helpers guarantee that the crtc is only enabled
-> > together with the output, so we always have a primary plane around.
-> >
-> > Now in the update function we need to be a notch more careful, since
-> > that can also get called when the crtc is off. And we don't want to
-> > upload frames when that's the case, so filter that out too.
-> >
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: David Airlie <airlied@linux.ie>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: David Lechner <david@lechnology.com>
-> > ---
-> >  drivers/gpu/drm/drm_mipi_dbi.c | 16 ++++++----------
-> >  drivers/gpu/drm/tiny/ili9225.c | 12 +++---------
-> >  drivers/gpu/drm/tiny/st7586.c  | 11 +++--------
-> >  include/drm/drm_mipi_dbi.h     |  5 -----
-> >  4 files changed, 12 insertions(+), 32 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
-> > index fd8d672972a9..79532b9a324a 100644
-> > --- a/drivers/gpu/drm/drm_mipi_dbi.c
-> > +++ b/drivers/gpu/drm/drm_mipi_dbi.c
-> > @@ -268,7 +268,7 @@ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
-> >         bool full;
-> >         void *tr;
-> >
-> > -       if (!dbidev->enabled)
-> > +       if (WARN_ON(!fb))
-> >                 return;
-> >
-> AFAICT no other driver has such WARN_ON. Let's drop that - it is
-> pretty confusing and misleading as-is.
+From: Colin Ian King <colin.king@canonical.com>
 
-Yeah, this is a helper library which might be used wrongly by drivers.
-That's why I put it in - if you don't put all the various calls
-together correctly, this should at least catch one case. So really
-would like to keep this, can I convince you?
--Daniel
+There are a couple of spelling mistakes in kernel parameter help text,
+namely "helpfull" and "paramters".  Fix them.
 
-> With that, patches 7/8 and 8/8 are:
-> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
->
-> -Emil
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/i915/i915_params.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-
-
+diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+index a7b61e6ec508..8d8db9ff0a48 100644
+--- a/drivers/gpu/drm/i915/i915_params.c
++++ b/drivers/gpu/drm/i915/i915_params.c
+@@ -99,8 +99,8 @@ i915_param_named_unsafe(enable_psr, int, 0400,
+ 
+ i915_param_named(psr_safest_params, bool, 0400,
+ 	"Replace PSR VBT parameters by the safest and not optimal ones. This "
+-	"is helpfull to detect if PSR issues are related to bad values set in "
+-	" VBT. (0=use VBT paramters, 1=use safest parameters)");
++	"is helpful to detect if PSR issues are related to bad values set in "
++	" VBT. (0=use VBT parameters, 1=use safest parameters)");
+ 
+ i915_param_named_unsafe(force_probe, charp, 0400,
+ 	"Force probe the driver for specified devices. "
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.27.0.rc0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
