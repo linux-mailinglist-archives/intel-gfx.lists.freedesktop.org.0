@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2649B1FC27C
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 01:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 051D51FC27B
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 01:58:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B97B6E20F;
-	Tue, 16 Jun 2020 23:58:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C7196E0E6;
+	Tue, 16 Jun 2020 23:58:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 827EB6E20B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC6BA6E0E6
  for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 23:58:21 +0000 (UTC)
-IronPort-SDR: nekqgfAre/EGKDLT1ecuG8pKw2+vqJxMiWH1OP1JjbFkWI+FtZtSyEomd0Nzc7pEj5+tHM8Dnu
- CaJXgZjDrROA==
+IronPort-SDR: TwGg+csQ5OLZ4HvNKCAucXHF3abgjuR3t0kv5GM+352+QZblzTv6Xoot7To8NmCBWdKOwoZZOe
+ uoNwsKW0Uvrg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 16:58:20 -0700
-IronPort-SDR: FovAAHexCRsheol6/wzo9jfmeiLRM/P8kXjOp/p46RF9nddsJUC0+duhkwj/ehOF2bJgzSCQEJ
- 0WnuMDfOEn2Q==
+ 16 Jun 2020 16:58:21 -0700
+IronPort-SDR: ZJQED6mKGOxhU3XNA/MCu2D2i8jjKtYHLk54Uxyz8MxPoVIEpuiYYYNdQWedcJBtXgAHW6lRa1
+ eeqV/klfzeRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,520,1583222400"; d="scan'208";a="277097149"
+X-IronPort-AV: E=Sophos;i="5.73,520,1583222400"; d="scan'208";a="277097152"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
  by orsmga006.jf.intel.com with ESMTP; 16 Jun 2020 16:58:20 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Jun 2020 16:58:07 -0700
-Message-Id: <20200616235810.3848540-3-matthew.d.roper@intel.com>
+Date: Tue, 16 Jun 2020 16:58:08 -0700
+Message-Id: <20200616235810.3848540-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200616235810.3848540-1-matthew.d.roper@intel.com>
 References: <20200616235810.3848540-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 2/5] drm/i915/rkl: Add DPLL4 support
+Subject: [Intel-gfx] [PATCH v6 3/5] drm/i915/rkl: Handle HTI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,84 +52,170 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rocket Lake has a third DPLL (called 'DPLL4') that must be used to
-enable a third display.  Unlike EHL's variant of DPLL4, the RKL variant
-behaves the same as DPLL0/1.  And despite its name, the DPLL4 registers
-are offset as if it were DPLL2, so no extra offset handling is needed
-either.
+If HTI (also sometimes called HDPORT) is enabled at startup, it may be
+using some of the PHYs and DPLLs making them unavailable for general
+usage.  Let's read out the HDPORT_STATE register and avoid making use of
+resources that HTI is already using.
 
 v2:
- - Add new .update_ref_clks() hook.
+ - Fix minor checkpatch warnings
 
-Bspec: 49202
-Bspec: 49443
-Bspec: 50288
-Bspec: 50289
+Bspec: 49189
+Bspec: 53707
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 29 +++++++++++++++++--
- 1 file changed, 26 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 30 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 21 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  1 +
+ drivers/gpu/drm/i915/i915_drv.h               |  3 ++
+ drivers/gpu/drm/i915/i915_reg.h               |  6 ++++
+ 5 files changed, 57 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 6c2bb3354b86..f16512eddc58 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -46,6 +46,7 @@
+ #include "display/intel_ddi.h"
+ #include "display/intel_dp.h"
+ #include "display/intel_dp_mst.h"
++#include "display/intel_dpll_mgr.h"
+ #include "display/intel_dsi.h"
+ #include "display/intel_dvo.h"
+ #include "display/intel_gmbus.h"
+@@ -16814,6 +16815,13 @@ static void intel_pps_init(struct drm_i915_private *dev_priv)
+ 	intel_pps_unlock_regs_wa(dev_priv);
+ }
+ 
++static bool hti_uses_phy(u32 hdport_state, enum phy phy)
++{
++	return hdport_state & HDPORT_ENABLED &&
++		(hdport_state & HDPORT_PHY_USED_DP(phy) ||
++		 hdport_state & HDPORT_PHY_USED_HDMI(phy));
++}
++
+ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_encoder *encoder;
+@@ -16825,10 +16833,22 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 		return;
+ 
+ 	if (IS_ROCKETLAKE(dev_priv)) {
+-		intel_ddi_init(dev_priv, PORT_A);
+-		intel_ddi_init(dev_priv, PORT_B);
+-		intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
+-		intel_ddi_init(dev_priv, PORT_E);	/* DDI TC2 */
++		/*
++		 * If HTI (aka HDPORT) is enabled at boot, it may have taken
++		 * over some of the PHYs and made them unavailable to the
++		 * driver.  In that case we should skip initializing the
++		 * corresponding outputs.
++		 */
++		u32 hdport_state = intel_de_read(dev_priv, HDPORT_STATE);
++
++		if (!hti_uses_phy(hdport_state, PHY_A))
++			intel_ddi_init(dev_priv, PORT_A);
++		if (!hti_uses_phy(hdport_state, PHY_B))
++			intel_ddi_init(dev_priv, PORT_B);
++		if (!hti_uses_phy(hdport_state, PHY_C))
++			intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
++		if (!hti_uses_phy(hdport_state, PHY_D))
++			intel_ddi_init(dev_priv, PORT_E);	/* DDI TC2 */
+ 	} else if (INTEL_GEN(dev_priv) >= 12) {
+ 		intel_ddi_init(dev_priv, PORT_A);
+ 		intel_ddi_init(dev_priv, PORT_B);
+@@ -18376,6 +18396,8 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+ 
+ 	intel_dpll_readout_hw_state(dev_priv);
+ 
++	dev_priv->hti_pll_mask = intel_get_hti_plls(dev_priv);
++
+ 	for_each_intel_encoder(dev, encoder) {
+ 		pipe = 0;
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index b45185b80bec..b5f4d4cef682 100644
+index b5f4d4cef682..6f59f9ec453b 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -3506,13 +3506,19 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- 		return false;
- 	}
+@@ -265,6 +265,24 @@ void intel_disable_shared_dpll(const struct intel_crtc_state *crtc_state)
+ 	mutex_unlock(&dev_priv->dpll.lock);
+ }
  
--	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
-+	if (IS_ROCKETLAKE(dev_priv)) {
- 		dpll_mask =
- 			BIT(DPLL_ID_EHL_DPLL4) |
- 			BIT(DPLL_ID_ICL_DPLL1) |
- 			BIT(DPLL_ID_ICL_DPLL0);
--	else
-+	} else if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A) {
-+		dpll_mask =
-+			BIT(DPLL_ID_EHL_DPLL4) |
-+			BIT(DPLL_ID_ICL_DPLL1) |
-+			BIT(DPLL_ID_ICL_DPLL0);
-+	} else {
- 		dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
-+	}
- 
- 	port_dpll->pll = intel_find_shared_dpll(state, crtc,
- 						&port_dpll->hw_state,
-@@ -4275,6 +4281,21 @@ static const struct intel_dpll_mgr tgl_pll_mgr = {
- 	.dump_hw_state = icl_dump_hw_state,
- };
- 
-+static const struct dpll_info rkl_plls[] = {
-+	{ "DPLL 0", &combo_pll_funcs, DPLL_ID_ICL_DPLL0, 0 },
-+	{ "DPLL 1", &combo_pll_funcs, DPLL_ID_ICL_DPLL1, 0 },
-+	{ "DPLL 4", &combo_pll_funcs, DPLL_ID_EHL_DPLL4, 0 },
-+	{ },
-+};
++/*
++ * HTI (aka HDPORT) may be using some of the platform's PLL's, making them
++ * unavailable for use.
++ */
++u32 intel_get_hti_plls(struct drm_i915_private *dev_priv)
++{
++	u32 hdport_state;
 +
-+static const struct intel_dpll_mgr rkl_pll_mgr = {
-+	.dpll_info = rkl_plls,
-+	.get_dplls = icl_get_dplls,
-+	.put_dplls = icl_put_dplls,
-+	.update_ref_clks = icl_update_dpll_ref_clks,
-+	.dump_hw_state = icl_dump_hw_state,
-+};
++	if (!IS_ROCKETLAKE(dev_priv))
++		return 0;
 +
- /**
-  * intel_shared_dpll_init - Initialize shared DPLLs
-  * @dev: drm device
-@@ -4288,7 +4309,9 @@ void intel_shared_dpll_init(struct drm_device *dev)
- 	const struct dpll_info *dpll_info;
- 	int i;
++	hdport_state = intel_de_read(dev_priv, HDPORT_STATE);
++	if (!(hdport_state & HDPORT_ENABLED))
++		return 0;
++
++	return REG_FIELD_GET(HDPORT_DPLL_USED_MASK, hdport_state);
++}
++
+ static struct intel_shared_dpll *
+ intel_find_shared_dpll(struct intel_atomic_state *state,
+ 		       const struct intel_crtc *crtc,
+@@ -280,6 +298,9 @@ intel_find_shared_dpll(struct intel_atomic_state *state,
  
--	if (INTEL_GEN(dev_priv) >= 12)
-+	if (IS_ROCKETLAKE(dev_priv))
-+		dpll_mgr = &rkl_pll_mgr;
-+	else if (INTEL_GEN(dev_priv) >= 12)
- 		dpll_mgr = &tgl_pll_mgr;
- 	else if (IS_ELKHARTLAKE(dev_priv))
- 		dpll_mgr = &ehl_pll_mgr;
+ 	drm_WARN_ON(&dev_priv->drm, dpll_mask & ~(BIT(I915_NUM_PLLS) - 1));
+ 
++	/* Eliminate DPLLs from consideration if reserved by HTI */
++	dpll_mask &= ~dev_priv->hti_pll_mask;
++
+ 	for_each_set_bit(i, &dpll_mask, I915_NUM_PLLS) {
+ 		pll = &dev_priv->dpll.shared_dplls[i];
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+index 5d9a2bc371e7..ac2238646fe7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+@@ -390,6 +390,7 @@ void intel_shared_dpll_swap_state(struct intel_atomic_state *state);
+ void intel_shared_dpll_init(struct drm_device *dev);
+ void intel_dpll_readout_hw_state(struct drm_i915_private *dev_priv);
+ void intel_dpll_sanitize_state(struct drm_i915_private *dev_priv);
++u32 intel_get_hti_plls(struct drm_i915_private *dev_priv);
+ 
+ void intel_dpll_dump_hw_state(struct drm_i915_private *dev_priv,
+ 			      const struct intel_dpll_hw_state *hw_state);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 5649f8e502fe..b836032fa0de 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1037,6 +1037,9 @@ struct drm_i915_private {
+ 
+ 	struct intel_l3_parity l3_parity;
+ 
++	/* Mask of PLLs reserved for use by HTI and unavailable to driver. */
++	u32 hti_pll_mask;
++
+ 	/*
+ 	 * edram size in MB.
+ 	 * Cannot be determined by PCIID. You must always read a register.
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 45bda5819abd..90f11517f656 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2909,6 +2909,12 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define MBUS_BBOX_CTL_S1		_MMIO(0x45040)
+ #define MBUS_BBOX_CTL_S2		_MMIO(0x45044)
+ 
++#define HDPORT_STATE			_MMIO(0x45050)
++#define   HDPORT_DPLL_USED_MASK		REG_GENMASK(14, 12)
++#define   HDPORT_PHY_USED_DP(phy)	REG_BIT(2 * (phy) + 2)
++#define   HDPORT_PHY_USED_HDMI(phy)	REG_BIT(2 * (phy) + 1)
++#define   HDPORT_ENABLED		REG_BIT(0)
++
+ /* Make render/texture TLB fetches lower priorty than associated data
+  *   fetches. This is not turned on by default
+  */
 -- 
 2.24.1
 
