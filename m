@@ -1,44 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33C551FBF21
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 21:42:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 613111FBF63
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 21:50:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FF7F6E1BC;
-	Tue, 16 Jun 2020 19:42:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46C476E98F;
+	Tue, 16 Jun 2020 19:50:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78C496E1BC
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 19:42:49 +0000 (UTC)
-IronPort-SDR: R2OslclG3hq2pTX2GbwZWE6Hbj5rgViDsWeFgZeTr2odUCJsArOi6szJEM9WeR4JG16YPUBa6K
- b6hLiIh19f0Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 12:42:47 -0700
-IronPort-SDR: PvOodaQiwNNS4g7Ho4icx69413zpHnCbgSNP4RQYJCXh9jen7g1Ud4iagZlhz58BuqdtGCPBNH
- al6hSktuoUkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,519,1583222400"; d="scan'208";a="317316284"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 16 Jun 2020 12:42:45 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Jun 2020 22:42:44 +0300
-Date: Tue, 16 Jun 2020 22:42:44 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20200616194244.GJ6112@intel.com>
-References: <20200616193056.4817-1-manasi.d.navare@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 11BEC6E98F;
+ Tue, 16 Jun 2020 19:50:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 09FF8A00E7;
+ Tue, 16 Jun 2020 19:50:33 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200616193056.4817-1-manasi.d.navare@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Poll for DDI Idle status to be
- 0 after enabling DDI Buf
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Tue, 16 Jun 2020 19:50:33 -0000
+Message-ID: <159233703300.4596.7457059522418906935@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200616141855.746-1-imre.deak@intel.com>
+In-Reply-To: <20200616141855.746-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/6=5D_drm/i915/tgl+=3A_Use_the_correct_DP?=
+ =?utf-8?q?=5FTP=5F*_register_instances_in_MST_encoders?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,63 +39,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 16, 2020 at 12:30:56PM -0700, Manasi Navare wrote:
-> The Bspec sequence expects us to poll for DDI Idle status
-> to be 0 (not idle) with a timeout of 600usecs after enabling the
-> DDI BUF CTL.
+== Series Details ==
 
-It only says that for newer platforms. We need to either keep
-the fixed delay before starting to poll, or someone needs confirm =
+Series: series starting with [1/6] drm/i915/tgl+: Use the correct DP_TP_* register instances in MST encoders
+URL   : https://patchwork.freedesktop.org/series/78423/
+State : success
 
-how the idle bit really behaves on the older platforms.
+== Summary ==
 
-> But currently in the driver we just wait for 600usecs
-> without polling so add that.
-> =
+CI Bug Log - changes from CI_DRM_8635 -> Patchwork_17964
+====================================================
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> =
+Summary
+-------
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index ca7bb2294d2b..de7e15de0bc5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4023,7 +4023,11 @@ static void intel_ddi_prepare_link_retrain(struct =
-intel_dp *intel_dp)
->  	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
->  	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
->  =
+  **SUCCESS**
 
-> -	udelay(600);
-> +	if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-> +			  DDI_BUF_IS_IDLE),
-> +			600))
-> +		drm_err(&dev_priv->drm, "DDI port:%c buffer idle\n",
-> +			port_name(port));
->  }
->  =
+  No regressions found.
 
->  static void intel_ddi_set_link_train(struct intel_dp *intel_dp,
-> -- =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17964/index.html
 
-> 2.19.1
+Known issues
+------------
 
--- =
+  Here are the changes found in Patchwork_17964 that come from known issues:
 
-Ville Syrj=E4l=E4
-Intel
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-icl-guc:         [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17964/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
+    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17964/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-x1275:       [DMESG-WARN][5] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17964/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-icl-guc:         [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17964/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#62] / [i915#92])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-kbl-x1275/igt@i915_module_load@reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17964/fi-kbl-x1275/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [SKIP][11] ([fdo#109271]) -> [FAIL][12] ([i915#665] / [i915#704])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17964/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17964/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#665]: https://gitlab.freedesktop.org/drm/intel/issues/665
+  [i915#704]: https://gitlab.freedesktop.org/drm/intel/issues/704
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (47 -> 42)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8635 -> Patchwork_17964
+
+  CI-20190529: 20190529
+  CI_DRM_8635: f9acdb898773f94ac1bcb9a8826596f88412a53b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5711: 90611a0c90afa4a46496c78a4faf9638a1538ac3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17964: d302e0a23522a808ab7073bf458e7b70df70def3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d302e0a23522 drm/i915/dp_mst: Ensure the DPCD ACT sent flag is cleared before waiting for it
+005be72f6fe4 drm/i915/dp_mst: Clear the ACT sent flag during encoder disabling too
+1c1441217489 drm/i915/dp_mst: Clear only the ACT sent flag from DP_TP_STATUS
+23865500149b drm/i915/dp_mst: Move clearing the ACT sent flag closer to its polling
+94a0f7ad711f drm/i915/dp_mst: Disable link training fallback on MST links
+15358e434948 drm/i915/tgl+: Use the correct DP_TP_* register instances in MST encoders
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17964/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
