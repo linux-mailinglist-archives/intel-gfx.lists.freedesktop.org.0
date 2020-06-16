@@ -1,48 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF9411FBBF0
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 18:40:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEFAC1FBBF9
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 18:42:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA5856E90F;
-	Tue, 16 Jun 2020 16:40:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8AEB6E90B;
+	Tue, 16 Jun 2020 16:42:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E889E6E909;
- Tue, 16 Jun 2020 16:40:50 +0000 (UTC)
-IronPort-SDR: JTFMKvLKXf//+ESsQ7tvbp543LAb660BGnL4wuoZHnRn9xhOrfEUhYWJxxxj0ZGWcYuH+eu/mB
- zjZ9DsGDoJEA==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 442C86E90B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 16:42:20 +0000 (UTC)
+IronPort-SDR: Mt17zLsUJrW73qyybrLcau6WRyHBVGHiYyTPHIscoD6jpLr/9M7wApEsyv57Yx/Hyla3YOzhUI
+ WPSz82p4E7jQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 09:40:50 -0700
-IronPort-SDR: L+2NLXLcQOM6WyS6VMHX1xV3Ov1DZ0HQdcFs1uYHH1fpyOrUuJSxZJSqQB0cAVJW1gs0hQ9FLJ
- GkYrFt5LvvfQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="351793987"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 16 Jun 2020 09:40:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Jun 2020 19:40:47 +0300
-Date: Tue, 16 Jun 2020 19:40:47 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200616164047.GG6112@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 09:42:19 -0700
+IronPort-SDR: FXdRiY5/UEj7aRq6momWif1yB/JQXVIqADOtFocqhvy/PedUMbrd7sgXE9SUXv/gKKKCSu6BYM
+ oTtymYzCizFQ==
+X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="449904153"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 09:42:18 -0700
+Date: Tue, 16 Jun 2020 19:42:09 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200616164209.GD21389@ideak-desk.fi.intel.com>
 References: <20200616141855.746-1-imre.deak@intel.com>
- <20200616141855.746-6-imre.deak@intel.com>
- <20200616154546.GY6112@intel.com>
- <20200616155441.GC21389@ideak-desk.fi.intel.com>
- <20200616162321.GE6112@intel.com>
+ <4c40d13cfdb9cfe4d59eb04f27828b597949c54e.camel@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200616162321.GE6112@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/dp_mst: Ensure the DPCD ACT
- sent flag is cleared before waiting for it
+In-Reply-To: <4c40d13cfdb9cfe4d59eb04f27828b597949c54e.camel@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/tgl+: Use the correct DP_TP_*
+ register instances in MST encoders
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,199 +49,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 16, 2020 at 07:23:21PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Tue, Jun 16, 2020 at 06:54:41PM +0300, Imre Deak wrote:
-> > On Tue, Jun 16, 2020 at 06:45:46PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Tue, Jun 16, 2020 at 05:18:55PM +0300, Imre Deak wrote:
-> > > > Atm, we clear the ACT sent flag in the sink's DPCD before updating =
-the
-> > > > sink's payload table, along clearing the payload table updated flag.
-> > > > The sink is supposed to set this flag once it detects that the sour=
-ce
-> > > > has completed the ACT sequence (after detecting the 4 required ACT =
-MTPH
-> > > > symbols sent by the source). As opposed to this 2 DELL monitors I h=
-ave
-> > > > set the flag already along the payload table updated flag, which is=
- not
-> > > > quite correct.
-> > > > =
-
-> > > > To be sure that the sink has detected the ACT MTPH symbols before
-> > > > continuing enabling the encoder, clear the ACT sent flag before ena=
-bling
-> > > > or disabling the transcoder VC payload allocation (which is what st=
-arts
-> > > > the ACT sequence).
-> > > > =
-
-> > > > Cc: Lyude Paul <lyude@redhat.com>
-> > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > Cc: dri-devel@lists.freedesktop.org
-> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/drm_dp_mst_topology.c       | 31 +++++++++++++++++=
-++--
-> > > >  drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
-> > > >  include/drm/drm_dp_mst_helper.h             |  2 ++
-> > > >  3 files changed, 33 insertions(+), 2 deletions(-)
-> > > > =
-
-> > > > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/dr=
-m/drm_dp_mst_topology.c
-> > > > index b2f5a84b4cfb..e3bf8c9c8267 100644
-> > > > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> > > > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> > > > @@ -4377,6 +4377,34 @@ void drm_dp_mst_deallocate_vcpi(struct drm_d=
-p_mst_topology_mgr *mgr,
-> > > >  }
-> > > >  EXPORT_SYMBOL(drm_dp_mst_deallocate_vcpi);
-> > > >  =
-
-> > > > +/**
-> > > > + * drm_dp_clear_payload_status() - Clears the payload table status=
- flags
-> > > > + * @mgr: manager to use
-> > > > + *
-> > > > + * Clears the payload table ACT handled and table updated flags in=
- the MST hub's
-> > > > + * DPCD. This function must be called before updating the payload =
-table or
-> > > > + * starting the ACT sequence and waiting for the corresponding fla=
-gs to get
-> > > > + * set by the hub.
-> > > > + *
-> > > > + * Returns:
-> > > > + * 0 if the flag got cleared successfully, otherwise a negative er=
-ror code.
-> > > > + */
-> > > > +int drm_dp_clear_payload_status(struct drm_dp_mst_topology_mgr *mg=
-r)
-> > > > +{
-> > > > +	int ret;
-> > > > +
-> > > > +	ret =3D drm_dp_dpcd_writeb(mgr->aux, DP_PAYLOAD_TABLE_UPDATE_STAT=
-US,
-> > > > +				 DP_PAYLOAD_ACT_HANDLED);
-> > > > +	if (ret < 0) {
-> > > > +		DRM_DEBUG_DRIVER("Can't clear the ACT sent flag (%d)\n", ret);
-> > > > +		return ret;
-> > > > +	}
-> > > > +	WARN_ON(ret !=3D 1);
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > > > +EXPORT_SYMBOL(drm_dp_clear_payload_status);
-> > > > +
-> > > >  static int drm_dp_dpcd_write_payload(struct drm_dp_mst_topology_mg=
-r *mgr,
-> > > >  				     int id, struct drm_dp_payload *payload)
-> > > >  {
-> > > > @@ -4384,8 +4412,7 @@ static int drm_dp_dpcd_write_payload(struct d=
-rm_dp_mst_topology_mgr *mgr,
-> > > >  	int ret;
-> > > >  	int retries =3D 0;
-> > > >  =
-
-> > > > -	drm_dp_dpcd_writeb(mgr->aux, DP_PAYLOAD_TABLE_UPDATE_STATUS,
-> > > > -			   DP_PAYLOAD_TABLE_UPDATED);
-> > > =
-
-> > > We used to clear DP_PAYLOAD_TABLE_UPDATED but now we clear
-> > > DP_PAYLOAD_ACT_HANDLED ?
+On Tue, Jun 16, 2020 at 07:32:46PM +0300, Souza, Jose wrote:
+> On Tue, 2020-06-16 at 17:18 +0300, Imre Deak wrote:
+> > MST encoders must use the master MST transcoder's DP_TP_STATUS and
+> > DP_TP_CONTROL registers. Atm, during the HW readout of a slave
+> > transcoder's CRTC state we reset these register addresses in
+> > intel_dp::regs.dp_tp_* to the slave transcoder's DP_TP_* register
+> > addresses incorrectly; fix this.
 > > =
 
-> > Eek. We should write DP_PAYLOAD_TABLE_UPDATED which is the only way to
-> > clear both the act-handled and the table-updated flags.
+> > This issue led at least to
+> > 'Timed out waiting for ACT sent when disabling'
+> > errors during output disabling in a multiple MST stream config.
 > =
 
-> Huh. That's a bit crazy. But it is what the spec says.
+> Can you point to place where dp_tp_ctl is used and cause this?  All
+> the MST code paths uses the dp_tp_ctl of the main intel_dp(the one
+> that is not a mst connector).
 
-In fact, I'd suggest adding a comment explaining this crazyness
-so that the next person doesn't have to wonder why we're never
-clearing the ACT bit.
+During a slave stream disabling when waiting for the ACT sent flag for
+that stream.
 
 > =
 
-> > I tested things
-> > that way but managed to send an old version. Thanks for catching it.
 > > =
 
-> > > =
+> > This change replaces
+> > https://patchwork.freedesktop.org/patch/369577/?series=3D78193&rev=3D1
+> > which just papered over the problem.
+> > =
 
-> > > > +	drm_dp_clear_payload_status(mgr);
-> > > >  =
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 15 ++++++++++-----
+> >  1 file changed, 10 insertions(+), 5 deletions(-)
+> > =
 
-> > > >  	payload_alloc[0] =3D id;
-> > > >  	payload_alloc[1] =3D payload->start_slot;
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/=
-gpu/drm/i915/display/intel_dp_mst.c
-> > > > index 9308b5920780..3c4b0fb10d8b 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > > @@ -323,6 +323,8 @@ static void clear_act_sent(struct intel_dp *int=
-el_dp)
-> > > >  =
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm=
+/i915/display/intel_ddi.c
+> > index ca7bb2294d2b..73d6cc29291a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -4193,11 +4193,6 @@ void intel_ddi_get_config(struct intel_encoder *=
+encoder,
+> >  	if (drm_WARN_ON(&dev_priv->drm, transcoder_is_dsi(cpu_transcoder)))
+> >  		return;
+> >  =
 
-> > > >  	intel_de_write(i915, intel_dp->regs.dp_tp_status,
-> > > >  		       DP_TP_STATUS_ACT_SENT);
-> > > > +
-> > > > +	drm_dp_clear_payload_status(&intel_dp->mst_mgr);
-> > > >  }
-> > > >  =
+> > -	if (INTEL_GEN(dev_priv) >=3D 12) {
+> > -		intel_dp->regs.dp_tp_ctl =3D TGL_DP_TP_CTL(cpu_transcoder);
+> > -		intel_dp->regs.dp_tp_status =3D TGL_DP_TP_STATUS(cpu_transcoder);
+> > -	}
+> > -
+> >  	intel_dsc_get_config(encoder, pipe_config);
+> >  =
 
-> > > >  static void wait_for_act_sent(struct intel_dp *intel_dp)
-> > > > diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_m=
-st_helper.h
-> > > > index 8b9eb4db3381..2facb87624bf 100644
-> > > > --- a/include/drm/drm_dp_mst_helper.h
-> > > > +++ b/include/drm/drm_dp_mst_helper.h
-> > > > @@ -763,6 +763,8 @@ int drm_dp_find_vcpi_slots(struct drm_dp_mst_to=
-pology_mgr *mgr,
-> > > >  			   int pbn);
-> > > >  =
+> >  	temp =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
+> > @@ -4299,6 +4294,16 @@ void intel_ddi_get_config(struct intel_encoder *=
+encoder,
+> >  		break;
+> >  	}
+> >  =
 
-> > > >  =
-
-> > > > +int drm_dp_clear_payload_status(struct drm_dp_mst_topology_mgr *mg=
-r);
-> > > > +
-> > > >  int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mg=
-r);
-> > > >  =
-
-> > > >  =
-
-> > > > -- =
-
-> > > > 2.23.1
-> > > =
-
-> > > -- =
-
-> > > Ville Syrj=E4l=E4
-> > > Intel
+> > +	if (INTEL_GEN(dev_priv) >=3D 12) {
+> > +		enum transcoder transcoder =3D
+> > +			intel_dp_mst_is_slave_trans(pipe_config) ?
+> > +			pipe_config->mst_master_transcoder :
+> > +			pipe_config->cpu_transcoder;
+> > +
+> > +		intel_dp->regs.dp_tp_ctl =3D TGL_DP_TP_CTL(transcoder);
+> > +		intel_dp->regs.dp_tp_status =3D TGL_DP_TP_STATUS(transcoder);
+> > +	}
 > =
 
-> -- =
+> Also not sure how change only in the config readout would fix the issue, =
 
-> Ville Syrj=E4l=E4
-> Intel
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
--- =
+After a modeset we'll verify the HW state. The readout for a slave
+stream CRTC (get_pipe_config) running after the master CRTC's readout
+will overwrite the dp_tp reg addresses. The other instance of dp_tp
+register address init (in tgl_ddi_pre_enable_dp()) is correct.
 
-Ville Syrj=E4l=E4
-Intel
+> IFWI don't enable MST so when i915 takes over a full modeset will
+> happen to enable MST and only dp_tp_ctl of the main intel_dp(the one
+> that is not a mst connector) will be set, check
+> tgl_ddi_pre_enable_dp().
+> =
+
+> > +
+> >  	pipe_config->has_audio =3D
+> >  		intel_ddi_is_audio_enabled(dev_priv, cpu_transcoder);
+> >  =
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
