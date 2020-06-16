@@ -1,55 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A6E31FBBC1
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 18:33:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3710B1FBBD2
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 18:34:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 121716E183;
-	Tue, 16 Jun 2020 16:33:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D88F6E84A;
+	Tue, 16 Jun 2020 16:34:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88D6A6E183
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 16:33:06 +0000 (UTC)
-IronPort-SDR: p8UkIY1x/1CD7v7eC5tT1ldkxITg34u+kv8qT7Mk9Y4rz9u6vz7YNhUfK3VxLAHw6M2YSZRk+r
- tWNN+lC87yuA==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E3A16E84A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 16:34:17 +0000 (UTC)
+IronPort-SDR: EWy7OwPEafFmfg0cGfHzYkVhbDObCw5+oDkmcExrfMu2s3yLRegdli8FmLg2pcI9xYr90L0suC
+ LqqNDy4G7GOQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 09:32:48 -0700
-IronPort-SDR: 7g8ems5e4PNHktaHxsAaj6gDdIgWOPOvnT5WoMOUfXNQeaOtzXgKDPjkxE7xqkf+Y/p95J+XzY
- 6FxJVkMKRYBg==
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 09:34:16 -0700
+IronPort-SDR: 4MzzWBFXu4WAeROaSGXRfR9OSY6dYNTD9QEEjvKZUzYVt0rLTFy/uVUdjCJ9v4S+FNO5LNlk2B
+ zhxmTHdM48Ng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="308514144"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by orsmga008.jf.intel.com with ESMTP; 16 Jun 2020 09:32:48 -0700
-Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 16 Jun 2020 09:32:47 -0700
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.171]) by
- FMSMSX113.amr.corp.intel.com ([169.254.13.85]) with mapi id 14.03.0439.000;
- Tue, 16 Jun 2020 09:32:47 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [PATCH 1/6] drm/i915/tgl+: Use the correct DP_TP_* register
- instances in MST encoders
-Thread-Index: AQHWQ+kZrP1rv1OnP0KTIXpcGqbmv6jb5XGA
-Date: Tue, 16 Jun 2020 16:32:46 +0000
-Message-ID: <4c40d13cfdb9cfe4d59eb04f27828b597949c54e.camel@intel.com>
-References: <20200616141855.746-1-imre.deak@intel.com>
-In-Reply-To: <20200616141855.746-1-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.254.14.160]
-Content-ID: <C939FE52541DED4C970431183ABD70BC@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="449901457"
+Received: from rerandal-mobl.amr.corp.intel.com (HELO msatwood-mobl.intel.com)
+ ([10.254.42.88])
+ by orsmga005.jf.intel.com with ESMTP; 16 Jun 2020 09:34:07 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	aditya.swarup@intel.com
+Date: Tue, 16 Jun 2020 09:34:06 -0700
+Message-Id: <20200616163406.27387-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.21.3
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/tgl+: Use the correct DP_TP_*
- register instances in MST encoders
+Subject: [Intel-gfx] [PATCH] drm/i915: Apply Wa_14011264657:gen11+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,58 +46,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTA2LTE2IGF0IDE3OjE4ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IE1T
-VCBlbmNvZGVycyBtdXN0IHVzZSB0aGUgbWFzdGVyIE1TVCB0cmFuc2NvZGVyJ3MgRFBfVFBfU1RB
-VFVTIGFuZA0KPiBEUF9UUF9DT05UUk9MIHJlZ2lzdGVycy4gQXRtLCBkdXJpbmcgdGhlIEhXIHJl
-YWRvdXQgb2YgYSBzbGF2ZQ0KPiB0cmFuc2NvZGVyJ3MgQ1JUQyBzdGF0ZSB3ZSByZXNldCB0aGVz
-ZSByZWdpc3RlciBhZGRyZXNzZXMgaW4NCj4gaW50ZWxfZHA6OnJlZ3MuZHBfdHBfKiB0byB0aGUg
-c2xhdmUgdHJhbnNjb2RlcidzIERQX1RQXyogcmVnaXN0ZXINCj4gYWRkcmVzc2VzIGluY29ycmVj
-dGx5OyBmaXggdGhpcy4NCj4gDQo+IFRoaXMgaXNzdWUgbGVkIGF0IGxlYXN0IHRvDQo+ICdUaW1l
-ZCBvdXQgd2FpdGluZyBmb3IgQUNUIHNlbnQgd2hlbiBkaXNhYmxpbmcnDQo+IGVycm9ycyBkdXJp
-bmcgb3V0cHV0IGRpc2FibGluZyBpbiBhIG11bHRpcGxlIE1TVCBzdHJlYW0gY29uZmlnLg0KDQpD
-YW4geW91IHBvaW50IHRvIHBsYWNlIHdoZXJlIGRwX3RwX2N0bCBpcyB1c2VkIGFuZCBjYXVzZSB0
-aGlzPw0KQWxsIHRoZSBNU1QgY29kZSBwYXRocyB1c2VzIHRoZSBkcF90cF9jdGwgb2YgdGhlIG1h
-aW4gaW50ZWxfZHAodGhlIG9uZSB0aGF0IGlzIG5vdCBhIG1zdCBjb25uZWN0b3IpLg0KDQo+IA0K
-PiBUaGlzIGNoYW5nZSByZXBsYWNlcw0KPiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5v
-cmcvcGF0Y2gvMzY5NTc3Lz9zZXJpZXM9NzgxOTMmcmV2PTENCj4gd2hpY2gganVzdCBwYXBlcmVk
-IG92ZXIgdGhlIHByb2JsZW0uDQo+IA0KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
-YWxhQGxpbnV4LmludGVsLmNvbT4NCj4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uu
-c291emFAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0Bp
-bnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-ZGkuYyB8IDE1ICsrKysrKysrKystLS0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlv
-bnMoKyksIDUgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGRpLmMNCj4gaW5kZXggY2E3YmIyMjk0ZDJiLi43M2Q2Y2MyOTI5MWEgMTAwNjQ0DQo+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiBAQCAtNDE5MywxMSAr
-NDE5Myw2IEBAIHZvaWQgaW50ZWxfZGRpX2dldF9jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIg
-KmVuY29kZXIsDQo+ICAJaWYgKGRybV9XQVJOX09OKCZkZXZfcHJpdi0+ZHJtLCB0cmFuc2NvZGVy
-X2lzX2RzaShjcHVfdHJhbnNjb2RlcikpKQ0KPiAgCQlyZXR1cm47DQo+ICANCj4gLQlpZiAoSU5U
-RUxfR0VOKGRldl9wcml2KSA+PSAxMikgew0KPiAtCQlpbnRlbF9kcC0+cmVncy5kcF90cF9jdGwg
-PSBUR0xfRFBfVFBfQ1RMKGNwdV90cmFuc2NvZGVyKTsNCj4gLQkJaW50ZWxfZHAtPnJlZ3MuZHBf
-dHBfc3RhdHVzID0gVEdMX0RQX1RQX1NUQVRVUyhjcHVfdHJhbnNjb2Rlcik7DQo+IC0JfQ0KPiAt
-DQo+ICAJaW50ZWxfZHNjX2dldF9jb25maWcoZW5jb2RlciwgcGlwZV9jb25maWcpOw0KPiAgDQo+
-ICAJdGVtcCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIFRSQU5TX0RESV9GVU5DX0NUTChjcHVf
-dHJhbnNjb2RlcikpOw0KPiBAQCAtNDI5OSw2ICs0Mjk0LDE2IEBAIHZvaWQgaW50ZWxfZGRpX2dl
-dF9jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ICAJCWJyZWFrOw0KPiAg
-CX0NCj4gIA0KPiArCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKSB7DQo+ICsJCWVudW0g
-dHJhbnNjb2RlciB0cmFuc2NvZGVyID0NCj4gKwkJCWludGVsX2RwX21zdF9pc19zbGF2ZV90cmFu
-cyhwaXBlX2NvbmZpZykgPw0KPiArCQkJcGlwZV9jb25maWctPm1zdF9tYXN0ZXJfdHJhbnNjb2Rl
-ciA6DQo+ICsJCQlwaXBlX2NvbmZpZy0+Y3B1X3RyYW5zY29kZXI7DQo+ICsNCj4gKwkJaW50ZWxf
-ZHAtPnJlZ3MuZHBfdHBfY3RsID0gVEdMX0RQX1RQX0NUTCh0cmFuc2NvZGVyKTsNCj4gKwkJaW50
-ZWxfZHAtPnJlZ3MuZHBfdHBfc3RhdHVzID0gVEdMX0RQX1RQX1NUQVRVUyh0cmFuc2NvZGVyKTsN
-Cj4gKwl9DQoNCkFsc28gbm90IHN1cmUgaG93IGNoYW5nZSBvbmx5IGluIHRoZSBjb25maWcgcmVh
-ZG91dCB3b3VsZCBmaXggdGhlIGlzc3VlLCBJRldJIGRvbid0IGVuYWJsZSBNU1Qgc28gd2hlbiBp
-OTE1IHRha2VzIG92ZXIgYSBmdWxsIG1vZGVzZXQgd2lsbCBoYXBwZW4gdG8NCmVuYWJsZSBNU1Qg
-YW5kIG9ubHkgZHBfdHBfY3RsIG9mIHRoZSBtYWluIGludGVsX2RwKHRoZSBvbmUgdGhhdCBpcyBu
-b3QgYSBtc3QgY29ubmVjdG9yKSB3aWxsIGJlIHNldCwgY2hlY2sgdGdsX2RkaV9wcmVfZW5hYmxl
-X2RwKCkuDQoNCj4gKw0KPiAgCXBpcGVfY29uZmlnLT5oYXNfYXVkaW8gPQ0KPiAgCQlpbnRlbF9k
-ZGlfaXNfYXVkaW9fZW5hYmxlZChkZXZfcHJpdiwgY3B1X3RyYW5zY29kZXIpOw0KPiAgDQpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Add minimum width to planes, variable with specific formats, for gen11+.
+
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 55 +++++++++++++++++---
+ 1 file changed, 47 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7457813ef273..d4fdad6cb3b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3760,6 +3760,45 @@ static int glk_max_plane_width(const struct drm_framebuffer *fb,
+ 	}
+ }
+ 
++static int icl_min_plane_width(struct drm_i915_private *dev_priv,
++				 const struct drm_framebuffer *fb)
++{
++	/* Wa_14011264657, Wa_14011050563 */
++	switch (fb->format->format) {
++	case DRM_FORMAT_C8:
++		return 18;
++	case DRM_FORMAT_RGB565:
++		return 10;
++	case DRM_FORMAT_XRGB8888:
++	case DRM_FORMAT_XBGR8888:
++	case DRM_FORMAT_ARGB8888:
++	case DRM_FORMAT_ABGR8888:
++	case DRM_FORMAT_XRGB2101010:
++	case DRM_FORMAT_XBGR2101010:
++	case DRM_FORMAT_ARGB2101010:
++	case DRM_FORMAT_ABGR2101010:
++	case DRM_FORMAT_XVYU2101010:
++	case DRM_FORMAT_Y212:
++	case DRM_FORMAT_Y216:
++		return 6;
++	case DRM_FORMAT_NV12:
++		return 20;
++	case DRM_FORMAT_P010:
++	case DRM_FORMAT_P012:
++	case DRM_FORMAT_P016:
++		return 12;
++	case DRM_FORMAT_XRGB16161616F:
++	case DRM_FORMAT_XBGR16161616F:
++	case DRM_FORMAT_ARGB16161616F:
++	case DRM_FORMAT_ABGR16161616F:
++	case DRM_FORMAT_XVYU12_16161616:
++	case DRM_FORMAT_XVYU16161616:
++		return 4;
++	default:
++		return 1;
++	}
++}
++
+ static int icl_max_plane_width(const struct drm_framebuffer *fb,
+ 			       int color_plane,
+ 			       unsigned int rotation)
+@@ -3831,15 +3870,15 @@ static int skl_check_main_surface(struct intel_plane_state *plane_state)
+ 	int y = plane_state->uapi.src.y1 >> 16;
+ 	int w = drm_rect_width(&plane_state->uapi.src) >> 16;
+ 	int h = drm_rect_height(&plane_state->uapi.src) >> 16;
+-	int max_width;
+-	int max_height;
+-	u32 alignment;
+-	u32 offset;
++	int max_width, min_width = 1, max_height;
++	u32 alignment, offset;
+ 	int aux_plane = intel_main_to_aux_plane(fb, 0);
+ 	u32 aux_offset = plane_state->color_plane[aux_plane].offset;
+ 
+-	if (INTEL_GEN(dev_priv) >= 11)
++	if (INTEL_GEN(dev_priv) >= 11) {
+ 		max_width = icl_max_plane_width(fb, 0, rotation);
++		min_width = icl_min_plane_width(dev_priv, fb);
++	}
+ 	else if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+ 		max_width = glk_max_plane_width(fb, 0, rotation);
+ 	else
+@@ -3850,10 +3889,10 @@ static int skl_check_main_surface(struct intel_plane_state *plane_state)
+ 	else
+ 		max_height = skl_max_plane_height();
+ 
+-	if (w > max_width || h > max_height) {
++	if (w > max_width || w < min_width || h > max_height) {
+ 		drm_dbg_kms(&dev_priv->drm,
+-			    "requested Y/RGB source size %dx%d too big (limit %dx%d)\n",
+-			    w, h, max_width, max_height);
++			    "requested Y/RGB source size %dx%d outside limits (min: %dx1 max: %dx%d)\n",
++			    w, h, min_width, max_width, max_height);
+ 		return -EINVAL;
+ 	}
+ 
+-- 
+2.21.3
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
