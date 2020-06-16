@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 335F21FAB81
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:42:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A970D1FAB7F
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:42:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75B826E868;
-	Tue, 16 Jun 2020 08:42:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C81B96E863;
+	Tue, 16 Jun 2020 08:42:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7C9F6E868
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 08:42:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C61D96E85E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 08:41:56 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21509972-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21509973-1500050 
  for multiple; Tue, 16 Jun 2020 09:41:45 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Jun 2020 09:41:38 +0100
-Message-Id: <20200616084141.3722-6-chris@chris-wilson.co.uk>
+Date: Tue, 16 Jun 2020 09:41:39 +0100
+Message-Id: <20200616084141.3722-7-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200616084141.3722-1-chris@chris-wilson.co.uk>
 References: <20200616084141.3722-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/9] drm/i915/gt: ce->inflight updates are now
- serialised
+Subject: [Intel-gfx] [PATCH 7/9] drm/i915/gt: Drop atomic for
+ engine->fw_active tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,120 +45,65 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since schedule-in and schedule-out are now both always under the tasklet
-bitlock, we can reduce the individual atomic operations to simple
-instructions and worry less.
+Since schedule-in/out is now entirely serialised by the tasklet bitlock,
+we do not need to worry about concurrent in/out operations and so reduce
+the atomic operations to plain instructions.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 43 ++++++++++++-----------------
- 1 file changed, 18 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h | 2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c          | 4 ++--
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index be1730773db8..39471674a40f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1531,7 +1531,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+ 	drm_printf(m, "\tLatency: %luus\n",
+ 		   ewma__engine_latency_read(&engine->latency));
+ 	drm_printf(m, "\tForcewake: %x domains, %d active\n",
+-		   engine->fw_domain, atomic_read(&engine->fw_active));
++		   engine->fw_domain, READ_ONCE(engine->fw_active));
+ 
+ 	rcu_read_lock();
+ 	rq = READ_ONCE(engine->heartbeat.systole);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 31cf60cef5a8..ca124f229f65 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -335,7 +335,7 @@ struct intel_engine_cs {
+ 	 * as possible.
+ 	 */
+ 	enum forcewake_domains fw_domain;
+-	atomic_t fw_active;
++	unsigned int fw_active;
+ 
+ 	unsigned long context_tag;
+ 
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index adc14adfa89c..8b3959207c02 100644
+index 8b3959207c02..09ec7242fbcb 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1371,7 +1371,7 @@ __execlists_schedule_in(struct i915_request *rq)
- 		unsigned int tag = ffs(READ_ONCE(engine->context_tag));
+@@ -1380,7 +1380,7 @@ __execlists_schedule_in(struct i915_request *rq)
+ 	ce->lrc.ccid |= engine->execlists.ccid;
  
- 		GEM_BUG_ON(tag == 0 || tag >= BITS_PER_LONG);
--		clear_bit(tag - 1, &engine->context_tag);
-+		__clear_bit(tag - 1, &engine->context_tag);
- 		ce->lrc.ccid = tag << (GEN11_SW_CTX_ID_SHIFT - 32);
- 
- 		BUILD_BUG_ON(BITS_PER_LONG > GEN12_MAX_CONTEXT_HW_ID);
-@@ -1399,13 +1399,10 @@ execlists_schedule_in(struct i915_request *rq, int idx)
- 	GEM_BUG_ON(!intel_engine_pm_is_awake(rq->engine));
- 	trace_i915_request_in(rq, idx);
- 
--	old = READ_ONCE(ce->inflight);
--	do {
--		if (!old) {
--			WRITE_ONCE(ce->inflight, __execlists_schedule_in(rq));
--			break;
--		}
--	} while (!try_cmpxchg(&ce->inflight, &old, ptr_inc(old)));
-+	old = ce->inflight;
-+	if (!old)
-+		old = __execlists_schedule_in(rq);
-+	WRITE_ONCE(ce->inflight, ptr_inc(old));
- 
- 	GEM_BUG_ON(intel_context_inflight(ce) != rq->engine);
- 	return i915_request_get(rq);
-@@ -1420,12 +1417,11 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
- 		tasklet_hi_schedule(&ve->base.execlists.tasklet);
- }
- 
--static inline void
--__execlists_schedule_out(struct i915_request *rq,
--			 struct intel_engine_cs * const engine,
--			 unsigned int ccid)
-+static inline void __execlists_schedule_out(struct i915_request *rq)
- {
- 	struct intel_context * const ce = rq->context;
-+	struct intel_engine_cs * const engine = ce->inflight;
-+	unsigned int ccid;
- 
- 	/*
- 	 * NB process_csb() is not under the engine->active.lock and hence
-@@ -1433,7 +1429,7 @@ __execlists_schedule_out(struct i915_request *rq,
- 	 * refrain from doing non-trivial work here.
- 	 */
- 
--	CE_TRACE(ce, "schedule-out, ccid:%x\n", ccid);
-+	CE_TRACE(ce, "schedule-out, ccid:%x\n", ce->lrc.ccid);
- 
- 	/*
- 	 * If we have just completed this context, the engine may now be
-@@ -1443,12 +1439,13 @@ __execlists_schedule_out(struct i915_request *rq,
- 	    i915_request_completed(rq))
- 		intel_engine_add_retire(engine, ce->timeline);
- 
-+	ccid = ce->lrc.ccid;
- 	ccid >>= GEN11_SW_CTX_ID_SHIFT - 32;
- 	ccid &= GEN12_MAX_CONTEXT_HW_ID;
- 	if (ccid < BITS_PER_LONG) {
- 		GEM_BUG_ON(ccid == 0);
- 		GEM_BUG_ON(test_bit(ccid - 1, &engine->context_tag));
--		set_bit(ccid - 1, &engine->context_tag);
-+		__set_bit(ccid - 1, &engine->context_tag);
- 	}
- 
+ 	__intel_gt_pm_get(engine->gt);
+-	if (engine->fw_domain && !atomic_fetch_inc(&engine->fw_active))
++	if (engine->fw_domain && !engine->fw_active++)
+ 		intel_uncore_forcewake_get(engine->uncore, engine->fw_domain);
+ 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_IN);
+ 	intel_engine_context_in(engine);
+@@ -1451,7 +1451,7 @@ static inline void __execlists_schedule_out(struct i915_request *rq)
  	intel_context_update_runtime(ce);
-@@ -1469,26 +1466,22 @@ __execlists_schedule_out(struct i915_request *rq,
- 	 */
- 	if (ce->engine != engine)
- 		kick_siblings(rq, ce);
--
--	intel_context_put(ce);
- }
+ 	intel_engine_context_out(engine);
+ 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
+-	if (engine->fw_domain && !atomic_dec_return(&engine->fw_active))
++	if (engine->fw_domain && !--engine->fw_active)
+ 		intel_uncore_forcewake_put(engine->uncore, engine->fw_domain);
+ 	intel_gt_pm_put_async(engine->gt);
  
- static inline void
- execlists_schedule_out(struct i915_request *rq)
- {
- 	struct intel_context * const ce = rq->context;
--	struct intel_engine_cs *cur, *old;
--	u32 ccid;
- 
- 	trace_i915_request_out(rq);
- 
--	ccid = rq->context->lrc.ccid;
--	old = READ_ONCE(ce->inflight);
--	do
--		cur = ptr_unmask_bits(old, 2) ? ptr_dec(old) : NULL;
--	while (!try_cmpxchg(&ce->inflight, &old, cur));
--	if (!cur)
--		__execlists_schedule_out(rq, old, ccid);
-+	GEM_BUG_ON(!ce->inflight);
-+	ce->inflight = ptr_dec(ce->inflight);
-+	if (!intel_context_inflight_count(ce)) {
-+		__execlists_schedule_out(rq);
-+		WRITE_ONCE(ce->inflight, NULL);
-+		intel_context_put(ce);
-+	}
- 
- 	i915_request_put(rq);
- }
 -- 
 2.20.1
 
