@@ -1,37 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05FF1FAB03
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:23:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 665CB1FAB83
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:42:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBEE56E84F;
-	Tue, 16 Jun 2020 08:23:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFA296E860;
+	Tue, 16 Jun 2020 08:42:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3608B6E84F
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 08:23:27 +0000 (UTC)
-IronPort-SDR: BEEeDauhnjdxqKzZXyNBcdPYAfCqUH1b8XISAUP2XawfjvjAryqw4w3lCV84ZQqWaQPmvI3g5S
- SntlYJMYNWHg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 01:23:26 -0700
-IronPort-SDR: E2JR1M8xrI3N1uio8S1xiqJOV952TY9ZD+73sUXmF4X7UqTF2NOZGNOYv8iJuES6Pnp8YUoC3k
- CzNjIc3ULfjg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="449720799"
-Received: from joeydesktop.sh.intel.com ([10.239.53.104])
- by orsmga005.jf.intel.com with ESMTP; 16 Jun 2020 01:23:25 -0700
-From: Shaofeng Tang <shaofeng.tang@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2984D6E86B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 08:42:16 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21509967-1500050 
+ for multiple; Tue, 16 Jun 2020 09:41:43 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Jun 2020 16:29:20 +0800
-Message-Id: <1592296160-3784-1-git-send-email-shaofeng.tang@intel.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [Intel-gfx] [PATCH] drm/i915/gvt: query if vgpu is active via
- GETPARAM IOCTL
+Date: Tue, 16 Jun 2020 09:41:33 +0100
+Message-Id: <20200616084141.3722-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH 1/9] drm/i915/selftests: Exercise far preemption
+ rollbacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,81 +37,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Shaofeng Tang <shaofeng.tang@intel.com>
-MIME-Version: 1.0
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-Query if vgpu is active, it is useful to the user.
-Currently, only the primary plane is usable when vgpu is active.
-The value of vgpu active is useful for user to determine
-how many planes can be used. also useful for user to
-determine different behaviors according to vgpu is active or not.
+Not too long ago, we realised we had issues with a rolling back a
+context so far for a preemption request we considered the resubmit not
+to be a rollback but a forward roll. This means we would issue a lite
+restore instead of forcing a full restore, continuing execution of the
+old requests rather than causing a preemption. Add a selftest to
+exercise such a far rollback, such that if we were to skip the full
+restore, we would execute invalid instructions in the ring and hang.
 
-[How]
-Add a switch-case in the IOCTL 'i915_getparam_ioctl' to
-return 'intel_vgpu_active'
+Note that while I was able to confirm that this causes us to do a
+lite-restore preemption rollback (with commit e36ba817fa96 ("drm/i915/gt:
+Incrementally check for rewinding") disabled), it did not trick the HW
+into rolling past the old RING_TAIL. Myybe on other HW.
 
-Signed-off-by: Shaofeng Tang <shaofeng.tang@intel.com>
+References: e36ba817fa96 ("drm/i915/gt: Incrementally check for rewinding")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_getparam.c | 3 +++
- include/uapi/drm/i915_drm.h          | 6 ++++++
- tools/include/uapi/drm/i915_drm.h    | 6 ++++++
- 3 files changed, 15 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 150 +++++++++++++++++++++++++
+ 1 file changed, 150 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-index d042644..c50555b 100644
---- a/drivers/gpu/drm/i915/i915_getparam.c
-+++ b/drivers/gpu/drm/i915/i915_getparam.c
-@@ -161,6 +161,9 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
- 	case I915_PARAM_PERF_REVISION:
- 		value = i915_perf_ioctl_version();
- 		break;
-+	case I915_PARAM_IS_GVT:
-+		value = intel_vgpu_active(i915);
-+		break;
- 	default:
- 		DRM_DEBUG("Unknown parameter %d\n", param->param);
- 		return -EINVAL;
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 14b67cd..74f06e2 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -619,6 +619,12 @@ enum drm_i915_pmu_engine_sample {
-  */
- #define I915_PARAM_PERF_REVISION	54
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 91543494f595..3d088116a055 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -363,6 +363,155 @@ static int live_unlite_preempt(void *arg)
+ 	return live_unlite_restore(arg, I915_USER_PRIORITY(I915_PRIORITY_MAX));
+ }
  
-+/*
-+ * Query whether GVT is active. The value returned helps userspace application
-+ * to determine what KMS resources are workable.
-+ */
-+#define I915_PARAM_IS_GVT	55
++static int live_unlite_ring(void *arg)
++{
++	struct intel_gt *gt = arg;
++	struct intel_engine_cs *engine;
++	struct igt_spinner spin;
++	enum intel_engine_id id;
++	int err = 0;
 +
- /* Must be kept compact -- no holes and well documented */
- 
- typedef struct drm_i915_getparam {
-diff --git a/tools/include/uapi/drm/i915_drm.h b/tools/include/uapi/drm/i915_drm.h
-index 2813e57..ecaad82 100644
---- a/tools/include/uapi/drm/i915_drm.h
-+++ b/tools/include/uapi/drm/i915_drm.h
-@@ -619,6 +619,12 @@ enum drm_i915_pmu_engine_sample {
-  */
- #define I915_PARAM_PERF_REVISION	54
- 
-+/*
-+ * Query whether GVT is active. The value returned helps userspace application
-+ * to determine what KMS resources are workable.
-+ */
-+#define I915_PARAM_IS_GVT      55
++	/*
++	 * Setup a preemption event that will cause almost the entire ring
++	 * to be unwound, potentially fooling our intel_ring_direction()
++	 * into emitting a forward lite-restore instead of the rollback.
++	 */
 +
- /* Must be kept compact -- no holes and well documented */
- 
- typedef struct drm_i915_getparam {
++	if (igt_spinner_init(&spin, gt))
++		return -ENOMEM;
++
++	for_each_engine(engine, gt, id) {
++		struct intel_context *ce[2] = {};
++		struct i915_request *rq;
++		struct igt_live_test t;
++		int n;
++
++		if (!intel_engine_has_preemption(engine))
++			continue;
++
++		if (!intel_engine_can_store_dword(engine))
++			continue;
++
++		if (igt_live_test_begin(&t, gt->i915, __func__, engine->name)) {
++			err = -EIO;
++			break;
++		}
++		engine_heartbeat_disable(engine);
++
++		for (n = 0; n < ARRAY_SIZE(ce); n++) {
++			struct intel_context *tmp;
++
++			tmp = intel_context_create(engine);
++			if (IS_ERR(tmp)) {
++				err = PTR_ERR(tmp);
++				goto err_ce;
++			}
++
++			err = intel_context_pin(tmp);
++			if (err) {
++				intel_context_put(tmp);
++				goto err_ce;
++			}
++
++			memset32(tmp->ring->vaddr,
++				 0xdeadbeef, /* trigger a hang if executed */
++				 tmp->ring->vma->size / sizeof(u32));
++
++			ce[n] = tmp;
++		}
++
++		rq = igt_spinner_create_request(&spin, ce[0], MI_ARB_CHECK);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto err_ce;
++		}
++
++		i915_request_get(rq);
++		rq->sched.attr.priority = I915_PRIORITY_BARRIER;
++		i915_request_add(rq);
++
++		if (!igt_wait_for_spinner(&spin, rq)) {
++			intel_gt_set_wedged(gt);
++			i915_request_put(rq);
++			err = -ETIME;
++			goto err_ce;
++		}
++
++		/* Fill the ring, until we will cause a wrap */
++		n = 0;
++		while (intel_ring_direction(ce[0]->ring,
++					    rq->wa_tail,
++					    ce[0]->ring->tail) <= 0) {
++			struct i915_request *tmp;
++
++			tmp = intel_context_create_request(ce[0]);
++			if (IS_ERR(tmp)) {
++				err = PTR_ERR(tmp);
++				i915_request_put(rq);
++				goto err_ce;
++			}
++
++			i915_request_add(tmp);
++			intel_engine_flush_submission(engine);
++			n++;
++		}
++		intel_engine_flush_submission(engine);
++		pr_debug("%s: Filled ring with %d nop tails {size:%x, tail:%x, emit:%x, rq.tail:%x}\n",
++			 engine->name, n,
++			 ce[0]->ring->size,
++			 ce[0]->ring->tail,
++			 ce[0]->ring->emit,
++			 rq->tail);
++		GEM_BUG_ON(intel_ring_direction(ce[0]->ring,
++						rq->tail,
++						ce[0]->ring->tail) <= 0);
++		i915_request_put(rq);
++
++		/* Create a second request to preempt the first ring */
++		rq = intel_context_create_request(ce[1]);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto err_ce;
++		}
++
++		rq->sched.attr.priority = I915_PRIORITY_BARRIER;
++		i915_request_get(rq);
++		i915_request_add(rq);
++
++		err = wait_for_submit(engine, rq, HZ / 2);
++		i915_request_put(rq);
++		if (err) {
++			pr_err("%s: preemption request was not submited\n",
++			       engine->name);
++			err = -ETIME;
++		}
++
++		pr_debug("%s: ring[0]:{ tail:%x, emit:%x }, ring[1]:{ tail:%x, emit:%x }\n",
++			 engine->name,
++			 ce[0]->ring->tail, ce[0]->ring->emit,
++			 ce[1]->ring->tail, ce[1]->ring->emit);
++
++err_ce:
++		intel_engine_flush_submission(engine);
++		igt_spinner_end(&spin);
++		for (n = 0; n < ARRAY_SIZE(ce); n++) {
++			if (IS_ERR_OR_NULL(ce[n]))
++				break;
++
++			intel_context_unpin(ce[n]);
++			intel_context_put(ce[n]);
++		}
++		engine_heartbeat_enable(engine);
++		if (igt_live_test_end(&t))
++			err = -EIO;
++		if (err)
++			break;
++	}
++
++	igt_spinner_fini(&spin);
++	return err;
++}
++
+ static int live_pin_rewind(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+@@ -4374,6 +4523,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(live_sanitycheck),
+ 		SUBTEST(live_unlite_switch),
+ 		SUBTEST(live_unlite_preempt),
++		SUBTEST(live_unlite_ring),
+ 		SUBTEST(live_pin_rewind),
+ 		SUBTEST(live_hold_reset),
+ 		SUBTEST(live_error_interrupt),
 -- 
-1.9.1
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
