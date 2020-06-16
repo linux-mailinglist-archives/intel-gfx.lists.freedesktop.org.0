@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42B2A1FAB7A
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:41:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B5C61FAB7D
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 10:42:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA616E85C;
-	Tue, 16 Jun 2020 08:41:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D64C86E861;
+	Tue, 16 Jun 2020 08:41:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C1B36E859
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 08:41:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD64F6E860
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 08:41:55 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21509968-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21509969-1500050 
  for multiple; Tue, 16 Jun 2020 09:41:44 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Jun 2020 09:41:34 +0100
-Message-Id: <20200616084141.3722-2-chris@chris-wilson.co.uk>
+Date: Tue, 16 Jun 2020 09:41:35 +0100
+Message-Id: <20200616084141.3722-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200616084141.3722-1-chris@chris-wilson.co.uk>
 References: <20200616084141.3722-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/9] drm/i915/selftests: Use friendly request
- names for live_timeslice_rewind
+Subject: [Intel-gfx] [PATCH 3/9] drm/i915/selftests: Enable selftesting of
+ busy-stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,65 +45,143 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rather than mixing [012] and (A1, A2, B2) for the request indices, use
-the enums throughout.
+A couple of very simple tests to ensure that the basic properties of
+per-engine busyness accounting [0% and 100% busy] are faithful.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 94 ++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/selftest_rps.c       |  5 ++
+ 2 files changed, 99 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 3d088116a055..72d52c9c042f 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -1176,18 +1176,18 @@ static int live_timeslice_rewind(void *arg)
- 			goto err;
- 		}
+diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+index cbf6b0735272..fb0fd8a7db9a 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+@@ -7,6 +7,99 @@
+ #include "i915_selftest.h"
+ #include "selftest_engine.h"
+ #include "selftests/igt_atomic.h"
++#include "selftests/igt_flush_test.h"
++#include "selftests/igt_spinner.h"
++
++static int live_engine_busy_stats(void *arg)
++{
++	struct intel_gt *gt = arg;
++	struct intel_engine_cs *engine;
++	enum intel_engine_id id;
++	struct igt_spinner spin;
++	int err = 0;
++
++	/*
++	 * Check that if an engine supports busy-stats, they tell the truth.
++	 */
++
++	if (igt_spinner_init(&spin, gt))
++		return -ENOMEM;
++
++	GEM_BUG_ON(intel_gt_pm_is_awake(gt));
++	for_each_engine(engine, gt, id) {
++		struct i915_request *rq;
++		ktime_t de;
++		u64 dt;
++
++		if (!intel_engine_supports_stats(engine))
++			continue;
++
++		if (!intel_engine_can_store_dword(engine))
++			continue;
++
++		if (intel_gt_pm_wait_for_idle(gt)) {
++			err = -EBUSY;
++			break;
++		}
++
++		preempt_disable();
++		dt = ktime_to_ns(ktime_get());
++		de = intel_engine_get_busy_time(engine);
++		udelay(100);
++		de = ktime_sub(intel_engine_get_busy_time(engine), de);
++		dt = ktime_to_ns(ktime_get()) - dt;
++		preempt_enable();
++		if (de > 10) {
++			pr_err("%s: reported %lldns [%d%%] busyness while sleeping [for %lldns]\n",
++			       engine->name,
++			       de, (int)div64_u64(100 * de, dt), dt);
++			err = -EINVAL;
++			break;
++		}
++
++		/* 100% busy */
++		rq = igt_spinner_create_request(&spin,
++						engine->kernel_context,
++						MI_NOOP);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			break;
++		}
++		i915_request_add(rq);
++
++		if (!igt_wait_for_spinner(&spin, rq)) {
++			intel_gt_set_wedged(engine->gt);
++			err = -ETIME;
++			break;
++		}
++
++		preempt_disable();
++		dt = ktime_to_ns(ktime_get());
++		de = intel_engine_get_busy_time(engine);
++		udelay(100);
++		de = ktime_sub(intel_engine_get_busy_time(engine), de);
++		dt = ktime_to_ns(ktime_get()) - dt;
++		preempt_enable();
++		if (100 * de < 95 * dt || 95 * de > 100 * dt) {
++			pr_err("%s: reported %lldns [%d%%] busyness while spinning [for %lldns]\n",
++			       engine->name,
++			       de, (int)div64_u64(100 * de, dt), dt);
++			err = -EINVAL;
++			break;
++		}
++
++		igt_spinner_end(&spin);
++		if (igt_flush_test(gt->i915)) {
++			err = -EIO;
++			break;
++		}
++	}
++
++	igt_spinner_fini(&spin);
++	if (igt_flush_test(gt->i915))
++		err = -EIO;
++	return err;
++}
  
--		rq[0] = create_rewinder(ce, NULL, slot, X);
--		if (IS_ERR(rq[0])) {
-+		rq[A1] = create_rewinder(ce, NULL, slot, X);
-+		if (IS_ERR(rq[A1])) {
- 			intel_context_put(ce);
- 			goto err;
- 		}
+ static int live_engine_pm(void *arg)
+ {
+@@ -77,6 +170,7 @@ static int live_engine_pm(void *arg)
+ int live_engine_pm_selftests(struct intel_gt *gt)
+ {
+ 	static const struct i915_subtest tests[] = {
++		SUBTEST(live_engine_busy_stats),
+ 		SUBTEST(live_engine_pm),
+ 	};
  
--		rq[1] = create_rewinder(ce, NULL, slot, Y);
-+		rq[A2] = create_rewinder(ce, NULL, slot, Y);
- 		intel_context_put(ce);
--		if (IS_ERR(rq[1]))
-+		if (IS_ERR(rq[A2]))
- 			goto err;
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index 5049c3dd08a6..5e364fb31aea 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -1252,6 +1252,11 @@ int live_rps_dynamic(void *arg)
+ 	if (igt_spinner_init(&spin, gt))
+ 		return -ENOMEM;
  
--		err = wait_for_submit(engine, rq[1], HZ / 2);
-+		err = wait_for_submit(engine, rq[A2], HZ / 2);
- 		if (err) {
- 			pr_err("%s: failed to submit first context\n",
- 			       engine->name);
-@@ -1200,12 +1200,12 @@ static int live_timeslice_rewind(void *arg)
- 			goto err;
- 		}
- 
--		rq[2] = create_rewinder(ce, rq[0], slot, Z);
-+		rq[B1] = create_rewinder(ce, rq[A1], slot, Z);
- 		intel_context_put(ce);
- 		if (IS_ERR(rq[2]))
- 			goto err;
- 
--		err = wait_for_submit(engine, rq[2], HZ / 2);
-+		err = wait_for_submit(engine, rq[B1], HZ / 2);
- 		if (err) {
- 			pr_err("%s: failed to submit second context\n",
- 			       engine->name);
-@@ -1213,6 +1213,7 @@ static int live_timeslice_rewind(void *arg)
- 		}
- 
- 		/* ELSP[] = { { A:rq1, A:rq2 }, { B:rq1 } } */
-+		ENGINE_TRACE(engine, "forcing tasklet for rewind\n");
- 		if (i915_request_is_active(rq[A2])) { /* semaphore yielded! */
- 			/* Wait for the timeslice to kick in */
- 			del_timer(&engine->execlists.timer);
++	if (intel_rps_has_interrupts(rps))
++		pr_info("RPS has interrupt support\n");
++	if (intel_rps_uses_timer(rps))
++		pr_info("RPS has timer support\n");
++
+ 	for_each_engine(engine, gt, id) {
+ 		struct i915_request *rq;
+ 		struct {
 -- 
 2.20.1
 
