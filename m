@@ -2,46 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BB3E1FBB93
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 18:23:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A6E31FBBC1
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 18:33:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F41B7892BB;
-	Tue, 16 Jun 2020 16:23:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 121716E183;
+	Tue, 16 Jun 2020 16:33:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1952E892B9;
- Tue, 16 Jun 2020 16:23:25 +0000 (UTC)
-IronPort-SDR: LTgvvYnrpe17haGdNQQWEUHXK9hAouEhaa1OZqiO6rSqzumHk08Io+UklaOoQvCzM9xXkqRdaa
- PWsXjIePiizA==
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88D6A6E183
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 16:33:06 +0000 (UTC)
+IronPort-SDR: p8UkIY1x/1CD7v7eC5tT1ldkxITg34u+kv8qT7Mk9Y4rz9u6vz7YNhUfK3VxLAHw6M2YSZRk+r
+ tWNN+lC87yuA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 09:23:24 -0700
-IronPort-SDR: wr5C+swnxrfyrtm5ljZpopyfAgMrOkH4jy9YNitOdEqxfy/FmbEONYcUUZWNDjWKDaDGXRda82
- AP52WwaMK5iw==
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 09:32:48 -0700
+IronPort-SDR: 7g8ems5e4PNHktaHxsAaj6gDdIgWOPOvnT5WoMOUfXNQeaOtzXgKDPjkxE7xqkf+Y/p95J+XzY
+ 6FxJVkMKRYBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="261470401"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 16 Jun 2020 09:23:22 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Jun 2020 19:23:21 +0300
-Date: Tue, 16 Jun 2020 19:23:21 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200616162321.GE6112@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="308514144"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by orsmga008.jf.intel.com with ESMTP; 16 Jun 2020 09:32:48 -0700
+Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 16 Jun 2020 09:32:47 -0700
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.171]) by
+ FMSMSX113.amr.corp.intel.com ([169.254.13.85]) with mapi id 14.03.0439.000;
+ Tue, 16 Jun 2020 09:32:47 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [PATCH 1/6] drm/i915/tgl+: Use the correct DP_TP_* register
+ instances in MST encoders
+Thread-Index: AQHWQ+kZrP1rv1OnP0KTIXpcGqbmv6jb5XGA
+Date: Tue, 16 Jun 2020 16:32:46 +0000
+Message-ID: <4c40d13cfdb9cfe4d59eb04f27828b597949c54e.camel@intel.com>
 References: <20200616141855.746-1-imre.deak@intel.com>
- <20200616141855.746-6-imre.deak@intel.com>
- <20200616154546.GY6112@intel.com>
- <20200616155441.GC21389@ideak-desk.fi.intel.com>
+In-Reply-To: <20200616141855.746-1-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.254.14.160]
+Content-ID: <C939FE52541DED4C970431183ABD70BC@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200616155441.GC21389@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/dp_mst: Ensure the DPCD ACT
- sent flag is cleared before waiting for it
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/tgl+: Use the correct DP_TP_*
+ register instances in MST encoders
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,175 +62,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 16, 2020 at 06:54:41PM +0300, Imre Deak wrote:
-> On Tue, Jun 16, 2020 at 06:45:46PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Jun 16, 2020 at 05:18:55PM +0300, Imre Deak wrote:
-> > > Atm, we clear the ACT sent flag in the sink's DPCD before updating the
-> > > sink's payload table, along clearing the payload table updated flag.
-> > > The sink is supposed to set this flag once it detects that the source
-> > > has completed the ACT sequence (after detecting the 4 required ACT MT=
-PH
-> > > symbols sent by the source). As opposed to this 2 DELL monitors I have
-> > > set the flag already along the payload table updated flag, which is n=
-ot
-> > > quite correct.
-> > > =
-
-> > > To be sure that the sink has detected the ACT MTPH symbols before
-> > > continuing enabling the encoder, clear the ACT sent flag before enabl=
-ing
-> > > or disabling the transcoder VC payload allocation (which is what star=
-ts
-> > > the ACT sequence).
-> > > =
-
-> > > Cc: Lyude Paul <lyude@redhat.com>
-> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: dri-devel@lists.freedesktop.org
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_dp_mst_topology.c       | 31 +++++++++++++++++++=
---
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
-> > >  include/drm/drm_dp_mst_helper.h             |  2 ++
-> > >  3 files changed, 33 insertions(+), 2 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/=
-drm_dp_mst_topology.c
-> > > index b2f5a84b4cfb..e3bf8c9c8267 100644
-> > > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> > > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> > > @@ -4377,6 +4377,34 @@ void drm_dp_mst_deallocate_vcpi(struct drm_dp_=
-mst_topology_mgr *mgr,
-> > >  }
-> > >  EXPORT_SYMBOL(drm_dp_mst_deallocate_vcpi);
-> > >  =
-
-> > > +/**
-> > > + * drm_dp_clear_payload_status() - Clears the payload table status f=
-lags
-> > > + * @mgr: manager to use
-> > > + *
-> > > + * Clears the payload table ACT handled and table updated flags in t=
-he MST hub's
-> > > + * DPCD. This function must be called before updating the payload ta=
-ble or
-> > > + * starting the ACT sequence and waiting for the corresponding flags=
- to get
-> > > + * set by the hub.
-> > > + *
-> > > + * Returns:
-> > > + * 0 if the flag got cleared successfully, otherwise a negative erro=
-r code.
-> > > + */
-> > > +int drm_dp_clear_payload_status(struct drm_dp_mst_topology_mgr *mgr)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	ret =3D drm_dp_dpcd_writeb(mgr->aux, DP_PAYLOAD_TABLE_UPDATE_STATUS,
-> > > +				 DP_PAYLOAD_ACT_HANDLED);
-> > > +	if (ret < 0) {
-> > > +		DRM_DEBUG_DRIVER("Can't clear the ACT sent flag (%d)\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +	WARN_ON(ret !=3D 1);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +EXPORT_SYMBOL(drm_dp_clear_payload_status);
-> > > +
-> > >  static int drm_dp_dpcd_write_payload(struct drm_dp_mst_topology_mgr =
-*mgr,
-> > >  				     int id, struct drm_dp_payload *payload)
-> > >  {
-> > > @@ -4384,8 +4412,7 @@ static int drm_dp_dpcd_write_payload(struct drm=
-_dp_mst_topology_mgr *mgr,
-> > >  	int ret;
-> > >  	int retries =3D 0;
-> > >  =
-
-> > > -	drm_dp_dpcd_writeb(mgr->aux, DP_PAYLOAD_TABLE_UPDATE_STATUS,
-> > > -			   DP_PAYLOAD_TABLE_UPDATED);
-> > =
-
-> > We used to clear DP_PAYLOAD_TABLE_UPDATED but now we clear
-> > DP_PAYLOAD_ACT_HANDLED ?
-> =
-
-> Eek. We should write DP_PAYLOAD_TABLE_UPDATED which is the only way to
-> clear both the act-handled and the table-updated flags.
-
-Huh. That's a bit crazy. But it is what the spec says.
-
-> I tested things
-> that way but managed to send an old version. Thanks for catching it.
-> =
-
-> > =
-
-> > > +	drm_dp_clear_payload_status(mgr);
-> > >  =
-
-> > >  	payload_alloc[0] =3D id;
-> > >  	payload_alloc[1] =3D payload->start_slot;
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gp=
-u/drm/i915/display/intel_dp_mst.c
-> > > index 9308b5920780..3c4b0fb10d8b 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > @@ -323,6 +323,8 @@ static void clear_act_sent(struct intel_dp *intel=
-_dp)
-> > >  =
-
-> > >  	intel_de_write(i915, intel_dp->regs.dp_tp_status,
-> > >  		       DP_TP_STATUS_ACT_SENT);
-> > > +
-> > > +	drm_dp_clear_payload_status(&intel_dp->mst_mgr);
-> > >  }
-> > >  =
-
-> > >  static void wait_for_act_sent(struct intel_dp *intel_dp)
-> > > diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst=
-_helper.h
-> > > index 8b9eb4db3381..2facb87624bf 100644
-> > > --- a/include/drm/drm_dp_mst_helper.h
-> > > +++ b/include/drm/drm_dp_mst_helper.h
-> > > @@ -763,6 +763,8 @@ int drm_dp_find_vcpi_slots(struct drm_dp_mst_topo=
-logy_mgr *mgr,
-> > >  			   int pbn);
-> > >  =
-
-> > >  =
-
-> > > +int drm_dp_clear_payload_status(struct drm_dp_mst_topology_mgr *mgr);
-> > > +
-> > >  int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mgr);
-> > >  =
-
-> > >  =
-
-> > > -- =
-
-> > > 2.23.1
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyMDIwLTA2LTE2IGF0IDE3OjE4ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IE1T
+VCBlbmNvZGVycyBtdXN0IHVzZSB0aGUgbWFzdGVyIE1TVCB0cmFuc2NvZGVyJ3MgRFBfVFBfU1RB
+VFVTIGFuZA0KPiBEUF9UUF9DT05UUk9MIHJlZ2lzdGVycy4gQXRtLCBkdXJpbmcgdGhlIEhXIHJl
+YWRvdXQgb2YgYSBzbGF2ZQ0KPiB0cmFuc2NvZGVyJ3MgQ1JUQyBzdGF0ZSB3ZSByZXNldCB0aGVz
+ZSByZWdpc3RlciBhZGRyZXNzZXMgaW4NCj4gaW50ZWxfZHA6OnJlZ3MuZHBfdHBfKiB0byB0aGUg
+c2xhdmUgdHJhbnNjb2RlcidzIERQX1RQXyogcmVnaXN0ZXINCj4gYWRkcmVzc2VzIGluY29ycmVj
+dGx5OyBmaXggdGhpcy4NCj4gDQo+IFRoaXMgaXNzdWUgbGVkIGF0IGxlYXN0IHRvDQo+ICdUaW1l
+ZCBvdXQgd2FpdGluZyBmb3IgQUNUIHNlbnQgd2hlbiBkaXNhYmxpbmcnDQo+IGVycm9ycyBkdXJp
+bmcgb3V0cHV0IGRpc2FibGluZyBpbiBhIG11bHRpcGxlIE1TVCBzdHJlYW0gY29uZmlnLg0KDQpD
+YW4geW91IHBvaW50IHRvIHBsYWNlIHdoZXJlIGRwX3RwX2N0bCBpcyB1c2VkIGFuZCBjYXVzZSB0
+aGlzPw0KQWxsIHRoZSBNU1QgY29kZSBwYXRocyB1c2VzIHRoZSBkcF90cF9jdGwgb2YgdGhlIG1h
+aW4gaW50ZWxfZHAodGhlIG9uZSB0aGF0IGlzIG5vdCBhIG1zdCBjb25uZWN0b3IpLg0KDQo+IA0K
+PiBUaGlzIGNoYW5nZSByZXBsYWNlcw0KPiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5v
+cmcvcGF0Y2gvMzY5NTc3Lz9zZXJpZXM9NzgxOTMmcmV2PTENCj4gd2hpY2gganVzdCBwYXBlcmVk
+IG92ZXIgdGhlIHByb2JsZW0uDQo+IA0KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4NCj4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uu
+c291emFAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0Bp
+bnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+ZGkuYyB8IDE1ICsrKysrKysrKystLS0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlv
+bnMoKyksIDUgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGRpLmMNCj4gaW5kZXggY2E3YmIyMjk0ZDJiLi43M2Q2Y2MyOTI5MWEgMTAwNjQ0DQo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiBAQCAtNDE5MywxMSAr
+NDE5Myw2IEBAIHZvaWQgaW50ZWxfZGRpX2dldF9jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIg
+KmVuY29kZXIsDQo+ICAJaWYgKGRybV9XQVJOX09OKCZkZXZfcHJpdi0+ZHJtLCB0cmFuc2NvZGVy
+X2lzX2RzaShjcHVfdHJhbnNjb2RlcikpKQ0KPiAgCQlyZXR1cm47DQo+ICANCj4gLQlpZiAoSU5U
+RUxfR0VOKGRldl9wcml2KSA+PSAxMikgew0KPiAtCQlpbnRlbF9kcC0+cmVncy5kcF90cF9jdGwg
+PSBUR0xfRFBfVFBfQ1RMKGNwdV90cmFuc2NvZGVyKTsNCj4gLQkJaW50ZWxfZHAtPnJlZ3MuZHBf
+dHBfc3RhdHVzID0gVEdMX0RQX1RQX1NUQVRVUyhjcHVfdHJhbnNjb2Rlcik7DQo+IC0JfQ0KPiAt
+DQo+ICAJaW50ZWxfZHNjX2dldF9jb25maWcoZW5jb2RlciwgcGlwZV9jb25maWcpOw0KPiAgDQo+
+ICAJdGVtcCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIFRSQU5TX0RESV9GVU5DX0NUTChjcHVf
+dHJhbnNjb2RlcikpOw0KPiBAQCAtNDI5OSw2ICs0Mjk0LDE2IEBAIHZvaWQgaW50ZWxfZGRpX2dl
+dF9jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ICAJCWJyZWFrOw0KPiAg
+CX0NCj4gIA0KPiArCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKSB7DQo+ICsJCWVudW0g
+dHJhbnNjb2RlciB0cmFuc2NvZGVyID0NCj4gKwkJCWludGVsX2RwX21zdF9pc19zbGF2ZV90cmFu
+cyhwaXBlX2NvbmZpZykgPw0KPiArCQkJcGlwZV9jb25maWctPm1zdF9tYXN0ZXJfdHJhbnNjb2Rl
+ciA6DQo+ICsJCQlwaXBlX2NvbmZpZy0+Y3B1X3RyYW5zY29kZXI7DQo+ICsNCj4gKwkJaW50ZWxf
+ZHAtPnJlZ3MuZHBfdHBfY3RsID0gVEdMX0RQX1RQX0NUTCh0cmFuc2NvZGVyKTsNCj4gKwkJaW50
+ZWxfZHAtPnJlZ3MuZHBfdHBfc3RhdHVzID0gVEdMX0RQX1RQX1NUQVRVUyh0cmFuc2NvZGVyKTsN
+Cj4gKwl9DQoNCkFsc28gbm90IHN1cmUgaG93IGNoYW5nZSBvbmx5IGluIHRoZSBjb25maWcgcmVh
+ZG91dCB3b3VsZCBmaXggdGhlIGlzc3VlLCBJRldJIGRvbid0IGVuYWJsZSBNU1Qgc28gd2hlbiBp
+OTE1IHRha2VzIG92ZXIgYSBmdWxsIG1vZGVzZXQgd2lsbCBoYXBwZW4gdG8NCmVuYWJsZSBNU1Qg
+YW5kIG9ubHkgZHBfdHBfY3RsIG9mIHRoZSBtYWluIGludGVsX2RwKHRoZSBvbmUgdGhhdCBpcyBu
+b3QgYSBtc3QgY29ubmVjdG9yKSB3aWxsIGJlIHNldCwgY2hlY2sgdGdsX2RkaV9wcmVfZW5hYmxl
+X2RwKCkuDQoNCj4gKw0KPiAgCXBpcGVfY29uZmlnLT5oYXNfYXVkaW8gPQ0KPiAgCQlpbnRlbF9k
+ZGlfaXNfYXVkaW9fZW5hYmxlZChkZXZfcHJpdiwgY3B1X3RyYW5zY29kZXIpOw0KPiAgDQpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
