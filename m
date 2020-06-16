@@ -2,42 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E99C1FB62D
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 17:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 292EC1FB655
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 17:37:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C0A66E8F1;
-	Tue, 16 Jun 2020 15:31:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A462E6E8F6;
+	Tue, 16 Jun 2020 15:37:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43F2D6E8F1
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 15:31:13 +0000 (UTC)
-IronPort-SDR: Yh5GR8XKPaK+x53oWl5QFTFVrIUvlkJJ/mwF0Le0wNpvxNQ/UGSyyTMw13DbaQBDPoYJ/y0Et6
- nwcTLEG2yZvg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 08:31:05 -0700
-IronPort-SDR: giRZF9MKZCWcHjDftfEacaPaZYDRhKJ67TLPXoFsmhMo3yRPLZ89naDIAP/S0UOFBxbzAVGeSu
- KWaARAjzYAKw==
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="420803766"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 08:31:03 -0700
-Date: Tue, 16 Jun 2020 18:30:55 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200616153055.GA21389@ideak-desk.fi.intel.com>
-References: <20200616141855.746-1-imre.deak@intel.com>
- <20200616141855.746-2-imre.deak@intel.com>
- <20200616152251.GW6112@intel.com>
+Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com
+ [IPv6:2607:f8b0:4864:20::a43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 219BB6E8F3;
+ Tue, 16 Jun 2020 15:37:49 +0000 (UTC)
+Received: by mail-vk1-xa43.google.com with SMTP id m23so4918863vko.2;
+ Tue, 16 Jun 2020 08:37:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=9pMF2JBmUJkYaDqW6T9M/V0GVzzpeX6WiB4C05g5MME=;
+ b=lIILrUfTzzOgJ8MJJnZ8cuwhirK/DVtb8ezyNaxNFHg3O5vDzD1Cgy1JphH4nsghh8
+ 2QTZtuMQmZ5o4ZAuION1WZVNCtOhnHbber5SsWFjqQErFa/Gk/Kd8epa9cLDRqg86W1I
+ tCDxRiAqlLgvScOAmZaq+wyZWhJeAGzck4swGbR/hArDVPTvf03Ey9CBI3tiI/p2aJ4g
+ zKYC3IKbTf/9flporyh/cYM34/vO50K3ewZGF1JXVJlLxMcXNoVtI83T5U5/2MpF9rDD
+ G9LkZYCYvOkCAwwWj9W2CnwIIG+BU9JpAapE+VmJyxQx9Xhh/K5Xo9CtlFJE1Un78WyV
+ wQ4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=9pMF2JBmUJkYaDqW6T9M/V0GVzzpeX6WiB4C05g5MME=;
+ b=OGqjwjSt4f0ufPmjWAiXjGm8RRD5Pxf5Wh+w/foSnF/kNbnCEQWYCOC2cWRP+DfpLa
+ 6hNCje+mAx5yJgb8WpKXxaNqT+wXJPoFku/nurrjzfOdczynX2/zgQwgyh2tG4xjoEUo
+ zDciwAWcxL02doHYbcDs5qu+DR1aG3oruN9Y5kvUXORKRwvZ1T3XaDpCxm95oGFx6H51
+ mMU7NglTd++Df5/e0v77s5vAE7VjXbsLwpEcg7gqkBSq9sktlCbI8KDrdxeXYir2Sp9n
+ TXzw80gQj8d+Kxkcm8PplXuetLH+ibQJ4SNpfhqrvoKhWvDvgzQOOONzU+HIStJK70b+
+ GZAw==
+X-Gm-Message-State: AOAM531jtP/fWFhGSNRbjkWoMZzFrSF1PfFDtyCeaf+B7x63FgW0HQKU
+ /7HVZYU88h2TBOYZUxJrLPg3ckNWij+vIZ+NukBlVQ==
+X-Google-Smtp-Source: ABdhPJw/eF47f4NEQMXNekjTgvhryyMDdlMebNcF0ZjUAjEYpduYMiEC4tEXRsWfx+Butp8Au3/EwSYnTqQp22FjZDo=
+X-Received: by 2002:a1f:8f13:: with SMTP id r19mr2293338vkd.38.1592321868261; 
+ Tue, 16 Jun 2020 08:37:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200616152251.GW6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/dp_mst: Disable link training
- fallback on MST links
+References: <20200612230444.10121-4-manasi.d.navare@intel.com>
+ <20200612235606.25120-1-manasi.d.navare@intel.com>
+ <CACvgo522mYhCRkNXuwJDCt2fh4-Piq9ZOH9rNbO+HrcbrytJgQ@mail.gmail.com>
+ <20200615214809.GA4334@intel.com>
+In-Reply-To: <20200615214809.GA4334@intel.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Tue, 16 Jun 2020 16:34:07 +0100
+Message-ID: <CACvgo51j1BXN2ZyQ-m5AALup3ruoUHZhobSeNfS8QsV-UEjS-Q@mail.gmail.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v7 3/3] drm/i915/dp: Expose connector VRR
+ monitor range via debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,137 +65,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 16, 2020 at 06:22:51PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Tue, Jun 16, 2020 at 05:18:51PM +0300, Imre Deak wrote:
-> > We calculate the MST available bandwidth using the link's maximum rate
-> > and lane count. This bandwidth won't be recalculated in response to a
-> =
-
-> Thw wording here is a bit ambiguousr as to who "we" is, and what exactly
-> "link's maximum rate and lane count". I would try to clarify a bit that
-> it's drm_dp_mst_topology.c who is mostly in error here by directly
-> interpreting the max data rate/lanes from the DPCD.
-> =
-
-> Althoguh the i915 code is not wihtout faults, as it lacks any logic
-> to modeset all the MST streams for this link when the link params
-> change (except on tgl+ where the master/slave stuff should force
-> all streams to do a modeset anyway).
-> =
-
-> > link training error and fallback setting, so modesets following a link
-> > training error will calculate incorrect timing parameters (like the
-> > transcoder's data M/N params or the number of MST TUs).
-> > =
-
-> > Prevent the above problem by disabling the link training fallback on MST
-> > links for now, until the MST compute config can deal with changing link
-> > parameters.
-> > =
-
-> > The misconfigured timing lead at least to a
-> > 'Timed out waiting for DP idle patterns'
-> > error.
-> > =
-
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Cc: Manasi Navare <manasi.d.navare@intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 25 ++++++++++++++++++-------
-> >  1 file changed, 18 insertions(+), 7 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
-i915/display/intel_dp.c
-> > index 42589cae766d..c585b002783a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -468,6 +468,13 @@ int intel_dp_get_link_train_fallback_values(struct=
- intel_dp *intel_dp,
-> >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> >  	int index;
-> >  =
-
-> > +	/*
-> > +	 * TODO: Enable fallback on MST links once MST link compute can handle
-> > +	 * the fallback params.
-> > +	 */
-> > +	if (intel_dp->is_mst)
-> > +		return -1;
-> =
-
-> Should we duplicate the drm_error() from the other path here maybe?
-
-Yes, will add it.
-
-> =
-
-> > +
-> >  	index =3D intel_dp_rate_index(intel_dp->common_rates,
-> >  				    intel_dp->num_common_rates,
-> >  				    link_rate);
-> > @@ -6163,7 +6170,17 @@ intel_dp_detect(struct drm_connector *connector,
-> >  		goto out;
-> >  	}
-> >  =
-
-> > -	if (intel_dp->reset_link_params) {
-> > +	/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
-> > +	if (INTEL_GEN(dev_priv) >=3D 11)
-> > +		intel_dp_get_dsc_sink_cap(intel_dp);
-> > +
-> > +	intel_dp_configure_mst(intel_dp);
-> > +
-> > +	/*
-> > +	 * TODO: Reset link params when switching to MST mode, until MST
-> > +	 * supports link training fallback params.
-> > +	 */
-> > +	if (intel_dp->reset_link_params || intel_dp->is_mst) {
-> =
-
-> /me confused. Why do we need to touch this code?
-
-It's possible to switch to MST mode after the link rate/lane count got
-reduced by a link training error in SST mode.
-
-> >  		/* Initial max link lane count */
-> >  		intel_dp->max_link_lane_count =3D intel_dp_max_common_lane_count(int=
-el_dp);
-> >  =
-
-> > @@ -6175,12 +6192,6 @@ intel_dp_detect(struct drm_connector *connector,
-> >  =
-
-> >  	intel_dp_print_rates(intel_dp);
-> >  =
-
-> > -	/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
-> > -	if (INTEL_GEN(dev_priv) >=3D 11)
-> > -		intel_dp_get_dsc_sink_cap(intel_dp);
-> > -
-> > -	intel_dp_configure_mst(intel_dp);
-> > -
-> >  	if (intel_dp->is_mst) {
-> >  		/*
-> >  		 * If we are in MST mode then this connector
-> > -- =
-
-> > 2.23.1
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAxNSBKdW4gMjAyMCBhdCAyMjo0NywgTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2
+YXJlQGludGVsLmNvbT4gd3JvdGU6Cj4KPiBPbiBNb24sIEp1biAxNSwgMjAyMCBhdCAxMDozNjoy
+OFBNICswMTAwLCBFbWlsIFZlbGlrb3Ygd3JvdGU6Cj4gPiBIaSBNYW5hc2ksCj4gPgo+ID4gT24g
+U2F0LCAxMyBKdW4gMjAyMCBhdCAwMDo1NSwgTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJl
+QGludGVsLmNvbT4gd3JvdGU6Cj4gPiA+Cj4gPiA+IEZyb206IEJoYW51cHJha2FzaCBNb2RlbSA8
+YmhhbnVwcmFrYXNoLm1vZGVtQGludGVsLmNvbT4KPiA+ID4KPiA+ID4gW1doeV0KPiA+ID4gSXQn
+cyB1c2VmdWwgdG8ga25vdyB0aGUgbWluIGFuZCBtYXggdnJyIHJhbmdlIGZvciBJR1QgdGVzdGlu
+Zy4KPiA+ID4KPiA+ID4gW0hvd10KPiA+ID4gRXhwb3NlIHRoZSBtaW4gYW5kIG1heCB2ZnJlcSBm
+b3IgdGhlIGNvbm5lY3RvciB2aWEgYSBkZWJ1Z2ZzIGZpbGUKPiA+ID4gb24gdGhlIGNvbm5lY3Rv
+ciwgInZycl9yYW5nZSIuCj4gPiA+Cj4gPiA+IEV4YW1wbGUgdXNhZ2U6IGNhdCAvc3lzL2tlcm5l
+bC9kZWJ1Zy9kcmkvMC9EUC0xL3Zycl9yYW5nZQo+ID4gPgo+ID4gPiB2NzoKPiA+ID4gKiBGaXgg
+Y21waWxhdGlvbiBkdWUgdG8gcmViYXNlCj4gPiA+IHY2Ogo+ID4gPiAqIFJlYmFzZSAobWFuYXNp
+KQo+ID4gPiB2NToKPiA+ID4gKiBSZW5hbWUgdG8gdnJyX3JhbmdlIHRvIG1hdGNoIEFNRCBkZWJ1
+Z2ZzCj4gPiA+IHY0Ogo+ID4gPiAqIFJlYmFzZQo+ID4gPiB2MzoKPiA+ID4gKiBSZW1vdmUgdGhl
+IHVubmVjZXNzYXJ5IGRlYnVnIHByaW50IChNYW5hc2kpCj4gPiA+IHYyOgo+ID4gPiAqIEZpeCB0
+aGUgdHlwbyBpbiBtYXhfdmZyZXEgKE1hbmFzaSkKPiA+ID4gKiBDaGFuZ2UgdGhlIG5hbWUgb2Yg
+bm9kZSB0byBpOTE1X3Zycl9pbmZvIHNvIHdlIGNhbiBhZGQKPiA+ID4gb3RoZXIgdnJyIGluZm8g
+Zm9yIG1vcmUgZGVidWcgaW5mbyAoTWFuYXNpKQo+ID4gPiAqIENoYW5nZSB0aGUgVlJSIGNhcGFi
+bGUgdG8gZGlzcGxheSBZZXMgb3IgTm8gKE1hbmFzaSkKPiA+ID4gKiBGaXggaW5kZW50YXRpb24g
+Y2hlY2twYXRjaCBlcnJvcnMgKE1hbmFzaSkKPiA+ID4KPiA+IE5pdDogZ2VuZXJhbGx5IHJldmlz
+aW9uIGxvZyBpcyBsaXN0ZWQgaW4gdjIgLT4gdjYgb3JkZXIuCj4KPiBPa2F5IHBvaW50IG5vdGVk
+LiBXaWxsIHVwZGF0ZSB0aGlzIGluIHRoZSBuZXh0IHJldgo+Cj4gPgo+ID4gPiBTaWduZWQtb2Zm
+LWJ5OiBCaGFudXByYWthc2ggTW9kZW0gPGJoYW51cHJha2FzaC5tb2RlbUBpbnRlbC5jb20+Cj4g
+PiA+IFNpZ25lZC1vZmYtYnk6IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5j
+b20+Cj4gPiA+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXguaW50ZWwuY29tPgo+
+ID4gPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
+PiA+ID4gVGVzdGVkLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29t
+Pgo+ID4gPiAtLS0KPiA+ID4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVi
+dWdmcy5jICB8IDIyICsrKysrKysrKysrKysrKysrKy0KPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAy
+MSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gPiA+Cj4gPiA+IGRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYwo+ID4gPiBp
+bmRleCAyOGRkNzE3ZTk0M2EuLjI5MjFmN2QyYTI2ZSAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYwo+ID4gPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jCj4g
+PiA+IEBAIC0yMTg1LDYgKzIxODUsMjEgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBmaWxlX29wZXJh
+dGlvbnMgaTkxNV9kc2NfZmVjX3N1cHBvcnRfZm9wcyA9IHsKPiA+ID4gICAgICAgICAud3JpdGUg
+PSBpOTE1X2RzY19mZWNfc3VwcG9ydF93cml0ZQo+ID4gPiAgfTsKPiA+ID4KPiA+ID4gK3N0YXRp
+YyBpbnQgdnJyX3JhbmdlX3Nob3coc3RydWN0IHNlcV9maWxlICptLCB2b2lkICpkYXRhKQo+ID4g
+PiArewo+ID4gPiArICAgICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IgPSBtLT5w
+cml2YXRlOwo+ID4gPiArCj4gPiA+ICsgICAgICAgaWYgKGNvbm5lY3Rvci0+c3RhdHVzICE9IGNv
+bm5lY3Rvcl9zdGF0dXNfY29ubmVjdGVkKQo+ID4gPiArICAgICAgICAgICAgICAgcmV0dXJuIC1F
+Tk9ERVY7Cj4gPiA+ICsKPiA+ID4gKyAgICAgICBzZXFfcHJpbnRmKG0sICJWcnJfY2FwYWJsZTog
+JXNcbiIsIHllc25vKGludGVsX2RwX2lzX3Zycl9jYXBhYmxlKGNvbm5lY3RvcikpKTsKPiA+ID4g
+KyAgICAgICBzZXFfcHJpbnRmKG0sICJNaW46ICV1XG4iLCAodTgpY29ubmVjdG9yLT5kaXNwbGF5
+X2luZm8ubW9uaXRvcl9yYW5nZS5taW5fdmZyZXEpOwo+ID4gPiArICAgICAgIHNlcV9wcmludGYo
+bSwgIk1heDogJXVcbiIsICh1OCljb25uZWN0b3ItPmRpc3BsYXlfaW5mby5tb25pdG9yX3Jhbmdl
+Lm1heF92ZnJlcSk7Cj4gPiA+ICsKPiA+ID4gKyAgICAgICByZXR1cm4gMDsKPiA+ID4gK30KPiA+
+ID4gK0RFRklORV9TSE9XX0FUVFJJQlVURSh2cnJfcmFuZ2UpOwo+ID4gPiArCj4gPiA+ICAvKioK
+PiA+ID4gICAqIGludGVsX2Nvbm5lY3Rvcl9kZWJ1Z2ZzX2FkZCAtIGFkZCBpOTE1IHNwZWNpZmlj
+IGNvbm5lY3RvciBkZWJ1Z2ZzIGZpbGVzCj4gPiA+ICAgKiBAY29ubmVjdG9yOiBwb2ludGVyIHRv
+IGEgcmVnaXN0ZXJlZCBkcm1fY29ubmVjdG9yCj4gPiA+IEBAIC0yMjIwLDEwICsyMjM1LDE1IEBA
+IGludCBpbnRlbF9jb25uZWN0b3JfZGVidWdmc19hZGQoc3RydWN0IGRybV9jb25uZWN0b3IgKmNv
+bm5lY3RvcikKPiA+ID4gICAgICAgICBpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMCAmJgo+
+ID4gPiAgICAgICAgICAgICAoKGNvbm5lY3Rvci0+Y29ubmVjdG9yX3R5cGUgPT0gRFJNX01PREVf
+Q09OTkVDVE9SX0Rpc3BsYXlQb3J0ICYmCj4gPiA+ICAgICAgICAgICAgICAgIXRvX2ludGVsX2Nv
+bm5lY3Rvcihjb25uZWN0b3IpLT5tc3RfcG9ydCkgfHwKPiA+ID4gLSAgICAgICAgICAgIGNvbm5l
+Y3Rvci0+Y29ubmVjdG9yX3R5cGUgPT0gRFJNX01PREVfQ09OTkVDVE9SX2VEUCkpCj4gPiA+ICsg
+ICAgICAgICAgICBjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09IERSTV9NT0RFX0NPTk5FQ1RP
+Ul9lRFApKSB7Cj4gPiA+ICAgICAgICAgICAgICAgICBkZWJ1Z2ZzX2NyZWF0ZV9maWxlKCJpOTE1
+X2RzY19mZWNfc3VwcG9ydCIsIFNfSVJVR08sIHJvb3QsCj4gPiA+ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIGNvbm5lY3RvciwgJmk5MTVfZHNjX2ZlY19zdXBwb3J0X2ZvcHMp
+Owo+ID4gPgo+ID4gPiArICAgICAgICAgICAgICAgaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0g
+MTIpCj4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGRlYnVnZnNfY3JlYXRlX2ZpbGUoInZy
+cl9yYW5nZSIsIFNfSVJVR08sCj4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgcm9vdCwgY29ubmVjdG9yLCAmdnJyX3JhbmdlX2ZvcHMpOwo+ID4gPiArICAg
+ICAgIH0KPiA+ID4gKwo+ID4KPiA+IEkgdGhpbmsgdGhpcyBzaG91bGQgYmUgYWRkZWQgYnkgY29y
+ZSBkcm0uIElkZWFsbHkgZHJtIHdpbGwgYWRkIGl0Cj4gPiBhdXRvbWF0aWNhbGx5IGZvciBlYWNo
+IGNvbm5lY3RvciB0aGF0IHRoZSBkcml2ZXIgaGFzIGNhbGxlZAo+ID4gZHJtX2Nvbm5lY3Rvcl9h
+dHRhY2hfdnJyX2NhcGFibGVfcHJvcGVydHkoKSB1cG9uLgo+ID4KPgo+IEJ1dCBpbiB0aGlzIGNh
+c2UgZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfdnJyX2NhcGFibGVfcHJvcGVydHkoKSBpcyBjYWxsZWQg
+YnkgaW5kaXZpZHVhbAo+IGRyaXZlciBzaW5jZSBpdHMgYW4gb3B0aW9uYWwgY29ubmVjdG9yIHBy
+b3BlcnR5LiBTbyB3ZSBjYWxsIHRoaXMgaW5zaWRlIGk5MTUuCgpJJ20gX25vdF8gc3VnZ2VzdGlu
+ZyB0aGF0IG9uZSBtb3ZlcyB0aGUKZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfdnJyX2NhcGFibGVfcHJv
+cGVydHkoKSBjYWxsLiBTaW1wbHkgY3JlYXRlIHRoZQpkZWJ1Z2ZzIGZpbGUgaW4gZHJtIGl0c2Vs
+Zi4KCj4gQWxzbyBjdXJyZW50bHkgQU1EIHNldHMgdGhpcyBkZWJ1Z2ZzIGluc2lkZSBBTUQgSU1P
+LCBzbyBzZXR0aW5nIHRoaXMgaGVyZSBmb3Igbm93LgpMZXQncyBkbyB0aGUgYmV0dGVyIHRoaW5n
+IG9mIGEpIG1ha2UgZHJtIGNyZWF0ZSB0aGUgZmlsZSwgYW5kIGIpCnJlbW92ZSB0aGUgQU1ER1BV
+IHNwZWNpZmljIG9uZS4KCldlJ3JlIHRhbGtpbmcgYWJvdXQgMjAtMzAgbGluZXMgd29ydGggb2Yg
+YSBwYXRjaC4gUG9zdHBvbmluZyBpdCBzb3VuZHMgc2lsbHkuCgo+IEJ1dCBJIGFncmVlIHRoYXQg
+Y2FuIGJlIG1vdmVkIHRvIGRybSBjb3JlIG1heSBiZSB3aGVuIGRybV9kaXNwbGF5X2luZm8gZ2V0
+cyBwb3B1bGF0ZWQKPiB3aXRoIG1pbiBhbmQgbWF4LCB0aGF0cyB3aGVyZSBkcm0gY2FuIGFkZCB0
+aGlzPwo+CkJvdGggbWluIGFuZCBtYXggYXJlIGFscmVhZHkgcGFydCBvZiBkcm1fZGlzcGxheV9p
+bmZvLiBPbiB0aGUgcXVlc3Rpb24Kb2YgaG93IC0gY2hlY2sgdGhlIGV4aXN0aW5nIHByb3BlcnRp
+ZXMgKGVkaWRfb3ZlcnJpZGUsIGZvcmNlKSBmb3IKZXhhbXBsZXMuCgotRW1pbApfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
+aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
