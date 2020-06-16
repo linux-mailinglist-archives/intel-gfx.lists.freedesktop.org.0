@@ -2,42 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2DC1FBFB7
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 22:06:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B17761FBFBB
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 22:10:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 007CF6E92F;
-	Tue, 16 Jun 2020 20:06:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3C346E1CE;
+	Tue, 16 Jun 2020 20:10:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D9E26E92F
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 20:06:45 +0000 (UTC)
-IronPort-SDR: CAOFhAIN4BdxYzMBKqh8uRZoT4tYVpG8B3YojH6laIevs4TTZorl1c+8M+Odc+3QQveND4X4bX
- mqJ91izCUzjQ==
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C996E1CE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 20:10:51 +0000 (UTC)
+IronPort-SDR: 2c+1GWXIDtiKqhOsvSvllQe7Jv6QjKH8kl6NOtRcG9XfKR0qWqW8/Ql6QF0UvqL9UNH6Z+cwzs
+ 9oGZn3nDg7hA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 13:06:43 -0700
-IronPort-SDR: bbWZ+92uXYrCUTAKsPNGoGHPNa5AJsgjti1tvZ8F5TnPN3HZjip3a7Xe113bC1shztRqrDzzwp
- Ot3hcIU90TAQ==
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 13:10:35 -0700
+IronPort-SDR: lPFrqRwd183Bzt/Nyw5PeGzS4K0J+s+U8lptyYKWBZKSXKure9hemyTNnCydMfPIYRUo7RN0xW
+ NIEL6UtfPQoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,519,1583222400"; d="scan'208";a="261522432"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by fmsmga007.fm.intel.com with ESMTP; 16 Jun 2020 13:06:43 -0700
-Date: Tue, 16 Jun 2020 13:07:53 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200616200753.GA4903@intel.com>
-References: <20200616193056.4817-1-manasi.d.navare@intel.com>
- <20200616194244.GJ6112@intel.com> <20200616195422.GK6112@intel.com>
+X-IronPort-AV: E=Sophos;i="5.73,519,1583222400"; d="scan'208";a="449968326"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga005.jf.intel.com with ESMTP; 16 Jun 2020 13:10:34 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 118285C2C1C; Tue, 16 Jun 2020 23:07:54 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200616183139.4061-1-chris@chris-wilson.co.uk>
+References: <20200616183139.4061-1-chris@chris-wilson.co.uk>
+Date: Tue, 16 Jun 2020 23:07:54 +0300
+Message-ID: <87r1ue93l1.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200616195422.GK6112@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Poll for DDI Idle status to be
- 0 after enabling DDI Buf
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Mark up inline getters as taking
+ a const i915_request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,95 +48,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 16, 2020 at 10:54:22PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Tue, Jun 16, 2020 at 10:42:44PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Jun 16, 2020 at 12:30:56PM -0700, Manasi Navare wrote:
-> > > The Bspec sequence expects us to poll for DDI Idle status
-> > > to be 0 (not idle) with a timeout of 600usecs after enabling the
-> > > DDI BUF CTL.
-> > =
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> > It only says that for newer platforms. We need to either keep
-> > the fixed delay before starting to poll, or someone needs confirm =
+> Since these inline routines only return from the i915_request to return
 
-> > how the idle bit really behaves on the older platforms.
-> =
+only return desired pointer from i915_request
 
-> In fact it says not to use this bit at all on BXT. So even our disable
-> sequence is potentially borked on BXT. Unfortunately the spec doesn't
-> say which way the bit is broken, so not clear if that's the case or
-> not.
+> the desired pointer (after checking the preconditions for acquiring said
+> pointer), they can be const.
 >
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-I double checked on Gen 9, it is > 518 usecs timeout and Gen 10+
-it is 500usecs and then gen 12, it is 600 usecs timeout.
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Should we add this max timeout for Gen >=3D10, we def need this for
-platforms starting Gen 10+
-
-Manasi
- =
-
-> > =
-
-> > > But currently in the driver we just wait for 600usecs
-> > > without polling so add that.
-> > > =
-
-> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: Imre Deak <imre.deak@intel.com>
-> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 6 +++++-
-> > >  1 file changed, 5 insertions(+), 1 deletion(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
-rm/i915/display/intel_ddi.c
-> > > index ca7bb2294d2b..de7e15de0bc5 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -4023,7 +4023,11 @@ static void intel_ddi_prepare_link_retrain(str=
-uct intel_dp *intel_dp)
-> > >  	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
-> > >  	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
-> > >  =
-
-> > > -	udelay(600);
-> > > +	if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-> > > +			  DDI_BUF_IS_IDLE),
-> > > +			600))
-> > > +		drm_err(&dev_priv->drm, "DDI port:%c buffer idle\n",
-> > > +			port_name(port));
-> > >  }
-> > >  =
-
-> > >  static void intel_ddi_set_link_train(struct intel_dp *intel_dp,
-> > > -- =
-
-> > > 2.19.1
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
+> ---
+>  drivers/gpu/drm/i915/i915_request.h | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 118ab6650d1f..590762820761 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -561,7 +561,7 @@ static inline void i915_request_clear_hold(struct i915_request *rq)
+>  }
+>  
+>  static inline struct intel_timeline *
+> -i915_request_timeline(struct i915_request *rq)
+> +i915_request_timeline(const struct i915_request *rq)
+>  {
+>  	/* Valid only while the request is being constructed (or retired). */
+>  	return rcu_dereference_protected(rq->timeline,
+> @@ -569,14 +569,14 @@ i915_request_timeline(struct i915_request *rq)
+>  }
+>  
+>  static inline struct i915_gem_context *
+> -i915_request_gem_context(struct i915_request *rq)
+> +i915_request_gem_context(const struct i915_request *rq)
+>  {
+>  	/* Valid only while the request is being constructed (or retired). */
+>  	return rcu_dereference_protected(rq->context->gem_context, true);
+>  }
+>  
+>  static inline struct intel_timeline *
+> -i915_request_active_timeline(struct i915_request *rq)
+> +i915_request_active_timeline(const struct i915_request *rq)
+>  {
+>  	/*
+>  	 * When in use during submission, we are protected by a guarantee that
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
