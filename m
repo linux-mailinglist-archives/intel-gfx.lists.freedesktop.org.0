@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C901FC135
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 23:54:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F07A21FC134
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 23:54:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B2796E99F;
-	Tue, 16 Jun 2020 21:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 581686E1E5;
+	Tue, 16 Jun 2020 21:54:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0F6F26E939;
- Tue, 16 Jun 2020 21:54:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0AF34A0009;
- Tue, 16 Jun 2020 21:54:05 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C68326E1E5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 21:54:02 +0000 (UTC)
+IronPort-SDR: UEKtzHjwERdkMaetWT2y5qmO+YdQQrYkI7klIAJ80RpnAd4MwJwQ2UGl+lRtUXd0dY5FsSPFhQ
+ uQS8xmT4VnPA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 14:54:00 -0700
+IronPort-SDR: LjbqtTlT0JwxQaSE9EVQVLYAtDnluGS9Xx/rGILfSsm85NXoDYGG5DWrlWyIKD98gXJwwYaGWf
+ yw1zXaCKXk6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,520,1583222400"; d="scan'208";a="449999168"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by orsmga005.jf.intel.com with ESMTP; 16 Jun 2020 14:54:00 -0700
+Date: Tue, 16 Jun 2020 14:55:10 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200616215510.GB4903@intel.com>
+References: <20200616193056.4817-1-manasi.d.navare@intel.com>
+ <20200616202232.GL6112@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 16 Jun 2020 21:54:05 -0000
-Message-ID: <159234444504.4596.15052520423953588006@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200616183139.4061-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200616183139.4061-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Mark_up_inline_getters_as_taking_a_const_i915=5Freques?=
- =?utf-8?q?t?=
+Content-Disposition: inline
+In-Reply-To: <20200616202232.GL6112@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Poll for DDI Idle status to be
+ 0 after enabling DDI Buf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,130 +50,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Jun 16, 2020 at 11:22:32PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Tue, Jun 16, 2020 at 12:30:56PM -0700, Manasi Navare wrote:
+> > The Bspec sequence expects us to poll for DDI Idle status
+> > to be 0 (not idle) with a timeout of 600usecs after enabling the
+> > DDI BUF CTL. But currently in the driver we just wait for 600usecs
+> > without polling so add that.
+> > =
 
-Series: drm/i915: Mark up inline getters as taking a const i915_request
-URL   : https://patchwork.freedesktop.org/series/78432/
-State : success
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Imre Deak <imre.deak@intel.com>
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 6 +++++-
+> >  1 file changed, 5 insertions(+), 1 deletion(-)
+> > =
 
-== Summary ==
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm=
+/i915/display/intel_ddi.c
+> > index ca7bb2294d2b..de7e15de0bc5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -4023,7 +4023,11 @@ static void intel_ddi_prepare_link_retrain(struc=
+t intel_dp *intel_dp)
+> >  	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
+> >  	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
+> >  =
 
-CI Bug Log - changes from CI_DRM_8636 -> Patchwork_17967
-====================================================
+> > -	udelay(600);
+> > +	if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
+> > +			  DDI_BUF_IS_IDLE),
+> > +			600))
+> > +		drm_err(&dev_priv->drm, "DDI port:%c buffer idle\n",
+> > +			port_name(port));
+> =
 
-Summary
--------
+> Another thing I just noticed is that icl+ need this for HDMI as well.
+> The slightly odd thing is that glk is documented to need this for
+> DP but not HDMI. But I'm thinking doing it also for glk HDMI should
+> be fine.
+> =
 
-  **SUCCESS**
+> So I guess to line up with the spec we should:
+> - fixed >518us enable delay for pre-glk (not sure if polling
+>   would be ok for hsw/bdw/skl)
+> - poll for enable on glk+
+> - fixed 16us disable delay for bxt
+> - poll for disable on !bxt
+> =
 
-  No regressions found.
+> And do it for both DP and HDMI for consistency.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/index.html
+So since its different one each platform, should we create a per platform h=
+ook
+like wait_for_non_idle_status or something per platform?
 
-Known issues
-------------
+Manasi
 
-  Here are the changes found in Patchwork_17967 that come from known issues:
+> =
 
-### IGT changes ###
+> =
 
-#### Issues hit ####
+> >  }
+> >  =
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8636/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+> >  static void intel_ddi_set_link_train(struct intel_dp *intel_dp,
+> > -- =
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-u2:          [PASS][3] -> [FAIL][4] ([i915#262])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8636/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+> > 2.19.1
+> =
 
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8636/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+> -- =
 
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][7] ([i915#1888]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8636/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][9] ([i915#227]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8636/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8636/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92]) +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8636/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8636/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [FAIL][17] ([i915#665] / [i915#704]) -> [SKIP][18] ([fdo#109271])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8636/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#227]: https://gitlab.freedesktop.org/drm/intel/issues/227
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#665]: https://gitlab.freedesktop.org/drm/intel/issues/665
-  [i915#704]: https://gitlab.freedesktop.org/drm/intel/issues/704
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (47 -> 42)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8636 -> Patchwork_17967
-
-  CI-20190529: 20190529
-  CI_DRM_8636: dd73f1f0cf1ea35520ff8267e59159be8c884e23 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5711: 90611a0c90afa4a46496c78a4faf9638a1538ac3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17967: 1067aa77ab73eca13389452fd6226b33c7fd80a6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1067aa77ab73 drm/i915: Mark up inline getters as taking a const i915_request
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17967/index.html
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
