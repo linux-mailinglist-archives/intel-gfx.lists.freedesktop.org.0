@@ -2,29 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B914D1FAC5F
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 11:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1701D1FACCA
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 11:37:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EF326E881;
-	Tue, 16 Jun 2020 09:29:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56E846E888;
+	Tue, 16 Jun 2020 09:37:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FDD76E881
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 09:29:08 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21510661-1500050 
- for multiple; Tue, 16 Jun 2020 10:28:34 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Jun 2020 10:28:33 +0100
-Message-Id: <20200616092833.18498-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E324A6E887
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 09:37:41 +0000 (UTC)
+IronPort-SDR: FjYXY9mmG7GIa5ZGCzl7iSfElQqVFnM674k4bQRiZqTJU8VAaIuVG02zOlm30/27D/0rY5G03/
+ lsEZirmnfehA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 02:37:41 -0700
+IronPort-SDR: cp+QANsUSKKRF9ARiSwqbubf0os8s1AI41FDNCx7AXTCVEI8fmlJ/0mvTvkbQZjOBUYMMY1iUm
+ 0Jd1fdu0O55w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="273088329"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga003.jf.intel.com with ESMTP; 16 Jun 2020 02:37:39 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 0C61D5C2C1C; Tue, 16 Jun 2020 12:35:00 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200616084141.3722-4-chris@chris-wilson.co.uk>
+References: <20200616084141.3722-1-chris@chris-wilson.co.uk>
+ <20200616084141.3722-4-chris@chris-wilson.co.uk>
+Date: Tue, 16 Jun 2020 12:35:00 +0300
+Message-ID: <871rmf9wvv.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Check preemption rollback
- of different ring queue depths
+Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915/execlists: Replace direct
+ submit with direct call to tasklet
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,200 +55,324 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Like live_unlite_ring, but instead of simply looking at the impact of
-intel_ring_direction(), check that preemption more generally works with
-different depths of queued requests in the ring.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 163 +++++++++++++++++++++++++
- 1 file changed, 163 insertions(+)
+> Rather than having special case code for opportunistically calling
+> process_csb() and performing a direct submit while holding the engine
+> spinlock for submitting the request, simply call the tasklet directly.
+> This allows us to retain the direct submission path, including the CS
+> draining to allow fast/immediate submissions, without requiring any
+> duplicated code paths.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine.h        |  1 +
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 27 +++----
+>  drivers/gpu/drm/i915/gt/intel_lrc.c           | 78 +++++++------------
+>  drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  1 +
+>  drivers/gpu/drm/i915/selftests/i915_request.c |  6 +-
+>  5 files changed, 46 insertions(+), 67 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index 791897f8d847..c77b3c0d2b3b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -210,6 +210,7 @@ int intel_engine_resume(struct intel_engine_cs *engine);
+>  
+>  int intel_ring_submission_setup(struct intel_engine_cs *engine);
+>  
+> +void __intel_engine_stop_cs(struct intel_engine_cs *engine);
+>  int intel_engine_stop_cs(struct intel_engine_cs *engine);
+>  void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 045179c65c44..fbb8ac659b82 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -903,33 +903,34 @@ static unsigned long stop_timeout(const struct intel_engine_cs *engine)
+>  	return READ_ONCE(engine->props.stop_timeout_ms);
+>  }
+>  
+> -int intel_engine_stop_cs(struct intel_engine_cs *engine)
+> +void __intel_engine_stop_cs(struct intel_engine_cs *engine)
+>  {
+>  	struct intel_uncore *uncore = engine->uncore;
+> -	const u32 base = engine->mmio_base;
+> -	const i915_reg_t mode = RING_MI_MODE(base);
+> -	int err;
+> +	const i915_reg_t mode = RING_MI_MODE(engine->mmio_base);
+>  
+> +	intel_uncore_write_fw(uncore, mode, _MASKED_BIT_ENABLE(STOP_RING));
+> +	intel_uncore_posting_read_fw(uncore, mode);
+> +}
+> +
+> +int intel_engine_stop_cs(struct intel_engine_cs *engine)
+> +{
+>  	if (INTEL_GEN(engine->i915) < 3)
+>  		return -ENODEV;
+>  
+>  	ENGINE_TRACE(engine, "\n");
+>  
+> -	intel_uncore_write_fw(uncore, mode, _MASKED_BIT_ENABLE(STOP_RING));
+> +	__intel_engine_stop_cs(engine);
+>  
+> -	err = 0;
+> -	if (__intel_wait_for_register_fw(uncore,
+> -					 mode, MODE_IDLE, MODE_IDLE,
+> +	if (__intel_wait_for_register_fw(engine->uncore,
+> +					 RING_MI_MODE(engine->mmio_base),
+> +					 MODE_IDLE, MODE_IDLE,
+>  					 1000, stop_timeout(engine),
+>  					 NULL)) {
+>  		ENGINE_TRACE(engine, "timed out on STOP_RING -> IDLE\n");
+> -		err = -ETIMEDOUT;
+> +		return -ETIMEDOUT;
+>  	}
+>  
+> -	/* A final mmio read to let GPU writes be hopefully flushed to memory */
+> -	intel_uncore_posting_read_fw(uncore, mode);
+> -
+> -	return err;
+> +	return 0;
+>  }
+>  
+>  void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index e866b8d721ed..40c5085765da 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -2703,16 +2703,6 @@ static void process_csb(struct intel_engine_cs *engine)
+>  	invalidate_csb_entries(&buf[0], &buf[num_entries - 1]);
+>  }
+>  
+> -static void __execlists_submission_tasklet(struct intel_engine_cs *const engine)
+> -{
+> -	lockdep_assert_held(&engine->active.lock);
+> -	if (!READ_ONCE(engine->execlists.pending[0])) {
+> -		rcu_read_lock(); /* protect peeking at execlists->active */
+> -		execlists_dequeue(engine);
+> -		rcu_read_unlock();
+> -	}
+> -}
+> -
+>  static void __execlists_hold(struct i915_request *rq)
+>  {
+>  	LIST_HEAD(list);
+> @@ -3102,7 +3092,7 @@ static bool preempt_timeout(const struct intel_engine_cs *const engine)
+>  	if (!timer_expired(t))
+>  		return false;
+>  
+> -	return READ_ONCE(engine->execlists.pending[0]);
+> +	return engine->execlists.pending[0];
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 3d088116a055..530718797848 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -2756,6 +2756,168 @@ static int create_gang(struct intel_engine_cs *engine,
- 	return err;
- }
- 
-+static int __live_preempt_ring(struct intel_engine_cs *engine,
-+			       struct igt_spinner *spin,
-+			       int sz)
-+{
-+	struct intel_context *ce[2] = {};
-+	struct i915_request *rq;
-+	struct igt_live_test t;
-+	int err = 0;
-+	int n;
-+
-+	if (igt_live_test_begin(&t, engine->i915, __func__, engine->name))
-+		return -EIO;
-+
-+	for (n = 0; n < ARRAY_SIZE(ce); n++) {
-+		struct intel_context *tmp;
-+
-+		tmp = intel_context_create(engine);
-+		if (IS_ERR(tmp)) {
-+			err = PTR_ERR(tmp);
-+			goto err_ce;
-+		}
-+
-+		err = intel_context_pin(tmp);
-+		if (err) {
-+			intel_context_put(tmp);
-+			goto err_ce;
-+		}
-+
-+		memset32(tmp->ring->vaddr,
-+			 0xdeadbeef, /* trigger a hang if executed */
-+			 tmp->ring->vma->size / sizeof(u32));
-+
-+		ce[n] = tmp;
-+	}
-+
-+	rq = igt_spinner_create_request(spin, ce[0], MI_ARB_CHECK);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto err_ce;
-+	}
-+
-+	i915_request_get(rq);
-+	rq->sched.attr.priority = I915_PRIORITY_BARRIER;
-+	i915_request_add(rq);
-+
-+	if (!igt_wait_for_spinner(spin, rq)) {
-+		intel_gt_set_wedged(engine->gt);
-+		i915_request_put(rq);
-+		err = -ETIME;
-+		goto err_ce;
-+	}
-+
-+	/* Fill the ring, until we will cause a wrap */
-+	n = 0;
-+	while (ce[0]->ring->tail - rq->wa_tail <= sz) {
-+		struct i915_request *tmp;
-+
-+		tmp = intel_context_create_request(ce[0]);
-+		if (IS_ERR(tmp)) {
-+			err = PTR_ERR(tmp);
-+			i915_request_put(rq);
-+			goto err_ce;
-+		}
-+
-+		i915_request_add(tmp);
-+		intel_engine_flush_submission(engine);
-+		n++;
-+	}
-+	intel_engine_flush_submission(engine);
-+	pr_debug("%s: Filled %d with %d nop tails {size:%x, tail:%x, emit:%x, rq.tail:%x}\n",
-+		 engine->name, sz, n,
-+		 ce[0]->ring->size,
-+		 ce[0]->ring->tail,
-+		 ce[0]->ring->emit,
-+		 rq->tail);
-+	GEM_BUG_ON(intel_ring_direction(ce[0]->ring,
-+					rq->tail,
-+					ce[0]->ring->tail) <= 0);
-+	i915_request_put(rq);
-+
-+	/* Create a second request to preempt the first ring */
-+	rq = intel_context_create_request(ce[1]);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto err_ce;
-+	}
-+
-+	rq->sched.attr.priority = I915_PRIORITY_BARRIER;
-+	i915_request_get(rq);
-+	i915_request_add(rq);
-+
-+	err = wait_for_submit(engine, rq, HZ / 2);
-+	i915_request_put(rq);
-+	if (err) {
-+		pr_err("%s: preemption request was not submited\n",
-+		       engine->name);
-+		err = -ETIME;
-+	}
-+
-+	pr_debug("%s: ring[0]:{ tail:%x, emit:%x }, ring[1]:{ tail:%x, emit:%x }\n",
-+		 engine->name,
-+		 ce[0]->ring->tail, ce[0]->ring->emit,
-+		 ce[1]->ring->tail, ce[1]->ring->emit);
-+
-+err_ce:
-+	intel_engine_flush_submission(engine);
-+	igt_spinner_end(spin);
-+	for (n = 0; n < ARRAY_SIZE(ce); n++) {
-+		if (IS_ERR_OR_NULL(ce[n]))
-+			break;
-+
-+		intel_context_unpin(ce[n]);
-+		intel_context_put(ce[n]);
-+	}
-+	if (igt_live_test_end(&t))
-+		err = -EIO;
-+	return err;
-+}
-+
-+static int live_preempt_ring(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *engine;
-+	struct igt_spinner spin;
-+	enum intel_engine_id id;
-+	int err = 0;
-+
-+	/*
-+	 * Check that we rollback large chunks of a ring in order to do a
-+	 * preemption event. Similar to live_unlite_ring, but looking at
-+	 * ring size rather than the impact of intel_ring_direction().
-+	 */
-+
-+	if (igt_spinner_init(&spin, gt))
-+		return -ENOMEM;
-+
-+	for_each_engine(engine, gt, id) {
-+		int n;
-+
-+		if (!intel_engine_has_preemption(engine))
-+			continue;
-+
-+		if (!intel_engine_can_store_dword(engine))
-+			continue;
-+
-+		engine_heartbeat_disable(engine);
-+
-+		for (n = 0; n <= 3; n++) {
-+			err = __live_preempt_ring(engine, &spin, n * SZ_4K / 4);
-+			if (err)
-+				break;
-+		}
-+
-+		engine_heartbeat_enable(engine);
-+		if (err)
-+			break;
-+	}
-+
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-+
- static int live_preempt_gang(void *arg)
- {
- 	struct intel_gt *gt = arg;
-@@ -4538,6 +4700,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_preempt_cancel),
- 		SUBTEST(live_suppress_self_preempt),
- 		SUBTEST(live_chain_preempt),
-+		SUBTEST(live_preempt_ring),
- 		SUBTEST(live_preempt_gang),
- 		SUBTEST(live_preempt_timeout),
- 		SUBTEST(live_preempt_user),
--- 
-2.20.1
+Sometimes I yearn for intel_execlists_request_pending() but it would
+be wonky and the port0 is quite core to the lrc...
 
+Overall this patch makes things more straightfoward.
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+>  }
+>  
+>  /*
+> @@ -3112,7 +3102,6 @@ static bool preempt_timeout(const struct intel_engine_cs *const engine)
+>  static void execlists_submission_tasklet(unsigned long data)
+>  {
+>  	struct intel_engine_cs * const engine = (struct intel_engine_cs *)data;
+> -	bool timeout = preempt_timeout(engine);
+>  
+>  	process_csb(engine);
+>  
+> @@ -3122,16 +3111,17 @@ static void execlists_submission_tasklet(unsigned long data)
+>  			execlists_reset(engine, "CS error");
+>  	}
+>  
+> -	if (!READ_ONCE(engine->execlists.pending[0]) || timeout) {
+> +	if (unlikely(preempt_timeout(engine)))
+> +		execlists_reset(engine, "preemption time out");
+> +
+> +	if (!engine->execlists.pending[0]) {
+>  		unsigned long flags;
+>  
+> +		rcu_read_lock(); /* protect peeking at execlists->active */
+>  		spin_lock_irqsave(&engine->active.lock, flags);
+> -		__execlists_submission_tasklet(engine);
+> +		execlists_dequeue(engine);
+>  		spin_unlock_irqrestore(&engine->active.lock, flags);
+> -
+> -		/* Recheck after serialising with direct-submission */
+> -		if (unlikely(timeout && preempt_timeout(engine)))
+> -			execlists_reset(engine, "preemption time out");
+> +		rcu_read_unlock();
+>  	}
+>  }
+>  
+> @@ -3163,26 +3153,16 @@ static void queue_request(struct intel_engine_cs *engine,
+>  	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+>  }
+>  
+> -static void __submit_queue_imm(struct intel_engine_cs *engine)
+> -{
+> -	struct intel_engine_execlists * const execlists = &engine->execlists;
+> -
+> -	if (reset_in_progress(execlists))
+> -		return; /* defer until we restart the engine following reset */
+> -
+> -	__execlists_submission_tasklet(engine);
+> -}
+> -
+> -static void submit_queue(struct intel_engine_cs *engine,
+> +static bool submit_queue(struct intel_engine_cs *engine,
+>  			 const struct i915_request *rq)
+>  {
+>  	struct intel_engine_execlists *execlists = &engine->execlists;
+>  
+>  	if (rq_prio(rq) <= execlists->queue_priority_hint)
+> -		return;
+> +		return false;
+>  
+>  	execlists->queue_priority_hint = rq_prio(rq);
+> -	__submit_queue_imm(engine);
+> +	return true;
+>  }
+>  
+>  static bool ancestor_on_hold(const struct intel_engine_cs *engine,
+> @@ -3196,20 +3176,22 @@ static void flush_csb(struct intel_engine_cs *engine)
+>  {
+>  	struct intel_engine_execlists *el = &engine->execlists;
+>  
+> -	if (READ_ONCE(el->pending[0]) && tasklet_trylock(&el->tasklet)) {
+> -		if (!reset_in_progress(el))
+> -			process_csb(engine);
+> -		tasklet_unlock(&el->tasklet);
+> +	if (!tasklet_trylock(&el->tasklet)) {
+> +		tasklet_hi_schedule(&el->tasklet);
+> +		return;
+>  	}
+> +
+> +	if (!reset_in_progress(el))
+> +		execlists_submission_tasklet((unsigned long)engine);
+> +
+> +	tasklet_unlock(&el->tasklet);
+>  }
+>  
+>  static void execlists_submit_request(struct i915_request *request)
+>  {
+>  	struct intel_engine_cs *engine = request->engine;
+>  	unsigned long flags;
+> -
+> -	/* Hopefully we clear execlists->pending[] to let us through */
+> -	flush_csb(engine);
+> +	bool submit = false;
+>  
+>  	/* Will be called from irq-context when using foreign fences. */
+>  	spin_lock_irqsave(&engine->active.lock, flags);
+> @@ -3224,10 +3206,13 @@ static void execlists_submit_request(struct i915_request *request)
+>  		GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+>  		GEM_BUG_ON(list_empty(&request->sched.link));
+>  
+> -		submit_queue(engine, request);
+> +		submit = submit_queue(engine, request);
+>  	}
+>  
+>  	spin_unlock_irqrestore(&engine->active.lock, flags);
+> +
+> +	if (submit)
+> +		flush_csb(engine);
+>  }
+>  
+>  static void __execlists_context_fini(struct intel_context *ce)
+> @@ -4113,7 +4098,6 @@ static int execlists_resume(struct intel_engine_cs *engine)
+>  static void execlists_reset_prepare(struct intel_engine_cs *engine)
+>  {
+>  	struct intel_engine_execlists * const execlists = &engine->execlists;
+> -	unsigned long flags;
+>  
+>  	ENGINE_TRACE(engine, "depth<-%d\n",
+>  		     atomic_read(&execlists->tasklet.count));
+> @@ -4130,10 +4114,6 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
+>  	__tasklet_disable_sync_once(&execlists->tasklet);
+>  	GEM_BUG_ON(!reset_in_progress(execlists));
+>  
+> -	/* And flush any current direct submission. */
+> -	spin_lock_irqsave(&engine->active.lock, flags);
+> -	spin_unlock_irqrestore(&engine->active.lock, flags);
+> -
+>  	/*
+>  	 * We stop engines, otherwise we might get failed reset and a
+>  	 * dead gpu (on elk). Also as modern gpu as kbl can suffer
+> @@ -4147,7 +4127,7 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
+>  	 * FIXME: Wa for more modern gens needs to be validated
+>  	 */
+>  	ring_set_paused(engine, 1);
+> -	intel_engine_stop_cs(engine);
+> +	__intel_engine_stop_cs(engine);
+>  
+>  	engine->execlists.reset_ccid = active_ccid(engine);
+>  }
+> @@ -4377,12 +4357,12 @@ static void execlists_reset_finish(struct intel_engine_cs *engine)
+>  	 * to sleep before we restart and reload a context.
+>  	 */
+>  	GEM_BUG_ON(!reset_in_progress(execlists));
+> -	if (!RB_EMPTY_ROOT(&execlists->queue.rb_root))
+> -		execlists->tasklet.func(execlists->tasklet.data);
+> +	GEM_BUG_ON(engine->execlists.pending[0]);
+>  
+> +	/* And kick in case we missed a new request submission. */
+>  	if (__tasklet_enable(&execlists->tasklet))
+> -		/* And kick in case we missed a new request submission. */
+> -		tasklet_hi_schedule(&execlists->tasklet);
+> +		flush_csb(engine);
+> +
+>  	ENGINE_TRACE(engine, "depth->%d\n",
+>  		     atomic_read(&execlists->tasklet.count));
+>  }
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> index 7461936d549d..355ee8562bc1 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> @@ -1597,6 +1597,7 @@ static int __igt_atomic_reset_engine(struct intel_engine_cs *engine,
+>  
+>  	p->critical_section_end();
+>  	tasklet_enable(t);
+> +	tasklet_hi_schedule(t);
+>  
+>  	if (err)
+>  		pr_err("i915_reset_engine(%s:%s) failed under %s\n",
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+> index 92c628f18c60..4f1b82c7eeaf 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_request.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+> @@ -1925,9 +1925,7 @@ static int measure_inter_request(struct intel_context *ce)
+>  		intel_ring_advance(rq, cs);
+>  		i915_request_add(rq);
+>  	}
+> -	local_bh_disable();
+>  	i915_sw_fence_commit(submit);
+> -	local_bh_enable();
+>  	intel_engine_flush_submission(ce->engine);
+>  	heap_fence_put(submit);
+>  
+> @@ -2213,11 +2211,9 @@ static int measure_completion(struct intel_context *ce)
+>  		intel_ring_advance(rq, cs);
+>  
+>  		dma_fence_add_callback(&rq->fence, &cb.base, signal_cb);
+> -
+> -		local_bh_disable();
+>  		i915_request_add(rq);
+> -		local_bh_enable();
+>  
+> +		intel_engine_flush_submission(ce->engine);
+>  		if (wait_for(READ_ONCE(sema[i]) == -1, 50)) {
+>  			err = -EIO;
+>  			goto err;
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
