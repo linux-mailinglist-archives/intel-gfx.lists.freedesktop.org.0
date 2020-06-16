@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93151FBFC0
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 22:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EDD51FBFD6
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 22:16:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A29B06E930;
-	Tue, 16 Jun 2020 20:12:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B10AA6E934;
+	Tue, 16 Jun 2020 20:16:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB686E930
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 20:12:35 +0000 (UTC)
-IronPort-SDR: Jc5t01jXQA7SlAwRUQgHpMxKqH23ExRus+gKurD9UwrnGv878FETsLDfiPxc+1MJTd4w3Fj/LF
- fABaOGBpZAwg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 13:12:33 -0700
-IronPort-SDR: BjKYfBWvppwN7Kubjwe5qbKZh9NwJ5qHUL7/fXBiRDjgopgqeKxXpZx14mZOGFMipcVEbAlrMS
- JTRm3BDUPoUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,519,1583222400"; d="scan'208";a="277039327"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga006.jf.intel.com with ESMTP; 16 Jun 2020 13:12:32 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 793725C2C1C; Tue, 16 Jun 2020 23:09:52 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200616092833.18498-1-chris@chris-wilson.co.uk>
-References: <20200616092833.18498-1-chris@chris-wilson.co.uk>
-Date: Tue, 16 Jun 2020 23:09:52 +0300
-Message-ID: <87o8pi93hr.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 236236E931;
+ Tue, 16 Jun 2020 20:16:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1DE5BA00C7;
+ Tue, 16 Jun 2020 20:16:24 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Check preemption
- rollback of different ring queue depths
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Date: Tue, 16 Jun 2020 20:16:24 -0000
+Message-ID: <159233858409.4596.14601318131298520473@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200616145452.GA25291@embeddedor>
+In-Reply-To: <20200616145452.GA25291@embeddedor>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_fix_inconsistent_IS=5FERR_and_PTR=5FERR_=28r?=
+ =?utf-8?q?ev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,213 +39,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> Like live_unlite_ring, but instead of simply looking at the impact of
-> intel_ring_direction(), check that preemption more generally works with
-> different depths of queued requests in the ring.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Series: drm/i915/selftests: fix inconsistent IS_ERR and PTR_ERR (rev2)
+URL   : https://patchwork.freedesktop.org/series/38366/
+State : success
 
-Pondering about the sizes of try but I can't make up anything
-better.
+== Summary ==
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+CI Bug Log - changes from CI_DRM_8635 -> Patchwork_17965
+====================================================
 
-> ---
->  drivers/gpu/drm/i915/gt/selftest_lrc.c | 163 +++++++++++++++++++++++++
->  1 file changed, 163 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> index 3d088116a055..530718797848 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> @@ -2756,6 +2756,168 @@ static int create_gang(struct intel_engine_cs *engine,
->  	return err;
->  }
->  
-> +static int __live_preempt_ring(struct intel_engine_cs *engine,
-> +			       struct igt_spinner *spin,
-> +			       int sz)
-> +{
-> +	struct intel_context *ce[2] = {};
-> +	struct i915_request *rq;
-> +	struct igt_live_test t;
-> +	int err = 0;
-> +	int n;
-> +
-> +	if (igt_live_test_begin(&t, engine->i915, __func__, engine->name))
-> +		return -EIO;
-> +
-> +	for (n = 0; n < ARRAY_SIZE(ce); n++) {
-> +		struct intel_context *tmp;
-> +
-> +		tmp = intel_context_create(engine);
-> +		if (IS_ERR(tmp)) {
-> +			err = PTR_ERR(tmp);
-> +			goto err_ce;
-> +		}
-> +
-> +		err = intel_context_pin(tmp);
-> +		if (err) {
-> +			intel_context_put(tmp);
-> +			goto err_ce;
-> +		}
-> +
-> +		memset32(tmp->ring->vaddr,
-> +			 0xdeadbeef, /* trigger a hang if executed */
-> +			 tmp->ring->vma->size / sizeof(u32));
-> +
-> +		ce[n] = tmp;
-> +	}
-> +
-> +	rq = igt_spinner_create_request(spin, ce[0], MI_ARB_CHECK);
-> +	if (IS_ERR(rq)) {
-> +		err = PTR_ERR(rq);
-> +		goto err_ce;
-> +	}
-> +
-> +	i915_request_get(rq);
-> +	rq->sched.attr.priority = I915_PRIORITY_BARRIER;
-> +	i915_request_add(rq);
-> +
-> +	if (!igt_wait_for_spinner(spin, rq)) {
-> +		intel_gt_set_wedged(engine->gt);
-> +		i915_request_put(rq);
-> +		err = -ETIME;
-> +		goto err_ce;
-> +	}
-> +
-> +	/* Fill the ring, until we will cause a wrap */
-> +	n = 0;
-> +	while (ce[0]->ring->tail - rq->wa_tail <= sz) {
-> +		struct i915_request *tmp;
-> +
-> +		tmp = intel_context_create_request(ce[0]);
-> +		if (IS_ERR(tmp)) {
-> +			err = PTR_ERR(tmp);
-> +			i915_request_put(rq);
-> +			goto err_ce;
-> +		}
-> +
-> +		i915_request_add(tmp);
-> +		intel_engine_flush_submission(engine);
-> +		n++;
-> +	}
-> +	intel_engine_flush_submission(engine);
-> +	pr_debug("%s: Filled %d with %d nop tails {size:%x, tail:%x, emit:%x, rq.tail:%x}\n",
-> +		 engine->name, sz, n,
-> +		 ce[0]->ring->size,
-> +		 ce[0]->ring->tail,
-> +		 ce[0]->ring->emit,
-> +		 rq->tail);
-> +	GEM_BUG_ON(intel_ring_direction(ce[0]->ring,
-> +					rq->tail,
-> +					ce[0]->ring->tail) <= 0);
-> +	i915_request_put(rq);
-> +
-> +	/* Create a second request to preempt the first ring */
-> +	rq = intel_context_create_request(ce[1]);
-> +	if (IS_ERR(rq)) {
-> +		err = PTR_ERR(rq);
-> +		goto err_ce;
-> +	}
-> +
-> +	rq->sched.attr.priority = I915_PRIORITY_BARRIER;
-> +	i915_request_get(rq);
-> +	i915_request_add(rq);
-> +
-> +	err = wait_for_submit(engine, rq, HZ / 2);
-> +	i915_request_put(rq);
-> +	if (err) {
-> +		pr_err("%s: preemption request was not submited\n",
-> +		       engine->name);
-> +		err = -ETIME;
-> +	}
-> +
-> +	pr_debug("%s: ring[0]:{ tail:%x, emit:%x }, ring[1]:{ tail:%x, emit:%x }\n",
-> +		 engine->name,
-> +		 ce[0]->ring->tail, ce[0]->ring->emit,
-> +		 ce[1]->ring->tail, ce[1]->ring->emit);
-> +
-> +err_ce:
-> +	intel_engine_flush_submission(engine);
-> +	igt_spinner_end(spin);
-> +	for (n = 0; n < ARRAY_SIZE(ce); n++) {
-> +		if (IS_ERR_OR_NULL(ce[n]))
-> +			break;
-> +
-> +		intel_context_unpin(ce[n]);
-> +		intel_context_put(ce[n]);
-> +	}
-> +	if (igt_live_test_end(&t))
-> +		err = -EIO;
-> +	return err;
-> +}
-> +
-> +static int live_preempt_ring(void *arg)
-> +{
-> +	struct intel_gt *gt = arg;
-> +	struct intel_engine_cs *engine;
-> +	struct igt_spinner spin;
-> +	enum intel_engine_id id;
-> +	int err = 0;
-> +
-> +	/*
-> +	 * Check that we rollback large chunks of a ring in order to do a
-> +	 * preemption event. Similar to live_unlite_ring, but looking at
-> +	 * ring size rather than the impact of intel_ring_direction().
-> +	 */
-> +
-> +	if (igt_spinner_init(&spin, gt))
-> +		return -ENOMEM;
-> +
-> +	for_each_engine(engine, gt, id) {
-> +		int n;
-> +
-> +		if (!intel_engine_has_preemption(engine))
-> +			continue;
-> +
-> +		if (!intel_engine_can_store_dword(engine))
-> +			continue;
-> +
-> +		engine_heartbeat_disable(engine);
-> +
-> +		for (n = 0; n <= 3; n++) {
-> +			err = __live_preempt_ring(engine, &spin, n * SZ_4K / 4);
-> +			if (err)
-> +				break;
-> +		}
-> +
-> +		engine_heartbeat_enable(engine);
-> +		if (err)
-> +			break;
-> +	}
-> +
-> +	igt_spinner_fini(&spin);
-> +	return err;
-> +}
-> +
->  static int live_preempt_gang(void *arg)
->  {
->  	struct intel_gt *gt = arg;
-> @@ -4538,6 +4700,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
->  		SUBTEST(live_preempt_cancel),
->  		SUBTEST(live_suppress_self_preempt),
->  		SUBTEST(live_chain_preempt),
-> +		SUBTEST(live_preempt_ring),
->  		SUBTEST(live_preempt_gang),
->  		SUBTEST(live_preempt_timeout),
->  		SUBTEST(live_preempt_user),
-> -- 
-> 2.20.1
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17965/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17965 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#402])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-tgl-u2/igt@i915_module_load@reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17965/fi-tgl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17965/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@coherency:
+    - fi-gdg-551:         [PASS][5] -> [DMESG-FAIL][6] ([i915#1748])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-gdg-551/igt@i915_selftest@live@coherency.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17965/fi-gdg-551/igt@i915_selftest@live@coherency.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17965/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-icl-guc:         [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17965/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-kbl-x1275/igt@i915_module_load@reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17965/fi-kbl-x1275/igt@i915_module_load@reload.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8635/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17965/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  [i915#1748]: https://gitlab.freedesktop.org/drm/intel/issues/1748
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (47 -> 42)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8635 -> Patchwork_17965
+
+  CI-20190529: 20190529
+  CI_DRM_8635: f9acdb898773f94ac1bcb9a8826596f88412a53b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5711: 90611a0c90afa4a46496c78a4faf9638a1538ac3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17965: c02b027d9362eea5bc00596c8d3ba31dc4a9aac5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c02b027d9362 drm/i915/selftests: Fix inconsistent IS_ERR and PTR_ERR
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17965/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
