@@ -2,48 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67DC11FBB5A
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 18:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BB3E1FBB93
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 18:23:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 889B16E5CA;
-	Tue, 16 Jun 2020 16:20:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F41B7892BB;
+	Tue, 16 Jun 2020 16:23:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DE126E5CA
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 16:20:31 +0000 (UTC)
-IronPort-SDR: I7Dslrx/aeGhIuWTsziXCkVJVbPcxVQEvyRh+lcS28DOnQbAmRuCcevtJeX1ZFxLSiXFILPd6v
- enpZuS6hxr1Q==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1952E892B9;
+ Tue, 16 Jun 2020 16:23:25 +0000 (UTC)
+IronPort-SDR: LTgvvYnrpe17haGdNQQWEUHXK9hAouEhaa1OZqiO6rSqzumHk08Io+UklaOoQvCzM9xXkqRdaa
+ PWsXjIePiizA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 09:20:13 -0700
-IronPort-SDR: box9uCiGpP50fn4Gax2MglUuVbTjON0d99Pb5cTbg81WnAEe+p4jAesEC+UVkIpN6QKQ+TsqT/
- mmPZ9mZJ472w==
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 09:23:24 -0700
+IronPort-SDR: wr5C+swnxrfyrtm5ljZpopyfAgMrOkH4jy9YNitOdEqxfy/FmbEONYcUUZWNDjWKDaDGXRda82
+ AP52WwaMK5iw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="291117247"
+X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="261470401"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 16 Jun 2020 09:20:10 -0700
+ by fmsmga007.fm.intel.com with SMTP; 16 Jun 2020 09:23:22 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Jun 2020 19:20:10 +0300
-Date: Tue, 16 Jun 2020 19:20:10 +0300
+ Tue, 16 Jun 2020 19:23:21 +0300
+Date: Tue, 16 Jun 2020 19:23:21 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200616162010.GD6112@intel.com>
+Message-ID: <20200616162321.GE6112@intel.com>
 References: <20200616141855.746-1-imre.deak@intel.com>
- <20200616141855.746-2-imre.deak@intel.com>
- <20200616152251.GW6112@intel.com>
- <20200616153055.GA21389@ideak-desk.fi.intel.com>
- <20200616153930.GX6112@intel.com>
- <20200616154920.GB21389@ideak-desk.fi.intel.com>
+ <20200616141855.746-6-imre.deak@intel.com>
+ <20200616154546.GY6112@intel.com>
+ <20200616155441.GC21389@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200616154920.GB21389@ideak-desk.fi.intel.com>
+In-Reply-To: <20200616155441.GC21389@ideak-desk.fi.intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/dp_mst: Disable link training
- fallback on MST links
+Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/dp_mst: Ensure the DPCD ACT
+ sent flag is cleared before waiting for it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,180 +54,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 16, 2020 at 06:49:20PM +0300, Imre Deak wrote:
-> On Tue, Jun 16, 2020 at 06:39:30PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Jun 16, 2020 at 06:30:55PM +0300, Imre Deak wrote:
-> > > On Tue, Jun 16, 2020 at 06:22:51PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > On Tue, Jun 16, 2020 at 05:18:51PM +0300, Imre Deak wrote:
-> > > > > We calculate the MST available bandwidth using the link's maximum=
- rate
-> > > > > and lane count. This bandwidth won't be recalculated in response =
-to a
-> > > > =
-
-> > > > Thw wording here is a bit ambiguousr as to who "we" is, and what ex=
-actly
-> > > > "link's maximum rate and lane count". I would try to clarify a bit =
-that
-> > > > it's drm_dp_mst_topology.c who is mostly in error here by directly
-> > > > interpreting the max data rate/lanes from the DPCD.
-> > > > =
-
-> > > > Althoguh the i915 code is not wihtout faults, as it lacks any logic
-> > > > to modeset all the MST streams for this link when the link params
-> > > > change (except on tgl+ where the master/slave stuff should force
-> > > > all streams to do a modeset anyway).
-> > > > =
-
-> > > > > link training error and fallback setting, so modesets following a=
- link
-> > > > > training error will calculate incorrect timing parameters (like t=
-he
-> > > > > transcoder's data M/N params or the number of MST TUs).
-> > > > > =
-
-> > > > > Prevent the above problem by disabling the link training fallback=
- on MST
-> > > > > links for now, until the MST compute config can deal with changin=
-g link
-> > > > > parameters.
-> > > > > =
-
-> > > > > The misconfigured timing lead at least to a
-> > > > > 'Timed out waiting for DP idle patterns'
-> > > > > error.
-> > > > > =
-
-> > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > Cc: Manasi Navare <manasi.d.navare@intel.com>
-> > > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_dp.c | 25 ++++++++++++++++++-=
-------
-> > > > >  1 file changed, 18 insertions(+), 7 deletions(-)
-> > > > > =
-
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gp=
-u/drm/i915/display/intel_dp.c
-> > > > > index 42589cae766d..c585b002783a 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > @@ -468,6 +468,13 @@ int intel_dp_get_link_train_fallback_values(=
-struct intel_dp *intel_dp,
-> > > > >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> > > > >  	int index;
-> > > > >  =
-
-> > > > > +	/*
-> > > > > +	 * TODO: Enable fallback on MST links once MST link compute can=
- handle
-> > > > > +	 * the fallback params.
-> > > > > +	 */
-> > > > > +	if (intel_dp->is_mst)
-> > > > > +		return -1;
-> > > > =
-
-> > > > Should we duplicate the drm_error() from the other path here maybe?
+On Tue, Jun 16, 2020 at 06:54:41PM +0300, Imre Deak wrote:
+> On Tue, Jun 16, 2020 at 06:45:46PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Tue, Jun 16, 2020 at 05:18:55PM +0300, Imre Deak wrote:
+> > > Atm, we clear the ACT sent flag in the sink's DPCD before updating the
+> > > sink's payload table, along clearing the payload table updated flag.
+> > > The sink is supposed to set this flag once it detects that the source
+> > > has completed the ACT sequence (after detecting the 4 required ACT MT=
+PH
+> > > symbols sent by the source). As opposed to this 2 DELL monitors I have
+> > > set the flag already along the payload table updated flag, which is n=
+ot
+> > > quite correct.
 > > > =
 
-> > > Yes, will add it.
+> > > To be sure that the sink has detected the ACT MTPH symbols before
+> > > continuing enabling the encoder, clear the ACT sent flag before enabl=
+ing
+> > > or disabling the transcoder VC payload allocation (which is what star=
+ts
+> > > the ACT sequence).
 > > > =
 
-> > > > =
-
-> > > > > +
-> > > > >  	index =3D intel_dp_rate_index(intel_dp->common_rates,
-> > > > >  				    intel_dp->num_common_rates,
-> > > > >  				    link_rate);
-> > > > > @@ -6163,7 +6170,17 @@ intel_dp_detect(struct drm_connector *conn=
-ector,
-> > > > >  		goto out;
-> > > > >  	}
-> > > > >  =
-
-> > > > > -	if (intel_dp->reset_link_params) {
-> > > > > +	/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
-> > > > > +	if (INTEL_GEN(dev_priv) >=3D 11)
-> > > > > +		intel_dp_get_dsc_sink_cap(intel_dp);
-> > > > > +
-> > > > > +	intel_dp_configure_mst(intel_dp);
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * TODO: Reset link params when switching to MST mode, until MST
-> > > > > +	 * supports link training fallback params.
-> > > > > +	 */
-> > > > > +	if (intel_dp->reset_link_params || intel_dp->is_mst) {
-> > > > =
-
-> > > > /me confused. Why do we need to touch this code?
+> > > Cc: Lyude Paul <lyude@redhat.com>
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Cc: dri-devel@lists.freedesktop.org
+> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/drm_dp_mst_topology.c       | 31 +++++++++++++++++++=
+--
+> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
+> > >  include/drm/drm_dp_mst_helper.h             |  2 ++
+> > >  3 files changed, 33 insertions(+), 2 deletions(-)
 > > > =
 
-> > > It's possible to switch to MST mode after the link rate/lane count got
-> > > reduced by a link training error in SST mode.
+> > > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/=
+drm_dp_mst_topology.c
+> > > index b2f5a84b4cfb..e3bf8c9c8267 100644
+> > > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > @@ -4377,6 +4377,34 @@ void drm_dp_mst_deallocate_vcpi(struct drm_dp_=
+mst_topology_mgr *mgr,
+> > >  }
+> > >  EXPORT_SYMBOL(drm_dp_mst_deallocate_vcpi);
+> > >  =
+
+> > > +/**
+> > > + * drm_dp_clear_payload_status() - Clears the payload table status f=
+lags
+> > > + * @mgr: manager to use
+> > > + *
+> > > + * Clears the payload table ACT handled and table updated flags in t=
+he MST hub's
+> > > + * DPCD. This function must be called before updating the payload ta=
+ble or
+> > > + * starting the ACT sequence and waiting for the corresponding flags=
+ to get
+> > > + * set by the hub.
+> > > + *
+> > > + * Returns:
+> > > + * 0 if the flag got cleared successfully, otherwise a negative erro=
+r code.
+> > > + */
+> > > +int drm_dp_clear_payload_status(struct drm_dp_mst_topology_mgr *mgr)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	ret =3D drm_dp_dpcd_writeb(mgr->aux, DP_PAYLOAD_TABLE_UPDATE_STATUS,
+> > > +				 DP_PAYLOAD_ACT_HANDLED);
+> > > +	if (ret < 0) {
+> > > +		DRM_DEBUG_DRIVER("Can't clear the ACT sent flag (%d)\n", ret);
+> > > +		return ret;
+> > > +	}
+> > > +	WARN_ON(ret !=3D 1);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +EXPORT_SYMBOL(drm_dp_clear_payload_status);
+> > > +
+> > >  static int drm_dp_dpcd_write_payload(struct drm_dp_mst_topology_mgr =
+*mgr,
+> > >  				     int id, struct drm_dp_payload *payload)
+> > >  {
+> > > @@ -4384,8 +4412,7 @@ static int drm_dp_dpcd_write_payload(struct drm=
+_dp_mst_topology_mgr *mgr,
+> > >  	int ret;
+> > >  	int retries =3D 0;
+> > >  =
+
+> > > -	drm_dp_dpcd_writeb(mgr->aux, DP_PAYLOAD_TABLE_UPDATE_STATUS,
+> > > -			   DP_PAYLOAD_TABLE_UPDATED);
 > > =
 
-> > But then we should have a long hpd and reset_link_params should be set
-> > anyway no?
+> > We used to clear DP_PAYLOAD_TABLE_UPDATED but now we clear
+> > DP_PAYLOAD_ACT_HANDLED ?
 > =
 
-> I meant switching the mode for the same sink as it would change its
-> DP_MST_CAP. I'm not sure if a long HPD is required in that case. =
+> Eek. We should write DP_PAYLOAD_TABLE_UPDATED which is the only way to
+> clear both the act-handled and the table-updated flags.
 
+Huh. That's a bit crazy. But it is what the spec says.
 
-I would expect so. I don't think there's a requirement in the spec to
-re-evaluate this sort of stuff for a short hpd.
-
-> Also if
-> we had a long HPD after a mode change couldn't a modeset run before the
-> next intel_dp_detect() call could reset the link params?
-
-This is detect() we're talking about here, so I guess you mean
-detect() running before the hpd gets to flag reset_link_params=3Dtrue ?
-Not sure I'd worry about that, but I guess there should be no harm
-in reordering these things a bit.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
+> I tested things
+> that way but managed to send an old version. Thanks for catching it.
 > =
 
-> > > =
+> > =
 
-> > > > >  		/* Initial max link lane count */
-> > > > >  		intel_dp->max_link_lane_count =3D intel_dp_max_common_lane_cou=
-nt(intel_dp);
-> > > > >  =
+> > > +	drm_dp_clear_payload_status(mgr);
+> > >  =
 
-> > > > > @@ -6175,12 +6192,6 @@ intel_dp_detect(struct drm_connector *conn=
-ector,
-> > > > >  =
+> > >  	payload_alloc[0] =3D id;
+> > >  	payload_alloc[1] =3D payload->start_slot;
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gp=
+u/drm/i915/display/intel_dp_mst.c
+> > > index 9308b5920780..3c4b0fb10d8b 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > @@ -323,6 +323,8 @@ static void clear_act_sent(struct intel_dp *intel=
+_dp)
+> > >  =
 
-> > > > >  	intel_dp_print_rates(intel_dp);
-> > > > >  =
+> > >  	intel_de_write(i915, intel_dp->regs.dp_tp_status,
+> > >  		       DP_TP_STATUS_ACT_SENT);
+> > > +
+> > > +	drm_dp_clear_payload_status(&intel_dp->mst_mgr);
+> > >  }
+> > >  =
 
-> > > > > -	/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
-> > > > > -	if (INTEL_GEN(dev_priv) >=3D 11)
-> > > > > -		intel_dp_get_dsc_sink_cap(intel_dp);
-> > > > > -
-> > > > > -	intel_dp_configure_mst(intel_dp);
-> > > > > -
-> > > > >  	if (intel_dp->is_mst) {
-> > > > >  		/*
-> > > > >  		 * If we are in MST mode then this connector
-> > > > > -- =
+> > >  static void wait_for_act_sent(struct intel_dp *intel_dp)
+> > > diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst=
+_helper.h
+> > > index 8b9eb4db3381..2facb87624bf 100644
+> > > --- a/include/drm/drm_dp_mst_helper.h
+> > > +++ b/include/drm/drm_dp_mst_helper.h
+> > > @@ -763,6 +763,8 @@ int drm_dp_find_vcpi_slots(struct drm_dp_mst_topo=
+logy_mgr *mgr,
+> > >  			   int pbn);
+> > >  =
 
-> > > > > 2.23.1
-> > > > =
+> > >  =
 
-> > > > -- =
+> > > +int drm_dp_clear_payload_status(struct drm_dp_mst_topology_mgr *mgr);
+> > > +
+> > >  int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mgr);
+> > >  =
 
-> > > > Ville Syrj=E4l=E4
-> > > > Intel
+> > >  =
+
+> > > -- =
+
+> > > 2.23.1
 > > =
 
 > > -- =
