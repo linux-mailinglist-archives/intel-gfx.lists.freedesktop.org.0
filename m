@@ -1,45 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ACA81FB602
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 17:22:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C62A61FB635
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 17:33:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D42F6E8EA;
-	Tue, 16 Jun 2020 15:22:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20C436E7F1;
+	Tue, 16 Jun 2020 15:33:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1C4C6E8EA
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 15:22:55 +0000 (UTC)
-IronPort-SDR: HM6TIHVRHqyzMhYl+OBec/nf5tcmufanP03+ec+yeXhdwK7viGhKUrtk5WYUGdF/7BznybcEbK
- musBAUwpvD1g==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 08:22:55 -0700
-IronPort-SDR: odVBUAhXD0Vkw2+qrRjgV5yW19mVazCibDOC10PX8/MilqAbkPX1s4wtTMMlT1ix6htl5CmcAW
- jfuMq8pbKsng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="261454674"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 16 Jun 2020 08:22:53 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Jun 2020 18:22:51 +0300
-Date: Tue, 16 Jun 2020 18:22:51 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200616152251.GW6112@intel.com>
-References: <20200616141855.746-1-imre.deak@intel.com>
- <20200616141855.746-2-imre.deak@intel.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94BFB6E83C;
+ Tue, 16 Jun 2020 14:49:33 +0000 (UTC)
+Received: from embeddedor (unknown [189.207.59.248])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 82ED0208B3;
+ Tue, 16 Jun 2020 14:49:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1592318973;
+ bh=ovSysk6kOqKTv082hockt1TpSKGLzWO2f3kVdMiM78o=;
+ h=Date:From:To:Cc:Subject:From;
+ b=loYJF9f7xfeyaBWVBmiXz3O8oEAEuwPE8LD1LEc01/05HTs9EHi54G2MNShbF+4x6
+ GzSFw2VZCxY5rpp+mqH0wnwRznSKF8IqqQP5JC2g7fzuum4louloudFhn08jJevpDG
+ Vel8U2AphFpDC2kHy71bI/PtRONOMefkJYCBStKs=
+Date: Tue, 16 Jun 2020 09:54:52 -0500
+From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200616145452.GA25291@embeddedor>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200616141855.746-2-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/dp_mst: Disable link training
- fallback on MST links
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Mailman-Approved-At: Tue, 16 Jun 2020 15:33:37 +0000
+Subject: [Intel-gfx] [PATCH][next] drm/i915/selftests: Fix inconsistent
+ IS_ERR and PTR_ERR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,121 +51,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 16, 2020 at 05:18:51PM +0300, Imre Deak wrote:
-> We calculate the MST available bandwidth using the link's maximum rate
-> and lane count. This bandwidth won't be recalculated in response to a
+Fix inconsistent IS_ERR and PTR_ERR in live_timeslice_nopreempt().
 
-Thw wording here is a bit ambiguousr as to who "we" is, and what exactly
-"link's maximum rate and lane count". I would try to clarify a bit that
-it's drm_dp_mst_topology.c who is mostly in error here by directly
-interpreting the max data rate/lanes from the DPCD.
+The proper pointer to be passed as argument to PTR_ERR() is ce.
 
-Althoguh the i915 code is not wihtout faults, as it lacks any logic
-to modeset all the MST streams for this link when the link params
-change (except on tgl+ where the master/slave stuff should force
-all streams to do a modeset anyway).
+This bug was detected with the help of Coccinelle.
 
-> link training error and fallback setting, so modesets following a link
-> training error will calculate incorrect timing parameters (like the
-> transcoder's data M/N params or the number of MST TUs).
-> =
+Fixes: b72f02d78e4f ("drm/i915/gt: Prevent timeslicing into unpreemptable requests")
+Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+---
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> Prevent the above problem by disabling the link training fallback on MST
-> links for now, until the MST compute config can deal with changing link
-> parameters.
-> =
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 91543494f595..393339de0910 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -1337,7 +1337,7 @@ static int live_timeslice_nopreempt(void *arg)
+ 
+ 		ce = intel_context_create(engine);
+ 		if (IS_ERR(ce)) {
+-			err = PTR_ERR(rq);
++			err = PTR_ERR(ce);
+ 			goto out_spin;
+ 		}
+ 
+-- 
+2.27.0
 
-> The misconfigured timing lead at least to a
-> 'Timed out waiting for DP idle patterns'
-> error.
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 25 ++++++++++++++++++-------
->  1 file changed, 18 insertions(+), 7 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 42589cae766d..c585b002783a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -468,6 +468,13 @@ int intel_dp_get_link_train_fallback_values(struct i=
-ntel_dp *intel_dp,
->  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
->  	int index;
->  =
-
-> +	/*
-> +	 * TODO: Enable fallback on MST links once MST link compute can handle
-> +	 * the fallback params.
-> +	 */
-> +	if (intel_dp->is_mst)
-> +		return -1;
-
-Should we duplicate the drm_error() from the other path here maybe?
-
-> +
->  	index =3D intel_dp_rate_index(intel_dp->common_rates,
->  				    intel_dp->num_common_rates,
->  				    link_rate);
-> @@ -6163,7 +6170,17 @@ intel_dp_detect(struct drm_connector *connector,
->  		goto out;
->  	}
->  =
-
-> -	if (intel_dp->reset_link_params) {
-> +	/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
-> +	if (INTEL_GEN(dev_priv) >=3D 11)
-> +		intel_dp_get_dsc_sink_cap(intel_dp);
-> +
-> +	intel_dp_configure_mst(intel_dp);
-> +
-> +	/*
-> +	 * TODO: Reset link params when switching to MST mode, until MST
-> +	 * supports link training fallback params.
-> +	 */
-> +	if (intel_dp->reset_link_params || intel_dp->is_mst) {
-
-/me confused. Why do we need to touch this code?
-
->  		/* Initial max link lane count */
->  		intel_dp->max_link_lane_count =3D intel_dp_max_common_lane_count(intel=
-_dp);
->  =
-
-> @@ -6175,12 +6192,6 @@ intel_dp_detect(struct drm_connector *connector,
->  =
-
->  	intel_dp_print_rates(intel_dp);
->  =
-
-> -	/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
-> -	if (INTEL_GEN(dev_priv) >=3D 11)
-> -		intel_dp_get_dsc_sink_cap(intel_dp);
-> -
-> -	intel_dp_configure_mst(intel_dp);
-> -
->  	if (intel_dp->is_mst) {
->  		/*
->  		 * If we are in MST mode then this connector
-> -- =
-
-> 2.23.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
