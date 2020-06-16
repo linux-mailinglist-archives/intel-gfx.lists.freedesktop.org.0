@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 571091FBD66
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 19:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 657B51FBD83
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 20:04:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7B976E92A;
-	Tue, 16 Jun 2020 17:58:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90C516E95C;
+	Tue, 16 Jun 2020 18:04:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F1FF96E92A;
- Tue, 16 Jun 2020 17:58:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 61D486E957;
+ Tue, 16 Jun 2020 18:04:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ECA1CA00CC;
- Tue, 16 Jun 2020 17:58:39 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5B2B9A00E6;
+ Tue, 16 Jun 2020 18:04:50 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shaofeng Tang" <shaofeng.tang@intel.com>
-Date: Tue, 16 Jun 2020 17:58:39 -0000
-Message-ID: <159233031994.4598.17487090911055330606@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 16 Jun 2020 18:04:50 -0000
+Message-ID: <159233069034.4595.8564515414778788292@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <1592296160-3784-1-git-send-email-shaofeng.tang@intel.com>
-In-Reply-To: <1592296160-3784-1-git-send-email-shaofeng.tang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/gvt=3A_query_if_vgpu_is_active_via_GETPARAM_IOCTL?=
+References: <20200616084141.3722-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200616084141.3722-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/9=5D_drm/i915/selftests=3A_Exerci?=
+ =?utf-8?q?se_far_preemption_rollbacks?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,34 +41,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZ3Z0OiBxdWVyeSBpZiB2Z3B1
-IGlzIGFjdGl2ZSB2aWEgR0VUUEFSQU0gSU9DVEwKVVJMICAgOiBodHRwczovL3BhdGNod29yay5m
-cmVlZGVza3RvcC5vcmcvc2VyaWVzLzc4NDA5LwpTdGF0ZSA6IGZhaWx1cmUKCj09IFN1bW1hcnkg
-PT0KCkNBTEwgICAgc2NyaXB0cy9jaGVja3N5c2NhbGxzLnNoCiAgQ0FMTCAgICBzY3JpcHRzL2F0
-b21pYy9jaGVjay1hdG9taWNzLnNoCiAgREVTQ0VORCAgb2JqdG9vbAogIENISyAgICAgaW5jbHVk
-ZS9nZW5lcmF0ZWQvY29tcGlsZS5oCiAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X2dldHBhcmFtLm8KZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZXRwYXJhbS5jOiBJbiBmdW5j
-dGlvbiDigJhpOTE1X2dldHBhcmFtX2lvY3Rs4oCZOgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X2dldHBhcmFtLmM6MTY1OjExOiBlcnJvcjogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rp
-b24g4oCYaW50ZWxfdmdwdV9hY3RpdmXigJk7IGRpZCB5b3UgbWVhbiDigJhpbnRlbF92dGRfYWN0
-aXZl4oCZPyBbLVdlcnJvcj1pbXBsaWNpdC1mdW5jdGlvbi1kZWNsYXJhdGlvbl0KICAgdmFsdWUg
-PSBpbnRlbF92Z3B1X2FjdGl2ZShpOTE1KTsKICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fgog
-ICAgICAgICAgIGludGVsX3Z0ZF9hY3RpdmUKY2MxOiBhbGwgd2FybmluZ3MgYmVpbmcgdHJlYXRl
-ZCBhcyBlcnJvcnMKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyODA6IHJlY2lwZSBmb3IgdGFyZ2V0
-ICdkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dldHBhcmFtLm8nIGZhaWxlZAptYWtlWzRdOiAq
-KiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2V0cGFyYW0ub10gRXJyb3IgMQpzY3JpcHRz
-L01ha2VmaWxlLmJ1aWxkOjQ5NzogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybS9p
-OTE1JyBmYWlsZWQKbWFrZVszXTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkxNV0gRXJyb3IgMgpz
-Y3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5NzogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1
-L2RybScgZmFpbGVkCm1ha2VbMl06ICoqKiBbZHJpdmVycy9ncHUvZHJtXSBFcnJvciAyCnNjcmlw
-dHMvTWFrZWZpbGUuYnVpbGQ6NDk3OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUnIGZh
-aWxlZAptYWtlWzFdOiAqKiogW2RyaXZlcnMvZ3B1XSBFcnJvciAyCk1ha2VmaWxlOjE3NjQ6IHJl
-Y2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzJyBmYWlsZWQKbWFrZTogKioqIFtkcml2ZXJzXSBFcnJv
-ciAyCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
-bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: series starting with [1/9] drm/i915/selftests: Exercise far preemption rollbacks
+URL   : https://patchwork.freedesktop.org/series/78410/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+49d66c60e62f drm/i915/selftests: Exercise far preemption rollbacks
+-:19: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit e36ba817fa96 ("drm/i915/gt: Incrementally check for rewinding")'
+#19: 
+References: e36ba817fa96 ("drm/i915/gt: Incrementally check for rewinding")
+
+total: 1 errors, 0 warnings, 0 checks, 162 lines checked
+c6088929414a drm/i915/selftests: Use friendly request names for live_timeslice_rewind
+110ee4d71849 drm/i915/selftests: Enable selftesting of busy-stats
+-:58: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#58: FILE: drivers/gpu/drm/i915/gt/selftest_engine_pm.c:48:
++		udelay(100);
+
+-:89: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#89: FILE: drivers/gpu/drm/i915/gt/selftest_engine_pm.c:79:
++		udelay(100);
+
+total: 0 errors, 0 warnings, 2 checks, 117 lines checked
+16284702446a drm/i915/execlists: Replace direct submit with direct call to tasklet
+81ca04a94781 drm/i915/execlists: Defer schedule_out until after the next dequeue
+-:117: CHECK:SPACING: spaces preferred around that '*' (ctx:ExV)
+#117: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:2441:
++				*execlists->inactive++ = *port;
+ 				^
+
+total: 0 errors, 0 warnings, 1 checks, 179 lines checked
+499dd7003551 drm/i915/gt: ce->inflight updates are now serialised
+2f30d63c06b7 drm/i915/gt: Drop atomic for engine->fw_active tracking
+ef92526598ab drm/i915/gt: Extract busy-stats for ring-scheduler
+-:12: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#12: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 95 lines checked
+480f3ff83a82 drm/i915/gt: Convert stats.active to plain unsigned int
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
