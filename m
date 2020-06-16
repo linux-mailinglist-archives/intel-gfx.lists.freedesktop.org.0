@@ -2,42 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 055911FBD08
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 19:34:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 571091FBD66
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2020 19:58:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45D866E37C;
-	Tue, 16 Jun 2020 17:34:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7B976E92A;
+	Tue, 16 Jun 2020 17:58:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2D3C6E366
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jun 2020 17:34:10 +0000 (UTC)
-IronPort-SDR: yqs5hs+DTvKd16nCHDJ3UGia8o8pJkrs3fvJpxUYC1SeMFXCvrAwbQjCyWF57O0zobCGKJhcpt
- fy25YoNTI17A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 10:34:10 -0700
-IronPort-SDR: QH/u7cFaS3X4bXeZAu7LR63oaXL8h/kHBDEt43+fz5ng70Xu8xf2LnPDVqbWkbwECKL/UsFs1m
- ORdS08BSwHJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="291142386"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 16 Jun 2020 10:34:08 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Jun 2020 20:34:07 +0300
-Date: Tue, 16 Jun 2020 20:34:07 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>
-Message-ID: <20200616173407.GI6112@intel.com>
-References: <20200616163406.27387-1-matthew.s.atwood@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F1FF96E92A;
+ Tue, 16 Jun 2020 17:58:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id ECA1CA00CC;
+ Tue, 16 Jun 2020 17:58:39 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200616163406.27387-1-matthew.s.atwood@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Apply Wa_14011264657:gen11+
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shaofeng Tang" <shaofeng.tang@intel.com>
+Date: Tue, 16 Jun 2020 17:58:39 -0000
+Message-ID: <159233031994.4598.17487090911055330606@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <1592296160-3784-1-git-send-email-shaofeng.tang@intel.com>
+In-Reply-To: <1592296160-3784-1-git-send-email-shaofeng.tang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/gvt=3A_query_if_vgpu_is_active_via_GETPARAM_IOCTL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,169 +38,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 16, 2020 at 09:34:06AM -0700, Matt Atwood wrote:
-> Add minimum width to planes, variable with specific formats, for gen11+.
-> =
-
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 55 +++++++++++++++++---
->  1 file changed, 47 insertions(+), 8 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 7457813ef273..d4fdad6cb3b1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -3760,6 +3760,45 @@ static int glk_max_plane_width(const struct drm_fr=
-amebuffer *fb,
->  	}
->  }
->  =
-
-> +static int icl_min_plane_width(struct drm_i915_private *dev_priv,
-> +				 const struct drm_framebuffer *fb)
-> +{
-> +	/* Wa_14011264657, Wa_14011050563 */
-> +	switch (fb->format->format) {
-> +	case DRM_FORMAT_C8:
-> +		return 18;
-> +	case DRM_FORMAT_RGB565:
-> +		return 10;
-> +	case DRM_FORMAT_XRGB8888:
-> +	case DRM_FORMAT_XBGR8888:
-> +	case DRM_FORMAT_ARGB8888:
-> +	case DRM_FORMAT_ABGR8888:
-> +	case DRM_FORMAT_XRGB2101010:
-> +	case DRM_FORMAT_XBGR2101010:
-> +	case DRM_FORMAT_ARGB2101010:
-> +	case DRM_FORMAT_ABGR2101010:
-> +	case DRM_FORMAT_XVYU2101010:
-> +	case DRM_FORMAT_Y212:
-> +	case DRM_FORMAT_Y216:
-> +		return 6;
-> +	case DRM_FORMAT_NV12:
-> +		return 20;
-> +	case DRM_FORMAT_P010:
-> +	case DRM_FORMAT_P012:
-> +	case DRM_FORMAT_P016:
-> +		return 12;
-> +	case DRM_FORMAT_XRGB16161616F:
-> +	case DRM_FORMAT_XBGR16161616F:
-> +	case DRM_FORMAT_ARGB16161616F:
-> +	case DRM_FORMAT_ABGR16161616F:
-> +	case DRM_FORMAT_XVYU12_16161616:
-> +	case DRM_FORMAT_XVYU16161616:
-> +		return 4;
-> +	default:
-> +		return 1;
-> +	}
-
-if (semiplanar) {
-	switch (cpp[0]) {
-	case 1:
-		return 20;
-	case 2:
-		return 12;
-	}
-} else {
-	switch (cpp[0]) {
-	case 1:
-		return 18;
-	case 2:
-		return 10;
-	case 4:
-		return 6;
-	case 8:
-		return 4;
-	}
-}
-
-Actually if we fully reverse engineer this we are left with just:
-if (semiplanar)
-	return 16/cpp[0] + 4;
-else
-	return 16/cpp[0] + 2;
-
-I'd much prefer calculating this since then it's fully divorced from
-defining new pixel formats. Can we get a confirmation from the hw
-folks if that is in fact the formula (or if there's a different formula
-how they came up with these magic numbers)?
-
-> +}
-> +
->  static int icl_max_plane_width(const struct drm_framebuffer *fb,
->  			       int color_plane,
->  			       unsigned int rotation)
-> @@ -3831,15 +3870,15 @@ static int skl_check_main_surface(struct intel_pl=
-ane_state *plane_state)
->  	int y =3D plane_state->uapi.src.y1 >> 16;
->  	int w =3D drm_rect_width(&plane_state->uapi.src) >> 16;
->  	int h =3D drm_rect_height(&plane_state->uapi.src) >> 16;
-> -	int max_width;
-> -	int max_height;
-> -	u32 alignment;
-> -	u32 offset;
-> +	int max_width, min_width =3D 1, max_height;
-> +	u32 alignment, offset;
->  	int aux_plane =3D intel_main_to_aux_plane(fb, 0);
->  	u32 aux_offset =3D plane_state->color_plane[aux_plane].offset;
->  =
-
-> -	if (INTEL_GEN(dev_priv) >=3D 11)
-> +	if (INTEL_GEN(dev_priv) >=3D 11) {
->  		max_width =3D icl_max_plane_width(fb, 0, rotation);
-> +		min_width =3D icl_min_plane_width(dev_priv, fb);
-> +	}
->  	else if (INTEL_GEN(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-
-Missing curly braces on all the branches. Feels like dejavu...
-
-I'd also do the min_width=3D1 assignment in each branch to make it
-clear what's what.
-
->  		max_width =3D glk_max_plane_width(fb, 0, rotation);
->  	else
-> @@ -3850,10 +3889,10 @@ static int skl_check_main_surface(struct intel_pl=
-ane_state *plane_state)
->  	else
->  		max_height =3D skl_max_plane_height();
->  =
-
-> -	if (w > max_width || h > max_height) {
-> +	if (w > max_width || w < min_width || h > max_height) {
->  		drm_dbg_kms(&dev_priv->drm,
-> -			    "requested Y/RGB source size %dx%d too big (limit %dx%d)\n",
-> -			    w, h, max_width, max_height);
-> +			    "requested Y/RGB source size %dx%d outside limits (min: %dx1 max:=
- %dx%d)\n",
-> +			    w, h, min_width, max_width, max_height);
->  		return -EINVAL;
->  	}
->  =
-
-> -- =
-
-> 2.21.3
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZ3Z0OiBxdWVyeSBpZiB2Z3B1
+IGlzIGFjdGl2ZSB2aWEgR0VUUEFSQU0gSU9DVEwKVVJMICAgOiBodHRwczovL3BhdGNod29yay5m
+cmVlZGVza3RvcC5vcmcvc2VyaWVzLzc4NDA5LwpTdGF0ZSA6IGZhaWx1cmUKCj09IFN1bW1hcnkg
+PT0KCkNBTEwgICAgc2NyaXB0cy9jaGVja3N5c2NhbGxzLnNoCiAgQ0FMTCAgICBzY3JpcHRzL2F0
+b21pYy9jaGVjay1hdG9taWNzLnNoCiAgREVTQ0VORCAgb2JqdG9vbAogIENISyAgICAgaW5jbHVk
+ZS9nZW5lcmF0ZWQvY29tcGlsZS5oCiAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2dldHBhcmFtLm8KZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZXRwYXJhbS5jOiBJbiBmdW5j
+dGlvbiDigJhpOTE1X2dldHBhcmFtX2lvY3Rs4oCZOgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2dldHBhcmFtLmM6MTY1OjExOiBlcnJvcjogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rp
+b24g4oCYaW50ZWxfdmdwdV9hY3RpdmXigJk7IGRpZCB5b3UgbWVhbiDigJhpbnRlbF92dGRfYWN0
+aXZl4oCZPyBbLVdlcnJvcj1pbXBsaWNpdC1mdW5jdGlvbi1kZWNsYXJhdGlvbl0KICAgdmFsdWUg
+PSBpbnRlbF92Z3B1X2FjdGl2ZShpOTE1KTsKICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fgog
+ICAgICAgICAgIGludGVsX3Z0ZF9hY3RpdmUKY2MxOiBhbGwgd2FybmluZ3MgYmVpbmcgdHJlYXRl
+ZCBhcyBlcnJvcnMKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyODA6IHJlY2lwZSBmb3IgdGFyZ2V0
+ICdkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dldHBhcmFtLm8nIGZhaWxlZAptYWtlWzRdOiAq
+KiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2V0cGFyYW0ub10gRXJyb3IgMQpzY3JpcHRz
+L01ha2VmaWxlLmJ1aWxkOjQ5NzogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybS9p
+OTE1JyBmYWlsZWQKbWFrZVszXTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkxNV0gRXJyb3IgMgpz
+Y3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5NzogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1
+L2RybScgZmFpbGVkCm1ha2VbMl06ICoqKiBbZHJpdmVycy9ncHUvZHJtXSBFcnJvciAyCnNjcmlw
+dHMvTWFrZWZpbGUuYnVpbGQ6NDk3OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUnIGZh
+aWxlZAptYWtlWzFdOiAqKiogW2RyaXZlcnMvZ3B1XSBFcnJvciAyCk1ha2VmaWxlOjE3NjQ6IHJl
+Y2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzJyBmYWlsZWQKbWFrZTogKioqIFtkcml2ZXJzXSBFcnJv
+ciAyCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
+bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
