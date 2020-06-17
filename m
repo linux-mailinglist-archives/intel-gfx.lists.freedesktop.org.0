@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 139EF1FC319
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 02:59:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7CE71FC336
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 03:11:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 316B36EA07;
-	Wed, 17 Jun 2020 00:59:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 261FF6EA06;
+	Wed, 17 Jun 2020 01:11:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 997276E9E2;
- Wed, 17 Jun 2020 00:59:33 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 49mmtW0xJVz9sSd;
- Wed, 17 Jun 2020 10:59:31 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1592355571;
- bh=GFBSasXQo+uKQuNXeDI+CzG7gcS5dADb2nU/NU1RmL4=;
- h=Date:From:To:Cc:Subject:From;
- b=tisa0g4ZLJgX+QiU36LhpZcJNT42ogc/PRfwTOAqnU0LEQIAD9jWxS43n72ir6KvS
- 1eDE+I9Kbk8fAmWfDTYRTyG7AYY7/sZyGh+iU5+gthhJUZ+N8+j4gop48If+Nc8j2M
- Ckq+E4xAozMEQPssnMtaBDt+QvM9haHCfUF6LG6Da0ApJ8KW3XCZbUpDFL349oKOfu
- m+zStYxj16NDNpgAVAhsB5gJ24ZeJK61/gu/3Km/gf7LBu96GsYhlePcOliazbz3NE
- AcB67UNcRk7+5fpGof/j979y9Oj44Zw9Ey2aCkft2X7/+DrHheXAcs8FNZjNv7X61v
- Fc9XiKlbmR0Hw==
-Date: Wed, 17 Jun 2020 10:59:29 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20200617105929.534edd34@canb.auug.org.au>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA29C6EA06
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 01:11:14 +0000 (UTC)
+IronPort-SDR: K/KSlDMTeMx6wXLW7LNIZZYDvntkfJaikFNLxjZ8nDfhiu8ivHo37168iS7Tgg83VkzyGu2NdK
+ hXfJh1xrYiVA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 18:11:14 -0700
+IronPort-SDR: Bd/AKQI5MBiR7m9yLZTd95upU5EfjMihX8xDynzgrQTFWKIwxFkX77wy776HAyxiaZOM5BjraK
+ LnZsfq9xFJ5A==
+X-IronPort-AV: E=Sophos;i="5.73,520,1583222400"; d="scan'208";a="476650128"
+Received: from pbarbago-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.209.50.79])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2020 18:11:14 -0700
+Date: Tue, 16 Jun 2020 18:11:13 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20200617011113.o5ghzgk2ileysqrm@ldmartin-desk1>
+X-Patchwork-Hint: ignore
+References: <20200616235810.3848540-1-matthew.d.roper@intel.com>
+ <20200616235810.3848540-3-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
- tree
+Content-Disposition: inline
+In-Reply-To: <20200616235810.3848540-3-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 2/5] drm/i915/rkl: Add DPLL4 support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,106 +49,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Emil Velikov <emil.velikov@collabora.com>
-Content-Type: multipart/mixed; boundary="===============1865408493=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1865408493==
-Content-Type: multipart/signed; boundary="Sig_/MxT6_+HvYX.kK/4n6ZLF/AO";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+On Tue, Jun 16, 2020 at 04:58:07PM -0700, Matt Roper wrote:
+>Rocket Lake has a third DPLL (called 'DPLL4') that must be used to
+>enable a third display.  Unlike EHL's variant of DPLL4, the RKL variant
+>behaves the same as DPLL0/1.  And despite its name, the DPLL4 registers
+>are offset as if it were DPLL2, so no extra offset handling is needed
+>either.
+>
+>v2:
+> - Add new .update_ref_clks() hook.
+>
+>Bspec: 49202
+>Bspec: 49443
+>Bspec: 50288
+>Bspec: 50289
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 29 +++++++++++++++++--
+> 1 file changed, 26 insertions(+), 3 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>index b45185b80bec..b5f4d4cef682 100644
+>--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>@@ -3506,13 +3506,19 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
+> 		return false;
+> 	}
+>
+>-	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
+>+	if (IS_ROCKETLAKE(dev_priv)) {
+> 		dpll_mask =
+> 			BIT(DPLL_ID_EHL_DPLL4) |
+> 			BIT(DPLL_ID_ICL_DPLL1) |
+> 			BIT(DPLL_ID_ICL_DPLL0);
 
---Sig_/MxT6_+HvYX.kK/4n6ZLF/AO
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+I don't think that is sufficient. As you said in the commit message,
+here DPLL4 are much like DPLL0, DPLL1 rather than the special treatment
+it has in EHL.
 
-Hi all,
+That means we need to update the places making use of it. Example:
+TGL_DPLL_CFGCR0()
+TGL_DPLL_CFGCR1()
 
-After merging the drm-misc tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
+The way it is now, it would basically be using the address
+0x16429C / 0x1642A0 that are actually for TBT
 
-drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c: In function 'amdgpu_amdkf=
-d_gpuvm_free_memory_of_gpu':
-drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c:1357:2: error: implicit de=
-claration of function 'drm_gem_object_put_unlocked'; did you mean 'drm_gem_=
-object_put_locked'? [-Werror=3Dimplicit-function-declaration]
- 1357 |  drm_gem_object_put_unlocked(&mem->bo->tbo.base);
-      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |  drm_gem_object_put_locked
 
-Caused by commit
+Looking at bspec 50288, it seems we should reorder the IDs to be
+DPLL0, DPLL1, DPLL4, TBTPLL. Then we can go back and use _MMIO_PLL()
+rather than _MMIO_PLL3(). There is even a "TODO" in the right place in
+the source code for that, although I don't remember if in TGL it has any
+special. I think we never added it for TGL just because with 2 combo
+ports you will never need 3 PLLs.
 
-  ab15d56e27be ("drm: remove transient drm_gem_object_put_unlocked()")
+Lucas De Marchi
 
-interacting with commit
-
-  fd9a9f8801de ("drm/amdgpu: Use GEM obj reference for KFD BOs")
-
-from Linus' tree.
-
-I have applied the following merge fix up patch for today.
-
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-Date: Wed, 17 Jun 2020 10:55:32 +1000
-Subject: [PATCH] drm/amdgpu: remove stray drm_gem_object_put_unlocked
-
-Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index b91b5171270f..9015c7b76d60 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -1354,7 +1354,7 @@ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
- 	}
-=20
- 	/* Free the BO*/
--	drm_gem_object_put_unlocked(&mem->bo->tbo.base);
-+	drm_gem_object_put(&mem->bo->tbo.base);
- 	mutex_destroy(&mem->lock);
- 	kfree(mem);
-=20
---=20
-2.26.2
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/MxT6_+HvYX.kK/4n6ZLF/AO
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl7pavEACgkQAVBC80lX
-0GzgoAf+Nw2Z91LEhAIuWthscZ3FUv247hC1EDpWFk0MKhUpIcihVubiiShVF9Kb
-7MssDXDyYaXRPkeMRHdP359SDpcoixOJtTUjKt0PF8PlReWTD/DludpGSQzPVBvc
-rUHMaW4yvzEOhCpaBr2/JhiTCldajXoyukUZhF7tm13aYvlJGtJLGcW0nvr5vT6z
-tLIVFM2B4SFyM08qf3vEJY/CRsBxpNWHGXnsPYDoGtQDrFygpqhJVa0oY0geCSoi
-FyAn3flNWJPP4H6RUYKPoHw20pQ38FOHX2L5eews5Zq+uZWMLV4AlnjFPVZ92p+A
-I4UosxsUfqXshjy3wsa1EHxO+ptreg==
-=zGIh
------END PGP SIGNATURE-----
-
---Sig_/MxT6_+HvYX.kK/4n6ZLF/AO--
-
---===============1865408493==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>-	else
+>+	} else if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A) {
+>+		dpll_mask =
+>+			BIT(DPLL_ID_EHL_DPLL4) |
+>+			BIT(DPLL_ID_ICL_DPLL1) |
+>+			BIT(DPLL_ID_ICL_DPLL0);
+>+	} else {
+> 		dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
+>+	}
+>
+> 	port_dpll->pll = intel_find_shared_dpll(state, crtc,
+> 						&port_dpll->hw_state,
+>@@ -4275,6 +4281,21 @@ static const struct intel_dpll_mgr tgl_pll_mgr = {
+> 	.dump_hw_state = icl_dump_hw_state,
+> };
+>
+>+static const struct dpll_info rkl_plls[] = {
+>+	{ "DPLL 0", &combo_pll_funcs, DPLL_ID_ICL_DPLL0, 0 },
+>+	{ "DPLL 1", &combo_pll_funcs, DPLL_ID_ICL_DPLL1, 0 },
+>+	{ "DPLL 4", &combo_pll_funcs, DPLL_ID_EHL_DPLL4, 0 },
+>+	{ },
+>+};
+>+
+>+static const struct intel_dpll_mgr rkl_pll_mgr = {
+>+	.dpll_info = rkl_plls,
+>+	.get_dplls = icl_get_dplls,
+>+	.put_dplls = icl_put_dplls,
+>+	.update_ref_clks = icl_update_dpll_ref_clks,
+>+	.dump_hw_state = icl_dump_hw_state,
+>+};
+>+
+> /**
+>  * intel_shared_dpll_init - Initialize shared DPLLs
+>  * @dev: drm device
+>@@ -4288,7 +4309,9 @@ void intel_shared_dpll_init(struct drm_device *dev)
+> 	const struct dpll_info *dpll_info;
+> 	int i;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (IS_ROCKETLAKE(dev_priv))
+>+		dpll_mgr = &rkl_pll_mgr;
+>+	else if (INTEL_GEN(dev_priv) >= 12)
+> 		dpll_mgr = &tgl_pll_mgr;
+> 	else if (IS_ELKHARTLAKE(dev_priv))
+> 		dpll_mgr = &ehl_pll_mgr;
+>-- 
+>2.24.1
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1865408493==--
