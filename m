@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 762921FC787
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 09:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 410501FC7DD
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 09:48:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBFBA6E122;
-	Wed, 17 Jun 2020 07:35:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F0456E131;
+	Wed, 17 Jun 2020 07:48:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 865566E122
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 07:35:50 +0000 (UTC)
-IronPort-SDR: P/C1BnyXyykx5ymfu+qDL6venKpn34Bu1A9lWlrNK1Kef6Fbp8dd3+EBxWsyLY3bx6abTbyS72
- u8A4GVZ4FVzQ==
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E3516E131
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 07:48:48 +0000 (UTC)
+IronPort-SDR: x6tX6hXjWqMkYyC3mSVKD/YzX8CtsyXEtGCVmN47iRxzM0tvIjfP5/ELT00hPEXtjMzGNZDYX5
+ iVl+SPWlKuPQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2020 00:35:50 -0700
-IronPort-SDR: ZiThX53tEl6JAuoNZRsAFDUs5hT3EW0NMr7InHcK3fD52939ypmsdhskaJUY3fWJPlbiNOgmsS
- nN4IE0EI1h5Q==
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2020 00:48:48 -0700
+IronPort-SDR: 0YX5a3yJs14smBOe3JnmpqOCg2A2E/OE8A25o7FiP4Fhx7++aQg4lzg26SHJ8LNaUK9576ZeY5
+ kQLmF//6m1Zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,521,1583222400"; d="scan'208";a="262475186"
+X-IronPort-AV: E=Sophos;i="5.73,521,1583222400"; d="scan'208";a="421048623"
 Received: from joeydesktop.sh.intel.com ([10.239.53.104])
- by orsmga007.jf.intel.com with ESMTP; 17 Jun 2020 00:35:44 -0700
+ by orsmga004.jf.intel.com with ESMTP; 17 Jun 2020 00:48:46 -0700
 From: Shaofeng Tang <shaofeng.tang@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Jun 2020 15:41:40 +0800
-Message-Id: <20200617074140.17032-1-shaofeng.tang@intel.com>
+Date: Wed, 17 Jun 2020 15:54:40 +0800
+Message-Id: <20200617075440.6913-1-shaofeng.tang@intel.com>
 X-Mailer: git-send-email 2.9.2
 In-Reply-To: <otc-external>
 References: <otc-external>
@@ -130,8 +130,7 @@ index 2813e57..ecaad82 100644
 -- 
 2.9.2
 
-base-commit: a4136c4aa44855a8301f32fd4db5bde84ebb8e89
-prerequisite-patch-id: 7ee5af51de7b25a7f547e64696dc813062e2299b
+base-commit: 999bc17a2471df17a3af3001d094cf6d5d4849b0
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
