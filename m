@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A401FCADA
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 12:27:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6315E1FCB37
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 12:46:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16E2A6E879;
-	Wed, 17 Jun 2020 10:27:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C0AD6E889;
+	Wed, 17 Jun 2020 10:46:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9363C6E879
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 10:27:52 +0000 (UTC)
-IronPort-SDR: 0nHQ3ate+4QLmVYmxxyMkGJtMoBrvXO7zBfEBzye5GhH2on5f/Zwu/Iztg2fODvraB1BOCi+aO
- UkJ9iOWiSQkQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2020 03:27:51 -0700
-IronPort-SDR: xiwAM+H7uhQ+C76LIuJfNl+8S1/foGOP+LMYBjWCSOSoJb2AYsgA05GKWVjpG/M3e5FejnR3lo
- elGwwEkt6VNw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,522,1583222400"; d="scan'208";a="309435324"
-Received: from unknown (HELO intel.com) ([10.223.74.178])
- by fmsmga002.fm.intel.com with ESMTP; 17 Jun 2020 03:27:50 -0700
-Date: Wed, 17 Jun 2020 15:47:15 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200617101714.GM14085@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E796E6E889
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 10:46:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21523346-1500050 for multiple; Wed, 17 Jun 2020 11:46:17 +0100
+MIME-Version: 1.0
+In-Reply-To: <20200617101714.GM14085@intel.com>
 References: <20200617095001.19220-1-anshuman.gupta@intel.com>
  <159238873248.19488.1166033909635410870@build.alporthouse.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <159238873248.19488.1166033909635410870@build.alporthouse.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+ <20200617101714.GM14085@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <159239077681.19488.15781759768532189029@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Wed, 17 Jun 2020 11:46:16 +0100
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: POWER_DOMAIN_AUDIO ref-count
  debug logs
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -55,22 +47,23 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-06-17 at 11:12:12 +0100, Chris Wilson wrote:
-> Quoting Anshuman Gupta (2020-06-17 10:50:01)
-> > Debug print for power domain audio get/put.
-> > This will help to deubg the CI s2idle incomplete
-> > failures.
-> 
-> Do we not already print the mismatching pm, and who we are unable to
-> find a corresponding release for?
-Thanks Chris for review comment,
-Yes it is there, but POWER_DOMAIN_AUDIO get/put request initiated by
-snd_audio along with i915. So in order to confirm if it is a bug from
-snd_audio module we would require to track the get/put resuest from
-snd_audio.
-Thanks,
-Anshuman Gupta.
-> -Chris
+Quoting Anshuman Gupta (2020-06-17 11:17:15)
+> On 2020-06-17 at 11:12:12 +0100, Chris Wilson wrote:
+> > Quoting Anshuman Gupta (2020-06-17 10:50:01)
+> > > Debug print for power domain audio get/put.
+> > > This will help to deubg the CI s2idle incomplete
+> > > failures.
+> > 
+> > Do we not already print the mismatching pm, and who we are unable to
+> > find a corresponding release for?
+> Thanks Chris for review comment,
+> Yes it is there, but POWER_DOMAIN_AUDIO get/put request initiated by
+> snd_audio along with i915. So in order to confirm if it is a bug from
+> snd_audio module we would require to track the get/put resuest from
+> snd_audio.
+
+But we are, see the cookie.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
