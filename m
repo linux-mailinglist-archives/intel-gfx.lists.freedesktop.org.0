@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DE081FD2F9
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 18:58:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AA311FD323
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 19:07:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A40F56E98E;
-	Wed, 17 Jun 2020 16:58:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABD9F6E9C8;
+	Wed, 17 Jun 2020 17:07:54 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A755A6E121
- for <Intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 16:58:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73F316E9DB
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 17:07:52 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21527991-1500050 for multiple; Wed, 17 Jun 2020 17:58:22 +0100
+ 21528150-1500050 for multiple; Wed, 17 Jun 2020 18:07:23 +0100
 MIME-Version: 1.0
-In-Reply-To: <20200617160120.16555-4-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20200617160120.16555-8-tvrtko.ursulin@linux.intel.com>
 References: <20200617160120.16555-1-tvrtko.ursulin@linux.intel.com>
- <20200617160120.16555-4-tvrtko.ursulin@linux.intel.com>
+ <20200617160120.16555-8-tvrtko.ursulin@linux.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Intel-gfx@lists.freedesktop.org,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <159241310169.19488.4644166988486362775@build.alporthouse.com>
+Message-ID: <159241364264.19488.3379036675234090722@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Wed, 17 Jun 2020 17:58:21 +0100
-Subject: Re: [Intel-gfx] [PATCH i-g-t 03/10] gem_wsim: Show workload timing
- stats
+Date: Wed, 17 Jun 2020 18:07:22 +0100
+Subject: Re: [Intel-gfx] [PATCH i-g-t 07/10] gem_wsim: Log max and active
+ working set sizes in verbose mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,75 +46,141 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-06-17 17:01:13)
+Quoting Tvrtko Ursulin (2020-06-17 17:01:17)
 > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
-> Show average/min/max workload iteration and dropped period stats when 'p'
-> command is used.
+> It is useful to know how much memory workload is allocating.
 > 
 > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > ---
->  benchmarks/gem_wsim.c | 19 +++++++++++++++----
->  1 file changed, 15 insertions(+), 4 deletions(-)
+>  benchmarks/gem_wsim.c | 100 +++++++++++++++++++++++++++++++++++++++---
+>  1 file changed, 95 insertions(+), 5 deletions(-)
 > 
 > diff --git a/benchmarks/gem_wsim.c b/benchmarks/gem_wsim.c
-> index 9e5bfe6a36d4..60982cb73ba7 100644
+> index 025385a144b8..96ee923fb699 100644
 > --- a/benchmarks/gem_wsim.c
 > +++ b/benchmarks/gem_wsim.c
-> @@ -2101,7 +2101,8 @@ static void *run_workload(void *data)
->         struct w_step *w;
->         int throttle = -1;
->         int qd_throttle = -1;
-> -       int count;
-> +       int count, missed = 0;
-> +       unsigned long time_tot = 0, time_min = ULONG_MAX, time_max = 0;
->         int i;
+> @@ -852,7 +852,8 @@ static uint64_t engine_list_mask(const char *_str)
+>         return mask;
+>  }
 >  
->         clock_gettime(CLOCK_MONOTONIC, &t_start);
-> @@ -2121,12 +2122,19 @@ static void *run_workload(void *data)
->                                 do_sleep = w->delay;
->                         } else if (w->type == PERIOD) {
->                                 struct timespec now;
-> +                               int elapsed;
+> -static void allocate_working_set(struct workload *wrk, struct working_set *set);
+> +static unsigned long
+> +allocate_working_set(struct workload *wrk, struct working_set *set);
 >  
->                                 clock_gettime(CLOCK_MONOTONIC, &now);
-> -                               do_sleep = w->period -
-> -                                          elapsed_us(&wrk->repeat_start, &now);
-> +                               elapsed = elapsed_us(&wrk->repeat_start, &now);
-> +                               do_sleep = w->period - elapsed;
-> +                               time_tot += elapsed;
-> +                               if (elapsed < time_min)
-> +                                       time_min = elapsed;
-> +                               if (elapsed > time_max)
-> +                                       time_max = elapsed;
-
-Keep the running average?
-
->                                 if (do_sleep < 0) {
-> -                                       if (verbose > 1)
-> +                                       missed++;
-> +                                       if (verbose > 2)
->                                                 printf("%u: Dropped period @ %u/%u (%dus late)!\n",
->                                                        wrk->id, count, i, do_sleep);
->                                         continue;
-> @@ -2280,6 +2288,9 @@ static void *run_workload(void *data)
->                 printf("%c%u: %.3fs elapsed (%d cycles, %.3f workloads/s).",
->                        wrk->background ? ' ' : '*', wrk->id,
->                        t, count, count / t);
-> +               if (time_tot)
-> +                       printf(" Time avg/min/max=%lu/%lu/%luus; %u missed.",
-> +                              time_tot / count, time_min, time_max, missed);
->                 putchar('\n');
+>  static long __duration(long dur, double scale)
+>  {
+> @@ -1270,8 +1271,14 @@ add_step:
+>          * Allocate shared working sets.
+>          */
+>         for (i = 0, w = wrk->steps; i < wrk->nr_steps; i++, w++) {
+> -               if (w->type == WORKINGSET && w->working_set.shared)
+> -                       allocate_working_set(wrk, &w->working_set);
+> +               if (w->type == WORKINGSET && w->working_set.shared) {
+> +                       unsigned long total =
+> +                               allocate_working_set(wrk, &w->working_set);
+> +
+> +                       if (verbose > 1)
+> +                               printf("%u: %lu bytes in shared working set %u\n",
+> +                                      wrk->id, total, w->working_set.id);
+> +               }
 >         }
+
+The total total might be nice; although that doesn't reflect usage so
+might be misleading as to what is the active RSS is at any time.
+  
+>         wrk->max_working_set_id = -1;
+> @@ -1731,8 +1738,10 @@ get_buffer_size(struct workload *wrk, const struct work_buffer_size *sz)
+>                        (sz->max + 1 - sz->min);
+>  }
 >  
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
+> -static void allocate_working_set(struct workload *wrk, struct working_set *set)
+> +static unsigned long
+> +allocate_working_set(struct workload *wrk, struct working_set *set)
+>  {
+> +       unsigned long total = 0;
+>         unsigned int i;
+>  
+>         set->handles = calloc(set->nr, sizeof(*set->handles));
+> @@ -1741,7 +1750,82 @@ static void allocate_working_set(struct workload *wrk, struct working_set *set)
+>         for (i = 0; i < set->nr; i++) {
+>                 set->sizes[i].size = get_buffer_size(wrk, &set->sizes[i]);
+>                 set->handles[i] = alloc_bo(fd, set->sizes[i].size);
+> +               total += set->sizes[i].size;
+> +       }
+> +
+> +       return total;
+> +}
+> +
+> +static bool
+> +find_dep(struct dep_entry *deps, unsigned int nr, struct dep_entry dep)
+> +{
+> +       unsigned int i;
+> +
+> +       for (i = 0; i < nr; i++) {
+> +               if (deps[i].working_set == dep.working_set &&
+> +                   deps[i].target == dep.target)
+> +                       return true;
+>         }
+> +
+> +       return false;
+> +}
+> +
+> +static void measure_active_set(struct workload *wrk)
+> +{
+> +       unsigned long total = 0, batch_sizes = 0;
+> +       struct dep_entry *deps = NULL;
+> +       unsigned int nr = 0, i, j;
+> +       struct w_step *w;
+> +
+> +       if (verbose < 3)
+> +               return;
+> +
+> +       for (i = 0, w = wrk->steps; i < wrk->nr_steps; i++, w++) {
+> +               if (w->type != BATCH)
+> +                       continue;
+> +
+> +               batch_sizes += w->bb_sz;
+> +
+> +               for (j = 0; j < w->data_deps.nr; j++) {
+> +                       struct dep_entry *dep = &w->data_deps.list[j];
+> +                       struct dep_entry _dep = *dep;
+> +
+> +                       if (dep->working_set == -1 && dep->target < 0) {
+> +                               int idx = w->idx + dep->target;
+> +
+> +                               igt_assert(idx >= 0 && idx < w->idx);
+> +                               igt_assert(wrk->steps[idx].type == BATCH);
+> +
+> +                               _dep.target = wrk->steps[idx].obj[0].handle;
+> +                       }
+> +
+> +                       if (!find_dep(deps, nr, _dep)) {
+> +                               if (dep->working_set == -1) {
+> +                                       total += 4096;
+> +                               } else {
+> +                                       struct working_set *set;
+> +
+> +                                       igt_assert(dep->working_set <=
+> +                                                  wrk->max_working_set_id);
+> +
+> +                                       set = wrk->working_sets[dep->working_set];
+> +                                       igt_assert(set->nr);
+> +                                       igt_assert(dep->target < set->nr);
+> +                                       igt_assert(set->sizes[dep->target].size);
+> +
+> +                                       total += set->sizes[dep->target].size;
+> +                               }
+> +
+> +                               deps = realloc(deps, (nr + 1) * sizeof(*deps));
+> +                               deps[nr++] = *dep;
+> +                       }
+> +               }
+> +       }
+
+So a sum of all the unique handles used by all the steps.
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
