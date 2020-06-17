@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18FFE1FC2F3
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 02:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA8A1FC2FA
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 02:50:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A9976E9DD;
-	Wed, 17 Jun 2020 00:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91AC16E9AB;
+	Wed, 17 Jun 2020 00:50:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C8516E9BF;
- Wed, 17 Jun 2020 00:46:19 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 49mmbB5nnlz9sRR;
- Wed, 17 Jun 2020 10:46:13 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1592354777;
- bh=T7qDNiqsatPfNcwtP0ZohdxGPF6aYtQjyqHRxGYm7cU=;
- h=Date:From:To:Cc:Subject:From;
- b=pHh4NI1/wal/nqwh4V9pAygXci55K+deTqM5K75m44IbyLCOrZ9fmT9b9ila/LY5R
- cnsDjoePOqcX5jNS6gP8nU5paAMg+/KKs8lCyT1ON/WLz1YPbXTNRhCk9DPb2xbMsT
- /uPUhMrFvfXHdECDwfC7qSqBiPUKxVRMw4+3hCiGFFWXQ7cfQi2EMdx6rQ7cTE32il
- QWbZMUkdJSJ845mnOv1R8hC4YPYSwa9wctSUiGH0zAaKmQng43wQso/+hapE0CvIQB
- 0Cb08FWxF0Z7ggmpBkxuIdhRDjYmHXDD1q5+QGseZIqBZjdVcgwCTy1gEP37XUaSq3
- FMZqBfUBNbaJQ==
-Date: Wed, 17 Jun 2020 10:46:12 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20200617104612.59695467@canb.auug.org.au>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9A9856E0F9;
+ Wed, 17 Jun 2020 00:50:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 73222A00EF;
+ Wed, 17 Jun 2020 00:50:54 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- Linus' tree
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 17 Jun 2020 00:50:54 -0000
+Message-ID: <159235505443.29978.17680211880336458237@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200616233733.18050-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200616233733.18050-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Check_preemption_rollback_of_different_ring_?=
+ =?utf-8?q?queue_depths_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,78 +39,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emil Velikov <emil.velikov@collabora.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Ben Skeggs <bskeggs@redhat.com>
-Content-Type: multipart/mixed; boundary="===============0208464024=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0208464024==
-Content-Type: multipart/signed; boundary="Sig_/rikD_NWmqy+j.E+hnL9Xc1Y";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+== Series Details ==
 
---Sig_/rikD_NWmqy+j.E+hnL9Xc1Y
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Series: drm/i915/selftests: Check preemption rollback of different ring queue depths (rev2)
+URL   : https://patchwork.freedesktop.org/series/78411/
+State : success
 
-Hi all,
+== Summary ==
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
+CI Bug Log - changes from CI_DRM_8637 -> Patchwork_17972
+====================================================
 
-  drivers/gpu/drm/nouveau/nouveau_display.c
+Summary
+-------
 
-between commit:
+  **SUCCESS**
 
-  183405879255 ("drm/nouveau/kms: Remove field nvbo from struct nouveau_fra=
-mebuffer")
+  No regressions found.
 
-from Linus' tree and commit:
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/index.html
 
-  cdc194cebd71 ("drm/nouveau: remove _unlocked suffix in drm_gem_object_put=
-_unlocked")
+Known issues
+------------
 
-from the drm-misc tree.
+  Here are the changes found in Patchwork_17972 that come from known issues:
 
-I fixed it up (the former just removed one of the functions modified
-by the latter) and can carry the fix as necessary. This is now fixed as
-far as linux-next is concerned, but any non trivial conflicts should be
-mentioned to your upstream maintainer when your tree is submitted for
-merging.  You may also want to consider cooperating with the maintainer
-of the conflicting tree to minimise any particularly complex conflicts.
+### IGT changes ###
 
---=20
-Cheers,
-Stephen Rothwell
+#### Issues hit ####
 
---Sig_/rikD_NWmqy+j.E+hnL9Xc1Y
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-byt-n2820:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-byt-n2820/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-byt-n2820/igt@i915_pm_rpm@basic-pci-d3-state.html
 
------BEGIN PGP SIGNATURE-----
+  * igt@i915_pm_rpm@module-reload:
+    - fi-apl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl7pZ9QACgkQAVBC80lX
-0GyMgQf9EC+fyUxPHDxIaHdqW/A/aJmzP80NUP6WRiSVK37CRpUhsZ5vBGn4Nm0E
-XRMyhHMH6EQe5xa4wyrB/BfNdH1BTw9bwJ0NhnD4kksZxL1eyaPhA2haHhj1NigQ
-gCE2Ec6EWzXGHfy6Hd/ggpAEfdrYofYnGi53aApJl818U3U+uSdXuZrhqu/mHJEL
-rEC9xRmmVRkbiS5MaqbTReNivX/N7AH3GB8JZHi1gyfZ3iCOwck3XZtuyDocx3Kd
-UUG21mz8jn3FaHUmeGLra5+JojgFrToChWIBL32tP2UN6Qaz+etZQWLkSpcw3G3c
-XG53EMDhYBMrVUH4whMQ3vYp5KR6lQ==
-=xOTL
------END PGP SIGNATURE-----
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+    - fi-icl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
 
---Sig_/rikD_NWmqy+j.E+hnL9Xc1Y--
+  
+#### Possible fixes ####
 
---===============0208464024==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+  * igt@i915_pm_rpm@module-reload:
+    - fi-bsw-n3050:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
+    - fi-glk-dsi:         [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
 
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [INCOMPLETE][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-tgl-u2:          [DMESG-FAIL][13] ([i915#1233]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-icl-guc:         [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-icl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
+    - fi-icl-u2:          [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [SKIP][21] ([fdo#109271]) -> [DMESG-FAIL][22] ([i915#62])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([i915#62] / [i915#92]) +5 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8637/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (47 -> 42)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8637 -> Patchwork_17972
+
+  CI-20190529: 20190529
+  CI_DRM_8637: 091db6eff650d91a12485725f764bc60909344fb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5711: 90611a0c90afa4a46496c78a4faf9638a1538ac3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17972: c94fe0724411deaec7f7d5c29975200cbaa2cb9f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c94fe0724411 drm/i915/selftests: Check preemption rollback of different ring queue depths
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17972/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0208464024==--
