@@ -1,56 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE6F81FD531
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 21:09:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 480851FD5AC
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 22:00:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DF716E143;
-	Wed, 17 Jun 2020 19:09:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 585CF6E169;
+	Wed, 17 Jun 2020 20:00:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com
- [IPv6:2607:f8b0:4864:20::a2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CFAE6E143;
- Wed, 17 Jun 2020 19:09:56 +0000 (UTC)
-Received: by mail-vk1-xa2a.google.com with SMTP id e1so845583vkd.1;
- Wed, 17 Jun 2020 12:09:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=eD4bw0lGQCfL/fgr6hV02m8eAYxz9GB1Zd0qbxDAQJ4=;
- b=XRBe8Rr7OkveXmecDtX/Xwx/BpU5lBwhhcVbrpoalnm1bZ7zPj/mDE+sO9H1fjKm8S
- 0WK8Do11W4GOm/hBgpzdfMZkg1HQDYaNifUIEMvH0faExmBNgq9NVV5Vp3yaYGOig8j6
- jvk4u1TeWqnEfqYKYEDLa09ph/KY4QVwdS33iJ0FUQZVnPEKW7vK1LLrwALdWnXjojAx
- 4AdUKLFEhhGVjdUxP7Snk/1AGy3g36NJSZK698jDayOsui7sEmAyQ3Z28PN54+hO0JK0
- m6kr8SBA105mxFS2VHnpdRD5nkwMcWCliyVXfhjOY0hltcf+TkKCke2/dgGoamf7fbcb
- AXpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=eD4bw0lGQCfL/fgr6hV02m8eAYxz9GB1Zd0qbxDAQJ4=;
- b=MEuWj/Dc+H+zOPRBrgdv37ZgHeWeE/8L+lLZzjFQ7eZ3Li41wXfnWqy33KPGrllpGF
- qFfznuU+qnu3RH8gh7qPYqInuYEzurOXcsiGKsYcWlu02pJdmHSW9vev8I8VHigfWaL9
- 8C2LWSVIfkVPHypPxMtRzDdpdsnqJDNLIZfLT+1JvaQIf2CzVbiz6/FArbxbOhJxLHqx
- uoLVwWflzfmEQGy8fpG4bzvtghAGD4zuHwXDpjCh3OvtxmDn+ViJss0ndDaXrpWURoIV
- +sxeiXf6/OHB0ePIk58VSdkI/IGcp4ZY/sNMSbyCc1tPn/+IryWxSoD9RiP8tAXJtBAk
- vZZg==
-X-Gm-Message-State: AOAM533O/mYx7vEiyXDAwbZ0hNEzqjJawg/c2IRYhfp0R4wxHw0ZNDR8
- RcKuiTdW8iBgBPSpCZU3twosA3hKVjR1FopDV+s=
-X-Google-Smtp-Source: ABdhPJwtoKeRVXvgQWYI0FGFEFUVIAQMF4l4PZuS7D/IV4AQqwOs6rxLY7l/5BGZ9tRfwoRr4V6z3VuB3DyHbXX5n8I=
-X-Received: by 2002:a1f:ee81:: with SMTP id m123mr762899vkh.51.1592420995496; 
- Wed, 17 Jun 2020 12:09:55 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA96C6E169
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 20:00:39 +0000 (UTC)
+IronPort-SDR: vETnkvVc+4MKAfSk7SlPLjZ6jFRKNZF4PR90L4onMjQaFDhtC3F6rJ6Qh3qHHTeLfMSYPG4CJC
+ RdkCk5nosp7Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2020 13:00:38 -0700
+IronPort-SDR: l/LpnJ9FAyGnK9QI7ISszmklOXqxQra1/nXlPVo5aWgS5ySpBAK0hfBlm7FrN5y6RKxeIbjKiS
+ 3gtk3j5f+tsw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,523,1583222400"; d="scan'208";a="476974447"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga005.fm.intel.com with SMTP; 17 Jun 2020 13:00:38 -0700
+Date: Wed, 17 Jun 2020 13:00:38 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20200617200038.GG3680866@mdroper-desk1.amr.corp.intel.com>
+References: <20200617033100.4044428-1-matthew.d.roper@intel.com>
+ <20200617033100.4044428-3-matthew.d.roper@intel.com>
+ <20200617182258.7gwvcbf35o3pi7cz@ldmartin-desk1>
 MIME-Version: 1.0
-References: <20200617105929.534edd34@canb.auug.org.au>
- <c82b9c52-d4e6-9eef-e37d-0a26ee9f1183@suse.de>
- <20200617170307.3c87be5a@canb.auug.org.au>
-In-Reply-To: <20200617170307.3c87be5a@canb.auug.org.au>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Wed, 17 Jun 2020 20:06:11 +0100
-Message-ID: <CACvgo50Ke-7pGqpwEb8y0iYOKv7wep1qUMm8_KJvUp0fV-YHoQ@mail.gmail.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
- drm-misc tree
+Content-Disposition: inline
+In-Reply-To: <20200617182258.7gwvcbf35o3pi7cz@ldmartin-desk1>
+Subject: Re: [Intel-gfx] [PATCH v7 2/5] drm/i915/rkl: Add DPLL4 support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,46 +49,233 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Emil Velikov <emil.velikov@collabora.com>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Stephen,
+On Wed, Jun 17, 2020 at 11:22:58AM -0700, Lucas De Marchi wrote:
+> On Tue, Jun 16, 2020 at 08:30:57PM -0700, Matt Roper wrote:
+> > Rocket Lake has a third DPLL (called 'DPLL4') that must be used to
+> > enable a third display.  Unlike EHL's variant of DPLL4, the RKL variant
+> > behaves the same as DPLL0/1.  And despite its name, the DPLL4 registers
+> > are offset as if it were DPLL2.
+> > 
+> > To allow the TGL register selectors like TGL_DPLL_CFGCR0 to be used
+> > seamlessly on all gen12 platforms, we set the non-MG PLL ID's to match
+> > how the registers are laid out: DPLL0, DPLL1, DPLL4 (RKL-only), TBT.
+> > This means just renumbering TBT to be ID '3' rather than being another
+> > ID '2' like DPLL4.  With this change, we can build our register
+> > selectors with _MMIO_PLL rather than _MMIO_PLL3 since the register
+> > offsets are evenly-spaced.  MGPLL's don't need any specific ID's
+> > (they're just used to translate back to a tc_port), so we let them float
+> > at the top of the enum.
+> > 
+> > v2:
+> > - Add new .update_ref_clks() hook.
+> > 
+> > v3:
+> > - Renumber TBT PLL to '3' and switch _MMIO_PLL3 to _MMIO_PLL (Lucas)
+> > 
+> > Bspec: 49202
+> > Bspec: 49443
+> > Bspec: 50288
+> > Bspec: 50289
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> > drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 29 +++++++++++++++++--
+> > drivers/gpu/drm/i915/display/intel_dpll_mgr.h | 14 ++++-----
+> > drivers/gpu/drm/i915/i915_reg.h               | 15 +++-------
+> > 3 files changed, 37 insertions(+), 21 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > index b45185b80bec..b5f4d4cef682 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > @@ -3506,13 +3506,19 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
+> > 		return false;
+> > 	}
+> > 
+> > -	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
+> > +	if (IS_ROCKETLAKE(dev_priv)) {
+> > 		dpll_mask =
+> > 			BIT(DPLL_ID_EHL_DPLL4) |
+> > 			BIT(DPLL_ID_ICL_DPLL1) |
+> > 			BIT(DPLL_ID_ICL_DPLL0);
+> > -	else
+> > +	} else if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A) {
+> > +		dpll_mask =
+> > +			BIT(DPLL_ID_EHL_DPLL4) |
+> > +			BIT(DPLL_ID_ICL_DPLL1) |
+> > +			BIT(DPLL_ID_ICL_DPLL0);
+> > +	} else {
+> > 		dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
+> > +	}
+> > 
+> > 	port_dpll->pll = intel_find_shared_dpll(state, crtc,
+> > 						&port_dpll->hw_state,
+> > @@ -4275,6 +4281,21 @@ static const struct intel_dpll_mgr tgl_pll_mgr = {
+> > 	.dump_hw_state = icl_dump_hw_state,
+> > };
+> > 
+> > +static const struct dpll_info rkl_plls[] = {
+> > +	{ "DPLL 0", &combo_pll_funcs, DPLL_ID_ICL_DPLL0, 0 },
+> > +	{ "DPLL 1", &combo_pll_funcs, DPLL_ID_ICL_DPLL1, 0 },
+> > +	{ "DPLL 4", &combo_pll_funcs, DPLL_ID_EHL_DPLL4, 0 },
+> > +	{ },
+> > +};
+> > +
+> > +static const struct intel_dpll_mgr rkl_pll_mgr = {
+> > +	.dpll_info = rkl_plls,
+> > +	.get_dplls = icl_get_dplls,
+> > +	.put_dplls = icl_put_dplls,
+> > +	.update_ref_clks = icl_update_dpll_ref_clks,
+> > +	.dump_hw_state = icl_dump_hw_state,
+> > +};
+> > +
+> > /**
+> >  * intel_shared_dpll_init - Initialize shared DPLLs
+> >  * @dev: drm device
+> > @@ -4288,7 +4309,9 @@ void intel_shared_dpll_init(struct drm_device *dev)
+> > 	const struct dpll_info *dpll_info;
+> > 	int i;
+> > 
+> > -	if (INTEL_GEN(dev_priv) >= 12)
+> > +	if (IS_ROCKETLAKE(dev_priv))
+> > +		dpll_mgr = &rkl_pll_mgr;
+> > +	else if (INTEL_GEN(dev_priv) >= 12)
+> > 		dpll_mgr = &tgl_pll_mgr;
+> > 	else if (IS_ELKHARTLAKE(dev_priv))
+> > 		dpll_mgr = &ehl_pll_mgr;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > index 5d9a2bc371e7..49367847bfb5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > @@ -125,35 +125,35 @@ enum intel_dpll_id {
+> > 	/**
+> > 	 * @DPLL_ID_ICL_TBTPLL: ICL/TGL TBT PLL
+> > 	 */
+> > -	DPLL_ID_ICL_TBTPLL = 2,
+> > +	DPLL_ID_ICL_TBTPLL = 3,
+> > 	/**
+> > 	 * @DPLL_ID_ICL_MGPLL1: ICL MG PLL 1 port 1 (C),
+> > 	 *                      TGL TC PLL 1 port 1 (TC1)
+> > 	 */
+> > -	DPLL_ID_ICL_MGPLL1 = 3,
+> > +	DPLL_ID_ICL_MGPLL1,
+> > 	/**
+> > 	 * @DPLL_ID_ICL_MGPLL2: ICL MG PLL 1 port 2 (D)
+> > 	 *                      TGL TC PLL 1 port 2 (TC2)
+> > 	 */
+> > -	DPLL_ID_ICL_MGPLL2 = 4,
+> > +	DPLL_ID_ICL_MGPLL2,
+> > 	/**
+> > 	 * @DPLL_ID_ICL_MGPLL3: ICL MG PLL 1 port 3 (E)
+> > 	 *                      TGL TC PLL 1 port 3 (TC3)
+> > 	 */
+> > -	DPLL_ID_ICL_MGPLL3 = 5,
+> > +	DPLL_ID_ICL_MGPLL3,
+> > 	/**
+> > 	 * @DPLL_ID_ICL_MGPLL4: ICL MG PLL 1 port 4 (F)
+> > 	 *                      TGL TC PLL 1 port 4 (TC4)
+> > 	 */
+> > -	DPLL_ID_ICL_MGPLL4 = 6,
+> > +	DPLL_ID_ICL_MGPLL4,
+> > 	/**
+> > 	 * @DPLL_ID_TGL_MGPLL5: TGL TC PLL port 5 (TC5)
+> > 	 */
+> > -	DPLL_ID_TGL_MGPLL5 = 7,
+> > +	DPLL_ID_TGL_MGPLL5,
+> > 	/**
+> > 	 * @DPLL_ID_TGL_MGPLL6: TGL TC PLL port 6 (TC6)
+> > 	 */
+> > -	DPLL_ID_TGL_MGPLL6 = 8,
+> > +	DPLL_ID_TGL_MGPLL6,
+> > };
+> > 
+> > #define I915_NUM_PLLS 9
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 45bda5819abd..34f8698ac3aa 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -242,7 +242,6 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+> > #define _MMIO_PIPE3(pipe, a, b, c)	_MMIO(_PICK(pipe, a, b, c))
+> > #define _MMIO_PORT3(pipe, a, b, c)	_MMIO(_PICK(pipe, a, b, c))
+> > #define _MMIO_PHY3(phy, a, b, c)	_MMIO(_PHY3(phy, a, b, c))
+> > -#define _MMIO_PLL3(pll, a, b, c)	_MMIO(_PICK(pll, a, b, c))
+> 
+> See my series adding DPLL support for DG1. We will need it again for a
+> different reason, with a slightly different form. I'd let this here
+> to avoid removing and adding it back.
+> 
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-On Wed, 17 Jun 2020 at 08:03, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
->
-> Hi Thomas,
->
-> On Wed, 17 Jun 2020 08:33:24 +0200 Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> >
-> > We recently dropped the _unlock() suffix from drm_gem_object_put(). This
-> > patch should be ok.
->
-> Yes, but what it shows is that the drm-misc tree is still based on
-> v5.7-rc1 and v5.8-rc1 has about 16000 more commits for you to get
-> conflicts against :-)
->
-Being the culprit here - thanks for the patience and report.
+With the renumbering of TBT to 3, we now have a "hole" in the DPLLs
+exposed on TGL (0, 1, 3) which WARNs:
 
-I believe that both AMD and drm-misc teams are aware of this lovely
-situation I've put them in.
-As you mentioned drm-misc is a bit special and doing the usual
-backmerge will be fun.
+        <4>[    6.165705] i915 0000:00:02.0: drm_WARN_ON(i != dpll_info[i].id)
+        <4>[    6.166050] WARNING: CPU: 7 PID: 335 at drivers/gpu/drm/i915/display/intel_dpll_mgr.c:4360 intel_shared_dpll_init+0xa6/0x1d0 [i915]
 
-If you have any tips on how to minimise such issues, I'd gladly utilise them.
+I remember having a hole was a problem back when we just passed min/max
+DPLLs for initialization, but I think it should be safe now ever since:
 
-Thanks again,
--Emil
+        commit 2a86972f60fcfaa0daa02b9fe461935ea2063791
+        Author: Matt Roper <matthew.d.roper@intel.com>
+        Date:   Tue Oct 8 10:29:20 2019 -0700
+
+            drm/i915: Select DPLL's via mask
+
+so I'll send another version that drops that WARN and keeps the
+_MMIO_PLL3 definition here.
+
+Thanks.
+
+
+Matt
+
+> 
+> thanks
+> Lucas De Marchi
+> 
+> > 
+> > /*
+> >  * Device info offset array based helpers for groups of registers with unevenly
+> > @@ -10427,19 +10426,13 @@ enum skl_power_gate {
+> > 
+> > #define _TGL_DPLL0_CFGCR0		0x164284
+> > #define _TGL_DPLL1_CFGCR0		0x16428C
+> > -/* TODO: add DPLL4 */
+> > -#define _TGL_TBTPLL_CFGCR0		0x16429C
+> > -#define TGL_DPLL_CFGCR0(pll)		_MMIO_PLL3(pll, _TGL_DPLL0_CFGCR0, \
+> > -						  _TGL_DPLL1_CFGCR0, \
+> > -						  _TGL_TBTPLL_CFGCR0)
+> > +#define TGL_DPLL_CFGCR0(pll)		_MMIO_PLL(pll, _TGL_DPLL0_CFGCR0, \
+> > +						  _TGL_DPLL1_CFGCR0)
+> > 
+> > #define _TGL_DPLL0_CFGCR1		0x164288
+> > #define _TGL_DPLL1_CFGCR1		0x164290
+> > -/* TODO: add DPLL4 */
+> > -#define _TGL_TBTPLL_CFGCR1		0x1642A0
+> > -#define TGL_DPLL_CFGCR1(pll)		_MMIO_PLL3(pll, _TGL_DPLL0_CFGCR1, \
+> > -						   _TGL_DPLL1_CFGCR1, \
+> > -						   _TGL_TBTPLL_CFGCR1)
+> > +#define TGL_DPLL_CFGCR1(pll)		_MMIO_PLL(pll, _TGL_DPLL0_CFGCR1, \
+> > +						  _TGL_DPLL1_CFGCR1)
+> > 
+> > #define _DKL_PHY1_BASE			0x168000
+> > #define _DKL_PHY2_BASE			0x169000
+> > -- 
+> > 2.24.1
+> > 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
