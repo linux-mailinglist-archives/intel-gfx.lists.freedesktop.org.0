@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF1291FC30D
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 02:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 139EF1FC319
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 02:59:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10C686E9EF;
-	Wed, 17 Jun 2020 00:56:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 316B36EA07;
+	Wed, 17 Jun 2020 00:59:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8AA7A6E9E2;
- Wed, 17 Jun 2020 00:56:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 845ECA0BD0;
- Wed, 17 Jun 2020 00:56:41 +0000 (UTC)
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 997276E9E2;
+ Wed, 17 Jun 2020 00:59:33 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 49mmtW0xJVz9sSd;
+ Wed, 17 Jun 2020 10:59:31 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1592355571;
+ bh=GFBSasXQo+uKQuNXeDI+CzG7gcS5dADb2nU/NU1RmL4=;
+ h=Date:From:To:Cc:Subject:From;
+ b=tisa0g4ZLJgX+QiU36LhpZcJNT42ogc/PRfwTOAqnU0LEQIAD9jWxS43n72ir6KvS
+ 1eDE+I9Kbk8fAmWfDTYRTyG7AYY7/sZyGh+iU5+gthhJUZ+N8+j4gop48If+Nc8j2M
+ Ckq+E4xAozMEQPssnMtaBDt+QvM9haHCfUF6LG6Da0ApJ8KW3XCZbUpDFL349oKOfu
+ m+zStYxj16NDNpgAVAhsB5gJ24ZeJK61/gu/3Km/gf7LBu96GsYhlePcOliazbz3NE
+ AcB67UNcRk7+5fpGof/j979y9Oj44Zw9Ey2aCkft2X7/+DrHheXAcs8FNZjNv7X61v
+ Fc9XiKlbmR0Hw==
+Date: Wed, 17 Jun 2020 10:59:29 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20200617105929.534edd34@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Wed, 17 Jun 2020 00:56:41 -0000
-Message-ID: <159235540151.29978.16520775095276722426@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200616235810.3848540-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200616235810.3848540-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Remaining_RKL_patches_=28rev5=29?=
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,27 +48,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Emil Velikov <emil.velikov@collabora.com>
+Content-Type: multipart/mixed; boundary="===============1865408493=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============1865408493==
+Content-Type: multipart/signed; boundary="Sig_/MxT6_+HvYX.kK/4n6ZLF/AO";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-Series: Remaining RKL patches (rev5)
-URL   : https://patchwork.freedesktop.org/series/77971/
-State : warning
+--Sig_/MxT6_+HvYX.kK/4n6ZLF/AO
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+Hi all,
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_combo_phy.c:341:6: warning: symbol 'rkl_combo_phy_b_init_wa' was not declared. Should it be static?
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
+
+drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c: In function 'amdgpu_amdkf=
+d_gpuvm_free_memory_of_gpu':
+drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c:1357:2: error: implicit de=
+claration of function 'drm_gem_object_put_unlocked'; did you mean 'drm_gem_=
+object_put_locked'? [-Werror=3Dimplicit-function-declaration]
+ 1357 |  drm_gem_object_put_unlocked(&mem->bo->tbo.base);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |  drm_gem_object_put_locked
+
+Caused by commit
+
+  ab15d56e27be ("drm: remove transient drm_gem_object_put_unlocked()")
+
+interacting with commit
+
+  fd9a9f8801de ("drm/amdgpu: Use GEM obj reference for KFD BOs")
+
+from Linus' tree.
+
+I have applied the following merge fix up patch for today.
+
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+Date: Wed, 17 Jun 2020 10:55:32 +1000
+Subject: [PATCH] drm/amdgpu: remove stray drm_gem_object_put_unlocked
+
+Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index b91b5171270f..9015c7b76d60 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -1354,7 +1354,7 @@ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
+ 	}
+=20
+ 	/* Free the BO*/
+-	drm_gem_object_put_unlocked(&mem->bo->tbo.base);
++	drm_gem_object_put(&mem->bo->tbo.base);
+ 	mutex_destroy(&mem->lock);
+ 	kfree(mem);
+=20
+--=20
+2.26.2
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/MxT6_+HvYX.kK/4n6ZLF/AO
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl7pavEACgkQAVBC80lX
+0GzgoAf+Nw2Z91LEhAIuWthscZ3FUv247hC1EDpWFk0MKhUpIcihVubiiShVF9Kb
+7MssDXDyYaXRPkeMRHdP359SDpcoixOJtTUjKt0PF8PlReWTD/DludpGSQzPVBvc
+rUHMaW4yvzEOhCpaBr2/JhiTCldajXoyukUZhF7tm13aYvlJGtJLGcW0nvr5vT6z
+tLIVFM2B4SFyM08qf3vEJY/CRsBxpNWHGXnsPYDoGtQDrFygpqhJVa0oY0geCSoi
+FyAn3flNWJPP4H6RUYKPoHw20pQ38FOHX2L5eews5Zq+uZWMLV4AlnjFPVZ92p+A
+I4UosxsUfqXshjy3wsa1EHxO+ptreg==
+=zGIh
+-----END PGP SIGNATURE-----
+
+--Sig_/MxT6_+HvYX.kK/4n6ZLF/AO--
+
+--===============1865408493==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1865408493==--
