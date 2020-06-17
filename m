@@ -1,55 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1673A1FC811
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 09:58:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B08F1FC898
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 10:29:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43E2D6E25E;
-	Wed, 17 Jun 2020 07:58:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E01F46E267;
+	Wed, 17 Jun 2020 08:29:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
- [IPv6:2607:f8b0:4864:20::244])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4331C6E24E
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 07:58:06 +0000 (UTC)
-Received: by mail-oi1-x244.google.com with SMTP id t25so990961oij.7
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 00:58:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=X+Qtu+2ZAyZXkh/oo1Lz6E9/PFmVPHRpkYwfH9QQzoY=;
- b=Rnq7BerEC1NJ+s3KJhsfuws9Kg+j4pWFkQJLmI518tzrC8znQHM1y1XOVL+e9QQvGC
- mOcEQIpeKlQI3Ch0XEzDajgEy3Ss5YB513C5XhgrGC29v//2jcdDFh59xMl7mJC4egNc
- wZOOJ+JmjjXVx9gZJsvcArI7aR28zLTWFwR6Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=X+Qtu+2ZAyZXkh/oo1Lz6E9/PFmVPHRpkYwfH9QQzoY=;
- b=LEf4R9KPImz3S0F68PVj4iuWKe7aZZGk4SpHFq0J49PAoYvTX4Vsaa8q33T0Ng5igq
- OSldjS9WnQV2Cv03VtmeMY06K6v6NxEhZlJysdYCGIKSBKBMVYpKICORRrm7usFYRQ/T
- R3bv377di6a1I7CxZBxi6kgGPgz8T8tVYVMmSiy+zmfBbewqL0kOAhs95rni4nl15poK
- /ITPe/yXL+J+YCcX2VDGvA/DFplabyF4OqU+3708mm8p5KUeiJOSSXstbFqlixZsqvJi
- PF8KvRL0R47fSiEChxnQInSgF72SB+OfJUp1KDF1Oz3pJ0cC7mHW55ps94rEvXhS59jg
- 0rxw==
-X-Gm-Message-State: AOAM531zAWgyMG2qE/vpoLWznNlWDzgVGWFIWVj0xJVJrPhwz3pghu9H
- lHFqVAP4GFRE4rPVQYfcnKVq7tT7cK+DEKyq04xDrw==
-X-Google-Smtp-Source: ABdhPJyg/qc6FJuRZYZqNNd5IMYVmnKGSrITOouFVSzC2Mh6TfEGJcQ4YwgOLOvW4cWrgZZvjXq69o3dCj+ez8idqyo=
-X-Received: by 2002:aca:ed42:: with SMTP id l63mr6006514oih.101.1592380685425; 
- Wed, 17 Jun 2020 00:58:05 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 041C86E267
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 08:29:12 +0000 (UTC)
+IronPort-SDR: C1uUCUhOwaLD30w12Z/GN++EvhuU11occmuEQWMpEGgrIj2v8tYoeTJI/KfL8xF6YrpP5iIEyj
+ fTIlvoR1RrHA==
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2020 01:29:11 -0700
+IronPort-SDR: Skqu24jLPLBUTAY9peyfmrKhuCStM26AGZmXPtFLeYBLXm5tqVtrqsVsuEltxtzT4VqdPRDrzR
+ pqHvYChopoRg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,522,1583222400"; 
+ d="asc'?scan'208";a="450159387"
+Received: from irsmsx109.ger.corp.intel.com ([163.33.3.23])
+ by orsmga005.jf.intel.com with ESMTP; 17 Jun 2020 01:29:11 -0700
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ IRSMSX109.ger.corp.intel.com (163.33.3.23) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 17 Jun 2020 09:29:10 +0100
+Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 17 Jun 2020 09:29:10 +0100
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9]) by
+ irsmsx603.ger.corp.intel.com ([163.33.146.9]) with mapi id 15.01.1713.004;
+ Wed, 17 Jun 2020 09:29:10 +0100
+From: "Peres, Martin" <martin.peres@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [CI] Pre-merge testing disabled
+Thread-Index: AQHWRIFfBqv+9vmwO0Cdh89Pj3bBLA==
+Date: Wed, 17 Jun 2020 08:29:10 +0000
+Message-ID: <91072193e4654296924cd9ca13463da8@intel.com>
+References: <c80cb85e77c74b949ab75778b330494b@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.252.51.76]
+Content-Type: multipart/mixed;
+ boundary="_002_91072193e4654296924cd9ca13463da8intelcom_"
 MIME-Version: 1.0
-References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
- <20200604081224.863494-5-daniel.vetter@ffwll.ch>
- <b11c2140-1b9c-9013-d9bb-9eb2c1906710@shipmail.org>
- <20200611083430.GD20149@phenom.ffwll.local> <20200611141515.GW6578@ziepe.ca>
- <20200616120719.GL20149@phenom.ffwll.local> <20200616145312.GC6578@ziepe.ca>
-In-Reply-To: <20200616145312.GC6578@ziepe.ca>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 17 Jun 2020 09:57:54 +0200
-Message-ID: <CAKMK7uER6ax1zr14xYLKqDfDZp+ycBsY9Yx7JaVkKQ849VfSPg@mail.gmail.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
- lockdep annotations
+Subject: Re: [Intel-gfx] [CI] Pre-merge testing disabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,105 +65,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 17, 2020 at 9:27 AM Jason Gunthorpe <jgg@ziepe.ca> wrote:
->
-> On Tue, Jun 16, 2020 at 02:07:19PM +0200, Daniel Vetter wrote:
-> > > > I've pinged a bunch of armsoc gpu driver people and ask them how much this
-> > > > hurts, so that we have a clear answer. On x86 I don't think we have much
-> > > > of a choice on this, with userptr in amd and i915 and hmm work in nouveau
-> > > > (but nouveau I think doesn't use dma_fence in there).
-> > >
-> > > Right, nor will RDMA ODP.
-> >
-> > Hm, what's the context here? I thought RDMA side you really don't want
-> > dma_fence in mmu_notifiers, so not clear to me what you're agreeing on
-> > here.
->
-> rdma does not use dma_fence at all, and though it is hard to tell, I
-> didn't notice a dma_fence in the nouveau invalidation call path.
+--_002_91072193e4654296924cd9ca13463da8intelcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Nouveau for compute has hw page faults. It doesn't have hw page faults
-for non-compute fixed function blocks afaik, so there's a hybrid model
-going on. But nouveau also doesn't support userspace memory (instead
-of driver-allocated buffer objects) for these fixed function blocks,
-so no need to have a dma_fence_wait in there.
+On 2020-06-16 12:37, Peres, Martin wrote:=0A=
+> Hello world,=0A=
+> =0A=
+> Due to changes in our global data policy rules, the bucket used to store=
+=0A=
+> the CI results became private, which prevents us from providing any=0A=
+> testing result.=0A=
+> =0A=
+> We have received a notice on Sunday about this change, notified them on=
+=0A=
+> Monday that we wanted to keep our storage public and ended up on Tuesday=
+=0A=
+> with a private bucket.=0A=
+> =0A=
+> We are working as fast as possible to address this, but we cannot give=0A=
+> any ETA. We'll be updating you in this thread.=0A=
+> =0A=
+> Sorry for the inconvenience,=0A=
+> Martin=0A=
+=0A=
+Thanks to Tomi Sarvela for his efforts, it's back!=0A=
+=0A=
+Sorry again for the inconvenience!=0A=
+Martin=0A=
 
-> At the very least I think there should be some big warning that
-> dma_fence in notifiers should be avoided.
+--_002_91072193e4654296924cd9ca13463da8intelcom_
+Content-Type: application/pgp-keys; name="pEpkey.asc"
+Content-Description: pEpkey.asc
+Content-Disposition: attachment; filename="pEpkey.asc"; size=1765;
+	creation-date="Wed, 17 Jun 2020 08:29:10 GMT";
+	modification-date="Wed, 17 Jun 2020 08:29:10 GMT"
+Content-Transfer-Encoding: base64
 
-Yeah I'm working on documentation, and also the notifiers here
-hopefully make it clear it's massive pain. I think we could even make
-a hard rule that dma_fence in mmu notifier outside of drivers/gpu is a
-bug/misfeature.
+LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCgptUUVOQkYwc2tFc0JDQURjUTVS
+cG1SeWQreU5EbkJIcmpPeURLanpsVlJVSGNiRnU4TFRVWG0rdE1OaHZxeGdMCmRCWHI5c1I2S09N
+U0UxZGp2czhBZXNNdXpqa293aVcwS3I2dVFuRlRxNVZWdGFGMmwyRVdPb1ZIYlJVejV6bGYKVFBV
+ajlKbU1CWjVCVGFDekRGbjA1dUU3UklKamhpcUhyd0pnUlkzZjZGazZVUjdJUVJaUWZzQXRKZXBH
+NUR5ZQpkcThjcHYrM0pFMUV1eDhMR0FOTzZxd25tOEU5ZkV6VDNNVjB4QTlZVGJmeE9Hcm5jV3lp
+ZkhPNzBzWnUzZm5DCngyZXI5U29KVDhZM0VzSis1L0puSUMvWHFLV3VITTNaSEc2bXhFWFM2cC9E
+R3hMQzg1OWhxN28xZ1Qvem1IYjcKRERVcXRWeWNqSDkzMFRuOVRJTnYrdFVXN2hseG9oaDlZQ2Zk
+QUJFQkFBRzBKbEJsY21WekxDQk5ZWEowYVc0ZwpQRzFoY25ScGJpNXdaWEpsYzBCcGJuUmxiQzVq
+YjIwK2lRRlVCQk1CQ0FBK0ZpRUV5TGV5bWVpR0llcGE5VDhvCm81SHZsSnZUK05nRkFsMHNrRXND
+R3dNRkNRSGhNNEFGQ3drSUJ3SUdGUW9KQ0FzQ0JCWUNBd0VDSGdFQ0Y0QUEKQ2drUW81SHZsSnZU
+K05qTWdnZ0FwU2did0JDUVB0NlI4NFZENTNRYlFGbXFWMkF4YU8zWDBEZTcwRCtrdXQzaQoxck9T
+SjRRalk3djNUY1hWU3VueWRaR2R5TjIwamlzSUhOcUVJNThkWVc5a1JWdDY3OFU1QkVUQTBpVGc0
+clVDCjZDZWJYTzM2dlZNK2FOaEtoV0MxWHphYnlyY3pGaGdJR2pEQ1QxdXF6aUYzVlM4c3Y1Slkz
+eHFqUGpQNXJoODkKMVBMd3VaR0hWci9NVFlRQXZQSXkwR0tkTTVMTFFkdjRHRytXbnE4Q0ZaU3JT
+OUF0VW1oRldhV0htNWZzZ3lNTQpWQUVQYzI5cW04emFXZmJMYW9XSVBWUkJiMHZodWxoZTRBNWtG
+TTAyNnYwQ2JMdHJRWjU2YlRzU2c4UUgxYk9CCkFqdkE1Z0hmcGM2NGR2T2QrRTNlMjZwcWVwRjM2
+NVUvZjBlN20va2NyN2tCRFFSZExKQkxBUWdBeG5kRUVoV2gKR29ra1VZN3h1Ym8xc3J6YSs0ekxV
+elFoTnBML0k0Q2VGTGUwRWN3RFlVYVpiUllOd0huRjJTTWZXTjV6S3d5VQpVSzd4UHNGYVhLTFdC
+eEx1NWNHREY0UDU2b1dBWnc3U2ZxaWlhTzd3c2tablJVOW5JLzFxMzBORG5pMk5xM2d3CnVqQ0Ju
+andMaWxMTTRPV0lGNGFWQW1GZHlnaEhISEZNbXp4OFhYRTZkVGg4R2o5ZU9SanV5V3NBKzFwTitQ
+UFIKaWZoclp2VzFVdVZRTmZpRUJmMWkyNTRuVVhXQnhLTThHVkpnNlRaQUttWjN3RzFITTN5NjBY
+UHEzVFJrKzlyaQpjeU4yTVUva29GY3VSZlFiOGQvcWtTanA1R0RDQUZMQjNMeUZKc3FGZm5qaEFP
+aFk0dXoxb2tFam51TEFmc0NxCjlkUE8za3lyRVdONFJRQVJBUUFCaVFFN0JCZ0JDQUFtRmlFRXlM
+ZXltZWlHSWVwYTlUOG9vNUh2bEp2VCtOZ0YKQWwwc2tFc0NHd3dGQ1FIaE00QUFDZ2tRbzVIdmxK
+dlQrTmlqM3dmNGwxd0pGQnlnUVhpSlBOUjR0QUx4dG9WWgpOYm5DWDhROU9jdjU0TWdMa1lJU0Zo
+dFlMZjZzSXl2RlNvazdGSEtEaWFJaW0vR2JpdVJvTitlSStMRThia2ZPCm9YR3hIazZzMHVSeTk5
+UUNlSkVNaFFYZXptd2dxMHk3Nzk0OE9xNFBLTUJiVGRpdDNSL29ONDNxbldDNzdnbzUKTjN6bVdn
+VHRoQXNmNWd4YXpPNGwvQ2pvZ2VWTmJLd3ZVUW1qOU1uR2dNVTUybnVyejBTTjdVUUZ2RVZGTElF
+VQpjTFhsOHd6R2t1bEU1ZUs4RWg3UWp0ckp0MkNrOTZVNVdZa0R4bUVZZlU0czNqTkpzcnhYZitW
+ZklFTWlheGtvCld5a1czTktJekFUU1hjOFYrTEFlT011MVJoejRBSUtXaWhzWWFJZk1HZUhITUty
+QllrM2xTbzhzSS9DQgo9TEVyUQotLS0tLUVORCBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCg==
 
-Might be a good idea to add a MAINTAINERS entry with a K: regex
-pattern, so that you can catch such modifiers. We do already have such
-a pattern for dma-fence, to catch abuse. So if you want I could type
-up a documentation patch for this, get your and others acks and the
-dri-devel folks would enforce that the dma_fence_wait madness doesn't
-leak beyond drivers/gpu
+--_002_91072193e4654296924cd9ca13463da8intelcom_
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-> Ie it is strange that the new totally-not-a-gpu drivers use dma_fence,
-> they surely don't have the same constraints as the existing GPU world,
-> and it would be annoying to see dma_fence notifiers spring up in them
-
-If you mean drivers/misc/habanalabs, that's going to get taken care of:
-
-
-commit ed65bfd9fd86dec3772570b0320ca85b9fb69f2e
-Author: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date:   Mon May 11 11:11:42 2020 +0200
-
-    habanalabs: don't set default fence_ops->wait
-
-    It's the default.
-
-    Also so much for "we're not going to tell the graphics people how to
-    review their code", dma_fence is a pretty core piece of gpu driver
-    infrastructure. And it's very much uapi relevant, including piles of
-    corresponding userspace protocols and libraries for how to pass these
-    around.
-
-    Would be great if habanalabs would not use this (from a quick look
-    it's not needed at all), since open source the userspace and playing
-    by the usual rules isn't on the table. If that's not possible (because
-    it's actually using the uapi part of dma_fence to interact with gpu
-    drivers) then we have exactly what everyone promised we'd want to
-    avoid.
-
-    Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-    Reviewed-by: Oded Gabbay <oded.gabbay@gmail.com>
-    Signed-off-by: Oded Gabbay <oded.gabbay@gmail.com>
-
-Oded has agreed to remove the dma-fence usage, since they really don't
-need it (and all the baggage that comes with it), plain old completion
-is enough for their use. This use is also why I added the regex to
-MAINTAINERS, so that in the future we can catch people who try to use
-dma_fence because it looks cute and useful, and are completely
-oblivious to all the pain and headaches involved.
-
-Cheers, Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--_002_91072193e4654296924cd9ca13463da8intelcom_--
