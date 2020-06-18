@@ -2,31 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD921FF5A8
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 16:51:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6357A1FF604
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 17:01:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B92F6EA03;
-	Thu, 18 Jun 2020 14:51:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98E966EB11;
+	Thu, 18 Jun 2020 15:01:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06A916EA03
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 14:51:23 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21539659-1500050 
- for multiple; Thu, 18 Jun 2020 15:51:10 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Jun 2020 15:51:07 +0100
-Message-Id: <20200618145107.8708-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200618100356.15744-3-chris@chris-wilson.co.uk>
-References: <20200618100356.15744-3-chris@chris-wilson.co.uk>
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31D816EAE2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 15:01:00 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id p5so6379058wrw.9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 08:01:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=6OXAj9s43JL1nA3AEpbYM/MO9Qwg5Ya14IpN0gZo/as=;
+ b=NAXSbQeHANLe1jipR3irzjbY7yWCggcmWa6HNg2IPmITzqFGf3L5EfLt0xDSdDrG+b
+ x2cMxixoM50+NeYTVtrK/kNJYHNO6fr4lE9I3N0/BlBM5groWNzwqW1H+Hm//JIuCUoA
+ dlNXlF2mmmSgTTwOzqZXKvpuzoxFA0/uYDSds=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=6OXAj9s43JL1nA3AEpbYM/MO9Qwg5Ya14IpN0gZo/as=;
+ b=XVRPl2LpwA7eopqAS53kK3+/nyMQUUiw9Y9ktm2Vpq9ZuLO63Ohlhtm0qPi+bD5fLa
+ bNw5UB9/OCSB7jX5jE+VPpjvVr67fD3CNkQnk/C0Y+xP9nxhNjT3h6cqk4iatzgiSxpi
+ mKn3LDCclRGwo+TEfg3U4zNbFRknmYWJMBV2QSPd9IC6gTY+XV+nUgjUMB3FWLcFGldZ
+ GqAbTSvrr40qHeYDO45H7Tx3KmfrPtTRfaDS41oTIxCI2v04u/Y+fbj6GNmqDbvQ2W52
+ KKQKCz+vTHTxHNLiUxMw4qawJVTA5mqBH4sEXnIyI4Phzco9wiCplpgdXfKKVU3zY9NI
+ TDFw==
+X-Gm-Message-State: AOAM531YyPys7JbaV2gtueAWuVpU9DcMbapaa6Z3GQ1eUGXvmX8nBz/n
+ /U5yG2B88/d9v9kruXSNlN1jXA==
+X-Google-Smtp-Source: ABdhPJyrsmwBwFtG4KAk31ycwBo00rNlOYG3lXCyUqre+ViPnXoXIqRRhRlofgF6zGCpK4dB5Hv+mw==
+X-Received: by 2002:adf:d841:: with SMTP id k1mr4031245wrl.93.1592492454932;
+ Thu, 18 Jun 2020 08:00:54 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id p7sm3878240wro.26.2020.06.18.08.00.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 18 Jun 2020 08:00:53 -0700 (PDT)
+Date: Thu, 18 Jun 2020 17:00:51 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Message-ID: <20200618150051.GS20149@phenom.ffwll.local>
+Mail-Followup-To: Jason Gunthorpe <jgg@ziepe.ca>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>
+References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
+ <20200604081224.863494-5-daniel.vetter@ffwll.ch>
+ <b11c2140-1b9c-9013-d9bb-9eb2c1906710@shipmail.org>
+ <20200611083430.GD20149@phenom.ffwll.local>
+ <20200611141515.GW6578@ziepe.ca>
+ <20200616120719.GL20149@phenom.ffwll.local>
+ <CAKMK7uE7DKUo9Z+yCpY+mW5gmKet8ugbF3yZNyHGqsJ=e-g_hA@mail.gmail.com>
+ <20200617152835.GF6578@ziepe.ca>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Replace direct submit with direct
- call to tasklet
+Content-Disposition: inline
+In-Reply-To: <20200617152835.GF6578@ziepe.ca>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
+ lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,737 +87,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rather than having special case code for opportunistically calling
-process_csb() and performing a direct submit while holding the engine
-spinlock for submitting the request, simply call the tasklet directly.
-This allows us to retain the direct submission path, including the CS
-draining to allow fast/immediate submissions, without requiring any
-duplicated code paths.
+On Wed, Jun 17, 2020 at 12:28:35PM -0300, Jason Gunthorpe wrote:
+> On Wed, Jun 17, 2020 at 08:48:50AM +0200, Daniel Vetter wrote:
+> 
+> > Now my understanding for rdma is that if you don't have hw page fault
+> > support,
+> 
+> The RDMA ODP feature is restartable HW page faulting just like nouveau
+> has. The classical MR feature doesn't have this. Only mlx5 HW supports
+> ODP today.
+> 
+> > It's only gpus (I think) which are in this awkward in-between spot
+> > where dynamic memory management really is much wanted, but the hw
+> > kinda sucks. Aside, about 10+ years ago we had a similar problem with
+> > gpu hw, but for security: Many gpu didn't have any kinds of page
+> > tables to isolate different clients from each another. drivers/gpu
+> > fixed this by parsing&validating what userspace submitted to make sure
+> > it's only every accessing its own buffers. Most gpus have become
+> > reasonable nowadays and do have proper per-process pagetables (gpu
+> > process, not the pasid stuff), but even today there's still some of
+> > the old model left in some of the smallest SoC.
+> 
+> But I still don't understand why a dma fence is needed inside the GPU
+> driver itself in the notifier.
+> 
+> Surely the GPU driver can block and release the notifier directly from
+> its own command processing channel?
+> 
+> Why does this fence and all it entails need to leak out across
+> drivers?
 
-v2: Use bh kicking, see commit 3c53776e29f8 ("Mark HI and TASKLET
-softirq synchronous").
-v3: Update engine-reset to be tasklet aware
+So 10 years ago we had this world of every gpu driver is its own bucket,
+nothing leaks out to the world. But the world had a different idea how
+gpus where supposed to work, with stuff like:
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |   4 +-
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   2 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  35 +++---
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  20 ++--
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 113 ++++++------------
- drivers/gpu/drm/i915/gt/intel_reset.c         |  45 ++++---
- drivers/gpu/drm/i915/gt/intel_reset.h         |   2 +
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   7 +-
- drivers/gpu/drm/i915/gt/selftest_lrc.c        |  27 +++--
- drivers/gpu/drm/i915/gt/selftest_reset.c      |   8 +-
- drivers/gpu/drm/i915/i915_request.c           |   2 +
- drivers/gpu/drm/i915/selftests/i915_request.c |   6 +-
- 12 files changed, 139 insertions(+), 132 deletions(-)
+- laptops with a power-efficient but slow gpu integrated on the cpu die,
+  and a 2nd, much faster but also more wasteful gpu seperately
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 30c229fcb404..9206844796cc 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -399,12 +399,14 @@ static bool __reset_engine(struct intel_engine_cs *engine)
- 	if (!intel_has_reset_engine(gt))
- 		return false;
- 
-+	local_bh_disable();
- 	if (!test_and_set_bit(I915_RESET_ENGINE + engine->id,
- 			      &gt->reset.flags)) {
--		success = intel_engine_reset(engine, NULL) == 0;
-+		success = __intel_engine_reset_bh(engine, NULL) == 0;
- 		clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id,
- 				      &gt->reset.flags);
- 	}
-+	local_bh_enable();
- 
- 	return success;
- }
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index c38ab51e82f0..ef425fd990c4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2355,7 +2355,9 @@ static void eb_request_add(struct i915_execbuffer *eb)
- 		__i915_request_skip(rq);
- 	}
- 
-+	local_bh_disable();
- 	__i915_request_queue(rq, &attr);
-+	local_bh_enable();
- 
- 	/* Try to clean up the client's timeline after submitting the request */
- 	if (prev)
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index c62b3cbdbbf9..60881c8b5b7c 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -903,32 +903,39 @@ static unsigned long stop_timeout(const struct intel_engine_cs *engine)
- 	return READ_ONCE(engine->props.stop_timeout_ms);
- }
- 
--int intel_engine_stop_cs(struct intel_engine_cs *engine)
-+static int __intel_engine_stop_cs(struct intel_engine_cs *engine,
-+				  int fast_timeout_us,
-+				  int slow_timeout_ms)
- {
- 	struct intel_uncore *uncore = engine->uncore;
--	const u32 base = engine->mmio_base;
--	const i915_reg_t mode = RING_MI_MODE(base);
-+	const i915_reg_t mode = RING_MI_MODE(engine->mmio_base);
-+	int err;
-+
-+	intel_uncore_write_fw(uncore, mode, _MASKED_BIT_ENABLE(STOP_RING));
-+	err = __intel_wait_for_register_fw(engine->uncore, mode,
-+					   MODE_IDLE, MODE_IDLE,
-+					   fast_timeout_us,
-+					   slow_timeout_ms,
-+					   NULL);
-+
-+	/* A final mmio read to let GPU writes be hopefully flushed to memory */
-+	intel_uncore_posting_read_fw(uncore, mode);
-+	return err;
-+}
-+
-+int intel_engine_stop_cs(struct intel_engine_cs *engine)
-+{
- 	int err;
- 
- 	if (INTEL_GEN(engine->i915) < 3)
- 		return -ENODEV;
- 
- 	ENGINE_TRACE(engine, "\n");
--
--	intel_uncore_write_fw(uncore, mode, _MASKED_BIT_ENABLE(STOP_RING));
--
--	err = 0;
--	if (__intel_wait_for_register_fw(uncore,
--					 mode, MODE_IDLE, MODE_IDLE,
--					 1000, stop_timeout(engine),
--					 NULL)) {
-+	if (__intel_engine_stop_cs(engine, 1000, stop_timeout(engine))) {
- 		ENGINE_TRACE(engine, "timed out on STOP_RING -> IDLE\n");
- 		err = -ETIMEDOUT;
- 	}
- 
--	/* A final mmio read to let GPU writes be hopefully flushed to memory */
--	intel_uncore_posting_read_fw(uncore, mode);
--
- 	return err;
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index cd20fb549b38..80e9f74040f1 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -42,6 +42,17 @@ static void idle_pulse(struct intel_engine_cs *engine, struct i915_request *rq)
- 	i915_request_add_active_barriers(rq);
- }
- 
-+static void heartbeat_commit(struct i915_request *rq,
-+			     const struct i915_sched_attr *attr)
-+{
-+	idle_pulse(rq->engine, rq);
-+	__i915_request_commit(rq);
-+
-+	local_bh_disable();
-+	__i915_request_queue(rq, attr);
-+	local_bh_enable();
-+}
-+
- static void show_heartbeat(const struct i915_request *rq,
- 			   struct intel_engine_cs *engine)
- {
-@@ -132,12 +143,10 @@ static void heartbeat(struct work_struct *wrk)
- 	if (IS_ERR(rq))
- 		goto unlock;
- 
--	idle_pulse(engine, rq);
- 	if (i915_modparams.enable_hangcheck)
- 		engine->heartbeat.systole = i915_request_get(rq);
- 
--	__i915_request_commit(rq);
--	__i915_request_queue(rq, &attr);
-+	heartbeat_commit(rq, &attr);
- 
- unlock:
- 	mutex_unlock(&ce->timeline->mutex);
-@@ -218,10 +227,7 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
- 	}
- 
- 	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
--	idle_pulse(engine, rq);
--
--	__i915_request_commit(rq);
--	__i915_request_queue(rq, &attr);
-+	heartbeat_commit(rq, &attr);
- 	GEM_BUG_ON(rq->sched.attr.priority < I915_PRIORITY_BARRIER);
- 	err = 0;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 7bdbfac26d7b..70671dbdcc77 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2067,8 +2067,9 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
- 	struct i915_request **port = execlists->pending;
- 	struct i915_request ** const last_port = port + execlists->port_mask;
--	struct i915_request * const *active;
-+	struct i915_request * const *active = execlists->active;
- 	struct i915_request *last;
-+	unsigned long flags;
- 	struct rb_node *rb;
- 	bool submit = false;
- 
-@@ -2093,6 +2094,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 * sequence of requests as being the most optimal (fewest wake ups
- 	 * and context switches) submission.
- 	 */
-+	spin_lock_irqsave(&engine->active.lock, flags);
- 
- 	for (rb = rb_first_cached(&execlists->virtual); rb; ) {
- 		struct virtual_engine *ve =
-@@ -2121,10 +2123,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 * the active context to interject the preemption request,
- 	 * i.e. we will retrigger preemption following the ack in case
- 	 * of trouble.
--	 */
--	active = READ_ONCE(execlists->active);
--
--	/*
-+	 *
- 	 * In theory we can skip over completed contexts that have not
- 	 * yet been processed by events (as those events are in flight):
- 	 *
-@@ -2138,8 +2137,10 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 	if ((last = *active)) {
- 		if (i915_request_completed(last) &&
--		    !list_is_last(&last->sched.link, &engine->active.requests))
-+		    !list_is_last(&last->sched.link, &engine->active.requests)) {
-+			spin_unlock_irqrestore(&engine->active.lock, flags);
- 			return;
-+		}
- 
- 		if (need_preempt(engine, last, rb)) {
- 			ENGINE_TRACE(engine,
-@@ -2210,6 +2211,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				 * Even if ELSP[1] is occupied and not worthy
- 				 * of timeslices, our queue might be.
- 				 */
-+				spin_unlock_irqrestore(&engine->active.lock, flags);
- 				start_timeslice(engine, queue_prio(execlists));
- 				return;
- 			}
-@@ -2245,6 +2247,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 			if (last && !can_merge_rq(last, rq)) {
- 				spin_unlock(&ve->base.active.lock);
-+				spin_unlock_irqrestore(&engine->active.lock, flags);
- 				start_timeslice(engine, rq_prio(rq));
- 				return; /* leave this for another sibling */
- 			}
-@@ -2377,8 +2380,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 			if (__i915_request_submit(rq)) {
- 				if (!merge) {
--					*port = execlists_schedule_in(last, port - execlists->pending);
--					port++;
-+					*port++ = last;
- 					last = NULL;
- 				}
- 
-@@ -2416,25 +2418,24 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 * interrupt for secondary ports).
- 	 */
- 	execlists->queue_priority_hint = queue_prio(execlists);
-+	spin_unlock_irqrestore(&engine->active.lock, flags);
- 
- 	if (submit) {
--		*port = execlists_schedule_in(last, port - execlists->pending);
--		execlists->switch_priority_hint =
--			switch_prio(engine, *execlists->pending);
--
-+		*port++ = last;
- 		/*
- 		 * Skip if we ended up with exactly the same set of requests,
- 		 * e.g. trying to timeslice a pair of ordered contexts
- 		 */
- 		if (!memcmp(active, execlists->pending,
--			    (port - execlists->pending + 1) * sizeof(*port))) {
--			do
--				execlists_schedule_out(fetch_and_zero(port));
--			while (port-- != execlists->pending);
--
-+			    (port - execlists->pending) * sizeof(*port)))
- 			goto skip_submit;
--		}
--		clear_ports(port + 1, last_port - port);
-+
-+		*port = NULL;
-+		while (port-- != execlists->pending)
-+			*port = execlists_schedule_in(*port,
-+						      port - execlists->pending);
-+		execlists->switch_priority_hint =
-+			switch_prio(engine, *execlists->pending);
- 
- 		WRITE_ONCE(execlists->yield, -1);
- 		set_preempt_timeout(engine, *active);
-@@ -2443,6 +2444,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 		start_timeslice(engine, execlists->queue_priority_hint);
- skip_submit:
- 		ring_set_paused(engine, 0);
-+		*execlists->pending = NULL;
- 	}
- }
- 
-@@ -2699,16 +2701,6 @@ static void process_csb(struct intel_engine_cs *engine)
- 	invalidate_csb_entries(&buf[0], &buf[num_entries - 1]);
- }
- 
--static void __execlists_submission_tasklet(struct intel_engine_cs *const engine)
--{
--	lockdep_assert_held(&engine->active.lock);
--	if (!READ_ONCE(engine->execlists.pending[0])) {
--		rcu_read_lock(); /* protect peeking at execlists->active */
--		execlists_dequeue(engine);
--		rcu_read_unlock();
--	}
--}
--
- static void __execlists_hold(struct i915_request *rq)
- {
- 	LIST_HEAD(list);
-@@ -3098,7 +3090,7 @@ static bool preempt_timeout(const struct intel_engine_cs *const engine)
- 	if (!timer_expired(t))
- 		return false;
- 
--	return READ_ONCE(engine->execlists.pending[0]);
-+	return engine->execlists.pending[0];
- }
- 
- /*
-@@ -3108,7 +3100,6 @@ static bool preempt_timeout(const struct intel_engine_cs *const engine)
- static void execlists_submission_tasklet(unsigned long data)
- {
- 	struct intel_engine_cs * const engine = (struct intel_engine_cs *)data;
--	bool timeout = preempt_timeout(engine);
- 
- 	process_csb(engine);
- 
-@@ -3118,17 +3109,11 @@ static void execlists_submission_tasklet(unsigned long data)
- 			execlists_reset(engine, "CS error");
- 	}
- 
--	if (!READ_ONCE(engine->execlists.pending[0]) || timeout) {
--		unsigned long flags;
--
--		spin_lock_irqsave(&engine->active.lock, flags);
--		__execlists_submission_tasklet(engine);
--		spin_unlock_irqrestore(&engine->active.lock, flags);
-+	if (unlikely(preempt_timeout(engine)))
-+		execlists_reset(engine, "preemption time out");
- 
--		/* Recheck after serialising with direct-submission */
--		if (unlikely(timeout && preempt_timeout(engine)))
--			execlists_reset(engine, "preemption time out");
--	}
-+	if (!engine->execlists.pending[0])
-+		execlists_dequeue(engine);
- }
- 
- static void __execlists_kick(struct intel_engine_execlists *execlists)
-@@ -3159,26 +3144,16 @@ static void queue_request(struct intel_engine_cs *engine,
- 	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
- }
- 
--static void __submit_queue_imm(struct intel_engine_cs *engine)
--{
--	struct intel_engine_execlists * const execlists = &engine->execlists;
--
--	if (reset_in_progress(execlists))
--		return; /* defer until we restart the engine following reset */
--
--	__execlists_submission_tasklet(engine);
--}
--
--static void submit_queue(struct intel_engine_cs *engine,
-+static bool submit_queue(struct intel_engine_cs *engine,
- 			 const struct i915_request *rq)
- {
- 	struct intel_engine_execlists *execlists = &engine->execlists;
- 
- 	if (rq_prio(rq) <= execlists->queue_priority_hint)
--		return;
-+		return false;
- 
- 	execlists->queue_priority_hint = rq_prio(rq);
--	__submit_queue_imm(engine);
-+	return true;
- }
- 
- static bool ancestor_on_hold(const struct intel_engine_cs *engine,
-@@ -3188,25 +3163,11 @@ static bool ancestor_on_hold(const struct intel_engine_cs *engine,
- 	return !list_empty(&engine->active.hold) && hold_request(rq);
- }
- 
--static void flush_csb(struct intel_engine_cs *engine)
--{
--	struct intel_engine_execlists *el = &engine->execlists;
--
--	if (READ_ONCE(el->pending[0]) && tasklet_trylock(&el->tasklet)) {
--		if (!reset_in_progress(el))
--			process_csb(engine);
--		tasklet_unlock(&el->tasklet);
--	}
--}
--
- static void execlists_submit_request(struct i915_request *request)
- {
- 	struct intel_engine_cs *engine = request->engine;
- 	unsigned long flags;
- 
--	/* Hopefully we clear execlists->pending[] to let us through */
--	flush_csb(engine);
--
- 	/* Will be called from irq-context when using foreign fences. */
- 	spin_lock_irqsave(&engine->active.lock, flags);
- 
-@@ -3220,7 +3181,8 @@ static void execlists_submit_request(struct i915_request *request)
- 		GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
- 		GEM_BUG_ON(list_empty(&request->sched.link));
- 
--		submit_queue(engine, request);
-+		if (submit_queue(engine, request))
-+			__execlists_kick(&engine->execlists);
- 	}
- 
- 	spin_unlock_irqrestore(&engine->active.lock, flags);
-@@ -4109,7 +4071,6 @@ static int execlists_resume(struct intel_engine_cs *engine)
- static void execlists_reset_prepare(struct intel_engine_cs *engine)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
--	unsigned long flags;
- 
- 	ENGINE_TRACE(engine, "depth<-%d\n",
- 		     atomic_read(&execlists->tasklet.count));
-@@ -4126,10 +4087,6 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
- 	__tasklet_disable_sync_once(&execlists->tasklet);
- 	GEM_BUG_ON(!reset_in_progress(execlists));
- 
--	/* And flush any current direct submission. */
--	spin_lock_irqsave(&engine->active.lock, flags);
--	spin_unlock_irqrestore(&engine->active.lock, flags);
--
- 	/*
- 	 * We stop engines, otherwise we might get failed reset and a
- 	 * dead gpu (on elk). Also as modern gpu as kbl can suffer
-@@ -4373,12 +4330,12 @@ static void execlists_reset_finish(struct intel_engine_cs *engine)
- 	 * to sleep before we restart and reload a context.
- 	 */
- 	GEM_BUG_ON(!reset_in_progress(execlists));
--	if (!RB_EMPTY_ROOT(&execlists->queue.rb_root))
--		execlists->tasklet.func(execlists->tasklet.data);
-+	GEM_BUG_ON(engine->execlists.pending[0]);
- 
-+	/* And kick in case we missed a new request submission. */
- 	if (__tasklet_enable(&execlists->tasklet))
--		/* And kick in case we missed a new request submission. */
--		tasklet_hi_schedule(&execlists->tasklet);
-+		__execlists_kick(execlists);
-+
- 	ENGINE_TRACE(engine, "depth->%d\n",
- 		     atomic_read(&execlists->tasklet.count));
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 39070b514e65..29835d203971 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -752,8 +752,10 @@ static int gt_reset(struct intel_gt *gt, intel_engine_mask_t stalled_mask)
- 	if (err)
- 		return err;
- 
-+	local_bh_disable();
- 	for_each_engine(engine, gt, id)
- 		__intel_engine_reset(engine, stalled_mask & engine->mask);
-+	local_bh_enable();
- 
- 	intel_ggtt_restore_fences(gt->ggtt);
- 
-@@ -1108,20 +1110,7 @@ static inline int intel_gt_reset_engine(struct intel_engine_cs *engine)
- 	return __intel_gt_reset(engine->gt, engine->mask);
- }
- 
--/**
-- * intel_engine_reset - reset GPU engine to recover from a hang
-- * @engine: engine to reset
-- * @msg: reason for GPU reset; or NULL for no drm_notice()
-- *
-- * Reset a specific GPU engine. Useful if a hang is detected.
-- * Returns zero on successful reset or otherwise an error code.
-- *
-- * Procedure is:
-- *  - identifies the request that caused the hang and it is dropped
-- *  - reset engine (which will force the engine to idle)
-- *  - re-init/configure engine
-- */
--int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
-+int __intel_engine_reset_bh(struct intel_engine_cs *engine, const char *msg)
- {
- 	struct intel_gt *gt = engine->gt;
- 	bool uses_guc = intel_engine_in_guc_submission_mode(engine);
-@@ -1172,6 +1161,30 @@ int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
- 	return ret;
- }
- 
-+/**
-+ * intel_engine_reset - reset GPU engine to recover from a hang
-+ * @engine: engine to reset
-+ * @msg: reason for GPU reset; or NULL for no drm_notice()
-+ *
-+ * Reset a specific GPU engine. Useful if a hang is detected.
-+ * Returns zero on successful reset or otherwise an error code.
-+ *
-+ * Procedure is:
-+ *  - identifies the request that caused the hang and it is dropped
-+ *  - reset engine (which will force the engine to idle)
-+ *  - re-init/configure engine
-+ */
-+int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
-+{
-+	int err;
-+
-+	local_bh_disable();
-+	err = __intel_engine_reset_bh(engine, msg);
-+	local_bh_enable();
-+
-+	return err;
-+}
-+
- static void intel_gt_reset_global(struct intel_gt *gt,
- 				  u32 engine_mask,
- 				  const char *reason)
-@@ -1258,18 +1271,20 @@ void intel_gt_handle_error(struct intel_gt *gt,
- 	 * single reset fails.
- 	 */
- 	if (intel_has_reset_engine(gt) && !intel_gt_is_wedged(gt)) {
-+		local_bh_disable();
- 		for_each_engine_masked(engine, gt, engine_mask, tmp) {
- 			BUILD_BUG_ON(I915_RESET_MODESET >= I915_RESET_ENGINE);
- 			if (test_and_set_bit(I915_RESET_ENGINE + engine->id,
- 					     &gt->reset.flags))
- 				continue;
- 
--			if (intel_engine_reset(engine, msg) == 0)
-+			if (__intel_engine_reset_bh(engine, msg) == 0)
- 				engine_mask &= ~engine->mask;
- 
- 			clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id,
- 					      &gt->reset.flags);
- 		}
-+		local_bh_enable();
- 	}
- 
- 	if (!engine_mask)
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.h b/drivers/gpu/drm/i915/gt/intel_reset.h
-index 8e8d5f761166..675910ca1a35 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.h
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.h
-@@ -34,6 +34,8 @@ void intel_gt_reset(struct intel_gt *gt,
- 		    const char *reason);
- int intel_engine_reset(struct intel_engine_cs *engine,
- 		       const char *reason);
-+int __intel_engine_reset_bh(struct intel_engine_cs *engine,
-+			    const char *reason);
- 
- void __i915_request_reset(struct i915_request *rq, bool guilty);
- 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index fb5ebf930ab2..c28d1fcad673 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -1576,12 +1576,17 @@ static int __igt_atomic_reset_engine(struct intel_engine_cs *engine,
- 		  engine->name, mode, p->name);
- 
- 	tasklet_disable(t);
-+	if (strcmp(p->name, "softirq"))
-+		local_bh_disable();
- 	p->critical_section_begin();
- 
--	err = intel_engine_reset(engine, NULL);
-+	err = __intel_engine_reset_bh(engine, NULL);
- 
- 	p->critical_section_end();
-+	if (strcmp(p->name, "softirq"))
-+		local_bh_enable();
- 	tasklet_enable(t);
-+	tasklet_hi_schedule(t);
- 
- 	if (err)
- 		pr_err("i915_reset_engine(%s:%s) failed under %s\n",
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index daa4aabab9a7..aa98d351dfcc 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -623,8 +623,10 @@ static int live_hold_reset(void *arg)
- 
- 		/* We have our request executing, now remove it and reset */
- 
-+		local_bh_disable();
- 		if (test_and_set_bit(I915_RESET_ENGINE + id,
- 				     &gt->reset.flags)) {
-+			local_bh_enable();
- 			intel_gt_set_wedged(gt);
- 			err = -EBUSY;
- 			goto out;
-@@ -638,12 +640,13 @@ static int live_hold_reset(void *arg)
- 		execlists_hold(engine, rq);
- 		GEM_BUG_ON(!i915_request_on_hold(rq));
- 
--		intel_engine_reset(engine, NULL);
-+		__intel_engine_reset_bh(engine, NULL);
- 		GEM_BUG_ON(rq->fence.error != -EIO);
- 
- 		tasklet_enable(&engine->execlists.tasklet);
- 		clear_and_wake_up_bit(I915_RESET_ENGINE + id,
- 				      &gt->reset.flags);
-+		local_bh_enable();
- 
- 		/* Check that we do not resubmit the held request */
- 		if (!i915_request_wait(rq, 0, HZ / 5)) {
-@@ -4572,8 +4575,10 @@ static int reset_virtual_engine(struct intel_gt *gt,
- 	GEM_BUG_ON(engine == ve->engine);
- 
- 	/* Take ownership of the reset and tasklet */
-+	local_bh_disable();
- 	if (test_and_set_bit(I915_RESET_ENGINE + engine->id,
- 			     &gt->reset.flags)) {
-+		local_bh_enable();
- 		intel_gt_set_wedged(gt);
- 		err = -EBUSY;
- 		goto out_heartbeat;
-@@ -4593,12 +4598,13 @@ static int reset_virtual_engine(struct intel_gt *gt,
- 	execlists_hold(engine, rq);
- 	GEM_BUG_ON(!i915_request_on_hold(rq));
- 
--	intel_engine_reset(engine, NULL);
-+	__intel_engine_reset_bh(engine, NULL);
- 	GEM_BUG_ON(rq->fence.error != -EIO);
- 
- 	/* Release our grasp on the engine, letting CS flow again */
- 	tasklet_enable(&engine->execlists.tasklet);
- 	clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id, &gt->reset.flags);
-+	local_bh_enable();
- 
- 	/* Check that we do not resubmit the held request */
- 	i915_request_get(rq);
-@@ -6236,16 +6242,17 @@ static void garbage_reset(struct intel_engine_cs *engine,
- 	const unsigned int bit = I915_RESET_ENGINE + engine->id;
- 	unsigned long *lock = &engine->gt->reset.flags;
- 
--	if (test_and_set_bit(bit, lock))
--		return;
--
--	tasklet_disable(&engine->execlists.tasklet);
-+	local_bh_disable();
-+	if (!test_and_set_bit(bit, lock)) {
-+		tasklet_disable(&engine->execlists.tasklet);
- 
--	if (!rq->fence.error)
--		intel_engine_reset(engine, NULL);
-+		if (!rq->fence.error)
-+			__intel_engine_reset_bh(engine, NULL);
- 
--	tasklet_enable(&engine->execlists.tasklet);
--	clear_and_wake_up_bit(bit, lock);
-+		tasklet_enable(&engine->execlists.tasklet);
-+		clear_and_wake_up_bit(bit, lock);
-+	}
-+	local_bh_enable();
- }
- 
- static struct i915_request *garbage(struct intel_context *ce,
-diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c b/drivers/gpu/drm/i915/gt/selftest_reset.c
-index 35406ecdf0b2..19dd0c347874 100644
---- a/drivers/gpu/drm/i915/gt/selftest_reset.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
-@@ -132,11 +132,16 @@ static int igt_atomic_engine_reset(void *arg)
- 		for (p = igt_atomic_phases; p->name; p++) {
- 			GEM_TRACE("intel_engine_reset(%s) under %s\n",
- 				  engine->name, p->name);
-+			if (strcmp(p->name, "softirq"))
-+				local_bh_disable();
- 
- 			p->critical_section_begin();
--			err = intel_engine_reset(engine, NULL);
-+			err = __intel_engine_reset_bh(engine, NULL);
- 			p->critical_section_end();
- 
-+			if (strcmp(p->name, "softirq"))
-+				local_bh_enable();
-+
- 			if (err) {
- 				pr_err("intel_engine_reset(%s) failed under %s\n",
- 				       engine->name, p->name);
-@@ -146,6 +151,7 @@ static int igt_atomic_engine_reset(void *arg)
- 
- 		intel_engine_pm_put(engine);
- 		tasklet_enable(&engine->execlists.tasklet);
-+		tasklet_hi_schedule(&engine->execlists.tasklet);
- 		if (err)
- 			break;
- 	}
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 3bb7320249ae..0dad1f0fbd32 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1599,7 +1599,9 @@ void i915_request_add(struct i915_request *rq)
- 		attr = ctx->sched;
- 	rcu_read_unlock();
- 
-+	local_bh_disable();
- 	__i915_request_queue(rq, &attr);
-+	local_bh_enable();
- 
- 	mutex_unlock(&tl->mutex);
- }
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 9271aad7f779..66564f37fd06 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -1926,9 +1926,7 @@ static int measure_inter_request(struct intel_context *ce)
- 		intel_ring_advance(rq, cs);
- 		i915_request_add(rq);
- 	}
--	local_bh_disable();
- 	i915_sw_fence_commit(submit);
--	local_bh_enable();
- 	intel_engine_flush_submission(ce->engine);
- 	heap_fence_put(submit);
- 
-@@ -2214,11 +2212,9 @@ static int measure_completion(struct intel_context *ce)
- 		intel_ring_advance(rq, cs);
- 
- 		dma_fence_add_callback(&rq->fence, &cb.base, signal_cb);
--
--		local_bh_disable();
- 		i915_request_add(rq);
--		local_bh_enable();
- 
-+		intel_engine_flush_submission(ce->engine);
- 		if (wait_for(READ_ONCE(sema[i]) == -1, 50)) {
- 			err = -EIO;
- 			goto err;
+- also multi-gpu rendering (but on linux we never really got around to
+  enabling that, at least not for 3d rendering)
+
+- soc just bundle IP blocks together, and very often they feel like they
+  have to do their own display block (it's fairly easy and allows you to
+  keep your hw engineers justified on payroll with some more patents they
+  create), but anything more fancy they buy in. So from a driver
+  architecture pov even a single chip soc looks like a bundle of gpus
+
+And you want to pipeline all this because performance, so waiting in
+userspace for one block to finish before you hand it ever to the other
+isn't a good idea.
+
+Hence dma_fence as a cross driver leak was created by pulling the gpu
+completion tracking from the drm/ttm library for managing vram.
+
+Now with glorious hindsight we could have come up with a different
+approach, where synchronization is managed by userspace, kernel just
+provides some primitives (kinda like futexes, but for gpu). And the kernel
+manages residency and gpu pte wrangling entirely seperately. But:
+
+- 10 years ago drivers/gpu was a handful of people at best
+
+- we just finished the massive rewrite to get to a kernel memory manager
+  and kernel modesetting (over 5 years after windows/macos), so appetite
+  for massive rewrites was minimal.
+
+Here we are, now with 50 more drivers built on top and an entire userspace
+ecosystem that relies on all this (because yes we made dma_fence also the
+building block for all the cross-process uapi, why wouldn't we).
+
+I hope that explains a bit the history of how and why we ended up here.
+
+Maybe I should do a plumbers talk about "How not to memory manage -
+cautious tales from drivers/gpu" I think there's a lot of areas where the
+conversation usually goes "wtf" ... long explanation of history and
+technical reasons leading to a "oh dear". With a lot of other accelerators
+and things landing might be good to have a list of things that look
+tempting (because hey 2% faster) but arent worth the pain.
+-Daniel
 -- 
-2.20.1
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
