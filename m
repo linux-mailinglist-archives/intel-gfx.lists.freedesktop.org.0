@@ -2,30 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED691FFDE0
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 00:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A5A61FFE8D
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 01:21:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CA326E46D;
-	Thu, 18 Jun 2020 22:21:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBF9A6E484;
+	Thu, 18 Jun 2020 23:21:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 49C996E46D;
- Thu, 18 Jun 2020 22:20:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3C221A47E2;
- Thu, 18 Jun 2020 22:20:59 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1F06E484;
+ Thu, 18 Jun 2020 23:21:51 +0000 (UTC)
+IronPort-SDR: Of7j82n7ywX+HP2Cc1LDtTt/TrcfBpRPtYskaBEjkFCvVQAXESKMn67/GbamUU38LddrmuC1x7
+ Zg5TguXRI9sg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9656"; a="130136489"
+X-IronPort-AV: E=Sophos;i="5.75,253,1589266800"; d="scan'208";a="130136489"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2020 16:21:50 -0700
+IronPort-SDR: d0RREbJANA5nmi/MaT59IThMUpkgu1qOmTmd+SAES1gl3lHyLVANSkNtlqVPNXfhCJKCAApIVY
+ /UHKhKd+fnhw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,253,1589266800"; d="scan'208";a="299866017"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by fmsmga004.fm.intel.com with ESMTP; 18 Jun 2020 16:21:48 -0700
+Date: Thu, 18 Jun 2020 16:23:03 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <20200618232303.GB32149@intel.com>
+References: <20200612230444.10121-1-manasi.d.navare@intel.com>
+ <20200612230444.10121-2-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 18 Jun 2020 22:20:59 -0000
-Message-ID: <159251885921.22460.9003863693507960295@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200618150402.14022-1-jani.nikula@intel.com>
-In-Reply-To: <20200618150402.14022-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/params=3A_switch_to_device_specific_parameters_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20200612230444.10121-2-manasi.d.navare@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v6 1/3] drm/dp: DRM DP helper for reading
+ Ignore MSA from DPCD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,136 +52,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Harry Wentland <harry.wentland@amd.com>,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+@Jani N, could you give an ACK on this if this looks okay, addressed
+your review comments regarding the name of the function.
+Else I have a r-b functionality wise so good to get merged?
 
-Series: drm/i915/params: switch to device specific parameters (rev3)
-URL   : https://patchwork.freedesktop.org/series/78004/
-State : success
+Regards
+Manasi
 
-== Summary ==
+On Fri, Jun 12, 2020 at 04:04:42PM -0700, Manasi Navare wrote:
+> DP sink device sets the Ignore MSA bit in its
+> DP_DOWNSTREAM_PORT_COUNT register to indicate its ability to
+> ignore the MSA video timing parameters and its ability to support
+> seamless video timing change over a range of timing exposed by
+> DisplayID and EDID.
+> This is required for the sink to indicate that it is Adaptive sync
+> capable.
+> =
 
-CI Bug Log - changes from CI_DRM_8641 -> Patchwork_17993
-====================================================
+> v3:
+> * Fi the typo in commit message (Manasi)
+> v2:
+> * Rename to describe what the function does (Jani Nikula)
+> =
 
-Summary
--------
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+> ---
+>  include/drm/drm_dp_helper.h | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> =
 
-  **SUCCESS**
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> index 1165ec105638..e47dc22ebf50 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1457,6 +1457,14 @@ drm_dp_alternate_scrambler_reset_cap(const u8 dpcd=
+[DP_RECEIVER_CAP_SIZE])
+>  			DP_ALTERNATE_SCRAMBLER_RESET_CAP;
+>  }
+>  =
 
-  No regressions found.
+> +/* Ignore MSA timing for Adaptive Sync support on DP 1.4 */
+> +static inline bool
+> +drm_dp_sink_can_do_video_without_timing_msa(const u8 dpcd[DP_RECEIVER_CA=
+P_SIZE])
+> +{
+> +	return dpcd[DP_DOWN_STREAM_PORT_COUNT] &
+> +		DP_MSA_TIMING_PAR_IGNORED;
+> +}
+> +
+>  /*
+>   * DisplayPort AUX channel
+>   */
+> -- =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/index.html
+> 2.19.1
+> =
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17993 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [PASS][1] -> [INCOMPLETE][2] ([i915#1684])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][5] ([i915#1888]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [DMESG-WARN][7] ([i915#402]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-tgl-u2/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@d-dsi1:
-    - {fi-tgl-dsi}:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-modeset@d-dsi1.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-modeset@d-dsi1.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][15] ([fdo#109271]) -> [DMESG-FAIL][16] ([i915#62] / [i915#95])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1684]: https://gitlab.freedesktop.org/drm/intel/issues/1684
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (49 -> 37)
-------------------------------
-
-  Missing    (12): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-skl-lmem fi-bdw-samus fi-byt-clapper fi-skl-6700k2 fi-kbl-r 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8641 -> Patchwork_17993
-
-  CI-20190529: 20190529
-  CI_DRM_8641: aac91f91c7be78f53b352237d968dfa1996b2d4b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5712: eba1135ddd35f9d3097ed91032aefe8f9a9f9d02 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17993: 7e653187560babd808318d160f9a3f8dcee515a8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7e653187560b drm/i915/params: switch to device specific parameters
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17993/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
