@@ -2,43 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C601FD62C
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2020 22:41:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D79E81FD9FE
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 02:00:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 042DA6E18F;
-	Wed, 17 Jun 2020 20:41:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8592E6E1F4;
+	Thu, 18 Jun 2020 00:00:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C445C6E18F
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 20:41:03 +0000 (UTC)
-IronPort-SDR: 4p9MyXyzMgWvtI/wx5ew44amuHsriT1fL4If5xd17AT1RptyWwHuFDC1iETqJWEsOj5+Z/XADq
- IHCTMmO9tI1w==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 754676E1F3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 00:00:15 +0000 (UTC)
+IronPort-SDR: gWEHdrC7qSJVliCfsYX9K4kBLfZ+kaAawqhPRFOldvPydQSkCCP8ttZUUK5DuFJ5UCv+xXiKo6
+ Q6fwX3ONJplQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2020 13:41:03 -0700
-IronPort-SDR: 8WbnuoNzp8Jvdwc+uiG2IYmZxEuETbI0X/wecxL4Ksuuzv5PPhPDg8az2vkZsEUF5p//SeKIPq
- sclX2mfdQ7Wg==
-X-IronPort-AV: E=Sophos;i="5.73,523,1583222400"; d="scan'208";a="291541749"
-Received: from rrperati-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.51.110])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2020 13:41:02 -0700
-Date: Wed, 17 Jun 2020 13:41:02 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200617204102.lkzn75au57i6fd4x@ldmartin-desk1>
-X-Patchwork-Hint: ignore
-References: <20200617033100.4044428-1-matthew.d.roper@intel.com>
- <20200617033100.4044428-3-matthew.d.roper@intel.com>
- <20200617182258.7gwvcbf35o3pi7cz@ldmartin-desk1>
- <20200617200038.GG3680866@mdroper-desk1.amr.corp.intel.com>
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2020 17:00:14 -0700
+IronPort-SDR: XZIX2Tj/8e77zERfHSZHRKBQ+OvmFiNHVIOeK/GlWFWLombY8Zc8jyO4wKG0yb/t7oyfrW67uq
+ G1n+Nk13LGQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,524,1583222400"; d="scan'208";a="352246028"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by orsmga001.jf.intel.com with ESMTP; 17 Jun 2020 17:00:14 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 17 Jun 2020 17:01:23 -0700
+Message-Id: <20200618000124.29036-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200617200038.GG3680866@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v7 2/5] drm/i915/rkl: Add DPLL4 support
+Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/dp: Helper for checking
+ DDI_BUF_CTL Idle status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,243 +45,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 17, 2020 at 01:00:38PM -0700, Matt Roper wrote:
->On Wed, Jun 17, 2020 at 11:22:58AM -0700, Lucas De Marchi wrote:
->> On Tue, Jun 16, 2020 at 08:30:57PM -0700, Matt Roper wrote:
->> > Rocket Lake has a third DPLL (called 'DPLL4') that must be used to
->> > enable a third display.  Unlike EHL's variant of DPLL4, the RKL variant
->> > behaves the same as DPLL0/1.  And despite its name, the DPLL4 registers
->> > are offset as if it were DPLL2.
->> >
->> > To allow the TGL register selectors like TGL_DPLL_CFGCR0 to be used
->> > seamlessly on all gen12 platforms, we set the non-MG PLL ID's to match
->> > how the registers are laid out: DPLL0, DPLL1, DPLL4 (RKL-only), TBT.
->> > This means just renumbering TBT to be ID '3' rather than being another
->> > ID '2' like DPLL4.  With this change, we can build our register
->> > selectors with _MMIO_PLL rather than _MMIO_PLL3 since the register
->> > offsets are evenly-spaced.  MGPLL's don't need any specific ID's
->> > (they're just used to translate back to a tc_port), so we let them float
->> > at the top of the enum.
->> >
->> > v2:
->> > - Add new .update_ref_clks() hook.
->> >
->> > v3:
->> > - Renumber TBT PLL to '3' and switch _MMIO_PLL3 to _MMIO_PLL (Lucas)
->> >
->> > Bspec: 49202
->> > Bspec: 49443
->> > Bspec: 50288
->> > Bspec: 50289
->> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->> > ---
->> > drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 29 +++++++++++++++++--
->> > drivers/gpu/drm/i915/display/intel_dpll_mgr.h | 14 ++++-----
->> > drivers/gpu/drm/i915/i915_reg.h               | 15 +++-------
->> > 3 files changed, 37 insertions(+), 21 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> > index b45185b80bec..b5f4d4cef682 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> > @@ -3506,13 +3506,19 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
->> > 		return false;
->> > 	}
->> >
->> > -	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
->> > +	if (IS_ROCKETLAKE(dev_priv)) {
->> > 		dpll_mask =
->> > 			BIT(DPLL_ID_EHL_DPLL4) |
->> > 			BIT(DPLL_ID_ICL_DPLL1) |
->> > 			BIT(DPLL_ID_ICL_DPLL0);
->> > -	else
->> > +	} else if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A) {
->> > +		dpll_mask =
->> > +			BIT(DPLL_ID_EHL_DPLL4) |
->> > +			BIT(DPLL_ID_ICL_DPLL1) |
->> > +			BIT(DPLL_ID_ICL_DPLL0);
->> > +	} else {
->> > 		dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
->> > +	}
->> >
->> > 	port_dpll->pll = intel_find_shared_dpll(state, crtc,
->> > 						&port_dpll->hw_state,
->> > @@ -4275,6 +4281,21 @@ static const struct intel_dpll_mgr tgl_pll_mgr = {
->> > 	.dump_hw_state = icl_dump_hw_state,
->> > };
->> >
->> > +static const struct dpll_info rkl_plls[] = {
->> > +	{ "DPLL 0", &combo_pll_funcs, DPLL_ID_ICL_DPLL0, 0 },
->> > +	{ "DPLL 1", &combo_pll_funcs, DPLL_ID_ICL_DPLL1, 0 },
->> > +	{ "DPLL 4", &combo_pll_funcs, DPLL_ID_EHL_DPLL4, 0 },
->> > +	{ },
->> > +};
->> > +
->> > +static const struct intel_dpll_mgr rkl_pll_mgr = {
->> > +	.dpll_info = rkl_plls,
->> > +	.get_dplls = icl_get_dplls,
->> > +	.put_dplls = icl_put_dplls,
->> > +	.update_ref_clks = icl_update_dpll_ref_clks,
->> > +	.dump_hw_state = icl_dump_hw_state,
->> > +};
->> > +
->> > /**
->> >  * intel_shared_dpll_init - Initialize shared DPLLs
->> >  * @dev: drm device
->> > @@ -4288,7 +4309,9 @@ void intel_shared_dpll_init(struct drm_device *dev)
->> > 	const struct dpll_info *dpll_info;
->> > 	int i;
->> >
->> > -	if (INTEL_GEN(dev_priv) >= 12)
->> > +	if (IS_ROCKETLAKE(dev_priv))
->> > +		dpll_mgr = &rkl_pll_mgr;
->> > +	else if (INTEL_GEN(dev_priv) >= 12)
->> > 		dpll_mgr = &tgl_pll_mgr;
->> > 	else if (IS_ELKHARTLAKE(dev_priv))
->> > 		dpll_mgr = &ehl_pll_mgr;
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
->> > index 5d9a2bc371e7..49367847bfb5 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
->> > @@ -125,35 +125,35 @@ enum intel_dpll_id {
->> > 	/**
->> > 	 * @DPLL_ID_ICL_TBTPLL: ICL/TGL TBT PLL
->> > 	 */
->> > -	DPLL_ID_ICL_TBTPLL = 2,
->> > +	DPLL_ID_ICL_TBTPLL = 3,
->> > 	/**
->> > 	 * @DPLL_ID_ICL_MGPLL1: ICL MG PLL 1 port 1 (C),
->> > 	 *                      TGL TC PLL 1 port 1 (TC1)
->> > 	 */
->> > -	DPLL_ID_ICL_MGPLL1 = 3,
->> > +	DPLL_ID_ICL_MGPLL1,
->> > 	/**
->> > 	 * @DPLL_ID_ICL_MGPLL2: ICL MG PLL 1 port 2 (D)
->> > 	 *                      TGL TC PLL 1 port 2 (TC2)
->> > 	 */
->> > -	DPLL_ID_ICL_MGPLL2 = 4,
->> > +	DPLL_ID_ICL_MGPLL2,
->> > 	/**
->> > 	 * @DPLL_ID_ICL_MGPLL3: ICL MG PLL 1 port 3 (E)
->> > 	 *                      TGL TC PLL 1 port 3 (TC3)
->> > 	 */
->> > -	DPLL_ID_ICL_MGPLL3 = 5,
->> > +	DPLL_ID_ICL_MGPLL3,
->> > 	/**
->> > 	 * @DPLL_ID_ICL_MGPLL4: ICL MG PLL 1 port 4 (F)
->> > 	 *                      TGL TC PLL 1 port 4 (TC4)
->> > 	 */
->> > -	DPLL_ID_ICL_MGPLL4 = 6,
->> > +	DPLL_ID_ICL_MGPLL4,
->> > 	/**
->> > 	 * @DPLL_ID_TGL_MGPLL5: TGL TC PLL port 5 (TC5)
->> > 	 */
->> > -	DPLL_ID_TGL_MGPLL5 = 7,
->> > +	DPLL_ID_TGL_MGPLL5,
->> > 	/**
->> > 	 * @DPLL_ID_TGL_MGPLL6: TGL TC PLL port 6 (TC6)
->> > 	 */
->> > -	DPLL_ID_TGL_MGPLL6 = 8,
->> > +	DPLL_ID_TGL_MGPLL6,
->> > };
->> >
->> > #define I915_NUM_PLLS 9
->> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->> > index 45bda5819abd..34f8698ac3aa 100644
->> > --- a/drivers/gpu/drm/i915/i915_reg.h
->> > +++ b/drivers/gpu/drm/i915/i915_reg.h
->> > @@ -242,7 +242,6 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
->> > #define _MMIO_PIPE3(pipe, a, b, c)	_MMIO(_PICK(pipe, a, b, c))
->> > #define _MMIO_PORT3(pipe, a, b, c)	_MMIO(_PICK(pipe, a, b, c))
->> > #define _MMIO_PHY3(phy, a, b, c)	_MMIO(_PHY3(phy, a, b, c))
->> > -#define _MMIO_PLL3(pll, a, b, c)	_MMIO(_PICK(pll, a, b, c))
->>
->> See my series adding DPLL support for DG1. We will need it again for a
->> different reason, with a slightly different form. I'd let this here
->> to avoid removing and adding it back.
->>
->> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
->With the renumbering of TBT to 3, we now have a "hole" in the DPLLs
->exposed on TGL (0, 1, 3) which WARNs:
->
->        <4>[    6.165705] i915 0000:00:02.0: drm_WARN_ON(i != dpll_info[i].id)
->        <4>[    6.166050] WARNING: CPU: 7 PID: 335 at drivers/gpu/drm/i915/display/intel_dpll_mgr.c:4360 intel_shared_dpll_init+0xa6/0x1d0 [i915]
->
->I remember having a hole was a problem back when we just passed min/max
->DPLLs for initialization, but I think it should be safe now ever since:
-
-yep, I think we had a change like that when we had DPLL4 for TGL
-implemented.
-
->
->        commit 2a86972f60fcfaa0daa02b9fe461935ea2063791
->        Author: Matt Roper <matthew.d.roper@intel.com>
->        Date:   Tue Oct 8 10:29:20 2019 -0700
->
->            drm/i915: Select DPLL's via mask
->
->so I'll send another version that drops that WARN and keeps the
->_MMIO_PLL3 definition here.
-
-thanks
-Lucas De Marchi
-
->
->Thanks.
->
->
->Matt
->
->>
->> thanks
->> Lucas De Marchi
->>
->> >
->> > /*
->> >  * Device info offset array based helpers for groups of registers with unevenly
->> > @@ -10427,19 +10426,13 @@ enum skl_power_gate {
->> >
->> > #define _TGL_DPLL0_CFGCR0		0x164284
->> > #define _TGL_DPLL1_CFGCR0		0x16428C
->> > -/* TODO: add DPLL4 */
->> > -#define _TGL_TBTPLL_CFGCR0		0x16429C
->> > -#define TGL_DPLL_CFGCR0(pll)		_MMIO_PLL3(pll, _TGL_DPLL0_CFGCR0, \
->> > -						  _TGL_DPLL1_CFGCR0, \
->> > -						  _TGL_TBTPLL_CFGCR0)
->> > +#define TGL_DPLL_CFGCR0(pll)		_MMIO_PLL(pll, _TGL_DPLL0_CFGCR0, \
->> > +						  _TGL_DPLL1_CFGCR0)
->> >
->> > #define _TGL_DPLL0_CFGCR1		0x164288
->> > #define _TGL_DPLL1_CFGCR1		0x164290
->> > -/* TODO: add DPLL4 */
->> > -#define _TGL_TBTPLL_CFGCR1		0x1642A0
->> > -#define TGL_DPLL_CFGCR1(pll)		_MMIO_PLL3(pll, _TGL_DPLL0_CFGCR1, \
->> > -						   _TGL_DPLL1_CFGCR1, \
->> > -						   _TGL_TBTPLL_CFGCR1)
->> > +#define TGL_DPLL_CFGCR1(pll)		_MMIO_PLL(pll, _TGL_DPLL0_CFGCR1, \
->> > +						  _TGL_DPLL1_CFGCR1)
->> >
->> > #define _DKL_PHY1_BASE			0x168000
->> > #define _DKL_PHY2_BASE			0x169000
->> > --
->> > 2.24.1
->> >
->
->-- 
->Matt Roper
->Graphics Software Engineer
->VTT-OSGC Platform Enablement
->Intel Corporation
->(916) 356-2795
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+TW9kaWZ5IHRoZSBoZWxwZXIgdG8gYWRkIGEgZml4ZWQgZGVsYXkgb3IgcG9sbCB3aXRoIHRpbWVv
+dXQKYmFzZWQgb24gcGxhdGZvcm0gc3BlY2lmaWNhdGlvbiBpbiBib3RoZSBlbmFibGUgYW5kIGRp
+c2FibGUKY2FzZXMgc28gY2hlY2sgZm9yIGVpdGhlciBJZGxlIGJpdCBzZXQgKERESV9CVUZfQ1RM
+IGlzIGlkbGUKZm9yIGRpc2FibGUgY2FzZSkgb3IgY2hlY2sgZm9yIElkbGUgYml0ID0gMCAobm9u
+IGlkbGUgZm9yCkRESSBCVUYgZW5hYmxlIGNhc2UpCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVs
+LmNvbT4KU2lnbmVkLW9mZi1ieTogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVs
+LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIHwgMzQg
+KysrKysrKysrKysrKysrLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygr
+KSwgMTMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRp
+LmMKaW5kZXggY2E3YmIyMjk0ZDJiLi5lNDczOGMzYjZkNDQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kZGkuYwpAQCAtMTE4MiwxOCArMTE4MiwyNiBAQCBzdGF0aWMgdm9p
+ZCBpbnRlbF9wcmVwYXJlX2hkbWlfZGRpX2J1ZmZlcnMoc3RydWN0IGludGVsX2VuY29kZXIgKmVu
+Y29kZXIsCiB9CiAKIHN0YXRpYyB2b2lkIGludGVsX3dhaXRfZGRpX2J1Zl9pZGxlKHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKLQkJCQkgICAgZW51bSBwb3J0IHBvcnQpCisJCQkJ
+ICAgIGVudW0gcG9ydCBwb3J0LCBib29sIGlkbGUpCiB7Ci0JaTkxNV9yZWdfdCByZWcgPSBERElf
+QlVGX0NUTChwb3J0KTsKLQlpbnQgaTsKLQotCWZvciAoaSA9IDA7IGkgPCAxNjsgaSsrKSB7Ci0J
+CXVkZWxheSgxKTsKLQkJaWYgKGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIHJlZykgJiBERElfQlVG
+X0lTX0lETEUpCi0JCQlyZXR1cm47CisJaWYgKGlkbGUpIHsKKwkJaWYgKElTX0JST1hUT04oZGV2
+X3ByaXYpKQorCQkJdWRlbGF5KDE2KTsKKwkJZWxzZQorCQkJaWYgKHdhaXRfZm9yX3VzKChpbnRl
+bF9kZV9yZWFkKGRldl9wcml2LCBERElfQlVGX0NUTChwb3J0KSkgJgorCQkJCQkgRERJX0JVRl9J
+U19JRExFKSwgMTYpKQorCQkJCWRybV9lcnIoJmRldl9wcml2LT5kcm0sICJUaW1lb3V0IHdhaXRp
+bmcgZm9yIERESSBCVUYgJWMgaWRsZSBiaXRcbiIsCisJCQkJCXBvcnRfbmFtZShwb3J0KSk7CisJ
+fSBlbHNlIHsKKwkJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPCAxMCkKKwkJCXVkZWxheSg2MDAp
+OworCQllbHNlCisJCQlpZiAod2FpdF9mb3JfdXMoIShpbnRlbF9kZV9yZWFkKGRldl9wcml2LCBE
+RElfQlVGX0NUTChwb3J0KSkgJgorCQkJCQkgIERESV9CVUZfSVNfSURMRSksIDYwMCkpCisJCQkJ
+ZHJtX2VycigmZGV2X3ByaXYtPmRybSwgIkRESSBwb3J0OiVjIGJ1ZmZlciBpZGxlXG4iLAorCQkJ
+CQlwb3J0X25hbWUocG9ydCkpOwogCX0KLQlkcm1fZXJyKCZkZXZfcHJpdi0+ZHJtLCAiVGltZW91
+dCB3YWl0aW5nIGZvciBEREkgQlVGICVjIGlkbGUgYml0XG4iLAotCQlwb3J0X25hbWUocG9ydCkp
+OworCiB9CiAKIHN0YXRpYyB1MzIgaHN3X3BsbF90b19kZGlfcGxsX3NlbChjb25zdCBzdHJ1Y3Qg
+aW50ZWxfc2hhcmVkX2RwbGwgKnBsbCkKQEAgLTEzNzMsNyArMTM4MSw3IEBAIHZvaWQgaHN3X2Zk
+aV9saW5rX3RyYWluKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCQlpbnRlbF9kZV93
+cml0ZShkZXZfcHJpdiwgRFBfVFBfQ1RMKFBPUlRfRSksIHRlbXApOwogCQlpbnRlbF9kZV9wb3N0
+aW5nX3JlYWQoZGV2X3ByaXYsIERQX1RQX0NUTChQT1JUX0UpKTsKIAotCQlpbnRlbF93YWl0X2Rk
+aV9idWZfaWRsZShkZXZfcHJpdiwgUE9SVF9FKTsKKwkJaW50ZWxfd2FpdF9kZGlfYnVmX2lkbGUo
+ZGV2X3ByaXYsIFBPUlRfRSwgdHJ1ZSk7CiAKIAkJLyogUmVzZXQgRkRJX1JYX01JU0MgcHdyZG4g
+bGFuZXMgKi8KIAkJdGVtcCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIEZESV9SWF9NSVNDKFBJ
+UEVfQSkpOwpAQCAtMzQ5NSw3ICszNTAzLDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfZGlzYWJsZV9k
+ZGlfYnVmKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCWludGVsX2RkaV9kaXNhYmxl
+X2ZlY19zdGF0ZShlbmNvZGVyLCBjcnRjX3N0YXRlKTsKIAogCWlmICh3YWl0KQotCQlpbnRlbF93
+YWl0X2RkaV9idWZfaWRsZShkZXZfcHJpdiwgcG9ydCk7CisJCWludGVsX3dhaXRfZGRpX2J1Zl9p
+ZGxlKGRldl9wcml2LCBwb3J0LCB0cnVlKTsKIH0KIAogc3RhdGljIHZvaWQgaW50ZWxfZGRpX3Bv
+c3RfZGlzYWJsZV9kcChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKQEAgLTQwMDQs
+NyArNDAxMiw3IEBAIHN0YXRpYyB2b2lkIGludGVsX2RkaV9wcmVwYXJlX2xpbmtfcmV0cmFpbihz
+dHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQogCQlpbnRlbF9kZV9wb3N0aW5nX3JlYWQoZGV2X3By
+aXYsIGludGVsX2RwLT5yZWdzLmRwX3RwX2N0bCk7CiAKIAkJaWYgKHdhaXQpCi0JCQlpbnRlbF93
+YWl0X2RkaV9idWZfaWRsZShkZXZfcHJpdiwgcG9ydCk7CisJCQlpbnRlbF93YWl0X2RkaV9idWZf
+aWRsZShkZXZfcHJpdiwgcG9ydCwgdHJ1ZSk7CiAJfQogCiAJZHBfdHBfY3RsID0gRFBfVFBfQ1RM
+X0VOQUJMRSB8Ci0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
