@@ -1,39 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C3ED1FDA65
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 02:43:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38EE11FDA66
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 02:43:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2264C6EA13;
-	Thu, 18 Jun 2020 00:42:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9BC76E8DE;
+	Thu, 18 Jun 2020 00:42:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E92D6E150
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD316E209
  for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 00:42:51 +0000 (UTC)
-IronPort-SDR: Ok89F+erYdgey9cQMYBsSgTiHIff+FnOsErBScQ2xGJsKWVSfuggJVVTAhN78GoT92dQuMLfzI
- +TGDa64g0lig==
+IronPort-SDR: a5jpjaTfJ5gy5ihflMNFPDpfAANeRb56gx+3+lYhoZf43cEg9+Flvkcfi9NMnUx1F1+SLDz+P9
+ qzTU/j0zCzsg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jun 2020 17:42:50 -0700
-IronPort-SDR: QHKtxtN1lC7VgaQWMgUVVxNf14Qq/rf6XxPTQrKftlshRQnTa12bH7qgUApEM78D0cdfeMEYt7
- xHRj6ntiP/oQ==
+IronPort-SDR: HFKifyjF0Dp9nWOZvlf5hLLg2i07lYI1WAePP3cW3QggBnGVcPd0fvCU5Gxo6uDnewydAlKDW/
+ OfizZTZEHf5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,524,1583222400"; d="scan'208";a="477011841"
+X-IronPort-AV: E=Sophos;i="5.73,524,1583222400"; d="scan'208";a="477011844"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
  by fmsmga006.fm.intel.com with ESMTP; 17 Jun 2020 17:42:50 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Jun 2020 17:42:12 -0700
-Message-Id: <20200618004240.16263-5-lucas.demarchi@intel.com>
+Date: Wed, 17 Jun 2020 17:42:13 -0700
+Message-Id: <20200618004240.16263-6-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200618004240.16263-1-lucas.demarchi@intel.com>
 References: <20200618004240.16263-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 04/32] drm/i915/rkl: Add initial workarounds
+Subject: [Intel-gfx] [PATCH v2 05/32] drm/i915/rkl: Add Wa_14011224835 for
+ PHY B initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,204 +54,105 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-RKL and TGL share some general gen12 workarounds, but each platform also
-has its own platform-specific workarounds.
+After doing normal PHY-B initialization on Rocket Lake, we need to
+manually copy some additional PHY-A register values into PHY-B
+registers.
 
-v2:
- - Add Wa_1604555607 for RKL.  This makes RKL's ctx WA list identical to
-   TGL's, so we'll have both functions call the tgl_ function for now;
-   this workaround isn't listed for DG1 so we don't want to add it to
-   the general gen12_ function.
+Note that the bspec's combo phy page doesn't specify that this
+workaround is restricted to specific platform steppings (and doesn't
+even do a very good job of specifying that RKL is the only platform this
+is needed on), but the RKL workaround page lists this as relevant only
+for A and B steppings, so I'm trusting that information for now.
 
-Cc: Matt Atwood <matthew.s.atwood@intel.com>
+v2:  Make rkl_combo_phy_b_init_wa() static
+
+Bspec: 49291
+Bspec: 53273
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_sprite.c |  5 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 88 +++++++++++++--------
- 2 files changed, 59 insertions(+), 34 deletions(-)
+ .../gpu/drm/i915/display/intel_combo_phy.c    | 26 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h               | 13 +++++++++-
+ 2 files changed, 38 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 3cd461bf91311..63ac79f88fa21 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -2842,8 +2842,9 @@ static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
- static bool gen12_plane_supports_mc_ccs(struct drm_i915_private *dev_priv,
- 					enum plane_id plane_id)
- {
--	/* Wa_14010477008:tgl[a0..c0] */
--	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
-+	/* Wa_14010477008:tgl[a0..c0],rkl[all] */
-+	if (IS_ROCKETLAKE(dev_priv) ||
-+	    IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
- 		return false;
- 
- 	return plane_id < PLANE_SPRITE4;
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 2da366821ddaf..741710ca2b9a5 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -596,8 +596,8 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN11_DIS_PICK_2ND_EU);
+diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+index 77b04bb3ec624..d5d95e2746c2c 100644
+--- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+@@ -338,6 +338,27 @@ void intel_combo_phy_power_up_lanes(struct drm_i915_private *dev_priv,
+ 	intel_de_write(dev_priv, ICL_PORT_CL_DW10(phy), val);
  }
  
--static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
--				     struct i915_wa_list *wal)
-+static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
-+				       struct i915_wa_list *wal)
- {
- 	/*
- 	 * Wa_1409142259:tgl
-@@ -607,12 +607,28 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	 * Wa_1409207793:tgl
- 	 * Wa_1409178076:tgl
- 	 * Wa_1408979724:tgl
-+	 * Wa_14010443199:rkl
-+	 * Wa_14010698770:rkl
- 	 */
- 	WA_SET_BIT_MASKED(GEN11_COMMON_SLICE_CHICKEN3,
- 			  GEN12_DISABLE_CPS_AWARE_COLOR_PIPE);
- 
-+	/* WaDisableGPGPUMidThreadPreemption:gen12 */
-+	WA_SET_FIELD_MASKED(GEN8_CS_CHICKEN1,
-+			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
-+			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
++static void rkl_combo_phy_b_init_wa(struct drm_i915_private *i915)
++{
++	u32 grccode, grccode_ldo;
++	u32 iref_rcal_ord, rcompcode_ld_cap_ov;
++
++	intel_de_wait_for_register(i915, ICL_PORT_COMP_DW3(PHY_A),
++				   FIRST_COMP_DONE, FIRST_COMP_DONE, 100);
++
++	grccode = REG_FIELD_GET(GRCCODE,
++				intel_de_read(i915, ICL_PORT_COMP_DW6(PHY_A)));
++	iref_rcal_ord = REG_FIELD_PREP(IREF_RCAL_ORD, grccode);
++	intel_de_rmw(i915, ICL_PORT_COMP_DW2(PHY_B), IREF_RCAL_ORD,
++		     iref_rcal_ord | IREF_RCAL_ORD_EN);
++
++	grccode_ldo = REG_FIELD_GET(GRCCODE_LDO,
++				    intel_de_read(i915, ICL_PORT_COMP_DW0(PHY_A)));
++	rcompcode_ld_cap_ov = REG_FIELD_PREP(RCOMPCODE_LD_CAP_OV, grccode_ldo);
++	intel_de_rmw(i915, ICL_PORT_COMP_DW6(PHY_B), RCOMPCODE_LD_CAP_OV,
++		     rcompcode_ld_cap_ov | RCOMPCODEOVEN_LDO_SYNC);
 +}
 +
-+static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
-+				     struct i915_wa_list *wal)
-+{
-+	gen12_ctx_workarounds_init(engine, wal);
+ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
+ {
+ 	enum phy phy;
+@@ -390,6 +411,11 @@ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
+ 		val = intel_de_read(dev_priv, ICL_PORT_CL_DW5(phy));
+ 		val |= CL_POWER_DOWN_ENABLE;
+ 		intel_de_write(dev_priv, ICL_PORT_CL_DW5(phy), val);
 +
- 	/*
--	 * Wa_1604555607:gen12 and Wa_1608008084:gen12
-+	 * Wa_1604555607:tgl,rkl
-+	 *
-+	 * Note that the implementation of this workaround is further modified
-+	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
- 	 * FF_MODE2 register will return the wrong value when read. The default
- 	 * value for this register is zero for all fields and there are no bit
- 	 * masks. So instead of doing a RMW we should just write the GS Timer
-@@ -623,11 +639,6 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	       FF_MODE2_GS_TIMER_MASK | FF_MODE2_TDS_TIMER_MASK,
- 	       FF_MODE2_GS_TIMER_224  | FF_MODE2_TDS_TIMER_128,
- 	       0);
--
--	/* WaDisableGPGPUMidThreadPreemption:tgl */
--	WA_SET_FIELD_MASKED(GEN8_CS_CHICKEN1,
--			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
--			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
++		if (IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_B0) &&
++		    phy == PHY_B)
++			/* Wa_14011224835:rkl[a0..c0] */
++			rkl_combo_phy_b_init_wa(dev_priv);
+ 	}
  }
  
- static void
-@@ -642,8 +653,10 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 34b2ec04ccd86..10f6e46523b6e 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1908,11 +1908,16 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
  
- 	wa_init_start(wal, name, engine->name);
+ #define CNL_PORT_COMP_DW0		_MMIO(0x162100)
+ #define ICL_PORT_COMP_DW0(phy)		_MMIO(_ICL_PORT_COMP_DW(0, phy))
+-#define   COMP_INIT			(1 << 31)
++#define   COMP_INIT			REG_BIT(31)
++#define   GRCCODE_LDO			REG_GENMASK(7, 0)
  
--	if (IS_GEN(i915, 12))
-+	if (IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915))
- 		tgl_ctx_workarounds_init(engine, wal);
-+	else if (IS_GEN(i915, 12))
-+		gen12_ctx_workarounds_init(engine, wal);
- 	else if (IS_GEN(i915, 11))
- 		icl_ctx_workarounds_init(engine, wal);
- 	else if (IS_CANNONLAKE(i915))
-@@ -1176,9 +1189,16 @@ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- }
+ #define CNL_PORT_COMP_DW1		_MMIO(0x162104)
+ #define ICL_PORT_COMP_DW1(phy)		_MMIO(_ICL_PORT_COMP_DW(1, phy))
  
- static void
--tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
-+gen12_gt_workarounds_init(struct drm_i915_private *i915,
-+			  struct i915_wa_list *wal)
- {
- 	wa_init_mcr(i915, wal);
-+}
++#define ICL_PORT_COMP_DW2(phy)		_MMIO(_ICL_PORT_COMP_DW(2, phy))
++#define   IREF_RCAL_ORD_EN		REG_BIT(7)
++#define   IREF_RCAL_ORD			REG_GENMASK(6, 0)
 +
-+static void
-+tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
-+{
-+	gen12_gt_workarounds_init(i915, wal);
- 
- 	/* Wa_1409420604:tgl */
- 	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
-@@ -1196,8 +1216,10 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- static void
- gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
- {
--	if (IS_GEN(i915, 12))
-+	if (IS_TIGERLAKE(i915))
- 		tgl_gt_workarounds_init(i915, wal);
-+	else if (IS_GEN(i915, 12))
-+		gen12_gt_workarounds_init(i915, wal);
- 	else if (IS_GEN(i915, 11))
- 		icl_gt_workarounds_init(i915, wal);
- 	else if (IS_CANNONLAKE(i915))
-@@ -1629,18 +1651,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			    GEN9_CTX_PREEMPT_REG,
- 			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
- 
--		/*
--		 * Wa_1607030317:tgl
--		 * Wa_1607186500:tgl
--		 * Wa_1607297627:tgl there is 3 entries for this WA on BSpec, 2
--		 * of then says it is fixed on B0 the other one says it is
--		 * permanent
--		 */
--		wa_masked_en(wal,
--			     GEN6_RC_SLEEP_PSMI_CONTROL,
--			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
--			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
--
- 		/*
- 		 * Wa_1606679103:tgl
- 		 * (see also Wa_1606682166:icl)
-@@ -1659,24 +1669,38 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			    VSUNIT_CLKGATE_DIS_TGL);
- 	}
- 
--	if (IS_TIGERLAKE(i915)) {
--		/* Wa_1606931601:tgl */
-+	if (IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
-+		/* Wa_1606931601:tgl,rkl */
- 		wa_masked_en(wal, GEN7_ROW_CHICKEN2, GEN12_DISABLE_EARLY_READ);
- 
--		/* Wa_1409804808:tgl */
-+		/* Wa_1409804808:tgl,rkl */
- 		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
- 			     GEN12_PUSH_CONST_DEREF_HOLD_DIS);
- 
--		/* Wa_1606700617:tgl */
--		wa_masked_en(wal,
--			     GEN9_CS_DEBUG_MODE1,
--			     FF_DOP_CLOCK_GATE_DISABLE);
--
- 		/*
- 		 * Wa_1409085225:tgl
--		 * Wa_14010229206:tgl
-+		 * Wa_14010229206:tgl,rkl
- 		 */
- 		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+ #define CNL_PORT_COMP_DW3		_MMIO(0x16210c)
+ #define ICL_PORT_COMP_DW3(phy)		_MMIO(_ICL_PORT_COMP_DW(3, phy))
+ #define   PROCESS_INFO_DOT_0		(0 << 26)
+@@ -1925,6 +1930,12 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define   VOLTAGE_INFO_1_05V		(2 << 24)
+ #define   VOLTAGE_INFO_MASK		(3 << 24)
+ #define   VOLTAGE_INFO_SHIFT		24
++#define   FIRST_COMP_DONE		REG_BIT(22)
 +
-+		/*
-+		 * Wa_1607030317:tgl
-+		 * Wa_1607186500:tgl
-+		 * Wa_1607297627:tgl,rkl there are multiple entries for this
-+		 * WA in the BSpec; some indicate this is an A0-only WA,
-+		 * others indicate it applies to all steppings.
-+		 */
-+		wa_masked_en(wal,
-+			     GEN6_RC_SLEEP_PSMI_CONTROL,
-+			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
-+			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
-+	}
-+
-+	if (IS_TIGERLAKE(i915)) {
-+		/* Wa_1606700617:tgl */
-+		wa_masked_en(wal,
-+			     GEN9_CS_DEBUG_MODE1,
-+			     FF_DOP_CLOCK_GATE_DISABLE);
- 	}
++#define ICL_PORT_COMP_DW6(phy)		_MMIO(_ICL_PORT_COMP_DW(6, phy))
++#define   GRCCODE			REG_GENMASK(30, 24)
++#define   RCOMPCODEOVEN_LDO_SYNC	REG_BIT(23)
++#define   RCOMPCODE_LD_CAP_OV		REG_GENMASK(22, 16)
  
- 	if (IS_GEN(i915, 11)) {
+ #define ICL_PORT_COMP_DW8(phy)		_MMIO(_ICL_PORT_COMP_DW(8, phy))
+ #define   IREFGEN			(1 << 24)
 -- 
 2.26.2
 
