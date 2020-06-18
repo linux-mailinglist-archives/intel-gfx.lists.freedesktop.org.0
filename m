@@ -2,31 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24E31FF21A
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 14:41:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC5D01FF238
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 14:47:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 548DD6E3C4;
-	Thu, 18 Jun 2020 12:41:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30C966E149;
+	Thu, 18 Jun 2020 12:47:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 104706E179;
- Thu, 18 Jun 2020 12:41:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 097FCA0BA8;
- Thu, 18 Jun 2020 12:41:05 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28A746E149;
+ Thu, 18 Jun 2020 12:47:05 +0000 (UTC)
+IronPort-SDR: wOoll0gWwAJTwQfyDy7q8WM9QEWt6RQ5nGZCaXRK+E416E6IPf4hTieWxmDVscgcvvKoDZTGUC
+ 9UQYHmdOQejw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9655"; a="227252999"
+X-IronPort-AV: E=Sophos;i="5.73,526,1583222400"; d="scan'208";a="227252999"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2020 05:47:04 -0700
+IronPort-SDR: 59gyBAtMUgKQ1Cia2xmjmiQarr3SWEXFp++caC1X27qgBVSi/Ry6L/cb+Gac1xJm1/jBBKkqqr
+ 10eFupA+a6Pg==
+X-IronPort-AV: E=Sophos;i="5.73,526,1583222400"; d="scan'208";a="450623329"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.14.253])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2020 05:47:01 -0700
+Date: Thu, 18 Jun 2020 15:46:59 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200618124659.GA12342@jlahtine-desk.ger.corp.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 18 Jun 2020 12:41:05 -0000
-Message-ID: <159248406500.22460.16640419528145048799@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200618100356.15744-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200618100356.15744-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/11=5D_drm/i915/gt=3A_Decouple_completed?=
- =?utf-8?q?_requests_on_unwind_=28rev3=29?=
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,232 +47,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave & Daniel,
 
-Series: series starting with [01/11] drm/i915/gt: Decouple completed requests on unwind (rev3)
-URL   : https://patchwork.freedesktop.org/series/78522/
-State : failure
+-rc1 required the usual juggling to get baseline from CI.
+Needed to temporarily apply this fixup to drm-intel-fixes:
+"ext4: mballoc: Use this_cpu_read instead of this_cpu_ptr"
 
-== Summary ==
+For display side, fix for TypeC interrupt storm detection. Fixes to
+TypeC, DDI and MST hardware register programming.
 
-CI Bug Log - changes from CI_DRM_8641 -> Patchwork_17987
-====================================================
+On GT side, fixes into timeslicing and missing workarounds after GPU
+reset.
 
-Summary
--------
+A couple of build time warning fixes.
 
-  **FAILURE**
+CI results are partially back online (hopefully more will come shortly):
 
-  Serious unknown changes coming with Patchwork_17987 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17987, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+https://intel-gfx-ci.01.org/tree/drm-intel-fixes/combined-alt.html?
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/index.html
+CI_DIF_483 - With the ext4 fix
+CI_DIF_484 - This PR, no ext4 fix => extra warnings
 
-Possible new issues
--------------------
+Regards, Joonas
 
-  Here are the unknown changes that may have been introduced in Patchwork_17987:
+PS. I'll be away for the next 4 weeks, so expect to see the following
+drm-intel-fixes PRs from Jani and Rodrigo.
 
-### IGT changes ###
+***
 
-#### Possible regressions ####
+drm-intel-fixes-2020-06-18:
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2520m:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-snb-2520m/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-snb-2520m/igt@i915_selftest@live@hangcheck.html
+- Fix for timeslicing and virtual engines/unpremptable requests
+  (+ 1 dependency patch)
+- Fixes into TypeC register programming and interrupt storm detecting
+- Disable DIP on MST ports with the transcoder clock still on
+- Avoid missing GT workarounds at reset for HSW and older gens
+- Fix for unwinding multiple requests missing force restore
+- Fix encoder type check for DDI vswing sequence
+- Build warning fixes
 
-  * igt@i915_selftest@live@hugepages:
-    - fi-cml-u2:          [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-cml-u2/igt@i915_selftest@live@hugepages.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-cml-u2/igt@i915_selftest@live@hugepages.html
+The following changes since commit b3a9e3b9622ae10064826dccb4f7a52bd88c7407:
 
-  * igt@i915_selftest@live@reset:
-    - fi-cfl-guc:         [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-cfl-guc/igt@i915_selftest@live@reset.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-cfl-guc/igt@i915_selftest@live@reset.html
-    - fi-kbl-soraka:      [PASS][7] -> [INCOMPLETE][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-kbl-soraka/igt@i915_selftest@live@reset.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-kbl-soraka/igt@i915_selftest@live@reset.html
-    - fi-cml-s:           [PASS][9] -> [INCOMPLETE][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-cml-s/igt@i915_selftest@live@reset.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-cml-s/igt@i915_selftest@live@reset.html
-    - fi-tgl-u2:          [PASS][11] -> [INCOMPLETE][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-tgl-u2/igt@i915_selftest@live@reset.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-tgl-u2/igt@i915_selftest@live@reset.html
-    - fi-icl-guc:         [PASS][13] -> [INCOMPLETE][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-icl-guc/igt@i915_selftest@live@reset.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-icl-guc/igt@i915_selftest@live@reset.html
-    - fi-bsw-kefka:       [PASS][15] -> [INCOMPLETE][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-bsw-kefka/igt@i915_selftest@live@reset.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-bsw-kefka/igt@i915_selftest@live@reset.html
-    - fi-bdw-5557u:       [PASS][17] -> [INCOMPLETE][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-bdw-5557u/igt@i915_selftest@live@reset.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-bdw-5557u/igt@i915_selftest@live@reset.html
-    - fi-kbl-x1275:       [PASS][19] -> [INCOMPLETE][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-kbl-x1275/igt@i915_selftest@live@reset.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-kbl-x1275/igt@i915_selftest@live@reset.html
-    - fi-kbl-7500u:       [PASS][21] -> [INCOMPLETE][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-kbl-7500u/igt@i915_selftest@live@reset.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-kbl-7500u/igt@i915_selftest@live@reset.html
-    - fi-icl-y:           [PASS][23] -> [INCOMPLETE][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-icl-y/igt@i915_selftest@live@reset.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-icl-y/igt@i915_selftest@live@reset.html
-    - fi-cfl-8109u:       [PASS][25] -> [INCOMPLETE][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-cfl-8109u/igt@i915_selftest@live@reset.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-cfl-8109u/igt@i915_selftest@live@reset.html
-    - fi-icl-u2:          [PASS][27] -> [INCOMPLETE][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-icl-u2/igt@i915_selftest@live@reset.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-icl-u2/igt@i915_selftest@live@reset.html
-    - fi-cfl-8700k:       [PASS][29] -> [INCOMPLETE][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-cfl-8700k/igt@i915_selftest@live@reset.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-cfl-8700k/igt@i915_selftest@live@reset.html
-    - fi-apl-guc:         [PASS][31] -> [INCOMPLETE][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-apl-guc/igt@i915_selftest@live@reset.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-apl-guc/igt@i915_selftest@live@reset.html
-    - fi-skl-6600u:       [PASS][33] -> [INCOMPLETE][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-skl-6600u/igt@i915_selftest@live@reset.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-skl-6600u/igt@i915_selftest@live@reset.html
+  Linux 5.8-rc1 (2020-06-14 12:45:04 -0700)
 
-  
-#### Suppressed ####
+are available in the Git repository at:
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-06-18
 
-  * igt@i915_selftest@live@reset:
-    - {fi-ehl-1}:         [PASS][35] -> [INCOMPLETE][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-ehl-1/igt@i915_selftest@live@reset.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-ehl-1/igt@i915_selftest@live@reset.html
-    - {fi-tgl-dsi}:       [PASS][37] -> [INCOMPLETE][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-tgl-dsi/igt@i915_selftest@live@reset.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-tgl-dsi/igt@i915_selftest@live@reset.html
+for you to fetch changes up to 8e68c6340d5833077b3753eabedab40755571383:
 
-  
-Known issues
-------------
+  drm/i915/display: Fix the encoder type check (2020-06-16 11:34:24 +0300)
 
-  Here are the changes found in Patchwork_17987 that come from known issues:
+----------------------------------------------------------------
+- Fix for timeslicing and virtual engines/unpremptable requests
+  (+ 1 dependency patch)
+- Fixes into TypeC register programming and interrupt storm detecting
+- Disable DIP on MST ports with the transcoder clock still on
+- Avoid missing GT workarounds at reset for HSW and older gens
+- Fix for unwinding multiple requests missing force restore
+- Fix encoder type check for DDI vswing sequence
+- Build warning fixes
 
-### IGT changes ###
+----------------------------------------------------------------
+Arnd Bergmann (2):
+      drm/i915/pmu: avoid an maybe-uninitialized warning
+      drm/i915: work around false-positive maybe-uninitialized warning
 
-#### Issues hit ####
+Chris Wilson (10):
+      drm/i915/gt: Incorporate the virtual engine into timeslicing
+      drm/i915/selftests: Restore to default heartbeat
+      drm/i915/gt: Prevent timeslicing into unpreemptable requests
+      drm/i915/gt: Incrementally check for rewinding
+      drm/i915/gt: Move hsw GT workarounds from init_clock_gating to workarounds
+      drm/i915/gt: Move ivb GT workarounds from init_clock_gating to workarounds
+      drm/i915/gt: Move vlv GT workarounds from init_clock_gating to workarounds
+      drm/i915/gt: Move snb GT workarounds from init_clock_gating to workarounds
+      drm/i915/gt: Move ilk GT workarounds from init_clock_gating to workarounds
+      drm/i915/gt: Move gen4 GT workarounds from init_clock_gating to workarounds
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][39] -> [DMESG-WARN][40] ([i915#1982])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+Imre Deak (2):
+      drm/i915/icl: Disable DIP on MST ports with the transcoder clock still on
+      drm/i915/icl+: Fix hotplug interrupt disabling after storm detection
 
-  * igt@i915_selftest@live@reset:
-    - fi-glk-dsi:         [PASS][41] -> [INCOMPLETE][42] ([i915#58] / [k.org#198133])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-glk-dsi/igt@i915_selftest@live@reset.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-glk-dsi/igt@i915_selftest@live@reset.html
+Khaled Almahallawy (1):
+      drm/i915/tc: fix the reset of ln0
 
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [PASS][43] -> [DMESG-WARN][44] ([i915#62] / [i915#92] / [i915#95])
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+Vandita Kulkarni (1):
+      drm/i915/display: Fix the encoder type check
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-guc:         [PASS][45] -> [DMESG-WARN][46] ([i915#1982])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][47] ([i915#1888]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [DMESG-WARN][49] ([i915#402]) -> [PASS][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-tgl-u2/igt@i915_module_load@reload.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [DMESG-WARN][51] ([i915#1982]) -> [PASS][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@d-dsi1:
-    - {fi-tgl-dsi}:       [DMESG-WARN][53] ([i915#1982]) -> [PASS][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-modeset@d-dsi1.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-modeset@d-dsi1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-kbl-x1275:       [DMESG-WARN][55] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][56] ([i915#62] / [i915#92]) +2 similar issues
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][57] ([i915#62] / [i915#92]) -> [DMESG-WARN][58] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (49 -> 32)
-------------------------------
-
-  Missing    (17): fi-ilk-m540 fi-bxt-dsi fi-bdw-samus fi-bsw-n3050 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-guc fi-ctg-p8600 fi-whl-u fi-kbl-8809g fi-skl-lmem fi-kbl-7560u fi-byt-clapper fi-bsw-nick fi-skl-6700k2 fi-kbl-r 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8641 -> Patchwork_17987
-
-  CI-20190529: 20190529
-  CI_DRM_8641: aac91f91c7be78f53b352237d968dfa1996b2d4b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5712: eba1135ddd35f9d3097ed91032aefe8f9a9f9d02 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17987: 00d941188df5028230c80cc86e67ddd84ccc0f98 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-00d941188df5 drm/i915/gt: Resubmit the virtual engine on schedule-out
-7411d8542246 drm/i915/gt: Decouple inflight virtual engines
-da379162e57f drm/i915/gt: Use virtual_engine during execlists_dequeue
-fd9642a91243 drm/i915/gt: Convert stats.active to plain unsigned int
-debb4583e9c0 drm/i915/gt: Extract busy-stats for ring-scheduler
-d04ee88b4f0c drm/i915/gt: Drop atomic for engine->fw_active tracking
-4134bd32c7be drm/i915/gt: ce->inflight updates are now serialised
-19e8c8871406 drm/i915/execlists: Defer schedule_out until after the next dequeue
-24ac4a11960a drm/i915/gt: Replace direct submit with direct call to tasklet
-3ef642da1d22 drm/i915/gt: Check for a completed last request once
-990732b3a2b0 drm/i915/gt: Decouple completed requests on unwind
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17987/index.html
+ drivers/gpu/drm/i915/display/intel_ddi.c           |  12 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        |   8 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   4 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c                |  52 ++++-
+ drivers/gpu/drm/i915/gt/intel_ring.c               |   4 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        | 241 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c       |  25 +--
+ drivers/gpu/drm/i915/gt/selftest_lrc.c             | 185 ++++++++++++----
+ drivers/gpu/drm/i915/gt/selftest_mocs.c            |  18 +-
+ drivers/gpu/drm/i915/gt/selftest_ring.c            | 110 ++++++++++
+ drivers/gpu/drm/i915/gt/selftest_rps.c             |  69 +++---
+ drivers/gpu/drm/i915/gt/selftest_timeline.c        |  15 +-
+ drivers/gpu/drm/i915/gt/selftest_workarounds.c     |   2 +
+ drivers/gpu/drm/i915/i915_irq.c                    |   1 +
+ drivers/gpu/drm/i915/i915_pmu.c                    |  84 +++----
+ drivers/gpu/drm/i915/i915_priolist_types.h         |   2 +-
+ drivers/gpu/drm/i915/i915_reg.h                    |   2 +-
+ drivers/gpu/drm/i915/intel_pm.c                    | 206 +-----------------
+ .../gpu/drm/i915/selftests/i915_mock_selftests.h   |   1 +
+ 19 files changed, 668 insertions(+), 373 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/selftest_ring.c
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
