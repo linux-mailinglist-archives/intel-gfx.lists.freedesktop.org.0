@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC621FDA9A
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 02:51:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C2911FDAA2
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 02:56:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9813D6EA28;
-	Thu, 18 Jun 2020 00:51:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 502E16EA21;
+	Thu, 18 Jun 2020 00:56:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AAED86EA26;
- Thu, 18 Jun 2020 00:51:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id EB3886EA21;
+ Thu, 18 Jun 2020 00:56:42 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A5270A47E1;
- Thu, 18 Jun 2020 00:51:50 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E59E1A00EF;
+ Thu, 18 Jun 2020 00:56:42 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Thu, 18 Jun 2020 00:51:50 -0000
-Message-ID: <159244151064.22460.15082308685847975632@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Thu, 18 Jun 2020 00:56:42 -0000
+Message-ID: <159244180291.22461.1017514311246139674@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200618000124.29036-1-manasi.d.navare@intel.com>
-In-Reply-To: <20200618000124.29036-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/2=5D_drm/i915/dp=3A_Helper_for_chec?=
- =?utf-8?q?king_DDI=5FBUF=5FCTL_Idle_status?=
+References: <20200618004240.16263-1-lucas.demarchi@intel.com>
+In-Reply-To: <20200618004240.16263-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_DG1_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,149 +47,58 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v2,1/2] drm/i915/dp: Helper for checking DDI_BUF_CTL Idle status
-URL   : https://patchwork.freedesktop.org/series/78500/
-State : success
+Series: Introduce DG1 (rev2)
+URL   : https://patchwork.freedesktop.org/series/77496/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8639 -> Patchwork_17984
-====================================================
+$ dim checkpatch origin/drm-tip
+0168a6dc120d drm/i915/rkl: Handle new DPCLKA_CFGCR0 layout
+b533bd97f161 drm/i915/rkl: Add DPLL4 support
+266c7f569e81 drm/i915/rkl: Handle HTI
+0dcdc976291d drm/i915/rkl: Add initial workarounds
+bc9a17f57138 drm/i915/rkl: Add Wa_14011224835 for PHY B initialization
+8f27f0ec2180 drm/i915: Add has_master_unit_irq flag
+5e175aa8a3f1 drm/i915/dg1: add initial DG-1 definitions
+-:41: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#41: FILE: drivers/gpu/drm/i915/i915_drv.h:1563:
++#define IS_DG1_REVID(p, since, until) \
++	(IS_DG1(p) && IS_REVID(p, since, until))
 
-Summary
--------
+total: 0 errors, 0 warnings, 1 checks, 53 lines checked
+1f9863075fc5 drm/i915/dg1: Add DG1 PCI IDs
+e5efb9b1d3a3 drm/i915/dg1: add support for the master unit interrupt
+e45165e0ecea drm/i915/dg1: Remove SHPD_FILTER_CNT register programming
+1a41b5d5a734 drm/i915/dg1: Add fake PCH
+e1eb70f5e961 drm/i915/dg1: Initialize RAWCLK properly
+40ff297509d4 drm/i915/dg1: Define MOCS table for DG1
+95dc688fbad0 drm/i915/dg1: Add DG1 power wells
+9e17457108d4 drm/i915/dg1: Increase mmio size to 4MB
+63bc63bff441 drm/i915/dg1: Wait for pcode/uncore handshake at startup
+bdec0b31b8b0 drm/i915/dg1: Add DPLL macros for DG1
+67f3b147ced0 drm/i915/dg1: Add and setup DPLLs for DG1
+955fe7def921 drm/i915/dg1: Enable DPLL for DG1
+eb5057fd8085 drm/i915/dg1: add hpd interrupt handling
+c56090c99ac7 drm/i915/dg1: invert HPD pins
+592dd39473a7 drm/i915/dg1: gmbus pin mapping
+9f15f4f45591 drm/i915/dg1: Enable first 2 ports for DG1
+5a0cc1900a4f drm/i915/dg1: Don't program PHY_MISC for PHY-C and PHY-D
+f2cac2139aff drm/i915/dg1: Update comp master/slave relationships for PHYs
+2d8d3581a563 drm/i915/dg1: Update voltage swing tables for DP
+ee62584fb237 drm/i915/dg1: provide port/phy mapping for vbt
+6313b83c0806 drm/i915/dg1: map/unmap pll clocks
+-:244: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'phy' - possible side-effects?
+#244: FILE: drivers/gpu/drm/i915/i915_reg.h:10259:
++#define   DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_VAL_TO_ID(val, phy) \
++	  ((((val) & DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)) >> ((phy % 2) * 2)) + (2 * (phy / 2)))
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 1 checks, 204 lines checked
+a1377be54bdb drm/i915/dg1: enable PORT C/D aka D/E
+ad0d140c9965 drm/i915/dg1: Load DMC
+277c534f9b87 drm/i915/dg1: Add initial DG1 workarounds
+a976a97be22b drm/i915/dg1: DG1 does not support DC6
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17984 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-tgl-u2/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bsw-n3050:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-    - fi-glk-dsi:         [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-u2:          [PASS][11] -> [DMESG-WARN][12] ([i915#1982]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-whl-u:           [DMESG-WARN][13] ([i915#95]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-tgl-dsi}:       [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-tgl-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-tgl-dsi/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-guc:         [DMESG-WARN][19] ([i915#1982]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-icl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - {fi-tgl-dsi}:       [INCOMPLETE][21] -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-tgl-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-tgl-dsi/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [DMESG-WARN][23] ([i915#1982]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][25] ([fdo#109271]) -> [DMESG-FAIL][26] ([i915#62] / [i915#95])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - fi-kbl-x1275:       [DMESG-WARN][27] ([i915#62] / [i915#92]) -> [DMESG-WARN][28] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][29] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][30] ([i915#62] / [i915#92]) +2 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8639/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (48 -> 41)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-cml-s fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8639 -> Patchwork_17984
-
-  CI-20190529: 20190529
-  CI_DRM_8639: 47584e59cf51ec499d68a4cefbaf447448ce2894 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5711: 90611a0c90afa4a46496c78a4faf9638a1538ac3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17984: ed2c62fe315d12edf14a8de352d0ccf3c0ea9780 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ed2c62fe315d drm/i915/dp: Wait or poll with timeout for DDI BUF non idle after enable
-42dd12bb148b drm/i915/dp: Helper for checking DDI_BUF_CTL Idle status
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17984/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
