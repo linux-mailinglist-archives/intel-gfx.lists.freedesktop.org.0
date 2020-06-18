@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55CB41FF0F5
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 13:48:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 058661FF105
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 13:51:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D8566E0D3;
-	Thu, 18 Jun 2020 11:48:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 268F56E3AC;
+	Thu, 18 Jun 2020 11:51:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D760A6E0D3
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 11:48:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07A696E3AC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 11:51:31 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21537346-1500050 
- for multiple; Thu, 18 Jun 2020 12:48:23 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21537388-1500050 
+ for multiple; Thu, 18 Jun 2020 12:51:24 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Jun 2020 12:48:21 +0100
-Message-Id: <20200618114821.8148-1-chris@chris-wilson.co.uk>
+Date: Thu, 18 Jun 2020 12:51:21 +0100
+Message-Id: <20200618115121.8491-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200618100356.15744-3-chris@chris-wilson.co.uk>
 References: <20200618100356.15744-3-chris@chris-wilson.co.uk>
@@ -464,33 +464,30 @@ index 7bdbfac26d7b..70671dbdcc77 100644
  		     atomic_read(&execlists->tasklet.count));
  }
 diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 39070b514e65..b31e2f5ec70b 100644
+index 39070b514e65..3ba8057645f8 100644
 --- a/drivers/gpu/drm/i915/gt/intel_reset.c
 +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -774,11 +774,13 @@ static void reset_finish(struct intel_gt *gt, intel_engine_mask_t awake)
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
+@@ -752,8 +752,10 @@ static int gt_reset(struct intel_gt *gt, intel_engine_mask_t stalled_mask)
+ 	if (err)
+ 		return err;
  
 +	local_bh_disable();
- 	for_each_engine(engine, gt, id) {
- 		reset_finish_engine(engine);
- 		if (awake & engine->mask)
- 			intel_engine_pm_put(engine);
- 	}
+ 	for_each_engine(engine, gt, id)
+ 		__intel_engine_reset(engine, stalled_mask & engine->mask);
 +	local_bh_enable();
- }
  
- static void nop_submit_request(struct i915_request *request)
-@@ -1167,7 +1169,9 @@ int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
+ 	intel_ggtt_restore_fences(gt->ggtt);
  
- out:
- 	intel_engine_cancel_stop_cs(engine);
+@@ -1156,7 +1158,9 @@ int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
+ 	 * active request and can drop it, adjust head to skip the offending
+ 	 * request to resume executing remaining requests in the queue.
+ 	 */
 +	local_bh_disable();
- 	reset_finish_engine(engine);
+ 	__intel_engine_reset(engine, true);
 +	local_bh_enable();
- 	intel_engine_pm_put_async(engine);
- 	return ret;
- }
+ 
+ 	/*
+ 	 * The engine and its registers (and workarounds in case of render)
 diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
 index fb5ebf930ab2..0fa23cb6bf1a 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
