@@ -1,40 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C36F1FDA7C
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 02:43:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4FFF1FDA5E
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 02:43:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E9F16EA1D;
-	Thu, 18 Jun 2020 00:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 507D06E348;
+	Thu, 18 Jun 2020 00:42:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C43F6E25B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B86236E209
  for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 00:42:51 +0000 (UTC)
-IronPort-SDR: Q7H89qPYn7DYRVGOrgmC0hxVm6kLh0GlaiWbir/wNdK3JSqR4uvdwgEpGwYXfXbuECMlmUfIAC
- 7g84APnw/8yQ==
+IronPort-SDR: xX1owP2Z5njdurI2OLGth5oE+HFp4zwiiPl1RR2bCMUb6V3NKIUQqlNH21FVV3oSujxnJjHXXl
+ L+N0Qg3j8Kww==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jun 2020 17:42:51 -0700
-IronPort-SDR: ncfoTvhAQyb5yGqSyso8F328T6gxkNWVX/LLJxaM3ApQnWKuJGINRib/nmfzKq0mCAALXhy20B
- bC7eBdXzKQ5Q==
+IronPort-SDR: IQdSfHvJndoHMn2xJqn+zMR2VudhQTQNckKaMA9qK+76laOikkt6M0Bxy95o/1EtxMP1XiE1Lf
+ Qo/QuwdmdOZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,524,1583222400"; d="scan'208";a="477011859"
+X-IronPort-AV: E=Sophos;i="5.73,524,1583222400"; d="scan'208";a="477011861"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
  by fmsmga006.fm.intel.com with ESMTP; 17 Jun 2020 17:42:51 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Jun 2020 17:42:18 -0700
-Message-Id: <20200618004240.16263-11-lucas.demarchi@intel.com>
+Date: Wed, 17 Jun 2020 17:42:19 -0700
+Message-Id: <20200618004240.16263-12-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200618004240.16263-1-lucas.demarchi@intel.com>
 References: <20200618004240.16263-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 10/32] drm/i915/dg1: Remove SHPD_FILTER_CNT
- register programming
+Subject: [Intel-gfx] [PATCH v2 11/32] drm/i915/dg1: Add fake PCH
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,31 +46,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQW51c2hhIFNyaXZhdHNhIDxhbnVzaGEuc3JpdmF0c2FAaW50ZWwuY29tPgoKQnNwZWMg
-YXNrcyB1cyB0byByZW1vdmUgdGhlIHNwZWNpYWwgcHJvZ3JhbW1pbmcgb2YgdGhlClNIUERfRklM
-VEVSX0NOVCByZWdpc3RlciB3aGljaCB3ZSBoYXZlIGJlZW4gZG9pbmcgc2luY2UgQ05QKy4KCkJz
-cGVjOiA0OTMwNQoKQ2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+ClNp
-Z25lZC1vZmYtYnk6IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNyaXZhdHNhQGludGVsLmNvbT4K
-U2lnbmVkLW9mZi1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+
-ClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNv
-bT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIHwgMyArKy0KIDEgZmlsZSBj
-aGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9p
-cnEuYwppbmRleCA4NjUyZTFlNjlkYjcyLi40OGUxNjg2ZGYzNDE2IDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfaXJxLmMKQEAgLTMxMTYsNyArMzExNiw4IEBAIHN0YXRpYyB2b2lkIGljcF9ocGRfaXJxX3Nl
-dHVwKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAlob3RwbHVnX2lycXMgPSBz
-ZGVfZGRpX21hc2sgfCBzZGVfdGNfbWFzazsKIAllbmFibGVkX2lycXMgPSBpbnRlbF9ocGRfZW5h
-YmxlZF9pcnFzKGRldl9wcml2LCBkZXZfcHJpdi0+aG90cGx1Zy5wY2hfaHBkKTsKIAotCUk5MTVf
-V1JJVEUoU0hQRF9GSUxURVJfQ05ULCBTSFBEX0ZJTFRFUl9DTlRfNTAwX0FESik7CisJaWYgKElO
-VEVMX1BDSF9UWVBFKGRldl9wcml2KSA8PSBQQ0hfVEdQKQorCQlJOTE1X1dSSVRFKFNIUERfRklM
-VEVSX0NOVCwgU0hQRF9GSUxURVJfQ05UXzUwMF9BREopOwogCiAJaWJ4X2Rpc3BsYXlfaW50ZXJy
-dXB0X3VwZGF0ZShkZXZfcHJpdiwgaG90cGx1Z19pcnFzLCBlbmFibGVkX2lycXMpOwogCi0tIAoy
-LjI2LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+DG1 has the south engine display on the same PCI device. Ideally we
+could use HAS_PCH_SPLIT(), but that macro is misused all across the
+code base to rather signify a range of gens. So add a fake one for DG1
+to be used where needed.
+
+Cc: Aditya Swarup <aditya.swarup@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/intel_pch.c | 6 ++++++
+ drivers/gpu/drm/i915/intel_pch.h | 4 ++++
+ 2 files changed, 10 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
+index c668e99eb2e46..6c97192e9ca87 100644
+--- a/drivers/gpu/drm/i915/intel_pch.c
++++ b/drivers/gpu/drm/i915/intel_pch.c
+@@ -188,6 +188,12 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ {
+ 	struct pci_dev *pch = NULL;
+ 
++	/* DG1 has south engine display on the same PCI device */
++	if (IS_DG1(dev_priv)) {
++		dev_priv->pch_type = PCH_DG1;
++		return;
++	}
++
+ 	/*
+ 	 * The reason to probe ISA bridge instead of Dev31:Fun0 is to
+ 	 * make graphics device passthrough work easy for VMM, that only
+diff --git a/drivers/gpu/drm/i915/intel_pch.h b/drivers/gpu/drm/i915/intel_pch.h
+index 3053d1ce398b1..06d2cd50af0b9 100644
+--- a/drivers/gpu/drm/i915/intel_pch.h
++++ b/drivers/gpu/drm/i915/intel_pch.h
+@@ -26,6 +26,9 @@ enum intel_pch {
+ 	PCH_JSP,	/* Jasper Lake PCH */
+ 	PCH_MCC,        /* Mule Creek Canyon PCH */
+ 	PCH_TGP,	/* Tiger Lake PCH */
++
++	/* Fake PCHs, functionality handled on the same PCI dev */
++	PCH_DG1 = 1024,
+ };
+ 
+ #define INTEL_PCH_DEVICE_ID_MASK		0xff80
+@@ -56,6 +59,7 @@ enum intel_pch {
+ 
+ #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
+ #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
++#define HAS_PCH_DG1(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG1)
+ #define HAS_PCH_JSP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_JSP)
+ #define HAS_PCH_MCC(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MCC)
+ #define HAS_PCH_TGP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_TGP)
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
