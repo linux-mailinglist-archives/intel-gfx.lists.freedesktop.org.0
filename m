@@ -1,40 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC5D01FF238
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 14:47:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A7571FF242
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 14:48:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30C966E149;
-	Thu, 18 Jun 2020 12:47:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB6866E179;
+	Thu, 18 Jun 2020 12:48:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28A746E149;
- Thu, 18 Jun 2020 12:47:05 +0000 (UTC)
-IronPort-SDR: wOoll0gWwAJTwQfyDy7q8WM9QEWt6RQ5nGZCaXRK+E416E6IPf4hTieWxmDVscgcvvKoDZTGUC
- 9UQYHmdOQejw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9655"; a="227252999"
-X-IronPort-AV: E=Sophos;i="5.73,526,1583222400"; d="scan'208";a="227252999"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D48776E179;
+ Thu, 18 Jun 2020 12:48:24 +0000 (UTC)
+IronPort-SDR: PObmwXk5XiVjTuK8khNBXbcQ7Rwfpbq1358mzibDVpPHyKf6q/4GRZ/0jy8BGsHuAFdjZjnSd3
+ 53bNOEN0JGbg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9655"; a="122778980"
+X-IronPort-AV: E=Sophos;i="5.73,526,1583222400"; d="scan'208";a="122778980"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2020 05:47:04 -0700
-IronPort-SDR: 59gyBAtMUgKQ1Cia2xmjmiQarr3SWEXFp++caC1X27qgBVSi/Ry6L/cb+Gac1xJm1/jBBKkqqr
- 10eFupA+a6Pg==
-X-IronPort-AV: E=Sophos;i="5.73,526,1583222400"; d="scan'208";a="450623329"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2020 05:48:06 -0700
+IronPort-SDR: uFYRRDg2RJVJ0Lfmg53T9WvEJ427RaEsx88OOFXJ7GsNXp4x3OrX2HRRzLfFWvf7FZW4TUA6Zq
+ ZUVC9wHuQj8Q==
+X-IronPort-AV: E=Sophos;i="5.73,526,1583222400"; d="scan'208";a="421487050"
 Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
  ([10.252.14.253])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2020 05:47:01 -0700
-Date: Thu, 18 Jun 2020 15:46:59 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200618124659.GA12342@jlahtine-desk.ger.corp.intel.com>
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2020 05:48:03 -0700
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+In-Reply-To: <20200617043418.GQ5687@zhen-hp.sh.intel.com>
+References: <20200617043418.GQ5687@zhen-hp.sh.intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 18 Jun 2020 15:48:01 +0300
+Message-ID: <159248448107.8757.1901135788098329902@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,122 +51,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Daniel,
+Quoting Zhenyu Wang (2020-06-17 07:34:18)
+> 
+> Hi,
+> 
+> This contains misc fixes for gvt. Two MMIO handler fixes on SKL/CFL,
+> one mask register bit checking fix exposed in suspend/resume path and
+> one lockdep error fix for debugfs entry access.
 
--rc1 required the usual juggling to get baseline from CI.
-Needed to temporarily apply this fixup to drm-intel-fixes:
-"ext4: mballoc: Use this_cpu_read instead of this_cpu_ptr"
+Could not pull this one due to the extra hassle with CI this week.
 
-For display side, fix for TypeC interrupt storm detection. Fixes to
-TypeC, DDI and MST hardware register programming.
-
-On GT side, fixes into timeslicing and missing workarounds after GPU
-reset.
-
-A couple of build time warning fixes.
-
-CI results are partially back online (hopefully more will come shortly):
-
-https://intel-gfx-ci.01.org/tree/drm-intel-fixes/combined-alt.html?
-
-CI_DIF_483 - With the ext4 fix
-CI_DIF_484 - This PR, no ext4 fix => extra warnings
+Jani, can you please pull this next week.
 
 Regards, Joonas
 
-PS. I'll be away for the next 4 weeks, so expect to see the following
-drm-intel-fixes PRs from Jani and Rodrigo.
-
-***
-
-drm-intel-fixes-2020-06-18:
-
-- Fix for timeslicing and virtual engines/unpremptable requests
-  (+ 1 dependency patch)
-- Fixes into TypeC register programming and interrupt storm detecting
-- Disable DIP on MST ports with the transcoder clock still on
-- Avoid missing GT workarounds at reset for HSW and older gens
-- Fix for unwinding multiple requests missing force restore
-- Fix encoder type check for DDI vswing sequence
-- Build warning fixes
-
-The following changes since commit b3a9e3b9622ae10064826dccb4f7a52bd88c7407:
-
-  Linux 5.8-rc1 (2020-06-14 12:45:04 -0700)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-06-18
-
-for you to fetch changes up to 8e68c6340d5833077b3753eabedab40755571383:
-
-  drm/i915/display: Fix the encoder type check (2020-06-16 11:34:24 +0300)
-
-----------------------------------------------------------------
-- Fix for timeslicing and virtual engines/unpremptable requests
-  (+ 1 dependency patch)
-- Fixes into TypeC register programming and interrupt storm detecting
-- Disable DIP on MST ports with the transcoder clock still on
-- Avoid missing GT workarounds at reset for HSW and older gens
-- Fix for unwinding multiple requests missing force restore
-- Fix encoder type check for DDI vswing sequence
-- Build warning fixes
-
-----------------------------------------------------------------
-Arnd Bergmann (2):
-      drm/i915/pmu: avoid an maybe-uninitialized warning
-      drm/i915: work around false-positive maybe-uninitialized warning
-
-Chris Wilson (10):
-      drm/i915/gt: Incorporate the virtual engine into timeslicing
-      drm/i915/selftests: Restore to default heartbeat
-      drm/i915/gt: Prevent timeslicing into unpreemptable requests
-      drm/i915/gt: Incrementally check for rewinding
-      drm/i915/gt: Move hsw GT workarounds from init_clock_gating to workarounds
-      drm/i915/gt: Move ivb GT workarounds from init_clock_gating to workarounds
-      drm/i915/gt: Move vlv GT workarounds from init_clock_gating to workarounds
-      drm/i915/gt: Move snb GT workarounds from init_clock_gating to workarounds
-      drm/i915/gt: Move ilk GT workarounds from init_clock_gating to workarounds
-      drm/i915/gt: Move gen4 GT workarounds from init_clock_gating to workarounds
-
-Imre Deak (2):
-      drm/i915/icl: Disable DIP on MST ports with the transcoder clock still on
-      drm/i915/icl+: Fix hotplug interrupt disabling after storm detection
-
-Khaled Almahallawy (1):
-      drm/i915/tc: fix the reset of ln0
-
-Vandita Kulkarni (1):
-      drm/i915/display: Fix the encoder type check
-
- drivers/gpu/drm/i915/display/intel_ddi.c           |  12 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |   8 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   4 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c                |  52 ++++-
- drivers/gpu/drm/i915/gt/intel_ring.c               |   4 +
- drivers/gpu/drm/i915/gt/intel_workarounds.c        | 241 +++++++++++++++++++++
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c       |  25 +--
- drivers/gpu/drm/i915/gt/selftest_lrc.c             | 185 ++++++++++++----
- drivers/gpu/drm/i915/gt/selftest_mocs.c            |  18 +-
- drivers/gpu/drm/i915/gt/selftest_ring.c            | 110 ++++++++++
- drivers/gpu/drm/i915/gt/selftest_rps.c             |  69 +++---
- drivers/gpu/drm/i915/gt/selftest_timeline.c        |  15 +-
- drivers/gpu/drm/i915/gt/selftest_workarounds.c     |   2 +
- drivers/gpu/drm/i915/i915_irq.c                    |   1 +
- drivers/gpu/drm/i915/i915_pmu.c                    |  84 +++----
- drivers/gpu/drm/i915/i915_priolist_types.h         |   2 +-
- drivers/gpu/drm/i915/i915_reg.h                    |   2 +-
- drivers/gpu/drm/i915/intel_pm.c                    | 206 +-----------------
- .../gpu/drm/i915/selftests/i915_mock_selftests.h   |   1 +
- 19 files changed, 668 insertions(+), 373 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/gt/selftest_ring.c
+> Thanks.
+> --
+> The following changes since commit 8e68c6340d5833077b3753eabedab40755571383:
+> 
+>   drm/i915/display: Fix the encoder type check (2020-06-16 11:34:24 +0300)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/intel/gvt-linux tags/gvt-fixes-2020-06-17
+> 
+> for you to fetch changes up to a291e4fba259a56a6a274c1989997acb6f0bb03a:
+> 
+>   drm/i915/gvt: Use GFP_ATOMIC instead of GFP_KERNEL in atomic context (2020-06-17 12:36:19 +0800)
+> 
+> ----------------------------------------------------------------
+> gvt-fixes-2020-06-17
+> 
+> - Two missed MMIO handler fixes for SKL/CFL (Colin)
+> - Fix mask register bits check (Colin)
+> - Fix one lockdep error for debugfs entry access (Colin)
+> 
+> ----------------------------------------------------------------
+> Colin Xu (4):
+>       drm/i915/gvt: Add one missing MMIO handler for D_SKL_PLUS
+>       drm/i915/gvt: Fix two CFL MMIO handling caused by regression.
+>       drm/i915/gvt: Fix incorrect check of enabled bits in mask registers
+>       drm/i915/gvt: Use GFP_ATOMIC instead of GFP_KERNEL in atomic context
+> 
+>  drivers/gpu/drm/i915/gvt/debugfs.c      |  2 +-
+>  drivers/gpu/drm/i915/gvt/handlers.c     | 24 +++++++++++++-----------
+>  drivers/gpu/drm/i915/gvt/mmio_context.h |  6 +++---
+>  drivers/gpu/drm/i915/gvt/reg.h          |  5 +++++
+>  4 files changed, 22 insertions(+), 15 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
