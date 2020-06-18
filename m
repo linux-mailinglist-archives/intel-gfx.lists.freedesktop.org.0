@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A79151FEF40
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 12:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AFA51FEF35
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 12:04:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 898D46EB47;
-	Thu, 18 Jun 2020 10:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFA8D6E39B;
+	Thu, 18 Jun 2020 10:04:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8DA16E39B
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 10:04:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1874C6EB3A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 10:04:08 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21535913-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21535914-1500050 
  for multiple; Thu, 18 Jun 2020 11:04:00 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Jun 2020 11:03:53 +0100
-Message-Id: <20200618100356.15744-8-chris@chris-wilson.co.uk>
+Date: Thu, 18 Jun 2020 11:03:54 +0100
+Message-Id: <20200618100356.15744-9-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200618100356.15744-1-chris@chris-wilson.co.uk>
 References: <20200618100356.15744-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/11] drm/i915/gt: Convert stats.active to
- plain unsigned int
+Subject: [Intel-gfx] [PATCH 09/11] drm/i915/gt: Use virtual_engine during
+ execlists_dequeue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,119 +45,329 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As context-in/out is now always serialised, we do not have to worry
-about concurrent enabling/disable of the busy-stats and can reduce the
-atomic_t active to a plain unsigned int, and the seqlock to a seqcount.
+Rather than going back and forth between the rb_node entry and the
+virtual_engine type, store the ve local and reuse it. As the
+container_of conversion from rb_node to virtual_engine requires a
+variable offset, performing that conversion just once shaves off a bit
+of code.
+
+v2: Keep a single virtual engine lookup, for typical use.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  8 +++---
- drivers/gpu/drm/i915/gt/intel_engine_stats.h | 28 +++++++-------------
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  4 +--
- 3 files changed, 15 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 209 ++++++++++++++--------------
+ 1 file changed, 101 insertions(+), 108 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index a0723c474e03..df19e83a3701 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -338,7 +338,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
- 	engine->schedule = NULL;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 68b8e687f354..fd8c5cf0b482 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -455,7 +455,7 @@ static int queue_prio(const struct intel_engine_execlists *execlists)
  
- 	ewma__engine_latency_init(&engine->latency);
--	seqlock_init(&engine->stats.lock);
-+	seqcount_init(&engine->stats.lock);
+ static inline bool need_preempt(const struct intel_engine_cs *engine,
+ 				const struct i915_request *rq,
+-				struct rb_node *rb)
++				const struct virtual_engine *ve)
+ {
+ 	int last_prio;
  
- 	ATOMIC_INIT_NOTIFIER_HEAD(&engine->context_status_notifier);
+@@ -492,9 +492,7 @@ static inline bool need_preempt(const struct intel_engine_cs *engine,
+ 	    rq_prio(list_next_entry(rq, sched.link)) > last_prio)
+ 		return true;
  
-@@ -1612,7 +1612,7 @@ static ktime_t __intel_engine_get_busy_time(struct intel_engine_cs *engine,
- 	 * add it to the total.
+-	if (rb) {
+-		struct virtual_engine *ve =
+-			rb_entry(rb, typeof(*ve), nodes[engine->id].rb);
++	if (ve) {
+ 		bool preempt = false;
+ 
+ 		if (engine == ve->siblings[0]) { /* only preempt one sibling */
+@@ -1787,6 +1785,35 @@ static bool virtual_matches(const struct virtual_engine *ve,
+ 	return true;
+ }
+ 
++static struct virtual_engine *
++first_virtual_engine(struct intel_engine_cs *engine)
++{
++	struct intel_engine_execlists *el = &engine->execlists;
++	struct rb_node *rb = rb_first_cached(&el->virtual);
++
++	while (rb) {
++		struct virtual_engine *ve =
++			rb_entry(rb, typeof(*ve), nodes[engine->id].rb);
++		struct i915_request *rq = READ_ONCE(ve->request);
++
++		if (!rq) { /* lazily cleanup after another engine handled rq */
++			rb_erase_cached(rb, &el->virtual);
++			RB_CLEAR_NODE(rb);
++			rb = rb_first_cached(&el->virtual);
++			continue;
++		}
++
++		if (!virtual_matches(ve, rq, engine)) {
++			rb = rb_next(rb);
++			continue;
++		}
++
++		return ve;
++	}
++
++	return NULL;
++}
++
+ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve)
+ {
+ 	/*
+@@ -1871,7 +1898,7 @@ static void defer_active(struct intel_engine_cs *engine)
+ static bool
+ need_timeslice(const struct intel_engine_cs *engine,
+ 	       const struct i915_request *rq,
+-	       const struct rb_node *rb)
++	       const struct virtual_engine *ve)
+ {
+ 	int hint;
+ 
+@@ -1880,9 +1907,7 @@ need_timeslice(const struct intel_engine_cs *engine,
+ 
+ 	hint = engine->execlists.queue_priority_hint;
+ 
+-	if (rb) {
+-		const struct virtual_engine *ve =
+-			rb_entry(rb, typeof(*ve), nodes[engine->id].rb);
++	if (ve) {
+ 		const struct intel_engine_cs *inflight =
+ 			intel_context_inflight(&ve->context);
+ 
+@@ -2035,6 +2060,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	struct i915_request **port = execlists->pending;
+ 	struct i915_request ** const last_port = port + execlists->port_mask;
+ 	struct i915_request * const *active = execlists->active;
++	struct virtual_engine *ve;
+ 	struct i915_request *last;
+ 	unsigned long flags;
+ 	struct rb_node *rb;
+@@ -2062,26 +2088,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 * and context switches) submission.
  	 */
- 	*now = ktime_get();
--	if (atomic_read(&engine->stats.active))
-+	if (engine->stats.active)
- 		total = ktime_add(total, ktime_sub(*now, engine->stats.start));
- 
- 	return total;
-@@ -1631,9 +1631,9 @@ ktime_t intel_engine_get_busy_time(struct intel_engine_cs *engine, ktime_t *now)
- 	ktime_t total;
- 
- 	do {
--		seq = read_seqbegin(&engine->stats.lock);
-+		seq = read_seqcount_begin(&engine->stats.lock);
- 		total = __intel_engine_get_busy_time(engine, now);
--	} while (read_seqretry(&engine->stats.lock, seq));
-+	} while (read_seqcount_retry(&engine->stats.lock, seq));
- 
- 	return total;
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_stats.h b/drivers/gpu/drm/i915/gt/intel_engine_stats.h
-index 58491eae3482..4965eb5bfb65 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_stats.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_stats.h
-@@ -15,35 +15,25 @@
- 
- static inline void intel_engine_context_in(struct intel_engine_cs *engine)
- {
--	unsigned long flags;
-+	write_seqcount_begin(&engine->stats.lock);
- 
--	if (atomic_add_unless(&engine->stats.active, 1, 0))
--		return;
+ 	spin_lock_irqsave(&engine->active.lock, flags);
 -
--	write_seqlock_irqsave(&engine->stats.lock, flags);
--	if (!atomic_add_unless(&engine->stats.active, 1, 0)) {
-+	if (!engine->stats.active++)
- 		engine->stats.start = ktime_get();
--		atomic_inc(&engine->stats.active);
+-	for (rb = rb_first_cached(&execlists->virtual); rb; ) {
+-		struct virtual_engine *ve =
+-			rb_entry(rb, typeof(*ve), nodes[engine->id].rb);
+-		struct i915_request *rq = READ_ONCE(ve->request);
+-
+-		if (!rq) { /* lazily cleanup after another engine handled rq */
+-			rb_erase_cached(rb, &execlists->virtual);
+-			RB_CLEAR_NODE(rb);
+-			rb = rb_first_cached(&execlists->virtual);
+-			continue;
+-		}
+-
+-		if (!virtual_matches(ve, rq, engine)) {
+-			rb = rb_next(rb);
+-			continue;
+-		}
+-
+-		break;
 -	}
--	write_sequnlock_irqrestore(&engine->stats.lock, flags);
-+
-+	write_seqcount_end(&engine->stats.lock);
- }
++	ve = first_virtual_engine(engine);
  
- static inline void intel_engine_context_out(struct intel_engine_cs *engine)
- {
--	unsigned long flags;
+ 	/*
+ 	 * If the queue is higher priority than the last
+@@ -2109,7 +2116,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			return;
+ 		}
+ 
+-		if (need_preempt(engine, last, rb)) {
++		if (need_preempt(engine, last, ve)) {
+ 			ENGINE_TRACE(engine,
+ 				     "preempting last=%llx:%lld, prio=%d, hint=%d\n",
+ 				     last->fence.context,
+@@ -2135,7 +2142,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			__unwind_incomplete_requests(engine);
+ 
+ 			last = NULL;
+-		} else if (need_timeslice(engine, last, rb) &&
++		} else if (need_timeslice(engine, last, ve) &&
+ 			   timeslice_expired(execlists, last)) {
+ 			ENGINE_TRACE(engine,
+ 				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
+@@ -2185,111 +2192,97 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 		}
+ 	}
+ 
+-	while (rb) { /* XXX virtual is always taking precedence */
+-		struct virtual_engine *ve =
+-			rb_entry(rb, typeof(*ve), nodes[engine->id].rb);
++	while (ve) { /* XXX virtual is always taking precedence */
+ 		struct i915_request *rq;
+ 
+ 		spin_lock(&ve->base.active.lock);
+ 
+ 		rq = ve->request;
+-		if (unlikely(!rq)) { /* lost the race to a sibling */
+-			spin_unlock(&ve->base.active.lock);
+-			rb_erase_cached(rb, &execlists->virtual);
+-			RB_CLEAR_NODE(rb);
+-			rb = rb_first_cached(&execlists->virtual);
+-			continue;
+-		}
++		if (unlikely(!rq)) /* lost the race to a sibling */
++			goto unlock;
+ 
+ 		GEM_BUG_ON(rq != ve->request);
+ 		GEM_BUG_ON(rq->engine != &ve->base);
+ 		GEM_BUG_ON(rq->context != &ve->context);
+ 
+-		if (rq_prio(rq) >= queue_prio(execlists)) {
+-			if (!virtual_matches(ve, rq, engine)) {
+-				spin_unlock(&ve->base.active.lock);
+-				rb = rb_next(rb);
+-				continue;
+-			}
++		if (unlikely(rq_prio(rq) < queue_prio(execlists))) {
++			spin_unlock(&ve->base.active.lock);
++			break;
++		}
+ 
+-			if (last && !can_merge_rq(last, rq)) {
+-				spin_unlock(&ve->base.active.lock);
+-				spin_unlock_irqrestore(&engine->active.lock, flags);
+-				start_timeslice(engine, rq_prio(rq));
+-				return; /* leave this for another sibling */
+-			}
++		GEM_BUG_ON(!virtual_matches(ve, rq, engine));
+ 
+-			ENGINE_TRACE(engine,
+-				     "virtual rq=%llx:%lld%s, new engine? %s\n",
+-				     rq->fence.context,
+-				     rq->fence.seqno,
+-				     i915_request_completed(rq) ? "!" :
+-				     i915_request_started(rq) ? "*" :
+-				     "",
+-				     yesno(engine != ve->siblings[0]));
 -
--	GEM_BUG_ON(!atomic_read(&engine->stats.active));
-+	write_seqcount_begin(&engine->stats.lock);
+-			WRITE_ONCE(ve->request, NULL);
+-			WRITE_ONCE(ve->base.execlists.queue_priority_hint,
+-				   INT_MIN);
+-			rb_erase_cached(rb, &execlists->virtual);
+-			RB_CLEAR_NODE(rb);
++		if (last && !can_merge_rq(last, rq)) {
++			spin_unlock(&ve->base.active.lock);
++			spin_unlock_irqrestore(&engine->active.lock, flags);
++			start_timeslice(engine, rq_prio(rq));
++			return; /* leave this for another sibling */
++		}
  
--	if (atomic_add_unless(&engine->stats.active, -1, 1))
--		return;
--
--	write_seqlock_irqsave(&engine->stats.lock, flags);
--	if (atomic_dec_and_test(&engine->stats.active)) {
-+	GEM_BUG_ON(!engine->stats.active);
-+	if (!--engine->stats.active)
- 		engine->stats.total =
- 			ktime_add(engine->stats.total,
- 				  ktime_sub(ktime_get(), engine->stats.start));
--	}
--	write_sequnlock_irqrestore(&engine->stats.lock, flags);
+-			GEM_BUG_ON(!(rq->execution_mask & engine->mask));
+-			WRITE_ONCE(rq->engine, engine);
++		ENGINE_TRACE(engine,
++			     "virtual rq=%llx:%lld%s, new engine? %s\n",
++			     rq->fence.context,
++			     rq->fence.seqno,
++			     i915_request_completed(rq) ? "!" :
++			     i915_request_started(rq) ? "*" :
++			     "",
++			     yesno(engine != ve->siblings[0]));
+ 
+-			if (engine != ve->siblings[0]) {
+-				u32 *regs = ve->context.lrc_reg_state;
+-				unsigned int n;
++		WRITE_ONCE(ve->request, NULL);
++		WRITE_ONCE(ve->base.execlists.queue_priority_hint, INT_MIN);
+ 
+-				GEM_BUG_ON(READ_ONCE(ve->context.inflight));
++		rb = &ve->nodes[engine->id].rb;
++		rb_erase_cached(rb, &execlists->virtual);
++		RB_CLEAR_NODE(rb);
+ 
+-				if (!intel_engine_has_relative_mmio(engine))
+-					virtual_update_register_offsets(regs,
+-									engine);
++		GEM_BUG_ON(!(rq->execution_mask & engine->mask));
++		WRITE_ONCE(rq->engine, engine);
+ 
+-				if (!list_empty(&ve->context.signals))
+-					virtual_xfer_breadcrumbs(ve);
++		if (engine != ve->siblings[0]) {
++			u32 *regs = ve->context.lrc_reg_state;
++			unsigned int n;
+ 
+-				/*
+-				 * Move the bound engine to the top of the list
+-				 * for future execution. We then kick this
+-				 * tasklet first before checking others, so that
+-				 * we preferentially reuse this set of bound
+-				 * registers.
+-				 */
+-				for (n = 1; n < ve->num_siblings; n++) {
+-					if (ve->siblings[n] == engine) {
+-						swap(ve->siblings[n],
+-						     ve->siblings[0]);
+-						break;
+-					}
+-				}
++			GEM_BUG_ON(READ_ONCE(ve->context.inflight));
+ 
+-				GEM_BUG_ON(ve->siblings[0] != engine);
+-			}
++			if (!intel_engine_has_relative_mmio(engine))
++				virtual_update_register_offsets(regs, engine);
+ 
+-			if (__i915_request_submit(rq)) {
+-				submit = true;
+-				last = rq;
+-			}
+-			i915_request_put(rq);
++			if (!list_empty(&ve->context.signals))
++				virtual_xfer_breadcrumbs(ve);
+ 
+ 			/*
+-			 * Hmm, we have a bunch of virtual engine requests,
+-			 * but the first one was already completed (thanks
+-			 * preempt-to-busy!). Keep looking at the veng queue
+-			 * until we have no more relevant requests (i.e.
+-			 * the normal submit queue has higher priority).
++			 * Move the bound engine to the top of the list for
++			 * future execution. We then kick this tasklet first
++			 * before checking others, so that we preferentially
++			 * reuse this set of bound registers.
+ 			 */
+-			if (!submit) {
+-				spin_unlock(&ve->base.active.lock);
+-				rb = rb_first_cached(&execlists->virtual);
+-				continue;
++			for (n = 1; n < ve->num_siblings; n++) {
++				if (ve->siblings[n] == engine) {
++					swap(ve->siblings[n], ve->siblings[0]);
++					break;
++				}
+ 			}
 +
-+	write_seqcount_end(&engine->stats.lock);
- }
++			GEM_BUG_ON(ve->siblings[0] != engine);
+ 		}
  
- #endif /* __INTEL_ENGINE_STATS_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index fc399a39579c..e1564930bd06 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -544,12 +544,12 @@ struct intel_engine_cs {
- 		/**
- 		 * @active: Number of contexts currently scheduled in.
- 		 */
--		atomic_t active;
-+		unsigned int active;
++		if (__i915_request_submit(rq)) {
++			submit = true;
++			last = rq;
++		}
++
++		i915_request_put(rq);
++unlock:
+ 		spin_unlock(&ve->base.active.lock);
+-		break;
++
++		/*
++		 * Hmm, we have a bunch of virtual engine requests,
++		 * but the first one was already completed (thanks
++		 * preempt-to-busy!). Keep looking at the veng queue
++		 * until we have no more relevant requests (i.e.
++		 * the normal submit queue has higher priority).
++		 */
++		ve = submit ? NULL : first_virtual_engine(engine);
+ 	}
  
- 		/**
- 		 * @lock: Lock protecting the below fields.
- 		 */
--		seqlock_t lock;
-+		seqcount_t lock;
- 
- 		/**
- 		 * @total: Total time this engine was busy.
+ 	while ((rb = rb_first_cached(&execlists->queue))) {
 -- 
 2.20.1
 
