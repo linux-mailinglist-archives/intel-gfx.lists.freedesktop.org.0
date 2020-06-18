@@ -1,31 +1,81 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F9F1FF492
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 16:21:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F18B11FF4FE
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 16:42:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 057EA6E3F4;
-	Thu, 18 Jun 2020 14:20:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 581126E3FE;
+	Thu, 18 Jun 2020 14:42:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 592706E3F4;
- Thu, 18 Jun 2020 14:20:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 519C2A00C7;
- Thu, 18 Jun 2020 14:20:56 +0000 (UTC)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C05A86E3FE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 14:42:40 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id p5so6312006wrw.9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 07:42:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=pdYzXGFouE6m4FSIkgrBziaqe3C5lzqdVFEvi65td6k=;
+ b=Yv00WEyiSIg66gxJEUUQwcy2Tlc1E6Wc6zvKRDzYUlRDO6iCWLetHtRbnLoDvvQlXe
+ zOvWWpAvNNuvZIWHgr0fKWDsU8iNkZKTU9Ci4Vt8EkYVQUyV00qvQSrVYglPeqw2m8hn
+ YqvRGf3NKI0NMSmp82ufCgdaCILt0ba9vFJX0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=pdYzXGFouE6m4FSIkgrBziaqe3C5lzqdVFEvi65td6k=;
+ b=PVv3oap/VcXgSo7gW0pnOPfZmLicCRPDvaJ7cKQdwGnV/uIunHP9h1r8TRwmk7zB5a
+ OX1Ld29tAE0LeLzdzDtgA6lLBoKyEJDFfxt6vDRgvz9Ysq6MXfymg6J2e0roPfJj/sfO
+ Q/Ca094ZAuGwsw3Xl/OHWQhl1BtCu6KLRA3tMq2Ja8d34oafwCusXVXATmK9i/+49Be/
+ xn09CeOIOfUFQqHcUaqp/U4wvVk6j2O5cR26qbPReMaCLcWERsXPnbQcHdoHh+Gj1wK0
+ dLJjNMoRdixFNK2w1a166R5Sq0aTPb4Gx728tcskY/P6dxViOvHlVHLsusLRCH8Eko+H
+ LeBA==
+X-Gm-Message-State: AOAM530UHJ7INvwQFjlRuoz2xmm9cuPmKb7o4G1LbiiRvjBMTFO7Fgno
+ eQyza1/YinPq2NJ2HKXgZCvgPA==
+X-Google-Smtp-Source: ABdhPJxnVXjNFjlZjZjkcFFWafgkcwR6ZwnMtNAx31PJPXgT9P8/Pv/85bqfzuCJe/q/lkXd/e/Xbg==
+X-Received: by 2002:adf:cf0c:: with SMTP id o12mr4325124wrj.265.1592491359458; 
+ Thu, 18 Jun 2020 07:42:39 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id g25sm3649693wmh.18.2020.06.18.07.42.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 18 Jun 2020 07:42:38 -0700 (PDT)
+Date: Thu, 18 Jun 2020 16:42:36 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Message-ID: <20200618144236.GR20149@phenom.ffwll.local>
+Mail-Followup-To: Jason Gunthorpe <jgg@ziepe.ca>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>
+References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
+ <20200604081224.863494-5-daniel.vetter@ffwll.ch>
+ <b11c2140-1b9c-9013-d9bb-9eb2c1906710@shipmail.org>
+ <20200611083430.GD20149@phenom.ffwll.local>
+ <20200611141515.GW6578@ziepe.ca>
+ <20200616120719.GL20149@phenom.ffwll.local>
+ <20200616145312.GC6578@ziepe.ca>
+ <CAKMK7uER6ax1zr14xYLKqDfDZp+ycBsY9Yx7JaVkKQ849VfSPg@mail.gmail.com>
+ <20200617152940.GG6578@ziepe.ca>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Date: Thu, 18 Jun 2020 14:20:56 -0000
-Message-ID: <159249005630.22462.10240815207011609288@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200617220331.GA19550@embeddedor>
-In-Reply-To: <20200617220331.GA19550@embeddedor>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/query=3A_Use_struct=5Fsize=28=29_helper?=
+Content-Disposition: inline
+In-Reply-To: <20200617152940.GG6578@ziepe.ca>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
+ lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,105 +88,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Jun 17, 2020 at 12:29:40PM -0300, Jason Gunthorpe wrote:
+> On Wed, Jun 17, 2020 at 09:57:54AM +0200, Daniel Vetter wrote:
+> 
+> > > At the very least I think there should be some big warning that
+> > > dma_fence in notifiers should be avoided.
+> > 
+> > Yeah I'm working on documentation, and also the notifiers here
+> > hopefully make it clear it's massive pain. I think we could even make
+> > a hard rule that dma_fence in mmu notifier outside of drivers/gpu is a
+> > bug/misfeature.
+> 
+> Yep!
+>
+> > Might be a good idea to add a MAINTAINERS entry with a K: regex
+> > pattern, so that you can catch such modifiers. We do already have such
+> > a pattern for dma-fence, to catch abuse. So if you want I could type
+> > up a documentation patch for this, get your and others acks and the
+> > dri-devel folks would enforce that the dma_fence_wait madness doesn't
+> > leak beyond drivers/gpu
+> 
+> It seems like the best thing
 
-Series: drm/i915/query: Use struct_size() helper
-URL   : https://patchwork.freedesktop.org/series/78527/
-State : success
+Just thought about where to best put this, and I think including it as
+another paragraph in the next round of this series makes the most sense.
+You'll get cc'ed for acking when that happens - might take a while since
+there's a lot of details here all over to sort out.
+-Daniel
 
-== Summary ==
+>  
+> > Oded has agreed to remove the dma-fence usage, since they really don't
+> > need it (and all the baggage that comes with it), plain old completion
+> > is enough for their use. This use is also why I added the regex to
+> > MAINTAINERS, so that in the future we can catch people who try to use
+> > dma_fence because it looks cute and useful, and are completely
+> > oblivious to all the pain and headaches involved.
+> 
+> This is good!
+> 
+> Thanks,
+> Jason 
 
-CI Bug Log - changes from CI_DRM_8641 -> Patchwork_17989
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17989/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17989 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17989/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17989/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][5] ([i915#1888]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17989/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [DMESG-WARN][7] ([i915#402]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-tgl-u2/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17989/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17989/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8641/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17989/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (49 -> 30)
-------------------------------
-
-  Missing    (19): fi-cml-u2 fi-ilk-m540 fi-bdw-5557u fi-cml-s fi-tgl-dsi fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-cfl-8700k fi-kbl-7500u fi-ctg-p8600 fi-kbl-x1275 fi-kbl-8809g fi-skl-lmem fi-bdw-samus fi-byt-clapper fi-bsw-nick fi-skl-6700k2 fi-kbl-r 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8641 -> Patchwork_17989
-
-  CI-20190529: 20190529
-  CI_DRM_8641: aac91f91c7be78f53b352237d968dfa1996b2d4b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5712: eba1135ddd35f9d3097ed91032aefe8f9a9f9d02 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17989: 65c25dcbbb056a8f4e88cea8fca087e524b349d5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-65c25dcbbb05 drm/i915/query: Use struct_size() helper
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17989/index.html
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
