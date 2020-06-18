@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B3621FF175
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 14:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 435331FF181
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2020 14:22:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BEBA6E3D3;
-	Thu, 18 Jun 2020 12:16:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F9006E409;
+	Thu, 18 Jun 2020 12:22:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0927E6E3D3
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 12:16:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FEDF6E409
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 12:22:29 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21537726-1500050 
- for multiple; Thu, 18 Jun 2020 13:16:00 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21537843-1500050 
+ for multiple; Thu, 18 Jun 2020 13:22:14 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Jun 2020 13:15:56 +0100
-Message-Id: <20200618121556.17123-1-chris@chris-wilson.co.uk>
+Date: Thu, 18 Jun 2020 13:22:12 +0100
+Message-Id: <20200618122212.25180-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200618100356.15744-3-chris@chris-wilson.co.uk>
 References: <20200618100356.15744-3-chris@chris-wilson.co.uk>
@@ -54,8 +54,7 @@ duplicated code paths.
 
 v2: Use bh kicking, see commit 3c53776e29f8 ("Mark HI and TASKLET
 softirq synchronous").
-v3: Update selftests as we now need softirq around the reset to protect
-the tasklet.
+v3: Update engine-reset to be tasklet aware
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
@@ -66,10 +65,9 @@ Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
  drivers/gpu/drm/i915/gt/intel_lrc.c           | 113 ++++++------------
  drivers/gpu/drm/i915/gt/intel_reset.c         |   4 +
  drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   1 +
- drivers/gpu/drm/i915/gt/selftest_reset.c      |  59 ---------
  drivers/gpu/drm/i915/i915_request.c           |   2 +
  drivers/gpu/drm/i915/selftests/i915_request.c |   6 +-
- 9 files changed, 79 insertions(+), 163 deletions(-)
+ 8 files changed, 79 insertions(+), 104 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 index c38ab51e82f0..ef425fd990c4 100644
@@ -467,7 +465,7 @@ index 7bdbfac26d7b..70671dbdcc77 100644
  		     atomic_read(&execlists->tasklet.count));
  }
 diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 39070b514e65..3ba8057645f8 100644
+index 39070b514e65..d98455008a69 100644
 --- a/drivers/gpu/drm/i915/gt/intel_reset.c
 +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
 @@ -752,8 +752,10 @@ static int gt_reset(struct intel_gt *gt, intel_engine_mask_t stalled_mask)
@@ -481,16 +479,22 @@ index 39070b514e65..3ba8057645f8 100644
  
  	intel_ggtt_restore_fences(gt->ggtt);
  
-@@ -1156,7 +1158,9 @@ int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
- 	 * active request and can drop it, adjust head to skip the offending
- 	 * request to resume executing remaining requests in the queue.
+@@ -1258,6 +1260,7 @@ void intel_gt_handle_error(struct intel_gt *gt,
+ 	 * single reset fails.
  	 */
-+	local_bh_disable();
- 	__intel_engine_reset(engine, true);
-+	local_bh_enable();
+ 	if (intel_has_reset_engine(gt) && !intel_gt_is_wedged(gt)) {
++		local_bh_disable();
+ 		for_each_engine_masked(engine, gt, engine_mask, tmp) {
+ 			BUILD_BUG_ON(I915_RESET_MODESET >= I915_RESET_ENGINE);
+ 			if (test_and_set_bit(I915_RESET_ENGINE + engine->id,
+@@ -1270,6 +1273,7 @@ void intel_gt_handle_error(struct intel_gt *gt,
+ 			clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id,
+ 					      &gt->reset.flags);
+ 		}
++		local_bh_enable();
+ 	}
  
- 	/*
- 	 * The engine and its registers (and workarounds in case of render)
+ 	if (!engine_mask)
 diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
 index fb5ebf930ab2..0fa23cb6bf1a 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
@@ -503,82 +507,6 @@ index fb5ebf930ab2..0fa23cb6bf1a 100644
  
  	if (err)
  		pr_err("i915_reset_engine(%s:%s) failed under %s\n",
-diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c b/drivers/gpu/drm/i915/gt/selftest_reset.c
-index 35406ecdf0b2..b6b9d7d12c9a 100644
---- a/drivers/gpu/drm/i915/gt/selftest_reset.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
-@@ -102,71 +102,12 @@ static int igt_atomic_reset(void *arg)
- 	return err;
- }
- 
--static int igt_atomic_engine_reset(void *arg)
--{
--	struct intel_gt *gt = arg;
--	const typeof(*igt_atomic_phases) *p;
--	struct intel_engine_cs *engine;
--	enum intel_engine_id id;
--	int err = 0;
--
--	/* Check that the resets are usable from atomic context */
--
--	if (!intel_has_reset_engine(gt))
--		return 0;
--
--	if (intel_uc_uses_guc_submission(&gt->uc))
--		return 0;
--
--	intel_gt_pm_get(gt);
--	igt_global_reset_lock(gt);
--
--	/* Flush any requests before we get started and check basics */
--	if (!igt_force_reset(gt))
--		goto out_unlock;
--
--	for_each_engine(engine, gt, id) {
--		tasklet_disable(&engine->execlists.tasklet);
--		intel_engine_pm_get(engine);
--
--		for (p = igt_atomic_phases; p->name; p++) {
--			GEM_TRACE("intel_engine_reset(%s) under %s\n",
--				  engine->name, p->name);
--
--			p->critical_section_begin();
--			err = intel_engine_reset(engine, NULL);
--			p->critical_section_end();
--
--			if (err) {
--				pr_err("intel_engine_reset(%s) failed under %s\n",
--				       engine->name, p->name);
--				break;
--			}
--		}
--
--		intel_engine_pm_put(engine);
--		tasklet_enable(&engine->execlists.tasklet);
--		if (err)
--			break;
--	}
--
--	/* As we poke around the guts, do a full reset before continuing. */
--	igt_force_reset(gt);
--
--out_unlock:
--	igt_global_reset_unlock(gt);
--	intel_gt_pm_put(gt);
--
--	return err;
--}
--
- int intel_reset_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(igt_global_reset), /* attempt to recover GPU first */
- 		SUBTEST(igt_wedged_reset),
- 		SUBTEST(igt_atomic_reset),
--		SUBTEST(igt_atomic_engine_reset),
- 	};
- 	struct intel_gt *gt = &i915->gt;
- 
 diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
 index 3bb7320249ae..0dad1f0fbd32 100644
 --- a/drivers/gpu/drm/i915/i915_request.c
