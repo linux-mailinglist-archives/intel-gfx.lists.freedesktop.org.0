@@ -2,31 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BACB20117D
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 17:42:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49A312014BE
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 18:19:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 809176E1F1;
-	Fri, 19 Jun 2020 15:42:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57D586E323;
+	Fri, 19 Jun 2020 16:19:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F32CE6E1E6;
- Fri, 19 Jun 2020 15:42:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F09A0A47E8;
- Fri, 19 Jun 2020 15:42:54 +0000 (UTC)
+Received: from mail-oo1-xc42.google.com (mail-oo1-xc42.google.com
+ [IPv6:2607:f8b0:4864:20::c42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE6636E301
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 16:19:55 +0000 (UTC)
+Received: by mail-oo1-xc42.google.com with SMTP id c4so496718oou.6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 09:19:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Wj1FO43iGyk7PYrrEEhEjkp2h2XH2iryroz21N45gqk=;
+ b=KTV4omVyKlC8idt6WMrK4rC6pvlVu4xrql1JVUD6KZBV7gKdYxJqpq4ZpeJGmx7n73
+ SSvhTZIxARGe61f5ZXZTmUvAdjCzvsY39rR/ObaJechM5w4wxPVEwfsRpKxgNAiucgSa
+ n+dE3o8mBQzdJSPyc96774z0RS4si3IIY3MGE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Wj1FO43iGyk7PYrrEEhEjkp2h2XH2iryroz21N45gqk=;
+ b=bdkx/DmTHvdKtV1NOEajPyNYRPomgMXHg+Sce/+JhXhX1q4lMVkemwRCGZTrgux0mk
+ UPKwxHb+CykcU6TOzbqzld+jSOFIPIV5EStF1IaIB2yuiYuqKJDjQ/gbMULW9We5dFZa
+ KiZNQaAk6mNH/oHEHPyqQ/mWKXr1B9y4eF/Jq3eFS3JzJpjPMkq/KRldUWgh04A31/wx
+ O/Zqg/RkTxxl0UjG55PDnkaCeSsJd/EupkyRJJPufMy2p53xcW4mMf+N9W69VTKpPkO/
+ rl9uy3jZiou3FzhAkjYW6TFZc1EaYwqAxclktZm4SFp/WVsn5fzJvZmv+sp4N3B43V+I
+ jUzA==
+X-Gm-Message-State: AOAM532afOOMQrADBk+W5LY1+48reSgssEy0NIrf4GlG1fsWD19oCumC
+ 9nfVM34SAst4WQn6bUDIS4Jx80kNZX16tlwbkXXc9g==
+X-Google-Smtp-Source: ABdhPJyoy6aHWkVkbh8xMF9/TzGOKKb8kpLI0Idlia3eF0cObcMto8g+bs85raCaxdKtZhy5XKzmlJ6GtvyqnZQdJOE=
+X-Received: by 2002:a4a:9528:: with SMTP id m37mr3925602ooi.85.1592583593309; 
+ Fri, 19 Jun 2020 09:19:53 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 19 Jun 2020 15:42:54 -0000
-Message-ID: <159258137498.12535.2500459880189660239@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200619143106.10356-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200619143106.10356-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/3=5D_drm/i915/gem=3A_Avoid_kmalloc_un?=
- =?utf-8?q?der_i915-=3Emm=5Flock?=
+References: <20200611083430.GD20149@phenom.ffwll.local>
+ <20200611141515.GW6578@ziepe.ca>
+ <20200616120719.GL20149@phenom.ffwll.local>
+ <CAKMK7uE7DKUo9Z+yCpY+mW5gmKet8ugbF3yZNyHGqsJ=e-g_hA@mail.gmail.com>
+ <20200617152835.GF6578@ziepe.ca> <20200618150051.GS20149@phenom.ffwll.local>
+ <20200618172338.GM6578@ziepe.ca>
+ <CAKMK7uEbqTu4q-amkLXyd1i8KNtLaoO2ZFoGqYiG6D0m0FKpOg@mail.gmail.com>
+ <20200619113934.GN6578@ziepe.ca>
+ <CAKMK7uE-kWA==Cko5uenMrcnopEjq42HxoDTDywzBAbHqsN13g@mail.gmail.com>
+ <20200619151551.GP6578@ziepe.ca>
+In-Reply-To: <20200619151551.GP6578@ziepe.ca>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Fri, 19 Jun 2020 18:19:41 +0200
+Message-ID: <CAKMK7uEvkshAM6KUYZu8_OCpF4+1Y_SM7cQ9nJWpagfke8s8LA@mail.gmail.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
+ lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,76 +67,226 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jun 19, 2020 at 5:15 PM Jason Gunthorpe <jgg@ziepe.ca> wrote:
+>
+> On Fri, Jun 19, 2020 at 05:06:04PM +0200, Daniel Vetter wrote:
+> > On Fri, Jun 19, 2020 at 1:39 PM Jason Gunthorpe <jgg@ziepe.ca> wrote:
+> > >
+> > > On Fri, Jun 19, 2020 at 09:22:09AM +0200, Daniel Vetter wrote:
+> > > > > As I've understood GPU that means you need to show that the commands
+> > > > > associated with the buffer have completed. This is all local stuff
+> > > > > within the driver, right? Why use fence (other than it already exists)
+> > > >
+> > > > Because that's the end-of-dma thing. And it's cross-driver for the
+> > > > above reasons, e.g.
+> > > > - device A renders some stuff. Userspace gets dma_fence A out of that
+> > > > (well sync_file or one of the other uapi interfaces, but you get the
+> > > > idea)
+> > > > - userspace (across process or just different driver) issues more
+> > > > rendering for device B, which depends upon the rendering done on
+> > > > device A. So dma_fence A is an dependency and will block this dma
+> > > > operation. Userspace (and the kernel) gets dma_fence B out of this
+> > > > - because unfortunate reasons, the same rendering on device B also
+> > > > needs a userptr buffer, which means that dma_fence B is also the one
+> > > > that the mmu_range_notifier needs to wait on before it can tell core
+> > > > mm that it can go ahead and release those pages
+> > >
+> > > I was afraid you'd say this - this is complete madness for other DMA
+> > > devices to borrow the notifier hook of the first device!
+> >
+> > The first device might not even have a notifier. This is the 2nd
+> > device, waiting on a dma_fence of its own, but which happens to be
+> > queued up as a dma operation behind something else.
+> >
+> > > What if the first device is a page faulting device and doesn't call
+> > > dma_fence??
+> >
+> > Not sure what you mean with this ... even if it does page-faulting for
+> > some other reasons, it'll emit a dma_fence which the 2nd device can
+> > consume as a dependency.
+>
+> At some point the pages under the buffer have to be either pinned
+> or protected by mmu notifier. So each and every single device doing
+> DMA to these pages must either pin, or use mmu notifier.
+>
+> Driver A should never 'borrow' a notifier from B
 
-Series: series starting with [1/3] drm/i915/gem: Avoid kmalloc under i915->mm_lock
-URL   : https://patchwork.freedesktop.org/series/78643/
-State : warning
+It doesn't. I guess this would be great topic for lpc with a seriously
+big white-board, but I guess we don't have that this year again, so
+let me try again. Simplified example ofc, but should be the gist.
 
-== Summary ==
+Ingredients:
+Device A and Device B
+A dma-buf, shared between device A and device B, let's call that shared_buf
+A userptr buffer, which userspace created on device B to hopefully
+somewhat track a virtual memory range, let's call that userptr_buf.
+A pile of other buffers, but we pretend they don't exist (because they
+kinda don't matter.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1222:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1225:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1228:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1231:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2269:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2270:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2271:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2272:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2273:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+Sequence of events as userspace issues them to the kernel.
+1. dma operation on device A, which fills some interesting stuff into
+shared_buf. Userspace gets back a handle to dma_fence fence_A. No mmu
+notifier anywhere to be seen in the driver for device A.
 
+2. userspace passes fence_A around to some other place
+
+3. other places takes the handle for shared_buf and fence_A and
+userptr_buf and starts a dma operation on device B. It's one dma
+operation, maybe device B is taking the data from shared_buf and
+compresses it into userptr_buf, so that userspace can then send it
+over the network or to disk or whatever. device B has a mmu_notifier.
+Userspace gets back fence_B, which represents this dma operation. The
+kernel also stuffs this fence_B into the mmu_range_notifier for
+userptr_buf.
+
+-> at this point device A might still be crunching the numbers
+
+4. device A is finally done doing whatever it was supposed to do, and
+fence_A completes
+
+5. device B wakes up (this might or might not involve the kernel,
+usually it does) since fence_A has completed, and now starts doing its
+own crunching.
+
+6. once device B is also done, it signals fence_B
+
+In all this device A has never borrowed the mmu notifier or even
+accessd the memory in userptr_buf or had access to that buffer handle.
+
+The madness is only that device B's mmu notifier might need to wait
+for fence_B so that the dma operation finishes. Which in turn has to
+wait for device A to finish first.
+
+> If each driver controls its own lifetime of the buffers, why can't the
+> driver locally wait for its device to finish?
+>
+> Can't the GPUs cancel work that is waiting on a DMA fence? Ie if
+> Driver A detects that work completed and wants to trigger a DMA fence,
+> but it now knows the buffer is invalidated, can't it tell driver B to
+> give up?
+
+We can (usually, the shitty hw where we can't has generally
+disappeared) with gpu reset. Users make really sad faces when that
+happens though, and generally they're only ok with that if it's indeed
+a nasty gpu program that resulted in the crash (there's some webgl
+shaders that run too long for quick&easy testing of how good the gpu
+reset is, don't do that if you care about the data in your desktop
+session ...).
+
+The trouble is that userspace assembles the work that's queued up on
+the gpu. After submission everyone has forgotten enough that just
+canceling stuff and re-issuing everything isn't on the table.
+
+Some hw is better, with real hw page faults and stuff, but those also
+don't need dma_fence to track their memory. But generally just not
+possible.
+
+> > The problem is that there's piles of other dependencies for a dma job.
+> > GPU doesn't just consume a single buffer each time, it consumes entire
+> > lists of buffers and mixes them all up in funny ways. Some of these
+> > buffers are userptr, entirely local to the device. Other buffers are
+> > just normal device driver allocations (and managed with some shrinker
+> > to keep them in check). And then there's the actually shared dma-buf
+> > with other devices. The trouble is that they're all bundled up
+> > together.
+>
+> But why does this matter? Does the GPU itself consume some work and
+> then stall internally waiting for an external DMA fence?
+
+Yup, see above, that's what's going on. Userspace queues up
+distributed work across engines & drivers, and then just waits for the
+entire thing to cascade and finish.
+
+> Otherwise I would expect this dependency chain should be breakable by
+> aborting work waiting on fences upon invalidation (without stalling)
+
+Yup, it would. Now on some hw you have a gpu work scheduler that sits
+in some kthread, and you could probably unschedule the work if there's
+some external dependency and you get an mmu notifier callback. Then
+put it on some queue, re-acquire the user pages and then reschedule
+it.
+
+It's still as horrible, since you still have the wait for the
+completion in there, the only benefit is that other device drivers
+without userptr support don't have to live with that specific
+constraint. dma_fence rules are still very strict and easy to
+deadlock, so we'd still want some lockdep checks, but now you'd have
+to somehow annotate whether you're a driver with userptr or a driver
+without userptr and make sure everyone gets it right.
+
+Also a scheduler which can unschedule and reschedule is mighty more
+complex than one which cannot, plus it needs to do that from mmu
+notifier callback (not the nicest calling context we have in the
+kernel by far). And if you have a single driver which doesn't
+unschedule, you're still screwed from an overall subsystem pov.
+
+So lots of code, lots of work, and not that much motivation to roll it
+out consistently across the board since there's no incremental payoff.
+Plus the thing is, the drivers without userptr are generally the
+really simple ones. Much easier to just fix those than to change the
+big complex render beasts which want userptr :-)
+
+E.g. the atomic modeset framework we've rolled out in the past few
+years and that almost all display drivers now use pulls any (sleeping)
+locks and memory allocations out of the critical async work section by
+design. Some drivers still managed to butcher it (the annotations
+caught some locking bugs already, not just memory allocations in the
+wrong spot), but generally easy to fix those.
+
+> > > Do not need to wait on dma_fence in notifiers.
+> >
+> > Maybe :-) The goal of this series is more to document current rules
+> > and make them more consistent. Fixing them if we don't like them might
+> > be a follow-up task, but that would likely be a pile more work. First
+> > we need to know what the exact shape of the problem even is.
+>
+> Fair enough
+
+Full disclosure: We are aware that we've designed ourselves into an
+impressive corner here, and there's lots of talks going on about
+untangling the dma synchronization from the memory management
+completely. But
+
+- that needs minimally reliable preempt support for gpu work, and hw
+engineers seem to have a hard time with that (or just don't want to do
+it). hw page faults would be even better, and even more wishlist than
+reality if you expect it to work everywhere.
+
+- it'd be a complete break of the established userspace abi, including
+all the cross driver stuff. Which means it's not just some in-kernel
+refactoring, we need to rev the entire ecosystem. And that takes a
+very long time, and needs serious pressure to get people moving.
+
+E.g. the atomic modeset rework is still not yet rolled out to major
+linux desktop environments, and it's over 5 years old, and it's
+starting to seriously hurt because lots of performance features
+require atomic modeset in userspace to be able to use them. I think
+rev'ing the entire memory management support will take as long. Plus I
+don't think we can ditch the old ways - even if all the hw currently
+using this would be dead (and we can delete the drivers) there's still
+the much smaller gpus in SoC that also need to go through the entire
+evolution.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
