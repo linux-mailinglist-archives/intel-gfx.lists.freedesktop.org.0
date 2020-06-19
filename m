@@ -1,29 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBE7D201B74
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 21:40:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 196FC201B78
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 21:41:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 322FB6E8EB;
-	Fri, 19 Jun 2020 19:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D3CF6E903;
+	Fri, 19 Jun 2020 19:41:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38C116E8EB
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 19:40:42 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21554386-1500050 
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:40:41 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Jun 2020 20:40:38 +0100
-Message-Id: <20200619194038.5088-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [207.211.31.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD0016E903
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 19:41:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1592595672;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Klk9Yg7QmsaodI3YdZuK3PWnbqv8FErJIsczXrZ686s=;
+ b=C0YzxdT6VqYL6kr/KedXDzDQLqE/c7aTqcUJPMPUdyLY6JABsPSU8PvsdhYyTtbdKeZtfg
+ Txq87EdgkFbcEnH63feHJoYh5BX3AP2rf7JKatCOd2uT4KTB5tIlFEQybKqbh1dy2w2RmT
+ 93PAQj2uB4v8oScs6uUWkAo9otRt2tE=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-103-kZZ2RrShMPqb7khPp6FD2g-1; Fri, 19 Jun 2020 15:41:05 -0400
+X-MC-Unique: kZZ2RrShMPqb7khPp6FD2g-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id EA8D41800D42;
+ Fri, 19 Jun 2020 19:41:00 +0000 (UTC)
+Received: from redhat.com (ovpn-112-200.rdu2.redhat.com [10.10.112.200])
+ by smtp.corp.redhat.com (Postfix) with ESMTPS id 8665619D7B;
+ Fri, 19 Jun 2020 19:40:58 +0000 (UTC)
+Date: Fri, 19 Jun 2020 15:40:56 -0400
+From: Jerome Glisse <jglisse@redhat.com>
+To: Felix Kuehling <felix.kuehling@amd.com>
+Message-ID: <20200619194056.GA13117@redhat.com>
+References: <20200618172338.GM6578@ziepe.ca>
+ <CAKMK7uEbqTu4q-amkLXyd1i8KNtLaoO2ZFoGqYiG6D0m0FKpOg@mail.gmail.com>
+ <20200619113934.GN6578@ziepe.ca>
+ <CAKMK7uE-kWA==Cko5uenMrcnopEjq42HxoDTDywzBAbHqsN13g@mail.gmail.com>
+ <20200619151551.GP6578@ziepe.ca>
+ <CAKMK7uEvkshAM6KUYZu8_OCpF4+1Y_SM7cQ9nJWpagfke8s8LA@mail.gmail.com>
+ <20200619172308.GQ6578@ziepe.ca>
+ <20200619180935.GA10009@redhat.com>
+ <CADnq5_Pw_85Kzh1of=MbDi4g9POeF3jO4AJ7p2FjY5XZW0=vsQ@mail.gmail.com>
+ <86f7f5e5-81a0-5429-5a6e-0d3b0860cfae@amd.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gem: Avoid kmalloc under i915->mm_lock
+Content-Disposition: inline
+In-Reply-To: <86f7f5e5-81a0-5429-5a6e-0d3b0860cfae@amd.com>
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
+ lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,255 +68,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Alex Deucher <alexdeucher@gmail.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rearrange the allocation of the mm_struct registration to avoid
-allocating underneath the i915->mm_lock, so that we avoid tainting the
-lock (and in turn many other locks that may be held as i915->mm_lock is
-taken, and those locks we may want on the free [shrinker] paths). In
-doing so, we convert the lookup to be RCU protected by courtesy of
-converting the free-worker to be an rcu_work.
+On Fri, Jun 19, 2020 at 03:30:32PM -0400, Felix Kuehling wrote:
+> =
 
-v2: Remember to use hash_rcu variants to protect the list iteration from
-concurrent add/del.
+> Am 2020-06-19 um 3:11 p.m. schrieb Alex Deucher:
+> > On Fri, Jun 19, 2020 at 2:09 PM Jerome Glisse <jglisse@redhat.com> wrot=
+e:
+> >> On Fri, Jun 19, 2020 at 02:23:08PM -0300, Jason Gunthorpe wrote:
+> >>> On Fri, Jun 19, 2020 at 06:19:41PM +0200, Daniel Vetter wrote:
+> >>>
+> >>>> The madness is only that device B's mmu notifier might need to wait
+> >>>> for fence_B so that the dma operation finishes. Which in turn has to
+> >>>> wait for device A to finish first.
+> >>> So, it sound, fundamentally you've got this graph of operations across
+> >>> an unknown set of drivers and the kernel cannot insert itself in
+> >>> dma_fence hand offs to re-validate any of the buffers involved?
+> >>> Buffers which by definition cannot be touched by the hardware yet.
+> >>>
+> >>> That really is a pretty horrible place to end up..
+> >>>
+> >>> Pinning really is right answer for this kind of work flow. I think
+> >>> converting pinning to notifers should not be done unless notifier
+> >>> invalidation is relatively bounded.
+> >>>
+> >>> I know people like notifiers because they give a bit nicer performance
+> >>> in some happy cases, but this cripples all the bad cases..
+> >>>
+> >>> If pinning doesn't work for some reason maybe we should address that?
+> >> Note that the dma fence is only true for user ptr buffer which predate
+> >> any HMM work and thus were using mmu notifier already. You need the
+> >> mmu notifier there because of fork and other corner cases.
+> >>
+> >> For nouveau the notifier do not need to wait for anything it can update
+> >> the GPU page table right away. Modulo needing to write to GPU memory
+> >> using dma engine if the GPU page table is in GPU memory that is not
+> >> accessible from the CPU but that's never the case for nouveau so far
+> >> (but i expect it will be at one point).
+> >>
+> >>
+> >> So i see this as 2 different cases, the user ptr case, which does pin
+> >> pages by the way, where things are synchronous. Versus the HMM cases
+> >> where everything is asynchronous.
+> >>
+> >>
+> >> I probably need to warn AMD folks again that using HMM means that you
+> >> must be able to update the GPU page table asynchronously without
+> >> fence wait. The issue for AMD is that they already update their GPU
+> >> page table using DMA engine. I believe this is still doable if they
+> >> use a kernel only DMA engine context, where only kernel can queue up
+> >> jobs so that you do not need to wait for unrelated things and you can
+> >> prioritize GPU page table update which should translate in fast GPU
+> >> page table update without DMA fence.
+> > All devices which support recoverable page faults also have a
+> > dedicated paging engine for the kernel driver which the driver already
+> > makes use of.  We can also update the GPU page tables with the CPU.
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 131 ++++++++++----------
- drivers/gpu/drm/i915/i915_drv.h             |   2 +-
- 2 files changed, 65 insertions(+), 68 deletions(-)
+> We have a potential problem with CPU updating page tables while the GPU
+> is retrying on page table entries because 64 bit CPU transactions don't
+> arrive in device memory atomically.
+> =
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 9c53eb883400..e946032b13e4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -21,7 +21,7 @@ struct i915_mm_struct {
- 	struct i915_mmu_notifier *mn;
- 	struct hlist_node node;
- 	struct kref kref;
--	struct work_struct work;
-+	struct rcu_work work;
- };
- 
- #if defined(CONFIG_MMU_NOTIFIER)
-@@ -189,40 +189,31 @@ i915_gem_userptr_release__mmu_notifier(struct drm_i915_gem_object *obj)
- static struct i915_mmu_notifier *
- i915_mmu_notifier_find(struct i915_mm_struct *mm)
- {
--	struct i915_mmu_notifier *mn;
--	int err = 0;
-+	struct i915_mmu_notifier *mn, *old;
-+	int err;
- 
--	mn = mm->mn;
--	if (mn)
-+	mn = READ_ONCE(mm->mn);
-+	if (likely(mn))
- 		return mn;
- 
- 	mn = i915_mmu_notifier_create(mm);
- 	if (IS_ERR(mn))
--		err = PTR_ERR(mn);
--
--	mmap_write_lock(mm->mm);
--	mutex_lock(&mm->i915->mm_lock);
--	if (mm->mn == NULL && !err) {
--		/* Protected by mmap_lock (write-lock) */
--		err = __mmu_notifier_register(&mn->mn, mm->mm);
--		if (!err) {
--			/* Protected by mm_lock */
--			mm->mn = fetch_and_zero(&mn);
--		}
--	} else if (mm->mn) {
--		/*
--		 * Someone else raced and successfully installed the mmu
--		 * notifier, we can cancel our own errors.
--		 */
--		err = 0;
-+		return mn;
-+
-+	err = mmu_notifier_register(&mn->mn, mm->mm);
-+	if (err) {
-+		kfree(mn);
-+		return ERR_PTR(err);
- 	}
--	mutex_unlock(&mm->i915->mm_lock);
--	mmap_write_unlock(mm->mm);
- 
--	if (mn && !IS_ERR(mn))
-+	old = cmpxchg(&mm->mn, NULL, mn);
-+	if (old) {
-+		mmu_notifier_unregister(&mn->mn, mm->mm);
- 		kfree(mn);
-+		mn = old;
-+	}
- 
--	return err ? ERR_PTR(err) : mm->mn;
-+	return mn;
- }
- 
- static int
-@@ -301,23 +292,28 @@ i915_mmu_notifier_free(struct i915_mmu_notifier *mn,
- #endif
- 
- static struct i915_mm_struct *
--__i915_mm_struct_find(struct drm_i915_private *dev_priv, struct mm_struct *real)
-+__i915_mm_struct_find(struct drm_i915_private *i915, struct mm_struct *real)
- {
--	struct i915_mm_struct *mm;
--
--	/* Protected by dev_priv->mm_lock */
--	hash_for_each_possible(dev_priv->mm_structs, mm, node, (unsigned long)real)
--		if (mm->mm == real)
--			return mm;
-+	struct i915_mm_struct *it, *mm = NULL;
-+
-+	rcu_read_lock();
-+	hash_for_each_possible_rcu(i915->mm_structs,
-+				   it, node,
-+				   (unsigned long)real)
-+		if (it->mm == real && kref_get_unless_zero(&it->kref)) {
-+			mm = it;
-+			break;
-+		}
-+	rcu_read_unlock();
- 
--	return NULL;
-+	return mm;
- }
- 
- static int
- i915_gem_userptr_init__mm_struct(struct drm_i915_gem_object *obj)
- {
--	struct drm_i915_private *dev_priv = to_i915(obj->base.dev);
--	struct i915_mm_struct *mm;
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-+	struct i915_mm_struct *mm, *new;
- 	int ret = 0;
- 
- 	/* During release of the GEM object we hold the struct_mutex. This
-@@ -330,39 +326,42 @@ i915_gem_userptr_init__mm_struct(struct drm_i915_gem_object *obj)
- 	 * struct_mutex, i.e. we need to schedule a worker to do the clean
- 	 * up.
- 	 */
--	mutex_lock(&dev_priv->mm_lock);
--	mm = __i915_mm_struct_find(dev_priv, current->mm);
--	if (mm == NULL) {
--		mm = kmalloc(sizeof(*mm), GFP_KERNEL);
--		if (mm == NULL) {
--			ret = -ENOMEM;
--			goto out;
--		}
-+	mm = __i915_mm_struct_find(i915, current->mm);
-+	if (mm)
-+		goto out;
- 
--		kref_init(&mm->kref);
--		mm->i915 = to_i915(obj->base.dev);
-+	new = kmalloc(sizeof(*mm), GFP_KERNEL);
-+	if (!new)
-+		return -ENOMEM;
- 
--		mm->mm = current->mm;
-+	kref_init(&new->kref);
-+	new->i915 = to_i915(obj->base.dev);
-+	new->mm = current->mm;
-+	new->mn = NULL;
-+
-+	spin_lock(&i915->mm_lock);
-+	mm = __i915_mm_struct_find(i915, current->mm);
-+	if (!mm) {
-+		hash_add_rcu(i915->mm_structs,
-+			     &new->node,
-+			     (unsigned long)new->mm);
- 		mmgrab(current->mm);
-+		mm = new;
-+	}
-+	spin_unlock(&i915->mm_lock);
-+	if (mm != new)
-+		kfree(new);
- 
--		mm->mn = NULL;
--
--		/* Protected by dev_priv->mm_lock */
--		hash_add(dev_priv->mm_structs,
--			 &mm->node, (unsigned long)mm->mm);
--	} else
--		kref_get(&mm->kref);
--
--	obj->userptr.mm = mm;
- out:
--	mutex_unlock(&dev_priv->mm_lock);
-+	obj->userptr.mm = mm;
- 	return ret;
- }
- 
- static void
- __i915_mm_struct_free__worker(struct work_struct *work)
- {
--	struct i915_mm_struct *mm = container_of(work, typeof(*mm), work);
-+	struct i915_mm_struct *mm = container_of(work, typeof(*mm), work.work);
-+
- 	i915_mmu_notifier_free(mm->mn, mm->mm);
- 	mmdrop(mm->mm);
- 	kfree(mm);
-@@ -373,12 +372,12 @@ __i915_mm_struct_free(struct kref *kref)
- {
- 	struct i915_mm_struct *mm = container_of(kref, typeof(*mm), kref);
- 
--	/* Protected by dev_priv->mm_lock */
--	hash_del(&mm->node);
--	mutex_unlock(&mm->i915->mm_lock);
-+	spin_lock(&mm->i915->mm_lock);
-+	hash_del_rcu(&mm->node);
-+	spin_unlock(&mm->i915->mm_lock);
- 
--	INIT_WORK(&mm->work, __i915_mm_struct_free__worker);
--	queue_work(mm->i915->mm.userptr_wq, &mm->work);
-+	INIT_RCU_WORK(&mm->work, __i915_mm_struct_free__worker);
-+	queue_rcu_work(system_wq, &mm->work);
- }
- 
- static void
-@@ -387,9 +386,7 @@ i915_gem_userptr_release__mm_struct(struct drm_i915_gem_object *obj)
- 	if (obj->userptr.mm == NULL)
- 		return;
- 
--	kref_put_mutex(&obj->userptr.mm->kref,
--		       __i915_mm_struct_free,
--		       &to_i915(obj->base.dev)->mm_lock);
-+	kref_put(&obj->userptr.mm->kref, __i915_mm_struct_free);
- 	obj->userptr.mm = NULL;
- }
- 
-@@ -851,7 +848,7 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
- 
- int i915_gem_init_userptr(struct drm_i915_private *dev_priv)
- {
--	mutex_init(&dev_priv->mm_lock);
-+	spin_lock_init(&dev_priv->mm_lock);
- 	hash_init(dev_priv->mm_structs);
- 
- 	dev_priv->mm.userptr_wq =
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 5649f8e502fe..7464656253c9 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -988,7 +988,7 @@ struct drm_i915_private {
- 
- 	struct i915_gem_mm mm;
- 	DECLARE_HASHTABLE(mm_structs, 7);
--	struct mutex mm_lock;
-+	spinlock_t mm_lock;
- 
- 	/* Kernel Modesetting */
- 
--- 
-2.20.1
+> We are using SDMA for page table updates. This currently goes through a
+> the DRM GPU scheduler to a special SDMA queue that's used by kernel-mode
+> only. But since it's based on the DRM GPU scheduler, we do use dma-fence
+> to wait for completion.
+
+Yeah my worry is mostly that some cross dma fence leak into it but
+it should never happen realy, maybe there is a way to catch if it
+does and print a warning.
+
+So yes you can use dma fence, as long as they do not have cross-dep.
+Another expectation is that they complete quickly and usualy page
+table update do.
+
+Cheers,
+J=E9r=F4me
 
 _______________________________________________
 Intel-gfx mailing list
