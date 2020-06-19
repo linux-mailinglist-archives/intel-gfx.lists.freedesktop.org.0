@@ -1,61 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE9DC200B7A
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 16:31:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E53B200B7D
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 16:31:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFC446E0D2;
-	Fri, 19 Jun 2020 14:31:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96BE66E0EC;
+	Fri, 19 Jun 2020 14:31:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5226E0D2
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81B076E0EC
  for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 14:31:12 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id g75so536254wme.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 07:31:11 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id g18so831981wrm.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 07:31:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=BwKutQLBvEAbQCHtGNTqkk9jOzpK5BksbCZgOzVzkI0=;
- b=BO6JUGMxyZDjoZUAuvkPrPPV7WG2foB2Lb028KLeDUiK9VbK1TH3JCRfsHiwY4JsyO
- XIJmTkvJBx95PEk/ZMeytfq1y8IOlX8/2OuJnG/IE4ZKhiPBM9QJMP/twJnSmw6fvjBN
- wQ8jeDY9Go5RN8+x1y0s8hQbH+fFEy1heMEr2Ze7GRJ3OQYT/WcFVySwORZg+6KkOzjQ
- KkCXutnfpq+edrmF029ThVOQV4YdMMnv1lo+cDUPdbKYpbJ6o2eGHXSETjjjAfkIfKIA
- a7rk0Uk9D4ZkhLntRioViYzkq9JPwqEd9ORWesaa0qtOM9+5i+A6zxs2ZyZ+LL+qiae+
- 9I8w==
+ bh=votjP+3jiL2/WAzd03AJcl4wX2QWYarLzgTodM1DZEY=;
+ b=icQtsH8z+gU4XCO/OrZzyvdfH5xN4MLo7//zoMIQQajKlbITmFI57cZZlg+5idyCTD
+ SINa84sr12JyZt3d4h4G3uGqTY/1tObnonVxy0V9DQZoMbaFzc+9Rm5o3dIWEGNPUi5b
+ 8CDiWm8fTVdI+UYKW7zeTLBI2cP5W9yEB19TUsOOCD0ijFBRb/wAnaNwsfHhISvS4mfF
+ O+GdRNZCDN6tXVzw13MeuRL8VxPxTVN1OaPkVfOlra5hpZH+R8rVhG++OgFdxbKayJTU
+ KpcbiQKm7oCDQrtmvZZrKSW1dcZmLdSUjSRbrwQEMRooapweUJ48t5Kf6kfCKo1BmMeO
+ I63w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
  :in-reply-to:references:mime-version:content-transfer-encoding;
- bh=BwKutQLBvEAbQCHtGNTqkk9jOzpK5BksbCZgOzVzkI0=;
- b=e690Elvbsrmr7Sphowgh/IqYcw1bt6qaQUQfWZJ3HY4n23bC/bGFq++FwYlWTBzT+Y
- HXURLVZCvvVDrtMitdHXchm9HdTzDAhPl0o6yiYf/WteDxtPHoeTirZo4Qe0Kejsa/ih
- MTUvozqDZ8Vof6rmxkLeTIcJhO5Pee6NlcKEtuxKOn387bHmFUZbRRC6lIg1StN3QR8f
- QCeqxtuDxuwJsXt9HfbIbJyXe9MZPvnbaum7CO+C/gQWVhPtiO+12Sb/xgaNeP4tC4ix
- tMAs4+KBI1w7eCHQ4H+YpZ5IKCb+GKnE62TzKWgBH52uz8+l2HDgbNVeGUEyTD3P+3dD
- Nsaw==
-X-Gm-Message-State: AOAM530lZEeMITWUSWzli8XX1pPuzLEJzTJYBRs7Xj4G70gfnD5clCYp
- rmFLBjXuu7SxGsi43bJ4HHC8nKQJ
-X-Google-Smtp-Source: ABdhPJzpN2uHGMXaCvaM2VWxeI3ibuId1ByyUFNGAZ6YHn1aIre3Nr/IGQOxIQJB9VcH5gm6IbfSPw==
-X-Received: by 2002:a05:600c:2284:: with SMTP id
- 4mr3835303wmf.57.1592577070225; 
+ bh=votjP+3jiL2/WAzd03AJcl4wX2QWYarLzgTodM1DZEY=;
+ b=GhQ0DPVhA8q8JB6+eBUNe/LTda3vJv0OVNqp2E+dNlGZ4+4AoIQKHV1K2anbPs1Bqp
+ Bf4GL94tfpyoDcXsLJVdCDe64DpQnB0bvVxt1bDFFxVdjhAShJVxFxarhb0KZI2mtbs7
+ 5eYXLITC+C3LA96xMI2USZ9YvIg8+xdbcDXlvBb5YIPXXwsSzEKiiP9BYktKgGN1uBBa
+ Dy+JGDN0RmhuSdGBVXh+963pa3F0Y4UOG6LECu48HRd9bAp3HavxZRfrTJQknntuCmAB
+ 4+g8e8bX5VmAoWk51wFDe9RIZzgGHHCU2jwmlE5f0emULXijPVn/aU3XHgwW0CFAHDsp
+ umTw==
+X-Gm-Message-State: AOAM5337bnTTPaU9GgR8eOKie+KIQdJzb85ppmsckTQZ/fn8bXZtBsAw
+ /jp66VBNvWLxpLSL321WiVEWlz00
+X-Google-Smtp-Source: ABdhPJw6e9MYYQsDmvawZBjopWfEo13rpnprE6sHwu39MDAEzDGXLOJuZqotMEzPoBMMD/INLwPOCA==
+X-Received: by 2002:a5d:4910:: with SMTP id x16mr1571182wrq.401.1592577070964; 
  Fri, 19 Jun 2020 07:31:10 -0700 (PDT)
 Received: from build.alporthouse.com ([78.156.65.138])
- by smtp.gmail.com with ESMTPSA id x186sm7185746wmg.8.2020.06.19.07.31.09
+ by smtp.gmail.com with ESMTPSA id x186sm7185746wmg.8.2020.06.19.07.31.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 19 Jun 2020 07:31:09 -0700 (PDT)
+ Fri, 19 Jun 2020 07:31:10 -0700 (PDT)
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Jun 2020 15:31:05 +0100
-Message-Id: <20200619143106.10356-2-chris@chris-wilson.co.uk>
+Date: Fri, 19 Jun 2020 15:31:06 +0100
+Message-Id: <20200619143106.10356-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200619143106.10356-1-chris@chris-wilson.co.uk>
 References: <20200619143106.10356-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/gvt: Drop redundant
- prepare_write/pin_pages
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Replace manual kmap_atomic()
+ with pin_map for renderstate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,156 +73,94 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since gvt calls pin_map for the shadow batch buffer, this makes the
-action of prepare_write [+pin_pages] redundant. We can write into the
-obj->mm.mapping directory and the flush_map routine knows when it has to
-flush the cpu cache afterwards.
+We only emit the renderstate once now during module load, it is no
+longer a concern that we are delaying context creation and so do not
+need to so eagerly optimise. Since the last time we have looked at the
+renderstate, we have a pin_map / flush_map facility that supports simple
+single mappings, replacing the open-coded kmap_atomic() and
+prepare_write. As it should be a single page, of which we only write a
+small portion, we stick to a simple WB [kmap] and use clflush on !llc
+platforms, rather than creating a temporary WC vmapping for the single
+page.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gvt/cmd_parser.c | 14 +-------
- drivers/gpu/drm/i915/gvt/scheduler.c  | 51 ++++++++-------------------
- drivers/gpu/drm/i915/gvt/scheduler.h  |  2 --
- 3 files changed, 15 insertions(+), 52 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_renderstate.c | 29 +++++++--------------
+ 1 file changed, 9 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-index 8b87f130f7f1..f1940939260a 100644
---- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
-+++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-@@ -1904,19 +1904,10 @@ static int perform_bb_shadow(struct parser_exec_state *s)
- 		goto err_free_bb;
- 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
+index f59e7875cc5e..6db23389e427 100644
+--- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
++++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
+@@ -61,7 +61,7 @@ render_state_get_rodata(const struct intel_engine_cs *engine)
+ #define OUT_BATCH(batch, i, val)				\
+ 	do {							\
+ 		if ((i) >= PAGE_SIZE / sizeof(u32))		\
+-			goto err;				\
++			goto out;				\
+ 		(batch)[(i)++] = (val);				\
+ 	} while(0)
  
--	ret = i915_gem_object_prepare_write(bb->obj, &bb->clflush);
+@@ -70,15 +70,12 @@ static int render_state_setup(struct intel_renderstate *so,
+ {
+ 	const struct intel_renderstate_rodata *rodata = so->rodata;
+ 	unsigned int i = 0, reloc_index = 0;
+-	unsigned int needs_clflush;
++	int ret = -EINVAL;
+ 	u32 *d;
+-	int ret;
+ 
+-	ret = i915_gem_object_prepare_write(so->vma->obj, &needs_clflush);
 -	if (ret)
--		goto err_free_obj;
+-		return ret;
 -
- 	bb->va = i915_gem_object_pin_map(bb->obj, I915_MAP_WB);
- 	if (IS_ERR(bb->va)) {
- 		ret = PTR_ERR(bb->va);
--		goto err_finish_shmem_access;
--	}
--
--	if (bb->clflush & CLFLUSH_BEFORE) {
--		drm_clflush_virt_range(bb->va, bb->obj->base.size);
--		bb->clflush &= ~CLFLUSH_BEFORE;
-+		goto err_free_obj;
+-	d = kmap_atomic(i915_gem_object_get_dirty_page(so->vma->obj, 0));
++	d = i915_gem_object_pin_map(so->vma->obj, I915_MAP_WB);
++	if (IS_ERR(d))
++		return PTR_ERR(d);
+ 
+ 	while (i < rodata->batch_items) {
+ 		u32 s = rodata->batch[i];
+@@ -89,7 +86,7 @@ static int render_state_setup(struct intel_renderstate *so,
+ 			if (HAS_64BIT_RELOC(i915)) {
+ 				if (i + 1 >= rodata->batch_items ||
+ 				    rodata->batch[i + 1] != 0)
+-					goto err;
++					goto out;
+ 
+ 				d[i++] = s;
+ 				s = upper_32_bits(r);
+@@ -103,7 +100,7 @@ static int render_state_setup(struct intel_renderstate *so,
+ 
+ 	if (rodata->reloc[reloc_index] != -1) {
+ 		drm_err(&i915->drm, "only %d relocs resolved\n", reloc_index);
+-		goto err;
++		goto out;
  	}
  
- 	ret = copy_gma_to_hva(s->vgpu, mm,
-@@ -1935,7 +1926,6 @@ static int perform_bb_shadow(struct parser_exec_state *s)
- 	INIT_LIST_HEAD(&bb->list);
- 	list_add(&bb->list, &s->workload->shadow_bb);
+ 	so->batch_offset = i915_ggtt_offset(so->vma);
+@@ -150,19 +147,11 @@ static int render_state_setup(struct intel_renderstate *so,
+ 	 */
+ 	so->aux_size = ALIGN(so->aux_size, 8);
  
--	bb->accessing = true;
- 	bb->bb_start_cmd_va = s->ip_va;
- 
- 	if ((s->buf_type == BATCH_BUFFER_INSTRUCTION) && (!s->is_ctx_wa))
-@@ -1956,8 +1946,6 @@ static int perform_bb_shadow(struct parser_exec_state *s)
- 	return 0;
- err_unmap:
- 	i915_gem_object_unpin_map(bb->obj);
--err_finish_shmem_access:
--	i915_gem_object_finish_access(bb->obj);
- err_free_obj:
- 	i915_gem_object_put(bb->obj);
- err_free_bb:
-diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
-index 8fc2ad4517e9..3c3b9842bbbd 100644
---- a/drivers/gpu/drm/i915/gvt/scheduler.c
-+++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-@@ -509,26 +509,18 @@ static int prepare_shadow_batch_buffer(struct intel_vgpu_workload *workload)
- 			bb->bb_start_cmd_va = workload->shadow_ring_buffer_va
- 				+ bb->bb_offset;
- 
--		if (bb->ppgtt) {
--			/* for non-priv bb, scan&shadow is only for
--			 * debugging purpose, so the content of shadow bb
--			 * is the same as original bb. Therefore,
--			 * here, rather than switch to shadow bb's gma
--			 * address, we directly use original batch buffer's
--			 * gma address, and send original bb to hardware
--			 * directly
--			 */
--			if (bb->clflush & CLFLUSH_AFTER) {
--				drm_clflush_virt_range(bb->va,
--						bb->obj->base.size);
--				bb->clflush &= ~CLFLUSH_AFTER;
--			}
--			i915_gem_object_finish_access(bb->obj);
--			bb->accessing = false;
+-	if (needs_clflush)
+-		drm_clflush_virt_range(d, i * sizeof(u32));
+-	kunmap_atomic(d);
 -
--		} else {
-+		/*
-+		 * For non-priv bb, scan&shadow is only for
-+		 * debugging purpose, so the content of shadow bb
-+		 * is the same as original bb. Therefore,
-+		 * here, rather than switch to shadow bb's gma
-+		 * address, we directly use original batch buffer's
-+		 * gma address, and send original bb to hardware
-+		 * directly
-+		 */
-+		if (!bb->ppgtt) {
- 			bb->vma = i915_gem_object_ggtt_pin(bb->obj,
--					NULL, 0, 0, 0);
-+							   NULL, 0, 0, 0);
- 			if (IS_ERR(bb->vma)) {
- 				ret = PTR_ERR(bb->vma);
- 				goto err;
-@@ -539,27 +531,15 @@ static int prepare_shadow_batch_buffer(struct intel_vgpu_workload *workload)
- 			if (gmadr_bytes == 8)
- 				bb->bb_start_cmd_va[2] = 0;
+ 	ret = 0;
+ out:
+-	i915_gem_object_finish_access(so->vma->obj);
++	__i915_gem_object_flush_map(so->vma->obj, 0, i * sizeof(u32));
++	i915_gem_object_unpin_map(so->vma->obj);
+ 	return ret;
+-
+-err:
+-	kunmap_atomic(d);
+-	ret = -EINVAL;
+-	goto out;
+ }
  
--			/* No one is going to touch shadow bb from now on. */
--			if (bb->clflush & CLFLUSH_AFTER) {
--				drm_clflush_virt_range(bb->va,
--						bb->obj->base.size);
--				bb->clflush &= ~CLFLUSH_AFTER;
--			}
--
--			ret = i915_gem_object_set_to_gtt_domain(bb->obj,
--								false);
--			if (ret)
--				goto err;
--
- 			ret = i915_vma_move_to_active(bb->vma,
- 						      workload->req,
- 						      0);
- 			if (ret)
- 				goto err;
--
--			i915_gem_object_finish_access(bb->obj);
--			bb->accessing = false;
- 		}
-+
-+		/* No one is going to touch shadow bb from now on. */
-+		i915_gem_object_flush_map(bb->obj);
- 	}
- 	return 0;
- err:
-@@ -630,9 +610,6 @@ static void release_shadow_batch_buffer(struct intel_vgpu_workload *workload)
- 
- 	list_for_each_entry_safe(bb, pos, &workload->shadow_bb, list) {
- 		if (bb->obj) {
--			if (bb->accessing)
--				i915_gem_object_finish_access(bb->obj);
--
- 			if (bb->va && !IS_ERR(bb->va))
- 				i915_gem_object_unpin_map(bb->obj);
- 
-diff --git a/drivers/gpu/drm/i915/gvt/scheduler.h b/drivers/gpu/drm/i915/gvt/scheduler.h
-index 15d317f2a4a4..64e7a0b791c3 100644
---- a/drivers/gpu/drm/i915/gvt/scheduler.h
-+++ b/drivers/gpu/drm/i915/gvt/scheduler.h
-@@ -124,8 +124,6 @@ struct intel_vgpu_shadow_bb {
- 	struct i915_vma *vma;
- 	void *va;
- 	u32 *bb_start_cmd_va;
--	unsigned int clflush;
--	bool accessing;
- 	unsigned long bb_offset;
- 	bool ppgtt;
- };
+ #undef OUT_BATCH
 -- 
 2.20.1
 
