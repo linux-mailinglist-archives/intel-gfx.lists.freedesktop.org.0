@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ECF82009B2
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 15:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9468D2009B3
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 15:15:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EB0A6ECA2;
-	Fri, 19 Jun 2020 13:14:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9718C6EC57;
+	Fri, 19 Jun 2020 13:14:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 155E46E2E9;
- Fri, 19 Jun 2020 13:14:56 +0000 (UTC)
-IronPort-SDR: JJa5Dqk23TEXBrUqBjhN8b/mIuFeRgkkDV1aY79uDyi3x0Go52rSYWI4pVscl7uwuAhhZg2TbH
- qjece0nwzMow==
-X-IronPort-AV: E=McAfee;i="6000,8403,9656"; a="130318718"
-X-IronPort-AV: E=Sophos;i="5.75,255,1589266800"; d="scan'208";a="130318718"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 559B26EC57;
+ Fri, 19 Jun 2020 13:14:57 +0000 (UTC)
+IronPort-SDR: Hxw/y9Oj8nntXmOpErirPbIfEgmuljBVl3umCpKjHuiCuB+GhO161FDXlhcrJ2pJDvuggWrKQ+
+ s0V0dXAB8e/w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9656"; a="130318721"
+X-IronPort-AV: E=Sophos;i="5.75,255,1589266800"; d="scan'208";a="130318721"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2020 06:14:55 -0700
-IronPort-SDR: 9GMsjKeRur9GdpR280dOGTJuUBpDCZEORRg0ZWAPsy/PuduelPpNfkmDg0yQ6lsNy1MAVEXIn9
- 6R0UdHK/A/zw==
+ 19 Jun 2020 06:14:57 -0700
+IronPort-SDR: iFbi5Xm2l6q8il58HIgBAxV4YFfYMsUYHjW2THcw7/SqGbyErRfizZl0kCqGkkkYe4jZGPb23i
+ DAjkKdD2RhlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,255,1589266800"; d="scan'208";a="277995701"
+X-IronPort-AV: E=Sophos;i="5.75,255,1589266800"; d="scan'208";a="277995705"
 Received: from bhanu-nuc8i7beh.iind.intel.com ([10.145.162.210])
- by orsmga006.jf.intel.com with ESMTP; 19 Jun 2020 06:14:53 -0700
+ by orsmga006.jf.intel.com with ESMTP; 19 Jun 2020 06:14:55 -0700
 From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
 To: bhanuprakash.modem@intel.com, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
-Date: Sat, 20 Jun 2020 02:41:03 +0530
-Message-Id: <20200619211106.19207-1-bhanuprakash.modem@intel.com>
+Date: Sat, 20 Jun 2020 02:41:04 +0530
+Message-Id: <20200619211106.19207-2-bhanuprakash.modem@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200612230444.10121-1-manasi.d.navare@intel.com>
 References: <20200612230444.10121-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v6 0/3] VRR capable attach prop in i915, DPCD helper,
- VRR debugfs
+Subject: [Intel-gfx] [v6 1/3] drm/dp: DRM DP helper for reading Ignore MSA
+ from DPCD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,38 +50,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an initial set of patches for enabling VRR support in i915.
-This series has patches for:
-1. adding a drm dpcd helper to read ignore MSA
-   bit in sink's DPCD indicating sink support for VRR
-2. Attach and set VRR capable connector prop for Intel DP conn
-3. Expose VRR min and max through debugfs
-
-Aditya Swarup (1):
-  drm/i915/dp: Attach and set drm connector VRR property
-
-Bhanuprakash Modem (1):
-  drm/debug: Expose connector VRR monitor range via debugfs
-
-Manasi Navare (1):
-  drm/dp: DRM DP helper for reading Ignore MSA from DPCD
-
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 20 --------------
- drivers/gpu/drm/drm_debugfs.c                 | 22 +++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c       | 27 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h       |  2 ++
- include/drm/drm_dp_helper.h                   |  8 ++++++
- 5 files changed, 59 insertions(+), 20 deletions(-)
-
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4KCkRQIHNpbmsg
+ZGV2aWNlIHNldHMgdGhlIElnbm9yZSBNU0EgYml0IGluIGl0cwpEUF9ET1dOU1RSRUFNX1BPUlRf
+Q09VTlQgcmVnaXN0ZXIgdG8gaW5kaWNhdGUgaXRzIGFiaWxpdHkgdG8KaWdub3JlIHRoZSBNU0Eg
+dmlkZW8gdGltaW5nIHBhcmFtZXRlcnMgYW5kIGl0cyBhYmlsaXR5IHRvIHN1cHBvcnQKc2VhbWxl
+c3MgdmlkZW8gdGltaW5nIGNoYW5nZSBvdmVyIGEgcmFuZ2Ugb2YgdGltaW5nIGV4cG9zZWQgYnkK
+RGlzcGxheUlEIGFuZCBFRElELgpUaGlzIGlzIHJlcXVpcmVkIGZvciB0aGUgc2luayB0byBpbmRp
+Y2F0ZSB0aGF0IGl0IGlzIEFkYXB0aXZlIHN5bmMKY2FwYWJsZS4KCnYzOgoqIEZpIHRoZSB0eXBv
+IGluIGNvbW1pdCBtZXNzYWdlIChNYW5hc2kpCnYyOgoqIFJlbmFtZSB0byBkZXNjcmliZSB3aGF0
+IHRoZSBmdW5jdGlvbiBkb2VzIChKYW5pIE5pa3VsYSkKCkNjOiBKYW5pIE5pa3VsYSA8amFuaS5u
+aWt1bGFAbGludXguaW50ZWwuY29tPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
+QGxpbnV4LmludGVsLmNvbT4KQ2M6IEhhcnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFuZEBhbWQu
+Y29tPgpDYzogTmljaG9sYXMgS2F6bGF1c2thcyA8TmljaG9sYXMuS2F6bGF1c2thc0BhbWQuY29t
+PgpTaWduZWQtb2ZmLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29t
+PgpSZXZpZXdlZC1ieTogSGFycnkgV2VudGxhbmQgPGhhcnJ5LndlbnRsYW5kQGFtZC5jb20+Ci0t
+LQogaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oIHwgOCArKysrKysrKwogMSBmaWxlIGNoYW5n
+ZWQsIDggaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9kcF9oZWxw
+ZXIuaCBiL2luY2x1ZGUvZHJtL2RybV9kcF9oZWxwZXIuaAppbmRleCAxMTY1ZWMxMDU2MzguLmU0
+N2RjMjJlYmY1MCAxMDA2NDQKLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oCisrKyBi
+L2luY2x1ZGUvZHJtL2RybV9kcF9oZWxwZXIuaApAQCAtMTQ1Nyw2ICsxNDU3LDE0IEBAIGRybV9k
+cF9hbHRlcm5hdGVfc2NyYW1ibGVyX3Jlc2V0X2NhcChjb25zdCB1OCBkcGNkW0RQX1JFQ0VJVkVS
+X0NBUF9TSVpFXSkKIAkJCURQX0FMVEVSTkFURV9TQ1JBTUJMRVJfUkVTRVRfQ0FQOwogfQogCisv
+KiBJZ25vcmUgTVNBIHRpbWluZyBmb3IgQWRhcHRpdmUgU3luYyBzdXBwb3J0IG9uIERQIDEuNCAq
+Lworc3RhdGljIGlubGluZSBib29sCitkcm1fZHBfc2lua19jYW5fZG9fdmlkZW9fd2l0aG91dF90
+aW1pbmdfbXNhKGNvbnN0IHU4IGRwY2RbRFBfUkVDRUlWRVJfQ0FQX1NJWkVdKQoreworCXJldHVy
+biBkcGNkW0RQX0RPV05fU1RSRUFNX1BPUlRfQ09VTlRdICYKKwkJRFBfTVNBX1RJTUlOR19QQVJf
+SUdOT1JFRDsKK30KKwogLyoKICAqIERpc3BsYXlQb3J0IEFVWCBjaGFubmVsCiAgKi8KLS0gCjIu
+MjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
