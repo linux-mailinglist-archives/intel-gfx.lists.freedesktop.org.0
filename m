@@ -1,58 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E85BE200B78
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 16:31:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9DC200B7A
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 16:31:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBDEE6E02F;
-	Fri, 19 Jun 2020 14:31:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFC446E0D2;
+	Fri, 19 Jun 2020 14:31:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F5A76E02F
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 14:31:11 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id c3so9855006wru.12
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5226E0D2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 14:31:12 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id g75so536254wme.5
  for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 07:31:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=BFONobou04qLfe5TVbv2xVii/DLuuCg8ytSdzL9jats=;
- b=kZBeTC4ak/i/w9wJydbb7O4ElWKvn34cn9X14F7fbdBXMZMkXYnPr2G9/hELMvr7VU
- j2abIdA7jpJwMEkSiJKsL9kx1qViNWp6YBCkKCgTjGvXN7al4YP02QP0hM0FYkZDEFH8
- IZNBmIhMBygXlpZFD+uIwUb7RB0xZB3DC8OLsdLyNNCLOtMQoS0A4KDHwEXcXCQ4PZAW
- rfzdBmKnmEY25A2vxQJO5Kalkzc6qSEnsSz/+W6v3d0wwu/kmP3HTDkZ6SE0CDazmCB5
- pfpDZfHxf+MWCjlywz8CvKsDpZwARkVMKix8Zm3BfF7xmnCjxurBSFu6qoWz+/dnQ5H1
- Ublw==
+ h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=BwKutQLBvEAbQCHtGNTqkk9jOzpK5BksbCZgOzVzkI0=;
+ b=BO6JUGMxyZDjoZUAuvkPrPPV7WG2foB2Lb028KLeDUiK9VbK1TH3JCRfsHiwY4JsyO
+ XIJmTkvJBx95PEk/ZMeytfq1y8IOlX8/2OuJnG/IE4ZKhiPBM9QJMP/twJnSmw6fvjBN
+ wQ8jeDY9Go5RN8+x1y0s8hQbH+fFEy1heMEr2Ze7GRJ3OQYT/WcFVySwORZg+6KkOzjQ
+ KkCXutnfpq+edrmF029ThVOQV4YdMMnv1lo+cDUPdbKYpbJ6o2eGHXSETjjjAfkIfKIA
+ a7rk0Uk9D4ZkhLntRioViYzkq9JPwqEd9ORWesaa0qtOM9+5i+A6zxs2ZyZ+LL+qiae+
+ 9I8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
- :mime-version:content-transfer-encoding;
- bh=BFONobou04qLfe5TVbv2xVii/DLuuCg8ytSdzL9jats=;
- b=uHz63Qi3tgfH87ErVxWSC+9w6BZWjyzy6Xy4Z6cc0SfNCLki1rhPnkmpUsGQ9il8w8
- BgQeHXjgG1FNoJqwDMpOq8cnVTXAi+Afd4+Hl4y0wz6njMIifyVxThgKLS5VCR8pNogr
- vP+BDEcWaHQwcdzwRmDvFBFW8PqUjNGBTeUeYDWCTArDsuzKjkaiPvF0aFb2yimCOLNX
- c0JgTCEhbOd7b+G0hV4F5bBBcXw50hUaFfe7JHGUfOd9/j6VQMWarVgrT3u2dTZXwt2E
- kfhLkzD0uYMHwUV3uQqC6xX1Ih6pNr7zwcO7ne3ZSUj37k25BDsfcJaw0YU+yJRPd98g
- T9+g==
-X-Gm-Message-State: AOAM530mtudHbFpTL4AXIG3y9zAVWpE0F6R5IITQFWh16jPorjtSDkS8
- EIvfNwaC27e5yL3BPV/+1I1x9exq
-X-Google-Smtp-Source: ABdhPJwEz6nVhs1hRmHpbTfEjW/P8E0GgTBV/HQcTae10Wkj6kTOc8zhgF7EgbuccAl1MzJU2DyPTg==
-X-Received: by 2002:a5d:4a8a:: with SMTP id o10mr4345724wrq.222.1592577069252; 
- Fri, 19 Jun 2020 07:31:09 -0700 (PDT)
+ :in-reply-to:references:mime-version:content-transfer-encoding;
+ bh=BwKutQLBvEAbQCHtGNTqkk9jOzpK5BksbCZgOzVzkI0=;
+ b=e690Elvbsrmr7Sphowgh/IqYcw1bt6qaQUQfWZJ3HY4n23bC/bGFq++FwYlWTBzT+Y
+ HXURLVZCvvVDrtMitdHXchm9HdTzDAhPl0o6yiYf/WteDxtPHoeTirZo4Qe0Kejsa/ih
+ MTUvozqDZ8Vof6rmxkLeTIcJhO5Pee6NlcKEtuxKOn387bHmFUZbRRC6lIg1StN3QR8f
+ QCeqxtuDxuwJsXt9HfbIbJyXe9MZPvnbaum7CO+C/gQWVhPtiO+12Sb/xgaNeP4tC4ix
+ tMAs4+KBI1w7eCHQ4H+YpZ5IKCb+GKnE62TzKWgBH52uz8+l2HDgbNVeGUEyTD3P+3dD
+ Nsaw==
+X-Gm-Message-State: AOAM530lZEeMITWUSWzli8XX1pPuzLEJzTJYBRs7Xj4G70gfnD5clCYp
+ rmFLBjXuu7SxGsi43bJ4HHC8nKQJ
+X-Google-Smtp-Source: ABdhPJzpN2uHGMXaCvaM2VWxeI3ibuId1ByyUFNGAZ6YHn1aIre3Nr/IGQOxIQJB9VcH5gm6IbfSPw==
+X-Received: by 2002:a05:600c:2284:: with SMTP id
+ 4mr3835303wmf.57.1592577070225; 
+ Fri, 19 Jun 2020 07:31:10 -0700 (PDT)
 Received: from build.alporthouse.com ([78.156.65.138])
- by smtp.gmail.com with ESMTPSA id x186sm7185746wmg.8.2020.06.19.07.31.08
+ by smtp.gmail.com with ESMTPSA id x186sm7185746wmg.8.2020.06.19.07.31.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 19 Jun 2020 07:31:08 -0700 (PDT)
+ Fri, 19 Jun 2020 07:31:09 -0700 (PDT)
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Jun 2020 15:31:04 +0100
-Message-Id: <20200619143106.10356-1-chris@chris-wilson.co.uk>
+Date: Fri, 19 Jun 2020 15:31:05 +0100
+Message-Id: <20200619143106.10356-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200619143106.10356-1-chris@chris-wilson.co.uk>
+References: <20200619143106.10356-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gem: Avoid kmalloc under
- i915->mm_lock
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915/gvt: Drop redundant
+ prepare_write/pin_pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,238 +74,156 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rearrange the allocation of the mm_struct registration to avoid
-allocating underneath the i915->mm_lock, so that we avoid tainting the
-lock (and in turn many other locks that may be held as i915->mm_lock is
-taken, and those locks we may want on the free [shrinker] paths). In
-doing so, we convert the lookup to be RCU protected by courtesy of
-converting the free-worker to be an rcu_work.
+Since gvt calls pin_map for the shadow batch buffer, this makes the
+action of prepare_write [+pin_pages] redundant. We can write into the
+obj->mm.mapping directory and the flush_map routine knows when it has to
+flush the cpu cache afterwards.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 123 +++++++++-----------
- drivers/gpu/drm/i915/i915_drv.h             |   2 +-
- 2 files changed, 59 insertions(+), 66 deletions(-)
+ drivers/gpu/drm/i915/gvt/cmd_parser.c | 14 +-------
+ drivers/gpu/drm/i915/gvt/scheduler.c  | 51 ++++++++-------------------
+ drivers/gpu/drm/i915/gvt/scheduler.h  |  2 --
+ 3 files changed, 15 insertions(+), 52 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 9c53eb883400..84766414a1f0 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -21,7 +21,7 @@ struct i915_mm_struct {
- 	struct i915_mmu_notifier *mn;
- 	struct hlist_node node;
- 	struct kref kref;
--	struct work_struct work;
-+	struct rcu_work work;
- };
- 
- #if defined(CONFIG_MMU_NOTIFIER)
-@@ -189,40 +189,31 @@ i915_gem_userptr_release__mmu_notifier(struct drm_i915_gem_object *obj)
- static struct i915_mmu_notifier *
- i915_mmu_notifier_find(struct i915_mm_struct *mm)
- {
--	struct i915_mmu_notifier *mn;
--	int err = 0;
-+	struct i915_mmu_notifier *mn, *old;
-+	int err;
- 
--	mn = mm->mn;
--	if (mn)
-+	mn = READ_ONCE(mm->mn);
-+	if (likely(mn))
- 		return mn;
- 
- 	mn = i915_mmu_notifier_create(mm);
- 	if (IS_ERR(mn))
--		err = PTR_ERR(mn);
--
--	mmap_write_lock(mm->mm);
--	mutex_lock(&mm->i915->mm_lock);
--	if (mm->mn == NULL && !err) {
--		/* Protected by mmap_lock (write-lock) */
--		err = __mmu_notifier_register(&mn->mn, mm->mm);
--		if (!err) {
--			/* Protected by mm_lock */
--			mm->mn = fetch_and_zero(&mn);
--		}
--	} else if (mm->mn) {
--		/*
--		 * Someone else raced and successfully installed the mmu
--		 * notifier, we can cancel our own errors.
--		 */
--		err = 0;
-+		return mn;
-+
-+	err = mmu_notifier_register(&mn->mn, mm->mm);
-+	if (err) {
-+		kfree(mn);
-+		return ERR_PTR(err);
+diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+index 8b87f130f7f1..f1940939260a 100644
+--- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
++++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+@@ -1904,19 +1904,10 @@ static int perform_bb_shadow(struct parser_exec_state *s)
+ 		goto err_free_bb;
  	}
--	mutex_unlock(&mm->i915->mm_lock);
--	mmap_write_unlock(mm->mm);
  
--	if (mn && !IS_ERR(mn))
-+	old = cmpxchg(&mm->mn, NULL, mn);
-+	if (old) {
-+		mmu_notifier_unregister(&mn->mn, mm->mm);
- 		kfree(mn);
-+		mn = old;
-+	}
- 
--	return err ? ERR_PTR(err) : mm->mn;
-+	return mn;
- }
- 
- static int
-@@ -301,23 +292,26 @@ i915_mmu_notifier_free(struct i915_mmu_notifier *mn,
- #endif
- 
- static struct i915_mm_struct *
--__i915_mm_struct_find(struct drm_i915_private *dev_priv, struct mm_struct *real)
-+__i915_mm_struct_find(struct drm_i915_private *i915, struct mm_struct *real)
- {
--	struct i915_mm_struct *mm;
-+	struct i915_mm_struct *it, *mm = NULL;
- 
--	/* Protected by dev_priv->mm_lock */
--	hash_for_each_possible(dev_priv->mm_structs, mm, node, (unsigned long)real)
--		if (mm->mm == real)
--			return mm;
-+	rcu_read_lock();
-+	hash_for_each_possible(i915->mm_structs, it, node, (unsigned long)real)
-+		if (it->mm == real && kref_get_unless_zero(&it->kref)) {
-+			mm = it;
-+			break;
-+		}
-+	rcu_read_unlock();
- 
--	return NULL;
-+	return mm;
- }
- 
- static int
- i915_gem_userptr_init__mm_struct(struct drm_i915_gem_object *obj)
- {
--	struct drm_i915_private *dev_priv = to_i915(obj->base.dev);
--	struct i915_mm_struct *mm;
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-+	struct i915_mm_struct *mm, *new;
- 	int ret = 0;
- 
- 	/* During release of the GEM object we hold the struct_mutex. This
-@@ -330,39 +324,40 @@ i915_gem_userptr_init__mm_struct(struct drm_i915_gem_object *obj)
- 	 * struct_mutex, i.e. we need to schedule a worker to do the clean
- 	 * up.
- 	 */
--	mutex_lock(&dev_priv->mm_lock);
--	mm = __i915_mm_struct_find(dev_priv, current->mm);
--	if (mm == NULL) {
--		mm = kmalloc(sizeof(*mm), GFP_KERNEL);
--		if (mm == NULL) {
--			ret = -ENOMEM;
--			goto out;
--		}
-+	mm = __i915_mm_struct_find(i915, current->mm);
-+	if (mm)
-+		goto out;
- 
--		kref_init(&mm->kref);
--		mm->i915 = to_i915(obj->base.dev);
+-	ret = i915_gem_object_prepare_write(bb->obj, &bb->clflush);
+-	if (ret)
+-		goto err_free_obj;
 -
--		mm->mm = current->mm;
--		mmgrab(current->mm);
-+	new = kmalloc(sizeof(*mm), GFP_KERNEL);
-+	if (new == NULL)
-+		return -ENOMEM;
+ 	bb->va = i915_gem_object_pin_map(bb->obj, I915_MAP_WB);
+ 	if (IS_ERR(bb->va)) {
+ 		ret = PTR_ERR(bb->va);
+-		goto err_finish_shmem_access;
+-	}
+-
+-	if (bb->clflush & CLFLUSH_BEFORE) {
+-		drm_clflush_virt_range(bb->va, bb->obj->base.size);
+-		bb->clflush &= ~CLFLUSH_BEFORE;
++		goto err_free_obj;
+ 	}
  
--		mm->mn = NULL;
-+	kref_init(&new->kref);
-+	new->i915 = to_i915(obj->base.dev);
-+	new->mm = current->mm;
-+	new->mn = NULL;
+ 	ret = copy_gma_to_hva(s->vgpu, mm,
+@@ -1935,7 +1926,6 @@ static int perform_bb_shadow(struct parser_exec_state *s)
+ 	INIT_LIST_HEAD(&bb->list);
+ 	list_add(&bb->list, &s->workload->shadow_bb);
  
--		/* Protected by dev_priv->mm_lock */
--		hash_add(dev_priv->mm_structs,
--			 &mm->node, (unsigned long)mm->mm);
--	} else
--		kref_get(&mm->kref);
-+	spin_lock(&i915->mm_lock);
-+	mm = __i915_mm_struct_find(i915, current->mm);
-+	if (!mm) {
-+		hash_add(i915->mm_structs, &new->node, (unsigned long)new->mm);
-+		mmgrab(current->mm);
-+		mm = new;
-+	}
-+	spin_unlock(&i915->mm_lock);
-+	if (mm != new)
-+		kfree(new);
+-	bb->accessing = true;
+ 	bb->bb_start_cmd_va = s->ip_va;
  
--	obj->userptr.mm = mm;
- out:
--	mutex_unlock(&dev_priv->mm_lock);
-+	obj->userptr.mm = mm;
- 	return ret;
- }
+ 	if ((s->buf_type == BATCH_BUFFER_INSTRUCTION) && (!s->is_ctx_wa))
+@@ -1956,8 +1946,6 @@ static int perform_bb_shadow(struct parser_exec_state *s)
+ 	return 0;
+ err_unmap:
+ 	i915_gem_object_unpin_map(bb->obj);
+-err_finish_shmem_access:
+-	i915_gem_object_finish_access(bb->obj);
+ err_free_obj:
+ 	i915_gem_object_put(bb->obj);
+ err_free_bb:
+diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
+index 8fc2ad4517e9..3c3b9842bbbd 100644
+--- a/drivers/gpu/drm/i915/gvt/scheduler.c
++++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+@@ -509,26 +509,18 @@ static int prepare_shadow_batch_buffer(struct intel_vgpu_workload *workload)
+ 			bb->bb_start_cmd_va = workload->shadow_ring_buffer_va
+ 				+ bb->bb_offset;
  
- static void
- __i915_mm_struct_free__worker(struct work_struct *work)
- {
--	struct i915_mm_struct *mm = container_of(work, typeof(*mm), work);
-+	struct i915_mm_struct *mm = container_of(work, typeof(*mm), work.work);
+-		if (bb->ppgtt) {
+-			/* for non-priv bb, scan&shadow is only for
+-			 * debugging purpose, so the content of shadow bb
+-			 * is the same as original bb. Therefore,
+-			 * here, rather than switch to shadow bb's gma
+-			 * address, we directly use original batch buffer's
+-			 * gma address, and send original bb to hardware
+-			 * directly
+-			 */
+-			if (bb->clflush & CLFLUSH_AFTER) {
+-				drm_clflush_virt_range(bb->va,
+-						bb->obj->base.size);
+-				bb->clflush &= ~CLFLUSH_AFTER;
+-			}
+-			i915_gem_object_finish_access(bb->obj);
+-			bb->accessing = false;
+-
+-		} else {
++		/*
++		 * For non-priv bb, scan&shadow is only for
++		 * debugging purpose, so the content of shadow bb
++		 * is the same as original bb. Therefore,
++		 * here, rather than switch to shadow bb's gma
++		 * address, we directly use original batch buffer's
++		 * gma address, and send original bb to hardware
++		 * directly
++		 */
++		if (!bb->ppgtt) {
+ 			bb->vma = i915_gem_object_ggtt_pin(bb->obj,
+-					NULL, 0, 0, 0);
++							   NULL, 0, 0, 0);
+ 			if (IS_ERR(bb->vma)) {
+ 				ret = PTR_ERR(bb->vma);
+ 				goto err;
+@@ -539,27 +531,15 @@ static int prepare_shadow_batch_buffer(struct intel_vgpu_workload *workload)
+ 			if (gmadr_bytes == 8)
+ 				bb->bb_start_cmd_va[2] = 0;
+ 
+-			/* No one is going to touch shadow bb from now on. */
+-			if (bb->clflush & CLFLUSH_AFTER) {
+-				drm_clflush_virt_range(bb->va,
+-						bb->obj->base.size);
+-				bb->clflush &= ~CLFLUSH_AFTER;
+-			}
+-
+-			ret = i915_gem_object_set_to_gtt_domain(bb->obj,
+-								false);
+-			if (ret)
+-				goto err;
+-
+ 			ret = i915_vma_move_to_active(bb->vma,
+ 						      workload->req,
+ 						      0);
+ 			if (ret)
+ 				goto err;
+-
+-			i915_gem_object_finish_access(bb->obj);
+-			bb->accessing = false;
+ 		}
 +
- 	i915_mmu_notifier_free(mm->mn, mm->mm);
- 	mmdrop(mm->mm);
- 	kfree(mm);
-@@ -373,12 +368,12 @@ __i915_mm_struct_free(struct kref *kref)
- {
- 	struct i915_mm_struct *mm = container_of(kref, typeof(*mm), kref);
++		/* No one is going to touch shadow bb from now on. */
++		i915_gem_object_flush_map(bb->obj);
+ 	}
+ 	return 0;
+ err:
+@@ -630,9 +610,6 @@ static void release_shadow_batch_buffer(struct intel_vgpu_workload *workload)
  
--	/* Protected by dev_priv->mm_lock */
-+	spin_lock(&mm->i915->mm_lock);
- 	hash_del(&mm->node);
--	mutex_unlock(&mm->i915->mm_lock);
-+	spin_unlock(&mm->i915->mm_lock);
+ 	list_for_each_entry_safe(bb, pos, &workload->shadow_bb, list) {
+ 		if (bb->obj) {
+-			if (bb->accessing)
+-				i915_gem_object_finish_access(bb->obj);
+-
+ 			if (bb->va && !IS_ERR(bb->va))
+ 				i915_gem_object_unpin_map(bb->obj);
  
--	INIT_WORK(&mm->work, __i915_mm_struct_free__worker);
--	queue_work(mm->i915->mm.userptr_wq, &mm->work);
-+	INIT_RCU_WORK(&mm->work, __i915_mm_struct_free__worker);
-+	queue_rcu_work(mm->i915->mm.userptr_wq, &mm->work);
- }
- 
- static void
-@@ -387,9 +382,7 @@ i915_gem_userptr_release__mm_struct(struct drm_i915_gem_object *obj)
- 	if (obj->userptr.mm == NULL)
- 		return;
- 
--	kref_put_mutex(&obj->userptr.mm->kref,
--		       __i915_mm_struct_free,
--		       &to_i915(obj->base.dev)->mm_lock);
-+	kref_put(&obj->userptr.mm->kref, __i915_mm_struct_free);
- 	obj->userptr.mm = NULL;
- }
- 
-@@ -851,7 +844,7 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
- 
- int i915_gem_init_userptr(struct drm_i915_private *dev_priv)
- {
--	mutex_init(&dev_priv->mm_lock);
-+	spin_lock_init(&dev_priv->mm_lock);
- 	hash_init(dev_priv->mm_structs);
- 
- 	dev_priv->mm.userptr_wq =
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 5649f8e502fe..7464656253c9 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -988,7 +988,7 @@ struct drm_i915_private {
- 
- 	struct i915_gem_mm mm;
- 	DECLARE_HASHTABLE(mm_structs, 7);
--	struct mutex mm_lock;
-+	spinlock_t mm_lock;
- 
- 	/* Kernel Modesetting */
- 
+diff --git a/drivers/gpu/drm/i915/gvt/scheduler.h b/drivers/gpu/drm/i915/gvt/scheduler.h
+index 15d317f2a4a4..64e7a0b791c3 100644
+--- a/drivers/gpu/drm/i915/gvt/scheduler.h
++++ b/drivers/gpu/drm/i915/gvt/scheduler.h
+@@ -124,8 +124,6 @@ struct intel_vgpu_shadow_bb {
+ 	struct i915_vma *vma;
+ 	void *va;
+ 	u32 *bb_start_cmd_va;
+-	unsigned int clflush;
+-	bool accessing;
+ 	unsigned long bb_offset;
+ 	bool ppgtt;
+ };
 -- 
 2.20.1
 
