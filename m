@@ -2,28 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65779200F47
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 17:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EADDB20110D
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 17:41:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8F336E11E;
-	Fri, 19 Jun 2020 15:19:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C87546E1AA;
+	Fri, 19 Jun 2020 15:41:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73E3A6E11E
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 15:19:47 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21550632-1500050 
- for multiple; Fri, 19 Jun 2020 16:19:42 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Jun 2020 16:19:38 +0100
-Message-Id: <20200619151938.21740-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0CA036E197;
+ Fri, 19 Jun 2020 15:41:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 05E00A47E8;
+ Fri, 19 Jun 2020 15:41:45 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Initialise rps timestamp
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 19 Jun 2020 15:41:44 -0000
+Message-ID: <159258130499.12534.3688368204961091069@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200619143106.10356-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200619143106.10356-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/gem=3A_Avoid_kmallo?=
+ =?utf-8?q?c_under_i915-=3Emm=5Flock?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,49 +39,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Smatch warns that we may iterate over an empty array of gt->engines[].
-One hopes that this is impossible, but nevertheless we can simply
-appease smatch by initialising the timestamp to zero before we starting
-probing the engines.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_rps.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Series: series starting with [1/3] drm/i915/gem: Avoid kmalloc under i915->mm_lock
+URL   : https://patchwork.freedesktop.org/series/78643/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index bdece932592b..296391deeb94 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -51,10 +51,11 @@ static void rps_timer(struct timer_list *t)
- {
- 	struct intel_rps *rps = from_timer(rps, t, timer);
- 	struct intel_engine_cs *engine;
-+	ktime_t dt, last, timestamp;
- 	enum intel_engine_id id;
- 	s64 max_busy[3] = {};
--	ktime_t dt, timestamp, last;
- 
-+	timestamp = 0;
- 	for_each_engine(engine, rps_to_gt(rps), id) {
- 		s64 busy;
- 		int i;
-@@ -69,7 +70,6 @@ static void rps_timer(struct timer_list *t)
- 				swap(busy, max_busy[i]);
- 		}
- 	}
--
- 	last = rps->pm_timestamp;
- 	rps->pm_timestamp = timestamp;
- 
--- 
-2.20.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+e219e0a60e23 drm/i915/gem: Avoid kmalloc under i915->mm_lock
+-:143: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!new"
+#143: FILE: drivers/gpu/drm/i915/gem/i915_gem_userptr.c:332:
++	if (new == NULL)
+
+-:230: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#230: FILE: drivers/gpu/drm/i915/i915_drv.h:991:
++	spinlock_t mm_lock;
+
+total: 0 errors, 0 warnings, 2 checks, 203 lines checked
+f2a7b9c76cd4 drm/i915/gvt: Drop redundant prepare_write/pin_pages
+a5bd05750493 drm/i915/gt: Replace manual kmap_atomic() with pin_map for renderstate
 
 _______________________________________________
 Intel-gfx mailing list
