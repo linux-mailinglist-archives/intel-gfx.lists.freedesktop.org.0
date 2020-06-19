@@ -2,34 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35D0A2003CC
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 10:25:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B336E2003EF
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 10:31:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24E676EC2B;
-	Fri, 19 Jun 2020 08:25:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 085CE6EC2F;
+	Fri, 19 Jun 2020 08:31:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE9666E175;
- Fri, 19 Jun 2020 08:25:39 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21546145-1500050 for multiple; Fri, 19 Jun 2020 09:25:14 +0100
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E45576EC2F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 08:31:08 +0000 (UTC)
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
+ [83.86.89.107])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 1C08A20776;
+ Fri, 19 Jun 2020 08:31:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1592555468;
+ bh=4c+8U9zZHUIof7MZbxfw1BQ0Knp/NHxTFeh8EnfEu+4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=YrjDQaws0EfOWD1L6hLdVR7S3sqXGwuBW49rZkIbiAgMq1azrhsGg7LgCPIc5GrFj
+ o2Y78PdOGjewRTW8Pz0Dj8xj1Me29RZDxboXqNujzLB1ogajSF48v0tqiqLiVZ2O/t
+ 5qBbz3SgzQzjsmf8uZfdbZn+le6F5R6t+Onetqxg=
+Date: Fri, 19 Jun 2020 10:09:00 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20200619080900.GD8425@kroah.com>
+References: <20200618202701.729-1-rodrigo.vivi@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAPj87rM0S2OPssf+WA+pjanT-0Om3yuUM1zUJCv4qTx5VYE=Fw@mail.gmail.com>
-References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
- <20200604081224.863494-4-daniel.vetter@ffwll.ch>
- <159186243606.1506.4437341616828968890@build.alporthouse.com>
- <CAPM=9ty6r1LuXAH_rf98GH0R9yN3x8xzKPjZG3QyvokpQBR-Hg@mail.gmail.com>
- <CAPj87rM0S2OPssf+WA+pjanT-0Om3yuUM1zUJCv4qTx5VYE=Fw@mail.gmail.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Daniel Stone <daniel@fooishbar.org>, Dave Airlie <airlied@gmail.com>
-Message-ID: <159255511144.7737.12635440776531222029@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 19 Jun 2020 09:25:11 +0100
-Subject: Re: [Intel-gfx] [PATCH 03/18] dma-fence: basic lockdep annotations
+Content-Disposition: inline
+In-Reply-To: <20200618202701.729-1-rodrigo.vivi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Make Wa_14010229206 permanent
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,72 +46,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, DRI Development <dri-devel@lists.freedesktop.org>, "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>, Thomas Hellstrom <thomas.hellstrom@intel.com>, amd-gfx mailing list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, Linux Media Mailing List <linux-media@vger.kernel.org>, Christian König <christian.koenig@amd.com>, Mika Kuoppala <mika.kuoppala@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniel Stone (2020-06-11 10:01:46)
-> Hi,
+On Thu, Jun 18, 2020 at 01:27:00PM -0700, Rodrigo Vivi wrote:
+> From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
 > 
-> On Thu, 11 Jun 2020 at 09:44, Dave Airlie <airlied@gmail.com> wrote:
-> > On Thu, 11 Jun 2020 at 18:01, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > > Introducing a global lockmap that cannot capture the rules correctly,
-> >
-> > Can you document the rules all drivers should be following then,
-> > because from here it looks to get refactored every version of i915,
-> > and it would be nice if we could all aim for the same set of things
-> > roughly. We've already had enough problems with amdgpu vs i915 vs
-> > everyone else with fences, if this stops that in the future then I'd
-> > rather we have that than just some unwritten rules per driver and
-> > untestable.
+> commit 63d0f3ea8ebb67160eca281320d255c72b0cb51a upstream.
 > 
-> As someone who has sunk a bunch of work into explicit-fencing
-> awareness in my compositor so I can never be blocked, I'd be
-> disappointed if the infrastructure was ultimately pointless because
-> the documented fencing rules were \_o_/ or thereabouts. Lockdep
-> definitely isn't my area of expertise so I can't comment on the patch
-> per se, but having something to ensure we don't hit deadlocks sure
-> seems a lot better than nothing.
+> This workaround now applies to all steppings, not just A0.
+> Wa_1409085225 is a temporary A0-only W/A however it is
+> identical to Wa_14010229206 and hence the combined workaround
+> is made permanent.
+> Bspec: 52890
+> 
+> Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+> Tested-by: Rafael Antognolli <rafael.antognolli@intel.com>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> [mattrope: added missing blank line]
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> Link: https://patchwork.freedesktop.org/patch/msgid/20200326234955.16155-1-swathi.dhanavanthri@intel.com
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
 
-This is doing dependency analysis on execution contexts which is a far
-cry from doing the fence dependency analysis, and so has to actively
-ignore the cycles that must exist on the dma side, and also the cycles
-that prevent entering execution contexts on the CPU. It has to actively
-ignore scheduler execution contexts, for lockdep cries, and so we do not
-get analysis of the locking contexts along that path. This would be
-solvable along the lines of extending lockdep ala lockdep_dma_enter().
+What stable kernel(s) is this backport for?  You need to give us a hint
+:)
 
-Had i915's execution flow been marked up, it should have found the
-dubious wait for external fences inside the dead GPU recovery, and
-probably found a few more things to complain about with the reset locking.
-[Note we already do the same annotations for wait-vs-reset, but not
-reset-vs-execution.]
+thanks,
 
-Determination of which waits are legal and which are not is entirely ad
-hoc, for there is no status change tracking in the dependency analysis
-[that is once an execution context is linked to a published fence, again
-integral to lockdep.] Consider if the completion chain in atomic is
-swapped out for the morally equivalent fences along intertwined timelines,
-and so it does a bunch of dma_fence_wait() instead. Why are those waits
-legal despite them being after we have committed to fulfilling the out
-fence? [Why are the waits on and for the GPU legal, since they equally
-block execution flow?]
+greg k-h
 
-Forcing a generic primitive to always be part of the same global map is
-horrible. You forgo being able to use the primitive for unrelated tasks,
-lose the ability to name particular contexts to gain more informative
-dependency cycle reports from having the explicit linkage. You can add
-wait_map tracking without loss of generality [in less than 10 lines],
-and you can still enforce that all fences used for a common purpose
-follow the same rules [the simplest way being to default to the singular
-wait_map]. But it's the explicitly named execution contexts that are the
-biggest boon to reading the code and reading the lockdep warns.
-
-This is a bunch of ad hoc tracking for a very narrow purpose applied
-globally, with loss of information.
--Chris
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 5176ad1a3976..092a42367851 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1379,12 +1379,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>  			    GEN7_FF_THREAD_MODE,
+>  			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
+>  
+> -		/*
+> -		 * Wa_1409085225:tgl
+> -		 * Wa_14010229206:tgl
+> -		 */
+> -		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+> -
+>  		/* Wa_1408615072:tgl */
+>  		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+>  			    VSUNIT_CLKGATE_DIS_TGL);
+> @@ -1402,6 +1396,12 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>  		wa_masked_en(wal,
+>  			     GEN9_CS_DEBUG_MODE1,
+>  			     FF_DOP_CLOCK_GATE_DISABLE);
+> +
+> +		/*
+> +		 * Wa_1409085225:tgl
+> +		 * Wa_14010229206:tgl
+> +		 */
+> +		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+>  	}
+>  
+>  	if (IS_GEN(i915, 11)) {
+> -- 
+> 2.24.1
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
