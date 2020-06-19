@@ -1,101 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9EA2200720
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 12:45:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE31F20099F
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 15:12:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7015C6EC71;
-	Fri, 19 Jun 2020 10:45:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1B0B6ECAC;
+	Fri, 19 Jun 2020 13:12:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 502 seconds by postgrey-1.36 at gabe;
- Fri, 19 Jun 2020 10:45:23 UTC
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com
- [210.118.77.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A826F6EC71
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 10:45:23 +0000 (UTC)
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
- by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
- 20200619103659euoutp01892b1b4b1bb954c6f9db56f73da4a15d~Z66D_wp1i1849918499euoutp01L
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 10:36:59 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
- 20200619103659euoutp01892b1b4b1bb954c6f9db56f73da4a15d~Z66D_wp1i1849918499euoutp01L
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1592563019;
- bh=tj4USkT4mmzGAYtGQ+Hrc6tAZIJTZKbcemrdU4KaPkY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=NCaorwvtF1B061Y1FGVZpGUd2JhtOOQh13D8b5EE2sBQ+fpDq0eFWV2dTpramTbn9
- Tzdk7JoJtzBXyynGo65hnIfTVxR+IUkZ/EXRxXH5gUUMDf1XfW0th4POxmFGbnUXcB
- wCCcigUba3BAi9enF2K3Qv0aEU4PTGxogs+vK/BQ=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTP id
- 20200619103659eucas1p29e2d23773b26ece4c38249039db1201a~Z66DqWCGb2889228892eucas1p2m;
- Fri, 19 Jun 2020 10:36:59 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
- eusmges2new.samsung.com (EUCPMTA) with SMTP id 82.9D.05997.B459CEE5; Fri, 19
- Jun 2020 11:36:59 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
- 20200619103659eucas1p27ece9865ea4cdd82d4ca4df06edef7e6~Z66DR-74h3081530815eucas1p2W;
- Fri, 19 Jun 2020 10:36:59 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
- eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
- 20200619103659eusmtrp1d4642a1ea7423c2baf8305e7543fec7c~Z66DRSmTS0959609596eusmtrp13;
- Fri, 19 Jun 2020 10:36:59 +0000 (GMT)
-X-AuditID: cbfec7f4-677ff7000000176d-da-5eec954b7c6a
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
- eusmgms2.samsung.com (EUCPMTA) with SMTP id 84.0B.06017.B459CEE5; Fri, 19
- Jun 2020 11:36:59 +0100 (BST)
-Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
- eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
- 20200619103658eusmtip2a06a75f290a330ae46a368429b0a0578~Z66CiexGq0246802468eusmtip2f;
- Fri, 19 Jun 2020 10:36:58 +0000 (GMT)
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-To: dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org
-Date: Fri, 19 Jun 2020 12:36:09 +0200
-Message-Id: <20200619103636.11974-10-m.szyprowski@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200619103636.11974-1-m.szyprowski@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0VSbUhTYRjlvXd3uxsurzPwrSxjpZlQZoncMMrK6lIIBUIQZK28uMhN23WW
- FSSpEUtjqaFprpXJ1qZZc6yamW6YS0wTtaVYWW0/nB/04bKSmG1etX/nOc85zzm8vDgqsmPL
- 8VPyHFohl2SKuQKOpePPmw0Hbk6kbXK+W02W9HQi5OPKRoyctdxAyYGfX7nkA+NLhKxWNyGk
- tjWR1PU3ArLlLkJ6Bz4jpMnlxMh+620u2dD+gUfavrkxsrXKyUsKpuo19YBqmdZyqNrnHoR6
- Mv0JozSdh6iRaw6Earp/iRr2uVCqbFAHqOahfC513WwA1JRp1cGgI4Jt6XTmqVxaEbv9uEBq
- NNRwsrXh5+4MrM0HjjAV4OOQiIfq8l+YCghwEaEH8L7PwGUHL4DlxvcgoBIRUwBW/ExdcHxp
- c/NYXgeguRhdNBRaXNzAgkvEQdWkag4vJYoAfFUSFBChRDsK+7TOuauhxEHYX+fGAphDRMIP
- 3mdzV4XEdmhuGkHYtAhofNSGBjDfz48X2ua6QsLJg/XWGpQVJcM2i37eEArHHGYei8NhV1kx
- hzUUAPi5p4HHDsUA9l+uBKwqEb7vmfF3xf391sNGayxL74TaGi8aoCGxBA5OhgRo1A9LLRXz
- tBBevSJi1VGwyvFwMdbW2zdfjYKt09857AvdAPCHuxpVg4iq/2FaAAwgjFYysgya2Synz25k
- JDJGKc/YeDJLZgL+n9Xlc3ifAuvfE3ZA4EAcJBxNHU8TYZJcJk9mBxBHxUuFu7q70kTCdEne
- eVqRdUyhzKQZO1iBc8Rhwi33PEdFRIYkhz5N09m0YmGL4Pzl+SDGt+vNnphhbCJopd022Kr/
- qHHm7CiKtq5DQgW/9Y+SExL2tpeDF7s71hRIL7w0DederPaNeGR8/WDKp9cyOurvaLnGEz4T
- Fl1UW9cbeyZermx2Hy5N0Xil+1yZQqxj6K2tuyfx4QTOL5wdYYLHQuJvX3ZIk7bujzSm65bd
- Uos5jFQSF4MqGMk/uX37v1UDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCIsWRmVeSWpSXmKPExsVy+t/xe7reU9/EGRx/xWrRe+4kk8XGGetZ
- Lf5vm8hsceXrezaLlauPMlnMnrCZyWLBfmuL5ZfXM1rsXchk8eXKQyaLTY+vsVpc3jWHzWLt
- kbvsFgc/PGG12D/rGrsDv8eaeWsYPfZ+W8DisXjPSyaP7d8esHrMOxnocb/7OJPH5iX1Hrf/
- PWb2mHxjOaPH7psNbB59W1YxenzeJBfAE6VnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdo
- bB5rZWSqpG9nk5Kak1mWWqRvl6CXsXrVXJaCBTIV86+oNDAeF+9i5OSQEDCReHTgCXsXIxeH
- kMBSRol3m/6zQyRkJE5Oa2CFsIUl/lzrYoMo+sQosefDLLAEm4ChRNdbiISIQCejxLTuj2Dd
- zAJnmCV+b/AGsYUF/CQedmwGi7MIqErc/bITzOYVsJPYsvk+E8QGeYnVGw4wg9icQPHXLQfB
- FggJ2EosX/CeeQIj3wJGhlWMIqmlxbnpucVGesWJucWleel6yfm5mxiBMbTt2M8tOxi73gUf
- YhTgYFTi4X0R8jpOiDWxrLgy9xCjBAezkgiv09nTcUK8KYmVValF+fFFpTmpxYcYTYGOmsgs
- JZqcD4zvvJJ4Q1NDcwtLQ3Njc2MzCyVx3g6BgzFCAumJJanZqakFqUUwfUwcnFINjJJ9b1+v
- Mbj/ZFNYaF61h2ZHHtctt8Z3vy3rO765TrAXNFZf6Ns8cetR5VfLnRgeyhw8FsNr++Z4v5Xc
- k9c2d84ImKft5/3ftYttbonvRyFrzVsn/1V+iDl3f4n7s70ZG9+arvuaMuuA+/FLJ4x45Krv
- KhfaTDxp7Ra7TJ9tGYvAtjnPA9YKvVZiKc5INNRiLipOBABPJHtdtwIAAA==
-X-CMS-MailID: 20200619103659eucas1p27ece9865ea4cdd82d4ca4df06edef7e6
-X-Msg-Generator: CA
-X-RootMTR: 20200619103659eucas1p27ece9865ea4cdd82d4ca4df06edef7e6
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200619103659eucas1p27ece9865ea4cdd82d4ca4df06edef7e6
-References: <20200619103636.11974-1-m.szyprowski@samsung.com>
- <CGME20200619103659eucas1p27ece9865ea4cdd82d4ca4df06edef7e6@eucas1p2.samsung.com>
-Subject: [Intel-gfx] [PATCH v7 09/36] drm: i915: fix common struct sg_table
- related issues
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D5C96ECA9;
+ Fri, 19 Jun 2020 13:12:23 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id r15so9067362wmh.5;
+ Fri, 19 Jun 2020 06:12:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:mime-version:content-transfer-encoding:in-reply-to
+ :references:subject:from:to:cc:message-id:user-agent:date;
+ bh=GkCNCBDLTGNPQOWA3LlDB+HVQOoFNOeRv8FRTeVEIsM=;
+ b=O2IoOtXTfwDLnURJ+oPXILPR4bZC5yfvkimT/xe7sHph7oSWi+9ZBJeMgu8VpB3O29
+ ry7T5AuBz/T6GsCRSKV57xS6lXox0wOBXO8sjeaiphnDq1DCuvVEW2v4bqnwaVh/2QPf
+ /0wtqTvZCSwapDz1xOsN6Mu0PnC3VB0PLCIHTsJT9jVJRXpbEC0mqIgCAd23/Xj6iIme
+ h41kY/cj1d4TZuuhdwGtSzI8WXAiTVpGeedX/ZRocox5N/ealOWbJt3k2FWnmLx3ON2B
+ h5X1CEinnZWXMmTGjhjnsyM7tqY9OpSHy2JEtUoNXVA5mL6gs8baEUtVkUR64tvx3vdi
+ GC7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:mime-version:content-transfer-encoding
+ :in-reply-to:references:subject:from:to:cc:message-id:user-agent
+ :date;
+ bh=GkCNCBDLTGNPQOWA3LlDB+HVQOoFNOeRv8FRTeVEIsM=;
+ b=uOnVbfjonA5lhxH8IL5RR5GTOF7+U/7/WtoT73bV3hvVsMCfNH1zooYCEUT6mp14tn
+ FgBWTjJt9LrcLCidkDLrPsqgXzvIn5GiVBR64V8wf0RCD96B7+66WK7I1ayAO5nsyWln
+ le+NdCUuxMcds4t6DL0HsLDFIEAVRp4bqYddb/GEJYDORZq5nk7ESC1R3g92TB8uvlFX
+ lAk4kt5V5nurHPxvEraKiADTK+dbL2CMJ+8d/nnG7aTr35izIWkOpSJgs7oteSUyhUdU
+ ucAfdGq1PJsnhkcEwfNXdGWzceC/flsKLpyOu7Yns22pXWgpCJlhaxMh8Gf7NpGstyzZ
+ LaSg==
+X-Gm-Message-State: AOAM5324d2PSjZFplUU4BhrNAH+aJau/5xhnGVWjGrGPvo7ytoiwGQ4/
+ 3mn6a4JH/Ni7caoVgFhPsug=
+X-Google-Smtp-Source: ABdhPJwSjmILeC2LcTtTmmx0JTtIYZ95VNY2hAQJPzgz/V8uF2EioBLqs1vbWGMXNu2IaPLP58n7IA==
+X-Received: by 2002:a7b:c441:: with SMTP id l1mr3494639wmi.7.1592572341541;
+ Fri, 19 Jun 2020 06:12:21 -0700 (PDT)
+Received: from localhost ([78.156.65.138])
+ by smtp.gmail.com with ESMTPSA id v24sm8375716wrd.92.2020.06.19.06.12.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 19 Jun 2020 06:12:18 -0700 (PDT)
+MIME-Version: 1.0
+In-Reply-To: <20200619094309.GT20149@phenom.ffwll.local>
+References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
+ <20200604081224.863494-4-daniel.vetter@ffwll.ch>
+ <159186243606.1506.4437341616828968890@build.alporthouse.com>
+ <CAPM=9ty6r1LuXAH_rf98GH0R9yN3x8xzKPjZG3QyvokpQBR-Hg@mail.gmail.com>
+ <CAPj87rM0S2OPssf+WA+pjanT-0Om3yuUM1zUJCv4qTx5VYE=Fw@mail.gmail.com>
+ <159255511144.7737.12635440776531222029@build.alporthouse.com>
+ <CAKMK7uHEwj6jiZkRZ5PaCUNWcuU9oE4KYm4XHZwHnFzEuChZ7w@mail.gmail.com>
+ <159255801588.7737.4425728073225310839@build.alporthouse.com>
+ <20200619094309.GT20149@phenom.ffwll.local>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <159257233754.7737.17318605310513355800@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Fri, 19 Jun 2020 14:12:17 +0100
+Subject: Re: [Intel-gfx] [PATCH 03/18] dma-fence: basic lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,109 +75,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Robin Murphy <robin.murphy@arm.com>, Christoph Hellwig <hch@lst.de>,
- linux-arm-kernel@lists.infradead.org,
- Marek Szyprowski <m.szyprowski@samsung.com>
-MIME-Version: 1.0
+Cc: linux-rdma <linux-rdma@vger.kernel.org>, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, DRI Development <dri-devel@lists.freedesktop.org>, "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>, Thomas Hellstrom <thomas.hellstrom@intel.com>, amd-gfx mailing list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, Linux Media Mailing List <linux-media@vger.kernel.org>, Christian König <christian.koenig@amd.com>, Mika Kuoppala <mika.kuoppala@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Documentation/DMA-API-HOWTO.txt states that the dma_map_sg() function
-returns the number of the created entries in the DMA address space.
-However the subsequent calls to the dma_sync_sg_for_{device,cpu}() and
-dma_unmap_sg must be called with the original number of the entries
-passed to the dma_map_sg().
+Quoting Daniel Vetter (2020-06-19 10:43:09)
+> On Fri, Jun 19, 2020 at 10:13:35AM +0100, Chris Wilson wrote:
+> > Quoting Daniel Vetter (2020-06-19 09:51:59)
+> > > On Fri, Jun 19, 2020 at 10:25 AM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > > > Forcing a generic primitive to always be part of the same global map is
+> > > > horrible.
+> > > 
+> > > And  no concrete example or reason for why that's not possible.
+> > > Because frankly it's not horrible, this is what upstream is all about:
+> > > Shared concepts, shared contracts, shared code.
+> > > 
+> > > The proposed patches might very well encode the wrong contract, that's
+> > > all up for discussion. But fundamentally questioning that we need one
+> > > is missing what upstream is all about.
+> > 
+> > Then I have not clearly communicated, as my opinion is not that
+> > validation is worthless, but that the implementation is enshrining a
+> > global property on a low level primitive that prevents it from being
+> > used elsewhere. And I want to replace completion [chains] with fences, and
+> > bio with fences, and closures with fences, and what other equivalencies
+> > there are in the kernel. The fence is as central a locking construct as
+> > struct completion and deserves to be a foundational primitive provided
+> > by kernel/ used throughout all drivers for discrete problem domains.
+> > 
+> > This is narrowing dma_fence whereby adding
+> >       struct lockdep_map *dma_fence::wait_map
+> > and annotating linkage, allows you to continue to specify that all
+> > dma_fence used for a particular purpose must follow common rules,
+> > without restricting the primitive for uses outside of this scope.
+> 
+> Somewhere else in this thread I had discussions with Jason Gunthorpe about
+> this topic. It might maybe change somewhat depending upon exact rules, but
+> his take is very much "I don't want dma_fence in rdma". Or pretty close to
+> that at least.
+> 
+> Similar discussions with habanalabs, they're using dma_fence internally
+> without any of the uapi. Discussion there has also now concluded that it's
+> best if they remove them, and simply switch over to a wait_queue or
+> completion like every other driver does.
+> 
+> The next round of the patches already have a paragraph to at least
+> somewhat limit how non-gpu drivers use dma_fence. And I guess actual
+> consensus might be pointing even more strongly at dma_fence being solely
+> something for gpus and closely related subsystem (maybe media) for syncing
+> dma-buf access.
+> 
+> So dma_fence as general replacement for completion chains I think just
+> wont happen.
 
-struct sg_table is a common structure used for describing a non-contiguous
-memory buffer, used commonly in the DRM and graphics subsystems. It
-consists of a scatterlist with memory pages and DMA addresses (sgl entry),
-as well as the number of scatterlist entries: CPU pages (orig_nents entry)
-and DMA mapped pages (nents entry).
+That is sad. I cannot comprehend going back to pure completions after a
+taste of fence scheduling. And we are not even close to fully utilising
+them, as not all the async cpu [allocation!] tasks are fully tracked by
+fences yet and are still stuck in a FIFO workqueue.
 
-It turned out that it was a common mistake to misuse nents and orig_nents
-entries, calling DMA-mapping functions with a wrong number of entries or
-ignoring the number of mapped entries returned by the dma_map_sg()
-function.
+> What might make sense is if e.g. the lockdep annotations could be reused,
+> at least in design, for wait_queue or completion or anything else
+> really. I do think that has a fair chance compared to the automagic
+> cross-release annotations approach, which relied way too heavily on
+> guessing where barriers are. My experience from just a bit of playing
+> around with these patches here and discussing them with other driver
+> maintainers is that accurately deciding where critical sections start and
+> end is a job for humans only. And if you get it wrong, you will have a
+> false positive.
+> 
+> And you're indeed correct that if we'd do annotations for completions and
+> wait queues, then that would need to have a class per semantically
+> equivalent user, like we have lockdep classes for mutexes, not just one
+> overall.
+> 
+> But dma_fence otoh is something very specific, which comes with very
+> specific rules attached - it's not a generic wait_queue at all. Originally
+> it did start out as one even, but it is a very specialized wait_queue.
+> 
+> So there's imo two cases:
+> 
+> - Your completion is entirely orthogonal of dma_fences, and can never ever
+>   block a dma_fence. Don't use dma_fence for this, and no problem. It's
+>   just another wait_queue somewhere.
+> 
+> - Your completion can eventually, maybe through lots of convolutions and
+>   depdencies, block a dma_fence. In that case full dma_fence rules apply,
+>   and the only thing you can do with a custom annotation is make the rules
+>   even stricter. E.g. if a sub-timeline in the scheduler isn't allowed to
+>   take certain scheduler locks. But the userspace visible/published fence
+>   do take them, maybe as part of command submission or retirement.
+>   Entirely hypotethical, no idea any driver actually needs this.
 
-This driver creatively uses sg_table->orig_nents to store the size of the
-allocated scatterlist and ignores the number of the entries returned by
-dma_map_sg function. The sg_table->orig_nents is (mis)used to properly
-free the (over)allocated scatterlist.
+I think we are faced with this very real problem.
 
-This patch only introduces the common DMA-mapping wrappers operating
-directly on the struct sg_table objects to the dmabuf related functions,
-so the other drivers, which might share buffers with i915 could rely on
-the properly set nents and orig_nents values.
+The papering we have today over userptr is so very thin, and if you
+squint you can already see it is coupled into the completion signal. Just
+it happens to be on the other side of the fence.
 
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c       | 11 +++--------
- drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c |  7 +++----
- 2 files changed, 6 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-index 2679380159fc..8a988592715b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-@@ -48,12 +48,9 @@ static struct sg_table *i915_gem_map_dma_buf(struct dma_buf_attachment *attachme
- 		src = sg_next(src);
- 	}
- 
--	if (!dma_map_sg_attrs(attachment->dev,
--			      st->sgl, st->nents, dir,
--			      DMA_ATTR_SKIP_CPU_SYNC)) {
--		ret = -ENOMEM;
-+	ret = dma_map_sgtable(attachment->dev, st, dir, DMA_ATTR_SKIP_CPU_SYNC);
-+	if (ret)
- 		goto err_free_sg;
--	}
- 
- 	return st;
- 
-@@ -73,9 +70,7 @@ static void i915_gem_unmap_dma_buf(struct dma_buf_attachment *attachment,
- {
- 	struct drm_i915_gem_object *obj = dma_buf_to_obj(attachment->dmabuf);
- 
--	dma_unmap_sg_attrs(attachment->dev,
--			   sg->sgl, sg->nents, dir,
--			   DMA_ATTR_SKIP_CPU_SYNC);
-+	dma_unmap_sgtable(attachment->dev, sg, dir, DMA_ATTR_SKIP_CPU_SYNC);
- 	sg_free_table(sg);
- 	kfree(sg);
- 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
-index debaf7b18ab5..be30b27e2926 100644
---- a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
-@@ -28,10 +28,9 @@ static struct sg_table *mock_map_dma_buf(struct dma_buf_attachment *attachment,
- 		sg = sg_next(sg);
- 	}
- 
--	if (!dma_map_sg(attachment->dev, st->sgl, st->nents, dir)) {
--		err = -ENOMEM;
-+	err = dma_map_sgtable(attachment->dev, st, dir, 0);
-+	if (err)
- 		goto err_st;
--	}
- 
- 	return st;
- 
-@@ -46,7 +45,7 @@ static void mock_unmap_dma_buf(struct dma_buf_attachment *attachment,
- 			       struct sg_table *st,
- 			       enum dma_data_direction dir)
- {
--	dma_unmap_sg(attachment->dev, st->sgl, st->nents, dir);
-+	dma_unmap_sgtable(attachment->dev, st, dir, 0);
- 	sg_free_table(st);
- 	kfree(st);
- }
--- 
-2.17.1
-
+The next batch of priority inversions involve integrating the async cpu
+tasks into the scheduler, and have full dependency tracking over every
+internal fence. I do not see any way to avoid coupling the completion
+signal from the GPU to the earliest resource allocation, as it's an
+unbroken chain of work, at least from the user's perspective. [Next up
+for annotations is that we need to always assume that userspace has an
+implicit lock on GPU resources; having to break that lock with a GPU
+reset should be a breach of our data integrity, and best avoided, for
+compute does not care one iota about system integrity and insist
+userspace knows best.] Such allocations have to be allowed to fail and
+for that failure to propagate cancelling the queued work, such that I'm
+considering what rules we need for gfp_t. That might allow enough
+leverage to break any fs_reclaim loops, but userptr is likely forever
+doomed [aside from its fs_reclaim loop is as preventable as the normal
+shrinker paths], but we still need to suggest to pin_user_pages that
+failure is better than oom and that is not clear atm. Plus the usual
+failure can happen at any time after updating the user facing
+bookkeeping, but that is just extra layers in the execution monitor
+ready to step in and replacing failing work with the error propagation.
+Or where the system grinds to a halt, requiring the monitor to patch in
+a new page / resource.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
