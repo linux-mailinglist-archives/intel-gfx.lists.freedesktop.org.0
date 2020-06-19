@@ -1,63 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B37F201AF0
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 21:11:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF09D201B3A
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 21:29:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16EAA6E4D4;
-	Fri, 19 Jun 2020 19:11:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 347046E88B;
+	Fri, 19 Jun 2020 19:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61B4B6E430;
- Fri, 19 Jun 2020 19:11:25 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id y20so10062122wmi.2;
- Fri, 19 Jun 2020 12:11:25 -0700 (PDT)
+Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com
+ [IPv6:2607:f8b0:4864:20::a42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE9B6E88B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 19:29:43 +0000 (UTC)
+Received: by mail-vk1-xa42.google.com with SMTP id q69so2543050vkq.10
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 12:29:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=chbWz7xzFy579TbWBa7IgoDaVrcNNu3e+ZV8C+3+5ts=;
- b=olNdwx7EKNULbKgME9rHSKmUDJKGownFmH7K7UdqCiyAe31tms05xsgDMDHl0NOZyn
- e4JT2rb2s3q5lfqM11BP72moDoCJO7fo8XhUHqRhLmM9Rkjt/Mcz6AzymyLaafuA8Ulb
- XTVeNEMS1qKMS0ZFjOH4/+4FZ+XMgy0Z+itG4tjjFKBv1tiJ5h7bNhFkbXDaSQ/Fpz4X
- ea1xDim6+696Be1q0Zr3RvYmOvlbnd3iJrBAwzkYAU7fiPUm1Tydf4L5z5X/RqFkIs6D
- rXFOo0qB32FQo9vj/cdysyW33DCxg/zYBiOMh8UCXO3mP8EhhV49/E8yMaB/+LvgfTFf
- Q3rQ==
+ :cc; bh=EORARdqJM4ZQiVDnWmJ6yfNHrKGQ1n6PpgaGFbqgzAY=;
+ b=o7QMxV6sUt9a1ZebEEX0eU746nGMjUQtvqv4aZ+uXmqSvwvZUiQiw9lGg1RrDe24bj
+ hrJ/NeWh0U3Jkl65jXf3JtjXygjYG/BkSLYDWD+0JMeOJG99uj3inhmgkeug/3NbW50Q
+ zYVxk2sidm30GduGlAFGVf6oM1vS3jVTY7N+zPuPDn4ksmGE7G6DGloqiucZOlhYmG7U
+ WhYnpaucwu903ptzBCirhMBllc8kBkEOzKMf6lWPD3VLXlSlDcNM9EZf2OJMxkayoBsL
+ 1ax7eHFkWm0zB3IcyXj6EmSgs7r7fRiak0Sq8SIP2d8rcWyMfXbYjODgjbJq8d3kBVX9
+ PlbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=chbWz7xzFy579TbWBa7IgoDaVrcNNu3e+ZV8C+3+5ts=;
- b=U+9zevBiTWKbG7VPPzBFjrAsiJZcyrMcAMNfwDNKSXfCcHErqSbGmZlkLoW9UjYfQI
- D3sNMRonLFCMIJhh5okvaRPu0tCNbTwcPSLHE4vZiB/ES3L1E4Ji4EEyUzZvwN7ZSElw
- 9PTemgikYaaw3sql7Hel3ij+yGubxUx7+/KCUY9TPSDbXHyWG2vDh5wJPCA2+zjgLOx0
- wkDHvDyswOq427N3sf2QLafhNgI9OjKlfQpj76/3aKEMK2hu6GuGzx2ZqQioouJ5Jf/w
- dGc0LV9zOZimVbSiOa6MtfZAF7FKjoHNl3cxjxq/gwoP+1IBTEmjIXpMW+zVm6+ErIwy
- u8Uw==
-X-Gm-Message-State: AOAM530kGCDGRjiGQZjlf1v6t+PuT18c0MJO5s8ksSBYa3TkHuQ4B1+Q
- w8d5CdNiVLyY4cRgSTWGpIeytYqcHUR+0SvYKuw=
-X-Google-Smtp-Source: ABdhPJwcHFy0tih4Jg9lH/i7Ldu0yNdrmwrIvxAKTo0TP4xm3PszQ+8aXnDybDwn0lmkl3Yy4KGqnVo3R2CnXN9sXgU=
-X-Received: by 2002:a7b:cd96:: with SMTP id y22mr5280023wmj.56.1592593883868; 
- Fri, 19 Jun 2020 12:11:23 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=EORARdqJM4ZQiVDnWmJ6yfNHrKGQ1n6PpgaGFbqgzAY=;
+ b=MTfPamkdGrAP3pnft4CR2pD1jndQ4zSBWPE63YmXbEZqtlXIFQOmAfTRytOBzQ91mw
+ vHw1GKblyfnBCN55eSmM9dJjcXLPd3SGhNo0XQwwo33nwrczy+9isA0yHyxVku3JQTm/
+ ZQ7J56KvG4aGFB9+WCxooRnhgUIJr5Eid+AcrDIUz/xQpJ9BcNiAzPHI9m7gxT5rGb1Z
+ 3wAVzZUnmkzjIrCZQaDPjifmBPdEbZNsh0aOrsnNPSOIKNuyTABF+u85Sl945N2ACpJf
+ 07PDrwc8u0M7JuTfHChs/LmB5z0RLiWh6ZLgkNemvkArMNLvsX68MVM/OsvWj2HCEb3K
+ jZQg==
+X-Gm-Message-State: AOAM533N7aqn1nSwvTErF9N8aoTNJrEwnM83cHXxsVmHgG1obX1FLvnO
+ JDz3vYt/iCF/6kRnfwlQ4RGD+ULz8wuiD3QDxIQ=
+X-Google-Smtp-Source: ABdhPJzMM2pe7bVNTvg/cF7Xxp8qSYYei03PYWXj65wzaYL7387nozb5BQ2i+gRtLNEEJFP47X0tAdAxaIHxRuahd3I=
+X-Received: by 2002:a1f:9ec1:: with SMTP id h184mr8765623vke.87.1592594982074; 
+ Fri, 19 Jun 2020 12:29:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAKMK7uE7DKUo9Z+yCpY+mW5gmKet8ugbF3yZNyHGqsJ=e-g_hA@mail.gmail.com>
- <20200617152835.GF6578@ziepe.ca> <20200618150051.GS20149@phenom.ffwll.local>
- <20200618172338.GM6578@ziepe.ca>
- <CAKMK7uEbqTu4q-amkLXyd1i8KNtLaoO2ZFoGqYiG6D0m0FKpOg@mail.gmail.com>
- <20200619113934.GN6578@ziepe.ca>
- <CAKMK7uE-kWA==Cko5uenMrcnopEjq42HxoDTDywzBAbHqsN13g@mail.gmail.com>
- <20200619151551.GP6578@ziepe.ca>
- <CAKMK7uEvkshAM6KUYZu8_OCpF4+1Y_SM7cQ9nJWpagfke8s8LA@mail.gmail.com>
- <20200619172308.GQ6578@ziepe.ca> <20200619180935.GA10009@redhat.com>
-In-Reply-To: <20200619180935.GA10009@redhat.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 19 Jun 2020 15:11:12 -0400
-Message-ID: <CADnq5_Pw_85Kzh1of=MbDi4g9POeF3jO4AJ7p2FjY5XZW0=vsQ@mail.gmail.com>
-To: Jerome Glisse <jglisse@redhat.com>
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
- lockdep annotations
+References: <20200619143106.10356-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200619143106.10356-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 19 Jun 2020 20:29:15 +0100
+Message-ID: <CAM0jSHOW69ivmnoPG2B8TygS-T3ZiboCO5T1qqnzY+3ioOpJ8w@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gem: Avoid kmalloc under
+ i915->mm_lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,82 +61,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, Thomas Hellstrom <thomas.hellstrom@intel.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBKdW4gMTksIDIwMjAgYXQgMjowOSBQTSBKZXJvbWUgR2xpc3NlIDxqZ2xpc3NlQHJl
-ZGhhdC5jb20+IHdyb3RlOgo+Cj4gT24gRnJpLCBKdW4gMTksIDIwMjAgYXQgMDI6MjM6MDhQTSAt
-MDMwMCwgSmFzb24gR3VudGhvcnBlIHdyb3RlOgo+ID4gT24gRnJpLCBKdW4gMTksIDIwMjAgYXQg
-MDY6MTk6NDFQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+Cj4gPiA+IFRoZSBtYWRu
-ZXNzIGlzIG9ubHkgdGhhdCBkZXZpY2UgQidzIG1tdSBub3RpZmllciBtaWdodCBuZWVkIHRvIHdh
-aXQKPiA+ID4gZm9yIGZlbmNlX0Igc28gdGhhdCB0aGUgZG1hIG9wZXJhdGlvbiBmaW5pc2hlcy4g
-V2hpY2ggaW4gdHVybiBoYXMgdG8KPiA+ID4gd2FpdCBmb3IgZGV2aWNlIEEgdG8gZmluaXNoIGZp
-cnN0Lgo+ID4KPiA+IFNvLCBpdCBzb3VuZCwgZnVuZGFtZW50YWxseSB5b3UndmUgZ290IHRoaXMg
-Z3JhcGggb2Ygb3BlcmF0aW9ucyBhY3Jvc3MKPiA+IGFuIHVua25vd24gc2V0IG9mIGRyaXZlcnMg
-YW5kIHRoZSBrZXJuZWwgY2Fubm90IGluc2VydCBpdHNlbGYgaW4KPiA+IGRtYV9mZW5jZSBoYW5k
-IG9mZnMgdG8gcmUtdmFsaWRhdGUgYW55IG9mIHRoZSBidWZmZXJzIGludm9sdmVkPwo+ID4gQnVm
-ZmVycyB3aGljaCBieSBkZWZpbml0aW9uIGNhbm5vdCBiZSB0b3VjaGVkIGJ5IHRoZSBoYXJkd2Fy
-ZSB5ZXQuCj4gPgo+ID4gVGhhdCByZWFsbHkgaXMgYSBwcmV0dHkgaG9ycmlibGUgcGxhY2UgdG8g
-ZW5kIHVwLi4KPiA+Cj4gPiBQaW5uaW5nIHJlYWxseSBpcyByaWdodCBhbnN3ZXIgZm9yIHRoaXMg
-a2luZCBvZiB3b3JrIGZsb3cuIEkgdGhpbmsKPiA+IGNvbnZlcnRpbmcgcGlubmluZyB0byBub3Rp
-ZmVycyBzaG91bGQgbm90IGJlIGRvbmUgdW5sZXNzIG5vdGlmaWVyCj4gPiBpbnZhbGlkYXRpb24g
-aXMgcmVsYXRpdmVseSBib3VuZGVkLgo+ID4KPiA+IEkga25vdyBwZW9wbGUgbGlrZSBub3RpZmll
-cnMgYmVjYXVzZSB0aGV5IGdpdmUgYSBiaXQgbmljZXIgcGVyZm9ybWFuY2UKPiA+IGluIHNvbWUg
-aGFwcHkgY2FzZXMsIGJ1dCB0aGlzIGNyaXBwbGVzIGFsbCB0aGUgYmFkIGNhc2VzLi4KPiA+Cj4g
-PiBJZiBwaW5uaW5nIGRvZXNuJ3Qgd29yayBmb3Igc29tZSByZWFzb24gbWF5YmUgd2Ugc2hvdWxk
-IGFkZHJlc3MgdGhhdD8KPgo+IE5vdGUgdGhhdCB0aGUgZG1hIGZlbmNlIGlzIG9ubHkgdHJ1ZSBm
-b3IgdXNlciBwdHIgYnVmZmVyIHdoaWNoIHByZWRhdGUKPiBhbnkgSE1NIHdvcmsgYW5kIHRodXMg
-d2VyZSB1c2luZyBtbXUgbm90aWZpZXIgYWxyZWFkeS4gWW91IG5lZWQgdGhlCj4gbW11IG5vdGlm
-aWVyIHRoZXJlIGJlY2F1c2Ugb2YgZm9yayBhbmQgb3RoZXIgY29ybmVyIGNhc2VzLgo+Cj4gRm9y
-IG5vdXZlYXUgdGhlIG5vdGlmaWVyIGRvIG5vdCBuZWVkIHRvIHdhaXQgZm9yIGFueXRoaW5nIGl0
-IGNhbiB1cGRhdGUKPiB0aGUgR1BVIHBhZ2UgdGFibGUgcmlnaHQgYXdheS4gTW9kdWxvIG5lZWRp
-bmcgdG8gd3JpdGUgdG8gR1BVIG1lbW9yeQo+IHVzaW5nIGRtYSBlbmdpbmUgaWYgdGhlIEdQVSBw
-YWdlIHRhYmxlIGlzIGluIEdQVSBtZW1vcnkgdGhhdCBpcyBub3QKPiBhY2Nlc3NpYmxlIGZyb20g
-dGhlIENQVSBidXQgdGhhdCdzIG5ldmVyIHRoZSBjYXNlIGZvciBub3V2ZWF1IHNvIGZhcgo+IChi
-dXQgaSBleHBlY3QgaXQgd2lsbCBiZSBhdCBvbmUgcG9pbnQpLgo+Cj4KPiBTbyBpIHNlZSB0aGlz
-IGFzIDIgZGlmZmVyZW50IGNhc2VzLCB0aGUgdXNlciBwdHIgY2FzZSwgd2hpY2ggZG9lcyBwaW4K
-PiBwYWdlcyBieSB0aGUgd2F5LCB3aGVyZSB0aGluZ3MgYXJlIHN5bmNocm9ub3VzLiBWZXJzdXMg
-dGhlIEhNTSBjYXNlcwo+IHdoZXJlIGV2ZXJ5dGhpbmcgaXMgYXN5bmNocm9ub3VzLgo+Cj4KPiBJ
-IHByb2JhYmx5IG5lZWQgdG8gd2FybiBBTUQgZm9sa3MgYWdhaW4gdGhhdCB1c2luZyBITU0gbWVh
-bnMgdGhhdCB5b3UKPiBtdXN0IGJlIGFibGUgdG8gdXBkYXRlIHRoZSBHUFUgcGFnZSB0YWJsZSBh
-c3luY2hyb25vdXNseSB3aXRob3V0Cj4gZmVuY2Ugd2FpdC4gVGhlIGlzc3VlIGZvciBBTUQgaXMg
-dGhhdCB0aGV5IGFscmVhZHkgdXBkYXRlIHRoZWlyIEdQVQo+IHBhZ2UgdGFibGUgdXNpbmcgRE1B
-IGVuZ2luZS4gSSBiZWxpZXZlIHRoaXMgaXMgc3RpbGwgZG9hYmxlIGlmIHRoZXkKPiB1c2UgYSBr
-ZXJuZWwgb25seSBETUEgZW5naW5lIGNvbnRleHQsIHdoZXJlIG9ubHkga2VybmVsIGNhbiBxdWV1
-ZSB1cAo+IGpvYnMgc28gdGhhdCB5b3UgZG8gbm90IG5lZWQgdG8gd2FpdCBmb3IgdW5yZWxhdGVk
-IHRoaW5ncyBhbmQgeW91IGNhbgo+IHByaW9yaXRpemUgR1BVIHBhZ2UgdGFibGUgdXBkYXRlIHdo
-aWNoIHNob3VsZCB0cmFuc2xhdGUgaW4gZmFzdCBHUFUKPiBwYWdlIHRhYmxlIHVwZGF0ZSB3aXRo
-b3V0IERNQSBmZW5jZS4KCkFsbCBkZXZpY2VzIHdoaWNoIHN1cHBvcnQgcmVjb3ZlcmFibGUgcGFn
-ZSBmYXVsdHMgYWxzbyBoYXZlIGEKZGVkaWNhdGVkIHBhZ2luZyBlbmdpbmUgZm9yIHRoZSBrZXJu
-ZWwgZHJpdmVyIHdoaWNoIHRoZSBkcml2ZXIgYWxyZWFkeQptYWtlcyB1c2Ugb2YuICBXZSBjYW4g
-YWxzbyB1cGRhdGUgdGhlIEdQVSBwYWdlIHRhYmxlcyB3aXRoIHRoZSBDUFUuCgpBbGV4Cgo+Cj4K
-PiA+ID4gRnVsbCBkaXNjbG9zdXJlOiBXZSBhcmUgYXdhcmUgdGhhdCB3ZSd2ZSBkZXNpZ25lZCBv
-dXJzZWx2ZXMgaW50byBhbgo+ID4gPiBpbXByZXNzaXZlIGNvcm5lciBoZXJlLCBhbmQgdGhlcmUn
-cyBsb3RzIG9mIHRhbGtzIGdvaW5nIG9uIGFib3V0Cj4gPiA+IHVudGFuZ2xpbmcgdGhlIGRtYSBz
-eW5jaHJvbml6YXRpb24gZnJvbSB0aGUgbWVtb3J5IG1hbmFnZW1lbnQKPiA+ID4gY29tcGxldGVs
-eS4gQnV0Cj4gPgo+ID4gSSB0aGluayB0aGUgZG9jdW1lbnRpbmcgaXMgcmVhbGx5IGltcG9ydGFu
-dDogb25seSBHUFUgc2hvdWxkIGJlIHVzaW5nCj4gPiB0aGlzIHN0dWZmIGFuZCBkcml2aW5nIG5v
-dGlmaWVycyB0aGlzIHdheS4gQ29tcGxldGUgTk8gZm9yIGFueQo+ID4gdG90YWxseS1ub3QtYS1H
-UFUgdGhpbmdzIGluIGRyaXZlcnMvYWNjZWwgZm9yIHN1cmUuCj4KPiBZZXMgZm9yIHVzZXIgdGhh
-dCBleHBlY3QgSE1NIHRoZXkgbmVlZCB0byBiZSBhc3luY2hyb25vdXMuIEJ1dCBpdCBpcwo+IGhh
-cmQgdG8gcmV2ZXJ0IHVzZXIgcHRyIGhhcyBpdCB3YXMgZG9uZSBhIGxvbmcgdGltZSBhZ28uCj4K
-PiBDaGVlcnMsCj4gSsOpcsO0bWUKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPiBhbWQtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vYW1kLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+On Fri, 19 Jun 2020 at 15:31, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Rearrange the allocation of the mm_struct registration to avoid
+> allocating underneath the i915->mm_lock, so that we avoid tainting the
+> lock (and in turn many other locks that may be held as i915->mm_lock is
+> taken, and those locks we may want on the free [shrinker] paths). In
+> doing so, we convert the lookup to be RCU protected by courtesy of
+> converting the free-worker to be an rcu_work.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 123 +++++++++-----------
+>  drivers/gpu/drm/i915/i915_drv.h             |   2 +-
+>  2 files changed, 59 insertions(+), 66 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> index 9c53eb883400..84766414a1f0 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> @@ -21,7 +21,7 @@ struct i915_mm_struct {
+>         struct i915_mmu_notifier *mn;
+>         struct hlist_node node;
+>         struct kref kref;
+> -       struct work_struct work;
+> +       struct rcu_work work;
+>  };
+>
+>  #if defined(CONFIG_MMU_NOTIFIER)
+> @@ -189,40 +189,31 @@ i915_gem_userptr_release__mmu_notifier(struct drm_i915_gem_object *obj)
+>  static struct i915_mmu_notifier *
+>  i915_mmu_notifier_find(struct i915_mm_struct *mm)
+>  {
+> -       struct i915_mmu_notifier *mn;
+> -       int err = 0;
+> +       struct i915_mmu_notifier *mn, *old;
+> +       int err;
+>
+> -       mn = mm->mn;
+> -       if (mn)
+> +       mn = READ_ONCE(mm->mn);
+> +       if (likely(mn))
+>                 return mn;
+>
+>         mn = i915_mmu_notifier_create(mm);
+>         if (IS_ERR(mn))
+> -               err = PTR_ERR(mn);
+> -
+> -       mmap_write_lock(mm->mm);
+> -       mutex_lock(&mm->i915->mm_lock);
+> -       if (mm->mn == NULL && !err) {
+> -               /* Protected by mmap_lock (write-lock) */
+> -               err = __mmu_notifier_register(&mn->mn, mm->mm);
+> -               if (!err) {
+> -                       /* Protected by mm_lock */
+> -                       mm->mn = fetch_and_zero(&mn);
+> -               }
+> -       } else if (mm->mn) {
+> -               /*
+> -                * Someone else raced and successfully installed the mmu
+> -                * notifier, we can cancel our own errors.
+> -                */
+> -               err = 0;
+> +               return mn;
+> +
+> +       err = mmu_notifier_register(&mn->mn, mm->mm);
+> +       if (err) {
+> +               kfree(mn);
+> +               return ERR_PTR(err);
+>         }
+> -       mutex_unlock(&mm->i915->mm_lock);
+> -       mmap_write_unlock(mm->mm);
+>
+> -       if (mn && !IS_ERR(mn))
+> +       old = cmpxchg(&mm->mn, NULL, mn);
+> +       if (old) {
+> +               mmu_notifier_unregister(&mn->mn, mm->mm);
+>                 kfree(mn);
+> +               mn = old;
+> +       }
+>
+> -       return err ? ERR_PTR(err) : mm->mn;
+> +       return mn;
+>  }
+>
+>  static int
+> @@ -301,23 +292,26 @@ i915_mmu_notifier_free(struct i915_mmu_notifier *mn,
+>  #endif
+>
+>  static struct i915_mm_struct *
+> -__i915_mm_struct_find(struct drm_i915_private *dev_priv, struct mm_struct *real)
+> +__i915_mm_struct_find(struct drm_i915_private *i915, struct mm_struct *real)
+>  {
+> -       struct i915_mm_struct *mm;
+> +       struct i915_mm_struct *it, *mm = NULL;
+>
+> -       /* Protected by dev_priv->mm_lock */
+> -       hash_for_each_possible(dev_priv->mm_structs, mm, node, (unsigned long)real)
+> -               if (mm->mm == real)
+> -                       return mm;
+> +       rcu_read_lock();
+> +       hash_for_each_possible(i915->mm_structs, it, node, (unsigned long)real)
+> +               if (it->mm == real && kref_get_unless_zero(&it->kref)) {
+> +                       mm = it;
+> +                       break;
+> +               }
+> +       rcu_read_unlock();
+>
+> -       return NULL;
+> +       return mm;
+>  }
+>
+>  static int
+>  i915_gem_userptr_init__mm_struct(struct drm_i915_gem_object *obj)
+>  {
+> -       struct drm_i915_private *dev_priv = to_i915(obj->base.dev);
+> -       struct i915_mm_struct *mm;
+> +       struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> +       struct i915_mm_struct *mm, *new;
+>         int ret = 0;
+>
+>         /* During release of the GEM object we hold the struct_mutex. This
+> @@ -330,39 +324,40 @@ i915_gem_userptr_init__mm_struct(struct drm_i915_gem_object *obj)
+>          * struct_mutex, i.e. we need to schedule a worker to do the clean
+>          * up.
+>          */
+> -       mutex_lock(&dev_priv->mm_lock);
+> -       mm = __i915_mm_struct_find(dev_priv, current->mm);
+> -       if (mm == NULL) {
+> -               mm = kmalloc(sizeof(*mm), GFP_KERNEL);
+> -               if (mm == NULL) {
+> -                       ret = -ENOMEM;
+> -                       goto out;
+> -               }
+> +       mm = __i915_mm_struct_find(i915, current->mm);
+
+Is this really safe without the mm_lock, assuming concurrent
+hash_add/has_del with hash_for_each?
+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
