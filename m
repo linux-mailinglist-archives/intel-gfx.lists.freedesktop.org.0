@@ -2,60 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0726B201C08
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 22:10:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD2A3201C3D
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 22:16:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B4AA6E9BF;
-	Fri, 19 Jun 2020 20:10:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0221B8945B;
+	Fri, 19 Jun 2020 20:16:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C34576E9BF
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:10:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1592597419;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=sNFVnCF0ZnPwrKnet21C7zXJrmj/IcMRNriOPX8epSE=;
- b=JtnfnatSqqZyb1fzaEPuugz7hHWSKzNNljrO/zg0y9mBoBS8OculI5m4o5g+IxwTpEU3Sg
- ciT6hxnAFDhpegv0qmkzmsKWKBLABtlqhNPIQI1Dd07cxGGMVElZQBMr14Ix+mQVy5DATK
- MCmdB/TDC5r7AmsUctjoV12xAxPGn6s=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-8-OXocr5PeP2CcqCjY-9Fygw-1; Fri, 19 Jun 2020 16:10:17 -0400
-X-MC-Unique: OXocr5PeP2CcqCjY-9Fygw-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E9E831005512;
- Fri, 19 Jun 2020 20:10:14 +0000 (UTC)
-Received: from redhat.com (ovpn-112-200.rdu2.redhat.com [10.10.112.200])
- by smtp.corp.redhat.com (Postfix) with ESMTPS id 6849210013D7;
- Fri, 19 Jun 2020 20:10:13 +0000 (UTC)
-Date: Fri, 19 Jun 2020 16:10:11 -0400
-From: Jerome Glisse <jglisse@redhat.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Message-ID: <20200619201011.GB13117@redhat.com>
-References: <20200618150051.GS20149@phenom.ffwll.local>
- <20200618172338.GM6578@ziepe.ca>
- <CAKMK7uEbqTu4q-amkLXyd1i8KNtLaoO2ZFoGqYiG6D0m0FKpOg@mail.gmail.com>
- <20200619113934.GN6578@ziepe.ca>
- <CAKMK7uE-kWA==Cko5uenMrcnopEjq42HxoDTDywzBAbHqsN13g@mail.gmail.com>
- <20200619151551.GP6578@ziepe.ca>
- <CAKMK7uEvkshAM6KUYZu8_OCpF4+1Y_SM7cQ9nJWpagfke8s8LA@mail.gmail.com>
- <20200619172308.GQ6578@ziepe.ca>
- <20200619180935.GA10009@redhat.com>
- <20200619181849.GR6578@ziepe.ca>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 088478945B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:16:19 +0000 (UTC)
+IronPort-SDR: W1SEVrVxbBBzyrKS/YzKQCQcfR01ZNB40VC1gB1dJvVQcxPUxHHmc7ROD/uyE1CBZituQTf7xo
+ SRdXW9/R40Jw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9657"; a="141385661"
+X-IronPort-AV: E=Sophos;i="5.75,256,1589266800"; d="scan'208";a="141385661"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2020 13:16:19 -0700
+IronPort-SDR: voIfzF3EYTg3eLuLZL2i1qWEmF/oEZnAVg8LnL5GYhmsrG4475XYQrGVhdFVvui5e78WHjQhLu
+ Uh3e52GfQJLg==
+X-IronPort-AV: E=Sophos;i="5.75,256,1589266800"; d="scan'208";a="263955101"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.202])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2020 13:16:19 -0700
+Date: Fri, 19 Jun 2020 13:14:04 -0700
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Message-ID: <20200619201404.GI334084@intel.com>
+References: <20200618202701.729-1-rodrigo.vivi@intel.com>
+ <20200619080900.GD8425@kroah.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200619181849.GR6578@ziepe.ca>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
- lockdep annotations
+In-Reply-To: <20200619080900.GD8425@kroah.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Make Wa_14010229206 permanent
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,157 +50,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 19, 2020 at 03:18:49PM -0300, Jason Gunthorpe wrote:
-> On Fri, Jun 19, 2020 at 02:09:35PM -0400, Jerome Glisse wrote:
-> > On Fri, Jun 19, 2020 at 02:23:08PM -0300, Jason Gunthorpe wrote:
-> > > On Fri, Jun 19, 2020 at 06:19:41PM +0200, Daniel Vetter wrote:
-> > > =
+On Fri, Jun 19, 2020 at 10:09:00AM +0200, Greg KH wrote:
+> On Thu, Jun 18, 2020 at 01:27:00PM -0700, Rodrigo Vivi wrote:
+> > From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+> > 
+> > commit 63d0f3ea8ebb67160eca281320d255c72b0cb51a upstream.
+> > 
+> > This workaround now applies to all steppings, not just A0.
+> > Wa_1409085225 is a temporary A0-only W/A however it is
+> > identical to Wa_14010229206 and hence the combined workaround
+> > is made permanent.
+> > Bspec: 52890
+> > 
+> > Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+> > Tested-by: Rafael Antognolli <rafael.antognolli@intel.com>
+> > Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> > [mattrope: added missing blank line]
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20200326234955.16155-1-swathi.dhanavanthri@intel.com
+> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 12 ++++++------
+> >  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> What stable kernel(s) is this backport for?  You need to give us a hint
+> :)
 
-> > > > The madness is only that device B's mmu notifier might need to wait
-> > > > for fence_B so that the dma operation finishes. Which in turn has to
-> > > > wait for device A to finish first.
-> > > =
+It's for 5.7.y only. Sorry for not being clear
 
-> > > So, it sound, fundamentally you've got this graph of operations across
-> > > an unknown set of drivers and the kernel cannot insert itself in
-> > > dma_fence hand offs to re-validate any of the buffers involved?
-> > > Buffers which by definition cannot be touched by the hardware yet.
-> > > =
-
-> > > That really is a pretty horrible place to end up..
-> > > =
-
-> > > Pinning really is right answer for this kind of work flow. I think
-> > > converting pinning to notifers should not be done unless notifier
-> > > invalidation is relatively bounded. =
-
-> > > =
-
-> > > I know people like notifiers because they give a bit nicer performance
-> > > in some happy cases, but this cripples all the bad cases..
-> > > =
-
-> > > If pinning doesn't work for some reason maybe we should address that?
-> > =
-
-> > Note that the dma fence is only true for user ptr buffer which predate
-> > any HMM work and thus were using mmu notifier already. You need the
-> > mmu notifier there because of fork and other corner cases.
-> =
-
-> I wonder if we should try to fix the fork case more directly - RDMA
-> has this same problem and added MADV_DONTFORK a long time ago as a
-> hacky way to deal with it.
->
-> Some crazy page pin that resolved COW in a way that always kept the
-> physical memory with the mm that initiated the pin?
-
-Just no way to deal with it easily, i thought about forcing the
-anon_vma (page->mapping for anonymous page) to the anon_vma that
-belongs to the vma against which the GUP was done but it would
-break things if page is already in other branch of a fork tree.
-Also this forbid fast GUP.
-
-Quite frankly the fork was not the main motivating factor. GPU
-can pin potentialy GBytes of memory thus we wanted to be able
-to release it but since Michal changes to reclaim code this is
-no longer effective.
-
-User buffer should never end up in those weird corner case, iirc
-the first usage was for xorg exa texture upload, then generalize
-to texture upload in mesa and latter on to more upload cases
-(vertices, ...). At least this is what i remember today. So in
-those cases we do not expect fork, splice, mremap, mprotect, ...
-
-Maybe we can audit how user ptr buffer are use today and see if
-we can define a usage pattern that would allow to cut corner in
-kernel. For instance we could use mmu notifier just to block CPU
-pte update while we do GUP and thus never wait on dma fence.
-
-Then GPU driver just keep the GUP pin around until they are done
-with the page. They can also use the mmu notifier to keep a flag
-so that the driver know if it needs to redo a GUP ie:
-
-The notifier path:
-   GPU_mmu_notifier_start_callback(range)
-        gpu_lock_cpu_pagetable(range)
-        for_each_bo_in(bo, range) {
-            bo->need_gup =3D true;
-        }
-        gpu_unlock_cpu_pagetable(range)
-
-   GPU_validate_buffer_pages(bo)
-        if (!bo->need_gup)
-            return;
-        put_pages(bo->pages);
-        range =3D bo_vaddr_range(bo)
-        gpu_lock_cpu_pagetable(range)
-        GUP(bo->pages, range)
-        gpu_unlock_cpu_pagetable(range)
-
-
-Depending on how user_ptr are use today this could work.
-
-
-> (isn't this broken for O_DIRECT as well anyhow?)
-
-Yes it can in theory, if you have an application that does O_DIRECT
-and fork concurrently (ie O_DIRECT in one thread and fork in another).
-Note that O_DIRECT after fork is fine, it is an issue only if GUP_fast
-was able to lookup a page with write permission before fork had the
-chance to update it to read only for COW.
-
-But doing O_DIRECT (or anything that use GUP fast) in one thread and
-fork in another is inherently broken ie there is no way to fix it.
-
-See 17839856fd588f4ab6b789f482ed3ffd7c403e1f
-
-> =
-
-> How does mmu_notifiers help the fork case anyhow? Block fork from
-> progressing?
-
-It enforce ordering between fork and GUP, if fork is first it blocks
-GUP and if forks is last then fork waits on GUP and then user buffer
-get invalidated.
-
-> =
-
-> > I probably need to warn AMD folks again that using HMM means that you
-> > must be able to update the GPU page table asynchronously without
-> > fence wait.
-> =
-
-> It is kind of unrelated to HMM, it just shouldn't be using mmu
-> notifiers to replace page pinning..
-
-Well my POV is that if you abide by rules HMM defined then you do
-not need to pin pages. The rule is asynchronous device page table
-update.
-
-Pinning pages is problematic it blocks many core mm features and
-it is just bad all around. Also it is inherently broken in front
-of fork/mremap/splice/...
-
-Cheers,
-J=E9r=F4me
-
+> 
+> thanks,
+> 
+> greg k-h
+> 
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > index 5176ad1a3976..092a42367851 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > @@ -1379,12 +1379,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+> >  			    GEN7_FF_THREAD_MODE,
+> >  			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
+> >  
+> > -		/*
+> > -		 * Wa_1409085225:tgl
+> > -		 * Wa_14010229206:tgl
+> > -		 */
+> > -		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+> > -
+> >  		/* Wa_1408615072:tgl */
+> >  		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+> >  			    VSUNIT_CLKGATE_DIS_TGL);
+> > @@ -1402,6 +1396,12 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+> >  		wa_masked_en(wal,
+> >  			     GEN9_CS_DEBUG_MODE1,
+> >  			     FF_DOP_CLOCK_GATE_DISABLE);
+> > +
+> > +		/*
+> > +		 * Wa_1409085225:tgl
+> > +		 * Wa_14010229206:tgl
+> > +		 */
+> > +		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+> >  	}
+> >  
+> >  	if (IS_GEN(i915, 11)) {
+> > -- 
+> > 2.24.1
+> > 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
