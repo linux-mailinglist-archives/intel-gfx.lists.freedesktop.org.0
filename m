@@ -2,42 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D005200A0B
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 15:28:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E85BE200B78
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 16:31:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8B976ECBB;
-	Fri, 19 Jun 2020 13:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBDEE6E02F;
+	Fri, 19 Jun 2020 14:31:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68EF16ECBB;
- Fri, 19 Jun 2020 13:27:56 +0000 (UTC)
-IronPort-SDR: wEK+eVcWZ600z/VzJTy7JhZbS+fPYIuBIu0HlEipwMTeqLG9dm0Kla9cC2kjUKnraXhyzLyOQW
- nHANfMk/ZDHg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9656"; a="208188901"
-X-IronPort-AV: E=Sophos;i="5.75,255,1589266800"; d="scan'208";a="208188901"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2020 06:27:56 -0700
-IronPort-SDR: e3WpgZ/KA5DpaA76t5xMegdycJhEmc+1CnPvripZwGxMVCnjHYsZAAyCRnifrZVeF+E5NkP3gC
- jXyTHGtk2TMA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,255,1589266800"; d="scan'208";a="421849405"
-Received: from bhanu-nuc8i7beh.iind.intel.com ([10.145.162.210])
- by orsmga004.jf.intel.com with ESMTP; 19 Jun 2020 06:27:53 -0700
-From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-To: bhanuprakash.modem@intel.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Sat, 20 Jun 2020 02:53:56 +0530
-Message-Id: <20200619212356.19285-4-bhanuprakash.modem@intel.com>
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F5A76E02F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 14:31:11 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id c3so9855006wru.12
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 07:31:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=BFONobou04qLfe5TVbv2xVii/DLuuCg8ytSdzL9jats=;
+ b=kZBeTC4ak/i/w9wJydbb7O4ElWKvn34cn9X14F7fbdBXMZMkXYnPr2G9/hELMvr7VU
+ j2abIdA7jpJwMEkSiJKsL9kx1qViNWp6YBCkKCgTjGvXN7al4YP02QP0hM0FYkZDEFH8
+ IZNBmIhMBygXlpZFD+uIwUb7RB0xZB3DC8OLsdLyNNCLOtMQoS0A4KDHwEXcXCQ4PZAW
+ rfzdBmKnmEY25A2vxQJO5Kalkzc6qSEnsSz/+W6v3d0wwu/kmP3HTDkZ6SE0CDazmCB5
+ pfpDZfHxf+MWCjlywz8CvKsDpZwARkVMKix8Zm3BfF7xmnCjxurBSFu6qoWz+/dnQ5H1
+ Ublw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+ :mime-version:content-transfer-encoding;
+ bh=BFONobou04qLfe5TVbv2xVii/DLuuCg8ytSdzL9jats=;
+ b=uHz63Qi3tgfH87ErVxWSC+9w6BZWjyzy6Xy4Z6cc0SfNCLki1rhPnkmpUsGQ9il8w8
+ BgQeHXjgG1FNoJqwDMpOq8cnVTXAi+Afd4+Hl4y0wz6njMIifyVxThgKLS5VCR8pNogr
+ vP+BDEcWaHQwcdzwRmDvFBFW8PqUjNGBTeUeYDWCTArDsuzKjkaiPvF0aFb2yimCOLNX
+ c0JgTCEhbOd7b+G0hV4F5bBBcXw50hUaFfe7JHGUfOd9/j6VQMWarVgrT3u2dTZXwt2E
+ kfhLkzD0uYMHwUV3uQqC6xX1Ih6pNr7zwcO7ne3ZSUj37k25BDsfcJaw0YU+yJRPd98g
+ T9+g==
+X-Gm-Message-State: AOAM530mtudHbFpTL4AXIG3y9zAVWpE0F6R5IITQFWh16jPorjtSDkS8
+ EIvfNwaC27e5yL3BPV/+1I1x9exq
+X-Google-Smtp-Source: ABdhPJwEz6nVhs1hRmHpbTfEjW/P8E0GgTBV/HQcTae10Wkj6kTOc8zhgF7EgbuccAl1MzJU2DyPTg==
+X-Received: by 2002:a5d:4a8a:: with SMTP id o10mr4345724wrq.222.1592577069252; 
+ Fri, 19 Jun 2020 07:31:09 -0700 (PDT)
+Received: from build.alporthouse.com ([78.156.65.138])
+ by smtp.gmail.com with ESMTPSA id x186sm7185746wmg.8.2020.06.19.07.31.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 19 Jun 2020 07:31:08 -0700 (PDT)
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 19 Jun 2020 15:31:04 +0100
+Message-Id: <20200619143106.10356-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200619212356.19285-1-bhanuprakash.modem@intel.com>
-References: <20200619212356.19285-1-bhanuprakash.modem@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v8 3/3] drm/debug: Expose connector VRR monitor range
- via debugfs
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gem: Avoid kmalloc under
+ i915->mm_lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,86 +65,248 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-W1doeV0KSXQncyB1c2VmdWwgdG8ga25vdyB0aGUgbWluIGFuZCBtYXggdnJyIHJhbmdlIGZvciBJ
-R1QgdGVzdGluZy4KCltIb3ddCkV4cG9zZSB0aGUgbWluIGFuZCBtYXggdmZyZXEgZm9yIHRoZSBj
-b25uZWN0b3IgdmlhIGEgZGVidWdmcyBmaWxlCm9uIHRoZSBjb25uZWN0b3IsICJ2cnJfcmFuZ2Ui
-LgoKRXhhbXBsZSB1c2FnZTogY2F0IC9zeXMva2VybmVsL2RlYnVnL2RyaS8wL0RQLTEvdnJyX3Jh
-bmdlCgp2MjoKKiBGaXggdGhlIHR5cG8gaW4gbWF4X3ZmcmVxIChNYW5hc2kpCiogQ2hhbmdlIHRo
-ZSBuYW1lIG9mIG5vZGUgdG8gaTkxNV92cnJfaW5mbyBzbyB3ZSBjYW4gYWRkCm90aGVyIHZyciBp
-bmZvIGZvciBtb3JlIGRlYnVnIGluZm8gKE1hbmFzaSkKKiBDaGFuZ2UgdGhlIFZSUiBjYXBhYmxl
-IHRvIGRpc3BsYXkgWWVzIG9yIE5vIChNYW5hc2kpCiogRml4IGluZGVudGF0aW9uIGNoZWNrcGF0
-Y2ggZXJyb3JzIChNYW5hc2kpCnYzOgoqIFJlbW92ZSB0aGUgdW5uZWNlc3NhcnkgZGVidWcgcHJp
-bnQgKE1hbmFzaSkKdjQ6CiogUmViYXNlCnY1OgoqIFJlbmFtZSB0byB2cnJfcmFuZ2UgdG8gbWF0
-Y2ggQU1EIGRlYnVnZnMKdjY6CiogUmViYXNlIChtYW5hc2kpCnY3OgoqIEZpeCBjbXBpbGF0aW9u
-IGR1ZSB0byByZWJhc2UKdjg6CiogTW92ZSBkZWJ1Z2ZzIG5vZGUgY3JlYXRpb24gbG9naWMgdG8g
-RFJNIChFbWlsKQoqIFJlbW92ZSBBTUQgc3BlY2lmaWMgbG9naWMgKEVtaWwpCgpTaWduZWQtb2Zm
-LWJ5OiBCaGFudXByYWthc2ggTW9kZW0gPGJoYW51cHJha2FzaC5tb2RlbUBpbnRlbC5jb20+ClNp
-Z25lZC1vZmYtYnk6IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+CkNj
-OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXguaW50ZWwuY29tPgpDYzogVmlsbGUgU3ly
-asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IEhhcnJ5IFdlbnRsYW5k
-IDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPgotLS0KIC4uLi9hbWQvZGlzcGxheS9hbWRncHVfZG0v
-YW1kZ3B1X2RtX2RlYnVnZnMuYyB8IDIwIC0tLS0tLS0tLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vZHJtX2RlYnVnZnMuYyAgICAgICAgICAgICAgICAgfCAyMiArKysrKysrKysrKysrKysrKysr
-CiAyIGZpbGVzIGNoYW5nZWQsIDIyIGluc2VydGlvbnMoKyksIDIwIGRlbGV0aW9ucygtKQoKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2Rt
-X2RlYnVnZnMuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1
-X2RtX2RlYnVnZnMuYwppbmRleCAwNzZhZjI2N2I0ODguLjcxMzg3ZDJhZjJlZCAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG1fZGVidWdm
-cy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2Rt
-X2RlYnVnZnMuYwpAQCAtODIwLDI0ICs4MjAsNiBAQCBzdGF0aWMgaW50IG91dHB1dF9icGNfc2hv
-dyhzdHJ1Y3Qgc2VxX2ZpbGUgKm0sIHZvaWQgKmRhdGEpCiAJcmV0dXJuIHJlczsKIH0KIAotLyoK
-LSAqIFJldHVybnMgdGhlIG1pbiBhbmQgbWF4IHZyciB2ZnJlcSB0aHJvdWdoIHRoZSBjb25uZWN0
-b3IncyBkZWJ1Z2ZzIGZpbGUuCi0gKiBFeGFtcGxlIHVzYWdlOiBjYXQgL3N5cy9rZXJuZWwvZGVi
-dWcvZHJpLzAvRFAtMS92cnJfcmFuZ2UKLSAqLwotc3RhdGljIGludCB2cnJfcmFuZ2Vfc2hvdyhz
-dHJ1Y3Qgc2VxX2ZpbGUgKm0sIHZvaWQgKmRhdGEpCi17Ci0Jc3RydWN0IGRybV9jb25uZWN0b3Ig
-KmNvbm5lY3RvciA9IG0tPnByaXZhdGU7Ci0Jc3RydWN0IGFtZGdwdV9kbV9jb25uZWN0b3IgKmFj
-b25uZWN0b3IgPSB0b19hbWRncHVfZG1fY29ubmVjdG9yKGNvbm5lY3Rvcik7Ci0KLQlpZiAoY29u
-bmVjdG9yLT5zdGF0dXMgIT0gY29ubmVjdG9yX3N0YXR1c19jb25uZWN0ZWQpCi0JCXJldHVybiAt
-RU5PREVWOwotCi0Jc2VxX3ByaW50ZihtLCAiTWluOiAldVxuIiwgKHVuc2lnbmVkIGludClhY29u
-bmVjdG9yLT5taW5fdmZyZXEpOwotCXNlcV9wcmludGYobSwgIk1heDogJXVcbiIsICh1bnNpZ25l
-ZCBpbnQpYWNvbm5lY3Rvci0+bWF4X3ZmcmVxKTsKLQotCXJldHVybiAwOwotfQotCiAjaWZkZWYg
-Q09ORklHX0RSTV9BTURfRENfSERDUAogLyoKICAqIFJldHVybnMgdGhlIEhEQ1AgY2FwYWJpbGl0
-eSBvZiB0aGUgRGlzcGxheSAoMS40IGZvciBub3cpLgpAQCAtMTAwMSw3ICs5ODMsNiBAQCBzdGF0
-aWMgc3NpemVfdCBkcF9kcGNkX2RhdGFfcmVhZChzdHJ1Y3QgZmlsZSAqZiwgY2hhciBfX3VzZXIg
-KmJ1ZiwKIERFRklORV9TSE9XX0FUVFJJQlVURShkbXViX2Z3X3N0YXRlKTsKIERFRklORV9TSE9X
-X0FUVFJJQlVURShkbXViX3RyYWNlYnVmZmVyKTsKIERFRklORV9TSE9XX0FUVFJJQlVURShvdXRw
-dXRfYnBjKTsKLURFRklORV9TSE9XX0FUVFJJQlVURSh2cnJfcmFuZ2UpOwogI2lmZGVmIENPTkZJ
-R19EUk1fQU1EX0RDX0hEQ1AKIERFRklORV9TSE9XX0FUVFJJQlVURShoZGNwX3NpbmtfY2FwYWJp
-bGl0eSk7CiAjZW5kaWYKQEAgLTEwNTksNyArMTA0MCw2IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3Qg
-ewogCQl7InBoeV9zZXR0aW5ncyIsICZkcF9waHlfc2V0dGluZ3NfZGVidWdmc19mb3B9LAogCQl7
-InRlc3RfcGF0dGVybiIsICZkcF9waHlfdGVzdF9wYXR0ZXJuX2ZvcHN9LAogCQl7Im91dHB1dF9i
-cGMiLCAmb3V0cHV0X2JwY19mb3BzfSwKLQkJeyJ2cnJfcmFuZ2UiLCAmdnJyX3JhbmdlX2ZvcHN9
-LAogI2lmZGVmIENPTkZJR19EUk1fQU1EX0RDX0hEQ1AKIAkJeyJoZGNwX3NpbmtfY2FwYWJpbGl0
-eSIsICZoZGNwX3NpbmtfY2FwYWJpbGl0eV9mb3BzfSwKICNlbmRpZgpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2RybV9kZWJ1Z2ZzLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2RlYnVnZnMu
-YwppbmRleCBiZmU0NjAyZjIwNmIuLjNkNzE4MjAwMTAwNCAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2RybV9kZWJ1Z2ZzLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9kZWJ1Z2ZzLmMK
-QEAgLTM3Niw2ICszNzYsMjQgQEAgc3RhdGljIHNzaXplX3QgZWRpZF93cml0ZShzdHJ1Y3QgZmls
-ZSAqZmlsZSwgY29uc3QgY2hhciBfX3VzZXIgKnVidWYsCiAJcmV0dXJuIChyZXQpID8gcmV0IDog
-bGVuOwogfQogCisvKgorICogUmV0dXJucyB0aGUgbWluIGFuZCBtYXggdnJyIHZmcmVxIHRocm91
-Z2ggdGhlIGNvbm5lY3RvcidzIGRlYnVnZnMgZmlsZS4KKyAqIEV4YW1wbGUgdXNhZ2U6IGNhdCAv
-c3lzL2tlcm5lbC9kZWJ1Zy9kcmkvMC9EUC0xL3Zycl9yYW5nZQorICovCitzdGF0aWMgaW50IHZy
-cl9yYW5nZV9zaG93KHN0cnVjdCBzZXFfZmlsZSAqbSwgdm9pZCAqZGF0YSkKK3sKKwlzdHJ1Y3Qg
-ZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yID0gbS0+cHJpdmF0ZTsKKworCWlmIChjb25uZWN0b3It
-PnN0YXR1cyAhPSBjb25uZWN0b3Jfc3RhdHVzX2Nvbm5lY3RlZCkKKwkJcmV0dXJuIC1FTk9ERVY7
-CisKKwlzZXFfcHJpbnRmKG0sICJNaW46ICV1XG4iLCAodTgpY29ubmVjdG9yLT5kaXNwbGF5X2lu
-Zm8ubW9uaXRvcl9yYW5nZS5taW5fdmZyZXEpOworCXNlcV9wcmludGYobSwgIk1heDogJXVcbiIs
-ICh1OCljb25uZWN0b3ItPmRpc3BsYXlfaW5mby5tb25pdG9yX3JhbmdlLm1heF92ZnJlcSk7CisK
-KwlyZXR1cm4gMDsKK30KK0RFRklORV9TSE9XX0FUVFJJQlVURSh2cnJfcmFuZ2UpOworCiBzdGF0
-aWMgY29uc3Qgc3RydWN0IGZpbGVfb3BlcmF0aW9ucyBkcm1fZWRpZF9mb3BzID0gewogCS5vd25l
-ciA9IFRISVNfTU9EVUxFLAogCS5vcGVuID0gZWRpZF9vcGVuLApAQCAtNDEzLDYgKzQzMSwxMCBA
-QCB2b2lkIGRybV9kZWJ1Z2ZzX2Nvbm5lY3Rvcl9hZGQoc3RydWN0IGRybV9jb25uZWN0b3IgKmNv
-bm5lY3RvcikKIAkvKiBlZGlkICovCiAJZGVidWdmc19jcmVhdGVfZmlsZSgiZWRpZF9vdmVycmlk
-ZSIsIFNfSVJVR08gfCBTX0lXVVNSLCByb290LCBjb25uZWN0b3IsCiAJCQkgICAgJmRybV9lZGlk
-X2ZvcHMpOworCisJLyogdnJyIHJhbmdlICovCisJZGVidWdmc19jcmVhdGVfZmlsZSgidnJyX3Jh
-bmdlIiwgU19JUlVHTywgcm9vdCwgY29ubmVjdG9yLAorCQkJICAgICZ2cnJfcmFuZ2VfZm9wcyk7
-CiB9CiAKIHZvaWQgZHJtX2RlYnVnZnNfY29ubmVjdG9yX3JlbW92ZShzdHJ1Y3QgZHJtX2Nvbm5l
-Y3RvciAqY29ubmVjdG9yKQotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+Rearrange the allocation of the mm_struct registration to avoid
+allocating underneath the i915->mm_lock, so that we avoid tainting the
+lock (and in turn many other locks that may be held as i915->mm_lock is
+taken, and those locks we may want on the free [shrinker] paths). In
+doing so, we convert the lookup to be RCU protected by courtesy of
+converting the free-worker to be an rcu_work.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 123 +++++++++-----------
+ drivers/gpu/drm/i915/i915_drv.h             |   2 +-
+ 2 files changed, 59 insertions(+), 66 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+index 9c53eb883400..84766414a1f0 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+@@ -21,7 +21,7 @@ struct i915_mm_struct {
+ 	struct i915_mmu_notifier *mn;
+ 	struct hlist_node node;
+ 	struct kref kref;
+-	struct work_struct work;
++	struct rcu_work work;
+ };
+ 
+ #if defined(CONFIG_MMU_NOTIFIER)
+@@ -189,40 +189,31 @@ i915_gem_userptr_release__mmu_notifier(struct drm_i915_gem_object *obj)
+ static struct i915_mmu_notifier *
+ i915_mmu_notifier_find(struct i915_mm_struct *mm)
+ {
+-	struct i915_mmu_notifier *mn;
+-	int err = 0;
++	struct i915_mmu_notifier *mn, *old;
++	int err;
+ 
+-	mn = mm->mn;
+-	if (mn)
++	mn = READ_ONCE(mm->mn);
++	if (likely(mn))
+ 		return mn;
+ 
+ 	mn = i915_mmu_notifier_create(mm);
+ 	if (IS_ERR(mn))
+-		err = PTR_ERR(mn);
+-
+-	mmap_write_lock(mm->mm);
+-	mutex_lock(&mm->i915->mm_lock);
+-	if (mm->mn == NULL && !err) {
+-		/* Protected by mmap_lock (write-lock) */
+-		err = __mmu_notifier_register(&mn->mn, mm->mm);
+-		if (!err) {
+-			/* Protected by mm_lock */
+-			mm->mn = fetch_and_zero(&mn);
+-		}
+-	} else if (mm->mn) {
+-		/*
+-		 * Someone else raced and successfully installed the mmu
+-		 * notifier, we can cancel our own errors.
+-		 */
+-		err = 0;
++		return mn;
++
++	err = mmu_notifier_register(&mn->mn, mm->mm);
++	if (err) {
++		kfree(mn);
++		return ERR_PTR(err);
+ 	}
+-	mutex_unlock(&mm->i915->mm_lock);
+-	mmap_write_unlock(mm->mm);
+ 
+-	if (mn && !IS_ERR(mn))
++	old = cmpxchg(&mm->mn, NULL, mn);
++	if (old) {
++		mmu_notifier_unregister(&mn->mn, mm->mm);
+ 		kfree(mn);
++		mn = old;
++	}
+ 
+-	return err ? ERR_PTR(err) : mm->mn;
++	return mn;
+ }
+ 
+ static int
+@@ -301,23 +292,26 @@ i915_mmu_notifier_free(struct i915_mmu_notifier *mn,
+ #endif
+ 
+ static struct i915_mm_struct *
+-__i915_mm_struct_find(struct drm_i915_private *dev_priv, struct mm_struct *real)
++__i915_mm_struct_find(struct drm_i915_private *i915, struct mm_struct *real)
+ {
+-	struct i915_mm_struct *mm;
++	struct i915_mm_struct *it, *mm = NULL;
+ 
+-	/* Protected by dev_priv->mm_lock */
+-	hash_for_each_possible(dev_priv->mm_structs, mm, node, (unsigned long)real)
+-		if (mm->mm == real)
+-			return mm;
++	rcu_read_lock();
++	hash_for_each_possible(i915->mm_structs, it, node, (unsigned long)real)
++		if (it->mm == real && kref_get_unless_zero(&it->kref)) {
++			mm = it;
++			break;
++		}
++	rcu_read_unlock();
+ 
+-	return NULL;
++	return mm;
+ }
+ 
+ static int
+ i915_gem_userptr_init__mm_struct(struct drm_i915_gem_object *obj)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(obj->base.dev);
+-	struct i915_mm_struct *mm;
++	struct drm_i915_private *i915 = to_i915(obj->base.dev);
++	struct i915_mm_struct *mm, *new;
+ 	int ret = 0;
+ 
+ 	/* During release of the GEM object we hold the struct_mutex. This
+@@ -330,39 +324,40 @@ i915_gem_userptr_init__mm_struct(struct drm_i915_gem_object *obj)
+ 	 * struct_mutex, i.e. we need to schedule a worker to do the clean
+ 	 * up.
+ 	 */
+-	mutex_lock(&dev_priv->mm_lock);
+-	mm = __i915_mm_struct_find(dev_priv, current->mm);
+-	if (mm == NULL) {
+-		mm = kmalloc(sizeof(*mm), GFP_KERNEL);
+-		if (mm == NULL) {
+-			ret = -ENOMEM;
+-			goto out;
+-		}
++	mm = __i915_mm_struct_find(i915, current->mm);
++	if (mm)
++		goto out;
+ 
+-		kref_init(&mm->kref);
+-		mm->i915 = to_i915(obj->base.dev);
+-
+-		mm->mm = current->mm;
+-		mmgrab(current->mm);
++	new = kmalloc(sizeof(*mm), GFP_KERNEL);
++	if (new == NULL)
++		return -ENOMEM;
+ 
+-		mm->mn = NULL;
++	kref_init(&new->kref);
++	new->i915 = to_i915(obj->base.dev);
++	new->mm = current->mm;
++	new->mn = NULL;
+ 
+-		/* Protected by dev_priv->mm_lock */
+-		hash_add(dev_priv->mm_structs,
+-			 &mm->node, (unsigned long)mm->mm);
+-	} else
+-		kref_get(&mm->kref);
++	spin_lock(&i915->mm_lock);
++	mm = __i915_mm_struct_find(i915, current->mm);
++	if (!mm) {
++		hash_add(i915->mm_structs, &new->node, (unsigned long)new->mm);
++		mmgrab(current->mm);
++		mm = new;
++	}
++	spin_unlock(&i915->mm_lock);
++	if (mm != new)
++		kfree(new);
+ 
+-	obj->userptr.mm = mm;
+ out:
+-	mutex_unlock(&dev_priv->mm_lock);
++	obj->userptr.mm = mm;
+ 	return ret;
+ }
+ 
+ static void
+ __i915_mm_struct_free__worker(struct work_struct *work)
+ {
+-	struct i915_mm_struct *mm = container_of(work, typeof(*mm), work);
++	struct i915_mm_struct *mm = container_of(work, typeof(*mm), work.work);
++
+ 	i915_mmu_notifier_free(mm->mn, mm->mm);
+ 	mmdrop(mm->mm);
+ 	kfree(mm);
+@@ -373,12 +368,12 @@ __i915_mm_struct_free(struct kref *kref)
+ {
+ 	struct i915_mm_struct *mm = container_of(kref, typeof(*mm), kref);
+ 
+-	/* Protected by dev_priv->mm_lock */
++	spin_lock(&mm->i915->mm_lock);
+ 	hash_del(&mm->node);
+-	mutex_unlock(&mm->i915->mm_lock);
++	spin_unlock(&mm->i915->mm_lock);
+ 
+-	INIT_WORK(&mm->work, __i915_mm_struct_free__worker);
+-	queue_work(mm->i915->mm.userptr_wq, &mm->work);
++	INIT_RCU_WORK(&mm->work, __i915_mm_struct_free__worker);
++	queue_rcu_work(mm->i915->mm.userptr_wq, &mm->work);
+ }
+ 
+ static void
+@@ -387,9 +382,7 @@ i915_gem_userptr_release__mm_struct(struct drm_i915_gem_object *obj)
+ 	if (obj->userptr.mm == NULL)
+ 		return;
+ 
+-	kref_put_mutex(&obj->userptr.mm->kref,
+-		       __i915_mm_struct_free,
+-		       &to_i915(obj->base.dev)->mm_lock);
++	kref_put(&obj->userptr.mm->kref, __i915_mm_struct_free);
+ 	obj->userptr.mm = NULL;
+ }
+ 
+@@ -851,7 +844,7 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
+ 
+ int i915_gem_init_userptr(struct drm_i915_private *dev_priv)
+ {
+-	mutex_init(&dev_priv->mm_lock);
++	spin_lock_init(&dev_priv->mm_lock);
+ 	hash_init(dev_priv->mm_structs);
+ 
+ 	dev_priv->mm.userptr_wq =
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 5649f8e502fe..7464656253c9 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -988,7 +988,7 @@ struct drm_i915_private {
+ 
+ 	struct i915_gem_mm mm;
+ 	DECLARE_HASHTABLE(mm_structs, 7);
+-	struct mutex mm_lock;
++	spinlock_t mm_lock;
+ 
+ 	/* Kernel Modesetting */
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
