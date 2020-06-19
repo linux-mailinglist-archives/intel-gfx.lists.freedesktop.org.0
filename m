@@ -2,53 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D1CE201B9F
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 21:50:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4042201BC8
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 22:00:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D43D76E97A;
-	Fri, 19 Jun 2020 19:50:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5756E9FA;
+	Fri, 19 Jun 2020 20:00:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ua1-x944.google.com (mail-ua1-x944.google.com
- [IPv6:2607:f8b0:4864:20::944])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39B0D6E97A
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 19:50:05 +0000 (UTC)
-Received: by mail-ua1-x944.google.com with SMTP id v25so3584886uau.4
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 12:50:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ZFYUMHWUizwVIvwn062cNJkAKYIl3dpYBWqbYddbq5k=;
- b=Hx/JeXmvD3OyWLOSU/Y5rof7a/y0ba8DhGe+xsdI8EDkLHcb3y6W4bNYhAMRXv8zBP
- /7XhYffjbwTAHI6B6ytPb0H2A3/N47EwR0q8XvQgRYlrD6rvmw9FqvkCChUzXX74iAAI
- hLyd6EfWBZzaRv+onYA7kzlkFr6pwDLoPbUVk0Ke9skyCpbDAylngYXnKvc6TIVqh5Q5
- DM5iGYAju9WZcGjTtwSi2E+xJfsgn3N9yoAzjlgM7rh9Fc8JGvfGy8Wp4Jy5t7s+RonX
- H47XO+JuFgGX3leZasPzPsGQVNMZegd8c8ILTldmy6SPOoqqutllEUUG5Nuis/4dSOJc
- jmfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ZFYUMHWUizwVIvwn062cNJkAKYIl3dpYBWqbYddbq5k=;
- b=PSohilZ8YF5uSaZ78MaUTXgld1/IqG0PuWPbE5srr2Y1Me8ZpO3QCztYZ6ofWaf2z3
- Q6cSoyrobaWM/04oe6jwQkLsBKfFgDI1tz5bnkx6zR3IeiDzZDcH4mPN9lyJ/+sRxhhQ
- NpzgkR78zGrqJdHO4wBpyB37rcuKThi5YEZtN1t9TErpv5JRRWsql0hLrpLCK2DuXiwm
- RHXwHqBOIo1q1m+CGItAbJmsd0aEGJmTL0WfDUaM20SKV/YduV+pZBiF7KTQmVj2td2L
- 8ERdzp82Ns1zrUZrEAc58HK7fsmCrz6AOwY0U8it9F66gb2nB70gPsdfADubKhREVJRO
- AryQ==
-X-Gm-Message-State: AOAM533D9yrwcu/cDBxxiQi8CHnUcNLbJebyij7MeVRSNKu4IgmupX2k
- 8rJCaVlnq4T8P1RHG903/R+3N5JnWQYpFcG0uqB1hsbR
-X-Google-Smtp-Source: ABdhPJx7y2+AShL6uqYt4pMIqqo2T9fbZ2wxtZd5ER3fdYylXHA6rRXFezA4pXvHWsiuKPyuJ++vJwBeoI+vmWIMzUo=
-X-Received: by 2002:a9f:3791:: with SMTP id q17mr4151938uaq.95.1592596204345; 
- Fri, 19 Jun 2020 12:50:04 -0700 (PDT)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5B0E6E9CC;
+ Fri, 19 Jun 2020 20:00:15 +0000 (UTC)
+IronPort-SDR: 1eGFD29wUed6qHiU+zmom1/7vGJ7iZVMd0JLRtEHnLsmzd+RSyH/Ar8JnTRyVMYCQdq8Xhvvo6
+ AEahVKaMHR9w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9657"; a="123351124"
+X-IronPort-AV: E=Sophos;i="5.75,256,1589266800"; d="scan'208";a="123351124"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2020 13:00:14 -0700
+IronPort-SDR: W2gxCsYArRQcXRbwOLwu1mc5vZfC8+81wADMAroNc9Kj3E7giWmNua/j4sf0+fgV5X+cr2hZdX
+ mmXyZ8l+pfsQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,256,1589266800"; d="scan'208";a="383930726"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by fmsmga001.fm.intel.com with ESMTP; 19 Jun 2020 13:00:13 -0700
+Date: Fri, 19 Jun 2020 13:01:28 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Message-ID: <20200619200126.GA4176@intel.com>
+References: <20200619212356.19285-1-bhanuprakash.modem@intel.com>
+ <20200619212356.19285-2-bhanuprakash.modem@intel.com>
 MIME-Version: 1.0
-References: <20200619191053.9654-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200619191053.9654-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 19 Jun 2020 20:49:37 +0100
-Message-ID: <CAM0jSHOWs56vFOFojEJLQbTBA3ohzToy-h3FiduimK4LuSDU2Q@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Show the culmative runtime as
- part of the engine info
+Content-Disposition: inline
+In-Reply-To: <20200619212356.19285-2-bhanuprakash.modem@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [v6 1/3] drm/dp: DRM DP helper for reading Ignore
+ MSA from DPCD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,19 +52,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 19 Jun 2020 at 20:11, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Since we always enable the busy-stats, the culmulative runtime should be
-> accurate, and might be useful for diagnosing issues with the engine.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Thanks for the review, pushed to drm-misc
+
+Manasi
+
+On Sat, Jun 20, 2020 at 02:53:54AM +0530, Bhanuprakash Modem wrote:
+> From: Manasi Navare <manasi.d.navare@intel.com>
+> =
+
+> DP sink device sets the Ignore MSA bit in its
+> DP_DOWNSTREAM_PORT_COUNT register to indicate its ability to
+> ignore the MSA video timing parameters and its ability to support
+> seamless video timing change over a range of timing exposed by
+> DisplayID and EDID.
+> This is required for the sink to indicate that it is Adaptive sync
+> capable.
+> =
+
+> v3:
+> * Fi the typo in commit message (Manasi)
+> v2:
+> * Rename to describe what the function does (Jani Nikula)
+> =
+
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+> ---
+>  include/drm/drm_dp_helper.h | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> =
+
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> index 1165ec105638..e47dc22ebf50 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1457,6 +1457,14 @@ drm_dp_alternate_scrambler_reset_cap(const u8 dpcd=
+[DP_RECEIVER_CAP_SIZE])
+>  			DP_ALTERNATE_SCRAMBLER_RESET_CAP;
+>  }
+>  =
+
+> +/* Ignore MSA timing for Adaptive Sync support on DP 1.4 */
+> +static inline bool
+> +drm_dp_sink_can_do_video_without_timing_msa(const u8 dpcd[DP_RECEIVER_CA=
+P_SIZE])
+> +{
+> +	return dpcd[DP_DOWN_STREAM_PORT_COUNT] &
+> +		DP_MSA_TIMING_PAR_IGNORED;
+> +}
+> +
+>  /*
+>   * DisplayPort AUX channel
+>   */
+> -- =
+
+> 2.20.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
