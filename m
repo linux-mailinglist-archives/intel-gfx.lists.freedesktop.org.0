@@ -1,32 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25C2D201C48
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 22:20:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E7F201C6D
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2020 22:32:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A36956EA4D;
-	Fri, 19 Jun 2020 20:20:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF6126EA61;
+	Fri, 19 Jun 2020 20:32:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A789A6EA38;
- Fri, 19 Jun 2020 20:20:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9A1CAA47E1;
- Fri, 19 Jun 2020 20:20:29 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 624066EA50
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:32:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1592598748;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=+MZZFlS2lzexZcWJLtzbL34zsSkKE8BItNhmdhhu4K0=;
+ b=PDKNjrWEZlMKqgNK15Okn7Rw9gubZmEvjefP6RgD+NvEllaAbygmg2ipgBNEeFhhagrAFi
+ RxfM51gx2Zpvwmkja3e0DtmPEGbuVav29EBY9RUsiO39Svf5Ygshc99NsEoOODVsyIVMEc
+ Ks9UM6m/xm3hMT0OsbTIwduxJbwF4NQ=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-6-1iFxF6w7NlWEkZxAuvaRDQ-1; Fri, 19 Jun 2020 16:32:21 -0400
+X-MC-Unique: 1iFxF6w7NlWEkZxAuvaRDQ-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
+ [10.5.11.22])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 6E422871254;
+ Fri, 19 Jun 2020 20:31:52 +0000 (UTC)
+Received: from redhat.com (ovpn-112-200.rdu2.redhat.com [10.10.112.200])
+ by smtp.corp.redhat.com (Postfix) with ESMTPS id EE21810002B5;
+ Fri, 19 Jun 2020 20:31:48 +0000 (UTC)
+Date: Fri, 19 Jun 2020 16:31:47 -0400
+From: Jerome Glisse <jglisse@redhat.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Message-ID: <20200619203147.GC13117@redhat.com>
+References: <CAKMK7uEbqTu4q-amkLXyd1i8KNtLaoO2ZFoGqYiG6D0m0FKpOg@mail.gmail.com>
+ <20200619113934.GN6578@ziepe.ca>
+ <CAKMK7uE-kWA==Cko5uenMrcnopEjq42HxoDTDywzBAbHqsN13g@mail.gmail.com>
+ <20200619151551.GP6578@ziepe.ca>
+ <CAKMK7uEvkshAM6KUYZu8_OCpF4+1Y_SM7cQ9nJWpagfke8s8LA@mail.gmail.com>
+ <20200619172308.GQ6578@ziepe.ca>
+ <20200619180935.GA10009@redhat.com>
+ <20200619181849.GR6578@ziepe.ca>
+ <56008d64-772d-5757-6136-f20591ef71d2@amd.com>
+ <20200619195538.GT6578@ziepe.ca>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 19 Jun 2020 20:20:29 -0000
-Message-ID: <159259802960.12533.9944536573314775953@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200619191053.9654-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200619191053.9654-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Show_the_culmative_runtime_as_part_of_the_engine_in?=
- =?utf-8?q?fo?=
+Content-Disposition: inline
+In-Reply-To: <20200619195538.GT6578@ziepe.ca>
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
+ lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,124 +68,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ Felix Kuehling <felix.kuehling@amd.com>, LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Mika Kuoppala <mika.kuoppala@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jun 19, 2020 at 04:55:38PM -0300, Jason Gunthorpe wrote:
+> On Fri, Jun 19, 2020 at 03:48:49PM -0400, Felix Kuehling wrote:
+> > Am 2020-06-19 um 2:18 p.m. schrieb Jason Gunthorpe:
+> > > On Fri, Jun 19, 2020 at 02:09:35PM -0400, Jerome Glisse wrote:
+> > >> On Fri, Jun 19, 2020 at 02:23:08PM -0300, Jason Gunthorpe wrote:
+> > >>> On Fri, Jun 19, 2020 at 06:19:41PM +0200, Daniel Vetter wrote:
+> > >>>
+> > >>>> The madness is only that device B's mmu notifier might need to wait
+> > >>>> for fence_B so that the dma operation finishes. Which in turn has =
+to
+> > >>>> wait for device A to finish first.
+> > >>> So, it sound, fundamentally you've got this graph of operations acr=
+oss
+> > >>> an unknown set of drivers and the kernel cannot insert itself in
+> > >>> dma_fence hand offs to re-validate any of the buffers involved?
+> > >>> Buffers which by definition cannot be touched by the hardware yet.
+> > >>>
+> > >>> That really is a pretty horrible place to end up..
+> > >>>
+> > >>> Pinning really is right answer for this kind of work flow. I think
+> > >>> converting pinning to notifers should not be done unless notifier
+> > >>> invalidation is relatively bounded. =
 
-Series: drm/i915/gt: Show the culmative runtime as part of the engine info
-URL   : https://patchwork.freedesktop.org/series/78648/
-State : success
+> > >>>
+> > >>> I know people like notifiers because they give a bit nicer performa=
+nce
+> > >>> in some happy cases, but this cripples all the bad cases..
+> > >>>
+> > >>> If pinning doesn't work for some reason maybe we should address tha=
+t?
+> > >> Note that the dma fence is only true for user ptr buffer which preda=
+te
+> > >> any HMM work and thus were using mmu notifier already. You need the
+> > >> mmu notifier there because of fork and other corner cases.
+> > > I wonder if we should try to fix the fork case more directly - RDMA
+> > > has this same problem and added MADV_DONTFORK a long time ago as a
+> > > hacky way to deal with it.
+> > >
+> > > Some crazy page pin that resolved COW in a way that always kept the
+> > > physical memory with the mm that initiated the pin?
+> > >
+> > > (isn't this broken for O_DIRECT as well anyhow?)
+> > >
+> > > How does mmu_notifiers help the fork case anyhow? Block fork from
+> > > progressing?
+> > =
 
-== Summary ==
+> > How much the mmu_notifier blocks fork progress depends, on quickly we
+> > can preempt GPU jobs accessing affected memory. If we don't have
+> > fine-grained preemption capability (graphics), the best we can do is
+> > wait for the GPU jobs to complete. We can also delay submission of new
+> > GPU jobs to the same memory until the MMU notifier is done. Future jobs
+> > would use the new page addresses.
+> > =
 
-CI Bug Log - changes from CI_DRM_8646 -> Patchwork_17997
-====================================================
+> > With fine-grained preemption (ROCm compute), we can preempt GPU work on
+> > the affected adders space to minimize the delay seen by fork.
+> > =
 
-Summary
--------
+> > With recoverable device page faults, we can invalidate GPU page table
+> > entries, so device access to the affected pages stops immediately.
+> > =
 
-  **SUCCESS**
+> > In all cases, the end result is, that the device page table gets updated
+> > with the address of the copied pages before the GPU accesses the COW
+> > memory again.Without the MMU notifier, we'd end up with the GPU
+> > corrupting memory of the other process.
+> =
 
-  No regressions found.
+> The model here in fork has been wrong for a long time, and I do wonder
+> how O_DIRECT manages to not be broken too.. I guess the time windows
+> there are too small to get unlucky.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17997/index.html
+This was discuss extensively in the GUP works John have been doing.
+Yes O_DIRECT can potentialy break but only if you are writting to
+COW pages and you initiated the O_DIRECT right before the fork and
+GUP happen before fork was able to write protect the pages.
 
-Known issues
-------------
+If you O_DIRECT but use memory as input ie you are writting the
+memory to the file not reading from the file. Then fork is harmless
+as you are just reading memory. You can still face the COW uncertainty
+(the process against which you did the O_DIRECT get "new" pages but your
+O_DIRECT goes on with the "old" pages) but doing O_DIRECT and fork
+concurently is asking for trouble.
 
-  Here are the changes found in Patchwork_17997 that come from known issues:
+> =
 
-### IGT changes ###
+> If you have a write pin on a page then it should not be COW'd into the
+> fork'd process but copied with the originating page remaining with the
+> original mm.
+> =
 
-#### Issues hit ####
+> I wonder if there is some easy way to achive that - if that is the
+> main reason to use notifiers then it would be a better solution.
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8646/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17997/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+Not doable as page refcount can change for things unrelated to GUP, with
+John changes we can identify GUP and we could potentialy copy GUPed page
+instead of COW but this can potentialy slow down fork() and i am not sure
+how acceptable this would be. Also this does not solve GUP against page
+that are already in fork tree ie page P0 is in process A which forks,
+we now have page P0 in process A and B. Now we have process A which forks
+again and we have page P0 in A, B, and C. Here B and C are two branches
+with root in A. B and/or C can keep forking and grow the fork tree.
 
-  * igt@i915_module_load@reload:
-    - fi-bxt-dsi:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8646/fi-bxt-dsi/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17997/fi-bxt-dsi/igt@i915_module_load@reload.html
+Now if read only GUP on P0 happens in C (or B everything is symetrical in
+respect to root A) then P0 might not be the page that is in C after the
+GUP ie if something in C write to the virtual address corresponding to P0
+then a new page might get allocated and the virtual address will no longer
+point to P0 for C.
 
-  
-#### Possible fixes ####
+Semantic was change with 17839856fd588f4ab6b789f482ed3ffd7c403e1f to some
+what "fix" that but GUP fast is still succeptible to this.
 
-  * igt@i915_module_load@reload:
-    - {fi-tgl-dsi}:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6] +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8646/fi-tgl-dsi/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17997/fi-tgl-dsi/igt@i915_module_load@reload.html
+Note that above commit only address the GUP after/while forking. GUP
+before fork() need mmu notifier (or forcing page copy instead of COW).
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8646/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17997/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+Cheers,
+J=E9r=F4me
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8646/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17997/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [DMESG-WARN][11] ([i915#402]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8646/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17997/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8646/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17997/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +4 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8646/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17997/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (44 -> 37)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8646 -> Patchwork_17997
-
-  CI-20190529: 20190529
-  CI_DRM_8646: 149f36f05192e8926ac39392cb7f904a4a9094f0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5714: f0ade50caf38574592886f55bb03cf80c574bb83 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17997: 5dae6c717857aa484adbe45f1e81696c8cf39ce4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5dae6c717857 drm/i915/gt: Show the culmative runtime as part of the engine info
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17997/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
