@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 603A8204069
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 21:30:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D53320406A
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 21:30:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0196E6E845;
-	Mon, 22 Jun 2020 19:30:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7658A6E848;
+	Mon, 22 Jun 2020 19:30:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7FE26E846
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 19:30:16 +0000 (UTC)
-IronPort-SDR: jzcjs415XwgTUURUvSje1fxgMzKNpCBjOzj76sc13Qq+WQJUQMbNeTtypk/McH8Ryh8dsEnoeU
- oLqikJr0soLA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="132287931"
-X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="132287931"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E22CE6E845
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 19:30:18 +0000 (UTC)
+IronPort-SDR: pon1dp2IUJOsnEAGdaN9qTJCTGfQM0/mpmzMiNVxkyIApVpTOWkDxVxDPJ4EF2i1GOwHfoGVlJ
+ cetvlAdjDeDg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="132287937"
+X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="132287937"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 12:30:16 -0700
-IronPort-SDR: pzKDsY6uc4QVvY3MvpY42AeURaOjuHCn9Qy8vKrCs80tGJ6yhbyVnSi8AauJrcZe0g1kW6OXVJ
- J5xM9bRT38bg==
+ 22 Jun 2020 12:30:18 -0700
+IronPort-SDR: QeRpB6aNNXboQNppvkZ5qkVko0CqK+Alo6ekK0MI59kBkYRewkh5iupkPt/9YCJi0tvzBc7KAb
+ yy43jRGiejNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="292948912"
+X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="292948927"
 Received: from unknown (HELO linuxpresi1-desktop.iind.intel.com)
  ([10.223.74.152])
- by orsmga002.jf.intel.com with ESMTP; 22 Jun 2020 12:30:14 -0700
+ by orsmga002.jf.intel.com with ESMTP; 22 Jun 2020 12:30:16 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 23 Jun 2020 01:30:29 +0530
-Message-Id: <20200622200038.14034-3-uma.shankar@intel.com>
+Date: Tue, 23 Jun 2020 01:30:30 +0530
+Message-Id: <20200622200038.14034-4-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200622200038.14034-1-uma.shankar@intel.com>
 References: <20200622200038.14034-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v5 02/11] drm/i915/display: Enable HDR on gen9 devices
- with MCA Lspcon
+Subject: [Intel-gfx] [v5 03/11] drm/i915/display: Attach HDR property for
+ capable Gen9 devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,120 +56,33 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Gen9 hardware supports HDMI2.0 through LSPCON chips.
-Extending HDR support for MCA LSPCON based GEN9 devices.
+Attach HDR property for Gen9 devices with MCA LSPCON
+chips.
 
-SOC will drive LSPCON as DP and send HDR metadata as standard
-DP SDP packets. LSPCON will be set to operate in PCON mode,
-will receive the metadata and create Dynamic Range and
-Mastering Infoframe (DRM packets) and send it to HDR capable
-HDMI sink devices.
-
-v2: Re-used hsw infoframe write implementation for HDR metadata
-for LSPCON as per Ville's suggestion.
-
-v3: Addressed Jani Nikula's review comments.
+v2: Cleaned HDR property attachment logic based on capability
+as per Jani Nikula's suggestion.
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c   | 10 ++++++
- drivers/gpu/drm/i915/display/intel_lspcon.c | 37 +++++++++++++++------
- drivers/gpu/drm/i915/display/intel_lspcon.h |  5 ++-
- 3 files changed, 40 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lspcon.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index a31a98d26882..53103ef72a58 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -590,6 +590,16 @@ static u32 hsw_infoframes_enabled(struct intel_encoder *encoder,
- 	return val & mask;
- }
- 
-+void lspcon_drm_write_infoframe(struct intel_encoder *encoder,
-+				const struct intel_crtc_state *crtc_state,
-+				unsigned int type,
-+				const void *frame, ssize_t len)
-+{
-+	drm_dbg_kms(encoder->base.dev, "Update HDR metadata for lspcon\n");
-+	/* It uses the legacy hsw implementation for the same */
-+	hsw_write_infoframe(encoder, crtc_state, type, frame, len);
-+}
-+
- static const u8 infoframe_type_to_idx[] = {
- 	HDMI_PACKET_TYPE_GENERAL_CONTROL,
- 	HDMI_PACKET_TYPE_GAMUT_METADATA,
 diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index 70bd564cae46..95d29c379076 100644
+index 95d29c379076..7113c2efdab4 100644
 --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
 +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -461,27 +461,42 @@ void lspcon_write_infoframe(struct intel_encoder *encoder,
- 			    unsigned int type,
- 			    const void *frame, ssize_t len)
- {
--	bool ret;
-+	bool ret = true;
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	struct intel_lspcon *lspcon = enc_to_intel_lspcon(encoder);
+@@ -626,6 +626,11 @@ bool lspcon_init(struct intel_digital_port *intel_dig_port)
  
--	/* LSPCON only needs AVI IF */
--	if (type != HDMI_INFOFRAME_TYPE_AVI)
-+	/*
-+	 * Supporting HDR on MCA LSPCON
-+	 * Todo: Add support for Parade later
-+	 */
-+	if (type == HDMI_PACKET_TYPE_GAMUT_METADATA &&
-+	    lspcon->vendor != LSPCON_VENDOR_MCA)
- 		return;
+ 	lspcon_detect_hdr_capability(lspcon);
  
--	if (lspcon->vendor == LSPCON_VENDOR_MCA)
--		ret = _lspcon_write_avi_infoframe_mca(&intel_dp->aux,
--						      frame, len);
--	else
--		ret = _lspcon_write_avi_infoframe_parade(&intel_dp->aux,
--							 frame, len);
-+	switch (type) {
-+	case HDMI_INFOFRAME_TYPE_AVI:
-+		if (lspcon->vendor == LSPCON_VENDOR_MCA)
-+			ret = _lspcon_write_avi_infoframe_mca(&intel_dp->aux,
-+							      frame, len);
-+		else
-+			ret = _lspcon_write_avi_infoframe_parade(&intel_dp->aux,
-+								 frame, len);
-+		break;
-+	case HDMI_PACKET_TYPE_GAMUT_METADATA:
-+		lspcon_drm_write_infoframe(encoder, crtc_state,
-+					   HDMI_PACKET_TYPE_GAMUT_METADATA,
-+					   frame, VIDEO_DIP_DATA_SIZE);
-+		break;
-+	default:
-+		return;
-+	}
- 
- 	if (!ret) {
--		DRM_ERROR("Failed to write AVI infoframes\n");
-+		DRM_ERROR("Failed to write infoframes\n");
- 		return;
- 	}
- 
--	DRM_DEBUG_DRIVER("AVI infoframes updated successfully\n");
-+	DRM_DEBUG_DRIVER("Infoframes updated successfully\n");
- }
- 
- void lspcon_read_infoframe(struct intel_encoder *encoder,
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
-index 37cfddf8a9c5..b2051f236223 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.h
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-@@ -34,5 +34,8 @@ u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *pipe_config);
- void lspcon_ycbcr420_config(struct drm_connector *connector,
- 			    struct intel_crtc_state *crtc_state);
--
-+void lspcon_drm_write_infoframe(struct intel_encoder *encoder,
-+				const struct intel_crtc_state *crtc_state,
-+				unsigned int type,
-+				const void *frame, ssize_t len);
- #endif /* __INTEL_LSPCON_H__ */
++	if (lspcon->hdr_supported)
++		drm_object_attach_property(&connector->base,
++					   connector->dev->mode_config.hdr_output_metadata_property,
++					   0);
++
+ 	connector->ycbcr_420_allowed = true;
+ 	lspcon->active = true;
+ 	DRM_DEBUG_KMS("Success: LSPCON init\n");
 -- 
 2.22.0
 
