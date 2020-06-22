@@ -2,56 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FE7E203CB4
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 18:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19BAC203CB7
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 18:38:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EE586E0F2;
-	Mon, 22 Jun 2020 16:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 168416E101;
+	Mon, 22 Jun 2020 16:38:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B03A16E0F2
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 16:37:27 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id z13so5594110wrw.5
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 09:37:27 -0700 (PDT)
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 093206E101
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 16:38:04 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id g21so226416wmg.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 09:38:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
- bh=RR7Dr2z+5lOxj+N2NVbRCcIekzaWb1z/d9XmonkDvhY=;
- b=HXwzK7sZ4OHtVRPFbbp4qEZm1uDajGBowEhWIsuAsNWYRh9PMFYqxAVCQcHvn0u8Ko
- xvKQ7CKyMdH7/+cDQl5Ess7PGQAOz3N60NUKSpkNgZ+lJrJ+ZBmu5rSdGnR++QdlcojE
- L0ats/32pXaS752soKg8TKPoJU1i84N4aGVeiiu7B9b7zbIfEgJ06EVf55WimxFV+Zms
- OI9kEVZ4M4OLPvtI31uHK9Lvat239LZA3MttnNkUk3NToU4XIXi4wOkobtHgLauL+XLa
- Skjlw3Z9pe7KXNnFGZ0HAdNvaFZOaoJUlVPV19yGyuGWEoPnreVeYfzHto+yvQqZermS
- IW4A==
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=yYl1S09BhYzy1kDg413mkO4eI8VVrmvMrHgWcI9as4U=;
+ b=ElAxY3v+hzdwfzrF5SlMjgxlkYDJ/5+OqEZP66S1hnYktOJe/nGRaV55/2WzSt4r5t
+ C4Gs0e/NoL9Y5GFjdh1DiJSkhXbTJckKartM3EPVukhl56Euwg/J7xvRcQpc4WvYHkoH
+ T+i/dUoftgEQUCbVz+Mtj0ndnQFaXSNlBV4nCXCMg4l5v895K10d58nFv1b3dv++/EoZ
+ +gtI2Wm8KiwMYt0tVNF/lxdxoWGdcAN6O0Yx1Zauxn74ULGlA/mdqMIL7Y0O9axHQTFD
+ co40iJMWmMxljNpRmrlnT5vcsoK9oIESsiNq5rwHdCOY492PKv+UG9rg7yD+FMXTes69
+ pGXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
- :content-disposition;
- bh=RR7Dr2z+5lOxj+N2NVbRCcIekzaWb1z/d9XmonkDvhY=;
- b=eNtcvKq7X8ctmBS8bkC6sViYJ4SRkK+iBZNrvHUoeu1Mh8iqgDIsv21whejxARt++j
- WKWaodOAfStCM2h7aX5ymUwJwyh3ihZGcKoz2kgM5Xx8FDGM2AauVaHXjejRF1gOz9Z8
- OTxtHnbYd4MmdkyZmVLvV9+/iYlW5CFOP88T68g/YIC0ssCrK6z2Qr1zkpTYtx1V2QCu
- Dn2IxGFO+0XENHXQ5ikT/vsN/xX7zZ8Rzh+WbNLuDZRXrXDv2O4jwbnfWjryMyCn/aLW
- BE0SX+pK6dn24ck4VGr6kQ+Dup6Y2ngqwcvFy/4vGwfwPRTiuMl10s0JDH3LqwELOOcC
- dOXg==
-X-Gm-Message-State: AOAM533PEXiw8SPoXLLa0sK2Xx/rxen+cqOeF46OLHPVA1CN9j39371J
- V5FiFUxV9wKK4vTzpbItQwrm0HnJ
-X-Google-Smtp-Source: ABdhPJwJI9MdSE8B9K8k28UM5BHI0j4sMLgUluGyjXXnhzCuGr7WKUz6SMq6GaqBCygF3oT57452OQ==
-X-Received: by 2002:a5d:56d0:: with SMTP id m16mr19401238wrw.194.1592843845918; 
- Mon, 22 Jun 2020 09:37:25 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=yYl1S09BhYzy1kDg413mkO4eI8VVrmvMrHgWcI9as4U=;
+ b=OUmeviWnWhUsOMwoF+550xwHCOALbrGw80Vtk9bxrFfqXilGWo4/KkqqYXOtD4Ii6L
+ Nh2mMFMhy3OG1H+EyR6zlbiwHA60rrUU1v13F+mIw6Yvj422JEG7XNqgmLGkeC/1C1Sp
+ gsA1v1ATb6S20zlkmYj1ViGy5DqVw0lMFSWiHN6oqvkARAnSXgi5jucVkkZxOD6to+Sb
+ uUKq9vfySEOliwg3I6QdDVHNm5Y6uDaNvyp8p0/QWLe6OAh25nSX/pS4bRGfkp2iq25z
+ rmJ91zsWhR2tO5GZrHm+3Iu8pVXEyMDFZ3m3rEHSsYyzMUiCS8IgI0j/rY1WlfU3baQH
+ dXzw==
+X-Gm-Message-State: AOAM533UFCo2JthhNhRea4gRt7yMNvmrtZ6SWmFh5L2VnCbawbUTyAPo
+ D5U3N2bDCRxb2dmL76tgrSkjUVfl
+X-Google-Smtp-Source: ABdhPJwTeTjh4wfdzZWWaUGKf0dVZTNMfndbI5TDLXYU8D5lzannE9SMp1INY+PJTwQ2GMi4eOIB/A==
+X-Received: by 2002:a7b:c249:: with SMTP id b9mr18238626wmj.143.1592843882545; 
+ Mon, 22 Jun 2020 09:38:02 -0700 (PDT)
 Received: from smtp.gmail.com ([2001:818:e238:a000:a4ba:2182:c4c1:3b20])
- by smtp.gmail.com with ESMTPSA id f14sm690498wro.90.2020.06.22.09.37.24
+ by smtp.gmail.com with ESMTPSA id z9sm79796wmi.41.2020.06.22.09.38.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Jun 2020 09:37:25 -0700 (PDT)
-Date: Mon, 22 Jun 2020 13:37:19 -0300
+ Mon, 22 Jun 2020 09:38:02 -0700 (PDT)
+Date: Mon, 22 Jun 2020 13:37:55 -0300
 From: Melissa Wen <melissa.srw@gmail.com>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <cover.1592840756.git.melissa.srw@gmail.com>
+Message-ID: <0cef6a7b7dbd8510de62f0c17e8cd952cfa84678.1592840756.git.melissa.srw@gmail.com>
+References: <cover.1592840756.git.melissa.srw@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-Subject: [Intel-gfx] [PATCH i-g-t 0/2] test/kms_cursor_crc: tie some loose
- ends in the prepare_crtc
+In-Reply-To: <cover.1592840756.git.melissa.srw@gmail.com>
+Subject: [Intel-gfx] [PATCH i-g-t 1/2] test/kms_cursor_crc: release old
+ pipe_crc before create a new one
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,37 +74,29 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Using vkms, when running a sequence of subtests from kms_cursor_crc,
-several strange timeout failures occurred. For example, running the
-alpha-opaque cursor twice, the first run is successful and the second
-fails. In addition, if we run the entire test in a call (i.e.: sudo
-IGT_FORCE_DRIVER=vkms build/tests/kms_cursor_crc), the first subtest
-passes and the rest of the subtests fail - even those that succeed when
-run in isolation.
+When a subtest fails, it skips the cleanup, and its pipe_crc remains allocated.
+As a consequence, the following subtest also fails (timeout) when trying to
+create a new one. This patch releases any remaining pipe_crc to enable the
+creation of a new one for the next subtest.
 
-igt_debugfs-DEBUG: Opening debugfs directory '/sys/kernel/debug/dri/0'
-igt_core-INFO: Timed out: Opening crc fd, and poll for first CRC.
+Signed-off-by: Melissa Wen <melissa.srw@gmail.com>
+---
+ tests/kms_cursor_crc.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-During my debugging process, I found two issues that were blocking
-execution and the solution is in this patchset:
-
-1 - When a subtest fails, it exits and skips the cleaning step, leaving
-the pipe_crc allocated and blocked for the next subtest. The first patch
-fixes it by releasing any old pipe_crc before creating a new one.
-
-2 - When the CRC capture process starts, it enters an endless wait; this
-seems to be related to the fact that the VKMS simulates vblank events,
-generating a time mismatch between vblank and CRC capture. Waiting for
-vblank before starting the capture process sets the pace, as shown in
-the second patch.
-
-Melissa Wen (2):
-  test/kms_cursor_crc: release old pipe_crc before create a new one
-  test/kms_cursor_crc: align the start of the CRC capture to a vblank
-
- tests/kms_cursor_crc.c | 3 +++
- 1 file changed, 3 insertions(+)
-
+diff --git a/tests/kms_cursor_crc.c b/tests/kms_cursor_crc.c
+index f105e295..5976df5f 100644
+--- a/tests/kms_cursor_crc.c
++++ b/tests/kms_cursor_crc.c
+@@ -423,6 +423,8 @@ static void prepare_crtc(data_t *data, igt_output_t *output,
+ 	igt_display_commit(display);
+ 
+ 	/* create the pipe_crc object for this pipe */
++	if (data->pipe_crc)
++		igt_pipe_crc_free(data->pipe_crc);
+ 	data->pipe_crc = igt_pipe_crc_new(data->drm_fd, data->pipe,
+ 					  INTEL_PIPE_CRC_SOURCE_AUTO);
+ 
 -- 
 2.27.0
 
