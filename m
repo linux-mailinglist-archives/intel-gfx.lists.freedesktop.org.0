@@ -1,67 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFA3203F18
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 20:25:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50BA9203F38
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 20:35:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B4036E303;
-	Mon, 22 Jun 2020 18:25:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A48E76E8A7;
+	Mon, 22 Jun 2020 18:35:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C30B26E303
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 18:25:10 +0000 (UTC)
-IronPort-SDR: 5pESzhDefk2Hdlg9AxgZk6SIhhDcf+TJ6WgEvUNcrRBcYgcxcLuaO8g0BMbA/6X+njdxO3M3b1
- 9K/kxPnQWNKw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="124116915"
-X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="124116915"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D25D76E8A7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 18:35:20 +0000 (UTC)
+IronPort-SDR: VT4hguviBnwAyb48ESS/1bsDXoA9e17YVGHH3ST3/TNWaIIE91Iy0UE2Ibp6I82WdE1dC17dVB
+ 6ZAL8Cv3hnWA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="142094166"
+X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="142094166"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 11:25:09 -0700
-IronPort-SDR: 2EheGwQHllIFnLWD9OHTvklHNWmGzu5z8nbDzniWWKYNsfaXoTgsvDHS989YZdakaapF02SZMg
- 65fDUbNSv4zg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="353545228"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by orsmga001.jf.intel.com with ESMTP; 22 Jun 2020 11:25:08 -0700
-Received: from bgsmsx103.gar.corp.intel.com (10.223.4.130) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 22 Jun 2020 11:25:08 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.234]) by
- BGSMSX103.gar.corp.intel.com ([169.254.4.53]) with mapi id 14.03.0439.000;
- Mon, 22 Jun 2020 23:55:05 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [v3 6/8] drm/i915/display: Implement infoframes readback for
- LSPCON
-Thread-Index: AQHWP1bx/wUxv0hg90aV/S8mR5DuTqjTNCkAgAAEAwCABvGl8P//qRaAgABdDwCACmMGkIAAAAkAgABeCKD//6yBAIAAZ7ow
-Date: Mon, 22 Jun 2020 18:25:04 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F8256D4B7@BGSMSX104.gar.corp.intel.com>
-References: <20200610191232.11620-1-uma.shankar@intel.com>
- <20200610191232.11620-7-uma.shankar@intel.com>
- <20200611154650.GB6112@intel.com> <20200611160112.GC6112@intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F8255F3E0@BGSMSX104.gar.corp.intel.com>
- <20200615205233.GS6112@intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F8255F444@BGSMSX104.gar.corp.intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F8256CDCF@BGSMSX104.gar.corp.intel.com>
- <20200622170246.GP6112@intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F8256D2B9@BGSMSX104.gar.corp.intel.com>
- <20200622174028.GR6112@intel.com>
-In-Reply-To: <20200622174028.GR6112@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2020 11:35:20 -0700
+IronPort-SDR: ZZZTbL910/v/5un8Cfd7toR/OQxyvrNPoWE0esAKi5VM/xSHVLv4S3kQXgLBUDQR28wTrwo4Ju
+ qENLNiFaMX1g==
+X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="451932790"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2020 11:35:19 -0700
+Date: Mon, 22 Jun 2020 21:35:09 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20200622183509.GB25163@ideak-desk.fi.intel.com>
+References: <20200618004240.16263-1-lucas.demarchi@intel.com>
+ <20200618004240.16263-21-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v3 6/8] drm/i915/display: Implement infoframes
- readback for LSPCON
+Content-Disposition: inline
+In-Reply-To: <20200618004240.16263-21-lucas.demarchi@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v2 20/32] drm/i915/dg1: add hpd interrupt
+ handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,220 +51,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Monday, June 22, 2020 11:10 PM
-> To: Shankar, Uma <uma.shankar@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; jani.nikula@linux.intel.com; Mun, Gw=
-an-
-> gyeong <gwan-gyeong.mun@intel.com>
-> Subject: Re: [v3 6/8] drm/i915/display: Implement infoframes readback for
-> LSPCON
+On Wed, Jun 17, 2020 at 05:42:28PM -0700, Lucas De Marchi wrote:
+> DG1 has one more combo phy port, no TC and all irq handling goes through
+> SDE, like for MCC.
 > =
 
-> On Mon, Jun 22, 2020 at 05:17:50PM +0000, Shankar, Uma wrote:
-> >
-> > > > > > > > -----Original Message-----
-> > > > > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > > > > Sent: Thursday, June 11, 2020 9:31 PM
-> > > > > > > > To: Shankar, Uma <uma.shankar@intel.com>
-> > > > > > > > Cc: intel-gfx@lists.freedesktop.org;
-> > > > > > > > jani.nikula@linux.intel.com; Mun, Gwan- gyeong
-> > > > > > > > <gwan-gyeong.mun@intel.com>
-> > > > > > > > Subject: Re: [v3 6/8] drm/i915/display: Implement
-> > > > > > > > infoframes readback for LSPCON
-> > > > > > > >
-> > > > > > > > On Thu, Jun 11, 2020 at 06:46:50PM +0300, Ville Syrj=E4l=E4=
- wrote:
-> > > > > > > > > On Thu, Jun 11, 2020 at 12:42:30AM +0530, Uma Shankar wro=
-te:
-> > > > > > > > > > Implemented Infoframes enabled readback for LSPCON devi=
-ces.
-> > > > > > > > > > This will help align the implementation with state
-> > > > > > > > > > readback infrastructure.
-> > > > > > > > > >
-> > > > > > > > > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > > > > > > > > > ---
-> > > > > > > > > >  drivers/gpu/drm/i915/display/intel_lspcon.c | 63
-> > > > > > > > > > ++++++++++++++++++++-
-> > > > > > > > > >  1 file changed, 61 insertions(+), 2 deletions(-)
-> > > > > > > > > >
-> > > > > > > > > > diff --git
-> > > > > > > > > > a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > > > > > > > > > b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > > > > > > > > > index 9034ce6f20b9..0ebe9a700291 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > > > > > > > > > @@ -576,11 +576,70 @@ void
-> > > > > > > > > > lspcon_set_infoframes(struct intel_encoder
-> > > > > > > > *encoder,
-> > > > > > > > > >  				  buf, ret);
-> > > > > > > > > >  }
-> > > > > > > > > >
-> > > > > > > > > > +static bool
-> > > > > > > > > > +_lspcon_read_avi_infoframe_enabled_mca(struct
-> > > > > > > > > > +drm_dp_aux *aux) {
-> > > > > > > > > > +	int ret;
-> > > > > > > > > > +	u32 val =3D 0;
-> > > > > > > > > > +	u16 reg =3D LSPCON_MCA_AVI_IF_CTRL;
-> > > > > > > > > > +
-> > > > > > > > > > +	ret =3D drm_dp_dpcd_read(aux, reg, &val, 1);
-> > > > > > > > > > +	if (ret < 0) {
-> > > > > > > > > > +		DRM_ERROR("DPCD read failed, address 0x%x\n",
-> reg);
-> > > > > > > > > > +		return false;
-> > > > > > > > > > +	}
-> > > > > > > > > > +
-> > > > > > > > > > +	if (val & LSPCON_MCA_AVI_IF_KICKOFF)
-> > > > > > > > > > +		return true;
-> > > > > > > > > > +
-> > > > > > > > > > +	return false;
-> > > > > > > > >
-> > > > > > > > > return val & ...;
-> > > > > > > > >
-> > > > > > > > > > +}
-> > > > > > > > > > +
-> > > > > > > > > > +static bool
-> > > > > > > > > > +_lspcon_read_avi_infoframe_enabled_parade(struct
-> > > > > > > > > > +drm_dp_aux *aux) {
-> > > > > > > > > > +	int ret;
-> > > > > > > > > > +	u32 val =3D 0;
-> > > > > > > > > > +	u16 reg =3D LSPCON_PARADE_AVI_IF_CTRL;
-> > > > > > > > > > +
-> > > > > > > > > > +	ret =3D drm_dp_dpcd_read(aux, reg, &val, 1);
-> > > > > > > > > > +	if (ret < 0) {
-> > > > > > > > > > +		DRM_ERROR("DPCD read failed, address 0x%x\n",
-> reg);
-> > > > > > > > > > +		return false;
-> > > > > > > > > > +	}
-> > > > > > > > > > +
-> > > > > > > > > > +	if (val & LSPCON_PARADE_AVI_IF_KICKOFF)
-> > > > > > > > > > +		return true;
-> > > > > > > > > > +
-> > > > > > > > > > +	return false;
-> > > > > > > > > > +}
-> > > > > > > > > > +
-> > > > > > > > > >  u32 lspcon_infoframes_enabled(struct intel_encoder *en=
-coder,
-> > > > > > > > > >  			      const struct intel_crtc_state
-> *pipe_config)  {
-> > > > > > > > > > -	/* FIXME actually read this from the hw */
-> > > > > > > > > > -	return 0;
-> > > > > > > > > > +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder=
-);
-> > > > > > > > > > +	struct intel_lspcon *lspcon =3D
-> enc_to_intel_lspcon(encoder);
-> > > > > > > > > > +	struct drm_i915_private *dev_priv =3D to_i915(encoder-
-> >base.dev);
-> > > > > > > > > > +	bool infoframes_enabled;
-> > > > > > > > > > +	u32 mask =3D 0;
-> > > > > > > > > > +	u32 val;
-> > > > > > > > > > +
-> > > > > > > > > > +	if (lspcon->vendor =3D=3D LSPCON_VENDOR_MCA)
-> > > > > > > > > > +		infoframes_enabled =3D
-> > > > > > > > _lspcon_read_avi_infoframe_enabled_mca(&intel_dp->aux);
-> > > > > > > > > > +	else
-> > > > > > > > > > +		infoframes_enabled =3D
-> > > > > > > > > > +_lspcon_read_avi_infoframe_enabled_parade(&intel_dp->
-> > > > > > > > > > +aux)
-> > > > > > > > > > +;
-> > > > > > > > > > +
-> > > > > > > > > > +	if (infoframes_enabled)
-> > > > > > > > > > +		return true;
-> > > > > > > > >
-> > > > > > > > > This is supposed to return a bitmask of all enabled infof=
-rames.
-> > > > > > >
-> > > > > > > > Actually since we're dealing with both the LSPCON specific
-> > > > > > > > stuff and DIP stuff for the DRM infoframe I think we
-> > > > > > > > should stop using using intel_hdmi_infoframes_enabled(),
-> > > > > > > > and instead provide a LSPCON specific replacement for it.
-> > > > > > > > That way we can directly return the abstract bitmask
-> > > > > > > > instead of pretending to return a bitmask of
-> > > > > the DIP bits.
-> > > >
-> > > > We have DP (VSC etc) packets also managed as HDMI infoframes only.
-> > > > We can keep the same with bitmask as VIDEO_DIP_ENABLE_AVI_HSW for
-> > > > AVI and similarly VIDEO_DIP_ENABLE_GMP_HSW for DRM (HDR metadata).
-> > > > This will
-> > > help all the helper align appropriately even in the intel_dump_pipe_c=
-onfig.
-> > >
-> > > intel_dump_infoframe() does not use any platform specific bitmasks.
-> > > So I don't understand what you're talking about here.
-> >
-> > What I meant is that if we continue to use the existing values and
-> > bitmask, we can have lspcon infoframes_enabled return the appropriate
-> > type of infoframe which is active (as you suggested) and later with
-> > intel_dump_pipe_config when it checks for intel_hdmi_infoframe_enable, =
-we
-> will get a matching value in pipe_config->infoframes.enable and be able t=
-o dump
-> them as well. Hope I am on same page with you here.
+> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_irq.c | 57 +++++++++++++++++++++++++++++----
+>  drivers/gpu/drm/i915/i915_reg.h |  8 +++++
+>  2 files changed, 59 insertions(+), 6 deletions(-)
 > =
 
-> Still don't really get  what you're saying.
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
+irq.c
+> index 48e1686df3416..3707f9231171f 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -167,6 +167,13 @@ static const u32 hpd_tgp[HPD_NUM_PINS] =3D {
+>  	[HPD_PORT_I] =3D SDE_TC_HOTPLUG_ICP(PORT_TC6),
+>  };
+>  =
+
+> +static const u32 hpd_dg1_sde[HPD_NUM_PINS] =3D {
+> +	[HPD_PORT_A] =3D SDE_DDI_HOTPLUG_ICP(PHY_A),
+> +	[HPD_PORT_B] =3D SDE_DDI_HOTPLUG_ICP(PHY_B),
+> +	[HPD_PORT_D] =3D SDE_DDI_HOTPLUG_ICP(PHY_C),
+> +	[HPD_PORT_E] =3D SDE_DDI_HOTPLUG_ICP(PHY_D),
+
+The above 2 entries look incorrect. encoder->hpd_pin will be assigned
+based on the encoder/port's PHY (see intel_hpd_pin_default()). On DG1
+port D is connected to PHY C and port E is connected to PHY D. So the
+above two pin definitions should be:
+
+	[HPD_PORT_C] =3D SDE_DDI_HOTPLUG_ICP(PHY_C),
+	[HPD_PORT_D] =3D SDE_DDI_HOTPLUG_ICP(PHY_D),
+
+> +};
+> +
+>  static void intel_hpd_init_pins(struct drm_i915_private *dev_priv)
+>  {
+>  	struct i915_hotplug *hpd =3D &dev_priv->hotplug;
+> @@ -193,10 +200,13 @@ static void intel_hpd_init_pins(struct drm_i915_pri=
+vate *dev_priv)
+>  	else
+>  		hpd->hpd =3D hpd_ilk;
+>  =
+
+> -	if (!HAS_PCH_SPLIT(dev_priv) || HAS_PCH_NOP(dev_priv))
+> +	if ((INTEL_PCH_TYPE(dev_priv) < PCH_DG1) &&
+> +	    (!HAS_PCH_SPLIT(dev_priv) || HAS_PCH_NOP(dev_priv)))
+>  		return;
+>  =
+
+> -	if (HAS_PCH_TGP(dev_priv) || HAS_PCH_JSP(dev_priv))
+> +	if (HAS_PCH_DG1(dev_priv))
+> +		hpd->pch_hpd =3D hpd_dg1_sde;
+> +	else if (HAS_PCH_TGP(dev_priv) || HAS_PCH_JSP(dev_priv))
+>  		hpd->pch_hpd =3D hpd_tgp;
+>  	else if (HAS_PCH_ICP(dev_priv) || HAS_PCH_MCC(dev_priv))
+>  		hpd->pch_hpd =3D hpd_icp;
+> @@ -1145,6 +1155,22 @@ static bool tgp_tc_port_hotplug_long_detect(enum h=
+pd_pin pin, u32 val)
+>  	}
+>  }
+>  =
+
+> +static bool dg1_ddi_port_hotplug_long_detect(enum hpd_pin pin, u32 val)
+> +{
+> +	switch (pin) {
+> +	case HPD_PORT_A:
+> +		return val & SHOTPLUG_CTL_DDI_HPD_LONG_DETECT(PORT_A);
+> +	case HPD_PORT_B:
+> +		return val & SHOTPLUG_CTL_DDI_HPD_LONG_DETECT(PORT_B);
+> +	case HPD_PORT_D:
+> +		return val & SHOTPLUG_CTL_DDI_HPD_LONG_DETECT(PORT_C);
+> +	case HPD_PORT_E:
+> +		return val & SHOTPLUG_CTL_DDI_HPD_LONG_DETECT(PORT_D);
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+>  static bool spt_port_hotplug2_long_detect(enum hpd_pin pin, u32 val)
+>  {
+>  	switch (pin) {
+> @@ -1893,13 +1919,20 @@ static void icp_irq_handler(struct drm_i915_priva=
+te *dev_priv, u32 pch_iir)
+>  	u32 ddi_hotplug_trigger, tc_hotplug_trigger;
+>  	u32 pin_mask =3D 0, long_mask =3D 0;
+>  	bool (*tc_port_hotplug_long_detect)(enum hpd_pin pin, u32 val);
+> +	bool (*ddi_port_hotplug_long_detect)(enum hpd_pin pin, u32 val);
+>  =
+
+> -	if (HAS_PCH_TGP(dev_priv)) {
+> +	if (HAS_PCH_DG1(dev_priv)) {
+> +		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_DG1;
+> +		ddi_port_hotplug_long_detect =3D dg1_ddi_port_hotplug_long_detect;
+> +		tc_hotplug_trigger =3D 0;
+> +	} else if (HAS_PCH_TGP(dev_priv)) {
+>  		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_TGP;
+> +		ddi_port_hotplug_long_detect =3D icp_ddi_port_hotplug_long_detect;
+>  		tc_hotplug_trigger =3D pch_iir & SDE_TC_MASK_TGP;
+>  		tc_port_hotplug_long_detect =3D tgp_tc_port_hotplug_long_detect;
+>  	} else if (HAS_PCH_JSP(dev_priv)) {
+>  		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_TGP;
+> +		ddi_port_hotplug_long_detect =3D icp_ddi_port_hotplug_long_detect;
+>  		tc_hotplug_trigger =3D 0;
+>  	} else if (HAS_PCH_MCC(dev_priv)) {
+>  		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_ICP;
+> @@ -1911,6 +1944,7 @@ static void icp_irq_handler(struct drm_i915_private=
+ *dev_priv, u32 pch_iir)
+>  			 INTEL_PCH_TYPE(dev_priv));
+>  =
+
+>  		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_ICP;
+> +		ddi_port_hotplug_long_detect =3D icp_ddi_port_hotplug_long_detect;
+>  		tc_hotplug_trigger =3D pch_iir & SDE_TC_MASK_ICP;
+>  		tc_port_hotplug_long_detect =3D icp_tc_port_hotplug_long_detect;
+>  	}
+> @@ -1924,7 +1958,7 @@ static void icp_irq_handler(struct drm_i915_private=
+ *dev_priv, u32 pch_iir)
+>  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+>  				   ddi_hotplug_trigger, dig_hotplug_reg,
+>  				   dev_priv->hotplug.pch_hpd,
+> -				   icp_ddi_port_hotplug_long_detect);
+> +				   ddi_port_hotplug_long_detect);
+>  	}
+>  =
+
+>  	if (tc_hotplug_trigger) {
+> @@ -3147,6 +3181,13 @@ static void jsp_hpd_irq_setup(struct drm_i915_priv=
+ate *dev_priv)
+>  			  TGP_DDI_HPD_ENABLE_MASK, 0);
+>  }
+>  =
+
+> +static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
+> +{
+> +	icp_hpd_irq_setup(dev_priv,
+> +			  SDE_DDI_MASK_DG1, 0,
+> +			  DG1_DDI_HPD_ENABLE_MASK, 0);
+> +}
+> +
+>  static void gen11_hpd_detection_setup(struct drm_i915_private *dev_priv)
+>  {
+>  	u32 hotplug;
+> @@ -3535,7 +3576,9 @@ static void icp_irq_postinstall(struct drm_i915_pri=
+vate *dev_priv)
+>  	gen3_assert_iir_is_zero(&dev_priv->uncore, SDEIIR);
+>  	I915_WRITE(SDEIMR, ~mask);
+>  =
+
+> -	if (HAS_PCH_TGP(dev_priv))
+> +	if (HAS_PCH_DG1(dev_priv))
+> +		icp_hpd_detection_setup(dev_priv, DG1_DDI_HPD_ENABLE_MASK, 0);
+> +	else if (HAS_PCH_TGP(dev_priv))
+>  		icp_hpd_detection_setup(dev_priv, TGP_DDI_HPD_ENABLE_MASK,
+>  					TGP_TC_HPD_ENABLE_MASK);
+>  	else if (HAS_PCH_JSP(dev_priv))
+> @@ -4051,7 +4094,9 @@ void intel_irq_init(struct drm_i915_private *dev_pr=
+iv)
+>  		if (I915_HAS_HOTPLUG(dev_priv))
+>  			dev_priv->display.hpd_irq_setup =3D i915_hpd_irq_setup;
+>  	} else {
+> -		if (HAS_PCH_JSP(dev_priv))
+> +		if (HAS_PCH_DG1(dev_priv))
+> +			dev_priv->display.hpd_irq_setup =3D dg1_hpd_irq_setup;
+> +		else if (HAS_PCH_JSP(dev_priv))
+>  			dev_priv->display.hpd_irq_setup =3D jsp_hpd_irq_setup;
+>  		else if (HAS_PCH_MCC(dev_priv))
+>  			dev_priv->display.hpd_irq_setup =3D mcc_hpd_irq_setup;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 6649aeca25d72..13a989f5e8dd3 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -8168,6 +8168,10 @@ enum {
+>  					 SDE_TC_HOTPLUG_ICP(PORT_TC3) | \
+>  					 SDE_TC_HOTPLUG_ICP(PORT_TC2) | \
+>  					 SDE_TC_HOTPLUG_ICP(PORT_TC1))
+> +#define SDE_DDI_MASK_DG1		(SDE_DDI_HOTPLUG_ICP(PORT_D) | \
+> +					 SDE_DDI_HOTPLUG_ICP(PORT_C) | \
+> +					 SDE_DDI_HOTPLUG_ICP(PORT_B) | \
+> +					 SDE_DDI_HOTPLUG_ICP(PORT_A))
+>  =
+
+>  #define SDEISR  _MMIO(0xc4000)
+>  #define SDEIMR  _MMIO(0xc4004)
+> @@ -8367,6 +8371,10 @@ enum {
+>  #define TGP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(PORT_TC6) | \
+>  					 ICP_TC_HPD_ENABLE(PORT_TC5) | \
+>  					 ICP_TC_HPD_ENABLE_MASK)
+> +#define DG1_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_D) | \
+> +					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_C) | \
+> +					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_B) | \
+> +					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_A))
+>  =
+
+>  #define _PCH_DPLL_A              0xc6014
+>  #define _PCH_DPLL_B              0xc6018
+> -- =
+
+> 2.26.2
 > =
 
-> What I am saying is we have something like:
-> =
-
-> intel_lspcon_infoframes_enabled()
-> {
-> 	u32 enabled =3D 0;
-> =
-
-> 	if (lspcon_avi_enabled)
-> 		enabled |=3D
-> intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_AVI);
-> =
-
-> 	if (dip_gmp_enabled)
-> 		enabled |=3D
-> intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA);
-> =
-
-> 	return enabled;
-> }
-> =
-
-> Or I suppose we could even do something like:
-> =
-
-> intel_lspcon_infoframes_enabled()
-> {
-> 	u32 enabled =3D intel_hdmi_infoframes_enabled();
-> =
-
-> 	if (lspcon_avi_enabled)
-> 		enabled |=3D
-> intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_AVI);
-> =
-
-> 	return enabled;
-> }
-> =
-
-> which would be more future proof if we start to use any other DIP stuff.
-
-Got the point now, thanks Ville for patiently clarifying. Will incorporate =
-this and send out
-the next version.
-
-Regards,
-Uma Shankar
-
-> --
-> Ville Syrj=E4l=E4
-> Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
