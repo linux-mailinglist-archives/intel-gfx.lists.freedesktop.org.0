@@ -2,55 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E29A2044C5
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 01:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ED412044DA
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 01:57:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B45D6E932;
-	Mon, 22 Jun 2020 23:50:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D31936E934;
+	Mon, 22 Jun 2020 23:57:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CA776E932
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 23:50:14 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id k6so6119803wrn.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 16:50:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DAIoWrrFnkKWpv01EVB4ThDv/p1eN+gVoz1UJKIDz5Q=;
- b=Dl7JWThOupJKSisSkcdpLT6Ogl/APKoKnTN7G3h3gKq1G1tXo9urCQ01P/AFLROIxg
- IfFjyHtMH9YTAw7EgFC+MF3HBO706A9Nau7w39eHmFXNgDXDgR+nsSR1do9JqntfTK/f
- SKcHZb8HlouHdjPW/T6TRWFPe25CfNoPKIsYVM3LcvltyLwZIvFOyLy7zA7/OM2i1Wl/
- QgYpmbEM2McpbJyfxym2fVSad7S/jOkeFl1uFSmeLHcxRGQ9+TxsX3p1ehs5UbaQy4i7
- heIpoQqbb+5ZIf2EcbZl85o8OcdLVTcJ9IM5/QhA0AJJtDlfvw0CQs17zabpOS/LEbDZ
- ht3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=DAIoWrrFnkKWpv01EVB4ThDv/p1eN+gVoz1UJKIDz5Q=;
- b=RhlLgE8UX6Bl30PF0hqH5YcK7vgsjeH0BKjQVVHMFhHeWu+MXdRajYJ29L7D4s2zk2
- 4DP0SSOBfQWP6tz9k/iZQzgP+fU4CG3LAFkmbw/s115JeB378G1NxO5n+dD6oI2dSRRQ
- LUmhSlfpfbhH0CJLQK6DQ+Y2l2NJkBuaLqcAyavGIwGWUi5XWI8Ludhi/hSXYzyjfBA5
- 6kFj8bt4FdstD7SBPPeJIxJCgZ0gkTYvUEy21R3ZaBu0uaTUkZ2mcZ2d2t+T5U+e3ivb
- dE0U0GbSOsfMZH/W16HxO61ijI1cV7SGcGMQXlu6/E9vl7bvejnHclptCKUCkQKHGK9B
- fSKQ==
-X-Gm-Message-State: AOAM5338jpC3Z6y/2hu0AtT8NzK6JK1w8aBAnCgUaS/dqjXxlLam9GHs
- 9u5d61tRBO8w2eQKdQrpiA1w8WwOYcLzfRJ78kU4HQ==
-X-Google-Smtp-Source: ABdhPJylaf8Xv3U8tHRvRZ7qxQiAnZuHrb9T1uQi0zHssk0oTNaXlA2LyeFclZFoOWnNUmXQMIArqVV/zu+Tt/5psak=
-X-Received: by 2002:adf:f751:: with SMTP id z17mr11916684wrp.114.1592869812939; 
- Mon, 22 Jun 2020 16:50:12 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 807E16E934;
+ Mon, 22 Jun 2020 23:57:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 784ACA47EA;
+ Mon, 22 Jun 2020 23:57:46 +0000 (UTC)
 MIME-Version: 1.0
-References: <20191223195850.25997-1-lucas.demarchi@intel.com>
- <20191223195850.25997-5-lucas.demarchi@intel.com> <87tv5glstg.fsf@intel.com>
- <CAKi4VAKOSLS-mKFgEsBHjw66ZoTXjWdZucgsK3Ogc+OkbPKZ3w@mail.gmail.com>
-In-Reply-To: <CAKi4VAKOSLS-mKFgEsBHjw66ZoTXjWdZucgsK3Ogc+OkbPKZ3w@mail.gmail.com>
-From: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Date: Mon, 22 Jun 2020 16:50:01 -0700
-Message-ID: <CAKi4VAKnYNTisygz-8EW3Yw6xy5n1rpHjox=AqB077TUG-1jwQ@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915/display: start
- description-based ddi initialization
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Mon, 22 Jun 2020 23:57:46 -0000
+Message-ID: <159287026648.9209.13328530318068015923@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200622232821.3093-1-lucas.demarchi@intel.com>
+In-Reply-To: <20200622232821.3093-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgVmFy?=
+ =?utf-8?q?iable_renames?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,209 +38,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 1, 2020 at 11:19 PM Lucas De Marchi
-<lucas.de.marchi@gmail.com> wrote:
->
-> On Tue, Dec 31, 2019 at 1:58 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> >
-> > On Mon, 23 Dec 2019, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> > > For the latest platforms we can share the logic to initialize the the
-> > > ddi, so start moving the most trivial ones to a new setup_outputs_desc()
-> > > function that will be responsible for initialization according to a
-> > > static const table.
-> > >
-> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c  | 96 +++++++++++++------
-> > >  .../drm/i915/display/intel_display_types.h    |  4 +
-> > >  2 files changed, 73 insertions(+), 27 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index 04819b0bd494..b3fb1e03cb0b 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -16221,6 +16221,72 @@ static void intel_pps_init(struct drm_i915_private *dev_priv)
-> > >       intel_pps_unlock_regs_wa(dev_priv);
-> > >  }
-> > >
-> > > +struct intel_output {
-> > > +     /* Initialize DSI if present */
-> > > +     void (*dsi_init)(struct drm_i915_private *i915);
-> >
-> > We'll need to be able to initialize DSI on multiple ports too. I've
-> > already drafted a series to do so, maybe I've even sent it to the
-> > list. Basically you'd pass the port to icl_dsi_init() too.
-> >
-> > I don't want that development to get any more complicated than it
-> > already is.
+== Series Details ==
 
-Did you make progress on that series? Anywhere for me to look at?
-I'd like to respin this series.
+Series: Variable renames
+URL   : https://patchwork.freedesktop.org/series/78714/
+State : success
 
-Lucas De Marchi
+== Summary ==
 
->
-> Right now this is just working with what is there. I don't see a problem
-> to update this series with the additional port argument, but let's
-> keep the series
-> independent from each other.
->
-> Lucas De Marchi
->
-> >
-> > BR,
-> > Jani.
-> >
-> >
-> > > +     struct intel_ddi_port_info ddi_ports[];
-> > > +};
-> > > +
-> > > +static const struct intel_output tgl_output = {
-> > > +     .dsi_init = icl_dsi_init,
-> > > +     .ddi_ports = {
-> > > +             { .port = PORT_A },
-> > > +             { .port = PORT_B },
-> > > +             { .port = PORT_D },
-> > > +             { .port = PORT_E },
-> > > +             { .port = PORT_F },
-> > > +             { .port = PORT_G },
-> > > +             { .port = PORT_H },
-> > > +             { .port = PORT_I },
-> > > +             { .port = PORT_NONE }
-> > > +     }
-> > > +};
-> > > +
-> > > +static const struct intel_output ehl_output = {
-> > > +     .dsi_init = icl_dsi_init,
-> > > +     .ddi_ports = {
-> > > +             { .port = PORT_A },
-> > > +             { .port = PORT_B },
-> > > +             { .port = PORT_C },
-> > > +             { .port = PORT_D },
-> > > +             { .port = PORT_NONE }
-> > > +     }
-> > > +};
-> > > +
-> > > +static const struct intel_output gen9lp_output = {
-> > > +     .dsi_init = vlv_dsi_init,
-> > > +     .ddi_ports = {
-> > > +             { .port = PORT_A },
-> > > +             { .port = PORT_B },
-> > > +             { .port = PORT_C },
-> > > +             { .port = PORT_NONE }
-> > > +     },
-> > > +};
-> > > +
-> > > +/*
-> > > + * Use a description-based approach for platforms that can be supported with a
-> > > + * static table
-> > > + */
-> > > +static void setup_ddi_outputs_desc(struct drm_i915_private *i915)
-> > > +{
-> > > +     const struct intel_output *output;
-> > > +     const struct intel_ddi_port_info *port_info;
-> > > +
-> > > +     if (INTEL_GEN(i915) >= 12)
-> > > +             output = &tgl_output;
-> > > +     else if (IS_ELKHARTLAKE(i915))
-> > > +             output = &ehl_output;
-> > > +     else if (IS_GEN9_LP(i915))
-> > > +             output = &gen9lp_output;
-> > > +
-> > > +     for (port_info = output->ddi_ports;
-> > > +          port_info->port != PORT_NONE; port_info++)
-> > > +             intel_ddi_init(i915, port_info->port);
-> > > +
-> > > +     if (output->dsi_init)
-> > > +             output->dsi_init(i915);
-> > > +}
-> > > +
-> > >  static void intel_setup_outputs(struct drm_i915_private *dev_priv)
-> > >  {
-> > >       struct intel_encoder *encoder;
-> > > @@ -16231,22 +16297,9 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
-> > >       if (!HAS_DISPLAY(dev_priv) || !INTEL_DISPLAY_ENABLED(dev_priv))
-> > >               return;
-> > >
-> > > -     if (INTEL_GEN(dev_priv) >= 12) {
-> > > -             intel_ddi_init(dev_priv, PORT_A);
-> > > -             intel_ddi_init(dev_priv, PORT_B);
-> > > -             intel_ddi_init(dev_priv, PORT_D);
-> > > -             intel_ddi_init(dev_priv, PORT_E);
-> > > -             intel_ddi_init(dev_priv, PORT_F);
-> > > -             intel_ddi_init(dev_priv, PORT_G);
-> > > -             intel_ddi_init(dev_priv, PORT_H);
-> > > -             intel_ddi_init(dev_priv, PORT_I);
-> > > -             icl_dsi_init(dev_priv);
-> > > -     } else if (IS_ELKHARTLAKE(dev_priv)) {
-> > > -             intel_ddi_init(dev_priv, PORT_A);
-> > > -             intel_ddi_init(dev_priv, PORT_B);
-> > > -             intel_ddi_init(dev_priv, PORT_C);
-> > > -             intel_ddi_init(dev_priv, PORT_D);
-> > > -             icl_dsi_init(dev_priv);
-> > > +     if (INTEL_GEN(dev_priv) >= 12 || IS_ELKHARTLAKE(dev_priv) ||
-> > > +         IS_GEN9_LP(dev_priv)) {
-> > > +             setup_ddi_outputs_desc(dev_priv);
-> > >       } else if (IS_GEN(dev_priv, 11)) {
-> > >               intel_ddi_init(dev_priv, PORT_A);
-> > >               intel_ddi_init(dev_priv, PORT_B);
-> > > @@ -16263,17 +16316,6 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
-> > >                       intel_ddi_init(dev_priv, PORT_F);
-> > >
-> > >               icl_dsi_init(dev_priv);
-> > > -     } else if (IS_GEN9_LP(dev_priv)) {
-> > > -             /*
-> > > -              * FIXME: Broxton doesn't support port detection via the
-> > > -              * DDI_BUF_CTL_A or SFUSE_STRAP registers, find another way to
-> > > -              * detect the ports.
-> > > -              */
-> > > -             intel_ddi_init(dev_priv, PORT_A);
-> > > -             intel_ddi_init(dev_priv, PORT_B);
-> > > -             intel_ddi_init(dev_priv, PORT_C);
-> > > -
-> > > -             vlv_dsi_init(dev_priv);
-> > >       } else if (HAS_DDI(dev_priv)) {
-> > >               int found;
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > index a3a067dacf84..4d2f4ee35812 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -1376,6 +1376,10 @@ struct intel_dp_mst_encoder {
-> > >       struct intel_connector *connector;
-> > >  };
-> > >
-> > > +struct intel_ddi_port_info {
-> > > +     enum port port;
-> > > +};
-> > > +
-> > >  static inline enum dpio_channel
-> > >  vlv_dig_port_to_channel(struct intel_digital_port *dig_port)
-> > >  {
-> >
-> > --
-> > Jani Nikula, Intel Open Source Graphics Center
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
->
->
-> --
-> Lucas De Marchi
+CI Bug Log - changes from CI_DRM_8653 -> Patchwork_18006
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18006/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18006 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8653/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18006/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
+    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8653/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18006/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-icl-u2:          [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8653/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18006/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [DMESG-FAIL][7] ([i915#62] / [i915#95]) -> [SKIP][8] ([fdo#109271])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8653/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18006/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#62] / [i915#92])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8653/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18006/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8653/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18006/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
+Participating hosts (44 -> 38)
+------------------------------
 
--- 
-Lucas De Marchi
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8653 -> Patchwork_18006
+
+  CI-20190529: 20190529
+  CI_DRM_8653: dce458f7b00797dbc291296aacfab37075db7fee @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5716: 71a22c37ae6541f9d991d81f15cbade1da402b75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18006: 1f292211d1e31fa07247acb455b42921d629ad26 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1f292211d1e3 drm/i915/display: prefer dig_port to reference intel_digital_port
+f2a72269ce89 drm/i915/display: remove alias to dig_port
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18006/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
