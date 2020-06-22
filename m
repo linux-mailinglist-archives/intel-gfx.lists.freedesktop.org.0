@@ -1,47 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80179203C1A
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 18:04:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE7E203CB4
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 18:37:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74C5C6E85A;
-	Mon, 22 Jun 2020 16:04:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EE586E0F2;
+	Mon, 22 Jun 2020 16:37:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-f194.google.com (mail-oi1-f194.google.com
- [209.85.167.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01BED6E858;
- Mon, 22 Jun 2020 16:04:38 +0000 (UTC)
-Received: by mail-oi1-f194.google.com with SMTP id i74so16087864oib.0;
- Mon, 22 Jun 2020 09:04:38 -0700 (PDT)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B03A16E0F2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 16:37:27 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id z13so5594110wrw.5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 09:37:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+ bh=RR7Dr2z+5lOxj+N2NVbRCcIekzaWb1z/d9XmonkDvhY=;
+ b=HXwzK7sZ4OHtVRPFbbp4qEZm1uDajGBowEhWIsuAsNWYRh9PMFYqxAVCQcHvn0u8Ko
+ xvKQ7CKyMdH7/+cDQl5Ess7PGQAOz3N60NUKSpkNgZ+lJrJ+ZBmu5rSdGnR++QdlcojE
+ L0ats/32pXaS752soKg8TKPoJU1i84N4aGVeiiu7B9b7zbIfEgJ06EVf55WimxFV+Zms
+ OI9kEVZ4M4OLPvtI31uHK9Lvat239LZA3MttnNkUk3NToU4XIXi4wOkobtHgLauL+XLa
+ Skjlw3Z9pe7KXNnFGZ0HAdNvaFZOaoJUlVPV19yGyuGWEoPnreVeYfzHto+yvQqZermS
+ IW4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=OpWGd5tWAlHrsA+mT/NF4UYRUsAtI3QPFNIfXvhEAqo=;
- b=DI8VhHJAKuXiP/lRNcUBlOQF3rVi9CGRLlkFy6dcTQ+dF/i+VCIlmVgDpAwGaQ4BiZ
- oRRGx783jeRX9AmuhXJZQMRp924/5czcF1W+PVgZuuNqGB2ktPDuMEZ9jfyKu9gsnqw7
- l5XB/zcRfr5gVd+7yeszPIaFtTDuqoILx1tRJKqMPHchID9L02FohX8x/1t0kA0KPS5m
- XOmvNWrc5d5q3Ti2AbKmMov59DIRkhiKwoFB5fwTyG06QYH3J4r2jzBWCeyRq26Cax5o
- W9qoxam+CVD03mRmmm7sGAGo6sZUMIIqDqeT1CytQJG6UtvY2am8veWhsZAJAoGI/otP
- jAmQ==
-X-Gm-Message-State: AOAM531lZ1WNghDqVn9PD3GwVlVP8UXSYOImrGhICIl1euvb0ih/m1rn
- Kjoih/YvB7+t2tpPscLIt9ORF/snIy8R7V745nU=
-X-Google-Smtp-Source: ABdhPJzgqjjqMjWomRkl96TUnoeA4k5Od/1zV3BURoexpD0a1Q6HZYzTxs/gWT6gQpKOmyhotiI4DLmVD8zb1Vdir78=
-X-Received: by 2002:aca:ad88:: with SMTP id
- w130mr13636839oie.103.1592841878226; 
- Mon, 22 Jun 2020 09:04:38 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition;
+ bh=RR7Dr2z+5lOxj+N2NVbRCcIekzaWb1z/d9XmonkDvhY=;
+ b=eNtcvKq7X8ctmBS8bkC6sViYJ4SRkK+iBZNrvHUoeu1Mh8iqgDIsv21whejxARt++j
+ WKWaodOAfStCM2h7aX5ymUwJwyh3ihZGcKoz2kgM5Xx8FDGM2AauVaHXjejRF1gOz9Z8
+ OTxtHnbYd4MmdkyZmVLvV9+/iYlW5CFOP88T68g/YIC0ssCrK6z2Qr1zkpTYtx1V2QCu
+ Dn2IxGFO+0XENHXQ5ikT/vsN/xX7zZ8Rzh+WbNLuDZRXrXDv2O4jwbnfWjryMyCn/aLW
+ BE0SX+pK6dn24ck4VGr6kQ+Dup6Y2ngqwcvFy/4vGwfwPRTiuMl10s0JDH3LqwELOOcC
+ dOXg==
+X-Gm-Message-State: AOAM533PEXiw8SPoXLLa0sK2Xx/rxen+cqOeF46OLHPVA1CN9j39371J
+ V5FiFUxV9wKK4vTzpbItQwrm0HnJ
+X-Google-Smtp-Source: ABdhPJwJI9MdSE8B9K8k28UM5BHI0j4sMLgUluGyjXXnhzCuGr7WKUz6SMq6GaqBCygF3oT57452OQ==
+X-Received: by 2002:a5d:56d0:: with SMTP id m16mr19401238wrw.194.1592843845918; 
+ Mon, 22 Jun 2020 09:37:25 -0700 (PDT)
+Received: from smtp.gmail.com ([2001:818:e238:a000:a4ba:2182:c4c1:3b20])
+ by smtp.gmail.com with ESMTPSA id f14sm690498wro.90.2020.06.22.09.37.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Jun 2020 09:37:25 -0700 (PDT)
+Date: Mon, 22 Jun 2020 13:37:19 -0300
+From: Melissa Wen <melissa.srw@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <cover.1592840756.git.melissa.srw@gmail.com>
 MIME-Version: 1.0
-References: <20200620121758.14836-1-hdegoede@redhat.com>
- <20200620121758.14836-3-hdegoede@redhat.com>
-In-Reply-To: <20200620121758.14836-3-hdegoede@redhat.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Mon, 22 Jun 2020 18:04:27 +0200
-Message-ID: <CAJZ5v0jYuKFmabZg+Y-rvXFF_EBfXKn=vOcyxFEs9bJugtvCfg@mail.gmail.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH v3 02/15] ACPI / LPSS: Save Cherry Trail PWM
- ctx registers only once (at activation)
+Content-Disposition: inline
+Subject: [Intel-gfx] [PATCH i-g-t 0/2] test/kms_cursor_crc: tie some loose
+ ends in the prepare_crtc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,173 +64,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux PWM List <linux-pwm@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>,
- ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Cc: kernel-usp@googlegroups.com, Rodrigo.Siqueira@amd.com,
+ rodrigosiqueiramelo@gmail.com, twoerner@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jun 20, 2020 at 2:18 PM Hans de Goede <hdegoede@redhat.com> wrote:
->
-> The DSDTs on most Cherry Trail devices have an ugly clutch where the PWM
-> controller gets turned off from the _PS3 method of the graphics-card dev:
->
->             Method (_PS3, 0, Serialized)  // _PS3: Power State 3
->             {
->                 ...
->                             PWMB = PWMC /* \_SB_.PCI0.GFX0.PWMC */
->                             PSAT |= 0x03
->                             Local0 = PSAT /* \_SB_.PCI0.GFX0.PSAT */
->                 ...
->             }
->
-> Where PSAT is the power-status register of the PWM controller.
->
-> Since the i915 driver will do a pwm_get on the pwm device as it uses it to
-> control the LCD panel backlight, there is a device-link marking the i915
-> device as a consumer of the pwm device. So that the PWM controller will
-> always be suspended after the i915 driver suspends (which is the right
-> thing to do). This causes the above GFX0 PS3 AML code to run before
-> acpi_lpss.c calls acpi_lpss_save_ctx().
->
-> So on these devices the PWM controller will already be off when
-> acpi_lpss_save_ctx() runs. This causes it to read/save all 1-s (0xffffffff)
-> as ctx register values.
->
-> When these bogus values get restored on resume the PWM controller actually
-> keeps working, since most bits are reserved, but this does set bit 3 of
-> the LPSS General purpose register, which for the PWM controller has the
-> following function: "This bit is re-used to support 32kHz slow mode.
-> Default is 19.2MHz as PWM source clock".
->
-> This causes the clock of the PWM controller to switch from 19.2MHz to
-> 32KHz, which is a slow-down of a factor 600. Surprisingly enough so far
-> there have been few bug reports about this. This is likely because the
-> i915 driver was hardcoding the PWM frequency to 46 KHz, which divided
-> by 600 would result in a PWM frequency of approx. 78 Hz, which mostly
-> still works fine. There are some bug reports about the LCD backlight
-> flickering after suspend/resume which are likely caused by this issue.
->
-> But with the upcoming patch-series to finally switch the i915 drivers
-> code for external PWM controllers to use the atomic API and to honor
-> the PWM frequency specified in the video BIOS (VBT), this becomes a much
-> bigger problem. On most cases the VBT specifies either 200 Hz or 20
-> KHz as PWM frequency, which with the mentioned issue ends up being either
-> 1/3 Hz, where the backlight actually visible blinks on and off every 3s,
-> or in 33 Hz and horrible flickering of the backlight.
->
-> There are a number of possible solutions to this problem:
->
-> 1. Make acpi_lpss_save_ctx() run before GFX0._PS3
->  Pro: Clean solution from pov of not medling with save/restore ctx code
->  Con: As mentioned the current ordering is the right thing to do
->  Con: Requires assymmetry in at what suspend/resume phase we do the save vs
->       restore, requiring more suspend/resume ordering hacks in already
->       convoluted acpi_lpss.c suspend/resume code.
-> 2. Do some sort of save once mode for the LPSS ctx
->  Pro: Reasonably clean
->  Con: Needs a new LPSS flag + code changes to handle the flag
-> 3. Detect we have failed to save the ctx registers and do not restore them
->  Pro: Not PWM specific, might help with issues on other LPSS devices too
->  Con: If we can get away with not restoring the ctx why bother with it at
->       all?
-> 4. Do not save the ctx for CHT PWM controllers
->  Pro: Clean, as simple as dropping a flag?
->  Con: Not so simple as dropping a flag, needs a new flag to ensure that
->       we still do lpss_deassert_reset() on device activation.
-> 5. Make the pwm-lpss code fixup the LPSS-context registers
->  Pro: Keeps acpi_lpss.c code clean
->  Con: Moves knowledge of LPSS-context into the pwm-lpss.c code
->
-> 1 and 5 both do not seem to be a desirable way forward.
->
-> 3 and 4 seem ok, but they both assume that restoring the LPSS-context
-> registers is not necessary. I have done a couple of test and those do
-> show that restoring the LPSS-context indeed does not seem to be necessary
-> on devices using s2idle suspend (and successfully reaching S0i3). But I
-> have no hardware to test deep / S3 suspend. So I'm not sure that not
-> restoring the context is safe.
->
-> That leaves solution 2, which is about as simple / clean as 3 and 4,
-> so this commit fixes the described problem by implementing a new
-> LPSS_SAVE_CTX_ONCE flag and setting that for the CHT PWM controllers.
->
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+Using vkms, when running a sequence of subtests from kms_cursor_crc,
+several strange timeout failures occurred. For example, running the
+alpha-opaque cursor twice, the first run is successful and the second
+fails. In addition, if we run the entire test in a call (i.e.: sudo
+IGT_FORCE_DRIVER=vkms build/tests/kms_cursor_crc), the first subtest
+passes and the rest of the subtests fail - even those that succeed when
+run in isolation.
 
-Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+igt_debugfs-DEBUG: Opening debugfs directory '/sys/kernel/debug/dri/0'
+igt_core-INFO: Timed out: Opening crc fd, and poll for first CRC.
 
-> ---
-> Changes in v2:
-> - Move #define LPSS_SAVE_CTX_ONCE define to group it with LPSS_SAVE_CTX
-> ---
->  drivers/acpi/acpi_lpss.c | 21 +++++++++++++++++----
->  1 file changed, 17 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/acpi/acpi_lpss.c b/drivers/acpi/acpi_lpss.c
-> index 446e666b3466..7e6db0f1d9ee 100644
-> --- a/drivers/acpi/acpi_lpss.c
-> +++ b/drivers/acpi/acpi_lpss.c
-> @@ -67,7 +67,15 @@ ACPI_MODULE_NAME("acpi_lpss");
->  #define LPSS_CLK_DIVIDER               BIT(2)
->  #define LPSS_LTR                       BIT(3)
->  #define LPSS_SAVE_CTX                  BIT(4)
-> -#define LPSS_NO_D3_DELAY               BIT(5)
-> +/*
-> + * For some devices the DSDT AML code for another device turns off the device
-> + * before our suspend handler runs, causing us to read/save all 1-s (0xffffffff)
-> + * as ctx register values.
-> + * Luckily these devices always use the same ctx register values, so we can
-> + * work around this by saving the ctx registers once on activation.
-> + */
-> +#define LPSS_SAVE_CTX_ONCE             BIT(5)
-> +#define LPSS_NO_D3_DELAY               BIT(6)
->
->  struct lpss_private_data;
->
-> @@ -254,7 +262,7 @@ static const struct lpss_device_desc byt_pwm_dev_desc = {
->  };
->
->  static const struct lpss_device_desc bsw_pwm_dev_desc = {
-> -       .flags = LPSS_SAVE_CTX | LPSS_NO_D3_DELAY,
-> +       .flags = LPSS_SAVE_CTX_ONCE | LPSS_NO_D3_DELAY,
->         .prv_offset = 0x800,
->         .setup = bsw_pwm_setup,
->         .resume_from_noirq = true,
-> @@ -885,9 +893,14 @@ static int acpi_lpss_activate(struct device *dev)
->          * we have to deassert reset line to be sure that ->probe() will
->          * recognize the device.
->          */
-> -       if (pdata->dev_desc->flags & LPSS_SAVE_CTX)
-> +       if (pdata->dev_desc->flags & (LPSS_SAVE_CTX | LPSS_SAVE_CTX_ONCE))
->                 lpss_deassert_reset(pdata);
->
-> +#ifdef CONFIG_PM
-> +       if (pdata->dev_desc->flags & LPSS_SAVE_CTX_ONCE)
-> +               acpi_lpss_save_ctx(dev, pdata);
-> +#endif
-> +
->         return 0;
->  }
->
-> @@ -1036,7 +1049,7 @@ static int acpi_lpss_resume(struct device *dev)
->
->         acpi_lpss_d3_to_d0_delay(pdata);
->
-> -       if (pdata->dev_desc->flags & LPSS_SAVE_CTX)
-> +       if (pdata->dev_desc->flags & (LPSS_SAVE_CTX | LPSS_SAVE_CTX_ONCE))
->                 acpi_lpss_restore_ctx(dev, pdata);
->
->         return 0;
-> --
-> 2.26.2
->
+During my debugging process, I found two issues that were blocking
+execution and the solution is in this patchset:
+
+1 - When a subtest fails, it exits and skips the cleaning step, leaving
+the pipe_crc allocated and blocked for the next subtest. The first patch
+fixes it by releasing any old pipe_crc before creating a new one.
+
+2 - When the CRC capture process starts, it enters an endless wait; this
+seems to be related to the fact that the VKMS simulates vblank events,
+generating a time mismatch between vblank and CRC capture. Waiting for
+vblank before starting the capture process sets the pace, as shown in
+the second patch.
+
+Melissa Wen (2):
+  test/kms_cursor_crc: release old pipe_crc before create a new one
+  test/kms_cursor_crc: align the start of the CRC capture to a vblank
+
+ tests/kms_cursor_crc.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+-- 
+2.27.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
