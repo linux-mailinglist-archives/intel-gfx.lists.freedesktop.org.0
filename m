@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0935D20341D
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 11:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69A4120341F
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 11:59:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 314056E21F;
-	Mon, 22 Jun 2020 09:59:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 719F46E241;
+	Mon, 22 Jun 2020 09:59:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2A5A6E21F
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 09:59:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C75D6E241
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 09:59:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21574662-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21574663-1500050 
  for multiple; Mon, 22 Jun 2020 10:59:27 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 22 Jun 2020 10:59:17 +0100
-Message-Id: <20200622095921.15530-3-chris@chris-wilson.co.uk>
+Date: Mon, 22 Jun 2020 10:59:18 +0100
+Message-Id: <20200622095921.15530-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200622095921.15530-1-chris@chris-wilson.co.uk>
 References: <20200622095921.15530-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/7] drm/i915/gem: Track the fences for object
+Subject: [Intel-gfx] [PATCH 4/7] drm/i915: Update vma to use async page
  allocations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -45,230 +45,168 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While often the allocation fence is a part of the implicit fences used
-for accessing the object, we also want to identify the pages allocation
-fence individually as different stages of the pipeline will want to only
-be queued for the pages.
+Since we have asynchronous vma bindings, we are ready to utilise
+asynchronous page allocations. All we have to do is ask for the
+get_pages not to wait on our behalf, as our workqueue will.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object.c    | 23 +++++++++
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |  2 +
- drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 50 ++++++++++++++++---
- drivers/gpu/drm/i915/i915_active.c            | 18 +++++++
- drivers/gpu/drm/i915/i915_active.h            |  7 +++
- 5 files changed, 93 insertions(+), 7 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  2 +-
+ drivers/gpu/drm/i915/i915_vma.c               | 42 +++++++++----------
+ drivers/gpu/drm/i915/i915_vma_types.h         |  1 +
+ 5 files changed, 25 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 37b3fb0eb943..b7fc0da239f5 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -26,6 +26,7 @@
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 678e7f82f6c9..59750edd617f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -699,6 +699,8 @@ static int set_bind_fence(struct i915_vma *vma, struct eb_vm_work *work)
  
- #include "display/intel_frontbuffer.h"
- #include "gt/intel_gt.h"
-+#include "i915_active.h"
- #include "i915_drv.h"
- #include "i915_gem_clflush.h"
- #include "i915_gem_context.h"
-@@ -49,6 +50,24 @@ void i915_gem_object_free(struct drm_i915_gem_object *obj)
- 	return kmem_cache_free(global.slab_objects, obj);
- }
+ 	lockdep_assert_held(&vma->vm->mutex);
+ 	prev = i915_active_set_exclusive(&vma->active, &work->base.dma);
++	if (!prev)
++		prev = i915_active_fence_get(&vma->obj->mm.active.excl);
+ 	if (unlikely(prev)) {
+ 		err = i915_sw_fence_await_dma_fence(&work->base.chain, prev, 0,
+ 						    GFP_NOWAIT | __GFP_NOWARN);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 03a1b859aeef..3bb0939dce99 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -275,6 +275,7 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
+ 				 struct sg_table *pages,
+ 				 unsigned int sg_page_sizes);
  
-+static int i915_mm_active(struct i915_active *ref)
-+{
-+	struct drm_i915_gem_object *obj =
-+		container_of(ref, typeof(*obj), mm.active);
-+
-+	i915_gem_object_get(obj);
-+	return 0;
-+}
-+
-+__i915_active_call
-+static void i915_mm_retire(struct i915_active *ref)
-+{
-+	struct drm_i915_gem_object *obj =
-+		container_of(ref, typeof(*obj), mm.active);
-+
-+	i915_gem_object_put(obj);
-+}
-+
- void i915_gem_object_init(struct drm_i915_gem_object *obj,
- 			  const struct drm_i915_gem_object_ops *ops,
- 			  struct lock_class_key *key)
-@@ -70,6 +89,8 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
- 	obj->mm.madv = I915_MADV_WILLNEED;
- 	INIT_RADIX_TREE(&obj->mm.get_page.radix, GFP_KERNEL | __GFP_NOWARN);
- 	mutex_init(&obj->mm.get_page.lock);
-+
-+	i915_active_init(&obj->mm.active, i915_mm_active, i915_mm_retire);
- }
- 
- /**
-@@ -149,6 +170,8 @@ static void __i915_gem_free_object_rcu(struct rcu_head *head)
- 		container_of(head, typeof(*obj), rcu);
- 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
- 
-+	i915_active_fini(&obj->mm.active);
-+
- 	dma_resv_fini(&obj->base._resv);
- 	i915_gem_object_free(obj);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index dbb33aac7828..668b249fd109 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -189,6 +189,8 @@ struct drm_i915_gem_object {
- 		atomic_t pages_pin_count;
- 		atomic_t shrink_pin;
- 
-+		struct i915_active active;
-+
- 		/**
- 		 * Memory region for this object.
- 		 */
++int ____i915_gem_object_get_pages_async(struct drm_i915_gem_object *obj);
+ int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj);
+ int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj);
+ int __i915_gem_object_get_pages_locked(struct drm_i915_gem_object *obj);
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 2ff1036ef91f..d0cdf1c93a67 100644
+index d0cdf1c93a67..4efd1aeedc2d 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -81,25 +81,59 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
- 	}
+@@ -95,7 +95,7 @@ static int __i915_gem_object_wait_for_pages(struct drm_i915_gem_object *obj)
+ 	return 0;
  }
  
--int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
-+static int __i915_gem_object_wait_for_pages(struct drm_i915_gem_object *obj)
-+{
-+	int err;
-+
-+	err = i915_active_wait_for_exclusive(&obj->mm.active);
-+	if (err)
-+		return err;
-+
-+	if (IS_ERR(obj->mm.pages))
-+		return PTR_ERR(obj->mm.pages);
-+
-+	return 0;
-+}
-+
-+static int ____i915_gem_object_get_pages_async(struct drm_i915_gem_object *obj)
+-static int ____i915_gem_object_get_pages_async(struct drm_i915_gem_object *obj)
++int ____i915_gem_object_get_pages_async(struct drm_i915_gem_object *obj)
  {
--	struct drm_i915_private *i915 = to_i915(obj->base.dev);
  	int err;
  
- 	assert_object_held(obj);
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index dc656c7d3191..dc8fdb656e8b 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -123,6 +123,7 @@ vma_create(struct drm_i915_gem_object *obj,
+ 	vma->display_alignment = I915_GTT_MIN_ALIGNMENT;
  
-+	if (i915_active_has_exclusive(&obj->mm.active))
-+		return 0;
+ 	i915_active_init(&vma->active, __i915_vma_active, __i915_vma_retire);
++	vma->fence_context = dma_fence_context_alloc(1);
+ 
+ 	/* Declare ourselves safe for use inside shrinkers */
+ 	if (IS_ENABLED(CONFIG_LOCKDEP)) {
+@@ -295,7 +296,6 @@ i915_vma_instance(struct drm_i915_gem_object *obj,
+ struct i915_vma_work {
+ 	struct dma_fence_work base;
+ 	struct i915_vma *vma;
+-	struct drm_i915_gem_object *pinned;
+ 	struct i915_sw_dma_fence_cb cb;
+ 	enum i915_cache_level cache_level;
+ 	unsigned int flags;
+@@ -331,9 +331,6 @@ static int __vma_bind(struct dma_fence_work *work)
+ static void __vma_release(struct dma_fence_work *work)
+ {
+ 	struct i915_vma_work *vw = container_of(work, typeof(*vw), base);
+-
+-	if (vw->pinned)
+-		__i915_gem_object_unpin_pages(vw->pinned);
+ }
+ 
+ static const struct dma_fence_work_ops bind_ops = {
+@@ -444,6 +441,8 @@ int i915_vma_bind(struct i915_vma *vma,
+ 	 * execution and not content or object's backing store lifetime.
+ 	 */
+ 	prev = i915_active_set_exclusive(&vma->active, &work->base.dma);
++	if (!prev && vma->obj)
++		prev = i915_active_fence_get(&vma->obj->mm.active.excl);
+ 	if (prev) {
+ 		__i915_sw_fence_await_dma_fence(&work->base.chain,
+ 						prev,
+@@ -453,11 +452,6 @@ int i915_vma_bind(struct i915_vma *vma,
+ 
+ 	work->base.dma.error = 0; /* enable the queue_work() */
+ 
+-	if (vma->obj) {
+-		__i915_gem_object_pin_pages(vma->obj);
+-		work->pinned = vma->obj;
+-	}
+-
+ 	atomic_or(bind_flags, &vma->flags);
+ 	return 0;
+ }
+@@ -826,20 +820,27 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+ 	if (try_qad_pin(vma, flags & I915_VMA_BIND_MASK))
+ 		return 0;
+ 
+-	if (vma->obj) {
+-		err = i915_gem_object_pin_pages(vma->obj);
+-		if (err)
+-			return err;
+-	}
+-
+ 	err = __wait_for_unbind(vma, flags);
+ 	if (err)
+-		goto err_pages;
++		return err;
+ 
+ 	work = i915_vma_work();
+-	if (!work) {
+-		err = -ENOMEM;
+-		goto err_pages;
++	if (!work)
++		return -ENOMEM;
 +
-+	if (i915_gem_object_has_pages(obj))
-+		return PTR_ERR_OR_ZERO(obj->mm.pages);
++	if (vma->obj) {
++		if (dma_resv_lock_interruptible(vma->resv, NULL))
++			return -EINTR;
 +
- 	if (unlikely(obj->mm.madv != I915_MADV_WILLNEED)) {
--		drm_dbg(&i915->drm,
-+		drm_dbg(obj->base.dev,
- 			"Attempting to obtain a purgeable object\n");
- 		return -EFAULT;
++		err = ____i915_gem_object_get_pages_async(vma->obj);
++		if (err == 0) {
++			err = i915_active_ref(&vma->obj->mm.active,
++					      vma->fence_context,
++					      &work->base.dma);
++		}
++		dma_resv_unlock(vma->resv);
++		if (err)
++			return err;
  	}
  
-+	err = i915_active_acquire(&obj->mm.active);
-+	if (err)
-+		return err;
-+
- 	err = obj->ops->get_pages(obj);
--	GEM_BUG_ON(!err && !i915_gem_object_has_pages(obj));
-+	i915_active_release(&obj->mm.active);
- 
+ 	if (flags & PIN_GLOBAL)
+@@ -934,9 +935,6 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+ 	dma_fence_work_commit_imm(&work->base);
+ 	if (wakeref)
+ 		intel_runtime_pm_put(&vma->vm->i915->runtime_pm, wakeref);
+-err_pages:
+-	if (vma->obj)
+-		i915_gem_object_unpin_pages(vma->obj);
  	return err;
  }
  
-+int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
-+{
-+	int err;
-+
-+	err = ____i915_gem_object_get_pages_async(obj);
-+	if (err)
-+		return err;
-+
-+	return __i915_gem_object_wait_for_pages(obj);
-+}
-+
- /* Ensure that the associated pages are gathered from the backing storage
-  * and pinned into our object. i915_gem_object_pin_pages() may be called
-  * multiple times before they are released by a single call to
-@@ -203,14 +237,16 @@ __i915_gem_object_unset_pages(struct drm_i915_gem_object *obj)
- int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
- {
- 	struct sg_table *pages;
-+	int err;
+diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
+index 02c1640bb034..10757319c2a4 100644
+--- a/drivers/gpu/drm/i915/i915_vma_types.h
++++ b/drivers/gpu/drm/i915/i915_vma_types.h
+@@ -250,6 +250,7 @@ struct i915_vma {
+ #define I915_VMA_GGTT_WRITE	((int)BIT(I915_VMA_GGTT_WRITE_BIT))
  
- 	/* May be called by shrinker from within get_pages() (on another bo) */
- 	assert_object_held(obj);
+ 	struct i915_active active;
++	u64 fence_context;
  
--	if (i915_gem_object_has_pinned_pages(obj))
--		return -EBUSY;
-+	err = i915_active_wait(&obj->mm.active);
-+	if (err)
-+		return err;
- 
--	if (unlikely(atomic_read(&obj->mm.pages_pin_count)))
-+	if (i915_gem_object_has_pinned_pages(obj))
- 		return -EBUSY;
- 
- 	i915_gem_object_release_mmap_offset(obj);
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index 3f595446fd44..886685d6e1e2 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -1073,6 +1073,24 @@ int i915_active_fence_set(struct i915_active_fence *active,
- 	return err;
- }
- 
-+int i915_active_fence_wait(struct i915_active_fence *active)
-+{
-+	struct dma_fence *fence;
-+	int err;
-+
-+	if (GEM_WARN_ON(is_barrier(active)))
-+		return -EBUSY;
-+
-+	fence = i915_active_fence_get(active);
-+	if (!fence)
-+		return 0;
-+
-+	err = dma_fence_wait(fence, true);
-+	dma_fence_put(fence);
-+
-+	return err;
-+}
-+
- void i915_active_noop(struct dma_fence *fence, struct dma_fence_cb *cb)
- {
- 	active_fence_cb(fence, cb);
-diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-index 2e0bcb3289ec..eefcc2344509 100644
---- a/drivers/gpu/drm/i915/i915_active.h
-+++ b/drivers/gpu/drm/i915/i915_active.h
-@@ -123,6 +123,8 @@ i915_active_fence_isset(const struct i915_active_fence *active)
- 	return rcu_access_pointer(active->fence);
- }
- 
-+int i915_active_fence_wait(struct i915_active_fence *active);
-+
- /*
-  * GPU activity tracking
-  *
-@@ -191,6 +193,11 @@ static inline int i915_active_wait(struct i915_active *ref)
- 	return __i915_active_wait(ref, TASK_INTERRUPTIBLE);
- }
- 
-+static inline int i915_active_wait_for_exclusive(struct i915_active *ref)
-+{
-+	return i915_active_fence_wait(&ref->excl);
-+}
-+
- int i915_sw_fence_await_active(struct i915_sw_fence *fence,
- 			       struct i915_active *ref,
- 			       unsigned int flags);
+ 	/**
+ 	 * Support different GGTT views into the same object.
 -- 
 2.20.1
 
