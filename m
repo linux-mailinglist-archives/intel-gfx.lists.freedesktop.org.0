@@ -1,31 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9596B203511
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 12:47:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DCD920360C
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 13:45:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62F9A89CBC;
-	Mon, 22 Jun 2020 10:47:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC90F6E0A6;
+	Mon, 22 Jun 2020 11:45:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6E9EE89CBC;
- Mon, 22 Jun 2020 10:47:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5F8F3A00EF;
- Mon, 22 Jun 2020 10:47:36 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06B516E0A6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 11:45:04 +0000 (UTC)
+IronPort-SDR: 4lQksS6QWjXkw5iXuzFhtNONOP8FQo5DHn+ddxsIiaJjdbiw3sMh2GeuNOWo4e5n3cAb4uBcAk
+ 7GhDf4jvvTTg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9659"; a="141238987"
+X-IronPort-AV: E=Sophos;i="5.75,266,1589266800"; d="scan'208";a="141238987"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2020 04:45:02 -0700
+IronPort-SDR: KbT+zbm3BpskDkr9F/c6OcXpedIk1ji4mU1Po2dk77X/BsrdwdZQ57NRStk6ww+AtMeMDrm/04
+ qti9LojjLuPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,266,1589266800"; d="scan'208";a="310090966"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by orsmga008.jf.intel.com with ESMTP; 22 Jun 2020 04:45:01 -0700
+Received: from fmsmsx118.amr.corp.intel.com (10.18.116.18) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 22 Jun 2020 04:45:01 -0700
+Received: from bgsmsx106.gar.corp.intel.com (10.223.43.196) by
+ fmsmsx118.amr.corp.intel.com (10.18.116.18) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 22 Jun 2020 04:45:01 -0700
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.234]) by
+ BGSMSX106.gar.corp.intel.com ([169.254.1.185]) with mapi id 14.03.0439.000;
+ Mon, 22 Jun 2020 17:14:58 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [v3 6/8] drm/i915/display: Implement infoframes readback for
+ LSPCON
+Thread-Index: AQHWP1bx/wUxv0hg90aV/S8mR5DuTqjTNCkAgAAEAwCABvGl8P//qRaAgABdDwCACmMGkA==
+Date: Mon, 22 Jun 2020 11:44:58 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F8256CDCF@BGSMSX104.gar.corp.intel.com>
+References: <20200610191232.11620-1-uma.shankar@intel.com>
+ <20200610191232.11620-7-uma.shankar@intel.com>
+ <20200611154650.GB6112@intel.com> <20200611160112.GC6112@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F8255F3E0@BGSMSX104.gar.corp.intel.com>
+ <20200615205233.GS6112@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F8255F444@BGSMSX104.gar.corp.intel.com>
+In-Reply-To: <E7C9878FBA1C6D42A1CA3F62AEB6945F8255F444@BGSMSX104.gar.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
-Date: Mon, 22 Jun 2020 10:47:36 -0000
-Message-ID: <159282285636.9210.15410265025014736951@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200622142519.16214-1-bhanuprakash.modem@intel.com>
-In-Reply-To: <20200622142519.16214-1-bhanuprakash.modem@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgVlJS?=
- =?utf-8?q?_capable_attach_prop_in_i915=2C_VRR_debugfs?=
+Subject: Re: [Intel-gfx] [v3 6/8] drm/i915/display: Implement infoframes
+ readback for LSPCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,120 +73,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: VRR capable attach prop in i915, VRR debugfs
-URL   : https://patchwork.freedesktop.org/series/78670/
-State : failure
+> > > > -----Original Message-----
+> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > Sent: Thursday, June 11, 2020 9:31 PM
+> > > > To: Shankar, Uma <uma.shankar@intel.com>
+> > > > Cc: intel-gfx@lists.freedesktop.org; jani.nikula@linux.intel.com;
+> > > > Mun, Gwan- gyeong <gwan-gyeong.mun@intel.com>
+> > > > Subject: Re: [v3 6/8] drm/i915/display: Implement infoframes
+> > > > readback for LSPCON
+> > > >
+> > > > On Thu, Jun 11, 2020 at 06:46:50PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > > > On Thu, Jun 11, 2020 at 12:42:30AM +0530, Uma Shankar wrote:
+> > > > > > Implemented Infoframes enabled readback for LSPCON devices.
+> > > > > > This will help align the implementation with state readback
+> > > > > > infrastructure.
+> > > > > >
+> > > > > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/i915/display/intel_lspcon.c | 63
+> > > > > > ++++++++++++++++++++-
+> > > > > >  1 file changed, 61 insertions(+), 2 deletions(-)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > > > > b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > > > > index 9034ce6f20b9..0ebe9a700291 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > > > > @@ -576,11 +576,70 @@ void lspcon_set_infoframes(struct
+> > > > > > intel_encoder
+> > > > *encoder,
+> > > > > >  				  buf, ret);
+> > > > > >  }
+> > > > > >
+> > > > > > +static bool _lspcon_read_avi_infoframe_enabled_mca(struct
+> > > > > > +drm_dp_aux *aux) {
+> > > > > > +	int ret;
+> > > > > > +	u32 val =3D 0;
+> > > > > > +	u16 reg =3D LSPCON_MCA_AVI_IF_CTRL;
+> > > > > > +
+> > > > > > +	ret =3D drm_dp_dpcd_read(aux, reg, &val, 1);
+> > > > > > +	if (ret < 0) {
+> > > > > > +		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
+> > > > > > +		return false;
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	if (val & LSPCON_MCA_AVI_IF_KICKOFF)
+> > > > > > +		return true;
+> > > > > > +
+> > > > > > +	return false;
+> > > > >
+> > > > > return val & ...;
+> > > > >
+> > > > > > +}
+> > > > > > +
+> > > > > > +static bool _lspcon_read_avi_infoframe_enabled_parade(struct
+> > > > > > +drm_dp_aux *aux) {
+> > > > > > +	int ret;
+> > > > > > +	u32 val =3D 0;
+> > > > > > +	u16 reg =3D LSPCON_PARADE_AVI_IF_CTRL;
+> > > > > > +
+> > > > > > +	ret =3D drm_dp_dpcd_read(aux, reg, &val, 1);
+> > > > > > +	if (ret < 0) {
+> > > > > > +		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
+> > > > > > +		return false;
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	if (val & LSPCON_PARADE_AVI_IF_KICKOFF)
+> > > > > > +		return true;
+> > > > > > +
+> > > > > > +	return false;
+> > > > > > +}
+> > > > > > +
+> > > > > >  u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
+> > > > > >  			      const struct intel_crtc_state *pipe_config)  {
+> > > > > > -	/* FIXME actually read this from the hw */
+> > > > > > -	return 0;
+> > > > > > +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> > > > > > +	struct intel_lspcon *lspcon =3D enc_to_intel_lspcon(encoder);
+> > > > > > +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.d=
+ev);
+> > > > > > +	bool infoframes_enabled;
+> > > > > > +	u32 mask =3D 0;
+> > > > > > +	u32 val;
+> > > > > > +
+> > > > > > +	if (lspcon->vendor =3D=3D LSPCON_VENDOR_MCA)
+> > > > > > +		infoframes_enabled =3D
+> > > > _lspcon_read_avi_infoframe_enabled_mca(&intel_dp->aux);
+> > > > > > +	else
+> > > > > > +		infoframes_enabled =3D
+> > > > > > +_lspcon_read_avi_infoframe_enabled_parade(&intel_dp->aux);
+> > > > > > +
+> > > > > > +	if (infoframes_enabled)
+> > > > > > +		return true;
+> > > > >
+> > > > > This is supposed to return a bitmask of all enabled infoframes.
+> > >
+> > > > Actually since we're dealing with both the LSPCON specific stuff
+> > > > and DIP stuff for the DRM infoframe I think we should stop using
+> > > > using intel_hdmi_infoframes_enabled(), and instead provide a
+> > > > LSPCON specific replacement for it. That way we can directly
+> > > > return the abstract bitmask instead of pretending to return a bitma=
+sk of
+> the DIP bits.
 
-== Summary ==
+We have DP (VSC etc) packets also managed as HDMI infoframes only. We can k=
+eep the
+same with bitmask as VIDEO_DIP_ENABLE_AVI_HSW for AVI and similarly VIDEO_D=
+IP_ENABLE_GMP_HSW
+for DRM (HDR metadata). This will help all the helper align appropriately e=
+ven in the intel_dump_pipe_config.
 
-CI Bug Log - changes from CI_DRM_8650 -> Patchwork_18002
-====================================================
+Will fix this accordingly and send the next version. Hope this is ok.
 
-Summary
--------
+> > > Sure,  will fix this and resend the next version.
+> > >
+> > > > >
+> > > > > Also my question "how do we turn off infoframes once enabled?"
+> > > > > from
+> > > > > https://patchwork.freedesktop.org/patch/351719/?series=3D72928&rev
+> > > > > =3D1
+> > > > > still remains unanswered...
+> > >
+> > > For the AVI infoframe we generally compute and change the respective
+> > > values. If no change is requested and computed we can let the
+> > > existing infoframes be transmitted. AFAIK there is no mechanism
+> > > called out, to explicitly disable this on Lspcon. Have not seen any
+> > > issues due to this, so
+> > hoping that it may be safe even if they are enabled.
+> >
+> > It's not valid to transmit infoframes to DVI sinks.
+> =
 
-  **FAILURE**
+> With your fix, we won't be enabling or setting the infoframe on DVI sinks.
+> If I understand correctly, we may have issue if we connect HDMI (where we
+> would have sent the infoframe) and later unplug and plug a DVI sink. With
+> unplug if Lspcon is not resetting this internally then this will be a pro=
+blem. I will
+> try to get this information on Lspcon behavior.
 
-  Serious unknown changes coming with Patchwork_18002 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18002, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Hi Ville,
+Searched various docs on LSPCON and couldn't find any mention of disabling =
+infoframe.
+Reached out to few folks who were interfacing with Lspcon vendors and got t=
+his finally
+clarified.  The expectation is that LSPCON will reset stuff on unplug and w=
+ill not send infoframes to DVI sink,
+so from source side we don't need to explicitly disable them. Lspcon will t=
+ake care of this, this was
+tested for compliance as well by them.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18002/index.html
+I will share the updated series adding your patch stopping infoframes to be=
+ sent to DVI sinks.
+Please review the same.
 
-Possible new issues
--------------------
+Thank & Regards,
+Uma Shankar
+ =
 
-  Here are the unknown changes that may have been introduced in Patchwork_18002:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_chamelium@dp-hpd-fast:
-    - fi-cml-u2:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8650/fi-cml-u2/igt@kms_chamelium@dp-hpd-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18002/fi-cml-u2/igt@kms_chamelium@dp-hpd-fast.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18002 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8650/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18002/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8650/fi-tgl-u2/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18002/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-tgl-u2:          [INCOMPLETE][7] ([i915#1932]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8650/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18002/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [DMESG-WARN][9] ([i915#402]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8650/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18002/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1932]: https://gitlab.freedesktop.org/drm/intel/issues/1932
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 10)
-------------------------------
-
-  ERROR: It appears as if the changes made in Patchwork_18002 prevented too many machines from booting.
-
-  Additional (1): fi-pnv-d510 
-  Missing    (35): fi-bdw-gvtdvm fi-icl-u2 fi-apl-guc fi-snb-2520m fi-icl-y fi-byt-n2820 fi-icl-dsi fi-icl-guc fi-skl-6600u fi-snb-2600 fi-bxt-dsi fi-cml-s fi-bsw-n3050 fi-byt-j1900 fi-glk-dsi fi-ctg-p8600 fi-hsw-4770 fi-ivb-3770 fi-elk-e7500 fi-kbl-7560u fi-bsw-nick fi-ilk-m540 fi-ehl-1 fi-skl-guc fi-cfl-8700k fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-cfl-guc fi-kbl-guc fi-whl-u fi-kbl-x1275 fi-bsw-kefka fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8650 -> Patchwork_18002
-
-  CI-20190529: 20190529
-  CI_DRM_8650: 24b806b0a1dd38c734e771ece9dd1ab6492bbb96 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5714: f0ade50caf38574592886f55bb03cf80c574bb83 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18002: 6206d3194afbfc3b06d9b9436c799126ece2cdb0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6206d3194afb Revert "drm/amd/display: Expose connector VRR range via debugfs"
-5d20cfadedc4 drm/debug: Expose connector VRR monitor range via debugfs
-383b031f7157 drm/i915/dp: Attach and set drm connector VRR property
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18002/index.html
+> > >
+> > > I am planning to take your patch from the series and float along
+> > > with this series, adding check for DRM Infoframes also. Hope that is =
+ok ?
+> > >
+> > > Thanks Ville for your feedback.
+> > >
+> > > Regards,
+> > > Uma Shankar
+> > >
+> > > > > > +
+> > > > > > +	if (lspcon->hdr_supported) {
+> > > > > > +		val =3D intel_de_read(dev_priv,
+> > > > > > +				    HSW_TVIDEO_DIP_CTL(pipe_config-
+> > > > >cpu_transcoder));
+> > > > > > +		mask |=3D VIDEO_DIP_ENABLE_GMP_HSW;
+> > > > > > +
+> > > > > > +		if (val & mask)
+> > > > > > +			return val & mask;
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	return false;
+> > > > > >  }
+> > > > > >
+> > > > > >  void lspcon_resume(struct intel_lspcon *lspcon)
+> > > > > > --
+> > > > > > 2.22.0
+> > > > >
+> > > > > --
+> > > > > Ville Syrj=E4l=E4
+> > > > > Intel
+> > > >
+> > > > --
+> > > > Ville Syrj=E4l=E4
+> > > > Intel
+> >
+> > --
+> > Ville Syrj=E4l=E4
+> > Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
