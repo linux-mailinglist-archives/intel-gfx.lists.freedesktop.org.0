@@ -2,65 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DCD920360C
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 13:45:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AF1A2036BD
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 14:30:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC90F6E0A6;
-	Mon, 22 Jun 2020 11:45:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5647F6E42F;
+	Mon, 22 Jun 2020 12:30:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06B516E0A6
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 11:45:04 +0000 (UTC)
-IronPort-SDR: 4lQksS6QWjXkw5iXuzFhtNONOP8FQo5DHn+ddxsIiaJjdbiw3sMh2GeuNOWo4e5n3cAb4uBcAk
- 7GhDf4jvvTTg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9659"; a="141238987"
-X-IronPort-AV: E=Sophos;i="5.75,266,1589266800"; d="scan'208";a="141238987"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDA716E42F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 12:30:10 +0000 (UTC)
+IronPort-SDR: 5CIEy3+dOBoiZ8VA2FLekw0oMLqmlZDsCg+pfoO/TCLXWqmG63kGP9Qhpi4PCzDfeD2TUub92J
+ TxRjXfFZyh4A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9659"; a="208946816"
+X-IronPort-AV: E=Sophos;i="5.75,266,1589266800"; d="scan'208";a="208946816"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 04:45:02 -0700
-IronPort-SDR: KbT+zbm3BpskDkr9F/c6OcXpedIk1ji4mU1Po2dk77X/BsrdwdZQ57NRStk6ww+AtMeMDrm/04
- qti9LojjLuPg==
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2020 05:30:09 -0700
+IronPort-SDR: s93aYmy0uZ0I9AV6RAtCvhgaofWJ1v31fyv1A81b+ViEhvlS/t5+HQN55eMvib2v67FjGLqrrB
+ NmLJFry/Ou6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,266,1589266800"; d="scan'208";a="310090966"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by orsmga008.jf.intel.com with ESMTP; 22 Jun 2020 04:45:01 -0700
-Received: from fmsmsx118.amr.corp.intel.com (10.18.116.18) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 22 Jun 2020 04:45:01 -0700
-Received: from bgsmsx106.gar.corp.intel.com (10.223.43.196) by
- fmsmsx118.amr.corp.intel.com (10.18.116.18) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 22 Jun 2020 04:45:01 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.234]) by
- BGSMSX106.gar.corp.intel.com ([169.254.1.185]) with mapi id 14.03.0439.000;
- Mon, 22 Jun 2020 17:14:58 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [v3 6/8] drm/i915/display: Implement infoframes readback for
- LSPCON
-Thread-Index: AQHWP1bx/wUxv0hg90aV/S8mR5DuTqjTNCkAgAAEAwCABvGl8P//qRaAgABdDwCACmMGkA==
-Date: Mon, 22 Jun 2020 11:44:58 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F8256CDCF@BGSMSX104.gar.corp.intel.com>
-References: <20200610191232.11620-1-uma.shankar@intel.com>
- <20200610191232.11620-7-uma.shankar@intel.com>
- <20200611154650.GB6112@intel.com> <20200611160112.GC6112@intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F8255F3E0@BGSMSX104.gar.corp.intel.com>
- <20200615205233.GS6112@intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F8255F444@BGSMSX104.gar.corp.intel.com>
-In-Reply-To: <E7C9878FBA1C6D42A1CA3F62AEB6945F8255F444@BGSMSX104.gar.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+X-IronPort-AV: E=Sophos;i="5.75,266,1589266800"; d="scan'208";a="292832524"
+Received: from unknown (HELO linuxpresi1-desktop.iind.intel.com)
+ ([10.223.74.152])
+ by orsmga002.jf.intel.com with ESMTP; 22 Jun 2020 05:30:06 -0700
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 22 Jun 2020 18:30:19 +0530
+Message-Id: <20200622130029.28667-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v3 6/8] drm/i915/display: Implement infoframes
- readback for LSPCON
+Subject: [Intel-gfx] [v4 00/10] Enable HDR on MCA LSPCON based Gen9 devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,210 +47,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-> > > > -----Original Message-----
-> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > Sent: Thursday, June 11, 2020 9:31 PM
-> > > > To: Shankar, Uma <uma.shankar@intel.com>
-> > > > Cc: intel-gfx@lists.freedesktop.org; jani.nikula@linux.intel.com;
-> > > > Mun, Gwan- gyeong <gwan-gyeong.mun@intel.com>
-> > > > Subject: Re: [v3 6/8] drm/i915/display: Implement infoframes
-> > > > readback for LSPCON
-> > > >
-> > > > On Thu, Jun 11, 2020 at 06:46:50PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > > On Thu, Jun 11, 2020 at 12:42:30AM +0530, Uma Shankar wrote:
-> > > > > > Implemented Infoframes enabled readback for LSPCON devices.
-> > > > > > This will help align the implementation with state readback
-> > > > > > infrastructure.
-> > > > > >
-> > > > > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/display/intel_lspcon.c | 63
-> > > > > > ++++++++++++++++++++-
-> > > > > >  1 file changed, 61 insertions(+), 2 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > > > > > b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > > > > > index 9034ce6f20b9..0ebe9a700291 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > > > > > @@ -576,11 +576,70 @@ void lspcon_set_infoframes(struct
-> > > > > > intel_encoder
-> > > > *encoder,
-> > > > > >  				  buf, ret);
-> > > > > >  }
-> > > > > >
-> > > > > > +static bool _lspcon_read_avi_infoframe_enabled_mca(struct
-> > > > > > +drm_dp_aux *aux) {
-> > > > > > +	int ret;
-> > > > > > +	u32 val =3D 0;
-> > > > > > +	u16 reg =3D LSPCON_MCA_AVI_IF_CTRL;
-> > > > > > +
-> > > > > > +	ret =3D drm_dp_dpcd_read(aux, reg, &val, 1);
-> > > > > > +	if (ret < 0) {
-> > > > > > +		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
-> > > > > > +		return false;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	if (val & LSPCON_MCA_AVI_IF_KICKOFF)
-> > > > > > +		return true;
-> > > > > > +
-> > > > > > +	return false;
-> > > > >
-> > > > > return val & ...;
-> > > > >
-> > > > > > +}
-> > > > > > +
-> > > > > > +static bool _lspcon_read_avi_infoframe_enabled_parade(struct
-> > > > > > +drm_dp_aux *aux) {
-> > > > > > +	int ret;
-> > > > > > +	u32 val =3D 0;
-> > > > > > +	u16 reg =3D LSPCON_PARADE_AVI_IF_CTRL;
-> > > > > > +
-> > > > > > +	ret =3D drm_dp_dpcd_read(aux, reg, &val, 1);
-> > > > > > +	if (ret < 0) {
-> > > > > > +		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
-> > > > > > +		return false;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	if (val & LSPCON_PARADE_AVI_IF_KICKOFF)
-> > > > > > +		return true;
-> > > > > > +
-> > > > > > +	return false;
-> > > > > > +}
-> > > > > > +
-> > > > > >  u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
-> > > > > >  			      const struct intel_crtc_state *pipe_config)  {
-> > > > > > -	/* FIXME actually read this from the hw */
-> > > > > > -	return 0;
-> > > > > > +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> > > > > > +	struct intel_lspcon *lspcon =3D enc_to_intel_lspcon(encoder);
-> > > > > > +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.d=
-ev);
-> > > > > > +	bool infoframes_enabled;
-> > > > > > +	u32 mask =3D 0;
-> > > > > > +	u32 val;
-> > > > > > +
-> > > > > > +	if (lspcon->vendor =3D=3D LSPCON_VENDOR_MCA)
-> > > > > > +		infoframes_enabled =3D
-> > > > _lspcon_read_avi_infoframe_enabled_mca(&intel_dp->aux);
-> > > > > > +	else
-> > > > > > +		infoframes_enabled =3D
-> > > > > > +_lspcon_read_avi_infoframe_enabled_parade(&intel_dp->aux);
-> > > > > > +
-> > > > > > +	if (infoframes_enabled)
-> > > > > > +		return true;
-> > > > >
-> > > > > This is supposed to return a bitmask of all enabled infoframes.
-> > >
-> > > > Actually since we're dealing with both the LSPCON specific stuff
-> > > > and DIP stuff for the DRM infoframe I think we should stop using
-> > > > using intel_hdmi_infoframes_enabled(), and instead provide a
-> > > > LSPCON specific replacement for it. That way we can directly
-> > > > return the abstract bitmask instead of pretending to return a bitma=
-sk of
-> the DIP bits.
-
-We have DP (VSC etc) packets also managed as HDMI infoframes only. We can k=
-eep the
-same with bitmask as VIDEO_DIP_ENABLE_AVI_HSW for AVI and similarly VIDEO_D=
-IP_ENABLE_GMP_HSW
-for DRM (HDR metadata). This will help all the helper align appropriately e=
-ven in the intel_dump_pipe_config.
-
-Will fix this accordingly and send the next version. Hope this is ok.
-
-> > > Sure,  will fix this and resend the next version.
-> > >
-> > > > >
-> > > > > Also my question "how do we turn off infoframes once enabled?"
-> > > > > from
-> > > > > https://patchwork.freedesktop.org/patch/351719/?series=3D72928&rev
-> > > > > =3D1
-> > > > > still remains unanswered...
-> > >
-> > > For the AVI infoframe we generally compute and change the respective
-> > > values. If no change is requested and computed we can let the
-> > > existing infoframes be transmitted. AFAIK there is no mechanism
-> > > called out, to explicitly disable this on Lspcon. Have not seen any
-> > > issues due to this, so
-> > hoping that it may be safe even if they are enabled.
-> >
-> > It's not valid to transmit infoframes to DVI sinks.
-> =
-
-> With your fix, we won't be enabling or setting the infoframe on DVI sinks.
-> If I understand correctly, we may have issue if we connect HDMI (where we
-> would have sent the infoframe) and later unplug and plug a DVI sink. With
-> unplug if Lspcon is not resetting this internally then this will be a pro=
-blem. I will
-> try to get this information on Lspcon behavior.
-
-Hi Ville,
-Searched various docs on LSPCON and couldn't find any mention of disabling =
-infoframe.
-Reached out to few folks who were interfacing with Lspcon vendors and got t=
-his finally
-clarified.  The expectation is that LSPCON will reset stuff on unplug and w=
-ill not send infoframes to DVI sink,
-so from source side we don't need to explicitly disable them. Lspcon will t=
-ake care of this, this was
-tested for compliance as well by them.
-
-I will share the updated series adding your patch stopping infoframes to be=
- sent to DVI sinks.
-Please review the same.
-
-Thank & Regards,
-Uma Shankar
- =
-
-> > >
-> > > I am planning to take your patch from the series and float along
-> > > with this series, adding check for DRM Infoframes also. Hope that is =
-ok ?
-> > >
-> > > Thanks Ville for your feedback.
-> > >
-> > > Regards,
-> > > Uma Shankar
-> > >
-> > > > > > +
-> > > > > > +	if (lspcon->hdr_supported) {
-> > > > > > +		val =3D intel_de_read(dev_priv,
-> > > > > > +				    HSW_TVIDEO_DIP_CTL(pipe_config-
-> > > > >cpu_transcoder));
-> > > > > > +		mask |=3D VIDEO_DIP_ENABLE_GMP_HSW;
-> > > > > > +
-> > > > > > +		if (val & mask)
-> > > > > > +			return val & mask;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	return false;
-> > > > > >  }
-> > > > > >
-> > > > > >  void lspcon_resume(struct intel_lspcon *lspcon)
-> > > > > > --
-> > > > > > 2.22.0
-> > > > >
-> > > > > --
-> > > > > Ville Syrj=E4l=E4
-> > > > > Intel
-> > > >
-> > > > --
-> > > > Ville Syrj=E4l=E4
-> > > > Intel
-> >
-> > --
-> > Ville Syrj=E4l=E4
-> > Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+R2VuOSBoYXJkd2FyZSBzdXBwb3J0cyBIRE1JMi4wIHRocm91Z2ggTFNQQ09OIGNoaXBzLiBFeHRl
+bmRpbmcgSERSCnN1cHBvcnQgZm9yIE1DQSBhbmQgUGFyYWRlIExTUENPTiBiYXNlZCBHRU45IGRl
+dmljZXMuCgpTT0Mgd2lsbCBkcml2ZSBMU1BDT04gYXMgRFAgYW5kIHNlbmQgSERSIG1ldGFkYXRh
+IGFzIHN0YW5kYXJkCkRQIFNEUCBwYWNrZXRzLiBMU1BDT04gd2lsbCBiZSBzZXQgdG8gb3BlcmF0
+ZSBpbiBQQ09OIG1vZGUsCndpbGwgcmVjZWl2ZSB0aGUgbWV0YWRhdGEgYW5kIGNyZWF0ZSBEeW5h
+bWljIFJhbmdlIGFuZApNYXN0ZXJpbmcgSW5mb2ZyYW1lIChEUk0gcGFja2V0cykgYW5kIHNlbmQg
+aXQgdG8gSERSIGNhcGFibGUKSERNSSBzaW5rIGRldmljZXMuCgp2MjogRml4ZWQgVmlsbGUncyBy
+ZXZpZXcgY29tbWVudHMuIFN1cHByZXNzZWQgc29tZSB3YXJuaW5ncy4KUGF0Y2ggOCBvZiB0aGUg
+c2VyaWVzIGlzIG1hcmtlZCAiTm90IGZvciBNZXJnZSIgYW5kIGlzIGp1c3QgZm9yCnJlZmVyZW5j
+ZSB0byB1c2Vyc3BhY2UgcGVvcGxlIHRvIGluY29ycG9yYXRlIGluIG9yZGVyIHRvIHN1cHBvcnQK
+MTBiaXQgY29udGVudCB3aXRoIDRLQDYwIHJlc29sdXRpb25zLgoKdjM6IEFkZGVkIEluZm9mcmFt
+ZSByZWFkb3V0IHN1cHBvcnQgZm9yIERSTSBpbmZvZnJhbWVzLgpBZGRyZXNzZWQgSmFuaSBOaWt1
+bGEncyByZXZpZXcgY29tbWVudHMuCgp2NDogQWRkcmVzc2VkIFZpbGxlJ3MgcmV2aWV3IGNvbW1l
+bnRzIGFuZCBhZGRlZCBwcm9wZXIgYml0bWFzayBmb3IKZW5hYmxlZCBpbmZvZnJhbWVzLiBTZXJp
+ZXMgYWxzbyBpbmNvcnBvcmF0ZXMgVmlsbGUncyBwYXRjaCBmb3Igc3RvcHBpbmcKaW5mb2ZyYW1l
+cyB0byBiZSBzZW50IHRvIERWSSBzaW5rcy4gRXh0ZW5kZWQgdGhlIHNhbWUgZm9yIERSTSBhcyB3
+ZWxsLgoKTm90ZTogUGF0Y2ggMTAgb2YgdGhlIHNlcmllcyBpcyBmb3IgcmVmZXJlbmNlIHRvIHVz
+ZXJzcGFjZSwgbm90IHRvIGJlCm1lcmdlZCB0byBkcml2ZXIuCgpVbWEgU2hhbmthciAoOSk6CiAg
+ZHJtL2k5MTUvZGlzcGxheTogQWRkIEhEUiBDYXBhYmlsaXR5IGRldGVjdGlvbiBmb3IgTFNQQ09O
+CiAgZHJtL2k5MTUvZGlzcGxheTogRW5hYmxlIEhEUiBvbiBnZW45IGRldmljZXMgd2l0aCBNQ0Eg
+THNwY29uCiAgZHJtL2k5MTUvZGlzcGxheTogQXR0YWNoIEhEUiBwcm9wZXJ0eSBmb3IgY2FwYWJs
+ZSBHZW45IGRldmljZXMKICBkcm0vaTkxNS9kaXNwbGF5OiBFbmFibGUgQlQyMDIwIGZvciBIRFIg
+b24gTFNQQ09OIGRldmljZXMKICBkcm0vaTkxNS9kaXNwbGF5OiBFbmFibGUgSERSIGZvciBQYXJh
+ZGUgYmFzZWQgbHNwY29uCiAgZHJtL2k5MTUvZGlzcGxheTogSW1wbGVtZW50IGluZm9mcmFtZXMg
+cmVhZGJhY2sgZm9yIExTUENPTgogIGRybS9pOTE1L2Rpc3BsYXk6IEltcGxlbWVudCBEUk0gaW5m
+b2ZyYW1lIHJlYWQgZm9yIExTUENPTgogIGRybS9pOTE1L2xzcGNvbjogRG8gbm90IHNlbmQgRFJN
+IGluZm9mcmFtZXMgdG8gbm9uLUhETUkgc2lua3MKICBkcm0vaTkxNS9kaXNwbGF5OiBbTk9UIEZP
+UiBNRVJHRV0gUmVkdWNlIGJsYW5raW5nIHRvIHN1cHBvcnQKICAgIDRrNjBAMTBicHAgZm9yIExT
+UENPTgoKVmlsbGUgU3lyasOkbMOkICgxKToKICBkcm0vaTkxNS9sc3Bjb246IERvIG5vdCBzZW5k
+IGluZm9mcmFtZXMgdG8gbm9uLUhETUkgc2lua3MKCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RkaS5jICAgICAgfCAgMjAgKystCiAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3R5cGVzLmggICAgfCAgIDIgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kcC5jICAgICAgIHwgIDI0ICsrLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9oZG1pLmMgICAgIHwgIDIwICsrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9sc3Bjb24uYyAgIHwgMTUyICsrKysrKysrKysrKysrKystLQogZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uaCAgIHwgICA5ICstCiA2IGZpbGVzIGNoYW5n
+ZWQsIDIwMyBpbnNlcnRpb25zKCspLCAyNCBkZWxldGlvbnMoLSkKCi0tIAoyLjIyLjAKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
