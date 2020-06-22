@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F5E320406B
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 21:30:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C39A220406E
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 21:30:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A9596E84C;
-	Mon, 22 Jun 2020 19:30:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 049976E156;
+	Mon, 22 Jun 2020 19:30:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F3206E84B
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 19:30:23 +0000 (UTC)
-IronPort-SDR: lsSJl+85Nm6BhZZfPgJBRx+EctDjkGXMm415TPzsY2N1B47Xr7uRI1KdJlplBCdhCBNGxjPfkU
- NMV9EUlSn48w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="132287947"
-X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="132287947"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B48F6E84B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 19:30:25 +0000 (UTC)
+IronPort-SDR: +dvzStF8kCxDFYi08JpPlLBxZK+oh00+1r487OVy1p56x3zvAbUt23yQL1K1i2+nBZnw8ev9OX
+ +S5XuNFxsPnQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="132287951"
+X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="132287951"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 12:30:23 -0700
-IronPort-SDR: BbORb2wmn73hTAWfZE1DjdfcF7ebrGz5S5vSoqPjqh2lkhuzrI+dA19pWwLHQrfEH/J0OXAulR
- 4chGKvG4UM0Q==
+ 22 Jun 2020 12:30:25 -0700
+IronPort-SDR: jCMz4kkvjrLPD0bWgJGnux1GgeKD0BSR39v3PYfJVcHr7YfQwmwu3aseD2WPfDagj1uSCxEZPK
+ rLicFvFUfAng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="292948962"
+X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="292948979"
 Received: from unknown (HELO linuxpresi1-desktop.iind.intel.com)
  ([10.223.74.152])
- by orsmga002.jf.intel.com with ESMTP; 22 Jun 2020 12:30:21 -0700
+ by orsmga002.jf.intel.com with ESMTP; 22 Jun 2020 12:30:23 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 23 Jun 2020 01:30:32 +0530
-Message-Id: <20200622200038.14034-6-uma.shankar@intel.com>
+Date: Tue, 23 Jun 2020 01:30:33 +0530
+Message-Id: <20200622200038.14034-7-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200622200038.14034-1-uma.shankar@intel.com>
 References: <20200622200038.14034-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v5 05/11] drm/i915/display: Enable HDR for Parade
- based lspcon
+Subject: [Intel-gfx] [v5 06/11] drm/i915/display: Implement infoframes
+ readback for LSPCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,71 +50,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Vipin Anand <vipin.anand@intel.com>
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable HDR for LSPCON based on Parade along with MCA.
+Implemented Infoframes enabled readback for LSPCON devices.
+This will help align the implementation with state readback
+infrastructure.
+
+v2: Added proper bitmask of enabled infoframes as per Ville's
+recommendation.
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Vipin Anand <vipin.anand@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lspcon.c | 19 ++++++++-----------
- 1 file changed, 8 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lspcon.c | 57 ++++++++++++++++++++-
+ 1 file changed, 55 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index 10e2823bf1ae..9034ce6f20b9 100644
+index 9034ce6f20b9..0f19eb6c5a6d 100644
 --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
 +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -36,6 +36,7 @@
- #define LSPCON_VENDOR_MCA_OUI 0x0060AD
+@@ -576,11 +576,64 @@ void lspcon_set_infoframes(struct intel_encoder *encoder,
+ 				  buf, ret);
+ }
  
- #define DPCD_MCA_LSPCON_HDR_STATUS	0x70003
-+#define DPCD_PARADE_LSPCON_HDR_STATUS	0x00511
- 
- /* AUX addresses to write MCA AVI IF */
- #define LSPCON_MCA_AVI_IF_WRITE_OFFSET 0x5C0
-@@ -112,16 +113,20 @@ static void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
- 		container_of(lspcon, struct intel_digital_port, lspcon);
- 	struct drm_device *dev = intel_dig_port->base.base.dev;
- 	struct intel_dp *dp = lspcon_to_intel_dp(lspcon);
-+	u32 lspcon_hdr_status_reg;
- 	u8 hdr_caps;
- 	int ret;
- 
--	/* Enable HDR for MCA based LSPCON devices */
- 	if (lspcon->vendor == LSPCON_VENDOR_MCA)
--		ret = drm_dp_dpcd_read(&dp->aux, DPCD_MCA_LSPCON_HDR_STATUS,
--				       &hdr_caps, 1);
-+		lspcon_hdr_status_reg = DPCD_MCA_LSPCON_HDR_STATUS;
-+	else if (lspcon->vendor == LSPCON_VENDOR_PARADE)
-+		lspcon_hdr_status_reg = DPCD_PARADE_LSPCON_HDR_STATUS;
- 	else
- 		return;
- 
-+	ret = drm_dp_dpcd_read(&dp->aux, lspcon_hdr_status_reg,
-+			       &hdr_caps, 1);
++static bool _lspcon_read_avi_infoframe_enabled_mca(struct drm_dp_aux *aux)
++{
++	int ret;
++	u32 val = 0;
++	u16 reg = LSPCON_MCA_AVI_IF_CTRL;
 +
- 	if (ret < 0) {
- 		drm_dbg_kms(dev, "hdr capability detection failed\n");
- 		lspcon->hdr_supported = false;
-@@ -465,14 +470,6 @@ void lspcon_write_infoframe(struct intel_encoder *encoder,
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	struct intel_lspcon *lspcon = enc_to_intel_lspcon(encoder);
++	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
++	if (ret < 0) {
++		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
++		return false;
++	}
++
++	return val & LSPCON_MCA_AVI_IF_KICKOFF;
++}
++
++static bool _lspcon_read_avi_infoframe_enabled_parade(struct drm_dp_aux *aux)
++{
++	int ret;
++	u32 val = 0;
++	u16 reg = LSPCON_PARADE_AVI_IF_CTRL;
++
++	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
++	if (ret < 0) {
++		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
++		return false;
++	}
++
++	return val & LSPCON_PARADE_AVI_IF_KICKOFF;
++}
++
+ u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *pipe_config)
+ {
+-	/* FIXME actually read this from the hw */
+-	return 0;
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	struct intel_lspcon *lspcon = enc_to_intel_lspcon(encoder);
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	bool infoframes_enabled;
++	u32 val = 0;
++	u32 mask, tmp;
++
++	if (lspcon->vendor == LSPCON_VENDOR_MCA)
++		infoframes_enabled = _lspcon_read_avi_infoframe_enabled_mca(&intel_dp->aux);
++	else
++		infoframes_enabled = _lspcon_read_avi_infoframe_enabled_parade(&intel_dp->aux);
++
++	if (infoframes_enabled)
++		val |= VIDEO_DIP_ENABLE_AVI_HSW;
++
++	if (lspcon->hdr_supported) {
++		tmp = intel_de_read(dev_priv,
++				    HSW_TVIDEO_DIP_CTL(pipe_config->cpu_transcoder));
++		mask = VIDEO_DIP_ENABLE_GMP_HSW;
++
++		if (tmp & mask)
++			val |= mask;
++	}
++
++	return val;
+ }
  
--	/*
--	 * Supporting HDR on MCA LSPCON
--	 * Todo: Add support for Parade later
--	 */
--	if (type == HDMI_PACKET_TYPE_GAMUT_METADATA &&
--	    lspcon->vendor != LSPCON_VENDOR_MCA)
--		return;
--
- 	switch (type) {
- 	case HDMI_INFOFRAME_TYPE_AVI:
- 		if (lspcon->vendor == LSPCON_VENDOR_MCA)
+ void lspcon_resume(struct intel_lspcon *lspcon)
 -- 
 2.22.0
 
