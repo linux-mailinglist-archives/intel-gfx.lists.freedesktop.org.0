@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2D81203A96
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 17:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A58203A98
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 17:19:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AEA06E832;
-	Mon, 22 Jun 2020 15:19:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD4FC6E834;
+	Mon, 22 Jun 2020 15:19:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9B2B6E82E;
- Mon, 22 Jun 2020 15:19:04 +0000 (UTC)
-IronPort-SDR: NKCGJDXote4hg2fBlgam4BdRCfEijXW2awZySYLJjhuItVA+fF4usagEQ82MFe3myeJsc2Ml2H
- CoSl0OJw9vhQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9659"; a="145296432"
-X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="145296432"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B0A96E829;
+ Mon, 22 Jun 2020 15:19:25 +0000 (UTC)
+IronPort-SDR: rnrty4QKiVKN7cO+Vo9oPWQ0e0sBiJlkbJA+CDfwpvUvW2GHq4gG5mjoemiQg6QVvxgPRe5dUR
+ GvSYt7OYT5zA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9659"; a="145296438"
+X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="145296438"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 08:19:04 -0700
-IronPort-SDR: 4raEmdLsABygTHbtaQuSZF3OhFIOmCePucibV92w3wrEccLz3miiUgznQEjfdS9CRL0bWPX16w
- vtlLjCQg0TdA==
-X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="451871670"
+ 22 Jun 2020 08:19:05 -0700
+IronPort-SDR: S7GG25Tq9GwKbKtm84ZqjKihYVTr0MCGriiog0o80dpb/X06RaRwaB+wVV/lDd5G7GBcCXsp4H
+ q6CvGuW7DOgg==
+X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="451871678"
 Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 08:19:03 -0700
+ 22 Jun 2020 08:19:04 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Mon, 22 Jun 2020 17:18:41 +0200
-Message-Id: <20200622151845.4520-5-janusz.krzysztofik@linux.intel.com>
+Date: Mon, 22 Jun 2020 17:18:42 +0200
+Message-Id: <20200622151845.4520-6-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200622151845.4520-1-janusz.krzysztofik@linux.intel.com>
 References: <20200622151845.4520-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH i-g-t 4/8] tests/core_hotunplug: Add
- 'lateclose before recover' variants
+Subject: [Intel-gfx] [RFC PATCH i-g-t 5/8] tests/core_hotunplug: Add 'GEM
+ address space' variant
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,40 +55,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If a GPU gets wedged during driver rebind or device re-plug for some
-reason, current hotunbind/hotunplug test variants may time out before
-lateclose phase, resulting in incomplete CI reports.  Let's rename
-those variants to more adequate hotrebind/hotreplug-lateclose and add
-new variants focused on exercising the lateclose phase regardless of
-potential rebind/re-plug issues under old names.
+Verify if an additional address space associated with an open device
+file descriptor is cleaned up correctly on device hotunplug.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- tests/core_hotunplug.c | 57 +++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 54 insertions(+), 3 deletions(-)
+ tests/core_hotunplug.c | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
 diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
-index 0b7c6006b..f736a991f 100644
+index f736a991f..6d9f530b1 100644
 --- a/tests/core_hotunplug.c
 +++ b/tests/core_hotunplug.c
-@@ -266,6 +266,43 @@ static void hotunbind_lateclose(void)
- 	local_debug("hot unbinding the driver from the device");
- 	driver_unbind(priv.fd.sysfs_drv, priv.dev_bus_addr);
+@@ -34,6 +34,8 @@
+ #include "igt_kmod.h"
+ #include "igt_sysfs.h"
  
-+	local_debug("late closing the unbound device instance");
-+	close(priv.fd.drm);
++#include "i915/gem_vm.h"
 +
-+	local_debug("rebinding the driver to the device");
-+	driver_bind(priv.fd.sysfs_drv, priv.dev_bus_addr);
-+
-+	healthcheck();
-+}
-+
-+static void hotunplug_lateclose(void)
+ IGT_TEST_DESCRIPTION("Examine behavior of a driver on device hot unplug");
+ 
+ struct hotunplug {
+@@ -330,6 +332,29 @@ static void hotreplug_lateclose(void)
+ 	healthcheck();
+ }
+ 
++static void vm_hotunplug_lateclose(void)
 +{
 +	struct hotunplug priv;
 +
 +	prepare_for_rescan(&priv);
++
++	gem_require_vm(priv.fd.drm);
++
++	local_debug("creating additional GEM user address space");
++	igt_ignore_warn(gem_vm_create(priv.fd.drm));
 +
 +	local_debug("hot unplugging the device");
 +	device_unplug(priv.fd.sysfs_dev);
@@ -102,58 +103,17 @@ index 0b7c6006b..f736a991f 100644
 +	healthcheck();
 +}
 +
-+static void hotrebind_lateclose(void)
-+{
-+	struct hotunplug priv;
-+	char buf[PATH_MAX];
-+
-+	prepare_for_rebind(&priv, buf, sizeof(buf));
-+
-+	local_debug("hot unbinding the driver from the device");
-+	driver_unbind(priv.fd.sysfs_drv, priv.dev_bus_addr);
-+
- 	local_debug("rebinding the driver to the device");
- 	driver_bind(priv.fd.sysfs_drv, priv.dev_bus_addr);
+ /* Main */
  
-@@ -275,7 +312,7 @@ static void hotunbind_lateclose(void)
- 	healthcheck();
- }
- 
--static void hotunplug_lateclose(void)
-+static void hotreplug_lateclose(void)
- {
- 	struct hotunplug priv;
- 
-@@ -338,17 +375,31 @@ igt_main
- 	igt_fixture
- 		igt_abort_on_f(failure, "%s\n", failure);
- 
--	igt_describe("Check if the driver can be cleanly unbound from a still open device, then released");
-+	igt_describe("Check if the driver can be cleanly unbound from a still open device, then released and rebound");
- 	igt_subtest("hotunbind-lateclose")
- 		hotunbind_lateclose();
- 
- 	igt_fixture
- 		igt_abort_on_f(failure, "%s\n", failure);
- 
--	igt_describe("Check if a still open device can be cleanly unplugged, then released");
-+	igt_describe("Check if a still open device can be cleanly unplugged, then released and recovered");
- 	igt_subtest("hotunplug-lateclose")
- 		hotunplug_lateclose();
+ igt_main
+@@ -402,4 +427,11 @@ igt_main
  
  	igt_fixture
  		igt_abort_on_f(failure, "%s\n", failure);
 +
-+	igt_describe("Check if the driver can be cleanly unbound from an open device and rebound back, then released");
-+	igt_subtest("hotrebind-lateclose")
-+		hotrebind_lateclose();
-+
-+	igt_fixture
-+		igt_abort_on_f(failure, "%s\n", failure);
-+
-+	igt_describe("Check if a still open device can be cleanly unplugged and recovered, then released");
-+	igt_subtest("hotreplug-lateclose")
-+		hotreplug_lateclose();
++	igt_describe("Check if a still open device with extra GEM address space can be cleanly unplugged, then released and recovered");
++	igt_subtest("vm-hotunplug-lateclose")
++		vm_hotunplug_lateclose();
 +
 +	igt_fixture
 +		igt_abort_on_f(failure, "%s\n", failure);
