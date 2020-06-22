@@ -1,39 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995BC20446F
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 01:28:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1434220446C
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 01:28:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C5276E92C;
-	Mon, 22 Jun 2020 23:28:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 508DE6E1C0;
+	Mon, 22 Jun 2020 23:28:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6D296E202
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C12C06E1C0
  for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 23:28:27 +0000 (UTC)
-IronPort-SDR: EacXXlA4x8o20ZeaUDYWY9qyp2e8yN6q2NxhodTHRcH2u78QSc2puG3L1z1EhCaM1INz/pBZBz
- X/wJiXOn+klQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="161983751"
-X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="161983751"
+IronPort-SDR: JD35+pMhh62q7VOC5NKuv9uUDNW2tZFkfyM7zs/9uHUKbw1qk7e6IYqDVQ6ZT2VgHiPg2l/0aD
+ aSiHEKpzNdmg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="161983752"
+X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="161983752"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jun 2020 16:28:27 -0700
-IronPort-SDR: O1WHcV+5OZmuRDw5kYYSdc3daR6Poqtzswdp02I5K3PIxSXmTOcx9LkiHjW5ieqB+hqTjAtlAb
- AkqtfcFvwxDg==
+IronPort-SDR: L7eRgkYERdtI00bTmjhaJ0U0+l6kzKD0UDZWXR713qP00A/vRdYXQWDeGwWMrQ3zH++/IZXy6C
+ 59flm5FGMEVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="422813864"
+X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="422813867"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
  by orsmga004.jf.intel.com with ESMTP; 22 Jun 2020 16:28:26 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 22 Jun 2020 16:28:19 -0700
-Message-Id: <20200622232821.3093-1-lucas.demarchi@intel.com>
+Date: Mon, 22 Jun 2020 16:28:20 -0700
+Message-Id: <20200622232821.3093-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200622232821.3093-1-lucas.demarchi@intel.com>
+References: <20200622232821.3093-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 0/2] Variable renames
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/display: remove alias to dig_port
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,33 +54,42 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-These were part of previous unrelated series. Rebase and submit they
-together on their own.
+We don't need intel_dig_port and dig_port to refer to the same thing.
+Prefer the latter.
 
-Lucas De Marchi (2):
-  drm/i915/display: remove alias to dig_port
-  drm/i915/display: prefer dig_port to reference intel_digital_port
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_ddi.c      | 150 ++++----
- drivers/gpu/drm/i915/display/intel_display.c  |   6 +-
- drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
- .../drm/i915/display/intel_display_debugfs.c  |  12 +-
- .../drm/i915/display/intel_display_power.c    |   4 +-
- .../drm/i915/display/intel_display_types.h    |  40 +--
- drivers/gpu/drm/i915/display/intel_dp.c       | 338 +++++++++---------
- drivers/gpu/drm/i915/display/intel_dp.h       |   4 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  74 ++--
- drivers/gpu/drm/i915/display/intel_dp_mst.h   |   6 +-
- drivers/gpu/drm/i915/display/intel_dpio_phy.c |  38 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 118 +++---
- drivers/gpu/drm/i915/display/intel_hdmi.c     | 252 ++++++-------
- drivers/gpu/drm/i915/display/intel_hdmi.h     |   4 +-
- drivers/gpu/drm/i915/display/intel_lspcon.c   |   8 +-
- drivers/gpu/drm/i915/display/intel_lspcon.h   |   2 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |   4 +-
- drivers/gpu/drm/i915/display/intel_vdsc.c     |   8 +-
- 18 files changed, 533 insertions(+), 537 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index ca7bb2294d2b..58c9f3d3e7ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -3382,11 +3382,10 @@ static void intel_ddi_pre_enable_hdmi(struct intel_atomic_state *state,
+ 				      const struct intel_crtc_state *crtc_state,
+ 				      const struct drm_connector_state *conn_state)
+ {
+-	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
+-	struct intel_hdmi *intel_hdmi = &intel_dig_port->hdmi;
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
++	struct intel_hdmi *intel_hdmi = &dig_port->hdmi;
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	int level = intel_ddi_hdmi_level(encoder);
+-	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 
+ 	intel_dp_dual_mode_set_tmds_output(intel_hdmi, true);
+ 	intel_ddi_clk_select(encoder, crtc_state);
+@@ -3413,7 +3412,7 @@ static void intel_ddi_pre_enable_hdmi(struct intel_atomic_state *state,
+ 
+ 	intel_ddi_enable_pipe_clock(encoder, crtc_state);
+ 
+-	intel_dig_port->set_infoframes(encoder,
++	dig_port->set_infoframes(encoder,
+ 				       crtc_state->has_infoframe,
+ 				       crtc_state, conn_state);
+ }
 -- 
 2.26.2
 
