@@ -2,41 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8B68203A9D
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 17:19:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5FC6203AF3
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 17:31:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA8F76E838;
-	Mon, 22 Jun 2020 15:19:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7140B6E842;
+	Mon, 22 Jun 2020 15:31:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 258286E835;
- Mon, 22 Jun 2020 15:19:27 +0000 (UTC)
-IronPort-SDR: V0NbtIi4JGMSleTAXyTKrJn/HuYtaCAkkOI0DAJAyL6jac1DCmbKtC3hm32LKMX5WbuGdInQ1U
- 6TN6AdmsKJ2Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9659"; a="145296447"
-X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="145296447"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09D836E83C;
+ Mon, 22 Jun 2020 15:31:32 +0000 (UTC)
+IronPort-SDR: AA1Fe0d3JeQTtBH892W8qmEWpXlj7dnIWsSVizPggmXymEIyPQX+V+86UVQRjT+Z77+gVTLEYs
+ /gDx4HaAXoGA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9659"; a="141294357"
+X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="141294357"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 08:19:09 -0700
-IronPort-SDR: 37CdtTqteV/WcaoNs7qzfWxbmXvwkDdw8lteX1Ix5h8vuWfLywkAZCWfrB2wB7AtFQMkVzytK8
- 94RL1z+LXphw==
-X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="451871692"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2020 08:31:30 -0700
+IronPort-SDR: I4ixZJGXK/ScgSwQsuIjW2j5s4ezS/fGdsWyWhWrWOg5VsdHpBPHMetQNcvK1OzZtnV08FhtZZ
+ WtZ3WFtYFZEw==
+X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="451876424"
+Received: from unknown (HELO localhost) ([10.249.40.58])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 08:19:08 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Mon, 22 Jun 2020 17:18:45 +0200
-Message-Id: <20200622151845.4520-9-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200622151845.4520-1-janusz.krzysztofik@linux.intel.com>
-References: <20200622151845.4520-1-janusz.krzysztofik@linux.intel.com>
+ 22 Jun 2020 08:31:27 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: ramadevi.gandi@intel.com, ashutosh.dixit@intel.com,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ ramadevi.gandi@intel.com, igt-dev@lists.freedesktop.org
+In-Reply-To: <20200616123758.3331-1-ramadevi.gandi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200616123758.3331-1-ramadevi.gandi@intel.com>
+Date: Mon, 22 Jun 2020 18:31:24 +0300
+Message-ID: <87wo3znmlv.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH i-g-t 8/8] tests/core_hotunplug: Add 'GEM
- batch' variant
+Subject: Re: [Intel-gfx] [PATCH libdrm] intel: sync i915_pciids.h with kernel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,80 +50,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kalyan.kondapally@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Verify if a device with a GEM batch job still running on a GPU can be
-hot-unplugged cleanly and released, then recovered.
+On Tue, 16 Jun 2020, ramadevi.gandi@intel.com wrote:
+> From: Gandi Ramadevi <ramadevi.gandi@intel.com>
+>
+> Add DG1 PCI ID
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- tests/core_hotunplug.c | 34 ++++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+There are no DG1 PCI IDs in kernel. So please don't add them here
+either.
 
-diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
-index 35a4fb13c..c8d7ec7e1 100644
---- a/tests/core_hotunplug.c
-+++ b/tests/core_hotunplug.c
-@@ -31,6 +31,7 @@
- 
- #include "igt.h"
- #include "igt_device_scan.h"
-+#include "igt_dummyload.h"
- #include "igt_kmod.h"
- #include "igt_sysfs.h"
- 
-@@ -407,6 +408,32 @@ static void prime_hotunplug_lateclose(void)
- 	healthcheck();
- }
- 
-+static void batch_hotunplug_lateclose(void)
-+{
-+	struct hotunplug priv;
-+	igt_spin_t *spin;
-+
-+	prepare_for_rescan(&priv);
-+
-+	igt_require_gem(priv.fd.drm);
-+
-+	local_debug("running dummy load");
-+	spin = __igt_spin_new(priv.fd.drm, .flags = IGT_SPIN_POLL_RUN |
-+						    IGT_SPIN_NO_PREEMPTION);
-+	igt_spin_busywait_until_started(spin);
-+
-+	local_debug("hot unplugging the device");
-+	device_unplug(priv.fd.sysfs_dev);
-+
-+	local_debug("late closing the removed device instance");
-+	close(priv.fd.drm);
-+
-+	local_debug("recovering the device");
-+	bus_rescan(priv.fd.sysfs_bus);
-+
-+	healthcheck();
-+}
-+
- /* Main */
- 
- igt_main
-@@ -500,4 +527,11 @@ igt_main
- 
- 	igt_fixture
- 		igt_abort_on_f(failure, "%s\n", failure);
-+
-+	igt_describe("Check if a device with a still running batch can be cleanly unplugged, then released and recovered");
-+	igt_subtest("batch-hotunplug-lateclose")
-+		batch_hotunplug_lateclose();
-+
-+	igt_fixture
-+		igt_abort_on_f(failure, "%s\n", failure);
- }
+BR,
+Jani.
+
+
+>
+> Signed-off-by: Gandi Ramadevi <ramadevi.gandi@intel.com>
+> ---
+>  intel/i915_pciids.h | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/intel/i915_pciids.h b/intel/i915_pciids.h
+> index 662d8351..724e68a0 100644
+> --- a/intel/i915_pciids.h
+> +++ b/intel/i915_pciids.h
+> @@ -605,4 +605,9 @@
+>  	INTEL_VGA_DEVICE(0x9AD9, info), \
+>  	INTEL_VGA_DEVICE(0x9AF8, info)
+>  
+> +/* DG1 */
+> +#define INTEL_DG1_IDS(info) \
+> +        INTEL_VGA_DEVICE(0x4905, info), \
+> +        INTEL_VGA_DEVICE(0x4906, info)
+> +
+>  #endif /* _I915_PCIIDS_H */
+
 -- 
-2.21.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
