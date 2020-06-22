@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6A58203A98
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 17:19:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39F8A203A9A
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 17:19:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD4FC6E834;
-	Mon, 22 Jun 2020 15:19:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F59F6E830;
+	Mon, 22 Jun 2020 15:19:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B0A96E829;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7F606E829;
  Mon, 22 Jun 2020 15:19:25 +0000 (UTC)
-IronPort-SDR: rnrty4QKiVKN7cO+Vo9oPWQ0e0sBiJlkbJA+CDfwpvUvW2GHq4gG5mjoemiQg6QVvxgPRe5dUR
- GvSYt7OYT5zA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9659"; a="145296438"
-X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="145296438"
+IronPort-SDR: V+z73/p41QIqKaSt7LQTrP5DlPJ8vVtYsMMmoQfh9hs6PxG/9eQaDLTHI11g+cfaMQbWGDhLlm
+ MJ78IxyPNWmg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9659"; a="145296444"
+X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="145296444"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 08:19:05 -0700
-IronPort-SDR: S7GG25Tq9GwKbKtm84ZqjKihYVTr0MCGriiog0o80dpb/X06RaRwaB+wVV/lDd5G7GBcCXsp4H
- q6CvGuW7DOgg==
-X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="451871678"
+ 22 Jun 2020 08:19:07 -0700
+IronPort-SDR: rrWVo3+gLBjMClGwGDJ+AVS1P+qj6NuHvdla8pN+zSm4jLfBcWlbHCOOMqY84EWoF26RAVbuja
+ AtTVKGSE7nSQ==
+X-IronPort-AV: E=Sophos;i="5.75,267,1589266800"; d="scan'208";a="451871682"
 Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 08:19:04 -0700
+ 22 Jun 2020 08:19:06 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Mon, 22 Jun 2020 17:18:42 +0200
-Message-Id: <20200622151845.4520-6-janusz.krzysztofik@linux.intel.com>
+Date: Mon, 22 Jun 2020 17:18:43 +0200
+Message-Id: <20200622151845.4520-7-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200622151845.4520-1-janusz.krzysztofik@linux.intel.com>
 References: <20200622151845.4520-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH i-g-t 5/8] tests/core_hotunplug: Add 'GEM
- address space' variant
+Subject: [Intel-gfx] [RFC PATCH i-g-t 6/8] tests/core_hotunplug: Add 'GEM
+ object' variant
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,41 +55,33 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Verify if an additional address space associated with an open device
-file descriptor is cleaned up correctly on device hotunplug.
+GEM objects belonging to user file descriptors still open on device
+hotunplug may exhibit still more driver issues.  Add a subtest that
+implements this scenario.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- tests/core_hotunplug.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ tests/core_hotunplug.c | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
 diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
-index f736a991f..6d9f530b1 100644
+index 6d9f530b1..309d4efef 100644
 --- a/tests/core_hotunplug.c
 +++ b/tests/core_hotunplug.c
-@@ -34,6 +34,8 @@
- #include "igt_kmod.h"
- #include "igt_sysfs.h"
- 
-+#include "i915/gem_vm.h"
-+
- IGT_TEST_DESCRIPTION("Examine behavior of a driver on device hot unplug");
- 
- struct hotunplug {
-@@ -330,6 +332,29 @@ static void hotreplug_lateclose(void)
+@@ -355,6 +355,29 @@ static void vm_hotunplug_lateclose(void)
  	healthcheck();
  }
  
-+static void vm_hotunplug_lateclose(void)
++static void gem_hotunplug_lateclose(void)
 +{
 +	struct hotunplug priv;
 +
 +	prepare_for_rescan(&priv);
 +
-+	gem_require_vm(priv.fd.drm);
++	igt_require_gem(priv.fd.drm);
 +
-+	local_debug("creating additional GEM user address space");
-+	igt_ignore_warn(gem_vm_create(priv.fd.drm));
++	local_debug("creating a GEM user object");
++	igt_ignore_warn(gem_create(priv.fd.drm, 4096));
 +
 +	local_debug("hot unplugging the device");
 +	device_unplug(priv.fd.sysfs_dev);
@@ -106,14 +98,14 @@ index f736a991f..6d9f530b1 100644
  /* Main */
  
  igt_main
-@@ -402,4 +427,11 @@ igt_main
+@@ -434,4 +457,11 @@ igt_main
  
  	igt_fixture
  		igt_abort_on_f(failure, "%s\n", failure);
 +
-+	igt_describe("Check if a still open device with extra GEM address space can be cleanly unplugged, then released and recovered");
-+	igt_subtest("vm-hotunplug-lateclose")
-+		vm_hotunplug_lateclose();
++	igt_describe("Check if a device with a still open GEM object can be cleanly unplugged, then released and recovered");
++	igt_subtest("gem-hotunplug-lateclose")
++		gem_hotunplug_lateclose();
 +
 +	igt_fixture
 +		igt_abort_on_f(failure, "%s\n", failure);
