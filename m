@@ -2,76 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC9EB2037AE
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 15:16:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 414EA2037B3
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 15:17:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 579F06E550;
-	Mon, 22 Jun 2020 13:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E9616E5C1;
+	Mon, 22 Jun 2020 13:17:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
- [IPv6:2607:f8b0:4864:20::741])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F9876E532
- for <intel-gfx@lists.freedesktop.org>; Sun, 21 Jun 2020 22:09:46 +0000 (UTC)
-Received: by mail-qk1-x741.google.com with SMTP id k18so4800473qke.4
- for <intel-gfx@lists.freedesktop.org>; Sun, 21 Jun 2020 15:09:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lca.pw; s=google;
- h=date:from:to:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=PKmshvnxCi3S4qzqvpETs1bTZ4nXpcFNE/ZdSSfX0T8=;
- b=ok6whzLttVjTCO00ZovY5Qp+9Q/FskzrHZBq0nVmfOvL/dcgMm+F7BlV7yqhjjXb2X
- /GwABUb/F6auR4clLv8LxDt1lKCw3f8fujRm3J4i/7DDAQgKxLpG0EuX57O3kZWS14gK
- EsYW/RxS6uQwawrvN4U8hak6jfE0PruLgOG4UWxJzpqfzKghVgpaH+iIV0MUevUsYdyg
- xB1iej8rKxcKHL0hPe/QqnHpLcOSZqD8qT5a3oe6uj8mx/sPXjLPrR9H/ehgbtv1McrY
- iP1jdqNmUV9sf5TPwgiNsgcua92k6hyr6K5LzHUMB/vQlopQ/6WDMCA3F4wCOYffDokR
- bXxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=PKmshvnxCi3S4qzqvpETs1bTZ4nXpcFNE/ZdSSfX0T8=;
- b=lOPye5wV7YHhdCZAcg8U8qS5cmrkn8i4Ub9F3Z3wKCzlt2BEUHSRBqYtMti/ZMoqeM
- xy2/CFRbsP/x18L6UEuxPiC1EhRKaUULNttYNJL/3pfYlsC+7aMbyKKzcMual4tjgXYb
- XeeqaUpg25nzS2OrPb7LbhKboyhP+2FRcZ6dtpZemgnZFxLuMmWI9Hx0MYZeBAUl1tvO
- Gq3aWETMqBaClLKX88/SZeI6kS/6VB1i+L+YACfT3dgalE3dbLXB4ltAb5zk3XQaZViu
- I3vytdzYhMrhz/NwdcfYAqvobtWKsUIpttNhEkUjSyODr8zWXqAvIE15qRu1egpr2F0c
- uWiQ==
-X-Gm-Message-State: AOAM530ozOjVDmdKDO5aHG+I1HFF+t4LRB4suY+eTdJkLaqCGEcI2776
- qxBvRd39w+T6D23lmXr1o4oGwRlM0OJA4A==
-X-Google-Smtp-Source: ABdhPJxLimkm/zUVwedVJyzs6tH8cndzNlIvqCwJYXshoIa3c1bZDmz6pO0xFTlj2WcNXoCJFH1VsA==
-X-Received: by 2002:a37:cd4:: with SMTP id 203mr8810965qkm.342.1592777385668; 
- Sun, 21 Jun 2020 15:09:45 -0700 (PDT)
-Received: from lca.pw (pool-71-184-117-43.bstnma.fios.verizon.net.
- [71.184.117.43])
- by smtp.gmail.com with ESMTPSA id k17sm13998471qtb.5.2020.06.21.15.09.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 21 Jun 2020 15:09:45 -0700 (PDT)
-Date: Sun, 21 Jun 2020 18:09:37 -0400
-From: Qian Cai <cai@lca.pw>
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas_os@shipmail.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Jason Gunthorpe <jgg@mellanox.com>, Linux MM <linux-mm@kvack.org>,
- linux-rdma <linux-rdma@vger.kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>, linux-xfs@vger.kernel.org
-Message-ID: <20200621220937.GA2034@lca.pw>
-References: <20200604081224.863494-2-daniel.vetter@ffwll.ch>
- <20200610194101.1668038-1-daniel.vetter@ffwll.ch>
- <20200621174205.GB1398@lca.pw>
- <CAKMK7uFZAFVmceoYvqPovOifGw_Y8Ey-OMy6wioMjwPWhu9dDg@mail.gmail.com>
- <20200621200103.GV20149@phenom.ffwll.local>
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+ [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3474F6E52F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 07:26:00 +0000 (UTC)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1jnGq3-0007TP-4w; Mon, 22 Jun 2020 09:25:55 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1jnGq2-00011S-8g; Mon, 22 Jun 2020 09:25:54 +0200
+Date: Mon, 22 Jun 2020 09:25:54 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200622072554.qkuvf25xmy3vyjd2@taurus.defre.kleine-koenig.org>
+References: <20200620121758.14836-1-hdegoede@redhat.com>
+ <20200620121758.14836-4-hdegoede@redhat.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200621200103.GV20149@phenom.ffwll.local>
+In-Reply-To: <20200620121758.14836-4-hdegoede@redhat.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
 X-Mailman-Approved-At: Mon, 22 Jun 2020 13:16:47 +0000
-Subject: Re: [Intel-gfx] [PATCH] mm: Track mmu notifiers in
- fs_reclaim_acquire/release
+Subject: Re: [Intel-gfx] [PATCH v3 03/15] pwm: lpss: Fix off by one error in
+ base_unit math in pwm_lpss_prepare()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,121 +49,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Content-Type: multipart/mixed; boundary="===============1741049699=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Jun 21, 2020 at 10:01:03PM +0200, Daniel Vetter wrote:
-> On Sun, Jun 21, 2020 at 08:07:08PM +0200, Daniel Vetter wrote:
-> > On Sun, Jun 21, 2020 at 7:42 PM Qian Cai <cai@lca.pw> wrote:
-> > >
-> > > On Wed, Jun 10, 2020 at 09:41:01PM +0200, Daniel Vetter wrote:
-> > > > fs_reclaim_acquire/release nicely catch recursion issues when
-> > > > allocating GFP_KERNEL memory against shrinkers (which gpu drivers t=
-end
-> > > > to use to keep the excessive caches in check). For mmu notifier
-> > > > recursions we do have lockdep annotations since 23b68395c7c7
-> > > > ("mm/mmu_notifiers: add a lockdep map for invalidate_range_start/en=
-d").
-> > > >
-> > > > But these only fire if a path actually results in some pte
-> > > > invalidation - for most small allocations that's very rarely the ca=
-se.
-> > > > The other trouble is that pte invalidation can happen any time when
-> > > > __GFP_RECLAIM is set. Which means only really GFP_ATOMIC is a safe
-> > > > choice, GFP_NOIO isn't good enough to avoid potential mmu notifier
-> > > > recursion.
-> > > >
-> > > > I was pondering whether we should just do the general annotation, b=
-ut
-> > > > there's always the risk for false positives. Plus I'm assuming that
-> > > > the core fs and io code is a lot better reviewed and tested than
-> > > > random mmu notifier code in drivers. Hence why I decide to only
-> > > > annotate for that specific case.
-> > > >
-> > > > Furthermore even if we'd create a lockdep map for direct reclaim, w=
-e'd
-> > > > still need to explicit pull in the mmu notifier map - there's a lot
-> > > > more places that do pte invalidation than just direct reclaim, these
-> > > > two contexts arent the same.
-> > > >
-> > > > Note that the mmu notifiers needing their own independent lockdep m=
-ap
-> > > > is also the reason we can't hold them from fs_reclaim_acquire to
-> > > > fs_reclaim_release - it would nest with the acquistion in the pte
-> > > > invalidation code, causing a lockdep splat. And we can't remove the
-> > > > annotations from pte invalidation and all the other places since
-> > > > they're called from many other places than page reclaim. Hence we c=
-an
-> > > > only do the equivalent of might_lock, but on the raw lockdep map.
-> > > >
-> > > > With this we can also remove the lockdep priming added in 66204f1d2=
-d1b
-> > > > ("mm/mmu_notifiers: prime lockdep") since the new annotations are
-> > > > strictly more powerful.
-> > > >
-> > > > v2: Review from Thomas Hellstrom:
-> > > > - unbotch the fs_reclaim context check, I accidentally inverted it,
-> > > >   but it didn't blow up because I inverted it immediately
-> > > > - fix compiling for !CONFIG_MMU_NOTIFIER
-> > > >
-> > > > Cc: Thomas Hellstr=F6m (Intel) <thomas_os@shipmail.org>
-> > > > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > > > Cc: Jason Gunthorpe <jgg@mellanox.com>
-> > > > Cc: linux-mm@kvack.org
-> > > > Cc: linux-rdma@vger.kernel.org
-> > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > Cc: Christian K=F6nig <christian.koenig@amd.com>
-> > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > >
-> > > Replying the right patch here...
-> > >
-> > > Reverting this commit [1] fixed the lockdep warning below while apply=
-ing
-> > > some memory pressure.
-> > >
-> > > [1] linux-next cbf7c9d86d75 ("mm: track mmu notifiers in fs_reclaim_a=
-cquire/release")
-> > =
 
-> > Hm, then I'm confused because
-> > - there's not mmut notifier lockdep map in the splat at a..
-> > - the patch is supposed to not change anything for fs_reclaim (but the
-> > interim version got that wrong)
-> > - looking at the paths it's kmalloc vs kswapd, both places I totally
-> > expect fs_reflaim to be used.
-> > =
+--===============1741049699==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s33yr6daqbbyscr3"
+Content-Disposition: inline
 
-> > But you're claiming reverting this prevents the lockdep splat. If
-> > that's right, then my reasoning above is broken somewhere. Someone
-> > less blind than me having an idea?
-> > =
 
-> > Aside this is the first email I've typed, until I realized the first
-> > report was against the broken patch and that looked like a much more
-> > reasonable explanation (but didn't quite match up with the code
-> > paths).
-> =
+--s33yr6daqbbyscr3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Below diff should undo the functional change in my patch. Can you pls test
-> whether the lockdep splat is really gone with that? Might need a lot of
-> testing and memory pressure to be sure, since all these reclaim paths
-> aren't very deterministic.
+On Sat, Jun 20, 2020 at 02:17:46PM +0200, Hans de Goede wrote:
+> According to the data-sheet the way the PWM controller works is that
+> each input clock-cycle the base_unit gets added to a N bit counter and
+> that counter overflowing determines the PWM output frequency.
+>=20
+> So assuming e.g. a 16 bit counter this means that if base_unit is set to =
+1,
+> after 65535 input clock-cycles the counter has been increased from 0 to
+> 65535 and it will overflow on the next cycle, so it will overflow after
+> every 65536 clock cycles and thus the calculations done in
+> pwm_lpss_prepare() should use 65536 and not 65535.
+>=20
+> This commit fixes this. Note this also aligns the calculations in
+> pwm_lpss_prepare() with those in pwm_lpss_get_state().
+>=20
+> Note this effectively reverts commit 684309e5043e ("pwm: lpss: Avoid
+> potential overflow of base_unit"). The next patch in this series really
+> fixes the potential overflow of the base_unit value.
+>=20
+> Fixes: 684309e5043e ("pwm: lpss: Avoid potential overflow of base_unit")
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+> Changes in v3:
+> - Add Fixes tag
+> - Add Reviewed-by: Andy Shevchenko tag
+> ---
+>  drivers/pwm/pwm-lpss.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-lpss.c b/drivers/pwm/pwm-lpss.c
+> index 9d965ffe66d1..43b1fc634af1 100644
+> --- a/drivers/pwm/pwm-lpss.c
+> +++ b/drivers/pwm/pwm-lpss.c
+> @@ -93,7 +93,7 @@ static void pwm_lpss_prepare(struct pwm_lpss_chip *lpwm=
+, struct pwm_device *pwm,
+>  	 * The equation is:
+>  	 * base_unit =3D round(base_unit_range * freq / c)
+>  	 */
+> -	base_unit_range =3D BIT(lpwm->info->base_unit_bits) - 1;
+> +	base_unit_range =3D BIT(lpwm->info->base_unit_bits);
+>  	freq *=3D base_unit_range;
+> =20
+>  	base_unit =3D DIV_ROUND_CLOSEST_ULL(freq, c);
+> @@ -104,8 +104,8 @@ static void pwm_lpss_prepare(struct pwm_lpss_chip *lp=
+wm, struct pwm_device *pwm,
+> =20
+>  	orig_ctrl =3D ctrl =3D pwm_lpss_read(pwm);
+>  	ctrl &=3D ~PWM_ON_TIME_DIV_MASK;
+> -	ctrl &=3D ~(base_unit_range << PWM_BASE_UNIT_SHIFT);
+> -	base_unit &=3D base_unit_range;
+> +	ctrl &=3D ~((base_unit_range - 1) << PWM_BASE_UNIT_SHIFT);
+> +	base_unit &=3D (base_unit_range - 1);
+>  	ctrl |=3D (u32) base_unit << PWM_BASE_UNIT_SHIFT;
+>  	ctrl |=3D on_time_div;
 
-Well, I am running even heavy memory pressure workloads on linux-next
-like every day, and never saw this splat until today where your patch
-first show up.
+I willing to believe your change is right, what I don't like is that the
+calculation is really hard to follow. But that's nothing I want to
+burden on you to improve. (If however you are motivated, adding some
+comments about the hardware would probably help.)
 
-Since I am rather busy tracking another regression, here is the steps to
-reproduce (super easy to reproduce on multiple machines here.):
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
 
-# git clone https://github.com/cailca/linux-mm.git
-# cd linux-mm; make
-# ./random 0
+Thanks
+Uwe
 
-The .config is in there as well if ever matters.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--s33yr6daqbbyscr3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl7wXP8ACgkQwfwUeK3K
+7AnlQggAnmb/EK9bchCisGMTtET3A8MmMvsLrGaMsQG0BI4fWzS2SnYifvpSTs57
+BrrYG0y72GKb6hx7rxvlkTHRHIq9x0jMvcEan6ZFjVjdrX7cqKo3/yd399PmE0VB
+ewOY+xd2xKIT/NXtUdcsoU6jfNA9+NxVMZpNBuA9sPS+Bn3pXbeBWrl0w7gAefhs
+S08mgy7B9a+njGYt5wF1n3hhyrDZ7kJIUdS4jCczjgC8zQ6QciVRRoSw+cyWU58o
+AkvPSA/e99kHzkKTns/j2BTx7fKqyelpqTFy0+Sc4LEqr7H2N+1mToBYGiDgb87Q
+4uD50mRhYHbfRtzms/sOWvjRfPvsGQ==
+=qThH
+-----END PGP SIGNATURE-----
+
+--s33yr6daqbbyscr3--
+
+--===============1741049699==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1741049699==--
