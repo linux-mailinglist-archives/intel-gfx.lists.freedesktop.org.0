@@ -1,57 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C202030D1
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 09:51:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DA3120323F
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 10:39:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 822DF89F03;
-	Mon, 22 Jun 2020 07:51:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B081C89E98;
+	Mon, 22 Jun 2020 08:39:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com
- [IPv6:2607:f8b0:4864:20::241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1479B89F03
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 07:51:25 +0000 (UTC)
-Received: by mail-oi1-x241.google.com with SMTP id a21so14807596oic.8
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 00:51:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=HGOSf16bITCRxsPfmcRARvYmW/epD/OAhzvahMnySQo=;
- b=H7allL3N3LVP1tHH7L1UrIKG6ay6i1+L4LvLNLxzgjdN80NXHuFryTCF+bEcZQM0Nk
- VVcqXcr5wwmjEIpZse4UWZ1DcDhHF9HoYX6KfBZmcQ+FKa/tsCLIDy0aHimQXQs+xDsN
- F1keZes5hNisevF9Bb3wG0GhuAtdn9F3E2PTk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=HGOSf16bITCRxsPfmcRARvYmW/epD/OAhzvahMnySQo=;
- b=UR6myDSazfYbxgyMKG6/a5mIg/SwhbuUcL/EiIzdkX207IRMEpXFOmDiWPGF29sG2J
- 5Us5/YD3L4bUgy4WATSbP8p2KjZEqDsF3TixFoH6IEzXRUbrHAxfq83ittzWn+HOVmyy
- TbQ2QnYQ0zj/MH273I6iycH3esusQj6uPHq1oj26KjIW9lkUDoNt6BD7+17MKaroH6XE
- A2tvWABCHu1Xe7cKz/c9NDSLJsPiyk+3Pb0cKKroOiC1g3mjuhlc0ibRHKMxzc7v4ero
- x5r8EKx5D0xlk3f0tvpeVw65Eo4CnQPJMB5mbBOAUTC/UxQHeV71mlL2clHoSqCeEhJm
- hq8w==
-X-Gm-Message-State: AOAM5335MtNVCnxMmMuS5SDdw1mdjo7dktaqiNNICdCHL7xrtpwYGEVa
- xsQzkkNPyxoesX7At6EhiNilkKK8Q1K0383Ncbliow==
-X-Google-Smtp-Source: ABdhPJymd9r6JxCvtSvK5LZPiGHwJZq6ZpSXtGDINR2F/R7/mUM+3T9PYXnI1/v2ptI1UCSNVHICfHiZVo0BRCfslBg=
-X-Received: by 2002:aca:bc06:: with SMTP id m6mr7249765oif.101.1592812284251; 
- Mon, 22 Jun 2020 00:51:24 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90CDB89E98
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 08:39:38 +0000 (UTC)
+IronPort-SDR: owT2AMFfvxqRwRoQtcvh2WSTaFfBPXrgkpDdR3awM+b0KVndBECvyHdMmIhTYMQ2O57ml+/ODn
+ pug8bwSJo9VQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9659"; a="131087300"
+X-IronPort-AV: E=Sophos;i="5.75,266,1589266800"; 
+ d="asc'?scan'208";a="131087300"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2020 01:39:36 -0700
+IronPort-SDR: +k4BGWZTZD0NCOB/5iiSybKkeFPctD9Yz8O+pBhIJex4dqZdE6emw0hTGXrggUr4+Sq4qXSedc
+ /nayrEj3yOLA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,266,1589266800"; 
+ d="asc'?scan'208";a="478315825"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga006.fm.intel.com with ESMTP; 22 Jun 2020 01:39:34 -0700
+Date: Mon, 22 Jun 2020 16:23:19 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200622082319.GZ5687@zhen-hp.sh.intel.com>
+References: <1592296160-3784-1-git-send-email-shaofeng.tang@intel.com>
+ <159233324036.19488.6385709597388673560@build.alporthouse.com>
 MIME-Version: 1.0
-References: <20200618004240.16263-1-lucas.demarchi@intel.com>
- <20200618004240.16263-8-lucas.demarchi@intel.com>
-In-Reply-To: <20200618004240.16263-8-lucas.demarchi@intel.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Mon, 22 Jun 2020 09:51:13 +0200
-Message-ID: <CAKMK7uEBq6-MNL1EsZtT4d07tfq7bXCGXQNX9XnorCg2NuiS5g@mail.gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Dave Airlie <airlied@redhat.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, "Nikula,
- Jani" <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 07/32] drm/i915/dg1: add initial DG-1
- definitions
+In-Reply-To: <159233324036.19488.6385709597388673560@build.alporthouse.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: query if vgpu is active via
+ GETPARAM IOCTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,109 +53,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Shaofeng Tang <shaofeng.tang@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1544616171=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBKdW4gMTcsIDIwMjAgYXQgMDU6NDI6MTVQTSAtMDcwMCwgTHVjYXMgRGUgTWFyY2hp
-IHdyb3RlOgo+IEZyb206IEFiZGllbCBKYW51bGd1ZSA8YWJkaWVsLmphbnVsZ3VlQGxpbnV4Lmlu
-dGVsLmNvbT4KPgo+IEJzcGVjOiAzMzYxNywgMzM2MTcKPgo+IENjOiBKb3PDqSBSb2JlcnRvIGRl
-IFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KPiBDYzogRGFuaWVsZSBDZXJhb2xvIFNwdXJp
-byA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KPiBDYzogU3R1YXJ0IFN1bW1lcnMg
-PHN0dWFydC5zdW1tZXJzQGludGVsLmNvbT4KPiBDYzogVmFuc2hpZGhhciBLb25kYSA8dmFuc2hp
-ZGhhci5yLmtvbmRhQGludGVsLmNvbT4KPiBDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1h
-cmNoaUBpbnRlbC5jb20+Cj4gQ2M6IEFyYXZpbmQgSWRkYW1zZXR0eSA8YXJhdmluZC5pZGRhbXNl
-dHR5QGludGVsLmNvbT4KPiBDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNv
-bT4KPiBTaWduZWQtb2ZmLWJ5OiBBYmRpZWwgSmFudWxndWUgPGFiZGllbC5qYW51bGd1ZUBsaW51
-eC5pbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1h
-cmNoaUBpbnRlbC5jb20+Cj4gUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpv
-c2Uuc291emFAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Ry
-di5oICAgICAgICAgIHwgIDcgKysrKysrKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Bj
-aS5jICAgICAgICAgIHwgMTIgKysrKysrKysrKysrCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
-dGVsX2RldmljZV9pbmZvLmMgfCAgMSArCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rl
-dmljZV9pbmZvLmggfCAgMSArCj4gIDQgZmlsZXMgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKQo+
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCj4gaW5kZXggMmY4MDU3YTBiMjI4MC4uZjc5YzA5MjU3
-ZWI2YiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAo+IEBAIC0xNDI4LDYgKzE0MjgsNyBA
-QCBJU19TVUJQTEFURk9STShjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKPiAg
-I2RlZmluZSBJU19FTEtIQVJUTEFLRShkZXZfcHJpdikgICAgIElTX1BMQVRGT1JNKGRldl9wcml2
-LCBJTlRFTF9FTEtIQVJUTEFLRSkKPiAgI2RlZmluZSBJU19USUdFUkxBS0UoZGV2X3ByaXYpICAg
-ICAgIElTX1BMQVRGT1JNKGRldl9wcml2LCBJTlRFTF9USUdFUkxBS0UpCj4gICNkZWZpbmUgSVNf
-Uk9DS0VUTEFLRShkZXZfcHJpdikgICAgICBJU19QTEFURk9STShkZXZfcHJpdiwgSU5URUxfUk9D
-S0VUTEFLRSkKPiArI2RlZmluZSBJU19ERzEoZGV2X3ByaXYpICAgICAgICBJU19QTEFURk9STShk
-ZXZfcHJpdiwgSU5URUxfREcxKQo+ICAjZGVmaW5lIElTX0hTV19FQVJMWV9TRFYoZGV2X3ByaXYp
-IChJU19IQVNXRUxMKGRldl9wcml2KSAmJiBcCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIChJTlRFTF9ERVZJRChkZXZfcHJpdikgJiAweEZGMDApID09IDB4MEMwMCkKPiAgI2Rl
-ZmluZSBJU19CRFdfVUxUKGRldl9wcml2KSBcCj4gQEAgLTE1NTYsNiArMTU1NywxMiBAQCBJU19T
-VUJQTEFURk9STShjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKPiAgI2RlZmlu
-ZSBJU19SS0xfUkVWSUQocCwgc2luY2UsIHVudGlsKSBcCj4gICAgICAgKElTX1JPQ0tFVExBS0Uo
-cCkgJiYgSVNfUkVWSUQocCwgc2luY2UsIHVudGlsKSkKPgo+ICsjZGVmaW5lIERHMV9SRVZJRF9B
-MCAgICAgICAgIDB4MAo+ICsjZGVmaW5lIERHMV9SRVZJRF9CMCAgICAgICAgIDB4MQo+ICsKPiAr
-I2RlZmluZSBJU19ERzFfUkVWSUQocCwgc2luY2UsIHVudGlsKSBcCj4gKyAgICAgKElTX0RHMShw
-KSAmJiBJU19SRVZJRChwLCBzaW5jZSwgdW50aWwpKQo+ICsKPiAgI2RlZmluZSBJU19MUChkZXZf
-cHJpdikgICAgICAoSU5URUxfSU5GTyhkZXZfcHJpdiktPmlzX2xwKQo+ICAjZGVmaW5lIElTX0dF
-TjlfTFAoZGV2X3ByaXYpIChJU19HRU4oZGV2X3ByaXYsIDkpICYmIElTX0xQKGRldl9wcml2KSkK
-PiAgI2RlZmluZSBJU19HRU45X0JDKGRldl9wcml2KSAoSVNfR0VOKGRldl9wcml2LCA5KSAmJiAh
-SVNfTFAoZGV2X3ByaXYpKQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X3BjaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYwo+IGluZGV4IGU1ZmRmMTdj
-ZDljZGQuLjU4Y2NlZWFhMGZmYTUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9wY2kuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMKPiBAQCAt
-ODk2LDggKzg5NiwyMCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIHJr
-bF9pbmZvID0gewo+Cj4gICNkZWZpbmUgR0VOMTJfREdGWF9GRUFUVVJFUyBcCj4gICAgICAgR0VO
-MTJfRkVBVFVSRVMsIFwKPiArICAgICAubWVtb3J5X3JlZ2lvbnMgPSBSRUdJT05fU01FTSB8IFJF
-R0lPTl9MTUVNLCBcCgpUaGlzIGhhcyBsbWVtLCBhbmQgd2UgbmVlZCBhIG5ldyB1YXBpIGZvciB0
-aGF0LiBMYXN0IHllYXIgd2UgZGlzY3Vzc2VkIGEKcGxhbiB0byBoYXZlIHRoYXQgYmVoaW5kIGEg
-dmVyeSBzY2FyeSBjb21waWxlLXRpbWUgb25seSBvcHRpb24sIHRvIG1ha2UKYWJzb2x1dGVseSBz
-dXJlIG5vIG9uZSB3aWxsIHN0YXJ0IHJlbHlpbmcgb24gdGhpcyBicm9rZW4gc3RhdGUgYmVmb3Jl
-IHdlCmFsaWduZWQgZXZlcnl0aGluZy4gQW5kIHdlIGtub3cgdGhlIGN1cnJlbnQgc3RhdHVzIGlz
-IHdyb25nIHNpbmNlIHRoaXMKcGF0Y2ggc2VyaWVzIGRvZXNuJ3QgaW5jbHVkZSBhbnkgb2YgdGhl
-IGxtZW0gc3BlY2lmaWMgdWFwaSB0aGF0J3MgYmVpbmcKd29ya2VkIG9uLgoKQnV0IG5vdyBhbG1v
-c3QgYSB5ZWFyIHBhc3NlZCwgc28gdGhhdCBvcmlnaW5hbCBwbGFuIG5lZWRzIHRvIGJlCnJlbmVn
-b3RpYXRlZC4gUGVyc29uYWxseSBJJ20gbm90IHN1cmUgdGhlIHNjYXJ5IGNvbXBpbGUgb3B0aW9u
-IG1ha2VzCnNlbnNlIGFueSBsb25nZXIsIHdlJ3JlIHdheSBsYXRlciwgdXNlcnMgd2lsbCBzb29u
-IGhhdmUgcmVhbCBodywgYW5kIG9uY2UKdGhleSBoYXZlIHRoYXQgdGhleSB3aWxsIGZpbmQgd2F5
-cyB0byBlbmFibGUgaXQgYW5kIHdlJ3JlIHBvdGVudGlhbGx5CnNjcmV3ZWQuICBEaXNjdXNzZWQg
-dGhpcyBhbHNvIHdpdGggSm9vbmFzIGxhc3Qgd2VlayBvciBzbyBpbiBwcml2YXRlLCBhbmQKaGUg
-c2hhcmVzIHNpbWlsYXIgY29uY2VybnMuCgpTbyBJIHRoaW5rIGJlc3Qgb3B0aW9uIGhlcmUgKHNp
-bmNlIGtlZXBpbmcgcGF0Y2hlcyBvdXQgb2YgdHJlZSBpcyByYXJlbHkKYmVzdCBvcHRpb24pIHdv
-dWxkIGJlIHRvIG1lcmdlIGp1c3QgdGhlIGRpc3BsYXkgZW5hYmxpbmcgZm9yIERHMSwgYnV0IGFs
-c28KbWFraW5nIHN1cmUgdGhhdCB3ZSBoYXZlIGFsbCB0aGUgcmVuZGVyaW5nIHN1cHBvcnQgY29t
-cGxldGVseSBkaXNhYmxlZC4KVGhpcyB3b3VsZCBtZWFuOgotIHdlZGdlIGdwdSBvbiBzdGFydHVw
-LCBqdXN0IHRvIG1ha2Ugc3VyZQotIGRybV9kcml2ZXItPm51bV9pb2N0bHMgPSAwIChwbHVzIGlv
-Y3RscyA9IE5VTEwpCi0gbm8gc2V0dGluZyBEUklWRVJfUkVOREVSIGFuZCBEUklWRVJfU1lOQ09C
-Siwgd2UnZCBiZSBhIHB1cmUKZGlzcGxheS1vbmx5IGRyaXZlcgoKQWRkaW5nIERhdmUgYW5kIGRy
-bS1pbnRlbCBtYWludGFpbmVycyB0byBxdWlja2x5IGhhc2ggdGhpcyBvdXQuIFRob3VnaHRzPwot
-RGFuaWVsCgoKPiArICAgICAuaGFzX21hc3Rlcl91bml0X2lycSA9IDEsIFwKPiAgICAgICAuaXNf
-ZGdmeCA9IDEKPgo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIGludGVs
-X2RnMV9pbmZvID0gewo+ICsgICAgIEdFTjEyX0RHRlhfRkVBVFVSRVMsCj4gKyAgICAgUExBVEZP
-Uk0oSU5URUxfREcxKSwKPiArICAgICAucGlwZV9tYXNrID0gQklUKFBJUEVfQSkgfCBCSVQoUElQ
-RV9CKSB8IEJJVChQSVBFX0MpIHwgQklUKFBJUEVfRCksCj4gKyAgICAgLnJlcXVpcmVfZm9yY2Vf
-cHJvYmUgPSAxLAo+ICsgICAgIC5lbmdpbmVfbWFzayA9Cj4gKyAgICAgICAgICAgICBCSVQoUkNT
-MCkgfCBCSVQoQkNTMCkgfCBCSVQoVkVDUzApIHwKPiArICAgICAgICAgICAgIEJJVChWQ1MwKSB8
-IEJJVChWQ1MyKSwKPiArfTsKPiArCj4gICN1bmRlZiBHRU4KPiAgI3VuZGVmIFBMQVRGT1JNCj4K
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMKPiBpbmRleCA1NDRhYzYx
-ZmJjMzYzLi4yZTQwYTY2NDlkMTQyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2ludGVsX2RldmljZV9pbmZvLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9k
-ZXZpY2VfaW5mby5jCj4gQEAgLTYzLDYgKzYzLDcgQEAgc3RhdGljIGNvbnN0IGNoYXIgKiBjb25z
-dCBwbGF0Zm9ybV9uYW1lc1tdID0gewo+ICAgICAgIFBMQVRGT1JNX05BTUUoRUxLSEFSVExBS0Up
-LAo+ICAgICAgIFBMQVRGT1JNX05BTUUoVElHRVJMQUtFKSwKPiAgICAgICBQTEFURk9STV9OQU1F
-KFJPQ0tFVExBS0UpLAo+ICsgICAgIFBMQVRGT1JNX05BTUUoREcxKSwKPiAgfTsKPiAgI3VuZGVm
-IFBMQVRGT1JNX05BTUUKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
-bF9kZXZpY2VfaW5mby5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8u
-aAo+IGluZGV4IDc3MGQwNzAwM2NlNjAuLmJkZDIxY2RlOTE3Y2MgMTAwNjQ0Cj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaAo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmgKPiBAQCAtODIsNiArODIsNyBAQCBlbnVtIGlu
-dGVsX3BsYXRmb3JtIHsKPiAgICAgICAvKiBnZW4xMiAqLwo+ICAgICAgIElOVEVMX1RJR0VSTEFL
-RSwKPiAgICAgICBJTlRFTF9ST0NLRVRMQUtFLAo+ICsgICAgIElOVEVMX0RHMSwKPiAgICAgICBJ
-TlRFTF9NQVhfUExBVEZPUk1TCj4gIH07Cj4KPiAtLQo+IDIuMjYuMgo+Cj4gX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBs
-aXN0Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4CgotLQpEYW5pZWwgVmV0dGVy
-ClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5j
-aApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+--===============1544616171==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="45kFsbCJmK9J4C/8"
+Content-Disposition: inline
+
+
+--45kFsbCJmK9J4C/8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2020.06.16 19:47:20 +0100, Chris Wilson wrote:
+> Quoting Shaofeng Tang (2020-06-16 09:29:20)
+> > [Why]
+> > Query if vgpu is active, it is useful to the user.
+> > Currently, only the primary plane is usable when vgpu is active.
+> > The value of vgpu active is useful for user to determine
+> > how many planes can be used. also useful for user to
+> > determine different behaviors according to vgpu is active or not.
+>=20
+> The number of planes must be queried via kms, and all such kernel
+> capabilities should be declared via the appropriate interface.
+>=20
+> I am not saying that there is not potentially good reason to let the
+> user to know it's a virtual gpu, but hardcoding api limits in the client
+> based on the parameter is a bad idea.
+
+Yeah, as I replied for internal before, guest shouldn't detect via
+this kind of interface, which also doesn't reflect any gvt host capability
+change. For any current gap, let's fix gvt or vgpu handling instead.
+
+Thanks.
+
+--45kFsbCJmK9J4C/8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXvBqdwAKCRCxBBozTXgY
+JxrBAKCdjtsCjn3RCRQRo0QbzUQ4cMzxigCeOCgwTzK999LEj2K/JiG60XfMBQc=
+=TVyI
+-----END PGP SIGNATURE-----
+
+--45kFsbCJmK9J4C/8--
+
+--===============1544616171==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1544616171==--
