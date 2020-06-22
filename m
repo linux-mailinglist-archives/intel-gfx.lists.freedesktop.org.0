@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52D082037AC
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 15:16:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C0D203767
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 15:04:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC97E6E52F;
-	Mon, 22 Jun 2020 13:16:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C44566E12F;
+	Mon, 22 Jun 2020 13:04:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FC006E12A
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 07:57:34 +0000 (UTC)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1jnHKc-0001oP-PG; Mon, 22 Jun 2020 09:57:30 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
- (envelope-from <ukl@pengutronix.de>)
- id 1jnHKc-0002V0-Ec; Mon, 22 Jun 2020 09:57:30 +0200
-Date: Mon, 22 Jun 2020 09:57:30 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20200622075730.lenaflptqnemagff@taurus.defre.kleine-koenig.org>
-References: <20200620121758.14836-1-hdegoede@redhat.com>
- <20200620121758.14836-12-hdegoede@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D2C0E6E0DB;
+ Mon, 22 Jun 2020 13:04:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CC319A47E8;
+ Mon, 22 Jun 2020 13:04:04 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200620121758.14836-12-hdegoede@redhat.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
-X-Mailman-Approved-At: Mon, 22 Jun 2020 13:16:47 +0000
-Subject: Re: [Intel-gfx] [PATCH v3 11/15] pwm: crc: Implement get_state()
- method
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Date: Mon, 22 Jun 2020 13:04:04 -0000
+Message-ID: <159283104480.9207.8803310595134045370@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200622130029.28667-1-uma.shankar@intel.com>
+In-Reply-To: <20200622130029.28667-1-uma.shankar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Enable_HDR_on_MCA_LSPCON_based_Gen9_devices_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,119 +38,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
-Content-Type: multipart/mixed; boundary="===============1586433865=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
---===============1586433865==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mw6jshimogmdgtin"
-Content-Disposition: inline
+Series: Enable HDR on MCA LSPCON based Gen9 devices (rev4)
+URL   : https://patchwork.freedesktop.org/series/68081/
+State : warning
 
+== Summary ==
 
---mw6jshimogmdgtin
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Jun 20, 2020 at 02:17:54PM +0200, Hans de Goede wrote:
-> Implement the pwm_ops.get_state() method to complete the support for the
-> new atomic PWM API.
->=20
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-> ---
-> Changes in v3:
-> - Add Andy's Reviewed-by tag
-> - Remove extra whitespace to align some code after assignments (requested=
- by
->   Uwe Kleine-K=F6nig)
-> ---
->  drivers/pwm/pwm-crc.c | 29 +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
->=20
-> diff --git a/drivers/pwm/pwm-crc.c b/drivers/pwm/pwm-crc.c
-> index 8a7f4707279c..b311354d40a3 100644
-> --- a/drivers/pwm/pwm-crc.c
-> +++ b/drivers/pwm/pwm-crc.c
-> @@ -119,8 +119,37 @@ static int crc_pwm_apply(struct pwm_chip *chip, stru=
-ct pwm_device *pwm,
->  	return 0;
->  }
-> =20
-> +static void crc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *=
-pwm,
-> +			       struct pwm_state *state)
-> +{
-> +	struct crystalcove_pwm *crc_pwm =3D to_crc_pwm(chip);
-> +	struct device *dev =3D crc_pwm->chip.dev;
-> +	unsigned int clk_div, clk_div_reg, duty_cycle_reg;
-> +	int error;
-> +
-> +	error =3D regmap_read(crc_pwm->regmap, PWM0_CLK_DIV, &clk_div_reg);
-> +	if (error) {
-> +		dev_err(dev, "Error reading PWM0_CLK_DIV %d\n", error);
-> +		return;
-> +	}
-> +
-> +	error =3D regmap_read(crc_pwm->regmap, PWM0_DUTY_CYCLE, &duty_cycle_reg=
-);
-> +	if (error) {
-> +		dev_err(dev, "Error reading PWM0_DUTY_CYCLE %d\n", error);
-> +		return;
-> +	}
-> +
-> +	clk_div =3D (clk_div_reg & ~PWM_OUTPUT_ENABLE) + 1;
-> +
-> +	state->period =3D clk_div * NSEC_PER_USEC * 256 / PWM_BASE_CLK_MHZ;
-> +	state->duty_cycle =3D duty_cycle_reg * state->period / PWM_MAX_LEVEL;
-
-Please round up here.
-
-> +	state->polarity =3D PWM_POLARITY_NORMAL;
-> +	state->enabled =3D !!(clk_div_reg & PWM_OUTPUT_ENABLE);
-> +}
-> +
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---mw6jshimogmdgtin
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl7wZGcACgkQwfwUeK3K
-7AnHYQf/UHqz0iNoAxOSBKo9y/pZht9suxpbM0Dp6bl4N2KZwBFN1vRfXlrVWMJG
-qWIz+M0A3GBYongVW69fl0CauYETSXE5fovQEmBVi6f+XcWHgH5LcktEXfBKPkY/
-x0ZoDxdgT8/8ON4bLXxOmC0GaNV8/Ba5adw3mLO02RMYkTwOlL/v9uyS/++yXv6u
-XrJla8RQxooyswhJAQHMrN8es6OrlHb3C2/kEr7Bk4Zdhr6JSmL6jcLKyGXmcwpv
-fcc3RiYvvDU06sWU1Gw3W3qUqvoNRtFofHL7ocfsLzxqdAzWZqoQRSuLuHaxP/9n
-jAO635ahwfhHvpPtCa1nnE5Gm8HRug==
-=DPSI
------END PGP SIGNATURE-----
-
---mw6jshimogmdgtin--
-
---===============1586433865==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_display.c:1222:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/display/intel_display.c:1225:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/display/intel_display.c:1228:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/display/intel_display.c:1231:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2269:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2270:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2271:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2272:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2273:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
++drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
++drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1586433865==--
