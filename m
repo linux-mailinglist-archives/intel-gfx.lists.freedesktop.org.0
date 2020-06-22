@@ -1,47 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5978F203D91
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 19:14:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F62203DA8
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 19:17:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB5A789FDD;
-	Mon, 22 Jun 2020 17:14:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAE6B6E135;
+	Mon, 22 Jun 2020 17:17:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02A6A89FDD
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 17:13:58 +0000 (UTC)
-IronPort-SDR: zBDSkzzrITWeJTbiRwfiKis8AwqJNICsWjls38BYVQYMwz4bsTPry5+nz3w25MJ+C+Jl8jvvsz
- x2KhrDZStNKw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="142868824"
-X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="142868824"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A7C76E865
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 17:17:56 +0000 (UTC)
+IronPort-SDR: ZyI9o6YFAsekXCPTGI0aTrY14zu6rkUOeY2od2loicxkJVRZPdOiT30d6D4FjVNjo8xS0DZl6P
+ ybodkSX+IWLA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="141329153"
+X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="141329153"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 10:06:55 -0700
-IronPort-SDR: i0uVBn4SC4ZS0OZ4ykecZYUcxkQi+swAePW+h1gl8hXSLNLIjdZdJp4jIe1iy04TBWJdR4v2RW
- Hwghepzwir2g==
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2020 10:17:55 -0700
+IronPort-SDR: c7norod0it942Vh6/YrqD/j1FUFTRGQ8e3/lCewJorrZ2CKP3mIMnLNn8NEGgxBqjHpBTa2q16
+ j7SlguHmT7qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="292911433"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 22 Jun 2020 10:06:52 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 22 Jun 2020 20:06:51 +0300
-Date: Mon, 22 Jun 2020 20:06:51 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200622170651.GQ6112@intel.com>
-References: <20200618000124.29036-1-manasi.d.navare@intel.com>
- <20200622154921.GA25163@ideak-desk.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.75,268,1589266800"; d="scan'208";a="310177506"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by orsmga008.jf.intel.com with ESMTP; 22 Jun 2020 10:17:54 -0700
+Received: from bgsmsx152.gar.corp.intel.com (10.224.48.50) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 22 Jun 2020 10:17:54 -0700
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.234]) by
+ BGSMSX152.gar.corp.intel.com ([169.254.6.118]) with mapi id 14.03.0439.000;
+ Mon, 22 Jun 2020 22:47:51 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [v3 6/8] drm/i915/display: Implement infoframes readback for
+ LSPCON
+Thread-Index: AQHWP1bx/wUxv0hg90aV/S8mR5DuTqjTNCkAgAAEAwCABvGl8P//qRaAgABdDwCACmMGkIAAAAkAgABeCKA=
+Date: Mon, 22 Jun 2020 17:17:50 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F8256D2B9@BGSMSX104.gar.corp.intel.com>
+References: <20200610191232.11620-1-uma.shankar@intel.com>
+ <20200610191232.11620-7-uma.shankar@intel.com>
+ <20200611154650.GB6112@intel.com> <20200611160112.GC6112@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F8255F3E0@BGSMSX104.gar.corp.intel.com>
+ <20200615205233.GS6112@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F8255F444@BGSMSX104.gar.corp.intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F8256CDCF@BGSMSX104.gar.corp.intel.com>
+ <20200622170246.GP6112@intel.com>
+In-Reply-To: <20200622170246.GP6112@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200622154921.GA25163@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/dp: Helper for checking
- DDI_BUF_CTL Idle status
+Subject: Re: [Intel-gfx] [v3 6/8] drm/i915/display: Implement infoframes
+ readback for LSPCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,154 +72,244 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 22, 2020 at 06:49:26PM +0300, Imre Deak wrote:
-> On Wed, Jun 17, 2020 at 05:01:23PM -0700, Manasi Navare wrote:
-> > Modify the helper to add a fixed delay or poll with timeout
-> > based on platform specification in bothe enable and disable
-> > cases so check for either Idle bit set (DDI_BUF_CTL is idle
-> > for disable case) or check for Idle bit =3D 0 (non idle for
-> > DDI BUF enable case)
-> > =
 
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Cc: Imre Deak <imre.deak@intel.com>
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c | 34 +++++++++++++++---------
-> >  1 file changed, 21 insertions(+), 13 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm=
-/i915/display/intel_ddi.c
-> > index ca7bb2294d2b..e4738c3b6d44 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -1182,18 +1182,26 @@ static void intel_prepare_hdmi_ddi_buffers(stru=
-ct intel_encoder *encoder,
-> >  }
-> >  =
-
-> >  static void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
-> > -				    enum port port)
+> > > > > > -----Original Message-----
+> > > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > > Sent: Thursday, June 11, 2020 9:31 PM
+> > > > > > To: Shankar, Uma <uma.shankar@intel.com>
+> > > > > > Cc: intel-gfx@lists.freedesktop.org;
+> > > > > > jani.nikula@linux.intel.com; Mun, Gwan- gyeong
+> > > > > > <gwan-gyeong.mun@intel.com>
+> > > > > > Subject: Re: [v3 6/8] drm/i915/display: Implement infoframes
+> > > > > > readback for LSPCON
+> > > > > >
+> > > > > > On Thu, Jun 11, 2020 at 06:46:50PM +0300, Ville Syrj=E4l=E4 wro=
+te:
+> > > > > > > On Thu, Jun 11, 2020 at 12:42:30AM +0530, Uma Shankar wrote:
+> > > > > > > > Implemented Infoframes enabled readback for LSPCON devices.
+> > > > > > > > This will help align the implementation with state
+> > > > > > > > readback infrastructure.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > > > > > > > ---
+> > > > > > > >  drivers/gpu/drm/i915/display/intel_lspcon.c | 63
+> > > > > > > > ++++++++++++++++++++-
+> > > > > > > >  1 file changed, 61 insertions(+), 2 deletions(-)
+> > > > > > > >
+> > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > > > > > > b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > > > > > > index 9034ce6f20b9..0ebe9a700291 100644
+> > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > > > > > > @@ -576,11 +576,70 @@ void lspcon_set_infoframes(struct
+> > > > > > > > intel_encoder
+> > > > > > *encoder,
+> > > > > > > >  				  buf, ret);
+> > > > > > > >  }
+> > > > > > > >
+> > > > > > > > +static bool _lspcon_read_avi_infoframe_enabled_mca(struct
+> > > > > > > > +drm_dp_aux *aux) {
+> > > > > > > > +	int ret;
+> > > > > > > > +	u32 val =3D 0;
+> > > > > > > > +	u16 reg =3D LSPCON_MCA_AVI_IF_CTRL;
+> > > > > > > > +
+> > > > > > > > +	ret =3D drm_dp_dpcd_read(aux, reg, &val, 1);
+> > > > > > > > +	if (ret < 0) {
+> > > > > > > > +		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
+> > > > > > > > +		return false;
+> > > > > > > > +	}
+> > > > > > > > +
+> > > > > > > > +	if (val & LSPCON_MCA_AVI_IF_KICKOFF)
+> > > > > > > > +		return true;
+> > > > > > > > +
+> > > > > > > > +	return false;
+> > > > > > >
+> > > > > > > return val & ...;
+> > > > > > >
+> > > > > > > > +}
+> > > > > > > > +
+> > > > > > > > +static bool
+> > > > > > > > +_lspcon_read_avi_infoframe_enabled_parade(struct
+> > > > > > > > +drm_dp_aux *aux) {
+> > > > > > > > +	int ret;
+> > > > > > > > +	u32 val =3D 0;
+> > > > > > > > +	u16 reg =3D LSPCON_PARADE_AVI_IF_CTRL;
+> > > > > > > > +
+> > > > > > > > +	ret =3D drm_dp_dpcd_read(aux, reg, &val, 1);
+> > > > > > > > +	if (ret < 0) {
+> > > > > > > > +		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
+> > > > > > > > +		return false;
+> > > > > > > > +	}
+> > > > > > > > +
+> > > > > > > > +	if (val & LSPCON_PARADE_AVI_IF_KICKOFF)
+> > > > > > > > +		return true;
+> > > > > > > > +
+> > > > > > > > +	return false;
+> > > > > > > > +}
+> > > > > > > > +
+> > > > > > > >  u32 lspcon_infoframes_enabled(struct intel_encoder *encode=
+r,
+> > > > > > > >  			      const struct intel_crtc_state *pipe_config)  {
+> > > > > > > > -	/* FIXME actually read this from the hw */
+> > > > > > > > -	return 0;
+> > > > > > > > +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> > > > > > > > +	struct intel_lspcon *lspcon =3D enc_to_intel_lspcon(encod=
+er);
+> > > > > > > > +	struct drm_i915_private *dev_priv =3D to_i915(encoder->ba=
+se.dev);
+> > > > > > > > +	bool infoframes_enabled;
+> > > > > > > > +	u32 mask =3D 0;
+> > > > > > > > +	u32 val;
+> > > > > > > > +
+> > > > > > > > +	if (lspcon->vendor =3D=3D LSPCON_VENDOR_MCA)
+> > > > > > > > +		infoframes_enabled =3D
+> > > > > > _lspcon_read_avi_infoframe_enabled_mca(&intel_dp->aux);
+> > > > > > > > +	else
+> > > > > > > > +		infoframes_enabled =3D
+> > > > > > > > +_lspcon_read_avi_infoframe_enabled_parade(&intel_dp->aux)
+> > > > > > > > +;
+> > > > > > > > +
+> > > > > > > > +	if (infoframes_enabled)
+> > > > > > > > +		return true;
+> > > > > > >
+> > > > > > > This is supposed to return a bitmask of all enabled infoframe=
+s.
+> > > > >
+> > > > > > Actually since we're dealing with both the LSPCON specific
+> > > > > > stuff and DIP stuff for the DRM infoframe I think we should
+> > > > > > stop using using intel_hdmi_infoframes_enabled(), and instead
+> > > > > > provide a LSPCON specific replacement for it. That way we can
+> > > > > > directly return the abstract bitmask instead of pretending to
+> > > > > > return a bitmask of
+> > > the DIP bits.
+> >
+> > We have DP (VSC etc) packets also managed as HDMI infoframes only. We
+> > can keep the same with bitmask as VIDEO_DIP_ENABLE_AVI_HSW for AVI and
+> > similarly VIDEO_DIP_ENABLE_GMP_HSW for DRM (HDR metadata). This will
+> help all the helper align appropriately even in the intel_dump_pipe_confi=
+g.
 > =
 
-> maybe intel_ddi_wait_for_ddi_buf(i915, port, active) ?
+> intel_dump_infoframe() does not use any platform specific bitmasks.
+> So I don't understand what you're talking about here.
 
-I'd just make it two functions. Avoids that stupid boolean
-parameter.
+What I meant is that if we continue to use the existing values and bitmask,=
+ we can have
+lspcon infoframes_enabled return the appropriate type of infoframe which is=
+ active (as you suggested) and later
+with intel_dump_pipe_config when it checks for intel_hdmi_infoframe_enable,=
+ we will get a matching value
+in pipe_config->infoframes.enable and be able to dump them as well. Hope I =
+am on same page with you here. =
 
+
+> >
+> > Will fix this accordingly and send the next version. Hope this is ok.
+> >
+> > > > > Sure,  will fix this and resend the next version.
+> > > > >
+> > > > > > >
+> > > > > > > Also my question "how do we turn off infoframes once enabled?"
+> > > > > > > from
+> > > > > > > https://patchwork.freedesktop.org/patch/351719/?series=3D72928
+> > > > > > > &rev
+> > > > > > > =3D1
+> > > > > > > still remains unanswered...
+> > > > >
+> > > > > For the AVI infoframe we generally compute and change the
+> > > > > respective values. If no change is requested and computed we can
+> > > > > let the existing infoframes be transmitted. AFAIK there is no
+> > > > > mechanism called out, to explicitly disable this on Lspcon. Have
+> > > > > not seen any issues due to this, so
+> > > > hoping that it may be safe even if they are enabled.
+> > > >
+> > > > It's not valid to transmit infoframes to DVI sinks.
+> > >
+> > > With your fix, we won't be enabling or setting the infoframe on DVI s=
+inks.
+> > > If I understand correctly, we may have issue if we connect HDMI
+> > > (where we would have sent the infoframe) and later unplug and plug a
+> > > DVI sink. With unplug if Lspcon is not resetting this internally
+> > > then this will be a problem. I will try to get this information on Ls=
+pcon
+> behavior.
+> >
+> > Hi Ville,
+> > Searched various docs on LSPCON and couldn't find any mention of disabl=
+ing
+> infoframe.
+> > Reached out to few folks who were interfacing with Lspcon vendors and
+> > got this finally clarified.  The expectation is that LSPCON will reset
+> > stuff on unplug and will not send infoframes to DVI sink, so from
+> > source side we don't need to explicitly disable them. Lspcon will take =
+care of
+> this, this was tested for compliance as well by them.
 > =
 
-> > +				    enum port port, bool idle)
-> >  {
-> > -	i915_reg_t reg =3D DDI_BUF_CTL(port);
-> > -	int i;
-> > -
-> > -	for (i =3D 0; i < 16; i++) {
-> > -		udelay(1);
-> > -		if (intel_de_read(dev_priv, reg) & DDI_BUF_IS_IDLE)
-> > -			return;
-> > +	if (idle) {
-> > +		if (IS_BROXTON(dev_priv))
-> > +			udelay(16);
-> > +		else
-> > +			if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-> > +					 DDI_BUF_IS_IDLE), 16))
-> > +				drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c idle bit\n=
-",
-> > +					port_name(port));
-> > +	} else {
-> > +		if (INTEL_GEN(dev_priv) < 10)
-> > +			udelay(600);
-> > +		else
-> > +			if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-> > +					  DDI_BUF_IS_IDLE), 600))
-> > +				drm_err(&dev_priv->drm, "DDI port:%c buffer idle\n",
-> > +					port_name(port));
-> >  	}
-> > -	drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c idle bit\n",
-> > -		port_name(port));
-> > +
+> Unplug is irrelevant. We also have the property by which the user can for=
+ce the
+> inforframes off.
 > =
 
-> since we can only guarantee a minimum delay or timeout, imo it could be j=
-ust:
+> >
+> > I will share the updated series adding your patch stopping infoframes t=
+o be
+> sent to DVI sinks.
+> > Please review the same.
+> >
+> > Thank & Regards,
+> > Uma Shankar
+> >
+> > > > >
+> > > > > I am planning to take your patch from the series and float along
+> > > > > with this series, adding check for DRM Infoframes also. Hope that=
+ is ok ?
+> > > > >
+> > > > > Thanks Ville for your feedback.
+> > > > >
+> > > > > Regards,
+> > > > > Uma Shankar
+> > > > >
+> > > > > > > > +
+> > > > > > > > +	if (lspcon->hdr_supported) {
+> > > > > > > > +		val =3D intel_de_read(dev_priv,
+> > > > > > > > +				    HSW_TVIDEO_DIP_CTL(pipe_config-
+> > > > > > >cpu_transcoder));
+> > > > > > > > +		mask |=3D VIDEO_DIP_ENABLE_GMP_HSW;
+> > > > > > > > +
+> > > > > > > > +		if (val & mask)
+> > > > > > > > +			return val & mask;
+> > > > > > > > +	}
+> > > > > > > > +
+> > > > > > > > +	return false;
+> > > > > > > >  }
+> > > > > > > >
+> > > > > > > >  void lspcon_resume(struct intel_lspcon *lspcon)
+> > > > > > > > --
+> > > > > > > > 2.22.0
+> > > > > > >
+> > > > > > > --
+> > > > > > > Ville Syrj=E4l=E4
+> > > > > > > Intel
+> > > > > >
+> > > > > > --
+> > > > > > Ville Syrj=E4l=E4
+> > > > > > Intel
+> > > >
+> > > > --
+> > > > Ville Syrj=E4l=E4
+> > > > Intel
 > =
 
-> 	if (BXT && !active || GEN <=3D 9 && active) {
-> 		usleep_range(600, 1000);
-> 		return;
-> 	}
-> =
-
-> 	if (wait_for_us(!(read(BUF_CTL) & IS_IDLE) =3D=3D active, 600))
-> 		drm_err("Port %c: Timeout waiting for DDI BUF to get %s\n",
-> 			port, active ? "active" : "idle"));
-> 		=
-
-> =
-
-> >  }
-> >  =
-
-> >  static u32 hsw_pll_to_ddi_pll_sel(const struct intel_shared_dpll *pll)
-> > @@ -1373,7 +1381,7 @@ void hsw_fdi_link_train(struct intel_encoder *enc=
-oder,
-> >  		intel_de_write(dev_priv, DP_TP_CTL(PORT_E), temp);
-> >  		intel_de_posting_read(dev_priv, DP_TP_CTL(PORT_E));
-> >  =
-
-> > -		intel_wait_ddi_buf_idle(dev_priv, PORT_E);
-> > +		intel_wait_ddi_buf_idle(dev_priv, PORT_E, true);
-> >  =
-
-> >  		/* Reset FDI_RX_MISC pwrdn lanes */
-> >  		temp =3D intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
-> > @@ -3495,7 +3503,7 @@ static void intel_disable_ddi_buf(struct intel_en=
-coder *encoder,
-> >  	intel_ddi_disable_fec_state(encoder, crtc_state);
-> >  =
-
-> >  	if (wait)
-> > -		intel_wait_ddi_buf_idle(dev_priv, port);
-> > +		intel_wait_ddi_buf_idle(dev_priv, port, true);
-> >  }
-> >  =
-
-> >  static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
-> > @@ -4004,7 +4012,7 @@ static void intel_ddi_prepare_link_retrain(struct=
- intel_dp *intel_dp)
-> >  		intel_de_posting_read(dev_priv, intel_dp->regs.dp_tp_ctl);
-> >  =
-
-> >  		if (wait)
-> > -			intel_wait_ddi_buf_idle(dev_priv, port);
-> > +			intel_wait_ddi_buf_idle(dev_priv, port, true);
-> >  	}
-> >  =
-
-> >  	dp_tp_ctl =3D DP_TP_CTL_ENABLE |
-> =
-
-> The DSI code could also use the new helper.
-> =
-
-> > -- =
-
-> > 2.19.1
-> > =
-
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> --
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
