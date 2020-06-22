@@ -1,31 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E61422041B7
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 22:14:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 645762041C0
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2020 22:16:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE70F6E909;
-	Mon, 22 Jun 2020 20:14:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E9696E90E;
+	Mon, 22 Jun 2020 20:15:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D94286E176;
- Mon, 22 Jun 2020 20:14:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D2A71A0BA8;
- Mon, 22 Jun 2020 20:14:42 +0000 (UTC)
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 976556E90B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 20:15:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1592856951;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=TSUweuZT4DKGDzPl0W0mgX7uetKvmHq3b3GY3r5obEQ=;
+ b=AvujDWVv1fJT1dJn+N4SkW5GMmDU7IzbCKKcFRWYUi39vcyRdTrOXRiPgl3E7M3zge/VvR
+ ZkRQMMmnk1YvVdlxpk+BsrqFbmZI7D1S3R3L9QdDGE/3EqgrbhDjYqVmFyvP22lTRRtz4m
+ 8LgSdLETYuzgVcOxuBQArD3DxdwY2O0=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-420-f7cc3XQuNW-UeEjQYsAiCA-1; Mon, 22 Jun 2020 16:15:47 -0400
+X-MC-Unique: f7cc3XQuNW-UeEjQYsAiCA-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
+ [10.5.11.12])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 03BD218FF665;
+ Mon, 22 Jun 2020 20:15:45 +0000 (UTC)
+Received: from redhat.com (ovpn-119-159.rdu2.redhat.com [10.10.119.159])
+ by smtp.corp.redhat.com (Postfix) with ESMTPS id 8972560F89;
+ Mon, 22 Jun 2020 20:15:42 +0000 (UTC)
+Date: Mon, 22 Jun 2020 16:15:40 -0400
+From: Jerome Glisse <jglisse@redhat.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Message-ID: <20200622201540.GB9708@redhat.com>
+References: <CAKMK7uE-kWA==Cko5uenMrcnopEjq42HxoDTDywzBAbHqsN13g@mail.gmail.com>
+ <20200619151551.GP6578@ziepe.ca>
+ <CAKMK7uEvkshAM6KUYZu8_OCpF4+1Y_SM7cQ9nJWpagfke8s8LA@mail.gmail.com>
+ <20200619172308.GQ6578@ziepe.ca>
+ <20200619180935.GA10009@redhat.com>
+ <20200619181849.GR6578@ziepe.ca>
+ <56008d64-772d-5757-6136-f20591ef71d2@amd.com>
+ <20200619195538.GT6578@ziepe.ca>
+ <20200619203147.GC13117@redhat.com>
+ <20200622114617.GU6578@ziepe.ca>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Date: Mon, 22 Jun 2020 20:14:42 -0000
-Message-ID: <159285688283.9207.9062413498261626992@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200622200038.14034-1-uma.shankar@intel.com>
-In-Reply-To: <20200622200038.14034-1-uma.shankar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRW5h?=
- =?utf-8?q?ble_HDR_on_MCA_LSPCON_based_Gen9_devices_=28rev5=29?=
+Content-Disposition: inline
+In-Reply-To: <20200622114617.GU6578@ziepe.ca>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
+ lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,145 +68,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ Felix Kuehling <felix.kuehling@amd.com>, LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Mika Kuoppala <mika.kuoppala@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jun 22, 2020 at 08:46:17AM -0300, Jason Gunthorpe wrote:
+> On Fri, Jun 19, 2020 at 04:31:47PM -0400, Jerome Glisse wrote:
+> > Not doable as page refcount can change for things unrelated to GUP, with
+> > John changes we can identify GUP and we could potentialy copy GUPed page
+> > instead of COW but this can potentialy slow down fork() and i am not su=
+re
+> > how acceptable this would be. Also this does not solve GUP against page
+> > that are already in fork tree ie page P0 is in process A which forks,
+> > we now have page P0 in process A and B. Now we have process A which for=
+ks
+> > again and we have page P0 in A, B, and C. Here B and C are two branches
+> > with root in A. B and/or C can keep forking and grow the fork tree.
+> =
 
-Series: Enable HDR on MCA LSPCON based Gen9 devices (rev5)
-URL   : https://patchwork.freedesktop.org/series/68081/
-State : success
+> For a long time now RDMA has broken COW pages when creating user DMA
+> regions.
+> =
 
-== Summary ==
+> The problem has been that fork re-COW's regions that had their COW
+> broken.
+> =
 
-CI Bug Log - changes from CI_DRM_8651 -> Patchwork_18005
-====================================================
+> So, if you break the COW upon mapping and prevent fork (and others)
+> from copying DMA pinned then you'd cover the cases.
 
-Summary
--------
+I am not sure we want to prevent COW for pinned GUP pages, this would
+change current semantic and potentialy break/slow down existing apps.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18005 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-whl-u:           [PASS][1] -> [DMESG-WARN][2] ([i915#95])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8651/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bsw-kefka:       [PASS][3] -> [INCOMPLETE][4] ([i915#151] / [i915#1844] / [i915#1909] / [i915#392])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8651/fi-bsw-kefka/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/fi-bsw-kefka/igt@i915_pm_rpm@module-reload.html
-    - fi-glk-dsi:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8651/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-tgl-u2:          [PASS][7] -> [DMESG-FAIL][8] ([i915#1233])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8651/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][9] ([i915#1888]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8651/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8651/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - {fi-tgl-dsi}:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8651/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8651/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_flip@basic-plain-flip@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8651/fi-kbl-x1275/igt@kms_flip@basic-plain-flip@a-dp1.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/fi-kbl-x1275/igt@kms_flip@basic-plain-flip@a-dp1.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +2 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8651/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#1844]: https://gitlab.freedesktop.org/drm/intel/issues/1844
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1909]: https://gitlab.freedesktop.org/drm/intel/issues/1909
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Anyway i think we focus too much on fork/COW, it is just an unfixable
+broken corner cases, mmu notifier allows you to avoid it. Forcing real
+copy on fork would likely be seen as regression by most people.
 
 
-Participating hosts (45 -> 38)
-------------------------------
+> > Semantic was change with 17839856fd588f4ab6b789f482ed3ffd7c403e1f to so=
+me
+> > what "fix" that but GUP fast is still succeptible to this.
+> =
 
-  Additional (1): fi-kbl-soraka 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-icl-guc fi-byt-clapper fi-bdw-samus 
+> Ah, so everyone breaks the COW now, not just RDMA..
+> =
 
+> What do you mean 'GUP fast is still succeptible to this' ?
 
-Build changes
--------------
+Not all GUP fast path are updated (intentionaly) __get_user_pages_fast()
+for instance still keeps COW intact. People using GUP should really knows
+what they are doing.
 
-  * Linux: CI_DRM_8651 -> Patchwork_18005
+Cheers,
+J=E9r=F4me
 
-  CI-20190529: 20190529
-  CI_DRM_8651: f6210d1dd268f9e09e10d3704c768d7679a44f48 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5715: 3b6975c0f9e429c0c1f48c61a3417be9d68300cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18005: 8693e9476eed01a45a08352a3d4287d989ec4507 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8693e9476eed drm/i915/display: [NOT FOR MERGE] Reduce blanking to support 4k60@10bpp for LSPCON
-e89edaaaa482 drm/i915/lspcon: Do not send DRM infoframes to non-HDMI sinks
-cc5d22201f0d drm/i915/lspcon: Do not send infoframes to non-HDMI sinks
-db055c01d9e2 drm/i915/lspcon: Create separate infoframe_enabled helper
-d2c7d158139a drm/i915/display: Implement DRM infoframe read for LSPCON
-538569c50e13 drm/i915/display: Implement infoframes readback for LSPCON
-ef977cb6b132 drm/i915/display: Enable HDR for Parade based lspcon
-108ee767d0ab drm/i915/display: Enable BT2020 for HDR on LSPCON devices
-97f260442e45 drm/i915/display: Attach HDR property for capable Gen9 devices
-38bc2fbe32b1 drm/i915/display: Enable HDR on gen9 devices with MCA Lspcon
-79ed1e75d589 drm/i915/display: Add HDR Capability detection for LSPCON
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18005/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
