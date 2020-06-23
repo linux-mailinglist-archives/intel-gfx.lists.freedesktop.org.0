@@ -1,48 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF8CA20482D
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 06:01:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A67D22048E1
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 06:54:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D39006E378;
-	Tue, 23 Jun 2020 04:01:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08EE16E38A;
+	Tue, 23 Jun 2020 04:54:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B42E76E378
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 04:01:32 +0000 (UTC)
-IronPort-SDR: CDRsZHxFMHG/mw5c+6496gSVc3UVP0SYUeoPcj2DmbLd2U8E1aR0DYu9sIGffUiPIz/TtewDke
- u2PBgx36TIWA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="205457222"
-X-IronPort-AV: E=Sophos;i="5.75,269,1589266800"; 
- d="asc'?scan'208";a="205457222"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2020 21:01:31 -0700
-IronPort-SDR: DtXAXJViLSYDh3i0dRVppxTS8EHlqB3fachEjJYuWSEMYkFcEVcH1r8/5JYBZcV6EUUG6fMwAt
- /yUkmFgLM1Qg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,269,1589266800"; 
- d="asc'?scan'208";a="278976678"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by orsmga006.jf.intel.com with ESMTP; 22 Jun 2020 21:00:59 -0700
-Date: Tue, 23 Jun 2020 11:44:42 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: "Tang, Shaofeng" <shaofeng.tang@intel.com>
-Message-ID: <20200623034442.GB5687@zhen-hp.sh.intel.com>
-References: <1592296160-3784-1-git-send-email-shaofeng.tang@intel.com>
- <159233324036.19488.6385709597388673560@build.alporthouse.com>
- <20200622082319.GZ5687@zhen-hp.sh.intel.com>
- <SN6PR11MB255859A6CB9B6BB51C1FB578E2940@SN6PR11MB2558.namprd11.prod.outlook.com>
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
+ [IPv6:2a00:1450:4864:20::544])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 068976E38A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 04:54:31 +0000 (UTC)
+Received: by mail-ed1-x544.google.com with SMTP id cy7so8834314edb.5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 21:54:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=949G20DbQUYD+VZ2+7NVUf1Mn7ddHyUBfP0YkFRi268=;
+ b=Q86BZtr2iaAvyEhTG5X4lzqy6zXdlxftl5PCU/eCUns/ReJZE5BQLB73eCtK8hTU+R
+ jEng6ytc+dpusp8wtgqiIZm3l2q7WgWs1mig4DZTptgRKyfZ+GGYP5pb+8oViogHBsYS
+ bjnkLTWWSHXAQG2XipJRm1nyBAYdZYgE7erGwOAV7Flhpy/xG5GQsQDZQ8LJVUO4E0SN
+ 8VoLWTsblWl6y/TZH4HLVYrw3YMuxwxyEvfsi6wWAie6qxEvZd1zUC2vGqpxQOL0J8ve
+ 2AdaeCByeg52umdJfpe7g8ygRAwWEfX95nbeGIi1FsgVTwqo+mqiwMS/GzZaKPmIDr4u
+ 894A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=949G20DbQUYD+VZ2+7NVUf1Mn7ddHyUBfP0YkFRi268=;
+ b=ReDt7tq/6pYu+ikoNo1rgaMBlIRIE+nttkIDm+eNkha8pp5ntrOzTP117LkWCXpwJo
+ NP9RzJvmZqW6kc3yF/76gwK2SFap0C6KhDU6l/ULbViVIZK8GqxFwPmF9JOCZ8rmzN6E
+ X1pSJss7cnLr/tLSTdKMYW0qPFrKqSq+dpT549bVn9QFj+EgHaokJjs0RwZOCXZPRz1z
+ kiRvQhy9Hkv9RMAvsWxJkXE5Gk9c5dv3SCmkA9HuZZC77HwS93FCRyaDDL1Dj/qkwdCJ
+ z3QYvmx9tsi9w3bFrao+wcJY9fhF+qtq9/mS7onLzVG4P1HoWgWKxxP1bQY3Cuoa+WPi
+ jkDA==
+X-Gm-Message-State: AOAM532yQuEgWBHoRE7Wg3d3QQmHjGfnKN6EDhvlfvpD3ai+fcygpWz7
+ GadeUq7XEwC8ZZW2GpHyefe+0507oxh8GBtp0TA=
+X-Google-Smtp-Source: ABdhPJyvYXttFgjYr2PoRclfAwT2AIEm+4gfMKQ1c3NxmH7yAE1naZvcLS37t2HndBYP6jqGEAN+00Rc3nh1iGMyPuk=
+X-Received: by 2002:a05:6402:1153:: with SMTP id
+ g19mr19576367edw.127.1592888070530; 
+ Mon, 22 Jun 2020 21:54:30 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <SN6PR11MB255859A6CB9B6BB51C1FB578E2940@SN6PR11MB2558.namprd11.prod.outlook.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: query if vgpu is active via
- GETPARAM IOCTL
+References: <20200618004240.16263-1-lucas.demarchi@intel.com>
+ <20200618004240.16263-8-lucas.demarchi@intel.com>
+ <CAKMK7uEBq6-MNL1EsZtT4d07tfq7bXCGXQNX9XnorCg2NuiS5g@mail.gmail.com>
+ <87zh8vo25k.fsf@intel.com>
+In-Reply-To: <87zh8vo25k.fsf@intel.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Tue, 23 Jun 2020 14:54:18 +1000
+Message-ID: <CAPM=9twOo_5+q-tR9tYqENst59uea-Tf0jmQ4RS4miY_H_bCfg@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 07/32] drm/i915/dg1: add initial DG-1
+ definitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,127 +66,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: multipart/mixed; boundary="===============0511917965=="
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0511917965==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="MgcI0aUO3vrRQI/Z"
-Content-Disposition: inline
-
-
---MgcI0aUO3vrRQI/Z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2020.06.23 03:46:55 +0000, Tang, Shaofeng wrote:
-> Hi Zhenyu and Chris,
->=20
-> Yes, I agree with you.
-> It must be better if only the workable planes/overlays are returned from =
-KMS.
-> but currently, KMS still return all planes. and User did not know if it i=
-s a virtual GPU
-> or a native GPU. Do you know if there is a plan to fix or implement it? o=
-r any roadmap for sharing.
-
-We should expose this info via PV to let guest expose correct config from K=
-MS.
-I've asked Zhiyuan to add todo for the fix. Better include you to be clear =
-on
-the issue and requirement.
-
-> If KMS does not work in this way,  we have to customized our image for th=
-is issue.=20
-> 2 possible solutions,=20
-> first, provide 2 customized image, 1 for VM, and 1 for Native or bare-met=
-al.
-> and hard-code to only use 1 plane in the VM image.
-> Second, only provide 1 image, and  hard-code to only use 1 plane for both=
- VM and native.
-> None of them looks good to us.
-> We don't hope to hardcode the plane usage in user-space either, so this A=
-PI is really helpful before KMS work as expected.
->=20
-> As you mentioned there is a potentially good reason to let the user=20
-> know if it is a virtual GPU or not. it is not a hardcoding api limits.=20
-> I suppose it is a ability to support developer for optimizing the perform=
-ance on VM
-> Including choose an appropriate renderer for better performance on VM.
->
-
-But simply expose virtual GPU flag doesn't give you reliable indicator
-for performance e.g it doesn't tell you what's rendering is preferred.
-
-Or either you do some runtime profiling or try to detect either it's
-passthrough or mediated device e.g from gpu resource size, etc. That's
-your guest application's choice.
-
-> BR, Shaofeng
->=20
-> -----Original Message-----
-> From: Zhenyu Wang <zhenyuw@linux.intel.com>=20
-> Sent: Monday, June 22, 2020 4:23 PM
-> To: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tang, Shaofeng <shaofeng.tang@intel.com>; intel-gfx@lists.freedesktop=
-=2Eorg
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: query if vgpu is active vi=
-a GETPARAM IOCTL
->=20
-> On 2020.06.16 19:47:20 +0100, Chris Wilson wrote:
-> > Quoting Shaofeng Tang (2020-06-16 09:29:20)
-> > > [Why]
-> > > Query if vgpu is active, it is useful to the user.
-> > > Currently, only the primary plane is usable when vgpu is active.
-> > > The value of vgpu active is useful for user to determine how many=20
-> > > planes can be used. also useful for user to determine different=20
-> > > behaviors according to vgpu is active or not.
-> >=20
-> > The number of planes must be queried via kms, and all such kernel=20
-> > capabilities should be declared via the appropriate interface.
-> >=20
-> > I am not saying that there is not potentially good reason to let the=20
-> > user to know it's a virtual gpu, but hardcoding api limits in the=20
-> > client based on the parameter is a bad idea.
->=20
-> Yeah, as I replied for internal before, guest shouldn't detect via this k=
-ind of interface, which also doesn't reflect any gvt host capability change=
-=2E For any current gap, let's fix gvt or vgpu handling instead.
->=20
-> Thanks.
-
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---MgcI0aUO3vrRQI/Z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXvF6qQAKCRCxBBozTXgY
-J7NzAJ9T/0es6uthyJLTf725JoxIivmCPQCeJ8owB+Id+X/vFRfnTUhqo0UTg6I=
-=cvMq
------END PGP SIGNATURE-----
-
---MgcI0aUO3vrRQI/Z--
-
---===============0511917965==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0511917965==--
+T24gTW9uLCAyMiBKdW4gMjAyMCBhdCAxOTo1NSwgSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxp
+bnV4LmludGVsLmNvbT4gd3JvdGU6Cj4KPiBPbiBNb24sIDIyIEp1biAyMDIwLCBEYW5pZWwgVmV0
+dGVyIDxkYW5pZWxAZmZ3bGwuY2g+IHdyb3RlOgo+ID4gT24gV2VkLCBKdW4gMTcsIDIwMjAgYXQg
+MDU6NDI6MTVQTSAtMDcwMCwgTHVjYXMgRGUgTWFyY2hpIHdyb3RlOgo+ID4+IEZyb206IEFiZGll
+bCBKYW51bGd1ZSA8YWJkaWVsLmphbnVsZ3VlQGxpbnV4LmludGVsLmNvbT4KPiA+Pgo+ID4+IEJz
+cGVjOiAzMzYxNywgMzM2MTcKPiA+Pgo+ID4+IENjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxq
+b3NlLnNvdXphQGludGVsLmNvbT4KPiA+PiBDYzogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFu
+aWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KPiA+PiBDYzogU3R1YXJ0IFN1bW1lcnMgPHN0
+dWFydC5zdW1tZXJzQGludGVsLmNvbT4KPiA+PiBDYzogVmFuc2hpZGhhciBLb25kYSA8dmFuc2hp
+ZGhhci5yLmtvbmRhQGludGVsLmNvbT4KPiA+PiBDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5k
+ZW1hcmNoaUBpbnRlbC5jb20+Cj4gPj4gQ2M6IEFyYXZpbmQgSWRkYW1zZXR0eSA8YXJhdmluZC5p
+ZGRhbXNldHR5QGludGVsLmNvbT4KPiA+PiBDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVy
+QGludGVsLmNvbT4KPiA+PiBTaWduZWQtb2ZmLWJ5OiBBYmRpZWwgSmFudWxndWUgPGFiZGllbC5q
+YW51bGd1ZUBsaW51eC5pbnRlbC5jb20+Cj4gPj4gU2lnbmVkLW9mZi1ieTogTHVjYXMgRGUgTWFy
+Y2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+Cj4gPj4gUmV2aWV3ZWQtYnk6IEpvc8OpIFJv
+YmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgo+ID4+IC0tLQo+ID4+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgIHwgIDcgKysrKysrKwo+ID4+ICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jICAgICAgICAgIHwgMTIgKysrKysrKysrKysr
+Cj4gPj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMgfCAgMSArCj4g
+Pj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmggfCAgMSArCj4gPj4g
+IDQgZmlsZXMgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKQo+ID4+Cj4gPj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2Rydi5oCj4gPj4gaW5kZXggMmY4MDU3YTBiMjI4MC4uZjc5YzA5MjU3ZWI2YiAxMDA2NDQK
+PiA+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCj4gPj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAo+ID4+IEBAIC0xNDI4LDYgKzE0MjgsNyBAQCBJ
+U19TVUJQTEFURk9STShjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKPiA+PiAg
+I2RlZmluZSBJU19FTEtIQVJUTEFLRShkZXZfcHJpdikgICAgIElTX1BMQVRGT1JNKGRldl9wcml2
+LCBJTlRFTF9FTEtIQVJUTEFLRSkKPiA+PiAgI2RlZmluZSBJU19USUdFUkxBS0UoZGV2X3ByaXYp
+ICAgICAgIElTX1BMQVRGT1JNKGRldl9wcml2LCBJTlRFTF9USUdFUkxBS0UpCj4gPj4gICNkZWZp
+bmUgSVNfUk9DS0VUTEFLRShkZXZfcHJpdikgICAgICBJU19QTEFURk9STShkZXZfcHJpdiwgSU5U
+RUxfUk9DS0VUTEFLRSkKPiA+PiArI2RlZmluZSBJU19ERzEoZGV2X3ByaXYpICAgICAgICBJU19Q
+TEFURk9STShkZXZfcHJpdiwgSU5URUxfREcxKQo+ID4+ICAjZGVmaW5lIElTX0hTV19FQVJMWV9T
+RFYoZGV2X3ByaXYpIChJU19IQVNXRUxMKGRldl9wcml2KSAmJiBcCj4gPj4gICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIChJTlRFTF9ERVZJRChkZXZfcHJpdikgJiAweEZGMDApID09
+IDB4MEMwMCkKPiA+PiAgI2RlZmluZSBJU19CRFdfVUxUKGRldl9wcml2KSBcCj4gPj4gQEAgLTE1
+NTYsNiArMTU1NywxMiBAQCBJU19TVUJQTEFURk9STShjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqaTkxNSwKPiA+PiAgI2RlZmluZSBJU19SS0xfUkVWSUQocCwgc2luY2UsIHVudGlsKSBc
+Cj4gPj4gICAgICAgKElTX1JPQ0tFVExBS0UocCkgJiYgSVNfUkVWSUQocCwgc2luY2UsIHVudGls
+KSkKPiA+Pgo+ID4+ICsjZGVmaW5lIERHMV9SRVZJRF9BMCAgICAgICAgIDB4MAo+ID4+ICsjZGVm
+aW5lIERHMV9SRVZJRF9CMCAgICAgICAgIDB4MQo+ID4+ICsKPiA+PiArI2RlZmluZSBJU19ERzFf
+UkVWSUQocCwgc2luY2UsIHVudGlsKSBcCj4gPj4gKyAgICAgKElTX0RHMShwKSAmJiBJU19SRVZJ
+RChwLCBzaW5jZSwgdW50aWwpKQo+ID4+ICsKPiA+PiAgI2RlZmluZSBJU19MUChkZXZfcHJpdikg
+ICAgICAoSU5URUxfSU5GTyhkZXZfcHJpdiktPmlzX2xwKQo+ID4+ICAjZGVmaW5lIElTX0dFTjlf
+TFAoZGV2X3ByaXYpIChJU19HRU4oZGV2X3ByaXYsIDkpICYmIElTX0xQKGRldl9wcml2KSkKPiA+
+PiAgI2RlZmluZSBJU19HRU45X0JDKGRldl9wcml2KSAoSVNfR0VOKGRldl9wcml2LCA5KSAmJiAh
+SVNfTFAoZGV2X3ByaXYpKQo+ID4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X3BjaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYwo+ID4+IGluZGV4IGU1
+ZmRmMTdjZDljZGQuLjU4Y2NlZWFhMGZmYTUgMTAwNjQ0Cj4gPj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9wY2kuYwo+ID4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+cGNpLmMKPiA+PiBAQCAtODk2LDggKzg5NiwyMCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVs
+X2RldmljZV9pbmZvIHJrbF9pbmZvID0gewo+ID4+Cj4gPj4gICNkZWZpbmUgR0VOMTJfREdGWF9G
+RUFUVVJFUyBcCj4gPj4gICAgICAgR0VOMTJfRkVBVFVSRVMsIFwKPiA+PiArICAgICAubWVtb3J5
+X3JlZ2lvbnMgPSBSRUdJT05fU01FTSB8IFJFR0lPTl9MTUVNLCBcCj4gPgo+ID4gVGhpcyBoYXMg
+bG1lbSwgYW5kIHdlIG5lZWQgYSBuZXcgdWFwaSBmb3IgdGhhdC4gTGFzdCB5ZWFyIHdlIGRpc2N1
+c3NlZCBhCj4gPiBwbGFuIHRvIGhhdmUgdGhhdCBiZWhpbmQgYSB2ZXJ5IHNjYXJ5IGNvbXBpbGUt
+dGltZSBvbmx5IG9wdGlvbiwgdG8gbWFrZQo+ID4gYWJzb2x1dGVseSBzdXJlIG5vIG9uZSB3aWxs
+IHN0YXJ0IHJlbHlpbmcgb24gdGhpcyBicm9rZW4gc3RhdGUgYmVmb3JlIHdlCj4gPiBhbGlnbmVk
+IGV2ZXJ5dGhpbmcuIEFuZCB3ZSBrbm93IHRoZSBjdXJyZW50IHN0YXR1cyBpcyB3cm9uZyBzaW5j
+ZSB0aGlzCj4gPiBwYXRjaCBzZXJpZXMgZG9lc24ndCBpbmNsdWRlIGFueSBvZiB0aGUgbG1lbSBz
+cGVjaWZpYyB1YXBpIHRoYXQncyBiZWluZwo+ID4gd29ya2VkIG9uLgo+ID4KPiA+IEJ1dCBub3cg
+YWxtb3N0IGEgeWVhciBwYXNzZWQsIHNvIHRoYXQgb3JpZ2luYWwgcGxhbiBuZWVkcyB0byBiZQo+
+ID4gcmVuZWdvdGlhdGVkLiBQZXJzb25hbGx5IEknbSBub3Qgc3VyZSB0aGUgc2NhcnkgY29tcGls
+ZSBvcHRpb24gbWFrZXMKPiA+IHNlbnNlIGFueSBsb25nZXIsIHdlJ3JlIHdheSBsYXRlciwgdXNl
+cnMgd2lsbCBzb29uIGhhdmUgcmVhbCBodywgYW5kIG9uY2UKPiA+IHRoZXkgaGF2ZSB0aGF0IHRo
+ZXkgd2lsbCBmaW5kIHdheXMgdG8gZW5hYmxlIGl0IGFuZCB3ZSdyZSBwb3RlbnRpYWxseQo+ID4g
+c2NyZXdlZC4gIERpc2N1c3NlZCB0aGlzIGFsc28gd2l0aCBKb29uYXMgbGFzdCB3ZWVrIG9yIHNv
+IGluIHByaXZhdGUsIGFuZAo+ID4gaGUgc2hhcmVzIHNpbWlsYXIgY29uY2VybnMuCj4gPgo+ID4g
+U28gSSB0aGluayBiZXN0IG9wdGlvbiBoZXJlIChzaW5jZSBrZWVwaW5nIHBhdGNoZXMgb3V0IG9m
+IHRyZWUgaXMgcmFyZWx5Cj4gPiBiZXN0IG9wdGlvbikgd291bGQgYmUgdG8gbWVyZ2UganVzdCB0
+aGUgZGlzcGxheSBlbmFibGluZyBmb3IgREcxLCBidXQgYWxzbwo+ID4gbWFraW5nIHN1cmUgdGhh
+dCB3ZSBoYXZlIGFsbCB0aGUgcmVuZGVyaW5nIHN1cHBvcnQgY29tcGxldGVseSBkaXNhYmxlZC4K
+PiA+IFRoaXMgd291bGQgbWVhbjoKPiA+IC0gd2VkZ2UgZ3B1IG9uIHN0YXJ0dXAsIGp1c3QgdG8g
+bWFrZSBzdXJlCj4gPiAtIGRybV9kcml2ZXItPm51bV9pb2N0bHMgPSAwIChwbHVzIGlvY3RscyA9
+IE5VTEwpCj4gPiAtIG5vIHNldHRpbmcgRFJJVkVSX1JFTkRFUiBhbmQgRFJJVkVSX1NZTkNPQkos
+IHdlJ2QgYmUgYSBwdXJlCj4gPiBkaXNwbGF5LW9ubHkgZHJpdmVyCj4gPgo+ID4gQWRkaW5nIERh
+dmUgYW5kIGRybS1pbnRlbCBtYWludGFpbmVycyB0byBxdWlja2x5IGhhc2ggdGhpcyBvdXQuIFRo
+b3VnaHRzPwo+Cj4gSSdsbCBkZWZlciB0aGUgZGVjaXNpb24gb24gbG1lbSB0byBmb2xrcyB3aG8g
+YWN0dWFsbHkga25vdyB0aGlzIHN0dWZmLAo+IGFuZCBmb2N1cyBvbiBkaXNwbGF5LiBBbmQgZnJv
+bSB0aGF0IHBlcnNwZWN0aXZlLCBJJ2QgbGlrZSB0byB1bmJsb2NrCj4gbWVyZ2luZyB0aGUgZGlz
+cGxheSBwYXRjaGVzLgo+CgpIb3cgZG9lcyBkaXNwbGF5IHdvcmsgd2l0aG91dCBMTUVNLCBJJ20g
+YXNzdW1pbmcgeW91IGhhdmUgdG8gc2NhbiBvdXQKZnJvbSBWUkFNIG9uIERHMSwgZXZlbiBpZiB3
+ZSBvbmx5IGhhdmUgaW50ZXJuYWwgbm9uLXVhcGkgaXMgdGhpcwplbm91Z2ggdG8gYnJpbmcgdXAg
+ZmJjb24/CgpEYXZlLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
