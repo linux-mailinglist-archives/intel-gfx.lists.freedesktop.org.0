@@ -2,54 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 733AB204B5D
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 09:39:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54FCA204C41
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 10:24:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0126E950;
-	Tue, 23 Jun 2020 07:39:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA9E46E20A;
+	Tue, 23 Jun 2020 08:24:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
- [IPv6:2607:f8b0:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C2F66E950
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 07:39:29 +0000 (UTC)
-Received: by mail-ot1-x343.google.com with SMTP id u23so15620648otq.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 00:39:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+92MYnF3Gh08MmStig+tCn2Q/L2yjmneEHZzzW7GGvs=;
- b=PwrvE5jS1kTu+fi0Cr9QUPwDbx3xz+X3B7OgQDwGyTKoe9mBLoNsF4PcRQZYhzKOnV
- CkL4lja+OqOY0gBbJB+pER0fYFWMEmKIpSKjbJhfHshefh7JCoDF0Ko4gDHaNPu08gpL
- UTuHeptkXd8ej8TjPFULXiSQ/JHJc7+5RujUA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=+92MYnF3Gh08MmStig+tCn2Q/L2yjmneEHZzzW7GGvs=;
- b=qRjBqrTny6GhWvXQklTA/i+8eT89qoYRiyZQNy2rv8iyIgzjJmZbj663g1slsxbdgz
- PDmzRqs3IiufauDgkPXgRD/ATxeanMTdTFqizD4qBKI7AKn3arvtobhfcIqmRwCilhY/
- 9YcBkLILgo53PqTLMUS3muFUr7eA/5U8gik4gxcVUen62r71e0QkVA4iyKJF8gYsPwWm
- /IIH3665DozR/AjRU3b6X1KLlOZ5GVfbqwnwtteSPXttl1gkQLiu30194ItUQVvw3a7+
- 9Tg1quRHlb5gG0bWKbKd0UCjZiRuJ92QNXwxrerTTUEcfW3Hgdityt2NdUrHkLVO3tEt
- Wwmw==
-X-Gm-Message-State: AOAM531QryEEdmmh0cK0wejVKu/dFJ0/I03chsQzts2PX3eBOvTNaxku
- RJwyhEjXB9QRetzngJL/elsNHyJ8Q3/3QvW1dfHRqw==
-X-Google-Smtp-Source: ABdhPJyuTPn8gHto3Zj0qvtBWFEZww/Nxosv6E4e67PZOhsc7GOGHkoFk1BcCVm2dLP+f9GAnXbuSF6PpstaZHEQELA=
-X-Received: by 2002:a4a:d415:: with SMTP id n21mr17485719oos.89.1592897968519; 
- Tue, 23 Jun 2020 00:39:28 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8A7B6E20A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 08:24:20 +0000 (UTC)
+IronPort-SDR: jLgwtch2MrMgzLf06wkTV6CiddI4wGKPhnsrJKZaJAJmx5Fqd5xRNWm6uv1q+SMd0zQl8FLFhA
+ VLJFBdDd2e8A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="131412928"
+X-IronPort-AV: E=Sophos;i="5.75,270,1589266800"; d="scan'208";a="131412928"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2020 01:24:20 -0700
+IronPort-SDR: EyoI1Xtcdtm1/tpeDIGQDojEeZYz1/JZmpq71W6XbVBKxiG0D4UzD1xcMBEeggT+jBRM6RFBnW
+ cmaZNW0CCQoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,270,1589266800"; d="scan'208";a="275272337"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga003.jf.intel.com with ESMTP; 23 Jun 2020 01:24:18 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 23 Jun 2020 11:24:11 +0300
+Message-Id: <20200623082411.3889-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.23.1
 MIME-Version: 1.0
-References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
- <20200604081224.863494-5-daniel.vetter@ffwll.ch>
- <b11c2140-1b9c-9013-d9bb-9eb2c1906710@shipmail.org>
- <20200611083430.GD20149@phenom.ffwll.local> <20200611141515.GW6578@ziepe.ca>
- <4702e170-fd02-88fa-3da4-ea64252fff9a@amd.com>
-In-Reply-To: <4702e170-fd02-88fa-3da4-ea64252fff9a@amd.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Tue, 23 Jun 2020 09:39:17 +0200
-Message-ID: <CAKMK7uHBKrpDWu+DvtYncDK=LOdGJyMK7t6fpOaGovnYFiBUZw@mail.gmail.com>
-To: Felix Kuehling <felix.kuehling@amd.com>
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
- lockdep annotations
+Subject: [Intel-gfx] [PATCH] drm/i915/dp_mst: Enable VC payload allocation
+ after transcoder is enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,107 +47,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, Thomas Hellstrom <thomas.hellstrom@intel.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 12, 2020 at 1:35 AM Felix Kuehling <felix.kuehling@amd.com> wrote:
->
-> Am 2020-06-11 um 10:15 a.m. schrieb Jason Gunthorpe:
-> > On Thu, Jun 11, 2020 at 10:34:30AM +0200, Daniel Vetter wrote:
-> >>> I still have my doubts about allowing fence waiting from within shrinkers.
-> >>> IMO ideally they should use a trywait approach, in order to allow memory
-> >>> allocation during command submission for drivers that
-> >>> publish fences before command submission. (Since early reservation object
-> >>> release requires that).
-> >> Yeah it is a bit annoying, e.g. for drm/scheduler I think we'll end up
-> >> with a mempool to make sure it can handle it's allocations.
-> >>
-> >>> But since drivers are already waiting from within shrinkers and I take your
-> >>> word for HMM requiring this,
-> >> Yeah the big trouble is HMM and mmu notifiers. That's the really awkward
-> >> one, the shrinker one is a lot less established.
-> > I really question if HW that needs something like DMA fence should
-> > even be using mmu notifiers - the best use is HW that can fence the
-> > DMA directly without having to get involved with some command stream
-> > processing.
-> >
-> > Or at the very least it should not be a generic DMA fence but a
-> > narrowed completion tied only into the same GPU driver's command
-> > completion processing which should be able to progress without
-> > blocking.
-> >
-> > The intent of notifiers was never to endlessly block while vast
-> > amounts of SW does work.
-> >
-> > Going around and switching everything in a GPU to GFP_ATOMIC seems
-> > like bad idea.
-> >
-> >> I've pinged a bunch of armsoc gpu driver people and ask them how much this
-> >> hurts, so that we have a clear answer. On x86 I don't think we have much
-> >> of a choice on this, with userptr in amd and i915 and hmm work in nouveau
-> >> (but nouveau I think doesn't use dma_fence in there).
->
-> Soon nouveau will get company. We're working on a recoverable page fault
-> implementation for HMM in amdgpu where we'll need to update page tables
-> using the GPUs SDMA engine and wait for corresponding fences in MMU
-> notifiers.
-
-Can you pls cc these patches to dri-devel when they show up? Depending
-upon how your hw works there's and endless amount of bad things that
-can happen.
-
-Also I think (again depending upon how the hw exactly works) this
-stuff would be a perfect example for the dma_fence annotations.
-
-The worst case is if your hw cannot preempt while a hw page fault is
-pending. That means none of the dma_fence will ever signal (the amdkfd
-preempt ctx fences wont, and the classic fences from amdgpu might be
-also stall). At least when you're unlucky and the fence you're waiting
-on somehow (anywhere in its dependency chain really) need the engine
-that's currently blocked waiting for the hw page fault.
-
-That in turn means anything you do in your hw page fault handler is in
-the critical section for dma fence signalling, which has far reaching
-implications.
--Daniel
-
->
-> Regards,
->   Felix
->
->
-> > Right, nor will RDMA ODP.
-> >
-> > Jason
-> > _______________________________________________
-> > amd-gfx mailing list
-> > amd-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
-
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhlIHNwZWMgcmVxdWlyZXMgZW5hYmxpbmcgdGhlIE1TVCBWaXJ0dWFsIENoYW5uZWwgcGF5bG9h
+ZCBhbGxvY2F0aW9uCi0gaW4gYSBzZXBlcmF0ZSBzdGVwIC0gYWZ0ZXIgdGhlIHRyYW5zY29kZXIg
+aXMgZW5hYmxlZCwgZm9sbG93IHRoaXMuCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291
+emFAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5j
+b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyAgICB8IDgg
+KysrLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMgfCA4
+ICsrKysrKysrCiAyIGZpbGVzIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGku
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKaW5kZXggNzNkNmNj
+MjkyOTFhLi44ODRiNTA3YzVmNTUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kZGkuYwpAQCAtMTY1Myw3ICsxNjUzLDYgQEAgdm9pZCBpbnRlbF9kZGlfZW5hYmxlX3RyYW5z
+Y29kZXJfZnVuYyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAlzdHJ1Y3QgaW50ZWxf
+Y3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjKTsKIAlzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsK
+IAllbnVtIHRyYW5zY29kZXIgY3B1X3RyYW5zY29kZXIgPSBjcnRjX3N0YXRlLT5jcHVfdHJhbnNj
+b2RlcjsKLQl1MzIgY3RsOwogCiAJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTEpIHsKIAkJ
+ZW51bSB0cmFuc2NvZGVyIG1hc3Rlcl90cmFuc2NvZGVyID0gY3J0Y19zdGF0ZS0+bWFzdGVyX3Ry
+YW5zY29kZXI7CkBAIC0xNjcxLDEwICsxNjcwLDkgQEAgdm9pZCBpbnRlbF9kZGlfZW5hYmxlX3Ry
+YW5zY29kZXJfZnVuYyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJCSAgICAgICBU
+UkFOU19ERElfRlVOQ19DVEwyKGNwdV90cmFuc2NvZGVyKSwgY3RsMik7CiAJfQogCi0JY3RsID0g
+aW50ZWxfZGRpX3RyYW5zY29kZXJfZnVuY19yZWdfdmFsX2dldChlbmNvZGVyLCBjcnRjX3N0YXRl
+KTsKLQlpZiAoaW50ZWxfY3J0Y19oYXNfdHlwZShjcnRjX3N0YXRlLCBJTlRFTF9PVVRQVVRfRFBf
+TVNUKSkKLQkJY3RsIHw9IFRSQU5TX0RESV9EUF9WQ19QQVlMT0FEX0FMTE9DOwotCWludGVsX2Rl
+X3dyaXRlKGRldl9wcml2LCBUUkFOU19ERElfRlVOQ19DVEwoY3B1X3RyYW5zY29kZXIpLCBjdGwp
+OworCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBUUkFOU19ERElfRlVOQ19DVEwoY3B1X3RyYW5z
+Y29kZXIpLAorCQkgICAgICAgaW50ZWxfZGRpX3RyYW5zY29kZXJfZnVuY19yZWdfdmFsX2dldChl
+bmNvZGVyLAorCQkJCQkJCSAgICAgY3J0Y19zdGF0ZSkpOwogfQogCiAvKgpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMKaW5kZXggMGM4OTFiZGQxYWEwLi4zNDI2
+Y2U4YmJiZDAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZHBfbXN0LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3Qu
+YwpAQCAtNTM5LDYgKzUzOSw3IEBAIHN0YXRpYyB2b2lkIGludGVsX21zdF9lbmFibGVfZHAoc3Ry
+dWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9y
+dCAqaW50ZWxfZGlnX3BvcnQgPSBpbnRlbF9tc3QtPnByaW1hcnk7CiAJc3RydWN0IGludGVsX2Rw
+ICppbnRlbF9kcCA9ICZpbnRlbF9kaWdfcG9ydC0+ZHA7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZh
+dGUgKmRldl9wcml2ID0gdG9faTkxNShlbmNvZGVyLT5iYXNlLmRldik7CisJdTMyIHZhbDsKIAog
+CWRybV9XQVJOX09OKCZkZXZfcHJpdi0+ZHJtLCBwaXBlX2NvbmZpZy0+aGFzX3BjaF9lbmNvZGVy
+KTsKIApAQCAtNTQ2LDYgKzU0NywxMyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9tc3RfZW5hYmxlX2Rw
+KHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCiAJaW50ZWxfZGRpX2VuYWJsZV90
+cmFuc2NvZGVyX2Z1bmMoZW5jb2RlciwgcGlwZV9jb25maWcpOwogCisJdmFsID0gaW50ZWxfZGVf
+cmVhZChkZXZfcHJpdiwKKwkJCSAgICBUUkFOU19ERElfRlVOQ19DVEwocGlwZV9jb25maWctPmNw
+dV90cmFuc2NvZGVyKSk7CisJdmFsIHw9IFRSQU5TX0RESV9EUF9WQ19QQVlMT0FEX0FMTE9DOwor
+CWludGVsX2RlX3dyaXRlKGRldl9wcml2LAorCQkgICAgICAgVFJBTlNfRERJX0ZVTkNfQ1RMKHBp
+cGVfY29uZmlnLT5jcHVfdHJhbnNjb2RlciksCisJCSAgICAgICB2YWwpOworCiAJZHJtX2RiZ19r
+bXMoJmRldl9wcml2LT5kcm0sICJhY3RpdmUgbGlua3MgJWRcbiIsCiAJCSAgICBpbnRlbF9kcC0+
+YWN0aXZlX21zdF9saW5rcyk7CiAKLS0gCjIuMjMuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
