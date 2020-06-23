@@ -1,31 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759B6205813
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 18:58:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5B712058A0
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 19:29:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E13166EA0F;
-	Tue, 23 Jun 2020 16:58:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40E866E13A;
+	Tue, 23 Jun 2020 17:29:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B9FB66EA0F;
- Tue, 23 Jun 2020 16:58:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B31D3A0BCB;
- Tue, 23 Jun 2020 16:58:29 +0000 (UTC)
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11C416E9EC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 16:18:02 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id i3so6318950qtq.13
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 09:18:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lca.pw; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=SowX6r/DrbyMyIPo7bbmN6dCO4WOaZBpx8lXkNiYwRQ=;
+ b=q5PXizvouRcfNA2W9Djqc/Z84L8gq+5xyPGe7rkAVVUXYo0XRUHAEI4yVuKgTSfgc9
+ RoYCG4UkEgCC9vVO+IYyrz7JORXpNUWmlzMkIni2Vfw9kxBsp2K+YgamdfZElTJuJZTW
+ bbafUUDUQEhd51JcrBKUA9xHz8S+ZvnGFC/bx4j/zd/tIY4JT4nqabnA6jtnfro4Yx69
+ YevfddRvEKhgwHMyV0hQh6x3L1BXH3reCRQkEUr6zmcuCWOBikrw37RohUhW9xkrCqv7
+ nLIezDVzEaNlXEnFqrM5wDtOVHCyOyKL9todYtNNNUOatrNgrkdDPEXpNyPANNjAfT9T
+ s5yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=SowX6r/DrbyMyIPo7bbmN6dCO4WOaZBpx8lXkNiYwRQ=;
+ b=E7SpC4OXZwm0yjkf691EaYeYB1M3QWDTIJ9D/quN4jcGDZQSiTETFAgb782SIgblaI
+ uuZqfa18P9TE0kEodxmqSK1psADu/LTfQ4TEu5+0erHm3YyY9QqT5vun3JqVWx5Ssk76
+ 3Tk8nWfJDa2xt1FFLeiEhIRltr1/3BskvNDIXRcSnSuVTBn35/7Sj/VxeNJie4osDXjI
+ AfuLNYuEcGj4aIvwdU17gjyuQIhdi0hIuxY0KqeCapu+GV6nAxeVHyVjsq9SCG4I2V/k
+ cdBD3wqMTbpDGUb97S6AYU/hR09UAUkiO+je4RwLJRXmDTuAGkUR9nSVSVHOEl4uCEWb
+ 5OJQ==
+X-Gm-Message-State: AOAM531gK3jrRHj6BdpzCdixRPBL0yIS1n16B55PnYeGooi1fZ1ZUEiC
+ KmyXXKgHHUJRvETWIexx/fRemw==
+X-Google-Smtp-Source: ABdhPJy2/MUFYS3DJu96XPGFYPvGEfp9/cvT3JQEnV1SM172gUGWrPZ+0/Xawft3xZIbg4oUrttvEg==
+X-Received: by 2002:ac8:4448:: with SMTP id m8mr22935603qtn.4.1592929081912;
+ Tue, 23 Jun 2020 09:18:01 -0700 (PDT)
+Received: from lca.pw (pool-71-184-117-43.bstnma.fios.verizon.net.
+ [71.184.117.43])
+ by smtp.gmail.com with ESMTPSA id d140sm966654qkc.22.2020.06.23.09.18.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 23 Jun 2020 09:18:01 -0700 (PDT)
+Date: Tue, 23 Jun 2020 12:17:54 -0400
+From: Qian Cai <cai@lca.pw>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20200623161754.GA1140@lca.pw>
+References: <20200604081224.863494-2-daniel.vetter@ffwll.ch>
+ <20200610194101.1668038-1-daniel.vetter@ffwll.ch>
+ <20200621174205.GB1398@lca.pw>
+ <CAKMK7uFZAFVmceoYvqPovOifGw_Y8Ey-OMy6wioMjwPWhu9dDg@mail.gmail.com>
+ <20200621200103.GV20149@phenom.ffwll.local>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sean Paul" <sean@poorly.run>
-Date: Tue, 23 Jun 2020 16:58:29 -0000
-Message-ID: <159293150973.4210.5254322716761785390@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200623155907.22961-1-sean@poorly.run>
-In-Reply-To: <20200623155907.22961-1-sean@poorly.run>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_support_for_HDCP_1=2E4_over_MST?=
+Content-Disposition: inline
+In-Reply-To: <20200621200103.GV20149@phenom.ffwll.local>
+X-Mailman-Approved-At: Tue, 23 Jun 2020 17:29:24 +0000
+Subject: Re: [Intel-gfx] [PATCH] mm: Track mmu notifiers in
+ fs_reclaim_acquire/release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,156 +74,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linux-xfs@vger.kernel.org, Linux MM <linux-mm@kvack.org>,
+ Jason Gunthorpe <jgg@mellanox.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Sun, Jun 21, 2020 at 10:01:03PM +0200, Daniel Vetter wrote:
+> On Sun, Jun 21, 2020 at 08:07:08PM +0200, Daniel Vetter wrote:
+> > On Sun, Jun 21, 2020 at 7:42 PM Qian Cai <cai@lca.pw> wrote:
+> > >
+> > > On Wed, Jun 10, 2020 at 09:41:01PM +0200, Daniel Vetter wrote:
+> > > > fs_reclaim_acquire/release nicely catch recursion issues when
+> > > > allocating GFP_KERNEL memory against shrinkers (which gpu drivers t=
+end
+> > > > to use to keep the excessive caches in check). For mmu notifier
+> > > > recursions we do have lockdep annotations since 23b68395c7c7
+> > > > ("mm/mmu_notifiers: add a lockdep map for invalidate_range_start/en=
+d").
+> > > >
+> > > > But these only fire if a path actually results in some pte
+> > > > invalidation - for most small allocations that's very rarely the ca=
+se.
+> > > > The other trouble is that pte invalidation can happen any time when
+> > > > __GFP_RECLAIM is set. Which means only really GFP_ATOMIC is a safe
+> > > > choice, GFP_NOIO isn't good enough to avoid potential mmu notifier
+> > > > recursion.
+> > > >
+> > > > I was pondering whether we should just do the general annotation, b=
+ut
+> > > > there's always the risk for false positives. Plus I'm assuming that
+> > > > the core fs and io code is a lot better reviewed and tested than
+> > > > random mmu notifier code in drivers. Hence why I decide to only
+> > > > annotate for that specific case.
+> > > >
+> > > > Furthermore even if we'd create a lockdep map for direct reclaim, w=
+e'd
+> > > > still need to explicit pull in the mmu notifier map - there's a lot
+> > > > more places that do pte invalidation than just direct reclaim, these
+> > > > two contexts arent the same.
+> > > >
+> > > > Note that the mmu notifiers needing their own independent lockdep m=
+ap
+> > > > is also the reason we can't hold them from fs_reclaim_acquire to
+> > > > fs_reclaim_release - it would nest with the acquistion in the pte
+> > > > invalidation code, causing a lockdep splat. And we can't remove the
+> > > > annotations from pte invalidation and all the other places since
+> > > > they're called from many other places than page reclaim. Hence we c=
+an
+> > > > only do the equivalent of might_lock, but on the raw lockdep map.
+> > > >
+> > > > With this we can also remove the lockdep priming added in 66204f1d2=
+d1b
+> > > > ("mm/mmu_notifiers: prime lockdep") since the new annotations are
+> > > > strictly more powerful.
+> > > >
+> > > > v2: Review from Thomas Hellstrom:
+> > > > - unbotch the fs_reclaim context check, I accidentally inverted it,
+> > > >   but it didn't blow up because I inverted it immediately
+> > > > - fix compiling for !CONFIG_MMU_NOTIFIER
+> > > >
+> > > > Cc: Thomas Hellstr=F6m (Intel) <thomas_os@shipmail.org>
+> > > > Cc: Andrew Morton <akpm@linux-foundation.org>
+> > > > Cc: Jason Gunthorpe <jgg@mellanox.com>
+> > > > Cc: linux-mm@kvack.org
+> > > > Cc: linux-rdma@vger.kernel.org
+> > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > Cc: Christian K=F6nig <christian.koenig@amd.com>
+> > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > >
+> > > Replying the right patch here...
+> > >
+> > > Reverting this commit [1] fixed the lockdep warning below while apply=
+ing
+> > > some memory pressure.
+> > >
+> > > [1] linux-next cbf7c9d86d75 ("mm: track mmu notifiers in fs_reclaim_a=
+cquire/release")
+> > =
 
-Series: drm/i915: Add support for HDCP 1.4 over MST
-URL   : https://patchwork.freedesktop.org/series/78749/
-State : success
+> > Hm, then I'm confused because
+> > - there's not mmut notifier lockdep map in the splat at a..
+> > - the patch is supposed to not change anything for fs_reclaim (but the
+> > interim version got that wrong)
+> > - looking at the paths it's kmalloc vs kswapd, both places I totally
+> > expect fs_reflaim to be used.
+> > =
 
-== Summary ==
+> > But you're claiming reverting this prevents the lockdep splat. If
+> > that's right, then my reasoning above is broken somewhere. Someone
+> > less blind than me having an idea?
+> > =
 
-CI Bug Log - changes from CI_DRM_8658 -> Patchwork_18013
-====================================================
+> > Aside this is the first email I've typed, until I realized the first
+> > report was against the broken patch and that looked like a much more
+> > reasonable explanation (but didn't quite match up with the code
+> > paths).
+> =
 
-Summary
--------
+> Below diff should undo the functional change in my patch. Can you pls test
+> whether the lockdep splat is really gone with that? Might need a lot of
+> testing and memory pressure to be sure, since all these reclaim paths
+> aren't very deterministic.
 
-  **SUCCESS**
+No, this patch does not help but reverting the whole patch still fixed
+the splat.
 
-  No regressions found.
+> -Daniel
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/index.html
+> ---
+> diff --git a/mm/page_alloc.c b/mm/page_alloc.c
+> index d807587c9ae6..27ea763c6155 100644
+> --- a/mm/page_alloc.c
+> +++ b/mm/page_alloc.c
+> @@ -4191,11 +4191,6 @@ void fs_reclaim_acquire(gfp_t gfp_mask)
+>  		if (gfp_mask & __GFP_FS)
+>  			__fs_reclaim_acquire();
+>  =
 
-Known issues
-------------
+> -#ifdef CONFIG_MMU_NOTIFIER
+> -		lock_map_acquire(&__mmu_notifier_invalidate_range_start_map);
+> -		lock_map_release(&__mmu_notifier_invalidate_range_start_map);
+> -#endif
+> -
+>  	}
+>  }
+>  EXPORT_SYMBOL_GPL(fs_reclaim_acquire);
+> -- =
 
-  Here are the changes found in Patchwork_18013 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#1250] / [i915#1436])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bsw-n3050:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-apl-guc:         [INCOMPLETE][7] ([i915#1242]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
-    - fi-tgl-u2:          [FAIL][9] ([i915#1888]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_module_load@reload:
-    - fi-bsw-kefka:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12] +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-bsw-kefka/igt@i915_module_load@reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-bsw-kefka/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - {fi-tgl-dsi}:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [DMESG-WARN][17] ([i915#402]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Warnings ####
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +3 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8658/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1242]: https://gitlab.freedesktop.org/drm/intel/issues/1242
-  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (44 -> 38)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8658 -> Patchwork_18013
-
-  CI-20190529: 20190529
-  CI_DRM_8658: c86979e2fe3c106d95b5fcf2075709afa40f0f95 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5717: 725bf2dae51f0087eaa64f1931a2ef9d22f070dd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18013: ff0e9553b262afa612271f33b6f768d8f39093e0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ff0e9553b262 drm/i915: Add HDCP 1.4 support for MST connectors
-f415c158925f drm/i915: Print HDCP version info for all connectors
-43dca30ee7d8 drm/mst: Add support for QUERY_STREAM_ENCRYPTION_STATUS MST sideband message
-b159048d4ee3 drm/i915: Add connector to hdcp_shim->check_link()
-e95d4796d643 drm/i915: Plumb port through hdcp init
-294a579032b2 drm/i915: Factor out HDCP shim functions from dp for use by dp_mst
-60fe26102e05 drm/i915: Use ddi_update_pipe in intel_dp_mst
-9118a955e697 drm/i915: Support DP MST in enc_to_dig_port() function
-6adefe67fdcb drm/i915: Don't fully disable HDCP on a port if multiple pipes are using it
-5bef2450359c drm/i915: Clean up intel_hdcp_disable
-96ac1382f6c4 drm/i915: Protect workers against disappearing connectors
-24dfa20af876 drm/i915: Factor out hdcp->value assignments
-f4a73566d2ac drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP signalling
-2dfd826048e1 drm/i915: Intercept Aksv writes in the aux hooks
-26c597bb2bdf drm/i915: WARN if HDCP signalling is enabled upon disable
-fdd9116bae73 drm/i915: Clear the repeater bit on HDCP disable
-40a9cf573823 drm/i915: Fix sha_text population code
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18013/index.html
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
