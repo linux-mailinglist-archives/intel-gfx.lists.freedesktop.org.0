@@ -1,81 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1188205B61
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 21:02:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6E20205BC7
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 21:25:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB0F16EA3E;
-	Tue, 23 Jun 2020 19:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E93F6E37C;
+	Tue, 23 Jun 2020 19:25:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7829D6EA3E
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 19:02:38 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id z13so9897703wrw.5
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 12:02:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to; bh=XDcsteRMJEoW0C3+Kl+uWDnjv0MhfNk7S9Vrs1qi/2Y=;
- b=F8OUcVjuokEibmMSbToMoIBILFma7edYFwClorq7HqZPPZAsjl5aBIXM5rjHh2K4Lq
- dd+qeCoDkPHmPlGyVv6Z/wtdPrCUcn/gJSdfHe4BRGJdop50ca7laeXsmvDPZAFsD45G
- DpFfjBVLJGiCLnCx7MoPvm6Wpk0WJAYz4Suvs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :content-transfer-encoding:in-reply-to;
- bh=XDcsteRMJEoW0C3+Kl+uWDnjv0MhfNk7S9Vrs1qi/2Y=;
- b=d2gWXRZHbs6VdgW1zuIwxgyx5lPr0lKE+ze2+sxoy+8b8I+lwiv8e0XEzufx7pCe14
- V0x2GaNCUrUlxZhsg62oIrxBl2EyMDv+65HXrcgG9JYZsieufNeoDtWqd+DeJQDmSETP
- vfLf0ZuGfrhVW5FRWNwc84yrhGjsldqM6HrUavPjMbzZis+4QPv4Lha1XJyzKkFJtXdi
- KlPLLQbQb0DmJnmFRKGJZiXzjcqQPGluuxZJTGiQRNt/JgC6lB+tQ5EAV0knpOz0i7HV
- adjMQ7o4vV3lmZZxna9MWcwwUdYUW5vWXmX0mQ7186VWUQ/DtVN8qiIJTe1p7sIxzCm9
- 6t1g==
-X-Gm-Message-State: AOAM533cAlmry4pvas+cXE2mbiVysDil5QSxwg6n5lNHsE4ZsF57R7p2
- OzkaaEKldqIcBAxbcWlnG+eVag==
-X-Google-Smtp-Source: ABdhPJynbn/cTBvNbobb+7TOV12TXtahoSjCWh3GnuIRy64vKHvTHEysZa+/3Plm+28KWqKEN1sWIw==
-X-Received: by 2002:a5d:470b:: with SMTP id y11mr18155209wrq.101.1592938956979; 
- Tue, 23 Jun 2020 12:02:36 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l17sm4698578wmi.3.2020.06.23.12.02.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 23 Jun 2020 12:02:35 -0700 (PDT)
-Date: Tue, 23 Jun 2020 21:02:33 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Felix Kuehling <felix.kuehling@amd.com>
-Message-ID: <20200623190233.GP20149@phenom.ffwll.local>
-Mail-Followup-To: Felix Kuehling <felix.kuehling@amd.com>,
- Jason Gunthorpe <jgg@ziepe.ca>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- linux-rdma <linux-rdma@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>
-References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
- <20200604081224.863494-5-daniel.vetter@ffwll.ch>
- <b11c2140-1b9c-9013-d9bb-9eb2c1906710@shipmail.org>
- <20200611083430.GD20149@phenom.ffwll.local>
- <20200611141515.GW6578@ziepe.ca>
- <4702e170-fd02-88fa-3da4-ea64252fff9a@amd.com>
- <CAKMK7uHBKrpDWu+DvtYncDK=LOdGJyMK7t6fpOaGovnYFiBUZw@mail.gmail.com>
- <99758c09-262a-e9a1-bf65-5702b35b4388@amd.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A35946E37C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 19:25:19 +0000 (UTC)
+IronPort-SDR: mO21YN3StVSus9H1KQgINxeohOUwsjk615XPwX3+MpBpPRgy+Fs6k81O9BmZKYVoM5tykA5cv9
+ ZtaUznbB9vdw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9661"; a="205702889"
+X-IronPort-AV: E=Sophos;i="5.75,272,1589266800"; d="scan'208";a="205702889"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2020 12:25:19 -0700
+IronPort-SDR: X7b6IOlN+T8UIRduENTfO3sWzwtSECm8KZ75XMH2tEicNSVNKxJbc/DVakTqEEfVrA66Rsg4CA
+ 59wrjrzkf81w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,272,1589266800"; d="scan'208";a="287520588"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by orsmga007.jf.intel.com with ESMTP; 23 Jun 2020 12:25:18 -0700
+Date: Tue, 23 Jun 2020 12:26:41 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200623192641.GA22294@intel.com>
+References: <20200618000124.29036-1-manasi.d.navare@intel.com>
+ <20200622154921.GA25163@ideak-desk.fi.intel.com>
+ <20200622170651.GQ6112@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <99758c09-262a-e9a1-bf65-5702b35b4388@amd.com>
-X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
- lockdep annotations
+In-Reply-To: <20200622170651.GQ6112@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/dp: Helper for checking
+ DDI_BUF_CTL Idle status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,185 +53,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, Thomas Hellstrom <thomas.hellstrom@intel.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 23, 2020 at 02:44:24PM -0400, Felix Kuehling wrote:
-> Am 2020-06-23 um 3:39 a.m. schrieb Daniel Vetter:
-> > On Fri, Jun 12, 2020 at 1:35 AM Felix Kuehling <felix.kuehling@amd.com>=
- wrote:
-> >> Am 2020-06-11 um 10:15 a.m. schrieb Jason Gunthorpe:
-> >>> On Thu, Jun 11, 2020 at 10:34:30AM +0200, Daniel Vetter wrote:
-> >>>>> I still have my doubts about allowing fence waiting from within shr=
-inkers.
-> >>>>> IMO ideally they should use a trywait approach, in order to allow m=
-emory
-> >>>>> allocation during command submission for drivers that
-> >>>>> publish fences before command submission. (Since early reservation =
-object
-> >>>>> release requires that).
-> >>>> Yeah it is a bit annoying, e.g. for drm/scheduler I think we'll end =
-up
-> >>>> with a mempool to make sure it can handle it's allocations.
-> >>>>
-> >>>>> But since drivers are already waiting from within shrinkers and I t=
-ake your
-> >>>>> word for HMM requiring this,
-> >>>> Yeah the big trouble is HMM and mmu notifiers. That's the really awk=
-ward
-> >>>> one, the shrinker one is a lot less established.
-> >>> I really question if HW that needs something like DMA fence should
-> >>> even be using mmu notifiers - the best use is HW that can fence the
-> >>> DMA directly without having to get involved with some command stream
-> >>> processing.
-> >>>
-> >>> Or at the very least it should not be a generic DMA fence but a
-> >>> narrowed completion tied only into the same GPU driver's command
-> >>> completion processing which should be able to progress without
-> >>> blocking.
-> >>>
-> >>> The intent of notifiers was never to endlessly block while vast
-> >>> amounts of SW does work.
-> >>>
-> >>> Going around and switching everything in a GPU to GFP_ATOMIC seems
-> >>> like bad idea.
-> >>>
-> >>>> I've pinged a bunch of armsoc gpu driver people and ask them how muc=
-h this
-> >>>> hurts, so that we have a clear answer. On x86 I don't think we have =
-much
-> >>>> of a choice on this, with userptr in amd and i915 and hmm work in no=
-uveau
-> >>>> (but nouveau I think doesn't use dma_fence in there).
-> >> Soon nouveau will get company. We're working on a recoverable page fau=
-lt
-> >> implementation for HMM in amdgpu where we'll need to update page tables
-> >> using the GPUs SDMA engine and wait for corresponding fences in MMU
-> >> notifiers.
-> > Can you pls cc these patches to dri-devel when they show up? Depending
-> > upon how your hw works there's and endless amount of bad things that
-> > can happen.
+On Mon, Jun 22, 2020 at 08:06:51PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Mon, Jun 22, 2020 at 06:49:26PM +0300, Imre Deak wrote:
+> > On Wed, Jun 17, 2020 at 05:01:23PM -0700, Manasi Navare wrote:
+> > > Modify the helper to add a fixed delay or poll with timeout
+> > > based on platform specification in bothe enable and disable
+> > > cases so check for either Idle bit set (DDI_BUF_CTL is idle
+> > > for disable case) or check for Idle bit =3D 0 (non idle for
+> > > DDI BUF enable case)
+> > > =
+
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Cc: Imre Deak <imre.deak@intel.com>
+> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 34 +++++++++++++++-------=
+--
+> > >  1 file changed, 21 insertions(+), 13 deletions(-)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
+rm/i915/display/intel_ddi.c
+> > > index ca7bb2294d2b..e4738c3b6d44 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > @@ -1182,18 +1182,26 @@ static void intel_prepare_hdmi_ddi_buffers(st=
+ruct intel_encoder *encoder,
+> > >  }
+> > >  =
+
+> > >  static void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_pri=
+v,
+> > > -				    enum port port)
+> > =
+
+> > maybe intel_ddi_wait_for_ddi_buf(i915, port, active) ?
 > =
 
-> Yes, I'll do that.
-> =
+> I'd just make it two functions. Avoids that stupid boolean
+> parameter.
+
+Just have 2 functions: 1. intel_ddi_wait_for_ddi_buf_idle()
+2. intel_ddi_wait_for_ddi_buf_active or _non_idle()?
+
+Hmm but wouldnt it be more readable if we pass that bool and use =
+
+the same function?
+
+Manasi
 
 > =
 
-> >
-> > Also I think (again depending upon how the hw exactly works) this
-> > stuff would be a perfect example for the dma_fence annotations.
+> > =
+
+> > > +				    enum port port, bool idle)
+> > >  {
+> > > -	i915_reg_t reg =3D DDI_BUF_CTL(port);
+> > > -	int i;
+> > > -
+> > > -	for (i =3D 0; i < 16; i++) {
+> > > -		udelay(1);
+> > > -		if (intel_de_read(dev_priv, reg) & DDI_BUF_IS_IDLE)
+> > > -			return;
+> > > +	if (idle) {
+> > > +		if (IS_BROXTON(dev_priv))
+> > > +			udelay(16);
+> > > +		else
+> > > +			if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
+> > > +					 DDI_BUF_IS_IDLE), 16))
+> > > +				drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c idle bit=
+\n",
+> > > +					port_name(port));
+> > > +	} else {
+> > > +		if (INTEL_GEN(dev_priv) < 10)
+> > > +			udelay(600);
+> > > +		else
+> > > +			if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
+> > > +					  DDI_BUF_IS_IDLE), 600))
+> > > +				drm_err(&dev_priv->drm, "DDI port:%c buffer idle\n",
+> > > +					port_name(port));
+> > >  	}
+> > > -	drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c idle bit\n",
+> > > -		port_name(port));
+> > > +
+> > =
+
+> > since we can only guarantee a minimum delay or timeout, imo it could be=
+ just:
+> > =
+
+> > 	if (BXT && !active || GEN <=3D 9 && active) {
+> > 		usleep_range(600, 1000);
+> > 		return;
+> > 	}
+> > =
+
+> > 	if (wait_for_us(!(read(BUF_CTL) & IS_IDLE) =3D=3D active, 600))
+> > 		drm_err("Port %c: Timeout waiting for DDI BUF to get %s\n",
+> > 			port, active ? "active" : "idle"));
+> > 		=
+
+> > =
+
+> > >  }
+> > >  =
+
+> > >  static u32 hsw_pll_to_ddi_pll_sel(const struct intel_shared_dpll *pl=
+l)
+> > > @@ -1373,7 +1381,7 @@ void hsw_fdi_link_train(struct intel_encoder *e=
+ncoder,
+> > >  		intel_de_write(dev_priv, DP_TP_CTL(PORT_E), temp);
+> > >  		intel_de_posting_read(dev_priv, DP_TP_CTL(PORT_E));
+> > >  =
+
+> > > -		intel_wait_ddi_buf_idle(dev_priv, PORT_E);
+> > > +		intel_wait_ddi_buf_idle(dev_priv, PORT_E, true);
+> > >  =
+
+> > >  		/* Reset FDI_RX_MISC pwrdn lanes */
+> > >  		temp =3D intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
+> > > @@ -3495,7 +3503,7 @@ static void intel_disable_ddi_buf(struct intel_=
+encoder *encoder,
+> > >  	intel_ddi_disable_fec_state(encoder, crtc_state);
+> > >  =
+
+> > >  	if (wait)
+> > > -		intel_wait_ddi_buf_idle(dev_priv, port);
+> > > +		intel_wait_ddi_buf_idle(dev_priv, port, true);
+> > >  }
+> > >  =
+
+> > >  static void intel_ddi_post_disable_dp(struct intel_atomic_state *sta=
+te,
+> > > @@ -4004,7 +4012,7 @@ static void intel_ddi_prepare_link_retrain(stru=
+ct intel_dp *intel_dp)
+> > >  		intel_de_posting_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> > >  =
+
+> > >  		if (wait)
+> > > -			intel_wait_ddi_buf_idle(dev_priv, port);
+> > > +			intel_wait_ddi_buf_idle(dev_priv, port, true);
+> > >  	}
+> > >  =
+
+> > >  	dp_tp_ctl =3D DP_TP_CTL_ENABLE |
+> > =
+
+> > The DSI code could also use the new helper.
+> > =
+
+> > > -- =
+
+> > > 2.19.1
+> > > =
+
 > =
 
-> We have already applied your patch series to our development branch. I
-> haven't looked into what annotations we'd have to add to our new code yet.
-> =
+> -- =
 
-> =
-
-> >
-> > The worst case is if your hw cannot preempt while a hw page fault is
-> > pending. That means none of the dma_fence will ever signal (the amdkfd
-> > preempt ctx fences wont, and the classic fences from amdgpu might be
-> > also stall). At least when you're unlucky and the fence you're waiting
-> > on somehow (anywhere in its dependency chain really) need the engine
-> > that's currently blocked waiting for the hw page fault.
-> =
-
-> Our HW can preempt while handling a page fault, at least on the GPU
-> generation we're working on now. On other GPUs we haven't included in
-> our initial effort, we will not be able to preempt while a page fault is
-> in progress. This is problematic, but that's for reasons related to our
-> GPU hardware scheduler and unrelated to fences.
-
-Well the trouble is if the page fault holds up a preempt, then there's no
-way for a dma_fence to complete while your hw page fault handler is stuck
-doing whatever. That means the entire hw page fault becomes a fence
-signalling critical section, with the consequence that there's almost
-nothing you can actually do. System memory becomes GFP_ATOMIC only, and
-for vram you need to make sure that you never evict anything that might be
-in active use.
-
-So not enabling these platforms sounds like a very good plan to me :-)
-
-> > That in turn means anything you do in your hw page fault handler is in
-> > the critical section for dma fence signalling, which has far reaching
-> > implications.
-> =
-
-> I'm not sure I agree, at least for KFD. The only place where KFD uses
-> fences that depend on preemptions is eviction fences. And we can get rid
-> of those if we can preempt GPU access to specific BOs by invalidating
-> GPU PTEs. That way we don't need to preempt the GPU queues while a page
-> fault is in progress. Instead we would create more page faults.
-
-The big problem isn't pure kfd workloads, all the trouble comes in when
-you mix kfd and amdgpu workloads. kfd alone is easy, just make sure
-there's no fences to begin with, and there will be no problems.
-
-> That assumes that we can invalidate GPU PTEs without depending on
-> fences. We've discussed possible deadlocks due to memory allocations
-> needed on that code paths for IBs or page tables. We've already
-> eliminated page table allocations and reservation locks on the PTE
-> invalidation code path. And we're using a separate scheduler entity so
-> we can't get stuck behind other IBs that depend on fences. IIRC,
-> Christian also implemented a separate memory pool for IBs for this code
-> path.
-
-Yeah it's the memory allocations that kill you. Both system memory, but
-also vram. Since evicting vram might mean you end up stuck behind a
-dma_fence of a legacy context hogging that memory, and probably also means
-doing a few dma_resv_lock. All of these thing deadlock if you can't
-preempt the context with something else.
--Daniel
-
-
-> =
-
-> Regards,
-> =A0 Felix
-> =
-
-> =
-
-> > -Daniel
-> >
-> >> Regards,
-> >>   Felix
-> >>
-> >>
-> >>> Right, nor will RDMA ODP.
-> >>>
-> >>> Jason
-> >>> _______________________________________________
-> >>> amd-gfx mailing list
-> >>> amd-gfx@lists.freedesktop.org
-> >>> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-> >> _______________________________________________
-> >> dri-devel mailing list
-> >> dri-devel@lists.freedesktop.org
-> >> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> >
-> >
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
