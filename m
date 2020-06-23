@@ -1,51 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DFE72067BF
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 00:57:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F8CB2067C0
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 00:58:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E366F6EAB1;
-	Tue, 23 Jun 2020 22:57:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAEEB6EA81;
+	Tue, 23 Jun 2020 22:58:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5F556EAA5
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 22:57:42 +0000 (UTC)
-IronPort-SDR: zR3aueN9sEzE66rZziX2dzUoHDKN4FDxm+5cRiDjLYsYJihXSsksGWmgwyWGiRWXQ+xutm1IkR
- Q7aUYXqkOXuw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9661"; a="145747371"
-X-IronPort-AV: E=Sophos;i="5.75,272,1589266800"; d="scan'208";a="145747371"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C567D6EA81
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 22:58:12 +0000 (UTC)
+IronPort-SDR: +rTRrNr+3ifuIojH2Blh7cIdXoed5ik3nhHFluVIhP+cSxlJMrI6R5iLSoQwe7AxFqazFv0lyO
+ 945g/C3QD9uw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9661"; a="228946130"
+X-IronPort-AV: E=Sophos;i="5.75,272,1589266800"; d="scan'208";a="228946130"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2020 15:57:41 -0700
-IronPort-SDR: JulwZddBtZGYptPPujvBo//hOyeaeTNyw4cw+V8EEZ5v9zdKHJZPQzQbhvbztPVj2zQ0d3VPwk
- 26asPlD2Gf5A==
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2020 15:58:12 -0700
+IronPort-SDR: FDqjDgKpUjKIMCs58MSzAN320jmuvsO5NCf+7coDGoJzgxoJ8dE+d1swl6XqyjD9FjV28rQI6r
+ EzUEWpWQFt7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,272,1589266800"; d="scan'208";a="423177430"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by orsmga004.jf.intel.com with ESMTP; 23 Jun 2020 15:57:41 -0700
-Date: Tue, 23 Jun 2020 15:59:03 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200623225903.GE22294@intel.com>
-References: <20200618000124.29036-1-manasi.d.navare@intel.com>
- <20200622154921.GA25163@ideak-desk.fi.intel.com>
- <20200623194200.GB22294@intel.com>
- <20200623195710.GC7681@ideak-desk.fi.intel.com>
- <20200623203250.GC22294@intel.com>
- <20200623205027.GD7681@ideak-desk.fi.intel.com>
- <20200623221940.GD22294@intel.com>
- <20200623223549.GE7681@ideak-desk.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.75,272,1589266800"; d="scan'208";a="423177543"
+Received: from susheelh-mobl2.amr.corp.intel.com (HELO
+ josouza-MOBL2.amr.corp.intel.com) ([10.254.9.172])
+ by orsmga004.jf.intel.com with ESMTP; 23 Jun 2020 15:58:11 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 23 Jun 2020 15:59:34 -0700
+Message-Id: <20200623225934.147326-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200623215235.125665-1-jose.souza@intel.com>
+References: <20200623215235.125665-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200623223549.GE7681@ideak-desk.fi.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/dp: Helper for checking
- DDI_BUF_CTL Idle status
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/display: Implement new combo phy
+ initialization step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,81 +50,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 24, 2020 at 01:50:06AM +0300, Imre Deak wrote:
-> On Tue, Jun 23, 2020 at 03:19:41PM -0700, Manasi Navare wrote:
-> > On Tue, Jun 23, 2020 at 11:50:27PM +0300, Imre Deak wrote:
-> > > On Tue, Jun 23, 2020 at 01:32:50PM -0700, Manasi Navare wrote:
-> > > 
-> > > with two functions it would get:
-> > > 
-> > > intel_ddi_wait_for_ddi_buf_active(i915, port)
-> > > {
-> > > 	if (GEN <= 9) {
-> > > 		usleep_range(600, 1000);
-> > 
-> > The doumentation however does suggest that we use udelay to avoid the overhead
-> > of setting up hrtimers needed for usleep_range in atomic context.
-> 
-> The relevant part here is "NON-ATOMIC CONTEXT":
-> 
-> SLEEPING FOR "A FEW" USECS ( < ~10us? ):
-> 	* Use udelay
-> 
-> 	- Why not usleep?
->                         On slower systems, (embedded, OR perhaps a speed-
->                         stepped PC!) the overhead of setting up the hrtimers
->                         for usleep *may* not be worth it. Such an evaluation
->                         will obviously depend on your specific situation, but
->                         it is something to be aware of.
-> 
-> SLEEPING FOR ~USECS OR SMALL MSECS ( 10us - 20ms):
->         * Use usleep_range
-> 
-> So, can use udelay() for 16usec and should use usleep_range() for 600 usec.
-
-Got it thanks will update and send the next rev
-
-Regards
-Manasi
-
-> 
-> > But then checkpatch also suggests using usleep_range, why is that?
-> > 
-> > so still not clear in the context of i915 how we decide where to use jiffie based
-> > delay through udelay and when to use hrtimers (usleep)?
-> 
-> The above document should be followed.
-> 
-> > 
-> > Manasi
-> > 
-> > 
-> > > 		return;
-> > > 	}
-> > > 
-> > >  	if (wait_for_us(!(read(BUF_CTL) & IS_IDLE), 600))
-> > >  		drm_err("Port %c: Timeout waiting for DDI BUF to get active\n", port));
-> > > }
-> > > 
-> > > intel_ddi_wait_for_ddi_buf_idle(i915, port)
-> > > {
-> > > 	if (BXT) {
-> > > 		udelay(16);
-> > > 		return;
-> > > 	}
-> > > 
-> > >  	if (wait_for_us(read(BUF_CTL) & IS_IDLE, 600))
-> > >  		drm_err("Port %c: Timeout waiting for DDI BUF to get idle\n", port));
-> > > }
-> > > 
-> > > --Imre
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBpcyBuZXcgc3RlcCB0aGF0IHdhcyByZWNlbnRseSBhZGRlZCB0byB0aGUgY29tYm8gcGh5
+CmluaXRpYWxpemF0aW9uLgoKQlNwZWM6IDQ5MjkxClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVy
+dG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgotLS0KIC4uLi9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9jb21ib19waHkuYyAgICB8IDI1ICsrKysrKysrKysrKysrKysrKysKIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgICB8ICA3ICsrKysrKwog
+MiBmaWxlcyBjaGFuZ2VkLCAzMiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb21ib19waHkuYyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfY29tYm9fcGh5LmMKaW5kZXggMzg0OTZkMmUzN2ZjLi41ODU1MDRh
+ZDNlNjUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29t
+Ym9fcGh5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb21ib19w
+aHkuYwpAQCAtMjcwLDYgKzI3MCwxOCBAQCBzdGF0aWMgYm9vbCBpY2xfY29tYm9fcGh5X3Zlcmlm
+eV9zdGF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJaWYgKElTX1JLTF9S
+RVZJRChkZXZfcHJpdiwgUktMX1JFVklEX0EwLCBSS0xfUkVWSURfQjApICYmIHBoeSA9PSBQSFlf
+QikKIAkJcmV0dXJuIGZhbHNlOwogCisJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIpIHsK
+KwkJcmV0ICY9IGNoZWNrX3BoeV9yZWcoZGV2X3ByaXYsIHBoeSwgSUNMX1BPUlRfVFhfRFc4X0dS
+UChwaHkpLAorCQkJCSAgICAgSUNMX1BPUlRfVFhfRFc4X09EQ0NfQ0xLX1NFTCB8CisJCQkJICAg
+ICBJQ0xfUE9SVF9UWF9EVzhfT0RDQ19DTEtfRElWX1NFTF9NQVNLLAorCQkJCSAgICAgSUNMX1BP
+UlRfVFhfRFc4X09EQ0NfQ0xLX1NFTCB8CisJCQkJICAgICBJQ0xfUE9SVF9UWF9EVzhfT0RDQ19D
+TEtfRElWX1NFTF9ESVYyKTsKKworCQlyZXQgJj0gY2hlY2tfcGh5X3JlZyhkZXZfcHJpdiwgcGh5
+LCBJQ0xfUE9SVF9QQ1NfRFcxX0dSUChwaHkpLAorCQkJCSAgICAgRENDX01PREVfU0VMRUNUX01B
+U0ssCisJCQkJICAgICBEQ0NfTU9ERV9TRUxFQ1RfQ09OVElOVU9TTFkpOworCX0KKwogCXJldCA9
+IGNubF92ZXJpZnlfcHJvY21vbl9yZWZfdmFsdWVzKGRldl9wcml2LCBwaHkpOwogCiAJaWYgKHBo
+eV9pc19tYXN0ZXIoZGV2X3ByaXYsIHBoeSkpIHsKQEAgLTM4MSw2ICszOTMsMTkgQEAgc3RhdGlj
+IHZvaWQgaWNsX2NvbWJvX3BoeXNfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
+aXYpCiAJCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBJQ0xfUEhZX01JU0MocGh5KSwgdmFsKTsK
+IAogc2tpcF9waHlfbWlzYzoKKwkJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIpIHsKKwkJ
+CXZhbCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIElDTF9QT1JUX1RYX0RXOF9HUlAocGh5KSk7
+CisJCQl2YWwgJj0gfklDTF9QT1JUX1RYX0RXOF9PRENDX0NMS19ESVZfU0VMX01BU0s7CisJCQl2
+YWwgfD0gSUNMX1BPUlRfVFhfRFc4X09EQ0NfQ0xLX1NFTDsKKwkJCXZhbCB8PSBJQ0xfUE9SVF9U
+WF9EVzhfT0RDQ19DTEtfRElWX1NFTF9ESVYyOworCQkJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYs
+IElDTF9QT1JUX1RYX0RXOF9HUlAocGh5KSwgdmFsKTsKKworCQkJdmFsID0gaW50ZWxfZGVfcmVh
+ZChkZXZfcHJpdiwgSUNMX1BPUlRfUENTX0RXMV9HUlAocGh5KSk7CisJCQl2YWwgJj0gfkRDQ19N
+T0RFX1NFTEVDVF9NQVNLOworCQkJdmFsIHw9IERDQ19NT0RFX1NFTEVDVF9DT05USU5VT1NMWTsK
+KwkJCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBJQ0xfUE9SVF9QQ1NfRFcxX0dSUChwaHkpLCB2
+YWwpOworCQl9CisKIAkJY25sX3NldF9wcm9jbW9uX3JlZl92YWx1ZXMoZGV2X3ByaXYsIHBoeSk7
+CiAKIAkJaWYgKHBoeV9pc19tYXN0ZXIoZGV2X3ByaXYsIHBoeSkpIHsKZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X3JlZy5oCmluZGV4IDY5MzhmNGQyNTFhZS4uYTg4MmU2MzI5ZjFiIDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfcmVnLmgKQEAgLTE5ODUsNiArMTk4NSw4IEBAIHN0YXRpYyBpbmxpbmUgYm9vbCBpOTE1X21t
+aW9fcmVnX3ZhbGlkKGk5MTVfcmVnX3QgcmVnKQogI2RlZmluZSBJQ0xfUE9SVF9QQ1NfRFcxX0FV
+WChwaHkpCV9NTUlPKF9JQ0xfUE9SVF9QQ1NfRFdfQVVYKDEsIHBoeSkpCiAjZGVmaW5lIElDTF9Q
+T1JUX1BDU19EVzFfR1JQKHBoeSkJX01NSU8oX0lDTF9QT1JUX1BDU19EV19HUlAoMSwgcGh5KSkK
+ICNkZWZpbmUgSUNMX1BPUlRfUENTX0RXMV9MTjAocGh5KQlfTU1JTyhfSUNMX1BPUlRfUENTX0RX
+X0xOKDEsIDAsIHBoeSkpCisjZGVmaW5lICAgRENDX01PREVfU0VMRUNUX01BU0sJCSgweDMgPDwg
+MjApCisjZGVmaW5lICAgRENDX01PREVfU0VMRUNUX0NPTlRJTlVPU0xZCSgweDMgPDwgMjApCiAj
+ZGVmaW5lICAgQ09NTU9OX0tFRVBFUl9FTgkJKDEgPDwgMjYpCiAjZGVmaW5lICAgTEFURU5DWV9P
+UFRJTV9NQVNLCQkoMHgzIDw8IDIpCiAjZGVmaW5lICAgTEFURU5DWV9PUFRJTV9WQUwoeCkJCSgo
+eCkgPDwgMikKQEAgLTIwODMsNiArMjA4NSwxMSBAQCBzdGF0aWMgaW5saW5lIGJvb2wgaTkxNV9t
+bWlvX3JlZ192YWxpZChpOTE1X3JlZ190IHJlZykKICNkZWZpbmUgICBOX1NDQUxBUih4KQkJCSgo
+eCkgPDwgMjQpCiAjZGVmaW5lICAgTl9TQ0FMQVJfTUFTSwkJCSgweDdGIDw8IDI0KQogCisjZGVm
+aW5lIElDTF9QT1JUX1RYX0RXOF9HUlAocGh5KQkJX01NSU8oX0lDTF9QT1JUX1RYX0RXX0dSUCg4
+LCBwaHkpKQorI2RlZmluZSBJQ0xfUE9SVF9UWF9EVzhfT0RDQ19DTEtfU0VMCQlSRUdfQklUKDMx
+KQorI2RlZmluZSBJQ0xfUE9SVF9UWF9EVzhfT0RDQ19DTEtfRElWX1NFTF9NQVNLCVJFR19HRU5N
+QVNLKDMwLCAyOSkKKyNkZWZpbmUgSUNMX1BPUlRfVFhfRFc4X09EQ0NfQ0xLX0RJVl9TRUxfRElW
+MglSRUdfRklFTERfUFJFUChJQ0xfUE9SVF9UWF9EVzhfT0RDQ19DTEtfRElWX1NFTF9NQVNLLCAw
+eDEpCisKICNkZWZpbmUgX0lDTF9EUEhZX0NIS05fUkVHCQkJMHgxOTQKICNkZWZpbmUgSUNMX0RQ
+SFlfQ0hLTihwb3J0KQkJCV9NTUlPKF9JQ0xfQ09NQk9QSFkocG9ydCkgKyBfSUNMX0RQSFlfQ0hL
+Tl9SRUcpCiAjZGVmaW5lICAgSUNMX0RQSFlfQ0hLTl9BRkVfT1ZFUl9QUElfU1RSQVAJUkVHX0JJ
+VCg3KQotLSAKMi4yNy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
+bC1nZngK
