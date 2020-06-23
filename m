@@ -2,44 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49BEB205C47
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 21:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F01C9205ED6
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 22:31:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 948666EA47;
-	Tue, 23 Jun 2020 19:57:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 036076EA55;
+	Tue, 23 Jun 2020 20:31:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D57C6EA47
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 19:57:15 +0000 (UTC)
-IronPort-SDR: Vitglikt6w2Ko3Vf6MqlV6Se8hqAyc6ud/FkLT+Pg52012ytUUt7OfqkkmZdygLQxVb+Up5tSx
- Pz7T9o1j2xUg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9661"; a="123890647"
-X-IronPort-AV: E=Sophos;i="5.75,272,1589266800"; d="scan'208";a="123890647"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2020 12:57:14 -0700
-IronPort-SDR: 7D4y2G4NGC9GzKYhpzvubGPtE2zwWJuC1XgbPe8uFzK5BhULT32zE6cd1wlcmX3DomQCgU42MM
- Ln+g93PV/c9Q==
-X-IronPort-AV: E=Sophos;i="5.75,272,1589266800"; d="scan'208";a="452364288"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2020 12:57:13 -0700
-Date: Tue, 23 Jun 2020 22:57:10 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20200623195710.GC7681@ideak-desk.fi.intel.com>
-References: <20200618000124.29036-1-manasi.d.navare@intel.com>
- <20200622154921.GA25163@ideak-desk.fi.intel.com>
- <20200623194200.GB22294@intel.com>
+Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB1A6E198
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 20:31:48 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 035813F4C3;
+ Tue, 23 Jun 2020 22:31:46 +0200 (CEST)
+Authentication-Results: pio-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=mv5kZ5uM; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.099
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
+ autolearn=ham autolearn_force=no
+Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id T2EnWL25nSd2; Tue, 23 Jun 2020 22:31:45 +0200 (CEST)
+Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35]) (Authenticated sender: mb878879)
+ by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 965EC3F3E9;
+ Tue, 23 Jun 2020 22:31:44 +0200 (CEST)
+Received: from localhost.localdomain (unknown [134.134.139.83])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 1F0C9362166;
+ Tue, 23 Jun 2020 22:31:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1592944304; bh=LThrPOGA+iQ3R5QkUp49nhH2tg3DHiqlLdZd/xUaIVA=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=mv5kZ5uM4AnE2TBe9Ov69yzf4sUyr1FbSYqPnuE4JQN7k6YmI8vFY9lhXY8eahuE4
+ k42ix4+gH63pyvF2Il1ZwQ7mxRkzFeDikTr9JKJKe1IFY1q9NwDbSYpl88nFTZlo+1
+ 8+Rx5V8ViJuTNGTG/gnAmWPryUMwmGA3tOUbD4Ew=
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200622095921.15530-1-chris@chris-wilson.co.uk>
+ <20200622095921.15530-7-chris@chris-wilson.co.uk>
+ <1712fc5b-9b1e-0632-13c0-e0bc2c1d889d@shipmail.org>
+ <159293017861.3967.12926784772086320588@build.alporthouse.com>
+ <60e198c5-bfc1-2bc6-05a3-487763f7a609@shipmail.org>
+ <159293768060.3967.16328770521784351822@build.alporthouse.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <88f746c6-c6ad-8c19-7797-856ac6bb2f50@shipmail.org>
+Date: Tue, 23 Jun 2020 22:31:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200623194200.GB22294@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/dp: Helper for checking
- DDI_BUF_CTL Idle status
+In-Reply-To: <159293768060.3967.16328770521784351822@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/gem: Acquire all vma/objects
+ under reservation_ww_class
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,180 +71,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 23, 2020 at 12:42:00PM -0700, Manasi Navare wrote:
-> On Mon, Jun 22, 2020 at 06:49:26PM +0300, Imre Deak wrote:
-> > On Wed, Jun 17, 2020 at 05:01:23PM -0700, Manasi Navare wrote:
-> > > Modify the helper to add a fixed delay or poll with timeout
-> > > based on platform specification in bothe enable and disable
-> > > cases so check for either Idle bit set (DDI_BUF_CTL is idle
-> > > for disable case) or check for Idle bit =3D 0 (non idle for
-> > > DDI BUF enable case)
-> > > =
-
-> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: Imre Deak <imre.deak@intel.com>
-> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 34 +++++++++++++++-------=
---
-> > >  1 file changed, 21 insertions(+), 13 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
-rm/i915/display/intel_ddi.c
-> > > index ca7bb2294d2b..e4738c3b6d44 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -1182,18 +1182,26 @@ static void intel_prepare_hdmi_ddi_buffers(st=
-ruct intel_encoder *encoder,
-> > >  }
-> > >  =
-
-> > >  static void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_pri=
-v,
-> > > -				    enum port port)
-> > =
-
-> > maybe intel_ddi_wait_for_ddi_buf(i915, port, active) ?
-> =
-
-> So here you mean active which is true if we are checking during enable fo=
-r non_idle
-> and vice versa for disable, active will be false or checking for idel sta=
-te?
-
-Maybe just use Ville's idea with two functions instead.
-
-> =
-
-> > =
-
-> > > +				    enum port port, bool idle)
-> > >  {
-> > > -	i915_reg_t reg =3D DDI_BUF_CTL(port);
-> > > -	int i;
-> > > -
-> > > -	for (i =3D 0; i < 16; i++) {
-> > > -		udelay(1);
-> > > -		if (intel_de_read(dev_priv, reg) & DDI_BUF_IS_IDLE)
-> > > -			return;
-> > > +	if (idle) {
-> > > +		if (IS_BROXTON(dev_priv))
-> > > +			udelay(16);
-> > > +		else
-> > > +			if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-> > > +					 DDI_BUF_IS_IDLE), 16))
-> > > +				drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c idle bit=
-\n",
-> > > +					port_name(port));
-> > > +	} else {
-> > > +		if (INTEL_GEN(dev_priv) < 10)
-> > > +			udelay(600);
-> > > +		else
-> > > +			if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-> > > +					  DDI_BUF_IS_IDLE), 600))
-> > > +				drm_err(&dev_priv->drm, "DDI port:%c buffer idle\n",
-> > > +					port_name(port));
-> > >  	}
-> > > -	drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c idle bit\n",
-> > > -		port_name(port));
-> > > +
-> > =
-
-> > since we can only guarantee a minimum delay or timeout, imo it could be=
- just:
-> > =
-
-> > 	if (BXT && !active || GEN <=3D 9 && active) {
-> > 		usleep_range(600, 1000);
-> > 		return;
-> =
-
-
-> Didnt quite understand this logic, for BXT & !active which is BXT and
-> idle, it shd be fixed delay of just 16usecs
-> or if it is !BXT and !active then we wait with a timeout
-> also for gen <=3D9 and active, it shd be fixed delay of 600
-> and greater than or =3D 10 and active should be a timeout
-
-yes, the above would match what I provided. The fixed delay for all
-platforms would be a minimum 600usec delay. You can't guarantee that the
-delay would be only 16usec in any case, so using 600 usec on BXT too
-would be ok.
-
-> Manasi
-> =
-
-> > 	}
-> > =
-
-> > 	if (wait_for_us(!(read(BUF_CTL) & IS_IDLE) =3D=3D active, 600))
-> > 		drm_err("Port %c: Timeout waiting for DDI BUF to get %s\n",
-> > 			port, active ? "active" : "idle"));
-> > 		=
-
-> > =
-
-> > >  }
-> > >  =
-
-> > >  static u32 hsw_pll_to_ddi_pll_sel(const struct intel_shared_dpll *pl=
-l)
-> > > @@ -1373,7 +1381,7 @@ void hsw_fdi_link_train(struct intel_encoder *e=
-ncoder,
-> > >  		intel_de_write(dev_priv, DP_TP_CTL(PORT_E), temp);
-> > >  		intel_de_posting_read(dev_priv, DP_TP_CTL(PORT_E));
-> > >  =
-
-> > > -		intel_wait_ddi_buf_idle(dev_priv, PORT_E);
-> > > +		intel_wait_ddi_buf_idle(dev_priv, PORT_E, true);
-> > >  =
-
-> > >  		/* Reset FDI_RX_MISC pwrdn lanes */
-> > >  		temp =3D intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
-> > > @@ -3495,7 +3503,7 @@ static void intel_disable_ddi_buf(struct intel_=
-encoder *encoder,
-> > >  	intel_ddi_disable_fec_state(encoder, crtc_state);
-> > >  =
-
-> > >  	if (wait)
-> > > -		intel_wait_ddi_buf_idle(dev_priv, port);
-> > > +		intel_wait_ddi_buf_idle(dev_priv, port, true);
-> > >  }
-> > >  =
-
-> > >  static void intel_ddi_post_disable_dp(struct intel_atomic_state *sta=
-te,
-> > > @@ -4004,7 +4012,7 @@ static void intel_ddi_prepare_link_retrain(stru=
-ct intel_dp *intel_dp)
-> > >  		intel_de_posting_read(dev_priv, intel_dp->regs.dp_tp_ctl);
-> > >  =
-
-> > >  		if (wait)
-> > > -			intel_wait_ddi_buf_idle(dev_priv, port);
-> > > +			intel_wait_ddi_buf_idle(dev_priv, port, true);
-> > >  	}
-> > >  =
-
-> > >  	dp_tp_ctl =3D DP_TP_CTL_ENABLE |
-> > =
-
-> > The DSI code could also use the new helper.
-> > =
-
-> > > -- =
-
-> > > 2.19.1
-> > > =
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDYvMjMvMjAgODo0MSBQTSwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+IFF1b3RpbmcgVGhvbWFz
+IEhlbGxzdHLDtm0gKEludGVsKSAoMjAyMC0wNi0yMyAxOToyMToyOCkKPj4gT24gNi8yMy8yMCA2
+OjM2IFBNLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4+PiBRdW90aW5nIFRob21hcyBIZWxsc3Ryw7Zt
+IChJbnRlbCkgKDIwMjAtMDYtMjMgMTI6MjI6MTEpCj4+Pj4gSGksIENocmlzLAo+Pj4+Cj4+Pj4g
+T24gNi8yMi8yMCAxMTo1OSBBTSwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+Pj4+PiBJbiBvcmRlciB0
+byBhY3R1YWxseSBoYW5kbGUgZXZpY3Rpb24gYW5kIHdoYXQgbm90LCB3ZSBuZWVkIHRvIHByb2Nl
+c3MKPj4+Pj4gYWxsIHRoZSBvYmplY3RzIHRvZ2V0aGVyIHVuZGVyIGEgY29tbW9uIGxvY2ssIHJl
+c2VydmF0aW9uX3d3X2NsYXNzLiBBcwo+Pj4+PiBzdWNoLCBkbyBhIG1lbW9yeSByZXNlcnZhdGlv
+biBwYXNzIGFmdGVyIGxvb2tpbmcgdXAgdGhlIG9iamVjdC92bWEsCj4+Pj4+IHdoaWNoIHRoZW4g
+ZmVlZHMgaW50byB0aGUgcmVzdCBvZiBleGVjYnVmIFtyZWxvY2F0aW9uLCBjbWRwYXJzaW5nLAo+
+Pj4+PiBmbHVzaGluZyBhbmQgb2ZjIGV4ZWN1dGlvbl0uCj4+Pj4+Cj4+Pj4+IFNpZ25lZC1vZmYt
+Ynk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+Pj4+PiAtLS0KPj4+
+Pj4gICAgIC4uLi9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYyAgICB8IDkx
+ICsrKysrKysrKysrKysrLS0tLS0KPj4+Pj4gICAgIDEgZmlsZSBjaGFuZ2VkLCA3MCBpbnNlcnRp
+b25zKCspLCAyMSBkZWxldGlvbnMoLSkKPj4+Pj4KPj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jCj4+Pj4+IGluZGV4IDQ2ZmNiZGY4MTYxYy4u
+OGRiMmUwMTM0NjVmIDEwMDY0NAo+Pj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
+aTkxNV9nZW1fZXhlY2J1ZmZlci5jCj4+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
+bS9pOTE1X2dlbV9leGVjYnVmZmVyLmMKPj4+Pj4gQEAgLTUzLDEwICs1Myw5IEBAIHN0cnVjdCBl
+Yl92bWFfYXJyYXkgewo+Pj4+PiAgICAgCj4+Pj4+ICAgICAjZGVmaW5lIF9fRVhFQ19PQkpFQ1Rf
+SEFTX1BJTiAgICAgICAgICAgICAgIEJJVCgzMSkKPj4+Pj4gICAgICNkZWZpbmUgX19FWEVDX09C
+SkVDVF9IQVNfRkVOQ0UgICAgICAgICAgICAgQklUKDMwKQo+Pj4+PiAtI2RlZmluZSBfX0VYRUNf
+T0JKRUNUX0hBU19QQUdFUyAgICAgICAgICAgICAgQklUKDI5KQo+Pj4+PiAtI2RlZmluZSBfX0VY
+RUNfT0JKRUNUX05FRURTX01BUCAgICAgICAgICAgICAgQklUKDI4KQo+Pj4+PiAtI2RlZmluZSBf
+X0VYRUNfT0JKRUNUX05FRURTX0JJQVMgICAgIEJJVCgyNykKPj4+Pj4gLSNkZWZpbmUgX19FWEVD
+X09CSkVDVF9JTlRFUk5BTF9GTEFHUyAofjB1IDw8IDI3KSAvKiBhbGwgb2YgdGhlIGFib3ZlICov
+Cj4+Pj4+ICsjZGVmaW5lIF9fRVhFQ19PQkpFQ1RfTkVFRFNfTUFQICAgICAgICAgICAgICBCSVQo
+MjkpCj4+Pj4+ICsjZGVmaW5lIF9fRVhFQ19PQkpFQ1RfTkVFRFNfQklBUyAgICAgQklUKDI4KQo+
+Pj4+PiArI2RlZmluZSBfX0VYRUNfT0JKRUNUX0lOVEVSTkFMX0ZMQUdTICh+MHUgPDwgMjgpIC8q
+IGFsbCBvZiB0aGUgYWJvdmUgKi8KPj4+Pj4gICAgIAo+Pj4+PiAgICAgI2RlZmluZSBfX0VYRUNf
+SEFTX1JFTE9DICAgIEJJVCgzMSkKPj4+Pj4gICAgICNkZWZpbmUgX19FWEVDX0lOVEVSTkFMX0ZM
+QUdTICAgICAgICh+MHUgPDwgMzEpCj4+Pj4+IEBAIC0yNDEsNiArMjQwLDggQEAgc3RydWN0IGk5
+MTVfZXhlY2J1ZmZlciB7Cj4+Pj4+ICAgICAgICAgc3RydWN0IGludGVsX2NvbnRleHQgKmNvbnRl
+eHQ7IC8qIGxvZ2ljYWwgc3RhdGUgZm9yIHRoZSByZXF1ZXN0ICovCj4+Pj4+ICAgICAgICAgc3Ry
+dWN0IGk5MTVfZ2VtX2NvbnRleHQgKmdlbV9jb250ZXh0OyAvKiogY2FsbGVyJ3MgY29udGV4dCAq
+Lwo+Pj4+PiAgICAgCj4+Pj4+ICsgICAgIHN0cnVjdCBkbWFfZmVuY2UgKm1tX2ZlbmNlOwo+Pj4+
+PiArCj4+Pj4+ICAgICAgICAgc3RydWN0IGk5MTVfcmVxdWVzdCAqcmVxdWVzdDsgLyoqIG91ciBy
+ZXF1ZXN0IHRvIGJ1aWxkICovCj4+Pj4+ICAgICAgICAgc3RydWN0IGViX3ZtYSAqYmF0Y2g7IC8q
+KiBpZGVudGl0eSBvZiB0aGUgYmF0Y2ggb2JqL3ZtYSAqLwo+Pj4+PiAgICAgICAgIHN0cnVjdCBp
+OTE1X3ZtYSAqdHJhbXBvbGluZTsgLyoqIHRyYW1wb2xpbmUgdXNlZCBmb3IgY2hhaW5pbmcgKi8K
+Pj4+Pj4gQEAgLTMzMSwxMiArMzMyLDcgQEAgc3RhdGljIGlubGluZSB2b2lkIGViX3VucmVzZXJ2
+ZV92bWEoc3RydWN0IGViX3ZtYSAqZXYpCj4+Pj4+ICAgICAgICAgaWYgKGV2LT5mbGFncyAmIF9f
+RVhFQ19PQkpFQ1RfSEFTX1BJTikKPj4+Pj4gICAgICAgICAgICAgICAgIF9faTkxNV92bWFfdW5w
+aW4odm1hKTsKPj4+Pj4gICAgIAo+Pj4+PiAtICAgICBpZiAoZXYtPmZsYWdzICYgX19FWEVDX09C
+SkVDVF9IQVNfUEFHRVMpCj4+Pj4+IC0gICAgICAgICAgICAgaTkxNV9nZW1fb2JqZWN0X3VucGlu
+X3BhZ2VzKHZtYS0+b2JqKTsKPj4+Pj4gLQo+Pj4+PiAtICAgICBldi0+ZmxhZ3MgJj0gfihfX0VY
+RUNfT0JKRUNUX0hBU19QSU4gfAo+Pj4+PiAtICAgICAgICAgICAgICAgICAgICBfX0VYRUNfT0JK
+RUNUX0hBU19GRU5DRSB8Cj4+Pj4+IC0gICAgICAgICAgICAgICAgICAgIF9fRVhFQ19PQkpFQ1Rf
+SEFTX1BBR0VTKTsKPj4+Pj4gKyAgICAgZXYtPmZsYWdzICY9IH4oX19FWEVDX09CSkVDVF9IQVNf
+UElOIHwgX19FWEVDX09CSkVDVF9IQVNfRkVOQ0UpOwo+Pj4+PiAgICAgfQo+Pj4+PiAgICAgCj4+
+Pj4+ICAgICBzdGF0aWMgdm9pZCBlYl92bWFfYXJyYXlfZGVzdHJveShzdHJ1Y3Qga3JlZiAqa3Jl
+ZikKPj4+Pj4gQEAgLTY2Nyw2ICs2NjMsNTUgQEAgZWJfYWRkX3ZtYShzdHJ1Y3QgaTkxNV9leGVj
+YnVmZmVyICplYiwKPj4+Pj4gICAgICAgICBsaXN0X2FkZF90YWlsKCZldi0+bG9ja19saW5rLCAm
+ZWItPmxvY2spOwo+Pj4+PiAgICAgfQo+Pj4+PiAgICAgCj4+Pj4+ICtzdGF0aWMgaW50IGViX3Zt
+YV9nZXRfcGFnZXMoc3RydWN0IGk5MTVfZXhlY2J1ZmZlciAqZWIsCj4+Pj4+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgc3RydWN0IGViX3ZtYSAqZXYsCj4+Pj4+ICsgICAgICAgICAgICAgICAg
+ICAgICAgICAgdTY0IGlkeCkKPj4+Pj4gK3sKPj4+Pj4gKyAgICAgc3RydWN0IGk5MTVfdm1hICp2
+bWEgPSBldi0+dm1hOwo+Pj4+PiArICAgICBpbnQgZXJyOwo+Pj4+PiArCj4+Pj4+ICsgICAgIC8q
+IFhYWCBhbHNvIHByZWFsbG9jYXRlIFBEIGZvciB2bWEgKi8KPj4+Pj4gKwo+Pj4+PiArICAgICBl
+cnIgPSBfX19faTkxNV9nZW1fb2JqZWN0X2dldF9wYWdlc19hc3luYyh2bWEtPm9iaik7Cj4+Pj4+
+ICsgICAgIGlmIChlcnIpCj4+Pj4+ICsgICAgICAgICAgICAgcmV0dXJuIGVycjsKPj4+Pj4gKwo+
+Pj4+PiArICAgICByZXR1cm4gaTkxNV9hY3RpdmVfcmVmKCZ2bWEtPm9iai0+bW0uYWN0aXZlLCBp
+ZHgsIGViLT5tbV9mZW5jZSk7Cj4+Pj4+ICt9Cj4+Pj4+ICsKPj4+Pj4gK3N0YXRpYyBpbnQgZWJf
+cmVzZXJ2ZV9tbShzdHJ1Y3QgaTkxNV9leGVjYnVmZmVyICplYikKPj4+Pj4gK3sKPj4+Pj4gKyAg
+ICAgY29uc3QgdTY0IGlkeCA9IGViLT5jb250ZXh0LT50aW1lbGluZS0+ZmVuY2VfY29udGV4dDsK
+Pj4+Pj4gKyAgICAgc3RydWN0IHd3X2FjcXVpcmVfY3R4IGFjcXVpcmU7Cj4+Pj4+ICsgICAgIHN0
+cnVjdCBlYl92bWEgKmV2Owo+Pj4+PiArICAgICBpbnQgZXJyOwo+Pj4+PiArCj4+Pj4+ICsgICAg
+IGViLT5tbV9mZW5jZSA9IF9fZG1hX2ZlbmNlX2NyZWF0ZV9wcm94eSgwLCAwKTsKPj4+Pj4gKyAg
+ICAgaWYgKCFlYi0+bW1fZmVuY2UpCj4+Pj4+ICsgICAgICAgICAgICAgcmV0dXJuIC1FTk9NRU07
+Cj4+Pj4gUXVlc3Rpb246IGViIGlzIGxvY2FsIHRvIHRoaXMgdGhyZWFkLCByaWdodCwgc28gZWIt
+Pm1tX2ZlbmNlIGlzIG5vdAo+Pj4+IGNvbnNpZGVyZWQgInB1Ymxpc2hlZCIgeWV0Pwo+Pj4+Cj4+
+Pj4+ICsKPj4+Pj4gKyAgICAgd3dfYWNxdWlyZV9pbml0KCZhY3F1aXJlLCAmcmVzZXJ2YXRpb25f
+d3dfY2xhc3MpOwo+Pj4+PiArCj4+Pj4+ICsgICAgIGVyciA9IGViX2xvY2tfdm1hKGViLCAmYWNx
+dWlyZSk7Cj4+Pj4+ICsgICAgIGlmIChlcnIpCj4+Pj4+ICsgICAgICAgICAgICAgZ290byBvdXQ7
+Cj4+Pj4+ICsKPj4+Pj4gKyAgICAgd3dfYWNxdWlyZV9kb25lKCZhY3F1aXJlKTsKPj4+Pj4gKwo+
+Pj4+PiArICAgICBsaXN0X2Zvcl9lYWNoX2VudHJ5KGV2LCAmZWItPmxvY2ssIGxvY2tfbGluaykg
+ewo+Pj4+PiArICAgICAgICAgICAgIHN0cnVjdCBpOTE1X3ZtYSAqdm1hID0gZXYtPnZtYTsKPj4+
+Pj4gKwo+Pj4+PiArICAgICAgICAgICAgIGlmIChlcnIgPT0gMCkKPj4+Pj4gKyAgICAgICAgICAg
+ICAgICAgICAgIGVyciA9IGViX3ZtYV9nZXRfcGFnZXMoZWIsIGV2LCBpZHgpOwo+Pj4+IEkgZmln
+dXJlIHRoaXMgaXMgd2hlcmUgeW91IHB1Ymxpc2ggdGhlIHByb3h5IGZlbmNlPyBJZiBzbywgdGhl
+IGZlbmNlCj4+Pj4gc2lnbmFsaW5nIGNyaXRpY2FsIHBhdGggc3RhcnRzIHdpdGggdGhpcyBsb29w
+LAo+Pj4gSG1tLCBhY3R1YWxseSBhdCB0aGlzIG1vbWVudCwgdGhlIGZlbmNlIGlzIHN0aWxsIHZl
+cnkgbXVjaCBpbnRlcm5hbAo+Pj4gYmVpbmcgb25seSB1c2VkIGFzIGEgcmVmZXJlbmNlIHRva2Vu
+LAo+PiBJIHRoaW5rIGFzIGxvbmcgYXMgYW5vdGhlciB0aHJlYWQsIHJ1bm5pbmcgaW4gdGhpcyBk
+cml2ZXIgb3IgYW5vdGhlciBncHUKPj4gZHJpdmVyIGNhbiB0aGVvcmV0aWNhbGx5IHJlZmVyZW5j
+ZSB0aGUgZmVuY2UgcG9pbnRlciBmcm9tIHRoZQo+PiByZXNlcnZhdGlvbiBvYmplY3QgYW5kIHdh
+aXQgZm9yIHRoZSBmZW5jZSBpdCdzIGNvbnNpZGVyZWQgcHVibGlzaGVkLgo+IEl0J3Mgbm90IGlu
+IHRoZSByZXNlcnZhdGlvbiBvYmplY3QuCj4gICAKPj4gQWxzbyB0aGUgd3dfbXV0ZXhlcyBpbiB0
+aGlzIGNvbnRleHQgYXJlIHJlYWxseSBhbGwgYWJvdXQgZ3JhYmJpbmcgYQo+PiByYW5kb20gc2V0
+IG9mIHJlc291cmNlcyBhbmQgYXNzb2NpYXRlIHRoZW0gd2l0aCBhIHBvaW50IGluIGEgdGltZWxp
+bmUsCj4+IGFzIHRoZSB3d19tdXRleGVzIGFyZSByZWxlYXNlZCwgdGhlIGZlbmNlIHBvaW50ZXIo
+cykgbmVlZCB0byBwb2ludCB0bwo+PiBwdWJsaXNoZWQgZmVuY2UocykuCj4gVGhhdCdzIG5vdCB0
+aGUgcHVycG9zZSBvZiB0aGVzZSBmZW5jZXMsIHRob3VnaC4gVGhleSBleGlzdCB0byBwcm92aWRl
+Cj4gcmVmZXJlbmNlIGNvdW50aW5nIG9uIHRoZSBiYWNraW5nIHN0b3JlLCBhbG9uZyBzaWRlIHRo
+ZSBtaWdyYXRpb24gZmVuY2UuCj4gSXQncyBleHRyYSBkZXRhaWwgdGFja2VkIG9uIHRoZSBlcXVp
+dmFsZW50IG9mIGJvLT5tb3ZpbmcuCj4KPiBUaGF0IGlzIG5vdCB0byBzYXkgdGhhdCBvbmUgY291
+bGQgYnVpbGQgdXAgYW4gYXN5bmMgbWlncmF0aW9uIGNoYWluIHdoaWNoCj4gZm9ybSBhIGdyYXBo
+IGJhY2sgdG8gdGhlc2UsIHRoYXQgY2hhaW4gY291bGQgb25seSBiZSBmb3JtZWQgb25jZSB0aGUK
+PiBvcGVyYXRpb24gaXRzZWxmIGhhcyBiZWVuIHB1Ymxpc2hlZCBpbiB0aGUgZG1hX3Jlc3YgdGhv
+dWdoLgoKSG1tLiBTbyBsZXQncyBzYXkgYW5vdGhlciB0aHJlYWQgZ3JhYnMgb25lIG9mIHRoZSBq
+dXN0IHJlbGVhc2VkIAp3d19tdXRleGVzIGFuZCB3YW50cyB0byBzY2hlZHVsZSBhIGJsaXQgZnJv
+bSBvbmUgb2YgdGhlIGJ1ZmZlcnMgaW4gdGhlIApjdXJyZW50IG9wZXJhdGlvbiB3aXRoIGhpZ2gg
+cHJpb3JpdHkuIEhvdyB3b3VsZCB0aGF0IHRocmVhZCBrbm93IGhvdyB0byAKb3JkZXIgdGhhdCBi
+bGl0IG9wZXJhdGlvbiB3IHIgdCB0aGUgY3VycmVudCBvcGVyYXRpb24/CgovVGhvbWFzCgoKPiAt
+Q2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
