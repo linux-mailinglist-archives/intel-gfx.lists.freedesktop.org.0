@@ -1,60 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B749204E06
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 11:33:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57500204EB9
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 12:03:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A116E6E966;
-	Tue, 23 Jun 2020 09:33:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14E646E1D2;
+	Tue, 23 Jun 2020 10:03:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3C1B6E966
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 09:33:31 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id B3EAB4139B;
- Tue, 23 Jun 2020 11:33:29 +0200 (CEST)
-Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=FAS1unA0; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.099
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id LBl9oVlpr8qR; Tue, 23 Jun 2020 11:33:28 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id AA2B73F80C;
- Tue, 23 Jun 2020 11:33:27 +0200 (CEST)
-Received: from localhost.localdomain (jfdmzpr03-ext.jf.intel.com
- [134.134.139.72])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 96693360157;
- Tue, 23 Jun 2020 11:33:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1592904806; bh=LTeFzWiH+3e8412vIsMKxCBZEBJKJDPxHGPRVdZa7lo=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=FAS1unA0TbZ3Ds2jds4ZmgJ1wzf8lMGiBKRB5KKeEe0KFVCYllXuPqjYlWMT5kGGG
- 70fn23qVViv+v8xPKApZPUEraaxknU9PEGx2JJo7FVbX1tYlzXYScq5WNPf1zQ1PEV
- F1VvBqWxDe8Pod5Hz4bhkLOCpkMe38CqpFuq9+hE=
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 785156E1D2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 10:03:35 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21587136-1500050 for multiple; Tue, 23 Jun 2020 11:03:37 +0100
+MIME-Version: 1.0
+In-Reply-To: <2c65a714-cf5a-fae6-5342-b514351d03a5@shipmail.org>
 References: <20200622095921.15530-1-chris@chris-wilson.co.uk>
  <20200622095921.15530-7-chris@chris-wilson.co.uk>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <2c65a714-cf5a-fae6-5342-b514351d03a5@shipmail.org>
-Date: Tue, 23 Jun 2020 11:33:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-MIME-Version: 1.0
-In-Reply-To: <20200622095921.15530-7-chris@chris-wilson.co.uk>
-Content-Language: en-US
+ <2c65a714-cf5a-fae6-5342-b514351d03a5@shipmail.org>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Thomas Hellström (Intel) <thomas_os@shipmail.org>, intel-gfx@lists.freedesktop.org
+Message-ID: <159290661156.6856.12185315246799210214@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 23 Jun 2020 11:03:31 +0100
 Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/gem: Acquire all vma/objects
  under reservation_ww_class
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,49 +41,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Chris!
-
-On 6/22/20 11:59 AM, Chris Wilson wrote:
-> In order to actually handle eviction and what not, we need to process
-> all the objects together under a common lock, reservation_ww_class. As
-> such, do a memory reservation pass after looking up the object/vma,
-> which then feeds into the rest of execbuf [relocation, cmdparsing,
-> flushing and ofc execution].
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 91 ++++++++++++++-----
->   1 file changed, 70 insertions(+), 21 deletions(-)
->
-Which tree is this against? The series doesn't apply cleanly against 
-drm-tip?
-
-...
-
-> +static int eb_reserve_mm(struct i915_execbuffer *eb)
-> +{
-> +	const u64 idx = eb->context->timeline->fence_context;
-> +	struct ww_acquire_ctx acquire;
-> +	struct eb_vma *ev;
-> +	int err;
-> +
-> +	eb->mm_fence = __dma_fence_create_proxy(0, 0);
-> +	if (!eb->mm_fence)
-> +		return -ENOMEM;
-
-Where are the proxy fence functions defined?
-
-Thanks,
-
-Thomas
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwpICgyMDIwLTA2LTIzIDEwOjMzOjIwKQo+
+IEhpLCBDaHJpcyEKPiAKPiBPbiA2LzIyLzIwIDExOjU5IEFNLCBDaHJpcyBXaWxzb24gd3JvdGU6
+Cj4gPiBJbiBvcmRlciB0byBhY3R1YWxseSBoYW5kbGUgZXZpY3Rpb24gYW5kIHdoYXQgbm90LCB3
+ZSBuZWVkIHRvIHByb2Nlc3MKPiA+IGFsbCB0aGUgb2JqZWN0cyB0b2dldGhlciB1bmRlciBhIGNv
+bW1vbiBsb2NrLCByZXNlcnZhdGlvbl93d19jbGFzcy4gQXMKPiA+IHN1Y2gsIGRvIGEgbWVtb3J5
+IHJlc2VydmF0aW9uIHBhc3MgYWZ0ZXIgbG9va2luZyB1cCB0aGUgb2JqZWN0L3ZtYSwKPiA+IHdo
+aWNoIHRoZW4gZmVlZHMgaW50byB0aGUgcmVzdCBvZiBleGVjYnVmIFtyZWxvY2F0aW9uLCBjbWRw
+YXJzaW5nLAo+ID4gZmx1c2hpbmcgYW5kIG9mYyBleGVjdXRpb25dLgo+ID4KPiA+IFNpZ25lZC1v
+ZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+ID4gLS0tCj4g
+PiAgIC4uLi9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYyAgICB8IDkxICsr
+KysrKysrKysrKysrLS0tLS0KPiA+ICAgMSBmaWxlIGNoYW5nZWQsIDcwIGluc2VydGlvbnMoKyks
+IDIxIGRlbGV0aW9ucygtKQo+ID4KPiBXaGljaCB0cmVlIGlzIHRoaXMgYWdhaW5zdD8gVGhlIHNl
+cmllcyBkb2Vzbid0IGFwcGx5IGNsZWFubHkgYWdhaW5zdCAKPiBkcm0tdGlwPwoKSXQncyBjb250
+aW51aW5nIG9uIGZyb20gdGhlIHNjaGVkdWxlciBwYXRjaGVzLCB0aGUgYnVnIGZpeGVzIGFuZCB0
+aGUKaXJpcy1kZWZlcnJlZC1mZW5jZSB3b3JrLiBJIHRob3VnaHQgdGhyb3dpbmcgYWxsIG9mIHRo
+b3NlIG9sZCBwYXRjaGVzCmludG8gdGhlIHBpbGUgd291bGQgaGF2ZSBiZWVuIGRpc3RyYWN0aW5n
+LgoKPiAuLi4KPiAKPiA+ICtzdGF0aWMgaW50IGViX3Jlc2VydmVfbW0oc3RydWN0IGk5MTVfZXhl
+Y2J1ZmZlciAqZWIpCj4gPiArewo+ID4gKyAgICAgY29uc3QgdTY0IGlkeCA9IGViLT5jb250ZXh0
+LT50aW1lbGluZS0+ZmVuY2VfY29udGV4dDsKPiA+ICsgICAgIHN0cnVjdCB3d19hY3F1aXJlX2N0
+eCBhY3F1aXJlOwo+ID4gKyAgICAgc3RydWN0IGViX3ZtYSAqZXY7Cj4gPiArICAgICBpbnQgZXJy
+Owo+ID4gKwo+ID4gKyAgICAgZWItPm1tX2ZlbmNlID0gX19kbWFfZmVuY2VfY3JlYXRlX3Byb3h5
+KDAsIDApOwo+ID4gKyAgICAgaWYgKCFlYi0+bW1fZmVuY2UpCj4gPiArICAgICAgICAgICAgIHJl
+dHVybiAtRU5PTUVNOwo+IAo+IFdoZXJlIGFyZSB0aGUgcHJveHkgZmVuY2UgZnVuY3Rpb25zIGRl
+ZmluZWQ/CgpJbiBkbWEtZmVuY2UtcHJveHkuYyA7KQotQ2hyaXMKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
