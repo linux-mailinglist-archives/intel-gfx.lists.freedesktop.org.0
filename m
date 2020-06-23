@@ -1,55 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8CF8206BEF
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 07:48:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34035206D1B
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 08:58:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77F826E3E1;
-	Wed, 24 Jun 2020 05:48:04 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
- [IPv6:2a00:1450:4864:20::543])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 614E689F45;
- Wed, 24 Jun 2020 05:48:03 +0000 (UTC)
-Received: by mail-ed1-x543.google.com with SMTP id g20so358981edm.4;
- Tue, 23 Jun 2020 22:48:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=cCVczq9jeytjg0iXZ0Ms0EAwn8o1xeP0E8gSbiKjVYc=;
- b=pekx7gKl8X5Nm8n2yDSv4PtloQ3kGlanN+rnTGZSvPXXzE20vtVyQHAYTjN+WNgKjW
- JK73I8W4Dpmc7qCizC38HoISfcJYI23SFa157Ci8dwtFXeNsHWqdkJ2ROKSfA98xyQJ+
- V7sDmKfH/UmhgJAdt3DbCO42Nl4q83FYtElyoRuREhThEfGOJ8fLMIDS1/IMoS6Ujx5J
- 8tANcQiYw5hcjrOqY7MxI++rbcxPPz8nat9qT53rJ1aP2nFGeG6yJ16G8o3N58D3sa5f
- vFYcuiQX0GgGsO5+iGevGCc6LkwMe16JvXg5+TiD2AHhIBS9zKy6d9IUTmXE2JwA6TSV
- VSiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=cCVczq9jeytjg0iXZ0Ms0EAwn8o1xeP0E8gSbiKjVYc=;
- b=iB9atgQdrh3Iic2X8Ls1KZj49MPZ+d15DG2XJRTZdAItVs+Ga9XJEvax59s8wBFj/T
- kyPQGOzfQTlDIYP6GTCoO5hIcFBgrCKoADS7r1DxavOr6xClw2go3OBd5d8OKev0sU8k
- 5SzISmEzB+XcimAlhm5d0k4YQU2P7ncNb6lxVW2qrIXgeOGtDkfV1GVIy/COeY/UZWNM
- RmJUnNszkIkCc4D4wpIO7J/COHE+UzDQCLeS6IqEVFlnFXWfhIeVSOhUPd4HmO4ohnOQ
- PutEWRqhuqjzv7n7qM5rDWY43QfbOAfgd2WUglBLyeGyChdEH4vH0CL/NlBTvXhMIrCc
- +USA==
-X-Gm-Message-State: AOAM531yiS9QvFxYWl3LI2mdbtnCKLkCMnS5u66amsZjgTyxw7aaTgGB
- khrI1TI1ha7XmE6A5v0DfqDkpRcmbJpot11hILg=
-X-Google-Smtp-Source: ABdhPJz6lUsVAyNQDB1oZsYZGg9wmtAQPwNKHeMK7rsYNBqVTjNTplKqWGlw0uYl1JMxqjmkrQhme5kk1R2pBYG0FzQ=
-X-Received: by 2002:a50:fa07:: with SMTP id b7mr5401576edq.298.1592977681772; 
- Tue, 23 Jun 2020 22:48:01 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC6AF8926A;
+	Wed, 24 Jun 2020 06:58:00 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3185F88AA0;
+ Wed, 24 Jun 2020 06:58:00 +0000 (UTC)
+IronPort-SDR: 4hhdmANfEQWZ/khTqRigviYsozuxgX1EBr9VEIxGCr+zXY8zVzAO+ngWNK5hil4hAg9GCYobZM
+ Xo9CnQR+dG9g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9661"; a="132782653"
+X-IronPort-AV: E=Sophos;i="5.75,274,1589266800"; d="scan'208";a="132782653"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2020 23:57:59 -0700
+IronPort-SDR: OkiIk134guVqc+q97E5fIO2c8cUF4rKWyyaYhwzaecUaXDyUirwlvjnmoXJvMRKaG81VJjfnyC
+ Oim35NCgasOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,274,1589266800"; d="scan'208";a="301525034"
+Received: from unknown (HELO joshikun.iind.intel.com) ([10.223.74.209])
+ by fmsmga004.fm.intel.com with ESMTP; 23 Jun 2020 23:57:55 -0700
+From: Kunal Joshi <kunal1.joshi@intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed, 24 Jun 2020 00:27:53 +0530
+Message-Id: <20200623185756.19502-1-kunal1.joshi@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20200617105929.534edd34@canb.auug.org.au>
- <20200624113452.54b72fcc@canb.auug.org.au>
-In-Reply-To: <20200624113452.54b72fcc@canb.auug.org.au>
-From: Dave Airlie <airlied@gmail.com>
-Date: Wed, 24 Jun 2020 15:47:49 +1000
-Message-ID: <CAPM=9tx5b1RaN5R4awqQ-BFpDrEZL1z05ZFv2MnGGS2t3mpBhQ@mail.gmail.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
- drm-misc tree
+Subject: [Intel-gfx] [PATCH v6 0/3] Send a hotplug when edid changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,85 +47,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Emil Velikov <emil.velikov@collabora.com>
+Cc: daniel.vetter@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 24 Jun 2020 at 11:36, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
->
-> Hi all,
->
-> On Wed, 17 Jun 2020 10:59:29 +1000 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
-> >
-> > After merging the drm-misc tree, today's linux-next build (x86_64
-> > allmodconfig) failed like this:
-> >
-> > drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c: In function 'amdgpu_amdkfd_gpuvm_free_memory_of_gpu':
-> > drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c:1357:2: error: implicit declaration of function 'drm_gem_object_put_unlocked'; did you mean 'drm_gem_object_put_locked'? [-Werror=implicit-function-declaration]
-> >  1357 |  drm_gem_object_put_unlocked(&mem->bo->tbo.base);
-> >       |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-> >       |  drm_gem_object_put_locked
-> >
-> > Caused by commit
-> >
-> >   ab15d56e27be ("drm: remove transient drm_gem_object_put_unlocked()")
-> >
-> > interacting with commit
-> >
-> >   fd9a9f8801de ("drm/amdgpu: Use GEM obj reference for KFD BOs")
-> >
-> > from Linus' tree.
-> >
-> > I have applied the following merge fix up patch for today.
-> >
-> > From: Stephen Rothwell <sfr@canb.auug.org.au>
-> > Date: Wed, 17 Jun 2020 10:55:32 +1000
-> > Subject: [PATCH] drm/amdgpu: remove stray drm_gem_object_put_unlocked
-> >
-> > Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > index b91b5171270f..9015c7b76d60 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > @@ -1354,7 +1354,7 @@ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
-> >       }
-> >
-> >       /* Free the BO*/
-> > -     drm_gem_object_put_unlocked(&mem->bo->tbo.base);
-> > +     drm_gem_object_put(&mem->bo->tbo.base);
-> >       mutex_destroy(&mem->lock);
-> >       kfree(mem);
-> >
-> > --
-> > 2.26.2
->
-> This fix is now needed when I merge the drm tree :-(
->
-> Given that the drm tree is based on v5.8-rc2 and the commit from Linus'
-> tree above was merged before v5.8-rc1, the above patch should be
-> applied to the drm tree (and should have been part of the patch that
-> merged the drm-misc tree).  I am a bit suprised that the drm tree
-> currently passes CI.
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-My bad, my local builds passed, as I had made the change but forgot
-the commit --amend
+This series introduce to drm a way to determine if something else
+except connection_status had changed during probing, which
+can be used by other drivers as well. Another i915 specific part
+uses this approach to determine if edid had changed without
+changing the connection status and send a hotplug event.
 
-Pushed out a new head with it in it now.
+Stanislav Lisovskiy (3):
+  drm: Add helper to compare edids.
+  drm: Introduce epoch counter to drm_connector
+  drm/i915: Send hotplug event if edid had changed
 
-Dave.
+ drivers/gpu/drm/drm_connector.c              | 16 ++++++++
+ drivers/gpu/drm/drm_edid.c                   | 39 +++++++++++++++++++-
+ drivers/gpu/drm/drm_probe_helper.c           | 38 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_hotplug.c | 26 +++++++------
+ include/drm/drm_connector.h                  |  2 +
+ include/drm/drm_edid.h                       |  9 +++++
+ 6 files changed, 113 insertions(+), 17 deletions(-)
+
+-- 
+2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
