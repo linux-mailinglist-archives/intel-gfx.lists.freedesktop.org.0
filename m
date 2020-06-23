@@ -1,32 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EA9B204DB6
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 11:19:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B749204E06
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 11:33:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48ECA6E418;
-	Tue, 23 Jun 2020 09:19:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A116E6E966;
+	Tue, 23 Jun 2020 09:33:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8A9746E985;
- Tue, 23 Jun 2020 09:19:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 83051A47E1;
- Tue, 23 Jun 2020 09:19:21 +0000 (UTC)
+Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
+ [213.80.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3C1B6E966
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 09:33:31 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id B3EAB4139B;
+ Tue, 23 Jun 2020 11:33:29 +0200 (CEST)
+Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=FAS1unA0; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.099
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
+ autolearn=ham autolearn_force=no
+Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id LBl9oVlpr8qR; Tue, 23 Jun 2020 11:33:28 +0200 (CEST)
+Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35]) (Authenticated sender: mb878879)
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id AA2B73F80C;
+ Tue, 23 Jun 2020 11:33:27 +0200 (CEST)
+Received: from localhost.localdomain (jfdmzpr03-ext.jf.intel.com
+ [134.134.139.72])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 96693360157;
+ Tue, 23 Jun 2020 11:33:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1592904806; bh=LTeFzWiH+3e8412vIsMKxCBZEBJKJDPxHGPRVdZa7lo=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=FAS1unA0TbZ3Ds2jds4ZmgJ1wzf8lMGiBKRB5KKeEe0KFVCYllXuPqjYlWMT5kGGG
+ 70fn23qVViv+v8xPKApZPUEraaxknU9PEGx2JJo7FVbX1tYlzXYScq5WNPf1zQ1PEV
+ F1VvBqWxDe8Pod5Hz4bhkLOCpkMe38CqpFuq9+hE=
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200622095921.15530-1-chris@chris-wilson.co.uk>
+ <20200622095921.15530-7-chris@chris-wilson.co.uk>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <2c65a714-cf5a-fae6-5342-b514351d03a5@shipmail.org>
+Date: Tue, 23 Jun 2020 11:33:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Tue, 23 Jun 2020 09:19:21 -0000
-Message-ID: <159290396150.27520.16303798068762660271@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200623082411.3889-1-imre.deak@intel.com>
-In-Reply-To: <20200623082411.3889-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dp=5Fmst=3A_Enable_VC_payload_allocation_after_transcoder?=
- =?utf-8?q?_is_enabled?=
+In-Reply-To: <20200622095921.15530-7-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/gem: Acquire all vma/objects
+ under reservation_ww_class
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,117 +69,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi, Chris!
 
-Series: drm/i915/dp_mst: Enable VC payload allocation after transcoder is enabled
-URL   : https://patchwork.freedesktop.org/series/78728/
-State : success
+On 6/22/20 11:59 AM, Chris Wilson wrote:
+> In order to actually handle eviction and what not, we need to process
+> all the objects together under a common lock, reservation_ww_class. As
+> such, do a memory reservation pass after looking up the object/vma,
+> which then feeds into the rest of execbuf [relocation, cmdparsing,
+> flushing and ofc execution].
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 91 ++++++++++++++-----
+>   1 file changed, 70 insertions(+), 21 deletions(-)
+>
+Which tree is this against? The series doesn't apply cleanly against 
+drm-tip?
 
-== Summary ==
+...
 
-CI Bug Log - changes from CI_DRM_8655 -> Patchwork_18009
-====================================================
+> +static int eb_reserve_mm(struct i915_execbuffer *eb)
+> +{
+> +	const u64 idx = eb->context->timeline->fence_context;
+> +	struct ww_acquire_ctx acquire;
+> +	struct eb_vma *ev;
+> +	int err;
+> +
+> +	eb->mm_fence = __dma_fence_create_proxy(0, 0);
+> +	if (!eb->mm_fence)
+> +		return -ENOMEM;
 
-Summary
--------
+Where are the proxy fence functions defined?
 
-  **SUCCESS**
+Thanks,
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18009/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18009 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8655/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18009/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bsw-n3050:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8655/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18009/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-    - fi-glk-dsi:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8655/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18009/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8655/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18009/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10] +2 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8655/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18009/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8655/fi-kbl-x1275/igt@debugfs_test@read_all_entries.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18009/fi-kbl-x1275/igt@debugfs_test@read_all_entries.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#1982] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#1982] / [i915#62] / [i915#92])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8655/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18009/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8655/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18009/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Thomas
 
 
-Participating hosts (44 -> 37)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-tgl-u2 fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8655 -> Patchwork_18009
-
-  CI-20190529: 20190529
-  CI_DRM_8655: 25d43cec6c2200a9ebe8a8b0923b27b164a6f424 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5716: 71a22c37ae6541f9d991d81f15cbade1da402b75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18009: c95fdf71011e7df7708cea81e3736b24fb8f5189 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c95fdf71011e drm/i915/dp_mst: Enable VC payload allocation after transcoder is enabled
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18009/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
