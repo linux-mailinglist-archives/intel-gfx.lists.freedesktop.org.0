@@ -1,44 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E1BE204B1E
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 09:30:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 733AB204B5D
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 09:39:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D06F6E949;
-	Tue, 23 Jun 2020 07:30:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0126E950;
+	Tue, 23 Jun 2020 07:39:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 256DC6E947;
- Tue, 23 Jun 2020 07:30:22 +0000 (UTC)
-IronPort-SDR: qXcQg0K4zi9HEZ6uAVgmx1gQgZj43UBP8Xv1vMMyiDB0clkxJjSZMNz6LRnqlak+0nelgRyf6+
- JhhAcrMc9wqw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9660"; a="123660812"
-X-IronPort-AV: E=Sophos;i="5.75,270,1589266800"; d="scan'208";a="123660812"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2020 00:30:21 -0700
-IronPort-SDR: /5HxP1/hdIaqYfnC6/nlaI1qepVLZtCN2f+36qDwE1ToU+CgsyTaFYA6fxRMKgtIzGPfJhCxsr
- vSfU9Vp6hREA==
-X-IronPort-AV: E=Sophos;i="5.75,270,1589266800"; d="scan'208";a="264721429"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2020 00:30:20 -0700
-Date: Tue, 23 Jun 2020 10:30:10 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>
-Message-ID: <20200623073010.GB21923@ideak-desk.fi.intel.com>
-References: <20200616141855.746-6-imre.deak@intel.com>
- <20200616211146.23027-3-imre.deak@intel.com>
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
+ [IPv6:2607:f8b0:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C2F66E950
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 07:39:29 +0000 (UTC)
+Received: by mail-ot1-x343.google.com with SMTP id u23so15620648otq.10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 00:39:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=+92MYnF3Gh08MmStig+tCn2Q/L2yjmneEHZzzW7GGvs=;
+ b=PwrvE5jS1kTu+fi0Cr9QUPwDbx3xz+X3B7OgQDwGyTKoe9mBLoNsF4PcRQZYhzKOnV
+ CkL4lja+OqOY0gBbJB+pER0fYFWMEmKIpSKjbJhfHshefh7JCoDF0Ko4gDHaNPu08gpL
+ UTuHeptkXd8ej8TjPFULXiSQ/JHJc7+5RujUA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=+92MYnF3Gh08MmStig+tCn2Q/L2yjmneEHZzzW7GGvs=;
+ b=qRjBqrTny6GhWvXQklTA/i+8eT89qoYRiyZQNy2rv8iyIgzjJmZbj663g1slsxbdgz
+ PDmzRqs3IiufauDgkPXgRD/ATxeanMTdTFqizD4qBKI7AKn3arvtobhfcIqmRwCilhY/
+ 9YcBkLILgo53PqTLMUS3muFUr7eA/5U8gik4gxcVUen62r71e0QkVA4iyKJF8gYsPwWm
+ /IIH3665DozR/AjRU3b6X1KLlOZ5GVfbqwnwtteSPXttl1gkQLiu30194ItUQVvw3a7+
+ 9Tg1quRHlb5gG0bWKbKd0UCjZiRuJ92QNXwxrerTTUEcfW3Hgdityt2NdUrHkLVO3tEt
+ Wwmw==
+X-Gm-Message-State: AOAM531QryEEdmmh0cK0wejVKu/dFJ0/I03chsQzts2PX3eBOvTNaxku
+ RJwyhEjXB9QRetzngJL/elsNHyJ8Q3/3QvW1dfHRqw==
+X-Google-Smtp-Source: ABdhPJyuTPn8gHto3Zj0qvtBWFEZww/Nxosv6E4e67PZOhsc7GOGHkoFk1BcCVm2dLP+f9GAnXbuSF6PpstaZHEQELA=
+X-Received: by 2002:a4a:d415:: with SMTP id n21mr17485719oos.89.1592897968519; 
+ Tue, 23 Jun 2020 00:39:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200616211146.23027-3-imre.deak@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/i915/dp_mst: Ensure the DPCD ACT
- sent flag is cleared before waiting for it
+References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
+ <20200604081224.863494-5-daniel.vetter@ffwll.ch>
+ <b11c2140-1b9c-9013-d9bb-9eb2c1906710@shipmail.org>
+ <20200611083430.GD20149@phenom.ffwll.local> <20200611141515.GW6578@ziepe.ca>
+ <4702e170-fd02-88fa-3da4-ea64252fff9a@amd.com>
+In-Reply-To: <4702e170-fd02-88fa-3da4-ea64252fff9a@amd.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 23 Jun 2020 09:39:17 +0200
+Message-ID: <CAKMK7uHBKrpDWu+DvtYncDK=LOdGJyMK7t6fpOaGovnYFiBUZw@mail.gmail.com>
+To: Felix Kuehling <felix.kuehling@amd.com>
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime
+ lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,163 +62,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 17, 2020 at 12:11:46AM +0300, Imre Deak wrote:
-> Atm, we clear the ACT sent flag in the sink's DPCD before updating the
-> sink's payload table, along clearing the payload table updated flag.
-> The sink is supposed to set this flag once it detects that the source
-> has completed the ACT sequence (after detecting the 4 required ACT MTPH
-> symbols sent by the source). As opposed to this 2 DELL monitors I have
-> set the flag already along the payload table updated flag, which is not
-> quite correct.
-> =
+On Fri, Jun 12, 2020 at 1:35 AM Felix Kuehling <felix.kuehling@amd.com> wrote:
+>
+> Am 2020-06-11 um 10:15 a.m. schrieb Jason Gunthorpe:
+> > On Thu, Jun 11, 2020 at 10:34:30AM +0200, Daniel Vetter wrote:
+> >>> I still have my doubts about allowing fence waiting from within shrinkers.
+> >>> IMO ideally they should use a trywait approach, in order to allow memory
+> >>> allocation during command submission for drivers that
+> >>> publish fences before command submission. (Since early reservation object
+> >>> release requires that).
+> >> Yeah it is a bit annoying, e.g. for drm/scheduler I think we'll end up
+> >> with a mempool to make sure it can handle it's allocations.
+> >>
+> >>> But since drivers are already waiting from within shrinkers and I take your
+> >>> word for HMM requiring this,
+> >> Yeah the big trouble is HMM and mmu notifiers. That's the really awkward
+> >> one, the shrinker one is a lot less established.
+> > I really question if HW that needs something like DMA fence should
+> > even be using mmu notifiers - the best use is HW that can fence the
+> > DMA directly without having to get involved with some command stream
+> > processing.
+> >
+> > Or at the very least it should not be a generic DMA fence but a
+> > narrowed completion tied only into the same GPU driver's command
+> > completion processing which should be able to progress without
+> > blocking.
+> >
+> > The intent of notifiers was never to endlessly block while vast
+> > amounts of SW does work.
+> >
+> > Going around and switching everything in a GPU to GFP_ATOMIC seems
+> > like bad idea.
+> >
+> >> I've pinged a bunch of armsoc gpu driver people and ask them how much this
+> >> hurts, so that we have a clear answer. On x86 I don't think we have much
+> >> of a choice on this, with userptr in amd and i915 and hmm work in nouveau
+> >> (but nouveau I think doesn't use dma_fence in there).
+>
+> Soon nouveau will get company. We're working on a recoverable page fault
+> implementation for HMM in amdgpu where we'll need to update page tables
+> using the GPUs SDMA engine and wait for corresponding fences in MMU
+> notifiers.
 
-> To be sure that the sink has detected the ACT MTPH symbols before
-> continuing enabling the encoder, clear the ACT sent flag before enabling
-> or disabling the transcoder VC payload allocation (which is what starts
-> the ACT sequence).
-> =
+Can you pls cc these patches to dri-devel when they show up? Depending
+upon how your hw works there's and endless amount of bad things that
+can happen.
 
-> v2 (Ville):
-> - Use the correct bit to clear the flags.
-> - Add code comment explaining the clearing semantics of the ACT handled
->   flag.
-> =
+Also I think (again depending upon how the hw exactly works) this
+stuff would be a perfect example for the dma_fence annotations.
 
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+The worst case is if your hw cannot preempt while a hw page fault is
+pending. That means none of the dma_fence will ever signal (the amdkfd
+preempt ctx fences wont, and the classic fences from amdgpu might be
+also stall). At least when you're unlucky and the fence you're waiting
+on somehow (anywhere in its dependency chain really) need the engine
+that's currently blocked waiting for the hw page fault.
 
-Dropping this patch because clearing the ACT handled flag from DPCD
-causes a problem for some sinks, which set this flag only once when the
-VC payload table is updated and do not set it when the ACT symbols are
-actually sent by the source.
+That in turn means anything you do in your hw page fault handler is in
+the critical section for dma fence signalling, which has far reaching
+implications.
+-Daniel
 
-> ---
->  drivers/gpu/drm/drm_dp_mst_topology.c       | 38 +++++++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
->  include/drm/drm_dp_mst_helper.h             |  2 ++
->  3 files changed, 40 insertions(+), 2 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_=
-dp_mst_topology.c
-> index b2f5a84b4cfb..1f5d14128c1a 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -4377,6 +4377,41 @@ void drm_dp_mst_deallocate_vcpi(struct drm_dp_mst_=
-topology_mgr *mgr,
->  }
->  EXPORT_SYMBOL(drm_dp_mst_deallocate_vcpi);
->  =
-
-> +/**
-> + * drm_dp_clear_payload_status() - Clears the payload table status flags
-> + * @mgr: manager to use
-> + *
-> + * Clears the payload table ACT handled and table updated flags in the M=
-ST hub's
-> + * DPCD. This function must be called before updating the payload table =
-or
-> + * starting the ACT sequence and waiting for the corresponding flags to =
-get
-> + * set by the hub.
-> + *
-> + * Returns:
-> + * 0 if the flags got cleared successfully, otherwise a negative error c=
-ode.
-> + */
-> +int drm_dp_clear_payload_status(struct drm_dp_mst_topology_mgr *mgr)
-> +{
-> +	int ret;
-> +
-> +	/*
-> +	 * Note that the following is based on the DP Standard stating that
-> +	 * writing the DP_PAYLOAD_TABLE_UPDATED bit alone will clear both the
-> +	 * DP_PAYLOAD_TABLE_UPDATED and the DP_PAYLOAD_ACT_HANDLED flags. This
-> +	 * seems to be also the only way to clear DP_PAYLOAD_ACT_HANDLED.
-> +	 */
-> +	ret =3D drm_dp_dpcd_writeb(mgr->aux, DP_PAYLOAD_TABLE_UPDATE_STATUS,
-> +				 DP_PAYLOAD_TABLE_UPDATED);
-> +	if (ret < 0) {
-> +		DRM_DEBUG_DRIVER("Can't clear the ACT handled/table updated flags (%d)=
-\n",
-> +				 ret);
-> +		return ret;
-> +	}
-> +	WARN_ON(ret !=3D 1);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_dp_clear_payload_status);
-> +
->  static int drm_dp_dpcd_write_payload(struct drm_dp_mst_topology_mgr *mgr,
->  				     int id, struct drm_dp_payload *payload)
->  {
-> @@ -4384,8 +4419,7 @@ static int drm_dp_dpcd_write_payload(struct drm_dp_=
-mst_topology_mgr *mgr,
->  	int ret;
->  	int retries =3D 0;
->  =
-
-> -	drm_dp_dpcd_writeb(mgr->aux, DP_PAYLOAD_TABLE_UPDATE_STATUS,
-> -			   DP_PAYLOAD_TABLE_UPDATED);
-> +	drm_dp_clear_payload_status(mgr);
->  =
-
->  	payload_alloc[0] =3D id;
->  	payload_alloc[1] =3D payload->start_slot;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index 9308b5920780..3c4b0fb10d8b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -323,6 +323,8 @@ static void clear_act_sent(struct intel_dp *intel_dp)
->  =
-
->  	intel_de_write(i915, intel_dp->regs.dp_tp_status,
->  		       DP_TP_STATUS_ACT_SENT);
-> +
-> +	drm_dp_clear_payload_status(&intel_dp->mst_mgr);
->  }
->  =
-
->  static void wait_for_act_sent(struct intel_dp *intel_dp)
-> diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_hel=
-per.h
-> index 8b9eb4db3381..2facb87624bf 100644
-> --- a/include/drm/drm_dp_mst_helper.h
-> +++ b/include/drm/drm_dp_mst_helper.h
-> @@ -763,6 +763,8 @@ int drm_dp_find_vcpi_slots(struct drm_dp_mst_topology=
-_mgr *mgr,
->  			   int pbn);
->  =
-
->  =
-
-> +int drm_dp_clear_payload_status(struct drm_dp_mst_topology_mgr *mgr);
-> +
->  int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mgr);
->  =
-
->  =
-
-> -- =
-
-> 2.23.1
-> =
-
+>
+> Regards,
+>   Felix
+>
+>
+> > Right, nor will RDMA ODP.
+> >
+> > Jason
+> > _______________________________________________
+> > amd-gfx mailing list
+> > amd-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 > _______________________________________________
 > dri-devel mailing list
 > dri-devel@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
