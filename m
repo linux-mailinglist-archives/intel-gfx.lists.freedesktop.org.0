@@ -2,66 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B712058A0
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 19:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E2BD2058A4
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2020 19:32:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40E866E13A;
-	Tue, 23 Jun 2020 17:29:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AEF66EA18;
+	Tue, 23 Jun 2020 17:32:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
- [IPv6:2607:f8b0:4864:20::844])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11C416E9EC
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 16:18:02 +0000 (UTC)
-Received: by mail-qt1-x844.google.com with SMTP id i3so6318950qtq.13
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 09:18:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lca.pw; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=SowX6r/DrbyMyIPo7bbmN6dCO4WOaZBpx8lXkNiYwRQ=;
- b=q5PXizvouRcfNA2W9Djqc/Z84L8gq+5xyPGe7rkAVVUXYo0XRUHAEI4yVuKgTSfgc9
- RoYCG4UkEgCC9vVO+IYyrz7JORXpNUWmlzMkIni2Vfw9kxBsp2K+YgamdfZElTJuJZTW
- bbafUUDUQEhd51JcrBKUA9xHz8S+ZvnGFC/bx4j/zd/tIY4JT4nqabnA6jtnfro4Yx69
- YevfddRvEKhgwHMyV0hQh6x3L1BXH3reCRQkEUr6zmcuCWOBikrw37RohUhW9xkrCqv7
- nLIezDVzEaNlXEnFqrM5wDtOVHCyOyKL9todYtNNNUOatrNgrkdDPEXpNyPANNjAfT9T
- s5yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=SowX6r/DrbyMyIPo7bbmN6dCO4WOaZBpx8lXkNiYwRQ=;
- b=E7SpC4OXZwm0yjkf691EaYeYB1M3QWDTIJ9D/quN4jcGDZQSiTETFAgb782SIgblaI
- uuZqfa18P9TE0kEodxmqSK1psADu/LTfQ4TEu5+0erHm3YyY9QqT5vun3JqVWx5Ssk76
- 3Tk8nWfJDa2xt1FFLeiEhIRltr1/3BskvNDIXRcSnSuVTBn35/7Sj/VxeNJie4osDXjI
- AfuLNYuEcGj4aIvwdU17gjyuQIhdi0hIuxY0KqeCapu+GV6nAxeVHyVjsq9SCG4I2V/k
- cdBD3wqMTbpDGUb97S6AYU/hR09UAUkiO+je4RwLJRXmDTuAGkUR9nSVSVHOEl4uCEWb
- 5OJQ==
-X-Gm-Message-State: AOAM531gK3jrRHj6BdpzCdixRPBL0yIS1n16B55PnYeGooi1fZ1ZUEiC
- KmyXXKgHHUJRvETWIexx/fRemw==
-X-Google-Smtp-Source: ABdhPJy2/MUFYS3DJu96XPGFYPvGEfp9/cvT3JQEnV1SM172gUGWrPZ+0/Xawft3xZIbg4oUrttvEg==
-X-Received: by 2002:ac8:4448:: with SMTP id m8mr22935603qtn.4.1592929081912;
- Tue, 23 Jun 2020 09:18:01 -0700 (PDT)
-Received: from lca.pw (pool-71-184-117-43.bstnma.fios.verizon.net.
- [71.184.117.43])
- by smtp.gmail.com with ESMTPSA id d140sm966654qkc.22.2020.06.23.09.18.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 23 Jun 2020 09:18:01 -0700 (PDT)
-Date: Tue, 23 Jun 2020 12:17:54 -0400
-From: Qian Cai <cai@lca.pw>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20200623161754.GA1140@lca.pw>
-References: <20200604081224.863494-2-daniel.vetter@ffwll.ch>
- <20200610194101.1668038-1-daniel.vetter@ffwll.ch>
- <20200621174205.GB1398@lca.pw>
- <CAKMK7uFZAFVmceoYvqPovOifGw_Y8Ey-OMy6wioMjwPWhu9dDg@mail.gmail.com>
- <20200621200103.GV20149@phenom.ffwll.local>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEC656EA0D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 17:32:20 +0000 (UTC)
+IronPort-SDR: BPLWx9C76/ukvKgrnfMr9hUhuJ0AJWUJl+qY+V2cryf8XgI/C9sGY7DO1LQ32EV1Sj1DfqkGqF
+ YKhwgAByB8xw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9661"; a="162233123"
+X-IronPort-AV: E=Sophos;i="5.75,272,1589266800"; d="scan'208";a="162233123"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2020 10:31:47 -0700
+IronPort-SDR: ZdaCRHulXyWeY8YZTPDh5/YvsNWqEXQF3oCTW+3/FnRm/8rWt6j3gjOngAURUmEkmXF1PrF3oa
+ OOfLz0oB94+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,272,1589266800"; d="scan'208";a="478818022"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by fmsmga006.fm.intel.com with ESMTP; 23 Jun 2020 10:31:47 -0700
+Received: from fmsmsx157.amr.corp.intel.com (10.18.116.73) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 23 Jun 2020 10:31:47 -0700
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.171]) by
+ FMSMSX157.amr.corp.intel.com ([169.254.14.86]) with mapi id 14.03.0439.000;
+ Tue, 23 Jun 2020 10:31:47 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [PATCH] drm/i915/dp_mst: Enable VC payload allocation after
+ transcoder is enabled
+Thread-Index: AQHWSTezEysUOSAAaUaB5cBViRGF86jm66mA
+Date: Tue, 23 Jun 2020 17:31:46 +0000
+Message-ID: <0e9d806d5528e1752861a53dffc69b918f66d096.camel@intel.com>
+References: <20200623082411.3889-1-imre.deak@intel.com>
+In-Reply-To: <20200623082411.3889-1-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.251.140.152]
+Content-ID: <BF864FCA1751E94DB9D13A45A697C20C@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200621200103.GV20149@phenom.ffwll.local>
-X-Mailman-Approved-At: Tue, 23 Jun 2020 17:29:24 +0000
-Subject: Re: [Intel-gfx] [PATCH] mm: Track mmu notifiers in
- fs_reclaim_acquire/release
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp_mst: Enable VC payload
+ allocation after transcoder is enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,148 +64,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- linux-xfs@vger.kernel.org, Linux MM <linux-mm@kvack.org>,
- Jason Gunthorpe <jgg@mellanox.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Jun 21, 2020 at 10:01:03PM +0200, Daniel Vetter wrote:
-> On Sun, Jun 21, 2020 at 08:07:08PM +0200, Daniel Vetter wrote:
-> > On Sun, Jun 21, 2020 at 7:42 PM Qian Cai <cai@lca.pw> wrote:
-> > >
-> > > On Wed, Jun 10, 2020 at 09:41:01PM +0200, Daniel Vetter wrote:
-> > > > fs_reclaim_acquire/release nicely catch recursion issues when
-> > > > allocating GFP_KERNEL memory against shrinkers (which gpu drivers t=
-end
-> > > > to use to keep the excessive caches in check). For mmu notifier
-> > > > recursions we do have lockdep annotations since 23b68395c7c7
-> > > > ("mm/mmu_notifiers: add a lockdep map for invalidate_range_start/en=
-d").
-> > > >
-> > > > But these only fire if a path actually results in some pte
-> > > > invalidation - for most small allocations that's very rarely the ca=
-se.
-> > > > The other trouble is that pte invalidation can happen any time when
-> > > > __GFP_RECLAIM is set. Which means only really GFP_ATOMIC is a safe
-> > > > choice, GFP_NOIO isn't good enough to avoid potential mmu notifier
-> > > > recursion.
-> > > >
-> > > > I was pondering whether we should just do the general annotation, b=
-ut
-> > > > there's always the risk for false positives. Plus I'm assuming that
-> > > > the core fs and io code is a lot better reviewed and tested than
-> > > > random mmu notifier code in drivers. Hence why I decide to only
-> > > > annotate for that specific case.
-> > > >
-> > > > Furthermore even if we'd create a lockdep map for direct reclaim, w=
-e'd
-> > > > still need to explicit pull in the mmu notifier map - there's a lot
-> > > > more places that do pte invalidation than just direct reclaim, these
-> > > > two contexts arent the same.
-> > > >
-> > > > Note that the mmu notifiers needing their own independent lockdep m=
-ap
-> > > > is also the reason we can't hold them from fs_reclaim_acquire to
-> > > > fs_reclaim_release - it would nest with the acquistion in the pte
-> > > > invalidation code, causing a lockdep splat. And we can't remove the
-> > > > annotations from pte invalidation and all the other places since
-> > > > they're called from many other places than page reclaim. Hence we c=
-an
-> > > > only do the equivalent of might_lock, but on the raw lockdep map.
-> > > >
-> > > > With this we can also remove the lockdep priming added in 66204f1d2=
-d1b
-> > > > ("mm/mmu_notifiers: prime lockdep") since the new annotations are
-> > > > strictly more powerful.
-> > > >
-> > > > v2: Review from Thomas Hellstrom:
-> > > > - unbotch the fs_reclaim context check, I accidentally inverted it,
-> > > >   but it didn't blow up because I inverted it immediately
-> > > > - fix compiling for !CONFIG_MMU_NOTIFIER
-> > > >
-> > > > Cc: Thomas Hellstr=F6m (Intel) <thomas_os@shipmail.org>
-> > > > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > > > Cc: Jason Gunthorpe <jgg@mellanox.com>
-> > > > Cc: linux-mm@kvack.org
-> > > > Cc: linux-rdma@vger.kernel.org
-> > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > Cc: Christian K=F6nig <christian.koenig@amd.com>
-> > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > >
-> > > Replying the right patch here...
-> > >
-> > > Reverting this commit [1] fixed the lockdep warning below while apply=
-ing
-> > > some memory pressure.
-> > >
-> > > [1] linux-next cbf7c9d86d75 ("mm: track mmu notifiers in fs_reclaim_a=
-cquire/release")
-> > =
-
-> > Hm, then I'm confused because
-> > - there's not mmut notifier lockdep map in the splat at a..
-> > - the patch is supposed to not change anything for fs_reclaim (but the
-> > interim version got that wrong)
-> > - looking at the paths it's kmalloc vs kswapd, both places I totally
-> > expect fs_reflaim to be used.
-> > =
-
-> > But you're claiming reverting this prevents the lockdep splat. If
-> > that's right, then my reasoning above is broken somewhere. Someone
-> > less blind than me having an idea?
-> > =
-
-> > Aside this is the first email I've typed, until I realized the first
-> > report was against the broken patch and that looked like a much more
-> > reasonable explanation (but didn't quite match up with the code
-> > paths).
-> =
-
-> Below diff should undo the functional change in my patch. Can you pls test
-> whether the lockdep splat is really gone with that? Might need a lot of
-> testing and memory pressure to be sure, since all these reclaim paths
-> aren't very deterministic.
-
-No, this patch does not help but reverting the whole patch still fixed
-the splat.
-
-> -Daniel
-> =
-
-> ---
-> diff --git a/mm/page_alloc.c b/mm/page_alloc.c
-> index d807587c9ae6..27ea763c6155 100644
-> --- a/mm/page_alloc.c
-> +++ b/mm/page_alloc.c
-> @@ -4191,11 +4191,6 @@ void fs_reclaim_acquire(gfp_t gfp_mask)
->  		if (gfp_mask & __GFP_FS)
->  			__fs_reclaim_acquire();
->  =
-
-> -#ifdef CONFIG_MMU_NOTIFIER
-> -		lock_map_acquire(&__mmu_notifier_invalidate_range_start_map);
-> -		lock_map_release(&__mmu_notifier_invalidate_range_start_map);
-> -#endif
-> -
->  	}
->  }
->  EXPORT_SYMBOL_GPL(fs_reclaim_acquire);
-> -- =
-
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyMDIwLTA2LTIzIGF0IDExOjI0ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IFRo
+ZSBzcGVjIHJlcXVpcmVzIGVuYWJsaW5nIHRoZSBNU1QgVmlydHVhbCBDaGFubmVsIHBheWxvYWQg
+YWxsb2NhdGlvbg0KPiAtIGluIGEgc2VwZXJhdGUgc3RlcCAtIGFmdGVyIHRoZSB0cmFuc2NvZGVy
+IGlzIGVuYWJsZWQsIGZvbGxvdyB0aGlzLg0KPiANCg0KSXMgdGhlIG5leHQgc3RlcCBidXQgaW5k
+ZWVkIGEgZGlmZmVyZW50IHN0ZXAuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNv
+dXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEg
+PGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUu
+ZGVha0BpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kZGkuYyAgICB8IDggKysrLS0tLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZHBfbXN0LmMgfCA4ICsrKysrKysrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDExIGlu
+c2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGRpLmMNCj4gaW5kZXggNzNkNmNjMjkyOTFhLi44ODRiNTA3YzVmNTUgMTAw
+NjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiBAQCAtMTY1
+Myw3ICsxNjUzLDYgQEAgdm9pZCBpbnRlbF9kZGlfZW5hYmxlX3RyYW5zY29kZXJfZnVuYyhzdHJ1
+Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9
+IHRvX2ludGVsX2NydGMoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjKTsNCj4gIAlzdHJ1Y3QgZHJtX2k5
+MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsNCj4gIAllbnVt
+IHRyYW5zY29kZXIgY3B1X3RyYW5zY29kZXIgPSBjcnRjX3N0YXRlLT5jcHVfdHJhbnNjb2RlcjsN
+Cj4gLQl1MzIgY3RsOw0KPiAgDQo+ICAJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTEpIHsN
+Cj4gIAkJZW51bSB0cmFuc2NvZGVyIG1hc3Rlcl90cmFuc2NvZGVyID0gY3J0Y19zdGF0ZS0+bWFz
+dGVyX3RyYW5zY29kZXI7DQo+IEBAIC0xNjcxLDEwICsxNjcwLDkgQEAgdm9pZCBpbnRlbF9kZGlf
+ZW5hYmxlX3RyYW5zY29kZXJfZnVuYyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4g
+IAkJCSAgICAgICBUUkFOU19ERElfRlVOQ19DVEwyKGNwdV90cmFuc2NvZGVyKSwgY3RsMik7DQo+
+ICAJfQ0KPiAgDQo+IC0JY3RsID0gaW50ZWxfZGRpX3RyYW5zY29kZXJfZnVuY19yZWdfdmFsX2dl
+dChlbmNvZGVyLCBjcnRjX3N0YXRlKTsNCj4gLQlpZiAoaW50ZWxfY3J0Y19oYXNfdHlwZShjcnRj
+X3N0YXRlLCBJTlRFTF9PVVRQVVRfRFBfTVNUKSkNCj4gLQkJY3RsIHw9IFRSQU5TX0RESV9EUF9W
+Q19QQVlMT0FEX0FMTE9DOw0KPiAtCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBUUkFOU19ERElf
+RlVOQ19DVEwoY3B1X3RyYW5zY29kZXIpLCBjdGwpOw0KPiArCWludGVsX2RlX3dyaXRlKGRldl9w
+cml2LCBUUkFOU19ERElfRlVOQ19DVEwoY3B1X3RyYW5zY29kZXIpLA0KPiArCQkgICAgICAgaW50
+ZWxfZGRpX3RyYW5zY29kZXJfZnVuY19yZWdfdmFsX2dldChlbmNvZGVyLA0KPiArCQkJCQkJCSAg
+ICAgY3J0Y19zdGF0ZSkpOw0KPiAgfQ0KPiAgDQo+ICAvKg0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMNCj4gaW5kZXggMGM4OTFiZGQxYWEwLi4zNDI2Y2U4
+YmJiZDAgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZHBfbXN0LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9t
+c3QuYw0KPiBAQCAtNTM5LDYgKzUzOSw3IEBAIHN0YXRpYyB2b2lkIGludGVsX21zdF9lbmFibGVf
+ZHAoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICAJc3RydWN0IGludGVsX2Rp
+Z2l0YWxfcG9ydCAqaW50ZWxfZGlnX3BvcnQgPSBpbnRlbF9tc3QtPnByaW1hcnk7DQo+ICAJc3Ry
+dWN0IGludGVsX2RwICppbnRlbF9kcCA9ICZpbnRlbF9kaWdfcG9ydC0+ZHA7DQo+ICAJc3RydWN0
+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShlbmNvZGVyLT5iYXNlLmRldik7
+DQo+ICsJdTMyIHZhbDsNCj4gIA0KPiAgCWRybV9XQVJOX09OKCZkZXZfcHJpdi0+ZHJtLCBwaXBl
+X2NvbmZpZy0+aGFzX3BjaF9lbmNvZGVyKTsNCj4gIA0KPiBAQCAtNTQ2LDYgKzU0NywxMyBAQCBz
+dGF0aWMgdm9pZCBpbnRlbF9tc3RfZW5hYmxlX2RwKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUg
+KnN0YXRlLA0KPiAgDQo+ICAJaW50ZWxfZGRpX2VuYWJsZV90cmFuc2NvZGVyX2Z1bmMoZW5jb2Rl
+ciwgcGlwZV9jb25maWcpOw0KPiAgDQo+ICsJdmFsID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwN
+Cj4gKwkJCSAgICBUUkFOU19ERElfRlVOQ19DVEwocGlwZV9jb25maWctPmNwdV90cmFuc2NvZGVy
+KSk7DQo+ICsJdmFsIHw9IFRSQU5TX0RESV9EUF9WQ19QQVlMT0FEX0FMTE9DOw0KPiArCWludGVs
+X2RlX3dyaXRlKGRldl9wcml2LA0KPiArCQkgICAgICAgVFJBTlNfRERJX0ZVTkNfQ1RMKHBpcGVf
+Y29uZmlnLT5jcHVfdHJhbnNjb2RlciksDQo+ICsJCSAgICAgICB2YWwpOw0KPiArDQo+ICAJZHJt
+X2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJhY3RpdmUgbGlua3MgJWRcbiIsDQo+ICAJCSAgICBp
+bnRlbF9kcC0+YWN0aXZlX21zdF9saW5rcyk7DQo+ICANCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
