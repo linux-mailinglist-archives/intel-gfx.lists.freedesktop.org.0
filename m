@@ -2,30 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA06207C32
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 21:31:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8868207C38
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 21:32:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B28A16E43D;
-	Wed, 24 Jun 2020 19:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E02D86E4CB;
+	Wed, 24 Jun 2020 19:32:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DDBA56E43D;
- Wed, 24 Jun 2020 19:31:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D7428A0BD0;
- Wed, 24 Jun 2020 19:31:20 +0000 (UTC)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 269426E4A2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 19:32:54 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id h5so3422529wrc.7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 12:32:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=+4ebruNCBdCynGDUnGs85oad3dMnv96iWbK1LEDmKbk=;
+ b=PDSXk5u5+Z0eU6rgKUZ5l0akAg56gsi08fxGN0ibav/zrjyRg4Xq93zH5esHVMFdZg
+ 9H56dUS4NLS5JE6bG6PaDFwcO7S8tFiPhMtye+VJsmvkNZ9aXgr2/TOSAXLqiUS1Fqtk
+ c/6oEqnQRq3BPNOtStp+jEJbFaGI4Ng37s7QU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=+4ebruNCBdCynGDUnGs85oad3dMnv96iWbK1LEDmKbk=;
+ b=iWnAhVf6RgImlvSsEQ4JXKxaE9ZlYFVevLDffW1IlFDJB4niGBDqWqzEXphEbB+3bv
+ o+Z+ju2Xej6Yi8DLVJd6XYRFWd/NF57aCaawP2df087U1hFChvM79DGXtlH/dO8MT40L
+ uK8U4wXj0nWjGXb6OJ4HAoNTemL2paubgn6b6dg5ulBj8T7vXiAThzC67LuikjSB8OLK
+ 5qcrm+3FYELnBtxbBhpeSILyy5upPBQPivpwmtQBQGnNWp0jfv5VA4F34laqKBsVn2Os
+ zi7lu+ApZT+ky5ar/F2ftKBhsVy4xW2vuVlVhrPw+4PCqIgmlhODcWA4fYWbDSaIJyBt
+ t01A==
+X-Gm-Message-State: AOAM533W6Q/zLgXeKnkYlVMBHIlpIvGA+EZwiRopMODeE1fm2RbnZux1
+ 8pab5Ik+3mIo6MbKA1s45a17Bw==
+X-Google-Smtp-Source: ABdhPJxnkZ76oCIpJabe2FyolWSHM20kaC2Gw20tI9DR0WWfWdHIqwJO1ykuIYiurQfYR4L+XDAE3A==
+X-Received: by 2002:adf:cc85:: with SMTP id p5mr28819522wrj.273.1593027172786; 
+ Wed, 24 Jun 2020 12:32:52 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id s18sm30989426wra.85.2020.06.24.12.32.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 24 Jun 2020 12:32:52 -0700 (PDT)
+Date: Wed, 24 Jun 2020 21:32:45 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Message-ID: <20200624144431.GA3278063@phenom.ffwll.local>
+References: <20200604081224.863494-3-daniel.vetter@ffwll.ch>
+ <20200612070535.1778368-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: clinton.a.taylor@intel.com
-Date: Wed, 24 Jun 2020 19:31:20 -0000
-Message-ID: <159302708085.19236.1191209539726889305@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200611233108.19205-1-clinton.a.taylor@intel.com>
-In-Reply-To: <20200611233108.19205-1-clinton.a.taylor@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Implement_WA=5F1406941453?=
+Content-Disposition: inline
+In-Reply-To: <20200612070535.1778368-1-daniel.vetter@ffwll.ch>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH] dma-buf: minor doc touch-ups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,126 +65,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jun 12, 2020 at 09:05:35AM +0200, Daniel Vetter wrote:
+> Just some tiny edits:
+> - fix link to struct dma_fence
+> - give slightly more meaningful title - the polling here is about
+>   implicit fences, explicit fences (in sync_file or drm_syncobj) also
+>   have their own polling
+> 
+> v2: I misplaced the .rst include change corresponding to this patch.
+> 
+> Reviewed-by: Thomas Hellstrom <thomas.hellstrom@intel.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 
-Series: drm/i915/gt: Implement WA_1406941453
-URL   : https://patchwork.freedesktop.org/series/78243/
-State : success
+I went ahead and merged this one, shouldn't be the controversial part of
+the series :-)
+-Daniel
 
-== Summary ==
+> ---
+>  Documentation/driver-api/dma-buf.rst | 6 +++---
+>  drivers/dma-buf/dma-buf.c            | 6 +++---
+>  2 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/driver-api/dma-buf.rst b/Documentation/driver-api/dma-buf.rst
+> index 63dec76d1d8d..7fb7b661febd 100644
+> --- a/Documentation/driver-api/dma-buf.rst
+> +++ b/Documentation/driver-api/dma-buf.rst
+> @@ -100,11 +100,11 @@ CPU Access to DMA Buffer Objects
+>  .. kernel-doc:: drivers/dma-buf/dma-buf.c
+>     :doc: cpu access
+>  
+> -Fence Poll Support
+> -~~~~~~~~~~~~~~~~~~
+> +Implicit Fence Poll Support
+> +~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>  
+>  .. kernel-doc:: drivers/dma-buf/dma-buf.c
+> -   :doc: fence polling
+> +   :doc: implicit fence polling
+>  
+>  Kernel Functions and Structures Reference
+>  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+> index 01ce125f8e8d..e018ef80451e 100644
+> --- a/drivers/dma-buf/dma-buf.c
+> +++ b/drivers/dma-buf/dma-buf.c
+> @@ -161,11 +161,11 @@ static loff_t dma_buf_llseek(struct file *file, loff_t offset, int whence)
+>  }
+>  
+>  /**
+> - * DOC: fence polling
+> + * DOC: implicit fence polling
+>   *
+>   * To support cross-device and cross-driver synchronization of buffer access
+> - * implicit fences (represented internally in the kernel with &struct fence) can
+> - * be attached to a &dma_buf. The glue for that and a few related things are
+> + * implicit fences (represented internally in the kernel with &struct dma_fence)
+> + * can be attached to a &dma_buf. The glue for that and a few related things are
+>   * provided in the &dma_resv structure.
+>   *
+>   * Userspace can query the state of these implicitly tracked fences using poll()
+> -- 
+> 2.26.2
+> 
 
-CI Bug Log - changes from CI_DRM_8618 -> Patchwork_17931
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17931 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_sync@basic-all:
-    - fi-icl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-icl-guc/igt@gem_sync@basic-all.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-icl-guc/igt@gem_sync@basic-all.html
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-tgl-u2/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
-    - fi-icl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#1982]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-byt-j1900:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [DMESG-WARN][13] ([i915#402]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +2 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
-
-  
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (50 -> 42)
-------------------------------
-
-  Missing    (8): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8618 -> Patchwork_17931
-
-  CI-20190529: 20190529
-  CI_DRM_8618: 88841e30e7f8c60ff464be277e5b8fef49ebaea0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5703: c33471b4aa0a0ae9dd42202048e7037a661e0574 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17931: 39466c9ac72e20913b60ada9fdf53b78e4a6f70b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-39466c9ac72e drm/i915/gt: Implement WA_1406941453
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/index.html
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
