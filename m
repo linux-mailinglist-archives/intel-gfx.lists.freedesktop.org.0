@@ -1,32 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34D372072B4
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 13:59:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27FF3207333
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 14:21:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EBAD6EB15;
-	Wed, 24 Jun 2020 11:59:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E67976EB1F;
+	Wed, 24 Jun 2020 12:21:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 425A16EB15;
- Wed, 24 Jun 2020 11:59:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 404D6A00E7;
- Wed, 24 Jun 2020 11:59:29 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E8EC6EB1F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 12:21:08 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21602377-1500050 for multiple; Wed, 24 Jun 2020 13:21:08 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Wed, 24 Jun 2020 11:59:29 -0000
-Message-ID: <159299996926.19237.9506327803399612983@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B01/26=5D_Revert_=22drm/i915/gem=3A_Asyn?=
- =?utf-8?q?c_GPU_relocations_only=22_=28rev2=29?=
+In-Reply-To: <20200624121053.GD6578@ziepe.ca>
+References: <20200624080248.3701-1-chris@chris-wilson.co.uk>
+ <20200624121053.GD6578@ziepe.ca>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Message-ID: <159300126338.4527.3968787379471939056@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Wed, 24 Jun 2020 13:21:03 +0100
+Subject: Re: [Intel-gfx] [PATCH 1/2] mm/mmu_notifier: Mark up direct reclaim
+ paths with MAYFAIL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +40,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-mm@kvack.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Jason Gunthorpe (2020-06-24 13:10:53)
+> On Wed, Jun 24, 2020 at 09:02:47AM +0100, Chris Wilson wrote:
+> > When direct reclaim enters the shrinker and tries to reclaim pages, it
+> > has to opportunitically unmap them [try_to_unmap_one]. For direct
+> > reclaim, the calling context is unknown and may include attempts to
+> > unmap one page of a dma object while attempting to allocate more pages
+> > for that object. Pass the information along that we are inside an
+> > opportunistic unmap that can allow that page to remain referenced and
+> > mapped, and let the callback opt in to avoiding a recursive wait.
+> 
+> i915 should already not be holding locks shared with the notifiers
+> across allocations that can trigger reclaim. This is already required
+> to use notifiers correctly anyhow - why do we need something in the
+> notifiers?
 
-Series: series starting with [01/26] Revert "drm/i915/gem: Async GPU relocations only" (rev2)
-URL   : https://patchwork.freedesktop.org/series/78744/
-State : warning
+for (n = 0; n < num_pages; n++)
+	pin_user_page()
 
-== Summary ==
+may call try_to_unmap_page from the lru shrinker for [0, n-1].
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_display.c:1222:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1225:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1228:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1231:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1440:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1494:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+We're in the middle of allocating the object, how are we best to untangle
+that?
 
+Or during allocation of something that is using the pages pinned by that
+object, how are we best to not to shrink that object as there is a
+mutual dependency?
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
