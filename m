@@ -2,31 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84BF207023
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 11:37:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C809D207041
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 11:42:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E3006EABC;
-	Wed, 24 Jun 2020 09:37:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E97E689F97;
+	Wed, 24 Jun 2020 09:42:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 231CC6EABC;
- Wed, 24 Jun 2020 09:37:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1C67EA0BD0;
- Wed, 24 Jun 2020 09:37:33 +0000 (UTC)
+Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com
+ [66.111.4.221])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA07089F97;
+ Wed, 24 Jun 2020 09:42:09 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 0DFCC58011A;
+ Wed, 24 Jun 2020 05:42:09 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute4.internal (MEProxy); Wed, 24 Jun 2020 05:42:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=a
+ mJwSW8hZ/p5gW9pWhHia2npnDp0E1YNvRlmKyJTzpU=; b=OjdEHyGPok0GtFpVH
+ TaXHefbzGqqm769WcR8yufTXGbUrVJpxmeHDFVH/z540Ug3LJYuUPGF2aomx1tYI
+ aTZm/vPwS9vD712vuki25WCCa0PuHWz39FRnAxh1tXHZ0fi9LxE7h78Qxqr2aa+F
+ OG1vog1Flu8iY3NEDs1CdkJSmDrrZj71rb60k1zNTSfVoK/EbvH9/6S9DtujH/d1
+ 5i1oiq0YwChvY2VuMdMut0KAt2nJ9G66VIYt+h3q5yZt/MA/bvhmbivQ7kk8rg5Y
+ bXwsOU052QhpknROhZuusOY90X/Prd7bgIvAPT7RxTBUPlKCvG79Er6t1BeH2hQn
+ m74Hw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:content-type
+ :date:from:in-reply-to:message-id:mime-version:references
+ :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm3; bh=amJwSW8hZ/p5gW9pWhHia2npnDp0E1YNvRlmKyJTz
+ pU=; b=E2zHziMMzyfPrx6/sMzTtz+syKX+3Jcqa/JJZpQnvq5Xirhw12P/pbMEH
+ Gqj/NvgGpxegh5KpiBZ2kNONiW/znyxStPmW2qx9uWmVRZe27nYBTZl2Fe5QK4H/
+ aLORCv5yiivOsxDphzYrtQduw6MkUvhpaPBBpc4p1R5QnQfii6PFUmTovXyotdJ6
+ eeTCSvvJNNwwllnFstglr1ObD9w3cOcIvKPvdLoSrE2lx215dZuLMj1oWoIK1K4z
+ QxD0NuyuXTvn7xZPCjUgLGeBkLyyZWGXcw2dXvrGAu9ayWpr3D0T/1HgA0IgqgDv
+ nzke67GjrCS2ki3o72nVMJK0+WEfw==
+X-ME-Sender: <xms:7R_zXpI039l9hkAGDVXwTHJd9okaQpJIdp9veCr1smA_vmvj8FSd7Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrudekjedgudduucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ goufhushhpvggtthffohhmrghinhculdegledmnecujfgurhepfffhvffukfhfgggtugfg
+ jgesthhqredttddtvdenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrgigih
+ hmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrhhnpeegteevtdehtdduleff
+ ffeuveffvdevveejueegueduffeiudekteffteefieeufeenucffohhmrghinheprghpph
+ hsphhothdrtghomhenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhi
+ iigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrth
+ gvtghh
+X-ME-Proxy: <xmx:7R_zXlKq0qdMz9bXY92ogjyr8L7USIlitivS7OoeLHB9SFRoOB7brQ>
+ <xmx:7R_zXhuJsNBv5cTTrByrAfW_r2kPSW15tB8NEbn4Nf2wiaP3WlM7Vw>
+ <xmx:7R_zXqYOIIpdfFPJ8F38WUBCx7eFvGkcJ55zKWUzkJcjo3oFAVtfvw>
+ <xmx:8R_zXlz8lSR9RSDlXK7eZtzRNs2DKlfmCU1OtM-UT7EXWAYAkESc7A>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 15AD43280066;
+ Wed, 24 Jun 2020 05:42:05 -0400 (EDT)
+Date: Wed, 24 Jun 2020 11:42:03 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200624094203.5dw267lb4c7ongvy@gilmour.lan>
+References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Souza, Jose" <jose.souza@intel.com>
-Date: Wed, 24 Jun 2020 09:37:33 -0000
-Message-ID: <159299145308.19236.8153963028621366171@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200623215235.125665-1-jose.souza@intel.com>
-In-Reply-To: <20200623215235.125665-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/display/rkl=3A_Impl?=
- =?utf-8?q?ement_WA_14011471926?=
+Content-Disposition: inline
+In-Reply-To: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/atomic-helper: reset vblank on crtc
+ reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,31 +80,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mihail Atanassov <mihail.atanassov@arm.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Emil Velikov <emil.velikov@collabora.com>, linux-renesas-soc@vger.kernel.org,
+ Jonathan Hunter <jonathanh@nvidia.com>, David Airlie <airlied@linux.ie>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ "James \(Qian\) Wang" <james.qian.wang@arm.com>,
+ Thierry Reding <treding@nvidia.com>,
+ syzbot+0871b14ca2e2fb64f6e3@syzkaller.appspotmail.com,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Jyri Sarha <jsarha@ti.com>, Sean Paul <seanpaul@chromium.org>,
+ linux-tegra@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+ linux-arm-kernel@lists.infradead.org, Boris Brezillon <bbrezillon@kernel.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>, zhengbin <zhengbin13@huawei.com>,
+ Brian Masney <masneyb@onstation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jun 12, 2020 at 06:00:49PM +0200, Daniel Vetter wrote:
+> Only when vblanks are supported ofc.
+> 
+> Some drivers do this already, but most unfortunately missed it. This
+> opens up bugs after driver load, before the crtc is enabled for the
+> first time. syzbot spotted this when loading vkms as a secondary
+> output. Given how many drivers are buggy it's best to solve this once
+> and for all in shared helper code.
+> 
+> Aside from moving the few existing calls to drm_crtc_vblank_reset into
+> helpers (i915 doesn't use helpers, so keeps its own) I think the
+> regression risk is minimal: atomic helpers already rely on drivers
+> calling drm_crtc_vblank_on/off correctly in their hooks when they
+> support vblanks. And driver that's failing to handle vblanks after
+> this is missing those calls already, and vblanks could only work by
+> accident when enabling a CRTC for the first time right after boot.
+> 
+> Big thanks to Tetsuo for helping track down what's going wrong here.
+> 
+> There's only a few drivers which already had the necessary call and
+> needed some updating:
+> - komeda, atmel and tidss also needed to be changed to call
+>   __drm_atomic_helper_crtc_reset() intead of open coding it
+> - tegra and msm even had it in the same place already, just code
+>   motion, and malidp already uses __drm_atomic_helper_crtc_reset().
+> 
+> Only call left is in i915, which doesn't use drm_mode_config_reset,
+> but has its own fastboot infrastructure. So that's the only case where
+> we actually want this in the driver still.
+> 
+> I've also reviewed all other drivers which set up vblank support with
+> drm_vblank_init. After the previous patch fixing mxsfb all atomic
+> drivers do call drm_crtc_vblank_on/off as they should, the remaining
+> drivers are either legacy kms or legacy dri1 drivers, so not affected
+> by this change to atomic helpers.
+> 
+> v2: Use the drm_dev_has_vblank() helper.
+> 
+> v3: Laurent pointed out that omap and rcar-du used drm_crtc_vblank_off
+> instead of drm_crtc_vblank_reset. Adjust them too.
+> 
+> v4: Laurent noticed that rcar-du and omap open-code their crtc reset
+> and hence would actually be broken by this patch now. So fix them up
+> by reusing the helpers, which brings the drm_crtc_vblank_reset() back.
+> 
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+> Acked-by: Liviu Dudau <liviu.dudau@arm.com>
+> Acked-by: Thierry Reding <treding@nvidia.com>
+> Link: https://syzkaller.appspot.com/bug?id=0ba17d70d062b2595e1f061231474800f076c7cb
+> Reported-by: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+> Reported-by: syzbot+0871b14ca2e2fb64f6e3@syzkaller.appspotmail.com
+> Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+> Cc: "James (Qian) Wang" <james.qian.wang@arm.com>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Mihail Atanassov <mihail.atanassov@arm.com>
+> Cc: Brian Starkey <brian.starkey@arm.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Boris Brezillon <bbrezillon@kernel.org>
+> Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Jonathan Hunter <jonathanh@nvidia.com>
+> Cc: Jyri Sarha <jsarha@ti.com>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Cc: Brian Masney <masneyb@onstation.org>
+> Cc: Emil Velikov <emil.velikov@collabora.com>
+> Cc: zhengbin <zhengbin13@huawei.com>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: linux-tegra@vger.kernel.org
+> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 
-Series: series starting with [1/2] drm/i915/display/rkl: Implement WA 14011471926
-URL   : https://patchwork.freedesktop.org/series/78761/
-State : warning
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-bd24ac2db018 drm/i915/display/rkl: Implement WA 14011471926
-3ac2f590c2c8 drm/i915/display: Rename COMP_INIT to CNL_PORT_COMP_DW0_COMP_INIT
-fe2335f73891 drm/i915/display: Implement new combo phy initialization step
--:78: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#78: FILE: drivers/gpu/drm/i915/i915_reg.h:2091:
-+#define ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_DIV2	REG_FIELD_PREP(ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK, 0x1)
-
-total: 0 errors, 1 warnings, 0 checks, 56 lines checked
-
+Maxime
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
