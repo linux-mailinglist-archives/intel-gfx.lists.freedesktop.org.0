@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273B8207C10
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 21:14:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECA06207C32
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 21:31:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A4226E426;
-	Wed, 24 Jun 2020 19:14:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B28A16E43D;
+	Wed, 24 Jun 2020 19:31:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 592976E426
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 19:14:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21606589-1500050 
- for multiple; Wed, 24 Jun 2020 20:14:22 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: linux-mm@kvack.org
-Date: Wed, 24 Jun 2020 20:14:17 +0100
-Message-Id: <20200624191417.16735-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DDBA56E43D;
+ Wed, 24 Jun 2020 19:31:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D7428A0BD0;
+ Wed, 24 Jun 2020 19:31:20 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] mm: Skip opportunistic reclaim for dma pinned
- pages
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: clinton.a.taylor@intel.com
+Date: Wed, 24 Jun 2020 19:31:20 -0000
+Message-ID: <159302708085.19236.1191209539726889305@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200611233108.19205-1-clinton.a.taylor@intel.com>
+In-Reply-To: <20200611233108.19205-1-clinton.a.taylor@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Implement_WA=5F1406941453?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,71 +38,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jan Kara <jack@suse.cz>, John Hubbard <jhubbard@nvidia.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Jason Gunthorpe <jgg@ziepe.ca>,
- =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Claudio Imbrenda <imbrenda@linux.ibm.com>,
- "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QSBnZW5lcmFsIHJ1bGUgb2YgdGh1bWIgaXMgdGhhdCBzaHJpbmtlcnMgc2hvdWxkIGJlIGZhc3Qg
-YW5kIGVmZmVjdGl2ZS4KVGhleSBhcmUgY2FsbGVkIGZyb20gZGlyZWN0IHJlY2xhaW0gYXQgdGhl
-IG1vc3QgaW5jb3ZlbmllbnQgb2YgdGltZXMgd2hlbgp0aGUgY2FsbGVyIGlzIHdhaXRpbmcgZm9y
-IGEgcGFnZS4gSWYgd2UgYXR0ZW1wdCB0byByZWNsYWltIGEgcGFnZSBiZWluZwpwaW5uZWQgZm9y
-IGFjdGl2ZSBkbWEgW3Bpbl91c2VyX3BhZ2VzKCldLCB3ZSB3aWxsIGluY3VyIGZhciBncmVhdGVy
-CmxhdGVuY3kgdGhhbiBhIG5vcm1hbCBhbm9ueW1vdXMgcGFnZSBtYXBwZWQgbXVsdGlwbGUgdGlt
-ZXMuIFdvcnNlIHRoZQpwYWdlIG1heSBiZSBpbiB1c2UgaW5kZWZpbml0ZWx5IGJ5IHRoZSBIVyBh
-bmQgdW5hYmxlIHRvIGJlIHJlY2xhaW1lZAppbiBhIHRpbWVseSBtYW5uZXIuCgpBIHNpZGUgZWZm
-ZWN0IG9mIHRoZSBMUlUgc2hyaW5rZXIgbm90IGJlaW5nIGRtYSBhd2FyZSBpcyB0aGF0IHdlIHdp
-bGwKb2Z0ZW4gYXR0ZW1wdCB0byBwZXJmb3JtIGRpcmVjdCByZWNsYWltIG9uIHRoZSBwZXJzaXN0
-ZW50IGdyb3VwIG9mIGRtYQpwYWdlcyB3aGlsZSBjb250aW51aW5nIHRvIHVzZSB0aGUgZG1hIEhX
-IChhbiBpc3N1ZSBhcyB0aGUgSFcgbWF5IGFscmVhZHkKYmUgYWN0aXZlbHkgd2FpdGluZyBmb3Ig
-dGhlIG5leHQgdXNlciByZXF1ZXN0KSwgYW5kIGV2ZW4gYXR0ZW1wdCB0bwpyZWNsYWltIGEgcGFy
-dGlhbGx5IGFsbG9jYXRlZCBkbWEgb2JqZWN0IGluIG9yZGVyIHRvIHNhdGlzZnkgcGlubmluZwp0
-aGUgbmV4dCB1c2VyIHBhZ2UgZm9yIHRoYXQgb2JqZWN0LgoKSXQgaXMgdG8gYmUgZXhwZWN0ZWQg
-dGhhdCBzdWNoIHBhZ2VzIGFyZSBtYWRlIGF2YWlsYWJsZSBmb3IgcmVjbGFpbSBhdAp0aGUgZW5k
-IG9mIHRoZSBkbWEgb3BlcmF0aW9uIFt1bnBpbl91c2VyX3BhZ2VzKCldLCBhbmQgZm9yIHRydWx5
-Cmxvbmd0ZXJtIHBpbnMgdG8gYmUgcHJvYWN0aXZlbHkgcmVjb3ZlcmVkIHZpYSBkZXZpY2Ugc3Bl
-Y2lmaWMgc2hyaW5rZXJzCltpLmUuIHN0b3AgdGhlIEhXLCBhbGxvdyB0aGUgcGFnZXMgdG8gYmUg
-cmV0dXJuZWQgdG8gdGhlIHN5c3RlbSwgYW5kCnRoZW4gY29tcGV0ZSBhZ2FpbiBmb3IgdGhlIG1l
-bW9yeV0uCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5j
-by51az4KQ2M6IEFuZHJldyBNb3J0b24gPGFrcG1AbGludXgtZm91bmRhdGlvbi5vcmc+CkNjOiBK
-YW4gS2FyYSA8amFja0BzdXNlLmN6PgpDYzogSsOpcsO0bWUgR2xpc3NlIDxqZ2xpc3NlQHJlZGhh
-dC5jb20+CkNjOiBKb2huIEh1YmJhcmQgPGpodWJiYXJkQG52aWRpYS5jb20+CkNjOiBDbGF1ZGlv
-IEltYnJlbmRhIDxpbWJyZW5kYUBsaW51eC5pYm0uY29tPgpDYzogSmFuIEthcmEgPGphY2tAc3Vz
-ZS5jej4KQ2M6IEtpcmlsbCBBLiBTaHV0ZW1vdiA8a2lyaWxsLnNodXRlbW92QGxpbnV4LmludGVs
-LmNvbT4KQ2M6IEphc29uIEd1bnRob3JwZSA8amdnQHppZXBlLmNhPgotLS0KVGhpcyBzZWVtcyBw
-ZXJoYXBzIGEgbGl0dGxlIGRldmlvdXMgYW5kIG92ZXJ6ZWFsb3VzLiBJcyB0aGVyZSBhIG1vcmUK
-YXBwcm9wcmlhdGUgVFRVIGZsYWc/IFdvdWxkIHRoZXJlIGJlIGEgd2F5IHRvIGxpbWl0IGl0cyBl
-ZmZlY3QgdG8gc2F5CkZPTExfTE9OR1RFUk0/IERvaW5nIHRoZSBtaWdyYXRpb24gZmlyc3Qgd291
-bGQgc2VlbSB0byBiZSBzZW5zaWJsZSBpZgp3ZSBkaXNhYmxlIG9wcG9ydHVuaXN0aWMgbWlncmF0
-aW9uIGZvciB0aGUgZHVyYXRpb24gb2YgdGhlIHBpbi4KLS0tCiBtbS9ybWFwLmMgfCAxNiArKysr
-KysrKysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdp
-dCBhL21tL3JtYXAuYyBiL21tL3JtYXAuYwppbmRleCA1ZmUyZGVkY2UxZmMuLjM3NGM2ZTY1NTUx
-YiAxMDA2NDQKLS0tIGEvbW0vcm1hcC5jCisrKyBiL21tL3JtYXAuYwpAQCAtMTM5Myw2ICsxMzkz
-LDIyIEBAIHN0YXRpYyBib29sIHRyeV90b191bm1hcF9vbmUoc3RydWN0IHBhZ2UgKnBhZ2UsIHN0
-cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hLAogCSAgICBpc196b25lX2RldmljZV9wYWdlKHBhZ2Up
-ICYmICFpc19kZXZpY2VfcHJpdmF0ZV9wYWdlKHBhZ2UpKQogCQlyZXR1cm4gdHJ1ZTsKIAorCS8q
-CisJICogVHJ5IGFuZCBmYWlsIGVhcmx5IHRvIHJldm9rZSBhIGNvc3RseSBETUEgcGlubmVkIHBh
-Z2UuCisJICoKKwkgKiBSZWNsYWltaW5nIGFuIGFjdGl2ZSBETUEgcGFnZSByZXF1aXJlcyBzdG9w
-cGluZyB0aGUgaGFyZHdhcmUKKwkgKiBhbmQgZmx1c2hpbmcgYWNjZXNzLiBbSGFyZHdhcmUgdGhh
-dCBkb2VzIHN1cHBvcnQgcGFnZWZhdWx0aW5nLAorCSAqIGFuZCBzbyBjYW4gcXVpY2tseSByZXZv
-a2UgRE1BIHBhZ2VzIGF0IGFueSB0aW1lLCBkb2VzIG5vdCBuZWVkCisJICogdG8gcGluIHRoZSBE
-TUEgcGFnZS5dIEF0IHdvcnN0LCB0aGUgcGFnZSBtYXkgYmUgaW5kZWZpbml0ZWx5IGluCisJICog
-dXNlIGJ5IHRoZSBoYXJkd2FyZS4gRXZlbiBhdCBiZXN0IGl0IHdpbGwgdGFrZSBmYXIgbG9uZ2Vy
-IHRvCisJICogcmV2b2tlIHRoZSBhY2Nlc3MgdmlhIHRoZSBtbXUgbm90aWZpZXIsIGZvcmNpbmcg
-dGhhdCBsYXRlbmN5CisJICogb250byBvdXIgY2FsbGVycyByYXRoZXIgdGhhbiB0aGUgY29uc3Vt
-ZXIgb2YgdGhlIEhXLiBBcyB3ZSBhcmUKKwkgKiBjYWxsZWQgZHVyaW5nIG9wcG9ydHVuaXN0aWMg
-ZGlyZWN0IHJlY2xhaW0sIGRlY2xhcmUgdGhlCisJICogb3Bwb3J0dW5pdHkgY29zdCB0b28gaGln
-aCBhbmQgaWdub3JlIHRoZSBwYWdlLgorCSAqLworCWlmIChwYWdlX21heWJlX2RtYV9waW5uZWQo
-cGFnZSkpCisJCXJldHVybiB0cnVlOworCiAJaWYgKGZsYWdzICYgVFRVX1NQTElUX0hVR0VfUE1E
-KSB7CiAJCXNwbGl0X2h1Z2VfcG1kX2FkZHJlc3Modm1hLCBhZGRyZXNzLAogCQkJCWZsYWdzICYg
-VFRVX1NQTElUX0ZSRUVaRSwgcGFnZSk7Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm/i915/gt: Implement WA_1406941453
+URL   : https://patchwork.freedesktop.org/series/78243/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8618 -> Patchwork_17931
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17931 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@gem_sync@basic-all:
+    - fi-icl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-icl-guc/igt@gem_sync@basic-all.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-icl-guc/igt@gem_sync@basic-all.html
+
+  * igt@i915_module_load@reload:
+    - fi-tgl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-tgl-u2/igt@i915_module_load@reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-tgl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
+    - fi-icl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#1982]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-byt-j1900:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-tgl-u2:          [DMESG-WARN][13] ([i915#402]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +2 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-dp1:
+    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8618/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
+
+  
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (50 -> 42)
+------------------------------
+
+  Missing    (8): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8618 -> Patchwork_17931
+
+  CI-20190529: 20190529
+  CI_DRM_8618: 88841e30e7f8c60ff464be277e5b8fef49ebaea0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5703: c33471b4aa0a0ae9dd42202048e7037a661e0574 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17931: 39466c9ac72e20913b60ada9fdf53b78e4a6f70b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+39466c9ac72e drm/i915/gt: Implement WA_1406941453
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17931/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
