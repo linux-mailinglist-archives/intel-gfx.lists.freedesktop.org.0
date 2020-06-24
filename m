@@ -2,37 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB974207CC9
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 22:18:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE640207CDE
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 22:24:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 773586E4D4;
-	Wed, 24 Jun 2020 20:18:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36D266E81B;
+	Wed, 24 Jun 2020 20:24:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E32FB6E4D4
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 20:18:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE5236E81B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 20:24:35 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21606961-1500050 for multiple; Wed, 24 Jun 2020 21:18:25 +0100
+ 21606985-1500050 for multiple; Wed, 24 Jun 2020 21:23:58 +0100
 MIME-Version: 1.0
-In-Reply-To: <CAPM=9tzY0An5THnH=+KEv35LfX0DGt9q6u=t83id6OPgFsN-LQ@mail.gmail.com>
-References: <20200622095921.15530-1-chris@chris-wilson.co.uk>
- <20200622095921.15530-7-chris@chris-wilson.co.uk>
- <2c65a714-cf5a-fae6-5342-b514351d03a5@shipmail.org>
- <159290661156.6856.12185315246799210214@build.alporthouse.com>
- <CAPM=9tx69Xv3xbAb1U+SGOuKk7wirZy6FbRejsajCt9Lvan9VA@mail.gmail.com>
- <159294714433.24819.3044662904558073290@build.alporthouse.com>
- <CAPM=9tzY0An5THnH=+KEv35LfX0DGt9q6u=t83id6OPgFsN-LQ@mail.gmail.com>
+In-Reply-To: <20200624192116.GO6578@ziepe.ca>
+References: <20200624191417.16735-1-chris@chris-wilson.co.uk>
+ <20200624192116.GO6578@ziepe.ca>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Dave Airlie <airlied@gmail.com>
-Message-ID: <159302990055.4527.16849537545776334660@build.alporthouse.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Message-ID: <159303023309.4527.5420769464370063531@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Wed, 24 Jun 2020 21:18:20 +0100
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/gem: Acquire all vma/objects
- under reservation_ww_class
+Date: Wed, 24 Jun 2020 21:23:53 +0100
+Subject: Re: [Intel-gfx] [PATCH] mm: Skip opportunistic reclaim for dma
+ pinned pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,89 +40,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christian König <ckoenig.leichtzumerken@gmail.com>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jan Kara <jack@suse.cz>, John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, Jérôme Glisse <jglisse@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Claudio Imbrenda <imbrenda@linux.ibm.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBEYXZlIEFpcmxpZSAoMjAyMC0wNi0yNCAyMDowNDowMikKPiBPbiBXZWQsIDI0IEp1
-biAyMDIwIGF0IDA3OjE5LCBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4g
-d3JvdGU6Cj4gPgo+ID4gUXVvdGluZyBEYXZlIEFpcmxpZSAoMjAyMC0wNi0yMyAyMjowMToyNCkK
-PiA+ID4gT24gVHVlLCAyMyBKdW4gMjAyMCBhdCAyMDowMywgQ2hyaXMgV2lsc29uIDxjaHJpc0Bj
-aHJpcy13aWxzb24uY28udWs+IHdyb3RlOgo+ID4gPiA+Cj4gPiA+ID4gUXVvdGluZyBUaG9tYXMg
-SGVsbHN0csO2bSAoSW50ZWwpICgyMDIwLTA2LTIzIDEwOjMzOjIwKQo+ID4gPiA+ID4gSGksIENo
-cmlzIQo+ID4gPiA+ID4KPiA+ID4gPiA+IE9uIDYvMjIvMjAgMTE6NTkgQU0sIENocmlzIFdpbHNv
-biB3cm90ZToKPiA+ID4gPiA+ID4gSW4gb3JkZXIgdG8gYWN0dWFsbHkgaGFuZGxlIGV2aWN0aW9u
-IGFuZCB3aGF0IG5vdCwgd2UgbmVlZCB0byBwcm9jZXNzCj4gPiA+ID4gPiA+IGFsbCB0aGUgb2Jq
-ZWN0cyB0b2dldGhlciB1bmRlciBhIGNvbW1vbiBsb2NrLCByZXNlcnZhdGlvbl93d19jbGFzcy4g
-QXMKPiA+ID4gPiA+ID4gc3VjaCwgZG8gYSBtZW1vcnkgcmVzZXJ2YXRpb24gcGFzcyBhZnRlciBs
-b29raW5nIHVwIHRoZSBvYmplY3Qvdm1hLAo+ID4gPiA+ID4gPiB3aGljaCB0aGVuIGZlZWRzIGlu
-dG8gdGhlIHJlc3Qgb2YgZXhlY2J1ZiBbcmVsb2NhdGlvbiwgY21kcGFyc2luZywKPiA+ID4gPiA+
-ID4gZmx1c2hpbmcgYW5kIG9mYyBleGVjdXRpb25dLgo+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiBT
-aWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiA+
-ID4gPiA+ID4gLS0tCj4gPiA+ID4gPiA+ICAgLi4uL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-ZXhlY2J1ZmZlci5jICAgIHwgOTEgKysrKysrKysrKysrKystLS0tLQo+ID4gPiA+ID4gPiAgIDEg
-ZmlsZSBjaGFuZ2VkLCA3MCBpbnNlcnRpb25zKCspLCAyMSBkZWxldGlvbnMoLSkKPiA+ID4gPiA+
-ID4KPiA+ID4gPiA+IFdoaWNoIHRyZWUgaXMgdGhpcyBhZ2FpbnN0PyBUaGUgc2VyaWVzIGRvZXNu
-J3QgYXBwbHkgY2xlYW5seSBhZ2FpbnN0Cj4gPiA+ID4gPiBkcm0tdGlwPwo+ID4gPiA+Cj4gPiA+
-ID4gSXQncyBjb250aW51aW5nIG9uIGZyb20gdGhlIHNjaGVkdWxlciBwYXRjaGVzLCB0aGUgYnVn
-IGZpeGVzIGFuZCB0aGUKPiA+ID4gPiBpcmlzLWRlZmVycmVkLWZlbmNlIHdvcmsuIEkgdGhvdWdo
-dCB0aHJvd2luZyBhbGwgb2YgdGhvc2Ugb2xkIHBhdGNoZXMKPiA+ID4gPiBpbnRvIHRoZSBwaWxl
-IHdvdWxkIGhhdmUgYmVlbiBkaXN0cmFjdGluZy4KPiA+ID4gPgo+ID4gPiA+ID4gLi4uCj4gPiA+
-ID4gPgo+ID4gPiA+ID4gPiArc3RhdGljIGludCBlYl9yZXNlcnZlX21tKHN0cnVjdCBpOTE1X2V4
-ZWNidWZmZXIgKmViKQo+ID4gPiA+ID4gPiArewo+ID4gPiA+ID4gPiArICAgICBjb25zdCB1NjQg
-aWR4ID0gZWItPmNvbnRleHQtPnRpbWVsaW5lLT5mZW5jZV9jb250ZXh0Owo+ID4gPiA+ID4gPiAr
-ICAgICBzdHJ1Y3Qgd3dfYWNxdWlyZV9jdHggYWNxdWlyZTsKPiA+ID4gPiA+ID4gKyAgICAgc3Ry
-dWN0IGViX3ZtYSAqZXY7Cj4gPiA+ID4gPiA+ICsgICAgIGludCBlcnI7Cj4gPiA+ID4gPiA+ICsK
-PiA+ID4gPiA+ID4gKyAgICAgZWItPm1tX2ZlbmNlID0gX19kbWFfZmVuY2VfY3JlYXRlX3Byb3h5
-KDAsIDApOwo+ID4gPiA+ID4gPiArICAgICBpZiAoIWViLT5tbV9mZW5jZSkKPiA+ID4gPiA+ID4g
-KyAgICAgICAgICAgICByZXR1cm4gLUVOT01FTTsKPiA+ID4gPiA+Cj4gPiA+ID4gPiBXaGVyZSBh
-cmUgdGhlIHByb3h5IGZlbmNlIGZ1bmN0aW9ucyBkZWZpbmVkPwo+ID4gPiA+Cj4gPiA+ID4gSW4g
-ZG1hLWZlbmNlLXByb3h5LmMgOykKPiA+ID4KPiA+ID4gVGhlIGRtYS1mZW5jZS1wcm94eSB0aGF0
-IENocmlzdGlhbiBOQUtlZCBiZWZvcmU/Cj4gPgo+ID4gSSBkbyBub3QgaGF2ZSBhbiBlbWFpbCBm
-cm9tIENocmlzdGlhbiBhYm91dCBkbWEtZmVuY2UtcHJveHkgaW4gdGhlIGxhc3QKPiA+IDMgeWVh
-cnMgaXQgaGFzIGJlZW4gb24gdGhlIGxpc3QuCj4gCj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
-ZHJpLWRldmVsL2FlYjAzNzNkLTA1ODMtZDkyMi0zYjczLTkzNjY4YzI3ZDE3N0BhbWQuY29tLwoK
-RGFybiwgSSBza2ltbWVkIHRoZSB0aHJlYWQgdGl0bGUgYW5kIHRob3VnaHQgaXQgd2FzIGp1c3Qg
-YWJvdXQgdGhlCnRpbWVsaW5lcy4KCj4gSSdtIGFzc3VtaW5nIHRoaXMgd2FzIGFib3V0IHBhdGNo
-IDggdGhlcmUgd2hpY2ggdG8gbWUgbG9va3MgbGlrZSBwcm94eQo+IGZlbmNlcyBidXQgbWF5YmUg
-YnkgdGhyZWFkaW5nIGlzIG9mZiByZWFkaW5nIHRoYXQuCgpUaGUgZGVhZGxvY2tzIGFyZSBlYXN5
-IHRvIHJlc29sdmUuIFRoZSBmZW5jZSBpcyBlaXRoZXIgc2lnbmFsZWQgbm9ybWFsbHkKYnkgdXNl
-cnNwYWNlLCB0aGV5IGNyZWF0ZSBhIGRlYWRsb2NrIHRoYXQgaXMgcmVqZWN0ZWQgYnkgY2hlY2tp
-bmcgdGhlIGRhZwphbmQgdGhlIGZlbmNlIHNpZ25hbGVkIHdpdGggYW4gZXJyb3IgKGFuZCB3b3Jr
-IGNhbmNlbGxlZCwgZXJyb3IKcHJvcGFnYXRlZCBiYWNrIHRvIHVzZXJzcGFjZSBpZiB0aGV5IGtl
-cHQgdGhlIG91dHB1dCBmZW5jZSBhcm91bmQpLCBvcgp1c2Vyc3BhY2UgZm9yZ2V0cyBlbnRpcmVs
-eSBhYm91dCB0aGUgZmVuY2UgdGhleSB3ZXJlIHdhaXRpbmcgb24gaW4gd2hpY2gKY2FzZSBpdCBp
-cyBzaWduYWxlZCBieSBjbG9zaW5nIHRoZSBzeW5jb2JqcyBbc2FkbHkgbm90IGluIGVycm9yIHRo
-b3VnaCwKSSBob3BpbmcgdG8gcmVwb3J0IEVQSVBFXSBvbiBwcm9jZXNzIHRlcm1pbmF0aW9uLgoK
-aHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoLzM3Mjc1OS8/c2VyaWVzPTc4
-NzYyJnJldj0xCldlIGNhbiBhbHdheXMgYXR0YWNoIHRoZSBkYWcgcmVzb2x2ZXIgc3VjaCB0aGF0
-IHdlIHJlc29sdmUgdGhlIGRlYWRsb2NrCmZvciBhbnkgaW1wb3J0ZXIgYW5kIHNvIG9ubHkgZXZl
-ciBwcmVzZW50IGEgbm9ybWFsIG1vbm90b25pYyBmZW5jZS4KVGhhdCB3b3VsZCBtYWtlIGl0IGls
-bGVnYWwgdG8gd2FpdCBvbiBhbiBleHRlcm5hbCBmZW5jZSBpbXBvcnRlZCBpbnRvIAp0aGF0IHN5
-bmNvYmogKGFzIHRoYXQgd291bGQgYmUgb3V0c2lkZSBvZiBvdXIgZGFnKS4gQW4gb3B0aW9uIHdv
-dWxkCmJlIHdoZXRoZXIgb3Igbm90IHRvIGZvcmNlIHRpbWVvdXQgc2xvdyB1c2Vyc3BhY2UuIEJ1
-dCB0aGUgc2ltcGxpY2l0eSBvZgpyZXVzaW5nIHRoZSBleGlzdGluZyBmdW5jdGlvbmFsaXR5IHRv
-IG1vdmUgaW50cmFiYXRjaCBzY2hlZHVsaW5nIGludG8KaXJpcyBpcyBjb21wZWxsaW5nLiBbSW4g
-Y29udHJhc3QsIG5vIG9uZSBoYXMgeWV0IGZpbmlzaGVkIHRoZSB0aW1lbGluZQpwYXRjaGVzIHRv
-IHRoZSBwb2ludCB3aGVyZSB0aGV5IHN0b3BwZWQgdGhyb3dpbmcgZXJyb3JzIGluIGlndCwgYW5k
-IHdlCnN0aWxsIHRoZW4gaGF2ZSB0byB3cml0ZSBwYXRjaGVzIGZvciBub25ibG9ja2luZyB3YWl0
-LWZvci1zdWJtaXQgOlsKClRoZSB1c2UgaGVyZSBpcyB0cml2aWFsLCBjaGllZmx5IHVzZWQgYXMg
-YSBjb252ZW5pZW5jZSB0byBmbGVzaCBvdXQgdGhpcwphcmd1bWVudCB0byBzZWUgaWYgd2UgY2Fu
-IHJlZHVjZSB0aGUgbG9jayBkdXJhdGlvbiB3aXRoaW4gc3VibWlzc2lvbgpbZnJvbSB0aGUgZW50
-aXJldHkgb2Ygc3VibWlzc2lvbiB0byBpZGVhbGx5IGp1c3QgcmVzZXJ2YXRpb25dIGJ5IGhvbGRp
-bmcKYSBmZW5jZSBmb3IgdGhlIHN1Ym1pc3Npb24gcHJvY2VzcyBpdHNlbGYuIEFuZCB0aGF0IGJv
-aWxzIGRvd24gdG8gYXQgd2hhdApwb2ludCBjYW4gc29tZW9uZSBlbHNlIHN0YXJ0IHRvIHdhaXQg
-b24gdGhhdCBmZW5jZSwgYW5kIHdoZXRoZXIgb3Igbm90IHdlCmNhbiBhdm9pZCBhbnkgZGlyZWN0
-L2luZGlyZWN0IHdhaXRzIG91cnNlbHZlcyBhZnRlciBwb2ludCBhbmQgYmVmb3JlCmNvbXBsZXRp
-bmcgc3VibWlzc2lvbi4gW1VzdWFsIHJ1bGVzIGFib3V0IG5vdCBiZWluZyBhbGxvd2VkIHRvIHdh
-aXQgb24gYQpyZXNvdXJjZSB3aGlsZSBob2xkaW5nIGNvbnRlbmRhYmxlIHJlc291cmNlcywgYnV0
-IHdpdGggdGhlIG51YW5jZSBvZgp3aGF0L3doZW4gZXhhY3RseSB0aGF0IHJlc291cmNlIGJlY29t
-ZXMgY29udGVuZGFibGUuXSBUaGUgbG9jayBjb250ZW50aW9uCmlzIHF1aXRlIHJlYWwsIGFzIGF0
-IHRoZSBtb21lbnQgaXQgaXMgZGV2b2x2aW5nIGludG8gYSBnbG9iYWwgbG9jay4gV2l0aAp0aGUg
-YW11c2luZyBzaWRlIGVmZmVjdCB0aGF0IGl0IHRoZW4gdHVybnMgb3V0IHRvIGJlIHF1aWNrZXIg
-dG8gd3JhcCB0aGUKZW50aXJlIHRoaW5nIGluIHN0cnVjdF9tdXRleC4KLUNocmlzCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Quoting Jason Gunthorpe (2020-06-24 20:21:16)
+> On Wed, Jun 24, 2020 at 08:14:17PM +0100, Chris Wilson wrote:
+> > A general rule of thumb is that shrinkers should be fast and effective.
+> > They are called from direct reclaim at the most incovenient of times when
+> > the caller is waiting for a page. If we attempt to reclaim a page being
+> > pinned for active dma [pin_user_pages()], we will incur far greater
+> > latency than a normal anonymous page mapped multiple times. Worse the
+> > page may be in use indefinitely by the HW and unable to be reclaimed
+> > in a timely manner.
+> 
+> A pinned page can't be migrated, discarded or swapped by definition -
+> it would cause data corruption.
+> 
+> So, how do things even get here and/or work today at all? I think the
+> explanation is missing something important.
+
+[<0>] userptr_mn_invalidate_range_start+0xa7/0x170 [i915]
+[<0>] __mmu_notifier_invalidate_range_start+0x110/0x150
+[<0>] try_to_unmap_one+0x790/0x870
+[<0>] rmap_walk_file+0xe9/0x230
+[<0>] rmap_walk+0x27/0x30
+[<0>] try_to_unmap+0x89/0xc0
+[<0>] shrink_page_list+0x88a/0xf50
+[<0>] shrink_inactive_list+0x137/0x2f0
+[<0>] shrink_lruvec+0x4ec/0x5f0
+[<0>] shrink_node+0x15d/0x410
+[<0>] try_to_free_pages+0x17f/0x430
+[<0>] __alloc_pages_slowpath+0x2ab/0xcc0
+[<0>] __alloc_pages_nodemask+0x1ad/0x1e0
+[<0>] new_slab+0x2d8/0x310
+[<0>] ___slab_alloc.constprop.0+0x288/0x520
+[<0>] __slab_alloc.constprop.0+0xd/0x20
+[<0>] kmem_cache_alloc_trace+0x1ad/0x1c0
+
+and that hits an active pin_user_pages object.
+
+Is there some information that would help in particular?
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
