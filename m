@@ -1,58 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8868207C38
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 21:32:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 086E3207C33
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2020 21:31:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E02D86E4CB;
-	Wed, 24 Jun 2020 19:32:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 606526E444;
+	Wed, 24 Jun 2020 19:31:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 269426E4A2
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 19:32:54 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id h5so3422529wrc.7
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 12:32:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=+4ebruNCBdCynGDUnGs85oad3dMnv96iWbK1LEDmKbk=;
- b=PDSXk5u5+Z0eU6rgKUZ5l0akAg56gsi08fxGN0ibav/zrjyRg4Xq93zH5esHVMFdZg
- 9H56dUS4NLS5JE6bG6PaDFwcO7S8tFiPhMtye+VJsmvkNZ9aXgr2/TOSAXLqiUS1Fqtk
- c/6oEqnQRq3BPNOtStp+jEJbFaGI4Ng37s7QU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=+4ebruNCBdCynGDUnGs85oad3dMnv96iWbK1LEDmKbk=;
- b=iWnAhVf6RgImlvSsEQ4JXKxaE9ZlYFVevLDffW1IlFDJB4niGBDqWqzEXphEbB+3bv
- o+Z+ju2Xej6Yi8DLVJd6XYRFWd/NF57aCaawP2df087U1hFChvM79DGXtlH/dO8MT40L
- uK8U4wXj0nWjGXb6OJ4HAoNTemL2paubgn6b6dg5ulBj8T7vXiAThzC67LuikjSB8OLK
- 5qcrm+3FYELnBtxbBhpeSILyy5upPBQPivpwmtQBQGnNWp0jfv5VA4F34laqKBsVn2Os
- zi7lu+ApZT+ky5ar/F2ftKBhsVy4xW2vuVlVhrPw+4PCqIgmlhODcWA4fYWbDSaIJyBt
- t01A==
-X-Gm-Message-State: AOAM533W6Q/zLgXeKnkYlVMBHIlpIvGA+EZwiRopMODeE1fm2RbnZux1
- 8pab5Ik+3mIo6MbKA1s45a17Bw==
-X-Google-Smtp-Source: ABdhPJxnkZ76oCIpJabe2FyolWSHM20kaC2Gw20tI9DR0WWfWdHIqwJO1ykuIYiurQfYR4L+XDAE3A==
-X-Received: by 2002:adf:cc85:: with SMTP id p5mr28819522wrj.273.1593027172786; 
- Wed, 24 Jun 2020 12:32:52 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s18sm30989426wra.85.2020.06.24.12.32.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Jun 2020 12:32:52 -0700 (PDT)
-Date: Wed, 24 Jun 2020 21:32:45 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Message-ID: <20200624144431.GA3278063@phenom.ffwll.local>
-References: <20200604081224.863494-3-daniel.vetter@ffwll.ch>
- <20200612070535.1778368-1-daniel.vetter@ffwll.ch>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6B4C6E443
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 19:31:21 +0000 (UTC)
+IronPort-SDR: FjrCwqLa91AmOkhnzdu8v3ovH7+X5HdnPBDvCZxpnqK8OfsF6T/pXC5a+tNnfjN1JlSDmLstNp
+ MfBLuBd6lNkQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9662"; a="209741683"
+X-IronPort-AV: E=Sophos;i="5.75,276,1589266800"; d="scan'208";a="209741683"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2020 12:31:20 -0700
+IronPort-SDR: isDW2/0V2FPc33Yo3zxodMcYV0VYbaw7BJo5vy6hNdTWh4q+RJO2yLrYZv/6MiyeupsHnruErF
+ Gq6DhxWSWvoQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,276,1589266800"; d="scan'208";a="354233569"
+Received: from thivyajx-mobl.gar.corp.intel.com (HELO
+ josouza-MOBL2.amr.corp.intel.com) ([10.251.155.111])
+ by orsmga001.jf.intel.com with ESMTP; 24 Jun 2020 12:31:20 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 24 Jun 2020 12:32:49 -0700
+Message-Id: <20200624193249.20725-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200612070535.1778368-1-daniel.vetter@ffwll.ch>
-X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH] dma-buf: minor doc touch-ups
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Implement new combo phy
+ initialization step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,83 +48,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 12, 2020 at 09:05:35AM +0200, Daniel Vetter wrote:
-> Just some tiny edits:
-> - fix link to struct dma_fence
-> - give slightly more meaningful title - the polling here is about
->   implicit fences, explicit fences (in sync_file or drm_syncobj) also
->   have their own polling
-> 
-> v2: I misplaced the .rst include change corresponding to this patch.
-> 
-> Reviewed-by: Thomas Hellstrom <thomas.hellstrom@intel.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-
-I went ahead and merged this one, shouldn't be the controversial part of
-the series :-)
--Daniel
-
-> ---
->  Documentation/driver-api/dma-buf.rst | 6 +++---
->  drivers/dma-buf/dma-buf.c            | 6 +++---
->  2 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/driver-api/dma-buf.rst b/Documentation/driver-api/dma-buf.rst
-> index 63dec76d1d8d..7fb7b661febd 100644
-> --- a/Documentation/driver-api/dma-buf.rst
-> +++ b/Documentation/driver-api/dma-buf.rst
-> @@ -100,11 +100,11 @@ CPU Access to DMA Buffer Objects
->  .. kernel-doc:: drivers/dma-buf/dma-buf.c
->     :doc: cpu access
->  
-> -Fence Poll Support
-> -~~~~~~~~~~~~~~~~~~
-> +Implicit Fence Poll Support
-> +~~~~~~~~~~~~~~~~~~~~~~~~~~~
->  
->  .. kernel-doc:: drivers/dma-buf/dma-buf.c
-> -   :doc: fence polling
-> +   :doc: implicit fence polling
->  
->  Kernel Functions and Structures Reference
->  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-> index 01ce125f8e8d..e018ef80451e 100644
-> --- a/drivers/dma-buf/dma-buf.c
-> +++ b/drivers/dma-buf/dma-buf.c
-> @@ -161,11 +161,11 @@ static loff_t dma_buf_llseek(struct file *file, loff_t offset, int whence)
->  }
->  
->  /**
-> - * DOC: fence polling
-> + * DOC: implicit fence polling
->   *
->   * To support cross-device and cross-driver synchronization of buffer access
-> - * implicit fences (represented internally in the kernel with &struct fence) can
-> - * be attached to a &dma_buf. The glue for that and a few related things are
-> + * implicit fences (represented internally in the kernel with &struct dma_fence)
-> + * can be attached to a &dma_buf. The glue for that and a few related things are
->   * provided in the &dma_resv structure.
->   *
->   * Userspace can query the state of these implicitly tracked fences using poll()
-> -- 
-> 2.26.2
-> 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBpcyBuZXcgc3RlcCB0aGF0IHdhcyByZWNlbnRseSBhZGRlZCB0byB0aGUgY29tYm8gcGh5
+CmluaXRpYWxpemF0aW9uLgoKdjI6Ci0gdXNpbmcgaW50ZWxfZGVfcm13KCkKCkJTcGVjOiA0OTI5
+MQpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+ClNpZ25lZC1v
+ZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgotLS0K
+IC4uLi9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb21ib19waHkuYyAgICB8IDIzICsrKysr
+KysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAg
+ICAgICB8ICA3ICsrKysrKwogMiBmaWxlcyBjaGFuZ2VkLCAzMCBpbnNlcnRpb25zKCspCgpkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb21ib19waHkuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29tYm9fcGh5LmMKaW5kZXggNzdi
+MDRiYjNlYzYyLi4xMTUwNjk4MzMzNDggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfY29tYm9fcGh5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9jb21ib19waHkuYwpAQCAtMjY0LDYgKzI2NCwxOCBAQCBzdGF0aWMgYm9vbCBp
+Y2xfY29tYm9fcGh5X3ZlcmlmeV9zdGF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
+aXYsCiAJaWYgKCFpY2xfY29tYm9fcGh5X2VuYWJsZWQoZGV2X3ByaXYsIHBoeSkpCiAJCXJldHVy
+biBmYWxzZTsKIAorCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKSB7CisJCXJldCAmPSBj
+aGVja19waHlfcmVnKGRldl9wcml2LCBwaHksIElDTF9QT1JUX1RYX0RXOF9HUlAocGh5KSwKKwkJ
+CQkgICAgIElDTF9QT1JUX1RYX0RXOF9PRENDX0NMS19TRUwgfAorCQkJCSAgICAgSUNMX1BPUlRf
+VFhfRFc4X09EQ0NfQ0xLX0RJVl9TRUxfTUFTSywKKwkJCQkgICAgIElDTF9QT1JUX1RYX0RXOF9P
+RENDX0NMS19TRUwgfAorCQkJCSAgICAgSUNMX1BPUlRfVFhfRFc4X09EQ0NfQ0xLX0RJVl9TRUxf
+RElWMik7CisKKwkJcmV0ICY9IGNoZWNrX3BoeV9yZWcoZGV2X3ByaXYsIHBoeSwgSUNMX1BPUlRf
+UENTX0RXMV9HUlAocGh5KSwKKwkJCQkgICAgIERDQ19NT0RFX1NFTEVDVF9NQVNLLAorCQkJCSAg
+ICAgRENDX01PREVfU0VMRUNUX0NPTlRJTlVPU0xZKTsKKwl9CisKIAlyZXQgPSBjbmxfdmVyaWZ5
+X3Byb2Ntb25fcmVmX3ZhbHVlcyhkZXZfcHJpdiwgcGh5KTsKIAogCWlmIChwaHlfaXNfbWFzdGVy
+KGRldl9wcml2LCBwaHkpKSB7CkBAIC0zNzUsNiArMzg3LDE3IEBAIHN0YXRpYyB2b2lkIGljbF9j
+b21ib19waHlzX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCQlpbnRl
+bF9kZV93cml0ZShkZXZfcHJpdiwgSUNMX1BIWV9NSVNDKHBoeSksIHZhbCk7CiAKIHNraXBfcGh5
+X21pc2M6CisJCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKSB7CisJCQlpbnRlbF9kZV9y
+bXcoZGV2X3ByaXYsIElDTF9QT1JUX1RYX0RXOF9HUlAocGh5KSwKKwkJCQkgICAgIElDTF9QT1JU
+X1RYX0RXOF9PRENDX0NMS19ESVZfU0VMX01BU0ssCisJCQkJICAgICBJQ0xfUE9SVF9UWF9EVzhf
+T0RDQ19DTEtfU0VMIHwKKwkJCQkgICAgIElDTF9QT1JUX1RYX0RXOF9PRENDX0NMS19ESVZfU0VM
+X0RJVjIpOworCisJCQlpbnRlbF9kZV9ybXcoZGV2X3ByaXYsIElDTF9QT1JUX1BDU19EVzFfR1JQ
+KHBoeSksCisJCQkJICAgICBEQ0NfTU9ERV9TRUxFQ1RfTUFTSywKKwkJCQkgICAgIERDQ19NT0RF
+X1NFTEVDVF9DT05USU5VT1NMWSk7CisJCX0KKwogCQljbmxfc2V0X3Byb2Ntb25fcmVmX3ZhbHVl
+cyhkZXZfcHJpdiwgcGh5KTsKIAogCQlpZiAocGh5X2lzX21hc3RlcihkZXZfcHJpdiwgcGh5KSkg
+ewpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKaW5kZXggZjA5MTIwY2FjODlhLi41NDY5YzkwMjlmNmQg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaApAQCAtMTk3NCw2ICsxOTc0LDggQEAgc3RhdGljIGlu
+bGluZSBib29sIGk5MTVfbW1pb19yZWdfdmFsaWQoaTkxNV9yZWdfdCByZWcpCiAjZGVmaW5lIElD
+TF9QT1JUX1BDU19EVzFfQVVYKHBoeSkJX01NSU8oX0lDTF9QT1JUX1BDU19EV19BVVgoMSwgcGh5
+KSkKICNkZWZpbmUgSUNMX1BPUlRfUENTX0RXMV9HUlAocGh5KQlfTU1JTyhfSUNMX1BPUlRfUENT
+X0RXX0dSUCgxLCBwaHkpKQogI2RlZmluZSBJQ0xfUE9SVF9QQ1NfRFcxX0xOMChwaHkpCV9NTUlP
+KF9JQ0xfUE9SVF9QQ1NfRFdfTE4oMSwgMCwgcGh5KSkKKyNkZWZpbmUgICBEQ0NfTU9ERV9TRUxF
+Q1RfTUFTSwkJKDB4MyA8PCAyMCkKKyNkZWZpbmUgICBEQ0NfTU9ERV9TRUxFQ1RfQ09OVElOVU9T
+TFkJKDB4MyA8PCAyMCkKICNkZWZpbmUgICBDT01NT05fS0VFUEVSX0VOCQkoMSA8PCAyNikKICNk
+ZWZpbmUgICBMQVRFTkNZX09QVElNX01BU0sJCSgweDMgPDwgMikKICNkZWZpbmUgICBMQVRFTkNZ
+X09QVElNX1ZBTCh4KQkJKCh4KSA8PCAyKQpAQCAtMjA3Miw2ICsyMDc0LDExIEBAIHN0YXRpYyBp
+bmxpbmUgYm9vbCBpOTE1X21taW9fcmVnX3ZhbGlkKGk5MTVfcmVnX3QgcmVnKQogI2RlZmluZSAg
+IE5fU0NBTEFSKHgpCQkJKCh4KSA8PCAyNCkKICNkZWZpbmUgICBOX1NDQUxBUl9NQVNLCQkJKDB4
+N0YgPDwgMjQpCiAKKyNkZWZpbmUgSUNMX1BPUlRfVFhfRFc4X0dSUChwaHkpCQlfTU1JTyhfSUNM
+X1BPUlRfVFhfRFdfR1JQKDgsIHBoeSkpCisjZGVmaW5lIElDTF9QT1JUX1RYX0RXOF9PRENDX0NM
+S19TRUwJCVJFR19CSVQoMzEpCisjZGVmaW5lIElDTF9QT1JUX1RYX0RXOF9PRENDX0NMS19ESVZf
+U0VMX01BU0sJUkVHX0dFTk1BU0soMzAsIDI5KQorI2RlZmluZSBJQ0xfUE9SVF9UWF9EVzhfT0RD
+Q19DTEtfRElWX1NFTF9ESVYyCVJFR19GSUVMRF9QUkVQKElDTF9QT1JUX1RYX0RXOF9PRENDX0NM
+S19ESVZfU0VMX01BU0ssIDB4MSkKKwogI2RlZmluZSBfSUNMX0RQSFlfQ0hLTl9SRUcJCQkweDE5
+NAogI2RlZmluZSBJQ0xfRFBIWV9DSEtOKHBvcnQpCQkJX01NSU8oX0lDTF9DT01CT1BIWShwb3J0
+KSArIF9JQ0xfRFBIWV9DSEtOX1JFRykKICNkZWZpbmUgICBJQ0xfRFBIWV9DSEtOX0FGRV9PVkVS
+X1BQSV9TVFJBUAlSRUdfQklUKDcpCi0tIAoyLjI3LjAKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
