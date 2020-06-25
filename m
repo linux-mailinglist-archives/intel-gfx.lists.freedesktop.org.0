@@ -1,64 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0019E20A0E2
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 16:32:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B636520A151
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 16:53:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A7E56EBD2;
-	Thu, 25 Jun 2020 14:32:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03E166E144;
+	Thu, 25 Jun 2020 14:53:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
- [213.80.101.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EBEC6E2D7
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 14:32:28 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 9FD083F891
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 16:32:25 +0200 (CEST)
-Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=WfT7PxW9; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.099
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 7QJgMhFLxJtn for <intel-gfx@lists.freedesktop.org>;
- Thu, 25 Jun 2020 16:32:24 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 782D23F841
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 16:32:23 +0200 (CEST)
-Received: from localhost.localdomain (unknown [134.134.139.83])
- by mail1.shipmail.org (Postfix) with ESMTPSA id B8F35362166
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 16:32:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1593095544; bh=q0QDI+SE3iPGAFrU8WPixWD+q4svQqdRB8lpbZJU7ro=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=WfT7PxW9LAEQH8xHG7ox3iKHX/Ls2bQeUjVaV49rcFiCedIw5sw5kgP/i6Gt+2KNc
- V54/61BGjdp3zDWlE0GJYJXrSlapcvtHn1aI8AZ0W7u3eu4b8f1JteCif6k+JapKVT
- AD76WY78eF9VPmyPDQUNf33SZSeGdHSwU5QlO3mc=
-To: intel-gfx@lists.freedesktop.org
-References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
- <20200623142843.423594-15-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <b320bbd2-3a81-d5dc-f629-dc9144c1d227@shipmail.org>
-Date: Thu, 25 Jun 2020 16:32:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-MIME-Version: 1.0
-In-Reply-To: <20200623142843.423594-15-maarten.lankhorst@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 15/26] drm/i915: Make sure execbuffer always
- passes ww state to i915_vma_pin.
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4D5E6E144;
+ Thu, 25 Jun 2020 14:53:57 +0000 (UTC)
+Received: from localhost (unknown [137.135.114.1])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 49F55207BB;
+ Thu, 25 Jun 2020 14:53:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1593096837;
+ bh=U7+SQDks5lFwRHnh9XsMxnE1QJGWKUKs6L/mBeXZQmA=;
+ h=Date:From:To:To:To:To:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Subject:
+ In-Reply-To:References:From;
+ b=XgInBuUQ4NsdqO64ZlmT5nwhs4NuQxilFoh4SmDvYLxPmM+/XZLmrfhJaJP/q2zd4
+ 7Gk09xIZauIrRr9AYz63cFZxe9LkP45ucwOBmPms0U/4T8L+ajbKA12pL3D5k+aC+X
+ lMVhg1M4Tn9pZZJ8l1HZdLyRp15lhZeWJF2nt/qU=
+Date: Thu, 25 Jun 2020 14:53:56 +0000
+From: Sasha Levin <sashal@kernel.org>
+To: Sasha Levin <sashal@kernel.org>
+To: Sean Paul <sean@poorly.run>
+To: Sean Paul <seanpaul@chromium.org>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200623155907.22961-3-sean@poorly.run>
+References: <20200623155907.22961-3-sean@poorly.run>
+Message-Id: <20200625145357.49F55207BB@mail.kernel.org>
+Subject: Re: [Intel-gfx] [PATCH v7 02/17] drm/i915: Clear the repeater bit
+ on HDCP disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,58 +48,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Sean Paul <seanpaul@chromium.org>,
+ stable@vger.kernel.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Maarten,
+Hi
 
-On 6/23/20 4:28 PM, Maarten Lankhorst wrote:
-> As a preparation step for full object locking and wait/wound handling
-> during pin and object mapping, ensure that we always pass the ww context
-> in i915_gem_execbuffer.c to i915_vma_pin, use lockdep to ensure this
-> happens.
->
-> This also requires changing the order of eb_parse slightly, to ensure
-> we pass ww at a point where we could still handle -EDEADLK safely.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
->   drivers/gpu/drm/i915/gem/i915_gem_context.c   |   4 +-
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 138 ++++++++++--------
->   drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |   4 +-
->   drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |   4 +-
->   drivers/gpu/drm/i915/gt/intel_context.c       |  65 ++++++---
->   drivers/gpu/drm/i915/gt/intel_context.h       |  13 ++
->   drivers/gpu/drm/i915/gt/intel_context_types.h |   3 +-
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
->   drivers/gpu/drm/i915/gt/intel_gt.c            |   2 +-
->   drivers/gpu/drm/i915/gt/intel_lrc.c           |   5 +-
->   drivers/gpu/drm/i915/gt/intel_renderstate.c   |   2 +-
->   drivers/gpu/drm/i915/gt/intel_ring.c          |  10 +-
->   drivers/gpu/drm/i915/gt/intel_ring.h          |   3 +-
->   .../gpu/drm/i915/gt/intel_ring_submission.c   |  15 +-
->   drivers/gpu/drm/i915/gt/intel_timeline.c      |  12 +-
->   drivers/gpu/drm/i915/gt/intel_timeline.h      |   3 +-
->   drivers/gpu/drm/i915/gt/mock_engine.c         |   3 +-
->   drivers/gpu/drm/i915/gt/selftest_lrc.c        |   2 +-
->   drivers/gpu/drm/i915/gt/selftest_timeline.c   |   4 +-
->   drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   2 +-
->   drivers/gpu/drm/i915/i915_drv.h               |  13 +-
->   drivers/gpu/drm/i915/i915_gem.c               |  11 +-
->   drivers/gpu/drm/i915/i915_vma.c               |  13 +-
->   drivers/gpu/drm/i915/i915_vma.h               |  13 +-
->   25 files changed, 214 insertions(+), 134 deletions(-)
->
- From a quick bisect, it appears this patch is what's causing the 
-contention in execbuf,
-./gem_exec_alignment --run-subtest pi-isolated
+[This is an automated email]
 
-/Thomas
+This commit has been processed because it contains a "Fixes:" tag
+fixing commit: ee5e5e7a5e0f ("drm/i915: Add HDCP framework + base implementation").
+
+The bot has tested the following trees: v5.7.5, v5.4.48, v4.19.129.
+
+v5.7.5: Build OK!
+v5.4.48: Failed to apply! Possible dependencies:
+    692059318c0fc ("drm/i915/hdcp: Enable HDCP 1.4 and 2.2 on Gen12+")
+
+v4.19.129: Failed to apply! Possible dependencies:
+    0e39037b31655 ("drm/i915: Cache the error string")
+    16e4dd0342a80 ("drm/i915: Markup paired operations on wakerefs")
+    39e2f501c1b43 ("drm/i915: Split struct intel_context definition to its own header")
+    408bd91786665 ("drm/i915: extract intel_hdcp.h from intel_drv.h")
+    52c0fdb25c7c9 ("drm/i915: Replace global breadcrumbs with per-context interrupt tracking")
+    538ef96b9dae7 ("drm/i915/gem: Track the rpm wakerefs")
+    692059318c0fc ("drm/i915/hdcp: Enable HDCP 1.4 and 2.2 on Gen12+")
+    6b048706f407f ("drm/i915: Forcibly flush unwanted requests in drop-caches")
+    87f1ef225242d ("drm/i915: Record the sseu configuration per-context & engine")
+    95fd94a645f75 ("drm/i915: avoid rebuilding i915_gpu_error.o on version string updates")
+    c0a6aa7ec2c36 ("drm/i915: Show actual alongside requested frequency in debugfs/i915_rps_boost_info")
+    c2400ec3b6d15 ("drm/i915: add Makefile magic for testing headers are self-contained")
+    c44301fce6146 ("drm/i915: Allow control of PSR at runtime through debugfs, v6")
+    e0516e83640e1 ("drm/i915: Move sandybride pcode access to intel_sideband.c")
+    e1ef734eaec54 ("drm/i915: make intel_frontbuffer.h self-contained")
+    e6154e4cb8b0d ("drm/i915: Skip the ERR_PTR error state")
+    eb8d0f5af4ec2 ("drm/i915: Remove GPU reset dependence on struct_mutex")
+    fb6f0b64e455b ("drm/i915: Prevent machine hang from Broxton's vtd w/a and error capture")
 
 
+NOTE: The patch will not be queued to stable trees until it is upstream.
+
+How should we proceed with this patch?
+
+-- 
+Thanks
+Sasha
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
