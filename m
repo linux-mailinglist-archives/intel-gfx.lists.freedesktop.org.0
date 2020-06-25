@@ -2,53 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FBE920A06C
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 15:59:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0019E20A0E2
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 16:32:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74B3C6E10F;
-	Thu, 25 Jun 2020 13:59:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A7E56EBD2;
+	Thu, 25 Jun 2020 14:32:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
- [IPv6:2607:f8b0:4864:20::244])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B45A6E2B0
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 13:59:46 +0000 (UTC)
-Received: by mail-oi1-x244.google.com with SMTP id a21so5013886oic.8
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 06:59:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=xkuv2dmy2A6JZ03EEs+u17QuIcYIBbo77ThdcYSjHjI=;
- b=i5K/hTc6Brlatf+2YL3cqZOTobJi5v/LFFiLgGdjE4ceXe1yhLQfICHNgdvoWNDkrg
- s3cIKWI7I19wrpoI5bTWDsmnZKNVH0dnyLhNY7yLvs9XZWH6iyJ85Q/q6AG6AWEb0T30
- 1XSJyT42VGHx2n28COuM5gYtkyL9SasHIJgOU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=xkuv2dmy2A6JZ03EEs+u17QuIcYIBbo77ThdcYSjHjI=;
- b=r3SNO1y4U67Og6YmPqRWRy8ZOMMSNNNPOkMOotCd64Ut5vGCAXSjEyl/Pp9ib5hP7j
- KEx+YE/q1dNVaKmcUPdfPS3FfQWyfcnvsQqOIh41+7t32lpu2bTfEK82R8XcHzl//Fun
- 3g8C/fIuVLkN65CkYQ7Qi89BcEdTIrwkLyZ4zR76SSJiUW1Lce9ZDvJPuuVm06kNhP0M
- rD9Xheo61t6GIeU+/zN+/oUYN7BiTrHMYLDIHV35UK+MY28JacT4qQ5QiMCSVTXv/j/P
- +ztDh4RbVeEkaL6bOSlqKNbxlYxpsWNockfiymlTrxrefByACOP3P056jfuWF0w1KVOA
- Emtg==
-X-Gm-Message-State: AOAM530PvWJwHyD8UKoH9ctKqAxED9SPKPlH3TmCeSFFaAcLpVCpcsyR
- eOCanU4aCy+SYwBt8WKgKcWv8ruftfSfgPbghmty9g==
-X-Google-Smtp-Source: ABdhPJwsyhmuFvo2DMgc/ognpebSy3h9JzNpBbuMGWgyQH4D+OLtzRFMcALM80Oq9oBk1N97SdYUBgs9Xcu5gYUQXDc=
-X-Received: by 2002:aca:bc06:: with SMTP id m6mr2088369oif.101.1593093585564; 
- Thu, 25 Jun 2020 06:59:45 -0700 (PDT)
+Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
+ [213.80.101.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EBEC6E2D7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 14:32:28 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 9FD083F891
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 16:32:25 +0200 (CEST)
+Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=WfT7PxW9; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.099
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
+ autolearn=ham autolearn_force=no
+Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 7QJgMhFLxJtn for <intel-gfx@lists.freedesktop.org>;
+ Thu, 25 Jun 2020 16:32:24 +0200 (CEST)
+Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35]) (Authenticated sender: mb878879)
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 782D23F841
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 16:32:23 +0200 (CEST)
+Received: from localhost.localdomain (unknown [134.134.139.83])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id B8F35362166
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 16:32:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1593095544; bh=q0QDI+SE3iPGAFrU8WPixWD+q4svQqdRB8lpbZJU7ro=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=WfT7PxW9LAEQH8xHG7ox3iKHX/Ls2bQeUjVaV49rcFiCedIw5sw5kgP/i6Gt+2KNc
+ V54/61BGjdp3zDWlE0GJYJXrSlapcvtHn1aI8AZ0W7u3eu4b8f1JteCif6k+JapKVT
+ AD76WY78eF9VPmyPDQUNf33SZSeGdHSwU5QlO3mc=
+To: intel-gfx@lists.freedesktop.org
+References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
+ <20200623142843.423594-15-maarten.lankhorst@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <b320bbd2-3a81-d5dc-f629-dc9144c1d227@shipmail.org>
+Date: Thu, 25 Jun 2020 16:32:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-References: <20200625123443.19680-1-lionel.g.landwerlin@intel.com>
- <20200625123443.19680-2-lionel.g.landwerlin@intel.com>
- <159309113252.4527.2883585204850736358@build.alporthouse.com>
- <c6f72d4d-c8a0-c484-7c31-761e9c37b85e@intel.com>
-In-Reply-To: <c6f72d4d-c8a0-c484-7c31-761e9c37b85e@intel.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Thu, 25 Jun 2020 15:59:34 +0200
-Message-ID: <CAKMK7uHgwUQYLDPJnmTqcX1=UPuinifm+Y7+z-krSzqXpKXnow@mail.gmail.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] dma-buf: fix dma-fence-chain out of
- order test
+In-Reply-To: <20200623142843.423594-15-maarten.lankhorst@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 15/26] drm/i915: Make sure execbuffer always
+ passes ww state to i915_vma_pin.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,69 +71,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 25, 2020 at 3:23 PM Lionel Landwerlin
-<lionel.g.landwerlin@intel.com> wrote:
->
-> On 25/06/2020 16:18, Chris Wilson wrote:
-> > Quoting Lionel Landwerlin (2020-06-25 13:34:43)
-> >> There was probably a misunderstand on how the dma-fence-chain is
-> >> supposed to work or what dma_fence_chain_find_seqno() is supposed to
-> >> return.
-> >>
-> >> dma_fence_chain_find_seqno() is here to give us the fence to wait upon
-> >> for a particular point in the timeline. The timeline progresses only
-> >> when all the points prior to a given number have completed.
-> > Hmm, the question was what point is it supposed to wait for.
-> >
-> > For the simple chain of [1, 3], does 1 being signaled imply that all
-> > points up to 3 are signaled, or does 3 not being signaled imply that all
-> > points after 1 are not. If that's mentioned already somewhere, my bad.
-> > If not, could you put the answer somewhere.
-> > -Chris
->
-> In [1, 3], if 1 is signaled, the timeline value is 1. And find_seqno(2)
-> should return NULL.
->
->
-> In the out_of_order selftest the chain was [1, 2, 3], 2 was signaled and
-> the test was expecting no fence to be returned by find_seqno(2).
->
-> But we still have to wait on 1 to complete before find_seqno(2) can
-> return NULL (as in you don't have to wait on anything).
->
->
-> Hope that answer the question.
+Hi, Maarten,
 
-I asked Christian to document why timeline works like this, but I
-can't find it in the kerneldoc right now. If it's missing I think we
-should fix that and add the explanation, iirc it was around gpu reset
-creating too much havoc otherwise.
--Daniel
+On 6/23/20 4:28 PM, Maarten Lankhorst wrote:
+> As a preparation step for full object locking and wait/wound handling
+> during pin and object mapping, ensure that we always pass the ww context
+> in i915_gem_execbuffer.c to i915_vma_pin, use lockdep to ensure this
+> happens.
+>
+> This also requires changing the order of eb_parse slightly, to ensure
+> we pass ww at a point where we could still handle -EDEADLK safely.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c   |   4 +-
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 138 ++++++++++--------
+>   drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |   4 +-
+>   drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |   4 +-
+>   drivers/gpu/drm/i915/gt/intel_context.c       |  65 ++++++---
+>   drivers/gpu/drm/i915/gt/intel_context.h       |  13 ++
+>   drivers/gpu/drm/i915/gt/intel_context_types.h |   3 +-
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
+>   drivers/gpu/drm/i915/gt/intel_gt.c            |   2 +-
+>   drivers/gpu/drm/i915/gt/intel_lrc.c           |   5 +-
+>   drivers/gpu/drm/i915/gt/intel_renderstate.c   |   2 +-
+>   drivers/gpu/drm/i915/gt/intel_ring.c          |  10 +-
+>   drivers/gpu/drm/i915/gt/intel_ring.h          |   3 +-
+>   .../gpu/drm/i915/gt/intel_ring_submission.c   |  15 +-
+>   drivers/gpu/drm/i915/gt/intel_timeline.c      |  12 +-
+>   drivers/gpu/drm/i915/gt/intel_timeline.h      |   3 +-
+>   drivers/gpu/drm/i915/gt/mock_engine.c         |   3 +-
+>   drivers/gpu/drm/i915/gt/selftest_lrc.c        |   2 +-
+>   drivers/gpu/drm/i915/gt/selftest_timeline.c   |   4 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   2 +-
+>   drivers/gpu/drm/i915/i915_drv.h               |  13 +-
+>   drivers/gpu/drm/i915/i915_gem.c               |  11 +-
+>   drivers/gpu/drm/i915/i915_vma.c               |  13 +-
+>   drivers/gpu/drm/i915/i915_vma.h               |  13 +-
+>   25 files changed, 214 insertions(+), 134 deletions(-)
+>
+ From a quick bisect, it appears this patch is what's causing the 
+contention in execbuf,
+./gem_exec_alignment --run-subtest pi-isolated
 
->
->
-> -Lionel
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+/Thomas
 
 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
