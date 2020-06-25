@@ -1,45 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8AB20A86E
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 00:54:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D5E720A949
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 01:42:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 837066E15E;
-	Thu, 25 Jun 2020 22:54:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7119F6E857;
+	Thu, 25 Jun 2020 23:42:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 642B06E11A;
- Thu, 25 Jun 2020 22:54:29 +0000 (UTC)
-IronPort-SDR: dQSEoK2bMvODv7uUc9WUfzWialowNLEN69S/ihmdvGrghgC9SZH9hJ51ouJDxEuDJ6hl++aoGE
- TQmLZ2FuIBwA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9663"; a="229853355"
-X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="229853355"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3A156E857
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 23:42:17 +0000 (UTC)
+IronPort-SDR: pf1Jj/aH0U1ImjV7U7Rd2xAf5TDXQz4zrGPLaRE0dp/+sXchKyrDhY6Q9WvgvXhEthNYQzqFZY
+ 1fjMKHAGmldQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9663"; a="143347183"
+X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="143347183"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2020 15:54:29 -0700
-IronPort-SDR: 0cR7pbJQawxdi0f5CLpbhUbYqXTZTgljHYykd8Tf37crk1ickacoM5mggt+IbwSOqbFqxGsEuW
- w/UPf/1IeD4Q==
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2020 16:42:17 -0700
+IronPort-SDR: r3pJOh2/cWQR6il5j7kLCs6XbyRTmLD8ph/TDumzRbJT282iOtGy9inMHBwfE+MYHb0pVuE3ef
+ B8pR6Ivi8o6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="479639589"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by fmsmga006.fm.intel.com with ESMTP; 25 Jun 2020 15:54:28 -0700
-Date: Thu, 25 Jun 2020 15:55:55 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-Message-ID: <20200625225555.GE30431@intel.com>
-References: <20200622142519.16214-1-bhanuprakash.modem@intel.com>
- <20200622142519.16214-3-bhanuprakash.modem@intel.com>
+X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="299468339"
+Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
+ by orsmga007.jf.intel.com with ESMTP; 25 Jun 2020 16:42:17 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 25 Jun 2020 16:42:05 -0700
+Message-Id: <20200625234212.22811-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200622142519.16214-3-bhanuprakash.modem@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [v9 2/3] drm/debug: Expose connector VRR monitor
- range via debugfs
+Subject: [Intel-gfx] [PATCH 0/7] Move some device capabilities under intel_gt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,119 +46,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thanks Bhanu for the patch, merged to drm-misc
+Continuing our grouping of GT-related code under intel_gt, this series
+moves some of the runtime-detected device capabilities. In particular,
+the engine_mask and the sseu_info are placed under the gt structure,
+inside a newly added struct intel_gt_info.
+Error capture and info print at the intel_gt_info level have also been
+added.
 
-Manasi
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
+Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
 
-On Mon, Jun 22, 2020 at 07:55:18PM +0530, Bhanuprakash Modem wrote:
-> [Why]
-> It's useful to know the min and max vrr range for IGT testing.
-> =
+Daniele Ceraolo Spurio (6):
+  drm/i915: Convert device_info to uncore/de_read
+  drm/i915: Use the gt in HAS_ENGINE
+  drm/i915: Move engine-related mmio init to engines_init_mmio
+  drm/i915: Move the engine mask to intel_gt_info
+  drm/i915: Introduce gt_init_mmio
+  drm/i915/sseu: Move sseu detection and dump to intel_sseu
 
-> [How]
-> Expose the min and max vfreq for the connector via a debugfs file
-> on the connector, "vrr_range".
-> =
+Venkata Sandeep Dhanalakota (1):
+  drm/i915/sseu: Move sseu_info under gt_info
 
-> Example usage: cat /sys/kernel/debug/dri/0/DP-1/vrr_range
-> =
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |   7 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |   2 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   3 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c |   5 +-
+ drivers/gpu/drm/i915/gt/intel_context_sseu.c  |   2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  87 ++-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |  16 +
+ drivers/gpu/drm/i915/gt/intel_gt.h            |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |  11 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |   2 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         |   6 +-
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |   2 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c           |   3 +-
+ drivers/gpu/drm/i915/gt/intel_sseu.c          | 592 +++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_sseu.h          |  10 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |   8 +-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |   8 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  10 +-
+ drivers/gpu/drm/i915/gvt/handlers.c           |   4 +-
+ drivers/gpu/drm/i915/gvt/interrupt.c          |   2 +-
+ drivers/gpu/drm/i915/gvt/mmio_context.c       |   2 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |  12 +-
+ drivers/gpu/drm/i915/i915_drv.c               |   9 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  17 +-
+ drivers/gpu/drm/i915/i915_getparam.c          |   2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  25 +-
+ drivers/gpu/drm/i915/i915_gpu_error.h         |   3 +
+ drivers/gpu/drm/i915/i915_pci.c               |  42 +-
+ drivers/gpu/drm/i915/i915_perf.c              |   9 +-
+ drivers/gpu/drm/i915/i915_query.c             |   2 +-
+ drivers/gpu/drm/i915/intel_device_info.c      | 652 +-----------------
+ drivers/gpu/drm/i915/intel_device_info.h      |  14 +-
+ drivers/gpu/drm/i915/intel_pm.c               |   2 +-
+ drivers/gpu/drm/i915/intel_uncore.c           |  16 +-
+ drivers/gpu/drm/i915/intel_uncore.h           |   4 +-
+ drivers/gpu/drm/i915/selftests/i915_request.c |   2 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |   3 +-
+ 38 files changed, 835 insertions(+), 768 deletions(-)
 
-> v2:
-> * Fix the typo in max_vfreq (Manasi)
-> * Change the name of node to i915_vrr_info so we can add
-> other vrr info for more debug info (Manasi)
-> * Change the VRR capable to display Yes or No (Manasi)
-> * Fix indentation checkpatch errors (Manasi)
-> v3:
-> * Remove the unnecessary debug print (Manasi)
-> v4:
-> * Rebase
-> v5:
-> * Rename to vrr_range to match AMD debugfs
-> v6:
-> * Rebase (manasi)
-> v7:
-> * Fix cmpilation due to rebase
-> v8:
-> * Move debugfs node creation logic to DRM (Emil)
-> * Remove AMD specific logic (Emil)
-> v9:
-> * Seperate patch for removal of AMD specific logic (Manasi)
-> =
+-- 
+2.24.1
 
-> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> CC: Emil Velikov <emil.l.velikov@gmail.com>
-> ---
->  drivers/gpu/drm/drm_debugfs.c | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> =
-
-> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
-> index bfe4602f206b..3d7182001004 100644
-> --- a/drivers/gpu/drm/drm_debugfs.c
-> +++ b/drivers/gpu/drm/drm_debugfs.c
-> @@ -376,6 +376,24 @@ static ssize_t edid_write(struct file *file, const c=
-har __user *ubuf,
->  	return (ret) ? ret : len;
->  }
->  =
-
-> +/*
-> + * Returns the min and max vrr vfreq through the connector's debugfs fil=
-e.
-> + * Example usage: cat /sys/kernel/debug/dri/0/DP-1/vrr_range
-> + */
-> +static int vrr_range_show(struct seq_file *m, void *data)
-> +{
-> +	struct drm_connector *connector =3D m->private;
-> +
-> +	if (connector->status !=3D connector_status_connected)
-> +		return -ENODEV;
-> +
-> +	seq_printf(m, "Min: %u\n", (u8)connector->display_info.monitor_range.mi=
-n_vfreq);
-> +	seq_printf(m, "Max: %u\n", (u8)connector->display_info.monitor_range.ma=
-x_vfreq);
-> +
-> +	return 0;
-> +}
-> +DEFINE_SHOW_ATTRIBUTE(vrr_range);
-> +
->  static const struct file_operations drm_edid_fops =3D {
->  	.owner =3D THIS_MODULE,
->  	.open =3D edid_open,
-> @@ -413,6 +431,10 @@ void drm_debugfs_connector_add(struct drm_connector =
-*connector)
->  	/* edid */
->  	debugfs_create_file("edid_override", S_IRUGO | S_IWUSR, root, connector,
->  			    &drm_edid_fops);
-> +
-> +	/* vrr range */
-> +	debugfs_create_file("vrr_range", S_IRUGO, root, connector,
-> +			    &vrr_range_fops);
->  }
->  =
-
->  void drm_debugfs_connector_remove(struct drm_connector *connector)
-> -- =
-
-> 2.20.1
-> =
-
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
