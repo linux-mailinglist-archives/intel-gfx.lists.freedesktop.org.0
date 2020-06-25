@@ -1,42 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 195F7209779
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 02:11:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8B17209796
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 02:19:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 094F96E895;
-	Thu, 25 Jun 2020 00:11:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07ADC6E8AA;
+	Thu, 25 Jun 2020 00:19:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81AE66E892
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 00:11:32 +0000 (UTC)
-IronPort-SDR: O0Mn8ILqYc0r/PDyf6EfaihGlOlSXwniY2Ztjan/RQOX0Z67ANjHzcG+jppy9wCTKGKWBd52im
- WIkAdTwDxffg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9662"; a="229392925"
-X-IronPort-AV: E=Sophos;i="5.75,277,1589266800"; d="scan'208";a="229392925"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F36C56E8AA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 00:19:09 +0000 (UTC)
+IronPort-SDR: GcZ36CYrZ5yn7e1BZr2hrVQAvqsfHNc1qOqiTLvKwJSa/RmEGrowrWVBPen6tfGE8GaW62TkF5
+ J8xHUzr/RNaQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9662"; a="142906639"
+X-IronPort-AV: E=Sophos;i="5.75,277,1589266800"; d="scan'208";a="142906639"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2020 17:11:31 -0700
-IronPort-SDR: ksmwIUM/6DsYuGqhuA6RAxoCnipde2jfNpam03t6lyAbpJYNlMnFICE/InaYne/wL/XJFYAYmj
- x/Tg87s2dSUg==
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2020 17:19:09 -0700
+IronPort-SDR: yS0KfALOZmRiPGW2my809fs/P6l8w9h6mhqqhIGdNMhwoMxEyuDjGd4+42Fk8AMmsBAKKnZeGQ
+ kCdX1iw/rA/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,277,1589266800"; d="scan'208";a="310949044"
-Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
- by orsmga008.jf.intel.com with ESMTP; 24 Jun 2020 17:11:30 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 24 Jun 2020 17:11:20 -0700
-Message-Id: <20200625001120.22810-7-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200625001120.22810-1-lucas.demarchi@intel.com>
-References: <20200625001120.22810-1-lucas.demarchi@intel.com>
+X-IronPort-AV: E=Sophos;i="5.75,277,1589266800"; d="scan'208";a="354301039"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by orsmga001.jf.intel.com with ESMTP; 24 Jun 2020 17:19:08 -0700
+Received: from fmsmsx153.amr.corp.intel.com (10.18.125.6) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 24 Jun 2020 17:18:55 -0700
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.40]) by
+ FMSMSX153.amr.corp.intel.com ([169.254.9.179]) with mapi id 14.03.0439.000;
+ Wed, 24 Jun 2020 17:18:55 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v2 2/3] drm/i915/display: Implement HOBL
+Thread-Index: AQHWOd8JmZjKwrpLNUWzdhEQ4Ru5RKjHzikAgAAGlgCAITmzgA==
+Date: Thu, 25 Jun 2020 00:18:54 +0000
+Message-ID: <e9e3774a6baa66f714dc954fd0c3e58dfe38bbcb.camel@intel.com>
+References: <20200603194308.78622-1-jose.souza@intel.com>
+ <20200603194308.78622-2-jose.souza@intel.com>
+ <20200603203346.GQ6112@intel.com>
+ <57dcd40d816546b4aad57feeb73131817a8419fd.camel@intel.com>
+In-Reply-To: <57dcd40d816546b4aad57feeb73131817a8419fd.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.251.155.111]
+Content-ID: <76974B9650D45344BD4DBA4C2847F650@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 6/6] drm/i915/display: replace port to phy
- conversions in intel_ddi.c
+Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915/display: Implement HOBL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,539 +64,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is the first level conversion to use port_info directly from
-intel_digital_port, rather than derive the phy or tc_port from the port.
-This touches only the functions which have the encoder or dig_port
-directly available.
-
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 158 +++++++++++------------
- 1 file changed, 77 insertions(+), 81 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 27e2f29f47a2..aa0b478ab54a 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -1061,11 +1061,11 @@ tgl_get_dkl_buf_trans(struct drm_i915_private *dev_priv, int type, int rate,
- static int intel_ddi_hdmi_level(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	int n_entries, level, default_entry;
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
- 
- 	if (INTEL_GEN(dev_priv) >= 12) {
--		if (intel_phy_is_combo(dev_priv, phy))
-+		if (intel_ddi_has_combo_phy(dig_port))
- 			tgl_get_combo_buf_trans(dev_priv, INTEL_OUTPUT_HDMI,
- 						0, &n_entries);
- 		else
-@@ -1073,7 +1073,7 @@ static int intel_ddi_hdmi_level(struct intel_encoder *encoder)
- 					      &n_entries);
- 		default_entry = n_entries - 1;
- 	} else if (INTEL_GEN(dev_priv) == 11) {
--		if (intel_phy_is_combo(dev_priv, phy))
-+		if (intel_ddi_has_combo_phy(dig_port))
- 			icl_get_combo_buf_trans(dev_priv, INTEL_OUTPUT_HDMI,
- 						0, &n_entries);
- 		else
-@@ -1453,9 +1453,9 @@ static void intel_ddi_clock_get(struct intel_encoder *encoder,
- 				struct intel_crtc_state *pipe_config)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 
--	if (intel_phy_is_tc(dev_priv, phy) &&
-+	if (intel_ddi_has_tc_phy(dig_port) &&
- 	    intel_get_shared_dpll_id(dev_priv, pipe_config->shared_dpll) ==
- 	    DPLL_ID_ICL_TBTPLL)
- 		pipe_config->port_clock = icl_calc_tbt_pll_link(dev_priv,
-@@ -1983,7 +1983,6 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct intel_digital_port *dig_port;
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
- 
- 	/*
- 	 * TODO: Add support for MST encoders. Atm, the following should never
-@@ -1996,7 +1995,7 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
- 
- 	dig_port = enc_to_dig_port(encoder);
- 
--	if (!intel_phy_is_tc(dev_priv, phy) ||
-+	if (!intel_ddi_has_tc_phy(dig_port) ||
- 	    dig_port->tc_mode != TC_PORT_TBT_ALT)
- 		intel_display_power_get(dev_priv,
- 					dig_port->ddi_io_power_domain);
-@@ -2006,7 +2005,7 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
- 	 * ports.
- 	 */
- 	if (intel_crtc_has_dp_encoder(crtc_state) ||
--	    intel_phy_is_tc(dev_priv, phy))
-+	    intel_ddi_has_tc_phy(dig_port))
- 		intel_display_power_get(dev_priv,
- 					intel_ddi_main_link_aux_domain(dig_port));
- 
-@@ -2142,14 +2141,14 @@ static void bxt_ddi_vswing_sequence(struct intel_encoder *encoder,
- 
- static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp)
- {
--	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	struct intel_encoder *encoder = &dig_port->base;
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	enum port port = encoder->port;
--	enum phy phy = intel_port_to_phy(dev_priv, port);
- 	int n_entries;
- 
- 	if (INTEL_GEN(dev_priv) >= 12) {
--		if (intel_phy_is_combo(dev_priv, phy))
-+		if (intel_ddi_has_tc_phy(dig_port))
- 			tgl_get_combo_buf_trans(dev_priv, encoder->type,
- 						intel_dp->link_rate, &n_entries);
- 		else
-@@ -2159,7 +2158,7 @@ static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp)
- 		if (IS_ELKHARTLAKE(dev_priv))
- 			ehl_get_combo_buf_trans(dev_priv, encoder->type,
- 						intel_dp->link_rate, &n_entries);
--		else if (intel_phy_is_combo(dev_priv, phy))
-+		if (intel_ddi_has_tc_phy(dig_port))
- 			icl_get_combo_buf_trans(dev_priv, encoder->type,
- 						intel_dp->link_rate, &n_entries);
- 		else
-@@ -2402,8 +2401,9 @@ static void icl_combo_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
- 					      u32 level,
- 					      enum intel_output_type type)
- {
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-+	u8 phy = dig_port->port_info->phy_idx;
- 	int width = 0;
- 	int rate = 0;
- 	u32 val;
-@@ -2473,7 +2473,8 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
- 					   enum intel_output_type type)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum tc_port tc_port = intel_port_to_tc(dev_priv, encoder->port);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	u8 phy = dig_port->port_info->phy_idx;
- 	const struct icl_mg_phy_ddi_buf_trans *ddi_translations;
- 	u32 n_entries, val;
- 	int ln, rate = 0;
-@@ -2496,33 +2497,33 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
- 
- 	/* Set MG_TX_LINK_PARAMS cri_use_fs32 to 0. */
- 	for (ln = 0; ln < 2; ln++) {
--		val = intel_de_read(dev_priv, MG_TX1_LINK_PARAMS(ln, tc_port));
-+		val = intel_de_read(dev_priv, MG_TX1_LINK_PARAMS(ln, phy));
- 		val &= ~CRI_USE_FS32;
--		intel_de_write(dev_priv, MG_TX1_LINK_PARAMS(ln, tc_port), val);
-+		intel_de_write(dev_priv, MG_TX1_LINK_PARAMS(ln, phy), val);
- 
--		val = intel_de_read(dev_priv, MG_TX2_LINK_PARAMS(ln, tc_port));
-+		val = intel_de_read(dev_priv, MG_TX2_LINK_PARAMS(ln, phy));
- 		val &= ~CRI_USE_FS32;
--		intel_de_write(dev_priv, MG_TX2_LINK_PARAMS(ln, tc_port), val);
-+		intel_de_write(dev_priv, MG_TX2_LINK_PARAMS(ln, phy), val);
- 	}
- 
- 	/* Program MG_TX_SWINGCTRL with values from vswing table */
- 	for (ln = 0; ln < 2; ln++) {
--		val = intel_de_read(dev_priv, MG_TX1_SWINGCTRL(ln, tc_port));
-+		val = intel_de_read(dev_priv, MG_TX1_SWINGCTRL(ln, phy));
- 		val &= ~CRI_TXDEEMPH_OVERRIDE_17_12_MASK;
- 		val |= CRI_TXDEEMPH_OVERRIDE_17_12(
- 			ddi_translations[level].cri_txdeemph_override_17_12);
--		intel_de_write(dev_priv, MG_TX1_SWINGCTRL(ln, tc_port), val);
-+		intel_de_write(dev_priv, MG_TX1_SWINGCTRL(ln, phy), val);
- 
--		val = intel_de_read(dev_priv, MG_TX2_SWINGCTRL(ln, tc_port));
-+		val = intel_de_read(dev_priv, MG_TX2_SWINGCTRL(ln, phy));
- 		val &= ~CRI_TXDEEMPH_OVERRIDE_17_12_MASK;
- 		val |= CRI_TXDEEMPH_OVERRIDE_17_12(
- 			ddi_translations[level].cri_txdeemph_override_17_12);
--		intel_de_write(dev_priv, MG_TX2_SWINGCTRL(ln, tc_port), val);
-+		intel_de_write(dev_priv, MG_TX2_SWINGCTRL(ln, phy), val);
- 	}
- 
- 	/* Program MG_TX_DRVCTRL with values from vswing table */
- 	for (ln = 0; ln < 2; ln++) {
--		val = intel_de_read(dev_priv, MG_TX1_DRVCTRL(ln, tc_port));
-+		val = intel_de_read(dev_priv, MG_TX1_DRVCTRL(ln, phy));
- 		val &= ~(CRI_TXDEEMPH_OVERRIDE_11_6_MASK |
- 			 CRI_TXDEEMPH_OVERRIDE_5_0_MASK);
- 		val |= CRI_TXDEEMPH_OVERRIDE_5_0(
-@@ -2530,9 +2531,9 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
- 			CRI_TXDEEMPH_OVERRIDE_11_6(
- 				ddi_translations[level].cri_txdeemph_override_11_6) |
- 			CRI_TXDEEMPH_OVERRIDE_EN;
--		intel_de_write(dev_priv, MG_TX1_DRVCTRL(ln, tc_port), val);
-+		intel_de_write(dev_priv, MG_TX1_DRVCTRL(ln, phy), val);
- 
--		val = intel_de_read(dev_priv, MG_TX2_DRVCTRL(ln, tc_port));
-+		val = intel_de_read(dev_priv, MG_TX2_DRVCTRL(ln, phy));
- 		val &= ~(CRI_TXDEEMPH_OVERRIDE_11_6_MASK |
- 			 CRI_TXDEEMPH_OVERRIDE_5_0_MASK);
- 		val |= CRI_TXDEEMPH_OVERRIDE_5_0(
-@@ -2540,7 +2541,7 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
- 			CRI_TXDEEMPH_OVERRIDE_11_6(
- 				ddi_translations[level].cri_txdeemph_override_11_6) |
- 			CRI_TXDEEMPH_OVERRIDE_EN;
--		intel_de_write(dev_priv, MG_TX2_DRVCTRL(ln, tc_port), val);
-+		intel_de_write(dev_priv, MG_TX2_DRVCTRL(ln, phy), val);
- 
- 		/* FIXME: Program CRI_LOADGEN_SEL after the spec is updated */
- 	}
-@@ -2551,17 +2552,17 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
- 	 * values from table for which TX1 and TX2 enabled.
- 	 */
- 	for (ln = 0; ln < 2; ln++) {
--		val = intel_de_read(dev_priv, MG_CLKHUB(ln, tc_port));
-+		val = intel_de_read(dev_priv, MG_CLKHUB(ln, phy));
- 		if (link_clock < 300000)
- 			val |= CFG_LOW_RATE_LKREN_EN;
- 		else
- 			val &= ~CFG_LOW_RATE_LKREN_EN;
--		intel_de_write(dev_priv, MG_CLKHUB(ln, tc_port), val);
-+		intel_de_write(dev_priv, MG_CLKHUB(ln, phy), val);
- 	}
- 
- 	/* Program the MG_TX_DCC<LN, port being used> based on the link frequency */
- 	for (ln = 0; ln < 2; ln++) {
--		val = intel_de_read(dev_priv, MG_TX1_DCC(ln, tc_port));
-+		val = intel_de_read(dev_priv, MG_TX1_DCC(ln, phy));
- 		val &= ~CFG_AMI_CK_DIV_OVERRIDE_VAL_MASK;
- 		if (link_clock <= 500000) {
- 			val &= ~CFG_AMI_CK_DIV_OVERRIDE_EN;
-@@ -2569,9 +2570,9 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
- 			val |= CFG_AMI_CK_DIV_OVERRIDE_EN |
- 				CFG_AMI_CK_DIV_OVERRIDE_VAL(1);
- 		}
--		intel_de_write(dev_priv, MG_TX1_DCC(ln, tc_port), val);
-+		intel_de_write(dev_priv, MG_TX1_DCC(ln, phy), val);
- 
--		val = intel_de_read(dev_priv, MG_TX2_DCC(ln, tc_port));
-+		val = intel_de_read(dev_priv, MG_TX2_DCC(ln, phy));
- 		val &= ~CFG_AMI_CK_DIV_OVERRIDE_VAL_MASK;
- 		if (link_clock <= 500000) {
- 			val &= ~CFG_AMI_CK_DIV_OVERRIDE_EN;
-@@ -2579,21 +2580,21 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
- 			val |= CFG_AMI_CK_DIV_OVERRIDE_EN |
- 				CFG_AMI_CK_DIV_OVERRIDE_VAL(1);
- 		}
--		intel_de_write(dev_priv, MG_TX2_DCC(ln, tc_port), val);
-+		intel_de_write(dev_priv, MG_TX2_DCC(ln, phy), val);
- 	}
- 
- 	/* Program MG_TX_PISO_READLOAD with values from vswing table */
- 	for (ln = 0; ln < 2; ln++) {
- 		val = intel_de_read(dev_priv,
--				    MG_TX1_PISO_READLOAD(ln, tc_port));
-+				    MG_TX1_PISO_READLOAD(ln, phy));
- 		val |= CRI_CALCINIT;
--		intel_de_write(dev_priv, MG_TX1_PISO_READLOAD(ln, tc_port),
-+		intel_de_write(dev_priv, MG_TX1_PISO_READLOAD(ln, phy),
- 			       val);
- 
- 		val = intel_de_read(dev_priv,
--				    MG_TX2_PISO_READLOAD(ln, tc_port));
-+				    MG_TX2_PISO_READLOAD(ln, phy));
- 		val |= CRI_CALCINIT;
--		intel_de_write(dev_priv, MG_TX2_PISO_READLOAD(ln, tc_port),
-+		intel_de_write(dev_priv, MG_TX2_PISO_READLOAD(ln, phy),
- 			       val);
- 	}
- }
-@@ -2603,10 +2604,9 @@ static void icl_ddi_vswing_sequence(struct intel_encoder *encoder,
- 				    u32 level,
- 				    enum intel_output_type type)
- {
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 
--	if (intel_phy_is_combo(dev_priv, phy))
-+	if (intel_ddi_has_combo_phy(dig_port))
- 		icl_combo_phy_ddi_vswing_sequence(encoder, level, type);
- 	else
- 		icl_mg_phy_ddi_vswing_sequence(encoder, link_clock, level,
-@@ -2618,7 +2618,8 @@ tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder, int link_clock,
- 				u32 level, enum intel_output_type type)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum tc_port tc_port = intel_port_to_tc(dev_priv, encoder->port);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	u8 phy = dig_port->port_info->phy_idx;
- 	const struct tgl_dkl_phy_ddi_buf_trans *ddi_translations;
- 	u32 n_entries, val, ln, dpcnt_mask, dpcnt_val;
- 	int rate = 0;
-@@ -2643,25 +2644,25 @@ tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder, int link_clock,
- 	dpcnt_val |= DKL_TX_PRESHOOT_COEFF(ddi_translations[level].dkl_preshoot_control);
- 
- 	for (ln = 0; ln < 2; ln++) {
--		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
--			       HIP_INDEX_VAL(tc_port, ln));
-+		intel_de_write(dev_priv, HIP_INDEX_REG(phy),
-+			       HIP_INDEX_VAL(phy, ln));
- 
--		intel_de_write(dev_priv, DKL_TX_PMD_LANE_SUS(tc_port), 0);
-+		intel_de_write(dev_priv, DKL_TX_PMD_LANE_SUS(phy), 0);
- 
- 		/* All the registers are RMW */
--		val = intel_de_read(dev_priv, DKL_TX_DPCNTL0(tc_port));
-+		val = intel_de_read(dev_priv, DKL_TX_DPCNTL0(phy));
- 		val &= ~dpcnt_mask;
- 		val |= dpcnt_val;
--		intel_de_write(dev_priv, DKL_TX_DPCNTL0(tc_port), val);
-+		intel_de_write(dev_priv, DKL_TX_DPCNTL0(phy), val);
- 
--		val = intel_de_read(dev_priv, DKL_TX_DPCNTL1(tc_port));
-+		val = intel_de_read(dev_priv, DKL_TX_DPCNTL1(phy));
- 		val &= ~dpcnt_mask;
- 		val |= dpcnt_val;
--		intel_de_write(dev_priv, DKL_TX_DPCNTL1(tc_port), val);
-+		intel_de_write(dev_priv, DKL_TX_DPCNTL1(phy), val);
- 
--		val = intel_de_read(dev_priv, DKL_TX_DPCNTL2(tc_port));
-+		val = intel_de_read(dev_priv, DKL_TX_DPCNTL2(phy));
- 		val &= ~DKL_TX_DP20BITMODE;
--		intel_de_write(dev_priv, DKL_TX_DPCNTL2(tc_port), val);
-+		intel_de_write(dev_priv, DKL_TX_DPCNTL2(phy), val);
- 	}
- }
- 
-@@ -2670,10 +2671,9 @@ static void tgl_ddi_vswing_sequence(struct intel_encoder *encoder,
- 				    u32 level,
- 				    enum intel_output_type type)
- {
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 
--	if (intel_phy_is_combo(dev_priv, phy))
-+	if (intel_ddi_has_combo_phy(dig_port))
- 		icl_combo_phy_ddi_vswing_sequence(encoder, level, type);
- 	else
- 		tgl_dkl_phy_ddi_vswing_sequence(encoder, link_clock, level, type);
-@@ -2786,8 +2786,9 @@ static void icl_map_plls_to_ports(struct intel_encoder *encoder,
- 				  const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	struct intel_shared_dpll *pll = crtc_state->shared_dpll;
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-+	u8 phy = dig_port->port_info->phy_idx;
- 	u32 val;
- 
- 	mutex_lock(&dev_priv->dpll.lock);
-@@ -2796,7 +2797,7 @@ static void icl_map_plls_to_ports(struct intel_encoder *encoder,
- 	drm_WARN_ON(&dev_priv->drm,
- 		    (val & icl_dpclka_cfgcr0_clk_off(dev_priv, phy)) == 0);
- 
--	if (intel_phy_is_combo(dev_priv, phy)) {
-+	if (intel_ddi_has_combo_phy(dig_port)) {
- 		/*
- 		 * Even though this register references DDIs, note that we
- 		 * want to pass the PHY rather than the port (DDI).  For
-@@ -2822,7 +2823,8 @@ static void icl_map_plls_to_ports(struct intel_encoder *encoder,
- static void icl_unmap_plls_to_ports(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	u8 phy = dig_port->port_info->phy_idx;
- 	u32 val;
- 
- 	mutex_lock(&dev_priv->dpll.lock);
-@@ -2923,10 +2925,10 @@ static void intel_ddi_clk_select(struct intel_encoder *encoder,
- 				 const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	const struct intel_shared_dpll *pll = crtc_state->shared_dpll;
- 	enum port port = encoder->port;
--	enum phy phy = intel_port_to_phy(dev_priv, port);
- 	u32 val;
--	const struct intel_shared_dpll *pll = crtc_state->shared_dpll;
- 
- 	if (drm_WARN_ON(&dev_priv->drm, !pll))
- 		return;
-@@ -2934,7 +2936,7 @@ static void intel_ddi_clk_select(struct intel_encoder *encoder,
- 	mutex_lock(&dev_priv->dpll.lock);
- 
- 	if (INTEL_GEN(dev_priv) >= 11) {
--		if (!intel_phy_is_combo(dev_priv, phy))
-+		if (intel_ddi_has_combo_phy(dig_port))
- 			intel_de_write(dev_priv, DDI_CLK_SEL(port),
- 				       icl_pll_to_ddi_clk_sel(encoder, crtc_state));
- 		else if (IS_ELKHARTLAKE(dev_priv) && port >= PORT_C)
-@@ -2981,11 +2983,11 @@ static void intel_ddi_clk_select(struct intel_encoder *encoder,
- static void intel_ddi_clk_disable(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	enum port port = encoder->port;
--	enum phy phy = intel_port_to_phy(dev_priv, port);
- 
- 	if (INTEL_GEN(dev_priv) >= 11) {
--		if (!intel_phy_is_combo(dev_priv, phy) ||
-+		if (!intel_ddi_has_combo_phy(dig_port) ||
- 		    (IS_ELKHARTLAKE(dev_priv) && port >= PORT_C))
- 			intel_de_write(dev_priv, DDI_CLK_SEL(port),
- 				       DDI_CLK_SEL_NONE);
-@@ -3150,8 +3152,8 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
- {
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	u8 phy = dig_port->port_info->phy_idx;
- 	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
- 	int level = intel_ddi_dp_level(intel_dp);
- 	enum transcoder transcoder = crtc_state->cpu_transcoder;
-@@ -3190,7 +3192,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	intel_ddi_clk_select(encoder, crtc_state);
- 
- 	/* 5. If IO power is controlled through PWR_WELL_CTL, Enable IO Power */
--	if (!intel_phy_is_tc(dev_priv, phy) ||
-+	if (!intel_ddi_has_tc_phy(dig_port) ||
- 	    dig_port->tc_mode != TC_PORT_TBT_ALT)
- 		intel_display_power_get(dev_priv,
- 					dig_port->ddi_io_power_domain);
-@@ -3236,7 +3238,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	 * 7.f Combo PHY: Configure PORT_CL_DW10 Static Power Down to power up
- 	 * the used lanes of the DDI.
- 	 */
--	if (intel_phy_is_combo(dev_priv, phy)) {
-+	if (intel_ddi_has_combo_phy(dig_port)) {
- 		bool lane_reversal =
- 			dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
- 
-@@ -3292,8 +3294,8 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	enum port port = encoder->port;
--	enum phy phy = intel_port_to_phy(dev_priv, port);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	u8 phy = dig_port->port_info->phy_idx;
- 	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
- 	int level = intel_ddi_dp_level(intel_dp);
- 
-@@ -3310,7 +3312,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 
- 	intel_ddi_clk_select(encoder, crtc_state);
- 
--	if (!intel_phy_is_tc(dev_priv, phy) ||
-+	if (!intel_ddi_has_tc_phy(dig_port) ||
- 	    dig_port->tc_mode != TC_PORT_TBT_ALT)
- 		intel_display_power_get(dev_priv,
- 					dig_port->ddi_io_power_domain);
-@@ -3327,7 +3329,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	else
- 		intel_prepare_dp_ddi_buffers(encoder, crtc_state);
- 
--	if (intel_phy_is_combo(dev_priv, phy)) {
-+	if (intel_ddi_has_combo_phy(dig_port)) {
- 		bool lane_reversal =
- 			dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
- 
-@@ -3508,7 +3510,6 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
- 	struct intel_dp *intel_dp = &dig_port->dp;
- 	bool is_mst = intel_crtc_has_type(old_crtc_state,
- 					  INTEL_OUTPUT_DP_MST);
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
- 
- 	if (!is_mst)
- 		intel_dp_set_infoframes(encoder, false,
-@@ -3551,7 +3552,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
- 	intel_edp_panel_vdd_on(intel_dp);
- 	intel_edp_panel_off(intel_dp);
- 
--	if (!intel_phy_is_tc(dev_priv, phy) ||
-+	if (!intel_ddi_has_tc_phy(dig_port) ||
- 	    dig_port->tc_mode != TC_PORT_TBT_ALT)
- 		intel_display_power_put_unchecked(dev_priv,
- 						  dig_port->ddi_io_power_domain);
-@@ -3590,8 +3591,6 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
--	bool is_tc_port = intel_phy_is_tc(dev_priv, phy);
- 
- 	if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST)) {
- 		intel_crtc_vblank_off(old_crtc_state);
-@@ -3631,11 +3630,12 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
- 	if (INTEL_GEN(dev_priv) >= 11)
- 		icl_unmap_plls_to_ports(encoder);
- 
--	if (intel_crtc_has_dp_encoder(old_crtc_state) || is_tc_port)
-+	if (intel_crtc_has_dp_encoder(old_crtc_state) ||
-+	    intel_ddi_has_tc_phy(dig_port))
- 		intel_display_power_put_unchecked(dev_priv,
- 						  intel_ddi_main_link_aux_domain(dig_port));
- 
--	if (is_tc_port)
-+	if (intel_ddi_has_tc_phy(dig_port))
- 		intel_tc_port_put_link(dig_port);
- }
- 
-@@ -3958,17 +3958,16 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
--	bool is_tc_port = intel_phy_is_tc(dev_priv, phy);
- 
--	if (is_tc_port)
-+	if (intel_ddi_has_tc_phy(dig_port))
- 		intel_tc_port_get_link(dig_port, crtc_state->lane_count);
- 
--	if (intel_crtc_has_dp_encoder(crtc_state) || is_tc_port)
-+	if (intel_crtc_has_dp_encoder(crtc_state) || intel_ddi_has_tc_phy(dig_port))
- 		intel_display_power_get(dev_priv,
- 					intel_ddi_main_link_aux_domain(dig_port));
- 
--	if (is_tc_port && dig_port->tc_mode != TC_PORT_TBT_ALT)
-+	if (intel_ddi_has_tc_phy(dig_port) &&
-+	    dig_port->tc_mode != TC_PORT_TBT_ALT)
- 		/*
- 		 * Program the lane count for static/dynamic connections on
- 		 * Type-C ports.  Skip this step for TBT.
-@@ -4682,10 +4681,7 @@ static enum intel_hotplug_state
- intel_ddi_hotplug(struct intel_encoder *encoder,
- 		  struct intel_connector *connector)
- {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
--	enum phy phy = intel_port_to_phy(i915, encoder->port);
--	bool is_tc = intel_phy_is_tc(i915, phy);
- 	struct drm_modeset_acquire_ctx ctx;
- 	enum intel_hotplug_state state;
- 	int ret;
-@@ -4736,7 +4732,7 @@ intel_ddi_hotplug(struct intel_encoder *encoder,
- 	 * connectors to account for this delay.
- 	 */
- 	if (state == INTEL_HOTPLUG_UNCHANGED &&
--	    connector->hotplug_retries < (is_tc ? 5 : 1) &&
-+	    connector->hotplug_retries < (intel_ddi_has_tc_phy(dig_port) ? 5 : 1) &&
- 	    !dig_port->dp.is_mst)
- 		state = INTEL_HOTPLUG_RETRY;
- 
--- 
-2.26.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIwLTA2LTAzIGF0IDIwOjU1ICswMDAwLCBTb3V6YSwgSm9zZSB3cm90ZToNCj4g
+T24gV2VkLCAyMDIwLTA2LTAzIGF0IDIzOjMzICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+ID4gT24gV2VkLCBKdW4gMDMsIDIwMjAgYXQgMTI6NDM6MDdQTSAtMDcwMCwgSm9zw6kgUm9i
+ZXJ0byBkZSBTb3V6YSB3cm90ZToNCj4gPiA+IEhvdXJzIE9mIEJhdHRlcnkgTGlmZSBpcyBhIG5l
+dyBHRU4xMisgcG93ZXItc2F2aW5nIGZlYXR1cmUgdGhhdCBhbGxvd3MNCj4gPiA+IHN1cHBvcnRl
+ZCBtb3RoZXJib2FyZHMgdG8gdXNlIGEgc3BlY2lhbCB2b2x0YWdlIHN3aW5nIHRhYmxlIGZvciBl
+RFANCj4gPiA+IHBhbmVscyB0aGF0IHVzZXMgbGVzcyBwb3dlci4NCj4gPiA+IA0KPiA+ID4gU28g
+aGVyZSBpZiBzdXBwb3J0ZWQgYnkgSFcsIE9FTSB3aWxsIHNldCBpdCBpbiBWQlQgYW5kIGk5MTUg
+d2lsbCB0cnkNCj4gPiA+IHRvIHRyYWluIGxpbmsgd2l0aCBIT0JMIHZzd2luZyB0YWJsZSBpZiBs
+aW5rIHRyYWluaW5nIGZhaWxzIGl0IGZhbGwNCj4gPiA+IGJhY2sgdG8gdGhlIG9yaWdpbmFsIHRh
+YmxlLg0KPiA+ID4gDQo+ID4gPiBKdXN0IG5vdCBzdXJlIGlmIERQIGNvbXBsaWFuY2Ugc2hvdWxk
+IGFsc28gdXNlIHRoaXMgbmV3IHZvbHRhZ2Ugc3dpbmcNCj4gPiA+IHRhYmxlIHRvbywgY2NlZCBz
+b21lIGZvbGtzIHRoYXQgd29ya2VkIGluIERQIGNvbXBsaWFuY2UuDQo+ID4gPiANCj4gPiA+IEJT
+cGVjOiA0OTI5MQ0KPiA+ID4gQlNwZWM6IDQ5Mzk5DQo+ID4gPiBDYzogVmlsbGUgU3lyasOkbMOk
+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gPiA+IENjOiBBbmltZXNoIE1hbm5h
+IDxhbmltZXNoLm1hbm5hQGludGVsLmNvbT4NCj4gPiA+IENjOiBNYW5hc2kgTmF2YXJlIDxtYW5h
+c2kuZC5uYXZhcmVAaW50ZWwuY29tPg0KPiA+ID4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0
+byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgICAgfCA0OCArKysrKysrKysr
+KysrKysrKy0tDQo+ID4gPiAgLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBl
+cy5oICAgIHwgIDIgKw0KPiA+ID4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtf
+dHJhaW5pbmcuYyB8IDIwICsrKysrKystDQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcnYuaCAgICAgICAgICAgICAgIHwgIDIgKw0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2k5MTVfcmVnLmggICAgICAgICAgICAgICB8ICAyICsNCj4gPiA+ICA1IGZpbGVzIGNoYW5nZWQs
+IDY5IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+ID4gPiANCj4gPiA+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiA+ID4gaW5kZXggMjM2ZjM3NjJiNmY5
+Li41NzE3NGExMTE5NzYgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2RkaS5jDQo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RkaS5jDQo+ID4gPiBAQCAtNjkyLDYgKzY5MiwxMCBAQCBzdGF0aWMgY29uc3Qg
+c3RydWN0IGNubF9kZGlfYnVmX3RyYW5zIHRnbF9jb21ib19waHlfZGRpX3RyYW5zbGF0aW9uc19k
+cF9oYnIyW10gPQ0KPiA+ID4gIAl7IDB4NiwgMHg3RiwgMHgzRiwgMHgwMCwgMHgwMCB9LAkvKiA5
+MDAgICA5MDAgICAgICAwLjAgICAqLw0KPiA+ID4gIH07DQo+ID4gPiAgDQo+ID4gPiArc3RhdGlj
+IGNvbnN0IHN0cnVjdCBjbmxfZGRpX2J1Zl90cmFucyB0Z2xfY29tYm9fcGh5X2RkaV90cmFuc2xh
+dGlvbnNfZWRwX2hicjJfaG9ibFtdID0gew0KPiA+ID4gKwl7IDB4NiwgMHg3RiwgMHgzRiwgMHgw
+MCwgMHgwMCB9DQo+ID4gPiArfTsNCj4gPiA+ICsNCj4gPiA+ICBzdGF0aWMgY29uc3Qgc3RydWN0
+IGRkaV9idWZfdHJhbnMgKg0KPiA+ID4gIGJkd19nZXRfYnVmX3RyYW5zX2VkcChzdHJ1Y3QgZHJt
+X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGludCAqbl9lbnRyaWVzKQ0KPiA+ID4gIHsNCj4gPiA+
+IEBAIC0yMzAxLDE0ICsyMzA1LDUxIEBAIHN0YXRpYyB2b2lkIGNubF9kZGlfdnN3aW5nX3NlcXVl
+bmNlKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiA+ID4gIAlpbnRlbF9kZV93cml0
+ZShkZXZfcHJpdiwgQ05MX1BPUlRfVFhfRFc1X0dSUChwb3J0KSwgdmFsKTsNCj4gPiA+ICB9DQo+
+ID4gPiAgDQo+ID4gPiArLyoNCj4gPiA+ICsgKiBJZiBzdXBwb3J0ZWQgcmV0dXJuIEhPQkwgdnN3
+aW5nIHRhYmxlIGFuZCBzZXQgcmVnaXN0ZXJzIHRvIGVuYWJsZSBIT0JMDQo+ID4gPiArICogb3Ro
+ZXJ3aXNlIHJldHVybnMgTlVMTCBhbmQgdW5zZXQgcmVnaXN0ZXJzIHRvIGVuYWJsZSBIT0JMLg0K
+PiA+ID4gKyAqLw0KPiA+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgY25sX2RkaV9idWZfdHJhbnMg
+Kg0KPiA+ID4gK2hvYmxfZ2V0X2NvbWJvX2J1Zl90cmFucyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
+ZSAqZGV2X3ByaXYsDQo+ID4gPiArCQkJIHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLCBp
+bnQgdHlwZSwgaW50IHJhdGUsDQo+ID4gPiArCQkJIHUzMiBsZXZlbCwgaW50ICpuX2VudHJpZXMp
+DQo+ID4gPiArew0KPiA+ID4gKwljb25zdCB1MzIgaG9ibF9lbiA9IEVEUDRLMktfTU9ERV9PVlJE
+X0VOIHwgRURQNEsyS19NT0RFX09WUkRfT1BUSU1JWkVEOw0KPiA+ID4gKwllbnVtIHBoeSBwaHkg
+PSBpbnRlbF9wb3J0X3RvX3BoeShkZXZfcHJpdiwgZW5jb2Rlci0+cG9ydCk7DQo+ID4gPiArCXN0
+cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHA7DQo+ID4gPiArDQo+ID4gPiArCWlmICghSEFTX0hPQkwo
+ZGV2X3ByaXYpIHx8IHR5cGUgIT0gSU5URUxfT1VUUFVUX0VEUCkNCj4gPiA+ICsJCXJldHVybiBO
+VUxMOw0KPiA+IA0KPiA+IE5vdCBhIHJlYWwgZmFuIG9mIHRoZSAiaG9ibCIgbmFtZS4gSXQganVz
+dCBzb3VuZHMgbGlrZSBub25zZW5zZS4gQWxzbw0KPiA+IGJzcGVjIGRvZXNuJ3QgdXNlIHRoYXQg
+dGVybSBhdCBhbGwuIEl0IG9ubHkgYXBwZWFycyBpbiB0aGUgdmJ0IHNwZWMuDQo+ID4gTm90IHN1
+cmUgaWYgdGhlcmUncyBhIGJldHRlciBvbmUgdGhvdWdoLg0KPiANCj4gTWF5YmUgcG93ZXJfb3B0
+aW1pemVkX2VkcD8NCg0KSW4gdGhlIGxhY2sgb2YgYSBiZXR0ZXIgbmFtZSB3aWxsIGtlZXAgdGhl
+IGN1cnJlbnQgb25lLCBhbHNvIGl0IHdpbGwgYWxsb3cgZm9yIHBlb3BsZSB0byBmaW5kIHNvbWUg
+cmVmZXJlbmNlIHRvIGl0IGluIEJTcGVjLg0KDQo+IA0KPiA+ID4gKw0KPiA+ID4gKwlpbnRlbF9k
+cCA9IGVuY190b19pbnRlbF9kcChlbmNvZGVyKTsNCj4gPiA+ICsJaWYgKCFpbnRlbF9kcC0+dHJ5
+X2hvYmwgfHwgcmF0ZSA+IDU0MDAwMCkgew0KPiA+ID4gKwkJaW50ZWxfZGVfcm13KGRldl9wcml2
+LCBJQ0xfUE9SVF9DTF9EVzEwKHBoeSksIGhvYmxfZW4sIDApOw0KPiA+IA0KPiA+IEkgd291bGQg
+dm90ZSBmb3IganVzdCBkb2luZyB0aGlzIHByb2dyYW1taW5nIHVuY29uZGl0aW9uYWxseSBpbiB0
+aGUgbm9ybWFsDQo+ID4gc2VxdWVuY2UuDQo+IA0KPiBUaG91Z2h0IGFib3V0IHRoYXQgYnV0IGlu
+dGVsX2NvbWJvX3BoeV9wb3dlcl91cF9sYW5lcygpIHRoYXQgcHJvZ3JhbSB0aGlzIElDTF9QT1JU
+X0NMX0RXMTAgaXMgY2FsbGVkIHJpZ2h0IGFmdGVyIHRnbF9kZGlfdnN3aW5nX3NlcXVlbmNlKCku
+DQo+IA0KPiA+ID4gKwkJcmV0dXJuIE5VTEw7DQo+ID4gPiArCX0NCj4gPiA+ICsNCj4gPiA+ICsJ
+ZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJFbmFibGluZyBIT0JMIGluIFBIWSAlY1xuIiwg
+cGh5X25hbWUocGh5KSk7DQo+ID4gPiArCWRybV9XQVJOX09OX09OQ0UoJmRldl9wcml2LT5kcm0s
+IGxldmVsID4gMCk7DQo+ID4gPiArDQo+ID4gPiArCWludGVsX2RlX3JtdyhkZXZfcHJpdiwgSUNM
+X1BPUlRfQ0xfRFcxMChwaHkpLCBob2JsX2VuLCBob2JsX2VuKTsNCj4gPiA+ICsJLyogU2FtZSB0
+YWJsZSBhcHBsaWVzIHRvIFRHTCwgUktMIGFuZCBERzEgKi8NCj4gPiA+ICsJKm5fZW50cmllcyA9
+IEFSUkFZX1NJWkUodGdsX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2VkcF9oYnIyX2hvYmwp
+Ow0KPiA+ID4gKwlyZXR1cm4gdGdsX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2VkcF9oYnIy
+X2hvYmw7DQo+ID4gPiArfQ0KPiA+ID4gKw0KPiA+ID4gIHN0YXRpYyB2b2lkIGljbF9kZGlfY29t
+Ym9fdnN3aW5nX3Byb2dyYW0oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0KPiA+
+ID4gLQkJCQkJdTMyIGxldmVsLCBlbnVtIHBoeSBwaHksIGludCB0eXBlLA0KPiA+ID4gLQkJCQkJ
+aW50IHJhdGUpDQo+ID4gPiArCQkJCQkgc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+
+ID4gPiArCQkJCQkgdTMyIGxldmVsLCBlbnVtIHBoeSBwaHksIGludCB0eXBlLA0KPiA+ID4gKwkJ
+CQkJIGludCByYXRlKQ0KPiA+IA0KPiA+IElmIHdlJ3JlIHBhc3NpbmcgaW4gdGhlIGVuY29kZXIg
+dGhlbiBhIGJ1bmNoIG9mIHRoaXMgb3RoZXIgc3R1ZmYgaXMNCj4gPiByZWR1bmRhbnQuDQo+IA0K
+PiBPa2F5DQoNClJlZHVjZWQgdG86DQoNCnN0YXRpYyB2b2lkIGljbF9kZGlfY29tYm9fdnN3aW5n
+X3Byb2dyYW0oc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQogICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgdTMyIGxldmVsLCBlbnVtIGludGVsX291dHB1dF90eXBl
+IHR5cGUsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaW50IHJhdGUp
+DQp0eXBlIGNhbid0IGJlIHJlbW92ZWQgYmVjYXVzZSBvZiBIRE1JIHBhdGhzLCByYXRlIGNvdWxk
+IGJ1dCBpdCBpcyB1c2VkIGluIHRoZSBjYWxsZXIgdG9vIHNvIEkgbGVmdCBpdC4NCg0KPiANCj4g
+PiA+ICB7DQo+ID4gPiAgCWNvbnN0IHN0cnVjdCBjbmxfZGRpX2J1Zl90cmFucyAqZGRpX3RyYW5z
+bGF0aW9ucyA9IE5VTEw7DQo+ID4gPiAgCXUzMiBuX2VudHJpZXMsIHZhbDsNCj4gPiA+ICAJaW50
+IGxuOw0KPiA+ID4gIA0KPiA+ID4gKwlkZGlfdHJhbnNsYXRpb25zID0gaG9ibF9nZXRfY29tYm9f
+YnVmX3RyYW5zKGRldl9wcml2LCBlbmNvZGVyLCB0eXBlLA0KPiA+ID4gKwkJCQkJCSAgICByYXRl
+LCBsZXZlbCwgJm5fZW50cmllcyk7DQo+ID4gPiArCWlmIChkZGlfdHJhbnNsYXRpb25zKQ0KPiA+
+ID4gKwkJZ290byBob2JsX2ZvdW5kOw0KPiA+IA0KPiA+IFdoeSBub3QganVzdCBwdXQgaXQgaW50
+byB0Z2xfZ2V0X2NvbWJvX2J1Zl90cmFucygpLiBIbW0uIEkgZ3Vlc3MgdG8gbm90DQo+ID4gdXBz
+ZXQgLnZvbHRhZ2VfbWF4KCkuIFRoaXMgZmVlbHMgYSBiaXQgaGFja2lzaCwgYnV0IEkgZG9uJ3Qg
+aGF2ZSBiZXR0ZXINCj4gPiBpZGVhcyBmb3Igbm93Lg0KPiANCj4gRXhhY3RseS4NCj4gDQo+ID4g
+PiArDQo+ID4gPiAgCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKQ0KPiA+ID4gIAkJZGRp
+X3RyYW5zbGF0aW9ucyA9IHRnbF9nZXRfY29tYm9fYnVmX3RyYW5zKGRldl9wcml2LCB0eXBlLCBy
+YXRlLA0KPiA+ID4gIAkJCQkJCQkgICAmbl9lbnRyaWVzKTsNCj4gPiA+IEBAIC0yMzIxLDYgKzIz
+NjIsNyBAQCBzdGF0aWMgdm9pZCBpY2xfZGRpX2NvbWJvX3Zzd2luZ19wcm9ncmFtKHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwNCj4gPiA+ICAJaWYgKCFkZGlfdHJhbnNsYXRpb25z
+KQ0KPiA+ID4gIAkJcmV0dXJuOw0KPiA+ID4gIA0KPiA+ID4gK2hvYmxfZm91bmQ6DQo+ID4gPiAg
+CWlmIChsZXZlbCA+PSBuX2VudHJpZXMpIHsNCj4gPiA+ICAJCWRybV9kYmdfa21zKCZkZXZfcHJp
+di0+ZHJtLA0KPiA+ID4gIAkJCSAgICAiRERJIHRyYW5zbGF0aW9uIG5vdCBmb3VuZCBmb3IgbGV2
+ZWwgJWQuIFVzaW5nICVkIGluc3RlYWQuIiwNCj4gPiA+IEBAIC0yNDI4LDcgKzI0NzAsNyBAQCBz
+dGF0aWMgdm9pZCBpY2xfY29tYm9fcGh5X2RkaV92c3dpbmdfc2VxdWVuY2Uoc3RydWN0IGludGVs
+X2VuY29kZXIgKmVuY29kZXIsDQo+ID4gPiAgCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBJQ0xf
+UE9SVF9UWF9EVzVfR1JQKHBoeSksIHZhbCk7DQo+ID4gPiAgDQo+ID4gPiAgCS8qIDUuIFByb2dy
+YW0gc3dpbmcgYW5kIGRlLWVtcGhhc2lzICovDQo+ID4gPiAtCWljbF9kZGlfY29tYm9fdnN3aW5n
+X3Byb2dyYW0oZGV2X3ByaXYsIGxldmVsLCBwaHksIHR5cGUsIHJhdGUpOw0KPiA+ID4gKwlpY2xf
+ZGRpX2NvbWJvX3Zzd2luZ19wcm9ncmFtKGRldl9wcml2LCBlbmNvZGVyLCBsZXZlbCwgcGh5LCB0
+eXBlLCByYXRlKTsNCj4gPiA+ICANCj4gPiA+ICAJLyogNi4gU2V0IHRyYWluaW5nIGVuYWJsZSB0
+byB0cmlnZ2VyIHVwZGF0ZSAqLw0KPiA+ID4gIAl2YWwgPSBpbnRlbF9kZV9yZWFkKGRldl9wcml2
+LCBJQ0xfUE9SVF9UWF9EVzVfTE4wKHBoeSkpOw0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgNCj4gPiA+IGluZGV4IDRiMGFh
+YTMwODFjOS4uZjg5NDNiNjc4MTlkIDEwMDY0NA0KPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgNCj4gPiA+ICsrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oDQo+ID4gPiBAQCAtMTM3
+NSw2ICsxMzc1LDggQEAgc3RydWN0IGludGVsX2RwIHsNCj4gPiA+ICANCj4gPiA+ICAJLyogRGlz
+cGxheSBzdHJlYW0gY29tcHJlc3Npb24gdGVzdGluZyAqLw0KPiA+ID4gIAlib29sIGZvcmNlX2Rz
+Y19lbjsNCj4gPiA+ICsNCj4gPiA+ICsJYm9vbCB0cnlfaG9ibDsNCj4gPiA+ICB9Ow0KPiA+ID4g
+IA0KPiA+ID4gIGVudW0gbHNwY29uX3ZlbmRvciB7DQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuYw0KPiA+ID4gaW5k
+ZXggYjllNGVlMmRiZGRjLi44OGYzNjZiYjI4ZDcgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuYw0KPiA+ID4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMN
+Cj4gPiA+IEBAIC01MiwxMiArNTIsMjQgQEAgc3RhdGljIHU4IGRwX3ZvbHRhZ2VfbWF4KHU4IHBy
+ZWVtcGgpDQo+ID4gPiAgdm9pZCBpbnRlbF9kcF9nZXRfYWRqdXN0X3RyYWluKHN0cnVjdCBpbnRl
+bF9kcCAqaW50ZWxfZHAsDQo+ID4gPiAgCQkJICAgICAgIGNvbnN0IHU4IGxpbmtfc3RhdHVzW0RQ
+X0xJTktfU1RBVFVTX1NJWkVdKQ0KPiA+ID4gIHsNCj4gPiA+ICsJc3RydWN0IGRybV9pOTE1X3By
+aXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7DQo+ID4gPiAgCXU4IHYgPSAw
+Ow0KPiA+ID4gIAl1OCBwID0gMDsNCj4gPiA+ICAJaW50IGxhbmU7DQo+ID4gPiAgCXU4IHZvbHRh
+Z2VfbWF4Ow0KPiA+ID4gIAl1OCBwcmVlbXBoX21heDsNCj4gPiA+ICANCj4gPiA+ICsJaWYgKGlu
+dGVsX2RwLT50cnlfaG9ibCkgew0KPiA+ID4gKwkJLyoNCj4gPiA+ICsJCSAqIERvIG5vdCBhZGp1
+c3QsIHRyeSBub3cgd2l0aCB0aGUgcmVndWxhciB0YWJsZSB1c2luZyBWU3dpbmcgMA0KPiA+ID4g
+KwkJICogYW5kIHByZS1lbXAgMA0KPiA+ID4gKwkJICovDQo+ID4gDQo+ID4gV2hhdCBpZiB0aGUg
+c2luayBpcyBzdGlsbCBhc2tpbmcgZm9yIHZzd2luZyAwICsgcHJlZW1waCAwPyBUaGUgc3BlYyBp
+cw0KPiA+IHJhdGhlciBhbWJpZ3VvdXMgd2hlbiBpdCBjb21lcyB0byB0aGlzIHN0dWZmLg0KPiAN
+Cj4gQXMgaXQgd2lsbCBmYWxsYmFjayB0byByZWd1bGFyIHRhYmxlIHZzd2luZyAwICsgcHJlZW1w
+aCAwIHRoYXQgaXMgbm90IGEgaXNzdWUuDQo+IA0KPiA+IFRoZSB0YWJsZSBhbHNvIGRvZXNuJ3Qg
+c3BlY2lmeSB0aGUgdnN3aW5nL3ByZWVtcGggZm9yIHdoaWNoIHdlIHNob3VsZA0KPiA+IHVzZSB0
+aGlzIG9wdGltaXplZCB2YWx1ZS4gWW91ciBpbnRlcnByZXRhdGlvbiBvZiAwKzAgc2VlbXMgbGlr
+ZSB0aGUgbW9zdA0KPiA+IHNlbnNpYmxlIHRoaW5nLCBidXQgZ2l2ZW4gdGhhdCB0aGUgVkJUIGNh
+biBhbHNvIHNwZWNpZml5IHRoZSBmYXN0IGxpbmsNCj4gPiB0cmFpbmluZyB2c3dpbmcvcHJlZW1w
+aCBhcyBzb21ldGhpbmcgZWxzZSAoYW5kIG1heWJlIHRoZXJlIHdhcyBhbHNvDQo+ID4gc29tZXRo
+aW5nIGxpa2UgdGhpcyBmb3Igbm9ybWFsIGxpbmsgdHJhaW5pbmc/KSBJJ20gbm90IDEwMCUgc3Vy
+ZS4NCj4gDQo+IFllYWggZG9uJ3QgbWFrZSBtdWNoIHNlbnNlIGl0IG5vdCBiZSB2c3dpbmcgMCAr
+IHByZWVtcGggMCBidXQgbGV0cyB3YWl0IGZvciBCU3BlYyBjbGFyaWZpY2F0aW9uIHRoZW4uDQo+
+IA0KPiA+IEhtbS4gQWN0dWFsbHkgbm90aWNlZCB0aGF0IGFsbCB0aGUgZURQIHRhYmxlcyBhcmUg
+bWlzc2luZyB0aGUNCj4gPiB2c3dpbmcvcHJlZW1waCBsZXZlbHMgKHRoZXkgZG8gaGF2ZSB0aGUg
+cmF3IG1WL2RCIHZhbHVlcyBidXQgbm90IHRoZQ0KPiA+IERQIHNwZWMgbGV2ZWxzKS4gSSBmaWxl
+ZCBhIGZldyBpc3N1ZXMgaW4gdGhlIGhvcGVzIG9mIGNsYXJpZmljYXRpb24uDQo+ID4gDQo+ID4g
+PiArCQlpbnRlbF9kcC0+dHJ5X2hvYmwgPSBmYWxzZTsNCj4gPiA+ICsJCWRybV9kYmdfa21zKCZk
+ZXZfcHJpdi0+ZHJtLCAiSE9CTCB2c3dpbmcgdGFibGUgZmFpbGVkIGxpbmsgIg0KPiA+ID4gKwkJ
+CSAgICAidHJhaW5pbmcsIHN3aXRjaGluZyBiYWNrIHRvIHJlZ3VsYXIgdGFibGVcbiIpOw0KPiA+
+ID4gKwkJcmV0dXJuOw0KPiA+ID4gKwl9DQo+ID4gPiArDQo+ID4gPiAgCWZvciAobGFuZSA9IDA7
+IGxhbmUgPCBpbnRlbF9kcC0+bGFuZV9jb3VudDsgbGFuZSsrKSB7DQo+ID4gPiAgCQl2ID0gbWF4
+KHYsIGRybV9kcF9nZXRfYWRqdXN0X3JlcXVlc3Rfdm9sdGFnZShsaW5rX3N0YXR1cywgbGFuZSkp
+Ow0KPiA+ID4gIAkJcCA9IG1heChwLCBkcm1fZHBfZ2V0X2FkanVzdF9yZXF1ZXN0X3ByZV9lbXBo
+YXNpcyhsaW5rX3N0YXR1cywgbGFuZSkpOw0KPiA+ID4gQEAgLTEwMyw5ICsxMTUsMTMgQEAgaW50
+ZWxfZHBfc2V0X2xpbmtfdHJhaW4oc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gPiA+ICB9
+DQo+ID4gPiAgDQo+ID4gPiAgc3RhdGljIGJvb2wNCj4gPiA+IC1pbnRlbF9kcF9yZXNldF9saW5r
+X3RyYWluKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsDQo+ID4gPiAtCQkJdTggZHBfdHJhaW5f
+cGF0KQ0KPiA+ID4gK2ludGVsX2RwX3Jlc2V0X2xpbmtfdHJhaW4oc3RydWN0IGludGVsX2RwICpp
+bnRlbF9kcCwgdTggZHBfdHJhaW5fcGF0KQ0KPiA+ID4gIHsNCj4gPiA+ICsJc3RydWN0IGRybV9p
+OTE1X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7DQo+ID4gPiArDQo+
+ID4gPiArCWlmIChpbnRlbF9kcF9pc19lZHAoaW50ZWxfZHApICYmIGRldl9wcml2LT52YnQuZWRw
+LmhvYmwpDQo+ID4gPiArCQlpbnRlbF9kcC0+dHJ5X2hvYmwgPSB0cnVlOw0KPiA+IA0KPiA+IElm
+IGl0IGZhaWxlZCBvbmNlIGRvZXMgaXQgbWFrZSBzZW5zZSB0byBrZWVwIHRyeWluZyB0byB1c2Ug
+aXQ/DQo+IA0KPiBJdCBjb3VsZCBwYXNzIGluIGEgZGlmZmVyZW50IGJpdCByYXRlIGFuZCB3b3Vs
+ZCBiZSB0byBtdWNoIGNvbXBsaWNhdGVkIGtlZXAgdHJhY2sgb2YgdGhhdC4NCj4gDQo+IA0KPiBU
+aGFua3MgZm9yIHRoZSByZXZpZXcsIGxldHMgd2FpdCBmb3IgdGhlIEJTcGVjIGNsYXJpZmljYXRp
+b25zIHRoYXQgeW91IGFza2VkLg0KPiANCj4gPiA+ICsNCj4gPiA+ICAJbWVtc2V0KGludGVsX2Rw
+LT50cmFpbl9zZXQsIDAsIHNpemVvZihpbnRlbF9kcC0+dHJhaW5fc2V0KSk7DQo+ID4gPiAgCWlu
+dGVsX2RwX3NldF9zaWduYWxfbGV2ZWxzKGludGVsX2RwKTsNCj4gPiA+ICAJcmV0dXJuIGludGVs
+X2RwX3NldF9saW5rX3RyYWluKGludGVsX2RwLCBkcF90cmFpbl9wYXQpOw0KPiA+ID4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2Rydi5oDQo+ID4gPiBpbmRleCAyMzM2YzkyMzFlZWYuLmM3ZTdkZjE3ZWVmMiAx
+MDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gPiA+
+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gPiA+IEBAIC0xNjg3LDYg
+KzE2ODcsOCBAQCBJU19TVUJQTEFURk9STShjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
+aTkxNSwNCj4gPiA+ICAjZGVmaW5lIElOVEVMX0RJU1BMQVlfRU5BQkxFRChkZXZfcHJpdikgXA0K
+PiA+ID4gIAkJKGRybV9XQVJOX09OKCYoZGV2X3ByaXYpLT5kcm0sICFIQVNfRElTUExBWShkZXZf
+cHJpdikpLCAhaTkxNV9tb2RwYXJhbXMuZGlzYWJsZV9kaXNwbGF5KQ0KPiA+ID4gIA0KPiA+ID4g
+KyNkZWZpbmUgSEFTX0hPQkwoZGV2X3ByaXYpIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKQ0K
+PiA+ID4gKw0KPiA+ID4gIHN0YXRpYyBpbmxpbmUgYm9vbCBpbnRlbF92dGRfYWN0aXZlKHZvaWQp
+DQo+ID4gPiAgew0KPiA+ID4gICNpZmRlZiBDT05GSUdfSU5URUxfSU9NTVUNCj4gPiA+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9yZWcuaA0KPiA+ID4gaW5kZXggNTc4Y2ZlMTFjYmI5Li5kNDYxMTE3MWYwNzUg
+MTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+ID4g
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+ID4gPiBAQCAtMTg5Niw2
+ICsxODk2LDggQEAgc3RhdGljIGlubGluZSBib29sIGk5MTVfbW1pb19yZWdfdmFsaWQoaTkxNV9y
+ZWdfdCByZWcpDQo+ID4gPiAgI2RlZmluZSAgUFdSX0RPV05fTE5fM18xXzAJCSgweGIgPDwgNCkN
+Cj4gPiA+ICAjZGVmaW5lICBQV1JfRE9XTl9MTl9NQVNLCQkoMHhmIDw8IDQpDQo+ID4gPiAgI2Rl
+ZmluZSAgUFdSX0RPV05fTE5fU0hJRlQJCTQNCj4gPiA+ICsjZGVmaW5lICBFRFA0SzJLX01PREVf
+T1ZSRF9FTgkJKDEgPDwgMykNCj4gPiA+ICsjZGVmaW5lICBFRFA0SzJLX01PREVfT1ZSRF9PUFRJ
+TUlaRUQJKDEgPDwgMikNCj4gPiA+ICANCj4gPiA+ICAjZGVmaW5lIElDTF9QT1JUX0NMX0RXMTIo
+cGh5KQkJX01NSU8oX0lDTF9QT1JUX0NMX0RXKDEyLCBwaHkpKQ0KPiA+ID4gICNkZWZpbmUgICBJ
+Q0xfTEFORV9FTkFCTEVfQVVYCQkoMSA8PCAwKQ0KPiA+ID4gLS0gDQo+ID4gPiAyLjI3LjANCj4g
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdA0KPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IGh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4DQpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
