@@ -2,41 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE20D20A383
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 19:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5AA20A3C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 19:13:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB5986E042;
-	Thu, 25 Jun 2020 17:02:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 387326E103;
+	Thu, 25 Jun 2020 17:13:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 533D46E09A
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 17:02:31 +0000 (UTC)
-IronPort-SDR: J+r9c/GB6YMepuOGliPKv1jf4CmfTVBrRMCQzXZI9mMW4Wj6VQ2cS9nUrFxjE5OOIeSFYrZ9D8
- uII9m1Xb0KCA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9663"; a="206509373"
-X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="206509373"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2020 10:02:30 -0700
-IronPort-SDR: dfCcG/DaWwj1XBvHwNFhlE974/gugqei7XvpoWfuQyArVPXWt1YZyjJsF/dTcvW1ZuzWEpVBww
- trG1JCXSL8oQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="276087604"
-Received: from invictus.jf.intel.com (HELO InViCtUs) ([10.165.21.212])
- by orsmga003.jf.intel.com with ESMTP; 25 Jun 2020 10:02:30 -0700
-Date: Thu, 25 Jun 2020 10:03:58 -0700
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>
-Message-ID: <20200625170358.GA25333@InViCtUs>
-References: <20200624215723.2316-1-matthew.s.atwood@intel.com>
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
+ [IPv6:2a00:1450:4864:20::544])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 677926E0A5;
+ Thu, 25 Jun 2020 17:13:33 +0000 (UTC)
+Received: by mail-ed1-x544.google.com with SMTP id d15so4784785edm.10;
+ Thu, 25 Jun 2020 10:13:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=lF0qy+v5jV2ozFLzJY/1pgZYkmaMzm6mj03LWcgaglI=;
+ b=jPgOdrRnDqP9La2AS9BXce1BmmIbaFOEUW3CixHK2BhdlVEpkRoOtKfWRIEMvwm17L
+ Lp539xjc0v1B+Ihc/Fs0IJ6FND5+yd0f37vTIvzrdTOrArGinK7sLcl4DURwD0EF+Vyg
+ pCKLVGRCujS70k/tK3yP/wX1Qa2x8mRr7BrckSlmrurdj712DIKJl5F+VMuRtth8DuK6
+ BG/ETuBSA/Zte+ds/HR238GG63voOnaHqUPLEljQ+78b7FVI9/WDVSWXd4yriwmDmsve
+ bThLYojVNgW3+dnUOeKpdFWjr8FjL9wSnugHXaRZpjW3LWOriEZV+Z43B7p0/QvdP7uy
+ p7Cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=lF0qy+v5jV2ozFLzJY/1pgZYkmaMzm6mj03LWcgaglI=;
+ b=ArbghgTzeHYD2bbfVtRk8fSAunbseUJfobdqRwm6s0oFlobpQ18deGa6Z3+7Z5odO9
+ rJANlB+RycK/sBLyPOZT8DZ1nCqY+9ej21f+xx0/dei5AvoSVPcR+x73pXzr3ow7FU6H
+ Q1S1pUMhh7+i98MO56Oiclx0sLL1taPkngotrd//Gp1B7H60V+j9PCJ+/eVEJQ6vGGJK
+ TX1O19k7NJx4WXHoAvuoq3Ac6L3XIrpb8hIyzHQlKMacHMSYX/FwjLOReGVp29WtvPoh
+ bvoXLRG0hV62W3URg6UCSyCQfLKgvVh2kFIrzK4rEqr6zgHo3Ln5zajsav8aAUOFT3dT
+ AJbw==
+X-Gm-Message-State: AOAM5331ExVKYK5kml4qIFH0F8rxR2BKXU0aUdakD0goujvSgSwfBxBY
+ kjZuDlfV+O20kuxF4Bfgx6qXKgBQN4N/jBRojNfs/uwcm68=
+X-Google-Smtp-Source: ABdhPJz0HWigy/NA7BtGI9NCz7O7hufdrwRFM2qLcrGtpp3tTp0QKQxbqO3RQEoBiW8dUTLEpOeHLxDHT6Vmxmva+bE=
+X-Received: by 2002:a05:6402:796:: with SMTP id
+ d22mr23294291edy.78.1593105211936; 
+ Thu, 25 Jun 2020 10:13:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200624215723.2316-1-matthew.s.atwood@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: implement Wa_14011508470;gen12
+References: <20200625123443.19680-1-lionel.g.landwerlin@intel.com>
+ <51e00eed-c8f1-aabf-ec2c-07be0453ab3b@amd.com>
+In-Reply-To: <51e00eed-c8f1-aabf-ec2c-07be0453ab3b@amd.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Fri, 26 Jun 2020 03:13:20 +1000
+Message-ID: <CAPM=9txhX5TVUdWibRFc1C+ip5a8-c07jZawds=k5T5pBTPASA@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] Revert "dma-buf: Report signaled links
+ inside dma-fence-chain"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,80 +64,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 24, 2020 at 02:57:23PM -0700, Matt Atwood wrote:
-
-Set the title to drm/i915/gen12: Impl... and let go the semicolon.
-> Update code to reflect recent bspec changes
-> 
-> Bspec: 52890
-> Bspec: 53508
-> 
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-With the title fixed,
-Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 8 ++++++++
->  drivers/gpu/drm/i915/i915_reg.h                    | 6 ++++++
->  2 files changed, 14 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index c3eeebadc0b8..22395be35364 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -6007,6 +6007,7 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
->  {
->  	struct i915_power_domains *power_domains = &dev_priv->power_domains;
->  	struct i915_power_well *well;
-> +	u32 val;
->  
->  	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
->  
-> @@ -6043,6 +6044,13 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
->  
->  	if (resume && dev_priv->csr.dmc_payload)
->  		intel_csr_load_program(dev_priv);
-> +
-> +	/* Wa_14011508470 */
-> +	if (IS_GEN(dev_priv, 12)) {
-> +		val = DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
-> +		      DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR;
-> +		intel_uncore_rmw(&dev_priv->uncore, GEN11_CHICKEN_DCPR_2, 0, val);
-> +	}
->  }
->  
->  static void icl_display_core_uninit(struct drm_i915_private *dev_priv)
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 450564e28332..5344d20c9070 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -8105,6 +8105,12 @@ enum hardware_error {
->  #define   MASK_WAKEMEM			(1 << 13)
->  #define   CNL_DDI_CLOCK_REG_ACCESS_ON	(1 << 7)
->  
-> +#define GEN11_CHICKEN_DCPR_2			_MMIO(0x46434)
-> +#define   DCPR_MASK_MAXLATENCY_MEMUP_CLR	REG_BIT(27)
-> +#define   DCPR_MASK_LPMODE			REG_BIT(26)
-> +#define   DCPR_SEND_RESP_IMM			REG_BIT(25)
-> +#define   DCPR_CLEAR_MEMSTAT_DIS		REG_BIT(24)
-> +
->  #define SKL_DFSM			_MMIO(0x51000)
->  #define   SKL_DFSM_DISPLAY_PM_DISABLE	(1 << 27)
->  #define   SKL_DFSM_DISPLAY_HDCP_DISABLE	(1 << 25)
-> -- 
-> 2.21.3
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V1RVRj8KCkhvdyBkaWQgdGhpcyBldmVyIGxhbmQgaW4gbXkgdHJlZSwgdGhlcmUgaXMgbm8gQUNL
+IG9uIHRoaXMgZnJvbSBhbnlvbmUKaW4gY29yZSBkbWEtYnVmLAoKSW50ZWwgdGVhbSwgY2xlYW4g
+eW91ciBob3VzZSB1cCBoZXJlLCBJJ20gZ29pbmcgdG8gaGF2ZSB0byBhc2sgeW91IHRvCnN0b3Ag
+Q2hyaXMgbWVyZ2luZyBzdHVmZiB3aXRob3V0IG92ZXJzaWdodCwgaWYgdGhpcyBzb3J0IG9mIHRo
+aW5nCmhhcHBlbnMsIHRoaXMgaXMgdG90YWxseSB1bmFjY2VwdGFibGUuCgpEYXZlLgoKCiBTaWdu
+ZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KICAgIFRl
+c3RlZC1ieTogVmVua2F0YSBTYW5kZWVwIERoYW5hbGFrb3RhIDx2ZW5rYXRhLnMuZGhhbmFsYWtv
+dGFAaW50ZWwuY29tPgogICAgUmV2aWV3ZWQtYnk6IFZlbmthdGEgU2FuZGVlcCBEaGFuYWxha290
+YSA8dmVua2F0YS5zLmRoYW5hbGFrb3RhQGludGVsLmNvbT4KCgpPbiBUaHUsIDI1IEp1biAyMDIw
+IGF0IDIyOjQzLCBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+IHdy
+b3RlOgo+Cj4gQW0gMjUuMDYuMjAgdW0gMTQ6MzQgc2NocmllYiBMaW9uZWwgTGFuZHdlcmxpbjoK
+PiA+IFRoaXMgcmV2ZXJ0cyBjb21taXQgNWRlMzc2YmI0MzRmODBhMTMxMzhmMGViZWRjODM1MWFi
+NzNkOGIwZC4KPiA+Cj4gPiBUaGlzIGNoYW5nZSBicmVha3Mgc3luY2hyb25pemF0aW9uIG9mIGEg
+dGltZWxpbmUuCj4gPiBkbWFfZmVuY2VfY2hhaW5fZmluZF9zZXFubygpIG1pZ2h0IGJlIGEgYml0
+IG9mIGEgY29uZnVzaW5nIG5hbWUgYnV0Cj4gPiB0aGlzIGZ1bmN0aW9uIGlzIG5vdCB0cnlpbmcg
+dG8gZmluZCBhIHBhcnRpY3VsYXIgc2Vxbm8sIGlzIHN1cHBvc2VkIHRvCj4gPiBnaXZlIGEgZmVu
+Y2UgdG8gd2FpdCBvbiBmb3IgYSBwYXJ0aWN1bGFyIHBvaW50IGluIHRoZSB0aW1lbGluZS4KPiA+
+Cj4gPiBJbiBhIHRpbWVsaW5lLCBhIHBhcnRpY3VsYXIgdmFsdWUgaXMgcmVhY2hlZCB3aGVuIGFs
+bCB0aGUgcG9pbnRzIHVwIHRvCj4gPiBhbmQgaW5jbHVkaW5nIHRoYXQgdmFsdWUgaGF2ZSBzaWdu
+YWxlZC4KPiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBMaW9uZWwgTGFuZHdlcmxpbiA8bGlvbmVsLmcu
+bGFuZHdlcmxpbkBpbnRlbC5jb20+Cj4KPiBSZXZpZXdlZC1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8
+Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+Cj4gPiAtLS0KPiA+ICAgZHJpdmVycy9kbWEtYnVm
+L2RtYS1mZW5jZS1jaGFpbi5jIHwgNyAtLS0tLS0tCj4gPiAgIDEgZmlsZSBjaGFuZ2VkLCA3IGRl
+bGV0aW9ucygtKQo+ID4KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2RtYS1idWYvZG1hLWZlbmNl
+LWNoYWluLmMgYi9kcml2ZXJzL2RtYS1idWYvZG1hLWZlbmNlLWNoYWluLmMKPiA+IGluZGV4IGM0
+MzViYmJhODUxYy4uM2QxMjM1MDJmZjEyIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9kbWEtYnVm
+L2RtYS1mZW5jZS1jaGFpbi5jCj4gPiArKysgYi9kcml2ZXJzL2RtYS1idWYvZG1hLWZlbmNlLWNo
+YWluLmMKPiA+IEBAIC05OSwxMiArOTksNiBAQCBpbnQgZG1hX2ZlbmNlX2NoYWluX2ZpbmRfc2Vx
+bm8oc3RydWN0IGRtYV9mZW5jZSAqKnBmZW5jZSwgdWludDY0X3Qgc2Vxbm8pCj4gPiAgICAgICAg
+ICAgICAgIHJldHVybiAtRUlOVkFMOwo+ID4KPiA+ICAgICAgIGRtYV9mZW5jZV9jaGFpbl9mb3Jf
+ZWFjaCgqcGZlbmNlLCAmY2hhaW4tPmJhc2UpIHsKPiA+IC0gICAgICAgICAgICAgaWYgKCgqcGZl
+bmNlKS0+c2Vxbm8gPCBzZXFubykgeyAvKiBhbHJlYWR5IHNpZ25hbGVkICovCj4gPiAtICAgICAg
+ICAgICAgICAgICAgICAgZG1hX2ZlbmNlX3B1dCgqcGZlbmNlKTsKPiA+IC0gICAgICAgICAgICAg
+ICAgICAgICAqcGZlbmNlID0gTlVMTDsKPiA+IC0gICAgICAgICAgICAgICAgICAgICBicmVhazsK
+PiA+IC0gICAgICAgICAgICAgfQo+ID4gLQo+ID4gICAgICAgICAgICAgICBpZiAoKCpwZmVuY2Up
+LT5jb250ZXh0ICE9IGNoYWluLT5iYXNlLmNvbnRleHQgfHwKPiA+ICAgICAgICAgICAgICAgICAg
+IHRvX2RtYV9mZW5jZV9jaGFpbigqcGZlbmNlKS0+cHJldl9zZXFubyA8IHNlcW5vKQo+ID4gICAg
+ICAgICAgICAgICAgICAgICAgIGJyZWFrOwo+ID4gQEAgLTIyOCw3ICsyMjIsNiBAQCBFWFBPUlRf
+U1lNQk9MKGRtYV9mZW5jZV9jaGFpbl9vcHMpOwo+ID4gICAgKiBAY2hhaW46IHRoZSBjaGFpbiBu
+b2RlIHRvIGluaXRpYWxpemUKPiA+ICAgICogQHByZXY6IHRoZSBwcmV2aW91cyBmZW5jZQo+ID4g
+ICAgKiBAZmVuY2U6IHRoZSBjdXJyZW50IGZlbmNlCj4gPiAtICogQHNlcW5vOiB0aGUgc2VxdWVu
+Y2UgbnVtYmVyIChzeW5jcHQpIG9mIHRoZSBmZW5jZSB3aXRoaW4gdGhlIGNoYWluCj4gPiAgICAq
+Cj4gPiAgICAqIEluaXRpYWxpemUgYSBuZXcgY2hhaW4gbm9kZSBhbmQgZWl0aGVyIHN0YXJ0IGEg
+bmV3IGNoYWluIG9yIGFkZCB0aGUgbm9kZSB0bwo+ID4gICAgKiB0aGUgZXhpc3RpbmcgY2hhaW4g
+b2YgdGhlIHByZXZpb3VzIGZlbmNlLgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
