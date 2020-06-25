@@ -1,60 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37BCB20CEBA
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 15:14:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 309B920CEC4
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 15:15:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20D826E03F;
-	Mon, 29 Jun 2020 13:14:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0DD96E0B6;
+	Mon, 29 Jun 2020 13:14:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from hqnvemgate26.nvidia.com (hqnvemgate26.nvidia.com
- [216.228.121.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E78AC6E895
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 00:11:34 +0000 (UTC)
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5ef3eba90000>; Wed, 24 Jun 2020 17:11:21 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate101.nvidia.com (PGP Universal service);
- Wed, 24 Jun 2020 17:11:34 -0700
-X-PGP-Universal: processed;
- by hqpgpgate101.nvidia.com on Wed, 24 Jun 2020 17:11:34 -0700
-Received: from [10.2.59.206] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 25 Jun
- 2020 00:11:30 +0000
-To: Jason Gunthorpe <jgg@ziepe.ca>
-References: <20200624191417.16735-1-chris@chris-wilson.co.uk>
- <20200624192116.GO6578@ziepe.ca>
- <44708b2e-479f-7d58-fe01-29cfd6c70bdb@nvidia.com>
- <20200624232047.GP6578@ziepe.ca>
-From: John Hubbard <jhubbard@nvidia.com>
-Message-ID: <887ac706-65f0-3089-b51b-47aabf7d3847@nvidia.com>
-Date: Wed, 24 Jun 2020 17:11:30 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07D736E528
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 08:11:38 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id j94so4873032wrj.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 01:11:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=R2wKwb4XYveguQBqX6eTnDhwhXlfLtHClTZA3q5x82U=;
+ b=qyuPCu+d1/0VtfQpSCgdiqaER12ejhPvLI1zyXASr8XodExVNyiELaEnEqYziyoEwl
+ n62Z72ZXzPI4eX5qU3pTk9+8VxVkVSbjV/DV/QhO8Gd5X6tHqbzRnlkxImfNUusupoea
+ qAlhFm3B9ZoEhddp2/MRKMiT02W2jFCX2MH3f/izdLt+otxMPFpFfgpwKiak3MsxTtUF
+ IbvKrT8AwRb8V8ByRIw5MRmHr1bmo3tYsBkARKJWGm0ujcN253HAH/JYO7cA+4Ej0gTS
+ 0rVL75JmFdF8Z5sh+pCHBuRxq+T5+dTa43ATCwdyXmhl2/VzCCiLKdsBzwxmYRqI83XR
+ fLgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-transfer-encoding:content-language;
+ bh=R2wKwb4XYveguQBqX6eTnDhwhXlfLtHClTZA3q5x82U=;
+ b=sey0W07xuzyq/3gvFXGS85G8ozsal+cRg3+Br3S/wCIthh/GPEzvXWA8SfcFw1kTkJ
+ hjIH2SIxN9OdHciTr6AX1tuPq9UoOEBMS1AmOGDWJA88McT0kt8F8Y0Z5GT/fIgP/1Dp
+ qrVtqPwGOT4ajZYEhe5ScGculay1LvEchcJ7EQ3rs2kqZs+1/ZYeqF0JsLEp89jWTS5p
+ bu9FByTGFYz3bFoMZZmM+e0lrGrBBFNaNP4QB7zt6WMG3w5LzRyIVzpOKo9wNEF5FEpG
+ biHh1ebvtbW1aYcRnbI5n/VEU3Ga3iqLkg2P9xRwo3JI7uoTKFd7e/vrsfPrIe+dFGbR
+ SZAA==
+X-Gm-Message-State: AOAM530Db03U6fH/Ri1b1d5hrAVCKiy36PZ7sFl7cQTZmy5M7cgNTPdR
+ ETgr0Q7NRDeRgKal9nVCr58=
+X-Google-Smtp-Source: ABdhPJxW+kkWmQmEpTS7l7nvv9hHLJBtZTcKoHbt4ewcUhCJEGI/F+zLO/NOQrtolkZ5GEXupZQFtw==
+X-Received: by 2002:adf:e545:: with SMTP id z5mr34410265wrm.89.1593072697574; 
+ Thu, 25 Jun 2020 01:11:37 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id g13sm4333418wro.84.2020.06.25.01.11.36
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 25 Jun 2020 01:11:36 -0700 (PDT)
+To: Chris Wilson <chris@chris-wilson.co.uk>, Dave Airlie <airlied@gmail.com>
+References: <20200622095921.15530-1-chris@chris-wilson.co.uk>
+ <20200622095921.15530-7-chris@chris-wilson.co.uk>
+ <2c65a714-cf5a-fae6-5342-b514351d03a5@shipmail.org>
+ <159290661156.6856.12185315246799210214@build.alporthouse.com>
+ <CAPM=9tx69Xv3xbAb1U+SGOuKk7wirZy6FbRejsajCt9Lvan9VA@mail.gmail.com>
+ <159294714433.24819.3044662904558073290@build.alporthouse.com>
+ <CAPM=9tzY0An5THnH=+KEv35LfX0DGt9q6u=t83id6OPgFsN-LQ@mail.gmail.com>
+ <159302990055.4527.16849537545776334660@build.alporthouse.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <de87a30b-3ac2-1bee-4ee0-5a05baef6146@gmail.com>
+Date: Thu, 25 Jun 2020 10:11:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200624232047.GP6578@ziepe.ca>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- HQMAIL107.nvidia.com (172.20.187.13)
+In-Reply-To: <159302990055.4527.16849537545776334660@build.alporthouse.com>
 Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1593043882; bh=HgfzVvVqN21hLMs0lCHOTEd/EC0i4XdyaUbWxeMoOfA=;
- h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
- User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
- X-ClientProxiedBy:Content-Type:Content-Language:
- Content-Transfer-Encoding;
- b=BzwIdhXhJaR4a1GFOREXvpV6vUVM0xoljaj4gyGV2TZqstSNPlA0ceFN6s9KnFBdE
- iH/boJYVyAOCocaXJ1GaY8MFDkY3XmDaWzguouPg/G5bCA7EMIsi76lhhdcj7zWsy1
- XxFw8VvTeWEvK8lVKxA3Rmxa7MWeAdYQZPwvUgg86Kf8VWTQ72tk4LhlnTWgJAFMke
- G56/gtNQ+7U9O3rOBvgPxoAsdVr8oAzhJXMTS/KO9TdyvLTuXwR6BUlUvdAYg/Xorh
- UNuwyyk6SdwNfzBalWj6udbUWgd/aDchn8JWAgxcaCAuAaKmQbGuu3R6Te/OBRqkQ8
- shubp1yPfhMOA==
 X-Mailman-Approved-At: Mon, 29 Jun 2020 13:14:32 +0000
-Subject: Re: [Intel-gfx] [PATCH] mm: Skip opportunistic reclaim for dma
- pinned pages
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/gem: Acquire all vma/objects
+ under reservation_ww_class
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,121 +79,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jan Kara <jack@suse.cz>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
- linux-mm@kvack.org, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
- Andrew
- Morton <akpm@linux-foundation.org>, Claudio Imbrenda <imbrenda@linux.ibm.com>,
- "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: christian.koenig@amd.com
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-06-24 16:20, Jason Gunthorpe wrote:
-...
-> I think Yang explained it - the page is removed from the mappings but
-> freeing it does not happen because page_ref_freeze() does not succeed
-> due to the pin.
-> 
-> Presumably the mappings can reconnect to the same physical page if
-> it is re-faulted to avoid any data corruption.
-> 
-> So, the issue here is the mappings are trashed while the page remains
-> - and trashing the mapping triggers a mmu notifier which upsets i915.
-> 
->> What's less clear is why the comment and the commit description
->> only talk about reclaim, when there are additional things that call
->> try_to_unmap(), including:
->>
->>      migrate_vma_unmap()
->>      split_huge_page_to_list() --> unmap_page()
-> 
-> It looks like the same unmap first then abort if the refcount is still
-> elevated design as shrink_page_list() ?
-
-
-Yes. I was just wondering why the documentation here seems to ignore the
-other, non-reclaim cases. Anyway, though...
-
-
-> 
->> I do like this code change, though. And I *think* it's actually safe to
->> do this, as it stays away from writeback or other filesystem activity.
->> But let me double check that, in case I'm forgetting something.
-
-...OK, I've checked, and I like it a little bit less now. Mainly for
-structural reasons, though. I think it would work correctly. But
-here's a concern: try_to_unmap() should only fail to unmap if there is a
-reason to not unmap. Having a page be pinned for dma is a reason to not
-*free* a page, and it's also a reason to be careful about writeback and
-page buffers for writeback and such. But I'm not sure that it's a reason
-to fail to remove mappings.
-
-True, most (all?) of the reasons that we remove mappings, generally are
-for things that are not allowed while a page is dma-pinned...at least,
-today. But still, there's nothing fundamental about a mapping that
-should prevent it from coming or going while a page is undergoing
-dma.
-
-So, it's merely a convenient, now-misnamed location in the call stack
-to fail out. That's not great. It might be better, as Jason hints at
-below, to fail out a little earlier, instead. That would lead to a more
-places to call page_maybe_dma_pinned(), but that's not a real problem,
-because it's still a small number of places.
-
-After writing all of that...I don't feel strongly about it, because
-TTU is kind of synonymous with "I'm about to do a dma-pin-unfriendly
-operation".
-
-Maybe some of the more experienced fs or mm people have strong opinions
-one way or the other?
-
-
-> 
-> It would be nice to have an explanation why it is OK now to change
-> it..
-
-Yes. Definitely good to explain that in the commit log. I think
-it's triggered by the existence of page_maybe_dma_pinned(). Until
-that was added, figuring out if dma was involved required basically
-just guesswork. Now we have a way to guess much more accurately. :)
-
-> 
-> I don't know, but could it be that try_to_unmap() has to be done
-> before checking the refcount as each mapping is included in the
-> refcount? ie we couldn't know a DMA pin was active in advance?
-> 
-> Now that we have your pin stuff we can detect a DMA pin without doing
-> all the unmaps?
-> 
-
-Once something calls pin_user_page*(), then the pages will be marked
-as dma-pinned, yes. So no, there is no need to wait until try_to_unmap()
-to find out.
-
-A final note: depending on where page_maybe_dma_pinned() ends up
-getting called, this might prevent a fair number of the problems that
-Jan originally reported [1], and that I also reported separately!
-
-Well, not all of the problems, and only after the filesystems get
-converted to call pin_user_pages() (working on that next), but...I think
-it would actually avoid the crash our customer reported back in early
-2018. Even though we don't have the full file lease + pin_user_pages()
-solution in place.
-
-That's because reclaim is what triggers the problems that we saw. And
-with this patch, we bail out of reclaim early.
-
-
-[1] https://www.spinics.net/lists/linux-mm/msg142700.html
-
-
-thanks,
--- 
-John Hubbard
-NVIDIA
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QW0gMjQuMDYuMjAgdW0gMjI6MTggc2NocmllYiBDaHJpcyBXaWxzb246Cj4gUXVvdGluZyBEYXZl
+IEFpcmxpZSAoMjAyMC0wNi0yNCAyMDowNDowMikKPj4gT24gV2VkLCAyNCBKdW4gMjAyMCBhdCAw
+NzoxOSwgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyb3RlOgo+Pj4g
+UXVvdGluZyBEYXZlIEFpcmxpZSAoMjAyMC0wNi0yMyAyMjowMToyNCkKPj4+PiBPbiBUdWUsIDIz
+IEp1biAyMDIwIGF0IDIwOjAzLCBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51
+az4gd3JvdGU6Cj4+Pj4+IFF1b3RpbmcgVGhvbWFzIEhlbGxzdHLDtm0gKEludGVsKSAoMjAyMC0w
+Ni0yMyAxMDozMzoyMCkKPj4+Pj4+IEhpLCBDaHJpcyEKPj4+Pj4+Cj4+Pj4+PiBPbiA2LzIyLzIw
+IDExOjU5IEFNLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4+Pj4+Pj4gSW4gb3JkZXIgdG8gYWN0dWFs
+bHkgaGFuZGxlIGV2aWN0aW9uIGFuZCB3aGF0IG5vdCwgd2UgbmVlZCB0byBwcm9jZXNzCj4+Pj4+
+Pj4gYWxsIHRoZSBvYmplY3RzIHRvZ2V0aGVyIHVuZGVyIGEgY29tbW9uIGxvY2ssIHJlc2VydmF0
+aW9uX3d3X2NsYXNzLiBBcwo+Pj4+Pj4+IHN1Y2gsIGRvIGEgbWVtb3J5IHJlc2VydmF0aW9uIHBh
+c3MgYWZ0ZXIgbG9va2luZyB1cCB0aGUgb2JqZWN0L3ZtYSwKPj4+Pj4+PiB3aGljaCB0aGVuIGZl
+ZWRzIGludG8gdGhlIHJlc3Qgb2YgZXhlY2J1ZiBbcmVsb2NhdGlvbiwgY21kcGFyc2luZywKPj4+
+Pj4+PiBmbHVzaGluZyBhbmQgb2ZjIGV4ZWN1dGlvbl0uCj4+Pj4+Pj4KPj4+Pj4+PiBTaWduZWQt
+b2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPj4+Pj4+PiAt
+LS0KPj4+Pj4+PiAgICAuLi4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMg
+ICAgfCA5MSArKysrKysrKysrKysrKy0tLS0tCj4+Pj4+Pj4gICAgMSBmaWxlIGNoYW5nZWQsIDcw
+IGluc2VydGlvbnMoKyksIDIxIGRlbGV0aW9ucygtKQo+Pj4+Pj4+Cj4+Pj4+PiBXaGljaCB0cmVl
+IGlzIHRoaXMgYWdhaW5zdD8gVGhlIHNlcmllcyBkb2Vzbid0IGFwcGx5IGNsZWFubHkgYWdhaW5z
+dAo+Pj4+Pj4gZHJtLXRpcD8KPj4+Pj4gSXQncyBjb250aW51aW5nIG9uIGZyb20gdGhlIHNjaGVk
+dWxlciBwYXRjaGVzLCB0aGUgYnVnIGZpeGVzIGFuZCB0aGUKPj4+Pj4gaXJpcy1kZWZlcnJlZC1m
+ZW5jZSB3b3JrLiBJIHRob3VnaHQgdGhyb3dpbmcgYWxsIG9mIHRob3NlIG9sZCBwYXRjaGVzCj4+
+Pj4+IGludG8gdGhlIHBpbGUgd291bGQgaGF2ZSBiZWVuIGRpc3RyYWN0aW5nLgo+Pj4+Pgo+Pj4+
+Pj4gLi4uCj4+Pj4+Pgo+Pj4+Pj4+ICtzdGF0aWMgaW50IGViX3Jlc2VydmVfbW0oc3RydWN0IGk5
+MTVfZXhlY2J1ZmZlciAqZWIpCj4+Pj4+Pj4gK3sKPj4+Pj4+PiArICAgICBjb25zdCB1NjQgaWR4
+ID0gZWItPmNvbnRleHQtPnRpbWVsaW5lLT5mZW5jZV9jb250ZXh0Owo+Pj4+Pj4+ICsgICAgIHN0
+cnVjdCB3d19hY3F1aXJlX2N0eCBhY3F1aXJlOwo+Pj4+Pj4+ICsgICAgIHN0cnVjdCBlYl92bWEg
+KmV2Owo+Pj4+Pj4+ICsgICAgIGludCBlcnI7Cj4+Pj4+Pj4gKwo+Pj4+Pj4+ICsgICAgIGViLT5t
+bV9mZW5jZSA9IF9fZG1hX2ZlbmNlX2NyZWF0ZV9wcm94eSgwLCAwKTsKPj4+Pj4+PiArICAgICBp
+ZiAoIWViLT5tbV9mZW5jZSkKPj4+Pj4+PiArICAgICAgICAgICAgIHJldHVybiAtRU5PTUVNOwo+
+Pj4+Pj4gV2hlcmUgYXJlIHRoZSBwcm94eSBmZW5jZSBmdW5jdGlvbnMgZGVmaW5lZD8KPj4+Pj4g
+SW4gZG1hLWZlbmNlLXByb3h5LmMgOykKPj4+PiBUaGUgZG1hLWZlbmNlLXByb3h5IHRoYXQgQ2hy
+aXN0aWFuIE5BS2VkIGJlZm9yZT8KPj4+IEkgZG8gbm90IGhhdmUgYW4gZW1haWwgZnJvbSBDaHJp
+c3RpYW4gYWJvdXQgZG1hLWZlbmNlLXByb3h5IGluIHRoZSBsYXN0Cj4+PiAzIHllYXJzIGl0IGhh
+cyBiZWVuIG9uIHRoZSBsaXN0Lgo+PiBodHRwczovL2xvcmUua2VybmVsLm9yZy9kcmktZGV2ZWwv
+YWViMDM3M2QtMDU4My1kOTIyLTNiNzMtOTM2NjhjMjdkMTc3QGFtZC5jb20vCj4gRGFybiwgSSBz
+a2ltbWVkIHRoZSB0aHJlYWQgdGl0bGUgYW5kIHRob3VnaHQgaXQgd2FzIGp1c3QgYWJvdXQgdGhl
+Cj4gdGltZWxpbmVzLgo+Cj4+IEknbSBhc3N1bWluZyB0aGlzIHdhcyBhYm91dCBwYXRjaCA4IHRo
+ZXJlIHdoaWNoIHRvIG1lIGxvb2tzIGxpa2UgcHJveHkKPj4gZmVuY2VzIGJ1dCBtYXliZSBieSB0
+aHJlYWRpbmcgaXMgb2ZmIHJlYWRpbmcgdGhhdC4KPiBUaGUgZGVhZGxvY2tzIGFyZSBlYXN5IHRv
+IHJlc29sdmUuIFRoZSBmZW5jZSBpcyBlaXRoZXIgc2lnbmFsZWQgbm9ybWFsbHkKPiBieSB1c2Vy
+c3BhY2UsIHRoZXkgY3JlYXRlIGEgZGVhZGxvY2sgdGhhdCBpcyByZWplY3RlZCBieSBjaGVja2lu
+ZyB0aGUgZGFnCj4gYW5kIHRoZSBmZW5jZSBzaWduYWxlZCB3aXRoIGFuIGVycm9yIChhbmQgd29y
+ayBjYW5jZWxsZWQsIGVycm9yCj4gcHJvcGFnYXRlZCBiYWNrIHRvIHVzZXJzcGFjZSBpZiB0aGV5
+IGtlcHQgdGhlIG91dHB1dCBmZW5jZSBhcm91bmQpLCBvcgo+IHVzZXJzcGFjZSBmb3JnZXRzIGVu
+dGlyZWx5IGFib3V0IHRoZSBmZW5jZSB0aGV5IHdlcmUgd2FpdGluZyBvbiBpbiB3aGljaAo+IGNh
+c2UgaXQgaXMgc2lnbmFsZWQgYnkgY2xvc2luZyB0aGUgc3luY29ianMgW3NhZGx5IG5vdCBpbiBl
+cnJvciB0aG91Z2gsCj4gSSBob3BpbmcgdG8gcmVwb3J0IEVQSVBFXSBvbiBwcm9jZXNzIHRlcm1p
+bmF0aW9uLgoKQW5kIGV4YWN0bHkgdGhhdCBjb25jZXB0IGlzIHN0aWxsIGEgYmlnIE5BSy4KClRo
+ZSBrZXJuZWwgbWVtb3J5IG1hbmFnZW1lbnQgZGVwZW5kcyBvbiBkbWFfZmVuY2VzIHRvIGJlIHNp
+Z25hbGluZyBhcyAKc29vbiBhcyB0aGV5IGFyZSBleGlzdGluZy4KCkp1c3QgaW1hZ2luZSB3aGF0
+IERhbmllbCdzIGRlcGVuZGVuY3kgcGF0Y2hlcyB3b3VsZCBzcGxhdCBvdXQgd2hlbiB5b3UgCmRv
+IHNvbWV0aGluZyBsaWtlIHRoaXMgYW5kIGNvcnJlY3RseSBhbm5vdGF0ZSB0aGUgc2lnbmFsaW5n
+IGNvZGUgcGF0aC4KClByb3h5IGZlbmNlcywgZXNwZWNpYWxseSB3aGVuIHRoZXkgZGVwZW5kIG9u
+IHVzZXJzcGFjZSBmb3Igc2lnbmFsaW5nIGFyZSAKYW4gYWJzb2x1dGVseSBOTy1HTy4KClJlZ2Fy
+ZHMsCkNocmlzdGlhbi4KCj4KPiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0
+Y2gvMzcyNzU5Lz9zZXJpZXM9Nzg3NjImcmV2PTEKPiBXZSBjYW4gYWx3YXlzIGF0dGFjaCB0aGUg
+ZGFnIHJlc29sdmVyIHN1Y2ggdGhhdCB3ZSByZXNvbHZlIHRoZSBkZWFkbG9jawo+IGZvciBhbnkg
+aW1wb3J0ZXIgYW5kIHNvIG9ubHkgZXZlciBwcmVzZW50IGEgbm9ybWFsIG1vbm90b25pYyBmZW5j
+ZS4KPiBUaGF0IHdvdWxkIG1ha2UgaXQgaWxsZWdhbCB0byB3YWl0IG9uIGFuIGV4dGVybmFsIGZl
+bmNlIGltcG9ydGVkIGludG8KPiB0aGF0IHN5bmNvYmogKGFzIHRoYXQgd291bGQgYmUgb3V0c2lk
+ZSBvZiBvdXIgZGFnKS4gQW4gb3B0aW9uIHdvdWxkCj4gYmUgd2hldGhlciBvciBub3QgdG8gZm9y
+Y2UgdGltZW91dCBzbG93IHVzZXJzcGFjZS4gQnV0IHRoZSBzaW1wbGljaXR5IG9mCj4gcmV1c2lu
+ZyB0aGUgZXhpc3RpbmcgZnVuY3Rpb25hbGl0eSB0byBtb3ZlIGludHJhYmF0Y2ggc2NoZWR1bGlu
+ZyBpbnRvCj4gaXJpcyBpcyBjb21wZWxsaW5nLiBbSW4gY29udHJhc3QsIG5vIG9uZSBoYXMgeWV0
+IGZpbmlzaGVkIHRoZSB0aW1lbGluZQo+IHBhdGNoZXMgdG8gdGhlIHBvaW50IHdoZXJlIHRoZXkg
+c3RvcHBlZCB0aHJvd2luZyBlcnJvcnMgaW4gaWd0LCBhbmQgd2UKPiBzdGlsbCB0aGVuIGhhdmUg
+dG8gd3JpdGUgcGF0Y2hlcyBmb3Igbm9uYmxvY2tpbmcgd2FpdC1mb3Itc3VibWl0IDpbCj4KPiBU
+aGUgdXNlIGhlcmUgaXMgdHJpdmlhbCwgY2hpZWZseSB1c2VkIGFzIGEgY29udmVuaWVuY2UgdG8g
+Zmxlc2ggb3V0IHRoaXMKPiBhcmd1bWVudCB0byBzZWUgaWYgd2UgY2FuIHJlZHVjZSB0aGUgbG9j
+ayBkdXJhdGlvbiB3aXRoaW4gc3VibWlzc2lvbgo+IFtmcm9tIHRoZSBlbnRpcmV0eSBvZiBzdWJt
+aXNzaW9uIHRvIGlkZWFsbHkganVzdCByZXNlcnZhdGlvbl0gYnkgaG9sZGluZwo+IGEgZmVuY2Ug
+Zm9yIHRoZSBzdWJtaXNzaW9uIHByb2Nlc3MgaXRzZWxmLiBBbmQgdGhhdCBib2lscyBkb3duIHRv
+IGF0IHdoYXQKPiBwb2ludCBjYW4gc29tZW9uZSBlbHNlIHN0YXJ0IHRvIHdhaXQgb24gdGhhdCBm
+ZW5jZSwgYW5kIHdoZXRoZXIgb3Igbm90IHdlCj4gY2FuIGF2b2lkIGFueSBkaXJlY3QvaW5kaXJl
+Y3Qgd2FpdHMgb3Vyc2VsdmVzIGFmdGVyIHBvaW50IGFuZCBiZWZvcmUKPiBjb21wbGV0aW5nIHN1
+Ym1pc3Npb24uIFtVc3VhbCBydWxlcyBhYm91dCBub3QgYmVpbmcgYWxsb3dlZCB0byB3YWl0IG9u
+IGEKPiByZXNvdXJjZSB3aGlsZSBob2xkaW5nIGNvbnRlbmRhYmxlIHJlc291cmNlcywgYnV0IHdp
+dGggdGhlIG51YW5jZSBvZgo+IHdoYXQvd2hlbiBleGFjdGx5IHRoYXQgcmVzb3VyY2UgYmVjb21l
+cyBjb250ZW5kYWJsZS5dIFRoZSBsb2NrIGNvbnRlbnRpb24KPiBpcyBxdWl0ZSByZWFsLCBhcyBh
+dCB0aGUgbW9tZW50IGl0IGlzIGRldm9sdmluZyBpbnRvIGEgZ2xvYmFsIGxvY2suIFdpdGgKPiB0
+aGUgYW11c2luZyBzaWRlIGVmZmVjdCB0aGF0IGl0IHRoZW4gdHVybnMgb3V0IHRvIGJlIHF1aWNr
+ZXIgdG8gd3JhcCB0aGUKPiBlbnRpcmUgdGhpbmcgaW4gc3RydWN0X211dGV4Lgo+IC1DaHJpcwoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
