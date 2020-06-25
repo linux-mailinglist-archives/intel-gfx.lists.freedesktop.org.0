@@ -1,41 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C77320A195
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 17:10:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC65020A19D
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 17:12:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 763556E2A3;
-	Thu, 25 Jun 2020 15:10:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19CCC6E2A5;
+	Thu, 25 Jun 2020 15:12:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12FC96E2A3
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 15:10:28 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21615175-1500050 for multiple; Thu, 25 Jun 2020 16:10:27 +0100
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
+ [209.85.221.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86AC56E2A5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 15:12:31 +0000 (UTC)
+Received: by mail-wr1-f67.google.com with SMTP id z13so6234867wrw.5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 08:12:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=bdxVf6vP79BMfcPB59swOSXedDJpX0cQVnYY/hZ9KZQ=;
+ b=tN2pfMVMHz8hCFf3m7Hr/YQM4VvvTvcEfaKeLZqpSBXmS2uZwQ+R0J4nn2DL2e5Pg3
+ RAJLArrQViTcYFWghL35jiGLukXnPUPjT/dwaHGp9+/sN+EgGzVqnbIwOJPRMkJhllBS
+ CTRnZvEyAH9YamZEVpYhckI16+mf3037LhyBpHAZ6DUgFsO93cK9Q9d9SPAMNa08gPmg
+ hiOBUWUBCwXMLVApui+az2fCzrFyFz5xERS5WCMfY7A9R7+0ElOYFWBtuQg/Jp2Nykhp
+ kl9lxoptEbxi2gbxQpfa/kdK/F6cxujkgth6CKsASTVaGXy8/wc7HNSy54I/57Pf8j3v
+ csHA==
+X-Gm-Message-State: AOAM530nnBv+/adcy9t/CXfphzRN2NuR9TW0AAxRBD7umrxaY2h1eG2h
+ 1/wMKtKOW0hM20tbrIeL2II=
+X-Google-Smtp-Source: ABdhPJwGVQIqx5ePGDHbr6RmWFkkyWM9E3xiJlzfuHlZjnvupf4cZ5UBiAyLNuseyyaLSlxPtcPRrA==
+X-Received: by 2002:a5d:46c7:: with SMTP id g7mr1554369wrs.365.1593097949960; 
+ Thu, 25 Jun 2020 08:12:29 -0700 (PDT)
+Received: from localhost (ip-37-188-168-3.eurotel.cz. [37.188.168.3])
+ by smtp.gmail.com with ESMTPSA id t2sm12315490wma.43.2020.06.25.08.12.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 25 Jun 2020 08:12:28 -0700 (PDT)
+Date: Thu, 25 Jun 2020 17:12:27 +0200
+From: Michal Hocko <mhocko@kernel.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200625151227.GP1320@dhcp22.suse.cz>
+References: <20200624191417.16735-1-chris@chris-wilson.co.uk>
+ <20200625075725.GC1320@dhcp22.suse.cz>
+ <159308284703.4527.16058577374955415124@build.alporthouse.com>
 MIME-Version: 1.0
-In-Reply-To: <011fe07b-1e2c-7cc2-ade8-2c8b4df80b90@gmail.com>
-References: <20200622095921.15530-1-chris@chris-wilson.co.uk>
- <CAPM=9tx69Xv3xbAb1U+SGOuKk7wirZy6FbRejsajCt9Lvan9VA@mail.gmail.com>
- <159294714433.24819.3044662904558073290@build.alporthouse.com>
- <CAPM=9tzY0An5THnH=+KEv35LfX0DGt9q6u=t83id6OPgFsN-LQ@mail.gmail.com>
- <159302990055.4527.16849537545776334660@build.alporthouse.com>
- <de87a30b-3ac2-1bee-4ee0-5a05baef6146@gmail.com>
- <159308931300.4527.14536354033703689604@build.alporthouse.com>
- <6d99c4d9-7294-9ce1-471a-f81de7dc2c4f@amd.com>
- <159309140216.31486.2359580281725596670@build.alporthouse.com>
- <011fe07b-1e2c-7cc2-ade8-2c8b4df80b90@gmail.com>
-To: Christian König <christian.koenig@amd.com>, Christian König <ckoenig.leichtzumerken@gmail.com>, Dave Airlie <airlied@gmail.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159309782319.31486.530565133539052103@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 25 Jun 2020 16:10:23 +0100
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/gem: Acquire all vma/objects
- under reservation_ww_class
+Content-Disposition: inline
+In-Reply-To: <159308284703.4527.16058577374955415124@build.alporthouse.com>
+Subject: Re: [Intel-gfx] [PATCH] mm: Skip opportunistic reclaim for dma
+ pinned pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,147 +59,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jan Kara <jack@suse.cz>, Jason Gunthorpe <jgg@ziepe.ca>,
+ John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Claudio Imbrenda <imbrenda@linux.ibm.com>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBDaHJpc3RpYW4gS8O2bmlnICgyMDIwLTA2LTI1IDE1OjAyOjQxKQo+IEFtIDI1LjA2
-LjIwIHVtIDE1OjIzIHNjaHJpZWIgQ2hyaXMgV2lsc29uOgo+ID4gUXVvdGluZyBDaHJpc3RpYW4g
-S8O2bmlnICgyMDIwLTA2LTI1IDEzOjU5OjE2KQo+ID4+IEFtIDI1LjA2LjIwIHVtIDE0OjQ4IHNj
-aHJpZWIgQ2hyaXMgV2lsc29uOgo+ID4+PiBRdW90aW5nIENocmlzdGlhbiBLw7ZuaWcgKDIwMjAt
-MDYtMjUgMDk6MTE6MzUpCj4gPj4+PiBBbSAyNC4wNi4yMCB1bSAyMjoxOCBzY2hyaWViIENocmlz
-IFdpbHNvbjoKPiA+Pj4+PiBRdW90aW5nIERhdmUgQWlybGllICgyMDIwLTA2LTI0IDIwOjA0OjAy
-KQo+ID4+Pj4+PiBPbiBXZWQsIDI0IEp1biAyMDIwIGF0IDA3OjE5LCBDaHJpcyBXaWxzb24gPGNo
-cmlzQGNocmlzLXdpbHNvbi5jby51az4gd3JvdGU6Cj4gPj4+Pj4+PiBRdW90aW5nIERhdmUgQWly
-bGllICgyMDIwLTA2LTIzIDIyOjAxOjI0KQo+ID4+Pj4+Pj4+IE9uIFR1ZSwgMjMgSnVuIDIwMjAg
-YXQgMjA6MDMsIENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPiB3cm90ZToK
-PiA+Pj4+Pj4+Pj4gUXVvdGluZyBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwpICgyMDIwLTA2LTIz
-IDEwOjMzOjIwKQo+ID4+Pj4+Pj4+Pj4gSGksIENocmlzIQo+ID4+Pj4+Pj4+Pj4KPiA+Pj4+Pj4+
-Pj4+IE9uIDYvMjIvMjAgMTE6NTkgQU0sIENocmlzIFdpbHNvbiB3cm90ZToKPiA+Pj4+Pj4+Pj4+
-PiBJbiBvcmRlciB0byBhY3R1YWxseSBoYW5kbGUgZXZpY3Rpb24gYW5kIHdoYXQgbm90LCB3ZSBu
-ZWVkIHRvIHByb2Nlc3MKPiA+Pj4+Pj4+Pj4+PiBhbGwgdGhlIG9iamVjdHMgdG9nZXRoZXIgdW5k
-ZXIgYSBjb21tb24gbG9jaywgcmVzZXJ2YXRpb25fd3dfY2xhc3MuIEFzCj4gPj4+Pj4+Pj4+Pj4g
-c3VjaCwgZG8gYSBtZW1vcnkgcmVzZXJ2YXRpb24gcGFzcyBhZnRlciBsb29raW5nIHVwIHRoZSBv
-YmplY3Qvdm1hLAo+ID4+Pj4+Pj4+Pj4+IHdoaWNoIHRoZW4gZmVlZHMgaW50byB0aGUgcmVzdCBv
-ZiBleGVjYnVmIFtyZWxvY2F0aW9uLCBjbWRwYXJzaW5nLAo+ID4+Pj4+Pj4+Pj4+IGZsdXNoaW5n
-IGFuZCBvZmMgZXhlY3V0aW9uXS4KPiA+Pj4+Pj4+Pj4+Pgo+ID4+Pj4+Pj4+Pj4+IFNpZ25lZC1v
-ZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+ID4+Pj4+Pj4+
-Pj4+IC0tLQo+ID4+Pj4+Pj4+Pj4+ICAgICAgLi4uL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-ZXhlY2J1ZmZlci5jICAgIHwgOTEgKysrKysrKysrKysrKystLS0tLQo+ID4+Pj4+Pj4+Pj4+ICAg
-ICAgMSBmaWxlIGNoYW5nZWQsIDcwIGluc2VydGlvbnMoKyksIDIxIGRlbGV0aW9ucygtKQo+ID4+
-Pj4+Pj4+Pj4+Cj4gPj4+Pj4+Pj4+PiBXaGljaCB0cmVlIGlzIHRoaXMgYWdhaW5zdD8gVGhlIHNl
-cmllcyBkb2Vzbid0IGFwcGx5IGNsZWFubHkgYWdhaW5zdAo+ID4+Pj4+Pj4+Pj4gZHJtLXRpcD8K
-PiA+Pj4+Pj4+Pj4gSXQncyBjb250aW51aW5nIG9uIGZyb20gdGhlIHNjaGVkdWxlciBwYXRjaGVz
-LCB0aGUgYnVnIGZpeGVzIGFuZCB0aGUKPiA+Pj4+Pj4+Pj4gaXJpcy1kZWZlcnJlZC1mZW5jZSB3
-b3JrLiBJIHRob3VnaHQgdGhyb3dpbmcgYWxsIG9mIHRob3NlIG9sZCBwYXRjaGVzCj4gPj4+Pj4+
-Pj4+IGludG8gdGhlIHBpbGUgd291bGQgaGF2ZSBiZWVuIGRpc3RyYWN0aW5nLgo+ID4+Pj4+Pj4+
-Pgo+ID4+Pj4+Pj4+Pj4gLi4uCj4gPj4+Pj4+Pj4+Pgo+ID4+Pj4+Pj4+Pj4+ICtzdGF0aWMgaW50
-IGViX3Jlc2VydmVfbW0oc3RydWN0IGk5MTVfZXhlY2J1ZmZlciAqZWIpCj4gPj4+Pj4+Pj4+Pj4g
-K3sKPiA+Pj4+Pj4+Pj4+PiArICAgICBjb25zdCB1NjQgaWR4ID0gZWItPmNvbnRleHQtPnRpbWVs
-aW5lLT5mZW5jZV9jb250ZXh0Owo+ID4+Pj4+Pj4+Pj4+ICsgICAgIHN0cnVjdCB3d19hY3F1aXJl
-X2N0eCBhY3F1aXJlOwo+ID4+Pj4+Pj4+Pj4+ICsgICAgIHN0cnVjdCBlYl92bWEgKmV2Owo+ID4+
-Pj4+Pj4+Pj4+ICsgICAgIGludCBlcnI7Cj4gPj4+Pj4+Pj4+Pj4gKwo+ID4+Pj4+Pj4+Pj4+ICsg
-ICAgIGViLT5tbV9mZW5jZSA9IF9fZG1hX2ZlbmNlX2NyZWF0ZV9wcm94eSgwLCAwKTsKPiA+Pj4+
-Pj4+Pj4+PiArICAgICBpZiAoIWViLT5tbV9mZW5jZSkKPiA+Pj4+Pj4+Pj4+PiArICAgICAgICAg
-ICAgIHJldHVybiAtRU5PTUVNOwo+ID4+Pj4+Pj4+Pj4gV2hlcmUgYXJlIHRoZSBwcm94eSBmZW5j
-ZSBmdW5jdGlvbnMgZGVmaW5lZD8KPiA+Pj4+Pj4+Pj4gSW4gZG1hLWZlbmNlLXByb3h5LmMgOykK
-PiA+Pj4+Pj4+PiBUaGUgZG1hLWZlbmNlLXByb3h5IHRoYXQgQ2hyaXN0aWFuIE5BS2VkIGJlZm9y
-ZT8KPiA+Pj4+Pj4+IEkgZG8gbm90IGhhdmUgYW4gZW1haWwgZnJvbSBDaHJpc3RpYW4gYWJvdXQg
-ZG1hLWZlbmNlLXByb3h5IGluIHRoZSBsYXN0Cj4gPj4+Pj4+PiAzIHllYXJzIGl0IGhhcyBiZWVu
-IG9uIHRoZSBsaXN0Lgo+ID4+Pj4+PiBodHRwczovL25hbTExLnNhZmVsaW5rcy5wcm90ZWN0aW9u
-Lm91dGxvb2suY29tLz91cmw9aHR0cHMlM0ElMkYlMkZsb3JlLmtlcm5lbC5vcmclMkZkcmktZGV2
-ZWwlMkZhZWIwMzczZC0wNTgzLWQ5MjItM2I3My05MzY2OGMyN2QxNzclNDBhbWQuY29tJTJGJmFt
-cDtkYXRhPTAyJTdDMDElN0NjaHJpc3RpYW4ua29lbmlnJTQwYW1kLmNvbSU3Q2NiMDYwZTM1OGQ4
-NDQ3ODQ4MTU3MDhkODE5MDYxODY4JTdDM2RkODk2MWZlNDg4NGU2MDhlMTFhODJkOTk0ZTE4M2Ql
-N0MwJTdDMCU3QzYzNzI4Njg2MTI5MjM0NjM3MiZhbXA7c2RhdGE9RGxIaXN0bXFQaSUyQnR3ZGNU
-JTJGeWNydFJwb0xHWjZ4Y0JEJTJGa1B2VlpjUTJZUSUzRCZhbXA7cmVzZXJ2ZWQ9MAo+ID4+Pj4+
-IERhcm4sIEkgc2tpbW1lZCB0aGUgdGhyZWFkIHRpdGxlIGFuZCB0aG91Z2h0IGl0IHdhcyBqdXN0
-IGFib3V0IHRoZQo+ID4+Pj4+IHRpbWVsaW5lcy4KPiA+Pj4+Pgo+ID4+Pj4+PiBJJ20gYXNzdW1p
-bmcgdGhpcyB3YXMgYWJvdXQgcGF0Y2ggOCB0aGVyZSB3aGljaCB0byBtZSBsb29rcyBsaWtlIHBy
-b3h5Cj4gPj4+Pj4+IGZlbmNlcyBidXQgbWF5YmUgYnkgdGhyZWFkaW5nIGlzIG9mZiByZWFkaW5n
-IHRoYXQuCj4gPj4+Pj4gVGhlIGRlYWRsb2NrcyBhcmUgZWFzeSB0byByZXNvbHZlLiBUaGUgZmVu
-Y2UgaXMgZWl0aGVyIHNpZ25hbGVkIG5vcm1hbGx5Cj4gPj4+Pj4gYnkgdXNlcnNwYWNlLCB0aGV5
-IGNyZWF0ZSBhIGRlYWRsb2NrIHRoYXQgaXMgcmVqZWN0ZWQgYnkgY2hlY2tpbmcgdGhlIGRhZwo+
-ID4+Pj4+IGFuZCB0aGUgZmVuY2Ugc2lnbmFsZWQgd2l0aCBhbiBlcnJvciAoYW5kIHdvcmsgY2Fu
-Y2VsbGVkLCBlcnJvcgo+ID4+Pj4+IHByb3BhZ2F0ZWQgYmFjayB0byB1c2Vyc3BhY2UgaWYgdGhl
-eSBrZXB0IHRoZSBvdXRwdXQgZmVuY2UgYXJvdW5kKSwgb3IKPiA+Pj4+PiB1c2Vyc3BhY2UgZm9y
-Z2V0cyBlbnRpcmVseSBhYm91dCB0aGUgZmVuY2UgdGhleSB3ZXJlIHdhaXRpbmcgb24gaW4gd2hp
-Y2gKPiA+Pj4+PiBjYXNlIGl0IGlzIHNpZ25hbGVkIGJ5IGNsb3NpbmcgdGhlIHN5bmNvYmpzIFtz
-YWRseSBub3QgaW4gZXJyb3IgdGhvdWdoLAo+ID4+Pj4+IEkgaG9waW5nIHRvIHJlcG9ydCBFUElQ
-RV0gb24gcHJvY2VzcyB0ZXJtaW5hdGlvbi4KPiA+Pj4+IEFuZCBleGFjdGx5IHRoYXQgY29uY2Vw
-dCBpcyBzdGlsbCBhIGJpZyBOQUsuCj4gPj4+Pgo+ID4+Pj4gVGhlIGtlcm5lbCBtZW1vcnkgbWFu
-YWdlbWVudCBkZXBlbmRzIG9uIGRtYV9mZW5jZXMgdG8gYmUgc2lnbmFsaW5nIGFzCj4gPj4+PiBz
-b29uIGFzIHRoZXkgYXJlIGV4aXN0aW5nLgo+ID4+Pj4KPiA+Pj4+IEp1c3QgaW1hZ2luZSB3aGF0
-IERhbmllbCdzIGRlcGVuZGVuY3kgcGF0Y2hlcyB3b3VsZCBzcGxhdCBvdXQgd2hlbiB5b3UKPiA+
-Pj4+IGRvIHNvbWV0aGluZyBsaWtlIHRoaXMgYW5kIGNvcnJlY3RseSBhbm5vdGF0ZSB0aGUgc2ln
-bmFsaW5nIGNvZGUgcGF0aC4KPiA+Pj4gTm90aGluZyBhdCBhbGwuIEZvcndhcmQgcHJvZ3Jlc3Mg
-b2YgdGhlIHdhaXRlciBkb2VzIG5vdCBzb2xlbHkgZGVwZW5kIG9uCj4gPj4+IHRoZSBzaWduYWxl
-ciwganVzdCBhcyBpbiBiYzljODBmZTAxYTI1NzBhMmZkNzhhYmJjNDkyYjM3N2I1ZmRhMDY4Lgo+
-ID4+PiAgICAKPiA+Pj4+IFByb3h5IGZlbmNlcywgZXNwZWNpYWxseSB3aGVuIHRoZXkgZGVwZW5k
-IG9uIHVzZXJzcGFjZSBmb3Igc2lnbmFsaW5nIGFyZQo+ID4+Pj4gYW4gYWJzb2x1dGVseSBOTy1H
-Ty4KPiA+Pj4gV2UgYXJlIGluIGZ1bGwgY29udHJvbCBvZiB0aGUgc2lnbmFsaW5nIGFuZCBhcmUg
-YWJsZSB0byBjYW5jZWwgdGhlIHBlbmRpbmcKPiA+Pj4gdXNlcnNwYWNlIG9wZXJhdGlvbiwgbW92
-ZSBpdCBvZmYgdG8gb25lIHNpZGUgYW5kIHNodXRkb3duIHRoZSBIVywKPiA+Pj4gd2hhdGV2ZXIu
-IFdlIGNhbiBhbmQgZG8gZG8gZGVwZW5kZW5jeSBhbmFseXNpcyBvZiB0aGUgZmVuY2UgY29udGV4
-dHMgdG8KPiA+Pj4gYXZvaWQgZGVhZGxvY2tzLCBqdXN0IGFzIGVhc2lseSBhcyBkZXRlY3Rpbmcg
-cmVjdXJzaW9uLgo+ID4+Pgo+ID4+PiBUbyBjbGFpbSB0aGF0IHVzZXJzcGFjZSBpcyBub3QgYWxy
-ZWFkeSBhYmxlIHRvIGNvbnRyb2wgc2lnbmFsaW5nLCBpcyBhCj4gPj4+IGZhbHNlIGRpY2hvdG9t
-eS4gVXNlcnNwYWNlIGlzIGZ1bGx5IGFibGUgdG8gbG9jayB0aGUgSFcgcmVzb3VyY2VzCj4gPj4+
-IGluZGVmaW5pdGVseSAoZXZlbiBpZiB5b3UgY2FwIGV2ZXJ5IGpvYiwgb25lIGNhbiBhbHdheXMg
-YnVpbGQgYSBjaGFpbiBvZgo+ID4+PiBqb2JzIHRvIGNpcmN1bXZlbnQgYW55IGltcG9zZWQgdGlt
-ZW91dCwgYSBjb3VwbGUgb2Ygc2Vjb25kcyB0aW1lb3V0Cj4gPj4+IGJlY29tZXMgc2V2ZXJhbCBt
-b250aHMgb2Ygam9icyBiZWZvcmUgdGhlIEdQVSBydW5zIG91dCBvZiBtZW1vcnkgYW5kIGlzCj4g
-Pj4+IHVuYWJsZSB0byBhY2NlcHQgYW55IG1vcmUgam9icykuIEFueSBpb2N0bCB0aGF0IGJsb2Nr
-cyB3aGlsZSBob2xkaW5nIGEgSFcKPiA+Pj4gcmVzb3VyY2UgcmVuZGVycyBpdHNlbGYgbGlhYmxl
-IHRvIGEgdXNlciBjb250cm9sbGFibGUgbGl2ZWxvY2ssIHlvdSBrbm93Cj4gPj4+IHRoaXMsIGJl
-Y2F1c2UgaXQgaXMgYmxvY2tpbmcgdGhlIHNpZ25hbGluZyBvZiB0aG9zZSBlYXJsaWVyIGpvYnMu
-Cj4gPj4+IFdvcnJ5aW5nIGFib3V0IHRoaW5ncyB0aGF0IGFyZSBlbnRpcmVseSB3aXRoaW4gb3Vy
-IGNvbnRyb2wgYW5kIGhlbmNlCj4gPj4+IGF2b2lkYWJsZSwgbWlzc2VzIHRoZSBwb2ludC4KPiA+
-PiBZb3UgYXJlIGNvbXBsZXRlbHkgbWlzc2luZyB0aGUgcHJvYmxlbSBoZXJlLgo+ID4+Cj4gPj4g
-QXMgeW91IGNvcnJlY3RseSBwb2ludGVkIG91dCB0aGF0IGFuIHVzZXJzcGFjZSB0aHJlYWQgYmxv
-Y2tzIG9uCj4gPj4gc29tZXRoaW5nIGlzIHBlcmZlY3RseSBhY2NlcHRhYmxlLiBBbmQgdGhhdCdz
-IGhvdwo+ID4+IGJjOWM4MGZlMDFhMjU3MGEyZmQ3OGFiYmM0OTJiMzc3YjVmZGEwNjggd29ya3Mg
-YXMgd2VsbC4KPiA+Pgo+ID4+IEFuZCBiYzljODBmZTAxYTI1NzBhMmZkNzhhYmJjNDkyYjM3N2I1
-ZmRhMDY4IG9ubHkgaW1wbGVtZW50cyB3YWl0aW5nIHNvCj4gPj4gdGhhdCBkdXJpbmcgQ1Mgb3Ig
-V0FJVCBJT0NUTCB3ZSBjYW4gYmxvY2sgZm9yIHRoZSBmZW5jZSB0byBhcHBlYXIuCj4gPj4KPiA+
-Pgo+ID4+IFdoYXQgaGFwcGVucyBpbiB5b3VyIGFwcHJvYWNoIGlzIHRoYXQgdGhlIGtlcm5lbCBz
-dGFydHMgdG8gd2FpdCBmb3IKPiA+PiB1c2Vyc3BhY2UgaW4gaXRzIG1lbW9yeSByZWNsYWltIHBh
-dGguIFRoYXQgaXMgZXhhY3RseSB0aGUga2luZCBvZgo+ID4+IHByb2JsZW0gRGFuaWVscyBwYXRj
-aGVzIG5vdyBwb2ludCBvdXQgaW1tZWRpYXRlbHkuCj4gPiBObyB3ZSBkb24ndC4KClRvIGJlIGNs
-ZWFyLCBhZGRpbmcgYSB3YWl0IHRvIGRpcmVjdCByZWNsYWltIGluY3VycyBsYXRlbmN5IGFjcm9z
-cyB0aGUKd2hvbGUgc3lzdGVtLCBhbmQgYXR0cmFjdHMgdGhlIGlyZSBvZiB1c2VycyBhbmQgY29y
-ZSBkZXZlbG9wZXJzIGFsaWtlLgoKSGF2aW5nIGZpZWxkZWQgdGhlIGJ1ZyByZXBvcnRzIGZvciB0
-aGF0LCB3ZSB0cnkgdG8gYXZvaWQgYW55IGNhc2Ugd2hlcmUKd2Ugd291bGQgd2FpdCBpbnNpZGUg
-ZGlyZWN0IHJlY2xhaW0uIFdlIHN0aWxsIGRvIGNhdXNlIGtzd2FwZCB0byB3YWl0IGlmCnRoZXJl
-J3Mgbm90aGluZyBlbHNlIGxlZnQgdG8gY2xlYW4gdXAuIFdlIGFsc28gdHJ5IHRvIGFwcGx5IGJh
-Y2twcmVzc3VyZQp0byBjbGllbnQgbWVtb3J5IGFsbG9jYXRvcnMgZGlyZWN0bHk7IEkgd291bGQg
-bGlrZSB0byBpbXByb3ZlIHRoYXQgcGF0aAp0byBoYXZlIG1lbW9yeSBwcmlvcml0aXNhdGlvbi4K
-ClNvIEkgc3RpbGwgY29uc2lkZXIgZGlyZWN0IHJlY2xhaW0gbGF0ZW5jeSB0byBiZSBhIHNlcmlv
-dXMgZW5vdWdoIGlzc3VlCnRoYXQgYSBibGFua2V0IHJlY29tbWVuZGF0aW9uIHNob3VsZCBiZTog
-ZG9uJ3Qgd2FpdC4KCj4gV2VsbCB0aGVuIERhbmllbHMgcGF0Y2hlcyBhcmUgc3RpbGwgbWlzc2lu
-ZyB0aGF0IGNhc2UgOikKCldlIGhhdmUgdGhlIERBRyBvZiBmZW5jZXMsIHdlIGNhbiB1c2UgdGhh
-dCBpbmZvcm1hdGlvbiB0byBhdm9pZCBhZGRpbmcKYW4gaW1wbGljaXQgY291cGxpbmcgYmV0d2Vl
-biBleGVjdXRpb24gY29udGV4dHMuIEJvcnJvd2luZyBsb2NrZGVwIGZvcgppdHMgaGVhdmlseSBh
-bGlhc2VkIGNoYWlucywgd2hlbiB3ZSBoYXZlIHRoZSBmaW5lZ3JhaW5lZCBpbmZvcm1hdGlvbgph
-dmFpbGFibGUgZm9yIHNjaGVkdWxpbmcgdG8gc29sdmUgd2hhdCBpcyBlc3NlbnRpYWxseSBhIHNj
-aGVkdWxpbmcgaXNzdWUKc2VlbXMgc2hhbGxvdy4KCj4gU2VlIHdoZW4gc2lnbmFsaW5nIGEgZmVu
-Y2UgZGVwZW5kcyB1c2Vyc3BhY2UgZG9pbmcgc29tZXRoaW5nLCB3ZSAKPiBvYnZpb3VzbHkgaW5z
-ZXJ0IGNpcmNsZSBkZXBlbmRlbmNpZXMgYmV0d2VlbiB3aGF0ZXZlciB1c2Vyc3BhY2UgbWlnaHQg
-ZG8gCj4gaW4gYSBrZXJuZWwgc3lzdGVtIGNhbGwgYW5kIHRoZSBrZXJuZWwgcmVjbGFpbSBwYXRo
-Lgo+IAo+IFRoYXQgdGhpcyBjYW4ndCB3b3JrIGNvcnJlY3RseSBpcyBhY3R1YWxseSBjb21wbGV0
-ZWx5IG9idmlvdXMgaWYgeW91IHNlZSAKPiBpdCBmcm9tIHRoaXMgc2lkZS4KClRoZSB3YWl0cyBh
-cmUgdW5ib3VuZGVkLCBpbmRlZmluaXRlIG9yIGV2ZW4ganVzdCBhIG1hdHRlciBvZiBtaWxsaXNl
-Y29uZHM7CmVyZ28geW91IGFyZSBub3QgYWxsb3dlZCB0byB3YWl0IGluc2lkZSBkaXJlY3QgcmVj
-bGFpbS4gVXNlcnNwYWNlCmRpY3RhdGVzIGZvcndhcmQgcHJvZ3Jlc3Mgb2Ygc2lnbmFsaW5nIGNo
-YWlucywgd29yc2UgaWYgb25lIGNsaWVudCBjYW4KaW5kaXJlY3RseSBtYW5pcHVsYXRlIGFub3Ro
-ZXIncyBwcm9ncmVzczsgdGhlIGVudGlyZSBrZXJuZWwgaXMgaW5zaWRlCnRoYXQgZXhlY3V0aW9u
-IGNvbnRleHQuIFRvdGFsbHkgYWdyZWUgb24gdGhhdC4gW0J1dCBpbnNpZGUgdGhlIGtlcm5lbCwg
-d2UKZG8gaGF2ZSB0aGUgaW5mb3JtYXRpb24gdG8gdHJhY2sgZXZlbiBpbXBsaWNpdCBleGVjdXRp
-b24gY291cGxpbmcgaW5zaWRlIAp0aGUgZHJpdmVycywgYW5kIHdoZXJlIHdlIGRvbid0IGhhdmUg
-dGhhdCBpbmZvcm1hdGlvbiB3ZSBoYXZlIHRvIGFzc3VtZQppdCBpcyBvdXRzaWRlIG9mIG91ciBj
-b250cm9sLl0KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+On Thu 25-06-20 12:00:47, Chris Wilson wrote:
+> Quoting Michal Hocko (2020-06-25 08:57:25)
+> > On Wed 24-06-20 20:14:17, Chris Wilson wrote:
+> > > A general rule of thumb is that shrinkers should be fast and effective.
+> > > They are called from direct reclaim at the most incovenient of times when
+> > > the caller is waiting for a page. If we attempt to reclaim a page being
+> > > pinned for active dma [pin_user_pages()], we will incur far greater
+> > > latency than a normal anonymous page mapped multiple times. Worse the
+> > > page may be in use indefinitely by the HW and unable to be reclaimed
+> > > in a timely manner.
+> > > 
+> > > A side effect of the LRU shrinker not being dma aware is that we will
+> > > often attempt to perform direct reclaim on the persistent group of dma
+> > > pages while continuing to use the dma HW (an issue as the HW may already
+> > > be actively waiting for the next user request), and even attempt to
+> > > reclaim a partially allocated dma object in order to satisfy pinning
+> > > the next user page for that object.
+> > 
+> > You are talking about direct reclaim but this path is shared with the
+> > background reclaim. This is a bit confusing. Maybe you just want to
+> > outline the latency in the reclaim which is more noticeable in the
+> > direct reclaim to the userspace. This would be good to be clarified.
+> > 
+> > How much memory are we talking about here btw?
+> 
+> It depends. In theory, it is used sparingly. But it is under userspace
+> control, exposed via Vulkan, OpenGL, OpenCL, media and even old XShm. If
+> all goes to plan the application memory is only pinned for as long as the
+> HW is using it, but that is an indefinite period of time and an indefinite
+> amount of memory. There are provisions in place to impose upper limits
+> on how long an operation can last on the HW, and the mmu-notifier is
+> there to ensure we do unpin the memory on demand. However cancelling a
+> HW operation (which will result in data loss and often process
+> termination due to an unfortunate sequence of events when userspace
+> fails to recover) for a try_to_unmap on behalf of the LRU shrinker is not
+> a good choice.
+
+OK, thanks for the clarification. What and when should MM intervene to
+prevent potential OOM?
+  
+[...]
+> > Btw. overall intention of the patch is not really clear to me. Do I get
+> > it right that this is going to reduce latency of the reclaim for pages
+> > that are not reclaimable anyway because they are pinned? If yes do we
+> > have any numbers for that.
+> 
+> I can plug it into a microbenchmark ala cycletest to show the impact...
+> Memory filled with 64M gup objects, random utilisation of those with
+> the GPU; background process filling the pagecache with find /; reporting
+> the time difference from the expected expiry of a timer with the actual:
+> [On a Geminilake Atom-class processor with 8GiB, average of 5 runs, each
+> measuring mean latency for 20s -- mean is probably a really bad choice
+> here, we need 50/90/95/99]
+> 
+> direct reclaim calling mmu-notifier:
+> gem_syslatency: cycles=2122, latency mean=1601.185us max=33572us
+> 
+> skipping try_to_unmap_one with page_maybe_dma_pinned:
+> gem_syslatency: cycles=1965, latency mean=597.971us max=28462us
+> 
+> Baseline (background find /; application touched all memory, but no HW
+> ops)
+> gem_syslatency: cycles=0, latency mean=6.695us max=77us
+> 
+> Compare with the time to allocate a single THP against load:
+> 
+> Baseline:
+> gem_syslatency: cycles=0, latency mean=1541.562us max=52196us
+> Direct reclaim calling mmu-notifier:
+> gem_syslatency: cycles=2115, latency mean=9050.930us max=396986us
+> page_maybe_dma_pinned skip:
+> gem_syslatency: cycles=2325, latency mean=7431.633us max=187960us
+> 
+> Take with a massive pinch of salt. I expect, once I find the right
+> sequence, to reliably control the induced latency on the RT thread.
+> 
+> But first, I have to look at why there's a correlation with HW load and
+> timer latency, even with steady state usage. That's quite surprising --
+> ah, I had it left to PREEMPT_VOLUNTARY and this machine has to scan
+> every request submitted to HW. Just great.
+> 
+> With PREEMPT:
+> Timer:
+> Base:    gem_syslatency: cycles=0, latency mean=8.823us max=83us
+> Reclaim: gem_syslatency: cycles=2224, latency mean=79.308us max=4805us
+> Skip:    gem_syslatency: cycles=2677, latency mean=70.306us max=4720us
+> 
+> THP:
+> Base:    gem_syslatency: cycles=0, latency mean=1993.693us max=201958us
+> Reclaim: gem_syslatency: cycles=1284, latency mean=2873.633us max=295962us
+> Skip:    gem_syslatency: cycles=1809, latency mean=1991.509us max=261050us
+> 
+> Earlier caveats notwithstanding; confidence in results still low.
+> 
+> And refine the testing somewhat, if at the very least gather enough
+> samples for credible statistics.
+
+OK, so my understanding is that the overall impact is very low. So what
+is the primary motivation for the patch? Prevent from a pointless work -
+aka invoke the notifier?
+
+-- 
+Michal Hocko
+SUSE Labs
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
