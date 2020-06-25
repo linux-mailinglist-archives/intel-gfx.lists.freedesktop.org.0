@@ -2,28 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E3F7209F9B
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 15:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A8A209F97
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 15:17:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79F526E270;
-	Thu, 25 Jun 2020 13:17:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B1C56E26F;
+	Thu, 25 Jun 2020 13:17:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 496 seconds by postgrey-1.36 at gabe;
- Thu, 25 Jun 2020 13:16:56 UTC
-Received: from theia.8bytes.org (8bytes.org [81.169.241.247])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF5FC88F94
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 13:16:56 +0000 (UTC)
+Received: from theia.8bytes.org (8bytes.org
+ [IPv6:2a01:238:4383:600:38bc:a715:4b6d:a889])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C3C2898E1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 13:16:58 +0000 (UTC)
 Received: by theia.8bytes.org (Postfix, from userid 1000)
- id 93AF64DE; Thu, 25 Jun 2020 15:08:39 +0200 (CEST)
+ id B928850C; Thu, 25 Jun 2020 15:08:39 +0200 (CEST)
 From: Joerg Roedel <joro@8bytes.org>
 To: iommu@lists.linux-foundation.org
-Date: Thu, 25 Jun 2020 15:08:32 +0200
-Message-Id: <20200625130836.1916-10-joro@8bytes.org>
+Date: Thu, 25 Jun 2020 15:08:33 +0200
+Message-Id: <20200625130836.1916-11-joro@8bytes.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200625130836.1916-1-joro@8bytes.org>
 References: <20200625130836.1916-1-joro@8bytes.org>
-Subject: [Intel-gfx] [PATCH 09/13] x86: Remove dev->archdata.iommu pointer
+Subject: [Intel-gfx] [PATCH 10/13] ia64: Remove dev->archdata.iommu pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,15 +61,15 @@ per-device private pointer offered by IOMMU core.
 
 Signed-off-by: Joerg Roedel <jroedel@suse.de>
 ---
- arch/x86/include/asm/device.h | 3 ---
+ arch/ia64/include/asm/device.h | 3 ---
  1 file changed, 3 deletions(-)
 
-diff --git a/arch/x86/include/asm/device.h b/arch/x86/include/asm/device.h
-index 49bd6cf3eec9..7c0a52ca2f4d 100644
---- a/arch/x86/include/asm/device.h
-+++ b/arch/x86/include/asm/device.h
-@@ -3,9 +3,6 @@
- #define _ASM_X86_DEVICE_H
+diff --git a/arch/ia64/include/asm/device.h b/arch/ia64/include/asm/device.h
+index 3eb397415381..918b198cd5bb 100644
+--- a/arch/ia64/include/asm/device.h
++++ b/arch/ia64/include/asm/device.h
+@@ -6,9 +6,6 @@
+ #define _ASM_IA64_DEVICE_H
  
  struct dev_archdata {
 -#ifdef CONFIG_IOMMU_API
