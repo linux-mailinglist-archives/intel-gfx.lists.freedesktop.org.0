@@ -2,62 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5124220A64C
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 22:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AA1E20A735
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 23:07:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 397D06EC13;
-	Thu, 25 Jun 2020 20:02:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2536E35F;
+	Thu, 25 Jun 2020 21:07:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com
- [IPv6:2a00:1450:4864:20::141])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A06426EC0E
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 20:02:14 +0000 (UTC)
-Received: by mail-lf1-x141.google.com with SMTP id u25so3912775lfm.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 13:02:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=hardline-pl.20150623.gappssmtp.com; s=20150623;
- h=mime-version:content-transfer-encoding:cc:in-reply-to:references
- :from:to:subject:date:message-id:user-agent;
- bh=WbmGKbX1ILhnzruJ1q4kb/8ZDa7euyBSx3+YJHEZSrs=;
- b=g8abOikRcWeCXpvDrvOae8hIkbL3KpF8Qe7X7De8ZSYlSXMNy+BbT5wlcQ6IAJ6uPQ
- DwhAAot257Kdo+ydXSoWGTx45P6klD+fE6uXNbQyc/y2i1WROVM1wa67cR8g9geH/K+g
- E3ZBRuKDmeWb+8Ce1ybYO3YRwsI7vKV3q7Saw5Y5ZNcaHAl85lBh/evydEWBKkttS6m+
- fZU8wZt8o6F0Xv3x+vD9txk/65ZMQc3IxreFekbsKpBhIV5wrOFCcW+bFpn290+VJDjl
- zapjm4YXhgDYeQvGjbmYD8wEiz7QRFIWXicxik7eQRBEMTm9nvQMuQF/+SRWINTmSL3f
- pQRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:content-transfer-encoding:cc
- :in-reply-to:references:from:to:subject:date:message-id:user-agent;
- bh=WbmGKbX1ILhnzruJ1q4kb/8ZDa7euyBSx3+YJHEZSrs=;
- b=RxNXYxGOYuJ6IUVzhQY9CXAI7L8Y+B5AByKSu0IzGvfbarM1eaau8l3Uq0nUqBVX1E
- qoZsY5SifjG3pzJBxvlX55qGiWcdNMqFg6T7zPJXONoW/+HlqdjXCZ7Zt0loSY5zSOlL
- 95sD9WsOKb8Ma2BWvcHwDDFAMNc2znDjG6qpObJ74KwtNCA4UGT/rbEVKGz3GVFHHMqz
- QoisKnLVbhkWooze7Z+opPpc2slCqwHPQUzjj5JRuBkxUsXviYWJDERHl6kNYyjnUHUI
- AnXH/S+4VrkpCgdq6Oy9XXR1gXUOMnTsPPCGhF9CvPPSbbQaCO5eTWM3fCKHAN8kMSuk
- kCZQ==
-X-Gm-Message-State: AOAM532cWHAMpWV+K+FXy0rRVOHNet8VbwGh3Xqq6x2eWJM99KUs7qfM
- UB+3izaZV52DoplyNy9CaH2DAQKLVJ4=
-X-Google-Smtp-Source: ABdhPJyKYuMSQz2Is3j3NUid8dleYvRyDBpm7CcCjtTDqvyKv+Klfz5GB8HbJPz6DFzq6A1aewSLaw==
-X-Received: by 2002:a19:c50a:: with SMTP id w10mr13214875lfe.48.1593115332604; 
- Thu, 25 Jun 2020 13:02:12 -0700 (PDT)
-Received: from localhost (109241244009.gdansk.vectranet.pl. [109.241.244.9])
- by smtp.gmail.com with ESMTPSA id j4sm3935143lfb.94.2020.06.25.13.02.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Jun 2020 13:02:12 -0700 (PDT)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 984D36E35F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 21:07:00 +0000 (UTC)
+IronPort-SDR: 9fb29DNVVxzQOlZRoBPQI2I2+631426HuL9BiZDyT7mPrtW9oCSE3LRMH/qEczS8ImGs978DN8
+ woUagW+GcDlA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9663"; a="229809074"
+X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="229809074"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2020 14:06:59 -0700
+IronPort-SDR: jB1Ll1shvfwXRd8wzU+n1Jl+9lZ5MrncoXEjkZlKGS4LdRLCwnNMX60yZk+TfoW7cQKKc0YVh7
+ bgUyaWLzMmcg==
+X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="453145630"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2020 14:06:58 -0700
+Date: Fri, 26 Jun 2020 00:06:52 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200625210652.GA18750@ideak-desk.fi.intel.com>
+References: <20200512174145.3186-1-ville.syrjala@linux.intel.com>
+ <20200512174145.3186-7-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200622164415.30352-9-janusz.krzysztofik@linux.intel.com>
-References: <20200622164415.30352-1-janusz.krzysztofik@linux.intel.com>
- <20200622164415.30352-9-janusz.krzysztofik@linux.intel.com>
-From: =?utf-8?q?Micha=C5=82?= Winiarski <michal@hardline.pl>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-Date: Thu, 25 Jun 2020 22:02:11 +0200
-Message-ID: <159311533123.202818.8673731295694520597@macragge.hardline.pl>
-User-Agent: alot/0.9.1
-Subject: Re: [Intel-gfx] [RFC PATCH i-g-t v2 8/8] tests/core_hotunplug: Add
- 'GEM batch' variant
+Content-Disposition: inline
+In-Reply-To: <20200512174145.3186-7-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915: Fix
+ DP_TRAIN_MAX_{PRE_EMPHASIS, SWING}_REACHED handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,55 +51,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBKYW51c3ogS3J6eXN6dG9maWsgKDIwMjAtMDYtMjIgMTg6NDQ6MTUpCj4gVmVyaWZ5
-IGlmIGEgZGV2aWNlIHdpdGggYSBHRU0gYmF0Y2ggam9iIHN0aWxsIHJ1bm5pbmcgb24gYSBHUFUg
-Y2FuIGJlCj4gaG90LXVucGx1Z2dlZCBjbGVhbmx5IGFuZCByZWxlYXNlZCwgdGhlbiByZWNvdmVy
-ZWQuCj4gCj4gdjI6IHJlYmFzZSBvbiB1cHN0cmVhbQo+IAo+IFNpZ25lZC1vZmYtYnk6IEphbnVz
-eiBLcnp5c3p0b2ZpayA8amFudXN6LmtyenlzenRvZmlrQGxpbnV4LmludGVsLmNvbT4KPiAtLS0K
-PiAgdGVzdHMvY29yZV9ob3R1bnBsdWcuYyB8IDM0ICsrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysKPiAgMSBmaWxlIGNoYW5nZWQsIDM0IGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0t
-Z2l0IGEvdGVzdHMvY29yZV9ob3R1bnBsdWcuYyBiL3Rlc3RzL2NvcmVfaG90dW5wbHVnLmMKPiBp
-bmRleCA3Y2I2OTljYzIuLjY3MmZmNjYxZCAxMDA2NDQKPiAtLS0gYS90ZXN0cy9jb3JlX2hvdHVu
-cGx1Zy5jCj4gKysrIGIvdGVzdHMvY29yZV9ob3R1bnBsdWcuYwo+IEBAIC0zMyw2ICszMyw3IEBA
-Cj4gICNpbmNsdWRlICJpOTE1L2dlbV92bS5oIgo+ICAjaW5jbHVkZSAiaWd0LmgiCj4gICNpbmNs
-dWRlICJpZ3RfZGV2aWNlX3NjYW4uaCIKPiArI2luY2x1ZGUgImlndF9kdW1teWxvYWQuaCIKPiAg
-I2luY2x1ZGUgImlndF9rbW9kLmgiCj4gICNpbmNsdWRlICJpZ3Rfc3lzZnMuaCIKPiAgCj4gQEAg
-LTQwOCw2ICs0MDksMzIgQEAgc3RhdGljIHZvaWQgcHJpbWVfaG90dW5wbHVnX2xhdGVjbG9zZSh2
-b2lkKQo+ICAgICAgICAgaGVhbHRoY2hlY2soKTsKPiAgfQo+ICAKPiArc3RhdGljIHZvaWQgYmF0
-Y2hfaG90dW5wbHVnX2xhdGVjbG9zZSh2b2lkKQo+ICt7Cj4gKyAgICAgICBzdHJ1Y3QgaG90dW5w
-bHVnIHByaXY7Cj4gKyAgICAgICBpZ3Rfc3Bpbl90ICpzcGluOwo+ICsKPiArICAgICAgIHByZXBh
-cmVfZm9yX3Jlc2NhbigmcHJpdik7Cj4gKwo+ICsgICAgICAgaWd0X3JlcXVpcmVfZ2VtKHByaXYu
-ZmQuZHJtKTsKPiArCj4gKyAgICAgICBsb2NhbF9kZWJ1ZygicnVubmluZyBkdW1teSBsb2FkIik7
-Cj4gKyAgICAgICBzcGluID0gX19pZ3Rfc3Bpbl9uZXcocHJpdi5mZC5kcm0sIC5mbGFncyA9IElH
-VF9TUElOX1BPTExfUlVOIHwKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgSUdUX1NQSU5fTk9fUFJFRU1QVElPTik7CgpEbyB3ZSBuZWVkIElHVF9T
-UElOX05PX1BSRUVNUFRJT04gaGVyZT8KV2UncmUgYWxzbyBsZWFraW5nIHNwaW4gaGVyZS4uLiBB
-bmQgSSBkb24ndCB0aGluayB3ZSBjYW4ganVzdCBjYWxsIGlndF9zcGluX2ZyZWUKYWZ0ZXIgdW5w
-bHVnLCBjYW4gd2U/CgotTWljaGHFggoKPiArICAgICAgIGlndF9zcGluX2J1c3l3YWl0X3VudGls
-X3N0YXJ0ZWQoc3Bpbik7Cj4gKwo+ICsgICAgICAgbG9jYWxfZGVidWcoImhvdCB1bnBsdWdnaW5n
-IHRoZSBkZXZpY2UiKTsKPiArICAgICAgIGRldmljZV91bnBsdWcocHJpdi5mZC5zeXNmc19kZXYp
-Owo+ICsKPiArICAgICAgIGxvY2FsX2RlYnVnKCJsYXRlIGNsb3NpbmcgdGhlIHJlbW92ZWQgZGV2
-aWNlIGluc3RhbmNlIik7Cj4gKyAgICAgICBjbG9zZShwcml2LmZkLmRybSk7Cj4gKwo+ICsgICAg
-ICAgbG9jYWxfZGVidWcoInJlY292ZXJpbmcgdGhlIGRldmljZSIpOwo+ICsgICAgICAgYnVzX3Jl
-c2Nhbihwcml2LmZkLnN5c2ZzX2J1cyk7Cj4gKwo+ICsgICAgICAgaGVhbHRoY2hlY2soKTsKPiAr
-fQo+ICsKPiAgLyogTWFpbiAqLwo+ICAKPiAgaWd0X21haW4KPiBAQCAtNTAxLDQgKzUyOCwxMSBA
-QCBpZ3RfbWFpbgo+ICAKPiAgICAgICAgIGlndF9maXh0dXJlCj4gICAgICAgICAgICAgICAgIGln
-dF9hYm9ydF9vbl9mKGZhaWx1cmUsICIlc1xuIiwgZmFpbHVyZSk7Cj4gKwo+ICsgICAgICAgaWd0
-X2Rlc2NyaWJlKCJDaGVjayBpZiBhIGRldmljZSB3aXRoIGEgc3RpbGwgcnVubmluZyBiYXRjaCBj
-YW4gYmUgY2xlYW5seSB1bnBsdWdnZWQsIHRoZW4gcmVsZWFzZWQgYW5kIHJlY292ZXJlZCIpOwo+
-ICsgICAgICAgaWd0X3N1YnRlc3QoImJhdGNoLWhvdHVucGx1Zy1sYXRlY2xvc2UiKQo+ICsgICAg
-ICAgICAgICAgICBiYXRjaF9ob3R1bnBsdWdfbGF0ZWNsb3NlKCk7Cj4gKwo+ICsgICAgICAgaWd0
-X2ZpeHR1cmUKPiArICAgICAgICAgICAgICAgaWd0X2Fib3J0X29uX2YoZmFpbHVyZSwgIiVzXG4i
-LCBmYWlsdXJlKTsKPiAgfQo+IC0tIAo+IDIuMjEuMQo+IAo+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IElu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, May 12, 2020 at 08:41:44PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> The DP spec says:
+> "The transmitter shall support at least three levels of voltage
+>  swing (Levels 0, 1, and 2).
+> =
+
+>  If only three levels of voltage swing are supported (VOLTAGE
+>  SWING SET field (bits 1:0) are programmed to 10 (Level 2)),
+>  this bit shall be set to 1, and cleared in all other cases.
+> =
+
+>  If all four levels of voltage swing are supported (VOLTAGE
+>  SWING SET field (bits 1:0) are programmed to 11 (Level 3)),
+>  this bit shall be set to 1,and cleared in all other cases."
+> =
+
+> Let's follow that exactly instead of the current apporach
+> where we can set those also for vswing/preemph levels 0 or 1
+> (or 2 when the platform max is 3).
+> =
+
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Yep, so the sink could've incorrectly stopped asking for higher vswing
+levels after it asked for 0 vs+2 pe, when the max vs is 2 for instance.
+Matches the spec:
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 573f93779449..aa7af531bcb8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -72,8 +72,9 @@ void intel_dp_get_adjust_train(struct intel_dp *intel_d=
+p,
+>  	if (p >=3D preemph_max)
+>  		p =3D preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
+>  =
+
+> -	voltage_max =3D min(intel_dp->voltage_max(intel_dp),
+> -			  dp_voltage_max(p));
+> +	v =3D min(v, dp_voltage_max(p));
+> +
+> +	voltage_max =3D intel_dp->voltage_max(intel_dp);
+>  	if (v >=3D voltage_max)
+>  		v =3D voltage_max | DP_TRAIN_MAX_SWING_REACHED;
+>  =
+
+> -- =
+
+> 2.26.2
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
