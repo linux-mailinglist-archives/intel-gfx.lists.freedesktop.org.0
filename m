@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5736D20A7E0
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 23:58:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DEC920A7F2
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 00:03:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05A086E29A;
-	Thu, 25 Jun 2020 21:58:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DC396E2DD;
+	Thu, 25 Jun 2020 22:03:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD4076E29A
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 21:58:09 +0000 (UTC)
-IronPort-SDR: gv2UDDQRMxWDfz+m0rUs4i6GyzHtAZfn3esgBHRI22nESYjYG598umrgu0yyaIBvVjsQmIKyP2
- 0WHNUvjmdQVw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9663"; a="163172070"
-X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="163172070"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6ACFB6E2DD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 22:03:07 +0000 (UTC)
+IronPort-SDR: BkRXrUIsRuUzGD5vqJJVIXbG54pqltSPVWGqxSBRuU3g7MCEQljFBh7wpII0o/rQnmHXvkoviK
+ /OhIUFtPJEug==
+X-IronPort-AV: E=McAfee;i="6000,8403,9663"; a="132533517"
+X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="132533517"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2020 14:58:09 -0700
-IronPort-SDR: SUX161gjv2QJNmT6+rt0o6+XMoaQMqd7TYBT+OINbXmjT4uvS0EGAg7nQS8wYFhowzMeq88dGb
- l/92yuuufcLw==
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2020 15:03:06 -0700
+IronPort-SDR: NFOAO1tEJoEhh8qaqqcETw/p8mYJjAMrETOVvyQRA4VBu2nLViWDJgG9/lQYaCogmd1dJqV8XB
+ czS1esIjQwaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="311233482"
+X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="294023279"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
  ([10.165.21.211])
- by orsmga008.jf.intel.com with ESMTP; 25 Jun 2020 14:58:09 -0700
-Date: Thu, 25 Jun 2020 14:59:35 -0700
+ by orsmga002.jf.intel.com with ESMTP; 25 Jun 2020 15:03:06 -0700
+Date: Thu, 25 Jun 2020 15:04:33 -0700
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200625215935.GB30431@intel.com>
+Message-ID: <20200625220432.GC30431@intel.com>
 References: <20200624221108.10038-1-manasi.d.navare@intel.com>
  <20200624221108.10038-2-manasi.d.navare@intel.com>
  <20200625212853.GX6112@intel.com>
@@ -101,11 +101,9 @@ v,
 
 > Didn't we want the poll approach for glk+?
 
-But other Gen9s like SKL is still a fixed delay so may be add a GEN <=3D9 &=
- !GLK here would do?
+Actually in the bspec I only see Gen10+ has a 500usecs timeout
 
 Manasi
-
 > =
 
 > > +		usleep_range(600, 1000);
