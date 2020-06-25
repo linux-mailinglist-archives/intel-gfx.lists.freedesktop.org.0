@@ -1,33 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0486420A25D
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 17:48:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE72320A294
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 18:05:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46B156EBE6;
-	Thu, 25 Jun 2020 15:48:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C41FB6E069;
+	Thu, 25 Jun 2020 16:05:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55FB46E2DC
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 15:48:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21615605-1500050 for multiple; Thu, 25 Jun 2020 16:48:28 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200625151227.GP1320@dhcp22.suse.cz>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75DD26E069
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 16:05:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=Nbnfe8y2phVSLNtkpgv4yoZAKzFobqvinOzyPepTciA=; b=wJ5yDwSYYtQBTCnxgg6LiDb+j3
+ OEOu0V3IhIOevYdpcK3XhbqU/M42tAf1xPjiFbpF3EbxSgs2VHixCTiGCO++8ZRo23BFZSKx8q9FT
+ jHGhqG1fksAytQpxqYfqkDxivoCNcceeNdqpCOOAuoOxMeV3pXj5naJPPAEW7jKEnUDBfdKVxaGlp
+ 3VLdH+Oc/oxPofZm5cEb8DT/nbQfvJjuoYXDTNQO57H+vTyksE0sJ3KebCxqFxwVsB7jcJBpBDaid
+ RY0Br5FuDo6EhV1hJMfAsbys3Hg/Q/+WK3bQVd/iDeI7nUHdH1ekeugyVYY24yziSlHX0G3fQ4dSa
+ mkL2JG/g==;
+Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1joUNO-0006gj-Rx; Thu, 25 Jun 2020 16:05:22 +0000
+Date: Thu, 25 Jun 2020 17:05:22 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Jan Kara <jack@suse.cz>
+Message-ID: <20200625160522.GD7703@casper.infradead.org>
 References: <20200624191417.16735-1-chris@chris-wilson.co.uk>
- <20200625075725.GC1320@dhcp22.suse.cz>
- <159308284703.4527.16058577374955415124@build.alporthouse.com>
- <20200625151227.GP1320@dhcp22.suse.cz>
-To: Michal Hocko <mhocko@kernel.org>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <159310010426.31486.12265756858860973914@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 25 Jun 2020 16:48:24 +0100
+ <20200625114209.GA7703@casper.infradead.org>
+ <20200625134044.GD17788@quack2.suse.cz>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200625134044.GD17788@quack2.suse.cz>
 Subject: Re: [Intel-gfx] [PATCH] mm: Skip opportunistic reclaim for dma
  pinned pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -42,146 +49,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jan Kara <jack@suse.cz>, Jason Gunthorpe <jgg@ziepe.ca>, John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, Jérôme Glisse <jglisse@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Claudio Imbrenda <imbrenda@linux.ibm.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>, John Hubbard <jhubbard@nvidia.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Claudio Imbrenda <imbrenda@linux.ibm.com>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Michal Hocko (2020-06-25 16:12:27)
-> On Thu 25-06-20 12:00:47, Chris Wilson wrote:
-> > Quoting Michal Hocko (2020-06-25 08:57:25)
-> > > On Wed 24-06-20 20:14:17, Chris Wilson wrote:
-> > > > A general rule of thumb is that shrinkers should be fast and effective.
-> > > > They are called from direct reclaim at the most incovenient of times when
-> > > > the caller is waiting for a page. If we attempt to reclaim a page being
-> > > > pinned for active dma [pin_user_pages()], we will incur far greater
-> > > > latency than a normal anonymous page mapped multiple times. Worse the
-> > > > page may be in use indefinitely by the HW and unable to be reclaimed
-> > > > in a timely manner.
-> > > > 
-> > > > A side effect of the LRU shrinker not being dma aware is that we will
-> > > > often attempt to perform direct reclaim on the persistent group of dma
-> > > > pages while continuing to use the dma HW (an issue as the HW may already
-> > > > be actively waiting for the next user request), and even attempt to
-> > > > reclaim a partially allocated dma object in order to satisfy pinning
-> > > > the next user page for that object.
-> > > 
-> > > You are talking about direct reclaim but this path is shared with the
-> > > background reclaim. This is a bit confusing. Maybe you just want to
-> > > outline the latency in the reclaim which is more noticeable in the
-> > > direct reclaim to the userspace. This would be good to be clarified.
-> > > 
-> > > How much memory are we talking about here btw?
-> > 
-> > It depends. In theory, it is used sparingly. But it is under userspace
-> > control, exposed via Vulkan, OpenGL, OpenCL, media and even old XShm. If
-> > all goes to plan the application memory is only pinned for as long as the
-> > HW is using it, but that is an indefinite period of time and an indefinite
-> > amount of memory. There are provisions in place to impose upper limits
-> > on how long an operation can last on the HW, and the mmu-notifier is
-> > there to ensure we do unpin the memory on demand. However cancelling a
-> > HW operation (which will result in data loss and often process
-> > termination due to an unfortunate sequence of events when userspace
-> > fails to recover) for a try_to_unmap on behalf of the LRU shrinker is not
-> > a good choice.
+On Thu, Jun 25, 2020 at 03:40:44PM +0200, Jan Kara wrote:
+> On Thu 25-06-20 12:42:09, Matthew Wilcox wrote:
+> > Why are DMA pinned pages still on the LRU list at all?  I never got an
+> > answer to this that made sense to me.  By definition, a page which is
+> > pinned for DMA is being accessed, and needs to at the very least change
+> > position on the LRU list, so just take it off the list when DMA-pinned
+> > and put it back on the list when DMA-unpinned.
 > 
-> OK, thanks for the clarification. What and when should MM intervene to
-> prevent potential OOM?
+> Well, we do mark_page_accessed() when pinning in GUP. This is not perfect
+> but it's as good as it gets with CPU having no control when the page is
+> actually accessed. Also taking the page off and then back to LRU list would
+> increase the contention on the LRU list locks and generally cost
+> performance so for short term pins it is not desirable... Otherwise I agree
+> that conceptually it would make some sence although I'm not sure some
+> places wouldn't get confused by e.g. page cache pages not being on LRU
+> list. 
 
-Open to any and all suggestions. At the moment we have the shrinkers for
-direct reclaim and kswapd [though for direct reclaim we don't like
-touching active dma pages for the same reason] and the oom-notifier as a
-last resort. At the moment, we start trying to flush work from the gpu
-inside kswapd, but that tbh is not particularly effective. If we used
-kswapd as a signal for lowmemory, we could/should be more proactive in
-releasing work and returning dirty pages to shmemfs as soon as it is
-complete [normally retiring completed work is lazy and does not
-immediately drop dirty pages]. That would also suggest a complementary
-signal for when we can go back to being lazy again.
+We could/should do what we do for mlocked pages:
+Documentation/vm/unevictable-lru.rst
 
-We are also a bit too lax in applying backpressure. The focus has been on
-making sure one hog does not prevent an innocent client from accessing
-the HW. We use cond_synchronize_rcu() on a per-client basis if it appears
-we are allocating new requests too fast when allocations start failing.
-That is very probably too little too late. It does achieve the original
-goal of preventing a single client from submitting requests faster than
-we can retire them. But we have nothing for page allocations, other than
-trying to reclaim shmemfs allocations after a NORETRY failure, hoping to
-stave off the shrinker. [That fails miserably as we are never alone on
-the system, ofc.]
-
-A cgroups interface to restrict memory allocations on a per client basis
-has never quite materialised. Even then we have to assume the worse and
-overcommitting is the norm.
-
-> [...]
-> > > Btw. overall intention of the patch is not really clear to me. Do I get
-> > > it right that this is going to reduce latency of the reclaim for pages
-> > > that are not reclaimable anyway because they are pinned? If yes do we
-> > > have any numbers for that.
-> > 
-> > I can plug it into a microbenchmark ala cycletest to show the impact...
-> > Memory filled with 64M gup objects, random utilisation of those with
-> > the GPU; background process filling the pagecache with find /; reporting
-> > the time difference from the expected expiry of a timer with the actual:
-> > [On a Geminilake Atom-class processor with 8GiB, average of 5 runs, each
-> > measuring mean latency for 20s -- mean is probably a really bad choice
-> > here, we need 50/90/95/99]
-> > 
-> > direct reclaim calling mmu-notifier:
-> > gem_syslatency: cycles=2122, latency mean=1601.185us max=33572us
-> > 
-> > skipping try_to_unmap_one with page_maybe_dma_pinned:
-> > gem_syslatency: cycles=1965, latency mean=597.971us max=28462us
-> > 
-> > Baseline (background find /; application touched all memory, but no HW
-> > ops)
-> > gem_syslatency: cycles=0, latency mean=6.695us max=77us
-> > 
-> > Compare with the time to allocate a single THP against load:
-> > 
-> > Baseline:
-> > gem_syslatency: cycles=0, latency mean=1541.562us max=52196us
-> > Direct reclaim calling mmu-notifier:
-> > gem_syslatency: cycles=2115, latency mean=9050.930us max=396986us
-> > page_maybe_dma_pinned skip:
-> > gem_syslatency: cycles=2325, latency mean=7431.633us max=187960us
-> > 
-> > Take with a massive pinch of salt. I expect, once I find the right
-> > sequence, to reliably control the induced latency on the RT thread.
-> > 
-> > But first, I have to look at why there's a correlation with HW load and
-> > timer latency, even with steady state usage. That's quite surprising --
-> > ah, I had it left to PREEMPT_VOLUNTARY and this machine has to scan
-> > every request submitted to HW. Just great.
-> > 
-> > With PREEMPT:
-> > Timer:
-> > Base:    gem_syslatency: cycles=0, latency mean=8.823us max=83us
-> > Reclaim: gem_syslatency: cycles=2224, latency mean=79.308us max=4805us
-> > Skip:    gem_syslatency: cycles=2677, latency mean=70.306us max=4720us
-> > 
-> > THP:
-> > Base:    gem_syslatency: cycles=0, latency mean=1993.693us max=201958us
-> > Reclaim: gem_syslatency: cycles=1284, latency mean=2873.633us max=295962us
-> > Skip:    gem_syslatency: cycles=1809, latency mean=1991.509us max=261050us
-> > 
-> > Earlier caveats notwithstanding; confidence in results still low.
-> > 
-> > And refine the testing somewhat, if at the very least gather enough
-> > samples for credible statistics.
-> 
-> OK, so my understanding is that the overall impact is very low. So what
-> is the primary motivation for the patch? Prevent from a pointless work -
-> aka invoke the notifier?
-
-I'm working on capturing the worst cases :) I just need to find the way
-to consistently steer reclaim to hitting active gup objects. And then
-wrap that inside a timer, without it appearing too contrived. Does
-populating a [THP] mmap seems reasonable way to measure page allocation
-latency?
--Chris
+I think 'case five' is wrong and needs to be removed.  Pinning is
+inappropriate for "I'm going to modify the page myself".
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
