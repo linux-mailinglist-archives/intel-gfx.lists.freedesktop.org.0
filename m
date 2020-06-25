@@ -1,28 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E79209F8D
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 15:17:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E463209F96
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 15:17:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAB3089873;
-	Thu, 25 Jun 2020 13:16:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14CAA6E25A;
+	Thu, 25 Jun 2020 13:17:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
+X-Greylist: delayed 496 seconds by postgrey-1.36 at gabe;
+ Thu, 25 Jun 2020 13:16:56 UTC
 Received: from theia.8bytes.org (8bytes.org
  [IPv6:2a01:238:4383:600:38bc:a715:4b6d:a889])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D914E898AA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D02B089861
  for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 13:16:56 +0000 (UTC)
 Received: by theia.8bytes.org (Postfix, from userid 1000)
- id F0D5B5DF; Thu, 25 Jun 2020 15:08:39 +0200 (CEST)
+ id 2BC4960C; Thu, 25 Jun 2020 15:08:40 +0200 (CEST)
 From: Joerg Roedel <joro@8bytes.org>
 To: iommu@lists.linux-foundation.org
-Date: Thu, 25 Jun 2020 15:08:34 +0200
-Message-Id: <20200625130836.1916-12-joro@8bytes.org>
+Date: Thu, 25 Jun 2020 15:08:35 +0200
+Message-Id: <20200625130836.1916-13-joro@8bytes.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200625130836.1916-1-joro@8bytes.org>
 References: <20200625130836.1916-1-joro@8bytes.org>
-Subject: [Intel-gfx] [PATCH 11/13] arm: Remove dev->archdata.iommu pointer
+Subject: [Intel-gfx] [PATCH 12/13] arm64: Remove dev->archdata.iommu pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,23 +63,23 @@ per-device private pointer offered by IOMMU core.
 
 Signed-off-by: Joerg Roedel <jroedel@suse.de>
 ---
- arch/arm/include/asm/device.h | 3 ---
+ arch/arm64/include/asm/device.h | 3 ---
  1 file changed, 3 deletions(-)
 
-diff --git a/arch/arm/include/asm/device.h b/arch/arm/include/asm/device.h
-index c675bc0d5aa8..be666f58bf7a 100644
---- a/arch/arm/include/asm/device.h
-+++ b/arch/arm/include/asm/device.h
-@@ -9,9 +9,6 @@ struct dev_archdata {
- #ifdef CONFIG_DMABOUNCE
- 	struct dmabounce_device_info *dmabounce;
- #endif
+diff --git a/arch/arm64/include/asm/device.h b/arch/arm64/include/asm/device.h
+index 12b778d55342..996498751318 100644
+--- a/arch/arm64/include/asm/device.h
++++ b/arch/arm64/include/asm/device.h
+@@ -6,9 +6,6 @@
+ #define __ASM_DEVICE_H
+ 
+ struct dev_archdata {
 -#ifdef CONFIG_IOMMU_API
--	void *iommu; /* private IOMMU data */
+-	void *iommu;			/* private IOMMU data */
 -#endif
- #ifdef CONFIG_ARM_DMA_USE_IOMMU
- 	struct dma_iommu_mapping	*mapping;
- #endif
+ };
+ 
+ struct pdev_archdata {
 -- 
 2.27.0
 
