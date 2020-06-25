@@ -1,41 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B79C20A622
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 21:51:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8546F20A62F
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 21:54:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D20C16EC10;
-	Thu, 25 Jun 2020 19:51:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D2AA6EC14;
+	Thu, 25 Jun 2020 19:54:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45FA96EC10
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 19:51:22 +0000 (UTC)
-IronPort-SDR: HLmc2OzwdczLD7cahZ/F6zLTxNxAkkp1gKuQB0DeuCfiXOtOWrJjLkXf5Tt8pAopVNUz+aoRJ3
- ip2U+xjn2WFA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9663"; a="133473206"
-X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="133473206"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2020 12:51:21 -0700
-IronPort-SDR: oj9sffa6FefQLmpl6yIQwOZr0GWZ/VQpGSgP8rt8veD8x67SG3+mpcE/cBYni0YV1AiHKJPgxu
- ctTFFrWjPJFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,280,1589266800"; d="scan'208";a="319828398"
-Received: from zhulawr-mobl.amr.corp.intel.com (HELO
- josouza-MOBL2.amr.corp.intel.com) ([10.251.158.98])
- by FMSMGA003.fm.intel.com with ESMTP; 25 Jun 2020 12:51:20 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 25 Jun 2020 12:52:52 -0700
-Message-Id: <20200625195252.39312-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.27.0
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
+ [IPv6:2607:f8b0:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E14406EC15
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 19:54:27 +0000 (UTC)
+Received: by mail-ot1-x343.google.com with SMTP id n6so6486053otl.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 12:54:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=FD3S0mujguCO2/ntfwJg4sQdi7RD7F/io2ojMsUoIEg=;
+ b=JmWv7kPvAW8MjnRbG7Ubh3ViNBZuM6MNB+F9e1HN6nDfZbMcuMR6PI4SnXfQeNo4rP
+ bJtw48YIzVCKnGgpSRmlFK4V+9gJuJCaOjuRxjR3GuooX3tR/dXGYCPg7eZ3UCGY5f7t
+ 7GlwFGjWobpbmyU8dd+pRBQ+kGB55qcvvErYY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=FD3S0mujguCO2/ntfwJg4sQdi7RD7F/io2ojMsUoIEg=;
+ b=TsaQsiAHcaAhtEuByNqQslfKY4TjkpGT8MeJ/44WR3DPBIpRzii1zLY5B6EKDXhlbY
+ XIlGBzH+up9ZxTg7Mov2ilH+3lmyCValAkS6Y+YLs8Kig3b5RpEAUCa9kMtar9I8D+gK
+ rIx4kDkgvadfN+juukiIPWJ+v7IZqXIKnVwvw5sFjkSZcSCnf+Vf4NrdZCy7OUX2s3ew
+ QNuP7Lalwg2ZO9mYzEfm6Wzedg4E5dOHNi1QmPXmSH01VD3ldHzONoTYQ2V8T/K+Bd4x
+ 5t+rfDeh6Wj8gUEe1kosXWK3+0LiQ0nYFismS1b2c9cKIFaQ62DHIq3+DdcAM4VsPB7L
+ 34BA==
+X-Gm-Message-State: AOAM533HR/+HloidPe4WJI8tw7N7LmJmokP7CPT0KG2w00k8feEZugzk
+ ZsoeCxi8Dr+k87NRlIE8bVTjHyBzbJUWkPcbtlsn4g==
+X-Google-Smtp-Source: ABdhPJxHoxhDeLyYnrDS3vEDkWYTGA/6BTDazv5uQpebZN+Pff2vzygqd/xgIq4hOON4xDa3q5djioyZAay29yde+2s=
+X-Received: by 2002:a9d:4cd:: with SMTP id 71mr30268405otm.188.1593114867192; 
+ Thu, 25 Jun 2020 12:54:27 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915/display: Implement new combo phy
- initialization step
+References: <20200625123443.19680-1-lionel.g.landwerlin@intel.com>
+ <51e00eed-c8f1-aabf-ec2c-07be0453ab3b@amd.com>
+ <CAPM=9txhX5TVUdWibRFc1C+ip5a8-c07jZawds=k5T5pBTPASA@mail.gmail.com>
+ <874kqzndxj.fsf@intel.com>
+In-Reply-To: <874kqzndxj.fsf@intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Thu, 25 Jun 2020 21:54:16 +0200
+Message-ID: <CAKMK7uErpxoFrT_K==7-PMGyg_eqF07T50eYfh5BFQLzra7TbQ@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] Revert "dma-buf: Report signaled links
+ inside dma-fence-chain"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,77 +61,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBpcyBuZXcgc3RlcCB0aGF0IHdhcyByZWNlbnRseSBhZGRlZCB0byB0aGUgY29tYm8gcGh5
-CmluaXRpYWxpemF0aW9uLgoKdjI6Ci0gdXNpbmcgaW50ZWxfZGVfcm13KCkKCnYzOgotIGdvaW5n
-IGJhY2sgdG8gcmVhZCgpIG1vZGlmeSBhbmQgd3JpdGUoKSBhcyBncm91cCByZWdpc3RlciBjYW4n
-dCBiZQpyZWFkCgpCU3BlYzogNDkyOTEKQ2M6IENsaW50b24gQSBUYXlsb3IgPGNsaW50b24uYS50
-YXlsb3JAaW50ZWwuY29tPgpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRl
-bC5jb20+ClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFA
-aW50ZWwuY29tPgotLS0KIC4uLi9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb21ib19waHku
-YyAgICB8IDI1ICsrKysrKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-cmVnLmggICAgICAgICAgICAgICB8ICA5ICsrKysrKysKIDIgZmlsZXMgY2hhbmdlZCwgMzQgaW5z
-ZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfY29tYm9fcGh5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbWJv
-X3BoeS5jCmluZGV4IDc3YjA0YmIzZWM2Mi4uZWNjYWE3OWNiNGE5IDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbWJvX3BoeS5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29tYm9fcGh5LmMKQEAgLTI2NCw2ICsyNjQsMTgg
-QEAgc3RhdGljIGJvb2wgaWNsX2NvbWJvX3BoeV92ZXJpZnlfc3RhdGUoc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2LAogCWlmICghaWNsX2NvbWJvX3BoeV9lbmFibGVkKGRldl9wcml2
-LCBwaHkpKQogCQlyZXR1cm4gZmFsc2U7CiAKKwlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAx
-MikgeworCQlyZXQgJj0gY2hlY2tfcGh5X3JlZyhkZXZfcHJpdiwgcGh5LCBJQ0xfUE9SVF9UWF9E
-VzhfTE4wKHBoeSksCisJCQkJICAgICBJQ0xfUE9SVF9UWF9EVzhfT0RDQ19DTEtfU0VMIHwKKwkJ
-CQkgICAgIElDTF9QT1JUX1RYX0RXOF9PRENDX0NMS19ESVZfU0VMX01BU0ssCisJCQkJICAgICBJ
-Q0xfUE9SVF9UWF9EVzhfT0RDQ19DTEtfU0VMIHwKKwkJCQkgICAgIElDTF9QT1JUX1RYX0RXOF9P
-RENDX0NMS19ESVZfU0VMX0RJVjIpOworCisJCXJldCAmPSBjaGVja19waHlfcmVnKGRldl9wcml2
-LCBwaHksIElDTF9QT1JUX1BDU19EVzFfTE4wKHBoeSksCisJCQkJICAgICBEQ0NfTU9ERV9TRUxF
-Q1RfTUFTSywKKwkJCQkgICAgIERDQ19NT0RFX1NFTEVDVF9DT05USU5VT1NMWSk7CisJfQorCiAJ
-cmV0ID0gY25sX3ZlcmlmeV9wcm9jbW9uX3JlZl92YWx1ZXMoZGV2X3ByaXYsIHBoeSk7CiAKIAlp
-ZiAocGh5X2lzX21hc3RlcihkZXZfcHJpdiwgcGh5KSkgewpAQCAtMzc1LDYgKzM4NywxOSBAQCBz
-dGF0aWMgdm9pZCBpY2xfY29tYm9fcGh5c19pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpk
-ZXZfcHJpdikKIAkJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIElDTF9QSFlfTUlTQyhwaHkpLCB2
-YWwpOwogCiBza2lwX3BoeV9taXNjOgorCQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMikg
-eworCQkJdmFsID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwgSUNMX1BPUlRfVFhfRFc4X0xOMChw
-aHkpKTsKKwkJCXZhbCAmPSB+SUNMX1BPUlRfVFhfRFc4X09EQ0NfQ0xLX0RJVl9TRUxfTUFTSzsK
-KwkJCXZhbCB8PSBJQ0xfUE9SVF9UWF9EVzhfT0RDQ19DTEtfU0VMOworCQkJdmFsIHw9IElDTF9Q
-T1JUX1RYX0RXOF9PRENDX0NMS19ESVZfU0VMX0RJVjI7CisJCQlpbnRlbF9kZV93cml0ZShkZXZf
-cHJpdiwgSUNMX1BPUlRfVFhfRFc4X0dSUChwaHkpLCB2YWwpOworCisJCQl2YWwgPSBpbnRlbF9k
-ZV9yZWFkKGRldl9wcml2LCBJQ0xfUE9SVF9QQ1NfRFcxX0xOMChwaHkpKTsKKwkJCXZhbCAmPSB+
-RENDX01PREVfU0VMRUNUX01BU0s7CisJCQl2YWwgfD0gRENDX01PREVfU0VMRUNUX0NPTlRJTlVP
-U0xZOworCQkJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIElDTF9QT1JUX1BDU19EVzFfR1JQKHBo
-eSksIHZhbCk7CisJCX0KKwogCQljbmxfc2V0X3Byb2Ntb25fcmVmX3ZhbHVlcyhkZXZfcHJpdiwg
-cGh5KTsKIAogCQlpZiAocGh5X2lzX21hc3RlcihkZXZfcHJpdiwgcGh5KSkgewpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfcmVnLmgKaW5kZXggZjA5MTIwY2FjODlhLi5lY2FjOWFkYjExNTEgMTAwNjQ0Ci0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9yZWcuaApAQCAtMTk3NCw2ICsxOTc0LDggQEAgc3RhdGljIGlubGluZSBib29sIGk5
-MTVfbW1pb19yZWdfdmFsaWQoaTkxNV9yZWdfdCByZWcpCiAjZGVmaW5lIElDTF9QT1JUX1BDU19E
-VzFfQVVYKHBoeSkJX01NSU8oX0lDTF9QT1JUX1BDU19EV19BVVgoMSwgcGh5KSkKICNkZWZpbmUg
-SUNMX1BPUlRfUENTX0RXMV9HUlAocGh5KQlfTU1JTyhfSUNMX1BPUlRfUENTX0RXX0dSUCgxLCBw
-aHkpKQogI2RlZmluZSBJQ0xfUE9SVF9QQ1NfRFcxX0xOMChwaHkpCV9NTUlPKF9JQ0xfUE9SVF9Q
-Q1NfRFdfTE4oMSwgMCwgcGh5KSkKKyNkZWZpbmUgICBEQ0NfTU9ERV9TRUxFQ1RfTUFTSwkJKDB4
-MyA8PCAyMCkKKyNkZWZpbmUgICBEQ0NfTU9ERV9TRUxFQ1RfQ09OVElOVU9TTFkJKDB4MyA8PCAy
-MCkKICNkZWZpbmUgICBDT01NT05fS0VFUEVSX0VOCQkoMSA8PCAyNikKICNkZWZpbmUgICBMQVRF
-TkNZX09QVElNX01BU0sJCSgweDMgPDwgMikKICNkZWZpbmUgICBMQVRFTkNZX09QVElNX1ZBTCh4
-KQkJKCh4KSA8PCAyKQpAQCAtMjA3Miw2ICsyMDc0LDEzIEBAIHN0YXRpYyBpbmxpbmUgYm9vbCBp
-OTE1X21taW9fcmVnX3ZhbGlkKGk5MTVfcmVnX3QgcmVnKQogI2RlZmluZSAgIE5fU0NBTEFSKHgp
-CQkJKCh4KSA8PCAyNCkKICNkZWZpbmUgICBOX1NDQUxBUl9NQVNLCQkJKDB4N0YgPDwgMjQpCiAK
-KyNkZWZpbmUgSUNMX1BPUlRfVFhfRFc4X0FVWChwaHkpCQlfTU1JTyhfSUNMX1BPUlRfVFhfRFdf
-QVVYKDgsIHBoeSkpCisjZGVmaW5lIElDTF9QT1JUX1RYX0RXOF9HUlAocGh5KQkJX01NSU8oX0lD
-TF9QT1JUX1RYX0RXX0dSUCg4LCBwaHkpKQorI2RlZmluZSBJQ0xfUE9SVF9UWF9EVzhfTE4wKHBo
-eSkJCV9NTUlPKF9JQ0xfUE9SVF9UWF9EV19MTig4LCAwLCBwaHkpKQorI2RlZmluZSAgIElDTF9Q
-T1JUX1RYX0RXOF9PRENDX0NMS19TRUwJCVJFR19CSVQoMzEpCisjZGVmaW5lICAgSUNMX1BPUlRf
-VFhfRFc4X09EQ0NfQ0xLX0RJVl9TRUxfTUFTSwlSRUdfR0VOTUFTSygzMCwgMjkpCisjZGVmaW5l
-ICAgSUNMX1BPUlRfVFhfRFc4X09EQ0NfQ0xLX0RJVl9TRUxfRElWMglSRUdfRklFTERfUFJFUChJ
-Q0xfUE9SVF9UWF9EVzhfT0RDQ19DTEtfRElWX1NFTF9NQVNLLCAweDEpCisKICNkZWZpbmUgX0lD
-TF9EUEhZX0NIS05fUkVHCQkJMHgxOTQKICNkZWZpbmUgSUNMX0RQSFlfQ0hLTihwb3J0KQkJCV9N
-TUlPKF9JQ0xfQ09NQk9QSFkocG9ydCkgKyBfSUNMX0RQSFlfQ0hLTl9SRUcpCiAjZGVmaW5lICAg
-SUNMX0RQSFlfQ0hLTl9BRkVfT1ZFUl9QUElfU1RSQVAJUkVHX0JJVCg3KQotLSAKMi4yNy4wCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Ignoring everything else ...
+
+On Thu, Jun 25, 2020 at 9:28 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> As a side note, there seem to be extra checks in place for acks when
+> applying non-i915 patches to drm-intel; there are no such checks for
+> drm-misc.
+
+One option to generalize that that I pondered is to consult
+get_maintainers.pl asking for git repo link, and if that returns
+something else, then insist that there's an ack from a relevant
+maintainer. It's a bit of typing, but I think the bigger problem is
+that there's a ton of false positives.
+
+But maybe that's a good thing, would give some motivation to keep
+MAINTAINERS updated.
+
+The other issue is though that drm-misc is plenty used to merge
+patches even when the respective maintainers are absent for weeks, or
+unresponsive. If we just blindly implement that rule, then the only
+possible Ack for these would be Dave&me as subsystem maintainers, and
+I don't want to be in the business of stamping approvals for all this
+stuff. Much better if people just collaborate.
+
+So I think an ack check would be nice, but probably not practical.
+
+Plus in this situation here drm-misc.git actually is the main repo,
+and we wont ever be able to teach a script to make a judgement call of
+whether that patch has the right amount of review on it.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
