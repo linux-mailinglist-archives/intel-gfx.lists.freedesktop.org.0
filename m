@@ -1,58 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1272F20980F
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 03:04:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 662DF209AD8
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2020 09:57:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74D726E8EF;
-	Thu, 25 Jun 2020 01:04:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7FAF6E4B0;
+	Thu, 25 Jun 2020 07:57:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 775866E8EF
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 01:04:54 +0000 (UTC)
-IronPort-SDR: ih/AlWJzq1UP/kqqtAvLVIZf8ks4jF23OkiqwkgQSGcYdCfxUsNb7UCdaqupC/cZNdOCSPX0a5
- Ni6MYoNSQp1A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9662"; a="143793205"
-X-IronPort-AV: E=Sophos;i="5.75,277,1589266800"; d="scan'208";a="143793205"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2020 18:04:54 -0700
-IronPort-SDR: IgUF70gyqOWM04PBh5rRqoxE528eyWwGm6ZNYM1KkPPvlxEk8NK5ajLf5BnsGDR7X4q7QdDjp2
- lRvanfjgHqNA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,277,1589266800"; d="scan'208";a="479470484"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by fmsmga005.fm.intel.com with ESMTP; 24 Jun 2020 18:04:54 -0700
-Received: from fmsmsx102.amr.corp.intel.com (10.18.124.200) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 24 Jun 2020 18:04:53 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.40]) by
- FMSMSX102.amr.corp.intel.com ([169.254.10.33]) with mapi id 14.03.0439.000;
- Wed, 24 Jun 2020 18:04:53 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 06/12] drm/i915/fbc: Don't clear busy_bits
- for origin==GTT
-Thread-Index: AQHWHg59doz5afL+i0uY7LNOm3vDk6jpUuwA
-Date: Thu, 25 Jun 2020 01:04:52 +0000
-Message-ID: <a1ebf9b91335ae9b33ed3b88847492292f597c3c.camel@intel.com>
-References: <20200429101034.8208-1-ville.syrjala@linux.intel.com>
- <20200429101034.8208-7-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200429101034.8208-7-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.251.155.111]
-Content-ID: <DCB06BD76A8E9E48953E257A5138A68C@intel.com>
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com
+ [209.85.128.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7103F6E4B0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 07:57:29 +0000 (UTC)
+Received: by mail-wm1-f66.google.com with SMTP id l2so3437047wmf.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2020 00:57:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=76jtp+TwB1a1n9n3LirBRf2c/ErzhfeJSIfA3xs53ow=;
+ b=rr9xG2O7sJSbZtGl5gHvWYHVw8IDZNU1CaNWoa+gtwvsg6VXmPmTbkMC0YYo0sgguk
+ q7CNCEK9+D+gzfv6lVvHl5wp4YXEC2lfuuNufejIZ3srqYreN4a8vg0Kvkpaj/v9dyCg
+ VAEJRDid/eN044iojfrcedtkyA5HOj2H0bWFFEeBSHqPsQVI/LIWtdOTxCYE4C0oAtbK
+ rR882ZsF4QAhcyoBo2O7aFzXdl8Kma6iVAzG7CrHcoO8aD5psBzCNUMYfeFKre7zJS+e
+ 5edee31GRT6CRV+B0tGRml1P6OtqHL7mgEMmdbDPIQ+V2oOWKlelauS74zGHgLhGuY6S
+ z5cA==
+X-Gm-Message-State: AOAM530Y6BU18vOuwbnPpAlujZuRcSqk4UqQg73vjPbTeR6EoSBcc/MM
+ yWn3TfeNYMZFWs7QCY8OkkA=
+X-Google-Smtp-Source: ABdhPJyVo3sL23V3dy9eVB9kTVhLyIFLY0vrnH4sSiseICByNWKLZD2sZsGnuyHw9krpXFUV9RdZSQ==
+X-Received: by 2002:a7b:c208:: with SMTP id x8mr1973927wmi.49.1593071847972;
+ Thu, 25 Jun 2020 00:57:27 -0700 (PDT)
+Received: from localhost (ip-37-188-168-3.eurotel.cz. [37.188.168.3])
+ by smtp.gmail.com with ESMTPSA id n16sm24012639wrq.39.2020.06.25.00.57.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 25 Jun 2020 00:57:27 -0700 (PDT)
+Date: Thu, 25 Jun 2020 09:57:25 +0200
+From: Michal Hocko <mhocko@kernel.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200625075725.GC1320@dhcp22.suse.cz>
+References: <20200624191417.16735-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 06/12] drm/i915/fbc: Don't clear busy_bits
- for origin==GTT
+Content-Disposition: inline
+In-Reply-To: <20200624191417.16735-1-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] mm: Skip opportunistic reclaim for dma
+ pinned pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,37 +58,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jan Kara <jack@suse.cz>, Jason Gunthorpe <jgg@ziepe.ca>,
+ John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Claudio Imbrenda <imbrenda@linux.ibm.com>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIwLTA0LTI5IGF0IDEzOjEwICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gVGhlIGhhcmR3YXJlIGhvc3QgdHJhY2tpbmcgd29uJ3QgbnVrZSB0aGUgZW50aXJlIGNm
-YiAodW5sZXNzIHRoZQ0KPiBlbnRpcmUgZmIgaXMgd3JpdHRlbiB0aHJvdWdoIHRoZSBndHQpIHNv
-IGRvbid0IGNsZWFyIHRoZSBidXN5X2JpdHMNCj4gZm9yIGd0dCB0cmFja2luZy4NCj4gDQo+IE5v
-dCB0aGF0IGl0IHJlYWxseSBtYXR0ZXJzIGFueW1vcmUgc2luY2Ugd2UndmUgbG9zdCBPUklHSU5f
-R1RUIHVzYWdlDQo+IGV2ZXJ5d2hlcmUuDQoNCk1heWJlIGRyb3AgaXQgdGhlbj8gQnV0IGZvciBu
-b3cgdGhpcyBjaGFuZ2UgbG9va3MgZ29vZC4NCg0KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8g
-ZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBW
-aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiAtLS0NCj4g
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMgfCAxMCArKysrKysrKyst
-DQo+ICAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+IA0K
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMNCj4gaW5kZXggOTgzMjI0
-ZTA3ZWFmLi41NmVlYWZhNjQ1ZGUgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZmJjLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9mYmMuYw0KPiBAQCAtMTEwNywxMSArMTEwNywxOSBAQCB2b2lkIGludGVsX2ZiY19m
-bHVzaChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsDQo+ICAJaWYgKCFIQVNfRkJD
-KGRldl9wcml2KSkNCj4gIAkJcmV0dXJuOw0KPiAgDQo+ICsJLyoNCj4gKwkgKiBHVFQgdHJhY2tp
-bmcgZG9lcyBub3QgbnVrZSB0aGUgZW50aXJlIGNmYg0KPiArCSAqIHNvIGRvbid0IGNsZWFyIGJ1
-c3lfYml0cyBzZXQgZm9yIHNvbWUgb3RoZXINCj4gKwkgKiByZWFzb24uDQo+ICsJICovDQo+ICsJ
-aWYgKG9yaWdpbiA9PSBPUklHSU5fR1RUKQ0KPiArCQlyZXR1cm47DQo+ICsNCj4gIAltdXRleF9s
-b2NrKCZmYmMtPmxvY2spOw0KPiAgDQo+ICAJZmJjLT5idXN5X2JpdHMgJj0gfmZyb250YnVmZmVy
-X2JpdHM7DQo+ICANCj4gLQlpZiAob3JpZ2luID09IE9SSUdJTl9HVFQgfHwgb3JpZ2luID09IE9S
-SUdJTl9GTElQKQ0KPiArCWlmIChvcmlnaW4gPT0gT1JJR0lOX0ZMSVApDQo+ICAJCWdvdG8gb3V0
-Ow0KPiAgDQo+ICAJaWYgKCFmYmMtPmJ1c3lfYml0cyAmJiBmYmMtPmNydGMgJiYNCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed 24-06-20 20:14:17, Chris Wilson wrote:
+> A general rule of thumb is that shrinkers should be fast and effective.
+> They are called from direct reclaim at the most incovenient of times when
+> the caller is waiting for a page. If we attempt to reclaim a page being
+> pinned for active dma [pin_user_pages()], we will incur far greater
+> latency than a normal anonymous page mapped multiple times. Worse the
+> page may be in use indefinitely by the HW and unable to be reclaimed
+> in a timely manner.
+> =
+
+> A side effect of the LRU shrinker not being dma aware is that we will
+> often attempt to perform direct reclaim on the persistent group of dma
+> pages while continuing to use the dma HW (an issue as the HW may already
+> be actively waiting for the next user request), and even attempt to
+> reclaim a partially allocated dma object in order to satisfy pinning
+> the next user page for that object.
+
+You are talking about direct reclaim but this path is shared with the
+background reclaim. This is a bit confusing. Maybe you just want to
+outline the latency in the reclaim which is more noticeable in the
+direct reclaim to the userspace. This would be good to be clarified.
+
+How much memory are we talking about here btw?
+
+> It is to be expected that such pages are made available for reclaim at
+> the end of the dma operation [unpin_user_pages()], and for truly
+> longterm pins to be proactively recovered via device specific shrinkers
+> [i.e. stop the HW, allow the pages to be returned to the system, and
+> then compete again for the memory].
+
+Is the later implemented?
+
+Btw. overall intention of the patch is not really clear to me. Do I get
+it right that this is going to reduce latency of the reclaim for pages
+that are not reclaimable anyway because they are pinned? If yes do we
+have any numbers for that.
+
+It would be also good to explain why the bail out is implemented in
+try_to_unmap rather than shrink_shrink_page_list.
+
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: Jan Kara <jack@suse.cz>
+> Cc: J=E9r=F4me Glisse <jglisse@redhat.com>
+> Cc: John Hubbard <jhubbard@nvidia.com>
+> Cc: Claudio Imbrenda <imbrenda@linux.ibm.com>
+> Cc: Jan Kara <jack@suse.cz>
+> Cc: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> ---
+> This seems perhaps a little devious and overzealous. Is there a more
+> appropriate TTU flag? Would there be a way to limit its effect to say
+> FOLL_LONGTERM? Doing the migration first would seem to be sensible if
+> we disable opportunistic migration for the duration of the pin.
+> ---
+>  mm/rmap.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> =
+
+> diff --git a/mm/rmap.c b/mm/rmap.c
+> index 5fe2dedce1fc..374c6e65551b 100644
+> --- a/mm/rmap.c
+> +++ b/mm/rmap.c
+> @@ -1393,6 +1393,22 @@ static bool try_to_unmap_one(struct page *page, st=
+ruct vm_area_struct *vma,
+>  	    is_zone_device_page(page) && !is_device_private_page(page))
+>  		return true;
+>  =
+
+> +	/*
+> +	 * Try and fail early to revoke a costly DMA pinned page.
+> +	 *
+> +	 * Reclaiming an active DMA page requires stopping the hardware
+> +	 * and flushing access. [Hardware that does support pagefaulting,
+> +	 * and so can quickly revoke DMA pages at any time, does not need
+> +	 * to pin the DMA page.] At worst, the page may be indefinitely in
+> +	 * use by the hardware. Even at best it will take far longer to
+> +	 * revoke the access via the mmu notifier, forcing that latency
+> +	 * onto our callers rather than the consumer of the HW. As we are
+> +	 * called during opportunistic direct reclaim, declare the
+> +	 * opportunity cost too high and ignore the page.
+> +	 */
+> +	if (page_maybe_dma_pinned(page))
+> +		return true;
+
+I do not understand why the page table walk needs to be done. The page
+is going to be pinned no matter how many page tables are mapping it
+right?
+
+> +
+>  	if (flags & TTU_SPLIT_HUGE_PMD) {
+>  		split_huge_pmd_address(vma, address,
+>  				flags & TTU_SPLIT_FREEZE, page);
+> -- =
+
+> 2.20.1
+
+-- =
+
+Michal Hocko
+SUSE Labs
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
