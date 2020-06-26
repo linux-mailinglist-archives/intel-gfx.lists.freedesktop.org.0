@@ -1,44 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1B9B20AA10
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 03:00:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A3C220AA2B
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 03:37:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 007476EC31;
-	Fri, 26 Jun 2020 01:00:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A0576EC2F;
+	Fri, 26 Jun 2020 01:37:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 956E46E379
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2020 01:00:32 +0000 (UTC)
-IronPort-SDR: Kc1Z6Z0/TMFaxgyDBs37hX+U9rTaj8jafrnkyrLOSlm2tzwJvdSqmQaTubSO2wKRayZrsPiuJ0
- nC3ZgQe52nlQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9663"; a="145199134"
-X-IronPort-AV: E=Sophos;i="5.75,281,1589266800"; 
- d="scan'208,223";a="145199134"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2020 18:00:31 -0700
-IronPort-SDR: vaZONcaxvJi977cg32QApGMuEU7v3ym/cdh51JFrFwZG9i83LkBdcGuP3lU+/PEB2DzeiGZd8O
- uLEqNzT4EJVQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,281,1589266800"; 
- d="scan'208,223";a="319887749"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-MOBL2.intel.com)
- ([10.24.14.51])
- by FMSMGA003.fm.intel.com with ESMTP; 25 Jun 2020 18:00:31 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 25 Jun 2020 18:01:51 -0700
-Message-Id: <20200626010151.221388-5-jose.souza@intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200626010151.221388-1-jose.souza@intel.com>
-References: <20200626010151.221388-1-jose.souza@intel.com>
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com
+ [IPv6:2a00:1450:4864:20::644])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E99B06EC2E;
+ Fri, 26 Jun 2020 01:37:07 +0000 (UTC)
+Received: by mail-ej1-x644.google.com with SMTP id o18so3355061eje.7;
+ Thu, 25 Jun 2020 18:37:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=5ev8M954A2xAvQp4C5xD3yd44XzdMUFOw91HonO88xA=;
+ b=Dfu74YI321ajM0uHt4btGm4qgMfszKub3H+eD4wnoO9tYLmm9lG0owVlSRR5SS5vyB
+ Zebj9SISLSi+sHh5WGuTA7bifEugKuLBa+N0r8GE1MVecg9ac10DhBIybaXsD/1vrRox
+ p3brGUNGSdddNze4SqO72A9BhZZWbqy13cAqU/uBMdBodIA0RLg/Bf7ewvVpnE6fU/nA
+ aoPXTwNrlbo6wr+Mv1neRFZr3jYcvtpGDRa8y5u3bIdGpRXeJ2q6wBKBnFsqzn9x3hFP
+ hVzT6el58aaMHReQqSH8tnnvzMM06TGtfHvGcG4qpAlYtnT+mE/W3jmiAajawqwCImCx
+ 09bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=5ev8M954A2xAvQp4C5xD3yd44XzdMUFOw91HonO88xA=;
+ b=U4airCXR3v2XiLGMxDNnz+if4ABFXv3s1qiGRH8FkqszH3RoG0KVBedy4wYpGtEXSU
+ thwOHC6GPYIRwOndHlfF6QXbW6wpltaozIWbVCMf0rNmUBhkoPIshn2yGUMfyWytgaHF
+ P2gqlVBQjxWZ64hRVVyRJhvclXOROpWA6z/Ag5VWFvIHVepQsFmibSfBFSGzl3gVca2P
+ D9SVVF7KPaeSyzhp+L46RCn/Ff2qAH5tJBkgjamNl13a1jIWdOhSVH3QBYh9ogwHsYbq
+ 9XOWUBHJgdpXdoB1Fes8Tjc5wEy38kS/5SuhtZqDjWBB6tHKBZxJ+yLFrlhEE94EaZCu
+ Ymcg==
+X-Gm-Message-State: AOAM532FzOAle22n9qhXvznh8dE6KsME3Aa1coSvBXJyAJi9iksJBSVw
+ RRNqRoGNypdwCFJeFGIqx2qJli+gLjCr/nRGzUJDs1vM
+X-Google-Smtp-Source: ABdhPJwp3euX5uQuwJtmqtKGT8+DqTU92juS7Tkino47iTQVCEVxIrKUiNAnM9ZNXS1HFXi5Y9bGT3tmQaAaF72hB2g=
+X-Received: by 2002:a17:906:da0f:: with SMTP id
+ fi15mr503485ejb.237.1593135426176; 
+ Thu, 25 Jun 2020 18:37:06 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 5/5] drm/i915/display: Implement WA 1408330847
+References: <20200625123443.19680-1-lionel.g.landwerlin@intel.com>
+ <51e00eed-c8f1-aabf-ec2c-07be0453ab3b@amd.com>
+ <CAPM=9txhX5TVUdWibRFc1C+ip5a8-c07jZawds=k5T5pBTPASA@mail.gmail.com>
+ <874kqzndxj.fsf@intel.com>
+In-Reply-To: <874kqzndxj.fsf@intel.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Fri, 26 Jun 2020 11:36:54 +1000
+Message-ID: <CAPM=9twpNDqS=HDANHOiqy0JeqkqfpiA3bBsZn3vB4QVGJLGGQ@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] Revert "dma-buf: Report signaled links
+ inside dma-fence-chain"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,55 +65,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbSB0aGUgMyBXQXMgZm9yIFBTUjIgbWFuIHRyYWNrL3NlbGVjdGl2ZSBmZXRjaCB0aGlzIGlz
-IG9ubHkgb25lCm5lZWRlZCB3aGVuIGRvaW5nIHNpbmdsZSBmdWxsIGZyYW1lcyBhdCBldmVyeSBm
-bGlwLgoKU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBp
-bnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyB8
-IDE5ICsrKysrKysrKysrKysrKysrLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgg
-ICAgICAgICAgfCAgMSArCiAyIGZpbGVzIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKyksIDIgZGVs
-ZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9wc3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKaW5kZXgg
-MDc4OTg3YTg3OGIwLi44NzU1YWI4Nzc0MGQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9wc3IuYwpAQCAtNTUzLDEzICs1NTMsMjEgQEAgc3RhdGljIHZvaWQgaHN3X2FjdGl2
-YXRlX3BzcjIoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKIAkJdmFsIHw9IEVEUF9QU1IyX0ZB
-U1RfV0FLRSg3KTsKIAl9CiAKLQlpZiAoZGV2X3ByaXYtPnBzci5wc3IyX3NlbF9mZXRjaF9lbmFi
-bGVkKQorCWlmIChkZXZfcHJpdi0+cHNyLnBzcjJfc2VsX2ZldGNoX2VuYWJsZWQpIHsKKwkJLyog
-V0EgMTQwODMzMDg0NyAqLworCQlpZiAoSVNfVEdMX1JFVklEKGRldl9wcml2LCBUR0xfUkVWSURf
-QTAsIFRHTF9SRVZJRF9BMCkgfHwKKwkJICAgIElTX1JLTF9SRVZJRChkZXZfcHJpdiwgUktMX1JF
-VklEX0EwLCBSS0xfUkVWSURfQTApKQorCQkJaW50ZWxfZGVfcm13KGRldl9wcml2LCBDSElDS0VO
-X1BBUjFfMSwKKwkJCQkgICAgIERJU19SQU1fQllQQVNTX1BTUjJfTUFOX1RSQUNLLAorCQkJCSAg
-ICAgRElTX1JBTV9CWVBBU1NfUFNSMl9NQU5fVFJBQ0spOworCiAJCWludGVsX2RlX3dyaXRlKGRl
-dl9wcml2LAogCQkJICAgICAgIFBTUjJfTUFOX1RSS19DVEwoZGV2X3ByaXYtPnBzci50cmFuc2Nv
-ZGVyKSwKIAkJCSAgICAgICBQU1IyX01BTl9UUktfQ1RMX0VOQUJMRSk7Ci0JZWxzZSBpZiAoSEFT
-X1BTUjJfU0VMX0ZFVENIKGRldl9wcml2KSkKKwl9IGVsc2UgaWYgKEhBU19QU1IyX1NFTF9GRVRD
-SChkZXZfcHJpdikpIHsKIAkJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsCiAJCQkgICAgICAgUFNS
-Ml9NQU5fVFJLX0NUTChkZXZfcHJpdi0+cHNyLnRyYW5zY29kZXIpLCAwKTsKKwl9CiAKIAkvKgog
-CSAqIFBTUjIgSFcgaXMgaW5jb3JyZWN0bHkgdXNpbmcgRURQX1BTUl9UUDFfVFAzX1NFTCBhbmQg
-QlNwZWMgaXMKQEAgLTEwOTksNiArMTEwNywxMyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9wc3JfZGlz
-YWJsZV9sb2NrZWQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKIAkJCQkgICAgcHNyX3N0YXR1
-c19tYXNrLCAyMDAwKSkKIAkJZHJtX2VycigmZGV2X3ByaXYtPmRybSwgIlRpbWVkIG91dCB3YWl0
-aW5nIFBTUiBpZGxlIHN0YXRlXG4iKTsKIAorCS8qIFdBIDE0MDgzMzA4NDcgKi8KKwlpZiAoZGV2
-X3ByaXYtPnBzci5wc3IyX3NlbF9mZXRjaF9lbmFibGVkICYmCisJICAgIChJU19UR0xfUkVWSUQo
-ZGV2X3ByaXYsIFRHTF9SRVZJRF9BMCwgVEdMX1JFVklEX0EwKSB8fAorCSAgICAgSVNfUktMX1JF
-VklEKGRldl9wcml2LCBSS0xfUkVWSURfQTAsIFJLTF9SRVZJRF9BMCkpKQorCQlpbnRlbF9kZV9y
-bXcoZGV2X3ByaXYsIENISUNLRU5fUEFSMV8xLAorCQkJICAgICBESVNfUkFNX0JZUEFTU19QU1Iy
-X01BTl9UUkFDSywgMCk7CisKIAkvKiBEaXNhYmxlIFBTUiBvbiBTaW5rICovCiAJZHJtX2RwX2Rw
-Y2Rfd3JpdGViKCZpbnRlbF9kcC0+YXV4LCBEUF9QU1JfRU5fQ0ZHLCAwKTsKIApkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfcmVnLmgKaW5kZXggOGI2ZWI0MmI2M2RiLi40YWI0OTE0MjYyMTAgMTAwNjQ0Ci0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9yZWcuaApAQCAtNzg1Miw2ICs3ODUyLDcgQEAgZW51bSB7CiAjIGRlZmluZSBDSElD
-S0VOM19ER01HX0RPTkVfRklYX0RJU0FCTEUJCSgxIDw8IDIpCiAKICNkZWZpbmUgQ0hJQ0tFTl9Q
-QVIxXzEJCQlfTU1JTygweDQyMDgwKQorI2RlZmluZSAgRElTX1JBTV9CWVBBU1NfUFNSMl9NQU5f
-VFJBQ0sJKDEgPDwgMTYpCiAjZGVmaW5lICBTS0xfREVfQ09NUFJFU1NFRF9IQVNIX01PREUJKDEg
-PDwgMTUpCiAjZGVmaW5lICBEUEFfTUFTS19WQkxBTktfU1JECQkoMSA8PCAxNSkKICNkZWZpbmUg
-IEZPUkNFX0FSQl9JRExFX1BMQU5FUwkJKDEgPDwgMTQpCi0tIAoyLjI3LjAKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
-c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Fri, 26 Jun 2020 at 05:27, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>
+> On Fri, 26 Jun 2020, Dave Airlie <airlied@gmail.com> wrote:
+> > WTUF?
+> >
+> > How did this ever land in my tree, there is no ACK on this from anyone
+> > in core dma-buf,
+> >
+> > Intel team, clean your house up here, I'm going to have to ask you to
+> > stop Chris merging stuff without oversight, if this sort of thing
+> > happens, this is totally unacceptable.
+>
+> There's no argument, an ack is required.
+>
+> In fairness to the i915 maintainers, though, this particular commit was
+> merged via drm-misc-next [1].
+>
+> As a side note, there seem to be extra checks in place for acks when
+> applying non-i915 patches to drm-intel; there are no such checks for
+> drm-misc.
+
+Sorry Jani, thanks for chasing that down.
+
+drm-misc we need to oversight a bit more, I don't think we should be
+landing things that affect core code with single company acks.
+
+Dave.
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
