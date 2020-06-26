@@ -1,42 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B9920B467
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 17:22:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEFF620B477
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 17:25:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6347B6ECB5;
-	Fri, 26 Jun 2020 15:22:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B0B76ECB6;
+	Fri, 26 Jun 2020 15:25:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9761B6ECB5
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2020 15:22:36 +0000 (UTC)
-IronPort-SDR: 8+n65w3OEbRvGezv3YT8JM7qgbtlaVmOMywW+SMX8RapUsio6vcp+VbMUWqHYMhJ3l+EdqNwNm
- DSRGkNCibOKQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9664"; a="230131706"
-X-IronPort-AV: E=Sophos;i="5.75,284,1589266800"; d="scan'208";a="230131706"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 639546ECB6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2020 15:25:39 +0000 (UTC)
+IronPort-SDR: DBV8XY+zoHs/PW+WroRyFUg1Y1Qt2rgphVBJxI/PhjgYXaDUiADpTOVZNM/wwXZVGjlAObhMUm
+ +r34v9dd4CMA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9664"; a="142870085"
+X-IronPort-AV: E=Sophos;i="5.75,284,1589266800"; d="scan'208";a="142870085"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2020 08:22:36 -0700
-IronPort-SDR: jjidQjccHkxAeGv2LZ64fffo8d8BcQ/hvVxqvYd/gjduzY+e9jmoZAP/sVDFp/zS1TAS6iGrtF
- Nrc+G0sCkEWw==
-X-IronPort-AV: E=Sophos;i="5.75,284,1589266800"; d="scan'208";a="453395181"
-Received: from ppkrause-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.36.98])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2020 08:22:33 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Patchwork <patchwork@emeril.freedesktop.org>,
- Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-In-Reply-To: <159299589741.19236.15323518631653361058@emeril.freedesktop.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2020 08:25:38 -0700
+IronPort-SDR: flGVfKyg8t4dAUFBBjpILKzdW0a560wrum6V6a1xOWODY/+Qfi9p/TbSpkRxSWWU3XCY3BK7Vk
+ +laCP19mZ9hA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,284,1589266800"; d="scan'208";a="301717736"
+Received: from irsmsx152.ger.corp.intel.com ([163.33.192.66])
+ by orsmga007.jf.intel.com with ESMTP; 26 Jun 2020 08:25:37 -0700
+Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
+ IRSMSX152.ger.corp.intel.com (163.33.192.66) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 26 Jun 2020 16:25:25 +0100
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 26 Jun 2020 16:25:24 +0100
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
+ IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
+ Fri, 26 Jun 2020 16:25:24 +0100
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Patchwork
+ <patchwork@emeril.freedesktop.org>
+Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcgZm9y?=
+ =?utf-8?Q?_Send_a_hotplug_when_edid_changes_(rev8)?=
+Thread-Index: AQHWShVxKv59RDYr/0id9xR5xnpwR6jq9kmAgAARNmQ=
+Date: Fri, 26 Jun 2020 15:25:24 +0000
+Message-ID: <3542d23ab420436ba0573b8575aa1376@intel.com>
 References: <20200623185756.19502-1-kunal1.joshi@intel.com>
- <159299589741.19236.15323518631653361058@emeril.freedesktop.org>
-Date: Fri, 26 Jun 2020 18:22:31 +0300
-Message-ID: <87zh8pn96w.fsf@intel.com>
+ <159299589741.19236.15323518631653361058@emeril.freedesktop.org>,
+ <87zh8pn96w.fsf@intel.com>
+In-Reply-To: <87zh8pn96w.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.253.164]
 MIME-Version: 1.0
 Subject: Re: [Intel-gfx] 
  =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
@@ -53,159 +70,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 24 Jun 2020, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: Send a hotplug when edid changes (rev8)
-> URL   : https://patchwork.freedesktop.org/series/62816/
-> State : warning
->
-> == Summary ==
-
-Please at least fix the spacing issues. Please don't use spaces for
-indentation.
-
-BR,
-Jani.
-
-
->
-> $ dim checkpatch origin/drm-tip
-> eeee75d80077 drm: Add helper to compare edids.
-> -:32: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "edid1"
-> #32: FILE: drivers/gpu/drm/drm_edid.c:1628:
-> +	bool edid1_present = edid1 != NULL;
->
-> -:33: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "edid2"
-> #33: FILE: drivers/gpu/drm/drm_edid.c:1629:
-> +	bool edid2_present = edid2 != NULL;
->
-> -:39: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-> #39: FILE: drivers/gpu/drm/drm_edid.c:1635:
-> +	if (edid1) {
-> +
->
-> -:54: CHECK:LINE_SPACING: Please don't use multiple blank lines
-> #54: FILE: drivers/gpu/drm/drm_edid.c:1650:
-> +
-> +
->
-> total: 0 errors, 0 warnings, 4 checks, 54 lines checked
-> 127303584a7e drm: Introduce epoch counter to drm_connector
-> -:56: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #56: FILE: drivers/gpu/drm/drm_connector.c:2012:
-> +				DRM_DEBUG_KMS("[CONNECTOR:%d:%s] Edid was changed.\n",
-> +				    connector->base.id, connector->name);
->
-> -:60: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #60: FILE: drivers/gpu/drm/drm_connector.c:2016:
-> +				DRM_DEBUG_KMS("Updating change counter to %llu\n",
-> +				    connector->epoch_counter);
->
-> -:129: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
-> #129: FILE: drivers/gpu/drm/drm_probe_helper.c:790:
-> +	uint64_t old_epoch_counter;
->
-> -:160: WARNING:BRACES: braces {} are not necessary for single statement blocks
-> #160: FILE: drivers/gpu/drm/drm_probe_helper.c:826:
-> +		if (old_epoch_counter != connector->epoch_counter) {
->  			changed = true;
-> +		}
->
-> -:183: ERROR:CODE_INDENT: code indent should use tabs where possible
-> #183: FILE: include/drm/drm_connector.h:1332:
-> +        /** @epoch_counter: used to detect any other changes in connector, besides status */$
->
-> -:184: ERROR:CODE_INDENT: code indent should use tabs where possible
-> #184: FILE: include/drm/drm_connector.h:1333:
-> +        uint64_t epoch_counter;$
->
-> -:184: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-> #184: FILE: include/drm/drm_connector.h:1333:
-> +        uint64_t epoch_counter;$
->
-> -:184: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
-> #184: FILE: include/drm/drm_connector.h:1333:
-> +        uint64_t epoch_counter;
->
-> total: 2 errors, 2 warnings, 4 checks, 136 lines checked
-> 6f6d00bcff9f drm/i915: Send hotplug event if edid had changed
-> -:42: ERROR:CODE_INDENT: code indent should use tabs where possible
-> #42: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:286:
-> +        u64 old_epoch_counter;$
->
-> -:42: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-> #42: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:286:
-> +        u64 old_epoch_counter;$
->
-> -:43: ERROR:CODE_INDENT: code indent should use tabs where possible
-> #43: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:287:
-> +        bool ret = false;$
->
-> -:43: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-> #43: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:287:
-> +        bool ret = false;$
->
-> -:62: ERROR:CODE_INDENT: code indent should use tabs where possible
-> #62: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:295:
-> +        if (old_epoch_counter != connector->base.epoch_counter)$
->
-> -:62: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-> #62: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:295:
-> +        if (old_epoch_counter != connector->base.epoch_counter)$
->
-> -:63: ERROR:CODE_INDENT: code indent should use tabs where possible
-> #63: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:296:
-> +                ret = true;$
->
-> -:63: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-> #63: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:296:
-> +                ret = true;$
->
-> -:65: ERROR:CODE_INDENT: code indent should use tabs where possible
-> #65: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:298:
-> +        if(ret) {$
->
-> -:65: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-> #65: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:298:
-> +        if(ret) {$
->
-> -:65: ERROR:SPACING: space required before the open parenthesis '('
-> #65: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:298:
-> +        if(ret) {
->
-> -:73: ERROR:CODE_INDENT: code indent should use tabs where possible
-> #73: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:306:
-> +        }$
->
-> -:73: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-> #73: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:306:
-> +        }$
->
-> -:74: ERROR:CODE_INDENT: code indent should use tabs where possible
-> #74: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:307:
-> +        return INTEL_HOTPLUG_UNCHANGED;$
->
-> -:74: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-> #74: FILE: drivers/gpu/drm/i915/display/intel_hotplug.c:307:
-> +        return INTEL_HOTPLUG_UNCHANGED;$
->
-> total: 8 errors, 7 warnings, 0 checks, 38 lines checked
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T21nLCB3aGVyZSBkaWQgdGhvc2UgY29tZSBmcm9tPy4uDQoNCkpvc2hpIEt1bmFsOiB3aWxsIHlv
+dSBmaXggb3Igc2hvdWxkIEkgZG8gdGhhdD8NCg0KDQpCZXN0IFJlZ2FyZHMsDQoNCkxpc292c2tp
+eSBTdGFuaXNsYXYNCg0KT3JnYW5pemF0aW9uOiBJbnRlbCBGaW5sYW5kIE95IC0gQklDIDAzNTc2
+MDYtNCAtIFdlc3RlbmRpbmthdHUgNywgMDIxNjAgRXNwb28NCg0KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXw0KRnJvbTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxp
+bnV4LmludGVsLmNvbT4NClNlbnQ6IEZyaWRheSwgSnVuZSAyNiwgMjAyMCA2OjIyOjMxIFBNDQpU
+bzogUGF0Y2h3b3JrOyBMaXNvdnNraXksIFN0YW5pc2xhdg0KQ2M6IGludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmc7IEpvc2hpLCBLdW5hbDENClN1YmplY3Q6IFJlOiBbSW50ZWwtZ2Z4XSDi
+nJcgRmkuQ0kuQ0hFQ0tQQVRDSDogd2FybmluZyBmb3IgU2VuZCBhIGhvdHBsdWcgd2hlbiBlZGlk
+IGNoYW5nZXMgKHJldjgpDQoNCk9uIFdlZCwgMjQgSnVuIDIwMjAsIFBhdGNod29yayA8cGF0Y2h3
+b3JrQGVtZXJpbC5mcmVlZGVza3RvcC5vcmc+IHdyb3RlOg0KPiA9PSBTZXJpZXMgRGV0YWlscyA9
+PQ0KPg0KPiBTZXJpZXM6IFNlbmQgYSBob3RwbHVnIHdoZW4gZWRpZCBjaGFuZ2VzIChyZXY4KQ0K
+PiBVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNjI4MTYv
+DQo+IFN0YXRlIDogd2FybmluZw0KPg0KPiA9PSBTdW1tYXJ5ID09DQoNClBsZWFzZSBhdCBsZWFz
+dCBmaXggdGhlIHNwYWNpbmcgaXNzdWVzLiBQbGVhc2UgZG9uJ3QgdXNlIHNwYWNlcyBmb3INCmlu
+ZGVudGF0aW9uLg0KDQpCUiwNCkphbmkuDQoNCg0KPg0KPiAkIGRpbSBjaGVja3BhdGNoIG9yaWdp
+bi9kcm0tdGlwDQo+IGVlZWU3NWQ4MDA3NyBkcm06IEFkZCBoZWxwZXIgdG8gY29tcGFyZSBlZGlk
+cy4NCj4gLTozMjogQ0hFQ0s6Q09NUEFSSVNPTl9UT19OVUxMOiBDb21wYXJpc29uIHRvIE5VTEwg
+Y291bGQgYmUgd3JpdHRlbiAiZWRpZDEiDQo+ICMzMjogRklMRTogZHJpdmVycy9ncHUvZHJtL2Ry
+bV9lZGlkLmM6MTYyODoNCj4gKyAgICAgYm9vbCBlZGlkMV9wcmVzZW50ID0gZWRpZDEgIT0gTlVM
+TDsNCj4NCj4gLTozMzogQ0hFQ0s6Q09NUEFSSVNPTl9UT19OVUxMOiBDb21wYXJpc29uIHRvIE5V
+TEwgY291bGQgYmUgd3JpdHRlbiAiZWRpZDIiDQo+ICMzMzogRklMRTogZHJpdmVycy9ncHUvZHJt
+L2RybV9lZGlkLmM6MTYyOToNCj4gKyAgICAgYm9vbCBlZGlkMl9wcmVzZW50ID0gZWRpZDIgIT0g
+TlVMTDsNCj4NCj4gLTozOTogQ0hFQ0s6QlJBQ0VTOiBCbGFuayBsaW5lcyBhcmVuJ3QgbmVjZXNz
+YXJ5IGFmdGVyIGFuIG9wZW4gYnJhY2UgJ3snDQo+ICMzOTogRklMRTogZHJpdmVycy9ncHUvZHJt
+L2RybV9lZGlkLmM6MTYzNToNCj4gKyAgICAgaWYgKGVkaWQxKSB7DQo+ICsNCj4NCj4gLTo1NDog
+Q0hFQ0s6TElORV9TUEFDSU5HOiBQbGVhc2UgZG9uJ3QgdXNlIG11bHRpcGxlIGJsYW5rIGxpbmVz
+DQo+ICM1NDogRklMRTogZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmM6MTY1MDoNCj4gKw0KPiAr
+DQo+DQo+IHRvdGFsOiAwIGVycm9ycywgMCB3YXJuaW5ncywgNCBjaGVja3MsIDU0IGxpbmVzIGNo
+ZWNrZWQNCj4gMTI3MzAzNTg0YTdlIGRybTogSW50cm9kdWNlIGVwb2NoIGNvdW50ZXIgdG8gZHJt
+X2Nvbm5lY3Rvcg0KPiAtOjU2OiBDSEVDSzpQQVJFTlRIRVNJU19BTElHTk1FTlQ6IEFsaWdubWVu
+dCBzaG91bGQgbWF0Y2ggb3BlbiBwYXJlbnRoZXNpcw0KPiAjNTY6IEZJTEU6IGRyaXZlcnMvZ3B1
+L2RybS9kcm1fY29ubmVjdG9yLmM6MjAxMjoNCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgRFJNX0RFQlVHX0tNUygiW0NPTk5FQ1RPUjolZDolc10gRWRpZCB3YXMgY2hhbmdlZC5cbiIs
+DQo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb25uZWN0b3ItPmJhc2UuaWQs
+IGNvbm5lY3Rvci0+bmFtZSk7DQo+DQo+IC06NjA6IENIRUNLOlBBUkVOVEhFU0lTX0FMSUdOTUVO
+VDogQWxpZ25tZW50IHNob3VsZCBtYXRjaCBvcGVuIHBhcmVudGhlc2lzDQo+ICM2MDogRklMRTog
+ZHJpdmVycy9ncHUvZHJtL2RybV9jb25uZWN0b3IuYzoyMDE2Og0KPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBEUk1fREVCVUdfS01TKCJVcGRhdGluZyBjaGFuZ2UgY291bnRlciB0byAl
+bGx1XG4iLA0KPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29ubmVjdG9yLT5l
+cG9jaF9jb3VudGVyKTsNCj4NCj4gLToxMjk6IENIRUNLOlBSRUZFUl9LRVJORUxfVFlQRVM6IFBy
+ZWZlciBrZXJuZWwgdHlwZSAndTY0JyBvdmVyICd1aW50NjRfdCcNCj4gIzEyOTogRklMRTogZHJp
+dmVycy9ncHUvZHJtL2RybV9wcm9iZV9oZWxwZXIuYzo3OTA6DQo+ICsgICAgIHVpbnQ2NF90IG9s
+ZF9lcG9jaF9jb3VudGVyOw0KPg0KPiAtOjE2MDogV0FSTklORzpCUkFDRVM6IGJyYWNlcyB7fSBh
+cmUgbm90IG5lY2Vzc2FyeSBmb3Igc2luZ2xlIHN0YXRlbWVudCBibG9ja3MNCj4gIzE2MDogRklM
+RTogZHJpdmVycy9ncHUvZHJtL2RybV9wcm9iZV9oZWxwZXIuYzo4MjY6DQo+ICsgICAgICAgICAg
+ICAgaWYgKG9sZF9lcG9jaF9jb3VudGVyICE9IGNvbm5lY3Rvci0+ZXBvY2hfY291bnRlcikgew0K
+PiAgICAgICAgICAgICAgICAgICAgICAgY2hhbmdlZCA9IHRydWU7DQo+ICsgICAgICAgICAgICAg
+fQ0KPg0KPiAtOjE4MzogRVJST1I6Q09ERV9JTkRFTlQ6IGNvZGUgaW5kZW50IHNob3VsZCB1c2Ug
+dGFicyB3aGVyZSBwb3NzaWJsZQ0KPiAjMTgzOiBGSUxFOiBpbmNsdWRlL2RybS9kcm1fY29ubmVj
+dG9yLmg6MTMzMjoNCj4gKyAgICAgICAgLyoqIEBlcG9jaF9jb3VudGVyOiB1c2VkIHRvIGRldGVj
+dCBhbnkgb3RoZXIgY2hhbmdlcyBpbiBjb25uZWN0b3IsIGJlc2lkZXMgc3RhdHVzICovJA0KPg0K
+PiAtOjE4NDogRVJST1I6Q09ERV9JTkRFTlQ6IGNvZGUgaW5kZW50IHNob3VsZCB1c2UgdGFicyB3
+aGVyZSBwb3NzaWJsZQ0KPiAjMTg0OiBGSUxFOiBpbmNsdWRlL2RybS9kcm1fY29ubmVjdG9yLmg6
+MTMzMzoNCj4gKyAgICAgICAgdWludDY0X3QgZXBvY2hfY291bnRlcjskDQo+DQo+IC06MTg0OiBX
+QVJOSU5HOkxFQURJTkdfU1BBQ0U6IHBsZWFzZSwgbm8gc3BhY2VzIGF0IHRoZSBzdGFydCBvZiBh
+IGxpbmUNCj4gIzE4NDogRklMRTogaW5jbHVkZS9kcm0vZHJtX2Nvbm5lY3Rvci5oOjEzMzM6DQo+
+ICsgICAgICAgIHVpbnQ2NF90IGVwb2NoX2NvdW50ZXI7JA0KPg0KPiAtOjE4NDogQ0hFQ0s6UFJF
+RkVSX0tFUk5FTF9UWVBFUzogUHJlZmVyIGtlcm5lbCB0eXBlICd1NjQnIG92ZXIgJ3VpbnQ2NF90
+Jw0KPiAjMTg0OiBGSUxFOiBpbmNsdWRlL2RybS9kcm1fY29ubmVjdG9yLmg6MTMzMzoNCj4gKyAg
+ICAgICAgdWludDY0X3QgZXBvY2hfY291bnRlcjsNCj4NCj4gdG90YWw6IDIgZXJyb3JzLCAyIHdh
+cm5pbmdzLCA0IGNoZWNrcywgMTM2IGxpbmVzIGNoZWNrZWQNCj4gNmY2ZDAwYmNmZjlmIGRybS9p
+OTE1OiBTZW5kIGhvdHBsdWcgZXZlbnQgaWYgZWRpZCBoYWQgY2hhbmdlZA0KPiAtOjQyOiBFUlJP
+UjpDT0RFX0lOREVOVDogY29kZSBpbmRlbnQgc2hvdWxkIHVzZSB0YWJzIHdoZXJlIHBvc3NpYmxl
+DQo+ICM0MjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9ob3RwbHVn
+LmM6Mjg2Og0KPiArICAgICAgICB1NjQgb2xkX2Vwb2NoX2NvdW50ZXI7JA0KPg0KPiAtOjQyOiBX
+QVJOSU5HOkxFQURJTkdfU1BBQ0U6IHBsZWFzZSwgbm8gc3BhY2VzIGF0IHRoZSBzdGFydCBvZiBh
+IGxpbmUNCj4gIzQyOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hv
+dHBsdWcuYzoyODY6DQo+ICsgICAgICAgIHU2NCBvbGRfZXBvY2hfY291bnRlcjskDQo+DQo+IC06
+NDM6IEVSUk9SOkNPREVfSU5ERU5UOiBjb2RlIGluZGVudCBzaG91bGQgdXNlIHRhYnMgd2hlcmUg
+cG9zc2libGUNCj4gIzQzOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2hvdHBsdWcuYzoyODc6DQo+ICsgICAgICAgIGJvb2wgcmV0ID0gZmFsc2U7JA0KPg0KPiAtOjQz
+OiBXQVJOSU5HOkxFQURJTkdfU1BBQ0U6IHBsZWFzZSwgbm8gc3BhY2VzIGF0IHRoZSBzdGFydCBv
+ZiBhIGxpbmUNCj4gIzQzOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2hvdHBsdWcuYzoyODc6DQo+ICsgICAgICAgIGJvb2wgcmV0ID0gZmFsc2U7JA0KPg0KPiAtOjYy
+OiBFUlJPUjpDT0RFX0lOREVOVDogY29kZSBpbmRlbnQgc2hvdWxkIHVzZSB0YWJzIHdoZXJlIHBv
+c3NpYmxlDQo+ICM2MjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9o
+b3RwbHVnLmM6Mjk1Og0KPiArICAgICAgICBpZiAob2xkX2Vwb2NoX2NvdW50ZXIgIT0gY29ubmVj
+dG9yLT5iYXNlLmVwb2NoX2NvdW50ZXIpJA0KPg0KPiAtOjYyOiBXQVJOSU5HOkxFQURJTkdfU1BB
+Q0U6IHBsZWFzZSwgbm8gc3BhY2VzIGF0IHRoZSBzdGFydCBvZiBhIGxpbmUNCj4gIzYyOiBGSUxF
+OiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBsdWcuYzoyOTU6DQo+ICsg
+ICAgICAgIGlmIChvbGRfZXBvY2hfY291bnRlciAhPSBjb25uZWN0b3ItPmJhc2UuZXBvY2hfY291
+bnRlcikkDQo+DQo+IC06NjM6IEVSUk9SOkNPREVfSU5ERU5UOiBjb2RlIGluZGVudCBzaG91bGQg
+dXNlIHRhYnMgd2hlcmUgcG9zc2libGUNCj4gIzYzOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2hvdHBsdWcuYzoyOTY6DQo+ICsgICAgICAgICAgICAgICAgcmV0ID0g
+dHJ1ZTskDQo+DQo+IC06NjM6IFdBUk5JTkc6TEVBRElOR19TUEFDRTogcGxlYXNlLCBubyBzcGFj
+ZXMgYXQgdGhlIHN0YXJ0IG9mIGEgbGluZQ0KPiAjNjM6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfaG90cGx1Zy5jOjI5NjoNCj4gKyAgICAgICAgICAgICAgICByZXQg
+PSB0cnVlOyQNCj4NCj4gLTo2NTogRVJST1I6Q09ERV9JTkRFTlQ6IGNvZGUgaW5kZW50IHNob3Vs
+ZCB1c2UgdGFicyB3aGVyZSBwb3NzaWJsZQ0KPiAjNjU6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfaG90cGx1Zy5jOjI5ODoNCj4gKyAgICAgICAgaWYocmV0KSB7JA0K
+Pg0KPiAtOjY1OiBXQVJOSU5HOkxFQURJTkdfU1BBQ0U6IHBsZWFzZSwgbm8gc3BhY2VzIGF0IHRo
+ZSBzdGFydCBvZiBhIGxpbmUNCj4gIzY1OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2hvdHBsdWcuYzoyOTg6DQo+ICsgICAgICAgIGlmKHJldCkgeyQNCj4NCj4gLTo2
+NTogRVJST1I6U1BBQ0lORzogc3BhY2UgcmVxdWlyZWQgYmVmb3JlIHRoZSBvcGVuIHBhcmVudGhl
+c2lzICcoJw0KPiAjNjU6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+aG90cGx1Zy5jOjI5ODoNCj4gKyAgICAgICAgaWYocmV0KSB7DQo+DQo+IC06NzM6IEVSUk9SOkNP
+REVfSU5ERU5UOiBjb2RlIGluZGVudCBzaG91bGQgdXNlIHRhYnMgd2hlcmUgcG9zc2libGUNCj4g
+IzczOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBsdWcuYzoz
+MDY6DQo+ICsgICAgICAgIH0kDQo+DQo+IC06NzM6IFdBUk5JTkc6TEVBRElOR19TUEFDRTogcGxl
+YXNlLCBubyBzcGFjZXMgYXQgdGhlIHN0YXJ0IG9mIGEgbGluZQ0KPiAjNzM6IEZJTEU6IGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaG90cGx1Zy5jOjMwNjoNCj4gKyAgICAgICAg
+fSQNCj4NCj4gLTo3NDogRVJST1I6Q09ERV9JTkRFTlQ6IGNvZGUgaW5kZW50IHNob3VsZCB1c2Ug
+dGFicyB3aGVyZSBwb3NzaWJsZQ0KPiAjNzQ6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfaG90cGx1Zy5jOjMwNzoNCj4gKyAgICAgICAgcmV0dXJuIElOVEVMX0hPVFBM
+VUdfVU5DSEFOR0VEOyQNCj4NCj4gLTo3NDogV0FSTklORzpMRUFESU5HX1NQQUNFOiBwbGVhc2Us
+IG5vIHNwYWNlcyBhdCB0aGUgc3RhcnQgb2YgYSBsaW5lDQo+ICM3NDogRklMRTogZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9ob3RwbHVnLmM6MzA3Og0KPiArICAgICAgICByZXR1
+cm4gSU5URUxfSE9UUExVR19VTkNIQU5HRUQ7JA0KPg0KPiB0b3RhbDogOCBlcnJvcnMsIDcgd2Fy
+bmluZ3MsIDAgY2hlY2tzLCAzOCBsaW5lcyBjaGVja2VkDQo+DQo+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QN
+Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KDQotLQ0KSmFuaSBOaWt1bGEs
+IEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcg0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
