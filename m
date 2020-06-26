@@ -1,62 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F165F20B285
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 15:32:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F3020B2D7
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 15:46:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96C4E6EC95;
-	Fri, 26 Jun 2020 13:32:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3CE6EC9D;
+	Fri, 26 Jun 2020 13:46:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CFA36EC95
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2020 13:32:35 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id A23B63FA20;
- Fri, 26 Jun 2020 15:32:33 +0200 (CEST)
-Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=Y2HsfPx7; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.099
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id JPgalYu8clfd; Fri, 26 Jun 2020 15:32:32 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 29E9A3F912;
- Fri, 26 Jun 2020 15:32:30 +0200 (CEST)
-Received: from localhost.localdomain (2.70.62.59.mobile.tre.se [2.70.62.59])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 2DE90362131;
- Fri, 26 Jun 2020 15:32:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1593178350; bh=S+RleY2/aGR6ODA7zbUy4fo2qJOqPk1BFNAXfMisOS4=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=Y2HsfPx7raZ7Z3cKADCNPQGqwAoFG6Y8pKdLxs3g0W/Aap6t4tE1711VJHbRjZHL6
- gJAFJ5qnJnuTOjnIyyGlS8e6KiobXqq87f5xjGuLARzbjD5u9QPVetm14SOvEuKiQq
- ZRytKs+dtuQUxlGFjWyqONAOa7VrgkQEa8NPlwJU=
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
- <20200623142843.423594-5-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <a1f2527f-e3f3-b918-8b5c-06ff9c1308bb@shipmail.org>
-Date: Fri, 26 Jun 2020 15:32:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A8DA6EC9D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2020 13:46:45 +0000 (UTC)
+IronPort-SDR: q4piYWM1s7iNfXb8ub2C3amhCFfQIXiav/Hu7AQRP/b/eLwcLOcROT8X757s6CSpUpH/3cFFHv
+ p8wW/fk3ZE3Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9663"; a="142830916"
+X-IronPort-AV: E=Sophos;i="5.75,283,1589266800"; d="scan'208";a="142830916"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2020 06:46:44 -0700
+IronPort-SDR: jQl1lG/fdLFyJkmSdJjcXC6s6O2zLDuZ4gTPI94yLIAkL4pGIDSs1OMduPhjefWGmqQrmE0wUf
+ GcCwFT18TS3Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,283,1589266800"; d="scan'208";a="265623907"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga008.fm.intel.com with SMTP; 26 Jun 2020 06:46:42 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 26 Jun 2020 16:46:41 +0300
+Date: Fri, 26 Jun 2020 16:46:41 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <20200626134641.GZ6112@intel.com>
+References: <20200625200003.12436-1-ville.syrjala@linux.intel.com>
+ <20200626091606.GA29269@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200623142843.423594-5-maarten.lankhorst@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 05/26] drm/i915: Remove locking from
- i915_gem_object_prepare_read/write
+Content-Disposition: inline
+In-Reply-To: <20200626091606.GA29269@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Clamp linetime wm to <64usec
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,30 +53,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDYvMjMvMjAgNDoyOCBQTSwgTWFhcnRlbiBMYW5raG9yc3Qgd3JvdGU6Cj4gRXhlY2J1ZmZl
-ciBzdWJtaXNzaW9uIHdpbGwgcGVyZm9ybSBpdHMgb3duIFdXIGxvY2tpbmcsIGFuZCB3ZQo+IGNh
-bm5vdCByZWx5IG9uIHRoZSBpbXBsaWNpdCBsb2NrIHRoZXJlLgo+Cj4gVGhpcyBhbHNvIG1ha2Vz
-IGl0IGNsZWFyIHRoYXQgdGhlIEdWVCBjb2RlIHdpbGwgZ2V0IGEgbG9ja2RlcCBzcGxhdCB3aGVu
-Cj4gbXVsdGlwbGUgYmF0Y2hidWZmZXIgc2hhZG93cyBuZWVkIHRvIGJlIHBlcmZvcm1lZCBpbiB0
-aGUgc2FtZSBpbnN0YW5jZSwKPiBmaXggdGhhdCB1cC4KPgo+IFNpZ25lZC1vZmYtYnk6IE1hYXJ0
-ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cj4gLS0tCj4g
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG9tYWluLmMgICAgfCAyMCArKysr
-KystLS0tLS0tLS0tLS0tCj4gICAuLi4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVm
-ZmVyLmMgICAgfCAxMyArKysrKysrKysrLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9p
-OTE1X2dlbV9vYmplY3QuaCAgICB8ICAxIC0KPiAgIC4uLi9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0
-ZXN0cy9odWdlX3BhZ2VzLmMgICB8ICA1ICsrKystCj4gICAuLi4vaTkxNS9nZW0vc2VsZnRlc3Rz
-L2k5MTVfZ2VtX2NvaGVyZW5jeS5jICAgfCAxNCArKysrKysrKystLS0tCj4gICAuLi4vZHJtL2k5
-MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9jb250ZXh0LmMgfCAxMiArKysrKysrKy0tLQo+ICAg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Z0L2NtZF9wYXJzZXIuYyAgICAgICAgIHwgIDEgKwo+ICAg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uYyAgICAgICAgICAgICAgIHwgMjAgKysrKysr
-KysrKysrKysrKystLQo+ICAgOCBmaWxlcyBjaGFuZ2VkLCA1OSBpbnNlcnRpb25zKCspLCAyNyBk
-ZWxldGlvbnMoLSkKPgpsdGdtLiBSZXZpZXdlZC1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21h
-cy5oZWxsc3Ryb21AaW50ZWwuY29tPgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+On Fri, Jun 26, 2020 at 12:16:06PM +0300, Lisovskiy, Stanislav wrote:
+> On Thu, Jun 25, 2020 at 11:00:03PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
+
+> > The linetime watermark is a 9 bit value, which gives us
+> > a maximum linetime of just below 64 usec. If the linetime
+> > exceeds that value we currently just discard the high bits
+> > and program the rest into the register, which angers the
+> > state checker.
+> > =
+
+> > To avoid that let's just clamp the value to the max. I believe
+> > it should be perfectly fine to program a smaller linetime wm
+> > than strictly required, just means the hardware may fetch data
+> > sooner than strictly needed. We are further reassured by the
+> > fact that with DRRS the spec tells us to program the smaller
+> > of the two linetimes corresponding to the two refresh rates.
+> > =
+
+> > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++------
+> >  1 file changed, 12 insertions(+), 6 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index a11bb675f9b3..d486d675166f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -12581,12 +12581,15 @@ static u16 hsw_linetime_wm(const struct intel=
+_crtc_state *crtc_state)
+> >  {
+> >  	const struct drm_display_mode *adjusted_mode =3D
+> >  		&crtc_state->hw.adjusted_mode;
+> > +	int linetime_wm;
+> >  =
+
+> >  	if (!crtc_state->hw.enable)
+> >  		return 0;
+> >  =
+
+> > -	return DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 * 8,
+> > -				 adjusted_mode->crtc_clock);
+> > +	linetime_wm =3D DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 *=
+ 8,
+> > +					adjusted_mode->crtc_clock);
+> > +
+> > +	return min(linetime_wm, 0x1ff);
+> =
+
+> Are we actually doing the right thing here? I just mean that we get value
+> 543 in the bug because pixel rate is 14874 which doesn't seem correct.
+
+As explained in the commit msg programming this to lower than necessary
+value should be totally fine. It just won't be optimal.
+
+The values in the jira (was there an actual gitlab bug for this btw?)
+look quite sensible to me. Some kind of low res 848xsomething mode with
+dotclock of 14.874 Mhz, which gives us that linetime of ~68 usec.
+
+> =
+
+> Stan
+> >  }
+> >  =
+
+> >  static u16 hsw_ips_linetime_wm(const struct intel_crtc_state *crtc_sta=
+te,
+> > @@ -12594,12 +12597,15 @@ static u16 hsw_ips_linetime_wm(const struct i=
+ntel_crtc_state *crtc_state,
+> >  {
+> >  	const struct drm_display_mode *adjusted_mode =3D
+> >  		&crtc_state->hw.adjusted_mode;
+> > +	int linetime_wm;
+> >  =
+
+> >  	if (!crtc_state->hw.enable)
+> >  		return 0;
+> >  =
+
+> > -	return DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 * 8,
+> > -				 cdclk_state->logical.cdclk);
+> > +	linetime_wm =3D DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 *=
+ 8,
+> > +					cdclk_state->logical.cdclk);
+> > +
+> > +	return min(linetime_wm, 0x1ff);
+> >  }
+> >  =
+
+> >  static u16 skl_linetime_wm(const struct intel_crtc_state *crtc_state)
+> > @@ -12608,7 +12614,7 @@ static u16 skl_linetime_wm(const struct intel_c=
+rtc_state *crtc_state)
+> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> >  	const struct drm_display_mode *adjusted_mode =3D
+> >  		&crtc_state->hw.adjusted_mode;
+> > -	u16 linetime_wm;
+> > +	int linetime_wm;
+> >  =
+
+> >  	if (!crtc_state->hw.enable)
+> >  		return 0;
+> > @@ -12620,7 +12626,7 @@ static u16 skl_linetime_wm(const struct intel_c=
+rtc_state *crtc_state)
+> >  	if (IS_GEN9_LP(dev_priv) && dev_priv->ipc_enabled)
+> >  		linetime_wm /=3D 2;
+> >  =
+
+> > -	return linetime_wm;
+> > +	return min(linetime_wm, 0x1ff);
+> >  }
+> >  =
+
+> >  static int hsw_compute_linetime_wm(struct intel_atomic_state *state,
+> > -- =
+
+> > 2.26.2
+> > =
+
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
