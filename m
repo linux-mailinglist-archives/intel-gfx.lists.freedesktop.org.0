@@ -2,44 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73DE820B101
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 13:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C566820B0CF
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2020 13:47:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEB036EC77;
-	Fri, 26 Jun 2020 11:54:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ECD26EC76;
+	Fri, 26 Jun 2020 11:46:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 481 seconds by postgrey-1.36 at gabe;
- Fri, 26 Jun 2020 11:54:15 UTC
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF8F6EC77
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2020 11:54:15 +0000 (UTC)
-Received: from zn.tnic (p200300ec2f0d140021dd7ed6b715c4c4.dip0.t-ipconnect.de
- [IPv6:2003:ec:2f0d:1400:21dd:7ed6:b715:c4c4])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 23A021EC0328;
- Fri, 26 Jun 2020 13:46:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1593171969;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=yucFdKjCgoeX7C5mwPW8/rg/saxXn/xSVvZ7fS34kZo=;
- b=BiSmIrJGCJ0faVBTZtyCh7yIB1Uqh9DHPhI2oITaZpZkMxJelcG9IUXj87k4aPSN9CDwfQ
- NWSmB1HxwZn/+psfecdpLWBxf30ds9kL9HUXdAG1jYW/DrYmbBsZMtJGqwHemik4kwPaUw
- f1ErWNzJemfGf7t3q9dl/erT/q4WHto=
-Date: Fri, 26 Jun 2020 13:46:03 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Joerg Roedel <joro@8bytes.org>
-Message-ID: <20200626114603.GC27151@zn.tnic>
-References: <20200625130836.1916-1-joro@8bytes.org>
- <20200625130836.1916-10-joro@8bytes.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C4B566EC83;
+ Fri, 26 Jun 2020 11:46:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BCF9EA47E6;
+ Fri, 26 Jun 2020 11:46:57 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200625130836.1916-10-joro@8bytes.org>
-Subject: Re: [Intel-gfx] [PATCH 09/13] x86: Remove dev->archdata.iommu
- pointer
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Fri, 26 Jun 2020 11:46:57 -0000
+Message-ID: <159317201774.22985.5575110009824454623@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200625001120.22810-1-lucas.demarchi@intel.com>
+In-Reply-To: <20200625001120.22810-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_display/ddi=3A_keep_register_indexes_in_a_table?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,59 +38,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-ia64@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
- David Airlie <airlied@linux.ie>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Paul Mackerras <paulus@samba.org>, Will Deacon <will@kernel.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Michael Ellerman <mpe@ellerman.id.au>, x86@kernel.org,
- Russell King <linux@armlinux.org.uk>,
- Catalin Marinas <catalin.marinas@arm.com>, Fenghua Yu <fenghua.yu@intel.com>,
- Joerg Roedel <jroedel@suse.de>, intel-gfx@lists.freedesktop.org,
- Matthias Brugger <matthias.bgg@gmail.com>,
- linux-arm-kernel@lists.infradead.org, Tony Luck <tony.luck@intel.com>,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- iommu@lists.linux-foundation.org, David Woodhouse <dwmw2@infradead.org>,
- Lu Baolu <baolu.lu@linux.intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 25, 2020 at 03:08:32PM +0200, Joerg Roedel wrote:
-> From: Joerg Roedel <jroedel@suse.de>
-> 
-> There are no users left, all drivers have been converted to use the
-> per-device private pointer offered by IOMMU core.
-> 
-> Signed-off-by: Joerg Roedel <jroedel@suse.de>
-> ---
->  arch/x86/include/asm/device.h | 3 ---
->  1 file changed, 3 deletions(-)
-> 
-> diff --git a/arch/x86/include/asm/device.h b/arch/x86/include/asm/device.h
-> index 49bd6cf3eec9..7c0a52ca2f4d 100644
-> --- a/arch/x86/include/asm/device.h
-> +++ b/arch/x86/include/asm/device.h
-> @@ -3,9 +3,6 @@
->  #define _ASM_X86_DEVICE_H
->  
->  struct dev_archdata {
-> -#ifdef CONFIG_IOMMU_API
-> -	void *iommu; /* hook for IOMMU specific extension */
-> -#endif
->  };
->  
->  struct pdev_archdata {
-> -- 
+== Series Details ==
 
-Acked-by: Borislav Petkov <bp@suse.de>
+Series: display/ddi: keep register indexes in a table
+URL   : https://patchwork.freedesktop.org/series/78806/
+State : warning
 
--- 
-Regards/Gruss,
-    Boris.
+== Summary ==
 
-https://people.kernel.org/tglx/notes-about-netiquette
+$ dim checkpatch origin/drm-tip
+1c318e3abcdc drm/i915: move ICL port F hack to intel_bios
+f1e31b8bd6eb drm/i915/display: fix comment on skl straps
+50167b8d3287 drm/i915/display: start description-based ddi initialization
+4bb4855c4a15 drm/i915/display: add phy, vbt and ddi indexes
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#9: 
+one to the other.  Right now we already cover part of this by creating kind of
+
+-:42: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#42: FILE: drivers/gpu/drm/i915/display/intel_display.c:16809:
++	{ .name = "DDI A", .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
+
+-:43: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#43: FILE: drivers/gpu/drm/i915/display/intel_display.c:16810:
++	{ .name = "DDI B", .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
+
+-:45: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#45: FILE: drivers/gpu/drm/i915/display/intel_display.c:16812:
++	{ .name = "DDI C", .port = PORT_D, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x3, .phy_idx = 0x2, .vbt_idx = 0x2, },
+
+-:46: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_display.c:16813:
++	{ .name = "DDI D", .port = PORT_E, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x4, .phy_idx = 0x3, .vbt_idx = 0x3, },
+
+-:59: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#59: FILE: drivers/gpu/drm/i915/display/intel_display.c:16818:
++	{ .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
+
+-:60: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#60: FILE: drivers/gpu/drm/i915/display/intel_display.c:16819:
++	{ .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
+
+-:62: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#62: FILE: drivers/gpu/drm/i915/display/intel_display.c:16821:
++	{ .name = "DDI TC1", .port = PORT_D, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x3, .phy_idx = 0x0, .vbt_idx = 0x2, },
+
+-:63: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#63: FILE: drivers/gpu/drm/i915/display/intel_display.c:16822:
++	{ .name = "DDI TC2", .port = PORT_E, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x4, .phy_idx = 0x1, .vbt_idx = 0x3, },
+
+-:64: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#64: FILE: drivers/gpu/drm/i915/display/intel_display.c:16823:
++	{ .name = "DDI TC3", .port = PORT_F, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x5, .phy_idx = 0x2, .vbt_idx = 0x4, },
+
+-:65: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#65: FILE: drivers/gpu/drm/i915/display/intel_display.c:16824:
++	{ .name = "DDI TC4", .port = PORT_G, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x6, .phy_idx = 0x3, .vbt_idx = 0x5, },
+
+-:66: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#66: FILE: drivers/gpu/drm/i915/display/intel_display.c:16825:
++	{ .name = "DDI TC5", .port = PORT_H, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x7, .phy_idx = 0x4, .vbt_idx = 0x6, },
+
+-:67: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#67: FILE: drivers/gpu/drm/i915/display/intel_display.c:16826:
++	{ .name = "DDI TC6", .port = PORT_I, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x8, .phy_idx = 0x5, .vbt_idx = 0x7, },
+
+-:76: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#76: FILE: drivers/gpu/drm/i915/display/intel_display.c:16831:
++	{ .name = "DDI A", .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
+
+-:77: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#77: FILE: drivers/gpu/drm/i915/display/intel_display.c:16832:
++	{ .name = "DDI B", .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
+
+-:78: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#78: FILE: drivers/gpu/drm/i915/display/intel_display.c:16833:
++	{ .name = "DDI C", .port = PORT_C, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2, },
+
+-:79: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#79: FILE: drivers/gpu/drm/i915/display/intel_display.c:16834:
++	{ .name = "DDI D", .port = PORT_D, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x3, .phy_idx = 0x0, .vbt_idx = 0x3, },
+
+-:90: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#90: FILE: drivers/gpu/drm/i915/display/intel_display.c:16839:
++	{ .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0,},
+
+-:91: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#91: FILE: drivers/gpu/drm/i915/display/intel_display.c:16840:
++	{ .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1,},
+
+-:92: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#92: FILE: drivers/gpu/drm/i915/display/intel_display.c:16841:
++	{ .name = "DDI TC1", .port = PORT_C, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x2, .phy_idx = 0x0, .vbt_idx = 0x2,},
+
+-:93: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#93: FILE: drivers/gpu/drm/i915/display/intel_display.c:16842:
++	{ .name = "DDI TC2", .port = PORT_D, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x3, .phy_idx = 0x1, .vbt_idx = 0x3,},
+
+-:94: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_display.c:16843:
++	{ .name = "DDI TC3", .port = PORT_E, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x4, .phy_idx = 0x2, .vbt_idx = 0x4,},
+
+-:95: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#95: FILE: drivers/gpu/drm/i915/display/intel_display.c:16844:
++	{ .name = "DDI TC4", .port = PORT_F, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x5, .phy_idx = 0x3, .vbt_idx = 0x5,},
+
+total: 0 errors, 23 warnings, 0 checks, 114 lines checked
+90085cc968a8 drm/i915/display: use port_info in intel_ddi_init
+-:134: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#134: FILE: drivers/gpu/drm/i915/display/intel_ddi.h:51:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 128 lines checked
+8e1bf7ebdffd drm/i915/display: replace port to phy conversions in intel_ddi.c
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
