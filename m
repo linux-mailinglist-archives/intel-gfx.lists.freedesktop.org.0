@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DCC220C066
-	for <lists+intel-gfx@lfdr.de>; Sat, 27 Jun 2020 11:02:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0466520C068
+	for <lists+intel-gfx@lfdr.de>; Sat, 27 Jun 2020 11:07:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABE876E147;
-	Sat, 27 Jun 2020 09:02:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63A116E153;
+	Sat, 27 Jun 2020 09:07:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D717A6E138;
- Sat, 27 Jun 2020 09:02:55 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 10BB46E138;
+ Sat, 27 Jun 2020 09:07:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D050DA47E6;
- Sat, 27 Jun 2020 09:02:55 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0966AA00FD;
+ Sat, 27 Jun 2020 09:07:26 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Sat, 27 Jun 2020 09:02:55 -0000
-Message-ID: <159324857584.5395.3072644951755767530@emeril.freedesktop.org>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Date: Sat, 27 Jun 2020 09:07:26 -0000
+Message-ID: <159324884601.5394.12272927308480844512@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200626010151.221388-1-jose.souza@intel.com>
-In-Reply-To: <20200626010151.221388-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/5=5D_drm/i915=3A_Add_plane_damage_c?=
- =?utf-8?q?lips_property?=
+References: <20200626091333.17516-1-kunal1.joshi@intel.com>
+In-Reply-To: <20200626091333.17516-1-kunal1.joshi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Send_a_hotplug_when_edid_changes_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,134 +47,61 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v2,1/5] drm/i915: Add plane damage clips property
-URL   : https://patchwork.freedesktop.org/series/78830/
-State : success
+Series: Send a hotplug when edid changes (rev9)
+URL   : https://patchwork.freedesktop.org/series/62816/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8668 -> Patchwork_18030
-====================================================
+$ dim checkpatch origin/drm-tip
+8c236463353b drm: Add helper to compare edids.
+-:34: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "edid1"
+#34: FILE: drivers/gpu/drm/drm_edid.c:1628:
++	bool edid1_present = edid1 != NULL;
 
-Summary
--------
+-:35: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "edid2"
+#35: FILE: drivers/gpu/drm/drm_edid.c:1629:
++	bool edid2_present = edid2 != NULL;
 
-  **SUCCESS**
+-:41: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#41: FILE: drivers/gpu/drm/drm_edid.c:1635:
++	if (edid1) {
++
 
-  No regressions found.
+-:56: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#56: FILE: drivers/gpu/drm/drm_edid.c:1650:
++
++
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/index.html
+total: 0 errors, 0 warnings, 4 checks, 54 lines checked
+67927d889ffe drm: Introduce epoch counter to drm_connector
+-:58: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#58: FILE: drivers/gpu/drm/drm_connector.c:2012:
++				DRM_DEBUG_KMS("[CONNECTOR:%d:%s] Edid was changed.\n",
++				    connector->base.id, connector->name);
 
-Known issues
-------------
+-:62: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#62: FILE: drivers/gpu/drm/drm_connector.c:2016:
++				DRM_DEBUG_KMS("Updating change counter to %llu\n",
++				    connector->epoch_counter);
 
-  Here are the changes found in Patchwork_18030 that come from known issues:
+-:131: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#131: FILE: drivers/gpu/drm/drm_probe_helper.c:790:
++	uint64_t old_epoch_counter;
 
-### IGT changes ###
+-:162: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#162: FILE: drivers/gpu/drm/drm_probe_helper.c:826:
++		if (old_epoch_counter != connector->epoch_counter) {
+ 			changed = true;
++		}
 
-#### Issues hit ####
+-:186: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#186: FILE: include/drm/drm_connector.h:1333:
++	uint64_t epoch_counter;
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#1242])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
+total: 0 errors, 1 warnings, 4 checks, 136 lines checked
+04bfaff00368 drm/i915: Send hotplug event if edid had changed
 
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-byt-j1900/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-byt-j1900/igt@i915_module_load@reload.html
-    - fi-tgl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-tgl-u2/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-bsw-nick:        [INCOMPLETE][7] ([i915#1250] / [i915#1436]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][9] ([i915#1888]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_module_load@reload:
-    - fi-bxt-dsi:         [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-bxt-dsi/igt@i915_module_load@reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-bxt-dsi/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - {fi-kbl-7560u}:     [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +3 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1242]: https://gitlab.freedesktop.org/drm/intel/issues/1242
-  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (45 -> 39)
-------------------------------
-
-  Additional (1): fi-tgl-y 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8668 -> Patchwork_18030
-
-  CI-20190529: 20190529
-  CI_DRM_8668: ebcb5923cc316fea9d46629cce83960511da889e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5718: af1ef32bfae90bcdbaf1b5d84c61ff4e04368505 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18030: db04305684b414fbffc815c1df478226971721e7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-db04305684b4 drm/i915/display: Implement WA 1408330847
-0a361499f045 drm/i915: Initial implementation of PSR2 selective fetch
-220cc1343ce6 drm/i915: Add PSR2 selective fetch registers
-876e57df337b drm/i915: Reorder intel_psr2_config_valid()
-93646a5debb4 drm/i915: Add plane damage clips property
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18030/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
