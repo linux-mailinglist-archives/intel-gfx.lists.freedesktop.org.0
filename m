@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92CCE20BF22
-	for <lists+intel-gfx@lfdr.de>; Sat, 27 Jun 2020 09:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA09920BF24
+	for <lists+intel-gfx@lfdr.de>; Sat, 27 Jun 2020 09:03:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C51416E520;
-	Sat, 27 Jun 2020 07:03:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE4DB6E529;
+	Sat, 27 Jun 2020 07:03:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com
- [IPv6:2607:f8b0:4864:20::1041])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACEC66E520
- for <intel-gfx@lists.freedesktop.org>; Sat, 27 Jun 2020 07:03:34 +0000 (UTC)
-Received: by mail-pj1-x1041.google.com with SMTP id b92so5865748pjc.4
- for <intel-gfx@lists.freedesktop.org>; Sat, 27 Jun 2020 00:03:34 -0700 (PDT)
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
+ [IPv6:2607:f8b0:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F26636E52C
+ for <intel-gfx@lists.freedesktop.org>; Sat, 27 Jun 2020 07:03:41 +0000 (UTC)
+Received: by mail-pf1-x444.google.com with SMTP id a14so1071722pfi.2
+ for <intel-gfx@lists.freedesktop.org>; Sat, 27 Jun 2020 00:03:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=IRWxMxlqWvctwl99wxccnqWWb3ENVUA6Lf341j4JzdE=;
- b=i0jiET3+vZO/UFJlzvko7rrTS7QmWEyKiVb3ggUYOS/7e0IjEJzlzOnOZQNyLuowqO
- /b2qX+vjeZeDwvEH5keqR8JJJRVjME6vd0LHDtfSmDsVeomQpuZAiYT4EfCNRTa2SQHb
- 3MdeP0EJZ5FWGwkT0YcN8ucODDkKTYtFt0oZI=
+ bh=GEZGJe51GehcxNBEXCjeuCvNUVTUbWGMU9LfdoST7kI=;
+ b=cjXMwayPxAVThNdqSwq9gh/XXADf8DxfXH5Am4oMd6Gzkk3HKiuVeQBOjv3pA4go09
+ GYrHH5eUSlGtVrxnx0CaKolfLkX8IWfanhhoBcg935mVJ6DKtduNPeSotSqrdDCloxin
+ OJC8MRcaDRimzPxiRnmKyq3boKDUYPgFPV61o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=IRWxMxlqWvctwl99wxccnqWWb3ENVUA6Lf341j4JzdE=;
- b=oi0wB6HCxIjAUcAyRkjebH3AgeMQpRqt4U3mpT5BZilJv9AJ1NHpta5IJDcVR0pFk9
- sPh6uX3NNhaICQEEHZtZFGIb1e758ZfwAYOOUe8nikHRYsFtt3Afc5bHxulBZ/04ERsx
- 5oaOavN0SJpmGgPMcuZX10vh4bF+/m3IqTDGP3zxdxfPqU3PnrChaA/PJxzNHBQ5U3AJ
- D/lU8ORhdVNXV0opNKRParLRBFpkPdrQDC1ZmsNx7CPc88VDPY4jLmRYYfrYW0/EntDZ
- 6tNzXZQdn+dKvi1z3IKeOXxgfByjUi4pnun4V1O5Eggn6G2I5sL+NYWNqFKVpi5Dlqyt
- M95g==
-X-Gm-Message-State: AOAM532Zg9R4Tbeywzu9OoWjPSazHU6LJCkbl6uU01CR9cff61dxjwMi
- VA8YNUp24a3wKtNsqeGV3Z/0Vw==
-X-Google-Smtp-Source: ABdhPJxpdGUdXoc2rz4cG0DRuW8Y+uArwwEZjCgqEOXBTcgjaJufBTwP5w8TUOFoJoJC34+HTXYVOg==
-X-Received: by 2002:a17:90a:bf14:: with SMTP id
- c20mr7337079pjs.228.1593241414364; 
- Sat, 27 Jun 2020 00:03:34 -0700 (PDT)
+ bh=GEZGJe51GehcxNBEXCjeuCvNUVTUbWGMU9LfdoST7kI=;
+ b=f22wJB701h9FuJO2uCftr+Mr5HaYWrpXI41R31vPUpZsJn25B6FEWkZSuhp2Mk1uuB
+ 1DiePrjdfAFFnOePazqNgPQ96RJSmfR67WStveznKoLnc5v/CzikfFHif0iS9/PhzZO2
+ ROLeJT+8maedUZsvYHCncTCCVXF5c815uh5Ye35ZP6Zh2AgqYueQ9WByurRkbMq2bu8D
+ xyH1ZqDc3JQtJzbltO7YBPKaILWHq8iAZEPi7HvzLKS3SSxx+2s1xpJOxzrHwf835H2H
+ HgWKqVtWiPOjs3g8LQ5lvZSk5iw/3zoCxKLYa7uVhTIh9jnrnKFXbtypGreLAUh4QXsF
+ 4efQ==
+X-Gm-Message-State: AOAM531T8pz63OLVyLYKVEFsJkj4Yr8wis6yNvF82+rzY084vaVeoKee
+ BCUakaFRnXirn6GDlwIU73aUUQ==
+X-Google-Smtp-Source: ABdhPJzEaHy/nTKowjvtlIgATfBjZFG3DWxUouu/iNdEBoW9SD1bHdr7RU6EhcYh7ZY2/EGoj98Wdg==
+X-Received: by 2002:aa7:82d5:: with SMTP id f21mr6259533pfn.244.1593241421610; 
+ Sat, 27 Jun 2020 00:03:41 -0700 (PDT)
 Received: from drinkcat2.tpe.corp.google.com
  ([2401:fa00:1:b:d8b7:33af:adcb:b648])
- by smtp.gmail.com with ESMTPSA id u4sm28133269pfl.102.2020.06.27.00.03.26
+ by smtp.gmail.com with ESMTPSA id u4sm28133269pfl.102.2020.06.27.00.03.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 27 Jun 2020 00:03:33 -0700 (PDT)
+ Sat, 27 Jun 2020 00:03:41 -0700 (PDT)
 From: Nicolas Boichat <drinkcat@chromium.org>
 To: linux-kernel@vger.kernel.org
-Date: Sat, 27 Jun 2020 15:03:04 +0800
-Message-Id: <20200627070307.516803-2-drinkcat@chromium.org>
+Date: Sat, 27 Jun 2020 15:03:05 +0800
+Message-Id: <20200627070307.516803-3-drinkcat@chromium.org>
 X-Mailer: git-send-email 2.27.0.212.ge8ba1cc988-goog
 In-Reply-To: <20200627070307.516803-1-drinkcat@chromium.org>
 References: <20200627070307.516803-1-drinkcat@chromium.org>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/4] usb: cdns3: gadget: Replace trace_printk by
- dev_dbg
+Subject: [Intel-gfx] [PATCH 2/4] media: atomisp: Replace trace_printk by
+ pr_info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,31 +100,35 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 trace_printk should not be used in production code, replace it
-call with dev_dbg.
+call with pr_info.
 
 Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
 
 ---
+ drivers/staging/media/atomisp/pci/hmm/hmm.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-Unclear why a trace_printk was used in the first place, it's
-possible that some rate-limiting is necessary here.
-
- drivers/usb/cdns3/gadget.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/usb/cdns3/gadget.c b/drivers/usb/cdns3/gadget.c
-index 5e24c2e57c0d8c8..c303ab7c62d1651 100644
---- a/drivers/usb/cdns3/gadget.c
-+++ b/drivers/usb/cdns3/gadget.c
-@@ -421,7 +421,7 @@ static int cdns3_start_all_request(struct cdns3_device *priv_dev,
- 		if ((priv_req->flags & REQUEST_INTERNAL) ||
- 		    (priv_ep->flags & EP_TDLCHK_EN) ||
- 			priv_ep->use_streams) {
--			trace_printk("Blocking external request\n");
-+			dev_dbg(priv_dev->dev, "Blocking external request\n");
- 			return ret;
- 		}
- 	}
+diff --git a/drivers/staging/media/atomisp/pci/hmm/hmm.c b/drivers/staging/media/atomisp/pci/hmm/hmm.c
+index 42fef17798622f1..2bd39b4939f16d2 100644
+--- a/drivers/staging/media/atomisp/pci/hmm/hmm.c
++++ b/drivers/staging/media/atomisp/pci/hmm/hmm.c
+@@ -735,11 +735,11 @@ ia_css_ptr hmm_host_vaddr_to_hrt_vaddr(const void *ptr)
+ 
+ void hmm_show_mem_stat(const char *func, const int line)
+ {
+-	trace_printk("tol_cnt=%d usr_size=%d res_size=%d res_cnt=%d sys_size=%d  dyc_thr=%d dyc_size=%d.\n",
+-		     hmm_mem_stat.tol_cnt,
+-		     hmm_mem_stat.usr_size, hmm_mem_stat.res_size,
+-		     hmm_mem_stat.res_cnt, hmm_mem_stat.sys_size,
+-		     hmm_mem_stat.dyc_thr, hmm_mem_stat.dyc_size);
++	pr_info("tol_cnt=%d usr_size=%d res_size=%d res_cnt=%d sys_size=%d  dyc_thr=%d dyc_size=%d.\n",
++		hmm_mem_stat.tol_cnt,
++		hmm_mem_stat.usr_size, hmm_mem_stat.res_size,
++		hmm_mem_stat.res_cnt, hmm_mem_stat.sys_size,
++		hmm_mem_stat.dyc_thr, hmm_mem_stat.dyc_size);
+ }
+ 
+ void hmm_init_mem_stat(int res_pgnr, int dyc_en, int dyc_pgnr)
 -- 
 2.27.0.212.ge8ba1cc988-goog
 
