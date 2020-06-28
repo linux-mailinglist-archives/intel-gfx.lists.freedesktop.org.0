@@ -2,76 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B8320CEC2
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 15:14:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2549620CEBE
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 15:14:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9F076E072;
-	Mon, 29 Jun 2020 13:14:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A143B89FF9;
+	Mon, 29 Jun 2020 13:14:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A30096ECEF
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2020 17:44:29 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id z13so10292379wrw.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2020 10:44:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=rc3kkFGtgCgQrxU84RhHeu1I6fHzjgzvT7jhvyefWKc=;
- b=H8nUPg3esJQCdsvntQKkjPbZobCm5gKJVZHf3mqeUPAUOlcHHkoYQB9RGvehRbYHrU
- h8kx7GJwJ+cTSdiWWXruHd2WysRig/hJ3pqBzawYIm7zZY59LpvQgqHTXDsZAXhvZoUd
- TTF0xNd7XUn/nGTn+KZGA4bdK8ZjrstdZB5p1AWqUcI+cu7JgJB8kIh0D6P5PiwnPYvw
- CMVX3xGmWDV4VqjfyDsI+PrCPWTVfatZ/gtCQiJDXpZBROZWKD7rI/h/f5WV/E2U3nVw
- 4u+uy4/N98WCxyXcIRs1YUzafH3WT6EM+Ro3/4X/SQ8j9BvbqGvYMF+ZBq4zMBwOVcx1
- KOyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=rc3kkFGtgCgQrxU84RhHeu1I6fHzjgzvT7jhvyefWKc=;
- b=g/lYHgqpxcTCXYQie6LPbABLsV3DCnxCvU8+3AGswAYEHrwGUGp+g9wTeXbqldarFj
- debztp6KERjnLIL5ZuAr70lmsJl9QncrHC/MxxQ+XXAXeBuQobB9wu3d4pjwCuoTCXjp
- HAwFJUhOwWzwniGdl7IwfTh+r/uyFhDWeVZbh24V4+b0tQqHPzRp4sVOwWpWK5n8ZPJk
- TvnrMg1acyzz/TzlHpNQ/4+nf+vw1eKsVdjmMXcHxkoWhzNdSRY7hynvDrWFxp31PkcJ
- 8DLzITAVTjJb81WdjVzD5BA3lfhAeh802c1mR9rm9yEAjwY8anN0Wbe1mnKZEJr4fv/U
- lX6A==
-X-Gm-Message-State: AOAM5316pghC7KoovC66w69Kwc/3qKwnmZX5+l+dYLI0HHZbTRdVoV7Y
- 760OsvjYRzK4dORhdP+kPhs=
-X-Google-Smtp-Source: ABdhPJxWNYPwzOlI3CwQBRCfbo/s8BW6K1UdSjvyI+coNVeSswYmBEt35Kkw56d32GUzwAxZKEf6Bg==
-X-Received: by 2002:a5d:4910:: with SMTP id x16mr4809924wrq.401.1593193468175; 
- Fri, 26 Jun 2020 10:44:28 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id f186sm17679568wmf.29.2020.06.26.10.44.27
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 26 Jun 2020 10:44:27 -0700 (PDT)
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Dave Airlie <airlied@gmail.com>
-References: <20200622095921.15530-1-chris@chris-wilson.co.uk>
- <159309140216.31486.2359580281725596670@build.alporthouse.com>
- <011fe07b-1e2c-7cc2-ade8-2c8b4df80b90@gmail.com>
- <159309782319.31486.530565133539052103@build.alporthouse.com>
- <746b10ad-7521-78dd-9a2b-2f44b6594842@amd.com>
- <159310696106.31486.9034080828697272264@build.alporthouse.com>
- <159315901171.15982.4604268132167952820@build.alporthouse.com>
- <a5417984-202b-f252-2aa5-19e8cdaecf20@gmail.com>
- <159316983838.18415.16087585177754322983@build.alporthouse.com>
- <edfaedf3-f6ad-044d-8853-4ee0991a4903@amd.com>
- <159317692089.18415.8505405149005648608@build.alporthouse.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <c4b22cc7-597a-f310-b283-a0e42bf9b5be@gmail.com>
-Date: Fri, 26 Jun 2020 19:44:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66F126E0E1
+ for <intel-gfx@lists.freedesktop.org>; Sun, 28 Jun 2020 10:38:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1593340717;
+ bh=e5NKSieXJH2GcLsmY/wuj8najDt7sAwcltAcXIi6XWI=;
+ h=X-UI-Sender-Class:Subject:To:References:From:Date:In-Reply-To;
+ b=LobXV/SgjJGg29fFgGlmml+YtJT4X2BtMXSGY1FVcRUsJbRO3omZ0itPMn1ZFqs4M
+ 3QPwXB/qoekecOWftBDLktSYA8NFxup86s99X8iF6sVAX/CxyP/veT/Mv/fZsfoXLc
+ JV63f+NWcGN2qOW0Pc2EyKdRrpm2L/XEmbLVhOqE=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.3.33] ([46.85.174.131]) by mail.gmx.com (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Ma24y-1jLgF70WjE-00VyQr; Sun, 28
+ Jun 2020 12:38:37 +0200
+To: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>,
+ "Saarinen, Jani" <jani.saarinen@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
+References: <aab05507-450d-5643-20af-500dec6bc59b@gmx.li>
+ <fab11a35-be96-40c4-3572-6879eb39364a@gmx.li>
+ <267c19058bf64dc2851cc5b6c0c6383c@intel.com>
+ <5b9c291892c245b3becd3df45ba5f3f9@intel.com>
+From: Arno <star@gmx.li>
+Message-ID: <03fa1eb0-610f-84af-3a1a-b7e439b86b99@gmx.li>
+Date: Sun, 28 Jun 2020 12:38:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <159317692089.18415.8505405149005648608@build.alporthouse.com>
+In-Reply-To: <5b9c291892c245b3becd3df45ba5f3f9@intel.com>
 Content-Language: en-US
+X-Provags-ID: V03:K1:NlXvhTdrl0s2vyfcGKKS9yjo5Aav1RZ+FN3KgJSSEr1P5vlIrAM
+ m/8qDJCN9B45FK8pW7GXA5C7ztJLyTqmq0Zk/L01/AqK2eqkh7B6AUVjQ71UehvnYvDIYT0
+ ByEu+4d/7BB4laEIs4vDdoSE6M5zecHIGsumUzjXcEc/bXpZ8xGQNaiWaOm8r9PtISOmoa+
+ QomrjRxb9EuM6lvDEZC6A==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:qe2kpOIuAXc=:/yOf053U4qrOia048GbFbp
+ bZFEJxksSwWWn/zNgwFYhVodaqr6F1rsnpqJX9LyP44ZhVa2mHLVmZyjsDEo9jZS/qMCBLYEU
+ JEx7tRVC5E9jS4vvZowyRD1TDyBaSMULARSYactBaiu8DCTVAzDVoGpvDVCLKnz5uBdG733ke
+ aqo88+P+DxN9/wQ1B0aA7bg/eKSe3qzwKnMd2fVZyxCLnD7dzaMnenBy9qzZbMwdKvrlkRW/O
+ pgCkIW3c7G6Zs6YdOcN7X5ExNtHnNIvr8op/CmPwQsM5dY0I0nugrQXodA+nL3YumDU5NH1N4
+ AfOrt+UYwYVMS4AK54mPaZ3sKAHROmOqLevFB3eqE5ehdP8SMk5R+06f/JFmhka2l8cDZdWHz
+ EKLsSYSnIlAn7Zx8yc1S5q823/59ucmC3pifelH2umVvt4l9GmXvdfg948XAX2GOPaSHp8R62
+ xLgGw2IMUX6KlQm0UWMqwCHY1f+aelrZoUs4JjlKgPG2cobLivO+4e+LC6JaY489/15l5sszY
+ xa3qeR5qtyV+BkR85QM6I8RbaHY4USuD0nHBkAfBv0+PPoOwN/w0/gl5109aXKLgFMqoMM9ht
+ 0sbu6m0u1YYSSqK4nJ9d4nUwMV3daZ4+RMRKvSLAH0CnzLDjvZPN4OjnqTQrN/63tTwi98UtI
+ Netox+a361N+e9Ysu+CICP+Qzu4TkVUizbRH1hd+MLT/eoHjiF70h95Nzi/xonTSqqQNEukEf
+ r+/P6qEkPMK/EW2uIqIzlXh4z+leiMWOSDLWp68/yHq03Wc13j9gjEm+AJevvqqYdrXuLsxLj
+ lD7M5SgcoQKpyFVsJZVB6mW7jQiPzST/yuTfzWJsRp9/du74iDzw6BboaV98py9AqmTEiF5ZP
+ NgTxGoSNBOFhaIhFPicCrjSZ3NwgFbbt5PPxRlqw5YPhob5F1zOdPo3A+zrGN66aevOrfAkgt
+ 1BvwmGzK3AjqPadCFZXWDslVCafCyyx4i54/WQc/ZAB7EjV61tMA2SLu25tNTntKD2KDID8Uf
+ ejG8qOB1789FfX90WyZln8T2L5UsaWcvFiOwqZVtrN3EbwOxB/p1f44KYpDiNXt0Pl78tjLwR
+ H/dC5fbMlCW4LnCXE2UAQxaW0uE0dd4Y9qaeaUtzRWUL1GhkGQt7EEBkDENmbGpJx9kp/BQwK
+ 08UOFLgUciEXdF6GxoZxwpeA49MKR89vP65+4vNGlP7S0Vp+di06wtEYrZ04MK+WAklaI=
 X-Mailman-Approved-At: Mon, 29 Jun 2020 13:14:32 +0000
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/gem: Acquire all vma/objects
- under reservation_ww_class
+Subject: Re: [Intel-gfx] intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR*
+ CPU pipe A FIFO underrun
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,125 +77,383 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============2049999122=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QW0gMjYuMDYuMjAgdW0gMTU6MDggc2NocmllYiBDaHJpcyBXaWxzb246Cj4gUXVvdGluZyBDaHJp
-c3RpYW4gS8O2bmlnICgyMDIwLTA2LTI2IDEyOjM1OjMwKQo+PiBBbSAyNi4wNi4yMCB1bSAxMzox
-MCBzY2hyaWViIENocmlzIFdpbHNvbjoKPj4+IFF1b3RpbmcgQ2hyaXN0aWFuIEvDtm5pZyAoMjAy
-MC0wNi0yNiAwOTo1NDoxOSkKPj4+IFtTTklQXQoKPj4+IFdoYXQgYWJvdXQgY2hlY2twb2ludC9y
-ZXN0b3JlLCBzdXNwZW5kL3Jlc3VtZT8gV2hlcmUgd2UgbmVlZCB0byBzdXNwZW5kCj4+PiBhbGwg
-ZXhlY3V0aW9uLCBtb3ZlIGFsbCB0aGUgcmVzb3VyY2VzIHRvIG9uZSBzaWRlLCB0aGVuIHB1dCBl
-dmVyeXRoaW5nCj4+PiBiYWNrLCB3aXRob3V0IGNhbmNlbGxpbmcgdGhlIGZlbmNlcy4gU2FtZSBo
-YWx0aW5nIHByb2JsZW0sIG5vPwo+PiBXaGF0IGFyZSB5b3UgdGFsa2luZyBhYm91dD8gT2YgY291
-cnNlIHdlIGVpdGhlciB3YWl0IGZvciBhbGwgZmVuY2VzIHRvCj4+IGNvbXBsZXRlIG9yIGNhbmNl
-bCB0aGVtIG9uIHN1c3BlbmQuCj4gSSBkbyBub3Qgd2FudCB0byBoYXZlIHRvIGNhbmNlbCBpbmNv
-bXBsZXRlIGZlbmNlcyBhcyB3ZSBkbyB0b2RheS4KCkJ1dCB0aGlzIGlzIGEgbmVjZXNzaXR5LiBQ
-dXR0aW5nIGF3YXkgaGFsdmUgZXhlY3V0ZWQgZmVuY2VzIGFuZCBzdGFydGluZyAKdGhlbSBsYXRl
-ciBvbiBpcyBub3QgcG9zc2libGUgYW5kIG1vc3QgbGlrZWx5IG5ldmVyIHdpbGwgYmUuCgo+PiBT
-byB3aHkgd2FpdCBpbiB0aGUgbWlkZGxlIG9mIHN1Ym1pc3Npb24sIHJhdGhlciB0aGFuIGRlZmVy
-IHRoZSBzdWJtaXNzaW9uCj4+IHRvIHRoZSBmZW5jZSBjYWxsYmFjayBpZiB0aGUgSFcgd2Fzbid0
-IHJlYWR5PyBZb3UgdGhlbiBoYXZlIHlvdXIKPj4gdW5pbnRlcnJ1cHRpYmxlIGNvbnRpbnVhdGlv
-bi4KCkJlY2F1c2UgeW91IGRvbid0IHdhaXQgaW4gdGhlIG1pZGRsZSBvZiB0aGUgc3VibWlzc2lv
-biwgYnV0IHJhdGhlciAKYmVmb3JlIHRoZSBzdWJtaXNzaW9uIGlzIG1hZGUgYW5kIHJlc291cmNl
-cyBvciBsb2NrcyBhcmUgYWNxdWlyZWQuCgpUaGF0J3MgYWxzbyB0aGUgcmVhc29uIHdoeSBpdCBp
-cyBpbGxlZ2FsIHRvIHdhaXQgZm9yIGEgZmVuY2UgdG8gYXBwZWFyIAp3aXRoIGEgcmVzZXJ2YXRp
-b24gbG9jayBoZWxkIGFuZCB0aGF0IGlzIGFsc28gd2hhdCBsb2NrZGVwIHNob3VsZCBiZSAKYWJs
-ZSB0byBwb2ludCBvdXQgYXMgd2VsbC4KClNlZSBhbWRncHVfY3NfaW9jdGwoKSBmb3IgYW4gZXhh
-bXBsZSBvZiB3aHkgdGhpcyBpcyBuZWNlc3Nhcnk6CgogwqDCoMKgwqDCoMKgwqAgciA9IGFtZGdw
-dV9jc19kZXBlbmRlbmNpZXMoYWRldiwgJnBhcnNlcik7Ci4uLgogwqDCoMKgwqDCoMKgwqAgciA9
-IGFtZGdwdV9jc19wYXJzZXJfYm9zKCZwYXJzZXIsIGRhdGEpOwoKYW1kZ3B1X2NzX2RlcGVuZGVu
-Y2llcygpIGlzIHdhaXRpbmcgZm9yIHRoZSB3YWl0IGJlZm9yZSBzaWduYWwgZmVuY2VzIHRvIAph
-cHBlYXIgYW5kIGFtZGdwdV9jc19wYXJzZXJfYm9zKCkgaXMgZ3JhYmJpbmcgdGhlIHJlc2VydmF0
-aW9uIGxvY2tzLgoKRG8gaXQgdGhlIG90aGVyIHdheSBhcm91bmQgYW5kIGxvY2tkZXAgYXQgbGVh
-c3Qgc2hvdWxkIHNwbGF0IHRoYXQgdGhpcyAKaGFzIGRlYWRsb2NrIHBvdGVudGlhbC4KCkFuZCB5
-b3UgYXJlIHJ1bm5pbmcgaW50byBleGFjdGx5IHRoZSBzYW1lIGNhc2UgaGVyZSBhcyB3ZWxsLCBq
-dXN0IGluIGEgCmJpdCBtb3JlIGNvbXBsaWNhdGVkIGJlY2F1c2UgdXNlcnNwYWNlIGlzIGludm9s
-dmVkLgoKPj4+IEJ1dCBpZiB5b3UgaGF2ZSBjaG9zZW4gdG8gY2FuY2VsIHRoZSBmZW5jZXMsIHRo
-ZXJlIGlzIG5vdGhpbmcgdG8gc3RvcAo+Pj4gdGhlIHNpZ25hbGluZy4KPj4gQW5kIGp1c3QgdG8g
-cmVwZWF0IG15c2VsZjogWW91IGNhbid0IGNhbmNlbCB0aGUgZmVuY2UhCj4+Cj4+IEZvciBleGFt
-cGxlIGFzc3VtZSB0aGF0IGNhbmNlbGluZyB0aGUgcHJveHkgZmVuY2Ugd291bGQgbWVhbiB0aGF0
-IHlvdQo+PiBzZW5kIGEgU0lHS0lMTCB0byB0aGUgcHJvY2VzcyB3aGljaCBpc3N1ZWQgaXQuIEJ1
-dCB0aGVuIHlvdSBuZWVkIHRvIHdhaXQKPj4gZm9yIHRoZSBTSUdLSUxMIHRvIGJlIHByb2Nlc3Nl
-ZC4KPiBXaGF0PyBXaGVyZSBkb2VzIFNJR0tJTEwgY29tZSBmcm9tIGZvciBmZW5jZSBoYW5kbGlu
-Zz8KClNvcnJ5LCB0aGF0IHdhcyBqdXN0IGFuIGV4YW1wbGUgaG93IHRvIGhhbmRsZSBpdC4gQSBs
-b2NrIG9yIGFuIGV2ZW50IGlzIAphbHNvIHBvc3NpYmxlLgoKPiBUaGUgcHJveHkgZmVuY2UgaXMg
-Zm9yY2Ugc2lnbmFsZWQgaW4gYW4gZXJyb3Igc3RhdGUgKGUuZy4gLUVUSU1FRE9VVCksCj4gZXZl
-cnkgd2FpdGVyIHRoZW4gaW5oZXJpdHMgdGhlIGVycm9yIHN0YXRlIGFuZCBhbGwgb2YgdGhlaXIg
-d2FpdGVycyBkb3duCj4gdGhlIGNoYWluLiBUaG9zZSB3YWl0ZXJzIGFyZSBub3cgcHJlc3VtYWJs
-eSByZWFkeSB0byBmaW5pc2ggdGhlaXIgb3duCj4gc2lnbmFsaW5nLgoKVGhhdCBhbG9uZSBpcyBp
-bGxlZ2FsLiBTZWUgY3VycmVudGx5IGZlbmNlcyBhcmUgb25seSBhbGxvd2VkIHRvIHNpZ25hbCAK
-aWYgYWxsIHRoZWlyIHByZXZpb3VzIGRlcGVuZGVuY2llcyBhcmUgc2lnbmFsZWQsIGV2ZW4gaW4g
-YW4gZXJyb3IgY2FzZS4KClRoaXMgaXMgYmVjYXVzZSB3ZSByZXBsYWNlIGFsbCB0aGUgZmVuY2Vz
-IGluIGEgZG1hX3Jlc3Ygb2JqZWN0IHdoZW4gd2UgCmFkZCBhIG5ldyBleGNsdXNpdmUgb25lLgoK
-PiBUaGUgcHJveHkgZmVuY2UgaXMgY29uc3RydWN0ZWQgdG8gYWx3YXlzIGNvbXBsZXRlIGlmIGl0
-IGRvZXMgbm90IGdldAo+IHJlc29sdmVkOyBhZnRlciByZXNvbHV0aW9uLCB0aGUgb251cyBpcyBv
-biB0aGUgcmVhbCBmZW5jZSB0byBjb21wbGV0ZS4KCkJ1dCB0aGVuIGl0IGlzIG5vdCB1c2VmdWwg
-YXQgYWxsLiBTZWUgaW4gdGhpcyBjYXNlIHlvdSBjYW4ndCB3YWl0IG9uIHRoZSAKcHJveHkgZmVu
-Y2UgYXQgYWxsLgoKSW4gb3RoZXIgd29yZHMgd2hlbiB5b3UgdHJ5IHRvIHdhaXQgYW5kIHRoZSB1
-bmRlcmx5aW5nIHJlYWwgc3VibWlzc2lvbiAKaGFzIG5vdCB5ZXQgYXBwZWFyZWQgeW91IG11c3Qg
-cmV0dXJuIHdpdGggYW4gZXJyb3IgaW1tZWRpYXRlbHkuCgo+Pj4gSG93ZXZlciwgSSBzYXkgdGhh
-dCBpcyB1bmRlciBvdXIgY29udHJvbC4gV2Uga25vdyB3aGF0IGZlbmNlcyBhcmUgaW4gYW4KPj4+
-IGV4ZWN1dGlvbiBjb250ZXh0LCBqdXN0IGFzIGVhc2lseSBhcyB3ZSBrbm93IHRoYXQgd2UgYXJl
-IGluc2lkZSBhbgo+Pj4gZXhlY3V0aW9uIGNvbnRleHQuIEFuZCB5ZXMsIHRoZSBlYXNpZXN0LCB0
-aGUgbW9zdCByZXN0cmljdGl2ZSB3YXkgdG8KPj4+IGNvbnRyb2wgaXQgaXMgdG8gc2F5IGRvbid0
-IGJvdGhlci4KPj4gTm8sIHRoYXQgaXMgYWJzb2x1dGVseSBub3QgdW5kZXIgb3VyIGNvbnRyb2wu
-Cj4+Cj4+IGRtYV9mZW5jZXMgbmVlZCB0byBiZSB3YWl0ZWQgb24gdW5kZXIgYSBsb3Qgb2YgZGlm
-ZmVyZW50IGNvbnRleHQsCj4+IGluY2x1ZGluZyB0aGUgcmVjbGFpbSBwYXRoIGFzIHdlbGwgYXMg
-dGhlIE1NVSBub3RpZmllcnMsIG1lbW9yeSBwcmVzc3VyZQo+PiBjYWxsYmFja3MsIE9PTSBraWxs
-ZXIuLi4uCj4gT2ggeWVzLCB0aGV5IGFyZSB1bmRlciBvdXIgY29udHJvbC4gVGhhdCBsaXN0IGJv
-aWxzIGRvd24gdG8gcmVjbGFpbSwKPiBzaW5jZSBtbXUgbm90aWZpZXJzIG91dHNpZGUgb2YgcmVj
-bGFpbSBhcmUgb3V0c2lkZSBvZiBhIG5lc3RlZCBjb250ZXh0LgoKTmVzdGVkIGNvbnRleHQgaXMg
-aXJyZWxldmFudCBoZXJlLiBMZXQncyBzZWUgdGhlIGZvbGxvd2luZyBleGFtcGxlOgoKV2UgdXNl
-IGRtYV9mZW5jZV9wcm94eSBiZWNhdXNlIHVzZXJzcGFjZSB3YW50cyB0byBkbyBhIGRlbGF5ZWQg
-c3VibWlzc2lvbi4KClRoaXMgZG1hX2ZlbmNlX3Byb3h5IGlzIGF0dGFjaGVkIHRvIGEgZG1hX3Jl
-c3Ygb2JqZWN0IGJlY2F1c2Ugd2UgbmVlZCAKdGhlIGltcGxpY2l0IGRlcGVuZGVuY3kgZm9yIERS
-STIvRFJJMyBoYW5kbGluZy4KCk5vdyB0aGUgcHJvY2VzcyBjYWxscyBmb3JrKCkgYW5kIGFuIE1N
-VSBub3RpZmllciBpcyB0cmlnZ2VyZWQuIFRoaXMgTU1VIApub3RpZmllciB0aGVuIHdhaXRzIGZv
-ciB0aGUgZG1hX3Jlc3Ygb2JqZWN0IGZlbmNlcyB0byBjb21wbGV0ZS4KCkJ1dCB0byBjb21wbGV0
-ZSB0aGUgZmVuY2VzIHRoZSBmb3JrKCkgY2FsbCBuZWVkcyB0byBjb21wbGV0ZSBmaXJzdCAtPiAK
-ZGVhZGxvY2suCgo+IFRoYXQgaW4gcGFydGljdWxhciBpcyB0aGUgc2FtZSBvbGQgcXVlc3Rpb24g
-YXMgd2hldGhlciBHRlBfSU8gc2hvdWxkIGJlCj4gYSBnZnBfdCBvciBpbiB0aGUgdGFza19zdHJ1
-Y3QuIElmIHdlIGFyZSBpbnNpZGUgYW4gZXhlY3V0aW9uIGNvbnRleHQsIHdlCj4gY2FuIHRyYWNr
-IHRoYXQgYW5kIHRoZSBmZW5jZXMgb24gdGhlIHRhc2tfc3RydWN0IGlmIHdlIHdhbnRlZCB0bywK
-PiBhdm9pZGluZyByZWNsYWltIG9mIGZlbmNlcyBiZWluZyB1c2VkIGJ5IHRoZSBvdXRlciBjb250
-ZXh0IGFuZCB0aGVpcgo+IGRlc2NlbmRhbnRzLi4uCgpPaCwgeWVzIHRoYXQgaXMgY29ycmVjdCBh
-bmQgYW4gYWJzb2x1dGVseSBicmlsbGlhbnQgZXhhbXBsZSBvZiB3aHkgdGhpcyAKZG9lc24ndCB3
-b3JrIDpECgpTZWUgdGhlIGRpZmZlcmVuY2UgaXMgdGhhdCBpbiB0aGlzIGNhc2UgdXNlcnNwYWNl
-IGlzIGludm9sdmVkLgoKSW4gb3RoZXIgd29yZHMgaW4geW91ciBleGFtcGxlIHlvdSB3b3VsZCBz
-ZXQgdGhlIEdGUF9JTyBmbGFnIGluIHRoZSAKdGFza19zdHJ1Y3QgYW5kIHRoZW4gcmV0dXJuIGZy
-b20geW91ciBJT0NUTCBhbmQgd2FpdGluZyBmb3IgdGhlIG5leHQgCklPQ1RMIHRvIGNsZWFyIGl0
-IGFnYWluLgoKQW5kIHRoYXQgaW4gdHVybiBpcyBub3Qgc29tZXRoaW5nIHdlIGNhbiBkby4KCj4+
-IE5vLCBhcyBmYXIgYXMgSSBjYW4gc2VlIHlvdSBkb24ndCBzZWVtIHRvIGVpdGhlciB1bmRlcnN0
-YW5kIHRoZSBwcm9ibGVtCj4+IG9yIHRoZSBpbXBsaWNhdGlvbnMgb2YgaXQuCj4+Cj4+IFRoZSBv
-bmx5IHdheSB0byBzb2x2ZSB0aGlzIHdvdWxkIGJlIHRvIGF1ZGl0IHRoZSB3aG9sZSBMaW51eCBr
-ZXJuZWwgYW5kCj4+IHJlbW92ZSBhbGwgdW5pbnRlcnJ1cHRpYmxlIHdhaXRzIGFuZCB0aGF0IGlz
-IG5vdCBmZWFzaWJsZS4KPj4KPj4gQXMgbG9uZyBhcyB5b3UgZG9uJ3QgcHJvdmlkZSBtZSB3aXRo
-IGEgd29ya2luZyBzb2x1dGlvbiB0byB0aGUgcHJvYmxlbQo+PiBJJ3ZlIG91dGxpbmVkIGhlcmUg
-dGhlIHdob2xlIGFwcHJvYWNoIGlzIGEgY2xlYXIgTkFLIHNpbmNlIGl0IHdpbGwgYWxsb3cKPj4g
-dG8gY3JlYXRlIHJlYWxseSBiYWQga2VybmVsIGRlYWRsb2Nrcy4KPiBZb3UgYXJlIGNvbmZ1c2lu
-ZyBtdWx0aXBsZSB0aGluZ3MgaGVyZS4gVGhlIFZrRXZlbnRzIGV4YW1wbGUgaXMgcmVhbC4KPiBI
-b3cgZG8geW91IGF2b2lkIHRoYXQgZGVhZGxvY2s/IFdlIGF2b2lkIGl0IGJ5IG5vdCB3YWl0aW5n
-IGluIGRpcmVjdAo+IHJlY2xhaW0uCgpJJ20gcGVyZmVjdGx5IGF3YXJlIG9mIHdoYXQgYXJlIHlv
-dSB0cnlpbmcgdG8gZG8gaGVyZSBjYXVzZSB0aGUgQU1EIAplbmdpbmVlcnMgaGF2ZSBzdWdnZXN0
-ZWQgYW5kIHRyaWVkIHRoZSBleGFjdCBzYW1lIHRoaW5nLiBBbmQgeWVzIHdlIGhhdmUgCmFscmVh
-ZHkgcmVqZWN0ZWQgdGhhdCBhcyB3ZWxsLgoKPiBJdCBoYXMgYWxzbyBzaG93biB1cCBhbnkgd2Fp
-dHMgaW4gb3VyIHN1Ym1pdCBpb2N0bCBbcHJpb3IgdG8gZmVuY2UKPiBwdWJsaWNhdGlvbiwgSSBt
-aWdodCBhZGRdIGZvciB0aGVpciBwb3RlbnRpYWwgZGVhZGxvY2sgd2l0aCB1c2Vyc3BhY2UuCgpO
-byB0aGF0IGFwcHJvYWNoIGlzIHByb3ZhYmxlIGRlYWRsb2NrIGZyZWUuCgpTZWUgYXMgSSBleHBs
-YWluZWQgd2l0aCB0aGUgYW1kZ3B1X2NzIGV4YW1wbGUgYWJvdmUgaXQgaXMgYXMgc2ltcGxlIGFz
-IAp3YWl0aW5nIGZvciB0aGUgZmVuY2VzIHRvIGFwcGVhciB3aXRob3V0IGFueSBtZW1vcnkgbWFu
-YWdlbWVudCByZWxldmFudCAKbG9ja3MgaGVsZC4KCkFzIHNvb24gYXMgeW91IGxlYWsgd2FpdGlu
-ZyBmb3IgZmVuY2VzIHRvIGFwcGVhciBpbnRvIG90aGVyIHBhcnRzIG9mIHRoZSAKa2VybmVsIHlv
-dSBhcmUgbWFraW5nIHRob3NlIHBhcnRzIGRlcGVuZCBvbiB0aGUgd2VsZmFyZSBvZiB0aGUgdXNl
-cnNwYWNlIApwcm9jZXNzIGFuZCB0aGF0J3Mgd2hhdCBkb2Vzbid0IHdvcmsuCgpTb3JyeSB0aGF0
-IEknbSBzbyBpbnNpc3Rpbmcgb24gdGhpcywgYnV0IHdlIGhhdmUgYWxyZWFkeSB0cmllZCB0aGlz
-IAphcHByb2FjaCBhbmQgZGlzY3Vzc2VkIGl0IG1vcmUgdGhhbiBvbmNlIGFuZCBpdCByZWFsbHkg
-ZG9lcyBub3Qgd29yayAKY29ycmVjdGx5LgoKUmVnYXJkcywKQ2hyaXN0aWFuLgoKPiAtQ2hyaXMK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+This is a multi-part message in MIME format.
+--===============2049999122==
+Content-Type: multipart/alternative;
+ boundary="------------9963306047F5BA1EF7A9CB97"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------9963306047F5BA1EF7A9CB97
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+Dear Lakshminarayana, dear Chris, dear Jani,
+
+thanks for opening this bug, but it seems nothing to happen with that.
+Can I do anything to trigger this and bring that back to focus. It is an
+really annoying bug and this flickering screen drives me crazy and with
+"intel_idle.max_cstate=3D4" runtime is dramatically reduced.
+
+ From what I read maybe you Chris have biggest knowledge. Can you give
+me some feedback? Shall I give up hope?
+
+Best regards,
+
+Arno
+
+
+On 18.05.20 09:43, Vudum, Lakshminarayana wrote:
+>
+> Arno, I have created bug
+> https://gitlab.freedesktop.org/drm/intel/-/issues/1900
+> <https://gitlab.freedesktop.org/drm/intel/-/issues/1900> for this issue.
+>
+> Now discussions can happen in the bug report directly. Thanks for
+> reporting the issue.
+>
+> Thanks,
+>
+> Lakshmi.
+>
+> *From:* Saarinen, Jani <jani.saarinen@intel.com>
+> *Sent:* Monday, May 18, 2020 10:21 AM
+> *To:* Arno <star@gmx.li>; intel-gfx@lists.freedesktop.org;
+> chris@chris-wilson.co.uk; Vudum, Lakshminarayana
+> <lakshminarayana.vudum@intel.com>
+> *Subject:* RE: [Intel-gfx] intel_cpu_fifo_underrun_irq_handler [i915]]
+> *ERROR* CPU pipe A FIFO underrun
+>
+> Please make gitlab issue if not already done. Lakshmi, please guide.
+>
+> *From:* Intel-gfx <intel-gfx-bounces@lists.freedesktop.org
+> <mailto:intel-gfx-bounces@lists.freedesktop.org>> *On Behalf Of *Arno
+> *Sent:* maanantai 18. toukokuuta 2020 10.07
+> *To:* intel-gfx@lists.freedesktop.org
+> <mailto:intel-gfx@lists.freedesktop.org>; chris@chris-wilson.co.uk
+> <mailto:chris@chris-wilson.co.uk>
+> *Subject:* Re: [Intel-gfx] intel_cpu_fifo_underrun_irq_handler [i915]]
+> *ERROR* CPU pipe A FIFO underrun
+>
+> Is there another place to report this kind of issue? Didn't get any
+> feedback. Did I make mistakes in my mail? I already tried the Ubuntu
+> bug-tracker (see below) with no success.
+>
+> Thank you,
+>
+> Arno
+>
+> Am 11.05.20 um 10:18 schrieb Arno:
+>
+>     My laptop (core m5-6y54) starts flickering after returning from
+>     Suspend (to RAM) or other commands touching the video driver
+>     (xrandr, powertop --calibrate, ...)
+>
+>     From kernel (tested with up to 5.7) I get the message:
+>
+>     [drm:intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR* CPU pipe
+>     A FIFO underrun
+>
+>     I added a bug with more details here:
+>
+>     https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1872760
+>
+>     but guys from Ubuntu seems not able to help (as it is an upstream
+>     bug) !?
+>
+>     This happend not in older kernels, but these have the problem not
+>     to go in power save states. So I think the fix of that
+>
+>     https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1863489
+>
+>     causes this regression.
+>
+>     Hope someone can help. For a=C2=A0 laptop it is better to have both =
+-
+>     standby and power saving. Thank you.
+>
+>     Arno
+>
+>     _______________________________________________
+>
+>     Intel-gfx mailing list
+>
+>     Intel-gfx@lists.freedesktop.org
+>     <mailto:Intel-gfx@lists.freedesktop.org>
+>
+>     https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>
+> ---------------------------------------------------------------------
+> Intel Finland Oy
+> Registered Address: PL 281, 00181 Helsinki
+> Business Identity Code: 0357606 - 4
+> Domiciled in Helsinki
+>
+> This e-mail and any attachments may contain confidential material for
+> the sole use of the intended recipient(s). Any review or distribution
+> by others is strictly prohibited. If you are not the intended
+> recipient, please contact the sender and delete all copies.
+>
+
+--------------9963306047F5BA1EF7A9CB97
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body>
+    <p>Dear Lakshminarayana, dear Chris, dear Jani,</p>
+    <p>thanks for opening this bug, but it seems nothing to happen with
+      that. Can I do anything to trigger this and bring that back to
+      focus. It is an really annoying bug and this flickering screen
+      drives me crazy and with "intel_idle.max_cstate=3D4" runtime is
+      dramatically reduced.<br>
+    </p>
+    <p>From what I read maybe you Chris have biggest knowledge. Can you
+      give me some feedback? Shall I give up hope?</p>
+    <p>Best regards,</p>
+    <p>Arno<br>
+    </p>
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 18.05.20 09:43, Vudum,
+      Lakshminarayana wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5b9c291892c245b3becd3df45ba5f3f9@intel.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUT=
+F-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle23
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:70.85pt 56.7pt 70.85pt 56.7pt;}
+div.WordSection1
+	{page:WordSection1;}
+=2D-></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">Arno, I have created bug <a
+            href=3D"https://gitlab.freedesktop.org/drm/intel/-/issues/1900=
+"
+            moz-do-not-send=3D"true">
+            https://gitlab.freedesktop.org/drm/intel/-/issues/1900</a>
+          for this issue. <o:p></o:p></p>
+        <p class=3D"MsoNormal">Now discussions can happen in the bug
+          report directly. Thanks for reporting the issue.<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+        <p class=3D"MsoNormal">Lakshmi.<o:p></o:p></p>
+        <div>
+          <div style=3D"border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0in 0in 0in">
+            <p class=3D"MsoNormal"><a name=3D"_____replyseparator"
+                moz-do-not-send=3D"true"></a><b>From:</b> Saarinen, Jani
+              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:jani.saari=
+nen@intel.com">&lt;jani.saarinen@intel.com&gt;</a>
+              <br>
+              <b>Sent:</b> Monday, May 18, 2020 10:21 AM<br>
+              <b>To:</b> Arno <a class=3D"moz-txt-link-rfc2396E" href=3D"m=
+ailto:star@gmx.li">&lt;star@gmx.li&gt;</a>;
+              <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:intel-g=
+fx@lists.freedesktop.org">intel-gfx@lists.freedesktop.org</a>; <a class=3D=
+"moz-txt-link-abbreviated" href=3D"mailto:chris@chris-wilson.co.uk">chris@=
+chris-wilson.co.uk</a>;
+              Vudum, Lakshminarayana
+              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:lakshminar=
+ayana.vudum@intel.com">&lt;lakshminarayana.vudum@intel.com&gt;</a><br>
+              <b>Subject:</b> RE: [Intel-gfx]
+              intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR* CPU
+              pipe A FIFO underrun<o:p></o:p></p>
+          </div>
+        </div>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Please make gitlab issue if not already
+          done. Lakshmi, please guide.
+          <o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in
+          0in 0in 4.0pt">
+          <div>
+            <div style=3D"border:none;border-top:solid #E1E1E1
+              1.0pt;padding:3.0pt 0in 0in 0in">
+              <p class=3D"MsoNormal"><b>From:</b> Intel-gfx &lt;<a
+                  href=3D"mailto:intel-gfx-bounces@lists.freedesktop.org"
+                  moz-do-not-send=3D"true">intel-gfx-bounces@lists.freedes=
+ktop.org</a>&gt;
+                <b>On Behalf Of </b>Arno<br>
+                <b>Sent:</b> maanantai 18. toukokuuta 2020 10.07<br>
+                <b>To:</b> <a
+                  href=3D"mailto:intel-gfx@lists.freedesktop.org"
+                  moz-do-not-send=3D"true">intel-gfx@lists.freedesktop.org=
+</a>;
+                <a href=3D"mailto:chris@chris-wilson.co.uk"
+                  moz-do-not-send=3D"true">chris@chris-wilson.co.uk</a><br=
+>
+                <b>Subject:</b> Re: [Intel-gfx]
+                intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR* CPU
+                pipe A FIFO underrun<o:p></o:p></p>
+            </div>
+          </div>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          <p><span lang=3D"FI">Is there another place to report this kind
+              of issue? Didn't get any feedback. Did I make mistakes in
+              my mail? I already tried the Ubuntu bug-tracker (see
+              below) with no success.<o:p></o:p></span></p>
+          <p><span lang=3D"FI">Thank you,<o:p></o:p></span></p>
+          <p><span lang=3D"FI">Arno<o:p></o:p></span></p>
+          <p><span lang=3D"FI"><o:p>=C2=A0</o:p></span></p>
+          <div>
+            <p class=3D"MsoNormal"><span lang=3D"FI">Am 11.05.20 um 10:18
+                schrieb Arno:<o:p></o:p></span></p>
+          </div>
+          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+            <div>
+              <p><span lang=3D"FI">My laptop (core m5-6y54) starts
+                  flickering after returning from Suspend (to RAM) or
+                  other commands touching the video driver (xrandr,
+                  powertop --calibrate, ...)<o:p></o:p></span></p>
+              <p><span lang=3D"FI">From kernel (tested with up to 5.7) I
+                  get the message:<o:p></o:p></span></p>
+              <p id=3D"yui_3_10_3_1_1589111239449_1529"><span lang=3D"FI">=
+[drm:intel_cpu_fifo_underrun_irq_handler
+                  [i915]] *ERROR* CPU pipe A FIFO underrun<o:p></o:p></spa=
+n></p>
+              <p><span lang=3D"FI">I added a bug with more details here:<o=
+:p></o:p></span></p>
+              <p><span lang=3D"FI"><a
+                    href=3D"https://bugs.launchpad.net/ubuntu/+source/linu=
+x/+bug/1872760"
+                    moz-do-not-send=3D"true">https://bugs.launchpad.net/ub=
+untu/+source/linux/+bug/1872760</a><o:p></o:p></span></p>
+              <p><span lang=3D"FI">but guys from Ubuntu seems not able to
+                  help (as it is an upstream bug) !?<o:p></o:p></span></p>
+              <p><span lang=3D"FI">This happend not in older kernels, but
+                  these have the problem not to go in power save states.
+                  So I think the fix of that=C2=A0<o:p></o:p></span></p>
+              <p><span lang=3D"FI"><a
+                    href=3D"https://bugs.launchpad.net/ubuntu/+source/linu=
+x/+bug/1863489"
+                    moz-do-not-send=3D"true">https://bugs.launchpad.net/ub=
+untu/+source/linux/+bug/1863489</a><o:p></o:p></span></p>
+              <p><span lang=3D"FI">causes this regression. <o:p></o:p></sp=
+an></p>
+              <p><span lang=3D"FI">Hope someone can help. For a=C2=A0 lapt=
+op it
+                  is better to have both - standby and power saving.
+                  Thank you.<o:p></o:p></span></p>
+              <p><span lang=3D"FI">Arno<o:p></o:p></span></p>
+              <p><span lang=3D"FI"><o:p>=C2=A0</o:p></span></p>
+            </div>
+            <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span
+                lang=3D"FI"><o:p>=C2=A0</o:p></span></p>
+            <pre><span lang=3D"FI">_______________________________________=
+________<o:p></o:p></span></pre>
+            <pre><span lang=3D"FI">Intel-gfx mailing list<o:p></o:p></span=
+></pre>
+            <pre><span lang=3D"FI"><a href=3D"mailto:Intel-gfx@lists.freed=
+esktop.org" moz-do-not-send=3D"true">Intel-gfx@lists.freedesktop.org</a><o=
+:p></o:p></span></pre>
+            <pre><span lang=3D"FI"><a href=3D"https://lists.freedesktop.or=
+g/mailman/listinfo/intel-gfx" moz-do-not-send=3D"true">https://lists.freed=
+esktop.org/mailman/listinfo/intel-gfx</a><o:p></o:p></span></pre>
+          </blockquote>
+        </div>
+      </div>
+      <p>-----------------------------------------------------------------=
+----<br>
+        Intel Finland Oy<br>
+        Registered Address: PL 281, 00181 Helsinki <br>
+        Business Identity Code: 0357606 - 4 <br>
+        Domiciled in Helsinki </p>
+      <p>This e-mail and any attachments may contain confidential
+        material for<br>
+        the sole use of the intended recipient(s). Any review or
+        distribution<br>
+        by others is strictly prohibited. If you are not the intended<br>
+        recipient, please contact the sender and delete all copies.</p>
+    </blockquote>
+  </body>
+</html>
+
+--------------9963306047F5BA1EF7A9CB97--
+
+--===============2049999122==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2049999122==--
