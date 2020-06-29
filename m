@@ -2,46 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB08420C325
-	for <lists+intel-gfx@lfdr.de>; Sat, 27 Jun 2020 18:57:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92EC420CB61
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 03:15:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D8186E0FC;
-	Sat, 27 Jun 2020 16:57:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2A8789E2B;
+	Mon, 29 Jun 2020 01:15:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D049E6E0FC
- for <intel-gfx@lists.freedesktop.org>; Sat, 27 Jun 2020 16:57:34 +0000 (UTC)
-IronPort-SDR: efpEsnvVRU0Y8+xr5K17zOx+gV3cvPJ5p0k4z2cLqptDenSO+OP1VNF58JRuPWmWKdvNw+oX0p
- ALrzzBgqjqDg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9665"; a="144758785"
-X-IronPort-AV: E=Sophos;i="5.75,287,1589266800"; d="scan'208";a="144758785"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2020 09:57:34 -0700
-IronPort-SDR: 7ZAcC2b+sC2kD/+H9v6PHRyTuvDvyKA9dfBVw1vJhRuGolHH9vsbr325ZKu+tYdMBuzUozUasi
- C+qMMgH/+emg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,287,1589266800"; d="scan'208";a="320267104"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 27 Jun 2020 09:57:32 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 27 Jun 2020 19:57:31 +0300
-Date: Sat, 27 Jun 2020 19:57:31 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <20200626180306.GC6112@intel.com>
-References: <20200625200003.12436-1-ville.syrjala@linux.intel.com>
- <20200626091606.GA29269@intel.com>
- <20200626134641.GZ6112@intel.com> <20200626151336.GA6490@intel.com>
+Received: from ozlabs.org (ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 470B489E2B;
+ Mon, 29 Jun 2020 01:15:05 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 49w8fs1NVHz9sSF;
+ Mon, 29 Jun 2020 11:15:00 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1593393303;
+ bh=/FVAuqzG/l6SWBWuDRhHdwt3AqyH08kGrMNSCgu01RM=;
+ h=Date:From:To:Cc:Subject:From;
+ b=Eojb8Pg7o/JUJ9APyHj7hP9Vmp+wA+XjBCKebmMJFNHwbXAKqDTgi0yUmN4xaoUzM
+ dCQPS37de1yODf6DGMExgiI1NBDGZS46OdU/XcFNr4273TjjWAoYPQx4h7aZEFlAnm
+ q0jWg5wpR8ajQcz3f9lef2WVyx3ca2XwHrW6I9ZQQLMK4OQjW+kmRKANd8lBHYHK+M
+ 6c0r9OtlkM5DMeEludWjszIbJLXsUvYIFM55YA4WQmJBuFFh21sbKsQWOT1HFfAc5F
+ PVe/sjR7kcfJqLjXcU6wyAmY+ccupyX+LOy7A8qrVkfkGGRSJ0tvswziMYVCkb4xTM
+ dAs6G9vG2ZXLQ==
+Date: Mon, 29 Jun 2020 11:14:58 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20200629111458.1661446b@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200626151336.GA6490@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Clamp linetime wm to <64usec
+Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
+ Linus' tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,173 +48,243 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Ralph Campbell <rcampbell@nvidia.com>, Dave Airlie <airlied@linux.ie>,
+ James Jones <jajones@nvidia.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Ben Skeggs <bskeggs@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Nirmoy Das <nirmoy.aiemd@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2081283930=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 26, 2020 at 06:13:36PM +0300, Lisovskiy, Stanislav wrote:
-> On Fri, Jun 26, 2020 at 04:46:41PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Fri, Jun 26, 2020 at 12:16:06PM +0300, Lisovskiy, Stanislav wrote:
-> > > On Thu, Jun 25, 2020 at 11:00:03PM +0300, Ville Syrjala wrote:
-> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > =
+--===============2081283930==
+Content-Type: multipart/signed; boundary="Sig_/KXcAxX3IKFywdKDZi_I8H8E";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-> > > > The linetime watermark is a 9 bit value, which gives us
-> > > > a maximum linetime of just below 64 usec. If the linetime
-> > > > exceeds that value we currently just discard the high bits
-> > > > and program the rest into the register, which angers the
-> > > > state checker.
-> > > > =
+--Sig_/KXcAxX3IKFywdKDZi_I8H8E
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-> > > > To avoid that let's just clamp the value to the max. I believe
-> > > > it should be perfectly fine to program a smaller linetime wm
-> > > > than strictly required, just means the hardware may fetch data
-> > > > sooner than strictly needed. We are further reassured by the
-> > > > fact that with DRRS the spec tells us to program the smaller
-> > > > of the two linetimes corresponding to the two refresh rates.
-> > > > =
+Hi all,
 
-> > > > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++----=
---
-> > > >  1 file changed, 12 insertions(+), 6 deletions(-)
-> > > > =
+Today's linux-next merge of the drm-misc tree got conflicts in:
 
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
-/gpu/drm/i915/display/intel_display.c
-> > > > index a11bb675f9b3..d486d675166f 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > @@ -12581,12 +12581,15 @@ static u16 hsw_linetime_wm(const struct i=
-ntel_crtc_state *crtc_state)
-> > > >  {
-> > > >  	const struct drm_display_mode *adjusted_mode =3D
-> > > >  		&crtc_state->hw.adjusted_mode;
-> > > > +	int linetime_wm;
-> > > >  =
+  drivers/gpu/drm/nouveau/dispnv04/crtc.c
+  drivers/gpu/drm/nouveau/dispnv04/overlay.c
+  drivers/gpu/drm/nouveau/dispnv50/base507c.c
+  drivers/gpu/drm/nouveau/dispnv50/wndw.c
+  drivers/gpu/drm/nouveau/nouveau_dmem.c
+  drivers/gpu/drm/nouveau/nouveau_fbcon.c
 
-> > > >  	if (!crtc_state->hw.enable)
-> > > >  		return 0;
-> > > >  =
+between commits:
 
-> > > > -	return DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 * 8,
-> > > > -				 adjusted_mode->crtc_clock);
-> > > > +	linetime_wm =3D DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 10=
-00 * 8,
-> > > > +					adjusted_mode->crtc_clock);
-> > > > +
-> > > > +	return min(linetime_wm, 0x1ff);
-> > > =
+  183405879255 ("drm/nouveau/kms: Remove field nvbo from struct nouveau_fra=
+mebuffer")
+  c586f30bf74c ("drm/nouveau/kms: Add format mod prop to base/ovly/nvdisp")
+  1d7f940c3a16 ("drm/nouveau/nouveau/hmm: fix nouveau_dmem_chunk allocation=
+s")
 
-> > > Are we actually doing the right thing here? I just mean that we get v=
-alue
-> > > 543 in the bug because pixel rate is 14874 which doesn't seem correct.
-> > =
+from Linus' tree and commit:
 
-> > As explained in the commit msg programming this to lower than necessary
-> > value should be totally fine. It just won't be optimal.
-> > =
+  0dc9b286b8d2 ("drm/nouveau: don't use ttm bo->offset v3")
 
-> > The values in the jira (was there an actual gitlab bug for this btw?)
-> > look quite sensible to me. Some kind of low res 848xsomething mode with
-> > dotclock of 14.874 Mhz, which gives us that linetime of ~68 usec.
-> =
+from the drm-misc tree.
 
-> Htotal from modeline "848x480": 30 14874 848 896 928 1008 480 483 488 494=
- 0x40 0x9
-> is 1008.
-> =
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
 
-> According to the formula above htotal(1008)*1000*8 / 14874(crtc_clock) =
-=3D 542.154
-> =
+--=20
+Cheers,
+Stephen Rothwell
 
-> So what's the catch? :)
+diff --cc drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index 640738f3196c,cc6ab3c2eec7..000000000000
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@@ -840,12 -839,13 +840,12 @@@ nv04_crtc_do_mode_set_base(struct drm_c
+  	 */
+  	if (atomic) {
+  		drm_fb =3D passed_fb;
+ -		fb =3D nouveau_framebuffer(passed_fb);
+  	} else {
+  		drm_fb =3D crtc->primary->fb;
+ -		fb =3D nouveau_framebuffer(crtc->primary->fb);
+  	}
+ =20
+ -	nv_crtc->fb.offset =3D fb->nvbo->offset;
+ +	nvbo =3D nouveau_gem_object(drm_fb->obj[0]);
+- 	nv_crtc->fb.offset =3D nvbo->bo.offset;
+++	nv_crtc->fb.offset =3D nvbo->offset;
+ =20
+  	if (nv_crtc->lut.depth !=3D drm_fb->format->depth) {
+  		nv_crtc->lut.depth =3D drm_fb->format->depth;
+diff --cc drivers/gpu/drm/nouveau/dispnv04/overlay.c
+index 6248fd1dbc6d,9529bd9053e7..000000000000
+--- a/drivers/gpu/drm/nouveau/dispnv04/overlay.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
+@@@ -152,7 -150,7 +152,7 @@@ nv10_update_plane(struct drm_plane *pla
+  	nvif_mask(dev, NV_PCRTC_ENGINE_CTRL + soff2, NV_CRTC_FSEL_OVERLAY, 0);
+ =20
+  	nvif_wr32(dev, NV_PVIDEO_BASE(flip), 0);
+- 	nvif_wr32(dev, NV_PVIDEO_OFFSET_BUFF(flip), nvbo->bo.offset);
+ -	nvif_wr32(dev, NV_PVIDEO_OFFSET_BUFF(flip), nv_fb->nvbo->offset);
+++	nvif_wr32(dev, NV_PVIDEO_OFFSET_BUFF(flip), nvbo->offset);
+  	nvif_wr32(dev, NV_PVIDEO_SIZE_IN(flip), src_h << 16 | src_w);
+  	nvif_wr32(dev, NV_PVIDEO_POINT_IN(flip), src_y << 16 | src_x);
+  	nvif_wr32(dev, NV_PVIDEO_DS_DX(flip), (src_w << 20) / crtc_w);
+@@@ -174,7 -172,7 +174,7 @@@
+  	if (format & NV_PVIDEO_FORMAT_PLANAR) {
+  		nvif_wr32(dev, NV_PVIDEO_UVPLANE_BASE(flip), 0);
+  		nvif_wr32(dev, NV_PVIDEO_UVPLANE_OFFSET_BUFF(flip),
+- 			nvbo->bo.offset + fb->offsets[1]);
+ -			nv_fb->nvbo->offset + fb->offsets[1]);
+++			nvbo->offset + fb->offsets[1]);
+  	}
+  	nvif_wr32(dev, NV_PVIDEO_FORMAT(flip), format | fb->pitches[0]);
+  	nvif_wr32(dev, NV_PVIDEO_STOP, 0);
+@@@ -399,7 -396,7 +399,7 @@@ nv04_update_plane(struct drm_plane *pla
+ =20
+  	for (i =3D 0; i < 2; i++) {
+  		nvif_wr32(dev, NV_PVIDEO_BUFF0_START_ADDRESS + 4 * i,
+- 			  nvbo->bo.offset);
+ -			  nv_fb->nvbo->offset);
+++			  nvbo->offset);
+  		nvif_wr32(dev, NV_PVIDEO_BUFF0_PITCH_LENGTH + 4 * i,
+  			  fb->pitches[0]);
+  		nvif_wr32(dev, NV_PVIDEO_BUFF0_OFFSET + 4 * i, 0);
+diff --cc drivers/gpu/drm/nouveau/dispnv50/base507c.c
+index 511258bfbcbc,b60aa987d7b4..000000000000
+--- a/drivers/gpu/drm/nouveau/dispnv50/base507c.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
+@@@ -274,9 -273,9 +274,9 @@@ base507c_new_(const struct nv50_wndw_fu
+  	if (*pwndw =3D wndw, ret)
+  		return ret;
+ =20
+ -	ret =3D nv50_dmac_create(&drm->client.device, &disp->disp->object,
+ +	ret =3D nv50_dmac_create(&drm->client.device, &disp->disp.object,
+  			       &oclass, head, &args, sizeof(args),
+- 			       disp50->sync->bo.offset, &wndw->wndw);
+ -			       disp->sync->offset, &wndw->wndw);
+++			       disp50->sync->offset, &wndw->wndw);
+  	if (ret) {
+  		NV_ERROR(drm, "base%04x allocation failed: %d\n", oclass, ret);
+  		return ret;
+diff --cc drivers/gpu/drm/nouveau/dispnv50/wndw.c
+index 99b9b681736d,ee0fd817185e..000000000000
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+@@@ -521,12 -507,11 +521,12 @@@ nv50_wndw_prepare_fb(struct drm_plane *
+  			return PTR_ERR(ctxdma);
+  		}
+ =20
+ -		asyw->image.handle[0] =3D ctxdma->object.handle;
+ +		if (asyw->visible)
+ +			asyw->image.handle[0] =3D ctxdma->object.handle;
+  	}
+ =20
+ -	asyw->state.fence =3D dma_resv_get_excl_rcu(fb->nvbo->bo.base.resv);
+ -	asyw->image.offset[0] =3D fb->nvbo->offset;
+ +	asyw->state.fence =3D dma_resv_get_excl_rcu(nvbo->bo.base.resv);
+- 	asyw->image.offset[0] =3D nvbo->bo.offset;
+++	asyw->image.offset[0] =3D nvbo->offset;
+ =20
+  	if (wndw->func->prepare) {
+  		asyh =3D nv50_head_atom_get(asyw->state.state, asyw->state.crtc);
+diff --cc drivers/gpu/drm/nouveau/nouveau_dmem.c
+index e5c230d9ae24,f13086a32f0f..000000000000
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@@ -75,32 -72,25 +75,32 @@@ struct nouveau_dmem_migrate=20
+ =20
+  struct nouveau_dmem {
+  	struct nouveau_drm *drm;
+ -	struct dev_pagemap pagemap;
+  	struct nouveau_dmem_migrate migrate;
+ -	struct list_head chunk_free;
+ -	struct list_head chunk_full;
+ -	struct list_head chunk_empty;
+ +	struct list_head chunks;
+  	struct mutex mutex;
+ +	struct page *free_pages;
+ +	spinlock_t lock;
+  };
+ =20
+ -static inline struct nouveau_dmem *page_to_dmem(struct page *page)
+ +static struct nouveau_dmem_chunk *nouveau_page_to_chunk(struct page *page)
+  {
+ -	return container_of(page->pgmap, struct nouveau_dmem, pagemap);
+ +	return container_of(page->pgmap, struct nouveau_dmem_chunk, pagemap);
+ +}
+ +
+ +static struct nouveau_drm *page_to_drm(struct page *page)
+ +{
+ +	struct nouveau_dmem_chunk *chunk =3D nouveau_page_to_chunk(page);
+ +
+ +	return chunk->drm;
+  }
+ =20
+ -static unsigned long nouveau_dmem_page_addr(struct page *page)
+ +unsigned long nouveau_dmem_page_addr(struct page *page)
+  {
+ -	struct nouveau_dmem_chunk *chunk =3D page->zone_device_data;
+ -	unsigned long idx =3D page_to_pfn(page) - chunk->pfn_first;
+ +	struct nouveau_dmem_chunk *chunk =3D nouveau_page_to_chunk(page);
+ +	unsigned long off =3D (page_to_pfn(page) << PAGE_SHIFT) -
+ +				chunk->pagemap.res.start;
+ =20
+- 	return chunk->bo->bo.offset + off;
+ -	return (idx << PAGE_SHIFT) + chunk->bo->offset;
+++	return chunk->bo->offset + off;
+  }
+ =20
+  static void nouveau_dmem_page_free(struct page *page)
+diff --cc drivers/gpu/drm/nouveau/nouveau_fbcon.c
+index 3d11b84d4cf9,1341c6fca3ed..000000000000
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+@@@ -393,7 -393,7 +393,7 @@@ nouveau_fbcon_create(struct drm_fb_help
+ =20
+  	/* To allow resizeing without swapping buffers */
+  	NV_INFO(drm, "allocated %dx%d fb: 0x%llx, bo %p\n",
+- 		fb->width, fb->height, nvbo->bo.offset, nvbo);
+ -		fb->base.width, fb->base.height, fb->nvbo->offset, nvbo);
+++		fb->width, fb->height, nvbo->offset, nvbo);
+ =20
+  	vga_switcheroo_client_fb_set(dev->pdev, info);
+  	return 0;
 
-What catch? Looks totally consistent to me.
+--Sig_/KXcAxX3IKFywdKDZi_I8H8E
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-> =
+-----BEGIN PGP SIGNATURE-----
 
-> Stan
-> > =
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl75QJIACgkQAVBC80lX
+0GyMmQgAk3dOardj5yND6O40hzhbuNxH3G5gY8vnejO7dT8B4WWN+nPdlj38sRqd
+Mw0ZZjJTl7EqNAbQIiq2HBVk2EmF7NfdGSzztiDtsPtQZqQDdbEKJ7h4zI4l1J+a
+HA5YQETJ2ArPHmSrvpceTGoUnC4DcNfRmUMFX+ZkE/ynYrG3Y7SvzRw9ArL1fQZJ
+dqv1C6Fhk7nDW821rqV8wumG4Q+FyrwVc94xVFi6LFgq9hmGQy3SpWrM9KEHCY8y
+zOgG27GSyqgJM19pDKkoF0xGDvmo8E5vHXif+dBnAgZhWiJAyVppkw5u3aByGj0o
+TQd8uDSUneldSr+DbO6VrqTYg2lEzg==
+=eFwK
+-----END PGP SIGNATURE-----
 
-> > > =
+--Sig_/KXcAxX3IKFywdKDZi_I8H8E--
 
-> > > Stan
-> > > >  }
-> > > >  =
+--===============2081283930==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-> > > >  static u16 hsw_ips_linetime_wm(const struct intel_crtc_state *crtc=
-_state,
-> > > > @@ -12594,12 +12597,15 @@ static u16 hsw_ips_linetime_wm(const stru=
-ct intel_crtc_state *crtc_state,
-> > > >  {
-> > > >  	const struct drm_display_mode *adjusted_mode =3D
-> > > >  		&crtc_state->hw.adjusted_mode;
-> > > > +	int linetime_wm;
-> > > >  =
-
-> > > >  	if (!crtc_state->hw.enable)
-> > > >  		return 0;
-> > > >  =
-
-> > > > -	return DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 * 8,
-> > > > -				 cdclk_state->logical.cdclk);
-> > > > +	linetime_wm =3D DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 10=
-00 * 8,
-> > > > +					cdclk_state->logical.cdclk);
-> > > > +
-> > > > +	return min(linetime_wm, 0x1ff);
-> > > >  }
-> > > >  =
-
-> > > >  static u16 skl_linetime_wm(const struct intel_crtc_state *crtc_sta=
-te)
-> > > > @@ -12608,7 +12614,7 @@ static u16 skl_linetime_wm(const struct int=
-el_crtc_state *crtc_state)
-> > > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > > >  	const struct drm_display_mode *adjusted_mode =3D
-> > > >  		&crtc_state->hw.adjusted_mode;
-> > > > -	u16 linetime_wm;
-> > > > +	int linetime_wm;
-> > > >  =
-
-> > > >  	if (!crtc_state->hw.enable)
-> > > >  		return 0;
-> > > > @@ -12620,7 +12626,7 @@ static u16 skl_linetime_wm(const struct int=
-el_crtc_state *crtc_state)
-> > > >  	if (IS_GEN9_LP(dev_priv) && dev_priv->ipc_enabled)
-> > > >  		linetime_wm /=3D 2;
-> > > >  =
-
-> > > > -	return linetime_wm;
-> > > > +	return min(linetime_wm, 0x1ff);
-> > > >  }
-> > > >  =
-
-> > > >  static int hsw_compute_linetime_wm(struct intel_atomic_state *stat=
-e,
-> > > > -- =
-
-> > > > 2.26.2
-> > > > =
-
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2081283930==--
