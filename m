@@ -2,49 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A76020CE21
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 13:18:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1038120CE27
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 13:22:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E421C89D99;
-	Mon, 29 Jun 2020 11:18:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5164E6E0E4;
+	Mon, 29 Jun 2020 11:22:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BF4B89D99
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 11:18:29 +0000 (UTC)
-IronPort-SDR: LoZAO0K+yMGchnP7YmjnOoMlE/BkL+/+tD/72kFwlA1SXf23yP57TZWfeBvwgcLQBd3qaF/ET7
- +zdwp6fADigA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="144137617"
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="144137617"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 04:18:28 -0700
-IronPort-SDR: oOvA3N+LvFOA2f/xgVSwfU626ERnWHp/c+KxdhoXgbYlLehf0lMev3fLzxVURWpDjmJVhuTTWl
- SFPo7DTRYZvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="320610258"
-Received: from bartholt-mobl1.ger.corp.intel.com (HELO [10.252.38.99])
- ([10.252.38.99])
- by FMSMGA003.fm.intel.com with ESMTP; 29 Jun 2020 04:18:27 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
- intel-gfx@lists.freedesktop.org
-References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
- <20200623142843.423594-6-maarten.lankhorst@linux.intel.com>
- <6f313791-d0f7-465a-e4ab-63826ef70bf8@shipmail.org>
- <cec259f8-170f-ad74-3eb1-f583cb01920f@linux.intel.com>
- <11cd7a6a-af85-e68f-5936-0a8d4157da91@shipmail.org>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <ff373032-c935-6a8b-a65d-feeb9e40af54@linux.intel.com>
-Date: Mon, 29 Jun 2020 13:18:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55D6F6E0E4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 11:22:18 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21648550-1500050 
+ for multiple; Mon, 29 Jun 2020 12:22:10 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 29 Jun 2020 12:22:09 +0100
+Message-Id: <20200629112209.10423-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200629101256.13039-1-chris@chris-wilson.co.uk>
+References: <20200629101256.13039-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-In-Reply-To: <11cd7a6a-af85-e68f-5936-0a8d4157da91@shipmail.org>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 06/26] drm/i915: Parse command buffer
- earlier in eb_relocate(slow)
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gem: Move obj->lut_list under its
+ own lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,43 +39,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T3AgMjktMDYtMjAyMCBvbSAxMzoxNSBzY2hyZWVmIFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCk6
-Cj4gSGksCj4KPiBPbiA2LzI5LzIwIDEyOjQwIFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToK
-Pj4KPj4+PiDCoMKgwqDCoMKgwqAgLyoKPj4+PiDCoMKgwqDCoMKgwqDCoCAqIHNuYi9pdmIvdmx2
-IGNvbmZsYXRlIHRoZSAiYmF0Y2ggaW4gcHBndHQiIGJpdCB3aXRoIHRoZSAibm9uLXNlY3VyZQo+
-Pj4+IMKgwqDCoMKgwqDCoMKgICogYmF0Y2giIGJpdC4gSGVuY2Ugd2UgbmVlZCB0byBwaW4gc2Vj
-dXJlIGJhdGNoZXMgaW50byB0aGUgZ2xvYmFsIGd0dC4KPj4+PiDCoMKgwqDCoMKgwqDCoCAqIGhz
-dyBzaG91bGQgaGF2ZSB0aGlzIGZpeGVkLCBidXQgYmR3IG11Y2tzIGl0IHVwIGFnYWluLiAqLwo+
-Pj4+IC3CoMKgwqAgYmF0Y2ggPSBlYi5iYXRjaC0+dm1hOwo+Pj4+IMKgwqDCoMKgwqDCoCBpZiAo
-ZWIuYmF0Y2hfZmxhZ3MgJiBJOTE1X0RJU1BBVENIX1NFQ1VSRSkgewo+Pj4+IMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIHN0cnVjdCBpOTE1X3ZtYSAqdm1hOwo+Pj4+IMKgwqAgQEAgLTI5MjMsMTMgKzI5
-MjcsMTUgQEAgaTkxNV9nZW1fZG9fZXhlY2J1ZmZlcihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+
-Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKsKgwqAgZml0dGluZyBkdWUgdG8gZnJhZ21lbnRh
-dGlvbi4KPj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogU28gdGhpcyBpcyBhY3R1YWxseSBz
-YWZlLgo+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKi8KPj4+PiAtwqDCoMKgwqDCoMKgwqAg
-dm1hID0gaTkxNV9nZW1fb2JqZWN0X2dndHRfcGluKGJhdGNoLT5vYmosIE5VTEwsIDAsIDAsIDAp
-Owo+Pj4+ICvCoMKgwqDCoMKgwqDCoCB2bWEgPSBpOTE1X2dlbV9vYmplY3RfZ2d0dF9waW4oZWIu
-YmF0Y2gtPnZtYS0+b2JqLCBOVUxMLCAwLCAwLCAwKTsKPj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBpZiAoSVNfRVJSKHZtYSkpIHsKPj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVy
-ciA9IFBUUl9FUlIodm1hKTsKPj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8g
-ZXJyX3BhcnNlOwo+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIH0KPj4+PiDCoMKgIMKgwqDCoMKg
-wqDCoMKgwqDCoCBiYXRjaCA9IHZtYTsKPj4+PiArwqDCoMKgIH0gZWxzZSB7Cj4+Pj4gK8KgwqDC
-oMKgwqDCoMKgIGJhdGNoID0gZWIuYmF0Y2gtPnZtYTsKPj4+PiDCoMKgwqDCoMKgwqAgfQo+Pj4+
-IMKgwqAgCj4+PiBIbW0sIGl0J3MgbGF0ZSBmcmlkYXkgYWZ0ZXJub29uIHNvIHRoYXQgbWlnaHQg
-YmUgdGhlIGNhdXNlLCBidXQgSSBmYWlsIHRvIHNlZSB3aGF0IHRoZSBhYm92ZSBodW5rIGlzIHRy
-eWluZyB0byBhY2hpZXZlPwo+Pgo+PiBFeGVjYnVmIHBhcnNpbmcgbWF5IGNyZWF0ZSBhIHNoYWRv
-dyBvYmplY3Qgd2hpY2ggYWxzbyBuZWVkcyB0byBiZSBsb2NrZWQsIHdlIGRvIHRoaXMgaW5zaWRl
-IGViX3JlbG9jYXRlKCkgdG8gZW5zdXJlIHRoZSBub3JtYWwgcnVsZXMgZm9yIHcvdyBoYW5kbGlu
-ZyBjYW4gYmUgdXNlZCBmb3IgZWIgcGFyc2luZyBhcyB3ZWxsLiA6KQo+Pgo+PiB+TWFhcnRlbgo+
-Cj4gSSBtZWFudCB0aGUgY2hhbmdlZCBhc3NpZ25tZW50IG9mIHRoZSBiYXRjaCB2YXJpYWJsZT8K
-Pgo+IC9UaG9tYXMKPgo+Ck5vdGhpbmcsIHN0aWxsIGVuZHMgdXAgYmVpbmcgdGhlIHNhbWUuIDop
-CgpXYXMgbG9va2luZyBhdCBjaGFuZ2luZyB0aGF0IHBpbiBhcyB3ZWxsLCBkaWRuJ3QgZ2V0IGFy
-b3VuZCB0byBpdCB5ZXQuCgp+TWFhcnRlbgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+The obj->lut_list is traversed when the object is closed as the file
+table is destroyed during process termination. As this occurs before we
+kill any outstanding context if, due to some bug or another, the closure
+is blocked, then we fail to shootdown any inflight operations
+potentially leaving the GPU spinning forever. As we only need to guard
+the list against concurrent closures and insertions, the hold is short
+and merits being treated as a simple spinlock.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  6 ++----
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  4 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    | 21 +++++++++++++------
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 +
+ 4 files changed, 20 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 5c13809dc3c8..6675447a47b9 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -112,8 +112,7 @@ static void lut_close(struct i915_gem_context *ctx)
+ 		if (!kref_get_unless_zero(&obj->base.refcount))
+ 			continue;
+ 
+-		rcu_read_unlock();
+-		i915_gem_object_lock(obj);
++		spin_lock(&obj->lut_lock);
+ 		list_for_each_entry(lut, &obj->lut_list, obj_link) {
+ 			if (lut->ctx != ctx)
+ 				continue;
+@@ -124,8 +123,7 @@ static void lut_close(struct i915_gem_context *ctx)
+ 			list_del(&lut->obj_link);
+ 			break;
+ 		}
+-		i915_gem_object_unlock(obj);
+-		rcu_read_lock();
++		spin_unlock(&obj->lut_lock);
+ 
+ 		if (&lut->obj_link != &obj->lut_list) {
+ 			i915_lut_handle_free(lut);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index c38ab51e82f0..b4862afaaf28 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -789,14 +789,14 @@ static int __eb_add_lut(struct i915_execbuffer *eb,
+ 		if (err == 0) { /* And nor has this handle */
+ 			struct drm_i915_gem_object *obj = vma->obj;
+ 
+-			i915_gem_object_lock(obj);
++			spin_lock(&obj->lut_lock);
+ 			if (idr_find(&eb->file->object_idr, handle) == obj) {
+ 				list_add(&lut->obj_link, &obj->lut_list);
+ 			} else {
+ 				radix_tree_delete(&ctx->handles_vma, handle);
+ 				err = -ENOENT;
+ 			}
+-			i915_gem_object_unlock(obj);
++			spin_unlock(&obj->lut_lock);
+ 		}
+ 		mutex_unlock(&ctx->mutex);
+ 	}
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index b6ec5b50d93b..3f47fa4784ac 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -61,6 +61,7 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+ 	INIT_LIST_HEAD(&obj->mm.link);
+ 
+ 	INIT_LIST_HEAD(&obj->lut_list);
++	spin_lock_init(&obj->lut_lock);
+ 
+ 	spin_lock_init(&obj->mmo.lock);
+ 	obj->mmo.offsets = RB_ROOT;
+@@ -104,21 +105,29 @@ void i915_gem_close_object(struct drm_gem_object *gem, struct drm_file *file)
+ {
+ 	struct drm_i915_gem_object *obj = to_intel_bo(gem);
+ 	struct drm_i915_file_private *fpriv = file->driver_priv;
++	struct i915_lut_handle bookmark = {};
+ 	struct i915_mmap_offset *mmo, *mn;
+ 	struct i915_lut_handle *lut, *ln;
+ 	LIST_HEAD(close);
+ 
+-	i915_gem_object_lock(obj);
++	spin_lock(&obj->lut_lock);
+ 	list_for_each_entry_safe(lut, ln, &obj->lut_list, obj_link) {
+ 		struct i915_gem_context *ctx = lut->ctx;
+ 
+-		if (ctx->file_priv != fpriv)
+-			continue;
++		if (ctx && ctx->file_priv == fpriv) {
++			i915_gem_context_get(ctx);
++			list_move(&lut->obj_link, &close);
++		}
+ 
+-		i915_gem_context_get(ctx);
+-		list_move(&lut->obj_link, &close);
++		/* Break long locks, and carefully continue on from this spot */
++		if (&ln->obj_link != &obj->lut_list) {
++			list_add(&bookmark.obj_link, &ln->obj_link);
++			if (cond_resched_lock(&obj->lut_lock))
++				list_safe_reset_next(&bookmark, ln, obj_link);
++			__list_del_entry(&bookmark.obj_link);
++		}
+ 	}
+-	i915_gem_object_unlock(obj);
++	spin_unlock(&obj->lut_lock);
+ 
+ 	spin_lock(&obj->mmo.lock);
+ 	rbtree_postorder_for_each_entry_safe(mmo, mn, &obj->mmo.offsets, offset)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index b1f82a11aef2..5335f799b548 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -121,6 +121,7 @@ struct drm_i915_gem_object {
+ 	 * this translation from object to context->handles_vma.
+ 	 */
+ 	struct list_head lut_list;
++	spinlock_t lut_lock; /* guards lut_list */
+ 
+ 	/** Stolen memory for this object, instead of being backed by shmem. */
+ 	struct drm_mm_node *stolen;
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
