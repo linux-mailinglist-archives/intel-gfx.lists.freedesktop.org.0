@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C567520CE6F
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 14:07:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4291D20CE89
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 14:32:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD2C06E0CA;
-	Mon, 29 Jun 2020 12:07:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFE9C89F0B;
+	Mon, 29 Jun 2020 12:32:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFDB46E0CA
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 12:07:37 +0000 (UTC)
-IronPort-SDR: IKsoXjZQHAb0elh59aMDjazMrH1r5WzUYUVLHFTvFQo+3qI/qLQIEo5XaWb/c6Krzcu/3SLiq9
- lp+FjYVFMz+Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="144143010"
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="144143010"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 005C989F0B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 12:32:20 +0000 (UTC)
+IronPort-SDR: MUby2OPdllErrV0NwuJENco/uzKOD3ES32vJzNLumsYjW/ykP3+PSLRp/ou4dT9RVbDWFxxhYq
+ ykCz9zkgAfTA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="125583181"
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="125583181"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 05:07:37 -0700
-IronPort-SDR: iiPVAeJcWP/S/+JErbtIMu/4KEYyI0UgzlY7lWokrY1EGA/nB8pf6JYkaP7z+f+DIzv60nERL+
- wmcm8d2LsW5Q==
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="454170289"
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2020 05:32:20 -0700
+IronPort-SDR: DVWK/4qiZQoRSbIo+zVGEFi5c5V7ZTrQlRebSFgkz4Y5j4otbJwrQCtIZ5PCWd5EVyZYvLl/FW
+ Zvvlf9I6UL+Q==
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="454176055"
 Received: from tkeuter-mobl2.ger.corp.intel.com (HELO [10.249.42.155])
  ([10.249.42.155])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 05:07:36 -0700
+ 29 Jun 2020 05:32:19 -0700
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
  <20200623142843.423594-4-maarten.lankhorst@linux.intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <fb593721-4b84-bdfd-4385-4bb73512a5f3@linux.intel.com>
-Date: Mon, 29 Jun 2020 13:07:33 +0100
+Message-ID: <c03481f1-92c2-24ad-b56e-a92fbb70f9fe@linux.intel.com>
+Date: Mon, 29 Jun 2020 13:32:16 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
@@ -71,22 +71,7 @@ On 23/06/2020 15:28, Maarten Lankhorst wrote:
 > 
 > Changes since v1:
 > - Change ww_ctx and obj order in locking functions (Jonas Lahtinen)
-
-Do you envisage, by the end of refactoring (including obj->mm.lock) 
-majority of i915_gem_object_lock() calls sites will be passing a context?
-
-I am thinking whether it would be easier, for maintaining the series, to 
-keep i915_gem_object_lock() as is, and add new i915_gem_object_lock_ww 
-to be used at select places only.
-
-Interestingly I think later in the series I will have an opposite 
-feeling regarding some other entry points. So I might be wrong, or just 
-not have the full picture at this point. :)
-
-Regards,
-
-Tvrtko
-
+> 
 > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > ---
 >   drivers/gpu/drm/i915/display/intel_display.c  |  4 +-
@@ -299,6 +284,11 @@ Tvrtko
 > +		ww->contended = obj;
 > +
 > +	return ret;
+
+Feels a bit on the large side for inline now, no? Quite a few 
+conditionals. Or you are counting on compiler optimisation because ww 
+and intr are passed in as mostly const?
+
 >   }
 >   
 > -static inline bool i915_gem_object_trylock(struct drm_i915_gem_object *obj)
@@ -317,6 +307,10 @@ Tvrtko
 > -	return dma_resv_lock_interruptible(obj->base.resv, NULL);
 > +	WARN_ON(ww && !ww->intr);
 > +	return __i915_gem_object_lock(obj, ww, true);
+
+I see that ww->intr is set at ctx init time. At what times it is 
+expected that the individual lock calls would override that?
+
 > +}
 > +
 > +static inline bool i915_gem_object_trylock(struct drm_i915_gem_object *obj)
@@ -577,6 +571,13 @@ Tvrtko
 > +	struct drm_i915_gem_object *obj;
 > +
 > +	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
+
+I wanted to ask whether you think this is faster than 
+for_each_list_entry, but then also realized you can optimise further by 
+not bothering to list_del (since you know the whole list is going away). 
+If you are not allowing ww ctx reuse you don't even need to re-init the 
+list_head at the end.
+
 > +		list_del(&obj->obj_link);
 > +		i915_gem_object_unlock(obj);
 > +	}
@@ -586,6 +587,15 @@ Tvrtko
 > +{
 > +	i915_gem_ww_ctx_unlock_all(ww);
 > +	WARN_ON(ww->contended);
+
+Unless I am missing something this feels like a GEM_BUG_ON condition 
+(translated: we should be confident after testing it is impossible to hit).
+
+Or it is allowed to not try the backoff on -EDEADLK? Backoff is the only 
+place which resets the ww->contended, right? In this case WARN_ON would 
+be wrong, but you probably did not went for this design. Should it be 
+supported?
+
 > +	ww_acquire_fini(&ww->ctx);
 > +}
 > +
@@ -654,22 +664,37 @@ Tvrtko
 > +
 > +	obj2 = i915_gem_object_create_internal(i915, PAGE_SIZE);
 > +	if (IS_ERR(obj)) {
+
+Wrong obj ^^^ vvv.
+
 > +		err = PTR_ERR(obj);
 > +		goto put1;
 > +	}
 > +
 > +	i915_gem_ww_ctx_init(&ww, true);
+
+Need to expand with non-interruptible, interruptible and mixed.
+
 > +retry:
 > +	/* Lock the objects, twice for good measure (-EALREADY handling) */
 > +	err = i915_gem_object_lock(obj, &ww);
 > +	if (!err)
 > +		err = i915_gem_object_lock_interruptible(obj, &ww);
+
+This is -EALREADY on the 1st pass.
+
 > +	if (!err)
 > +		err = i915_gem_object_lock_interruptible(obj2, &ww);
 > +	if (!err)
 > +		err = i915_gem_object_lock(obj2, &ww);
+
+And this is -EALREADY again?
+
 > +
 > +	if (err == -EDEADLK) {
+
+How do we get here with a single locking context?
+
 > +		err = i915_gem_ww_ctx_backoff(&ww);
 > +		if (!err)
 > +			goto retry;
@@ -717,6 +742,10 @@ Tvrtko
 >   	i915_gem_object_unlock(obj);
 >   	if (err)
 > 
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
