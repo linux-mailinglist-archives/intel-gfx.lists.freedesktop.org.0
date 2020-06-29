@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 151B520D2BD
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 20:58:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 758B420D2C4
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 21:04:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A9B189C84;
-	Mon, 29 Jun 2020 18:58:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3908289DC1;
+	Mon, 29 Jun 2020 19:04:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 857FD89F08
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 18:58:51 +0000 (UTC)
-IronPort-SDR: DXi3mdYHO6pGu7WCw9E4ZrjPJt2hlLb28blVGsIBAG9NDV66HcyGP8S7kQBOToIM594lO0mcE1
- S98/G37REp2A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="126174496"
-X-IronPort-AV: E=Sophos;i="5.75,295,1589266800"; d="scan'208";a="126174496"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 11:58:51 -0700
-IronPort-SDR: A2JLrmHJfyjvZ/XLOIlK6yLbt2tGOSnf0PymdAoKOZIsTFQYb/Fcdo/iACPKZm4Te26l0FcU/R
- 5F7IFWIpKB2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,295,1589266800"; d="scan'208";a="277169847"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga003.jf.intel.com with ESMTP; 29 Jun 2020 11:58:50 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 29 Jun 2020 21:58:48 +0300
-Message-Id: <20200629185848.20550-2-imre.deak@intel.com>
-X-Mailer: git-send-email 2.23.1
-In-Reply-To: <20200629185848.20550-1-imre.deak@intel.com>
-References: <20200629185848.20550-1-imre.deak@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 62E7D89DC1;
+ Mon, 29 Jun 2020 19:04:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5A2B9A0071;
+ Mon, 29 Jun 2020 19:04:51 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/icl+: Simplify combo/TBT PLL
- calculation call-chain
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nicolas Boichat" <drinkcat@chromium.org>
+Date: Mon, 29 Jun 2020 19:04:51 -0000
+Message-ID: <159345749134.745.4372147372636508518@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200627070307.516803-1-drinkcat@chromium.org>
+In-Reply-To: <20200627070307.516803-1-drinkcat@chromium.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRGV0?=
+ =?utf-8?q?ect_and_remove_trace=5Fprintk?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,142 +38,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To simplify things, call the combo PHY/TBT PLL calculation functions
-directly from the corresponding combo/TypeC PLL get functions, instead of
-calling the same calculation functions after having to recheck if the
-given PHY is combo or TypeC.
+== Series Details ==
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 64 ++++++++-----------
- 1 file changed, 27 insertions(+), 37 deletions(-)
+Series: Detect and remove trace_printk
+URL   : https://patchwork.freedesktop.org/series/78870/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index f585053d02d8..8306e92dc892 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -3046,49 +3046,26 @@ static int icl_ddi_combo_pll_get_freq(struct drm_i915_private *i915,
- 					icl_wrpll_ref_clock(i915));
- }
- 
--static bool icl_calc_dpll_state(struct intel_crtc_state *crtc_state,
--				struct intel_encoder *encoder,
-+static void icl_calc_dpll_state(struct drm_i915_private *i915,
-+				const struct skl_wrpll_params *pll_params,
- 				struct intel_dpll_hw_state *pll_state)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
--	u32 cfgcr0, cfgcr1;
--	struct skl_wrpll_params pll_params = { 0 };
--	bool ret;
--
--	if (intel_phy_is_tc(dev_priv, intel_port_to_phy(dev_priv,
--							encoder->port)))
--		ret = icl_calc_tbt_pll(crtc_state, &pll_params);
--	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) ||
--		 intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
--		ret = icl_calc_wrpll(crtc_state, &pll_params);
--	else
--		ret = icl_calc_dp_combo_pll(crtc_state, &pll_params);
--
--	if (!ret)
--		return false;
-+	memset(pll_state, 0, sizeof(*pll_state));
- 
--	cfgcr0 = DPLL_CFGCR0_DCO_FRACTION(pll_params.dco_fraction) |
--		 pll_params.dco_integer;
-+	pll_state->cfgcr0 = DPLL_CFGCR0_DCO_FRACTION(pll_params->dco_fraction) |
-+			    pll_params->dco_integer;
- 
--	cfgcr1 = DPLL_CFGCR1_QDIV_RATIO(pll_params.qdiv_ratio) |
--		 DPLL_CFGCR1_QDIV_MODE(pll_params.qdiv_mode) |
--		 DPLL_CFGCR1_KDIV(pll_params.kdiv) |
--		 DPLL_CFGCR1_PDIV(pll_params.pdiv);
-+	pll_state->cfgcr1 = DPLL_CFGCR1_QDIV_RATIO(pll_params->qdiv_ratio) |
-+			    DPLL_CFGCR1_QDIV_MODE(pll_params->qdiv_mode) |
-+			    DPLL_CFGCR1_KDIV(pll_params->kdiv) |
-+			    DPLL_CFGCR1_PDIV(pll_params->pdiv);
- 
--	if (INTEL_GEN(dev_priv) >= 12)
--		cfgcr1 |= TGL_DPLL_CFGCR1_CFSELOVRD_NORMAL_XTAL;
-+	if (INTEL_GEN(i915) >= 12)
-+		pll_state->cfgcr1 |= TGL_DPLL_CFGCR1_CFSELOVRD_NORMAL_XTAL;
- 	else
--		cfgcr1 |= DPLL_CFGCR1_CENTRAL_FREQ_8400;
--
--	memset(pll_state, 0, sizeof(*pll_state));
--
--	pll_state->cfgcr0 = cfgcr0;
--	pll_state->cfgcr1 = cfgcr1;
--
--	return true;
-+		pll_state->cfgcr1 |= DPLL_CFGCR1_CENTRAL_FREQ_8400;
- }
- 
--
- static enum tc_port icl_pll_id_to_tc_port(enum intel_dpll_id id)
- {
- 	return id - DPLL_ID_ICL_MGPLL1;
-@@ -3501,19 +3478,29 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- {
- 	struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct skl_wrpll_params pll_params = { };
- 	struct icl_port_dpll *port_dpll =
- 		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum port port = encoder->port;
- 	unsigned long dpll_mask;
-+	int ret;
- 
--	if (!icl_calc_dpll_state(crtc_state, encoder, &port_dpll->hw_state)) {
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) ||
-+	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
-+		ret = icl_calc_wrpll(crtc_state, &pll_params);
-+	else
-+		ret = icl_calc_dp_combo_pll(crtc_state, &pll_params);
-+
-+	if (!ret) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Could not calculate combo PHY PLL state.\n");
- 
- 		return false;
- 	}
- 
-+	icl_calc_dpll_state(dev_priv, &pll_params, &port_dpll->hw_state);
-+
- 	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
- 		dpll_mask =
- 			BIT(DPLL_ID_EHL_DPLL4) |
-@@ -3547,16 +3534,19 @@ static bool icl_get_tc_phy_dplls(struct intel_atomic_state *state,
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 	struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct skl_wrpll_params pll_params = { };
- 	struct icl_port_dpll *port_dpll;
- 	enum intel_dpll_id dpll_id;
- 
- 	port_dpll = &crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
--	if (!icl_calc_dpll_state(crtc_state, encoder, &port_dpll->hw_state)) {
-+	if (!icl_calc_tbt_pll(crtc_state, &pll_params)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Could not calculate TBT PLL state.\n");
- 		return false;
- 	}
- 
-+	icl_calc_dpll_state(dev_priv, &pll_params, &port_dpll->hw_state);
-+
- 	port_dpll->pll = intel_find_shared_dpll(state, crtc,
- 						&port_dpll->hw_state,
- 						BIT(DPLL_ID_ICL_TBTPLL));
--- 
-2.23.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8673 -> Patchwork_18034
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_18034 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_18034, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_18034:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18034 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-bsw-nick:        [PASS][3] -> [INCOMPLETE][4] ([i915#1250] / [i915#1436])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-u2:          [PASS][5] -> [FAIL][6] ([i915#1888])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([i915#402]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-byt-j1900:       [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [PASS][11] -> [DMESG-WARN][12] ([i915#1982])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-tgl-y:           [PASS][13] -> [DMESG-WARN][14] ([i915#1982])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-tgl-y/igt@kms_busy@basic@flip.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-tgl-y/igt@kms_busy@basic@flip.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-tgl-u2:          [PASS][15] -> [DMESG-WARN][16] ([i915#402])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [FAIL][17] ([i915#1888]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_flink_basic@double-flink:
+    - fi-tgl-y:           [DMESG-WARN][19] ([i915#402]) -> [PASS][20] +1 similar issue
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-tgl-y/igt@gem_flink_basic@double-flink.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-tgl-y/igt@gem_flink_basic@double-flink.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-byt-n2820:       [DMESG-WARN][21] ([i915#1982]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-byt-n2820/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-byt-n2820/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live@coherency:
+    - fi-gdg-551:         [DMESG-FAIL][23] ([i915#1748]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-gdg-551/igt@i915_selftest@live@coherency.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-gdg-551/igt@i915_selftest@live@coherency.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-icl-y:           [DMESG-FAIL][25] ([i915#2111]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-icl-y/igt@i915_selftest@live@gt_pm.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-icl-y/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-tgl-y:           [DMESG-WARN][27] ([i915#1982]) -> [PASS][28] +1 similar issue
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-tgl-y/igt@kms_psr@primary_page_flip.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-tgl-y/igt@kms_psr@primary_page_flip.html
+
+  
+#### Warnings ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-kbl-x1275:       [DMESG-WARN][29] ([i915#62] / [i915#92]) -> [DMESG-WARN][30] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-kbl-x1275/igt@debugfs_test@read_all_entries.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-kbl-x1275/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-kbl-x1275:       [DMESG-WARN][31] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][32] ([i915#1982] / [i915#62] / [i915#92] / [i915#95])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-dp1:
+    - fi-kbl-x1275:       [DMESG-WARN][33] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][34] ([i915#62] / [i915#92]) +5 similar issues
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8673/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
+
+  
+  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1748]: https://gitlab.freedesktop.org/drm/intel/issues/1748
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2111]: https://gitlab.freedesktop.org/drm/intel/issues/2111
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (45 -> 39)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8673 -> Patchwork_18034
+
+  CI-20190529: 20190529
+  CI_DRM_8673: ae0a2b45fe022c02a2779c2ae8c83473763c1feb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5718: af1ef32bfae90bcdbaf1b5d84c61ff4e04368505 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18034: 8cde1a0a4de00e3d77b8c6ed332486b887c6f5bb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8cde1a0a4de0 kernel/trace: Add TRACING_ALLOW_PRINTK config option
+f240a00cdcd7 media: camss: vfe: Use trace_printk for debugging only
+4c7d3ef5e566 media: atomisp: Replace trace_printk by pr_info
+5f1b11fad802 usb: cdns3: gadget: Replace trace_printk by dev_dbg
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18034/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
