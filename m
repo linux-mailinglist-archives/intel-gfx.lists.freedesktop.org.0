@@ -1,46 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0309920CD42
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 10:25:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B95A20CDD3
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 12:13:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 451A789FE8;
-	Mon, 29 Jun 2020 08:25:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 604A189933;
+	Mon, 29 Jun 2020 10:13:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 139ED89FC9
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 08:25:06 +0000 (UTC)
-IronPort-SDR: f6/9p+9XDJV6HiixstgoLkfZ9UPWuv2lAVr4bvLfE4CRtkqzTtup/BWJTeIeBlPlJCm07LHLqd
- uRu5Ym9k05dA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="211002499"
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="211002499"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 01:25:04 -0700
-IronPort-SDR: D8f9sL/x0OqeaoW6CBv2tl+lcLZ+P82FMEt9AwZ4F23uYwRyhFts+GLXrpjGFOltUQkzYhaXw7
- iF0XFo0h1+7w==
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="454114570"
-Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com (HELO
- intel.com) ([10.237.72.190])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 01:25:02 -0700
-Date: Mon, 29 Jun 2020 11:24:53 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200629082432.GA1826@intel.com>
-References: <20200625200003.12436-1-ville.syrjala@linux.intel.com>
- <20200626091606.GA29269@intel.com>
- <20200626134641.GZ6112@intel.com> <20200626151336.GA6490@intel.com>
- <20200626180306.GC6112@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6499A89854
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 10:13:07 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21647659-1500050 
+ for multiple; Mon, 29 Jun 2020 11:12:57 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 29 Jun 2020 11:12:51 +0100
+Message-Id: <20200629101256.13039-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200626180306.GC6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Clamp linetime wm to <64usec
+Subject: [Intel-gfx] [PATCH 1/6] drm/i915/gem: Move obj->lut_list under its
+ own lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,186 +37,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jun 27, 2020 at 07:57:31PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Fri, Jun 26, 2020 at 06:13:36PM +0300, Lisovskiy, Stanislav wrote:
-> > On Fri, Jun 26, 2020 at 04:46:41PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Fri, Jun 26, 2020 at 12:16:06PM +0300, Lisovskiy, Stanislav wrote:
-> > > > On Thu, Jun 25, 2020 at 11:00:03PM +0300, Ville Syrjala wrote:
-> > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > =
+The obj->lut_list is traversed when the object is closed as the file
+table is destroyed during process termination. As this occurs before we
+kill any outstanding context if, due to some bug or another, the closure
+is blocked, then we fail to shootdown any inflight operations
+potentially leaving the GPU spinning forever. As we only need to guard
+the list against concurrent closures and insertions, the hold is short
+and merits being treated as a simple spinlock.
 
-> > > > > The linetime watermark is a 9 bit value, which gives us
-> > > > > a maximum linetime of just below 64 usec. If the linetime
-> > > > > exceeds that value we currently just discard the high bits
-> > > > > and program the rest into the register, which angers the
-> > > > > state checker.
-> > > > > =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c      | 6 ++----
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c   | 4 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_object.c       | 5 +++--
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h | 1 +
+ 4 files changed, 8 insertions(+), 8 deletions(-)
 
-> > > > > To avoid that let's just clamp the value to the max. I believe
-> > > > > it should be perfectly fine to program a smaller linetime wm
-> > > > > than strictly required, just means the hardware may fetch data
-> > > > > sooner than strictly needed. We are further reassured by the
-> > > > > fact that with DRRS the spec tells us to program the smaller
-> > > > > of the two linetimes corresponding to the two refresh rates.
-> > > > > =
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 5c13809dc3c8..6675447a47b9 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -112,8 +112,7 @@ static void lut_close(struct i915_gem_context *ctx)
+ 		if (!kref_get_unless_zero(&obj->base.refcount))
+ 			continue;
+ 
+-		rcu_read_unlock();
+-		i915_gem_object_lock(obj);
++		spin_lock(&obj->lut_lock);
+ 		list_for_each_entry(lut, &obj->lut_list, obj_link) {
+ 			if (lut->ctx != ctx)
+ 				continue;
+@@ -124,8 +123,7 @@ static void lut_close(struct i915_gem_context *ctx)
+ 			list_del(&lut->obj_link);
+ 			break;
+ 		}
+-		i915_gem_object_unlock(obj);
+-		rcu_read_lock();
++		spin_unlock(&obj->lut_lock);
+ 
+ 		if (&lut->obj_link != &obj->lut_list) {
+ 			i915_lut_handle_free(lut);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index c38ab51e82f0..b4862afaaf28 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -789,14 +789,14 @@ static int __eb_add_lut(struct i915_execbuffer *eb,
+ 		if (err == 0) { /* And nor has this handle */
+ 			struct drm_i915_gem_object *obj = vma->obj;
+ 
+-			i915_gem_object_lock(obj);
++			spin_lock(&obj->lut_lock);
+ 			if (idr_find(&eb->file->object_idr, handle) == obj) {
+ 				list_add(&lut->obj_link, &obj->lut_list);
+ 			} else {
+ 				radix_tree_delete(&ctx->handles_vma, handle);
+ 				err = -ENOENT;
+ 			}
+-			i915_gem_object_unlock(obj);
++			spin_unlock(&obj->lut_lock);
+ 		}
+ 		mutex_unlock(&ctx->mutex);
+ 	}
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index b6ec5b50d93b..8222e8b33efd 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -61,6 +61,7 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+ 	INIT_LIST_HEAD(&obj->mm.link);
+ 
+ 	INIT_LIST_HEAD(&obj->lut_list);
++	spin_lock_init(&obj->lut_lock);
+ 
+ 	spin_lock_init(&obj->mmo.lock);
+ 	obj->mmo.offsets = RB_ROOT;
+@@ -108,7 +109,7 @@ void i915_gem_close_object(struct drm_gem_object *gem, struct drm_file *file)
+ 	struct i915_lut_handle *lut, *ln;
+ 	LIST_HEAD(close);
+ 
+-	i915_gem_object_lock(obj);
++	spin_lock(&obj->lut_lock);
+ 	list_for_each_entry_safe(lut, ln, &obj->lut_list, obj_link) {
+ 		struct i915_gem_context *ctx = lut->ctx;
+ 
+@@ -118,7 +119,7 @@ void i915_gem_close_object(struct drm_gem_object *gem, struct drm_file *file)
+ 		i915_gem_context_get(ctx);
+ 		list_move(&lut->obj_link, &close);
+ 	}
+-	i915_gem_object_unlock(obj);
++	spin_unlock(&obj->lut_lock);
+ 
+ 	spin_lock(&obj->mmo.lock);
+ 	rbtree_postorder_for_each_entry_safe(mmo, mn, &obj->mmo.offsets, offset)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index b1f82a11aef2..0fd677ad8ec8 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -121,6 +121,7 @@ struct drm_i915_gem_object {
+ 	 * this translation from object to context->handles_vma.
+ 	 */
+ 	struct list_head lut_list;
++	spinlock_t lut_lock; /* guards for lut_list */
+ 
+ 	/** Stolen memory for this object, instead of being backed by shmem. */
+ 	struct drm_mm_node *stolen;
+-- 
+2.20.1
 
-> > > > > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++--=
-----
-> > > > >  1 file changed, 12 insertions(+), 6 deletions(-)
-> > > > > =
-
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drive=
-rs/gpu/drm/i915/display/intel_display.c
-> > > > > index a11bb675f9b3..d486d675166f 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > @@ -12581,12 +12581,15 @@ static u16 hsw_linetime_wm(const struct=
- intel_crtc_state *crtc_state)
-> > > > >  {
-> > > > >  	const struct drm_display_mode *adjusted_mode =3D
-> > > > >  		&crtc_state->hw.adjusted_mode;
-> > > > > +	int linetime_wm;
-> > > > >  =
-
-> > > > >  	if (!crtc_state->hw.enable)
-> > > > >  		return 0;
-> > > > >  =
-
-> > > > > -	return DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 * 8,
-> > > > > -				 adjusted_mode->crtc_clock);
-> > > > > +	linetime_wm =3D DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * =
-1000 * 8,
-> > > > > +					adjusted_mode->crtc_clock);
-> > > > > +
-> > > > > +	return min(linetime_wm, 0x1ff);
-> > > > =
-
-> > > > Are we actually doing the right thing here? I just mean that we get=
- value
-> > > > 543 in the bug because pixel rate is 14874 which doesn't seem corre=
-ct.
-> > > =
-
-> > > As explained in the commit msg programming this to lower than necessa=
-ry
-> > > value should be totally fine. It just won't be optimal.
-> > > =
-
-> > > The values in the jira (was there an actual gitlab bug for this btw?)
-> > > look quite sensible to me. Some kind of low res 848xsomething mode wi=
-th
-> > > dotclock of 14.874 Mhz, which gives us that linetime of ~68 usec.
-> > =
-
-> > Htotal from modeline "848x480": 30 14874 848 896 928 1008 480 483 488 4=
-94 0x40 0x9
-> > is 1008.
-> > =
-
-> > According to the formula above htotal(1008)*1000*8 / 14874(crtc_clock) =
-=3D 542.154
-> > =
-
-> > So what's the catch? :)
-> =
-
-> What catch? Looks totally consistent to me.
-
-I meant as I understood from your comment we were supposed to get 68 usec l=
-inetime, not
-542.
-
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-
-> =
-
-> > =
-
-> > Stan
-> > > =
-
-> > > > =
-
-> > > > Stan
-> > > > >  }
-> > > > >  =
-
-> > > > >  static u16 hsw_ips_linetime_wm(const struct intel_crtc_state *cr=
-tc_state,
-> > > > > @@ -12594,12 +12597,15 @@ static u16 hsw_ips_linetime_wm(const st=
-ruct intel_crtc_state *crtc_state,
-> > > > >  {
-> > > > >  	const struct drm_display_mode *adjusted_mode =3D
-> > > > >  		&crtc_state->hw.adjusted_mode;
-> > > > > +	int linetime_wm;
-> > > > >  =
-
-> > > > >  	if (!crtc_state->hw.enable)
-> > > > >  		return 0;
-> > > > >  =
-
-> > > > > -	return DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 * 8,
-> > > > > -				 cdclk_state->logical.cdclk);
-> > > > > +	linetime_wm =3D DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * =
-1000 * 8,
-> > > > > +					cdclk_state->logical.cdclk);
-> > > > > +
-> > > > > +	return min(linetime_wm, 0x1ff);
-> > > > >  }
-> > > > >  =
-
-> > > > >  static u16 skl_linetime_wm(const struct intel_crtc_state *crtc_s=
-tate)
-> > > > > @@ -12608,7 +12614,7 @@ static u16 skl_linetime_wm(const struct i=
-ntel_crtc_state *crtc_state)
-> > > > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > > > >  	const struct drm_display_mode *adjusted_mode =3D
-> > > > >  		&crtc_state->hw.adjusted_mode;
-> > > > > -	u16 linetime_wm;
-> > > > > +	int linetime_wm;
-> > > > >  =
-
-> > > > >  	if (!crtc_state->hw.enable)
-> > > > >  		return 0;
-> > > > > @@ -12620,7 +12626,7 @@ static u16 skl_linetime_wm(const struct i=
-ntel_crtc_state *crtc_state)
-> > > > >  	if (IS_GEN9_LP(dev_priv) && dev_priv->ipc_enabled)
-> > > > >  		linetime_wm /=3D 2;
-> > > > >  =
-
-> > > > > -	return linetime_wm;
-> > > > > +	return min(linetime_wm, 0x1ff);
-> > > > >  }
-> > > > >  =
-
-> > > > >  static int hsw_compute_linetime_wm(struct intel_atomic_state *st=
-ate,
-> > > > > -- =
-
-> > > > > 2.26.2
-> > > > > =
-
-> > > =
-
-> > > -- =
-
-> > > Ville Syrj=E4l=E4
-> > > Intel
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
