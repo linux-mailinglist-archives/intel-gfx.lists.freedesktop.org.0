@@ -2,40 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92EC420CB61
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 03:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6107720CD08
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 09:47:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2A8789E2B;
-	Mon, 29 Jun 2020 01:15:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B4EE89F89;
+	Mon, 29 Jun 2020 07:47:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 470B489E2B;
- Mon, 29 Jun 2020 01:15:05 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 49w8fs1NVHz9sSF;
- Mon, 29 Jun 2020 11:15:00 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1593393303;
- bh=/FVAuqzG/l6SWBWuDRhHdwt3AqyH08kGrMNSCgu01RM=;
- h=Date:From:To:Cc:Subject:From;
- b=Eojb8Pg7o/JUJ9APyHj7hP9Vmp+wA+XjBCKebmMJFNHwbXAKqDTgi0yUmN4xaoUzM
- dCQPS37de1yODf6DGMExgiI1NBDGZS46OdU/XcFNr4273TjjWAoYPQx4h7aZEFlAnm
- q0jWg5wpR8ajQcz3f9lef2WVyx3ca2XwHrW6I9ZQQLMK4OQjW+kmRKANd8lBHYHK+M
- 6c0r9OtlkM5DMeEludWjszIbJLXsUvYIFM55YA4WQmJBuFFh21sbKsQWOT1HFfAc5F
- PVe/sjR7kcfJqLjXcU6wyAmY+ccupyX+LOy7A8qrVkfkGGRSJ0tvswziMYVCkb4xTM
- dAs6G9vG2ZXLQ==
-Date: Mon, 29 Jun 2020 11:14:58 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20200629111458.1661446b@canb.auug.org.au>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0373889F89
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 07:47:06 +0000 (UTC)
+IronPort-SDR: 5XBk4PqXVsjNiBsJ8x7GWeq3LJZAbmmIgqfxfIsmvVAB2Pce06yXdAE5mnW46fqjpt9cjW0ZLU
+ 72mV9l9IGSBA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="143398974"
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; 
+ d="asc'?scan'208";a="143398974"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2020 00:47:06 -0700
+IronPort-SDR: INbH1/D3vDimtza970yP+/jwVzhmrjg4659+HDsRZV81azVX0ISAPHtUyulp7ETG6UOzJ5++j7
+ khiR6+ouDPBQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; 
+ d="asc'?scan'208";a="454102904"
+Received: from irsmsx151.ger.corp.intel.com ([163.33.192.59])
+ by orsmga005.jf.intel.com with ESMTP; 29 Jun 2020 00:47:05 -0700
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ IRSMSX151.ger.corp.intel.com (163.33.192.59) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 29 Jun 2020 08:47:04 +0100
+Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 29 Jun 2020 08:47:04 +0100
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9]) by
+ irsmsx603.ger.corp.intel.com ([163.33.146.9]) with mapi id 15.01.1713.004;
+ Mon, 29 Jun 2020 08:47:04 +0100
+From: "Peres, Martin" <martin.peres@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: Connectivity issue to the CI system
+Thread-Index: AQHWTel6NJxX2EfTQUGcmBznVNnM1w==
+Date: Mon, 29 Jun 2020 07:47:04 +0000
+Message-ID: <9114b53c837547c39a770b18002c7163@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.253.164]
+Content-Type: multipart/mixed;
+ boundary="_002_9114b53c837547c39a770b18002c7163intelcom_"
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- Linus' tree
+Subject: [Intel-gfx] Connectivity issue to the CI system
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,235 +67,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ralph Campbell <rcampbell@nvidia.com>, Dave Airlie <airlied@linux.ie>,
- James Jones <jajones@nvidia.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Ben Skeggs <bskeggs@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Nirmoy Das <nirmoy.aiemd@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2081283930=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2081283930==
-Content-Type: multipart/signed; boundary="Sig_/KXcAxX3IKFywdKDZi_I8H8E";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/KXcAxX3IKFywdKDZi_I8H8E
-Content-Type: text/plain; charset=US-ASCII
+--_002_9114b53c837547c39a770b18002c7163intelcom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+Hi everyone,=0A=
+=0A=
+We have been experiencing connectivity issue for the past week to the CI=0A=
+system which led to abnormal CI latencies:=0A=
+https://intel-gfx-ci.01.org/latency.html?project=3Digt&test=3DFi.CI.IGT=0A=
+=0A=
+The issue has been under investigation, but unfortunately we do not know=0A=
+when this issue will get resolved. It however got worse over the weekend=0A=
+to the point that the CI system is completely unavailable.=0A=
+=0A=
+Sorry about the issue, I will keep you updated as information becomes=0A=
+available to me.=0A=
+=0A=
+Martin, on behalf of the CI team=0A=
 
-Today's linux-next merge of the drm-misc tree got conflicts in:
+--_002_9114b53c837547c39a770b18002c7163intelcom_
+Content-Type: application/pgp-keys; name="pEpkey.asc"
+Content-Description: pEpkey.asc
+Content-Disposition: attachment; filename="pEpkey.asc"; size=1774;
+	creation-date="Mon, 29 Jun 2020 07:47:04 GMT";
+	modification-date="Mon, 29 Jun 2020 07:47:04 GMT"
+Content-Transfer-Encoding: base64
 
-  drivers/gpu/drm/nouveau/dispnv04/crtc.c
-  drivers/gpu/drm/nouveau/dispnv04/overlay.c
-  drivers/gpu/drm/nouveau/dispnv50/base507c.c
-  drivers/gpu/drm/nouveau/dispnv50/wndw.c
-  drivers/gpu/drm/nouveau/nouveau_dmem.c
-  drivers/gpu/drm/nouveau/nouveau_fbcon.c
+LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCgptUUVOQkYzazA1Z0JDQUN5WmhP
+WGExNGJUY3lUUWtjMVV5R2ZjNGx4ckhQREw1YXVPbkM3cUVIWkw1b3ZWd3NDCmF1ZlFaOVFKVWwx
+NHh1OCt4dUl6UGoyWXhEbjFBeVJFN0RzSXNxNjVIaDlRa2YxQytFNmtHeHBDS2VXeFpEalIKS0xE
+a2pQWmdRTTdOeHNFWkRkemNaTlFLUEt3OXBXUUovRCtrSUlyNDJYaERhbktyQ1pHV3Vxc3VwVGI4
+YmM2agp3ZnBxVzV2eUp2WnVMSHcrTURhRVhoZ1Z0SlVWYVdSWENXbXFZQU1YWFlMMGh5NHVjRDZz
+UWl3U2psK3JUU2NIClhqSHdhWURWWTI5bVFlR3lWMDMyeXBFWFQzWG1DVTJVT0hhNENNaktLR3ZK
+MjRBU2Q5SFkyWHo4cmNyR1pTbGsKRkhMTGRwNUNET2wrRFU2Vjc5SWs5a3pPMFVxK0hXWDRtc2Z4
+QUJFQkFBRzBLMDFoY25ScGJpQlFaWEpsY3lBOApiV0Z5ZEdsdUxuQmxjbVZ6UUd4cGJuVjRMbWx1
+ZEdWc0xtTnZiVDZKQVZRRUV3RUlBRDRXSVFSTjlzUS9iN0dPClhRdkh5WUVDditaL002VXplUVVD
+WGVUVG1RSWJBd1VKQWVFemdBVUxDUWdIQWdZVkNna0lDd0lFRmdJREFRSWUKQVFJWGdBQUtDUkFD
+ditaL002VXplUmJ3Qi85ZHhZaG01WU14eGlSa2tZRVBrOE9DUGZjOGJwazF6RFc5Nkc0MgpLYVoz
+RlRPRGNSMktjelg1ZVRMRFYwdklNRndqMmw0UXAvRFpzbVlsNzlKNDNhbHg1RHRIQUZJMlJHSis2
+dXJhClFZMkovVXUvUWt5eEdrMTRpQUFzYytaalJSdWllQ1h0Wkc2THRMYmdsTUZCWUd4dzlWVEow
+L0xhNHJjUVk3UksKOW1KM1QwWUxKMkJNNlVha3lUWEdzbnN0aWtOa2wzU0JKVDBJc1B1bVdGL240
+a25penZQcG5BTGNQWGwwS3VtUwpuZDZ1b2dPT3VrQ0t4Z0RUWm1qRG9meDVvN1pveDI5blNkdjR3
+aVJMOHVBeDRrY0pPOUxPOFhBN0lITzd6SXRTCmpXbWRXRmN4QTVicFRkRWR0TThIQWlCQkFaNU44
+WXVraENuejltT0FFOXZLOXZydHVRRU5CRjNrMDVrQkNBREwKR3JGN1NBblB5NVo2R2ZlelZDclFm
+dUlHSmhPemxuY0c2aFdHYU05YzlDVEtxSGZDNHROV1VFeHJmam5YNjBtRgpJbUx2aHhlRlZDOWJv
+QS9jNGFVTmhEYy9NOUtqc08ycWRyd2d4QXl3bnIraVJqbzNORUJWQkF3T2NldWRRM0xPClZmZW5k
+b296d3lqd3ZZRFV2QzNUcWtjajBsNmE2R3JqZTZWMVVTQ3RIL0ZlR2NONG9EMnZPOW1yWFlQb2hr
+V2cKU3B2QUpPSEs5bk5nMUtaTjcvcDlXNUZMMlZZN2pIbHErd1gxZDBTRytRNlhjVHNEQUEyOStO
+YmM1Qk0vcTJJTAphV1Fva0I0bzBaRjNsakZiN2RYZDNRZEpNWDdvNXRURzFMUi9TalZmbkZGckMw
+K1IrZGhlRUVldGxVckRMRmF0CnhnRTdvREVPLzA4c2g5eHJPdzdMQUJFQkFBR0pBVHdFR0FFSUFD
+WVdJUVJOOXNRL2I3R09YUXZIeVlFQ3YrWi8KTTZVemVRVUNYZVRUbVFJYkRBVUpBZUV6Z0FBS0NS
+QUN2K1ovTTZVemVTMVRCLzlNbTFYTUhpbWtFbW15ZXNiMQpxdHFUY2htV2Q1NWhiRkIxMDRSbUx5
+c0VrSU43Q3IweVNEZjBZRWxxd2QvSDlGWWVLUTVEWWJWWS9CclhjeGYzCmNKVDJBZ01Zdk54bHZ5
+NHluR1F4Yy9YbXRzMGZVSno5cmRVVmZxZlFKbDlHZkR1U3dpQnhmb3BlN21aR2NIZWcKNzBaQTg3
+Q0xJQ0FVbi9uRFpSekZuUHNhdUxJSU9sMGhxVWtJUml3WVp0WW9WZnNoVGhTNzNEcXNGS2U0Y25r
+eApZcGVCRXNsYUduZnRMUC9uWDl6dkZ4SXJYUXBPdHJ2eWdkWklhMVMrZXhYM2NXMHNPYm02Zjk0
+T3Q1Mjl3V3pTCnhJRjBvRnZPY3NlZ2ErL3FPK1hSNHNjbUJ1K3NUVU5FQnA1NWYyc0ptOWllVlU5
+SXUwM2JYVnBMZGV3dTNtMEIKTTVtaAo9YzJPTwotLS0tLUVORCBQR1AgUFVCTElDIEtFWSBCTE9D
+Sy0tLS0tCg==
 
-between commits:
-
-  183405879255 ("drm/nouveau/kms: Remove field nvbo from struct nouveau_fra=
-mebuffer")
-  c586f30bf74c ("drm/nouveau/kms: Add format mod prop to base/ovly/nvdisp")
-  1d7f940c3a16 ("drm/nouveau/nouveau/hmm: fix nouveau_dmem_chunk allocation=
-s")
-
-from Linus' tree and commit:
-
-  0dc9b286b8d2 ("drm/nouveau: don't use ttm bo->offset v3")
-
-from the drm-misc tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/nouveau/dispnv04/crtc.c
-index 640738f3196c,cc6ab3c2eec7..000000000000
---- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-@@@ -840,12 -839,13 +840,12 @@@ nv04_crtc_do_mode_set_base(struct drm_c
-  	 */
-  	if (atomic) {
-  		drm_fb =3D passed_fb;
- -		fb =3D nouveau_framebuffer(passed_fb);
-  	} else {
-  		drm_fb =3D crtc->primary->fb;
- -		fb =3D nouveau_framebuffer(crtc->primary->fb);
-  	}
- =20
- -	nv_crtc->fb.offset =3D fb->nvbo->offset;
- +	nvbo =3D nouveau_gem_object(drm_fb->obj[0]);
-- 	nv_crtc->fb.offset =3D nvbo->bo.offset;
-++	nv_crtc->fb.offset =3D nvbo->offset;
- =20
-  	if (nv_crtc->lut.depth !=3D drm_fb->format->depth) {
-  		nv_crtc->lut.depth =3D drm_fb->format->depth;
-diff --cc drivers/gpu/drm/nouveau/dispnv04/overlay.c
-index 6248fd1dbc6d,9529bd9053e7..000000000000
---- a/drivers/gpu/drm/nouveau/dispnv04/overlay.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
-@@@ -152,7 -150,7 +152,7 @@@ nv10_update_plane(struct drm_plane *pla
-  	nvif_mask(dev, NV_PCRTC_ENGINE_CTRL + soff2, NV_CRTC_FSEL_OVERLAY, 0);
- =20
-  	nvif_wr32(dev, NV_PVIDEO_BASE(flip), 0);
-- 	nvif_wr32(dev, NV_PVIDEO_OFFSET_BUFF(flip), nvbo->bo.offset);
- -	nvif_wr32(dev, NV_PVIDEO_OFFSET_BUFF(flip), nv_fb->nvbo->offset);
-++	nvif_wr32(dev, NV_PVIDEO_OFFSET_BUFF(flip), nvbo->offset);
-  	nvif_wr32(dev, NV_PVIDEO_SIZE_IN(flip), src_h << 16 | src_w);
-  	nvif_wr32(dev, NV_PVIDEO_POINT_IN(flip), src_y << 16 | src_x);
-  	nvif_wr32(dev, NV_PVIDEO_DS_DX(flip), (src_w << 20) / crtc_w);
-@@@ -174,7 -172,7 +174,7 @@@
-  	if (format & NV_PVIDEO_FORMAT_PLANAR) {
-  		nvif_wr32(dev, NV_PVIDEO_UVPLANE_BASE(flip), 0);
-  		nvif_wr32(dev, NV_PVIDEO_UVPLANE_OFFSET_BUFF(flip),
-- 			nvbo->bo.offset + fb->offsets[1]);
- -			nv_fb->nvbo->offset + fb->offsets[1]);
-++			nvbo->offset + fb->offsets[1]);
-  	}
-  	nvif_wr32(dev, NV_PVIDEO_FORMAT(flip), format | fb->pitches[0]);
-  	nvif_wr32(dev, NV_PVIDEO_STOP, 0);
-@@@ -399,7 -396,7 +399,7 @@@ nv04_update_plane(struct drm_plane *pla
- =20
-  	for (i =3D 0; i < 2; i++) {
-  		nvif_wr32(dev, NV_PVIDEO_BUFF0_START_ADDRESS + 4 * i,
-- 			  nvbo->bo.offset);
- -			  nv_fb->nvbo->offset);
-++			  nvbo->offset);
-  		nvif_wr32(dev, NV_PVIDEO_BUFF0_PITCH_LENGTH + 4 * i,
-  			  fb->pitches[0]);
-  		nvif_wr32(dev, NV_PVIDEO_BUFF0_OFFSET + 4 * i, 0);
-diff --cc drivers/gpu/drm/nouveau/dispnv50/base507c.c
-index 511258bfbcbc,b60aa987d7b4..000000000000
---- a/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-@@@ -274,9 -273,9 +274,9 @@@ base507c_new_(const struct nv50_wndw_fu
-  	if (*pwndw =3D wndw, ret)
-  		return ret;
- =20
- -	ret =3D nv50_dmac_create(&drm->client.device, &disp->disp->object,
- +	ret =3D nv50_dmac_create(&drm->client.device, &disp->disp.object,
-  			       &oclass, head, &args, sizeof(args),
-- 			       disp50->sync->bo.offset, &wndw->wndw);
- -			       disp->sync->offset, &wndw->wndw);
-++			       disp50->sync->offset, &wndw->wndw);
-  	if (ret) {
-  		NV_ERROR(drm, "base%04x allocation failed: %d\n", oclass, ret);
-  		return ret;
-diff --cc drivers/gpu/drm/nouveau/dispnv50/wndw.c
-index 99b9b681736d,ee0fd817185e..000000000000
---- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-@@@ -521,12 -507,11 +521,12 @@@ nv50_wndw_prepare_fb(struct drm_plane *
-  			return PTR_ERR(ctxdma);
-  		}
- =20
- -		asyw->image.handle[0] =3D ctxdma->object.handle;
- +		if (asyw->visible)
- +			asyw->image.handle[0] =3D ctxdma->object.handle;
-  	}
- =20
- -	asyw->state.fence =3D dma_resv_get_excl_rcu(fb->nvbo->bo.base.resv);
- -	asyw->image.offset[0] =3D fb->nvbo->offset;
- +	asyw->state.fence =3D dma_resv_get_excl_rcu(nvbo->bo.base.resv);
-- 	asyw->image.offset[0] =3D nvbo->bo.offset;
-++	asyw->image.offset[0] =3D nvbo->offset;
- =20
-  	if (wndw->func->prepare) {
-  		asyh =3D nv50_head_atom_get(asyw->state.state, asyw->state.crtc);
-diff --cc drivers/gpu/drm/nouveau/nouveau_dmem.c
-index e5c230d9ae24,f13086a32f0f..000000000000
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@@ -75,32 -72,25 +75,32 @@@ struct nouveau_dmem_migrate=20
- =20
-  struct nouveau_dmem {
-  	struct nouveau_drm *drm;
- -	struct dev_pagemap pagemap;
-  	struct nouveau_dmem_migrate migrate;
- -	struct list_head chunk_free;
- -	struct list_head chunk_full;
- -	struct list_head chunk_empty;
- +	struct list_head chunks;
-  	struct mutex mutex;
- +	struct page *free_pages;
- +	spinlock_t lock;
-  };
- =20
- -static inline struct nouveau_dmem *page_to_dmem(struct page *page)
- +static struct nouveau_dmem_chunk *nouveau_page_to_chunk(struct page *page)
-  {
- -	return container_of(page->pgmap, struct nouveau_dmem, pagemap);
- +	return container_of(page->pgmap, struct nouveau_dmem_chunk, pagemap);
- +}
- +
- +static struct nouveau_drm *page_to_drm(struct page *page)
- +{
- +	struct nouveau_dmem_chunk *chunk =3D nouveau_page_to_chunk(page);
- +
- +	return chunk->drm;
-  }
- =20
- -static unsigned long nouveau_dmem_page_addr(struct page *page)
- +unsigned long nouveau_dmem_page_addr(struct page *page)
-  {
- -	struct nouveau_dmem_chunk *chunk =3D page->zone_device_data;
- -	unsigned long idx =3D page_to_pfn(page) - chunk->pfn_first;
- +	struct nouveau_dmem_chunk *chunk =3D nouveau_page_to_chunk(page);
- +	unsigned long off =3D (page_to_pfn(page) << PAGE_SHIFT) -
- +				chunk->pagemap.res.start;
- =20
-- 	return chunk->bo->bo.offset + off;
- -	return (idx << PAGE_SHIFT) + chunk->bo->offset;
-++	return chunk->bo->offset + off;
-  }
- =20
-  static void nouveau_dmem_page_free(struct page *page)
-diff --cc drivers/gpu/drm/nouveau/nouveau_fbcon.c
-index 3d11b84d4cf9,1341c6fca3ed..000000000000
---- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-@@@ -393,7 -393,7 +393,7 @@@ nouveau_fbcon_create(struct drm_fb_help
- =20
-  	/* To allow resizeing without swapping buffers */
-  	NV_INFO(drm, "allocated %dx%d fb: 0x%llx, bo %p\n",
-- 		fb->width, fb->height, nvbo->bo.offset, nvbo);
- -		fb->base.width, fb->base.height, fb->nvbo->offset, nvbo);
-++		fb->width, fb->height, nvbo->offset, nvbo);
- =20
-  	vga_switcheroo_client_fb_set(dev->pdev, info);
-  	return 0;
-
---Sig_/KXcAxX3IKFywdKDZi_I8H8E
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl75QJIACgkQAVBC80lX
-0GyMmQgAk3dOardj5yND6O40hzhbuNxH3G5gY8vnejO7dT8B4WWN+nPdlj38sRqd
-Mw0ZZjJTl7EqNAbQIiq2HBVk2EmF7NfdGSzztiDtsPtQZqQDdbEKJ7h4zI4l1J+a
-HA5YQETJ2ArPHmSrvpceTGoUnC4DcNfRmUMFX+ZkE/ynYrG3Y7SvzRw9ArL1fQZJ
-dqv1C6Fhk7nDW821rqV8wumG4Q+FyrwVc94xVFi6LFgq9hmGQy3SpWrM9KEHCY8y
-zOgG27GSyqgJM19pDKkoF0xGDvmo8E5vHXif+dBnAgZhWiJAyVppkw5u3aByGj0o
-TQd8uDSUneldSr+DbO6VrqTYg2lEzg==
-=eFwK
------END PGP SIGNATURE-----
-
---Sig_/KXcAxX3IKFywdKDZi_I8H8E--
-
---===============2081283930==
+--_002_9114b53c837547c39a770b18002c7163intelcom_
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -287,4 +141,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============2081283930==--
+--_002_9114b53c837547c39a770b18002c7163intelcom_--
