@@ -2,43 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6868920CD3D
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 10:18:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0309920CD42
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 10:25:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAFB289FE6;
-	Mon, 29 Jun 2020 08:18:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 451A789FE8;
+	Mon, 29 Jun 2020 08:25:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1168889FC9;
- Mon, 29 Jun 2020 08:18:51 +0000 (UTC)
-IronPort-SDR: mf8Q3DJ1iFTUMWXhaKckXEbOWIHuwQexanugPqbLfHjcggpiCgcYLHvOHTZ+Eh1XQ8+2ElwuV2
- Qap2FwJYLGbg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="143402882"
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="143402882"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 139ED89FC9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 08:25:06 +0000 (UTC)
+IronPort-SDR: f6/9p+9XDJV6HiixstgoLkfZ9UPWuv2lAVr4bvLfE4CRtkqzTtup/BWJTeIeBlPlJCm07LHLqd
+ uRu5Ym9k05dA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="211002499"
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="211002499"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 01:18:49 -0700
-IronPort-SDR: zpt2v7dpA7h5vIywHKRLhVMzG09IbtIdW7Voiz0jx3gJecnZCwL76l2hET0VCUgjfbN6ZlQBLU
- Cx7ROVIEqHRA==
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="454112237"
-Received: from unknown (HELO localhost) ([10.252.54.198])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2020 01:25:04 -0700
+IronPort-SDR: D8f9sL/x0OqeaoW6CBv2tl+lcLZ+P82FMEt9AwZ4F23uYwRyhFts+GLXrpjGFOltUQkzYhaXw7
+ iF0XFo0h1+7w==
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="454114570"
+Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com (HELO
+ intel.com) ([10.237.72.190])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 01:18:45 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-In-Reply-To: <20200623030711.GA5687@zhen-hp.sh.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200617043418.GQ5687@zhen-hp.sh.intel.com>
- <159248448107.8757.1901135788098329902@jlahtine-desk.ger.corp.intel.com>
- <20200623030711.GA5687@zhen-hp.sh.intel.com>
-Date: Mon, 29 Jun 2020 11:18:42 +0300
-Message-ID: <87wo3qmgil.fsf@intel.com>
+ 29 Jun 2020 01:25:02 -0700
+Date: Mon, 29 Jun 2020 11:24:53 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200629082432.GA1826@intel.com>
+References: <20200625200003.12436-1-ville.syrjala@linux.intel.com>
+ <20200626091606.GA29269@intel.com>
+ <20200626134641.GZ6112@intel.com> <20200626151336.GA6490@intel.com>
+ <20200626180306.GC6112@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PULL] gvt-fixes
+Content-Disposition: inline
+In-Reply-To: <20200626180306.GC6112@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Clamp linetime wm to <64usec
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,103 +53,186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
- Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 23 Jun 2020, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
-> On 2020.06.18 15:48:01 +0300, Joonas Lahtinen wrote:
->> Quoting Zhenyu Wang (2020-06-17 07:34:18)
->> > 
->> > Hi,
->> > 
->> > This contains misc fixes for gvt. Two MMIO handler fixes on SKL/CFL,
->> > one mask register bit checking fix exposed in suspend/resume path and
->> > one lockdep error fix for debugfs entry access.
->> 
->> Could not pull this one due to the extra hassle with CI this week.
->> 
->> Jani, can you please pull this next week.
->> 
->
-> Got it. Please help to pull then.
+On Sat, Jun 27, 2020 at 07:57:31PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Fri, Jun 26, 2020 at 06:13:36PM +0300, Lisovskiy, Stanislav wrote:
+> > On Fri, Jun 26, 2020 at 04:46:41PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > On Fri, Jun 26, 2020 at 12:16:06PM +0300, Lisovskiy, Stanislav wrote:
+> > > > On Thu, Jun 25, 2020 at 11:00:03PM +0300, Ville Syrjala wrote:
+> > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > =
 
-Pulled, thanks.
+> > > > > The linetime watermark is a 9 bit value, which gives us
+> > > > > a maximum linetime of just below 64 usec. If the linetime
+> > > > > exceeds that value we currently just discard the high bits
+> > > > > and program the rest into the register, which angers the
+> > > > > state checker.
+> > > > > =
 
-BR,
-Jani.
+> > > > > To avoid that let's just clamp the value to the max. I believe
+> > > > > it should be perfectly fine to program a smaller linetime wm
+> > > > > than strictly required, just means the hardware may fetch data
+> > > > > sooner than strictly needed. We are further reassured by the
+> > > > > fact that with DRRS the spec tells us to program the smaller
+> > > > > of the two linetimes corresponding to the two refresh rates.
+> > > > > =
 
+> > > > > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++--=
+----
+> > > > >  1 file changed, 12 insertions(+), 6 deletions(-)
+> > > > > =
 
->
-> One thing I forgot to mention that change in "drm/i915/gvt: Fix incorrect check of enabled bits in mask registers"
-> would cause a minor conflict if backmerging from linux master to dinq, which
-> is because of new IS_COMETLAKE. Change like below could resolve that.
->
-> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-> index 9f48db0bf9d5..78ba2857144e 100644
-> --- a/drivers/gpu/drm/i915/gvt/handlers.c
-> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
-> @@ -1734,14 +1734,9 @@ static int ring_mode_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
->  		return 0;
->  	}
->  
-> -<<<<<<< HEAD
->  	if ((IS_COFFEELAKE(vgpu->gvt->gt->i915) ||
->  	     IS_COMETLAKE(vgpu->gvt->gt->i915)) &&
-> -	    data & _MASKED_BIT_ENABLE(2)) {
-> -=======
-> -	if (IS_COFFEELAKE(vgpu->gvt->gt->i915) &&
->  	    IS_MASKED_BITS_ENABLED(data, 2)) {
-> ->>>>>>> origin/gvt-next-fixes
->  		enter_failsafe_mode(vgpu, GVT_FAILSAFE_UNSUPPORTED_GUEST);
->  		return 0;
->  	}
->
->> 
->> > Thanks.
->> > --
->> > The following changes since commit 8e68c6340d5833077b3753eabedab40755571383:
->> > 
->> >   drm/i915/display: Fix the encoder type check (2020-06-16 11:34:24 +0300)
->> > 
->> > are available in the Git repository at:
->> > 
->> >   https://github.com/intel/gvt-linux tags/gvt-fixes-2020-06-17
->> > 
->> > for you to fetch changes up to a291e4fba259a56a6a274c1989997acb6f0bb03a:
->> > 
->> >   drm/i915/gvt: Use GFP_ATOMIC instead of GFP_KERNEL in atomic context (2020-06-17 12:36:19 +0800)
->> > 
->> > ----------------------------------------------------------------
->> > gvt-fixes-2020-06-17
->> > 
->> > - Two missed MMIO handler fixes for SKL/CFL (Colin)
->> > - Fix mask register bits check (Colin)
->> > - Fix one lockdep error for debugfs entry access (Colin)
->> > 
->> > ----------------------------------------------------------------
->> > Colin Xu (4):
->> >       drm/i915/gvt: Add one missing MMIO handler for D_SKL_PLUS
->> >       drm/i915/gvt: Fix two CFL MMIO handling caused by regression.
->> >       drm/i915/gvt: Fix incorrect check of enabled bits in mask registers
->> >       drm/i915/gvt: Use GFP_ATOMIC instead of GFP_KERNEL in atomic context
->> > 
->> >  drivers/gpu/drm/i915/gvt/debugfs.c      |  2 +-
->> >  drivers/gpu/drm/i915/gvt/handlers.c     | 24 +++++++++++++-----------
->> >  drivers/gpu/drm/i915/gvt/mmio_context.h |  6 +++---
->> >  drivers/gpu/drm/i915/gvt/reg.h          |  5 +++++
->> >  4 files changed, 22 insertions(+), 15 deletions(-)
->> _______________________________________________
->> intel-gvt-dev mailing list
->> intel-gvt-dev@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drive=
+rs/gpu/drm/i915/display/intel_display.c
+> > > > > index a11bb675f9b3..d486d675166f 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > @@ -12581,12 +12581,15 @@ static u16 hsw_linetime_wm(const struct=
+ intel_crtc_state *crtc_state)
+> > > > >  {
+> > > > >  	const struct drm_display_mode *adjusted_mode =3D
+> > > > >  		&crtc_state->hw.adjusted_mode;
+> > > > > +	int linetime_wm;
+> > > > >  =
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> > > > >  	if (!crtc_state->hw.enable)
+> > > > >  		return 0;
+> > > > >  =
+
+> > > > > -	return DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 * 8,
+> > > > > -				 adjusted_mode->crtc_clock);
+> > > > > +	linetime_wm =3D DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * =
+1000 * 8,
+> > > > > +					adjusted_mode->crtc_clock);
+> > > > > +
+> > > > > +	return min(linetime_wm, 0x1ff);
+> > > > =
+
+> > > > Are we actually doing the right thing here? I just mean that we get=
+ value
+> > > > 543 in the bug because pixel rate is 14874 which doesn't seem corre=
+ct.
+> > > =
+
+> > > As explained in the commit msg programming this to lower than necessa=
+ry
+> > > value should be totally fine. It just won't be optimal.
+> > > =
+
+> > > The values in the jira (was there an actual gitlab bug for this btw?)
+> > > look quite sensible to me. Some kind of low res 848xsomething mode wi=
+th
+> > > dotclock of 14.874 Mhz, which gives us that linetime of ~68 usec.
+> > =
+
+> > Htotal from modeline "848x480": 30 14874 848 896 928 1008 480 483 488 4=
+94 0x40 0x9
+> > is 1008.
+> > =
+
+> > According to the formula above htotal(1008)*1000*8 / 14874(crtc_clock) =
+=3D 542.154
+> > =
+
+> > So what's the catch? :)
+> =
+
+> What catch? Looks totally consistent to me.
+
+I meant as I understood from your comment we were supposed to get 68 usec l=
+inetime, not
+542.
+
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+> =
+
+> > =
+
+> > Stan
+> > > =
+
+> > > > =
+
+> > > > Stan
+> > > > >  }
+> > > > >  =
+
+> > > > >  static u16 hsw_ips_linetime_wm(const struct intel_crtc_state *cr=
+tc_state,
+> > > > > @@ -12594,12 +12597,15 @@ static u16 hsw_ips_linetime_wm(const st=
+ruct intel_crtc_state *crtc_state,
+> > > > >  {
+> > > > >  	const struct drm_display_mode *adjusted_mode =3D
+> > > > >  		&crtc_state->hw.adjusted_mode;
+> > > > > +	int linetime_wm;
+> > > > >  =
+
+> > > > >  	if (!crtc_state->hw.enable)
+> > > > >  		return 0;
+> > > > >  =
+
+> > > > > -	return DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 * 8,
+> > > > > -				 cdclk_state->logical.cdclk);
+> > > > > +	linetime_wm =3D DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * =
+1000 * 8,
+> > > > > +					cdclk_state->logical.cdclk);
+> > > > > +
+> > > > > +	return min(linetime_wm, 0x1ff);
+> > > > >  }
+> > > > >  =
+
+> > > > >  static u16 skl_linetime_wm(const struct intel_crtc_state *crtc_s=
+tate)
+> > > > > @@ -12608,7 +12614,7 @@ static u16 skl_linetime_wm(const struct i=
+ntel_crtc_state *crtc_state)
+> > > > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> > > > >  	const struct drm_display_mode *adjusted_mode =3D
+> > > > >  		&crtc_state->hw.adjusted_mode;
+> > > > > -	u16 linetime_wm;
+> > > > > +	int linetime_wm;
+> > > > >  =
+
+> > > > >  	if (!crtc_state->hw.enable)
+> > > > >  		return 0;
+> > > > > @@ -12620,7 +12626,7 @@ static u16 skl_linetime_wm(const struct i=
+ntel_crtc_state *crtc_state)
+> > > > >  	if (IS_GEN9_LP(dev_priv) && dev_priv->ipc_enabled)
+> > > > >  		linetime_wm /=3D 2;
+> > > > >  =
+
+> > > > > -	return linetime_wm;
+> > > > > +	return min(linetime_wm, 0x1ff);
+> > > > >  }
+> > > > >  =
+
+> > > > >  static int hsw_compute_linetime_wm(struct intel_atomic_state *st=
+ate,
+> > > > > -- =
+
+> > > > > 2.26.2
+> > > > > =
+
+> > > =
+
+> > > -- =
+
+> > > Ville Syrj=E4l=E4
+> > > Intel
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
