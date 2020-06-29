@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2D0A20CD12
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 09:56:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6868920CD3D
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 10:18:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62DAF89AB2;
-	Mon, 29 Jun 2020 07:56:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAFB289FE6;
+	Mon, 29 Jun 2020 08:18:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6498B89AAD;
- Mon, 29 Jun 2020 07:56:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5E072A47E8;
- Mon, 29 Jun 2020 07:56:26 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1168889FC9;
+ Mon, 29 Jun 2020 08:18:51 +0000 (UTC)
+IronPort-SDR: mf8Q3DJ1iFTUMWXhaKckXEbOWIHuwQexanugPqbLfHjcggpiCgcYLHvOHTZ+Eh1XQ8+2ElwuV2
+ Qap2FwJYLGbg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="143402882"
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="143402882"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2020 01:18:49 -0700
+IronPort-SDR: zpt2v7dpA7h5vIywHKRLhVMzG09IbtIdW7Voiz0jx3gJecnZCwL76l2hET0VCUgjfbN6ZlQBLU
+ Cx7ROVIEqHRA==
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="454112237"
+Received: from unknown (HELO localhost) ([10.252.54.198])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2020 01:18:45 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+In-Reply-To: <20200623030711.GA5687@zhen-hp.sh.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200617043418.GQ5687@zhen-hp.sh.intel.com>
+ <159248448107.8757.1901135788098329902@jlahtine-desk.ger.corp.intel.com>
+ <20200623030711.GA5687@zhen-hp.sh.intel.com>
+Date: Mon, 29 Jun 2020 11:18:42 +0300
+Message-ID: <87wo3qmgil.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Mon, 29 Jun 2020 07:56:26 -0000
-Message-ID: <159341738635.747.8120874006152093518@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200626232641.4557-1-manasi.d.navare@intel.com>
-In-Reply-To: <20200626232641.4557-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv4=2C1/2=5D_drm/i915/dp=3A_Helper_for_chec?=
- =?utf-8?q?king_DDI=5FBUF=5FCTL_Idle_status?=
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,149 +51,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 23 Jun 2020, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
+> On 2020.06.18 15:48:01 +0300, Joonas Lahtinen wrote:
+>> Quoting Zhenyu Wang (2020-06-17 07:34:18)
+>> > 
+>> > Hi,
+>> > 
+>> > This contains misc fixes for gvt. Two MMIO handler fixes on SKL/CFL,
+>> > one mask register bit checking fix exposed in suspend/resume path and
+>> > one lockdep error fix for debugfs entry access.
+>> 
+>> Could not pull this one due to the extra hassle with CI this week.
+>> 
+>> Jani, can you please pull this next week.
+>> 
+>
+> Got it. Please help to pull then.
 
-Series: series starting with [v4,1/2] drm/i915/dp: Helper for checking DDI_BUF_CTL Idle status
-URL   : https://patchwork.freedesktop.org/series/78867/
-State : success
+Pulled, thanks.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8668 -> Patchwork_18032
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18032 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#1242])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#402])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-bsw-nick:        [INCOMPLETE][11] ([i915#1250] / [i915#1436]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][13] ([i915#1888]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_module_load@reload:
-    - fi-bxt-dsi:         [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-bxt-dsi/igt@i915_module_load@reload.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-bxt-dsi/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [DMESG-WARN][19] ([i915#1982]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([i915#62] / [i915#92]) +4 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8668/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1242]: https://gitlab.freedesktop.org/drm/intel/issues/1242
-  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+BR,
+Jani.
 
 
-Participating hosts (45 -> 39)
-------------------------------
+>
+> One thing I forgot to mention that change in "drm/i915/gvt: Fix incorrect check of enabled bits in mask registers"
+> would cause a minor conflict if backmerging from linux master to dinq, which
+> is because of new IS_COMETLAKE. Change like below could resolve that.
+>
+> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+> index 9f48db0bf9d5..78ba2857144e 100644
+> --- a/drivers/gpu/drm/i915/gvt/handlers.c
+> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
+> @@ -1734,14 +1734,9 @@ static int ring_mode_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
+>  		return 0;
+>  	}
+>  
+> -<<<<<<< HEAD
+>  	if ((IS_COFFEELAKE(vgpu->gvt->gt->i915) ||
+>  	     IS_COMETLAKE(vgpu->gvt->gt->i915)) &&
+> -	    data & _MASKED_BIT_ENABLE(2)) {
+> -=======
+> -	if (IS_COFFEELAKE(vgpu->gvt->gt->i915) &&
+>  	    IS_MASKED_BITS_ENABLED(data, 2)) {
+> ->>>>>>> origin/gvt-next-fixes
+>  		enter_failsafe_mode(vgpu, GVT_FAILSAFE_UNSUPPORTED_GUEST);
+>  		return 0;
+>  	}
+>
+>> 
+>> > Thanks.
+>> > --
+>> > The following changes since commit 8e68c6340d5833077b3753eabedab40755571383:
+>> > 
+>> >   drm/i915/display: Fix the encoder type check (2020-06-16 11:34:24 +0300)
+>> > 
+>> > are available in the Git repository at:
+>> > 
+>> >   https://github.com/intel/gvt-linux tags/gvt-fixes-2020-06-17
+>> > 
+>> > for you to fetch changes up to a291e4fba259a56a6a274c1989997acb6f0bb03a:
+>> > 
+>> >   drm/i915/gvt: Use GFP_ATOMIC instead of GFP_KERNEL in atomic context (2020-06-17 12:36:19 +0800)
+>> > 
+>> > ----------------------------------------------------------------
+>> > gvt-fixes-2020-06-17
+>> > 
+>> > - Two missed MMIO handler fixes for SKL/CFL (Colin)
+>> > - Fix mask register bits check (Colin)
+>> > - Fix one lockdep error for debugfs entry access (Colin)
+>> > 
+>> > ----------------------------------------------------------------
+>> > Colin Xu (4):
+>> >       drm/i915/gvt: Add one missing MMIO handler for D_SKL_PLUS
+>> >       drm/i915/gvt: Fix two CFL MMIO handling caused by regression.
+>> >       drm/i915/gvt: Fix incorrect check of enabled bits in mask registers
+>> >       drm/i915/gvt: Use GFP_ATOMIC instead of GFP_KERNEL in atomic context
+>> > 
+>> >  drivers/gpu/drm/i915/gvt/debugfs.c      |  2 +-
+>> >  drivers/gpu/drm/i915/gvt/handlers.c     | 24 +++++++++++++-----------
+>> >  drivers/gpu/drm/i915/gvt/mmio_context.h |  6 +++---
+>> >  drivers/gpu/drm/i915/gvt/reg.h          |  5 +++++
+>> >  4 files changed, 22 insertions(+), 15 deletions(-)
+>> _______________________________________________
+>> intel-gvt-dev mailing list
+>> intel-gvt-dev@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
 
-  Additional (1): fi-tgl-y 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8668 -> Patchwork_18032
-
-  CI-20190529: 20190529
-  CI_DRM_8668: ebcb5923cc316fea9d46629cce83960511da889e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5718: af1ef32bfae90bcdbaf1b5d84c61ff4e04368505 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18032: 8d63e562ec8b0cecedc4569a51b0860494a1d006 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8d63e562ec8b drm/i915/dp: Helper to check for DDI BUF status to get active
-e41b98b71f2b drm/i915/dp: Helper for checking DDI_BUF_CTL Idle status
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18032/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
