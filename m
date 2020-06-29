@@ -2,69 +2,88 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2549620CEBE
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 15:14:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53B2E20CEBC
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 15:14:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A143B89FF9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B32906E0C5;
 	Mon, 29 Jun 2020 13:14:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66F126E0E1
- for <intel-gfx@lists.freedesktop.org>; Sun, 28 Jun 2020 10:38:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1593340717;
- bh=e5NKSieXJH2GcLsmY/wuj8najDt7sAwcltAcXIi6XWI=;
- h=X-UI-Sender-Class:Subject:To:References:From:Date:In-Reply-To;
- b=LobXV/SgjJGg29fFgGlmml+YtJT4X2BtMXSGY1FVcRUsJbRO3omZ0itPMn1ZFqs4M
- 3QPwXB/qoekecOWftBDLktSYA8NFxup86s99X8iF6sVAX/CxyP/veT/Mv/fZsfoXLc
- JV63f+NWcGN2qOW0Pc2EyKdRrpm2L/XEmbLVhOqE=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.3.33] ([46.85.174.131]) by mail.gmx.com (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Ma24y-1jLgF70WjE-00VyQr; Sun, 28
- Jun 2020 12:38:37 +0200
-To: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
-References: <aab05507-450d-5643-20af-500dec6bc59b@gmx.li>
- <fab11a35-be96-40c4-3572-6879eb39364a@gmx.li>
- <267c19058bf64dc2851cc5b6c0c6383c@intel.com>
- <5b9c291892c245b3becd3df45ba5f3f9@intel.com>
-From: Arno <star@gmx.li>
-Message-ID: <03fa1eb0-610f-84af-3a1a-b7e439b86b99@gmx.li>
-Date: Sun, 28 Jun 2020 12:38:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-MIME-Version: 1.0
-In-Reply-To: <5b9c291892c245b3becd3df45ba5f3f9@intel.com>
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com
+ (mail-eopbgr70057.outbound.protection.outlook.com [40.107.7.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6ED1789FE8;
+ Mon, 29 Jun 2020 03:31:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ft6yglmTHDVtktlMCxhD3ymSmvoGXhnIDhqDHVQvr9GCpl/gEIJPktMMYuPzjL/N0uoBSlJRaAB+yDuK+yqPAwvWwW6YjTjdNg4izkml65jp6JQ2Z065mPV9S+qr31jOhCSZd/5s1xinsQej+FXh6r2cvRgPjpon8lkQRFM7CWBXLwhBuVSKGGOx6aswBKpEs1sWiXM/5NsLM/RHElyvUTGxhKB7S0MMpbHQAdOTnHjZWGnCMYefHdLIq+11h5JpPllQ9oQYyZoYoL86MIRtAjtPrzO0sc0g+/ycLyMLkNIBObcE5Iy6xDtICIM2IVXBKKLEd0Otx2NGMHo8O2JLjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mbKZYLhhSZayRn3tTTgkkMtREn3iOksaorqNPNx6jKw=;
+ b=dY4SWRWXZAR+OzMdKJESp1Fg/Yd65biXL30q/ouFgXLfc+kclwQB5Jp0csFkjDQTuROGKcCNNgHo4TLFzNseX4kFQR9nVd0lzPBAlag9j1ZWhhvgALXaRlPxpldDQKqhy0+AucSF4s+Q/Lkc5o0liWKT8P6mfJw9Hhf38LuUlTDwR9HgsorKWWJSeuI160H2ReaNEAFlPAweeBu/5GlztIcoPobffO9qHLbt8uwYG2y1an2esZnmB9Y47bjG0/BuLpcYQZOc5LzxBmpxh7eZFWcUILgTgemggfLVmmqdKrm1V9N3aG9v9K6+wxFwZdz06AT4Pd8jKoEfd6d//P2Yjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mbKZYLhhSZayRn3tTTgkkMtREn3iOksaorqNPNx6jKw=;
+ b=Sx1YMjRU9TVbQBX+5GNLK8ucd4kUsPr6T8rASCYgOmOv01+6F95YmMJPSB5r+ELfllGgp06LK3yPXXYG1paGWW/nPpk0amj/Kl+ClnHchKeP+Rkepel0pfqk6U0qTtbvx5ygGEgxlkffltdeDIF7igqfW5C80KgEOHNL/JED9u0=
+Received: from AM7PR04MB7157.eurprd04.prod.outlook.com (2603:10a6:20b:118::20)
+ by AM6PR04MB5320.eurprd04.prod.outlook.com (2603:10a6:20b:3::27) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3131.20; Mon, 29 Jun
+ 2020 03:31:11 +0000
+Received: from AM7PR04MB7157.eurprd04.prod.outlook.com
+ ([fe80::1101:adaa:ee89:af2a]) by AM7PR04MB7157.eurprd04.prod.outlook.com
+ ([fe80::1101:adaa:ee89:af2a%3]) with mapi id 15.20.3131.027; Mon, 29 Jun 2020
+ 03:31:11 +0000
+From: Peter Chen <peter.chen@nxp.com>
+To: Nicolas Boichat <drinkcat@chromium.org>
+Thread-Topic: [PATCH 1/4] usb: cdns3: gadget: Replace trace_printk by dev_dbg
+Thread-Index: AQHWTFEU7Ns/P6zMj06V9UlvThL4Oaju8vKA
+Date: Mon, 29 Jun 2020 03:31:11 +0000
+Message-ID: <20200629033134.GA30684@b29397-desktop>
+References: <20200627070307.516803-1-drinkcat@chromium.org>
+ <20200627070307.516803-2-drinkcat@chromium.org>
+In-Reply-To: <20200627070307.516803-2-drinkcat@chromium.org>
+Accept-Language: en-US
 Content-Language: en-US
-X-Provags-ID: V03:K1:NlXvhTdrl0s2vyfcGKKS9yjo5Aav1RZ+FN3KgJSSEr1P5vlIrAM
- m/8qDJCN9B45FK8pW7GXA5C7ztJLyTqmq0Zk/L01/AqK2eqkh7B6AUVjQ71UehvnYvDIYT0
- ByEu+4d/7BB4laEIs4vDdoSE6M5zecHIGsumUzjXcEc/bXpZ8xGQNaiWaOm8r9PtISOmoa+
- QomrjRxb9EuM6lvDEZC6A==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:qe2kpOIuAXc=:/yOf053U4qrOia048GbFbp
- bZFEJxksSwWWn/zNgwFYhVodaqr6F1rsnpqJX9LyP44ZhVa2mHLVmZyjsDEo9jZS/qMCBLYEU
- JEx7tRVC5E9jS4vvZowyRD1TDyBaSMULARSYactBaiu8DCTVAzDVoGpvDVCLKnz5uBdG733ke
- aqo88+P+DxN9/wQ1B0aA7bg/eKSe3qzwKnMd2fVZyxCLnD7dzaMnenBy9qzZbMwdKvrlkRW/O
- pgCkIW3c7G6Zs6YdOcN7X5ExNtHnNIvr8op/CmPwQsM5dY0I0nugrQXodA+nL3YumDU5NH1N4
- AfOrt+UYwYVMS4AK54mPaZ3sKAHROmOqLevFB3eqE5ehdP8SMk5R+06f/JFmhka2l8cDZdWHz
- EKLsSYSnIlAn7Zx8yc1S5q823/59ucmC3pifelH2umVvt4l9GmXvdfg948XAX2GOPaSHp8R62
- xLgGw2IMUX6KlQm0UWMqwCHY1f+aelrZoUs4JjlKgPG2cobLivO+4e+LC6JaY489/15l5sszY
- xa3qeR5qtyV+BkR85QM6I8RbaHY4USuD0nHBkAfBv0+PPoOwN/w0/gl5109aXKLgFMqoMM9ht
- 0sbu6m0u1YYSSqK4nJ9d4nUwMV3daZ4+RMRKvSLAH0CnzLDjvZPN4OjnqTQrN/63tTwi98UtI
- Netox+a361N+e9Ysu+CICP+Qzu4TkVUizbRH1hd+MLT/eoHjiF70h95Nzi/xonTSqqQNEukEf
- r+/P6qEkPMK/EW2uIqIzlXh4z+leiMWOSDLWp68/yHq03Wc13j9gjEm+AJevvqqYdrXuLsxLj
- lD7M5SgcoQKpyFVsJZVB6mW7jQiPzST/yuTfzWJsRp9/du74iDzw6BboaV98py9AqmTEiF5ZP
- NgTxGoSNBOFhaIhFPicCrjSZ3NwgFbbt5PPxRlqw5YPhob5F1zOdPo3A+zrGN66aevOrfAkgt
- 1BvwmGzK3AjqPadCFZXWDslVCafCyyx4i54/WQc/ZAB7EjV61tMA2SLu25tNTntKD2KDID8Uf
- ejG8qOB1789FfX90WyZln8T2L5UsaWcvFiOwqZVtrN3EbwOxB/p1f44KYpDiNXt0Pl78tjLwR
- H/dC5fbMlCW4LnCXE2UAQxaW0uE0dd4Y9qaeaUtzRWUL1GhkGQt7EEBkDENmbGpJx9kp/BQwK
- 08UOFLgUciEXdF6GxoZxwpeA49MKR89vP65+4vNGlP7S0Vp+di06wtEYrZ04MK+WAklaI=
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: chromium.org; dkim=none (message not signed)
+ header.d=none;chromium.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.67]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 19f9d785-7766-4c26-5286-08d81bdcdec2
+x-ms-traffictypediagnostic: AM6PR04MB5320:
+x-microsoft-antispam-prvs: <AM6PR04MB53209C23033CCB5B5DE292CF8B6E0@AM6PR04MB5320.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-forefront-prvs: 044968D9E1
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wOY4bwYTyOMFB6cCYp4abZPoOGUTO0s+HfgQNJnOKMgSoMN5Pk6EomxRk+Sqa4yVPhN9H2xSp28MMQKnvopGWxEn+JoVfOFr2lYLN6U7zrxOYZeytPyZ3A3XjEK4mV/UPyxrebMSHn66xuptz7uczTOR/ZSiklPzC7HtlOWZV0mcD5A4LDQmsyalyNjDyGPAT1tY7jtUnDRG0uAj8+jBkNwZQhP0V7kBJGrRW5BLwrdhcChjM5m0ifl7YNmZLsFVEZ9fX1fCIpYVvke7LARciBPuvkaNO2QtZzKI4FNx0bTRK57eiQ3TL9rtFFulO61Wkds5gjALGubHD1okUI8QmQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM7PR04MB7157.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(7916004)(366004)(136003)(376002)(346002)(396003)(39860400002)(6486002)(66946007)(91956017)(76116006)(66476007)(83380400001)(66556008)(64756008)(66446008)(86362001)(54906003)(8676002)(8936002)(6506007)(53546011)(5660300002)(44832011)(186003)(4326008)(4744005)(26005)(478600001)(9686003)(6512007)(33716001)(71200400001)(33656002)(6916009)(1076003)(7416002)(7406005)(2906002)(316002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: UJBNCRkEMWrUuyeIaNECfY/rPk198XO/0DkgAID4y8CVG/DFFsq1Y+exsmDroSy319akil2gX5VNSsJT7Serzf7ZpxTYf8JuCRQUcqba3eQ3mHOQlIKbxOzUwBgDSjSOr5+5DHbqtWHYMPGcPaLbb/xpT4SGsfPxMCXqq7kYl86JdBQEMVIVw02QfWN3a5NZ5IOOgEh/nCG28qrnsCbbT8TGtGzKyylYclqh0AGLG9bDtNCKhnsv+47v9FvJ8cYYjr5vh7/YD2JKP+V3X22HL5xq+yJ2iwMorzuaS1oHJjzD6atvrNI6ujmFd+p9IGf69S2kGMm9zyv1sD7nfvtUJz1Q9k0zRcsecotU7/IJnUeDdwIvCgkLt0kC2xe7ldwXmzrMoiLmEsNo8KKWXIOAvTCn/Aud3ru3YQC8j9rCNwiLSCB+owhStUOg8qj71DONhWQGFZQt9ws1SXJvpXTBWpM7HtEZbGMTkZ1fsU/23pA=
+x-ms-exchange-transport-forked: True
+Content-ID: <8E174474B701384BA7BA90CB938E0144@eurprd04.prod.outlook.com>
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7157.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19f9d785-7766-4c26-5286-08d81bdcdec2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jun 2020 03:31:11.6315 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gr8Ppd6maaY3NNnKCQ+jMhOUPQz4dm45gkCxdQGca7AZAdp/+jHYXfUeMOAv+ojAUhzes2JwFn5zGfzxHrCiUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5320
 X-Mailman-Approved-At: Mon, 29 Jun 2020 13:14:32 +0000
-Subject: Re: [Intel-gfx] intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR*
- CPU pipe A FIFO underrun
+Subject: Re: [Intel-gfx] [PATCH 1/4] usb: cdns3: gadget: Replace
+ trace_printk by dev_dbg
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,383 +96,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2049999122=="
+Cc: "Guilherme G . Piccoli" <gpiccoli@canonical.com>,
+ Rafael Aquini <aquini@redhat.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@linux.ie>, Todor Tomov <todor.too@gmail.com>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ David Howells <dhowells@redhat.com>, Tiezhu Yang <yangtiezhu@loongson.cn>,
+ Will Deacon <will@kernel.org>,
+ Christian Brauner <christian.brauner@ubuntu.com>,
+ Kees Cook <keescook@chromium.org>,
+ "devel@driverdev.osuosl.org" <devel@driverdev.osuosl.org>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Jayshri Pawar <jpawar@cadence.com>, Masahiro Yamada <masahiroy@kernel.org>,
+ Alexei Starovoitov <alexei.starovoitov@gmail.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Andy Gross <agross@kernel.org>,
+ Tomas Winkler <tomas.winkler@intel.com>, Alexey Dobriyan <adobriyan@gmail.com>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ Pawel Laszczak <pawell@cadence.com>, Arnd Bergmann <arnd@arndb.de>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Chao Yu <chao@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+ Jaegeuk Kim <jaegeuk@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Roger Quadros <rogerq@ti.com>, Felipe Balbi <balbi@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-f2fs-devel@lists.sourceforge.net"
+ <linux-f2fs-devel@lists.sourceforge.net>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Colin Ian King <colin.king@canonical.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Divya Indi <divya.indi@oracle.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============2049999122==
-Content-Type: multipart/alternative;
- boundary="------------9963306047F5BA1EF7A9CB97"
-Content-Language: en-US
+On 20-06-27 15:03:04, Nicolas Boichat wrote:
+> trace_printk should not be used in production code, replace it
+> call with dev_dbg.
+> 
+> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+> 
+> ---
+> 
+> Unclear why a trace_printk was used in the first place, it's
+> possible that some rate-limiting is necessary here.
+> 
+>  drivers/usb/cdns3/gadget.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/cdns3/gadget.c b/drivers/usb/cdns3/gadget.c
+> index 5e24c2e57c0d8c8..c303ab7c62d1651 100644
+> --- a/drivers/usb/cdns3/gadget.c
+> +++ b/drivers/usb/cdns3/gadget.c
+> @@ -421,7 +421,7 @@ static int cdns3_start_all_request(struct cdns3_device *priv_dev,
+>  		if ((priv_req->flags & REQUEST_INTERNAL) ||
+>  		    (priv_ep->flags & EP_TDLCHK_EN) ||
+>  			priv_ep->use_streams) {
+> -			trace_printk("Blocking external request\n");
+> +			dev_dbg(priv_dev->dev, "Blocking external request\n");
+>  			return ret;
+>  		}
+>  	}
+> -- 
 
-This is a multi-part message in MIME format.
---------------9963306047F5BA1EF7A9CB97
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Peter Chen <peter.chen@nxp.com>
 
-Dear Lakshminarayana, dear Chris, dear Jani,
+-- 
 
-thanks for opening this bug, but it seems nothing to happen with that.
-Can I do anything to trigger this and bring that back to focus. It is an
-really annoying bug and this flickering screen drives me crazy and with
-"intel_idle.max_cstate=3D4" runtime is dramatically reduced.
-
- From what I read maybe you Chris have biggest knowledge. Can you give
-me some feedback? Shall I give up hope?
-
-Best regards,
-
-Arno
-
-
-On 18.05.20 09:43, Vudum, Lakshminarayana wrote:
->
-> Arno, I have created bug
-> https://gitlab.freedesktop.org/drm/intel/-/issues/1900
-> <https://gitlab.freedesktop.org/drm/intel/-/issues/1900> for this issue.
->
-> Now discussions can happen in the bug report directly. Thanks for
-> reporting the issue.
->
-> Thanks,
->
-> Lakshmi.
->
-> *From:* Saarinen, Jani <jani.saarinen@intel.com>
-> *Sent:* Monday, May 18, 2020 10:21 AM
-> *To:* Arno <star@gmx.li>; intel-gfx@lists.freedesktop.org;
-> chris@chris-wilson.co.uk; Vudum, Lakshminarayana
-> <lakshminarayana.vudum@intel.com>
-> *Subject:* RE: [Intel-gfx] intel_cpu_fifo_underrun_irq_handler [i915]]
-> *ERROR* CPU pipe A FIFO underrun
->
-> Please make gitlab issue if not already done. Lakshmi, please guide.
->
-> *From:* Intel-gfx <intel-gfx-bounces@lists.freedesktop.org
-> <mailto:intel-gfx-bounces@lists.freedesktop.org>> *On Behalf Of *Arno
-> *Sent:* maanantai 18. toukokuuta 2020 10.07
-> *To:* intel-gfx@lists.freedesktop.org
-> <mailto:intel-gfx@lists.freedesktop.org>; chris@chris-wilson.co.uk
-> <mailto:chris@chris-wilson.co.uk>
-> *Subject:* Re: [Intel-gfx] intel_cpu_fifo_underrun_irq_handler [i915]]
-> *ERROR* CPU pipe A FIFO underrun
->
-> Is there another place to report this kind of issue? Didn't get any
-> feedback. Did I make mistakes in my mail? I already tried the Ubuntu
-> bug-tracker (see below) with no success.
->
-> Thank you,
->
-> Arno
->
-> Am 11.05.20 um 10:18 schrieb Arno:
->
->     My laptop (core m5-6y54) starts flickering after returning from
->     Suspend (to RAM) or other commands touching the video driver
->     (xrandr, powertop --calibrate, ...)
->
->     From kernel (tested with up to 5.7) I get the message:
->
->     [drm:intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR* CPU pipe
->     A FIFO underrun
->
->     I added a bug with more details here:
->
->     https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1872760
->
->     but guys from Ubuntu seems not able to help (as it is an upstream
->     bug) !?
->
->     This happend not in older kernels, but these have the problem not
->     to go in power save states. So I think the fix of that
->
->     https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1863489
->
->     causes this regression.
->
->     Hope someone can help. For a=C2=A0 laptop it is better to have both =
--
->     standby and power saving. Thank you.
->
->     Arno
->
->     _______________________________________________
->
->     Intel-gfx mailing list
->
->     Intel-gfx@lists.freedesktop.org
->     <mailto:Intel-gfx@lists.freedesktop.org>
->
->     https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
-> ---------------------------------------------------------------------
-> Intel Finland Oy
-> Registered Address: PL 281, 00181 Helsinki
-> Business Identity Code: 0357606 - 4
-> Domiciled in Helsinki
->
-> This e-mail and any attachments may contain confidential material for
-> the sole use of the intended recipient(s). Any review or distribution
-> by others is strictly prohibited. If you are not the intended
-> recipient, please contact the sender and delete all copies.
->
-
---------------9963306047F5BA1EF7A9CB97
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body>
-    <p>Dear Lakshminarayana, dear Chris, dear Jani,</p>
-    <p>thanks for opening this bug, but it seems nothing to happen with
-      that. Can I do anything to trigger this and bring that back to
-      focus. It is an really annoying bug and this flickering screen
-      drives me crazy and with "intel_idle.max_cstate=3D4" runtime is
-      dramatically reduced.<br>
-    </p>
-    <p>From what I read maybe you Chris have biggest knowledge. Can you
-      give me some feedback? Shall I give up hope?</p>
-    <p>Best regards,</p>
-    <p>Arno<br>
-    </p>
-    <p><br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 18.05.20 09:43, Vudum,
-      Lakshminarayana wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:5b9c291892c245b3becd3df45ba5f3f9@intel.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUT=
-F-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Consolas;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle20
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle23
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:70.85pt 56.7pt 70.85pt 56.7pt;}
-div.WordSection1
-	{page:WordSection1;}
-=2D-></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Arno, I have created bug <a
-            href=3D"https://gitlab.freedesktop.org/drm/intel/-/issues/1900=
-"
-            moz-do-not-send=3D"true">
-            https://gitlab.freedesktop.org/drm/intel/-/issues/1900</a>
-          for this issue. <o:p></o:p></p>
-        <p class=3D"MsoNormal">Now discussions can happen in the bug
-          report directly. Thanks for reporting the issue.<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-        <p class=3D"MsoNormal">Lakshmi.<o:p></o:p></p>
-        <div>
-          <div style=3D"border:none;border-top:solid #E1E1E1
-            1.0pt;padding:3.0pt 0in 0in 0in">
-            <p class=3D"MsoNormal"><a name=3D"_____replyseparator"
-                moz-do-not-send=3D"true"></a><b>From:</b> Saarinen, Jani
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:jani.saari=
-nen@intel.com">&lt;jani.saarinen@intel.com&gt;</a>
-              <br>
-              <b>Sent:</b> Monday, May 18, 2020 10:21 AM<br>
-              <b>To:</b> Arno <a class=3D"moz-txt-link-rfc2396E" href=3D"m=
-ailto:star@gmx.li">&lt;star@gmx.li&gt;</a>;
-              <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:intel-g=
-fx@lists.freedesktop.org">intel-gfx@lists.freedesktop.org</a>; <a class=3D=
-"moz-txt-link-abbreviated" href=3D"mailto:chris@chris-wilson.co.uk">chris@=
-chris-wilson.co.uk</a>;
-              Vudum, Lakshminarayana
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:lakshminar=
-ayana.vudum@intel.com">&lt;lakshminarayana.vudum@intel.com&gt;</a><br>
-              <b>Subject:</b> RE: [Intel-gfx]
-              intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR* CPU
-              pipe A FIFO underrun<o:p></o:p></p>
-          </div>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Please make gitlab issue if not already
-          done. Lakshmi, please guide.
-          <o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in
-          0in 0in 4.0pt">
-          <div>
-            <div style=3D"border:none;border-top:solid #E1E1E1
-              1.0pt;padding:3.0pt 0in 0in 0in">
-              <p class=3D"MsoNormal"><b>From:</b> Intel-gfx &lt;<a
-                  href=3D"mailto:intel-gfx-bounces@lists.freedesktop.org"
-                  moz-do-not-send=3D"true">intel-gfx-bounces@lists.freedes=
-ktop.org</a>&gt;
-                <b>On Behalf Of </b>Arno<br>
-                <b>Sent:</b> maanantai 18. toukokuuta 2020 10.07<br>
-                <b>To:</b> <a
-                  href=3D"mailto:intel-gfx@lists.freedesktop.org"
-                  moz-do-not-send=3D"true">intel-gfx@lists.freedesktop.org=
-</a>;
-                <a href=3D"mailto:chris@chris-wilson.co.uk"
-                  moz-do-not-send=3D"true">chris@chris-wilson.co.uk</a><br=
->
-                <b>Subject:</b> Re: [Intel-gfx]
-                intel_cpu_fifo_underrun_irq_handler [i915]] *ERROR* CPU
-                pipe A FIFO underrun<o:p></o:p></p>
-            </div>
-          </div>
-          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-          <p><span lang=3D"FI">Is there another place to report this kind
-              of issue? Didn't get any feedback. Did I make mistakes in
-              my mail? I already tried the Ubuntu bug-tracker (see
-              below) with no success.<o:p></o:p></span></p>
-          <p><span lang=3D"FI">Thank you,<o:p></o:p></span></p>
-          <p><span lang=3D"FI">Arno<o:p></o:p></span></p>
-          <p><span lang=3D"FI"><o:p>=C2=A0</o:p></span></p>
-          <div>
-            <p class=3D"MsoNormal"><span lang=3D"FI">Am 11.05.20 um 10:18
-                schrieb Arno:<o:p></o:p></span></p>
-          </div>
-          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-            <div>
-              <p><span lang=3D"FI">My laptop (core m5-6y54) starts
-                  flickering after returning from Suspend (to RAM) or
-                  other commands touching the video driver (xrandr,
-                  powertop --calibrate, ...)<o:p></o:p></span></p>
-              <p><span lang=3D"FI">From kernel (tested with up to 5.7) I
-                  get the message:<o:p></o:p></span></p>
-              <p id=3D"yui_3_10_3_1_1589111239449_1529"><span lang=3D"FI">=
-[drm:intel_cpu_fifo_underrun_irq_handler
-                  [i915]] *ERROR* CPU pipe A FIFO underrun<o:p></o:p></spa=
-n></p>
-              <p><span lang=3D"FI">I added a bug with more details here:<o=
-:p></o:p></span></p>
-              <p><span lang=3D"FI"><a
-                    href=3D"https://bugs.launchpad.net/ubuntu/+source/linu=
-x/+bug/1872760"
-                    moz-do-not-send=3D"true">https://bugs.launchpad.net/ub=
-untu/+source/linux/+bug/1872760</a><o:p></o:p></span></p>
-              <p><span lang=3D"FI">but guys from Ubuntu seems not able to
-                  help (as it is an upstream bug) !?<o:p></o:p></span></p>
-              <p><span lang=3D"FI">This happend not in older kernels, but
-                  these have the problem not to go in power save states.
-                  So I think the fix of that=C2=A0<o:p></o:p></span></p>
-              <p><span lang=3D"FI"><a
-                    href=3D"https://bugs.launchpad.net/ubuntu/+source/linu=
-x/+bug/1863489"
-                    moz-do-not-send=3D"true">https://bugs.launchpad.net/ub=
-untu/+source/linux/+bug/1863489</a><o:p></o:p></span></p>
-              <p><span lang=3D"FI">causes this regression. <o:p></o:p></sp=
-an></p>
-              <p><span lang=3D"FI">Hope someone can help. For a=C2=A0 lapt=
-op it
-                  is better to have both - standby and power saving.
-                  Thank you.<o:p></o:p></span></p>
-              <p><span lang=3D"FI">Arno<o:p></o:p></span></p>
-              <p><span lang=3D"FI"><o:p>=C2=A0</o:p></span></p>
-            </div>
-            <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span
-                lang=3D"FI"><o:p>=C2=A0</o:p></span></p>
-            <pre><span lang=3D"FI">_______________________________________=
-________<o:p></o:p></span></pre>
-            <pre><span lang=3D"FI">Intel-gfx mailing list<o:p></o:p></span=
-></pre>
-            <pre><span lang=3D"FI"><a href=3D"mailto:Intel-gfx@lists.freed=
-esktop.org" moz-do-not-send=3D"true">Intel-gfx@lists.freedesktop.org</a><o=
-:p></o:p></span></pre>
-            <pre><span lang=3D"FI"><a href=3D"https://lists.freedesktop.or=
-g/mailman/listinfo/intel-gfx" moz-do-not-send=3D"true">https://lists.freed=
-esktop.org/mailman/listinfo/intel-gfx</a><o:p></o:p></span></pre>
-          </blockquote>
-        </div>
-      </div>
-      <p>-----------------------------------------------------------------=
-----<br>
-        Intel Finland Oy<br>
-        Registered Address: PL 281, 00181 Helsinki <br>
-        Business Identity Code: 0357606 - 4 <br>
-        Domiciled in Helsinki </p>
-      <p>This e-mail and any attachments may contain confidential
-        material for<br>
-        the sole use of the intended recipient(s). Any review or
-        distribution<br>
-        by others is strictly prohibited. If you are not the intended<br>
-        recipient, please contact the sender and delete all copies.</p>
-    </blockquote>
-  </body>
-</html>
-
---------------9963306047F5BA1EF7A9CB97--
-
---===============2049999122==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Thanks,
+Peter Chen
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2049999122==--
