@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1038120CE27
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 13:22:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1EE520CE42
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 13:36:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5164E6E0E4;
-	Mon, 29 Jun 2020 11:22:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37C326E02D;
+	Mon, 29 Jun 2020 11:36:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55D6F6E0E4
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 11:22:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33AF689F55
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 11:36:37 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21648550-1500050 
- for multiple; Mon, 29 Jun 2020 12:22:10 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21648728-1500050 
+ for multiple; Mon, 29 Jun 2020 12:36:16 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 29 Jun 2020 12:22:09 +0100
-Message-Id: <20200629112209.10423-1-chris@chris-wilson.co.uk>
+Date: Mon, 29 Jun 2020 12:36:16 +0100
+Message-Id: <20200629113616.10618-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200629101256.13039-1-chris@chris-wilson.co.uk>
 References: <20200629101256.13039-1-chris@chris-wilson.co.uk>
@@ -107,7 +107,7 @@ index c38ab51e82f0..b4862afaaf28 100644
  		mutex_unlock(&ctx->mutex);
  	}
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index b6ec5b50d93b..3f47fa4784ac 100644
+index b6ec5b50d93b..6b69191c5543 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
 @@ -61,6 +61,7 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
@@ -143,7 +143,7 @@ index b6ec5b50d93b..3f47fa4784ac 100644
 -		list_move(&lut->obj_link, &close);
 +		/* Break long locks, and carefully continue on from this spot */
 +		if (&ln->obj_link != &obj->lut_list) {
-+			list_add(&bookmark.obj_link, &ln->obj_link);
++			list_add_tail(&bookmark.obj_link, &ln->obj_link);
 +			if (cond_resched_lock(&obj->lut_lock))
 +				list_safe_reset_next(&bookmark, ln, obj_link);
 +			__list_del_entry(&bookmark.obj_link);
