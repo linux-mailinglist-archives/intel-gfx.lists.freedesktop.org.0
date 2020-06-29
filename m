@@ -2,44 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B681F20CE0C
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 13:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13AB520CE1A
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 13:15:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1582D6E090;
-	Mon, 29 Jun 2020 11:01:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D0586E0B8;
+	Mon, 29 Jun 2020 11:15:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 404 seconds by postgrey-1.36 at gabe;
- Mon, 29 Jun 2020 11:01:55 UTC
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0ED96E090
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 11:01:55 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 49wPX01jWzz9s6w;
- Mon, 29 Jun 2020 20:54:55 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
- s=201909; t=1593428108;
- bh=Ikj+QFFobl8b3GOszRTI8T5Tvh6wpN/NDrkClHklAgw=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=YiHYnDocf/5avJ1oQV/ZaHBo/5KnMj7//ysZQFYyI4CFWIs0UV549pLr1FezSCW5R
- 7XD/bwKDSUl4GAlnxg7+l0dw4qYA4xFJR/p0JjqRrWAn2c6piTAq/Kf99cWgxRb+Vr
- ch+9DPfW5GFlugwK8NDTwdtqvhOtAXApFXREB/EMHOgHMLm6ivU0YJfIMjJPJ40xpN
- kv2gGSe40lRU0VLBuIWAsbpJHfD2vQ8cVfDbiLUGCL8LADDRAfzAvbVmxjxe8KYph/
- C0DoRs93QcEpGuelY5DIvGvYXit7Ov60w25mPElZgJuSxb+KyRGJmW1byOAeC/UHQf
- AIm77bM9c7www==
-From: Michael Ellerman <mpe@ellerman.id.au>
-To: Joerg Roedel <joro@8bytes.org>, iommu@lists.linux-foundation.org
-In-Reply-To: <20200625130836.1916-14-joro@8bytes.org>
-References: <20200625130836.1916-1-joro@8bytes.org>
- <20200625130836.1916-14-joro@8bytes.org>
-Date: Mon, 29 Jun 2020 20:57:07 +1000
-Message-ID: <87bll287i4.fsf@mpe.ellerman.id.au>
+Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
+ [213.80.101.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 744A56E0B8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 11:15:35 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 75BEF3FBA2;
+ Mon, 29 Jun 2020 13:15:32 +0200 (CEST)
+Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=l0llwgCJ; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.099
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
+ autolearn=ham autolearn_force=no
+Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id vko00NjFDLfq; Mon, 29 Jun 2020 13:15:31 +0200 (CEST)
+Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35]) (Authenticated sender: mb878879)
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 0B40F3FB8A;
+ Mon, 29 Jun 2020 13:15:30 +0200 (CEST)
+Received: from localhost.localdomain (2.67.230.125.mobile.tre.se
+ [2.67.230.125])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 812BB36017B;
+ Mon, 29 Jun 2020 13:15:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1593429330; bh=qBY2VZsaF+nRY74OZX57CQbCcDwpKmY9H58rBZjr0rg=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=l0llwgCJtuRtgJqYYDCYZKQioHC4nzaXzaZL9z3Fujt5sVGch4n73Nf9b29cM9gkx
+ 2FO5leSMo5TytbkBAIWqDr+nFZLG68LstIGuoas6m/vd1gVZJliTFGrEan43IlVnhr
+ 4DCyhdCqmV+/KXZ5zo643e0dWA/HGTLv0AgEiAEI=
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
+ <20200623142843.423594-6-maarten.lankhorst@linux.intel.com>
+ <6f313791-d0f7-465a-e4ab-63826ef70bf8@shipmail.org>
+ <cec259f8-170f-ad74-3eb1-f583cb01920f@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <11cd7a6a-af85-e68f-5936-0a8d4157da91@shipmail.org>
+Date: Mon, 29 Jun 2020 13:15:29 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 13/13] powerpc/dma: Remove
- dev->archdata.iommu_domain
+In-Reply-To: <cec259f8-170f-ad74-3eb1-f583cb01920f@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 06/26] drm/i915: Parse command buffer
+ earlier in eb_relocate(slow)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,58 +74,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-ia64@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
- David Airlie <airlied@linux.ie>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Paul Mackerras <paulus@samba.org>, Will Deacon <will@kernel.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Joerg Roedel <joro@8bytes.org>,
- x86@kernel.org, Russell King <linux@armlinux.org.uk>,
- Catalin Marinas <catalin.marinas@arm.com>, Fenghua Yu <fenghua.yu@intel.com>,
- Joerg Roedel <jroedel@suse.de>, intel-gfx@lists.freedesktop.org,
- Matthias Brugger <matthias.bgg@gmail.com>,
- linux-arm-kernel@lists.infradead.org, Tony Luck <tony.luck@intel.com>,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Joerg Roedel <joro@8bytes.org> writes:
-> From: Joerg Roedel <jroedel@suse.de>
->
-> There are no users left, so remove the pointer and save some memory.
->
-> Signed-off-by: Joerg Roedel <jroedel@suse.de>
-> ---
->  arch/powerpc/include/asm/device.h | 3 ---
->  1 file changed, 3 deletions(-)
-
-It's a little hard to confirm there are no users left just with grep,
-but I think you've got them all, and the compiler should tell us if
-you've missed any.
-
-Acked-by: Michael Ellerman <mpe@ellerman.id.au> (powerpc)
-
-cheers
-
-> diff --git a/arch/powerpc/include/asm/device.h b/arch/powerpc/include/asm/device.h
-> index 266542769e4b..1bc595213338 100644
-> --- a/arch/powerpc/include/asm/device.h
-> +++ b/arch/powerpc/include/asm/device.h
-> @@ -34,9 +34,6 @@ struct dev_archdata {
->  	struct iommu_table	*iommu_table_base;
->  #endif
->  
-> -#ifdef CONFIG_IOMMU_API
-> -	void			*iommu_domain;
-> -#endif
->  #ifdef CONFIG_PPC64
->  	struct pci_dn		*pci_data;
->  #endif
-> -- 
-> 2.27.0
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGksCgpPbiA2LzI5LzIwIDEyOjQwIFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPgo+Pj4g
+IMKgwqDCoMKgwqAgLyoKPj4+ICDCoMKgwqDCoMKgwqAgKiBzbmIvaXZiL3ZsdiBjb25mbGF0ZSB0
+aGUgImJhdGNoIGluIHBwZ3R0IiBiaXQgd2l0aCB0aGUgIm5vbi1zZWN1cmUKPj4+ICDCoMKgwqDC
+oMKgwqAgKiBiYXRjaCIgYml0LiBIZW5jZSB3ZSBuZWVkIHRvIHBpbiBzZWN1cmUgYmF0Y2hlcyBp
+bnRvIHRoZSBnbG9iYWwgZ3R0Lgo+Pj4gIMKgwqDCoMKgwqDCoCAqIGhzdyBzaG91bGQgaGF2ZSB0
+aGlzIGZpeGVkLCBidXQgYmR3IG11Y2tzIGl0IHVwIGFnYWluLiAqLwo+Pj4gLcKgwqDCoCBiYXRj
+aCA9IGViLmJhdGNoLT52bWE7Cj4+PiAgwqDCoMKgwqDCoCBpZiAoZWIuYmF0Y2hfZmxhZ3MgJiBJ
+OTE1X0RJU1BBVENIX1NFQ1VSRSkgewo+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgaTkx
+NV92bWEgKnZtYTsKPj4+ICDCoCBAQCAtMjkyMywxMyArMjkyNywxNSBAQCBpOTE1X2dlbV9kb19l
+eGVjYnVmZmVyKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgKsKgwqAgZml0dGluZyBkdWUgdG8gZnJhZ21lbnRhdGlvbi4KPj4+ICDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCAqIFNvIHRoaXMgaXMgYWN0dWFsbHkgc2FmZS4KPj4+ICDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCAqLwo+Pj4gLcKgwqDCoMKgwqDCoMKgIHZtYSA9IGk5MTVfZ2VtX29iamVjdF9nZ3R0X3Bp
+bihiYXRjaC0+b2JqLCBOVUxMLCAwLCAwLCAwKTsKPj4+ICvCoMKgwqDCoMKgwqDCoCB2bWEgPSBp
+OTE1X2dlbV9vYmplY3RfZ2d0dF9waW4oZWIuYmF0Y2gtPnZtYS0+b2JqLCBOVUxMLCAwLCAwLCAw
+KTsKPj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKElTX0VSUih2bWEpKSB7Cj4+PiAgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgZXJyID0gUFRSX0VSUih2bWEpOwo+Pj4gIMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIGdvdG8gZXJyX3BhcnNlOwo+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoCB9
+Cj4+PiAgwqAgwqDCoMKgwqDCoMKgwqDCoMKgIGJhdGNoID0gdm1hOwo+Pj4gK8KgwqDCoCB9IGVs
+c2Ugewo+Pj4gK8KgwqDCoMKgwqDCoMKgIGJhdGNoID0gZWIuYmF0Y2gtPnZtYTsKPj4+ICDCoMKg
+wqDCoMKgIH0KPj4+ICAgIAo+PiBIbW0sIGl0J3MgbGF0ZSBmcmlkYXkgYWZ0ZXJub29uIHNvIHRo
+YXQgbWlnaHQgYmUgdGhlIGNhdXNlLCBidXQgSSBmYWlsIHRvIHNlZSB3aGF0IHRoZSBhYm92ZSBo
+dW5rIGlzIHRyeWluZyB0byBhY2hpZXZlPwo+Cj4gRXhlY2J1ZiBwYXJzaW5nIG1heSBjcmVhdGUg
+YSBzaGFkb3cgb2JqZWN0IHdoaWNoIGFsc28gbmVlZHMgdG8gYmUgbG9ja2VkLCB3ZSBkbyB0aGlz
+IGluc2lkZSBlYl9yZWxvY2F0ZSgpIHRvIGVuc3VyZSB0aGUgbm9ybWFsIHJ1bGVzIGZvciB3L3cg
+aGFuZGxpbmcgY2FuIGJlIHVzZWQgZm9yIGViIHBhcnNpbmcgYXMgd2VsbC4gOikKPgo+IH5NYWFy
+dGVuCgpJIG1lYW50IHRoZSBjaGFuZ2VkIGFzc2lnbm1lbnQgb2YgdGhlIGJhdGNoIHZhcmlhYmxl
+PwoKL1Rob21hcwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
