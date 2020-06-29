@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE44720CF36
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 16:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 243DF20CF58
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 17:09:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB0EB89A08;
-	Mon, 29 Jun 2020 14:42:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 778AA89DB5;
+	Mon, 29 Jun 2020 15:09:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 894F089A08
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 14:42:10 +0000 (UTC)
-IronPort-SDR: hmZChdT++4Jk0U8HzaKfB4f59dWxxRH8TA+cQ0oa4lz398lZSHMO09g75M7Ej8vve5uOh3CUQZ
- pgFSOwJv/jmw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="211053704"
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="211053704"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6391C89DB5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 15:09:06 +0000 (UTC)
+IronPort-SDR: E7HjbcptabZ0VDYgEUbP02Sy02iH1yr58l3elK6Bw8qrJoUYE/GR+CKM2TZoaxnltL8ecGY6TD
+ b8pQ5pMXAPkg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="144175415"
+X-IronPort-AV: E=Sophos;i="5.75,295,1589266800"; d="scan'208";a="144175415"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 07:42:09 -0700
-IronPort-SDR: S2vlgHgfPqcMDZX88mP8N1xBHMQO5rRldLx5X01apqFfYPZBFPbI/+69yZwpZ6pXSWT3Ai5CkN
- uiOiq8jboJPA==
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="454215434"
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2020 08:08:48 -0700
+IronPort-SDR: LGOrCXYVgYkj6anCXd7xMJYxXAvznKHJ5Sqh7eYgbxmcJbtLn3WCVdSrCXtda0ohkdjHWxCeEh
+ Il2EJ5Ggxfvg==
+X-IronPort-AV: E=Sophos;i="5.75,295,1589266800"; d="scan'208";a="454224497"
 Received: from tkeuter-mobl2.ger.corp.intel.com (HELO [10.249.42.155])
  ([10.249.42.155])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 07:42:09 -0700
+ 29 Jun 2020 08:08:45 -0700
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
- <20200623142843.423594-6-maarten.lankhorst@linux.intel.com>
+ <20200623142843.423594-7-maarten.lankhorst@linux.intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <6af770d1-367d-52df-4aec-26af9e05e5d7@linux.intel.com>
-Date: Mon, 29 Jun 2020 15:42:06 +0100
+Message-ID: <dacbaf04-a149-38e2-5c07-3d3e10589bd3@linux.intel.com>
+Date: Mon, 29 Jun 2020 16:08:42 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <20200623142843.423594-6-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20200623142843.423594-7-maarten.lankhorst@linux.intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 06/26] drm/i915: Parse command buffer
- earlier in eb_relocate(slow)
+Subject: Re: [Intel-gfx] [PATCH 07/26] Revert "drm/i915/gem: Split eb_vma
+ into its own allocation"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,205 +62,262 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 23/06/2020 15:28, Maarten Lankhorst wrote:
-> We want to introduce backoff logic, but we need to lock the
-> pool object as well for command parsing. Because of this, we
-> will need backoff logic for the engine pool obj, move the batch
-> validation up slightly to eb_lookup_vmas, and the actual command
-> parsing in a separate function which can get called from execbuf
-> relocation fast and slowpath.
-> 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 66 ++++++++++---------
->   1 file changed, 36 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index f896b1a4b38a..7cb44915cfc7 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -290,6 +290,8 @@ struct i915_execbuffer {
->   	struct eb_vma_array *array;
->   };
->   
-> +static int eb_parse(struct i915_execbuffer *eb);
-> +
->   static inline bool eb_use_cmdparser(const struct i915_execbuffer *eb)
->   {
->   	return intel_engine_requires_cmd_parser(eb->engine) ||
-> @@ -873,6 +875,7 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
->   
->   static int eb_lookup_vmas(struct i915_execbuffer *eb)
->   {
-> +	struct drm_i915_private *i915 = eb->i915;
->   	unsigned int batch = eb_batch_index(eb);
->   	unsigned int i;
->   	int err = 0;
-> @@ -886,18 +889,37 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
->   		vma = eb_lookup_vma(eb, eb->exec[i].handle);
->   		if (IS_ERR(vma)) {
->   			err = PTR_ERR(vma);
-> -			break;
-> +			goto err;
->   		}
->   
->   		err = eb_validate_vma(eb, &eb->exec[i], vma);
->   		if (unlikely(err)) {
->   			i915_vma_put(vma);
-> -			break;
-> +			goto err;
->   		}
->   
->   		eb_add_vma(eb, i, batch, vma);
->   	}
->   
-> +	if (unlikely(eb->batch->flags & EXEC_OBJECT_WRITE)) {
-> +		drm_dbg(&i915->drm,
-> +			"Attempting to use self-modifying batch buffer\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (range_overflows_t(u64,
-> +			      eb->batch_start_offset, eb->batch_len,
-> +			      eb->batch->vma->size)) {
-> +		drm_dbg(&i915->drm, "Attempting to use out-of-bounds batch\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (eb->batch_len == 0)
-> +		eb->batch_len = eb->batch->vma->size - eb->batch_start_offset;
+> This reverts commit 0f1dd02295f35dcdcbaafcbcbbec0753884ab974.
+> This conflicts with the ww mutex handling, which needs to drop
+> the references after gpu submission anyway, because otherwise we
+> may risk unlocking a BO after first freeing it.
 
-How about you move the parsing step at least into a helper? So it is 
-more obvious this step is not simply about looking up vmas, even if it 
-is called from eb_lookup_vmas.
-
-> +
-> +	return 0;
-> +
-> +err:
->   	eb->vma[i].vma = NULL;
->   	return err;
->   }
-> @@ -1809,7 +1831,7 @@ static int eb_prefault_relocations(const struct i915_execbuffer *eb)
->   	return 0;
->   }
->   
-> -static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
-
-Something looks off - here you rename eb_relocate_slow but I don't see 
-any callers changing in this patch. So I have to assume broken bisect stage.
-
-> +static noinline int eb_relocate_parse_slow(struct i915_execbuffer *eb)
->   {
->   	bool have_copy = false;
->   	struct eb_vma *ev;
-> @@ -1872,6 +1894,11 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
->   	if (err)
->   		goto err;
->   
-> +	/* as last step, parse the command buffer */
-> +	err = eb_parse(eb);
-> +	if (err)
-> +		goto err;
-> +
->   	/*
->   	 * Leave the user relocations as are, this is the painfully slow path,
->   	 * and we want to avoid the complication of dropping the lock whilst
-> @@ -1904,7 +1931,7 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
->   	return err;
->   }
->   
-> -static int eb_relocate(struct i915_execbuffer *eb)
-> +static int eb_relocate_parse(struct i915_execbuffer *eb)
->   {
->   	int err;
->   
-> @@ -1932,7 +1959,7 @@ static int eb_relocate(struct i915_execbuffer *eb)
->   			return eb_relocate_slow(eb);
->   	}
->   
-> -	return 0;
-> +	return eb_parse(eb);
-
-And I am not a fan of relocation stage calling parse. Why couldn't every 
-stage be done separately at the call sites so the stages are explicit 
-and clear?
-
-Commit message is explaining the parsing needs to go earlier, to come 
-under the ww context block? But isn't it already after eb_lookup_vmas in 
-current code?
-
-Oh wait.. I am looking at drm-tip and don't have your reverts. It was 
-agreed you will remove them, right? So I can wait for the next round to 
-figure this re-organization.
+What is the problem here? eb_vma_array_put in eb_move_to_gpu? If so, 
+could you just move this put to later in the sequence? I am simply 
+thinking how to avoid controversial reverts. Because on the other hand I 
+did not figure out what 0f1dd02295f35dcdcbaafcbcbbec0753884ab974 fixed 
+in a few minutes I spent staring at the patch.
 
 Regards,
 
 Tvrtko
 
-
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 124 +++++++-----------
+>   1 file changed, 51 insertions(+), 73 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 7cb44915cfc7..2636a130fb57 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -40,11 +40,6 @@ struct eb_vma {
+>   	u32 handle;
+>   };
+>   
+> -struct eb_vma_array {
+> -	struct kref kref;
+> -	struct eb_vma vma[];
+> -};
+> -
+>   enum {
+>   	FORCE_CPU_RELOC = 1,
+>   	FORCE_GTT_RELOC,
+> @@ -57,6 +52,7 @@ enum {
+>   #define __EXEC_OBJECT_NEEDS_MAP		BIT(29)
+>   #define __EXEC_OBJECT_NEEDS_BIAS	BIT(28)
+>   #define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 28) /* all of the above */
+> +#define __EXEC_OBJECT_RESERVED (__EXEC_OBJECT_HAS_PIN | __EXEC_OBJECT_HAS_FENCE)
+>   
+>   #define __EXEC_HAS_RELOC	BIT(31)
+>   #define __EXEC_INTERNAL_FLAGS	(~0u << 31)
+> @@ -287,7 +283,6 @@ struct i915_execbuffer {
+>   	 */
+>   	int lut_size;
+>   	struct hlist_head *buckets; /** ht for relocation handles */
+> -	struct eb_vma_array *array;
+>   };
+>   
+>   static int eb_parse(struct i915_execbuffer *eb);
+> @@ -299,62 +294,8 @@ static inline bool eb_use_cmdparser(const struct i915_execbuffer *eb)
+>   		 eb->args->batch_len);
 >   }
 >   
->   static int eb_move_to_gpu(struct i915_execbuffer *eb)
-> @@ -2870,7 +2897,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+> -static struct eb_vma_array *eb_vma_array_create(unsigned int count)
+> -{
+> -	struct eb_vma_array *arr;
+> -
+> -	arr = kvmalloc(struct_size(arr, vma, count), GFP_KERNEL | __GFP_NOWARN);
+> -	if (!arr)
+> -		return NULL;
+> -
+> -	kref_init(&arr->kref);
+> -	arr->vma[0].vma = NULL;
+> -
+> -	return arr;
+> -}
+> -
+> -static inline void eb_unreserve_vma(struct eb_vma *ev)
+> -{
+> -	struct i915_vma *vma = ev->vma;
+> -
+> -	if (unlikely(ev->flags & __EXEC_OBJECT_HAS_FENCE))
+> -		__i915_vma_unpin_fence(vma);
+> -
+> -	if (ev->flags & __EXEC_OBJECT_HAS_PIN)
+> -		__i915_vma_unpin(vma);
+> -
+> -	ev->flags &= ~(__EXEC_OBJECT_HAS_PIN |
+> -		       __EXEC_OBJECT_HAS_FENCE);
+> -}
+> -
+> -static void eb_vma_array_destroy(struct kref *kref)
+> -{
+> -	struct eb_vma_array *arr = container_of(kref, typeof(*arr), kref);
+> -	struct eb_vma *ev = arr->vma;
+> -
+> -	while (ev->vma) {
+> -		eb_unreserve_vma(ev);
+> -		i915_vma_put(ev->vma);
+> -		ev++;
+> -	}
+> -
+> -	kvfree(arr);
+> -}
+> -
+> -static void eb_vma_array_put(struct eb_vma_array *arr)
+> -{
+> -	kref_put(&arr->kref, eb_vma_array_destroy);
+> -}
+> -
+>   static int eb_create(struct i915_execbuffer *eb)
+>   {
+> -	/* Allocate an extra slot for use by the command parser + sentinel */
+> -	eb->array = eb_vma_array_create(eb->buffer_count + 2);
+> -	if (!eb->array)
+> -		return -ENOMEM;
+> -
+> -	eb->vma = eb->array->vma;
+> -
+>   	if (!(eb->args->flags & I915_EXEC_HANDLE_LUT)) {
+>   		unsigned int size = 1 + ilog2(eb->buffer_count);
+>   
+> @@ -388,10 +329,8 @@ static int eb_create(struct i915_execbuffer *eb)
+>   				break;
+>   		} while (--size);
+>   
+> -		if (unlikely(!size)) {
+> -			eb_vma_array_put(eb->array);
+> +		if (unlikely(!size))
+>   			return -ENOMEM;
+> -		}
+>   
+>   		eb->lut_size = size;
+>   	} else {
+> @@ -502,6 +441,26 @@ eb_pin_vma(struct i915_execbuffer *eb,
+>   	return !eb_vma_misplaced(entry, vma, ev->flags);
+>   }
+>   
+> +static inline void __eb_unreserve_vma(struct i915_vma *vma, unsigned int flags)
+> +{
+> +	GEM_BUG_ON(!(flags & __EXEC_OBJECT_HAS_PIN));
+> +
+> +	if (unlikely(flags & __EXEC_OBJECT_HAS_FENCE))
+> +		__i915_vma_unpin_fence(vma);
+> +
+> +	__i915_vma_unpin(vma);
+> +}
+> +
+> +static inline void
+> +eb_unreserve_vma(struct eb_vma *ev)
+> +{
+> +	if (!(ev->flags & __EXEC_OBJECT_HAS_PIN))
+> +		return;
+> +
+> +	__eb_unreserve_vma(ev->vma, ev->flags);
+> +	ev->flags &= ~__EXEC_OBJECT_RESERVED;
+> +}
+> +
+>   static int
+>   eb_validate_vma(struct i915_execbuffer *eb,
+>   		struct drm_i915_gem_exec_object2 *entry,
+> @@ -944,13 +903,31 @@ eb_get_vma(const struct i915_execbuffer *eb, unsigned long handle)
+>   	}
+>   }
+>   
+> +static void eb_release_vmas(const struct i915_execbuffer *eb)
+> +{
+> +	const unsigned int count = eb->buffer_count;
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < count; i++) {
+> +		struct eb_vma *ev = &eb->vma[i];
+> +		struct i915_vma *vma = ev->vma;
+> +
+> +		if (!vma)
+> +			break;
+> +
+> +		eb->vma[i].vma = NULL;
+> +
+> +		if (ev->flags & __EXEC_OBJECT_HAS_PIN)
+> +			__eb_unreserve_vma(vma, ev->flags);
+> +
+> +		i915_vma_put(vma);
+> +	}
+> +}
+> +
+>   static void eb_destroy(const struct i915_execbuffer *eb)
+>   {
+>   	GEM_BUG_ON(eb->reloc_cache.rq);
+>   
+> -	if (eb->array)
+> -		eb_vma_array_put(eb->array);
+> -
+>   	if (eb->lut_size > 0)
+>   		kfree(eb->buckets);
+>   }
+> @@ -2039,12 +2016,9 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
+>   			err = i915_vma_move_to_active(vma, eb->request, flags);
+>   
+>   		i915_vma_unlock(vma);
+> -		eb_unreserve_vma(ev);
+>   	}
+>   	ww_acquire_fini(&acquire);
+>   
+> -	eb_vma_array_put(fetch_and_zero(&eb->array));
+> -
 >   	if (unlikely(err))
->   		goto err_context;
+>   		goto err_skip;
 >   
-> -	err = eb_relocate(&eb);
-> +	err = eb_relocate_parse(&eb);
->   	if (err) {
->   		/*
->   		 * If the user expects the execobject.offset and
-> @@ -2883,33 +2910,10 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->   		goto err_vma;
->   	}
+> @@ -2340,7 +2314,6 @@ static int eb_parse(struct i915_execbuffer *eb)
+>   	eb->vma[eb->buffer_count].vma = i915_vma_get(shadow);
+>   	eb->vma[eb->buffer_count].flags = __EXEC_OBJECT_HAS_PIN;
+>   	eb->batch = &eb->vma[eb->buffer_count++];
+> -	eb->vma[eb->buffer_count].vma = NULL;
 >   
-> -	if (unlikely(eb.batch->flags & EXEC_OBJECT_WRITE)) {
-> -		drm_dbg(&i915->drm,
-> -			"Attempting to use self-modifying batch buffer\n");
-> -		err = -EINVAL;
-> -		goto err_vma;
-> -	}
-> -
-> -	if (range_overflows_t(u64,
-> -			      eb.batch_start_offset, eb.batch_len,
-> -			      eb.batch->vma->size)) {
-> -		drm_dbg(&i915->drm, "Attempting to use out-of-bounds batch\n");
-> -		err = -EINVAL;
-> -		goto err_vma;
-> -	}
-> -
-> -	if (eb.batch_len == 0)
-> -		eb.batch_len = eb.batch->vma->size - eb.batch_start_offset;
-> -
-> -	err = eb_parse(&eb);
-> -	if (err)
-> -		goto err_vma;
-> -
->   	/*
->   	 * snb/ivb/vlv conflate the "batch in ppgtt" bit with the "non-secure
->   	 * batch" bit. Hence we need to pin secure batches into the global gtt.
->   	 * hsw should have this fixed, but bdw mucks it up again. */
-> -	batch = eb.batch->vma;
->   	if (eb.batch_flags & I915_DISPATCH_SECURE) {
->   		struct i915_vma *vma;
+>   	eb->trampoline = trampoline;
+>   	eb->batch_start_offset = 0;
+> @@ -2838,6 +2811,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>   		args->flags |= __EXEC_HAS_RELOC;
 >   
-> @@ -2923,13 +2927,15 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->   		 *   fitting due to fragmentation.
->   		 * So this is actually safe.
->   		 */
-> -		vma = i915_gem_object_ggtt_pin(batch->obj, NULL, 0, 0, 0);
-> +		vma = i915_gem_object_ggtt_pin(eb.batch->vma->obj, NULL, 0, 0, 0);
->   		if (IS_ERR(vma)) {
->   			err = PTR_ERR(vma);
->   			goto err_parse;
->   		}
+>   	eb.exec = exec;
+> +	eb.vma = (struct eb_vma *)(exec + args->buffer_count + 1);
+> +	eb.vma[0].vma = NULL;
 >   
->   		batch = vma;
-> +	} else {
-> +		batch = eb.batch->vma;
->   	}
+>   	eb.invalid_flags = __EXEC_OBJECT_UNKNOWN_FLAGS;
+>   	reloc_cache_init(&eb.reloc_cache, eb.i915);
+> @@ -3014,6 +2989,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>   	if (batch->private)
+>   		intel_gt_buffer_pool_put(batch->private);
+>   err_vma:
+> +	if (eb.exec)
+> +		eb_release_vmas(&eb);
+>   	if (eb.trampoline)
+>   		i915_vma_unpin(eb.trampoline);
+>   	eb_unpin_engine(&eb);
+> @@ -3031,7 +3008,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
 >   
->   	/* All GPU relocation batches must be submitted prior to the user rq */
+>   static size_t eb_element_size(void)
+>   {
+> -	return sizeof(struct drm_i915_gem_exec_object2);
+> +	return sizeof(struct drm_i915_gem_exec_object2) + sizeof(struct eb_vma);
+>   }
+>   
+>   static bool check_buffer_count(size_t count)
+> @@ -3087,7 +3064,7 @@ i915_gem_execbuffer_ioctl(struct drm_device *dev, void *data,
+>   	/* Copy in the exec list from userland */
+>   	exec_list = kvmalloc_array(count, sizeof(*exec_list),
+>   				   __GFP_NOWARN | GFP_KERNEL);
+> -	exec2_list = kvmalloc_array(count, eb_element_size(),
+> +	exec2_list = kvmalloc_array(count + 1, eb_element_size(),
+>   				    __GFP_NOWARN | GFP_KERNEL);
+>   	if (exec_list == NULL || exec2_list == NULL) {
+>   		drm_dbg(&i915->drm,
+> @@ -3165,7 +3142,8 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+>   	if (err)
+>   		return err;
+>   
+> -	exec2_list = kvmalloc_array(count, eb_element_size(),
+> +	/* Allocate an extra slot for use by the command parser */
+> +	exec2_list = kvmalloc_array(count + 1, eb_element_size(),
+>   				    __GFP_NOWARN | GFP_KERNEL);
+>   	if (exec2_list == NULL) {
+>   		drm_dbg(&i915->drm, "Failed to allocate exec list for %zd buffers\n",
 > 
 _______________________________________________
 Intel-gfx mailing list
