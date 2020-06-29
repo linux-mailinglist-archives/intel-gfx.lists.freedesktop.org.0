@@ -1,44 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B6620CEA3
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 15:06:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A41D20CEDF
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2020 15:44:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B27289E32;
-	Mon, 29 Jun 2020 13:06:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B55A89B45;
+	Mon, 29 Jun 2020 13:44:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B55C89E32
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 13:06:12 +0000 (UTC)
-IronPort-SDR: zyyoPG3mLz0r/7lfPKFf0bwesVM9lUI+mTXg0ouqSmt1lcT3AUi8CPFAuA900A3ZVRbPnqJgY6
- QjDPx9sFGCbw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="163972561"
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="163972561"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A941F89B45
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2020 13:44:48 +0000 (UTC)
+IronPort-SDR: E2hrtASxfdg063yqa67ok144JdT9OtHii7EBFh3qgQxPt4A9ajbpQ6LhEVgtVMWHPeUmxb6FGw
+ ZQ+0Go4iZ0Og==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="163978114"
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="163978114"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 06:04:50 -0700
-IronPort-SDR: JHDVnKPy7ClHM55ew5k0yaF9eIivpB14VRfKnuAwDa9fb5odQ7qOpkRA3aAQzC5OByBx2I4G1o
- zKtZnftFZUZQ==
-X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="480780030"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.202])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2020 06:04:50 -0700
-Date: Mon, 29 Jun 2020 06:02:19 -0700
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20200629130219.GE3702810@intel.com>
-References: <20200626234834.26864-1-lucas.demarchi@intel.com>
- <20200626234834.26864-3-lucas.demarchi@intel.com>
+ 29 Jun 2020 06:44:39 -0700
+IronPort-SDR: 1fD+egGGJkDQ+A2d4JvaHLhgr+Utxnn6iJ65lscGdIOBrWGncigkMsy2RYCzzaMNE0tdjkYP/g
+ ycHJpAufMsiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,294,1589266800"; d="scan'208";a="320644109"
+Received: from bartholt-mobl1.ger.corp.intel.com (HELO [10.252.38.99])
+ ([10.252.38.99])
+ by FMSMGA003.fm.intel.com with ESMTP; 29 Jun 2020 06:44:37 -0700
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
+ <20200623142843.423594-4-maarten.lankhorst@linux.intel.com>
+ <c03481f1-92c2-24ad-b56e-a92fbb70f9fe@linux.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <01dc9947-575a-aa22-b52b-8aa3da9aeede@linux.intel.com>
+Date: Mon, 29 Jun 2020 15:44:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200626234834.26864-3-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/display: prefer dig_port to
- reference intel_digital_port
+In-Reply-To: <c03481f1-92c2-24ad-b56e-a92fbb70f9fe@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 04/26] drm/i915: Add an implementation for
+ i915_gem_ww_ctx locking, v2.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,3241 +55,551 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 26, 2020 at 04:48:33PM -0700, Lucas De Marchi wrote:
-> We have a mix of dport, intel_dport, intel_dig_port and dig_port to
-> reference a intel_digital_port struct. Numbers are around
-> 
-> 5	intel_dport
-> 36	dport
-> 479	intel_dig_port
-> 352	dig_port
-> 
-> Since we already removed the intel_ prefix from most of our other
-> structs, do the same here and prefer dig_port.
-> 
-> v2: rename everything in i915, not just a few display sources and
-> reword commit message (from Matt Roper)
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 143 ++++----
->  drivers/gpu/drm/i915/display/intel_display.c  |   6 +-
->  drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
->  .../drm/i915/display/intel_display_debugfs.c  |  12 +-
->  .../drm/i915/display/intel_display_power.c    |   4 +-
->  .../drm/i915/display/intel_display_types.h    |  40 +--
->  drivers/gpu/drm/i915/display/intel_dp.c       | 338 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_dp.h       |   4 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  74 ++--
->  drivers/gpu/drm/i915/display/intel_dp_mst.h   |   6 +-
->  drivers/gpu/drm/i915/display/intel_dpio_phy.c |  38 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     | 118 +++---
->  drivers/gpu/drm/i915/display/intel_hdmi.c     | 252 ++++++-------
->  drivers/gpu/drm/i915/display/intel_hdmi.h     |   4 +-
->  drivers/gpu/drm/i915/display/intel_lspcon.c   |   8 +-
->  drivers/gpu/drm/i915/display/intel_lspcon.h   |   2 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      |   4 +-
->  drivers/gpu/drm/i915/display/intel_vdsc.c     |   8 +-
->  18 files changed, 530 insertions(+), 533 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 025d4052f6f8..583170e73881 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -1394,10 +1394,9 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
->  static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder)
->  {
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> -	struct intel_digital_port *intel_dig_port =
-> -		enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  
-> -	intel_dp->DP = intel_dig_port->saved_port_bits |
-> +	intel_dp->DP = dig_port->saved_port_bits |
->  		DDI_BUF_CTL_ENABLE | DDI_BUF_TRANS_SELECT(0);
->  	intel_dp->DP |= DDI_PORT_WIDTH(intel_dp->lane_count);
->  }
-> @@ -2070,7 +2069,7 @@ static void _skl_ddi_set_iboost(struct drm_i915_private *dev_priv,
->  static void skl_ddi_set_iboost(struct intel_encoder *encoder,
->  			       int level, enum intel_output_type type)
->  {
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	enum port port = encoder->port;
->  	u8 iboost;
-> @@ -2107,7 +2106,7 @@ static void skl_ddi_set_iboost(struct intel_encoder *encoder,
->  
->  	_skl_ddi_set_iboost(dev_priv, port, iboost);
->  
-> -	if (port == PORT_A && intel_dig_port->max_lanes == 4)
-> +	if (port == PORT_A && dig_port->max_lanes == 4)
->  		_skl_ddi_set_iboost(dev_priv, PORT_E, iboost);
->  }
->  
-> @@ -3000,15 +2999,15 @@ static void intel_ddi_clk_disable(struct intel_encoder *encoder)
->  }
->  
->  static void
-> -icl_program_mg_dp_mode(struct intel_digital_port *intel_dig_port,
-> +icl_program_mg_dp_mode(struct intel_digital_port *dig_port,
->  		       const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(intel_dig_port->base.base.dev);
-> -	enum tc_port tc_port = intel_port_to_tc(dev_priv, intel_dig_port->base.port);
-> +	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
-> +	enum tc_port tc_port = intel_port_to_tc(dev_priv, dig_port->base.port);
->  	u32 ln0, ln1, pin_assignment;
->  	u8 width;
->  
-> -	if (intel_dig_port->tc_mode == TC_PORT_TBT_ALT)
-> +	if (dig_port->tc_mode == TC_PORT_TBT_ALT)
->  		return;
->  
->  	if (INTEL_GEN(dev_priv) >= 12) {
-> @@ -3027,13 +3026,13 @@ icl_program_mg_dp_mode(struct intel_digital_port *intel_dig_port,
->  	ln1 &= ~(MG_DP_MODE_CFG_DP_X1_MODE | MG_DP_MODE_CFG_DP_X2_MODE);
->  
->  	/* DPPATC */
-> -	pin_assignment = intel_tc_port_get_pin_assignment_mask(intel_dig_port);
-> +	pin_assignment = intel_tc_port_get_pin_assignment_mask(dig_port);
->  	width = crtc_state->lane_count;
->  
->  	switch (pin_assignment) {
->  	case 0x0:
->  		drm_WARN_ON(&dev_priv->drm,
-> -			    intel_dig_port->tc_mode != TC_PORT_LEGACY);
-> +			    dig_port->tc_mode != TC_PORT_LEGACY);
->  		if (width == 1) {
->  			ln1 |= MG_DP_MODE_CFG_DP_X1_MODE;
->  		} else {
-> @@ -3978,10 +3977,9 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
->  
->  static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp)
->  {
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> -	struct drm_i915_private *dev_priv =
-> -		to_i915(intel_dig_port->base.base.dev);
-> -	enum port port = intel_dig_port->base.port;
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
-> +	enum port port = dig_port->base.port;
->  	u32 dp_tp_ctl, ddi_buf_ctl;
->  	bool wait = false;
->  
-> @@ -4536,42 +4534,41 @@ static const struct drm_encoder_funcs intel_ddi_funcs = {
->  };
->  
->  static struct intel_connector *
-> -intel_ddi_init_dp_connector(struct intel_digital_port *intel_dig_port)
-> +intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
->  	struct intel_connector *connector;
-> -	enum port port = intel_dig_port->base.port;
-> +	enum port port = dig_port->base.port;
->  
->  	connector = intel_connector_alloc();
->  	if (!connector)
->  		return NULL;
->  
-> -	intel_dig_port->dp.output_reg = DDI_BUF_CTL(port);
-> -	intel_dig_port->dp.prepare_link_retrain =
-> -		intel_ddi_prepare_link_retrain;
-> -	intel_dig_port->dp.set_link_train = intel_ddi_set_link_train;
-> -	intel_dig_port->dp.set_idle_link_train = intel_ddi_set_idle_link_train;
-> +	dig_port->dp.output_reg = DDI_BUF_CTL(port);
-> +	dig_port->dp.prepare_link_retrain = intel_ddi_prepare_link_retrain;
-> +	dig_port->dp.set_link_train = intel_ddi_set_link_train;
-> +	dig_port->dp.set_idle_link_train = intel_ddi_set_idle_link_train;
->  
->  	if (INTEL_GEN(dev_priv) >= 12)
-> -		intel_dig_port->dp.set_signal_levels = tgl_set_signal_levels;
-> +		dig_port->dp.set_signal_levels = tgl_set_signal_levels;
->  	else if (INTEL_GEN(dev_priv) >= 11)
-> -		intel_dig_port->dp.set_signal_levels = icl_set_signal_levels;
-> +		dig_port->dp.set_signal_levels = icl_set_signal_levels;
->  	else if (IS_CANNONLAKE(dev_priv))
-> -		intel_dig_port->dp.set_signal_levels = cnl_set_signal_levels;
-> +		dig_port->dp.set_signal_levels = cnl_set_signal_levels;
->  	else if (IS_GEN9_LP(dev_priv))
-> -		intel_dig_port->dp.set_signal_levels = bxt_set_signal_levels;
-> +		dig_port->dp.set_signal_levels = bxt_set_signal_levels;
->  	else
-> -		intel_dig_port->dp.set_signal_levels = hsw_set_signal_levels;
-> +		dig_port->dp.set_signal_levels = hsw_set_signal_levels;
->  
-> -	intel_dig_port->dp.voltage_max = intel_ddi_dp_voltage_max;
-> -	intel_dig_port->dp.preemph_max = intel_ddi_dp_preemph_max;
-> +	dig_port->dp.voltage_max = intel_ddi_dp_voltage_max;
-> +	dig_port->dp.preemph_max = intel_ddi_dp_preemph_max;
->  
->  	if (INTEL_GEN(dev_priv) < 12) {
-> -		intel_dig_port->dp.regs.dp_tp_ctl = DP_TP_CTL(port);
-> -		intel_dig_port->dp.regs.dp_tp_status = DP_TP_STATUS(port);
-> +		dig_port->dp.regs.dp_tp_ctl = DP_TP_CTL(port);
-> +		dig_port->dp.regs.dp_tp_status = DP_TP_STATUS(port);
->  	}
->  
-> -	if (!intel_dp_init_connector(intel_dig_port, connector)) {
-> +	if (!intel_dp_init_connector(dig_port, connector)) {
->  		kfree(connector);
->  		return NULL;
->  	}
-> @@ -4770,29 +4767,29 @@ static bool bdw_digital_port_connected(struct intel_encoder *encoder)
->  }
->  
->  static struct intel_connector *
-> -intel_ddi_init_hdmi_connector(struct intel_digital_port *intel_dig_port)
-> +intel_ddi_init_hdmi_connector(struct intel_digital_port *dig_port)
->  {
->  	struct intel_connector *connector;
-> -	enum port port = intel_dig_port->base.port;
-> +	enum port port = dig_port->base.port;
->  
->  	connector = intel_connector_alloc();
->  	if (!connector)
->  		return NULL;
->  
-> -	intel_dig_port->hdmi.hdmi_reg = DDI_BUF_CTL(port);
-> -	intel_hdmi_init_connector(intel_dig_port, connector);
-> +	dig_port->hdmi.hdmi_reg = DDI_BUF_CTL(port);
-> +	intel_hdmi_init_connector(dig_port, connector);
->  
->  	return connector;
->  }
->  
-> -static bool intel_ddi_a_force_4_lanes(struct intel_digital_port *dport)
-> +static bool intel_ddi_a_force_4_lanes(struct intel_digital_port *dig_port)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(dport->base.base.dev);
-> +	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
->  
-> -	if (dport->base.port != PORT_A)
-> +	if (dig_port->base.port != PORT_A)
->  		return false;
->  
-> -	if (dport->saved_port_bits & DDI_A_4_LANES)
-> +	if (dig_port->saved_port_bits & DDI_A_4_LANES)
->  		return false;
->  
->  	/* Broxton/Geminilake: Bspec says that DDI_A_4_LANES is the only
-> @@ -4814,10 +4811,10 @@ static bool intel_ddi_a_force_4_lanes(struct intel_digital_port *dport)
->  }
->  
->  static int
-> -intel_ddi_max_lanes(struct intel_digital_port *intel_dport)
-> +intel_ddi_max_lanes(struct intel_digital_port *dig_port)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(intel_dport->base.base.dev);
-> -	enum port port = intel_dport->base.port;
-> +	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
-> +	enum port port = dig_port->base.port;
->  	int max_lanes = 4;
->  
->  	if (INTEL_GEN(dev_priv) >= 11)
-> @@ -4836,10 +4833,10 @@ intel_ddi_max_lanes(struct intel_digital_port *intel_dport)
->  	 * wasn't lit up at boot.  Force this bit set when needed
->  	 * so we use the proper lane count for our calculations.
->  	 */
-> -	if (intel_ddi_a_force_4_lanes(intel_dport)) {
-> +	if (intel_ddi_a_force_4_lanes(dig_port)) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "Forcing DDI_A_4_LANES for port A\n");
-> -		intel_dport->saved_port_bits |= DDI_A_4_LANES;
-> +		dig_port->saved_port_bits |= DDI_A_4_LANES;
->  		max_lanes = 4;
->  	}
->  
-> @@ -4848,7 +4845,7 @@ intel_ddi_max_lanes(struct intel_digital_port *intel_dport)
->  
->  void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  {
-> -	struct intel_digital_port *intel_dig_port;
-> +	struct intel_digital_port *dig_port;
->  	struct intel_encoder *encoder;
->  	bool init_hdmi, init_dp, init_lspcon = false;
->  	enum phy phy = intel_port_to_phy(dev_priv, port);
-> @@ -4877,11 +4874,11 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  		return;
->  	}
->  
-> -	intel_dig_port = kzalloc(sizeof(*intel_dig_port), GFP_KERNEL);
-> -	if (!intel_dig_port)
-> +	dig_port = kzalloc(sizeof(*dig_port), GFP_KERNEL);
-> +	if (!dig_port)
->  		return;
->  
-> -	encoder = &intel_dig_port->base;
-> +	encoder = &dig_port->base;
->  
->  	drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_ddi_funcs,
->  			 DRM_MODE_ENCODER_TMDS, "DDI %c", port_name(port));
-> @@ -4908,49 +4905,49 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  	encoder->pipe_mask = ~0;
->  
->  	if (INTEL_GEN(dev_priv) >= 11)
-> -		intel_dig_port->saved_port_bits = intel_de_read(dev_priv,
-> -								DDI_BUF_CTL(port)) &
-> -			DDI_BUF_PORT_REVERSAL;
-> +		dig_port->saved_port_bits =
-> +			intel_de_read(dev_priv, DDI_BUF_CTL(port))
-> +			& DDI_BUF_PORT_REVERSAL;
->  	else
-> -		intel_dig_port->saved_port_bits = intel_de_read(dev_priv,
-> -								DDI_BUF_CTL(port)) &
-> -			(DDI_BUF_PORT_REVERSAL | DDI_A_4_LANES);
-> +		dig_port->saved_port_bits =
-> +			intel_de_read(dev_priv, DDI_BUF_CTL(port))
-> +			& (DDI_BUF_PORT_REVERSAL | DDI_A_4_LANES);
->  
-> -	intel_dig_port->dp.output_reg = INVALID_MMIO_REG;
-> -	intel_dig_port->max_lanes = intel_ddi_max_lanes(intel_dig_port);
-> -	intel_dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, port);
-> +	dig_port->dp.output_reg = INVALID_MMIO_REG;
-> +	dig_port->max_lanes = intel_ddi_max_lanes(dig_port);
-> +	dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, port);
->  
->  	if (intel_phy_is_tc(dev_priv, phy)) {
->  		bool is_legacy =
->  			!intel_bios_port_supports_typec_usb(dev_priv, port) &&
->  			!intel_bios_port_supports_tbt(dev_priv, port);
->  
-> -		intel_tc_port_init(intel_dig_port, is_legacy);
-> +		intel_tc_port_init(dig_port, is_legacy);
->  
->  		encoder->update_prepare = intel_ddi_update_prepare;
->  		encoder->update_complete = intel_ddi_update_complete;
->  	}
->  
->  	drm_WARN_ON(&dev_priv->drm, port > PORT_I);
-> -	intel_dig_port->ddi_io_power_domain = POWER_DOMAIN_PORT_DDI_A_IO +
-> +	dig_port->ddi_io_power_domain = POWER_DOMAIN_PORT_DDI_A_IO +
->  					      port - PORT_A;
->  
->  	if (init_dp) {
-> -		if (!intel_ddi_init_dp_connector(intel_dig_port))
-> +		if (!intel_ddi_init_dp_connector(dig_port))
->  			goto err;
->  
-> -		intel_dig_port->hpd_pulse = intel_dp_hpd_pulse;
-> +		dig_port->hpd_pulse = intel_dp_hpd_pulse;
->  	}
->  
->  	/* In theory we don't need the encoder->type check, but leave it just in
->  	 * case we have some really bad VBTs... */
->  	if (encoder->type != INTEL_OUTPUT_EDP && init_hdmi) {
-> -		if (!intel_ddi_init_hdmi_connector(intel_dig_port))
-> +		if (!intel_ddi_init_hdmi_connector(dig_port))
->  			goto err;
->  	}
->  
->  	if (init_lspcon) {
-> -		if (lspcon_init(intel_dig_port))
-> +		if (lspcon_init(dig_port))
->  			/* TODO: handle hdmi info frame part */
->  			drm_dbg_kms(&dev_priv->drm,
->  				    "LSPCON init success on port %c\n",
-> @@ -4967,26 +4964,26 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  
->  	if (INTEL_GEN(dev_priv) >= 11) {
->  		if (intel_phy_is_tc(dev_priv, phy))
-> -			intel_dig_port->connected = intel_tc_port_connected;
-> +			dig_port->connected = intel_tc_port_connected;
->  		else
-> -			intel_dig_port->connected = lpt_digital_port_connected;
-> +			dig_port->connected = lpt_digital_port_connected;
->  	} else if (INTEL_GEN(dev_priv) >= 8) {
->  		if (port == PORT_A || IS_GEN9_LP(dev_priv))
-> -			intel_dig_port->connected = bdw_digital_port_connected;
-> +			dig_port->connected = bdw_digital_port_connected;
->  		else
-> -			intel_dig_port->connected = lpt_digital_port_connected;
-> +			dig_port->connected = lpt_digital_port_connected;
->  	} else {
->  		if (port == PORT_A)
-> -			intel_dig_port->connected = hsw_digital_port_connected;
-> +			dig_port->connected = hsw_digital_port_connected;
->  		else
-> -			intel_dig_port->connected = lpt_digital_port_connected;
-> +			dig_port->connected = lpt_digital_port_connected;
->  	}
->  
-> -	intel_infoframe_init(intel_dig_port);
-> +	intel_infoframe_init(dig_port);
->  
->  	return;
->  
->  err:
->  	drm_encoder_cleanup(&encoder->base);
-> -	kfree(intel_dig_port);
-> +	kfree(dig_port);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index a11bb675f9b3..3b1f0b28e585 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -1611,13 +1611,13 @@ static void chv_disable_pll(struct drm_i915_private *dev_priv, enum pipe pipe)
->  }
->  
->  void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
-> -			 struct intel_digital_port *dport,
-> +			 struct intel_digital_port *dig_port,
->  			 unsigned int expected_mask)
->  {
->  	u32 port_mask;
->  	i915_reg_t dpll_reg;
->  
-> -	switch (dport->base.port) {
-> +	switch (dig_port->base.port) {
->  	case PORT_B:
->  		port_mask = DPLL_PORTB_READY_MASK;
->  		dpll_reg = DPLL(0);
-> @@ -1639,7 +1639,7 @@ void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
->  				       port_mask, expected_mask, 1000))
->  		drm_WARN(&dev_priv->drm, 1,
->  			 "timed out waiting for [ENCODER:%d:%s] port ready: got 0x%x, expected 0x%x\n",
-> -			 dport->base.base.base.id, dport->base.base.name,
-> +			 dig_port->base.base.base.id, dig_port->base.base.name,
->  			 intel_de_read(dev_priv, dpll_reg) & port_mask,
->  			 expected_mask);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index b7a6d56bac5f..bc6021b994b1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -542,7 +542,7 @@ void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
->  
->  int ilk_get_lanes_required(int target_clock, int link_bw, int bpp);
->  void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
-> -			 struct intel_digital_port *dport,
-> +			 struct intel_digital_port *dig_port,
->  			 unsigned int expected_mask);
->  int intel_get_load_detect_pipe(struct drm_connector *connector,
->  			       struct intel_load_detect_pipe *old,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index d1cb48b3f462..3644752cc5ec 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -1194,7 +1194,7 @@ static int i915_dp_mst_info(struct seq_file *m, void *unused)
->  	struct drm_i915_private *dev_priv = node_to_i915(m->private);
->  	struct drm_device *dev = &dev_priv->drm;
->  	struct intel_encoder *intel_encoder;
-> -	struct intel_digital_port *intel_dig_port;
-> +	struct intel_digital_port *dig_port;
->  	struct drm_connector *connector;
->  	struct drm_connector_list_iter conn_iter;
->  
-> @@ -1207,14 +1207,14 @@ static int i915_dp_mst_info(struct seq_file *m, void *unused)
->  		if (!intel_encoder || intel_encoder->type == INTEL_OUTPUT_DP_MST)
->  			continue;
->  
-> -		intel_dig_port = enc_to_dig_port(intel_encoder);
-> -		if (!intel_dig_port->dp.can_mst)
-> +		dig_port = enc_to_dig_port(intel_encoder);
-> +		if (!dig_port->dp.can_mst)
->  			continue;
->  
->  		seq_printf(m, "MST Source Port [ENCODER:%d:%s]\n",
-> -			   intel_dig_port->base.base.base.id,
-> -			   intel_dig_port->base.base.name);
-> -		drm_dp_mst_dump_topology(m, &intel_dig_port->dp.mst_mgr);
-> +			   dig_port->base.base.base.id,
-> +			   dig_port->base.base.name);
-> +		drm_dp_mst_dump_topology(m, &dig_port->dp.mst_mgr);
->  	}
->  	drm_connector_list_iter_end(&conn_iter);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 8a277dfbc070..0c713e83274d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -1817,8 +1817,8 @@ void chv_phy_powergate_lanes(struct intel_encoder *encoder,
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct i915_power_domains *power_domains = &dev_priv->power_domains;
-> -	enum dpio_phy phy = vlv_dport_to_phy(enc_to_dig_port(encoder));
-> -	enum dpio_channel ch = vlv_dport_to_channel(enc_to_dig_port(encoder));
-> +	enum dpio_phy phy = vlv_dig_port_to_phy(enc_to_dig_port(encoder));
-> +	enum dpio_channel ch = vlv_dig_port_to_channel(enc_to_dig_port(encoder));
->  
->  	mutex_lock(&power_domains->lock);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 4b0aaa3081c9..e8f809161c75 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -279,10 +279,10 @@ enum check_link_response {
->   */
->  struct intel_hdcp_shim {
->  	/* Outputs the transmitter's An and Aksv values to the receiver. */
-> -	int (*write_an_aksv)(struct intel_digital_port *intel_dig_port, u8 *an);
-> +	int (*write_an_aksv)(struct intel_digital_port *dig_port, u8 *an);
->  
->  	/* Reads the receiver's key selection vector */
-> -	int (*read_bksv)(struct intel_digital_port *intel_dig_port, u8 *bksv);
-> +	int (*read_bksv)(struct intel_digital_port *dig_port, u8 *bksv);
->  
->  	/*
->  	 * Reads BINFO from DP receivers and BSTATUS from HDMI receivers. The
-> @@ -290,52 +290,52 @@ struct intel_hdcp_shim {
->  	 * different. Call it BSTATUS since that's the name the HDMI spec
->  	 * uses and it was there first.
->  	 */
-> -	int (*read_bstatus)(struct intel_digital_port *intel_dig_port,
-> +	int (*read_bstatus)(struct intel_digital_port *dig_port,
->  			    u8 *bstatus);
->  
->  	/* Determines whether a repeater is present downstream */
-> -	int (*repeater_present)(struct intel_digital_port *intel_dig_port,
-> +	int (*repeater_present)(struct intel_digital_port *dig_port,
->  				bool *repeater_present);
->  
->  	/* Reads the receiver's Ri' value */
-> -	int (*read_ri_prime)(struct intel_digital_port *intel_dig_port, u8 *ri);
-> +	int (*read_ri_prime)(struct intel_digital_port *dig_port, u8 *ri);
->  
->  	/* Determines if the receiver's KSV FIFO is ready for consumption */
-> -	int (*read_ksv_ready)(struct intel_digital_port *intel_dig_port,
-> +	int (*read_ksv_ready)(struct intel_digital_port *dig_port,
->  			      bool *ksv_ready);
->  
->  	/* Reads the ksv fifo for num_downstream devices */
-> -	int (*read_ksv_fifo)(struct intel_digital_port *intel_dig_port,
-> +	int (*read_ksv_fifo)(struct intel_digital_port *dig_port,
->  			     int num_downstream, u8 *ksv_fifo);
->  
->  	/* Reads a 32-bit part of V' from the receiver */
-> -	int (*read_v_prime_part)(struct intel_digital_port *intel_dig_port,
-> +	int (*read_v_prime_part)(struct intel_digital_port *dig_port,
->  				 int i, u32 *part);
->  
->  	/* Enables HDCP signalling on the port */
-> -	int (*toggle_signalling)(struct intel_digital_port *intel_dig_port,
-> +	int (*toggle_signalling)(struct intel_digital_port *dig_port,
->  				 bool enable);
->  
->  	/* Ensures the link is still protected */
-> -	bool (*check_link)(struct intel_digital_port *intel_dig_port);
-> +	bool (*check_link)(struct intel_digital_port *dig_port);
->  
->  	/* Detects panel's hdcp capability. This is optional for HDMI. */
-> -	int (*hdcp_capable)(struct intel_digital_port *intel_dig_port,
-> +	int (*hdcp_capable)(struct intel_digital_port *dig_port,
->  			    bool *hdcp_capable);
->  
->  	/* HDCP adaptation(DP/HDMI) required on the port */
->  	enum hdcp_wired_protocol protocol;
->  
->  	/* Detects whether sink is HDCP2.2 capable */
-> -	int (*hdcp_2_2_capable)(struct intel_digital_port *intel_dig_port,
-> +	int (*hdcp_2_2_capable)(struct intel_digital_port *dig_port,
->  				bool *capable);
->  
->  	/* Write HDCP2.2 messages */
-> -	int (*write_2_2_msg)(struct intel_digital_port *intel_dig_port,
-> +	int (*write_2_2_msg)(struct intel_digital_port *dig_port,
->  			     void *buf, size_t size);
->  
->  	/* Read HDCP2.2 messages */
-> -	int (*read_2_2_msg)(struct intel_digital_port *intel_dig_port,
-> +	int (*read_2_2_msg)(struct intel_digital_port *dig_port,
->  			    u8 msg_id, void *buf, size_t size);
->  
->  	/*
-> @@ -343,11 +343,11 @@ struct intel_hdcp_shim {
->  	 * type to Receivers. In DP HDCP2.2 Stream type is one of the input to
->  	 * the HDCP2.2 Cipher for En/De-Cryption. Not applicable for HDMI.
->  	 */
-> -	int (*config_stream_type)(struct intel_digital_port *intel_dig_port,
-> +	int (*config_stream_type)(struct intel_digital_port *dig_port,
->  				  bool is_repeater, u8 type);
->  
->  	/* HDCP2.2 Link Integrity Check */
-> -	int (*check_2_2_link)(struct intel_digital_port *intel_dig_port);
-> +	int (*check_2_2_link)(struct intel_digital_port *dig_port);
->  };
->  
->  struct intel_hdcp {
-> @@ -1434,9 +1434,9 @@ struct intel_dp_mst_encoder {
->  };
->  
->  static inline enum dpio_channel
-> -vlv_dport_to_channel(struct intel_digital_port *dport)
-> +vlv_dig_port_to_channel(struct intel_digital_port *dig_port)
->  {
-> -	switch (dport->base.port) {
-> +	switch (dig_port->base.port) {
->  	case PORT_B:
->  	case PORT_D:
->  		return DPIO_CH0;
-> @@ -1448,9 +1448,9 @@ vlv_dport_to_channel(struct intel_digital_port *dport)
->  }
->  
->  static inline enum dpio_phy
-> -vlv_dport_to_phy(struct intel_digital_port *dport)
-> +vlv_dig_port_to_phy(struct intel_digital_port *dig_port)
->  {
-> -	switch (dport->base.port) {
-> +	switch (dig_port->base.port) {
->  	case PORT_B:
->  	case PORT_C:
->  		return DPIO_PHY0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 3df5d901dd9d..d6295eb20b63 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -140,9 +140,9 @@ static const u8 valid_dsc_slicecount[] = {1, 2, 4};
->   */
->  bool intel_dp_is_edp(struct intel_dp *intel_dp)
->  {
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  
-> -	return intel_dig_port->base.type == INTEL_OUTPUT_EDP;
-> +	return dig_port->base.type == INTEL_OUTPUT_EDP;
->  }
->  
->  static void intel_dp_link_down(struct intel_encoder *encoder,
-> @@ -216,10 +216,10 @@ static int intel_dp_max_common_rate(struct intel_dp *intel_dp)
->  /* Theoretical max between source and sink */
->  static int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
->  {
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> -	int source_max = intel_dig_port->max_lanes;
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	int source_max = dig_port->max_lanes;
->  	int sink_max = drm_dp_max_lane_count(intel_dp->dpcd);
-> -	int fia_max = intel_tc_port_fia_max_lane_count(intel_dig_port);
-> +	int fia_max = intel_tc_port_fia_max_lane_count(dig_port);
->  
->  	return min3(source_max, sink_max, fia_max);
->  }
-> @@ -251,8 +251,8 @@ intel_dp_max_data_rate(int max_link_clock, int max_lanes)
->  static int
->  intel_dp_downstream_max_dotclock(struct intel_dp *intel_dp)
->  {
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> -	struct intel_encoder *encoder = &intel_dig_port->base;
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_encoder *encoder = &dig_port->base;
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	int max_dotclk = dev_priv->max_dotclk_freq;
->  	int ds_max_dotclk;
-> @@ -778,7 +778,7 @@ static void
->  vlv_power_sequencer_kick(struct intel_dp *intel_dp)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	enum pipe pipe = intel_dp->pps_pipe;
->  	bool pll_enabled, release_cl_override = false;
->  	enum dpio_phy phy = DPIO_PHY(pipe);
-> @@ -788,14 +788,14 @@ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
->  	if (drm_WARN(&dev_priv->drm,
->  		     intel_de_read(dev_priv, intel_dp->output_reg) & DP_PORT_EN,
->  		     "skipping pipe %c power sequencer kick due to [ENCODER:%d:%s] being active\n",
-> -		     pipe_name(pipe), intel_dig_port->base.base.base.id,
-> -		     intel_dig_port->base.base.name))
-> +		     pipe_name(pipe), dig_port->base.base.base.id,
-> +		     dig_port->base.base.name))
->  		return;
->  
->  	drm_dbg_kms(&dev_priv->drm,
->  		    "kicking pipe %c power sequencer for [ENCODER:%d:%s]\n",
-> -		    pipe_name(pipe), intel_dig_port->base.base.base.id,
-> -		    intel_dig_port->base.base.name);
-> +		    pipe_name(pipe), dig_port->base.base.base.id,
-> +		    dig_port->base.base.name);
->  
->  	/* Preserve the BIOS-computed detected bit. This is
->  	 * supposed to be read-only.
-> @@ -891,7 +891,7 @@ static enum pipe
->  vlv_power_sequencer_pipe(struct intel_dp *intel_dp)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	enum pipe pipe;
->  
->  	lockdep_assert_held(&dev_priv->pps_mutex);
-> @@ -920,8 +920,8 @@ vlv_power_sequencer_pipe(struct intel_dp *intel_dp)
->  	drm_dbg_kms(&dev_priv->drm,
->  		    "picked pipe %c power sequencer for [ENCODER:%d:%s]\n",
->  		    pipe_name(intel_dp->pps_pipe),
-> -		    intel_dig_port->base.base.base.id,
-> -		    intel_dig_port->base.base.name);
-> +		    dig_port->base.base.base.id,
-> +		    dig_port->base.base.name);
->  
->  	/* init power sequencer on this pipe and port */
->  	intel_dp_init_panel_power_sequencer(intel_dp);
-> @@ -1009,8 +1009,8 @@ static void
->  vlv_initial_power_sequencer_setup(struct intel_dp *intel_dp)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> -	enum port port = intel_dig_port->base.port;
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	enum port port = dig_port->base.port;
->  
->  	lockdep_assert_held(&dev_priv->pps_mutex);
->  
-> @@ -1031,15 +1031,15 @@ vlv_initial_power_sequencer_setup(struct intel_dp *intel_dp)
->  	if (intel_dp->pps_pipe == INVALID_PIPE) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "no initial power sequencer for [ENCODER:%d:%s]\n",
-> -			    intel_dig_port->base.base.base.id,
-> -			    intel_dig_port->base.base.name);
-> +			    dig_port->base.base.base.id,
-> +			    dig_port->base.base.name);
->  		return;
->  	}
->  
->  	drm_dbg_kms(&dev_priv->drm,
->  		    "initial power sequencer for [ENCODER:%d:%s]: pipe %c\n",
-> -		    intel_dig_port->base.base.base.id,
-> -		    intel_dig_port->base.base.name,
-> +		    dig_port->base.base.base.id,
-> +		    dig_port->base.base.name,
->  		    pipe_name(intel_dp->pps_pipe));
->  
->  	intel_dp_init_panel_power_sequencer(intel_dp);
-> @@ -1304,9 +1304,9 @@ static u32 g4x_get_aux_send_ctl(struct intel_dp *intel_dp,
->  				int send_bytes,
->  				u32 aux_clock_divider)
->  {
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	struct drm_i915_private *dev_priv =
-> -			to_i915(intel_dig_port->base.base.dev);
-> +			to_i915(dig_port->base.base.dev);
->  	u32 precharge, timeout;
->  
->  	if (IS_GEN(dev_priv, 6))
-> @@ -1334,10 +1334,10 @@ static u32 skl_get_aux_send_ctl(struct intel_dp *intel_dp,
->  				int send_bytes,
->  				u32 unused)
->  {
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	struct drm_i915_private *i915 =
-> -			to_i915(intel_dig_port->base.base.dev);
-> -	enum phy phy = intel_port_to_phy(i915, intel_dig_port->base.port);
-> +			to_i915(dig_port->base.base.dev);
-> +	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
->  	u32 ret;
->  
->  	ret = DP_AUX_CH_CTL_SEND_BUSY |
-> @@ -1351,7 +1351,7 @@ static u32 skl_get_aux_send_ctl(struct intel_dp *intel_dp,
->  	      DP_AUX_CH_CTL_SYNC_PULSE_SKL(32);
->  
->  	if (intel_phy_is_tc(i915, phy) &&
-> -	    intel_dig_port->tc_mode == TC_PORT_TBT_ALT)
-> +	    dig_port->tc_mode == TC_PORT_TBT_ALT)
->  		ret |= DP_AUX_CH_CTL_TBT_IO;
->  
->  	return ret;
-> @@ -1363,11 +1363,11 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  		  u8 *recv, int recv_size,
->  		  u32 aux_send_ctl_flags)
->  {
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	struct drm_i915_private *i915 =
-> -			to_i915(intel_dig_port->base.base.dev);
-> +			to_i915(dig_port->base.base.dev);
->  	struct intel_uncore *uncore = &i915->uncore;
-> -	enum phy phy = intel_port_to_phy(i915, intel_dig_port->base.port);
-> +	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
->  	bool is_tc_port = intel_phy_is_tc(i915, phy);
->  	i915_reg_t ch_ctl, ch_data[5];
->  	u32 aux_clock_divider;
-> @@ -1384,9 +1384,9 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  		ch_data[i] = intel_dp->aux_ch_data_reg(intel_dp, i);
->  
->  	if (is_tc_port)
-> -		intel_tc_port_lock(intel_dig_port);
-> +		intel_tc_port_lock(dig_port);
->  
-> -	aux_domain = intel_aux_power_domain(intel_dig_port);
-> +	aux_domain = intel_aux_power_domain(dig_port);
->  
->  	aux_wakeref = intel_display_power_get(i915, aux_domain);
->  	pps_wakeref = pps_lock(intel_dp);
-> @@ -1545,7 +1545,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	intel_display_power_put_async(i915, aux_domain, aux_wakeref);
->  
->  	if (is_tc_port)
-> -		intel_tc_port_unlock(intel_dig_port);
-> +		intel_tc_port_unlock(dig_port);
->  
->  	return ret;
->  }
-> @@ -2891,7 +2891,7 @@ static  u32 ilk_get_pp_control(struct intel_dp *intel_dp)
->  static bool edp_panel_vdd_on(struct intel_dp *intel_dp)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	u32 pp;
->  	i915_reg_t pp_stat_reg, pp_ctrl_reg;
->  	bool need_to_disable = !intel_dp->want_panel_vdd;
-> @@ -2908,11 +2908,11 @@ static bool edp_panel_vdd_on(struct intel_dp *intel_dp)
->  		return need_to_disable;
->  
->  	intel_display_power_get(dev_priv,
-> -				intel_aux_power_domain(intel_dig_port));
-> +				intel_aux_power_domain(dig_port));
->  
->  	drm_dbg_kms(&dev_priv->drm, "Turning [ENCODER:%d:%s] VDD on\n",
-> -		    intel_dig_port->base.base.base.id,
-> -		    intel_dig_port->base.base.name);
-> +		    dig_port->base.base.base.id,
-> +		    dig_port->base.base.name);
->  
->  	if (!edp_have_panel_power(intel_dp))
->  		wait_panel_power_cycle(intel_dp);
-> @@ -2934,8 +2934,8 @@ static bool edp_panel_vdd_on(struct intel_dp *intel_dp)
->  	if (!edp_have_panel_power(intel_dp)) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "[ENCODER:%d:%s] panel power wasn't enabled\n",
-> -			    intel_dig_port->base.base.base.id,
-> -			    intel_dig_port->base.base.name);
-> +			    dig_port->base.base.base.id,
-> +			    dig_port->base.base.name);
->  		msleep(intel_dp->panel_power_up_delay);
->  	}
->  
-> @@ -2968,7 +2968,7 @@ void intel_edp_panel_vdd_on(struct intel_dp *intel_dp)
->  static void edp_panel_vdd_off_sync(struct intel_dp *intel_dp)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> -	struct intel_digital_port *intel_dig_port =
-> +	struct intel_digital_port *dig_port =
->  		dp_to_dig_port(intel_dp);
->  	u32 pp;
->  	i915_reg_t pp_stat_reg, pp_ctrl_reg;
-> @@ -2981,8 +2981,8 @@ static void edp_panel_vdd_off_sync(struct intel_dp *intel_dp)
->  		return;
->  
->  	drm_dbg_kms(&dev_priv->drm, "Turning [ENCODER:%d:%s] VDD off\n",
-> -		    intel_dig_port->base.base.base.id,
-> -		    intel_dig_port->base.base.name);
-> +		    dig_port->base.base.base.id,
-> +		    dig_port->base.base.name);
->  
->  	pp = ilk_get_pp_control(intel_dp);
->  	pp &= ~EDP_FORCE_VDD;
-> @@ -3002,7 +3002,7 @@ static void edp_panel_vdd_off_sync(struct intel_dp *intel_dp)
->  		intel_dp->panel_power_off_time = ktime_get_boottime();
->  
->  	intel_display_power_put_unchecked(dev_priv,
-> -					  intel_aux_power_domain(intel_dig_port));
-> +					  intel_aux_power_domain(dig_port));
->  }
->  
->  static void edp_panel_vdd_work(struct work_struct *__work)
-> @@ -3833,8 +3833,8 @@ static void g4x_pre_enable_dp(struct intel_atomic_state *state,
->  
->  static void vlv_detach_power_sequencer(struct intel_dp *intel_dp)
->  {
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> -	struct drm_i915_private *dev_priv = to_i915(intel_dig_port->base.base.dev);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
->  	enum pipe pipe = intel_dp->pps_pipe;
->  	i915_reg_t pp_on_reg = PP_ON_DELAYS(pipe);
->  
-> @@ -3856,8 +3856,8 @@ static void vlv_detach_power_sequencer(struct intel_dp *intel_dp)
->  	 */
->  	drm_dbg_kms(&dev_priv->drm,
->  		    "detaching pipe %c power sequencer from [ENCODER:%d:%s]\n",
-> -		    pipe_name(pipe), intel_dig_port->base.base.base.id,
-> -		    intel_dig_port->base.base.name);
-> +		    pipe_name(pipe), dig_port->base.base.base.id,
-> +		    dig_port->base.base.name);
->  	intel_de_write(dev_priv, pp_on_reg, 0);
->  	intel_de_posting_read(dev_priv, pp_on_reg);
->  
-> @@ -4923,7 +4923,7 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
->  			       const struct intel_crtc_state *crtc_state,
->  			       unsigned int type)
->  {
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct dp_sdp sdp = {};
->  	ssize_t len;
-> @@ -4949,14 +4949,14 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
->  	if (drm_WARN_ON(&dev_priv->drm, len < 0))
->  		return;
->  
-> -	intel_dig_port->write_infoframe(encoder, crtc_state, type, &sdp, len);
-> +	dig_port->write_infoframe(encoder, crtc_state, type, &sdp, len);
->  }
->  
->  void intel_write_dp_vsc_sdp(struct intel_encoder *encoder,
->  			    const struct intel_crtc_state *crtc_state,
->  			    struct drm_dp_vsc_sdp *vsc)
->  {
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct dp_sdp sdp = {};
->  	ssize_t len;
-> @@ -4966,7 +4966,7 @@ void intel_write_dp_vsc_sdp(struct intel_encoder *encoder,
->  	if (drm_WARN_ON(&dev_priv->drm, len < 0))
->  		return;
->  
-> -	intel_dig_port->write_infoframe(encoder, crtc_state, DP_SDP_VSC,
-> +	dig_port->write_infoframe(encoder, crtc_state, DP_SDP_VSC,
->  					&sdp, len);
->  }
->  
-> @@ -5126,7 +5126,7 @@ static void intel_read_dp_vsc_sdp(struct intel_encoder *encoder,
->  				  struct intel_crtc_state *crtc_state,
->  				  struct drm_dp_vsc_sdp *vsc)
->  {
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	unsigned int type = DP_SDP_VSC;
-> @@ -5141,7 +5141,7 @@ static void intel_read_dp_vsc_sdp(struct intel_encoder *encoder,
->  	     intel_hdmi_infoframe_enable(type)) == 0)
->  		return;
->  
-> -	intel_dig_port->read_infoframe(encoder, crtc_state, type, &sdp, sizeof(sdp));
-> +	dig_port->read_infoframe(encoder, crtc_state, type, &sdp, sizeof(sdp));
->  
->  	ret = intel_dp_vsc_sdp_unpack(vsc, &sdp, sizeof(sdp));
->  
-> @@ -5153,7 +5153,7 @@ static void intel_read_dp_hdr_metadata_infoframe_sdp(struct intel_encoder *encod
->  						     struct intel_crtc_state *crtc_state,
->  						     struct hdmi_drm_infoframe *drm_infoframe)
->  {
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	unsigned int type = HDMI_PACKET_TYPE_GAMUT_METADATA;
->  	struct dp_sdp sdp = {};
-> @@ -5163,8 +5163,8 @@ static void intel_read_dp_hdr_metadata_infoframe_sdp(struct intel_encoder *encod
->  	    intel_hdmi_infoframe_enable(type)) == 0)
->  		return;
->  
-> -	intel_dig_port->read_infoframe(encoder, crtc_state, type, &sdp,
-> -				       sizeof(sdp));
-> +	dig_port->read_infoframe(encoder, crtc_state, type, &sdp,
-> +				 sizeof(sdp));
->  
->  	ret = intel_dp_hdr_metadata_infoframe_sdp_unpack(drm_infoframe, &sdp,
->  							 sizeof(sdp));
-> @@ -5366,10 +5366,10 @@ static void intel_dp_phy_pattern_update(struct intel_dp *intel_dp)
->  {
->  	struct drm_i915_private *dev_priv =
->  			to_i915(dp_to_dig_port(intel_dp)->base.base.dev);
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	struct drm_dp_phy_test_params *data =
->  			&intel_dp->compliance.test_data.phytest;
-> -	struct intel_crtc *crtc = to_intel_crtc(intel_dig_port->base.base.crtc);
-> +	struct intel_crtc *crtc = to_intel_crtc(dig_port->base.base.crtc);
->  	enum pipe pipe = crtc->pipe;
->  	u32 pattern_val;
->  
-> @@ -5431,10 +5431,10 @@ static void intel_dp_phy_pattern_update(struct intel_dp *intel_dp)
->  static void
->  intel_dp_autotest_phy_ddi_disable(struct intel_dp *intel_dp)
->  {
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> -	struct drm_device *dev = intel_dig_port->base.base.dev;
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	struct drm_device *dev = dig_port->base.base.dev;
->  	struct drm_i915_private *dev_priv = to_i915(dev);
-> -	struct intel_crtc *crtc = to_intel_crtc(intel_dig_port->base.base.crtc);
-> +	struct intel_crtc *crtc = to_intel_crtc(dig_port->base.base.crtc);
->  	enum pipe pipe = crtc->pipe;
->  	u32 trans_ddi_func_ctl_value, trans_conf_value, dp_tp_ctl_value;
->  
-> @@ -5457,11 +5457,11 @@ intel_dp_autotest_phy_ddi_disable(struct intel_dp *intel_dp)
->  static void
->  intel_dp_autotest_phy_ddi_enable(struct intel_dp *intel_dp, uint8_t lane_cnt)
->  {
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> -	struct drm_device *dev = intel_dig_port->base.base.dev;
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	struct drm_device *dev = dig_port->base.base.dev;
->  	struct drm_i915_private *dev_priv = to_i915(dev);
-> -	enum port port = intel_dig_port->base.port;
-> -	struct intel_crtc *crtc = to_intel_crtc(intel_dig_port->base.base.crtc);
-> +	enum port port = dig_port->base.port;
-> +	struct intel_crtc *crtc = to_intel_crtc(dig_port->base.base.crtc);
->  	enum pipe pipe = crtc->pipe;
->  	u32 trans_ddi_func_ctl_value, trans_conf_value, dp_tp_ctl_value;
->  
-> @@ -6332,10 +6332,10 @@ intel_dp_connector_unregister(struct drm_connector *connector)
->  
->  void intel_dp_encoder_flush_work(struct drm_encoder *encoder)
->  {
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(to_intel_encoder(encoder));
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(to_intel_encoder(encoder));
-> +	struct intel_dp *intel_dp = &dig_port->dp;
->  
-> -	intel_dp_mst_encoder_cleanup(intel_dig_port);
-> +	intel_dp_mst_encoder_cleanup(dig_port);
->  	if (intel_dp_is_edp(intel_dp)) {
->  		intel_wakeref_t wakeref;
->  
-> @@ -6394,11 +6394,11 @@ static void intel_dp_hdcp_wait_for_cp_irq(struct intel_hdcp *hdcp, int timeout)
->  }
->  
->  static
-> -int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
->  				u8 *an)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> -	struct intel_dp *intel_dp = enc_to_intel_dp(to_intel_encoder(&intel_dig_port->base.base));
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(to_intel_encoder(&dig_port->base.base));
->  	static const struct drm_dp_aux_msg msg = {
->  		.request = DP_AUX_NATIVE_WRITE,
->  		.address = DP_AUX_HDCP_AKSV,
-> @@ -6409,7 +6409,7 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
->  	int ret;
->  
->  	/* Output An first, that's easy */
-> -	dpcd_ret = drm_dp_dpcd_write(&intel_dig_port->dp.aux, DP_AUX_HDCP_AN,
-> +	dpcd_ret = drm_dp_dpcd_write(&dig_port->dp.aux, DP_AUX_HDCP_AN,
->  				     an, DRM_HDCP_AN_LEN);
->  	if (dpcd_ret != DRM_HDCP_AN_LEN) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -6448,13 +6448,13 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
->  	return 0;
->  }
->  
-> -static int intel_dp_hdcp_read_bksv(struct intel_digital_port *intel_dig_port,
-> +static int intel_dp_hdcp_read_bksv(struct intel_digital_port *dig_port,
->  				   u8 *bksv)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	ssize_t ret;
->  
-> -	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux, DP_AUX_HDCP_BKSV, bksv,
-> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BKSV, bksv,
->  			       DRM_HDCP_KSV_LEN);
->  	if (ret != DRM_HDCP_KSV_LEN) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -6464,10 +6464,10 @@ static int intel_dp_hdcp_read_bksv(struct intel_digital_port *intel_dig_port,
->  	return 0;
->  }
->  
-> -static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
-> +static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *dig_port,
->  				      u8 *bstatus)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	ssize_t ret;
->  
->  	/*
-> @@ -6475,7 +6475,7 @@ static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
->  	 * definition by different names. In the HDMI spec, it's called BSTATUS,
->  	 * but in DP it's called BINFO.
->  	 */
-> -	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux, DP_AUX_HDCP_BINFO,
-> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BINFO,
->  			       bstatus, DRM_HDCP_BSTATUS_LEN);
->  	if (ret != DRM_HDCP_BSTATUS_LEN) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -6486,13 +6486,13 @@ static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_dp_hdcp_read_bcaps(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp_read_bcaps(struct intel_digital_port *dig_port,
->  			     u8 *bcaps)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	ssize_t ret;
->  
-> -	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux, DP_AUX_HDCP_BCAPS,
-> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BCAPS,
->  			       bcaps, 1);
->  	if (ret != 1) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -6504,13 +6504,13 @@ int intel_dp_hdcp_read_bcaps(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_dp_hdcp_repeater_present(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp_repeater_present(struct intel_digital_port *dig_port,
->  				   bool *repeater_present)
->  {
->  	ssize_t ret;
->  	u8 bcaps;
->  
-> -	ret = intel_dp_hdcp_read_bcaps(intel_dig_port, &bcaps);
-> +	ret = intel_dp_hdcp_read_bcaps(dig_port, &bcaps);
->  	if (ret)
->  		return ret;
->  
-> @@ -6519,13 +6519,13 @@ int intel_dp_hdcp_repeater_present(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_dp_hdcp_read_ri_prime(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp_read_ri_prime(struct intel_digital_port *dig_port,
->  				u8 *ri_prime)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	ssize_t ret;
->  
-> -	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux, DP_AUX_HDCP_RI_PRIME,
-> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_RI_PRIME,
->  			       ri_prime, DRM_HDCP_RI_LEN);
->  	if (ret != DRM_HDCP_RI_LEN) {
->  		drm_dbg_kms(&i915->drm, "Read Ri' from DP/AUX failed (%zd)\n",
-> @@ -6536,14 +6536,14 @@ int intel_dp_hdcp_read_ri_prime(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_dp_hdcp_read_ksv_ready(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp_read_ksv_ready(struct intel_digital_port *dig_port,
->  				 bool *ksv_ready)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	ssize_t ret;
->  	u8 bstatus;
->  
-> -	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
-> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
->  			       &bstatus, 1);
->  	if (ret != 1) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -6555,17 +6555,17 @@ int intel_dp_hdcp_read_ksv_ready(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *dig_port,
->  				int num_downstream, u8 *ksv_fifo)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	ssize_t ret;
->  	int i;
->  
->  	/* KSV list is read via 15 byte window (3 entries @ 5 bytes each) */
->  	for (i = 0; i < num_downstream; i += 3) {
->  		size_t len = min(num_downstream - i, 3) * DRM_HDCP_KSV_LEN;
-> -		ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux,
-> +		ret = drm_dp_dpcd_read(&dig_port->dp.aux,
->  				       DP_AUX_HDCP_KSV_FIFO,
->  				       ksv_fifo + i * DRM_HDCP_KSV_LEN,
->  				       len);
-> @@ -6580,16 +6580,16 @@ int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_dp_hdcp_read_v_prime_part(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp_read_v_prime_part(struct intel_digital_port *dig_port,
->  				    int i, u32 *part)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	ssize_t ret;
->  
->  	if (i >= DRM_HDCP_V_PRIME_NUM_PARTS)
->  		return -EINVAL;
->  
-> -	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux,
-> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
->  			       DP_AUX_HDCP_V_PRIME(i), part,
->  			       DRM_HDCP_V_PRIME_PART_LEN);
->  	if (ret != DRM_HDCP_V_PRIME_PART_LEN) {
-> @@ -6601,7 +6601,7 @@ int intel_dp_hdcp_read_v_prime_part(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_dp_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp_toggle_signalling(struct intel_digital_port *dig_port,
->  				    bool enable)
->  {
->  	/* Not used for single stream DisplayPort setups */
-> @@ -6609,13 +6609,13 @@ int intel_dp_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -bool intel_dp_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> +bool intel_dp_hdcp_check_link(struct intel_digital_port *dig_port)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	ssize_t ret;
->  	u8 bstatus;
->  
-> -	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
-> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
->  			       &bstatus, 1);
->  	if (ret != 1) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -6627,13 +6627,13 @@ bool intel_dp_hdcp_check_link(struct intel_digital_port *intel_dig_port)
->  }
->  
->  static
-> -int intel_dp_hdcp_capable(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp_capable(struct intel_digital_port *dig_port,
->  			  bool *hdcp_capable)
->  {
->  	ssize_t ret;
->  	u8 bcaps;
->  
-> -	ret = intel_dp_hdcp_read_bcaps(intel_dig_port, &bcaps);
-> +	ret = intel_dp_hdcp_read_bcaps(dig_port, &bcaps);
->  	if (ret)
->  		return ret;
->  
-> @@ -6691,13 +6691,13 @@ static const struct hdcp2_dp_msg_data hdcp2_dp_msg_data[] = {
->  };
->  
->  static int
-> -intel_dp_hdcp2_read_rx_status(struct intel_digital_port *intel_dig_port,
-> +intel_dp_hdcp2_read_rx_status(struct intel_digital_port *dig_port,
->  			      u8 *rx_status)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	ssize_t ret;
->  
-> -	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux,
-> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
->  			       DP_HDCP_2_2_REG_RXSTATUS_OFFSET, rx_status,
->  			       HDCP_2_2_DP_RXSTATUS_LEN);
->  	if (ret != HDCP_2_2_DP_RXSTATUS_LEN) {
-> @@ -6710,14 +6710,14 @@ intel_dp_hdcp2_read_rx_status(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int hdcp2_detect_msg_availability(struct intel_digital_port *intel_dig_port,
-> +int hdcp2_detect_msg_availability(struct intel_digital_port *dig_port,
->  				  u8 msg_id, bool *msg_ready)
->  {
->  	u8 rx_status;
->  	int ret;
->  
->  	*msg_ready = false;
-> -	ret = intel_dp_hdcp2_read_rx_status(intel_dig_port, &rx_status);
-> +	ret = intel_dp_hdcp2_read_rx_status(dig_port, &rx_status);
->  	if (ret < 0)
->  		return ret;
->  
-> @@ -6743,11 +6743,11 @@ int hdcp2_detect_msg_availability(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static ssize_t
-> -intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *intel_dig_port,
-> +intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *dig_port,
->  			    const struct hdcp2_dp_msg_data *hdcp2_msg_data)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> -	struct intel_dp *dp = &intel_dig_port->dp;
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_dp *dp = &dig_port->dp;
->  	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
->  	u8 msg_id = hdcp2_msg_data->msg_id;
->  	int ret, timeout;
-> @@ -6771,7 +6771,7 @@ intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *intel_dig_port,
->  		 * the timeout at wait for CP_IRQ.
->  		 */
->  		intel_dp_hdcp_wait_for_cp_irq(hdcp, timeout);
-> -		ret = hdcp2_detect_msg_availability(intel_dig_port,
-> +		ret = hdcp2_detect_msg_availability(dig_port,
->  						    msg_id, &msg_ready);
->  		if (!msg_ready)
->  			ret = -ETIMEDOUT;
-> @@ -6797,10 +6797,10 @@ static const struct hdcp2_dp_msg_data *get_hdcp2_dp_msg_data(u8 msg_id)
->  }
->  
->  static
-> -int intel_dp_hdcp2_write_msg(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp2_write_msg(struct intel_digital_port *dig_port,
->  			     void *buf, size_t size)
->  {
-> -	struct intel_dp *dp = &intel_dig_port->dp;
-> +	struct intel_dp *dp = &dig_port->dp;
->  	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
->  	unsigned int offset;
->  	u8 *byte = buf;
-> @@ -6823,7 +6823,7 @@ int intel_dp_hdcp2_write_msg(struct intel_digital_port *intel_dig_port,
->  		len = bytes_to_write > DP_AUX_MAX_PAYLOAD_BYTES ?
->  				DP_AUX_MAX_PAYLOAD_BYTES : bytes_to_write;
->  
-> -		ret = drm_dp_dpcd_write(&intel_dig_port->dp.aux,
-> +		ret = drm_dp_dpcd_write(&dig_port->dp.aux,
->  					offset, (void *)byte, len);
->  		if (ret < 0)
->  			return ret;
-> @@ -6837,13 +6837,13 @@ int intel_dp_hdcp2_write_msg(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -ssize_t get_receiver_id_list_size(struct intel_digital_port *intel_dig_port)
-> +ssize_t get_receiver_id_list_size(struct intel_digital_port *dig_port)
->  {
->  	u8 rx_info[HDCP_2_2_RXINFO_LEN];
->  	u32 dev_cnt;
->  	ssize_t ret;
->  
-> -	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux,
-> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
->  			       DP_HDCP_2_2_REG_RXINFO_OFFSET,
->  			       (void *)rx_info, HDCP_2_2_RXINFO_LEN);
->  	if (ret != HDCP_2_2_RXINFO_LEN)
-> @@ -6863,10 +6863,10 @@ ssize_t get_receiver_id_list_size(struct intel_digital_port *intel_dig_port)
->  }
->  
->  static
-> -int intel_dp_hdcp2_read_msg(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
->  			    u8 msg_id, void *buf, size_t size)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	unsigned int offset;
->  	u8 *byte = buf;
->  	ssize_t ret, bytes_to_recv, len;
-> @@ -6877,12 +6877,12 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *intel_dig_port,
->  		return -EINVAL;
->  	offset = hdcp2_msg_data->offset;
->  
-> -	ret = intel_dp_hdcp2_wait_for_msg(intel_dig_port, hdcp2_msg_data);
-> +	ret = intel_dp_hdcp2_wait_for_msg(dig_port, hdcp2_msg_data);
->  	if (ret < 0)
->  		return ret;
->  
->  	if (msg_id == HDCP_2_2_REP_SEND_RECVID_LIST) {
-> -		ret = get_receiver_id_list_size(intel_dig_port);
-> +		ret = get_receiver_id_list_size(dig_port);
->  		if (ret < 0)
->  			return ret;
->  
-> @@ -6897,7 +6897,7 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *intel_dig_port,
->  		len = bytes_to_recv > DP_AUX_MAX_PAYLOAD_BYTES ?
->  		      DP_AUX_MAX_PAYLOAD_BYTES : bytes_to_recv;
->  
-> -		ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux, offset,
-> +		ret = drm_dp_dpcd_read(&dig_port->dp.aux, offset,
->  				       (void *)byte, len);
->  		if (ret < 0) {
->  			drm_dbg_kms(&i915->drm, "msg_id %d, ret %zd\n",
-> @@ -6916,7 +6916,7 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_dp_hdcp2_config_stream_type(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp2_config_stream_type(struct intel_digital_port *dig_port,
->  				      bool is_repeater, u8 content_type)
->  {
->  	int ret;
-> @@ -6935,7 +6935,7 @@ int intel_dp_hdcp2_config_stream_type(struct intel_digital_port *intel_dig_port,
->  	stream_type_msg.msg_id = HDCP_2_2_ERRATA_DP_STREAM_TYPE;
->  	stream_type_msg.stream_type = content_type;
->  
-> -	ret =  intel_dp_hdcp2_write_msg(intel_dig_port, &stream_type_msg,
-> +	ret =  intel_dp_hdcp2_write_msg(dig_port, &stream_type_msg,
->  					sizeof(stream_type_msg));
->  
->  	return ret < 0 ? ret : 0;
-> @@ -6943,12 +6943,12 @@ int intel_dp_hdcp2_config_stream_type(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_dp_hdcp2_check_link(struct intel_digital_port *intel_dig_port)
-> +int intel_dp_hdcp2_check_link(struct intel_digital_port *dig_port)
->  {
->  	u8 rx_status;
->  	int ret;
->  
-> -	ret = intel_dp_hdcp2_read_rx_status(intel_dig_port, &rx_status);
-> +	ret = intel_dp_hdcp2_read_rx_status(dig_port, &rx_status);
->  	if (ret)
->  		return ret;
->  
-> @@ -6963,14 +6963,14 @@ int intel_dp_hdcp2_check_link(struct intel_digital_port *intel_dig_port)
->  }
->  
->  static
-> -int intel_dp_hdcp2_capable(struct intel_digital_port *intel_dig_port,
-> +int intel_dp_hdcp2_capable(struct intel_digital_port *dig_port,
->  			   bool *capable)
->  {
->  	u8 rx_caps[3];
->  	int ret;
->  
->  	*capable = false;
-> -	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux,
-> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
->  			       DP_HDCP_2_2_REG_RX_CAPS_OFFSET,
->  			       rx_caps, HDCP_2_2_RXCAPS_LEN);
->  	if (ret != HDCP_2_2_RXCAPS_LEN)
-> @@ -7249,12 +7249,12 @@ static bool intel_edp_have_power(struct intel_dp *intel_dp)
->  }
->  
->  enum irqreturn
-> -intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
-> +intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_dp *intel_dp = &dig_port->dp;
->  
-> -	if (intel_dig_port->base.type == INTEL_OUTPUT_EDP &&
-> +	if (dig_port->base.type == INTEL_OUTPUT_EDP &&
->  	    (long_hpd || !intel_edp_have_power(intel_dp))) {
->  		/*
->  		 * vdd off can generate a long/short pulse on eDP which
-> @@ -7265,14 +7265,14 @@ intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
->  		drm_dbg_kms(&i915->drm,
->  			    "ignoring %s hpd on eDP [ENCODER:%d:%s]\n",
->  			    long_hpd ? "long" : "short",
-> -			    intel_dig_port->base.base.base.id,
-> -			    intel_dig_port->base.base.name);
-> +			    dig_port->base.base.base.id,
-> +			    dig_port->base.base.name);
->  		return IRQ_HANDLED;
->  	}
->  
->  	drm_dbg_kms(&i915->drm, "got hpd irq on [ENCODER:%d:%s] - %s\n",
-> -		    intel_dig_port->base.base.base.id,
-> -		    intel_dig_port->base.base.name,
-> +		    dig_port->base.base.base.id,
-> +		    dig_port->base.base.name,
->  		    long_hpd ? "long" : "short");
->  
->  	if (long_hpd) {
-> @@ -8135,12 +8135,12 @@ static void intel_dp_modeset_retry_work_fn(struct work_struct *work)
->  }
->  
->  bool
-> -intel_dp_init_connector(struct intel_digital_port *intel_dig_port,
-> +intel_dp_init_connector(struct intel_digital_port *dig_port,
->  			struct intel_connector *intel_connector)
->  {
->  	struct drm_connector *connector = &intel_connector->base;
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> -	struct intel_encoder *intel_encoder = &intel_dig_port->base;
-> +	struct intel_dp *intel_dp = &dig_port->dp;
-> +	struct intel_encoder *intel_encoder = &dig_port->base;
->  	struct drm_device *dev = intel_encoder->base.dev;
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	enum port port = intel_encoder->port;
-> @@ -8151,9 +8151,9 @@ intel_dp_init_connector(struct intel_digital_port *intel_dig_port,
->  	INIT_WORK(&intel_connector->modeset_retry_work,
->  		  intel_dp_modeset_retry_work_fn);
->  
-> -	if (drm_WARN(dev, intel_dig_port->max_lanes < 1,
-> +	if (drm_WARN(dev, dig_port->max_lanes < 1,
->  		     "Not enough lanes (%d) for DP on [ENCODER:%d:%s]\n",
-> -		     intel_dig_port->max_lanes, intel_encoder->base.base.id,
-> +		     dig_port->max_lanes, intel_encoder->base.base.id,
->  		     intel_encoder->base.name))
->  		return false;
->  
-> @@ -8224,12 +8224,12 @@ intel_dp_init_connector(struct intel_digital_port *intel_dig_port,
->  		intel_connector->get_hw_state = intel_connector_get_hw_state;
->  
->  	/* init MST on ports that can support it */
-> -	intel_dp_mst_encoder_init(intel_dig_port,
-> +	intel_dp_mst_encoder_init(dig_port,
->  				  intel_connector->base.base.id);
->  
->  	if (!intel_edp_init_connector(intel_dp, intel_connector)) {
->  		intel_dp_aux_fini(intel_dp);
-> -		intel_dp_mst_encoder_cleanup(intel_dig_port);
-> +		intel_dp_mst_encoder_cleanup(dig_port);
->  		goto fail;
->  	}
->  
-> @@ -8264,20 +8264,20 @@ bool intel_dp_init(struct drm_i915_private *dev_priv,
->  		   i915_reg_t output_reg,
->  		   enum port port)
->  {
-> -	struct intel_digital_port *intel_dig_port;
-> +	struct intel_digital_port *dig_port;
->  	struct intel_encoder *intel_encoder;
->  	struct drm_encoder *encoder;
->  	struct intel_connector *intel_connector;
->  
-> -	intel_dig_port = kzalloc(sizeof(*intel_dig_port), GFP_KERNEL);
-> -	if (!intel_dig_port)
-> +	dig_port = kzalloc(sizeof(*dig_port), GFP_KERNEL);
-> +	if (!dig_port)
->  		return false;
->  
->  	intel_connector = intel_connector_alloc();
->  	if (!intel_connector)
->  		goto err_connector_alloc;
->  
-> -	intel_encoder = &intel_dig_port->base;
-> +	intel_encoder = &dig_port->base;
->  	encoder = &intel_encoder->base;
->  
->  	if (drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
-> @@ -8313,34 +8313,34 @@ bool intel_dp_init(struct drm_i915_private *dev_priv,
->  
->  	if ((IS_IVYBRIDGE(dev_priv) && port == PORT_A) ||
->  	    (HAS_PCH_CPT(dev_priv) && port != PORT_A))
-> -		intel_dig_port->dp.set_link_train = cpt_set_link_train;
-> +		dig_port->dp.set_link_train = cpt_set_link_train;
->  	else
-> -		intel_dig_port->dp.set_link_train = g4x_set_link_train;
-> +		dig_port->dp.set_link_train = g4x_set_link_train;
->  
->  	if (IS_CHERRYVIEW(dev_priv))
-> -		intel_dig_port->dp.set_signal_levels = chv_set_signal_levels;
-> +		dig_port->dp.set_signal_levels = chv_set_signal_levels;
->  	else if (IS_VALLEYVIEW(dev_priv))
-> -		intel_dig_port->dp.set_signal_levels = vlv_set_signal_levels;
-> +		dig_port->dp.set_signal_levels = vlv_set_signal_levels;
->  	else if (IS_IVYBRIDGE(dev_priv) && port == PORT_A)
-> -		intel_dig_port->dp.set_signal_levels = ivb_cpu_edp_set_signal_levels;
-> +		dig_port->dp.set_signal_levels = ivb_cpu_edp_set_signal_levels;
->  	else if (IS_GEN(dev_priv, 6) && port == PORT_A)
-> -		intel_dig_port->dp.set_signal_levels = snb_cpu_edp_set_signal_levels;
-> +		dig_port->dp.set_signal_levels = snb_cpu_edp_set_signal_levels;
->  	else
-> -		intel_dig_port->dp.set_signal_levels = g4x_set_signal_levels;
-> +		dig_port->dp.set_signal_levels = g4x_set_signal_levels;
->  
->  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv) ||
->  	    (HAS_PCH_SPLIT(dev_priv) && port != PORT_A)) {
-> -		intel_dig_port->dp.preemph_max = intel_dp_pre_empemph_max_3;
-> -		intel_dig_port->dp.voltage_max = intel_dp_voltage_max_3;
-> +		dig_port->dp.preemph_max = intel_dp_pre_empemph_max_3;
-> +		dig_port->dp.voltage_max = intel_dp_voltage_max_3;
->  	} else {
-> -		intel_dig_port->dp.preemph_max = intel_dp_pre_empemph_max_2;
-> -		intel_dig_port->dp.voltage_max = intel_dp_voltage_max_2;
-> +		dig_port->dp.preemph_max = intel_dp_pre_empemph_max_2;
-> +		dig_port->dp.voltage_max = intel_dp_voltage_max_2;
->  	}
->  
-> -	intel_dig_port->dp.output_reg = output_reg;
-> -	intel_dig_port->max_lanes = 4;
-> -	intel_dig_port->dp.regs.dp_tp_ctl = DP_TP_CTL(port);
-> -	intel_dig_port->dp.regs.dp_tp_status = DP_TP_STATUS(port);
-> +	dig_port->dp.output_reg = output_reg;
-> +	dig_port->max_lanes = 4;
-> +	dig_port->dp.regs.dp_tp_ctl = DP_TP_CTL(port);
-> +	dig_port->dp.regs.dp_tp_status = DP_TP_STATUS(port);
->  
->  	intel_encoder->type = INTEL_OUTPUT_DP;
->  	intel_encoder->power_domain = intel_port_to_power_domain(port);
-> @@ -8355,25 +8355,25 @@ bool intel_dp_init(struct drm_i915_private *dev_priv,
->  	intel_encoder->cloneable = 0;
->  	intel_encoder->port = port;
->  
-> -	intel_dig_port->hpd_pulse = intel_dp_hpd_pulse;
-> +	dig_port->hpd_pulse = intel_dp_hpd_pulse;
->  
->  	if (HAS_GMCH(dev_priv)) {
->  		if (IS_GM45(dev_priv))
-> -			intel_dig_port->connected = gm45_digital_port_connected;
-> +			dig_port->connected = gm45_digital_port_connected;
->  		else
-> -			intel_dig_port->connected = g4x_digital_port_connected;
-> +			dig_port->connected = g4x_digital_port_connected;
->  	} else {
->  		if (port == PORT_A)
-> -			intel_dig_port->connected = ilk_digital_port_connected;
-> +			dig_port->connected = ilk_digital_port_connected;
->  		else
-> -			intel_dig_port->connected = ibx_digital_port_connected;
-> +			dig_port->connected = ibx_digital_port_connected;
->  	}
->  
->  	if (port != PORT_A)
-> -		intel_infoframe_init(intel_dig_port);
-> +		intel_infoframe_init(dig_port);
->  
-> -	intel_dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, port);
-> -	if (!intel_dp_init_connector(intel_dig_port, intel_connector))
-> +	dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, port);
-> +	if (!intel_dp_init_connector(dig_port, intel_connector))
->  		goto err_init_connector;
->  
->  	return true;
-> @@ -8383,7 +8383,7 @@ bool intel_dp_init(struct drm_i915_private *dev_priv,
->  err_encoder_init:
->  	kfree(intel_connector);
->  err_connector_alloc:
-> -	kfree(intel_dig_port);
-> +	kfree(dig_port);
->  	return false;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> index 0a8950f744f6..b901ab850cbd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -40,7 +40,7 @@ bool intel_dp_port_enabled(struct drm_i915_private *dev_priv,
->  			   enum pipe *pipe);
->  bool intel_dp_init(struct drm_i915_private *dev_priv, i915_reg_t output_reg,
->  		   enum port port);
-> -bool intel_dp_init_connector(struct intel_digital_port *intel_dig_port,
-> +bool intel_dp_init_connector(struct intel_digital_port *dig_port,
->  			     struct intel_connector *intel_connector);
->  void intel_dp_set_link_params(struct intel_dp *intel_dp,
->  			      int link_rate, u8 lane_count,
-> @@ -61,7 +61,7 @@ int intel_dp_compute_config(struct intel_encoder *encoder,
->  			    struct drm_connector_state *conn_state);
->  bool intel_dp_is_edp(struct intel_dp *intel_dp);
->  bool intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port port);
-> -enum irqreturn intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port,
-> +enum irqreturn intel_dp_hpd_pulse(struct intel_digital_port *dig_port,
->  				  bool long_hpd);
->  void intel_edp_backlight_on(const struct intel_crtc_state *crtc_state,
->  			    const struct drm_connector_state *conn_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 8273f2e07427..bdc19b04b2c1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -342,8 +342,8 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
->  				 const struct drm_connector_state *old_conn_state)
->  {
->  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> -	struct intel_digital_port *intel_dig_port = intel_mst->primary;
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> +	struct intel_digital_port *dig_port = intel_mst->primary;
-> +	struct intel_dp *intel_dp = &dig_port->dp;
->  	struct intel_connector *connector =
->  		to_intel_connector(old_conn_state->connector);
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> @@ -369,8 +369,8 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
->  				      const struct drm_connector_state *old_conn_state)
->  {
->  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> -	struct intel_digital_port *intel_dig_port = intel_mst->primary;
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> +	struct intel_digital_port *dig_port = intel_mst->primary;
-> +	struct intel_dp *intel_dp = &dig_port->dp;
->  	struct intel_connector *connector =
->  		to_intel_connector(old_conn_state->connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> @@ -421,7 +421,7 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
->  	 * the transcoder clock select is set to none.
->  	 */
->  	if (last_mst_stream)
-> -		intel_dp_set_infoframes(&intel_dig_port->base, false,
-> +		intel_dp_set_infoframes(&dig_port->base, false,
->  					old_crtc_state, NULL);
->  	/*
->  	 * From TGL spec: "If multi-stream slave transcoder: Configure
-> @@ -436,7 +436,7 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
->  
->  	intel_mst->connector = NULL;
->  	if (last_mst_stream)
-> -		intel_dig_port->base.post_disable(state, &intel_dig_port->base,
-> +		dig_port->base.post_disable(state, &dig_port->base,
->  						  old_crtc_state, NULL);
->  
->  	drm_dbg_kms(&dev_priv->drm, "active links %d\n",
-> @@ -449,11 +449,11 @@ static void intel_mst_pre_pll_enable_dp(struct intel_atomic_state *state,
->  					const struct drm_connector_state *conn_state)
->  {
->  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> -	struct intel_digital_port *intel_dig_port = intel_mst->primary;
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> +	struct intel_digital_port *dig_port = intel_mst->primary;
-> +	struct intel_dp *intel_dp = &dig_port->dp;
->  
->  	if (intel_dp->active_mst_links == 0)
-> -		intel_dig_port->base.pre_pll_enable(state, &intel_dig_port->base,
-> +		dig_port->base.pre_pll_enable(state, &dig_port->base,
->  						    pipe_config, NULL);
->  }
->  
-> @@ -463,8 +463,8 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
->  				    const struct drm_connector_state *conn_state)
->  {
->  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> -	struct intel_digital_port *intel_dig_port = intel_mst->primary;
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> +	struct intel_digital_port *dig_port = intel_mst->primary;
-> +	struct intel_dp *intel_dp = &dig_port->dp;
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_connector *connector =
->  		to_intel_connector(conn_state->connector);
-> @@ -490,7 +490,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
->  	drm_dp_send_power_updown_phy(&intel_dp->mst_mgr, connector->port, true);
->  
->  	if (first_mst_stream)
-> -		intel_dig_port->base.pre_enable(state, &intel_dig_port->base,
-> +		dig_port->base.pre_enable(state, &dig_port->base,
->  						pipe_config, NULL);
->  
->  	ret = drm_dp_mst_allocate_vcpi(&intel_dp->mst_mgr,
-> @@ -506,7 +506,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
->  
->  	/*
->  	 * Before Gen 12 this is not done as part of
-> -	 * intel_dig_port->base.pre_enable() and should be done here. For
-> +	 * dig_port->base.pre_enable() and should be done here. For
->  	 * Gen 12+ the step in which this should be done is different for the
->  	 * first MST stream, so it's done on the DDI for the first stream and
->  	 * here for the following ones.
-> @@ -525,8 +525,8 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
->  				const struct drm_connector_state *conn_state)
->  {
->  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> -	struct intel_digital_port *intel_dig_port = intel_mst->primary;
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> +	struct intel_digital_port *dig_port = intel_mst->primary;
-> +	struct intel_dp *intel_dp = &dig_port->dp;
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	u32 val;
->  
-> @@ -572,9 +572,9 @@ static void intel_dp_mst_enc_get_config(struct intel_encoder *encoder,
->  					struct intel_crtc_state *pipe_config)
->  {
->  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> -	struct intel_digital_port *intel_dig_port = intel_mst->primary;
-> +	struct intel_digital_port *dig_port = intel_mst->primary;
->  
-> -	intel_ddi_get_config(&intel_dig_port->base, pipe_config);
-> +	intel_ddi_get_config(&dig_port->base, pipe_config);
->  }
->  
->  static int intel_dp_mst_get_ddc_modes(struct drm_connector *connector)
-> @@ -732,8 +732,8 @@ static bool intel_dp_mst_get_hw_state(struct intel_connector *connector)
->  static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port, const char *pathprop)
->  {
->  	struct intel_dp *intel_dp = container_of(mgr, struct intel_dp, mst_mgr);
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> -	struct drm_device *dev = intel_dig_port->base.base.dev;
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	struct drm_device *dev = dig_port->base.base.dev;
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct intel_connector *intel_connector;
->  	struct drm_connector *connector;
-> @@ -808,11 +808,11 @@ static const struct drm_dp_mst_topology_cbs mst_cbs = {
->  };
->  
->  static struct intel_dp_mst_encoder *
-> -intel_dp_create_fake_mst_encoder(struct intel_digital_port *intel_dig_port, enum pipe pipe)
-> +intel_dp_create_fake_mst_encoder(struct intel_digital_port *dig_port, enum pipe pipe)
->  {
->  	struct intel_dp_mst_encoder *intel_mst;
->  	struct intel_encoder *intel_encoder;
-> -	struct drm_device *dev = intel_dig_port->base.base.dev;
-> +	struct drm_device *dev = dig_port->base.base.dev;
->  
->  	intel_mst = kzalloc(sizeof(*intel_mst), GFP_KERNEL);
->  
-> @@ -821,14 +821,14 @@ intel_dp_create_fake_mst_encoder(struct intel_digital_port *intel_dig_port, enum
->  
->  	intel_mst->pipe = pipe;
->  	intel_encoder = &intel_mst->base;
-> -	intel_mst->primary = intel_dig_port;
-> +	intel_mst->primary = dig_port;
->  
->  	drm_encoder_init(dev, &intel_encoder->base, &intel_dp_mst_enc_funcs,
->  			 DRM_MODE_ENCODER_DPMST, "DP-MST %c", pipe_name(pipe));
->  
->  	intel_encoder->type = INTEL_OUTPUT_DP_MST;
-> -	intel_encoder->power_domain = intel_dig_port->base.power_domain;
-> -	intel_encoder->port = intel_dig_port->base.port;
-> +	intel_encoder->power_domain = dig_port->base.power_domain;
-> +	intel_encoder->port = dig_port->base.port;
->  	intel_encoder->cloneable = 0;
->  	/*
->  	 * This is wrong, but broken userspace uses the intersection
-> @@ -855,29 +855,29 @@ intel_dp_create_fake_mst_encoder(struct intel_digital_port *intel_dig_port, enum
->  }
->  
->  static bool
-> -intel_dp_create_fake_mst_encoders(struct intel_digital_port *intel_dig_port)
-> +intel_dp_create_fake_mst_encoders(struct intel_digital_port *dig_port)
->  {
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> -	struct drm_i915_private *dev_priv = to_i915(intel_dig_port->base.base.dev);
-> +	struct intel_dp *intel_dp = &dig_port->dp;
-> +	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
->  	enum pipe pipe;
->  
->  	for_each_pipe(dev_priv, pipe)
-> -		intel_dp->mst_encoders[pipe] = intel_dp_create_fake_mst_encoder(intel_dig_port, pipe);
-> +		intel_dp->mst_encoders[pipe] = intel_dp_create_fake_mst_encoder(dig_port, pipe);
->  	return true;
->  }
->  
->  int
-> -intel_dp_mst_encoder_active_links(struct intel_digital_port *intel_dig_port)
-> +intel_dp_mst_encoder_active_links(struct intel_digital_port *dig_port)
->  {
-> -	return intel_dig_port->dp.active_mst_links;
-> +	return dig_port->dp.active_mst_links;
->  }
->  
->  int
-> -intel_dp_mst_encoder_init(struct intel_digital_port *intel_dig_port, int conn_base_id)
-> +intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> -	enum port port = intel_dig_port->base.port;
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_dp *intel_dp = &dig_port->dp;
-> +	enum port port = dig_port->base.port;
->  	int ret;
->  
->  	if (!HAS_DP_MST(i915) || intel_dp_is_edp(intel_dp))
-> @@ -892,7 +892,7 @@ intel_dp_mst_encoder_init(struct intel_digital_port *intel_dig_port, int conn_ba
->  	intel_dp->mst_mgr.cbs = &mst_cbs;
->  
->  	/* create encoders */
-> -	intel_dp_create_fake_mst_encoders(intel_dig_port);
-> +	intel_dp_create_fake_mst_encoders(dig_port);
->  	ret = drm_dp_mst_topology_mgr_init(&intel_dp->mst_mgr, &i915->drm,
->  					   &intel_dp->aux, 16, 3, conn_base_id);
->  	if (ret)
-> @@ -904,9 +904,9 @@ intel_dp_mst_encoder_init(struct intel_digital_port *intel_dig_port, int conn_ba
->  }
->  
->  void
-> -intel_dp_mst_encoder_cleanup(struct intel_digital_port *intel_dig_port)
-> +intel_dp_mst_encoder_cleanup(struct intel_digital_port *dig_port)
->  {
-> -	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> +	struct intel_dp *intel_dp = &dig_port->dp;
->  
->  	if (!intel_dp->can_mst)
->  		return;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> index 854724f68f09..6afda4e86b3c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> @@ -11,9 +11,9 @@
->  struct intel_digital_port;
->  struct intel_crtc_state;
->  
-> -int intel_dp_mst_encoder_init(struct intel_digital_port *intel_dig_port, int conn_id);
-> -void intel_dp_mst_encoder_cleanup(struct intel_digital_port *intel_dig_port);
-> -int intel_dp_mst_encoder_active_links(struct intel_digital_port *intel_dig_port);
-> +int intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_id);
-> +void intel_dp_mst_encoder_cleanup(struct intel_digital_port *dig_port);
-> +int intel_dp_mst_encoder_active_links(struct intel_digital_port *dig_port);
->  bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_state);
->  bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state *crtc_state);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-> index 399a7edb4568..7910522273b2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-> @@ -650,9 +650,9 @@ void chv_set_phy_signal_level(struct intel_encoder *encoder,
->  			      bool uniq_trans_scale)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> -	struct intel_digital_port *dport = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct intel_crtc *intel_crtc = to_intel_crtc(encoder->base.crtc);
-> -	enum dpio_channel ch = vlv_dport_to_channel(dport);
-> +	enum dpio_channel ch = vlv_dig_port_to_channel(dig_port);
->  	enum pipe pipe = intel_crtc->pipe;
->  	u32 val;
->  	int i;
-> @@ -746,7 +746,7 @@ void chv_data_lane_soft_reset(struct intel_encoder *encoder,
->  			      bool reset)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> -	enum dpio_channel ch = vlv_dport_to_channel(enc_to_dig_port(encoder));
-> +	enum dpio_channel ch = vlv_dig_port_to_channel(enc_to_dig_port(encoder));
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	enum pipe pipe = crtc->pipe;
->  	u32 val;
-> @@ -789,10 +789,10 @@ void chv_data_lane_soft_reset(struct intel_encoder *encoder,
->  void chv_phy_pre_pll_enable(struct intel_encoder *encoder,
->  			    const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_digital_port *dport = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	enum dpio_channel ch = vlv_dport_to_channel(dport);
-> +	enum dpio_channel ch = vlv_dig_port_to_channel(dig_port);
->  	enum pipe pipe = crtc->pipe;
->  	unsigned int lane_mask =
->  		intel_dp_unused_lane_mask(crtc_state->lane_count);
-> @@ -803,7 +803,7 @@ void chv_phy_pre_pll_enable(struct intel_encoder *encoder,
->  	 * Otherwise we can't even access the PLL.
->  	 */
->  	if (ch == DPIO_CH0 && pipe == PIPE_B)
-> -		dport->release_cl2_override =
-> +		dig_port->release_cl2_override =
->  			!chv_phy_powergate_ch(dev_priv, DPIO_PHY0, DPIO_CH1, true);
->  
->  	chv_phy_powergate_lanes(encoder, true, lane_mask);
-> @@ -870,10 +870,10 @@ void chv_phy_pre_encoder_enable(struct intel_encoder *encoder,
->  				const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> -	struct intel_digital_port *dport = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	enum dpio_channel ch = vlv_dport_to_channel(dport);
-> +	enum dpio_channel ch = vlv_dig_port_to_channel(dig_port);
->  	enum pipe pipe = crtc->pipe;
->  	int data, i, stagger;
->  	u32 val;
-> @@ -948,12 +948,12 @@ void chv_phy_pre_encoder_enable(struct intel_encoder *encoder,
->  
->  void chv_phy_release_cl2_override(struct intel_encoder *encoder)
->  {
-> -	struct intel_digital_port *dport = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  
-> -	if (dport->release_cl2_override) {
-> +	if (dig_port->release_cl2_override) {
->  		chv_phy_powergate_ch(dev_priv, DPIO_PHY0, DPIO_CH1, false);
-> -		dport->release_cl2_override = false;
-> +		dig_port->release_cl2_override = false;
->  	}
->  }
->  
-> @@ -997,8 +997,8 @@ void vlv_set_phy_signal_level(struct intel_encoder *encoder,
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_crtc *intel_crtc = to_intel_crtc(encoder->base.crtc);
-> -	struct intel_digital_port *dport = enc_to_dig_port(encoder);
-> -	enum dpio_channel port = vlv_dport_to_channel(dport);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> +	enum dpio_channel port = vlv_dig_port_to_channel(dig_port);
->  	enum pipe pipe = intel_crtc->pipe;
->  
->  	vlv_dpio_get(dev_priv);
-> @@ -1022,10 +1022,10 @@ void vlv_set_phy_signal_level(struct intel_encoder *encoder,
->  void vlv_phy_pre_pll_enable(struct intel_encoder *encoder,
->  			    const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_digital_port *dport = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	enum dpio_channel port = vlv_dport_to_channel(dport);
-> +	enum dpio_channel port = vlv_dig_port_to_channel(dig_port);
->  	enum pipe pipe = crtc->pipe;
->  
->  	/* Program Tx lane resets to default */
-> @@ -1052,10 +1052,10 @@ void vlv_phy_pre_encoder_enable(struct intel_encoder *encoder,
->  				const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> -	struct intel_digital_port *dport = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	enum dpio_channel port = vlv_dport_to_channel(dport);
-> +	enum dpio_channel port = vlv_dig_port_to_channel(dig_port);
->  	enum pipe pipe = crtc->pipe;
->  	u32 val;
->  
-> @@ -1081,10 +1081,10 @@ void vlv_phy_pre_encoder_enable(struct intel_encoder *encoder,
->  void vlv_phy_reset_lanes(struct intel_encoder *encoder,
->  			 const struct intel_crtc_state *old_crtc_state)
->  {
-> -	struct intel_digital_port *dport = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
-> -	enum dpio_channel port = vlv_dport_to_channel(dport);
-> +	enum dpio_channel port = vlv_dig_port_to_channel(dig_port);
->  	enum pipe pipe = crtc->pipe;
->  
->  	vlv_dpio_get(dev_priv);
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 815b054bb167..1b6dadfce4eb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -40,15 +40,15 @@ bool intel_hdcp_is_ksv_valid(u8 *ksv)
->  }
->  
->  static
-> -int intel_hdcp_read_valid_bksv(struct intel_digital_port *intel_dig_port,
-> +int intel_hdcp_read_valid_bksv(struct intel_digital_port *dig_port,
->  			       const struct intel_hdcp_shim *shim, u8 *bksv)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	int ret, i, tries = 2;
->  
->  	/* HDCP spec states that we must retry the bksv if it is invalid */
->  	for (i = 0; i < tries; i++) {
-> -		ret = shim->read_bksv(intel_dig_port, bksv);
-> +		ret = shim->read_bksv(dig_port, bksv);
->  		if (ret)
->  			return ret;
->  		if (intel_hdcp_is_ksv_valid(bksv))
-> @@ -65,7 +65,7 @@ int intel_hdcp_read_valid_bksv(struct intel_digital_port *intel_dig_port,
->  /* Is HDCP1.4 capable on Platform and Sink */
->  bool intel_hdcp_capable(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
->  	bool capable = false;
->  	u8 bksv[5];
-> @@ -74,9 +74,9 @@ bool intel_hdcp_capable(struct intel_connector *connector)
->  		return capable;
->  
->  	if (shim->hdcp_capable) {
-> -		shim->hdcp_capable(intel_dig_port, &capable);
-> +		shim->hdcp_capable(dig_port, &capable);
->  	} else {
-> -		if (!intel_hdcp_read_valid_bksv(intel_dig_port, shim, bksv))
-> +		if (!intel_hdcp_read_valid_bksv(dig_port, shim, bksv))
->  			capable = true;
->  	}
->  
-> @@ -86,7 +86,7 @@ bool intel_hdcp_capable(struct intel_connector *connector)
->  /* Is HDCP2.2 capable on Platform and Sink */
->  bool intel_hdcp2_capable(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	bool capable = false;
-> @@ -104,7 +104,7 @@ bool intel_hdcp2_capable(struct intel_connector *connector)
->  	mutex_unlock(&dev_priv->hdcp_comp_mutex);
->  
->  	/* Sink's capability for HDCP2.2 */
-> -	hdcp->shim->hdcp_2_2_capable(intel_dig_port, &capable);
-> +	hdcp->shim->hdcp_2_2_capable(dig_port, &capable);
->  
->  	return capable;
->  }
-> @@ -125,14 +125,14 @@ static bool intel_hdcp2_in_use(struct drm_i915_private *dev_priv,
->  	       LINK_ENCRYPTION_STATUS;
->  }
->  
-> -static int intel_hdcp_poll_ksv_fifo(struct intel_digital_port *intel_dig_port,
-> +static int intel_hdcp_poll_ksv_fifo(struct intel_digital_port *dig_port,
->  				    const struct intel_hdcp_shim *shim)
->  {
->  	int ret, read_ret;
->  	bool ksv_ready;
->  
->  	/* Poll for ksv list ready (spec says max time allowed is 5s) */
-> -	ret = __wait_for(read_ret = shim->read_ksv_ready(intel_dig_port,
-> +	ret = __wait_for(read_ret = shim->read_ksv_ready(dig_port,
->  							 &ksv_ready),
->  			 read_ret || ksv_ready, 5 * 1000 * 1000, 1000,
->  			 100 * 1000);
-> @@ -300,16 +300,16 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
->  				const struct intel_hdcp_shim *shim,
->  				u8 *ksv_fifo, u8 num_downstream, u8 *bstatus)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	enum transcoder cpu_transcoder = connector->hdcp.cpu_transcoder;
-> -	enum port port = intel_dig_port->base.port;
-> +	enum port port = dig_port->base.port;
->  	u32 vprime, sha_text, sha_leftovers, rep_ctl;
->  	int ret, i, j, sha_idx;
->  
->  	/* Process V' values from the receiver */
->  	for (i = 0; i < DRM_HDCP_V_PRIME_NUM_PARTS; i++) {
-> -		ret = shim->read_v_prime_part(intel_dig_port, i, &vprime);
-> +		ret = shim->read_v_prime_part(dig_port, i, &vprime);
->  		if (ret)
->  			return ret;
->  		intel_de_write(dev_priv, HDCP_SHA_V_PRIME(i), vprime);
-> @@ -528,20 +528,20 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
->  static
->  int intel_hdcp_auth_downstream(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
->  	u8 bstatus[2], num_downstream, *ksv_fifo;
->  	int ret, i, tries = 3;
->  
-> -	ret = intel_hdcp_poll_ksv_fifo(intel_dig_port, shim);
-> +	ret = intel_hdcp_poll_ksv_fifo(dig_port, shim);
->  	if (ret) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "KSV list failed to become ready (%d)\n", ret);
->  		return ret;
->  	}
->  
-> -	ret = shim->read_bstatus(intel_dig_port, bstatus);
-> +	ret = shim->read_bstatus(dig_port, bstatus);
->  	if (ret)
->  		return ret;
->  
-> @@ -571,7 +571,7 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
->  		return -ENOMEM;
->  	}
->  
-> -	ret = shim->read_ksv_fifo(intel_dig_port, num_downstream, ksv_fifo);
-> +	ret = shim->read_ksv_fifo(dig_port, num_downstream, ksv_fifo);
->  	if (ret)
->  		goto err;
->  
-> @@ -611,12 +611,12 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
->  /* Implements Part 1 of the HDCP authorization procedure */
->  static int intel_hdcp_auth(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	const struct intel_hdcp_shim *shim = hdcp->shim;
->  	enum transcoder cpu_transcoder = connector->hdcp.cpu_transcoder;
-> -	enum port port = intel_dig_port->base.port;
-> +	enum port port = dig_port->base.port;
->  	unsigned long r0_prime_gen_start;
->  	int ret, i, tries = 2;
->  	union {
-> @@ -640,7 +640,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
->  	 * displays, this is not necessary.
->  	 */
->  	if (shim->hdcp_capable) {
-> -		ret = shim->hdcp_capable(intel_dig_port, &hdcp_capable);
-> +		ret = shim->hdcp_capable(dig_port, &hdcp_capable);
->  		if (ret)
->  			return ret;
->  		if (!hdcp_capable) {
-> @@ -670,7 +670,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
->  				  HDCP_ANLO(dev_priv, cpu_transcoder, port));
->  	an.reg[1] = intel_de_read(dev_priv,
->  				  HDCP_ANHI(dev_priv, cpu_transcoder, port));
-> -	ret = shim->write_an_aksv(intel_dig_port, an.shim);
-> +	ret = shim->write_an_aksv(dig_port, an.shim);
->  	if (ret)
->  		return ret;
->  
-> @@ -678,7 +678,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
->  
->  	memset(&bksv, 0, sizeof(bksv));
->  
-> -	ret = intel_hdcp_read_valid_bksv(intel_dig_port, shim, bksv.shim);
-> +	ret = intel_hdcp_read_valid_bksv(dig_port, shim, bksv.shim);
->  	if (ret < 0)
->  		return ret;
->  
-> @@ -692,14 +692,14 @@ static int intel_hdcp_auth(struct intel_connector *connector)
->  	intel_de_write(dev_priv, HDCP_BKSVHI(dev_priv, cpu_transcoder, port),
->  		       bksv.reg[1]);
->  
-> -	ret = shim->repeater_present(intel_dig_port, &repeater_present);
-> +	ret = shim->repeater_present(dig_port, &repeater_present);
->  	if (ret)
->  		return ret;
->  	if (repeater_present)
->  		intel_de_write(dev_priv, HDCP_REP_CTL,
->  			       intel_hdcp_get_repeater_ctl(dev_priv, cpu_transcoder, port));
->  
-> -	ret = shim->toggle_signalling(intel_dig_port, true);
-> +	ret = shim->toggle_signalling(dig_port, true);
->  	if (ret)
->  		return ret;
->  
-> @@ -732,7 +732,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
->  	 */
->  	for (i = 0; i < tries; i++) {
->  		ri.reg = 0;
-> -		ret = shim->read_ri_prime(intel_dig_port, ri.shim);
-> +		ret = shim->read_ri_prime(dig_port, ri.shim);
->  		if (ret)
->  			return ret;
->  		intel_de_write(dev_priv,
-> @@ -776,10 +776,10 @@ static int intel_hdcp_auth(struct intel_connector *connector)
->  
->  static int _intel_hdcp_disable(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
-> -	enum port port = intel_dig_port->base.port;
-> +	enum port port = dig_port->base.port;
->  	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
->  	int ret;
->  
-> @@ -796,7 +796,7 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
->  		return -ETIMEDOUT;
->  	}
->  
-> -	ret = hdcp->shim->toggle_signalling(intel_dig_port, false);
-> +	ret = hdcp->shim->toggle_signalling(dig_port, false);
->  	if (ret) {
->  		drm_err(&dev_priv->drm, "Failed to disable HDCP signalling\n");
->  		return ret;
-> @@ -859,10 +859,10 @@ static struct intel_connector *intel_hdcp_to_connector(struct intel_hdcp *hdcp)
->  /* Implements Part 3 of the HDCP authorization procedure */
->  static int intel_hdcp_check_link(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
-> -	enum port port = intel_dig_port->base.port;
-> +	enum port port = dig_port->base.port;
->  	enum transcoder cpu_transcoder;
->  	int ret = 0;
->  
-> @@ -888,7 +888,7 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
->  		goto out;
->  	}
->  
-> -	if (hdcp->shim->check_link(intel_dig_port)) {
-> +	if (hdcp->shim->check_link(dig_port)) {
->  		if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
->  			hdcp->value = DRM_MODE_CONTENT_PROTECTION_ENABLED;
->  			schedule_work(&hdcp->prop_work);
-> @@ -1242,7 +1242,7 @@ static int hdcp2_deauthenticate_port(struct intel_connector *connector)
->  /* Authentication flow starts from here */
->  static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	union {
-> @@ -1264,12 +1264,12 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
->  	if (ret < 0)
->  		return ret;
->  
-> -	ret = shim->write_2_2_msg(intel_dig_port, &msgs.ake_init,
-> +	ret = shim->write_2_2_msg(dig_port, &msgs.ake_init,
->  				  sizeof(msgs.ake_init));
->  	if (ret < 0)
->  		return ret;
->  
-> -	ret = shim->read_2_2_msg(intel_dig_port, HDCP_2_2_AKE_SEND_CERT,
-> +	ret = shim->read_2_2_msg(dig_port, HDCP_2_2_AKE_SEND_CERT,
->  				 &msgs.send_cert, sizeof(msgs.send_cert));
->  	if (ret < 0)
->  		return ret;
-> @@ -1298,11 +1298,11 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
->  	if (ret < 0)
->  		return ret;
->  
-> -	ret = shim->write_2_2_msg(intel_dig_port, &msgs.no_stored_km, size);
-> +	ret = shim->write_2_2_msg(dig_port, &msgs.no_stored_km, size);
->  	if (ret < 0)
->  		return ret;
->  
-> -	ret = shim->read_2_2_msg(intel_dig_port, HDCP_2_2_AKE_SEND_HPRIME,
-> +	ret = shim->read_2_2_msg(dig_port, HDCP_2_2_AKE_SEND_HPRIME,
->  				 &msgs.send_hprime, sizeof(msgs.send_hprime));
->  	if (ret < 0)
->  		return ret;
-> @@ -1313,7 +1313,7 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
->  
->  	if (!hdcp->is_paired) {
->  		/* Pairing is required */
-> -		ret = shim->read_2_2_msg(intel_dig_port,
-> +		ret = shim->read_2_2_msg(dig_port,
->  					 HDCP_2_2_AKE_SEND_PAIRING_INFO,
->  					 &msgs.pairing_info,
->  					 sizeof(msgs.pairing_info));
-> @@ -1331,7 +1331,7 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
->  
->  static int hdcp2_locality_check(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	union {
->  		struct hdcp2_lc_init lc_init;
-> @@ -1345,12 +1345,12 @@ static int hdcp2_locality_check(struct intel_connector *connector)
->  		if (ret < 0)
->  			continue;
->  
-> -		ret = shim->write_2_2_msg(intel_dig_port, &msgs.lc_init,
-> +		ret = shim->write_2_2_msg(dig_port, &msgs.lc_init,
->  				      sizeof(msgs.lc_init));
->  		if (ret < 0)
->  			continue;
->  
-> -		ret = shim->read_2_2_msg(intel_dig_port,
-> +		ret = shim->read_2_2_msg(dig_port,
->  					 HDCP_2_2_LC_SEND_LPRIME,
->  					 &msgs.send_lprime,
->  					 sizeof(msgs.send_lprime));
-> @@ -1367,7 +1367,7 @@ static int hdcp2_locality_check(struct intel_connector *connector)
->  
->  static int hdcp2_session_key_exchange(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	struct hdcp2_ske_send_eks send_eks;
->  	int ret;
-> @@ -1376,7 +1376,7 @@ static int hdcp2_session_key_exchange(struct intel_connector *connector)
->  	if (ret < 0)
->  		return ret;
->  
-> -	ret = hdcp->shim->write_2_2_msg(intel_dig_port, &send_eks,
-> +	ret = hdcp->shim->write_2_2_msg(dig_port, &send_eks,
->  					sizeof(send_eks));
->  	if (ret < 0)
->  		return ret;
-> @@ -1387,7 +1387,7 @@ static int hdcp2_session_key_exchange(struct intel_connector *connector)
->  static
->  int hdcp2_propagate_stream_management_info(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	union {
-> @@ -1409,12 +1409,12 @@ int hdcp2_propagate_stream_management_info(struct intel_connector *connector)
->  	msgs.stream_manage.streams[0].stream_type = hdcp->content_type;
->  
->  	/* Send it to Repeater */
-> -	ret = shim->write_2_2_msg(intel_dig_port, &msgs.stream_manage,
-> +	ret = shim->write_2_2_msg(dig_port, &msgs.stream_manage,
->  				  sizeof(msgs.stream_manage));
->  	if (ret < 0)
->  		return ret;
->  
-> -	ret = shim->read_2_2_msg(intel_dig_port, HDCP_2_2_REP_STREAM_READY,
-> +	ret = shim->read_2_2_msg(dig_port, HDCP_2_2_REP_STREAM_READY,
->  				 &msgs.stream_ready, sizeof(msgs.stream_ready));
->  	if (ret < 0)
->  		return ret;
-> @@ -1439,7 +1439,7 @@ int hdcp2_propagate_stream_management_info(struct intel_connector *connector)
->  static
->  int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	union {
-> @@ -1451,7 +1451,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
->  	u8 *rx_info;
->  	int ret;
->  
-> -	ret = shim->read_2_2_msg(intel_dig_port, HDCP_2_2_REP_SEND_RECVID_LIST,
-> +	ret = shim->read_2_2_msg(dig_port, HDCP_2_2_REP_SEND_RECVID_LIST,
->  				 &msgs.recvid_list, sizeof(msgs.recvid_list));
->  	if (ret < 0)
->  		return ret;
-> @@ -1496,7 +1496,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
->  		return ret;
->  
->  	hdcp->seq_num_v = seq_num_v;
-> -	ret = shim->write_2_2_msg(intel_dig_port, &msgs.rep_ack,
-> +	ret = shim->write_2_2_msg(dig_port, &msgs.rep_ack,
->  				  sizeof(msgs.rep_ack));
->  	if (ret < 0)
->  		return ret;
-> @@ -1517,7 +1517,7 @@ static int hdcp2_authenticate_repeater(struct intel_connector *connector)
->  
->  static int hdcp2_authenticate_sink(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	const struct intel_hdcp_shim *shim = hdcp->shim;
-> @@ -1543,7 +1543,7 @@ static int hdcp2_authenticate_sink(struct intel_connector *connector)
->  	}
->  
->  	if (shim->config_stream_type) {
-> -		ret = shim->config_stream_type(intel_dig_port,
-> +		ret = shim->config_stream_type(dig_port,
->  					       hdcp->is_repeater,
->  					       hdcp->content_type);
->  		if (ret < 0)
-> @@ -1569,10 +1569,10 @@ static int hdcp2_authenticate_sink(struct intel_connector *connector)
->  
->  static int hdcp2_enable_encryption(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
-> -	enum port port = intel_dig_port->base.port;
-> +	enum port port = dig_port->base.port;
->  	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
->  	int ret;
->  
-> @@ -1580,7 +1580,7 @@ static int hdcp2_enable_encryption(struct intel_connector *connector)
->  		    intel_de_read(dev_priv, HDCP2_STATUS(dev_priv, cpu_transcoder, port)) &
->  		    LINK_ENCRYPTION_STATUS);
->  	if (hdcp->shim->toggle_signalling) {
-> -		ret = hdcp->shim->toggle_signalling(intel_dig_port, true);
-> +		ret = hdcp->shim->toggle_signalling(dig_port, true);
->  		if (ret) {
->  			drm_err(&dev_priv->drm,
->  				"Failed to enable HDCP signalling. %d\n",
-> @@ -1608,10 +1608,10 @@ static int hdcp2_enable_encryption(struct intel_connector *connector)
->  
->  static int hdcp2_disable_encryption(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
-> -	enum port port = intel_dig_port->base.port;
-> +	enum port port = dig_port->base.port;
->  	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
->  	int ret;
->  
-> @@ -1630,7 +1630,7 @@ static int hdcp2_disable_encryption(struct intel_connector *connector)
->  		drm_dbg_kms(&dev_priv->drm, "Disable Encryption Timedout");
->  
->  	if (hdcp->shim->toggle_signalling) {
-> -		ret = hdcp->shim->toggle_signalling(intel_dig_port, false);
-> +		ret = hdcp->shim->toggle_signalling(dig_port, false);
->  		if (ret) {
->  			drm_err(&dev_priv->drm,
->  				"Failed to disable HDCP signalling. %d\n",
-> @@ -1723,10 +1723,10 @@ static int _intel_hdcp2_disable(struct intel_connector *connector)
->  /* Implements the Link Integrity Check for HDCP2.2 */
->  static int intel_hdcp2_check_link(struct intel_connector *connector)
->  {
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
-> -	enum port port = intel_dig_port->base.port;
-> +	enum port port = dig_port->base.port;
->  	enum transcoder cpu_transcoder;
->  	int ret = 0;
->  
-> @@ -1751,7 +1751,7 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
->  		goto out;
->  	}
->  
-> -	ret = hdcp->shim->check_2_2_link(intel_dig_port);
-> +	ret = hdcp->shim->check_2_2_link(dig_port);
->  	if (ret == HDCP_LINK_PROTECTED) {
->  		if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
->  			hdcp->value = DRM_MODE_CONTENT_PROTECTION_ENABLED;
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index a31a98d26882..414a0de2aab3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -88,10 +88,10 @@ assert_hdmi_transcoder_func_disabled(struct drm_i915_private *dev_priv,
->  
->  struct intel_hdmi *enc_to_intel_hdmi(struct intel_encoder *encoder)
->  {
-> -	struct intel_digital_port *intel_dig_port =
-> +	struct intel_digital_port *dig_port =
->  		container_of(&encoder->base, struct intel_digital_port,
->  			     base.base);
-> -	return &intel_dig_port->hdmi;
-> +	return &dig_port->hdmi;
->  }
->  
->  static struct intel_hdmi *intel_attached_hdmi(struct intel_connector *connector)
-> @@ -660,7 +660,7 @@ static void intel_write_infoframe(struct intel_encoder *encoder,
->  				  enum hdmi_infoframe_type type,
->  				  const union hdmi_infoframe *frame)
->  {
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	u8 buffer[VIDEO_DIP_DATA_SIZE];
->  	ssize_t len;
->  
-> @@ -681,7 +681,7 @@ static void intel_write_infoframe(struct intel_encoder *encoder,
->  	buffer[3] = 0;
->  	len++;
->  
-> -	intel_dig_port->write_infoframe(encoder, crtc_state, type, buffer, len);
-> +	dig_port->write_infoframe(encoder, crtc_state, type, buffer, len);
->  }
->  
->  void intel_read_infoframe(struct intel_encoder *encoder,
-> @@ -689,7 +689,7 @@ void intel_read_infoframe(struct intel_encoder *encoder,
->  			  enum hdmi_infoframe_type type,
->  			  union hdmi_infoframe *frame)
->  {
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	u8 buffer[VIDEO_DIP_DATA_SIZE];
->  	int ret;
->  
-> @@ -697,7 +697,7 @@ void intel_read_infoframe(struct intel_encoder *encoder,
->  	     intel_hdmi_infoframe_enable(type)) == 0)
->  		return;
->  
-> -	intel_dig_port->read_infoframe(encoder, crtc_state,
-> +	dig_port->read_infoframe(encoder, crtc_state,
->  				       type, buffer, sizeof(buffer));
->  
->  	/* Fill the 'hole' (see big comment above) at position 3 */
-> @@ -872,8 +872,8 @@ static void g4x_set_infoframes(struct intel_encoder *encoder,
->  			       const struct drm_connector_state *conn_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
-> -	struct intel_hdmi *intel_hdmi = &intel_dig_port->hdmi;
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> +	struct intel_hdmi *intel_hdmi = &dig_port->hdmi;
->  	i915_reg_t reg = VIDEO_DIP_CTL;
->  	u32 val = intel_de_read(dev_priv, reg);
->  	u32 port = VIDEO_DIP_PORT(encoder->port);
-> @@ -1057,8 +1057,8 @@ static void ibx_set_infoframes(struct intel_encoder *encoder,
->  {
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_crtc *intel_crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
-> -	struct intel_hdmi *intel_hdmi = &intel_dig_port->hdmi;
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> +	struct intel_hdmi *intel_hdmi = &dig_port->hdmi;
->  	i915_reg_t reg = TVIDEO_DIP_CTL(intel_crtc->pipe);
->  	u32 val = intel_de_read(dev_priv, reg);
->  	u32 port = VIDEO_DIP_PORT(encoder->port);
-> @@ -1275,11 +1275,11 @@ void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable)
->  					 adapter, enable);
->  }
->  
-> -static int intel_hdmi_hdcp_read(struct intel_digital_port *intel_dig_port,
-> +static int intel_hdmi_hdcp_read(struct intel_digital_port *dig_port,
->  				unsigned int offset, void *buffer, size_t size)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> -	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_hdmi *hdmi = &dig_port->hdmi;
->  	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
->  							      hdmi->ddc_bus);
->  	int ret;
-> @@ -1304,11 +1304,11 @@ static int intel_hdmi_hdcp_read(struct intel_digital_port *intel_dig_port,
->  	return ret >= 0 ? -EIO : ret;
->  }
->  
-> -static int intel_hdmi_hdcp_write(struct intel_digital_port *intel_dig_port,
-> +static int intel_hdmi_hdcp_write(struct intel_digital_port *dig_port,
->  				 unsigned int offset, void *buffer, size_t size)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> -	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_hdmi *hdmi = &dig_port->hdmi;
->  	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
->  							      hdmi->ddc_bus);
->  	int ret;
-> @@ -1338,16 +1338,16 @@ static int intel_hdmi_hdcp_write(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
->  				  u8 *an)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> -	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_hdmi *hdmi = &dig_port->hdmi;
->  	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
->  							      hdmi->ddc_bus);
->  	int ret;
->  
-> -	ret = intel_hdmi_hdcp_write(intel_dig_port, DRM_HDCP_DDC_AN, an,
-> +	ret = intel_hdmi_hdcp_write(dig_port, DRM_HDCP_DDC_AN, an,
->  				    DRM_HDCP_AN_LEN);
->  	if (ret) {
->  		drm_dbg_kms(&i915->drm, "Write An over DDC failed (%d)\n",
-> @@ -1363,13 +1363,13 @@ int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
->  	return 0;
->  }
->  
-> -static int intel_hdmi_hdcp_read_bksv(struct intel_digital_port *intel_dig_port,
-> +static int intel_hdmi_hdcp_read_bksv(struct intel_digital_port *dig_port,
->  				     u8 *bksv)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  
->  	int ret;
-> -	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_BKSV, bksv,
-> +	ret = intel_hdmi_hdcp_read(dig_port, DRM_HDCP_DDC_BKSV, bksv,
->  				   DRM_HDCP_KSV_LEN);
->  	if (ret)
->  		drm_dbg_kms(&i915->drm, "Read Bksv over DDC failed (%d)\n",
-> @@ -1378,13 +1378,13 @@ static int intel_hdmi_hdcp_read_bksv(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_hdmi_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp_read_bstatus(struct intel_digital_port *dig_port,
->  				 u8 *bstatus)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  
->  	int ret;
-> -	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_BSTATUS,
-> +	ret = intel_hdmi_hdcp_read(dig_port, DRM_HDCP_DDC_BSTATUS,
->  				   bstatus, DRM_HDCP_BSTATUS_LEN);
->  	if (ret)
->  		drm_dbg_kms(&i915->drm, "Read bstatus over DDC failed (%d)\n",
-> @@ -1393,14 +1393,14 @@ int intel_hdmi_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_hdmi_hdcp_repeater_present(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp_repeater_present(struct intel_digital_port *dig_port,
->  				     bool *repeater_present)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	int ret;
->  	u8 val;
->  
-> -	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_BCAPS, &val, 1);
-> +	ret = intel_hdmi_hdcp_read(dig_port, DRM_HDCP_DDC_BCAPS, &val, 1);
->  	if (ret) {
->  		drm_dbg_kms(&i915->drm, "Read bcaps over DDC failed (%d)\n",
->  			    ret);
-> @@ -1411,13 +1411,13 @@ int intel_hdmi_hdcp_repeater_present(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_hdmi_hdcp_read_ri_prime(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp_read_ri_prime(struct intel_digital_port *dig_port,
->  				  u8 *ri_prime)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  
->  	int ret;
-> -	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_RI_PRIME,
-> +	ret = intel_hdmi_hdcp_read(dig_port, DRM_HDCP_DDC_RI_PRIME,
->  				   ri_prime, DRM_HDCP_RI_LEN);
->  	if (ret)
->  		drm_dbg_kms(&i915->drm, "Read Ri' over DDC failed (%d)\n",
-> @@ -1426,14 +1426,14 @@ int intel_hdmi_hdcp_read_ri_prime(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_hdmi_hdcp_read_ksv_ready(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp_read_ksv_ready(struct intel_digital_port *dig_port,
->  				   bool *ksv_ready)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	int ret;
->  	u8 val;
->  
-> -	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_BCAPS, &val, 1);
-> +	ret = intel_hdmi_hdcp_read(dig_port, DRM_HDCP_DDC_BCAPS, &val, 1);
->  	if (ret) {
->  		drm_dbg_kms(&i915->drm, "Read bcaps over DDC failed (%d)\n",
->  			    ret);
-> @@ -1444,12 +1444,12 @@ int intel_hdmi_hdcp_read_ksv_ready(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_hdmi_hdcp_read_ksv_fifo(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp_read_ksv_fifo(struct intel_digital_port *dig_port,
->  				  int num_downstream, u8 *ksv_fifo)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	int ret;
-> -	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_KSV_FIFO,
-> +	ret = intel_hdmi_hdcp_read(dig_port, DRM_HDCP_DDC_KSV_FIFO,
->  				   ksv_fifo, num_downstream * DRM_HDCP_KSV_LEN);
->  	if (ret) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -1460,16 +1460,16 @@ int intel_hdmi_hdcp_read_ksv_fifo(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_hdmi_hdcp_read_v_prime_part(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp_read_v_prime_part(struct intel_digital_port *dig_port,
->  				      int i, u32 *part)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	int ret;
->  
->  	if (i >= DRM_HDCP_V_PRIME_NUM_PARTS)
->  		return -EINVAL;
->  
-> -	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_V_PRIME(i),
-> +	ret = intel_hdmi_hdcp_read(dig_port, DRM_HDCP_DDC_V_PRIME(i),
->  				   part, DRM_HDCP_V_PRIME_PART_LEN);
->  	if (ret)
->  		drm_dbg_kms(&i915->drm, "Read V'[%d] over DDC failed (%d)\n",
-> @@ -1480,7 +1480,7 @@ int intel_hdmi_hdcp_read_v_prime_part(struct intel_digital_port *intel_dig_port,
->  static int kbl_repositioning_enc_en_signal(struct intel_connector *connector)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> -	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_crtc *crtc = connector->base.state->crtc;
->  	struct intel_crtc *intel_crtc = container_of(crtc,
->  						     struct intel_crtc, base);
-> @@ -1494,13 +1494,13 @@ static int kbl_repositioning_enc_en_signal(struct intel_connector *connector)
->  		usleep_range(25, 50);
->  	}
->  
-> -	ret = intel_ddi_toggle_hdcp_signalling(&intel_dig_port->base, false);
-> +	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base, false);
->  	if (ret) {
->  		drm_err(&dev_priv->drm,
->  			"Disable HDCP signalling failed (%d)\n", ret);
->  		return ret;
->  	}
-> -	ret = intel_ddi_toggle_hdcp_signalling(&intel_dig_port->base, true);
-> +	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base, true);
->  	if (ret) {
->  		drm_err(&dev_priv->drm,
->  			"Enable HDCP signalling failed (%d)\n", ret);
-> @@ -1511,10 +1511,10 @@ static int kbl_repositioning_enc_en_signal(struct intel_connector *connector)
->  }
->  
->  static
-> -int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *dig_port,
->  				      bool enable)
->  {
-> -	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
-> +	struct intel_hdmi *hdmi = &dig_port->hdmi;
->  	struct intel_connector *connector = hdmi->attached_connector;
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	int ret;
-> @@ -1522,7 +1522,7 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
->  	if (!enable)
->  		usleep_range(6, 60); /* Bspec says >= 6us */
->  
-> -	ret = intel_ddi_toggle_hdcp_signalling(&intel_dig_port->base, enable);
-> +	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base, enable);
->  	if (ret) {
->  		drm_err(&dev_priv->drm, "%s HDCP signalling failed (%d)\n",
->  			enable ? "Enable" : "Disable", ret);
-> @@ -1540,12 +1540,12 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> +bool intel_hdmi_hdcp_check_link(struct intel_digital_port *dig_port)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	struct intel_connector *connector =
-> -		intel_dig_port->hdmi.attached_connector;
-> -	enum port port = intel_dig_port->base.port;
-> +		dig_port->hdmi.attached_connector;
-> +	enum port port = dig_port->base.port;
->  	enum transcoder cpu_transcoder = connector->hdcp.cpu_transcoder;
->  	int ret;
->  	union {
-> @@ -1553,7 +1553,7 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
->  		u8 shim[DRM_HDCP_RI_LEN];
->  	} ri;
->  
-> -	ret = intel_hdmi_hdcp_read_ri_prime(intel_dig_port, ri.shim);
-> +	ret = intel_hdmi_hdcp_read_ri_prime(dig_port, ri.shim);
->  	if (ret)
->  		return false;
->  
-> @@ -1586,10 +1586,10 @@ static const struct hdcp2_hdmi_msg_timeout hdcp2_msg_timeout[] = {
->  };
->  
->  static
-> -int intel_hdmi_hdcp2_read_rx_status(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp2_read_rx_status(struct intel_digital_port *dig_port,
->  				    u8 *rx_status)
->  {
-> -	return intel_hdmi_hdcp_read(intel_dig_port,
-> +	return intel_hdmi_hdcp_read(dig_port,
->  				    HDCP_2_2_HDMI_REG_RXSTATUS_OFFSET,
->  				    rx_status,
->  				    HDCP_2_2_HDMI_RXSTATUS_LEN);
-> @@ -1615,15 +1615,15 @@ static int get_hdcp2_msg_timeout(u8 msg_id, bool is_paired)
->  }
->  
->  static int
-> -hdcp2_detect_msg_availability(struct intel_digital_port *intel_dig_port,
-> +hdcp2_detect_msg_availability(struct intel_digital_port *dig_port,
->  			      u8 msg_id, bool *msg_ready,
->  			      ssize_t *msg_sz)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	u8 rx_status[HDCP_2_2_HDMI_RXSTATUS_LEN];
->  	int ret;
->  
-> -	ret = intel_hdmi_hdcp2_read_rx_status(intel_dig_port, rx_status);
-> +	ret = intel_hdmi_hdcp2_read_rx_status(dig_port, rx_status);
->  	if (ret < 0) {
->  		drm_dbg_kms(&i915->drm, "rx_status read failed. Err %d\n",
->  			    ret);
-> @@ -1643,10 +1643,10 @@ hdcp2_detect_msg_availability(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static ssize_t
-> -intel_hdmi_hdcp2_wait_for_msg(struct intel_digital_port *intel_dig_port,
-> +intel_hdmi_hdcp2_wait_for_msg(struct intel_digital_port *dig_port,
->  			      u8 msg_id, bool paired)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	bool msg_ready = false;
->  	int timeout, ret;
->  	ssize_t msg_sz = 0;
-> @@ -1655,7 +1655,7 @@ intel_hdmi_hdcp2_wait_for_msg(struct intel_digital_port *intel_dig_port,
->  	if (timeout < 0)
->  		return timeout;
->  
-> -	ret = __wait_for(ret = hdcp2_detect_msg_availability(intel_dig_port,
-> +	ret = __wait_for(ret = hdcp2_detect_msg_availability(dig_port,
->  							     msg_id, &msg_ready,
->  							     &msg_sz),
->  			 !ret && msg_ready && msg_sz, timeout * 1000,
-> @@ -1668,26 +1668,26 @@ intel_hdmi_hdcp2_wait_for_msg(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_hdmi_hdcp2_write_msg(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp2_write_msg(struct intel_digital_port *dig_port,
->  			       void *buf, size_t size)
->  {
->  	unsigned int offset;
->  
->  	offset = HDCP_2_2_HDMI_REG_WR_MSG_OFFSET;
-> -	return intel_hdmi_hdcp_write(intel_dig_port, offset, buf, size);
-> +	return intel_hdmi_hdcp_write(dig_port, offset, buf, size);
->  }
->  
->  static
-> -int intel_hdmi_hdcp2_read_msg(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp2_read_msg(struct intel_digital_port *dig_port,
->  			      u8 msg_id, void *buf, size_t size)
->  {
-> -	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> -	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_hdmi *hdmi = &dig_port->hdmi;
->  	struct intel_hdcp *hdcp = &hdmi->attached_connector->hdcp;
->  	unsigned int offset;
->  	ssize_t ret;
->  
-> -	ret = intel_hdmi_hdcp2_wait_for_msg(intel_dig_port, msg_id,
-> +	ret = intel_hdmi_hdcp2_wait_for_msg(dig_port, msg_id,
->  					    hdcp->is_paired);
->  	if (ret < 0)
->  		return ret;
-> @@ -1704,7 +1704,7 @@ int intel_hdmi_hdcp2_read_msg(struct intel_digital_port *intel_dig_port,
->  	}
->  
->  	offset = HDCP_2_2_HDMI_REG_RD_MSG_OFFSET;
-> -	ret = intel_hdmi_hdcp_read(intel_dig_port, offset, buf, ret);
-> +	ret = intel_hdmi_hdcp_read(dig_port, offset, buf, ret);
->  	if (ret)
->  		drm_dbg_kms(&i915->drm, "Failed to read msg_id: %d(%zd)\n",
->  			    msg_id, ret);
-> @@ -1713,12 +1713,12 @@ int intel_hdmi_hdcp2_read_msg(struct intel_digital_port *intel_dig_port,
->  }
->  
->  static
-> -int intel_hdmi_hdcp2_check_link(struct intel_digital_port *intel_dig_port)
-> +int intel_hdmi_hdcp2_check_link(struct intel_digital_port *dig_port)
->  {
->  	u8 rx_status[HDCP_2_2_HDMI_RXSTATUS_LEN];
->  	int ret;
->  
-> -	ret = intel_hdmi_hdcp2_read_rx_status(intel_dig_port, rx_status);
-> +	ret = intel_hdmi_hdcp2_read_rx_status(dig_port, rx_status);
->  	if (ret)
->  		return ret;
->  
-> @@ -1735,14 +1735,14 @@ int intel_hdmi_hdcp2_check_link(struct intel_digital_port *intel_dig_port)
->  }
->  
->  static
-> -int intel_hdmi_hdcp2_capable(struct intel_digital_port *intel_dig_port,
-> +int intel_hdmi_hdcp2_capable(struct intel_digital_port *dig_port,
->  			     bool *capable)
->  {
->  	u8 hdcp2_version;
->  	int ret;
->  
->  	*capable = false;
-> -	ret = intel_hdmi_hdcp_read(intel_dig_port, HDCP_2_2_HDMI_REG_VER_OFFSET,
-> +	ret = intel_hdmi_hdcp_read(dig_port, HDCP_2_2_HDMI_REG_VER_OFFSET,
->  				   &hdcp2_version, sizeof(hdcp2_version));
->  	if (!ret && hdcp2_version & HDCP_2_2_HDMI_SUPPORT_MASK)
->  		*capable = true;
-> @@ -2050,7 +2050,7 @@ static void intel_disable_hdmi(struct intel_atomic_state *state,
->  	struct drm_device *dev = encoder->base.dev;
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
-> -	struct intel_digital_port *intel_dig_port =
-> +	struct intel_digital_port *dig_port =
->  		hdmi_to_dig_port(intel_hdmi);
->  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
->  	u32 temp;
-> @@ -2094,7 +2094,7 @@ static void intel_disable_hdmi(struct intel_atomic_state *state,
->  		intel_set_pch_fifo_underrun_reporting(dev_priv, PIPE_A, true);
->  	}
->  
-> -	intel_dig_port->set_infoframes(encoder,
-> +	dig_port->set_infoframes(encoder,
->  				       false,
->  				       old_crtc_state, old_conn_state);
->  
-> @@ -2709,12 +2709,12 @@ static void intel_hdmi_pre_enable(struct intel_atomic_state *state,
->  				  const struct intel_crtc_state *pipe_config,
->  				  const struct drm_connector_state *conn_state)
->  {
-> -	struct intel_digital_port *intel_dig_port =
-> +	struct intel_digital_port *dig_port =
->  		enc_to_dig_port(encoder);
->  
->  	intel_hdmi_prepare(encoder, pipe_config);
->  
-> -	intel_dig_port->set_infoframes(encoder,
-> +	dig_port->set_infoframes(encoder,
->  				       pipe_config->has_infoframe,
->  				       pipe_config, conn_state);
->  }
-> @@ -2724,7 +2724,7 @@ static void vlv_hdmi_pre_enable(struct intel_atomic_state *state,
->  				const struct intel_crtc_state *pipe_config,
->  				const struct drm_connector_state *conn_state)
->  {
-> -	struct intel_digital_port *dport = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  
->  	vlv_phy_pre_encoder_enable(encoder, pipe_config);
-> @@ -2733,13 +2733,13 @@ static void vlv_hdmi_pre_enable(struct intel_atomic_state *state,
->  	vlv_set_phy_signal_level(encoder, 0x2b245f5f, 0x00002000, 0x5578b83a,
->  				 0x2b247878);
->  
-> -	dport->set_infoframes(encoder,
-> +	dig_port->set_infoframes(encoder,
->  			      pipe_config->has_infoframe,
->  			      pipe_config, conn_state);
->  
->  	g4x_enable_hdmi(state, encoder, pipe_config, conn_state);
->  
-> -	vlv_wait_port_ready(dev_priv, dport, 0x0);
-> +	vlv_wait_port_ready(dev_priv, dig_port, 0x0);
->  }
->  
->  static void vlv_hdmi_pre_pll_enable(struct intel_atomic_state *state,
-> @@ -2800,7 +2800,7 @@ static void chv_hdmi_pre_enable(struct intel_atomic_state *state,
->  				const struct intel_crtc_state *pipe_config,
->  				const struct drm_connector_state *conn_state)
->  {
-> -	struct intel_digital_port *dport = enc_to_dig_port(encoder);
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  	struct drm_device *dev = encoder->base.dev;
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  
-> @@ -2810,13 +2810,13 @@ static void chv_hdmi_pre_enable(struct intel_atomic_state *state,
->  	/* Use 800mV-0dB */
->  	chv_set_phy_signal_level(encoder, 128, 102, false);
->  
-> -	dport->set_infoframes(encoder,
-> +	dig_port->set_infoframes(encoder,
->  			      pipe_config->has_infoframe,
->  			      pipe_config, conn_state);
->  
->  	g4x_enable_hdmi(state, encoder, pipe_config, conn_state);
->  
-> -	vlv_wait_port_ready(dev_priv, dport, 0x0);
-> +	vlv_wait_port_ready(dev_priv, dig_port, 0x0);
->  
->  	/* Second common lane will stay alive on its own now */
->  	chv_phy_release_cl2_override(encoder);
-> @@ -2910,7 +2910,7 @@ static void
->  intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *connector)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
-> -	struct intel_digital_port *intel_dig_port =
-> +	struct intel_digital_port *dig_port =
->  				hdmi_to_dig_port(intel_hdmi);
->  
->  	intel_attach_force_audio_property(connector);
-> @@ -2922,7 +2922,7 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
->  	 * ToDo: This needs to be extended for LSPCON implementation
->  	 * as well. Will be implemented separately.
->  	 */
-> -	if (!intel_dig_port->lspcon.active)
-> +	if (!dig_port->lspcon.active)
->  		intel_attach_colorspace_property(connector);
->  
->  	drm_connector_attach_content_type_property(connector);
-> @@ -3159,52 +3159,52 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
->  	return ddc_pin;
->  }
->  
-> -void intel_infoframe_init(struct intel_digital_port *intel_dig_port)
-> +void intel_infoframe_init(struct intel_digital_port *dig_port)
->  {
->  	struct drm_i915_private *dev_priv =
-> -		to_i915(intel_dig_port->base.base.dev);
-> +		to_i915(dig_port->base.base.dev);
->  
->  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
-> -		intel_dig_port->write_infoframe = vlv_write_infoframe;
-> -		intel_dig_port->read_infoframe = vlv_read_infoframe;
-> -		intel_dig_port->set_infoframes = vlv_set_infoframes;
-> -		intel_dig_port->infoframes_enabled = vlv_infoframes_enabled;
-> +		dig_port->write_infoframe = vlv_write_infoframe;
-> +		dig_port->read_infoframe = vlv_read_infoframe;
-> +		dig_port->set_infoframes = vlv_set_infoframes;
-> +		dig_port->infoframes_enabled = vlv_infoframes_enabled;
->  	} else if (IS_G4X(dev_priv)) {
-> -		intel_dig_port->write_infoframe = g4x_write_infoframe;
-> -		intel_dig_port->read_infoframe = g4x_read_infoframe;
-> -		intel_dig_port->set_infoframes = g4x_set_infoframes;
-> -		intel_dig_port->infoframes_enabled = g4x_infoframes_enabled;
-> +		dig_port->write_infoframe = g4x_write_infoframe;
-> +		dig_port->read_infoframe = g4x_read_infoframe;
-> +		dig_port->set_infoframes = g4x_set_infoframes;
-> +		dig_port->infoframes_enabled = g4x_infoframes_enabled;
->  	} else if (HAS_DDI(dev_priv)) {
-> -		if (intel_dig_port->lspcon.active) {
-> -			intel_dig_port->write_infoframe = lspcon_write_infoframe;
-> -			intel_dig_port->read_infoframe = lspcon_read_infoframe;
-> -			intel_dig_port->set_infoframes = lspcon_set_infoframes;
-> -			intel_dig_port->infoframes_enabled = lspcon_infoframes_enabled;
-> +		if (dig_port->lspcon.active) {
-> +			dig_port->write_infoframe = lspcon_write_infoframe;
-> +			dig_port->read_infoframe = lspcon_read_infoframe;
-> +			dig_port->set_infoframes = lspcon_set_infoframes;
-> +			dig_port->infoframes_enabled = lspcon_infoframes_enabled;
->  		} else {
-> -			intel_dig_port->write_infoframe = hsw_write_infoframe;
-> -			intel_dig_port->read_infoframe = hsw_read_infoframe;
-> -			intel_dig_port->set_infoframes = hsw_set_infoframes;
-> -			intel_dig_port->infoframes_enabled = hsw_infoframes_enabled;
-> +			dig_port->write_infoframe = hsw_write_infoframe;
-> +			dig_port->read_infoframe = hsw_read_infoframe;
-> +			dig_port->set_infoframes = hsw_set_infoframes;
-> +			dig_port->infoframes_enabled = hsw_infoframes_enabled;
->  		}
->  	} else if (HAS_PCH_IBX(dev_priv)) {
-> -		intel_dig_port->write_infoframe = ibx_write_infoframe;
-> -		intel_dig_port->read_infoframe = ibx_read_infoframe;
-> -		intel_dig_port->set_infoframes = ibx_set_infoframes;
-> -		intel_dig_port->infoframes_enabled = ibx_infoframes_enabled;
-> +		dig_port->write_infoframe = ibx_write_infoframe;
-> +		dig_port->read_infoframe = ibx_read_infoframe;
-> +		dig_port->set_infoframes = ibx_set_infoframes;
-> +		dig_port->infoframes_enabled = ibx_infoframes_enabled;
->  	} else {
-> -		intel_dig_port->write_infoframe = cpt_write_infoframe;
-> -		intel_dig_port->read_infoframe = cpt_read_infoframe;
-> -		intel_dig_port->set_infoframes = cpt_set_infoframes;
-> -		intel_dig_port->infoframes_enabled = cpt_infoframes_enabled;
-> +		dig_port->write_infoframe = cpt_write_infoframe;
-> +		dig_port->read_infoframe = cpt_read_infoframe;
-> +		dig_port->set_infoframes = cpt_set_infoframes;
-> +		dig_port->infoframes_enabled = cpt_infoframes_enabled;
->  	}
->  }
->  
-> -void intel_hdmi_init_connector(struct intel_digital_port *intel_dig_port,
-> +void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
->  			       struct intel_connector *intel_connector)
->  {
->  	struct drm_connector *connector = &intel_connector->base;
-> -	struct intel_hdmi *intel_hdmi = &intel_dig_port->hdmi;
-> -	struct intel_encoder *intel_encoder = &intel_dig_port->base;
-> +	struct intel_hdmi *intel_hdmi = &dig_port->hdmi;
-> +	struct intel_encoder *intel_encoder = &dig_port->base;
->  	struct drm_device *dev = intel_encoder->base.dev;
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct i2c_adapter *ddc;
-> @@ -3218,9 +3218,9 @@ void intel_hdmi_init_connector(struct intel_digital_port *intel_dig_port,
->  	if (INTEL_GEN(dev_priv) < 12 && drm_WARN_ON(dev, port == PORT_A))
->  		return;
->  
-> -	if (drm_WARN(dev, intel_dig_port->max_lanes < 4,
-> +	if (drm_WARN(dev, dig_port->max_lanes < 4,
->  		     "Not enough lanes (%d) for HDMI on [ENCODER:%d:%s]\n",
-> -		     intel_dig_port->max_lanes, intel_encoder->base.base.id,
-> +		     dig_port->max_lanes, intel_encoder->base.base.id,
->  		     intel_encoder->base.name))
->  		return;
->  
-> @@ -3309,21 +3309,21 @@ intel_hdmi_hotplug(struct intel_encoder *encoder,
->  void intel_hdmi_init(struct drm_i915_private *dev_priv,
->  		     i915_reg_t hdmi_reg, enum port port)
->  {
-> -	struct intel_digital_port *intel_dig_port;
-> +	struct intel_digital_port *dig_port;
->  	struct intel_encoder *intel_encoder;
->  	struct intel_connector *intel_connector;
->  
-> -	intel_dig_port = kzalloc(sizeof(*intel_dig_port), GFP_KERNEL);
-> -	if (!intel_dig_port)
-> +	dig_port = kzalloc(sizeof(*dig_port), GFP_KERNEL);
-> +	if (!dig_port)
->  		return;
->  
->  	intel_connector = intel_connector_alloc();
->  	if (!intel_connector) {
-> -		kfree(intel_dig_port);
-> +		kfree(dig_port);
->  		return;
->  	}
->  
-> -	intel_encoder = &intel_dig_port->base;
-> +	intel_encoder = &dig_port->base;
->  
->  	drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
->  			 &intel_hdmi_enc_funcs, DRM_MODE_ENCODER_TMDS,
-> @@ -3380,12 +3380,12 @@ void intel_hdmi_init(struct drm_i915_private *dev_priv,
->  	if (IS_G4X(dev_priv))
->  		intel_encoder->cloneable |= 1 << INTEL_OUTPUT_HDMI;
->  
-> -	intel_dig_port->hdmi.hdmi_reg = hdmi_reg;
-> -	intel_dig_port->dp.output_reg = INVALID_MMIO_REG;
-> -	intel_dig_port->max_lanes = 4;
-> +	dig_port->hdmi.hdmi_reg = hdmi_reg;
-> +	dig_port->dp.output_reg = INVALID_MMIO_REG;
-> +	dig_port->max_lanes = 4;
->  
-> -	intel_infoframe_init(intel_dig_port);
-> +	intel_infoframe_init(dig_port);
->  
-> -	intel_dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, port);
-> -	intel_hdmi_init_connector(intel_dig_port, intel_connector);
-> +	dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, port);
-> +	intel_hdmi_init_connector(dig_port, intel_connector);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-> index 8ff1f76a63df..213ff24befde 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-> @@ -25,7 +25,7 @@ enum port;
->  
->  void intel_hdmi_init(struct drm_i915_private *dev_priv, i915_reg_t hdmi_reg,
->  		     enum port port);
-> -void intel_hdmi_init_connector(struct intel_digital_port *intel_dig_port,
-> +void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
->  			       struct intel_connector *intel_connector);
->  struct intel_hdmi *enc_to_intel_hdmi(struct intel_encoder *encoder);
->  int intel_hdmi_compute_config(struct intel_encoder *encoder,
-> @@ -36,7 +36,7 @@ bool intel_hdmi_handle_sink_scrambling(struct intel_encoder *encoder,
->  				       bool high_tmds_clock_ratio,
->  				       bool scrambling);
->  void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable);
-> -void intel_infoframe_init(struct intel_digital_port *intel_dig_port);
-> +void intel_infoframe_init(struct intel_digital_port *dig_port);
->  u32 intel_hdmi_infoframes_enabled(struct intel_encoder *encoder,
->  				  const struct intel_crtc_state *crtc_state);
->  u32 intel_hdmi_infoframe_enable(unsigned int type);
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> index 6ff7b226f0a1..b781bf469644 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> @@ -550,11 +550,11 @@ void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon)
->  	lspcon_wait_mode(lspcon, DRM_LSPCON_MODE_PCON);
->  }
->  
-> -bool lspcon_init(struct intel_digital_port *intel_dig_port)
-> +bool lspcon_init(struct intel_digital_port *dig_port)
->  {
-> -	struct intel_dp *dp = &intel_dig_port->dp;
-> -	struct intel_lspcon *lspcon = &intel_dig_port->lspcon;
-> -	struct drm_device *dev = intel_dig_port->base.base.dev;
-> +	struct intel_dp *dp = &dig_port->dp;
-> +	struct intel_lspcon *lspcon = &dig_port->lspcon;
-> +	struct drm_device *dev = dig_port->base.base.dev;
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct drm_connector *connector = &dp->attached_connector->base;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
-> index 37cfddf8a9c5..1cffe8a42a08 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-> @@ -15,7 +15,7 @@ struct intel_digital_port;
->  struct intel_encoder;
->  struct intel_lspcon;
->  
-> -bool lspcon_init(struct intel_digital_port *intel_dig_port);
-> +bool lspcon_init(struct intel_digital_port *dig_port);
->  void lspcon_resume(struct intel_lspcon *lspcon);
->  void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon);
->  void lspcon_write_infoframe(struct intel_encoder *encoder,
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 86bf7a76f93d..78762627a8ba 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -905,8 +905,8 @@ static void intel_psr_enable_locked(struct drm_i915_private *dev_priv,
->  				    const struct drm_connector_state *conn_state)
->  {
->  	struct intel_dp *intel_dp = dev_priv->psr.dp;
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> -	struct intel_encoder *encoder = &intel_dig_port->base;
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_encoder *encoder = &dig_port->base;
->  	u32 val;
->  
->  	drm_WARN_ON(&dev_priv->drm, dev_priv->psr.enabled);
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index d145fe2bed81..c5735c365659 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -1045,7 +1045,7 @@ static void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
->  				   const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
->  	struct drm_dsc_pps_infoframe dp_dsc_pps_sdp;
->  
-> @@ -1055,9 +1055,9 @@ static void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
->  	/* Fill the PPS payload bytes as per DSC spec 1.2 Table 4-1 */
->  	drm_dsc_pps_payload_pack(&dp_dsc_pps_sdp.pps_payload, vdsc_cfg);
->  
-> -	intel_dig_port->write_infoframe(encoder, crtc_state,
-> -					DP_SDP_PPS, &dp_dsc_pps_sdp,
-> -					sizeof(dp_dsc_pps_sdp));
-> +	dig_port->write_infoframe(encoder, crtc_state,
-> +				  DP_SDP_PPS, &dp_dsc_pps_sdp,
-> +				  sizeof(dp_dsc_pps_sdp));
->  }
->  
->  void intel_dsc_enable(struct intel_encoder *encoder,
-> -- 
-> 2.26.2
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T3AgMjktMDYtMjAyMCBvbSAxNDozMiBzY2hyZWVmIFR2cnRrbyBVcnN1bGluOgo+Cj4gT24gMjMv
+MDYvMjAyMCAxNToyOCwgTWFhcnRlbiBMYW5raG9yc3Qgd3JvdGU6Cj4+IGk5MTVfZ2VtX3d3X2N0
+eCBpcyB1c2VkIHRvIGxvY2sgYWxsIGdlbSBibydzIGZvciBwaW5uaW5nIGFuZCBtZW1vcnkKPj4g
+ZXZpY3Rpb24uIFdlIGRvbid0IHVzZSBpdCB5ZXQsIGJ1dCBsZXRzIHN0YXJ0IGFkZGluZyB0aGUg
+ZGVmaW5pdGlvbgo+PiBmaXJzdC4KPj4KPj4gVG8gdXNlIGl0LCB3ZSBoYXZlIHRvIHBhc3MgYSBu
+b24tTlVMTCB3dyB0byBnZW1fb2JqZWN0X2xvY2ssIGFuZCBkb24ndAo+PiB1bmxvY2sgZGlyZWN0
+bHkuIEl0IGlzIGRvbmUgaW4gaTkxNV9nZW1fd3dfY3R4X2ZpbmkuCj4+Cj4+IENoYW5nZXMgc2lu
+Y2UgdjE6Cj4+IC0gQ2hhbmdlIHd3X2N0eCBhbmQgb2JqIG9yZGVyIGluIGxvY2tpbmcgZnVuY3Rp
+b25zIChKb25hcyBMYWh0aW5lbikKPj4KPj4gU2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5raG9y
+c3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPj4gLS0tCj4+IMKgIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jwqAgfMKgIDQgKy0KPj4gwqAg
+Li4uL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY2xpZW50X2JsdC5jwqDCoMKgIHzCoCAyICst
+Cj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmPCoMKgIHzC
+oCAyICstCj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuY8Kg
+wqDCoCB8wqAgNCArLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG9t
+YWluLmPCoMKgwqAgfCAxMCArKy0tCj4+IMKgIC4uLi9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
+X2V4ZWNidWZmZXIuY8KgwqDCoCB8wqAgNCArLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+ZW0vaTkxNV9nZW1fb2JqZWN0LmPCoMKgwqAgfMKgIDIgKy0KPj4gwqAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5owqDCoMKgIHwgMzggKysrKysrKysrKystLS0KPj4g
+wqAgLi4uL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0X3R5cGVzLmjCoCB8wqAgOSAr
+KysrCj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9wbS5jwqDCoMKgwqDC
+oMKgwqAgfMKgIDIgKy0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3Rp
+bGluZy5jwqDCoMKgIHzCoCAyICstCj4+IMKgIC4uLi9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0
+cy9odWdlX3BhZ2VzLmPCoMKgIHzCoCAyICstCj4+IMKgIC4uLi9pOTE1L2dlbS9zZWxmdGVzdHMv
+aTkxNV9nZW1fY2xpZW50X2JsdC5jwqAgfMKgIDIgKy0KPj4gwqAgLi4uL2k5MTUvZ2VtL3NlbGZ0
+ZXN0cy9pOTE1X2dlbV9jb2hlcmVuY3kuY8KgwqAgfCAxMCArKy0tCj4+IMKgIC4uLi9kcm0vaTkx
+NS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2NvbnRleHQuYyB8wqAgNCArLQo+PiDCoCAuLi4vZHJt
+L2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9tbWFuLmPCoMKgwqAgfMKgIDQgKy0KPj4gwqAg
+Li4uL2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fcGh5cy5jwqDCoMKgIHzCoCAyICst
+Cj4+IMKgIC4uLi9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3Rfd29ya2Fyb3VuZHMuY8KgwqDCoCB8
+wqAgMiArLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndnQvY21kX3BhcnNlci5jwqDCoMKg
+wqDCoMKgwqDCoCB8wqAgMiArLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5j
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8IDUyICsrKysrKysrKysrKysrKysrLS0KPj4g
+wqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uaMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgfCAxMSArKysrCj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1
+X2dlbS5jwqDCoMKgwqAgfCA0MSArKysrKysrKysrKysrKysKPj4gwqAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvc2VsZnRlc3RzL2k5MTVfdm1hLmPCoMKgwqDCoCB8wqAgMiArLQo+PiDCoCAuLi4vZHJt
+L2k5MTUvc2VsZnRlc3RzL2ludGVsX21lbW9yeV9yZWdpb24uY8KgIHzCoCAyICstCj4+IMKgIDI0
+IGZpbGVzIGNoYW5nZWQsIDE3MyBpbnNlcnRpb25zKCspLCA0MiBkZWxldGlvbnMoLSkKPj4KPj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5j
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPj4gaW5kZXgg
+NzQ1NzgxM2VmMjczLi5lOTA5Y2NjMzdhNTQgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4+IEBAIC0yMzA5LDcgKzIzMDksNyBAQCBpbnRl
+bF9waW5fYW5kX2ZlbmNlX2ZiX29iaihzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYiwKPj4gwqAg
+wqAgdm9pZCBpbnRlbF91bnBpbl9mYl92bWEoc3RydWN0IGk5MTVfdm1hICp2bWEsIHVuc2lnbmVk
+IGxvbmcgZmxhZ3MpCj4+IMKgIHsKPj4gLcKgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayh2bWEt
+Pm9iaik7Cj4+ICvCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xvY2sodm1hLT5vYmosIE5VTEwpOwo+
+PiDCoMKgwqDCoMKgIGlmIChmbGFncyAmIFBMQU5FX0hBU19GRU5DRSkKPj4gwqDCoMKgwqDCoMKg
+wqDCoMKgIGk5MTVfdm1hX3VucGluX2ZlbmNlKHZtYSk7Cj4+IMKgwqDCoMKgwqAgaTkxNV9nZW1f
+b2JqZWN0X3VucGluX2Zyb21fZGlzcGxheV9wbGFuZSh2bWEpOwo+PiBAQCAtMTcxMTIsNyArMTcx
+MTIsNyBAQCBzdGF0aWMgaW50IGludGVsX2ZyYW1lYnVmZmVyX2luaXQoc3RydWN0IGludGVsX2Zy
+YW1lYnVmZmVyICppbnRlbF9mYiwKPj4gwqDCoMKgwqDCoCBpZiAoIWludGVsX2ZiLT5mcm9udGJ1
+ZmZlcikKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiAtRU5PTUVNOwo+PiDCoCAtwqDCoMKg
+IGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaik7Cj4+ICvCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xv
+Y2sob2JqLCBOVUxMKTsKPj4gwqDCoMKgwqDCoCB0aWxpbmcgPSBpOTE1X2dlbV9vYmplY3RfZ2V0
+X3RpbGluZyhvYmopOwo+PiDCoMKgwqDCoMKgIHN0cmlkZSA9IGk5MTVfZ2VtX29iamVjdF9nZXRf
+c3RyaWRlKG9iaik7Cj4+IMKgwqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X3VubG9jayhvYmopOwo+
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NsaWVudF9i
+bHQuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jbGllbnRfYmx0LmMKPj4g
+aW5kZXggZDNhODZhNGQ1YzA0Li5jMTgyMDkxYzAwZmYgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jbGllbnRfYmx0LmMKPj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NsaWVudF9ibHQuYwo+PiBAQCAtMjg2LDcgKzI4Niw3
+IEBAIGludCBpOTE1X2dlbV9zY2hlZHVsZV9maWxsX3BhZ2VzX2JsdChzdHJ1Y3QgZHJtX2k5MTVf
+Z2VtX29iamVjdCAqb2JqLAo+PiDCoMKgwqDCoMKgIGRtYV9mZW5jZV9pbml0KCZ3b3JrLT5kbWEs
+ICZjbGVhcl9wYWdlc193b3JrX29wcywgJmZlbmNlX2xvY2ssIDAsIDApOwo+PiDCoMKgwqDCoMKg
+IGk5MTVfc3dfZmVuY2VfaW5pdCgmd29yay0+d2FpdCwgY2xlYXJfcGFnZXNfd29ya19ub3RpZnkp
+Owo+PiDCoCAtwqDCoMKgIGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaik7Cj4+ICvCoMKgwqAgaTkx
+NV9nZW1fb2JqZWN0X2xvY2sob2JqLCBOVUxMKTsKPj4gwqDCoMKgwqDCoCBlcnIgPSBpOTE1X3N3
+X2ZlbmNlX2F3YWl0X3Jlc2VydmF0aW9uKCZ3b3JrLT53YWl0LAo+PiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgb2JqLT5iYXNlLnJlc3YsIE5V
+TEwsIHRydWUsIDAsCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCBJOTE1X0ZFTkNFX0dGUCk7Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z2VtL2k5MTVfZ2VtX2NvbnRleHQuYwo+PiBpbmRleCAzMGMyMjlmY2I0MDQuLmE5OTY1ODM2NDBl
+ZSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRl
+eHQuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5j
+Cj4+IEBAIC0xMTMsNyArMTEzLDcgQEAgc3RhdGljIHZvaWQgbHV0X2Nsb3NlKHN0cnVjdCBpOTE1
+X2dlbV9jb250ZXh0ICpjdHgpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbnRpbnVl
+Owo+PiDCoCDCoMKgwqDCoMKgwqDCoMKgwqAgcmN1X3JlYWRfdW5sb2NrKCk7Cj4+IC3CoMKgwqDC
+oMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmopOwo+PiArwqDCoMKgwqDCoMKgwqAgaTkx
+NV9nZW1fb2JqZWN0X2xvY2sob2JqLCBOVUxMKTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIGxpc3Rf
+Zm9yX2VhY2hfZW50cnkobHV0LCAmb2JqLT5sdXRfbGlzdCwgb2JqX2xpbmspIHsKPj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKGx1dC0+Y3R4ICE9IGN0eCkKPj4gwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb250aW51ZTsKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9pOTE1X2dlbV9kbWFidWYuYwo+PiBpbmRleCAyNjc5MzgwMTU5ZmMuLjI3ZmRkYzIyYTdj
+NiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1
+Zi5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYwo+
+PiBAQCAtMTI4LDcgKzEyOCw3IEBAIHN0YXRpYyBpbnQgaTkxNV9nZW1fYmVnaW5fY3B1X2FjY2Vz
+cyhzdHJ1Y3QgZG1hX2J1ZiAqZG1hX2J1ZiwgZW51bSBkbWFfZGF0YV9kaXJlCj4+IMKgwqDCoMKg
+wqAgaWYgKGVycikKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiBlcnI7Cj4+IMKgIC3CoMKg
+wqAgZXJyID0gaTkxNV9nZW1fb2JqZWN0X2xvY2tfaW50ZXJydXB0aWJsZShvYmopOwo+PiArwqDC
+oMKgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9sb2NrX2ludGVycnVwdGlibGUob2JqLCBOVUxMKTsK
+Pj4gwqDCoMKgwqDCoCBpZiAoZXJyKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byBvdXQ7Cj4+
+IMKgIEBAIC0xNDksNyArMTQ5LDcgQEAgc3RhdGljIGludCBpOTE1X2dlbV9lbmRfY3B1X2FjY2Vz
+cyhzdHJ1Y3QgZG1hX2J1ZiAqZG1hX2J1ZiwgZW51bSBkbWFfZGF0YV9kaXJlY3QKPj4gwqDCoMKg
+wqDCoCBpZiAoZXJyKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIGVycjsKPj4gwqAgLcKg
+wqDCoCBlcnIgPSBpOTE1X2dlbV9vYmplY3RfbG9ja19pbnRlcnJ1cHRpYmxlKG9iaik7Cj4+ICvC
+oMKgwqAgZXJyID0gaTkxNV9nZW1fb2JqZWN0X2xvY2tfaW50ZXJydXB0aWJsZShvYmosIE5VTEwp
+Owo+PiDCoMKgwqDCoMKgIGlmIChlcnIpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBnb3RvIG91dDsK
+Pj4gwqAgZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kb21h
+aW4uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kb21haW4uYwo+PiBpbmRl
+eCA3Zjc2ZmM2OGY0OTguLmMwYWNmYzk3ZmFlMyAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV9kb21haW4uYwo+PiBAQCAtMzIsNyArMzIsNyBAQCB2b2lkIGk5MTVf
+Z2VtX29iamVjdF9mbHVzaF9pZl9kaXNwbGF5KHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpv
+YmopCj4+IMKgwqDCoMKgwqAgaWYgKCFpOTE1X2dlbV9vYmplY3RfaXNfZnJhbWVidWZmZXIob2Jq
+KSkKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybjsKPj4gwqAgLcKgwqDCoCBpOTE1X2dlbV9v
+YmplY3RfbG9jayhvYmopOwo+PiArwqDCoMKgIGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaiwgTlVM
+TCk7Cj4+IMKgwqDCoMKgwqAgX19pOTE1X2dlbV9vYmplY3RfZmx1c2hfZm9yX2Rpc3BsYXkob2Jq
+KTsKPj4gwqDCoMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfdW5sb2NrKG9iaik7Cj4+IMKgIH0KPj4g
+QEAgLTE5Nyw3ICsxOTcsNyBAQCBpbnQgaTkxNV9nZW1fb2JqZWN0X3NldF9jYWNoZV9sZXZlbChz
+dHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqLAo+PiDCoMKgwqDCoMKgIGlmIChyZXQpCj4+
+IMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gcmV0Owo+PiDCoCAtwqDCoMKgIHJldCA9IGk5MTVf
+Z2VtX29iamVjdF9sb2NrX2ludGVycnVwdGlibGUob2JqKTsKPj4gK8KgwqDCoCByZXQgPSBpOTE1
+X2dlbV9vYmplY3RfbG9ja19pbnRlcnJ1cHRpYmxlKG9iaiwgTlVMTCk7Cj4+IMKgwqDCoMKgwqAg
+aWYgKHJldCkKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7Cj4+IMKgIEBAIC01MzYs
+NyArNTM2LDcgQEAgaTkxNV9nZW1fc2V0X2RvbWFpbl9pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2LCB2b2lkICpkYXRhLAo+PiDCoMKgwqDCoMKgIGlmIChlcnIpCj4+IMKgwqDCoMKgwqDCoMKg
+wqDCoCBnb3RvIG91dDsKPj4gwqAgLcKgwqDCoCBlcnIgPSBpOTE1X2dlbV9vYmplY3RfbG9ja19p
+bnRlcnJ1cHRpYmxlKG9iaik7Cj4+ICvCoMKgwqAgZXJyID0gaTkxNV9nZW1fb2JqZWN0X2xvY2tf
+aW50ZXJydXB0aWJsZShvYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgIGlmIChlcnIpCj4+IMKgwqDC
+oMKgwqDCoMKgwqDCoCBnb3RvIG91dF91bnBpbjsKPj4gwqAgQEAgLTU3Niw3ICs1NzYsNyBAQCBp
+bnQgaTkxNV9nZW1fb2JqZWN0X3ByZXBhcmVfcmVhZChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVj
+dCAqb2JqLAo+PiDCoMKgwqDCoMKgIGlmICghaTkxNV9nZW1fb2JqZWN0X2hhc19zdHJ1Y3RfcGFn
+ZShvYmopKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1FTk9ERVY7Cj4+IMKgIC3CoMKg
+wqAgcmV0ID0gaTkxNV9nZW1fb2JqZWN0X2xvY2tfaW50ZXJydXB0aWJsZShvYmopOwo+PiArwqDC
+oMKgIHJldCA9IGk5MTVfZ2VtX29iamVjdF9sb2NrX2ludGVycnVwdGlibGUob2JqLCBOVUxMKTsK
+Pj4gwqDCoMKgwqDCoCBpZiAocmV0KQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHJldDsK
+Pj4gwqAgQEAgLTYzMCw3ICs2MzAsNyBAQCBpbnQgaTkxNV9nZW1fb2JqZWN0X3ByZXBhcmVfd3Jp
+dGUoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKPj4gwqDCoMKgwqDCoCBpZiAoIWk5
+MTVfZ2VtX29iamVjdF9oYXNfc3RydWN0X3BhZ2Uob2JqKSkKPj4gwqDCoMKgwqDCoMKgwqDCoMKg
+IHJldHVybiAtRU5PREVWOwo+PiDCoCAtwqDCoMKgIHJldCA9IGk5MTVfZ2VtX29iamVjdF9sb2Nr
+X2ludGVycnVwdGlibGUob2JqKTsKPj4gK8KgwqDCoCByZXQgPSBpOTE1X2dlbV9vYmplY3RfbG9j
+a19pbnRlcnJ1cHRpYmxlKG9iaiwgTlVMTCk7Cj4+IMKgwqDCoMKgwqAgaWYgKHJldCkKPj4gwqDC
+oMKgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7Cj4+IMKgIGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYwo+PiBpbmRleCAyYjRjMjEwNjM4YzEuLjM5MWQy
+MjA1MWIyMCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
+X2V4ZWNidWZmZXIuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
+ZXhlY2J1ZmZlci5jCj4+IEBAIC04MTMsNyArODEzLDcgQEAgc3RhdGljIGludCBfX2ViX2FkZF9s
+dXQoc3RydWN0IGk5MTVfZXhlY2J1ZmZlciAqZWIsCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAo
+ZXJyID09IDApIHsgLyogQW5kIG5vciBoYXMgdGhpcyBoYW5kbGUgKi8KPj4gwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiA9IHZtYS0+b2Jq
+Owo+PiDCoCAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmop
+Owo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmosIE5V
+TEwpOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoaWRyX2ZpbmQoJmViLT5maWxl
+LT5vYmplY3RfaWRyLCBoYW5kbGUpID09IG9iaikgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIGxpc3RfYWRkKCZsdXQtPm9ial9saW5rLCAmb2JqLT5sdXRfbGlzdCk7Cj4+
+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH0gZWxzZSB7Cj4+IEBAIC0xMDgzLDcgKzEwODMs
+NyBAQCBzdGF0aWMgdm9pZCAqcmVsb2NfaW9tYXAoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Qg
+Km9iaiwKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIGlmICh1c2VfY3B1X3JlbG9jKGNhY2hlLCBvYmop
+KQo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gTlVMTDsKPj4gwqAgLcKgwqDC
+oMKgwqDCoMKgIGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaik7Cj4+ICvCoMKgwqDCoMKgwqDCoCBp
+OTE1X2dlbV9vYmplY3RfbG9jayhvYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgZXJy
+ID0gaTkxNV9nZW1fb2JqZWN0X3NldF90b19ndHRfZG9tYWluKG9iaiwgdHJ1ZSk7Cj4+IMKgwqDC
+oMKgwqDCoMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfdW5sb2NrKG9iaik7Cj4+IMKgwqDCoMKgwqDC
+oMKgwqDCoCBpZiAoZXJyKQo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
+L2k5MTVfZ2VtX29iamVjdC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29i
+amVjdC5jCj4+IGluZGV4IGI2ZWM1YjUwZDkzYi4uYjU5ZTJkNDBjMzQ3IDEwMDY0NAo+PiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmMKPj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5jCj4+IEBAIC0xMDgsNyArMTA4
+LDcgQEAgdm9pZCBpOTE1X2dlbV9jbG9zZV9vYmplY3Qoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpn
+ZW0sIHN0cnVjdCBkcm1fZmlsZSAqZmlsZSkKPj4gwqDCoMKgwqDCoCBzdHJ1Y3QgaTkxNV9sdXRf
+aGFuZGxlICpsdXQsICpsbjsKPj4gwqDCoMKgwqDCoCBMSVNUX0hFQUQoY2xvc2UpOwo+PiDCoCAt
+wqDCoMKgIGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaik7Cj4+ICvCoMKgwqAgaTkxNV9nZW1fb2Jq
+ZWN0X2xvY2sob2JqLCBOVUxMKTsKPj4gwqDCoMKgwqDCoCBsaXN0X2Zvcl9lYWNoX2VudHJ5X3Nh
+ZmUobHV0LCBsbiwgJm9iai0+bHV0X2xpc3QsIG9ial9saW5rKSB7Cj4+IMKgwqDCoMKgwqDCoMKg
+wqDCoCBzdHJ1Y3QgaTkxNV9nZW1fY29udGV4dCAqY3R4ID0gbHV0LT5jdHg7Cj4+IMKgIGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmggYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmgKPj4gaW5kZXggMmZhYTQ4MWNj
+MThmLi41MTAzMDY3MjY5YjAgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
+bS9pOTE1X2dlbV9vYmplY3QuaAo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkx
+NV9nZW1fb2JqZWN0LmgKPj4gQEAgLTExMCwyMCArMTEwLDQ0IEBAIGk5MTVfZ2VtX29iamVjdF9w
+dXQoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKPj4gwqAgwqAgI2RlZmluZSBhc3Nl
+cnRfb2JqZWN0X2hlbGQob2JqKSBkbWFfcmVzdl9hc3NlcnRfaGVsZCgob2JqKS0+YmFzZS5yZXN2
+KQo+PiDCoCAtc3RhdGljIGlubGluZSB2b2lkIGk5MTVfZ2VtX29iamVjdF9sb2NrKHN0cnVjdCBk
+cm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCj4+ICtzdGF0aWMgaW5saW5lIGludCBfX2k5MTVfZ2Vt
+X29iamVjdF9sb2NrKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmosCj4+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBpOTE1X2dlbV93d19jdHgg
+Knd3LAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBib29sIGlu
+dHIpCj4+IMKgIHsKPj4gLcKgwqDCoCBkbWFfcmVzdl9sb2NrKG9iai0+YmFzZS5yZXN2LCBOVUxM
+KTsKPj4gK8KgwqDCoCBpbnQgcmV0Owo+PiArCj4+ICvCoMKgwqAgaWYgKGludHIpCj4+ICvCoMKg
+wqDCoMKgwqDCoCByZXQgPSBkbWFfcmVzdl9sb2NrX2ludGVycnVwdGlibGUob2JqLT5iYXNlLnJl
+c3YsIHd3ID8gJnd3LT5jdHggOiBOVUxMKTsKPj4gK8KgwqDCoCBlbHNlCj4+ICvCoMKgwqDCoMKg
+wqDCoCByZXQgPSBkbWFfcmVzdl9sb2NrKG9iai0+YmFzZS5yZXN2LCB3dyA/ICZ3dy0+Y3R4IDog
+TlVMTCk7Cj4+ICsKPj4gK8KgwqDCoCBpZiAoIXJldCAmJiB3dykKPj4gK8KgwqDCoMKgwqDCoMKg
+IGxpc3RfYWRkX3RhaWwoJm9iai0+b2JqX2xpbmssICZ3dy0+b2JqX2xpc3QpOwo+PiArwqDCoMKg
+IGlmIChyZXQgPT0gLUVBTFJFQURZKQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0ID0gMDsKPj4gKwo+
+PiArwqDCoMKgIGlmIChyZXQgPT0gLUVERUFETEspCj4+ICvCoMKgwqDCoMKgwqDCoCB3dy0+Y29u
+dGVuZGVkID0gb2JqOwo+PiArCj4+ICvCoMKgwqAgcmV0dXJuIHJldDsKPgo+IEZlZWxzIGEgYml0
+IG9uIHRoZSBsYXJnZSBzaWRlIGZvciBpbmxpbmUgbm93LCBubz8gUXVpdGUgYSBmZXcgY29uZGl0
+aW9uYWxzLiBPciB5b3UgYXJlIGNvdW50aW5nIG9uIGNvbXBpbGVyIG9wdGltaXNhdGlvbiBiZWNh
+dXNlIHd3IGFuZCBpbnRyIGFyZSBwYXNzZWQgaW4gYXMgbW9zdGx5IGNvbnN0PwpTbGlnaHRseSwg
+bm90IHN1cmUgaWYgaXQncyByZWFsbHkgYSBwcm9ibGVtIGluIHByYWN0aWNlLiB3dyBpcyBlaXRo
+ZXIgbnVsbCBvciBhIHN0YWNrIHZhcmlhYmxlLCBzbyBmb3IgbnVsbCBpdCBzaG91bGQgYWxsIGdv
+IGF3YXkuCj4KPj4gwqAgfQo+PiDCoCAtc3RhdGljIGlubGluZSBib29sIGk5MTVfZ2VtX29iamVj
+dF90cnlsb2NrKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCj4+ICtzdGF0aWMgaW5s
+aW5lIGludCBpOTE1X2dlbV9vYmplY3RfbG9jayhzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAq
+b2JqLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3Ry
+dWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3cpCj4+IMKgIHsKPj4gLcKgwqDCoCByZXR1cm4gZG1hX3Jl
+c3ZfdHJ5bG9jayhvYmotPmJhc2UucmVzdik7Cj4+ICvCoMKgwqAgcmV0dXJuIF9faTkxNV9nZW1f
+b2JqZWN0X2xvY2sob2JqLCB3dywgd3cgJiYgd3ctPmludHIpOwo+PiDCoCB9Cj4+IMKgIC1zdGF0
+aWMgaW5saW5lIGludAo+PiAtaTkxNV9nZW1fb2JqZWN0X2xvY2tfaW50ZXJydXB0aWJsZShzdHJ1
+Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+PiArc3RhdGljIGlubGluZSBpbnQgaTkxNV9n
+ZW1fb2JqZWN0X2xvY2tfaW50ZXJydXB0aWJsZShzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAq
+b2JqLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3cpCj4+IMKgIHsKPj4gLcKgwqDCoCBy
+ZXR1cm4gZG1hX3Jlc3ZfbG9ja19pbnRlcnJ1cHRpYmxlKG9iai0+YmFzZS5yZXN2LCBOVUxMKTsK
+Pj4gK8KgwqDCoCBXQVJOX09OKHd3ICYmICF3dy0+aW50cik7Cj4+ICvCoMKgwqAgcmV0dXJuIF9f
+aTkxNV9nZW1fb2JqZWN0X2xvY2sob2JqLCB3dywgdHJ1ZSk7Cj4KPiBJIHNlZSB0aGF0IHd3LT5p
+bnRyIGlzIHNldCBhdCBjdHggaW5pdCB0aW1lLiBBdCB3aGF0IHRpbWVzIGl0IGlzIGV4cGVjdGVk
+IHRoYXQgdGhlIGluZGl2aWR1YWwgbG9jayBjYWxscyB3b3VsZCBvdmVycmlkZSB0aGF0PwpOZXZl
+ci4gOikgSnVzdCBwb2xpdGVseSBhbGxvd2luZyBpdCB3aGVuIHJlcGxhY2luZyBjYWxscy4gQ291
+bGQgYmUgcmVtb3ZlZCBhbmQgcmVwbGFjZWQgd2l0aCBsb2NrX3NpbmdsZV9pbnRlcnJ1cHRpYmxl
+IHdpdGhvdXQgd3cgY29udGV4dC4KPgo+PiArfQo+PiArCj4+ICtzdGF0aWMgaW5saW5lIGJvb2wg
+aTkxNV9nZW1fb2JqZWN0X3RyeWxvY2soc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikK
+Pj4gK3sKPj4gK8KgwqDCoCByZXR1cm4gZG1hX3Jlc3ZfdHJ5bG9jayhvYmotPmJhc2UucmVzdik7
+Cj4+IMKgIH0KPj4gwqAgwqAgc3RhdGljIGlubGluZSB2b2lkIGk5MTVfZ2VtX29iamVjdF91bmxv
+Y2soc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKPj4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3RfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3RfdHlwZXMuaAo+PiBpbmRleCBiMWY4MmExMWFl
+ZjIuLjM3NDBjMDA4MGUzOCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
+L2k5MTVfZ2VtX29iamVjdF90eXBlcy5oCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
+bS9pOTE1X2dlbV9vYmplY3RfdHlwZXMuaAo+PiBAQCAtMTIyLDYgKzEyMiwxNSBAQCBzdHJ1Y3Qg
+ZHJtX2k5MTVfZ2VtX29iamVjdCB7Cj4+IMKgwqDCoMKgwqDCoCAqLwo+PiDCoMKgwqDCoMKgIHN0
+cnVjdCBsaXN0X2hlYWQgbHV0X2xpc3Q7Cj4+IMKgICvCoMKgwqAgLyoqCj4+ICvCoMKgwqDCoCAq
+IEBvYmpfbGluazogTGluayBpbnRvIEBpOTE1X2dlbV93d19jdHgub2JqX2xpc3QKPj4gK8KgwqDC
+oMKgICoKPj4gK8KgwqDCoMKgICogV2hlbiB3ZSBsb2NrIHRoaXMgb2JqZWN0IHRocm91Z2ggaTkx
+NV9nZW1fb2JqZWN0X2xvY2soKSB3aXRoIGEKPj4gK8KgwqDCoMKgICogY29udGV4dCwgd2UgYWRk
+IGl0IHRvIHRoZSBsaXN0IHRvIGVuc3VyZSB3ZSBjYW4gdW5sb2NrIGV2ZXJ5dGhpbmcKPj4gK8Kg
+wqDCoMKgICogd2hlbiBpOTE1X2dlbV93d19jdHhfYmFja29mZigpIG9yIGk5MTVfZ2VtX3d3X2N0
+eF9maW5pKCkgYXJlIGNhbGxlZC4KPj4gK8KgwqDCoMKgICovCj4+ICvCoMKgwqAgc3RydWN0IGxp
+c3RfaGVhZCBvYmpfbGluazsKPj4gKwo+PiDCoMKgwqDCoMKgIC8qKiBTdG9sZW4gbWVtb3J5IGZv
+ciB0aGlzIG9iamVjdCwgaW5zdGVhZCBvZiBiZWluZyBiYWNrZWQgYnkgc2htZW0uICovCj4+IMKg
+wqDCoMKgwqAgc3RydWN0IGRybV9tbV9ub2RlICpzdG9sZW47Cj4+IMKgwqDCoMKgwqAgdW5pb24g
+ewo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3BtLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fcG0uYwo+PiBpbmRleCAzZDIxNTE2
+NGRkNWEuLjQwZDNlNDA1MDBmYSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z2VtL2k5MTVfZ2VtX3BtLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVf
+Z2VtX3BtLmMKPj4gQEAgLTg0LDcgKzg0LDcgQEAgdm9pZCBpOTE1X2dlbV9zdXNwZW5kX2xhdGUo
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4+IMKgIMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmk5MTUtPm1tLm9ial9sb2NrLCBmbGFncyk7
+Cj4+IMKgIC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaik7
+Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaiwgTlVM
+TCk7Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRybV9XQVJOX09OKCZpOTE1LT5kcm0s
+Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X3Nl
+dF90b19ndHRfZG9tYWluKG9iaiwgZmFsc2UpKTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgaTkxNV9nZW1fb2JqZWN0X3VubG9jayhvYmopOwo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3RpbGluZy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z2VtL2k5MTVfZ2VtX3RpbGluZy5jCj4+IGluZGV4IDAxNThlNDliZjliYi4uNjVmYmYyOWM0ODUy
+IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdGlsaW5n
+LmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3RpbGluZy5jCj4+
+IEBAIC0yNDksNyArMjQ5LDcgQEAgaTkxNV9nZW1fb2JqZWN0X3NldF90aWxpbmcoc3RydWN0IGRy
+bV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKPj4gwqDCoMKgwqDCoMKgICogd2hpbHN0IGV4ZWN1dGlu
+ZyBhIGZlbmNlZCBjb21tYW5kIGZvciBhbiB1bnRpbGVkIG9iamVjdC4KPj4gwqDCoMKgwqDCoMKg
+ICovCj4+IMKgIC3CoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xvY2sob2JqKTsKPj4gK8KgwqDCoCBp
+OTE1X2dlbV9vYmplY3RfbG9jayhvYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgIGlmIChpOTE1X2dl
+bV9vYmplY3RfaXNfZnJhbWVidWZmZXIob2JqKSkgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgaTkx
+NV9nZW1fb2JqZWN0X3VubG9jayhvYmopOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1F
+QlVTWTsKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMv
+aHVnZV9wYWdlcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9odWdlX3Bh
+Z2VzLmMKPj4gaW5kZXggODI5MWVkZTY5MDJjLi5lYjIwMTFjY2I5MmIgMTAwNjQ0Cj4+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaHVnZV9wYWdlcy5jCj4+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaHVnZV9wYWdlcy5jCj4+IEBAIC05
+NDcsNyArOTQ3LDcgQEAgc3RhdGljIGludCBncHVfd3JpdGUoc3RydWN0IGludGVsX2NvbnRleHQg
+KmNlLAo+PiDCoCB7Cj4+IMKgwqDCoMKgwqAgaW50IGVycjsKPj4gwqAgLcKgwqDCoCBpOTE1X2dl
+bV9vYmplY3RfbG9jayh2bWEtPm9iaik7Cj4+ICvCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xvY2so
+dm1hLT5vYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9zZXRf
+dG9fZ3R0X2RvbWFpbih2bWEtPm9iaiwgdHJ1ZSk7Cj4+IMKgwqDCoMKgwqAgaTkxNV9nZW1fb2Jq
+ZWN0X3VubG9jayh2bWEtPm9iaik7Cj4+IMKgwqDCoMKgwqAgaWYgKGVycikKPj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fY2xpZW50X2Js
+dC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9jbGllbnRf
+Ymx0LmMKPj4gaW5kZXggMjk5YzI5ZTlhZDg2Li40ZTM2ZDQ4OTdlYTYgMTAwNjQ0Cj4+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fY2xpZW50X2JsdC5j
+Cj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fY2xp
+ZW50X2JsdC5jCj4+IEBAIC03NSw3ICs3NSw3IEBAIHN0YXRpYyBpbnQgX19pZ3RfY2xpZW50X2Zp
+bGwoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAg
+aWYgKGVycikKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byBlcnJfdW5waW47Cj4+
+IMKgIC3CoMKgwqDCoMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmopOwo+PiArwqDCoMKg
+wqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xvY2sob2JqLCBOVUxMKTsKPj4gwqDCoMKgwqDCoMKg
+wqDCoMKgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9zZXRfdG9fY3B1X2RvbWFpbihvYmosIGZhbHNl
+KTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIGk5MTVfZ2VtX29iamVjdF91bmxvY2sob2JqKTsKPj4g
+wqDCoMKgwqDCoMKgwqDCoMKgIGlmIChlcnIpCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2NvaGVyZW5jeS5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9jb2hlcmVuY3kuYwo+PiBpbmRleCA4N2Q3
+ZDhhYTA4MGYuLjFkZTI5NTliMTUzYyAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9jb2hlcmVuY3kuYwo+PiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2NvaGVyZW5jeS5jCj4+IEBAIC04Miw3
+ICs4Miw3IEBAIHN0YXRpYyBpbnQgZ3R0X3NldChzdHJ1Y3QgY29udGV4dCAqY3R4LCB1bnNpZ25l
+ZCBsb25nIG9mZnNldCwgdTMyIHYpCj4+IMKgwqDCoMKgwqAgdTMyIF9faW9tZW0gKm1hcDsKPj4g
+wqDCoMKgwqDCoCBpbnQgZXJyID0gMDsKPj4gwqAgLcKgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9j
+ayhjdHgtPm9iaik7Cj4+ICvCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xvY2soY3R4LT5vYmosIE5V
+TEwpOwo+PiDCoMKgwqDCoMKgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9zZXRfdG9fZ3R0X2RvbWFp
+bihjdHgtPm9iaiwgdHJ1ZSk7Cj4+IMKgwqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X3VubG9jayhj
+dHgtPm9iaik7Cj4+IMKgwqDCoMKgwqAgaWYgKGVycikKPj4gQEAgLTExNSw3ICsxMTUsNyBAQCBz
+dGF0aWMgaW50IGd0dF9nZXQoc3RydWN0IGNvbnRleHQgKmN0eCwgdW5zaWduZWQgbG9uZyBvZmZz
+ZXQsIHUzMiAqdikKPj4gwqDCoMKgwqDCoCB1MzIgX19pb21lbSAqbWFwOwo+PiDCoMKgwqDCoMKg
+IGludCBlcnIgPSAwOwo+PiDCoCAtwqDCoMKgIGk5MTVfZ2VtX29iamVjdF9sb2NrKGN0eC0+b2Jq
+KTsKPj4gK8KgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhjdHgtPm9iaiwgTlVMTCk7Cj4+IMKg
+wqDCoMKgwqAgZXJyID0gaTkxNV9nZW1fb2JqZWN0X3NldF90b19ndHRfZG9tYWluKGN0eC0+b2Jq
+LCBmYWxzZSk7Cj4+IMKgwqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X3VubG9jayhjdHgtPm9iaik7
+Cj4+IMKgwqDCoMKgwqAgaWYgKGVycikKPj4gQEAgLTE0Nyw3ICsxNDcsNyBAQCBzdGF0aWMgaW50
+IHdjX3NldChzdHJ1Y3QgY29udGV4dCAqY3R4LCB1bnNpZ25lZCBsb25nIG9mZnNldCwgdTMyIHYp
+Cj4+IMKgwqDCoMKgwqAgdTMyICptYXA7Cj4+IMKgwqDCoMKgwqAgaW50IGVycjsKPj4gwqAgLcKg
+wqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhjdHgtPm9iaik7Cj4+ICvCoMKgwqAgaTkxNV9nZW1f
+b2JqZWN0X2xvY2soY3R4LT5vYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgIGVyciA9IGk5MTVfZ2Vt
+X29iamVjdF9zZXRfdG9fd2NfZG9tYWluKGN0eC0+b2JqLCB0cnVlKTsKPj4gwqDCoMKgwqDCoCBp
+OTE1X2dlbV9vYmplY3RfdW5sb2NrKGN0eC0+b2JqKTsKPj4gwqDCoMKgwqDCoCBpZiAoZXJyKQo+
+PiBAQCAtMTcwLDcgKzE3MCw3IEBAIHN0YXRpYyBpbnQgd2NfZ2V0KHN0cnVjdCBjb250ZXh0ICpj
+dHgsIHVuc2lnbmVkIGxvbmcgb2Zmc2V0LCB1MzIgKnYpCj4+IMKgwqDCoMKgwqAgdTMyICptYXA7
+Cj4+IMKgwqDCoMKgwqAgaW50IGVycjsKPj4gwqAgLcKgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9j
+ayhjdHgtPm9iaik7Cj4+ICvCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xvY2soY3R4LT5vYmosIE5V
+TEwpOwo+PiDCoMKgwqDCoMKgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9zZXRfdG9fd2NfZG9tYWlu
+KGN0eC0+b2JqLCBmYWxzZSk7Cj4+IMKgwqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X3VubG9jayhj
+dHgtPm9iaik7Cj4+IMKgwqDCoMKgwqAgaWYgKGVycikKPj4gQEAgLTE5Myw3ICsxOTMsNyBAQCBz
+dGF0aWMgaW50IGdwdV9zZXQoc3RydWN0IGNvbnRleHQgKmN0eCwgdW5zaWduZWQgbG9uZyBvZmZz
+ZXQsIHUzMiB2KQo+PiDCoMKgwqDCoMKgIHUzMiAqY3M7Cj4+IMKgwqDCoMKgwqAgaW50IGVycjsK
+Pj4gwqAgLcKgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhjdHgtPm9iaik7Cj4+ICvCoMKgwqAg
+aTkxNV9nZW1fb2JqZWN0X2xvY2soY3R4LT5vYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgIGVyciA9
+IGk5MTVfZ2VtX29iamVjdF9zZXRfdG9fZ3R0X2RvbWFpbihjdHgtPm9iaiwgdHJ1ZSk7Cj4+IMKg
+wqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X3VubG9jayhjdHgtPm9iaik7Cj4+IMKgwqDCoMKgwqAg
+aWYgKGVycikKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVz
+dHMvaTkxNV9nZW1fY29udGV4dC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0
+cy9pOTE1X2dlbV9jb250ZXh0LmMKPj4gaW5kZXggYjgxOTc4ODkwNjQxLi40MzhjMTVlZjIxODQg
+MTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9n
+ZW1fY29udGV4dC5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMv
+aTkxNV9nZW1fY29udGV4dC5jCj4+IEBAIC05NTAsNyArOTUwLDcgQEAgZW1pdF9ycGNzX3F1ZXJ5
+KHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmosCj4+IMKgwqDCoMKgwqAgaWYgKElTX0VS
+Uih2bWEpKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIFBUUl9FUlIodm1hKTsKPj4gwqAg
+LcKgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmopOwo+PiArwqDCoMKgIGk5MTVfZ2VtX29i
+amVjdF9sb2NrKG9iaiwgTlVMTCk7Cj4+IMKgwqDCoMKgwqAgZXJyID0gaTkxNV9nZW1fb2JqZWN0
+X3NldF90b19ndHRfZG9tYWluKG9iaiwgZmFsc2UpOwo+PiDCoMKgwqDCoMKgIGk5MTVfZ2VtX29i
+amVjdF91bmxvY2sob2JqKTsKPj4gwqDCoMKgwqDCoCBpZiAoZXJyKQo+PiBAQCAtMTcwNiw3ICsx
+NzA2LDcgQEAgc3RhdGljIGludCByZWFkX2Zyb21fc2NyYXRjaChzdHJ1Y3QgaTkxNV9nZW1fY29u
+dGV4dCAqY3R4LAo+PiDCoCDCoMKgwqDCoMKgIGk5MTVfcmVxdWVzdF9hZGQocnEpOwo+PiDCoCAt
+wqDCoMKgIGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaik7Cj4+ICvCoMKgwqAgaTkxNV9nZW1fb2Jq
+ZWN0X2xvY2sob2JqLCBOVUxMKTsKPj4gwqDCoMKgwqDCoCBlcnIgPSBpOTE1X2dlbV9vYmplY3Rf
+c2V0X3RvX2NwdV9kb21haW4ob2JqLCBmYWxzZSk7Cj4+IMKgwqDCoMKgwqAgaTkxNV9nZW1fb2Jq
+ZWN0X3VubG9jayhvYmopOwo+PiDCoMKgwqDCoMKgIGlmIChlcnIpCj4+IGRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX21tYW4uYyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fbW1hbi5jCj4+IGluZGV4IDlj
+NzQwMmNlNWJmOS4uOWZiOTVhNDViY2FkIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX21tYW4uYwo+PiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX21tYW4uYwo+PiBAQCAtMTAzLDcgKzEwMyw3
+IEBAIHN0YXRpYyBpbnQgY2hlY2tfcGFydGlhbF9tYXBwaW5nKHN0cnVjdCBkcm1faTkxNV9nZW1f
+b2JqZWN0ICpvYmosCj4+IMKgwqDCoMKgwqAgR0VNX0JVR19PTihpOTE1X2dlbV9vYmplY3RfZ2V0
+X3RpbGluZyhvYmopICE9IHRpbGUtPnRpbGluZyk7Cj4+IMKgwqDCoMKgwqAgR0VNX0JVR19PTihp
+OTE1X2dlbV9vYmplY3RfZ2V0X3N0cmlkZShvYmopICE9IHRpbGUtPnN0cmlkZSk7Cj4+IMKgIC3C
+oMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xvY2sob2JqKTsKPj4gK8KgwqDCoCBpOTE1X2dlbV9vYmpl
+Y3RfbG9jayhvYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9z
+ZXRfdG9fZ3R0X2RvbWFpbihvYmosIHRydWUpOwo+PiDCoMKgwqDCoMKgIGk5MTVfZ2VtX29iamVj
+dF91bmxvY2sob2JqKTsKPj4gwqDCoMKgwqDCoCBpZiAoZXJyKSB7Cj4+IEBAIC0xODgsNyArMTg4
+LDcgQEAgc3RhdGljIGludCBjaGVja19wYXJ0aWFsX21hcHBpbmdzKHN0cnVjdCBkcm1faTkxNV9n
+ZW1fb2JqZWN0ICpvYmosCj4+IMKgwqDCoMKgwqAgR0VNX0JVR19PTihpOTE1X2dlbV9vYmplY3Rf
+Z2V0X3RpbGluZyhvYmopICE9IHRpbGUtPnRpbGluZyk7Cj4+IMKgwqDCoMKgwqAgR0VNX0JVR19P
+TihpOTE1X2dlbV9vYmplY3RfZ2V0X3N0cmlkZShvYmopICE9IHRpbGUtPnN0cmlkZSk7Cj4+IMKg
+IC3CoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xvY2sob2JqKTsKPj4gK8KgwqDCoCBpOTE1X2dlbV9v
+YmplY3RfbG9jayhvYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgIGVyciA9IGk5MTVfZ2VtX29iamVj
+dF9zZXRfdG9fZ3R0X2RvbWFpbihvYmosIHRydWUpOwo+PiDCoMKgwqDCoMKgIGk5MTVfZ2VtX29i
+amVjdF91bmxvY2sob2JqKTsKPj4gwqDCoMKgwqDCoCBpZiAoZXJyKSB7Cj4+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX3BoeXMuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fcGh5cy5jCj4+IGluZGV4
+IDM0OTMyODcxYjNhNS4uYTk0MjQzZGM0YzVjIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX3BoeXMuYwo+PiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX3BoeXMuYwo+PiBAQCAtNDQsNyArNDQs
+NyBAQCBzdGF0aWMgaW50IG1vY2tfcGh5c19vYmplY3Qodm9pZCAqYXJnKQo+PiDCoMKgwqDCoMKg
+IH0KPj4gwqAgwqDCoMKgwqDCoCAvKiBNYWtlIHRoZSBvYmplY3QgZGlydHkgc28gdGhhdCBwdXRf
+cGFnZXMgbXVzdCBkbyBjb3B5IGJhY2sgdGhlIGRhdGEgKi8KPj4gLcKgwqDCoCBpOTE1X2dlbV9v
+YmplY3RfbG9jayhvYmopOwo+PiArwqDCoMKgIGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaiwgTlVM
+TCk7Cj4+IMKgwqDCoMKgwqAgZXJyID0gaTkxNV9nZW1fb2JqZWN0X3NldF90b19ndHRfZG9tYWlu
+KG9iaiwgdHJ1ZSk7Cj4+IMKgwqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X3VubG9jayhvYmopOwo+
+PiDCoMKgwqDCoMKgIGlmIChlcnIpIHsKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L3NlbGZ0ZXN0X3dvcmthcm91bmRzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9z
+ZWxmdGVzdF93b3JrYXJvdW5kcy5jCj4+IGluZGV4IGZlYmM5ZTY2OTJiYS4uNjFhMDUzMmQwZjNk
+IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF93b3JrYXJv
+dW5kcy5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3dvcmthcm91
+bmRzLmMKPj4gQEAgLTIxNCw3ICsyMTQsNyBAQCBzdGF0aWMgaW50IGNoZWNrX3doaXRlbGlzdChz
+dHJ1Y3QgaTkxNV9nZW1fY29udGV4dCAqY3R4LAo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJu
+IFBUUl9FUlIocmVzdWx0cyk7Cj4+IMKgIMKgwqDCoMKgwqAgZXJyID0gMDsKPj4gLcKgwqDCoCBp
+OTE1X2dlbV9vYmplY3RfbG9jayhyZXN1bHRzKTsKPj4gK8KgwqDCoCBpOTE1X2dlbV9vYmplY3Rf
+bG9jayhyZXN1bHRzLCBOVUxMKTsKPj4gwqDCoMKgwqDCoCBpbnRlbF93ZWRnZV9vbl90aW1lb3V0
+KCZ3ZWRnZSwgZW5naW5lLT5ndCwgSFogLyA1KSAvKiBzYWZldHkgbmV0ISAqLwo+PiDCoMKgwqDC
+oMKgwqDCoMKgwqAgZXJyID0gaTkxNV9nZW1fb2JqZWN0X3NldF90b19jcHVfZG9tYWluKHJlc3Vs
+dHMsIGZhbHNlKTsKPj4gwqDCoMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfdW5sb2NrKHJlc3VsdHMp
+Owo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Z0L2NtZF9wYXJzZXIuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d2dC9jbWRfcGFyc2VyLmMKPj4gaW5kZXggZjE5NDA5Mzky
+NjBhLi45NDNjOGQyMzI3MDMgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d2
+dC9jbWRfcGFyc2VyLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Z0L2NtZF9wYXJz
+ZXIuYwo+PiBAQCAtMjk4Miw3ICsyOTgyLDcgQEAgc3RhdGljIGludCBzaGFkb3dfaW5kaXJlY3Rf
+Y3R4KHN0cnVjdCBpbnRlbF9zaGFkb3dfd2FfY3R4ICp3YV9jdHgpCj4+IMKgwqDCoMKgwqDCoMKg
+wqDCoCBnb3RvIHB1dF9vYmo7Cj4+IMKgwqDCoMKgwqAgfQo+PiDCoCAtwqDCoMKgIGk5MTVfZ2Vt
+X29iamVjdF9sb2NrKG9iaik7Cj4+ICvCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xvY2sob2JqLCBO
+VUxMKTsKPj4gwqDCoMKgwqDCoCByZXQgPSBpOTE1X2dlbV9vYmplY3Rfc2V0X3RvX2NwdV9kb21h
+aW4ob2JqLCBmYWxzZSk7Cj4+IMKgwqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X3VubG9jayhvYmop
+Owo+PiDCoMKgwqDCoMKgIGlmIChyZXQpIHsKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZ2VtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5jCj4+IGlu
+ZGV4IDlhYTMwNjZjYjc1ZC4uMWUwNjc1MjgzNWU1IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X2dlbS5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+Z2VtLmMKPj4gQEAgLTQyMCw3ICs0MjAsNyBAQCBpOTE1X2dlbV9ndHRfcHJlYWQoc3RydWN0IGRy
+bV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIEdFTV9CVUdfT04o
+IWRybV9tbV9ub2RlX2FsbG9jYXRlZCgmbm9kZSkpOwo+PiDCoMKgwqDCoMKgIH0KPj4gwqAgLcKg
+wqDCoCByZXQgPSBpOTE1X2dlbV9vYmplY3RfbG9ja19pbnRlcnJ1cHRpYmxlKG9iaik7Cj4+ICvC
+oMKgwqAgcmV0ID0gaTkxNV9nZW1fb2JqZWN0X2xvY2tfaW50ZXJydXB0aWJsZShvYmosIE5VTEwp
+Owo+PiDCoMKgwqDCoMKgIGlmIChyZXQpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBnb3RvIG91dF91
+bnBpbjsKPj4gwqAgQEAgLTYxOSw3ICs2MTksNyBAQCBpOTE1X2dlbV9ndHRfcHdyaXRlX2Zhc3Qo
+c3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIEdF
+TV9CVUdfT04oIWRybV9tbV9ub2RlX2FsbG9jYXRlZCgmbm9kZSkpOwo+PiDCoMKgwqDCoMKgIH0K
+Pj4gwqAgLcKgwqDCoCByZXQgPSBpOTE1X2dlbV9vYmplY3RfbG9ja19pbnRlcnJ1cHRpYmxlKG9i
+aik7Cj4+ICvCoMKgwqAgcmV0ID0gaTkxNV9nZW1fb2JqZWN0X2xvY2tfaW50ZXJydXB0aWJsZShv
+YmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgIGlmIChyZXQpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBn
+b3RvIG91dF91bnBpbjsKPj4gwqAgQEAgLTEyOTAsNyArMTI5MCw3IEBAIGludCBpOTE1X2dlbV9m
+cmVlemVfbGF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKPj4gwqDCoMKgwqDCoCBp
+OTE1X2dlbV9kcmFpbl9mcmVlZF9vYmplY3RzKGk5MTUpOwo+PiDCoCDCoMKgwqDCoMKgIGxpc3Rf
+Zm9yX2VhY2hfZW50cnkob2JqLCAmaTkxNS0+bW0uc2hyaW5rX2xpc3QsIG1tLmxpbmspIHsKPj4g
+LcKgwqDCoMKgwqDCoMKgIGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaik7Cj4+ICvCoMKgwqDCoMKg
+wqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgwqDCoMKg
+wqAgZHJtX1dBUk5fT04oJmk5MTUtPmRybSwKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBpOTE1X2dlbV9vYmplY3Rfc2V0X3RvX2NwdV9kb21haW4ob2JqLCB0cnVlKSk7Cj4+
+IMKgwqDCoMKgwqDCoMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfdW5sb2NrKG9iaik7Cj4+IEBAIC0x
+MzQ0LDYgKzEzNDQsNTIgQEAgaW50IGk5MTVfZ2VtX29wZW4oc3RydWN0IGRybV9pOTE1X3ByaXZh
+dGUgKmk5MTUsIHN0cnVjdCBkcm1fZmlsZSAqZmlsZSkKPj4gwqDCoMKgwqDCoCByZXR1cm4gcmV0
+Owo+PiDCoCB9Cj4+IMKgICt2b2lkIGk5MTVfZ2VtX3d3X2N0eF9pbml0KHN0cnVjdCBpOTE1X2dl
+bV93d19jdHggKnd3LCBib29sIGludHIpCj4+ICt7Cj4+ICvCoMKgwqAgd3dfYWNxdWlyZV9pbml0
+KCZ3dy0+Y3R4LCAmcmVzZXJ2YXRpb25fd3dfY2xhc3MpOwo+PiArwqDCoMKgIElOSVRfTElTVF9I
+RUFEKCZ3dy0+b2JqX2xpc3QpOwo+PiArwqDCoMKgIHd3LT5pbnRyID0gaW50cjsKPj4gK8KgwqDC
+oCB3dy0+Y29udGVuZGVkID0gTlVMTDsKPj4gK30KPj4gKwo+PiArc3RhdGljIHZvaWQgaTkxNV9n
+ZW1fd3dfY3R4X3VubG9ja19hbGwoc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3cpCj4+ICt7Cj4+
+ICvCoMKgwqAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iajsKPj4gKwo+PiArwqDCoMKg
+IHdoaWxlICgob2JqID0gbGlzdF9maXJzdF9lbnRyeV9vcl9udWxsKCZ3dy0+b2JqX2xpc3QsIHN0
+cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0LCBvYmpfbGluaykpKSB7Cj4KPiBJIHdhbnRlZCB0byBh
+c2sgd2hldGhlciB5b3UgdGhpbmsgdGhpcyBpcyBmYXN0ZXIgdGhhbiBmb3JfZWFjaF9saXN0X2Vu
+dHJ5LCBidXQgdGhlbiBhbHNvIHJlYWxpemVkIHlvdSBjYW4gb3B0aW1pc2UgZnVydGhlciBieSBu
+b3QgYm90aGVyaW5nIHRvIGxpc3RfZGVsIChzaW5jZSB5b3Uga25vdyB0aGUgd2hvbGUgbGlzdCBp
+cyBnb2luZyBhd2F5KS4gSWYgeW91IGFyZSBub3QgYWxsb3dpbmcgd3cgY3R4IHJldXNlIHlvdSBk
+b24ndCBldmVuIG5lZWQgdG8gcmUtaW5pdCB0aGUgbGlzdF9oZWFkIGF0IHRoZSBlbmQuCj4KPj4g
+K8KgwqDCoMKgwqDCoMKgIGxpc3RfZGVsKCZvYmotPm9ial9saW5rKTsKPj4gK8KgwqDCoMKgwqDC
+oMKgIGk5MTVfZ2VtX29iamVjdF91bmxvY2sob2JqKTsKPj4gK8KgwqDCoCB9Cj4+ICt9Cj4+ICsK
+Pj4gK3ZvaWQgaTkxNV9nZW1fd3dfY3R4X2Zpbmkoc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3cp
+Cj4+ICt7Cj4+ICvCoMKgwqAgaTkxNV9nZW1fd3dfY3R4X3VubG9ja19hbGwod3cpOwo+PiArwqDC
+oMKgIFdBUk5fT04od3ctPmNvbnRlbmRlZCk7Cj4KPiBVbmxlc3MgSSBhbSBtaXNzaW5nIHNvbWV0
+aGluZyB0aGlzIGZlZWxzIGxpa2UgYSBHRU1fQlVHX09OIGNvbmRpdGlvbiAodHJhbnNsYXRlZDog
+d2Ugc2hvdWxkIGJlIGNvbmZpZGVudCBhZnRlciB0ZXN0aW5nIGl0IGlzIGltcG9zc2libGUgdG8g
+aGl0KS4KPgo+IE9yIGl0IGlzIGFsbG93ZWQgdG8gbm90IHRyeSB0aGUgYmFja29mZiBvbiAtRURF
+QURMSz8gQmFja29mZiBpcyB0aGUgb25seSBwbGFjZSB3aGljaCByZXNldHMgdGhlIHd3LT5jb250
+ZW5kZWQsIHJpZ2h0PyBJbiB0aGlzIGNhc2UgV0FSTl9PTiB3b3VsZCBiZSB3cm9uZywgYnV0IHlv
+dSBwcm9iYWJseSBkaWQgbm90IHdlbnQgZm9yIHRoaXMgZGVzaWduLiBTaG91bGQgaXQgYmUgc3Vw
+cG9ydGVkPwo+Cj4+ICvCoMKgwqAgd3dfYWNxdWlyZV9maW5pKCZ3dy0+Y3R4KTsKPj4gK30KPj4g
+Kwo+PiAraW50IF9fbXVzdF9jaGVjayBpOTE1X2dlbV93d19jdHhfYmFja29mZihzdHJ1Y3QgaTkx
+NV9nZW1fd3dfY3R4ICp3dykKPj4gK3sKPj4gK8KgwqDCoCBpbnQgcmV0ID0gMDsKPj4gKwo+PiAr
+wqDCoMKgIGlmIChXQVJOX09OKCF3dy0+Y29udGVuZGVkKSkKPj4gK8KgwqDCoMKgwqDCoMKgIHJl
+dHVybiAtRUlOVkFMOwo+PiArCj4+ICvCoMKgwqAgaTkxNV9nZW1fd3dfY3R4X3VubG9ja19hbGwo
+d3cpOwo+PiArwqDCoMKgIGlmICh3dy0+aW50cikKPj4gK8KgwqDCoMKgwqDCoMKgIHJldCA9IGRt
+YV9yZXN2X2xvY2tfc2xvd19pbnRlcnJ1cHRpYmxlKHd3LT5jb250ZW5kZWQtPmJhc2UucmVzdiwg
+Jnd3LT5jdHgpOwo+PiArwqDCoMKgIGVsc2UKPj4gK8KgwqDCoMKgwqDCoMKgIGRtYV9yZXN2X2xv
+Y2tfc2xvdyh3dy0+Y29udGVuZGVkLT5iYXNlLnJlc3YsICZ3dy0+Y3R4KTsKPj4gKwo+PiArwqDC
+oMKgIGlmICghcmV0KQo+PiArwqDCoMKgwqDCoMKgwqAgbGlzdF9hZGRfdGFpbCgmd3ctPmNvbnRl
+bmRlZC0+b2JqX2xpbmssICZ3dy0+b2JqX2xpc3QpOwo+PiArCj4+ICvCoMKgwqAgd3ctPmNvbnRl
+bmRlZCA9IE5VTEw7Cj4+ICsKPj4gK8KgwqDCoCByZXR1cm4gcmV0Owo+PiArfQo+PiArCj4+IMKg
+ICNpZiBJU19FTkFCTEVEKENPTkZJR19EUk1fSTkxNV9TRUxGVEVTVCkKPj4gwqAgI2luY2x1ZGUg
+InNlbGZ0ZXN0cy9tb2NrX2dlbV9kZXZpY2UuYyIKPj4gwqAgI2luY2x1ZGUgInNlbGZ0ZXN0cy9p
+OTE1X2dlbS5jIgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0u
+aCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtLmgKPj4gaW5kZXggMTc1M2M4NGQ2YzBk
+Li45ODg3NTVkYmY0YmUgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+Z2VtLmgKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uaAo+PiBAQCAtMTE2
+LDQgKzExNiwxNSBAQCBzdGF0aWMgaW5saW5lIGJvb2wgX190YXNrbGV0X2lzX3NjaGVkdWxlZChz
+dHJ1Y3QgdGFza2xldF9zdHJ1Y3QgKnQpCj4+IMKgwqDCoMKgwqAgcmV0dXJuIHRlc3RfYml0KFRB
+U0tMRVRfU1RBVEVfU0NIRUQsICZ0LT5zdGF0ZSk7Cj4+IMKgIH0KPj4gwqAgK3N0cnVjdCBpOTE1
+X2dlbV93d19jdHggewo+PiArwqDCoMKgIHN0cnVjdCB3d19hY3F1aXJlX2N0eCBjdHg7Cj4+ICvC
+oMKgwqAgc3RydWN0IGxpc3RfaGVhZCBvYmpfbGlzdDsKPj4gK8KgwqDCoCBib29sIGludHI7Cj4+
+ICvCoMKgwqAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKmNvbnRlbmRlZDsKPj4gK307Cj4+
+ICsKPj4gK3ZvaWQgaTkxNV9nZW1fd3dfY3R4X2luaXQoc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAq
+Y3R4LCBib29sIGludHIpOwo+PiArdm9pZCBpOTE1X2dlbV93d19jdHhfZmluaShzdHJ1Y3QgaTkx
+NV9nZW1fd3dfY3R4ICpjdHgpOwo+PiAraW50IF9fbXVzdF9jaGVjayBpOTE1X2dlbV93d19jdHhf
+YmFja29mZihzdHJ1Y3QgaTkxNV9nZW1fd3dfY3R4ICpjdHgpOwo+PiArCj4+IMKgICNlbmRpZiAv
+KiBfX0k5MTVfR0VNX0hfXyAqLwo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+c2VsZnRlc3RzL2k5MTVfZ2VtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaTkx
+NV9nZW0uYwo+PiBpbmRleCA4OGQ0MDBiOWRmODguLjIzYTYxMzJjNWY0ZSAxMDA2NDQKPj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfZ2VtLmMKPj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfZ2VtLmMKPj4gQEAgLTE5OSwxMSArMTk5
+LDUyIEBAIHN0YXRpYyBpbnQgaWd0X2dlbV9oaWJlcm5hdGUodm9pZCAqYXJnKQo+PiDCoMKgwqDC
+oMKgIHJldHVybiBlcnI7Cj4+IMKgIH0KPj4gwqAgK3N0YXRpYyBpbnQgaWd0X2dlbV93d19jdHgo
+dm9pZCAqYXJnKQo+PiArewo+PiArwqDCoMKgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1
+ID0gYXJnOwo+PiArwqDCoMKgIHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmosICpvYmoy
+Owo+PiArwqDCoMKgIHN0cnVjdCBpOTE1X2dlbV93d19jdHggd3c7Cj4+ICvCoMKgwqAgaW50IGVy
+ciA9IDA7Cj4+ICsKPj4gK8KgwqDCoCBvYmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX2ludGVy
+bmFsKGk5MTUsIFBBR0VfU0laRSk7Cj4+ICvCoMKgwqAgaWYgKElTX0VSUihvYmopKQo+PiArwqDC
+oMKgwqDCoMKgwqAgcmV0dXJuIFBUUl9FUlIob2JqKTsKPj4gKwo+PiArwqDCoMKgIG9iajIgPSBp
+OTE1X2dlbV9vYmplY3RfY3JlYXRlX2ludGVybmFsKGk5MTUsIFBBR0VfU0laRSk7Cj4+ICvCoMKg
+wqAgaWYgKElTX0VSUihvYmopKSB7Cj4KPiBXcm9uZyBvYmogXl5eIHZ2di4KPgo+PiArwqDCoMKg
+wqDCoMKgwqAgZXJyID0gUFRSX0VSUihvYmopOwo+PiArwqDCoMKgwqDCoMKgwqAgZ290byBwdXQx
+Owo+PiArwqDCoMKgIH0KPj4gKwo+PiArwqDCoMKgIGk5MTVfZ2VtX3d3X2N0eF9pbml0KCZ3dywg
+dHJ1ZSk7Cj4KPiBOZWVkIHRvIGV4cGFuZCB3aXRoIG5vbi1pbnRlcnJ1cHRpYmxlLCBpbnRlcnJ1
+cHRpYmxlIGFuZCBtaXhlZC4KPgo+PiArcmV0cnk6Cj4+ICvCoMKgwqAgLyogTG9jayB0aGUgb2Jq
+ZWN0cywgdHdpY2UgZm9yIGdvb2QgbWVhc3VyZSAoLUVBTFJFQURZIGhhbmRsaW5nKSAqLwo+PiAr
+wqDCoMKgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaiwgJnd3KTsKPj4gK8KgwqDCoCBp
+ZiAoIWVycikKPj4gK8KgwqDCoMKgwqDCoMKgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9sb2NrX2lu
+dGVycnVwdGlibGUob2JqLCAmd3cpOwo+Cj4gVGhpcyBpcyAtRUFMUkVBRFkgb24gdGhlIDFzdCBw
+YXNzLgo+Cj4+ICvCoMKgwqAgaWYgKCFlcnIpCj4+ICvCoMKgwqDCoMKgwqDCoCBlcnIgPSBpOTE1
+X2dlbV9vYmplY3RfbG9ja19pbnRlcnJ1cHRpYmxlKG9iajIsICZ3dyk7Cj4+ICvCoMKgwqAgaWYg
+KCFlcnIpCj4+ICvCoMKgwqDCoMKgwqDCoCBlcnIgPSBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmoy
+LCAmd3cpOwo+Cj4gQW5kIHRoaXMgaXMgLUVBTFJFQURZIGFnYWluPwo+Cj4+ICsKPj4gK8KgwqDC
+oCBpZiAoZXJyID09IC1FREVBRExLKSB7Cj4KPiBIb3cgZG8gd2UgZ2V0IGhlcmUgd2l0aCBhIHNp
+bmdsZSBsb2NraW5nIGNvbnRleHQ/Cj4KPj4gK8KgwqDCoMKgwqDCoMKgIGVyciA9IGk5MTVfZ2Vt
+X3d3X2N0eF9iYWNrb2ZmKCZ3dyk7Cj4+ICvCoMKgwqDCoMKgwqDCoCBpZiAoIWVycikKPj4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byByZXRyeTsKPj4gK8KgwqDCoCB9Cj4+ICvCoMKgwqAg
+aTkxNV9nZW1fd3dfY3R4X2ZpbmkoJnd3KTsKPj4gK8KgwqDCoCBpOTE1X2dlbV9vYmplY3RfcHV0
+KG9iajIpOwo+PiArcHV0MToKPj4gK8KgwqDCoCBpOTE1X2dlbV9vYmplY3RfcHV0KG9iaik7Cj4+
+ICvCoMKgwqAgcmV0dXJuIGVycjsKPj4gK30KPj4gKwo+PiDCoCBpbnQgaTkxNV9nZW1fbGl2ZV9z
+ZWxmdGVzdHMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4+IMKgIHsKPj4gwqDCoMKg
+wqDCoCBzdGF0aWMgY29uc3Qgc3RydWN0IGk5MTVfc3VidGVzdCB0ZXN0c1tdID0gewo+PiDCoMKg
+wqDCoMKgwqDCoMKgwqAgU1VCVEVTVChpZ3RfZ2VtX3N1c3BlbmQpLAo+PiDCoMKgwqDCoMKgwqDC
+oMKgwqAgU1VCVEVTVChpZ3RfZ2VtX2hpYmVybmF0ZSksCj4+ICvCoMKgwqDCoMKgwqDCoCBTVUJU
+RVNUKGlndF9nZW1fd3dfY3R4KSwKPj4gwqDCoMKgwqDCoCB9Owo+PiDCoCDCoMKgwqDCoMKgIGlm
+IChpbnRlbF9ndF9pc193ZWRnZWQoJmk5MTUtPmd0KSkKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X3ZtYS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+c2VsZnRlc3RzL2k5MTVfdm1hLmMKPj4gaW5kZXggYWY4OWM3ZmM4ZjU5Li44OGM1ZTlhY2I4NGMg
+MTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X3ZtYS5j
+Cj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X3ZtYS5jCj4+IEBA
+IC04OTIsNyArODkyLDcgQEAgc3RhdGljIGludCBpZ3Rfdm1hX3JlbWFwcGVkX2d0dCh2b2lkICph
+cmcpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHVuc2lnbmVkIGludCB4LCB5Owo+PiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbnQgZXJyOwo+PiDCoCAtwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmopOwo+PiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBlcnIgPSBpOTE1X2dlbV9vYmplY3Rfc2V0X3RvX2d0dF9kb21haW4ob2JqLCB0
+cnVlKTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X3VubG9j
+ayhvYmopOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoZXJyKQo+PiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2ludGVsX21lbW9yeV9yZWdpb24u
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pbnRlbF9tZW1vcnlfcmVnaW9uLmMK
+Pj4gaW5kZXggNmU4MGQ5OTA0OGU0Li45NTdhN2E1MmRlZjcgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pbnRlbF9tZW1vcnlfcmVnaW9uLmMKPj4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2ludGVsX21lbW9yeV9yZWdpb24uYwo+PiBA
+QCAtNTA5LDcgKzUwOSw3IEBAIHN0YXRpYyBpbnQgaWd0X2xtZW1fd3JpdGVfY3B1KHZvaWQgKmFy
+ZykKPj4gwqDCoMKgwqDCoCBpZiAoZXJyKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byBvdXRf
+dW5waW47Cj4+IMKgIC3CoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2xvY2sob2JqKTsKPj4gK8KgwqDC
+oCBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmosIE5VTEwpOwo+PiDCoMKgwqDCoMKgIGVyciA9IGk5
+MTVfZ2VtX29iamVjdF9zZXRfdG9fd2NfZG9tYWluKG9iaiwgdHJ1ZSk7Cj4+IMKgwqDCoMKgwqAg
+aTkxNV9nZW1fb2JqZWN0X3VubG9jayhvYmopOwo+PiDCoMKgwqDCoMKgIGlmIChlcnIpCj4+Cj4K
+PiBSZWdhcmRzLAo+Cj4gVHZydGtvCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4Cg==
