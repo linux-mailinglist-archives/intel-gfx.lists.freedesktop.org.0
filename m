@@ -1,32 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5708920F397
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 13:32:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 384D320F3D8
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 13:52:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5DD66E0CE;
-	Tue, 30 Jun 2020 11:32:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 967CB89065;
+	Tue, 30 Jun 2020 11:52:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2031D6E0CE
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 11:32:39 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21661877-1500050 
- for multiple; Tue, 30 Jun 2020 12:32:25 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Jun 2020 12:32:26 +0100
-Message-Id: <20200630113226.30531-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200630112854.30361-1-chris@chris-wilson.co.uk>
-References: <20200630112854.30361-1-chris@chris-wilson.co.uk>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCAC289065
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 11:52:36 +0000 (UTC)
+IronPort-SDR: DuOC78c1QyofhajTELFYHwdqHQg+ZgOH7POnhSgZWxc6dUN3bu1wfSiXPc3FXlGi3/sjz5jNuu
+ RQ24+VdMvWTA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="231078893"
+X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="231078893"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2020 04:52:38 -0700
+IronPort-SDR: HMrmRMMmi5O33Wqs4vtdCvmgu6solRNQF1tYWQJZvzDOAFo83P91XJ7Qov3urj3AIfQywmLKYX
+ quDTXcSVmc8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="277401314"
+Received: from pozo-mobl1.ger.corp.intel.com (HELO [10.252.54.227])
+ ([10.252.54.227])
+ by orsmga003.jf.intel.com with ESMTP; 30 Jun 2020 04:52:35 -0700
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
+ <20200623142843.423594-7-maarten.lankhorst@linux.intel.com>
+ <dacbaf04-a149-38e2-5c07-3d3e10589bd3@linux.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <c9123589-f0ce-0925-5ce0-d5e2277f1ca5@linux.intel.com>
+Date: Tue, 30 Jun 2020 13:52:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Always do pin_user_pages under
- the mmu-notifier
+In-Reply-To: <dacbaf04-a149-38e2-5c07-3d3e10589bd3@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 07/26] Revert "drm/i915/gem: Split eb_vma
+ into its own allocation"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,172 +55,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the user replaces their vma as we are looking up their pages in the
-pin_user_pages fast path, we miss the revocation as the mmu-notifier is
-not yet installed. We end up with a bunch of stale pages mixed in with
-the fresh. However, the slow path is always run in the worker after
-first attaching to the notifier, and so will not miss a revocation as
-the pages are being looked up. Since this is safer, despite it hitting
-range-invalidate caused by the pin_user_pages themselves, always take
-the slow path.
+Op 29-06-2020 om 17:08 schreef Tvrtko Ursulin:
+>
+> On 23/06/2020 15:28, Maarten Lankhorst wrote:
+>> This reverts commit 0f1dd02295f35dcdcbaafcbcbbec0753884ab974.
+>> This conflicts with the ww mutex handling, which needs to drop
+>> the references after gpu submission anyway, because otherwise we
+>> may risk unlocking a BO after first freeing it.
+>
+> What is the problem here? eb_vma_array_put in eb_move_to_gpu? If so, could you just move this put to later in the sequence? I am simply thinking how to avoid controversial reverts. Because on the other hand I did not figure out what 0f1dd02295f35dcdcbaafcbcbbec0753884ab974 fixed in a few minutes I spent staring at the patch. 
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 114 ++++----------------
- 1 file changed, 21 insertions(+), 93 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index e946032b13e4..fbc6f3dc9461 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -512,58 +512,13 @@ __i915_gem_userptr_get_pages_worker(struct work_struct *_work)
- 	kfree(work);
- }
- 
--static struct sg_table *
--__i915_gem_userptr_get_pages_schedule(struct drm_i915_gem_object *obj)
--{
--	struct get_pages_work *work;
--
--	/* Spawn a worker so that we can acquire the
--	 * user pages without holding our mutex. Access
--	 * to the user pages requires mmap_lock, and we have
--	 * a strict lock ordering of mmap_lock, struct_mutex -
--	 * we already hold struct_mutex here and so cannot
--	 * call gup without encountering a lock inversion.
--	 *
--	 * Userspace will keep on repeating the operation
--	 * (thanks to EAGAIN) until either we hit the fast
--	 * path or the worker completes. If the worker is
--	 * cancelled or superseded, the task is still run
--	 * but the results ignored. (This leads to
--	 * complications that we may have a stray object
--	 * refcount that we need to be wary of when
--	 * checking for existing objects during creation.)
--	 * If the worker encounters an error, it reports
--	 * that error back to this function through
--	 * obj->userptr.work = ERR_PTR.
--	 */
--	work = kmalloc(sizeof(*work), GFP_KERNEL);
--	if (work == NULL)
--		return ERR_PTR(-ENOMEM);
--
--	obj->userptr.work = &work->work;
--
--	work->obj = i915_gem_object_get(obj);
--
--	work->task = current;
--	get_task_struct(work->task);
--
--	INIT_WORK(&work->work, __i915_gem_userptr_get_pages_worker);
--	queue_work(to_i915(obj->base.dev)->mm.userptr_wq, &work->work);
--
--	return ERR_PTR(-EAGAIN);
--}
--
- static int i915_gem_userptr_get_pages(struct drm_i915_gem_object *obj)
- {
--	const unsigned long num_pages = obj->base.size >> PAGE_SHIFT;
--	struct mm_struct *mm = obj->userptr.mm->mm;
--	struct page **pvec;
--	struct sg_table *pages;
--	bool active;
--	int pinned;
--	unsigned int gup_flags = 0;
-+	struct get_pages_work *work;
-+	struct work_struct *prev;
- 
--	/* If userspace should engineer that these pages are replaced in
-+	/*
-+	 * If userspace should engineer that these pages are replaced in
- 	 * the vma between us binding this page into the GTT and completion
- 	 * of rendering... Their loss. If they change the mapping of their
- 	 * pages they need to create a new bo to point to the new vma.
-@@ -580,59 +535,32 @@ static int i915_gem_userptr_get_pages(struct drm_i915_gem_object *obj)
- 	 * egregious cases from causing harm.
- 	 */
- 
--	if (obj->userptr.work) {
-+	prev = READ_ONCE(obj->userptr.work);
-+	if (prev) {
- 		/* active flag should still be held for the pending work */
--		if (IS_ERR(obj->userptr.work))
--			return PTR_ERR(obj->userptr.work);
-+		if (IS_ERR(prev))
-+			return PTR_ERR(prev);
- 		else
- 			return -EAGAIN;
- 	}
- 
--	pvec = NULL;
--	pinned = 0;
-+	work = kmalloc(sizeof(*work), GFP_KERNEL);
-+	if (work == NULL)
-+		return -ENOMEM;
- 
--	if (mm == current->mm) {
--		pvec = kvmalloc_array(num_pages, sizeof(struct page *),
--				      GFP_KERNEL |
--				      __GFP_NORETRY |
--				      __GFP_NOWARN);
--		/*
--		 * Using __get_user_pages_fast() with a read-only
--		 * access is questionable. A read-only page may be
--		 * COW-broken, and then this might end up giving
--		 * the wrong side of the COW..
--		 *
--		 * We may or may not care.
--		 */
--		if (pvec) {
--			/* defer to worker if malloc fails */
--			if (!i915_gem_object_is_readonly(obj))
--				gup_flags |= FOLL_WRITE;
--			pinned = pin_user_pages_fast_only(obj->userptr.ptr,
--							  num_pages, gup_flags,
--							  pvec);
--		}
--	}
-+	/* Attach our mmu-notifier first to catch revocations as we work */
-+	__i915_gem_userptr_set_active(obj, true);
- 
--	active = false;
--	if (pinned < 0) {
--		pages = ERR_PTR(pinned);
--		pinned = 0;
--	} else if (pinned < num_pages) {
--		pages = __i915_gem_userptr_get_pages_schedule(obj);
--		active = pages == ERR_PTR(-EAGAIN);
--	} else {
--		pages = __i915_gem_userptr_alloc_pages(obj, pvec, num_pages);
--		active = !IS_ERR(pages);
--	}
--	if (active)
--		__i915_gem_userptr_set_active(obj, true);
-+	obj->userptr.work = &work->work;
-+	work->obj = i915_gem_object_get(obj);
- 
--	if (IS_ERR(pages))
--		unpin_user_pages(pvec, pinned);
--	kvfree(pvec);
-+	work->task = current;
-+	get_task_struct(work->task);
-+
-+	INIT_WORK(&work->work, __i915_gem_userptr_get_pages_worker);
-+	queue_work(to_i915(obj->base.dev)->mm.userptr_wq, &work->work);
- 
--	return PTR_ERR_OR_ZERO(pages);
-+	return -EAGAIN;
- }
- 
- static void
--- 
-2.20.1
+We need to unlock before we unref to prevent a use-after-free in unlock, so freeing and releasing in eb_move_to_gpu() is too early. This means we only end up with 1 path for unlock, so it's fine to revert.
 
 _______________________________________________
 Intel-gfx mailing list
