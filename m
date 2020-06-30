@@ -1,30 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5938320FEA9
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 23:25:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6104220FEAA
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 23:25:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67CB689B62;
-	Tue, 30 Jun 2020 21:25:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7B956E2DA;
+	Tue, 30 Jun 2020 21:25:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB29F89B62;
- Tue, 30 Jun 2020 21:25:29 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21668046-1500050 
- for multiple; Tue, 30 Jun 2020 22:25:15 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Jun 2020 22:25:15 +0100
-Message-Id: <20200630212515.1132791-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.27.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C626D6E2DA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 21:25:41 +0000 (UTC)
+IronPort-SDR: Urn/K6hXD9W18kW3vkDQhZ4PWGfkInbRyncOEzMskhVIhD8M2jdcBK7DtbDCvmywpLw/MbTgCm
+ sPFyqo2xLrqA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9668"; a="126484240"
+X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="126484240"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2020 14:25:41 -0700
+IronPort-SDR: YBdhTgLczqmD7hqBnvyI8WoeILoTHEafqnGjcPwWklrr4g8WzgQQ+HIOd/1NdBdDYrnWRI6pUm
+ EGISVhYJfHGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="321536516"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 30 Jun 2020 14:25:39 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 01 Jul 2020 00:25:38 +0300
+Date: Wed, 1 Jul 2020 00:25:38 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20200630212538.GW6112@intel.com>
+References: <20200626232641.4557-1-manasi.d.navare@intel.com>
+ <20200630210330.GU6112@intel.com>
+ <20200630211045.GA21520@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_close_race: Mix in a contexts
- and a small delay to closure
+Content-Disposition: inline
+In-Reply-To: <20200630211045.GA21520@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 1/2] drm/i915/dp: Helper for checking
+ DDI_BUF_CTL Idle status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,174 +55,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Keep the old handles in a small ring so that we build up a small amount
-of pressure for i915_gem_close_object() and throw in a few concurrent
-contexts so we have to process an obj->lut_list containing more than one
-element. And to make sure the list is truly long enough to schedule,
-start leaking the contexts.
+On Tue, Jun 30, 2020 at 02:10:45PM -0700, Manasi Navare wrote:
+> On Wed, Jul 01, 2020 at 12:03:30AM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Fri, Jun 26, 2020 at 04:26:40PM -0700, Manasi Navare wrote:
+> > > Modify the helper to add a fixed delay or poll with timeout
+> > > based on platform specification to check for either Idle bit
+> > > set (DDI_BUF_CTL is idle for disable case)
+> > > =
 
-Note that the only correctness check is that the selfcopy doesn't
-explode; the challenge would be to prove that the old handles are no
-longer accessible via the execbuf lut. However, this is sufficient to
-make sure we at least hit the interruptible spinlock used by
-close-objects.
+> > > v3:
+> > > * Change the timeout to 16usecs (Ville)
+> > > v2:
+> > > * Use 2 separate functions or idle and active (Ville)
+> > > =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
- tests/i915/gem_close_race.c | 68 +++++++++++++++++++++++++++++--------
- 1 file changed, 53 insertions(+), 15 deletions(-)
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Cc: Imre Deak <imre.deak@intel.com>
+> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 17 ++++++++---------
+> > >  1 file changed, 8 insertions(+), 9 deletions(-)
+> > > =
 
-diff --git a/tests/i915/gem_close_race.c b/tests/i915/gem_close_race.c
-index db570e8fd..4b72d353c 100644
---- a/tests/i915/gem_close_race.c
-+++ b/tests/i915/gem_close_race.c
-@@ -55,7 +55,7 @@ static bool has_64bit_relocations;
- 
- #define sigev_notify_thread_id _sigev_un._tid
- 
--static void selfcopy(int fd, uint32_t handle, int loops)
-+static void selfcopy(int fd, uint32_t ctx, uint32_t handle, int loops)
- {
- 	struct drm_i915_gem_relocation_entry reloc[2];
- 	struct drm_i915_gem_exec_object2 gem_exec[2];
-@@ -113,6 +113,7 @@ static void selfcopy(int fd, uint32_t handle, int loops)
- 	execbuf.batch_len = (b - buf) * sizeof(*b);
- 	if (HAS_BLT_RING(devid))
- 		execbuf.flags |= I915_EXEC_BLT;
-+	execbuf.rsvd1 = ctx;
- 
- 	memset(&gem_pwrite, 0, sizeof(gem_pwrite));
- 	gem_pwrite.handle = create.handle;
-@@ -135,7 +136,7 @@ static uint32_t load(int fd)
- 	if (handle == 0)
- 		return 0;
- 
--	selfcopy(fd, handle, 100);
-+	selfcopy(fd, 0, handle, 100);
- 	return handle;
- }
- 
-@@ -165,14 +166,19 @@ static void crashme_now(int sig)
- #define usec(x) (1000*(x))
- #define msec(x) usec(1000*(x))
- 
--static void threads(int timeout)
-+static void thread(int fd, struct drm_gem_open name,
-+		   int timeout, unsigned int flags)
-+#define CONTEXTS 0x1
- {
- 	struct sigevent sev;
- 	struct sigaction act;
--	struct drm_gem_open name;
- 	struct itimerspec its;
-+	uint32_t *history;
-+#define N_HISTORY (256)
- 	timer_t timer;
--	int fd;
-+
-+	history = malloc(sizeof(*history) * N_HISTORY);
-+	igt_assert(history);
- 
- 	memset(&act, 0, sizeof(act));
- 	act.sa_handler = crashme_now;
-@@ -184,28 +190,57 @@ static void threads(int timeout)
- 	sev.sigev_signo = SIGRTMIN;
- 	igt_assert(timer_create(CLOCK_MONOTONIC, &sev, &timer) == 0);
- 
--	fd = drm_open_driver(DRIVER_INTEL);
--	name.name = gem_flink(fd, gem_create(fd, OBJECT_SIZE));
--
- 	igt_until_timeout(timeout) {
--		crashme.fd = drm_open_driver(DRIVER_INTEL);
-+		unsigned int n = 0;
-+
-+		memset(history, 0, sizeof(*history) * N_HISTORY);
-+
-+		crashme.fd = gem_reopen_driver(fd);
- 
- 		memset(&its, 0, sizeof(its));
--		its.it_value.tv_nsec = msec(1) + (rand() % msec(10));
-+		its.it_value.tv_nsec = msec(1) + (rand() % msec(150));
- 		igt_assert(timer_settime(timer, 0, &its, NULL) == 0);
- 
- 		do {
--			if (drmIoctl(crashme.fd, DRM_IOCTL_GEM_OPEN, &name))
-+			uint32_t ctx = 0;
-+
-+			if (drmIoctl(crashme.fd,
-+				     DRM_IOCTL_GEM_OPEN,
-+				     &name))
- 				break;
- 
--			selfcopy(crashme.fd, name.handle, 100);
--			drmIoctl(crashme.fd, DRM_IOCTL_GEM_CLOSE, &name.handle);
-+			if (flags & CONTEXTS)
-+				__gem_context_create(crashme.fd, &ctx);
-+
-+			selfcopy(crashme.fd, ctx, name.handle, 1);
-+
-+			ctx = history[n % N_HISTORY];
-+			if (ctx)
-+				drmIoctl(crashme.fd,
-+					 DRM_IOCTL_GEM_CLOSE,
-+					 &ctx);
-+			history[n % N_HISTORY] = name.handle;
-+			n++;
- 		} while (1);
- 
- 		close(crashme.fd);
- 	}
- 
- 	timer_delete(timer);
-+	free(history);
-+}
-+
-+static void threads(int timeout, unsigned int flags)
-+{
-+	struct drm_gem_open name;
-+	int fd;
-+
-+	fd = drm_open_driver(DRIVER_INTEL);
-+	name.name = gem_flink(fd, gem_create(fd, OBJECT_SIZE));
-+
-+	igt_fork(child, sysconf(_SC_NPROCESSORS_ONLN))
-+		thread(fd, name, timeout, flags);
-+	igt_waitchildren();
- 
- 	gem_quiescent_gpu(fd);
- 	close(fd);
-@@ -233,7 +268,7 @@ igt_main
- 	}
- 
- 	igt_subtest("basic-threads")
--		threads(1);
-+		threads(1, 0);
- 
- 	igt_subtest("process-exit") {
- 		igt_fork(child, 768)
-@@ -241,8 +276,11 @@ igt_main
- 		igt_waitchildren();
- 	}
- 
-+	igt_subtest("contexts")
-+		threads(30, CONTEXTS);
-+
- 	igt_subtest("gem-close-race")
--		threads(150);
-+		threads(150, 0);
- 
- 	igt_fixture
- 	    igt_stop_hang_detector();
--- 
-2.27.0
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
+rm/i915/display/intel_ddi.c
+> > > index 884b507c5f55..052a74625a61 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > @@ -1184,16 +1184,15 @@ static void intel_prepare_hdmi_ddi_buffers(st=
+ruct intel_encoder *encoder,
+> > >  static void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_pri=
+v,
+> > >  				    enum port port)
+> > >  {
+> > > -	i915_reg_t reg =3D DDI_BUF_CTL(port);
+> > > -	int i;
+> > > -
+> > > -	for (i =3D 0; i < 16; i++) {
+> > > -		udelay(1);
+> > > -		if (intel_de_read(dev_priv, reg) & DDI_BUF_IS_IDLE)
+> > > -			return;
+> > > +	if (IS_BROXTON(dev_priv)) {
+> > > +		udelay(16);
+> > > +		return;
+> > >  	}
+> > > -	drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c idle bit\n",
+> > > -		port_name(port));
+> > > +
+> > > +	if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
+> > > +			 DDI_BUF_IS_IDLE), 16))
+> > =
 
+> > 16 is the BXT number. IIRC the spec said 8 usec for the other platforms.
+> >
+> =
+
+> Yes I see for HSW atleast yes it says 8usecs but i left it at 16 since th=
+ats
+> what we always had and the only change was that BXT add a fixed delay
+> But if you prefer i will change it to 8us timeout?
+
+My usual approach is to a) just use the spec value, b) if there's
+a sane reason for not using it then include a comment documenting
+the spec value.
+
+Often b) is just for "spec say a few microseconds, let's just wait
+a full millisecond to make it simple", or for "old platforms want
+timeout N, new ones want M, just go with the larger of the two for
+simplicity". Arguably the current code was trying to follow the
+latter approach, except if was supposed to since bxt wasn't supposed
+to poll at all.
+
+Anyways, since the current code already used 16 usec without any
+clarification I guess this is no worse than what we had.
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> =
+
+> Manasi
+>  =
+
+> > > +		drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c to get idl=
+e\n",
+> > > +			port_name(port));
+> > >  }
+> > >  =
+
+> > >  static u32 hsw_pll_to_ddi_pll_sel(const struct intel_shared_dpll *pl=
+l)
+> > > -- =
+
+> > > 2.19.1
+> > =
+
+> > -- =
+
+> > Ville Syrj=E4l=E4
+> > Intel
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
