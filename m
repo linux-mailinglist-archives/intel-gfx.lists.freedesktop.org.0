@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C228F20F20D
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 12:00:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD1C20F20E
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 12:01:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06A1289C07;
-	Tue, 30 Jun 2020 10:00:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F78689C6A;
+	Tue, 30 Jun 2020 10:01:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A038789C07
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 10:00:34 +0000 (UTC)
-IronPort-SDR: vy/o/h+Gt0HpTbQCFrcM5wBap+JrZquysOQZ8Iga22LuuIzmwm3x7pCIFocraEVeMkIWCO8qnt
- DzjStpjlioCw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="145263161"
-X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="145263161"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6985B89C6A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 10:01:11 +0000 (UTC)
+IronPort-SDR: Cfe9rdAsNAH19Q0cZ4ylxTRvTTDrhV8TlZ14tBaUGLCTRFLNohYNGeMipmbZC/TvEom5r049O0
+ uBs95REhGXEA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="231052931"
+X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="231052931"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2020 03:00:34 -0700
-IronPort-SDR: CRaawgk/6f8szNEK2bHJ8g6vunw7syWT0V6sTAl3OwXbQm3fd+gp+aqwxggegqfORLTPGkjHG/
- XlhQfMQgcR6A==
-X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="454552523"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2020 03:01:10 -0700
+IronPort-SDR: SyuLwYOn2R1P9lwcHQCPhqbruC6LyKImtydU5qecgChH2lfMz8M3CSudobnNNULreAV8oydJeT
+ aAZSUOTkR63Q==
+X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="454552755"
 Received: from rgrotewx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.38.12])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2020 03:00:30 -0700
+ 30 Jun 2020 03:01:08 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
 In-Reply-To: <20200630082048.22308-1-anshuman.gupta@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20200630082048.22308-1-anshuman.gupta@intel.com>
-Date: Tue, 30 Jun 2020 13:00:27 +0300
-Message-ID: <87d05gna9w.fsf@intel.com>
+Date: Tue, 30 Jun 2020 13:01:06 +0300
+Message-ID: <87a70kna8t.fsf@intel.com>
 MIME-Version: 1.0
 Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/hdcp: Update CP as per the
  kernel internal state
@@ -56,7 +56,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-Uma, is the R-b still valid? It's been a while.
+Sean, Ram, good to go?
 
 BR,
 Jani.
