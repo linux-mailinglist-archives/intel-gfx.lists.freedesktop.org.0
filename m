@@ -2,42 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9FE20F93E
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 18:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22CF220F94B
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 18:19:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F245389A35;
-	Tue, 30 Jun 2020 16:16:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3203289C17;
+	Tue, 30 Jun 2020 16:19:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FD5589A35
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 16:16:56 +0000 (UTC)
-IronPort-SDR: +fjzUrHYPRqaMmJn4Bv4E6kEjo1Iy1TH9VYvpelqCE+Vdfm0PMjFUkyCVkqDQZrh+qMqt3kaK1
- 7qVK4WRr8E9A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="144464361"
-X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="144464361"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2020 09:16:55 -0700
-IronPort-SDR: Lv9bCeY/7NQ13ysxDbSsLb+b6p9L10BwalE1ZbOrEJtEEaCFB7JlzGcTGfu5HHLXXzy44tg9nZ
- /P07SgikZenA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="312411802"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga008.jf.intel.com with ESMTP; 30 Jun 2020 09:16:54 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id D09C55C0D17; Tue, 30 Jun 2020 19:16:43 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200630152724.3734-1-chris@chris-wilson.co.uk>
-References: <20200630152724.3734-1-chris@chris-wilson.co.uk>
-Date: Tue, 30 Jun 2020 19:16:43 +0300
-Message-ID: <87imf84jh0.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B5628891D9;
+ Tue, 30 Jun 2020 16:19:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AE129A0071;
+ Tue, 30 Jun 2020 16:19:45 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Skip stale object handle for
- debugfs per-file-stats
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Tue, 30 Jun 2020 16:19:45 -0000
+Message-ID: <159353398568.22702.1471890659392890775@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200630112609.9998-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200630112609.9998-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Clamp_min=5Fcdclk_to_max=5Fcdclk=5Ffreq_to_unblock_8K?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,78 +38,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> As we close a handle GEM object, we update the drm_file's idr with an
-> error pointer to indicate the in-progress closure, and finally set it to
+Series: drm/i915: Clamp min_cdclk to max_cdclk_freq to unblock 8K
+URL   : https://patchwork.freedesktop.org/series/78940/
+State : success
 
-The error pointer part stage seems to be missing.
-But the finding is valid.
+== Summary ==
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+CI Bug Log - changes from CI_DRM_8678 -> Patchwork_18044
+====================================================
 
-> NULL. If we read the idr directly, we may then see an invalid object
-> pointer, and in our debugfs per_file_stats() we therefore need to
-> protect against the entry being invalid.
->
-> [ 1016.651637] RIP: 0010:per_file_stats+0xe/0x16e
-> [ 1016.651646] Code: d2 41 0f b6 8e 69 8c 00 00 48 89 df 48 c7 c6 7b 74 8c be 31 c0 e8 0c 89 cf ff eb d2 0f 1f 44 00 00 55 48 89 e5 41
-> 57 41 56 53 <8b> 06 85 c0 0f 84 4d 01 00 00 49 89 d6 48 89 f3 3d ff ff ff 7f 73
-> [ 1016.651651] RSP: 0018:ffffad3a01337ba0 EFLAGS: 00010293
-> [ 1016.651656] RAX: 0000000000000018 RBX: ffff96fe040d65e0 RCX: 0000000000000002
-> [ 1016.651660] RDX: ffffad3a01337c50 RSI: 0000000000000000 RDI: 00000000000001e8
-> [ 1016.651663] RBP: ffffad3a01337bb8 R08: 0000000000000000 R09: 00000000000001c0
-> [ 1016.651667] R10: 0000000000000000 R11: ffffffffbdbe5fce R12: 0000000000000000
-> [ 1016.651671] R13: ffffffffbdbe5fce R14: ffffad3a01337c50 R15: 0000000000000001
-> [ 1016.651676] FS:  00007a597e2d7480(0000) GS:ffff96ff3bb00000(0000) knlGS:0000000000000000
-> [ 1016.651680] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [ 1016.651683] CR2: 0000000000000000 CR3: 0000000171fc2001 CR4: 00000000003606e0
-> [ 1016.651687] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-> [ 1016.651690] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-> [ 1016.651693] Call Trace:
-> [ 1016.651693] Call Trace:
-> [ 1016.651703]  idr_for_each+0x8a/0xe8
-> [ 1016.651711]  i915_gem_object_info+0x2a3/0x3eb
-> [ 1016.651720]  seq_read+0x162/0x3ca
-> [ 1016.651727]  full_proxy_read+0x5b/0x8d
-> [ 1016.651733]  __vfs_read+0x45/0x1bb
-> [ 1016.651741]  vfs_read+0xc9/0x15e
-> [ 1016.651746]  ksys_read+0x7e/0xde
-> [ 1016.651752]  do_syscall_64+0x54/0x68
-> [ 1016.651758]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
->
-> Reported-by: Guenter Roeck <linux@roeck-us.net>
-> Fixes: a8c15954d64a ("drm/i915: Protect debugfs per_file_stats with RCU lock")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: stable@vger.kernel.org
-> ---
->  drivers/gpu/drm/i915/i915_debugfs.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index 8594a8ef08ce..9ca94a435b75 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -230,7 +230,7 @@ static int per_file_stats(int id, void *ptr, void *data)
->  	struct file_stats *stats = data;
->  	struct i915_vma *vma;
->  
-> -	if (!kref_get_unless_zero(&obj->base.refcount))
-> +	if (IS_ERR_OR_NULL(obj) || !kref_get_unless_zero(&obj->base.refcount))
->  		return 0;
->  
->  	stats->count++;
-> -- 
-> 2.20.1
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18044 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_module_load@reload:
+    - fi-tgl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-tgl-u2/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-tgl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-byt-j1900:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-tgl-u2:          [PASS][7] -> [INCOMPLETE][8] ([i915#1932] / [i915#2045])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - fi-icl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - {fi-kbl-7560u}:     [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][17] ([i915#1982]) -> [PASS][18] +2 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  
+#### Warnings ####
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +4 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1932]: https://gitlab.freedesktop.org/drm/intel/issues/1932
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2045]: https://gitlab.freedesktop.org/drm/intel/issues/2045
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (44 -> 37)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8678 -> Patchwork_18044
+
+  CI-20190529: 20190529
+  CI_DRM_8678: 7cafa8aeca728d8abd1bc9d31d2fca60757a00c4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5718: af1ef32bfae90bcdbaf1b5d84c61ff4e04368505 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18044: abfcf6db3529c248344aaeb3e113cec6eadcd592 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+abfcf6db3529 drm/i915: Clamp min_cdclk to max_cdclk_freq to unblock 8K
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18044/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
