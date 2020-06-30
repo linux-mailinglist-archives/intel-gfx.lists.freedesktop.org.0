@@ -1,42 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2206820EF3D
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 09:23:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 429A520F029
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 10:06:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EA7D89C56;
-	Tue, 30 Jun 2020 07:23:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9520089DFA;
+	Tue, 30 Jun 2020 08:06:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 939F089B78
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 07:23:28 +0000 (UTC)
-IronPort-SDR: W36AXdkTm/IxgQV7DxyTLNwXUaaL/e2Eyyy0+jp0Np21IIZnQz1+KmD2inf9dcdezbSm81IHC8
- 5kVnc6J4CEKQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="126291939"
-X-IronPort-AV: E=Sophos;i="5.75,296,1589266800"; d="scan'208";a="126291939"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76E8289DFA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 08:06:37 +0000 (UTC)
+IronPort-SDR: 6Uwm+YLVD0ncUfS7Qjj3jkII9/AOB/feYBBeckDd6qHtTWuHpYqpbnGcUSwetcFSsmgHbxDplX
+ 0ohxw6NAR7QQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="164182612"
+X-IronPort-AV: E=Sophos;i="5.75,296,1589266800"; d="scan'208";a="164182612"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2020 00:23:28 -0700
-IronPort-SDR: ux8F0F0BTcANrqEjggtkrM8iJT0zyZJvcy2sp0A66+N6Rxos+Oy3M9835oUH5wt9frUCYernYt
- 1Ag7s3DK9AhA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,296,1589266800"; d="scan'208";a="295126433"
-Received: from unknown (HELO joshikun.iind.intel.com) ([10.223.74.209])
- by orsmga002.jf.intel.com with ESMTP; 30 Jun 2020 00:23:26 -0700
-From: Kunal Joshi <kunal1.joshi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Jun 2020 05:57:00 +0530
-Message-Id: <20200630002700.5451-4-kunal1.joshi@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200630002700.5451-1-kunal1.joshi@intel.com>
-References: <20200630002700.5451-1-kunal1.joshi@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2020 01:06:36 -0700
+IronPort-SDR: gS+RTNcA2lwWWEWY5uwIhlZmATJQDw04Guh3UTRx67Qwb0c5keIKoSIbEzHrPwsg+796ZgciqI
+ ig+K5o0Ns1hg==
+X-IronPort-AV: E=Sophos;i="5.75,296,1589266800"; d="scan'208";a="454515998"
+Received: from rgrotewx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.38.12])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2020 01:06:32 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ramalingam C <ramalingam.c@intel.com>, Oliver Barta <o.barta89@gmail.com>
+In-Reply-To: <20200505121213.GA24840@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200504123524.7731-1-oliver.barta@aptiv.com>
+ <20200505073809.GA24093@intel.com>
+ <CALJK04P5A0TV=eQ3QnmXNGbe76i5eUB+hdDxtTkyhV8kfpPeNQ@mail.gmail.com>
+ <20200505121213.GA24840@intel.com>
+Date: Tue, 30 Jun 2020 11:06:30 +0300
+Message-ID: <87k0zpm0zd.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 3/3] drm/i915: Send hotplug event if edid had
- changed
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: HDCP: retry link integrity check
+ on failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,90 +53,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Ravisankar Madasamy <ravisankar.madasamy@intel.com>,
+ Sean Paul <seanpaul@chromium.org>, Oliver Barta <oliver.barta@aptiv.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+On Tue, 05 May 2020, Ramalingam C <ramalingam.c@intel.com> wrote:
+> On 2020-05-05 at 14:06:51 +0200, Oliver Barta wrote:
+>> On Tue, May 5, 2020 at 9:38 AM Ramalingam C <ramalingam.c@intel.com> wrote:
+>> >
+>> > On 2020-05-04 at 14:35:24 +0200, Oliver Barta wrote:
+>> > > From: Oliver Barta <oliver.barta@aptiv.com>
+>> > >
+>> > > A single Ri mismatch doesn't automatically mean that the link integrity
+>> > > is broken. Update and check of Ri and Ri' are done asynchronously. In
+>> > > case an update happens just between the read of Ri' and the check against
+>> > > Ri there will be a mismatch even if the link integrity is fine otherwise.
+>> >
+>> > Thanks for working on this. Btw, did you face this sporadic link check
+>> > failure or theoretically you are fixing it?
+>> >
+>> > IMO this change will rule out possible sporadic link check failures as
+>> > mentioned in the commit msg. Though I haven't faced this issue at my
+>> > testings.
+>> >
+>> > Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+>> >
+>> 
+>> I found it by code inspection, the probability for this to happen is
+>> very low. In order to test the patch I'm decreasing the value of
+>> DRM_HDCP_CHECK_PERIOD_MS to just a few ms. Once you do that it happens
+>> every few seconds.
+> Ok. That make sense. Thanks for the explanation.
 
-Added epoch counter checking to intel_encoder_hotplug
-in order to be able process all the connector changes,
-besides connection status. Also now any change in connector
-would result in epoch counter change, so no multiple checks
-are needed.
+Finally pushed, thanks for the patch and reviews.
 
-v2: Renamed change counter to epoch counter. Fixed type name.
+Ram, I was kind of expecting you to push this.
 
-v3: Fixed rebase conflict
+BR,
+Jani.
 
-v4: Remove duplicate drm_edid_equal checks from hdmi and dp,
-    lets use only once edid property is getting updated and
-    increment epoch counter from there.
-    Also lets now call drm_connector_update_edid_property
-    right after we get edid always to make sure there is a
-    unified way to handle edid change, without having to
-    change tons of source code as currently
-    drm_connector_update_edid_property is called only in
-    certain cases like reprobing and not right after edid is
-    actually updated.
 
-v5: Fixed const modifiers, removed blank line
+>
+> -Ram
+>> 
+>> Thanks,
+>> Oliver
+>> 
+>> > >
+>> > > Signed-off-by: Oliver Barta <oliver.barta@aptiv.com>
+>> > > ---
+>> > >  drivers/gpu/drm/i915/display/intel_hdmi.c | 19 ++++++++++++++++---
+>> > >  1 file changed, 16 insertions(+), 3 deletions(-)
+>> > >
+>> > > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> > > index 010f37240710..3156fde392f2 100644
+>> > > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> > > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> > > @@ -1540,7 +1540,7 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
+>> > >  }
+>> > >
+>> > >  static
+>> > > -bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+>> > > +bool intel_hdmi_hdcp_check_link_once(struct intel_digital_port *intel_dig_port)
+>> > >  {
+>> > >       struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+>> > >       struct intel_connector *connector =
+>> > > @@ -1563,8 +1563,7 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+>> > >       if (wait_for((intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
+>> > >                     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC)) ==
+>> > >                    (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
+>> > > -             drm_err(&i915->drm,
+>> > > -                     "Ri' mismatch detected, link check failed (%x)\n",
+>> > > +             drm_dbg_kms(&i915->drm, "Ri' mismatch detected (%x)\n",
+>> > >                       intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder,
+>> > >                                                       port)));
+>> > >               return false;
+>> > > @@ -1572,6 +1571,20 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+>> > >       return true;
+>> > >  }
+>> > >
+>> > > +static
+>> > > +bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+>> > > +{
+>> > > +     struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+>> > > +     int retry;
+>> > > +
+>> > > +     for (retry = 0; retry < 3; retry++)
+>> > > +             if (intel_hdmi_hdcp_check_link_once(intel_dig_port))
+>> > > +                     return true;
+>> > > +
+>> > > +     drm_err(&i915->drm, "Link check failed\n");
+>> > > +     return false;
+>> > > +}
+>> > > +
+>> > >  struct hdcp2_hdmi_msg_timeout {
+>> > >       u8 msg_id;
+>> > >       u16 timeout;
+>> > > --
+>> > > 2.20.1
+>> > >
 
-v6: Removed drm specific part from this patch, leaving only
-    i915 specific changes here.
-
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hotplug.c | 24 ++++++++++++--------
- 1 file changed, 14 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 2e94c1413c02..80bcfff032e9 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -283,6 +283,8 @@ intel_encoder_hotplug(struct intel_encoder *encoder,
- {
- 	struct drm_device *dev = connector->base.dev;
- 	enum drm_connector_status old_status;
-+	u64 old_epoch_counter;
-+	bool ret = false;
- 
- 	drm_WARN_ON(dev, !mutex_is_locked(&dev->mode_config.mutex));
- 	old_status = connector->base.status;
-@@ -290,17 +292,19 @@ intel_encoder_hotplug(struct intel_encoder *encoder,
- 	connector->base.status =
- 		drm_helper_probe_detect(&connector->base, NULL, false);
- 
--	if (old_status == connector->base.status)
--		return INTEL_HOTPLUG_UNCHANGED;
--
--	drm_dbg_kms(&to_i915(dev)->drm,
--		    "[CONNECTOR:%d:%s] status updated from %s to %s\n",
--		    connector->base.base.id,
--		    connector->base.name,
--		    drm_get_connector_status_name(old_status),
--		    drm_get_connector_status_name(connector->base.status));
-+	if (old_epoch_counter != connector->base.epoch_counter)
-+		ret = true;
- 
--	return INTEL_HOTPLUG_CHANGED;
-+	if (ret) {
-+		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] status updated from %s to %s(epoch counter %llu)\n",
-+			      connector->base.base.id,
-+			      connector->base.name,
-+			      drm_get_connector_status_name(old_status),
-+			      drm_get_connector_status_name(connector->base.status),
-+			      connector->base.epoch_counter);
-+		return INTEL_HOTPLUG_CHANGED;
-+	}
-+	return INTEL_HOTPLUG_UNCHANGED;
- }
- 
- static bool intel_encoder_has_hpd_pulse(struct intel_encoder *encoder)
 -- 
-2.25.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
