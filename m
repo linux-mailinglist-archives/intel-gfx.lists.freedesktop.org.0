@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49CFA20F38D
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 13:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5708920F397
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 13:32:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 771496E0D1;
-	Tue, 30 Jun 2020 11:29:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5DD66E0CE;
+	Tue, 30 Jun 2020 11:32:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1DE26E0D1
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 11:29:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2031D6E0CE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 11:32:39 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21661833-1500050 
- for multiple; Tue, 30 Jun 2020 12:28:54 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21661877-1500050 
+ for multiple; Tue, 30 Jun 2020 12:32:25 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Jun 2020 12:28:54 +0100
-Message-Id: <20200630112854.30361-1-chris@chris-wilson.co.uk>
+Date: Tue, 30 Jun 2020 12:32:26 +0100
+Message-Id: <20200630113226.30531-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200630112854.30361-1-chris@chris-wilson.co.uk>
+References: <20200630112854.30361-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/gem: Always do pin_user_pages under
  the mmu-notifier
@@ -58,7 +60,7 @@ Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
  1 file changed, 21 insertions(+), 93 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index e946032b13e4..9d4e69825987 100644
+index e946032b13e4..fbc6f3dc9461 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
 @@ -512,58 +512,13 @@ __i915_gem_userptr_get_pages_worker(struct work_struct *_work)
@@ -192,12 +194,12 @@ index e946032b13e4..9d4e69825987 100644
 -	kvfree(pvec);
 +	work->task = current;
 +	get_task_struct(work->task);
- 
--	return PTR_ERR_OR_ZERO(pages);
++
 +	INIT_WORK(&work->work, __i915_gem_userptr_get_pages_worker);
 +	queue_work(to_i915(obj->base.dev)->mm.userptr_wq, &work->work);
-+
-+	return 0;
+ 
+-	return PTR_ERR_OR_ZERO(pages);
++	return -EAGAIN;
  }
  
  static void
