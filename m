@@ -1,48 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65CF820F638
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 15:52:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE96D20F6B7
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 16:07:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A9CD6E293;
-	Tue, 30 Jun 2020 13:52:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1125D6E2BE;
+	Tue, 30 Jun 2020 14:07:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CB346E290;
- Tue, 30 Jun 2020 13:51:59 +0000 (UTC)
-IronPort-SDR: C/do4fmwZ3M0mVXTB/4ptN/qEojbzdZB9wHyhcMHH98DZzw/99cnFYLHrnIQ1mkKewHQ/AkpyB
- mQe/zgIj4Qiw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="134533177"
-X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="134533177"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEE606E2BE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 14:07:32 +0000 (UTC)
+IronPort-SDR: ZenXOvcvsHn0xF6+jgoPk0HfsBFogH7FsRVhJZ2dh2ARGM87EViJvD73hfuyia1+bVSEVHnoqh
+ IQ8oLTRiYvwg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="125873808"
+X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="125873808"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2020 06:51:58 -0700
-IronPort-SDR: XKukowqspT+Ukx2NVyUVAxLdfpPpXh84dw+YvvRYLdUTHkl/s+XZZxhzq5+aVOtwdf862+OOl7
- PcfQIlh2qscg==
-X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="454614744"
-Received: from rgrotewx-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.38.12])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2020 06:51:53 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>, Thierry Reding
- <thierry.reding@gmail.com>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?=
- <u.kleine-koenig@pengutronix.de>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>,
- Len Brown <lenb@kernel.org>
-In-Reply-To: <20200620121758.14836-1-hdegoede@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200620121758.14836-1-hdegoede@redhat.com>
-Date: Tue, 30 Jun 2020 16:51:50 +0300
-Message-ID: <874kqsmzk9.fsf@intel.com>
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2020 07:07:05 -0700
+IronPort-SDR: Yi/CQcPX3nK/6fMGia9pKE9c5wDbRvJVih0g/r4Zdcu178GG8RXM1gEiTGolbYZwYe83s+dwv+
+ 437ie8kFVI5Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="277436860"
+Received: from pozo-mobl1.ger.corp.intel.com (HELO [10.252.54.227])
+ ([10.252.54.227])
+ by orsmga003.jf.intel.com with ESMTP; 30 Jun 2020 07:07:04 -0700
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200623142843.423594-1-maarten.lankhorst@linux.intel.com>
+ <20200623142843.423594-7-maarten.lankhorst@linux.intel.com>
+ <dacbaf04-a149-38e2-5c07-3d3e10589bd3@linux.intel.com>
+ <c9123589-f0ce-0925-5ce0-d5e2277f1ca5@linux.intel.com>
+ <179cf932-2f5f-419e-10d3-dc6ce0934963@linux.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <133c7c4e-f2ec-63a9-8688-14c94fa38e1f@linux.intel.com>
+Date: Tue, 30 Jun 2020 16:07:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 00/15] acpi/pwm/i915: Convert pwm-crc and
- i915 driver's PWM code to use the atomic PWM API
+In-Reply-To: <179cf932-2f5f-419e-10d3-dc6ce0934963@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 07/26] Revert "drm/i915/gem: Split eb_vma
+ into its own allocation"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,108 +57,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, linux-acpi@vger.kernel.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 20 Jun 2020, Hans de Goede <hdegoede@redhat.com> wrote:
-> Hi All,
+Op 30-06-2020 om 14:31 schreef Tvrtko Ursulin:
 >
-> Here is v3 of my patch series converting the i915 driver's code for
-> controlling the panel's backlight with an external PWM controller to
-> use the atomic PWM API. See below for the changelog.
+> On 30/06/2020 12:52, Maarten Lankhorst wrote:
+>> Op 29-06-2020 om 17:08 schreef Tvrtko Ursulin:
+>>>
+>>> On 23/06/2020 15:28, Maarten Lankhorst wrote:
+>>>> This reverts commit 0f1dd02295f35dcdcbaafcbcbbec0753884ab974.
+>>>> This conflicts with the ww mutex handling, which needs to drop
+>>>> the references after gpu submission anyway, because otherwise we
+>>>> may risk unlocking a BO after first freeing it.
+>>>
+>>> What is the problem here? eb_vma_array_put in eb_move_to_gpu? If so, could you just move this put to later in the sequence? I am simply thinking how to avoid controversial reverts. Because on the other hand I did not figure out what 0f1dd02295f35dcdcbaafcbcbbec0753884ab974 fixed in a few minutes I spent staring at the patch.
+>>
+>>
+>> We need to unlock before we unref to prevent a use-after-free in unlock, so freeing and releasing in eb_move_to_gpu() is too early. This means we only end up with 1 path for unlock, so it's fine to revert.
 >
-> Initially the plan was for this series to consist of 2 parts:
-> 1. convert the pwm-crc driver to support the atomic PWM API and
-> 2. convert the i915 driver's PWM code to use the atomic PWM API.
->
-> But during testing I've found a number of bugs in the pwm-lpss and I
-> found that the acpi_lpss code needs some special handling because of
-> some ugliness found in most Cherry Trail DSDTs.
->
-> So now this series has grown somewhat large and consists of 4 parts:
->
-> 1. acpi_lpss fixes workarounds for Cherry Trail DSTD nastiness
-> 2. various fixes to the pwm-lpss driver
-> 3. convert the pwm-crc driver to support the atomic PWM API and
-> 4. convert the i915 driver's PWM code to use the atomic PWM API
->
-> So we need to discuss how to merge this (once it passes review).
-> Although the inter-dependencies are only runtime I still think we should
-> make sure that 1-3 are in the drm-intel-next-queued (dinq) tree before
-> merging the i915 changes. Both to make sure that the intel-gfx CI system
-> does not become unhappy and for bisecting reasons.
->
-> The involved acpi_lpss and pwm drivers do not see a whole lot of churn, so
-> it likely is the easiest to just merge everything through dinq.
->
-> Rafael and Thierry, can I get your Acked-by for directly merging this into
-> dinq?
->
-> This series has been tested (and re-tested after adding various bug-fixes)
-> extensively. It has been tested on the following devices:
->
-> -Asus T100TA  BYT + CRC-PMIC PWM
-> -Toshiba WT8-A  BYT + CRC-PMIC PWM
-> -Thundersoft TS178 BYT + CRC-PMIC PWM, inverse PWM
-> -Asus T100HA  CHT + CRC-PMIC PWM
-> -Terra Pad 1061  BYT + LPSS PWM
-> -Trekstor Twin 10.1 BYT + LPSS PWM
-> -Asus T101HA  CHT + CRC-PMIC PWM
-> -GPD Pocket  CHT + CRC-PMIC PWM
-
-For the drm/i915 patches 12-15,
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-I eyeballed through them, and didn't spot anything obviously wrong, but
-at the same time didn't have the time to do an in-depth review. That
-said, I do have a lot of trust in you testing this with all the above
-devices. I think that's enough for merging.
-
-As for that matter, I'm fine with merging this via whichever tree you
-find best. Kind of stating the obvious, but please do ensure you have
-the proper acks in place for this.
-
-
-BR,
-Jani.
-
-
-
->
-> Changelog:
->
-> Changes in v2:
-> - Fix coverletter subject
-> - Drop accidentally included debugging patch
-> - "[PATCH v3 02/15] ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (
->   - Move #define LPSS_SAVE_CTX_ONCE define to group it with LPSS_SAVE_CTX
->
-> Changes in v3:
-> - "[PATCH v3 04/15] pwm: lpss: Add range limit check for the base_unit register value"
->   - Use base_unit_range - 1 as maximum value for the clamp()
-> - "[PATCH v3 05/15] pwm: lpss: Use pwm_lpss_apply() when restoring state on resume"
->   - This replaces the "pwm: lpss: Set SW_UPDATE bit when enabling the PWM"
->     patch from previous versions of this patch-set, which really was a hack
->     working around the resume issue which this patch fixes properly.
-> - PATCH v3 6 - 11 pwm-crc changes:
->   - Various small changes resulting from the reviews by Andy and Uwe,
->     including some refactoring of the patches to reduce the amount of churn
->     in the patch-set
+> You are saying the reason 0f1dd02295f35dcdcbaafcbcbbec0753884ab974 was added for will not be there after your changes?
 >
 > Regards,
 >
-> Hans
->
+> Tvrtko
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Yes. :)
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
