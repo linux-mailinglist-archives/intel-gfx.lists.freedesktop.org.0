@@ -1,30 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BBAC20F83F
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 17:28:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F5220F850
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 17:30:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C4586E32F;
-	Tue, 30 Jun 2020 15:27:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EC746E2A3;
+	Tue, 30 Jun 2020 15:30:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBC4A6E32F
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 15:27:57 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21664606-1500050 
- for multiple; Tue, 30 Jun 2020 16:27:23 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Jun 2020 16:27:24 +0100
-Message-Id: <20200630152724.3734-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B9846E343
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 15:30:20 +0000 (UTC)
+IronPort-SDR: A46Ls4xts37k/MLHR4VW1XiAeaKJE1Rrov54lMy8k0z0SbNEcs/DSq6I6wRVSFtT5uaWyd4A6I
+ eM5yxMS6KGGA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9666"; a="145338795"
+X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="145338795"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2020 08:30:19 -0700
+IronPort-SDR: TVcjNnbGSoAUaOcCmiTeihKreivEyB9NrhqJrKY6sUu17X8lEhIrPCAyK5Ehl+ZHr5rbEvEOpI
+ JI2LWoizqSNg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="312399090"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga008.jf.intel.com with SMTP; 30 Jun 2020 08:30:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 30 Jun 2020 18:30:16 +0300
+Date: Tue, 30 Jun 2020 18:30:16 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20200630153016.GK6112@intel.com>
+References: <20200626232641.4557-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Skip stale object handle for debugfs
- per-file-stats
+Content-Disposition: inline
+In-Reply-To: <20200626232641.4557-1-manasi.d.navare@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 1/2] drm/i915/dp: Helper for checking
+ DDI_BUF_CTL Idle status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,71 +53,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we close a handle GEM object, we update the drm_file's idr with an
-error pointer to indicate the in-progress closure, and finally set it to
-NULL. If we read the idr directly, we may then see an invalid object
-pointer, and in our debugfs per_file_stats() we therefore need to
-protect against the entry being invalid.
+On Fri, Jun 26, 2020 at 04:26:40PM -0700, Manasi Navare wrote:
+> Modify the helper to add a fixed delay or poll with timeout
+> based on platform specification to check for either Idle bit
+> set (DDI_BUF_CTL is idle for disable case)
+> =
 
-[ 1016.651637] RIP: 0010:per_file_stats+0xe/0x16e
-[ 1016.651646] Code: d2 41 0f b6 8e 69 8c 00 00 48 89 df 48 c7 c6 7b 74 8c be 31 c0 e8 0c 89 cf ff eb d2 0f 1f 44 00 00 55 48 89 e5 41
-57 41 56 53 <8b> 06 85 c0 0f 84 4d 01 00 00 49 89 d6 48 89 f3 3d ff ff ff 7f 73
-[ 1016.651651] RSP: 0018:ffffad3a01337ba0 EFLAGS: 00010293
-[ 1016.651656] RAX: 0000000000000018 RBX: ffff96fe040d65e0 RCX: 0000000000000002
-[ 1016.651660] RDX: ffffad3a01337c50 RSI: 0000000000000000 RDI: 00000000000001e8
-[ 1016.651663] RBP: ffffad3a01337bb8 R08: 0000000000000000 R09: 00000000000001c0
-[ 1016.651667] R10: 0000000000000000 R11: ffffffffbdbe5fce R12: 0000000000000000
-[ 1016.651671] R13: ffffffffbdbe5fce R14: ffffad3a01337c50 R15: 0000000000000001
-[ 1016.651676] FS:  00007a597e2d7480(0000) GS:ffff96ff3bb00000(0000) knlGS:0000000000000000
-[ 1016.651680] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[ 1016.651683] CR2: 0000000000000000 CR3: 0000000171fc2001 CR4: 00000000003606e0
-[ 1016.651687] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[ 1016.651690] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[ 1016.651693] Call Trace:
-[ 1016.651693] Call Trace:
-[ 1016.651703]  idr_for_each+0x8a/0xe8
-[ 1016.651711]  i915_gem_object_info+0x2a3/0x3eb
-[ 1016.651720]  seq_read+0x162/0x3ca
-[ 1016.651727]  full_proxy_read+0x5b/0x8d
-[ 1016.651733]  __vfs_read+0x45/0x1bb
-[ 1016.651741]  vfs_read+0xc9/0x15e
-[ 1016.651746]  ksys_read+0x7e/0xde
-[ 1016.651752]  do_syscall_64+0x54/0x68
-[ 1016.651758]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+> v3:
+> * Change the timeout to 16usecs (Ville)
+> v2:
+> * Use 2 separate functions or idle and active (Ville)
 
-Reported-by: Guenter Roeck <linux@roeck-us.net>
-Fixes: a8c15954d64a ("drm/i915: Protect debugfs per_file_stats with RCU lock")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Guenter Roeck <linux@roeck-us.net>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/i915/i915_debugfs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Missing changelog? Did somehting change?
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 8594a8ef08ce..9ca94a435b75 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -230,7 +230,7 @@ static int per_file_stats(int id, void *ptr, void *data)
- 	struct file_stats *stats = data;
- 	struct i915_vma *vma;
- 
--	if (!kref_get_unless_zero(&obj->base.refcount))
-+	if (IS_ERR_OR_NULL(obj) || !kref_get_unless_zero(&obj->base.refcount))
- 		return 0;
- 
- 	stats->count++;
--- 
-2.20.1
+> =
 
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 17 ++++++++---------
+>  1 file changed, 8 insertions(+), 9 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 884b507c5f55..052a74625a61 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -1184,16 +1184,15 @@ static void intel_prepare_hdmi_ddi_buffers(struct=
+ intel_encoder *encoder,
+>  static void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
+>  				    enum port port)
+>  {
+> -	i915_reg_t reg =3D DDI_BUF_CTL(port);
+> -	int i;
+> -
+> -	for (i =3D 0; i < 16; i++) {
+> -		udelay(1);
+> -		if (intel_de_read(dev_priv, reg) & DDI_BUF_IS_IDLE)
+> -			return;
+> +	if (IS_BROXTON(dev_priv)) {
+> +		udelay(16);
+> +		return;
+>  	}
+> -	drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c idle bit\n",
+> -		port_name(port));
+> +
+> +	if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
+> +			 DDI_BUF_IS_IDLE), 16))
+> +		drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c to get idle\n",
+> +			port_name(port));
+>  }
+>  =
+
+>  static u32 hsw_pll_to_ddi_pll_sel(const struct intel_shared_dpll *pll)
+> -- =
+
+> 2.19.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
