@@ -1,32 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A9E20F7DE
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 17:04:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4658420F7EA
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2020 17:08:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1917F8957B;
-	Tue, 30 Jun 2020 15:04:34 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2FFE9894C9;
- Tue, 30 Jun 2020 15:04:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 27AE1A00FD;
- Tue, 30 Jun 2020 15:04:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 234DF6E2E2;
+	Tue, 30 Jun 2020 15:08:28 +0000 (UTC)
+X-Original-To: intel-gfx@freedesktop.org
+Delivered-To: intel-gfx@freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A86E06E2E2
+ for <intel-gfx@freedesktop.org>; Tue, 30 Jun 2020 15:08:26 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21664410-1500050 for multiple; Tue, 30 Jun 2020 16:08:00 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Tue, 30 Jun 2020 15:04:33 -0000
-Message-ID: <159352947312.22702.14376614660712513078@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200630082048.22308-1-anshuman.gupta@intel.com>
-In-Reply-To: <20200630082048.22308-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_Update_CP_as_per_the_kernel_internal_state_=28rev?=
- =?utf-8?q?5=29?=
+In-Reply-To: <20200630150105.GA13355@roeck-us.net>
+References: <20190903062133.27360-1-chris@chris-wilson.co.uk>
+ <20200630053936.GA168021@roeck-us.net>
+ <159350846525.9830.11510134258802464713@build.alporthouse.com>
+ <20200630150105.GA13355@roeck-us.net>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Guenter Roeck <linux@roeck-us.net>
+Date: Tue, 30 Jun 2020 16:08:00 +0100
+Message-ID: <159352968098.22902.15606199075854362593@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Protect debugfs per_file_stats
+ with RCU lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,126 +42,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@freedesktop.org, bgeffon@google.com, levinale@google.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Guenter Roeck (2020-06-30 16:01:05)
+> On Tue, Jun 30, 2020 at 10:14:25AM +0100, Chris Wilson wrote:
+> [ ... ]
+> > > > @@ -328,9 +334,9 @@ static void print_context_stats(struct seq_file *m,
+> > > >                       struct task_struct *task;
+> > > >                       char name[80];
+> > > >  
+> > > > -                     spin_lock(&file->table_lock);
+> > > > +                     rcu_read_lock();
+> > > >                       idr_for_each(&file->object_idr, per_file_stats, &stats);
+> > > > -                     spin_unlock(&file->table_lock);
+> > > > +                     rcu_read_unlock();
+> > > >  
+> > > For my education - is it indeed possible and valid to replace spin_lock()
+> > > with rcu_read_lock() to prevent list manipulation for a list used by
+> > > idr_for_each(), even if that list is otherwise manipulated under the
+> > > spinlock ?
+> > 
+> > It's a pure read of a radixtree here, and is supposed to be RCU safe:
+> > 
+> >  * idr_for_each() can be called concurrently with idr_alloc() and
+> >  * idr_remove() if protected by RCU.  Newly added entries may not be
+> >  * seen and deleted entries may be seen, but adding and removing entries
+> >  * will not cause other entries to be skipped, nor spurious ones to be seen.
+> > 
+> > That is the tree structure is stable.
+> > 
+> Ah, that makes sense. Thanks for the clarification.
+> 
+> > > Background: we are seeing a crash with the following call trace.
+> > > 
+> > > [ 1016.651593] BUG: kernel NULL pointer dereference, address: 0000000000000000
+> > > ...
+> > > [ 1016.651693] Call Trace:
+> > > [ 1016.651703]  idr_for_each+0x8a/0xe8
+> > > [ 1016.651711]  i915_gem_object_info+0x2a3/0x3eb
+> > > [ 1016.651720]  seq_read+0x162/0x3ca
+> > > [ 1016.651727]  full_proxy_read+0x5b/0x8d
+> > > [ 1016.651733]  __vfs_read+0x45/0x1bb
+> > > [ 1016.651741]  vfs_read+0xc9/0x15e
+> > > [ 1016.651746]  ksys_read+0x7e/0xde
+> > > [ 1016.651752]  do_syscall_64+0x54/0x68
+> > > [ 1016.651758]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+> > 
+> Actually, the crash is not in idr_for_each, but in per_file_stats:
 
-Series: drm/i915/hdcp: Update CP as per the kernel internal state (rev5)
-URL   : https://patchwork.freedesktop.org/series/72251/
-State : success
+Ok, let's assume that the object is being closed as we read the idr. The
+idr will temporarily hold an error pointer for the handle to indicate the
+in-progress closure, so something like:
 
-== Summary ==
+@@ -230,7 +230,7 @@ static int per_file_stats(int id, void *ptr, void *data)
+        struct file_stats *stats = data;
+        struct i915_vma *vma;
 
-CI Bug Log - changes from CI_DRM_8678 -> Patchwork_18042
-====================================================
+-       if (!kref_get_unless_zero(&obj->base.refcount))
++       if (IS_ERR_OR_NULL(obj) || !kref_get_unless_zero(&obj->base.refcount))
+                return 0;
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18042 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8678/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-
-  
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (44 -> 37)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8678 -> Patchwork_18042
-
-  CI-20190529: 20190529
-  CI_DRM_8678: 7cafa8aeca728d8abd1bc9d31d2fca60757a00c4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5718: af1ef32bfae90bcdbaf1b5d84c61ff4e04368505 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18042: b97d79fa049ee3f3da673cd51616695c69da60c2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b97d79fa049e drm/i915/hdcp: Update CP as per the kernel internal state
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18042/index.html
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
