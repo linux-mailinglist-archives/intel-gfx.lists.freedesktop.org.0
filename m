@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4DEC210771
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 11:06:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 901AD210857
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 11:37:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 266B86E86F;
-	Wed,  1 Jul 2020 09:06:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB7466E1F9;
+	Wed,  1 Jul 2020 09:37:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9EEF66E86E;
- Wed,  1 Jul 2020 09:06:30 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 998986E03B;
+ Wed,  1 Jul 2020 09:37:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 984F9A0BCB;
- Wed,  1 Jul 2020 09:06:30 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 932E7A0BA8;
+ Wed,  1 Jul 2020 09:37:26 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 01 Jul 2020 09:06:30 -0000
-Message-ID: <159359439059.16670.18377775856814327179@emeril.freedesktop.org>
+Date: Wed, 01 Jul 2020 09:37:26 -0000
+Message-ID: <159359624659.16669.4850400903526493558@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200701083936.28723-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200701083936.28723-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/gt=3A_Harden_the_heartbeat?=
- =?utf-8?q?_against_a_stuck_driver?=
+References: <20200701084053.6086-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200701084053.6086-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/33=5D_drm/i915/gt=3A_Harden_the_?=
+ =?utf-8?q?heartbeat_against_a_stuck_driver?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,133 +48,89 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] drm/i915/gt: Harden the heartbeat against a stuck driver
-URL   : https://patchwork.freedesktop.org/series/78986/
-State : success
+Series: series starting with [01/33] drm/i915/gt: Harden the heartbeat against a stuck driver
+URL   : https://patchwork.freedesktop.org/series/78987/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8682 -> Patchwork_18053
-====================================================
+$ dim checkpatch origin/drm-tip
+d499941ea4dc drm/i915/gt: Harden the heartbeat against a stuck driver
+-:43: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'heartbeat', this function's name, in a string
+#43: FILE: drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c:135:
++					      "stopped heartbeat on %s",
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 35 lines checked
+6005d22404ee drm/i915/gt: Move the heartbeat into the highprio system wq
+a88b1324c0e4 drm/i915/gt: Decouple completed requests on unwind
+6df6651ce794 drm/i915/gt: Check for a completed last request once
+8a484e67419b drm/i915/gt: Replace direct submit with direct call to tasklet
+b807a1aa2cc6 drm/i915/gt: Use virtual_engine during execlists_dequeue
+e0d8e53384b4 drm/i915/gt: Decouple inflight virtual engines
+07c202c5b553 drm/i915/gt: Defer schedule_out until after the next dequeue
+77abad2cc860 drm/i915/gt: Resubmit the virtual engine on schedule-out
+c20604000873 drm/i915/gt: Simplify virtual engine handling for execlists_hold()
+1d3df5a15c70 drm/i915/gt: ce->inflight updates are now serialised
+9a511c705c10 drm/i915/gt: Drop atomic for engine->fw_active tracking
+7d0425bc6864 drm/i915/gt: Extract busy-stats for ring-scheduler
+-:12: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#12: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 95 lines checked
+851c723d19be drm/i915/gt: Convert stats.active to plain unsigned int
+ac29cc857205 drm/i915: Lift waiter/signaler iterators
+796fb1aa036a drm/i915: Strip out internal priorities
+284c4ee82fb5 drm/i915: Remove I915_USER_PRIORITY_SHIFT
+67f4f4fadb82 drm/i915: Replace engine->schedule() with a known request operation
+5f0a0dc1333b drm/i915/gt: Do not suspend bonded requests if one hangs
+7d61bb0dd5d2 drm/i915: Teach the i915_dependency to use a double-lock
+a1a69cab81f5 drm/i915: Restructure priority inheritance
+d7403349647f drm/i915/gt: Remove timeslice suppression
+2569e0b593e7 drm/i915: Fair low-latency scheduling
+-:1548: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#1548: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 1371 lines checked
+675054b4e9d9 drm/i915/gt: Specify a deadline for the heartbeat
+cf6941683a97 drm/i915: Replace the priority boosting for the display with a deadline
+5af3de0375a1 drm/i915: Move saturated workload detection to the GT
+-:22: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#22: 
+References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/index.html
+-:22: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")'
+#22: 
+References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
 
-Known issues
-------------
+total: 1 errors, 1 warnings, 0 checks, 82 lines checked
+5021faa7f115 Restore "drm/i915: drop engine_pin/unpin_breadcrumbs_irq"
+7bfc5312e63e drm/i915/gt: Couple tasklet scheduling for all CS interrupts
+2dca796d3efe drm/i915/gt: Support creation of 'internal' rings
+988103172126 drm/i915/gt: Use client timeline address for seqno writes
+8071d6c00487 drm/i915/gt: Infrastructure for ring scheduling
+-:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#79: 
+new file mode 100644
 
-  Here are the changes found in Patchwork_18053 that come from known issues:
+total: 0 errors, 1 warnings, 0 checks, 818 lines checked
+86f134b795e6 drm/i915/gt: Implement ring scheduler for gen6/7
+-:68: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#68: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:177:
++				*cs++ = i915_mmio_reg_offset(
 
-### IGT changes ###
+-:70: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#70: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:179:
++				*cs++ = _MASKED_BIT_ENABLE(
 
-#### Issues hit ####
+-:105: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#105: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:214:
++				*cs++ = _MASKED_BIT_DISABLE(
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+total: 0 errors, 0 warnings, 3 checks, 536 lines checked
+06d3b687d37c drm/i915/gt: Enable ring scheduling for gen6/7
 
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-tgl-u2/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - fi-bsw-kefka:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-bsw-kefka/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-bsw-kefka/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [DMESG-WARN][11] ([i915#402]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92]) +3 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#1982] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [FAIL][17] ([i915#579]) -> [SKIP][18] ([fdo#109271])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [DMESG-FAIL][19] ([i915#62]) -> [SKIP][20] ([fdo#109271])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8682/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (43 -> 36)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8682 -> Patchwork_18053
-
-  CI-20190529: 20190529
-  CI_DRM_8682: 15184d5254dbcb01e336f9d2cfecdf3fea883513 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5718: af1ef32bfae90bcdbaf1b5d84c61ff4e04368505 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18053: 3bc799bb6c5d85d57126e35f975193b24dd866eb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3bc799bb6c5d drm/i915/gt: Move the heartbeat into the highprio system wq
-2185948b6b7c drm/i915/gt: Harden the heartbeat against a stuck driver
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18053/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
