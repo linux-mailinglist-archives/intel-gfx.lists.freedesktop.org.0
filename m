@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A92CA211338
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 21:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFD6821133B
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 21:07:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C5616E9B7;
-	Wed,  1 Jul 2020 19:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1D216E9C4;
+	Wed,  1 Jul 2020 19:07:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C91446E183;
- Wed,  1 Jul 2020 19:05:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A11AAA0BC6;
- Wed,  1 Jul 2020 19:05:52 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95FDB6E9CF
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 19:07:49 +0000 (UTC)
+IronPort-SDR: T0sTZAEnrmrK+TuJ6nWm8UbTYba9Xb8N2hQRfB6D1Vv8MfFW8emTJT2jcnIJjCvod0g6wd5b3A
+ UcvEAylnwnOg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9669"; a="126780332"
+X-IronPort-AV: E=Sophos;i="5.75,301,1589266800"; d="scan'208";a="126780332"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2020 12:07:49 -0700
+IronPort-SDR: NrvOyOwAOyOrqSTSWFPuaC1B9JTujcbF8AZY4q8ESwnIFrmxjaQ4brYNTJaRhg2y7+Z2yOuVnO
+ 6GnG3yZNphkw==
+X-IronPort-AV: E=Sophos;i="5.75,301,1589266800"; d="scan'208";a="425690973"
+Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com (HELO
+ intel.com) ([10.237.72.190])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2020 12:07:47 -0700
+Date: Wed, 1 Jul 2020 22:07:36 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200701190736.GA17127@intel.com>
+References: <20200701180001.15857-1-imre.deak@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Wed, 01 Jul 2020 19:05:52 -0000
-Message-ID: <159363035263.16667.8421107525112776963@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200701183626.2450-1-lucas.demarchi@intel.com>
-In-Reply-To: <20200701183626.2450-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_do_not_read_swizzle_info_if_unavailable?=
+Content-Disposition: inline
+In-Reply-To: <20200701180001.15857-1-imre.deak@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix the old vs. new epoch counter
+ check during hotplug detect
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,129 +51,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Jul 01, 2020 at 09:00:01PM +0300, Imre Deak wrote:
+> The old epoch counter was left uninited, so the function returned a
+> changed state always.
+> 
+> While at it debug print the old epoch counter as well.
+> 
+> Fixes: 35205ee9ba46 ("drm/i915: Send hotplug event if edid had changed")
+> Cc: Kunal Joshi <kunal1.joshi@intel.com>
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hotplug.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> index 80bcfff032e9..3f1d7b804a66 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> @@ -288,6 +288,7 @@ intel_encoder_hotplug(struct intel_encoder *encoder,
+>  
+>  	drm_WARN_ON(dev, !mutex_is_locked(&dev->mode_config.mutex));
+>  	old_status = connector->base.status;
+> +	old_epoch_counter = connector->base.epoch_counter;
 
-Series: drm/i915: do not read swizzle info if unavailable
-URL   : https://patchwork.freedesktop.org/series/79007/
-State : success
+Yep..did it in drm_helper_hpd_irq_event but forgot here..
 
-== Summary ==
+Thank you very much for spotting!
 
-CI Bug Log - changes from CI_DRM_8688 -> Patchwork_18061
-====================================================
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18061 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8688/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#402])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8688/fi-tgl-u2/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bsw-n3050:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8688/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8688/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8688/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8688/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - {fi-tgl-dsi}:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8688/fi-tgl-dsi/igt@kms_force_connector_basic@force-connector-state.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/fi-tgl-dsi/igt@kms_force_connector_basic@force-connector-state.html
-
-  
-#### Warnings ####
-
-  * igt@kms_flip@basic-flip-vs-modeset@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +5 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8688/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8688/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (44 -> 37)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8688 -> Patchwork_18061
-
-  CI-20190529: 20190529
-  CI_DRM_8688: e732088e2eb2bbb1ca72c1f68d0405f17477d446 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5719: 54731f017df8660f29cc8f5db0b570239729e808 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18061: 291d13510a2ee95abc9e0a7f42f06aeb7e6a7e0e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-291d13510a2e drm/i915: do not read swizzle info if unavailable
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18061/index.html
+>  
+>  	connector->base.status =
+>  		drm_helper_probe_detect(&connector->base, NULL, false);
+> @@ -296,11 +297,12 @@ intel_encoder_hotplug(struct intel_encoder *encoder,
+>  		ret = true;
+>  
+>  	if (ret) {
+> -		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] status updated from %s to %s(epoch counter %llu)\n",
+> +		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] status updated from %s to %s (epoch counter %llu->%llu)\n",
+>  			      connector->base.base.id,
+>  			      connector->base.name,
+>  			      drm_get_connector_status_name(old_status),
+>  			      drm_get_connector_status_name(connector->base.status),
+> +			      old_epoch_counter,
+>  			      connector->base.epoch_counter);
+>  		return INTEL_HOTPLUG_CHANGED;
+>  	}
+> -- 
+> 2.23.1
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
