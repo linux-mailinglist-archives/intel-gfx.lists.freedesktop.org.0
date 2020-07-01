@@ -1,32 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27F9E2110F7
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 18:46:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BCD1211120
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 18:52:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 276A16E959;
-	Wed,  1 Jul 2020 16:46:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E2EA6E956;
+	Wed,  1 Jul 2020 16:52:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7826C6E956;
- Wed,  1 Jul 2020 16:46:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5CA81A00E7;
- Wed,  1 Jul 2020 16:46:05 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5557D6E956
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 16:52:22 +0000 (UTC)
+IronPort-SDR: c19z9meYj3uwge3sO/ELjTWO8Hy4wE9kEetwc8uC/e836PTbSBQyZOgZGOEmIh+8IISui+9Tk4
+ hl7ZD18MNB2A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9669"; a="134930248"
+X-IronPort-AV: E=Sophos;i="5.75,301,1589266800"; d="scan'208";a="134930248"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2020 09:52:21 -0700
+IronPort-SDR: IwksImJKghtrmsFkIod+o2CRr55RPlMuoPZ2M8gB0xvXCSD/KLxSmORup/GFwr4Fk8bQxjGygs
+ sJOWEh9zs+2w==
+X-IronPort-AV: E=Sophos;i="5.75,301,1589266800"; d="scan'208";a="455168884"
+Received: from jhillike-mobl2.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.251.5.130])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2020 09:52:20 -0700
+Date: Wed, 1 Jul 2020 09:52:18 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200701165218.hdllcbrdtztd3soz@ldmartin-desk1>
+References: <20200625001120.22810-1-lucas.demarchi@intel.com>
+ <20200625001120.22810-7-lucas.demarchi@intel.com>
+ <87a70jl0y2.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 01 Jul 2020 16:46:05 -0000
-Message-ID: <159362196536.16670.15114111419671619528@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200701083936.28723-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200701083936.28723-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_drm/i915/gt=3A_Harden_the_heartbeat_against_a?=
- =?utf-8?q?_stuck_driver_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <87a70jl0y2.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/i915/display: replace port to
+ phy conversions in intel_ddi.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,318 +52,594 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with drm/i915/gt: Harden the heartbeat against a stuck driver (rev2)
-URL   : https://patchwork.freedesktop.org/series/78986/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8684_full -> Patchwork_18056_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_18056_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18056_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_18056_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x85-random:
-    - shard-hsw:          NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-hsw7/igt@kms_cursor_crc@pipe-a-cursor-256x85-random.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18056_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - shard-tglb:         [PASS][2] -> [DMESG-WARN][3] ([i915#402]) +1 similar issue
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-tglb2/igt@i915_module_load@reload.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-tglb2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@modeset-non-lpsp:
-    - shard-apl:          [PASS][4] -> [DMESG-WARN][5] ([i915#1635] / [i915#95]) +25 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-apl8/igt@i915_pm_rpm@modeset-non-lpsp.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-apl6/igt@i915_pm_rpm@modeset-non-lpsp.html
-
-  * igt@i915_selftest@mock@requests:
-    - shard-glk:          [PASS][6] -> [INCOMPLETE][7] ([i915#2110] / [i915#58] / [k.org#198133])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-glk1/igt@i915_selftest@mock@requests.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-glk4/igt@i915_selftest@mock@requests.html
-
-  * igt@kms_big_fb@x-tiled-64bpp-rotate-180:
-    - shard-glk:          [PASS][8] -> [DMESG-FAIL][9] ([i915#118] / [i915#95])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-glk1/igt@kms_big_fb@x-tiled-64bpp-rotate-180.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-glk8/igt@kms_big_fb@x-tiled-64bpp-rotate-180.html
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x64-random:
-    - shard-kbl:          [PASS][10] -> [DMESG-WARN][11] ([i915#93] / [i915#95]) +2 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl3/igt@kms_cursor_crc@pipe-b-cursor-64x64-random.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-kbl6/igt@kms_cursor_crc@pipe-b-cursor-64x64-random.html
-
-  * igt@kms_cursor_edge_walk@pipe-a-256x256-right-edge:
-    - shard-skl:          [PASS][12] -> [DMESG-WARN][13] ([i915#1982]) +8 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-skl6/igt@kms_cursor_edge_walk@pipe-a-256x256-right-edge.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-skl7/igt@kms_cursor_edge_walk@pipe-a-256x256-right-edge.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:
-    - shard-skl:          [PASS][14] -> [FAIL][15] ([i915#46])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
-
-  * igt@kms_frontbuffer_tracking@psr-farfromfence:
-    - shard-tglb:         [PASS][16] -> [DMESG-WARN][17] ([i915#1982]) +2 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-tglb3/igt@kms_frontbuffer_tracking@psr-farfromfence.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-tglb5/igt@kms_frontbuffer_tracking@psr-farfromfence.html
-
-  * igt@kms_hdr@bpc-switch:
-    - shard-skl:          [PASS][18] -> [FAIL][19] ([i915#1188])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-skl4/igt@kms_hdr@bpc-switch.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-skl5/igt@kms_hdr@bpc-switch.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - shard-kbl:          [PASS][20] -> [DMESG-WARN][21] ([i915#180]) +4 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-kbl6/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
-    - shard-skl:          [PASS][22] -> [FAIL][23] ([fdo#108145] / [i915#265]) +1 similar issue
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-skl8/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-
-  * igt@kms_prime@basic-crc@second-to-first:
-    - shard-kbl:          [PASS][24] -> [DMESG-FAIL][25] ([i915#95])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl4/igt@kms_prime@basic-crc@second-to-first.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-kbl1/igt@kms_prime@basic-crc@second-to-first.html
-
-  * igt@kms_psr@psr2_sprite_plane_move:
-    - shard-iclb:         [PASS][26] -> [SKIP][27] ([fdo#109441]) +2 similar issues
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-iclb7/igt@kms_psr@psr2_sprite_plane_move.html
-
-  * igt@kms_setmode@basic:
-    - shard-kbl:          [PASS][28] -> [FAIL][29] ([i915#31])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl2/igt@kms_setmode@basic.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-kbl3/igt@kms_setmode@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_reloc@basic-concurrent0:
-    - shard-glk:          [FAIL][30] ([i915#1930]) -> [PASS][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-glk2/igt@gem_exec_reloc@basic-concurrent0.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-glk4/igt@gem_exec_reloc@basic-concurrent0.html
-
-  * igt@i915_pm_backlight@fade_with_suspend:
-    - shard-skl:          [INCOMPLETE][32] ([i915#69]) -> [PASS][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-skl8/igt@i915_pm_backlight@fade_with_suspend.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-skl9/igt@i915_pm_backlight@fade_with_suspend.html
-
-  * igt@kms_atomic_interruptible@legacy-dpms:
-    - shard-kbl:          [DMESG-WARN][34] ([i915#93] / [i915#95]) -> [PASS][35] +1 similar issue
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl1/igt@kms_atomic_interruptible@legacy-dpms.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-kbl2/igt@kms_atomic_interruptible@legacy-dpms.html
-
-  * igt@kms_big_fb@y-tiled-64bpp-rotate-0:
-    - shard-glk:          [DMESG-FAIL][36] ([i915#118] / [i915#95]) -> [PASS][37]
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-glk8/igt@kms_big_fb@y-tiled-64bpp-rotate-0.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-glk9/igt@kms_big_fb@y-tiled-64bpp-rotate-0.html
-
-  * igt@kms_flip@2x-flip-vs-rmfb-interruptible@ab-vga1-hdmi-a1:
-    - shard-hsw:          [DMESG-WARN][38] ([i915#1982]) -> [PASS][39]
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-hsw6/igt@kms_flip@2x-flip-vs-rmfb-interruptible@ab-vga1-hdmi-a1.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-hsw6/igt@kms_flip@2x-flip-vs-rmfb-interruptible@ab-vga1-hdmi-a1.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1:
-    - shard-skl:          [FAIL][40] ([i915#46]) -> [PASS][41]
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
-
-  * igt@kms_flip@flip-vs-suspend@c-hdmi-a1:
-    - shard-hsw:          [INCOMPLETE][42] ([i915#2055]) -> [PASS][43]
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-hsw4/igt@kms_flip@flip-vs-suspend@c-hdmi-a1.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-hsw7/igt@kms_flip@flip-vs-suspend@c-hdmi-a1.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-shrfb-msflip-blt:
-    - shard-iclb:         [DMESG-WARN][44] ([i915#1982]) -> [PASS][45]
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-iclb5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-shrfb-msflip-blt.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-iclb2/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-shrfb-msflip-blt.html
-
-  * igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-gtt:
-    - shard-tglb:         [DMESG-WARN][46] ([i915#1982]) -> [PASS][47] +2 similar issues
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-tglb2/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-gtt.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-tglb2/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-gtt.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
-    - shard-skl:          [DMESG-FAIL][48] ([fdo#108145] / [i915#1982]) -> [PASS][49]
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-skl4/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-skl5/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
-    - shard-skl:          [FAIL][50] ([fdo#108145] / [i915#265]) -> [PASS][51]
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-skl7/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-skl6/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-
-  * igt@kms_psr2_su@frontbuffer:
-    - shard-iclb:         [SKIP][52] ([fdo#109642] / [fdo#111068]) -> [PASS][53]
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-iclb1/igt@kms_psr2_su@frontbuffer.html
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-iclb2/igt@kms_psr2_su@frontbuffer.html
-
-  * igt@kms_vblank@pipe-b-query-idle:
-    - shard-skl:          [DMESG-WARN][54] ([i915#1982]) -> [PASS][55] +8 similar issues
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-skl1/igt@kms_vblank@pipe-b-query-idle.html
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-skl10/igt@kms_vblank@pipe-b-query-idle.html
-
-  * igt@kms_vblank@pipe-c-ts-continuation-suspend:
-    - shard-kbl:          [DMESG-WARN][56] ([i915#180]) -> [PASS][57]
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl6/igt@kms_vblank@pipe-c-ts-continuation-suspend.html
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-kbl2/igt@kms_vblank@pipe-c-ts-continuation-suspend.html
-
-  * igt@kms_vblank@pipe-c-wait-idle:
-    - shard-kbl:          [DMESG-WARN][58] ([i915#1982]) -> [PASS][59]
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl6/igt@kms_vblank@pipe-c-wait-idle.html
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-kbl2/igt@kms_vblank@pipe-c-wait-idle.html
-    - shard-apl:          [DMESG-WARN][60] ([i915#1982]) -> [PASS][61]
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-apl1/igt@kms_vblank@pipe-c-wait-idle.html
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-apl8/igt@kms_vblank@pipe-c-wait-idle.html
-
-  * igt@perf@blocking:
-    - shard-glk:          [DMESG-WARN][62] ([i915#118] / [i915#95]) -> [PASS][63]
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-glk4/igt@perf@blocking.html
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-glk7/igt@perf@blocking.html
-
-  * igt@perf@invalid-oa-metric-set-id:
-    - shard-apl:          [DMESG-WARN][64] ([i915#1635] / [i915#95]) -> [PASS][65] +16 similar issues
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-apl3/igt@perf@invalid-oa-metric-set-id.html
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-apl7/igt@perf@invalid-oa-metric-set-id.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_reloc@basic-concurrent16:
-    - shard-glk:          [TIMEOUT][66] ([i915#1958] / [i915#2119]) -> [INCOMPLETE][67] ([i915#1958] / [i915#58] / [k.org#198133])
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-glk5/igt@gem_exec_reloc@basic-concurrent16.html
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-glk7/igt@gem_exec_reloc@basic-concurrent16.html
-
-  * igt@kms_color_chamelium@pipe-a-ctm-max:
-    - shard-apl:          [SKIP][68] ([fdo#109271] / [fdo#111827]) -> [SKIP][69] ([fdo#109271] / [fdo#111827] / [i915#1635])
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-apl3/igt@kms_color_chamelium@pipe-a-ctm-max.html
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-apl7/igt@kms_color_chamelium@pipe-a-ctm-max.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
-    - shard-kbl:          [DMESG-WARN][70] ([i915#93] / [i915#95]) -> [DMESG-WARN][71] ([i915#180] / [i915#93] / [i915#95])
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl6/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-kbl6/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-
-  * igt@kms_cursor_crc@pipe-d-cursor-512x512-random:
-    - shard-apl:          [SKIP][72] ([fdo#109271] / [i915#1635]) -> [SKIP][73] ([fdo#109271]) +8 similar issues
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-apl7/igt@kms_cursor_crc@pipe-d-cursor-512x512-random.html
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-apl3/igt@kms_cursor_crc@pipe-d-cursor-512x512-random.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-rte:
-    - shard-apl:          [SKIP][74] ([fdo#109271]) -> [SKIP][75] ([fdo#109271] / [i915#1635]) +6 similar issues
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-apl1/igt@kms_frontbuffer_tracking@psr-1p-rte.html
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-apl8/igt@kms_frontbuffer_tracking@psr-1p-rte.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-coverage-vs-premult-vs-constant:
-    - shard-apl:          [DMESG-FAIL][76] ([fdo#108145] / [i915#1635] / [i915#95]) -> [DMESG-FAIL][77] ([fdo#108145] / [i915#1635] / [i915#1982] / [i915#95])
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-apl6/igt@kms_plane_alpha_blend@pipe-a-coverage-vs-premult-vs-constant.html
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-apl7/igt@kms_plane_alpha_blend@pipe-a-coverage-vs-premult-vs-constant.html
-
-  * igt@runner@aborted:
-    - shard-kbl:          ([FAIL][78], [FAIL][79], [FAIL][80]) ([i915#1784]) -> [FAIL][81] ([i915#1436] / [i915#1784])
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl2/igt@runner@aborted.html
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl3/igt@runner@aborted.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-kbl3/igt@runner@aborted.html
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-kbl6/igt@runner@aborted.html
-    - shard-apl:          ([FAIL][82], [FAIL][83], [FAIL][84]) ([i915#1610] / [i915#1635]) -> [FAIL][85] ([i915#1635])
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-apl6/igt@runner@aborted.html
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-apl7/igt@runner@aborted.html
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/shard-apl2/igt@runner@aborted.html
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/shard-apl2/igt@runner@aborted.html
-
-  
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1784]: https://gitlab.freedesktop.org/drm/intel/issues/1784
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#1930]: https://gitlab.freedesktop.org/drm/intel/issues/1930
-  [i915#1958]: https://gitlab.freedesktop.org/drm/intel/issues/1958
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2055]: https://gitlab.freedesktop.org/drm/intel/issues/2055
-  [i915#2110]: https://gitlab.freedesktop.org/drm/intel/issues/2110
-  [i915#2119]: https://gitlab.freedesktop.org/drm/intel/issues/2119
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#46]: https://gitlab.freedesktop.org/drm/intel/issues/46
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8684 -> Patchwork_18056
-
-  CI-20190529: 20190529
-  CI_DRM_8684: 68dfde01d77a76e98108fd0d00325c9340e475d9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5718: af1ef32bfae90bcdbaf1b5d84c61ff4e04368505 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18056: ef8ecc7428fef36cde5565e29e6efac7005be48c @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/index.html
+On Wed, Jul 01, 2020 at 06:17:09PM +0300, Jani Nikula wrote:
+>On Wed, 24 Jun 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> This is the first level conversion to use port_info directly from
+>> intel_digital_port, rather than derive the phy or tc_port from the port.
+>> This touches only the functions which have the encoder or dig_port
+>> directly available.
+>
+>Overall I like it, some nitpicks and notes inline.
+>
+>Eventually we'll probably want to convert the "tc_port" in register
+>macros to "phy" or something, but no rush.
+
+yes, that's the plan... eventually get rid of tc_port.
+
+>
+>With the issues fixed,
+>
+>Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_ddi.c | 158 +++++++++++------------
+>>  1 file changed, 77 insertions(+), 81 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index 27e2f29f47a2..aa0b478ab54a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -1061,11 +1061,11 @@ tgl_get_dkl_buf_trans(struct drm_i915_private *dev_priv, int type, int rate,
+>>  static int intel_ddi_hdmi_level(struct intel_encoder *encoder)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>>  	int n_entries, level, default_entry;
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>>
+>>  	if (INTEL_GEN(dev_priv) >= 12) {
+>> -		if (intel_phy_is_combo(dev_priv, phy))
+>> +		if (intel_ddi_has_combo_phy(dig_port))
+>
+>Btw why the "is" -> "has" in the function name?
+
+because I wanted it in the intel_ddi_ "namespace". Reading on how the HW
+is architected, I think it's more correct to say a DDI has combo phy or
+"is attached to" a combo phy than "it *is* a combo phy" since the phy is
+a separate entity.
+
+previously it was intel_phy_, so the "is" was a natural choice.
+
+
+>
+>>  			tgl_get_combo_buf_trans(dev_priv, INTEL_OUTPUT_HDMI,
+>>  						0, &n_entries);
+>>  		else
+>> @@ -1073,7 +1073,7 @@ static int intel_ddi_hdmi_level(struct intel_encoder *encoder)
+>>  					      &n_entries);
+>>  		default_entry = n_entries - 1;
+>>  	} else if (INTEL_GEN(dev_priv) == 11) {
+>> -		if (intel_phy_is_combo(dev_priv, phy))
+>> +		if (intel_ddi_has_combo_phy(dig_port))
+>>  			icl_get_combo_buf_trans(dev_priv, INTEL_OUTPUT_HDMI,
+>>  						0, &n_entries);
+>>  		else
+>> @@ -1453,9 +1453,9 @@ static void intel_ddi_clock_get(struct intel_encoder *encoder,
+>>  				struct intel_crtc_state *pipe_config)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>>
+>> -	if (intel_phy_is_tc(dev_priv, phy) &&
+>> +	if (intel_ddi_has_tc_phy(dig_port) &&
+>>  	    intel_get_shared_dpll_id(dev_priv, pipe_config->shared_dpll) ==
+>>  	    DPLL_ID_ICL_TBTPLL)
+>>  		pipe_config->port_clock = icl_calc_tbt_pll_link(dev_priv,
+>> @@ -1983,7 +1983,6 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>>  	struct intel_digital_port *dig_port;
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>>
+>>  	/*
+>>  	 * TODO: Add support for MST encoders. Atm, the following should never
+>> @@ -1996,7 +1995,7 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+>>
+>>  	dig_port = enc_to_dig_port(encoder);
+>>
+>> -	if (!intel_phy_is_tc(dev_priv, phy) ||
+>> +	if (!intel_ddi_has_tc_phy(dig_port) ||
+>>  	    dig_port->tc_mode != TC_PORT_TBT_ALT)
+>>  		intel_display_power_get(dev_priv,
+>>  					dig_port->ddi_io_power_domain);
+>> @@ -2006,7 +2005,7 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+>>  	 * ports.
+>>  	 */
+>>  	if (intel_crtc_has_dp_encoder(crtc_state) ||
+>> -	    intel_phy_is_tc(dev_priv, phy))
+>> +	    intel_ddi_has_tc_phy(dig_port))
+>>  		intel_display_power_get(dev_priv,
+>>  					intel_ddi_main_link_aux_domain(dig_port));
+>>
+>> @@ -2142,14 +2141,14 @@ static void bxt_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>
+>>  static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp)
+>>  {
+>> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+>> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>> +	struct intel_encoder *encoder = &dig_port->base;
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>>  	enum port port = encoder->port;
+>> -	enum phy phy = intel_port_to_phy(dev_priv, port);
+>>  	int n_entries;
+>>
+>>  	if (INTEL_GEN(dev_priv) >= 12) {
+>> -		if (intel_phy_is_combo(dev_priv, phy))
+>> +		if (intel_ddi_has_tc_phy(dig_port))
+>
+>Mixup with combo and tc.
+
+thanks, will fix
+
+>
+>>  			tgl_get_combo_buf_trans(dev_priv, encoder->type,
+>>  						intel_dp->link_rate, &n_entries);
+>>  		else
+>> @@ -2159,7 +2158,7 @@ static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp)
+>>  		if (IS_ELKHARTLAKE(dev_priv))
+>>  			ehl_get_combo_buf_trans(dev_priv, encoder->type,
+>>  						intel_dp->link_rate, &n_entries);
+>> -		else if (intel_phy_is_combo(dev_priv, phy))
+>> +		if (intel_ddi_has_tc_phy(dig_port))
+>
+>Ditto.
+>
+>Also leave the "else if" intact?
+
+ok
+
+>
+>>  			icl_get_combo_buf_trans(dev_priv, encoder->type,
+>>  						intel_dp->link_rate, &n_entries);
+>>  		else
+>> @@ -2402,8 +2401,9 @@ static void icl_combo_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>  					      u32 level,
+>>  					      enum intel_output_type type)
+>>  {
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>> +	u8 phy = dig_port->port_info->phy_idx;
+>>  	int width = 0;
+>>  	int rate = 0;
+>>  	u32 val;
+>> @@ -2473,7 +2473,8 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>  					   enum intel_output_type type)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> -	enum tc_port tc_port = intel_port_to_tc(dev_priv, encoder->port);
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>> +	u8 phy = dig_port->port_info->phy_idx;
+>
+>I think it would just be more maintainable to keep using enum phy as the
+>type for phy.
+
+for this and next comment, see what I said in the previous patch. It was
+intentional to make it this way so it's really just a number and we
+should not try to make decisions based on the value.  I still think that
+is a better approach to this refactor. Thughts?
+
+thanks
+Lucas De Marchi
+
+>
+>>  	const struct icl_mg_phy_ddi_buf_trans *ddi_translations;
+>>  	u32 n_entries, val;
+>>  	int ln, rate = 0;
+>> @@ -2496,33 +2497,33 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>
+>>  	/* Set MG_TX_LINK_PARAMS cri_use_fs32 to 0. */
+>>  	for (ln = 0; ln < 2; ln++) {
+>> -		val = intel_de_read(dev_priv, MG_TX1_LINK_PARAMS(ln, tc_port));
+>> +		val = intel_de_read(dev_priv, MG_TX1_LINK_PARAMS(ln, phy));
+>>  		val &= ~CRI_USE_FS32;
+>> -		intel_de_write(dev_priv, MG_TX1_LINK_PARAMS(ln, tc_port), val);
+>> +		intel_de_write(dev_priv, MG_TX1_LINK_PARAMS(ln, phy), val);
+>>
+>> -		val = intel_de_read(dev_priv, MG_TX2_LINK_PARAMS(ln, tc_port));
+>> +		val = intel_de_read(dev_priv, MG_TX2_LINK_PARAMS(ln, phy));
+>>  		val &= ~CRI_USE_FS32;
+>> -		intel_de_write(dev_priv, MG_TX2_LINK_PARAMS(ln, tc_port), val);
+>> +		intel_de_write(dev_priv, MG_TX2_LINK_PARAMS(ln, phy), val);
+>>  	}
+>>
+>>  	/* Program MG_TX_SWINGCTRL with values from vswing table */
+>>  	for (ln = 0; ln < 2; ln++) {
+>> -		val = intel_de_read(dev_priv, MG_TX1_SWINGCTRL(ln, tc_port));
+>> +		val = intel_de_read(dev_priv, MG_TX1_SWINGCTRL(ln, phy));
+>>  		val &= ~CRI_TXDEEMPH_OVERRIDE_17_12_MASK;
+>>  		val |= CRI_TXDEEMPH_OVERRIDE_17_12(
+>>  			ddi_translations[level].cri_txdeemph_override_17_12);
+>> -		intel_de_write(dev_priv, MG_TX1_SWINGCTRL(ln, tc_port), val);
+>> +		intel_de_write(dev_priv, MG_TX1_SWINGCTRL(ln, phy), val);
+>>
+>> -		val = intel_de_read(dev_priv, MG_TX2_SWINGCTRL(ln, tc_port));
+>> +		val = intel_de_read(dev_priv, MG_TX2_SWINGCTRL(ln, phy));
+>>  		val &= ~CRI_TXDEEMPH_OVERRIDE_17_12_MASK;
+>>  		val |= CRI_TXDEEMPH_OVERRIDE_17_12(
+>>  			ddi_translations[level].cri_txdeemph_override_17_12);
+>> -		intel_de_write(dev_priv, MG_TX2_SWINGCTRL(ln, tc_port), val);
+>> +		intel_de_write(dev_priv, MG_TX2_SWINGCTRL(ln, phy), val);
+>>  	}
+>>
+>>  	/* Program MG_TX_DRVCTRL with values from vswing table */
+>>  	for (ln = 0; ln < 2; ln++) {
+>> -		val = intel_de_read(dev_priv, MG_TX1_DRVCTRL(ln, tc_port));
+>> +		val = intel_de_read(dev_priv, MG_TX1_DRVCTRL(ln, phy));
+>>  		val &= ~(CRI_TXDEEMPH_OVERRIDE_11_6_MASK |
+>>  			 CRI_TXDEEMPH_OVERRIDE_5_0_MASK);
+>>  		val |= CRI_TXDEEMPH_OVERRIDE_5_0(
+>> @@ -2530,9 +2531,9 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>  			CRI_TXDEEMPH_OVERRIDE_11_6(
+>>  				ddi_translations[level].cri_txdeemph_override_11_6) |
+>>  			CRI_TXDEEMPH_OVERRIDE_EN;
+>> -		intel_de_write(dev_priv, MG_TX1_DRVCTRL(ln, tc_port), val);
+>> +		intel_de_write(dev_priv, MG_TX1_DRVCTRL(ln, phy), val);
+>>
+>> -		val = intel_de_read(dev_priv, MG_TX2_DRVCTRL(ln, tc_port));
+>> +		val = intel_de_read(dev_priv, MG_TX2_DRVCTRL(ln, phy));
+>>  		val &= ~(CRI_TXDEEMPH_OVERRIDE_11_6_MASK |
+>>  			 CRI_TXDEEMPH_OVERRIDE_5_0_MASK);
+>>  		val |= CRI_TXDEEMPH_OVERRIDE_5_0(
+>> @@ -2540,7 +2541,7 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>  			CRI_TXDEEMPH_OVERRIDE_11_6(
+>>  				ddi_translations[level].cri_txdeemph_override_11_6) |
+>>  			CRI_TXDEEMPH_OVERRIDE_EN;
+>> -		intel_de_write(dev_priv, MG_TX2_DRVCTRL(ln, tc_port), val);
+>> +		intel_de_write(dev_priv, MG_TX2_DRVCTRL(ln, phy), val);
+>>
+>>  		/* FIXME: Program CRI_LOADGEN_SEL after the spec is updated */
+>>  	}
+>> @@ -2551,17 +2552,17 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>  	 * values from table for which TX1 and TX2 enabled.
+>>  	 */
+>>  	for (ln = 0; ln < 2; ln++) {
+>> -		val = intel_de_read(dev_priv, MG_CLKHUB(ln, tc_port));
+>> +		val = intel_de_read(dev_priv, MG_CLKHUB(ln, phy));
+>>  		if (link_clock < 300000)
+>>  			val |= CFG_LOW_RATE_LKREN_EN;
+>>  		else
+>>  			val &= ~CFG_LOW_RATE_LKREN_EN;
+>> -		intel_de_write(dev_priv, MG_CLKHUB(ln, tc_port), val);
+>> +		intel_de_write(dev_priv, MG_CLKHUB(ln, phy), val);
+>>  	}
+>>
+>>  	/* Program the MG_TX_DCC<LN, port being used> based on the link frequency */
+>>  	for (ln = 0; ln < 2; ln++) {
+>> -		val = intel_de_read(dev_priv, MG_TX1_DCC(ln, tc_port));
+>> +		val = intel_de_read(dev_priv, MG_TX1_DCC(ln, phy));
+>>  		val &= ~CFG_AMI_CK_DIV_OVERRIDE_VAL_MASK;
+>>  		if (link_clock <= 500000) {
+>>  			val &= ~CFG_AMI_CK_DIV_OVERRIDE_EN;
+>> @@ -2569,9 +2570,9 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>  			val |= CFG_AMI_CK_DIV_OVERRIDE_EN |
+>>  				CFG_AMI_CK_DIV_OVERRIDE_VAL(1);
+>>  		}
+>> -		intel_de_write(dev_priv, MG_TX1_DCC(ln, tc_port), val);
+>> +		intel_de_write(dev_priv, MG_TX1_DCC(ln, phy), val);
+>>
+>> -		val = intel_de_read(dev_priv, MG_TX2_DCC(ln, tc_port));
+>> +		val = intel_de_read(dev_priv, MG_TX2_DCC(ln, phy));
+>>  		val &= ~CFG_AMI_CK_DIV_OVERRIDE_VAL_MASK;
+>>  		if (link_clock <= 500000) {
+>>  			val &= ~CFG_AMI_CK_DIV_OVERRIDE_EN;
+>> @@ -2579,21 +2580,21 @@ static void icl_mg_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>  			val |= CFG_AMI_CK_DIV_OVERRIDE_EN |
+>>  				CFG_AMI_CK_DIV_OVERRIDE_VAL(1);
+>>  		}
+>> -		intel_de_write(dev_priv, MG_TX2_DCC(ln, tc_port), val);
+>> +		intel_de_write(dev_priv, MG_TX2_DCC(ln, phy), val);
+>>  	}
+>>
+>>  	/* Program MG_TX_PISO_READLOAD with values from vswing table */
+>>  	for (ln = 0; ln < 2; ln++) {
+>>  		val = intel_de_read(dev_priv,
+>> -				    MG_TX1_PISO_READLOAD(ln, tc_port));
+>> +				    MG_TX1_PISO_READLOAD(ln, phy));
+>>  		val |= CRI_CALCINIT;
+>> -		intel_de_write(dev_priv, MG_TX1_PISO_READLOAD(ln, tc_port),
+>> +		intel_de_write(dev_priv, MG_TX1_PISO_READLOAD(ln, phy),
+>>  			       val);
+>>
+>>  		val = intel_de_read(dev_priv,
+>> -				    MG_TX2_PISO_READLOAD(ln, tc_port));
+>> +				    MG_TX2_PISO_READLOAD(ln, phy));
+>>  		val |= CRI_CALCINIT;
+>> -		intel_de_write(dev_priv, MG_TX2_PISO_READLOAD(ln, tc_port),
+>> +		intel_de_write(dev_priv, MG_TX2_PISO_READLOAD(ln, phy),
+>>  			       val);
+>>  	}
+>>  }
+>> @@ -2603,10 +2604,9 @@ static void icl_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>  				    u32 level,
+>>  				    enum intel_output_type type)
+>>  {
+>> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>>
+>> -	if (intel_phy_is_combo(dev_priv, phy))
+>> +	if (intel_ddi_has_combo_phy(dig_port))
+>>  		icl_combo_phy_ddi_vswing_sequence(encoder, level, type);
+>>  	else
+>>  		icl_mg_phy_ddi_vswing_sequence(encoder, link_clock, level,
+>> @@ -2618,7 +2618,8 @@ tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder, int link_clock,
+>>  				u32 level, enum intel_output_type type)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> -	enum tc_port tc_port = intel_port_to_tc(dev_priv, encoder->port);
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>> +	u8 phy = dig_port->port_info->phy_idx;
+>
+>enum phy, and throughout below.
+>
+>>  	const struct tgl_dkl_phy_ddi_buf_trans *ddi_translations;
+>>  	u32 n_entries, val, ln, dpcnt_mask, dpcnt_val;
+>>  	int rate = 0;
+>> @@ -2643,25 +2644,25 @@ tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder, int link_clock,
+>>  	dpcnt_val |= DKL_TX_PRESHOOT_COEFF(ddi_translations[level].dkl_preshoot_control);
+>>
+>>  	for (ln = 0; ln < 2; ln++) {
+>> -		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+>> -			       HIP_INDEX_VAL(tc_port, ln));
+>> +		intel_de_write(dev_priv, HIP_INDEX_REG(phy),
+>> +			       HIP_INDEX_VAL(phy, ln));
+>>
+>> -		intel_de_write(dev_priv, DKL_TX_PMD_LANE_SUS(tc_port), 0);
+>> +		intel_de_write(dev_priv, DKL_TX_PMD_LANE_SUS(phy), 0);
+>>
+>>  		/* All the registers are RMW */
+>> -		val = intel_de_read(dev_priv, DKL_TX_DPCNTL0(tc_port));
+>> +		val = intel_de_read(dev_priv, DKL_TX_DPCNTL0(phy));
+>>  		val &= ~dpcnt_mask;
+>>  		val |= dpcnt_val;
+>> -		intel_de_write(dev_priv, DKL_TX_DPCNTL0(tc_port), val);
+>> +		intel_de_write(dev_priv, DKL_TX_DPCNTL0(phy), val);
+>>
+>> -		val = intel_de_read(dev_priv, DKL_TX_DPCNTL1(tc_port));
+>> +		val = intel_de_read(dev_priv, DKL_TX_DPCNTL1(phy));
+>>  		val &= ~dpcnt_mask;
+>>  		val |= dpcnt_val;
+>> -		intel_de_write(dev_priv, DKL_TX_DPCNTL1(tc_port), val);
+>> +		intel_de_write(dev_priv, DKL_TX_DPCNTL1(phy), val);
+>>
+>> -		val = intel_de_read(dev_priv, DKL_TX_DPCNTL2(tc_port));
+>> +		val = intel_de_read(dev_priv, DKL_TX_DPCNTL2(phy));
+>>  		val &= ~DKL_TX_DP20BITMODE;
+>> -		intel_de_write(dev_priv, DKL_TX_DPCNTL2(tc_port), val);
+>> +		intel_de_write(dev_priv, DKL_TX_DPCNTL2(phy), val);
+>>  	}
+>>  }
+>>
+>> @@ -2670,10 +2671,9 @@ static void tgl_ddi_vswing_sequence(struct intel_encoder *encoder,
+>>  				    u32 level,
+>>  				    enum intel_output_type type)
+>>  {
+>> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>>
+>> -	if (intel_phy_is_combo(dev_priv, phy))
+>> +	if (intel_ddi_has_combo_phy(dig_port))
+>>  		icl_combo_phy_ddi_vswing_sequence(encoder, level, type);
+>>  	else
+>>  		tgl_dkl_phy_ddi_vswing_sequence(encoder, link_clock, level, type);
+>> @@ -2786,8 +2786,9 @@ static void icl_map_plls_to_ports(struct intel_encoder *encoder,
+>>  				  const struct intel_crtc_state *crtc_state)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>>  	struct intel_shared_dpll *pll = crtc_state->shared_dpll;
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>> +	u8 phy = dig_port->port_info->phy_idx;
+>>  	u32 val;
+>>
+>>  	mutex_lock(&dev_priv->dpll.lock);
+>> @@ -2796,7 +2797,7 @@ static void icl_map_plls_to_ports(struct intel_encoder *encoder,
+>>  	drm_WARN_ON(&dev_priv->drm,
+>>  		    (val & icl_dpclka_cfgcr0_clk_off(dev_priv, phy)) == 0);
+>>
+>> -	if (intel_phy_is_combo(dev_priv, phy)) {
+>> +	if (intel_ddi_has_combo_phy(dig_port)) {
+>>  		/*
+>>  		 * Even though this register references DDIs, note that we
+>>  		 * want to pass the PHY rather than the port (DDI).  For
+>> @@ -2822,7 +2823,8 @@ static void icl_map_plls_to_ports(struct intel_encoder *encoder,
+>>  static void icl_unmap_plls_to_ports(struct intel_encoder *encoder)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>> +	u8 phy = dig_port->port_info->phy_idx;
+>>  	u32 val;
+>>
+>>  	mutex_lock(&dev_priv->dpll.lock);
+>> @@ -2923,10 +2925,10 @@ static void intel_ddi_clk_select(struct intel_encoder *encoder,
+>>  				 const struct intel_crtc_state *crtc_state)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>> +	const struct intel_shared_dpll *pll = crtc_state->shared_dpll;
+>>  	enum port port = encoder->port;
+>> -	enum phy phy = intel_port_to_phy(dev_priv, port);
+>>  	u32 val;
+>> -	const struct intel_shared_dpll *pll = crtc_state->shared_dpll;
+>>
+>>  	if (drm_WARN_ON(&dev_priv->drm, !pll))
+>>  		return;
+>> @@ -2934,7 +2936,7 @@ static void intel_ddi_clk_select(struct intel_encoder *encoder,
+>>  	mutex_lock(&dev_priv->dpll.lock);
+>>
+>>  	if (INTEL_GEN(dev_priv) >= 11) {
+>> -		if (!intel_phy_is_combo(dev_priv, phy))
+>> +		if (intel_ddi_has_combo_phy(dig_port))
+>>  			intel_de_write(dev_priv, DDI_CLK_SEL(port),
+>>  				       icl_pll_to_ddi_clk_sel(encoder, crtc_state));
+>>  		else if (IS_ELKHARTLAKE(dev_priv) && port >= PORT_C)
+>> @@ -2981,11 +2983,11 @@ static void intel_ddi_clk_select(struct intel_encoder *encoder,
+>>  static void intel_ddi_clk_disable(struct intel_encoder *encoder)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>>  	enum port port = encoder->port;
+>> -	enum phy phy = intel_port_to_phy(dev_priv, port);
+>>
+>>  	if (INTEL_GEN(dev_priv) >= 11) {
+>> -		if (!intel_phy_is_combo(dev_priv, phy) ||
+>> +		if (!intel_ddi_has_combo_phy(dig_port) ||
+>>  		    (IS_ELKHARTLAKE(dev_priv) && port >= PORT_C))
+>>  			intel_de_write(dev_priv, DDI_CLK_SEL(port),
+>>  				       DDI_CLK_SEL_NONE);
+>> @@ -3150,8 +3152,8 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>>  {
+>>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>>  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>> +	u8 phy = dig_port->port_info->phy_idx;
+>>  	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
+>>  	int level = intel_ddi_dp_level(intel_dp);
+>>  	enum transcoder transcoder = crtc_state->cpu_transcoder;
+>> @@ -3190,7 +3192,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>>  	intel_ddi_clk_select(encoder, crtc_state);
+>>
+>>  	/* 5. If IO power is controlled through PWR_WELL_CTL, Enable IO Power */
+>> -	if (!intel_phy_is_tc(dev_priv, phy) ||
+>> +	if (!intel_ddi_has_tc_phy(dig_port) ||
+>>  	    dig_port->tc_mode != TC_PORT_TBT_ALT)
+>>  		intel_display_power_get(dev_priv,
+>>  					dig_port->ddi_io_power_domain);
+>> @@ -3236,7 +3238,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>>  	 * 7.f Combo PHY: Configure PORT_CL_DW10 Static Power Down to power up
+>>  	 * the used lanes of the DDI.
+>>  	 */
+>> -	if (intel_phy_is_combo(dev_priv, phy)) {
+>> +	if (intel_ddi_has_combo_phy(dig_port)) {
+>>  		bool lane_reversal =
+>>  			dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
+>>
+>> @@ -3292,8 +3294,8 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>>  	enum port port = encoder->port;
+>> -	enum phy phy = intel_port_to_phy(dev_priv, port);
+>>  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>> +	u8 phy = dig_port->port_info->phy_idx;
+>>  	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
+>>  	int level = intel_ddi_dp_level(intel_dp);
+>>
+>> @@ -3310,7 +3312,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>>
+>>  	intel_ddi_clk_select(encoder, crtc_state);
+>>
+>> -	if (!intel_phy_is_tc(dev_priv, phy) ||
+>> +	if (!intel_ddi_has_tc_phy(dig_port) ||
+>>  	    dig_port->tc_mode != TC_PORT_TBT_ALT)
+>>  		intel_display_power_get(dev_priv,
+>>  					dig_port->ddi_io_power_domain);
+>> @@ -3327,7 +3329,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>>  	else
+>>  		intel_prepare_dp_ddi_buffers(encoder, crtc_state);
+>>
+>> -	if (intel_phy_is_combo(dev_priv, phy)) {
+>> +	if (intel_ddi_has_combo_phy(dig_port)) {
+>>  		bool lane_reversal =
+>>  			dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
+>>
+>> @@ -3508,7 +3510,6 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
+>>  	struct intel_dp *intel_dp = &dig_port->dp;
+>>  	bool is_mst = intel_crtc_has_type(old_crtc_state,
+>>  					  INTEL_OUTPUT_DP_MST);
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>>
+>>  	if (!is_mst)
+>>  		intel_dp_set_infoframes(encoder, false,
+>> @@ -3551,7 +3552,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
+>>  	intel_edp_panel_vdd_on(intel_dp);
+>>  	intel_edp_panel_off(intel_dp);
+>>
+>> -	if (!intel_phy_is_tc(dev_priv, phy) ||
+>> +	if (!intel_ddi_has_tc_phy(dig_port) ||
+>>  	    dig_port->tc_mode != TC_PORT_TBT_ALT)
+>>  		intel_display_power_put_unchecked(dev_priv,
+>>  						  dig_port->ddi_io_power_domain);
+>> @@ -3590,8 +3591,6 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>>  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>> -	bool is_tc_port = intel_phy_is_tc(dev_priv, phy);
+>>
+>>  	if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST)) {
+>>  		intel_crtc_vblank_off(old_crtc_state);
+>> @@ -3631,11 +3630,12 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+>>  	if (INTEL_GEN(dev_priv) >= 11)
+>>  		icl_unmap_plls_to_ports(encoder);
+>>
+>> -	if (intel_crtc_has_dp_encoder(old_crtc_state) || is_tc_port)
+>> +	if (intel_crtc_has_dp_encoder(old_crtc_state) ||
+>> +	    intel_ddi_has_tc_phy(dig_port))
+>>  		intel_display_power_put_unchecked(dev_priv,
+>>  						  intel_ddi_main_link_aux_domain(dig_port));
+>>
+>> -	if (is_tc_port)
+>> +	if (intel_ddi_has_tc_phy(dig_port))
+>>  		intel_tc_port_put_link(dig_port);
+>>  }
+>>
+>> @@ -3958,17 +3958,16 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>>  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>> -	bool is_tc_port = intel_phy_is_tc(dev_priv, phy);
+>>
+>> -	if (is_tc_port)
+>> +	if (intel_ddi_has_tc_phy(dig_port))
+>>  		intel_tc_port_get_link(dig_port, crtc_state->lane_count);
+>>
+>> -	if (intel_crtc_has_dp_encoder(crtc_state) || is_tc_port)
+>> +	if (intel_crtc_has_dp_encoder(crtc_state) || intel_ddi_has_tc_phy(dig_port))
+>>  		intel_display_power_get(dev_priv,
+>>  					intel_ddi_main_link_aux_domain(dig_port));
+>>
+>> -	if (is_tc_port && dig_port->tc_mode != TC_PORT_TBT_ALT)
+>> +	if (intel_ddi_has_tc_phy(dig_port) &&
+>> +	    dig_port->tc_mode != TC_PORT_TBT_ALT)
+>>  		/*
+>>  		 * Program the lane count for static/dynamic connections on
+>>  		 * Type-C ports.  Skip this step for TBT.
+>> @@ -4682,10 +4681,7 @@ static enum intel_hotplug_state
+>>  intel_ddi_hotplug(struct intel_encoder *encoder,
+>>  		  struct intel_connector *connector)
+>>  {
+>> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>>  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>> -	enum phy phy = intel_port_to_phy(i915, encoder->port);
+>> -	bool is_tc = intel_phy_is_tc(i915, phy);
+>>  	struct drm_modeset_acquire_ctx ctx;
+>>  	enum intel_hotplug_state state;
+>>  	int ret;
+>> @@ -4736,7 +4732,7 @@ intel_ddi_hotplug(struct intel_encoder *encoder,
+>>  	 * connectors to account for this delay.
+>>  	 */
+>>  	if (state == INTEL_HOTPLUG_UNCHANGED &&
+>> -	    connector->hotplug_retries < (is_tc ? 5 : 1) &&
+>> +	    connector->hotplug_retries < (intel_ddi_has_tc_phy(dig_port) ? 5 : 1) &&
+>>  	    !dig_port->dp.is_mst)
+>>  		state = INTEL_HOTPLUG_RETRY;
+>
+>-- 
+>Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
