@@ -2,31 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BFB1210A2D
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 13:17:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F248210A8E
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 13:52:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9498C6E891;
-	Wed,  1 Jul 2020 11:16:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 784CD6E89D;
+	Wed,  1 Jul 2020 11:52:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 084DF6E890;
- Wed,  1 Jul 2020 11:16:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0187DA47E0;
- Wed,  1 Jul 2020 11:16:57 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CEC16E89D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 11:52:11 +0000 (UTC)
+IronPort-SDR: 7trZT7tgRgQdvia6wNDqVojSiGO+K6CdskOl5ZbTz6gDl/260vWJ+ox9WZe56ZlwUw5X5bvXL/
+ jSplfjl5xSfA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9668"; a="134818761"
+X-IronPort-AV: E=Sophos;i="5.75,300,1589266800"; d="scan'208";a="134818761"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2020 04:52:10 -0700
+IronPort-SDR: 5m42+ntptfo1f+eNIW1sbQcEXTe4FetOQxHk6I29N9hp1TRjJVxf0aTFpxHfMy9SK4Aq/Xqv14
+ jUAo4Z+Vj7ig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,300,1589266800"; d="scan'208";a="265390520"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 01 Jul 2020 04:52:08 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 01 Jul 2020 14:52:07 +0300
+Date: Wed, 1 Jul 2020 14:52:07 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Atwood <matthew.s.atwood@intel.com>
+Message-ID: <20200701115207.GX6112@intel.com>
+References: <20200630233310.10191-1-matthew.s.atwood@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 01 Jul 2020 11:16:57 -0000
-Message-ID: <159360221797.16667.7840428259299500830@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200701083936.28723-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200701083936.28723-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_drm/i915/gt=3A_Harden_the_heartbeat_against_a?=
- =?utf-8?q?_stuck_driver_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20200630233310.10191-1-matthew.s.atwood@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/dp: Correctly advertise HBR3
+ for GEN11+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,132 +53,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Jun 30, 2020 at 04:33:10PM -0700, Matt Atwood wrote:
+> intel_dp_set_source_rates() calls intel_dp_is_edp(), which is unsafe to
+> use before encoder_type is set. This caused GEN11+ to incorrectly strip
+> HBR3 from source rates for edp. Move intel_dp_set_source_rates() to
+> after encoder_type is set. Add comment to intel_dp_is_edp() describing
+> unsafe usages.
+> =
 
-Series: series starting with drm/i915/gt: Harden the heartbeat against a stuck driver (rev2)
-URL   : https://patchwork.freedesktop.org/series/78986/
-State : success
+> v2: Alter intel_dp_set_source_rates final position (Ville/Manasi).
+>     Remove outdated comment (Ville).
+>     Slight optimization of control flow in intel_dp_init_connector.
+>     Slight rewording in commit message.
+> =
 
-== Summary ==
+> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 
-CI Bug Log - changes from CI_DRM_8684 -> Patchwork_18056
-====================================================
+lgtm
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-Summary
--------
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 28 ++++++++++---------------
+>  1 file changed, 11 insertions(+), 17 deletions(-)
+> =
 
-  **SUCCESS**
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 3df5d901dd9d..c9b93c5706af 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -137,6 +137,8 @@ static const u8 valid_dsc_slicecount[] =3D {1, 2, 4};
+>   *
+>   * If a CPU or PCH DP output is attached to an eDP panel, this function
+>   * will return true, and false otherwise.
+> + *
+> + * This function is not safe to use prior to encoder type being set.
+>   */
+>  bool intel_dp_is_edp(struct intel_dp *intel_dp)
+>  {
+> @@ -8157,8 +8159,6 @@ intel_dp_init_connector(struct intel_digital_port *=
+intel_dig_port,
+>  		     intel_encoder->base.name))
+>  		return false;
+>  =
 
-  No regressions found.
+> -	intel_dp_set_source_rates(intel_dp);
+> -
+>  	intel_dp->reset_link_params =3D true;
+>  	intel_dp->pps_pipe =3D INVALID_PIPE;
+>  	intel_dp->active_pipe =3D INVALID_PIPE;
+> @@ -8174,28 +8174,22 @@ intel_dp_init_connector(struct intel_digital_port=
+ *intel_dig_port,
+>  		 */
+>  		drm_WARN_ON(dev, intel_phy_is_tc(dev_priv, phy));
+>  		type =3D DRM_MODE_CONNECTOR_eDP;
+> +		intel_encoder->type =3D INTEL_OUTPUT_EDP;
+> +
+> +		/* eDP only on port B and/or C on vlv/chv */
+> +		if (drm_WARN_ON(dev, (IS_VALLEYVIEW(dev_priv) ||
+> +				      IS_CHERRYVIEW(dev_priv)) &&
+> +				port !=3D PORT_B && port !=3D PORT_C))
+> +			return false;
+>  	} else {
+>  		type =3D DRM_MODE_CONNECTOR_DisplayPort;
+>  	}
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/index.html
+> +	intel_dp_set_source_rates(intel_dp);
+> +
+>  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>  		intel_dp->active_pipe =3D vlv_active_pipe(intel_dp);
+>  =
 
-Known issues
-------------
+> -	/*
+> -	 * For eDP we always set the encoder type to INTEL_OUTPUT_EDP, but
+> -	 * for DP the encoder type can be set by the caller to
+> -	 * INTEL_OUTPUT_UNKNOWN for DDI, so don't rewrite it.
+> -	 */
+> -	if (type =3D=3D DRM_MODE_CONNECTOR_eDP)
+> -		intel_encoder->type =3D INTEL_OUTPUT_EDP;
+> -
+> -	/* eDP only on port B and/or C on vlv/chv */
+> -	if (drm_WARN_ON(dev, (IS_VALLEYVIEW(dev_priv) ||
+> -			      IS_CHERRYVIEW(dev_priv)) &&
+> -			intel_dp_is_edp(intel_dp) &&
+> -			port !=3D PORT_B && port !=3D PORT_C))
+> -		return false;
+> -
+>  	drm_dbg_kms(&dev_priv->drm,
+>  		    "Adding %s connector on [ENCODER:%d:%s]\n",
+>  		    type =3D=3D DRM_MODE_CONNECTOR_eDP ? "eDP" : "DP",
+> -- =
 
-  Here are the changes found in Patchwork_18056 that come from known issues:
+> 2.21.3
+> =
 
-### IGT changes ###
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-#### Issues hit ####
+-- =
 
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-whl-u:           [PASS][1] -> [DMESG-WARN][2] ([i915#95])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#402])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-tgl-u2:          [INCOMPLETE][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/fi-tgl-u2/igt@i915_selftest@live@execlists.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/fi-tgl-u2/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - {fi-kbl-7560u}:     [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8684/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (44 -> 37)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8684 -> Patchwork_18056
-
-  CI-20190529: 20190529
-  CI_DRM_8684: 68dfde01d77a76e98108fd0d00325c9340e475d9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5718: af1ef32bfae90bcdbaf1b5d84c61ff4e04368505 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18056: ef8ecc7428fef36cde5565e29e6efac7005be48c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ef8ecc7428fe drm/i915/gt: Move the heartbeat into the highprio system wq
-812b34bfde95 drm/i915/gt: Harden the heartbeat against a stuck driver
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18056/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
