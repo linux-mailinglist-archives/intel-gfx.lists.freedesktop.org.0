@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 704F4210675
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 10:39:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E17C021067C
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 10:41:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1050D6E429;
-	Wed,  1 Jul 2020 08:39:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5329D6E858;
+	Wed,  1 Jul 2020 08:41:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70F356E429
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 08:39:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA026E436
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 08:41:12 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21671913-1500050 
- for multiple; Wed, 01 Jul 2020 09:39:36 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21671929-1500050 
+ for multiple; Wed, 01 Jul 2020 09:40:58 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Jul 2020 09:39:36 +0100
-Message-Id: <20200701083936.28723-2-chris@chris-wilson.co.uk>
+Date: Wed,  1 Jul 2020 09:40:21 +0100
+Message-Id: <20200701084053.6086-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200701083936.28723-1-chris@chris-wilson.co.uk>
-References: <20200701083936.28723-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Move the heartbeat into the
- highprio system wq
+Subject: [Intel-gfx] [PATCH 01/33] drm/i915/gt: Harden the heartbeat against
+ a stuck driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,30 +43,66 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we ensure that the heartbeat is reasonably fast (and should not
-block), move the heartbeat work into the system_highprio_wq to avoid
-having this essential task be blocked behind other slow work, such as
-our own retire_work_handler.
+If the driver get stuck holding the kernel timeline, we cannot issue a
+heartbeat and so fail to discover that the driver is indeed stuck and do
+not issue a GPU reset (which would hopefully unstick the driver!).
+Switch to using a trylock so that we can query if the heartbeat's
+timelin mutex is locked elsewhere, and then use the timer to probe if it
+remains stuck at the same spot for consecutive heartbeats, indicating
+that the mutex has not been released and the engine has not progressed.
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/2119
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 14 ++++++++++++--
+ drivers/gpu/drm/i915/gt/intel_engine_types.h     |  1 +
+ 2 files changed, 13 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 1663ab5c68a5..3699fa8a79e8 100644
+index 8db7e93abde5..1663ab5c68a5 100644
 --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
 +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -32,7 +32,7 @@ static bool next_heartbeat(struct intel_engine_cs *engine)
- 	delay = msecs_to_jiffies_timeout(delay);
- 	if (delay >= HZ)
- 		delay = round_jiffies_up_relative(delay);
--	mod_delayed_work(system_wq, &engine->heartbeat.work, delay);
-+	mod_delayed_work(system_highpri_wq, &engine->heartbeat.work, delay);
+@@ -65,6 +65,7 @@ static void heartbeat(struct work_struct *wrk)
+ 		container_of(wrk, typeof(*engine), heartbeat.work.work);
+ 	struct intel_context *ce = engine->kernel_context;
+ 	struct i915_request *rq;
++	unsigned long serial;
  
- 	return true;
- }
+ 	/* Just in case everything has gone horribly wrong, give it a kick */
+ 	intel_engine_flush_submission(engine);
+@@ -122,10 +123,19 @@ static void heartbeat(struct work_struct *wrk)
+ 		goto out;
+ 	}
+ 
+-	if (engine->wakeref_serial == engine->serial)
++	serial = READ_ONCE(engine->serial);
++	if (engine->wakeref_serial == serial)
+ 		goto out;
+ 
+-	mutex_lock(&ce->timeline->mutex);
++	if (!mutex_trylock(&ce->timeline->mutex)) {
++		/* Unable to lock the kernel timeline, is the engine stuck? */
++		if (xchg(&engine->heartbeat.blocked, serial) == serial)
++			intel_gt_handle_error(engine->gt, engine->mask,
++					      I915_ERROR_CAPTURE,
++					      "stopped heartbeat on %s",
++					      engine->name);
++		goto out;
++	}
+ 
+ 	intel_context_enter(ce);
+ 	rq = __i915_request_create(ce, GFP_NOWAIT | __GFP_NOWARN);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 073c3769e8cc..490af81bd6f3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -348,6 +348,7 @@ struct intel_engine_cs {
+ 	struct {
+ 		struct delayed_work work;
+ 		struct i915_request *systole;
++		unsigned long blocked;
+ 	} heartbeat;
+ 
+ 	unsigned long serial;
 -- 
 2.20.1
 
