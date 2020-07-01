@@ -2,30 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F74C210AC6
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 14:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F82210AF5
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 14:20:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E96A76E8A6;
-	Wed,  1 Jul 2020 12:11:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 600FD6E8AD;
+	Wed,  1 Jul 2020 12:20:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6B7E86E8A6;
- Wed,  1 Jul 2020 12:11:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 62F2AA47E6;
- Wed,  1 Jul 2020 12:11:37 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44EA36E8AD
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 12:20:31 +0000 (UTC)
+IronPort-SDR: ncvWk1S/Uw1AAJIzoH3x9OOPaDVFHzNhMRnrrwkh+Cahvn5HxEDyilwprVF4yo9cLbyxNEdLGP
+ z9hfDfHfCToQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9668"; a="164561789"
+X-IronPort-AV: E=Sophos;i="5.75,300,1589266800"; d="scan'208";a="164561789"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2020 05:20:30 -0700
+IronPort-SDR: pi+/kcHxmi1OJLCtaKGj11HjlxZgWVfexKegJD38xGXLomTbb7rm+F1mffnYi/O96MoTUr9Nzb
+ vlSnqSagb/2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,300,1589266800"; d="scan'208";a="277762520"
+Received: from clarkeda-mobl.ger.corp.intel.com (HELO [10.252.50.135])
+ ([10.252.50.135])
+ by orsmga003.jf.intel.com with ESMTP; 01 Jul 2020 05:20:28 -0700
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200630112609.9998-1-stanislav.lisovskiy@intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <4d307447-fbf3-e39d-3627-e6b52e0e9e2e@linux.intel.com>
+Date: Wed, 1 Jul 2020 14:20:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
-Date: Wed, 01 Jul 2020 12:11:37 -0000
-Message-ID: <159360549737.16669.8130766888989729553@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200701102505.26809-1-anusha.srivatsa@intel.com>
-In-Reply-To: <20200701102505.26809-1-anusha.srivatsa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dmc=3A_Use_firmware_v2=2E02_for_RKL?=
+In-Reply-To: <20200630112609.9998-1-stanislav.lisovskiy@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: Clamp min_cdclk to
+ max_cdclk_freq to unblock 8K
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,118 +53,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Op 30-06-2020 om 13:26 schreef Stanislav Lisovskiy:
+> We still need "Bump up CDCLK" workaround otherwise getting
+> underruns - however currently it blocks 8K as CDCLK = Pixel rate,
+> in 8K case would require CDCLK to be around 1 Ghz which is not
+> possible.
+>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 45f7f33d1144..01a5bc6b08c4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2080,9 +2080,21 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+>  	 * Explicitly stating here that this seems to be currently
+>  	 * rather a Hack, than final solution.
+>  	 */
+> -	if (IS_TIGERLAKE(dev_priv))
+> +	if (IS_TIGERLAKE(dev_priv)) {
+>  		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
+>  
+> +		/*
+> +		 * Clamp to max_cdclk_freq in order not to break an 8K,
+> +		 * but still leave W/A at place.
+> +		 */
+> +		min_cdclk = min(min_cdclk, (int)dev_priv->max_cdclk_freq);
+> +
+> +		/*
+> +		 * max_cdclk_freq check obviously not needed - just return.
+> +		 */
+> +		return min_cdclk;
+> +	}
+> +
+>  	if (min_cdclk > dev_priv->max_cdclk_freq) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "required cdclk (%d kHz) exceeds max (%d kHz)\n",
 
-Series: drm/i915/dmc: Use firmware v2.02 for RKL
-URL   : https://patchwork.freedesktop.org/series/78989/
-State : success
+Wouldn't you just have to halve pixel_rate if bigjoiner flag is set?
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8685 -> Patchwork_18057
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18057/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18057 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8685/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18057/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [PASS][3] -> [DMESG-WARN][4] ([i915#62] / [i915#92] / [i915#95])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8685/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18057/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8685/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18057/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-apl-guc:         [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8685/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18057/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8685/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18057/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_flip@basic-plain-flip@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8685/fi-kbl-x1275/igt@kms_flip@basic-plain-flip@a-dp1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18057/fi-kbl-x1275/igt@kms_flip@basic-plain-flip@a-dp1.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92]) +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8685/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18057/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (43 -> 37)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8685 -> Patchwork_18057
-
-  CI-20190529: 20190529
-  CI_DRM_8685: 2bd7cba2c0c0aca2d054ba7fb07df21705c60c68 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5718: af1ef32bfae90bcdbaf1b5d84c61ff4e04368505 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18057: 2ba4535234d0ce1bc0966310769b7c62eb4476ff @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2ba4535234d0 drm/i915/dmc: Use firmware v2.02 for RKL
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18057/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
