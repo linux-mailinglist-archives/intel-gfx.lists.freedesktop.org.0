@@ -2,43 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 727D7210E30
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 16:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88BCC210E70
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 17:07:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD4946E915;
-	Wed,  1 Jul 2020 14:58:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 090406E924;
+	Wed,  1 Jul 2020 15:07:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7C446E91E
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 14:58:39 +0000 (UTC)
-IronPort-SDR: KQmWlIjojfOkBKFDVtLG8usRgvkHdDwDroo9Xx+F0MZ7us2taF7g7JchmpkPts+2HBft1rxlax
- bjeKODnXPz1Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9668"; a="144766723"
-X-IronPort-AV: E=Sophos;i="5.75,300,1589266800"; d="scan'208";a="144766723"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2020 07:58:39 -0700
-IronPort-SDR: Wu/iT8A/w4Sr/+xyl9ifO8DhLnpazQF5/e7TfenQpD0BTDhJvBNlB/BXhBfS/MGSdafInvr8N/
- WK53r9R7rJEA==
-X-IronPort-AV: E=Sophos;i="5.75,300,1589266800"; d="scan'208";a="455131687"
-Received: from gaulion-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.51.61])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2020 07:58:37 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200625001120.22810-5-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200625001120.22810-1-lucas.demarchi@intel.com>
- <20200625001120.22810-5-lucas.demarchi@intel.com>
-Date: Wed, 01 Jul 2020 17:58:34 +0300
-Message-ID: <87d05fl1t1.fsf@intel.com>
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com
+ [IPv6:2a00:1450:4864:20::241])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA4E36E924
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 15:07:52 +0000 (UTC)
+Received: by mail-lj1-x241.google.com with SMTP id t25so22868926lji.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 01 Jul 2020 08:07:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=hardline-pl.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=GZWfNtSKQQY4wCNgTWXjUMXGsW6kiYbsbMq6PK1VWTY=;
+ b=YVPm5NJJYoEk4goORkoFJfhX8Tkz56WYL2lhPbjrasWMa8QU0x0YgaxY473HQrjxEm
+ 4/oHPptro2L+GQDpCAK8W01Z2WfVQQPkFCzROwNrNVCnQIoauiyQYWYzgKl/Qc0bQ56k
+ YDq38aQoRVU66clLXmtQ9RdQee6YnzxL7eIhGAPKdjXM+tn0NfZBy4ATNIWMpxaPHUpR
+ mFNy84Sbx50Yo/gpf+Uaud6MZQhkP8D1Zbl34HUvTbTuPt6YofGDGWQR/Loyyae0cINo
+ qST081TMMKcpqY9x8rzoeFaSdFd9E7DnaiI4rRdclKZb/lSfRhG0VZyx2OAfJ7ZWBpqP
+ VYnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=GZWfNtSKQQY4wCNgTWXjUMXGsW6kiYbsbMq6PK1VWTY=;
+ b=sbd6lswBL8e9aog/DGrfB1dbzDpctVknWflI4WXfqgpAKFAoeEu7ii6tirbg4+phAx
+ 2qc4+1nTNy0O51h6+Iy+Adag7ztKCOOesK4elBoSvhhSVGgp9rwZLEs9AGluO2yEafzY
+ vuK6xQgnFR4jyBoKcRxXNco4FluhdEQqEMuRWCwDfrkAoug0ymKWCYEIzcdtpTRPhaa0
+ 8updOtT22JTOwOQCXdGYUkk1W0Z18ZJhUwdfbxlpT9DG5YTR7RdfF+EnjRKLmimnRhCE
+ bqqWrXqcUFvJBDiUQrDF94lWPtobB/CftHNdrgg35pOFbb3FprrfDRLmWGOg67TDXSj9
+ TPCg==
+X-Gm-Message-State: AOAM5332NcdWTmXu0mQSro1JGMWfQrfLMYJvjmEvIM9DuYjHoFmF6imr
+ Kiy4/W65AyM9+Bt/vZMYXQHcwxebXAg=
+X-Google-Smtp-Source: ABdhPJzmjmB8kbm/JwyBqQ79h1y8ar594UojPqcvznrn/+jdgmslj1hXmfjSTsTk+1WGzwvPrG1n4g==
+X-Received: by 2002:a2e:4612:: with SMTP id t18mr12537055lja.212.1593616070408; 
+ Wed, 01 Jul 2020 08:07:50 -0700 (PDT)
+Received: from localhost (109241244009.gdansk.vectranet.pl. [109.241.244.9])
+ by smtp.gmail.com with ESMTPSA id 83sm2147122lfk.84.2020.07.01.08.07.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 01 Jul 2020 08:07:49 -0700 (PDT)
+From: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal@hardline.pl>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Jul 2020 17:07:21 +0200
+Message-Id: <20200701150721.423630-1-michal@hardline.pl>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 4/6] drm/i915/display: add phy,
- vbt and ddi indexes
+Subject: [Intel-gfx] [PATCH] drm/i915: Reboot CI if we get wedged during
+ driver init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,191 +66,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 24 Jun 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Identify 3 possible cases in which the index numbers can be different
-> from the "port" and add them to the description-based ddi initialization
-> table.  This can be used in place of additional functions mapping from
-> one to the other.  Right now we already cover part of this by creating kind of
-> virtual phy numbering, but that comes with downsides:
->
-> a) there's not really a "phy numbering" in the spec, this is purely a
-> software thing; hardware uses whatever they want thinking mapping from
-> one to the other arbitrarily is easy in software.
->
-> b) currently the mapping occurs on "leaf" functions, making the decision
-> based on the platform for each of those functions
->
-> With this new table the approach will be: the port, as defined by the
-> enum port, is merely a driver convention and won't be used anymore to
-> define the register offset or register bits. For that we have the other
-> 3 indexes, identified as being possibly different from the current usage
-> of register bits: ddi, vbt and phy. The phy type is also added here,
-> meant to replace the checks for combo vs tc.
->
-> v2: Rebase and add RKL
->
-
-I guess I'd like to see where the *_idx fields will lead before
-advocating for this.
-
-With them removed,
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-But I'm also not saying you can't have them - until I see where this
-leads. ;)
-
-One comment inline below.
-
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c  | 64 ++++++++++---------
->  drivers/gpu/drm/i915/display/intel_display.h  |  8 +++
->  .../drm/i915/display/intel_display_types.h    |  4 ++
->  3 files changed, 45 insertions(+), 31 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index c234b50212b0..d591063502c5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -16806,57 +16806,59 @@ static void intel_pps_init(struct drm_i915_private *dev_priv)
->  }
->  
->  static const struct intel_ddi_port_info rkl_ports[] = {
-> -	{ .name = "DDI A",   .port = PORT_A },
-> -	{ .name = "DDI B",   .port = PORT_B },
-> -	{ .name = "DDI TC1", .port = PORT_D },
-> -	{ .name = "DDI TC2", .port = PORT_E },
-> +	{ .name = "DDI A", .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
-> +	{ .name = "DDI B", .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
-> +	/* TODO: use continguous namespace for port once driver is converted */
-> +	{ .name = "DDI C", .port = PORT_D, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x3, .phy_idx = 0x2, .vbt_idx = 0x2, },
-> +	{ .name = "DDI D", .port = PORT_E, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x4, .phy_idx = 0x3, .vbt_idx = 0x3, },
->  	{ .port = PORT_NONE }
->  };
->  
->  static const struct intel_ddi_port_info tgl_ports[] = {
-> -	{ .name = "DDI A",   .port = PORT_A },
-> -	{ .name = "DDI B",   .port = PORT_B },
-> -	{ .name = "DDI TC1", .port = PORT_D },
-> -	{ .name = "DDI TC2", .port = PORT_E },
-> -	{ .name = "DDI TC3", .port = PORT_F },
-> -	{ .name = "DDI TC4", .port = PORT_G },
-> -	{ .name = "DDI TC5", .port = PORT_H },
-> -	{ .name = "DDI TC6", .port = PORT_I },
-> +	{ .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
-> +	{ .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
-> +	/* TODO: use continguous namespace for port once driver is converted */
-> +	{ .name = "DDI TC1", .port = PORT_D, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x3, .phy_idx = 0x0, .vbt_idx = 0x2, },
-> +	{ .name = "DDI TC2", .port = PORT_E, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x4, .phy_idx = 0x1, .vbt_idx = 0x3, },
-> +	{ .name = "DDI TC3", .port = PORT_F, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x5, .phy_idx = 0x2, .vbt_idx = 0x4, },
-> +	{ .name = "DDI TC4", .port = PORT_G, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x6, .phy_idx = 0x3, .vbt_idx = 0x5, },
-> +	{ .name = "DDI TC5", .port = PORT_H, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x7, .phy_idx = 0x4, .vbt_idx = 0x6, },
-> +	{ .name = "DDI TC6", .port = PORT_I, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x8, .phy_idx = 0x5, .vbt_idx = 0x7, },
->  	{ .port = PORT_NONE }
->  };
->  
->  static const struct intel_ddi_port_info ehl_ports[] = {
-> -	{ .name = "DDI A", .port = PORT_A },
-> -	{ .name = "DDI B", .port = PORT_B },
-> -	{ .name = "DDI C", .port = PORT_C },
-> -	{ .name = "DDI D", .port = PORT_D },
-> +	{ .name = "DDI A", .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
-> +	{ .name = "DDI B", .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
-> +	{ .name = "DDI C", .port = PORT_C, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2, },
-> +	{ .name = "DDI D", .port = PORT_D, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x3, .phy_idx = 0x0, .vbt_idx = 0x3, },
->  	{ .port = PORT_NONE }
->  };
->  
->  static const struct intel_ddi_port_info icl_ports[] = {
-> -	{ .name = "DDI A",   .port = PORT_A },
-> -	{ .name = "DDI B",   .port = PORT_B },
-> -	{ .name = "DDI TC1", .port = PORT_C },
-> -	{ .name = "DDI TC2", .port = PORT_D },
-> -	{ .name = "DDI TC3", .port = PORT_E },
-> -	{ .name = "DDI TC4", .port = PORT_F },
-> +	{ .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0,},
-> +	{ .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1,},
-> +	{ .name = "DDI TC1", .port = PORT_C, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x2, .phy_idx = 0x0, .vbt_idx = 0x2,},
-> +	{ .name = "DDI TC2", .port = PORT_D, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x3, .phy_idx = 0x1, .vbt_idx = 0x3,},
-> +	{ .name = "DDI TC3", .port = PORT_E, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x4, .phy_idx = 0x2, .vbt_idx = 0x4,},
-> +	{ .name = "DDI TC4", .port = PORT_F, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x5, .phy_idx = 0x3, .vbt_idx = 0x5,},
->  	{ .port = PORT_NONE }
->  };
->  
->  static const struct intel_ddi_port_info gen9lp_ports[] = {
-> -	{ .name = "DDI A", .port = PORT_A },
-> -	{ .name = "DDI B", .port = PORT_B },
-> -	{ .name = "DDI C", .port = PORT_C },
-> +	{ .name = "DDI A", .port = PORT_A, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0 },
-> +	{ .name = "DDI B", .port = PORT_B, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1 },
-> +	{ .name = "DDI C", .port = PORT_C, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2 },
->  	{ .port = PORT_NONE }
->  };
->  
->  static const struct intel_ddi_port_info ddi_ports[] = {
-> -	{ .name = "DDI A", .port = PORT_A },
-> -	{ .name = "DDI B", .port = PORT_B },
-> -	{ .name = "DDI C", .port = PORT_C },
-> -	{ .name = "DDI D", .port = PORT_D },
-> -	{ .name = "DDI E", .port = PORT_E },
-> -	{ .name = "DDI F", .port = PORT_F },
-> +	{ .name = "DDI A", .port = PORT_A, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0 },
-> +	{ .name = "DDI B", .port = PORT_B, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1 },
-> +	{ .name = "DDI C", .port = PORT_C, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2 },
-> +	{ .name = "DDI D", .port = PORT_D, .ddi_idx = 0x3, .phy_idx = 0x3, .vbt_idx = 0x3 },
-> +	{ .name = "DDI E", .port = PORT_E, .ddi_idx = 0x4, .phy_idx = 0x4, .vbt_idx = 0x4 },
-> +	{ .name = "DDI F", .port = PORT_F, .ddi_idx = 0x5, .phy_idx = 0x5, .vbt_idx = 0x5 },
->  	{ .port = PORT_NONE }
->  };
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index b7a6d56bac5f..22c999a54ff1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -311,6 +311,14 @@ enum phy {
->  	I915_MAX_PHYS
->  };
->  
-> +enum phy_type {
-> +	PHY_TYPE_NONE = 0,
-> +
-> +	PHY_TYPE_COMBO,
-> +	PHY_TYPE_MG,
-> +	PHY_TYPE_DKL,
-> +};
-> +
->  #define phy_name(a) ((a) + 'A')
->  
->  enum phy_fia {
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 92cc7fc66bce..df587219c744 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1436,6 +1436,10 @@ struct intel_dp_mst_encoder {
->  struct intel_ddi_port_info {
->  	const char *name;
->  	enum port port;
-> +	s8 phy_type;
-
-Please make the type enum phy_type.
-
-> +	u8 ddi_idx;
-> +	u8 phy_idx;
-> +	u8 vbt_idx;
->  };
->  
->  static inline enum dpio_channel
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogTWljaGHFgiBXaW5pYXJza2kgPG1pY2hhbC53aW5pYXJza2lAaW50ZWwuY29tPgoKR2V0
+dGluZyB3ZWRnZWQgZGV2aWNlIG9uIGRyaXZlciBpbml0IGlzIHByZXR0eSBtdWNoIHVucmVjb3Zl
+cmFibGUuClNpbmNlIHdlJ3JlIHJ1bm5pbmcgdmVyaW91cyBzY2VuYXJpb3MgdGhhdCBtYXkgcG90
+ZW50aWFsbHkgaGl0IHRoaXMgaW4KQ0kgKG1vZHVsZSByZWxvYWQgLyBzZWxmdGVzdHMgLyBob3R1
+bnBsdWcpLCBhbmQgaWYgaXQgaGFwcGVucywgaXQgbWVhbnMKdGhhdCB3ZSBjYW4ndCB0cnVzdCBh
+bnkgc3Vic2VxdWVudCBDSSByZXN1bHRzLCB3ZSBzaG91bGQganVzdCBhcHBseSB0aGUKdGFpbnQg
+dG8gbGV0IHRoZSBDSSBrbm93IHRoYXQgaXQgc2hvdWxkIHJlYm9vdCAoQ0kgY2hlY2tzIHRhaW50
+IGJldHdlZW4KdGVzdCBydW5zKS4KClNpZ25lZC1vZmYtYnk6IE1pY2hhxYIgV2luaWFyc2tpIDxt
+aWNoYWwud2luaWFyc2tpQGludGVsLmNvbT4KQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMt
+d2lsc29uLmNvLnVrPgpDYzogUGV0cmkgTGF0dmFsYSA8cGV0cmkubGF0dmFsYUBpbnRlbC5jb20+
+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVzZXQuYyB8IDIgKysKIDEgZmls
+ZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9ndC9pbnRlbF9yZXNldC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVz
+ZXQuYwppbmRleCAwMTU2ZjFmNWM3MzYuLmQyN2U4YmI3ZDU1MCAxMDA2NDQKLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVzZXQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC9pbnRlbF9yZXNldC5jCkBAIC0xMzYwLDYgKzEzNjAsOCBAQCB2b2lkIGludGVsX2d0X3Nl
+dF93ZWRnZWRfb25faW5pdChzdHJ1Y3QgaW50ZWxfZ3QgKmd0KQogCQkgICAgIEk5MTVfV0VER0VE
+X09OX0lOSVQpOwogCWludGVsX2d0X3NldF93ZWRnZWQoZ3QpOwogCXNldF9iaXQoSTkxNV9XRURH
+RURfT05fSU5JVCwgJmd0LT5yZXNldC5mbGFncyk7CisKKwlhZGRfdGFpbnRfZm9yX0NJKFRBSU5U
+X1dBUk4pOwogfQogCiB2b2lkIGludGVsX2d0X2luaXRfcmVzZXQoc3RydWN0IGludGVsX2d0ICpn
+dCkKLS0gCjIuMjcuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
