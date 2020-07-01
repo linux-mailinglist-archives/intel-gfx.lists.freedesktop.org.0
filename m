@@ -1,50 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CCC7211180
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 19:03:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3318211182
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 19:04:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEE0C6E14A;
-	Wed,  1 Jul 2020 17:03:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E6C16E95F;
+	Wed,  1 Jul 2020 17:04:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6E8B6E14A
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 17:03:37 +0000 (UTC)
-IronPort-SDR: 0R/gpnkTlQxPJA/XVziZn4xiM9fuopohs10v5z3IUgthzFKjeAufKdOIfMZrC/oNbu+0pGFP3F
- /uhSfO6Wygpg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9669"; a="148193981"
-X-IronPort-AV: E=Sophos;i="5.75,301,1589266800"; d="scan'208";a="148193981"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E511E6E95F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 17:04:33 +0000 (UTC)
+IronPort-SDR: BNq3KsiYrnaKuJSlOgIhSvbsewa7Rkl41oqt8QbWmJbG83Ubw+RMPJqaStvD9OTznUT/fm0B2p
+ Z8cMGwJOz5TA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9669"; a="126735203"
+X-IronPort-AV: E=Sophos;i="5.75,301,1589266800"; d="scan'208";a="126735203"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2020 10:03:37 -0700
-IronPort-SDR: kf1mVnl+HhINSrnFIJev9dX35XogzVt0VghDO8Cda7xKHdcxOhpntz/BhsgCibMBi/bp21w6ey
- j7BklJ1mAxcQ==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2020 10:04:33 -0700
+IronPort-SDR: Ard3oz3QNftcXRkARE9b5OMLXVCDCyjUhDfmUmKAcrrJ/knEBcGlGu2N7FQzqNywj8QSY3ttG7
+ 4oJFpTyTwSUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,301,1589266800"; d="scan'208";a="265461845"
-Received: from irvmail001.ir.intel.com ([163.33.26.43])
- by fmsmga007.fm.intel.com with ESMTP; 01 Jul 2020 10:03:35 -0700
-Received: from [10.249.153.138] (mwajdecz-mobl.ger.corp.intel.com
- [10.249.153.138])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 061H3ZbU002508
- for <intel-gfx@lists.freedesktop.org>; Wed, 1 Jul 2020 18:03:35 +0100
-To: intel-gfx@lists.freedesktop.org
-References: <20200701150721.423630-1-michal@hardline.pl>
- <159361667722.23379.11112968827469591639@build.alporthouse.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <2e496c70-bb81-aad5-1d7d-8a56fc71f72e@intel.com>
-Date: Wed, 1 Jul 2020 19:03:34 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+X-IronPort-AV: E=Sophos;i="5.75,301,1589266800"; d="scan'208";a="313832786"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 01 Jul 2020 10:04:31 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 01 Jul 2020 20:04:30 +0300
+Date: Wed, 1 Jul 2020 20:04:30 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20200701170430.GB6112@intel.com>
+References: <20200625001120.22810-1-lucas.demarchi@intel.com>
+ <20200625001120.22810-5-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <159361667722.23379.11112968827469591639@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Reboot CI if we get wedged during
- driver init
+Content-Disposition: inline
+In-Reply-To: <20200625001120.22810-5-lucas.demarchi@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 4/6] drm/i915/display: add phy,
+ vbt and ddi indexes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,47 +54,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiAwMS4wNy4yMDIwIDE3OjE3LCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4gUXVvdGluZyBNaWNo
-YcWCIFdpbmlhcnNraSAoMjAyMC0wNy0wMSAxNjowNzoyMSkKPj4gRnJvbTogTWljaGHFgiBXaW5p
-YXJza2kgPG1pY2hhbC53aW5pYXJza2lAaW50ZWwuY29tPgo+Pgo+PiBHZXR0aW5nIHdlZGdlZCBk
-ZXZpY2Ugb24gZHJpdmVyIGluaXQgaXMgcHJldHR5IG11Y2ggdW5yZWNvdmVyYWJsZS4KPj4gU2lu
-Y2Ugd2UncmUgcnVubmluZyB2ZXJpb3VzIHNjZW5hcmlvcyB0aGF0IG1heSBwb3RlbnRpYWxseSBo
-aXQgdGhpcyBpbgoKdHlwbwoKPj4gQ0kgKG1vZHVsZSByZWxvYWQgLyBzZWxmdGVzdHMgLyBob3R1
-bnBsdWcpLCBhbmQgaWYgaXQgaGFwcGVucywgaXQgbWVhbnMKPj4gdGhhdCB3ZSBjYW4ndCB0cnVz
-dCBhbnkgc3Vic2VxdWVudCBDSSByZXN1bHRzLCB3ZSBzaG91bGQganVzdCBhcHBseSB0aGUKPj4g
-dGFpbnQgdG8gbGV0IHRoZSBDSSBrbm93IHRoYXQgaXQgc2hvdWxkIHJlYm9vdCAoQ0kgY2hlY2tz
-IHRhaW50IGJldHdlZW4KPj4gdGVzdCBydW5zKS4KPj4KPj4gU2lnbmVkLW9mZi1ieTogTWljaGHF
-giBXaW5pYXJza2kgPG1pY2hhbC53aW5pYXJza2lAaW50ZWwuY29tPgo+PiBDYzogQ2hyaXMgV2ls
-c29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4+IENjOiBQZXRyaSBMYXR2YWxhIDxwZXRy
-aS5sYXR2YWxhQGludGVsLmNvbT4KPj4gLS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
-bnRlbF9yZXNldC5jIHwgMiArKwo+PiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKQo+
-Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVzZXQuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jlc2V0LmMKPj4gaW5kZXggMDE1NmYxZjVj
-NzM2Li5kMjdlOGJiN2Q1NTAgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX3Jlc2V0LmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVz
-ZXQuYwo+PiBAQCAtMTM2MCw2ICsxMzYwLDggQEAgdm9pZCBpbnRlbF9ndF9zZXRfd2VkZ2VkX29u
-X2luaXQoc3RydWN0IGludGVsX2d0ICpndCkKPj4gICAgICAgICAgICAgICAgICAgICAgSTkxNV9X
-RURHRURfT05fSU5JVCk7Cj4+ICAgICAgICAgaW50ZWxfZ3Rfc2V0X3dlZGdlZChndCk7Cj4+ICAg
-ICAgICAgc2V0X2JpdChJOTE1X1dFREdFRF9PTl9JTklULCAmZ3QtPnJlc2V0LmZsYWdzKTsKPj4g
-Kwo+IAo+IEFoLCB3ZSBkb24ndCBzYXkgYXJvdW5kIGhlcmUgdGhhdCB0aGlzIFdFREdFRF9PTl9J
-TklUIGlzIG5vbi1yZWNvdmVyYWJsZSwKPiBjb3VsZCB5b3UgcGxlYXNlIGFkZCBhIGNvbW1lbnQg
-dG8gdGhhdCBlZmZlY3Q/Cj4gCgpTdWNoIGNvbW1lbnQgaXMgYWxyZWFkeSBpbiBXRURHRURfT05f
-SU5JVCBkZXNjcmlwdGlvbiwgYnV0IHJlcGVhdGluZyBpdAp3aWxsIGRlZmluaXRlbHkgaGVscAoK
-Pj4gKyAgICAgICBhZGRfdGFpbnRfZm9yX0NJKFRBSU5UX1dBUk4pOwoKYnR3LCB0b2RheSB3ZSBh
-cmUgdGFpbnRpbmcga2VybmVsIGZvciBDSSBzaWxlbnRseSBhbmQgZnJvbSBkaWZmZXJlbnQKcGxh
-Y2VzLCBzbyBtYXliZSBpdCBpcyB3b3J0aCB0byBhZGQgdGhlcmUgc29tZSBkZWJ1ZyBsb2cgd2l0
-aApfX2J1aWx0aW5fcmV0dXJuX2FkZHJlc3MoKSBmb3IgYmV0dGVyIGRpYWdub3NlIHdoeSB3ZSBz
-dG9wcGVkIENJPwoKd2l0aCB0eXBvL2NvbW1lbnQgZml4ZWQsClJldmlld2VkLWJ5OiBNaWNoYWwg
-V2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KCj4+ICB9Cj4+ICAKPj4gIHZv
-aWQgaW50ZWxfZ3RfaW5pdF9yZXNldChzdHJ1Y3QgaW50ZWxfZ3QgKmd0KQo+PiAtLSAKPj4gMi4y
-Ny4wCj4+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-PiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-Zwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Jun 24, 2020 at 05:11:18PM -0700, Lucas De Marchi wrote:
+> Identify 3 possible cases in which the index numbers can be different
+> from the "port" and add them to the description-based ddi initialization
+> table.  This can be used in place of additional functions mapping from
+> one to the other.  Right now we already cover part of this by creating ki=
+nd of
+> virtual phy numbering, but that comes with downsides:
+> =
+
+> a) there's not really a "phy numbering" in the spec, this is purely a
+> software thing; hardware uses whatever they want thinking mapping from
+> one to the other arbitrarily is easy in software.
+> =
+
+> b) currently the mapping occurs on "leaf" functions, making the decision
+> based on the platform for each of those functions
+> =
+
+> With this new table the approach will be: the port, as defined by the
+> enum port, is merely a driver convention and won't be used anymore to
+> define the register offset or register bits. For that we have the other
+> 3 indexes, identified as being possibly different from the current usage
+> of register bits: ddi, vbt and phy. The phy type is also added here,
+> meant to replace the checks for combo vs tc.
+> =
+
+> v2: Rebase and add RKL
+> =
+
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  | 64 ++++++++++---------
+>  drivers/gpu/drm/i915/display/intel_display.h  |  8 +++
+>  .../drm/i915/display/intel_display_types.h    |  4 ++
+>  3 files changed, 45 insertions(+), 31 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index c234b50212b0..d591063502c5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -16806,57 +16806,59 @@ static void intel_pps_init(struct drm_i915_priv=
+ate *dev_priv)
+>  }
+>  =
+
+>  static const struct intel_ddi_port_info rkl_ports[] =3D {
+> -	{ .name =3D "DDI A",   .port =3D PORT_A },
+> -	{ .name =3D "DDI B",   .port =3D PORT_B },
+> -	{ .name =3D "DDI TC1", .port =3D PORT_D },
+> -	{ .name =3D "DDI TC2", .port =3D PORT_E },
+> +	{ .name =3D "DDI A", .port =3D PORT_A, .phy_type =3D PHY_TYPE_COMBO, .d=
+di_idx =3D 0x0, .phy_idx =3D 0x0, .vbt_idx =3D 0x0, },
+
+I'm thinking we won't need ddi_idx and instead 'port' should suffice.
+We can add the aliases with the TC names for tgl+ to unconfuse the
+current mess. In fact I already tried that in a local branch (while
+doing the hpd_pin cleanup) and it looks mostly fine to me. There are
+a few annoying parts, like power domains, where we still end up with
+port G-I names that don't exist anywhere in bspec (excetp in VBT).
+
+Not really sure about the other bare numbers you're using here either.
+Migth just make things less confusing if we don't have names for many
+things. So I think enums would be better.
+
+And I think this stuff should probably go into intel_ddi.c instead
+of intel_display.c.
+
+
+> +	{ .name =3D "DDI B", .port =3D PORT_B, .phy_type =3D PHY_TYPE_COMBO, .d=
+di_idx =3D 0x1, .phy_idx =3D 0x1, .vbt_idx =3D 0x1, },
+> +	/* TODO: use continguous namespace for port once driver is converted */
+> +	{ .name =3D "DDI C", .port =3D PORT_D, .phy_type =3D PHY_TYPE_COMBO, .d=
+di_idx =3D 0x3, .phy_idx =3D 0x2, .vbt_idx =3D 0x2, },
+> +	{ .name =3D "DDI D", .port =3D PORT_E, .phy_type =3D PHY_TYPE_COMBO, .d=
+di_idx =3D 0x4, .phy_idx =3D 0x3, .vbt_idx =3D 0x3, },
+>  	{ .port =3D PORT_NONE }
+>  };
+>  =
+
+>  static const struct intel_ddi_port_info tgl_ports[] =3D {
+> -	{ .name =3D "DDI A",   .port =3D PORT_A },
+> -	{ .name =3D "DDI B",   .port =3D PORT_B },
+> -	{ .name =3D "DDI TC1", .port =3D PORT_D },
+> -	{ .name =3D "DDI TC2", .port =3D PORT_E },
+> -	{ .name =3D "DDI TC3", .port =3D PORT_F },
+> -	{ .name =3D "DDI TC4", .port =3D PORT_G },
+> -	{ .name =3D "DDI TC5", .port =3D PORT_H },
+> -	{ .name =3D "DDI TC6", .port =3D PORT_I },
+> +	{ .name =3D "DDI A",   .port =3D PORT_A, .phy_type =3D PHY_TYPE_COMBO, =
+.ddi_idx =3D 0x0, .phy_idx =3D 0x0, .vbt_idx =3D 0x0, },
+> +	{ .name =3D "DDI B",   .port =3D PORT_B, .phy_type =3D PHY_TYPE_COMBO, =
+.ddi_idx =3D 0x1, .phy_idx =3D 0x1, .vbt_idx =3D 0x1, },
+> +	/* TODO: use continguous namespace for port once driver is converted */
+> +	{ .name =3D "DDI TC1", .port =3D PORT_D, .phy_type =3D PHY_TYPE_DKL,   =
+.ddi_idx =3D 0x3, .phy_idx =3D 0x0, .vbt_idx =3D 0x2, },
+> +	{ .name =3D "DDI TC2", .port =3D PORT_E, .phy_type =3D PHY_TYPE_DKL,   =
+.ddi_idx =3D 0x4, .phy_idx =3D 0x1, .vbt_idx =3D 0x3, },
+> +	{ .name =3D "DDI TC3", .port =3D PORT_F, .phy_type =3D PHY_TYPE_DKL,   =
+.ddi_idx =3D 0x5, .phy_idx =3D 0x2, .vbt_idx =3D 0x4, },
+> +	{ .name =3D "DDI TC4", .port =3D PORT_G, .phy_type =3D PHY_TYPE_DKL,   =
+.ddi_idx =3D 0x6, .phy_idx =3D 0x3, .vbt_idx =3D 0x5, },
+> +	{ .name =3D "DDI TC5", .port =3D PORT_H, .phy_type =3D PHY_TYPE_DKL,   =
+.ddi_idx =3D 0x7, .phy_idx =3D 0x4, .vbt_idx =3D 0x6, },
+> +	{ .name =3D "DDI TC6", .port =3D PORT_I, .phy_type =3D PHY_TYPE_DKL,   =
+.ddi_idx =3D 0x8, .phy_idx =3D 0x5, .vbt_idx =3D 0x7, },
+>  	{ .port =3D PORT_NONE }
+>  };
+>  =
+
+>  static const struct intel_ddi_port_info ehl_ports[] =3D {
+> -	{ .name =3D "DDI A", .port =3D PORT_A },
+> -	{ .name =3D "DDI B", .port =3D PORT_B },
+> -	{ .name =3D "DDI C", .port =3D PORT_C },
+> -	{ .name =3D "DDI D", .port =3D PORT_D },
+> +	{ .name =3D "DDI A", .port =3D PORT_A, .phy_type =3D PHY_TYPE_COMBO, .d=
+di_idx =3D 0x0, .phy_idx =3D 0x0, .vbt_idx =3D 0x0, },
+> +	{ .name =3D "DDI B", .port =3D PORT_B, .phy_type =3D PHY_TYPE_COMBO, .d=
+di_idx =3D 0x1, .phy_idx =3D 0x1, .vbt_idx =3D 0x1, },
+> +	{ .name =3D "DDI C", .port =3D PORT_C, .phy_type =3D PHY_TYPE_COMBO, .d=
+di_idx =3D 0x2, .phy_idx =3D 0x2, .vbt_idx =3D 0x2, },
+> +	{ .name =3D "DDI D", .port =3D PORT_D, .phy_type =3D PHY_TYPE_COMBO, .d=
+di_idx =3D 0x3, .phy_idx =3D 0x0, .vbt_idx =3D 0x3, },
+>  	{ .port =3D PORT_NONE }
+>  };
+>  =
+
+>  static const struct intel_ddi_port_info icl_ports[] =3D {
+> -	{ .name =3D "DDI A",   .port =3D PORT_A },
+> -	{ .name =3D "DDI B",   .port =3D PORT_B },
+> -	{ .name =3D "DDI TC1", .port =3D PORT_C },
+> -	{ .name =3D "DDI TC2", .port =3D PORT_D },
+> -	{ .name =3D "DDI TC3", .port =3D PORT_E },
+> -	{ .name =3D "DDI TC4", .port =3D PORT_F },
+> +	{ .name =3D "DDI A",   .port =3D PORT_A, .phy_type =3D PHY_TYPE_COMBO, =
+.ddi_idx =3D 0x0, .phy_idx =3D 0x0, .vbt_idx =3D 0x0,},
+> +	{ .name =3D "DDI B",   .port =3D PORT_B, .phy_type =3D PHY_TYPE_COMBO, =
+.ddi_idx =3D 0x1, .phy_idx =3D 0x1, .vbt_idx =3D 0x1,},
+> +	{ .name =3D "DDI TC1", .port =3D PORT_C, .phy_type =3D PHY_TYPE_MG,    =
+.ddi_idx =3D 0x2, .phy_idx =3D 0x0, .vbt_idx =3D 0x2,},
+> +	{ .name =3D "DDI TC2", .port =3D PORT_D, .phy_type =3D PHY_TYPE_MG,    =
+.ddi_idx =3D 0x3, .phy_idx =3D 0x1, .vbt_idx =3D 0x3,},
+> +	{ .name =3D "DDI TC3", .port =3D PORT_E, .phy_type =3D PHY_TYPE_MG,    =
+.ddi_idx =3D 0x4, .phy_idx =3D 0x2, .vbt_idx =3D 0x4,},
+> +	{ .name =3D "DDI TC4", .port =3D PORT_F, .phy_type =3D PHY_TYPE_MG,    =
+.ddi_idx =3D 0x5, .phy_idx =3D 0x3, .vbt_idx =3D 0x5,},
+>  	{ .port =3D PORT_NONE }
+>  };
+>  =
+
+>  static const struct intel_ddi_port_info gen9lp_ports[] =3D {
+> -	{ .name =3D "DDI A", .port =3D PORT_A },
+> -	{ .name =3D "DDI B", .port =3D PORT_B },
+> -	{ .name =3D "DDI C", .port =3D PORT_C },
+> +	{ .name =3D "DDI A", .port =3D PORT_A, .ddi_idx =3D 0x0, .phy_idx =3D 0=
+x0, .vbt_idx =3D 0x0 },
+> +	{ .name =3D "DDI B", .port =3D PORT_B, .ddi_idx =3D 0x1, .phy_idx =3D 0=
+x1, .vbt_idx =3D 0x1 },
+> +	{ .name =3D "DDI C", .port =3D PORT_C, .ddi_idx =3D 0x2, .phy_idx =3D 0=
+x2, .vbt_idx =3D 0x2 },
+>  	{ .port =3D PORT_NONE }
+>  };
+>  =
+
+>  static const struct intel_ddi_port_info ddi_ports[] =3D {
+> -	{ .name =3D "DDI A", .port =3D PORT_A },
+> -	{ .name =3D "DDI B", .port =3D PORT_B },
+> -	{ .name =3D "DDI C", .port =3D PORT_C },
+> -	{ .name =3D "DDI D", .port =3D PORT_D },
+> -	{ .name =3D "DDI E", .port =3D PORT_E },
+> -	{ .name =3D "DDI F", .port =3D PORT_F },
+> +	{ .name =3D "DDI A", .port =3D PORT_A, .ddi_idx =3D 0x0, .phy_idx =3D 0=
+x0, .vbt_idx =3D 0x0 },
+> +	{ .name =3D "DDI B", .port =3D PORT_B, .ddi_idx =3D 0x1, .phy_idx =3D 0=
+x1, .vbt_idx =3D 0x1 },
+> +	{ .name =3D "DDI C", .port =3D PORT_C, .ddi_idx =3D 0x2, .phy_idx =3D 0=
+x2, .vbt_idx =3D 0x2 },
+> +	{ .name =3D "DDI D", .port =3D PORT_D, .ddi_idx =3D 0x3, .phy_idx =3D 0=
+x3, .vbt_idx =3D 0x3 },
+> +	{ .name =3D "DDI E", .port =3D PORT_E, .ddi_idx =3D 0x4, .phy_idx =3D 0=
+x4, .vbt_idx =3D 0x4 },
+> +	{ .name =3D "DDI F", .port =3D PORT_F, .ddi_idx =3D 0x5, .phy_idx =3D 0=
+x5, .vbt_idx =3D 0x5 },
+>  	{ .port =3D PORT_NONE }
+>  };
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
+rm/i915/display/intel_display.h
+> index b7a6d56bac5f..22c999a54ff1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -311,6 +311,14 @@ enum phy {
+>  	I915_MAX_PHYS
+>  };
+>  =
+
+> +enum phy_type {
+> +	PHY_TYPE_NONE =3D 0,
+> +
+> +	PHY_TYPE_COMBO,
+> +	PHY_TYPE_MG,
+> +	PHY_TYPE_DKL,
+> +};
+> +
+>  #define phy_name(a) ((a) + 'A')
+>  =
+
+>  enum phy_fia {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 92cc7fc66bce..df587219c744 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1436,6 +1436,10 @@ struct intel_dp_mst_encoder {
+>  struct intel_ddi_port_info {
+>  	const char *name;
+>  	enum port port;
+> +	s8 phy_type;
+> +	u8 ddi_idx;
+> +	u8 phy_idx;
+> +	u8 vbt_idx;
+>  };
+>  =
+
+>  static inline enum dpio_channel
+> -- =
+
+> 2.26.2
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
