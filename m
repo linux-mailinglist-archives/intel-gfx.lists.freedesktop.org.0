@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A38B210F05
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 17:23:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC62C210F0B
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 17:24:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61A7089339;
-	Wed,  1 Jul 2020 15:23:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 126A16E040;
+	Wed,  1 Jul 2020 15:24:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5FEB89339
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 15:23:11 +0000 (UTC)
-IronPort-SDR: yMm+kKbyoo0yJuXS1ms10K45d7y12r7TuEIdoMf896pLi2FvloO/tMFUwyD1zANhph1HZob6F+
- y6C3fYVX+8Iw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9668"; a="144780036"
-X-IronPort-AV: E=Sophos;i="5.75,300,1589266800"; d="scan'208";a="144780036"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1A3A6E040
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 15:24:11 +0000 (UTC)
+IronPort-SDR: Djos9BRfpTNDYCif553G2278eEVs3/Psl7RZxTxuYz89uxGpdKK9bP6dZSyjX8MNCwy4V0oKP9
+ kjDqCDPsbEtw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9668"; a="148157224"
+X-IronPort-AV: E=Sophos;i="5.75,300,1589266800"; d="scan'208";a="148157224"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2020 08:23:11 -0700
-IronPort-SDR: g8XhIh22V8WB2zXYjoIg9N/rpJ+uI7NEabCGZilx5EWhhJbOSjvj9TeN6OQq2Ow/I4pT/s6Ir7
- nMA2/pFDKZFw==
-X-IronPort-AV: E=Sophos;i="5.75,300,1589266800"; d="scan'208";a="455139844"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2020 08:24:11 -0700
+IronPort-SDR: oKLGcFuAv0Z4vTuED/V/WtcXEP/tb80TsaqvKYJ2lvJiWA+W1OcTw9AcpV5MXcAjm7a3OeUoUG
+ i8hAgNmKuppw==
+X-IronPort-AV: E=Sophos;i="5.75,300,1589266800"; d="scan'208";a="455140060"
 Received: from gaulion-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.51.61])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2020 08:23:08 -0700
+ 01 Jul 2020 08:24:09 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <87d05fl1t1.fsf@intel.com>
+In-Reply-To: <20200625001120.22810-6-lucas.demarchi@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20200625001120.22810-1-lucas.demarchi@intel.com>
- <20200625001120.22810-5-lucas.demarchi@intel.com> <87d05fl1t1.fsf@intel.com>
-Date: Wed, 01 Jul 2020 18:23:05 +0300
-Message-ID: <877dvnl0o6.fsf@intel.com>
+ <20200625001120.22810-6-lucas.demarchi@intel.com>
+Date: Wed, 01 Jul 2020 18:24:07 +0300
+Message-ID: <874kqrl0mg.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 4/6] drm/i915/display: add phy,
- vbt and ddi indexes
+Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915/display: use port_info in
+ intel_ddi_init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,198 +57,176 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 01 Jul 2020, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Wed, 24 Jun 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> Identify 3 possible cases in which the index numbers can be different
->> from the "port" and add them to the description-based ddi initialization
->> table.  This can be used in place of additional functions mapping from
->> one to the other.  Right now we already cover part of this by creating kind of
->> virtual phy numbering, but that comes with downsides:
->>
->> a) there's not really a "phy numbering" in the spec, this is purely a
->> software thing; hardware uses whatever they want thinking mapping from
->> one to the other arbitrarily is easy in software.
->>
->> b) currently the mapping occurs on "leaf" functions, making the decision
->> based on the platform for each of those functions
->>
->> With this new table the approach will be: the port, as defined by the
->> enum port, is merely a driver convention and won't be used anymore to
->> define the register offset or register bits. For that we have the other
->> 3 indexes, identified as being possibly different from the current usage
->> of register bits: ddi, vbt and phy. The phy type is also added here,
->> meant to replace the checks for combo vs tc.
->>
->> v2: Rebase and add RKL
->>
->
-> I guess I'd like to see where the *_idx fields will lead before
-> advocating for this.
->
-> With them removed,
+On Wed, 24 Jun 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> Now that we have tables for all platforms using ddi, keep the port_info
+> around so we can use it for decisions like "what phy does it have?"
+> instead of keep checking the platform/gen everywhere.
 
-Ahem, ddi_idx and vbt_idx - obviously phy_idx is used, and I approve of
-the use.
-
-Another comment inline below.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 >
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 39 ++++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_ddi.h      |  8 +++-
+>  drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
+>  .../drm/i915/display/intel_display_types.h    |  3 ++
+>  4 files changed, 37 insertions(+), 15 deletions(-)
 >
-> But I'm also not saying you can't have them - until I see where this
-> leads. ;)
->
-> One comment inline below.
->
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c  | 64 ++++++++++---------
->>  drivers/gpu/drm/i915/display/intel_display.h  |  8 +++
->>  .../drm/i915/display/intel_display_types.h    |  4 ++
->>  3 files changed, 45 insertions(+), 31 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index c234b50212b0..d591063502c5 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -16806,57 +16806,59 @@ static void intel_pps_init(struct drm_i915_private *dev_priv)
->>  }
->>  
->>  static const struct intel_ddi_port_info rkl_ports[] = {
->> -	{ .name = "DDI A",   .port = PORT_A },
->> -	{ .name = "DDI B",   .port = PORT_B },
->> -	{ .name = "DDI TC1", .port = PORT_D },
->> -	{ .name = "DDI TC2", .port = PORT_E },
->> +	{ .name = "DDI A", .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
->> +	{ .name = "DDI B", .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
->> +	/* TODO: use continguous namespace for port once driver is converted */
->> +	{ .name = "DDI C", .port = PORT_D, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x3, .phy_idx = 0x2, .vbt_idx = 0x2, },
->> +	{ .name = "DDI D", .port = PORT_E, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x4, .phy_idx = 0x3, .vbt_idx = 0x3, },
->>  	{ .port = PORT_NONE }
->>  };
->>  
->>  static const struct intel_ddi_port_info tgl_ports[] = {
->> -	{ .name = "DDI A",   .port = PORT_A },
->> -	{ .name = "DDI B",   .port = PORT_B },
->> -	{ .name = "DDI TC1", .port = PORT_D },
->> -	{ .name = "DDI TC2", .port = PORT_E },
->> -	{ .name = "DDI TC3", .port = PORT_F },
->> -	{ .name = "DDI TC4", .port = PORT_G },
->> -	{ .name = "DDI TC5", .port = PORT_H },
->> -	{ .name = "DDI TC6", .port = PORT_I },
->> +	{ .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
->> +	{ .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
->> +	/* TODO: use continguous namespace for port once driver is converted */
->> +	{ .name = "DDI TC1", .port = PORT_D, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x3, .phy_idx = 0x0, .vbt_idx = 0x2, },
->> +	{ .name = "DDI TC2", .port = PORT_E, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x4, .phy_idx = 0x1, .vbt_idx = 0x3, },
->> +	{ .name = "DDI TC3", .port = PORT_F, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x5, .phy_idx = 0x2, .vbt_idx = 0x4, },
->> +	{ .name = "DDI TC4", .port = PORT_G, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x6, .phy_idx = 0x3, .vbt_idx = 0x5, },
->> +	{ .name = "DDI TC5", .port = PORT_H, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x7, .phy_idx = 0x4, .vbt_idx = 0x6, },
->> +	{ .name = "DDI TC6", .port = PORT_I, .phy_type = PHY_TYPE_DKL,   .ddi_idx = 0x8, .phy_idx = 0x5, .vbt_idx = 0x7, },
->>  	{ .port = PORT_NONE }
->>  };
->>  
->>  static const struct intel_ddi_port_info ehl_ports[] = {
->> -	{ .name = "DDI A", .port = PORT_A },
->> -	{ .name = "DDI B", .port = PORT_B },
->> -	{ .name = "DDI C", .port = PORT_C },
->> -	{ .name = "DDI D", .port = PORT_D },
->> +	{ .name = "DDI A", .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
->> +	{ .name = "DDI B", .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
->> +	{ .name = "DDI C", .port = PORT_C, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2, },
->> +	{ .name = "DDI D", .port = PORT_D, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x3, .phy_idx = 0x0, .vbt_idx = 0x3, },
->>  	{ .port = PORT_NONE }
->>  };
->>  
->>  static const struct intel_ddi_port_info icl_ports[] = {
->> -	{ .name = "DDI A",   .port = PORT_A },
->> -	{ .name = "DDI B",   .port = PORT_B },
->> -	{ .name = "DDI TC1", .port = PORT_C },
->> -	{ .name = "DDI TC2", .port = PORT_D },
->> -	{ .name = "DDI TC3", .port = PORT_E },
->> -	{ .name = "DDI TC4", .port = PORT_F },
->> +	{ .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0,},
->> +	{ .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1,},
->> +	{ .name = "DDI TC1", .port = PORT_C, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x2, .phy_idx = 0x0, .vbt_idx = 0x2,},
->> +	{ .name = "DDI TC2", .port = PORT_D, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x3, .phy_idx = 0x1, .vbt_idx = 0x3,},
->> +	{ .name = "DDI TC3", .port = PORT_E, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x4, .phy_idx = 0x2, .vbt_idx = 0x4,},
->> +	{ .name = "DDI TC4", .port = PORT_F, .phy_type = PHY_TYPE_MG,    .ddi_idx = 0x5, .phy_idx = 0x3, .vbt_idx = 0x5,},
->>  	{ .port = PORT_NONE }
->>  };
->>  
->>  static const struct intel_ddi_port_info gen9lp_ports[] = {
->> -	{ .name = "DDI A", .port = PORT_A },
->> -	{ .name = "DDI B", .port = PORT_B },
->> -	{ .name = "DDI C", .port = PORT_C },
->> +	{ .name = "DDI A", .port = PORT_A, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0 },
->> +	{ .name = "DDI B", .port = PORT_B, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1 },
->> +	{ .name = "DDI C", .port = PORT_C, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2 },
->>  	{ .port = PORT_NONE }
->>  };
->>  
->>  static const struct intel_ddi_port_info ddi_ports[] = {
->> -	{ .name = "DDI A", .port = PORT_A },
->> -	{ .name = "DDI B", .port = PORT_B },
->> -	{ .name = "DDI C", .port = PORT_C },
->> -	{ .name = "DDI D", .port = PORT_D },
->> -	{ .name = "DDI E", .port = PORT_E },
->> -	{ .name = "DDI F", .port = PORT_F },
->> +	{ .name = "DDI A", .port = PORT_A, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0 },
->> +	{ .name = "DDI B", .port = PORT_B, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1 },
->> +	{ .name = "DDI C", .port = PORT_C, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2 },
->> +	{ .name = "DDI D", .port = PORT_D, .ddi_idx = 0x3, .phy_idx = 0x3, .vbt_idx = 0x3 },
->> +	{ .name = "DDI E", .port = PORT_E, .ddi_idx = 0x4, .phy_idx = 0x4, .vbt_idx = 0x4 },
->> +	{ .name = "DDI F", .port = PORT_F, .ddi_idx = 0x5, .phy_idx = 0x5, .vbt_idx = 0x5 },
->>  	{ .port = PORT_NONE }
->>  };
->>  
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
->> index b7a6d56bac5f..22c999a54ff1 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display.h
->> @@ -311,6 +311,14 @@ enum phy {
->>  	I915_MAX_PHYS
->>  };
->>  
->> +enum phy_type {
->> +	PHY_TYPE_NONE = 0,
->> +
->> +	PHY_TYPE_COMBO,
->> +	PHY_TYPE_MG,
->> +	PHY_TYPE_DKL,
->> +};
->> +
->>  #define phy_name(a) ((a) + 'A')
->>  
->>  enum phy_fia {
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index 92cc7fc66bce..df587219c744 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1436,6 +1436,10 @@ struct intel_dp_mst_encoder {
->>  struct intel_ddi_port_info {
->>  	const char *name;
->>  	enum port port;
->> +	s8 phy_type;
->
-> Please make the type enum phy_type.
->
->> +	u8 ddi_idx;
->> +	u8 phy_idx;
-
-I think we should retain enum phy as type for this too. I generally
-think this gives people a better grasp that you shouldn't convert it to
-some other generic integer nilly-willy. Also, if we need to change this
-later on, tooling (cocci, tagging tools, etc.) are more helpful with
-enums.
-
-BR,
-Jani.
-
->> +	u8 vbt_idx;
->>  };
->>  
->>  static inline enum dpio_channel
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index ca7bb2294d2b..27e2f29f47a2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4844,12 +4844,24 @@ intel_ddi_max_lanes(struct intel_digital_port *intel_dport)
+>  	return max_lanes;
+>  }
+>  
+> -void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+> +bool intel_ddi_has_tc_phy(const struct intel_digital_port *dig_port)
+>  {
+> +	return dig_port->port_info->phy_type == PHY_TYPE_MG ||
+> +		dig_port->port_info->phy_type == PHY_TYPE_DKL;
+> +}
+> +
+> +bool intel_ddi_has_combo_phy(const struct intel_digital_port *dig_port)
+> +{
+> +	return dig_port->port_info->phy_type == PHY_TYPE_COMBO;
+> +}
+> +
+> +void intel_ddi_init(struct drm_i915_private *dev_priv,
+> +		    const struct intel_ddi_port_info *port_info)
+> +{
+> +	enum port port = port_info->port;
+>  	struct intel_digital_port *intel_dig_port;
+>  	struct intel_encoder *encoder;
+>  	bool init_hdmi, init_dp, init_lspcon = false;
+> -	enum phy phy = intel_port_to_phy(dev_priv, port);
+>  
+>  	init_hdmi = intel_bios_port_supports_dvi(dev_priv, port) ||
+>  		intel_bios_port_supports_hdmi(dev_priv, port);
+> @@ -4864,14 +4876,14 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>  		init_dp = true;
+>  		init_lspcon = true;
+>  		init_hdmi = false;
+> -		drm_dbg_kms(&dev_priv->drm, "VBT says port %c has lspcon\n",
+> -			    port_name(port));
+> +		drm_dbg_kms(&dev_priv->drm, "VBT says port %s has lspcon\n",
+> +			    port_info->name);
+>  	}
+>  
+>  	if (!init_dp && !init_hdmi) {
+>  		drm_dbg_kms(&dev_priv->drm,
+> -			    "VBT says port %c is not DVI/HDMI/DP compatible, respect it\n",
+> -			    port_name(port));
+> +			    "VBT says port %s is not DVI/HDMI/DP compatible, respect it\n",
+> +			    port_info->name);
+>  		return;
+>  	}
+>  
+> @@ -4882,7 +4894,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>  	encoder = &intel_dig_port->base;
+>  
+>  	drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_ddi_funcs,
+> -			 DRM_MODE_ENCODER_TMDS, "DDI %c", port_name(port));
+> +			 DRM_MODE_ENCODER_TMDS, port_info->name);
+>  
+>  	encoder->hotplug = intel_ddi_hotplug;
+>  	encoder->compute_output_type = intel_ddi_compute_output_type;
+> @@ -4917,8 +4929,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>  	intel_dig_port->dp.output_reg = INVALID_MMIO_REG;
+>  	intel_dig_port->max_lanes = intel_ddi_max_lanes(intel_dig_port);
+>  	intel_dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, port);
+> +	intel_dig_port->port_info = port_info;
+>  
+> -	if (intel_phy_is_tc(dev_priv, phy)) {
+> +	if (intel_ddi_has_tc_phy(intel_dig_port)) {
+>  		bool is_legacy =
+>  			!intel_bios_port_supports_typec_usb(dev_priv, port) &&
+>  			!intel_bios_port_supports_tbt(dev_priv, port);
+> @@ -4951,20 +4964,20 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>  		if (lspcon_init(intel_dig_port))
+>  			/* TODO: handle hdmi info frame part */
+>  			drm_dbg_kms(&dev_priv->drm,
+> -				    "LSPCON init success on port %c\n",
+> -				    port_name(port));
+> +				    "LSPCON init success on port %s\n",
+> +				    port_info->name);
+>  		else
+>  			/*
+>  			 * LSPCON init faied, but DP init was success, so
+>  			 * lets try to drive as DP++ port.
+>  			 */
+>  			drm_err(&dev_priv->drm,
+> -				"LSPCON init failed on port %c\n",
+> -				port_name(port));
+> +				"LSPCON init failed on port %s\n",
+> +				port_info->name);
+>  	}
+>  
+>  	if (INTEL_GEN(dev_priv) >= 11) {
+> -		if (intel_phy_is_tc(dev_priv, phy))
+> +		if (intel_ddi_has_tc_phy(intel_dig_port))
+>  			intel_dig_port->connected = intel_tc_port_connected;
+>  		else
+>  			intel_dig_port->connected = lpt_digital_port_connected;
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
+> index 077e9dbbe367..059d87171c81 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+> @@ -13,6 +13,7 @@ struct drm_i915_private;
+>  struct intel_connector;
+>  struct intel_crtc;
+>  struct intel_crtc_state;
+> +struct intel_ddi_port_info;
+>  struct intel_dp;
+>  struct intel_dpll_hw_state;
+>  struct intel_encoder;
+> @@ -23,7 +24,8 @@ void intel_ddi_fdi_post_disable(struct intel_atomic_state *state,
+>  				const struct drm_connector_state *old_conn_state);
+>  void hsw_fdi_link_train(struct intel_encoder *encoder,
+>  			const struct intel_crtc_state *crtc_state);
+> -void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port);
+> +void intel_ddi_init(struct drm_i915_private *dev_priv,
+> +		    const struct intel_ddi_port_info *port_info);
+>  bool intel_ddi_get_hw_state(struct intel_encoder *encoder, enum pipe *pipe);
+>  void intel_ddi_enable_transcoder_func(struct intel_encoder *encoder,
+>  				      const struct intel_crtc_state *crtc_state);
+> @@ -46,4 +48,8 @@ int intel_ddi_toggle_hdcp_signalling(struct intel_encoder *intel_encoder,
+>  				     bool enable);
+>  void icl_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
+>  
+> +
+> +bool intel_ddi_has_tc_phy(const struct intel_digital_port *dig_port);
+> +bool intel_ddi_has_combo_phy(const struct intel_digital_port *dig_port);
+> +
+>  #endif /* __INTEL_DDI_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index d591063502c5..001b44c004ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -16880,7 +16880,7 @@ static void setup_ddi_outputs_desc(struct drm_i915_private *i915,
+>  		if (test_bit(port_info->port, &disable_mask))
+>  			continue;
+>  
+> -		intel_ddi_init(i915, port_info->port);
+> +		intel_ddi_init(i915, port_info);
+>  	}
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index df587219c744..7f2156e6966f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1402,6 +1402,9 @@ struct intel_digital_port {
+>  	enum intel_display_power_domain ddi_io_power_domain;
+>  	struct mutex tc_lock;	/* protects the TypeC port mode */
+>  	intel_wakeref_t tc_lock_wakeref;
+> +
+> +	const struct intel_ddi_port_info *port_info;
+> +
+>  	int tc_link_refcount;
+>  	bool tc_legacy_port:1;
+>  	char tc_port_name[8];
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
