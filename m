@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A66912106A4
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 10:46:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 292AB2106B7
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 10:50:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA3266E4D0;
-	Wed,  1 Jul 2020 08:46:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D9976E865;
+	Wed,  1 Jul 2020 08:50:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 286F46E440;
- Wed,  1 Jul 2020 08:46:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 267E0A0118;
- Wed,  1 Jul 2020 08:46:40 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 01 Jul 2020 08:46:40 -0000
-Message-ID: <159359320015.16668.6703880780560726562@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200701083936.28723-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B81F6E865
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 08:50:48 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21672141-1500050 
+ for multiple; Wed, 01 Jul 2020 09:50:40 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Jul 2020 09:50:41 +0100
+Message-Id: <20200701085041.17700-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200701083936.28723-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915/gt=3A_Harden_the_heartb?=
- =?utf-8?q?eat_against_a_stuck_driver?=
+References: <20200701083936.28723-1-chris@chris-wilson.co.uk>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Harden the heartbeat against a
+ stuck driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,75 +39,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+If the driver gets stuck holding the kernel timeline, we cannot issue a
+heartbeat and so fail to discover that the driver is indeed stuck and do
+not issue a GPU reset (which would hopefully unstick the driver!).
+Switch to using a trylock so that we can query if the heartbeat's
+timeline mutex is locked elsewhere, and then use the timer to probe if it
+remains stuck at the same spot for consecutive heartbeats, indicating
+that the mutex has not been released and the engine has not progressed.
 
-Series: series starting with [1/2] drm/i915/gt: Harden the heartbeat against a stuck driver
-URL   : https://patchwork.freedesktop.org/series/78986/
-State : warning
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 14 ++++++++++++--
+ drivers/gpu/drm/i915/gt/intel_engine_types.h     |  1 +
+ 2 files changed, 13 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1223:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1226:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1229:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1232:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2269:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2270:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2271:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2272:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2273:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+index 8db7e93abde5..1c6c6692dd17 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+@@ -65,6 +65,7 @@ static void heartbeat(struct work_struct *wrk)
+ 		container_of(wrk, typeof(*engine), heartbeat.work.work);
+ 	struct intel_context *ce = engine->kernel_context;
+ 	struct i915_request *rq;
++	unsigned long serial;
+ 
+ 	/* Just in case everything has gone horribly wrong, give it a kick */
+ 	intel_engine_flush_submission(engine);
+@@ -122,10 +123,19 @@ static void heartbeat(struct work_struct *wrk)
+ 		goto out;
+ 	}
+ 
+-	if (engine->wakeref_serial == engine->serial)
++	serial = READ_ONCE(engine->serial);
++	if (engine->wakeref_serial == serial)
+ 		goto out;
+ 
+-	mutex_lock(&ce->timeline->mutex);
++	if (!mutex_trylock(&ce->timeline->mutex)) {
++		/* Unable to lock the kernel timeline, is the engine stuck? */
++		if (xchg(&engine->heartbeat.blocked, serial) == serial)
++			intel_gt_handle_error(engine->gt, engine->mask,
++					      I915_ERROR_CAPTURE,
++					      "no heartbeat on %s",
++					      engine->name);
++		goto out;
++	}
+ 
+ 	intel_context_enter(ce);
+ 	rq = __i915_request_create(ce, GFP_NOWAIT | __GFP_NOWARN);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 073c3769e8cc..490af81bd6f3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -348,6 +348,7 @@ struct intel_engine_cs {
+ 	struct {
+ 		struct delayed_work work;
+ 		struct i915_request *systole;
++		unsigned long blocked;
+ 	} heartbeat;
+ 
+ 	unsigned long serial;
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
