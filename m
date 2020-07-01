@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23639210682
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 10:41:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6934A210689
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jul 2020 10:41:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF456E86B;
-	Wed,  1 Jul 2020 08:41:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 860216E877;
+	Wed,  1 Jul 2020 08:41:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93E0B6E451
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B59016E849
  for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jul 2020 08:41:13 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21671930-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21671931-1500050 
  for multiple; Wed, 01 Jul 2020 09:40:58 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Jul 2020 09:40:22 +0100
-Message-Id: <20200701084053.6086-2-chris@chris-wilson.co.uk>
+Date: Wed,  1 Jul 2020 09:40:23 +0100
+Message-Id: <20200701084053.6086-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200701084053.6086-1-chris@chris-wilson.co.uk>
 References: <20200701084053.6086-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/33] drm/i915/gt: Move the heartbeat into the
- highprio system wq
+Subject: [Intel-gfx] [PATCH 03/33] drm/i915/gt: Decouple completed requests
+ on unwind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,30 +45,37 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we ensure that the heartbeat is reasonably fast (and should not
-block), move the heartbeat work into the system_highprio_wq to avoid
-having this essential task be blocked behind other slow work, such as
-our own retire_work_handler.
+Since the introduction of preempt-to-busy, requests can complete in the
+background, even while they are not on the engine->active.requests list.
+As such, the engine->active.request list itself is not in strict
+retirement order, and we have to scan the entire list while unwinding to
+not miss any. However, if the request is completed we currently leave it
+on the list [until retirement], but we could just as simply remove it
+and stop treating it as active. We would only have to then traverse it
+once while unwinding in quick succession.
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/2119
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 1663ab5c68a5..3699fa8a79e8 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -32,7 +32,7 @@ static bool next_heartbeat(struct intel_engine_cs *engine)
- 	delay = msecs_to_jiffies_timeout(delay);
- 	if (delay >= HZ)
- 		delay = round_jiffies_up_relative(delay);
--	mod_delayed_work(system_wq, &engine->heartbeat.work, delay);
-+	mod_delayed_work(system_highpri_wq, &engine->heartbeat.work, delay);
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index e866b8d721ed..4eb397b0e14d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1114,8 +1114,10 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+ 	list_for_each_entry_safe_reverse(rq, rn,
+ 					 &engine->active.requests,
+ 					 sched.link) {
+-		if (i915_request_completed(rq))
+-			continue; /* XXX */
++		if (i915_request_completed(rq)) {
++			list_del_init(&rq->sched.link);
++			continue;
++		}
  
- 	return true;
- }
+ 		__i915_request_unsubmit(rq);
+ 
 -- 
 2.20.1
 
