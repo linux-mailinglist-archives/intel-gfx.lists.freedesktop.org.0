@@ -1,32 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFA1D212061
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 11:52:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180CF2120AD
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 12:12:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 906DA6EAC0;
-	Thu,  2 Jul 2020 09:52:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06FAA6EAC1;
+	Thu,  2 Jul 2020 10:12:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 294B46EABF
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 09:52:22 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21686399-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Jul 2020 10:52:17 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Jul 2020 10:52:19 +0100
-Message-Id: <20200702095219.963-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200702095219.963-1-chris@chris-wilson.co.uk>
-References: <20200702095219.963-1-chris@chris-wilson.co.uk>
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+ [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2163D6EAC4
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 10:12:36 +0000 (UTC)
+Received: from lupine.hi.pengutronix.de
+ ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1jqwCo-0001j4-3l; Thu, 02 Jul 2020 12:12:34 +0200
+Received: from pza by lupine with local (Exim 4.92)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1jqwCm-0000RV-En; Thu, 02 Jul 2020 12:12:32 +0200
+Message-ID: <475c3651fc753db64f97e60235b25cb9360d36fb.camel@pengutronix.de>
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development
+ <dri-devel@lists.freedesktop.org>, Lucas Stach <l.stach@pengutronix.de>
+Date: Thu, 02 Jul 2020 12:12:32 +0200
+In-Reply-To: <CAKMK7uGn3vBQzBehQuF36dmjTm3ocGekPPFMFNc40xK8hx1Gzg@mail.gmail.com>
+References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
+ <20200612160056.2082681-3-daniel.vetter@ffwll.ch>
+ <20200624072531.GU20149@phenom.ffwll.local>
+ <CAKMK7uGn3vBQzBehQuF36dmjTm3ocGekPPFMFNc40xK8hx1Gzg@mail.gmail.com>
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: Move the heartbeat into the high
- priority system wq
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+Subject: Re: [Intel-gfx] [PATCH 3/8] drm/imx: Use
+ __drm_atomic_helper_crtc_reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,39 +53,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Shawn Guo <shawnguo@kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ NXP Linux Team <linux-imx@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Daniel Vetter <daniel.vetter@intel.com>, Fabio Estevam <festevam@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we ensure that the heartbeat is reasonably fast (and should not
-block), move the heartbeat work into the system_highpri_wq to avoid
-having this essential task be blocked behind other slow work, such as
-our own retire_work_handler.
+On Thu, 2020-07-02 at 11:41 +0200, Daniel Vetter wrote:
+> On Wed, Jun 24, 2020 at 9:25 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+> > On Fri, Jun 12, 2020 at 06:00:51PM +0200, Daniel Vetter wrote:
+> > > Now also comes with the added benefit of doing a drm_crtc_vblank_off(),
+> > > which means vblank state isn't ill-defined and fail-y at driver load
+> > > before the first modeset on each crtc.
+> > > 
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> > > Cc: Shawn Guo <shawnguo@kernel.org>
+> > > Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> > > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> > > Cc: Fabio Estevam <festevam@gmail.com>
+> > > Cc: NXP Linux Team <linux-imx@nxp.com>
+> > > Cc: linux-arm-kernel@lists.infradead.org
+> > 
+> > Ping for some ack/review on this pls.
+> 
+> Still looking for an ack here so I can land this entire pile.
+> -Daniel
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/2119
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 1c6c6692dd17..8ffdf676c0a0 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -32,7 +32,7 @@ static bool next_heartbeat(struct intel_engine_cs *engine)
- 	delay = msecs_to_jiffies_timeout(delay);
- 	if (delay >= HZ)
- 		delay = round_jiffies_up_relative(delay);
--	mod_delayed_work(system_wq, &engine->heartbeat.work, delay);
-+	mod_delayed_work(system_highpri_wq, &engine->heartbeat.work, delay);
- 
- 	return true;
- }
--- 
-2.20.1
-
+regards
+Philipp
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
