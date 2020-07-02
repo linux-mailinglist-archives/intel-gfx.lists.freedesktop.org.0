@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA971211EEB
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 10:32:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB7DB211EE0
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 10:32:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 191B46EAB8;
-	Thu,  2 Jul 2020 08:32:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE63D6EAA4;
+	Thu,  2 Jul 2020 08:32:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 222CB6EA9C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DF4B6EA9D
  for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 08:32:41 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21685237-1500050 
- for multiple; Thu, 02 Jul 2020 09:32:26 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21685238-1500050 
+ for multiple; Thu, 02 Jul 2020 09:32:27 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Jul 2020 09:32:15 +0100
-Message-Id: <20200702083225.20044-13-chris@chris-wilson.co.uk>
+Date: Thu,  2 Jul 2020 09:32:16 +0100
+Message-Id: <20200702083225.20044-14-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200702083225.20044-1-chris@chris-wilson.co.uk>
 References: <20200702083225.20044-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 13/23] drm/i915: Always defer fenced work to the
- worker
+Subject: [Intel-gfx] [PATCH 14/23] drm/i915/gem: Assign context id for async
+ work
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,63 +45,71 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, if an error is raised we always call the cleanup locally
-[and skip the main work callback]. However, some future users may need
-to take a mutex to cleanup and so we cannot immediately execute the
-cleanup as we may still be in interrupt context.
+Allocate a few dma fence context id that we can use to associate async work
+[for the CPU] launched on behalf of this context. For extra fun, we allow
+a configurable concurrency width.
 
-With the execute-immediate flag, for most cases this should result in
-immediate cleanup of an error.
+A current example would be that we spawn an unbound worker for every
+userptr get_pages. In the future, we wish to charge this work to the
+context that initiated the async work and to impose concurrency limits
+based on the context.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_sw_fence_work.c | 25 +++++++++++------------
- 1 file changed, 12 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c       | 4 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_context.h       | 6 ++++++
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h | 6 ++++++
+ 3 files changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-index a3a81bb8f2c3..29f63ebc24e8 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-@@ -16,11 +16,14 @@ static void fence_complete(struct dma_fence_work *f)
- static void fence_work(struct work_struct *work)
- {
- 	struct dma_fence_work *f = container_of(work, typeof(*f), work);
--	int err;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 6574af699233..6d3f2cc39e62 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -714,6 +714,10 @@ __create_context(struct drm_i915_private *i915)
+ 	ctx->sched.priority = I915_USER_PRIORITY(I915_PRIORITY_NORMAL);
+ 	mutex_init(&ctx->mutex);
  
--	err = f->ops->work(f);
--	if (err)
--		dma_fence_set_error(&f->dma, err);
-+	if (!f->dma.error) {
-+		int err;
++	ctx->async.width = rounddown_pow_of_two(num_online_cpus());
++	ctx->async.context = dma_fence_context_alloc(ctx->async.width);
++	ctx->async.width--;
 +
-+		err = f->ops->work(f);
-+		if (err)
-+			dma_fence_set_error(&f->dma, err);
-+	}
+ 	spin_lock_init(&ctx->stale.lock);
+ 	INIT_LIST_HEAD(&ctx->stale.engines);
  
- 	fence_complete(f);
- 	dma_fence_put(&f->dma);
-@@ -36,15 +39,11 @@ fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- 		if (fence->error)
- 			dma_fence_set_error(&f->dma, fence->error);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+index 3702b2fb27ab..e104ff0ae740 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+@@ -134,6 +134,12 @@ int i915_gem_context_setparam_ioctl(struct drm_device *dev, void *data,
+ int i915_gem_context_reset_stats_ioctl(struct drm_device *dev, void *data,
+ 				       struct drm_file *file);
  
--		if (!f->dma.error) {
--			dma_fence_get(&f->dma);
--			if (test_bit(DMA_FENCE_WORK_IMM, &f->dma.flags))
--				fence_work(&f->work);
--			else
--				queue_work(system_unbound_wq, &f->work);
--		} else {
--			fence_complete(f);
--		}
-+		dma_fence_get(&f->dma);
-+		if (test_bit(DMA_FENCE_WORK_IMM, &f->dma.flags))
-+			fence_work(&f->work);
-+		else
-+			queue_work(system_unbound_wq, &f->work);
- 		break;
++static inline u64 i915_gem_context_async_id(struct i915_gem_context *ctx)
++{
++	return (ctx->async.context +
++		(atomic_fetch_inc(&ctx->async.cur) & ctx->async.width));
++}
++
+ static inline struct i915_gem_context *
+ i915_gem_context_get(struct i915_gem_context *ctx)
+ {
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index ae14ca24a11f..52561f98000f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -85,6 +85,12 @@ struct i915_gem_context {
  
- 	case FENCE_FREE:
+ 	struct intel_timeline *timeline;
+ 
++	struct {
++		u64 context;
++		atomic_t cur;
++		unsigned int width;
++	} async;
++
+ 	/**
+ 	 * @vm: unique address space (GTT)
+ 	 *
 -- 
 2.20.1
 
