@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB151212D84
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 22:00:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 024F9212DA4
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 22:07:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CADAB6E53E;
-	Thu,  2 Jul 2020 20:00:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AFE66E136;
+	Thu,  2 Jul 2020 20:07:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 912AE6E53E;
- Thu,  2 Jul 2020 20:00:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8B9ECA363D;
- Thu,  2 Jul 2020 20:00:20 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F6106E136
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 20:07:54 +0000 (UTC)
+IronPort-SDR: 3DH/96U31cM4J+ABukd7Jc6evsOHBe08l6IgJNICIXKKs2eoWXq1jR2bwJrKZTvmXE2hN6ohbM
+ thlP6WAfhHlg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="144527520"
+X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="144527520"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2020 13:07:53 -0700
+IronPort-SDR: rlAVqHAColaV6nzi+mW0jL3UcdU8tDcT6UtYYeF3z805Bg2xjz7M2ds7sLxrtR55a5avpYEqQs
+ 6i3+uCFx++Tw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="356565631"
+Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
+ by orsmga001.jf.intel.com with ESMTP; 02 Jul 2020 13:07:53 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  2 Jul 2020 13:07:14 -0700
+Message-Id: <20200702200714.1278-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 02 Jul 2020 20:00:20 -0000
-Message-ID: <159372002054.5657.328260969536512320@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200702182450.6804-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200702182450.6804-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Enable_TPS3/4_on_all_pl?=
- =?utf-8?q?atforms_that_support_them?=
+Subject: [Intel-gfx] [PATCH v2] drm/i915: do not read swizzle info if
+ unavailable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,129 +47,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Since gen8 we don't use swizzle anymore. Don't dump registers related to
+it: registers may or may not be there.
 
-Series: series starting with [1/2] drm/i915: Enable TPS3/4 on all platforms that support them
-URL   : https://patchwork.freedesktop.org/series/79060/
-State : success
+v2: pull the rest of driver state reporting before the read out (Chris)
 
-== Summary ==
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/i915_debugfs.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-CI Bug Log - changes from CI_DRM_8698 -> Patchwork_18072
-====================================================
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 9ca94a435b75..94ed442910d6 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -1138,13 +1138,20 @@ static int i915_swizzle_info(struct seq_file *m, void *data)
+ 	struct intel_uncore *uncore = &dev_priv->uncore;
+ 	intel_wakeref_t wakeref;
+ 
+-	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
+-
+ 	seq_printf(m, "bit6 swizzle for X-tiling = %s\n",
+ 		   swizzle_string(dev_priv->ggtt.bit_6_swizzle_x));
+ 	seq_printf(m, "bit6 swizzle for Y-tiling = %s\n",
+ 		   swizzle_string(dev_priv->ggtt.bit_6_swizzle_y));
+ 
++	if (dev_priv->quirks & QUIRK_PIN_SWIZZLED_PAGES)
++		seq_puts(m, "L-shaped memory detected\n");
++
++	/* On BDW+, swizzling is not used. See detect_bit_6_swizzle() */
++	if (INTEL_GEN(dev_priv) >= 8 || IS_VALLEYVIEW(dev_priv))
++		return 0;
++
++	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
++
+ 	if (IS_GEN_RANGE(dev_priv, 3, 4)) {
+ 		seq_printf(m, "DDC = 0x%08x\n",
+ 			   intel_uncore_read(uncore, DCC));
+@@ -1173,9 +1180,6 @@ static int i915_swizzle_info(struct seq_file *m, void *data)
+ 			   intel_uncore_read(uncore, DISP_ARB_CTL));
+ 	}
+ 
+-	if (dev_priv->quirks & QUIRK_PIN_SWIZZLED_PAGES)
+-		seq_puts(m, "L-shaped memory detected\n");
+-
+ 	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+ 
+ 	return 0;
+-- 
+2.26.2
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18072 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [PASS][1] -> [DMESG-WARN][2] ([i915#62] / [i915#92] / [i915#95])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8698/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8698/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-whl-u:           [DMESG-WARN][5] ([i915#95]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8698/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8698/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8698/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8698/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [DMESG-FAIL][13] ([i915#62]) -> [SKIP][14] ([fdo#109271])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8698/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +2 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8698/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  * igt@kms_flip@basic-plain-flip@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8698/fi-kbl-x1275/igt@kms_flip@basic-plain-flip@a-dp1.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/fi-kbl-x1275/igt@kms_flip@basic-plain-flip@a-dp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (43 -> 37)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8698 -> Patchwork_18072
-
-  CI-20190529: 20190529
-  CI_DRM_8698: a5bde2bddb64dc774e9fc1444243b8f224a31df6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5720: f35053d4b6d7bbcf6505ef67a8bd56acc7fb2eb2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18072: 1ebdc2b628a91ef273b09fa246fc66b5cc4a2fee @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1ebdc2b628a9 drm/i915: Fix the training pattern debug print
-584f55268f38 drm/i915: Enable TPS3/4 on all platforms that support them
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18072/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
