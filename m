@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AFD4211F9E
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 11:17:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0505211FA8
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 11:18:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD1F56E0DA;
-	Thu,  2 Jul 2020 09:17:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B3F26E11F;
+	Thu,  2 Jul 2020 09:18:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 78F456E07B;
- Thu,  2 Jul 2020 09:17:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0B82E6E07B;
+ Thu,  2 Jul 2020 09:18:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 72B04A0BC6;
- Thu,  2 Jul 2020 09:17:37 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 09041A0BC6;
+ Thu,  2 Jul 2020 09:18:54 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 02 Jul 2020 09:17:37 -0000
-Message-ID: <159368145746.5656.373487303433587725@emeril.freedesktop.org>
+Date: Thu, 02 Jul 2020 09:18:54 -0000
+Message-ID: <159368153403.5655.3827220238271146696@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200702083225.20044-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200702083225.20044-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/23=5D_drm/i915=3A_Drop_vm=2Eref_?=
- =?utf-8?q?for_duplicate_vma_on_construction?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B01/23=5D_drm/i915=3A_Drop_vm=2Eref_for_?=
+ =?utf-8?q?duplicate_vma_on_construction?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,78 +54,62 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-2b716a4a1108 drm/i915: Drop vm.ref for duplicate vma on construction
-02e97324e6dd drm/i915/gem: Split the context's obj:vma lut into its own mutex
--:82: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
-#82: FILE: drivers/gpu/drm/i915/gem/i915_gem_context_types.h:173:
-+	struct mutex lut_mutex;
-
-total: 0 errors, 0 warnings, 1 checks, 105 lines checked
-981b52482265 drm/i915/gem: Drop forced struct_mutex from shrinker_taints_mutex
-63cac79e5aff drm/i915/gem: Only revoke mmap handlers if active
-ceb2d68f55a0 drm/i915: Export ppgtt_bind_vma
-41eb0c64c9b6 drm/i915: Preallocate stashes for vma page-directories
-84369a1c6dad drm/i915: Switch to object allocations for page directories
-880e4a90f882 drm/i915/gem: Don't drop the timeline lock during execbuf
-84600d1a1d00 drm/i915/gem: Rename execbuf.bind_link to unbound_link
-6ce1d70bdaa0 drm/i915/gem: Break apart the early i915_vma_pin from execbuf object lookup
-6095d5335d88 drm/i915/gem: Remove the call for no-evict i915_vma_pin
-8041afeb3c3a drm/i915: Add list_for_each_entry_safe_continue_reverse
--:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
-#21: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
-+#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
-+	for (pos = list_prev_entry(pos, member),			\
-+	     n = list_prev_entry(pos, member);				\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_prev_entry(n, member))
-
--:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#21: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
-+#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
-+	for (pos = list_prev_entry(pos, member),			\
-+	     n = list_prev_entry(pos, member);				\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_prev_entry(n, member))
-
--:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
-#21: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
-+#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
-+	for (pos = list_prev_entry(pos, member),			\
-+	     n = list_prev_entry(pos, member);				\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_prev_entry(n, member))
-
-total: 0 errors, 0 warnings, 3 checks, 12 lines checked
-5f2ba176cfcc drm/i915: Always defer fenced work to the worker
-3bc8dcef47f8 drm/i915/gem: Assign context id for async work
-658265850918 drm/i915: Export a preallocate variant of i915_active_acquire()
-3474748efc48 drm/i915/gem: Separate the ww_mutex walker into its own list
-9596fd217b0e drm/i915/gem: Asynchronous GTT unbinding
-11531ee318da drm/i915/gem: Bind the fence async for execbuf
-67d8c52b893a drm/i915/gem: Include cmdparser in common execbuf pinning
-c9ad9f9d60dd drm/i915/gem: Include secure batch in common execbuf pinning
-db49ec7ea2ce drm/i915/gem: Reintroduce multiple passes for reloc processing
--:993: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
-#993: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c:14:
-+#if 0
-
--:1006: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
-#1006: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c:27:
-+#if 0
-
-total: 0 errors, 2 warnings, 0 checks, 969 lines checked
-1375d1da0182 drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
--:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#78: 
-new file mode 100644
-
--:151: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
-#151: FILE: drivers/gpu/drm/i915/mm/i915_acquire_ctx.c:69:
-+#if 0
-
-total: 0 errors, 2 warnings, 0 checks, 187 lines checked
-6f377648e7f5 drm/i915/gem: Pull execbuf dma resv under a single critical section
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_display.c:1223:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/display/intel_display.c:1226:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/display/intel_display.c:1229:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/display/intel_display.c:1232:22: error: Expected constant expression in case statement
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2275:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2276:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2277:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2278:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2279:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
++drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
++drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
++drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
++drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
++drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
 
 _______________________________________________
 Intel-gfx mailing list
