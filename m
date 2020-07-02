@@ -1,63 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3317B212FBF
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 01:02:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2AF212FDF
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 01:10:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 331586E5B2;
-	Thu,  2 Jul 2020 23:02:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F4B96E145;
+	Thu,  2 Jul 2020 23:10:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 617266E5B2
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 23:02:07 +0000 (UTC)
-IronPort-SDR: qNSTNm3DGR4B0dQzgDCzW38EtJ3Ypmt3nDYtwvfP03cWvLQ6NWiMxwo2c9IU35tibq+8H+FPZP
- MujlDeEqjYkg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="212070949"
-X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="212070949"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E64B6E145
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 23:10:05 +0000 (UTC)
+IronPort-SDR: 279Ku3q0OtCEQNOUCM6EZfg3gzUimLP8ra/WVrZrSajHTInT7fiYoaT8kec58Wrf1Z08R89fmU
+ Coq+U19QLZRw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="148579958"
+X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="148579958"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2020 16:02:06 -0700
-IronPort-SDR: 7pVq8VhR/Xq6A8VaNvkM3ZI5yLtfW6OYbVurki7jS2/5aaeHgLfd8o3RipDe8CNfYUU5+cVKgt
- EfC7LjYOHlYw==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2020 16:10:04 -0700
+IronPort-SDR: F1fqhHUckcPbTAeWGBPfBgTJKmtgT/2Rn/KydkHKPiJqoQTPwL4D/pgj7WsziwIWCiWu/FtxCN
+ 9ZF0O8XOZk1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="267198105"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga008.fm.intel.com with ESMTP; 02 Jul 2020 16:02:06 -0700
-Received: from fmsmsx605.amr.corp.intel.com (10.18.126.85) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 2 Jul 2020 16:02:05 -0700
-Received: from fmsmsx124.amr.corp.intel.com (10.18.125.39) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 2 Jul 2020 16:02:05 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.40]) by
- fmsmsx124.amr.corp.intel.com ([169.254.8.247]) with mapi id 14.03.0439.000;
- Thu, 2 Jul 2020 16:02:05 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 2/4] drm/i915/fbc: Fix nuke for pre-snb
- platforms
-Thread-Index: AQHWUIbG70dQGMURwk+8OaE1wfoTn6j1Xl2A
-Date: Thu, 2 Jul 2020 23:02:05 +0000
-Message-ID: <4640b96482ac43decad11d006ca7112433b742ed.camel@intel.com>
-References: <20200702153723.24327-1-ville.syrjala@linux.intel.com>
- <20200702153723.24327-3-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200702153723.24327-3-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.51]
-Content-ID: <1578862EB268DB49A2A92363374F9CE0@intel.com>
+X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="321651954"
+Received: from atankx-mobl.amr.corp.intel.com (HELO msatwood-mobl.intel.com)
+ ([10.212.32.87])
+ by FMSMGA003.fm.intel.com with ESMTP; 02 Jul 2020 16:09:58 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	jose.souza@intel.com
+Date: Thu,  2 Jul 2020 16:09:57 -0700
+Message-Id: <20200702230957.30536-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.21.3
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/fbc: Fix nuke for pre-snb
- platforms
+Subject: [Intel-gfx] [PATCH v2] Revert "drm/i915/dp: Correctly advertise
+ HBR3 for GEN11+"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,65 +49,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIwLTA3LTAyIGF0IDE4OjM3ICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gVGhlIE1TR19GQkNfUkVORF9TVEFURSByZWdpc3RlciBvbmx5IGV4aXN0cyBvbiBzbmIr
-LiBGb3Igb2xkZXINCj4gcGxhdGZvcm1zICh3b3VsZCBhbHNvIHdvcmsgZm9yIHNuYispIHdlIGNh
-biBzaW1wbHkgcmV3aXRlIERTUFNVUkYNCj4gdG8gdHJpZ2dlciBhIGZsaXAgbnVrZS4NCj4gDQo+
-IFdoaWxlIGdlbmVyYWxseSBSTVcgaXMgY29uc2lkZXJlZCBoYXJtZnVsIHdlJ2xsIHVzZSBpdCBo
-ZXJlIGZvcg0KPiBzaW1wbGljaXR5LiBBbmQgc2luY2UgRkJDIGRvZXNuJ3QgZXhpc3QgaW4gaTgz
-MCB3ZSBkb24ndCBoYXZlIHRvDQo+IHdvcnJ5IGFib3V0IHRoZSBEU1BTVVJGIGRvdWJsZSBidWZm
-ZXJpbmcgaGFyZHdhcmUgZmFpbHMgcHJlc2VudA0KPiBvbiB0aGF0IHBsYXRmb3JtLg0KDQpEaWQg
-bm90IGZvdW5kIGEgZXhwbGljaXQgc3RhdGVtZW50IGFib3V0IHdyaXRpbmcgRFNQU1VSRiB3aWxs
-IG51a2UgY29tcHJlc3NlZCBidWZmZXIgYnV0IHRoYXQgbWFrZXMgc2Vuc2UsIGFsc28gY2hlY2tl
-ZCB0aGF0IE1TR19GQkNfUkVORF9TVEFURSBkbyBub3QNCmV4aXN0IHRoaXMgb2xkZXIgcGxhdGZv
-cm1zLg0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBp
-bnRlbC5jb20+DQoNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUu
-c3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9mYmMuYyB8IDM0ICsrKysrKysrKysrKysrKysrKysrKysrLQ0KPiAgMSBm
-aWxlIGNoYW5nZWQsIDMzIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0KPiBpbmRleCBkMzBjMmEzODkyOTQu
-LjAzNjU0NmNlOGRiOCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9mYmMuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2ZiYy5jDQo+IEBAIC0xODcsOCArMTg3LDMwIEBAIHN0YXRpYyBib29sIGc0eF9mYmNfaXNfYWN0
-aXZlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gIAlyZXR1cm4gaW50ZWxf
-ZGVfcmVhZChkZXZfcHJpdiwgRFBGQ19DT05UUk9MKSAmIERQRkNfQ1RMX0VOOw0KPiAgfQ0KPiAg
-DQo+ICtzdGF0aWMgdm9pZCBpOHh4X2ZiY19yZWNvbXByZXNzKHN0cnVjdCBkcm1faTkxNV9wcml2
-YXRlICpkZXZfcHJpdikNCj4gK3sNCj4gKwlzdHJ1Y3QgaW50ZWxfZmJjX3JlZ19wYXJhbXMgKnBh
-cmFtcyA9ICZkZXZfcHJpdi0+ZmJjLnBhcmFtczsNCj4gKwllbnVtIGk5eHhfcGxhbmVfaWQgaTl4
-eF9wbGFuZSA9IHBhcmFtcy0+Y3J0Yy5pOXh4X3BsYW5lOw0KPiArDQo+ICsJc3Bpbl9sb2NrX2ly
-cSgmZGV2X3ByaXYtPnVuY29yZS5sb2NrKTsNCj4gKwlpbnRlbF9kZV93cml0ZV9mdyhkZXZfcHJp
-diwgRFNQQUREUihpOXh4X3BsYW5lKSwNCj4gKwkJCSAgaW50ZWxfZGVfcmVhZF9mdyhkZXZfcHJp
-diwgRFNQQUREUihpOXh4X3BsYW5lKSkpOw0KPiArCXNwaW5fdW5sb2NrX2lycSgmZGV2X3ByaXYt
-PnVuY29yZS5sb2NrKTsNCj4gK30NCj4gKw0KPiArc3RhdGljIHZvaWQgaTk2NV9mYmNfcmVjb21w
-cmVzcyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ICt7DQo+ICsJc3RydWN0
-IGludGVsX2ZiY19yZWdfcGFyYW1zICpwYXJhbXMgPSAmZGV2X3ByaXYtPmZiYy5wYXJhbXM7DQo+
-ICsJZW51bSBpOXh4X3BsYW5lX2lkIGk5eHhfcGxhbmUgPSBwYXJhbXMtPmNydGMuaTl4eF9wbGFu
-ZTsNCj4gKw0KPiArCXNwaW5fbG9ja19pcnEoJmRldl9wcml2LT51bmNvcmUubG9jayk7DQo+ICsJ
-aW50ZWxfZGVfd3JpdGVfZncoZGV2X3ByaXYsIERTUFNVUkYoaTl4eF9wbGFuZSksDQo+ICsJCQkg
-IGludGVsX2RlX3JlYWRfZncoZGV2X3ByaXYsIERTUFNVUkYoaTl4eF9wbGFuZSkpKTsNCj4gKwlz
-cGluX3VubG9ja19pcnEoJmRldl9wcml2LT51bmNvcmUubG9jayk7DQo+ICt9DQo+ICsNCj4gIC8q
-IFRoaXMgZnVuY3Rpb24gZm9yY2VzIGEgQ0ZCIHJlY29tcHJlc3Npb24gdGhyb3VnaCB0aGUgbnVr
-ZSBvcGVyYXRpb24uICovDQo+IC1zdGF0aWMgdm9pZCBpbnRlbF9mYmNfcmVjb21wcmVzcyhzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ICtzdGF0aWMgdm9pZCBzbmJfZmJjX3Jl
-Y29tcHJlc3Moc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQ0KPiAgew0KPiAgCXN0
-cnVjdCBpbnRlbF9mYmMgKmZiYyA9ICZkZXZfcHJpdi0+ZmJjOw0KPiAgDQo+IEBAIC0xOTgsNiAr
-MjIwLDE2IEBAIHN0YXRpYyB2b2lkIGludGVsX2ZiY19yZWNvbXByZXNzKHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICpkZXZfcHJpdikNCj4gIAlpbnRlbF9kZV9wb3N0aW5nX3JlYWQoZGV2X3ByaXYs
-IE1TR19GQkNfUkVORF9TVEFURSk7DQo+ICB9DQo+ICANCj4gK3N0YXRpYyB2b2lkIGludGVsX2Zi
-Y19yZWNvbXByZXNzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gK3sNCj4g
-KwlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSA2KQ0KPiArCQlzbmJfZmJjX3JlY29tcHJlc3Mo
-ZGV2X3ByaXYpOw0KPiArCWVsc2UgaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gNCkNCj4gKwkJ
-aTk2NV9mYmNfcmVjb21wcmVzcyhkZXZfcHJpdik7DQo+ICsJZWxzZQ0KPiArCQlpOHh4X2ZiY19y
-ZWNvbXByZXNzKGRldl9wcml2KTsNCj4gK30NCj4gKw0KPiAgc3RhdGljIHZvaWQgaWxrX2ZiY19h
-Y3RpdmF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ICB7DQo+ICAJc3Ry
-dWN0IGludGVsX2ZiY19yZWdfcGFyYW1zICpwYXJhbXMgPSAmZGV2X3ByaXYtPmZiYy5wYXJhbXM7
-DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+The initial CI results did not include a TGL system which includes a
+panel that is having issues with patch. Revert while we triage.
+
+This reverts commit 680c45c767f63e35f063d3ea04f388a9f7ae7079.
+
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 28 +++++++++++++++----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index a5ab405d3a12..d6295eb20b63 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -137,8 +137,6 @@ static const u8 valid_dsc_slicecount[] = {1, 2, 4};
+  *
+  * If a CPU or PCH DP output is attached to an eDP panel, this function
+  * will return true, and false otherwise.
+- *
+- * This function is not safe to use prior to encoder type being set.
+  */
+ bool intel_dp_is_edp(struct intel_dp *intel_dp)
+ {
+@@ -8159,6 +8157,8 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 		     intel_encoder->base.name))
+ 		return false;
+ 
++	intel_dp_set_source_rates(intel_dp);
++
+ 	intel_dp->reset_link_params = true;
+ 	intel_dp->pps_pipe = INVALID_PIPE;
+ 	intel_dp->active_pipe = INVALID_PIPE;
+@@ -8174,22 +8174,28 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 		 */
+ 		drm_WARN_ON(dev, intel_phy_is_tc(dev_priv, phy));
+ 		type = DRM_MODE_CONNECTOR_eDP;
+-		intel_encoder->type = INTEL_OUTPUT_EDP;
+-
+-		/* eDP only on port B and/or C on vlv/chv */
+-		if (drm_WARN_ON(dev, (IS_VALLEYVIEW(dev_priv) ||
+-				      IS_CHERRYVIEW(dev_priv)) &&
+-				port != PORT_B && port != PORT_C))
+-			return false;
+ 	} else {
+ 		type = DRM_MODE_CONNECTOR_DisplayPort;
+ 	}
+ 
+-	intel_dp_set_source_rates(intel_dp);
+-
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+ 		intel_dp->active_pipe = vlv_active_pipe(intel_dp);
+ 
++	/*
++	 * For eDP we always set the encoder type to INTEL_OUTPUT_EDP, but
++	 * for DP the encoder type can be set by the caller to
++	 * INTEL_OUTPUT_UNKNOWN for DDI, so don't rewrite it.
++	 */
++	if (type == DRM_MODE_CONNECTOR_eDP)
++		intel_encoder->type = INTEL_OUTPUT_EDP;
++
++	/* eDP only on port B and/or C on vlv/chv */
++	if (drm_WARN_ON(dev, (IS_VALLEYVIEW(dev_priv) ||
++			      IS_CHERRYVIEW(dev_priv)) &&
++			intel_dp_is_edp(intel_dp) &&
++			port != PORT_B && port != PORT_C))
++		return false;
++
+ 	drm_dbg_kms(&dev_priv->drm,
+ 		    "Adding %s connector on [ENCODER:%d:%s]\n",
+ 		    type == DRM_MODE_CONNECTOR_eDP ? "eDP" : "DP",
+-- 
+2.21.3
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
