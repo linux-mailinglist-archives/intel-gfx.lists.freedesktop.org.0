@@ -2,56 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B1DF212F8E
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 00:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D8EC212F93
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 00:37:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D9B56E351;
-	Thu,  2 Jul 2020 22:35:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD9576E5A4;
+	Thu,  2 Jul 2020 22:37:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9CA26E351
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 22:35:23 +0000 (UTC)
-IronPort-SDR: EZ086q9dC+wQbnE+R3qqpxOSMQAf0IGgt+RGYmORjfCsjN4Qay5DtHsxBI7wma+e/P2qruBc7E
- RXWnJpq/l/Lg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="148576462"
-X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="148576462"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DE136E5A4
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 22:37:18 +0000 (UTC)
+IronPort-SDR: LLrj5Q7pCTWWPeySLqRaZpK/lL3jEyZXW9i3MTe8Vq0BXBXowLBQhfNuKxmRfIKdv+QhXsNl2K
+ sfRx0JJByPUQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="134501754"
+X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="134501754"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2020 15:35:22 -0700
-IronPort-SDR: 0VyULtKshlVkJ+LkfcnC6aRwVXIWPYtFey3hQx/DPhqhIEqh4t4fAWl9nUrO/P7I3FmnX0fPon
- kRgIsvLJ8nxQ==
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2020 15:37:17 -0700
+IronPort-SDR: zhgGIovJqwvLDrAXFqdOwPsbeV1DXPs0+aDyy4IV/CD6RySggsMs3UkuDQQIOiLAwezpouqNrE
+ gq8ol0xq/1ZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="356595155"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
- by orsmga001.jf.intel.com with ESMTP; 02 Jul 2020 15:35:22 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.40]) by
- fmsmsx107.amr.corp.intel.com ([169.254.6.74]) with mapi id 14.03.0439.000;
- Thu, 2 Jul 2020 15:34:37 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Atwood, 
- Matthew S" <matthew.s.atwood@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "Navare, Manasi D"
- <manasi.d.navare@intel.com>, "chris@chris-wilson.co.uk"
- <chris@chris-wilson.co.uk>
-Thread-Topic: [Intel-gfx] [PATCH] Revert "drm/i915/dp: Correctly advertise
- HBR3 for GEN11+"
-Thread-Index: AQHWUL7BGlZ8UzL/okCwhi0xPV2efaj1VkAA
-Date: Thu, 2 Jul 2020 22:34:36 +0000
-Message-ID: <81c8ff248ea40be27ea51152fcef200c5f3c6a77.camel@intel.com>
-References: <20200702221818.29094-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20200702221818.29094-1-matthew.s.atwood@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.51]
-Content-ID: <AA500FD206C5D941A0CDF63973EBA591@intel.com>
+X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="265820632"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by fmsmga007.fm.intel.com with ESMTP; 02 Jul 2020 15:37:15 -0700
+Date: Thu, 2 Jul 2020 15:38:53 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200702223853.GA737@intel.com>
+References: <20200702182450.6804-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915/dp: Correctly advertise
- HBR3 for GEN11+"
+Content-Disposition: inline
+In-Reply-To: <20200702182450.6804-1-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Enable TPS3/4 on all
+ platforms that support them
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,85 +51,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2020-07-02 at 15:18 -0700, Matt Atwood wrote:
-> The initial CI results did not include a TGL system which includes a
-> panel that is having issues with patch. Revert while we triage.
-> 
-> This reverts commit 680c45c767f63e35f063d3ea04f388a9f7ae7079.
+On Thu, Jul 02, 2020 at 09:24:49PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Missing the Signed-off-by line also the commit references should follow this format "2850748ef876 ("drm/i915: Pull i915_vma_pin under the vm-
->mutex")".
-Please CC me in the updated version.
+> Stop using HBR2/3 support as a proxy for TPS3/4 support.
+> The two are no longer 1:1 in the hardware, arguably they
+> never were due to HSW ULX which does support TPS3 while
+> being limited to HBR1.
+> =
+
+> In more recent times GLK gained support for TPS4 while
+> being limited to HBR2. And on CNL+ some ports support
+> HBR3 while others are limited to HBR2, but all ports
+> support TPS4.
+> =
+
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Makes sense to me
+
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+
+Manasi
 
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 28 +++++++++++++++----------
->  1 file changed, 17 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index a5ab405d3a12..d6295eb20b63 100644
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 12 +++-----
+>  drivers/gpu/drm/i915/display/intel_dp.h       |  4 +--
+>  .../drm/i915/display/intel_dp_link_training.c | 29 +++++++------------
+>  drivers/gpu/drm/i915/display/intel_psr.c      |  2 +-
+>  4 files changed, 17 insertions(+), 30 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index c9b93c5706af..5ac182357fc9 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -137,8 +137,6 @@ static const u8 valid_dsc_slicecount[] = {1, 2, 4};
->   *
->   * If a CPU or PCH DP output is attached to an eDP panel, this function
->   * will return true, and false otherwise.
-> - *
-> - * This function is not safe to use prior to encoder type being set.
->   */
->  bool intel_dp_is_edp(struct intel_dp *intel_dp)
+> @@ -1799,18 +1799,14 @@ intel_dp_aux_init(struct intel_dp *intel_dp)
+>  	intel_dp->aux.transfer =3D intel_dp_aux_transfer;
+>  }
+>  =
+
+> -bool intel_dp_source_supports_hbr2(struct intel_dp *intel_dp)
+> +bool intel_dp_source_supports_tps3(struct drm_i915_private *i915)
 >  {
-> @@ -8159,6 +8157,8 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
->  		     intel_encoder->base.name))
->  		return false;
->  
-> +	intel_dp_set_source_rates(intel_dp);
-> +
->  	intel_dp->reset_link_params = true;
->  	intel_dp->pps_pipe = INVALID_PIPE;
->  	intel_dp->active_pipe = INVALID_PIPE;
-> @@ -8174,22 +8174,28 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
->  		 */
->  		drm_WARN_ON(dev, intel_phy_is_tc(dev_priv, phy));
->  		type = DRM_MODE_CONNECTOR_eDP;
-> -		intel_encoder->type = INTEL_OUTPUT_EDP;
+> -	int max_rate =3D intel_dp->source_rates[intel_dp->num_source_rates - 1];
 > -
-> -		/* eDP only on port B and/or C on vlv/chv */
-> -		if (drm_WARN_ON(dev, (IS_VALLEYVIEW(dev_priv) ||
-> -				      IS_CHERRYVIEW(dev_priv)) &&
-> -				port != PORT_B && port != PORT_C))
-> -			return false;
->  	} else {
->  		type = DRM_MODE_CONNECTOR_DisplayPort;
+> -	return max_rate >=3D 540000;
+> +	return INTEL_GEN(i915) >=3D 9 || IS_BROADWELL(i915) || IS_HASWELL(i915);
+>  }
+>  =
+
+> -bool intel_dp_source_supports_hbr3(struct intel_dp *intel_dp)
+> +bool intel_dp_source_supports_tps4(struct drm_i915_private *i915)
+>  {
+> -	int max_rate =3D intel_dp->source_rates[intel_dp->num_source_rates - 1];
+> -
+> -	return max_rate >=3D 810000;
+> +	return INTEL_GEN(i915) >=3D 10 || IS_GEMINILAKE(i915);
+>  }
+>  =
+
+>  static void
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
+15/display/intel_dp.h
+> index 0a8950f744f6..d597a9848397 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -94,8 +94,8 @@ intel_dp_set_signal_levels(struct intel_dp *intel_dp);
+>  void intel_dp_set_idle_link_train(struct intel_dp *intel_dp);
+>  void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
+>  			   u8 *link_bw, u8 *rate_select);
+> -bool intel_dp_source_supports_hbr2(struct intel_dp *intel_dp);
+> -bool intel_dp_source_supports_hbr3(struct intel_dp *intel_dp);
+> +bool intel_dp_source_supports_tps3(struct drm_i915_private *i915);
+> +bool intel_dp_source_supports_tps4(struct drm_i915_private *i915);
+>  bool
+>  intel_dp_get_link_status(struct intel_dp *intel_dp, u8 *link_status);
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 2493142a70e9..57c2089c9f5a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -259,41 +259,32 @@ intel_dp_link_training_clock_recovery(struct intel_=
+dp *intel_dp)
+>   */
+>  static u32 intel_dp_training_pattern(struct intel_dp *intel_dp)
+>  {
+> +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+>  	bool source_tps3, sink_tps3, source_tps4, sink_tps4;
+>  =
+
+> -	/*
+> -	 * Intel platforms that support HBR3 also support TPS4. It is mandatory
+> -	 * for all downstream devices that support HBR3. There are no known eDP
+> -	 * panels that support TPS4 as of Feb 2018 as per VESA eDP_v1.4b_E1
+> -	 * specification.
+> -	 */
+> -	source_tps4 =3D intel_dp_source_supports_hbr3(intel_dp);
+> +	source_tps4 =3D intel_dp_source_supports_tps4(i915);
+>  	sink_tps4 =3D drm_dp_tps4_supported(intel_dp->dpcd);
+>  	if (source_tps4 && sink_tps4) {
+>  		return DP_TRAINING_PATTERN_4;
+>  	} else if (intel_dp->link_rate =3D=3D 810000) {
+>  		if (!source_tps4)
+> -			drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+> -				    "8.1 Gbps link rate without source HBR3/TPS4 support\n");
+> +			drm_dbg_kms(&i915->drm,
+> +				    "8.1 Gbps link rate without source TPS4 support\n");
+>  		if (!sink_tps4)
+> -			drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+> +			drm_dbg_kms(&i915->drm,
+>  				    "8.1 Gbps link rate without sink TPS4 support\n");
 >  	}
->  
-> -	intel_dp_set_source_rates(intel_dp);
-> -
->  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
->  		intel_dp->active_pipe = vlv_active_pipe(intel_dp);
->  
-> +	/*
-> +	 * For eDP we always set the encoder type to INTEL_OUTPUT_EDP, but
-> +	 * for DP the encoder type can be set by the caller to
-> +	 * INTEL_OUTPUT_UNKNOWN for DDI, so don't rewrite it.
-> +	 */
-> +	if (type == DRM_MODE_CONNECTOR_eDP)
-> +		intel_encoder->type = INTEL_OUTPUT_EDP;
+> -	/*
+> -	 * Intel platforms that support HBR2 also support TPS3. TPS3 support is
+> -	 * also mandatory for downstream devices that support HBR2. However, not
+> -	 * all sinks follow the spec.
+> -	 */
+> -	source_tps3 =3D intel_dp_source_supports_hbr2(intel_dp);
 > +
-> +	/* eDP only on port B and/or C on vlv/chv */
-> +	if (drm_WARN_ON(dev, (IS_VALLEYVIEW(dev_priv) ||
-> +			      IS_CHERRYVIEW(dev_priv)) &&
-> +			intel_dp_is_edp(intel_dp) &&
-> +			port != PORT_B && port != PORT_C))
-> +		return false;
-> +
->  	drm_dbg_kms(&dev_priv->drm,
->  		    "Adding %s connector on [ENCODER:%d:%s]\n",
->  		    type == DRM_MODE_CONNECTOR_eDP ? "eDP" : "DP",
+> +	source_tps3 =3D intel_dp_source_supports_tps3(i915);
+>  	sink_tps3 =3D drm_dp_tps3_supported(intel_dp->dpcd);
+>  	if (source_tps3 && sink_tps3) {
+>  		return  DP_TRAINING_PATTERN_3;
+>  	} else if (intel_dp->link_rate >=3D 540000) {
+>  		if (!source_tps3)
+> -			drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+> -				    ">=3D5.4/6.48 Gbps link rate without source HBR2/TPS3 support\n"=
+);
+> +			drm_dbg_kms(&i915->drm,
+> +				    ">=3D5.4/6.48 Gbps link rate without source TPS3 support\n");
+>  		if (!sink_tps3)
+> -			drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+> +			drm_dbg_kms(&i915->drm,
+>  				    ">=3D5.4/6.48 Gbps link rate without sink TPS3 support\n");
+>  	}
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index 611cb8d74811..5ba1aa2c6748 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -451,7 +451,7 @@ static u32 intel_psr1_get_tp_time(struct intel_dp *in=
+tel_dp)
+>  		val |=3D EDP_PSR_TP2_TP3_TIME_2500us;
+>  =
+
+>  check_tp3_sel:
+> -	if (intel_dp_source_supports_hbr2(intel_dp) &&
+> +	if (intel_dp_source_supports_tps3(dev_priv) &&
+>  	    drm_dp_tps3_supported(intel_dp->dpcd))
+>  		val |=3D EDP_PSR_TP1_TP3_SEL;
+>  	else
+> -- =
+
+> 2.26.2
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
