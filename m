@@ -1,42 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E7F0212F64
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 00:18:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4F51212F73
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 00:21:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AEDA6E5A0;
-	Thu,  2 Jul 2020 22:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2EA6E5A2;
+	Thu,  2 Jul 2020 22:21:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B4676E5A0
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 22:18:37 +0000 (UTC)
-IronPort-SDR: tKUqY1axmOR7T1wZE/bxCc/yEveB7D6M8xwcGZDopBVVMGkITQHdspbxlYnJT0Xozf8A3/H5qA
- JgpVdqBDhAeA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="208561773"
-X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="208561773"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2020 15:18:20 -0700
-IronPort-SDR: 1/MZCG8YxD91jpu9sEqaEKgDyNfnUyKPdFbSr6XnStPdGKjReoeb1Mm5X1rzdnfLXKMr8TzBZ9
- 0HNpbgnDk52Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="387458200"
-Received: from atankx-mobl.amr.corp.intel.com (HELO msatwood-mobl.intel.com)
- ([10.212.32.87])
- by fmsmga001.fm.intel.com with ESMTP; 02 Jul 2020 15:18:20 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-gfx@lists.freedesktop.org, manasi.d.navare@intel.com,
- chris@chris-wilson.co.uk, ville.syrjala@linux.intel.com
-Date: Thu,  2 Jul 2020 15:18:18 -0700
-Message-Id: <20200702221818.29094-1-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.21.3
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E81A96E5A2
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 22:21:55 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21695937-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 Jul 2020 23:21:50 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  2 Jul 2020 23:21:52 +0100
+Message-Id: <20200702222152.14757-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] Revert "drm/i915/dp: Correctly advertise HBR3
- for GEN11+"
+Subject: [Intel-gfx] [CI] drm/i915/gem: Split the context's obj:vma lut into
+ its own mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,76 +42,195 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The initial CI results did not include a TGL system which includes a
-panel that is having issues with patch. Revert while we triage.
+Rather than reuse the common ctx->mutex for locking the execbuffer LUT,
+split it into its own lock to avoid being taken [as part of ctx->mutex]
+at inappropriate times. In particular to avoid the inversion from taking
+the timeline->mutex for the whole execbuf submission in the next patch.
 
-This reverts commit 680c45c767f63e35f063d3ea04f388a9f7ae7079.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 28 +++++++++++++++----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c     | 11 +++++++----
+ .../gpu/drm/i915/gem/i915_gem_context_types.h   |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c  | 17 +++++++++++------
+ drivers/gpu/drm/i915/gem/i915_gem_object.c      |  4 ++--
+ .../gpu/drm/i915/gem/selftests/mock_context.c   |  4 +++-
+ 5 files changed, 24 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a5ab405d3a12..d6295eb20b63 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -137,8 +137,6 @@ static const u8 valid_dsc_slicecount[] = {1, 2, 4};
-  *
-  * If a CPU or PCH DP output is attached to an eDP panel, this function
-  * will return true, and false otherwise.
-- *
-- * This function is not safe to use prior to encoder type being set.
-  */
- bool intel_dp_is_edp(struct intel_dp *intel_dp)
- {
-@@ -8159,6 +8157,8 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 		     intel_encoder->base.name))
- 		return false;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 6675447a47b9..41784df51e58 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -101,8 +101,7 @@ static void lut_close(struct i915_gem_context *ctx)
+ 	struct radix_tree_iter iter;
+ 	void __rcu **slot;
  
-+	intel_dp_set_source_rates(intel_dp);
-+
- 	intel_dp->reset_link_params = true;
- 	intel_dp->pps_pipe = INVALID_PIPE;
- 	intel_dp->active_pipe = INVALID_PIPE;
-@@ -8174,22 +8174,28 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 		 */
- 		drm_WARN_ON(dev, intel_phy_is_tc(dev_priv, phy));
- 		type = DRM_MODE_CONNECTOR_eDP;
--		intel_encoder->type = INTEL_OUTPUT_EDP;
+-	lockdep_assert_held(&ctx->mutex);
 -
--		/* eDP only on port B and/or C on vlv/chv */
--		if (drm_WARN_ON(dev, (IS_VALLEYVIEW(dev_priv) ||
--				      IS_CHERRYVIEW(dev_priv)) &&
--				port != PORT_B && port != PORT_C))
--			return false;
- 	} else {
- 		type = DRM_MODE_CONNECTOR_DisplayPort;
++	mutex_lock(&ctx->lut_mutex);
+ 	rcu_read_lock();
+ 	radix_tree_for_each_slot(slot, &ctx->handles_vma, &iter, 0) {
+ 		struct i915_vma *vma = rcu_dereference_raw(*slot);
+@@ -135,6 +134,7 @@ static void lut_close(struct i915_gem_context *ctx)
+ 		i915_gem_object_put(obj);
+ 	}
+ 	rcu_read_unlock();
++	mutex_unlock(&ctx->lut_mutex);
+ }
+ 
+ static struct intel_context *
+@@ -342,6 +342,7 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
+ 	spin_unlock(&ctx->i915->gem.contexts.lock);
+ 
+ 	mutex_destroy(&ctx->engines_mutex);
++	mutex_destroy(&ctx->lut_mutex);
+ 
+ 	if (ctx->timeline)
+ 		intel_timeline_put(ctx->timeline);
+@@ -725,6 +726,7 @@ __create_context(struct drm_i915_private *i915)
+ 	RCU_INIT_POINTER(ctx->engines, e);
+ 
+ 	INIT_RADIX_TREE(&ctx->handles_vma, GFP_KERNEL);
++	mutex_init(&ctx->lut_mutex);
+ 
+ 	/* NB: Mark all slices as needing a remap so that when the context first
+ 	 * loads it will restore whatever remap state already exists. If there
+@@ -1312,11 +1314,11 @@ static int set_ppgtt(struct drm_i915_file_private *file_priv,
+ 	if (vm == rcu_access_pointer(ctx->vm))
+ 		goto unlock;
+ 
++	old = __set_ppgtt(ctx, vm);
++
+ 	/* Teardown the existing obj:vma cache, it will have to be rebuilt. */
+ 	lut_close(ctx);
+ 
+-	old = __set_ppgtt(ctx, vm);
+-
+ 	/*
+ 	 * We need to flush any requests using the current ppgtt before
+ 	 * we release it as the requests do not hold a reference themselves,
+@@ -1330,6 +1332,7 @@ static int set_ppgtt(struct drm_i915_file_private *file_priv,
+ 	if (err) {
+ 		i915_vm_close(__set_ppgtt(ctx, old));
+ 		i915_vm_close(old);
++		lut_close(ctx); /* force a rebuild of the old obj:vma cache */
  	}
  
--	intel_dp_set_source_rates(intel_dp);
--
- 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
- 		intel_dp->active_pipe = vlv_active_pipe(intel_dp);
+ unlock:
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index 28760bd03265..ae14ca24a11f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -170,6 +170,7 @@ struct i915_gem_context {
+ 	 * per vm, which may be one per context or shared with the global GTT)
+ 	 */
+ 	struct radix_tree_root handles_vma;
++	struct mutex lut_mutex;
  
-+	/*
-+	 * For eDP we always set the encoder type to INTEL_OUTPUT_EDP, but
-+	 * for DP the encoder type can be set by the caller to
-+	 * INTEL_OUTPUT_UNKNOWN for DDI, so don't rewrite it.
-+	 */
-+	if (type == DRM_MODE_CONNECTOR_eDP)
-+		intel_encoder->type = INTEL_OUTPUT_EDP;
+ 	/**
+ 	 * @name: arbitrary name, used for user debug
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index b4862afaaf28..52391894c994 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -782,10 +782,13 @@ static int __eb_add_lut(struct i915_execbuffer *eb,
+ 
+ 	/* Check that the context hasn't been closed in the meantime */
+ 	err = -EINTR;
+-	if (!mutex_lock_interruptible(&ctx->mutex)) {
+-		err = -ENOENT;
+-		if (likely(!i915_gem_context_is_closed(ctx)))
++	if (!mutex_lock_interruptible(&ctx->lut_mutex)) {
++		if (unlikely(vma->vm != ctx->vm))
++			err = -EAGAIN; /* user racing with ctx set-vm */
++		else if (likely(!i915_gem_context_is_closed(ctx)))
+ 			err = radix_tree_insert(&ctx->handles_vma, handle, vma);
++		else
++			err = -ENOENT;
+ 		if (err == 0) { /* And nor has this handle */
+ 			struct drm_i915_gem_object *obj = vma->obj;
+ 
+@@ -798,7 +801,7 @@ static int __eb_add_lut(struct i915_execbuffer *eb,
+ 			}
+ 			spin_unlock(&obj->lut_lock);
+ 		}
+-		mutex_unlock(&ctx->mutex);
++		mutex_unlock(&ctx->lut_mutex);
+ 	}
+ 	if (unlikely(err))
+ 		goto err;
+@@ -814,6 +817,8 @@ static int __eb_add_lut(struct i915_execbuffer *eb,
+ 
+ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
+ {
++	struct i915_address_space *vm = eb->context->vm;
 +
-+	/* eDP only on port B and/or C on vlv/chv */
-+	if (drm_WARN_ON(dev, (IS_VALLEYVIEW(dev_priv) ||
-+			      IS_CHERRYVIEW(dev_priv)) &&
-+			intel_dp_is_edp(intel_dp) &&
-+			port != PORT_B && port != PORT_C))
-+		return false;
+ 	do {
+ 		struct drm_i915_gem_object *obj;
+ 		struct i915_vma *vma;
+@@ -821,7 +826,7 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
+ 
+ 		rcu_read_lock();
+ 		vma = radix_tree_lookup(&eb->gem_context->handles_vma, handle);
+-		if (likely(vma))
++		if (likely(vma && vma->vm == vm))
+ 			vma = i915_vma_tryget(vma);
+ 		rcu_read_unlock();
+ 		if (likely(vma))
+@@ -831,7 +836,7 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
+ 		if (unlikely(!obj))
+ 			return ERR_PTR(-ENOENT);
+ 
+-		vma = i915_vma_instance(obj, eb->context->vm, NULL);
++		vma = i915_vma_instance(obj, vm, NULL);
+ 		if (IS_ERR(vma)) {
+ 			i915_gem_object_put(obj);
+ 			return vma;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index eb35bdd10c09..c8421fd9d2dc 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -143,14 +143,14 @@ void i915_gem_close_object(struct drm_gem_object *gem, struct drm_file *file)
+ 		 * vma, in the same fd namespace, by virtue of flink/open.
+ 		 */
+ 
+-		mutex_lock(&ctx->mutex);
++		mutex_lock(&ctx->lut_mutex);
+ 		vma = radix_tree_delete(&ctx->handles_vma, lut->handle);
+ 		if (vma) {
+ 			GEM_BUG_ON(vma->obj != obj);
+ 			GEM_BUG_ON(!atomic_read(&vma->open_count));
+ 			i915_vma_close(vma);
+ 		}
+-		mutex_unlock(&ctx->mutex);
++		mutex_unlock(&ctx->lut_mutex);
+ 
+ 		i915_gem_context_put(lut->ctx);
+ 		i915_lut_handle_free(lut);
+diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+index aa0d06cf1903..51b5a3421b40 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+@@ -23,6 +23,8 @@ mock_context(struct drm_i915_private *i915,
+ 	INIT_LIST_HEAD(&ctx->link);
+ 	ctx->i915 = i915;
+ 
++	mutex_init(&ctx->mutex);
 +
- 	drm_dbg_kms(&dev_priv->drm,
- 		    "Adding %s connector on [ENCODER:%d:%s]\n",
- 		    type == DRM_MODE_CONNECTOR_eDP ? "eDP" : "DP",
+ 	spin_lock_init(&ctx->stale.lock);
+ 	INIT_LIST_HEAD(&ctx->stale.engines);
+ 
+@@ -35,7 +37,7 @@ mock_context(struct drm_i915_private *i915,
+ 	RCU_INIT_POINTER(ctx->engines, e);
+ 
+ 	INIT_RADIX_TREE(&ctx->handles_vma, GFP_KERNEL);
+-	mutex_init(&ctx->mutex);
++	mutex_init(&ctx->lut_mutex);
+ 
+ 	if (name) {
+ 		struct i915_ppgtt *ppgtt;
 -- 
-2.21.3
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
