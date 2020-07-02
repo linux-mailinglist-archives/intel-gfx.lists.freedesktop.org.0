@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58BE8211F90
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 11:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AFD4211F9E
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 11:17:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E0786E079;
-	Thu,  2 Jul 2020 09:15:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD1F56E0DA;
+	Thu,  2 Jul 2020 09:17:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D9CD6E079
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 09:15:31 +0000 (UTC)
-IronPort-SDR: BQcNR5F4d3ceecvtj94zS2TNo9vpiGaII9Kw8pWxT0XpHKLavghwxUL+MJ3wl3zo5qZzNUqQAz
- 5dwgK3P+Lb2Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9669"; a="208356653"
-X-IronPort-AV: E=Sophos;i="5.75,303,1589266800"; d="scan'208";a="208356653"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2020 02:15:30 -0700
-IronPort-SDR: 94sEitqNMPMksemK68u/4dmqHVPEsF4dnyrx1k8SHsjWggkXFoIUl/rNj6ZPPEGfKxI4oNY3BT
- 4IrA7p08ieng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,303,1589266800"; d="scan'208";a="481937994"
-Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com
- ([10.237.72.190])
- by fmsmga005.fm.intel.com with ESMTP; 02 Jul 2020 02:15:28 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Jul 2020 12:15:26 +0300
-Message-Id: <20200702091526.10096-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 78F456E07B;
+ Thu,  2 Jul 2020 09:17:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 72B04A0BC6;
+ Thu,  2 Jul 2020 09:17:37 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Clamp min_cdclk to max_cdclk_freq
- to unblock 8K
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 02 Jul 2020 09:17:37 -0000
+Message-ID: <159368145746.5656.373487303433587725@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200702083225.20044-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200702083225.20044-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/23=5D_drm/i915=3A_Drop_vm=2Eref_?=
+ =?utf-8?q?for_duplicate_vma_on_construction?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,37 +39,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2Ugc3RpbGwgbmVlZCAiQnVtcCB1cCBDRENMSyIgd29ya2Fyb3VuZCBvdGhlcndpc2UgZ2V0dGlu
-Zwp1bmRlcnJ1bnMgLSBob3dldmVyIGN1cnJlbnRseSBpdCBibG9ja3MgOEsgYXMgQ0RDTEsgPSBQ
-aXhlbCByYXRlLAppbiA4SyBjYXNlIHdvdWxkIHJlcXVpcmUgQ0RDTEsgdG8gYmUgYXJvdW5kIDEg
-R2h6IHdoaWNoIGlzIG5vdApwb3NzaWJsZS4KCnYyOiAtIENvbnZlcnQgdG8gZXhwcmVzc2lvbiht
-YXgobWluX2NkY2xrLCBtaW4ocGl4ZWxfcmF0ZSwgbWF4X2NkY2xrKSkKICAgICAgKFZpbGxlIFN5
-cmrDpGzDpCkKICAgIC0gVXNlIHR5cGUgc3BlY2lmaWMgbWluX3QsIG1heF90KFZpbGxlIFN5cmrD
-pGzDpCkKClNpZ25lZC1vZmYtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNv
-dnNraXlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-Y2RjbGsuYyB8IDExICsrKysrKysrKy0tCiAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCsp
-LCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfY2RjbGsuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2Rj
-bGsuYwppbmRleCA0NWY3ZjMzZDExNDQuLjhmOTMyMGUxZTI0OSAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYwpAQCAtMjA4MCw4ICsyMDgwLDE1IEBAIGludCBp
-bnRlbF9jcnRjX2NvbXB1dGVfbWluX2NkY2xrKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
-ICpjcnRjX3N0YXRlKQogCSAqIEV4cGxpY2l0bHkgc3RhdGluZyBoZXJlIHRoYXQgdGhpcyBzZWVt
-cyB0byBiZSBjdXJyZW50bHkKIAkgKiByYXRoZXIgYSBIYWNrLCB0aGFuIGZpbmFsIHNvbHV0aW9u
-LgogCSAqLwotCWlmIChJU19USUdFUkxBS0UoZGV2X3ByaXYpKQotCQltaW5fY2RjbGsgPSBtYXgo
-bWluX2NkY2xrLCAoaW50KWNydGNfc3RhdGUtPnBpeGVsX3JhdGUpOworCWlmIChJU19USUdFUkxB
-S0UoZGV2X3ByaXYpKSB7CisJCS8qCisJCSAqIENsYW1wIHRvIG1heF9jZGNsa19mcmVxIGluIGNh
-c2UgcGl4ZWwgcmF0ZSBpcyBoaWdoZXIsCisJCSAqIGluIG9yZGVyIG5vdCB0byBicmVhayBhbiA4
-SywgYnV0IHN0aWxsIGxlYXZlIFcvQSBhdCBwbGFjZS4KKwkJICovCisJCW1pbl9jZGNsayA9IG1h
-eF90KGludCwgbWluX2NkY2xrLAorCQkJCSAgbWluX3QoaW50LCBjcnRjX3N0YXRlLT5waXhlbF9y
-YXRlLAorCQkJCQlkZXZfcHJpdi0+bWF4X2NkY2xrX2ZyZXEpKTsKKwl9CiAKIAlpZiAobWluX2Nk
-Y2xrID4gZGV2X3ByaXYtPm1heF9jZGNsa19mcmVxKSB7CiAJCWRybV9kYmdfa21zKCZkZXZfcHJp
-di0+ZHJtLAotLSAKMi4yNC4xLjQ4NS5nYWQwNWEzZDhlNQoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: series starting with [01/23] drm/i915: Drop vm.ref for duplicate vma on construction
+URL   : https://patchwork.freedesktop.org/series/79037/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+2b716a4a1108 drm/i915: Drop vm.ref for duplicate vma on construction
+02e97324e6dd drm/i915/gem: Split the context's obj:vma lut into its own mutex
+-:82: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#82: FILE: drivers/gpu/drm/i915/gem/i915_gem_context_types.h:173:
++	struct mutex lut_mutex;
+
+total: 0 errors, 0 warnings, 1 checks, 105 lines checked
+981b52482265 drm/i915/gem: Drop forced struct_mutex from shrinker_taints_mutex
+63cac79e5aff drm/i915/gem: Only revoke mmap handlers if active
+ceb2d68f55a0 drm/i915: Export ppgtt_bind_vma
+41eb0c64c9b6 drm/i915: Preallocate stashes for vma page-directories
+84369a1c6dad drm/i915: Switch to object allocations for page directories
+880e4a90f882 drm/i915/gem: Don't drop the timeline lock during execbuf
+84600d1a1d00 drm/i915/gem: Rename execbuf.bind_link to unbound_link
+6ce1d70bdaa0 drm/i915/gem: Break apart the early i915_vma_pin from execbuf object lookup
+6095d5335d88 drm/i915/gem: Remove the call for no-evict i915_vma_pin
+8041afeb3c3a drm/i915: Add list_for_each_entry_safe_continue_reverse
+-:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
+#21: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++	     n = list_prev_entry(pos, member);				\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
+
+-:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#21: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++	     n = list_prev_entry(pos, member);				\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
+
+-:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
+#21: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++	     n = list_prev_entry(pos, member);				\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
+
+total: 0 errors, 0 warnings, 3 checks, 12 lines checked
+5f2ba176cfcc drm/i915: Always defer fenced work to the worker
+3bc8dcef47f8 drm/i915/gem: Assign context id for async work
+658265850918 drm/i915: Export a preallocate variant of i915_active_acquire()
+3474748efc48 drm/i915/gem: Separate the ww_mutex walker into its own list
+9596fd217b0e drm/i915/gem: Asynchronous GTT unbinding
+11531ee318da drm/i915/gem: Bind the fence async for execbuf
+67d8c52b893a drm/i915/gem: Include cmdparser in common execbuf pinning
+c9ad9f9d60dd drm/i915/gem: Include secure batch in common execbuf pinning
+db49ec7ea2ce drm/i915/gem: Reintroduce multiple passes for reloc processing
+-:993: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
+#993: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c:14:
++#if 0
+
+-:1006: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
+#1006: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c:27:
++#if 0
+
+total: 0 errors, 2 warnings, 0 checks, 969 lines checked
+1375d1da0182 drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+-:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#78: 
+new file mode 100644
+
+-:151: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
+#151: FILE: drivers/gpu/drm/i915/mm/i915_acquire_ctx.c:69:
++#if 0
+
+total: 0 errors, 2 warnings, 0 checks, 187 lines checked
+6f377648e7f5 drm/i915/gem: Pull execbuf dma resv under a single critical section
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
