@@ -2,57 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4946B212F74
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 00:22:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA1BE212FAB
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 00:46:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92BDE6E5A3;
-	Thu,  2 Jul 2020 22:22:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABBEE6E181;
+	Thu,  2 Jul 2020 22:46:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C4346E5A3
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 22:22:51 +0000 (UTC)
-IronPort-SDR: rJ9dN3iyxICv84y3zFPUiCswBp6UZhn2sWcNA8ohnHlx7nWfUR1oVk6l/JWSgirW4RhSAervH/
- iCTAEJ17vSzg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="126652562"
-X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="126652562"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2020 15:22:51 -0700
-IronPort-SDR: 1xQueag7TI5Tt2a+lrL08JO+dZ7hv2VkdYEY8A++5cEmt5z61VblIHmn5Dvg1fiD/TNWIHunbv
- rzHmqGY6i6SA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="304384863"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
- by fmsmga004.fm.intel.com with ESMTP; 02 Jul 2020 15:22:51 -0700
-Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
- FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 2 Jul 2020 15:22:50 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.40]) by
- FMSMSX110.amr.corp.intel.com ([169.254.14.89]) with mapi id 14.03.0439.000;
- Thu, 2 Jul 2020 15:22:50 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 4/4] drm/i915/fbc: Allow FBC to recompress
- after a 3D workload on i85x/i865
-Thread-Index: AQHWUIbBLSVZ7XmqQUawbmXG3DwEr6j1U2YA
-Date: Thu, 2 Jul 2020 22:22:50 +0000
-Message-ID: <fd39cf427dfdcfb65ab52ea938f810ee383321f1.camel@intel.com>
-References: <20200702153723.24327-1-ville.syrjala@linux.intel.com>
- <20200702153723.24327-5-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200702153723.24327-5-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.51]
-Content-ID: <483CC6749F994C42B0C0CD1B12234A2A@intel.com>
+X-Greylist: delayed 4341 seconds by postgrey-1.36 at gabe;
+ Thu, 02 Jul 2020 22:46:46 UTC
+Received: from 16.mo7.mail-out.ovh.net (16.mo7.mail-out.ovh.net
+ [46.105.72.216])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79F876E181
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 22:46:46 +0000 (UTC)
+Received: from player788.ha.ovh.net (unknown [10.110.208.124])
+ by mo7.mail-out.ovh.net (Postfix) with ESMTP id 966DB16FE2E
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 00:09:52 +0200 (CEST)
+Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
+ (Authenticated sender: andi@etezian.org)
+ by player788.ha.ovh.net (Postfix) with ESMTPSA id DF31714038A3F;
+ Thu,  2 Jul 2020 22:09:47 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-99G00349b074a2-b52a-4d94-aec4-40f78c93e13a,330C922CC493531D64D5056C63BB4F2290C4140E)
+ smtp.auth=andi@etezian.org
+Date: Fri, 3 Jul 2020 01:09:44 +0300
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200702220944.GD1969@jack.zhora.eu>
+References: <20200702083225.20044-1-chris@chris-wilson.co.uk>
+ <20200702083225.20044-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/fbc: Allow FBC to recompress
- after a 3D workload on i85x/i865
+Content-Disposition: inline
+In-Reply-To: <20200702083225.20044-2-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 6570751856860512777
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduiedrtdehgddthecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpedtgfduudfhfeeuueejfeeihedtfeetgfegveehgfeuleelhfduteegieekudeifeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeekkedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH 02/23] drm/i915/gem: Split the context's
+ obj:vma lut into its own mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,56 +52,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIwLTA3LTAyIGF0IDE4OjM3ICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gTm9ybWFsbHkgaTg1eC9pODY1IDNEIGFjdGl2aXR5IHdpbGwgYmxvY2sgRkJDIHVudGls
-IGEgMkQgYmxpdA0KPiBvY2N1cnMuIEkgc3VwcG9zZSB0aGlzIHdhcyBtZWFudCB0byBhdm9pZCBy
-ZWNvbXByZXNzaW9uIHdoaWxlDQo+IDNEIGFjdGl2aXR5IGlzIHN0aWxsIGdvaW5nIG9uIGJ1dCB0
-aGUgZnJhbWUgaGFzbid0IHlldCBiZWVuDQo+IHByZXNlbnRlZC4gVW5mb3J0dW5hdGVseSB0aGF0
-IGFsc28gbWVhbnMgdGhhdCBhIHBhZ2UgZmxpcHBlZA0KPiAzRCB3b3JrbG9hZCB3aWxsIHBlcm1h
-bmVudGx5IGJsb2NrIEZCQyBldmVuIGlmIGl0IG9ubHkgcmVuZGVycw0KPiBhIHNpbmdsZSBmcmFt
-ZSBhbmQgdGhlbiBkb2VzIG5vdGhpbmcuDQo+IA0KPiBTaW5jZSB3ZSBhcmUgdXNpbmcgc29mdHdh
-cmUgcmVuZGVyIHRyYWNraW5nIGFueXdheSB3ZSBtaWdodCBhcw0KPiB3ZWxsIGZsaXAgdGhlIGNo
-aWNrZW4gYml0IHNvIHRoYXQgM0QgZG9lcyBub3QgYmxvY2sgRkJDLiBUaGlzDQo+IHdpbGwgYXZv
-aWQgdGhlIHBlcm1hbWVudCBGQkMgYmxvY2thZ2UgaW4gdGhlIGFmb3JlbWVudGlvbiB1c2UNCj4g
-Y2FzZSwgYnV0IHRoYW5rcyB0byB0aGUgc29mdHdhcmUgdHJhY2tpbmcgdGhlIGNvbXByZXNzb3Ig
-d2lsbA0KPiBub3QgZGlzdHVyYiAzRCByZW5kZXJpbmcgYWN0aXZpdHkuDQoNClJlZ2lzdGVyIGRv
-ZXMgd2hhdCBpcyBkZXNjcmliZWQuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNv
-dXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUg
-U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIHwgIDEgKw0KPiAgZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfcG0uYyB8IDEwICsrKysrKysrKysNCj4gIDIgZmlsZXMgY2hhbmdlZCwgMTEgaW5z
-ZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-cmVnLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+IGluZGV4IDlkNjUzNmFm
-Yzk0Yi4uMDM1OTBkMmQ3NWY3IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X3JlZy5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gQEAg
-LTI4MjcsNiArMjgyNyw3IEBAIHN0YXRpYyBpbmxpbmUgYm9vbCBpOTE1X21taW9fcmVnX3ZhbGlk
-KGk5MTVfcmVnX3QgcmVnKQ0KPiAgI2RlZmluZSBWTFZfR1VfQ1RMMAlfTU1JTyhWTFZfRElTUExB
-WV9CQVNFICsgMHgyMDMwKQ0KPiAgI2RlZmluZSBWTFZfR1VfQ1RMMQlfTU1JTyhWTFZfRElTUExB
-WV9CQVNFICsgMHgyMDM0KQ0KPiAgI2RlZmluZSBTQ1BEMAkJX01NSU8oMHgyMDljKSAvKiA5MTUr
-IG9ubHkgKi8NCj4gKyNkZWZpbmUgIFNDUERfRkJDX0lHTk9SRV8zRAkJCSgxIDw8IDYpDQo+ICAj
-ZGVmaW5lICBDU1RBVEVfUkVOREVSX0NMT0NLX0dBVEVfRElTQUJMRQkoMSA8PCA1KQ0KPiAgI2Rl
-ZmluZSBHRU4yX0lFUglfTU1JTygweDIwYTApDQo+ICAjZGVmaW5lIEdFTjJfSUlSCV9NTUlPKDB4
-MjBhNCkNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jDQo+IGluZGV4IDU2NWEyYjlkYTNiMy4uMmQ5
-ODBiODNhMWYxIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5j
-DQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMNCj4gQEAgLTc0NzEsNiAr
-NzQ3MSwxNiBAQCBzdGF0aWMgdm9pZCBpODV4X2luaXRfY2xvY2tfZ2F0aW5nKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gIA0KPiAgCUk5MTVfV1JJVEUoTUVNX01PREUsDQo+
-ICAJCSAgIF9NQVNLRURfQklUX0VOQUJMRShNRU1fRElTUExBWV9UUklDS0xFX0ZFRURfRElTQUJM
-RSkpOw0KPiArDQo+ICsJLyoNCj4gKwkgKiBIYXZlIEZCQyBpZ25vcmUgM0QgYWN0aXZpdHkgc2lu
-Y2Ugd2UgdXNlIHNvZnR3YXJlDQo+ICsJICogcmVuZGVyIHRyYWNraW5nLCBhbmQgb3RoZXJ3aXNl
-IGEgcHVyZSAzRCB3b3JrbG9hZA0KPiArCSAqIChldmVuIGlmIGl0IGp1c3QgcmVuZGVycyBhIHNp
-bmdsZSBmcmFtZSBhbmQgdGhlbiBkb2VzDQo+ICsJICogYWJvc3VsdGVseSBub3RoaW5nKSB3b3Vs
-ZCBub3QgYWxsb3cgRkJDIHRvIHJlY29tcHJlc3MNCj4gKwkgKiB1bnRpbCBhIDJEIGJsaXQgb2Nj
-dXJzLg0KPiArCSAqLw0KPiArCUk5MTVfV1JJVEUoU0NQRDAsDQo+ICsJCSAgIF9NQVNLRURfQklU
-X0VOQUJMRShTQ1BEX0ZCQ19JR05PUkVfM0QpKTsNCj4gIH0NCj4gIA0KPiAgc3RhdGljIHZvaWQg
-aTgzMF9pbml0X2Nsb2NrX2dhdGluZyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYp
-DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Hi Chris,
+
+> @@ -1312,11 +1314,11 @@ static int set_ppgtt(struct drm_i915_file_private *file_priv,
+>  	if (vm == rcu_access_pointer(ctx->vm))
+>  		goto unlock;
+>  
+> +	old = __set_ppgtt(ctx, vm);
+> +
+>  	/* Teardown the existing obj:vma cache, it will have to be rebuilt. */
+>  	lut_close(ctx);
+>  
+> -	old = __set_ppgtt(ctx, vm);
+> -
+>  	/*
+>  	 * We need to flush any requests using the current ppgtt before
+>  	 * we release it as the requests do not hold a reference themselves,
+> @@ -1330,6 +1332,7 @@ static int set_ppgtt(struct drm_i915_file_private *file_priv,
+>  	if (err) {
+>  		i915_vm_close(__set_ppgtt(ctx, old));
+>  		i915_vm_close(old);
+> +		lut_close(ctx); /* rebuild the old obj:vma cache */
+
+I don't really understand this but it doesn't hurt
+
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+> index aa0d06cf1903..51b5a3421b40 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+> @@ -23,6 +23,8 @@ mock_context(struct drm_i915_private *i915,
+>  	INIT_LIST_HEAD(&ctx->link);
+>  	ctx->i915 = i915;
+>  
+> +	mutex_init(&ctx->mutex);
+> +
+>  	spin_lock_init(&ctx->stale.lock);
+>  	INIT_LIST_HEAD(&ctx->stale.engines);
+>  
+> @@ -35,7 +37,7 @@ mock_context(struct drm_i915_private *i915,
+>  	RCU_INIT_POINTER(ctx->engines, e);
+>  
+>  	INIT_RADIX_TREE(&ctx->handles_vma, GFP_KERNEL);
+> -	mutex_init(&ctx->mutex);
+> +	mutex_init(&ctx->lut_mutex);
+
+...and I don't really understand why moved the first
+init(&ctx->mutex) above, is it just aesthetic?
+
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+
+Andi
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
