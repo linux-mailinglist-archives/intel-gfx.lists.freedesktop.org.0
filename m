@@ -2,31 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BBC1212B76
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 19:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5047212C16
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 20:21:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E3776E0F8;
-	Thu,  2 Jul 2020 17:46:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2536EACB;
+	Thu,  2 Jul 2020 18:21:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F19D6E0F8;
- Thu,  2 Jul 2020 17:46:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21693839-1500050 
- for multiple; Thu, 02 Jul 2020 18:46:20 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Jul 2020 18:46:20 +0100
-Message-Id: <20200702174620.230048-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200702123908.227124-1-chris@chris-wilson.co.uk>
-References: <20200702123908.227124-1-chris@chris-wilson.co.uk>
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59DDC6E963
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 18:21:43 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id z2so7350880wrp.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 Jul 2020 11:21:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=3hPvGC/HkagaCR9HulPob6e55+qIh6naoY1GWRQP/P8=;
+ b=UyCARtoBCRxJz8yzvVPLXJEETcY1MimBLC5mOAzoosrh2Pjd8B5VFX7RYHhv8mr5JS
+ w3083ls2AlVka+7WgZ/xxcUj3MIZdGgoB8EaigsY+zuR+Qyn15LDBIjQT2llEb8ZgW4r
+ qZiQP1zLCTgxAAk5J+DqTmc6Q072nB3zsWTo0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=3hPvGC/HkagaCR9HulPob6e55+qIh6naoY1GWRQP/P8=;
+ b=QKzfQEsKLqdBg2NPY4iBRGmAN8j3hnag6o5Hr9CYeBbHVLTPG4BDhcrYb6oFs/rhgK
+ MvgZK4pqez9iCBDTX9j6d9GWfnOrVitId2+ODUY9ywlq45AsBDPFRWl+f71kVWi+oWAO
+ 7/W1PkjQglWHtsRf66jM2vVwfYo0gcyW4lf6S5352STPwQRMBkT30jnuHzqFjL3dYrzw
+ 23g5PvFcrl8hv3xFIQasFwim8+PqYbI9DnJkowG5Re73fyt2h62IiqrMUwMcRYdqK6BH
+ mztK/iEkLZcatdoT06rCerCvmWjY1l7IcDd7ySHDJ21EVpSGjwdcKgXnWfig19AbRS6e
+ km+g==
+X-Gm-Message-State: AOAM531sRjar8L0/D5yAevl00vfcjpi0gbHaw23eTDsh9Zn1Pm7GWcwE
+ lz7X3j3yyJ63x7wPtV2pFxJrZA==
+X-Google-Smtp-Source: ABdhPJy9vmA6imnvMObJEUW/p+OQIMBPOpiRjvTTVls/209rJgxCRsDdiiuED8PRwO417cH4YBjhtA==
+X-Received: by 2002:adf:f14e:: with SMTP id y14mr32774321wro.151.1593714101975; 
+ Thu, 02 Jul 2020 11:21:41 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id 30sm12394767wrm.74.2020.07.02.11.21.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 02 Jul 2020 11:21:41 -0700 (PDT)
+Date: Thu, 2 Jul 2020 20:21:39 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Alex Deucher <alexdeucher@gmail.com>
+Message-ID: <20200702182139.GD3278063@phenom.ffwll.local>
+References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
+ <20200612160056.2082681-2-daniel.vetter@ffwll.ch>
+ <ad375dbb-760b-b2e9-cfab-94fba61f4eb7@amd.com>
+ <CADnq5_NY1P8nM9gSL9zb1fpizsFxgRwvztQRg426-fEKMupq+w@mail.gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/perf: Instantiate a local drm_fd for
- the unprivileged helper
+Content-Disposition: inline
+In-Reply-To: <CADnq5_NY1P8nM9gSL9zb1fpizsFxgRwvztQRg426-fEKMupq+w@mail.gmail.com>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH 2/8] drm/amdgpu: Use
+ __drm_atomic_helper_crtc_reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,51 +68,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Stylon Wang <stylon.wang@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Roman Li <roman.li@amd.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Harry Wentland <hwentlan@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Mikita Lipski <mikita.lipski@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While the test is blocked, we keep trying the gen12_single_ctx_helper().
-As this is using the parent's drm_fd, all of our context allocations are
-persistent. Reopen the device in the child so that when we exit, our
-allocations are freed along with the process -- avoiding a total memory
-leak if the test is stuck.
+On Fri, Jun 12, 2020 at 01:41:17PM -0400, Alex Deucher wrote:
+> On Fri, Jun 12, 2020 at 1:24 PM Harry Wentland <hwentlan@amd.com> wrote:
+> >
+> > On 2020-06-12 12:00 p.m., Daniel Vetter wrote:
+> > > Now also comes with the added benefit of doing a drm_crtc_vblank_off(),
+> > > which means vblank state isn't ill-defined and fail-y at driver load
+> > > before the first modeset on each crtc.
+> > >
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > > Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+> > > Cc: Harry Wentland <harry.wentland@amd.com>
+> > > Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> > > Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+> > > Cc: Roman Li <roman.li@amd.com>
+> > > Cc: Mikita Lipski <mikita.lipski@amd.com>
+> > > Cc: Stylon Wang <stylon.wang@amd.com>
+> >
+> > Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+> >
+> 
+> Daniel, do you want to take the whole series, or should I pull this in
+> through my tree?  Either way works for me.  Thanks for the patch!
 
-This does not explain why the test was stuck, it just prevents us from
-exacerbating the error condition. Hopefully leaving the system in a more
-debuggable state.
+Merged the entire series through drm-misc-next now.
+-Daniel
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/2126
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- tests/i915/perf.c | 5 +++++
- 1 file changed, 5 insertions(+)
+> 
+> Alex
+> 
+> > Harry
+> >
+> > > ---
+> > >  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 +---
+> > >  1 file changed, 1 insertion(+), 3 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > > index 68a73065b516..36d605a6eb16 100644
+> > > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > > @@ -4594,9 +4594,7 @@ static void dm_crtc_reset_state(struct drm_crtc *crtc)
+> > >       if (WARN_ON(!state))
+> > >               return;
+> > >
+> > > -     crtc->state = &state->base;
+> > > -     crtc->state->crtc = crtc;
+> > > -
+> > > +     __drm_atomic_helper_crtc_reset(crtc, &state->base);
+> > >  }
+> > >
+> > >  static struct drm_crtc_state *
+> > >
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-diff --git a/tests/i915/perf.c b/tests/i915/perf.c
-index d4ebae30d..92edc9f1f 100644
---- a/tests/i915/perf.c
-+++ b/tests/i915/perf.c
-@@ -4120,8 +4120,13 @@ gen12_test_single_ctx_render_target_writes_a_counter(void)
- 
- 	do {
- 		igt_fork_helper(&child) {
-+			/* A local device for local resources. */
-+			drm_fd = gem_reopen_driver(drm_fd);
-+
- 			igt_drop_root();
- 			gen12_single_ctx_helper();
-+
-+			close(drm_fd);
- 		}
- 		child_ret = igt_wait_helper(&child);
- 		igt_assert(WEXITSTATUS(child_ret) == EAGAIN ||
 -- 
-2.27.0
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
