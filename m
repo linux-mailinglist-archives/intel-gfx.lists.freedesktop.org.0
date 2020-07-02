@@ -2,35 +2,97 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA272123B8
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 14:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D5A32123CA
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jul 2020 14:57:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F053F6EAD7;
-	Thu,  2 Jul 2020 12:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36FAD6E1F7;
+	Thu,  2 Jul 2020 12:57:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAF5E6E22D
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 12:54:37 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21689467-1500050 for multiple; Thu, 02 Jul 2020 13:54:31 +0100
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2085.outbound.protection.outlook.com [40.107.236.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D6116E1F7;
+ Thu,  2 Jul 2020 12:57:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gKFjtQq3KYYVgoaoKAw8kcUvt5Yl17FsD0gcr8xF934cIjyk7uA314y5vDAk9TeMaOHUUA3bDEBM5+GaWpZHzlhX1VgW4ERq/TWgpUg9CBCHo7lY39YV50OKcMT5HWFqDhIMu8SZrVFhUhTgX+8zQfoTPai8MXhHGHV3OFAG2K+ZrgaK+mJ4JRrS/ZJsdv1CksrTejcJDZeZAqZFSW2brbVzlH/VAkilY4Rfcb1DUqRXrHRuftj21yoiVwC4Ys49A/gEO3XmP/Ki5Eia/nyXNXRokOe/epKqDMgy39ircW7mwt3e6orJa1ZM6EKAKo4Hyc/C1LqemEkk5eFTBJwvhg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7vHwGM1j3h3zMrfkrgCdJ3BVqlGq3GbBYqZb0upz87k=;
+ b=V8Ae1/iz+oAbPOz0z5088IGLzdNNEiFMehcIQtZHQRIIoAuVcjTmXwJEQYBn+NuWKonJ5dH+vgi+W3yl2KMaH8uwNQzGv+oSVqZQ8KiylCawJVe8f9e4Z00r+yURbi/9LZm+I2Pu4f0AbQcaxADN3dJVX2IqpCzHkmHiESJYdgfsa34hmYdDqHz8LAz1ObFqwhgTiK8S4YZMrOH8n6qjm1KLlKXlxZRojiQlOGu9BBtIWGlxunPU1KOcDSGd1bnc2TM8+EE7fKZ80WfIOKpHQRWxXrO6b5ROJzu3bnt2jhh7jWgHsgt1uBHRGlgvlSp13uWGXkhikc1t9sUPNfEtKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7vHwGM1j3h3zMrfkrgCdJ3BVqlGq3GbBYqZb0upz87k=;
+ b=xWioqp5kize9DazdLv5N2gYj3jaiFn1W7vN/TveDjDcTH/E0CdBYg71sf2ayugGYdy9ZTQoI77cFiVLTo5+QqEN5y6YxQMTDAAXeYt/Uhxc5XDXkXMPDytcekL4a5S/0cedPWDShdfQJ/LQRqmWiNgTeyzv8FEqqdgNNhLzHT0s=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB4112.namprd12.prod.outlook.com (2603:10b6:208:19a::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3153.23; Thu, 2 Jul
+ 2020 12:57:29 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::a16e:8812:b4c0:918d]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::a16e:8812:b4c0:918d%6]) with mapi id 15.20.3153.021; Thu, 2 Jul 2020
+ 12:57:29 +0000
+To: Daniel Vetter <daniel@ffwll.ch>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+References: <20200625123443.19680-1-lionel.g.landwerlin@intel.com>
+ <20200625123443.19680-2-lionel.g.landwerlin@intel.com>
+ <159309113252.4527.2883585204850736358@build.alporthouse.com>
+ <c6f72d4d-c8a0-c484-7c31-761e9c37b85e@intel.com>
+ <CAKMK7uHgwUQYLDPJnmTqcX1=UPuinifm+Y7+z-krSzqXpKXnow@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <73e53177-d8a7-80eb-8cf5-a99388977368@amd.com>
+Date: Thu, 2 Jul 2020 14:57:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+In-Reply-To: <CAKMK7uHgwUQYLDPJnmTqcX1=UPuinifm+Y7+z-krSzqXpKXnow@mail.gmail.com>
+Content-Language: en-US
+X-ClientProxiedBy: AM0PR06CA0109.eurprd06.prod.outlook.com
+ (2603:10a6:208:ab::14) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
 MIME-Version: 1.0
-In-Reply-To: <159369402005.22925.1411057997531169659@build.alporthouse.com>
-References: <20200702083225.20044-1-chris@chris-wilson.co.uk>
- <20200702083225.20044-4-chris@chris-wilson.co.uk>
- <d5431a01-602b-4a99-97cc-60de9a09f3c6@linux.intel.com>
- <159369402005.22925.1411057997531169659@build.alporthouse.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Thu, 02 Jul 2020 13:54:33 +0100
-Message-ID: <159369447339.22925.4301703067498552205@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 04/23] drm/i915/gem: Only revoke mmap
- handlers if active
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+ (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
+ AM0PR06CA0109.eurprd06.prod.outlook.com (2603:10a6:208:ab::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3153.21 via Frontend Transport; Thu, 2 Jul 2020 12:57:27 +0000
+X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: d1039e89-7f93-4b0d-4e58-08d81e8779d2
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4112:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4112C2CB21F2C4ECCEAE092D836D0@MN2PR12MB4112.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Forefront-PRVS: 0452022BE1
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 77GjWJZlBETza3ac+eXSe/ts0REhYoMWCRzXXz6lOsGR+QQivbs5Fx4vs37dRA8y1qZUQoCkDHuJL90nvPq0WhvbN5B1FA716zBvvffrxMQuPDtYEUvYNuiPPhmrWPSdE1AIH+Lky5OecvHugDE8xFFAGz2RRzGw2P04J9z8cCjkNQUlEk/3eqwoKSXf3+pwuEOOGkqkdO7Fx1yWzag/rALBEB8Hyomvg2hR3m4fGI2oFRqKprZ+/pwZH/65EpiD2/mIkt0PkQPuw7VJJCSkQIb+2chdzf7nZsW6aNLr1Eb97SM03qTgowv2oNUigLIycsuMLljH6MJmDmqFfaAlgeExQkpXbtbPcgo6fF0UMOrB8Uy9iqEBrHUr0Uyd52wY+y7jveIfmd6j8XGVeEzGzTcsWI4fzVQteLZEg3j0vao=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(366004)(346002)(376002)(396003)(136003)(39860400002)(31696002)(66476007)(31686004)(86362001)(5660300002)(66946007)(36756003)(4326008)(52116002)(53546011)(16526019)(186003)(6666004)(2906002)(8936002)(8676002)(66556008)(83380400001)(2616005)(45080400002)(110136005)(54906003)(966005)(316002)(6486002)(478600001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: ycDexrLEVsI1V1fOuPaJdZD6lawOoBuWIyX+hDopkK593g6aursXAx1vJDFaIXBv2oHWSn6BTA26UHV6TGzXxHnUpKPS8Fr2g8aCtnSsM9sca/nXLqcLq9VvZdLZWwlCdGIi+GDEyoW6ExdnMiTR/EIkEsDxEt//DI08AOLvps788ym0p7hNoTwNBWM34A2qabx+BLqFRRkNqpkQ83SxUmZbqnjqRo00OKgOAik3h9P0C93em1Y3d6PMm80QJdgR6czSazB6q5Uvq08aYomieuxJVVEuNEspxndfSo0UysXex2Cooi8UWj/voEHlCIkmKKiqRuJpoGMtKjrO/8E+ozrcXfB1CQoZ9sjbXajXiQj5q2W63Y2MoDnDmxl134/YpA9oVR8qn+hVTIp5dNT7R/iAI3wu8jMr716/uKLQfdvjVUsnVB4VacWpAVbDA5C1C1LkzBQRtIke41Whpuoq5mIo4AM3l5fXf08eDw3Rw0g9xrcFllEGWGkKQUGuxv1p6I2jOaesDEhltiw2ZQsD3fKzxKMauC5kFSb+oAjNpBb6gUHci2qESxQhA6NSgK9A
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1039e89-7f93-4b0d-4e58-08d81e8779d2
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2020 12:57:28.9897 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QJgMFE2PjbibLiQXrRVy8UmpOsbooqdXw6YT9xL5l2ZvIO7rXye8ZD5kwqqzMu/s
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4112
+Subject: Re: [Intel-gfx] [PATCH 2/2] dma-buf: fix dma-fence-chain out of
+ order test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,76 +105,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-07-02 13:47:00)
-> Quoting Tvrtko Ursulin (2020-07-02 13:35:41)
-> > 
-> > On 02/07/2020 09:32, Chris Wilson wrote:
-> > > Avoid waking up the device and taking stale locks if we know that the
-> > > object is not currently mmapped. This is particularly useful as not many
-> > > object are actually mmapped and so we can destroy them without waking
-> > > the device up, and gives us a little more freedom of workqueue ordering
-> > > during shutdown.
-> > > 
-> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > ---
-> > >   drivers/gpu/drm/i915/gem/i915_gem_mman.c | 7 +++++--
-> > >   1 file changed, 5 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> > > index fe27c5b344e3..522ca4f51b53 100644
-> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> > > @@ -516,8 +516,11 @@ void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj)
-> > >    */
-> > >   void i915_gem_object_release_mmap(struct drm_i915_gem_object *obj)
-> > >   {
-> > > -     i915_gem_object_release_mmap_gtt(obj);
-> > > -     i915_gem_object_release_mmap_offset(obj);
-> > > +     if (obj->userfault_count)
-> > > +             i915_gem_object_release_mmap_gtt(obj);
-> > > +
-> > > +     if (!RB_EMPTY_ROOT(&obj->mmo.offsets))
-> > > +             i915_gem_object_release_mmap_offset(obj);
-> > >   }
-> > >   
-> > >   static struct i915_mmap_offset *
-> > > 
-> > 
-> > Both conditions will need explaining why they are not racy.
-> 
-> It's an identical race even if you do take the mutex.
-> 
-> Thread A                Thread B
-> release_mmap            create_mmap_offset
->   mutex_lock/unlock     ...
->                         mutex_lock/unlock
-> 
-> Thread A will only operate on a snapshot of the current state with or
-> without the mutex; if Thread B is concurrently adding new mmaps, that
-> may occur before after Thread A makes decision the object is clean.
-> Thread A can only assess the state at that moment in time, and only
-> cares enough to ensure that from its pov, it has cleared the old
-> mmaps.
-> 
-> During free, we know there can be no concurrency (refcnt==0) and so the
-> snapshot is true.
+Am 25.06.20 um 15:59 schrieb Daniel Vetter:
+> On Thu, Jun 25, 2020 at 3:23 PM Lionel Landwerlin
+> <lionel.g.landwerlin@intel.com> wrote:
+>> On 25/06/2020 16:18, Chris Wilson wrote:
+>>> Quoting Lionel Landwerlin (2020-06-25 13:34:43)
+>>>> There was probably a misunderstand on how the dma-fence-chain is
+>>>> supposed to work or what dma_fence_chain_find_seqno() is supposed to
+>>>> return.
+>>>>
+>>>> dma_fence_chain_find_seqno() is here to give us the fence to wait upon
+>>>> for a particular point in the timeline. The timeline progresses only
+>>>> when all the points prior to a given number have completed.
+>>> Hmm, the question was what point is it supposed to wait for.
+>>>
+>>> For the simple chain of [1, 3], does 1 being signaled imply that all
+>>> points up to 3 are signaled, or does 3 not being signaled imply that all
+>>> points after 1 are not. If that's mentioned already somewhere, my bad.
+>>> If not, could you put the answer somewhere.
+>>> -Chris
+>> In [1, 3], if 1 is signaled, the timeline value is 1. And find_seqno(2)
+>> should return NULL.
+>>
+>>
+>> In the out_of_order selftest the chain was [1, 2, 3], 2 was signaled and
+>> the test was expecting no fence to be returned by find_seqno(2).
+>>
+>> But we still have to wait on 1 to complete before find_seqno(2) can
+>> return NULL (as in you don't have to wait on anything).
+>>
+>>
+>> Hope that answer the question.
+> I asked Christian to document why timeline works like this, but I
+> can't find it in the kerneldoc right now. If it's missing I think we
+> should fix that and add the explanation, iirc it was around gpu reset
+> creating too much havoc otherwise.
 
-Beyond the free usecase, the serialisation of the individual releases is
-coordinated by owning the backing storage operation i.e. we release
-when revoking the vma under the vma->vm->mutex, and the pages under
-currently the obj->mm.lock; to create a new fault mapping, the handlers
-will have taken a reference to either the vma or backing store and thus
-have serialised with the release. i915_gem_object_release_mmap() should
-be only used on the free path, since it's usual for us to have to do
-both. Now what are we doing in set-tiling? The tiling only affects ggtt
-mmapings...
--Chris
-> -Chris
+I do remember that I wrote a patch to improve the kerneldoc for timeline 
+semaphores, but then somebody else came along with an even better 
+description.
+
+Unfortunately it looks like neither was ever merged.
+
+Need to dig through my mails,
+Christian.
+
+> -Daniel
+>
+>>
+>> -Lionel
+>>
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Fintel-gfx&amp;data=02%7C01%7Cchristian.koenig%40amd.com%7Cfd87640cd9bd422971bf08d8191004d2%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637286903879074805&amp;sdata=M3WGWbuyQKZeGC0J3wEKtgQ1oKYo6GOAMvKU2mU3r%2FM%3D&amp;reserved=0
+>
+>
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
