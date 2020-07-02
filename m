@@ -1,61 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A59AE212F43
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 00:06:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E616212F56
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 00:14:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B5156E5A1;
-	Thu,  2 Jul 2020 22:06:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1AC46E277;
+	Thu,  2 Jul 2020 22:14:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D96A56E5A0
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 22:06:38 +0000 (UTC)
-IronPort-SDR: dR/TZ18d2mUT5ETr4FpkEXhyEzr0C8JyjZa7N4nwHDYospxRHZgZ974w69qAzJ6wghNWy6G2K/
- NX21/nl7FtDA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="148573542"
-X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="148573542"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2020 15:06:38 -0700
-IronPort-SDR: 342vVc+ccoTCLjOvPqgZfmXKYGfpo7qiuZAEFfYVnThbFIRxRmtnfRdlGLLEZ9oxT9jCXN2lm6
- UPzogCqoCJmw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,305,1589266800"; d="scan'208";a="296029257"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by orsmga002.jf.intel.com with ESMTP; 02 Jul 2020 15:06:38 -0700
-Received: from fmsmsx605.amr.corp.intel.com (10.18.126.85) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 2 Jul 2020 15:06:37 -0700
-Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 2 Jul 2020 15:06:37 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.40]) by
- FMSMSX109.amr.corp.intel.com ([169.254.15.60]) with mapi id 14.03.0439.000;
- Thu, 2 Jul 2020 15:06:37 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 3/4] drm/i915/fbc: Enable fbc on i865
-Thread-Index: AQHWUIbRx6ghZlFdIEWJ1iE6brOOt6j1TtyA
-Date: Thu, 2 Jul 2020 22:06:35 +0000
-Message-ID: <c79df199abb509c56c5c57ae2ecba2defd665348.camel@intel.com>
-References: <20200702153723.24327-1-ville.syrjala@linux.intel.com>
- <20200702153723.24327-4-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200702153723.24327-4-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.51]
-Content-ID: <C2257FBC358FE246A0F4B45543AB697F@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10CFF6E277
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2020 22:14:22 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21695907-1500050 for multiple; Thu, 02 Jul 2020 23:14:06 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/fbc: Enable fbc on i865
+In-Reply-To: <20200702220944.GD1969@jack.zhora.eu>
+References: <20200702083225.20044-1-chris@chris-wilson.co.uk>
+ <20200702083225.20044-2-chris@chris-wilson.co.uk>
+ <20200702220944.GD1969@jack.zhora.eu>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Andi Shyti <andi@etezian.org>
+Date: Thu, 02 Jul 2020 23:14:08 +0100
+Message-ID: <159372804803.22925.7913107148515377900@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 02/23] drm/i915/gem: Split the context's
+ obj:vma lut into its own mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,48 +41,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIwLTA3LTAyIGF0IDE4OjM3ICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gVW5saWtlIGFsbCB0aGUgb3RoZXIgcHJlLXNuYiBkZXNrdG9wIHBsYXRmb3JtcyBpODY1
-IGFjdHVhbGx5DQo+IHN1cHBvcnRzIEZCQy4gTGV0J3MgZW5hYmxlIGl0Lg0KPiANCj4gUXVvdGUg
-ZnJvbSB0aGUgc3BlYzoNCj4gIkRldlNERyBwcm92aWRlcyB0aGUgc2FtZSBSdW4tTGVuZ3RoIEVu
-Y29kZWQgRnJhbWUgQnVmZmVyDQo+ICBDb21wcmVzc2lvbiAoUkxFRkJDKSBmdW5jdGlvbiBhcyBl
-eGlzdHMgaW4gRGV2TUdNLiINCj4gDQo+IEFzIGk4NjUgb25seSBoYXMgdGhlIG9uZSBwaXBlIHdl
-IHdhbnQgdG8gc2tpcCBtYXNzYWdpbmcgdGhlDQo+IHBsYW5lPC0+cGlwZSBhc3NpZ25tZW50IGFp
-bWVkIGF0IGdldHRpbmcgRkJDK0xWRFMgd29ya2luZyBvbg0KPiB0aGUgbW9iaWxlIHBsYXRmb3Jt
-cy4NCg0KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50
-ZWwuY29tPg0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5
-cmphbGFAbGludXguaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMyArKy0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfcGNpLmMgICAgICAgICAgICAgIHwgMSArDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0
-aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gaW5kZXggODRlMmExN2I1ZWNiLi42NTNmNjYxN2Q1OWEg
-MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5j
-DQo+IEBAIC0xNjMzMiw3ICsxNjMzMiw4IEBAIGludGVsX3ByaW1hcnlfcGxhbmVfY3JlYXRlKHN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwgZW51bSBwaXBlIHBpcGUpDQo+ICAJICog
-T24gZ2VuMi8zIG9ubHkgcGxhbmUgQSBjYW4gZG8gRkJDLCBidXQgdGhlIHBhbmVsIGZpdHRlciBh
-bmQgTFZEUw0KPiAgCSAqIHBvcnQgaXMgaG9va2VkIHRvIHBpcGUgQi4gSGVuY2Ugd2Ugd2FudCBw
-bGFuZSBBIGZlZWRpbmcgcGlwZSBCLg0KPiAgCSAqLw0KPiAtCWlmIChIQVNfRkJDKGRldl9wcml2
-KSAmJiBJTlRFTF9HRU4oZGV2X3ByaXYpIDwgNCkNCj4gKwlpZiAoSEFTX0ZCQyhkZXZfcHJpdikg
-JiYgSU5URUxfR0VOKGRldl9wcml2KSA8IDQgJiYNCj4gKwkgICAgSU5URUxfTlVNX1BJUEVTKGRl
-dl9wcml2KSA9PSAyKQ0KPiAgCQlwbGFuZS0+aTl4eF9wbGFuZSA9IChlbnVtIGk5eHhfcGxhbmVf
-aWQpICFwaXBlOw0KPiAgCWVsc2UNCj4gIAkJcGxhbmUtPmk5eHhfcGxhbmUgPSAoZW51bSBpOXh4
-X3BsYW5lX2lkKSBwaXBlOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9wY2kuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMNCj4gaW5kZXggZTVmZGYx
-N2NkOWNkLi4wYmUzYjY2Y2U2NjYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfcGNpLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYw0KPiBA
-QCAtMjE3LDYgKzIxNyw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8g
-aTg1eF9pbmZvID0gew0KPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyBp
-ODY1Z19pbmZvID0gew0KPiAgCUk4NDVfRkVBVFVSRVMsDQo+ICAJUExBVEZPUk0oSU5URUxfSTg2
-NUcpLA0KPiArCS5kaXNwbGF5Lmhhc19mYmMgPSAxLA0KPiAgfTsNCj4gIA0KPiAgI2RlZmluZSBH
-RU4zX0ZFQVRVUkVTIFwNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+Quoting Andi Shyti (2020-07-02 23:09:44)
+> Hi Chris,
+> 
+> > @@ -1312,11 +1314,11 @@ static int set_ppgtt(struct drm_i915_file_private *file_priv,
+> >       if (vm == rcu_access_pointer(ctx->vm))
+> >               goto unlock;
+> >  
+> > +     old = __set_ppgtt(ctx, vm);
+> > +
+> >       /* Teardown the existing obj:vma cache, it will have to be rebuilt. */
+> >       lut_close(ctx);
+> >  
+> > -     old = __set_ppgtt(ctx, vm);
+> > -
+> >       /*
+> >        * We need to flush any requests using the current ppgtt before
+> >        * we release it as the requests do not hold a reference themselves,
+> > @@ -1330,6 +1332,7 @@ static int set_ppgtt(struct drm_i915_file_private *file_priv,
+> >       if (err) {
+> >               i915_vm_close(__set_ppgtt(ctx, old));
+> >               i915_vm_close(old);
+> > +             lut_close(ctx); /* rebuild the old obj:vma cache */
+> 
+> I don't really understand this but it doesn't hurt
+
+Yeah; another testcase required for racing set-vm against execbuf.
+Outcome unknown, all that we have to avoid are explosions. Userspace is
+allowed to shoot itself in the foot, but is not allowed to shoot anyone
+else.
+ 
+> > diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+> > index aa0d06cf1903..51b5a3421b40 100644
+> > --- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+> > +++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+> > @@ -23,6 +23,8 @@ mock_context(struct drm_i915_private *i915,
+> >       INIT_LIST_HEAD(&ctx->link);
+> >       ctx->i915 = i915;
+> >  
+> > +     mutex_init(&ctx->mutex);
+> > +
+> >       spin_lock_init(&ctx->stale.lock);
+> >       INIT_LIST_HEAD(&ctx->stale.engines);
+> >  
+> > @@ -35,7 +37,7 @@ mock_context(struct drm_i915_private *i915,
+> >       RCU_INIT_POINTER(ctx->engines, e);
+> >  
+> >       INIT_RADIX_TREE(&ctx->handles_vma, GFP_KERNEL);
+> > -     mutex_init(&ctx->mutex);
+> > +     mutex_init(&ctx->lut_mutex);
+> 
+> ...and I don't really understand why moved the first
+> init(&ctx->mutex) above, is it just aesthetic?
+
+Yup. The ctx->mutex is the broader one, so I felt it deserved to be
+higher. Whereas here we are setting up the lut [handles_vma] so was the
+natural spot to place the ctx->lut_mutex; and I wanted some distance
+between the pair to keep the confusion at bay.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
