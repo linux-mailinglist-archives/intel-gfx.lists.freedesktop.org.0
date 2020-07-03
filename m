@@ -1,29 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A89621389C
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 12:25:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE622138A9
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 12:34:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 871256EB4D;
-	Fri,  3 Jul 2020 10:25:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59EA96E0AF;
+	Fri,  3 Jul 2020 10:34:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9400C6E226
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 10:25:23 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21701544-1500050 
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Jul 2020 11:25:17 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Jul 2020 11:25:19 +0100
-Message-Id: <20200703102519.26539-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 071776E0AF;
+ Fri,  3 Jul 2020 10:34:01 +0000 (UTC)
+IronPort-SDR: aJJOp1MGjdwiVbtAhe+3NffbhdxfzD5aIxDi53+mIeDuuAyjGNlup82KQ9r1waS7NUTAfkLe4k
+ KW3tFWbUlKEQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="145260720"
+X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="145260720"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2020 03:34:01 -0700
+IronPort-SDR: 70k9KZ2Im/nS4SmKg+sBYkWTMDa1yI7VJ9PHHAViQzTOJ3UR7w9pX8LgiIpimED0vg7IWXCUJR
+ SWaKwM37D4Ig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="282263881"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by orsmga006.jf.intel.com with ESMTP; 03 Jul 2020 03:33:59 -0700
+Date: Fri, 3 Jul 2020 15:52:28 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <20200703102227.GH15183@intel.com>
+References: <20200623155907.22961-1-sean@poorly.run>
+ <20200623155907.22961-14-sean@poorly.run>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Export ppgtt_bind_vma
+Content-Disposition: inline
+In-Reply-To: <20200623155907.22961-14-sean@poorly.run>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v7 13/17] drm/i915: Plumb port through hdcp
+ init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,366 +51,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Sean Paul <seanpaul@chromium.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reuse the ppgtt_bind_vma() for aliasing_ppgtt_bind_vma() so we can
-reduce some code near-duplication. The catch is that we need to then
-pass along the i915_address_space and not rely on vma->vm, as they
-differ with the aliasing-ppgtt.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
----
- .../gpu/drm/i915/gem/i915_gem_client_blt.c    |  9 ++--
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  7 +--
- drivers/gpu/drm/i915/gt/intel_ggtt.c          | 49 +++++++------------
- drivers/gpu/drm/i915/gt/intel_gtt.h           | 13 ++++-
- drivers/gpu/drm/i915/gt/intel_ppgtt.c         | 19 ++++---
- drivers/gpu/drm/i915/i915_vma.c               |  8 +--
- drivers/gpu/drm/i915/i915_vma_types.h         |  1 -
- drivers/gpu/drm/i915/selftests/mock_gtt.c     | 12 +++--
- 8 files changed, 58 insertions(+), 60 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
-index d3a86a4d5c04..278664f831e7 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
-@@ -32,16 +32,17 @@ static void vma_clear_pages(struct i915_vma *vma)
- 	vma->pages = NULL;
- }
- 
--static int vma_bind(struct i915_vma *vma,
-+static int vma_bind(struct i915_address_space *vm,
-+		    struct i915_vma *vma,
- 		    enum i915_cache_level cache_level,
- 		    u32 flags)
- {
--	return vma->vm->vma_ops.bind_vma(vma, cache_level, flags);
-+	return vm->vma_ops.bind_vma(vm, vma, cache_level, flags);
- }
- 
--static void vma_unbind(struct i915_vma *vma)
-+static void vma_unbind(struct i915_address_space *vm, struct i915_vma *vma)
- {
--	vma->vm->vma_ops.unbind_vma(vma);
-+	vm->vma_ops.unbind_vma(vm, vma);
- }
- 
- static const struct i915_vma_ops proxy_vma_ops = {
-diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-index f4fec7eb4064..05497b50103f 100644
---- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-@@ -299,11 +299,12 @@ static void pd_vma_clear_pages(struct i915_vma *vma)
- 	vma->pages = NULL;
- }
- 
--static int pd_vma_bind(struct i915_vma *vma,
-+static int pd_vma_bind(struct i915_address_space *vm,
-+		       struct i915_vma *vma,
- 		       enum i915_cache_level cache_level,
- 		       u32 unused)
- {
--	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vma->vm);
-+	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
- 	struct gen6_ppgtt *ppgtt = vma->private;
- 	u32 ggtt_offset = i915_ggtt_offset(vma) / I915_GTT_PAGE_SIZE;
- 
-@@ -314,7 +315,7 @@ static int pd_vma_bind(struct i915_vma *vma,
- 	return 0;
- }
- 
--static void pd_vma_unbind(struct i915_vma *vma)
-+static void pd_vma_unbind(struct i915_address_space *vm, struct i915_vma *vma)
- {
- 	struct gen6_ppgtt *ppgtt = vma->private;
- 	struct i915_page_directory * const pd = ppgtt->base.pd;
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 323c328d444a..62979ea591f0 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -436,7 +436,8 @@ static void i915_ggtt_clear_range(struct i915_address_space *vm,
- 	intel_gtt_clear_range(start >> PAGE_SHIFT, length >> PAGE_SHIFT);
- }
- 
--static int ggtt_bind_vma(struct i915_vma *vma,
-+static int ggtt_bind_vma(struct i915_address_space *vm,
-+			 struct i915_vma *vma,
- 			 enum i915_cache_level cache_level,
- 			 u32 flags)
- {
-@@ -451,15 +452,15 @@ static int ggtt_bind_vma(struct i915_vma *vma,
- 	if (i915_gem_object_is_readonly(obj))
- 		pte_flags |= PTE_READ_ONLY;
- 
--	vma->vm->insert_entries(vma->vm, vma, cache_level, pte_flags);
-+	vm->insert_entries(vm, vma, cache_level, pte_flags);
- 	vma->page_sizes.gtt = I915_GTT_PAGE_SIZE;
- 
- 	return 0;
- }
- 
--static void ggtt_unbind_vma(struct i915_vma *vma)
-+static void ggtt_unbind_vma(struct i915_address_space *vm, struct i915_vma *vma)
- {
--	vma->vm->clear_range(vma->vm, vma->node.start, vma->size);
-+	vm->clear_range(vm, vma->node.start, vma->size);
- }
- 
- static int ggtt_reserve_guc_top(struct i915_ggtt *ggtt)
-@@ -567,7 +568,8 @@ static int init_ggtt(struct i915_ggtt *ggtt)
- 	return ret;
- }
- 
--static int aliasing_gtt_bind_vma(struct i915_vma *vma,
-+static int aliasing_gtt_bind_vma(struct i915_address_space *vm,
-+				 struct i915_vma *vma,
- 				 enum i915_cache_level cache_level,
- 				 u32 flags)
- {
-@@ -580,44 +582,27 @@ static int aliasing_gtt_bind_vma(struct i915_vma *vma,
- 		pte_flags |= PTE_READ_ONLY;
- 
- 	if (flags & I915_VMA_LOCAL_BIND) {
--		struct i915_ppgtt *alias = i915_vm_to_ggtt(vma->vm)->alias;
-+		struct i915_ppgtt *alias = i915_vm_to_ggtt(vm)->alias;
- 
--		if (flags & I915_VMA_ALLOC) {
--			ret = alias->vm.allocate_va_range(&alias->vm,
--							  vma->node.start,
--							  vma->size);
--			if (ret)
--				return ret;
--
--			set_bit(I915_VMA_ALLOC_BIT, __i915_vma_flags(vma));
--		}
--
--		GEM_BUG_ON(!test_bit(I915_VMA_ALLOC_BIT,
--				     __i915_vma_flags(vma)));
--		alias->vm.insert_entries(&alias->vm, vma,
--					 cache_level, pte_flags);
-+		ret = ppgtt_bind_vma(&alias->vm, vma, cache_level, flags);
-+		if (ret)
-+			return ret;
- 	}
- 
- 	if (flags & I915_VMA_GLOBAL_BIND)
--		vma->vm->insert_entries(vma->vm, vma, cache_level, pte_flags);
-+		vm->insert_entries(vm, vma, cache_level, pte_flags);
- 
- 	return 0;
- }
- 
--static void aliasing_gtt_unbind_vma(struct i915_vma *vma)
-+static void aliasing_gtt_unbind_vma(struct i915_address_space *vm,
-+				    struct i915_vma *vma)
- {
--	if (i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND)) {
--		struct i915_address_space *vm = vma->vm;
--
-+	if (i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND))
- 		vm->clear_range(vm, vma->node.start, vma->size);
--	}
--
--	if (test_and_clear_bit(I915_VMA_ALLOC_BIT, __i915_vma_flags(vma))) {
--		struct i915_address_space *vm =
--			&i915_vm_to_ggtt(vma->vm)->alias->vm;
- 
--		vm->clear_range(vm, vma->node.start, vma->size);
--	}
-+	if (i915_vma_is_bound(vma, I915_VMA_LOCAL_BIND))
-+		ppgtt_unbind_vma(&i915_vm_to_ggtt(vm)->alias->vm, vma);
- }
- 
- static int init_aliasing_ppgtt(struct i915_ggtt *ggtt)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index d93ebdf3fa0e..f2b75078e05f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -198,14 +198,16 @@ struct intel_gt;
- 
- struct i915_vma_ops {
- 	/* Map an object into an address space with the given cache flags. */
--	int (*bind_vma)(struct i915_vma *vma,
-+	int (*bind_vma)(struct i915_address_space *vm,
-+			struct i915_vma *vma,
- 			enum i915_cache_level cache_level,
- 			u32 flags);
- 	/*
- 	 * Unmap an object from an address space. This usually consists of
- 	 * setting the valid PTE entries to a reserved scratch page.
- 	 */
--	void (*unbind_vma)(struct i915_vma *vma);
-+	void (*unbind_vma)(struct i915_address_space *vm,
-+			   struct i915_vma *vma);
- 
- 	int (*set_pages)(struct i915_vma *vma);
- 	void (*clear_pages)(struct i915_vma *vma);
-@@ -566,6 +568,13 @@ int ggtt_set_pages(struct i915_vma *vma);
- int ppgtt_set_pages(struct i915_vma *vma);
- void clear_pages(struct i915_vma *vma);
- 
-+int ppgtt_bind_vma(struct i915_address_space *vm,
-+		   struct i915_vma *vma,
-+		   enum i915_cache_level cache_level,
-+		   u32 flags);
-+void ppgtt_unbind_vma(struct i915_address_space *vm,
-+		      struct i915_vma *vma);
-+
- void gtt_write_workarounds(struct intel_gt *gt);
- 
- void setup_private_pat(struct intel_uncore *uncore);
-diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-index f86f7e68ce5e..f0862e924d11 100644
---- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-@@ -155,16 +155,16 @@ struct i915_ppgtt *i915_ppgtt_create(struct intel_gt *gt)
- 	return ppgtt;
- }
- 
--static int ppgtt_bind_vma(struct i915_vma *vma,
--			  enum i915_cache_level cache_level,
--			  u32 flags)
-+int ppgtt_bind_vma(struct i915_address_space *vm,
-+		   struct i915_vma *vma,
-+		   enum i915_cache_level cache_level,
-+		   u32 flags)
- {
- 	u32 pte_flags;
- 	int err;
- 
--	if (flags & I915_VMA_ALLOC) {
--		err = vma->vm->allocate_va_range(vma->vm,
--						 vma->node.start, vma->size);
-+	if (!test_bit(I915_VMA_ALLOC_BIT, __i915_vma_flags(vma))) {
-+		err = vm->allocate_va_range(vm, vma->node.start, vma->size);
- 		if (err)
- 			return err;
- 
-@@ -176,17 +176,16 @@ static int ppgtt_bind_vma(struct i915_vma *vma,
- 	if (i915_gem_object_is_readonly(vma->obj))
- 		pte_flags |= PTE_READ_ONLY;
- 
--	GEM_BUG_ON(!test_bit(I915_VMA_ALLOC_BIT, __i915_vma_flags(vma)));
--	vma->vm->insert_entries(vma->vm, vma, cache_level, pte_flags);
-+	vm->insert_entries(vm, vma, cache_level, pte_flags);
- 	wmb();
- 
- 	return 0;
- }
- 
--static void ppgtt_unbind_vma(struct i915_vma *vma)
-+void ppgtt_unbind_vma(struct i915_address_space *vm, struct i915_vma *vma)
- {
- 	if (test_and_clear_bit(I915_VMA_ALLOC_BIT, __i915_vma_flags(vma)))
--		vma->vm->clear_range(vma->vm, vma->node.start, vma->size);
-+		vm->clear_range(vm, vma->node.start, vma->size);
- }
- 
- int ppgtt_set_pages(struct i915_vma *vma)
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index f4e22e256ac6..bc64f773dcdb 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -304,7 +304,7 @@ static int __vma_bind(struct dma_fence_work *work)
- 	struct i915_vma *vma = vw->vma;
- 	int err;
- 
--	err = vma->ops->bind_vma(vma, vw->cache_level, vw->flags);
-+	err = vma->ops->bind_vma(vma->vm, vma, vw->cache_level, vw->flags);
- 	if (err)
- 		atomic_or(I915_VMA_ERROR, &vma->flags);
- 
-@@ -407,7 +407,7 @@ int i915_vma_bind(struct i915_vma *vma,
- 
- 		work->vma = vma;
- 		work->cache_level = cache_level;
--		work->flags = bind_flags | I915_VMA_ALLOC;
-+		work->flags = bind_flags;
- 
- 		/*
- 		 * Note we only want to chain up to the migration fence on
-@@ -433,7 +433,7 @@ int i915_vma_bind(struct i915_vma *vma,
- 			work->pinned = vma->obj;
- 		}
- 	} else {
--		ret = vma->ops->bind_vma(vma, cache_level, bind_flags);
-+		ret = vma->ops->bind_vma(vma->vm, vma, cache_level, bind_flags);
- 		if (ret)
- 			return ret;
- 	}
-@@ -1261,7 +1261,7 @@ void __i915_vma_evict(struct i915_vma *vma)
- 
- 	if (likely(atomic_read(&vma->vm->open))) {
- 		trace_i915_vma_unbind(vma);
--		vma->ops->unbind_vma(vma);
-+		vma->ops->unbind_vma(vma->vm, vma);
- 	}
- 	atomic_and(~(I915_VMA_BIND_MASK | I915_VMA_ERROR | I915_VMA_GGTT_WRITE),
- 		   &vma->flags);
-diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
-index 63831cdb7402..9e9082dc8f4b 100644
---- a/drivers/gpu/drm/i915/i915_vma_types.h
-+++ b/drivers/gpu/drm/i915/i915_vma_types.h
-@@ -235,7 +235,6 @@ struct i915_vma {
- #define I915_VMA_BIND_MASK (I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND)
- 
- #define I915_VMA_ALLOC_BIT	12
--#define I915_VMA_ALLOC		((int)BIT(I915_VMA_ALLOC_BIT))
- 
- #define I915_VMA_ERROR_BIT	13
- #define I915_VMA_ERROR		((int)BIT(I915_VMA_ERROR_BIT))
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gtt.c b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-index edc5e3dda8ca..b173086411ef 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gtt.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-@@ -38,7 +38,8 @@ static void mock_insert_entries(struct i915_address_space *vm,
- {
- }
- 
--static int mock_bind_ppgtt(struct i915_vma *vma,
-+static int mock_bind_ppgtt(struct i915_address_space *vm,
-+			   struct i915_vma *vma,
- 			   enum i915_cache_level cache_level,
- 			   u32 flags)
- {
-@@ -47,7 +48,8 @@ static int mock_bind_ppgtt(struct i915_vma *vma,
- 	return 0;
- }
- 
--static void mock_unbind_ppgtt(struct i915_vma *vma)
-+static void mock_unbind_ppgtt(struct i915_address_space *vm,
-+			      struct i915_vma *vma)
- {
- }
- 
-@@ -88,7 +90,8 @@ struct i915_ppgtt *mock_ppgtt(struct drm_i915_private *i915, const char *name)
- 	return ppgtt;
- }
- 
--static int mock_bind_ggtt(struct i915_vma *vma,
-+static int mock_bind_ggtt(struct i915_address_space *vm,
-+			  struct i915_vma *vma,
- 			  enum i915_cache_level cache_level,
- 			  u32 flags)
- {
-@@ -96,7 +99,8 @@ static int mock_bind_ggtt(struct i915_vma *vma,
- 	return 0;
- }
- 
--static void mock_unbind_ggtt(struct i915_vma *vma)
-+static void mock_unbind_ggtt(struct i915_address_space *vm,
-+			     struct i915_vma *vma)
- {
- }
- 
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMC0wNi0yMyBhdCAyMToyOTowMyArMDUzMCwgU2VhbiBQYXVsIHdyb3RlOgo+IEZyb206
+IFNlYW4gUGF1bCA8c2VhbnBhdWxAY2hyb21pdW0ub3JnPgo+IAo+IFRoaXMgcGF0Y2ggcGx1bWJz
+IHBvcnQgdGhyb3VnaCBoZGNwIGluaXQgaW5zdGVhZCBvZiByZWx5aW5nIG9uCj4gaW50ZWxfYXR0
+YWNoZWRfZW5jb2RlcigpIHRvIHJldHVybiBhIG5vbi1OVUxMIGVuY29kZXIgd2hpY2ggd29uJ3Qg
+d29yawo+IGZvciBNU1QgY29ubmVjdG9ycy4KTG9va3MgZ29vZCB0byBtZSwKUmV2aWV3ZWQtYnk6
+IEFuc2h1bWFuIEd1cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+Cj4gCj4gQ2M6IFZpbGxl
+IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1i
+eTogU2VhbiBQYXVsIDxzZWFucGF1bEBjaHJvbWl1bS5vcmc+Cj4gTGluazogaHR0cHM6Ly9wYXRj
+aHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoL21zZ2lkLzIwMjAwMzA1MjAxMjM2LjE1MjMwNy0x
+My1zZWFuQHBvb3JseS5ydW4gI3Y1Cj4gTGluazogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0
+b3Aub3JnL3BhdGNoL21zZ2lkLzIwMjAwNDI5MTk1NTAyLjM5OTE5LTEzLXNlYW5AcG9vcmx5LnJ1
+biAjdjYKPiAKPiBDaGFuZ2VzIGluIHY1Ogo+IC1BZGRlZCB0byB0aGUgc2V0Cj4gQ2hhbmdlcyBp
+biB2NjoKPiAtTm9uZQo+IENoYW5nZXMgaW4gdjc6Cj4gLU5vbmUKPiAtLS0KPiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9oZGNwLmMgfCAgMyArKy0KPiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZGNwLmMgICAgfCAxMSArKysrKystLS0tLQo+ICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkY3AuaCAgICB8ICAyICstCj4gIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jICAgIHwgIDIgKy0KPiAgNCBm
+aWxlcyBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2hkY3AuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfaGRjcC5jCj4gaW5kZXggMGUwNmEx
+MDY2ZDYxLi5lMjZhNDVmODgwY2IgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kcF9oZGNwLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RwX2hkY3AuYwo+IEBAIC02MzAsNyArNjMwLDggQEAgaW50IGludGVsX2RwX2lu
+aXRfaGRjcChzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICppbnRlbF9kaWdfcG9ydCwKPiAgCQly
+ZXR1cm4gMDsKPiAgCj4gIAlpZiAoIWludGVsX2RwX2lzX2VkcChpbnRlbF9kcCkpCj4gLQkJcmV0
+dXJuIGludGVsX2hkY3BfaW5pdChpbnRlbF9jb25uZWN0b3IsICZpbnRlbF9kcF9oZGNwX3NoaW0p
+Owo+ICsJCXJldHVybiBpbnRlbF9oZGNwX2luaXQoaW50ZWxfY29ubmVjdG9yLCBwb3J0LAo+ICsJ
+CQkJICAgICAgICZpbnRlbF9kcF9oZGNwX3NoaW0pOwo+ICAKPiAgCXJldHVybiAwOwo+ICB9Cj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRjcC5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZGNwLmMKPiBpbmRleCA1Njc5ODc3
+YzZiNGMuLmQ3OWQ0MTQyYWVhNyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2hkY3AuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfaGRjcC5jCj4gQEAgLTE5NTUsNiArMTk1NSw3IEBAIHN0YXRpYyBlbnVtIG1laV9md190
+YyBpbnRlbF9nZXRfbWVpX2Z3X3RjKGVudW0gdHJhbnNjb2RlciBjcHVfdHJhbnNjb2RlcikKPiAg
+fQo+ICAKPiAgc3RhdGljIGludCBpbml0aWFsaXplX2hkY3BfcG9ydF9kYXRhKHN0cnVjdCBpbnRl
+bF9jb25uZWN0b3IgKmNvbm5lY3RvciwKPiArCQkJCSAgICAgZW51bSBwb3J0IHBvcnQsCj4gIAkJ
+CQkgICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9oZGNwX3NoaW0gKnNoaW0pCj4gIHsKPiAgCXN0cnVj
+dCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoY29ubmVjdG9yLT5iYXNlLmRl
+dik7Cj4gQEAgLTE5NjIsOCArMTk2Myw3IEBAIHN0YXRpYyBpbnQgaW5pdGlhbGl6ZV9oZGNwX3Bv
+cnRfZGF0YShzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IsCj4gIAlzdHJ1Y3QgaGRj
+cF9wb3J0X2RhdGEgKmRhdGEgPSAmaGRjcC0+cG9ydF9kYXRhOwo+ICAKPiAgCWlmIChJTlRFTF9H
+RU4oZGV2X3ByaXYpIDwgMTIpCj4gLQkJZGF0YS0+ZndfZGRpID0KPiAtCQkJaW50ZWxfZ2V0X21l
+aV9md19kZGlfaW5kZXgoaW50ZWxfYXR0YWNoZWRfZW5jb2Rlcihjb25uZWN0b3IpLT5wb3J0KTsK
+PiArCQlkYXRhLT5md19kZGkgPSBpbnRlbF9nZXRfbWVpX2Z3X2RkaV9pbmRleChwb3J0KTsKPiAg
+CWVsc2UKPiAgCQkvKgo+ICAJCSAqIEFzIHBlciBNRSBGVyBBUEkgZXhwZWN0YXRpb24sIGZvciBH
+RU4gMTIrLCBmd19kZGkgaXMgZmlsbGVkCj4gQEAgLTIwMzMsMTQgKzIwMzMsMTQgQEAgdm9pZCBp
+bnRlbF9oZGNwX2NvbXBvbmVudF9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
+dikKPiAgCX0KPiAgfQo+ICAKPiAtc3RhdGljIHZvaWQgaW50ZWxfaGRjcDJfaW5pdChzdHJ1Y3Qg
+aW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IsCj4gK3N0YXRpYyB2b2lkIGludGVsX2hkY3AyX2lu
+aXQoc3RydWN0IGludGVsX2Nvbm5lY3RvciAqY29ubmVjdG9yLCBlbnVtIHBvcnQgcG9ydCwKPiAg
+CQkJICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfaGRjcF9zaGltICpzaGltKQo+ICB7Cj4gIAlzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoY29ubmVjdG9yLT5iYXNlLmRldik7
+Cj4gIAlzdHJ1Y3QgaW50ZWxfaGRjcCAqaGRjcCA9ICZjb25uZWN0b3ItPmhkY3A7Cj4gIAlpbnQg
+cmV0Owo+ICAKPiAtCXJldCA9IGluaXRpYWxpemVfaGRjcF9wb3J0X2RhdGEoY29ubmVjdG9yLCBz
+aGltKTsKPiArCXJldCA9IGluaXRpYWxpemVfaGRjcF9wb3J0X2RhdGEoY29ubmVjdG9yLCBwb3J0
+LCBzaGltKTsKPiAgCWlmIChyZXQpIHsKPiAgCQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiTWVp
+IGhkY3AgZGF0YSBpbml0IGZhaWxlZFxuIik7Cj4gIAkJcmV0dXJuOwo+IEBAIC0yMDUwLDYgKzIw
+NTAsNyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9oZGNwMl9pbml0KHN0cnVjdCBpbnRlbF9jb25uZWN0
+b3IgKmNvbm5lY3RvciwKPiAgfQo+ICAKPiAgaW50IGludGVsX2hkY3BfaW5pdChzdHJ1Y3QgaW50
+ZWxfY29ubmVjdG9yICpjb25uZWN0b3IsCj4gKwkJICAgIGVudW0gcG9ydCBwb3J0LAo+ICAJCSAg
+ICBjb25zdCBzdHJ1Y3QgaW50ZWxfaGRjcF9zaGltICpzaGltKQo+ICB7Cj4gIAlzdHJ1Y3QgZHJt
+X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNvbm5lY3Rvci0+YmFzZS5kZXYpOwo+
+IEBAIC0yMDYwLDcgKzIwNjEsNyBAQCBpbnQgaW50ZWxfaGRjcF9pbml0KHN0cnVjdCBpbnRlbF9j
+b25uZWN0b3IgKmNvbm5lY3RvciwKPiAgCQlyZXR1cm4gLUVJTlZBTDsKPiAgCj4gIAlpZiAoaXNf
+aGRjcDJfc3VwcG9ydGVkKGRldl9wcml2KSkKPiAtCQlpbnRlbF9oZGNwMl9pbml0KGNvbm5lY3Rv
+ciwgc2hpbSk7Cj4gKwkJaW50ZWxfaGRjcDJfaW5pdChjb25uZWN0b3IsIHBvcnQsIHNoaW0pOwo+
+ICAKPiAgCXJldCA9Cj4gIAlkcm1fY29ubmVjdG9yX2F0dGFjaF9jb250ZW50X3Byb3RlY3Rpb25f
+cHJvcGVydHkoJmNvbm5lY3Rvci0+YmFzZSwKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9oZGNwLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2hkY3AuaAo+IGluZGV4IDg2YmJhZWMxMjBjYy4uMWJiZjViNjdlZDBhIDEwMDY0NAo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRjcC5oCj4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZGNwLmgKPiBAQCAtMjIsNyArMjIs
+NyBAQCBlbnVtIHRyYW5zY29kZXI7Cj4gIHZvaWQgaW50ZWxfaGRjcF9hdG9taWNfY2hlY2soc3Ry
+dWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKPiAgCQkJICAgICBzdHJ1Y3QgZHJtX2Nvbm5l
+Y3Rvcl9zdGF0ZSAqb2xkX3N0YXRlLAo+ICAJCQkgICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0
+YXRlICpuZXdfc3RhdGUpOwo+IC1pbnQgaW50ZWxfaGRjcF9pbml0KHN0cnVjdCBpbnRlbF9jb25u
+ZWN0b3IgKmNvbm5lY3RvciwKPiAraW50IGludGVsX2hkY3BfaW5pdChzdHJ1Y3QgaW50ZWxfY29u
+bmVjdG9yICpjb25uZWN0b3IsIGVudW0gcG9ydCBwb3J0LAo+ICAJCSAgICBjb25zdCBzdHJ1Y3Qg
+aW50ZWxfaGRjcF9zaGltICpoZGNwX3NoaW0pOwo+ICBpbnQgaW50ZWxfaGRjcF9lbmFibGUoc3Ry
+dWN0IGludGVsX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+ICAJCSAgICAgIGVudW0gdHJhbnNjb2Rl
+ciBjcHVfdHJhbnNjb2RlciwgdTggY29udGVudF90eXBlKTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2hkbWkuYwo+IGluZGV4IGE1OWFjZmZmNDU2ZS4uY2E3MWVlM2RkMWM3
+IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5j
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMKPiBAQCAt
+MzI2MCw3ICszMjYwLDcgQEAgdm9pZCBpbnRlbF9oZG1pX2luaXRfY29ubmVjdG9yKHN0cnVjdCBp
+bnRlbF9kaWdpdGFsX3BvcnQgKmludGVsX2RpZ19wb3J0LAo+ICAJaW50ZWxfaGRtaS0+YXR0YWNo
+ZWRfY29ubmVjdG9yID0gaW50ZWxfY29ubmVjdG9yOwo+ICAKPiAgCWlmIChpc19oZGNwX3N1cHBv
+cnRlZChkZXZfcHJpdiwgcG9ydCkpIHsKPiAtCQlpbnQgcmV0ID0gaW50ZWxfaGRjcF9pbml0KGlu
+dGVsX2Nvbm5lY3RvciwKPiArCQlpbnQgcmV0ID0gaW50ZWxfaGRjcF9pbml0KGludGVsX2Nvbm5l
+Y3RvciwgcG9ydCwKPiAgCQkJCQkgICZpbnRlbF9oZG1pX2hkY3Bfc2hpbSk7Cj4gIAkJaWYgKHJl
+dCkKPiAgCQkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sCj4gLS0gCj4gU2VhbiBQYXVsLCBT
+b2Z0d2FyZSBFbmdpbmVlciwgR29vZ2xlIC8gQ2hyb21pdW0gT1MKPiAKPiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IEludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
