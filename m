@@ -1,45 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A52213C53
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 17:06:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7427213D9F
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 18:34:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F38A6E4AA;
-	Fri,  3 Jul 2020 15:06:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE31A6E57E;
+	Fri,  3 Jul 2020 16:34:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECF066E4AA;
- Fri,  3 Jul 2020 15:06:34 +0000 (UTC)
-IronPort-SDR: i8dg59C5yioQLnhYqh8X561O9lqyoXQtCIdzrkGoBrx3/NeRtcHIHl0B0pr1i2cVtOO61W4WWi
- ouNhvdo9xYzQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9671"; a="127249262"
-X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="127249262"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FC346E57E
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 16:34:43 +0000 (UTC)
+IronPort-SDR: 3hu5PadOWRzFanX6/kotQVkysAmJqswYQt4Jt/0jxhXSPNuUCcbbxF6f4eTEYspEyRcoEVR6m/
+ HPtmSMiHWqUg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9671"; a="145302336"
+X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="145302336"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2020 08:06:34 -0700
-IronPort-SDR: 6S9o1+buy10z/ctmcSENR3DZRYuJudfhCeagPXeQA2lZo9VNq4Y5hB4Ozz/1nTPGEEXduUX6a+
- qTnijHNLhazg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="387631956"
-Received: from unknown (HELO intel.com) ([10.223.74.178])
- by fmsmga001.fm.intel.com with ESMTP; 03 Jul 2020 08:06:32 -0700
-Date: Fri, 3 Jul 2020 20:25:01 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Sean Paul <sean@poorly.run>
-Message-ID: <20200703145500.GK15183@intel.com>
-References: <20200623155907.22961-1-sean@poorly.run>
- <20200623155907.22961-18-sean@poorly.run>
- <20200703111827.GI15183@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2020 09:34:43 -0700
+IronPort-SDR: nnlWDenE9bkVori9a7DtKKjmxNO+zu/p2F2/uziWgvZGbR4ftuu6F9/o65rWQFCmZCsRE7xeSn
+ CFqbUJ8QJBtw==
+X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="455942918"
+Received: from rbendor-mobl1.ger.corp.intel.com (HELO [10.214.211.147])
+ ([10.214.211.147])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2020 09:34:41 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200702083225.20044-1-chris@chris-wilson.co.uk>
+ <20200702083225.20044-7-chris@chris-wilson.co.uk>
+ <aae73a4b-c942-53ae-9127-6160bd6b614a@linux.intel.com>
+ <159376683236.12771.16953737584055290689@build.alporthouse.com>
+ <3593fac6-f178-14d1-6948-ee3bcf65e74c@linux.intel.com>
+ <159376976443.22925.16302677649396965411@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <a020ae33-18f9-8725-560b-84035efcaee2@linux.intel.com>
+Date: Fri, 3 Jul 2020 17:34:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200703111827.GI15183@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v7 17/17] drm/i915: Add HDCP 1.4 support for
- MST connectors
+In-Reply-To: <159376976443.22925.16302677649396965411@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 07/23] drm/i915: Switch to object
+ allocations for page directories
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,244 +58,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Sean Paul <seanpaul@chromium.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-07-03 at 16:48:27 +0530, Anshuman Gupta wrote:
-> On 2020-06-23 at 21:29:07 +0530, Sean Paul wrote:
-> > From: Sean Paul <seanpaul@chromium.org>
-> > 
-> > Now that all the groundwork has been laid, we can turn on HDCP 1.4 over
-> > MST. Everything except for toggling the HDCP signalling and HDCP 2.2
-> > support is the same as the DP case, so we'll re-use those callbacks
-> > 
-> > Cc: Juston Li <juston.li@intel.com>
-> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-12-sean@poorly.run #v1
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-13-sean@poorly.run #v2
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20200117193103.156821-13-sean@poorly.run #v3
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20200218220242.107265-15-sean@poorly.run #v4
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20200305201236.152307-17-sean@poorly.run #v5
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20200429195502.39919-17-sean@poorly.run #v6
-> > 
-> > Changes in v2:
-> > -Toggle HDCP from encoder disable/enable
-> > -Don't disable HDCP on MST connector destroy, leave that for encoder
-> >  disable, just ensure the check_work routine isn't running any longer
-> > Changes in v3:
-> > -Place the shim in the new intel_dp_hdcp.c file (Ville)
-> > Changes in v4:
-> > -Actually use the mst shim for mst connections (Juston)
-> > -Use QUERY_STREAM_ENC_STATUS MST message to verify channel is encrypted
-> > Changes in v5:
-> > -Add sleep on disable signalling to match hdmi delay
-> > Changes in v6:
-> > -Disable HDCP over MST on GEN12+ since I'm unsure how it should work and I
-> >  don't have hardware to test it
-> > Changes in v7:
-> > -Remove hdcp2 shims for MST in favor of skipping hdcp2 init (Ramalingam)
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 66 +++++++++++++++++++-
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 18 ++++++
-> >  drivers/gpu/drm/i915/display/intel_hdcp.c    |  2 +-
-> >  3 files changed, 84 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > index 43446a6cae8d..3f67bd27fc3c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > @@ -7,10 +7,12 @@
-> >   */
-> >  
-> >  #include <drm/drm_dp_helper.h>
-> > +#include <drm/drm_dp_mst_helper.h>
-> >  #include <drm/drm_hdcp.h>
-> >  #include <drm/drm_print.h>
-> >  
-> >  #include "intel_display_types.h"
-> > +#include "intel_ddi.h"
-> >  #include "intel_dp.h"
-> >  #include "intel_hdcp.h"
-> >  
-> > @@ -618,6 +620,65 @@ static const struct intel_hdcp_shim intel_dp_hdcp_shim = {
-> >  	.protocol = HDCP_PROTOCOL_DP,
-> >  };
-> >  
-> > +static int
-> > +intel_dp_mst_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
-> > +				    enum transcoder cpu_transcoder,
-> > +				    bool enable)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> > +	int ret;
-> > +
-> > +	if (!enable)
-> > +		usleep_range(6, 60); /* Bspec says >= 6us */
-> > +
-> > +	ret = intel_ddi_toggle_hdcp_signalling(&intel_dig_port->base,
-> > +					       cpu_transcoder, enable);
-> > +	if (ret)
-> > +		drm_dbg_kms(&i915->drm, "%s HDCP signalling failed (%d)\n",
-> > +			      enable ? "Enable" : "Disable", ret);
-> > +	return ret;
-> > +}
-> > +
-> > +static
-> > +bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *intel_dig_port,
-> > +				  struct intel_connector *connector)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> > +	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> > +	struct drm_dp_query_stream_enc_status_ack_reply reply;
-> > +	int ret;
-> > +
-> > +	if (!intel_dp_hdcp_check_link(intel_dig_port, connector))
-> > +		return false;
-> > +
-> > +	ret = drm_dp_send_query_stream_enc_status(&intel_dp->mst_mgr,
-> > +						  connector->port, &reply);
-> > +	if (ret) {
-> > +		drm_dbg_kms(&i915->drm,
-> > +			    "[CONNECTOR:%d:%s] failed QSES ret=%d\n",
-> > +			    connector->base.base.id, connector->base.name, ret);
-> > +		return false;
-> > +	}
-> > +
-> > +	return reply.auth_completed && reply.encryption_enabled;
-> > +}
-> > +
-> > +static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
-> > +	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
-> > +	.read_bksv = intel_dp_hdcp_read_bksv,
-> > +	.read_bstatus = intel_dp_hdcp_read_bstatus,
-> > +	.repeater_present = intel_dp_hdcp_repeater_present,
-> > +	.read_ri_prime = intel_dp_hdcp_read_ri_prime,
-> > +	.read_ksv_ready = intel_dp_hdcp_read_ksv_ready,
-> > +	.read_ksv_fifo = intel_dp_hdcp_read_ksv_fifo,
-> > +	.read_v_prime_part = intel_dp_hdcp_read_v_prime_part,
-> > +	.toggle_signalling = intel_dp_mst_hdcp_toggle_signalling,
-> > +	.check_link = intel_dp_mst_hdcp_check_link,
-> > +	.hdcp_capable = intel_dp_hdcp_capable,
-> > +
-> > +	.protocol = HDCP_PROTOCOL_DP,
-> > +};
-> > +
-> >  int intel_dp_init_hdcp(struct intel_digital_port *intel_dig_port,
-> >  		       struct intel_connector *intel_connector)
-> >  {
-> > @@ -630,7 +691,10 @@ int intel_dp_init_hdcp(struct intel_digital_port *intel_dig_port,
-> >  	if (!is_hdcp_supported(dev_priv, port))
-> >  		return 0;
-> >  
-> > -	if (!intel_dp_is_edp(intel_dp))
-> > +	if (intel_connector->mst_port)
-> > +		return intel_hdcp_init(intel_connector, port,
-> > +				       &intel_dp_mst_hdcp_shim);
-> > +	else if (!intel_dp_is_edp(intel_dp))
-> >  		return intel_hdcp_init(intel_connector, port,
-> >  				       &intel_dp_hdcp_shim);
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index 0675825dcc20..abaaeeb963d2 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -37,6 +37,7 @@
-> >  #include "intel_dp.h"
-> >  #include "intel_dp_mst.h"
-> >  #include "intel_dpio_phy.h"
-> > +#include "intel_hdcp.h"
-> >  
-> >  static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
-> >  					    struct intel_crtc_state *crtc_state,
-> > @@ -352,6 +353,8 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
-> >  	drm_dbg_kms(&i915->drm, "active links %d\n",
-> >  		    intel_dp->active_mst_links);
-> >  
-> > +	intel_hdcp_disable(intel_mst->connector);
-> > +
-> >  	drm_dp_mst_reset_vcpi_slots(&intel_dp->mst_mgr, connector->port);
-> >  
-> >  	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr);
-> > @@ -548,6 +551,13 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
-> >  
-> >  	if (pipe_config->has_audio)
-> >  		intel_audio_codec_enable(encoder, pipe_config, conn_state);
-> > +
-> > +	/* Enable hdcp if it's desired */
-> > +	if (conn_state->content_protection ==
-> > +	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
-> > +		intel_hdcp_enable(to_intel_connector(conn_state->connector),
-> > +				  pipe_config->cpu_transcoder,
-> > +				  (u8)conn_state->hdcp_content_type);
-> I am not sure about that, do we need to enable HDCP for every
-> DP-MST connector here, it should be only immediate downstream connector
-> we should authenticate as repeater, after that it should be repeater
-> responsibility to authenticate further downstream connectors.
+
+
+On 03/07/2020 10:49, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-07-03 10:24:27)
+>>
+>> On 03/07/2020 10:00, Chris Wilson wrote:
+>>> Quoting Tvrtko Ursulin (2020-07-03 09:44:52)
+>>>>
+>>>> On 02/07/2020 09:32, Chris Wilson wrote:
+>>>>> The GEM object is grossly overweight for the practicality of tracking
+>>>>> large numbers of individual pages, yet it is currently our only
+>>>>> abstraction for tracking DMA allocations. Since those allocations need
+>>>>> to be reserved upfront before an operation, and that we need to break
+>>>>> away from simple system memory, we need to ditch using plain struct page
+>>>>> wrappers.
+>>>>
+>>>> [Calling all page table experts...] :)
+>>>>
+>>>> So.. mostly 4k allocations via GEM objects? Sounds not ideal on first.
+>>
+>> What is the relationship between object size and number of 4k objects
+>> needed for page tables?
 > 
-> Tested this entire series on Gen12 H/W after removing the Gen12 restriction
-> condition with daisy-chain of two DP MST display.
-> Master DP MST connector has failed the repeater downstream authentication
-> due to error "KSV list failed to become ready" ETIMEDOUT.
-> Slave DP MST connector passes the authentication stage but failed to
-> enable the encryption.
-For Gen12 we should pass pipe_config->mst_master_transcoder as Gen12 has
-HDCP instance per transcoder, after passing mst_master_transcoder, 
-HDCP encryption is enabled on slave DP MST connector. 
-(it authenticated as repeater with three downstream deivce) but master 
-DP MST connector continue to fails the repeater downstream authentication due to
-KSV list were not ready error.
-Thanks,
-Anshuman Gupta.
-> Thanks,
-> Anshuman Gupta.
-> >  }
-> >  
-> >  static bool intel_dp_mst_enc_get_hw_state(struct intel_encoder *encoder,
-> > @@ -770,6 +780,14 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
-> >  	intel_attach_force_audio_property(connector);
-> >  	intel_attach_broadcast_rgb_property(connector);
-> >  
-> > +
-> > +	/* TODO: Figure out how to make HDCP work on GEN12+ */
-> > +	if (INTEL_GEN(dev_priv) < 12) {
-> > +		ret = intel_dp_init_hdcp(intel_dig_port, intel_connector);
-> > +		if (ret)
-> > +			DRM_DEBUG_KMS("HDCP init failed, skipping.\n");
-> > +	}
-> > +
-> >  	/*
-> >  	 * Reuse the prop from the SST connector because we're
-> >  	 * not allowed to create new props after device registration.
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > index 6bd0e4616ee1..ddc9db8de2bc 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > @@ -2060,7 +2060,7 @@ int intel_hdcp_init(struct intel_connector *connector,
-> >  	if (!shim)
-> >  		return -EINVAL;
-> >  
-> > -	if (is_hdcp2_supported(dev_priv))
-> > +	if (is_hdcp2_supported(dev_priv) && !connector->mst_port)
-> >  		intel_hdcp2_init(connector, port, shim);
-> >  
-> >  	ret =
-> > -- 
-> > Sean Paul, Software Engineer, Google / Chromium OS
-> > 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 1 pt (4KiB dma + small struct) per 2MiB + misalignment
+> 1 pd (4KiB dma + ~4KiB struct) per 1GiB + misalignment
+> 1 pd per 512GiB + misalignment
+> 1 pd per 256TiB + misalignment
+> [top level is preallocated]
+
+Okay so not too much.
+
+Advantage is direction seems right for making page table backing store 
+in local memory take part in group ww locking during reservation.
+
+Although strictly we could track any ww lock in the ww context, it 
+doesn't strictly need to be the object one.
+
+Disadvantage is increased system memory usage for gem bo metadata. Still 
+route is open to replace this with some other (new) object, as long as 
+it provides a ww mutex.
+
+> etc.
+> 
+>>
+>>>> Reminder on why we need to break away from simple system memory?
+>>>
+>>> The page tables are stored in device memory, which at the moment are
+>>> plain pages with dma mappings.
+>>>
+>>>> Need to
+>>>> have a list of GEM objects which can be locked in the ww locking phase?
+>>>
+>>> Yes, since we will need to be able to reserve all the device memory we
+>>> need for execution.
+>>>
+>>>> But how do you allocate these objects up front, when allocation needs to
+>>>> be under the ww lock in case evictions need to be triggered.
+>>>
+>>> By preeallocating enough objects to cover the page directories during
+>>> the reservation phase. The previous patch moved the allocations from the
+>>> point-of-use to before we insert the vma. Having made it the onus of the
+>>> caller to provide the page directories allocations, we can then do it
+>>> early on during the memory reservations.
+>>
+>> Okay I missed the importance of the previous patch.
+>>
+>> But preallocations have to be able to trigger evictions. Is the
+>> preallocating objects split then into creating objects and obtaining
+>> backing store? I do not see this in this patch, alloc_pt_dma both
+>> creates the object and pins the pages.
+> 
+> Sure. It can be broken into two calls easily, or rather after having
+> allocated objects suitable for the page tables, they can then all be
+> reserved en masse will the rest of the objects. I was guilty of still
+> thinking in terms of system memory.
+
+Yep, okay, I read this as respin will split the phases.
+
+> Worth keeping in mind is that the GGTT should never need extra
+> allocations, which should keep a lot of the isolated object handling
+> easier. And some vm will have preallocated ranges (e.g. the
+> aliasing-ppgtt) so that we don't need to allocate more objects during
+> critical phases.
+> 
+> My goal is separate out the special cases for PIN_USER (i.e. execbuf)
+> where there are many, many objects and auxiliary allocations from the
+> special cases for the isolated PIN_GLOBAL, and from future special cases
+> for pageout; killing i915_vma_pin(PIN_USER).
+
+The PIN_USER part is clear, however I am not sure why PIN_GLOBAL would 
+be exempt. There is always the case when first submission against a 
+context needs to allocate stuff.
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
