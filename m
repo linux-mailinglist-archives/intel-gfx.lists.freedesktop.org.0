@@ -2,44 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7DF8213AE6
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 15:24:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4227C213B26
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 15:38:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB79892D6;
-	Fri,  3 Jul 2020 13:24:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB686E142;
+	Fri,  3 Jul 2020 13:38:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2F43892D6
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 13:24:41 +0000 (UTC)
-IronPort-SDR: 6aUgN8gfui4NIL0y14k/pzFxNaR6TA0NEKHPw6cWNypKuqE5uHB/D6MQXIfwIkYqhtZw+X7cKI
- oBZSet1oPybA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="134601306"
-X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="134601306"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7C816E142
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 13:38:52 +0000 (UTC)
+IronPort-SDR: /hnvPzpwYBkvk2pItsjZ/3WYFFLfm9duBbyXDoWi9Jp7l2TC+Ygnb1Tki5peEhzH/FFLEG/H4u
+ ETfSb0Sm6P3g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="165209484"
+X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="165209484"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2020 06:24:40 -0700
-IronPort-SDR: Yx3/Rwgwz3gQR5dil2Eg6PJqzvrEuqtcPB3dBLbj64dAe+K2V8p1zM4hbCVvL40kCNsp3Eh0UL
- if3AMC9JBp0Q==
-X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="482375752"
-Received: from kroegerb-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.39.221])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2020 06:24:38 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20200701153522.dh4jhbml5gdenu5o@ldmartin-desk1>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200625001120.22810-1-lucas.demarchi@intel.com>
- <20200625001120.22810-3-lucas.demarchi@intel.com> <87y2o4lf9h.fsf@intel.com>
- <20200701153522.dh4jhbml5gdenu5o@ldmartin-desk1>
-Date: Fri, 03 Jul 2020 16:24:36 +0300
-Message-ID: <877dvkk9yj.fsf@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2020 06:38:52 -0700
+IronPort-SDR: y0hXWDKK37wg4zv/wJiAPiQAeJBFJ4nBFFblnVK+urEhWpUZu5IYmMWRPZBp9/zAyHf8kz9yiG
+ 9f2gxidha6VA==
+X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="455903398"
+Received: from rbendor-mobl1.ger.corp.intel.com (HELO [10.214.211.147])
+ ([10.214.211.147])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2020 06:38:51 -0700
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200703122221.591656-1-maarten.lankhorst@linux.intel.com>
+ <20200703122221.591656-12-maarten.lankhorst@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <4cb4137d-3eb5-b650-2368-c5dac8a31fa8@linux.intel.com>
+Date: Fri, 3 Jul 2020 14:38:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 2/6] drm/i915/display: fix comment on skl
- straps
+In-Reply-To: <20200703122221.591656-12-maarten.lankhorst@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 11/23] drm/i915: Nuke arguments to
+ eb_pin_engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,64 +55,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 01 Jul 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Tue, Jun 30, 2020 at 06:55:38PM +0300, Jani Nikula wrote:
->>On Wed, 24 Jun 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>> We are not checking for specific SKUs and feedback from HW team is that
->>> it may not work since it was supposed to be fixed by the same time
->>> straps stopped to be used. So, just update comment.
->>>
->>> v2: Instead of removing the check, just update the comment since
->>> feedback from HW team was that it actually may not work
->>>
->>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>
->>Acked-by: Jani Nikula <jani.nikula@intel.com>
->
-> is an ack  sufficient for merging a comment-only change?
 
-Yes, but
+On 03/07/2020 13:22, Maarten Lankhorst wrote:
+> Those arguments are already set as eb.file and eb.args, so kill off
+> the extra arguments. This will allow us to move eb_pin_engine() to
+> after we reserved all BO's.
+> 
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 17 +++++++----------
+>   1 file changed, 7 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 45ef9b2368a1..09f3badd564d 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -2599,11 +2599,10 @@ static void eb_unpin_engine(struct i915_execbuffer *eb)
+>   }
+>   
+>   static unsigned int
+> -eb_select_legacy_ring(struct i915_execbuffer *eb,
+> -		      struct drm_file *file,
+> -		      struct drm_i915_gem_execbuffer2 *args)
+> +eb_select_legacy_ring(struct i915_execbuffer *eb)
+>   {
+>   	struct drm_i915_private *i915 = eb->i915;
+> +	struct drm_i915_gem_execbuffer2 *args = eb->args;
+>   	unsigned int user_ring_id = args->flags & I915_EXEC_RING_MASK;
+>   
+>   	if (user_ring_id != I915_EXEC_BSD &&
+> @@ -2618,7 +2617,7 @@ eb_select_legacy_ring(struct i915_execbuffer *eb,
+>   		unsigned int bsd_idx = args->flags & I915_EXEC_BSD_MASK;
+>   
+>   		if (bsd_idx == I915_EXEC_BSD_DEFAULT) {
+> -			bsd_idx = gen8_dispatch_bsd_engine(i915, file);
+> +			bsd_idx = gen8_dispatch_bsd_engine(i915, eb->file);
+>   		} else if (bsd_idx >= I915_EXEC_BSD_RING1 &&
+>   			   bsd_idx <= I915_EXEC_BSD_RING2) {
+>   			bsd_idx >>= I915_EXEC_BSD_SHIFT;
+> @@ -2643,18 +2642,16 @@ eb_select_legacy_ring(struct i915_execbuffer *eb,
+>   }
+>   
+>   static int
+> -eb_pin_engine(struct i915_execbuffer *eb,
+> -	      struct drm_file *file,
+> -	      struct drm_i915_gem_execbuffer2 *args)
+> +eb_pin_engine(struct i915_execbuffer *eb)
+>   {
+>   	struct intel_context *ce;
+>   	unsigned int idx;
+>   	int err;
+>   
+>   	if (i915_gem_context_user_engines(eb->gem_context))
+> -		idx = args->flags & I915_EXEC_RING_MASK;
+> +		idx = eb->args->flags & I915_EXEC_RING_MASK;
+>   	else
+> -		idx = eb_select_legacy_ring(eb, file, args);
+> +		idx = eb_select_legacy_ring(eb);
+>   
+>   	ce = i915_gem_context_get_engine(eb->gem_context, idx);
+>   	if (IS_ERR(ce))
+> @@ -2920,7 +2917,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>   	if (unlikely(err))
+>   		goto err_destroy;
+>   
+> -	err = eb_pin_engine(&eb, file, args);
+> +	err = eb_pin_engine(&eb);
+>   	if (unlikely(err))
+>   		goto err_context;
+>   
+> 
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursuli@intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Regards,
 
-if you insist. ;)
-
->
-> Lucas De Marchi
->
->>
->>> ---
->>>  drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
->>>  1 file changed, 3 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->>> index 49772c82a299..effd6b65f270 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->>> @@ -16863,8 +16863,9 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->>>
->>>  		/*
->>>  		 * Haswell uses DDI functions to detect digital outputs.
->>> -		 * On SKL pre-D0 the strap isn't connected, so we assume
->>> -		 * it's there.
->>> +		 * On SKL pre-D0 the strap isn't connected. Later SKUs may or
->>> +		 * may not have it - it was supposed to be fixed by the same
->>> +		 * time we stopped using straps. Assume it's there.
->>>  		 */
->>>  		found = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISPLAY_DETECTED;
->>>  		/* WaIgnoreDDIAStrap: skl */
->>
->>-- 
->>Jani Nikula, Intel Open Source Graphics Center
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
