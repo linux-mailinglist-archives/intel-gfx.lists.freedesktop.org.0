@@ -2,36 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24CB213804
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 11:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 646EA213852
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 12:00:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 291066E201;
-	Fri,  3 Jul 2020 09:49:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D8776E202;
+	Fri,  3 Jul 2020 10:00:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 435FE6E201
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 09:49:28 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21700712-1500050 for multiple; Fri, 03 Jul 2020 10:49:22 +0100
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A2266E202
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 10:00:13 +0000 (UTC)
+IronPort-SDR: 2UmbM+csBgUdevhWvr8PiWCLPT6hZlEL2Xe7jY08baa/aE44H2xABSoZxnZeu+C1wj4qe3BDcb
+ qEMbiHWT0hsw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="147140150"
+X-IronPort-AV: E=Sophos;i="5.75,307,1589266800"; d="scan'208";a="147140150"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2020 03:00:12 -0700
+IronPort-SDR: H2rinxYQtyaFZuO67VaG8z6iVFKxbWrL/Lx1z2WPXp6Rn7GdcR3YcB47mauF1CkBCT/kdEU6IF
+ U+5UbeDKO2hQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,307,1589266800"; d="scan'208";a="321765835"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+ by FMSMGA003.fm.intel.com with ESMTP; 03 Jul 2020 03:00:12 -0700
+Received: from orsmsx111.amr.corp.intel.com (10.22.240.12) by
+ ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 3 Jul 2020 03:00:11 -0700
+Received: from orsmsx107.amr.corp.intel.com ([169.254.1.92]) by
+ ORSMSX111.amr.corp.intel.com ([169.254.12.75]) with mapi id 14.03.0439.000;
+ Fri, 3 Jul 2020 03:00:11 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/ehl: Add new PCI ids
+Thread-Index: AQHWTlCGgTJSg+YhXky8mo4IBGrAlKj1pKEg
+Date: Fri, 3 Jul 2020 10:00:10 +0000
+Message-ID: <83F5C7385F545743AD4FB2A62F75B0734C6BDE9F@ORSMSX107.amr.corp.intel.com>
+References: <20200629200609.91058-1-jose.souza@intel.com>
+In-Reply-To: <20200629200609.91058-1-jose.souza@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-In-Reply-To: <3593fac6-f178-14d1-6948-ee3bcf65e74c@linux.intel.com>
-References: <20200702083225.20044-1-chris@chris-wilson.co.uk>
- <20200702083225.20044-7-chris@chris-wilson.co.uk>
- <aae73a4b-c942-53ae-9127-6160bd6b614a@linux.intel.com>
- <159376683236.12771.16953737584055290689@build.alporthouse.com>
- <3593fac6-f178-14d1-6948-ee3bcf65e74c@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 03 Jul 2020 10:49:24 +0100
-Message-ID: <159376976443.22925.16302677649396965411@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 07/23] drm/i915: Switch to object
- allocations for page directories
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Add new PCI ids
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,84 +64,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-07-03 10:24:27)
-> 
-> On 03/07/2020 10:00, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-07-03 09:44:52)
-> >>
-> >> On 02/07/2020 09:32, Chris Wilson wrote:
-> >>> The GEM object is grossly overweight for the practicality of tracking
-> >>> large numbers of individual pages, yet it is currently our only
-> >>> abstraction for tracking DMA allocations. Since those allocations need
-> >>> to be reserved upfront before an operation, and that we need to break
-> >>> away from simple system memory, we need to ditch using plain struct page
-> >>> wrappers.
-> >>
-> >> [Calling all page table experts...] :)
-> >>
-> >> So.. mostly 4k allocations via GEM objects? Sounds not ideal on first.
-> 
-> What is the relationship between object size and number of 4k objects 
-> needed for page tables?
-
-1 pt (4KiB dma + small struct) per 2MiB + misalignment
-1 pd (4KiB dma + ~4KiB struct) per 1GiB + misalignment
-1 pd per 512GiB + misalignment
-1 pd per 256TiB + misalignment
-[top level is preallocated]
-
-etc.
-
-> 
-> >> Reminder on why we need to break away from simple system memory?
-> > 
-> > The page tables are stored in device memory, which at the moment are
-> > plain pages with dma mappings.
-> > 
-> >> Need to
-> >> have a list of GEM objects which can be locked in the ww locking phase?
-> > 
-> > Yes, since we will need to be able to reserve all the device memory we
-> > need for execution.
-> > 
-> >> But how do you allocate these objects up front, when allocation needs to
-> >> be under the ww lock in case evictions need to be triggered.
-> > 
-> > By preeallocating enough objects to cover the page directories during
-> > the reservation phase. The previous patch moved the allocations from the
-> > point-of-use to before we insert the vma. Having made it the onus of the
-> > caller to provide the page directories allocations, we can then do it
-> > early on during the memory reservations.
-> 
-> Okay I missed the importance of the previous patch.
-> 
-> But preallocations have to be able to trigger evictions. Is the 
-> preallocating objects split then into creating objects and obtaining 
-> backing store? I do not see this in this patch, alloc_pt_dma both 
-> creates the object and pins the pages.
-
-Sure. It can be broken into two calls easily, or rather after having
-allocated objects suitable for the page tables, they can then all be
-reserved en masse will the rest of the objects. I was guilty of still
-thinking in terms of system memory.
-
-Worth keeping in mind is that the GGTT should never need extra
-allocations, which should keep a lot of the isolated object handling
-easier. And some vm will have preallocated ranges (e.g. the
-aliasing-ppgtt) so that we don't need to allocate more objects during
-critical phases.
-
-My goal is separate out the special cases for PIN_USER (i.e. execbuf)
-where there are many, many objects and auxiliary allocations from the
-special cases for the isolated PIN_GLOBAL, and from future special cases
-for pageout; killing i915_vma_pin(PIN_USER).
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBKb3PDqQ0K
+PiBSb2JlcnRvIGRlIFNvdXphDQo+IFNlbnQ6IFR1ZXNkYXksIEp1bmUgMzAsIDIwMjAgMTozNiBB
+TQ0KPiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBbSW50
+ZWwtZ2Z4XSBbUEFUQ0hdIGRybS9pOTE1L2VobDogQWRkIG5ldyBQQ0kgaWRzDQo+IA0KPiBUd28g
+bmV3IFBDSSBpZHMgYWRkZWQgdG8gZWhsLg0KPiANCj4gQlNwZWM6IDI5MTUzDQo+IFNpZ25lZC1v
+ZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiAt
+LS0NCj4gIGluY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmggfCAyICsrDQo+ICAxIGZpbGUgY2hhbmdl
+ZCwgMiBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vaTkxNV9w
+Y2lpZHMuaCBiL2luY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmggaW5kZXgNCj4gYmM5ODlkZTJhYWMy
+Li4wYzdmY2IxNjMyYWMgMTAwNjQ0DQo+IC0tLSBhL2luY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmgN
+Cj4gKysrIGIvaW5jbHVkZS9kcm0vaTkxNV9wY2lpZHMuaA0KPiBAQCAtNTg4LDYgKzU4OCw4IEBA
+DQo+ICAJSU5URUxfVkdBX0RFVklDRSgweDQ1NTEsIGluZm8pLCBcDQo+ICAJSU5URUxfVkdBX0RF
+VklDRSgweDQ1NDEsIGluZm8pLCBcDQo+ICAJSU5URUxfVkdBX0RFVklDRSgweDRFNzEsIGluZm8p
+LCBcDQo+ICsJSU5URUxfVkdBX0RFVklDRSgweDQ1NTcsIGluZm8pLCBcDQo+ICsJSU5URUxfVkdB
+X0RFVklDRSgweDQ1NTUsIGluZm8pLCBcDQo+ICAJSU5URUxfVkdBX0RFVklDRSgweDRFNjEsIGlu
+Zm8pLCBcDQo+ICAJSU5URUxfVkdBX0RFVklDRSgweDRFNTEsIGluZm8pDQoNClRoZXJlIGFyZSBt
+b3JlIFBDSUlEcyBtaXNzaW5nIGZyb20gdGhpcyBwYXRjaC4gTGlrZSAweDQ1NzEsMHg0NTUxIGV0
+Yw0KDQpBbnVzaGEgDQo+IA0KPiAtLQ0KPiAyLjI3LjANCj4gDQo+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QN
+Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
