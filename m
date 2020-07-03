@@ -1,48 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDF67213B54
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 15:49:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35AA6213B7E
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 16:07:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E5C56E21D;
-	Fri,  3 Jul 2020 13:49:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A89F6E27A;
+	Fri,  3 Jul 2020 14:07:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDB766E21D
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 13:49:16 +0000 (UTC)
-IronPort-SDR: RH4+xvafZp79IvLxYGxq9kCFT22EArVfOM4p2k4NsBfDigCwrniQWLk/Gn+kMiXTTmDvte3Z9I
- bc5XOMltuV0w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="148670513"
-X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="148670513"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2020 06:49:12 -0700
-IronPort-SDR: A2pmfclt2FA2Adt6YF8rW//g7TscRYx9i/eHG7wVVapMoU4mBDCgNlcJ3BhHhKSumgl0/+slS5
- tadB6eX8VC6g==
-X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="455905948"
-Received: from rbendor-mobl1.ger.corp.intel.com (HELO [10.214.211.147])
- ([10.214.211.147])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2020 06:49:11 -0700
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200703122221.591656-1-maarten.lankhorst@linux.intel.com>
- <20200703122221.591656-7-maarten.lankhorst@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <77d31489-33f1-c025-aa3c-bfe3d70a0e54@linux.intel.com>
-Date: Fri, 3 Jul 2020 14:49:08 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1D19B6E0D8;
+ Fri,  3 Jul 2020 14:07:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 177C8A66C9;
+ Fri,  3 Jul 2020 14:07:24 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200703122221.591656-7-maarten.lankhorst@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 06/23] drm/i915: Parse command buffer
- earlier in eb_relocate(slow)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 03 Jul 2020 14:07:24 -0000
+Message-ID: <159378524406.25594.9370683301125549341@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200703102519.26539-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200703102519.26539-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Export_ppgtt=5Fbind=5Fvma?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,197 +38,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 03/07/2020 13:22, Maarten Lankhorst wrote:
-> We want to introduce backoff logic, but we need to lock the
-> pool object as well for command parsing. Because of this, we
-> will need backoff logic for the engine pool obj, move the batch
-> validation up slightly to eb_lookup_vmas, and the actual command
-> parsing in a separate function which can get called from execbuf
-> relocation fast and slowpath.
+Series: drm/i915: Export ppgtt_bind_vma
+URL   : https://patchwork.freedesktop.org/series/79086/
+State : success
 
-On this one I also had some feedback in the previous round which you 
-maybe missed.
+== Summary ==
 
-Regards,
+CI Bug Log - changes from CI_DRM_8707 -> Patchwork_18079
+====================================================
 
-Tvrtko
+Summary
+-------
 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 68 ++++++++++---------
->   1 file changed, 37 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index c2a4e499233b..64b75f71a6bb 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -290,6 +290,8 @@ struct i915_execbuffer {
->   	struct eb_vma_array *array;
->   };
->   
-> +static int eb_parse(struct i915_execbuffer *eb);
-> +
->   static inline bool eb_use_cmdparser(const struct i915_execbuffer *eb)
->   {
->   	return intel_engine_requires_cmd_parser(eb->engine) ||
-> @@ -866,6 +868,7 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
->   
->   static int eb_lookup_vmas(struct i915_execbuffer *eb)
->   {
-> +	struct drm_i915_private *i915 = eb->i915;
->   	unsigned int batch = eb_batch_index(eb);
->   	unsigned int i;
->   	int err = 0;
-> @@ -879,18 +882,37 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
->   		vma = eb_lookup_vma(eb, eb->exec[i].handle);
->   		if (IS_ERR(vma)) {
->   			err = PTR_ERR(vma);
-> -			break;
-> +			goto err;
->   		}
->   
->   		err = eb_validate_vma(eb, &eb->exec[i], vma);
->   		if (unlikely(err)) {
->   			i915_vma_put(vma);
-> -			break;
-> +			goto err;
->   		}
->   
->   		eb_add_vma(eb, i, batch, vma);
->   	}
->   
-> +	if (unlikely(eb->batch->flags & EXEC_OBJECT_WRITE)) {
-> +		drm_dbg(&i915->drm,
-> +			"Attempting to use self-modifying batch buffer\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (range_overflows_t(u64,
-> +			      eb->batch_start_offset, eb->batch_len,
-> +			      eb->batch->vma->size)) {
-> +		drm_dbg(&i915->drm, "Attempting to use out-of-bounds batch\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (eb->batch_len == 0)
-> +		eb->batch_len = eb->batch->vma->size - eb->batch_start_offset;
-> +
-> +	return 0;
-> +
-> +err:
->   	eb->vma[i].vma = NULL;
->   	return err;
->   }
-> @@ -1802,7 +1824,7 @@ static int eb_prefault_relocations(const struct i915_execbuffer *eb)
->   	return 0;
->   }
->   
-> -static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
-> +static noinline int eb_relocate_parse_slow(struct i915_execbuffer *eb)
->   {
->   	bool have_copy = false;
->   	struct eb_vma *ev;
-> @@ -1868,6 +1890,11 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
->   	if (err)
->   		goto err;
->   
-> +	/* as last step, parse the command buffer */
-> +	err = eb_parse(eb);
-> +	if (err)
-> +		goto err;
-> +
->   	/*
->   	 * Leave the user relocations as are, this is the painfully slow path,
->   	 * and we want to avoid the complication of dropping the lock whilst
-> @@ -1900,7 +1927,7 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
->   	return err;
->   }
->   
-> -static int eb_relocate(struct i915_execbuffer *eb)
-> +static int eb_relocate_parse(struct i915_execbuffer *eb)
->   {
->   	int err;
->   
-> @@ -1925,10 +1952,10 @@ static int eb_relocate(struct i915_execbuffer *eb)
->   		}
->   
->   		if (err)
-> -			return eb_relocate_slow(eb);
-> +			return eb_relocate_parse_slow(eb);
->   	}
->   
-> -	return 0;
-> +	return eb_parse(eb);
->   }
->   
->   static int eb_move_to_gpu(struct i915_execbuffer *eb)
-> @@ -2866,7 +2893,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->   	if (unlikely(err))
->   		goto err_context;
->   
-> -	err = eb_relocate(&eb);
-> +	err = eb_relocate_parse(&eb);
->   	if (err) {
->   		/*
->   		 * If the user expects the execobject.offset and
-> @@ -2879,33 +2906,10 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->   		goto err_vma;
->   	}
->   
-> -	if (unlikely(eb.batch->flags & EXEC_OBJECT_WRITE)) {
-> -		drm_dbg(&i915->drm,
-> -			"Attempting to use self-modifying batch buffer\n");
-> -		err = -EINVAL;
-> -		goto err_vma;
-> -	}
-> -
-> -	if (range_overflows_t(u64,
-> -			      eb.batch_start_offset, eb.batch_len,
-> -			      eb.batch->vma->size)) {
-> -		drm_dbg(&i915->drm, "Attempting to use out-of-bounds batch\n");
-> -		err = -EINVAL;
-> -		goto err_vma;
-> -	}
-> -
-> -	if (eb.batch_len == 0)
-> -		eb.batch_len = eb.batch->vma->size - eb.batch_start_offset;
-> -
-> -	err = eb_parse(&eb);
-> -	if (err)
-> -		goto err_vma;
-> -
->   	/*
->   	 * snb/ivb/vlv conflate the "batch in ppgtt" bit with the "non-secure
->   	 * batch" bit. Hence we need to pin secure batches into the global gtt.
->   	 * hsw should have this fixed, but bdw mucks it up again. */
-> -	batch = eb.batch->vma;
->   	if (eb.batch_flags & I915_DISPATCH_SECURE) {
->   		struct i915_vma *vma;
->   
-> @@ -2919,13 +2923,15 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->   		 *   fitting due to fragmentation.
->   		 * So this is actually safe.
->   		 */
-> -		vma = i915_gem_object_ggtt_pin(batch->obj, NULL, 0, 0, 0);
-> +		vma = i915_gem_object_ggtt_pin(eb.batch->vma->obj, NULL, 0, 0, 0);
->   		if (IS_ERR(vma)) {
->   			err = PTR_ERR(vma);
->   			goto err_parse;
->   		}
->   
->   		batch = vma;
-> +	} else {
-> +		batch = eb.batch->vma;
->   	}
->   
->   	/* All GPU relocation batches must be submitted prior to the user rq */
-> 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18079 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-whl-u:           [PASS][1] -> [DMESG-WARN][2] ([i915#95])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-bsw-n3050:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_addfb_basic@addfb25-modifier-no-flag:
+    - fi-tgl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-tgl-u2/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-tgl-u2/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [FAIL][9] ([i915#1888]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_module_load@reload:
+    - fi-apl-guc:         [INCOMPLETE][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-apl-guc/igt@i915_module_load@reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-apl-guc/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-icl-u2:          [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  
+#### Warnings ####
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +5 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8707/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
+
+  
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (44 -> 37)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8707 -> Patchwork_18079
+
+  CI-20190529: 20190529
+  CI_DRM_8707: d499de3ecccf4923c7e35e298fb6f13611a8f70e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5721: df9004c501b203c1b418781ad2c94dfe36892ef5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18079: 6c4c71972f41187bfc430dd539cfe36bed74c38b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6c4c71972f41 drm/i915: Export ppgtt_bind_vma
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18079/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
