@@ -2,47 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21745213988
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 13:45:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF312139F5
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jul 2020 14:22:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21AEA6E0E1;
-	Fri,  3 Jul 2020 11:45:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 010316EB6E;
+	Fri,  3 Jul 2020 12:22:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF45B6E0E1
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 11:45:42 +0000 (UTC)
-IronPort-SDR: Zkv542Z311FZgyreYBdIAHpK66GYy7xJBJLIlEra9nzU0EOkgAI20NugMWqWX/toFeBa/4SIAu
- 6yfFSRZn7Pjw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9670"; a="144655941"
-X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="144655941"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2020 04:45:41 -0700
-IronPort-SDR: ZpsCOO9ZBnhHl4HHyhbSTWhGdExqJYxgmIqkAHCEATJTZ+svn6vfbD6NsiEIT5ZXcjap94Ajer
- yCvWwBxXOqiw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,308,1589266800"; d="scan'208";a="296190806"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 03 Jul 2020 04:45:39 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 03 Jul 2020 14:45:38 +0300
-Date: Fri, 3 Jul 2020 14:45:38 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200703114538.GM6112@intel.com>
-References: <20200702153723.24327-1-ville.syrjala@linux.intel.com>
- <20200702153723.24327-3-ville.syrjala@linux.intel.com>
- <4640b96482ac43decad11d006ca7112433b742ed.camel@intel.com>
+Received: from mblankhorst.nl (mblankhorst.nl
+ [IPv6:2a02:2308::216:3eff:fe92:dfa3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 854B16E397
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 12:22:25 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Jul 2020 14:21:58 +0200
+Message-Id: <20200703122221.591656-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <4640b96482ac43decad11d006ca7112433b742ed.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/fbc: Fix nuke for pre-snb
- platforms
+Subject: [Intel-gfx] [PATCH 00/23] drm/i915: Use ww locking in execbuf
+ submission.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,115 +33,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 02, 2020 at 11:02:05PM +0000, Souza, Jose wrote:
-> On Thu, 2020-07-02 at 18:37 +0300, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+Change the locking hierarchy to put request inside ww, and fix selftests to hopefully pass now.
 
-> > The MSG_FBC_REND_STATE register only exists on snb+. For older
-> > platforms (would also work for snb+) we can simply rewite DSPSURF
-> > to trigger a flip nuke.
-> > =
+Maarten Lankhorst (23):
+  Revert "drm/i915/gem: Async GPU relocations only"
+  drm/i915: Revert relocation chaining commits.
+  Revert "drm/i915/gem: Drop relocation slowpath".
+  drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+  drm/i915: Remove locking from i915_gem_object_prepare_read/write
+  drm/i915: Parse command buffer earlier in eb_relocate(slow)
+  Revert "drm/i915/gem: Split eb_vma into its own allocation"
+  drm/i915: Use per object locking in execbuf, v12.
+  drm/i915: Use ww locking in intel_renderstate.
+  drm/i915: Add ww context handling to context_barrier_task
+  drm/i915: Nuke arguments to eb_pin_engine
+  drm/i915: Pin engine before pinning all objects, v4.
+  drm/i915: Rework intel_context pinning to do everything outside of
+    pin_mutex
+  drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
+  drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as
+    well, v2.
+  drm/i915: Kill last user of intel_context_create_request outside of
+    selftests
+  drm/i915: Convert i915_perf to ww locking as well
+  drm/i915: Dirty hack to fix selftests locking inversion
+  drm/i915/selftests: Fix locking inversion in lrc selftest.
+  drm/i915: Use ww pinning for intel_context_create_request()
+  drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion,
+    v2.
+  drm/i915: Add ww locking to vm_fault_gtt
+  drm/i915: Add ww locking to pin_to_display_plane
 
-> > While generally RMW is considered harmful we'll use it here for
-> > simplicity. And since FBC doesn't exist in i830 we don't have to
-> > worry about the DSPSURF double buffering hardware fails present
-> > on that platform.
-> =
+ drivers/gpu/drm/i915/display/intel_display.c  |    6 +-
+ .../gpu/drm/i915/gem/i915_gem_client_blt.c    |   78 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |   55 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |    4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c    |   89 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 1569 +++++++++++------
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |   51 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   40 +-
+ .../gpu/drm/i915/gem/i915_gem_object_blt.c    |  152 +-
+ .../gpu/drm/i915/gem/i915_gem_object_blt.h    |    3 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |    9 +
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c        |    2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |    2 +-
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |    7 +-
+ .../i915/gem/selftests/i915_gem_client_blt.c  |    2 +-
+ .../i915/gem/selftests/i915_gem_coherency.c   |   50 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c |   47 +-
+ .../i915/gem/selftests/i915_gem_execbuffer.c  |   57 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |   45 +-
+ .../drm/i915/gem/selftests/i915_gem_phys.c    |    2 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |    4 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |    4 +-
+ drivers/gpu/drm/i915/gt/intel_context.c       |  309 ++--
+ drivers/gpu/drm/i915/gt/intel_context.h       |   13 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h |    5 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   23 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |   37 +-
+ drivers/gpu/drm/i915/gt/intel_renderstate.c   |   73 +-
+ drivers/gpu/drm/i915/gt/intel_renderstate.h   |    9 +-
+ drivers/gpu/drm/i915/gt/intel_ring.c          |   10 +-
+ drivers/gpu/drm/i915/gt/intel_ring.h          |    3 +-
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |   20 +-
+ drivers/gpu/drm/i915/gt/intel_timeline.c      |   12 +-
+ drivers/gpu/drm/i915/gt/intel_timeline.h      |    3 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |   43 +-
+ drivers/gpu/drm/i915/gt/mock_engine.c         |   14 +-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |   17 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c        |   30 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c   |    4 +-
+ .../gpu/drm/i915/gt/selftest_workarounds.c    |    2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |    2 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |    3 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   13 +-
+ drivers/gpu/drm/i915/i915_gem.c               |   89 +-
+ drivers/gpu/drm/i915/i915_gem.h               |   12 +
+ drivers/gpu/drm/i915/i915_perf.c              |   57 +-
+ drivers/gpu/drm/i915/i915_vma.c               |   13 +-
+ drivers/gpu/drm/i915/i915_vma.h               |   13 +-
+ drivers/gpu/drm/i915/selftests/i915_gem.c     |   41 +
+ drivers/gpu/drm/i915/selftests/i915_request.c |   18 +-
+ drivers/gpu/drm/i915/selftests/i915_vma.c     |    2 +-
+ .../drm/i915/selftests/intel_memory_region.c  |    2 +-
+ 53 files changed, 2183 insertions(+), 989 deletions(-)
 
-> Did not found a explicit statement about writing DSPSURF will nuke compre=
-ssed buffer but that makes sense,
 
-Flip nuke is certainly a thing, but flipping to the same address I think
-might be somewhat undefined. IIRC I did test this however and it worked
-just fine.
+base-commit: 7faedc4873dd257f4ed064ab4e0a28407690ea73
+prerequisite-patch-id: e6315738715ac4ffccaeb4c4bf5a94651fb8da1d
+-- 
+2.27.0
 
-> also checked that MSG_FBC_REND_STATE do not
-> exist this older platforms.
-> =
-
-> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> =
-
-> > =
-
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_fbc.c | 34 +++++++++++++++++++++++-
-> >  1 file changed, 33 insertions(+), 1 deletion(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm=
-/i915/display/intel_fbc.c
-> > index d30c2a389294..036546ce8db8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > @@ -187,8 +187,30 @@ static bool g4x_fbc_is_active(struct drm_i915_priv=
-ate *dev_priv)
-> >  	return intel_de_read(dev_priv, DPFC_CONTROL) & DPFC_CTL_EN;
-> >  }
-> >  =
-
-> > +static void i8xx_fbc_recompress(struct drm_i915_private *dev_priv)
-> > +{
-> > +	struct intel_fbc_reg_params *params =3D &dev_priv->fbc.params;
-> > +	enum i9xx_plane_id i9xx_plane =3D params->crtc.i9xx_plane;
-> > +
-> > +	spin_lock_irq(&dev_priv->uncore.lock);
-> > +	intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane),
-> > +			  intel_de_read_fw(dev_priv, DSPADDR(i9xx_plane)));
-> > +	spin_unlock_irq(&dev_priv->uncore.lock);
-> > +}
-> > +
-> > +static void i965_fbc_recompress(struct drm_i915_private *dev_priv)
-> > +{
-> > +	struct intel_fbc_reg_params *params =3D &dev_priv->fbc.params;
-> > +	enum i9xx_plane_id i9xx_plane =3D params->crtc.i9xx_plane;
-> > +
-> > +	spin_lock_irq(&dev_priv->uncore.lock);
-> > +	intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane),
-> > +			  intel_de_read_fw(dev_priv, DSPSURF(i9xx_plane)));
-> > +	spin_unlock_irq(&dev_priv->uncore.lock);
-> > +}
-> > +
-> >  /* This function forces a CFB recompression through the nuke operation=
-. */
-> > -static void intel_fbc_recompress(struct drm_i915_private *dev_priv)
-> > +static void snb_fbc_recompress(struct drm_i915_private *dev_priv)
-> >  {
-> >  	struct intel_fbc *fbc =3D &dev_priv->fbc;
-> >  =
-
-> > @@ -198,6 +220,16 @@ static void intel_fbc_recompress(struct drm_i915_p=
-rivate *dev_priv)
-> >  	intel_de_posting_read(dev_priv, MSG_FBC_REND_STATE);
-> >  }
-> >  =
-
-> > +static void intel_fbc_recompress(struct drm_i915_private *dev_priv)
-> > +{
-> > +	if (INTEL_GEN(dev_priv) >=3D 6)
-> > +		snb_fbc_recompress(dev_priv);
-> > +	else if (INTEL_GEN(dev_priv) >=3D 4)
-> > +		i965_fbc_recompress(dev_priv);
-> > +	else
-> > +		i8xx_fbc_recompress(dev_priv);
-> > +}
-> > +
-> >  static void ilk_fbc_activate(struct drm_i915_private *dev_priv)
-> >  {
-> >  	struct intel_fbc_reg_params *params =3D &dev_priv->fbc.params;
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
