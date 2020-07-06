@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCB8421528E
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 08:19:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4DC2215293
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 08:19:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C033A6E14C;
-	Mon,  6 Jul 2020 06:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F67A6E1BB;
+	Mon,  6 Jul 2020 06:19:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35F446E128
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 06:19:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C3806E128
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 06:19:39 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21724448-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21724449-1500050 
  for multiple; Mon, 06 Jul 2020 07:19:25 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Jul 2020 07:19:11 +0100
-Message-Id: <20200706061926.6687-6-chris@chris-wilson.co.uk>
+Date: Mon,  6 Jul 2020 07:19:12 +0100
+Message-Id: <20200706061926.6687-7-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200706061926.6687-1-chris@chris-wilson.co.uk>
 References: <20200706061926.6687-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 05/20] drm/i915/gem: Break apart the early
- i915_vma_pin from execbuf object lookup
+Subject: [Intel-gfx] [PATCH 06/20] drm/i915/gem: Remove the call for
+ no-evict i915_vma_pin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,176 +45,168 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As a prelude to the next step where we want to perform all the object
-allocations together under the same lock, we first must delay the
-i915_vma_pin() as that implicitly does the allocations for us, one by
-one. As it only does the allocations one by one, it is not allowed to
-wait/evict, whereas pulling all the allocations together the entire set
-can be scheduled as one.
+Remove the stub i915_vma_pin() used for incrementally pining objects for
+execbuf (under the severe restriction that they must not wait on a
+resource as we may have already pinned it) and replace it with a
+i915_vma_pin_inplace() that is only allowed to reclaim the currently
+bound location for the vma (and will never wait for a pinned resource).
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 70 +++++++++++--------
- 1 file changed, 39 insertions(+), 31 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 69 +++++++++++--------
+ drivers/gpu/drm/i915/i915_vma.c               |  6 +-
+ drivers/gpu/drm/i915/i915_vma.h               |  2 +
+ 3 files changed, 45 insertions(+), 32 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index bf8193d9e279..35a57c1fc9c3 100644
+index 35a57c1fc9c3..1015c4fd9f3e 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -33,6 +33,8 @@ struct eb_vma {
- 
- 	/** This vma's place in the execbuf reservation list */
- 	struct drm_i915_gem_exec_object2 *exec;
-+
-+	struct list_head bind_link;
- 	struct list_head unbound_link;
- 	struct list_head reloc_link;
- 
-@@ -240,8 +242,8 @@ struct i915_execbuffer {
- 	/** actual size of execobj[] as we may extend it for the cmdparser */
- 	unsigned int buffer_count;
- 
--	/** list of vma not yet bound during reservation phase */
--	struct list_head unbound;
-+	/** list of all vma required to bound for this execbuf */
-+	struct list_head bind_list;
- 
- 	/** list of vma that have execobj.relocation_count */
- 	struct list_head relocs;
-@@ -565,6 +567,8 @@ eb_add_vma(struct i915_execbuffer *eb,
- 						    eb->lut_size)]);
- 	}
- 
-+	list_add_tail(&ev->bind_link, &eb->bind_list);
-+
- 	if (entry->relocation_count)
- 		list_add_tail(&ev->reloc_link, &eb->relocs);
- 
-@@ -586,16 +590,6 @@ eb_add_vma(struct i915_execbuffer *eb,
- 
- 		eb->batch = ev;
- 	}
--
--	if (eb_pin_vma(eb, entry, ev)) {
--		if (entry->offset != vma->node.start) {
--			entry->offset = vma->node.start | UPDATE;
--			eb->args->flags |= __EXEC_HAS_RELOC;
--		}
--	} else {
--		eb_unreserve_vma(ev);
--		list_add_tail(&ev->unbound_link, &eb->unbound);
--	}
+@@ -452,49 +452,55 @@ static u64 eb_pin_flags(const struct drm_i915_gem_exec_object2 *entry,
+ 	return pin_flags;
  }
  
- static int eb_reserve_vma(const struct i915_execbuffer *eb,
-@@ -670,13 +664,31 @@ static int wait_for_timeline(struct intel_timeline *tl)
- 	} while (1);
- }
- 
--static int eb_reserve(struct i915_execbuffer *eb)
-+static int eb_reserve_vm(struct i915_execbuffer *eb)
- {
--	const unsigned int count = eb->buffer_count;
- 	unsigned int pin_flags = PIN_USER | PIN_NONBLOCK;
--	struct list_head last;
-+	struct list_head last, unbound;
- 	struct eb_vma *ev;
--	unsigned int i, pass;
-+	unsigned int pass;
++static bool eb_pin_vma_fence_inplace(struct eb_vma *ev)
++{
++	struct i915_vma *vma = ev->vma;
++	struct i915_fence_reg *reg = vma->fence;
 +
-+	INIT_LIST_HEAD(&unbound);
-+	list_for_each_entry(ev, &eb->bind_list, bind_link) {
-+		struct drm_i915_gem_exec_object2 *entry = ev->exec;
-+		struct i915_vma *vma = ev->vma;
++	if (reg) {
++		if (READ_ONCE(reg->dirty))
++			return false;
 +
-+		if (eb_pin_vma(eb, entry, ev)) {
-+			if (entry->offset != vma->node.start) {
-+				entry->offset = vma->node.start | UPDATE;
-+				eb->args->flags |= __EXEC_HAS_RELOC;
-+			}
-+		} else {
-+			eb_unreserve_vma(ev);
-+			list_add_tail(&ev->unbound_link, &unbound);
-+		}
++		atomic_inc(&reg->pin_count);
++		ev->flags |= __EXEC_OBJECT_HAS_FENCE;
++	} else {
++		if (i915_gem_object_is_tiled(vma->obj))
++			return false;
 +	}
 +
-+	if (list_empty(&unbound))
-+		return 0;
++	return true;
++}
++
+ static inline bool
+-eb_pin_vma(struct i915_execbuffer *eb,
+-	   const struct drm_i915_gem_exec_object2 *entry,
+-	   struct eb_vma *ev)
++eb_pin_vma_inplace(struct i915_execbuffer *eb,
++		   const struct drm_i915_gem_exec_object2 *entry,
++		   struct eb_vma *ev)
+ {
+ 	struct i915_vma *vma = ev->vma;
+-	u64 pin_flags;
++	unsigned int pin_flags;
  
- 	/*
- 	 * Attempt to pin all of the buffers into the GTT.
-@@ -699,7 +711,7 @@ static int eb_reserve(struct i915_execbuffer *eb)
- 		if (mutex_lock_interruptible(&eb->i915->drm.struct_mutex))
- 			return -EINTR;
+-	if (vma->node.size)
+-		pin_flags = vma->node.start;
+-	else
+-		pin_flags = entry->offset & PIN_OFFSET_MASK;
++	if (eb_vma_misplaced(entry, vma, ev->flags))
++		return false;
  
--		list_for_each_entry(ev, &eb->unbound, unbound_link) {
-+		list_for_each_entry(ev, &unbound, unbound_link) {
- 			err = eb_reserve_vma(eb, ev, pin_flags);
- 			if (err)
- 				break;
-@@ -710,13 +722,11 @@ static int eb_reserve(struct i915_execbuffer *eb)
- 		}
+-	pin_flags |= PIN_USER | PIN_NOEVICT | PIN_OFFSET_FIXED;
++	pin_flags = PIN_USER;
+ 	if (unlikely(ev->flags & EXEC_OBJECT_NEEDS_GTT))
+ 		pin_flags |= PIN_GLOBAL;
  
- 		/* Resort *all* the objects into priority order */
--		INIT_LIST_HEAD(&eb->unbound);
-+		INIT_LIST_HEAD(&unbound);
- 		INIT_LIST_HEAD(&last);
--		for (i = 0; i < count; i++) {
--			unsigned int flags;
-+		list_for_each_entry(ev, &eb->bind_list, bind_link) {
-+			unsigned int flags = ev->flags;
- 
--			ev = &eb->vma[i];
--			flags = ev->flags;
- 			if (flags & EXEC_OBJECT_PINNED &&
- 			    flags & __EXEC_OBJECT_HAS_PIN)
- 				continue;
-@@ -725,17 +735,17 @@ static int eb_reserve(struct i915_execbuffer *eb)
- 
- 			if (flags & EXEC_OBJECT_PINNED)
- 				/* Pinned must have their slot */
--				list_add(&ev->unbound_link, &eb->unbound);
-+				list_add(&ev->unbound_link, &unbound);
- 			else if (flags & __EXEC_OBJECT_NEEDS_MAP)
- 				/* Map require the lowest 256MiB (aperture) */
--				list_add_tail(&ev->unbound_link, &eb->unbound);
-+				list_add_tail(&ev->unbound_link, &unbound);
- 			else if (!(flags & EXEC_OBJECT_SUPPORTS_48B_ADDRESS))
- 				/* Prioritise 4GiB region for restricted bo */
- 				list_add(&ev->unbound_link, &last);
- 			else
- 				list_add_tail(&ev->unbound_link, &last);
- 		}
--		list_splice_tail(&last, &eb->unbound);
-+		list_splice_tail(&last, &unbound);
- 		mutex_unlock(&eb->i915->drm.struct_mutex);
- 
- 		if (err == -EAGAIN) {
-@@ -891,8 +901,8 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
- 	unsigned int i;
- 	int err = 0;
- 
-+	INIT_LIST_HEAD(&eb->bind_list);
- 	INIT_LIST_HEAD(&eb->relocs);
--	INIT_LIST_HEAD(&eb->unbound);
- 
- 	for (i = 0; i < eb->buffer_count; i++) {
- 		struct i915_vma *vma;
-@@ -1539,11 +1549,9 @@ static int eb_relocate(struct i915_execbuffer *eb)
- 	if (err)
- 		return err;
- 
--	if (!list_empty(&eb->unbound)) {
--		err = eb_reserve(eb);
--		if (err)
--			return err;
+ 	/* Attempt to reuse the current location if available */
+-	if (unlikely(i915_vma_pin(vma, 0, 0, pin_flags))) {
+-		if (entry->flags & EXEC_OBJECT_PINNED)
+-			return false;
+-
+-		/* Failing that pick any _free_ space if suitable */
+-		if (unlikely(i915_vma_pin(vma,
+-					  entry->pad_to_size,
+-					  entry->alignment,
+-					  eb_pin_flags(entry, ev->flags) |
+-					  PIN_USER | PIN_NOEVICT)))
+-			return false;
 -	}
-+	err = eb_reserve_vm(eb);
-+	if (err)
-+		return err;
++	if (!i915_vma_pin_inplace(vma, pin_flags))
++		return false;
  
- 	/* The objects are in their final locations, apply the relocations. */
- 	if (eb->args->flags & __EXEC_HAS_RELOC) {
+ 	if (unlikely(ev->flags & EXEC_OBJECT_NEEDS_FENCE)) {
+-		if (unlikely(i915_vma_pin_fence(vma))) {
+-			i915_vma_unpin(vma);
++		if (!eb_pin_vma_fence_inplace(ev)) {
++			__i915_vma_unpin(vma);
+ 			return false;
+ 		}
+-
+-		if (vma->fence)
+-			ev->flags |= __EXEC_OBJECT_HAS_FENCE;
+ 	}
+ 
++	GEM_BUG_ON(eb_vma_misplaced(entry, vma, ev->flags));
++
+ 	ev->flags |= __EXEC_OBJECT_HAS_PIN;
+-	return !eb_vma_misplaced(entry, vma, ev->flags);
++	return true;
+ }
+ 
+ static int
+@@ -676,14 +682,17 @@ static int eb_reserve_vm(struct i915_execbuffer *eb)
+ 		struct drm_i915_gem_exec_object2 *entry = ev->exec;
+ 		struct i915_vma *vma = ev->vma;
+ 
+-		if (eb_pin_vma(eb, entry, ev)) {
++		if (eb_pin_vma_inplace(eb, entry, ev)) {
+ 			if (entry->offset != vma->node.start) {
+ 				entry->offset = vma->node.start | UPDATE;
+ 				eb->args->flags |= __EXEC_HAS_RELOC;
+ 			}
+ 		} else {
+-			eb_unreserve_vma(ev);
+-			list_add_tail(&ev->unbound_link, &unbound);
++			/* Lightly sort user placed objects to the fore */
++			if (ev->flags & EXEC_OBJECT_PINNED)
++				list_add(&ev->unbound_link, &unbound);
++			else
++				list_add_tail(&ev->unbound_link, &unbound);
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 3b43d485d7c2..0c9af30fc3d6 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -740,11 +740,13 @@ i915_vma_detach(struct i915_vma *vma)
+ 	list_del(&vma->vm_link);
+ }
+ 
+-static bool try_qad_pin(struct i915_vma *vma, unsigned int flags)
++bool i915_vma_pin_inplace(struct i915_vma *vma, unsigned int flags)
+ {
+ 	unsigned int bound;
+ 	bool pinned = true;
+ 
++	GEM_BUG_ON(flags & ~I915_VMA_BIND_MASK);
++
+ 	bound = atomic_read(&vma->flags);
+ 	do {
+ 		if (unlikely(flags & ~bound))
+@@ -865,7 +867,7 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+ 	GEM_BUG_ON(!(flags & (PIN_USER | PIN_GLOBAL)));
+ 
+ 	/* First try and grab the pin without rebinding the vma */
+-	if (try_qad_pin(vma, flags & I915_VMA_BIND_MASK))
++	if (i915_vma_pin_inplace(vma, flags & I915_VMA_BIND_MASK))
+ 		return 0;
+ 
+ 	err = vma_get_pages(vma);
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index d0d01f909548..03fea54fd573 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -236,6 +236,8 @@ static inline void i915_vma_unlock(struct i915_vma *vma)
+ 	dma_resv_unlock(vma->resv);
+ }
+ 
++bool i915_vma_pin_inplace(struct i915_vma *vma, unsigned int flags);
++
+ int __must_check
+ i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags);
+ int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags);
 -- 
 2.20.1
 
