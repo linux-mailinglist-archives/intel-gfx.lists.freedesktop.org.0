@@ -1,50 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F06E5215B19
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 17:47:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F7DD215B5D
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 18:01:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54DCA89E5A;
-	Mon,  6 Jul 2020 15:47:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5F536E10E;
+	Mon,  6 Jul 2020 16:01:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE84E89FEA
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 15:47:05 +0000 (UTC)
-IronPort-SDR: 1AKQWS5lK/rn9/+/mL1fG8LxEGd4gkoTC3IPrqepaq5GdeAfGKt47Nm+F+FMI3JYt/bNQyPHqW
- Fh+JO1ebUEsw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9673"; a="135687828"
-X-IronPort-AV: E=Sophos;i="5.75,320,1589266800"; d="scan'208";a="135687828"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2020 08:47:04 -0700
-IronPort-SDR: JmdWsvuMPQ1H3etJ3G50VbHD07jYnF9uBwOxMBO9x5LTKUBthe8EHX6gg0C8xVbkCzZVtPVS2s
- 2TU6FjtxBvKw==
-X-IronPort-AV: E=Sophos;i="5.75,320,1589266800"; d="scan'208";a="456775566"
-Received: from rrodrig1-mobl.ger.corp.intel.com (HELO [10.249.45.109])
- ([10.249.45.109])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2020 08:47:03 -0700
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200703122221.591656-1-maarten.lankhorst@linux.intel.com>
- <20200703122221.591656-7-maarten.lankhorst@linux.intel.com>
- <77d31489-33f1-c025-aa3c-bfe3d70a0e54@linux.intel.com>
- <756b6b1a-97f5-4676-65f3-4e1430945ccf@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <fdfa5721-b917-532a-0bfd-d8b3cc46f1aa@linux.intel.com>
-Date: Mon, 6 Jul 2020 16:47:00 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B24416E10E;
+ Mon,  6 Jul 2020 16:00:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AD18EA47DA;
+ Mon,  6 Jul 2020 16:00:59 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <756b6b1a-97f5-4676-65f3-4e1430945ccf@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 06/23] drm/i915: Parse command buffer
- earlier in eb_relocate(slow)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Winiarski?= <michal@hardline.pl>
+Date: Mon, 06 Jul 2020 16:00:59 -0000
+Message-ID: <159405125967.17681.9293747834902965094@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200706140125.172844-1-michal@hardline.pl>
+In-Reply-To: <20200706140125.172844-1-michal@hardline.pl>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv3=2C1/3=5D_drm/i915=3A_Reboot_CI_if_we_ge?=
+ =?utf-8?q?t_wedged_during_driver_init?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,45 +39,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 06/07/2020 13:53, Maarten Lankhorst wrote:
-> Op 03-07-2020 om 15:49 schreef Tvrtko Ursulin:
->>
->> On 03/07/2020 13:22, Maarten Lankhorst wrote:
->>> We want to introduce backoff logic, but we need to lock the
->>> pool object as well for command parsing. Because of this, we
->>> will need backoff logic for the engine pool obj, move the batch
->>> validation up slightly to eb_lookup_vmas, and the actual command
->>> parsing in a separate function which can get called from execbuf
->>> relocation fast and slowpath.
->>
->> On this one I also had some feedback in the previous round which you maybe missed.
->>
->> Regards,
-> Compile tested this one now, so should work. :)
+Series: series starting with [v3,1/3] drm/i915: Reboot CI if we get wedged during driver init
+URL   : https://patchwork.freedesktop.org/series/79160/
+State : success
 
-Cool.
+== Summary ==
 
-And what about the other comments I had? More splitting of logical steps 
-(lookup/validate/parse/whatever)? Working on removing the reverts and 
-making eb_relocate_parse_slow have less than 11 gotos and 4-5 labels (by 
-the end of the series) is out the question? Removing the "dirty hack" as 
-well later in the series?
+CI Bug Log - changes from CI_DRM_8708 -> Patchwork_18086
+====================================================
 
-It would be really nice if you could also scan through Chris' idea. I 
-particularly like how he manages to do it without needing to touch 
-execlists and context handling (less invasiness should help us). But I 
-haven't studied his series fully yet, to understand all the details. So 
-it would be good to join forces there as well.
+Summary
+-------
 
-Regards,
+  **SUCCESS**
 
-Tvrtko
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18086 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_linear_blits@basic:
+    - fi-tgl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-u2/igt@gem_linear_blits@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/fi-tgl-u2/igt@gem_linear_blits@basic.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-y/igt@kms_busy@basic@flip.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/fi-tgl-y/igt@kms_busy@basic@flip.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][9] -> [DMESG-WARN][10] ([i915#402])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-tgl-y:           [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html
+    - fi-bsw-kefka:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - {fi-tgl-dsi}:       [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-dsi/igt@i915_pm_rpm@module-reload.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/fi-tgl-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@vgem_basic@setversion:
+    - fi-tgl-y:           [DMESG-WARN][17] ([i915#402]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-y/igt@vgem_basic@setversion.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/fi-tgl-y/igt@vgem_basic@setversion.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (43 -> 37)
+------------------------------
+
+  Additional (1): fi-skl-guc 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8708 -> Patchwork_18086
+
+  CI-20190529: 20190529
+  CI_DRM_8708: 170e94a1430fd0a4f0841ad0f7366904d52e49be @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5722: 9985cf23e9db9557bc7d714f5b72602e427497d3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18086: 4b0b5628617d7c1926731ff1d631814ac9c0f23a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4b0b5628617d drm/i915: Don't taint when using fault injection
+29374374794a drm/i915: Print caller when tainting for CI
+b3bbe0373d6e drm/i915: Reboot CI if we get wedged during driver init
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18086/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
