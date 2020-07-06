@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 048EA215C7A
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 19:00:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC6A215C84
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 19:01:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49D9D6E26C;
-	Mon,  6 Jul 2020 17:00:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E19C26E283;
+	Mon,  6 Jul 2020 17:01:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 407776E26C
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 17:00:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4D9A6E283
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 17:01:49 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21731734-1500050 
- for multiple; Mon, 06 Jul 2020 18:00:23 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21731755-1500050 
+ for multiple; Mon, 06 Jul 2020 18:01:40 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Jul 2020 18:00:21 +0100
-Message-Id: <20200706170021.8832-1-chris@chris-wilson.co.uk>
+Date: Mon,  6 Jul 2020 18:01:38 +0100
+Message-Id: <20200706170138.8993-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200706170021.8832-1-chris@chris-wilson.co.uk>
+References: <20200706170021.8832-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/gt: Pin the rings before marking active
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -44,9 +46,9 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On eviction, we acquire the vm->mutex and then wait on the vma->active.
 Thereore when binding and pinning the vma, we must follow the same
-sequennce, lock/pin the vma then mark it active. Otherwise, we mark the
+sequence, lock/pin the vma then mark it active. Otherwise, we mark the
 vma as active, then wait for the vm->mutex, and meanwhile the evictor
-waits upon us.
+holding the mutex waits upon us to complete our activity.
 
 Fixes: 8ccfc20a7d56 ("drm/i915/gt: Mark ring->vma as active while pinned")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
