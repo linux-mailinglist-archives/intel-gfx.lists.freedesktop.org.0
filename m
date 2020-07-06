@@ -2,61 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B8482159C4
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 16:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19D0E2159C8
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 16:43:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8198989EB4;
-	Mon,  6 Jul 2020 14:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 611B089BAF;
+	Mon,  6 Jul 2020 14:43:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com
- [IPv6:2a00:1450:4864:20::241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E744A89EA3
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 14:42:52 +0000 (UTC)
-Received: by mail-lj1-x241.google.com with SMTP id 9so45641864ljv.5
- for <intel-gfx@lists.freedesktop.org>; Mon, 06 Jul 2020 07:42:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=hardline-pl.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=AJpcZstIpy2dQl6+c3wtzS24tt29cvj33sv7x1/FoVI=;
- b=PA+vU+wQ7qfu0yCEnLcGsL5lrJFKiVgr4GeOBwBfqSoKKz2/3IWh6YYa89hC9jSh5M
- rDfzpOnxUXuGjb/azaxwnYl1S2Hu33evDCwBuBMB/Cg6wgfu3CZWFR43QIBNp/va3WB1
- /3Shu+oePxd2n4puCDp2k9BDDrH9wavwVMLPqqtQmTqX5ZGWuKZC3SBm4zAdE5xXRtc8
- K7WrkyCGWzSt8eUfv0ST1/k0Cguwk9uws1gWWEHnSSAk2QHpsqZekqYsgyDXryeQdtTf
- Jgl23HadMmt5rEWlhM8gWcYSxGSn/iv+JMfj9V9qajC3CYchuamPJ26J0YijDxngayib
- Wstw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=AJpcZstIpy2dQl6+c3wtzS24tt29cvj33sv7x1/FoVI=;
- b=cVlxmkUh2nLmy6j+Kc3BIPxDAaGBa+hyWASXGv2wk1nuoUtmsWXU5sYmrY48TfFjVo
- XlxXkKjInAsWsCuoZhxD3mhSkIPxQj0E4tS9QeQbnFw2ttme0c4PDcenFnNbTb/ihpD0
- PgxOTvaQrblY+zrD4mbRgu2NROwmATqIkwBLw6t8QefGx7jHVcYL4EfW+otOMAPG+Q0d
- c7QLdEP6+gkqenWWCzcQ4yr4rmPS+5dWhIioQskxclYWKSSuBPPeX4todxBVIlxMy2Rg
- 6LoGh43L+x/gENp14rA4aUhs1M3YgPXzXrsbx0oLLGCFbBFZaQXzwQMROdKSn1ksmUEN
- V0Ng==
-X-Gm-Message-State: AOAM530ci3RL6nXMa+tM1apLv/bvQLlsF3CCJiAaBCmn4PqKnQIxODVB
- LUkhJvOpvAHU8q9qdpC7A4tyQ4Lvs4rDeQ==
-X-Google-Smtp-Source: ABdhPJxueTOusAyjySwMmuEueA98K9xXDgb8lRpy80cxlt2dIIzDQj9Q9mkWVV6e+a3BxPt//UvD4Q==
-X-Received: by 2002:a05:651c:217:: with SMTP id
- y23mr23868157ljn.447.1594046571109; 
- Mon, 06 Jul 2020 07:42:51 -0700 (PDT)
-Received: from localhost (109241244009.gdansk.vectranet.pl. [109.241.244.9])
- by smtp.gmail.com with ESMTPSA id y1sm7883834lji.5.2020.07.06.07.42.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Jul 2020 07:42:50 -0700 (PDT)
-From: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal@hardline.pl>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Jul 2020 16:41:07 +0200
-Message-Id: <20200706144107.204821-3-michal@hardline.pl>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200706144107.204821-1-michal@hardline.pl>
-References: <20200706144107.204821-1-michal@hardline.pl>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 380FB895D7
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 14:43:04 +0000 (UTC)
+IronPort-SDR: zjlI6rN+fsiqgVTfQjAnG/t7HrZh4y37ypTaANXVge0w0v9x11KqTnpXNikQdtjiC2RVQhIH8n
+ icWdWg2yLMWA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9673"; a="127016491"
+X-IronPort-AV: E=Sophos;i="5.75,320,1589266800"; d="scan'208";a="127016491"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2020 07:43:03 -0700
+IronPort-SDR: zThcnTC7WDN9WoB0hH7RnCGP8WOGs9hLVUa5jq5NrQzazrgK2mW9gLLbz6KpQueMbw1avvMKWB
+ GgaAzrFW9nhw==
+X-IronPort-AV: E=Sophos;i="5.75,320,1589266800"; d="scan'208";a="456749905"
+Received: from rrodrig1-mobl.ger.corp.intel.com (HELO [10.249.45.109])
+ ([10.249.45.109])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2020 07:43:02 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200702083225.20044-1-chris@chris-wilson.co.uk>
+ <20200702083225.20044-11-chris@chris-wilson.co.uk>
+ <a49d63ff-a713-215a-303a-89a92cb9503f@linux.intel.com>
+ <159376823303.22925.15261498397238764100@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <69fcba25-ecbe-fce1-0cf9-0dcbaf735bea@linux.intel.com>
+Date: Mon, 6 Jul 2020 15:43:00 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915: Don't taint when using fault
- injection
+In-Reply-To: <159376823303.22925.15261498397238764100@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 11/23] drm/i915/gem: Remove the call for
+ no-evict i915_vma_pin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,35 +56,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTWljaGHFgiBXaW5pYXJza2kgPG1pY2hhbC53aW5pYXJza2lAaW50ZWwuY29tPgoKSXQg
-aXMgbm90IHJlYWxseSB1bmV4cGVjdGVkIHRvIGhpdCB3ZWRnZSBvbiBpbml0IHRoaXMgd2F5LgpX
-ZSdyZSBhbHJlYWR5IGRvd25ncmFkaW5nIGVycm9yIHByaW50ayB3aGVuIHJ1bm5pbmcgd2l0aCBm
-YXVsdCBpbmplY3Rpb24sCmxldCdzIHVzZSB0aGUgc2FtZSBhcHByb2FjaCBmb3IgQ0kgdGFpbnRp
-bmcuCgp2MjogRG9uJ3QgY2hlY2sgZmF1bHQgaW5qZWN0IGluIHRyYWNlIGR1bXAgKENocmlzKQoK
-U2lnbmVkLW9mZi1ieTogTWljaGHFgiBXaW5pYXJza2kgPG1pY2hhbC53aW5pYXJza2lAaW50ZWwu
-Y29tPgpDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CkNjOiBNaWNo
-YWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KQ2M6IFBldHJpIExhdHZh
-bGEgPHBldHJpLmxhdHZhbGFAaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogQ2hyaXMgV2lsc29uIDxj
-aHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV91
-dGlscy5jIHwgNSArKysrLQogMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMSBkZWxl
-dGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdXRpbHMuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdXRpbHMuYwppbmRleCAwMWEzZDNjOTQxYmYuLjRj
-MzA1ZDgzODAxNiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV91dGlscy5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdXRpbHMuYwpAQCAtNTMsNyArNTMsMTAg
-QEAgdm9pZCBhZGRfdGFpbnRfZm9yX0NJKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCB1
-bnNpZ25lZCBpbnQgdGFpbnQpCiB7CiAJX19pOTE1X3ByaW50ayhpOTE1LCBLRVJOX05PVElDRSwg
-IkNJIHRhaW50ZWQ6JSN4IGJ5ICVwU1xuIiwKIAkJICAgICAgdGFpbnQsICh2b2lkICopX1JFVF9J
-UF8pOwotCV9fYWRkX3RhaW50X2Zvcl9DSSh0YWludCk7CisKKwkvKiBGYWlsdXJlcyB0aGF0IG9j
-Y3VyIGR1cmluZyBmYXVsdCBpbmplY3Rpb24gdGVzdGluZyBhcmUgZXhwZWN0ZWQgKi8KKwlpZiAo
-IWk5MTVfZXJyb3JfaW5qZWN0ZWQoKSkKKwkJX19hZGRfdGFpbnRfZm9yX0NJKHRhaW50KTsKIH0K
-IAogI2lmIElTX0VOQUJMRUQoQ09ORklHX0RSTV9JOTE1X0RFQlVHKQotLSAKMi4yNy4wCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+On 03/07/2020 10:23, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-07-03 09:59:01)
+>>
+>> On 02/07/2020 09:32, Chris Wilson wrote:
+>>> Remove the stub i915_vma_pin() used for incrementally pining objects for
+>>> execbuf (under the severe restriction that they must not wait on a
+>>> resource as we may have already pinned it) and replace it with a
+>>> i915_vma_pin_inplace() that is only allowed to reclaim the currently
+>>> bound location for the vma (and will never wait for a pinned resource).
+>>
+>> Hm I thought the point of the previous patch ("drm/i915/gem: Break apart
+>> the early i915_vma_pin from execbuf object lookup") was to move the
+>> pinning into a phase under the ww lock, where it will be allowed. I
+>> misunderstood something?
+> 
+> Still different locks, and the vm->mutex is still being used for managing
+> the iova assignments.
+
+Right, think I get it. For the record I've asked for a cover letter with 
+a high level design description. Emphasis on flow of stages through 
+execbuf by the end of the series and separation of lookup and 
+reservation, and/or vm->mutex (ppgtt space) and obj->wwlock (backing store).
+
+Regards,
+
+Tvrtko
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
