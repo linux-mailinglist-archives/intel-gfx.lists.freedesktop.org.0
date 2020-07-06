@@ -1,58 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AFB621609B
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 22:53:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9304F21609D
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 22:53:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C52C989336;
-	Mon,  6 Jul 2020 20:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DBF789363;
+	Mon,  6 Jul 2020 20:53:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 713A789336
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 20:53:09 +0000 (UTC)
-IronPort-SDR: 2OSRGOf7VYIy1RUur0ggq+VdLAia1Uo1UCgeu9XphjJfiMwk8tYoISvr/jpw8tebH/F7spYDI+
- 4E3CJ8fPsdgQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9674"; a="212477820"
-X-IronPort-AV: E=Sophos;i="5.75,321,1589266800"; d="scan'208";a="212477820"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2020 13:53:08 -0700
-IronPort-SDR: u4lBAGOTS+p76ld0fUs4DLdkp/bkJJ+D+R9XKltJ5wCyBjsIPzWPWOkbNSI15JoEq9wJJ4Ar2H
- 6cVTXEAeU2jg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,321,1589266800"; d="scan'208";a="314068367"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
- by orsmga008.jf.intel.com with ESMTP; 06 Jul 2020 13:53:08 -0700
-Received: from fmsmsx115.amr.corp.intel.com (10.18.116.19) by
- FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 6 Jul 2020 13:53:08 -0700
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.171]) by
- fmsmsx115.amr.corp.intel.com ([169.254.4.234]) with mapi id 14.03.0439.000;
- Mon, 6 Jul 2020 13:53:07 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH 1/4] drm/i915/fbc: Use the correct plane stride
-Thread-Index: AQHWUIbIsH+kuGJf4k+lTnCC+c1twaj1ZIIAgADM1gCABVJWAA==
-Date: Mon, 6 Jul 2020 20:53:06 +0000
-Message-ID: <a47fe0175e49b9c7defa2b9cc46c08c942bbcad3.camel@intel.com>
-References: <20200702153723.24327-1-ville.syrjala@linux.intel.com>
- <20200702153723.24327-2-ville.syrjala@linux.intel.com>
- <a3d6b78b881a1fd554c12f247ecd8cbfa8106faf.camel@intel.com>
- <20200703113852.GL6112@intel.com>
-In-Reply-To: <20200703113852.GL6112@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.51]
-Content-ID: <65AAE98C770D6D45B7462EE3ED91EC9D@intel.com>
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE91689363
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 20:53:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1594068792;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=rJBb9vmOm2JK7nGDUVre5MvvJpR8wfW9OIW8ydd7RPw=;
+ b=J8d5c1UyUAzeTNNG6AwdryMx/WMzA60xbwqSjYM1qdnAUjg6Llv5qWz1RnXPn7OZPDI+hn
+ kWpuVNrDpXdAQ/8/FkH0zSkr5teP25w0XSSrbFd2mnXi+dR+xh+fWAqPIN0aC+wzbMqdiX
+ CR1jy0e3jwN5/vvFD1aMTjkLWZT6Q+c=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-344-l4SSuol2MQuDGdaozY6kIw-1; Mon, 06 Jul 2020 16:53:11 -0400
+X-MC-Unique: l4SSuol2MQuDGdaozY6kIw-1
+Received: by mail-ed1-f71.google.com with SMTP id v7so50784789ede.15
+ for <intel-gfx@lists.freedesktop.org>; Mon, 06 Jul 2020 13:53:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=VmQkX3FO5LoKOrvIcObuwNEzr62NZi3RmyXG+ZG1rhQ=;
+ b=elhOTyulj+axksMbitBQIGMA1QSby1E3iew1O1cIJUQh3hLAEahHuNCxAVVOAqmewO
+ XUK5q+9R6P2wnVXijbqlXy8NfXlgE/QND0ce9MFxOUuOhOsuhdrALT5SuaF2+2Doc35b
+ 2FAdfd3h3XfIx3mhbkrVLDAzGeYEgt2+8kaVdEDf/4KBBT4FiWpqhno4Fx0MVb+bUS+z
+ zk4KlhtovOa9lA1lSmBCnIzESwva3dV2jEAdjQY5zvH6UpuRu8sSRHifu+Y7s/QkPWYF
+ iFZHhb3mgPDGFVovTupbmI07/fmdOedUx1w/vkefs5YmnLqpi54GiNVgjM3bbhvWSgE5
+ t3tg==
+X-Gm-Message-State: AOAM533jXBQV27Pl+LqeqmOfCk0VUKm+EBYvS1egz0GboC/2ocGjzWHg
+ amrkzUMVU4HFi99iVOmXd2weapm4IL0ZTTY2bR6HAHbfh6wAA9hI9A0r77/mY3K5oU27Fy4VbZK
+ MVt7i/zr5DXX/gNlgltnltdV4Gr4X
+X-Received: by 2002:a50:ab53:: with SMTP id t19mr58818007edc.179.1594068789894; 
+ Mon, 06 Jul 2020 13:53:09 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzJLqQedknwImIh/uEvGfEaSeiVkqbHLj6i2l9sOsL8TysnunOSU+/B1l1i/HZmnZ5eIogAiQ==
+X-Received: by 2002:a50:ab53:: with SMTP id t19mr58817973edc.179.1594068789589; 
+ Mon, 06 Jul 2020 13:53:09 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+ by smtp.gmail.com with ESMTPSA id l15sm17043805ejd.100.2020.07.06.13.53.08
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 06 Jul 2020 13:53:08 -0700 (PDT)
+To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+References: <20200620121758.14836-1-hdegoede@redhat.com>
+ <20200620121758.14836-5-hdegoede@redhat.com>
+ <20200622073554.wf3smq3tvnr6t2xy@taurus.defre.kleine-koenig.org>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <e07a7dd6-c361-32b8-c4e7-91e022f9c21d@redhat.com>
+Date: Mon, 6 Jul 2020 22:53:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/fbc: Use the correct plane
- stride
+In-Reply-To: <20200622073554.wf3smq3tvnr6t2xy@taurus.defre.kleine-koenig.org>
+Content-Language: en-US
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PATCH v3 04/15] pwm: lpss: Add range limit check
+ for the base_unit register value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,85 +85,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="windows-1252"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIwLTA3LTAzIGF0IDE0OjM4ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIFRodSwgSnVsIDAyLCAyMDIwIGF0IDExOjI0OjA0UE0gKzAwMDAsIFNvdXphLCBKb3Nl
-IHdyb3RlOg0KPiA+IE9uIFRodSwgMjAyMC0wNy0wMiBhdCAxODozNyArMDMwMCwgVmlsbGUgU3ly
-amFsYSB3cm90ZToNCj4gPiA+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+DQo+ID4gPiANCj4gPiA+IENvbnN1bHQgdGhlIGFjdHVhbCBwbGFuZSBz
-dHJpZGUgaW5zdGVhZCBvZiB0aGUgZmIgc3RyaWRlLiBUaGUgdHdvDQo+ID4gPiB3aWxsIGRpc2Fn
-cmVlIHdoZW4gd2UgcmVtYXAgdGhlIGd0dC4gVGhlIHBsYW5lIHN0cmlkZSBpcyB3aGF0IHRoZQ0K
-PiA+ID4gaHcgd2lsbCBiZSBmZWQgc28gdGhhdCdzIHdoYXQgd2Ugc2hvdWxkIGxvb2sgYXQgZm9y
-IHRoZSBGQkMNCj4gPiA+IHJldHJpY3Rpb25zL2NmYiBhbGxvY2F0aW9uLg0KPiA+ID4gDQo+ID4g
-PiBTaW5jZSB3ZSBubyBsb25nZXIgcmVxdWlyZSBhIGZlbmNlIHdlIGFyZSBnb2luZyB0byBhdHRl
-bXB0IHVzaW5nDQo+ID4gPiBGQkMgd2l0aCByZW1hcHBpbmcsIGFuZCBzbyB3ZSBzaG91bGQgbG9v
-ayBhdCBjb3JyZWN0IHN0cmlkZS4NCj4gPiA+IA0KPiA+ID4gV2l0aCA5MC8yNzAgZGVncmVlIHJv
-dGF0aW9uIHRoZSBwbGFuZSBzdHJpZGUgaXMgc3RvcmVkIGluIHVuaXRzDQo+ID4gPiBvZiBwaXhl
-bHMsIHNvIHdlIG5lZWQgdG8gY29udmVyIGl0IHRvIGJ5dGVzIGZvciB0aGUgcHVycG9zZXMNCj4g
-PiA+IG9mIGNhbGN1bGF0aW5nIHRoZSBjZmIgc3RyaWRlLiBOb3QgZW50aXJlbHkgc3VyZSBpZiB0
-aGlzIG1hdGNoZXMNCj4gPiA+IHRoZSBodyBiZWhhdmlvdXIgdGhvdWdoLiBOZWVkIHRvIHJldmVy
-c2UgZW5naW5lZXIgdGhhdCBhdCBzb21lDQo+ID4gPiBwb2ludC4uLg0KPiA+ID4gDQo+ID4gPiBX
-ZSBhbHNvIG5lZWQgdG8gcmVvcmRlciB0aGUgcGl4ZWwgZm9ybWF0IGNoZWNrIHZzLiBzdHJpZGUg
-Y2hlY2sNCj4gPiA+IHRvIGF2b2lkIHRyaWdnZXJpbmcgYSBzcHVyaW91cyBXQVJOKHN0cmlkZSAm
-IDYzKSB3aXRoIGNwcD09MSBhbmQNCj4gPiA+IHBsYW5lIHN0cmlkZT09MzIuDQo+ID4gPiANCj4g
-PiA+IHYyOiBUcnkgdG8gZGVhbCB3aXRoIHJvdGF0ZWQgc3RyaWRlIGFuZCByZWxhdGVkIFdBUk4N
-Cj4gPiA+IA0KPiA+IA0KPiA+IFJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxq
-b3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiANCj4gPiA+IENjOiBKb3PDqSBSb2JlcnRvIGRlIFNv
-dXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiA+IEZpeGVzOiA2OTFmN2JhNThkNTIgKCJk
-cm0vaTkxNS9kaXNwbGF5L2ZiYzogTWFrZSBmZW5jZXMgYSBuaWNlLXRvLWhhdmUgZm9yIEdFTjkr
-IikNCj4gPiA+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2ZiYy5jIHwgMTYgKysrKysrKysrKy0tLS0tLQ0KPiA+ID4gIDEgZmlsZSBj
-aGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQ0KPiA+ID4gDQo+ID4gPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMNCj4gPiA+IGluZGV4IDY5YTA2
-ODJkZGI2YS4uZDMwYzJhMzg5Mjk0IDEwMDY0NA0KPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0KPiA+ID4gQEAgLTY5NSw5ICs2OTUsMTMgQEAgc3RhdGlj
-IHZvaWQgaW50ZWxfZmJjX3VwZGF0ZV9zdGF0ZV9jYWNoZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0
-YywNCj4gPiA+ICAJY2FjaGUtPnBsYW5lLnBpeGVsX2JsZW5kX21vZGUgPSBwbGFuZV9zdGF0ZS0+
-aHcucGl4ZWxfYmxlbmRfbW9kZTsNCj4gPiA+ICANCj4gPiA+ICAJY2FjaGUtPmZiLmZvcm1hdCA9
-IGZiLT5mb3JtYXQ7DQo+ID4gPiAtCWNhY2hlLT5mYi5zdHJpZGUgPSBmYi0+cGl0Y2hlc1swXTsN
-Cj4gPiA+ICAJY2FjaGUtPmZiLm1vZGlmaWVyID0gZmItPm1vZGlmaWVyOw0KPiA+ID4gIA0KPiA+
-ID4gKwkvKiBGSVhNRSBpcyB0aGlzIGNvcnJlY3Q/ICovDQo+ID4gPiArCWNhY2hlLT5mYi5zdHJp
-ZGUgPSBwbGFuZV9zdGF0ZS0+Y29sb3JfcGxhbmVbMF0uc3RyaWRlOw0KPiA+ID4gKwlpZiAoZHJt
-X3JvdGF0aW9uXzkwX29yXzI3MChwbGFuZV9zdGF0ZS0+aHcucm90YXRpb24pKQ0KPiA+IA0KPiA+
-IElmIGl0IHdhcyB3cm9uZyBvdXIgQ0kgd291bGQgY2F1Z2h0IHRoaXMgaW4gQkRXIG9yIFNOQiBm
-b3IgZXhhbXBsZS4NCj4gDQo+IE5vdCByZWFsbHkuIFdlbGwsIGNlcnRhaW5seSBub3Qgb24gcHJl
-LXNrbCBzaW5jZSB0aGV5IGRvbid0IGRvIDkwLzI3MA0KPiByb3RhdGlvbi4gQW5kIHByb2JhYmx5
-IG5vdCBldmVuIG9uIHNrbCsgc2luY2UgYW55IHdyb25nIGFzc3VtcHRpb24NCg0KQ2hlY2tpbmcg
-cm90YXRpb25faXNfdmFsaWQoKSBHRU41IHVwIHRvIEdFTjggYWxsb3dzIDkwLzI3MCByb3RhdGlv
-bi4NCg0KDQo+IGFib3V0IGhvdyB0aGUgY2ZiIHN0cmlkZSBpcyBjYWxjdWxhdGVkIGJ5IHRoZSBo
-dyB3b3VsZCBqdXN0IGNhdXNlIGl0DQo+IHRvIHNjcmliYmxlIG92ZXIgc3RvbGVuIG1lbW9yeSB3
-ZSBkaWRuJ3QgYWxsb2NhdGUuIFNvIHVubGVzcyB3ZSd2ZQ0KPiBzdGFydGVkIHRvIHVzZSBzdG9s
-ZW4gbW9yZSBleHRlbnNpdmVseSBpbiByZWNlbnQgdGltZXMgc3VjaCBwcm9ibGVtcw0KPiB3b3Vs
-ZCBwcm9iYWJseSBnbyB1bm5vdGljZWQuDQo+IA0KPiA+ID4gKwkJY2FjaGUtPmZiLnN0cmlkZSAq
-PSBmYi0+Zm9ybWF0LT5jcHBbMF07DQo+ID4gPiArDQo+ID4gPiAgCS8qIEZCQzEgY29tcHJlc3Np
-b24gaW50ZXJ2YWw6IGFyYml0cmFyeSBjaG9pY2Ugb2YgMSBzZWNvbmQgKi8NCj4gPiA+ICAJY2Fj
-aGUtPmludGVydmFsID0gZHJtX21vZGVfdnJlZnJlc2goJmNydGNfc3RhdGUtPmh3LmFkanVzdGVk
-X21vZGUpOw0KPiA+ID4gIA0KPiA+ID4gQEAgLTc5Nyw2ICs4MDEsMTEgQEAgc3RhdGljIGJvb2wg
-aW50ZWxfZmJjX2Nhbl9hY3RpdmF0ZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykNCj4gPiA+ICAJ
-CXJldHVybiBmYWxzZTsNCj4gPiA+ICAJfQ0KPiA+ID4gIA0KPiA+ID4gKwlpZiAoIXBpeGVsX2Zv
-cm1hdF9pc192YWxpZChkZXZfcHJpdiwgY2FjaGUtPmZiLmZvcm1hdC0+Zm9ybWF0KSkgew0KPiA+
-ID4gKwkJZmJjLT5ub19mYmNfcmVhc29uID0gInBpeGVsIGZvcm1hdCBpcyBpbnZhbGlkIjsNCj4g
-PiA+ICsJCXJldHVybiBmYWxzZTsNCj4gPiA+ICsJfQ0KPiA+ID4gKw0KPiA+ID4gIAlpZiAoIXJv
-dGF0aW9uX2lzX3ZhbGlkKGRldl9wcml2LCBjYWNoZS0+ZmIuZm9ybWF0LT5mb3JtYXQsDQo+ID4g
-PiAgCQkJICAgICAgIGNhY2hlLT5wbGFuZS5yb3RhdGlvbikpIHsNCj4gPiA+ICAJCWZiYy0+bm9f
-ZmJjX3JlYXNvbiA9ICJyb3RhdGlvbiB1bnN1cHBvcnRlZCI7DQo+ID4gPiBAQCAtODEzLDExICs4
-MjIsNiBAQCBzdGF0aWMgYm9vbCBpbnRlbF9mYmNfY2FuX2FjdGl2YXRlKHN0cnVjdCBpbnRlbF9j
-cnRjICpjcnRjKQ0KPiA+ID4gIAkJcmV0dXJuIGZhbHNlOw0KPiA+ID4gIAl9DQo+ID4gPiAgDQo+
-ID4gPiAtCWlmICghcGl4ZWxfZm9ybWF0X2lzX3ZhbGlkKGRldl9wcml2LCBjYWNoZS0+ZmIuZm9y
-bWF0LT5mb3JtYXQpKSB7DQo+ID4gPiAtCQlmYmMtPm5vX2ZiY19yZWFzb24gPSAicGl4ZWwgZm9y
-bWF0IGlzIGludmFsaWQiOw0KPiA+ID4gLQkJcmV0dXJuIGZhbHNlOw0KPiA+ID4gLQl9DQo+ID4g
-PiAtDQo+ID4gPiAgCWlmIChjYWNoZS0+cGxhbmUucGl4ZWxfYmxlbmRfbW9kZSAhPSBEUk1fTU9E
-RV9CTEVORF9QSVhFTF9OT05FICYmDQo+ID4gPiAgCSAgICBjYWNoZS0+ZmIuZm9ybWF0LT5oYXNf
-YWxwaGEpIHsNCj4gPiA+ICAJCWZiYy0+bm9fZmJjX3JlYXNvbiA9ICJwZXItcGl4ZWwgYWxwaGEg
-YmxlbmRpbmcgaXMgaW5jb21wYXRpYmxlIHdpdGggRkJDIjsNCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Hi,
+
+Thank you for your review and sorry for the slow reply.
+
+I would like to get this series upstream this cycle, so
+I will do my best to be a lot faster with responding from
+now on.
+
+On 6/22/20 9:35 AM, Uwe Kleine-K=C3=B6nig wrote:
+> On Sat, Jun 20, 2020 at 02:17:47PM +0200, Hans de Goede wrote:
+>> When the user requests a high enough period ns value, then the
+>> calculations in pwm_lpss_prepare() might result in a base_unit value of =
+0.
+>>
+>> But according to the data-sheet the way the PWM controller works is that
+>> each input clock-cycle the base_unit gets added to a N bit counter and
+>> that counter overflowing determines the PWM output frequency. Adding 0
+>> to the counter is a no-op. The data-sheet even explicitly states that
+>> writing 0 to the base_unit bits will result in the PWM outputting a
+>> continuous 0 signal.
+>>
+>> When the user requestes a low enough period ns value, then the
+>> calculations in pwm_lpss_prepare() might result in a base_unit value
+>> which is bigger then base_unit_range - 1. Currently the codes for this
+>> deals with this by applying a mask:
+>>
+>> 	base_unit &=3D (base_unit_range - 1);
+>>
+>> But this means that we let the value overflow the range, we throw away t=
+he
+>> higher bits and store whatever value is left in the lower bits into the
+>> register leading to a random output frequency, rather then clamping the
+>> output frequency to the highest frequency which the hardware can do.
+>>
+>> This commit fixes both issues by clamping the base_unit value to be
+>> between 1 and (base_unit_range - 1).
+>>
+>> Fixes: 684309e5043e ("pwm: lpss: Avoid potential overflow of base_unit")
+>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>> ---
+>> Changes in v3:
+>> - Change upper limit of clamp to (base_unit_range - 1)
+>> - Add Fixes tag
+>> ---
+>>   drivers/pwm/pwm-lpss.c | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pwm/pwm-lpss.c b/drivers/pwm/pwm-lpss.c
+>> index 43b1fc634af1..80d0f9c64f9d 100644
+>> --- a/drivers/pwm/pwm-lpss.c
+>> +++ b/drivers/pwm/pwm-lpss.c
+>> @@ -97,6 +97,9 @@ static void pwm_lpss_prepare(struct pwm_lpss_chip *lpw=
+m, struct pwm_device *pwm,
+>>   	freq *=3D base_unit_range;
+>>   =
+
+>>   	base_unit =3D DIV_ROUND_CLOSEST_ULL(freq, c);
+> =
+
+> DIV_ROUND_CLOSEST_ULL is most probably wrong, too. But I didn't spend
+> the time to actually confirm that.
+
+Yes I saw your comment elsewhere that the PWM API defines rounding
+in a certain direction, but fixing that falls outside of this patch.
+
+>> +	/* base_unit must not be 0 and we also want to avoid overflowing it */
+>> +	base_unit =3D clamp_t(unsigned long long, base_unit, 1,
+>> +			    base_unit_range - 1);
+> =
+
+> .get_state seems to handle base_unit =3D=3D 0 just fine?!
+
+It tries to do something with it to avoid a divide by 0, back when
+I wrote the get_state code I wasn't fully aware of how the PWM
+controller works. I did have access to the same datasheets as today
+(the datasheets for this one are public) but the datasheet needs to
+be read and then left to sync in for a couple of months and then read
+again, or iow the datasheet does not explain things all that well.
+
+As I tried to explain in the commit msg the way this PWM controller
+works is it takes its input clock and then each input clock-cycle the
+"base_unit" gets added to a n-bit register lets say a 16-bit register
+at that is the case for the HW on which I've done all my testing.
+
+The 8 most significant bits of the 16 bit register are compared with
+a 8 bit value programmed by the PWM driver / coming from a ctrl
+register and the output of that comparator is the PWM output.
+
+The problem with a base_unit value of '0' is that adding 0 to the
+16 bit register is a no-op, so the register never increments
+(iow is always 0) and thus can never become bigger then the comparator
+input and thus the PWM output is always 0.
+
+The datasheet does helpfully contain a note explicitly warning of
+this behavior.
+
+So when we are programming the base_unit value, it seems best to
+clamp the lower end to 1, which gives an PWM output frequency of
+e.g. 19200000 / 65536 =3D 293 Hz
+
+If the user has request an even lower output frequency, which
+would result in our base_unit calculation outputting 0, then we
+can either output always low, which is an infinite low output
+frequency, or give the user 293 Hz and a working PWM.
+
+This is the low end of the clamp. The high end clamp simply is
+there because base_unit itself is e.g. a 16 bit value too.
+
+The looks a bid weird because instead of 65536 (for the divides)
+/ 65535 (for the clamp / masking) it uses base_unit_range and
+(base_unit_range - 1). This is because different versions of
+the SoCs using this driver have a different register size for the
+base_unit value.
+
+I hope this helps to explain what is going on a bit.
+
+###
+
+As for the behavior on base_unit=3D=3D0 in the get_state method,
+as mentioned above I wrote that when I did not fully understood
+how the controller works.
+
+We really should never encounter this.
+
+But if we do then I think closest to the truth would be:
+
+state->period     =3D UINT_MAX;
+state->duty_cycle =3D 0;
+
+I can submit a separate patch for that, if you agree
+that this is the best way to describe the "output always low"
+state in which a base_unit value of 0 will result.
+
+Regards,
+
+Hans
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
