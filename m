@@ -1,42 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED659215107
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 03:51:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 635E4215280
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 08:19:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5CB26E2D5;
-	Mon,  6 Jul 2020 01:51:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DF496E0A5;
+	Mon,  6 Jul 2020 06:19:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E912D6E2D5;
- Mon,  6 Jul 2020 01:51:48 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4B0T7y4Zldz9s1x;
- Mon,  6 Jul 2020 11:51:41 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1594000306;
- bh=vGrjLo9bIyDDJMbpF8o71tEP2DJi9pD1/ClDLsf/MSU=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=ZMS798XsaFeahBWz/K8Co8PC2+dFxM7f64Vgjzz56aw3rEJniWGYk12xSN+WrGRW1
- LyIqF1Ax509BCow9VLByoB4Q7s8aEaP3sO1Zzo0VIfXGd5AaGO04A9+bGHBJmJ150E
- SXn5Phih/8qJdxeIjA9tcrFxwLZvdelArVWeP9TmKBvsAB4cCDwPGo3TorLkG2NneU
- 2ipe86ow4/x85iCxtj8HBIBVMvOnvXbdVmCBS5esJT/ZsTIeDoqv4QIWceqT2gW+oX
- +RNMDfvh89L7RyTmOodUWopkMn+EFJzTOoUgYJ7GQYWAfj4lYFg3ahXPyGKX4X+T3p
- Q5NxB3biLC/0g==
-Date: Mon, 6 Jul 2020 11:51:41 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Dave Airlie <airlied@linux.ie>
-Message-ID: <20200706115141.63f7677a@canb.auug.org.au>
-In-Reply-To: <20200630115202.04c39f9b@canb.auug.org.au>
-References: <20200630115202.04c39f9b@canb.auug.org.au>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6C196E0A5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 06:19:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21724443-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Mon, 06 Jul 2020 07:19:24 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  6 Jul 2020 07:19:06 +0100
+Message-Id: <20200706061926.6687-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-intel tree with
- the drm-intel-fixes tree
+Subject: [Intel-gfx] s/obj->mm.lock//
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,100 +36,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>, Chris Wilson <chris@chris-wilson.co.uk>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============2024870679=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2024870679==
-Content-Type: multipart/signed; boundary="Sig_/VN2RFb1d.9dhsZAzcrTk/Nw";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+This is the easy part; pulling reservation of multiple objects under an
+ww acquire context. With one simple rule that eviction is handled by the
+ww acquire context, we can carefully transition the driver over to using
+eviction. Instead of feeding the acquire context everywhere, we make the
+caller gather up all the objects they need to acquire into the context,
+then acquire their backing store. The major boon here is that by
+providing a clean set of objects (that we have not yet started to
+acquire any auxiliary attachments for) to the acquire context, it can
+handle all the EDEADLK processing for us [since it is a pure locking
+operation and does not need to release attachments upon revoking the
+locks].
 
---Sig_/VN2RFb1d.9dhsZAzcrTk/Nw
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+As a sketch of what that would look like, to illustrate the major work
+remaining:
 
-Hi all,
+static int evict(struct drm_i915_gem_object *obj, struct i915_acquire_ctx *ctx)
+{
+	struct intel_memory_region *mem = obj->mm->region;
+	struct drm_i915_gem_object *swap; // struct i915_mm_bo *swap
+	struct i915_request *rq;
+	int err;
 
-On Tue, 30 Jun 2020 11:52:02 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
-wrote:
->
-> Today's linux-next merge of the drm-intel tree got a conflict in:
->=20
->   drivers/gpu/drm/i915/gvt/handlers.c
->=20
-> between commit:
->=20
->   fc1e3aa0337c ("drm/i915/gvt: Fix incorrect check of enabled bits in mas=
-k registers")
->=20
-> from the drm-intel-fixes tree and commit:
->=20
->   5f4ae2704d59 ("drm/i915: Identify Cometlake platform")
->=20
-> from the drm-intel tree.
->=20
-> I fixed it up (see below) and can carry the fix as necessary. This
-> is now fixed as far as linux-next is concerned, but any non trivial
-> conflicts should be mentioned to your upstream maintainer when your tree
-> is submitted for merging.  You may also want to consider cooperating
-> with the maintainer of the conflicting tree to minimise any particularly
-> complex conflicts.
->=20
-> diff --cc drivers/gpu/drm/i915/gvt/handlers.c
-> index fadd2adb8030,26cae4846c82..000000000000
-> --- a/drivers/gpu/drm/i915/gvt/handlers.c
-> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
-> @@@ -1731,8 -1734,9 +1734,9 @@@ static int ring_mode_mmio_write(struct=20
->   		return 0;
->   	}
->  =20
-> - 	if (IS_COFFEELAKE(vgpu->gvt->gt->i915) &&
-> + 	if ((IS_COFFEELAKE(vgpu->gvt->gt->i915) ||
-> + 	     IS_COMETLAKE(vgpu->gvt->gt->i915)) &&
->  -	    data & _MASKED_BIT_ENABLE(2)) {
->  +	    IS_MASKED_BITS_ENABLED(data, 2)) {
->   		enter_failsafe_mode(vgpu, GVT_FAILSAFE_UNSUPPORTED_GUEST);
->   		return 0;
->   	}
+	/* swap = mem->create_eviction_target(obj); */
+	swap = i915_gem_object_create_shmem(mem->i915, obj->base.size);
+	if (IS_ERR(swap))
+		return PTR_ERR(swap);
 
-This is now a conflict between the drm tree and Linus' tree.
+	err = dma_resv_lock_interruptible(swap, &ctx->ctx);
+	GEM_BUG_ON(err == -EALREADY);
+	if (err == -EDEADLK)
+		goto out;
 
---=20
-Cheers,
-Stephen Rothwell
+	/* Obviously swap has to be carefully chosen so that this may succeed */
+	err = __i915_gem_object_get_pages_locked(swap);
+	if (err)
+		goto out_unlock;
 
---Sig_/VN2RFb1d.9dhsZAzcrTk/Nw
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+	rq = pinned_evict_copy(ctx, obj, swap);
+	if (IS_ERR(rq)) {
+		err = PTR_ERR(rq);
+		goto out_unlock;
+	}
 
------BEGIN PGP SIGNATURE-----
+	err = i915_gem_revoke_mm(obj);
+	if (err)
+		goto out_request;
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl8Cg60ACgkQAVBC80lX
-0GwibAf+PXJXCM3LIm8R48ENxegIUgfk+plaPQakoIIZX68CAuRZ5y9hLYhlSGD9
-H0A6LxpOlr7vGgYaLttX58jsZ6jgHzgb+bSRXBiBVMFhr3d1aEnKdbuC6VqFJHOU
-tQNZuGWBxCOWan547rv8FObwY5IYbT4RjhiuUbxOznqsRQPbw2bONYqi6u+Guxui
-BkTSGs9U0wwddnzQx6qqLselmTdyTOCM2JqIOykmsaVcOTpWUdhYS/+vBduPHD+0
-DxC1VSg6cBpDNh3MUR/CohdEBj1aIUclBr+/CT6ELUTvdN4kIyf9YUVFGHb7iVqk
-2q7spaFICRvvAiTXpufnqqpODfhSCw==
-=AxTN
------END PGP SIGNATURE-----
+	/* Alternatively you could wait synchronously! */
+	mem->release_blocks(&obj->mm->blocks, rq);
+	i915_mm_bo_put(xchg(&obj->mm, i915_mm_bo_get(swap)));
 
---Sig_/VN2RFb1d.9dhsZAzcrTk/Nw--
+	dma_resv_add_exclusive_fence(obj->base.resv, &rq->fence);
+out_request:
+	i915_request_put(rq);
+out_unlock:
+	dma_resv_unlock(swap);
+out:
+	i915_gem_object_put(swap);
+	return err;
+}
 
---===============2024870679==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+static int relock_all(struct i915_acquire_ctx *ctx)
+{
+	struct i915_acquire_link *lnk, *lock;
+	int err;
+
+	for (lnk = ctx->locked; lnk; lnk = lnk->next)
+		dma_resv_unlock(lnk->obj->base.resv);
+
+	lock = fetch_and_zero(&ctx->locked);
+	while ((lnk = lock)) {
+		struct drm_i915_gem_object *obj;
+
+		obj = lnk->obj;
+		lock = lnk->next;
+
+		if (ctx->locked)
+			err = dma_resv_lock_interruptible(obj->base.resv,
+							  &ctx->ctx);
+		else
+			err = dma_resv_lock_slow_interruptible(obj->base.resv,
+							       &ctx->ctx);
+		GEM_BUG_ON(err == -EALREADY);
+		if (err == -EDEADLK) {
+			struct i915_acquire *old;
+
+			while ((old = ctx->locked)) {
+				dma_resv_unlock(old->obj->base.resv);
+				ctx->locked = old->next;
+				old->next = lock;
+				lock = old;
+			}
+
+			lnk->next = lock;
+			lock = lnk;
+			continue;
+		}
+		if (err) {
+			lock = lnk;
+			break;
+		}
+
+		lnk->next = ctx->locked;
+		ctx->locked = lnk;
+	}
+
+	while ((lnk = lock)) {
+		lock = lnk->next;
+		i915_gem_object_put(lnk->obj);
+		i915_acquire_free(lnk);
+	}
+
+	return err;
+}
+
+int i915_acquire_mm(struct i915_acquire_ctx *ctx)
+{
+	struct i915_acquire_link *lnk;
+	int n, err;
+
+restart:
+	for (lnk = ctx->locked; lnk; lnk = lnk->next) {
+		for (n = 0;
+		     !i915_gem_object_has_pages(lnk->obj);
+		     n++) {
+			struct drm_i915_gem_object *evictee = NULL;
+
+			mem = get_preferred_memregion_for_object(lnk->obj, n);
+			if (!mem)
+				return -ENXIO;
+
+			while (!i915_gem_object_get_pages(lnk->obj)) {
+				struct i915_acquire_link *this;
+
+				evictee = mem->get_eviction_candidate(mem,
+								      evictee);
+				if (!evictee)
+					break;
+
+				err = dma_resv_lock_interruptible(evictee,
+								  &ctx->ctx);
+				if (err == -EALREADY)
+					continue; /* XXX fragmentation? */
+				if (err == 0)
+					err = evict(evictee);
+				dma_resv_unlock(evictee);
+
+				if (err == -EDEADLK) {
+					err = relock_all(ctx);
+					if (!err)
+						goto restart;
+				}
+				if (err)
+					return err;
+
+				evictee = NULL;
+			}
+		}
+	}
+
+	return 0;
+}
+
+With the biggest task being seperating the GEM object from its backing
+store, so that we can transparently exchange that backing store underneath
+the user handles.
+
+[There's also the challenge of *needing* to take ww_mutex underneath
+userptr/mmu-notifier, but at the worst that's a bit of lockdep annotation
+and a crafty if (page_maybe_dma_pinned)) in the LRU shrinker.]
+-Chris
+
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2024870679==--
