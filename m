@@ -2,21 +2,21 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D811F215F61
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 21:32:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C822216012
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jul 2020 22:18:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85E6289CE2;
-	Mon,  6 Jul 2020 19:32:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4B186E2BC;
+	Mon,  6 Jul 2020 20:18:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C71FC89CE2
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 19:32:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 311066E2BC
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 20:18:37 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21733069-1500050 for multiple; Mon, 06 Jul 2020 20:31:56 +0100
+ 21733238-1500050 for multiple; Mon, 06 Jul 2020 21:01:55 +0100
 MIME-Version: 1.0
 In-Reply-To: <CAM0jSHOuEq_zTC1JF5nPPp_tvWo4tOqk5=pZcGhpwJGEReb5pw@mail.gmail.com>
 References: <20200706061926.6687-1-chris@chris-wilson.co.uk>
@@ -24,8 +24,8 @@ References: <20200706061926.6687-1-chris@chris-wilson.co.uk>
  <CAM0jSHOuEq_zTC1JF5nPPp_tvWo4tOqk5=pZcGhpwJGEReb5pw@mail.gmail.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 06 Jul 2020 20:31:54 +0100
-Message-ID: <159406391450.24180.17117233250109586893@build.alporthouse.com>
+Date: Mon, 06 Jul 2020 21:01:54 +0100
+Message-ID: <159406571422.15644.12191339942286879050@build.alporthouse.com>
 User-Agent: alot/0.9
 Subject: Re: [Intel-gfx] [PATCH 02/20] drm/i915: Switch to object
  allocations for page directories
@@ -66,95 +66,30 @@ Quoting Matthew Auld (2020-07-06 20:06:38)
 > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > 
 > <snip>
-> 
-> >
-> > -int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
-> > +int setup_scratch_page(struct i915_address_space *vm)
-> >  {
-> >         unsigned long size;
-> >
-> > @@ -338,21 +174,22 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
-> >          */
-> >         size = I915_GTT_PAGE_SIZE_4K;
-> >         if (i915_vm_is_4lvl(vm) &&
-> > -           HAS_PAGE_SIZES(vm->i915, I915_GTT_PAGE_SIZE_64K)) {
-> > +           HAS_PAGE_SIZES(vm->i915, I915_GTT_PAGE_SIZE_64K))
-> >                 size = I915_GTT_PAGE_SIZE_64K;
-> > -               gfp |= __GFP_NOWARN;
-> > -       }
-> > -       gfp |= __GFP_ZERO | __GFP_RETRY_MAYFAIL;
-> >
-> >         do {
-> > -               unsigned int order = get_order(size);
-> > -               struct page *page;
-> > -               dma_addr_t addr;
-> > +               struct drm_i915_gem_object *obj;
-> >
-> > -               page = alloc_pages(gfp, order);
-> > -               if (unlikely(!page))
-> > +               obj = vm->alloc_pt_dma(vm, size);
-> > +               if (IS_ERR(obj))
-> >                         goto skip;
-> >
-> > +               if (pin_pt_dma(vm, obj))
-> > +                       goto skip_obj;
-> > +
-> > +               if (obj->mm.page_sizes.sg < size)
-> > +                       goto skip_obj;
-> > +
-> 
-> We should still check the alignment of the final dma address
-> somewhere, in the case of 64K. I have for sure seen dma misalignment
-> here before.
 
-True. A nuisance to reject a 64K contiguous page because of dma
-misalignment. I wonder if we can pass alignment to iommu.
+The other thing I'm toying with is whether to keep the unused preallocs
+around on the ppgtt. The cost of the conservative allocations is
+decidedly high in CI [thanks to memdebug tracking and verifying], as
+each PD is itself a 4KiB table of pointers (as well as the 4KiB dma
+page). Outside of CI, the issue is not as pressing, and if a workload
+does not reach steady state quickly, then the extra allocations are just
+one of many worries. For the steady state, we benefit from not having
+surplus pages trapped in the ppgtt, as that is the danger of the
+caching, when should we trim it?
 
-/*
- * DMA_ATTR_NO_KERNEL_MAPPING: Lets the platform to avoid creating a kernel
- * virtual mapping for the allocated buffer.
- */
-#define DMA_ATTR_NO_KERNEL_MAPPING      (1UL << 4)
+[Previously we only allocated on demand, but keep a *small* number of WC
+pages around because converting a page to/from WC was expensive.]
 
-Ahem. I hope that isn't being applied to all of our buffers....
+If there's a good answer for when we can/should free the surplus cache,
+it's probably worth pursuing. Or if we deem it worth to keep the cache
+limited to 15 entries [reusing a pagevec].
 
-/*
- * DMA_ATTR_WRITE_COMBINE: Specifies that writes to the mapping may be
- * buffered to improve performance.
- */
-#define DMA_ATTR_WRITE_COMBINE          (1UL << 2)
-
-On the other hand; tell me more dma-mapping.h!
-
-But nothing there to influence alignment :(
-
-> > @@ -362,61 +199,28 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
-> >                  * should it ever be accidentally used, the effect should be
-> >                  * fairly benign.
-> >                  */
-> > -               poison_scratch_page(page, size);
-> > -
-> > -               addr = dma_map_page_attrs(vm->dma,
-> > -                                         page, 0, size,
-> > -                                         PCI_DMA_BIDIRECTIONAL,
-> > -                                         DMA_ATTR_SKIP_CPU_SYNC |
-> > -                                         DMA_ATTR_NO_WARN);
-> > -               if (unlikely(dma_mapping_error(vm->dma, addr)))
-> > -                       goto free_page;
-> > -
-> > -               if (unlikely(!IS_ALIGNED(addr, size)))
-> > -                       goto unmap_page;
-> > -
-> > -               vm->scratch[0].base.page = page;
-> > -               vm->scratch[0].base.daddr = addr;
-> > -               vm->scratch_order = order;
-> > +               poison_scratch_page(obj);
-> 
-> Since this is now an internal object, which lacks proper clearing, do
-> we need to nuke the page(s) somewhere, since it is visible to
-> userspace? The posion_scratch seems to only be for debug builds.
-
-Yes. It needs to be cleared [when not poisoned].
+Overallocation is pita for having to preallocate; since we basically
+have to have at least 2 PD for each level + actual span. For every vma,
+even when bundling the insertions, as we don't know which entries will
+be used until much later. So we almost certainly overallocate 4 PD
+[16KiB system + 16KiB dma] for every single vma. Even a 15 entry stash
+will be quickly exhausted; oh well.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
