@@ -1,32 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F64216C5C
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 13:56:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78D72216CBD
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 14:24:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B9E26E038;
-	Tue,  7 Jul 2020 11:56:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6FE089D7C;
+	Tue,  7 Jul 2020 12:24:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5AF9B89BAE;
- Tue,  7 Jul 2020 11:56:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 57DC5A363D;
- Tue,  7 Jul 2020 11:56:14 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A77989D7C
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2020 12:24:12 +0000 (UTC)
+IronPort-SDR: VcorEakRWQsfWydH4WjsdodbnW4Q1KZbTqlU+Jtq+7Kp884v/nKfrJoHreFsaH6jH1bO+5TegD
+ YZA53dj0AYUw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9674"; a="127173088"
+X-IronPort-AV: E=Sophos;i="5.75,323,1589266800"; d="scan'208";a="127173088"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2020 05:24:11 -0700
+IronPort-SDR: oo/0StPiRQlCy9ZERECoryppZduQ7PPgKFLO+9/auP7HnCCmqimdEXQO9Y9sAHf0ekVdai7tED
+ v9rMKYxGgHgQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,323,1589266800"; d="scan'208";a="323526080"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 07 Jul 2020 05:24:09 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 07 Jul 2020 15:24:08 +0300
+Date: Tue, 7 Jul 2020 15:24:08 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200707122408.GT6112@intel.com>
+References: <20200702153723.24327-1-ville.syrjala@linux.intel.com>
+ <20200702153723.24327-2-ville.syrjala@linux.intel.com>
+ <a3d6b78b881a1fd554c12f247ecd8cbfa8106faf.camel@intel.com>
+ <20200703113852.GL6112@intel.com>
+ <a47fe0175e49b9c7defa2b9cc46c08c942bbcad3.camel@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 07 Jul 2020 11:56:14 -0000
-Message-ID: <159412297435.7664.17519144797100515278@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200707104819.10877-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200707104819.10877-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/12=5D_drm/i915/gt=3A_Decouple_completed?=
- =?utf-8?q?_requests_on_unwind?=
+Content-Disposition: inline
+In-Reply-To: <a47fe0175e49b9c7defa2b9cc46c08c942bbcad3.camel@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/fbc: Use the correct plane
+ stride
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,155 +57,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jul 06, 2020 at 08:53:06PM +0000, Souza, Jose wrote:
+> On Fri, 2020-07-03 at 14:38 +0300, Ville Syrj=E4l=E4 wrote:
+> > On Thu, Jul 02, 2020 at 11:24:04PM +0000, Souza, Jose wrote:
+> > > On Thu, 2020-07-02 at 18:37 +0300, Ville Syrjala wrote:
+> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > =
 
-Series: series starting with [01/12] drm/i915/gt: Decouple completed requests on unwind
-URL   : https://patchwork.freedesktop.org/series/79183/
-State : success
+> > > > Consult the actual plane stride instead of the fb stride. The two
+> > > > will disagree when we remap the gtt. The plane stride is what the
+> > > > hw will be fed so that's what we should look at for the FBC
+> > > > retrictions/cfb allocation.
+> > > > =
 
-== Summary ==
+> > > > Since we no longer require a fence we are going to attempt using
+> > > > FBC with remapping, and so we should look at correct stride.
+> > > > =
 
-CI Bug Log - changes from CI_DRM_8709 -> Patchwork_18093
-====================================================
+> > > > With 90/270 degree rotation the plane stride is stored in units
+> > > > of pixels, so we need to conver it to bytes for the purposes
+> > > > of calculating the cfb stride. Not entirely sure if this matches
+> > > > the hw behaviour though. Need to reverse engineer that at some
+> > > > point...
+> > > > =
 
-Summary
--------
+> > > > We also need to reorder the pixel format check vs. stride check
+> > > > to avoid triggering a spurious WARN(stride & 63) with cpp=3D=3D1 and
+> > > > plane stride=3D=3D32.
+> > > > =
 
-  **SUCCESS**
+> > > > v2: Try to deal with rotated stride and related WARN
+> > > > =
 
-  No regressions found.
+> > > =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/index.html
+> > > Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > =
 
-Known issues
-------------
+> > > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > > Fixes: 691f7ba58d52 ("drm/i915/display/fbc: Make fences a nice-to-h=
+ave for GEN9+")
+> > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_fbc.c | 16 ++++++++++------
+> > > >  1 file changed, 10 insertions(+), 6 deletions(-)
+> > > > =
 
-  Here are the changes found in Patchwork_18093 that come from known issues:
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu=
+/drm/i915/display/intel_fbc.c
+> > > > index 69a0682ddb6a..d30c2a389294 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > > @@ -695,9 +695,13 @@ static void intel_fbc_update_state_cache(struc=
+t intel_crtc *crtc,
+> > > >  	cache->plane.pixel_blend_mode =3D plane_state->hw.pixel_blend_mod=
+e;
+> > > >  =
 
-### IGT changes ###
+> > > >  	cache->fb.format =3D fb->format;
+> > > > -	cache->fb.stride =3D fb->pitches[0];
+> > > >  	cache->fb.modifier =3D fb->modifier;
+> > > >  =
 
-#### Issues hit ####
+> > > > +	/* FIXME is this correct? */
+> > > > +	cache->fb.stride =3D plane_state->color_plane[0].stride;
+> > > > +	if (drm_rotation_90_or_270(plane_state->hw.rotation))
+> > > =
 
-  * igt@debugfs_test@read_all_entries:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#1250] / [i915#1436])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
+> > > If it was wrong our CI would caught this in BDW or SNB for example.
+> > =
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+> > Not really. Well, certainly not on pre-skl since they don't do 90/270
+> > rotation. And probably not even on skl+ since any wrong assumption
+> =
 
-  * igt@gem_flink_basic@basic:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-tgl-y/igt@gem_flink_basic@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-tgl-y/igt@gem_flink_basic@basic.html
+> Checking rotation_is_valid() GEN5 up to GEN8 allows 90/270 rotation.
 
-  * igt@i915_module_load@reload:
-    - fi-apl-guc:         [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-apl-guc/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-apl-guc/igt@i915_module_load@reload.html
-    - fi-tgl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#402])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-tgl-u2/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-tgl-u2/igt@i915_module_load@reload.html
+The display engine on pre-skl does not support 90/270 rotaiton *at all*.
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
-    - fi-icl-u2:          [PASS][11] -> [DMESG-WARN][12] ([i915#1982]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+> =
 
-  
-#### Possible fixes ####
+> =
 
-  * igt@gem_flink_basic@double-flink:
-    - fi-tgl-y:           [DMESG-WARN][13] ([i915#402]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-tgl-y/igt@gem_flink_basic@double-flink.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-tgl-y/igt@gem_flink_basic@double-flink.html
+> > about how the cfb stride is calculated by the hw would just cause it
+> > to scribble over stolen memory we didn't allocate. So unless we've
+> > started to use stolen more extensively in recent times such problems
+> > would probably go unnoticed.
+> > =
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - {fi-tgl-dsi}:       [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
+> > > > +		cache->fb.stride *=3D fb->format->cpp[0];
+> > > > +
+> > > >  	/* FBC1 compression interval: arbitrary choice of 1 second */
+> > > >  	cache->interval =3D drm_mode_vrefresh(&crtc_state->hw.adjusted_mo=
+de);
+> > > >  =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+> > > > @@ -797,6 +801,11 @@ static bool intel_fbc_can_activate(struct inte=
+l_crtc *crtc)
+> > > >  		return false;
+> > > >  	}
+> > > >  =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][19] ([i915#1982]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+> > > > +	if (!pixel_format_is_valid(dev_priv, cache->fb.format->format)) {
+> > > > +		fbc->no_fbc_reason =3D "pixel format is invalid";
+> > > > +		return false;
+> > > > +	}
+> > > > +
+> > > >  	if (!rotation_is_valid(dev_priv, cache->fb.format->format,
+> > > >  			       cache->plane.rotation)) {
+> > > >  		fbc->no_fbc_reason =3D "rotation unsupported";
+> > > > @@ -813,11 +822,6 @@ static bool intel_fbc_can_activate(struct inte=
+l_crtc *crtc)
+> > > >  		return false;
+> > > >  	}
+> > > >  =
 
-  
-#### Warnings ####
+> > > > -	if (!pixel_format_is_valid(dev_priv, cache->fb.format->format)) {
+> > > > -		fbc->no_fbc_reason =3D "pixel format is invalid";
+> > > > -		return false;
+> > > > -	}
+> > > > -
+> > > >  	if (cache->plane.pixel_blend_mode !=3D DRM_MODE_BLEND_PIXEL_NONE =
+&&
+> > > >  	    cache->fb.format->has_alpha) {
+> > > >  		fbc->no_fbc_reason =3D "per-pixel alpha blending is incompatible=
+ with FBC";
 
-  * igt@i915_module_load@reload:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-kbl-x1275/igt@i915_module_load@reload.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-kbl-x1275/igt@i915_module_load@reload.html
+-- =
 
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92]) -> [DMESG-WARN][24] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8709/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (42 -> 36)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8709 -> Patchwork_18093
-
-  CI-20190529: 20190529
-  CI_DRM_8709: b04f40402fb90e1be9f683434a9821a656be0952 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5726: 5da80efbc7a2d5bd7b30c0f9eb4b5d001c99b558 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18093: 07df3fb1ebbe9b1d764d6a13859c88408cd344f0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-07df3fb1ebbe drm/i915/gt: Convert stats.active to plain unsigned int
-8e9a40de0f5d drm/i915/gt: Extract busy-stats for ring-scheduler
-e22f71e6b331 drm/i915/gt: Drop atomic for engine->fw_active tracking
-20c1f787e92d drm/i915/gt: ce->inflight updates are now serialised
-fde7899263f2 drm/i915/gt: Simplify virtual engine handling for execlists_hold()
-ee73ef387ef9 drm/i915/gt: Resubmit the virtual engine on schedule-out
-b115e301df47 drm/i915/gt: Defer schedule_out until after the dequeue
-5a956e7c7bdc drm/i915/gt: Decouple inflight virtual engines
-679e8bca48d4 drm/i915/gt: Use virtual_engine during execlists_dequeue
-f752b802f50a drm/i915/gt: Replace direct submit with direct call to tasklet
-5a59199cf602 drm/i915/gt: Check for a completed last request once
-fbb4ac3d3d2f drm/i915/gt: Decouple completed requests on unwind
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18093/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
