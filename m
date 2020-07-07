@@ -1,42 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C915C217987
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 22:37:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C4AF2179A5
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 22:43:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07A8E6E51C;
-	Tue,  7 Jul 2020 20:37:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77A7F6E348;
+	Tue,  7 Jul 2020 20:43:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB59D6E51C;
- Tue,  7 Jul 2020 20:37:21 +0000 (UTC)
-Received: from ravnborg.org (unknown [188.228.123.71])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id DF91E2001E;
- Tue,  7 Jul 2020 22:37:16 +0200 (CEST)
-Date: Tue, 7 Jul 2020 22:37:15 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200707203715.GB23150@ravnborg.org>
-References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
- <20200707201229.472834-10-daniel.vetter@ffwll.ch>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 911316E348
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2020 20:43:46 +0000 (UTC)
+IronPort-SDR: FxfzAZsLv4/aFugcuI7BqduTMmQ8KoYykaytpAzxYyohaO78Oiqd9I0fvmIkI1WI/lTcW8pPYY
+ mBvvXftR3M5Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9675"; a="209222026"
+X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="209222026"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2020 13:43:45 -0700
+IronPort-SDR: IqElvkwKJwKCnCj0VJFh5arj4ueGT7CE+hU8bc6UFg0v7a+ntJLUfZ0y5AALQq3ROEMoGdKure
+ omuFbJ4VlVrg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="457243802"
+Received: from josouza-mobl2.jf.intel.com (HELO josouza-MOBL2.intel.com)
+ ([10.24.14.51])
+ by orsmga005.jf.intel.com with ESMTP; 07 Jul 2020 13:43:45 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  7 Jul 2020 13:45:30 -0700
+Message-Id: <20200707204530.42289-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200707201229.472834-10-daniel.vetter@ffwll.ch>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=f+hm+t6M c=1 sm=1 tr=0
- a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
- a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8 a=7gkXJVJtAAAA:8 a=VwQbUJbxAAAA:8
- a=XYAwZIGsAAAA:8 a=P-IC7800AAAA:8 a=JfrnYn6hAAAA:8 a=e5mUnYsNAAAA:8
- a=HGsDnoEkBQlTwEb6aYUA:9 a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22
- a=AjGcO6oz07-iQ99wixmX:22 a=E8ToXWR_bxluHZ7gmE-Z:22
- a=d3PnA9EDa4IxuAV0gXij:22 a=1CNFftbPRP8L7MoqJWF3:22
- a=Vxmtnl_E_bksehYqCbjh:22
-Subject: Re: [Intel-gfx] [PATCH 09/25] drm/atmel: Use
- drm_atomic_helper_commit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/ehl: Add new PCI ids
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,198 +47,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Boris Brezillon <bbrezillon@kernel.org>, linux-rdma@vger.kernel.org,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- Daniel Vetter <daniel.vetter@intel.com>, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel.
-
-On Tue, Jul 07, 2020 at 10:12:13PM +0200, Daniel Vetter wrote:
-> One of these drivers that predates the nonblocking support in helpers,
-> and hand-rolled its own thing. Entirely not anything specific here, we
-> can just delete it all and replace it with the helper version.
-> 
-> Could also perhaps use the drm_mode_config_helper_suspend/resume
-> stuff, for another few lines deleted. But I'm not looking at that
-> stuff, I'm just going through all the atomic commit functions and make
-> sure they have properly annotated dma-fence critical sections
-> everywhere.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Boris Brezillon <bbrezillon@kernel.org>
-> Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
-> Cc: linux-arm-kernel@lists.infradead.org
-
-Looks good, nice to see all this code deleted!
-
-This more or less matches what I had concluded.
-But..
-
-    atmel_hlcdc_dc.wq is no longer used - so can also be deleted.
-
-This will delete even more code - good.
-
-I will try to test the patch in the weekend.
-Will get back if I suceed doing so.
-
-	Sam
-
-> ---
->  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 96 +-------------------
->  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h |  4 -
->  2 files changed, 1 insertion(+), 99 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
-> index 871293d1aeeb..9ec156e98f06 100644
-> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
-> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
-> @@ -557,103 +557,10 @@ static irqreturn_t atmel_hlcdc_dc_irq_handler(int irq, void *data)
->  	return IRQ_HANDLED;
->  }
->  
-> -struct atmel_hlcdc_dc_commit {
-> -	struct work_struct work;
-> -	struct drm_device *dev;
-> -	struct drm_atomic_state *state;
-> -};
-> -
-> -static void
-> -atmel_hlcdc_dc_atomic_complete(struct atmel_hlcdc_dc_commit *commit)
-> -{
-> -	struct drm_device *dev = commit->dev;
-> -	struct atmel_hlcdc_dc *dc = dev->dev_private;
-> -	struct drm_atomic_state *old_state = commit->state;
-> -
-> -	/* Apply the atomic update. */
-> -	drm_atomic_helper_commit_modeset_disables(dev, old_state);
-> -	drm_atomic_helper_commit_planes(dev, old_state, 0);
-> -	drm_atomic_helper_commit_modeset_enables(dev, old_state);
-> -
-> -	drm_atomic_helper_wait_for_vblanks(dev, old_state);
-> -
-> -	drm_atomic_helper_cleanup_planes(dev, old_state);
-> -
-> -	drm_atomic_state_put(old_state);
-> -
-> -	/* Complete the commit, wake up any waiter. */
-> -	spin_lock(&dc->commit.wait.lock);
-> -	dc->commit.pending = false;
-> -	wake_up_all_locked(&dc->commit.wait);
-> -	spin_unlock(&dc->commit.wait.lock);
-> -
-> -	kfree(commit);
-> -}
-> -
-> -static void atmel_hlcdc_dc_atomic_work(struct work_struct *work)
-> -{
-> -	struct atmel_hlcdc_dc_commit *commit =
-> -		container_of(work, struct atmel_hlcdc_dc_commit, work);
-> -
-> -	atmel_hlcdc_dc_atomic_complete(commit);
-> -}
-> -
-> -static int atmel_hlcdc_dc_atomic_commit(struct drm_device *dev,
-> -					struct drm_atomic_state *state,
-> -					bool async)
-> -{
-> -	struct atmel_hlcdc_dc *dc = dev->dev_private;
-> -	struct atmel_hlcdc_dc_commit *commit;
-> -	int ret;
-> -
-> -	ret = drm_atomic_helper_prepare_planes(dev, state);
-> -	if (ret)
-> -		return ret;
-> -
-> -	/* Allocate the commit object. */
-> -	commit = kzalloc(sizeof(*commit), GFP_KERNEL);
-> -	if (!commit) {
-> -		ret = -ENOMEM;
-> -		goto error;
-> -	}
-> -
-> -	INIT_WORK(&commit->work, atmel_hlcdc_dc_atomic_work);
-> -	commit->dev = dev;
-> -	commit->state = state;
-> -
-> -	spin_lock(&dc->commit.wait.lock);
-> -	ret = wait_event_interruptible_locked(dc->commit.wait,
-> -					      !dc->commit.pending);
-> -	if (ret == 0)
-> -		dc->commit.pending = true;
-> -	spin_unlock(&dc->commit.wait.lock);
-> -
-> -	if (ret)
-> -		goto err_free;
-> -
-> -	/* We have our own synchronization through the commit lock. */
-> -	BUG_ON(drm_atomic_helper_swap_state(state, false) < 0);
-> -
-> -	/* Swap state succeeded, this is the point of no return. */
-> -	drm_atomic_state_get(state);
-> -	if (async)
-> -		queue_work(dc->wq, &commit->work);
-> -	else
-> -		atmel_hlcdc_dc_atomic_complete(commit);
-> -
-> -	return 0;
-> -
-> -err_free:
-> -	kfree(commit);
-> -error:
-> -	drm_atomic_helper_cleanup_planes(dev, state);
-> -	return ret;
-> -}
-> -
->  static const struct drm_mode_config_funcs mode_config_funcs = {
->  	.fb_create = drm_gem_fb_create,
->  	.atomic_check = drm_atomic_helper_check,
-> -	.atomic_commit = atmel_hlcdc_dc_atomic_commit,
-> +	.atomic_commit = drm_atomic_helper_commit,
->  };
->  
->  static int atmel_hlcdc_dc_modeset_init(struct drm_device *dev)
-> @@ -716,7 +623,6 @@ static int atmel_hlcdc_dc_load(struct drm_device *dev)
->  	if (!dc->wq)
->  		return -ENOMEM;
->  
-> -	init_waitqueue_head(&dc->commit.wait);
->  	dc->desc = match->data;
->  	dc->hlcdc = dev_get_drvdata(dev->dev->parent);
->  	dev->dev_private = dc;
-> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
-> index 469d4507e576..9367a3747a3a 100644
-> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
-> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
-> @@ -346,10 +346,6 @@ struct atmel_hlcdc_dc {
->  		u32 imr;
->  		struct drm_atomic_state *state;
->  	} suspend;
-> -	struct {
-> -		wait_queue_head_t wait;
-> -		bool pending;
-> -	} commit;
->  };
->  
->  extern struct atmel_hlcdc_formats atmel_hlcdc_plane_rgb_formats;
-> -- 
-> 2.27.0
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VHdvIG5ldyBQQ0kgaWRzIGFkZGVkIHRvIGVobC4KCnYyOiBhZGRlZCB0d28gYWRkaXRpb25hbCBQ
+Q0kgaWRzCgpCU3BlYzogMjkxNTMKQ2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRl
+bC5jb20+CkNjOiBBbnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5jb20+ClNp
+Z25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29t
+PgotLS0KIGluY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmggfCA0ICsrKysKIDEgZmlsZSBjaGFuZ2Vk
+LCA0IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9pOTE1X3BjaWlkcy5o
+IGIvaW5jbHVkZS9kcm0vaTkxNV9wY2lpZHMuaAppbmRleCBiYzk4OWRlMmFhYzIuLmQ2Y2IyODk5
+MmJhMCAxMDA2NDQKLS0tIGEvaW5jbHVkZS9kcm0vaTkxNV9wY2lpZHMuaAorKysgYi9pbmNsdWRl
+L2RybS9pOTE1X3BjaWlkcy5oCkBAIC01ODgsNyArNTg4LDExIEBACiAJSU5URUxfVkdBX0RFVklD
+RSgweDQ1NTEsIGluZm8pLCBcCiAJSU5URUxfVkdBX0RFVklDRSgweDQ1NDEsIGluZm8pLCBcCiAJ
+SU5URUxfVkdBX0RFVklDRSgweDRFNzEsIGluZm8pLCBcCisJSU5URUxfVkdBX0RFVklDRSgweDQ1
+NTcsIGluZm8pLCBcCisJSU5URUxfVkdBX0RFVklDRSgweDQ1NTUsIGluZm8pLCBcCiAJSU5URUxf
+VkdBX0RFVklDRSgweDRFNjEsIGluZm8pLCBcCisJSU5URUxfVkdBX0RFVklDRSgweDRFNTcsIGlu
+Zm8pLCBcCisJSU5URUxfVkdBX0RFVklDRSgweDRFNTUsIGluZm8pLCBcCiAJSU5URUxfVkdBX0RF
+VklDRSgweDRFNTEsIGluZm8pCiAKIC8qIFRHTCAqLwotLSAKMi4yNy4wCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
