@@ -2,31 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9DC2162FB
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 02:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D7EB2162FC
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 02:27:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 679896E4CF;
-	Tue,  7 Jul 2020 00:26:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C56BE6E1E5;
+	Tue,  7 Jul 2020 00:27:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2B5B76E1E5;
- Tue,  7 Jul 2020 00:26:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 24460A47E0;
- Tue,  7 Jul 2020 00:26:09 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85FD16E1E5
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2020 00:27:24 +0000 (UTC)
+IronPort-SDR: 0y5LXY+4YFokq78D0I+Fjwbrnx5LZVct9zX2oDWYVunFW2lpPl+ctVVRStC7XOvM0OGfLMqpjG
+ xHc7vzTxpEjQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9674"; a="134985237"
+X-IronPort-AV: E=Sophos;i="5.75,321,1589266800"; d="scan'208";a="134985237"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2020 17:27:23 -0700
+IronPort-SDR: 9lfnttU0TyJXasrTlWvy2BpUegF1rfFPXvel0pOTh1wGX5pDdK5SEvSDl4LadKoy0uiQ0Ge1fa
+ Jrioqw/xk+ow==
+X-IronPort-AV: E=Sophos;i="5.75,321,1589266800"; d="scan'208";a="456918340"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2020 17:27:23 -0700
+Date: Mon, 6 Jul 2020 17:27:22 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
 To: "Souza, Jose" <jose.souza@intel.com>
-Date: Tue, 07 Jul 2020 00:26:09 -0000
-Message-ID: <159408156911.7661.15617572320195119541@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200706234337.124814-1-jose.souza@intel.com>
-In-Reply-To: <20200706234337.124814-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv3=2C1/2=5D_drm/i915=3A_Initial_implementa?=
- =?utf-8?q?tion_of_PSR2_selective_fetch?=
+Message-ID: <20200707002722.GH2081034@mdroper-desk1.amr.corp.intel.com>
+References: <20200624193249.20725-1-jose.souza@intel.com>
+ <20200706230842.GD2081034@mdroper-desk1.amr.corp.intel.com>
+ <3cb061992e1c0dfef99c7b1420077e41d5f7909b.camel@intel.com>
+ <20200706232859.GG2081034@mdroper-desk1.amr.corp.intel.com>
+ <b51c68dc7a3ee9d0b472d619472804ff5a901fec.camel@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <b51c68dc7a3ee9d0b472d619472804ff5a901fec.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Implement new combo
+ phy initialization step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,139 +54,243 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jul 06, 2020 at 05:14:04PM -0700, Souza, Jose wrote:
+> On Mon, 2020-07-06 at 16:28 -0700, Matt Roper wrote:
+> > On Mon, Jul 06, 2020 at 04:10:15PM -0700, Souza, Jose wrote:
+> > > On Mon, 2020-07-06 at 16:08 -0700, Matt Roper wrote:
+> > > > On Wed, Jun 24, 2020 at 12:32:49PM -0700, Jos=E9 Roberto de Souza w=
+rote:
+> > > > > This is new step that was recently added to the combo phy
+> > > > > initialization.
+> > > > > =
 
-Series: series starting with [v3,1/2] drm/i915: Initial implementation of PSR2 selective fetch
-URL   : https://patchwork.freedesktop.org/series/79172/
-State : success
+> > > > > v2:
+> > > > > - using intel_de_rmw()
+> > > > =
 
-== Summary ==
+> > > > Actually, I'm not sure whether this is valid; I believe we always h=
+ave
+> > > > to read from a lane register and can only write to the group regist=
+ers:
+> > > > =
 
-CI Bug Log - changes from CI_DRM_8708 -> Patchwork_18090
-====================================================
+> > > >         "Reads using a port group address usually cannot return cor=
+rect
+> > > >         data. For read/modify/write to a group, the read should be =
+to
+> > > >         one of the lane addresses, then the write to the group addr=
+ess."
+> > > =
 
-Summary
--------
+> > > Yep, v3 is doing the right thing: https://patchwork.freedesktop.org/s=
+eries/78796/
+> > =
 
-  **SUCCESS**
+> > Ah, I overlooked that, thanks.  I think my other comments below may
+> > still apply to v3 though.
+> =
 
-  No regressions found.
+> Ops missed those, answers bellow.
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/index.html
+> > =
 
-Known issues
-------------
+> > =
 
-  Here are the changes found in Patchwork_18090 that come from known issues:
+> > Matt
+> > =
 
-### IGT changes ###
+> > > > > BSpec: 49291
+> > > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > > > ---
+> > > > >  .../gpu/drm/i915/display/intel_combo_phy.c    | 23 +++++++++++++=
+++++++
+> > > > >  drivers/gpu/drm/i915/i915_reg.h               |  7 ++++++
+> > > > >  2 files changed, 30 insertions(+)
+> > > > > =
 
-#### Issues hit ####
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/dri=
+vers/gpu/drm/i915/display/intel_combo_phy.c
+> > > > > index 77b04bb3ec62..115069833348 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> > > > > @@ -264,6 +264,18 @@ static bool icl_combo_phy_verify_state(struc=
+t drm_i915_private *dev_priv,
+> > > > >  	if (!icl_combo_phy_enabled(dev_priv, phy))
+> > > > >  		return false;
+> > > > >  =
 
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-byt-j1900/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-byt-j1900/igt@i915_module_load@reload.html
+> > > > > +	if (INTEL_GEN(dev_priv) >=3D 12) {
+> > > > > +		ret &=3D check_phy_reg(dev_priv, phy, ICL_PORT_TX_DW8_GRP(phy),
+> > > > > +				     ICL_PORT_TX_DW8_ODCC_CLK_SEL |
+> > > > > +				     ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK,
+> > > > > +				     ICL_PORT_TX_DW8_ODCC_CLK_SEL |
+> > > > > +				     ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_DIV2);
+> > > > =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+> > > > If I'm reading the bspec correctly, it looks like both 00 and 01
+> > > > represent div2 for this register.  So maybe rather than looking for=
+ 01
+> > > > exactly here we should just check that bit 30 is off?
+> =
 
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [PASS][5] -> [DMESG-WARN][6] ([i915#62] / [i915#92] / [i915#95])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+> That is a micro optimization that would cause loss in code readability, s=
+omeone casually reading might get confused of why only bit 30 is checked,
+> also we would need to add a different macro? Don't look worthy.
+> The default value of bit 31 is off so it will trigger the phy reprogram a=
+nyways.
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+My main thinking was that the BIOS might have already programmed this
+register according to the new bspec directions, but chosen 00 instead of
+01 as its value.  So testing a "CLK_DIV_SEL_HIGHDIV" rather than
+CLK_SEL_MASK would allow us to avoid an unnecessary reprogram.  But as
+you said, it probably doesn't hurt anything to reprogram more often than
+we need to, so we can probably leave it as-is.
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
-    - fi-tgl-y:           [PASS][9] -> [DMESG-WARN][10] ([i915#1982]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+Might be worth adding some extra explanation about that to the commit
+message.  But otherwise,
 
-  * igt@prime_vgem@basic-write:
-    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([i915#402]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-y/igt@prime_vgem@basic-write.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-tgl-y/igt@prime_vgem@basic-write.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][13] ([i915#1888]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - {fi-tgl-dsi}:       [DMESG-WARN][15] ([i915#1982]) -> [PASS][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - fi-bsw-kefka:       [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@vgem_basic@setversion:
-    - fi-tgl-y:           [DMESG-WARN][19] ([i915#402]) -> [PASS][20] +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-y/igt@vgem_basic@setversion.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-tgl-y/igt@vgem_basic@setversion.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (43 -> 37)
-------------------------------
-
-  Additional (1): fi-skl-guc 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
 
-Build changes
--------------
 
-  * Linux: CI_DRM_8708 -> Patchwork_18090
+> =
 
-  CI-20190529: 20190529
-  CI_DRM_8708: 170e94a1430fd0a4f0841ad0f7366904d52e49be @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5722: 9985cf23e9db9557bc7d714f5b72602e427497d3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18090: 8e71f149e88ee209335866f0af865f4566debc30 @ git://anongit.freedesktop.org/gfx-ci/linux
+> > > > =
 
+> > > > =
 
-== Linux commits ==
+> > > > > +
+> > > > > +		ret &=3D check_phy_reg(dev_priv, phy, ICL_PORT_PCS_DW1_GRP(phy=
+),
+> > > > > +				     DCC_MODE_SELECT_MASK,
+> > > > > +				     DCC_MODE_SELECT_CONTINUOSLY);
+> > > > > +	}
+> > > > > +
+> > > > >  	ret =3D cnl_verify_procmon_ref_values(dev_priv, phy);
+> > > > >  =
 
-8e71f149e88e drm/i915/display: Implement WA 1408330847
-2596ea8971cb drm/i915: Initial implementation of PSR2 selective fetch
+> > > > >  	if (phy_is_master(dev_priv, phy)) {
+> > > > > @@ -375,6 +387,17 @@ static void icl_combo_phys_init(struct drm_i=
+915_private *dev_priv)
+> > > > >  		intel_de_write(dev_priv, ICL_PHY_MISC(phy), val);
+> > > > >  =
 
-== Logs ==
+> > > > >  skip_phy_misc:
+> > > > > +		if (INTEL_GEN(dev_priv) >=3D 12) {
+> > > > =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18090/index.html
+> > > > We may want to keep an eye on this part of the bspec; there seems t=
+o be
+> > > > something a bit off with the bspec tagging of this block and I'm not
+> > > > 100% sure it was actually intended to apply to RKL too or not.
+> =
+
+> Ok, I'm receiving notifications of this page, will update if needed but i=
+t would be odd only RKL not needing this sequence while TGL and DG1 need it.
+> =
+
+> > > > =
+
+> > > > It seems like the bspec has these steps as the very first thing, ev=
+en
+> > > > before the "check whether the PHY is already initialized" step.
+> > > > But since we're checking that the bits are set the way we want in t=
+he
+> > > > verify function too, I don't think the ordering should matter.
+> =
+
+> Yep, re program it each time is a waste of time.
+> =
+
+> > > > =
+
+> > > > > +			intel_de_rmw(dev_priv, ICL_PORT_TX_DW8_GRP(phy),
+> > > > > +				     ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK,
+> > > > > +				     ICL_PORT_TX_DW8_ODCC_CLK_SEL |
+> > > > > +				     ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_DIV2);
+> > > > =
+
+> > > > As noted above, maybe we should just clear bit 30 and leave bit 29 =
+set
+> > > > however it already was?
+> > > > =
+
+> > > > =
+
+> > > > Matt
+> > > > =
+
+> > > > > +
+> > > > > +			intel_de_rmw(dev_priv, ICL_PORT_PCS_DW1_GRP(phy),
+> > > > > +				     DCC_MODE_SELECT_MASK,
+> > > > > +				     DCC_MODE_SELECT_CONTINUOSLY);
+> > > > > +		}
+> > > > > +
+> > > > >  		cnl_set_procmon_ref_values(dev_priv, phy);
+> > > > >  =
+
+> > > > >  		if (phy_is_master(dev_priv, phy)) {
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i9=
+15/i915_reg.h
+> > > > > index f09120cac89a..5469c9029f6d 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > > > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > > > > @@ -1974,6 +1974,8 @@ static inline bool i915_mmio_reg_valid(i915=
+_reg_t reg)
+> > > > >  #define ICL_PORT_PCS_DW1_AUX(phy)	_MMIO(_ICL_PORT_PCS_DW_AUX(1, =
+phy))
+> > > > >  #define ICL_PORT_PCS_DW1_GRP(phy)	_MMIO(_ICL_PORT_PCS_DW_GRP(1, =
+phy))
+> > > > >  #define ICL_PORT_PCS_DW1_LN0(phy)	_MMIO(_ICL_PORT_PCS_DW_LN(1, 0=
+, phy))
+> > > > > +#define   DCC_MODE_SELECT_MASK		(0x3 << 20)
+> > > > > +#define   DCC_MODE_SELECT_CONTINUOSLY	(0x3 << 20)
+> > > > >  #define   COMMON_KEEPER_EN		(1 << 26)
+> > > > >  #define   LATENCY_OPTIM_MASK		(0x3 << 2)
+> > > > >  #define   LATENCY_OPTIM_VAL(x)		((x) << 2)
+> > > > > @@ -2072,6 +2074,11 @@ static inline bool i915_mmio_reg_valid(i91=
+5_reg_t reg)
+> > > > >  #define   N_SCALAR(x)			((x) << 24)
+> > > > >  #define   N_SCALAR_MASK			(0x7F << 24)
+> > > > >  =
+
+> > > > > +#define ICL_PORT_TX_DW8_GRP(phy)		_MMIO(_ICL_PORT_TX_DW_GRP(8, p=
+hy))
+> > > > > +#define ICL_PORT_TX_DW8_ODCC_CLK_SEL		REG_BIT(31)
+> > > > > +#define ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK	REG_GENMASK(30, 29)
+> > > > > +#define ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_DIV2	REG_FIELD_PREP(ICL=
+_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK, 0x1)
+> > > > > +
+> > > > >  #define _ICL_DPHY_CHKN_REG			0x194
+> > > > >  #define ICL_DPHY_CHKN(port)			_MMIO(_ICL_COMBOPHY(port) + _ICL_D=
+PHY_CHKN_REG)
+> > > > >  #define   ICL_DPHY_CHKN_AFE_OVER_PPI_STRAP	REG_BIT(7)
+> > > > > -- =
+
+> > > > > 2.27.0
+> > > > > =
+
+> > > > > _______________________________________________
+> > > > > Intel-gfx mailing list
+> > > > > Intel-gfx@lists.freedesktop.org
+> > > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
