@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54CB62178DF
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 22:13:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 973442178F2
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 22:13:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E576A6E52C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC9BD6E454;
 	Tue,  7 Jul 2020 20:12:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70C726E581
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2020 20:12:52 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id j18so466566wmi.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 07 Jul 2020 13:12:52 -0700 (PDT)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9740A6E454
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2020 20:12:53 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id f139so447794wmf.5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Jul 2020 13:12:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=eLBVqiQIsMtlYONLK2w+6GAazNNz+oaX8A8qo8Nlgow=;
- b=h8aTmKDumgx6uK3u1RBVVfOiqqCLYe0T9/bj69f9/X0ccNfTIXAmNn3Rg6ZXKJmB2w
- Fqh11hUx1o8VWrFql2F1WN5KSJ5pkx7hNX8LQoWTPt71oJyQRq22dMNefBPloJZbeTcp
- LrfOFV/DOPROglnZx10L3SEosAeq/TI99ybyk=
+ bh=47ry8zzJFpkbfzhaSz9dhVhLH4swSU+s2K6Km6oEVI4=;
+ b=EkliKi78Cxcl4ZAllF+yKDmH5E9JQGpVZmBIOkBrQvMdM9LUHNaP9GKLQdO77Lb39L
+ GyBkGsTjZ0pHswhSbz9s50PvwzL72e/qMWjhFUvQ04RwgzfPZYMnpEFdcwxHVuzK5WwE
+ Ewx2qS/aZTwAf4YCyL66MrgWIqZDYDYwHB82c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=eLBVqiQIsMtlYONLK2w+6GAazNNz+oaX8A8qo8Nlgow=;
- b=PTK/BfKwzF8mCDPplo+4XNjirebbDr5XIMN+UROEnruKrgEUxBglmI3KbsW8qhYmmb
- URyOylY4ZKE8nD2jynPBPBffw6ytRUdzL8gEqqZLSPiWGWVTe5ZDWKl2jVyFT6gZ6JMT
- frr5XDg4IHcVvI6/huBWXnaiavRlVmR03ROjg7Q697ApF7CHi0tmTCtUJOBweYFStYDP
- PMRjLBMAfBJFmOorq5wSwO/nAWd9MDhh7bntcrmj2Yko+0najj5hdE9vl9U9LrOzWmdW
- 4DY92iVVVqoPE2SBDfKhjhDYozH1ZN4klmeqALDZUPtbwEWPvTq0fNFrUEu4oztSTF0h
- sKiQ==
-X-Gm-Message-State: AOAM531M0YWV/ijqXnb0XAL8DTjrV/1pDfKbiAvDCwik7weyWZGQ9neC
- wgBrW3alsa93Krcy221X9Mvi+w==
-X-Google-Smtp-Source: ABdhPJwr5VodDUuWsEiTX9Us0Z+/3e4TMNgf3i7VpNciq6fTFlY5xqtBFVOJnix4uvw2QX/UJg2lfQ==
-X-Received: by 2002:a1c:1bc6:: with SMTP id b189mr5582918wmb.166.1594152771107; 
- Tue, 07 Jul 2020 13:12:51 -0700 (PDT)
+ bh=47ry8zzJFpkbfzhaSz9dhVhLH4swSU+s2K6Km6oEVI4=;
+ b=be6PdRgePeV7dEPSUJp1aBH+cN6bG1WxOyRo7yE+kH3b760QYXhrzP0vKiyqUuSipz
+ u4MV1TpYFqLGC5uiMrrnADPgO58GRGzdXzSQ7hOxRJzb561hUUp/q0XH0239jmLiyJCA
+ 6vHnxC2PcBMV7bJfE92i3zAnaaCPFytTTWVIG+LMBPpyPqf3c4xO4RfAnYeKA/ww5Mg1
+ uRpRPwtM+I3KNJKlrcmomvWPcZWMtuWqCUixu6CMzmZe3am+l6w2u8NJwmngiLhAUuVD
+ fuXSxWbYrWpde7RDaVL9Q5MZIMUIH9XleMqYLnBZkxKZ446KeQ/p0A8Pw1hMZRYKbiFF
+ vWPQ==
+X-Gm-Message-State: AOAM532lM6L2W/IsrRz5lZJuiuDVDg1XplDo1fv8JcEFVUVu6BpyMRNX
+ xI3qIi8zZP4jLMehVqQ8FrvEYw==
+X-Google-Smtp-Source: ABdhPJxUjiOp/tGPiSxUOs2dJFh+N2PZSymkScgMscfuWIvlTUg/OsYH+ykwrEw2mMDdVf+mxSmsNg==
+X-Received: by 2002:a1c:6384:: with SMTP id x126mr6067851wmb.144.1594152772232; 
+ Tue, 07 Jul 2020 13:12:52 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q7sm2515262wra.56.2020.07.07.13.12.50
+ by smtp.gmail.com with ESMTPSA id q7sm2515262wra.56.2020.07.07.13.12.51
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Jul 2020 13:12:50 -0700 (PDT)
+ Tue, 07 Jul 2020 13:12:51 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue,  7 Jul 2020 22:12:12 +0200
-Message-Id: <20200707201229.472834-9-daniel.vetter@ffwll.ch>
+Date: Tue,  7 Jul 2020 22:12:13 +0200
+Message-Id: <20200707201229.472834-10-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
 References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/25] drm/malidp: Annotate dma-fence critical
- section in commit path
+Subject: [Intel-gfx] [PATCH 09/25] drm/atmel: Use drm_atomic_helper_commit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,51 +63,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Boris Brezillon <bbrezillon@kernel.org>, linux-rdma@vger.kernel.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Again needs to be put right after the call to
-drm_atomic_helper_commit_hw_done(), since that's the last thing which
-can hold up a subsequent atomic commit.
+One of these drivers that predates the nonblocking support in helpers,
+and hand-rolled its own thing. Entirely not anything specific here, we
+can just delete it all and replace it with the helper version.
 
-No surprises here.
+Could also perhaps use the drm_mode_config_helper_suspend/resume
+stuff, for another few lines deleted. But I'm not looking at that
+stuff, I'm just going through all the atomic commit functions and make
+sure they have properly annotated dma-fence critical sections
+everywhere.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: "James (Qian) Wang" <james.qian.wang@arm.com>
-Cc: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Mihail Atanassov <mihail.atanassov@arm.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Boris Brezillon <bbrezillon@kernel.org>
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
+Cc: linux-arm-kernel@lists.infradead.org
 ---
- drivers/gpu/drm/arm/malidp_drv.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 96 +-------------------
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h |  4 -
+ 2 files changed, 1 insertion(+), 99 deletions(-)
 
-diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
-index 69fee05c256c..26e60401a8e1 100644
---- a/drivers/gpu/drm/arm/malidp_drv.c
-+++ b/drivers/gpu/drm/arm/malidp_drv.c
-@@ -234,6 +234,7 @@ static void malidp_atomic_commit_tail(struct drm_atomic_state *state)
- 	struct drm_crtc *crtc;
- 	struct drm_crtc_state *old_crtc_state;
- 	int i;
-+	bool fence_cookie = dma_fence_begin_signalling();
+diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+index 871293d1aeeb..9ec156e98f06 100644
+--- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
++++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+@@ -557,103 +557,10 @@ static irqreturn_t atmel_hlcdc_dc_irq_handler(int irq, void *data)
+ 	return IRQ_HANDLED;
+ }
  
- 	pm_runtime_get_sync(drm->dev);
+-struct atmel_hlcdc_dc_commit {
+-	struct work_struct work;
+-	struct drm_device *dev;
+-	struct drm_atomic_state *state;
+-};
+-
+-static void
+-atmel_hlcdc_dc_atomic_complete(struct atmel_hlcdc_dc_commit *commit)
+-{
+-	struct drm_device *dev = commit->dev;
+-	struct atmel_hlcdc_dc *dc = dev->dev_private;
+-	struct drm_atomic_state *old_state = commit->state;
+-
+-	/* Apply the atomic update. */
+-	drm_atomic_helper_commit_modeset_disables(dev, old_state);
+-	drm_atomic_helper_commit_planes(dev, old_state, 0);
+-	drm_atomic_helper_commit_modeset_enables(dev, old_state);
+-
+-	drm_atomic_helper_wait_for_vblanks(dev, old_state);
+-
+-	drm_atomic_helper_cleanup_planes(dev, old_state);
+-
+-	drm_atomic_state_put(old_state);
+-
+-	/* Complete the commit, wake up any waiter. */
+-	spin_lock(&dc->commit.wait.lock);
+-	dc->commit.pending = false;
+-	wake_up_all_locked(&dc->commit.wait);
+-	spin_unlock(&dc->commit.wait.lock);
+-
+-	kfree(commit);
+-}
+-
+-static void atmel_hlcdc_dc_atomic_work(struct work_struct *work)
+-{
+-	struct atmel_hlcdc_dc_commit *commit =
+-		container_of(work, struct atmel_hlcdc_dc_commit, work);
+-
+-	atmel_hlcdc_dc_atomic_complete(commit);
+-}
+-
+-static int atmel_hlcdc_dc_atomic_commit(struct drm_device *dev,
+-					struct drm_atomic_state *state,
+-					bool async)
+-{
+-	struct atmel_hlcdc_dc *dc = dev->dev_private;
+-	struct atmel_hlcdc_dc_commit *commit;
+-	int ret;
+-
+-	ret = drm_atomic_helper_prepare_planes(dev, state);
+-	if (ret)
+-		return ret;
+-
+-	/* Allocate the commit object. */
+-	commit = kzalloc(sizeof(*commit), GFP_KERNEL);
+-	if (!commit) {
+-		ret = -ENOMEM;
+-		goto error;
+-	}
+-
+-	INIT_WORK(&commit->work, atmel_hlcdc_dc_atomic_work);
+-	commit->dev = dev;
+-	commit->state = state;
+-
+-	spin_lock(&dc->commit.wait.lock);
+-	ret = wait_event_interruptible_locked(dc->commit.wait,
+-					      !dc->commit.pending);
+-	if (ret == 0)
+-		dc->commit.pending = true;
+-	spin_unlock(&dc->commit.wait.lock);
+-
+-	if (ret)
+-		goto err_free;
+-
+-	/* We have our own synchronization through the commit lock. */
+-	BUG_ON(drm_atomic_helper_swap_state(state, false) < 0);
+-
+-	/* Swap state succeeded, this is the point of no return. */
+-	drm_atomic_state_get(state);
+-	if (async)
+-		queue_work(dc->wq, &commit->work);
+-	else
+-		atmel_hlcdc_dc_atomic_complete(commit);
+-
+-	return 0;
+-
+-err_free:
+-	kfree(commit);
+-error:
+-	drm_atomic_helper_cleanup_planes(dev, state);
+-	return ret;
+-}
+-
+ static const struct drm_mode_config_funcs mode_config_funcs = {
+ 	.fb_create = drm_gem_fb_create,
+ 	.atomic_check = drm_atomic_helper_check,
+-	.atomic_commit = atmel_hlcdc_dc_atomic_commit,
++	.atomic_commit = drm_atomic_helper_commit,
+ };
  
-@@ -260,6 +261,8 @@ static void malidp_atomic_commit_tail(struct drm_atomic_state *state)
+ static int atmel_hlcdc_dc_modeset_init(struct drm_device *dev)
+@@ -716,7 +623,6 @@ static int atmel_hlcdc_dc_load(struct drm_device *dev)
+ 	if (!dc->wq)
+ 		return -ENOMEM;
  
- 	malidp_atomic_commit_hw_done(state);
+-	init_waitqueue_head(&dc->commit.wait);
+ 	dc->desc = match->data;
+ 	dc->hlcdc = dev_get_drvdata(dev->dev->parent);
+ 	dev->dev_private = dc;
+diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
+index 469d4507e576..9367a3747a3a 100644
+--- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
++++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
+@@ -346,10 +346,6 @@ struct atmel_hlcdc_dc {
+ 		u32 imr;
+ 		struct drm_atomic_state *state;
+ 	} suspend;
+-	struct {
+-		wait_queue_head_t wait;
+-		bool pending;
+-	} commit;
+ };
  
-+	dma_fence_end_signalling(fence_cookie);
-+
- 	pm_runtime_put(drm->dev);
- 
- 	drm_atomic_helper_cleanup_planes(drm, state);
+ extern struct atmel_hlcdc_formats atmel_hlcdc_plane_rgb_formats;
 -- 
 2.27.0
 
