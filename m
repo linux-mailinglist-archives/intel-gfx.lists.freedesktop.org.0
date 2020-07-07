@@ -2,31 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD5592175F7
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 20:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 992D62176B7
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 20:29:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE996E0F8;
-	Tue,  7 Jul 2020 18:09:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 039EB89C59;
+	Tue,  7 Jul 2020 18:29:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9E9A6E0F8
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2020 18:09:25 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21744515-1500050 
- for multiple; Tue, 07 Jul 2020 19:09:10 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Jul 2020 19:09:09 +0100
-Message-Id: <20200707180909.7556-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200707171517.28183-1-chris@chris-wilson.co.uk>
-References: <20200707171517.28183-1-chris@chris-wilson.co.uk>
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com
+ [IPv6:2a00:1450:4864:20::141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DD3989C8F;
+ Tue,  7 Jul 2020 18:18:04 +0000 (UTC)
+Received: by mail-lf1-x141.google.com with SMTP id k15so25298066lfc.4;
+ Tue, 07 Jul 2020 11:18:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=BS5oJnyO5K6NCAB/a52k+DpKF9O4k6VgS2Nzs3Rg6YI=;
+ b=ey0CiRFAVZbnWmWODi8Xx4vhHFmJgql/gTkk6J7K1SKAyufCkI5s9HfnX8dQtnx7Ss
+ uz813mi+4nomybriOWWXmy8bLN0RzFivymy2YY4R8mzM8IVwfY83UYEtJdvtHRnIrS8k
+ 3eUprbqbJNWX3wIIo+4/Yh8EDHdqm0NshTptsqEidKNb5JZifJyOYMUPYW4oSkXQWleH
+ PkhXyZmhn3DCGC2xjIrSo/qS4okjg+aEyhHWtq25j4ajy90Fb0ejYwzcnHAmYwP+n2qP
+ rTSVVpPPOC01AhL1yTYbsCKjvQmdIJOUxzNy+cnl4TWx/+9eg838aRsHuxVV7qp1h6IY
+ nrQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BS5oJnyO5K6NCAB/a52k+DpKF9O4k6VgS2Nzs3Rg6YI=;
+ b=G+tA8SiCsh/Jas5yplrYT445noPlT8Nt97qXBNM+5gBqs1Wqo19jO72XJ4R9Z3tCAF
+ pDESaGA3iTpm4KHFnxrukuKl9q2gt15t4JZBzHz7YOxTxXWGf0V3z7Tx3usYRf/+yru1
+ 0priGOhRRWmrtjnLQBENU/b0ThRdwzVxqdUq7vntnLWpbEuirmkbgB5HzvApK0Jlh8Ir
+ GJ6rkaZEZsLH7kZnuphohqlj3KkVoFx10WPSR8f7Jm593tZzV8nOB/v8NC+2ykm/REzK
+ EzFw/81N/x9ZK9ioKg6D6r0pQMKWq4RLAvXiaaKUxiAU0oaK5jIud7SPSyat59ieRkgy
+ nnsQ==
+X-Gm-Message-State: AOAM532z1vvy5gmuq1XWEjPFI+mVBZsoEs4PprIgsz3nZ8NAETdnOLrA
+ mVZOz76FpGuUYIlHtuMzBxYAR25uNY5FGmDEM0D8nJQRBqE=
+X-Google-Smtp-Source: ABdhPJy93bC3ASladwqXdXhPKCrPOP5AsPWvyqZe8J8HwWOnhjwya9nI/LymqqZJpEniYeng3NvHsQpNlhFSRPLS4Vg=
+X-Received: by 2002:a05:6512:4c6:: with SMTP id
+ w6mr31399501lfq.76.1594145882259; 
+ Tue, 07 Jul 2020 11:18:02 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Fix initial fb to use
- resource_size_t
+References: <20200707160012.1299338-1-chris@chris-wilson.co.uk>
+ <CALqoU4y61Yc5ndaLSO3WoGSPxGm1nJJufk3U=uxhZe3sT1Xyzg@mail.gmail.com>
+ <159414243217.17526.6453360763938648186@build.alporthouse.com>
+In-Reply-To: <159414243217.17526.6453360763938648186@build.alporthouse.com>
+From: lepton <ytht.net@gmail.com>
+Date: Tue, 7 Jul 2020 11:17:51 -0700
+Message-ID: <CALqoU4ypBqcAo+xH2usVRffKzR6AkgGdJBmQ0vWe9MZ1kTHCqw@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+X-Mailman-Approved-At: Tue, 07 Jul 2020 18:29:18 +0000
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/vgem: Do not allocate backing
+ shmemfs file for an import dmabuf object
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,75 +65,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "# v4 . 10+" <stable@vger.kernel.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgbG9va3VwIHVwIHRoZSBwaHlzaWNhbCBhZGRyZXNzIG9mIHRoZSBpbmhlcml0ZWQgZnJhbWVi
-dWZmZXIsIGFuZApwcmVzdW1lIHRoYXQgaXMgYW4gb2Zmc2V0IGludG8gdGhlIHN0b2xlbiBtZW1v
-cnkgcmVnaW9uLiBBcyB3ZSBhcmUKZGVhbGluZyB3aXRoIHBoeXNpY2FsIHJlc291cmNlcyBhbmQg
-dGhlaXIgYWRkcmVzc2VzLCB3ZSBuZWVkIHRvIHVzZQpyZXNvdXJjZV9zaXplX3QgYW5kIG5vdCBh
-c3N1bWUgZXZlcnl0aGluZyBmaXRzIHdpdGhpbiBhIHBsYWluIHUzMiBbYmFzZWQKb24gcHJpb3Ig
-YXNzdW1wdGlvbnMgdGhhdCB3ZSB3ZXJlIHNpbXBseSBoYW5kbGluZyBvZmZzZXRzIGludG8gdGhl
-CkdHVFQgbm90IGdlbmVyaWMgYWRkcmVzc2VzL29mZnNldHNdLgoKV2UgbWFkZSB0aGUgc3dpdGNo
-IHRvIHVzaW5nIHJlc291cmNlX3NpemVfdCBmb3Igc3RvbGVuIGluIGNvbW1pdApiNzEyOGVmMTI1
-YjQgKCJkcm0vaTkxNTogcHJlZmVyIHJlc291cmNlX3NpemVfdCBmb3IgZXZlcnl0aGluZyBzdG9s
-ZW4iKQoKdjI6IEV4cGFuZCB0aGUgaW50ZWxfaW5pdGlhbF9wbGFuZV9jb25maWcgc3RydWN0IGFz
-IHdlbGwgdG8gYWNjb21tb2RhdGUKYW55IHBvc3NpYmxlIGxvY2F0aW9uLgoKUmVwb3J0ZWQtYnk6
-IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+ClJlZmVyZW5jZXM6IGI3
-MTI4ZWYxMjViNCAoImRybS9pOTE1OiBwcmVmZXIgcmVzb3VyY2Vfc2l6ZV90IGZvciBldmVyeXRo
-aW5nIHN0b2xlbiIpClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2ls
-c29uLmNvLnVrPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
-LmNvbT4KQ2M6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+CkNjOiBN
-YXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgICAgICB8IDE1ICsrKysrKysrLS0tLS0tLQog
-Li4uL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCAgICB8ICA0ICsr
-LS0KIDIgZmlsZXMgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkKCmRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IGRmZjdj
-MTdmM2QyYi4uOWZkMThiM2RiYjM3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXkuYwpAQCAtMzQwOSw3ICszNDA5LDggQEAgaW5pdGlhbF9wbGFuZV92bWEo
-c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsCiB7CiAJc3RydWN0IGRybV9pOTE1X2dlbV9v
-YmplY3QgKm9iajsKIAlzdHJ1Y3QgaTkxNV92bWEgKnZtYTsKLQl1MzIgYmFzZSwgc2l6ZTsKKwly
-ZXNvdXJjZV9zaXplX3QgYmFzZTsKKwlyZXNvdXJjZV9zaXplX3Qgc2l6ZTsKIAogCWlmIChwbGFu
-ZV9jb25maWctPnNpemUgPT0gMCkKIAkJcmV0dXJuIE5VTEw7CkBAIC05MzE5LDEzICs5MzIwLDEz
-IEBAIGk5eHhfZ2V0X2luaXRpYWxfcGxhbmVfY29uZmlnKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRj
-LAogCiAJYWxpZ25lZF9oZWlnaHQgPSBpbnRlbF9mYl9hbGlnbl9oZWlnaHQoZmIsIDAsIGZiLT5o
-ZWlnaHQpOwogCi0JcGxhbmVfY29uZmlnLT5zaXplID0gZmItPnBpdGNoZXNbMF0gKiBhbGlnbmVk
-X2hlaWdodDsKKwlwbGFuZV9jb25maWctPnNpemUgPSBtdWxfdTMyX3UzMihmYi0+cGl0Y2hlc1sw
-XSwgYWxpZ25lZF9oZWlnaHQpOwogCiAJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sCi0JCSAg
-ICAiJXMvJXMgd2l0aCBmYjogc2l6ZT0lZHglZEAlZCwgb2Zmc2V0PSV4LCBwaXRjaCAlZCwgc2l6
-ZSAweCV4XG4iLAorCQkgICAgIiVzLyVzIHdpdGggZmI6IHNpemU9JWR4JWRAJWQsIG9mZnNldD0l
-eCwgcGl0Y2ggJWQsIHNpemUgMHglcGFcbiIsCiAJCSAgICBjcnRjLT5iYXNlLm5hbWUsIHBsYW5l
-LT5iYXNlLm5hbWUsIGZiLT53aWR0aCwgZmItPmhlaWdodCwKIAkJICAgIGZiLT5mb3JtYXQtPmNw
-cFswXSAqIDgsIGJhc2UsIGZiLT5waXRjaGVzWzBdLAotCQkgICAgcGxhbmVfY29uZmlnLT5zaXpl
-KTsKKwkJICAgICZwbGFuZV9jb25maWctPnNpemUpOwogCiAJcGxhbmVfY29uZmlnLT5mYiA9IGlu
-dGVsX2ZiOwogfQpAQCAtMTA1OTUsMTMgKzEwNTk2LDEzIEBAIHNrbF9nZXRfaW5pdGlhbF9wbGFu
-ZV9jb25maWcoc3RydWN0IGludGVsX2NydGMgKmNydGMsCiAKIAlhbGlnbmVkX2hlaWdodCA9IGlu
-dGVsX2ZiX2FsaWduX2hlaWdodChmYiwgMCwgZmItPmhlaWdodCk7CiAKLQlwbGFuZV9jb25maWct
-PnNpemUgPSBmYi0+cGl0Y2hlc1swXSAqIGFsaWduZWRfaGVpZ2h0OworCXBsYW5lX2NvbmZpZy0+
-c2l6ZSA9IG11bF91MzJfdTMyKGZiLT5waXRjaGVzWzBdLCBhbGlnbmVkX2hlaWdodCk7CiAKIAlk
-cm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwKLQkJICAgICIlcy8lcyB3aXRoIGZiOiBzaXplPSVk
-eCVkQCVkLCBvZmZzZXQ9JXgsIHBpdGNoICVkLCBzaXplIDB4JXhcbiIsCisJCSAgICAiJXMvJXMg
-d2l0aCBmYjogc2l6ZT0lZHglZEAlZCwgb2Zmc2V0PSV4LCBwaXRjaCAlZCwgc2l6ZSAweCVwYVxu
-IiwKIAkJICAgIGNydGMtPmJhc2UubmFtZSwgcGxhbmUtPmJhc2UubmFtZSwgZmItPndpZHRoLCBm
-Yi0+aGVpZ2h0LAogCQkgICAgZmItPmZvcm1hdC0+Y3BwWzBdICogOCwgYmFzZSwgZmItPnBpdGNo
-ZXNbMF0sCi0JCSAgICBwbGFuZV9jb25maWctPnNpemUpOworCQkgICAgJnBsYW5lX2NvbmZpZy0+
-c2l6ZSk7CiAKIAlwbGFuZV9jb25maWctPmZiID0gaW50ZWxfZmI7CiAJcmV0dXJuOwpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAppbmRl
-eCBlOGY4MDkxNjFjNzUuLjc1Y2JmMDBmNWM5YiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKQEAgLTU5MSw5ICs1OTEsOSBAQCBz
-dHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgewogc3RydWN0IGludGVsX2luaXRpYWxfcGxhbmVfY29u
-ZmlnIHsKIAlzdHJ1Y3QgaW50ZWxfZnJhbWVidWZmZXIgKmZiOwogCXN0cnVjdCBpOTE1X3ZtYSAq
-dm1hOworCXJlc291cmNlX3NpemVfdCBiYXNlOworCXJlc291cmNlX3NpemVfdCBzaXplOwogCXVu
-c2lnbmVkIGludCB0aWxpbmc7Ci0JaW50IHNpemU7Ci0JdTMyIGJhc2U7CiAJdTggcm90YXRpb247
-CiB9OwogCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+On Tue, Jul 7, 2020 at 10:20 AM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Quoting lepton (2020-07-07 18:05:21)
+> > On Tue, Jul 7, 2020 at 9:00 AM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > >
+> > > If we assign obj->filp, we believe that the create vgem bo is native and
+> > > allow direct operations like mmap() assuming it behaves as backed by a
+> > > shmemfs inode. When imported from a dmabuf, the obj->pages are
+> > > not always meaningful and the shmemfs backing store misleading.
+> > >
+> > > Note, that regular mmap access to a vgem bo is via the dumb buffer API,
+> > > and that rejects attempts to mmap an imported dmabuf,
+> > What do you mean by "regular mmap access" here?  It looks like vgem is
+> > using vgem_gem_dumb_map as .dumb_map_offset callback then it doesn't call
+> > drm_gem_dumb_map_offset
+>
+> As I too found out, and so had to correct my story telling.
+>
+> By regular mmap() access I mean mmap on the vgem bo [via the dumb buffer
+> API] as opposed to mmap() via an exported dma-buf fd. I had to look at
+> igt to see how it was being used.
+Now it seems your fix is to disable "regular mmap" on imported dma buf
+for vgem. I am not really a graphic guy, but then the api looks like:
+for a gem handle, user space has to guess to find out the way to mmap
+it. If user space guess wrong, then it will fail to mmap. Is this the
+expected way
+for people to handle gpu buffer?
+> -Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
