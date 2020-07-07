@@ -2,31 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D7A7217A53
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 23:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37010217A7C
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 23:31:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0424C6E17B;
-	Tue,  7 Jul 2020 21:29:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF3766E15D;
+	Tue,  7 Jul 2020 21:31:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1D8ED6E15D;
- Tue,  7 Jul 2020 21:29:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1734BA0099;
- Tue,  7 Jul 2020 21:29:05 +0000 (UTC)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E60956E15D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2020 21:31:44 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id 17so721230wmo.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Jul 2020 14:31:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=5OKgh3mvsF5ue+TTYOgE5XvqURkZAByfyiWBp7hUSak=;
+ b=TWKOYBrzNWVhAsByi4gCqtr9Mir2CzDLbaogIsSa2DhjaJYFaeCwEghzJQaQmqmxWf
+ WByZMOhk3fhW1ibvgBBQqIU24g/gvcliJf+Oxqs7DW4VNu0ptEXUxM68pROXQrx9SBTB
+ eGi5fJKKS/o8OVN5Ks399+NdtDdvguSQw5sNk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=5OKgh3mvsF5ue+TTYOgE5XvqURkZAByfyiWBp7hUSak=;
+ b=Ig8Pvj7ro0Kodi4VX52G51WyVIHvF9XYgMWQpw7DDs9objeWHGzSAEaKC3QvhcxK9c
+ 3/vEt/mHRt5AaqjfMg1OXtYBr3B9tfuBe0vflKucmxU3Ai+1pVeOm+t98WqZRoTHHkSc
+ uB4FLJla6zq53+ZcG3dJvWg/ZrQZoa4Wp7ZxdEuzoylKNbWY+gWkaat7vNAQB99qx//m
+ oJP/L9BFFbUOz/eenoqgrK7OuLFwkS2weGw059fTe+REscog9Y5FZhJkt4aTqBpd+wOq
+ n1oI5SdxbWMktxqt+Z3gynnshWpCcjhTLLeMe3oZhd9VwdNK8x10GA85lhaV4fToDOOh
+ Amsw==
+X-Gm-Message-State: AOAM531Edff8xzxo/uOtCYDsbF73L8QnAIpsnhEz4ESPF2w8vIbAEhw5
+ Sb7/X7d0+3RuK90n0/c7wAEbaA==
+X-Google-Smtp-Source: ABdhPJy7yguPwGUWDg4Vv129pYTLOPESlkqmddmztp6ah9fLKrB1z/82msn2A+EyRr4qaI3AbiVpCw==
+X-Received: by 2002:a1c:7413:: with SMTP id p19mr5919274wmc.60.1594157503528; 
+ Tue, 07 Jul 2020 14:31:43 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id s8sm2466311wru.38.2020.07.07.14.31.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Jul 2020 14:31:42 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Tue,  7 Jul 2020 23:31:37 +0200
+Message-Id: <20200707213137.482778-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200707201229.472834-10-daniel.vetter@ffwll.ch>
+References: <20200707201229.472834-10-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 07 Jul 2020 21:29:05 -0000
-Message-ID: <159415734506.7664.15847845436548499862@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200707200743.11182-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200707200743.11182-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/gt=3A_Replace_opencoded_i9?=
- =?utf-8?b?MTVfZ2VtX29iamVjdF9waW5fbWFwKCk=?=
+Subject: [Intel-gfx] [PATCH] drm/atmel: Use drm_atomic_helper_commit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,197 +63,234 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Boris Brezillon <bbrezillon@kernel.org>, linux-rdma@vger.kernel.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+One of these drivers that predates the nonblocking support in helpers,
+and hand-rolled its own thing. Entirely not anything specific here, we
+can just delete it all and replace it with the helper version.
 
-Series: series starting with [1/3] drm/i915/gt: Replace opencoded i915_gem_object_pin_map()
-URL   : https://patchwork.freedesktop.org/series/79211/
-State : failure
+Could also perhaps use the drm_mode_config_helper_suspend/resume
+stuff, for another few lines deleted. But I'm not looking at that
+stuff, I'm just going through all the atomic commit functions and make
+sure they have properly annotated dma-fence critical sections
+everywhere.
 
-== Summary ==
+v2:
+- Also delete the workqueue (Sam)
+- drop the @commit kerneldoc, I missed that one.
 
-CI Bug Log - changes from CI_DRM_8711 -> Patchwork_18099
-====================================================
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Boris Brezillon <bbrezillon@kernel.org>
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 107 +------------------
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h |   7 --
+ 2 files changed, 2 insertions(+), 112 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+index 871293d1aeeb..03984932d174 100644
+--- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
++++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+@@ -557,103 +557,10 @@ static irqreturn_t atmel_hlcdc_dc_irq_handler(int irq, void *data)
+ 	return IRQ_HANDLED;
+ }
+ 
+-struct atmel_hlcdc_dc_commit {
+-	struct work_struct work;
+-	struct drm_device *dev;
+-	struct drm_atomic_state *state;
+-};
+-
+-static void
+-atmel_hlcdc_dc_atomic_complete(struct atmel_hlcdc_dc_commit *commit)
+-{
+-	struct drm_device *dev = commit->dev;
+-	struct atmel_hlcdc_dc *dc = dev->dev_private;
+-	struct drm_atomic_state *old_state = commit->state;
+-
+-	/* Apply the atomic update. */
+-	drm_atomic_helper_commit_modeset_disables(dev, old_state);
+-	drm_atomic_helper_commit_planes(dev, old_state, 0);
+-	drm_atomic_helper_commit_modeset_enables(dev, old_state);
+-
+-	drm_atomic_helper_wait_for_vblanks(dev, old_state);
+-
+-	drm_atomic_helper_cleanup_planes(dev, old_state);
+-
+-	drm_atomic_state_put(old_state);
+-
+-	/* Complete the commit, wake up any waiter. */
+-	spin_lock(&dc->commit.wait.lock);
+-	dc->commit.pending = false;
+-	wake_up_all_locked(&dc->commit.wait);
+-	spin_unlock(&dc->commit.wait.lock);
+-
+-	kfree(commit);
+-}
+-
+-static void atmel_hlcdc_dc_atomic_work(struct work_struct *work)
+-{
+-	struct atmel_hlcdc_dc_commit *commit =
+-		container_of(work, struct atmel_hlcdc_dc_commit, work);
+-
+-	atmel_hlcdc_dc_atomic_complete(commit);
+-}
+-
+-static int atmel_hlcdc_dc_atomic_commit(struct drm_device *dev,
+-					struct drm_atomic_state *state,
+-					bool async)
+-{
+-	struct atmel_hlcdc_dc *dc = dev->dev_private;
+-	struct atmel_hlcdc_dc_commit *commit;
+-	int ret;
+-
+-	ret = drm_atomic_helper_prepare_planes(dev, state);
+-	if (ret)
+-		return ret;
+-
+-	/* Allocate the commit object. */
+-	commit = kzalloc(sizeof(*commit), GFP_KERNEL);
+-	if (!commit) {
+-		ret = -ENOMEM;
+-		goto error;
+-	}
+-
+-	INIT_WORK(&commit->work, atmel_hlcdc_dc_atomic_work);
+-	commit->dev = dev;
+-	commit->state = state;
+-
+-	spin_lock(&dc->commit.wait.lock);
+-	ret = wait_event_interruptible_locked(dc->commit.wait,
+-					      !dc->commit.pending);
+-	if (ret == 0)
+-		dc->commit.pending = true;
+-	spin_unlock(&dc->commit.wait.lock);
+-
+-	if (ret)
+-		goto err_free;
+-
+-	/* We have our own synchronization through the commit lock. */
+-	BUG_ON(drm_atomic_helper_swap_state(state, false) < 0);
+-
+-	/* Swap state succeeded, this is the point of no return. */
+-	drm_atomic_state_get(state);
+-	if (async)
+-		queue_work(dc->wq, &commit->work);
+-	else
+-		atmel_hlcdc_dc_atomic_complete(commit);
+-
+-	return 0;
+-
+-err_free:
+-	kfree(commit);
+-error:
+-	drm_atomic_helper_cleanup_planes(dev, state);
+-	return ret;
+-}
+-
+ static const struct drm_mode_config_funcs mode_config_funcs = {
+ 	.fb_create = drm_gem_fb_create,
+ 	.atomic_check = drm_atomic_helper_check,
+-	.atomic_commit = atmel_hlcdc_dc_atomic_commit,
++	.atomic_commit = drm_atomic_helper_commit,
+ };
+ 
+ static int atmel_hlcdc_dc_modeset_init(struct drm_device *dev)
+@@ -712,11 +619,6 @@ static int atmel_hlcdc_dc_load(struct drm_device *dev)
+ 	if (!dc)
+ 		return -ENOMEM;
+ 
+-	dc->wq = alloc_ordered_workqueue("atmel-hlcdc-dc", 0);
+-	if (!dc->wq)
+-		return -ENOMEM;
+-
+-	init_waitqueue_head(&dc->commit.wait);
+ 	dc->desc = match->data;
+ 	dc->hlcdc = dev_get_drvdata(dev->dev->parent);
+ 	dev->dev_private = dc;
+@@ -724,7 +626,7 @@ static int atmel_hlcdc_dc_load(struct drm_device *dev)
+ 	ret = clk_prepare_enable(dc->hlcdc->periph_clk);
+ 	if (ret) {
+ 		dev_err(dev->dev, "failed to enable periph_clk\n");
+-		goto err_destroy_wq;
++		return ret;
+ 	}
+ 
+ 	pm_runtime_enable(dev->dev);
+@@ -761,9 +663,6 @@ static int atmel_hlcdc_dc_load(struct drm_device *dev)
+ 	pm_runtime_disable(dev->dev);
+ 	clk_disable_unprepare(dc->hlcdc->periph_clk);
+ 
+-err_destroy_wq:
+-	destroy_workqueue(dc->wq);
+-
+ 	return ret;
+ }
+ 
+@@ -771,7 +670,6 @@ static void atmel_hlcdc_dc_unload(struct drm_device *dev)
+ {
+ 	struct atmel_hlcdc_dc *dc = dev->dev_private;
+ 
+-	flush_workqueue(dc->wq);
+ 	drm_kms_helper_poll_fini(dev);
+ 	drm_atomic_helper_shutdown(dev);
+ 	drm_mode_config_cleanup(dev);
+@@ -784,7 +682,6 @@ static void atmel_hlcdc_dc_unload(struct drm_device *dev)
+ 
+ 	pm_runtime_disable(dev->dev);
+ 	clk_disable_unprepare(dc->hlcdc->periph_clk);
+-	destroy_workqueue(dc->wq);
+ }
+ 
+ static int atmel_hlcdc_dc_irq_postinstall(struct drm_device *dev)
+diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
+index 469d4507e576..5b5c774e0edf 100644
+--- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
++++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
+@@ -331,9 +331,7 @@ struct atmel_hlcdc_dc_desc {
+  * @crtc: CRTC provided by the display controller
+  * @planes: instantiated planes
+  * @layers: active HLCDC layers
+- * @wq: display controller workqueue
+  * @suspend: used to store the HLCDC state when entering suspend
+- * @commit: used for async commit handling
+  */
+ struct atmel_hlcdc_dc {
+ 	const struct atmel_hlcdc_dc_desc *desc;
+@@ -341,15 +339,10 @@ struct atmel_hlcdc_dc {
+ 	struct atmel_hlcdc *hlcdc;
+ 	struct drm_crtc *crtc;
+ 	struct atmel_hlcdc_layer *layers[ATMEL_HLCDC_MAX_LAYERS];
+-	struct workqueue_struct *wq;
+ 	struct {
+ 		u32 imr;
+ 		struct drm_atomic_state *state;
+ 	} suspend;
+-	struct {
+-		wait_queue_head_t wait;
+-		bool pending;
+-	} commit;
+ };
+ 
+ extern struct atmel_hlcdc_formats atmel_hlcdc_plane_rgb_formats;
+-- 
+2.27.0
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_18099 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18099, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_18099:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-cml-s:           [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-cml-s/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-cml-s/igt@i915_selftest@live@execlists.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18099 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_module_load@reload:
-    - fi-bxt-dsi:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-bxt-dsi/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-bxt-dsi/igt@i915_module_load@reload.html
-    - fi-tgl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#402])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-tgl-u2/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-whl-u:           [PASS][9] -> [DMESG-WARN][10] ([i915#95])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-whl-u/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-whl-u/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [PASS][11] -> [DMESG-WARN][12] ([i915#1982])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-tgl-u2:          [PASS][13] -> [INCOMPLETE][14] ([i915#1932] / [i915#2045])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [PASS][15] -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [PASS][17] -> [DMESG-WARN][18] ([i915#1982])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [PASS][19] -> [DMESG-WARN][20] ([i915#1982])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@vgem_basic@create:
-    - fi-tgl-y:           [PASS][21] -> [DMESG-WARN][22] ([i915#402]) +1 similar issue
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-tgl-y/igt@vgem_basic@create.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-tgl-y/igt@vgem_basic@create.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_mmap_gtt@basic:
-    - fi-tgl-y:           [DMESG-WARN][23] ([i915#402]) -> [PASS][24] +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [DMESG-WARN][25] ([i915#1982]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][27] ([i915#1982]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - {fi-tgl-dsi}:       [DMESG-WARN][29] ([i915#1982]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-tgl-dsi/igt@kms_force_connector_basic@force-connector-state.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-tgl-dsi/igt@kms_force_connector_basic@force-connector-state.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-kbl-x1275:       [DMESG-WARN][31] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][32] ([i915#1982] / [i915#62] / [i915#92] / [i915#95])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [DMESG-FAIL][33] ([i915#62]) -> [SKIP][34] ([fdo#109271])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][35] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][36] ([i915#62] / [i915#92]) +7 similar issues
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][37] ([i915#62] / [i915#92]) -> [DMESG-WARN][38] ([i915#62] / [i915#92] / [i915#95])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8711/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1932]: https://gitlab.freedesktop.org/drm/intel/issues/1932
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2045]: https://gitlab.freedesktop.org/drm/intel/issues/2045
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (42 -> 36)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8711 -> Patchwork_18099
-
-  CI-20190529: 20190529
-  CI_DRM_8711: c9761aec5a7938e206d29ace9f0d96ce93306ee6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5727: 90254c14f4e68bec9d4a114ddf039075f3c1a30c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18099: b500f5a58d25d5027839afa977137310525a2b9d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b500f5a58d25 drm/i915: Remove i915_gem_object_get_dirty_page()
-9caa553dca10 drm/i915: Release shortlived maps of longlived objects
-3286cb8bd6d2 drm/i915/gt: Replace opencoded i915_gem_object_pin_map()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18099/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
