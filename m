@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09686216340
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 03:16:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36D68216353
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 03:26:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57EAC6E527;
-	Tue,  7 Jul 2020 01:16:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F22B6E526;
+	Tue,  7 Jul 2020 01:26:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 354366E527;
- Tue,  7 Jul 2020 01:16:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id EC97F6E526;
+ Tue,  7 Jul 2020 01:26:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2E88BA0BC6;
- Tue,  7 Jul 2020 01:16:00 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D0066A47EA;
+ Tue,  7 Jul 2020 01:26:53 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Tue, 07 Jul 2020 01:16:00 -0000
-Message-ID: <159408456015.7664.984658251104264584@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Date: Tue, 07 Jul 2020 01:26:53 -0000
+Message-ID: <159408521382.7663.16336425228914608149@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200706235757.1020-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20200706235757.1020-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBN?=
- =?utf-8?q?ove_some_device_capabilities_under_intel=5Fgt_=28rev2=29?=
+References: <20200706234337.124814-1-jose.souza@intel.com>
+In-Reply-To: <20200706234337.124814-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv3=2C1/2=5D_drm/i915=3A_Initial_imp?=
+ =?utf-8?q?lementation_of_PSR2_selective_fetch_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,23 +48,21 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Move some device capabilities under intel_gt (rev2)
-URL   : https://patchwork.freedesktop.org/series/78829/
-State : failure
+Series: series starting with [v3,1/2] drm/i915: Initial implementation of PSR2 selective fetch (rev2)
+URL   : https://patchwork.freedesktop.org/series/79172/
+State : warning
 
 == Summary ==
 
-Applying: drm/i915: Convert device_info to uncore/de_read
-Applying: drm/i915: Use the gt in HAS_ENGINE
-Applying: drm/i915: Move engine-related mmio init to engines_init_mmio
-Applying: drm/i915: Move the engine mask to intel_gt_info
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/intel_uncore.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0004 drm/i915: Move the engine mask to intel_gt_info
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+$ dim checkpatch origin/drm-tip
+86eeebba3cb0 drm/i915: Initial implementation of PSR2 selective fetch
+-:289: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#289: FILE: drivers/gpu/drm/i915/i915_params.c:106:
++i915_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
++	"Enable PSR2 selective fetch "
+
+total: 0 errors, 0 warnings, 1 checks, 222 lines checked
+6e2202a55aaf drm/i915/display: Implement WA 1408330847
 
 _______________________________________________
 Intel-gfx mailing list
