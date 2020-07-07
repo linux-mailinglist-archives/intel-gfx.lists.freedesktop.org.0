@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF9F42173D3
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 18:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05FEE2173FF
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jul 2020 18:33:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3628C6E2DC;
-	Tue,  7 Jul 2020 16:22:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D4C489AFF;
+	Tue,  7 Jul 2020 16:33:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 686316E2DC
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2020 16:22:34 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21743337-1500050 
- for multiple; Tue, 07 Jul 2020 17:22:27 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Jul 2020 17:22:25 +0100
-Message-Id: <20200707162225.21697-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4DE7389A0F;
+ Tue,  7 Jul 2020 16:33:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 47A94A47EB;
+ Tue,  7 Jul 2020 16:33:15 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Unpin idle contexts from kswapd
- reclaim
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 07 Jul 2020 16:33:15 -0000
+Message-ID: <159413959526.7663.5593018225297373198@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200707160012.1299338-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200707160012.1299338-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/2=5D_drm/vgem=3A_Do_not_allocate_backi?=
+ =?utf-8?q?ng_shmemfs_file_for_an_import_dmabuf_object?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,129 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We removed retiring requests from the shrinker in order to decouple the
-mutexes from reclaim in preparation for unravelling the struct_mutex.
-The impact of not retiring is that we are much less agressive in making
-global objects available for shrinking, as such objects remain pinned
-until they are flushed by a heartbeat pulse following the last retired
-request along their timeline. In order to ensure that pulse occurs in
-time for memory reclamation, we should kick it from kswapd.
+== Series Details ==
 
-The catch is that we have added some flush_work() into the retirement
-phase (to ensure that we reach a global idle in a timely manner), but
-these flush_work() are not eligible (i.e do not belong to WQ_MEM_RELCAIM)
-for use from inside kswapd. To avoid flushing those workqueues, we teach
-the retirer not to do so unless we are actually waiting, and only do the
-plain retire from inside the shrinker.
+Series: series starting with [1/2] drm/vgem: Do not allocate backing shmemfs file for an import dmabuf object
+URL   : https://patchwork.freedesktop.org/series/79203/
+State : failure
 
-Note that for execlists, we already retire completed contexts as they
-are scheduled out, so it should not be keeping global state
-unnecessarily pinned. The legacy ringbuffer however...
+== Summary ==
 
-References: 9e9539800dd4 ("drm/i915: Remove waiting & retiring from shrinker paths")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c | 25 +++++++++++++-------
- drivers/gpu/drm/i915/gt/intel_gt_requests.c  |  9 ++++---
- 2 files changed, 22 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-index 1ced1e5d2ec0..dc8f052a0ffe 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-@@ -13,6 +13,8 @@
- #include <linux/dma-buf.h>
- #include <linux/vmalloc.h>
- 
-+#include "gt/intel_gt_requests.h"
-+
- #include "i915_trace.h"
- 
- static bool swap_available(void)
-@@ -111,15 +113,6 @@ i915_gem_shrink(struct drm_i915_private *i915,
- 	unsigned long count = 0;
- 	unsigned long scanned = 0;
- 
--	/*
--	 * When shrinking the active list, we should also consider active
--	 * contexts. Active contexts are pinned until they are retired, and
--	 * so can not be simply unbound to retire and unpin their pages. To
--	 * shrink the contexts, we must wait until the gpu is idle and
--	 * completed its switch to the kernel context. In short, we do
--	 * not have a good mechanism for idling a specific context.
--	 */
--
- 	trace_i915_gem_shrink(i915, target, shrink);
- 
- 	/*
-@@ -133,6 +126,20 @@ i915_gem_shrink(struct drm_i915_private *i915,
- 			shrink &= ~I915_SHRINK_BOUND;
- 	}
- 
-+	/*
-+	 * When shrinking the active list, we should also consider active
-+	 * contexts. Active contexts are pinned until they are retired, and
-+	 * so can not be simply unbound to retire and unpin their pages. To
-+	 * shrink the contexts, we must wait until the gpu is idle and
-+	 * completed its switch to the kernel context. In short, we do
-+	 * not have a good mechanism for idling a specific context, but
-+	 * what we can do is give them a kick so that we do not keep idle
-+	 * contexts around longer than is necessary.
-+	 */
-+	if (shrink & I915_SHRINK_ACTIVE)
-+		/* Retire requests to unpin all idle contexts */
-+		intel_gt_retire_requests(&i915->gt);
-+
- 	/*
- 	 * As we may completely rewrite the (un)bound list whilst unbinding
- 	 * (due to retiring requests) we have to strictly process only
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-index 16ff47c83bd5..66fcbf9d0fdd 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-@@ -31,12 +31,15 @@ static bool engine_active(const struct intel_engine_cs *engine)
- 	return !list_empty(&engine->kernel_context->timeline->requests);
- }
- 
--static bool flush_submission(struct intel_gt *gt)
-+static bool flush_submission(struct intel_gt *gt, long timeout)
- {
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
- 	bool active = false;
- 
-+	if (!timeout)
-+		return false;
-+
- 	if (!intel_gt_pm_is_awake(gt))
- 		return false;
- 
-@@ -139,7 +142,7 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
- 	if (unlikely(timeout < 0))
- 		timeout = -timeout, interruptible = false;
- 
--	flush_submission(gt); /* kick the ksoftirqd tasklets */
-+	flush_submission(gt, timeout); /* kick the ksoftirqd tasklets */
- 	spin_lock(&timelines->lock);
- 	list_for_each_entry_safe(tl, tn, &timelines->active_list, link) {
- 		if (!mutex_trylock(&tl->mutex)) {
-@@ -194,7 +197,7 @@ out_active:	spin_lock(&timelines->lock);
- 	list_for_each_entry_safe(tl, tn, &free, link)
- 		__intel_timeline_free(&tl->kref);
- 
--	if (flush_submission(gt)) /* Wait, there's more! */
-+	if (flush_submission(gt, timeout)) /* Wait, there's more! */
- 		active_count++;
- 
- 	return active_count ? timeout : 0;
--- 
-2.20.1
+Applying: drm/vgem: Do not allocate backing shmemfs file for an import dmabuf object
+Applying: drm/vgem: Replace opencoded version of drm_gem_dumb_map_offset()
+error: sha1 information is lacking or useless (drivers/gpu/drm/vgem/vgem_drv.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0002 drm/vgem: Replace opencoded version of drm_gem_dumb_map_offset()
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 _______________________________________________
 Intel-gfx mailing list
