@@ -1,47 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F54217B96
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 01:07:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB22217B9C
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 01:12:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85BC36E5A4;
-	Tue,  7 Jul 2020 23:07:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 876636E5AB;
+	Tue,  7 Jul 2020 23:12:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA5006E181
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2020 23:07:13 +0000 (UTC)
-IronPort-SDR: ZnbeR7SzxhGVJj4BjAg1atGpxJw23CoaoXhZCVgFHsxX/ksa6HPatehldzTxuC47RLJm1YF0A6
- +VD//FAndsHg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9675"; a="135169420"
-X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="135169420"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28D5A6E181;
+ Tue,  7 Jul 2020 23:12:37 +0000 (UTC)
+IronPort-SDR: 6nvFpUnpy3DOmUFXzoGIfNR1y/hcFiUdnvKWncPrM2dQmwKKkvEcodPhs4sTkzqVUVjcYj6PaP
+ 4E7cTWZrvd0Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9675"; a="147714265"
+X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="147714265"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2020 16:07:13 -0700
-IronPort-SDR: hhMyiRV5RaDlvarMpiZTTJygzOMitPxPrkwWRB9MTFhsZB8KlnIoKQi6Nko/C21o51pbI5OARE
- 7mS+dMOCzI2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="266958833"
-Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.212.100.66])
- ([10.212.100.66])
- by fmsmga007.fm.intel.com with ESMTP; 07 Jul 2020 16:07:12 -0700
-To: =?UTF-8?Q?Micha=c5=82_Winiarski?= <michal@hardline.pl>,
- intel-gfx@lists.freedesktop.org
-References: <20200707215218.272031-1-michal@hardline.pl>
- <20200707215218.272031-2-michal@hardline.pl>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <a85327ea-ed52-e05a-66a3-552829760e32@intel.com>
-Date: Tue, 7 Jul 2020 16:07:11 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2020 16:12:36 -0700
+IronPort-SDR: BTtvrTuI7Rq/6kKI1tRiK0WsR/JhgkaBU0FlPiow27t0jKe11+R3Qyo1VIiwfgZxJLP4zTQsFV
+ FnYJJDW1+gdg==
+X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="427637462"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2020 16:12:34 -0700
+Date: Wed, 8 Jul 2020 02:12:29 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20200707231229.GB22747@ideak-desk.fi.intel.com>
+References: <20200526182313.4005-1-lyude@redhat.com>
+ <20200526182313.4005-3-lyude@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20200707215218.272031-2-michal@hardline.pl>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/huc: Adjust HuC state
- accordingly after GuC fetch error
+Content-Disposition: inline
+In-Reply-To: <20200526182313.4005-3-lyude@redhat.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/mst: filter out the display
+ mode exceed sink's capability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,52 +51,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Marcin Bernatowicz <marcin.bernatowicz@intel.com>,
- =?UTF-8?Q?Micha=c5=82_Winiarski?= <michal.winiarski@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: imre.deak@intel.com
+Cc: Cooper Chiou <cooper.chiou@intel.com>, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiA3LzcvMjAyMCAyOjUyIFBNLCBNaWNoYcWCIFdpbmlhcnNraSB3cm90ZToKPiBGcm9tOiBN
-aWNoYcWCIFdpbmlhcnNraSA8bWljaGFsLndpbmlhcnNraUBpbnRlbC5jb20+Cj4KPiBGaXJtd2Fy
-ZSAiU2VsZWN0ZWQiIHN0YXRlIGlzIGEgdHJhbnNpZW50IHN0YXRlIC0gd2UgZG9uJ3QgZXhwZWN0
-IHRvIHNlZQo+IGl0IGFmdGVyIGZpbmlzaGluZyBkcml2ZXIgcHJvYmUsIHdlIGV2ZW4gaGF2ZSBh
-c3NlcnRzIHNwcmlua2xlZCBvdmVyCj4gaTkxNSB0byBjb25maXJtIHdoZXRoZXIgdGhhdCdzIHRo
-ZSBjYXNlLgo+IFVuZm9ydHVuYXRlbHkgLSB3ZSBkb24ndCBoYW5kbGUgdGhlIHRyYW5zaXRpb24g
-b3V0IG9mICJTZWxlY3RlZCIgaW4gY2FzZQo+IG9mIEd1QyBmZXRjaCBlcnJvciwgbGVhZGluZyB0
-aG9zZSBhc3NlcnRzIHRvIGZpcmUgd2hlbiBjYWxsaW5nCj4gImludGVsX2h1Y19pc191c2VkKCki
-Lgo+Cj4gUmVwb3J0ZWQtYnk6IE1hcmNpbiBCZXJuYXRvd2ljeiA8bWFyY2luLmJlcm5hdG93aWN6
-QGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBNaWNoYcWCIFdpbmlhcnNraSA8bWljaGFsLndp
-bmlhcnNraUBpbnRlbC5jb20+Cj4gQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29u
-LmNvLnVrPgo+IENjOiBEYW5pZWxlIENlcmFvbG8gU3B1cmlvIDxkYW5pZWxlLmNlcmFvbG9zcHVy
-aW9AaW50ZWwuY29tPgo+IENjOiBNYXJjaW4gQmVybmF0b3dpY3ogPG1hcmNpbi5iZXJuYXRvd2lj
-ekBpbnRlbC5jb20+Cj4gQ2M6IE1pY2hhbCBXYWpkZWN6a28gPG1pY2hhbC53YWpkZWN6a29AaW50
-ZWwuY29tPgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMuYyB8
-IDggKysrKysrKy0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyksIDEgZGVsZXRp
-b24oLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91
-Yy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMuYwo+IGluZGV4IDFjMmQ2
-MzU4ODI2Yy4uOTkzZTk3NTVmMzE3IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d0L3VjL2ludGVsX3VjLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRl
-bF91Yy5jCj4gQEAgLTI2Nyw4ICsyNjcsMTQgQEAgc3RhdGljIHZvaWQgX191Y19mZXRjaF9maXJt
-d2FyZXMoc3RydWN0IGludGVsX3VjICp1YykKPiAgIAlHRU1fQlVHX09OKCFpbnRlbF91Y193YW50
-c19ndWModWMpKTsKPiAgIAo+ICAgCWVyciA9IGludGVsX3VjX2Z3X2ZldGNoKCZ1Yy0+Z3VjLmZ3
-KTsKPiAtCWlmIChlcnIpCj4gKwlpZiAoZXJyKSB7Cj4gKwkJLyogTWFrZSBzdXJlIHdlIHRyYW5z
-aXRpb24gb3V0IG9mIHRyYW5zaWVudCAiU0VMRUNURUQiIHN0YXRlICovCj4gKwkJaWYgKGludGVs
-X3VjX3dhbnRzX2h1Yyh1YykpCj4gKwkJCWludGVsX3VjX2Z3X2NoYW5nZV9zdGF0dXMoJnVjLT5o
-dWMuZncsCj4gKwkJCQkJCSAgSU5URUxfVUNfRklSTVdBUkVfRVJST1IpOwoKSSB0aGluayB0aGF0
-IGEgZGVidWcgbWVzc2FnZSBzYXlpbmcgdGhhdCB3ZSdyZSBkaXNhYmxpbmcgSHVDIGJlY2F1c2Ug
-R3VDIApGVyB3YXMgbm90IGZvdW5kIHdvdWxkIGJlIHVzZWZ1bCB0byBtYWtlIGl0IGNsZWFyIHRo
-YXQgdGhlIGVycm9yIGlzIG5vdCAKcmVsYXRlZCB0byB0aGUgSHVDIGJsb2IgaXRzZWxmLgoKPiAr
-Cj4gICAJCXJldHVybjsKPiArCX0KPiAgIAo+ICAgCWlmIChpbnRlbF91Y193YW50c19odWModWMp
-KQo+ICAgCQlpbnRlbF91Y19md19mZXRjaCgmdWMtPmh1Yy5mdyk7CgpJdCBsb29rcyBsaWtlIHRo
-aXMgZnVuY3Rpb24gY291bGQgdXNlIGEgYml0IG9mIHJld29yayBmb3IgYmV0dGVyIG9uaW9uIAp1
-bndpbmRpbmcgYmVjYXVzZSBpZiB3ZSBmYWlsIHRvIGZldGNoIHRoZSBIdUMgYW5kIHdlIGRvbid0
-IHdhbnQgR3VDIApzdWJtaXNzaW9uIHdlIHNob3VsZCBkaXNhYmxlIHRoZSBHdUMuClRoYXQncyBu
-b3QgYW4gaXNzdWUgd2l0aCB0aGlzIHBhdGNoLCBzbyB3aXRoIHRoZSBhZGRlZCBkZWJ1ZyBsb2c6
-CgpSZXZpZXdlZC1ieTogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbzxkYW5pZWxlLmNlcmFvbG9zcHVy
-aW9AaW50ZWwuY29tPgoKRGFuaWVsZQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+On Tue, May 26, 2020 at 02:23:10PM -0400, Lyude Paul wrote:
+> From: Lee Shawn C <shawn.c.lee@intel.com>
+> 
+> So far, max dot clock rate for MST mode rely on physcial
+> bandwidth limitation. It would caused compatibility issue
+> if source display resolution exceed MST hub output ability.
+> 
+> For example, source DUT had DP 1.2 output capability.
+> And MST docking just support HDMI 1.4 spec. When a HDMI 2.0
+> monitor connected. Source would retrieve EDID from external
+> and get max resolution 4k@60fps. DP 1.2 can support 4K@60fps
+> because it did not surpass DP physical bandwidth limitation.
+> Do modeset to 4k@60fps, source output display data but MST
+> docking can't output HDMI properly due to this resolution
+> already over HDMI 1.4 spec.
+> 
+> Refer to commit <fcf463807596> ("drm/dp_mst: Use full_pbn
+> instead of available_pbn for bandwidth checks").
+> Source driver should refer to full_pbn to evaluate sink
+> output capability. And filter out the resolution surpass
+> sink output limitation.
+> 
+> v2: Using mgr->base.lock to protect full_pbn.
+> v3: Add ctx lock.
+> v4:
+> * s/intel_dp_mst_mode_clock_exceed_pbn_bandwidth/
+>   intel_dp_mst_mode_clock_exceeds_pbn_bw/
+> * Use the new drm_connector_helper_funcs.mode_valid_ctx to properly pipe
+>   down the drm_modeset_acquire_ctx that the probe helpers are using, so
+>   we can safely grab &mgr->base.lock without deadlocking
+> 
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Cooper Chiou <cooper.chiou@intel.com>
+> Co-developed-by: Lyude Paul <lyude@redhat.com>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> Tested-by: Lee Shawn C <shawn.c.lee@intel.com>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 39 ++++++++++++++++++---
+>  1 file changed, 35 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index d18b406f2a7d2..cf052095ad785 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -610,15 +610,42 @@ static int intel_dp_mst_get_modes(struct drm_connector *connector)
+>  	return intel_dp_mst_get_ddc_modes(connector);
+>  }
+>  
+> +static int
+> +intel_dp_mst_mode_clock_exceeds_pbn_bw(struct drm_connector *connector,
+> +				       struct drm_modeset_acquire_ctx *ctx,
+> +				       int clock, int bpp)
+> +{
+> +	struct intel_connector *intel_connector = to_intel_connector(connector);
+> +	struct intel_dp *intel_dp = intel_connector->mst_port;
+> +	struct drm_dp_mst_topology_mgr *mgr = &intel_dp->mst_mgr;
+> +	struct drm_dp_mst_port *port = (to_intel_connector(connector))->port;
+
+					intel_connector
+
+> +	int ret = MODE_OK;
+> +
+> +	if (!mgr)
+
+As a NULL check this would be bogus, but also connector->mst_port and so
+mst_mgr too should be always non-NULL?
+
+> +		return ret;
+> +
+> +	ret = drm_modeset_lock(&mgr->base.lock, ctx);
+> +	if (ret == -EDEADLK)
+> +		return ret;
+> +
+> +	if (port->full_pbn &&
+
+How could full_pbn be unset?
+
+> +	    drm_dp_calc_pbn_mode(clock, bpp, false) > port->full_pbn)
+> +		ret = MODE_CLOCK_HIGH;
+> +
+> +	return ret;
+> +}
+> +
+>  static enum drm_mode_status
+> -intel_dp_mst_mode_valid(struct drm_connector *connector,
+> -			struct drm_display_mode *mode)
+> +intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+> +			    struct drm_display_mode *mode,
+> +			    struct drm_modeset_acquire_ctx *ctx)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+>  	struct intel_connector *intel_connector = to_intel_connector(connector);
+>  	struct intel_dp *intel_dp = intel_connector->mst_port;
+>  	int max_dotclk = to_i915(connector->dev)->max_dotclk_freq;
+>  	int max_rate, mode_rate, max_lanes, max_link_clock;
+> +	int ret;
+>  
+>  	if (drm_connector_is_unregistered(connector))
+>  		return MODE_ERROR;
+> @@ -632,7 +659,11 @@ intel_dp_mst_mode_valid(struct drm_connector *connector,
+>  	max_rate = intel_dp_max_data_rate(max_link_clock, max_lanes);
+>  	mode_rate = intel_dp_link_required(mode->clock, 18);
+>  
+> -	/* TODO - validate mode against available PBN for link */
+> +	ret = intel_dp_mst_mode_clock_exceeds_pbn_bw(connector, ctx,
+> +						     mode->clock, 24);
+
+Why 24 bpp and not 18?
+
+Nit: could be checked after max_rate/max_dotclk for consistency.
+
+> +	if (ret != MODE_OK)
+> +		return ret;
+> +
+>  	if (mode->clock < 10000)
+>  		return MODE_CLOCK_LOW;
+>  
+> @@ -671,7 +702,7 @@ intel_dp_mst_detect(struct drm_connector *connector,
+>  
+>  static const struct drm_connector_helper_funcs intel_dp_mst_connector_helper_funcs = {
+>  	.get_modes = intel_dp_mst_get_modes,
+> -	.mode_valid = intel_dp_mst_mode_valid,
+> +	.mode_valid_ctx = intel_dp_mst_mode_valid_ctx,
+>  	.atomic_best_encoder = intel_mst_atomic_best_encoder,
+>  	.atomic_check = intel_dp_mst_atomic_check,
+>  	.detect_ctx = intel_dp_mst_detect,
+> -- 
+> 2.26.2
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
