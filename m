@@ -1,34 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1275218A72
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 16:53:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1913B218A70
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 16:53:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B78AC6E21C;
-	Wed,  8 Jul 2020 14:53:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6191F6E297;
+	Wed,  8 Jul 2020 14:53:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3301B6E21C;
- Wed,  8 Jul 2020 14:53:49 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21753873-1500050 for multiple; Wed, 08 Jul 2020 15:53:45 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 873A16E21C;
+ Wed,  8 Jul 2020 14:53:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 80F5CA363D;
+ Wed,  8 Jul 2020 14:53:48 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200708095619.GK3278063@phenom.ffwll.local>
-References: <20200707160012.1299338-1-chris@chris-wilson.co.uk>
- <20200707160012.1299338-2-chris@chris-wilson.co.uk>
- <20200708095619.GK3278063@phenom.ffwll.local>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 08 Jul 2020 15:53:43 +0100
-Message-ID: <159422002371.17526.18285440750269024388@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/vgem: Replace opencoded version of
- drm_gem_dumb_map_offset()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Wed, 08 Jul 2020 14:53:48 -0000
+Message-ID: <159422002850.3837.3654759090879551802@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_dma-fence_annotations=2C_round_3_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,72 +38,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBEYW5pZWwgVmV0dGVyICgyMDIwLTA3LTA4IDEwOjU2OjE5KQo+IE9uIFR1ZSwgSnVs
-IDA3LCAyMDIwIGF0IDA1OjAwOjEyUE0gKzAxMDAsIENocmlzIFdpbHNvbiB3cm90ZToKPiA+IGRy
-bV9nZW1fZHVtYl9tYXBfb2Zmc2V0KCkgbm93IGV4aXN0cyBhbmQgZG9lcyBldmVyeXRoaW5nCj4g
-PiB2Z2VtX2dlbV9kdW1wX21hcCBkb2VzIGFuZCAqb3VnaHQqIHRvIGRvLgo+ID4gCj4gPiBTaWdu
-ZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiA+IC0t
-LQo+ID4gIGRyaXZlcnMvZ3B1L2RybS92Z2VtL3ZnZW1fZHJ2LmMgfCAyOCArLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAyNyBk
-ZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS92Z2VtL3Zn
-ZW1fZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vdmdlbS92Z2VtX2Rydi5jCj4gPiBpbmRleCBlYjNi
-N2NkYWM5NDEuLjg2NmNmZjUzN2YyOCAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS92
-Z2VtL3ZnZW1fZHJ2LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS92Z2VtL3ZnZW1fZHJ2LmMK
-PiA+IEBAIC0yMzYsMzIgKzIzNiw2IEBAIHN0YXRpYyBpbnQgdmdlbV9nZW1fZHVtYl9jcmVhdGUo
-c3RydWN0IGRybV9maWxlICpmaWxlLCBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ID4gICAgICAg
-cmV0dXJuIDA7Cj4gPiAgfQo+ID4gIAo+ID4gLXN0YXRpYyBpbnQgdmdlbV9nZW1fZHVtYl9tYXAo
-c3RydWN0IGRybV9maWxlICpmaWxlLCBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ID4gLSAgICAg
-ICAgICAgICAgICAgICAgICAgICAgdWludDMyX3QgaGFuZGxlLCB1aW50NjRfdCAqb2Zmc2V0KQo+
-ID4gLXsKPiA+IC0gICAgIHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqOwo+ID4gLSAgICAgaW50
-IHJldDsKPiA+IC0KPiA+IC0gICAgIG9iaiA9IGRybV9nZW1fb2JqZWN0X2xvb2t1cChmaWxlLCBo
-YW5kbGUpOwo+ID4gLSAgICAgaWYgKCFvYmopCj4gPiAtICAgICAgICAgICAgIHJldHVybiAtRU5P
-RU5UOwo+ID4gLQo+ID4gLSAgICAgaWYgKCFvYmotPmZpbHApIHsKPiA+IC0gICAgICAgICAgICAg
-cmV0ID0gLUVJTlZBTDsKPiA+IC0gICAgICAgICAgICAgZ290byB1bnJlZjsKPiA+IC0gICAgIH0K
-PiA+IC0KPiA+IC0gICAgIHJldCA9IGRybV9nZW1fY3JlYXRlX21tYXBfb2Zmc2V0KG9iaik7Cj4g
-PiAtICAgICBpZiAocmV0KQo+ID4gLSAgICAgICAgICAgICBnb3RvIHVucmVmOwo+ID4gLQo+ID4g
-LSAgICAgKm9mZnNldCA9IGRybV92bWFfbm9kZV9vZmZzZXRfYWRkcigmb2JqLT52bWFfbm9kZSk7
-Cj4gPiAtdW5yZWY6Cj4gPiAtICAgICBkcm1fZ2VtX29iamVjdF9wdXRfdW5sb2NrZWQob2JqKTsK
-PiA+IC0KPiA+IC0gICAgIHJldHVybiByZXQ7Cj4gPiAtfQo+ID4gLQo+ID4gIHN0YXRpYyBzdHJ1
-Y3QgZHJtX2lvY3RsX2Rlc2MgdmdlbV9pb2N0bHNbXSA9IHsKPiA+ICAgICAgIERSTV9JT0NUTF9E
-RUZfRFJWKFZHRU1fRkVOQ0VfQVRUQUNILCB2Z2VtX2ZlbmNlX2F0dGFjaF9pb2N0bCwgRFJNX1JF
-TkRFUl9BTExPVyksCj4gPiAgICAgICBEUk1fSU9DVExfREVGX0RSVihWR0VNX0ZFTkNFX1NJR05B
-TCwgdmdlbV9mZW5jZV9zaWduYWxfaW9jdGwsIERSTV9SRU5ERVJfQUxMT1cpLAo+ID4gQEAgLTQ1
-NSw3ICs0MjksNyBAQCBzdGF0aWMgc3RydWN0IGRybV9kcml2ZXIgdmdlbV9kcml2ZXIgPSB7Cj4g
-PiAgICAgICAuZm9wcyAgICAgICAgICAgICAgICAgICAgICAgICAgID0gJnZnZW1fZHJpdmVyX2Zv
-cHMsCj4gPiAgCj4gPiAgICAgICAuZHVtYl9jcmVhdGUgICAgICAgICAgICAgICAgICAgID0gdmdl
-bV9nZW1fZHVtYl9jcmVhdGUsCj4gPiAtICAgICAuZHVtYl9tYXBfb2Zmc2V0ICAgICAgICAgICAg
-ICAgID0gdmdlbV9nZW1fZHVtYl9tYXAsCj4gPiArICAgICAuZHVtYl9tYXBfb2Zmc2V0ICAgICAg
-ICAgICAgICAgID0gZHJtX2dlbV9kdW1iX21hcF9vZmZzZXQsCj4gCj4gRXZlbiBiZXR0ZXI6IEp1
-c3QgZGVsZXRlIGl0LCBpdCdzIHRoZSBkZWZhdWx0LiBXaXRoIHRoYXQ6Cj4gCj4gUmV2aWV3ZWQt
-Ynk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4gCj4gQWxzbyBtYXli
-ZSBjYzogc3RhYmxlLCBzaW5jZSB0aGlzIHNob3VsZCBzdG9wIHRoZSBtbWFwIGF0dGVtcHRzIG9u
-Cj4gaW1wb3J0ZWQgZG1hLWJ1Zj8gT3Igd2lsbCB0aGlzIGJyZWFrIHN0dWZmIC4uLgoKY29tbWl0
-IDkwMzc4ZTU4OTE5Mjg1NjM3YWEwZjA2M2MwNGJhMGM2NDQ5ZDk4YjEgW3Y0LjE1XQpBdXRob3I6
-IE5vcmFsZiBUcsO4bm5lcyA8bm9yYWxmQHRyb25uZXMub3JnPgpEYXRlOiAgIFRodSBBdWcgMTcg
-MTg6MjE6MzAgMjAxNyArMDIwMAoKICAgIGRybS9nZW06IGRybV9nZW1fZHVtYl9tYXBfb2Zmc2V0
-KCk6IHJlamVjdCBkbWEtYnVmCgphbmQKCmNvbW1pdCBkYjYxMTUyNzAzYzY0MTMzZTQyYjhjNzIw
-YTgzZmYzNmUxODI0YmIxIFt2NC4xNF0KQXV0aG9yOiBOb3JhbGYgVHLDuG5uZXMgPG5vcmFsZkB0
-cm9ubmVzLm9yZz4KRGF0ZTogICBTdW4gSnVsIDIzIDIxOjE2OjE3IDIwMTcgKzAyMDAKCiAgICBk
-cm0vZ2VtOiBBZGQgZHJtX2dlbV9kdW1iX21hcF9vZmZzZXQoKQoKSXQgYmVjYW1lIGRlZmF1bHQg
-YXQgdGhlIHNhbWUgdGltZToKCmNvbW1pdCAwYmU4ZDYzYTg0MGFiN2NhY2IwOGYxYWYxZjIzOTVi
-ZTBmZTNiNjk4IFt2NC4xNF0KQXV0aG9yOiBOb3JhbGYgVHLDuG5uZXMgPG5vcmFsZkB0cm9ubmVz
-Lm9yZz4KRGF0ZTogICBTdW4gSnVsIDIzIDIxOjE2OjE4IDIwMTcgKzAyMDAKCiAgICBkcm0vZHVt
-Yi1idWZmZXJzOiBBZGQgZGVmYXVsdHMgZm9yIC5kdW1iX21hcF9vZmZzZXQgYW5kIC5kdW1iX2Rl
-c3Ryb3kKClRoZSBidWcgd2FzIGluCgpjb21taXQgYWYzM2E5MTkwZDAyMjYyNTFlOWNiYzEzN2M4
-OGE3MDdiMGJiZTM1NiBbdjQuMTNdCkF1dGhvcjogTGF1cmEgQWJib3R0IDxsYWJib3R0QHJlZGhh
-dC5jb20+CkRhdGU6ICAgVGh1IE1heSA0IDExOjQ1OjQ4IDIwMTcgLTA3MDAKCiAgICBkcm0vdmdl
-bTogRW5hYmxlIGRtYWJ1ZiBpbXBvcnQgaW50ZXJmYWNlcwoKVGhlIGRybV9nZW1fZHVtYl9tYXBf
-b2Zmc2V0IGlzIG11Y2ggb2xkZXIgdGhhbiBJIHRob3VnaHQgaXQgd2FzLCBhbmQKd2hpbGUgSSBz
-dXNwZWN0ZWQgeW91IG1pZ2h0IGhhdmUgc3VnZ2VzdGVkIG1ha2luZyBpdCBhbiBhdXRvbWF0aWMg
-ZGVmYXVsdCwKSSBsb29rZWQgaW4gdGhlIHdyb25nIHBsYWNlIGZvciB0aGUgY2FsbGVyLgoKSXQn
-cyB0aGUgY2xlYW5lciBmaXgsIHNvIHRoaXMgZGVzZXJ2ZXMgdGhlIGNjOnN0YWJsZSBtb3JlIHRo
-YW4gdGhlCmZpcnN0IGFuZCBjb3ZlcnMgdGhlIHNhbWUgbHRzLgotQ2hyaXMKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: dma-fence annotations, round 3 (rev4)
+URL   : https://patchwork.freedesktop.org/series/79212/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+633d2f5ee456 dma-fence: basic lockdep annotations
+-:23: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit e91498589746 ("locking/lockdep/selftests: Add mixed read-write ABBA tests")'
+#23: 
+  commit e91498589746065e3ae95d9a00b068e525eec34f
+
+-:97: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit e966eaeeb623 ("locking/lockdep: Remove the cross-release locking checks")'
+#97: 
+	commit e966eaeeb623f09975ef362c2866fae6f86844f9
+
+-:103: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#103: 
+	    This code (CONFIG_LOCKDEP_CROSSRELEASE=y and CONFIG_LOCKDEP_COMPLETIONS=y),
+
+-:303: ERROR:IN_ATOMIC: do not use in_atomic in drivers
+#303: FILE: drivers/dma-buf/dma-fence.c:228:
++	if (in_atomic())
+
+-:341: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#341: FILE: drivers/dma-buf/dma-fence.c:266:
++
++
+
+-:390: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#390: FILE: include/linux/dma-fence.h:368:
++}
++static inline void dma_fence_end_signalling(bool cookie) {}
+
+-:396: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 3 errors, 2 warnings, 2 checks, 217 lines checked
+da3d6f1684b1 dma-fence: prime lockdep annotations
+-:31: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 23b68395c7c7 ("mm/mmu_notifiers: add a lockdep map for invalidate_range_start/end")'
+#31: 
+commit 23b68395c7c78a764e8963fc15a7cfd318bf187f
+
+-:193: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 1 errors, 1 warnings, 0 checks, 91 lines checked
+243aa816da5b dma-buf.rst: Document why idenfinite fences are a bad idea
+-:149: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 105 lines checked
+7370ac9d9804 drm/vkms: Annotate vblank timer
+-:59: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+02ba87b23736 drm/vblank: Annotate with dma-fence signalling section
+-:71: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 38 lines checked
+4f101a23805c drm/amdgpu: add dma-fence annotations to atomic commit path
+-:52: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+3385e7391e3d drm/komdea: Annotate dma-fence critical section in commit path
+-:47: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
+ddc4ff34e5cd drm/malidp: Annotate dma-fence critical section in commit path
+-:38: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
+324a0d205f55 drm/atmel: Use drm_atomic_helper_commit
+-:213: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 170 lines checked
+5ee21a1c8241 drm/imx: Annotate dma-fence critical section in commit path
+-:14: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 21a01abbe32a ("drm/atomic: Fix freeing connector/plane state too early by tracking commits, v3.")'
+#14: 
+commit 21a01abbe32a3cbeb903378a24e504bfd9fe0648
+
+-:50: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 1 errors, 1 warnings, 0 checks, 14 lines checked
+de27ae218fde drm/omapdrm: Annotate dma-fence critical section in commit path
+-:54: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 29 lines checked
+92d70000efa9 drm/rcar-du: Annotate dma-fence critical section in commit path
+-:34: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+bb577d2f1fe5 drm/tegra: Annotate dma-fence critical section in commit path
+-:34: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+210b307a72de drm/tidss: Annotate dma-fence critical section in commit path
+-:41: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+23f8fbc6d2c3 drm/tilcdc: Use standard drm_atomic_helper_commit
+-:143: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 95 lines checked
+53e56008bec6 drm/atomic-helper: Add dma-fence annotations
+-:119: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 76 lines checked
+b9b516836545 drm/scheduler: use dma-fence annotations in main thread
+-:53: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 21 lines checked
+eabbd8e2991d drm/amdgpu: use dma-fence annotations in cs_submit()
+-:65: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 29 lines checked
+638685715960 drm/amdgpu: s/GFP_KERNEL/GFP_ATOMIC in scheduler code
+-:82: WARNING:ALLOC_ARRAY_ARGS: kmalloc_array uses number as first arg, sizeof is generally wrong
+#82: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c:211:
++	fences = kmalloc_array(sizeof(void *), id_mgr->num_ids, GFP_ATOMIC);
+
+-:98: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 2 warnings, 0 checks, 24 lines checked
+fcd17dbe5bd0 drm/amdgpu: DC also loves to allocate stuff where it shouldn't
+-:70: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#70: FILE: drivers/gpu/drm/amd/display/dc/core/dc.c:1479:
++	 * atomic_commit_tail. */
+
+-:76: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 2 warnings, 0 checks, 27 lines checked
+ba811ca16a82 drm/amdgpu/dc: Stop dma_resv_lock inversion in commit_tail
+-:39: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
+#39: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:6956:
++#if 0
+
+-:55: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 2 warnings, 0 checks, 23 lines checked
+d719490f44aa drm/scheduler: use dma-fence annotations in tdr work
+-:28: WARNING:TYPO_SPELLING: 'seperate' may be misspelled - perhaps 'separate'?
+#28: 
+Hence split out as a seperate patch.
+
+-:114: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 2 warnings, 0 checks, 20 lines checked
+63ba1f44b57a drm/amdgpu: use dma-fence annotations for gpu reset code
+7356174d08f1 Revert "drm/amdgpu: add fbdev suspend/resume on gpu reset"
+-:145: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+ae3b151a12e8 drm/amdgpu: gpu recovery does full modesets
+-:186: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
