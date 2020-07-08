@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B6EC218A23
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 16:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19F99218A3A
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 16:35:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A60026E0D8;
-	Wed,  8 Jul 2020 14:29:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FF746E1F3;
+	Wed,  8 Jul 2020 14:35:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 474FF6E0D8;
- Wed,  8 Jul 2020 14:29:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45363A66C9;
- Wed,  8 Jul 2020 14:29:30 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E84CA6E1F3
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 14:35:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21753701-1500050 
+ for multiple; Wed, 08 Jul 2020 15:35:41 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  8 Jul 2020 15:35:39 +0100
+Message-Id: <20200708143539.24625-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200708134742.727-2-chris@chris-wilson.co.uk>
+References: <20200708134742.727-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Date: Wed, 08 Jul 2020 14:29:30 -0000
-Message-ID: <159421857028.3837.6435123005365042951@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200708131751.334457-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20200708131751.334457-1-lionel.g.landwerlin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_timeline_semaphore_support?=
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Release shortlived maps of
+ longlived objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,75 +39,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Some objects we map once during their construction, and then never
+access their mappings again, even if they are kept around for the
+duration of the driver. Keeping those pages mapped, often vmapped, is
+therefore wasteful and we should release the maps as soon as we no
+longer need them.
 
-Series: drm/i915: timeline semaphore support
-URL   : https://patchwork.freedesktop.org/series/79247/
-State : warning
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.h      |  2 ++
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c       | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/gt/gen7_renderclear.c      |  2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c             |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c |  2 +-
+ drivers/gpu/drm/i915/i915_perf.c                |  4 ++--
+ 6 files changed, 23 insertions(+), 5 deletions(-)
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1223:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1226:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1229:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1232:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2270:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2271:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2272:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2273:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2275:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 2faa481cc18f..9cf4ad78ece6 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -394,6 +394,8 @@ static inline void i915_gem_object_unpin_map(struct drm_i915_gem_object *obj)
+ 	i915_gem_object_unpin_pages(obj);
+ }
+ 
++void __i915_gem_object_release_map(struct drm_i915_gem_object *obj);
++
+ void
+ i915_gem_object_flush_write_domain(struct drm_i915_gem_object *obj,
+ 				   unsigned int flush_domains);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index af9e48ee4a33..b2e22f4a4a78 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -408,6 +408,22 @@ void __i915_gem_object_flush_map(struct drm_i915_gem_object *obj,
+ 	}
+ }
+ 
++void __i915_gem_object_release_map(struct drm_i915_gem_object *obj)
++{
++	/*
++	 * We allow removing the mapping from underneath pinned pages!
++	 *
++	 * Furthermore, since this is an unsafe operation reserved only
++	 * for construction time manipulation, we ignore locking prudence.
++	 */
++	if (obj->mm.mapping) {
++		unmap_object(obj, page_mask_bits(obj->mm.mapping));
++		obj->mm.mapping = NULL;
++	}
++
++	i915_gem_object_unpin_map(obj);
++}
++
+ struct scatterlist *
+ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+ 		       unsigned int n,
+diff --git a/drivers/gpu/drm/i915/gt/gen7_renderclear.c b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+index de595b66a746..d93d85cd3027 100644
+--- a/drivers/gpu/drm/i915/gt/gen7_renderclear.c
++++ b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+@@ -396,7 +396,7 @@ int gen7_setup_clear_gpr_bb(struct intel_engine_cs * const engine,
+ 	emit_batch(vma, memset(batch, 0, bv.max_size), &bv);
+ 
+ 	i915_gem_object_flush_map(vma->obj);
+-	i915_gem_object_unpin_map(vma->obj);
++	__i915_gem_object_release_map(vma->obj);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 02a38810bcd3..0a19d551e02c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3937,7 +3937,7 @@ static int intel_init_workaround_bb(struct intel_engine_cs *engine)
+ 	GEM_BUG_ON(batch_ptr - batch > CTX_WA_BB_OBJ_SIZE);
+ 
+ 	__i915_gem_object_flush_map(wa_ctx->vma->obj, 0, batch_ptr - batch);
+-	i915_gem_object_unpin_map(wa_ctx->vma->obj);
++	__i915_gem_object_release_map(wa_ctx->vma->obj);
+ 	if (ret)
+ 		lrc_destroy_wa_ctx(engine);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 68a08486fc87..a6c9ab852d17 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -543,7 +543,7 @@ alloc_context_vma(struct intel_engine_cs *engine)
+ 			   vaddr, engine->context_size);
+ 
+ 		i915_gem_object_flush_map(obj);
+-		i915_gem_object_unpin_map(obj);
++		__i915_gem_object_release_map(obj);
+ 	}
+ 
+ 	vma = i915_vma_instance(obj, &engine->gt->ggtt->vm, NULL);
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 25329b7600c9..05dc36d3f81c 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -1772,7 +1772,7 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 	GEM_BUG_ON(cs - batch > PAGE_SIZE / sizeof(*batch));
+ 
+ 	i915_gem_object_flush_map(bo);
+-	i915_gem_object_unpin_map(bo);
++	__i915_gem_object_release_map(bo);
+ 
+ 	stream->noa_wait = vma;
+ 	return 0;
+@@ -1867,7 +1867,7 @@ alloc_oa_config_buffer(struct i915_perf_stream *stream,
+ 	*cs++ = 0;
+ 
+ 	i915_gem_object_flush_map(obj);
+-	i915_gem_object_unpin_map(obj);
++	__i915_gem_object_release_map(obj);
+ 
+ 	oa_bo->vma = i915_vma_instance(obj,
+ 				       &stream->engine->gt->ggtt->vm,
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
