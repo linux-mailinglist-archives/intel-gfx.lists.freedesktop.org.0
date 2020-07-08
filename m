@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF4F218C3A
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 17:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79902218C41
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 17:50:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D039B6E2A5;
-	Wed,  8 Jul 2020 15:49:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C56E66E8E9;
+	Wed,  8 Jul 2020 15:50:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11F436E2A5;
- Wed,  8 Jul 2020 15:49:26 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21754493-1500050 
- for multiple; Wed, 08 Jul 2020 16:49:14 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: dri-devel@lists.freedesktop.org
-Date: Wed,  8 Jul 2020 16:49:11 +0100
-Message-Id: <20200708154911.21236-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200708150527.1302305-1-chris@chris-wilson.co.uk>
-References: <20200708150527.1302305-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7806E6E8E9;
+ Wed,  8 Jul 2020 15:50:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 657CCA66C9;
+ Wed,  8 Jul 2020 15:50:06 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/vgem: Replace opencoded version of
- drm_gem_dumb_map_offset()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Wed, 08 Jul 2020 15:50:06 -0000
+Message-ID: <159422340641.3837.6761976113794500790@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200708003952.21831-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20200708003952.21831-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Move_some_device_capabilities_under_intel=5Fgt_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,84 +38,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm_gem_dumb_map_offset() now exists and does everything
-vgem_gem_dump_map does and *ought* to do.
+== Series Details ==
 
-In particular, vgem_gem_dumb_map() was trying to reject mmapping an
-imported dmabuf by checking the existence of obj->filp. Unfortunately,
-we always allocated an obj->filp, even if unused for an imported dmabuf.
-Instead, the drm_gem_dumb_map_offset(), since 90378e589192 ("drm/gem:
-drm_gem_dumb_map_offset(): reject dma-buf"), uses the obj->import_attach
-to reject such invalid mmaps.
+Series: Move some device capabilities under intel_gt (rev4)
+URL   : https://patchwork.freedesktop.org/series/78829/
+State : warning
 
-This prevents vgem from allowing userspace mmapping the dumb handle and
-attempting to incorrectly fault in remote pages belonging to another
-device, where there may not even be a struct page.
+== Summary ==
 
-v2: Use the default drm_gem_dumb_map_offset() callback
+$ dim checkpatch origin/drm-tip
+81adaf361708 drm/i915: Convert device_info to uncore/de_read
+e45d8bbcd7f5 drm/i915: Use the gt in HAS_ENGINE
+5e3310bf1e2a drm/i915: Move engine-related mmio init to engines_init_mmio
+2c61035b8c47 drm/i915: Move the engine mask to intel_gt_info
+d5805b164862 drm/i915: Introduce gt_init_mmio
+24805dc1308d drm/i915/sseu: Move sseu detection and dump to intel_sseu
+-:285: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#285: FILE: drivers/gpu/drm/i915/gt/intel_sseu.c:311:
++	 * across subslices.
++	*/
 
-Fixes: af33a9190d02 ("drm/vgem: Enable dmabuf import interfaces")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: <stable@vger.kernel.org> # v4.13+
----
- drivers/gpu/drm/vgem/vgem_drv.c | 27 ---------------------------
- 1 file changed, 27 deletions(-)
+-:294: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#294: FILE: drivers/gpu/drm/i915/gt/intel_sseu.c:320:
++	 * more than one EU pair per subslice.
++	*/
 
-diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_drv.c
-index e4dc7b267a0b..a775feda1cc7 100644
---- a/drivers/gpu/drm/vgem/vgem_drv.c
-+++ b/drivers/gpu/drm/vgem/vgem_drv.c
-@@ -230,32 +230,6 @@ static int vgem_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
- 	return 0;
- }
- 
--static int vgem_gem_dumb_map(struct drm_file *file, struct drm_device *dev,
--			     uint32_t handle, uint64_t *offset)
--{
--	struct drm_gem_object *obj;
--	int ret;
--
--	obj = drm_gem_object_lookup(file, handle);
--	if (!obj)
--		return -ENOENT;
--
--	if (!obj->filp) {
--		ret = -EINVAL;
--		goto unref;
--	}
--
--	ret = drm_gem_create_mmap_offset(obj);
--	if (ret)
--		goto unref;
--
--	*offset = drm_vma_node_offset_addr(&obj->vma_node);
--unref:
--	drm_gem_object_put(obj);
--
--	return ret;
--}
--
- static struct drm_ioctl_desc vgem_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(VGEM_FENCE_ATTACH, vgem_fence_attach_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(VGEM_FENCE_SIGNAL, vgem_fence_signal_ioctl, DRM_RENDER_ALLOW),
-@@ -446,7 +420,6 @@ static struct drm_driver vgem_driver = {
- 	.fops				= &vgem_driver_fops,
- 
- 	.dumb_create			= vgem_gem_dumb_create,
--	.dumb_map_offset		= vgem_gem_dumb_map,
- 
- 	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
- 	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
--- 
-2.20.1
+-:320: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#320: FILE: drivers/gpu/drm/i915/gt/intel_sseu.c:346:
++	 * to each of the enabled slices.
++	*/
+
+-:328: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#328: FILE: drivers/gpu/drm/i915/gt/intel_sseu.c:354:
++	 * count the total enabled EU.
++	*/
+
+-:370: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#370: FILE: drivers/gpu/drm/i915/gt/intel_sseu.c:396:
++	 * distribution.
++	*/
+
+-:382: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#382: FILE: drivers/gpu/drm/i915/gt/intel_sseu.c:408:
++	 * pair per subslice.
++	*/
+
+-:506: WARNING:PREFER_FALLTHROUGH: Prefer 'fallthrough;' over fallthrough comment
+#506: FILE: drivers/gpu/drm/i915/gt/intel_sseu.c:532:
++		/* fall through */
+
+-:526: WARNING:PREFER_FALLTHROUGH: Prefer 'fallthrough;' over fallthrough comment
+#526: FILE: drivers/gpu/drm/i915/gt/intel_sseu.c:552:
++		/* fall through */
+
+total: 0 errors, 8 warnings, 0 checks, 1259 lines checked
+aedcca102ac4 drm/i915/sseu: Move sseu_info under gt_info
+459b33e50ba5 drm/i915: gt-fy sseu debugfs
+-:121: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#121: FILE: drivers/gpu/drm/i915/i915_debugfs.c:1698:
++		eu_reg[2*s] = intel_uncore_read(uncore, GEN9_SS01_EU_PGCTL_ACK(s));
+ 		        ^
+
+-:122: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#122: FILE: drivers/gpu/drm/i915/i915_debugfs.c:1699:
++		eu_reg[2*s + 1] = intel_uncore_read(uncore, GEN9_SS23_EU_PGCTL_ACK(s));
+ 		        ^
+
+total: 0 errors, 0 warnings, 2 checks, 188 lines checked
+c3278f5361ee drm/i915: Move sseu debugfs under gt/
+-:50: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#50: 
+new file mode 100644
+
+-:178: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#178: FILE: drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c:124:
++		eu_reg[2*s] = intel_uncore_read(uncore, GEN9_SS01_EU_PGCTL_ACK(s));
+ 		        ^
+
+-:179: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#179: FILE: drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c:125:
++		eu_reg[2*s + 1] = intel_uncore_read(uncore, GEN9_SS23_EU_PGCTL_ACK(s));
+ 		        ^
+
+-:216: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#216: FILE: drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c:162:
++			eu_cnt = 2 * hweight32(eu_reg[2*s + ss/2] &
+ 			                               ^
+
+-:216: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#216: FILE: drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c:162:
++			eu_cnt = 2 * hweight32(eu_reg[2*s + ss/2] &
+ 			                                      ^
+
+-:217: CHECK:SPACING: spaces preferred around that '%' (ctx:VxV)
+#217: FILE: drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c:163:
++					       eu_mask[ss%2]);
+ 					                 ^
+
+total: 0 errors, 1 warnings, 5 checks, 637 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
