@@ -1,59 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DFC1218476
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 11:56:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6418B21849D
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 12:04:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A0F56E1D6;
-	Wed,  8 Jul 2020 09:56:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD0C89D1D;
+	Wed,  8 Jul 2020 10:04:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24E776E1D6
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 09:56:23 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id o2so2269670wmh.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Jul 2020 02:56:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=n4YfHIOoOroqGIzUYGzZdyO6gwl8FVlGpkSOTWMCgSc=;
- b=lZI50KmoLRDiK5JhrsRxAgSRRcMGHUdVG3OqkpO1VwIAqUGdWImM7Z0yUuUh2OXdms
- mPZGfZtctcE3z9BMOv+zQBxho7WkxzAbXtHXAGL9OBYKZTKnmdZ2FyPgrVBw0rHQQk0L
- tlyrIQEQQ495MA+g7RX8uB7X692R0iKB1qND0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=n4YfHIOoOroqGIzUYGzZdyO6gwl8FVlGpkSOTWMCgSc=;
- b=nl747PSwl7puA7XPnhw9D3ufoPNqmCbej6rW8UnB0HW+2KChkPm1/mvZw3f7o21C+G
- QCRVl+pe+fgT9Cc5j1O8gKau2CEdKTUDc6h2KBIsrqW6ggvzpxebW55AwoP4qo+jiVj/
- vjEbMn4M7RFVzq8vL9FR6wmv9CcQBvVTR0CX832ZvWIZFP3xvDkIOQYEt3X833ySTOd1
- TeJKE+/J5xcv5vMnYGfQeWsWRFJHPagkYHh5egq4LUmtglFdXLFxDErQMs854gdR+kfq
- h9lmPzf/VUmHGfEcYf0L+x+FXS4Q5JoTlLx1NjMYnQNhiYbpI/VN3KY37z0uNavWyXJT
- rMcg==
-X-Gm-Message-State: AOAM532TGihRPkX1KzuSfmzFuh+fpHjnaBINMnPLr3rZAtiC4tHVaTcK
- 5PUTE5OWOUIKwnSvIO8rE4YUSw==
-X-Google-Smtp-Source: ABdhPJzXi/hmGs7VuUORa0NBbCIx2VM0FJuhJ6CTIY1Ya26x20VGytPqgqe87NwgYtbwsF0vhRqI2g==
-X-Received: by 2002:a7b:cd18:: with SMTP id f24mr8896424wmj.40.1594202181864; 
- Wed, 08 Jul 2020 02:56:21 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id x185sm5537614wmg.41.2020.07.08.02.56.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Jul 2020 02:56:21 -0700 (PDT)
-Date: Wed, 8 Jul 2020 11:56:19 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200708095619.GK3278063@phenom.ffwll.local>
-References: <20200707160012.1299338-1-chris@chris-wilson.co.uk>
- <20200707160012.1299338-2-chris@chris-wilson.co.uk>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6326689D1D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 10:04:30 +0000 (UTC)
+IronPort-SDR: JFi2YbHTkx3AjkgnbxQfcfXScNpuVCP9Kv4SVBs7UaRzv7+kxFhj63+XEIPqvOXKCS9NvxjsPX
+ EDMd8Z5VRFfg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9675"; a="145269974"
+X-IronPort-AV: E=Sophos;i="5.75,327,1589266800"; d="scan'208";a="145269974"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2020 03:04:29 -0700
+IronPort-SDR: saaoCuoj80M8xG434TFMB9Bm5SQUOIoRcjOsLSAUZA8c4fx4en/+A/IAXJ6jg/s7ey1iFJfgjX
+ Mm/E0VJ8mPzA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,327,1589266800"; d="scan'208";a="314596778"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by orsmga008.jf.intel.com with ESMTP; 08 Jul 2020 03:04:28 -0700
+Date: Wed, 8 Jul 2020 15:28:48 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200708095848.GA12493@intel.com>
+References: <20200630082048.22308-1-anshuman.gupta@intel.com>
+ <87d05gna9w.fsf@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F825A7726@BGSMSX104.gar.corp.intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F825A77AD@BGSMSX104.gar.corp.intel.com>
+ <20200708082515.GN15183@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200707160012.1299338-2-chris@chris-wilson.co.uk>
-X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/vgem: Replace opencoded version of
- drm_gem_dumb_map_offset()
+In-Reply-To: <20200708082515.GN15183@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/hdcp: Update CP as per the
+ kernel internal state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,88 +54,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 07, 2020 at 05:00:12PM +0100, Chris Wilson wrote:
-> drm_gem_dumb_map_offset() now exists and does everything
-> vgem_gem_dump_map does and *ought* to do.
+On 2020-07-08 at 13:55:16 +0530, Anshuman Gupta wrote:
+> On 2020-07-01 at 13:31:18 +0530, Shankar, Uma wrote:
+> > > > -----Original Message-----
+> > > > From: Jani Nikula <jani.nikula@intel.com>
+> > > > Sent: Tuesday, June 30, 2020 3:30 PM
+> > > > To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-
+> > > > gfx@lists.freedesktop.org
+> > > > Cc: Shankar, Uma <uma.shankar@intel.com>
+> > > > Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/hdcp: Update CP as per
+> > > > the kernel internal state
+> > > >
+> > > >
+> > > > Uma, is the R-b still valid? It's been a while.
+> > > 
+> > > Yeah Jani, the changes look good. Will need a rebase and fresh CI results though.
+> > 
+> > Seems the CI results are already out and we are clean.
+> Hi Ram ,
+> CI results are clean for this rebase patch,
+> Could you please help with merging,
+Pushed into dinq. Thanks for the change.
+
+-Ram
+> I belive your RB's are valid either-way wrt to your comment.
+> Thanks,
+> Anshuman Gupta.
 > 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/vgem/vgem_drv.c | 28 +---------------------------
->  1 file changed, 1 insertion(+), 27 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_drv.c
-> index eb3b7cdac941..866cff537f28 100644
-> --- a/drivers/gpu/drm/vgem/vgem_drv.c
-> +++ b/drivers/gpu/drm/vgem/vgem_drv.c
-> @@ -236,32 +236,6 @@ static int vgem_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
->  	return 0;
->  }
->  
-> -static int vgem_gem_dumb_map(struct drm_file *file, struct drm_device *dev,
-> -			     uint32_t handle, uint64_t *offset)
-> -{
-> -	struct drm_gem_object *obj;
-> -	int ret;
-> -
-> -	obj = drm_gem_object_lookup(file, handle);
-> -	if (!obj)
-> -		return -ENOENT;
-> -
-> -	if (!obj->filp) {
-> -		ret = -EINVAL;
-> -		goto unref;
-> -	}
-> -
-> -	ret = drm_gem_create_mmap_offset(obj);
-> -	if (ret)
-> -		goto unref;
-> -
-> -	*offset = drm_vma_node_offset_addr(&obj->vma_node);
-> -unref:
-> -	drm_gem_object_put_unlocked(obj);
-> -
-> -	return ret;
-> -}
-> -
->  static struct drm_ioctl_desc vgem_ioctls[] = {
->  	DRM_IOCTL_DEF_DRV(VGEM_FENCE_ATTACH, vgem_fence_attach_ioctl, DRM_RENDER_ALLOW),
->  	DRM_IOCTL_DEF_DRV(VGEM_FENCE_SIGNAL, vgem_fence_signal_ioctl, DRM_RENDER_ALLOW),
-> @@ -455,7 +429,7 @@ static struct drm_driver vgem_driver = {
->  	.fops				= &vgem_driver_fops,
->  
->  	.dumb_create			= vgem_gem_dumb_create,
-> -	.dumb_map_offset		= vgem_gem_dumb_map,
-> +	.dumb_map_offset		= drm_gem_dumb_map_offset,
-
-Even better: Just delete it, it's the default. With that:
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-Also maybe cc: stable, since this should stop the mmap attempts on
-imported dma-buf? Or will this break stuff ...
--Daniel
-
->  
->  	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
->  	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
-> -- 
-> 2.27.0
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> > 
+> > > Regards,
+> > > Uma Shankar
+> > > 
+> > > > BR,
+> > > > Jani.
+> > > >
+> > > >
+> > > > On Tue, 30 Jun 2020, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+> > > > > Content Protection property should be updated as per the kernel
+> > > > > internal state. Let's say if Content protection is disabled by
+> > > > > userspace, CP property should be set to UNDESIRED so that
+> > > > > reauthentication will not happen until userspace request it again,
+> > > > > but when kernel disables the HDCP due to any DDI disabling sequences
+> > > > > like modeset/DPMS operation, kernel should set the property to
+> > > > > DESIRED, so that when opportunity arises, kernel will start the HDCP
+> > > > > authentication on its own.
+> > > > >
+> > > > > Somewhere in the line, state machine to set content protection to
+> > > > > DESIRED from kernel was broken and IGT coverage was missing for it.
+> > > > > This patch fixes it.
+> > > > >
+> > > > > v2:
+> > > > > - Fixing hdcp CP state in connector atomic check function
+> > > > >   intel_hdcp_atomic_check(). [Maarten]
+> > > > >   This will require to check hdcp->value in intel_hdcp_update_pipe()
+> > > > >   in order to avoid enabling hdcp, if it was already enabled.
+> > > > >
+> > > > > v3:
+> > > > > - Rebased.
+> > > > >
+> > > > > Cc: Ramalingam C <ramalingam.c@intel.com>
+> > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > > Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> > > > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > > > Link:
+> > > > > https://patchwork.freedesktop.org/patch/350962/?series=72664&rev=2
+> > > > > #v1
+> > > > > Link:
+> > > > > https://patchwork.freedesktop.org/patch/359396/?series=72251&rev=3
+> > > > > #v2
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_hdcp.c | 27
+> > > > > +++++++++++++++++++----
+> > > > >  1 file changed, 23 insertions(+), 4 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > > b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > > index 815b054bb167..0d410652e194 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > > @@ -2086,6 +2086,7 @@ void intel_hdcp_update_pipe(struct
+> > > > intel_atomic_state *state,
+> > > > >  		(conn_state->hdcp_content_type != hdcp->content_type &&
+> > > > >  		 conn_state->content_protection !=
+> > > > >  		 DRM_MODE_CONTENT_PROTECTION_UNDESIRED);
+> > > > > +	bool desired_and_not_enabled = false;
+> > > > >
+> > > > >  	/*
+> > > > >  	 * During the HDCP encryption session if Type change is requested,
+> > > > > @@ -2108,8 +2109,15 @@ void intel_hdcp_update_pipe(struct
+> > > > intel_atomic_state *state,
+> > > > >  	}
+> > > > >
+> > > > >  	if (conn_state->content_protection ==
+> > > > > -	    DRM_MODE_CONTENT_PROTECTION_DESIRED ||
+> > > > > -	    content_protection_type_changed)
+> > > > > +	    DRM_MODE_CONTENT_PROTECTION_DESIRED) {
+> > > > > +		mutex_lock(&hdcp->mutex);
+> > > > > +		/* Avoid enabling hdcp, if it already ENABLED */
+> > > > > +		desired_and_not_enabled =
+> > > > > +			hdcp->value !=
+> > > > DRM_MODE_CONTENT_PROTECTION_ENABLED;
+> > > > > +		mutex_unlock(&hdcp->mutex);
+> > > > > +	}
+> > > > > +
+> > > > > +	if (desired_and_not_enabled || content_protection_type_changed)
+> > > > >  		intel_hdcp_enable(connector,
+> > > > >  				  crtc_state->cpu_transcoder,
+> > > > >  				  (u8)conn_state->hdcp_content_type);
+> > > > > @@ -2158,6 +2166,19 @@ void intel_hdcp_atomic_check(struct
+> > > > drm_connector *connector,
+> > > > >  		return;
+> > > > >  	}
+> > > > >
+> > > > > +	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
+> > > > > +						   new_state->crtc);
+> > > > > +	/*
+> > > > > +	 * Fix the HDCP uapi content protection state in case of modeset.
+> > > > > +	 * FIXME: As per HDCP content protection property uapi doc, an uevent()
+> > > > > +	 * need to be sent if there is transition from ENABLED->DESIRED.
+> > > > > +	 */
+> > > > > +	if (drm_atomic_crtc_needs_modeset(crtc_state) &&
+> > > > > +	    (old_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
+> > > > > +	    new_cp != DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
+> > > > > +		new_state->content_protection =
+> > > > > +			DRM_MODE_CONTENT_PROTECTION_DESIRED;
+> > > > > +
+> > > > >  	/*
+> > > > >  	 * Nothing to do if the state didn't change, or HDCP was activated since
+> > > > >  	 * the last commit. And also no change in hdcp content type.
+> > > > > @@ -2170,8 +2191,6 @@ void intel_hdcp_atomic_check(struct
+> > > > > drm_connector
+> > > > *connector,
+> > > > >  			return;
+> > > > >  	}
+> > > > >
+> > > > > -	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
+> > > > > -						   new_state->crtc);
+> > > > >  	crtc_state->mode_changed = true;
+> > > > >  }
+> > > >
+> > > > --
+> > > > Jani Nikula, Intel Open Source Graphics Center
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
