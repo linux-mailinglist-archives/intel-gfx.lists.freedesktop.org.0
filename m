@@ -2,55 +2,100 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41F1C21870C
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 14:17:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86ED521832E
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 11:11:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 331A56E8B7;
-	Wed,  8 Jul 2020 12:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FF8289D56;
+	Wed,  8 Jul 2020 09:11:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
- [IPv6:2a00:1450:4864:20::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F4956E0F2;
- Wed,  8 Jul 2020 05:44:37 +0000 (UTC)
-Received: by mail-lj1-x242.google.com with SMTP id s9so52652665ljm.11;
- Tue, 07 Jul 2020 22:44:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=Qq/LVwU/N4W4lzPSMDMiPTvy9LVBc34wJPoHGag6tLc=;
- b=kv9AnCfQWFMHtQLqLSODLvbf5K6d/kQg0ki/rNlHKapH83Ze+SUbwUzm3mJh5ZEMx9
- djP0a3vF6i9mXoKmQIXhaGFPmJfaF3tKDbVKc2A2KWwkgLW/ij/Yi8/VT914A8WDEBdf
- JF3sejEisujgxRFcy6M+EupWWOKeKX3vnTxeWEOiOxGWBn0igKNWnoD8mM/eTtpW5+SZ
- 9PyzTOe5p4R3WIliKUuOYN1UYy0HCyVw5amRgNuEYZvLcG8svOCeRxC4nkwQAJNZc+mK
- IR2NtTXTeBVv6bFRdFOcU7okwgFgOA/WufeRcIBM4Tvv2mU4iJ3wuy7D1u3+l+//hSww
- puGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=Qq/LVwU/N4W4lzPSMDMiPTvy9LVBc34wJPoHGag6tLc=;
- b=YVj6Vq9awrWDhZ/9Rbc6ThaLVCkYPFtTIFJMm9gzi6gcdZ9f+BsAqSlVNlFQJtZ1wu
- KhbM4Kw6UIubbnpG73wo7do8KSxzvGvUGthskmPq0VtkYiS/3s3XLhZAPLhXCu5+4fSd
- qbK6TJ6lEyn3rdNaF85kPus1J0zccgYZ4PiEgrpRJaB+nI+jmwzMUfab0kQ/SbVUMmp6
- XSwJSB3BlaAIzEqWGCCGdoHfT9LxZklJVvcDapJikrzDO1DI1oSX1kfKSRB+n+tBznEh
- b5O/L7qXOL8SQdC/VOjI31mpFNyuiCMSrtEv5MGgReFeiHwAzytD5rUThC72IxXFWZgB
- dEGw==
-X-Gm-Message-State: AOAM530NYMugIKzk9SL9rhoUzPQjWE2/+pqCk+rwSyzGa3s0xue7MKlp
- vNb/p55/jS4vbn8HAUH5c5pM2cwFvj2U6WLXKNc=
-X-Google-Smtp-Source: ABdhPJyhpQr82E7ylH41uvaeqXfPiHzUfkHmR2AncBiUenm2TYVaLiC2J8ZOTNclh1yKo1ruN2pn+s7VenJy19cUemc=
-X-Received: by 2002:a2e:9dc6:: with SMTP id x6mr24848001ljj.94.1594187075357; 
- Tue, 07 Jul 2020 22:44:35 -0700 (PDT)
+X-Greylist: delayed 559 seconds by postgrey-1.36 at gabe;
+ Wed, 08 Jul 2020 09:11:22 UTC
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98D7589D43;
+ Wed,  8 Jul 2020 09:11:22 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+ by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06891xxl101699;
+ Wed, 8 Jul 2020 04:01:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+ s=ti-com-17Q1; t=1594198919;
+ bh=J6Zjp036kTWdzVHUvl5HfTNgSVT8vtCUoedODDIlANo=;
+ h=Subject:To:CC:References:From:Date:In-Reply-To;
+ b=X6UwF6kplcJk8b3A0GiaqdTEkphcChyKdGQmHdDdMsjj3aBGi08jwv8dxA40IrXvm
+ rPIYEfU1d2q+iLHGetGb1PLsI2dv2b3Ivkq9tPutRk2IO786s6K5/sGrYhuLNY5Set
+ rJ1jatWacLDB3QVRehj6TENP2lrvn3grajAspYBI=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+ by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06891x86052156
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Wed, 8 Jul 2020 04:01:59 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 8 Jul
+ 2020 04:01:58 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 8 Jul 2020 04:01:58 -0500
+Received: from [10.1.3.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+ by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06891trn048277;
+ Wed, 8 Jul 2020 04:01:57 -0500
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development
+ <dri-devel@lists.freedesktop.org>
+References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
+ <20200707201229.472834-15-daniel.vetter@ffwll.ch>
+From: Jyri Sarha <jsarha@ti.com>
+Autocrypt: addr=jsarha@ti.com; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <b82b0a26-73e9-644d-ba6e-d1c821a96bb0@ti.com>
+Date: Wed, 8 Jul 2020 12:01:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <20200707160012.1299338-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200707160012.1299338-1-chris@chris-wilson.co.uk>
-From: lepton <ytht.net@gmail.com>
-Date: Tue, 7 Jul 2020 22:44:24 -0700
-Message-ID: <CALqoU4znLvWvweMndRt0A33=XwHZ0+1cyow553mSSAM7SkY6Lg@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-X-Mailman-Approved-At: Wed, 08 Jul 2020 12:17:38 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/vgem: Do not allocate backing
- shmemfs file for an import dmabuf object
+In-Reply-To: <20200707201229.472834-15-daniel.vetter@ffwll.ch>
+Content-Language: en-GB
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: Re: [Intel-gfx] [PATCH 14/25] drm/tidss: Annotate dma-fence
+ critical section in commit path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,87 +108,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "# v4 . 10+" <stable@vger.kernel.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBKdWwgNywgMjAyMCBhdCA5OjAwIEFNIENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMt
-d2lsc29uLmNvLnVrPiB3cm90ZToKPgo+IElmIHdlIGFzc2lnbiBvYmotPmZpbHAsIHdlIGJlbGll
-dmUgdGhhdCB0aGUgY3JlYXRlIHZnZW0gYm8gaXMgbmF0aXZlIGFuZAo+IGFsbG93IGRpcmVjdCBv
-cGVyYXRpb25zIGxpa2UgbW1hcCgpIGFzc3VtaW5nIGl0IGJlaGF2ZXMgYXMgYmFja2VkIGJ5IGEK
-PiBzaG1lbWZzIGlub2RlLiBXaGVuIGltcG9ydGVkIGZyb20gYSBkbWFidWYsIHRoZSBvYmotPnBh
-Z2VzIGFyZQo+IG5vdCBhbHdheXMgbWVhbmluZ2Z1bCBhbmQgdGhlIHNobWVtZnMgYmFja2luZyBz
-dG9yZSBtaXNsZWFkaW5nLgo+Cj4gTm90ZSwgdGhhdCByZWd1bGFyIG1tYXAgYWNjZXNzIHRvIGEg
-dmdlbSBibyBpcyB2aWEgdGhlIGR1bWIgYnVmZmVyIEFQSSwKPiBhbmQgdGhhdCByZWplY3RzIGF0
-dGVtcHRzIHRvIG1tYXAgYW4gaW1wb3J0ZWQgZG1hYnVmLAo+Cj4gZHJtX2dlbV9kdW1iX21hcF9v
-ZmZzZXQoKToKPiAgICAgICAgIGlmIChvYmotPmltcG9ydF9hdHRhY2gpIHJldHVybiAtRUlOVkFM
-Owo+Cj4gU28gdGhlIG9ubHkgcm91dGUgYnkgd2hpY2ggd2UgbWlnaHQgYWNjaWRlbnRhbGx5IGFs
-bG93IG1tYXBwaW5nIG9mIGFuCj4gaW1wb3J0ZWQgYnVmZmVyIGlzIHZpYSB2Z2VtX3ByaW1lX21t
-YXAoKSwgd2hpY2ggY2hlY2tlZCBmb3IKPiBvYmotPmZpbHAgYXNzdW1pbmcgdGhhdCBpdCB3b3Vs
-ZCBiZSBOVUxMLgo+Cj4gV2VsbCBpdCB3b3VsZCBoYWQgaXQgYmVlbiB1cGRhdGVkIHRvIHVzZSB0
-aGUgY29tbW9uCj4gZHJtX2dlbV9kdW1fbWFwX29mZnNldCgpIGhlbHBlciwgaW5zdGVhZCBpdCBo
-YXMKPgo+IHZnZW1fZ2VtX2R1bWJfbWFwKCk6Cj4gICAgICAgICBpZiAoIW9iai0+ZmlscCkgcmV0
-dXJuIC1FSU5WQUw7Cj4KPiBmYWxsaW5nIGZvdWwgb2YgdGhlIHNhbWUgdHJhcCBhcyBhYm92ZS4K
-Pgo+IFJlcG9ydGVkLWJ5OiBMZXB0b24gV3UgPHl0aHQubmV0QGdtYWlsLmNvbT4KPiBGaXhlczog
-YWYzM2E5MTkwZDAyICgiZHJtL3ZnZW06IEVuYWJsZSBkbWFidWYgaW1wb3J0IGludGVyZmFjZXMi
-KQo+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVr
-Pgo+IENjOiBMZXB0b24gV3UgPHl0aHQubmV0QGdtYWlsLmNvbT4KPiBDYzogRGFuaWVsIFZldHRl
-ciA8ZGFuaWVsQGZmd2xsLmNoPgo+IENjOiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29l
-bmlnQGFtZC5jb20+Cj4gQ2M6IFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCkgPHRob21hc19vc0Bz
-aGlwbWFpbC5vcmc+Cj4gQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIHY0LjEzKwo+IC0t
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vdmdlbS92Z2VtX2Rydi5jIHwgMjcgKysrKysrKysrKysrKysr
-KystLS0tLS0tLS0tCj4gIDEgZmlsZSBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspLCAxMCBkZWxl
-dGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdmdlbS92Z2VtX2Rydi5j
-IGIvZHJpdmVycy9ncHUvZHJtL3ZnZW0vdmdlbV9kcnYuYwo+IGluZGV4IDkwOWViYTQzNjY0YS4u
-ZWIzYjdjZGFjOTQxIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS92Z2VtL3ZnZW1fZHJ2
-LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vdmdlbS92Z2VtX2Rydi5jCj4gQEAgLTkxLDcgKzkx
-LDcgQEAgc3RhdGljIHZtX2ZhdWx0X3QgdmdlbV9nZW1fZmF1bHQoc3RydWN0IHZtX2ZhdWx0ICp2
-bWYpCj4gICAgICAgICAgICAgICAgIHJldCA9IDA7Cj4gICAgICAgICB9Cj4gICAgICAgICBtdXRl
-eF91bmxvY2soJm9iai0+cGFnZXNfbG9jayk7Cj4gLSAgICAgICBpZiAocmV0KSB7Cj4gKyAgICAg
-ICBpZiAocmV0ICYmIG9iai0+YmFzZS5maWxwKSB7Cj4gICAgICAgICAgICAgICAgIHN0cnVjdCBw
-YWdlICpwYWdlOwo+Cj4gICAgICAgICAgICAgICAgIHBhZ2UgPSBzaG1lbV9yZWFkX21hcHBpbmdf
-cGFnZSgKPiBAQCAtMTU3LDcgKzE1Nyw4IEBAIHN0YXRpYyB2b2lkIHZnZW1fcG9zdGNsb3NlKHN0
-cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fZmlsZSAqZmlsZSkKPiAgfQo+Cj4gIHN0
-YXRpYyBzdHJ1Y3QgZHJtX3ZnZW1fZ2VtX29iamVjdCAqX192Z2VtX2dlbV9jcmVhdGUoc3RydWN0
-IGRybV9kZXZpY2UgKmRldiwKPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICB1bnNpZ25lZCBsb25nIHNpemUpCj4gKyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZmlsZSAqc2htZW0sCj4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCBs
-b25nIHNpemUpCj4gIHsKPiAgICAgICAgIHN0cnVjdCBkcm1fdmdlbV9nZW1fb2JqZWN0ICpvYmo7
-Cj4gICAgICAgICBpbnQgcmV0OwpSZW1vdmUgdGhpcywgaXQncyBub3QgdXNlZCBhbnkgbW9yZS4K
-PiBAQCAtMTY2LDExICsxNjcsOCBAQCBzdGF0aWMgc3RydWN0IGRybV92Z2VtX2dlbV9vYmplY3Qg
-Kl9fdmdlbV9nZW1fY3JlYXRlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gICAgICAgICBpZiAo
-IW9iaikKPiAgICAgICAgICAgICAgICAgcmV0dXJuIEVSUl9QVFIoLUVOT01FTSk7Cj4KPiAtICAg
-ICAgIHJldCA9IGRybV9nZW1fb2JqZWN0X2luaXQoZGV2LCAmb2JqLT5iYXNlLCByb3VuZHVwKHNp
-emUsIFBBR0VfU0laRSkpOwo+IC0gICAgICAgaWYgKHJldCkgewo+IC0gICAgICAgICAgICAgICBr
-ZnJlZShvYmopOwo+IC0gICAgICAgICAgICAgICByZXR1cm4gRVJSX1BUUihyZXQpOwo+IC0gICAg
-ICAgfQo+ICsgICAgICAgZHJtX2dlbV9wcml2YXRlX29iamVjdF9pbml0KGRldiwgJm9iai0+YmFz
-ZSwgc2l6ZSk7Cj4gKyAgICAgICBvYmotPmJhc2UuZmlscCA9IHNobWVtOwo+Cj4gICAgICAgICBt
-dXRleF9pbml0KCZvYmotPnBhZ2VzX2xvY2spOwo+Cj4gQEAgLTE4OSwxMSArMTg3LDIwIEBAIHN0
-YXRpYyBzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKnZnZW1fZ2VtX2NyZWF0ZShzdHJ1Y3QgZHJtX2Rl
-dmljZSAqZGV2LAo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICB1bnNpZ25lZCBsb25nIHNpemUpCj4gIHsKPiAgICAgICAgIHN0cnVjdCBkcm1fdmdlbV9nZW1f
-b2JqZWN0ICpvYmo7Cj4gKyAgICAgICBzdHJ1Y3QgZmlsZSAqc2htZW07Cj4gICAgICAgICBpbnQg
-cmV0Owo+Cj4gLSAgICAgICBvYmogPSBfX3ZnZW1fZ2VtX2NyZWF0ZShkZXYsIHNpemUpOwo+IC0g
-ICAgICAgaWYgKElTX0VSUihvYmopKQo+ICsgICAgICAgc2l6ZSA9IHJvdW5kdXAoc2l6ZSwgUEFH
-RV9TSVpFKTsKPiArCj4gKyAgICAgICBzaG1lbSA9IHNobWVtX2ZpbGVfc2V0dXAoRFJJVkVSX05B
-TUUsIHNpemUsIFZNX05PUkVTRVJWRSk7Cj4gKyAgICAgICBpZiAoSVNfRVJSKHNobWVtKSkKPiAr
-ICAgICAgICAgICAgICAgcmV0dXJuIEVSUl9DQVNUKHNobWVtKTsKPiArCj4gKyAgICAgICBvYmog
-PSBfX3ZnZW1fZ2VtX2NyZWF0ZShkZXYsIHNobWVtLCBzaXplKTsKPiArICAgICAgIGlmIChJU19F
-UlIob2JqKSkgewo+ICsgICAgICAgICAgICAgICBmcHV0KHNobWVtKTsKPiAgICAgICAgICAgICAg
-ICAgcmV0dXJuIEVSUl9DQVNUKG9iaik7Cj4gKyAgICAgICB9Cj4KPiAgICAgICAgIHJldCA9IGRy
-bV9nZW1faGFuZGxlX2NyZWF0ZShmaWxlLCAmb2JqLT5iYXNlLCBoYW5kbGUpOwo+ICAgICAgICAg
-aWYgKHJldCkgewo+IEBAIC0zNjMsNyArMzcwLDcgQEAgc3RhdGljIHN0cnVjdCBkcm1fZ2VtX29i
-amVjdCAqdmdlbV9wcmltZV9pbXBvcnRfc2dfdGFibGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwK
-PiAgICAgICAgIHN0cnVjdCBkcm1fdmdlbV9nZW1fb2JqZWN0ICpvYmo7Cj4gICAgICAgICBpbnQg
-bnBhZ2VzOwo+Cj4gLSAgICAgICBvYmogPSBfX3ZnZW1fZ2VtX2NyZWF0ZShkZXYsIGF0dGFjaC0+
-ZG1hYnVmLT5zaXplKTsKPiArICAgICAgIG9iaiA9IF9fdmdlbV9nZW1fY3JlYXRlKGRldiwgTlVM
-TCwgYXR0YWNoLT5kbWFidWYtPnNpemUpOwo+ICAgICAgICAgaWYgKElTX0VSUihvYmopKQo+ICAg
-ICAgICAgICAgICAgICByZXR1cm4gRVJSX0NBU1Qob2JqKTsKPgo+IC0tCj4gMi4yNy4wCj4KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On 07/07/2020 23:12, Daniel Vetter wrote:
+> Ends right after hw_done(), totally standard case.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Jyri Sarha <jsarha@ti.com>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+
+Acked-by: Jyri Sarha <jsarha@ti.com>
+
+> ---
+>  drivers/gpu/drm/tidss/tidss_kms.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/tidss/tidss_kms.c b/drivers/gpu/drm/tidss/tidss_kms.c
+> index b6e61d6cf60f..556bc801b77c 100644
+> --- a/drivers/gpu/drm/tidss/tidss_kms.c
+> +++ b/drivers/gpu/drm/tidss/tidss_kms.c
+> @@ -4,6 +4,8 @@
+>   * Author: Tomi Valkeinen <tomi.valkeinen@ti.com>
+>   */
+>  
+> +#include <linux/dma-fence.h>
+> +
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_bridge.h>
+> @@ -26,6 +28,7 @@ static void tidss_atomic_commit_tail(struct drm_atomic_state *old_state)
+>  {
+>  	struct drm_device *ddev = old_state->dev;
+>  	struct tidss_device *tidss = to_tidss(ddev);
+> +	bool fence_cookie = dma_fence_begin_signalling();
+>  
+>  	dev_dbg(ddev->dev, "%s\n", __func__);
+>  
+> @@ -36,6 +39,7 @@ static void tidss_atomic_commit_tail(struct drm_atomic_state *old_state)
+>  	drm_atomic_helper_commit_modeset_enables(ddev, old_state);
+>  
+>  	drm_atomic_helper_commit_hw_done(old_state);
+> +	dma_fence_end_signalling(fence_cookie);
+>  	drm_atomic_helper_wait_for_flip_done(ddev, old_state);
+>  
+>  	drm_atomic_helper_cleanup_planes(ddev, old_state);
+> 
+
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
