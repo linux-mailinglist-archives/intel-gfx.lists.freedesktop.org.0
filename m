@@ -1,32 +1,28 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BAF92186F1
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 14:10:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B8382186F5
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 14:10:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 688D86E087;
-	Wed,  8 Jul 2020 12:10:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 996216E34E;
+	Wed,  8 Jul 2020 12:10:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D408C6E087;
- Wed,  8 Jul 2020 12:10:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21752104-1500050 for multiple; Wed, 08 Jul 2020 13:10:13 +0100
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1730C6E0E1;
+ Wed,  8 Jul 2020 12:10:55 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 3D627AD1B;
+ Wed,  8 Jul 2020 12:10:54 +0000 (UTC)
+Date: Wed, 8 Jul 2020 14:10:50 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200708121050.GA29420@linux-uq9g>
 MIME-Version: 1.0
-In-Reply-To: <159420962796.3840.18134805104235178807@emeril.freedesktop.org>
-References: <20200708100843.297655-1-michal@hardline.pl>
- <159420962796.3840.18134805104235178807@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] ✓ Fi.CI.BAT: success for series starting with [1/2] drm/i915/uc: Extract uc usage details into separate debugfs
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Michał Winiarski <michal@hardline.pl>, Patchwork <patchwork@emeril.freedesktop.org>, intel-gfx@lists.freedesktop.org
-Date: Wed, 08 Jul 2020 13:10:11 +0100
-Message-ID: <159421021159.17526.14366033555787735654@build.alporthouse.com>
-User-Agent: alot/0.9
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,31 +35,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Patchwork (2020-07-08 13:00:27)
-> == Series Details ==
-> 
-> Series: series starting with [1/2] drm/i915/uc: Extract uc usage details into separate debugfs
-> URL   : https://patchwork.freedesktop.org/series/79242/
-> State : success
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_8714 -> Patchwork_18105
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **SUCCESS**
- 
-Pushed.
--Chris
+Hi Dave and Daniel,
+
+here's the PR for the current drm-misc-fixes. Only two patches this week.
+
+drm-misc-fixes-2020-07-08:
+ * meson: OSD burst-length fixes
+ * hibmc: fix runtime warning by setting up generic fbdev after
+   registering device
+The following changes since commit bda8eaa6dee7525f4dac950810a85a88bf6c2ba0:
+
+  drm: sun4i: hdmi: Remove extra HPD polling (2020-06-30 10:01:48 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2020-07-08
+
+for you to fetch changes up to 00debf8109e5fad3db31375be2a3c515e1461b4a:
+
+  drm/hisilicon/hibmc: Move drm_fbdev_generic_setup() down to avoid the splat (2020-07-08 09:08:22 +0000)
+
+----------------------------------------------------------------
+ * meson: OSD burst-length fixes
+ * hibmc: fix runtime warning by setting up generic fbdev after
+   registering device
+
+----------------------------------------------------------------
+Martin Blumenstingl (1):
+      drm/meson: viu: fix setting the OSD burst length in VIU_OSD1_FIFO_CTRL_STAT
+
+Zenghui Yu (1):
+      drm/hisilicon/hibmc: Move drm_fbdev_generic_setup() down to avoid the splat
+
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c |  5 +++--
+ drivers/gpu/drm/meson/meson_registers.h         |  6 ++++++
+ drivers/gpu/drm/meson/meson_viu.c               | 11 ++---------
+ 3 files changed, 11 insertions(+), 11 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
