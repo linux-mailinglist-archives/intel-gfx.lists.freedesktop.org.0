@@ -2,31 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FD18218F97
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 20:20:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F94218FBC
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 20:32:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9E446E90D;
-	Wed,  8 Jul 2020 18:20:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 992EC6E910;
+	Wed,  8 Jul 2020 18:32:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 122296E90C;
- Wed,  8 Jul 2020 18:20:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0C705A00E6;
- Wed,  8 Jul 2020 18:20:20 +0000 (UTC)
+Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com
+ [IPv6:2607:f8b0:4864:20::941])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3BA16E910
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 18:32:52 +0000 (UTC)
+Received: by mail-ua1-x941.google.com with SMTP id g4so1953334uaq.10
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Jul 2020 11:32:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ZIsOW9L1zVSJLwPy+kwqApdQ1eA6tiZ3VYJkN83tGb8=;
+ b=JJriwvjmL2bBVqjUXSwsKtrQueiAoSgk8zBM4aW7Gxku+3um6npiZEsfEeCthcY0ks
+ scfQmrJPn/ZF2e7GNB9okKd2zIIREIhSw+BrP1jEphAICV9F8noQWC47e8T3y62H3Lni
+ 0zeC1EZOxrxpJweT/A/w5rPe73RGOl7iKm7a2u69bq+nHi6ZCo73nUsfTUMe+vBReAbD
+ qHd4W12vn0Cs606Fo2xS7kyx/jfnJsu1TOKRpfOPeasNEe2Zh0TRw0ZDxnS9XlEr8Hbb
+ Y2DmhNHv6Zodx5ErsJC+0nI97iBY9dAXHmC6FCbPypNsoOtX3H++jw/U/vc4cs3qC/88
+ aYjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ZIsOW9L1zVSJLwPy+kwqApdQ1eA6tiZ3VYJkN83tGb8=;
+ b=AsL9Iwp9yG9dlQBJI7qx/CKROQnlIPOWE3WGiTpBtxYI1Lfvc2BWn/4wzjld2zqQB7
+ SeF9qqAcCM6DJ9/voep79VaPUsWW2mItROrhRcTsCudUODig++uN2dX+prE67i59iTaI
+ /03gvWt8IiuPfwW9Z8trU3L5pcMolH25Ky+k9PI8fnjQJaDyi8j92YWeGdA3PBbqo3Pi
+ HCS2WDWYr3G3gDWsuvViAgpJbShsErqr1ytZlvQKzcSeOVajni2SQRUA/z56LBDGJAfg
+ 9Z7ZRjhNynWEQCcIOb7qIOd4IQNYUw9XQKYeT2Z1wPIYcafcNXod6VvZd84wwU2IaS2M
+ XkVg==
+X-Gm-Message-State: AOAM532EaYIYYm+TYH/G3yPF9GT60uqjK8IUWv9ZvVBAnpt+33LH/qeY
+ UDlEk1QEb2xHURBA9U2zVG7kijCiQbxeAGR1UoU=
+X-Google-Smtp-Source: ABdhPJwehYXkLfB2VQw/Bj8l7y0Ee2QNFbtsnbn4xtYfcqUfqAGElMakCK4l1bwiiw4ferS/HsnagfBU/qtP3Qv+030=
+X-Received: by 2002:ab0:186d:: with SMTP id j45mr44228279uag.104.1594233171991; 
+ Wed, 08 Jul 2020 11:32:51 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 08 Jul 2020 18:20:20 -0000
-Message-ID: <159423242002.3840.10434844388267629368@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200708173748.32734-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200708173748.32734-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5BCI=2C1/4=5D_drm/i915/gem=3A_Unpin_i?=
- =?utf-8?q?dle_contexts_from_kswapd_reclaim?=
+References: <20200708134742.727-1-chris@chris-wilson.co.uk>
+ <20200708134742.727-6-chris@chris-wilson.co.uk>
+In-Reply-To: <20200708134742.727-6-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 8 Jul 2020 19:32:26 +0100
+Message-ID: <CAM0jSHPRNktsmHHHaXZ3KiTP3LxDjFsftTw1ZkU99_Lt6dgHtw@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915: Switch to object allocations
+ for page directories
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,36 +62,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 8 Jul 2020 at 14:48, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> The GEM object is grossly overweight for the practicality of tracking
+> large numbers of individual pages, yet it is currently our only
+> abstraction for tracking DMA allocations. Since those allocations need
+> to be reserved upfront before an operation, and that we need to break
+> away from simple system memory, we need to ditch using plain struct page
+> wrappers.
+>
+> In the process, we drop the WC mapping as we ended up clflushing
+> everything anyway due to various issues across a wider range of
+> platforms. Though in a future step, we need to drop the kmap_atomic
+> approach which suggests we need to pre-map all the pages and keep them
+> mapped.
+>
+> v2: Verify our large scratch page is suitably DMA aligned; and manually
+> clear the scratch since we are allocating random struct pages.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> ---
+>  .../gpu/drm/i915/gem/i915_gem_object_types.h  |   1 +
+>  .../gpu/drm/i915/gem/selftests/huge_pages.c   |   2 +-
+>  .../drm/i915/gem/selftests/i915_gem_context.c |   2 +-
+>  drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  53 +--
+>  drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |   1 +
+>  drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  89 ++---
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c          |  37 ++-
+>  drivers/gpu/drm/i915/gt/intel_gtt.c           | 303 ++++--------------
+>  drivers/gpu/drm/i915/gt/intel_gtt.h           |  94 ++----
+>  drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  42 ++-
+>  .../gpu/drm/i915/gt/intel_ring_submission.c   |  16 +-
+>  drivers/gpu/drm/i915/gvt/scheduler.c          |  17 +-
+>  drivers/gpu/drm/i915/i915_drv.c               |   1 +
+>  drivers/gpu/drm/i915/i915_drv.h               |   5 -
+>  drivers/gpu/drm/i915/i915_vma.c               |  18 +-
+>  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  23 ++
+>  drivers/gpu/drm/i915/selftests/mock_gtt.c     |   4 +
+>  17 files changed, 287 insertions(+), 421 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> index 5335f799b548..d0847d7896f9 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> @@ -282,6 +282,7 @@ struct drm_i915_gem_object {
+>                 } userptr;
+>
+>                 unsigned long scratch;
+> +               u64 encode;
+>
+>                 void *gvt_info;
+>         };
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> index 8291ede6902c..9fb06fcc8f8f 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> @@ -393,7 +393,7 @@ static int igt_mock_exhaust_device_supported_pages(void *arg)
+>          */
+>
+>         for (i = 1; i < BIT(ARRAY_SIZE(page_sizes)); i++) {
+> -               unsigned int combination = 0;
+> +               unsigned int combination = SZ_4K;
 
-Series: series starting with [CI,1/4] drm/i915/gem: Unpin idle contexts from kswapd reclaim
-URL   : https://patchwork.freedesktop.org/series/79260/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-4ff593f626b9 drm/i915/gem: Unpin idle contexts from kswapd reclaim
--:25: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#25: 
-References: 9e9539800dd4 ("drm/i915: Remove waiting & retiring from shrinker paths")
-
--:25: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9e9539800dd4 ("drm/i915: Remove waiting & retiring from shrinker paths")'
-#25: 
-References: 9e9539800dd4 ("drm/i915: Remove waiting & retiring from shrinker paths")
-
-total: 1 errors, 1 warnings, 0 checks, 75 lines checked
-1a46bbc45f46 drm/i915/gt: Replace opencoded i915_gem_object_pin_map()
-18771727a29c drm/i915: Release shortlived maps of longlived objects
-7ada5714cd87 drm/i915: Remove i915_gem_object_get_dirty_page()
-
+Just an unrelated change?
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
