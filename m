@@ -1,55 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4022218D28
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 18:41:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A950218D4A
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 18:43:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2570B6E55C;
-	Wed,  8 Jul 2020 16:41:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47F206E563;
+	Wed,  8 Jul 2020 16:43:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com
- [IPv6:2607:f8b0:4864:20::e41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFDEB6E55C
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 16:41:05 +0000 (UTC)
-Received: by mail-vs1-xe41.google.com with SMTP id 64so18591634vsl.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Jul 2020 09:41:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=q5bKGKvfnCj67ZvKlHdqt5wQtB7BGnQzHAMzpbag6kY=;
- b=A9BL7USXcbWgSQZPX4/eYPNjox25/UeOWmVTktraXV2xYCVuPhVZHxX2SUfdcZQTso
- 1XM5fLI7pSblHCGsRfEpRF70bzuIRBJAeCibvZpfIXsP0698QQXtaUIyA3r+aawR2dxd
- QiCjCiYwz5I5ETrk6cICGv/0v8UfCpAxzlVxaOYB9IikoSVUZg/pUUiX03iY2WRh1pbv
- 7oUOprOrAtPTiNDMfzFyUnPfqYmjxWGdPuruovBTVvyxZf+pfK3EjRtKn/ZdPhkiLNHv
- WM5pnTuZavI87xIDElJD2wr3tZ+w8Hmv/TAgajhFX5GxpYXh0VruRdX5mZUlCWyjlgpV
- fpoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=q5bKGKvfnCj67ZvKlHdqt5wQtB7BGnQzHAMzpbag6kY=;
- b=NIiZzqMfJTYjbXY4Fchira2FA63rqP4l+zA0THm/LAfDQAoxH/UojBGeh0VWVNkzG3
- MK60r+Lms2a4yEETsBu9rrp8+F94jttVdPTO43m9fgTVNuKMlMqgn5YThRyYnjGPFNoq
- /YO/R9s4BgChJ/2Ghqv9+pwTAFUDSdzQ6OpxuPlKNYytC3HwZWVCnv0W4gPyHtpnDPuT
- 81NEaw5RcdxUh9UFWXH3mUzmvUs+ZhB7K6Cq8qKlzampXPuNO4NJfGciqccUwFJvdQVG
- HJo41N/u0Z/8lPbPdZIfC8Z+0eZrrKvMove0/X3cYChs3wKQqqRFKLhOw1qHq60eolKJ
- FrEA==
-X-Gm-Message-State: AOAM531tMRtmwbumxlRyZ21MsvODSmi0yWrdDcf6qhOVPPVw7IGA/qlM
- l00IQhre+/0Z/FfIixeTv/qIsx6o2n5wyI0u7Bk=
-X-Google-Smtp-Source: ABdhPJzM2QTMprlHmt9tvCiLOd/VthQBNOJSSgvO28x3jOGC2LdvalcaYJEvb1e0qPXTE+HqfuJdrzrpF+KCNAZRBBM=
-X-Received: by 2002:a67:f98c:: with SMTP id b12mr4332437vsq.34.1594226464918; 
- Wed, 08 Jul 2020 09:41:04 -0700 (PDT)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DA4C6E179
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 16:43:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1594226624;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=0BHHvMU3Cp8lzzI95VEIg9wkjEjV2TgJ/DE7ee2ilTk=;
+ b=esfXwmuZeEBFdaGBNTEKfB9K+jx7TErwDyfPOnV6/Q3ZZfPKBa1hmIPZ0MBw3CtP/9qeFN
+ yfNTklJUrV9yIDCfeDrIs/5bIqQdFFp0xXaU+rLHxeoW9Z1OwjXb5NpgdaVWhCtHRlHG3D
+ o/tjzdwNA1u/mJUBZNpcLs8thfEdv3Y=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-255-37oAdJkNNJeSDn_WsU2SwA-1; Wed, 08 Jul 2020 12:43:42 -0400
+X-MC-Unique: 37oAdJkNNJeSDn_WsU2SwA-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 438FC1083;
+ Wed,  8 Jul 2020 16:43:40 +0000 (UTC)
+Received: from x1.localdomain.com (ovpn-112-5.ams2.redhat.com [10.36.112.5])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id C754D79229;
+ Wed,  8 Jul 2020 16:43:36 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@linux.ie>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Wed,  8 Jul 2020 18:43:26 +0200
+Message-Id: <20200708164335.25097-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-References: <20200708134742.727-1-chris@chris-wilson.co.uk>
- <20200708134742.727-3-chris@chris-wilson.co.uk>
-In-Reply-To: <20200708134742.727-3-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 8 Jul 2020 17:40:38 +0100
-Message-ID: <CAM0jSHPcgShxMABCf_35qi00iwcBTvSYYMqnLv2Aa6FPHAsdzQ@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915: Remove
- i915_gem_object_get_dirty_page()
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Intel-gfx] [PATCH 0/9] drm: Add privacy-screen class and connector
+ properties
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,19 +64,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org, Sebastien Bacher <seb128@ubuntu.com>,
+ Marco Trevisan <marco.trevisan@canonical.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 8 Jul 2020 at 14:48, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Last user removed, remove the convenience function.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Hi All,
+
+Here is the privacy-screen related code which we discussed a while ago.
+This series consists of a number of different parts:
+
+1. A new version of Rajat's privacy-screen connector properties patch,
+this adds new userspace API in the form of new properties
+
+2. Since on most devices the privacy screen is actually controlled by
+some vendor specific ACPI/WMI interface which has a driver under
+drivers/platform/x86, we need some "glue" code to make this functionality
+available to KMS drivers. Patches 3-5 add a new privacy-screen class for
+this, which allows non KMS drivers (and possibly KMS drivers too) to
+register a privacy-screen device and also adds an interface for KMS drivers
+to get access to the privacy-screen associated with a specific connector.
+This is modelled similar to how we deal with e.g. PWMs and GPIOs in the
+kernel, including separate includes for consumers and providers(drivers).
+
+3. Some drm_connector helper functions to keep the actual changes needed
+for this in individual KMS drivers as small as possible (patch 6).
+
+4. Make the thinkpad_acpi code register a privacy-screen device on
+ThinkPads with a privacy-screen (patches 7-8)
+
+5. Make the i915 driver export the privacy-screen functionality through
+the connector properties on the eDP connector.
+
+I was a bit in doubt if I should calls this series a RFC, or just call
+it v1, since there is no real userspace code using this yet. It was
+tested using xrandr property access and udevadm event monitoring.
+I do expect / hope we will have patches for a userspace consumer of the
+new properties (mutter) ready soon.
+
+But since the code is completely ready, including API documentation,
+I've decided to just call this v1. Hopefully we can get patches for the
+first userspace consumer of this ready during the review of this.
+
+Regards,
+
+Hans
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
