@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215ED217C56
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 02:42:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C0AD217C59
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 02:43:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 737456E435;
-	Wed,  8 Jul 2020 00:42:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA3FA6E03E;
+	Wed,  8 Jul 2020 00:43:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E2DD6E435
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 00:42:15 +0000 (UTC)
-IronPort-SDR: Yps577PyN9k3S9Eei7M6SXlxqNSfe3G5NcY3iUDyfi9OEcb/dZ05cl0OUNbyop1PaBM4qOQOQ6
- YOHZBoB9K3Vw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9675"; a="147721132"
-X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="147721132"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 014DA6E03E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 00:43:44 +0000 (UTC)
+IronPort-SDR: B9SVsSg430CGKLA/M147VIfSzGCSHayLU2GWJbRMIvZllcPt7FFpDluI3bSU2zoGIv1wkoStdJ
+ Yh6DupbOqC/g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9675"; a="145217620"
+X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="145217620"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2020 17:42:14 -0700
-IronPort-SDR: C9Le953W7hNCT4UBsa14CrqyPOsL8bg5cMoVHq+4h+Znu3TccPhIXCD4//erYFnRsdLXpWxLQm
- wA+tzuQm3T2A==
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2020 17:43:44 -0700
+IronPort-SDR: ohe9DJf22D1CdEWEMM3HvkpigKetaKeA6OPZwFmIre92UzZPSTcdK3hULtZiEqWcFQqaNB1baS
+ +cc2usuTJh+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="315695587"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
- by fmsmga002.fm.intel.com with ESMTP; 07 Jul 2020 17:42:14 -0700
+X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="314483239"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by orsmga008.jf.intel.com with ESMTP; 07 Jul 2020 17:43:42 -0700
 Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.171]) by
- fmsmsx107.amr.corp.intel.com ([169.254.6.74]) with mapi id 14.03.0439.000;
- Tue, 7 Jul 2020 17:42:13 -0700
+ FMSMSX106.amr.corp.intel.com ([169.254.5.119]) with mapi id 14.03.0439.000;
+ Tue, 7 Jul 2020 17:43:42 -0700
 From: "Souza, Jose" <jose.souza@intel.com>
 To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Thread-Topic: [Intel-gfx] [PATCH v7 5/5] drm/i915/rkl: Add Wa_14011224835
  for PHY B initialization
-Thread-Index: AQHWRFfFbBh/iCbSfEKiQVJ/+LKJe6j9bmWA
-Date: Wed, 8 Jul 2020 00:42:13 +0000
-Message-ID: <237a4ac595cfc6d53c595e32432ef7119eb98c04.camel@intel.com>
+Thread-Index: AQHWRFfFbBh/iCbSfEKiQVJ/+LKJe6j9bs6A
+Date: Wed, 8 Jul 2020 00:43:41 +0000
+Message-ID: <ec7a2bd98df05b7e2c61498594b277ff69cb00dc.camel@intel.com>
 References: <20200617033100.4044428-1-matthew.d.roper@intel.com>
  <20200617033100.4044428-6-matthew.d.roper@intel.com>
 In-Reply-To: <20200617033100.4044428-6-matthew.d.roper@intel.com>
@@ -46,7 +46,7 @@ Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.24.14.51]
-Content-ID: <4357628D2C62534AB75ED42314D1AC5C@intel.com>
+Content-ID: <B2FB18F0C1468E4DAE427837DE0676DE@intel.com>
 MIME-Version: 1.0
 Subject: Re: [Intel-gfx] [PATCH v7 5/5] drm/i915/rkl: Add Wa_14011224835 for
  PHY B initialization
@@ -100,9 +100,15 @@ On Tue, 2020-06-16 at 20:31 -0700, Matt Roper wrote:
 > +{
 > +	u32 grccode, grccode_ldo;
 > +	u32 iref_rcal_ord, rcompcode_ld_cap_ov;
+
+Nitpick: you could do all the bellow with just 2 u32(val and grccode).
+
 > +
 > +	intel_de_wait_for_register(i915, ICL_PORT_COMP_DW3(PHY_A),
 > +				   FIRST_COMP_DONE, FIRST_COMP_DONE, 100);
+
+The timeout parameter here is in ms not usec
+
 > +
 > +	grccode = REG_FIELD_GET(GRCCODE,
 > +				intel_de_read(i915, ICL_PORT_COMP_DW6(PHY_A)));
@@ -129,6 +135,9 @@ On Tue, 2020-06-16 at 20:31 -0700, Matt Roper wrote:
 > +		    phy == PHY_B)
 > +			/* Wa_14011224835:rkl[a0..c0] */
 > +			rkl_combo_phy_b_init_wa(dev_priv);
+
+Missing the icl_combo_phy_verify_state() counter part.
+
 >  	}
 >  }
 >  
@@ -165,6 +174,9 @@ On Tue, 2020-06-16 at 20:31 -0700, Matt Roper wrote:
 > +#define   RCOMPCODEOVEN_LDO_SYNC	REG_BIT(23)
 > +#define   RCOMPCODE_LD_CAP_OV		REG_GENMASK(22, 16)
 >  
+
+Register definition matches.
+
 >  #define ICL_PORT_COMP_DW8(phy)		_MMIO(_ICL_PORT_COMP_DW(8, phy))
 >  #define   IREFGEN			(1 << 24)
 _______________________________________________
