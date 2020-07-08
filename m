@@ -2,32 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BD2F21930F
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 00:04:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52F2521933A
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 00:17:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA3676E93E;
-	Wed,  8 Jul 2020 22:04:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96B946E941;
+	Wed,  8 Jul 2020 22:17:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 149EA6E93E;
- Wed,  8 Jul 2020 22:04:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0D3BCA363D;
- Wed,  8 Jul 2020 22:04:10 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 828CF6E941
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 22:17:43 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21758516-1500050 
+ for multiple; Wed, 08 Jul 2020 23:17:31 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  8 Jul 2020 23:17:29 +0100
+Message-Id: <20200708221729.17113-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Wed, 08 Jul 2020 22:04:10 -0000
-Message-ID: <159424585002.3840.12476536450378122714@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200708205512.21625-1-jose.souza@intel.com>
-In-Reply-To: <20200708205512.21625-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv4=2C1/5=5D_drm/i915/display=3A_Replace?=
- =?utf-8?q?_drm=5Fi915=5Fprivate_in_voltage_swing_functions_by_intel=5Fenc?=
- =?utf-8?q?oder?=
+Subject: [Intel-gfx] [PATCH] drm/i915: Soften the tasklet flush frequency
+ before waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,75 +37,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+We include a tasklet flush before waiting on a request as a precaution
+against the HW being lax in event signaling. We now have a precautionary
+flush in the engine's heartbeat and so do not need to be quite so
+zealous on every request wait. If we focus on the request, the only
+tasklet flush that matters is if there is a delay in submitting this
+request to HW, so if the request is not ready to be executed no
+advantage in reducing this wait can be gained by running the tasklet.
+And there is little point in doing busy work for no result.
 
-Series: series starting with [v4,1/5] drm/i915/display: Replace drm_i915_private in voltage swing functions by intel_encoder
-URL   : https://patchwork.freedesktop.org/series/79265/
-State : warning
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_request.c | 20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 3bb7320249ae..19adb7b82a2e 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1790,6 +1790,24 @@ long i915_request_wait(struct i915_request *rq,
+ 	if (dma_fence_add_callback(&rq->fence, &wait.cb, request_wait_wake))
+ 		goto out;
+ 
++	/*
++	 * Flush the submission tasklet, but only if it may help this request.
++	 *
++	 * We sometimes experience some latency between the HW interrupts and
++	 * tasklet execution (mostly due to ksoftirqd latency, but it can also
++	 * be due to lazy CS events), so lets run the tasklet manually if there
++	 * is a chance it may submit this request. If the request is not ready
++	 * to run, as it is waiting for other fences to be signaled, flushing
++	 * the tasklet is busy work without any advantage for this client.
++	 *
++	 * If the HW is being lazy, this is the last chance before we go to
++	 * sleep to catch any pending events. We will check periodically in
++	 * the heartbeat to flush the submission tasklets as a last resort
++	 * for unhappy HW.
++	 */
++	if (i915_request_is_ready(rq))
++		intel_engine_flush_submission(rq->engine);
++
+ 	for (;;) {
+ 		set_current_state(state);
+ 
+@@ -1798,8 +1816,6 @@ long i915_request_wait(struct i915_request *rq,
+ 			break;
+ 		}
+ 
+-		intel_engine_flush_submission(rq->engine);
 -
-+drivers/gpu/drm/i915/display/intel_display.c:1223:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1226:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1229:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1232:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2271:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2272:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2273:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2275:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2276:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2785:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+ 		if (signal_pending_state(state, current)) {
+ 			timeout = -ERESTARTSYS;
+ 			break;
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
