@@ -1,43 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA2992188C6
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 15:18:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA440218973
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 15:48:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0309A89E41;
-	Wed,  8 Jul 2020 13:18:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A1356E398;
+	Wed,  8 Jul 2020 13:48:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3846E89E41
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 13:18:17 +0000 (UTC)
-IronPort-SDR: steK7oIpSBT1lTOeWAKNwK/ctD1csH3mmnI+ODgKwBfxdouCjyD1I0Vxg3vx9QI+3A+IF7nj/C
- aGPYo0yOIVBw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9675"; a="165865904"
-X-IronPort-AV: E=Sophos;i="5.75,327,1589266800"; d="scan'208";a="165865904"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2020 06:18:01 -0700
-IronPort-SDR: 2meetnvFUi9NbAtJYJo2B3JHHVEanylORdsdID1pJenQ/QoEGcWiYUHYyV1jCi+8HfGce72ioK
- JhHU2MRrjkUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,327,1589266800"; d="scan'208";a="268470621"
-Received: from apientak-mobl.ger.corp.intel.com (HELO
- delly.ger.corp.intel.com) ([10.252.53.198])
- by fmsmga008.fm.intel.com with ESMTP; 08 Jul 2020 06:18:00 -0700
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2FF76E121
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 13:47:57 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21753148-1500050 
+ for multiple; Wed, 08 Jul 2020 14:47:44 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Jul 2020 16:17:51 +0300
-Message-Id: <20200708131751.334457-4-lionel.g.landwerlin@intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200708131751.334457-1-lionel.g.landwerlin@intel.com>
-References: <20200708131751.334457-1-lionel.g.landwerlin@intel.com>
+Date: Wed,  8 Jul 2020 14:47:36 +0100
+Message-Id: <20200708134742.727-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v12 3/3] drm/i915: peel dma-fence-chains wait
- fences
+Subject: [Intel-gfx] [PATCH 1/7] drm/i915/gt: Replace opencoded
+ i915_gem_object_pin_map()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,83 +37,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: matthew.auld@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To allow faster engine to engine synchronization, peel the layer of
-dma-fence-chain to expose potential i915 fences so that the
-i915-request code can emit HW semaphore wait/signal operations in the
-ring which is faster than waking up the host to submit unblocked
-workloads after interrupt notification.
+As we have a pin_map interface, that knows how to flush the data to the
+device, use it. The only downside is that we keep the kmap around, as
+once acquired we keep the mapping cached until the object's backing
+store is released.
 
-v2: Also deal with chains where the last node is not a dma-fence-chain
-
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 39 ++++++++++++++++++-
- 1 file changed, 38 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index d8814e637e71..3ffd95d1dc2c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2403,6 +2403,7 @@ await_fence_array(struct i915_execbuffer *eb)
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index e866b8d721ed..02a38810bcd3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3880,7 +3880,6 @@ static int intel_init_workaround_bb(struct intel_engine_cs *engine)
+ 	struct i915_wa_ctx_bb *wa_bb[2] = { &wa_ctx->indirect_ctx,
+ 					    &wa_ctx->per_ctx };
+ 	wa_bb_func_t wa_bb_fn[2];
+-	struct page *page;
+ 	void *batch, *batch_ptr;
+ 	unsigned int i;
+ 	int ret;
+@@ -3916,14 +3915,14 @@ static int intel_init_workaround_bb(struct intel_engine_cs *engine)
+ 		return ret;
+ 	}
  
- 	for (n = 0; n < eb->n_fences; n++) {
- 		struct drm_syncobj *syncobj;
-+		struct dma_fence_chain *chain;
- 		struct dma_fence *fence;
- 		unsigned int flags;
+-	page = i915_gem_object_get_dirty_page(wa_ctx->vma->obj, 0);
+-	batch = batch_ptr = kmap_atomic(page);
++	batch = i915_gem_object_pin_map(wa_ctx->vma->obj, I915_MAP_WB);
  
-@@ -2423,7 +2424,43 @@ await_fence_array(struct i915_execbuffer *eb)
- 				continue;
- 		}
+ 	/*
+ 	 * Emit the two workaround batch buffers, recording the offset from the
+ 	 * start of the workaround batch buffer object for each and their
+ 	 * respective sizes.
+ 	 */
++	batch_ptr = batch;
+ 	for (i = 0; i < ARRAY_SIZE(wa_bb_fn); i++) {
+ 		wa_bb[i]->offset = batch_ptr - batch;
+ 		if (GEM_DEBUG_WARN_ON(!IS_ALIGNED(wa_bb[i]->offset,
+@@ -3935,10 +3934,10 @@ static int intel_init_workaround_bb(struct intel_engine_cs *engine)
+ 			batch_ptr = wa_bb_fn[i](engine, batch_ptr);
+ 		wa_bb[i]->size = batch_ptr - (batch + wa_bb[i]->offset);
+ 	}
++	GEM_BUG_ON(batch_ptr - batch > CTX_WA_BB_OBJ_SIZE);
  
--		err = i915_request_await_dma_fence(eb->request, fence);
-+		chain = to_dma_fence_chain(fence);
-+		if (chain) {
-+			struct dma_fence *iter;
-+
-+			/*
-+			 * If we're dealing with a dma-fence-chain, peel the
-+			 * chain by adding all of the unsignaled fences
-+			 * (dma_fence_chain_for_each does that for us) the
-+			 * chain points to.
-+			 *
-+			 * This enables us to identify waits on i915 fences
-+			 * and allows for faster engine-to-engine
-+			 * synchronization using HW semaphores.
-+			 */
-+			dma_fence_chain_for_each(iter, fence) {
-+				struct dma_fence_chain *iter_chain =
-+					to_dma_fence_chain(iter);
-+
-+				/*
-+				 * It is possible that the last item in the
-+				 * chain is not a dma_fence_chain.
-+				 */
-+				if (iter_chain) {
-+					err = i915_request_await_dma_fence(eb->request,
-+									   iter_chain->fence);
-+				} else {
-+					err = i915_request_await_dma_fence(eb->request, iter);
-+				}
-+				if (err < 0) {
-+					dma_fence_put(iter);
-+					break;
-+				}
-+			}
-+		} else {
-+			err = i915_request_await_dma_fence(eb->request, fence);
-+		}
-+
- 		dma_fence_put(fence);
- 		if (err < 0)
- 			return err;
+-	BUG_ON(batch_ptr - batch > CTX_WA_BB_OBJ_SIZE);
+-
+-	kunmap_atomic(batch);
++	__i915_gem_object_flush_map(wa_ctx->vma->obj, 0, batch_ptr - batch);
++	i915_gem_object_unpin_map(wa_ctx->vma->obj);
+ 	if (ret)
+ 		lrc_destroy_wa_ctx(engine);
+ 
 -- 
-2.27.0
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
