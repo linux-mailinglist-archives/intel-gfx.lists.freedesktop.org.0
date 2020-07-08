@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FBDF21921A
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 23:15:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4670B21921F
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 23:15:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 971C56E920;
-	Wed,  8 Jul 2020 21:15:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 193326E922;
+	Wed,  8 Jul 2020 21:15:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5B106E920
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 21:15:04 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A68086E58B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 21:15:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
  s=mimecast20190719; t=1594242903;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=N/xQY2ndEh9mW9MwVPKpVHE1H/7u+wSTzv3ok3js0g0=;
- b=P5tVifPI1IvxUAf4uG0Nw0oo6AK2yD4vmTni4nnpR4fldCNSEG2q14ZuU+xHZGloMHi7Cd
- avyY1d7OXcj12gYqxa4+zgLGc3VCL1MLt7r3RQ2bCHyYLjo7QtAANJb/PYTBFKpMuYjeHo
- PXp6+xo3+aV5vSuO+rOewGiSf//ofhQ=
+ bh=H8fH7uW7rjL+GZ+fftT+fw3GP/XhNeMys1Knw7XwAIE=;
+ b=NDbvFua7JdeU6dFU11pPlSzrsYVSbG8BDCPBTIPFqRkmTCHhaZAsS32GxZ1XERJ+APzolx
+ RbPW/GMZCtHhJoDVhSY+NoIH2hcaQlcQ6yUDtKHzyTggL9WQRUbGf0qzU/DLawCWX8YbV1
+ XtBLAzvhzozkOJe+EIjvVFcj/eJ46YI=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-273-19y8WGWLN02ld0J7Wx2r2A-1; Wed, 08 Jul 2020 17:14:58 -0400
-X-MC-Unique: 19y8WGWLN02ld0J7Wx2r2A-1
+ us-mta-401-XiAmOvYsOpiYkmVOkLY1Wg-1; Wed, 08 Jul 2020 17:15:01 -0400
+X-MC-Unique: XiAmOvYsOpiYkmVOkLY1Wg-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 8F8FC80BCA3;
- Wed,  8 Jul 2020 21:14:56 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 68543107ACCD;
+ Wed,  8 Jul 2020 21:14:59 +0000 (UTC)
 Received: from x1.localdomain.com (ovpn-112-5.ams2.redhat.com [10.36.112.5])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 07380797F2;
- Wed,  8 Jul 2020 21:14:53 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id D4A0F79220;
+ Wed,  8 Jul 2020 21:14:56 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Thierry Reding <thierry.reding@gmail.com>,
  =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
@@ -44,14 +44,14 @@ To: Thierry Reding <thierry.reding@gmail.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <lenb@kernel.org>
-Date: Wed,  8 Jul 2020 23:14:23 +0200
-Message-Id: <20200708211432.28612-8-hdegoede@redhat.com>
+Date: Wed,  8 Jul 2020 23:14:24 +0200
+Message-Id: <20200708211432.28612-9-hdegoede@redhat.com>
 In-Reply-To: <20200708211432.28612-1-hdegoede@redhat.com>
 References: <20200708211432.28612-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: [Intel-gfx] [PATCH v4 07/16] pwm: crc: Fix period / duty_cycle
- times being off by a factor of 256
+Subject: [Intel-gfx] [PATCH v4 08/16] pwm: crc: Fix off-by-one error in the
+ clock-divider calculations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,68 +73,74 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While looking into adding atomic-pwm support to the pwm-crc driver I
-noticed something odd, there is a PWM_BASE_CLK define of 6 MHz and
-there is a clock-divider which divides this with a value between 1-128,
-and there are 256 duty-cycle steps.
+The CRC PWM controller has a clock-divider which divides the clock with
+a value between 1-128. But as can seen from the PWM_DIV_CLK_xxx
+defines, this range maps to a register value of 0-127.
 
-The pwm-crc code before this commit assumed that a clock-divider
-setting of 1 means that the PWM output is running at 6 MHZ, if that
-is true, where do these 256 duty-cycle steps come from?
+So after calculating the clock-divider we must subtract 1 to get the
+register value, unless the requested frequency was so high that the
+calculation has already resulted in a (rounded) divider value of 0.
 
-This would require an internal frequency of 256 * 6 MHz = 1.5 GHz, that
-seems unlikely for a PMIC which is using a silicon process optimized for
-power-switching transistors. It is way more likely that there is an 8
-bit counter for the duty cycle which acts as an extra fixed divider
-wrt the PWM output frequency.
-
-The main user of the pwm-crc driver is the i915 GPU driver which uses it
-for backlight control. Lets compare the PWM register values set by the
-video-BIOS (the GOP), assuming the extra fixed divider is present versus
-the PWM frequency specified in the Video-BIOS-Tables:
-
-Device:		PWM Hz set by BIOS	PWM Hz specified in VBT
-Asus T100TA 	200			200
-Asus T100HA 	200			200
-Lenovo Miix 2 8	23437			20000
-Toshiba WT8-A	23437			20000
-
-So as we can see if we assume the extra division by 256 then the register
-values set by the GOP are an exact match for the VBT values, where as
-otherwise the values would be of by a factor of 256.
-
-This commit fixes the period / duty_cycle calculations to take the
-extra division by 256 into account.
+Note that before this fix, setting a period of PWM_MAX_PERIOD_NS which
+corresponds to the max. divider value of 128 could have resulted in a
+bug where the code would use 128 as divider-register value which would
+have resulted in an actual divider value of 0 (and the enable bit being
+set). A rounding error stopped this bug from actually happen. This
+same rounding error means that after the subtraction of 1 it is impossible
+to set the divider to 128. Also bump PWM_MAX_PERIOD_NS by 1 ns to allow
+setting a divider of 128 (register-value 127).
 
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
 Changes in v3:
-- Use NSEC_PER_USEC instead of adding a new (non-sensical) NSEC_PER_MHZ define
+- Introduce crc_pwm_calc_clk_div() here instead of later in the patch-set
+  to reduce the amount of churn in the patch-set a bit
 ---
- drivers/pwm/pwm-crc.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/pwm/pwm-crc.c | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/pwm/pwm-crc.c b/drivers/pwm/pwm-crc.c
-index 272eeb071147..c056eb9b858c 100644
+index c056eb9b858c..44ec7d5b63e1 100644
 --- a/drivers/pwm/pwm-crc.c
 +++ b/drivers/pwm/pwm-crc.c
-@@ -21,8 +21,8 @@
- 
+@@ -22,7 +22,7 @@
  #define PWM_MAX_LEVEL		0xFF
  
--#define PWM_BASE_CLK		6000000  /* 6 MHz */
--#define PWM_MAX_PERIOD_NS	21333    /* 46.875KHz */
-+#define PWM_BASE_CLK_MHZ	6	/* 6 MHz */
-+#define PWM_MAX_PERIOD_NS	5461333	/* 183 Hz */
+ #define PWM_BASE_CLK_MHZ	6	/* 6 MHz */
+-#define PWM_MAX_PERIOD_NS	5461333	/* 183 Hz */
++#define PWM_MAX_PERIOD_NS	5461334	/* 183 Hz */
  
  /**
   * struct crystalcove_pwm - Crystal Cove PWM controller
-@@ -72,7 +72,7 @@ static int crc_pwm_config(struct pwm_chip *c, struct pwm_device *pwm,
+@@ -39,6 +39,18 @@ static inline struct crystalcove_pwm *to_crc_pwm(struct pwm_chip *pc)
+ 	return container_of(pc, struct crystalcove_pwm, chip);
+ }
+ 
++static int crc_pwm_calc_clk_div(int period_ns)
++{
++	int clk_div;
++
++	clk_div = PWM_BASE_CLK_MHZ * period_ns / (256 * NSEC_PER_USEC);
++	/* clk_div 1 - 128, maps to register values 0-127 */
++	if (clk_div > 0)
++		clk_div--;
++
++	return clk_div;
++}
++
+ static int crc_pwm_enable(struct pwm_chip *c, struct pwm_device *pwm)
+ {
+ 	struct crystalcove_pwm *crc_pwm = to_crc_pwm(c);
+@@ -68,11 +80,10 @@ static int crc_pwm_config(struct pwm_chip *c, struct pwm_device *pwm,
+ 	}
+ 
+ 	if (pwm_get_period(pwm) != period_ns) {
+-		int clk_div;
++		int clk_div = crc_pwm_calc_clk_div(period_ns);
  
  		/* changing the clk divisor, need to disable fisrt */
  		crc_pwm_disable(c, pwm);
--		clk_div = PWM_BASE_CLK * period_ns / NSEC_PER_SEC;
-+		clk_div = PWM_BASE_CLK_MHZ * period_ns / (256 * NSEC_PER_USEC);
+-		clk_div = PWM_BASE_CLK_MHZ * period_ns / (256 * NSEC_PER_USEC);
  
  		regmap_write(crc_pwm->regmap, PWM0_CLK_DIV,
  					clk_div | PWM_OUTPUT_ENABLE);
