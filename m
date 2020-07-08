@@ -2,34 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE2BB218F7F
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 20:09:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FD18218F97
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 20:20:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E531B6E908;
-	Wed,  8 Jul 2020 18:09:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9E446E90D;
+	Wed,  8 Jul 2020 18:20:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 703E36E908
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 18:09:02 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21757001-1500050 for multiple; Wed, 08 Jul 2020 19:09:00 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 122296E90C;
+ Wed,  8 Jul 2020 18:20:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0C705A00E6;
+ Wed,  8 Jul 2020 18:20:20 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <846580f3-4dd4-ed0e-b461-010d7b0ae6be@linux.intel.com>
-References: <20200706061926.6687-1-chris@chris-wilson.co.uk>
- <20200706061926.6687-4-chris@chris-wilson.co.uk>
- <846580f3-4dd4-ed0e-b461-010d7b0ae6be@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Wed, 08 Jul 2020 19:08:58 +0100
-Message-ID: <159423173830.30287.17971074477427255070@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 03/20] drm/i915/gem: Don't drop the timeline
- lock during execbuf
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 08 Jul 2020 18:20:20 -0000
+Message-ID: <159423242002.3840.10434844388267629368@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200708173748.32734-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200708173748.32734-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/4=5D_drm/i915/gem=3A_Unpin_i?=
+ =?utf-8?q?dle_contexts_from_kswapd_reclaim?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,118 +39,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-07-08 17:54:51)
-> 
-> On 06/07/2020 07:19, Chris Wilson wrote:
-> > @@ -662,18 +692,22 @@ static int eb_reserve(struct i915_execbuffer *eb)
-> >        * room for the earlier objects *unless* we need to defragment.
-> >        */
-> >   
-> > -     if (mutex_lock_interruptible(&eb->i915->drm.struct_mutex))
-> > -             return -EINTR;
-> > -
-> >       pass = 0;
-> >       do {
-> > +             int err = 0;
-> > +
-> > +             if (mutex_lock_interruptible(&eb->i915->drm.struct_mutex))
-> > +                     return -EINTR;
-> 
-> Recently you explained to me why we still use struct mutex here so 
-> maybe, while moving the code, document that in a comment.
+== Series Details ==
 
-Part of the work here is to eliminate the need for the struct_mutex,
-that will be replaced by not dropping the vm->mutex while binding
-multiple vma.
+Series: series starting with [CI,1/4] drm/i915/gem: Unpin idle contexts from kswapd reclaim
+URL   : https://patchwork.freedesktop.org/series/79260/
+State : warning
 
-It's the interaction with the waits to flush other vm users when under
-pressure that are the most annoying. This area is not straightforward,
-and at least deserves some comments so that the thinking behind it can
-be fixed.
+== Summary ==
 
-> > +static struct i915_request *
-> > +nested_request_create(struct intel_context *ce)
-> > +{
-> > +     struct i915_request *rq;
-> > +
-> > +     /* XXX This only works once; replace with shared timeline */
-> 
-> Once as in attempt to use the same local intel_context from another eb 
-> would upset lockdep? It's not a problem I think.
+$ dim checkpatch origin/drm-tip
+4ff593f626b9 drm/i915/gem: Unpin idle contexts from kswapd reclaim
+-:25: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#25: 
+References: 9e9539800dd4 ("drm/i915: Remove waiting & retiring from shrinker paths")
 
-"Once" as in this is the only time we can do this nested locking between
-engines of the same context in the whole driver, or else lockdep would
-have been right to complain. [i.e. if we ever do the reserve nesting, we
-are screwed.]
+-:25: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9e9539800dd4 ("drm/i915: Remove waiting & retiring from shrinker paths")'
+#25: 
+References: 9e9539800dd4 ("drm/i915: Remove waiting & retiring from shrinker paths")
 
-Fwiw, I have posted patches that will eliminate the need for a nested
-timeline here :)
+total: 1 errors, 1 warnings, 0 checks, 75 lines checked
+1a46bbc45f46 drm/i915/gt: Replace opencoded i915_gem_object_pin_map()
+18771727a29c drm/i915: Release shortlived maps of longlived objects
+7ada5714cd87 drm/i915: Remove i915_gem_object_get_dirty_page()
 
-> > +     mutex_lock_nested(&ce->timeline->mutex, SINGLE_DEPTH_NESTING);
-> > +     intel_context_enter(ce);
-
-
-> >   static int __eb_pin_engine(struct i915_execbuffer *eb, struct intel_context *ce)
-> >   {
-> >       struct intel_timeline *tl;
-> > @@ -2087,9 +2174,7 @@ static int __eb_pin_engine(struct i915_execbuffer *eb, struct intel_context *ce)
-> >       intel_context_enter(ce);
-> >       rq = eb_throttle(ce);
-> >   
-> > -     intel_context_timeline_unlock(tl);
-> > -
-> > -     if (rq) {
-> > +     while (rq) {
-> >               bool nonblock = eb->file->filp->f_flags & O_NONBLOCK;
-> >               long timeout;
-> >   
-> > @@ -2097,23 +2182,34 @@ static int __eb_pin_engine(struct i915_execbuffer *eb, struct intel_context *ce)
-> >               if (nonblock)
-> >                       timeout = 0;
-> >   
-> > +             mutex_unlock(&tl->mutex);
-> 
-> "Don't drop the timeline lock during execbuf"? Is the "during execbuf" 
-> actually a smaller subset
-
-We are before execbuf in my book :)
-
-This is throttle the hog before we start, and reserve enough space in
-the ring (we make sure there's a page, or thereabouts) to build a batch
-without interruption.
- 
-> > +
-> >               timeout = i915_request_wait(rq,
-> >                                           I915_WAIT_INTERRUPTIBLE,
-> >                                           timeout);
-> >               i915_request_put(rq);
-> >   
-> > +             mutex_lock(&tl->mutex);
-> > +
-> >               if (timeout < 0) {
-> >                       err = nonblock ? -EWOULDBLOCK : timeout;
-> >                       goto err_exit;
-> >               }
-> > +
-> > +             retire_requests(tl, NULL);
-> > +             rq = eb_throttle(ce);
-> 
-> Alternative to avoid two call sites to eb_throttle of
-> 
->    while (rq = eb_throttle(ce)) {
-> 
-> Or checkpatch does not like it?
-
-Ta, that loop was annoying me, and I couldn't quite put my finger on
-what.
-
-checkpatch.pl --strict is quiet. Appears it only hates if (x = y).
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
