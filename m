@@ -1,58 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 267FD217C3F
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 02:35:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87189217C44
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 02:39:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 042DF6E0A6;
-	Wed,  8 Jul 2020 00:35:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E526E0E2;
+	Wed,  8 Jul 2020 00:39:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 547056E0A6
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 00:34:59 +0000 (UTC)
-IronPort-SDR: NbOKw3L7CzdOqCdthBvNHb/4WSxTvCuCYiG6IyGvR7akXhLNvsHYF0zadNNom+IWtd/RJmNT/Z
- 5ve1iDy9WKxA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9675"; a="146782106"
-X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="146782106"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83C7F6E0E2
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 00:39:16 +0000 (UTC)
+IronPort-SDR: MZlPfvgEOEiWtQrtCSUtILoV0TxzTWuj858VjrMSW/yFNyhcUBvztvLPCoMlh1rvrJkq5ixKZW
+ ZGVMM6SB59WQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9675"; a="127314650"
+X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="127314650"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2020 17:34:58 -0700
-IronPort-SDR: K5zXDBl1FssmzFu8TcNhQnGgPDUO3CGLWWqgtO76D3waIFYHrZCHcJNaybkc9gx4NrdycQgeFi
- oiEmZd4U3/cQ==
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2020 17:39:17 -0700
+IronPort-SDR: lziPx2AmoZ3uUKe/oIn6XbQ9po3ocuKf1YOFOQWBK8v6k8AMjH7VzDfPuJLd/R9Jv/gRPPOfeV
+ EomxKeXbZ9zA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="388666495"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
- by fmsmga001.fm.intel.com with ESMTP; 07 Jul 2020 17:34:58 -0700
-Received: from fmsmsx152.amr.corp.intel.com (10.18.125.5) by
- FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 7 Jul 2020 17:34:58 -0700
+X-IronPort-AV: E=Sophos;i="5.75,325,1589266800"; d="scan'208";a="388667065"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by fmsmga001.fm.intel.com with ESMTP; 07 Jul 2020 17:39:15 -0700
+Received: from fmsmsx158.amr.corp.intel.com (10.18.116.75) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 7 Jul 2020 17:39:15 -0700
 Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.171]) by
- FMSMSX152.amr.corp.intel.com ([169.254.6.60]) with mapi id 14.03.0439.000;
- Tue, 7 Jul 2020 17:34:58 -0700
+ fmsmsx158.amr.corp.intel.com ([169.254.15.146]) with mapi id 14.03.0439.000;
+ Tue, 7 Jul 2020 17:39:15 -0700
 From: "Souza, Jose" <jose.souza@intel.com>
 To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v7 1/5] drm/i915/rkl: Handle new
- DPCLKA_CFGCR0 layout
-Thread-Index: AQHWRFfHWl8RoJiDnkSdGQGceCcC7aj9bF2A
-Date: Wed, 8 Jul 2020 00:34:56 +0000
-Message-ID: <0f610f6398345c4f2d12fb1efbd837da5e771a82.camel@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v7 3/5] drm/i915/rkl: Handle HTI
+Thread-Index: AQHWRFfDjeXgqyuqiU67C4NMX34EWKj9bY8A
+Date: Wed, 8 Jul 2020 00:39:14 +0000
+Message-ID: <5d0c15152c89b43db772b3a0544d103c58bc78b5.camel@intel.com>
 References: <20200617033100.4044428-1-matthew.d.roper@intel.com>
- <20200617033100.4044428-2-matthew.d.roper@intel.com>
-In-Reply-To: <20200617033100.4044428-2-matthew.d.roper@intel.com>
+ <20200617033100.4044428-4-matthew.d.roper@intel.com>
+In-Reply-To: <20200617033100.4044428-4-matthew.d.roper@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.24.14.51]
-Content-ID: <28D74760BEFAD44B8D39EC69D1370E77@intel.com>
+Content-ID: <DD0F170BB9B65448A8B04C4352280F3B@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v7 1/5] drm/i915/rkl: Handle new
- DPCLKA_CFGCR0 layout
+Subject: Re: [Intel-gfx] [PATCH v7 3/5] drm/i915/rkl: Handle HTI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,100 +63,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTA2LTE2IGF0IDIwOjMwIC0wNzAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBS
-S0wgdXNlcyBhIHNsaWdodGx5IGRpZmZlcmVudCBiaXQgbGF5b3V0IGZvciB0aGUgRFBDTEtBX0NG
-R0NSMCByZWdpc3Rlci4NCj4gDQo+IHYyOg0KPiAgLSBGaXggaW52ZXJ0ZWQgbWFzayBhcHBsaWNh
-dGlvbiB3aGVuIHVwZGF0aW5nIElDTF9EUENMS0FfQ0ZHQ1IwDQo+ICAtIENoZWNrcGF0Y2ggc3R5
-bGUgZml4ZXMNCj4gDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3Nl
-LnNvdXphQGludGVsLmNvbT4NCg0KPiBCc3BlYzogNTAyODcNCj4gQ2M6IEFkaXR5YSBTd2FydXAg
-PGFkaXR5YS5zd2FydXBAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxt
-YXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGRpLmMgICAgIHwgMTggKysrKysrKysrKysrKysrLS0tDQo+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDE1ICsrKysrKysrKysr
-Ky0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCAgICAgICAgICAgICAgfCAg
-NiArKysrKysNCj4gIDMgZmlsZXMgY2hhbmdlZCwgMzMgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlv
-bnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiBp
-bmRleCBjYTdiYjIyOTRkMmIuLjg3OTBmMjIxZGM3NyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+IEBAIC0yNzcwLDcgKzI3NzAsOSBAQCBoc3dfc2V0
-X3NpZ25hbF9sZXZlbHMoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkNCj4gIHN0YXRpYyB1MzIg
-aWNsX2RwY2xrYV9jZmdjcjBfY2xrX29mZihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
-aXYsDQo+ICAJCQkJICAgICBlbnVtIHBoeSBwaHkpDQo+ICB7DQo+IC0JaWYgKGludGVsX3BoeV9p
-c19jb21ibyhkZXZfcHJpdiwgcGh5KSkgew0KPiArCWlmIChJU19ST0NLRVRMQUtFKGRldl9wcml2
-KSkgew0KPiArCQlyZXR1cm4gUktMX0RQQ0xLQV9DRkdDUjBfRERJX0NMS19PRkYocGh5KTsNCj4g
-Kwl9IGVsc2UgaWYgKGludGVsX3BoeV9pc19jb21ibyhkZXZfcHJpdiwgcGh5KSkgew0KPiAgCQly
-ZXR1cm4gSUNMX0RQQ0xLQV9DRkdDUjBfRERJX0NMS19PRkYocGh5KTsNCj4gIAl9IGVsc2UgaWYg
-KGludGVsX3BoeV9pc190YyhkZXZfcHJpdiwgcGh5KSkgew0KPiAgCQllbnVtIHRjX3BvcnQgdGNf
-cG9ydCA9IGludGVsX3BvcnRfdG9fdGMoZGV2X3ByaXYsDQo+IEBAIC0yNzk3LDYgKzI3OTksMTYg
-QEAgc3RhdGljIHZvaWQgaWNsX21hcF9wbGxzX3RvX3BvcnRzKHN0cnVjdCBpbnRlbF9lbmNvZGVy
-ICplbmNvZGVyLA0KPiAgCQkgICAgKHZhbCAmIGljbF9kcGNsa2FfY2ZnY3IwX2Nsa19vZmYoZGV2
-X3ByaXYsIHBoeSkpID09IDApOw0KPiAgDQo+ICAJaWYgKGludGVsX3BoeV9pc19jb21ibyhkZXZf
-cHJpdiwgcGh5KSkgew0KPiArCQl1MzIgbWFzaywgc2VsOw0KPiArDQo+ICsJCWlmIChJU19ST0NL
-RVRMQUtFKGRldl9wcml2KSkgew0KPiArCQkJbWFzayA9IFJLTF9EUENMS0FfQ0ZHQ1IwX0RESV9D
-TEtfU0VMX01BU0socGh5KTsNCj4gKwkJCXNlbCA9IFJLTF9EUENMS0FfQ0ZHQ1IwX0RESV9DTEtf
-U0VMKHBsbC0+aW5mby0+aWQsIHBoeSk7DQo+ICsJCX0gZWxzZSB7DQo+ICsJCQltYXNrID0gSUNM
-X0RQQ0xLQV9DRkdDUjBfRERJX0NMS19TRUxfTUFTSyhwaHkpOw0KPiArCQkJc2VsID0gSUNMX0RQ
-Q0xLQV9DRkdDUjBfRERJX0NMS19TRUwocGxsLT5pbmZvLT5pZCwgcGh5KTsNCj4gKwkJfQ0KPiAr
-DQo+ICAJCS8qDQo+ICAJCSAqIEV2ZW4gdGhvdWdoIHRoaXMgcmVnaXN0ZXIgcmVmZXJlbmNlcyBE
-RElzLCBub3RlIHRoYXQgd2UNCj4gIAkJICogd2FudCB0byBwYXNzIHRoZSBQSFkgcmF0aGVyIHRo
-YW4gdGhlIHBvcnQgKERESSkuICBGb3INCj4gQEAgLTI4MDcsOCArMjgxOSw4IEBAIHN0YXRpYyB2
-b2lkIGljbF9tYXBfcGxsc190b19wb3J0cyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwN
-Cj4gIAkJICogICBDbG9jayBTZWxlY3QgY2hvb3NlcyB0aGUgUExMIGZvciBib3RoIERESUEgYW5k
-IERESUQgYW5kDQo+ICAJCSAqICAgZHJpdmVzIHBvcnQgQSBpbiBhbGwgY2FzZXMuIg0KPiAgCQkg
-Ki8NCj4gLQkJdmFsICY9IH5JQ0xfRFBDTEtBX0NGR0NSMF9ERElfQ0xLX1NFTF9NQVNLKHBoeSk7
-DQo+IC0JCXZhbCB8PSBJQ0xfRFBDTEtBX0NGR0NSMF9ERElfQ0xLX1NFTChwbGwtPmluZm8tPmlk
-LCBwaHkpOw0KPiArCQl2YWwgJj0gfm1hc2s7DQo+ICsJCXZhbCB8PSBzZWw7DQo+ICAJCWludGVs
-X2RlX3dyaXRlKGRldl9wcml2LCBJQ0xfRFBDTEtBX0NGR0NSMCwgdmFsKTsNCj4gIAkJaW50ZWxf
-ZGVfcG9zdGluZ19yZWFkKGRldl9wcml2LCBJQ0xfRFBDTEtBX0NGR0NSMCk7DQo+ICAJfQ0KPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiBpbmRleCA3
-NDU3ODEzZWYyNzMuLjZjMmJiMzM1NGI4NiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gQEAgLTEwNzg1LDkgKzEwNzg1LDE4IEBAIHN0
-YXRpYyB2b2lkIGljbF9nZXRfZGRpX3BsbChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
-aXYsIGVudW0gcG9ydCBwb3J0LA0KPiAgCXUzMiB0ZW1wOw0KPiAgDQo+ICAJaWYgKGludGVsX3Bo
-eV9pc19jb21ibyhkZXZfcHJpdiwgcGh5KSkgew0KPiAtCQl0ZW1wID0gaW50ZWxfZGVfcmVhZChk
-ZXZfcHJpdiwgSUNMX0RQQ0xLQV9DRkdDUjApICYNCj4gLQkJCUlDTF9EUENMS0FfQ0ZHQ1IwX0RE
-SV9DTEtfU0VMX01BU0socGh5KTsNCj4gLQkJaWQgPSB0ZW1wID4+IElDTF9EUENMS0FfQ0ZHQ1Iw
-X0RESV9DTEtfU0VMX1NISUZUKHBoeSk7DQo+ICsJCXUzMiBtYXNrLCBzaGlmdDsNCj4gKw0KPiAr
-CQlpZiAoSVNfUk9DS0VUTEFLRShkZXZfcHJpdikpIHsNCj4gKwkJCW1hc2sgPSBSS0xfRFBDTEtB
-X0NGR0NSMF9ERElfQ0xLX1NFTF9NQVNLKHBoeSk7DQo+ICsJCQlzaGlmdCA9IFJLTF9EUENMS0Ff
-Q0ZHQ1IwX0RESV9DTEtfU0VMX1NISUZUKHBoeSk7DQo+ICsJCX0gZWxzZSB7DQo+ICsJCQltYXNr
-ID0gSUNMX0RQQ0xLQV9DRkdDUjBfRERJX0NMS19TRUxfTUFTSyhwaHkpOw0KPiArCQkJc2hpZnQg
-PSBJQ0xfRFBDTEtBX0NGR0NSMF9ERElfQ0xLX1NFTF9TSElGVChwaHkpOw0KPiArCQl9DQo+ICsN
-Cj4gKwkJdGVtcCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIElDTF9EUENMS0FfQ0ZHQ1IwKSAm
-IG1hc2s7DQo+ICsJCWlkID0gdGVtcCA+PiBzaGlmdDsNCj4gIAkJcG9ydF9kcGxsX2lkID0gSUNM
-X1BPUlRfRFBMTF9ERUZBVUxUOw0KPiAgCX0gZWxzZSBpZiAoaW50ZWxfcGh5X2lzX3RjKGRldl9w
-cml2LCBwaHkpKSB7DQo+ICAJCXUzMiBjbGtfc2VsID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwg
-RERJX0NMS19TRUwocG9ydCkpICYgRERJX0NMS19TRUxfTUFTSzsNCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X3JlZy5oDQo+IGluZGV4IGYwOTEyMGNhYzg5YS4uNDViZGE1ODE5YWJkIDEwMDY0NA0KPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfcmVnLmgNCj4gQEAgLTEwMTk1LDEyICsxMDE5NSwxOCBAQCBlbnVtIHNrbF9w
-b3dlcl9nYXRlIHsNCj4gIA0KPiAgI2RlZmluZSBJQ0xfRFBDTEtBX0NGR0NSMAkJCV9NTUlPKDB4
-MTY0MjgwKQ0KPiAgI2RlZmluZSAgSUNMX0RQQ0xLQV9DRkdDUjBfRERJX0NMS19PRkYocGh5KQko
-MSA8PCBfUElDSyhwaHksIDEwLCAxMSwgMjQpKQ0KPiArI2RlZmluZSAgUktMX0RQQ0xLQV9DRkdD
-UjBfRERJX0NMS19PRkYocGh5KQlSRUdfQklUKChwaHkpICsgMTApDQo+ICAjZGVmaW5lICBJQ0xf
-RFBDTEtBX0NGR0NSMF9UQ19DTEtfT0ZGKHRjX3BvcnQpCSgxIDw8ICgodGNfcG9ydCkgPCBQT1JU
-X1RDNCA/IFwNCj4gIAkJCQkJCSAgICAgICAodGNfcG9ydCkgKyAxMiA6IFwNCj4gIAkJCQkJCSAg
-ICAgICAodGNfcG9ydCkgLSBQT1JUX1RDNCArIDIxKSkNCj4gICNkZWZpbmUgIElDTF9EUENMS0Ff
-Q0ZHQ1IwX0RESV9DTEtfU0VMX1NISUZUKHBoeSkJKChwaHkpICogMikNCj4gICNkZWZpbmUgIElD
-TF9EUENMS0FfQ0ZHQ1IwX0RESV9DTEtfU0VMX01BU0socGh5KQkoMyA8PCBJQ0xfRFBDTEtBX0NG
-R0NSMF9ERElfQ0xLX1NFTF9TSElGVChwaHkpKQ0KPiAgI2RlZmluZSAgSUNMX0RQQ0xLQV9DRkdD
-UjBfRERJX0NMS19TRUwocGxsLCBwaHkpCSgocGxsKSA8PCBJQ0xfRFBDTEtBX0NGR0NSMF9ERElf
-Q0xLX1NFTF9TSElGVChwaHkpKQ0KPiArI2RlZmluZSAgUktMX0RQQ0xLQV9DRkdDUjBfRERJX0NM
-S19TRUxfU0hJRlQocGh5KQlfUElDSyhwaHksIDAsIDIsIDQsIDI3KQ0KPiArI2RlZmluZSAgUktM
-X0RQQ0xLQV9DRkdDUjBfRERJX0NMS19TRUxfTUFTSyhwaHkpIFwNCj4gKwkoMyA8PCBSS0xfRFBD
-TEtBX0NGR0NSMF9ERElfQ0xLX1NFTF9TSElGVChwaHkpKQ0KPiArI2RlZmluZSAgUktMX0RQQ0xL
-QV9DRkdDUjBfRERJX0NMS19TRUwocGxsLCBwaHkpIFwNCj4gKwkoKHBsbCkgPDwgUktMX0RQQ0xL
-QV9DRkdDUjBfRERJX0NMS19TRUxfU0hJRlQocGh5KSkNCj4gIA0KPiAgLyogQ05MIFBMTCAqLw0K
-PiAgI2RlZmluZSBEUExMMF9FTkFCTEUJCTB4NDYwMTANCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Tue, 2020-06-16 at 20:30 -0700, Matt Roper wrote:
+> If HTI (also sometimes called HDPORT) is enabled at startup, it may be
+> using some of the PHYs and DPLLs making them unavailable for general
+> usage.  Let's read out the HDPORT_STATE register and avoid making use of
+> resources that HTI is already using.
+> 
+> v2:
+>  - Fix minor checkpatch warnings
+> 
+> Bspec: 49189
+> Bspec: 53707
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  | 30 ++++++++++++++++---
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 21 +++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  1 +
+>  drivers/gpu/drm/i915/i915_drv.h               |  3 ++
+>  drivers/gpu/drm/i915/i915_reg.h               |  6 ++++
+>  5 files changed, 57 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 6c2bb3354b86..f16512eddc58 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -46,6 +46,7 @@
+>  #include "display/intel_ddi.h"
+>  #include "display/intel_dp.h"
+>  #include "display/intel_dp_mst.h"
+> +#include "display/intel_dpll_mgr.h"
+>  #include "display/intel_dsi.h"
+>  #include "display/intel_dvo.h"
+>  #include "display/intel_gmbus.h"
+> @@ -16814,6 +16815,13 @@ static void intel_pps_init(struct drm_i915_private *dev_priv)
+>  	intel_pps_unlock_regs_wa(dev_priv);
+>  }
+>  
+> +static bool hti_uses_phy(u32 hdport_state, enum phy phy)
+> +{
+> +	return hdport_state & HDPORT_ENABLED &&
+> +		(hdport_state & HDPORT_PHY_USED_DP(phy) ||
+> +		 hdport_state & HDPORT_PHY_USED_HDMI(phy));
+> +}
+> +
+>  static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>  {
+>  	struct intel_encoder *encoder;
+> @@ -16825,10 +16833,22 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>  		return;
+>  
+>  	if (IS_ROCKETLAKE(dev_priv)) {
+> -		intel_ddi_init(dev_priv, PORT_A);
+> -		intel_ddi_init(dev_priv, PORT_B);
+> -		intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
+> -		intel_ddi_init(dev_priv, PORT_E);	/* DDI TC2 */
+> +		/*
+> +		 * If HTI (aka HDPORT) is enabled at boot, it may have taken
+> +		 * over some of the PHYs and made them unavailable to the
+> +		 * driver.  In that case we should skip initializing the
+> +		 * corresponding outputs.
+> +		 */
+> +		u32 hdport_state = intel_de_read(dev_priv, HDPORT_STATE);
+> +
+> +		if (!hti_uses_phy(hdport_state, PHY_A))
+> +			intel_ddi_init(dev_priv, PORT_A);
+> +		if (!hti_uses_phy(hdport_state, PHY_B))
+> +			intel_ddi_init(dev_priv, PORT_B);
+> +		if (!hti_uses_phy(hdport_state, PHY_C))
+> +			intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
+> +		if (!hti_uses_phy(hdport_state, PHY_D))
+> +			intel_ddi_init(dev_priv, PORT_E);	/* DDI TC2 */
+>  	} else if (INTEL_GEN(dev_priv) >= 12) {
+>  		intel_ddi_init(dev_priv, PORT_A);
+>  		intel_ddi_init(dev_priv, PORT_B);
+> @@ -18376,6 +18396,8 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+>  
+>  	intel_dpll_readout_hw_state(dev_priv);
+>  
+> +	dev_priv->hti_pll_mask = intel_get_hti_plls(dev_priv);
+
+Why not do this in intel_shared_dpll_init()?
+
+> +
+>  	for_each_intel_encoder(dev, encoder) {
+>  		pipe = 0;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> index b5f4d4cef682..6f59f9ec453b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -265,6 +265,24 @@ void intel_disable_shared_dpll(const struct intel_crtc_state *crtc_state)
+>  	mutex_unlock(&dev_priv->dpll.lock);
+>  }
+>  
+> +/*
+> + * HTI (aka HDPORT) may be using some of the platform's PLL's, making them
+> + * unavailable for use.
+> + */
+> +u32 intel_get_hti_plls(struct drm_i915_private *dev_priv)
+
+No need to export this function, check above.
+
+> +{
+> +	u32 hdport_state;
+> +
+> +	if (!IS_ROCKETLAKE(dev_priv))
+> +		return 0;
+> +
+> +	hdport_state = intel_de_read(dev_priv, HDPORT_STATE);
+> +	if (!(hdport_state & HDPORT_ENABLED))
+> +		return 0;
+> +
+> +	return REG_FIELD_GET(HDPORT_DPLL_USED_MASK, hdport_state);
+> +}
+> +
+>  static struct intel_shared_dpll *
+>  intel_find_shared_dpll(struct intel_atomic_state *state,
+>  		       const struct intel_crtc *crtc,
+> @@ -280,6 +298,9 @@ intel_find_shared_dpll(struct intel_atomic_state *state,
+>  
+>  	drm_WARN_ON(&dev_priv->drm, dpll_mask & ~(BIT(I915_NUM_PLLS) - 1));
+>  
+> +	/* Eliminate DPLLs from consideration if reserved by HTI */
+> +	dpll_mask &= ~dev_priv->hti_pll_mask;
+
+This should be done in icl_get_combo_phy_dpll() for RKL only.
+
+> +
+>  	for_each_set_bit(i, &dpll_mask, I915_NUM_PLLS) {
+>  		pll = &dev_priv->dpll.shared_dplls[i];
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> index 49367847bfb5..edcc43f4670f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> @@ -390,6 +390,7 @@ void intel_shared_dpll_swap_state(struct intel_atomic_state *state);
+>  void intel_shared_dpll_init(struct drm_device *dev);
+>  void intel_dpll_readout_hw_state(struct drm_i915_private *dev_priv);
+>  void intel_dpll_sanitize_state(struct drm_i915_private *dev_priv);
+> +u32 intel_get_hti_plls(struct drm_i915_private *dev_priv);
+>  
+>  void intel_dpll_dump_hw_state(struct drm_i915_private *dev_priv,
+>  			      const struct intel_dpll_hw_state *hw_state);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 5649f8e502fe..b836032fa0de 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1037,6 +1037,9 @@ struct drm_i915_private {
+>  
+>  	struct intel_l3_parity l3_parity;
+>  
+> +	/* Mask of PLLs reserved for use by HTI and unavailable to driver. */
+> +	u32 hti_pll_mask;
+> +
+>  	/*
+>  	 * edram size in MB.
+>  	 * Cannot be determined by PCIID. You must always read a register.
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 34f8698ac3aa..34b2ec04ccd8 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2908,6 +2908,12 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>  #define MBUS_BBOX_CTL_S1		_MMIO(0x45040)
+>  #define MBUS_BBOX_CTL_S2		_MMIO(0x45044)
+>  
+> +#define HDPORT_STATE			_MMIO(0x45050)
+> +#define   HDPORT_DPLL_USED_MASK		REG_GENMASK(14, 12)
+> +#define   HDPORT_PHY_USED_DP(phy)	REG_BIT(2 * (phy) + 2)
+> +#define   HDPORT_PHY_USED_HDMI(phy)	REG_BIT(2 * (phy) + 1)
+> +#define   HDPORT_ENABLED		REG_BIT(0)
+> +
+>  /* Make render/texture TLB fetches lower priorty than associated data
+>   *   fetches. This is not turned on by default
+>   */
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
