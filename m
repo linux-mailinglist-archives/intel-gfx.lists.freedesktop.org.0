@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A9421927B
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 23:25:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 442A421927E
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jul 2020 23:26:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF7016E93A;
-	Wed,  8 Jul 2020 21:25:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D7B76E932;
+	Wed,  8 Jul 2020 21:26:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
  [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 398796E3AC;
- Wed,  8 Jul 2020 21:25:49 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id 17so4635664wmo.1;
- Wed, 08 Jul 2020 14:25:49 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EBF46E932;
+ Wed,  8 Jul 2020 21:26:41 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id l17so4721043wmj.0;
+ Wed, 08 Jul 2020 14:26:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=XER3e3sK04N17rYlFHptOIrrOHxscvdHxWebaxCUi+8=;
- b=dIElQNw9gNCE2p6Dr2IxzCC2qWCJy2ZuU8l0mtsVK2PvPyciU+kQXvjYRqvL6tmdbO
- 27Urc1gu5Ilm6/LXwQWzWp+Tusey2kRmi1qGE2B+EfIlf6BhRX4QYe3fu7BZxivJ26IA
- AVwrjfJCuQeEIQVggwg7sajh5sjXTS1LjpLgqNejt88puqHkjkUI1ifAiKkBARoy893y
- vXkuBYRMRLRKCzR+g9uX82e766vCOIZ5WIjIIok02SETMI8qm4Ws6PGvirDfdPXc6mRt
- rnP7wVDna1nRKsvmiimyZnLE0bq83C8c7NMgXZ+D3Zcj766+RrAD3Jm8gDQhVtAKvOOi
- ssPg==
+ :cc; bh=qs1xLfihy/FIc+IVG5SddHfJ1rcCZWUdNVY3LWJeZRU=;
+ b=ORZIZAG1x7S6uF4K8Vfj60P3GDcpJM4asOrtUR9/AorjQ/UTT/oq4cH0/i5fmoOU02
+ NfzyTIaGIfvvddHOpJEyr0x5znKU31x6dm9Zvw9X/zuyH4xFlcTIF/6PruNb2f4AFA11
+ 0PqkPRI8JnNFTvogwCPuPnstc/1OsbiLXN+Qp6E2zideXWPvbkLhFo/jY89aNHolFblX
+ wdOIPWDEZ5l356gD+J2oHWrQi6xWqsy2nRBOOfjXtzt4QGyno7sjsvcoeEGfBIYOQkij
+ DvfGtQmYc/YwjU8pKF8Fg2l/ls8waKTvj4MrmIJ7pbmoRiM9bZkKubHCJLVdJiFrBG3N
+ kF9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=XER3e3sK04N17rYlFHptOIrrOHxscvdHxWebaxCUi+8=;
- b=AYF5Ley7+jhZE3TZyRAm3Qt5sWNFk6OfsdZHocrQtiAqNI7bG68uzBsfs0DpSmfTga
- IxEU/yzywjaUaCVfM427gRxkPVqfUnzpHNWDR12ZjvzWnGSzbu2WiNf9ePF1ulsmDXKe
- +gZX4ZDoV5Pqs98fdMk19/tYqlbr+rwxZR+umVVrlUa04kgXkFVUo5vRMF6XNX2FAYc8
- slgWigvF+oJ6wCrupUTPTquOQTQATVG2VPiOnE+LzQBCFJq1PPV80Ua3ERzHzpRN2HQR
- gOS1keDXij752H8W0CNzl78K7GEjw2pXFwE7SW1WwdZOIIf9G9tqzpcefrRxzel0s9S+
- w3gg==
-X-Gm-Message-State: AOAM533H/h45LXWBdU11uw66MX+9GGWynZfmAvkF5YHuDA/xrXCXa8SZ
- b2gfJN6z9vJhr8GvoiT3UpY6fquauwiXdD7ud9A=
-X-Google-Smtp-Source: ABdhPJwJJw0HsUAZBEYzIMxK+SdmPhzX93Jtu7FFVB1avT/2pnzCoe+oqDeLhnM5KLbZHFZSjZaZpesTK8j73dJfa54=
-X-Received: by 2002:a1c:3954:: with SMTP id g81mr11034773wma.73.1594243547343; 
- Wed, 08 Jul 2020 14:25:47 -0700 (PDT)
+ bh=qs1xLfihy/FIc+IVG5SddHfJ1rcCZWUdNVY3LWJeZRU=;
+ b=lZJ/dxOT7QLGtTAKctgiZsRoNLNijqp9bzEJDdh+QR4QnUmSP3WoGrnmEbdx/RMNhS
+ Ll+CR1RoKC1bNyL+LJESTSlnqlKtQXCGrgKro3UBqJipAsOrWqWeVfVDxyZt8Q8DEd8p
+ w1ZzGRa3i2USzBvQXqfBttvicfeOLIjgb9Bb7ce6rF4R25W6DDeE3Iz5D0yPnnEGlerV
+ ZQdxhS3UWBNZIqmrbo6RnlvSfPNBSL7oo9M7Xz/2FGv6QBs8RE4fXlwhg0yeLhbmLn5p
+ s2Z8o9lfN1y/bb1kcA6iZR+5Ojl93mUJfRyAa31ZJ45vCdeoKu+FTOdy1WA/Zo13dw7Y
+ E/eg==
+X-Gm-Message-State: AOAM5329u1mKLkDVzp7Lj5b2wUJygalkvzVUoetXjN6b9NPjWadRzrpr
+ m4aOyMfbn5eedSM+uVAku+pODGqfnndEfDQ3PCY=
+X-Google-Smtp-Source: ABdhPJxlRhk4Jlddk/ERDdjB0lo8SEEDKueLvjKWQXTS9B1Ra2Lomd6RyFpmddAxb9S5huyidcoLH+NKPczAltiEtg4=
+X-Received: by 2002:a1c:3954:: with SMTP id g81mr11037143wma.73.1594243600056; 
+ Wed, 08 Jul 2020 14:26:40 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200708164335.25097-1-hdegoede@redhat.com>
-In-Reply-To: <20200708164335.25097-1-hdegoede@redhat.com>
+ <20200708164335.25097-2-hdegoede@redhat.com>
+In-Reply-To: <20200708164335.25097-2-hdegoede@redhat.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 8 Jul 2020 17:25:36 -0400
-Message-ID: <CADnq5_NeJBbCFKR96DWbCQteaRPCmThwD7_2biy7vSb-MifD9A@mail.gmail.com>
+Date: Wed, 8 Jul 2020 17:26:29 -0400
+Message-ID: <CADnq5_OKbv8kK_EOUd0b+SJ6e6LhwL7B_uX49YpNJ7A1828pZg@mail.gmail.com>
 To: Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH 0/9] drm: Add privacy-screen class and
- connector properties
+Subject: Re: [Intel-gfx] [PATCH 1/9] drm/connector: Fix kerneldoc warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,53 +73,36 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, Jul 8, 2020 at 12:43 PM Hans de Goede <hdegoede@redhat.com> wrote:
 >
-> Hi All,
+> Fix the following kerneldoc warning:
 >
-> Here is the privacy-screen related code which we discussed a while ago.
-> This series consists of a number of different parts:
+> drivers/gpu/drm/drm_connector.c:2189:
+> warning: missing initial short description on line
 >
-> 1. A new version of Rajat's privacy-screen connector properties patch,
-> this adds new userspace API in the form of new properties
->
-> 2. Since on most devices the privacy screen is actually controlled by
-> some vendor specific ACPI/WMI interface which has a driver under
-> drivers/platform/x86, we need some "glue" code to make this functionality
-> available to KMS drivers. Patches 3-5 add a new privacy-screen class for
-> this, which allows non KMS drivers (and possibly KMS drivers too) to
-> register a privacy-screen device and also adds an interface for KMS drivers
-> to get access to the privacy-screen associated with a specific connector.
-> This is modelled similar to how we deal with e.g. PWMs and GPIOs in the
-> kernel, including separate includes for consumers and providers(drivers).
->
-> 3. Some drm_connector helper functions to keep the actual changes needed
-> for this in individual KMS drivers as small as possible (patch 6).
->
-> 4. Make the thinkpad_acpi code register a privacy-screen device on
-> ThinkPads with a privacy-screen (patches 7-8)
->
-> 5. Make the i915 driver export the privacy-screen functionality through
-> the connector properties on the eDP connector.
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 
-Care to create a patch 10 for amdgpu?  Lenovo sells AMD thinkpads with
-a privacy screen as well, presumably it works
-the same way.
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Alex
-
+> ---
+>  drivers/gpu/drm/drm_connector.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> I was a bit in doubt if I should calls this series a RFC, or just call
-> it v1, since there is no real userspace code using this yet. It was
-> tested using xrandr property access and udevadm event monitoring.
-> I do expect / hope we will have patches for a userspace consumer of the
-> new properties (mutter) ready soon.
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index d877ddc6dc57..543086533850 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -2130,8 +2130,8 @@ int drm_connector_set_panel_orientation(
+>  EXPORT_SYMBOL(drm_connector_set_panel_orientation);
 >
-> But since the code is completely ready, including API documentation,
-> I've decided to just call this v1. Hopefully we can get patches for the
-> first userspace consumer of this ready during the review of this.
->
-> Regards,
->
-> Hans
+>  /**
+> - * drm_connector_set_panel_orientation_with_quirk -
+> - *     set the connecter's panel_orientation after checking for quirks
+> + * drm_connector_set_panel_orientation_with_quirk - set the connecter's
+> + *    panel_orientation after checking for quirks
+>   * @connector: connector for which to init the panel-orientation property.
+>   * @panel_orientation: drm_panel_orientation value to set
+>   * @width: width in pixels of the panel, used for panel quirk detection
+> --
+> 2.26.2
 >
 > _______________________________________________
 > dri-devel mailing list
