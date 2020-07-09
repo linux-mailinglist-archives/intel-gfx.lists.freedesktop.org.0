@@ -1,41 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E78DC21A993
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 23:14:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD5E21AA08
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 23:53:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C02F6EB3D;
-	Thu,  9 Jul 2020 21:14:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA6A6EB43;
+	Thu,  9 Jul 2020 21:53:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41D926EB3B
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 21:14:02 +0000 (UTC)
-IronPort-SDR: rGybDp5JA0eBUk6Hy7iU/06tho1EkXd4nDobSOmwKZ7GBQZQgs/mzMSoqkN6HcnAyCAG8cJUth
- J4y+BDwsGirA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="149580923"
-X-IronPort-AV: E=Sophos;i="5.75,332,1589266800"; d="scan'208";a="149580923"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2020 14:14:01 -0700
-IronPort-SDR: 7JEbmCC1FSCnsebhJevGSxghIZcJXDLyZM/tUtK4UEG188jO4Wnoo97/Fjng22+bZuJPGHa46j
- XkSAl5Kk2iow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,332,1589266800"; d="scan'208";a="280429793"
-Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
- by orsmga003.jf.intel.com with ESMTP; 09 Jul 2020 14:14:00 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 125FC6EB43
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 21:53:45 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21770699-1500050 
+ for multiple; Thu, 09 Jul 2020 22:53:35 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Jul 2020 14:13:57 -0700
-Message-Id: <20200709211357.23208-6-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200709211357.23208-1-lucas.demarchi@intel.com>
-References: <20200709211357.23208-1-lucas.demarchi@intel.com>
+Date: Thu,  9 Jul 2020 22:53:31 +0100
+Message-Id: <20200709215331.19994-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 6/6] drm/i915/dg1: Add fake PCH
+Subject: [Intel-gfx] [PATCH] drm/i915/selftest: Check that GPR are restored
+ across noa_wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,65 +37,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DG1 has the south engine display on the same PCI device. Ideally we
-could use HAS_PCH_SPLIT(), but that macro is misused all across the
-code base to rather signify a range of gens. So add a fake one for DG1
-to be used where needed.
+Perf implements a GPU delay (noa_wait) by looping until the CS timestamp
+has passed a certain point. This use MI_MATH and the general purpose
+registers of the user's context, and since it is clobbering the user
+state it must carefully save and restore the user's data around the
+noa_wait. We can verify this by loading some values in the GPR that we
+know will be clobbered the noa_wait, and then inspecting the GPR after
+the noa_wait completes and confirming that have been restored.
 
-Cc: Aditya Swarup <aditya.swarup@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 ---
- drivers/gpu/drm/i915/intel_pch.c | 6 ++++++
- drivers/gpu/drm/i915/intel_pch.h | 4 ++++
- 2 files changed, 10 insertions(+)
+ drivers/gpu/drm/i915/selftests/i915_perf.c | 124 +++++++++++++++++++++
+ 1 file changed, 124 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-index c668e99eb2e4..6c97192e9ca8 100644
---- a/drivers/gpu/drm/i915/intel_pch.c
-+++ b/drivers/gpu/drm/i915/intel_pch.c
-@@ -188,6 +188,12 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
- {
- 	struct pci_dev *pch = NULL;
+diff --git a/drivers/gpu/drm/i915/selftests/i915_perf.c b/drivers/gpu/drm/i915/selftests/i915_perf.c
+index be54570c407c..be63cfe82feb 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_perf.c
++++ b/drivers/gpu/drm/i915/selftests/i915_perf.c
+@@ -280,11 +280,135 @@ static int live_noa_delay(void *arg)
+ 	return err;
+ }
  
-+	/* DG1 has south engine display on the same PCI device */
-+	if (IS_DG1(dev_priv)) {
-+		dev_priv->pch_type = PCH_DG1;
-+		return;
++static int live_noa_gpr(void *arg)
++{
++	struct drm_i915_private *i915 = arg;
++	struct i915_perf_stream *stream;
++	struct intel_context *ce;
++	struct i915_request *rq;
++	u32 *cs, *store;
++	void *scratch;
++	u32 gpr0;
++	int err;
++	int i;
++
++	/* Check that the delay does not clobber user context state (GPR) */
++
++	stream = test_stream(&i915->perf);
++	if (!stream)
++		return -ENOMEM;
++
++	gpr0 = i915_mmio_reg_offset(GEN8_RING_CS_GPR(stream->engine->mmio_base, 0));
++
++	ce = intel_context_create(stream->engine);
++	if (IS_ERR(ce)) {
++		err = PTR_ERR(ce);
++		goto out;
 +	}
 +
- 	/*
- 	 * The reason to probe ISA bridge instead of Dev31:Fun0 is to
- 	 * make graphics device passthrough work easy for VMM, that only
-diff --git a/drivers/gpu/drm/i915/intel_pch.h b/drivers/gpu/drm/i915/intel_pch.h
-index 3053d1ce398b..06d2cd50af0b 100644
---- a/drivers/gpu/drm/i915/intel_pch.h
-+++ b/drivers/gpu/drm/i915/intel_pch.h
-@@ -26,6 +26,9 @@ enum intel_pch {
- 	PCH_JSP,	/* Jasper Lake PCH */
- 	PCH_MCC,        /* Mule Creek Canyon PCH */
- 	PCH_TGP,	/* Tiger Lake PCH */
++	scratch = kmap(ce->vm->scratch[0].base.page);
++	memset(scratch, POISON_FREE, PAGE_SIZE);
 +
-+	/* Fake PCHs, functionality handled on the same PCI dev */
-+	PCH_DG1 = 1024,
- };
- 
- #define INTEL_PCH_DEVICE_ID_MASK		0xff80
-@@ -56,6 +59,7 @@ enum intel_pch {
- 
- #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
- #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
-+#define HAS_PCH_DG1(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG1)
- #define HAS_PCH_JSP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_JSP)
- #define HAS_PCH_MCC(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MCC)
- #define HAS_PCH_TGP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_TGP)
++	rq = intel_context_create_request(ce);
++	if (IS_ERR(rq)) {
++		err = PTR_ERR(rq);
++		goto out_ce;
++	}
++	i915_request_get(rq);
++
++	if (rq->engine->emit_init_breadcrumb) {
++		err = rq->engine->emit_init_breadcrumb(rq);
++		if (err) {
++			i915_request_add(rq);
++			goto out_rq;
++		}
++	}
++
++	cs = intel_ring_begin(rq, 2 * 32 + 2);
++	if (IS_ERR(cs)) {
++		i915_request_add(rq);
++		goto out_rq;
++	}
++
++	*cs++ = MI_LOAD_REGISTER_IMM(32);
++	for (i = 0; i < 32; i++) {
++		*cs++ = gpr0 + i * sizeof(u32);
++		*cs++ = STACK_MAGIC;
++	}
++	*cs++ = MI_NOOP;
++	intel_ring_advance(rq, cs);
++
++	err = rq->engine->emit_bb_start(rq,
++					i915_ggtt_offset(stream->noa_wait), 0,
++					I915_DISPATCH_SECURE);
++	if (err) {
++		i915_request_add(rq);
++		goto out_rq;
++	}
++
++	store = memset32(rq->engine->status_page.addr + 512, 0, 32);
++	for (i = 0; i < 32; i++) {
++		u32 cmd;
++
++		cs = intel_ring_begin(rq, 4);
++		if (IS_ERR(cs)) {
++			i915_request_add(rq);
++			goto out_rq;
++		}
++
++		cmd = MI_STORE_REGISTER_MEM;
++		if (INTEL_GEN(i915) >= 8)
++			cmd++;
++		cmd |= MI_USE_GGTT;
++
++		*cs++ = cmd;
++		*cs++ = gpr0 + i * sizeof(u32);
++		*cs++ = i915_ggtt_offset(rq->engine->status_page.vma) +
++			offset_in_page(store) +
++			i * sizeof(u32);
++		*cs++ = 0;
++		intel_ring_advance(rq, cs);
++	}
++
++	i915_request_add(rq);
++
++	if (i915_request_wait(rq, I915_WAIT_INTERRUPTIBLE, HZ / 2) < 0) {
++		intel_gt_set_wedged(stream->engine->gt);
++		err = -EIO;
++		goto out_rq;
++	}
++
++	for (i = 0; i < 32; i++) {
++		if (store[i] == STACK_MAGIC)
++			continue;
++
++		pr_err("GPR[%d] lost, found:%08x, expected:%08x!\n",
++		       i, store[i], STACK_MAGIC);
++		err = -EINVAL;
++	}
++
++	if (memchr_inv(scratch, POISON_FREE, PAGE_SIZE)) {
++		pr_err("scratch page overwritten!\n");
++		igt_hexdump(scratch, 4096);
++		err = -EINVAL;
++	}
++
++out_rq:
++	i915_request_put(rq);
++out_ce:
++	kunmap(ce->vm->scratch[0].base.page);
++	intel_context_put(ce);
++out:
++	stream_destroy(stream);
++	return err;
++}
++
+ int i915_perf_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
+ 		SUBTEST(live_sanitycheck),
+ 		SUBTEST(live_noa_delay),
++		SUBTEST(live_noa_gpr),
+ 	};
+ 	struct i915_perf *perf = &i915->perf;
+ 	int err;
 -- 
-2.26.2
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
