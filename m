@@ -2,46 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1126821A1D6
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 16:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC01A21A1DA
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 16:14:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 664FD6EA7A;
-	Thu,  9 Jul 2020 14:12:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F12866EA7D;
+	Thu,  9 Jul 2020 14:14:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C53C6EA7A
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 14:12:29 +0000 (UTC)
-IronPort-SDR: 9QlmDSYDqGJ5l5x+zBo4CCz+pFXIjO1doGPw2h0Dw8WKzjFxY00z0I9BWf322kU9FSlCQfqYAD
- CkSEKVlrAWUA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9676"; a="209531643"
-X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="209531643"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2020 07:12:28 -0700
-IronPort-SDR: hlk4f5KghqVKDCytVnypBk16dH+f6B+CEC/EqzmsuUxsdkxlZPuRmxkRfg8AmaL22fKVJP8J0K
- ZYrSKHb4aAgw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="316236867"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 09 Jul 2020 07:12:25 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 09 Jul 2020 17:12:24 +0300
-Date: Thu, 9 Jul 2020 17:12:24 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200709141224.GD6112@intel.com>
-References: <20200708205512.21625-1-jose.souza@intel.com>
- <20200708205512.21625-2-jose.souza@intel.com>
+Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 520D06EA7D;
+ Thu,  9 Jul 2020 14:14:12 +0000 (UTC)
+Received: from ravnborg.org (unknown [188.228.123.71])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id EB3C9804B4;
+ Thu,  9 Jul 2020 16:14:08 +0200 (CEST)
+Date: Thu, 9 Jul 2020 16:14:07 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200709141407.GA226971@ravnborg.org>
+References: <20200708211432.28612-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200708205512.21625-2-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4 2/5] drm/i915/display: Remove port and
- phy from voltage swing functions
+In-Reply-To: <20200708211432.28612-1-hdegoede@redhat.com>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=aP3eV41m c=1 sm=1 tr=0
+ a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+ a=kj9zAlcOel0A:10 a=e5mUnYsNAAAA:8 a=KK8vyI8rsNXL8fj5-xEA:9
+ a=CjuIK1q_8ugA:10 a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH v4 00/15] acpi/pwm/i915: Convert pwm-crc and
+ i915 driver's PWM code to use the atomic PWM API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,193 +44,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 08, 2020 at 01:55:09PM -0700, Jos=E9 Roberto de Souza wrote:
-> This information can be get directly from intel_encoder so no need
-> of those parameters.
-> =
+Hi Hans.
 
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+On Wed, Jul 08, 2020 at 11:14:16PM +0200, Hans de Goede wrote:
+> Hi All,
+> 
+> Here is v4 of my patch series converting the i915 driver's code for
+> controlling the panel's backlight with an external PWM controller to
+> use the atomic PWM API. See below for the changelog.
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Why is it that i915 cannot use the pwm_bl driver for backlight?
+I have not studied the code - just wondering.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 33 ++++++++++--------------
->  1 file changed, 14 insertions(+), 19 deletions(-)
-> =
+	Sam
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index e80319aa7cf0..2c484b55bcdf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -815,8 +815,7 @@ static int skl_buf_trans_num_entries(enum port port, =
-int n_entries)
->  }
->  =
-
->  static const struct ddi_buf_trans *
-> -intel_ddi_get_buf_trans_dp(struct intel_encoder *encoder,
-> -			   enum port port, int *n_entries)
-> +intel_ddi_get_buf_trans_dp(struct intel_encoder *encoder, int *n_entries)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->  =
-
-> @@ -825,12 +824,12 @@ intel_ddi_get_buf_trans_dp(struct intel_encoder *en=
-coder,
->  	    IS_COMETLAKE(dev_priv)) {
->  		const struct ddi_buf_trans *ddi_translations =3D
->  			kbl_get_buf_trans_dp(encoder, n_entries);
-> -		*n_entries =3D skl_buf_trans_num_entries(port, *n_entries);
-> +		*n_entries =3D skl_buf_trans_num_entries(encoder->port, *n_entries);
->  		return ddi_translations;
->  	} else if (IS_SKYLAKE(dev_priv)) {
->  		const struct ddi_buf_trans *ddi_translations =3D
->  			skl_get_buf_trans_dp(encoder, n_entries);
-> -		*n_entries =3D skl_buf_trans_num_entries(port, *n_entries);
-> +		*n_entries =3D skl_buf_trans_num_entries(encoder->port, *n_entries);
->  		return ddi_translations;
->  	} else if (IS_BROADWELL(dev_priv)) {
->  		*n_entries =3D ARRAY_SIZE(bdw_ddi_translations_dp);
-> @@ -845,15 +844,14 @@ intel_ddi_get_buf_trans_dp(struct intel_encoder *en=
-coder,
->  }
->  =
-
->  static const struct ddi_buf_trans *
-> -intel_ddi_get_buf_trans_edp(struct intel_encoder *encoder,
-> -			    enum port port, int *n_entries)
-> +intel_ddi_get_buf_trans_edp(struct intel_encoder *encoder, int *n_entrie=
-s)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->  =
-
->  	if (IS_GEN9_BC(dev_priv)) {
->  		const struct ddi_buf_trans *ddi_translations =3D
->  			skl_get_buf_trans_edp(encoder, n_entries);
-> -		*n_entries =3D skl_buf_trans_num_entries(port, *n_entries);
-> +		*n_entries =3D skl_buf_trans_num_entries(encoder->port, *n_entries);
->  		return ddi_translations;
->  	} else if (IS_BROADWELL(dev_priv)) {
->  		return bdw_get_buf_trans_edp(encoder, n_entries);
-> @@ -1152,10 +1150,10 @@ static void intel_prepare_dp_ddi_buffers(struct i=
-ntel_encoder *encoder,
->  		ddi_translations =3D intel_ddi_get_buf_trans_fdi(dev_priv,
->  							       &n_entries);
->  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
-> -		ddi_translations =3D intel_ddi_get_buf_trans_edp(encoder, port,
-> +		ddi_translations =3D intel_ddi_get_buf_trans_edp(encoder,
->  							       &n_entries);
->  	else
-> -		ddi_translations =3D intel_ddi_get_buf_trans_dp(encoder, port,
-> +		ddi_translations =3D intel_ddi_get_buf_trans_dp(encoder,
->  							      &n_entries);
->  =
-
->  	/* If we're boosting the current, set bit 31 of trans1 */
-> @@ -2106,7 +2104,6 @@ static void skl_ddi_set_iboost(struct intel_encoder=
- *encoder,
->  {
->  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> -	enum port port =3D encoder->port;
->  	u8 iboost;
->  =
-
->  	if (type =3D=3D INTEL_OUTPUT_HDMI)
-> @@ -2122,11 +2119,9 @@ static void skl_ddi_set_iboost(struct intel_encode=
-r *encoder,
->  			ddi_translations =3D intel_ddi_get_buf_trans_hdmi(encoder, &n_entries=
-);
->  		else if (type =3D=3D INTEL_OUTPUT_EDP)
->  			ddi_translations =3D intel_ddi_get_buf_trans_edp(encoder,
-> -								       port,
->  								       &n_entries);
->  		else
->  			ddi_translations =3D intel_ddi_get_buf_trans_dp(encoder,
-> -								      port,
->  								      &n_entries);
->  =
-
->  		if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
-> @@ -2143,9 +2138,9 @@ static void skl_ddi_set_iboost(struct intel_encoder=
- *encoder,
->  		return;
->  	}
->  =
-
-> -	_skl_ddi_set_iboost(dev_priv, port, iboost);
-> +	_skl_ddi_set_iboost(dev_priv, encoder->port, iboost);
->  =
-
-> -	if (port =3D=3D PORT_A && dig_port->max_lanes =3D=3D 4)
-> +	if (encoder->port =3D=3D PORT_A && dig_port->max_lanes =3D=3D 4)
->  		_skl_ddi_set_iboost(dev_priv, PORT_E, iboost);
->  }
->  =
-
-> @@ -2213,9 +2208,9 @@ static u8 intel_ddi_dp_voltage_max(struct intel_dp =
-*intel_dp)
->  			bxt_get_buf_trans_dp(encoder, &n_entries);
->  	} else {
->  		if (encoder->type =3D=3D INTEL_OUTPUT_EDP)
-> -			intel_ddi_get_buf_trans_edp(encoder, port, &n_entries);
-> +			intel_ddi_get_buf_trans_edp(encoder, &n_entries);
->  		else
-> -			intel_ddi_get_buf_trans_dp(encoder, port, &n_entries);
-> +			intel_ddi_get_buf_trans_dp(encoder, &n_entries);
->  	}
->  =
-
->  	if (drm_WARN_ON(&dev_priv->drm, n_entries < 1))
-> @@ -2370,10 +2365,10 @@ static void cnl_ddi_vswing_sequence(struct intel_=
-encoder *encoder,
->  }
->  =
-
->  static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
-> -					 u32 level, enum phy phy, int type,
-> -					 int rate)
-> +					 u32 level, int type, int rate)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> +	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
->  	const struct cnl_ddi_buf_trans *ddi_translations =3D NULL;
->  	u32 n_entries, val;
->  	int ln;
-> @@ -2497,7 +2492,7 @@ static void icl_combo_phy_ddi_vswing_sequence(struc=
-t intel_encoder *encoder,
->  	intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), val);
->  =
-
->  	/* 5. Program swing and de-emphasis */
-> -	icl_ddi_combo_vswing_program(encoder, level, phy, type, rate);
-> +	icl_ddi_combo_vswing_program(encoder, level, type, rate);
->  =
-
->  	/* 6. Set training enable to trigger update */
->  	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
-> -- =
-
-> 2.27.0
-> =
-
+> 
+> Initially the plan was for this series to consist of 2 parts:
+> 1. convert the pwm-crc driver to support the atomic PWM API and
+> 2. convert the i915 driver's PWM code to use the atomic PWM API.
+> 
+> But during testing I've found a number of bugs in the pwm-lpss and I
+> found that the acpi_lpss code needs some special handling because of
+> some ugliness found in most Cherry Trail DSDTs.
+> 
+> So now this series has grown somewhat large and consists of 4 parts:
+> 
+> 1. acpi_lpss fixes workarounds for Cherry Trail DSTD nastiness
+> 2. various fixes to the pwm-lpss driver
+> 3. convert the pwm-crc driver to support the atomic PWM API and
+> 4. convert the i915 driver's PWM code to use the atomic PWM API
+> 
+> The involved acpi_lpss and pwm drivers do not see a whole lot of churn,
+> so the plan is to merge this all through drm-intel-next-queued (dinq)
+> once all the patches are reviewed / have acks.
+> 
+> In v4 the ACPI patches have been Acked by Rafael and the i915 patches
+> have been acked by Jani. So that just leaves the PWM patches.
+> 
+> Uwe can I get your ok / ack for merging this through the dinq branch
+> once you have acked al the PWM patches ?
+> 
+> This series has been tested (and re-tested after adding various bug-fixes)
+> extensively. It has been tested on the following devices:
+> 
+> -Asus T100TA  BYT + CRC-PMIC PWM
+> -Toshiba WT8-A  BYT + CRC-PMIC PWM
+> -Thundersoft TS178 BYT + CRC-PMIC PWM, inverse PWM
+> -Asus T100HA  CHT + CRC-PMIC PWM
+> -Terra Pad 1061  BYT + LPSS PWM
+> -Trekstor Twin 10.1 BYT + LPSS PWM
+> -Asus T101HA  CHT + CRC-PMIC PWM
+> -GPD Pocket  CHT + CRC-PMIC PWM
+> 
+> Changelog:
+> 
+> Changes in v2:
+> - Fix coverletter subject
+> - Drop accidentally included debugging patch
+> - "[PATCH v3 02/15] ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (
+>   - Move #define LPSS_SAVE_CTX_ONCE define to group it with LPSS_SAVE_CTX
+> 
+> Changes in v3:
+> - "[PATCH v3 04/15] pwm: lpss: Add range limit check for the base_unit register value"
+>   - Use base_unit_range - 1 as maximum value for the clamp()
+> - "[PATCH v3 05/15] pwm: lpss: Use pwm_lpss_apply() when restoring state on resume"
+>   - This replaces the "pwm: lpss: Set SW_UPDATE bit when enabling the PWM"
+>     patch from previous versions of this patch-set, which really was a hack
+>     working around the resume issue which this patch fixes properly.
+> - PATCH v3 6 - 11 pwm-crc changes:
+>   - Various small changes resulting from the reviews by Andy and Uwe,
+>     including some refactoring of the patches to reduce the amount of churn
+>     in the patch-set
+> 
+> Changes in v4:
+> - "[PATCH v4 06/16] pwm: lpss: Correct get_state result for base_unit == 0"
+>   - This is a new patch in v4 of this patchset
+> - "[PATCH v4 12/16] pwm: crc: Implement get_state() method"
+>   - Use DIV_ROUND_UP when calculating the period and duty_cycle values
+> - "[PATCH v4 16/16] drm/i915: panel: Use atomic PWM API for devs with an external PWM controller"
+>   - Add a note to the commit message about the changes in pwm_disable_backlight()
+>   - Use the pwm_set/get_relative_duty_cycle() helpers
+> 
+> Regards,
+> 
+> Hans
+> 
 > _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
