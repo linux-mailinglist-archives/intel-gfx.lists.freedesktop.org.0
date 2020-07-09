@@ -1,40 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6913321A381
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 17:23:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FCF521A3B2
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 17:27:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB0656E0BA;
-	Thu,  9 Jul 2020 15:23:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 886FD6E903;
+	Thu,  9 Jul 2020 15:27:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F8C16E0BA;
- Thu,  9 Jul 2020 15:23:19 +0000 (UTC)
-Received: from ravnborg.org (unknown [188.228.123.71])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
+ [207.211.31.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CAD06E903
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 15:27:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1594308457;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=/yW3Ujipt1cXpCvwHNc8RTMeCj5iXxAimZbTAAqxPOo=;
+ b=CoguJUmiB5rV+2LjvGyKZCQwJjWHfEGtB4kZ0RM4oLkVnDE5aTjqjzsFzhkXXuhbSPKnaE
+ YXlsk0gKczbj38cve5YRvBvs3QRj+lY3ZFlk6gDFpaW5BVhYR2Zf5fs1kNM8Wx7TIaAAX6
+ lMi7MV1u9iNsZwseaGUiXb36Z/MfU2M=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-479-In2duZ5mOpmTcrlNOena2w-1; Thu, 09 Jul 2020 11:27:33 -0400
+X-MC-Unique: In2duZ5mOpmTcrlNOena2w-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id 65A69804C8;
- Thu,  9 Jul 2020 17:23:16 +0200 (CEST)
-Date: Thu, 9 Jul 2020 17:23:14 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20200709152314.GA233132@ravnborg.org>
-References: <20200708211432.28612-1-hdegoede@redhat.com>
- <20200709141407.GA226971@ravnborg.org>
- <fb370663-9efe-a820-2e57-d43d3af7828c@redhat.com>
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A0DA180BCA1;
+ Thu,  9 Jul 2020 15:27:31 +0000 (UTC)
+Received: from x1.home (ovpn-112-71.phx2.redhat.com [10.3.112.71])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 1A1026FEC2;
+ Thu,  9 Jul 2020 15:27:31 +0000 (UTC)
+Date: Thu, 9 Jul 2020 09:27:30 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Fred Gao <fred.gao@intel.com>
+Message-ID: <20200709092730.01128671@x1.home>
+In-Reply-To: <20200709173707.29808-1-fred.gao@intel.com>
+References: <20200709173707.29808-1-fred.gao@intel.com>
+Organization: Red Hat
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <fb370663-9efe-a820-2e57-d43d3af7828c@redhat.com>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=aP3eV41m c=1 sm=1 tr=0
- a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
- a=kj9zAlcOel0A:10 a=e5mUnYsNAAAA:8 a=ISncdtaFCDb5yrYJnEIA:9
- a=U5XkNeA9I98Y5_jT:21 a=nvJk_VNiUKGhWGwL:21 a=CjuIK1q_8ugA:10
- a=Vxmtnl_E_bksehYqCbjh:22
-Subject: Re: [Intel-gfx] [PATCH v4 00/15] acpi/pwm/i915: Convert pwm-crc and
- i915 driver's PWM code to use the atomic PWM API
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+Subject: Re: [Intel-gfx] [PATCH v1] vfio/pci: Refine Intel IGD OpRegion
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,135 +59,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Cc: Hang Yuan <hang.yuan@linux.intel.com>, kvm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-On Thu, Jul 09, 2020 at 04:40:56PM +0200, Hans de Goede wrote:
-> Hi,
-> 
-> On 7/9/20 4:14 PM, Sam Ravnborg wrote:
-> > Hi Hans.
-> > 
-> > On Wed, Jul 08, 2020 at 11:14:16PM +0200, Hans de Goede wrote:
-> > > Hi All,
-> > > 
-> > > Here is v4 of my patch series converting the i915 driver's code for
-> > > controlling the panel's backlight with an external PWM controller to
-> > > use the atomic PWM API. See below for the changelog.
-> > 
-> > Why is it that i915 cannot use the pwm_bl driver for backlight?
-> > I have not studied the code - just wondering.
-> 
-> The intel_panel.c code deals with 7 different types of PWM controllers
-> which are built into the GPU + support for external PWM controllers
-> through the kernel's PWM subsystem.
-> 
-> pwm_bl will work for the external PWM controller case, but not for
-> the others. On top of that the intel_panel code integrates which
-> the video BIOS, getting things like frequency, minimum value
-> and if the range is inverted (0% duty == backlight brightness max).
-> I'm not even sure if pwm_bl supports all of this, but even if it
-> does the intel_panel code handles this in a unified manner for
-> all supported PWM controllers, including the ones which are
-> an integral part of the GPU.
+On Fri, 10 Jul 2020 01:37:07 +0800
+Fred Gao <fred.gao@intel.com> wrote:
 
-Thanks for the explanation.
-This is a more complicated world than the usual embedded case with a
-single pwm, no BIOS etc. So it makes sense.
+> Bypass the IGD initialization for Intel's dgfx devices with own expansion
+> ROM and the host/LPC bridge config space are no longer accessed.
+> 
+> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Cc: Xiong Zhang <xiong.y.zhang@intel.com>
+> Cc: Hang Yuan <hang.yuan@linux.intel.com>
+> Cc: Stuart Summers <stuart.summers@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Fred Gao <fred.gao@intel.com>
+> ---
+>  drivers/vfio/pci/vfio_pci.c | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/vfio/pci/vfio_pci.c b/drivers/vfio/pci/vfio_pci.c
+> index f634c81998bb..0f4a34849836 100644
+> --- a/drivers/vfio/pci/vfio_pci.c
+> +++ b/drivers/vfio/pci/vfio_pci.c
+> @@ -28,6 +28,8 @@
+>  #include <linux/nospec.h>
+>  #include <linux/sched/mm.h>
+>  
+> +#include <drm/i915_pciids.h>
+> +
+>  #include "vfio_pci_private.h"
+>  
+>  #define DRIVER_VERSION  "0.2"
+> @@ -60,6 +62,12 @@ module_param(enable_sriov, bool, 0644);
+>  MODULE_PARM_DESC(enable_sriov, "Enable support for SR-IOV configuration.  Enabling SR-IOV on a PF typically requires support of the userspace PF driver, enabling VFs without such support may result in non-functional VFs or PF.");
+>  #endif
+>  
+> +/* Intel's dgfx is not IGD, so don't handle them the same way */
+> +static const struct pci_device_id intel_dgfx_pciids[] = {
+> +	INTEL_DG1_IDS(0),
+> +	{ }
+> +};
+> +
+>  static inline bool vfio_vga_disabled(void)
+>  {
+>  #ifdef CONFIG_VFIO_PCI_VGA
+> @@ -339,7 +347,8 @@ static int vfio_pci_enable(struct vfio_pci_device *vdev)
+>  
+>  	if (vfio_pci_is_vga(pdev) &&
+>  	    pdev->vendor == PCI_VENDOR_ID_INTEL &&
+> -	    IS_ENABLED(CONFIG_VFIO_PCI_IGD)) {
+> +	    IS_ENABLED(CONFIG_VFIO_PCI_IGD) &&
+> +	    !pci_match_id(intel_dgfx_pciids, pdev)) {
+>  		ret = vfio_pci_igd_init(vdev);
+>  		if (ret) {
+>  			pci_warn(pdev, "Failed to setup Intel IGD regions\n");
 
-	Sam
 
-> 
-> Regards,
-> 
-> Hans
-> 
-> 
-> 
-> > > Initially the plan was for this series to consist of 2 parts:
-> > > 1. convert the pwm-crc driver to support the atomic PWM API and
-> > > 2. convert the i915 driver's PWM code to use the atomic PWM API.
-> > > 
-> > > But during testing I've found a number of bugs in the pwm-lpss and I
-> > > found that the acpi_lpss code needs some special handling because of
-> > > some ugliness found in most Cherry Trail DSDTs.
-> > > 
-> > > So now this series has grown somewhat large and consists of 4 parts:
-> > > 
-> > > 1. acpi_lpss fixes workarounds for Cherry Trail DSTD nastiness
-> > > 2. various fixes to the pwm-lpss driver
-> > > 3. convert the pwm-crc driver to support the atomic PWM API and
-> > > 4. convert the i915 driver's PWM code to use the atomic PWM API
-> > > 
-> > > The involved acpi_lpss and pwm drivers do not see a whole lot of churn,
-> > > so the plan is to merge this all through drm-intel-next-queued (dinq)
-> > > once all the patches are reviewed / have acks.
-> > > 
-> > > In v4 the ACPI patches have been Acked by Rafael and the i915 patches
-> > > have been acked by Jani. So that just leaves the PWM patches.
-> > > 
-> > > Uwe can I get your ok / ack for merging this through the dinq branch
-> > > once you have acked al the PWM patches ?
-> > > 
-> > > This series has been tested (and re-tested after adding various bug-fixes)
-> > > extensively. It has been tested on the following devices:
-> > > 
-> > > -Asus T100TA  BYT + CRC-PMIC PWM
-> > > -Toshiba WT8-A  BYT + CRC-PMIC PWM
-> > > -Thundersoft TS178 BYT + CRC-PMIC PWM, inverse PWM
-> > > -Asus T100HA  CHT + CRC-PMIC PWM
-> > > -Terra Pad 1061  BYT + LPSS PWM
-> > > -Trekstor Twin 10.1 BYT + LPSS PWM
-> > > -Asus T101HA  CHT + CRC-PMIC PWM
-> > > -GPD Pocket  CHT + CRC-PMIC PWM
-> > > 
-> > > Changelog:
-> > > 
-> > > Changes in v2:
-> > > - Fix coverletter subject
-> > > - Drop accidentally included debugging patch
-> > > - "[PATCH v3 02/15] ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (
-> > >    - Move #define LPSS_SAVE_CTX_ONCE define to group it with LPSS_SAVE_CTX
-> > > 
-> > > Changes in v3:
-> > > - "[PATCH v3 04/15] pwm: lpss: Add range limit check for the base_unit register value"
-> > >    - Use base_unit_range - 1 as maximum value for the clamp()
-> > > - "[PATCH v3 05/15] pwm: lpss: Use pwm_lpss_apply() when restoring state on resume"
-> > >    - This replaces the "pwm: lpss: Set SW_UPDATE bit when enabling the PWM"
-> > >      patch from previous versions of this patch-set, which really was a hack
-> > >      working around the resume issue which this patch fixes properly.
-> > > - PATCH v3 6 - 11 pwm-crc changes:
-> > >    - Various small changes resulting from the reviews by Andy and Uwe,
-> > >      including some refactoring of the patches to reduce the amount of churn
-> > >      in the patch-set
-> > > 
-> > > Changes in v4:
-> > > - "[PATCH v4 06/16] pwm: lpss: Correct get_state result for base_unit == 0"
-> > >    - This is a new patch in v4 of this patchset
-> > > - "[PATCH v4 12/16] pwm: crc: Implement get_state() method"
-> > >    - Use DIV_ROUND_UP when calculating the period and duty_cycle values
-> > > - "[PATCH v4 16/16] drm/i915: panel: Use atomic PWM API for devs with an external PWM controller"
-> > >    - Add a note to the commit message about the changes in pwm_disable_backlight()
-> > >    - Use the pwm_set/get_relative_duty_cycle() helpers
-> > > 
-> > > Regards,
-> > > 
-> > > Hans
-> > > 
-> > > _______________________________________________
-> > > dri-devel mailing list
-> > > dri-devel@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> > 
+Do we need to maintain specific IDs or could we simply test whether the
+device is on the root bus to determine if it is integrated or discrete?
+A discrete device should be connected to a downstream port rather than
+appear on the root bus.  Thanks,
+
+Alex
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
