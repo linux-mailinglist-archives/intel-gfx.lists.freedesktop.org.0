@@ -2,62 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C625219E33
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 12:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54556219E3C
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 12:51:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9A8D6E3E1;
-	Thu,  9 Jul 2020 10:49:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AD116E271;
+	Thu,  9 Jul 2020 10:51:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D72416E1E2;
- Thu,  9 Jul 2020 10:49:21 +0000 (UTC)
-IronPort-SDR: SzcjPMk8BIvKGcPf/aoeXrOie/+PLwDpmno/myHxxdwOANWTrFRKK2CzmwQj4CCZMDMBU13Qxx
- FeDJMmdqITmQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9676"; a="166068548"
-X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="166068548"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0AFA6E04B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 10:51:49 +0000 (UTC)
+IronPort-SDR: W03B6g3eiZ90t9Qd3iRAu6pyjIQGe0+E3WfFd2eTULsYzJQ5FOVIn/ZiRvf2Dd57VHp0pNsSg/
+ gQma1tEtIXFg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9676"; a="209505793"
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="209505793"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2020 03:49:17 -0700
-IronPort-SDR: dnHFoC1fu6GeIY3AreT1e0erckVoGM2gPxAEHtoZ3JG+LIyQzEw/gXMTwT4Z8koac5UkwW1r2R
- yeIspiEm3fIQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="324184605"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by orsmga007.jf.intel.com with ESMTP; 09 Jul 2020 03:49:16 -0700
-Received: from fmsmsx101.amr.corp.intel.com (10.18.124.199) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 9 Jul 2020 03:49:15 -0700
-Received: from bgsmsx153.gar.corp.intel.com (10.224.23.4) by
- fmsmsx101.amr.corp.intel.com (10.18.124.199) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 9 Jul 2020 03:49:15 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.234]) by
- BGSMSX153.gar.corp.intel.com ([169.254.2.207]) with mapi id 14.03.0439.000;
- Thu, 9 Jul 2020 16:19:11 +0530
-From: "C, Ramalingam" <ramalingam.c@intel.com>
-To: Sean Paul <sean@poorly.run>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v7 11/17] drm/i915: Use ddi_update_pipe in intel_dp_mst
-Thread-Index: AQHWSXdTs2HXjD/pzkm4z548YqIw1aj/KfKw
-Date: Thu, 9 Jul 2020 10:49:10 +0000
-Message-ID: <3E576CE581B70742841A8994F80CE2EE4E5B0E3A@BGSMSX104.gar.corp.intel.com>
-References: <20200623155907.22961-1-sean@poorly.run>
- <20200623155907.22961-12-sean@poorly.run>
-In-Reply-To: <20200623155907.22961-12-sean@poorly.run>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2020 03:51:49 -0700
+IronPort-SDR: C+33o/b9Ek3697FdQltVg8a5Z+U1eUa79dYvO1t8EDXTOJLVmZQ2EIxcTamw3GUMhxQpTu6tz6
+ 79J8roQRbJ3A==
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="484230986"
+Received: from ideak-desk.fi.intel.com ([10.237.68.147])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2020 03:51:48 -0700
+Date: Thu, 9 Jul 2020 13:51:44 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200709105144.GB16776@ideak-desk.fi.intel.com>
+References: <20200108181242.13650-1-ville.syrjala@linux.intel.com>
+ <20200108181242.13650-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v7 11/17] drm/i915: Use ddi_update_pipe in
- intel_dp_mst
+Content-Disposition: inline
+In-Reply-To: <20200108181242.13650-5-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915/sdvo: Implement limited color
+ range for SDVO HDMI properly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,136 +51,260 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
- Sean Paul <seanpaul@chromium.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Sean Paul <sean@poorly.run>
-> Sent: Tuesday, June 23, 2020 9:29 PM
-> To: dri-devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> Cc: Li, Juston <juston.li@intel.com>; C, Ramalingam
-> <ramalingam.c@intel.com>; ville.syrjala@linux.intel.com;
-> jani.nikula@linux.intel.com; joonas.lahtinen@linux.intel.com; Vivi, Rodrigo
-> <rodrigo.vivi@intel.com>; daniel.vetter@ffwll.ch; Sean Paul
-> <seanpaul@chromium.org>
-> Subject: [PATCH v7 11/17] drm/i915: Use ddi_update_pipe in intel_dp_mst
-> 
-> From: Sean Paul <seanpaul@chromium.org>
-> 
-> In order to act upon content_protection property changes, we'll need to
-> implement the .update_pipe() hook. We can re-use intel_ddi_update_pipe for
-> this
-> 
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+On Wed, Jan 08, 2020 at 08:12:38PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-> Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-
-> 10-sean@poorly.run #v1
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-11-
-> sean@poorly.run #v2
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20200117193103.156821-11-
-> sean@poorly.run #v3
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20200218220242.107265-11-
-> sean@poorly.run #v4
-> Link:
-> https://patchwork.freedesktop.org/patch/msgid/20200305201236.152307-11-
-> sean@poorly.run #v5
-> Link: https://patchwork.freedesktop.org/patch/msgid/20200429195502.39919-
-> 11-sean@poorly.run #v6
-> 
-> Changes in v2:
-> -None
-> Changes in v3:
-> -None
-> Changes in v4:
-> -None
-> Changes in v5:
-> -None
-> Changes in v6:
-> -None
-> Changes in v7:
-> -None
+> The SDVO/HDMI port register limited color range bit can only be used
+> with TMDS encoding and not SDVO encoding, ie. to be used only when
+> using the port as a HDMI port as opposed to a SDVO port. The SDVO
+> spec does have a note that some GMCHs might allow that, but gen4
+> bspec vehemently disagrees. I suppose on ILK+ it might work since
+> the color range handling is on the CPU side rather than on the PCH
+> side, so there is no clear linkage between the TMDS vs. SDVO
+> encoding and color range. Alas, I have no hardware to test that
+> theory.
+> =
+
+> To implement limited color range support for SDVO->HDMI we need to
+> ask the SDVO device to do the range compression. Do so, but first
+> check if the device even supports the colorimetry selection.
+> =
+
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c    | 11 ++++++-----
->  drivers/gpu/drm/i915/display/intel_dp.h     |  6 ++++++
->  drivers/gpu/drm/i915/display/intel_dp_mst.c |  1 +
->  3 files changed, 13 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 536299f902b9..29f1f552e8d8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3907,13 +3907,14 @@ static void intel_ddi_update_pipe_dp(struct
-> intel_atomic_state *state,
->  	intel_panel_update_backlight(state, encoder, crtc_state, conn_state);  }
-> 
-> -static void intel_ddi_update_pipe(struct intel_atomic_state *state,
-> -				  struct intel_encoder *encoder,
-> -				  const struct intel_crtc_state *crtc_state,
-> -				  const struct drm_connector_state
-> *conn_state)
-> +void intel_ddi_update_pipe(struct intel_atomic_state *state,
-> +			   struct intel_encoder *encoder,
-> +			   const struct intel_crtc_state *crtc_state,
-> +			   const struct drm_connector_state *conn_state)
->  {
-> 
-> -	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-> +	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
-> +	    !intel_encoder_is_mst(encoder))
->  		intel_ddi_update_pipe_dp(state, encoder, crtc_state,
->  					 conn_state);
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h
-> b/drivers/gpu/drm/i915/display/intel_dp.h
-> index 0a8950f744f6..6352c7e97e3b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -17,6 +17,7 @@ struct drm_encoder;
->  struct drm_i915_private;
->  struct drm_modeset_acquire_ctx;
->  struct drm_dp_vsc_sdp;
-> +struct intel_atomic_state;
->  struct intel_connector;
->  struct intel_crtc_state;
->  struct intel_digital_port;
-> @@ -128,4 +129,9 @@ static inline unsigned int intel_dp_unused_lane_mask(int
-> lane_count)
-> 
->  u32 intel_dp_mode_to_fec_clock(u32 mode_clock);
-> 
-> +void intel_ddi_update_pipe(struct intel_atomic_state *state,
-> +			   struct intel_encoder *encoder,
-> +			   const struct intel_crtc_state *crtc_state,
-> +			   const struct drm_connector_state *conn_state);
-> +
->  #endif /* __INTEL_DP_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 9308b5920780..0675825dcc20 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -836,6 +836,7 @@ intel_dp_create_fake_mst_encoder(struct
-> intel_digital_port *intel_dig_port, enum
->  	intel_encoder->compute_config_late =
-> intel_dp_mst_compute_config_late;
->  	intel_encoder->disable = intel_mst_disable_dp;
->  	intel_encoder->post_disable = intel_mst_post_disable_dp;
-> +	intel_encoder->update_pipe = intel_ddi_update_pipe;
->  	intel_encoder->pre_pll_enable = intel_mst_pre_pll_enable_dp;
->  	intel_encoder->pre_enable = intel_mst_pre_enable_dp;
->  	intel_encoder->enable = intel_mst_enable_dp;
-> --
-> Sean Paul, Software Engineer, Google / Chromium OS
+>  drivers/gpu/drm/i915/display/intel_display.c |  3 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c    |  4 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.h    |  2 +
+>  drivers/gpu/drm/i915/display/intel_sdvo.c    | 62 ++++++++++++--------
+>  4 files changed, 45 insertions(+), 26 deletions(-)
+> =
 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 59c375879186..7ef1f209acc4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -9888,7 +9888,8 @@ static void ilk_set_pipeconf(const struct intel_crt=
+c_state *crtc_state)
+>  	WARN_ON(crtc_state->limited_color_range &&
+>  		crtc_state->output_format !=3D INTEL_OUTPUT_FORMAT_RGB);
+>  =
+
+> -	if (crtc_state->limited_color_range)
+> +	if (crtc_state->limited_color_range &&
+> +	    !intel_crtc_has_type(crtc_state, INTEL_OUTPUT_SDVO))
+>  		val |=3D PIPECONF_COLOR_RANGE_SELECT;
+>  =
+
+>  	if (crtc_state->output_format !=3D INTEL_OUTPUT_FORMAT_RGB)
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index 1659cff91426..85c5f840a0fc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2375,8 +2375,8 @@ static int intel_hdmi_compute_clock(struct intel_en=
+coder *encoder,
+>  	return 0;
+>  }
+>  =
+
+> -static bool intel_hdmi_limited_color_range(const struct intel_crtc_state=
+ *crtc_state,
+> -					   const struct drm_connector_state *conn_state)
+> +bool intel_hdmi_limited_color_range(const struct intel_crtc_state *crtc_=
+state,
+> +				    const struct drm_connector_state *conn_state)
+>  {
+>  	const struct intel_digital_connector_state *intel_conn_state =3D
+>  		to_intel_digital_connector_state(conn_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/=
+i915/display/intel_hdmi.h
+> index cf1ea5427639..c5f59c20f1e8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> @@ -48,5 +48,7 @@ void intel_read_infoframe(struct intel_encoder *encoder,
+>  			  const struct intel_crtc_state *crtc_state,
+>  			  enum hdmi_infoframe_type type,
+>  			  union hdmi_infoframe *frame);
+> +bool intel_hdmi_limited_color_range(const struct intel_crtc_state *crtc_=
+state,
+> +				    const struct drm_connector_state *conn_state);
+>  =
+
+>  #endif /* __INTEL_HDMI_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/=
+i915/display/intel_sdvo.c
+> index 2d2c5e1c7e7c..a0bbd728aa54 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> @@ -95,6 +95,8 @@ struct intel_sdvo {
+>  	 */
+>  	struct intel_sdvo_caps caps;
+>  =
+
+> +	u8 colorimetry_cap;
+> +
+>  	/* Pixel clock limitations reported by the SDVO device, in kHz */
+>  	int pixel_clock_min, pixel_clock_max;
+>  =
+
+> @@ -1271,6 +1273,18 @@ static bool intel_has_hdmi_sink(struct intel_sdvo =
+*sdvo,
+>  		READ_ONCE(to_intel_digital_connector_state(conn_state)->force_audio) !=
+=3D HDMI_AUDIO_OFF_DVI;
+>  }
+>  =
+
+> +static bool intel_sdvo_limited_color_range(struct intel_encoder *encoder,
+> +					   const struct intel_crtc_state *crtc_state,
+> +					   const struct drm_connector_state *conn_state)
+> +{
+> +	struct intel_sdvo *intel_sdvo =3D to_sdvo(encoder);
+> +
+> +	if ((intel_sdvo->colorimetry_cap & SDVO_COLORIMETRY_RGB220) =3D=3D 0)
+> +		return false;
+> +
+> +	return intel_hdmi_limited_color_range(crtc_state, conn_state);
+> +}
+> +
+>  static int intel_sdvo_compute_config(struct intel_encoder *encoder,
+>  				     struct intel_crtc_state *pipe_config,
+>  				     struct drm_connector_state *conn_state)
+> @@ -1336,21 +1350,9 @@ static int intel_sdvo_compute_config(struct intel_=
+encoder *encoder,
+>  				intel_sdvo_state->base.force_audio =3D=3D HDMI_AUDIO_ON;
+>  	}
+>  =
+
+> -	if (intel_sdvo_state->base.broadcast_rgb =3D=3D INTEL_BROADCAST_RGB_AUT=
+O) {
+> -		/*
+> -		 * See CEA-861-E - 5.1 Default Encoding Parameters
+> -		 *
+> -		 * FIXME: This bit is only valid when using TMDS encoding and 8
+> -		 * bit per color mode.
+> -		 */
+> -		if (pipe_config->has_hdmi_sink &&
+> -		    drm_match_cea_mode(adjusted_mode) > 1)
+> -			pipe_config->limited_color_range =3D true;
+> -	} else {
+> -		if (pipe_config->has_hdmi_sink &&
+> -		    intel_sdvo_state->base.broadcast_rgb =3D=3D INTEL_BROADCAST_RGB_LI=
+MITED)
+> -			pipe_config->limited_color_range =3D true;
+> -	}
+> +	pipe_config->limited_color_range =3D
+> +		intel_sdvo_limited_color_range(encoder, pipe_config,
+> +					       conn_state);
+>  =
+
+>  	/* Clock computation needs to happen after pixel multiplier. */
+>  	if (IS_TV(intel_sdvo_connector))
+> @@ -1487,6 +1489,8 @@ static void intel_sdvo_pre_enable(struct intel_enco=
+der *intel_encoder,
+>  	if (crtc_state->has_hdmi_sink) {
+>  		intel_sdvo_set_encode(intel_sdvo, SDVO_ENCODE_HDMI);
+>  		intel_sdvo_set_colorimetry(intel_sdvo,
+> +					   crtc_state->limited_color_range ?
+> +					   SDVO_COLORIMETRY_RGB220 :
+>  					   SDVO_COLORIMETRY_RGB256);
+>  		intel_sdvo_set_avi_infoframe(intel_sdvo, crtc_state);
+>  	} else
+> @@ -1520,8 +1524,6 @@ static void intel_sdvo_pre_enable(struct intel_enco=
+der *intel_encoder,
+>  		/* The real mode polarity is set by the SDVO commands, using
+>  		 * struct intel_sdvo_dtd. */
+>  		sdvox =3D SDVO_VSYNC_ACTIVE_HIGH | SDVO_HSYNC_ACTIVE_HIGH;
+> -		if (!HAS_PCH_SPLIT(dev_priv) && crtc_state->limited_color_range)
+> -			sdvox |=3D HDMI_COLOR_RANGE_16_235;
+>  		if (INTEL_GEN(dev_priv) < 5)
+>  			sdvox |=3D SDVO_BORDER_ENABLE;
+>  	} else {
+> @@ -1678,8 +1680,11 @@ static void intel_sdvo_get_config(struct intel_enc=
+oder *encoder,
+>  	     "SDVO pixel multiplier mismatch, port: %i, encoder: %i\n",
+>  	     pipe_config->pixel_multiplier, encoder_pixel_multiplier);
+>  =
+
+> -	if (sdvox & HDMI_COLOR_RANGE_16_235)
+> -		pipe_config->limited_color_range =3D true;
+> +	if (intel_sdvo_get_value(intel_sdvo, SDVO_CMD_GET_COLORIMETRY,
+> +				 &val, 1)) {
+> +		if (val =3D=3D SDVO_COLORIMETRY_RGB220)
+> +			pipe_config->limited_color_range =3D true;
+> +	}
+>  =
+
+>  	if (intel_sdvo_get_value(intel_sdvo, SDVO_CMD_GET_AUDIO_STAT,
+>  				 &val, 1)) {
+> @@ -1898,6 +1903,17 @@ static bool intel_sdvo_get_capabilities(struct int=
+el_sdvo *intel_sdvo, struct in
+>  	return true;
+>  }
+>  =
+
+> +static u8 intel_sdvo_get_colorimetry_cap(struct intel_sdvo *intel_sdvo)
+> +{
+> +	u8 cap;
+> +
+> +	if (!intel_sdvo_get_value(intel_sdvo, SDVO_CMD_GET_COLORIMETRY_CAP,
+> +				  &cap, sizeof(cap)))
+> +		return SDVO_COLORIMETRY_RGB256;
+> +
+> +	return cap;
+> +}
+> +
+>  static u16 intel_sdvo_get_hotplug_support(struct intel_sdvo *intel_sdvo)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(intel_sdvo->base.base.dev=
+);
+> @@ -2654,12 +2670,9 @@ static void
+>  intel_sdvo_add_hdmi_properties(struct intel_sdvo *intel_sdvo,
+>  			       struct intel_sdvo_connector *connector)
+>  {
+> -	struct drm_i915_private *dev_priv =3D to_i915(connector->base.base.dev);
+> -
+>  	intel_attach_force_audio_property(&connector->base.base);
+> -	if (INTEL_GEN(dev_priv) >=3D 4 && IS_MOBILE(dev_priv)) {
+> +	if (intel_sdvo->colorimetry_cap & SDVO_COLORIMETRY_RGB220)
+>  		intel_attach_broadcast_rgb_property(&connector->base.base);
+> -	}
+>  	intel_attach_aspect_ratio_property(&connector->base.base);
+>  }
+>  =
+
+> @@ -3298,6 +3311,9 @@ bool intel_sdvo_init(struct drm_i915_private *dev_p=
+riv,
+>  	if (!intel_sdvo_get_capabilities(intel_sdvo, &intel_sdvo->caps))
+>  		goto err;
+>  =
+
+> +	intel_sdvo->colorimetry_cap =3D
+> +		intel_sdvo_get_colorimetry_cap(intel_sdvo);
+> +
+>  	if (intel_sdvo_output_setup(intel_sdvo,
+>  				    intel_sdvo->caps.output_flags) !=3D true) {
+>  		DRM_DEBUG_KMS("SDVO output failed to setup on %s\n",
+> -- =
+
+> 2.24.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
