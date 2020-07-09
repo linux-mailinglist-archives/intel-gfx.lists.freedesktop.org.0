@@ -2,31 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28AE22194D5
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 02:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5603C2194EC
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 02:19:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E80A6E98F;
-	Thu,  9 Jul 2020 00:07:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64E256E3C1;
+	Thu,  9 Jul 2020 00:19:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 015EB6E98D;
- Thu,  9 Jul 2020 00:07:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EE191A41FB;
- Thu,  9 Jul 2020 00:07:12 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89B836E3C1
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 00:19:09 +0000 (UTC)
+IronPort-SDR: F2DwGz+/5MvZU9ueEAzOe0SRC5fZrEHUQVeq/c9jKQWMUBmyC8/WwphFcuqbQCI4URst5Rc40V
+ 3hMp542PnjCg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9676"; a="136150867"
+X-IronPort-AV: E=Sophos;i="5.75,329,1589266800"; d="scan'208";a="136150867"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2020 17:19:08 -0700
+IronPort-SDR: 4ITxELA6d8hlVYell58iRWg1r5XaLjK8W9X60oXeKfIgMlZKM63Llgejw64JiJzJRydp4fM6Dc
+ me0V1eofsuGQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,329,1589266800"; d="scan'208";a="268607123"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+ by fmsmga008.fm.intel.com with ESMTP; 08 Jul 2020 17:19:08 -0700
+Received: from fmsmsx122.amr.corp.intel.com (10.18.125.37) by
+ fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 8 Jul 2020 17:19:08 -0700
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.171]) by
+ fmsmsx122.amr.corp.intel.com ([169.254.5.87]) with mapi id 14.03.0439.000;
+ Wed, 8 Jul 2020 17:19:08 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 2/4] drm/i915: Don't do
+ WaFbcTurnOffFbcWatermark for glk
+Thread-Index: AQHWVSl1RbdkUOh0c02d9cZ099OLa6j+2KMA
+Date: Thu, 9 Jul 2020 00:19:07 +0000
+Message-ID: <5493d75083c104576c360dbba02f44f3a9d37479.camel@intel.com>
+References: <20200708131223.9519-1-ville.syrjala@linux.intel.com>
+ <20200708131223.9519-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200708131223.9519-2-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.14.51]
+Content-ID: <7F79F4D9F2649C47B8ADE361B7C4A1B7@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Thu, 09 Jul 2020 00:07:12 -0000
-Message-ID: <159425323295.31094.3643115711711677104@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200708233311.200024-1-lyude@redhat.com>
-In-Reply-To: <20200708233311.200024-1-lyude@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/probe=5Fhelper=2C_i915=3A_Validate_MST_modes_against_PBN_li?=
- =?utf-8?q?mits_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Don't do
+ WaFbcTurnOffFbcWatermark for glk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,330 +65,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/probe_helper, i915: Validate MST modes against PBN limits (rev2)
-URL   : https://patchwork.freedesktop.org/series/77670/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1019:47:    expected unsigned int [addressable] [usertype] ulClockParams
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1019:47:    got restricted __le32 [usertype]
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1019:47: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1028:50: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1029:49: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1037:47: warning: too many warnings
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:184:44: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:283:14: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:320:14: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:323:14: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:326:14: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:329:18: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:330:26: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:338:30: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:340:38: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:342:30: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:346:30: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:348:30: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:353:33: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:367:43: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:369:38: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:374:67: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:375:53: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:378:66: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:389:80: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:395:57: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:402:69: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:403:53: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:406:66: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:414:66: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:423:69: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:424:69: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:473:30: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:476:45: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:477:45: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:484:54: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:52:28: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:531:35: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:53:29: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:533:25: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:54:26: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:55:27: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:56:25: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:57:26: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:577:21: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:581:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:58:25: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:583:21: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:586:25: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:590:25: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:59:26: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:598:21: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:600:21: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:617:25: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:621:21: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:623:21: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:630:21: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:632:21: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:644:25: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:648:21: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:650:21: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:657:21: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:659:21: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:662:21: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:664:21: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:676:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:688:25: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:691:47: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:697:25: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:796:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:797:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:800:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:801:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:804:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:805:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:812:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:813:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:816:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:817:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:820:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:821:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:828:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:829:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:832:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:833:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:836:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:837:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:844:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:845:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:848:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:849:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:852:46: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:853:40: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:916:47: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:918:49: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:920:52: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:934:47: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:936:49: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:938:52: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:956:47: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:958:49: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:960:52: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:319:34: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:356:34: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:386:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:388:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:395:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:409:40: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:432:40: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:44:21: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:473:53: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:477:33: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:480:61: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:481:64: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:483:54: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:509:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:512:21: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:64:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:80:17: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:80:17: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:80:17: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:85:30: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:86:24: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:98:39: warning: cast to restricted __le16
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:222:29: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:226:37: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:226:37: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:226:37: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:227:37: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:233:43: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:236:44: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:239:51: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:458:41: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:458:41: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:458:41: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:464:39: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:465:30: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:466:39: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:468:24: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:140:26:    expected unsigned long long [usertype] *chunk_array_user
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:140:26:    got void [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:140:26: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:141:41:    expected void const [noderef] __user *from
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:141:41:    got unsigned long long [usertype] *chunk_array_user
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:141:41: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:160:27:    expected struct drm_amdgpu_cs_chunk [noderef] __user **chunk_ptr
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:160:27:    got void [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:160:27: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1613:21:    expected struct drm_amdgpu_fence *fences_user
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1613:21:    got void [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1613:21: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1614:36:    expected void const [noderef] __user *from
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1614:36:    got struct drm_amdgpu_fence *fences_user
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1614:36: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:161:49:    expected void const [noderef] __user *from
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:161:49:    got struct drm_amdgpu_cs_chunk [noderef] __user **chunk_ptr
-+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:161:49: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1304:25: error: incompatible types in comparison expression (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1305:17: error: incompatible types in comparison expression (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1361:17: error: incompatible types in comparison expression (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:138:17:    expected restricted __poll_t ( *poll )( ... )
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:138:17:    got unsigned int ( * )( ... )
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:138:17: warning: incorrect type in initializer (different base types)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29:    expected void const volatile [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29:    got unsigned int [usertype] *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:261:29: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29:    expected void const volatile [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29:    got unsigned int [usertype] *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:263:29: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21:    expected void const volatile [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21:    got unsigned int [usertype] *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:354:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21:    expected void const volatile [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21:    got unsigned int [usertype] *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:412:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21:    expected void const volatile [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21:    got unsigned int [usertype] *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:473:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21:    expected void const volatile [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21:    got unsigned int [usertype] *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:531:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21:    expected void const volatile [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21:    got unsigned int [usertype] *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:592:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21:    expected void const volatile [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21:    got unsigned int [usertype] *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:650:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:747:21:    expected void const volatile [noderef] __user *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:747:21:    got unsigned int [usertype] *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:747:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:747:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:747:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:747:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:747:21: warning: cast removes address space '__user' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:747:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:747:21: warning: too many warnings
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1650:65: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1658:55: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1659:50: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1660:50: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1661:56: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1663:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1664:45: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1665:51: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1666:55: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1667:57: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1669:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1670:53: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1672:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1674:25: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1675:46: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1679:73: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1681:33: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1683:33: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1694:73: warning: cast to restricted __le32
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:262:16: error: incompatible types in comparison expression (different type sizes)
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:509:39: warning: cast removes address space '__iomem' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:529:31: warning: cast removes address space '__iomem' of expression
-+drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:184:13: warning: cast to restricted __le32
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIwLTA3LTA4IGF0IDE2OjEyICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gR0xLIHN1cHBvc2VkbHkgZG9lcyBub3QgbmVlZCBXYUZiY1R1cm5PZmZGYmNXYXRlcm1h
+cmssDQo+IHNvIGxldCdzIG5vdCBhcHBseSBpdC4NCg0KV0EgMDU2MiBmcm9tIEJTcGVjIDIxNjY0
+IHNheXMgaXQgYXBwbGllcyB0byBhbGwgR0VOOSBidXQgaXQgaXMgcHJvYmFibHkgcmVmZXJyaW5n
+IHRvIGFsbCBkaXNwbGF5IEdFTjkuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNv
+dXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUg
+U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jIHwgMTggKysrKysrKysrKysrKysrKy0tDQo+ICAx
+IGZpbGUgY2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gDQo+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaW50ZWxfcG0uYw0KPiBpbmRleCA2M2QxYTQ4ODI3MjcuLjg3NjBlMWJhMWVlZSAx
+MDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYw0KPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jDQo+IEBAIC05NCwxMCArOTQsOCBAQCBzdGF0
+aWMgdm9pZCBnZW45X2luaXRfY2xvY2tfZ2F0aW5nKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpk
+ZXZfcHJpdikNCj4gIAlJOTE1X1dSSVRFKEdFTjhfQ0hJQ0tFTl9EQ1BSXzEsDQo+ICAJCSAgIEk5
+MTVfUkVBRChHRU44X0NISUNLRU5fRENQUl8xKSB8IE1BU0tfV0FLRU1FTSk7DQo+ICANCj4gLQkv
+KiBXYUZiY1R1cm5PZmZGYmNXYXRlcm1hcms6c2tsLGJ4dCxrYmwsY2ZsICovDQo+ICAJLyogV2FG
+YmNXYWtlTWVtT246c2tsLGJ4dCxrYmwsZ2xrLGNmbCAqLw0KPiAgCUk5MTVfV1JJVEUoRElTUF9B
+UkJfQ1RMLCBJOTE1X1JFQUQoRElTUF9BUkJfQ1RMKSB8DQo+IC0JCSAgIERJU1BfRkJDX1dNX0RJ
+UyB8DQo+ICAJCSAgIERJU1BfRkJDX01FTU9SWV9XQUtFKTsNCj4gIA0KPiAgCS8qIFdhRmJjSGln
+aE1lbUJ3Q29ycnVwdGlvbkF2b2lkYW5jZTpza2wsYnh0LGtibCxjZmwgKi8NCj4gQEAgLTE0MCw2
+ICsxMzgsMTAgQEAgc3RhdGljIHZvaWQgYnh0X2luaXRfY2xvY2tfZ2F0aW5nKHN0cnVjdCBkcm1f
+aTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gIAkgKiBhcHBsaWNhdGlvbiwgdXNpbmcgYmF0Y2gg
+YnVmZmVycyBvciBhbnkgb3RoZXIgbWVhbnMuDQo+ICAJICovDQo+ICAJSTkxNV9XUklURShSTV9U
+SU1FT1VULCBNTUlPX1RJTUVPVVRfVVMoOTUwKSk7DQo+ICsNCj4gKwkvKiBXYUZiY1R1cm5PZmZG
+YmNXYXRlcm1hcms6Ynh0ICovDQo+ICsJSTkxNV9XUklURShESVNQX0FSQl9DVEwsIEk5MTVfUkVB
+RChESVNQX0FSQl9DVEwpIHwNCj4gKwkJICAgRElTUF9GQkNfV01fRElTKTsNCj4gIH0NCj4gIA0K
+PiAgc3RhdGljIHZvaWQgZ2xrX2luaXRfY2xvY2tfZ2F0aW5nKHN0cnVjdCBkcm1faTkxNV9wcml2
+YXRlICpkZXZfcHJpdikNCj4gQEAgLTcxODksNiArNzE5MSwxMCBAQCBzdGF0aWMgdm9pZCBjZmxf
+aW5pdF9jbG9ja19nYXRpbmcoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQ0KPiAg
+CWNucF9pbml0X2Nsb2NrX2dhdGluZyhkZXZfcHJpdik7DQo+ICAJZ2VuOV9pbml0X2Nsb2NrX2dh
+dGluZyhkZXZfcHJpdik7DQo+ICANCj4gKwkvKiBXYUZiY1R1cm5PZmZGYmNXYXRlcm1hcms6Y2Zs
+ICovDQo+ICsJSTkxNV9XUklURShESVNQX0FSQl9DVEwsIEk5MTVfUkVBRChESVNQX0FSQl9DVEwp
+IHwNCj4gKwkJICAgRElTUF9GQkNfV01fRElTKTsNCj4gKw0KPiAgCS8qIFdhRmJjTnVrZU9uSG9z
+dE1vZGlmeTpjZmwgKi8NCj4gIAlJOTE1X1dSSVRFKElMS19EUEZDX0NISUNLRU4sIEk5MTVfUkVB
+RChJTEtfRFBGQ19DSElDS0VOKSB8DQo+ICAJCSAgIElMS19EUEZDX05VS0VfT05fQU5ZX01PRElG
+SUNBVElPTik7DQo+IEBAIC03MjA4LDYgKzcyMTQsMTAgQEAgc3RhdGljIHZvaWQga2JsX2luaXRf
+Y2xvY2tfZ2F0aW5nKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gIAkJSTkx
+NV9XUklURShHRU42X1VDR0NUTDEsIEk5MTVfUkVBRChHRU42X1VDR0NUTDEpIHwNCj4gIAkJCSAg
+IEdFTjZfR0FNVU5JVF9DTE9DS19HQVRFX0RJU0FCTEUpOw0KPiAgDQo+ICsJLyogV2FGYmNUdXJu
+T2ZmRmJjV2F0ZXJtYXJrOmtibCAqLw0KPiArCUk5MTVfV1JJVEUoRElTUF9BUkJfQ1RMLCBJOTE1
+X1JFQUQoRElTUF9BUkJfQ1RMKSB8DQo+ICsJCSAgIERJU1BfRkJDX1dNX0RJUyk7DQo+ICsNCj4g
+IAkvKiBXYUZiY051a2VPbkhvc3RNb2RpZnk6a2JsICovDQo+ICAJSTkxNV9XUklURShJTEtfRFBG
+Q19DSElDS0VOLCBJOTE1X1JFQUQoSUxLX0RQRkNfQ0hJQ0tFTikgfA0KPiAgCQkgICBJTEtfRFBG
+Q19OVUtFX09OX0FOWV9NT0RJRklDQVRJT04pOw0KPiBAQCAtNzIyMSw2ICs3MjMxLDEwIEBAIHN0
+YXRpYyB2b2lkIHNrbF9pbml0X2Nsb2NrX2dhdGluZyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
+ZGV2X3ByaXYpDQo+ICAJSTkxNV9XUklURShGQkNfTExDX1JFQURfQ1RSTCwgSTkxNV9SRUFEKEZC
+Q19MTENfUkVBRF9DVFJMKSB8DQo+ICAJCSAgIEZCQ19MTENfRlVMTFlfT1BFTik7DQo+ICANCj4g
+KwkvKiBXYUZiY1R1cm5PZmZGYmNXYXRlcm1hcms6c2tsICovDQo+ICsJSTkxNV9XUklURShESVNQ
+X0FSQl9DVEwsIEk5MTVfUkVBRChESVNQX0FSQl9DVEwpIHwNCj4gKwkJICAgRElTUF9GQkNfV01f
+RElTKTsNCj4gKw0KPiAgCS8qIFdhRmJjTnVrZU9uSG9zdE1vZGlmeTpza2wgKi8NCj4gIAlJOTE1
+X1dSSVRFKElMS19EUEZDX0NISUNLRU4sIEk5MTVfUkVBRChJTEtfRFBGQ19DSElDS0VOKSB8DQo+
+ICAJCSAgIElMS19EUEZDX05VS0VfT05fQU5ZX01PRElGSUNBVElPTik7DQpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
