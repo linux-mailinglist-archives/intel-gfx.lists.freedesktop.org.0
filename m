@@ -1,32 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 780B521A1CD
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 16:08:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD3E921A1D1
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 16:11:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C92D56EA7B;
-	Thu,  9 Jul 2020 14:08:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE4A66EA7C;
+	Thu,  9 Jul 2020 14:11:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5ED586EA7A;
- Thu,  9 Jul 2020 14:08:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 581F6A363B;
- Thu,  9 Jul 2020 14:08:28 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E861B6EA7C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 14:10:58 +0000 (UTC)
+IronPort-SDR: 1NHcZHC3pwZEXP9BJhuAFVPeTbjwHrEgyOR8bXFULLPB3oumFRbOoqQm0AwexBwB/AALGtlUuE
+ vkUQVBsyiX1g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9676"; a="147071271"
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="147071271"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2020 07:10:58 -0700
+IronPort-SDR: Ihazxr+JyMOPRDwWhkJcR+09k+0/awFrZAN54ah6dKXIDDTY/jCYRiasLU13XKSYRY7T+3DQQJ
+ GWAMconMy56g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="267418842"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 09 Jul 2020 07:10:56 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 09 Jul 2020 17:10:55 +0300
+Date: Thu, 9 Jul 2020 17:10:55 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200709141055.GC6112@intel.com>
+References: <20200708205512.21625-1-jose.souza@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Thu, 09 Jul 2020 14:08:28 -0000
-Message-ID: <159430370835.31091.2255486211315274107@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200527130310.27099-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200527130310.27099-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/edid=3A_Allow_looking_for_ext_b?=
- =?utf-8?q?locks_starting_from_a_specified_index_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20200708205512.21625-1-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 1/5] drm/i915/display: Replace
+ drm_i915_private in voltage swing functions by intel_encoder
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,168 +53,601 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Jul 08, 2020 at 01:55:08PM -0700, Jos=E9 Roberto de Souza wrote:
+> intel_encoder will be needed inside of vswing functions in a future
+> patch, so here doing this change in all vswing functions since HSW.
+> =
 
-Series: series starting with [1/3] drm/edid: Allow looking for ext blocks starting from a specified index (rev2)
-URL   : https://patchwork.freedesktop.org/series/77699/
-State : failure
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
-== Summary ==
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-CI Bug Log - changes from CI_DRM_8708 -> Patchwork_18081
-====================================================
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 164 +++++++++++++----------
+>  1 file changed, 95 insertions(+), 69 deletions(-)
+> =
 
-Summary
--------
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 5773ebefffc7..e80319aa7cf0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -707,8 +707,10 @@ static const struct cnl_ddi_buf_trans tgl_combo_phy_=
+ddi_translations_dp_hbr2[] =3D
+>  };
+>  =
 
-  **FAILURE**
+>  static const struct ddi_buf_trans *
+> -bdw_get_buf_trans_edp(struct drm_i915_private *dev_priv, int *n_entries)
+> +bdw_get_buf_trans_edp(struct intel_encoder *encoder, int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+>  	if (dev_priv->vbt.edp.low_vswing) {
+>  		*n_entries =3D ARRAY_SIZE(bdw_ddi_translations_edp);
+>  		return bdw_ddi_translations_edp;
+> @@ -719,8 +721,10 @@ bdw_get_buf_trans_edp(struct drm_i915_private *dev_p=
+riv, int *n_entries)
+>  }
+>  =
 
-  Serious unknown changes coming with Patchwork_18081 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18081, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+>  static const struct ddi_buf_trans *
+> -skl_get_buf_trans_dp(struct drm_i915_private *dev_priv, int *n_entries)
+> +skl_get_buf_trans_dp(struct intel_encoder *encoder, int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+>  	if (IS_SKL_ULX(dev_priv)) {
+>  		*n_entries =3D ARRAY_SIZE(skl_y_ddi_translations_dp);
+>  		return skl_y_ddi_translations_dp;
+> @@ -734,8 +738,10 @@ skl_get_buf_trans_dp(struct drm_i915_private *dev_pr=
+iv, int *n_entries)
+>  }
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/index.html
+>  static const struct ddi_buf_trans *
+> -kbl_get_buf_trans_dp(struct drm_i915_private *dev_priv, int *n_entries)
+> +kbl_get_buf_trans_dp(struct intel_encoder *encoder, int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+>  	if (IS_KBL_ULX(dev_priv) ||
+>  	    IS_CFL_ULX(dev_priv) ||
+>  	    IS_CML_ULX(dev_priv)) {
+> @@ -753,8 +759,10 @@ kbl_get_buf_trans_dp(struct drm_i915_private *dev_pr=
+iv, int *n_entries)
+>  }
+>  =
 
-Possible new issues
--------------------
+>  static const struct ddi_buf_trans *
+> -skl_get_buf_trans_edp(struct drm_i915_private *dev_priv, int *n_entries)
+> +skl_get_buf_trans_edp(struct intel_encoder *encoder, int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+>  	if (dev_priv->vbt.edp.low_vswing) {
+>  		if (IS_SKL_ULX(dev_priv) ||
+>  		    IS_KBL_ULX(dev_priv) ||
+> @@ -777,9 +785,9 @@ skl_get_buf_trans_edp(struct drm_i915_private *dev_pr=
+iv, int *n_entries)
+>  	if (IS_KABYLAKE(dev_priv) ||
+>  	    IS_COFFEELAKE(dev_priv) ||
+>  	    IS_COMETLAKE(dev_priv))
+> -		return kbl_get_buf_trans_dp(dev_priv, n_entries);
+> +		return kbl_get_buf_trans_dp(encoder, n_entries);
+>  	else
+> -		return skl_get_buf_trans_dp(dev_priv, n_entries);
+> +		return skl_get_buf_trans_dp(encoder, n_entries);
+>  }
+>  =
 
-  Here are the unknown changes that may have been introduced in Patchwork_18081:
+>  static const struct ddi_buf_trans *
+> @@ -807,19 +815,21 @@ static int skl_buf_trans_num_entries(enum port port=
+, int n_entries)
+>  }
+>  =
 
-### IGT changes ###
+>  static const struct ddi_buf_trans *
+> -intel_ddi_get_buf_trans_dp(struct drm_i915_private *dev_priv,
+> +intel_ddi_get_buf_trans_dp(struct intel_encoder *encoder,
+>  			   enum port port, int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+>  	if (IS_KABYLAKE(dev_priv) ||
+>  	    IS_COFFEELAKE(dev_priv) ||
+>  	    IS_COMETLAKE(dev_priv)) {
+>  		const struct ddi_buf_trans *ddi_translations =3D
+> -			kbl_get_buf_trans_dp(dev_priv, n_entries);
+> +			kbl_get_buf_trans_dp(encoder, n_entries);
+>  		*n_entries =3D skl_buf_trans_num_entries(port, *n_entries);
+>  		return ddi_translations;
+>  	} else if (IS_SKYLAKE(dev_priv)) {
+>  		const struct ddi_buf_trans *ddi_translations =3D
+> -			skl_get_buf_trans_dp(dev_priv, n_entries);
+> +			skl_get_buf_trans_dp(encoder, n_entries);
+>  		*n_entries =3D skl_buf_trans_num_entries(port, *n_entries);
+>  		return ddi_translations;
+>  	} else if (IS_BROADWELL(dev_priv)) {
+> @@ -835,16 +845,18 @@ intel_ddi_get_buf_trans_dp(struct drm_i915_private =
+*dev_priv,
+>  }
+>  =
 
-#### Possible regressions ####
+>  static const struct ddi_buf_trans *
+> -intel_ddi_get_buf_trans_edp(struct drm_i915_private *dev_priv,
+> +intel_ddi_get_buf_trans_edp(struct intel_encoder *encoder,
+>  			    enum port port, int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+>  	if (IS_GEN9_BC(dev_priv)) {
+>  		const struct ddi_buf_trans *ddi_translations =3D
+> -			skl_get_buf_trans_edp(dev_priv, n_entries);
+> +			skl_get_buf_trans_edp(encoder, n_entries);
+>  		*n_entries =3D skl_buf_trans_num_entries(port, *n_entries);
+>  		return ddi_translations;
+>  	} else if (IS_BROADWELL(dev_priv)) {
+> -		return bdw_get_buf_trans_edp(dev_priv, n_entries);
+> +		return bdw_get_buf_trans_edp(encoder, n_entries);
+>  	} else if (IS_HASWELL(dev_priv)) {
+>  		*n_entries =3D ARRAY_SIZE(hsw_ddi_translations_dp);
+>  		return hsw_ddi_translations_dp;
+> @@ -871,9 +883,11 @@ intel_ddi_get_buf_trans_fdi(struct drm_i915_private =
+*dev_priv,
+>  }
+>  =
 
-  * igt@i915_selftest@live@gt_pm:
-    - fi-cml-s:           [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-cml-s/igt@i915_selftest@live@gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-cml-s/igt@i915_selftest@live@gt_pm.html
+>  static const struct ddi_buf_trans *
+> -intel_ddi_get_buf_trans_hdmi(struct drm_i915_private *dev_priv,
+> +intel_ddi_get_buf_trans_hdmi(struct intel_encoder *encoder,
+>  			     int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+>  	if (IS_GEN9_BC(dev_priv)) {
+>  		return skl_get_buf_trans_hdmi(dev_priv, n_entries);
+>  	} else if (IS_BROADWELL(dev_priv)) {
+> @@ -889,33 +903,36 @@ intel_ddi_get_buf_trans_hdmi(struct drm_i915_privat=
+e *dev_priv,
+>  }
+>  =
 
-  
-Known issues
-------------
+>  static const struct bxt_ddi_buf_trans *
+> -bxt_get_buf_trans_dp(struct drm_i915_private *dev_priv, int *n_entries)
+> +bxt_get_buf_trans_dp(struct intel_encoder *encoder, int *n_entries)
+>  {
+>  	*n_entries =3D ARRAY_SIZE(bxt_ddi_translations_dp);
+>  	return bxt_ddi_translations_dp;
+>  }
+>  =
 
-  Here are the changes found in Patchwork_18081 that come from known issues:
+>  static const struct bxt_ddi_buf_trans *
+> -bxt_get_buf_trans_edp(struct drm_i915_private *dev_priv, int *n_entries)
+> +bxt_get_buf_trans_edp(struct intel_encoder *encoder, int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+>  	if (dev_priv->vbt.edp.low_vswing) {
+>  		*n_entries =3D ARRAY_SIZE(bxt_ddi_translations_edp);
+>  		return bxt_ddi_translations_edp;
+>  	}
+>  =
 
-### IGT changes ###
+> -	return bxt_get_buf_trans_dp(dev_priv, n_entries);
+> +	return bxt_get_buf_trans_dp(encoder, n_entries);
+>  }
+>  =
 
-#### Issues hit ####
+>  static const struct bxt_ddi_buf_trans *
+> -bxt_get_buf_trans_hdmi(struct drm_i915_private *dev_priv, int *n_entries)
+> +bxt_get_buf_trans_hdmi(struct intel_encoder *encoder, int *n_entries)
+>  {
+>  	*n_entries =3D ARRAY_SIZE(bxt_ddi_translations_hdmi);
+>  	return bxt_ddi_translations_hdmi;
+>  }
+>  =
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+>  static const struct cnl_ddi_buf_trans *
+> -cnl_get_buf_trans_hdmi(struct drm_i915_private *dev_priv, int *n_entries)
+> +cnl_get_buf_trans_hdmi(struct intel_encoder *encoder, int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	u32 voltage =3D intel_de_read(dev_priv, CNL_PORT_COMP_DW3) & VOLTAGE_IN=
+FO_MASK;
+>  =
 
-  * igt@gem_flink_basic@basic:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-y/igt@gem_flink_basic@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-tgl-y/igt@gem_flink_basic@basic.html
+>  	if (voltage =3D=3D VOLTAGE_INFO_0_85V) {
+> @@ -935,8 +952,9 @@ cnl_get_buf_trans_hdmi(struct drm_i915_private *dev_p=
+riv, int *n_entries)
+>  }
+>  =
 
-  * igt@i915_module_load@reload:
-    - fi-apl-guc:         [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-apl-guc/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-apl-guc/igt@i915_module_load@reload.html
-    - fi-bsw-kefka:       [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-bsw-kefka/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-bsw-kefka/igt@i915_module_load@reload.html
+>  static const struct cnl_ddi_buf_trans *
+> -cnl_get_buf_trans_dp(struct drm_i915_private *dev_priv, int *n_entries)
+> +cnl_get_buf_trans_dp(struct intel_encoder *encoder, int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	u32 voltage =3D intel_de_read(dev_priv, CNL_PORT_COMP_DW3) & VOLTAGE_IN=
+FO_MASK;
+>  =
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [PASS][11] -> [DMESG-WARN][12] ([i915#1982]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+>  	if (voltage =3D=3D VOLTAGE_INFO_0_85V) {
+> @@ -956,8 +974,9 @@ cnl_get_buf_trans_dp(struct drm_i915_private *dev_pri=
+v, int *n_entries)
+>  }
+>  =
 
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-tgl-y:           [PASS][13] -> [DMESG-WARN][14] ([i915#1982])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-y/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-tgl-y/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+>  static const struct cnl_ddi_buf_trans *
+> -cnl_get_buf_trans_edp(struct drm_i915_private *dev_priv, int *n_entries)
+> +cnl_get_buf_trans_edp(struct intel_encoder *encoder, int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	u32 voltage =3D intel_de_read(dev_priv, CNL_PORT_COMP_DW3) & VOLTAGE_IN=
+FO_MASK;
+>  =
 
-  
-#### Possible fixes ####
+>  	if (dev_priv->vbt.edp.low_vswing) {
+> @@ -976,14 +995,16 @@ cnl_get_buf_trans_edp(struct drm_i915_private *dev_=
+priv, int *n_entries)
+>  		}
+>  		return NULL;
+>  	} else {
+> -		return cnl_get_buf_trans_dp(dev_priv, n_entries);
+> +		return cnl_get_buf_trans_dp(encoder, n_entries);
+>  	}
+>  }
+>  =
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][15] ([i915#1888]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+>  static const struct cnl_ddi_buf_trans *
+> -icl_get_combo_buf_trans(struct drm_i915_private *dev_priv, int type, int=
+ rate,
+> +icl_get_combo_buf_trans(struct intel_encoder *encoder, int type, int rat=
+e,
+>  			int *n_entries)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+>  	if (type =3D=3D INTEL_OUTPUT_HDMI) {
+>  		*n_entries =3D ARRAY_SIZE(icl_combo_phy_ddi_translations_hdmi);
+>  		return icl_combo_phy_ddi_translations_hdmi;
+> @@ -1000,7 +1021,7 @@ icl_get_combo_buf_trans(struct drm_i915_private *de=
+v_priv, int type, int rate,
+>  }
+>  =
 
-  * igt@gem_render_linear_blits@basic:
-    - fi-tgl-y:           [DMESG-WARN][17] ([i915#402]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-y/igt@gem_render_linear_blits@basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-tgl-y/igt@gem_render_linear_blits@basic.html
+>  static const struct icl_mg_phy_ddi_buf_trans *
+> -icl_get_mg_buf_trans(struct drm_i915_private *dev_priv, int type, int ra=
+te,
+> +icl_get_mg_buf_trans(struct intel_encoder *encoder, int type, int rate,
+>  		     int *n_entries)
+>  {
+>  	if (type =3D=3D INTEL_OUTPUT_HDMI) {
+> @@ -1016,7 +1037,7 @@ icl_get_mg_buf_trans(struct drm_i915_private *dev_p=
+riv, int type, int rate,
+>  }
+>  =
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - {fi-tgl-dsi}:       [DMESG-WARN][19] ([i915#1982]) -> [PASS][20] +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - fi-bsw-kefka:       [DMESG-WARN][21] ([i915#1982]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+>  static const struct cnl_ddi_buf_trans *
+> -ehl_get_combo_buf_trans(struct drm_i915_private *dev_priv, int type, int=
+ rate,
+> +ehl_get_combo_buf_trans(struct intel_encoder *encoder, int type, int rat=
+e,
+>  			int *n_entries)
+>  {
+>  	if (type !=3D INTEL_OUTPUT_HDMI && type !=3D INTEL_OUTPUT_EDP) {
+> @@ -1024,15 +1045,15 @@ ehl_get_combo_buf_trans(struct drm_i915_private *=
+dev_priv, int type, int rate,
+>  		return ehl_combo_phy_ddi_translations_dp;
+>  	}
+>  =
 
-  
-#### Warnings ####
+> -	return icl_get_combo_buf_trans(dev_priv, type, rate, n_entries);
+> +	return icl_get_combo_buf_trans(encoder, type, rate, n_entries);
+>  }
+>  =
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92]) -> [DMESG-WARN][24] ([i915#1982] / [i915#62] / [i915#92] / [i915#95])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+>  static const struct cnl_ddi_buf_trans *
+> -tgl_get_combo_buf_trans(struct drm_i915_private *dev_priv, int type, int=
+ rate,
+> +tgl_get_combo_buf_trans(struct intel_encoder *encoder, int type, int rat=
+e,
+>  			int *n_entries)
+>  {
+>  	if (type =3D=3D INTEL_OUTPUT_HDMI || type =3D=3D INTEL_OUTPUT_EDP) {
+> -		return icl_get_combo_buf_trans(dev_priv, type, rate, n_entries);
+> +		return icl_get_combo_buf_trans(encoder, type, rate, n_entries);
+>  	} else if (rate > 270000) {
+>  		*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_dp_hbr2);
+>  		return tgl_combo_phy_ddi_translations_dp_hbr2;
+> @@ -1043,7 +1064,7 @@ tgl_get_combo_buf_trans(struct drm_i915_private *de=
+v_priv, int type, int rate,
+>  }
+>  =
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - fi-kbl-x1275:       [DMESG-WARN][25] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][26] ([i915#62] / [i915#92]) +1 similar issue
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+>  static const struct tgl_dkl_phy_ddi_buf_trans *
+> -tgl_get_dkl_buf_trans(struct drm_i915_private *dev_priv, int type, int r=
+ate,
+> +tgl_get_dkl_buf_trans(struct intel_encoder *encoder, int type, int rate,
+>  		      int *n_entries)
+>  {
+>  	if (type =3D=3D INTEL_OUTPUT_HDMI) {
+> @@ -1066,34 +1087,34 @@ static int intel_ddi_hdmi_level(struct intel_enco=
+der *encoder)
+>  =
 
-  * igt@kms_flip@basic-flip-vs-modeset@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][27] ([i915#62] / [i915#92]) -> [DMESG-WARN][28] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8708/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
+>  	if (INTEL_GEN(dev_priv) >=3D 12) {
+>  		if (intel_phy_is_combo(dev_priv, phy))
+> -			tgl_get_combo_buf_trans(dev_priv, INTEL_OUTPUT_HDMI,
+> +			tgl_get_combo_buf_trans(encoder, INTEL_OUTPUT_HDMI,
+>  						0, &n_entries);
+>  		else
+> -			tgl_get_dkl_buf_trans(dev_priv, INTEL_OUTPUT_HDMI, 0,
+> +			tgl_get_dkl_buf_trans(encoder, INTEL_OUTPUT_HDMI, 0,
+>  					      &n_entries);
+>  		default_entry =3D n_entries - 1;
+>  	} else if (INTEL_GEN(dev_priv) =3D=3D 11) {
+>  		if (intel_phy_is_combo(dev_priv, phy))
+> -			icl_get_combo_buf_trans(dev_priv, INTEL_OUTPUT_HDMI,
+> +			icl_get_combo_buf_trans(encoder, INTEL_OUTPUT_HDMI,
+>  						0, &n_entries);
+>  		else
+> -			icl_get_mg_buf_trans(dev_priv, INTEL_OUTPUT_HDMI, 0,
+> +			icl_get_mg_buf_trans(encoder, INTEL_OUTPUT_HDMI, 0,
+>  					     &n_entries);
+>  		default_entry =3D n_entries - 1;
+>  	} else if (IS_CANNONLAKE(dev_priv)) {
+> -		cnl_get_buf_trans_hdmi(dev_priv, &n_entries);
+> +		cnl_get_buf_trans_hdmi(encoder, &n_entries);
+>  		default_entry =3D n_entries - 1;
+>  	} else if (IS_GEN9_LP(dev_priv)) {
+> -		bxt_get_buf_trans_hdmi(dev_priv, &n_entries);
+> +		bxt_get_buf_trans_hdmi(encoder, &n_entries);
+>  		default_entry =3D n_entries - 1;
+>  	} else if (IS_GEN9_BC(dev_priv)) {
+> -		intel_ddi_get_buf_trans_hdmi(dev_priv, &n_entries);
+> +		intel_ddi_get_buf_trans_hdmi(encoder, &n_entries);
+>  		default_entry =3D 8;
+>  	} else if (IS_BROADWELL(dev_priv)) {
+> -		intel_ddi_get_buf_trans_hdmi(dev_priv, &n_entries);
+> +		intel_ddi_get_buf_trans_hdmi(encoder, &n_entries);
+>  		default_entry =3D 7;
+>  	} else if (IS_HASWELL(dev_priv)) {
+> -		intel_ddi_get_buf_trans_hdmi(dev_priv, &n_entries);
+> +		intel_ddi_get_buf_trans_hdmi(encoder, &n_entries);
+>  		default_entry =3D 6;
+>  	} else {
+>  		drm_WARN(&dev_priv->drm, 1, "ddi translation table missing\n");
+> @@ -1131,10 +1152,10 @@ static void intel_prepare_dp_ddi_buffers(struct i=
+ntel_encoder *encoder,
+>  		ddi_translations =3D intel_ddi_get_buf_trans_fdi(dev_priv,
+>  							       &n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+> -		ddi_translations =3D intel_ddi_get_buf_trans_edp(dev_priv, port,
+> +		ddi_translations =3D intel_ddi_get_buf_trans_edp(encoder, port,
+>  							       &n_entries);
+>  	else
+> -		ddi_translations =3D intel_ddi_get_buf_trans_dp(dev_priv, port,
+> +		ddi_translations =3D intel_ddi_get_buf_trans_dp(encoder, port,
+>  							      &n_entries);
+>  =
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+>  	/* If we're boosting the current, set bit 31 of trans1 */
+> @@ -1163,7 +1184,7 @@ static void intel_prepare_hdmi_ddi_buffers(struct i=
+ntel_encoder *encoder,
+>  	enum port port =3D encoder->port;
+>  	const struct ddi_buf_trans *ddi_translations;
+>  =
 
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+> -	ddi_translations =3D intel_ddi_get_buf_trans_hdmi(dev_priv, &n_entries);
+> +	ddi_translations =3D intel_ddi_get_buf_trans_hdmi(encoder, &n_entries);
+>  =
 
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+>  		return;
+> @@ -2098,11 +2119,15 @@ static void skl_ddi_set_iboost(struct intel_encod=
+er *encoder,
+>  		int n_entries;
+>  =
 
-Participating hosts (43 -> 37)
-------------------------------
+>  		if (type =3D=3D INTEL_OUTPUT_HDMI)
+> -			ddi_translations =3D intel_ddi_get_buf_trans_hdmi(dev_priv, &n_entrie=
+s);
+> +			ddi_translations =3D intel_ddi_get_buf_trans_hdmi(encoder, &n_entries=
+);
+>  		else if (type =3D=3D INTEL_OUTPUT_EDP)
+> -			ddi_translations =3D intel_ddi_get_buf_trans_edp(dev_priv, port, &n_e=
+ntries);
+> +			ddi_translations =3D intel_ddi_get_buf_trans_edp(encoder,
+> +								       port,
+> +								       &n_entries);
+>  		else
+> -			ddi_translations =3D intel_ddi_get_buf_trans_dp(dev_priv, port, &n_en=
+tries);
+> +			ddi_translations =3D intel_ddi_get_buf_trans_dp(encoder,
+> +								      port,
+> +								      &n_entries);
+>  =
 
-  Additional (1): fi-skl-guc 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+>  		if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+>  			return;
+> @@ -2133,11 +2158,11 @@ static void bxt_ddi_vswing_sequence(struct intel_=
+encoder *encoder,
+>  	int n_entries;
+>  =
 
+>  	if (type =3D=3D INTEL_OUTPUT_HDMI)
+> -		ddi_translations =3D bxt_get_buf_trans_hdmi(dev_priv, &n_entries);
+> +		ddi_translations =3D bxt_get_buf_trans_hdmi(encoder, &n_entries);
+>  	else if (type =3D=3D INTEL_OUTPUT_EDP)
+> -		ddi_translations =3D bxt_get_buf_trans_edp(dev_priv, &n_entries);
+> +		ddi_translations =3D bxt_get_buf_trans_edp(encoder, &n_entries);
+>  	else
+> -		ddi_translations =3D bxt_get_buf_trans_dp(dev_priv, &n_entries);
+> +		ddi_translations =3D bxt_get_buf_trans_dp(encoder, &n_entries);
+>  =
 
-Build changes
--------------
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+>  		return;
+> @@ -2161,36 +2186,36 @@ static u8 intel_ddi_dp_voltage_max(struct intel_d=
+p *intel_dp)
+>  =
 
-  * Linux: CI_DRM_8708 -> Patchwork_18081
+>  	if (INTEL_GEN(dev_priv) >=3D 12) {
+>  		if (intel_phy_is_combo(dev_priv, phy))
+> -			tgl_get_combo_buf_trans(dev_priv, encoder->type,
+> +			tgl_get_combo_buf_trans(encoder, encoder->type,
+>  						intel_dp->link_rate, &n_entries);
+>  		else
+> -			tgl_get_dkl_buf_trans(dev_priv, encoder->type,
+> +			tgl_get_dkl_buf_trans(encoder, encoder->type,
+>  					      intel_dp->link_rate, &n_entries);
+>  	} else if (INTEL_GEN(dev_priv) =3D=3D 11) {
+>  		if (IS_ELKHARTLAKE(dev_priv))
+> -			ehl_get_combo_buf_trans(dev_priv, encoder->type,
+> +			ehl_get_combo_buf_trans(encoder, encoder->type,
+>  						intel_dp->link_rate, &n_entries);
+>  		else if (intel_phy_is_combo(dev_priv, phy))
+> -			icl_get_combo_buf_trans(dev_priv, encoder->type,
+> +			icl_get_combo_buf_trans(encoder, encoder->type,
+>  						intel_dp->link_rate, &n_entries);
+>  		else
+> -			icl_get_mg_buf_trans(dev_priv, encoder->type,
+> +			icl_get_mg_buf_trans(encoder, encoder->type,
+>  					     intel_dp->link_rate, &n_entries);
+>  	} else if (IS_CANNONLAKE(dev_priv)) {
+>  		if (encoder->type =3D=3D INTEL_OUTPUT_EDP)
+> -			cnl_get_buf_trans_edp(dev_priv, &n_entries);
+> +			cnl_get_buf_trans_edp(encoder, &n_entries);
+>  		else
+> -			cnl_get_buf_trans_dp(dev_priv, &n_entries);
+> +			cnl_get_buf_trans_dp(encoder, &n_entries);
+>  	} else if (IS_GEN9_LP(dev_priv)) {
+>  		if (encoder->type =3D=3D INTEL_OUTPUT_EDP)
+> -			bxt_get_buf_trans_edp(dev_priv, &n_entries);
+> +			bxt_get_buf_trans_edp(encoder, &n_entries);
+>  		else
+> -			bxt_get_buf_trans_dp(dev_priv, &n_entries);
+> +			bxt_get_buf_trans_dp(encoder, &n_entries);
+>  	} else {
+>  		if (encoder->type =3D=3D INTEL_OUTPUT_EDP)
+> -			intel_ddi_get_buf_trans_edp(dev_priv, port, &n_entries);
+> +			intel_ddi_get_buf_trans_edp(encoder, port, &n_entries);
+>  		else
+> -			intel_ddi_get_buf_trans_dp(dev_priv, port, &n_entries);
+> +			intel_ddi_get_buf_trans_dp(encoder, port, &n_entries);
+>  	}
+>  =
 
-  CI-20190529: 20190529
-  CI_DRM_8708: 170e94a1430fd0a4f0841ad0f7366904d52e49be @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5722: 9985cf23e9db9557bc7d714f5b72602e427497d3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18081: ad8f4d1051a6413e48c79c8869c489fc9fb90ac4 @ git://anongit.freedesktop.org/gfx-ci/linux
+>  	if (drm_WARN_ON(&dev_priv->drm, n_entries < 1))
+> @@ -2223,11 +2248,11 @@ static void cnl_ddi_vswing_program(struct intel_e=
+ncoder *encoder,
+>  	u32 val;
+>  =
 
+>  	if (type =3D=3D INTEL_OUTPUT_HDMI)
+> -		ddi_translations =3D cnl_get_buf_trans_hdmi(dev_priv, &n_entries);
+> +		ddi_translations =3D cnl_get_buf_trans_hdmi(encoder, &n_entries);
+>  	else if (type =3D=3D INTEL_OUTPUT_EDP)
+> -		ddi_translations =3D cnl_get_buf_trans_edp(dev_priv, &n_entries);
+> +		ddi_translations =3D cnl_get_buf_trans_edp(encoder, &n_entries);
+>  	else
+> -		ddi_translations =3D cnl_get_buf_trans_dp(dev_priv, &n_entries);
+> +		ddi_translations =3D cnl_get_buf_trans_dp(encoder, &n_entries);
+>  =
 
-== Linux commits ==
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+>  		return;
+> @@ -2344,22 +2369,23 @@ static void cnl_ddi_vswing_sequence(struct intel_=
+encoder *encoder,
+>  	intel_de_write(dev_priv, CNL_PORT_TX_DW5_GRP(port), val);
+>  }
+>  =
 
-ad8f4d1051a6 drm/edid: Clean up some curly braces
-dccd2aa826a6 drm/edid: Iterate through all DispID ext blocks
-ffc23f2b930d drm/edid: Allow looking for ext blocks starting from a specified index
+> -static void icl_ddi_combo_vswing_program(struct drm_i915_private *dev_pr=
+iv,
+> -					u32 level, enum phy phy, int type,
+> -					int rate)
+> +static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
+> +					 u32 level, enum phy phy, int type,
+> +					 int rate)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	const struct cnl_ddi_buf_trans *ddi_translations =3D NULL;
+>  	u32 n_entries, val;
+>  	int ln;
+>  =
 
-== Logs ==
+>  	if (INTEL_GEN(dev_priv) >=3D 12)
+> -		ddi_translations =3D tgl_get_combo_buf_trans(dev_priv, type, rate,
+> +		ddi_translations =3D tgl_get_combo_buf_trans(encoder, type, rate,
+>  							   &n_entries);
+>  	else if (IS_ELKHARTLAKE(dev_priv))
+> -		ddi_translations =3D ehl_get_combo_buf_trans(dev_priv, type, rate,
+> +		ddi_translations =3D ehl_get_combo_buf_trans(encoder, type, rate,
+>  							   &n_entries);
+>  	else
+> -		ddi_translations =3D icl_get_combo_buf_trans(dev_priv, type, rate,
+> +		ddi_translations =3D icl_get_combo_buf_trans(encoder, type, rate,
+>  							   &n_entries);
+>  	if (!ddi_translations)
+>  		return;
+> @@ -2471,7 +2497,7 @@ static void icl_combo_phy_ddi_vswing_sequence(struc=
+t intel_encoder *encoder,
+>  	intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), val);
+>  =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18081/index.html
+>  	/* 5. Program swing and de-emphasis */
+> -	icl_ddi_combo_vswing_program(dev_priv, level, phy, type, rate);
+> +	icl_ddi_combo_vswing_program(encoder, level, phy, type, rate);
+>  =
+
+>  	/* 6. Set training enable to trigger update */
+>  	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
+> @@ -2495,7 +2521,7 @@ static void icl_mg_phy_ddi_vswing_sequence(struct i=
+ntel_encoder *encoder,
+>  		rate =3D intel_dp->link_rate;
+>  	}
+>  =
+
+> -	ddi_translations =3D icl_get_mg_buf_trans(dev_priv, type, rate,
+> +	ddi_translations =3D icl_get_mg_buf_trans(encoder, type, rate,
+>  						&n_entries);
+>  	/* The table does not have values for level 3 and level 9. */
+>  	if (level >=3D n_entries || level =3D=3D 3 || level =3D=3D 9) {
+> @@ -2640,7 +2666,7 @@ tgl_dkl_phy_ddi_vswing_sequence(struct intel_encode=
+r *encoder, int link_clock,
+>  		rate =3D intel_dp->link_rate;
+>  	}
+>  =
+
+> -	ddi_translations =3D tgl_get_dkl_buf_trans(dev_priv, encoder->type, rat=
+e,
+> +	ddi_translations =3D tgl_get_dkl_buf_trans(encoder, encoder->type, rate,
+>  						 &n_entries);
+>  =
+
+>  	if (level >=3D n_entries)
+> -- =
+
+> 2.27.0
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
