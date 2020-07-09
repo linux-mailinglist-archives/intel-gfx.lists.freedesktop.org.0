@@ -1,42 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A1321A2DF
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 16:58:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6913321A381
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 17:23:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FA986E0C1;
-	Thu,  9 Jul 2020 14:58:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB0656E0BA;
+	Thu,  9 Jul 2020 15:23:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD8AC6EA9A
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 14:58:48 +0000 (UTC)
-IronPort-SDR: sfqW4kfo3piUU8cBZfByHPCXsVLEecoImbwrAlZEcG9ADceYN9B6wVzKNnAtSmLkdh/kfvPIQ/
- 3s33qTYp0o0w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="136232815"
-X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="136232815"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2020 07:58:48 -0700
-IronPort-SDR: M8TSKv+OdRjWd0fucZWynyRDPR0riitz42uky72Y2Y/tQT3JO+yjTSts2FpU2vT+8VCM+Of6wJ
- 8othYIaLn7/g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="314993910"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 09 Jul 2020 07:58:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 09 Jul 2020 17:58:45 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Jul 2020 17:58:45 +0300
-Message-Id: <20200709145845.18118-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F8C16E0BA;
+ Thu,  9 Jul 2020 15:23:19 +0000 (UTC)
+Received: from ravnborg.org (unknown [188.228.123.71])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id 65A69804C8;
+ Thu,  9 Jul 2020 17:23:16 +0200 (CEST)
+Date: Thu, 9 Jul 2020 17:23:14 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200709152314.GA233132@ravnborg.org>
+References: <20200708211432.28612-1-hdegoede@redhat.com>
+ <20200709141407.GA226971@ravnborg.org>
+ <fb370663-9efe-a820-2e57-d43d3af7828c@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: WARN if max vswing/pre-emphasis
- violates the DP spec
+Content-Disposition: inline
+In-Reply-To: <fb370663-9efe-a820-2e57-d43d3af7828c@redhat.com>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=aP3eV41m c=1 sm=1 tr=0
+ a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+ a=kj9zAlcOel0A:10 a=e5mUnYsNAAAA:8 a=ISncdtaFCDb5yrYJnEIA:9
+ a=U5XkNeA9I98Y5_jT:21 a=nvJk_VNiUKGhWGwL:21 a=CjuIK1q_8ugA:10
+ a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH v4 00/15] acpi/pwm/i915: Convert pwm-crc and
+ i915 driver's PWM code to use the atomic PWM API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,42 +47,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkFj
-Y29yZGluZyB0byB0aGUgRFAgc3BlYyBhIERQVFggbXVzdCBzdXBwb3J0IHZzd2luZy9wcmUtZW1w
-aGFzaXMKdXAgdG8gYW5kIGluY2x1ZGluZyBsZXZlbCAyLiBMZXZlbCAzIGlzIG9wdGlvbmFsIChh
-Y3R1YWxseSBEUCAxLjRhCnNlZW1zIHRvIG1ha2UgZXZlbiBsZXZlbCAzIG1hbmRhdG9yeSBmb3Ig
-SEJSMi8zLCB3aGlsZSBsZWF2aW5nIGl0Cm9wdGlvbmFsIGZvciBSQlIvSEJSMSkuCgpXQVJOIGlm
-IG91dCBlbmNvZGVycycgLnZvbHRhZ2VfbWF4KCkvLnByZWVtcGhfbWF4KCkgcmV0dXJuCmFuIGls
-bGVnYWwgdmFsdWUuCgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmph
-bGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZHBfbGlua190cmFpbmluZy5jIHwgOSArKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCA5IGlu
-c2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RwX2xpbmtfdHJhaW5pbmcuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZHBfbGlua190cmFpbmluZy5jCmluZGV4IDI0OTMxNDJhNzBlOS4uYTIzZWQ3MjkwODQzIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJh
-aW5pbmcuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtf
-dHJhaW5pbmcuYwpAQCAtNTIsNiArNTIsNyBAQCBzdGF0aWMgdTggZHBfdm9sdGFnZV9tYXgodTgg
-cHJlZW1waCkKIHZvaWQgaW50ZWxfZHBfZ2V0X2FkanVzdF90cmFpbihzdHJ1Y3QgaW50ZWxfZHAg
-KmludGVsX2RwLAogCQkJICAgICAgIGNvbnN0IHU4IGxpbmtfc3RhdHVzW0RQX0xJTktfU1RBVFVT
-X1NJWkVdKQogeworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gZHBfdG9faTkxNShp
-bnRlbF9kcCk7CiAJdTggdiA9IDA7CiAJdTggcCA9IDA7CiAJaW50IGxhbmU7CkBAIC02NCwxMiAr
-NjUsMjAgQEAgdm9pZCBpbnRlbF9kcF9nZXRfYWRqdXN0X3RyYWluKHN0cnVjdCBpbnRlbF9kcCAq
-aW50ZWxfZHAsCiAJfQogCiAJcHJlZW1waF9tYXggPSBpbnRlbF9kcC0+cHJlZW1waF9tYXgoaW50
-ZWxfZHApOworCWRybV9XQVJOX09OX09OQ0UoJmk5MTUtPmRybSwKKwkJCSBwcmVlbXBoX21heCAh
-PSBEUF9UUkFJTl9QUkVfRU1QSF9MRVZFTF8yICYmCisJCQkgcHJlZW1waF9tYXggIT0gRFBfVFJB
-SU5fUFJFX0VNUEhfTEVWRUxfMyk7CisKIAlpZiAocCA+PSBwcmVlbXBoX21heCkKIAkJcCA9IHBy
-ZWVtcGhfbWF4IHwgRFBfVFJBSU5fTUFYX1BSRV9FTVBIQVNJU19SRUFDSEVEOwogCiAJdiA9IG1p
-bih2LCBkcF92b2x0YWdlX21heChwKSk7CiAKIAl2b2x0YWdlX21heCA9IGludGVsX2RwLT52b2x0
-YWdlX21heChpbnRlbF9kcCk7CisJZHJtX1dBUk5fT05fT05DRSgmaTkxNS0+ZHJtLAorCQkJIHZv
-bHRhZ2VfbWF4ICE9IERQX1RSQUlOX1ZPTFRBR0VfU1dJTkdfTEVWRUxfMiAmJgorCQkJIHZvbHRh
-Z2VfbWF4ICE9IERQX1RSQUlOX1ZPTFRBR0VfU1dJTkdfTEVWRUxfMyk7CisKIAlpZiAodiA+PSB2
-b2x0YWdlX21heCkKIAkJdiA9IHZvbHRhZ2VfbWF4IHwgRFBfVFJBSU5fTUFYX1NXSU5HX1JFQUNI
-RUQ7CiAKLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+Hi,
+On Thu, Jul 09, 2020 at 04:40:56PM +0200, Hans de Goede wrote:
+> Hi,
+> 
+> On 7/9/20 4:14 PM, Sam Ravnborg wrote:
+> > Hi Hans.
+> > 
+> > On Wed, Jul 08, 2020 at 11:14:16PM +0200, Hans de Goede wrote:
+> > > Hi All,
+> > > 
+> > > Here is v4 of my patch series converting the i915 driver's code for
+> > > controlling the panel's backlight with an external PWM controller to
+> > > use the atomic PWM API. See below for the changelog.
+> > 
+> > Why is it that i915 cannot use the pwm_bl driver for backlight?
+> > I have not studied the code - just wondering.
+> 
+> The intel_panel.c code deals with 7 different types of PWM controllers
+> which are built into the GPU + support for external PWM controllers
+> through the kernel's PWM subsystem.
+> 
+> pwm_bl will work for the external PWM controller case, but not for
+> the others. On top of that the intel_panel code integrates which
+> the video BIOS, getting things like frequency, minimum value
+> and if the range is inverted (0% duty == backlight brightness max).
+> I'm not even sure if pwm_bl supports all of this, but even if it
+> does the intel_panel code handles this in a unified manner for
+> all supported PWM controllers, including the ones which are
+> an integral part of the GPU.
+
+Thanks for the explanation.
+This is a more complicated world than the usual embedded case with a
+single pwm, no BIOS etc. So it makes sense.
+
+	Sam
+
+> 
+> Regards,
+> 
+> Hans
+> 
+> 
+> 
+> > > Initially the plan was for this series to consist of 2 parts:
+> > > 1. convert the pwm-crc driver to support the atomic PWM API and
+> > > 2. convert the i915 driver's PWM code to use the atomic PWM API.
+> > > 
+> > > But during testing I've found a number of bugs in the pwm-lpss and I
+> > > found that the acpi_lpss code needs some special handling because of
+> > > some ugliness found in most Cherry Trail DSDTs.
+> > > 
+> > > So now this series has grown somewhat large and consists of 4 parts:
+> > > 
+> > > 1. acpi_lpss fixes workarounds for Cherry Trail DSTD nastiness
+> > > 2. various fixes to the pwm-lpss driver
+> > > 3. convert the pwm-crc driver to support the atomic PWM API and
+> > > 4. convert the i915 driver's PWM code to use the atomic PWM API
+> > > 
+> > > The involved acpi_lpss and pwm drivers do not see a whole lot of churn,
+> > > so the plan is to merge this all through drm-intel-next-queued (dinq)
+> > > once all the patches are reviewed / have acks.
+> > > 
+> > > In v4 the ACPI patches have been Acked by Rafael and the i915 patches
+> > > have been acked by Jani. So that just leaves the PWM patches.
+> > > 
+> > > Uwe can I get your ok / ack for merging this through the dinq branch
+> > > once you have acked al the PWM patches ?
+> > > 
+> > > This series has been tested (and re-tested after adding various bug-fixes)
+> > > extensively. It has been tested on the following devices:
+> > > 
+> > > -Asus T100TA  BYT + CRC-PMIC PWM
+> > > -Toshiba WT8-A  BYT + CRC-PMIC PWM
+> > > -Thundersoft TS178 BYT + CRC-PMIC PWM, inverse PWM
+> > > -Asus T100HA  CHT + CRC-PMIC PWM
+> > > -Terra Pad 1061  BYT + LPSS PWM
+> > > -Trekstor Twin 10.1 BYT + LPSS PWM
+> > > -Asus T101HA  CHT + CRC-PMIC PWM
+> > > -GPD Pocket  CHT + CRC-PMIC PWM
+> > > 
+> > > Changelog:
+> > > 
+> > > Changes in v2:
+> > > - Fix coverletter subject
+> > > - Drop accidentally included debugging patch
+> > > - "[PATCH v3 02/15] ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (
+> > >    - Move #define LPSS_SAVE_CTX_ONCE define to group it with LPSS_SAVE_CTX
+> > > 
+> > > Changes in v3:
+> > > - "[PATCH v3 04/15] pwm: lpss: Add range limit check for the base_unit register value"
+> > >    - Use base_unit_range - 1 as maximum value for the clamp()
+> > > - "[PATCH v3 05/15] pwm: lpss: Use pwm_lpss_apply() when restoring state on resume"
+> > >    - This replaces the "pwm: lpss: Set SW_UPDATE bit when enabling the PWM"
+> > >      patch from previous versions of this patch-set, which really was a hack
+> > >      working around the resume issue which this patch fixes properly.
+> > > - PATCH v3 6 - 11 pwm-crc changes:
+> > >    - Various small changes resulting from the reviews by Andy and Uwe,
+> > >      including some refactoring of the patches to reduce the amount of churn
+> > >      in the patch-set
+> > > 
+> > > Changes in v4:
+> > > - "[PATCH v4 06/16] pwm: lpss: Correct get_state result for base_unit == 0"
+> > >    - This is a new patch in v4 of this patchset
+> > > - "[PATCH v4 12/16] pwm: crc: Implement get_state() method"
+> > >    - Use DIV_ROUND_UP when calculating the period and duty_cycle values
+> > > - "[PATCH v4 16/16] drm/i915: panel: Use atomic PWM API for devs with an external PWM controller"
+> > >    - Add a note to the commit message about the changes in pwm_disable_backlight()
+> > >    - Use the pwm_set/get_relative_duty_cycle() helpers
+> > > 
+> > > Regards,
+> > > 
+> > > Hans
+> > > 
+> > > _______________________________________________
+> > > dri-devel mailing list
+> > > dri-devel@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> > 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
