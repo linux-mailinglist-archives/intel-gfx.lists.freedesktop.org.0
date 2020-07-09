@@ -1,76 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AEA921A22E
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 16:33:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0B9321A240
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 16:37:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EFBB6E03F;
-	Thu,  9 Jul 2020 14:33:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A8166E072;
+	Thu,  9 Jul 2020 14:37:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB8276E03F
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 14:33:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1594305235;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=BhGLIk7C2NMc6JM40F6DvWPFT3QT/gthp+F60/ml+CQ=;
- b=Ypr7dpYWTUR45jl1MKwg4SN4TOac2h3k/1vYa8by4cFghWDU+sjMAVd4+VAx4d/X8E4cGj
- khotR+SrYu3R5XX9bZ/A1/n0V85X2p5DcwIOi5pCfhFQsp3iGmLIboNXIKAGGXQqcJN3+R
- vEXESOUlhnj3H/qK4vAYRfSd8nDKy/A=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-364-_QVkUWaQPymbjU9Z8KTLoQ-1; Thu, 09 Jul 2020 10:33:54 -0400
-X-MC-Unique: _QVkUWaQPymbjU9Z8KTLoQ-1
-Received: by mail-wr1-f70.google.com with SMTP id o25so2076465wro.16
- for <intel-gfx@lists.freedesktop.org>; Thu, 09 Jul 2020 07:33:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=BhGLIk7C2NMc6JM40F6DvWPFT3QT/gthp+F60/ml+CQ=;
- b=pbqb0urkQbjnunHwuM4OXMJb8Z3b587xunNTwVayeYgbsDc1geugBPG7TAgBSV76Eh
- b4H7vlYG9Ycgi2bHv4LE0bAp0S5/Cz6ohscpm1NmHLaxrQG8A00p745TCzAfnqqrmZTK
- a88Sxj3O0MglngZet4CuaESss2rHHy/PBvuDLFHUFnRueGygDI0ayys7ycm8P+lYC0jh
- IJxpXNI38I3og/3SZGe+C5xU3akl9j9Ptib4UwskWtD5JCoYdQA2MJajIp6O1wEtulQB
- W+H2zjh9jlcGOLh4h8OpKDsqco9Vg6aB5KbNIApAnItyBK/aC9t1Ka+w/FRsCA+z+nu1
- H3Dw==
-X-Gm-Message-State: AOAM533uarvwzPEk4nEqWWw/XX+0+KPmknWHo12iKzFx13uWAv1Ocek1
- CNDA3xgAPNVONJxWMRMYw1TbU6VSetxyDM+3IFg8+IX1PRJPFreldW5pSKc69kgdTbmU5DamIfJ
- sC4Tn2XCDRM79qRyMw/tM+B/bJPAg
-X-Received: by 2002:adf:f18c:: with SMTP id h12mr61184458wro.375.1594305232734; 
- Thu, 09 Jul 2020 07:33:52 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzGEsPZnHHhwmfS2MVpRo8wpZaIsfNr3HWz/ZZ8+t7FND0PUlyny7kubq5HJplNXnekokhZRw==
-X-Received: by 2002:adf:f18c:: with SMTP id h12mr61184441wro.375.1594305232476; 
- Thu, 09 Jul 2020 07:33:52 -0700 (PDT)
-Received: from x1.localdomain ([2a0e:5700:4:11:334c:7e36:8d57:40cb])
- by smtp.gmail.com with ESMTPSA id o205sm5393490wme.24.2020.07.09.07.33.51
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 09 Jul 2020 07:33:51 -0700 (PDT)
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-References: <20200708211432.28612-1-hdegoede@redhat.com>
- <20200708211432.28612-5-hdegoede@redhat.com>
- <20200709125342.GX3703480@smile.fi.intel.com>
- <4ff9dc18-fa59-d9a3-c7bf-9f95c62fc356@redhat.com>
- <20200709142136.GZ3703480@smile.fi.intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <c7925c63-9187-f89f-3a01-2ff252012615@redhat.com>
-Date: Thu, 9 Jul 2020 16:33:50 +0200
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7BD6E072
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 14:37:08 +0000 (UTC)
+IronPort-SDR: 3P4JrrcjdGpObrq9qd/Uz15ufy+BtU6th3EoObJhjx25OjZgP+3KjKPZjOcdVhXps+4uzPrYd+
+ M/9Bj3ctbi5g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="146090469"
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="146090469"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2020 07:36:48 -0700
+IronPort-SDR: YSo5n5A3imPDxZBhvB9U9KwlF2lZWaUY9y6o076C1MRzOhMiSL+HyoAFE6AkxqQ6amN3hOXPJI
+ 1pV4GA885q4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="284170821"
+Received: from hpabst-mobl.ger.corp.intel.com (HELO [10.249.47.140])
+ ([10.249.47.140])
+ by orsmga006.jf.intel.com with ESMTP; 09 Jul 2020 07:36:46 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200706061926.6687-1-chris@chris-wilson.co.uk>
+ <20200706061926.6687-11-chris@chris-wilson.co.uk>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <244f175e-b170-cac2-e7bf-080431b571da@linux.intel.com>
+Date: Thu, 9 Jul 2020 16:36:45 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200709142136.GZ3703480@smile.fi.intel.com>
+In-Reply-To: <20200706061926.6687-11-chris@chris-wilson.co.uk>
 Content-Language: en-US
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH v4 04/16] pwm: lpss: Add range limit check
- for the base_unit register value
+Subject: Re: [Intel-gfx] [PATCH 10/20] drm/i915: Export a preallocate
+ variant of i915_active_acquire()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,118 +53,284 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGksCgpPbiA3LzkvMjAgNDoyMSBQTSwgQW5keSBTaGV2Y2hlbmtvIHdyb3RlOgo+IE9uIFRodSwg
-SnVsIDA5LCAyMDIwIGF0IDAzOjIzOjEzUE0gKzAyMDAsIEhhbnMgZGUgR29lZGUgd3JvdGU6Cj4+
-IE9uIDcvOS8yMCAyOjUzIFBNLCBBbmR5IFNoZXZjaGVua28gd3JvdGU6Cj4+PiBPbiBXZWQsIEp1
-bCAwOCwgMjAyMCBhdCAxMToxNDoyMFBNICswMjAwLCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+Pj4+
-IFdoZW4gdGhlIHVzZXIgcmVxdWVzdHMgYSBoaWdoIGVub3VnaCBwZXJpb2QgbnMgdmFsdWUsIHRo
-ZW4gdGhlCj4+Pj4gY2FsY3VsYXRpb25zIGluIHB3bV9scHNzX3ByZXBhcmUoKSBtaWdodCByZXN1
-bHQgaW4gYSBiYXNlX3VuaXQgdmFsdWUgb2YgMC4KPj4+Pgo+Pj4+IEJ1dCBhY2NvcmRpbmcgdG8g
-dGhlIGRhdGEtc2hlZXQgdGhlIHdheSB0aGUgUFdNIGNvbnRyb2xsZXIgd29ya3MgaXMgdGhhdAo+
-Pj4+IGVhY2ggaW5wdXQgY2xvY2stY3ljbGUgdGhlIGJhc2VfdW5pdCBnZXRzIGFkZGVkIHRvIGEg
-TiBiaXQgY291bnRlciBhbmQKPj4+PiB0aGF0IGNvdW50ZXIgb3ZlcmZsb3dpbmcgZGV0ZXJtaW5l
-cyB0aGUgUFdNIG91dHB1dCBmcmVxdWVuY3kuIEFkZGluZyAwCj4+Pj4gdG8gdGhlIGNvdW50ZXIg
-aXMgYSBuby1vcC4gVGhlIGRhdGEtc2hlZXQgZXZlbiBleHBsaWNpdGx5IHN0YXRlcyB0aGF0Cj4+
-Pj4gd3JpdGluZyAwIHRvIHRoZSBiYXNlX3VuaXQgYml0cyB3aWxsIHJlc3VsdCBpbiB0aGUgUFdN
-IG91dHB1dHRpbmcgYQo+Pj4+IGNvbnRpbnVvdXMgMCBzaWduYWwuCj4+Pgo+Pj4gQW5kIEkgZG9u
-J3Qgc2VlIGhvdyB5b3UgY2FuIGdldCBkdXR5IDEwMCUgLyAwJSAoSSBkb24ndCByZW1lbWJlciB3
-aGljaCBvbmUgaXMKPj4+IGVxdWl2YWxlbnQgdG8gMCBpbiBiYXNlIHVuaXQpIGFmdGVyIHRoaXMg
-Y2hhbmdlLiBJSVJDIHRoZSBwcm9ibGVtIGhlcmUgdGhhdAo+Pj4gYmFzZSB1bml0IHdoZW4gbm9u
-LXplcm8gaXMgYWx3YXlzIGJlaW5nIGFkZGVkIHRvIHRoZSBjb3VudGVyIGFuZCBpdCB3aWxsCj4+
-PiB0cmlnZ2VyIHRoZSBjaGFuZ2Ugb2Ygb3V0cHV0IGF0IHNvbWUgcG9pbnQgd2hpY2ggaXMgbm90
-IHdoYXQgd2Ugd2FudCBmb3IgMTAwJSAvCj4+PiAwJSBjYXNlcy4KPj4KPj4gVGhlIGJhc2VfdW5p
-dCBjb250cm9scyB0aGUgb3V0cHV0IGZyZXF1ZW5jeSwgbm90IHRoZSBkdXR5LWN5Y2xlLiBTbyBj
-bGFtcGluZwo+PiB0aGUgYmFzZV91bml0LCBhcyBjYWxjdWxhdGVkIGZyb20gdGhlIHBlcmlvZCBo
-ZXJlLCB3aGljaCBhbHNvIG9ubHkgY29uZmlndXJlcwo+PiBvdXRwdXQtZnJlcXVlbmN5IGRvZXMg
-bm90IGltcGFjdCB0aGUgZHV0eS1jeWNsZSBhdCBhbGwuCj4+Cj4+IG5vdGUgdGhhdCBBRkFJQ1Qg
-Y3VycmVudGx5IG5vIChpbiBrZXJuZWwpIHVzZXJzIGFjdHVhbGx5IHRyeSB0byBzZXQgYSBwZXJp
-b2QgdmFsdWUKPj4gd2hpY2ggd291bGQgaGl0IHRoZSBjbGFtcCwgc28gZm9yIGV4aXN0aW5nIHVz
-ZXJzIHRoZSBjbGFtcCBpcyBhIG5vLW9wLiBJIGp1c3QKPj4gYWRkZWQgaXQgdG8gdGhpcyBwYXRj
-aC1zZXQgZm9yIGNvcnJlY3RuZXNzIHNha2UgYW5kIGJlY2F1c2UgdXNlcnNwYWNlCj4+IChzeXNm
-cyBpbnRlcmZhY2UpIHVzZXJzIGNvdWxkIGluIHRoZW9yeSBzZXQgb3V0IG9mIHJhbmdlIHZhbHVl
-cy4KPj4KPj4gQXMgZm9yIHRoZSBkdXR5LWN5Y2xlIHRoaW5nLCBmaXJzdCBvZiBhbGwgbGV0IG1l
-IHNheSB0aGF0IHRoYXQgaXMgYQo+PiBxdWVzdGlvbiAvIGlzc3VlIHdoaWNoIGlzIGNvbXBsZXRl
-bHkgb3J0aG9nb25hbCB0byB0aGlzIHBhdGNoLCB0aGlzCj4+IHBhdGNoIG9ubHkgaW1wYWN0cyB0
-aGUgcGVyaW9kL291dHB1dCBmcmVxdWVuY3kgTk9UIHRoZSBkdXR5LWN5Y2xlLAo+IAo+IFVuZm9y
-dHVuYXRlbHkgdGhlIGJhc2UgdW5pdCBzZXR0aW5ncyBhZmZlY3RzIGR1dHkgY3ljbGUuCj4gCj4g
-RG9jdW1lbnRhdGlvbiBzYXlzIGFib3V0IGludGVnZXIgcGFydCBhbmQgZnJhY3Rpb25hbCwgd2hl
-cmUgaW50ZWdlciBpcwo+IDggYml0IGFuZCB0aGlzIHdoYXQncyBiZWluZyBjb21wYXJlZCB0byBv
-biB0aW1lIGRpdmlzb3IuIFRodXMsIGlmIG9uIHRpbWUKPiBkaXZpc29yIGlzIDI1NSBhbmQgYmFz
-ZSB1bml0IGlzIDEgKGluIGludGVnZXIgcGFydCkgb3IgMC4yNSwgd2UgY2FuJ3QgZ2V0IDAlLgo+
-IChJdCBsb29rcyBsaWtlIGlmICdvbiB0aW1lIGRpdmlzb3IgTU9EIGJhc2UgdW5pdCA9PSAwJyB3
-ZSB3b24ndCBnZXQgMCUpCj4gCj4+IFdpdGggdGhhdCBzYWlkLCB0aGUgZG9jdW1lbnRhdGlvbiBp
-cyBub3QgcmVhbGx5IGhlbHBmdWwgaGVyZSwKPj4gd2UgbmVlZCB0byBzZXQgdGhlIG9uX3RpbWVf
-ZGl2IHRvIDI1NSB0byBnZXQgYSBkdXR5LWN5Y2xlIGNsb3NlIHRvIDAKPj4gKGFuZCB0byAwIHRv
-IGdldCBhIGR1dHkgY3ljbGUgb2YgMTAwJSkgYnV0IGlmIHNldHRpbmcgdGhpcyB0byAyNTUgZ2l2
-ZXMKPj4gdXMgYSBkdXR5LWN5Y2xlIG9mIHJlYWxseSByZWFsbHkgMCUsIG9yIGp1c3QgY2xvc2Ug
-dG8gMCUgaXMgdW5jbGVhZXIuCj4gCj4gSXQgZGVwZW5kcyBvbiBiYXNlIHVuaXQgdmFsdWUuCj4g
-Cj4+IFdlIGNvdWxkIGRvIGEgc2VwYXJhdGUgcGF0Y2ggYWRkIGluZyBhIGhhY2sgd2hlcmUgaWYg
-dGhlIHVzZXIgYXNrcyBmb3IKPj4gMCUgZHV0eS1jeWNsZSB3ZSBwcm9ncmFtIHRoZSBiYXNlX3Vu
-aXQgdG8gMCwgYnV0IHRoYXQgc2VlbXMgbGlrZSBhIGJhZAo+PiBpZGVhIGZvciAyIHJlYXNvbnM6
-Cj4gCj4+IDEuIElmIHRoZSB1c2VyIHJlYWxseSB3YW50cyB0aGUgb3V0cHV0IHRvIGJlIGNvbnN0
-YW50bHkgMCB0aGUgdXNlciBzaG91bGQKPj4ganVzdCBkaXNhYmxlIHRoZSBwd20KPiAKPiBJIGNh
-bid0IHRha2UgdGhpcyBhcyBhbiBhcmd1bWVudC4gRGlzYWJsaW5nIFBXTSBpcyBvcnRob2dvbmFs
-IHRvIHdoYXQgZHV0eSBjeWNsZSBpcy4KPiAKPj4gMi4gTmV3IGJhc2VfdW5pdCB2YWx1ZXMgYXJl
-IGxhdGNoZWQgYW5kIG5vdCBhcHBsaWVkIHVudGlsIHRoZSBjb3VudGVyCj4+IG92ZXJmbG93cywg
-d2l0aCBhIGJhc2VfdW5pdCBvZiAwIHRoZSBjb3VudGVyIG5ldmVyIG92ZXJmbG93cy4gSSBoYXZl
-Cj4+IG5vdCB0ZXN0ZWQgdGhpcyBidXQgSSB3b3VsZCBub3QgYmUgc3VycHJpc2VkIGlmIGFmdGVy
-IHByb2dyYW1taW5nIGEKPj4gYmFzZV91bml0IHZhbHVlIG9mIDAsIHdlIGFyZSB1bmFibGUgdG8g
-ZXZlciBjaGFuZ2UgdGhlIHZhbHVlIGFnYWluCj4+IHRocm91Z2ggYW55IG90aGVyIG1lYW5zIHRo
-ZW4gcG93ZXItY3ljbGluZyB0aGUgUFdNIGNvbnRyb2xsZXIuCj4+IEV2ZW4gaWYgSSBjb3VsZCB0
-ZXN0IHRoaXMgb24gc29tZSByZXZpc2lvbnMsIHdlIGFscmVhZHkga25vdyB0aGF0Cj4+IG5vdCBh
-bGwgcmV2aXNpb25zIHdvcmsgdGhlIHNhbWUgd3J0IHRoZSBsYXRjaGluZy4gU28gaXQgaXMgYmVz
-dCB0bwo+PiBqdXN0IG5ldmVyIHNldCBiYXNlX3VuaXQgdG8gMCwgdGhhdCBpcyBqdXN0IGEgcmVj
-aXBlIGFza2luZyBmb3IgdHJvdWJsZS4KPiAKPiBUaGlzIHdoYXQgZG9jIHNheXMgYWJvdXQgemVy
-b3M6Cj4g4oCiIFByb2dyYW1taW5nIGVpdGhlciB0aGUgUFdNX2Jhc2VfdW5pdCB2YWx1ZSBvciB0
-aGUgUFdNX29uX3RpbWVfZGl2aXNvciB0byDigJgw4oCZCj4gd2lsbCBnZW5lcmF0ZSBhbiBhbHdh
-eXMgemVybyBvdXRwdXQuCj4gCj4gU28sIHdoYXQgSSdtIHRhbGtpbmcgc2VlbXMgYWJvdXQgY29y
-cmVsYXRpb24gYmV0d2VlbiBiYXNlIHVuaXQgYW5kIG9uIHRpbWUKPiBkaXZpc29yIHJhdGhlciB0
-aGFuIHplcm9zLgo+IAo+IEkgYWdyZWUgd2l0aCB0aGlzIHBhdGNoLgo+IFJldmlld2VkLWJ5OiBB
-bmR5IFNoZXZjaGVua28gPGFuZHJpeS5zaGV2Y2hlbmtvQGxpbnV4LmludGVsLmNvbT4KClRoYW5r
-IHlvdS4KCj4+Pj4gV2hlbiB0aGUgdXNlciByZXF1ZXN0ZXMgYSBsb3cgZW5vdWdoIHBlcmlvZCBu
-cyB2YWx1ZSwgdGhlbiB0aGUKPj4+PiBjYWxjdWxhdGlvbnMgaW4gcHdtX2xwc3NfcHJlcGFyZSgp
-IG1pZ2h0IHJlc3VsdCBpbiBhIGJhc2VfdW5pdCB2YWx1ZQo+Pj4+IHdoaWNoIGlzIGJpZ2dlciB0
-aGVuIGJhc2VfdW5pdF9yYW5nZSAtIDEuIEN1cnJlbnRseSB0aGUgY29kZXMgZm9yIHRoaXMKPj4+
-PiBkZWFscyB3aXRoIHRoaXMgYnkgYXBwbHlpbmcgYSBtYXNrOgo+Pj4+Cj4+Pj4gCWJhc2VfdW5p
-dCAmPSAoYmFzZV91bml0X3JhbmdlIC0gMSk7Cj4+Pj4KPj4+PiBCdXQgdGhpcyBtZWFucyB0aGF0
-IHdlIGxldCB0aGUgdmFsdWUgb3ZlcmZsb3cgdGhlIHJhbmdlLCB3ZSB0aHJvdyBhd2F5IHRoZQo+
-Pj4+IGhpZ2hlciBiaXRzIGFuZCBzdG9yZSB3aGF0ZXZlciB2YWx1ZSBpcyBsZWZ0IGluIHRoZSBs
-b3dlciBiaXRzIGludG8gdGhlCj4+Pj4gcmVnaXN0ZXIgbGVhZGluZyB0byBhIHJhbmRvbSBvdXRw
-dXQgZnJlcXVlbmN5LCByYXRoZXIgdGhlbiBjbGFtcGluZyB0aGUKPj4+PiBvdXRwdXQgZnJlcXVl
-bmN5IHRvIHRoZSBoaWdoZXN0IGZyZXF1ZW5jeSB3aGljaCB0aGUgaGFyZHdhcmUgY2FuIGRvLgo+
-Pj4KPj4+IEl0IHdvdWxkIGJlIG5pY2UgdG8gaGF2ZSBhbiBleGFtcGxlIG9mIGNhbGN1bHVzIGhl
-cmUuCj4+Pgo+Pj4+IFRoaXMgY29tbWl0IGZpeGVzIGJvdGggaXNzdWVzIGJ5IGNsYW1waW5nIHRo
-ZSBiYXNlX3VuaXQgdmFsdWUgdG8gYmUKPj4+PiBiZXR3ZWVuIDEgYW5kIChiYXNlX3VuaXRfcmFu
-Z2UgLSAxKS4KPj4+Cj4+PiBFdmVudHVhbGx5IEkgc2F0IGFuZCB3cm90ZSBhbGwgdGhpcyBvbiBw
-YXBlci4gSSBzZWUgbm93IHRoYXQgdGhlIHByb2JsZW0KPj4+IGlzIGluIG91dCBvZiByYW5nZSBv
-ZiB0aGUgcGVyaW9kLiBBbmQgc3Ryb25nbHkgd2Ugc2hvdWxkIGNsYW1wIHJhdGhlciBwZXJpb2QK
-Pj4+IHRvIHRoZSBzdXBwb3J0ZWQgcmFuZ2UsIGJ1dCB5b3VyIHNvbHV0aW9uIGlzIGFuIGVxdWl2
-YWxlbnQuCj4+Cj4+IFJpZ2h0LCB0aGUgYWR2YW50YWdlIG9mIGRvaW5nIHRoZSBjbGFtcGluZyBv
-biB0aGUgcmVnaXN0ZXIgdmFsdWUgaXMgdGhhdCB3ZQo+PiBhdm9pZCBzb21lIHRyaWNreSBtYXRo
-IHdpdGggcG9zc2libGUgcm91bmRpbmcgZXJyb3JzIGFuZCB3aGljaCBpcyBkaWZmZXJlbnQKPj4g
-cGVyIGNvbnRyb2xsZXIgcmV2aXNpb24gYmVjYXVzZSB0aGUgbnVtYmVyIG9mIGJpdHMgaW4gdGhl
-IGJhc2UgdW5pdCBiZWluZwo+PiBkaWZmZXJlbnQgcGVyIGNvbnRyb2xsZXIgcmV2aXNpb24uCj4g
-Cj4gLi4uCj4gCj4+Pj4gKwliYXNlX3VuaXQgPSBjbGFtcF90KHVuc2lnbmVkIGxvbmcgbG9uZywg
-YmFzZV91bml0LCAxLAo+Pj4+ICsJCQkgICAgYmFzZV91bml0X3JhbmdlIC0gMSk7Cj4+Pgo+Pj4g
-QSBuaXQ6IG9uZSBsaW5lLgo+Pgo+PiBEb2Vzbid0IGZpdCBpbiA4MCBjaGFycywgSSBndWVzcyB3
-ZSBjb3VsZCBtYWtlIHRoaXMgb25lIGxpbmUgbm93IHdpdGggdGhlIG5ldyAxMDAgY2hhcnMKPj4g
-bGltaXQsIGJ1dCB0aGF0IGRvZXMgbWFrZSBpdCBoYXJkZXIgdG8gcmVhZCBmb3IgcGVvcGxlIHVz
-aW5nIHN0YW5kYXJkIHRlcm1pbmFsIHdpZHRocwo+PiBhbmQgYSB0ZXJtaW5hbCBiYXNlZCBlZGl0
-b3JzLiBTbyBJIHdvdWxkIHByZWZlciB0byBrZWVwIHRoaXMgYXMgaXMuCj4gCj4gWW91IGNhbiB1
-c2UgY2xhbXBfdmFsKCkuCgpJIGRpZCBub3Qga25vdyBhYm91dCB0aGF0LCB0aGF0IHdpbGwgd29y
-ayBuaWNlbHkgSSB3aWxsIHN3aXRjaCB0byBjbGFtcF92YWwKZm9yIHRoZSBuZXh0IHZlcnNpb24u
-IEkgYXNzdW1lIGl0IGlzIG9rIHRvIGtlZXAgeW91ciBSZXZpZXdlZC1ieSB3aXRoIHRoaXMKdmVy
-eSBtaW5vciBjaGFuZ2U/CgpSZWdhcmRzLAoKSGFucwoKPiAKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Op 06-07-2020 om 08:19 schreef Chris Wilson:
+> Sometimes we have to be very careful not to allocate underneath a mutex
+> (or spinlock) and yet still want to track activity. Enter
+> i915_active_acquire_for_context(). This raises the activity counter on
+> i915_active prior to use and ensures that the fence-tree contains a slot
+> for the context.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   2 +-
+>  drivers/gpu/drm/i915/gt/intel_timeline.c      |   4 +-
+>  drivers/gpu/drm/i915/i915_active.c            | 113 +++++++++++++++---
+>  drivers/gpu/drm/i915/i915_active.h            |  14 ++-
+>  4 files changed, 113 insertions(+), 20 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 1015c4fd9f3e..6d20be29ff3c 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1789,7 +1789,7 @@ __parser_mark_active(struct i915_vma *vma,
+>  {
+>  	struct intel_gt_buffer_pool_node *node = vma->private;
+>  
+> -	return i915_active_ref(&node->active, tl, fence);
+> +	return i915_active_ref(&node->active, tl->fence_context, fence);
+>  }
+>  
+>  static int
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> index 4546284fede1..e4a5326633b8 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> @@ -479,7 +479,9 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
+>  	 * free it after the current request is retired, which ensures that
+>  	 * all writes into the cacheline from previous requests are complete.
+>  	 */
+> -	err = i915_active_ref(&tl->hwsp_cacheline->active, tl, &rq->fence);
+> +	err = i915_active_ref(&tl->hwsp_cacheline->active,
+> +			      tl->fence_context,
+> +			      &rq->fence);
+>  	if (err)
+>  		goto err_cacheline;
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index d960d0be5bd2..3f595446fd44 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -217,11 +217,10 @@ excl_retire(struct dma_fence *fence, struct dma_fence_cb *cb)
+>  }
+>  
+>  static struct i915_active_fence *
+> -active_instance(struct i915_active *ref, struct intel_timeline *tl)
+> +active_instance(struct i915_active *ref, u64 idx)
+>  {
+>  	struct active_node *node, *prealloc;
+>  	struct rb_node **p, *parent;
+> -	u64 idx = tl->fence_context;
+>  
+>  	/*
+>  	 * We track the most recently used timeline to skip a rbtree search
+> @@ -353,21 +352,17 @@ __active_del_barrier(struct i915_active *ref, struct active_node *node)
+>  	return ____active_del_barrier(ref, node, barrier_to_engine(node));
+>  }
+>  
+> -int i915_active_ref(struct i915_active *ref,
+> -		    struct intel_timeline *tl,
+> -		    struct dma_fence *fence)
+> +int i915_active_ref(struct i915_active *ref, u64 idx, struct dma_fence *fence)
+>  {
+>  	struct i915_active_fence *active;
+>  	int err;
+>  
+> -	lockdep_assert_held(&tl->mutex);
+> -
+>  	/* Prevent reaping in case we malloc/wait while building the tree */
+>  	err = i915_active_acquire(ref);
+>  	if (err)
+>  		return err;
+>  
+> -	active = active_instance(ref, tl);
+> +	active = active_instance(ref, idx);
+>  	if (!active) {
+>  		err = -ENOMEM;
+>  		goto out;
+> @@ -384,32 +379,104 @@ int i915_active_ref(struct i915_active *ref,
+>  		atomic_dec(&ref->count);
+>  	}
+>  	if (!__i915_active_fence_set(active, fence))
+> -		atomic_inc(&ref->count);
+> +		__i915_active_acquire(ref);
+>  
+>  out:
+>  	i915_active_release(ref);
+>  	return err;
+>  }
+>  
+> -struct dma_fence *
+> -i915_active_set_exclusive(struct i915_active *ref, struct dma_fence *f)
+> +static struct dma_fence *
+> +__i915_active_set_fence(struct i915_active *ref,
+> +			struct i915_active_fence *active,
+> +			struct dma_fence *fence)
+>  {
+>  	struct dma_fence *prev;
+>  
+>  	/* We expect the caller to manage the exclusive timeline ordering */
+>  	GEM_BUG_ON(i915_active_is_idle(ref));
+>  
+> +	if (is_barrier(active)) { /* proto-node used by our idle barrier */
+> +		/*
+> +		 * This request is on the kernel_context timeline, and so
+> +		 * we can use it to substitute for the pending idle-barrer
+> +		 * request that we want to emit on the kernel_context.
+> +		 */
+> +		__active_del_barrier(ref, node_from_active(active));
+> +		RCU_INIT_POINTER(active->fence, NULL);
+> +		atomic_dec(&ref->count);
+> +	}
+> +
+>  	rcu_read_lock();
+> -	prev = __i915_active_fence_set(&ref->excl, f);
+> +	prev = __i915_active_fence_set(active, fence);
+>  	if (prev)
+>  		prev = dma_fence_get_rcu(prev);
+>  	else
+> -		atomic_inc(&ref->count);
+> +		__i915_active_acquire(ref);
+>  	rcu_read_unlock();
+>  
+>  	return prev;
+>  }
+>  
+> +static struct i915_active_fence *
+> +__active_lookup(struct i915_active *ref, u64 idx)
+> +{
+> +	struct active_node *node;
+> +	struct rb_node *p;
+> +
+> +	/* Like active_instance() but with no malloc */
+> +
+> +	node = READ_ONCE(ref->cache);
+> +	if (node && node->timeline == idx)
+> +		return &node->base;
+> +
+> +	spin_lock_irq(&ref->tree_lock);
+> +	GEM_BUG_ON(i915_active_is_idle(ref));
+> +
+> +	p = ref->tree.rb_node;
+> +	while (p) {
+> +		node = rb_entry(p, struct active_node, node);
+> +		if (node->timeline == idx) {
+> +			ref->cache = node;
+> +			spin_unlock_irq(&ref->tree_lock);
+> +			return &node->base;
+> +		}
+> +
+> +		if (node->timeline < idx)
+> +			p = p->rb_right;
+> +		else
+> +			p = p->rb_left;
+> +	}
+> +
+> +	spin_unlock_irq(&ref->tree_lock);
+> +
+> +	return NULL;
+> +}
+> +
+> +struct dma_fence *
+> +__i915_active_ref(struct i915_active *ref, u64 idx, struct dma_fence *fence)
+> +{
+> +	struct dma_fence *prev = ERR_PTR(-ENOENT);
+> +	struct i915_active_fence *active;
+> +
+> +	if (!i915_active_acquire_if_busy(ref))
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	active = __active_lookup(ref, idx);
+> +	if (active)
+> +		prev = __i915_active_set_fence(ref, active, fence);
+> +
+> +	i915_active_release(ref);
+> +	return prev;
+> +}
+> +
+> +struct dma_fence *
+> +i915_active_set_exclusive(struct i915_active *ref, struct dma_fence *f)
+> +{
+> +	/* We expect the caller to manage the exclusive timeline ordering */
+> +	return __i915_active_set_fence(ref, &ref->excl, f);
+> +}
+> +
+>  bool i915_active_acquire_if_busy(struct i915_active *ref)
+>  {
+>  	debug_active_assert(ref);
+> @@ -443,6 +510,24 @@ int i915_active_acquire(struct i915_active *ref)
+>  	return err;
+>  }
+>  
+> +int i915_active_acquire_for_context(struct i915_active *ref, u64 idx)
+> +{
+> +	struct i915_active_fence *active;
+> +	int err;
+> +
+> +	err = i915_active_acquire(ref);
+> +	if (err)
+> +		return err;
+> +
+> +	active = active_instance(ref, idx);
+> +	if (!active) {
+> +		i915_active_release(ref);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	return 0; /* return with active ref */
+> +}
+> +
+>  void i915_active_release(struct i915_active *ref)
+>  {
+>  	debug_active_assert(ref);
+> @@ -804,7 +889,7 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
+>  			 */
+>  			RCU_INIT_POINTER(node->base.fence, ERR_PTR(-EAGAIN));
+>  			node->base.cb.node.prev = (void *)engine;
+> -			atomic_inc(&ref->count);
+> +			__i915_active_acquire(ref);
+>  		}
+>  		GEM_BUG_ON(rcu_access_pointer(node->base.fence) != ERR_PTR(-EAGAIN));
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
+> index cf4058150966..2e0bcb3289ec 100644
+> --- a/drivers/gpu/drm/i915/i915_active.h
+> +++ b/drivers/gpu/drm/i915/i915_active.h
+> @@ -163,14 +163,18 @@ void __i915_active_init(struct i915_active *ref,
+>  	__i915_active_init(ref, active, retire, &__mkey, &__wkey);	\
+>  } while (0)
+>  
+> -int i915_active_ref(struct i915_active *ref,
+> -		    struct intel_timeline *tl,
+> -		    struct dma_fence *fence);
+> +struct dma_fence *
+> +__i915_active_ref(struct i915_active *ref, u64 idx, struct dma_fence *fence);
+> +int i915_active_ref(struct i915_active *ref, u64 idx, struct dma_fence *fence);
+>  
+>  static inline int
+>  i915_active_add_request(struct i915_active *ref, struct i915_request *rq)
+>  {
+> -	return i915_active_ref(ref, i915_request_timeline(rq), &rq->fence);
+> +	struct intel_timeline *tl = i915_request_timeline(rq);
+> +
+> +	lockdep_assert_held(&tl->mutex);
+> +
+> +	return i915_active_ref(ref, tl->fence_context, &rq->fence);
+>  }
+>  
+>  struct dma_fence *
+> @@ -198,7 +202,9 @@ int i915_request_await_active(struct i915_request *rq,
+>  #define I915_ACTIVE_AWAIT_BARRIER BIT(2)
+>  
+>  int i915_active_acquire(struct i915_active *ref);
+> +int i915_active_acquire_for_context(struct i915_active *ref, u64 idx);
+>  bool i915_active_acquire_if_busy(struct i915_active *ref);
+> +
+>  void i915_active_release(struct i915_active *ref);
+>  
+>  static inline void __i915_active_acquire(struct i915_active *ref)
+
+Somewhere this is hiding a locking inversion in the later part of this series.
+
+tl->mutex needs to be an inner lock of ww objects, see my patch series.
+
+Since this is not the case, you're somehow hiding a locking inversion.
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
