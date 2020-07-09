@@ -2,31 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF064219FCE
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 14:14:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6144219FE4
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 14:20:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F9246EA52;
-	Thu,  9 Jul 2020 12:14:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C9A96EA5A;
+	Thu,  9 Jul 2020 12:20:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3DE3A6E077;
- Thu,  9 Jul 2020 12:14:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3715DA363D;
- Thu,  9 Jul 2020 12:14:45 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D37A6E42E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 12:20:12 +0000 (UTC)
+IronPort-SDR: wnEMPOros+pHF0Pslo4BNddlZDH6gI4vhOunVzmHd70ar/x34+2/9Ly7i4Kl13ITR19d5r/FKA
+ dEf0j4qbtPAw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9676"; a="127567086"
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="127567086"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2020 05:20:11 -0700
+IronPort-SDR: t89akfUBR9HSeVj2/nmqjYhFZVsOSXDEX9LKbzUOh6zgfbEqVXlvXLOsUmEV9aahEd8N9Urfgp
+ 05PlojiQftmw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="298054102"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 09 Jul 2020 05:20:09 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 09 Jul 2020 15:20:08 +0300
+Date: Thu, 9 Jul 2020 15:20:08 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200709122008.GZ6112@intel.com>
+References: <20200108181242.13650-1-ville.syrjala@linux.intel.com>
+ <20200108181242.13650-7-ville.syrjala@linux.intel.com>
+ <20200709114710.GD16776@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 09 Jul 2020 12:14:45 -0000
-Message-ID: <159429688519.31093.16979285096188924470@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200709114119.28122-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200709114119.28122-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/6=5D_drm/i915=3A_Add_a_couple_of_missing?=
- =?utf-8?q?_i915=5Factive=5Ffini=28=29?=
+Content-Disposition: inline
+In-Reply-To: <20200709114710.GD16776@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915/sdvo: Make SDVO deal with HDMI
+ pixel repeat
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,152 +55,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jul 09, 2020 at 02:47:10PM +0300, Imre Deak wrote:
+> On Wed, Jan 08, 2020 at 08:12:40PM +0200, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
-Series: series starting with [1/6] drm/i915: Add a couple of missing i915_active_fini()
-URL   : https://patchwork.freedesktop.org/series/79297/
-State : success
+> > With SDVO the pipe config pixel_multiplier only concerns itself with the
+> > data on the SDVO bus. Any HDMI specific pixel repeat must be handled by
+> > the SDVO device itself. To do that simply configure the SDVO pixel
+> > replication factor appropriately. We already set up the infoframe PRB
+> > values correctly via the infoframe helpers.
+> > =
 
-== Summary ==
+> > There is no cap we can check for this. The spec says that 1X,2X,4X are
+> > mandatory, anything else is optional. 1X and 2X are all we need so
+> > we should be able to assume they work.
+> > =
 
-CI Bug Log - changes from CI_DRM_8718 -> Patchwork_18121
-====================================================
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Summary
--------
+> Reviewed-by: Imre Deak <imre.deak@intel.com>
+> =
 
-  **SUCCESS**
+> Shouldn't DRM_MODE_FLAG_DBLCLK be set for the read-out mode in
+> intel_sdvo_get_config()?
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18121 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_addfb_basic@invalid-get-prop-any:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-y/igt@kms_addfb_basic@invalid-get-prop-any.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-tgl-y/igt@kms_addfb_basic@invalid-get-prop-any.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][7] ([i915#1888]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-apl-guc:         [DMESG-FAIL][11] ([i915#1751]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_flip@basic-plain-flip@d-dsi1:
-    - {fi-tgl-dsi}:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-dsi/igt@kms_flip@basic-plain-flip@d-dsi1.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-tgl-dsi/igt@kms_flip@basic-plain-flip@d-dsi1.html
-
-  * igt@vgem_basic@setversion:
-    - fi-tgl-y:           [DMESG-WARN][15] ([i915#402]) -> [PASS][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-y/igt@vgem_basic@setversion.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-tgl-y/igt@vgem_basic@setversion.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#1982] / [i915#62] / [i915#92])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][19] ([fdo#109271]) -> [DMESG-FAIL][20] ([i915#62] / [i915#95])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([i915#62] / [i915#92]) +3 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1751]: https://gitlab.freedesktop.org/drm/intel/issues/1751
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Apparently we don't do that for HDMI either, and we don't check
+it it in intel_pipe_config_compare() either. I guess we could add
+the readout+check. =
 
 
-Participating hosts (43 -> 36)
-------------------------------
+Although I've been actually tempted to just remove this flag
+entirely since it only really should be set to boost the clock
+above the magic 25MHz limit. Hmm, now I wonder if that limit
+is about the TMDS clock or the dotclock actually. Would need to
+read the spec once again. Anyways, the reason why I haven't
+deprecated this flag yet is that IIRC some other drivers was
+also  using it for other purposes, and I was too lazy to figure
+out what's going on there.
 
-  Additional (1): fi-ilk-650 
-  Missing    (8): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+> =
 
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_sdvo.c | 27 +++++++++++++++++++----
+> >  1 file changed, 23 insertions(+), 4 deletions(-)
+> > =
 
-Build changes
--------------
+> > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/dr=
+m/i915/display/intel_sdvo.c
+> > index a0bbd728aa54..34d5bd750de8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > @@ -943,6 +943,13 @@ static bool intel_sdvo_set_colorimetry(struct inte=
+l_sdvo *intel_sdvo,
+> >  	return intel_sdvo_set_value(intel_sdvo, SDVO_CMD_SET_COLORIMETRY, &mo=
+de, 1);
+> >  }
+> >  =
 
-  * Linux: CI_DRM_8718 -> Patchwork_18121
+> > +static bool intel_sdvo_set_pixel_replication(struct intel_sdvo *intel_=
+sdvo,
+> > +					     u8 pixel_repeat)
+> > +{
+> > +	return intel_sdvo_set_value(intel_sdvo, SDVO_CMD_SET_PIXEL_REPLI,
+> > +				    &pixel_repeat, 1);
+> > +}
+> > +
+> >  static bool intel_sdvo_set_audio_state(struct intel_sdvo *intel_sdvo,
+> >  				       u8 audio_state)
+> >  {
+> > @@ -1493,6 +1500,9 @@ static void intel_sdvo_pre_enable(struct intel_en=
+coder *intel_encoder,
+> >  					   SDVO_COLORIMETRY_RGB220 :
+> >  					   SDVO_COLORIMETRY_RGB256);
+> >  		intel_sdvo_set_avi_infoframe(intel_sdvo, crtc_state);
+> > +		intel_sdvo_set_pixel_replication(intel_sdvo,
+> > +						 !!(adjusted_mode->flags &
+> > +						    DRM_MODE_FLAG_DBLCLK));
+> >  	} else
+> >  		intel_sdvo_set_encode(intel_sdvo, SDVO_ENCODE_DVI);
+> >  =
 
-  CI-20190529: 20190529
-  CI_DRM_8718: 1bab8016997931971e986af01de252120896af95 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5729: a048d54f58dd70b07dbeb4541b273ec230ddb586 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18121: 401b721f69ea8a3deea2cc7c204b9c9f525ad5ca @ git://anongit.freedesktop.org/gfx-ci/linux
+> > @@ -1839,17 +1849,26 @@ intel_sdvo_mode_valid(struct drm_connector *con=
+nector,
+> >  	struct intel_sdvo_connector *intel_sdvo_connector =3D
+> >  		to_intel_sdvo_connector(connector);
+> >  	int max_dotclk =3D to_i915(connector->dev)->max_dotclk_freq;
+> > +	bool has_hdmi_sink =3D intel_has_hdmi_sink(intel_sdvo, connector->sta=
+te);
+> > +	int clock =3D mode->clock;
+> >  =
 
+> >  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
+> >  		return MODE_NO_DBLESCAN;
+> >  =
 
-== Linux commits ==
+> > -	if (intel_sdvo->pixel_clock_min > mode->clock)
+> > -		return MODE_CLOCK_LOW;
+> >  =
 
-401b721f69ea drm/i915: Provide a fastpath for waiting on vma bindings
-584e2a308747 drm/i915: Make the stale cached active node available for any timeline
-4934a21dfe00 drm/i915: Keep the most recently used active-fence upon discard
-747b770c0842 drm/i915: Export a preallocate variant of i915_active_acquire()
-368626fcdf2a drm/i915: Skip taking acquire mutex for no ref->active callback
-b4522cf919dd drm/i915: Add a couple of missing i915_active_fini()
+> > -	if (intel_sdvo->pixel_clock_max < mode->clock)
+> > +	if (clock > max_dotclk)
+> >  		return MODE_CLOCK_HIGH;
+> >  =
 
-== Logs ==
+> > -	if (mode->clock > max_dotclk)
+> > +	if (mode->flags & DRM_MODE_FLAG_DBLCLK) {
+> > +		if (!has_hdmi_sink)
+> > +			return MODE_CLOCK_LOW;
+> > +		clock *=3D 2;
+> > +	}
+> > +
+> > +	if (intel_sdvo->pixel_clock_min > clock)
+> > +		return MODE_CLOCK_LOW;
+> > +
+> > +	if (intel_sdvo->pixel_clock_max < clock)
+> >  		return MODE_CLOCK_HIGH;
+> >  =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18121/index.html
+> >  	if (IS_LVDS(intel_sdvo_connector)) {
+> > -- =
+
+> > 2.24.1
+> > =
+
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
