@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD5E21AA08
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 23:53:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81DB221AA69
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 00:20:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA6A6EB43;
-	Thu,  9 Jul 2020 21:53:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C9A56EB45;
+	Thu,  9 Jul 2020 22:20:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 125FC6EB43
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 21:53:45 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21770699-1500050 
- for multiple; Thu, 09 Jul 2020 22:53:35 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Jul 2020 22:53:31 +0100
-Message-Id: <20200709215331.19994-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D8DDE6EB45;
+ Thu,  9 Jul 2020 22:20:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C02E9A47EB;
+ Thu,  9 Jul 2020 22:20:34 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftest: Check that GPR are restored
- across noa_wait
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Thu, 09 Jul 2020 22:20:34 -0000
+Message-ID: <159433323475.31091.9172641059770378364@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200709211357.23208-1-lucas.demarchi@intel.com>
+In-Reply-To: <20200709211357.23208-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/6=5D_drm/i915=3A_Add_has=5Fm?=
+ =?utf-8?q?aster=5Funit=5Firq_flag?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,169 +39,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Perf implements a GPU delay (noa_wait) by looping until the CS timestamp
-has passed a certain point. This use MI_MATH and the general purpose
-registers of the user's context, and since it is clobbering the user
-state it must carefully save and restore the user's data around the
-noa_wait. We can verify this by loading some values in the GPR that we
-know will be clobbered the noa_wait, and then inspecting the GPR after
-the noa_wait completes and confirming that have been restored.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/selftests/i915_perf.c | 124 +++++++++++++++++++++
- 1 file changed, 124 insertions(+)
+Series: series starting with [CI,1/6] drm/i915: Add has_master_unit_irq flag
+URL   : https://patchwork.freedesktop.org/series/79316/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_perf.c b/drivers/gpu/drm/i915/selftests/i915_perf.c
-index be54570c407c..be63cfe82feb 100644
---- a/drivers/gpu/drm/i915/selftests/i915_perf.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_perf.c
-@@ -280,11 +280,135 @@ static int live_noa_delay(void *arg)
- 	return err;
- }
- 
-+static int live_noa_gpr(void *arg)
-+{
-+	struct drm_i915_private *i915 = arg;
-+	struct i915_perf_stream *stream;
-+	struct intel_context *ce;
-+	struct i915_request *rq;
-+	u32 *cs, *store;
-+	void *scratch;
-+	u32 gpr0;
-+	int err;
-+	int i;
-+
-+	/* Check that the delay does not clobber user context state (GPR) */
-+
-+	stream = test_stream(&i915->perf);
-+	if (!stream)
-+		return -ENOMEM;
-+
-+	gpr0 = i915_mmio_reg_offset(GEN8_RING_CS_GPR(stream->engine->mmio_base, 0));
-+
-+	ce = intel_context_create(stream->engine);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		goto out;
-+	}
-+
-+	scratch = kmap(ce->vm->scratch[0].base.page);
-+	memset(scratch, POISON_FREE, PAGE_SIZE);
-+
-+	rq = intel_context_create_request(ce);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out_ce;
-+	}
-+	i915_request_get(rq);
-+
-+	if (rq->engine->emit_init_breadcrumb) {
-+		err = rq->engine->emit_init_breadcrumb(rq);
-+		if (err) {
-+			i915_request_add(rq);
-+			goto out_rq;
-+		}
-+	}
-+
-+	cs = intel_ring_begin(rq, 2 * 32 + 2);
-+	if (IS_ERR(cs)) {
-+		i915_request_add(rq);
-+		goto out_rq;
-+	}
-+
-+	*cs++ = MI_LOAD_REGISTER_IMM(32);
-+	for (i = 0; i < 32; i++) {
-+		*cs++ = gpr0 + i * sizeof(u32);
-+		*cs++ = STACK_MAGIC;
-+	}
-+	*cs++ = MI_NOOP;
-+	intel_ring_advance(rq, cs);
-+
-+	err = rq->engine->emit_bb_start(rq,
-+					i915_ggtt_offset(stream->noa_wait), 0,
-+					I915_DISPATCH_SECURE);
-+	if (err) {
-+		i915_request_add(rq);
-+		goto out_rq;
-+	}
-+
-+	store = memset32(rq->engine->status_page.addr + 512, 0, 32);
-+	for (i = 0; i < 32; i++) {
-+		u32 cmd;
-+
-+		cs = intel_ring_begin(rq, 4);
-+		if (IS_ERR(cs)) {
-+			i915_request_add(rq);
-+			goto out_rq;
-+		}
-+
-+		cmd = MI_STORE_REGISTER_MEM;
-+		if (INTEL_GEN(i915) >= 8)
-+			cmd++;
-+		cmd |= MI_USE_GGTT;
-+
-+		*cs++ = cmd;
-+		*cs++ = gpr0 + i * sizeof(u32);
-+		*cs++ = i915_ggtt_offset(rq->engine->status_page.vma) +
-+			offset_in_page(store) +
-+			i * sizeof(u32);
-+		*cs++ = 0;
-+		intel_ring_advance(rq, cs);
-+	}
-+
-+	i915_request_add(rq);
-+
-+	if (i915_request_wait(rq, I915_WAIT_INTERRUPTIBLE, HZ / 2) < 0) {
-+		intel_gt_set_wedged(stream->engine->gt);
-+		err = -EIO;
-+		goto out_rq;
-+	}
-+
-+	for (i = 0; i < 32; i++) {
-+		if (store[i] == STACK_MAGIC)
-+			continue;
-+
-+		pr_err("GPR[%d] lost, found:%08x, expected:%08x!\n",
-+		       i, store[i], STACK_MAGIC);
-+		err = -EINVAL;
-+	}
-+
-+	if (memchr_inv(scratch, POISON_FREE, PAGE_SIZE)) {
-+		pr_err("scratch page overwritten!\n");
-+		igt_hexdump(scratch, 4096);
-+		err = -EINVAL;
-+	}
-+
-+out_rq:
-+	i915_request_put(rq);
-+out_ce:
-+	kunmap(ce->vm->scratch[0].base.page);
-+	intel_context_put(ce);
-+out:
-+	stream_destroy(stream);
-+	return err;
-+}
-+
- int i915_perf_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(live_sanitycheck),
- 		SUBTEST(live_noa_delay),
-+		SUBTEST(live_noa_gpr),
- 	};
- 	struct i915_perf *perf = &i915->perf;
- 	int err;
--- 
-2.20.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+e4cf5d2b2a11 drm/i915: Add has_master_unit_irq flag
+343e6cd5cf65 drm/i915/dg1: add initial DG-1 definitions
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#45: FILE: drivers/gpu/drm/i915/i915_drv.h:1566:
++#define IS_DG1_REVID(p, since, until) \
++	(IS_DG1(p) && IS_REVID(p, since, until))
+
+total: 0 errors, 0 warnings, 1 checks, 53 lines checked
+f1b701facb7b drm/i915/dg1: Add DG1 PCI IDs
+eac5d1d298b5 drm/i915/dg1: add support for the master unit interrupt
+c618720612b5 drm/i915/dg1: Remove SHPD_FILTER_CNT register programming
+61af7546dbe0 drm/i915/dg1: Add fake PCH
 
 _______________________________________________
 Intel-gfx mailing list
