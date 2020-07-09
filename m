@@ -2,36 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3F4E219E73
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 12:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF666219E90
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 13:01:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D6D76E04B;
-	Thu,  9 Jul 2020 10:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54B516E405;
+	Thu,  9 Jul 2020 11:01:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A577C6E04B
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 10:58:03 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21763747-1500050 for multiple; Thu, 09 Jul 2020 11:58:02 +0100
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F3096E405
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 11:01:24 +0000 (UTC)
+IronPort-SDR: Xaw/D/jDAr3PUwwriPmOzke5zGr18TXR8fiyRyOLKsAEh9idhH2E7WbitdSEXIyASudBjmU6Y5
+ Me9QVvMNUmRw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9676"; a="136200200"
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="136200200"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2020 04:01:24 -0700
+IronPort-SDR: yMH9gcHtEQ8uDtSNej9yJZbh4A47U2WRnM2rRE1pl9fYMFkCOZQN4T55woKQWSohrJuCyBaqLK
+ fEp4PFcPGyxQ==
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="428170171"
+Received: from ideak-desk.fi.intel.com ([10.237.68.147])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2020 04:01:23 -0700
+Date: Thu, 9 Jul 2020 14:01:19 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200709110119.GC16776@ideak-desk.fi.intel.com>
+References: <20200108181242.13650-1-ville.syrjala@linux.intel.com>
+ <20200108181242.13650-6-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <db44ae52-dad5-78c9-bae5-2b9805db4790@linux.intel.com>
-References: <20200706061926.6687-1-chris@chris-wilson.co.uk>
- <20200706061926.6687-4-chris@chris-wilson.co.uk>
- <846580f3-4dd4-ed0e-b461-010d7b0ae6be@linux.intel.com>
- <159423173830.30287.17971074477427255070@build.alporthouse.com>
- <db44ae52-dad5-78c9-bae5-2b9805db4790@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Thu, 09 Jul 2020 11:57:59 +0100
-Message-ID: <159429227972.22162.3283964649173247110@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 03/20] drm/i915/gem: Don't drop the timeline
- lock during execbuf
+Content-Disposition: inline
+In-Reply-To: <20200108181242.13650-6-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915: Reject DRM_MODE_FLAG_DBLCLK
+ with DVI sinks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,40 +51,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-07-09 11:52:19)
-> 
-> On 08/07/2020 19:08, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-07-08 17:54:51)
-> >>
-> >> On 06/07/2020 07:19, Chris Wilson wrote:
-> >>> +static struct i915_request *
-> >>> +nested_request_create(struct intel_context *ce)
-> >>> +{
-> >>> +     struct i915_request *rq;
-> >>> +
-> >>> +     /* XXX This only works once; replace with shared timeline */
-> >>
-> >> Once as in attempt to use the same local intel_context from another eb
-> >> would upset lockdep? It's not a problem I think.
-> > 
-> > "Once" as in this is the only time we can do this nested locking between
-> > engines of the same context in the whole driver, or else lockdep would
-> > have been right to complain. [i.e. if we ever do the reserve nesting, we
-> > are screwed.]
-> > 
-> > Fwiw, I have posted patches that will eliminate the need for a nested
-> > timeline here :)
-> 
-> In this series or just on the mailing list?
+On Wed, Jan 08, 2020 at 08:12:39PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-It's the implement a ring-scheduler for gen6 series, which is currently
-sitting at the end of the vdeadline scheduler series.
--Chris
+> The code assumes that DRM_MODE_FLAG_DBLCLK means that we enable the
+> pixel repeat feature. That only works with HDMI since it requires
+> AVI infoframe to signal the information to the sink. Hence even if
+> the mode dotclock would be valid we cannot currently assume that
+> we can just ignore the DBLCLK flag. Reject it for DVI sinks.
+> =
+
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index 85c5f840a0fc..a62dd3348301 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2185,8 +2185,11 @@ intel_hdmi_mode_valid(struct drm_connector *connec=
+tor,
+>  	if (clock > max_dotclk)
+>  		return MODE_CLOCK_HIGH;
+>  =
+
+> -	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+> +	if (mode->flags & DRM_MODE_FLAG_DBLCLK) {
+> +		if (!has_hdmi_sink)
+> +			return MODE_CLOCK_LOW;
+
+MODE_H_ILLEGAL is used elsewhere for this case, and also an odd MODE_BAD
+at one place.
+
+>  		clock *=3D 2;
+> +	}
+>  =
+
+>  	if (drm_mode_is_420_only(&connector->display_info, mode))
+>  		clock /=3D 2;
+> -- =
+
+> 2.24.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
