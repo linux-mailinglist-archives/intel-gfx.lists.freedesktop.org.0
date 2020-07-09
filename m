@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9339021A879
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 22:02:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D51C321A8C2
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 22:14:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C47F36EB26;
-	Thu,  9 Jul 2020 20:02:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E4A36EB2B;
+	Thu,  9 Jul 2020 20:14:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C9AD6EB26
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 20:02:01 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id f139so3148094wmf.5
- for <intel-gfx@lists.freedesktop.org>; Thu, 09 Jul 2020 13:02:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=kVP1CHBq2hc6XgN2w9Fi8B/Gr8HW3vNWYUCq2W57fy8=;
- b=dmjUCTiLPAagdjW6MV70uy+nTAuBSkzsA/nGqoFuQ5++EqwDWh4qRJvzcQXWfIqYG5
- 8EEVz/IfYcT4/+/a9AekpsUHzo/FxTEVO/waD5z0fBnvOGU1vZ6OqNzD95cMY3K+cyh7
- aqLrTPxfyaiMXrFjg/bsDG5hmtSffkns2VSJepa5do5WJ5ZJWoTPviKR90a1sTbgmKrW
- qcV5TMCNWbajL+HA+UqeSbZD1YejeAFQR6lc5qg+vyfWGWwSmhbHlMVRVwrZCBGIxx2Q
- 6i3tk5nBisWvWpBBB35RSEqHMI58ouFmDEljyKWf6bRYgLXOR9WYWMsePYW930xaZP0t
- W4Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=kVP1CHBq2hc6XgN2w9Fi8B/Gr8HW3vNWYUCq2W57fy8=;
- b=a1K3du+RrIo5MGneubw0dRrwyHDlIk2NiV3pF249H1FY1kd39MlHMkN4owG/n1PYuu
- HoWiwFISbB6QbKx4C4KSv6aDdR9Pppheweslqo4nr28LOVIis3xzeltHJtlOmajkJYYg
- yGEncWDxWPUsOkxYAEN3t+2iNTdvsd9nhHMJB1i6vT/5+7MY8fTW+i2XqvI+AE0eRfZl
- tIIWTBU0P5H61Qswg2CHVUr9uCxRT73+D4M/vbdkleA3jyJJHmRPcD204l44BXUF2uEF
- U3TV0USsikACRoYEvlJ3O0ZAqtB6HrzL4KMOnGW3oa+9KHlPmLxvoeE8APqoKdDcMDgW
- 6CRw==
-X-Gm-Message-State: AOAM531X+O9WxgUl8+KAj8d9Gcvp7GZCEd8ULCM7GXf0zDF+PAmaO3bV
- sh8hpPKpuMqkNZ1uNWSvrzciSrID+DQYtOlCPdc=
-X-Google-Smtp-Source: ABdhPJw9dOrzE2Ra6wdjAQIYzFS6oI4VwaHQ/FHUm5AxzVBMKaN4DKiHz5s883N2dcCJfaTxwe/jVIlfk+yir/d9GAk=
-X-Received: by 2002:a7b:c007:: with SMTP id c7mr1601873wmb.165.1594324920224; 
- Thu, 09 Jul 2020 13:02:00 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8EA6EB2B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 20:14:17 +0000 (UTC)
+IronPort-SDR: VfirSFgOmDY1HgAaiK9JQyXkz4wxAj2nnbuUUJ5KTt0m98bvPSF7LNrMQ7VZ6k5q5iafvTggyT
+ 4r9EzSuCu1rg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="209626886"
+X-IronPort-AV: E=Sophos;i="5.75,332,1589266800"; d="scan'208";a="209626886"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2020 13:14:16 -0700
+IronPort-SDR: ok6kfPDMWu1b6nEhE4ZfMNktnyV6qbeqtrSFvCOaHTc4zT2uuTD1PM4C3a9haFI9A1Nv18/Ljw
+ sDdUeSLsCNlA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,332,1589266800"; d="scan'208";a="483927761"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by fmsmga006.fm.intel.com with ESMTP; 09 Jul 2020 13:14:13 -0700
+Received: from fmsmsx123.amr.corp.intel.com (10.18.125.38) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 9 Jul 2020 13:14:07 -0700
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.171]) by
+ fmsmsx123.amr.corp.intel.com ([169.254.7.113]) with mapi id 14.03.0439.000;
+ Thu, 9 Jul 2020 13:14:07 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915: WARN if max vswing/pre-emphasis
+ violates the DP spec
+Thread-Index: AQHWVgGHk1Slfmxm5UWrR8KvEsz5IKkAJNOA
+Date: Thu, 9 Jul 2020 20:14:05 +0000
+Message-ID: <ac6ca9134c3e22fe045743f1c7a74deff6b2c2ac.camel@intel.com>
+References: <20200709145845.18118-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200709145845.18118-1-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.14.51]
+Content-ID: <F7F53298481EC84DB369107FB2F95E31@intel.com>
 MIME-Version: 1.0
-References: <20200701235339.32608-4-lucas.demarchi@intel.com>
- <202007021357.nFzJVY4b%lkp@intel.com>
-In-Reply-To: <202007021357.nFzJVY4b%lkp@intel.com>
-From: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Date: Thu, 9 Jul 2020 13:01:47 -0700
-Message-ID: <CAKi4VAJOoR5otTrBkCeGRaMsnhDdjmvP0fwpNzRWb==QzSXa+w@mail.gmail.com>
-To: kernel test robot <lkp@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 03/28] drm/i915/dg1: Add DG1 PCI IDs
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: WARN if max vswing/pre-emphasis
+ violates the DP spec
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,85 +64,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 1, 2020 at 11:01 PM kernel test robot <lkp@intel.com> wrote:
->
-> Hi Lucas,
->
-> Thank you for the patch! Yet something to improve:
->
-> [auto build test ERROR on drm-intel/for-linux-next]
-> [also build test ERROR on drm-tip/drm-tip next-20200701]
-> [cannot apply to v5.8-rc3]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use  as documented in
-> https://git-scm.com/docs/git-format-patch]
->
-> url:    https://github.com/0day-ci/linux/commits/Lucas-De-Marchi/Introduce-DG1/20200702-075819
-> base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-> config: i386-randconfig-m021-20200701 (attached as .config)
-> compiler: gcc-9 (Debian 9.3.0-14) 9.3.0
->
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
->
-> All errors (new ones prefixed by >>):
->
-> >> drivers/gpu/drm/i915/i915_pci.c:903:39: error: 'dg1_info' defined but not used [-Werror=unused-const-variable=]
->      903 | static const struct intel_device_info dg1_info = {
->          |                                       ^~~~~~~~
-
-This is intentionally left unused. Wonder what the fix would be...
-__attribute__(__unused__) or force the warning
-to be ignored here
-
-with or without this change I don't get a warning in  gcc 10 (using
-the same config attached).
-
-Lucas De Marchi
-
->    cc1: all warnings being treated as errors
->
-> vim +/dg1_info +903 drivers/gpu/drm/i915/i915_pci.c
->
->    896
->    897  #define GEN12_DGFX_FEATURES \
->    898          GEN12_FEATURES, \
->    899          .memory_regions = REGION_SMEM | REGION_LMEM, \
->    900          .has_master_unit_irq = 1, \
->    901          .is_dgfx = 1
->    902
->  > 903  static const struct intel_device_info dg1_info = {
->    904          GEN12_DGFX_FEATURES,
->    905          PLATFORM(INTEL_DG1),
->    906          .pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
->    907          .require_force_probe = 1,
->    908          .engine_mask =
->    909                  BIT(RCS0) | BIT(BCS0) | BIT(VECS0) |
->    910                  BIT(VCS0) | BIT(VCS2),
->    911  };
->    912
->
-> ---
-> 0-DAY CI Kernel Test Service, Intel Corporation
-> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
-
-
--- 
-Lucas De Marchi
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIwLTA3LTA5IGF0IDE3OjU4ICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gQWNjb3JkaW5nIHRvIHRoZSBEUCBzcGVjIGEgRFBUWCBtdXN0IHN1cHBvcnQgdnN3aW5n
+L3ByZS1lbXBoYXNpcw0KPiB1cCB0byBhbmQgaW5jbHVkaW5nIGxldmVsIDIuIExldmVsIDMgaXMg
+b3B0aW9uYWwgKGFjdHVhbGx5IERQIDEuNGENCj4gc2VlbXMgdG8gbWFrZSBldmVuIGxldmVsIDMg
+bWFuZGF0b3J5IGZvciBIQlIyLzMsIHdoaWxlIGxlYXZpbmcgaXQNCj4gb3B0aW9uYWwgZm9yIFJC
+Ui9IQlIxKS4NCj4gDQo+IFdBUk4gaWYgb3V0IGVuY29kZXJzJyAudm9sdGFnZV9tYXgoKS8ucHJl
+ZW1waF9tYXgoKSByZXR1cm4NCj4gYW4gaWxsZWdhbCB2YWx1ZS4NCj4gDQo+IFNpZ25lZC1vZmYt
+Ynk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+IC0t
+LQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5n
+LmMgfCA5ICsrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKQ0KPiAN
+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlu
+a190cmFpbmluZy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5r
+X3RyYWluaW5nLmMNCj4gaW5kZXggMjQ5MzE0MmE3MGU5Li5hMjNlZDcyOTA4NDMgMTAwNjQ0DQo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmlu
+Zy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190
+cmFpbmluZy5jDQo+IEBAIC01Miw2ICs1Miw3IEBAIHN0YXRpYyB1OCBkcF92b2x0YWdlX21heCh1
+OCBwcmVlbXBoKQ0KPiAgdm9pZCBpbnRlbF9kcF9nZXRfYWRqdXN0X3RyYWluKHN0cnVjdCBpbnRl
+bF9kcCAqaW50ZWxfZHAsDQo+ICAJCQkgICAgICAgY29uc3QgdTggbGlua19zdGF0dXNbRFBfTElO
+S19TVEFUVVNfU0laRV0pDQo+ICB7DQo+ICsJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUg
+PSBkcF90b19pOTE1KGludGVsX2RwKTsNCj4gIAl1OCB2ID0gMDsNCj4gIAl1OCBwID0gMDsNCj4g
+IAlpbnQgbGFuZTsNCj4gQEAgLTY0LDEyICs2NSwyMCBAQCB2b2lkIGludGVsX2RwX2dldF9hZGp1
+c3RfdHJhaW4oc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gIAl9DQo+ICANCj4gIAlwcmVl
+bXBoX21heCA9IGludGVsX2RwLT5wcmVlbXBoX21heChpbnRlbF9kcCk7DQo+ICsJZHJtX1dBUk5f
+T05fT05DRSgmaTkxNS0+ZHJtLA0KPiArCQkJIHByZWVtcGhfbWF4ICE9IERQX1RSQUlOX1BSRV9F
+TVBIX0xFVkVMXzIgJiYNCj4gKwkJCSBwcmVlbXBoX21heCAhPSBEUF9UUkFJTl9QUkVfRU1QSF9M
+RVZFTF8zKTsNCg0KT2theSBtYXRjaGVzIGJ1dCBJIGd1ZXNzIHRoZSBwcmVlbXBoX21heCBmdW5j
+dGlvbiBzaG91bGQgcmVjZWl2ZSBhcyBwYXJhbWV0ZXIgdGhlIHZvbHRhZ2UgbGV2ZWwgdG8gaXQg
+cmV0dXJuIHRoZSBtYXggcHJlZW1waCBvZiB0aGF0IHZvbHRhZ2UgbGV2ZWwsDQpubz8NCg0KPiAr
+DQo+ICAJaWYgKHAgPj0gcHJlZW1waF9tYXgpDQo+ICAJCXAgPSBwcmVlbXBoX21heCB8IERQX1RS
+QUlOX01BWF9QUkVfRU1QSEFTSVNfUkVBQ0hFRDsNCj4gIA0KPiAgCXYgPSBtaW4odiwgZHBfdm9s
+dGFnZV9tYXgocCkpOw0KPiAgDQo+ICAJdm9sdGFnZV9tYXggPSBpbnRlbF9kcC0+dm9sdGFnZV9t
+YXgoaW50ZWxfZHApOw0KPiArCWRybV9XQVJOX09OX09OQ0UoJmk5MTUtPmRybSwNCj4gKwkJCSB2
+b2x0YWdlX21heCAhPSBEUF9UUkFJTl9WT0xUQUdFX1NXSU5HX0xFVkVMXzIgJiYNCj4gKwkJCSB2
+b2x0YWdlX21heCAhPSBEUF9UUkFJTl9WT0xUQUdFX1NXSU5HX0xFVkVMXzMpOw0KPiArDQo+ICAJ
+aWYgKHYgPj0gdm9sdGFnZV9tYXgpDQo+ICAJCXYgPSB2b2x0YWdlX21heCB8IERQX1RSQUlOX01B
+WF9TV0lOR19SRUFDSEVEOw0KPiAgDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9pbnRlbC1nZngK
