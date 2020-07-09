@@ -2,37 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85DD621A978
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 23:01:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4943321A994
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 23:14:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6069A6EB38;
-	Thu,  9 Jul 2020 21:01:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F4046EB3B;
+	Thu,  9 Jul 2020 21:14:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E84826EB38
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 21:01:03 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21770419-1500050 for multiple; Thu, 09 Jul 2020 22:01:02 +0100
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACD9F6EB3A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 21:14:01 +0000 (UTC)
+IronPort-SDR: fOIaF4PcIfn7SJdOnul2P0qaXjjmhs/TdkiBJ8AFm7kguw7sExcGh8BtuxpL0GCyCd+15X+Rm9
+ ROjDLyeUpa9w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="149580925"
+X-IronPort-AV: E=Sophos;i="5.75,332,1589266800"; d="scan'208";a="149580925"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2020 14:14:01 -0700
+IronPort-SDR: T2I8wrhLZzCx67qVcbF5clHhiq3G7x+2XugyO7MJmC5ffTuB7O8VrDMkY6rm1hh9j0PAWndKMZ
+ wssm52SQPASg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,332,1589266800"; d="scan'208";a="280429779"
+Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
+ by orsmga003.jf.intel.com with ESMTP; 09 Jul 2020 14:14:00 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  9 Jul 2020 14:13:52 -0700
+Message-Id: <20200709211357.23208-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <6900323b-0497-2255-0db1-e07d0f2b1e3d@intel.com>
-References: <20200709195837.4285-1-umesh.nerlige.ramappa@intel.com>
- <159432703606.23667.16598713539279373813@build.alporthouse.com>
- <fd6dab94-a529-9883-402a-574c8ba75d7d@intel.com>
- <159432756544.23667.15244364549691647417@build.alporthouse.com>
- <6900323b-0497-2255-0db1-e07d0f2b1e3d@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Thu, 09 Jul 2020 22:00:59 +0100
-Message-ID: <159432845972.23667.1323025903321586391@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Use GTT when
- saving/restoring engine GPR
+Subject: [Intel-gfx] [CI 1/6] drm/i915: Add has_master_unit_irq flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,72 +46,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lionel Landwerlin (2020-07-09 21:50:30)
-> On 09/07/2020 23:46, Chris Wilson wrote:
-> > Quoting Lionel Landwerlin (2020-07-09 21:42:39)
-> >> On 09/07/2020 23:37, Chris Wilson wrote:
-> >>> Quoting Umesh Nerlige Ramappa (2020-07-09 20:58:37)
-> >>>> MI_STORE_REGISTER_MEM and MI_LOAD_REGISTER_MEM need to know which
-> >>>> translation to use when saving restoring the engine general purpose
-> >>>> registers to and from the GT scratch. Since GT scratch is mapped to
-> >>>> ggtt, we need to set an additional bit in the command to use GTT.
-> >>>>
-> >>>> Fixes: daed3e44396d17 ("drm/i915/perf: implement active wait for noa configurations")
-> >>>> Suggested-by: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-> >>>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> >>>> ---
-> >>>>    drivers/gpu/drm/i915/i915_perf.c | 1 +
-> >>>>    1 file changed, 1 insertion(+)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> >>>> index de69d430b1ed..c6f6370283cf 100644
-> >>>> --- a/drivers/gpu/drm/i915/i915_perf.c
-> >>>> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> >>>> @@ -1592,6 +1592,7 @@ static u32 *save_restore_register(struct i915_perf_stream *stream, u32 *cs,
-> >>>>           u32 d;
-> >>>>    
-> >>>>           cmd = save ? MI_STORE_REGISTER_MEM : MI_LOAD_REGISTER_MEM;
-> >>>> +       cmd |= MI_SRM_LRM_GLOBAL_GTT;
-> >>> Indeed.
-> >>>
-> >>> For bonus points, please write a selftest to verify that the user's GPR
-> >>> are restored. Something as simple as live_noa_delay, but instead of
-> >>> measuring the time; submit a request to write telltales into the GPR,
-> >>> submit a request to run noa_wait; then readback the telltales from a
-> >>> final request.
-> >>>
-> >>> Now since the noa_wait is being run from the GGTT, the address space
-> >>> selector should be reading from the GGTT. So I am actually curious as to
-> >>> whether we have a bug or not.
-> >>> -Chris
-> >> I'm not super competent on the PPGTT setup, but I assumed this worked
-> >> because we wrote into the ppgtt scratch page.
-> > It's not a STORE_INDEX, it's writing to an absolute address based on the
-> > address space selector which is a combination of the batch address space
-> > and the command bits. Certainly the batch itself is read from the GGTT,
-> > but I can't off hand remember the rules for the various MI (whether they
-> > could even access ppGTT when launched from GGTT).
-> > -Chris
-> 
-> My understanding was that from a GGTT batch you could read/write into PPGTT.
-> 
-> But not the other way around (obvisously).
-> 
-> I thought the kernel mapped a page throughout the entire PPGTT space to 
-> prevent pagefaults. Is that not the case?
-
-Yes, a readonly page, where supported.
-
-Ah, now I understand you meant *that* scratch page as opposed to a
-page we allocated for the purpose of saving per-context state like the
-gt->scratch page.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogU3R1YXJ0IFN1bW1lcnMgPHN0dWFydC5zdW1tZXJzQGludGVsLmNvbT4KCkFkZCBmbGFn
+IHRvIGRpZmZlcmVudGlhdGUgcGxhdGZvcm1zIHdpdGggYW5kIHdpdGhvdXQgdGhlIG1hc3RlcgpJ
+UlEgY29udHJvbCBiaXQuCgpTaWduZWQtb2ZmLWJ5OiBTdHVhcnQgU3VtbWVycyA8c3R1YXJ0LnN1
+bW1lcnNAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRl
+bWFyY2hpQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpv
+c2Uuc291emFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2Lmgg
+ICAgICAgICAgfCAyICsrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5o
+IHwgMSArCiAyIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2Rydi5oCmluZGV4IDIxYmI5ZjdjYzQ1Mi4uNDJhOWIyMzE1NTZhIDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfZHJ2LmgKQEAgLTE1OTgsNiArMTU5OCw4IEBAIElTX1NVQlBMQVRGT1JNKGNvbnN0IHN0cnVj
+dCBkcm1faTkxNV9wcml2YXRlICppOTE1LAogI2RlZmluZSBIQVNfTE9HSUNBTF9SSU5HX1BSRUVN
+UFRJT04oZGV2X3ByaXYpIFwKIAkJKElOVEVMX0lORk8oZGV2X3ByaXYpLT5oYXNfbG9naWNhbF9y
+aW5nX3ByZWVtcHRpb24pCiAKKyNkZWZpbmUgSEFTX01BU1RFUl9VTklUX0lSUShkZXZfcHJpdikg
+KElOVEVMX0lORk8oZGV2X3ByaXYpLT5oYXNfbWFzdGVyX3VuaXRfaXJxKQorCiAjZGVmaW5lIEhB
+U19FWEVDTElTVFMoZGV2X3ByaXYpIEhBU19MT0dJQ0FMX1JJTkdfQ09OVEVYVFMoZGV2X3ByaXYp
+CiAKICNkZWZpbmUgSU5URUxfUFBHVFQoZGV2X3ByaXYpIChJTlRFTF9JTkZPKGRldl9wcml2KS0+
+cHBndHRfdHlwZSkKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rldmlj
+ZV9pbmZvLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oCmluZGV4
+IDI0MmQwMDg2MmIxYS4uNzFlZGIzOTZiMzFhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
+X2RldmljZV9pbmZvLmgKQEAgLTEyMiw2ICsxMjIsNyBAQCBlbnVtIGludGVsX3BwZ3R0X3R5cGUg
+ewogCWZ1bmMoaGFzX2xvZ2ljYWxfcmluZ19jb250ZXh0cyk7IFwKIAlmdW5jKGhhc19sb2dpY2Fs
+X3JpbmdfZWxzcSk7IFwKIAlmdW5jKGhhc19sb2dpY2FsX3JpbmdfcHJlZW1wdGlvbik7IFwKKwlm
+dW5jKGhhc19tYXN0ZXJfdW5pdF9pcnEpOyBcCiAJZnVuYyhoYXNfcG9vbGVkX2V1KTsgXAogCWZ1
+bmMoaGFzX3JjNik7IFwKIAlmdW5jKGhhc19yYzZwKTsgXAotLSAKMi4yNi4yCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
+aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
