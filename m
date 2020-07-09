@@ -2,73 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3524121A0BA
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 15:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD4E21A0C7
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 15:26:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B3E26EA69;
-	Thu,  9 Jul 2020 13:23:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF9E6EA6B;
+	Thu,  9 Jul 2020 13:26:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E3C26E15B
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 13:23:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1594301002;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=om+Zgsnth1UycyQNd04acv9Ke50N6QVpsKjGNzz8W28=;
- b=QIyuxO7MagqBjmlZrP3WAO2X/O27s/VQfUpgdkppttihJ8HDrixd+nYH6qzuZdcMARTv5n
- fSIdLoR15Vrq2mMLcnYsN6CjJZOmp8D6PPooLBnMiW7t5Ed4njQJ73Ckh0QVPikRJaGdCm
- sGl3a/0QXSg1utINITwEU0jdD73rMPc=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-402-C2hl6piGOxaMUuPaN2UXYA-1; Thu, 09 Jul 2020 09:23:21 -0400
-X-MC-Unique: C2hl6piGOxaMUuPaN2UXYA-1
-Received: by mail-wr1-f72.google.com with SMTP id d11so1912122wrw.12
- for <intel-gfx@lists.freedesktop.org>; Thu, 09 Jul 2020 06:23:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=om+Zgsnth1UycyQNd04acv9Ke50N6QVpsKjGNzz8W28=;
- b=Fy/JCMBLIY/doG01PShxdhJ4t7wVcAGbJ9OLSujL9z15yJb5gu1KP2UlM/W++KnF27
- cPcYxbvtroI3dJAYKMbu3chlPuqGih91MZjNBlwObyy3mKH42N6nWbC5YQoWdYVuUPa+
- tR23aFB/l7GWhWUOfENAERrZtRKPL6IGS+I5Do1CaYppy9KkqLeYI/2ka9nTNBKiODdP
- Pjo/BBqWGd0VRPqo/Vx1uTrT+wgUnJ5WJD4g0Ce4XnucZ/VRDn34+0Wfuylg1R0iPeZt
- lTbId4lauI/EaaTJhXDqP5g/fIjwoPF+Re8XWHLulX5Z+sX1DyBqaBXJVSKhus6q9y6g
- Eokg==
-X-Gm-Message-State: AOAM533pwCZ8ImsYKFeBf1Yd0/VPa1oRmQDJYzcYdBCIgSBsW/lyDl6B
- uFYYkhudTgSmnJkW1f+z6f7vM7MYafW/KuURVj0d05Z6LaQPrE1x14iAubXcaU7MA6N49mdvaLz
- pxzObNRVdm8HAFLCR+MSlDH8HDd3W
-X-Received: by 2002:a1c:4b08:: with SMTP id y8mr14115600wma.89.1594300997661; 
- Thu, 09 Jul 2020 06:23:17 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzcwToreramZ9GQ8KUd+vqBEajc7P10Uh1xpRqlMze2Zrf1AIRtVAFjd73MEdJy+mt2WONPcw==
-X-Received: by 2002:a1c:4b08:: with SMTP id y8mr14115564wma.89.1594300997305; 
- Thu, 09 Jul 2020 06:23:17 -0700 (PDT)
-Received: from x1.localdomain ([2a0e:5700:4:11:334c:7e36:8d57:40cb])
- by smtp.gmail.com with ESMTPSA id 2sm4669628wmo.44.2020.07.09.06.23.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 09 Jul 2020 06:23:16 -0700 (PDT)
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-References: <20200708211432.28612-1-hdegoede@redhat.com>
- <20200708211432.28612-5-hdegoede@redhat.com>
- <20200709125342.GX3703480@smile.fi.intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <4ff9dc18-fa59-d9a3-c7bf-9f95c62fc356@redhat.com>
-Date: Thu, 9 Jul 2020 15:23:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 28C886E0CA;
+ Thu,  9 Jul 2020 13:26:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 23F2FA47DA;
+ Thu,  9 Jul 2020 13:26:13 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200709125342.GX3703480@smile.fi.intel.com>
-Content-Language: en-US
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH v4 04/16] pwm: lpss: Add range limit check
- for the base_unit register value
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Thu, 09 Jul 2020 13:26:13 -0000
+Message-ID: <159430117311.31092.7588712272379295272@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZG1h?=
+ =?utf-8?q?-fence_annotations=2C_round_3_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,150 +38,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On 7/9/20 2:53 PM, Andy Shevchenko wrote:
-> On Wed, Jul 08, 2020 at 11:14:20PM +0200, Hans de Goede wrote:
->> When the user requests a high enough period ns value, then the
->> calculations in pwm_lpss_prepare() might result in a base_unit value of 0.
->>
->> But according to the data-sheet the way the PWM controller works is that
->> each input clock-cycle the base_unit gets added to a N bit counter and
->> that counter overflowing determines the PWM output frequency. Adding 0
->> to the counter is a no-op. The data-sheet even explicitly states that
->> writing 0 to the base_unit bits will result in the PWM outputting a
->> continuous 0 signal.
-> 
-> And I don't see how you can get duty 100% / 0% (I don't remember which one is
-> equivalent to 0 in base unit) after this change. IIRC the problem here that
-> base unit when non-zero is always being added to the counter and it will
-> trigger the change of output at some point which is not what we want for 100% /
-> 0% cases.
+Series: dma-fence annotations, round 3 (rev6)
+URL   : https://patchwork.freedesktop.org/series/79212/
+State : success
 
-The base_unit controls the output frequency, not the duty-cycle. So clamping
-the base_unit, as calculated from the period here, which also only configures
-output-frequency does not impact the duty-cycle at all.
+== Summary ==
 
-note that AFAICT currently no (in kernel) users actually try to set a period value
-which would hit the clamp, so for existing users the clamp is a no-op. I just
-added it to this patch-set for correctness sake and because userspace
-(sysfs interface) users could in theory set out of range values.
+CI Bug Log - changes from CI_DRM_8718 -> Patchwork_18122
+====================================================
 
-As for the duty-cycle thing, first of all let me say that that is a
-question / issue which is completely orthogonal to this patch, this
-patch only impacts the period/output frequency NOT the duty-cycle,
+Summary
+-------
 
-With that said, the documentation is not really helpful here,
-we need to set the on_time_div to 255 to get a duty-cycle close to 0
-(and to 0 to get a duty cycle of 100%) but if setting this to 255 gives
-us a duty-cycle of really really 0%, or just close to 0% is uncleaer.
+  **SUCCESS**
 
-We could do a separate patch add ing a hack where if the user asks for
-0% duty-cycle we program the base_unit to 0, but that seems like a bad
-idea for 2 reasons:
+  No regressions found.
 
-1. If the user really wants the output to be constantly 0 the user should
-just disable the pwm
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/index.html
 
-2. New base_unit values are latched and not applied until the counter
-overflows, with a base_unit of 0 the counter never overflows. I have
-not tested this but I would not be surprised if after programming a
-base_unit value of 0, we are unable to ever change the value again
-through any other means then power-cycling the PWM controller.
-Even if I could test this on some revisions, we already know that
-not all revisions work the same wrt the latching. So it is best to
-just never set base_unit to 0, that is just a recipe asking for trouble.
+Known issues
+------------
 
->> When the user requestes a low enough period ns value, then the
->> calculations in pwm_lpss_prepare() might result in a base_unit value
->> which is bigger then base_unit_range - 1. Currently the codes for this
->> deals with this by applying a mask:
->>
->> 	base_unit &= (base_unit_range - 1);
->>
->> But this means that we let the value overflow the range, we throw away the
->> higher bits and store whatever value is left in the lower bits into the
->> register leading to a random output frequency, rather then clamping the
->> output frequency to the highest frequency which the hardware can do.
-> 
-> It would be nice to have an example of calculus here.
-> 
->> This commit fixes both issues by clamping the base_unit value to be
->> between 1 and (base_unit_range - 1).
-> 
-> Eventually I sat and wrote all this on paper. I see now that the problem
-> is in out of range of the period. And strongly we should clamp rather period
-> to the supported range, but your solution is an equivalent.
+  Here are the changes found in Patchwork_18122 that come from known issues:
 
-Right, the advantage of doing the clamping on the register value is that we
-avoid some tricky math with possible rounding errors and which is different
-per controller revision because the number of bits in the base unit being
-different per controller revision.
+### IGT changes ###
 
-> Only question is about the 100% / 0% duty cycle.
+#### Issues hit ####
 
-See my answer to that above.
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
 
->> Fixes: 684309e5043e ("pwm: lpss: Avoid potential overflow of base_unit")
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->> ---
->> Changes in v3:
->> - Change upper limit of clamp to (base_unit_range - 1)
->> - Add Fixes tag
->> ---
->>   drivers/pwm/pwm-lpss.c | 4 +++-
->>   1 file changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/pwm/pwm-lpss.c b/drivers/pwm/pwm-lpss.c
->> index 43b1fc634af1..80d0f9c64f9d 100644
->> --- a/drivers/pwm/pwm-lpss.c
->> +++ b/drivers/pwm/pwm-lpss.c
->> @@ -97,6 +97,9 @@ static void pwm_lpss_prepare(struct pwm_lpss_chip *lpwm, struct pwm_device *pwm,
->>   	freq *= base_unit_range;
->>   
->>   	base_unit = DIV_ROUND_CLOSEST_ULL(freq, c);
->> +	/* base_unit must not be 0 and we also want to avoid overflowing it */
-> 
->> +	base_unit = clamp_t(unsigned long long, base_unit, 1,
->> +			    base_unit_range - 1);
-> 
-> A nit: one line.
+  * igt@i915_module_load@reload:
+    - fi-apl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-apl-guc/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-apl-guc/igt@i915_module_load@reload.html
+    - fi-kbl-soraka:      [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-soraka/igt@i915_module_load@reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-kbl-soraka/igt@i915_module_load@reload.html
 
-Doesn't fit in 80 chars, I guess we could make this one line now with the new 100 chars
-limit, but that does make it harder to read for people using standard terminal widths
-and a terminal based editors. So I would prefer to keep this as is.
+  * igt@i915_pm_rpm@module-reload:
+    - fi-bsw-n3050:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
 
-Regards,
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-tgl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#402])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
 
-Hans
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([i915#402]) +2 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [FAIL][13] ([i915#1888]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-apl-guc:         [DMESG-FAIL][17] ([i915#1751]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-tgl-y:           [DMESG-WARN][19] ([i915#1982]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-y/igt@kms_busy@basic@flip.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-tgl-y/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-bsw-n3050:       [DMESG-WARN][21] ([i915#1982]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - {fi-kbl-7560u}:     [DMESG-WARN][23] ([i915#1982]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_flip@basic-plain-flip@d-dsi1:
+    - {fi-tgl-dsi}:       [DMESG-WARN][25] ([i915#1982]) -> [PASS][26] +2 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-dsi/igt@kms_flip@basic-plain-flip@d-dsi1.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-tgl-dsi/igt@kms_flip@basic-plain-flip@d-dsi1.html
+
+  * igt@vgem_basic@setversion:
+    - fi-tgl-y:           [DMESG-WARN][27] ([i915#402]) -> [PASS][28] +1 similar issue
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-y/igt@vgem_basic@setversion.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-tgl-y/igt@vgem_basic@setversion.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-x1275:       [DMESG-WARN][29] ([i915#62] / [i915#92]) -> [DMESG-WARN][30] ([i915#1982] / [i915#62] / [i915#92])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [SKIP][31] ([fdo#109271]) -> [FAIL][32] ([i915#579])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-kbl-x1275:       [DMESG-WARN][33] ([i915#62] / [i915#92]) -> [DMESG-WARN][34] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - fi-kbl-x1275:       [DMESG-WARN][35] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][36] ([i915#62] / [i915#92]) +3 similar issues
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1751]: https://gitlab.freedesktop.org/drm/intel/issues/1751
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-> 
->>   	on_time_div = 255ULL * duty_ns;
->>   	do_div(on_time_div, period_ns);
->> @@ -105,7 +108,6 @@ static void pwm_lpss_prepare(struct pwm_lpss_chip *lpwm, struct pwm_device *pwm,
->>   	orig_ctrl = ctrl = pwm_lpss_read(pwm);
->>   	ctrl &= ~PWM_ON_TIME_DIV_MASK;
->>   	ctrl &= ~((base_unit_range - 1) << PWM_BASE_UNIT_SHIFT);
->> -	base_unit &= (base_unit_range - 1);
->>   	ctrl |= (u32) base_unit << PWM_BASE_UNIT_SHIFT;
->>   	ctrl |= on_time_div;
->>   
->> -- 
->> 2.26.2
->>
-> 
+Participating hosts (43 -> 37)
+------------------------------
 
+  Additional (1): fi-ilk-650 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8718 -> Patchwork_18122
+
+  CI-20190529: 20190529
+  CI_DRM_8718: 1bab8016997931971e986af01de252120896af95 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5729: a048d54f58dd70b07dbeb4541b273ec230ddb586 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18122: 971910d9209711dd2626c2788611dad949653205 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+971910d92097 drm/amdgpu: gpu recovery does full modesets
+77e2e55426dd Revert "drm/amdgpu: add fbdev suspend/resume on gpu reset"
+11967393ce15 drm/amdgpu: use dma-fence annotations for gpu reset code
+5f09a1d7a2d8 drm/scheduler: use dma-fence annotations in tdr work
+26eae69dc709 drm/amdgpu/dc: Stop dma_resv_lock inversion in commit_tail
+6660214e85f5 drm/amdgpu: DC also loves to allocate stuff where it shouldn't
+d86363507ad2 drm/amdgpu: s/GFP_KERNEL/GFP_ATOMIC in scheduler code
+5e5dbfd6d1ec drm/amdgpu: use dma-fence annotations in cs_submit()
+f332e8b0c75a drm/scheduler: use dma-fence annotations in main thread
+39dc5478117b drm/atomic-helper: Add dma-fence annotations
+3d04ddeaf40d drm/tilcdc: Use standard drm_atomic_helper_commit
+ee1ca3dd92f2 drm/tidss: Annotate dma-fence critical section in commit path
+627ff2bada55 drm/tegra: Annotate dma-fence critical section in commit path
+49148da69b74 drm/rcar-du: Annotate dma-fence critical section in commit path
+d525fd5dc000 drm/omapdrm: Annotate dma-fence critical section in commit path
+5b7ea987488e drm/imx: Annotate dma-fence critical section in commit path
+75d8ed548bbf drm/atmel: Use drm_atomic_helper_commit
+8925fab7b0c5 drm/malidp: Annotate dma-fence critical section in commit path
+5d76f227525e drm/komdea: Annotate dma-fence critical section in commit path
+37fe1fb7e37d drm/amdgpu: add dma-fence annotations to atomic commit path
+855bf7ca2525 drm/vblank: Annotate with dma-fence signalling section
+f5a16e131fbb drm/vkms: Annotate vblank timer
+235ccf350083 drm/virtio: Remove open-coded commit-tail function
+550e03fe8f5d dma-fence: prime lockdep annotations
+6993be4b66a4 dma-fence: basic lockdep annotations
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18122/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
