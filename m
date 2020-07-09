@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03E57219D35
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 12:13:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7AB219DA5
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jul 2020 12:22:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 047706E0DE;
-	Thu,  9 Jul 2020 10:13:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D86D36E3EE;
+	Thu,  9 Jul 2020 10:22:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 27EA76E3DB;
- Thu,  9 Jul 2020 10:12:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 22154A73C7;
- Thu,  9 Jul 2020 10:12:56 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA9E6E0EE;
+ Thu,  9 Jul 2020 10:22:39 +0000 (UTC)
+IronPort-SDR: geK/lhSlSkqZoNNGiRmRkVUE6tQGjetJ2AwUqmmR3R0fUR7wPPhzTZ4FnBGiWok+7gLLBNpuax
+ NkjqLNIL11pw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9676"; a="212886846"
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="212886846"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2020 03:22:38 -0700
+IronPort-SDR: J48x0LA7P0MPLaMTk9HmRqE8y5TCVNmCEyC769WTDFIiL6O+hUVaYCso05p4id0GKTXeToj5Wz
+ aXmd7H3qS+mw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,331,1589266800"; d="scan'208";a="314918250"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by orsmga008.jf.intel.com with ESMTP; 09 Jul 2020 03:22:35 -0700
+Date: Thu, 9 Jul 2020 15:46:26 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <20200709101626.GC13481@intel.com>
+References: <20200623155907.22961-1-sean@poorly.run>
+ <20200623155907.22961-11-sean@poorly.run>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Fred Gao" <fred.gao@intel.com>
-Date: Thu, 09 Jul 2020 10:12:56 -0000
-Message-ID: <159428957613.31093.18132356699491167005@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200709173707.29808-1-fred.gao@intel.com>
-In-Reply-To: <20200709173707.29808-1-fred.gao@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgdmZp?=
- =?utf-8?q?o/pci=3A_Refine_Intel_IGD_OpRegion_support?=
+Content-Disposition: inline
+In-Reply-To: <20200623155907.22961-11-sean@poorly.run>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v7 10/17] drm/i915: Support DP MST in
+ enc_to_dig_port() function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,147 +51,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, daniel.vetter@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, Sean Paul <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2020-06-23 at 11:59:00 -0400, Sean Paul wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> Although DP_MST fake encoders are not subclassed from digital ports,
+> they are associated with them. Support these encoders.
+> 
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
 
-Series: vfio/pci: Refine Intel IGD OpRegion support
-URL   : https://patchwork.freedesktop.org/series/79293/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8718 -> Patchwork_18120
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18120 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_mmap@basic:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-y/igt@gem_mmap@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-tgl-y/igt@gem_mmap@basic.html
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-u2/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-apl-guc:         [DMESG-FAIL][11] ([i915#1751]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_addfb_basic@bad-pitch-65536:
-    - fi-tgl-y:           [DMESG-WARN][13] ([i915#402]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-65536.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-65536.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-tgl-y:           [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-y/igt@kms_busy@basic@flip.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-tgl-y/igt@kms_busy@basic@flip.html
-
-  * igt@kms_flip@basic-plain-flip@d-dsi1:
-    - {fi-tgl-dsi}:       [DMESG-WARN][17] ([i915#1982]) -> [PASS][18] +3 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-tgl-dsi/igt@kms_flip@basic-plain-flip@d-dsi1.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-tgl-dsi/igt@kms_flip@basic-plain-flip@d-dsi1.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][19] ([fdo#109271]) -> [DMESG-FAIL][20] ([i915#62])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +1 similar issue
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92]) -> [DMESG-WARN][24] ([i915#62] / [i915#92] / [i915#95])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8718/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1751]: https://gitlab.freedesktop.org/drm/intel/issues/1751
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (43 -> 37)
-------------------------------
-
-  Additional (1): fi-ilk-650 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8718 -> Patchwork_18120
-
-  CI-20190529: 20190529
-  CI_DRM_8718: 1bab8016997931971e986af01de252120896af95 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5729: a048d54f58dd70b07dbeb4541b273ec230ddb586 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18120: d15985e067e50ab4c3de48da5cc2dcd3c029ebb3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d15985e067e5 vfio/pci: Refine Intel IGD OpRegion support
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18120/index.html
+> Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-9-sean@poorly.run #v1
+> Link: https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-10-sean@poorly.run #v2
+> Link: https://patchwork.freedesktop.org/patch/msgid/20200117193103.156821-10-sean@poorly.run #v3
+> Link: https://patchwork.freedesktop.org/patch/msgid/20200218220242.107265-10-sean@poorly.run #v4
+> Link: https://patchwork.freedesktop.org/patch/msgid/20200305201236.152307-10-sean@poorly.run #v5
+> Link: https://patchwork.freedesktop.org/patch/msgid/20200429195502.39919-10-sean@poorly.run #v6
+> 
+> Changes in v2:
+> -None
+> Changes in v3:
+> -None
+> Changes in v4:
+> -None
+> Changes in v5:
+> -None
+> Changes in v6:
+> -None
+> Changes in v7:
+> -None
+> ---
+>  .../drm/i915/display/intel_display_types.h    | 21 ++++++++++++-------
+>  1 file changed, 14 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 1503403a808b..811085ef3fba 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1525,6 +1525,18 @@ static inline bool intel_encoder_is_dig_port(struct intel_encoder *encoder)
+>  	}
+>  }
+>  
+> +static inline bool intel_encoder_is_mst(struct intel_encoder *encoder)
+> +{
+> +	return encoder->type == INTEL_OUTPUT_DP_MST;
+> +}
+> +
+> +static inline struct intel_dp_mst_encoder *
+> +enc_to_mst(struct intel_encoder *encoder)
+> +{
+> +	return container_of(&encoder->base, struct intel_dp_mst_encoder,
+> +			    base.base);
+> +}
+> +
+>  static inline struct intel_digital_port *
+>  enc_to_dig_port(struct intel_encoder *encoder)
+>  {
+> @@ -1533,6 +1545,8 @@ enc_to_dig_port(struct intel_encoder *encoder)
+>  	if (intel_encoder_is_dig_port(intel_encoder))
+>  		return container_of(&encoder->base, struct intel_digital_port,
+>  				    base.base);
+> +	else if (intel_encoder_is_mst(intel_encoder))
+> +		return enc_to_mst(encoder)->primary;
+>  	else
+>  		return NULL;
+>  }
+> @@ -1543,13 +1557,6 @@ intel_attached_dig_port(struct intel_connector *connector)
+>  	return enc_to_dig_port(intel_attached_encoder(connector));
+>  }
+>  
+> -static inline struct intel_dp_mst_encoder *
+> -enc_to_mst(struct intel_encoder *encoder)
+> -{
+> -	return container_of(&encoder->base, struct intel_dp_mst_encoder,
+> -			    base.base);
+> -}
+> -
+>  static inline struct intel_dp *enc_to_intel_dp(struct intel_encoder *encoder)
+>  {
+>  	return &enc_to_dig_port(encoder)->dp;
+> -- 
+> Sean Paul, Software Engineer, Google / Chromium OS
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
