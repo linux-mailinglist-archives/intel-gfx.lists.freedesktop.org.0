@@ -1,96 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74C2321B704
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 15:48:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D358C21B76C
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 16:00:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61FAF6EC53;
-	Fri, 10 Jul 2020 13:48:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89F686EC54;
+	Fri, 10 Jul 2020 14:00:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com
- (mail-db8eur05on2047.outbound.protection.outlook.com [40.107.20.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE0E6EC55;
- Fri, 10 Jul 2020 13:48:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JRAmcn4fAugr8rFQFozG4YPCi2+sk8bEd3+Q3DLdmqgLPSI2LjiDpT5j4E0u5sM0h2r5t1FRMd/E1eRlA0hjjc0Z+AdIpUvx9jg3UiCcB6y+ynuiVdSdHBc9gpG3U46h2DmysyqR1bqwnBWJPP3A5HHnqSSovWAdYw2je09FkmD26IuKVRXLdXCtFB2k8BNWZLnquXmFAak5AxMbr/FqI/SaNdu37mFGOhOCBlzmbc8VI7oCoNt0iOHIpiW50WJsKrPr9xwSiXdTq6cOfeh9oOxWCGNq4lT1bOoXsICzZo+FBMPsPXoiv4iLxraiYppQBUqsaF2uk9idDLsYKwzrjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=em9GCfPc3Bhl6JX25VZ+Xquk7PsFs1BYXjOVmaCss3E=;
- b=f3MYU/LuVCIP3RgFhOoPo5CWKDhDx/ln5AjYzuby7yz9mXQ6D54bTpEHrboflAkB3NGvigNDRLNFx2eILH5PgGugyiXs4msAXAd3t6i5250Wvp15FcSPgkDVmuNF512UPtH4D/cB7399xN7M/pnZUPzLdga6jxtapBT/c47Tz+I0Na+SXmnLtS3Mz+BtZ4oPA0zkWo2i/tO05Nj1Zbia0mgPd23nFjDRsGodgzJTC+NGdG0+UCYqS7dO+dx+qZO28hnpW9GQWesZzqHPZGMX+KkzqXripsYEkmBYY1zZuleIB3N7G9udRyImCcXhQB2F5UD1tAtne71n2bmH9DM8fA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mellanox.com; dmarc=pass action=none header.from=mellanox.com;
- dkim=pass header.d=mellanox.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Mellanox.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=em9GCfPc3Bhl6JX25VZ+Xquk7PsFs1BYXjOVmaCss3E=;
- b=s+k5G4GJ2ik0VcgrCETSHsZsYksTNfhGgtfRBIx/m9tpprGynyLJa//4SaOkSvO7/5IC7X8HJ6EEF9BJEQvgULB2xNqiYiDwPbnunmcEwCD0LMeD3v7b9kWZTVEP2SeeXPMza8weQuxXbRCGeautX0hLKN85a/WIwJmqKEgDGgU=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=mellanox.com;
-Received: from VI1PR05MB4141.eurprd05.prod.outlook.com (2603:10a6:803:44::15)
- by VI1PR05MB3341.eurprd05.prod.outlook.com (2603:10a6:802:1c::28)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3153.20; Fri, 10 Jul
- 2020 13:48:31 +0000
-Received: from VI1PR05MB4141.eurprd05.prod.outlook.com
- ([fe80::848b:fcd0:efe3:189e]) by VI1PR05MB4141.eurprd05.prod.outlook.com
- ([fe80::848b:fcd0:efe3:189e%7]) with mapi id 15.20.3174.022; Fri, 10 Jul 2020
- 13:48:31 +0000
-Date: Fri, 10 Jul 2020 10:48:26 -0300
-From: Jason Gunthorpe <jgg@mellanox.com>
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Message-ID: <20200710134826.GD23821@mellanox.com>
-References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
- <20200707201229.472834-3-daniel.vetter@ffwll.ch>
- <20200709080911.GP3278063@phenom.ffwll.local>
- <20200710124357.GB23821@mellanox.com>
- <5c163d74-4a28-1d74-be86-099b4729a2e0@amd.com>
- <20200710125453.GC23821@mellanox.com>
- <4f4a2cf7-f505-8494-1461-bd467870481e@amd.com>
-Content-Disposition: inline
-In-Reply-To: <4f4a2cf7-f505-8494-1461-bd467870481e@amd.com>
-X-ClientProxiedBy: MN2PR12CA0020.namprd12.prod.outlook.com
- (2603:10b6:208:a8::33) To VI1PR05MB4141.eurprd05.prod.outlook.com
- (2603:10a6:803:44::15)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 37D826EC4F;
+ Fri, 10 Jul 2020 14:00:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2FFB5A47DF;
+ Fri, 10 Jul 2020 14:00:04 +0000 (UTC)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from mlx.ziepe.ca (156.34.48.30) by
- MN2PR12CA0020.namprd12.prod.outlook.com (2603:10b6:208:a8::33) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3174.21 via Frontend Transport; Fri, 10 Jul 2020 13:48:30 +0000
-Received: from jgg by mlx with local (Exim 4.93)	(envelope-from
- <jgg@mellanox.com>)	id 1jttO6-0088nX-PV; Fri, 10 Jul 2020 10:48:26 -0300
-X-Originating-IP: [156.34.48.30]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 1079218b-4c9e-4621-75d7-08d824d7ee4e
-X-MS-TrafficTypeDiagnostic: VI1PR05MB3341:
-X-Microsoft-Antispam-PRVS: <VI1PR05MB334116D18115F3E3CEC3F202CF650@VI1PR05MB3341.eurprd05.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-Forefront-PRVS: 046060344D
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jFcgn1ydcEHhSz0+CCy2fjDkK2bLF6z96HDaXcAemHtsFZaRD1P6Bkl6Lf4sQDJ179Dj5+yiBvx8W03b6zomX4c+0Aas850u+VEb2JyqcfQLuHUcM9j7fkoxPhcxJnUC5+qiK5T/QFiPsFr7W0EZP5dHQWBr92bBhVjVMcwwAxt9azTFIf/9/viPoEdulANqJTCYx6IvfyIABN6Nf8BSCCPF/WbndfXoQvhj7FerTXgSlrGbPOohMqgoIZuLynxs1v9euWtw+NKEGbp6xz0SMJeCQ6xOJL1/DaFalHI5+gwJlyNkIOyVCXkJzjcEtlx6
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR05MB4141.eurprd05.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(39860400002)(136003)(366004)(346002)(396003)(376002)(9786002)(8676002)(2616005)(2906002)(26005)(4326008)(66574015)(426003)(8936002)(478600001)(186003)(33656002)(66476007)(66556008)(5660300002)(54906003)(9746002)(66946007)(6916009)(316002)(1076003)(7416002)(86362001)(36756003)(83380400001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: mCS9wS9QeKkaqEbOX6nWRQVjGpk009DZ+9L4MMYCuwizDkRfwcVGl2Ifz/M/2qJBamVMTYjQdiX9BDntxbzIBzZo9pIe3Z7k0ed2b4XN7k79+eoblcipgLb0B23mOpoAXYzxV0r+OgIA4HeLkJCQIRIO4FbIvOZUt310fUHt6ORCb17kIge3hgp2U5G54kHt8FqwmTtq7RpQ366QEtaaAlwaRHwmfC7YF1yJmJ9H4WS05GYHXIf98c9K0D2iFv6bYWSL+Y+DBhUQrEoZCcpU3EGf7qelTzYqGCCPEYcZGtjZaBKc8BRJNmaZN6oJH7WG7v+sjfq7/VikEARYWuzBoHylswNBgoe1g77BHg2Pb+uFQuUxSrDA9+DwnD45K6SpvI3t8C1W5bgL/bTWAqklQ0IUhQUjmDiB/OdeGDTvc1Jvxt+EYGzdRJFw/WX9pZ1EPZfJ/ehQ7nnWPGHH0eEaC1cS0xCdbcKacIznULoPwaE=
-X-OriginatorOrg: Mellanox.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1079218b-4c9e-4621-75d7-08d824d7ee4e
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR05MB4141.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 13:48:30.9082 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a652971c-7d2e-4d9b-a6a4-d149256f461b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nN1oo7fZeG14NNr4HLKjPR1Q1Vi2ci48IOOg+CuIA2svEhrRbTLSAvTFlJSuNBkb9dnKcGyrpYAHuwbZnVD/iA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB3341
-Subject: Re: [Intel-gfx] [PATCH 02/25] dma-fence: prime lockdep annotations
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 10 Jul 2020 14:00:04 -0000
+Message-ID: <159438960418.20499.986049995096249319@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200710120717.32484-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200710120717.32484-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Be_defensive_in_the_face_of_false_CS_events_=28rev5?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,66 +39,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
- amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
- linux-media@vger.kernel.org, Felix Kuehling <Felix.Kuehling@amd.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBKdWwgMTAsIDIwMjAgYXQgMDM6MDE6MTBQTSArMDIwMCwgQ2hyaXN0aWFuIEvDtm5p
-ZyB3cm90ZToKPiBBbSAxMC4wNy4yMCB1bSAxNDo1NCBzY2hyaWViIEphc29uIEd1bnRob3JwZToK
-PiA+IE9uIEZyaSwgSnVsIDEwLCAyMDIwIGF0IDAyOjQ4OjE2UE0gKzAyMDAsIENocmlzdGlhbiBL
-w7ZuaWcgd3JvdGU6Cj4gPiA+IEFtIDEwLjA3LjIwIHVtIDE0OjQzIHNjaHJpZWIgSmFzb24gR3Vu
-dGhvcnBlOgo+ID4gPiA+IE9uIFRodSwgSnVsIDA5LCAyMDIwIGF0IDEwOjA5OjExQU0gKzAyMDAs
-IERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gPiA+ID4gPiBIaSBKYXNvbiwKPiA+ID4gPiA+IAo+ID4g
-PiA+ID4gQmVsb3cgdGhlIHBhcmFncmFwaCBJJ3ZlIGFkZGVkIGFmdGVyIG91ciBkaXNjdXNzaW9u
-cyBhcm91bmQgZG1hLWZlbmNlcwo+ID4gPiA+ID4gb3V0c2lkZSBvZiBkcml2ZXJzL2dwdS4gR29v
-ZCBlbm91Z2ggZm9yIGFuIGFjayBvbiB0aGlzLCBvciB3YW50IHNvbWV0aGluZwo+ID4gPiA+ID4g
-Y2hhbmdlZD8KPiA+ID4gPiA+IAo+ID4gPiA+ID4gVGhhbmtzLCBEYW5pZWwKPiA+ID4gPiA+IAo+
-ID4gPiA+ID4gPiArICogTm90ZSB0aGF0IG9ubHkgR1BVIGRyaXZlcnMgaGF2ZSBhIHJlYXNvbmFi
-bGUgZXhjdXNlIGZvciBib3RoIHJlcXVpcmluZwo+ID4gPiA+ID4gPiArICogJm1tdV9pbnRlcnZh
-bF9ub3RpZmllciBhbmQgJnNocmlua2VyIGNhbGxiYWNrcyBhdCB0aGUgc2FtZSB0aW1lIGFzIGhh
-dmluZyB0bwo+ID4gPiA+ID4gPiArICogdHJhY2sgYXN5bmNocm9ub3VzIGNvbXB1dGUgd29yayB1
-c2luZyAmZG1hX2ZlbmNlLiBObyBkcml2ZXIgb3V0c2lkZSBvZgo+ID4gPiA+ID4gPiArICogZHJp
-dmVycy9ncHUgc2hvdWxkIGV2ZXIgY2FsbCBkbWFfZmVuY2Vfd2FpdCgpIGluIHN1Y2ggY29udGV4
-dHMuCj4gPiA+ID4gSSB3YXMgaG9waW5nIHdlJ2QgZ2V0IHRvICdubyBkcml2ZXIgb3V0c2lkZSBH
-UFUgc2hvdWxkIGV2ZW4gdXNlCj4gPiA+ID4gZG1hX2ZlbmNlKCknCj4gPiA+IE15IGxhc3Qgc3Rh
-dHVzIHdhcyB0aGF0IFY0TCBjb3VsZCBjb21lIHVzZSBkbWFfZmVuY2VzIGFzIHdlbGwuCj4gPiBJ
-J20gc3VyZSBsb3RzIG9mIHBsYWNlcyAqY291bGQqIHVzZSBpdCwgYnV0IEkgdGhpbmsgSSB1bmRl
-cnN0b29kIHRoYXQKPiA+IGl0IGlzIGEgYmFkIGlkZWEgdW5sZXNzIHlvdSBoYXZlIHRvIGZpdCBp
-bnRvIHRoZSBEUk0gdUFQST8KPiAKPiBJdCB3b3VsZCBiZSBhIGJpdCBxdWVzdGlvbmFibGUgaWYg
-eW91IHVzZSB0aGUgY29udGFpbmVyIG9iamVjdHMgd2UgY2FtZSB1cAo+IHdpdGggaW4gdGhlIERS
-TSBzdWJzeXN0ZW0gb3V0c2lkZSBvZiBpdC4KPiAKPiBCdXQgdXNpbmcgdGhlIGRtYV9mZW5jZSBp
-dHNlbGYgbWFrZXMgc2Vuc2UgZm9yIGV2ZXJ5dGhpbmcgd2hpY2ggY291bGQgZG8KPiBhc3luYyBE
-TUEgaW4gZ2VuZXJhbC4KCmRtYV9mZW5jZSBvbmx5IHBvc3NpYmx5IG1ha2VzIHNvbWUgc2Vuc2Ug
-aWYgeW91IGludGVuZCB0byBleHBvc2UgdGhlCmNvbXBsZXRpb24gb3V0c2lkZSBhIHNpbmdsZSBk
-cml2ZXIuIAoKVGhlIHByZWZlcmVkIGtlcm5lbCBkZXNpZ24gcGF0dGVybiBmb3IgdGhpcyBpcyB0
-byBjb25uZWN0IHRoaW5ncyB3aXRoCmEgZnVuY3Rpb24gY2FsbGJhY2suCgpTbyB0aGUgYWN0dWFs
-IHVzZSBjYXNlIG9mIGRtYV9mZW5jZSBpcyBxdWl0ZSBuYXJyb3cgYW5kIHRpZ2h0bHkgbGlua2Vk
-CnRvIERSTS4KCkkgZG9uJ3QgdGhpbmsgd2Ugc2hvdWxkIHNwcmVhZCB0aGlzIGJleW9uZCBEUk0s
-IEkgY2FuJ3Qgc2VlIGEgcmVhc29uLgoKPiA+IFlvdSBhcmUgYmV0dGVyIHRvIGRvIHNvbWV0aGlu
-ZyBjb250YWluZWQgaW4gdGhlIHNpbmdsZSBkcml2ZXIgd2hlcmUKPiA+IGxvY2tpbmcgY2FuIGJl
-IGFuYWx5emVkLgo+ID4gCj4gPiA+IEknbSBub3QgMTAwJSBzdXJlLCBidXQgd291bGRuJ3QgTU1V
-IG5vdGlmaWVyICsgZG1hX2ZlbmNlIGJlIGEgdmFsaWQgdXNlIGNhc2UKPiA+ID4gZm9yIHRoaW5n
-cyBsaWtlIGN1c3RvbSBGUEdBIGludGVyZmFjZXMgYXMgd2VsbD8KPiA+IEkgZG9uJ3QgdGhpbmsg
-d2Ugc2hvdWxkIGV4cGFuZCB0aGUgbGlzdCBvZiBkcml2ZXJzIHRoYXQgdXNlIHRoaXMKPiA+IHRl
-Y2huaXF1ZS4KPiA+IERyaXZlcnMgdGhhdCBjYW4ndCBzdXNwZW5kIHNob3VsZCBwaW4gbWVtb3J5
-LCBub3QgdXNlIGJsb2NrZWQKPiA+IG5vdGlmaWVycyB0byBjcmVhdGVkIHBpbm5lZCBtZW1vcnku
-Cj4gCj4gQWdyZWVkIHRvdGFsbHksIGl0J3MgYSBjb21wbGV0ZSBwYWluIHRvIG1haW50YWluIGV2
-ZW4gZm9yIHRoZSBHUFUgZHJpdmVycy4KPiAKPiBVbmZvcnR1bmF0ZWx5IHRoYXQgZG9lc24ndCBj
-aGFuZ2UgdXNlcnMgZnJvbSByZXF1ZXN0aW5nIGl0LiBTbyBJJ20gcHJldHR5Cj4gc3VyZSB3ZSBh
-cmUgZ29pbmcgdG8gc2VlIG1vcmUgb2YgdGhpcy4KCktlcm5lbCBtYWludGFpbmVycyBuZWVkIHRv
-IHNheSBuby4KClRoZSBwcm9wZXIgd2F5IHRvIGRvIERNQSBvbiBuby1mYXVsdGluZyBoYXJkd2Fy
-ZSBpcyBwYWdlIHBpbm5pbmcuCgpUcnlpbmcgdG8gaW1wcm92ZSBwZXJmb3JtYW5jZSBvZiBsaW1p
-dGVkIEhXIGJ5IHVzaW5nIHNrZXRjaHkKdGVjaG5pcXVlcyBhdCB0aGUgY29zdCBvZiBnZW5lcmFs
-IHN5c3RlbSBzdGFiaWxpdHkgc2hvdWxkIGJlIGEgTkFLLgoKSmFzb24KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: drm/i915/gt: Be defensive in the face of false CS events (rev5)
+URL   : https://patchwork.freedesktop.org/series/79340/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8726 -> Patchwork_18132
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18132 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_module_load@reload:
+    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-byt-j1900/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-byt-j1900/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-whl-u:           [PASS][5] -> [DMESG-WARN][6] ([i915#95])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-tgl-u2:          [INCOMPLETE][9] ([i915#1932] / [i915#2045]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-tgl-u2:          [DMESG-WARN][11] ([i915#402]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  
+#### Warnings ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-bxt-dsi:         [SKIP][13] ([fdo#109271] / [fdo#111827]) -> [SKIP][14] ([fdo#109271] / [fdo#111827] / [i915#1635]) +8 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-bxt-dsi/igt@kms_chamelium@common-hpd-after-suspend.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-bxt-dsi/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-apl-guc:         [SKIP][15] ([fdo#109271] / [fdo#111827]) -> [SKIP][16] ([fdo#109271] / [fdo#111827] / [i915#1635]) +8 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-apl-guc/igt@kms_chamelium@hdmi-hpd-fast.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-apl-guc/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-bxt-dsi:         [SKIP][19] ([fdo#109271]) -> [SKIP][20] ([fdo#109271] / [i915#1635]) +27 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-bxt-dsi/igt@kms_force_connector_basic@force-load-detect.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-bxt-dsi/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-apl-guc:         [SKIP][21] ([fdo#109271]) -> [SKIP][22] ([fdo#109271] / [i915#1635]) +28 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-apl-guc/igt@kms_psr@primary_page_flip.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-apl-guc/igt@kms_psr@primary_page_flip.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([i915#62] / [i915#92]) +5 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1932]: https://gitlab.freedesktop.org/drm/intel/issues/1932
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2045]: https://gitlab.freedesktop.org/drm/intel/issues/2045
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (40 -> 35)
+------------------------------
+
+  Additional (2): fi-tgl-y fi-elk-e7500 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8726 -> Patchwork_18132
+
+  CI-20190529: 20190529
+  CI_DRM_8726: 723780498c9dd2f58b80e6b9daeaa5cd08ec8e7a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5729: a048d54f58dd70b07dbeb4541b273ec230ddb586 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18132: 3e4336b168680f261d8bcc7f38beebffeb5c22c1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3e4336b16868 drm/i915/gt: Be defensive in the face of false CS events
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18132/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
