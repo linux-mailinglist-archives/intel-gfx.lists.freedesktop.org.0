@@ -1,33 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B90121B5EA
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 15:09:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0042021B5FB
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 15:12:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBADA6EC44;
-	Fri, 10 Jul 2020 13:09:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A3546EC3C;
+	Fri, 10 Jul 2020 13:12:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 230496EC3A;
- Fri, 10 Jul 2020 13:09:49 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 05864AD45;
- Fri, 10 Jul 2020 13:09:48 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <20200623155456.3092836-1-daniel.vetter@ffwll.ch>
- <ac847c3c-e93c-4a4b-c6ca-2362af7e3aa3@suse.de>
- <CAKMK7uFi0nkf1fSUZaqff-oskoTKMS0Rh_69_Sd9JQ69NMhOMA@mail.gmail.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <f2b05939-43c4-1b9c-f462-09ed630c3d63@suse.de>
-Date: Fri, 10 Jul 2020 15:09:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A54A96EC3C;
+ Fri, 10 Jul 2020 13:12:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9DD1FA66C9;
+ Fri, 10 Jul 2020 13:12:20 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <CAKMK7uFi0nkf1fSUZaqff-oskoTKMS0Rh_69_Sd9JQ69NMhOMA@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/fb-helper: Fix vt restore
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 10 Jul 2020 13:12:20 -0000
+Message-ID: <159438674061.20500.16107305150870525331@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200710115757.290984-1-matthew.auld@intel.com>
+In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgREcx?=
+ =?utf-8?q?_LMEM_enabling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,344 +38,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>, shlomo@fastmail.com,
- stable <stable@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>,
- =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Content-Type: multipart/mixed; boundary="===============0422198496=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0422198496==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="K2Ex8wthZpBzdKi5zn9UCF5jPp7SWvTrd"
+== Series Details ==
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---K2Ex8wthZpBzdKi5zn9UCF5jPp7SWvTrd
-Content-Type: multipart/mixed; boundary="PaXZsG6FtCFcQWV50REzZJbMsCFeoxEm6";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- stable <stable@vger.kernel.org>, shlomo@fastmail.com,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>, =?UTF-8?Q?Michel_D=c3=a4nzer?=
- <michel@daenzer.net>
-Message-ID: <f2b05939-43c4-1b9c-f462-09ed630c3d63@suse.de>
-Subject: Re: [PATCH] drm/fb-helper: Fix vt restore
-References: <20200623155456.3092836-1-daniel.vetter@ffwll.ch>
- <ac847c3c-e93c-4a4b-c6ca-2362af7e3aa3@suse.de>
- <CAKMK7uFi0nkf1fSUZaqff-oskoTKMS0Rh_69_Sd9JQ69NMhOMA@mail.gmail.com>
-In-Reply-To: <CAKMK7uFi0nkf1fSUZaqff-oskoTKMS0Rh_69_Sd9JQ69NMhOMA@mail.gmail.com>
+Series: DG1 LMEM enabling
+URL   : https://patchwork.freedesktop.org/series/79339/
+State : success
 
---PaXZsG6FtCFcQWV50REzZJbMsCFeoxEm6
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+== Summary ==
 
-Hi
+CI Bug Log - changes from CI_DRM_8726 -> Patchwork_18131
+====================================================
 
-Am 10.07.20 um 14:38 schrieb Daniel Vetter:
-> On Fri, Jul 10, 2020 at 1:31 PM Thomas Zimmermann <tzimmermann@suse.de>=
- wrote:
->>
->> Hi Daniel,
->>
->> this patch might not be enougth. I started Xorg and then did 'kill -9'=
+Summary
+-------
 
->> on the Xorg process. Xorg went away, but the console did not come back=
-=2E
->=20
-> Hm don't you need to reset your terminal to text mode in that case
-> first? Iirc there's a sysrq. All again assuming not terribly modern
-> system where that stuff is all done by logind.
+  **SUCCESS**
 
-I don't know. I just noticed that kill -9 did not restore the terminal
-and apparently it was related to these patches. Maybe it did not even
-work before?
+  No regressions found.
 
-Best regards
-Thomas
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18131/index.html
 
-> -Daniel
->=20
->>
->> Best regards
->> Thomas
->>
->> Am 23.06.20 um 17:54 schrieb Daniel Vetter:
->>> In the past we had a pile of hacks to orchestrate access between fbde=
-v
->>> emulation and native kms clients. We've tried to streamline this, by
->>> always preferring the kms side above fbdev calls when a drm master
->>> exists, because drm master controls access to the display resources.
->>>
->>> Unfortunately this breaks existing userspace, specifically Xorg. When=
+Known issues
+------------
 
->>> exiting Xorg first restores the console to text mode using the KDSET
->>> ioctl on the vt. This does nothing, because a drm master is still
->>> around. Then it drops the drm master status, which again does nothing=
-,
->>> because logind is keeping additional drm fd open to be able to
->>> orchestrate vt switches. In the past this is the point where fbdev wa=
-s
->>> restored, as part of the ->lastclose hook on the drm side.
->>>
->>> Now to fix this regression we don't want to go back to letting fbdev
->>> restore things whenever it feels like, or to the pile of hacks we've
->>> had before. Instead try and go with a minimal exception to make the
->>> KDSET case work again, and nothing else.
->>>
->>> This means that if userspace does a KDSET call when switching between=
+  Here are the changes found in Patchwork_18131 that come from known issues:
 
->>> graphical compositors, there will be some flickering with fbcon
->>> showing up for a bit. But a) that's not a regression and b) userspace=
+### IGT changes ###
 
->>> can fix it by improving the vt switching dance - logind should have
->>> all the information it needs.
->>>
->>> While pondering all this I'm also wondering wheter we should have a
->>> SWITCH_MASTER ioctl to allow race-free master status handover. But
->>> that's for another day.
->>>
->>> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D208179
->>> Cc: shlomo@fastmail.com
->>> Reported-and-Tested-by: shlomo@fastmail.com
->>> Cc: Michel D=C3=A4nzer <michel@daenzer.net>
->>> Fixes: 64914da24ea9 ("drm/fbdev-helper: don't force restores")
->>> Cc: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
->>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->>> Cc: Daniel Vetter <daniel.vetter@intel.com>
->>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>> Cc: Maxime Ripard <mripard@kernel.org>
->>> Cc: David Airlie <airlied@linux.ie>
->>> Cc: Daniel Vetter <daniel@ffwll.ch>
->>> Cc: dri-devel@lists.freedesktop.org
->>> Cc: <stable@vger.kernel.org> # v5.7+
->>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
->>> ---
->>>  drivers/gpu/drm/drm_fb_helper.c  | 63 +++++++++++++++++++++++++-----=
---
->>>  drivers/video/fbdev/core/fbcon.c |  3 +-
->>>  include/uapi/linux/fb.h          |  1 +
->>>  3 files changed, 52 insertions(+), 15 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb=
-_helper.c
->>> index 170aa7689110..ae69bf8e9bcc 100644
->>> --- a/drivers/gpu/drm/drm_fb_helper.c
->>> +++ b/drivers/gpu/drm/drm_fb_helper.c
->>> @@ -227,18 +227,9 @@ int drm_fb_helper_debug_leave(struct fb_info *in=
-fo)
->>>  }
->>>  EXPORT_SYMBOL(drm_fb_helper_debug_leave);
->>>
->>> -/**
->>> - * drm_fb_helper_restore_fbdev_mode_unlocked - restore fbdev configu=
-ration
->>> - * @fb_helper: driver-allocated fbdev helper, can be NULL
->>> - *
->>> - * This should be called from driver's drm &drm_driver.lastclose cal=
-lback
->>> - * when implementing an fbcon on top of kms using this helper. This =
-ensures that
->>> - * the user isn't greeted with a black screen when e.g. X dies.
->>> - *
->>> - * RETURNS:
->>> - * Zero if everything went ok, negative error code otherwise.
->>> - */
->>> -int drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *=
-fb_helper)
->>> +static int
->>> +__drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *fb=
-_helper,
->>> +                                         bool force)
->>>  {
->>>       bool do_delayed;
->>>       int ret;
->>> @@ -250,7 +241,16 @@ int drm_fb_helper_restore_fbdev_mode_unlocked(st=
-ruct drm_fb_helper *fb_helper)
->>>               return 0;
->>>
->>>       mutex_lock(&fb_helper->lock);
->>> -     ret =3D drm_client_modeset_commit(&fb_helper->client);
->>> +     if (force) {
->>> +             /*
->>> +              * Yes this is the _locked version which expects the ma=
-ster lock
->>> +              * to be held. But for forced restores we're intentiona=
-lly
->>> +              * racing here, see drm_fb_helper_set_par().
->>> +              */
->>> +             ret =3D drm_client_modeset_commit_locked(&fb_helper->cl=
-ient);
->>> +     } else {
->>> +             ret =3D drm_client_modeset_commit(&fb_helper->client);
->>> +     }
->>>
->>>       do_delayed =3D fb_helper->delayed_hotplug;
->>>       if (do_delayed)
->>> @@ -262,6 +262,22 @@ int drm_fb_helper_restore_fbdev_mode_unlocked(st=
-ruct drm_fb_helper *fb_helper)
->>>
->>>       return ret;
->>>  }
->>> +
->>> +/**
->>> + * drm_fb_helper_restore_fbdev_mode_unlocked - restore fbdev configu=
-ration
->>> + * @fb_helper: driver-allocated fbdev helper, can be NULL
->>> + *
->>> + * This should be called from driver's drm &drm_driver.lastclose cal=
-lback
->>> + * when implementing an fbcon on top of kms using this helper. This =
-ensures that
->>> + * the user isn't greeted with a black screen when e.g. X dies.
->>> + *
->>> + * RETURNS:
->>> + * Zero if everything went ok, negative error code otherwise.
->>> + */
->>> +int drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *=
-fb_helper)
->>> +{
->>> +     return __drm_fb_helper_restore_fbdev_mode_unlocked(fb_helper, f=
-alse);
->>> +}
->>>  EXPORT_SYMBOL(drm_fb_helper_restore_fbdev_mode_unlocked);
->>>
->>>  #ifdef CONFIG_MAGIC_SYSRQ
->>> @@ -1318,6 +1334,7 @@ int drm_fb_helper_set_par(struct fb_info *info)=
+#### Issues hit ####
 
->>>  {
->>>       struct drm_fb_helper *fb_helper =3D info->par;
->>>       struct fb_var_screeninfo *var =3D &info->var;
->>> +     bool force;
->>>
->>>       if (oops_in_progress)
->>>               return -EBUSY;
->>> @@ -1327,7 +1344,25 @@ int drm_fb_helper_set_par(struct fb_info *info=
-)
->>>               return -EINVAL;
->>>       }
->>>
->>> -     drm_fb_helper_restore_fbdev_mode_unlocked(fb_helper);
->>> +     /*
->>> +      * Normally we want to make sure that a kms master takes
->>> +      * precedence over fbdev, to avoid fbdev flickering and
->>> +      * occasionally stealing the display status. But Xorg first set=
-s
->>> +      * the vt back to text mode using the KDSET IOCTL with KD_TEXT,=
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-whl-u:           [PASS][1] -> [DMESG-WARN][2] ([i915#95])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18131/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
 
->>> +      * and only after that drops the master status when exiting.
->>> +      *
->>> +      * In the past this was caught by drm_fb_helper_lastclose(), bu=
-t
->>> +      * on modern systems where logind always keeps a drm fd open to=
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-x1275:       [PASS][3] -> [DMESG-WARN][4] ([i915#62] / [i915#92] / [i915#95])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18131/fi-kbl-x1275/igt@kms_busy@basic@flip.html
 
->>> +      * orchestrate the vt switching, this doesn't work.
->>> +      *
->>> +      * To no break the userspace ABI we have this special case here=
-,
->>> +      * which is only used for the above case. Everything else uses
->>> +      * the normal commit function, which ensures that we never stea=
-l
->>> +      * the display from an active drm master.
->>> +      */
->>> +     force =3D var->activate & FB_ACTIVATE_KD_TEXT;
->>> +
->>> +     __drm_fb_helper_restore_fbdev_mode_unlocked(fb_helper, force);
->>>
->>>       return 0;
->>>  }
->>> diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/c=
-ore/fbcon.c
->>> index 9d28a8e3328f..e2a490c5ae08 100644
->>> --- a/drivers/video/fbdev/core/fbcon.c
->>> +++ b/drivers/video/fbdev/core/fbcon.c
->>> @@ -2402,7 +2402,8 @@ static int fbcon_blank(struct vc_data *vc, int =
-blank, int mode_switch)
->>>               ops->graphics =3D 1;
->>>
->>>               if (!blank) {
->>> -                     var.activate =3D FB_ACTIVATE_NOW | FB_ACTIVATE_=
-FORCE;
->>> +                     var.activate =3D FB_ACTIVATE_NOW | FB_ACTIVATE_=
-FORCE |
->>> +                             FB_ACTIVATE_KD_TEXT;
->>>                       fb_set_var(info, &var);
->>>                       ops->graphics =3D 0;
->>>                       ops->var =3D info->var;
->>> diff --git a/include/uapi/linux/fb.h b/include/uapi/linux/fb.h
->>> index b6aac7ee1f67..4c14e8be7267 100644
->>> --- a/include/uapi/linux/fb.h
->>> +++ b/include/uapi/linux/fb.h
->>> @@ -205,6 +205,7 @@ struct fb_bitfield {
->>>  #define FB_ACTIVATE_ALL             64       /* change all VCs on th=
-is fb    */
->>>  #define FB_ACTIVATE_FORCE     128    /* force apply even when no cha=
-nge*/
->>>  #define FB_ACTIVATE_INV_MODE  256       /* invalidate videomode */
->>> +#define FB_ACTIVATE_KD_TEXT   512       /* for KDSET vt ioctl */
->>>
->>>  #define FB_ACCELF_TEXT               1       /* (OBSOLETE) see fb_in=
-fo.flags and vc_mode */
->>>
->>>
->>
->> --
->> Thomas Zimmermann
->> Graphics Driver Developer
->> SUSE Software Solutions Germany GmbH
->> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
->> (HRB 36809, AG N=C3=BCrnberg)
->> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
->>
->=20
->=20
+  
+#### Possible fixes ####
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [FAIL][5] ([i915#1888]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18131/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-tgl-u2:          [INCOMPLETE][7] ([i915#1932] / [i915#2045]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18131/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18131/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18131/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_flip@basic-plain-flip@a-dp1:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92]) +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8726/fi-kbl-x1275/igt@kms_flip@basic-plain-flip@a-dp1.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18131/fi-kbl-x1275/igt@kms_flip@basic-plain-flip@a-dp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1932]: https://gitlab.freedesktop.org/drm/intel/issues/1932
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2045]: https://gitlab.freedesktop.org/drm/intel/issues/2045
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
---PaXZsG6FtCFcQWV50REzZJbMsCFeoxEm6--
+Participating hosts (40 -> 35)
+------------------------------
 
---K2Ex8wthZpBzdKi5zn9UCF5jPp7SWvTrd
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+  Additional (2): fi-tgl-y fi-elk-e7500 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
------BEGIN PGP SIGNATURE-----
 
-iQFIBAEBCAAyFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl8IaJcUHHR6aW1tZXJt
-YW5uQHN1c2UuZGUACgkQaA3BHVMLeiNP3ggAlfUykStVcYQ1d7597l1hoQGVdQ8M
-a0GkpOzkIxUWFyBQeUg2HyZ8wy+/xl6K66vG/hYUKpuC3IjjWYkohrDd8hP9QJII
-RpUFyUvHE1NjziI7+l1tNB1nhrnk0Bx1V/B9TIobeWVqKStV63OypyUwm2ElOGMZ
-K8FLpNkvkq4s+osioi/P9KsENjFvaFQfz3vRayfDxgxVa3wQEiUGWQ1h3MRExY++
-nHOqRfowL6/Ls/GCLbNsMr86pDQFYmv5TPiQ22UaE0EUGWO1/IF7jsWfpASuQSer
-dcNWEp2fVYSdXr1YLK2SHxQd2+RfwaMTmIV8KOqGqLzjyu3scBC+3JyC2w==
-=7Xdo
------END PGP SIGNATURE-----
+Build changes
+-------------
 
---K2Ex8wthZpBzdKi5zn9UCF5jPp7SWvTrd--
+  * Linux: CI_DRM_8726 -> Patchwork_18131
 
---===============0422198496==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+  CI-20190529: 20190529
+  CI_DRM_8726: 723780498c9dd2f58b80e6b9daeaa5cd08ec8e7a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5729: a048d54f58dd70b07dbeb4541b273ec230ddb586 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18131: 88b8c65b7fbfebc4e2adf798203f27e0ce8bd7a6 @ git://anongit.freedesktop.org/gfx-ci/linux
 
+
+== Linux commits ==
+
+88b8c65b7fbf drm/i915/lmem: allocate HWSP in lmem
+9d929688551d drm/i915: defer pd lmem block put to worker
+3e441301c8d3 drm/i915/dg1: Reserve first 1MB of local memory
+78474d0ee907 drm/i915: Reintroduce mem->reserved
+dd7bf2daf3dc drm/i915/dsb: Enable lmem for dsb
+be601b687707 drm/i915/lmem: reset the lmem buffer created by fbdev
+8d4bc254af2b drm/i915/lmem: Bypass aperture when lmem is available
+a6d6e930f411 drm/i915: Create stolen memory region from local memory
+6ee119d1496f drm/i915/guc: put all guc objects in lmem when available
+be0fce4a6e1c drm/i915/lmem: support optional CPU clearing for special internal use
+efea29d82bbd drm/i915: finish memory region support for stolen objects.
+9b32500e03cf drm/i915: add i915_gem_object_is_devmem() function
+1755a4e32c7f drm/i915: Fix object page offset within a region
+ca44b6c4d514 drm/i915: setup GPU device lmem region
+32e939403a2d drm/i915: Provide a way to disable PCIe relaxed write ordering
+047b9d87f202 drm/i915: move engine scratch to LMEM
+f4982e6c0259 drm/i915: allocate context from LMEM
+c54410159094 drm/i915: support GGTT LMEM entries
+643474aa3150 drm/i915: PPGTT support
+d41c52d4ed7a drm/i915: Distinction of memory regions
+d8a3239ffeaa drm/i915: drop fake LMEM
+4416c2f7894c drm/i915: setup the LMEM region
+f9f300099d61 drm/i915/dg1: Introduce dmabuf mmap to LMEM
+25e66f7d0a5c drm/i915/lmem: allocate cmd ring in lmem
+cc6a052c411f drm/i915/uapi: introduce drm_i915_gem_create_ext
+83900007bf29 drm/i915/query: Expose memory regions through the query uAPI
+c654f1e3f508 drm/i915: introduce kernel blitter_context
+6904f6ee9a66 drm/i915/lmem: support pwrite
+7fcb3d5adb3d drm/i915/lmem: support pread
+39d507e18b2c drm/i915/dgfx: define llc and snooping behaviour
+d1d490a37e6f drm/i915/lmem: Do not check r->sgt.pfn for NULL
+db311ea9f880 drm/i915/lmem: Limit block size to 4G
+720371af8fd0 drm/i915/dg1: DG1 does not support DC6
+db688caa6c0b drm/i915/dg1: Add initial DG1 workarounds
+719467b3a5b9 drm/i915/rkl: Add initial workarounds
+b6563ffa776b drm/i915/dg1: Load DMC
+c9404617ff28 drm/i915/dg1: enable PORT C/D aka D/E
+ee5e03aaf90c drm/i915/dg1: map/unmap pll clocks
+9d91bbcfc48b drm/i915/dg1: provide port/phy mapping for vbt
+f79c4ce6415d drm/i915/dg1: Update voltage swing tables for DP
+649e6352cfc5 drm/i915/dg1: Update comp master/slave relationships for PHYs
+d4760bd1b4aa drm/i915/dg1: Don't program PHY_MISC for PHY-C and PHY-D
+f998462b8eb2 drm/i915/dg1: Enable first 2 ports for DG1
+d520ab1c2265 drm/i915/dg1: gmbus pin mapping
+0b9012fb78d1 drm/i915/dg1: invert HPD pins
+226726870402 drm/i915/dg1: add hpd interrupt handling
+fef23496c454 drm/i915/dg1: Enable DPLL for DG1
+d2b6d0fc64cf drm/i915/dg1: Add and setup DPLLs for DG1
+5467518226bd drm/i915/dg1: Add DPLL macros for DG1
+c73835ce2769 drm/i915/dg1: Wait for pcode/uncore handshake at startup
+283845ab8957 drm/i915/dg1: Increase mmio size to 4MB
+f3e3af28e6da drm/i915/dg1: Add DG1 power wells
+c3be96ec4e2f drm/i915/dg1: Define MOCS table for DG1
+f89f5df391fa drm/i915/dg1: Initialize RAWCLK properly
+e6fb62a95618 drm/i915/dg1: Add fake PCH
+29620df1a5ff drm/i915/dg1: Remove SHPD_FILTER_CNT register programming
+a8faa6244187 drm/i915/dg1: add support for the master unit interrupt
+aa3febafd54f drm/i915/dg1: Add DG1 PCI IDs
+07333dfd467a drm/i915/dg1: add initial DG-1 definitions
+64e885563508 drm/i915: Add has_master_unit_irq flag
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18131/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0422198496==--
