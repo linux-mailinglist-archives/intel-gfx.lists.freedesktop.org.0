@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3A7C21B496
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:01:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3502C21B497
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:01:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4524C6EC22;
-	Fri, 10 Jul 2020 12:01:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F8346EC24;
+	Fri, 10 Jul 2020 12:01:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8B0A6EC22
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:01:34 +0000 (UTC)
-IronPort-SDR: HHUosOkktOyG2EO8JWGALFF2uyeDosVLGZfR8Amr6hvDA9vVeSLJiQd50ae4YZroQ+sr6+N054
- Mvwv1DLZMYEw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="166277113"
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="166277113"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54AD56EC23
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:01:44 +0000 (UTC)
+IronPort-SDR: 3Oxbkr2mB0c4UlojD4QaT4WwlcF5IUCSP/Ahmd3AVH0FxorJhvq3uyVs+F7Jy1PpDiagxrXdxL
+ 31ffSJKIefDw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="135653023"
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="135653023"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:01:34 -0700
-IronPort-SDR: 9au/wf3lTJz7xt88emMIOaXSl/QfJXeFpXZqQ0d+bwXzcTUR+BqI5tmfmGLl6GmKV9PdCSLpCK
- fCL0U1lA2jAg==
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458258424"
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2020 05:01:43 -0700
+IronPort-SDR: RmnYu0kJgkWPaOiUHkhChxRwAQREYI6IjxZjeEXtnv1am3iIfDG93uzcZApDzGsISH9fiDTW0S
+ zC7uy12cPyHw==
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458258476"
 Received: from nmartino-mobl1.ger.corp.intel.com (HELO
  mwahaha-bdw.ger.corp.intel.com) ([10.255.207.224])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:01:24 -0700
+ 10 Jul 2020 05:01:29 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jul 2020 12:57:49 +0100
-Message-Id: <20200710115757.290984-53-matthew.auld@intel.com>
+Date: Fri, 10 Jul 2020 12:57:50 +0100
+Message-Id: <20200710115757.290984-54-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
 References: <20200710115757.290984-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 52/60] drm/i915/guc: put all guc objects in lmem
- when available
+Subject: [Intel-gfx] [RFC 53/60] drm/i915: Create stolen memory region from
+ local memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,177 +50,265 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
+	Lucas De Marchi <lucas.demarchi@intel.com>,
+	Chris P Wilson <chris.p.wilson@intel.com>,
+	Neel Desai <neel.desai@intel.com>, Balestrieri@freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVs
-LmNvbT4KClRoZSBmaXJtd2FyZSBiaW5hcnkgaGFzIHRvIGJlIGxvYWRlZCBmcm9tIGxtZW0gYW5k
-IHRoZSByZWNvbW1lbmRhdGlvbiBpcwp0byBwdXQgYWxsIG90aGVyIG9iamVjdHMgaW4gdGhlcmUg
-YXMgd2VsbC4gTm90ZSB0aGF0IHdlIGRvbid0IGZhbGwgYmFjawp0byBzeXN0ZW0gbWVtb3J5IGlm
-IHRoZSBhbGxvY2F0aW9uIGluIGxtZW0gZmFpbHMgYmVjYXVzZSBhbGwgb2JqZWN0cyBhcmUKYWxs
-b2NhdGVkIGR1cmluZyBkcml2ZXIgbG9hZCBhbmQgaWYgd2UgaGF2ZSBpc3N1ZXMgd2l0aCBsbWVt
-IGF0IHRoYXQgcG9pbnQKc29tZXRoaW5nIGlzIHNlcmlvdXNseSB3cm9uZyB3aXRoIHRoZSBzeXN0
-ZW0sIHNvIG5vIHBvaW50IGluIHRyeWluZyB0bwpoYW5kbGUgaXQuCgpDYzogTWF0dGhldyBBdWxk
-IDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpDYzogQWJkaWVsIEphbnVsZ3VlIDxhYmRpZWwuamFu
-dWxndWVAbGludXguaW50ZWwuY29tPgpDYzogTWljaGFsIFdhamRlY3prbyA8bWljaGFsLndhamRl
-Y3prb0BpbnRlbC5jb20+CkNjOiBWaW5heSBCZWxnYXVta2FyIDx2aW5heS5iZWxnYXVta2FyQGlu
-dGVsLmNvbT4KQ2M6IFJhZG9zbGF3IFN6d2ljaHRlbmJlcmcgPHJhZG9zbGF3LnN6d2ljaHRlbmJl
-cmdAaW50ZWwuY29tPgpDYzogTWljaGFsIFdhamRlY3prbyA8bWljaGFsLndhamRlY3prb0BpbnRl
-bC5jb20+ICN2MQpDYzogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpDYzog
-VmluYXkgQmVsZ2F1bWthciA8dmluYXkuYmVsZ2F1bWthckBpbnRlbC5jb20+ClNpZ25lZC1vZmYt
-Ynk6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRlbC5j
-b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2xtZW0uYyAgfCA0MSAr
-KysrKysrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X2xtZW0uaCAgfCAgOCArKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3Vj
-LmMgICAgfCAgOSArKysrLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2Z3
-LmMgfCAxMSArKysrLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2h1Yy5jICAg
-IHwgMTQgKysrKysrLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3LmMg
-IHwgMzUgKysrKysrKysrKysrKysrKy0tLQogNiBmaWxlcyBjaGFuZ2VkLCAxMDcgaW5zZXJ0aW9u
-cygrKSwgMTEgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z2VtL2k5MTVfZ2VtX2xtZW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9s
-bWVtLmMKaW5kZXggYzcxOWY2YjVlNzg1Li40MjM2NjJjZWM1ZGEgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9sbWVtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX2xtZW0uYwpAQCAtMjE1LDYgKzIxNSwyMSBAQCBpOTE1X2dlbV9v
-YmplY3RfbG1lbV9pb19tYXBfcGFnZV9hdG9taWMoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Qg
-Km9iaiwKIAlyZXR1cm4gaW9fbWFwcGluZ19tYXBfYXRvbWljX3djKCZvYmotPm1tLnJlZ2lvbi0+
-aW9tYXAsIG9mZnNldCk7CiB9CiAKK3ZvaWQgX19pb21lbSAqCitpOTE1X2dlbV9vYmplY3RfbG1l
-bV9pb19tYXAoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKKwkJCSAgICB1bnNpZ25l
-ZCBsb25nIG4sCisJCQkgICAgdW5zaWduZWQgbG9uZyBzaXplKQoreworCXJlc291cmNlX3NpemVf
-dCBvZmZzZXQ7CisKKwlHRU1fQlVHX09OKCFpOTE1X2dlbV9vYmplY3RfaXNfY29udGlndW91cyhv
-YmopKTsKKworCW9mZnNldCA9IGk5MTVfZ2VtX29iamVjdF9nZXRfZG1hX2FkZHJlc3Mob2JqLCBu
-KTsKKwlvZmZzZXQgLT0gb2JqLT5tbS5yZWdpb24tPnJlZ2lvbi5zdGFydDsKKworCXJldHVybiBp
-b19tYXBwaW5nX21hcF93Yygmb2JqLT5tbS5yZWdpb24tPmlvbWFwLCBvZmZzZXQsIHNpemUpOwor
-fQorCiBib29sIGk5MTVfZ2VtX29iamVjdF9pc19sbWVtKHN0cnVjdCBkcm1faTkxNV9nZW1fb2Jq
-ZWN0ICpvYmopCiB7CiAJc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKnJlZ2lvbiA9IG9iai0+
-bW0ucmVnaW9uOwpAQCAtMjI5LDYgKzI0NCwzMiBAQCBib29sIGk5MTVfZ2VtX29iamVjdF9pc19k
-ZXZtZW0oc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKIAlyZXR1cm4gcmVnaW9uICYm
-IHJlZ2lvbi0+aXNfZGV2bWVtOwogfQogCitzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqCitp
-OTE1X2dlbV9vYmplY3RfY3JlYXRlX2xtZW1fZnJvbV9kYXRhKHN0cnVjdCBkcm1faTkxNV9wcml2
-YXRlICppOTE1LAorCQkJCSAgICAgIGNvbnN0IHZvaWQgKmRhdGEsIHNpemVfdCBzaXplKQorewor
-CXN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmo7CisJdm9pZCAqbWFwOworCisJb2JqID0g
-aTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9sbWVtKGk5MTUsCisJCQkJCSAgcm91bmRfdXAoc2l6ZSwg
-UEFHRV9TSVpFKSwKKwkJCQkJICBJOTE1X0JPX0FMTE9DX0NPTlRJR1VPVVMpOworCWlmIChJU19F
-UlIob2JqKSkKKwkJcmV0dXJuIG9iajsKKworCW1hcCA9IGk5MTVfZ2VtX29iamVjdF9waW5fbWFw
-KG9iaiwgSTkxNV9NQVBfV0MpOworCWlmIChJU19FUlIobWFwKSkgeworCQlpOTE1X2dlbV9vYmpl
-Y3RfcHV0KG9iaik7CisJCXJldHVybiBtYXA7CisJfQorCisJbWVtY3B5KG1hcCwgZGF0YSwgc2l6
-ZSk7CisKKwlpOTE1X2dlbV9vYmplY3RfdW5waW5fbWFwKG9iaik7CisKKwlyZXR1cm4gb2JqOwor
-fQorCiBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqCiBpOTE1X2dlbV9vYmplY3RfY3JlYXRl
-X2xtZW0oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsCiAJCQkgICAgcmVzb3VyY2Vfc2l6
-ZV90IHNpemUsCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-bG1lbS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2xtZW0uaAppbmRleCBh
-MWI2YTEwMDUwYmYuLmUxMWUwNTQ1ZTM5YyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ2VtL2k5MTVfZ2VtX2xtZW0uaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkx
-NV9nZW1fbG1lbS5oCkBAIC0xNCw2ICsxNCwxMCBAQCBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lv
-bjsKIAogZXh0ZXJuIGNvbnN0IHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0X29wcyBpOTE1X2dl
-bV9sbWVtX29ial9vcHM7CiAKK3ZvaWQgX19pb21lbSAqCitpOTE1X2dlbV9vYmplY3RfbG1lbV9p
-b19tYXAoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKKwkJCSAgICB1bnNpZ25lZCBs
-b25nIG4sCisJCQkgICAgdW5zaWduZWQgbG9uZyBzaXplKTsKIHZvaWQgX19pb21lbSAqaTkxNV9n
-ZW1fb2JqZWN0X2xtZW1faW9fbWFwX3BhZ2Uoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9i
-aiwKIAkJCQkJICAgICAgIHVuc2lnbmVkIGxvbmcgbik7CiB2b2lkIF9faW9tZW0gKgpAQCAtMjMs
-NiArMjcsMTAgQEAgaTkxNV9nZW1fb2JqZWN0X2xtZW1faW9fbWFwX3BhZ2VfYXRvbWljKHN0cnVj
-dCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmosCiBib29sIGk5MTVfZ2VtX29iamVjdF9pc19sbWVt
-KHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopOwogYm9vbCBpOTE1X2dlbV9vYmplY3Rf
-aXNfZGV2bWVtKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopOwogCitzdHJ1Y3QgZHJt
-X2k5MTVfZ2VtX29iamVjdCAqCitpOTE1X2dlbV9vYmplY3RfY3JlYXRlX2xtZW1fZnJvbV9kYXRh
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAorCQkJCSAgICAgIGNvbnN0IHZvaWQgKmRh
-dGEsIHNpemVfdCBzaXplKTsKKwogc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKgogaTkxNV9n
-ZW1fb2JqZWN0X2NyZWF0ZV9sbWVtKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAogCQkJ
-ICAgIHJlc291cmNlX3NpemVfdCBzaXplLApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ3QvdWMvaW50ZWxfZ3VjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9n
-dWMuYwppbmRleCA4NjE2NTc4OTdjMGYuLjlhNDNjZmJmYzI2ZCAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ3QvdWMvaW50ZWxfZ3VjLmMKQEAgLTMsNiArMyw3IEBACiAgKiBDb3B5cmlnaHQgwqkgMjAx
-NC0yMDE5IEludGVsIENvcnBvcmF0aW9uCiAgKi8KIAorI2luY2x1ZGUgImdlbS9pOTE1X2dlbV9s
-bWVtLmgiCiAjaW5jbHVkZSAiZ3QvaW50ZWxfZ3QuaCIKICNpbmNsdWRlICJndC9pbnRlbF9ndF9p
-cnEuaCIKICNpbmNsdWRlICJndC9pbnRlbF9ndF9wbV9pcnEuaCIKQEAgLTY2OCw3ICs2NjksMTMg
-QEAgc3RydWN0IGk5MTVfdm1hICppbnRlbF9ndWNfYWxsb2NhdGVfdm1hKHN0cnVjdCBpbnRlbF9n
-dWMgKmd1YywgdTMyIHNpemUpCiAJdTY0IGZsYWdzOwogCWludCByZXQ7CiAKLQlvYmogPSBpOTE1
-X2dlbV9vYmplY3RfY3JlYXRlX3NobWVtKGd0LT5pOTE1LCBzaXplKTsKKwlpZiAoSEFTX0xNRU0o
-Z3QtPmk5MTUpKQorCQlvYmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX2xtZW0oZ3QtPmk5MTUs
-IHNpemUsCisJCQkJCQkgIEk5MTVfQk9fQUxMT0NfQ1BVX0NMRUFSIHwKKwkJCQkJCSAgSTkxNV9C
-T19BTExPQ19DT05USUdVT1VTKTsKKwllbHNlCisJCW9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVh
-dGVfc2htZW0oZ3QtPmk5MTUsIHNpemUpOworCiAJaWYgKElTX0VSUihvYmopKQogCQlyZXR1cm4g
-RVJSX0NBU1Qob2JqKTsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMv
-aW50ZWxfZ3VjX2Z3LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfZncu
-YwppbmRleCBkNGE4N2Y0Yzk0MjEuLjkzYTFiZGIzZDgxYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2Z3LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ3QvdWMvaW50ZWxfZ3VjX2Z3LmMKQEAgLTQxLDcgKzQxLDcgQEAgc3RhdGljIHZvaWQgZ3Vj
-X3ByZXBhcmVfeGZlcihzdHJ1Y3QgaW50ZWxfdW5jb3JlICp1bmNvcmUpCiB9CiAKIC8qIENvcHkg
-UlNBIHNpZ25hdHVyZSBmcm9tIHRoZSBmdyBpbWFnZSB0byBIVyBmb3IgdmVyaWZpY2F0aW9uICov
-Ci1zdGF0aWMgdm9pZCBndWNfeGZlcl9yc2Eoc3RydWN0IGludGVsX3VjX2Z3ICpndWNfZncsCitz
-dGF0aWMgaW50IGd1Y194ZmVyX3JzYShzdHJ1Y3QgaW50ZWxfdWNfZncgKmd1Y19mdywKIAkJCSBz
-dHJ1Y3QgaW50ZWxfdW5jb3JlICp1bmNvcmUpCiB7CiAJdTMyIHJzYVtVT1NfUlNBX1NDUkFUQ0hf
-Q09VTlRdOwpAQCAtNDksMTAgKzQ5LDEzIEBAIHN0YXRpYyB2b2lkIGd1Y194ZmVyX3JzYShzdHJ1
-Y3QgaW50ZWxfdWNfZncgKmd1Y19mdywKIAlpbnQgaTsKIAogCWNvcGllZCA9IGludGVsX3VjX2Z3
-X2NvcHlfcnNhKGd1Y19mdywgcnNhLCBzaXplb2YocnNhKSk7Ci0JR0VNX0JVR19PTihjb3BpZWQg
-PCBzaXplb2YocnNhKSk7CisJaWYgKGNvcGllZCA8IHNpemVvZihyc2EpKQorCQlyZXR1cm4gLUVO
-T01FTTsKIAogCWZvciAoaSA9IDA7IGkgPCBVT1NfUlNBX1NDUkFUQ0hfQ09VTlQ7IGkrKykKIAkJ
-aW50ZWxfdW5jb3JlX3dyaXRlKHVuY29yZSwgVU9TX1JTQV9TQ1JBVENIKGkpLCByc2FbaV0pOwor
-CisJcmV0dXJuIDA7CiB9CiAKIC8qCkBAIC0xMjksNyArMTMyLDkgQEAgaW50IGludGVsX2d1Y19m
-d191cGxvYWQoc3RydWN0IGludGVsX2d1YyAqZ3VjKQogCSAqIGJ5IHRoZSBETUEgZW5naW5lIGlu
-IG9uZSBvcGVyYXRpb24sIHdoZXJlYXMgdGhlIFJTQSBzaWduYXR1cmUgaXMKIAkgKiBsb2FkZWQg
-dmlhIE1NSU8uCiAJICovCi0JZ3VjX3hmZXJfcnNhKCZndWMtPmZ3LCB1bmNvcmUpOworCXJldCA9
-IGd1Y194ZmVyX3JzYSgmZ3VjLT5mdywgdW5jb3JlKTsKKwlpZiAocmV0KQorCQlnb3RvIG91dDsK
-IAogCS8qCiAJICogQ3VycmVudCB1Q29kZSBleHBlY3RzIHRoZSBjb2RlIHRvIGJlIGxvYWRlZCBh
-dCA4azsgbG9jYXRpb25zIGJlbG93CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC91Yy9pbnRlbF9odWMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2h1Yy5j
-CmluZGV4IDY1ZWViNDRiMzk3ZC4uMzU5YTBmOTQ3NjcyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9odWMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC91Yy9pbnRlbF9odWMuYwpAQCAtODUsMTcgKzg1LDI1IEBAIHN0YXRpYyBpbnQgaW50ZWxfaHVj
-X3JzYV9kYXRhX2NyZWF0ZShzdHJ1Y3QgaW50ZWxfaHVjICpodWMpCiAJdmFkZHIgPSBpOTE1X2dl
-bV9vYmplY3RfcGluX21hcCh2bWEtPm9iaiwgSTkxNV9NQVBfV0IpOwogCWlmIChJU19FUlIodmFk
-ZHIpKSB7CiAJCWk5MTVfdm1hX3VucGluX2FuZF9yZWxlYXNlKCZ2bWEsIDApOwotCQlyZXR1cm4g
-UFRSX0VSUih2YWRkcik7CisJCWVyciA9IFBUUl9FUlIodmFkZHIpOworCQlnb3RvIHVucGluX291
-dDsKIAl9CiAKIAljb3BpZWQgPSBpbnRlbF91Y19md19jb3B5X3JzYSgmaHVjLT5mdywgdmFkZHIs
-IHZtYS0+c2l6ZSk7Ci0JR0VNX0JVR19PTihjb3BpZWQgPCBodWMtPmZ3LnJzYV9zaXplKTsKLQog
-CWk5MTVfZ2VtX29iamVjdF91bnBpbl9tYXAodm1hLT5vYmopOwogCisJaWYgKGNvcGllZCA8IGh1
-Yy0+ZncucnNhX3NpemUpIHsKKwkJZXJyID0gLUVOT01FTTsKKwkJZ290byB1bnBpbl9vdXQ7CisJ
-fQorCiAJaHVjLT5yc2FfZGF0YSA9IHZtYTsKIAogCXJldHVybiAwOworCit1bnBpbl9vdXQ6CisJ
-aTkxNV92bWFfdW5waW5fYW5kX3JlbGVhc2UoJnZtYSwgMCk7CisJcmV0dXJuIGVycjsKIH0KIAog
-c3RhdGljIHZvaWQgaW50ZWxfaHVjX3JzYV9kYXRhX2Rlc3Ryb3koc3RydWN0IGludGVsX2h1YyAq
-aHVjKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWNfZncu
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3LmMKaW5kZXggNTliMjdh
-YmExNWM2Li4yYTQ5NDk4ZmJkY2IgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L3VjL2ludGVsX3VjX2Z3LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxf
-dWNfZncuYwpAQCAtNyw2ICs3LDcgQEAKICNpbmNsdWRlIDxsaW51eC9maXJtd2FyZS5oPgogI2lu
-Y2x1ZGUgPGRybS9kcm1fcHJpbnQuaD4KIAorI2luY2x1ZGUgImdlbS9pOTE1X2dlbV9sbWVtLmgi
-CiAjaW5jbHVkZSAiaW50ZWxfdWNfZncuaCIKICNpbmNsdWRlICJpbnRlbF91Y19md19hYmkuaCIK
-ICNpbmNsdWRlICJpOTE1X2Rydi5oIgpAQCAtMzcxLDcgKzM3MiwxMSBAQCBpbnQgaW50ZWxfdWNf
-ZndfZmV0Y2goc3RydWN0IGludGVsX3VjX2Z3ICp1Y19mdykKIAkJfQogCX0KIAotCW9iaiA9IGk5
-MTVfZ2VtX29iamVjdF9jcmVhdGVfc2htZW1fZnJvbV9kYXRhKGk5MTUsIGZ3LT5kYXRhLCBmdy0+
-c2l6ZSk7CisJaWYgKEhBU19MTUVNKGk5MTUpKQorCQlvYmogPSBpOTE1X2dlbV9vYmplY3RfY3Jl
-YXRlX2xtZW1fZnJvbV9kYXRhKGk5MTUsIGZ3LT5kYXRhLCBmdy0+c2l6ZSk7CisJZWxzZQorCQlv
-YmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3NobWVtX2Zyb21fZGF0YShpOTE1LCBmdy0+ZGF0
-YSwgZnctPnNpemUpOworCiAJaWYgKElTX0VSUihvYmopKSB7CiAJCWVyciA9IFBUUl9FUlIob2Jq
-KTsKIAkJZ290byBmYWlsOwpAQCAtNDIwLDE0ICs0MjUsMTkgQEAgc3RhdGljIHZvaWQgdWNfZndf
-YmluZF9nZ3R0KHN0cnVjdCBpbnRlbF91Y19mdyAqdWNfZncpCiAJCS5wYWdlcyA9IG9iai0+bW0u
-cGFnZXMsCiAJCS52bSA9ICZnZ3R0LT52bSwKIAl9OworCXUzMiBwdGVfZmxhZ3MgPSAwOwogCiAJ
-R0VNX0JVR19PTighaTkxNV9nZW1fb2JqZWN0X2hhc19waW5uZWRfcGFnZXMob2JqKSk7CiAJR0VN
-X0JVR19PTihkdW1teS5ub2RlLnNpemUgPiBnZ3R0LT51Y19mdy5zaXplKTsKIAogCS8qIHVjX2Z3
-LT5vYmogY2FjaGUgZG9tYWlucyB3ZXJlIG5vdCBjb250cm9sbGVkIGFjcm9zcyBzdXNwZW5kICov
-Ci0JZHJtX2NsZmx1c2hfc2coZHVtbXkucGFnZXMpOworCWlmIChpOTE1X2dlbV9vYmplY3RfaGFz
-X3N0cnVjdF9wYWdlKG9iaikpCisJCWRybV9jbGZsdXNoX3NnKGR1bW15LnBhZ2VzKTsKKworCWlm
-IChpOTE1X2dlbV9vYmplY3RfaXNfbG1lbShvYmopKQorCQlwdGVfZmxhZ3MgfD0gUFRFX0xNOwog
-Ci0JZ2d0dC0+dm0uaW5zZXJ0X2VudHJpZXMoJmdndHQtPnZtLCAmZHVtbXksIEk5MTVfQ0FDSEVf
-Tk9ORSwgMCk7CisJZ2d0dC0+dm0uaW5zZXJ0X2VudHJpZXMoJmdndHQtPnZtLCAmZHVtbXksIEk5
-MTVfQ0FDSEVfTk9ORSwgcHRlX2ZsYWdzKTsKIH0KIAogc3RhdGljIHZvaWQgdWNfZndfdW5iaW5k
-X2dndHQoc3RydWN0IGludGVsX3VjX2Z3ICp1Y19mdykKQEAgLTU5Miw3ICs2MDIsMjQgQEAgc2l6
-ZV90IGludGVsX3VjX2Z3X2NvcHlfcnNhKHN0cnVjdCBpbnRlbF91Y19mdyAqdWNfZncsIHZvaWQg
-KmRzdCwgdTMyIG1heF9sZW4pCiAKIAlHRU1fQlVHX09OKCFpbnRlbF91Y19md19pc19hdmFpbGFi
-bGUodWNfZncpKTsKIAotCXJldHVybiBzZ19wY29weV90b19idWZmZXIocGFnZXMtPnNnbCwgcGFn
-ZXMtPm5lbnRzLCBkc3QsIHNpemUsIG9mZnNldCk7CisJaWYgKGk5MTVfZ2VtX29iamVjdF9pc19s
-bWVtKHVjX2Z3LT5vYmopKSB7CisJCXVuc2lnbmVkIGxvbmcgcGFnZV9pZHggPSBvZmZzZXQgPj4g
-UEFHRV9TSElGVDsKKwkJdW5zaWduZWQgaW50IHBhZ2Vfb2ZmID0gb2Zmc2V0X2luX3BhZ2Uob2Zm
-c2V0KTsKKwkJdm9pZCBfX2lvbWVtICp2YWRkcjsKKworCQl2YWRkciA9IGk5MTVfZ2VtX29iamVj
-dF9sbWVtX2lvX21hcCh1Y19mdy0+b2JqLAorCQkJCQkJICAgIHBhZ2VfaWR4LAorCQkJCQkJICAg
-IHBhZ2Vfb2ZmICsgc2l6ZSk7CisJCWlmICghdmFkZHIpCisJCQlyZXR1cm4gMDsKKworCQltZW1j
-cHkoZHN0LCB2YWRkciArIHBhZ2Vfb2ZmLCBzaXplKTsKKwkJaW9fbWFwcGluZ191bm1hcCh2YWRk
-cik7CisJCXJldHVybiBzaXplOworCX0gZWxzZSB7CisJCXJldHVybiBzZ19wY29weV90b19idWZm
-ZXIocGFnZXMtPnNnbCwgcGFnZXMtPm5lbnRzLAorCQkJCQkgIGRzdCwgc2l6ZSwgb2Zmc2V0KTsK
-Kwl9CiB9CiAKIC8qKgotLSAKMi4yNi4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZngK
+From: CQ Tang <cq.tang@intel.com>
+
+Add "REGION_STOLEN" device info to dg1, create stolen memory
+region from upper portion of local device memory, starting
+from DSMBASE.
+
+The memory region is marked with "is_devmem=true".
+
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+Cc: Chris P Wilson <chris.p.wilson@intel.com>
+Cc: Balestrieri, Francesco <francesco.balestrieri@intel.com>
+Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Cc: Venkata S Dhanalakota <venkata.s.dhanalakota@intel.com>
+Cc: Neel Desai <neel.desai@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Sudeep Dutt <sudeep.dutt@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: CQ Tang <cq.tang@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_lmem.c   | 12 ++---
+ drivers/gpu/drm/i915/gem/i915_gem_lmem.h   |  7 +++
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 56 +++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_pci.c            |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h            |  1 +
+ drivers/gpu/drm/i915/intel_memory_region.c |  5 ++
+ drivers/gpu/drm/i915/intel_memory_region.h |  2 +-
+ 7 files changed, 75 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+index 423662cec5da..456b304b244e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+@@ -8,8 +8,8 @@
+ #include "gem/i915_gem_lmem.h"
+ #include "i915_drv.h"
+ 
+-static int lmem_pread(struct drm_i915_gem_object *obj,
+-		      const struct drm_i915_gem_pread *arg)
++int i915_gem_object_lmem_pread(struct drm_i915_gem_object *obj,
++			       const struct drm_i915_gem_pread *arg)
+ {
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+ 	struct intel_runtime_pm *rpm = &i915->runtime_pm;
+@@ -94,8 +94,8 @@ static int lmem_pread(struct drm_i915_gem_object *obj,
+ 	return ret;
+ }
+ 
+-static int lmem_pwrite(struct drm_i915_gem_object *obj,
+-		       const struct drm_i915_gem_pwrite *arg)
++int i915_gem_object_lmem_pwrite(struct drm_i915_gem_object *obj,
++				const struct drm_i915_gem_pwrite *arg)
+ {
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+ 	struct intel_runtime_pm *rpm = &i915->runtime_pm;
+@@ -187,8 +187,8 @@ const struct drm_i915_gem_object_ops i915_gem_lmem_obj_ops = {
+ 	.put_pages = i915_gem_object_put_pages_buddy,
+ 	.release = i915_gem_object_release_memory_region,
+ 
+-	.pread = lmem_pread,
+-	.pwrite = lmem_pwrite,
++	.pread = i915_gem_object_lmem_pread,
++	.pwrite = i915_gem_object_lmem_pwrite,
+ };
+ 
+ void __iomem *
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
+index e11e0545e39c..c59aa6c014c7 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
+@@ -11,9 +11,16 @@
+ struct drm_i915_private;
+ struct drm_i915_gem_object;
+ struct intel_memory_region;
++struct drm_i915_gem_pread;
++struct drm_i915_gem_pwrite;
+ 
+ extern const struct drm_i915_gem_object_ops i915_gem_lmem_obj_ops;
+ 
++int i915_gem_object_lmem_pread(struct drm_i915_gem_object *obj,
++			       const struct drm_i915_gem_pread *args);
++int i915_gem_object_lmem_pwrite(struct drm_i915_gem_object *obj,
++				const struct drm_i915_gem_pwrite *args);
++
+ void __iomem *
+ i915_gem_object_lmem_io_map(struct drm_i915_gem_object *obj,
+ 			    unsigned long n,
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index fee5ff1a1863..0bcfe4464fa1 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -10,6 +10,7 @@
+ #include <drm/drm_mm.h>
+ #include <drm/i915_drm.h>
+ 
++#include "gem/i915_gem_lmem.h"
+ #include "gem/i915_gem_region.h"
+ #include "i915_drv.h"
+ #include "i915_gem_stolen.h"
+@@ -119,6 +120,14 @@ static int i915_adjust_stolen(struct drm_i915_private *i915,
+ 		}
+ 	}
+ 
++	/*
++	 * With device local memory, we don't need to check the address range,
++	 * this is device memory physical address, could overlap with system
++	 * memory.
++	 */
++	if (HAS_LMEM(i915))
++		return 0;
++
+ 	/*
+ 	 * Verify that nothing else uses this physical address. Stolen
+ 	 * memory should be reserved by the BIOS and hidden from the
+@@ -558,7 +567,7 @@ static void i915_gem_object_put_pages_stolen(struct drm_i915_gem_object *obj,
+ 	kfree(pages);
+ }
+ 
+-static const struct drm_i915_gem_object_ops i915_gem_object_stolen_ops = {
++static struct drm_i915_gem_object_ops i915_gem_object_stolen_ops = {
+ 	.name = "i915_gem_object_stolen",
+ 	.get_pages = i915_gem_object_get_pages_stolen,
+ 	.put_pages = i915_gem_object_put_pages_stolen,
+@@ -661,7 +670,19 @@ i915_gem_object_create_stolen(struct drm_i915_private *i915,
+ 
+ static int init_stolen(struct intel_memory_region *mem)
+ {
+-	intel_memory_region_set_name(mem, "stolen");
++	if (mem->type == INTEL_MEMORY_STOLEN_SYSTEM)
++		intel_memory_region_set_name(mem, "stolen-system");
++	else
++		intel_memory_region_set_name(mem, "stolen-local");
++
++	if (HAS_LMEM(mem->i915)) {
++		i915_gem_object_stolen_ops.pread = i915_gem_object_lmem_pread;
++		i915_gem_object_stolen_ops.pwrite = i915_gem_object_lmem_pwrite;
++		if (!io_mapping_init_wc(&mem->iomap,
++					mem->io_start,
++					resource_size(&mem->region)))
++			return -EIO;
++	}
+ 
+ 	/*
+ 	 * Initialise stolen early so that we may reserve preallocated
+@@ -681,8 +702,39 @@ static const struct intel_memory_region_ops i915_region_stolen_ops = {
+ 	.create_object = i915_gem_object_create_stolen_region,
+ };
+ 
++static
++struct intel_memory_region *setup_lmem_stolen(struct drm_i915_private *i915)
++{
++	struct intel_uncore *uncore = &i915->uncore;
++	struct pci_dev *pdev = i915->drm.pdev;
++	struct intel_memory_region *mem;
++	resource_size_t io_start;
++	resource_size_t lmem_size;
++	u64 lmem_base;
++
++	lmem_base = intel_uncore_read64(uncore, GEN12_DSMBASE);
++	lmem_size = pci_resource_len(pdev, 2) - lmem_base;
++	io_start = pci_resource_start(pdev, 2) + lmem_base;
++
++	mem = intel_memory_region_create(i915, lmem_base, lmem_size,
++					 I915_GTT_PAGE_SIZE_4K, io_start,
++					 &i915_region_stolen_ops);
++	if (!IS_ERR(mem)) {
++		DRM_INFO("Intel graphics stolen LMEM: %pR\n", &mem->region);
++		DRM_INFO("Intel graphics stolen LMEM IO start: %llx\n",
++			 (u64)mem->io_start);
++		/* this is real device memory */
++		mem->is_devmem = true;
++	}
++
++	return mem;
++}
++
+ struct intel_memory_region *i915_gem_stolen_setup(struct drm_i915_private *i915)
+ {
++	if (HAS_LMEM(i915))
++		return setup_lmem_stolen(i915);
++
+ 	return intel_memory_region_create(i915,
+ 					  intel_graphics_stolen_res.start,
+ 					  resource_size(&intel_graphics_stolen_res),
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index e132fdffa432..fbb7ac96d881 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -897,7 +897,7 @@ static const struct intel_device_info rkl_info = {
+ 
+ #define GEN12_DGFX_FEATURES \
+ 	GEN12_FEATURES, \
+-	.memory_regions = REGION_SMEM | REGION_LMEM, \
++	.memory_regions = REGION_SMEM | REGION_LMEM | REGION_STOLEN_LMEM, \
+ 	.has_master_unit_irq = 1, \
+ 	.has_llc = 0, \
+ 	.has_snoop = 1, \
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 6e67c4ee09c2..7ee322728a65 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -12039,6 +12039,7 @@ enum skl_power_gate {
+ #define   LMEM_ENABLE			(1 << 31)
+ 
+ #define GEN12_GSMBASE			_MMIO(0x108100)
++#define GEN12_DSMBASE			_MMIO(0x1080C0)
+ 
+ /* gamt regs */
+ #define GEN8_L3_LRA_1_GPGPU _MMIO(0x4dd4)
+diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
+index d564b596efda..905cdfa6e3e2 100644
+--- a/drivers/gpu/drm/i915/intel_memory_region.c
++++ b/drivers/gpu/drm/i915/intel_memory_region.c
+@@ -19,6 +19,10 @@ const struct intel_memory_region_info intel_region_map[] = {
+                .class = INTEL_MEMORY_STOLEN_SYSTEM,
+                .instance = 0,
+        },
++       [INTEL_REGION_STOLEN_LMEM] = {
++               .class = INTEL_MEMORY_STOLEN_LOCAL,
++               .instance = 0,
++       },
+ };
+ 
+ struct intel_memory_region *
+@@ -305,6 +309,7 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
+ 		case INTEL_MEMORY_SYSTEM:
+ 			mem = i915_gem_shmem_setup(i915);
+ 			break;
++		case INTEL_MEMORY_STOLEN_LOCAL: /* fallthrough */
+ 		case INTEL_MEMORY_STOLEN_SYSTEM:
+ 			mem = i915_gem_stolen_setup(i915);
+ 			break;
+diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
+index a08cbae18979..8f9c943a16af 100644
+--- a/drivers/gpu/drm/i915/intel_memory_region.h
++++ b/drivers/gpu/drm/i915/intel_memory_region.h
+@@ -93,7 +93,7 @@ struct intel_memory_region {
+ 	u16 type;
+ 	u16 instance;
+ 	enum intel_region_id id;
+-	char name[8];
++	char name[16];
+ 	bool is_devmem;	/* true for device memory */
+ 
+ 	dma_addr_t remap_addr;
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
