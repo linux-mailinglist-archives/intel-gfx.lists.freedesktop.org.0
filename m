@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F63E21B480
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6EA621B481
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:00:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18B526EC04;
-	Fri, 10 Jul 2020 12:00:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BCA26EC0D;
+	Fri, 10 Jul 2020 12:00:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49B8A6EC13
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:00:28 +0000 (UTC)
-IronPort-SDR: 2jrlji+nem+7waxVTd/YZ2PkbuLT0WTO3i9sM4K/+JMpXrQ6HcB+xTnoWBEVzYc1MY8gQgtN9G
- 7k77Z/EESocQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="209716644"
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="209716644"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 164A46EC12
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:00:30 +0000 (UTC)
+IronPort-SDR: sjLENzbfNcgqZb3lpHBT1Bz9lLgMmcELcKmix0DmDHfXCiDiO5u8rSgv2ZojT7G2hXOtNcdtIE
+ dzk6RyUYFq0A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="209716654"
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="209716654"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:00:27 -0700
-IronPort-SDR: 0BP7ZcFdD+Nwwi1sKDStOPV/3u8lmcUE2S59bgcrjtnHJC//3+fL5gIgi33ChSACgpkK14EY0G
- NMo89HDkr1HA==
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458257867"
+ 10 Jul 2020 05:00:29 -0700
+IronPort-SDR: LtweP0YXDGLJS5WgiVHFt3Ixw+dI3dFBNE/tFjob9QU8E6PY5COei44H72pJhepck6BAtG0SLJ
+ orAWAFHds76w==
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458257870"
 Received: from nmartino-mobl1.ger.corp.intel.com (HELO
  mwahaha-bdw.ger.corp.intel.com) ([10.255.207.224])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:00:25 -0700
+ 10 Jul 2020 05:00:27 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jul 2020 12:57:30 +0100
-Message-Id: <20200710115757.290984-34-matthew.auld@intel.com>
+Date: Fri, 10 Jul 2020 12:57:31 +0100
+Message-Id: <20200710115757.290984-35-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
 References: <20200710115757.290984-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 33/60] drm/i915/lmem: support pwrite
+Subject: [Intel-gfx] [RFC 34/60] drm/i915: introduce kernel blitter_context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,120 +55,91 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need to add support for pwrite'ing an LMEM object.
+We may be without a context to perform various internal blitter
+operations, for example when performing object migration. Piggybacking
+off the kernel_context is probably a bad idea, since it has other uses.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Steve Hampson <steven.t.hampson@intel.com>
 Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_lmem.c | 86 ++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 30 +++++++++++++++++---
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 +
+ 2 files changed, 27 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-index 9142ba299aa1..e324328639d2 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-@@ -94,6 +94,91 @@ static int lmem_pread(struct drm_i915_gem_object *obj,
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index dd1a42c4d344..1df94e82550f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -792,6 +792,7 @@ create_kernel_context(struct intel_engine_cs *engine)
+ 	int err;
+ 
+ 	ce = intel_context_create(engine);
++
+ 	if (IS_ERR(ce))
+ 		return ce;
+ 
+@@ -845,16 +846,32 @@ static int engine_init_common(struct intel_engine_cs *engine)
+ 		return PTR_ERR(ce);
+ 
+ 	ret = measure_breadcrumb_dw(ce);
+-	if (ret < 0)
+-		goto err_context;
++	if (ret < 0) {
++		intel_context_put(ce);
++		return ret;
++	}
+ 
+ 	engine->emit_fini_breadcrumb_dw = ret;
+ 	engine->kernel_context = ce;
+ 
++	/*
++	 * The blitter context is used to quickly memset or migrate objects
++	 * in local memory, so it has to always be available.
++	 */
++	if (engine->class == COPY_ENGINE_CLASS) {
++		ce = create_kernel_context(engine);
++		if (IS_ERR(ce)) {
++			ret = PTR_ERR(ce);
++			goto err_kernel_context;
++		}
++
++		engine->blitter_context = ce;
++	}
++
+ 	return 0;
+ 
+-err_context:
+-	intel_context_put(ce);
++err_kernel_context:
++	intel_context_put(engine->kernel_context);
  	return ret;
  }
  
-+static int lmem_pwrite(struct drm_i915_gem_object *obj,
-+		       const struct drm_i915_gem_pwrite *arg)
-+{
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-+	struct intel_runtime_pm *rpm = &i915->runtime_pm;
-+	intel_wakeref_t wakeref;
-+	struct dma_fence *fence;
-+	char __user *user_data;
-+	unsigned int offset;
-+	unsigned long idx;
-+	u64 remain;
-+	int ret;
-+
-+	ret = i915_gem_object_wait(obj,
-+				   I915_WAIT_INTERRUPTIBLE,
-+				   MAX_SCHEDULE_TIMEOUT);
-+	if (ret)
-+		return ret;
-+
-+	ret = i915_gem_object_pin_pages(obj);
-+	if (ret)
-+		return ret;
-+
-+	i915_gem_object_lock(obj);
-+	ret = i915_gem_object_set_to_wc_domain(obj, true);
-+	if (ret) {
-+		i915_gem_object_unlock(obj);
-+		goto out_unpin;
-+	}
-+
-+	fence = i915_gem_object_lock_fence(obj);
-+	i915_gem_object_unlock(obj);
-+	if (!fence) {
-+		ret = -ENOMEM;
-+		goto out_unpin;
-+	}
-+
-+	wakeref = intel_runtime_pm_get(rpm);
-+
-+	remain = arg->size;
-+	user_data = u64_to_user_ptr(arg->data_ptr);
-+	offset = offset_in_page(arg->offset);
-+	for (idx = arg->offset >> PAGE_SHIFT; remain; idx++) {
-+		unsigned long unwritten;
-+		void __iomem *vaddr;
-+		int length;
-+
-+		length = remain;
-+		if (offset + length > PAGE_SIZE)
-+			length = PAGE_SIZE - offset;
-+
-+		vaddr = i915_gem_object_lmem_io_map_page_atomic(obj, idx);
-+		if (!vaddr) {
-+			ret = -ENOMEM;
-+			goto out_put;
-+		}
-+
-+		unwritten = __copy_from_user_inatomic_nocache((void __force*)vaddr + offset,
-+							      user_data, length);
-+		io_mapping_unmap_atomic(vaddr);
-+		if (unwritten) {
-+			vaddr = i915_gem_object_lmem_io_map_page(obj, idx);
-+			unwritten = copy_from_user((void __force*)vaddr + offset,
-+						   user_data, length);
-+			io_mapping_unmap(vaddr);
-+		}
-+		if (unwritten) {
-+			ret = -EFAULT;
-+			goto out_put;
-+		}
-+
-+		remain -= length;
-+		user_data += length;
-+		offset = 0;
-+	}
-+
-+out_put:
-+	intel_runtime_pm_put(rpm, wakeref);
-+	i915_gem_object_unlock_fence(obj, fence);
-+out_unpin:
-+	i915_gem_object_unpin_pages(obj);
-+
-+	return ret;
-+}
-+
- const struct drm_i915_gem_object_ops i915_gem_lmem_obj_ops = {
- 	.name = "i915_gem_object_lmem",
- 	.flags = I915_GEM_OBJECT_HAS_IOMEM,
-@@ -103,6 +188,7 @@ const struct drm_i915_gem_object_ops i915_gem_lmem_obj_ops = {
- 	.release = i915_gem_object_release_memory_region,
+@@ -910,6 +927,11 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
+ 	if (engine->default_state)
+ 		fput(engine->default_state);
  
- 	.pread = lmem_pread,
-+	.pwrite = lmem_pwrite,
- };
++	if (engine->blitter_context) {
++		intel_context_unpin(engine->blitter_context);
++		intel_context_put(engine->blitter_context);
++	}
++
+ 	if (engine->kernel_context) {
+ 		intel_context_unpin(engine->kernel_context);
+ 		intel_context_put(engine->kernel_context);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 490af81bd6f3..3b2d9ed7670f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -342,6 +342,7 @@ struct intel_engine_cs {
+ 	struct llist_head barrier_tasks;
  
- void __iomem *
+ 	struct intel_context *kernel_context; /* pinned */
++	struct intel_context *blitter_context; /* pinned; exists for BCS only */
+ 
+ 	intel_engine_mask_t saturated; /* submitting semaphores too late? */
+ 
 -- 
 2.26.2
 
