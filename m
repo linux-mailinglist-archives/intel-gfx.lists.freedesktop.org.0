@@ -1,62 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96F2F21BA03
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 17:51:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BF7521BAAB
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 18:20:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C919D6EC81;
-	Fri, 10 Jul 2020 15:51:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 903EB6EC82;
+	Fri, 10 Jul 2020 16:20:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7CB86EC81
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 15:51:36 +0000 (UTC)
-Received: from mail-pf1-f197.google.com ([209.85.210.197])
- by youngberry.canonical.com with esmtps
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <kai.heng.feng@canonical.com>) id 1jtvGU-0003gn-I5
- for intel-gfx@lists.freedesktop.org; Fri, 10 Jul 2020 15:48:42 +0000
-Received: by mail-pf1-f197.google.com with SMTP id w2so779894pfn.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 08:48:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=N1xGiQms8sbgC2BixU7VSPSHisiTFHwPd+ZKrKX0wTI=;
- b=ITXj7YzTSfe5RiNgPr9MHDRuW0znEXtVN+nK45QZgYnTq8TvrfDUk4kJTvfU3uoWOu
- QFoBnhblcr8tOBEOwzPswyMufyEPnZrBf4ftFY0V59tvEXS/p94449c8h8CNS/AxL8d5
- LhhXfItfVyqlgL5/i389zkd1Us7XevZfba+IwW9TH5fUVyxSz2Cjagz2gfqMnAzgQlqn
- +KfLssOO+j9kjOBjC0GP1LYSm8OQAUbOH5XZWf52lvTy0tAipsMz0PLAMK2ePrB6xPcy
- nzQ9MMIf5JP7ENwYYJql06maCqZxdgnpT0xY/W0pRg5T2E92vdOB03a8Nvhv0kAf5Tzq
- d5pQ==
-X-Gm-Message-State: AOAM5309PkZ6pgh4uMojCsiRpJMJna17U/UekidpnMgA9RrRmJtpF1bm
- gRZD0kg91PCVuIpYF+29M8xDfQ/X5BrpSil+52+I9Ogi45lTFhmWBb2kBbKTCvJ1Vmd81W7jc2A
- 2M3ditcZcAjuSEjTsLHozDVz0GmJ/4JinI7Z7eRhCEyeW1Q==
-X-Received: by 2002:a17:902:b185:: with SMTP id
- s5mr15558689plr.211.1594396121156; 
- Fri, 10 Jul 2020 08:48:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxFahFk0g8OPWuiV8TvEMjbyHgjf+qYUHmdMGTSGo5KdPouoaisemlLCTjJK1SXI7HTqA1msQ==
-X-Received: by 2002:a17:902:b185:: with SMTP id
- s5mr15558589plr.211.1594396119788; 
- Fri, 10 Jul 2020 08:48:39 -0700 (PDT)
-Received: from [192.168.1.208] (220-133-187-190.HINET-IP.hinet.net.
- [220.133.187.190])
- by smtp.gmail.com with ESMTPSA id lx2sm6394653pjb.16.2020.07.10.08.48.36
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 10 Jul 2020 08:48:39 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.80.23.2.2\))
-From: Kai-Heng Feng <kai.heng.feng@canonical.com>
-In-Reply-To: <21A619C1-627F-49CC-B2F4-9B533F351DF3@canonical.com>
-Date: Fri, 10 Jul 2020 23:48:34 +0800
-Message-Id: <F9B12234-5D1D-4081-BFCF-2FFF2694CBD4@canonical.com>
-References: <20200610075542.12882-1-kai.heng.feng@canonical.com>
- <21A619C1-627F-49CC-B2F4-9B533F351DF3@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-X-Mailer: Apple Mail (2.3608.80.23.2.2)
-Subject: Re: [Intel-gfx] [PATCH v6] drm/i915: Init lspcon after HPD in
- intel_dp_detect()
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A52F6EC82
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 16:20:12 +0000 (UTC)
+IronPort-SDR: gEr8OEj5rsdxz7t6Q8BT1OwAhA41GXY7bj/4ZA0O/Y5QUPC3qD053Y9uCE649PynydWE8D+wqa
+ V7Egn9BofncQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9678"; a="148234343"
+X-IronPort-AV: E=Sophos;i="5.75,336,1589266800"; d="scan'208";a="148234343"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2020 09:20:09 -0700
+IronPort-SDR: IwmrLj3CU38bZaJQ+ic56P8TZH6if377ofQtqdoavzLZbkG65htaT8R9MHSYPQbwxoMdKQoiw1
+ 5uEGsgkxH3cw==
+X-IronPort-AV: E=Sophos;i="5.75,336,1589266800"; d="scan'208";a="428608572"
+Received: from unknown (HELO [10.252.44.180]) ([10.252.44.180])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2020 09:20:08 -0700
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20200710115757.290984-1-matthew.auld@intel.com>
+ <20200710115757.290984-36-matthew.auld@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <0fb0ce75-f1bd-91b3-0846-156ddec1cfa1@linux.intel.com>
+Date: Fri, 10 Jul 2020 17:20:06 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200710115757.290984-36-matthew.auld@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 35/60] drm/i915/query: Expose memory regions
+ through the query uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,270 +53,424 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-> On Jun 30, 2020, at 16:37, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
+On 10/07/2020 12:57, Matthew Auld wrote:
+> From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
 > 
+> Returns the available memory region areas supported by the HW.
 > 
->> On Jun 10, 2020, at 15:55, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
->> 
->> On HP 800 G4 DM, if HDMI cable isn't plugged before boot, the HDMI port
->> becomes useless and never responds to cable hotplugging:
->> [    3.031904] [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
->> [    3.031945] [drm:intel_ddi_init [i915]] *ERROR* LSPCON init failed on port D
->> 
->> Seems like the lspcon chip on the system only gets powered after the
->> cable is plugged.
->> 
->> Consilidate lspcon_init() into lspcon_resume() to dynamically init
->> lspcon chip, and make HDMI port work.
->> 
->> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 12 ++++-
+>   drivers/gpu/drm/i915/gem/i915_gem_stolen.h |  3 ++
+>   drivers/gpu/drm/i915/i915_drv.c            |  2 +-
+>   drivers/gpu/drm/i915/i915_pci.c            |  2 +-
+>   drivers/gpu/drm/i915/i915_query.c          | 62 ++++++++++++++++++++++
+>   drivers/gpu/drm/i915/intel_memory_region.c | 32 ++++++-----
+>   drivers/gpu/drm/i915/intel_memory_region.h | 38 +++++++------
+>   include/uapi/drm/i915_drm.h                | 58 ++++++++++++++++++++
+>   8 files changed, 172 insertions(+), 37 deletions(-)
 > 
-> A gentle ping...
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> index e0f21f12d3ce..6704877fbda8 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> @@ -646,11 +646,19 @@ _i915_gem_object_create_stolen(struct intel_memory_region *mem,
+>   	return obj;
+>   }
+>   
+> +struct intel_memory_region *i915_stolen_region(struct drm_i915_private *i915)
+> +{
+> +	if (HAS_LMEM(i915))
+> +		return i915->mm.regions[INTEL_REGION_STOLEN_LMEM];
+> +
+> +	return i915->mm.regions[INTEL_REGION_STOLEN_SMEM];
+> +}
 
-Another gentle ping...
+The split of the stolen region to lmem and smem should be a separate 
+patch I think.
 
-> 
->> ---
->> v6:
->> - Rebase on latest for-linux-next.
->> 
->> v5:
->> - Consolidate lspcon_resume() with lspcon_init().
->> - Move more logic into lspcon code.
->> 
->> v4:
->> - Trust VBT in intel_infoframe_init().
->> - Init lspcon in intel_dp_detect().
->> 
->> v3:
->> - Make sure it's handled under long HPD case.
->> 
->> v2: 
->> - Move lspcon_init() inside of intel_dp_hpd_pulse().
->> 
->> drivers/gpu/drm/i915/display/intel_ddi.c    | 19 +------
->> drivers/gpu/drm/i915/display/intel_dp.c     | 10 ++--
->> drivers/gpu/drm/i915/display/intel_hdmi.c   |  3 +-
->> drivers/gpu/drm/i915/display/intel_lspcon.c | 63 ++++++++++++---------
->> drivers/gpu/drm/i915/display/intel_lspcon.h |  3 +-
->> 5 files changed, 43 insertions(+), 55 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index aa22465bb56e..af755b1aa24b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -4805,7 +4805,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->> {
->> 	struct intel_digital_port *intel_dig_port;
->> 	struct intel_encoder *encoder;
->> -	bool init_hdmi, init_dp, init_lspcon = false;
->> +	bool init_hdmi, init_dp;
->> 	enum phy phy = intel_port_to_phy(dev_priv, port);
->> 
->> 	init_hdmi = intel_bios_port_supports_dvi(dev_priv, port) ||
->> @@ -4819,7 +4819,6 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->> 		 * is initialized before lspcon.
->> 		 */
->> 		init_dp = true;
->> -		init_lspcon = true;
->> 		init_hdmi = false;
->> 		drm_dbg_kms(&dev_priv->drm, "VBT says port %c has lspcon\n",
->> 			    port_name(port));
->> @@ -4904,22 +4903,6 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->> 			goto err;
->> 	}
->> 
->> -	if (init_lspcon) {
->> -		if (lspcon_init(intel_dig_port))
->> -			/* TODO: handle hdmi info frame part */
->> -			drm_dbg_kms(&dev_priv->drm,
->> -				    "LSPCON init success on port %c\n",
->> -				    port_name(port));
->> -		else
->> -			/*
->> -			 * LSPCON init faied, but DP init was success, so
->> -			 * lets try to drive as DP++ port.
->> -			 */
->> -			drm_err(&dev_priv->drm,
->> -				"LSPCON init failed on port %c\n",
->> -				port_name(port));
->> -	}
->> -
->> 	if (INTEL_GEN(dev_priv) >= 11) {
->> 		if (intel_phy_is_tc(dev_priv, phy))
->> 			intel_dig_port->connected = intel_tc_port_connected;
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index ed9e53c373a7..398a104158a8 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -5962,15 +5962,14 @@ static enum drm_connector_status
->> intel_dp_detect_dpcd(struct intel_dp *intel_dp)
->> {
->> 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->> -	struct intel_lspcon *lspcon = dp_to_lspcon(intel_dp);
->> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->> 	u8 *dpcd = intel_dp->dpcd;
->> 	u8 type;
->> 
->> 	if (WARN_ON(intel_dp_is_edp(intel_dp)))
->> 		return connector_status_connected;
->> 
->> -	if (lspcon->active)
->> -		lspcon_resume(lspcon);
->> +	lspcon_resume(dig_port);
->> 
->> 	if (!intel_dp_get_dpcd(intel_dp))
->> 		return connector_status_disconnected;
->> @@ -7056,14 +7055,13 @@ void intel_dp_encoder_reset(struct drm_encoder *encoder)
->> {
->> 	struct drm_i915_private *dev_priv = to_i915(encoder->dev);
->> 	struct intel_dp *intel_dp = enc_to_intel_dp(to_intel_encoder(encoder));
->> -	struct intel_lspcon *lspcon = dp_to_lspcon(intel_dp);
->> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->> 	intel_wakeref_t wakeref;
->> 
->> 	if (!HAS_DDI(dev_priv))
->> 		intel_dp->DP = intel_de_read(dev_priv, intel_dp->output_reg);
->> 
->> -	if (lspcon->active)
->> -		lspcon_resume(lspcon);
->> +	lspcon_resume(dig_port);
->> 
->> 	intel_dp->reset_link_params = true;
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> index 010f37240710..643ad2127931 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> @@ -3155,7 +3155,8 @@ void intel_infoframe_init(struct intel_digital_port *intel_dig_port)
->> 		intel_dig_port->set_infoframes = g4x_set_infoframes;
->> 		intel_dig_port->infoframes_enabled = g4x_infoframes_enabled;
->> 	} else if (HAS_DDI(dev_priv)) {
->> -		if (intel_dig_port->lspcon.active) {
->> +		if (intel_bios_is_lspcon_present(dev_priv,
->> +						 intel_dig_port->base.port)) {
->> 			intel_dig_port->write_infoframe = lspcon_write_infoframe;
->> 			intel_dig_port->read_infoframe = lspcon_read_infoframe;
->> 			intel_dig_port->set_infoframes = lspcon_set_infoframes;
->> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
->> index 6ff7b226f0a1..e3dde4c25604 100644
->> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
->> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
->> @@ -525,44 +525,17 @@ u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
->> 	return 0;
->> }
->> 
->> -void lspcon_resume(struct intel_lspcon *lspcon)
->> -{
->> -	enum drm_lspcon_mode expected_mode;
->> -
->> -	if (lspcon_wake_native_aux_ch(lspcon)) {
->> -		expected_mode = DRM_LSPCON_MODE_PCON;
->> -		lspcon_resume_in_pcon_wa(lspcon);
->> -	} else {
->> -		expected_mode = DRM_LSPCON_MODE_LS;
->> -	}
->> -
->> -	if (lspcon_wait_mode(lspcon, expected_mode) == DRM_LSPCON_MODE_PCON)
->> -		return;
->> -
->> -	if (lspcon_change_mode(lspcon, DRM_LSPCON_MODE_PCON))
->> -		DRM_ERROR("LSPCON resume failed\n");
->> -	else
->> -		DRM_DEBUG_KMS("LSPCON resume success\n");
->> -}
->> -
->> void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon)
->> {
->> 	lspcon_wait_mode(lspcon, DRM_LSPCON_MODE_PCON);
->> }
->> 
->> -bool lspcon_init(struct intel_digital_port *intel_dig_port)
->> +static bool lspcon_init(struct intel_digital_port *intel_dig_port)
->> {
->> 	struct intel_dp *dp = &intel_dig_port->dp;
->> 	struct intel_lspcon *lspcon = &intel_dig_port->lspcon;
->> -	struct drm_device *dev = intel_dig_port->base.base.dev;
->> -	struct drm_i915_private *dev_priv = to_i915(dev);
->> 	struct drm_connector *connector = &dp->attached_connector->base;
->> 
->> -	if (!HAS_LSPCON(dev_priv)) {
->> -		DRM_ERROR("LSPCON is not supported on this platform\n");
->> -		return false;
->> -	}
->> -
->> 	lspcon->active = false;
->> 	lspcon->mode = DRM_LSPCON_MODE_INVALID;
->> 
->> @@ -586,3 +559,37 @@ bool lspcon_init(struct intel_digital_port *intel_dig_port)
->> 	DRM_DEBUG_KMS("Success: LSPCON init\n");
->> 	return true;
->> }
->> +
->> +void lspcon_resume(struct intel_digital_port *intel_dig_port)
->> +{
->> +	struct intel_lspcon *lspcon = &intel_dig_port->lspcon;
->> +	struct drm_device *dev = intel_dig_port->base.base.dev;
->> +	struct drm_i915_private *dev_priv = to_i915(dev);
->> +	enum drm_lspcon_mode expected_mode;
->> +
->> +	if (!intel_bios_is_lspcon_present(dev_priv, intel_dig_port->base.port))
->> +		return;
->> +
->> +	if (!lspcon->active) {
->> +		if (!lspcon_init(intel_dig_port)) {
->> +			DRM_ERROR("LSPCON init failed on port %c\n",
->> +				  port_name(intel_dig_port->base.port));
->> +			return;
->> +		}
->> +	}
->> +
->> +	if (lspcon_wake_native_aux_ch(lspcon)) {
->> +		expected_mode = DRM_LSPCON_MODE_PCON;
->> +		lspcon_resume_in_pcon_wa(lspcon);
->> +	} else {
->> +		expected_mode = DRM_LSPCON_MODE_LS;
->> +	}
->> +
->> +	if (lspcon_wait_mode(lspcon, expected_mode) == DRM_LSPCON_MODE_PCON)
->> +		return;
->> +
->> +	if (lspcon_change_mode(lspcon, DRM_LSPCON_MODE_PCON))
->> +		DRM_ERROR("LSPCON resume failed\n");
->> +	else
->> +		DRM_DEBUG_KMS("LSPCON resume success\n");
->> +}
->> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
->> index 37cfddf8a9c5..169db35db13e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
->> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
->> @@ -15,8 +15,7 @@ struct intel_digital_port;
->> struct intel_encoder;
->> struct intel_lspcon;
->> 
->> -bool lspcon_init(struct intel_digital_port *intel_dig_port);
->> -void lspcon_resume(struct intel_lspcon *lspcon);
->> +void lspcon_resume(struct intel_digital_port *intel_dig_port);
->> void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon);
->> void lspcon_write_infoframe(struct intel_encoder *encoder,
->> 			    const struct intel_crtc_state *crtc_state,
->> -- 
->> 2.17.1
->> 
+> +
+>   struct drm_i915_gem_object *
+>   i915_gem_object_create_stolen(struct drm_i915_private *i915,
+>   			      resource_size_t size)
+>   {
+> -	return i915_gem_object_create_region(i915->mm.regions[INTEL_REGION_STOLEN],
+> +	return i915_gem_object_create_region(i915_stolen_region(i915),
+>   					     size, I915_BO_ALLOC_CONTIGUOUS);
+>   }
+>   
+> @@ -690,7 +698,7 @@ i915_gem_object_create_stolen_for_preallocated(struct drm_i915_private *i915,
+>   					       resource_size_t stolen_offset,
+>   					       resource_size_t size)
+>   {
+> -	struct intel_memory_region *mem = i915->mm.regions[INTEL_REGION_STOLEN];
+> +	struct intel_memory_region *mem = i915_stolen_region(i915);
+>   	struct drm_i915_gem_object *obj;
+>   	struct drm_mm_node *stolen;
+>   	int ret;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+> index e15c0adad8af..a19110a1b75a 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+> @@ -22,6 +22,9 @@ int i915_gem_stolen_insert_node_in_range(struct drm_i915_private *dev_priv,
+>   void i915_gem_stolen_remove_node(struct drm_i915_private *dev_priv,
+>   				 struct drm_mm_node *node);
+>   struct intel_memory_region *i915_gem_stolen_setup(struct drm_i915_private *i915);
+> +
+> +struct intel_memory_region *i915_stolen_region(struct drm_i915_private *i915);
+> +
+>   struct drm_i915_gem_object *
+>   i915_gem_object_create_stolen(struct drm_i915_private *dev_priv,
+>   			      resource_size_t size);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> index 5473bfe9126c..39826b98fac2 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -963,7 +963,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>   		if (INTEL_GEN(i915) >= 9 && i915_selftest.live < 0 &&
+>   		    i915->params.fake_lmem_start) {
+>   			mkwrite_device_info(i915)->memory_regions =
+> -				REGION_SMEM | REGION_LMEM | REGION_STOLEN;
+> +				REGION_SMEM | REGION_LMEM | REGION_STOLEN_SMEM;
+>   			mkwrite_device_info(i915)->is_dgfx = true;
+>   			GEM_BUG_ON(!HAS_LMEM(i915));
+>   			GEM_BUG_ON(!IS_DGFX(i915));
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index d5e27202d150..e132fdffa432 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -154,7 +154,7 @@
+>   	.page_sizes = I915_GTT_PAGE_SIZE_4K
+>   
+>   #define GEN_DEFAULT_REGIONS \
+> -	.memory_regions = REGION_SMEM | REGION_STOLEN
+> +	.memory_regions = REGION_SMEM | REGION_STOLEN_SMEM
+>   
+>   #define I830_FEATURES \
+>   	GEN(2), \
+> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+> index fed337ad7b68..d4ca040c528b 100644
+> --- a/drivers/gpu/drm/i915/i915_query.c
+> +++ b/drivers/gpu/drm/i915/i915_query.c
+> @@ -419,11 +419,73 @@ static int query_perf_config(struct drm_i915_private *i915,
+>   	}
+>   }
+>   
+> +static int query_memregion_info(struct drm_i915_private *dev_priv,
+> +				struct drm_i915_query_item *query_item)
+> +{
+> +	struct drm_i915_query_memory_regions __user *query_ptr =
+> +		u64_to_user_ptr(query_item->data_ptr);
+> +	struct drm_i915_memory_region_info __user *info_ptr =
+> +		&query_ptr->regions[0];
+> +	struct drm_i915_memory_region_info info = { };
+> +	struct drm_i915_query_memory_regions query;
+> +	u32 total_length;
+> +	int ret, i;
+> +
+> +	if (query_item->flags != 0)
+> +		return -EINVAL;
+> +
+> +	total_length = sizeof(query);
+> +	for (i = 0; i < ARRAY_SIZE(dev_priv->mm.regions); ++i) {
+> +		struct intel_memory_region *region = dev_priv->mm.regions[i];
+> +
+> +		if (!region)
+> +			continue;
+> +
+> +		total_length += sizeof(info);
+> +	}
+> +
+> +	ret = copy_query_item(&query, sizeof(query), total_length, query_item);
+> +	if (ret != 0)
+> +		return ret;
+> +
+> +	if (query.num_regions)
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(query.rsvd); ++i) {
+> +		if (query.rsvd[i])
+> +			return  -EINVAL;
+> +	}
+> +
+> +	for (i = 0; i < ARRAY_SIZE(dev_priv->mm.regions); ++i) {
+> +		struct intel_memory_region *region = dev_priv->mm.regions[i];
+> +
+> +		if (!region)
+> +			continue;
+> +
+> +		info.region.memory_class = region->type;
+> +		info.region.memory_instance = region->instance;
+> +		info.probed_size = region->total;
+> +		info.unallocated_size = region->avail;
+> +
+> +		if (__copy_to_user(info_ptr, &info, sizeof(info)))
+> +			return -EFAULT;
+> +
+> +		query.num_regions++;
+> +		info_ptr++;
+> +	}
+> +
+> +	if (__copy_to_user(query_ptr, &query, sizeof(query)))
+> +		return -EFAULT;
+> +
+> +	return total_length;
+> +}
+> +
+>   static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+>   					struct drm_i915_query_item *query_item) = {
+>   	query_topology_info,
+>   	query_engine_info,
+>   	query_perf_config,
+> +	query_memregion_info,
+>   };
+>   
+>   int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
+> index 2943c7778d5e..b9eb1a42dd3a 100644
+> --- a/drivers/gpu/drm/i915/intel_memory_region.c
+> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
+> @@ -6,14 +6,19 @@
+>   #include "intel_memory_region.h"
+>   #include "i915_drv.h"
+>   
+> -/* XXX: Hysterical raisins. BIT(inst) needs to just be (inst) at some point. */
+> -#define REGION_MAP(type, inst) \
+> -	BIT((type) + INTEL_MEMORY_TYPE_SHIFT) | BIT(inst)
+> -
+> -const u32 intel_region_map[] = {
+> -	[INTEL_REGION_SMEM] = REGION_MAP(INTEL_MEMORY_SYSTEM, 0),
+> -	[INTEL_REGION_LMEM] = REGION_MAP(INTEL_MEMORY_LOCAL, 0),
+> -	[INTEL_REGION_STOLEN] = REGION_MAP(INTEL_MEMORY_STOLEN, 0),
+> +const struct intel_memory_region_info intel_region_map[] = {
+> +       [INTEL_REGION_SMEM] = {
+> +               .class = INTEL_MEMORY_SYSTEM,
+> +               .instance = 0,
+> +       },
+> +       [INTEL_REGION_LMEM] = {
+> +               .class = INTEL_MEMORY_LOCAL,
+> +               .instance = 0,
+> +       },
+> +       [INTEL_REGION_STOLEN_SMEM] = {
+> +               .class = INTEL_MEMORY_STOLEN_SYSTEM,
+> +               .instance = 0,
+> +       },
+>   };
+>   
+>   struct intel_memory_region *
+> @@ -257,17 +262,18 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
+>   
+>   	for (i = 0; i < ARRAY_SIZE(i915->mm.regions); i++) {
+>   		struct intel_memory_region *mem = ERR_PTR(-ENODEV);
+> -		u32 type;
+> +		u16 type, instance;
+>   
+>   		if (!HAS_REGION(i915, BIT(i)))
+>   			continue;
+>   
+> -		type = MEMORY_TYPE_FROM_REGION(intel_region_map[i]);
+> +		type = intel_region_map[i].class;
+> +		instance = intel_region_map[i].instance;
+>   		switch (type) {
+>   		case INTEL_MEMORY_SYSTEM:
+>   			mem = i915_gem_shmem_setup(i915);
+>   			break;
+> -		case INTEL_MEMORY_STOLEN:
+> +		case INTEL_MEMORY_STOLEN_SYSTEM:
+>   			mem = i915_gem_stolen_setup(i915);
+>   			break;
+>   		case INTEL_MEMORY_LOCAL:
+> @@ -283,9 +289,9 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
+>   			goto out_cleanup;
+>   		}
+>   
+> -		mem->id = intel_region_map[i];
+> +		mem->id = i;
+>   		mem->type = type;
+> -		mem->instance = MEMORY_INSTANCE_FROM_REGION(intel_region_map[i]);
+> +		mem->instance = instance;
+>   
+>   		i915->mm.regions[i] = mem;
+>   	}
+> diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
+> index 232490d89a83..c047cf7c5e7c 100644
+> --- a/drivers/gpu/drm/i915/intel_memory_region.h
+> +++ b/drivers/gpu/drm/i915/intel_memory_region.h
+> @@ -11,6 +11,7 @@
+>   #include <linux/mutex.h>
+>   #include <linux/io-mapping.h>
+>   #include <drm/drm_mm.h>
+> +#include <drm/i915_drm.h>
+>   
+>   #include "i915_buddy.h"
+>   
+> @@ -19,30 +20,25 @@ struct drm_i915_gem_object;
+>   struct intel_memory_region;
+>   struct sg_table;
+>   
+> -/**
+> - *  Base memory type
+> - */
+>   enum intel_memory_type {
+> -	INTEL_MEMORY_SYSTEM = 0,
+> -	INTEL_MEMORY_LOCAL,
+> -	INTEL_MEMORY_STOLEN,
+> +	INTEL_MEMORY_SYSTEM = I915_MEMORY_CLASS_SYSTEM,
+> +	INTEL_MEMORY_LOCAL = I915_MEMORY_CLASS_DEVICE,
+> +	INTEL_MEMORY_STOLEN_SYSTEM = I915_MEMORY_CLASS_STOLEN_SYSTEM,
+> +	INTEL_MEMORY_STOLEN_LOCAL = I915_MEMORY_CLASS_STOLEN_DEVICE,
+>   };
+>   
+>   enum intel_region_id {
+>   	INTEL_REGION_SMEM = 0,
+>   	INTEL_REGION_LMEM,
+> -	INTEL_REGION_STOLEN,
+> +	INTEL_REGION_STOLEN_SMEM,
+> +	INTEL_REGION_STOLEN_LMEM,
+>   	INTEL_REGION_UNKNOWN, /* Should be last */
+>   };
+>   
+>   #define REGION_SMEM     BIT(INTEL_REGION_SMEM)
+>   #define REGION_LMEM     BIT(INTEL_REGION_LMEM)
+> -#define REGION_STOLEN   BIT(INTEL_REGION_STOLEN)
+> -
+> -#define INTEL_MEMORY_TYPE_SHIFT 16
+> -
+> -#define MEMORY_TYPE_FROM_REGION(r) (ilog2((r) >> INTEL_MEMORY_TYPE_SHIFT))
+> -#define MEMORY_INSTANCE_FROM_REGION(r) (ilog2((r) & 0xffff))
+> +#define REGION_STOLEN_SMEM   BIT(INTEL_REGION_STOLEN_SMEM)
+> +#define REGION_STOLEN_LMEM   BIT(INTEL_REGION_STOLEN_LMEM)
+>   
+>   #define I915_ALLOC_MIN_PAGE_SIZE  BIT(0)
+>   #define I915_ALLOC_CONTIGUOUS     BIT(1)
+> @@ -51,10 +47,12 @@ enum intel_region_id {
+>   	for (id = 0; id < ARRAY_SIZE((i915)->mm.regions); id++) \
+>   		for_each_if((mr) = (i915)->mm.regions[id])
+>   
+> -/**
+> - * Memory regions encoded as type | instance
+> - */
+> -extern const u32 intel_region_map[];
+> +struct intel_memory_region_info {
+> +       u16 class;
+> +       u16 instance;
+> +};
+> +
+> +extern const struct intel_memory_region_info intel_region_map[];
+>   
+>   struct intel_memory_region_ops {
+>   	unsigned int flags;
+> @@ -89,9 +87,9 @@ struct intel_memory_region {
+>   	resource_size_t total;
+>   	resource_size_t avail;
+>   
+> -	unsigned int type;
+> -	unsigned int instance;
+> -	unsigned int id;
+> +	u16 type;
+> +	u16 instance;
+
+Class and type could be tidied to just one.
+
+struct intel_memory_region_info could then be used here. Or even struct 
+drm_i915_gem_memory_class_instance but granted perhaps it is better to 
+keep uapi and implementation separate.
+
+> +	enum intel_region_id id;
+>   	char name[8];
+>   
+>   	dma_addr_t remap_addr;
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 14b67cd6b54b..46baedf71cb1 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -2122,6 +2122,7 @@ struct drm_i915_query_item {
+>   #define DRM_I915_QUERY_TOPOLOGY_INFO    1
+>   #define DRM_I915_QUERY_ENGINE_INFO	2
+>   #define DRM_I915_QUERY_PERF_CONFIG      3
+> +#define DRM_I915_QUERY_MEMORY_REGIONS   4
+>   /* Must be kept compact -- no holes and well documented */
+>   
+>   	/*
+> @@ -2322,6 +2323,63 @@ struct drm_i915_query_perf_config {
+>   	__u8 data[];
+>   };
+>   
+> +enum drm_i915_gem_memory_class {
+> +	I915_MEMORY_CLASS_SYSTEM = 0,
+> +	I915_MEMORY_CLASS_DEVICE,
+> +	I915_MEMORY_CLASS_STOLEN_SYSTEM,
+> +	I915_MEMORY_CLASS_STOLEN_DEVICE,
+> +};
+> +
+> +struct drm_i915_gem_memory_class_instance {
+> +	__u16 memory_class; /* see enum drm_i915_gem_memory_class */
+> +	__u16 memory_instance;
+> +};
+> +
+> +/**
+> + * struct drm_i915_memory_region_info
+> + *
+> + * Describes one region as known to the driver.
+> + */
+> +struct drm_i915_memory_region_info {
+> +	/** class:instance pair encoding */
+> +	struct drm_i915_gem_memory_class_instance region;
+> +
+> +	/** MBZ */
+> +	__u32 rsvd0;
+> +
+> +	/** MBZ */
+> +	__u64 caps;
+> +
+> +	/** MBZ */
+> +	__u64 flags;
+> +
+> +	/** Memory probed by the driver (-1 = unknown) */
+> +	__u64 probed_size;
+> +
+> +	/** Estimate of memory remaining (-1 = unknown) */
+> +	__u64 unallocated_size;
+> +
+> +	/** MBZ */
+> +	__u64 rsvd1[8];
+> +};
+> +
+> +/**
+> + * struct drm_i915_query_memory_regions
+> + *
+> + * Region info query enumerates all regions known to the driver by filling in
+> + * an array of struct drm_i915_memory_region_info structures.
+> + */
+> +struct drm_i915_query_memory_regions {
+> +	/** Number of supported regions */
+> +	__u32 num_regions;
+> +
+> +	/** MBZ */
+> +	__u32 rsvd[3];
+> +
+> +	/* Info about each supported region */
+> +	struct drm_i915_memory_region_info regions[];
+> +};
+> +
+>   #if defined(__cplusplus)
+>   }
+>   #endif
 > 
 
+The rest looks good to me.
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
