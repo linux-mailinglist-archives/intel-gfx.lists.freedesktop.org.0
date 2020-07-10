@@ -1,32 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F1CF21B3FD
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 13:31:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1566D21B451
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 13:56:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 893466EBD7;
-	Fri, 10 Jul 2020 11:31:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EE8B6EBDF;
+	Fri, 10 Jul 2020 11:56:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3588A6EBD7;
- Fri, 10 Jul 2020 11:31:32 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id F2F02AE56;
- Fri, 10 Jul 2020 11:31:30 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200623155456.3092836-1-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <ac847c3c-e93c-4a4b-c6ca-2362af7e3aa3@suse.de>
-Date: Fri, 10 Jul 2020 13:31:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC4336EBDF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 11:56:05 +0000 (UTC)
+IronPort-SDR: qqHufzYezjwTFfeg+j5Kv1LafQy/6LHzmSbqVnhmxGd6U39uSF8iGPWYOube83tKp3LrPhRsp0
+ F/Ad/91R+k/w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="145680481"
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="145680481"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2020 04:56:04 -0700
+IronPort-SDR: 5coXyHavPGnLgFwQKEJLkZANFfLZlJwyMuwpL3CjyoPQCg5UQsacSjkBCTEO44LpXyLS4thot6
+ RQCVi0Zdw1yw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="267703120"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 10 Jul 2020 04:56:02 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 10 Jul 2020 14:56:01 +0300
+Date: Fri, 10 Jul 2020 14:56:01 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200710115601.GF6112@intel.com>
+References: <20200708205512.21625-1-jose.souza@intel.com>
+ <20200708205512.21625-4-jose.souza@intel.com>
+ <20200709142409.GE6112@intel.com>
+ <34f60474c6b7ffe27b409d04894b56cb1a8d34e1.camel@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200623155456.3092836-1-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH] drm/fb-helper: Fix vt restore
+Content-Disposition: inline
+In-Reply-To: <34f60474c6b7ffe27b409d04894b56cb1a8d34e1.camel@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 4/5] drm/i915/display: Implement HOBL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,289 +55,259 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- stable@vger.kernel.org, shlomo@fastmail.com,
- Daniel Vetter <daniel.vetter@intel.com>,
- =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Content-Type: multipart/mixed; boundary="===============1273444006=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1273444006==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="UEVDRlW74y98w2X6O5TFy9Ob2jguaRVEB"
+On Thu, Jul 09, 2020 at 07:40:35PM +0000, Souza, Jose wrote:
+> On Thu, 2020-07-09 at 17:24 +0300, Ville Syrj=E4l=E4 wrote:
+> > On Wed, Jul 08, 2020 at 01:55:11PM -0700, Jos=E9 Roberto de Souza wrote:
+> > > Hours Of Battery Life is a new GEN12+ power-saving feature that allows
+> > > supported motherboards to use a special voltage swing table for eDP
+> > > panels that uses less power.
+> > > =
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---UEVDRlW74y98w2X6O5TFy9Ob2jguaRVEB
-Content-Type: multipart/mixed; boundary="e8biO4xY56enENhSiRL7VWkiA5tZdMGbm";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- shlomo@fastmail.com, stable@vger.kernel.org,
- Daniel Vetter <daniel.vetter@intel.com>, =?UTF-8?Q?Michel_D=c3=a4nzer?=
- <michel@daenzer.net>
-Message-ID: <ac847c3c-e93c-4a4b-c6ca-2362af7e3aa3@suse.de>
-Subject: Re: [PATCH] drm/fb-helper: Fix vt restore
-References: <20200623155456.3092836-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200623155456.3092836-1-daniel.vetter@ffwll.ch>
+> > > So here if supported by HW, OEM will set it in VBT and i915 will try
+> > > to train link with HOBL vswing table if link training fails it fall
+> > > back to the original table.
+> > > =
 
---e8biO4xY56enENhSiRL7VWkiA5tZdMGbm
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+> > > intel_ddi_dp_preemph_max() was optimized to only check the HOBL flag
+> > > instead of do something like is done in intel_ddi_dp_voltage_max()
+> > > because it is only called after the first entry of the voltage swing
+> > > table was loaded so the HOBL flag is valid at that point.
+> > > =
 
-Hi Daniel,
+> > > v3:
+> > > - removed a few parameters of icl_ddi_combo_vswing_program() that
+> > > can be taken from encoder(TODO)
+> > > =
 
-this patch might not be enougth. I started Xorg and then did 'kill -9'
-on the Xorg process. Xorg went away, but the console did not come back.
+> > > v4:
+> > > - using the HOBL vswing table until training fails completely (Ville)
+> > > =
 
-Best regards
-Thomas
+> > > BSpec: 49291
+> > > BSpec: 49399
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Cc: Animesh Manna <animesh.manna@intel.com>
+> > > Cc: Manasi Navare <manasi.d.navare@intel.com>
+> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_ddi.c      | 37 ++++++++++++++++-=
+--
+> > >  .../drm/i915/display/intel_display_types.h    |  2 +
+> > >  .../drm/i915/display/intel_dp_link_training.c |  5 +++
+> > >  drivers/gpu/drm/i915/i915_reg.h               |  2 +
+> > >  4 files changed, 41 insertions(+), 5 deletions(-)
+> > > =
 
-Am 23.06.20 um 17:54 schrieb Daniel Vetter:
-> In the past we had a pile of hacks to orchestrate access between fbdev
-> emulation and native kms clients. We've tried to streamline this, by
-> always preferring the kms side above fbdev calls when a drm master
-> exists, because drm master controls access to the display resources.
->=20
-> Unfortunately this breaks existing userspace, specifically Xorg. When
-> exiting Xorg first restores the console to text mode using the KDSET
-> ioctl on the vt. This does nothing, because a drm master is still
-> around. Then it drops the drm master status, which again does nothing,
-> because logind is keeping additional drm fd open to be able to
-> orchestrate vt switches. In the past this is the point where fbdev was
-> restored, as part of the ->lastclose hook on the drm side.
->=20
-> Now to fix this regression we don't want to go back to letting fbdev
-> restore things whenever it feels like, or to the pile of hacks we've
-> had before. Instead try and go with a minimal exception to make the
-> KDSET case work again, and nothing else.
->=20
-> This means that if userspace does a KDSET call when switching between
-> graphical compositors, there will be some flickering with fbcon
-> showing up for a bit. But a) that's not a regression and b) userspace
-> can fix it by improving the vt switching dance - logind should have
-> all the information it needs.
->=20
-> While pondering all this I'm also wondering wheter we should have a
-> SWITCH_MASTER ioctl to allow race-free master status handover. But
-> that's for another day.
->=20
-> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D208179
-> Cc: shlomo@fastmail.com
-> Reported-and-Tested-by: shlomo@fastmail.com
-> Cc: Michel D=C3=A4nzer <michel@daenzer.net>
-> Fixes: 64914da24ea9 ("drm/fbdev-helper: don't force restores")
-> Cc: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: <stable@vger.kernel.org> # v5.7+
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->  drivers/gpu/drm/drm_fb_helper.c  | 63 +++++++++++++++++++++++++-------=
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
+rm/i915/display/intel_ddi.c
+> > > index 2c484b55bcdf..bf86c588f726 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > @@ -706,6 +706,15 @@ static const struct cnl_ddi_buf_trans tgl_combo_=
+phy_ddi_translations_dp_hbr2[] =3D
+> > >  	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 900   900      0.0   */
+> > >  };
+> > >  =
 
->  drivers/video/fbdev/core/fbcon.c |  3 +-
->  include/uapi/linux/fb.h          |  1 +
->  3 files changed, 52 insertions(+), 15 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_h=
-elper.c
-> index 170aa7689110..ae69bf8e9bcc 100644
-> --- a/drivers/gpu/drm/drm_fb_helper.c
-> +++ b/drivers/gpu/drm/drm_fb_helper.c
-> @@ -227,18 +227,9 @@ int drm_fb_helper_debug_leave(struct fb_info *info=
-)
->  }
->  EXPORT_SYMBOL(drm_fb_helper_debug_leave);
-> =20
-> -/**
-> - * drm_fb_helper_restore_fbdev_mode_unlocked - restore fbdev configura=
-tion
-> - * @fb_helper: driver-allocated fbdev helper, can be NULL
-> - *
-> - * This should be called from driver's drm &drm_driver.lastclose callb=
-ack
-> - * when implementing an fbcon on top of kms using this helper. This en=
-sures that
-> - * the user isn't greeted with a black screen when e.g. X dies.
-> - *
-> - * RETURNS:
-> - * Zero if everything went ok, negative error code otherwise.
-> - */
-> -int drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *fb=
-_helper)
-> +static int
-> +__drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *fb_h=
-elper,
-> +					    bool force)
->  {
->  	bool do_delayed;
->  	int ret;
-> @@ -250,7 +241,16 @@ int drm_fb_helper_restore_fbdev_mode_unlocked(stru=
-ct drm_fb_helper *fb_helper)
->  		return 0;
-> =20
->  	mutex_lock(&fb_helper->lock);
-> -	ret =3D drm_client_modeset_commit(&fb_helper->client);
-> +	if (force) {
-> +		/*
-> +		 * Yes this is the _locked version which expects the master lock
-> +		 * to be held. But for forced restores we're intentionally
-> +		 * racing here, see drm_fb_helper_set_par().
-> +		 */
-> +		ret =3D drm_client_modeset_commit_locked(&fb_helper->client);
-> +	} else {
-> +		ret =3D drm_client_modeset_commit(&fb_helper->client);
-> +	}
-> =20
->  	do_delayed =3D fb_helper->delayed_hotplug;
->  	if (do_delayed)
-> @@ -262,6 +262,22 @@ int drm_fb_helper_restore_fbdev_mode_unlocked(stru=
-ct drm_fb_helper *fb_helper)
-> =20
->  	return ret;
->  }
-> +
-> +/**
-> + * drm_fb_helper_restore_fbdev_mode_unlocked - restore fbdev configura=
-tion
-> + * @fb_helper: driver-allocated fbdev helper, can be NULL
-> + *
-> + * This should be called from driver's drm &drm_driver.lastclose callb=
-ack
-> + * when implementing an fbcon on top of kms using this helper. This en=
-sures that
-> + * the user isn't greeted with a black screen when e.g. X dies.
-> + *
-> + * RETURNS:
-> + * Zero if everything went ok, negative error code otherwise.
-> + */
-> +int drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *fb=
-_helper)
-> +{
-> +	return __drm_fb_helper_restore_fbdev_mode_unlocked(fb_helper, false);=
+> > > +static const struct cnl_ddi_buf_trans tgl_combo_phy_ddi_translations=
+_edp_hbr2_hobl[] =3D {
+> > > +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 }
+> > > +};
+> > > +
+> > > +static bool is_hobl_buf_trans(const struct cnl_ddi_buf_trans *table)
+> > > +{
+> > > +	return table =3D=3D tgl_combo_phy_ddi_translations_edp_hbr2_hobl;
+> > > +}
+> > > +
+> > >  static const struct ddi_buf_trans *
+> > >  bdw_get_buf_trans_edp(struct intel_encoder *encoder, int *n_entries)
+> > >  {
+> > > @@ -1050,6 +1059,16 @@ static const struct cnl_ddi_buf_trans *
+> > >  tgl_get_combo_buf_trans(struct intel_encoder *encoder, int type, int=
+ rate,
+> > >  			int *n_entries)
+> > >  {
+> > > +	if (type =3D=3D INTEL_OUTPUT_EDP && dev_priv->vbt.edp.hobl) {
+> > > +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> > > +
+> > > +		if (!intel_dp->hobl_disabled && rate <=3D 540000) {
+> > > +			/* Same table applies to TGL, RKL and DG1 */
+> > > +			*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_edp_hbr2=
+_hobl);
+> > > +			return tgl_combo_phy_ddi_translations_edp_hbr2_hobl;
+> > > +		}
+> > > +	}
+> > > +
+> > >  	if (type =3D=3D INTEL_OUTPUT_HDMI || type =3D=3D INTEL_OUTPUT_EDP) {
+> > >  		return icl_get_combo_buf_trans(encoder, type, rate, n_entries);
+> > >  	} else if (rate > 270000) {
+> > > @@ -2223,13 +2242,12 @@ static u8 intel_ddi_dp_voltage_max(struct int=
+el_dp *intel_dp)
+> > >  		DP_TRAIN_VOLTAGE_SWING_MASK;
+> > >  }
+> > >  =
 
-> +}
->  EXPORT_SYMBOL(drm_fb_helper_restore_fbdev_mode_unlocked);
-> =20
->  #ifdef CONFIG_MAGIC_SYSRQ
-> @@ -1318,6 +1334,7 @@ int drm_fb_helper_set_par(struct fb_info *info)
->  {
->  	struct drm_fb_helper *fb_helper =3D info->par;
->  	struct fb_var_screeninfo *var =3D &info->var;
-> +	bool force;
-> =20
->  	if (oops_in_progress)
->  		return -EBUSY;
-> @@ -1327,7 +1344,25 @@ int drm_fb_helper_set_par(struct fb_info *info)
->  		return -EINVAL;
->  	}
-> =20
-> -	drm_fb_helper_restore_fbdev_mode_unlocked(fb_helper);
-> +	/*
-> +	 * Normally we want to make sure that a kms master takes
-> +	 * precedence over fbdev, to avoid fbdev flickering and
-> +	 * occasionally stealing the display status. But Xorg first sets
-> +	 * the vt back to text mode using the KDSET IOCTL with KD_TEXT,
-> +	 * and only after that drops the master status when exiting.
-> +	 *
-> +	 * In the past this was caught by drm_fb_helper_lastclose(), but
-> +	 * on modern systems where logind always keeps a drm fd open to
-> +	 * orchestrate the vt switching, this doesn't work.
-> +	 *
-> +	 * To no break the userspace ABI we have this special case here,
-> +	 * which is only used for the above case. Everything else uses
-> +	 * the normal commit function, which ensures that we never steal
-> +	 * the display from an active drm master.
-> +	 */
-> +	force =3D var->activate & FB_ACTIVATE_KD_TEXT;
-> +
-> +	__drm_fb_helper_restore_fbdev_mode_unlocked(fb_helper, force);
-> =20
->  	return 0;
->  }
-> diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/cor=
-e/fbcon.c
-> index 9d28a8e3328f..e2a490c5ae08 100644
-> --- a/drivers/video/fbdev/core/fbcon.c
-> +++ b/drivers/video/fbdev/core/fbcon.c
-> @@ -2402,7 +2402,8 @@ static int fbcon_blank(struct vc_data *vc, int bl=
-ank, int mode_switch)
->  		ops->graphics =3D 1;
-> =20
->  		if (!blank) {
-> -			var.activate =3D FB_ACTIVATE_NOW | FB_ACTIVATE_FORCE;
-> +			var.activate =3D FB_ACTIVATE_NOW | FB_ACTIVATE_FORCE |
-> +				FB_ACTIVATE_KD_TEXT;
->  			fb_set_var(info, &var);
->  			ops->graphics =3D 0;
->  			ops->var =3D info->var;
-> diff --git a/include/uapi/linux/fb.h b/include/uapi/linux/fb.h
-> index b6aac7ee1f67..4c14e8be7267 100644
-> --- a/include/uapi/linux/fb.h
-> +++ b/include/uapi/linux/fb.h
-> @@ -205,6 +205,7 @@ struct fb_bitfield {
->  #define FB_ACTIVATE_ALL	       64	/* change all VCs on this fb	*/
->  #define FB_ACTIVATE_FORCE     128	/* force apply even when no change*/=
+> > > -/*
+> > > - * We assume that the full set of pre-emphasis values can be
+> > > - * used on all DDI platforms. Should that change we need to
+> > > - * rethink this code.
+> > > - */
+> > >  static u8 intel_ddi_dp_preemph_max(struct intel_dp *intel_dp)
+> > >  {
+> > > +	/* HOBL voltage swing table only have one entry */
+> > > +	if (intel_dp->hobl_active)
+> > > +		return DP_TRAIN_PRE_EMPH_LEVEL_0;
+> > =
 
->  #define FB_ACTIVATE_INV_MODE  256       /* invalidate videomode */
-> +#define FB_ACTIVATE_KD_TEXT   512       /* for KDSET vt ioctl */
-> =20
->  #define FB_ACCELF_TEXT		1	/* (OBSOLETE) see fb_info.flags and vc_mode =
-*/
-> =20
->=20
+> > That's illegal. We need to claim support for at least all
+> > vswing/pre-emphasis levels 0-2. 3 is optional. Though there is
+> > some confusion around this in the eDP spec where it kinda seems suggest
+> > that even some of the level 2 things are optional. But it's so unclear
+> > I would defer to just trusting what the DP spec says.
+> =
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+> Okay so in this case I should add more entries to tgl_combo_phy_ddi_trans=
+lations_edp_hbr2_hobl with the same values to match the minimum required by
+> DP spec?
 
+Yeah, I guess that's the easiest way to do it without redesigning the
+whole .{voltage,preemph}_max() stuff.
 
---e8biO4xY56enENhSiRL7VWkiA5tZdMGbm--
+> =
 
---UEVDRlW74y98w2X6O5TFy9Ob2jguaRVEB
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+> > =
 
------BEGIN PGP SIGNATURE-----
+> > /me goes to write the patch with the WARNs...
+> =
 
-iQFIBAEBCAAyFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl8IUY8UHHR6aW1tZXJt
-YW5uQHN1c2UuZGUACgkQaA3BHVMLeiOCpwf+OgEbboFX6WaH3GPX5r2S+oQ70qr3
-JpgddEnE8IEZYarjfthHUcqjHtURRG2ULkrSOMNMGB7+fOZz9EMB9L255JhnToWp
-7mpRAnOYYc4pHCNFvdRgeqB0Hy58V2pmW2xKscJ58/nP2p9999o8u+odyYlLVyjX
-ci9JbL0OVO3VyHe+2Z/hgIXJjmeyG+AdBPp8BeX4MfGzwXtxVgvxO6KhK/4Kc7XB
-h7hSzkc3pBGVYKi9Ik8z5JSDFw60RNXsX3HDDz28uuGpiNHazC/hd8U6Ytfhcq5M
-KxTWSfmupqpIiG63POuPFp2SkWkX4AdajzbERXvpnZM4YyPwch9q7lwF0g==
-=TtTE
------END PGP SIGNATURE-----
+> Will take a look.
+> =
 
---UEVDRlW74y98w2X6O5TFy9Ob2jguaRVEB--
+> > =
 
---===============1273444006==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> > =
 
+> > > +
+> > >  	return DP_TRAIN_PRE_EMPH_LEVEL_3;
+> > >  }
+> > >  =
+
+> > > @@ -2392,6 +2410,15 @@ static void icl_ddi_combo_vswing_program(struc=
+t intel_encoder *encoder,
+> > >  		level =3D n_entries - 1;
+> > >  	}
+> > >  =
+
+> > > +	if (INTEL_GEN(dev_priv) >=3D 12 && type =3D=3D INTEL_OUTPUT_EDP) {
+> > > +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> > > +
+> > > +		val =3D EDP4K2K_MODE_OVRD_EN | EDP4K2K_MODE_OVRD_OPTIMIZED;
+> > > +		intel_dp->hobl_active =3D is_hobl_buf_trans(ddi_translations);
+> > > +		intel_de_rmw(dev_priv, ICL_PORT_CL_DW10(phy), val,
+> > > +			     intel_dp->hobl_active ? val : 0);
+> > > +	}
+> > =
+
+> > I'd still suggest writing that unconditionally.
+> =
+
+> Okay
+> =
+
+> > =
+
+> > > +
+> > >  	/* Set PORT_TX_DW5 */
+> > >  	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
+> > >  	val &=3D ~(SCALING_MODE_SEL_MASK | RTERM_SELECT_MASK |
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/dri=
+vers/gpu/drm/i915/display/intel_display_types.h
+> > > index e8f809161c75..fd4f0e4d0be7 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > @@ -1375,6 +1375,8 @@ struct intel_dp {
+> > >  =
+
+> > >  	/* Display stream compression testing */
+> > >  	bool force_dsc_en;
+> > > +
+> > > +	u8 hobl_disabled : 1, hobl_active : 1, hobl_not_used : 6;
+> > =
+
+> > Why did we go from a simple boolean to this complicated thing?
+> =
+
+> Will try to remove one.
+> =
+
+> > =
+
+> > >  };
+> > >  =
+
+> > >  enum lspcon_vendor {
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/=
+drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > index 2493142a70e9..925822fd386d 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > @@ -401,6 +401,11 @@ intel_dp_start_link_train(struct intel_dp *intel=
+_dp)
+> > >  		    intel_connector->base.base.id,
+> > >  		    intel_connector->base.name,
+> > >  		    intel_dp->link_rate, intel_dp->lane_count);
+> > > +	if (intel_dp->hobl_active) {
+> > > +		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+> > > +			    "Link Training failed with HOBL active, not enabling it for n=
+ow on");
+> > > +		intel_dp->hobl_disabled =3D true;
+> > =
+
+> > I don't think we should do the link rate/lanes reduction in
+> > this case. Ie. we should just mark hobl as no good and retry
+> > the link training with the same link param limits.
+> =
+
+> Okay
+> =
+
+> > =
+
+> > > +	}
+> > >  	if (!intel_dp_get_link_train_fallback_values(intel_dp,
+> > >  						     intel_dp->link_rate,
+> > >  						     intel_dp->lane_count))
+> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i=
+915_reg.h
+> > > index 86a23ced051b..ea16931c0fa4 100644
+> > > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > > @@ -1898,6 +1898,8 @@ static inline bool i915_mmio_reg_valid(i915_reg=
+_t reg)
+> > >  #define  PWR_DOWN_LN_3_1_0		(0xb << 4)
+> > >  #define  PWR_DOWN_LN_MASK		(0xf << 4)
+> > >  #define  PWR_DOWN_LN_SHIFT		4
+> > > +#define  EDP4K2K_MODE_OVRD_EN		(1 << 3)
+> > > +#define  EDP4K2K_MODE_OVRD_OPTIMIZED	(1 << 2)
+> > >  =
+
+> > >  #define ICL_PORT_CL_DW12(phy)		_MMIO(_ICL_PORT_CL_DW(12, phy))
+> > >  #define   ICL_LANE_ENABLE_AUX		(1 << 0)
+> > > -- =
+
+> > > 2.27.0
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1273444006==--
