@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 858DB21B469
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 13:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D50721B46A
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 13:59:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C6386EBE4;
-	Fri, 10 Jul 2020 11:59:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1370D6EBED;
+	Fri, 10 Jul 2020 11:59:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AACC6EBEE
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 11:59:32 +0000 (UTC)
-IronPort-SDR: Ecs8aR5qHzWwfdSgx76ULdPwwFKZ1lp885s7alhL0E4BZym4akK4AIcjPNsXpnHxjLd7YQkDqi
- XpcUgfWgi6iA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="149653674"
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="149653674"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7049F6EBED
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 11:59:35 +0000 (UTC)
+IronPort-SDR: f/VUT0Ba3Bi9GGRyOnIwXsKJhQU0mpl7Tnh3MwJY3C+EBupQc2/D5EBEVk6edjU2/lTfY5vEeE
+ hL1Ev+if2/AQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="149653676"
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="149653676"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 04:59:32 -0700
-IronPort-SDR: QOb9pWRJtVDPo/x9yENbAAbaIjUez4P1aoPWlUMVkkFs3HskcP3GqobjBCTTfyyNLuAbveawMz
- tnmcm1MbPmnw==
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458257413"
+ 10 Jul 2020 04:59:35 -0700
+IronPort-SDR: PzV7DboRpMHFRrRsFEWp1dijdSHKGyCA1Z4fFdveQMK9xDvg1rwhopgpFMszMOmLUS7Bp3gtYG
+ KjP+0Qmn0CGw==
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458257437"
 Received: from nmartino-mobl1.ger.corp.intel.com (HELO
  mwahaha-bdw.ger.corp.intel.com) ([10.255.207.224])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 04:59:30 -0700
+ 10 Jul 2020 04:59:32 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jul 2020 12:57:10 +0100
-Message-Id: <20200710115757.290984-14-matthew.auld@intel.com>
+Date: Fri, 10 Jul 2020 12:57:11 +0100
+Message-Id: <20200710115757.290984-15-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
 References: <20200710115757.290984-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 13/60] drm/i915/dg1: Add and setup DPLLs for DG1
+Subject: [Intel-gfx] [RFC 14/60] drm/i915/dg1: Enable DPLL for DG1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,96 +57,107 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Aditya Swarup <aditya.swarup@intel.com>
 
-Add entries for dg1 plls and setup dg1_pll_mgr to reuse icl callbacks.
-Initial setup for shared dplls DPLL0/1 for DDIA/B and DPLL2/3 for
-DDIC/D. Configure dpll cfgcrx registers to drive the plls on DG1.
+Add DG1 DPLL Enable register macro and use the macro to enable the
+correct DPLL based on PLL id.
 
+Bspec: 49443, 49206
+
+Cc: Clinton Taylor <Clinton.A.Taylor@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 41 +++++++++++++++++--
- 1 file changed, 37 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 30 ++++++++++++-------
+ drivers/gpu/drm/i915/i915_reg.h               |  4 +++
+ 2 files changed, 24 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index aeb6ee395cce..25c6dca096ac 100644
+index 25c6dca096ac..0c58d8012d32 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -3504,7 +3504,17 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
+@@ -3833,12 +3833,14 @@ static bool combo_pll_get_hw_state(struct drm_i915_private *dev_priv,
+ 				   struct intel_shared_dpll *pll,
+ 				   struct intel_dpll_hw_state *hw_state)
+ {
+-	i915_reg_t enable_reg = CNL_DPLL_ENABLE(pll->info->id);
++	i915_reg_t enable_reg;
  
- 	icl_calc_dpll_state(dev_priv, &pll_params, &port_dpll->hw_state);
- 
--	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
-+	if (IS_DG1(dev_priv)) {
-+		if (port == PORT_D || port == PORT_E) {
-+			dpll_mask =
-+				BIT(DPLL_ID_DG1_DPLL2) |
-+				BIT(DPLL_ID_DG1_DPLL3);
-+		} else {
-+			dpll_mask =
-+				BIT(DPLL_ID_DG1_DPLL0) |
-+				BIT(DPLL_ID_DG1_DPLL1);
-+		}
-+	} else if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
- 		dpll_mask =
- 			BIT(DPLL_ID_EHL_DPLL4) |
- 			BIT(DPLL_ID_ICL_DPLL1) |
-@@ -3791,7 +3801,10 @@ static bool icl_pll_get_hw_state(struct drm_i915_private *dev_priv,
- 	if (!(val & PLL_ENABLE))
- 		goto out;
- 
--	if (INTEL_GEN(dev_priv) >= 12) {
-+	if (IS_DG1(dev_priv)) {
-+		hw_state->cfgcr0 = intel_de_read(dev_priv, DG1_DPLL_CFGCR0(id));
-+		hw_state->cfgcr1 = intel_de_read(dev_priv, DG1_DPLL_CFGCR1(id));
-+	} else if (INTEL_GEN(dev_priv) >= 12) {
- 		hw_state->cfgcr0 = intel_de_read(dev_priv,
- 						 TGL_DPLL_CFGCR0(id));
- 		hw_state->cfgcr1 = intel_de_read(dev_priv,
-@@ -3844,7 +3857,10 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
- 	const enum intel_dpll_id id = pll->info->id;
- 	i915_reg_t cfgcr0_reg, cfgcr1_reg;
- 
--	if (INTEL_GEN(dev_priv) >= 12) {
-+	if (IS_DG1(dev_priv)) {
-+		cfgcr0_reg = DG1_DPLL_CFGCR0(id);
-+		cfgcr1_reg = DG1_DPLL_CFGCR1(id);
-+	} else if (INTEL_GEN(dev_priv) >= 12) {
- 		cfgcr0_reg = TGL_DPLL_CFGCR0(id);
- 		cfgcr1_reg = TGL_DPLL_CFGCR1(id);
- 	} else {
-@@ -4276,6 +4292,21 @@ static const struct intel_dpll_mgr tgl_pll_mgr = {
- 	.dump_hw_state = icl_dump_hw_state,
- };
- 
-+static const struct dpll_info dg1_plls[] = {
-+	{ "DPLL 0", &combo_pll_funcs, DPLL_ID_DG1_DPLL0, 0 },
-+	{ "DPLL 1", &combo_pll_funcs, DPLL_ID_DG1_DPLL1, 0 },
-+	{ "DPLL 2", &combo_pll_funcs, DPLL_ID_DG1_DPLL2, 0 },
-+	{ "DPLL 3", &combo_pll_funcs, DPLL_ID_DG1_DPLL3, 0 },
-+	{ },
-+};
-+
-+static const struct intel_dpll_mgr dg1_pll_mgr = {
-+	.dpll_info = dg1_plls,
-+	.get_dplls = icl_get_dplls,
-+	.put_dplls = icl_put_dplls,
-+	.dump_hw_state = icl_dump_hw_state,
-+};
-+
- /**
-  * intel_shared_dpll_init - Initialize shared DPLLs
-  * @dev: drm device
-@@ -4289,7 +4320,9 @@ void intel_shared_dpll_init(struct drm_device *dev)
- 	const struct dpll_info *dpll_info;
- 	int i;
- 
--	if (INTEL_GEN(dev_priv) >= 12)
+-	if (IS_ELKHARTLAKE(dev_priv) &&
+-	    pll->info->id == DPLL_ID_EHL_DPLL4) {
 +	if (IS_DG1(dev_priv))
-+		dpll_mgr = &dg1_pll_mgr;
-+	else if (INTEL_GEN(dev_priv) >= 12)
- 		dpll_mgr = &tgl_pll_mgr;
- 	else if (IS_ELKHARTLAKE(dev_priv))
- 		dpll_mgr = &ehl_pll_mgr;
++		enable_reg = DG1_DPLL_ENABLE(pll->info->id);
++	else if (IS_ELKHARTLAKE(dev_priv) && pll->info->id == DPLL_ID_EHL_DPLL4)
+ 		enable_reg = MG_PLL_ENABLE(0);
+-	}
++	else
++		enable_reg = CNL_DPLL_ENABLE(pll->info->id);
+ 
+ 	return icl_pll_get_hw_state(dev_priv, pll, hw_state, enable_reg);
+ }
+@@ -4036,10 +4038,12 @@ static void icl_pll_enable(struct drm_i915_private *dev_priv,
+ static void combo_pll_enable(struct drm_i915_private *dev_priv,
+ 			     struct intel_shared_dpll *pll)
+ {
+-	i915_reg_t enable_reg = CNL_DPLL_ENABLE(pll->info->id);
++	i915_reg_t enable_reg;
+ 
+-	if (IS_ELKHARTLAKE(dev_priv) &&
+-	    pll->info->id == DPLL_ID_EHL_DPLL4) {
++	if (IS_DG1(dev_priv)) {
++		enable_reg = DG1_DPLL_ENABLE(pll->info->id);
++	} else if (IS_ELKHARTLAKE(dev_priv) &&
++		 pll->info->id == DPLL_ID_EHL_DPLL4) {
+ 		enable_reg = MG_PLL_ENABLE(0);
+ 
+ 		/*
+@@ -4049,6 +4053,8 @@ static void combo_pll_enable(struct drm_i915_private *dev_priv,
+ 		 */
+ 		pll->wakeref = intel_display_power_get(dev_priv,
+ 						       POWER_DOMAIN_DPLL_DC_OFF);
++	} else {
++		enable_reg = CNL_DPLL_ENABLE(pll->info->id);
+ 	}
+ 
+ 	icl_pll_power_enable(dev_priv, pll, enable_reg);
+@@ -4148,16 +4154,20 @@ static void icl_pll_disable(struct drm_i915_private *dev_priv,
+ static void combo_pll_disable(struct drm_i915_private *dev_priv,
+ 			      struct intel_shared_dpll *pll)
+ {
+-	i915_reg_t enable_reg = CNL_DPLL_ENABLE(pll->info->id);
++	i915_reg_t enable_reg;
+ 
+-	if (IS_ELKHARTLAKE(dev_priv) &&
+-	    pll->info->id == DPLL_ID_EHL_DPLL4) {
++	if (IS_DG1(dev_priv)) {
++		enable_reg = DG1_DPLL_ENABLE(pll->info->id);
++	} else if (IS_ELKHARTLAKE(dev_priv) &&
++		   pll->info->id == DPLL_ID_EHL_DPLL4) {
+ 		enable_reg = MG_PLL_ENABLE(0);
+ 		icl_pll_disable(dev_priv, pll, enable_reg);
+ 
+ 		intel_display_power_put(dev_priv, POWER_DOMAIN_DPLL_DC_OFF,
+ 					pll->wakeref);
+ 		return;
++	} else {
++		enable_reg = CNL_DPLL_ENABLE(pll->info->id);
+ 	}
+ 
+ 	icl_pll_disable(dev_priv, pll, enable_reg);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index f362c65b1de7..a423946e0f78 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -10307,6 +10307,10 @@ enum skl_power_gate {
+ #define MG_PLL_ENABLE(tc_port)	_MMIO_PORT((tc_port), _MG_PLL1_ENABLE, \
+ 					   _MG_PLL2_ENABLE)
+ 
++/* DG1 PLL */
++#define DG1_DPLL_ENABLE(pll)    _MMIO_PLL3(pll, DPLL0_ENABLE, DPLL1_ENABLE, \
++					   _MG_PLL1_ENABLE, _MG_PLL2_ENABLE)
++
+ #define _MG_REFCLKIN_CTL_PORT1				0x16892C
+ #define _MG_REFCLKIN_CTL_PORT2				0x16992C
+ #define _MG_REFCLKIN_CTL_PORT3				0x16A92C
 -- 
 2.26.2
 
