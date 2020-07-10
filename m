@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5F6A21B49D
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:02:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A185221B4A1
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:02:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1A76EC29;
-	Fri, 10 Jul 2020 12:02:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDDDB6EC27;
+	Fri, 10 Jul 2020 12:02:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 502F56EC27
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:01:59 +0000 (UTC)
-IronPort-SDR: bSRCxgnPhQSPou7QP5LO6RibUqKuXNuAnWWkQE5tl8LiqSLeX7b6JTxVUyHbOYjaw8I2fDLuEu
- +25GtoOIca6w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="146255875"
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="146255875"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 815E86EC27
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:02:02 +0000 (UTC)
+IronPort-SDR: ngLU0DcG332Hsmm9XXGnqpP6a2hc7yiwKzg7A0nAAPLigCPyqFnrmkp42QFBKv3K8b81frDsJ/
+ 7+nJUndQl+ng==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="146255880"
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="146255880"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:01:59 -0700
-IronPort-SDR: gmKXHErT9jTkYjo3bTlGuZ/7JQ9N55enlK+7Hu19WcXiI3dOOgeYRnlnTJvOlz9L7q4QQjsb+A
- kCtcUpsJg+fA==
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458258649"
+ 10 Jul 2020 05:02:02 -0700
+IronPort-SDR: YoESPkbbvh3x5/zPrtEUCRsrmFnL1CkK75na6PUv3c2kFIZqa6uHwLy6QPqCPJ7q2DvKgfyNxz
+ sp96rUySRNig==
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458258689"
 Received: from nmartino-mobl1.ger.corp.intel.com (HELO
  mwahaha-bdw.ger.corp.intel.com) ([10.255.207.224])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:01:56 -0700
+ 10 Jul 2020 05:01:59 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jul 2020 12:57:56 +0100
-Message-Id: <20200710115757.290984-60-matthew.auld@intel.com>
+Date: Fri, 10 Jul 2020 12:57:57 +0100
+Message-Id: <20200710115757.290984-61-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
 References: <20200710115757.290984-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 59/60] drm/i915: defer pd lmem block put to worker
+Subject: [Intel-gfx] [RFC 60/60] drm/i915/lmem: allocate HWSP in lmem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,152 +49,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Michel Thierry <michel.thierry@intel.com>,
+ Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+From: Michel Thierry <michel.thierry@intel.com>
 
-We take mem->mm_lock inside __i915_vma_unbind to release the memory
-used for the page table itself, but __i915_vma_unbind is called while
-holding vm->mutex; vm->mutex is tainted by the shrinker and therefore
-locks related to allocations can't be taken while holding it
-(kmem_cache_alloc is called under mem->mm_lock in i915_buddy_alloc,
-so mem->mm_lock is a lock managing allocations).
-As a temporary WA, move the memory release to a dedicated work called
-outside the vm->mutex lock. A lockless list has been used to avoid any
-locking dependency.
-
-Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Michel Thierry <michel.thierry@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
 ---
- drivers/gpu/drm/i915/i915_buddy.h             | 10 +++++++
- drivers/gpu/drm/i915/intel_memory_region.c    | 28 ++++++++++++++++---
- drivers/gpu/drm/i915/intel_memory_region.h    |  5 ++++
- .../gpu/drm/i915/selftests/mock_gem_device.c  |  3 +-
- 4 files changed, 41 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c | 14 ++++++++++++--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 10 +++++++++-
+ drivers/gpu/drm/i915/gt/intel_timeline.c  |  8 +++++++-
+ 3 files changed, 28 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_buddy.h b/drivers/gpu/drm/i915/i915_buddy.h
-index ed41f3507cdc..fb08eb99d654 100644
---- a/drivers/gpu/drm/i915/i915_buddy.h
-+++ b/drivers/gpu/drm/i915/i915_buddy.h
-@@ -8,6 +8,7 @@
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index 7050519c87a4..bac33310594c 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -251,8 +251,18 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
+ 	struct vm_struct *area;
+ 	pgprot_t pgprot;
  
- #include <linux/bitops.h>
- #include <linux/list.h>
-+#include <linux/llist.h>
- 
- struct i915_buddy_block {
- #define I915_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
-@@ -32,6 +33,15 @@ struct i915_buddy_block {
- 	 */
- 	struct list_head link;
- 	struct list_head tmp_link;
-+
+-	if (!i915_gem_object_has_struct_page(obj) && type != I915_MAP_WC)
+-		return NULL;
 +	/*
-+	 * XXX: consider moving this somewhere specific to the pd stuff. In an
-+	 * ideal world we would like to keep i915_buddy as non-i915 specific as
-+	 * possible and in this case the delayed freeing is only required for
-+	 * our pd handling, which is only one part of our overall i915_buddy
-+	 * use.
++	 * XXX: we need to check all the places that try to kmap LMEM,
++	 * and ensure that they only do so with WC(if we are certain
++	 * that such an object should reside there). After that we can
++	 * then re-add the following:
++	 *
++	 * if (!i915_gem_object_has_struct_page(obj) && type != I915_MAP_WC)
++	 *	return NULL;
 +	 */
-+	struct llist_node freed;
- };
- 
- #define I915_BUDDY_MAX_ORDER  I915_BUDDY_HEADER_ORDER
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index 6e9d0861cf8c..80d827c4973d 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -84,14 +84,29 @@ __intel_memory_region_put_pages_buddy(struct intel_memory_region *mem,
- 	mutex_unlock(&mem->mm_lock);
- }
- 
--void
--__intel_memory_region_put_block_buddy(struct i915_buddy_block *block)
-+static void __intel_memory_region_put_block_work(struct work_struct *work)
- {
-+	struct intel_memory_region *mem =
-+		container_of(work, struct intel_memory_region, pd_put.work);
-+	struct llist_node *freed = llist_del_all(&mem->pd_put.blocks);
-+	struct i915_buddy_block *block;
- 	struct list_head blocks;
- 
- 	INIT_LIST_HEAD(&blocks);
--	list_add(&block->link, &blocks);
--	__intel_memory_region_put_pages_buddy(block->private, &blocks);
 +
-+	llist_for_each_entry(block, freed, freed)
-+		list_add(&block->link, &blocks);
-+
-+	__intel_memory_region_put_pages_buddy(mem, &blocks);
-+}
-+
-+void
-+__intel_memory_region_put_block_buddy(struct i915_buddy_block *block)
-+{
-+	struct intel_memory_region *mem = block->private;
-+
-+	if (llist_add(&block->freed, &mem->pd_put.blocks))
-+		queue_work(mem->i915->wq, &mem->pd_put.work);
- }
++	 if (!i915_gem_object_has_struct_page(obj) && type != I915_MAP_WC)
++		 type = I915_MAP_WC;
  
- int
-@@ -224,6 +239,8 @@ intel_memory_region_create(struct drm_i915_private *i915,
- 	mem->total = size;
- 	mem->avail = mem->total;
+ 	/* A single page can always be kmapped */
+ 	if (n_pte == 1 && type == I915_MAP_WB)
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 1df94e82550f..1eb74571d142 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -25,6 +25,7 @@
+ #include <drm/drm_print.h>
  
-+	INIT_WORK(&mem->pd_put.work, __intel_memory_region_put_block_work);
-+
- 	mutex_init(&mem->objects.lock);
- 	INIT_LIST_HEAD(&mem->objects.list);
- 	INIT_LIST_HEAD(&mem->objects.purgeable);
-@@ -260,6 +277,9 @@ static void __intel_memory_region_destroy(struct kref *kref)
- 	struct intel_memory_region *mem =
- 		container_of(kref, typeof(*mem), kref);
+ #include "gem/i915_gem_context.h"
++#include "gem/i915_gem_lmem.h"
  
-+	/* Flush any pending work items to free blocks region */
-+	flush_workqueue(mem->i915->wq);
-+
- 	if (mem->ops->release)
- 		mem->ops->release(mem);
+ #include "i915_drv.h"
  
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
-index e082b895afdb..e11ee974301f 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.h
-+++ b/drivers/gpu/drm/i915/intel_memory_region.h
-@@ -83,6 +83,11 @@ struct intel_memory_region {
- 	struct i915_buddy_mm mm;
- 	struct mutex mm_lock;
+@@ -651,7 +652,14 @@ static int init_status_page(struct intel_engine_cs *engine)
+ 	 * in GFP_DMA32 for i965, and no earlier physical address users had
+ 	 * access to more than 4G.
+ 	 */
+-	obj = i915_gem_object_create_internal(engine->i915, PAGE_SIZE);
++	if (HAS_LMEM(engine->i915)) {
++		obj = i915_gem_object_create_lmem(engine->i915,
++						  PAGE_SIZE,
++						  I915_BO_ALLOC_CONTIGUOUS |
++						  I915_BO_ALLOC_VOLATILE);
++	} else {
++		obj = i915_gem_object_create_internal(engine->i915, PAGE_SIZE);
++	}
+ 	if (IS_ERR(obj)) {
+ 		drm_err(&engine->i915->drm,
+ 			"Failed to allocate status page\n");
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 4546284fede1..45e96ecba86a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -6,6 +6,7 @@
  
-+	struct {
-+		struct work_struct work;
-+		struct llist_head blocks;
-+	} pd_put;
-+
- 	struct kref kref;
+ #include "i915_drv.h"
  
- 	resource_size_t io_start;
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index 9a46be05425a..07838a587413 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -69,11 +69,12 @@ static void mock_device_release(struct drm_device *dev)
- 	i915_gem_drain_freed_objects(i915);
++#include "gem/i915_gem_lmem.h"
+ #include "i915_active.h"
+ #include "i915_syncmap.h"
+ #include "intel_gt.h"
+@@ -32,7 +33,12 @@ static struct i915_vma *__hwsp_alloc(struct intel_gt *gt)
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_vma *vma;
  
- 	mock_fini_ggtt(&i915->ggtt);
--	destroy_workqueue(i915->wq);
+-	obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
++	if (HAS_LMEM(i915))
++		obj = i915_gem_object_create_lmem(i915, PAGE_SIZE,
++						  I915_BO_ALLOC_CONTIGUOUS |
++						  I915_BO_ALLOC_VOLATILE);
++	else
++		obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
+ 	if (IS_ERR(obj))
+ 		return ERR_CAST(obj);
  
- 	intel_gt_driver_late_release(&i915->gt);
- 	intel_memory_regions_driver_release(i915);
- 
-+	destroy_workqueue(i915->wq);
-+
- 	drm_mode_config_cleanup(&i915->drm);
- 
- out:
 -- 
 2.26.2
 
