@@ -1,46 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFB9921B3EB
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 13:27:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F1CF21B3FD
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 13:31:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F2EE6EBD5;
-	Fri, 10 Jul 2020 11:27:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 893466EBD7;
+	Fri, 10 Jul 2020 11:31:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4958E6EBD5
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 11:27:28 +0000 (UTC)
-IronPort-SDR: x+HAAKkVpldwVXWGV2eBf3iLrSi9MgUd10UyY5G1HXUbkLvbbyACmsGVsBc0Bv2IEOD4lqWAug
- Ox7xB6CrJWbA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="149651319"
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="149651319"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 04:27:27 -0700
-IronPort-SDR: iVNO8WYN03A1SWDkel0XOhYyQmz1QivFplrYW1ttckb7YFAcfEdxpcLPEe8LlYtCwNgfuIcw03
- 8IUjdhlnzw3g==
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="428539623"
-Received: from unknown (HELO [10.252.44.180]) ([10.252.44.180])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 04:27:26 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200706061926.6687-1-chris@chris-wilson.co.uk>
- <20200706061926.6687-6-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <0d4526e4-3e3b-a3f1-a014-7f08360b210f@linux.intel.com>
-Date: Fri, 10 Jul 2020 12:27:25 +0100
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3588A6EBD7;
+ Fri, 10 Jul 2020 11:31:32 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id F2F02AE56;
+ Fri, 10 Jul 2020 11:31:30 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20200623155456.3092836-1-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <ac847c3c-e93c-4a4b-c6ca-2362af7e3aa3@suse.de>
+Date: Fri, 10 Jul 2020 13:31:27 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200706061926.6687-6-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 05/20] drm/i915/gem: Break apart the early
- i915_vma_pin from execbuf object lookup
+In-Reply-To: <20200623155456.3092836-1-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH] drm/fb-helper: Fix vt restore
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,191 +39,289 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ stable@vger.kernel.org, shlomo@fastmail.com,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Content-Type: multipart/mixed; boundary="===============1273444006=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1273444006==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="UEVDRlW74y98w2X6O5TFy9Ob2jguaRVEB"
 
-On 06/07/2020 07:19, Chris Wilson wrote:
-> As a prelude to the next step where we want to perform all the object
-> allocations together under the same lock, we first must delay the
-> i915_vma_pin() as that implicitly does the allocations for us, one by
-> one. As it only does the allocations one by one, it is not allowed to
-> wait/evict, whereas pulling all the allocations together the entire set
-> can be scheduled as one.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--UEVDRlW74y98w2X6O5TFy9Ob2jguaRVEB
+Content-Type: multipart/mixed; boundary="e8biO4xY56enENhSiRL7VWkiA5tZdMGbm";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ shlomo@fastmail.com, stable@vger.kernel.org,
+ Daniel Vetter <daniel.vetter@intel.com>, =?UTF-8?Q?Michel_D=c3=a4nzer?=
+ <michel@daenzer.net>
+Message-ID: <ac847c3c-e93c-4a4b-c6ca-2362af7e3aa3@suse.de>
+Subject: Re: [PATCH] drm/fb-helper: Fix vt restore
+References: <20200623155456.3092836-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200623155456.3092836-1-daniel.vetter@ffwll.ch>
+
+--e8biO4xY56enENhSiRL7VWkiA5tZdMGbm
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi Daniel,
+
+this patch might not be enougth. I started Xorg and then did 'kill -9'
+on the Xorg process. Xorg went away, but the console did not come back.
+
+Best regards
+Thomas
+
+Am 23.06.20 um 17:54 schrieb Daniel Vetter:
+> In the past we had a pile of hacks to orchestrate access between fbdev
+> emulation and native kms clients. We've tried to streamline this, by
+> always preferring the kms side above fbdev calls when a drm master
+> exists, because drm master controls access to the display resources.
+>=20
+> Unfortunately this breaks existing userspace, specifically Xorg. When
+> exiting Xorg first restores the console to text mode using the KDSET
+> ioctl on the vt. This does nothing, because a drm master is still
+> around. Then it drops the drm master status, which again does nothing,
+> because logind is keeping additional drm fd open to be able to
+> orchestrate vt switches. In the past this is the point where fbdev was
+> restored, as part of the ->lastclose hook on the drm side.
+>=20
+> Now to fix this regression we don't want to go back to letting fbdev
+> restore things whenever it feels like, or to the pile of hacks we've
+> had before. Instead try and go with a minimal exception to make the
+> KDSET case work again, and nothing else.
+>=20
+> This means that if userspace does a KDSET call when switching between
+> graphical compositors, there will be some flickering with fbcon
+> showing up for a bit. But a) that's not a regression and b) userspace
+> can fix it by improving the vt switching dance - logind should have
+> all the information it needs.
+>=20
+> While pondering all this I'm also wondering wheter we should have a
+> SWITCH_MASTER ioctl to allow race-free master status handover. But
+> that's for another day.
+>=20
+> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D208179
+> Cc: shlomo@fastmail.com
+> Reported-and-Tested-by: shlomo@fastmail.com
+> Cc: Michel D=C3=A4nzer <michel@daenzer.net>
+> Fixes: 64914da24ea9 ("drm/fbdev-helper: don't force restores")
+> Cc: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v5.7+
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 > ---
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 70 +++++++++++--------
->   1 file changed, 39 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index bf8193d9e279..35a57c1fc9c3 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -33,6 +33,8 @@ struct eb_vma {
->   
->   	/** This vma's place in the execbuf reservation list */
->   	struct drm_i915_gem_exec_object2 *exec;
-> +
-> +	struct list_head bind_link;
->   	struct list_head unbound_link;
->   	struct list_head reloc_link;
->   
-> @@ -240,8 +242,8 @@ struct i915_execbuffer {
->   	/** actual size of execobj[] as we may extend it for the cmdparser */
->   	unsigned int buffer_count;
->   
-> -	/** list of vma not yet bound during reservation phase */
-> -	struct list_head unbound;
-> +	/** list of all vma required to bound for this execbuf */
-> +	struct list_head bind_list;
->   
->   	/** list of vma that have execobj.relocation_count */
->   	struct list_head relocs;
-> @@ -565,6 +567,8 @@ eb_add_vma(struct i915_execbuffer *eb,
->   						    eb->lut_size)]);
->   	}
->   
-> +	list_add_tail(&ev->bind_link, &eb->bind_list);
-> +
->   	if (entry->relocation_count)
->   		list_add_tail(&ev->reloc_link, &eb->relocs);
->   
-> @@ -586,16 +590,6 @@ eb_add_vma(struct i915_execbuffer *eb,
->   
->   		eb->batch = ev;
->   	}
-> -
-> -	if (eb_pin_vma(eb, entry, ev)) {
-> -		if (entry->offset != vma->node.start) {
-> -			entry->offset = vma->node.start | UPDATE;
-> -			eb->args->flags |= __EXEC_HAS_RELOC;
-> -		}
-> -	} else {
-> -		eb_unreserve_vma(ev);
-> -		list_add_tail(&ev->unbound_link, &eb->unbound);
-> -	}
->   }
->   
->   static int eb_reserve_vma(const struct i915_execbuffer *eb,
-> @@ -670,13 +664,31 @@ static int wait_for_timeline(struct intel_timeline *tl)
->   	} while (1);
->   }
->   
-> -static int eb_reserve(struct i915_execbuffer *eb)
-> +static int eb_reserve_vm(struct i915_execbuffer *eb)
->   {
-> -	const unsigned int count = eb->buffer_count;
->   	unsigned int pin_flags = PIN_USER | PIN_NONBLOCK;
-> -	struct list_head last;
-> +	struct list_head last, unbound;
->   	struct eb_vma *ev;
-> -	unsigned int i, pass;
-> +	unsigned int pass;
-> +
-> +	INIT_LIST_HEAD(&unbound);
-> +	list_for_each_entry(ev, &eb->bind_list, bind_link) {
-> +		struct drm_i915_gem_exec_object2 *entry = ev->exec;
-> +		struct i915_vma *vma = ev->vma;
-> +
-> +		if (eb_pin_vma(eb, entry, ev)) {
-> +			if (entry->offset != vma->node.start) {
-> +				entry->offset = vma->node.start | UPDATE;
-> +				eb->args->flags |= __EXEC_HAS_RELOC;
-> +			}
-> +		} else {
-> +			eb_unreserve_vma(ev);
-> +			list_add_tail(&ev->unbound_link, &unbound);
-> +		}
+>  drivers/gpu/drm/drm_fb_helper.c  | 63 +++++++++++++++++++++++++-------=
+
+>  drivers/video/fbdev/core/fbcon.c |  3 +-
+>  include/uapi/linux/fb.h          |  1 +
+>  3 files changed, 52 insertions(+), 15 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_h=
+elper.c
+> index 170aa7689110..ae69bf8e9bcc 100644
+> --- a/drivers/gpu/drm/drm_fb_helper.c
+> +++ b/drivers/gpu/drm/drm_fb_helper.c
+> @@ -227,18 +227,9 @@ int drm_fb_helper_debug_leave(struct fb_info *info=
+)
+>  }
+>  EXPORT_SYMBOL(drm_fb_helper_debug_leave);
+> =20
+> -/**
+> - * drm_fb_helper_restore_fbdev_mode_unlocked - restore fbdev configura=
+tion
+> - * @fb_helper: driver-allocated fbdev helper, can be NULL
+> - *
+> - * This should be called from driver's drm &drm_driver.lastclose callb=
+ack
+> - * when implementing an fbcon on top of kms using this helper. This en=
+sures that
+> - * the user isn't greeted with a black screen when e.g. X dies.
+> - *
+> - * RETURNS:
+> - * Zero if everything went ok, negative error code otherwise.
+> - */
+> -int drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *fb=
+_helper)
+> +static int
+> +__drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *fb_h=
+elper,
+> +					    bool force)
+>  {
+>  	bool do_delayed;
+>  	int ret;
+> @@ -250,7 +241,16 @@ int drm_fb_helper_restore_fbdev_mode_unlocked(stru=
+ct drm_fb_helper *fb_helper)
+>  		return 0;
+> =20
+>  	mutex_lock(&fb_helper->lock);
+> -	ret =3D drm_client_modeset_commit(&fb_helper->client);
+> +	if (force) {
+> +		/*
+> +		 * Yes this is the _locked version which expects the master lock
+> +		 * to be held. But for forced restores we're intentionally
+> +		 * racing here, see drm_fb_helper_set_par().
+> +		 */
+> +		ret =3D drm_client_modeset_commit_locked(&fb_helper->client);
+> +	} else {
+> +		ret =3D drm_client_modeset_commit(&fb_helper->client);
 > +	}
+> =20
+>  	do_delayed =3D fb_helper->delayed_hotplug;
+>  	if (do_delayed)
+> @@ -262,6 +262,22 @@ int drm_fb_helper_restore_fbdev_mode_unlocked(stru=
+ct drm_fb_helper *fb_helper)
+> =20
+>  	return ret;
+>  }
 > +
-> +	if (list_empty(&unbound))
-> +		return 0;
->   
->   	/*
->   	 * Attempt to pin all of the buffers into the GTT.
-> @@ -699,7 +711,7 @@ static int eb_reserve(struct i915_execbuffer *eb)
->   		if (mutex_lock_interruptible(&eb->i915->drm.struct_mutex))
->   			return -EINTR;
->   
-> -		list_for_each_entry(ev, &eb->unbound, unbound_link) {
-> +		list_for_each_entry(ev, &unbound, unbound_link) {
->   			err = eb_reserve_vma(eb, ev, pin_flags);
->   			if (err)
->   				break;
-> @@ -710,13 +722,11 @@ static int eb_reserve(struct i915_execbuffer *eb)
->   		}
->   
->   		/* Resort *all* the objects into priority order */
-> -		INIT_LIST_HEAD(&eb->unbound);
-> +		INIT_LIST_HEAD(&unbound);
->   		INIT_LIST_HEAD(&last);
-> -		for (i = 0; i < count; i++) {
-> -			unsigned int flags;
-> +		list_for_each_entry(ev, &eb->bind_list, bind_link) {
-> +			unsigned int flags = ev->flags;
->   
-> -			ev = &eb->vma[i];
-> -			flags = ev->flags;
->   			if (flags & EXEC_OBJECT_PINNED &&
->   			    flags & __EXEC_OBJECT_HAS_PIN)
->   				continue;
-> @@ -725,17 +735,17 @@ static int eb_reserve(struct i915_execbuffer *eb)
->   
->   			if (flags & EXEC_OBJECT_PINNED)
->   				/* Pinned must have their slot */
-> -				list_add(&ev->unbound_link, &eb->unbound);
-> +				list_add(&ev->unbound_link, &unbound);
->   			else if (flags & __EXEC_OBJECT_NEEDS_MAP)
->   				/* Map require the lowest 256MiB (aperture) */
-> -				list_add_tail(&ev->unbound_link, &eb->unbound);
-> +				list_add_tail(&ev->unbound_link, &unbound);
->   			else if (!(flags & EXEC_OBJECT_SUPPORTS_48B_ADDRESS))
->   				/* Prioritise 4GiB region for restricted bo */
->   				list_add(&ev->unbound_link, &last);
->   			else
->   				list_add_tail(&ev->unbound_link, &last);
->   		}
-> -		list_splice_tail(&last, &eb->unbound);
-> +		list_splice_tail(&last, &unbound);
->   		mutex_unlock(&eb->i915->drm.struct_mutex);
->   
->   		if (err == -EAGAIN) {
-> @@ -891,8 +901,8 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
->   	unsigned int i;
->   	int err = 0;
->   
-> +	INIT_LIST_HEAD(&eb->bind_list);
->   	INIT_LIST_HEAD(&eb->relocs);
-> -	INIT_LIST_HEAD(&eb->unbound);
->   
->   	for (i = 0; i < eb->buffer_count; i++) {
->   		struct i915_vma *vma;
-> @@ -1539,11 +1549,9 @@ static int eb_relocate(struct i915_execbuffer *eb)
->   	if (err)
->   		return err;
->   
-> -	if (!list_empty(&eb->unbound)) {
-> -		err = eb_reserve(eb);
-> -		if (err)
-> -			return err;
-> -	}
-> +	err = eb_reserve_vm(eb);
-> +	if (err)
-> +		return err;
->   
->   	/* The objects are in their final locations, apply the relocations. */
->   	if (eb->args->flags & __EXEC_HAS_RELOC) {
-> 
+> +/**
+> + * drm_fb_helper_restore_fbdev_mode_unlocked - restore fbdev configura=
+tion
+> + * @fb_helper: driver-allocated fbdev helper, can be NULL
+> + *
+> + * This should be called from driver's drm &drm_driver.lastclose callb=
+ack
+> + * when implementing an fbcon on top of kms using this helper. This en=
+sures that
+> + * the user isn't greeted with a black screen when e.g. X dies.
+> + *
+> + * RETURNS:
+> + * Zero if everything went ok, negative error code otherwise.
+> + */
+> +int drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *fb=
+_helper)
+> +{
+> +	return __drm_fb_helper_restore_fbdev_mode_unlocked(fb_helper, false);=
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> +}
+>  EXPORT_SYMBOL(drm_fb_helper_restore_fbdev_mode_unlocked);
+> =20
+>  #ifdef CONFIG_MAGIC_SYSRQ
+> @@ -1318,6 +1334,7 @@ int drm_fb_helper_set_par(struct fb_info *info)
+>  {
+>  	struct drm_fb_helper *fb_helper =3D info->par;
+>  	struct fb_var_screeninfo *var =3D &info->var;
+> +	bool force;
+> =20
+>  	if (oops_in_progress)
+>  		return -EBUSY;
+> @@ -1327,7 +1344,25 @@ int drm_fb_helper_set_par(struct fb_info *info)
+>  		return -EINVAL;
+>  	}
+> =20
+> -	drm_fb_helper_restore_fbdev_mode_unlocked(fb_helper);
+> +	/*
+> +	 * Normally we want to make sure that a kms master takes
+> +	 * precedence over fbdev, to avoid fbdev flickering and
+> +	 * occasionally stealing the display status. But Xorg first sets
+> +	 * the vt back to text mode using the KDSET IOCTL with KD_TEXT,
+> +	 * and only after that drops the master status when exiting.
+> +	 *
+> +	 * In the past this was caught by drm_fb_helper_lastclose(), but
+> +	 * on modern systems where logind always keeps a drm fd open to
+> +	 * orchestrate the vt switching, this doesn't work.
+> +	 *
+> +	 * To no break the userspace ABI we have this special case here,
+> +	 * which is only used for the above case. Everything else uses
+> +	 * the normal commit function, which ensures that we never steal
+> +	 * the display from an active drm master.
+> +	 */
+> +	force =3D var->activate & FB_ACTIVATE_KD_TEXT;
+> +
+> +	__drm_fb_helper_restore_fbdev_mode_unlocked(fb_helper, force);
+> =20
+>  	return 0;
+>  }
+> diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/cor=
+e/fbcon.c
+> index 9d28a8e3328f..e2a490c5ae08 100644
+> --- a/drivers/video/fbdev/core/fbcon.c
+> +++ b/drivers/video/fbdev/core/fbcon.c
+> @@ -2402,7 +2402,8 @@ static int fbcon_blank(struct vc_data *vc, int bl=
+ank, int mode_switch)
+>  		ops->graphics =3D 1;
+> =20
+>  		if (!blank) {
+> -			var.activate =3D FB_ACTIVATE_NOW | FB_ACTIVATE_FORCE;
+> +			var.activate =3D FB_ACTIVATE_NOW | FB_ACTIVATE_FORCE |
+> +				FB_ACTIVATE_KD_TEXT;
+>  			fb_set_var(info, &var);
+>  			ops->graphics =3D 0;
+>  			ops->var =3D info->var;
+> diff --git a/include/uapi/linux/fb.h b/include/uapi/linux/fb.h
+> index b6aac7ee1f67..4c14e8be7267 100644
+> --- a/include/uapi/linux/fb.h
+> +++ b/include/uapi/linux/fb.h
+> @@ -205,6 +205,7 @@ struct fb_bitfield {
+>  #define FB_ACTIVATE_ALL	       64	/* change all VCs on this fb	*/
+>  #define FB_ACTIVATE_FORCE     128	/* force apply even when no change*/=
 
-Regards,
+>  #define FB_ACTIVATE_INV_MODE  256       /* invalidate videomode */
+> +#define FB_ACTIVATE_KD_TEXT   512       /* for KDSET vt ioctl */
+> =20
+>  #define FB_ACCELF_TEXT		1	/* (OBSOLETE) see fb_info.flags and vc_mode =
+*/
+> =20
+>=20
 
-Tvrtko
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--e8biO4xY56enENhSiRL7VWkiA5tZdMGbm--
+
+--UEVDRlW74y98w2X6O5TFy9Ob2jguaRVEB
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFIBAEBCAAyFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl8IUY8UHHR6aW1tZXJt
+YW5uQHN1c2UuZGUACgkQaA3BHVMLeiOCpwf+OgEbboFX6WaH3GPX5r2S+oQ70qr3
+JpgddEnE8IEZYarjfthHUcqjHtURRG2ULkrSOMNMGB7+fOZz9EMB9L255JhnToWp
+7mpRAnOYYc4pHCNFvdRgeqB0Hy58V2pmW2xKscJ58/nP2p9999o8u+odyYlLVyjX
+ci9JbL0OVO3VyHe+2Z/hgIXJjmeyG+AdBPp8BeX4MfGzwXtxVgvxO6KhK/4Kc7XB
+h7hSzkc3pBGVYKi9Ik8z5JSDFw60RNXsX3HDDz28uuGpiNHazC/hd8U6Ytfhcq5M
+KxTWSfmupqpIiG63POuPFp2SkWkX4AdajzbERXvpnZM4YyPwch9q7lwF0g==
+=TtTE
+-----END PGP SIGNATURE-----
+
+--UEVDRlW74y98w2X6O5TFy9Ob2jguaRVEB--
+
+--===============1273444006==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1273444006==--
