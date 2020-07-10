@@ -2,31 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAD8921BE5B
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 22:18:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 696D421BE67
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 22:25:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA0786ED06;
-	Fri, 10 Jul 2020 20:18:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5BCF6ED08;
+	Fri, 10 Jul 2020 20:25:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8FB836ED04;
- Fri, 10 Jul 2020 20:18:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 89031A66C9;
- Fri, 10 Jul 2020 20:18:16 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3054B6ED08
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 20:25:28 +0000 (UTC)
+IronPort-SDR: 5gk+6speZp8zeZWi7meItOGRD0CVG4i0ymvbUGsKF7uLRpBXIV9RlwzqlvvqqN0B0KU0e5aKQF
+ /S3iGCTGq2+Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9678"; a="149769984"
+X-IronPort-AV: E=Sophos;i="5.75,336,1589266800"; d="scan'208";a="149769984"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2020 13:25:27 -0700
+IronPort-SDR: vbZAAaRmzvLTqwnD9sPO6aJn1N6+pn5xuRqRbyTdjzEnz9WX/8INbHbj2/GIrwHdo7ul5lo1G1
+ whIA1oi13zqw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,336,1589266800"; d="scan'208";a="458388291"
+Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.254.49.62])
+ ([10.254.49.62])
+ by orsmga005.jf.intel.com with ESMTP; 10 Jul 2020 13:25:27 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200710193239.5419-1-chris@chris-wilson.co.uk>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <9a7072ba-ae74-d5f2-c469-6d8308948a2e@intel.com>
+Date: Fri, 10 Jul 2020 13:25:26 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Fri, 10 Jul 2020 20:18:16 -0000
-Message-ID: <159441229655.20497.14640101237380302296@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200710193144.94751-1-lyude@redhat.com>
-In-Reply-To: <20200710193144.94751-1-lyude@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/probe=5Fhelper=2C_i915=3A_Validate_MST_modes_against_PBN_limit?=
- =?utf-8?q?s_=28rev3=29?=
+In-Reply-To: <20200710193239.5419-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Pull printing GT capabilities on
+ error to err_print_gt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,146 +52,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: Dan Carpenter <dan.carpenter@oracle.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/probe_helper, i915: Validate MST modes against PBN limits (rev3)
-URL   : https://patchwork.freedesktop.org/series/77670/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8730 -> Patchwork_18135
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18135 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-tgl-u2/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-tgl-u2:          [PASS][3] -> [DMESG-FAIL][4] ([i915#1233])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
-    - fi-tgl-y:           [PASS][9] -> [DMESG-WARN][10] ([i915#1982]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - {fi-tgl-dsi}:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-tgl-dsi/igt@i915_module_load@reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-tgl-dsi/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-tgl-u2:          [INCOMPLETE][13] ([i915#2045]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [DMESG-WARN][19] ([i915#402]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Warnings ####
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([i915#62] / [i915#92]) +4 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8730/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2045]: https://gitlab.freedesktop.org/drm/intel/issues/2045
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-Participating hosts (42 -> 35)
-------------------------------
+On 7/10/2020 12:32 PM, Chris Wilson wrote:
+> We try not to assume that we captured any information, and so have to
+> check that error->gt exists before reporting. This check was missed in
+> err_print_capabilities, so lets break up the capability info and push it
+> into the GT dump.
+>
+> We are still a long way from yamlifying this output!
+>
+> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+> Fixes: 792592e72aba ("drm/i915: Move the engine mask to intel_gt_info")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Dan Carpenter <dan.carpenter@oracle.com>
 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
+Daniele
 
-Build changes
--------------
+> ---
+>   drivers/gpu/drm/i915/i915_gpu_error.c | 13 +++++++++++--
+>   1 file changed, 11 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 678ddec3237f..6a3a2ce0b394 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -626,8 +626,6 @@ static void err_print_capabilities(struct drm_i915_error_state_buf *m,
+>   
+>   	intel_device_info_print_static(&error->device_info, &p);
+>   	intel_device_info_print_runtime(&error->runtime_info, &p);
+> -	intel_gt_info_print(&error->gt->info, &p);
+> -	intel_sseu_print_topology(&error->gt->info.sseu, &p);
+>   	intel_driver_caps_print(&error->driver_caps, &p);
+>   }
+>   
+> @@ -678,6 +676,15 @@ static void err_free_sgl(struct scatterlist *sgl)
+>   	}
+>   }
+>   
+> +static void err_print_gt_info(struct drm_i915_error_state_buf *m,
+> +			      struct intel_gt_coredump *gt)
+> +{
+> +	struct drm_printer p = i915_error_printer(m);
+> +
+> +	intel_gt_info_print(&gt->info, &p);
+> +	intel_sseu_print_topology(&gt->info.sseu, &p);
+> +}
+> +
+>   static void err_print_gt(struct drm_i915_error_state_buf *m,
+>   			 struct intel_gt_coredump *gt)
+>   {
+> @@ -734,6 +741,8 @@ static void err_print_gt(struct drm_i915_error_state_buf *m,
+>   
+>   	if (gt->uc)
+>   		err_print_uc(m, gt->uc);
+> +
+> +	err_print_gt_info(m, gt);
+>   }
+>   
+>   static void __err_print_to_sgl(struct drm_i915_error_state_buf *m,
 
-  * Linux: CI_DRM_8730 -> Patchwork_18135
-
-  CI-20190529: 20190529
-  CI_DRM_8730: 58bef391f51f0e59a93b0296c16d7bea9457416c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5731: 6c008a2fe5c8c46ad8c1871b030987eddaa17bd9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18135: 43dbf9998ef793a397fad92ba01c2436bf44ca69 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-43dbf9998ef7 drm/i915/mst: filter out the display mode exceed sink's capability
-273cb4db9680 drm/probe_helper: Add drm_connector_helper_funcs.mode_valid_ctx
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18135/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
