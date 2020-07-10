@@ -1,31 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E550E21BC89
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 19:45:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAF2521BC8F
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 19:49:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 441086ECB2;
-	Fri, 10 Jul 2020 17:45:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44A0F6E426;
+	Fri, 10 Jul 2020 17:48:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A98A56ECAD;
- Fri, 10 Jul 2020 17:45:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A24CBA47DA;
- Fri, 10 Jul 2020 17:45:20 +0000 (UTC)
+Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com
+ [IPv6:2607:f8b0:4864:20::943])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F01656E426
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 17:48:57 +0000 (UTC)
+Received: by mail-ua1-x943.google.com with SMTP id o25so2084811uar.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 10:48:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=/WRTwrgmPpExmQQfa/2fMA7sx3qEzrLhe7A+h/bubTg=;
+ b=C4orc/ssECoYdlGDGUz5+Y9/3btZ7OuUY4B4JvO8MqzN6WxcPIKdUUxlbRe9Tw4EUH
+ OwTziup8RF1WoSZBBqFzhB/88HlEP4hGcYqJzmv/I6DzM9BG6IsbJmH/rQVqX18/+Del
+ f6g6XbS/HsQUgjgU3I1C+CV8Md9t3ALes6VoX2IBj4jX5VrRcOLvmsESP3kQer2ZPgZh
+ 367ac4YDlDhW7f33EdQXQze163dZpVNh9KpFuS5ChUivxMssHZiosa1G9o1TM8mqTQJR
+ HKMsRUnnGchBQQmrlEB/kFme0xf57YpUElOwZWb39rPOspQDlH3vLkivZ1XzzV2ZVUOY
+ DQ9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=/WRTwrgmPpExmQQfa/2fMA7sx3qEzrLhe7A+h/bubTg=;
+ b=iIAHN534EpOgVt0ZasU1giQxun5HjpP/C9vKoxe4XwF/uH34Ho70oY0C5PGK6+vE6X
+ kRI145sbxuraiSvhpI7SfjGlslxzldWIRrq/7I6aQylPGLNbl8U98ZiwiknaYLeSgHF5
+ JyNsA4/oMBKdJaasEu6m289TozXR9rFf/qw5C92p4wZ3sgNw7Arigny3TPptzISdkmX7
+ ia8dYTyzl1dgwps2jqeX2NuQs38ZR9R7sOpliAVM1PFO82N8vnkkNVVtXxTOfl98RC0r
+ 3X3Bp30YR79vrfcPaHIHTsnebGJVeXQANU4EggSrxzXB+OuRCkp9iMoWcYUBHQkzXNp5
+ w5Nw==
+X-Gm-Message-State: AOAM5323/yGhS87QLNPcpYuGKz09tBKPUEfocJsAeqCf6ZISWYJdbQFA
+ hMkr1L0feGfdMVLLlIB7HYuEDZQXwGdb9ix+c6g=
+X-Google-Smtp-Source: ABdhPJwnrRH7x89EbhBCtrH/0rBYDLqDmmFyDx4BWTIVgH67d7S2OWVyI8Z5DOHvZttwyfWbb1/nEOWKV7aVdAD6hX0=
+X-Received: by 2002:a9f:386b:: with SMTP id q40mr49013234uad.2.1594403337072; 
+ Fri, 10 Jul 2020 10:48:57 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 10 Jul 2020 17:45:20 -0000
-Message-ID: <159440312063.20498.3666464906568961245@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200710165615.15673-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200710165615.15673-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Provide_i915=5Frequest_debug_Kconfig_options?=
+References: <20200708134742.727-1-chris@chris-wilson.co.uk>
+ <20200708134742.727-5-chris@chris-wilson.co.uk>
+In-Reply-To: <20200708134742.727-5-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 10 Jul 2020 18:48:31 +0100
+Message-ID: <CAM0jSHMVVEgW1OeuDWhaVSMq-hZ0qrfS-cr_5C0eKdDBiai9qA@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915: Preallocate stashes for vma
+ page-directories
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,181 +62,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 8 Jul 2020 at 14:48, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> We need to make the DMA allocations used for page directories to be
+> performed up front so that we can include those allocations in our
+> memory reservation pass. The downside is that we have to assume the
+> worst case, even before we know the final layout, and always allocate
+> enough page directories for this object, even when there will be overlap.
+> This unfortunately can be quite expensive, especially as we have to
+> clear/reset the page directories and DMA pages, but it should only be
+> required during early phases of a workload when new objects are being
+> discovered, or after memory/eviction pressure when we need to rebind.
+> Once we reach steady state, the objects should not be moved and we no
+> longer need to preallocating the pages tables.
+>
+> It should be noted that the lifetime for the page directories DMA is
+> more or less decoupled from individual fences as they will be shared
+> across objects across timelines.
+>
+> v2: Only allocate enough PD space for the PTE we may use, we do not need
+> to allocate PD that will be left as scratch.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
 
-Series: drm/i915: Provide i915_request debug Kconfig options
-URL   : https://patchwork.freedesktop.org/series/79359/
-State : failure
+<snip>
 
-== Summary ==
+>
+> +static unsigned long pd_count(u64 size, int shift)
+> +{
+> +       /* Beware later misalignment */
+> +       return (size + 2 * (BIT_ULL(shift) - 1)) >> shift;
+> +}
+> +
+> +int i915_vm_alloc_pt_stash(struct i915_address_space *vm,
+> +                          struct i915_vm_pt_stash *stash,
+> +                          u64 size)
+> +{
+> +       unsigned long count;
+> +       int shift = 21;
+> +       int n;
 
-CI Bug Log - changes from CI_DRM_8728 -> Patchwork_18133
-====================================================
+if (gen >= 8)
+    shift = 21;
+else
+    shift = 22;
 
-Summary
--------
+?
 
-  **FAILURE**
+Since pt=4M, pd=2G with the weird legacy ppgtt stuff?
 
-  Serious unknown changes coming with Patchwork_18133 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18133, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_18133:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_timelines:
-    - fi-tgl-u2:          [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-tgl-u2/igt@i915_selftest@live@gt_timelines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-tgl-u2/igt@i915_selftest@live@gt_timelines.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18133 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_flink_basic@double-flink:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-tgl-y/igt@gem_flink_basic@double-flink.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-tgl-y/igt@gem_flink_basic@double-flink.html
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-byt-j1900/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-byt-j1900/igt@i915_module_load@reload.html
-    - fi-bxt-dsi:         [PASS][9] -> [DMESG-WARN][10] ([i915#1635] / [i915#1982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-bxt-dsi/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-bxt-dsi/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-tgl-u2:          [PASS][11] -> [INCOMPLETE][12] ([i915#2089] / [i915#750])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-tgl-u2/igt@i915_selftest@live@execlists.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-tgl-u2/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-u2:          [PASS][13] -> [DMESG-WARN][14] ([i915#1982]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
-    - fi-tgl-y:           [PASS][15] -> [DMESG-WARN][16] ([i915#1982]) +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-tgl-y/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-tgl-y/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [PASS][17] -> [DMESG-WARN][18] ([i915#402]) +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [DMESG-WARN][19] ([i915#402]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - {fi-tgl-dsi}:       [DMESG-WARN][21] ([i915#1982]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][23] ([i915#1982]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-tgl-y:           [DMESG-WARN][25] ([i915#1982]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-tgl-y/igt@kms_psr@cursor_plane_move.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-tgl-y/igt@kms_psr@cursor_plane_move.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][27] ([fdo#109271]) -> [DMESG-FAIL][28] ([i915#62] / [i915#95])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][29] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][30] ([i915#62] / [i915#92]) +3 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][31] ([i915#62] / [i915#92]) -> [DMESG-WARN][32] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8728/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2089]: https://gitlab.freedesktop.org/drm/intel/issues/2089
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#750]: https://gitlab.freedesktop.org/drm/intel/issues/750
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (42 -> 35)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8728 -> Patchwork_18133
-
-  CI-20190529: 20190529
-  CI_DRM_8728: f8a518551dbe5b5bc460555eb4b2af4f57b92335 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5730: bc81be6915e4e23a5dc52f50a0c67462e321963f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18133: b300d994ef37dfa2384ebf14c6696ced0865638f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b300d994ef37 drm/i915: Provide i915_request debug Kconfig options
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18133/index.html
+> +
+> +       count = pd_count(size, shift);
+> +       while (count--) {
+> +               struct i915_page_table *pt;
+> +
+> +               pt = alloc_pt(vm);
+> +               if (IS_ERR(pt)) {
+> +                       i915_vm_free_pt_stash(vm, stash);
+> +                       return PTR_ERR(pt);
+> +               }
+> +
+> +               pt->stash = stash->pt[0];
+> +               stash->pt[0] = pt;
+> +       }
+> +
+> +       for (n = 1; n < vm->top; n++) {
+> +               shift += 9;
+> +               count = pd_count(size, shift);
+> +               while (count--) {
+> +                       struct i915_page_directory *pd;
+> +
+> +                       pd = alloc_pd(vm);
+> +                       if (IS_ERR(pd)) {
+> +                               i915_vm_free_pt_stash(vm, stash);
+> +                               return PTR_ERR(pd);
+> +                       }
+> +
+> +                       pd->pt.stash = stash->pt[1];
+> +                       stash->pt[1] = &pd->pt;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +}
+> +
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
