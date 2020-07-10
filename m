@@ -1,46 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F04A21B7E6
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 16:11:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38BF221BC49
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 19:32:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BCD66EC52;
-	Fri, 10 Jul 2020 14:11:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68F886ECBC;
+	Fri, 10 Jul 2020 17:32:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FC7D6EC52;
- Fri, 10 Jul 2020 14:11:06 +0000 (UTC)
-IronPort-SDR: 2PMIieTfcpQTNsS3s5wfW/F7yx8/y1uNUvAVIWFeeb3I7q/CLelY+2lmRBKbs8G91/hp4BXxww
- UNGyUBKXb40w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="209730525"
-X-IronPort-AV: E=Sophos;i="5.75,336,1589266800"; d="scan'208";a="209730525"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 07:11:05 -0700
-IronPort-SDR: NxqNN+LSPCFc90c+wysiTUd33cClBKM/YR3Ys+6L86oA4rrD/ycDcsqMfD5A9taQsNeE1epYK0
- wmIzMmON+bZA==
-X-IronPort-AV: E=Sophos;i="5.75,336,1589266800"; d="scan'208";a="428573887"
-Received: from unknown (HELO [10.252.44.180]) ([10.252.44.180])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 07:11:04 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200710093234.1438712-1-chris@chris-wilson.co.uk>
- <20200710093234.1438712-4-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <e872c938-9029-6722-e76e-435d134b1767@linux.intel.com>
-Date: Fri, 10 Jul 2020 15:11:02 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B14886EC55
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 14:11:57 +0000 (UTC)
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+ by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 06AE2haA026034;
+ Fri, 10 Jul 2020 14:11:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=ty/FrZjQKJTPJjyny7KJ2OX3VKdCrbXQLiStxD3Xurs=;
+ b=P1qcgfk0qmALz5BK5KGNNamZVOahF4bnN5veRTD1bEgDSR/kvB3/PJRKNuFSrTyqYqTN
+ 5p27+NFb9rENVnhxgSckI+zE2FYHqRdDCu7ugGycd0Yk36C+BQBCCuJclrQ7dXycU13a
+ 5Feju8d78SbfcxpvnxnJ+XSCxPxGhTu0anEmrnGNsq5fLgshdVMSeTwEH5zxqas2OGKt
+ kYt2ty5jQ50+pUp8OmPUN8SrL7oHWc6QKqJbe6h9gvzVGrCgQt4YO15LWF8uDzfWZ0iP
+ YNFS4Dh2xVNi2dRaQXFePmWW9hcFoTJhuH+jXSs4+HlZQkGXBR7f3xyoCg59YHJqViHj 9w== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+ by aserp2120.oracle.com with ESMTP id 325y0aqnqc-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Fri, 10 Jul 2020 14:11:55 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+ by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 06AE9NmQ080665;
+ Fri, 10 Jul 2020 14:11:55 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+ by aserp3030.oracle.com with ESMTP id 325k3jxtfh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 10 Jul 2020 14:11:54 +0000
+Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
+ by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 06AEBrwk016998;
+ Fri, 10 Jul 2020 14:11:53 GMT
+Received: from mwanda (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Fri, 10 Jul 2020 07:11:52 -0700
+Date: Fri, 10 Jul 2020 17:11:47 +0300
+From: <dan.carpenter@oracle.com>
+To: <daniele.ceraolospurio@intel.com>
+Message-ID: <20200710141147.GA135232@mwanda>
 MIME-Version: 1.0
-In-Reply-To: <20200710093234.1438712-4-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 4/6] i915/gem_close: Adapt
- to allow duplicate handles
+Content-Disposition: inline
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9677
+ signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
+ phishscore=0
+ mlxlogscore=999 bulkscore=0 spamscore=0 mlxscore=0 adultscore=0
+ suspectscore=3 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2007100099
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9677
+ signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ mlxscore=0
+ priorityscore=1501 spamscore=0 phishscore=0 clxscore=1011 mlxlogscore=999
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 suspectscore=3
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2007100098
+X-Mailman-Approved-At: Fri, 10 Jul 2020 17:32:50 +0000
+Subject: [Intel-gfx] [bug report] drm/i915: Move the engine mask to
+ intel_gt_info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,125 +76,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hello Daniele Ceraolo Spurio,
 
-On 10/07/2020 10:32, Chris Wilson wrote:
-> With an upcoming change, we can relax the rule about handles not being
-> duplicated in the execocbj[]. Duplicate handles must not otherwise
-> conflict in their placements (e.g. two EXEC_OBJECT_PINNED at different
-> offsets), but otherwise if they are able to be resolved to the same GPU
-> address, then the operation is harmless and decreed legal.
-> 
-> Since this is a relaxation in the negative ABI, update the test case to
-> allow the permissible duplicate handles.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   tests/i915/gem_close.c | 51 ++++++++++++++++++++++++++++++++++++------
->   1 file changed, 44 insertions(+), 7 deletions(-)
-> 
-> diff --git a/tests/i915/gem_close.c b/tests/i915/gem_close.c
-> index 4fdc1ad79..a9bf2d2d4 100644
-> --- a/tests/i915/gem_close.c
-> +++ b/tests/i915/gem_close.c
-> @@ -24,21 +24,57 @@
->   #include "i915/gem.h"
->   #include "igt.h"
->   
-> -static bool has_duplicate(int err)
-> +static int batch_create(int fd)
-> +{
-> +	const uint32_t bbe = MI_BATCH_BUFFER_END;
-> +	uint32_t handle;
-> +
-> +	handle = gem_create(fd, 4096);
-> +	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-> +
-> +	return handle;
-> +}
-> +
-> +static int allows_duplicate(int fd)
-> +{
-> +	struct drm_i915_gem_exec_object2 obj[2] = {
-> +		{ .handle = batch_create(fd), },
-> +	};
-> +	struct drm_i915_gem_execbuffer2 execbuf = {
-> +		.buffers_ptr = to_user_pointer(obj),
-> +		.buffer_count = 1,
-> +	};
-> +	int err;
-> +
-> +	gem_execbuf(fd, &execbuf);
-> +
-> +	obj[1] = obj[0];
-> +	execbuf.buffer_count = 2;
-> +
-> +	err = __gem_execbuf(fd, &execbuf);
-> +	gem_close(fd, obj[0].handle);
-> +
-> +	return err;
-> +}
-> +
-> +static bool is_duplicate(int err)
->   {
->   	return err == -EINVAL || err == -EALREADY;
->   }
->   
->   static void test_many_handles(int fd)
->   {
-> -	uint32_t bbe = MI_BATCH_BUFFER_END;
->   	struct drm_i915_gem_execbuffer2 execbuf;
->   	struct drm_i915_gem_exec_object2 obj[2];
->   	uint32_t clones[128]; /* XXX try with 1024 */
->   	uint32_t original;
-> +	int expected;
-> +
-> +	expected = allows_duplicate(fd);
-> +	if (expected)
-> +		igt_assert(is_duplicate(expected));
->   
-> -	original = gem_create(fd, 4096);
-> -	gem_write(fd, original, 0, &bbe, sizeof(bbe));
-> +	original = batch_create(fd);
->   
->   	memset(&execbuf, 0, sizeof(execbuf));
->   	execbuf.buffers_ptr = to_user_pointer(obj);
-> @@ -54,7 +90,8 @@ static void test_many_handles(int fd)
->   		gem_execbuf(fd, &execbuf);
->   	}
->   
-> -	/* We do not allow the sam object to be referenced multiple times
-> +	/*
-> +	 * We do not allow the same object to be referenced multiple times
->   	 * within an execbuf; hence why this practice of cloning a handle
->   	 * is only found within test cases.
->   	 */
-> @@ -62,11 +99,11 @@ static void test_many_handles(int fd)
->   	obj[0].handle = original;
->   	for (int i = 0; i < ARRAY_SIZE(clones); i++) {
->   		obj[1].handle = clones[i];
-> -		igt_assert(has_duplicate(__gem_execbuf(fd, &execbuf)));
-> +		igt_assert_eq(__gem_execbuf(fd, &execbuf), expected);
->   	}
->   	/* Any other clone pair should also be detected */
->   	obj[1].handle = clones[0];  /* (last, first) */
-> -	igt_assert(has_duplicate(__gem_execbuf(fd, &execbuf)));
-> +	igt_assert_eq(__gem_execbuf(fd, &execbuf), expected);
->   	execbuf.buffer_count = 1;
->   
->   	/* Now close the original having used every clone */
-> 
+This is a semi-automatic email about new static checker warnings.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+The patch 792592e72aba: "drm/i915: Move the engine mask to
+intel_gt_info" from Jul 7, 2020, leads to the following Smatch
+complaint:
 
-Regards,
+    drivers/gpu/drm/i915/i915_gpu_error.c:801 __err_print_to_sgl()
+    error: we previously assumed 'error->gt' could be null (see line 792)
 
-Tvrtko
+drivers/gpu/drm/i915/i915_gpu_error.c
+   791	
+   792		if (error->gt)
+                    ^^^^^^^^^
+Existing code checks for NULL.
+
+   793			err_print_gt(m, error->gt);
+   794	
+   795		if (error->overlay)
+   796			intel_overlay_print_error_state(m, error->overlay);
+   797	
+   798		if (error->display)
+   799			intel_display_print_error_state(m, error->display);
+   800	
+   801		err_print_capabilities(m, error);
+                                          ^^^^^
+Unchecked dereference inside function call.
+
+   802		err_print_params(m, &error->params);
+   803	}
+
+regards,
+dan carpenter
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
