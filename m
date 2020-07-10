@@ -2,41 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52B6821B46E
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 13:59:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0257421B46F
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 13:59:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A195F6EBF2;
-	Fri, 10 Jul 2020 11:59:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C49A6EBEF;
+	Fri, 10 Jul 2020 11:59:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFB306EBF3
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 11:59:47 +0000 (UTC)
-IronPort-SDR: aEK30bxPKfLuycBoX1iKmDyred8u4iXsoDJUIirbui+NXgkeFtywFviJ3HuvIfP15srzPi0TpH
- hj94FTtFecRw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="149653693"
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="149653693"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FD536EBF3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 11:59:50 +0000 (UTC)
+IronPort-SDR: oqT542X7OnuqsYVYUam71EKIiJcLkgRxCWKy3JnoF/3H87+LWxfwwhRDSTfrintRbudz9nRhYt
+ ZUFuj2E+zA1A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="149653695"
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="149653695"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 04:59:47 -0700
-IronPort-SDR: sPYjYsveMXh7JcYGxSbx5bM5Vx7y2GCakVx0CTfwNV9c5wIxRffmRgHqJsct59zcBDxiHpXq+c
- vW9iK+IiCFLw==
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458257473"
+ 10 Jul 2020 04:59:50 -0700
+IronPort-SDR: oLn/hM/3ICoQkw/zC9uyMWLNy9hGeLFhqSUR6UrTM+yY486Yw1h+VUXZ52rdKbpDXGyVB+Uwrg
+ KxKVC6YVpAHA==
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458257480"
 Received: from nmartino-mobl1.ger.corp.intel.com (HELO
  mwahaha-bdw.ger.corp.intel.com) ([10.255.207.224])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 04:59:44 -0700
+ 10 Jul 2020 04:59:47 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jul 2020 12:57:15 +0100
-Message-Id: <20200710115757.290984-19-matthew.auld@intel.com>
+Date: Fri, 10 Jul 2020 12:57:16 +0100
+Message-Id: <20200710115757.290984-20-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
 References: <20200710115757.290984-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 18/60] drm/i915/dg1: Enable first 2 ports for DG1
+Subject: [Intel-gfx] [RFC 19/60] drm/i915/dg1: Don't program PHY_MISC for
+ PHY-C and PHY-D
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,62 +56,37 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Aditya Swarup <aditya.swarup@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Enable PORTS A and B for DG1 initially, the other ports still need more
-plumbing code in order to be enabled.
+The only bit we use in PHY_MISC is DE_IO_COMP_PWR_DOWN, and the bspec
+details for that bit tell us that it need only be set for PHY-A and
+PHY-B.  It also turns out that there isn't even an instance of the
+PHY_MISC register for PHY-D on this platform.  Let's extend the EHL/RKL
+logic that conditionally skips PHY_MISC usage to DG1 as well.
 
+Bspec: 50107
+Cc: Aditya Swarup <aditya.swarup@intel.com>
 Cc: Clinton Taylor <Clinton.A.Taylor@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_combo_phy.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 729ec6e0d43a..8b30daf7e304 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7230,6 +7230,9 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
- {
- 	if (phy == PHY_NONE)
- 		return false;
-+	else if (IS_DG1(dev_priv))
-+		/* FIXME: Enable only two ports for now */
-+		return phy <= PHY_B;
- 	else if (IS_ROCKETLAKE(dev_priv))
- 		return phy <= PHY_D;
- 	else if (IS_ELKHARTLAKE(dev_priv))
-@@ -7242,7 +7245,7 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
+diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+index eccaa79cb4a9..f6d7f807b884 100644
+--- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+@@ -189,7 +189,8 @@ static bool has_phy_misc(struct drm_i915_private *i915, enum phy phy)
+ 	 * other combo PHY's.
+ 	 */
+ 	if (IS_ELKHARTLAKE(i915) ||
+-	    IS_ROCKETLAKE(i915))
++	    IS_ROCKETLAKE(i915) ||
++	    IS_DG1(i915))
+ 		return phy < PHY_C;
  
- bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
- {
--	if (IS_ROCKETLAKE(dev_priv))
-+	if (IS_ROCKETLAKE(dev_priv) || IS_DG1(dev_priv))
- 		return false;
- 	else if (INTEL_GEN(dev_priv) >= 12)
- 		return phy >= PHY_D && phy <= PHY_I;
-@@ -16842,11 +16845,15 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv) || !INTEL_DISPLAY_ENABLED(dev_priv))
- 		return;
- 
--	if (IS_ROCKETLAKE(dev_priv)) {
-+	if (IS_DG1(dev_priv)) {
-+		/* FIXME: Enable only two ports for now */
-+		intel_ddi_init(dev_priv, PORT_A);
-+		intel_ddi_init(dev_priv, PORT_B);
-+	} else if (IS_ROCKETLAKE(dev_priv)) {
- 		intel_ddi_init(dev_priv, PORT_A);
- 		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
--		intel_ddi_init(dev_priv, PORT_E);	/* DDI TC2 */
-+		intel_ddi_init(dev_priv, PORT_D);       /* DDI TC1 */
-+		intel_ddi_init(dev_priv, PORT_E);       /* DDI TC2 */
- 	} else if (INTEL_GEN(dev_priv) >= 12) {
- 		intel_ddi_init(dev_priv, PORT_A);
- 		intel_ddi_init(dev_priv, PORT_B);
+ 	return true;
 -- 
 2.26.2
 
