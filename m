@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6628221B498
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:01:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB92321B49B
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:02:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B8B96EC23;
-	Fri, 10 Jul 2020 12:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A4E76EC25;
+	Fri, 10 Jul 2020 12:01:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CFE26EC27
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:01:46 +0000 (UTC)
-IronPort-SDR: ylFuHKlEfuyIsezTSnJnjlYcIlP2cy54p+UzCX58sIuAyyISmskzVM1P7zS72y5fXJv+RxCAbq
- nsCo/4Oo81jA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="135653028"
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="135653028"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D95B96EC27
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:01:57 +0000 (UTC)
+IronPort-SDR: OktJiWpzmHMV+VCumQIfA9FvmSjnhBok87jaIyRJASrgY+lE0gLokS4+LhmtcICNPAd6DMa3Mg
+ ZVF+/xZIQSWw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="209716876"
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="209716876"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:01:45 -0700
-IronPort-SDR: GK0JV/N1zyVcp2ItEBDnKkPvqUo4npfYHWAA1a3K83iZcsXv7OIG0ECwjS4OneY7ZcZ1dOkRVD
- yBfLFBxBWU+w==
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458258521"
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2020 05:01:52 -0700
+IronPort-SDR: vzPOS+MZB9zMjBbWCV05cFBz7Ol5HKDEhbSV25wVm4Xvcpqgu1Zsp2aiSscttQ7+ofQKBlbRZs
+ obA2YqXzT9iw==
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458258556"
 Received: from nmartino-mobl1.ger.corp.intel.com (HELO
  mwahaha-bdw.ger.corp.intel.com) ([10.255.207.224])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:01:36 -0700
+ 10 Jul 2020 05:01:43 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jul 2020 12:57:51 +0100
-Message-Id: <20200710115757.290984-55-matthew.auld@intel.com>
+Date: Fri, 10 Jul 2020 12:57:52 +0100
+Message-Id: <20200710115757.290984-56-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
 References: <20200710115757.290984-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 54/60] drm/i915/lmem: Bypass aperture when lmem is
- available
+Subject: [Intel-gfx] [RFC 55/60] drm/i915/lmem: reset the lmem buffer
+ created by fbdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,81 +50,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Chris P Wilson <chris.p.wilson@intel.com>,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQW51c2hhIFNyaXZhdHNhIDxhbnVzaGEuc3JpdmF0c2FAaW50ZWwuY29tPgoKSW4gdGhl
-IHNjZW5hcmlvIHdoZXJlIGxvY2FsIG1lbW9yeSBpcyBhdmFpbGFibGUsIHdlIGhhdmUKcmVseSBv
-biBDUFUgYWNjZXNzIHZpYSBsbWVtIGRpcmVjdGx5IGluc3RlYWQgb2YgYXBlcnR1cmUuCgpDYzog
-VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IERoaW5h
-a2FyYW4gUGFuZGl5YW4gPGRoaW5ha2FyYW4ucGFuZGl5YW5AaW50ZWwuY29tPgpDYzogTWFhcnRl
-biBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KQ2M6IENocmlz
-IFAgV2lsc29uIDxjaHJpcy5wLndpbHNvbkBpbnRlbC5jb20+CkNjOiBEYW5pZWwgVmV0dGVyIDxk
-YW5pZWwudmV0dGVyQGludGVsLmNvbT4KQ2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRp
-bmVuQGxpbnV4LmludGVsLmNvbT4KQ2M6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUu
-Y2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+CkNjOiBDUSBUYW5nIDxjcS50YW5nQGludGVsLmNvbT4K
-Q2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgpTaWduZWQtb2Zm
-LWJ5OiBBbnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5jb20+Ci0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRldi5jIHwgMjMgKysrKysrKysrKysr
-KysrLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92bWEuYyAgICAgICAgICAgIHwg
-MTkgKysrKysrKysrKysrLS0tLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDI5IGluc2VydGlvbnMoKyks
-IDEzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZmJkZXYuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJk
-ZXYuYwppbmRleCBiZDM5ZWI2YTIxYjguLmY0OTI4MDIxODQxMyAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRldi5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYwpAQCAtNDEsNiArNDEsNyBAQAogI2luY2x1ZGUg
-PGRybS9kcm1fZmJfaGVscGVyLmg+CiAjaW5jbHVkZSA8ZHJtL2RybV9mb3VyY2MuaD4KIAorI2lu
-Y2x1ZGUgImdlbS9pOTE1X2dlbV9sbWVtLmgiCiAjaW5jbHVkZSAiaTkxNV9kcnYuaCIKICNpbmNs
-dWRlICJpbnRlbF9kaXNwbGF5X3R5cGVzLmgiCiAjaW5jbHVkZSAiaW50ZWxfZmJkZXYuaCIKQEAg
-LTEzNywxNCArMTM4LDIyIEBAIHN0YXRpYyBpbnQgaW50ZWxmYl9hbGxvYyhzdHJ1Y3QgZHJtX2Zi
-X2hlbHBlciAqaGVscGVyLAogCXNpemUgPSBtb2RlX2NtZC5waXRjaGVzWzBdICogbW9kZV9jbWQu
-aGVpZ2h0OwogCXNpemUgPSBQQUdFX0FMSUdOKHNpemUpOwogCi0JLyogSWYgdGhlIEZCIGlzIHRv
-byBiaWcsIGp1c3QgZG9uJ3QgdXNlIGl0IHNpbmNlIGZiZGV2IGlzIG5vdCB2ZXJ5Ci0JICogaW1w
-b3J0YW50IGFuZCB3ZSBzaG91bGQgcHJvYmFibHkgdXNlIHRoYXQgc3BhY2Ugd2l0aCBGQkMgb3Ig
-b3RoZXIKLQkgKiBmZWF0dXJlcy4gKi8KIAlvYmogPSBFUlJfUFRSKC1FTk9ERVYpOwotCWlmIChz
-aXplICogMiA8IGRldl9wcml2LT5zdG9sZW5fdXNhYmxlX3NpemUpCi0JCW9iaiA9IGk5MTVfZ2Vt
-X29iamVjdF9jcmVhdGVfc3RvbGVuKGRldl9wcml2LCBzaXplKTsKLQlpZiAoSVNfRVJSKG9iaikp
-Ci0JCW9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfc2htZW0oZGV2X3ByaXYsIHNpemUpOwor
-CWlmIChIQVNfTE1FTShkZXZfcHJpdikpIHsKKwkJb2JqID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0
-ZV9sbWVtKGRldl9wcml2LCBzaXplLAorCQkJCQkJICBJOTE1X0JPX0FMTE9DX0NPTlRJR1VPVVMp
-OworCX0gZWxzZSB7CisJCS8qCisJCSAqIElmIHRoZSBGQiBpcyB0b28gYmlnLCBqdXN0IGRvbid0
-IHVzZSBpdCBzaW5jZSBmYmRldiBpcyBub3QgdmVyeQorCQkgKiBpbXBvcnRhbnQgYW5kIHdlIHNo
-b3VsZCBwcm9iYWJseSB1c2UgdGhhdCBzcGFjZSB3aXRoIEZCQyBvciBvdGhlcgorCQkgKiBmZWF0
-dXJlcy4KKwkJICovCisJCWlmIChzaXplICogMiA8IGRldl9wcml2LT5zdG9sZW5fdXNhYmxlX3Np
-emUpCisJCQlvYmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0b2xlbihkZXZfcHJpdiwgc2l6
-ZSk7CisJCWlmIChJU19FUlIob2JqKSkKKwkJCW9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVf
-c2htZW0oZGV2X3ByaXYsIHNpemUpOworCX0KKwogCWlmIChJU19FUlIob2JqKSkgewogCQlkcm1f
-ZXJyKCZkZXZfcHJpdi0+ZHJtLCAiZmFpbGVkIHRvIGFsbG9jYXRlIGZyYW1lYnVmZmVyXG4iKTsK
-IAkJcmV0dXJuIFBUUl9FUlIob2JqKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfdm1hLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3ZtYS5jCmluZGV4IGJjNjRm
-NzczZGNkYi4uY2E1MTY2OGE2NjYzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X3ZtYS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdm1hLmMKQEAgLTI3LDYg
-KzI3LDcgQEAKIAogI2luY2x1ZGUgImRpc3BsYXkvaW50ZWxfZnJvbnRidWZmZXIuaCIKIAorI2lu
-Y2x1ZGUgImdlbS9pOTE1X2dlbV9sbWVtLmgiCiAjaW5jbHVkZSAiZ3QvaW50ZWxfZW5naW5lLmgi
-CiAjaW5jbHVkZSAiZ3QvaW50ZWxfZW5naW5lX2hlYXJ0YmVhdC5oIgogI2luY2x1ZGUgImd0L2lu
-dGVsX2d0LmgiCkBAIC00NDcsOSArNDQ4LDExIEBAIHZvaWQgX19pb21lbSAqaTkxNV92bWFfcGlu
-X2lvbWFwKHN0cnVjdCBpOTE1X3ZtYSAqdm1hKQogCXZvaWQgX19pb21lbSAqcHRyOwogCWludCBl
-cnI7CiAKLQlpZiAoR0VNX1dBUk5fT04oIWk5MTVfdm1hX2lzX21hcF9hbmRfZmVuY2VhYmxlKHZt
-YSkpKSB7Ci0JCWVyciA9IC1FTk9ERVY7Ci0JCWdvdG8gZXJyOworCWlmICghaTkxNV9nZW1fb2Jq
-ZWN0X2lzX2Rldm1lbSh2bWEtPm9iaikpIHsKKwkJaWYgKEdFTV9XQVJOX09OKCFpOTE1X3ZtYV9p
-c19tYXBfYW5kX2ZlbmNlYWJsZSh2bWEpKSkgeworCQkJZXJyID0gLUVOT0RFVjsKKwkJCWdvdG8g
-ZXJyOworCQl9CiAJfQogCiAJR0VNX0JVR19PTighaTkxNV92bWFfaXNfZ2d0dCh2bWEpKTsKQEAg
-LTQ1Nyw5ICs0NjAsMTMgQEAgdm9pZCBfX2lvbWVtICppOTE1X3ZtYV9waW5faW9tYXAoc3RydWN0
-IGk5MTVfdm1hICp2bWEpCiAKIAlwdHIgPSBSRUFEX09OQ0Uodm1hLT5pb21hcCk7CiAJaWYgKHB0
-ciA9PSBOVUxMKSB7Ci0JCXB0ciA9IGlvX21hcHBpbmdfbWFwX3djKCZpOTE1X3ZtX3RvX2dndHQo
-dm1hLT52bSktPmlvbWFwLAotCQkJCQl2bWEtPm5vZGUuc3RhcnQsCi0JCQkJCXZtYS0+bm9kZS5z
-aXplKTsKKwkJaWYgKGk5MTVfZ2VtX29iamVjdF9pc19kZXZtZW0odm1hLT5vYmopKQorCQkJcHRy
-ID0gaTkxNV9nZW1fb2JqZWN0X2xtZW1faW9fbWFwKHZtYS0+b2JqLCAwLAorCQkJCQkJCSAgdm1h
-LT5vYmotPmJhc2Uuc2l6ZSk7CisJCWVsc2UKKwkJCXB0ciA9IGlvX21hcHBpbmdfbWFwX3djKCZp
-OTE1X3ZtX3RvX2dndHQodm1hLT52bSktPmlvbWFwLAorCQkJCQkJdm1hLT5ub2RlLnN0YXJ0LAor
-CQkJCQkJdm1hLT5ub2RlLnNpemUpOwogCQlpZiAocHRyID09IE5VTEwpIHsKIAkJCWVyciA9IC1F
-Tk9NRU07CiAJCQlnb3RvIGVycjsKLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+From: Animesh Manna <animesh.manna@intel.com>
+
+Newly created lmem buffer by fbdev need reset otherwise it has old
+garbage data. Same logic was present for stolen memory, extended
+the same for lmem.
+
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index f49280218413..23a1e4638c1e 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -265,7 +265,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 	 * If the object is stolen however, it will be full of whatever
+ 	 * garbage was left in there.
+ 	 */
+-	if (vma->obj->stolen && !prealloc)
++	if ((vma->obj->stolen || HAS_LMEM(dev_priv)) && !prealloc)
+ 		memset_io(info->screen_base, 0, info->screen_size);
+ 
+ 	/* Use default scratch pixmap (info->pixmap.flags = FB_PIXMAP_SYSTEM) */
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
