@@ -2,29 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6223821BBEA
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 19:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 135E121BC20
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 19:23:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8E3A6EC96;
-	Fri, 10 Jul 2020 17:10:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12F5B6EBAB;
+	Fri, 10 Jul 2020 17:23:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85BA26EC96
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 17:10:14 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21781524-1500050 
- for multiple; Fri, 10 Jul 2020 18:10:04 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jul 2020 18:10:01 +0100
-Message-Id: <20200710171001.22935-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FC2C6EBAB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 17:23:28 +0000 (UTC)
+IronPort-SDR: Ng7QzRa/Ctx4iEtNFUHinU0HbHo3t6pj3sV8URvIhRSWTBCCwimx1zXtMn4KUljk+z+TJTDdcy
+ XyYcdki0Qk+A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9678"; a="166343165"
+X-IronPort-AV: E=Sophos;i="5.75,336,1589266800"; d="scan'208";a="166343165"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2020 10:23:27 -0700
+IronPort-SDR: SatOlKZuZSDq9y3Cl63xmli3dDUMy+iIpv9CnUbweEIUoyTqNoNN0XkqZxO4T1SWdqylDveLC0
+ zQOSqnR2S5cw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,336,1589266800"; d="scan'208";a="280714624"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by orsmga003.jf.intel.com with ESMTP; 10 Jul 2020 10:23:26 -0700
+Received: from fmsmsx112.amr.corp.intel.com (10.18.116.6) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 10 Jul 2020 10:23:17 -0700
+Received: from fmsmsx108.amr.corp.intel.com ([169.254.9.193]) by
+ FMSMSX112.amr.corp.intel.com ([169.254.5.142]) with mapi id 14.03.0439.000;
+ Fri, 10 Jul 2020 10:23:17 -0700
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/gt: Be defensive in the face of
+ false CS events
+Thread-Index: AQHWVrLC/1tyxl8XlES1kO6vE42hvKkBL7yA///gMwA=
+Date: Fri, 10 Jul 2020 17:23:16 +0000
+Message-ID: <14063C7AD467DE4B82DEDB5C278E866301245BC8E3@FMSMSX108.amr.corp.intel.com>
+References: <20200710120717.32484-1-chris@chris-wilson.co.uk>
+ <20200710121609.6775-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200710121609.6775-1-chris@chris-wilson.co.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Be wary of data races when reading
- the active execlists
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Be defensive in the face of
+ false CS events
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,111 +67,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[ 1413.563200] BUG: KCSAN: data-race in __await_execution+0x217/0x370 [i915]
-[ 1413.563221]
-[ 1413.563236] race at unknown origin, with read to 0xffff88885bb6c478 of 8 bytes by task 9654 on cpu 1:
-[ 1413.563548]  __await_execution+0x217/0x370 [i915]
-[ 1413.563891]  i915_request_await_dma_fence+0x4eb/0x6a0 [i915]
-[ 1413.564235]  i915_request_await_object+0x421/0x490 [i915]
-[ 1413.564577]  i915_gem_do_execbuffer+0x29b7/0x3c40 [i915]
-[ 1413.564967]  i915_gem_execbuffer2_ioctl+0x22f/0x5c0 [i915]
-[ 1413.564998]  drm_ioctl_kernel+0x156/0x1b0
-[ 1413.565022]  drm_ioctl+0x2ff/0x480
-[ 1413.565046]  __x64_sys_ioctl+0x87/0xd0
-[ 1413.565069]  do_syscall_64+0x4d/0x80
-[ 1413.565094]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>-----Original Message-----
+>From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Chris
+>Wilson
+>Sent: Friday, July 10, 2020 8:16 AM
+>To: intel-gfx@lists.freedesktop.org
+>Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>Subject: [Intel-gfx] [PATCH] drm/i915/gt: Be defensive in the face of false CS
+>events
+>
+>If the HW throws a curve ball and reports either en event before it is
+                                                                                         ^^
+s/en/an/
 
-To complicate matters, we have to both avoid the read tearing of *active
-and avoid any write tearing as perform the pending[] -> inflight[]
-promotion of the execlists.
+?
 
-Fixes: b55230e5e800 ("drm/i915: Check for awaits on still currently executing requests")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 15 +++++++++++----
- drivers/gpu/drm/i915/i915_request.c | 17 +++++++++++++++--
- 2 files changed, 26 insertions(+), 6 deletions(-)
+m
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index cd4262cc96e2..20ade9907754 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2060,6 +2060,14 @@ static inline void clear_ports(struct i915_request **ports, int count)
- 	memset_p((void **)ports, NULL, count);
- }
- 
-+static inline void
-+copy_ports(struct i915_request **dst, struct i915_request **src, int count)
-+{
-+	/* A memcpy_p() would be very useful here! */
-+	while (count--)
-+		WRITE_ONCE(*dst++, *src++); /* avoid write tearing */
-+}
-+
- static void execlists_dequeue(struct intel_engine_cs *engine)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
-@@ -2648,10 +2656,9 @@ static void process_csb(struct intel_engine_cs *engine)
- 
- 			/* switch pending to inflight */
- 			GEM_BUG_ON(!assert_pending_valid(execlists, "promote"));
--			memcpy(execlists->inflight,
--			       execlists->pending,
--			       execlists_num_ports(execlists) *
--			       sizeof(*execlists->pending));
-+			copy_ports(execlists->inflight,
-+				   execlists->pending,
-+				   execlists_num_ports(execlists));
- 			smp_wmb(); /* complete the seqlock */
- 			WRITE_ONCE(execlists->active, execlists->inflight);
- 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 72def88561ce..5a05e4d8b13c 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -411,17 +411,30 @@ static bool __request_in_flight(const struct i915_request *signal)
- 	 * As we know that there are always preemption points between
- 	 * requests, we know that only the currently executing request
- 	 * may be still active even though we have cleared the flag.
--	 * However, we can't rely on our tracking of ELSP[0] to known
-+	 * However, we can't rely on our tracking of ELSP[0] to know
- 	 * which request is currently active and so maybe stuck, as
- 	 * the tracking maybe an event behind. Instead assume that
- 	 * if the context is still inflight, then it is still active
- 	 * even if the active flag has been cleared.
-+	 *
-+	 * To further complicate matters, if there a pending promotion, the HW
-+	 * may either perform a context switch to the second inflight execlists,
-+	 * or it may switch to the pending set of execlists. In the case of the
-+	 * latter, it may send the ACK and we process the event copying the
-+	 * pending[] over top of inflight[], _overwriting_ our *active. Since
-+	 * this implies the HW is arbitrating and not struck in *active, we do
-+	 * not worry about complete accuracy, but we do require no read/write
-+	 * tearing of the pointer [the read of the pointer must be valid, even
-+	 * as the array is being overwritten, for which we require the writes
-+	 * to avoid tearing.]
- 	 */
- 	if (!intel_context_inflight(signal->context))
- 		return false;
- 
- 	rcu_read_lock();
--	for (port = __engine_active(signal->engine); (rq = *port); port++) {
-+	for (port = __engine_active(signal->engine);
-+	     (rq = READ_ONCE(*port)); /* may race with promotion of pending[] */
-+	     port++) {
- 		if (rq->context == signal->context) {
- 			inflight = i915_seqno_passed(rq->fence.seqno,
- 						     signal->fence.seqno);
--- 
-2.20.1
-
+>possible, or just a completely impossible event, we have to grin and
+>bear it. The first few events, we will likely not notice as we would be
+>expecting some event, but as soon as we stop expecting an event and yet
+>they still keep coming, then we enter into undefined state territory.
+>In which case, bail out, stop processing the events, and reset the
+>engine and our set of queued requests to recover.
+>
+>The sporadic hangs and warnings will continue to plague CI, but at least
+>system stability should not be compromised.
+>
+>Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2045
+>Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>---
+> drivers/gpu/drm/i915/gt/intel_lrc.c | 8 ++++++--
+> 1 file changed, 6 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>index fbcfeaed6441..c86324d2d2bb 100644
+>--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>@@ -2567,6 +2567,7 @@ static void process_csb(struct intel_engine_cs
+>*engine)
+> 	tail = READ_ONCE(*execlists->csb_write);
+> 	if (unlikely(head == tail))
+> 		return;
+>+	execlists->csb_head = tail;
+>
+> 	/*
+> 	 * Hopefully paired with a wmb() in HW!
+>@@ -2613,6 +2614,9 @@ static void process_csb(struct intel_engine_cs
+>*engine)
+> 		if (promote) {
+> 			struct i915_request * const *old = execlists->active;
+>
+>+			if (GEM_WARN_ON(!*execlists->pending))
+>+				break;
+>+
+> 			ring_set_paused(engine, 0);
+>
+> 			/* Point active to the new ELSP; prevent overwriting
+>*/
+>@@ -2635,7 +2639,8 @@ static void process_csb(struct intel_engine_cs
+>*engine)
+>
+> 			WRITE_ONCE(execlists->pending[0], NULL);
+> 		} else {
+>-			GEM_BUG_ON(!*execlists->active);
+>+			if (GEM_WARN_ON(!*execlists->active))
+>+				break;
+>
+> 			/* port0 completed, advanced to port1 */
+> 			trace_ports(execlists, "completed", execlists->active);
+>@@ -2686,7 +2691,6 @@ static void process_csb(struct intel_engine_cs
+>*engine)
+> 		}
+> 	} while (head != tail);
+>
+>-	execlists->csb_head = head;
+> 	set_timeslice(engine);
+>
+> 	/*
+>--
+>2.20.1
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
