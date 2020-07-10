@@ -1,42 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6EA621B481
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:00:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F4B621B482
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:00:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BCA26EC0D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 589336EC12;
 	Fri, 10 Jul 2020 12:00:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 164A46EC12
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:00:30 +0000 (UTC)
-IronPort-SDR: sjLENzbfNcgqZb3lpHBT1Bz9lLgMmcELcKmix0DmDHfXCiDiO5u8rSgv2ZojT7G2hXOtNcdtIE
- dzk6RyUYFq0A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="209716654"
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="209716654"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 909276EC13
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:00:32 +0000 (UTC)
+IronPort-SDR: dB8Dn9K2RG9/Ln44bgoW6RoD3bbSE6q4oXVJP80cez0gJTgO1H4pAyfOH05zRruHYSwSaj1yDh
+ bKTr6HBKL3nQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="209716660"
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="209716660"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:00:29 -0700
-IronPort-SDR: LtweP0YXDGLJS5WgiVHFt3Ixw+dI3dFBNE/tFjob9QU8E6PY5COei44H72pJhepck6BAtG0SLJ
- orAWAFHds76w==
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458257870"
+ 10 Jul 2020 05:00:32 -0700
+IronPort-SDR: H41/wgkfZQW0p0+D1YN3ssfoOhXDU6p1j6COazD/ok18C5O5G9AfOhy17kPByspo6QZX7FNw69
+ EU+G8O3tvM0w==
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458257891"
 Received: from nmartino-mobl1.ger.corp.intel.com (HELO
  mwahaha-bdw.ger.corp.intel.com) ([10.255.207.224])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:00:27 -0700
+ 10 Jul 2020 05:00:30 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jul 2020 12:57:31 +0100
-Message-Id: <20200710115757.290984-35-matthew.auld@intel.com>
+Date: Fri, 10 Jul 2020 12:57:32 +0100
+Message-Id: <20200710115757.290984-36-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
 References: <20200710115757.290984-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 34/60] drm/i915: introduce kernel blitter_context
+Subject: [Intel-gfx] [RFC 35/60] drm/i915/query: Expose memory regions
+ through the query uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,91 +56,398 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We may be without a context to perform various internal blitter
-operations, for example when performing object migration. Piggybacking
-off the kernel_context is probably a bad idea, since it has other uses.
+From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Returns the available memory region areas supported by the HW.
+
+Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
 Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 30 +++++++++++++++++---
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 +
- 2 files changed, 27 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 12 ++++-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h |  3 ++
+ drivers/gpu/drm/i915/i915_drv.c            |  2 +-
+ drivers/gpu/drm/i915/i915_pci.c            |  2 +-
+ drivers/gpu/drm/i915/i915_query.c          | 62 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_memory_region.c | 32 ++++++-----
+ drivers/gpu/drm/i915/intel_memory_region.h | 38 +++++++------
+ include/uapi/drm/i915_drm.h                | 58 ++++++++++++++++++++
+ 8 files changed, 172 insertions(+), 37 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index dd1a42c4d344..1df94e82550f 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -792,6 +792,7 @@ create_kernel_context(struct intel_engine_cs *engine)
- 	int err;
- 
- 	ce = intel_context_create(engine);
-+
- 	if (IS_ERR(ce))
- 		return ce;
- 
-@@ -845,16 +846,32 @@ static int engine_init_common(struct intel_engine_cs *engine)
- 		return PTR_ERR(ce);
- 
- 	ret = measure_breadcrumb_dw(ce);
--	if (ret < 0)
--		goto err_context;
-+	if (ret < 0) {
-+		intel_context_put(ce);
-+		return ret;
-+	}
- 
- 	engine->emit_fini_breadcrumb_dw = ret;
- 	engine->kernel_context = ce;
- 
-+	/*
-+	 * The blitter context is used to quickly memset or migrate objects
-+	 * in local memory, so it has to always be available.
-+	 */
-+	if (engine->class == COPY_ENGINE_CLASS) {
-+		ce = create_kernel_context(engine);
-+		if (IS_ERR(ce)) {
-+			ret = PTR_ERR(ce);
-+			goto err_kernel_context;
-+		}
-+
-+		engine->blitter_context = ce;
-+	}
-+
- 	return 0;
- 
--err_context:
--	intel_context_put(ce);
-+err_kernel_context:
-+	intel_context_put(engine->kernel_context);
- 	return ret;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index e0f21f12d3ce..6704877fbda8 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -646,11 +646,19 @@ _i915_gem_object_create_stolen(struct intel_memory_region *mem,
+ 	return obj;
  }
  
-@@ -910,6 +927,11 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
- 	if (engine->default_state)
- 		fput(engine->default_state);
++struct intel_memory_region *i915_stolen_region(struct drm_i915_private *i915)
++{
++	if (HAS_LMEM(i915))
++		return i915->mm.regions[INTEL_REGION_STOLEN_LMEM];
++
++	return i915->mm.regions[INTEL_REGION_STOLEN_SMEM];
++}
++
+ struct drm_i915_gem_object *
+ i915_gem_object_create_stolen(struct drm_i915_private *i915,
+ 			      resource_size_t size)
+ {
+-	return i915_gem_object_create_region(i915->mm.regions[INTEL_REGION_STOLEN],
++	return i915_gem_object_create_region(i915_stolen_region(i915),
+ 					     size, I915_BO_ALLOC_CONTIGUOUS);
+ }
  
-+	if (engine->blitter_context) {
-+		intel_context_unpin(engine->blitter_context);
-+		intel_context_put(engine->blitter_context);
+@@ -690,7 +698,7 @@ i915_gem_object_create_stolen_for_preallocated(struct drm_i915_private *i915,
+ 					       resource_size_t stolen_offset,
+ 					       resource_size_t size)
+ {
+-	struct intel_memory_region *mem = i915->mm.regions[INTEL_REGION_STOLEN];
++	struct intel_memory_region *mem = i915_stolen_region(i915);
+ 	struct drm_i915_gem_object *obj;
+ 	struct drm_mm_node *stolen;
+ 	int ret;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+index e15c0adad8af..a19110a1b75a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+@@ -22,6 +22,9 @@ int i915_gem_stolen_insert_node_in_range(struct drm_i915_private *dev_priv,
+ void i915_gem_stolen_remove_node(struct drm_i915_private *dev_priv,
+ 				 struct drm_mm_node *node);
+ struct intel_memory_region *i915_gem_stolen_setup(struct drm_i915_private *i915);
++
++struct intel_memory_region *i915_stolen_region(struct drm_i915_private *i915);
++
+ struct drm_i915_gem_object *
+ i915_gem_object_create_stolen(struct drm_i915_private *dev_priv,
+ 			      resource_size_t size);
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 5473bfe9126c..39826b98fac2 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -963,7 +963,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		if (INTEL_GEN(i915) >= 9 && i915_selftest.live < 0 &&
+ 		    i915->params.fake_lmem_start) {
+ 			mkwrite_device_info(i915)->memory_regions =
+-				REGION_SMEM | REGION_LMEM | REGION_STOLEN;
++				REGION_SMEM | REGION_LMEM | REGION_STOLEN_SMEM;
+ 			mkwrite_device_info(i915)->is_dgfx = true;
+ 			GEM_BUG_ON(!HAS_LMEM(i915));
+ 			GEM_BUG_ON(!IS_DGFX(i915));
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index d5e27202d150..e132fdffa432 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -154,7 +154,7 @@
+ 	.page_sizes = I915_GTT_PAGE_SIZE_4K
+ 
+ #define GEN_DEFAULT_REGIONS \
+-	.memory_regions = REGION_SMEM | REGION_STOLEN
++	.memory_regions = REGION_SMEM | REGION_STOLEN_SMEM
+ 
+ #define I830_FEATURES \
+ 	GEN(2), \
+diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+index fed337ad7b68..d4ca040c528b 100644
+--- a/drivers/gpu/drm/i915/i915_query.c
++++ b/drivers/gpu/drm/i915/i915_query.c
+@@ -419,11 +419,73 @@ static int query_perf_config(struct drm_i915_private *i915,
+ 	}
+ }
+ 
++static int query_memregion_info(struct drm_i915_private *dev_priv,
++				struct drm_i915_query_item *query_item)
++{
++	struct drm_i915_query_memory_regions __user *query_ptr =
++		u64_to_user_ptr(query_item->data_ptr);
++	struct drm_i915_memory_region_info __user *info_ptr =
++		&query_ptr->regions[0];
++	struct drm_i915_memory_region_info info = { };
++	struct drm_i915_query_memory_regions query;
++	u32 total_length;
++	int ret, i;
++
++	if (query_item->flags != 0)
++		return -EINVAL;
++
++	total_length = sizeof(query);
++	for (i = 0; i < ARRAY_SIZE(dev_priv->mm.regions); ++i) {
++		struct intel_memory_region *region = dev_priv->mm.regions[i];
++
++		if (!region)
++			continue;
++
++		total_length += sizeof(info);
 +	}
 +
- 	if (engine->kernel_context) {
- 		intel_context_unpin(engine->kernel_context);
- 		intel_context_put(engine->kernel_context);
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 490af81bd6f3..3b2d9ed7670f 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -342,6 +342,7 @@ struct intel_engine_cs {
- 	struct llist_head barrier_tasks;
++	ret = copy_query_item(&query, sizeof(query), total_length, query_item);
++	if (ret != 0)
++		return ret;
++
++	if (query.num_regions)
++		return -EINVAL;
++
++	for (i = 0; i < ARRAY_SIZE(query.rsvd); ++i) {
++		if (query.rsvd[i])
++			return  -EINVAL;
++	}
++
++	for (i = 0; i < ARRAY_SIZE(dev_priv->mm.regions); ++i) {
++		struct intel_memory_region *region = dev_priv->mm.regions[i];
++
++		if (!region)
++			continue;
++
++		info.region.memory_class = region->type;
++		info.region.memory_instance = region->instance;
++		info.probed_size = region->total;
++		info.unallocated_size = region->avail;
++
++		if (__copy_to_user(info_ptr, &info, sizeof(info)))
++			return -EFAULT;
++
++		query.num_regions++;
++		info_ptr++;
++	}
++
++	if (__copy_to_user(query_ptr, &query, sizeof(query)))
++		return -EFAULT;
++
++	return total_length;
++}
++
+ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+ 					struct drm_i915_query_item *query_item) = {
+ 	query_topology_info,
+ 	query_engine_info,
+ 	query_perf_config,
++	query_memregion_info,
+ };
  
- 	struct intel_context *kernel_context; /* pinned */
-+	struct intel_context *blitter_context; /* pinned; exists for BCS only */
+ int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
+index 2943c7778d5e..b9eb1a42dd3a 100644
+--- a/drivers/gpu/drm/i915/intel_memory_region.c
++++ b/drivers/gpu/drm/i915/intel_memory_region.c
+@@ -6,14 +6,19 @@
+ #include "intel_memory_region.h"
+ #include "i915_drv.h"
  
- 	intel_engine_mask_t saturated; /* submitting semaphores too late? */
+-/* XXX: Hysterical raisins. BIT(inst) needs to just be (inst) at some point. */
+-#define REGION_MAP(type, inst) \
+-	BIT((type) + INTEL_MEMORY_TYPE_SHIFT) | BIT(inst)
+-
+-const u32 intel_region_map[] = {
+-	[INTEL_REGION_SMEM] = REGION_MAP(INTEL_MEMORY_SYSTEM, 0),
+-	[INTEL_REGION_LMEM] = REGION_MAP(INTEL_MEMORY_LOCAL, 0),
+-	[INTEL_REGION_STOLEN] = REGION_MAP(INTEL_MEMORY_STOLEN, 0),
++const struct intel_memory_region_info intel_region_map[] = {
++       [INTEL_REGION_SMEM] = {
++               .class = INTEL_MEMORY_SYSTEM,
++               .instance = 0,
++       },
++       [INTEL_REGION_LMEM] = {
++               .class = INTEL_MEMORY_LOCAL,
++               .instance = 0,
++       },
++       [INTEL_REGION_STOLEN_SMEM] = {
++               .class = INTEL_MEMORY_STOLEN_SYSTEM,
++               .instance = 0,
++       },
+ };
  
+ struct intel_memory_region *
+@@ -257,17 +262,18 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
+ 
+ 	for (i = 0; i < ARRAY_SIZE(i915->mm.regions); i++) {
+ 		struct intel_memory_region *mem = ERR_PTR(-ENODEV);
+-		u32 type;
++		u16 type, instance;
+ 
+ 		if (!HAS_REGION(i915, BIT(i)))
+ 			continue;
+ 
+-		type = MEMORY_TYPE_FROM_REGION(intel_region_map[i]);
++		type = intel_region_map[i].class;
++		instance = intel_region_map[i].instance;
+ 		switch (type) {
+ 		case INTEL_MEMORY_SYSTEM:
+ 			mem = i915_gem_shmem_setup(i915);
+ 			break;
+-		case INTEL_MEMORY_STOLEN:
++		case INTEL_MEMORY_STOLEN_SYSTEM:
+ 			mem = i915_gem_stolen_setup(i915);
+ 			break;
+ 		case INTEL_MEMORY_LOCAL:
+@@ -283,9 +289,9 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
+ 			goto out_cleanup;
+ 		}
+ 
+-		mem->id = intel_region_map[i];
++		mem->id = i;
+ 		mem->type = type;
+-		mem->instance = MEMORY_INSTANCE_FROM_REGION(intel_region_map[i]);
++		mem->instance = instance;
+ 
+ 		i915->mm.regions[i] = mem;
+ 	}
+diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
+index 232490d89a83..c047cf7c5e7c 100644
+--- a/drivers/gpu/drm/i915/intel_memory_region.h
++++ b/drivers/gpu/drm/i915/intel_memory_region.h
+@@ -11,6 +11,7 @@
+ #include <linux/mutex.h>
+ #include <linux/io-mapping.h>
+ #include <drm/drm_mm.h>
++#include <drm/i915_drm.h>
+ 
+ #include "i915_buddy.h"
+ 
+@@ -19,30 +20,25 @@ struct drm_i915_gem_object;
+ struct intel_memory_region;
+ struct sg_table;
+ 
+-/**
+- *  Base memory type
+- */
+ enum intel_memory_type {
+-	INTEL_MEMORY_SYSTEM = 0,
+-	INTEL_MEMORY_LOCAL,
+-	INTEL_MEMORY_STOLEN,
++	INTEL_MEMORY_SYSTEM = I915_MEMORY_CLASS_SYSTEM,
++	INTEL_MEMORY_LOCAL = I915_MEMORY_CLASS_DEVICE,
++	INTEL_MEMORY_STOLEN_SYSTEM = I915_MEMORY_CLASS_STOLEN_SYSTEM,
++	INTEL_MEMORY_STOLEN_LOCAL = I915_MEMORY_CLASS_STOLEN_DEVICE,
+ };
+ 
+ enum intel_region_id {
+ 	INTEL_REGION_SMEM = 0,
+ 	INTEL_REGION_LMEM,
+-	INTEL_REGION_STOLEN,
++	INTEL_REGION_STOLEN_SMEM,
++	INTEL_REGION_STOLEN_LMEM,
+ 	INTEL_REGION_UNKNOWN, /* Should be last */
+ };
+ 
+ #define REGION_SMEM     BIT(INTEL_REGION_SMEM)
+ #define REGION_LMEM     BIT(INTEL_REGION_LMEM)
+-#define REGION_STOLEN   BIT(INTEL_REGION_STOLEN)
+-
+-#define INTEL_MEMORY_TYPE_SHIFT 16
+-
+-#define MEMORY_TYPE_FROM_REGION(r) (ilog2((r) >> INTEL_MEMORY_TYPE_SHIFT))
+-#define MEMORY_INSTANCE_FROM_REGION(r) (ilog2((r) & 0xffff))
++#define REGION_STOLEN_SMEM   BIT(INTEL_REGION_STOLEN_SMEM)
++#define REGION_STOLEN_LMEM   BIT(INTEL_REGION_STOLEN_LMEM)
+ 
+ #define I915_ALLOC_MIN_PAGE_SIZE  BIT(0)
+ #define I915_ALLOC_CONTIGUOUS     BIT(1)
+@@ -51,10 +47,12 @@ enum intel_region_id {
+ 	for (id = 0; id < ARRAY_SIZE((i915)->mm.regions); id++) \
+ 		for_each_if((mr) = (i915)->mm.regions[id])
+ 
+-/**
+- * Memory regions encoded as type | instance
+- */
+-extern const u32 intel_region_map[];
++struct intel_memory_region_info {
++       u16 class;
++       u16 instance;
++};
++
++extern const struct intel_memory_region_info intel_region_map[];
+ 
+ struct intel_memory_region_ops {
+ 	unsigned int flags;
+@@ -89,9 +87,9 @@ struct intel_memory_region {
+ 	resource_size_t total;
+ 	resource_size_t avail;
+ 
+-	unsigned int type;
+-	unsigned int instance;
+-	unsigned int id;
++	u16 type;
++	u16 instance;
++	enum intel_region_id id;
+ 	char name[8];
+ 
+ 	dma_addr_t remap_addr;
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 14b67cd6b54b..46baedf71cb1 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -2122,6 +2122,7 @@ struct drm_i915_query_item {
+ #define DRM_I915_QUERY_TOPOLOGY_INFO    1
+ #define DRM_I915_QUERY_ENGINE_INFO	2
+ #define DRM_I915_QUERY_PERF_CONFIG      3
++#define DRM_I915_QUERY_MEMORY_REGIONS   4
+ /* Must be kept compact -- no holes and well documented */
+ 
+ 	/*
+@@ -2322,6 +2323,63 @@ struct drm_i915_query_perf_config {
+ 	__u8 data[];
+ };
+ 
++enum drm_i915_gem_memory_class {
++	I915_MEMORY_CLASS_SYSTEM = 0,
++	I915_MEMORY_CLASS_DEVICE,
++	I915_MEMORY_CLASS_STOLEN_SYSTEM,
++	I915_MEMORY_CLASS_STOLEN_DEVICE,
++};
++
++struct drm_i915_gem_memory_class_instance {
++	__u16 memory_class; /* see enum drm_i915_gem_memory_class */
++	__u16 memory_instance;
++};
++
++/**
++ * struct drm_i915_memory_region_info
++ *
++ * Describes one region as known to the driver.
++ */
++struct drm_i915_memory_region_info {
++	/** class:instance pair encoding */
++	struct drm_i915_gem_memory_class_instance region;
++
++	/** MBZ */
++	__u32 rsvd0;
++
++	/** MBZ */
++	__u64 caps;
++
++	/** MBZ */
++	__u64 flags;
++
++	/** Memory probed by the driver (-1 = unknown) */
++	__u64 probed_size;
++
++	/** Estimate of memory remaining (-1 = unknown) */
++	__u64 unallocated_size;
++
++	/** MBZ */
++	__u64 rsvd1[8];
++};
++
++/**
++ * struct drm_i915_query_memory_regions
++ *
++ * Region info query enumerates all regions known to the driver by filling in
++ * an array of struct drm_i915_memory_region_info structures.
++ */
++struct drm_i915_query_memory_regions {
++	/** Number of supported regions */
++	__u32 num_regions;
++
++	/** MBZ */
++	__u32 rsvd[3];
++
++	/* Info about each supported region */
++	struct drm_i915_memory_region_info regions[];
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.26.2
 
