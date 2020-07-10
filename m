@@ -2,41 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A185221B4A1
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:02:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B47321B4A2
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:02:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDDDB6EC27;
-	Fri, 10 Jul 2020 12:02:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3F56EC2D;
+	Fri, 10 Jul 2020 12:02:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 815E86EC27
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:02:02 +0000 (UTC)
-IronPort-SDR: ngLU0DcG332Hsmm9XXGnqpP6a2hc7yiwKzg7A0nAAPLigCPyqFnrmkp42QFBKv3K8b81frDsJ/
- 7+nJUndQl+ng==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="146255880"
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="146255880"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 621996EC2F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:02:04 +0000 (UTC)
+IronPort-SDR: aTeM4ymeEIHSGMXxqbJHG0i2Z1GR3EpJTmEc1Vgy/BT0aodMn7jqYNbOFJnRu7Gq9u+YxXz7do
+ n4dLf86lCy/A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="145681111"
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="145681111"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:02:02 -0700
-IronPort-SDR: YoESPkbbvh3x5/zPrtEUCRsrmFnL1CkK75na6PUv3c2kFIZqa6uHwLy6QPqCPJ7q2DvKgfyNxz
- sp96rUySRNig==
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458258689"
-Received: from nmartino-mobl1.ger.corp.intel.com (HELO
- mwahaha-bdw.ger.corp.intel.com) ([10.255.207.224])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:01:59 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jul 2020 12:57:57 +0100
-Message-Id: <20200710115757.290984-61-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
-References: <20200710115757.290984-1-matthew.auld@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2020 05:02:03 -0700
+IronPort-SDR: 8MvpbVR/4bSuNs79/YbRuP4T25SaKl66F7GVROmfl0kxdronOfxxe2VHvM1s4MTAWJSRQREx7s
+ f28QSH1ovMgQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="315324337"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga008.jf.intel.com with SMTP; 10 Jul 2020 05:02:01 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 10 Jul 2020 15:02:00 +0300
+Date: Fri, 10 Jul 2020 15:02:00 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200710120200.GG6112@intel.com>
+References: <20200709145845.18118-1-ville.syrjala@linux.intel.com>
+ <ac6ca9134c3e22fe045743f1c7a74deff6b2c2ac.camel@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 60/60] drm/i915/lmem: allocate HWSP in lmem
+Content-Disposition: inline
+In-Reply-To: <ac6ca9134c3e22fe045743f1c7a74deff6b2c2ac.camel@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: WARN if max vswing/pre-emphasis
+ violates the DP spec
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,108 +54,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michel Thierry <michel.thierry@intel.com>,
- Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Michel Thierry <michel.thierry@intel.com>
+On Thu, Jul 09, 2020 at 08:14:05PM +0000, Souza, Jose wrote:
+> On Thu, 2020-07-09 at 17:58 +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
-Signed-off-by: Michel Thierry <michel.thierry@intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_pages.c | 14 ++++++++++++--
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 10 +++++++++-
- drivers/gpu/drm/i915/gt/intel_timeline.c  |  8 +++++++-
- 3 files changed, 28 insertions(+), 4 deletions(-)
+> > According to the DP spec a DPTX must support vswing/pre-emphasis
+> > up to and including level 2. Level 3 is optional (actually DP 1.4a
+> > seems to make even level 3 mandatory for HBR2/3, while leaving it
+> > optional for RBR/HBR1).
+> > =
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 7050519c87a4..bac33310594c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -251,8 +251,18 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
- 	struct vm_struct *area;
- 	pgprot_t pgprot;
- 
--	if (!i915_gem_object_has_struct_page(obj) && type != I915_MAP_WC)
--		return NULL;
-+	/*
-+	 * XXX: we need to check all the places that try to kmap LMEM,
-+	 * and ensure that they only do so with WC(if we are certain
-+	 * that such an object should reside there). After that we can
-+	 * then re-add the following:
-+	 *
-+	 * if (!i915_gem_object_has_struct_page(obj) && type != I915_MAP_WC)
-+	 *	return NULL;
-+	 */
-+
-+	 if (!i915_gem_object_has_struct_page(obj) && type != I915_MAP_WC)
-+		 type = I915_MAP_WC;
- 
- 	/* A single page can always be kmapped */
- 	if (n_pte == 1 && type == I915_MAP_WB)
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 1df94e82550f..1eb74571d142 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -25,6 +25,7 @@
- #include <drm/drm_print.h>
- 
- #include "gem/i915_gem_context.h"
-+#include "gem/i915_gem_lmem.h"
- 
- #include "i915_drv.h"
- 
-@@ -651,7 +652,14 @@ static int init_status_page(struct intel_engine_cs *engine)
- 	 * in GFP_DMA32 for i965, and no earlier physical address users had
- 	 * access to more than 4G.
- 	 */
--	obj = i915_gem_object_create_internal(engine->i915, PAGE_SIZE);
-+	if (HAS_LMEM(engine->i915)) {
-+		obj = i915_gem_object_create_lmem(engine->i915,
-+						  PAGE_SIZE,
-+						  I915_BO_ALLOC_CONTIGUOUS |
-+						  I915_BO_ALLOC_VOLATILE);
-+	} else {
-+		obj = i915_gem_object_create_internal(engine->i915, PAGE_SIZE);
-+	}
- 	if (IS_ERR(obj)) {
- 		drm_err(&engine->i915->drm,
- 			"Failed to allocate status page\n");
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-index 4546284fede1..45e96ecba86a 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-@@ -6,6 +6,7 @@
- 
- #include "i915_drv.h"
- 
-+#include "gem/i915_gem_lmem.h"
- #include "i915_active.h"
- #include "i915_syncmap.h"
- #include "intel_gt.h"
-@@ -32,7 +33,12 @@ static struct i915_vma *__hwsp_alloc(struct intel_gt *gt)
- 	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
- 
--	obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
-+	if (HAS_LMEM(i915))
-+		obj = i915_gem_object_create_lmem(i915, PAGE_SIZE,
-+						  I915_BO_ALLOC_CONTIGUOUS |
-+						  I915_BO_ALLOC_VOLATILE);
-+	else
-+		obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
- 	if (IS_ERR(obj))
- 		return ERR_CAST(obj);
- 
--- 
-2.26.2
+> > WARN if out encoders' .voltage_max()/.preemph_max() return
+> > an illegal value.
+> > =
 
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/dr=
+ivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > index 2493142a70e9..a23ed7290843 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > @@ -52,6 +52,7 @@ static u8 dp_voltage_max(u8 preemph)
+> >  void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+> >  			       const u8 link_status[DP_LINK_STATUS_SIZE])
+> >  {
+> > +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> >  	u8 v =3D 0;
+> >  	u8 p =3D 0;
+> >  	int lane;
+> > @@ -64,12 +65,20 @@ void intel_dp_get_adjust_train(struct intel_dp *int=
+el_dp,
+> >  	}
+> >  =
+
+> >  	preemph_max =3D intel_dp->preemph_max(intel_dp);
+> > +	drm_WARN_ON_ONCE(&i915->drm,
+> > +			 preemph_max !=3D DP_TRAIN_PRE_EMPH_LEVEL_2 &&
+> > +			 preemph_max !=3D DP_TRAIN_PRE_EMPH_LEVEL_3);
+> =
+
+> Okay matches but I guess the preemph_max function should receive as param=
+eter the voltage level to it return the max preemph of that voltage level,
+> no?
+
+That was the old way which didn't match the spec. With
+the new way those just return the overall maximum that
+we support. And the dp_voltage_max() call below fixes up
+any out of spec requests.
+
+> =
+
+> > +
+> >  	if (p >=3D preemph_max)
+> >  		p =3D preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
+> >  =
+
+> >  	v =3D min(v, dp_voltage_max(p));
+> >  =
+
+> >  	voltage_max =3D intel_dp->voltage_max(intel_dp);
+> > +	drm_WARN_ON_ONCE(&i915->drm,
+> > +			 voltage_max !=3D DP_TRAIN_VOLTAGE_SWING_LEVEL_2 &&
+> > +			 voltage_max !=3D DP_TRAIN_VOLTAGE_SWING_LEVEL_3);
+> > +
+> >  	if (v >=3D voltage_max)
+> >  		v =3D voltage_max | DP_TRAIN_MAX_SWING_REACHED;
+> >  =
+
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
