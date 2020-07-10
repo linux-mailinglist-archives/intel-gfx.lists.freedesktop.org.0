@@ -1,31 +1,93 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5012D21B57A
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:52:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 398CE21B57E
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:55:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C96EC6EC42;
-	Fri, 10 Jul 2020 12:52:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 116306EA94;
+	Fri, 10 Jul 2020 12:55:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 62F4E6EC45;
- Fri, 10 Jul 2020 12:52:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 606EFA00E6;
- Fri, 10 Jul 2020 12:52:46 +0000 (UTC)
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com
+ (mail-am6eur05on2053.outbound.protection.outlook.com [40.107.22.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 652D06EA94;
+ Fri, 10 Jul 2020 12:55:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lIJcsai6v7B9AdjTiwsgjm/Ek2c9OJkfqkhF4nWPE1O82Hur7xdhRoRAUqd0h378zLi07A5CgqKpk1FsWOn4SDirFiJabxy8qf6a3eX3BbFaojdRfCUA54+nFsmAQlmgybuAkZMdGnqYfZrXLedB3hUNQDGmKu4zMPexY9SSwjWsOYk0xHPIpuF4F2utA2jSRGAygVptDKLkBxJZ8K9di0rTd9JnDyS0RkIbEcnixg2uSRpviRCgQJpiPQ7cgGoorMWTn7CCbixtiMXZJmq9fTmFxkVXnLNFz1SdXq+RQqDHdNjJlCIT3QVyNvuCZPaK0veUx1VXsfh9CNB7qmNh7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3Ch8zA0yuTfSbvl+1lBIGR6rCDTXaFa+NX74MClc074=;
+ b=RDNuo5GIC94HZMUbXLnPBqCibqssiDx7c08VBuuETraBwLcjTf/5q0xLVf3GABuS4jVTFWBo6aX5h9k0GeDDN/mghGiEyNr0KUEJ3uF1SIqDiQ8BRBLYVisLP2LTlRQN8n6TtLr8mz5/lXWjlHei3VDTEv4IhMiG2BAAcY8UyY5qFfQMgXoZhhvUa7BddgWWKW+2/ZvrpwyeFT4hoE7eqWeS0NkvrVvbpd5G7j9Iv4AqjLEvVu6WetIWxucMqDkXa1uOtLburzxF7ZgO5UIoi8VF9AzWrczLkU8LUEbq6kI6HDBT+yLd7VnRxe+JSY9CnLsfbjWHWxVRGZdq7Ob2jA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mellanox.com; dmarc=pass action=none header.from=mellanox.com;
+ dkim=pass header.d=mellanox.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Mellanox.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3Ch8zA0yuTfSbvl+1lBIGR6rCDTXaFa+NX74MClc074=;
+ b=APHiDp0UgPBmf7wwG7m5YpnyMcZ56meTx1jaB4UnwQM4avdhuCYzPsU11oBx542ucWzy18ou4GDt2SPnJe6x+Br3Jf+LxGex4Sz87QGrgETEwW46L1cZt6YEWNrNN3AshLLnSvfkiKG2PR0eh0rHcOaPtZRGmdGW9yMq5n0JVrQ=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=mellanox.com;
+Received: from VI1PR05MB4141.eurprd05.prod.outlook.com (2603:10a6:803:44::15)
+ by VI1PR05MB3229.eurprd05.prod.outlook.com (2603:10a6:802:23::26)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.21; Fri, 10 Jul
+ 2020 12:54:56 +0000
+Received: from VI1PR05MB4141.eurprd05.prod.outlook.com
+ ([fe80::848b:fcd0:efe3:189e]) by VI1PR05MB4141.eurprd05.prod.outlook.com
+ ([fe80::848b:fcd0:efe3:189e%7]) with mapi id 15.20.3174.022; Fri, 10 Jul 2020
+ 12:54:56 +0000
+Date: Fri, 10 Jul 2020 09:54:53 -0300
+From: Jason Gunthorpe <jgg@mellanox.com>
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Message-ID: <20200710125453.GC23821@mellanox.com>
+References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
+ <20200707201229.472834-3-daniel.vetter@ffwll.ch>
+ <20200709080911.GP3278063@phenom.ffwll.local>
+ <20200710124357.GB23821@mellanox.com>
+ <5c163d74-4a28-1d74-be86-099b4729a2e0@amd.com>
+Content-Disposition: inline
+In-Reply-To: <5c163d74-4a28-1d74-be86-099b4729a2e0@amd.com>
+X-ClientProxiedBy: BL0PR02CA0133.namprd02.prod.outlook.com
+ (2603:10b6:208:35::38) To VI1PR05MB4141.eurprd05.prod.outlook.com
+ (2603:10a6:803:44::15)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 10 Jul 2020 12:52:46 -0000
-Message-ID: <159438556639.20500.14742222128330577970@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200710115757.290984-1-matthew.auld@intel.com>
-In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?DG1_LMEM_enabling?=
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from mlx.ziepe.ca (156.34.48.30) by
+ BL0PR02CA0133.namprd02.prod.outlook.com (2603:10b6:208:35::38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3174.22 via Frontend Transport; Fri, 10 Jul 2020 12:54:56 +0000
+Received: from jgg by mlx with local (Exim 4.93)	(envelope-from
+ <jgg@mellanox.com>)	id 1jtsYH-0087rq-HA; Fri, 10 Jul 2020 09:54:53 -0300
+X-Originating-IP: [156.34.48.30]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: c6238e3c-1b9d-4d98-f86c-08d824d0725f
+X-MS-TrafficTypeDiagnostic: VI1PR05MB3229:
+X-Microsoft-Antispam-PRVS: <VI1PR05MB32293F12B27A0CA97A86C3C8CF650@VI1PR05MB3229.eurprd05.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 006ZVbwkYBD5Gp3eq7KDNFnNkLZWr56nPCUN0JWxTxRRCcS28614UpATD6v85cjrkg6aeKfSYUnAXfvHUdT9blGRuDQ/eFaE3SCqPS+8RG7N8Yt1TCoZYg1+Qz6zL2bS2cF263YtYxWV1gxOe8a6UxR+FhudkSjmczoB2ib7E3xoSFR95Rj/SVkjUokpR6GpXFn1xHUa4rV0Z5+neiW0GprFx8TwJDlf75rjXNp7jNKhMESd92XbP2OdLL+1OhWw9uKk6jmE/PMHs/mWyDR4/g/GX/XNQrtOT47ACACHll0bXKok3Bq1Rl9uMQbttQvq
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR05MB4141.eurprd05.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(396003)(136003)(376002)(346002)(39860400002)(366004)(316002)(2616005)(36756003)(66574015)(9746002)(9786002)(4326008)(86362001)(8936002)(8676002)(66556008)(2906002)(83380400001)(33656002)(66476007)(26005)(186003)(5660300002)(7416002)(426003)(54906003)(1076003)(66946007)(6916009)(478600001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: x/VQeRd+7Cp0juXJJrqziJsMY/7/JYcPyIGcbF19z8FfXhEwQz3JnK9hfLetuPwARoo7VcnXvhF9Em1ckBci4Bne8+xpSSNtlUGwOhaUBMZj466AmLLbyw0kfgaple6lGhjcwbHt+cIRXYh475GaTyG17Iw1z0H729a0D+yflMJZUPLy+iVyJl9KQbBjRucLs2gK9kK6mLc9Oqd777LDIXqUyKAQ0ROBPXxs4TjErnQYRQZ4QoS0limmwj80JQnyrmDPxqJWo3y/ToRHwB4ldnRIBvK8Lxtcs6kKxyBXR2EjRnmd3+CcH9qR1Y+hm1ktOyS3dUeybhLKMqpgdV8hlAPcOhKJWAek6oo3nHOeHJcmMhfkpmyeGH1CCVx/9gWj0eS7TCeC/fwM50OQMKFJKoQ1kOrv2BnRWUcVPui3Ben3hKeWfTv++TDPCZkp3hUVlvp86DwYkpgr8w9gJnpx8Wn49XXtRuRT9Vv0Oy1ymqw=
+X-OriginatorOrg: Mellanox.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6238e3c-1b9d-4d98-f86c-08d824d0725f
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR05MB4141.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 12:54:56.5004 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: a652971c-7d2e-4d9b-a6a4-d149256f461b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mK3J3M1s4NF/OY07BRyHQMYi1GoYqPubjJpYwdDJMlykRrCyVk+DwafBpSfZssYfpNMyMfRb7zk+fV0xvoz8cQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB3229
+Subject: Re: [Intel-gfx] [PATCH 02/25] dma-fence: prime lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,95 +100,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
+ linux-media@vger.kernel.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: DG1 LMEM enabling
-URL   : https://patchwork.freedesktop.org/series/79339/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1223:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1226:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1229:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/display/intel_display.c:1232:22: error: Expected constant expression in case statement
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2271:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2272:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2273:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2275:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2276:17: error: bad integer constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_region.c:113:34:    expected unsigned long long [usertype] *s
-+drivers/gpu/drm/i915/gem/i915_gem_region.c:113:34:    got void [noderef] __iomem *[assigned] vaddr
-+drivers/gpu/drm/i915/gem/i915_gem_region.c:113:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_gtt.c:298:33:    expected void [noderef] __iomem *vaddr
-+drivers/gpu/drm/i915/gt/intel_gtt.c:298:33:    got void *vaddr
-+drivers/gpu/drm/i915/gt/intel_gtt.c:298:33: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_gtt.c:354:34:    expected void *
-+drivers/gpu/drm/i915/gt/intel_gtt.c:354:34:    got void [noderef] __iomem *
-+drivers/gpu/drm/i915/gt/intel_gtt.c:354:34: warning: incorrect type in return expression (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2787:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2787:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:616:35:    expected void const *from
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:616:35:    got void [noderef] __iomem *
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:616:35: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/selftests/intel_memory_region.c:539:23:    expected void [noderef] __iomem *vaddr
-+drivers/gpu/drm/i915/selftests/intel_memory_region.c:539:23:    got void *
-+drivers/gpu/drm/i915/selftests/intel_memory_region.c:539:23: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/selftests/intel_memory_region.c:548:40:    expected unsigned int [usertype] *s
-+drivers/gpu/drm/i915/selftests/intel_memory_region.c:548:40:    got void [noderef] __iomem *
-+drivers/gpu/drm/i915/selftests/intel_memory_region.c:548:40: warning: incorrect type in argument 1 (different address spaces)
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCBKdWwgMTAsIDIwMjAgYXQgMDI6NDg6MTZQTSArMDIwMCwgQ2hyaXN0aWFuIEvDtm5p
+ZyB3cm90ZToKPiBBbSAxMC4wNy4yMCB1bSAxNDo0MyBzY2hyaWViIEphc29uIEd1bnRob3JwZToK
+PiA+IE9uIFRodSwgSnVsIDA5LCAyMDIwIGF0IDEwOjA5OjExQU0gKzAyMDAsIERhbmllbCBWZXR0
+ZXIgd3JvdGU6Cj4gPiA+IEhpIEphc29uLAo+ID4gPiAKPiA+ID4gQmVsb3cgdGhlIHBhcmFncmFw
+aCBJJ3ZlIGFkZGVkIGFmdGVyIG91ciBkaXNjdXNzaW9ucyBhcm91bmQgZG1hLWZlbmNlcwo+ID4g
+PiBvdXRzaWRlIG9mIGRyaXZlcnMvZ3B1LiBHb29kIGVub3VnaCBmb3IgYW4gYWNrIG9uIHRoaXMs
+IG9yIHdhbnQgc29tZXRoaW5nCj4gPiA+IGNoYW5nZWQ/Cj4gPiA+IAo+ID4gPiBUaGFua3MsIERh
+bmllbAo+ID4gPiAKPiA+ID4gPiArICogTm90ZSB0aGF0IG9ubHkgR1BVIGRyaXZlcnMgaGF2ZSBh
+IHJlYXNvbmFibGUgZXhjdXNlIGZvciBib3RoIHJlcXVpcmluZwo+ID4gPiA+ICsgKiAmbW11X2lu
+dGVydmFsX25vdGlmaWVyIGFuZCAmc2hyaW5rZXIgY2FsbGJhY2tzIGF0IHRoZSBzYW1lIHRpbWUg
+YXMgaGF2aW5nIHRvCj4gPiA+ID4gKyAqIHRyYWNrIGFzeW5jaHJvbm91cyBjb21wdXRlIHdvcmsg
+dXNpbmcgJmRtYV9mZW5jZS4gTm8gZHJpdmVyIG91dHNpZGUgb2YKPiA+ID4gPiArICogZHJpdmVy
+cy9ncHUgc2hvdWxkIGV2ZXIgY2FsbCBkbWFfZmVuY2Vfd2FpdCgpIGluIHN1Y2ggY29udGV4dHMu
+Cj4gPiBJIHdhcyBob3Bpbmcgd2UnZCBnZXQgdG8gJ25vIGRyaXZlciBvdXRzaWRlIEdQVSBzaG91
+bGQgZXZlbiB1c2UKPiA+IGRtYV9mZW5jZSgpJwo+IAo+IE15IGxhc3Qgc3RhdHVzIHdhcyB0aGF0
+IFY0TCBjb3VsZCBjb21lIHVzZSBkbWFfZmVuY2VzIGFzIHdlbGwuCgpJJ20gc3VyZSBsb3RzIG9m
+IHBsYWNlcyAqY291bGQqIHVzZSBpdCwgYnV0IEkgdGhpbmsgSSB1bmRlcnN0b29kIHRoYXQKaXQg
+aXMgYSBiYWQgaWRlYSB1bmxlc3MgeW91IGhhdmUgdG8gZml0IGludG8gdGhlIERSTSB1QVBJPwoK
+WW91IGFyZSBiZXR0ZXIgdG8gZG8gc29tZXRoaW5nIGNvbnRhaW5lZCBpbiB0aGUgc2luZ2xlIGRy
+aXZlciB3aGVyZQpsb2NraW5nIGNhbiBiZSBhbmFseXplZC4KCj4gSSdtIG5vdCAxMDAlIHN1cmUs
+IGJ1dCB3b3VsZG4ndCBNTVUgbm90aWZpZXIgKyBkbWFfZmVuY2UgYmUgYSB2YWxpZCB1c2UgY2Fz
+ZQo+IGZvciB0aGluZ3MgbGlrZSBjdXN0b20gRlBHQSBpbnRlcmZhY2VzIGFzIHdlbGw/CgpJIGRv
+bid0IHRoaW5rIHdlIHNob3VsZCBleHBhbmQgdGhlIGxpc3Qgb2YgZHJpdmVycyB0aGF0IHVzZSB0
+aGlzCnRlY2huaXF1ZS4gCgpEcml2ZXJzIHRoYXQgY2FuJ3Qgc3VzcGVuZCBzaG91bGQgcGluIG1l
+bW9yeSwgbm90IHVzZSBibG9ja2VkCm5vdGlmaWVycyB0byBjcmVhdGVkIHBpbm5lZCBtZW1vcnku
+CgpKYXNvbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
