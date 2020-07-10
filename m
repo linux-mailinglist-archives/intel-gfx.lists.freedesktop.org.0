@@ -1,79 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C438D21BC4B
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 19:32:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 729CD21B66F
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 15:31:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21B956ECC2;
-	Fri, 10 Jul 2020 17:32:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44CFB6EC48;
+	Fri, 10 Jul 2020 13:31:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECA4C6EC4B
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 13:34:21 +0000 (UTC)
-Received: from pps.filterd (m0187473.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 06ADW6mL006648; Fri, 10 Jul 2020 09:33:46 -0400
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com with ESMTP id 326bpr3apw-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 10 Jul 2020 09:33:46 -0400
-Received: from m0187473.ppops.net (m0187473.ppops.net [127.0.0.1])
- by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 06ADWPAd007505;
- Fri, 10 Jul 2020 09:33:42 -0400
-Received: from ppma02fra.de.ibm.com (47.49.7a9f.ip4.static.sl-reverse.com
- [159.122.73.71])
- by mx0a-001b2d01.pphosted.com with ESMTP id 326bpr39v3-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 10 Jul 2020 09:33:42 -0400
-Received: from pps.filterd (ppma02fra.de.ibm.com [127.0.0.1])
- by ppma02fra.de.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 06AD4wgt012132;
- Fri, 10 Jul 2020 13:32:42 GMT
-Received: from b06cxnps4074.portsmouth.uk.ibm.com
- (d06relay11.portsmouth.uk.ibm.com [9.149.109.196])
- by ppma02fra.de.ibm.com with ESMTP id 326bcf0ngm-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 10 Jul 2020 13:32:42 +0000
-Received: from d06av23.portsmouth.uk.ibm.com (d06av23.portsmouth.uk.ibm.com
- [9.149.105.59])
- by b06cxnps4074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 06ADVPdD59965518
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 10 Jul 2020 13:31:25 GMT
-Received: from d06av23.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 4E7BAA4051;
- Fri, 10 Jul 2020 13:31:25 +0000 (GMT)
-Received: from d06av23.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id E7A08A404D;
- Fri, 10 Jul 2020 13:31:21 +0000 (GMT)
-Received: from [9.199.38.25] (unknown [9.199.38.25])
- by d06av23.portsmouth.uk.ibm.com (Postfix) with ESMTP;
- Fri, 10 Jul 2020 13:31:21 +0000 (GMT)
-From: Ravi Bangoria <ravi.bangoria@linux.ibm.com>
-To: Alexey Budankov <alexey.budankov@linux.intel.com>
-References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
-Message-ID: <76718dc6-5483-5e2e-85b8-64e70306ee1f@linux.ibm.com>
-Date: Fri, 10 Jul 2020 19:01:21 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AC716EC48
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 13:31:36 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21778033-1500050 
+ for multiple; Fri, 10 Jul 2020 14:31:27 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Jul 2020 14:31:25 +0100
+Message-Id: <20200710133125.30194-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <645e2d22-71eb-ece7-6a9c-c9870c88ba3d@linux.intel.com>
+References: <645e2d22-71eb-ece7-6a9c-c9870c88ba3d@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
-Content-Language: en-US
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
- definitions=2020-07-10_07:2020-07-10,
- 2020-07-10 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0
- lowpriorityscore=0 clxscore=1011 priorityscore=1501 mlxlogscore=999
- malwarescore=0 adultscore=0 bulkscore=0 suspectscore=0 mlxscore=0
- impostorscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2006250000 definitions=main-2007100093
-X-Mailman-Approved-At: Fri, 10 Jul 2020 17:32:50 +0000
-Subject: Re: [Intel-gfx] [PATCH v8 00/12] Introduce CAP_PERFMON to secure
- system performance monitoring and observability
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Be defensive in the face of
+ false CS events
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,172 +39,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-man@vger.kernel.org, Song Liu <songliubraving@fb.com>,
- Andi Kleen <ak@linux.intel.com>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Igor Lubashev <ilubashe@akamai.com>, Alexei Starovoitov <ast@kernel.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, James Morris <jmorris@namei.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Stephane Eranian <eranian@google.com>, Namhyung Kim <namhyung@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, Jiri Olsa <jolsa@redhat.com>,
- Ravi Bangoria <ravi.bangoria@linux.ibm.com>, Serge Hallyn <serge@hallyn.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Alexey,
+If the HW throws a curve ball and reports either en event before it is
+possible, or just a completely impossible event, we have to grin and
+bear it. The first few events, we will likely not notice as we would be
+expecting some event, but as soon as we stop expecting an event and yet
+they still keep coming, then we enter into undefined state territory.
+In which case, bail out, stop processing the events, and reset the
+engine and our set of queued requests to recover.
 
-> Currently access to perf_events, i915_perf and other performance
-> monitoring and observability subsystems of the kernel is open only for
-> a privileged process [1] with CAP_SYS_ADMIN capability enabled in the
-> process effective set [2].
-> 
-> This patch set introduces CAP_PERFMON capability designed to secure
-> system performance monitoring and observability operations so that
-> CAP_PERFMON would assist CAP_SYS_ADMIN capability in its governing role
-> for performance monitoring and observability subsystems of the kernel.
+The sporadic hangs and warnings will continue to plague CI, but at least
+system stability should not be compromised.
 
-I'm seeing an issue with CAP_PERFMON when I try to record data for a
-specific target. I don't know whether this is sort of a regression or
-an expected behavior.
+v2: Commentary and force the reset-on-error.
+v3: Customised user facing message for forced resets from internal errors.
 
-Without setting CAP_PERFMON:
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2045
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com> #v1
+---
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  4 ++
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c       |  3 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c          | 45 +++++++++++++++++---
+ 3 files changed, 45 insertions(+), 7 deletions(-)
 
-   $ getcap ./perf
-   $ ./perf stat -a ls
-     Error:
-     Access to performance monitoring and observability operations is limited.
-   $ ./perf stat ls
-     Performance counter stats for 'ls':
-    
-                  2.06 msec task-clock:u              #    0.418 CPUs utilized
-                     0      context-switches:u        #    0.000 K/sec
-                     0      cpu-migrations:u          #    0.000 K/sec
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 490af81bd6f3..8de92fd7d392 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -177,8 +177,12 @@ struct intel_engine_execlists {
+ 	 * the first error interrupt, record the EIR and schedule the tasklet.
+ 	 * In the tasklet, we process the pending CS events to ensure we have
+ 	 * the guilty request, and then reset the engine.
++	 *
++	 * Low 16b are used by HW, with the upper 16b used as the enabling mask.
++	 * Reserve the upper 16b for tracking internal errors.
+ 	 */
+ 	u32 error_interrupt;
++#define ERROR_CSB BIT(31)
+ 
+ 	/**
+ 	 * @reset_ccid: Active CCID [EXECLISTS_STATUS_HI] at the time of reset
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+index e1964cf40fd6..b05da68e52f4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+@@ -27,7 +27,8 @@ cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
+ 	if (unlikely(iir & GT_CS_MASTER_ERROR_INTERRUPT)) {
+ 		u32 eir;
+ 
+-		eir = ENGINE_READ(engine, RING_EIR);
++		/* Upper 16b are the enabling mask, rsvd for internal errors */
++		eir = ENGINE_READ(engine, RING_EIR) & GENMASK(15, 0);
+ 		ENGINE_TRACE(engine, "CS error: %x\n", eir);
+ 
+ 		/* Disable the error interrupt until after the reset */
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index fbcfeaed6441..cd4262cc96e2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2568,6 +2568,25 @@ static void process_csb(struct intel_engine_cs *engine)
+ 	if (unlikely(head == tail))
+ 		return;
+ 
++	/*
++	 * We will consume all events from HW, or at least pretend to.
++	 *
++	 * The sequence of events from the HW is deterministic, and derived
++	 * from our writes to the ELSP, with a smidgen of variability for
++	 * the arrival of the asynchronous requests wrt to the inflight
++	 * execution. If the HW sends an event that does not correspond with
++	 * the one we are expecting, we have to abandon all hope as we lose
++	 * all tracking of what the engine is actually executing. We will
++	 * only detect we are out of sequence with the HW when we get an
++	 * 'impossible' event because we have already drained our own
++	 * preemption/promotion queue. If this occurs, we know that we likely
++	 * lost track of execution earlier and must unwind and restart, the
++	 * simplest way is by stop processing the event queue and force the
++	 * engine to reset.
++	 */
++	execlists->csb_head = tail;
++	ENGINE_TRACE(engine, "cs-irq head=%d, tail=%d\n", head, tail);
++
+ 	/*
+ 	 * Hopefully paired with a wmb() in HW!
+ 	 *
+@@ -2577,8 +2596,6 @@ static void process_csb(struct intel_engine_cs *engine)
+ 	 * we perform the READ_ONCE(*csb_write).
+ 	 */
+ 	rmb();
+-
+-	ENGINE_TRACE(engine, "cs-irq head=%d, tail=%d\n", head, tail);
+ 	do {
+ 		bool promote;
+ 
+@@ -2613,6 +2630,11 @@ static void process_csb(struct intel_engine_cs *engine)
+ 		if (promote) {
+ 			struct i915_request * const *old = execlists->active;
+ 
++			if (GEM_WARN_ON(!*execlists->pending)) {
++				execlists->error_interrupt |= ERROR_CSB;
++				break;
++			}
++
+ 			ring_set_paused(engine, 0);
+ 
+ 			/* Point active to the new ELSP; prevent overwriting */
+@@ -2635,7 +2657,10 @@ static void process_csb(struct intel_engine_cs *engine)
+ 
+ 			WRITE_ONCE(execlists->pending[0], NULL);
+ 		} else {
+-			GEM_BUG_ON(!*execlists->active);
++			if (GEM_WARN_ON(!*execlists->active)) {
++				execlists->error_interrupt |= ERROR_CSB;
++				break;
++			}
+ 
+ 			/* port0 completed, advanced to port1 */
+ 			trace_ports(execlists, "completed", execlists->active);
+@@ -2686,7 +2711,6 @@ static void process_csb(struct intel_engine_cs *engine)
+ 		}
+ 	} while (head != tail);
+ 
+-	execlists->csb_head = head;
+ 	set_timeslice(engine);
+ 
+ 	/*
+@@ -3117,9 +3141,18 @@ static void execlists_submission_tasklet(unsigned long data)
+ 	process_csb(engine);
+ 
+ 	if (unlikely(READ_ONCE(engine->execlists.error_interrupt))) {
++		const char *msg;
++
++		/* Generate the error message in priority wrt to the user! */
++		if (engine->execlists.error_interrupt & GENMASK(15, 0))
++			msg = "CS error"; /* thrown by a user payload */
++		else if (engine->execlists.error_interrupt & ERROR_CSB)
++			msg = "invalid CSB event";
++		else
++			msg = "internal error";
++
+ 		engine->execlists.error_interrupt = 0;
+-		if (ENGINE_READ(engine, RING_ESR)) /* confirm the error */
+-			execlists_reset(engine, "CS error");
++		execlists_reset(engine, msg);
+ 	}
+ 
+ 	if (!READ_ONCE(engine->execlists.pending[0]) || timeout) {
+-- 
+2.20.1
 
-With CAP_PERFMON:
-
-   $ getcap ./perf
-     ./perf = cap_perfmon+ep
-   $ ./perf stat -a ls
-     Performance counter stats for 'system wide':
-    
-                142.42 msec cpu-clock                 #   25.062 CPUs utilized
-                   182      context-switches          #    0.001 M/sec
-                    48      cpu-migrations            #    0.337 K/sec
-   $ ./perf stat ls
-     Error:
-     Access to performance monitoring and observability operations is limited.
-
-Am I missing something silly?
-
-Analysis:
----------
-A bit more analysis lead me to below kernel code fs/exec.c:
-
-   begin_new_exec()
-   {
-         ...
-         if (bprm->interp_flags & BINPRM_FLAGS_ENFORCE_NONDUMP ||
-             !(uid_eq(current_euid(), current_uid()) &&
-               gid_eq(current_egid(), current_gid())))
-                 set_dumpable(current->mm, suid_dumpable);
-         else
-                 set_dumpable(current->mm, SUID_DUMP_USER);
-
-         ...
-         commit_creds(bprm->cred);
-   }
-
-When I execute './perf stat ls', it's going into else condition and thus sets
-dumpable flag as SUID_DUMP_USER. Then in commit_creds():
-
-   int commit_creds(struct cred *new)
-   {
-         ...
-         /* dumpability changes */
-         if (...
-             !cred_cap_issubset(old, new)) {
-                 if (task->mm)
-                         set_dumpable(task->mm, suid_dumpable);
-   }
-
-!cred_cap_issubset(old, new) fails for perf without any capability and thus
-it doesn't execute set_dumpable(). Whereas that condition passes for perf
-with CAP_PERFMON and thus it overwrites old value (SUID_DUMP_USER) with
-suid_dumpable in mm_flags. On an Ubuntu, suid_dumpable default value is
-SUID_DUMP_ROOT. On Fedora, it's SUID_DUMP_DISABLE. (/proc/sys/fs/suid_dumpable).
-
-Now while opening an event:
-
-   perf_event_open()
-     ptrace_may_access()
-       __ptrace_may_access() {
-                 ...
-                 if (mm &&
-                     ((get_dumpable(mm) != SUID_DUMP_USER) &&
-                      !ptrace_has_cap(cred, mm->user_ns, mode)))
-                     return -EPERM;
-       }
-
-This if condition passes for perf with CAP_PERFMON and thus it returns -EPERM.
-But it fails for perf without CAP_PERFMON and thus it goes ahead and returns
-success. So opening an event fails when perf has CAP_PREFMON and tries to open
-process specific event as normal user.
-
-Workarounds:
-------------
-Based on above analysis, I found couple of workarounds (examples are on
-Ubuntu 18.04.4 powerpc):
-
-Workaround1:
-Setting SUID_DUMP_USER as default (in /proc/sys/fs/suid_dumpable) solves the
-issue.
-
-   # echo 1 > /proc/sys/fs/suid_dumpable
-   $ getcap ./perf
-     ./perf = cap_perfmon+ep
-   $ ./perf stat ls
-     Performance counter stats for 'ls':
-    
-                  1.47 msec task-clock                #    0.806 CPUs utilized
-                     0      context-switches          #    0.000 K/sec
-                     0      cpu-migrations            #    0.000 K/sec
-
-Workaround2:
-Using CAP_SYS_PTRACE along with CAP_PERFMON solves the issue.
-
-   $ cat /proc/sys/fs/suid_dumpable
-     2
-   # setcap "cap_perfmon,cap_sys_ptrace=ep" ./perf
-   $ ./perf stat ls
-     Performance counter stats for 'ls':
-    
-                  1.41 msec task-clock                #    0.826 CPUs utilized
-                     0      context-switches          #    0.000 K/sec
-                     0      cpu-migrations            #    0.000 K/sec
-
-Workaround3:
-Adding CAP_PERFMON to parent of perf (/bin/bash) also solves the issue.
-
-   $ cat /proc/sys/fs/suid_dumpable
-     2
-   # setcap "cap_perfmon=ep" /bin/bash
-   # setcap "cap_perfmon=ep" ./perf
-   $ bash
-   $ ./perf stat ls
-     Performance counter stats for 'ls':
-    
-                  1.47 msec task-clock                #    0.806 CPUs utilized
-                     0      context-switches          #    0.000 K/sec
-                     0      cpu-migrations            #    0.000 K/sec
-
-- Ravi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
