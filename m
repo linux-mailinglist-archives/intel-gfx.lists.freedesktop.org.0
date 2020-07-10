@@ -1,43 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D5B521B48D
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:01:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99EFC21B48F
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2020 14:01:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDEAE6EC1E;
-	Fri, 10 Jul 2020 12:01:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0246D6EBF7;
+	Fri, 10 Jul 2020 12:01:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACCC56EC1E
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:01:03 +0000 (UTC)
-IronPort-SDR: pke/VBIt0szxcOWNnbvLXwxlqjSpZMeLzPEjfGe8fROphVyqAaZu0TWtifV2pp3k9nxCKA//ND
- 2DNWpQ0eYPnQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="209716725"
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="209716725"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B19D26EBF7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 12:01:08 +0000 (UTC)
+IronPort-SDR: APK/3ton07S3N5wnfoekf14Z+6r8kPV8NuLI4xcPuskXX9OEnzHy99C7swMFUMgJB1Fja8lMFR
+ Vq9PMWqxiE8g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9677"; a="209716738"
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="209716738"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:01:03 -0700
-IronPort-SDR: CzTOXFUwJDch0cDdoUQkJDkttMxVB3O5KHxWT5aJXKdsD8R8DIKz332ri8v3uh4Q5S0pyQT9At
- Yxg00ZIBDxhA==
-X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458258140"
+ 10 Jul 2020 05:01:08 -0700
+IronPort-SDR: bFsHOva+JswGhlWcgWTJ1RLIbaMxjgZ1xnh+967rRJ0QenwKNjWGdZ6uHm0j7azHuPvjhWSh2m
+ x/yy3QrJKZ3g==
+X-IronPort-AV: E=Sophos;i="5.75,335,1589266800"; d="scan'208";a="458258192"
 Received: from nmartino-mobl1.ger.corp.intel.com (HELO
  mwahaha-bdw.ger.corp.intel.com) ([10.255.207.224])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2020 05:01:01 -0700
+ 10 Jul 2020 05:01:03 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jul 2020 12:57:43 +0100
-Message-Id: <20200710115757.290984-47-matthew.auld@intel.com>
+Date: Fri, 10 Jul 2020 12:57:44 +0100
+Message-Id: <20200710115757.290984-48-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200710115757.290984-1-matthew.auld@intel.com>
 References: <20200710115757.290984-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 46/60] drm/i915: Provide a way to disable PCIe
- relaxed write ordering
+Subject: [Intel-gfx] [RFC 47/60] drm/i915: setup GPU device lmem region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,68 +49,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
+	Chris P Wilson <chris.p.wilson@intel.com>,
+	Neel Desai <neel.desai@intel.com>, Balestrieri@freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+From: CQ Tang <cq.tang@intel.com>
 
-For performance writes over PCIe may not be strictly ordered by default.
-This provides an option to expose a kernel configuration option to disable
-relaxed ordering and turn on strict ordering instead for debug purposes.
+The lmem region needs to remove the stolen part.
 
-Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+Cc: Chris P Wilson <chris.p.wilson@intel.com>
+Cc: Balestrieri, Francesco <francesco.balestrieri@intel.com>
+Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Cc: Venkata S Dhanalakota <venkata.s.dhanalakota@intel.com>
+Cc: Neel Desai <neel.desai@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Sudeep Dutt <sudeep.dutt@intel.com>
+Signed-off-by: CQ Tang <cq.tang@intel.com>
 ---
- drivers/gpu/drm/i915/Kconfig.debug         | 11 +++++++++++
- drivers/gpu/drm/i915/intel_memory_region.c | 12 ++++++++++++
- 2 files changed, 23 insertions(+)
+ drivers/gpu/drm/i915/i915_reg.h          |  2 ++
+ drivers/gpu/drm/i915/intel_region_lmem.c | 11 +++++++----
+ 2 files changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index 206882e154bc..114240e890aa 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -221,3 +221,14 @@ config DRM_I915_DEBUG_RUNTIME_PM
- 	  driver loading, suspend and resume operations.
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index cebcd702d968..6e67c4ee09c2 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -12038,6 +12038,8 @@ enum skl_power_gate {
+ #define GEN12_LMEM_CFG_ADDR		_MMIO(0xcf58)
+ #define   LMEM_ENABLE			(1 << 31)
  
- 	  If in doubt, say "N"
++#define GEN12_GSMBASE			_MMIO(0x108100)
 +
-+config DRM_I915_PCIE_STRICT_WRITE_ORDERING
-+	bool "Enable PCIe strict ordering "
-+	depends on DRM_I915
-+	default n
-+	help
-+	  Relaxed ordering in writes is enabled by default to improve system
-+	  performance. Strict ordering can be selected instead to assist in
-+	  debugging.
-+
-+	  If in doubt, say "N".
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index eeea520f97ba..d564b596efda 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -280,6 +280,18 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
+ /* gamt regs */
+ #define GEN8_L3_LRA_1_GPGPU _MMIO(0x4dd4)
+ #define   GEN8_L3_LRA_1_GPGPU_DEFAULT_VALUE_BDW  0x67F1427F /* max/min for LRA1/2 */
+diff --git a/drivers/gpu/drm/i915/intel_region_lmem.c b/drivers/gpu/drm/i915/intel_region_lmem.c
+index 95c8d89d1fc9..3a8997fd832d 100644
+--- a/drivers/gpu/drm/i915/intel_region_lmem.c
++++ b/drivers/gpu/drm/i915/intel_region_lmem.c
+@@ -44,20 +44,23 @@ const struct intel_memory_region_ops intel_region_lmem_ops = {
+ static struct intel_memory_region *
+ setup_lmem(struct drm_i915_private *dev_priv)
  {
- 	int err, i;
++	struct intel_uncore *uncore = &dev_priv->uncore;
+ 	struct pci_dev *pdev = dev_priv->drm.pdev;
+ 	struct intel_memory_region *mem;
+ 	resource_size_t io_start;
+-	resource_size_t size;
++	resource_size_t lmem_size;
  
-+	/* All platforms currently have system memory */
-+	GEM_BUG_ON(!HAS_REGION(i915, REGION_SMEM));
+ 	/* Enables Local Memory functionality in GAM */
+ 	I915_WRITE(GEN12_LMEM_CFG_ADDR, I915_READ(GEN12_LMEM_CFG_ADDR) | LMEM_ENABLE);
+ 
++	/* Stolen starts from GSMBASE on DG1 */
++	lmem_size = intel_uncore_read64(uncore, GEN12_GSMBASE);
 +
-+	if (IS_DGFX(i915)) {
-+		if (IS_ENABLED(CONFIG_DRM_I915_PCIE_STRICT_WRITE_ORDERING))
-+			pcie_capability_clear_word(i915->drm.pdev, PCI_EXP_DEVCTL,
-+						   PCI_EXP_DEVCTL_RELAX_EN);
-+		else
-+			pcie_capability_set_word(i915->drm.pdev, PCI_EXP_DEVCTL,
-+						 PCI_EXP_DEVCTL_RELAX_EN);
-+	}
-+
- 	for (i = 0; i < ARRAY_SIZE(i915->mm.regions); i++) {
- 		struct intel_memory_region *mem = ERR_PTR(-ENODEV);
- 		u16 type, instance;
+ 	io_start = pci_resource_start(pdev, 2);
+-	size = pci_resource_len(pdev, 2);
+ 
+ 	mem = intel_memory_region_create(dev_priv,
+ 					 0,
+-					 size,
++					 lmem_size,
+ 					 I915_GTT_PAGE_SIZE_4K,
+ 					 io_start,
+ 					 &intel_region_lmem_ops);
+@@ -66,7 +69,7 @@ setup_lmem(struct drm_i915_private *dev_priv)
+ 		DRM_INFO("Intel graphics LMEM IO start: %llx\n",
+ 			 (u64)mem->io_start);
+ 		DRM_INFO("Intel graphics LMEM size: %llx\n",
+-			 (u64)size);
++			 (u64)lmem_size);
+ 	}
+ 
+ 	return mem;
 -- 
 2.26.2
 
