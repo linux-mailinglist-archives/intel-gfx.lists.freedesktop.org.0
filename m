@@ -1,42 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8000321D657
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 14:53:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 198D421C323
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jul 2020 10:03:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 909506E2ED;
-	Mon, 13 Jul 2020 12:53:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7F546E071;
+	Sat, 11 Jul 2020 08:03:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 333F76E29A
- for <intel-gfx@lists.freedesktop.org>; Sat, 11 Jul 2020 06:32:30 +0000 (UTC)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1ju93i-0005t5-0o; Sat, 11 Jul 2020 08:32:26 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
- (envelope-from <ukl@pengutronix.de>)
- id 1ju93f-0005IS-VH; Sat, 11 Jul 2020 08:32:23 +0200
-Date: Sat, 11 Jul 2020 08:32:23 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20200711063223.czly2ftjraomuxz6@pengutronix.de>
-References: <20200708211432.28612-1-hdegoede@redhat.com>
- <20200708211432.28612-17-hdegoede@redhat.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E580D6E071
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Jul 2020 08:03:40 +0000 (UTC)
+IronPort-SDR: dftjMfcZjJuIMgLcSWQOgM7PaEBpVocBcGt+F2F4FUVE0+dB/7WSDAoBd7ff4kcK1WV7kZDC2G
+ daX4nebxCAOA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9678"; a="148364987"
+X-IronPort-AV: E=Sophos;i="5.75,338,1589266800"; d="scan'208";a="148364987"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2020 01:03:39 -0700
+IronPort-SDR: vL2UUlTSfuHGJ0FVwIy2MMGLiDnEPbd5QWfiZkafe1iZlFCgIIkvTp+uFWzk6z6a1kvwW0vAM7
+ M/8eeNo0mYQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,338,1589266800"; d="scan'208";a="324929590"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 11 Jul 2020 01:03:37 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Sat, 11 Jul 2020 11:03:36 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat, 11 Jul 2020 11:03:36 +0300
+Message-Id: <20200711080336.13423-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200710203408.23039-1-ville.syrjala@linux.intel.com>
+References: <20200710203408.23039-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200708211432.28612-17-hdegoede@redhat.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
-X-Mailman-Approved-At: Mon, 13 Jul 2020 12:53:51 +0000
-Subject: Re: [Intel-gfx] [PATCH v4 16/16] drm/i915: panel: Use atomic PWM
- API for devs with an external PWM controller
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Recalculate FBC w/a stride when
+ needed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,273 +51,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
-Content-Type: multipart/mixed; boundary="===============2104216296=="
+Cc: stable@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============2104216296==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5toxfcg27avm6ah7"
-Content-Disposition: inline
-
-
---5toxfcg27avm6ah7
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jul 08, 2020 at 11:14:32PM +0200, Hans de Goede wrote:
-> Now that the PWM drivers which we use have been converted to the atomic
-> PWM API, we can move the i915 panel code over to using the atomic PWM API.
->=20
-> The removes a long standing FIXME and this removes a flicker where
-> the backlight brightness would jump to 100% when i915 loads even if
-> using the fastset path.
->=20
-> Note that this commit also simplifies pwm_disable_backlight(), by dropping
-> the intel_panel_actually_set_backlight(..., 0) call. This call sets the
-> PWM to 0% duty-cycle. I believe that this call was only present as a
-> workaround for a bug in the pwm-crc.c driver where it failed to clear the
-> PWM_OUTPUT_ENABLE bit. This is fixed by an earlier patch in this series.
->=20
-> After the dropping of this workaround, the usleep call, which seems
-> unnecessary to begin with, has no useful effect anymore, so drop that too.
->=20
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-> ---
-> Changes in v4:
-> - Add a note to the commit message about the dropping of the
->   intel_panel_actually_set_backlight() and usleep() calls from
->   pwm_disable_backlight()
-> - Use the pwm_set/get_relative_duty_cycle() helpers instead of using DIY =
-code
->   for this
-> ---
->  .../drm/i915/display/intel_display_types.h    |  3 +-
->  drivers/gpu/drm/i915/display/intel_panel.c    | 71 +++++++++----------
->  2 files changed, 34 insertions(+), 40 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index de32f9efb120..4bd9981e70a1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -28,6 +28,7 @@
-> =20
->  #include <linux/async.h>
->  #include <linux/i2c.h>
-> +#include <linux/pwm.h>
->  #include <linux/sched/clock.h>
-> =20
->  #include <drm/drm_atomic.h>
-> @@ -223,7 +224,7 @@ struct intel_panel {
->  		bool util_pin_active_low;	/* bxt+ */
->  		u8 controller;		/* bxt+ only */
->  		struct pwm_device *pwm;
-> -		int pwm_period_ns;
-> +		struct pwm_state pwm_state;
-> =20
->  		/* DPCD backlight */
->  		u8 pwmgen_bit_count;
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm=
-/i915/display/intel_panel.c
-> index cb28b9908ca4..3d97267c8238 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.c
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> @@ -592,10 +592,10 @@ static u32 bxt_get_backlight(struct intel_connector=
- *connector)
->  static u32 pwm_get_backlight(struct intel_connector *connector)
->  {
->  	struct intel_panel *panel =3D &connector->panel;
-> -	int duty_ns;
-> +	struct pwm_state state;
-> =20
-> -	duty_ns =3D pwm_get_duty_cycle(panel->backlight.pwm);
-> -	return DIV_ROUND_UP(duty_ns * 100, panel->backlight.pwm_period_ns);
-> +	pwm_get_state(panel->backlight.pwm, &state);
-> +	return pwm_get_relative_duty_cycle(&state, 100);
-
-Here you introduce a slight difference: pwm_get_relative_duty_cycle uses
-round-closest while you replace a round-up. Is this relevant?
-
->  }
-> =20
->  static void lpt_set_backlight(const struct drm_connector_state *conn_sta=
-te, u32 level)
-> @@ -669,10 +669,9 @@ static void bxt_set_backlight(const struct drm_conne=
-ctor_state *conn_state, u32
->  static void pwm_set_backlight(const struct drm_connector_state *conn_sta=
-te, u32 level)
->  {
->  	struct intel_panel *panel =3D &to_intel_connector(conn_state->connector=
-)->panel;
-> -	int duty_ns =3D DIV_ROUND_UP(level * panel->backlight.pwm_period_ns, 10=
-0);
-> =20
-> -	pwm_config(panel->backlight.pwm, duty_ns,
-> -		   panel->backlight.pwm_period_ns);
-> +	pwm_set_relative_duty_cycle(&panel->backlight.pwm_state, level, 100);
-> +	pwm_apply_state(panel->backlight.pwm, &panel->backlight.pwm_state);
-
-Similar here: The function used to use round-up but
-pwm_set_relative_duty_cycle() used round-closest.
-
->  }
-> =20
->  static void
-> @@ -841,10 +840,8 @@ static void pwm_disable_backlight(const struct drm_c=
-onnector_state *old_conn_sta
->  	struct intel_connector *connector =3D to_intel_connector(old_conn_state=
-->connector);
->  	struct intel_panel *panel =3D &connector->panel;
-> =20
-> -	/* Disable the backlight */
-> -	intel_panel_actually_set_backlight(old_conn_state, 0);
-> -	usleep_range(2000, 3000);
-> -	pwm_disable(panel->backlight.pwm);
-> +	panel->backlight.pwm_state.enabled =3D false;
-> +	pwm_apply_state(panel->backlight.pwm, &panel->backlight.pwm_state);
->  }
-> =20
->  void intel_panel_disable_backlight(const struct drm_connector_state *old=
-_conn_state)
-> @@ -1176,9 +1173,12 @@ static void pwm_enable_backlight(const struct inte=
-l_crtc_state *crtc_state,
->  {
->  	struct intel_connector *connector =3D to_intel_connector(conn_state->co=
-nnector);
->  	struct intel_panel *panel =3D &connector->panel;
-> +	int level =3D panel->backlight.level;
-> =20
-> -	pwm_enable(panel->backlight.pwm);
-> -	intel_panel_actually_set_backlight(conn_state, panel->backlight.level);
-> +	level =3D intel_panel_compute_brightness(connector, level);
-> +	pwm_set_relative_duty_cycle(&panel->backlight.pwm_state, level, 100);
-> +	panel->backlight.pwm_state.enabled =3D true;
-> +	pwm_apply_state(panel->backlight.pwm, &panel->backlight.pwm_state);
->  }
-> =20
->  static void __intel_panel_enable_backlight(const struct intel_crtc_state=
- *crtc_state,
-> @@ -1897,8 +1897,7 @@ static int pwm_setup_backlight(struct intel_connect=
-or *connector,
->  	struct drm_i915_private *dev_priv =3D to_i915(dev);
->  	struct intel_panel *panel =3D &connector->panel;
->  	const char *desc;
-> -	u32 level, ns;
-> -	int retval;
-> +	u32 level;
-> =20
->  	/* Get the right PWM chip for DSI backlight according to VBT */
->  	if (dev_priv->vbt.dsi.config->pwm_blc =3D=3D PPS_BLC_PMIC) {
-> @@ -1916,36 +1915,30 @@ static int pwm_setup_backlight(struct intel_conne=
-ctor *connector,
->  		return -ENODEV;
->  	}
-> =20
-> -	panel->backlight.pwm_period_ns =3D NSEC_PER_SEC /
-> -					 get_vbt_pwm_freq(dev_priv);
-> -
-> -	/*
-> -	 * FIXME: pwm_apply_args() should be removed when switching to
-> -	 * the atomic PWM API.
-> -	 */
-> -	pwm_apply_args(panel->backlight.pwm);
-> -
->  	panel->backlight.max =3D 100; /* 100% */
->  	panel->backlight.min =3D get_backlight_min_vbt(connector);
-> -	level =3D intel_panel_compute_brightness(connector, 100);
-> -	ns =3D DIV_ROUND_UP(level * panel->backlight.pwm_period_ns, 100);
-> =20
-> -	retval =3D pwm_config(panel->backlight.pwm, ns,
-> -			    panel->backlight.pwm_period_ns);
-> -	if (retval < 0) {
-> -		drm_err(&dev_priv->drm, "Failed to configure the pwm chip\n");
-> -		pwm_put(panel->backlight.pwm);
-> -		panel->backlight.pwm =3D NULL;
-> -		return retval;
-> +	if (pwm_is_enabled(panel->backlight.pwm) &&
-> +	    pwm_get_period(panel->backlight.pwm)) {
-
-What would pwm_is_enabled(panel->backlight.pwm) =3D=3D true &&
-pwm_get_period(panel->backlight.pwm) =3D=3D 0 mean? I hope this doesn't
-happen?!
-
-> +		/* PWM is already enabled, use existing settings */
-> +		pwm_get_state(panel->backlight.pwm, &panel->backlight.pwm_state);
-> +
-> +		level =3D pwm_get_relative_duty_cycle(&panel->backlight.pwm_state,
-> +						    100);
-> +		level =3D intel_panel_compute_brightness(connector, level);
-> +		panel->backlight.level =3D clamp(level, panel->backlight.min,
-> +					       panel->backlight.max);
-> +		panel->backlight.enabled =3D true;
-> +
-> +		drm_dbg_kms(&dev_priv->drm, "PWM already enabled at freq %ld, VBT freq=
- %d, level %d\n",
-> +			    NSEC_PER_SEC / panel->backlight.pwm_state.period,
-
-=2Eperiod becomes a u64 soon, so be prepared to fixup here.
-
-> +			    get_vbt_pwm_freq(dev_priv), level);
-> +	} else {
-> +		/* Set period from VBT frequency, leave other settings at 0. */
-> +		panel->backlight.pwm_state.period =3D
-> +			NSEC_PER_SEC / get_vbt_pwm_freq(dev_priv);
->  	}
-> =20
-> -	level =3D DIV_ROUND_UP(pwm_get_duty_cycle(panel->backlight.pwm) * 100,
-> -			     panel->backlight.pwm_period_ns);
-> -	level =3D intel_panel_compute_brightness(connector, level);
-> -	panel->backlight.level =3D clamp(level, panel->backlight.min,
-> -				       panel->backlight.max);
-> -	panel->backlight.enabled =3D panel->backlight.level !=3D 0;
-> -
->  	drm_info(&dev_priv->drm, "Using %s PWM for LCD backlight control\n",
->  		 desc);
->  	return 0;
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---5toxfcg27avm6ah7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl8JXPQACgkQwfwUeK3K
-7AmARgf/Yqf9yllKAKgBwSL+hvteJGX6FSkCgkGUsjLUFVOlHpiQPwc7pcXEj1Qi
-uVBpgJ5V2va8/qdPxHAzX2VySzwg15FSOezxtLbXjpETnZYPKnLEqVGXJ2JXU1vw
-6CiMBFCtqvYpDtF0sA1EWtM/tqZw9o3yXy3YIqYtGH+I6VaoU1BWpHxUFy3PquRA
-JCJQ38L5hlpdnabIVEmXLMX+XHRF+liYlkOGVXMMYJ3Y/hDHL2WUza1fzB4d94vk
-xhQT80cFvgw9QWWTapn6Y+gywQCCGEXuKgQk+44yIwfR7yUJZMvfPqYU15PWL0IK
-0xyyoFbTHR6D4+HwoNaXi17GKVwDUg==
-=QXcV
------END PGP SIGNATURE-----
-
---5toxfcg27avm6ah7--
-
---===============2104216296==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2104216296==--
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkN1
+cnJlbnRseSB3ZSdyZSBmYWlsaW5nIHRvIHJlY2FsY3VsYXRlIHRoZSBnZW45IEZCQyB3L2Egc3Ry
+aWRlCnVubGVzcyBzb21ldGhpbmcgbW9yZSBkcmFzdGljIHRoYW4ganVzdCB0aGUgbW9kaWZpZXIg
+aXRzZWxmIGhhcwpjaGFuZ2VkLiBUaGlzIG9mdGVuIGxlYXZlcyB1cyB3aXRoIEZCQyBlbmFibGVk
+IHdpdGggdGhlIGxpbmVhcgpmYmRldiBmcmFtZWJ1ZmZlciB3aXRob3V0IHRoZSB3L2Egc3RyaWRl
+IGVuYWJsZWQuIFRoYXQgd2lsbCBjYXVzZQphbiBpbW1lZGlhdGUgdW5kZXJydW4gYW5kIEZCQyB3
+aWxsIGdldCBwcm9tcHRseSBkaXNhYmxlZC4KCkZpeCB0aGUgcHJvYmxlbSBieSBjaGVja2luZyBp
+ZiB0aGUgdy9hIHN0cmlkZSBpcyBhYm91dCB0byBjaGFuZ2UsCmFuZCBnbyB0aHJvdWdoIHRoZSBm
+dWxsIGRhbmNlIGlmIHNvLiBUaGlzIHBhcnQgb2YgdGhlIEZCQyBjb2RlCmlzIHN0aWxsIHByZXR0
+eSBtdWNoIGEgZGlzYXN0ZXIgYW5kIHdpbGwgbmVlZCBsb3RzIG1vcmUgd29yay4KQnV0IHRoaXMg
+c2hvdWxkIGF0IGxlYXN0IGZpeCB0aGUgaW1tZWRpYXRlIGlzc3VlLgoKdjI6IERlYWN0aXZhdGUg
+RkJDIHdoZW4gdGhlIG1vZGlmaWVyIGNoYW5nZXMgc2luY2UgdGhhdCB3aWxsCiAgICBsaWtlbHkg
+cmVxdWlyZSByZXNldHRpbmcgdGhlIHcvYSBDRkIgc3RyaWRlCgpDYzogc3RhYmxlQHZnZXIua2Vy
+bmVsLm9yZwpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGlu
+dXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJj
+LmMgfCAzMyArKysrKysrKysrKysrKysrKysrLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfZHJ2LmggICAgICAgICAgfCAgMSArCiAyIGZpbGVzIGNoYW5nZWQsIDI3IGluc2VydGlvbnMo
+KyksIDcgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9mYmMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJj
+LmMKaW5kZXggZWYyZWIxNGY2MTU3Li44NTcyM2ZiYTYwMDIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9mYmMuYwpAQCAtNzQyLDYgKzc0MiwyNSBAQCBzdGF0aWMgYm9vbCBp
+bnRlbF9mYmNfY2ZiX3NpemVfY2hhbmdlZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
+aXYpCiAJCWZiYy0+Y29tcHJlc3NlZF9mYi5zaXplICogZmJjLT50aHJlc2hvbGQ7CiB9CiAKK3N0
+YXRpYyB1MTYgaW50ZWxfZmJjX2dlbjlfd2FfY2ZiX3N0cmlkZShzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqZGV2X3ByaXYpCit7CisJc3RydWN0IGludGVsX2ZiYyAqZmJjID0gJmRldl9wcml2LT5m
+YmM7CisJc3RydWN0IGludGVsX2ZiY19zdGF0ZV9jYWNoZSAqY2FjaGUgPSAmZmJjLT5zdGF0ZV9j
+YWNoZTsKKworCWlmICgoSVNfR0VOOV9CQyhkZXZfcHJpdikgfHwgSVNfQlJPWFRPTihkZXZfcHJp
+dikpICYmCisJICAgIGNhY2hlLT5mYi5tb2RpZmllciAhPSBJOTE1X0ZPUk1BVF9NT0RfWF9USUxF
+RCkKKwkJcmV0dXJuIERJVl9ST1VORF9VUChjYWNoZS0+cGxhbmUuc3JjX3csIDMyICogZmJjLT50
+aHJlc2hvbGQpICogODsKKwllbHNlCisJCXJldHVybiAwOworfQorCitzdGF0aWMgYm9vbCBpbnRl
+bF9mYmNfZ2VuOV93YV9jZmJfc3RyaWRlX2NoYW5nZWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
+KmRldl9wcml2KQoreworCXN0cnVjdCBpbnRlbF9mYmMgKmZiYyA9ICZkZXZfcHJpdi0+ZmJjOwor
+CisJcmV0dXJuIGZiYy0+cGFyYW1zLmdlbjlfd2FfY2ZiX3N0cmlkZSAhPSBpbnRlbF9mYmNfZ2Vu
+OV93YV9jZmJfc3RyaWRlKGRldl9wcml2KTsKK30KKwogc3RhdGljIGJvb2wgaW50ZWxfZmJjX2Nh
+bl9lbmFibGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogewogCXN0cnVjdCBp
+bnRlbF9mYmMgKmZiYyA9ICZkZXZfcHJpdi0+ZmJjOwpAQCAtOTAyLDYgKzkyMSw3IEBAIHN0YXRp
+YyB2b2lkIGludGVsX2ZiY19nZXRfcmVnX3BhcmFtcyhzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywK
+IAlwYXJhbXMtPmNydGMuaTl4eF9wbGFuZSA9IHRvX2ludGVsX3BsYW5lKGNydGMtPmJhc2UucHJp
+bWFyeSktPmk5eHhfcGxhbmU7CiAKIAlwYXJhbXMtPmZiLmZvcm1hdCA9IGNhY2hlLT5mYi5mb3Jt
+YXQ7CisJcGFyYW1zLT5mYi5tb2RpZmllciA9IGNhY2hlLT5mYi5tb2RpZmllcjsKIAlwYXJhbXMt
+PmZiLnN0cmlkZSA9IGNhY2hlLT5mYi5zdHJpZGU7CiAKIAlwYXJhbXMtPmNmYl9zaXplID0gaW50
+ZWxfZmJjX2NhbGN1bGF0ZV9jZmJfc2l6ZShkZXZfcHJpdiwgY2FjaGUpOwpAQCAtOTMxLDYgKzk1
+MSw5IEBAIHN0YXRpYyBib29sIGludGVsX2ZiY19jYW5fZmxpcF9udWtlKGNvbnN0IHN0cnVjdCBp
+bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQogCWlmIChwYXJhbXMtPmZiLmZvcm1hdCAhPSBj
+YWNoZS0+ZmIuZm9ybWF0KQogCQlyZXR1cm4gZmFsc2U7CiAKKwlpZiAocGFyYW1zLT5mYi5tb2Rp
+ZmllciAhPSBjYWNoZS0+ZmIubW9kaWZpZXIpCisJCXJldHVybiBmYWxzZTsKKwogCWlmIChwYXJh
+bXMtPmZiLnN0cmlkZSAhPSBjYWNoZS0+ZmIuc3RyaWRlKQogCQlyZXR1cm4gZmFsc2U7CiAKQEAg
+LTEyMTgsNyArMTI0MSw4IEBAIHZvaWQgaW50ZWxfZmJjX2VuYWJsZShzdHJ1Y3QgaW50ZWxfYXRv
+bWljX3N0YXRlICpzdGF0ZSwKIAogCWlmIChmYmMtPmNydGMpIHsKIAkJaWYgKGZiYy0+Y3J0YyAh
+PSBjcnRjIHx8Ci0JCSAgICAhaW50ZWxfZmJjX2NmYl9zaXplX2NoYW5nZWQoZGV2X3ByaXYpKQor
+CQkgICAgKCFpbnRlbF9mYmNfY2ZiX3NpemVfY2hhbmdlZChkZXZfcHJpdikgJiYKKwkJICAgICAh
+aW50ZWxfZmJjX2dlbjlfd2FfY2ZiX3N0cmlkZV9jaGFuZ2VkKGRldl9wcml2KSkpCiAJCQlnb3Rv
+IG91dDsKIAogCQlfX2ludGVsX2ZiY19kaXNhYmxlKGRldl9wcml2KTsKQEAgLTEyNDAsMTIgKzEy
+NjQsNyBAQCB2b2lkIGludGVsX2ZiY19lbmFibGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAq
+c3RhdGUsCiAJCWdvdG8gb3V0OwogCX0KIAotCWlmICgoSVNfR0VOOV9CQyhkZXZfcHJpdikgfHwg
+SVNfQlJPWFRPTihkZXZfcHJpdikpICYmCi0JICAgIHBsYW5lX3N0YXRlLT5ody5mYi0+bW9kaWZp
+ZXIgIT0gSTkxNV9GT1JNQVRfTU9EX1hfVElMRUQpCi0JCWNhY2hlLT5nZW45X3dhX2NmYl9zdHJp
+ZGUgPQotCQkJRElWX1JPVU5EX1VQKGNhY2hlLT5wbGFuZS5zcmNfdywgMzIgKiBmYmMtPnRocmVz
+aG9sZCkgKiA4OwotCWVsc2UKLQkJY2FjaGUtPmdlbjlfd2FfY2ZiX3N0cmlkZSA9IDA7CisJY2Fj
+aGUtPmdlbjlfd2FfY2ZiX3N0cmlkZSA9IGludGVsX2ZiY19nZW45X3dhX2NmYl9zdHJpZGUoZGV2
+X3ByaXYpOwogCiAJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJFbmFibGluZyBGQkMgb24g
+cGlwZSAlY1xuIiwKIAkJICAgIHBpcGVfbmFtZShjcnRjLT5waXBlKSk7CmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcnYuaAppbmRleCA4Nzk3M2RlZGY4ZTcuLjE0YjA5NWFmYWI0MiAxMDA2NDQKLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2Rydi5oCkBAIC00NDIsNiArNDQyLDcgQEAgc3RydWN0IGludGVsX2ZiYyB7CiAJCXN0cnVj
+dCB7CiAJCQljb25zdCBzdHJ1Y3QgZHJtX2Zvcm1hdF9pbmZvICpmb3JtYXQ7CiAJCQl1bnNpZ25l
+ZCBpbnQgc3RyaWRlOworCQkJdTY0IG1vZGlmaWVyOwogCQl9IGZiOwogCiAJCWludCBjZmJfc2l6
+ZTsKLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
