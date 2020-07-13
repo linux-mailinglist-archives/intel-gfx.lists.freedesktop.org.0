@@ -2,53 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC0A21CE9B
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 07:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E5BF21CECE
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 07:24:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA456E15D;
-	Mon, 13 Jul 2020 05:09:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 815806E4A5;
+	Mon, 13 Jul 2020 05:24:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
- [IPv6:2a00:1450:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D400D6E15D
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 05:09:42 +0000 (UTC)
-Received: by mail-ed1-x52c.google.com with SMTP id by13so11476310edb.11
- for <intel-gfx@lists.freedesktop.org>; Sun, 12 Jul 2020 22:09:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=W0Y7OJ6KqrxW0gvaOWgV55wnrxD3ggPV6UI7xm1qaqc=;
- b=rYoUwxo+TA31nmg0fWYqH7mQE4Rw0ZcsIh7eH4rY+aW5VKm40Z/TyXoW4hSjfVMJYW
- GurAgk7yJhQt/4bCxZMusES+1eHzxo15ZWu4UxdIh7zVSd/kclXcsI5oGa2ErEX7NnxO
- s7XnInvcgRFk9j9U+jNwA2o863iuqGY1fyEQj4rxBfxV/omxrR56AveQH9/UIP4/5ekm
- pQwfUjTYvjrr4NyWC+rVYgNJSR5ihMbNcgOPkJm7GtGbaM0148Dg3Uk9gQogHGSbc5I0
- MhO+JlibOwoRmgCHq+IAu/hL4iydhVi3vJq/fL0J4lQxDRJxht6i81V/NqV+gjqNVoeD
- jf6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=W0Y7OJ6KqrxW0gvaOWgV55wnrxD3ggPV6UI7xm1qaqc=;
- b=CJqEd0it0xcO+KwbXQy7E0yCO9M58T1VaekusaXX5X/HWv/WoWSq+2cmOxuwetQNTd
- qavWSvyRaUUuCMMjK0yUVbL5bpYkv/Ouwjg2sPRkSZBRovc8vdHxIvZlrJQAIEmC0Rqw
- tWudkPSOFCNCXLaIi6eKa/d4DgLDZROUKJXJ0R1NTkSy3YeJyaLeKsVhYU4aJdetkeoH
- Ger4jp9dvgswTY3T+stXZXMpvX+dTNhL6b9lkGjrQhhA6tNkOioA4IvOFFBtBHiRyiws
- n0YNhc+Cf7jgNC2n34dFKrykkTYQnjFyKAjhownWFSDB190cvBZ68kMRVmAjLuDgNF94
- b4Vg==
-X-Gm-Message-State: AOAM531U/2Zp0vcaTu6s2xgfKtbmhYEWXQHkXZeqrkCRyjGi8jynY73x
- TEf9iygmcwDjb1Z8yQhS2mt0TxhRvO79SoBMTQI=
-X-Google-Smtp-Source: ABdhPJydWL7NiULiV2Eaa8mc0TcHmHiFAjRDwhKbgbZ70S9FIrFezEnSe0OhJVejep7z+36pShDyqr/2h6a1sqpRbdw=
-X-Received: by 2002:a50:e883:: with SMTP id f3mr91176324edn.220.1594616981444; 
- Sun, 12 Jul 2020 22:09:41 -0700 (PDT)
+Received: from ozlabs.org (ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBA886E4A1;
+ Mon, 13 Jul 2020 05:24:49 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4B4sXX4fR0z9sDX;
+ Mon, 13 Jul 2020 15:24:44 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1594617886;
+ bh=JLMrLsEFZFAdmvA4txh24SkbKNk+Xj+qzEtYAUIFtUc=;
+ h=Date:From:To:Cc:Subject:From;
+ b=sA0I0YtvSMhmE8SOA7Yh2tCmHmV4g4KpBfqo4rblBVRgNADwvjgCHP4yNibGpBJH+
+ yXOuOqS97P1naQUy56kJvulZOkUG6cpW/AjLsDNDvX4Jvs11IeXRkQWpFVuM2s/XER
+ yNloHjnb9TvY/7bQRxc3BYduxEj2ZTzhpOPLqnrM7Wq2A+j+x2T34TpE+sPIiJNIhG
+ jZbxB2pvqtgO906fwdydFYcGtwr0yRCuotMa2BlrnNXM72VgrMO+JMF2Xw+cYXLCkG
+ CuXrrSxENfm2VBfaV59d6i3I6XrBiSyU+kqdFOAG+S4X/Ksu7iS6V/IXrIW+Ltm6ve
+ RF2Wd+qm2kb3Q==
+Date: Mon, 13 Jul 2020 15:24:43 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Greg KH <greg@kroah.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel
+ Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20200713152443.12a5449a@canb.auug.org.au>
 MIME-Version: 1.0
-References: <20200710115757.290984-1-matthew.auld@intel.com>
- <20200710115757.290984-34-matthew.auld@intel.com>
-In-Reply-To: <20200710115757.290984-34-matthew.auld@intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Mon, 13 Jul 2020 15:09:30 +1000
-Message-ID: <CAPM=9tzvetxhBJBOC60ydOVcTN9ujtHLCODFNwGtONTDzuzwZA@mail.gmail.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Subject: Re: [Intel-gfx] [RFC 33/60] drm/i915/lmem: support pwrite
+Subject: [Intel-gfx] linux-next: manual merge of the tty tree with the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,28 +49,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Jiri Slaby <jslaby@suse.cz>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Content-Type: multipart/mixed; boundary="===============1082048547=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 10 Jul 2020 at 22:00, Matthew Auld <matthew.auld@intel.com> wrote:
->
-> We need to add support for pwrite'ing an LMEM object.
+--===============1082048547==
+Content-Type: multipart/signed; boundary="Sig_/haWNAIYhOEWfM4Dw6SlggMf";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-why? DG1 is a discrete GPU, these interfaces we already gross and
-overly hacky for integrated, I'd prefer not to drag them across into
-discrete land.
+--Sig_/haWNAIYhOEWfM4Dw6SlggMf
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-same goes for pread.
+Hi all,
 
-You have no legacy userspace here, userspace needs change to support
-LMEM, it can be fixed to avoid legacy ioctls paths.
+Today's linux-next merge of the tty tree got a conflict in:
 
-Dave.
+  drivers/video/fbdev/core/fbcon.c
+
+between commit:
+
+  fcf918b96662 ("fbcon: Use array3_size() helper in scr_memcpyw()")
+
+from the drm-misc tree and commit:
+
+  28bc24fc46f9 ("vc: separate state")
+
+from the tty tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/video/fbdev/core/fbcon.c
+index af9f5ab96f74,86fe41b1deb8..000000000000
+--- a/drivers/video/fbdev/core/fbcon.c
++++ b/drivers/video/fbdev/core/fbcon.c
+@@@ -676,8 -676,8 +676,8 @@@ static void fbcon_prepare_logo(struct v
+  		q =3D (unsigned short *) (vc->vc_origin +
+  					vc->vc_size_row *
+  					rows);
+ -		scr_memcpyw(q, save, logo_lines * new_cols * 2);
+ +		scr_memcpyw(q, save, array3_size(logo_lines, new_cols, 2));
+- 		vc->vc_y +=3D logo_lines;
++ 		vc->state.y +=3D logo_lines;
+  		vc->vc_pos +=3D logo_lines * vc->vc_size_row;
+  		kfree(save);
+  	}
+
+--Sig_/haWNAIYhOEWfM4Dw6SlggMf
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl8L8BsACgkQAVBC80lX
+0GzyDQgAhscNOpxmGNkv4WeNqnKFiLiF64IREaN7Eq/NRR/Pc7wLupLwkb/WUpID
+yxY1NvgGr16W/J5ovPJEN1PnbOTtm/R0WoVp51tYHWD9BFwowrhtxLyX+ukRlSCN
+NE8yC+wH7BzLQJR8uPdonWKdg4kVKf7Yc7cGtYPajJvCHy/Zru+Z7Bi6djmQTx+M
+/G7/+MlVr3945SyWh3LTv+0/koHi4QflMMnSENQrG4n672S1Pk02NuMI2SmYEVTZ
+O56BcypkSGXuSz+Pl7c4ZPsMusponpNNdVa1EXGL1wHO4EMvKhKR/T9D4OkrUYwS
+5VL9bF24IDfGLEmWpM6pL3DLbISRkg==
+=B9WA
+-----END PGP SIGNATURE-----
+
+--Sig_/haWNAIYhOEWfM4Dw6SlggMf--
+
+--===============1082048547==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1082048547==--
