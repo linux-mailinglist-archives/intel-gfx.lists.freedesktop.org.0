@@ -1,31 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D001621D661
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 14:56:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD48F21D691
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 15:16:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F7DF6E4DE;
-	Mon, 13 Jul 2020 12:56:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA56F6E4E6;
+	Mon, 13 Jul 2020 13:16:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 323736E34E;
- Mon, 13 Jul 2020 12:56:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 303DCA0BD0;
- Mon, 13 Jul 2020 12:56:14 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DCA26E4E6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 13:16:34 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21803836-1500050 
+ for multiple; Mon, 13 Jul 2020 14:16:17 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Jul 2020 14:16:17 +0100
+Message-Id: <20200713131617.21175-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 13 Jul 2020 12:56:14 -0000
-Message-ID: <159464497419.16737.7588215009447655402@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200713120437.4442-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200713120437.4442-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Free_stale_request_on_destroying_the_virtual_engine?=
+Subject: [Intel-gfx] [PATCH] drm/i915: Skip signaling a signaled request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,113 +36,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nayana, Venkata Ramana" <venkata.ramana.nayana@intel.com>,
+ stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Preempt-to-busy introduces various fascinating complications in that the
+requests may complete as we are unsubmitting them from HW. As they may
+then signal after unsubmission, we may find ourselves having to cleanup
+the signaling request from within the signaling callback. This causes us
+to recurse onto the same i915_request.lock.
 
-Series: drm/i915/gt: Free stale request on destroying the virtual engine
-URL   : https://patchwork.freedesktop.org/series/79398/
-State : success
+However, if the request is already signaled (as it will be before we
+enter the signal callbacks), we know we can skip the signaling of that
+request during submission, neatly evading the spinlock recursion.
 
-== Summary ==
+unsubmit(ve.rq0) # timeslice expiration or other preemption
+ -> virtual_submit_request(ve.rq0)
+dma_fence_signal(ve.rq0) # request completed before preemption ack
+ -> submit_notify(ve.rq1)
+   -> virtual_submit_request(ve.rq1) # sees that we have completed ve.rq0
+      -> __i915_request_submit(ve.rq0)
 
-CI Bug Log - changes from CI_DRM_8737 -> Patchwork_18142
-====================================================
+[  264.210142] BUG: spinlock recursion on CPU#2, sample_multi_tr/2093
+[  264.210150]  lock: 0xffff9efd6ac55080, .magic: dead4ead, .owner: sample_multi_tr/2093, .owner_cpu: 2
+[  264.210155] CPU: 2 PID: 2093 Comm: sample_multi_tr Tainted: G     U       5.4.48-prod-dg1-vn-2660+ #3
+[  264.210158] Hardware name: Intel Corporation CoffeeLake Client Platform/CoffeeLake S UDIMM RVP, BIOS CNLSFWR1.R00.X212.B01.1909060036 09/06/2019
+[  264.210160] Call Trace:
+[  264.210167]  dump_stack+0x98/0xda
+[  264.210174]  spin_dump.cold+0x24/0x3c
+[  264.210178]  do_raw_spin_lock+0x9a/0xd0
+[  264.210184]  _raw_spin_lock_nested+0x6a/0x70
+[  264.210314]  __i915_request_submit+0x10a/0x3c0 [i915]
+[  264.210415]  virtual_submit_request+0x9b/0x380 [i915]
+[  264.210516]  submit_notify+0xaf/0x14c [i915]
+[  264.210602]  __i915_sw_fence_complete+0x8a/0x230 [i915]
+[  264.210692]  i915_sw_fence_complete+0x2d/0x40 [i915]
+[  264.210762]  __dma_i915_sw_fence_wake+0x19/0x30 [i915]
+[  264.210767]  dma_fence_signal_locked+0xb1/0x1c0
+[  264.210772]  dma_fence_signal+0x29/0x50
+[  264.210871]  i915_request_wait+0x5cb/0x830 [i915]
+[  264.210876]  ? dma_resv_get_fences_rcu+0x294/0x5d0
+[  264.210974]  i915_gem_object_wait_fence+0x2f/0x40 [i915]
+[  264.211084]  i915_gem_object_wait+0xce/0x400 [i915]
+[  264.211178]  i915_gem_wait_ioctl+0xff/0x290 [i915]
 
-Summary
--------
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Fixes: 22b7a426bbe1 ("drm/i915/execlists: Preempt-to-busy")
+References: 6d06779e8672 ("drm/i915: Load balancing across a virtual engine")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: "Nayana, Venkata Ramana" <venkata.ramana.nayana@intel.com>
+Cc: <stable@vger.kernel.org> # v5.4+
+---
+ drivers/gpu/drm/i915/i915_request.c | 21 +++++++++++++--------
+ 1 file changed, 13 insertions(+), 8 deletions(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 3bb7320249ae..9b74a1bea5db 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -560,9 +560,7 @@ bool __i915_request_submit(struct i915_request *request)
+ 	engine->serial++;
+ 	result = true;
+ 
+-xfer:	/* We may be recursing from the signal callback of another i915 fence */
+-	spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+-
++xfer:
+ 	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
+ 		list_move_tail(&request->sched.link, &engine->active.requests);
+ 		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
+@@ -570,12 +568,19 @@ bool __i915_request_submit(struct i915_request *request)
+ 	}
+ 	GEM_BUG_ON(!llist_empty(&request->execute_cb));
+ 
+-	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
+-	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &request->fence.flags) &&
+-	    !i915_request_enable_breadcrumb(request))
+-		intel_engine_signal_breadcrumbs(engine);
++	/* We may be recursing from the signal callback of another i915 fence */
++	if (!i915_request_signaled(request)) {
++		spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
++
++		if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
++			     &request->fence.flags) &&
++		    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
++			      &request->fence.flags) &&
++		    !i915_request_enable_breadcrumb(request))
++			intel_engine_signal_breadcrumbs(engine);
+ 
+-	spin_unlock(&request->lock);
++		spin_unlock(&request->lock);
++	}
+ 
+ 	return result;
+ }
+-- 
+2.20.1
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18142/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18142 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18142/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [DMESG-WARN][3] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18142/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18142/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
-    - fi-icl-u2:          [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18142/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92]) -> [DMESG-WARN][10] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18142/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18142/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (39 -> 39)
-------------------------------
-
-  Additional (8): fi-bdw-5557u fi-tgl-u2 fi-skl-guc fi-kbl-7500u fi-skl-lmem fi-tgl-y fi-skl-6700k2 fi-kbl-r 
-  Missing    (8): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus fi-snb-2600 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8737 -> Patchwork_18142
-
-  CI-20190529: 20190529
-  CI_DRM_8737: 6d7d28df878566c99344437f03328f11333e508f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5734: 6e5c9915a80d791ea45a3e5d2a3cb7e5dc5f06f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18142: 182f82c68b6bf7afb6ec8890afa6142faced18b0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-182f82c68b6b drm/i915/gt: Free stale request on destroying the virtual engine
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18142/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
