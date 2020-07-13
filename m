@@ -1,44 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7167721D3AE
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 12:20:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C02F921D3E3
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 12:39:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B4786E1A3;
-	Mon, 13 Jul 2020 10:20:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18D336E1D8;
+	Mon, 13 Jul 2020 10:39:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 566DA6E1A3
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 10:20:03 +0000 (UTC)
-IronPort-SDR: nC8UCU0aNsWj+h7DyCF0iRljH2qIso2aOYVE+mFxZJM6ekIJlDcZcG5wXufGySSHKiL6sU44Lo
- jrnM8+S5cOHQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9680"; a="136057511"
-X-IronPort-AV: E=Sophos;i="5.75,347,1589266800"; d="scan'208";a="136057511"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2020 03:20:02 -0700
-IronPort-SDR: fGiJdv3yL40M+/PwvDFsAUvrOcMF2Kl8LzIUm9x1KzwKZmfq4EgpN69kY66/dHeOZYZ/0yfnpL
- JxQfO7DF08hQ==
-X-IronPort-AV: E=Sophos;i="5.75,347,1589266800"; d="scan'208";a="459242050"
-Received: from thoebenx-mobl.ger.corp.intel.com (HELO [10.255.194.109])
- ([10.255.194.109])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2020 03:20:01 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200711203236.12330-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <4d6930b8-80d2-0e74-79fa-9e297beccf26@linux.intel.com>
-Date: Mon, 13 Jul 2020 11:19:58 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 012BD6E1D8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 10:39:54 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21802092-1500050 for multiple; Mon, 13 Jul 2020 11:39:50 +0100
 MIME-Version: 1.0
-In-Reply-To: <20200711203236.12330-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
+In-Reply-To: <4d6930b8-80d2-0e74-79fa-9e297beccf26@linux.intel.com>
+References: <20200711203236.12330-1-chris@chris-wilson.co.uk>
+ <4d6930b8-80d2-0e74-79fa-9e297beccf26@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Jul 2020 11:39:50 +0100
+Message-ID: <159463679080.14386.1679019125495124467@build.alporthouse.com>
+User-Agent: alot/0.9
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Ignore irq enabling on the
  virtual engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -54,52 +42,46 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 11/07/2020 21:32, Chris Wilson wrote:
-> We do not use the virtual engines for interrupts (they have physical
-> components), but we do use them to decouple the fence signaling during
-> submission. Currently, when we submit a completed request, we try to
-> enable the interrupt handler for the virtual engine, but we never disarm
-> it. A quick fix is then to mark the irq as enabled, and it will then
-> remain enabled -- and this prevents us from waking the device and never
-> letting it sleep again.
+Quoting Tvrtko Ursulin (2020-07-13 11:19:58)
 > 
-> Fixes: f8db4d051b5e ("drm/i915: Initialise breadcrumb lists on the virtual engine")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.5+
-> ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c | 1 +
->   1 file changed, 1 insertion(+)
+> On 11/07/2020 21:32, Chris Wilson wrote:
+> > We do not use the virtual engines for interrupts (they have physical
+> > components), but we do use them to decouple the fence signaling during
+> > submission. Currently, when we submit a completed request, we try to
+> > enable the interrupt handler for the virtual engine, but we never disarm
+> > it. A quick fix is then to mark the irq as enabled, and it will then
+> > remain enabled -- and this prevents us from waking the device and never
+> > letting it sleep again.
+> > 
+> > Fixes: f8db4d051b5e ("drm/i915: Initialise breadcrumb lists on the virtual engine")
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > Cc: <stable@vger.kernel.org> # v5.5+
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_lrc.c | 1 +
+> >   1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index cd4262cc96e2..504e269bb166 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -5727,6 +5727,7 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+> >       intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
+> >       intel_engine_init_breadcrumbs(&ve->base);
+> >       intel_engine_init_execlists(&ve->base);
+> > +     ve->base.breadcrumbs.irq_armed = true;
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index cd4262cc96e2..504e269bb166 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -5727,6 +5727,7 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
->   	intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
->   	intel_engine_init_breadcrumbs(&ve->base);
->   	intel_engine_init_execlists(&ve->base);
-> +	ve->base.breadcrumbs.irq_armed = true;
+> Add a comment here saying this is a hack and why please. With that:
 
-Add a comment here saying this is a hack and why please. With that:
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-
->   
->   	ve->base.cops = &virtual_context_ops;
->   	ve->base.request_alloc = execlists_request_alloc;
-> 
+"This is a lot simpler than splitting breadcrumbs, although we do need
+to do that. But that was becoming a very hairy patch."
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
