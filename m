@@ -1,49 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E69321E140
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 22:13:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B812F21E16F
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 22:31:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4806F6E7D1;
-	Mon, 13 Jul 2020 20:13:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C8B16E826;
+	Mon, 13 Jul 2020 20:31:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E7FB6E550
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 18:51:55 +0000 (UTC)
-Received: from quaco.ghostprotocols.net (unknown [179.97.37.151])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id A52E62067D;
- Mon, 13 Jul 2020 18:51:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1594666315;
- bh=LJYNdMjGh9jhnhTSdjGmRfj4ZZPmYTCiDmXsEYK+rbA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=xcUtfiYB9gVw0idtGZ0ckHJ2AwARiBsz3B5pO/4Xsnz0RRlywvnR9X3VFXsqG5tBe
- 5BFF04XGFk0AfoP+GCDL7YcFUld9kJx5NTN7ySezxdO8tPJlxVaKmnlPfv01njAyWF
- f3dcdWXOvMV/lHwrEnxNT6iK1jKKpuEn4rBQVCxk=
-Received: by quaco.ghostprotocols.net (Postfix, from userid 1000)
- id 1C9B440094; Mon, 13 Jul 2020 15:51:52 -0300 (-03)
-Date: Mon, 13 Jul 2020 15:51:52 -0300
-From: Arnaldo Carvalho de Melo <acme@kernel.org>
-To: Alexey Budankov <alexey.budankov@linux.intel.com>
-Message-ID: <20200713185152.GA18094@kernel.org>
-References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
- <76718dc6-5483-5e2e-85b8-64e70306ee1f@linux.ibm.com>
- <7776fa40-6c65-2aa6-1322-eb3a01201000@linux.intel.com>
- <20200710170911.GD7487@kernel.org>
- <0d2e2306-22b2-a730-dc3f-edb3538b6561@linux.intel.com>
- <20200713121746.GA7029@kernel.org>
- <0fadcf78-8b0e-ed03-a554-cc172b7d249c@linux.intel.com>
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
+ [IPv6:2a00:1450:4864:20::536])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCEBF6E826;
+ Mon, 13 Jul 2020 20:31:28 +0000 (UTC)
+Received: by mail-ed1-x536.google.com with SMTP id g20so14941020edm.4;
+ Mon, 13 Jul 2020 13:31:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=HnzQkPBt2OC+k9du8OZiIZUdaNF8CWZvobQFWZtz7PY=;
+ b=nL2QSyRF4VdhkxgtyvoDIeRb4RfXopS6tkMpm+IFtrPuzigJardjBCFktXQ//PRpIJ
+ bqFBi+hg+kUy5bDekzDKXUyylgLe3CHHJG2ppWdO/NS+ljwhP3heCpJdh4lk2NnMEUfU
+ ddiMB88lFu0EW/lhkvLbxvu1bX74yl9SAZxy9VD+XJIZZm5g3+WyjM+H36R+72nSUcMz
+ hc2JzL2X+Qo8w0sxB69fJLfnqx/NUH8RQtLqZrOAgD/3Ui26wZjCVvHKl4TO8elowm48
+ XFQilIER6Vwww/OgWOMYlYRXQ6cLge8urHT9+cBR2T8i9MGj0F5ZMoR7SyOYMpB3H1Yz
+ A2Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=HnzQkPBt2OC+k9du8OZiIZUdaNF8CWZvobQFWZtz7PY=;
+ b=e/mHFoAta7kiuy4Qwx2AP9ex/qkH+XTdBP+c9BDa2mTW5kz1+aBNb0gtFI+yvhOl+Q
+ WeiENtLSNRg1HMziYatr3CcKSh93C+Ik3eOsBRtSdMDoGX3YfA/B+LehZsq4oGjpG1PV
+ 6Wi/CWz1HgAedYxdy4XUAQTaN4T3U7f4Fock5lMKy+fN17dv7pKU4bwKx/GYF+QIR392
+ kpzya8tBVgq1Yhe+HGLCy2zcBCBae5VBX8SjMgPe99+GnWTpqPB5JUkZOYJaJnp8ppUE
+ ueG1nBl/XPPIGHwy6QPTnLC0XTSc+fPcP7ceAekBuOLuC8lFPu4FkosaOp7EPVEzulSp
+ WNYA==
+X-Gm-Message-State: AOAM533cUpTb7jSWy2Q95+Pbhx+jivYvMyfzp++fQNZbsu68POmiy8Ed
+ QBuw6PZCOfpXOIRIEp8G3DqeWnVTD+tVLHH3B1g=
+X-Google-Smtp-Source: ABdhPJxPAYikRaQY/XMVDWezfOW6Iwk/c5G8BcDCGjjzvlG6bojjnVvJlH11+w5rhFd3jK7dVcdAJfhqlzC5TvPI8KA=
+X-Received: by 2002:a50:ee8a:: with SMTP id f10mr1094484edr.383.1594672287315; 
+ Mon, 13 Jul 2020 13:31:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <0fadcf78-8b0e-ed03-a554-cc172b7d249c@linux.intel.com>
-X-Url: http://acmel.wordpress.com
-X-Mailman-Approved-At: Mon, 13 Jul 2020 20:13:02 +0000
-Subject: Re: [Intel-gfx] [PATCH v8 00/12] Introduce CAP_PERFMON to secure
- system performance monitoring and observability
+References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
+ <20200707201229.472834-2-daniel.vetter@ffwll.ch>
+ <20c0a95b-8367-4f26-d058-1cb265255283@amd.com>
+ <20200713162610.GS3278063@phenom.ffwll.local>
+ <e9e838fb-ec83-f7e0-e978-b57d8892b3f0@amd.com>
+In-Reply-To: <e9e838fb-ec83-f7e0-e978-b57d8892b3f0@amd.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Tue, 14 Jul 2020 06:31:15 +1000
+Message-ID: <CAPM=9tyTd0OqtdX+pGhGm3K1odNkG5EEL+0DZwL=NiVkogOujQ@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: Re: [Intel-gfx] [PATCH 01/25] dma-fence: basic lockdep annotations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,181 +65,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ravi Bangoria <ravi.bangoria@linux.ibm.com>,
- Song Liu <songliubraving@fb.com>, Andi Kleen <ak@linux.intel.com>,
- linux-man@vger.kernel.org,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Igor Lubashev <ilubashe@akamai.com>, Alexei Starovoitov <ast@kernel.org>,
- Stephane Eranian <eranian@google.com>, James Morris <jmorris@namei.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- Jiri Olsa <jolsa@redhat.com>, Serge Hallyn <serge@hallyn.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Em Mon, Jul 13, 2020 at 03:37:51PM +0300, Alexey Budankov escreveu:
-> =
-
-> On 13.07.2020 15:17, Arnaldo Carvalho de Melo wrote:
-> > Em Mon, Jul 13, 2020 at 12:48:25PM +0300, Alexey Budankov escreveu:
-> >>
-> >> On 10.07.2020 20:09, Arnaldo Carvalho de Melo wrote:
-> >>> Em Fri, Jul 10, 2020 at 05:30:50PM +0300, Alexey Budankov escreveu:
-> >>>> On 10.07.2020 16:31, Ravi Bangoria wrote:
-> >>>>>> Currently access to perf_events, i915_perf and other performance
-> >>>>>> monitoring and observability subsystems of the kernel is open only=
- for
-> >>>>>> a privileged process [1] with CAP_SYS_ADMIN capability enabled in =
-the
-> >>>>>> process effective set [2].
-> > =
-
-> >>>>>> This patch set introduces CAP_PERFMON capability designed to secure
-> >>>>>> system performance monitoring and observability operations so that
-> >>>>>> CAP_PERFMON would assist CAP_SYS_ADMIN capability in its governing=
- role
-> >>>>>> for performance monitoring and observability subsystems of the ker=
-nel.
-> > =
-
-> >>>>> I'm seeing an issue with CAP_PERFMON when I try to record data for a
-> >>>>> specific target. I don't know whether this is sort of a regression =
-or
-> >>>>> an expected behavior.
-> > =
-
-> >>>> Thanks for reporting and root causing this case. The behavior looks =
-like
-> >>>> kind of expected since currently CAP_PERFMON takes over the related =
-part
-> >>>> of CAP_SYS_ADMIN credentials only. Actually Perf security docs [1] s=
-ay
-> >>>> that access control is also subject to CAP_SYS_PTRACE credentials.
-> > =
-
-> >>> I think that stating that in the error message would be helpful, after
-> >>> all, who reads docs? 8-)
-> > =
-
-> >> At least those who write it :D ...
-> > =
-
-> > Everybody should read it, sure :-)
-> >  =
-
-> >>> I.e., this:
-> >>>
-> >>> $ ./perf stat ls
-> >>> =A0 Error:
-> >>> =A0 Access to performance monitoring and observability operations is =
-limited.
-> >>> $
-> >>>
-> >>> Could become:
-> >>>
-> >>> $ ./perf stat ls
-> >>> =A0 Error:
-> >>> =A0 Access to performance monitoring and observability operations is =
-limited.
-> >>>   Right now only CAP_PERFMON is granted, you may need CAP_SYS_PTRACE.
-> >>> $
-> >>
-> >> It would better provide reference to perf security docs in the tool ou=
-tput.
-> > =
-
-> > So add a 3rd line:
-> > =
-
-> > $ ./perf stat ls
-> > =A0 Error:
-> > =A0 Access to performance monitoring and observability operations is li=
-mited.
-> >   Right now only CAP_PERFMON is granted, you may need CAP_SYS_PTRACE.
-> >   Please read the 'Perf events and tool security' document:
-> >   https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html
-
-> If it had that patch below then message change would not be required.
-
-Sure, but the tool should continue to work and provide useful messages
-when running on kernels without that change. Pointing to the document is
-valid and should be done, that is an agreed point. But the tool can do
-some checks, narrow down the possible causes for the error message and
-provide something that in most cases will make the user make progress.
-
-> However this two sentences in the end of whole message would still add up:
-> "Please read the 'Perf events and tool security' document:
->  https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html"
-
-We're in violent agreement here. :-)
- =
-
-> > =
-
-> >> Looks like extending ptrace_may_access() check for perf_events with CA=
-P_PERFMON
-> > =
-
-> > You mean the following?
-> =
-
-> Exactly that.
-
-Sure, lets then wait for others to chime in and then you can go ahead
-and submit that patch.
-
-Peter?
-
-- Arnaldo
- =
-
-> > =
-
-> > diff --git a/kernel/events/core.c b/kernel/events/core.c
-> > index 856d98c36f56..a2397f724c10 100644
-> > --- a/kernel/events/core.c
-> > +++ b/kernel/events/core.c
-> > @@ -11595,7 +11595,7 @@ SYSCALL_DEFINE5(perf_event_open,
-> >  		 * perf_event_exit_task() that could imply).
-> >  		 */
-> >  		err =3D -EACCES;
-> > -		if (!ptrace_may_access(task, PTRACE_MODE_READ_REALCREDS))
-> > +		if (!perfmon_capable() && !ptrace_may_access(task, PTRACE_MODE_READ_=
-REALCREDS))
-> >  			goto err_cred;
-> >  	}
-> > =
-
-> >> makes monitoring simpler and even more secure to use since Perf tool n=
-eed
-> >> not to start/stop/single-step and read/write registers and memory and =
-so on
-> >> like a debugger or strace-like tool. What do you think?
-> > =
-
-> > I tend to agree, Peter?
-> >  =
-
-> >> Alexei
-> >>
-> >>>
-> >>> - Arnaldo
-> =
-
-> Alexei
-
--- =
-
-
-- Arnaldo
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAxNCBKdWwgMjAyMCBhdCAwMjozOSwgQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFu
+LmtvZW5pZ0BhbWQuY29tPiB3cm90ZToKPgo+IEFtIDEzLjA3LjIwIHVtIDE4OjI2IHNjaHJpZWIg
+RGFuaWVsIFZldHRlcjoKPiA+IEhpIENocmlzdGlhbiwKPiA+Cj4gPiBPbiBXZWQsIEp1bCAwOCwg
+MjAyMCBhdCAwNDo1NzoyMVBNICswMjAwLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+ID4+IENv
+dWxkIHdlIG1lcmdlIHRoaXMgY29udHJvbGxlZCBieSBhIHNlcGFyYXRlIGNvbmZpZyBvcHRpb24/
+Cj4gPj4KPiA+PiBUaGlzIHdheSB3ZSBjb3VsZCBoYXZlIHRoZSBjaGVja3MgdXBzdHJlYW0gd2l0
+aG91dCBoYXZpbmcgdG8gZml4IGFsbCB0aGUKPiA+PiBzdHVmZiBiZWZvcmUgd2UgZG8gdGhpcz8K
+PiA+IERpc2N1c3Npb25zIGRpZWQgb3V0IGEgYml0LCBkbyB5b3UgY29uc2lkZXIgdGhpcyBhIGJs
+b2NrZXIgZm9yIHRoZSBmaXJzdAo+ID4gdHdvIHBhdGNoZXMsIG9yIGdvb2QgZm9yIGFuIGFjayBv
+biB0aGVzZT8KPgo+IFllcywgSSB0aGluayB0aGUgZmlyc3QgdHdvIGNhbiBiZSBtZXJnZWQgd2l0
+aG91dCBjYXVzaW5nIGFueSBwYWluLiBGZWVsCj4gZnJlZSB0byBhZGQgbXkgYWIgb24gdGhlbS4K
+Pgo+IEFuZCB0aGUgdGhpcmQgb25lIGNhbiBnbyBpbiBpbW1lZGlhdGVseSBhcyB3ZWxsLgoKQWNr
+ZWQtYnk6IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+IGZvciB0aGUgZmlyc3QgMiAr
+CmluZGVmaW5pdGUgZXhwbGFpbnMuCgpEYXZlLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZngK
