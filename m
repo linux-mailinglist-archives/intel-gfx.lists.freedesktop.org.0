@@ -1,52 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B184021DE40
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 19:09:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A8721DF45
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 20:01:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 573866E528;
-	Mon, 13 Jul 2020 17:09:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7888D6E554;
+	Mon, 13 Jul 2020 18:01:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 043286E525
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 17:09:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1594660143;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=6QuTf5C71U7Um/xsgnYO178Wyu0ptravPiJFTVzmVrk=;
- b=Vk14ek8XrxDpBWV6YRefKygE5yhgsDLauyer0UgX0odaroKfy8Kq0OHqF7V/CYsos5i30c
- 7otYRIXCG6mU5/bVcqaQT0YEFsQuDneQZOmQQny9Yv66NEQUcZ90Mlp0G0rooP9k/nLazM
- fnxmJrQYKYNV4MTDwWGZ2MIy7PIfWto=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-161-f7EqO-c-NvyDJIuy4co64Q-1; Mon, 13 Jul 2020 13:08:20 -0400
-X-MC-Unique: f7EqO-c-NvyDJIuy4co64Q-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 80806101A523;
- Mon, 13 Jul 2020 17:07:54 +0000 (UTC)
-Received: from Ruby.redhat.com (ovpn-119-224.rdu2.redhat.com [10.10.119.224])
- by smtp.corp.redhat.com (Postfix) with ESMTP id D3F9F10013C0;
- Mon, 13 Jul 2020 17:07:52 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jul 2020 13:07:46 -0400
-Message-Id: <20200713170746.254388-3-lyude@redhat.com>
-In-Reply-To: <20200713170746.254388-1-lyude@redhat.com>
-References: <20200713170746.254388-1-lyude@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2DF356E54C;
+ Mon, 13 Jul 2020 18:01:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 279CEA47DA;
+ Mon, 13 Jul 2020 18:01:40 +0000 (UTC)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-Subject: [Intel-gfx] [PATCH v4 2/2] drm/i915/mst: filter out the display
- mode exceed sink's capability
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 13 Jul 2020 18:01:40 -0000
+Message-ID: <159466330013.16739.9806179426369562230@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200713160549.17344-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200713160549.17344-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Only_swap_to_a_random_sibling_once_upon_creation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,167 +38,325 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>, David Airlie <airlied@linux.ie>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Lee Shawn C <shawn.c.lee@intel.com>
+== Series Details ==
 
-So far, max dot clock rate for MST mode rely on physcial
-bandwidth limitation. It would caused compatibility issue
-if source display resolution exceed MST hub output ability.
+Series: drm/i915/gt: Only swap to a random sibling once upon creation
+URL   : https://patchwork.freedesktop.org/series/79412/
+State : failure
 
-For example, source DUT had DP 1.2 output capability.
-And MST docking just support HDMI 1.4 spec. When a HDMI 2.0
-monitor connected. Source would retrieve EDID from external
-and get max resolution 4k@60fps. DP 1.2 can support 4K@60fps
-because it did not surpass DP physical bandwidth limitation.
-Do modeset to 4k@60fps, source output display data but MST
-docking can't output HDMI properly due to this resolution
-already over HDMI 1.4 spec.
+== Summary ==
 
-Refer to commit <fcf463807596> ("drm/dp_mst: Use full_pbn
-instead of available_pbn for bandwidth checks").
-Source driver should refer to full_pbn to evaluate sink
-output capability. And filter out the resolution surpass
-sink output limitation.
+CI Bug Log - changes from CI_DRM_8737_full -> Patchwork_18147_full
+====================================================
 
-Changes since v1:
-* Using mgr->base.lock to protect full_pbn.
-Changes since v2:
-* Add ctx lock.
-Changes since v3:
-* s/intel_dp_mst_mode_clock_exceed_pbn_bandwidth/
-  intel_dp_mst_mode_clock_exceeds_pbn_bw/
-* Use the new drm_connector_helper_funcs.mode_valid_ctx to properly pipe
-  down the drm_modeset_acquire_ctx that the probe helpers are using, so
-  we can safely grab &mgr->base.lock without deadlocking
-Changes since v4:
-* Move drm_dp_calc_pbn_mode(mode->clock, bpp, false) > port->full_pbn
-  check
-* Fix the bpp we use in drm_dp_calc_pbn_mode()
-* Drop leftover (!mgr) check
-* Don't check for if full_pbn is unset. To be clear - it _can_ be unset,
-  but if it is then it's certainly a bug in DRM or a non-compliant sink
-  as full_pbn should always be populated by the time we call
-  ->mode_valid_ctx.
-  We should workaround non-compliant sinks with full_pbn=0, but that
-  should happen in the DP MST helpers so we can estimate the full_pbn
-  value as best we can.
+Summary
+-------
 
-Tested-by: Imre Deak <imre.deak@intel.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Co-developed-by: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+  **FAILURE**
 
-squash! drm/i915/mst: filter out the display mode exceed sink's capability
+  Serious unknown changes coming with Patchwork_18147_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_18147_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 55 ++++++++++++++-------
- 1 file changed, 38 insertions(+), 17 deletions(-)
+  
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index bdc19b04b2c10..a2d91a4997001 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -639,39 +639,60 @@ static int intel_dp_mst_get_modes(struct drm_connector *connector)
- 	return intel_dp_mst_get_ddc_modes(connector);
- }
- 
--static enum drm_mode_status
--intel_dp_mst_mode_valid(struct drm_connector *connector,
--			struct drm_display_mode *mode)
-+static int
-+intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
-+			    struct drm_display_mode *mode,
-+			    struct drm_modeset_acquire_ctx *ctx,
-+			    enum drm_mode_status *status)
- {
- 	struct drm_i915_private *dev_priv = to_i915(connector->dev);
- 	struct intel_connector *intel_connector = to_intel_connector(connector);
- 	struct intel_dp *intel_dp = intel_connector->mst_port;
-+	struct drm_dp_mst_topology_mgr *mgr = &intel_dp->mst_mgr;
-+	struct drm_dp_mst_port *port = intel_connector->port;
-+	const int min_bpp = 18;
- 	int max_dotclk = to_i915(connector->dev)->max_dotclk_freq;
- 	int max_rate, mode_rate, max_lanes, max_link_clock;
-+	int ret;
- 
--	if (drm_connector_is_unregistered(connector))
--		return MODE_ERROR;
-+	if (drm_connector_is_unregistered(connector)) {
-+		*status = MODE_ERROR;
-+		return 0;
-+	}
- 
--	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
--		return MODE_NO_DBLESCAN;
-+	if (mode->flags & DRM_MODE_FLAG_DBLSCAN) {
-+		*status = MODE_NO_DBLESCAN;
-+		return 0;
-+	}
- 
- 	max_link_clock = intel_dp_max_link_rate(intel_dp);
- 	max_lanes = intel_dp_max_lane_count(intel_dp);
- 
- 	max_rate = intel_dp_max_data_rate(max_link_clock, max_lanes);
--	mode_rate = intel_dp_link_required(mode->clock, 18);
-+	mode_rate = intel_dp_link_required(mode->clock, min_bpp);
- 
--	/* TODO - validate mode against available PBN for link */
--	if (mode->clock < 10000)
--		return MODE_CLOCK_LOW;
-+	ret = drm_modeset_lock(&mgr->base.lock, ctx);
-+	if (ret)
-+		return ret;
- 
--	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
--		return MODE_H_ILLEGAL;
-+	if (mode_rate > max_rate || mode->clock > max_dotclk ||
-+	    drm_dp_calc_pbn_mode(mode->clock, min_bpp, false) > port->full_pbn) {
-+		*status = MODE_CLOCK_HIGH;
-+		return 0;
-+	}
-+
-+	if (mode->clock < 10000) {
-+		*status = MODE_CLOCK_LOW;
-+		return 0;
-+	}
- 
--	if (mode_rate > max_rate || mode->clock > max_dotclk)
--		return MODE_CLOCK_HIGH;
-+	if (mode->flags & DRM_MODE_FLAG_DBLCLK) {
-+		*status = MODE_H_ILLEGAL;
-+		return 0;
-+	}
- 
--	return intel_mode_valid_max_plane_size(dev_priv, mode);
-+	*status = intel_mode_valid_max_plane_size(dev_priv, mode);
-+	return 0;
- }
- 
- static struct drm_encoder *intel_mst_atomic_best_encoder(struct drm_connector *connector,
-@@ -700,7 +721,7 @@ intel_dp_mst_detect(struct drm_connector *connector,
- 
- static const struct drm_connector_helper_funcs intel_dp_mst_connector_helper_funcs = {
- 	.get_modes = intel_dp_mst_get_modes,
--	.mode_valid = intel_dp_mst_mode_valid,
-+	.mode_valid_ctx = intel_dp_mst_mode_valid_ctx,
- 	.atomic_best_encoder = intel_mst_atomic_best_encoder,
- 	.atomic_check = intel_dp_mst_atomic_check,
- 	.detect_ctx = intel_dp_mst_detect,
--- 
-2.26.2
+Possible new issues
+-------------------
 
+  Here are the unknown changes that may have been introduced in Patchwork_18147_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_flip@2x-absolute-wf_vblank@ab-vga1-hdmi-a1:
+    - shard-hsw:          NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-hsw1/igt@kms_flip@2x-absolute-wf_vblank@ab-vga1-hdmi-a1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18147_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_shared@q-smoketest-all:
+    - shard-glk:          [PASS][2] -> [DMESG-WARN][3] ([i915#118] / [i915#95]) +1 similar issue
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-glk6/igt@gem_ctx_shared@q-smoketest-all.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-glk6/igt@gem_ctx_shared@q-smoketest-all.html
+
+  * igt@gem_workarounds@suspend-resume-fd:
+    - shard-kbl:          [PASS][4] -> [INCOMPLETE][5] ([i915#155])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-kbl6/igt@gem_workarounds@suspend-resume-fd.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-kbl2/igt@gem_workarounds@suspend-resume-fd.html
+
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-apl:          [PASS][6] -> [DMESG-WARN][7] ([i915#1436] / [i915#1635] / [i915#716])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-apl8/igt@gen9_exec_parse@allowed-all.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-apl1/igt@gen9_exec_parse@allowed-all.html
+
+  * igt@kms_big_fb@y-tiled-64bpp-rotate-0:
+    - shard-glk:          [PASS][8] -> [DMESG-FAIL][9] ([i915#118] / [i915#95])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-glk9/igt@kms_big_fb@y-tiled-64bpp-rotate-0.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-glk8/igt@kms_big_fb@y-tiled-64bpp-rotate-0.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-dpms:
+    - shard-kbl:          [PASS][10] -> [DMESG-WARN][11] ([i915#93] / [i915#95]) +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-kbl1/igt@kms_cursor_crc@pipe-a-cursor-dpms.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-kbl4/igt@kms_cursor_crc@pipe-a-cursor-dpms.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-skl:          [PASS][12] -> [FAIL][13] ([i915#54])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-skl6/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-skl2/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-crc-legacy:
+    - shard-kbl:          [PASS][14] -> [DMESG-WARN][15] ([i915#1982])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-kbl3/igt@kms_cursor_legacy@flip-vs-cursor-crc-legacy.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-kbl6/igt@kms_cursor_legacy@flip-vs-cursor-crc-legacy.html
+
+  * igt@kms_draw_crc@draw-method-xrgb8888-render-untiled:
+    - shard-skl:          [PASS][16] -> [FAIL][17] ([i915#177] / [i915#52] / [i915#54])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-skl6/igt@kms_draw_crc@draw-method-xrgb8888-render-untiled.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-skl2/igt@kms_draw_crc@draw-method-xrgb8888-render-untiled.html
+
+  * igt@kms_flip@2x-dpms-vs-vblank-race-interruptible@ab-vga1-hdmi-a1:
+    - shard-hsw:          [PASS][18] -> [DMESG-WARN][19] ([i915#1982])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-hsw1/igt@kms_flip@2x-dpms-vs-vblank-race-interruptible@ab-vga1-hdmi-a1.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-hsw6/igt@kms_flip@2x-dpms-vs-vblank-race-interruptible@ab-vga1-hdmi-a1.html
+
+  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
+    - shard-skl:          [PASS][20] -> [DMESG-WARN][21] ([i915#1982]) +10 similar issues
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-skl8/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-skl10/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+
+  * igt@kms_flip@flip-vs-suspend@c-dp1:
+    - shard-kbl:          [PASS][22] -> [DMESG-WARN][23] ([i915#180]) +5 similar issues
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-kbl1/igt@kms_flip@flip-vs-suspend@c-dp1.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-kbl4/igt@kms_flip@flip-vs-suspend@c-dp1.html
+
+  * igt@kms_flip_tiling@flip-x-tiled:
+    - shard-apl:          [PASS][24] -> [DMESG-WARN][25] ([i915#1635] / [i915#95]) +19 similar issues
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-apl2/igt@kms_flip_tiling@flip-x-tiled.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-apl8/igt@kms_flip_tiling@flip-x-tiled.html
+
+  * igt@kms_frontbuffer_tracking@psr-rgb565-draw-mmap-cpu:
+    - shard-tglb:         [PASS][26] -> [DMESG-WARN][27] ([i915#1982]) +1 similar issue
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-tglb6/igt@kms_frontbuffer_tracking@psr-rgb565-draw-mmap-cpu.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-tglb7/igt@kms_frontbuffer_tracking@psr-rgb565-draw-mmap-cpu.html
+
+  * igt@kms_hdr@bpc-switch-suspend:
+    - shard-skl:          [PASS][28] -> [FAIL][29] ([i915#1188]) +1 similar issue
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-skl7/igt@kms_hdr@bpc-switch-suspend.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-skl1/igt@kms_hdr@bpc-switch-suspend.html
+
+  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
+    - shard-skl:          [PASS][30] -> [FAIL][31] ([fdo#108145] / [i915#265])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-skl6/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-skl2/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+
+  * igt@kms_psr2_su@page_flip:
+    - shard-iclb:         [PASS][32] -> [SKIP][33] ([fdo#109642] / [fdo#111068])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-iclb2/igt@kms_psr2_su@page_flip.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-iclb3/igt@kms_psr2_su@page_flip.html
+
+  * igt@kms_psr@no_drrs:
+    - shard-iclb:         [PASS][34] -> [FAIL][35] ([i915#173])
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-iclb6/igt@kms_psr@no_drrs.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-iclb1/igt@kms_psr@no_drrs.html
+
+  * igt@kms_psr@psr2_primary_mmap_cpu:
+    - shard-iclb:         [PASS][36] -> [SKIP][37] ([fdo#109441]) +2 similar issues
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-iclb5/igt@kms_psr@psr2_primary_mmap_cpu.html
+
+  * igt@kms_setmode@basic:
+    - shard-kbl:          [PASS][38] -> [FAIL][39] ([i915#31])
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-kbl1/igt@kms_setmode@basic.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-kbl2/igt@kms_setmode@basic.html
+
+  * igt@perf@buffer-fill:
+    - shard-apl:          [PASS][40] -> [DMESG-WARN][41] ([i915#1635] / [i915#1982]) +2 similar issues
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-apl2/igt@perf@buffer-fill.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-apl8/igt@perf@buffer-fill.html
+
+  * igt@perf_pmu@semaphore-busy@rcs0:
+    - shard-kbl:          [PASS][42] -> [FAIL][43] ([i915#1820])
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-kbl4/igt@perf_pmu@semaphore-busy@rcs0.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-kbl1/igt@perf_pmu@semaphore-busy@rcs0.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_reloc@basic-wc-cpu-active:
+    - shard-apl:          [DMESG-WARN][44] ([i915#1635] / [i915#95]) -> [PASS][45] +15 similar issues
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-apl6/igt@gem_exec_reloc@basic-wc-cpu-active.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-apl2/igt@gem_exec_reloc@basic-wc-cpu-active.html
+
+  * igt@gem_exec_whisper@basic-queues-forked-all:
+    - shard-glk:          [DMESG-WARN][46] ([i915#118] / [i915#95]) -> [PASS][47] +2 similar issues
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-glk2/igt@gem_exec_whisper@basic-queues-forked-all.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-glk4/igt@gem_exec_whisper@basic-queues-forked-all.html
+
+  * igt@gem_mmap_wc@read:
+    - shard-tglb:         [DMESG-WARN][48] ([i915#402]) -> [PASS][49]
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-tglb8/igt@gem_mmap_wc@read.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-tglb8/igt@gem_mmap_wc@read.html
+
+  * igt@kms_cursor_edge_walk@pipe-c-256x256-bottom-edge:
+    - shard-skl:          [DMESG-WARN][50] ([i915#1982]) -> [PASS][51] +11 similar issues
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-skl10/igt@kms_cursor_edge_walk@pipe-c-256x256-bottom-edge.html
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-skl9/igt@kms_cursor_edge_walk@pipe-c-256x256-bottom-edge.html
+
+  * igt@kms_fbcon_fbt@psr-suspend:
+    - shard-skl:          [INCOMPLETE][52] ([i915#69]) -> [PASS][53]
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-skl2/igt@kms_fbcon_fbt@psr-suspend.html
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-skl4/igt@kms_fbcon_fbt@psr-suspend.html
+
+  * igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a2:
+    - shard-glk:          [FAIL][54] ([i915#79]) -> [PASS][55]
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-glk2/igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a2.html
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-glk6/igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a2.html
+
+  * igt@kms_flip@flip-vs-expired-vblank@c-edp1:
+    - shard-skl:          [FAIL][56] ([i915#79]) -> [PASS][57]
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-skl2/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-skl5/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
+
+  * igt@kms_flip@flip-vs-suspend@a-dp1:
+    - shard-kbl:          [DMESG-WARN][58] ([i915#180]) -> [PASS][59] +1 similar issue
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-kbl1/igt@kms_flip@flip-vs-suspend@a-dp1.html
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-kbl4/igt@kms_flip@flip-vs-suspend@a-dp1.html
+
+  * igt@kms_flip@flip-vs-suspend@c-hdmi-a1:
+    - shard-hsw:          [INCOMPLETE][60] ([i915#2055]) -> [PASS][61]
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-hsw6/igt@kms_flip@flip-vs-suspend@c-hdmi-a1.html
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-hsw1/igt@kms_flip@flip-vs-suspend@c-hdmi-a1.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-shrfb-draw-blt:
+    - shard-iclb:         [DMESG-WARN][62] ([i915#1982]) -> [PASS][63]
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-iclb2/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-shrfb-draw-blt.html
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-iclb6/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-shrfb-draw-blt.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-blt:
+    - shard-tglb:         [SKIP][64] ([i915#668]) -> [PASS][65] +3 similar issues
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-tglb8/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-blt.html
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-tglb8/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-blt.html
+
+  * igt@kms_frontbuffer_tracking@psr-farfromfence:
+    - shard-tglb:         [DMESG-WARN][66] ([i915#1982]) -> [PASS][67] +1 similar issue
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-tglb1/igt@kms_frontbuffer_tracking@psr-farfromfence.html
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-tglb6/igt@kms_frontbuffer_tracking@psr-farfromfence.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [FAIL][68] ([fdo#108145] / [i915#265]) -> [PASS][69]
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_psr@psr2_basic:
+    - shard-iclb:         [SKIP][70] ([fdo#109441]) -> [PASS][71] +2 similar issues
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-iclb8/igt@kms_psr@psr2_basic.html
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-iclb2/igt@kms_psr@psr2_basic.html
+
+  * igt@perf@polling-parameterized:
+    - shard-kbl:          [FAIL][72] ([i915#1542]) -> [PASS][73]
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-kbl2/igt@perf@polling-parameterized.html
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-kbl3/igt@perf@polling-parameterized.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_dc@dc5-psr:
+    - shard-snb:          [SKIP][74] ([fdo#109271]) -> [INCOMPLETE][75] ([i915#82])
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-snb1/igt@i915_pm_dc@dc5-psr.html
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-snb5/igt@i915_pm_dc@dc5-psr.html
+
+  * igt@i915_pm_dc@dc6-psr:
+    - shard-skl:          [DMESG-FAIL][76] ([i915#1982]) -> [FAIL][77] ([i915#454])
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-skl9/igt@i915_pm_dc@dc6-psr.html
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-skl8/igt@i915_pm_dc@dc6-psr.html
+
+  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
+    - shard-kbl:          [DMESG-WARN][78] ([i915#93] / [i915#95]) -> [DMESG-WARN][79] ([i915#180] / [i915#93] / [i915#95])
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-kbl1/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-kbl4/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+
+  * igt@runner@aborted:
+    - shard-apl:          [FAIL][80] ([i915#1635] / [i915#2110]) -> ([FAIL][81], [FAIL][82]) ([fdo#109271] / [i915#1635] / [i915#2110] / [i915#716])
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8737/shard-apl7/igt@runner@aborted.html
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-apl1/igt@runner@aborted.html
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/shard-apl3/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
+  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
+  [i915#173]: https://gitlab.freedesktop.org/drm/intel/issues/173
+  [i915#177]: https://gitlab.freedesktop.org/drm/intel/issues/177
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#1820]: https://gitlab.freedesktop.org/drm/intel/issues/1820
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2055]: https://gitlab.freedesktop.org/drm/intel/issues/2055
+  [i915#2110]: https://gitlab.freedesktop.org/drm/intel/issues/2110
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#668]: https://gitlab.freedesktop.org/drm/intel/issues/668
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (12 -> 11)
+------------------------------
+
+  Missing    (1): pig-snb-2600 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8737 -> Patchwork_18147
+
+  CI-20190529: 20190529
+  CI_DRM_8737: 6d7d28df878566c99344437f03328f11333e508f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5734: 6e5c9915a80d791ea45a3e5d2a3cb7e5dc5f06f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18147: 4e556b645e6edb28bd0fbadd11602869d98edb03 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18147/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
