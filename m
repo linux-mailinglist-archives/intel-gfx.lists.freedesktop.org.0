@@ -1,42 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E5BF21CECE
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 07:24:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E71E121D65A
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 14:54:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 815806E4A5;
-	Mon, 13 Jul 2020 05:24:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93EA26E4D2;
+	Mon, 13 Jul 2020 12:53:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBA886E4A1;
- Mon, 13 Jul 2020 05:24:49 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4B4sXX4fR0z9sDX;
- Mon, 13 Jul 2020 15:24:44 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1594617886;
- bh=JLMrLsEFZFAdmvA4txh24SkbKNk+Xj+qzEtYAUIFtUc=;
- h=Date:From:To:Cc:Subject:From;
- b=sA0I0YtvSMhmE8SOA7Yh2tCmHmV4g4KpBfqo4rblBVRgNADwvjgCHP4yNibGpBJH+
- yXOuOqS97P1naQUy56kJvulZOkUG6cpW/AjLsDNDvX4Jvs11IeXRkQWpFVuM2s/XER
- yNloHjnb9TvY/7bQRxc3BYduxEj2ZTzhpOPLqnrM7Wq2A+j+x2T34TpE+sPIiJNIhG
- jZbxB2pvqtgO906fwdydFYcGtwr0yRCuotMa2BlrnNXM72VgrMO+JMF2Xw+cYXLCkG
- CuXrrSxENfm2VBfaV59d6i3I6XrBiSyU+kqdFOAG+S4X/Ksu7iS6V/IXrIW+Ltm6ve
- RF2Wd+qm2kb3Q==
-Date: Mon, 13 Jul 2020 15:24:43 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Greg KH <greg@kroah.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel
- Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>
-Message-ID: <20200713152443.12a5449a@canb.auug.org.au>
-MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: manual merge of the tty tree with the
- drm-misc tree
+X-Greylist: delayed 491 seconds by postgrey-1.36 at gabe;
+ Mon, 13 Jul 2020 08:16:17 UTC
+Received: from cstnet.cn (smtp23.cstnet.cn [159.226.251.23])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 55BD889D63;
+ Mon, 13 Jul 2020 08:16:17 +0000 (UTC)
+Received: from localhost (unknown [159.226.5.99])
+ by APP-03 (Coremail) with SMTP id rQCowAAXmQBWFgxfpA1mAA--.47566S2;
+ Mon, 13 Jul 2020 16:07:50 +0800 (CST)
+From: Xu Wang <vulab@iscas.ac.cn>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
+ chris@chris-wilson.co.uk, mika.kuoppala@linux.intel.com,
+ tvrtko.ursulin@intel.com, andi.shyti@intel.com, matthew.auld@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Mon, 13 Jul 2020 08:07:49 +0000
+Message-Id: <20200713080749.21782-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID: rQCowAAXmQBWFgxfpA1mAA--.47566S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7Gr4UCr15AF1rGF4DWFWkCrg_yoWxuFXEkr
+ 47Jrs3WFy2kF90vFnFvwsxZF90ya909F48Aw10q34ftFy2yr4UXa9xur1UXw1xXa13JrZr
+ u3W8uFySvrn3WjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUbVkFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+ Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE3s
+ 1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0
+ cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26F4UJVW0owAm72CE4IkC6x0Yz7v_Jr0_Gr
+ 1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
+ n2IY04v7MxkIecxEwVAFwVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJV
+ W8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF
+ 1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6x
+ IIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6rW3Jr0E3s1lIxAI
+ cVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kf
+ nxnUUI43ZEXa7VU1r-BtUUUUU==
+X-Originating-IP: [159.226.5.99]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiAw4QA13qZNpZSQAAsH
+X-Mailman-Approved-At: Mon, 13 Jul 2020 12:53:51 +0000
+Subject: [Intel-gfx] [PATCH] f2fs: gc: fix the variable used in PTR_ERR()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,93 +59,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Jiri Slaby <jslaby@suse.cz>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Content-Type: multipart/mixed; boundary="===============1082048547=="
+Cc: linux-kernel@vger.kernel.org, Xu Wang <vulab@iscas.ac.cn>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1082048547==
-Content-Type: multipart/signed; boundary="Sig_/haWNAIYhOEWfM4Dw6SlggMf";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+PTR_ERR should access the value just tested by IS_ERR, so fix
+the variable used in PTR_ERR().
 
---Sig_/haWNAIYhOEWfM4Dw6SlggMf
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Xu Wang <vulab@iscas.ac.cn>
+---
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hi all,
-
-Today's linux-next merge of the tty tree got a conflict in:
-
-  drivers/video/fbdev/core/fbcon.c
-
-between commit:
-
-  fcf918b96662 ("fbcon: Use array3_size() helper in scr_memcpyw()")
-
-from the drm-misc tree and commit:
-
-  28bc24fc46f9 ("vc: separate state")
-
-from the tty tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/video/fbdev/core/fbcon.c
-index af9f5ab96f74,86fe41b1deb8..000000000000
---- a/drivers/video/fbdev/core/fbcon.c
-+++ b/drivers/video/fbdev/core/fbcon.c
-@@@ -676,8 -676,8 +676,8 @@@ static void fbcon_prepare_logo(struct v
-  		q =3D (unsigned short *) (vc->vc_origin +
-  					vc->vc_size_row *
-  					rows);
- -		scr_memcpyw(q, save, logo_lines * new_cols * 2);
- +		scr_memcpyw(q, save, array3_size(logo_lines, new_cols, 2));
-- 		vc->vc_y +=3D logo_lines;
-+ 		vc->state.y +=3D logo_lines;
-  		vc->vc_pos +=3D logo_lines * vc->vc_size_row;
-  		kfree(save);
-  	}
-
---Sig_/haWNAIYhOEWfM4Dw6SlggMf
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl8L8BsACgkQAVBC80lX
-0GzyDQgAhscNOpxmGNkv4WeNqnKFiLiF64IREaN7Eq/NRR/Pc7wLupLwkb/WUpID
-yxY1NvgGr16W/J5ovPJEN1PnbOTtm/R0WoVp51tYHWD9BFwowrhtxLyX+ukRlSCN
-NE8yC+wH7BzLQJR8uPdonWKdg4kVKf7Yc7cGtYPajJvCHy/Zru+Z7Bi6djmQTx+M
-/G7/+MlVr3945SyWh3LTv+0/koHi4QflMMnSENQrG4n672S1Pk02NuMI2SmYEVTZ
-O56BcypkSGXuSz+Pl7c4ZPsMusponpNNdVa1EXGL1wHO4EMvKhKR/T9D4OkrUYwS
-5VL9bF24IDfGLEmWpM6pL3DLbISRkg==
-=B9WA
------END PGP SIGNATURE-----
-
---Sig_/haWNAIYhOEWfM4Dw6SlggMf--
-
---===============1082048547==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 924bc01ef526..d2587e46afe9 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -1349,7 +1349,7 @@ static int live_timeslice_nopreempt(void *arg)
+ 
+ 		ce = intel_context_create(engine);
+ 		if (IS_ERR(ce)) {
+-			err = PTR_ERR(rq);
++			err = PTR_ERR(ce);
+ 			goto out_spin;
+ 		}
+ 
+-- 
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1082048547==--
