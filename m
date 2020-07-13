@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD48F21D691
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 15:16:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8572E21D694
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 15:17:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA56F6E4E6;
-	Mon, 13 Jul 2020 13:16:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D64746E4EA;
+	Mon, 13 Jul 2020 13:17:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DCA26E4E6
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 13:16:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA47F6E4EA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 13:17:51 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21803836-1500050 
- for multiple; Mon, 13 Jul 2020 14:16:17 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21803854-1500050 
+ for multiple; Mon, 13 Jul 2020 14:17:37 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jul 2020 14:16:17 +0100
-Message-Id: <20200713131617.21175-1-chris@chris-wilson.co.uk>
+Date: Mon, 13 Jul 2020 14:17:38 +0100
+Message-Id: <20200713131738.21319-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200713131617.21175-1-chris@chris-wilson.co.uk>
+References: <20200713131617.21175-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915: Skip signaling a signaled request
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -62,7 +64,7 @@ dma_fence_signal(ve.rq0) # request completed before preemption ack
 
 [  264.210142] BUG: spinlock recursion on CPU#2, sample_multi_tr/2093
 [  264.210150]  lock: 0xffff9efd6ac55080, .magic: dead4ead, .owner: sample_multi_tr/2093, .owner_cpu: 2
-[  264.210155] CPU: 2 PID: 2093 Comm: sample_multi_tr Tainted: G     U       5.4.48-prod-dg1-vn-2660+ #3
+[  264.210155] CPU: 2 PID: 2093 Comm: sample_multi_tr Tainted: G     U
 [  264.210158] Hardware name: Intel Corporation CoffeeLake Client Platform/CoffeeLake S UDIMM RVP, BIOS CNLSFWR1.R00.X212.B01.1909060036 09/06/2019
 [  264.210160] Call Trace:
 [  264.210167]  dump_stack+0x98/0xda
