@@ -2,31 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8438021E0FF
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 21:53:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E69321E140
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 22:13:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C95376E38A;
-	Mon, 13 Jul 2020 19:53:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4806F6E7D1;
+	Mon, 13 Jul 2020 20:13:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 079E86E30D;
- Mon, 13 Jul 2020 19:53:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0068CA3ECB;
- Mon, 13 Jul 2020 19:53:49 +0000 (UTC)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E7FB6E550
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 18:51:55 +0000 (UTC)
+Received: from quaco.ghostprotocols.net (unknown [179.97.37.151])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id A52E62067D;
+ Mon, 13 Jul 2020 18:51:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1594666315;
+ bh=LJYNdMjGh9jhnhTSdjGmRfj4ZZPmYTCiDmXsEYK+rbA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=xcUtfiYB9gVw0idtGZ0ckHJ2AwARiBsz3B5pO/4Xsnz0RRlywvnR9X3VFXsqG5tBe
+ 5BFF04XGFk0AfoP+GCDL7YcFUld9kJx5NTN7ySezxdO8tPJlxVaKmnlPfv01njAyWF
+ f3dcdWXOvMV/lHwrEnxNT6iK1jKKpuEn4rBQVCxk=
+Received: by quaco.ghostprotocols.net (Postfix, from userid 1000)
+ id 1C9B440094; Mon, 13 Jul 2020 15:51:52 -0300 (-03)
+Date: Mon, 13 Jul 2020 15:51:52 -0300
+From: Arnaldo Carvalho de Melo <acme@kernel.org>
+To: Alexey Budankov <alexey.budankov@linux.intel.com>
+Message-ID: <20200713185152.GA18094@kernel.org>
+References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
+ <76718dc6-5483-5e2e-85b8-64e70306ee1f@linux.ibm.com>
+ <7776fa40-6c65-2aa6-1322-eb3a01201000@linux.intel.com>
+ <20200710170911.GD7487@kernel.org>
+ <0d2e2306-22b2-a730-dc3f-edb3538b6561@linux.intel.com>
+ <20200713121746.GA7029@kernel.org>
+ <0fadcf78-8b0e-ed03-a554-cc172b7d249c@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 13 Jul 2020 19:53:49 -0000
-Message-ID: <159467002997.16737.17618820905430916371@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200713184039.20463-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200713184039.20463-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Remove_i915=5Frequest=2Elock_requirement_for_execution?=
- =?utf-8?q?_callbacks_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <0fadcf78-8b0e-ed03-a554-cc172b7d249c@linux.intel.com>
+X-Url: http://acmel.wordpress.com
+X-Mailman-Approved-At: Mon, 13 Jul 2020 20:13:02 +0000
+Subject: Re: [Intel-gfx] [PATCH v8 00/12] Introduce CAP_PERFMON to secure
+ system performance monitoring and observability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,153 +56,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Ravi Bangoria <ravi.bangoria@linux.ibm.com>,
+ Song Liu <songliubraving@fb.com>, Andi Kleen <ak@linux.intel.com>,
+ linux-man@vger.kernel.org,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Igor Lubashev <ilubashe@akamai.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>, James Morris <jmorris@namei.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Jiri Olsa <jolsa@redhat.com>, Serge Hallyn <serge@hallyn.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Em Mon, Jul 13, 2020 at 03:37:51PM +0300, Alexey Budankov escreveu:
+> =
 
-Series: drm/i915: Remove i915_request.lock requirement for execution callbacks (rev2)
-URL   : https://patchwork.freedesktop.org/series/79414/
-State : success
+> On 13.07.2020 15:17, Arnaldo Carvalho de Melo wrote:
+> > Em Mon, Jul 13, 2020 at 12:48:25PM +0300, Alexey Budankov escreveu:
+> >>
+> >> On 10.07.2020 20:09, Arnaldo Carvalho de Melo wrote:
+> >>> Em Fri, Jul 10, 2020 at 05:30:50PM +0300, Alexey Budankov escreveu:
+> >>>> On 10.07.2020 16:31, Ravi Bangoria wrote:
+> >>>>>> Currently access to perf_events, i915_perf and other performance
+> >>>>>> monitoring and observability subsystems of the kernel is open only=
+ for
+> >>>>>> a privileged process [1] with CAP_SYS_ADMIN capability enabled in =
+the
+> >>>>>> process effective set [2].
+> > =
 
-== Summary ==
+> >>>>>> This patch set introduces CAP_PERFMON capability designed to secure
+> >>>>>> system performance monitoring and observability operations so that
+> >>>>>> CAP_PERFMON would assist CAP_SYS_ADMIN capability in its governing=
+ role
+> >>>>>> for performance monitoring and observability subsystems of the ker=
+nel.
+> > =
 
-CI Bug Log - changes from CI_DRM_8739 -> Patchwork_18151
-====================================================
+> >>>>> I'm seeing an issue with CAP_PERFMON when I try to record data for a
+> >>>>> specific target. I don't know whether this is sort of a regression =
+or
+> >>>>> an expected behavior.
+> > =
 
-Summary
--------
+> >>>> Thanks for reporting and root causing this case. The behavior looks =
+like
+> >>>> kind of expected since currently CAP_PERFMON takes over the related =
+part
+> >>>> of CAP_SYS_ADMIN credentials only. Actually Perf security docs [1] s=
+ay
+> >>>> that access control is also subject to CAP_SYS_PTRACE credentials.
+> > =
 
-  **SUCCESS**
+> >>> I think that stating that in the error message would be helpful, after
+> >>> all, who reads docs? 8-)
+> > =
 
-  No regressions found.
+> >> At least those who write it :D ...
+> > =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/index.html
+> > Everybody should read it, sure :-)
+> >  =
 
-Known issues
-------------
+> >>> I.e., this:
+> >>>
+> >>> $ ./perf stat ls
+> >>> =A0 Error:
+> >>> =A0 Access to performance monitoring and observability operations is =
+limited.
+> >>> $
+> >>>
+> >>> Could become:
+> >>>
+> >>> $ ./perf stat ls
+> >>> =A0 Error:
+> >>> =A0 Access to performance monitoring and observability operations is =
+limited.
+> >>>   Right now only CAP_PERFMON is granted, you may need CAP_SYS_PTRACE.
+> >>> $
+> >>
+> >> It would better provide reference to perf security docs in the tool ou=
+tput.
+> > =
 
-  Here are the changes found in Patchwork_18151 that come from known issues:
+> > So add a 3rd line:
+> > =
 
-### IGT changes ###
+> > $ ./perf stat ls
+> > =A0 Error:
+> > =A0 Access to performance monitoring and observability operations is li=
+mited.
+> >   Right now only CAP_PERFMON is granted, you may need CAP_SYS_PTRACE.
+> >   Please read the 'Perf events and tool security' document:
+> >   https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html
 
-#### Issues hit ####
+> If it had that patch below then message change would not be required.
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+Sure, but the tool should continue to work and provide useful messages
+when running on kernels without that change. Pointing to the document is
+valid and should be done, that is an agreed point. But the tool can do
+some checks, narrow down the possible causes for the error message and
+provide something that in most cases will make the user make progress.
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+> However this two sentences in the end of whole message would still add up:
+> "Please read the 'Perf events and tool security' document:
+>  https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html"
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html
+We're in violent agreement here. :-)
+ =
 
-  * igt@vgem_basic@setversion:
-    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([i915#402]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-tgl-y/igt@vgem_basic@setversion.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-tgl-y/igt@vgem_basic@setversion.html
+> > =
 
-  
-#### Possible fixes ####
+> >> Looks like extending ptrace_may_access() check for perf_events with CA=
+P_PERFMON
+> > =
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][9] ([i915#1888]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+> > You mean the following?
+> =
 
-  * igt@gem_flink_basic@basic:
-    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12] +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-tgl-y/igt@gem_flink_basic@basic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-tgl-y/igt@gem_flink_basic@basic.html
+> Exactly that.
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-n3050:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - fi-tgl-y:           [DMESG-WARN][15] ([i915#1982]) -> [PASS][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html
+Sure, lets then wait for others to chime in and then you can go ahead
+and submit that patch.
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+Peter?
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [DMESG-WARN][19] ([i915#402]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+- Arnaldo
+ =
 
-  
-#### Warnings ####
+> > =
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#1982] / [i915#62] / [i915#92])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+> > diff --git a/kernel/events/core.c b/kernel/events/core.c
+> > index 856d98c36f56..a2397f724c10 100644
+> > --- a/kernel/events/core.c
+> > +++ b/kernel/events/core.c
+> > @@ -11595,7 +11595,7 @@ SYSCALL_DEFINE5(perf_event_open,
+> >  		 * perf_event_exit_task() that could imply).
+> >  		 */
+> >  		err =3D -EACCES;
+> > -		if (!ptrace_may_access(task, PTRACE_MODE_READ_REALCREDS))
+> > +		if (!perfmon_capable() && !ptrace_may_access(task, PTRACE_MODE_READ_=
+REALCREDS))
+> >  			goto err_cred;
+> >  	}
+> > =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][23] ([fdo#109271]) -> [DMESG-FAIL][24] ([i915#62])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+> >> makes monitoring simpler and even more secure to use since Perf tool n=
+eed
+> >> not to start/stop/single-step and read/write registers and memory and =
+so on
+> >> like a debugger or strace-like tool. What do you think?
+> > =
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - fi-kbl-x1275:       [DMESG-WARN][25] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][26] ([i915#62] / [i915#92]) +2 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+> > I tend to agree, Peter?
+> >  =
 
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][27] ([i915#62] / [i915#92]) -> [DMESG-WARN][28] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8739/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+> >> Alexei
+> >>
+> >>>
+> >>> - Arnaldo
+> =
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+> Alexei
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (47 -> 40)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8739 -> Patchwork_18151
-
-  CI-20190529: 20190529
-  CI_DRM_8739: 147656a7a6fdad7901fce3b2df7b673906961439 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5735: 21f8204e54c122e4a0f8ca4b59e4b2db8d1ba687 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18151: a902077a51de331a36a2c0f1f63db44700dac8d1 @ git://anongit.freedesktop.org/gfx-ci/linux
+-- =
 
 
-== Linux commits ==
-
-a902077a51de drm/i915: Remove i915_request.lock requirement for execution callbacks
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18151/index.html
+- Arnaldo
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
