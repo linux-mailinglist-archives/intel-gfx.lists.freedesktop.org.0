@@ -1,41 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B69821DF88
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 20:23:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D864421DFF8
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2020 20:40:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92DD46E54C;
-	Mon, 13 Jul 2020 18:23:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B4396E581;
+	Mon, 13 Jul 2020 18:40:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D866892C2
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 18:23:41 +0000 (UTC)
-IronPort-SDR: HCymzZuzYezcMJeaDhOD7Rh6NrB4e4/lvpClgV0T9t9cWUwhZvIYEuY6xE+Xhoj4MTH+de1mHI
- 2w7OlWt89Fpg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9681"; a="128267374"
-X-IronPort-AV: E=Sophos;i="5.75,348,1589266800"; d="scan'208";a="128267374"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2020 11:23:40 -0700
-IronPort-SDR: eJ8bhCn9It1DAf0zodnOoCgSelimLF/2z4pFESaIi+QVUgv0khflZwbFe353xVv7tUD1ryK9yC
- YE9ht3sTb+DQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,348,1589266800"; d="scan'208";a="269792946"
-Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
- by fmsmga008.fm.intel.com with ESMTP; 13 Jul 2020 11:23:40 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB006E581
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2020 18:40:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21807625-1500050 
+ for multiple; Mon, 13 Jul 2020 19:40:38 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jul 2020 11:23:21 -0700
-Message-Id: <20200713182321.12390-6-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200713182321.12390-1-lucas.demarchi@intel.com>
-References: <20200713182321.12390-1-lucas.demarchi@intel.com>
+Date: Mon, 13 Jul 2020 19:40:39 +0100
+Message-Id: <20200713184039.20463-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 6/6] drm/i915/dg1: Add fake PCH
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Remove i915_request.lock
+ requirement for execution callbacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,65 +37,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DG1 has the south engine display on the same PCI device. Ideally we
-could use HAS_PCH_SPLIT(), but that macro is misused all across the
-code base to rather signify a range of gens. So add a fake one for DG1
-to be used where needed.
+We are using the i915_request.lock to serialise adding an execution
+callback with __i915_request_submit. However, if we use an atomic
+llist_add to serialise multiple waiters and then check to see if the
+request is already executing, we can remove the irq-spinlock.
 
-Cc: Aditya Swarup <aditya.swarup@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/intel_pch.c | 6 ++++++
- drivers/gpu/drm/i915/intel_pch.h | 4 ++++
- 2 files changed, 10 insertions(+)
+ drivers/gpu/drm/i915/i915_request.c | 38 +++++++----------------------
+ 1 file changed, 9 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-index c668e99eb2e4..6c97192e9ca8 100644
---- a/drivers/gpu/drm/i915/intel_pch.c
-+++ b/drivers/gpu/drm/i915/intel_pch.c
-@@ -188,6 +188,12 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 0b2fe55e6194..c59315def07d 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -190,13 +190,11 @@ static void __notify_execute_cb(struct i915_request *rq)
  {
- 	struct pci_dev *pch = NULL;
+ 	struct execute_cb *cb, *cn;
  
-+	/* DG1 has south engine display on the same PCI device */
-+	if (IS_DG1(dev_priv)) {
-+		dev_priv->pch_type = PCH_DG1;
-+		return;
-+	}
-+
+-	lockdep_assert_held(&rq->lock);
+-
+-	GEM_BUG_ON(!i915_request_is_active(rq));
+ 	if (llist_empty(&rq->execute_cb))
+ 		return;
+ 
+-	llist_for_each_entry_safe(cb, cn, rq->execute_cb.first, work.llnode)
++	llist_for_each_entry_safe(cb, cn,
++				  llist_del_all(&rq->execute_cb), work.llnode)
+ 		irq_work_queue(&cb->work);
+ 
  	/*
- 	 * The reason to probe ISA bridge instead of Dev31:Fun0 is to
- 	 * make graphics device passthrough work easy for VMM, that only
-diff --git a/drivers/gpu/drm/i915/intel_pch.h b/drivers/gpu/drm/i915/intel_pch.h
-index 3053d1ce398b..06d2cd50af0b 100644
---- a/drivers/gpu/drm/i915/intel_pch.h
-+++ b/drivers/gpu/drm/i915/intel_pch.h
-@@ -26,6 +26,9 @@ enum intel_pch {
- 	PCH_JSP,	/* Jasper Lake PCH */
- 	PCH_MCC,        /* Mule Creek Canyon PCH */
- 	PCH_TGP,	/* Tiger Lake PCH */
-+
-+	/* Fake PCHs, functionality handled on the same PCI dev */
-+	PCH_DG1 = 1024,
- };
+@@ -209,7 +207,6 @@ static void __notify_execute_cb(struct i915_request *rq)
+ 	 * preempt-to-idle cycle on the target engine, all the while the
+ 	 * master execute_cb may refire.
+ 	 */
+-	init_llist_head(&rq->execute_cb);
+ }
  
- #define INTEL_PCH_DEVICE_ID_MASK		0xff80
-@@ -56,6 +59,7 @@ enum intel_pch {
+ static inline void
+@@ -276,6 +273,7 @@ static void remove_from_engine(struct i915_request *rq)
+ 	list_del_init(&rq->sched.link);
+ 	clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+ 	clear_bit(I915_FENCE_FLAG_HOLD, &rq->fence.flags);
++	set_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+ 	spin_unlock_irq(&locked->active.lock);
+ }
  
- #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
- #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
-+#define HAS_PCH_DG1(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG1)
- #define HAS_PCH_JSP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_JSP)
- #define HAS_PCH_MCC(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MCC)
- #define HAS_PCH_TGP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_TGP)
+@@ -323,12 +321,8 @@ bool i915_request_retire(struct i915_request *rq)
+ 		GEM_BUG_ON(!atomic_read(&rq->engine->gt->rps.num_waiters));
+ 		atomic_dec(&rq->engine->gt->rps.num_waiters);
+ 	}
+-	if (!test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags)) {
+-		set_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+-		__notify_execute_cb(rq);
+-	}
+-	GEM_BUG_ON(!llist_empty(&rq->execute_cb));
+ 	spin_unlock_irq(&rq->lock);
++	__notify_execute_cb(rq);
+ 
+ 	remove_from_client(rq);
+ 	__list_del_entry(&rq->link); /* poison neither prev/next (RCU walks) */
+@@ -357,12 +351,6 @@ void i915_request_retire_upto(struct i915_request *rq)
+ 	} while (i915_request_retire(tmp) && tmp != rq);
+ }
+ 
+-static void __llist_add(struct llist_node *node, struct llist_head *head)
+-{
+-	node->next = head->first;
+-	head->first = node;
+-}
+-
+ static struct i915_request * const *
+ __engine_active(struct intel_engine_cs *engine)
+ {
+@@ -439,18 +427,11 @@ __await_execution(struct i915_request *rq,
+ 		cb->work.func = irq_execute_cb_hook;
+ 	}
+ 
+-	spin_lock_irq(&signal->lock);
+-	if (i915_request_is_active(signal) || __request_in_flight(signal)) {
+-		if (hook) {
+-			hook(rq, &signal->fence);
+-			i915_request_put(signal);
+-		}
+-		i915_sw_fence_complete(cb->fence);
+-		kmem_cache_free(global.slab_execute_cbs, cb);
+-	} else {
+-		__llist_add(&cb->work.llnode, &signal->execute_cb);
++	if (llist_add(&cb->work.llnode, &signal->execute_cb)) {
++		if (i915_request_is_active(signal) ||
++		    __request_in_flight(signal))
++			__notify_execute_cb(signal);
+ 	}
+-	spin_unlock_irq(&signal->lock);
+ 
+ 	return 0;
+ }
+@@ -565,19 +546,18 @@ bool __i915_request_submit(struct i915_request *request)
+ 		list_move_tail(&request->sched.link, &engine->active.requests);
+ 		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
+ 	}
++	__notify_execute_cb(request);
+ 
+ 	/* We may be recursing from the signal callback of another i915 fence */
+ 	if (!i915_request_signaled(request)) {
+ 		spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+ 
+-		__notify_execute_cb(request);
+ 		if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+ 			     &request->fence.flags) &&
+ 		    !i915_request_enable_breadcrumb(request))
+ 			intel_engine_signal_breadcrumbs(engine);
+ 
+ 		spin_unlock(&request->lock);
+-		GEM_BUG_ON(!llist_empty(&request->execute_cb));
+ 	}
+ 
+ 	return result;
 -- 
-2.26.2
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
