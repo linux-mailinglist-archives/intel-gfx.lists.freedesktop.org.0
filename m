@@ -1,60 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0FC721EECF
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 13:12:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85C8A21EF3D
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 13:28:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ECBA6E3F4;
-	Tue, 14 Jul 2020 11:12:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE4B26E94E;
+	Tue, 14 Jul 2020 11:28:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8398B6E3F4
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:12:26 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id s10so20822798wrw.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 04:12:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=VJUMRju7OKuE24xgVbETEzznY9nUxSvHfkGn/7lFRJc=;
- b=QXKYfmXCGRLPUrNkOqg5GHB6w56deMXiDRBvJUKkOa99upUqSTzhOTtteoMRkPKNfw
- BtR9jMTMIiIUaUJ0o1zyHoUR6aV5iyzF6GVIhkWK2K0Glhu+cfsE2CYMNQJFaMvBaW1n
- 1/BG4wF1/vDhGYbqcBNX7HfYQvgJBdCSrCWGY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=VJUMRju7OKuE24xgVbETEzznY9nUxSvHfkGn/7lFRJc=;
- b=kygQi6lNfGhvmJoGEIFa0aM7sv/MU0pgRp/UZrypb6MiieKgvLmLevpnCIHKvJfvHj
- Tqy83gIrCUsU62NCPehC1RRV7BpzbhabWLMDxpl+PzUihwxge8APY+nzn9Hm9auX3VL7
- cbZ2hFQ5neSKGxpO+aL5JEyEs8JJaPw5EwvmTuDywcJQkRWhSHFkLcKZenUNe6ZwfvLY
- aulC8OgolKDjNEzpqBLPQa+Tu69QFTfM5BajJ9hEaMQFy3i2AyAXRx3q/lqVJ2HRAEsT
- oGwBjfjY/kDIl/zJhly7s9XGjR3/+mNudKskDME8xgAU1Yhqn5al+tDHo22IHpus8YfN
- 2lig==
-X-Gm-Message-State: AOAM5327HsUZY1Xk6aQ1quvhrISzTSOsw5lkConz7Wnsrw7fAJAxz0m9
- 7PfUAABEANvCzjcAFIBJ3wZHRg==
-X-Google-Smtp-Source: ABdhPJz5Pus9C7QZEyzkJv8l+/+SFrBsdEtrmB/rDpt1sctjAKSgOKT85PdH59/MA9EocwuEPu+DYA==
-X-Received: by 2002:adf:f542:: with SMTP id j2mr4633600wrp.61.1594725145156;
- Tue, 14 Jul 2020 04:12:25 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l1sm29243097wrb.12.2020.07.14.04.12.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Jul 2020 04:12:24 -0700 (PDT)
-Date: Tue, 14 Jul 2020 13:12:22 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Message-ID: <20200714111222.GE3278063@phenom.ffwll.local>
-References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
- <20200707201229.472834-21-daniel.vetter@ffwll.ch>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 582746E02B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:28:19 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21814180-1500050 for multiple; Tue, 14 Jul 2020 12:28:16 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200707201229.472834-21-daniel.vetter@ffwll.ch>
-X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 20/25] drm/amdgpu: DC also loves to allocate
- stuff where it shouldn't
+In-Reply-To: <20200714072239.70198-2-umesh.nerlige.ramappa@intel.com>
+References: <20200714072239.70198-1-umesh.nerlige.ramappa@intel.com>
+ <20200714072239.70198-2-umesh.nerlige.ramappa@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Lionel G Landwerlin <lionel.g.landwerlin@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Jul 2020 12:28:15 +0100
+Message-ID: <159472609506.28577.3725857994649902167@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/perf: Map OA buffer to user
+ space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,136 +42,337 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- amd-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- linaro-mm-sig@lists.linaro.org, Daniel Vetter <daniel.vetter@intel.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 07, 2020 at 10:12:24PM +0200, Daniel Vetter wrote:
-> Not going to bother with a complete&pretty commit message, just
-> offending backtrace:
-> =
+Quoting Umesh Nerlige Ramappa (2020-07-14 08:22:39)
+> From: Piotr Maciejewski <piotr.maciejewski@intel.com>
+> 
+> i915 used to support time based sampling mode which is good for overall
+> system monitoring, but is not enough for query mode used to measure a
+> single draw call or dispatch. Gen9-Gen11 are using current i915 perf
+> implementation for query, but Gen12+ requires a new approach based on
+> triggered reports within oa buffer. In order to enable above feature
+> two changes are required:
+> 
+> 1. Whitelist update:
+> - enable triggered reports within oa buffer
+> - reading oa buffer head/tail/status information
+> - reading gpu ticks counter.
+> 
+> 2. Map oa buffer at umd driver level to solve below constraints related
+>    to time based sampling interface:
+> - longer time to access reports collected by oa buffer
 
->         kvmalloc_node+0x47/0x80
->         dc_create_state+0x1f/0x60 [amdgpu]
->         dc_commit_state+0xcb/0x9b0 [amdgpu]
->         amdgpu_dm_atomic_commit_tail+0xd31/0x2010 [amdgpu]
->         commit_tail+0xa4/0x140 [drm_kms_helper]
->         drm_atomic_helper_commit+0x152/0x180 [drm_kms_helper]
->         drm_client_modeset_commit_atomic+0x1ea/0x250 [drm]
->         drm_client_modeset_commit_locked+0x55/0x190 [drm]
->         drm_client_modeset_commit+0x24/0x40 [drm]
-> =
+If you aren't talking about a few 10us, then something else is wrong.
 
-> v2: Found more in DC code, I'm just going to pile them all up.
-> =
+> - slow oa reports browsing since oa buffer size is large
 
-> Cc: linux-media@vger.kernel.org
-> Cc: linaro-mm-sig@lists.linaro.org
-> Cc: linux-rdma@vger.kernel.org
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Christian K=F6nig <christian.koenig@amd.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Nothing changes on the surface. That does not sound like inherent
+inefficiencies. Since the same number of events will be generated and
+need to be processed. You may argue that they are easier to process in
+situ, and that the number of events dwarf L1 cache. An mmap interface
+could eliminate one copy (and certainly a copy-to-user).
 
-Anyone from amdgpu DC team started to look into this and the subsequent
-patches in DC? Note that the last one isn't needed anymore because it's
-now fix in upstream with
+> - missing oa report index, so query cannot browse report directly
 
-commit cdaae8371aa9d4ea1648a299b1a75946b9556944
-Author: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
-Date:   Mon May 11 14:21:17 2020 -0400
+There's more to it than that otherwise you would have proposed an
+extension to the event format.
 
-    drm/amd/display: Handle GPU reset for DC block
+> - with direct access to oa buffer, query can extract other useful
+>   reports like context switch information needed to calculate correct
+>   performance counters values.
 
-But that patch has a ton of memory allocations in the reset path now, so
-you just replaced one deadlock with another one ...
+Why would you not start with an unprivileged mediated mmapped buffer?
+If the goal is to reduce sample latency by replacing read ioctls with a
+mmap, that would seem to be an orthogonal step to exposing the raw OA
+buffer. The inference would be that you do want to extract extra details
+from the OA that are not being catered for. That's perfectly fine, our
+goal is to _safely_ expose HW and not get in the way of userspace. But
+if that was the intent, it should not appear to be an afterthought.
+[i.e. that mmap should be inherently faster for accessing a large ring
+of data is much less important than discussing the safety concerns of
+letting userspace have direct control/access of OA.]
 
-Note that since amdgpu has it's private atomic_commit_tail implemenation
-this won't hold up the generic atomic annotations, but I think it will
-hold up the tdr annotations at least. Plus would be nice to fix this
-somehow.
--Daniel
-
+> Signed-off-by: Piotr Maciejewski <piotr.maciejewski@intel.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/atom.c                 | 2 +-
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
->  drivers/gpu/drm/amd/display/dc/core/dc.c          | 4 +++-
->  3 files changed, 5 insertions(+), 3 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/amd/amdgpu/atom.c b/drivers/gpu/drm/amd/amdg=
-pu/atom.c
-> index 4cfc786699c7..1b0c674fab25 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/atom.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/atom.c
-> @@ -1226,7 +1226,7 @@ static int amdgpu_atom_execute_table_locked(struct =
-atom_context *ctx, int index,
->  	ectx.abort =3D false;
->  	ectx.last_jump =3D 0;
->  	if (ws)
-> -		ectx.ws =3D kcalloc(4, ws, GFP_KERNEL);
-> +		ectx.ws =3D kcalloc(4, ws, GFP_ATOMIC);
->  	else
->  		ectx.ws =3D NULL;
->  =
-
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 6afcc33ff846..3d41eddc7908 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -6872,7 +6872,7 @@ static void amdgpu_dm_commit_planes(struct drm_atom=
-ic_state *state,
->  		struct dc_stream_update stream_update;
->  	} *bundle;
->  =
-
-> -	bundle =3D kzalloc(sizeof(*bundle), GFP_KERNEL);
-> +	bundle =3D kzalloc(sizeof(*bundle), GFP_ATOMIC);
->  =
-
->  	if (!bundle) {
->  		dm_error("Failed to allocate update bundle\n");
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/a=
-md/display/dc/core/dc.c
-> index 942ceb0f6383..f9a58509efb2 100644
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-> @@ -1475,8 +1475,10 @@ bool dc_post_update_surfaces_to_stream(struct dc *=
-dc)
->  =
-
->  struct dc_state *dc_create_state(struct dc *dc)
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c |  54 ++++++++
+>  drivers/gpu/drm/i915/i915_perf.c            | 130 +++++++++++++++++++-
+>  drivers/gpu/drm/i915/i915_perf_types.h      |  13 ++
+>  drivers/gpu/drm/i915/i915_reg.h             |  14 +++
+>  include/uapi/drm/i915_drm.h                 |  19 +++
+>  5 files changed, 227 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 5726cd0a37e0..cf89928fc3a5 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1365,6 +1365,48 @@ whitelist_reg(struct i915_wa_list *wal, i915_reg_t reg)
+>         whitelist_reg_ext(wal, reg, RING_FORCE_TO_NONPRIV_ACCESS_RW);
+>  }
+>  
+> +static void gen9_whitelist_build_performance_counters(struct i915_wa_list *w)
+> +{
+> +       /* OA buffer trigger report 2/6 used by performance query */
+> +       whitelist_reg(w, OAREPORTTRIG2);
+> +       whitelist_reg(w, OAREPORTTRIG6);
+> +
+> +       /* Performance counters A18-20 used by tbs marker query */
+> +       whitelist_reg_ext(w, OA_PERF_COUNTER_A18,
+> +                         RING_FORCE_TO_NONPRIV_ACCESS_RW |
+> +                         RING_FORCE_TO_NONPRIV_RANGE_16);
+> +
+> +       /* Read access to gpu ticks */
+> +       whitelist_reg_ext(w, GEN8_GPU_TICKS,
+> +                         RING_FORCE_TO_NONPRIV_ACCESS_RD);
+> +
+> +       /* Read access to: oa status, head, tail, buffer settings */
+> +       whitelist_reg_ext(w, GEN8_OASTATUS,
+> +                         RING_FORCE_TO_NONPRIV_ACCESS_RD |
+> +                         RING_FORCE_TO_NONPRIV_RANGE_4);
+> +}
+> +
+> +static void gen12_whitelist_build_performance_counters(struct i915_wa_list *w)
+> +{
+> +       /* OA buffer trigger report 2/6 used by performance query */
+> +       whitelist_reg(w, GEN12_OAG_OAREPORTTRIG2);
+> +       whitelist_reg(w, GEN12_OAG_OAREPORTTRIG6);
+> +
+> +       /* Performance counters A18-20 used by tbs marker query */
+> +       whitelist_reg_ext(w, GEN12_OAG_PERF_COUNTER_A18,
+> +                         RING_FORCE_TO_NONPRIV_ACCESS_RW |
+> +                         RING_FORCE_TO_NONPRIV_RANGE_16);
+> +
+> +       /* Read access to gpu ticks */
+> +       whitelist_reg_ext(w, GEN12_OAG_GPU_TICKS,
+> +                         RING_FORCE_TO_NONPRIV_ACCESS_RD);
+> +
+> +       /* Read access to: oa status, head, tail, buffer settings */
+> +       whitelist_reg_ext(w, GEN12_OAG_OASTATUS,
+> +                         RING_FORCE_TO_NONPRIV_ACCESS_RD |
+> +                         RING_FORCE_TO_NONPRIV_RANGE_4);
+> +}
+> +
+>  static void gen9_whitelist_build(struct i915_wa_list *w)
 >  {
-> +	/* No you really cant allocate random crap here this late in
-> +	 * atomic_commit_tail. */
->  	struct dc_state *context =3D kvzalloc(sizeof(struct dc_state),
-> -					    GFP_KERNEL);
-> +					    GFP_ATOMIC);
->  =
+>         /* WaVFEStateAfterPipeControlwithMediaStateClear:skl,bxt,glk,cfl */
+> @@ -1378,6 +1420,9 @@ static void gen9_whitelist_build(struct i915_wa_list *w)
+>  
+>         /* WaSendPushConstantsFromMMIO:skl,bxt */
+>         whitelist_reg(w, COMMON_SLICE_CHICKEN2);
+> +
+> +       /* Performance counters support */
+> +       gen9_whitelist_build_performance_counters(w);
+>  }
+>  
+>  static void skl_whitelist_build(struct intel_engine_cs *engine)
+> @@ -1471,6 +1516,9 @@ static void cnl_whitelist_build(struct intel_engine_cs *engine)
+>  
+>         /* WaEnablePreemptionGranularityControlByUMD:cnl */
+>         whitelist_reg(w, GEN8_CS_CHICKEN1);
+> +
+> +       /* Performance counters support */
+> +       gen9_whitelist_build_performance_counters(w);
+>  }
+>  
+>  static void icl_whitelist_build(struct intel_engine_cs *engine)
+> @@ -1500,6 +1548,9 @@ static void icl_whitelist_build(struct intel_engine_cs *engine)
+>                 whitelist_reg_ext(w, PS_INVOCATION_COUNT,
+>                                   RING_FORCE_TO_NONPRIV_ACCESS_RD |
+>                                   RING_FORCE_TO_NONPRIV_RANGE_4);
+> +
+> +               /* Performance counters support */
+> +               gen9_whitelist_build_performance_counters(w);
+>                 break;
+>  
+>         case VIDEO_DECODE_CLASS:
+> @@ -1550,6 +1601,9 @@ static void tgl_whitelist_build(struct intel_engine_cs *engine)
+>  
+>                 /* Wa_1806527549:tgl */
+>                 whitelist_reg(w, HIZ_CHICKEN);
+> +
+> +               /* Performance counters support */
+> +               gen12_whitelist_build_performance_counters(w);
+>                 break;
+>         default:
+>                 whitelist_reg_ext(w,
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index c6f6370283cf..06a3fff52dfa 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -192,6 +192,7 @@
+>   */
+>  
+>  #include <linux/anon_inodes.h>
+> +#include <linux/mman.h>
+>  #include <linux/sizes.h>
+>  #include <linux/uuid.h>
+>  
+> @@ -434,6 +435,30 @@ static u32 gen7_oa_hw_tail_read(struct i915_perf_stream *stream)
+>         return oastatus1 & GEN7_OASTATUS1_TAIL_MASK;
+>  }
+>  
+> +static u32 gen12_oa_hw_head_read(struct i915_perf_stream *stream)
+> +{
+> +       struct intel_uncore *uncore = stream->uncore;
+> +
+> +       return intel_uncore_read(uncore, GEN12_OAG_OAHEADPTR) &
+> +              GEN12_OAG_OAHEADPTR_MASK;
+> +}
+> +
+> +static u32 gen8_oa_hw_head_read(struct i915_perf_stream *stream)
+> +{
+> +       struct intel_uncore *uncore = stream->uncore;
+> +
+> +       return intel_uncore_read(uncore, GEN8_OAHEADPTR) &
+> +              GEN8_OAHEADPTR_MASK;
+> +}
+> +
+> +static u32 gen7_oa_hw_head_read(struct i915_perf_stream *stream)
+> +{
+> +       struct intel_uncore *uncore = stream->uncore;
+> +       u32 oastatus2 = intel_uncore_read(uncore, GEN7_OASTATUS2);
+> +
+> +       return oastatus2 & GEN7_OASTATUS2_HEAD_MASK;
+> +}
+> +
+>  /**
+>   * oa_buffer_check_unlocked - check for data and update tail ptr state
+>   * @stream: i915 stream instance
+> @@ -1328,6 +1353,7 @@ free_oa_buffer(struct i915_perf_stream *stream)
+>         i915_vma_unpin_and_release(&stream->oa_buffer.vma,
+>                                    I915_VMA_RELEASE_MAP);
+>  
+> +       stream->oa_buffer.cpu_address = 0;
+>         stream->oa_buffer.vaddr = NULL;
+>  }
+>  
+> @@ -1448,7 +1474,8 @@ static void gen8_init_oa_buffer(struct i915_perf_stream *stream)
+>          *  bit."
+>          */
+>         intel_uncore_write(uncore, GEN8_OABUFFER, gtt_offset |
+> -                  OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT);
+> +                          OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT |
+> +                          GEN7_OABUFFER_EDGE_TRIGGER);
+>         intel_uncore_write(uncore, GEN8_OATAILPTR, gtt_offset & GEN8_OATAILPTR_MASK);
+>  
+>         /* Mark that we need updated tail pointers to read from... */
+> @@ -1501,7 +1528,8 @@ static void gen12_init_oa_buffer(struct i915_perf_stream *stream)
+>          *  bit."
+>          */
+>         intel_uncore_write(uncore, GEN12_OAG_OABUFFER, gtt_offset |
+> -                          OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT);
+> +                          OABUFFER_SIZE_16M | GEN8_OABUFFER_MEM_SELECT_GGTT |
+> +                          GEN7_OABUFFER_EDGE_TRIGGER);
+>         intel_uncore_write(uncore, GEN12_OAG_OATAILPTR,
+>                            gtt_offset & GEN12_OAG_OATAILPTR_MASK);
+>  
+> @@ -1562,6 +1590,7 @@ static int alloc_oa_buffer(struct i915_perf_stream *stream)
+>                 goto err_unref;
+>         }
+>         stream->oa_buffer.vma = vma;
+> +       stream->oa_buffer.cpu_address = 0;
+>  
+>         stream->oa_buffer.vaddr =
+>                 i915_gem_object_pin_map(bo, I915_MAP_WB);
+> @@ -1584,6 +1613,52 @@ static int alloc_oa_buffer(struct i915_perf_stream *stream)
+>         return ret;
+>  }
+>  
+> +static int map_oa_buffer(struct i915_perf_stream *stream)
 
->  	if (!context)
->  		return NULL;
-> -- =
+You have a per-client perf fd. mmap that, with a known offset for the OA
+buffer. That is make userspace call something along the lines of
 
-> 2.27.0
-> =
+ctl = mmap(0, 4096, PROT_WRITE, MAP_PRIVATE, perf_fd, PERF_MMAP_CTL);
 
+oa = mmap(0, ctl->oa_size, PROT_READ, MAP_PRIVATE, perf_fd, ctl->oa_offset);
 
--- =
+[ctl can be an ioctl to retrieve the size/offset]
 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+At every available opportunity, it should be reiterated that the mmap is
+unfiltered information leaks, continual reminders.
+
+> +{
+> +       unsigned long address = 0;
+> +       const u64 size = OA_BUFFER_SIZE;
+> +       struct i915_vma *oabuffer_vma = stream->oa_buffer.vma;
+> +       struct drm_i915_gem_object *oabuffer_obj = oabuffer_vma->obj;
+> +       struct mm_struct *mm = current->mm;
+> +       struct vm_area_struct *vma = NULL;
+> +
+> +       if(stream->oa_buffer.cpu_address != 0)
+> +               return 0;
+> +
+> +       if (!boot_cpu_has(X86_FEATURE_PAT))
+> +               return -ENODEV;
+> +
+> +       if (!oabuffer_obj || !oabuffer_vma)
+> +               return -ENOENT;
+> +
+> +       if (!oabuffer_obj->base.filp)
+> +               return -ENXIO;
+> +
+> +       if (range_overflows_t(u64, 0, size, oabuffer_obj->base.size))
+> +               return -EINVAL;
+> +
+> +       address = vm_mmap(oabuffer_obj->base.filp, 0, size,
+> +                         PROT_READ, MAP_SHARED, 0);
+> +
+> +       if (IS_ERR_VALUE(address))
+> +               return address;
+> +
+> +       if (mmap_write_lock_killable(mm))
+> +               return -EINTR;
+> +
+> +       vma = find_vma(mm, address);
+> +       if (vma) {
+> +               vma->vm_page_prot =
+> +                       pgprot_writecombine(vm_get_page_prot(vma->vm_flags));
+
+This is dangerous code to copy! Let's avoid repeating mistakes of the
+past.
+
+> +
+> +               stream->oa_buffer.cpu_address = address;
+> +       }
+> +
+> +       mmap_write_unlock(mm);
+> +
+> +       return vma ? 0 : -ENOMEM;
+> +}
+
+> +/**
+> + * i915_perf_get_oa_buffer_info_locked - Properties of the i915-perf OA buffer
+> + * @arg: pointer to oa buffer info populated by this function.
+> + */
+> +static int i915_perf_get_oa_buffer_info_locked(struct i915_perf_stream *stream,
+> +                                              unsigned long arg)
+> +{
+> +       struct drm_i915_perf_oa_buffer_info info;
+> +       void __user *output = (void __user *) arg;
+> +       int ret;
+> +
+> +       if (!output)
+> +               return -EINVAL;
+> +
+> +       memset(&info, 0, sizeof(info));
+> +
+> +       info.size = stream->oa_buffer.vma->size;
+
+> +       info.head = stream->perf->ops.oa_hw_head_read(stream);
+> +       info.tail = stream->perf->ops.oa_hw_tail_read(stream);
+
+So this is a snapshot of the HW state, you expect this ioctl to be
+called frequently?
+
+> +       info.gpu_address = i915_ggtt_offset(stream->oa_buffer.vma);
+
+I'm not happy leaking this. I presume you have a very good reason. Add a
+comment to justify it, or better don't include it.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
