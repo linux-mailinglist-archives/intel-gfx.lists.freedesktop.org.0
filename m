@@ -2,43 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9843121FE6E
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 22:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB86F21FE83
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 22:24:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDEC86E897;
-	Tue, 14 Jul 2020 20:19:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EB2D6E860;
+	Tue, 14 Jul 2020 20:24:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A7C16E897
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 20:19:48 +0000 (UTC)
-IronPort-SDR: z2leQedOBGA1Ok//ltAHSw1dY3N1iAYO1UmzGwCTzO7616ysN9L3+e0fRwPZnmS9tDWSc2eq1x
- ncxEbf9gvfNg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9682"; a="233877072"
-X-IronPort-AV: E=Sophos;i="5.75,352,1589266800"; d="scan'208";a="233877072"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2020 13:19:48 -0700
-IronPort-SDR: kNSAk9wZIaGmNz71i64mATguYC+G2vVi7CvXzLm5xQP0Xe24lRPg6Dn0P9DyeAQVaMe8bkvFRN
- P1knk4JTe5gQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,352,1589266800"; d="scan'208";a="324646818"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 14 Jul 2020 13:19:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Jul 2020 23:19:45 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jul 2020 23:19:45 +0300
-Message-Id: <20200714201945.18959-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200714185128.18616-1-ville.syrjala@linux.intel.com>
-References: <20200714185128.18616-1-ville.syrjala@linux.intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A8D66E860
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 20:24:45 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21820185-1500050 for multiple; Tue, 14 Jul 2020 21:24:37 +0100
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/fbc: Limit cfb to the first 256MiB
- of stolen on g4x+
+In-Reply-To: <20200714201002.GA37629@orsosgc001.amr.corp.intel.com>
+References: <20200714072239.70198-1-umesh.nerlige.ramappa@intel.com>
+ <20200714072239.70198-2-umesh.nerlige.ramappa@intel.com>
+ <159472609506.28577.3725857994649902167@build.alporthouse.com>
+ <20200714201002.GA37629@orsosgc001.amr.corp.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Date: Tue, 14 Jul 2020 21:24:35 +0100
+Message-ID: <159475827581.3188.10696809304558219974@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/perf: Map OA buffer to user
+ space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,39 +42,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClNp
-bmNlIGc0eCB0aGUgQ0ZCIGJhc2Ugb25seSB0YWtlcyBhIDI4Yml0IG9mZnNldCBpbnRvIHN0b2xl
-bi4KTm90IHN1cmUgaWYgdGhlIENGQiBpcyBhbGxvd2VkIHRvIHN0YXJ0IGJlbG93IHRoYXQgbGlt
-aXQgYnV0CnRoZW4gZXh0ZW5kIGJleW9uZCBpdC4gTGV0J3MgYXNzdW1lIG5vdCBhbmQganVzdCBy
-ZXN0cmljdCB0aGUKYWxsb2NhdGlvbiB0byB0aGUgZmlyc3QgMjU2TWlCIChpbiB0aGUgdW5saWtl
-bHkgY2FzZQp3ZSBoYXZlIG1vcmUgc3RvbGVuIHRoYW4gdGhhdCkuCgp2Mjogcy9CSVQvQklUX1VM
-TC8gKENocmlzKQoKQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpT
-aWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMgfCAxMCAr
-KysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jCmluZGV4IDg1NzIzZmJhNjAwMi4uM2E0Zjk4MDc4
-OGE2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMKQEAgLTQyNCw2
-ICs0MjQsMTQgQEAgc3RhdGljIHZvaWQgaW50ZWxfZmJjX2RlYWN0aXZhdGUoc3RydWN0IGRybV9p
-OTE1X3ByaXZhdGUgKmRldl9wcml2LAogCWZiYy0+bm9fZmJjX3JlYXNvbiA9IHJlYXNvbjsKIH0K
-IAorc3RhdGljIHU2NCBpbnRlbF9mYmNfY2ZiX2Jhc2VfbWF4KHN0cnVjdCBkcm1faTkxNV9wcml2
-YXRlICppOTE1KQoreworCWlmIChJTlRFTF9HRU4oaTkxNSkgPj0gNSB8fCBJU19HNFgoaTkxNSkp
-CisJCXJldHVybiBCSVRfVUxMKDI4KTsKKwllbHNlCisJCXJldHVybiBCSVRfVUxMKDMyKTsKK30K
-Kwogc3RhdGljIGludCBmaW5kX2NvbXByZXNzaW9uX3RocmVzaG9sZChzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqZGV2X3ByaXYsCiAJCQkJICAgICAgc3RydWN0IGRybV9tbV9ub2RlICpub2RlLAog
-CQkJCSAgICAgIHVuc2lnbmVkIGludCBzaXplLApAQCAtNDQyLDYgKzQ1MCw4IEBAIHN0YXRpYyBp
-bnQgZmluZF9jb21wcmVzc2lvbl90aHJlc2hvbGQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
-dl9wcml2LAogCWVsc2UKIAkJZW5kID0gVTY0X01BWDsKIAorCWVuZCA9IG1pbihlbmQsIGludGVs
-X2ZiY19jZmJfYmFzZV9tYXgoZGV2X3ByaXYpKTsKKwogCS8qIEhBQ0s6IFRoaXMgY29kZSBkZXBl
-bmRzIG9uIHdoYXQgd2Ugd2lsbCBkbyBpbiAqX2VuYWJsZV9mYmMuIElmIHRoYXQKIAkgKiBjb2Rl
-IGNoYW5nZXMsIHRoaXMgY29kZSBuZWVkcyB0byBjaGFuZ2UgYXMgd2VsbC4KIAkgKgotLSAKMi4y
-Ni4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
-bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Quoting Umesh Nerlige Ramappa (2020-07-14 21:10:02)
+> On Tue, Jul 14, 2020 at 12:28:15PM +0100, Chris Wilson wrote:
+> >Quoting Umesh Nerlige Ramappa (2020-07-14 08:22:39)
+> >> From: Piotr Maciejewski <piotr.maciejewski@intel.com>
+> >>
+> >> i915 used to support time based sampling mode which is good for overall
+> >> system monitoring, but is not enough for query mode used to measure a
+> >> single draw call or dispatch. Gen9-Gen11 are using current i915 perf
+> >> implementation for query, but Gen12+ requires a new approach based on
+> >> triggered reports within oa buffer. In order to enable above feature
+> >> two changes are required:
+> >>
+> >> 1. Whitelist update:
+> >> - enable triggered reports within oa buffer
+> >> - reading oa buffer head/tail/status information
+> >> - reading gpu ticks counter.
+> >>
+> >> 2. Map oa buffer at umd driver level to solve below constraints related
+> >>    to time based sampling interface:
+> >> - longer time to access reports collected by oa buffer
+> >
+> >If you aren't talking about a few 10us, then something else is wrong.
+> >
+> >> - slow oa reports browsing since oa buffer size is large
+> >
+> >Nothing changes on the surface. That does not sound like inherent
+> >inefficiencies. Since the same number of events will be generated and
+> >need to be processed. You may argue that they are easier to process in
+> >situ, and that the number of events dwarf L1 cache. An mmap interface
+> >could eliminate one copy (and certainly a copy-to-user).
+> >
+> >> - missing oa report index, so query cannot browse report directly
+> >
+> >There's more to it than that otherwise you would have proposed an
+> >extension to the event format.
+> >
+> >> - with direct access to oa buffer, query can extract other useful
+> >>   reports like context switch information needed to calculate correct
+> >>   performance counters values.
+> >
+> >Why would you not start with an unprivileged mediated mmapped buffer?
+> >If the goal is to reduce sample latency by replacing read ioctls with a
+> >mmap, that would seem to be an orthogonal step to exposing the raw OA
+> >buffer. The inference would be that you do want to extract extra details
+> >from the OA that are not being catered for. That's perfectly fine, our
+> >goal is to _safely_ expose HW and not get in the way of userspace. But
+> >if that was the intent, it should not appear to be an afterthought.
+> >[i.e. that mmap should be inherently faster for accessing a large ring
+> >of data is much less important than discussing the safety concerns of
+> >letting userspace have direct control/access of OA.]
+> 
+> fwiu
+> 
+> The goal is mainly being able to quickly view reports of interest within 
+> a window in the OA buffer. The start and end of the window are defined 
+> by triggered OA reports using the OAREPORTTRIG registers along with some 
+> counters that act as markers (A18 - A20).
+
+Ok, that was not apparent from reading. Could you put that usecase to
+the front; aiui userspace can read/define a region of interest within
+the mmap that correspond to the oareporttrig. In particular describe how
+userspace either triggers or responds to the OA and finds the roi.
+[Psuedocode for the win.]
+
+That's useful to know why we need this, and some details into the how to
+flesh out the interface.
+
+> In initial implementation, the user was trying to maintain a copy of the 
+> oa buffer that was being built by reading OA reports from the perf_fd 
+> read interface. Using a new ioctl interface that returned HW TAIL, the 
+> user would try to index into the window in this buffer. However, the 
+> mapping was not 1:1 because perf_fd read would drop reports that are 
+> zeroed out or invalid. Added to that, the user buffer was limited by 
+> size. This made mapping things to an intermediate user buffer more messy 
+> as it would require more information from the driver to do so.
+> 
+> Hence, the decision was to map the OA buffer to umd provided (1) that it 
+> is accessed from a privileged user and (2) OA report filtering is not 
+> used. These 2 conditions would satisfy the safety criteria that the 
+> perf_fd interface addresses.
+
+It is refreshing to keep the paranoid perf discussions to the front. We
+still need to think about whether any new method exposes more
+information that was previously available, and if that is safe even for
+a privileged user. It's just a matter of writing down the details and
+making sure we are happy we've hooked up the protections. And in the
+code, we want comments as to why.
+
+It's just a matter of recording the details for due diligence. And you
+never know, we might just uncover something horrid.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
