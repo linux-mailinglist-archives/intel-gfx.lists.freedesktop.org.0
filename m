@@ -1,30 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC5821F176
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 14:37:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8A1F21F1C6
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 14:47:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECBE56E3F9;
-	Tue, 14 Jul 2020 12:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D6CB6E0B8;
+	Tue, 14 Jul 2020 12:47:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B72389D40;
- Tue, 14 Jul 2020 12:36:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21815035-1500050 
- for multiple; Tue, 14 Jul 2020 13:36:45 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jul 2020 13:36:44 +0100
-Message-Id: <20200714123644.447934-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.27.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EA6D76E077;
+ Tue, 14 Jul 2020 12:47:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E42C4A47E1;
+ Tue, 14 Jul 2020 12:47:13 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] gem_wsim: Use CTX_TIMESTAMP for timed
- spinners
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 14 Jul 2020 12:47:13 -0000
+Message-ID: <159473083390.24022.17578115013810257203@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200714114419.28713-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200714114419.28713-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Assert_the_kernel_context_is_using_the_HWSP?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,725 +38,271 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1082716947=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+--===============1082716947==
+Content-Type: multipart/alternative;
+ boundary="===============3863193364967829781=="
 
-Use MI_MATH and MI_COND_BBE we can construct a loop that runs for a
-precise number of clock cycles, as measured by the CTX_TIMESTAMP. We use
-the CTX_TIMESTAMP (as opposed to the CS_TIMESTAMP) so that the elapsed
-time is measured local to the context, and the length of the batch is
-unaffected by preemption. Since the clock ticks at a known frequency, we
-can directly translate the batch durations into cycles and so remove the
-requirement for nop calibration, and the often excessively large nop
-batches.
+--===============3863193364967829781==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The downside to this is that we need to use engine local registers, and
-before gen11 there is no support in the CS for relative mmio and so this
-technique does not support transparent load balancing on a virtual
-engine before Icelake.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- benchmarks/gem_wsim.c | 512 ++++++++++++++----------------------------
- 1 file changed, 170 insertions(+), 342 deletions(-)
+Series: drm/i915/gt: Assert the kernel context is using the HWSP
+URL   : https://patchwork.freedesktop.org/series/79469/
+State : success
 
-diff --git a/benchmarks/gem_wsim.c b/benchmarks/gem_wsim.c
-index dbb46b9aa..b6e2f8adb 100644
---- a/benchmarks/gem_wsim.c
-+++ b/benchmarks/gem_wsim.c
-@@ -176,10 +176,9 @@ struct w_step
- 
- 	struct drm_i915_gem_execbuffer2 eb;
- 	struct drm_i915_gem_exec_object2 *obj;
--	struct drm_i915_gem_relocation_entry reloc[1];
--	unsigned long bb_sz;
-+	struct drm_i915_gem_relocation_entry reloc[3];
- 	uint32_t bb_handle;
--	uint32_t *recursive_bb_start;
-+	uint32_t *bb_duration;
- };
- 
- struct ctx {
-@@ -227,9 +226,7 @@ struct workload
- 	unsigned int nrequest[NUM_ENGINES];
- };
- 
--static const unsigned int nop_calibration_us = 1000;
--static bool has_nop_calibration = false;
--static bool sequential = true;
-+static int ts_frequency;
- 
- static unsigned int master_prng;
- 
-@@ -253,59 +250,58 @@ static const char *ring_str_map[NUM_ENGINES] = {
- 	[VECS] = "VECS",
- };
- 
--/* stores calibrations for particular engines */
--static unsigned long engine_calib_map[NUM_ENGINES];
--
--static enum intel_engine_id
--ci_to_engine_id(int class, int instance)
--{
--	static const struct {
--		int class;
--		int instance;
--		unsigned int id;
--	} map[] = {
--		{ I915_ENGINE_CLASS_RENDER, 0, RCS },
--		{ I915_ENGINE_CLASS_COPY, 0, BCS },
--		{ I915_ENGINE_CLASS_VIDEO, 0, VCS1 },
--		{ I915_ENGINE_CLASS_VIDEO, 1, VCS2 },
--		{ I915_ENGINE_CLASS_VIDEO, 2, VCS2 }, /* FIXME/ICL */
--		{ I915_ENGINE_CLASS_VIDEO_ENHANCE, 0, VECS },
-+static int read_timestamp_frequency(int i915)
-+{
-+	int value = 0;
-+	drm_i915_getparam_t gp = {
-+		.value = &value,
-+		.param = I915_PARAM_CS_TIMESTAMP_FREQUENCY,
- 	};
--
--	unsigned int i;
--
--	for (i = 0; i < ARRAY_SIZE(map); i++) {
--		if (class == map[i].class && instance == map[i].instance)
--			return map[i].id;
--	}
--	return -1;
-+	ioctl(i915, DRM_IOCTL_I915_GETPARAM, &gp);
-+	return value;
- }
- 
--static void
--apply_unset_calibrations(unsigned long raw_number)
-+static uint64_t div64_u64_round_up(uint64_t x, uint64_t y)
- {
--	for (int i = 0; i < NUM_ENGINES; i++)
--		engine_calib_map[i] += engine_calib_map[i] ? 0 : raw_number;
-+	return (x + y - 1) / y;
- }
- 
--static void
--print_engine_calibrations(void)
-+static uint64_t ns_to_ticks(uint64_t ns)
- {
--	bool first_entry = true;
-+	return div64_u64_round_up(ns * ts_frequency, 1000000000);
-+}
- 
--	printf("Nop calibration for %uus delay is: ", nop_calibration_us);
--	for (int i = 0; i < NUM_ENGINES; i++) {
--		/* skip engines not present and DEFAULT and VCS */
--		if (i != DEFAULT && i != VCS && engine_calib_map[i]) {
--			if (first_entry) {
--				printf("%s=%lu", ring_str_map[i], engine_calib_map[i]);
--				first_entry = false;
--			} else {
--				printf(",%s=%lu", ring_str_map[i], engine_calib_map[i]);
--			}
--		}
--	}
--	printf("\n");
-+#define MI_INSTR(opcode, flags) (((opcode) << 23) | (flags))
-+
-+#define MI_MATH(x)                      MI_INSTR(0x1a, (x) - 1)
-+#define MI_MATH_INSTR(opcode, op1, op2) ((opcode) << 20 | (op1) << 10 | (op2))
-+/* Opcodes for MI_MATH_INSTR */
-+#define   MI_MATH_NOOP                  MI_MATH_INSTR(0x000, 0x0, 0x0)
-+#define   MI_MATH_LOAD(op1, op2)        MI_MATH_INSTR(0x080, op1, op2)
-+#define   MI_MATH_LOADINV(op1, op2)     MI_MATH_INSTR(0x480, op1, op2)
-+#define   MI_MATH_LOAD0(op1)            MI_MATH_INSTR(0x081, op1)
-+#define   MI_MATH_LOAD1(op1)            MI_MATH_INSTR(0x481, op1)
-+#define   MI_MATH_ADD                   MI_MATH_INSTR(0x100, 0x0, 0x0)
-+#define   MI_MATH_SUB                   MI_MATH_INSTR(0x101, 0x0, 0x0)
-+#define   MI_MATH_AND                   MI_MATH_INSTR(0x102, 0x0, 0x0)
-+#define   MI_MATH_OR                    MI_MATH_INSTR(0x103, 0x0, 0x0)
-+#define   MI_MATH_XOR                   MI_MATH_INSTR(0x104, 0x0, 0x0)
-+#define   MI_MATH_STORE(op1, op2)       MI_MATH_INSTR(0x180, op1, op2)
-+#define   MI_MATH_STOREINV(op1, op2)    MI_MATH_INSTR(0x580, op1, op2)
-+/* Registers used as operands in MI_MATH_INSTR */
-+#define   MI_MATH_REG(x)                (x)
-+#define   MI_MATH_REG_SRCA              0x20
-+#define   MI_MATH_REG_SRCB              0x21
-+#define   MI_MATH_REG_ACCU              0x31
-+#define   MI_MATH_REG_ZF                0x32
-+#define   MI_MATH_REG_CF                0x33
-+
-+#define MI_LOAD_REGISTER_REG    MI_INSTR(0x2A, 1)
-+#define   MI_CS_MMIO (1 << 19)
-+
-+static unsigned int offset_in_page(void *addr)
-+{
-+	return (uintptr_t)addr & 4095;
- }
- 
- static void add_dep(struct deps *deps, struct dep_entry entry)
-@@ -1392,91 +1388,121 @@ __get_ctx(struct workload *wrk, const struct w_step *w)
- 	return &wrk->ctx_list[w->context];
- }
- 
--static unsigned long
--__get_bb_sz(const struct w_step *w, unsigned int duration)
-+static uint32_t mmio_base(enum intel_engine_id engine, int gen)
- {
--	enum intel_engine_id engine = w->engine;
--	struct ctx *ctx = __get_ctx(w->wrk, w);
--	unsigned long d;
--
--	if (ctx->engine_map && engine == DEFAULT)
--		/* Assume first engine calibration. */
--		engine = ctx->engine_map[0];
-+	uint32_t mmio = 0;
- 
--	igt_assert(engine_calib_map[engine]);
--	d = ALIGN(duration * engine_calib_map[engine] * sizeof(uint32_t) /
--		  nop_calibration_us,
--		  sizeof(uint32_t));
--
--	return d;
--}
--
--static unsigned long
--get_bb_sz(const struct w_step *w, unsigned int duration)
--{
--	unsigned long d = __get_bb_sz(w, duration);
--
--	igt_assert(d);
--
--	return d;
--}
-+	if (gen >= 11) /* use relative mmio */
-+		return 0;
- 
--static void init_bb(struct w_step *w)
--{
--	const unsigned int arb_period =
--			__get_bb_sz(w, w->preempt_us) / sizeof(uint32_t);
--	const unsigned int mmap_len = ALIGN(w->bb_sz, 4096);
--	unsigned int i;
--	uint32_t *ptr;
-+	switch (engine) {
-+	case NUM_ENGINES:
-+		break;
- 
--	if (w->unbound_duration || !arb_period)
--		return;
-+	case DEFAULT:
-+	case RCS:
-+		mmio = 0x2000;
-+		break;
- 
--	gem_set_domain(fd, w->bb_handle,
--		       I915_GEM_DOMAIN_WC, I915_GEM_DOMAIN_WC);
-+	case BCS:
-+		mmio = 0x22000;
-+		break;
- 
--	ptr = gem_mmap__wc(fd, w->bb_handle, 0, mmap_len, PROT_WRITE);
-+	case VCS:
-+	case VCS1:
-+	case VCS2: /* XXX */
-+		if (gen < 6)
-+			mmio = 0x4000;
-+		else if (gen < 11)
-+			mmio = 0x12000;
-+		else
-+			mmio = 0x1c0000;
-+		break;
- 
--	for (i = arb_period; i < w->bb_sz / sizeof(uint32_t); i += arb_period)
--		ptr[i] = 0x5 << 23; /* MI_ARB_CHK */
-+	case VECS:
-+		if (gen < 11)
-+			mmio = 0x1a000;
-+		else
-+			mmio = 0x1c8000;
-+		break;
-+	}
- 
--	munmap(ptr, mmap_len);
-+	return mmio;
- }
- 
--static unsigned int terminate_bb(struct w_step *w)
-+static unsigned int create_bb(struct w_step *w, int self)
- {
--	const uint32_t bbe = 0xa << 23;
--	unsigned long mmap_start, mmap_len;
--	unsigned long batch_start = w->bb_sz;
-+	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const uint32_t base = mmio_base(w->engine, gen);
-+#define CS_GPR(x) (base + 0x600 + 8 * (x))
-+#define TIMESTAMP (base + 0x3a8)
-+	const int use_64b = gen >= 8;
-+	enum { START_TS, NOW_TS };
-+	uint32_t *ptr, *cs, *jmp;
- 	unsigned int r = 0;
--	uint32_t *ptr, *cs;
--
--	batch_start -= sizeof(uint32_t); /* bbend */
--
--	if (w->unbound_duration)
--		batch_start -= 4 * sizeof(uint32_t); /* MI_ARB_CHK + MI_BATCH_BUFFER_START */
--
--	mmap_start = rounddown(batch_start, PAGE_SIZE);
--	mmap_len = ALIGN(w->bb_sz - mmap_start, PAGE_SIZE);
- 
- 	gem_set_domain(fd, w->bb_handle,
- 		       I915_GEM_DOMAIN_WC, I915_GEM_DOMAIN_WC);
- 
--	ptr = gem_mmap__wc(fd, w->bb_handle, mmap_start, mmap_len, PROT_WRITE);
--	cs = (uint32_t *)((char *)ptr + batch_start - mmap_start);
-+	cs = ptr = gem_mmap__wc(fd, w->bb_handle, 0, 4096, PROT_WRITE);
- 
--	if (w->unbound_duration) {
--		w->reloc[r++].offset = batch_start + 2 * sizeof(uint32_t);
--		batch_start += 4 * sizeof(uint32_t);
-+	*cs++ = MI_LOAD_REGISTER_IMM | MI_CS_MMIO;
-+	*cs++ = CS_GPR(START_TS) + 4;
-+	*cs++ = 0;
-+	*cs++ = MI_LOAD_REGISTER_REG | MI_CS_MMIO;
-+	*cs++ = TIMESTAMP;
-+	*cs++ = CS_GPR(START_TS);
- 
--		*cs++ = w->preempt_us ? 0x5 << 23 /* MI_ARB_CHK; */ : MI_NOOP;
--		w->recursive_bb_start = cs;
--		*cs++ = MI_BATCH_BUFFER_START | 1 << 8 | 1;
-+	if (offset_in_page(cs) & 4)
- 		*cs++ = 0;
-+	jmp = cs;
-+
-+	if (w->preempt_us)
-+		*cs++ = 0x5 << 23; /* MI_ARB_CHECK */
-+
-+	*cs++ = MI_LOAD_REGISTER_IMM | MI_CS_MMIO;
-+	*cs++ = CS_GPR(NOW_TS) + 4;
-+	*cs++ = 0;
-+	*cs++ = MI_LOAD_REGISTER_REG | MI_CS_MMIO;
-+	*cs++ = TIMESTAMP;
-+	*cs++ = CS_GPR(NOW_TS);
-+
-+	*cs++ = MI_MATH(4);
-+	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(NOW_TS));
-+	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(START_TS));
-+	*cs++ = MI_MATH_SUB;
-+	*cs++ = MI_MATH_STOREINV(MI_MATH_REG(NOW_TS), MI_MATH_REG_ACCU);
-+
-+	*cs++ = 0x24 << 23 | (1 + use_64b) | MI_CS_MMIO; /* SRM */
-+	*cs++ = CS_GPR(NOW_TS);
-+	w->reloc[r].target_handle = self;
-+	w->reloc[r].offset = offset_in_page(cs);
-+	*cs++ = w->reloc[r].delta = 4000;
-+	*cs++ = 0;
-+	r++;
-+
-+	/* Delay between SRM and COND_BBE to post the writes */
-+	for (int n = 0; n < 8; n++) {
-+		*cs++ = MI_INSTR(0x21, 1);
-+		*cs++ = 2048;
- 		*cs++ = 0;
- 	}
- 
--	*cs = bbe;
-+	*cs++ = MI_COND_BATCH_BUFFER_END | MI_DO_COMPARE | (1 + use_64b);
-+	w->bb_duration = cs;
-+	*cs++ = 0;
-+	w->reloc[r].target_handle = self;
-+	w->reloc[r].offset = offset_in_page(cs);
-+	*cs++ = w->reloc[r].delta = 4000;
-+	*cs++ = 0;
-+	r++;
-+
-+	*cs++ = MI_BATCH_BUFFER_START | 1 << 8 | use_64b;
-+	w->reloc[r].target_handle = self;
-+	w->reloc[r].offset = offset_in_page(cs);
-+	*cs++ = w->reloc[r].delta = offset_in_page(jmp);
-+	*cs++ = 0;
-+	r++;
- 
- 	return r;
- }
-@@ -1590,23 +1616,10 @@ alloc_step_batch(struct workload *wrk, struct w_step *w)
- 		igt_assert(j < nr_obj);
- 	}
- 
--	if (w->unbound_duration)
--		/* nops + MI_ARB_CHK + MI_BATCH_BUFFER_START */
--		w->bb_sz = max(PAGE_SIZE, __get_bb_sz(w, w->preempt_us)) +
--			   (1 + 3) * sizeof(uint32_t);
--	else
--		w->bb_sz = get_bb_sz(w, w->duration.max);
--
--	w->bb_handle = w->obj[j].handle =
--		alloc_bo(fd, w->bb_sz + (w->unbound_duration ? 4096 : 0));
--	init_bb(w);
--	w->obj[j].relocation_count = terminate_bb(w);
--
--	if (w->obj[j].relocation_count) {
--		igt_assert(w->unbound_duration);
--		w->obj[j].relocs_ptr = to_user_pointer(&w->reloc);
--		w->reloc[0].target_handle = j;
--	}
-+	w->bb_handle = w->obj[j].handle = gem_create(fd, 4096);
-+	w->obj[j].relocation_count = create_bb(w, j);
-+	igt_assert(w->obj[j].relocation_count <= ARRAY_SIZE(w->reloc));
-+	w->obj[j].relocs_ptr = to_user_pointer(&w->reloc);
- 
- 	w->eb.buffers_ptr = to_user_pointer(w->obj);
- 	w->eb.buffer_count = j + 1;
-@@ -1617,8 +1630,8 @@ alloc_step_batch(struct workload *wrk, struct w_step *w)
- 	printf("%u: %u:|", w->idx, w->eb.buffer_count);
- 	for (i = 0; i <= j; i++)
- 		printf("%x|", w->obj[i].handle);
--	printf(" %10lu flags=%llx bb=%x[%u] ctx[%u]=%u\n",
--		w->bb_sz, w->eb.flags, w->bb_handle, j, w->context,
-+	printf(" flags=%llx bb=%x[%u] ctx[%u]=%u\n",
-+		w->eb.flags, w->bb_handle, j, w->context,
- 		get_ctxid(wrk, w));
- #endif
- }
-@@ -1803,7 +1816,7 @@ static void measure_active_set(struct workload *wrk)
- 		if (w->type != BATCH)
- 			continue;
- 
--		batch_sizes += w->bb_sz;
-+		batch_sizes += 4096;
- 
- 		for (j = 0; j < w->data_deps.nr; j++) {
- 			struct dep_entry *dep = &w->data_deps.list[j];
-@@ -1904,6 +1917,10 @@ static int prepare_workload(unsigned int id, struct workload *wrk)
- 					wsim_err("Load balancing needs an engine map!\n");
- 					return 1;
- 				}
-+				if (intel_gen(intel_get_drm_devid(fd)) < 11) {
-+					wsim_err("Load balancing needs relative mmio support, gen11+!\n");
-+					return 1;
-+				}
- 				ctx->load_balance = w->load_balance;
- 			} else if (w->type == BOND) {
- 				if (!ctx->load_balance) {
-@@ -2163,15 +2180,17 @@ static int elapsed_us(const struct timespec *start, const struct timespec *end)
- }
- 
- static void
--update_bb_start(struct w_step *w)
-+update_bb_start(struct workload *wrk, struct w_step *w)
- {
--	if (!w->unbound_duration)
--		return;
-+	uint32_t ticks;
- 
- 	gem_set_domain(fd, w->bb_handle,
- 		       I915_GEM_DOMAIN_WC, I915_GEM_DOMAIN_WC);
- 
--	*w->recursive_bb_start = MI_BATCH_BUFFER_START | (1 << 8) | 1;
-+	ticks = 0;
-+	if (!w->unbound_duration)
-+		ticks = ~ns_to_ticks(1000 * get_duration(wrk, w));
-+	*w->bb_duration = ticks;
- }
- 
- static void w_sync_to(struct workload *wrk, struct w_step *w, int target)
-@@ -2198,13 +2217,7 @@ do_eb(struct workload *wrk, struct w_step *w, enum intel_engine_id engine)
- 	unsigned int i;
- 
- 	eb_update_flags(wrk, w, engine);
--	update_bb_start(w);
--
--	w->eb.batch_start_offset =
--		w->unbound_duration ?
--		0 :
--		ALIGN(w->bb_sz - get_bb_sz(w, get_duration(wrk, w)),
--		      2 * sizeof(uint32_t));
-+	update_bb_start(wrk, w);
- 
- 	for (i = 0; i < w->fence_deps.nr; i++) {
- 		int tgt = w->idx + w->fence_deps.list[i].target;
-@@ -2353,8 +2366,7 @@ static void *run_workload(void *data)
- 				igt_assert(wrk->steps[t_idx].type == BATCH);
- 				igt_assert(wrk->steps[t_idx].unbound_duration);
- 
--				*wrk->steps[t_idx].recursive_bb_start =
--					MI_BATCH_BUFFER_END;
-+				*wrk->steps[t_idx].bb_duration = 0xffffffff;
- 				__sync_synchronize();
- 				continue;
- 			} else if (w->type == SSEU) {
-@@ -2467,131 +2479,15 @@ static void fini_workload(struct workload *wrk)
- 	free(wrk);
- }
- 
--static unsigned long calibrate_nop(unsigned int tolerance_pct, struct intel_execution_engine2 *engine)
--{
--	const uint32_t bbe = 0xa << 23;
--	unsigned int loops = 17;
--	unsigned int usecs = nop_calibration_us;
--	struct drm_i915_gem_exec_object2 obj = {};
--	struct drm_i915_gem_execbuffer2 eb = {
--		.buffer_count = 1,
--		.buffers_ptr = (uintptr_t)&obj,
--		.flags = engine->flags
--	};
--	long size, last_size;
--	struct timespec t_0, t_end;
--
--	clock_gettime(CLOCK_MONOTONIC, &t_0);
--
--	size = 256 * 1024;
--	do {
--		struct timespec t_start;
--
--		obj.handle = alloc_bo(fd, size);
--		gem_write(fd, obj.handle, size - sizeof(bbe), &bbe,
--			  sizeof(bbe));
--		gem_execbuf(fd, &eb);
--		gem_sync(fd, obj.handle);
--
--		clock_gettime(CLOCK_MONOTONIC, &t_start);
--		for (int loop = 0; loop < loops; loop++)
--			gem_execbuf(fd, &eb);
--		gem_sync(fd, obj.handle);
--		clock_gettime(CLOCK_MONOTONIC, &t_end);
--
--		gem_close(fd, obj.handle);
--
--		last_size = size;
--		size = loops * size / elapsed(&t_start, &t_end) / 1e6 * usecs;
--		size = ALIGN(size, sizeof(uint32_t));
--	} while (elapsed(&t_0, &t_end) < 5 ||
--		 labs(size - last_size) > (size * tolerance_pct / 100));
--
--	return size / sizeof(uint32_t);
--}
--
--static void
--calibrate_sequentially(void)
--{
--	struct intel_execution_engine2 *engine;
--	enum intel_engine_id eng_id;
--
--	__for_each_physical_engine(fd, engine) {
--		eng_id = ci_to_engine_id(engine->class, engine->instance);
--		igt_assert(eng_id >= 0);
--		engine_calib_map[eng_id] = calibrate_nop(fd, engine);
--	}
--}
--
--struct thread_data {
--	struct intel_execution_engine2 *eng;
--	pthread_t thr;
--	unsigned long calib;
--};
--
--static void *
--engine_calibration_thread(void *data)
--{
--	struct thread_data *thr_d = (struct thread_data *) data;
--
--	thr_d->calib = calibrate_nop(fd, thr_d->eng);
--	return NULL;
--}
--
--static void
--calibrate_in_parallel(void)
--{
--	struct thread_data *thr_d = malloc(NUM_ENGINES * sizeof(*thr_d));
--	struct intel_execution_engine2 *engine;
--	enum intel_engine_id id;
--	int ret;
--
--	__for_each_physical_engine(fd, engine) {
--		id = ci_to_engine_id(engine->class, engine->instance);
--		thr_d[id].eng = engine;
--		ret = pthread_create(&thr_d[id].thr, NULL, engine_calibration_thread, &thr_d[id]);
--		igt_assert_eq(ret, 0);
--	}
--
--	__for_each_physical_engine(fd, engine) {
--		id = ci_to_engine_id(engine->class, engine->instance);
--		igt_assert(id >= 0);
--
--		ret = pthread_join(thr_d[id].thr, NULL);
--		igt_assert_eq(ret, 0);
--		engine_calib_map[id] = thr_d[id].calib;
--	}
--
--	free(thr_d);
--}
--
--static void
--calibrate_engines(void)
--{
--	if (sequential)
--		calibrate_sequentially();
--	else
--		calibrate_in_parallel();
--}
--
- static void print_help(void)
- {
- 	puts(
- "Usage: gem_wsim [OPTIONS]\n"
- "\n"
- "Runs a simulated workload on the GPU.\n"
--"When ran without arguments performs a GPU calibration result of which needs to\n"
--"be provided when running the simulation in subsequent invocations.\n"
--"\n"
- "Options:\n"
- "  -h                This text.\n"
- "  -q                Be quiet - do not output anything to stdout.\n"
--"  -n <n |           Nop calibration value - single value is set to all engines\n"
--"  e1=v1,e2=v2,n...> without specified value; you can also specify calibrations for\n"
--"                    particular engines.\n"
--"  -t <n>            Nop calibration tolerance percentage.\n"
--"  -T                Disable sequential calibration and perform calibration in parallel.\n"
--"                    Use when there is a difficulty obtaining calibration with the\n"
- "                    default settings.\n"
- "  -I <n>            Initial randomness seed.\n"
- "  -p <n>            Context priority to use for the following workload on the\n"
-@@ -2671,17 +2567,12 @@ int main(int argc, char **argv)
- 	int master_workload = -1;
- 	char *append_workload_arg = NULL;
- 	struct w_arg *w_args = NULL;
--	unsigned int tolerance_pct = 1;
- 	int exitcode = EXIT_FAILURE;
- 	double scale_time = 1.0f;
- 	double scale_dur = 1.0f;
- 	int prio = 0;
- 	double t;
- 	int i, c;
--	char *subopts, *value;
--	int raw_number = 0;
--	long calib_val;
--	int eng;
- 
- 	/*
- 	 * Open the device via the low-level API so we can do the GPU quiesce
-@@ -2721,70 +2612,7 @@ int main(int argc, char **argv)
- 		case 'c':
- 			clients = strtol(optarg, NULL, 0);
- 			break;
--		case 't':
--			tolerance_pct = strtol(optarg, NULL, 0);
--			break;
--		case 'T':
--			sequential = false;
--			break;
--
--		case 'n':
--			subopts = optarg;
--			while (*subopts != '\0') {
--				eng = getsubopt(&subopts, (char **)ring_str_map, &value);
--				if (!value) {
--					/* only engine name was given */
--					wsim_err("Missing calibration value for '%s'!\n",
--						ring_str_map[eng]);
--					goto err;
--				}
- 
--				calib_val = atol(value);
--
--				if (eng >= 0 && eng < NUM_ENGINES) {
--				/* engine name with some value were given */
--
--					if (eng == DEFAULT || eng == VCS) {
--						wsim_err("'%s' not allowed in engine calibrations!\n",
--							ring_str_map[eng]);
--						goto err;
--					} else if (calib_val <= 0) {
--						wsim_err("Invalid calibration for engine '%s' - value "
--						"is either non-positive or is not a number!\n",
--							ring_str_map[eng]);
--						goto err;
--					} else if (engine_calib_map[eng]) {
--						wsim_err("Invalid repeated calibration of '%s'!\n",
--							ring_str_map[eng]);
--						goto err;
--					} else {
--						engine_calib_map[eng] = calib_val;
--						if (eng == RCS)
--							engine_calib_map[DEFAULT] = calib_val;
--						else if (eng == VCS1 || eng == VCS2)
--							engine_calib_map[VCS] = calib_val;
--						has_nop_calibration = true;
--					}
--				} else {
--					/* raw number was given */
--
--					if (!calib_val) {
--						wsim_err("Invalid engine or zero calibration!\n");
--						goto err;
--					} else if (calib_val < 0) {
--						wsim_err("Invalid negative calibration!\n");
--						goto err;
--					} else if (raw_number) {
--						wsim_err("Default engine calibration provided more than once!\n");
--						goto err;
--					} else {
--						raw_number = calib_val;
--						apply_unset_calibrations(raw_number);
--						has_nop_calibration = true;
--					}
--				}
--			}
--			break;
- 		case 'r':
- 			repeat = strtol(optarg, NULL, 0);
- 			break;
-@@ -2812,6 +2640,9 @@ int main(int argc, char **argv)
- 		case 'F':
- 			scale_time = atof(optarg);
- 			break;
-+		case 'n':
-+			/* ignored; using HW timers */
-+			break;
- 		case 'h':
- 			print_help();
- 			goto out;
-@@ -2820,17 +2651,15 @@ int main(int argc, char **argv)
- 		}
- 	}
- 
--	if (!has_nop_calibration) {
--		if (verbose > 1) {
--			printf("Calibrating nop delays with %u%% tolerance...\n",
--				tolerance_pct);
--		}
--
--		calibrate_engines();
-+	if (intel_gen(intel_get_drm_devid(fd)) < 8) {
-+		wsim_err("gen8+ is required for CTX_TIMESTAMP timers\n");
-+		return 1;
-+	}
- 
--		if (verbose)
--			print_engine_calibrations();
--		goto out;
-+	ts_frequency = read_timestamp_frequency(fd);
-+	if (!ts_frequency) {
-+		wsim_err("Unable to read timestamp frequency of GPU\n");
-+		goto err;
- 	}
- 
- 	if (!nr_w_args) {
-@@ -2885,7 +2714,6 @@ int main(int argc, char **argv)
- 
- 	if (verbose > 1) {
- 		printf("Random seed is %u.\n", master_prng);
--		print_engine_calibrations();
- 		printf("%u client%s.\n", clients, clients > 1 ? "s" : "");
- 	}
- 
--- 
-2.27.0
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8744 -> Patchwork_18156
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18156 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@prime_vgem@basic-write:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-tgl-y/igt@prime_vgem@basic-write.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-tgl-y/igt@prime_vgem@basic-write.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_flink_basic@basic:
+    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4] +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-tgl-y/igt@gem_flink_basic@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-tgl-y/igt@gem_flink_basic@basic.html
+
+  * igt@i915_module_load@reload:
+    - fi-tgl-u2:          [DMESG-WARN][5] ([i915#402]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-tgl-u2/igt@i915_module_load@reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-tgl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-whl-u:           [DMESG-WARN][7] ([i915#95]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [FAIL][9] ([i915#579]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-tgl-y:           [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-tgl-y/igt@kms_busy@basic@flip.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-tgl-y/igt@kms_busy@basic@flip.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-cml-s:           [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-cml-s/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-cml-s/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#1982] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +3 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
+
+  
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (46 -> 39)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8744 -> Patchwork_18156
+
+  CI-20190529: 20190529
+  CI_DRM_8744: beb1c0b42c5368a48e782e5556be95c8332d28c6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5735: 21f8204e54c122e4a0f8ca4b59e4b2db8d1ba687 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18156: b3df26c94ffb2cc747c9a3226a3601999122ff03 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b3df26c94ffb drm/i915/gt: Assert the kernel context is using the HWSP
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/index.html
+
+--===============3863193364967829781==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Assert the kernel context is using the HWSP</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/79469/">https://patchwork.freedesktop.org/series/79469/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_8744 -&gt; Patchwork_18156</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18156 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@prime_vgem@basic-write:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-tgl-y/igt@prime_vgem@basic-write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-tgl-y/igt@prime_vgem@basic-write.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_flink_basic@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-tgl-y/igt@gem_flink_basic@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-tgl-y/igt@gem_flink_basic@basic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-tgl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-tgl-u2/igt@i915_module_load@reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-whl-u:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-tgl-y/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-tgl-y/igt@kms_busy@basic@flip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:</p>
+<ul>
+<li>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-cml-s/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-cml-s/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-edid:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8744/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18156/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (46 -&gt; 39)</h2>
+<p>Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_8744 -&gt; Patchwork_18156</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_8744: beb1c0b42c5368a48e782e5556be95c8332d28c6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5735: 21f8204e54c122e4a0f8ca4b59e4b2db8d1ba687 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18156: b3df26c94ffb2cc747c9a3226a3601999122ff03 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>b3df26c94ffb drm/i915/gt: Assert the kernel context is using the HWSP</p>
+
+</body>
+</html>
+
+--===============3863193364967829781==--
+
+--===============1082716947==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1082716947==--
