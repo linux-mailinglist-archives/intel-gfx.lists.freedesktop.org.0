@@ -1,35 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3595121F60C
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 17:21:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A06721F60E
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 17:22:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 428D26E3A4;
-	Tue, 14 Jul 2020 15:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4E356E3AC;
+	Tue, 14 Jul 2020 15:22:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 079E46E3A4
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 15:21:33 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21817059-1500050 for multiple; Tue, 14 Jul 2020 16:21:31 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E583F6E3AA;
+ Tue, 14 Jul 2020 15:22:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DF145A47DB;
+ Tue, 14 Jul 2020 15:22:49 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <3bfd8979-5207-82cf-867d-70f18f33c58b@linux.intel.com>
-References: <20200706061926.6687-1-chris@chris-wilson.co.uk>
- <20200706061926.6687-14-chris@chris-wilson.co.uk>
- <3bfd8979-5207-82cf-867d-70f18f33c58b@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jul 2020 16:21:29 +0100
-Message-ID: <159474008967.28702.3882585057748567490@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 13/20] drm/i915/gem: Bind the fence async
- for execbuf
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Tue, 14 Jul 2020 15:22:49 -0000
+Message-ID: <159474016990.24021.1751285722933078318@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200714114516.3073222-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20200714114516.3073222-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/23=5D_Revert_=22drm/i915/gem=3A_?=
+ =?utf-8?q?Async_GPU_relocations_only=22_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,271 +39,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-07-14 13:19:22)
-> 
-> On 06/07/2020 07:19, Chris Wilson wrote:
-> > It is illegal to wait on an another vma while holding the vm->mutex, as
-> > that easily leads to ABBA deadlocks (we wait on a second vma that waits
-> > on us to release the vm->mutex). So while the vm->mutex exists, move the
-> > waiting outside of the lock into the async binding pipeline.
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  21 +--
-> >   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  | 137 +++++++++++++++++-
-> >   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h  |   5 +
-> >   3 files changed, 151 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > index 6a406e8798ef..c14c3b7e0dfd 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > @@ -1056,15 +1056,6 @@ static int eb_reserve_vma(struct eb_vm_work *work, struct eb_bind_vma *bind)
-> >               return err;
-> >   
-> >   pin:
-> > -     if (unlikely(exec_flags & EXEC_OBJECT_NEEDS_FENCE)) {
-> > -             err = __i915_vma_pin_fence(vma); /* XXX no waiting */
-> > -             if (unlikely(err))
-> > -                     return err;
-> > -
-> > -             if (vma->fence)
-> > -                     bind->ev->flags |= __EXEC_OBJECT_HAS_FENCE;
-> > -     }
-> > -
-> >       bind_flags &= ~atomic_read(&vma->flags);
-> >       if (bind_flags) {
-> >               err = set_bind_fence(vma, work);
-> > @@ -1095,6 +1086,15 @@ static int eb_reserve_vma(struct eb_vm_work *work, struct eb_bind_vma *bind)
-> >       bind->ev->flags |= __EXEC_OBJECT_HAS_PIN;
-> >       GEM_BUG_ON(eb_vma_misplaced(entry, vma, bind->ev->flags));
-> >   
-> > +     if (unlikely(exec_flags & EXEC_OBJECT_NEEDS_FENCE)) {
-> > +             err = __i915_vma_pin_fence_async(vma, &work->base);
-> > +             if (unlikely(err))
-> > +                     return err;
-> > +
-> > +             if (vma->fence)
-> > +                     bind->ev->flags |= __EXEC_OBJECT_HAS_FENCE;
-> > +     }
-> > +
-> >       return 0;
-> >   }
-> >   
-> > @@ -1160,6 +1160,9 @@ static void __eb_bind_vma(struct eb_vm_work *work)
-> >               struct eb_bind_vma *bind = &work->bind[n];
-> >               struct i915_vma *vma = bind->ev->vma;
-> >   
-> > +             if (bind->ev->flags & __EXEC_OBJECT_HAS_FENCE)
-> > +                     __i915_vma_apply_fence_async(vma);
-> > +
-> >               if (!bind->bind_flags)
-> >                       goto put;
-> >   
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> > index 7fb36b12fe7a..734b6aa61809 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> > @@ -21,10 +21,13 @@
-> >    * IN THE SOFTWARE.
-> >    */
-> >   
-> > +#include "i915_active.h"
-> >   #include "i915_drv.h"
-> >   #include "i915_scatterlist.h"
-> > +#include "i915_sw_fence_work.h"
-> >   #include "i915_pvinfo.h"
-> >   #include "i915_vgpu.h"
-> > +#include "i915_vma.h"
-> >   
-> >   /**
-> >    * DOC: fence register handling
-> > @@ -340,19 +343,37 @@ static struct i915_fence_reg *fence_find(struct i915_ggtt *ggtt)
-> >       return ERR_PTR(-EDEADLK);
-> >   }
-> >   
-> > +static int fence_wait_bind(struct i915_fence_reg *reg)
-> > +{
-> > +     struct dma_fence *fence;
-> > +     int err = 0;
-> > +
-> > +     fence = i915_active_fence_get(&reg->active.excl);
-> > +     if (fence) {
-> > +             err = dma_fence_wait(fence, true);
-> > +             dma_fence_put(fence);
-> > +     }
-> > +
-> > +     return err;
-> > +}
-> > +
-> >   int __i915_vma_pin_fence(struct i915_vma *vma)
-> >   {
-> >       struct i915_ggtt *ggtt = i915_vm_to_ggtt(vma->vm);
-> > -     struct i915_fence_reg *fence;
-> > +     struct i915_fence_reg *fence = vma->fence;
-> >       struct i915_vma *set = i915_gem_object_is_tiled(vma->obj) ? vma : NULL;
-> >       int err;
-> >   
-> >       lockdep_assert_held(&vma->vm->mutex);
-> >   
-> >       /* Just update our place in the LRU if our fence is getting reused. */
-> > -     if (vma->fence) {
-> > -             fence = vma->fence;
-> > +     if (fence) {
-> >               GEM_BUG_ON(fence->vma != vma);
-> > +
-> > +             err = fence_wait_bind(fence);
-> > +             if (err)
-> > +                     return err;
-> > +
-> >               atomic_inc(&fence->pin_count);
-> >               if (!fence->dirty) {
-> >                       list_move_tail(&fence->link, &ggtt->fence_list);
-> > @@ -384,6 +405,116 @@ int __i915_vma_pin_fence(struct i915_vma *vma)
-> >       return err;
-> >   }
-> >   
-> > +static int set_bind_fence(struct i915_fence_reg *fence,
-> > +                       struct dma_fence_work *work)
-> > +{
-> > +     struct dma_fence *prev;
-> > +     int err;
-> > +
-> > +     if (rcu_access_pointer(fence->active.excl.fence) == &work->dma)
-> > +             return 0;
-> 
-> What is this checking for?
+== Series Details ==
 
-Paranoia to avoid waiting upon ourselves. Should be possible to declare
-it a GEM_BUG_ON.
+Series: series starting with [01/23] Revert "drm/i915/gem: Async GPU relocations only" (rev2)
+URL   : https://patchwork.freedesktop.org/series/79470/
+State : warning
 
-> > +     err = i915_sw_fence_await_active(&work->chain,
-> > +                                      &fence->active,
-> > +                                      I915_ACTIVE_AWAIT_ACTIVE);
-> > +     if (err)
-> > +             return err;
-> > +
-> > +     if (i915_active_acquire(&fence->active))
-> > +             return -ENOENT;
-> > +
-> > +     prev = i915_active_set_exclusive(&fence->active, &work->dma);
-> > +     if (unlikely(prev)) {
-> > +             err = i915_sw_fence_await_dma_fence(&work->chain, prev, 0,
-> > +                                                 GFP_NOWAIT | __GFP_NOWARN);
-> 
-> This is a potential allocation under vm->mutex.
+== Summary ==
 
-Aye, and it is not allowed to shrink because we hold vm->mutex.
-It's the biggest problem with trying to build up a job with many
-dependencies, where each vma may need to evict multiple others and have
-a number of awaits.
+$ dim checkpatch origin/drm-tip
+6a326d9f8985 Revert "drm/i915/gem: Async GPU relocations only"
+-:113: WARNING:MEMORY_BARRIER: memory barrier without comment
+#113: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1109:
++			mb();
 
-> > +             dma_fence_put(prev);
-> > +     }
-> > +
-> > +     i915_active_release(&fence->active);
-> > +     return err < 0 ? err : 0;
-> > +}
-> > +
-> > +int __i915_vma_pin_fence_async(struct i915_vma *vma,
-> > +                            struct dma_fence_work *work)
-> > +{
-> > +     struct i915_ggtt *ggtt = i915_vm_to_ggtt(vma->vm);
-> > +     struct i915_vma *set = i915_gem_object_is_tiled(vma->obj) ? vma : NULL;
-> > +     struct i915_fence_reg *fence = vma->fence;
-> > +     int err;
-> > +
-> > +     lockdep_assert_held(&vma->vm->mutex);
-> > +
-> > +     /* Just update our place in the LRU if our fence is getting reused. */
-> > +     if (fence) {
-> > +             GEM_BUG_ON(fence->vma != vma);
-> > +             GEM_BUG_ON(!i915_vma_is_map_and_fenceable(vma));
-> > +     } else if (set) {
-> > +             if (!i915_vma_is_map_and_fenceable(vma))
-> > +                     return -EINVAL;
-> > +
-> > +             fence = fence_find(ggtt);
-> > +             if (IS_ERR(fence))
-> > +                     return -ENOSPC;
-> > +
-> > +             GEM_BUG_ON(atomic_read(&fence->pin_count));
-> > +             fence->dirty = true;
-> > +     } else {
-> > +             return 0;
-> > +     }
-> > +
-> > +     atomic_inc(&fence->pin_count);
-> > +     list_move_tail(&fence->link, &ggtt->fence_list);
-> > +     if (!fence->dirty)
-> > +             return 0;
-> > +
-> > +     if (INTEL_GEN(fence_to_i915(fence)) < 4 &&
-> > +         rcu_access_pointer(vma->active.excl.fence) != &work->dma) {
-> 
-> This second part is the same check as in set_bind_fence.
+-:161: WARNING:MEMORY_BARRIER: memory barrier without comment
+#161: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1157:
++			mb();
 
-The await for implicit unfenced blits? That's subtly different.
- 
-> Should it go to a helper with a self-descriptive name and then this 
-> function would gate both the gen > 4 check and the set_bind_fence call 
-> under it?
-> 
-> > +             /* implicit 'unfenced' GPU blits */
-> > +             err = i915_sw_fence_await_active(&work->chain,
-> > +                                              &vma->active,
-> > +                                              I915_ACTIVE_AWAIT_ACTIVE);
-> > +             if (err)
-> > +                     goto err_unpin;
-> > +     }
-> > +
-> > +     err = set_bind_fence(fence, work);
-> > +     if (err)
-> > +             goto err_unpin;
-> > +
-> > +     if (set) {
-> > +             fence->start = vma->node.start;
-> > +             fence->size  = vma->fence_size;
-> > +             fence->stride = i915_gem_object_get_stride(vma->obj);
-> > +             fence->tiling = i915_gem_object_get_tiling(vma->obj);
-> > +
-> > +             vma->fence = fence;
-> > +     } else {
-> > +             fence->tiling = 0;
-> > +             vma->fence = NULL;
-> > +     }
-> > +
-> > +     set = xchg(&fence->vma, set);
-> > +     if (set && set != vma) {
-> > +             GEM_BUG_ON(set->fence != fence);
-> > +             WRITE_ONCE(set->fence, NULL);
-> > +             i915_vma_revoke_mmap(set);
-> > +     }
-> > +
-> > +     return 0;
-> > +
-> > +err_unpin:
-> > +     atomic_dec(&fence->pin_count);
-> > +     return err;
-> > +}
-> > +
-> > +void __i915_vma_apply_fence_async(struct i915_vma *vma)
-> > +{
-> > +     struct i915_fence_reg *fence = vma->fence;
-> > +
-> > +     if (fence->dirty)
-> > +             fence_write(fence);
-> 
-> What is async in here?
+-:181: CHECK:SPACING: No space is necessary after a cast
+#181: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1177:
++		io_mapping_unmap_atomic((void __force __iomem *) unmask_page(cache->vaddr));
 
-This executes the async work. The first function was pin_fence_async, so
-this was apply_fence_async because that looked symmetrical.
--Chris
+-:260: WARNING:MEMORY_BARRIER: memory barrier without comment
+#260: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1256:
++			mb();
+
+-:274: CHECK:BRACES: Unbalanced braces around else statement
+#274: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1270:
++	} else
+
+total: 0 errors, 3 warnings, 2 checks, 455 lines checked
+05d012e20b45 drm/i915: Revert relocation chaining commits.
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+This reverts commit 964a9b0f611ee ("drm/i915/gem: Use chained reloc batches")
+
+-:221: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#221: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1313:
++	if (cache->rq_size > PAGE_SIZE/sizeof(u32) - (len + 1))
+ 	                              ^
+
+total: 0 errors, 1 warnings, 1 checks, 281 lines checked
+a780c63bddfb Revert "drm/i915/gem: Drop relocation slowpath".
+-:131: WARNING:LINE_SPACING: Missing a blank line after declarations
+#131: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1705:
++		int err = __get_user(c, addr);
++		if (err)
+
+total: 0 errors, 1 warnings, 0 checks, 320 lines checked
+48113ee8a844 drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+-:445: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#445: FILE: drivers/gpu/drm/i915/i915_gem.c:1359:
++	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
+
+total: 0 errors, 1 warnings, 0 checks, 441 lines checked
+4aaec1db237b drm/i915: Remove locking from i915_gem_object_prepare_read/write
+21fd5642515c drm/i915: Parse command buffer earlier in eb_relocate(slow)
+cfdfd2191f9e Revert "drm/i915/gem: Split eb_vma into its own allocation"
+a3f2b79bd1ce drm/i915: Use per object locking in execbuf, v12.
+-:457: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#457: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1410:
++static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+ 			      struct i915_vma *vma,
+
+-:477: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#477: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1483:
++static int reloc_entry_gpu(struct i915_execbuffer *eb,
+ 			    struct i915_vma *vma,
+
+-:489: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#489: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1508:
++^I$
+
+-:759: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#759: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2878:
++	eb.reloc_pool = eb.batch_pool = NULL;
+
+total: 1 errors, 0 warnings, 3 checks, 865 lines checked
+d4369286d54d drm/i915: Use ww locking in intel_renderstate.
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+Convert to using ww-waiting, and make sure we always pin intel_context_state,
+
+total: 0 errors, 1 warnings, 0 checks, 190 lines checked
+5eda6dc5378e drm/i915: Add ww context handling to context_barrier_task
+-:19: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#19: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:1097:
++				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
+
+total: 0 errors, 1 warnings, 0 checks, 146 lines checked
+ad64baa191f1 drm/i915: Nuke arguments to eb_pin_engine
+402f556b79e3 drm/i915: Pin engine before pinning all objects, v5.
+60c31ab26acd drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
+-:125: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#125: FILE: drivers/gpu/drm/i915/gt/intel_context.c:176:
++
++
+
+-:338: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#338: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3483:
++	*vaddr = i915_gem_object_pin_map(ce->state->obj,
++					i915_coherent_map_type(ce->engine->i915) |
+
+total: 0 errors, 0 warnings, 2 checks, 434 lines checked
+af579dfca323 drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
+-:95: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#95: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:595:
++	err = i915_vma_pin_ww(vma, &eb->ww,
+ 			   entry->pad_to_size, entry->alignment,
+
+-:213: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#213: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2400:
++	 * hsw should have this fixed, but bdw mucks it up again. */
+
+total: 0 errors, 1 warnings, 1 checks, 863 lines checked
+3cb997208f2d drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
+5fc455841210 drm/i915: Kill last user of intel_context_create_request outside of selftests
+75f8204d2ad4 drm/i915: Convert i915_perf to ww locking as well
+cf3cf9931dba drm/i915: Dirty hack to fix selftests locking inversion
+86024c0ea90a drm/i915/selftests: Fix locking inversion in lrc selftest.
+b8487041fc65 drm/i915: Use ww pinning for intel_context_create_request()
+a58c03e5e04a drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v2.
+896faff1a7f2 drm/i915: Add ww locking to vm_fault_gtt
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 91 lines checked
+b4c67068c47a drm/i915: Add ww locking to pin_to_display_plane
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 129 lines checked
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
