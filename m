@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1119321F616
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 17:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D74D521F619
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 17:26:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EF9A6E3AA;
-	Tue, 14 Jul 2020 15:24:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5691B6E0B6;
+	Tue, 14 Jul 2020 15:26:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9B8876E0B6;
- Tue, 14 Jul 2020 15:24:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 99015A47DB;
- Tue, 14 Jul 2020 15:24:11 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 108E16E0B6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 15:26:29 +0000 (UTC)
+IronPort-SDR: IaZCIiipQvBOPlzAj9a4l17B69OAZ0v9QC3oDWB9iVtJjbJCxZt6Llah9hFb7rfeWLp7Gt50Qu
+ RBB4SeFAJ2/Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9681"; a="213726497"
+X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; d="scan'208";a="213726497"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2020 08:26:29 -0700
+IronPort-SDR: YVPcP6gPJ/BglOXuaRgdTrI2dltqrhpgq7KZtlQa4ArXwMLRTXXoPnP2/AqOrojmPaciFp6Zih
+ 24wgFkbEDQyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; d="scan'208";a="325871362"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 14 Jul 2020 08:26:27 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 14 Jul 2020 18:26:26 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Jul 2020 18:26:23 +0300
+Message-Id: <20200714152626.380-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Tue, 14 Jul 2020 15:24:11 -0000
-Message-ID: <159474025162.24022.13158174612990359465@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200714114516.3073222-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200714114516.3073222-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B01/23=5D_Revert_=22drm/i915/gem=3A_Asyn?=
- =?utf-8?q?c_GPU_relocations_only=22_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Pack struct intel_cdclk_vals
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,28 +48,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [01/23] Revert "drm/i915/gem: Async GPU relocations only" (rev2)
-URL   : https://patchwork.freedesktop.org/series/79470/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
+ZXJlJ3MgYSBwb2ludGxlc3MgaG9sZSBpbiBzdHJ1Y3QgaW50ZWxfY2RjbGtfdmFscywgZ2V0IHJp
+ZCBvZiBpdC4KRm9ydHVuYXRlbHkgd2UgYWxyZWFkeSB1c2UgbmFtZWQgaW5pdGlhbGl6ZXJzIHNv
+IHRoZSBvcmRlciBkb2VzIG5vdAptYXR0ZXIuCgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rs
+w6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuaCB8IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2Vy
+dGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfY2RjbGsuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfY2RjbGsuaAppbmRleCA1NzMxODA2ZTRjZWUuLjZiMzFmZGU0YmUxNiAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5oCisrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuaApAQCAtMTcsOCArMTcsOCBAQCBzdHJ1
+Y3QgaW50ZWxfYXRvbWljX3N0YXRlOwogc3RydWN0IGludGVsX2NydGNfc3RhdGU7CiAKIHN0cnVj
+dCBpbnRlbF9jZGNsa192YWxzIHsKLQl1MTYgcmVmY2xrOwogCXUzMiBjZGNsazsKKwl1MTYgcmVm
+Y2xrOwogCXU4IGRpdmlkZXI7CS8qIENEMlggZGl2aWRlciAqIDIgKi8KIAl1OCByYXRpbzsKIH07
+Ci0tIAoyLjI2LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
