@@ -2,62 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30EE21F41F
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 16:31:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D66121F423
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 16:31:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04FE86E892;
-	Tue, 14 Jul 2020 14:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 883146E965;
+	Tue, 14 Jul 2020 14:31:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21B436E892
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 14:31:29 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id b6so22032690wrs.11
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 07:31:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=Ed/reeYJGTUlb4ySP35k6xiv1WgC2riT/Zo21y23//U=;
- b=Ewf+GMeScmyBFvFOvufdoDZRrV4/6flsTp734Xp/9GetkuBjRKOJnJ419fHD16cpdM
- AhYX/iXwFsLReavk7xNIjfwi7uzIpX1dGBAozfRZNkSYjhNoMz+bLN4RXXO/WCb5gmMZ
- 4rSM1Bm1WWSq9mBfYuICycp2sEeRqptusJlf4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=Ed/reeYJGTUlb4ySP35k6xiv1WgC2riT/Zo21y23//U=;
- b=cMN13g0Brpem8Jumxrbtuj4KsWCH03F8ESHfRUPueh3ZhDIrePKAKoziG0Y4MNRsTf
- qdHizW+TaPQ1QCsr3ofZlgy+zQ/vmz6tGQviq8J26LTFFDXNz+tke8idjRkeewkTSyJO
- +YsuE2432yXIwEOPQvpbGUaKq1dKcfYDYmtj91mDiPQQHHoB6Y3vH2fAGPckhzMOg7Li
- 5LAmTuW3daytOY2RwO8N+Tdzh8rbRrOtU6IW93s+Mys9MSNfLeyF8Sn6sGuLqq4AD8+u
- doNq489SQTT0CHZrqMRaYJKudN6HZlEUpBTyXdqxgZuDfY8KlpW33EDRMEkEb11REZTe
- gXxQ==
-X-Gm-Message-State: AOAM533LeE1OeeGF/mZHPdHyu0YMUZK595h7G+3FovSZkzI1o7ukX+wd
- oAxXZfYcro6HfF4Znp861JSu4A==
-X-Google-Smtp-Source: ABdhPJydohBAFr2y3Zo3uJbf1/CV8/Lg/F5ovzneHF4+jrt5NQvpk+Juk4QyRp3CnvJvu9Ou0xUmHQ==
-X-Received: by 2002:a05:6000:11cc:: with SMTP id
- i12mr5936896wrx.224.1594737087739; 
- Tue, 14 Jul 2020 07:31:27 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id d132sm4666892wmd.35.2020.07.14.07.31.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Jul 2020 07:31:26 -0700 (PDT)
-Date: Tue, 14 Jul 2020 16:31:24 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <20200714143124.GG3278063@phenom.ffwll.local>
-References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
- <20200707201229.472834-20-daniel.vetter@ffwll.ch>
- <20200714104910.GC3278063@phenom.ffwll.local>
- <d3e85f62-e427-7f1c-0ff4-842ffe57172e@amd.com>
+Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E88C96E965
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 14:31:51 +0000 (UTC)
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+ by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 06EEMr8K063274;
+ Tue, 14 Jul 2020 14:31:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ content-transfer-encoding : in-reply-to; s=corp-2020-01-29;
+ bh=dzppCwyHQJu68aR8rQTbAZ/zoacNW4e768vQA71xWeU=;
+ b=FGNmPC7OiQI6a/6RmlMONV93ZnaMrTFe+BHCUsOsNiUj7NxJoco6BG1ZRqvhVXDiDjbj
+ tCkVUnNte4MRHqRSCJYO/AGw/1J2SJl0a00321dGMRU4JA0qOZKQZolmtMSk12P0k4VI
+ QxLkiGMLnvvt5XuozFdAHDi8elPC4hT7U7efoHgQod5oVuHF39x5zQHTScfNzunhGrvC
+ ntDLRMwaxEAEqGetwU/ZBrA+fqRD/tkv4tnSA4z+OQ6CYCYGY54rgZtfehjrkrcF21Hp
+ wqZ3v+bj3cZv5bkvB2fdI4pqN6Ch8AzXcSEudECBPSzaLgbBeXdXfoVCYtwiDdQO7XzI fw== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+ by userp2120.oracle.com with ESMTP id 32762ndjn0-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Tue, 14 Jul 2020 14:31:42 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+ by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 06EERZVv114120;
+ Tue, 14 Jul 2020 14:31:42 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+ by aserp3020.oracle.com with ESMTP id 327qb48dje-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 14 Jul 2020 14:31:42 +0000
+Received: from abhmp0016.oracle.com (abhmp0016.oracle.com [141.146.116.22])
+ by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 06EEVdcr026211;
+ Tue, 14 Jul 2020 14:31:39 GMT
+Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Tue, 14 Jul 2020 07:31:38 -0700
+Date: Tue, 14 Jul 2020 17:31:29 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Message-ID: <20200714143129.GX2549@kadam>
+References: <20200714141216.GA314989@mwanda>
+ <71508ba9-6cad-45f9-a3b1-b3401ac0a1d5@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <d3e85f62-e427-7f1c-0ff4-842ffe57172e@amd.com>
-X-Operating-System: Linux phenom 5.6.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 19/25] drm/amdgpu: s/GFP_KERNEL/GFP_ATOMIC
- in scheduler code
+In-Reply-To: <71508ba9-6cad-45f9-a3b1-b3401ac0a1d5@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9681
+ signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
+ malwarescore=0
+ mlxscore=0 spamscore=0 phishscore=0 suspectscore=0 bulkscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2007140112
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9681
+ signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
+ malwarescore=0 spamscore=0
+ clxscore=1015 priorityscore=1501 mlxlogscore=999 lowpriorityscore=0
+ bulkscore=0 suspectscore=0 phishscore=0 adultscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2007140111
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftest: Fix an error code in
+ live_noa_gpr()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,204 +80,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org,
- amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
- linux-media@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ kernel-janitors@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 14, 2020 at 01:40:11PM +0200, Christian K=F6nig wrote:
-> Am 14.07.20 um 12:49 schrieb Daniel Vetter:
-> > On Tue, Jul 07, 2020 at 10:12:23PM +0200, Daniel Vetter wrote:
-> > > My dma-fence lockdep annotations caught an inversion because we
-> > > allocate memory where we really shouldn't:
-> > > =
-
-> > > 	kmem_cache_alloc+0x2b/0x6d0
-> > > 	amdgpu_fence_emit+0x30/0x330 [amdgpu]
-> > > 	amdgpu_ib_schedule+0x306/0x550 [amdgpu]
-> > > 	amdgpu_job_run+0x10f/0x260 [amdgpu]
-> > > 	drm_sched_main+0x1b9/0x490 [gpu_sched]
-> > > 	kthread+0x12e/0x150
-> > > =
-
-> > > Trouble right now is that lockdep only validates against GFP_FS, which
-> > > would be good enough for shrinkers. But for mmu_notifiers we actually
-> > > need !GFP_ATOMIC, since they can be called from any page laundering,
-> > > even if GFP_NOFS or GFP_NOIO are set.
-> > > =
-
-> > > I guess we should improve the lockdep annotations for
-> > > fs_reclaim_acquire/release.
-> > > =
-
-> > > Ofc real fix is to properly preallocate this fence and stuff it into
-> > > the amdgpu job structure. But GFP_ATOMIC gets the lockdep splat out of
-> > > the way.
-> > > =
-
-> > > v2: Two more allocations in scheduler paths.
-> > > =
-
-> > > Frist one:
-> > > =
-
-> > > 	__kmalloc+0x58/0x720
-> > > 	amdgpu_vmid_grab+0x100/0xca0 [amdgpu]
-> > > 	amdgpu_job_dependency+0xf9/0x120 [amdgpu]
-> > > 	drm_sched_entity_pop_job+0x3f/0x440 [gpu_sched]
-> > > 	drm_sched_main+0xf9/0x490 [gpu_sched]
-> > > =
-
-> > > Second one:
-> > > =
-
-> > > 	kmem_cache_alloc+0x2b/0x6d0
-> > > 	amdgpu_sync_fence+0x7e/0x110 [amdgpu]
-> > > 	amdgpu_vmid_grab+0x86b/0xca0 [amdgpu]
-> > > 	amdgpu_job_dependency+0xf9/0x120 [amdgpu]
-> > > 	drm_sched_entity_pop_job+0x3f/0x440 [gpu_sched]
-> > > 	drm_sched_main+0xf9/0x490 [gpu_sched]
-> > > =
-
-> > > Cc: linux-media@vger.kernel.org
-> > > Cc: linaro-mm-sig@lists.linaro.org
-> > > Cc: linux-rdma@vger.kernel.org
-> > > Cc: amd-gfx@lists.freedesktop.org
-> > > Cc: intel-gfx@lists.freedesktop.org
-> > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > Cc: Christian K=F6nig <christian.koenig@amd.com>
-> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Has anyone from amd side started looking into how to fix this properly?
-> =
-
-> Yeah I checked both and neither are any real problem.
-
-I'm confused ... do you mean "no real problem fixing them" or "not
-actually a real problem"?
-
-> > I looked a bit into fixing this with mempool, and the big guarantee we
-> > need is that
-> > - there's a hard upper limit on how many allocations we minimally need =
-to
-> >    guarantee forward progress. And the entire vmid allocation and
-> >    amdgpu_sync_fence stuff kinda makes me question that's a valid
-> >    assumption.
-> =
-
-> We do have hard upper limits for those.
-> =
-
-> The VMID allocation could as well just return the fence instead of putting
-> it into the sync object IIRC. So that just needs some cleanup and can avo=
-id
-> the allocation entirely.
-
-Yeah embedding should be simplest solution of all.
-
-> The hardware fence is limited by the number of submissions we can have
-> concurrently on the ring buffers, so also not a problem at all.
-
-Ok that sounds good. Wrt releasing the memory again, is that also done
-without any of the allocation-side locks held? I've seen some vmid manager
-somewhere ...
--Daniel
-
-> =
-
-> Regards,
-> Christian.
-> =
-
+On Tue, Jul 14, 2020 at 05:16:33PM +0300, Lionel Landwerlin wrote:
+> On 14/07/2020 17:12, Dan Carpenter wrote:
+> > The error code is not set on this error path.  It's either zero or
+> > uninitialized at this point.
 > > =
 
-> > - mempool_free must be called without any locks in the way which are he=
-ld
-> >    while we call mempool_alloc. Otherwise we again have a nice deadlock
-> >    with no forward progress. I tried auditing that, but got lost in amd=
-gpu
-> >    and scheduler code. Some lockdep annotations for mempool.c might hel=
-p,
-> >    but they're not going to catch everything. Plus it would be again ma=
-nual
-> >    annotations because this is yet another cross-release issue. So not =
-sure
-> >    that helps at all.
+> > Fixes: ed2690a9ca89 ("drm/i915/selftest: Check that GPR are restored ac=
+ross noa_wait")
+> > Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+> > ---
+> >   drivers/gpu/drm/i915/selftests/i915_perf.c | 1 +
+> >   1 file changed, 1 insertion(+)
 > > =
 
-> > iow, not sure what to do here. Ideas?
-> > =
-
-> > Cheers, Daniel
-> > =
-
-> > > ---
-> > >   drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 2 +-
-> > >   drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c   | 2 +-
-> > >   drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c  | 2 +-
-> > >   3 files changed, 3 insertions(+), 3 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_fence.c
-> > > index 8d84975885cd..a089a827fdfe 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> > > @@ -143,7 +143,7 @@ int amdgpu_fence_emit(struct amdgpu_ring *ring, s=
-truct dma_fence **f,
-> > >   	uint32_t seq;
-> > >   	int r;
-> > > -	fence =3D kmem_cache_alloc(amdgpu_fence_slab, GFP_KERNEL);
-> > > +	fence =3D kmem_cache_alloc(amdgpu_fence_slab, GFP_ATOMIC);
-> > >   	if (fence =3D=3D NULL)
-> > >   		return -ENOMEM;
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_ids.c
-> > > index 267fa45ddb66..a333ca2d4ddd 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
-> > > @@ -208,7 +208,7 @@ static int amdgpu_vmid_grab_idle(struct amdgpu_vm=
- *vm,
-> > >   	if (ring->vmid_wait && !dma_fence_is_signaled(ring->vmid_wait))
-> > >   		return amdgpu_sync_fence(sync, ring->vmid_wait);
-> > > -	fences =3D kmalloc_array(sizeof(void *), id_mgr->num_ids, GFP_KERNE=
-L);
-> > > +	fences =3D kmalloc_array(sizeof(void *), id_mgr->num_ids, GFP_ATOMI=
-C);
-> > >   	if (!fences)
-> > >   		return -ENOMEM;
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_sync.c
-> > > index 8ea6c49529e7..af22b526cec9 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
-> > > @@ -160,7 +160,7 @@ int amdgpu_sync_fence(struct amdgpu_sync *sync, s=
-truct dma_fence *f)
-> > >   	if (amdgpu_sync_add_later(sync, f))
-> > >   		return 0;
-> > > -	e =3D kmem_cache_alloc(amdgpu_sync_slab, GFP_KERNEL);
-> > > +	e =3D kmem_cache_alloc(amdgpu_sync_slab, GFP_ATOMIC);
-> > >   	if (!e)
-> > >   		return -ENOMEM;
-> > > -- =
-
-> > > 2.27.0
-> > > =
-
+> > diff --git a/drivers/gpu/drm/i915/selftests/i915_perf.c b/drivers/gpu/d=
+rm/i915/selftests/i915_perf.c
+> > index deb6dec1b5ab..7aa73bb03381 100644
+> > --- a/drivers/gpu/drm/i915/selftests/i915_perf.c
+> > +++ b/drivers/gpu/drm/i915/selftests/i915_perf.c
+> > @@ -329,6 +329,7 @@ static int live_noa_gpr(void *arg)
+> >   	cs =3D intel_ring_begin(rq, 2 * 32 + 2);
+> >   	if (IS_ERR(cs)) {
+> >   		i915_request_add(rq);
+> > +		err =3D PTR_ERR(cs);
+> >   		goto out_rq;
+> >   	}
 > =
 
+> Looks like there is another below :
+> =
 
--- =
+> cs =3D intel_ring_begin(rq, 4);
+> if (IS_ERR(cs)) {
+> =A0=A0=A0=A0=A0=A0=A0 i915_request_add(rq);
+> =A0=A0=A0=A0=A0=A0=A0 goto out_rq;
+> }
 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Oh...  Hm...  I'm looking at linux-next now and you're right.  Also
+Colin already fixed the return that I fixed.  I'll resend.
+
+regards,
+dan carpenter
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
