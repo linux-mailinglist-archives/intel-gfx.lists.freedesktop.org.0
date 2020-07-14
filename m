@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3745421E58D
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 04:19:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF6BC21E606
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 04:59:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A6546E57E;
-	Tue, 14 Jul 2020 02:19:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA5AB6E89C;
+	Tue, 14 Jul 2020 02:59:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4AC826E57E;
- Tue, 14 Jul 2020 02:19:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45587A0099;
- Tue, 14 Jul 2020 02:19:36 +0000 (UTC)
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 746416E89B;
+ Tue, 14 Jul 2020 02:59:47 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4B5QGk17nqz9sRR;
+ Tue, 14 Jul 2020 12:59:41 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1594695584;
+ bh=JytnyXM7mLZ22ITo74iTEVgYm2GIE3T8PylBD0v5KgY=;
+ h=Date:From:To:Cc:Subject:From;
+ b=JdXSRbslO/Pgp5vOwnzDhf5U0D9sLTudJWxJLalueYDscSrqSNH2kz8JrhYO7Z/hN
+ m5a0qEq5QdveiQxXgEDXWO+PxDBv9iUbeuTDdWhXYm89CeFQj58Eao4sCeiPgeznpD
+ C/MS5eQzOcQpJzHPTVDycp16AkWBhE1KSOYeQl1CD+AdA5EMVRYCuciVvJSdZh/PL0
+ 7j7IuTHOxcO1bM8JbQGAHuc9Uch4iEZy0L8cTOkfVje/x03r8nDC231w9rtfEEoFcN
+ m/fuySsulxwC36LDd/PiAs1b8h2nGPJ3zSC5GFox4o/vUuKP4afYI6oIs8MOfGwmtx
+ dFBhm/kbFv1zQ==
+Date: Tue, 14 Jul 2020 12:59:41 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, Dave Airlie
+ <airlied@linux.ie>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20200714125941.2e95d167@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthik B S" <karthik.b.s@intel.com>
-Date: Tue, 14 Jul 2020 02:19:36 -0000
-Message-ID: <159469317626.6781.13196330663130797726@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200714012725.18383-1-karthik.b.s@intel.com>
-In-Reply-To: <20200714012725.18383-1-karthik.b.s@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQXN5?=
- =?utf-8?q?nchronous_flip_implementation_for_i915_=28rev4=29?=
+Subject: [Intel-gfx] linux-next: manual merge of the drm-intel tree with the
+ drm tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,162 +51,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0500527997=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============0500527997==
+Content-Type: multipart/signed; boundary="Sig_/TvsK9JqjR7N6ZoKB_AWExuI";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-Series: Asynchronous flip implementation for i915 (rev4)
-URL   : https://patchwork.freedesktop.org/series/74386/
-State : success
+--Sig_/TvsK9JqjR7N6ZoKB_AWExuI
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+Hi all,
 
-CI Bug Log - changes from CI_DRM_8740 -> Patchwork_18153
-====================================================
+Today's linux-next merge of the drm-intel tree got a conflict in:
 
-Summary
--------
+  drivers/gpu/drm/drm_probe_helper.c
 
-  **SUCCESS**
+between commit:
 
-  No regressions found.
+  12c683e12cd8 ("drm: bridge: Pass drm_display_info to drm_bridge_funcs .mo=
+de_valid()")
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/index.html
+from the drm tree and commit:
 
-Known issues
-------------
+  1c26b8e09004 ("drm/probe_helper: Add drm_connector_helper_funcs.mode_vali=
+d_ctx")
 
-  Here are the changes found in Patchwork_18153 that come from known issues:
+from the drm-intel tree.
 
-### IGT changes ###
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
 
-#### Issues hit ####
+--=20
+Cheers,
+Stephen Rothwell
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2] ([i915#1372])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+diff --cc drivers/gpu/drm/drm_probe_helper.c
+index 09e872e61315,601a4f25bb47..000000000000
+--- a/drivers/gpu/drm/drm_probe_helper.c
++++ b/drivers/gpu/drm/drm_probe_helper.c
+@@@ -114,10 -116,8 +116,10 @@@ drm_mode_validate_pipeline(struct drm_d
+  		}
+ =20
+  		bridge =3D drm_bridge_chain_get_first_bridge(encoder);
+- 		ret =3D drm_bridge_chain_mode_valid(bridge,
+- 						  &connector->display_info,
+- 						  mode);
+- 		if (ret !=3D MODE_OK) {
+ -		*status =3D drm_bridge_chain_mode_valid(bridge, mode);
+++		*status =3D drm_bridge_chain_mode_valid(bridge,
+++						      &connector->display_info,
+++						      mode);
++ 		if (*status !=3D MODE_OK) {
+  			/* There is also no point in continuing for crtc check
+  			 * here. */
+  			continue;
 
-  * igt@vgem_basic@create:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-tgl-y/igt@vgem_basic@create.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-tgl-y/igt@vgem_basic@create.html
+--Sig_/TvsK9JqjR7N6ZoKB_AWExuI
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-  
-#### Possible fixes ####
+-----BEGIN PGP SIGNATURE-----
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][5] ([i915#1888]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl8NH50ACgkQAVBC80lX
+0GzXtAf+PoX61dmQpbPg7isR1p+Aj2H9XJqtIJtg07sPx1L99h57SexFt7fDSwOf
+lan4UNJQdY83y8IeWf5j1Jc4ra23HyiCTJFJvnoCXTSId5jpcYzeExKiAx3esXvu
+K8JP8/sa27GUYQueZLnq/6UOfc8YBA2j93KubDqJcnX0gh+BxucYdo/eozlFobfz
+NnDuLoLvnry6cGIsyEGiBBVrOwNKbXXahMw9awFfcJ7QPWQ+jBKXXpMmiuKvRTZc
+jZAzuK2vk7VUjyIoZC1tCuFc5bcPiCv0H5vDFrPNsg57wzuTCaW2gawKnXE9rtD0
+pKtW57wQ541NuMcbVQZgaTJEMowjmg==
+=nBIt
+-----END PGP SIGNATURE-----
 
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-whl-u:           [DMESG-WARN][7] ([i915#95]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-whl-u/igt@i915_pm_backlight@basic-brightness.html
+--Sig_/TvsK9JqjR7N6ZoKB_AWExuI--
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+--===============0500527997==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [FAIL][11] ([i915#579]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-tgl-u2:          [DMESG-FAIL][13] ([i915#1233]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@kms_busy@basic@modeset:
-    - {fi-tgl-dsi}:       [DMESG-WARN][15] ([i915#1982]) -> [PASS][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-tgl-dsi/igt@kms_busy@basic@modeset.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-tgl-dsi/igt@kms_busy@basic@modeset.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][19] ([i915#1982]) -> [PASS][20] +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-tgl-y:           [DMESG-WARN][21] ([i915#1982]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@vgem_basic@setversion:
-    - fi-tgl-y:           [DMESG-WARN][23] ([i915#402]) -> [PASS][24] +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-tgl-y/igt@vgem_basic@setversion.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-tgl-y/igt@vgem_basic@setversion.html
-
-  
-#### Warnings ####
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][25] ([i915#62] / [i915#92]) -> [DMESG-WARN][26] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][27] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][28] ([i915#62] / [i915#92]) +2 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8740/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (47 -> 39)
-------------------------------
-
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus fi-byt-clapper fi-skl-6600u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8740 -> Patchwork_18153
-
-  CI-20190529: 20190529
-  CI_DRM_8740: b182a04c513e3b385fa3cdbac559f2625b778be1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5735: 21f8204e54c122e4a0f8ca4b59e4b2db8d1ba687 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18153: 2f73114a86699ea77bcfe63f03be864f6477213e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2f73114a8669 drm/i915: Enable async flips in i915
-c68f7e3b6d25 drm/i915: Do not call drm_crtc_arm_vblank_event in async flips
-2fe12b0307ea drm/i915: Add checks specific to async flips
-64fa1ff84ea3 drm/i915: Add support for async flips in I915
-b48aa69c41de drm/i915: Add enable/disable flip done and flip done handler
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18153/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0500527997==--
