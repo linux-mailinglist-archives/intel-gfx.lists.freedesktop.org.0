@@ -2,42 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54DD321F61C
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 17:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3890521F62F
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 17:31:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1EA16E84E;
-	Tue, 14 Jul 2020 15:26:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A535589F75;
+	Tue, 14 Jul 2020 15:31:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D46906E84E
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 15:26:38 +0000 (UTC)
-IronPort-SDR: hJVo6IqC2VWsxSqCQlJog4PnqEsnHpjbzziUehd6D5pGPnHmV1UsR/GqFsVgEfo3hmNkl7fbdv
- /RyMmqTw05iQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9681"; a="213726541"
-X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; d="scan'208";a="213726541"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7778B89F75
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 15:31:49 +0000 (UTC)
+IronPort-SDR: mvHp5S0a/M0aj25eADSmoDJZxps3FcFPRbukFdFfV4+lqcKP0ufWd3rbBDpQeEGv0VsmrKuEEO
+ 9p2tMrMobOFQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9681"; a="148936990"
+X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; d="scan'208";a="148936990"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2020 08:26:38 -0700
-IronPort-SDR: E0vEmqxQKvyy32mbMCn17QJKx3CsLbSofXUDgNfWZ+hd9Jl2G18A5ucCO58e28JN3iBv1zV6yt
- cbt2h6rP76ZQ==
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2020 08:31:48 -0700
+IronPort-SDR: jDnOUO4OQHZzzAPwOaISlnearPwcRAVWuOCY/1Hd5P5SwFkiilhgIebPUlaqEwU8EQPsRPJ3/H
+ gz7LcnOV4qqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; d="scan'208";a="317754386"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 14 Jul 2020 08:26:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Jul 2020 18:26:35 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; d="scan'208";a="281784251"
+Received: from ideak-desk.fi.intel.com ([10.237.68.147])
+ by orsmga003.jf.intel.com with ESMTP; 14 Jul 2020 08:31:47 -0700
+From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jul 2020 18:26:26 +0300
-Message-Id: <20200714152626.380-4-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200714152626.380-1-ville.syrjala@linux.intel.com>
-References: <20200714152626.380-1-ville.syrjala@linux.intel.com>
+Date: Tue, 14 Jul 2020 18:31:40 +0300
+Message-Id: <20200714153141.10280-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.23.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Nuke force_min_cdclk_changed
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/ddi: Don't frob the DP link
+ scramble disabling flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,78 +47,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClNp
-bmNlIHdlIG5vdyBoYXZlIHByb3BlciBvbGQgYW5kIG5ldyBjZGNsayBzdGF0ZSB3ZSBubyBsb25n
-ZXIKbmVlZCB0byBrZWVwIHRoaXMgZmxhZyB0byBpbmRpY2F0ZSB0aGF0IHRoZSBmb3JjZSBtaW4g
-Y2RjbGsgaGFzCmNoYW5nZWQuIEluc3RlYWQganVzdCBjaGVjayBpZiB0aGUgb2xkIHZzLiBuZXcg
-dmFsdWUgYXJlIGRpZmZlcmVudC4KClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmls
-bGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9hdWRpby5jICAgfCA1IC0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2NkY2xrLmMgICB8IDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfY2RjbGsuaCAgIHwgMSAtCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2Rpc3BsYXkuYyB8IDcgKysrKystLQogNCBmaWxlcyBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyks
-IDkgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9hdWRpby5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdWRp
-by5jCmluZGV4IGFkNGFhNjZmZDY3Ni4uZjdkZTU1NzA3NzQ2IDEwMDY0NAotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F1ZGlvLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9hdWRpby5jCkBAIC05NTgsMTMgKzk1OCw4IEBAIHN0YXRpYyBp
-bnQgZ2xrX2ZvcmNlX2F1ZGlvX2NkY2xrX2NvbW1pdChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRl
-ICpzdGF0ZSwKIAlpZiAoSVNfRVJSKGNkY2xrX3N0YXRlKSkKIAkJcmV0dXJuIFBUUl9FUlIoY2Rj
-bGtfc3RhdGUpOwogCi0JY2RjbGtfc3RhdGUtPmZvcmNlX21pbl9jZGNsa19jaGFuZ2VkID0gdHJ1
-ZTsKIAljZGNsa19zdGF0ZS0+Zm9yY2VfbWluX2NkY2xrID0gZW5hYmxlID8gMiAqIDk2MDAwIDog
-MDsKIAotCXJldCA9IGludGVsX2F0b21pY19sb2NrX2dsb2JhbF9zdGF0ZSgmY2RjbGtfc3RhdGUt
-PmJhc2UpOwotCWlmIChyZXQpCi0JCXJldHVybiByZXQ7Ci0KIAlyZXR1cm4gZHJtX2F0b21pY19j
-b21taXQoJnN0YXRlLT5iYXNlKTsKIH0KIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9jZGNsay5jCmluZGV4IDlkNmNhY2JkYjY5MS4uMjY4YTcyMTFkZDZjIDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jCkBAIC0yNDI2LDcgKzI0MjYsNiBA
-QCBzdGF0aWMgc3RydWN0IGludGVsX2dsb2JhbF9zdGF0ZSAqaW50ZWxfY2RjbGtfZHVwbGljYXRl
-X3N0YXRlKHN0cnVjdCBpbnRlbF9nbG9iYQogCWlmICghY2RjbGtfc3RhdGUpCiAJCXJldHVybiBO
-VUxMOwogCi0JY2RjbGtfc3RhdGUtPmZvcmNlX21pbl9jZGNsa19jaGFuZ2VkID0gZmFsc2U7CiAJ
-Y2RjbGtfc3RhdGUtPnBpcGUgPSBJTlZBTElEX1BJUEU7CiAKIAlyZXR1cm4gJmNkY2xrX3N0YXRl
-LT5iYXNlOwpAQCAtMjUwMSw2ICsyNTAwLDcgQEAgaW50IGludGVsX21vZGVzZXRfY2FsY19jZGNs
-ayhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKIAkJaWYgKHJldCkKIAkJCXJldHVy
-biByZXQ7CiAJfSBlbHNlIGlmIChvbGRfY2RjbGtfc3RhdGUtPmFjdGl2ZV9waXBlcyAhPSBuZXdf
-Y2RjbGtfc3RhdGUtPmFjdGl2ZV9waXBlcyB8fAorCQkgICBvbGRfY2RjbGtfc3RhdGUtPmZvcmNl
-X21pbl9jZGNsayAhPSBuZXdfY2RjbGtfc3RhdGUtPmZvcmNlX21pbl9jZGNsayB8fAogCQkgICBp
-bnRlbF9jZGNsa19jaGFuZ2VkKCZvbGRfY2RjbGtfc3RhdGUtPmxvZ2ljYWwsCiAJCQkJICAgICAg
-ICZuZXdfY2RjbGtfc3RhdGUtPmxvZ2ljYWwpKSB7CiAJCXJldCA9IGludGVsX2F0b21pY19sb2Nr
-X2dsb2JhbF9zdGF0ZSgmbmV3X2NkY2xrX3N0YXRlLT5iYXNlKTsKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuaAppbmRleCA2YjMxZmRlNGJlMTYuLmIzNGViMDBmYjMy
-NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5o
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuaApAQCAtNDks
-NyArNDksNiBAQCBzdHJ1Y3QgaW50ZWxfY2RjbGtfc3RhdGUgewogCiAJLyogZm9yY2VkIG1pbmlt
-dW0gY2RjbGsgZm9yIGdsaysgYXVkaW8gdy9hICovCiAJaW50IGZvcmNlX21pbl9jZGNsazsKLQli
-b29sIGZvcmNlX21pbl9jZGNsa19jaGFuZ2VkOwogCiAJLyogYml0bWFzayBvZiBhY3RpdmUgcGlw
-ZXMgKi8KIAl1OCBhY3RpdmVfcGlwZXM7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheS5jCmluZGV4IDcyOWVjNmUwZDQzYS4uZjU3MWRlZDNjYmE4IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMTQ3MzYsNyAr
-MTQ3MzYsOCBAQCBzdGF0aWMgaW50IGludGVsX2F0b21pY19jaGVja19jZGNsayhzdHJ1Y3QgaW50
-ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAkJCQkgICAgYm9vbCAqbmVlZF9jZGNsa19jYWxjKQog
-ewogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoc3RhdGUtPmJh
-c2UuZGV2KTsKLQlzdHJ1Y3QgaW50ZWxfY2RjbGtfc3RhdGUgKm5ld19jZGNsa19zdGF0ZTsKKwlj
-b25zdCBzdHJ1Y3QgaW50ZWxfY2RjbGtfc3RhdGUgKm9sZF9jZGNsa19zdGF0ZTsKKwljb25zdCBz
-dHJ1Y3QgaW50ZWxfY2RjbGtfc3RhdGUgKm5ld19jZGNsa19zdGF0ZTsKIAlzdHJ1Y3QgaW50ZWxf
-cGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlOwogCXN0cnVjdCBpbnRlbF9id19zdGF0ZSAqbmV3X2J3
-X3N0YXRlOwogCXN0cnVjdCBpbnRlbF9wbGFuZSAqcGxhbmU7CkBAIC0xNDc1NSw5ICsxNDc1Niwx
-MSBAQCBzdGF0aWMgaW50IGludGVsX2F0b21pY19jaGVja19jZGNsayhzdHJ1Y3QgaW50ZWxfYXRv
-bWljX3N0YXRlICpzdGF0ZSwKIAkJCXJldHVybiByZXQ7CiAJfQogCisJb2xkX2NkY2xrX3N0YXRl
-ID0gaW50ZWxfYXRvbWljX2dldF9vbGRfY2RjbGtfc3RhdGUoc3RhdGUpOwogCW5ld19jZGNsa19z
-dGF0ZSA9IGludGVsX2F0b21pY19nZXRfbmV3X2NkY2xrX3N0YXRlKHN0YXRlKTsKIAotCWlmIChu
-ZXdfY2RjbGtfc3RhdGUgJiYgbmV3X2NkY2xrX3N0YXRlLT5mb3JjZV9taW5fY2RjbGtfY2hhbmdl
-ZCkKKwlpZiAobmV3X2NkY2xrX3N0YXRlICYmCisJICAgIG9sZF9jZGNsa19zdGF0ZS0+Zm9yY2Vf
-bWluX2NkY2xrICE9IG5ld19jZGNsa19zdGF0ZS0+Zm9yY2VfbWluX2NkY2xrKQogCQkqbmVlZF9j
-ZGNsa19jYWxjID0gdHJ1ZTsKIAogCXJldCA9IGRldl9wcml2LT5kaXNwbGF5LmJ3X2NhbGNfbWlu
-X2NkY2xrKHN0YXRlKTsKLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+According to BSpec this flag should not be changed while the DDI
+function is enabled. On BDW+ the DP_TP_CTL register spec also states it
+explicitly that the HW takes care of enabling/disabling the scrambling
+for training patterns (and it must stay enabled for normal pixel
+output). Assume that this HW automatic handling of scrambling is also
+true for HSW.
+
+BSpec: 8013, 7557, 50484
+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 2c484b55bcdf..c467f18d5e1b 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4037,8 +4037,7 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp)
+ 			intel_wait_ddi_buf_idle(dev_priv, port);
+ 	}
+ 
+-	dp_tp_ctl = DP_TP_CTL_ENABLE |
+-		    DP_TP_CTL_LINK_TRAIN_PAT1 | DP_TP_CTL_SCRAMBLE_DISABLE;
++	dp_tp_ctl = DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_PAT1;
+ 	if (intel_dp->link_mst)
+ 		dp_tp_ctl |= DP_TP_CTL_MODE_MST;
+ 	else {
+@@ -4066,11 +4065,6 @@ static void intel_ddi_set_link_train(struct intel_dp *intel_dp,
+ 
+ 	temp = intel_de_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+ 
+-	if (dp_train_pat & DP_LINK_SCRAMBLING_DISABLE)
+-		temp |= DP_TP_CTL_SCRAMBLE_DISABLE;
+-	else
+-		temp &= ~DP_TP_CTL_SCRAMBLE_DISABLE;
+-
+ 	temp &= ~DP_TP_CTL_LINK_TRAIN_MASK;
+ 	switch (dp_train_pat & train_pat_mask) {
+ 	case DP_TRAINING_PATTERN_DISABLE:
+-- 
+2.23.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
