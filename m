@@ -1,32 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A06721F60E
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 17:22:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 587FE21F612
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 17:23:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4E356E3AC;
-	Tue, 14 Jul 2020 15:22:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 925B76E409;
+	Tue, 14 Jul 2020 15:23:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E583F6E3AA;
- Tue, 14 Jul 2020 15:22:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DF145A47DB;
- Tue, 14 Jul 2020 15:22:49 +0000 (UTC)
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com
+ [IPv6:2607:f8b0:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3434F89E3B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 15:23:14 +0000 (UTC)
+Received: by mail-ot1-x342.google.com with SMTP id d4so13347020otk.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 08:23:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=cXIgj0iYr7P3K9BwnPZPhJf3MwNMTpVJeBZlv87Bh4I=;
+ b=VLIaWTKC4PHL8JWLjq42ZsT9mY+u4qL1p7WxjpgKEl5De7mvV/iKccmYz4fTy5W0bX
+ uwD6ShgNVxz/NJqIxDCK1jZ0AkTPAFmrweTkVH7sJq9pe+Uyk13OIivD+V7ejv2npjny
+ COM+I7P0E87QnLBZ2ERPa5kKwcC4/ZCLIIjxM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=cXIgj0iYr7P3K9BwnPZPhJf3MwNMTpVJeBZlv87Bh4I=;
+ b=JopBNtM/4tjaI77OZFpE4XSsFH1TlX2lKdRyiH/Ea+NK+c3BXCmYksh7dGcq/Z7sBs
+ RH465s7Id2VMNB1WacXvbwsWmU4fZ0qGdQmkaUP5L9TXPDayGMkbwO8VzdLu+HibVpW8
+ ulPHoKeY2cieVPIWIUI3ev5ufwlmr+JjazzldK2l3dunjgw3h2aBrA8hShCxXjtcDDto
+ BUGjgbZYpqCCDPKozx4C/8aYjJea1/reLbqk8TB1sttk7ebInRiA4G93fXhK4WkXrM+5
+ W89SQnouXIDRCm7sHnP0h6YTLVc5lo7Ff3zDQ2uvGBwxwGgEHSRl0koHEdTxVPOMCuN8
+ uLlw==
+X-Gm-Message-State: AOAM53368C7p3y57WCiwmwGGlLCRXNv4Qn1IGyN88heTley94HgYUjfB
+ JV9cy+ZdSxBR5YBPOq693p59uB1CMh2JqwbE7QUEnA==
+X-Google-Smtp-Source: ABdhPJzMWKFMzStVCDzj6VA6xehwdIqELDcKSwQ56B351nM2OHgHnA5N7zQOfA0uHd0eJVAYd4Qstl3xeb/ssJHcYdM=
+X-Received: by 2002:a9d:d55:: with SMTP id 79mr4759005oti.281.1594740193436;
+ Tue, 14 Jul 2020 08:23:13 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Tue, 14 Jul 2020 15:22:49 -0000
-Message-ID: <159474016990.24021.1751285722933078318@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200714114516.3073222-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200714114516.3073222-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/23=5D_Revert_=22drm/i915/gem=3A_?=
- =?utf-8?q?Async_GPU_relocations_only=22_=28rev2=29?=
+References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
+ <20200707201229.472834-5-daniel.vetter@ffwll.ch>
+ <20200712222716.4rhvj7hryiecjthv@smtp.gmail.com>
+ <20200714095717.njwk2u4tkgro54jn@smtp.gmail.com>
+ <CAKMK7uGu4N2oe04N=haUodmVCLi6HnqFDORkObx8EPUQrEJ+MQ@mail.gmail.com>
+ <20200714145553.zetjvbewixnf2rla@smtp.gmail.com>
+In-Reply-To: <20200714145553.zetjvbewixnf2rla@smtp.gmail.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Tue, 14 Jul 2020 17:23:02 +0200
+Message-ID: <CAKMK7uEyu8A3or00J+fBhf5sHhhq5Xz7X9Y=2AMajEPSaNB+-g@mail.gmail.com>
+To: Melissa Wen <melissa.srw@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 04/25] drm/vkms: Annotate vblank timer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,146 +63,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
+ linux-rdma <linux-rdma@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Trevor Woerner <twoerner@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [01/23] Revert "drm/i915/gem: Async GPU relocations only" (rev2)
-URL   : https://patchwork.freedesktop.org/series/79470/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-6a326d9f8985 Revert "drm/i915/gem: Async GPU relocations only"
--:113: WARNING:MEMORY_BARRIER: memory barrier without comment
-#113: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1109:
-+			mb();
-
--:161: WARNING:MEMORY_BARRIER: memory barrier without comment
-#161: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1157:
-+			mb();
-
--:181: CHECK:SPACING: No space is necessary after a cast
-#181: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1177:
-+		io_mapping_unmap_atomic((void __force __iomem *) unmask_page(cache->vaddr));
-
--:260: WARNING:MEMORY_BARRIER: memory barrier without comment
-#260: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1256:
-+			mb();
-
--:274: CHECK:BRACES: Unbalanced braces around else statement
-#274: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1270:
-+	} else
-
-total: 0 errors, 3 warnings, 2 checks, 455 lines checked
-05d012e20b45 drm/i915: Revert relocation chaining commits.
--:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#6: 
-This reverts commit 964a9b0f611ee ("drm/i915/gem: Use chained reloc batches")
-
--:221: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
-#221: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1313:
-+	if (cache->rq_size > PAGE_SIZE/sizeof(u32) - (len + 1))
- 	                              ^
-
-total: 0 errors, 1 warnings, 1 checks, 281 lines checked
-a780c63bddfb Revert "drm/i915/gem: Drop relocation slowpath".
--:131: WARNING:LINE_SPACING: Missing a blank line after declarations
-#131: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1705:
-+		int err = __get_user(c, addr);
-+		if (err)
-
-total: 0 errors, 1 warnings, 0 checks, 320 lines checked
-48113ee8a844 drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
--:445: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#445: FILE: drivers/gpu/drm/i915/i915_gem.c:1359:
-+	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
-
-total: 0 errors, 1 warnings, 0 checks, 441 lines checked
-4aaec1db237b drm/i915: Remove locking from i915_gem_object_prepare_read/write
-21fd5642515c drm/i915: Parse command buffer earlier in eb_relocate(slow)
-cfdfd2191f9e Revert "drm/i915/gem: Split eb_vma into its own allocation"
-a3f2b79bd1ce drm/i915: Use per object locking in execbuf, v12.
--:457: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#457: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1410:
-+static int __reloc_entry_gpu(struct i915_execbuffer *eb,
- 			      struct i915_vma *vma,
-
--:477: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#477: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1483:
-+static int reloc_entry_gpu(struct i915_execbuffer *eb,
- 			    struct i915_vma *vma,
-
--:489: ERROR:TRAILING_WHITESPACE: trailing whitespace
-#489: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1508:
-+^I$
-
--:759: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#759: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2878:
-+	eb.reloc_pool = eb.batch_pool = NULL;
-
-total: 1 errors, 0 warnings, 3 checks, 865 lines checked
-d4369286d54d drm/i915: Use ww locking in intel_renderstate.
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-Convert to using ww-waiting, and make sure we always pin intel_context_state,
-
-total: 0 errors, 1 warnings, 0 checks, 190 lines checked
-5eda6dc5378e drm/i915: Add ww context handling to context_barrier_task
--:19: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#19: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:1097:
-+				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
-
-total: 0 errors, 1 warnings, 0 checks, 146 lines checked
-ad64baa191f1 drm/i915: Nuke arguments to eb_pin_engine
-402f556b79e3 drm/i915: Pin engine before pinning all objects, v5.
-60c31ab26acd drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
--:125: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#125: FILE: drivers/gpu/drm/i915/gt/intel_context.c:176:
-+
-+
-
--:338: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#338: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3483:
-+	*vaddr = i915_gem_object_pin_map(ce->state->obj,
-+					i915_coherent_map_type(ce->engine->i915) |
-
-total: 0 errors, 0 warnings, 2 checks, 434 lines checked
-af579dfca323 drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
--:95: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#95: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:595:
-+	err = i915_vma_pin_ww(vma, &eb->ww,
- 			   entry->pad_to_size, entry->alignment,
-
--:213: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#213: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2400:
-+	 * hsw should have this fixed, but bdw mucks it up again. */
-
-total: 0 errors, 1 warnings, 1 checks, 863 lines checked
-3cb997208f2d drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
-5fc455841210 drm/i915: Kill last user of intel_context_create_request outside of selftests
-75f8204d2ad4 drm/i915: Convert i915_perf to ww locking as well
-cf3cf9931dba drm/i915: Dirty hack to fix selftests locking inversion
-86024c0ea90a drm/i915/selftests: Fix locking inversion in lrc selftest.
-b8487041fc65 drm/i915: Use ww pinning for intel_context_create_request()
-a58c03e5e04a drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v2.
-896faff1a7f2 drm/i915: Add ww locking to vm_fault_gtt
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 91 lines checked
-b4c67068c47a drm/i915: Add ww locking to pin_to_display_plane
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 129 lines checked
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCBKdWwgMTQsIDIwMjAgYXQgNDo1NiBQTSBNZWxpc3NhIFdlbiA8bWVsaXNzYS5zcndA
+Z21haWwuY29tPiB3cm90ZToKPgo+IEhpLAo+Cj4gT24gMDcvMTQsIERhbmllbCBWZXR0ZXIgd3Jv
+dGU6Cj4gPiBPbiBUdWUsIEp1bCAxNCwgMjAyMCBhdCAxMTo1NyBBTSBNZWxpc3NhIFdlbiA8bWVs
+aXNzYS5zcndAZ21haWwuY29tPiB3cm90ZToKPiA+ID4KPiA+ID4gT24gMDcvMTIsIFJvZHJpZ28g
+U2lxdWVpcmEgd3JvdGU6Cj4gPiA+ID4gSGksCj4gPiA+ID4KPiA+ID4gPiBFdmVyeXRoaW5nIGxv
+b2tzIGZpbmUgdG8gbWUsIEkganVzdCBub3RpY2VkIHRoYXQgdGhlIGFtZGdwdSBwYXRjaGVzIGRp
+ZAo+ID4gPiA+IG5vdCBhcHBseSBzbW9vdGhseSwgaG93ZXZlciBpdCB3YXMgdHJpdmlhbCB0byBm
+aXggdGhlIGlzc3Vlcy4KPiA+ID4gPgo+ID4gPiA+IFJldmlld2VkLWJ5OiBSb2RyaWdvIFNpcXVl
+aXJhIDxyb2RyaWdvc2lxdWVpcmFtZWxvQGdtYWlsLmNvbT4KPiA+ID4gPgo+ID4gPiA+IE1lbGlz
+c2EsCj4gPiA+ID4gU2luY2UgeW91IGFyZSB1c2luZyB2a21zIHJlZ3VsYXJseSwgY291bGQgeW91
+IHRlc3QgdGhpcyBwYXRjaCBhbmQgcmV2aWV3Cj4gPiA+ID4gaXQ/IFJlbWVtYmVyIHRvIGFkZCB5
+b3VyIFRlc3RlZC1ieSB3aGVuIHlvdSBmaW5pc2guCj4gPiA+ID4KPiA+ID4gSGksCj4gPiA+Cj4g
+PiA+IEkndmUgYXBwbGllZCB0aGUgcGF0Y2ggc2VyaWVzLCByYW4gc29tZSB0ZXN0cyBvbiB2a21z
+LCBhbmQgZm91bmQgbm8KPiA+ID4gaXNzdWVzLiBJIG1lYW4sIHRoaW5ncyBoYXZlIHJlbWFpbmVk
+IHN0YWJsZS4KPiA+ID4KPiA+ID4gVGVzdGVkLWJ5OiBNZWxpc3NhIFdlbiA8bWVsaXNzYS5zcndA
+Z21haWwuY29tPgo+ID4KPiA+IERpZCB5b3UgdGVzdCB3aXRoIENPTkZJR19QUk9WRV9MT0NLSU5H
+IGVuYWJsZWQgaW4gdGhlIGtlcm5lbCAuY29uZmlnPwo+ID4gV2l0aG91dCB0aGF0IGVuYWJsZWQs
+IHRoZXJlJ3Mgbm90IHJlYWxseSBhbnkgY2hhbmdlIGhlcmUsIGJ1dCB3aXRoCj4gPiB0aGF0IGVu
+YWJsZWQgdGhlcmUgbWlnaHQgYmUgc29tZSBsb2NrZGVwIHNwbGF0cyBpbiBkbWVzZyBpbmRpY2F0
+aW5nIGEKPiA+IHByb2JsZW0uCj4gPgo+Cj4gRXZlbiB3aXRoIHRoZSBsb2NrIGRlYnVnZ2luZyBj
+b25maWcgZW5hYmxlZCwgbm8gbmV3IGlzc3VlIGFyb3NlIGluIGRtZXNnCj4gZHVyaW5nIG15IHRl
+c3RzIHVzaW5nIHZrbXMuCgpFeGNlbGxlbnQsIHRoYW5rcyBhIGxvdCBmb3IgY29uZmlybWluZyB0
+aGlzLgotRGFuaWVsCgo+Cj4gTWVsaXNzYQo+Cj4gPiBUaGFua3MsIERhbmllbAo+ID4gPgo+ID4g
+PiA+IFRoYW5rcwo+ID4gPiA+Cj4gPiA+ID4gT24gMDcvMDcsIERhbmllbCBWZXR0ZXIgd3JvdGU6
+Cj4gPiA+ID4gPiBUaGlzIGlzIG5lZWRlZCB0byBzaWduYWwgdGhlIGZlbmNlcyBmcm9tIHBhZ2Ug
+ZmxpcHMsIGFubm90YXRlIGl0Cj4gPiA+ID4gPiBhY2NvcmRpbmdseS4gV2UgbmVlZCB0byBhbm5v
+dGF0ZSBlbnRpcmUgdGltZXIgY2FsbGJhY2sgc2luY2UgaWYgd2UgZ2V0Cj4gPiA+ID4gPiBzdHVj
+ayBhbnl3aGVyZSBpbiB0aGVyZSwgdGhlbiB0aGUgdGltZXIgc3RvcHMsIGFuZCBoZW5jZSBmZW5j
+ZXMgc3RvcC4KPiA+ID4gPiA+IEp1c3QgYW5ub3RhdGluZyB0aGUgdG9wIHBhcnQgdGhhdCBkb2Vz
+IHRoZSB2YmxhbmsgaGFuZGxpbmcgaXNuJ3QKPiA+ID4gPiA+IGVub3VnaC4KPiA+ID4gPiA+Cj4g
+PiA+ID4gPiBDYzogbGludXgtbWVkaWFAdmdlci5rZXJuZWwub3JnCj4gPiA+ID4gPiBDYzogbGlu
+YXJvLW1tLXNpZ0BsaXN0cy5saW5hcm8ub3JnCj4gPiA+ID4gPiBDYzogbGludXgtcmRtYUB2Z2Vy
+Lmtlcm5lbC5vcmcKPiA+ID4gPiA+IENjOiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+
+ID4gPiA+ID4gQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+ID4gPiA+IENj
+OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiA+ID4gPiA+IENjOiBN
+YWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+ID4g
+PiA+ID4gQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiA+
+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwu
+Y29tPgo+ID4gPiA+ID4gQ2M6IFJvZHJpZ28gU2lxdWVpcmEgPHJvZHJpZ29zaXF1ZWlyYW1lbG9A
+Z21haWwuY29tPgo+ID4gPiA+ID4gQ2M6IEhhbmVlbiBNb2hhbW1lZCA8aGFtb2hhbW1lZC5zYUBn
+bWFpbC5jb20+Cj4gPiA+ID4gPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPgo+
+ID4gPiA+ID4gLS0tCj4gPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL3ZrbXMvdmttc19jcnRjLmMg
+fCA4ICsrKysrKystCj4gPiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwg
+MSBkZWxldGlvbigtKQo+ID4gPiA+ID4KPiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vdmttcy92a21zX2NydGMuYyBiL2RyaXZlcnMvZ3B1L2RybS92a21zL3ZrbXNfY3J0Yy5j
+Cj4gPiA+ID4gPiBpbmRleCBhYzg1ZTE3NDI4ZjguLmE1M2E0MDg0OGE3MiAxMDA2NDQKPiA+ID4g
+PiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS92a21zL3ZrbXNfY3J0Yy5jCj4gPiA+ID4gPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vdmttcy92a21zX2NydGMuYwo+ID4gPiA+ID4gQEAgLTEsNSArMSw3
+IEBACj4gPiA+ID4gPiAgLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjArCj4gPiA+
+ID4gPgo+ID4gPiA+ID4gKyNpbmNsdWRlIDxsaW51eC9kbWEtZmVuY2UuaD4KPiA+ID4gPiA+ICsK
+PiA+ID4gPiA+ICAjaW5jbHVkZSA8ZHJtL2RybV9hdG9taWMuaD4KPiA+ID4gPiA+ICAjaW5jbHVk
+ZSA8ZHJtL2RybV9hdG9taWNfaGVscGVyLmg+Cj4gPiA+ID4gPiAgI2luY2x1ZGUgPGRybS9kcm1f
+cHJvYmVfaGVscGVyLmg+Cj4gPiA+ID4gPiBAQCAtMTQsNyArMTYsOSBAQCBzdGF0aWMgZW51bSBo
+cnRpbWVyX3Jlc3RhcnQgdmttc192Ymxhbmtfc2ltdWxhdGUoc3RydWN0IGhydGltZXIgKnRpbWVy
+KQo+ID4gPiA+ID4gICAgIHN0cnVjdCBkcm1fY3J0YyAqY3J0YyA9ICZvdXRwdXQtPmNydGM7Cj4g
+PiA+ID4gPiAgICAgc3RydWN0IHZrbXNfY3J0Y19zdGF0ZSAqc3RhdGU7Cj4gPiA+ID4gPiAgICAg
+dTY0IHJldF9vdmVycnVuOwo+ID4gPiA+ID4gLSAgIGJvb2wgcmV0Owo+ID4gPiA+ID4gKyAgIGJv
+b2wgcmV0LCBmZW5jZV9jb29raWU7Cj4gPiA+ID4gPiArCj4gPiA+ID4gPiArICAgZmVuY2VfY29v
+a2llID0gZG1hX2ZlbmNlX2JlZ2luX3NpZ25hbGxpbmcoKTsKPiA+ID4gPiA+Cj4gPiA+ID4gPiAg
+ICAgcmV0X292ZXJydW4gPSBocnRpbWVyX2ZvcndhcmRfbm93KCZvdXRwdXQtPnZibGFua19ocnRp
+bWVyLAo+ID4gPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvdXRw
+dXQtPnBlcmlvZF9ucyk7Cj4gPiA+ID4gPiBAQCAtNDksNiArNTMsOCBAQCBzdGF0aWMgZW51bSBo
+cnRpbWVyX3Jlc3RhcnQgdmttc192Ymxhbmtfc2ltdWxhdGUoc3RydWN0IGhydGltZXIgKnRpbWVy
+KQo+ID4gPiA+ID4gICAgICAgICAgICAgICAgICAgICBEUk1fREVCVUdfRFJJVkVSKCJDb21wb3Nl
+ciB3b3JrZXIgYWxyZWFkeSBxdWV1ZWRcbiIpOwo+ID4gPiA+ID4gICAgIH0KPiA+ID4gPiA+Cj4g
+PiA+ID4gPiArICAgZG1hX2ZlbmNlX2VuZF9zaWduYWxsaW5nKGZlbmNlX2Nvb2tpZSk7Cj4gPiA+
+ID4gPiArCj4gPiA+ID4gPiAgICAgcmV0dXJuIEhSVElNRVJfUkVTVEFSVDsKPiA+ID4gPiA+ICB9
+Cj4gPiA+ID4gPgo+ID4gPiA+ID4gLS0KPiA+ID4gPiA+IDIuMjcuMAo+ID4gPiA+ID4KPiA+ID4g
+Pgo+ID4gPiA+IC0tCj4gPiA+ID4gUm9kcmlnbyBTaXF1ZWlyYQo+ID4gPiA+IGh0dHBzOi8vc2lx
+dWVpcmEudGVjaAo+ID4gPgo+ID4gPgo+ID4KPiA+Cj4gPiAtLQo+ID4gRGFuaWVsIFZldHRlcgo+
+ID4gU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCj4gPiBodHRwOi8vYmxvZy5m
+ZndsbC5jaAoKCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29y
+cG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
