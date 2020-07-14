@@ -1,57 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD30321F6B5
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 18:08:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E86421F6B7
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 18:08:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9970D6E2CD;
-	Tue, 14 Jul 2020 16:08:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72B836E40C;
+	Tue, 14 Jul 2020 16:08:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
- [IPv6:2607:f8b0:4864:20::842])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7285A6E2B4
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 16:08:20 +0000 (UTC)
-Received: by mail-qt1-x842.google.com with SMTP id e12so13181817qtr.9
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 09:08:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=from:to:cc:subject:date:message-id;
- bh=V9Rb/r/RJHLHhAPnqfSs2i8TfDLZuZfi/muSKKceuW8=;
- b=JN6ECob3aQQ80IdMdPlS+O5WsuwHrrz7rUshZGQYYEfov/JJtEPo5I7TcHESJM/gIa
- gUjC5bXQWgAm7SMQTL6OTrHhqmZRo3onYNgDnsGOUxTwPuW7Z2wc7Zb6e4bqO4Sh1JQU
- N6NNkQ3ubrewSC6+a6xaQykREV6B9h+Os6Qty6Qt6Zvql0Qo4Fje4nqgKFYqLqMCV5ZP
- bnM5M0kYqTqSxt6M1Hjn47beqDj6+MrpfULP7rKYDD/ktDSe+2FLbjNWbwXY9/bhGhAw
- /8TCU2AoeeE96zqudzigBC47jQtU3oiYYvjLhXbnl7S6kxRwpR/rZc8dPlq10F8sg6/O
- rbYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=V9Rb/r/RJHLHhAPnqfSs2i8TfDLZuZfi/muSKKceuW8=;
- b=WQ6BI9cJvVawgkZs+PDB+eZ2jswBDt/4FxLq5OYIwB9MLUe+VKJnUh3B/CgPZy5lim
- eJF26P6bsGPK8/Nn9QTb9Jdy7p4kmqIPPC7Wt48hUUUX7pTqrlWOJ7MXyCK1BMmxXZek
- 7yypF88kAVSuIwYlFlWbfk1I6eFYlQ/rgoIcktqcoHJBnxXDHCLqzNna+oh5ewi5SMNP
- Q9+ci4MNs7lDpd/ZSgcRG0WiCtA90j8tEh8Rhf7z/5eDfVcWo7qiITpWZdkP8iavvwvr
- kQ5gTJnJoOSmDBCVJJyDLimxcBVbEjGwtCN7zLituRLWi4CWcVq5tzz45OrNiZQRpaWs
- 0Yjg==
-X-Gm-Message-State: AOAM5304bI88VpnJ+kj7SsmFefGl4qXMjzRn2Xy03b0R6OkweDUG8Ynk
- 4nItPRr91qh+01BRUdI8/1w76g==
-X-Google-Smtp-Source: ABdhPJxRxgYerbv33HgTncbZxgnF0p5OhORHkKU7DSQ5BXRdXdmJHr9cfHuW+xjxRqL2lfIXCx8+sg==
-X-Received: by 2002:ac8:24c6:: with SMTP id t6mr5574177qtt.39.1594742899490;
- Tue, 14 Jul 2020 09:08:19 -0700 (PDT)
-Received: from localhost (mobile-166-177-185-80.mycingular.net.
- [166.177.185.80])
- by smtp.gmail.com with ESMTPSA id o184sm24363903qkd.41.2020.07.14.09.08.18
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 14 Jul 2020 09:08:18 -0700 (PDT)
-From: Sean Paul <sean@poorly.run>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jul 2020 12:06:27 -0400
-Message-Id: <20200714160627.1269-1-sean@poorly.run>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915: Avoid modeset when content protection
- changes
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48E986E40C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 16:08:37 +0000 (UTC)
+IronPort-SDR: 7roAG6B+jqTrSzq3uk0gt3KR11x1ijXsr7CJXaw6Ur126GozkNNLAZL7879d8wYpgZDap3AXYm
+ EAgc3HizrBmA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9681"; a="137084157"
+X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; d="scan'208";a="137084157"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2020 09:08:36 -0700
+IronPort-SDR: eDj7aRDI6v2/mdHQPAJrPgm4CiSUH++3KwH/mwrF3yV53jHXwEeW7ZVjgcVyuxGLxYZY508YYN
+ i0ULXSL9RLRw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; d="scan'208";a="285802271"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 14 Jul 2020 09:08:34 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 14 Jul 2020 19:08:33 +0300
+Date: Tue, 14 Jul 2020 19:08:33 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200714160833.GL6112@intel.com>
+References: <20200714153141.10280-1-imre.deak@intel.com>
+ <20200714153141.10280-2-imre.deak@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200714153141.10280-2-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/ddi: Don't rewrite DDI_BUF_CTL
+ reg during DP link training
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +54,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Sean Paul <seanpaul@chromium.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@chromium.org>
+On Tue, Jul 14, 2020 at 06:31:41PM +0300, Imre Deak wrote:
+> The driver enables the DDI function in the DDI_BUF_CTL register before
+> starting the link training and disables it when disabling the output. It
+> also gets disabled/re-enabled during link re-trainining.
+> =
 
-Instead of doing a full modeset to enable/disable content protection,
-simply go through the update_pipe flow which was introduced in the
-related patch below. This avoids flashing the screen every time the user
-starts viewing protected content.
+> Except of the above the value we program to the register (intel_dp->DP)
+> doesn't change, so no need to reprogram the register when changing the
+> link training patterns.
+> =
 
-Related: 634852d1f468 ("drm/i915: HDCP state handling in ddi_update_pipe")
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 89a4d294822d..839ce1715253 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -2191,7 +2191,7 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
- 			return;
- 	}
- 
--	crtc_state->mode_changed = true;
-+	to_intel_crtc_state(crtc_state)->update_pipe = true;
- }
- 
- /* Handles the CP_IRQ raised from the DP HDCP sink */
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
+The only concern I had was the buf trans stuff for hsw/bdw/skl,
+but looks like hsw_set_signal_levels() does everything we need.
 
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 4 ----
+>  1 file changed, 4 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index c467f18d5e1b..424d59671561 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4060,7 +4060,6 @@ static void intel_ddi_set_link_train(struct intel_d=
+p *intel_dp,
+>  {
+>  	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+>  	u8 train_pat_mask =3D drm_dp_training_pattern_mask(intel_dp->dpcd);
+> -	enum port port =3D dp_to_dig_port(intel_dp)->base.port;
+>  	u32 temp;
+>  =
+
+>  	temp =3D intel_de_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> @@ -4085,9 +4084,6 @@ static void intel_ddi_set_link_train(struct intel_d=
+p *intel_dp,
+>  	}
+>  =
+
+>  	intel_de_write(dev_priv, intel_dp->regs.dp_tp_ctl, temp);
+> -
+> -	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
+> -	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
+>  }
+>  =
+
+>  static void intel_ddi_set_idle_link_train(struct intel_dp *intel_dp)
+> -- =
+
+> 2.23.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
