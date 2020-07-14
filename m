@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D36D21E567
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 03:58:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F1021E56D
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 03:59:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 051296E3C6;
-	Tue, 14 Jul 2020 01:58:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B12DD6E86A;
+	Tue, 14 Jul 2020 01:59:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0BA556E3C6;
- Tue, 14 Jul 2020 01:58:27 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 175296E86A;
+ Tue, 14 Jul 2020 01:59:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 04288A41FB;
- Tue, 14 Jul 2020 01:58:27 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1481AA41FB;
+ Tue, 14 Jul 2020 01:59:41 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Karthik B S" <karthik.b.s@intel.com>
-Date: Tue, 14 Jul 2020 01:58:26 -0000
-Message-ID: <159469190698.6781.4894838462547961618@emeril.freedesktop.org>
+Date: Tue, 14 Jul 2020 01:59:41 -0000
+Message-ID: <159469198108.6782.13284891394939023806@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200714012725.18383-1-karthik.b.s@intel.com>
 In-Reply-To: <20200714012725.18383-1-karthik.b.s@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Asynchronous_flip_implementation_for_i915_=28rev4=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Asynchronous_flip_implementation_for_i915_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,42 +53,56 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-b48aa69c41de drm/i915: Add enable/disable flip done and flip done handler
--:28: WARNING:TYPO_SPELLING: 'begining' may be misspelled - perhaps 'beginning'?
-#28: 
-    -Make the pending vblank event NULL in the begining of
-
-total: 0 errors, 1 warnings, 0 checks, 197 lines checked
-64fa1ff84ea3 drm/i915: Add support for async flips in I915
-2fe12b0307ea drm/i915: Add checks specific to async flips
--:48: WARNING:TYPO_SPELLING: 'Requried' may be misspelled - perhaps 'Required'?
-#48: FILE: drivers/gpu/drm/i915/display/intel_display.c:14839:
-+			DRM_DEBUG_KMS("Modeset Requried. Async flip not supported\n");
-
--:72: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_plane_state->color_plane[0].x !=
- 		     new_plane_state->color_plane[0].x'
-#72: FILE: drivers/gpu/drm/i915/display/intel_display.c:14863:
-+		if ((old_plane_state->color_plane[0].x !=
-+		     new_plane_state->color_plane[0].x) ||
-+		    (old_plane_state->color_plane[0].y !=
-+		     new_plane_state->color_plane[0].y)) {
-
--:72: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_plane_state->color_plane[0].y !=
- 		     new_plane_state->color_plane[0].y'
-#72: FILE: drivers/gpu/drm/i915/display/intel_display.c:14863:
-+		if ((old_plane_state->color_plane[0].x !=
-+		     new_plane_state->color_plane[0].x) ||
-+		    (old_plane_state->color_plane[0].y !=
-+		     new_plane_state->color_plane[0].y)) {
-
--:102: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#102: FILE: drivers/gpu/drm/i915/display/intel_display.c:14893:
-+		if (old_plane_state->uapi.pixel_blend_mode != new_plane_state->uapi.pixel_blend_mode) {
-
-total: 0 errors, 2 warnings, 2 checks, 115 lines checked
-c68f7e3b6d25 drm/i915: Do not call drm_crtc_arm_vblank_event in async flips
-2f73114a8669 drm/i915: Enable async flips in i915
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2271:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2272:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2273:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2274:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2275:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gem/i915_gem_context.c:2276:17: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/intel_lrc.c:2809:17: error: too long token expansion
++drivers/gpu/drm/i915/gt/intel_lrc.c:2809:17: error: too long token expansion
++drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/sysfs_engines.c:61:10: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/sysfs_engines.c:62:10: error: bad integer constant expression
++drivers/gpu/drm/i915/gt/sysfs_engines.c:66:10: error: bad integer constant expression
++drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
++drivers/gpu/drm/i915/i915_irq.c:700:5: warning: symbol 'g4x_get_flip_counter' was not declared. Should it be static?
++drivers/gpu/drm/i915/i915_perf.c:1425:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1479:15: warning: memset with byte count of 16777216
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:408:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
 
 _______________________________________________
 Intel-gfx mailing list
