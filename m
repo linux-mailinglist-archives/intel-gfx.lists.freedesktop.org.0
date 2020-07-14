@@ -2,41 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F4AC21F35D
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 16:01:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5519221F381
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2020 16:10:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51D246E42E;
-	Tue, 14 Jul 2020 14:01:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A27CC6E829;
+	Tue, 14 Jul 2020 14:10:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E5386E42E
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 14:01:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 060166E829
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 14:10:52 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21816072-1500050 for multiple; Tue, 14 Jul 2020 15:01:17 +0100
+ 21816201-1500050 for multiple; Tue, 14 Jul 2020 15:10:50 +0100
 MIME-Version: 1.0
-In-Reply-To: <a299c3f0-c68d-9917-aa25-d8b694621dca@linux.intel.com>
+In-Reply-To: <9e293a7a-0592-f102-bcc3-3d0d36c4da4f@linux.intel.com>
 References: <20200706061926.6687-1-chris@chris-wilson.co.uk>
- <427a43a2-c434-6239-5101-87209472def9@linux.intel.com>
- <159421217807.17526.6465016562541726599@build.alporthouse.com>
- <dfc69bdb-eb8c-9746-eabb-434a263357de@linux.intel.com>
- <159422257929.17526.13795947568657610354@build.alporthouse.com>
- <71aaf1cf-9d3a-6681-c9b0-fc25144b86b0@linux.intel.com>
- <159429284100.22162.194646133366627797@build.alporthouse.com>
- <0af3b19d-ea9e-9558-ca4a-853070f8662e@linux.intel.com>
- <159429642039.22162.913189691410719231@build.alporthouse.com>
- <a299c3f0-c68d-9917-aa25-d8b694621dca@linux.intel.com>
+ <20200706061926.6687-12-chris@chris-wilson.co.uk>
+ <9e293a7a-0592-f102-bcc3-3d0d36c4da4f@linux.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jul 2020 15:01:15 +0100
-Message-ID: <159473527580.28702.10504757810595085586@build.alporthouse.com>
+Date: Tue, 14 Jul 2020 15:10:49 +0100
+Message-ID: <159473584915.28702.15433201106402099388@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 09/20] drm/i915/gem: Assign context id for
- async work
+Subject: Re: [Intel-gfx] [PATCH 11/20] drm/i915/gem: Separate the ww_mutex
+ walker into its own list
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,61 +47,17 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-07-13 13:22:19)
+Quoting Tvrtko Ursulin (2020-07-13 15:53:56)
 > 
-> On 09/07/2020 13:07, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-07-09 12:59:51)
-> >>
-> >> On 09/07/2020 12:07, Chris Wilson wrote:
-> >>> Quoting Tvrtko Ursulin (2020-07-09 12:01:29)
-> >>>>
-> >>>> On 08/07/2020 16:36, Chris Wilson wrote:
-> >>>>> Quoting Tvrtko Ursulin (2020-07-08 15:24:20)
-> >>>>>> And what is the effective behaviour you get with N contexts - emit N
-> >>>>>> concurrent operations and for N + 1 block in execbuf?
-> >>>>>
-> >>>>> Each context defines a timeline. A task is not ready to run until the
-> >>>>> task before it in its timeline is completed. So we don't block in
-> >>>>> execbuf, the scheduler waits until the request is ready before putting
-> >>>>> it into the HW queues -- i.e. the number chain of fences with everything
-> >>>>> that entails about ensuring it runs to completion [whether successfully
-> >>>>> or not, if not we then rely on the error propagation to limit the damage
-> >>>>> and report it back to the user if they kept a fence around to inspect].
-> >>>>
-> >>>> Okay but what is the benefit of N contexts in this series, before the
-> >>>> work is actually spread over ctx async width CPUs? Is there any? If not
-> >>>> I would prefer this patch is delayed until the time some actual
-> >>>> parallelism is ready to be added.
-> >>>
-> >>> We currently submit an unbounded amount of work. This patch is added
-> >>> along with its user to restrict the amount of work allowed to run in
-> >>> parallel, and also is used to [crudely] serialise the multiple threads
-> >>> attempting to allocate space in the vm when we completely exhaust that
-> >>> address space. We need at least one fence-context id for each user, this
-> >>> took the opportunity to generalise that to N ids for each user.
-> >>
-> >> Right, this is what I asked at the beginning - restricting amount of
-> >> work run in parallel - does mean there is some "blocking"/serialisation
-> >> during execbuf? Or it is all async but then what is restricted?
-> > 
-> > It's all* async, so the number of workqueues we utilise is restricted,
-> > and so limits the number of CPUs we allow the one context to spread
-> > across with multiple execbufs.
-> > 
-> > *fsvo all.
-> 
-> Okay.
-> 
-> Related topic - have we ever thought about what happens when fence 
-> context id wraps? I know it's 64-bit, and even with this patch giving 
-> out num_cpus blocks, it still feels impossible that it would wrap in 
-> normal use. But I wonder if malicious client could create/destroy 
-> contexts to cause a wrap and then how well we handle it. I am probably 
-> just underestimating today how big 64-bit is and how many ioctls that 
-> would require..
+> On 06/07/2020 07:19, Chris Wilson wrote:
+> Just a temporary stage... are we reviewing those? Best if they can be 
+> avoided.
 
-I've had cold sweats. We will get silent glitches. I *don't* think we
-will corrupt kernel data and oops, but we will corrupt user data.
+Yes, I am not chuffed in having it. But with the transition from using
+an array of execobj[] to having a list that includes the supplementary
+objects, the inplace swap() now breaks the lists. We would have to do a
+bunch of list_replace() to preserve them. At the moment, I think this is
+the lessor of evils, although it is quite hideous.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
