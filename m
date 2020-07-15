@@ -2,48 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48513220D49
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 14:47:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CE73220D51
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 14:48:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08B746EB48;
-	Wed, 15 Jul 2020 12:47:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE5AB898E1;
+	Wed, 15 Jul 2020 12:48:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25A306EB48
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 12:47:11 +0000 (UTC)
-IronPort-SDR: EB3U4LXoPr2nqQCZDn+RFS/+Q6JnnJWcCVEVqVlSsLv/W56w9ir63tKI95mNR4nLjnCTgPvz7K
- VRa9zLrwGd0Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9682"; a="136591980"
-X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="136591980"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2020 05:47:10 -0700
-IronPort-SDR: oGG+GDlRkdOyjffG3O7qBjo5hGXFXngRbqvRjgFXVysNcsChTrWp47sqHnBQ4Yu7M7tXSlFrx1
- PWYNSU4HMY1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="326168610"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
- by orsmga007.jf.intel.com with ESMTP; 15 Jul 2020 05:47:09 -0700
-Received: from ahiler-desk1.fi.intel.com (10.237.68.143) by
- IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 15 Jul 2020 13:47:07 +0100
-Date: Wed, 15 Jul 2020 15:47:06 +0300
-From: Arkadiusz Hiler <arkadiusz.hiler@intel.com>
-To: Melissa Wen <melissa.srw@gmail.com>
-Message-ID: <20200715124706.f6bvf7g7dqbcnyaj@ahiler-desk1.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Patchwork-Hint: comment
-References: <cover.1592840756.git.melissa.srw@gmail.com>
- <0cef6a7b7dbd8510de62f0c17e8cd952cfa84678.1592840756.git.melissa.srw@gmail.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CEE9898E1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 12:48:45 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21826993-1500050 for multiple; Wed, 15 Jul 2020 13:48:42 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <0cef6a7b7dbd8510de62f0c17e8cd952cfa84678.1592840756.git.melissa.srw@gmail.com>
-X-Originating-IP: [10.237.68.143]
-Subject: Re: [Intel-gfx] [PATCH i-g-t 1/2] test/kms_cursor_crc: release old
- pipe_crc before create a new one
+In-Reply-To: <89dd9513-6fc3-106c-2f7e-41bd193460ee@linux.intel.com>
+References: <20200714094709.15775-1-chris@chris-wilson.co.uk>
+ <89dd9513-6fc3-106c-2f7e-41bd193460ee@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Jul 2020 13:48:41 +0100
+Message-ID: <159481732140.13728.18368699381715163331@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Remove i915_request.lock
+ requirement for execution callbacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,58 +41,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, twoerner@gmail.com,
- Rodrigo.Siqueira@amd.com, rodrigosiqueiramelo@gmail.com,
- kernel-usp@googlegroups.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 22, 2020 at 01:37:55PM -0300, Melissa Wen wrote:
-> When a subtest fails, it skips the cleanup, and its pipe_crc remains allocated.
-> As a consequence, the following subtest also fails (timeout) when trying to
-> create a new one. This patch releases any remaining pipe_crc to enable the
-> creation of a new one for the next subtest.
+Quoting Tvrtko Ursulin (2020-07-15 13:39:56)
 > 
-> Signed-off-by: Melissa Wen <melissa.srw@gmail.com>
-> ---
->  tests/kms_cursor_crc.c | 2 ++
->  1 file changed, 2 insertions(+)
+> On 14/07/2020 10:47, Chris Wilson wrote:
+> > We are using the i915_request.lock to serialise adding an execution
+> > callback with __i915_request_submit. However, if we use an atomic
+> > llist_add to serialise multiple waiters and then check to see if the
+> > request is already executing, we can remove the irq-spinlock.
+> > 
+> > Fixes: 1d9221e9d395 ("drm/i915: Skip signaling a signaled request")
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/i915_request.c | 38 +++++++----------------------
+> >   1 file changed, 9 insertions(+), 29 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> > index 0b2fe55e6194..c59315def07d 100644
+> > --- a/drivers/gpu/drm/i915/i915_request.c
+> > +++ b/drivers/gpu/drm/i915/i915_request.c
+> > @@ -190,13 +190,11 @@ static void __notify_execute_cb(struct i915_request *rq)
+> >   {
+> >       struct execute_cb *cb, *cn;
+> >   
+> > -     lockdep_assert_held(&rq->lock);
+> > -
+> > -     GEM_BUG_ON(!i915_request_is_active(rq));
+> >       if (llist_empty(&rq->execute_cb))
+> >               return;
+> >   
+> > -     llist_for_each_entry_safe(cb, cn, rq->execute_cb.first, work.llnode)
+> > +     llist_for_each_entry_safe(cb, cn,
+> > +                               llist_del_all(&rq->execute_cb), work.llnode)
+> >               irq_work_queue(&cb->work);
+> >   
+> >       /*
+> > @@ -209,7 +207,6 @@ static void __notify_execute_cb(struct i915_request *rq)
+> >        * preempt-to-idle cycle on the target engine, all the while the
+> >        * master execute_cb may refire.
+> >        */
+> > -     init_llist_head(&rq->execute_cb);
+> >   }
+> >   
+> >   static inline void
+> > @@ -276,6 +273,7 @@ static void remove_from_engine(struct i915_request *rq)
+> >       list_del_init(&rq->sched.link);
+> >       clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> >       clear_bit(I915_FENCE_FLAG_HOLD, &rq->fence.flags);
+> > +     set_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+> >       spin_unlock_irq(&locked->active.lock);
+> >   }
+> >   
+> > @@ -323,12 +321,8 @@ bool i915_request_retire(struct i915_request *rq)
+> >               GEM_BUG_ON(!atomic_read(&rq->engine->gt->rps.num_waiters));
+> >               atomic_dec(&rq->engine->gt->rps.num_waiters);
+> >       }
+> > -     if (!test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags)) {
+> > -             set_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+> > -             __notify_execute_cb(rq);
+> > -     }
+> > -     GEM_BUG_ON(!llist_empty(&rq->execute_cb));
+> >       spin_unlock_irq(&rq->lock);
+> > +     __notify_execute_cb(rq);
+> >   
+> >       remove_from_client(rq);
+> >       __list_del_entry(&rq->link); /* poison neither prev/next (RCU walks) */
+> > @@ -357,12 +351,6 @@ void i915_request_retire_upto(struct i915_request *rq)
+> >       } while (i915_request_retire(tmp) && tmp != rq);
+> >   }
+> >   
+> > -static void __llist_add(struct llist_node *node, struct llist_head *head)
+> > -{
+> > -     node->next = head->first;
+> > -     head->first = node;
+> > -}
+> > -
+> >   static struct i915_request * const *
+> >   __engine_active(struct intel_engine_cs *engine)
+> >   {
+> > @@ -439,18 +427,11 @@ __await_execution(struct i915_request *rq,
+> >               cb->work.func = irq_execute_cb_hook;
+> >       }
+> >   
+> > -     spin_lock_irq(&signal->lock);
+> > -     if (i915_request_is_active(signal) || __request_in_flight(signal)) {
+> > -             if (hook) {
+> > -                     hook(rq, &signal->fence);
+> > -                     i915_request_put(signal);
+> > -             }
+> > -             i915_sw_fence_complete(cb->fence);
+> > -             kmem_cache_free(global.slab_execute_cbs, cb);
+> > -     } else {
+> > -             __llist_add(&cb->work.llnode, &signal->execute_cb);
+> > +     if (llist_add(&cb->work.llnode, &signal->execute_cb)) {
+> > +             if (i915_request_is_active(signal) ||
+> > +                 __request_in_flight(signal))
+> > +                     __notify_execute_cb(signal);
 > 
-> diff --git a/tests/kms_cursor_crc.c b/tests/kms_cursor_crc.c
-> index f105e295..5976df5f 100644
-> --- a/tests/kms_cursor_crc.c
-> +++ b/tests/kms_cursor_crc.c
-> @@ -423,6 +423,8 @@ static void prepare_crtc(data_t *data, igt_output_t *output,
->  	igt_display_commit(display);
->  
->  	/* create the pipe_crc object for this pipe */
-> +	if (data->pipe_crc)
-> +		igt_pipe_crc_free(data->pipe_crc);
-
-That's a welcome improvement, but you may want to also look at
-06333955bf3d ("tests/kms_cursor_crc: start crc only once per test")
-for some extra inspiration for future work on this.
-
-It should be possible to initiate pipe crc to be initalized only once
-per each tested pipe in run_tests_on_pipe() - igt_pipe_crc_new() can be
-costly on some real panels.
-
-Anyway,
-Reviewed-by: Arkadiusz Hiler <arkadiusz.hiler@intel.com>
-
-
->  	data->pipe_crc = igt_pipe_crc_new(data->drm_fd, data->pipe,
->  					  INTEL_PIPE_CRC_SOURCE_AUTO);
->  
-> -- 
-> 2.27.0
+> Any reason why the hook couldn't be called straight away but needs to 
+> always go through the worker now?
 > 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> Maybe it would be easier to figure out if it is race free that way..
+> 
+> if (llist_add(..)) {
+>         llist_for_each_entry_safe(.., llist_del_all(..), .)
+
+Then you would tell me off for open coding __notify_execute_cb for the
+benefit of not going through the irq_work. Something like
+
+@@ -186,7 +186,7 @@ static void irq_execute_cb_hook(struct irq_work *wrk)
+        irq_execute_cb(wrk);
+ }
+
+-static void __notify_execute_cb(struct i915_request *rq)
++static void __execute_cb_irq(struct i915_request *rq)
+ {
+        struct execute_cb *cb, *cn;
+
+@@ -209,6 +209,15 @@ static void __notify_execute_cb(struct i915_request *rq)
+         */
+ }
+
++static void __execute_cb_imm(struct i915_request *rq)
++{
++       struct execute_cb *cb, *cn;
++
++       llist_for_each_entry_safe(cb, cn,
++                                 llist_del_all(&rq->execute_cb), work.llnode)
++               cb->work.func(&cb->work);
++}
++
+ static inline void
+ remove_from_client(struct i915_request *request)
+ {
+@@ -323,7 +332,7 @@ bool i915_request_retire(struct i915_request *rq)
+                atomic_dec(&rq->engine->gt->rps.num_waiters);
+        }
+        spin_unlock_irq(&rq->lock);
+-       __notify_execute_cb(rq);
++       __execute_cb_imm(rq);
+
+        remove_from_client(rq);
+        __list_del_entry(&rq->link); /* poison neither prev/next (RCU walks) */
+@@ -431,7 +440,7 @@ __await_execution(struct i915_request *rq,
+        if (llist_add(&cb->work.llnode, &signal->execute_cb)) {
+                if (i915_request_is_active(signal) ||
+                    __request_in_flight(signal))
+-                       __notify_execute_cb(signal);
++                       __execute_cb_imm(signal);
+        }
+
+        return 0;
+@@ -547,7 +556,7 @@ bool __i915_request_submit(struct i915_request *request)
+                list_move_tail(&request->sched.link, &engine->active.requests);
+                clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
+        }
+-       __notify_execute_cb(request);
++       __execute_cb_irq(request);
+
+        /* We may be recursing from the signal callback of another i915 fence */
+        if (!i915_request_signaled(request)) {
+
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
