@@ -1,37 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7EA220D71
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 14:53:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 719FE220D94
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 15:02:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB3AB6EB54;
-	Wed, 15 Jul 2020 12:53:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 399D06E092;
+	Wed, 15 Jul 2020 13:02:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9E9E36E02A;
- Wed, 15 Jul 2020 12:53:49 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1501531B;
- Wed, 15 Jul 2020 05:53:49 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E99DB3F66E;
- Wed, 15 Jul 2020 05:53:48 -0700 (PDT)
-Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
- id AB540682E6E; Wed, 15 Jul 2020 13:53:47 +0100 (BST)
-Date: Wed, 15 Jul 2020 13:53:47 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200715125347.GT159988@e110455-lin.cambridge.arm.com>
-References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
- <20200707201229.472834-9-daniel.vetter@ffwll.ch>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43DDF6E092
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 13:02:11 +0000 (UTC)
+IronPort-SDR: DBKi1yzr0iWEwifoSEUFT6nqPZNeH8NNXDBfSp1K/pBUbY7jAd2PAy91QDUAnUS7w9hGuyXfjj
+ FNhL5rMnqK3g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9682"; a="149133622"
+X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="149133622"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2020 06:02:07 -0700
+IronPort-SDR: fEPj+p7yz6GNvCgCi37RGBu28Jrpaphb5XIqz5423+pODXjZiGmZtvTIk8jv6BbZ8RVupupcY2
+ g1qrkQPhvheQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="308242280"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+ by fmsmga004.fm.intel.com with ESMTP; 15 Jul 2020 06:02:05 -0700
+Received: from ahiler-desk1.fi.intel.com (10.237.68.143) by
+ IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 15 Jul 2020 14:02:04 +0100
+Date: Wed, 15 Jul 2020 16:02:02 +0300
+From: Arkadiusz Hiler <arkadiusz.hiler@intel.com>
+To: Melissa Wen <melissa.srw@gmail.com>
+Message-ID: <20200715130202.33duapecrt6ljbgv@ahiler-desk1.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Patchwork-Hint: comment
+References: <cover.1592840756.git.melissa.srw@gmail.com>
+ <a1dabf70afc82f5069871489b409200e41e6ac0c.1592840756.git.melissa.srw@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200707201229.472834-9-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 08/25] drm/malidp: Annotate dma-fence
- critical section in commit path
+In-Reply-To: <a1dabf70afc82f5069871489b409200e41e6ac0c.1592840756.git.melissa.srw@gmail.com>
+X-Originating-IP: [10.237.68.143]
+Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] test/kms_cursor_crc: align the
+ start of the CRC capture to a vblank
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,47 +56,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, twoerner@gmail.com,
+ Rodrigo.Siqueira@amd.com, rodrigosiqueiramelo@gmail.com,
+ kernel-usp@googlegroups.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBKdWwgMDcsIDIwMjAgYXQgMTA6MTI6MTJQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
-cm90ZToKPiBBZ2FpbiBuZWVkcyB0byBiZSBwdXQgcmlnaHQgYWZ0ZXIgdGhlIGNhbGwgdG8KPiBk
-cm1fYXRvbWljX2hlbHBlcl9jb21taXRfaHdfZG9uZSgpLCBzaW5jZSB0aGF0J3MgdGhlIGxhc3Qg
-dGhpbmcgd2hpY2gKPiBjYW4gaG9sZCB1cCBhIHN1YnNlcXVlbnQgYXRvbWljIGNvbW1pdC4KPiAK
-PiBObyBzdXJwcmlzZXMgaGVyZS4KCkkgd2FzIChzdGlsbCBhbSkgaG9waW5nIHRvIGRvIGEgdGVz
-dGluZyBmb3IgdGhpcyBwYXRjaCBidXQgd2hlbiBJIGR1ZyBvdXQgdGhlIHNlcmllcwpmcm9tIHRo
-ZSBNTCBpdCBsb29rZWQgbGlrZSBpdCBoYXMgZXh0cmEgZGVwZW5kZW5jaWVzLCBzbyBJIHdhcyB3
-YWl0aW5nIGZvciB0aGUgZHVzdAp0byBzZXR0bGUuCgpPdGhlcndpc2UsIExHVE0uCgpCZXN0IHJl
-Z2FyZHMsCkxpdml1Cgo+IAo+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52
-ZXR0ZXJAaW50ZWwuY29tPgo+IENjOiAiSmFtZXMgKFFpYW4pIFdhbmciIDxqYW1lcy5xaWFuLndh
-bmdAYXJtLmNvbT4KPiBDYzogTGl2aXUgRHVkYXUgPGxpdml1LmR1ZGF1QGFybS5jb20+Cj4gQ2M6
-IE1paGFpbCBBdGFuYXNzb3YgPG1paGFpbC5hdGFuYXNzb3ZAYXJtLmNvbT4KPiAtLS0KPiAgZHJp
-dmVycy9ncHUvZHJtL2FybS9tYWxpZHBfZHJ2LmMgfCAzICsrKwo+ICAxIGZpbGUgY2hhbmdlZCwg
-MyBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hcm0vbWFs
-aWRwX2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL2FybS9tYWxpZHBfZHJ2LmMKPiBpbmRleCA2OWZl
-ZTA1YzI1NmMuLjI2ZTYwNDAxYThlMSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYXJt
-L21hbGlkcF9kcnYuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hcm0vbWFsaWRwX2Rydi5jCj4g
-QEAgLTIzNCw2ICsyMzQsNyBAQCBzdGF0aWMgdm9pZCBtYWxpZHBfYXRvbWljX2NvbW1pdF90YWls
-KHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSkKPiAgCXN0cnVjdCBkcm1fY3J0YyAqY3J0
-YzsKPiAgCXN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqb2xkX2NydGNfc3RhdGU7Cj4gIAlpbnQgaTsK
-PiArCWJvb2wgZmVuY2VfY29va2llID0gZG1hX2ZlbmNlX2JlZ2luX3NpZ25hbGxpbmcoKTsKPiAg
-Cj4gIAlwbV9ydW50aW1lX2dldF9zeW5jKGRybS0+ZGV2KTsKPiAgCj4gQEAgLTI2MCw2ICsyNjEs
-OCBAQCBzdGF0aWMgdm9pZCBtYWxpZHBfYXRvbWljX2NvbW1pdF90YWlsKHN0cnVjdCBkcm1fYXRv
-bWljX3N0YXRlICpzdGF0ZSkKPiAgCj4gIAltYWxpZHBfYXRvbWljX2NvbW1pdF9od19kb25lKHN0
-YXRlKTsKPiAgCj4gKwlkbWFfZmVuY2VfZW5kX3NpZ25hbGxpbmcoZmVuY2VfY29va2llKTsKPiAr
-Cj4gIAlwbV9ydW50aW1lX3B1dChkcm0tPmRldik7Cj4gIAo+ICAJZHJtX2F0b21pY19oZWxwZXJf
-Y2xlYW51cF9wbGFuZXMoZHJtLCBzdGF0ZSk7Cj4gLS0gCj4gMi4yNy4wCj4gCgotLSAKPT09PT09
-PT09PT09PT09PT09PT0KfCBJIHdvdWxkIGxpa2UgdG8gfAp8IGZpeCB0aGUgd29ybGQsICB8Cnwg
-YnV0IHRoZXkncmUgbm90IHwKfCBnaXZpbmcgbWUgdGhlICAgfAogXCBzb3VyY2UgY29kZSEgIC8K
-ICAtLS0tLS0tLS0tLS0tLS0KICAgIMKvXF8o44OEKV8vwq8KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, Jun 22, 2020 at 01:38:26PM -0300, Melissa Wen wrote:
+> When running subtests in sequence using vkms, the beginning of CRC capture
+> process does not match the simulated vblank timing. This mismatch leads to
+> an endless busy wait and, consequently, timeout failures for the remaining
+> subtests in the test sequence. This patch sets the pace by waiting for
+> vblank before starting the CRC capture.
+> 
+> Signed-off-by: Melissa Wen <melissa.srw@gmail.com>
+
+This one is quite interetesing. The test seems to be working just fine
+on the real hardware and causes the endless busy wait on VKMS only...
+
+DRM is bad at describing usage sequences and what's defined and what's
+undefined when it comes to behavior. We just try not to break any of the
+existing users. On top of that CRC capture is a testing/debug feature
+that doesn't have have to be stable - it's not really obvious what's the
+correct course of action here.
+
+The vblank wait won't harm anyone, especially in the context presented
+above. You have to keep in mind that other implementations of CRC
+caputring doesn't have that requirement and you will likely find more
+similar instances of this usage pattern. There may be even more of them
+introduced over time - there's no CI on VKMS (fingers crossed that this
+is going to change).
+
+Have you thought about what's easier here - making the current code work
+on the VKMS side or fixing the test? I would like to know your thoughts
+on this.
+
+-- 
+Cheers,
+Arek
+
+
+
+
+> ---
+>  tests/kms_cursor_crc.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/tests/kms_cursor_crc.c b/tests/kms_cursor_crc.c
+> index 5976df5f..755c34ed 100644
+> --- a/tests/kms_cursor_crc.c
+> +++ b/tests/kms_cursor_crc.c
+> @@ -474,6 +474,7 @@ static void prepare_crtc(data_t *data, igt_output_t *output,
+>  		igt_assert(data->batch);
+>  	}
+>  
+> +	igt_wait_for_vblank(data->drm_fd, data->pipe);
+>  	igt_pipe_crc_start(data->pipe_crc);
+>  }
+>  
+> -- 
+> 2.27.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
