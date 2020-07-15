@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 484D7220C32
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:52:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6837D220C4F
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:52:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C5AE6EACD;
-	Wed, 15 Jul 2020 11:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B57116EB1A;
+	Wed, 15 Jul 2020 11:52:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B16A6EACD
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:52:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 299B96EAD6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:52:05 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21826154-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21826155-1500050 
  for multiple; Wed, 15 Jul 2020 12:51:57 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Jul 2020 12:51:27 +0100
-Message-Id: <20200715115147.11866-46-chris@chris-wilson.co.uk>
+Date: Wed, 15 Jul 2020 12:51:28 +0100
+Message-Id: <20200715115147.11866-47-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200715115147.11866-1-chris@chris-wilson.co.uk>
 References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 46/66] drm/i915/gt: Convert stats.active to
- plain unsigned int
+Subject: [Intel-gfx] [PATCH 47/66] drm/i915: Lift waiter/signaler iterators
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,136 +44,55 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As context-in/out is now always serialised, we do not have to worry
-about concurrent enabling/disable of the busy-stats and can reduce the
-atomic_t active to a plain unsigned int, and the seqlock to a seqcount.
+Lift the list iteration defines for traversing the signaler/waiter lists
+into i915_scheduler.h for reuse.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  8 ++--
- drivers/gpu/drm/i915/gt/intel_engine_stats.h | 45 ++++++++++++--------
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  4 +-
- 3 files changed, 34 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c         | 10 ----------
+ drivers/gpu/drm/i915/i915_scheduler_types.h | 10 ++++++++++
+ 2 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 10997cae5e41..fcdf336ebf43 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -338,7 +338,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
- 	engine->schedule = NULL;
- 
- 	ewma__engine_latency_init(&engine->latency);
--	seqlock_init(&engine->stats.lock);
-+	seqcount_init(&engine->stats.lock);
- 
- 	ATOMIC_INIT_NOTIFIER_HEAD(&engine->context_status_notifier);
- 
-@@ -1692,7 +1692,7 @@ static ktime_t __intel_engine_get_busy_time(struct intel_engine_cs *engine,
- 	 * add it to the total.
- 	 */
- 	*now = ktime_get();
--	if (atomic_read(&engine->stats.active))
-+	if (READ_ONCE(engine->stats.active))
- 		total = ktime_add(total, ktime_sub(*now, engine->stats.start));
- 
- 	return total;
-@@ -1711,9 +1711,9 @@ ktime_t intel_engine_get_busy_time(struct intel_engine_cs *engine, ktime_t *now)
- 	ktime_t total;
- 
- 	do {
--		seq = read_seqbegin(&engine->stats.lock);
-+		seq = read_seqcount_begin(&engine->stats.lock);
- 		total = __intel_engine_get_busy_time(engine, now);
--	} while (read_seqretry(&engine->stats.lock, seq));
-+	} while (read_seqcount_retry(&engine->stats.lock, seq));
- 
- 	return total;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 534adfdc42fe..78dad751c187 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1819,16 +1819,6 @@ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve)
+ 	intel_engine_transfer_stale_breadcrumbs(ve->siblings[0], &ve->context);
  }
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_stats.h b/drivers/gpu/drm/i915/gt/intel_engine_stats.h
-index 58491eae3482..24fbdd94351a 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_stats.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_stats.h
-@@ -17,33 +17,44 @@ static inline void intel_engine_context_in(struct intel_engine_cs *engine)
+ 
+-#define for_each_waiter(p__, rq__) \
+-	list_for_each_entry_lockless(p__, \
+-				     &(rq__)->sched.waiters_list, \
+-				     wait_link)
+-
+-#define for_each_signaler(p__, rq__) \
+-	list_for_each_entry_rcu(p__, \
+-				&(rq__)->sched.signalers_list, \
+-				signal_link)
+-
+ static void defer_request(struct i915_request *rq, struct list_head * const pl)
  {
- 	unsigned long flags;
+ 	LIST_HEAD(list);
+diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
+index f72e6c397b08..343ed44d5ed4 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler_types.h
++++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
+@@ -81,4 +81,14 @@ struct i915_dependency {
+ #define I915_DEPENDENCY_WEAK		BIT(2)
+ };
  
--	if (atomic_add_unless(&engine->stats.active, 1, 0))
-+	if (engine->stats.active) {
-+		engine->stats.active++;
- 		return;
--
--	write_seqlock_irqsave(&engine->stats.lock, flags);
--	if (!atomic_add_unless(&engine->stats.active, 1, 0)) {
--		engine->stats.start = ktime_get();
--		atomic_inc(&engine->stats.active);
- 	}
--	write_sequnlock_irqrestore(&engine->stats.lock, flags);
++#define for_each_waiter(p__, rq__) \
++	list_for_each_entry_lockless(p__, \
++				     &(rq__)->sched.waiters_list, \
++				     wait_link)
 +
-+	/* The writer is serialised; but the pmu reader may be from hardirq */
-+	local_irq_save(flags);
-+	write_seqcount_begin(&engine->stats.lock);
++#define for_each_signaler(p__, rq__) \
++	list_for_each_entry_rcu(p__, \
++				&(rq__)->sched.signalers_list, \
++				signal_link)
 +
-+	engine->stats.start = ktime_get();
-+	engine->stats.active++;
-+
-+	write_seqcount_end(&engine->stats.lock);
-+	local_irq_restore(flags);
-+
-+	GEM_BUG_ON(!engine->stats.active);
- }
- 
- static inline void intel_engine_context_out(struct intel_engine_cs *engine)
- {
- 	unsigned long flags;
- 
--	GEM_BUG_ON(!atomic_read(&engine->stats.active));
--
--	if (atomic_add_unless(&engine->stats.active, -1, 1))
-+	GEM_BUG_ON(!engine->stats.active);
-+	if (engine->stats.active > 1) {
-+		engine->stats.active--;
- 		return;
--
--	write_seqlock_irqsave(&engine->stats.lock, flags);
--	if (atomic_dec_and_test(&engine->stats.active)) {
--		engine->stats.total =
--			ktime_add(engine->stats.total,
--				  ktime_sub(ktime_get(), engine->stats.start));
- 	}
--	write_sequnlock_irqrestore(&engine->stats.lock, flags);
-+
-+	local_irq_save(flags);
-+	write_seqcount_begin(&engine->stats.lock);
-+
-+	engine->stats.active--;
-+	engine->stats.total =
-+		ktime_add(engine->stats.total,
-+			  ktime_sub(ktime_get(), engine->stats.start));
-+
-+	write_seqcount_end(&engine->stats.lock);
-+	local_irq_restore(flags);
- }
- 
- #endif /* __INTEL_ENGINE_STATS_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index f86efafd385f..7be475315fa9 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -550,12 +550,12 @@ struct intel_engine_cs {
- 		/**
- 		 * @active: Number of contexts currently scheduled in.
- 		 */
--		atomic_t active;
-+		unsigned int active;
- 
- 		/**
- 		 * @lock: Lock protecting the below fields.
- 		 */
--		seqlock_t lock;
-+		seqcount_t lock;
- 
- 		/**
- 		 * @total: Total time this engine was busy.
+ #endif /* _I915_SCHEDULER_TYPES_H_ */
 -- 
 2.20.1
 
