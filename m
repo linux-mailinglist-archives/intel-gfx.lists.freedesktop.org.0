@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94D52217E3
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 00:40:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 377E22217E0
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 00:40:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E6A06EC1C;
-	Wed, 15 Jul 2020 22:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A28376EC12;
+	Wed, 15 Jul 2020 22:40:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5378D6EC13
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B4B96EC12
  for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 22:40:25 +0000 (UTC)
-IronPort-SDR: dMHu7wmbbBlDS0taDscyGVvT6kxMyKni2Ib1BGsDRkJbrplr//tXxWoFKP4EhYLkK9pHu5M072
- dmr93WAiZdZw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9683"; a="137414148"
-X-IronPort-AV: E=Sophos;i="5.75,357,1589266800"; d="scan'208";a="137414148"
+IronPort-SDR: bZ/8kp3y9/c6+32Bc1QwY61wP6Obzow5HbvuCjdFQakfdoNNaQQfZlbpxq3O84D1vzih8xCc/A
+ lM51twtjWHoQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9683"; a="137414149"
+X-IronPort-AV: E=Sophos;i="5.75,357,1589266800"; d="scan'208";a="137414149"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Jul 2020 15:40:23 -0700
-IronPort-SDR: 7tKpc3FARm2/kNA1tXKg6LjrDATdA+Ebu+8K65aikzjivBHns2q3x3vZ1hm7jK2aHzfqFA3JL2
- 0mpVZhYxstlw==
+IronPort-SDR: JdlWQXczAUxS17IrKZgSt33MvWYi2OP3juq3jm7lp4rDaw4gTJ67HpaSbhkoVBJF/i7o8TS4Jg
+ cdz2A6s8Fwjw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,357,1589266800"; d="scan'208";a="316850667"
+X-IronPort-AV: E=Sophos;i="5.75,357,1589266800"; d="scan'208";a="316850669"
 Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
  by orsmga008.jf.intel.com with ESMTP; 15 Jul 2020 15:40:22 -0700
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Jul 2020 15:42:20 -0700
-Message-Id: <20200715224222.7557-9-manasi.d.navare@intel.com>
+Date: Wed, 15 Jul 2020 15:42:21 -0700
+Message-Id: <20200715224222.7557-10-manasi.d.navare@intel.com>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20200715224222.7557-1-manasi.d.navare@intel.com>
 References: <20200715224222.7557-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 09/11] drm/i915: Add bigjoiner aware plane
- clipping checks
+Subject: [Intel-gfx] [PATCH v6 10/11] drm/i915: Add intel_update_bigjoiner
+ handling.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,199 +56,298 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-We need to look at hw.fb for the framebuffer, and add the translation
-for the slave_plane_state. With these changes we set the correct
-rectangle on the bigjoiner slave, and don't set incorrect
-src/dst/visibility on the slave plane.
+Enabling is done in a special sequence and so should plane updates
+be. Ideally the end user never notices the second pipe is used,
+so use the vblank evasion to cover both pipes.
+
+This way ideally everything will be tear free, and updates are
+really atomic as userspace expects it.
+
+****This needs to be checked if it still works since lot of refactoring
+in skl_commit_modeset_enables
 
 v2:
-* Manual rebase (Manasi)
+* Manual Rebase (Manasi)
+* Refactoring on intel_update_crtc and enable_crtc and removing
+special trans_port_sync_update (Manasi)
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c | 60 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_atomic_plane.h |  4 ++
- drivers/gpu/drm/i915/display/intel_display.c  | 19 +++---
- drivers/gpu/drm/i915/display/intel_sprite.c   | 21 +++----
- 4 files changed, 80 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 120 +++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_sprite.c  |  25 +++-
+ drivers/gpu/drm/i915/display/intel_sprite.h  |   3 +-
+ 3 files changed, 129 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 5c6e72063fac..fe19cbaa83b0 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -268,6 +268,9 @@ void intel_plane_copy_uapi_to_hw_state(const struct intel_crtc_state *crtc_state
- 	plane_state->hw.rotation = from_plane_state->uapi.rotation;
- 	plane_state->hw.color_encoding = from_plane_state->uapi.color_encoding;
- 	plane_state->hw.color_range = from_plane_state->uapi.color_range;
-+
-+	plane_state->uapi.src = drm_plane_state_src(&from_plane_state->uapi);
-+	plane_state->uapi.dst = drm_plane_state_dest(&from_plane_state->uapi);
- }
- 
- void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
-@@ -516,6 +519,63 @@ void i9xx_update_planes_on_crtc(struct intel_atomic_state *state,
- 	}
- }
- 
-+int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
-+				      struct intel_crtc_state *crtc_state,
-+				      int min_scale, int max_scale,
-+				      bool can_position)
-+{
-+	struct drm_framebuffer *fb = plane_state->hw.fb;
-+	struct drm_rect *src = &plane_state->uapi.src;
-+	struct drm_rect *dst = &plane_state->uapi.dst;
-+	unsigned int rotation = plane_state->uapi.rotation;
-+	struct drm_rect clip = {};
-+	int hscale, vscale;
-+
-+	if (!fb) {
-+		plane_state->uapi.visible = false;
-+		return 0;
-+	}
-+
-+	drm_rect_rotate(src, fb->width << 16, fb->height << 16, rotation);
-+
-+	/* Check scaling */
-+	hscale = drm_rect_calc_hscale(src, dst, min_scale, max_scale);
-+	vscale = drm_rect_calc_vscale(src, dst, min_scale, max_scale);
-+	if (hscale < 0 || vscale < 0) {
-+		DRM_DEBUG_KMS("Invalid scaling of plane\n");
-+		drm_rect_debug_print("src: ", src, true);
-+		drm_rect_debug_print("dst: ", dst, false);
-+		return -ERANGE;
-+	}
-+
-+	if (crtc_state->hw.enable) {
-+		clip.x2 = crtc_state->pipe_src_w;
-+		clip.y2 = crtc_state->pipe_src_h;
-+	}
-+
-+	/* right side of the image is on the slave crtc, adjust dst to match */
-+	if (crtc_state->bigjoiner_slave)
-+		drm_rect_translate(dst, -crtc_state->pipe_src_w, 0);
-+
-+	/*
-+	 * FIXME: This might need further adjustment for seamless scaling
-+	 * with phase information, for the 2p2 and 2p1 scenarios.
-+	 */
-+	plane_state->uapi.visible = drm_rect_clip_scaled(src, dst, &clip);
-+
-+	drm_rect_rotate_inv(src, fb->width << 16, fb->height << 16, rotation);
-+
-+	if (!can_position && plane_state->uapi.visible &&
-+	    !drm_rect_equals(dst, &clip)) {
-+		DRM_DEBUG_KMS("Plane must cover entire CRTC\n");
-+		drm_rect_debug_print("dst: ", dst, false);
-+		drm_rect_debug_print("clip: ", &clip, false);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- const struct drm_plane_helper_funcs intel_plane_helper_funcs = {
- 	.prepare_fb = intel_prepare_plane_fb,
- 	.cleanup_fb = intel_cleanup_plane_fb,
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-index c2a1e7c86e6c..d0a599d00ecd 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-@@ -53,6 +53,10 @@ int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_stat
- int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
- 			       struct intel_plane *plane,
- 			       bool *need_cdclk_calc);
-+int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
-+				      struct intel_crtc_state *crtc_state,
-+				      int min_scale, int max_scale,
-+				      bool can_position);
- void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
- 			       struct intel_plane_state *plane_state);
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6f4a2845674d..a1011414da6d 100644
+index a1011414da6d..00b26863ffc6 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4356,12 +4356,10 @@ i9xx_plane_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
+@@ -15656,7 +15656,7 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+ 	else
+ 		i9xx_update_planes_on_crtc(state, crtc);
  
--	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
--						  &crtc_state->uapi,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  i9xx_plane_has_windowing(plane),
--						  true);
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						i9xx_plane_has_windowing(plane));
- 	if (ret)
- 		return ret;
+-	intel_pipe_update_end(new_crtc_state);
++	intel_pipe_update_end(new_crtc_state, NULL);
  
-@@ -11485,11 +11483,10 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
- 		return -EINVAL;
+ 	/*
+ 	 * We usually enable FIFO underrun interrupts as part of the
+@@ -15754,6 +15754,52 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
+ 	}
+ }
+ 
++static void intel_update_bigjoiner(struct intel_crtc *crtc,
++				   struct intel_atomic_state *state,
++				   struct intel_crtc_state *old_crtc_state,
++				   struct intel_crtc_state *new_crtc_state)
++{
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	bool modeset = needs_modeset(new_crtc_state);
++	struct intel_crtc *slave = new_crtc_state->bigjoiner_linked_crtc;
++	struct intel_crtc_state *new_slave_crtc_state =
++		intel_atomic_get_new_crtc_state(state, slave);
++
++	if (modeset) {
++		/* Enable slave first */
++		intel_crtc_update_active_timings(new_slave_crtc_state);
++		dev_priv->display.crtc_enable(state, slave);
++
++		/* Then master */
++		intel_crtc_update_active_timings(new_crtc_state);
++		dev_priv->display.crtc_enable(state, crtc);
++
++		/* vblanks work again, re-enable pipe CRC. */
++		intel_crtc_enable_pipe_crc(crtc);
++
++	} else {
++		intel_pre_plane_update(state, crtc);
++		intel_pre_plane_update(state, slave);
++
++		if (new_crtc_state->update_pipe)
++			intel_encoders_update_pipe(state, crtc);
++	}
++
++	/*
++	 * Perform vblank evasion around commit operation, and make sure to
++	 * commit both planes simultaneously for best results.
++	 */
++	intel_pipe_update_start(new_crtc_state);
++
++	commit_pipe_config(state, crtc);
++	commit_pipe_config(state, slave);
++
++	skl_update_planes_on_crtc(state, crtc);
++	skl_update_planes_on_crtc(state, slave);
++
++	intel_pipe_update_end(new_crtc_state, new_slave_crtc_state);
++}
++
+ static void intel_commit_modeset_enables(struct intel_atomic_state *state)
+ {
+ 	struct intel_crtc_state *new_crtc_state;
+@@ -15772,15 +15818,22 @@ static void intel_commit_modeset_enables(struct intel_atomic_state *state)
+ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	struct intel_crtc *crtc;
++	struct intel_crtc *crtc, *slave;
+ 	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
+ 	struct skl_ddb_entry entries[I915_MAX_PIPES] = {};
++	struct skl_ddb_entry new_entries[I915_MAX_PIPES] = {};
+ 	u8 update_pipes = 0, modeset_pipes = 0;
++	const struct intel_crtc_state *slave_crtc_state;
+ 	int i;
+ 
+ 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+ 		enum pipe pipe = crtc->pipe;
+ 
++		if (new_crtc_state->bigjoiner_slave) {
++			/* We're updated from master */
++			continue;
++		}
++
+ 		if (!new_crtc_state->hw.active)
+ 			continue;
+ 
+@@ -15791,6 +15844,34 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+ 		} else {
+ 			modeset_pipes |= BIT(pipe);
+ 		}
++
++		if (new_crtc_state->bigjoiner) {
++			slave = new_crtc_state->bigjoiner_linked_crtc;
++			slave_crtc_state =
++				intel_atomic_get_new_crtc_state(state,
++								slave);
++
++			/* put both entries in */
++			new_entries[i].start = new_crtc_state->wm.skl.ddb.start;
++			new_entries[i].end = slave_crtc_state->wm.skl.ddb.end;
++		} else {
++			new_entries[i] = new_crtc_state->wm.skl.ddb;
++		}
++
++		/* ignore allocations for crtc's that have been turned off during modeset. */
++		if (needs_modeset(new_crtc_state))
++			continue;
++
++		if (old_crtc_state->bigjoiner) {
++			slave = old_crtc_state->bigjoiner_linked_crtc;
++			slave_crtc_state =
++				intel_atomic_get_old_crtc_state(state, slave);
++
++			entries[i].start = old_crtc_state->wm.skl.ddb.start;
++			entries[i].end = slave_crtc_state->wm.skl.ddb.end;
++		} else {
++			entries[i] = old_crtc_state->wm.skl.ddb;
++		}
  	}
  
--	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
--						  &crtc_state->uapi,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  true, true);
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						true);
- 	if (ret)
- 		return ret;
+ 	/*
+@@ -15806,28 +15887,34 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+ 		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+ 						    new_crtc_state, i) {
+ 			enum pipe pipe = crtc->pipe;
++			bool ddb_changed;
  
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index d03860fef2d7..60eeed06a780 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -2010,10 +2010,8 @@ g4x_sprite_check(struct intel_crtc_state *crtc_state,
+ 			if ((update_pipes & BIT(pipe)) == 0)
+ 				continue;
+ 
+-			if (skl_ddb_allocation_overlaps(&new_crtc_state->wm.skl.ddb,
++			if (skl_ddb_allocation_overlaps(&new_entries[pipe],
+ 							entries, I915_MAX_PIPES, pipe))
+ 				continue;
+ 
+-			entries[pipe] = new_crtc_state->wm.skl.ddb;
++			ddb_changed = !skl_ddb_entry_equal(&new_entries[pipe], &entries[pipe]);
++			entries[pipe] = new_entries[pipe];
+ 			update_pipes &= ~BIT(pipe);
+ 
+-			intel_update_crtc(state, crtc);
+-
+ 			/*
+ 			 * If this is an already active pipe, it's DDB changed,
+ 			 * and this isn't the last pipe that needs updating
+ 			 * then we need to wait for a vblank to pass for the
+ 			 * new ddb allocation to take effect.
+ 			 */
+-			if (!skl_ddb_entry_equal(&new_crtc_state->wm.skl.ddb,
+-						 &old_crtc_state->wm.skl.ddb) &&
+-			    (update_pipes | modeset_pipes))
++			if (new_crtc_state->bigjoiner) {
++				intel_update_bigjoiner(crtc, state,
++						       old_crtc_state,
++						       new_crtc_state);
++			} else {
++				intel_update_crtc(state, crtc);
++			}
++
++			if (ddb_changed && (update_pipes | modeset_pipes))
+ 				intel_wait_for_vblank(dev_priv, pipe);
  		}
  	}
+@@ -15863,9 +15950,18 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+ 		if ((modeset_pipes & BIT(pipe)) == 0)
+ 			continue;
  
--	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
--						  &crtc_state->uapi,
--						  min_scale, max_scale,
--						  true, true);
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-+						min_scale, max_scale, true);
- 	if (ret)
- 		return ret;
++		WARN_ON(skl_ddb_allocation_overlaps(&new_entries[pipe],
++						    entries, I915_MAX_PIPES, pipe));
++
++		entries[pipe] = new_entries[pipe];
+ 		modeset_pipes &= ~BIT(pipe);
  
-@@ -2068,11 +2066,10 @@ vlv_sprite_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
- 
--	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
--						  &crtc_state->uapi,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  true, true);
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						true);
- 	if (ret)
- 		return ret;
- 
-@@ -2279,10 +2276,8 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 		max_scale = skl_plane_max_scale(dev_priv, fb);
+-		intel_enable_crtc(state, crtc);
++		if (new_crtc_state->bigjoiner)
++			intel_update_bigjoiner(crtc, state,
++					       old_crtc_state,
++					       new_crtc_state);
++		else
++			intel_enable_crtc(state, crtc);
  	}
  
--	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
--						  &crtc_state->uapi,
--						  min_scale, max_scale,
--						  true, true);
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-+						min_scale, max_scale, true);
- 	if (ret)
- 		return ret;
+ 	/*
+@@ -15877,10 +15973,10 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+ 		if ((update_pipes & BIT(pipe)) == 0)
+ 			continue;
  
+-		drm_WARN_ON(&dev_priv->drm, skl_ddb_allocation_overlaps(&new_crtc_state->wm.skl.ddb,
++		drm_WARN_ON(&dev_priv->drm, skl_ddb_allocation_overlaps(&new_entries[pipe],
+ 									entries, I915_MAX_PIPES, pipe));
+ 
+-		entries[pipe] = new_crtc_state->wm.skl.ddb;
++		entries[pipe] = new_entries[pipe];
+ 		update_pipes &= ~BIT(pipe);
+ 
+ 		intel_update_crtc(state, crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index 60eeed06a780..eaae5df546fe 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -99,6 +99,8 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
+ 
+ 	/* FIXME needs to be calibrated sensibly */
+ 	min = vblank_start - intel_usecs_to_scanlines(adjusted_mode,
++						      new_crtc_state->bigjoiner ?
++						      2 * VBLANK_EVASION_TIME_US :
+ 						      VBLANK_EVASION_TIME_US);
+ 	max = vblank_start - 1;
+ 
+@@ -191,7 +193,8 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
+  * re-enables interrupts and verifies the update was actually completed
+  * before a vblank.
+  */
+-void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
++void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state,
++			   struct intel_crtc_state *slave_crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
+ 	enum pipe pipe = crtc->pipe;
+@@ -206,16 +209,26 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
+ 	 * Would be slightly nice to just grab the vblank count and arm the
+ 	 * event outside of the critical section - the spinlock might spin for a
+ 	 * while ... */
+-	if (new_crtc_state->uapi.event) {
+-		drm_WARN_ON(&dev_priv->drm,
+-			    drm_crtc_vblank_get(&crtc->base) != 0);
++	if (new_crtc_state->uapi.event || (slave_crtc_state && slave_crtc_state->uapi.event)) {
++		if (new_crtc_state->uapi.event)
++			drm_WARN_ON(&dev_priv->drm,
++				    drm_crtc_vblank_get(&crtc->base) != 0);
++		if (slave_crtc_state && slave_crtc_state->uapi.event)
++			drm_WARN_ON(&dev_priv->drm,
++				    drm_crtc_vblank_get(&crtc->base) != 0);
+ 
+ 		spin_lock(&crtc->base.dev->event_lock);
+-		drm_crtc_arm_vblank_event(&crtc->base,
+-				          new_crtc_state->uapi.event);
++		if (new_crtc_state->uapi.event)
++			drm_crtc_arm_vblank_event(&crtc->base,
++						  new_crtc_state->uapi.event);
++		if (slave_crtc_state && slave_crtc_state->uapi.event)
++			drm_crtc_arm_vblank_event(&crtc->base,
++						  slave_crtc_state->uapi.event);
+ 		spin_unlock(&crtc->base.dev->event_lock);
+ 
+ 		new_crtc_state->uapi.event = NULL;
++		if (slave_crtc_state)
++			slave_crtc_state->uapi.event = NULL;
+ 	}
+ 
+ 	local_irq_enable();
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.h b/drivers/gpu/drm/i915/display/intel_sprite.h
+index cd2104ba1ca1..15e7c112ec77 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.h
++++ b/drivers/gpu/drm/i915/display/intel_sprite.h
+@@ -24,7 +24,8 @@ struct intel_plane *intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+ int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
+ 				    struct drm_file *file_priv);
+ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state);
+-void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
++void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state,
++			   struct intel_crtc_state *slave_crtc_state);
+ int intel_plane_check_stride(const struct intel_plane_state *plane_state);
+ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state);
+ int chv_plane_check_rotation(const struct intel_plane_state *plane_state);
 -- 
 2.19.1
 
