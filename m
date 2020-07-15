@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81C6A220C2B
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD0DE220C3E
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:52:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 890AC6EAD0;
-	Wed, 15 Jul 2020 11:52:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBDB86EAD3;
+	Wed, 15 Jul 2020 11:52:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 867E26EACB
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:52:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5B216EAD7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:52:02 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21826164-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21826165-1500050 
  for multiple; Wed, 15 Jul 2020 12:51:59 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Jul 2020 12:51:37 +0100
-Message-Id: <20200715115147.11866-56-chris@chris-wilson.co.uk>
+Date: Wed, 15 Jul 2020 12:51:38 +0100
+Message-Id: <20200715115147.11866-57-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200715115147.11866-1-chris@chris-wilson.co.uk>
 References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 56/66] drm/i915/gt: Specify a deadline for the
- heartbeat
+Subject: [Intel-gfx] [PATCH 57/66] drm/i915: Replace the priority boosting
+ for the display with a deadline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,55 +45,127 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we know when we expect the heartbeat to be checked for completion,
-pass this information along as its deadline. We still do not complain if
-the deadline is missed, at least until we have tried a few times, but it
-will allow for quicker hang detection on systems where deadlines are
-adhered to.
+For a modeset/pageflip, there is a very precise deadline by which the
+frame must be completed in order to hit the vblank and be shown. While
+we don't pass along that exact information, we can at least inform the
+scheduler that this request-chain needs to be completed asap.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h   |  4 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_wait.c     | 19 ++++++++++---------
+ drivers/gpu/drm/i915/i915_priolist_types.h   |  3 ---
+ 4 files changed, 13 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 9fdc8223007f..41199254b2b5 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -54,6 +54,16 @@ static void heartbeat_commit(struct i915_request *rq,
- 	local_bh_enable();
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c74e664a3759..1c644b613246 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -15983,7 +15983,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	if (ret)
+ 		return ret;
+ 
+-	i915_gem_object_wait_priority(obj, 0, I915_PRIORITY_DISPLAY);
++	i915_gem_object_wait_deadline(obj, 0, ktime_get() /* next vblank? */);
+ 	i915_gem_object_flush_frontbuffer(obj, ORIGIN_DIRTYFB);
+ 
+ 	if (!new_plane_state->uapi.fence) { /* implicit fencing */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index d916155b0c52..d2d7e6bd099d 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -457,9 +457,9 @@ static inline void __start_cpu_write(struct drm_i915_gem_object *obj)
+ int i915_gem_object_wait(struct drm_i915_gem_object *obj,
+ 			 unsigned int flags,
+ 			 long timeout);
+-int i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
++int i915_gem_object_wait_deadline(struct drm_i915_gem_object *obj,
+ 				  unsigned int flags,
+-				  int prio);
++				  ktime_t deadline);
+ 
+ void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
+ 					 enum fb_op_origin origin);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+index cefbbb3d9b52..3334817183f6 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+@@ -93,17 +93,18 @@ i915_gem_object_wait_reservation(struct dma_resv *resv,
+ 	return timeout;
  }
  
-+static void set_heartbeat_deadline(struct intel_engine_cs *engine,
-+				   struct i915_request *rq)
-+{
-+	unsigned long interval;
-+
-+	interval = READ_ONCE(engine->props.heartbeat_interval_ms);
-+	if (interval)
-+		i915_request_set_deadline(rq, ktime_get() + (interval << 20));
-+}
-+
- static void show_heartbeat(const struct i915_request *rq,
- 			   struct intel_engine_cs *engine)
+-static void __fence_set_priority(struct dma_fence *fence, int prio)
++static void __fence_set_deadline(struct dma_fence *fence, ktime_t deadline)
  {
-@@ -119,6 +129,8 @@ static void heartbeat(struct work_struct *wrk)
+ 	if (dma_fence_is_signaled(fence) || !dma_fence_is_i915(fence))
+ 		return;
  
- 			local_bh_disable();
- 			i915_request_set_priority(rq, attr.priority);
-+			if (attr.priority == I915_PRIORITY_BARRIER)
-+				i915_request_set_deadline(rq, 0);
- 			local_bh_enable();
- 		} else {
- 			if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-@@ -155,6 +167,7 @@ static void heartbeat(struct work_struct *wrk)
- 	if (engine->i915->params.enable_hangcheck)
- 		engine->heartbeat.systole = i915_request_get(rq);
+ 	local_bh_disable();
+-	i915_request_set_priority(to_request(fence), prio);
++	i915_request_set_deadline(to_request(fence),
++				  i915_sched_to_ticks(deadline));
+ 	local_bh_enable(); /* kick the tasklets if queues were reprioritised */
+ }
  
-+	set_heartbeat_deadline(engine, rq);
- 	heartbeat_commit(rq, &attr);
+-static void fence_set_priority(struct dma_fence *fence, int prio)
++static void fence_set_deadline(struct dma_fence *fence, ktime_t deadline)
+ {
+ 	/* Recurse once into a fence-array */
+ 	if (dma_fence_is_array(fence)) {
+@@ -111,16 +112,16 @@ static void fence_set_priority(struct dma_fence *fence, int prio)
+ 		int i;
  
- unlock:
+ 		for (i = 0; i < array->num_fences; i++)
+-			__fence_set_priority(array->fences[i], prio);
++			__fence_set_deadline(array->fences[i], deadline);
+ 	} else {
+-		__fence_set_priority(fence, prio);
++		__fence_set_deadline(fence, deadline);
+ 	}
+ }
+ 
+ int
+-i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
++i915_gem_object_wait_deadline(struct drm_i915_gem_object *obj,
+ 			      unsigned int flags,
+-			      int prio)
++			      ktime_t deadline)
+ {
+ 	struct dma_fence *excl;
+ 
+@@ -135,7 +136,7 @@ i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
+ 			return ret;
+ 
+ 		for (i = 0; i < count; i++) {
+-			fence_set_priority(shared[i], prio);
++			fence_set_deadline(shared[i], deadline);
+ 			dma_fence_put(shared[i]);
+ 		}
+ 
+@@ -145,7 +146,7 @@ i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
+ 	}
+ 
+ 	if (excl) {
+-		fence_set_priority(excl, prio);
++		fence_set_deadline(excl, deadline);
+ 		dma_fence_put(excl);
+ 	}
+ 	return 0;
+diff --git a/drivers/gpu/drm/i915/i915_priolist_types.h b/drivers/gpu/drm/i915/i915_priolist_types.h
+index 43a0ac45295f..ac6d9614ea23 100644
+--- a/drivers/gpu/drm/i915/i915_priolist_types.h
++++ b/drivers/gpu/drm/i915/i915_priolist_types.h
+@@ -20,9 +20,6 @@ enum {
+ 	/* A preemptive pulse used to monitor the health of each engine */
+ 	I915_PRIORITY_HEARTBEAT,
+ 
+-	/* Interactive workload, scheduled for immediate pageflipping */
+-	I915_PRIORITY_DISPLAY,
+-
+ 	__I915_PRIORITY_KERNEL__
+ };
+ 
 -- 
 2.20.1
 
