@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1882822136F
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 19:19:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 307C8221370
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 19:19:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6286F6E3CE;
-	Wed, 15 Jul 2020 17:19:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D6306EBE2;
+	Wed, 15 Jul 2020 17:19:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0AAAD6E3CE;
- Wed, 15 Jul 2020 17:19:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 20D376EBE2;
+ Wed, 15 Jul 2020 17:19:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 04BECA66C7;
- Wed, 15 Jul 2020 17:19:36 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1E7E1A66C7;
+ Wed, 15 Jul 2020 17:19:56 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Imre Deak" <imre.deak@intel.com>
-Date: Wed, 15 Jul 2020 17:19:36 -0000
-Message-ID: <159483357601.3439.2631290693789677293@emeril.freedesktop.org>
+Date: Wed, 15 Jul 2020 17:19:56 -0000
+Message-ID: <159483359612.3436.11286054086385544448@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200715162931.30168-1-imre.deak@intel.com>
 In-Reply-To: <20200715162931.30168-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Revert_=22Revert_=22drm/i915/dp=3A_Correctly_advertise_HBR3?=
- =?utf-8?q?_for_GEN11+=22=22?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Revert_=22Revert_=22drm/i915/dp=3A_Correctly_advertise_HBR3_for?=
+ =?utf-8?b?IEdFTjExKyIi?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,13 +54,9 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-16afab03b437 Revert "Revert "drm/i915/dp: Correctly advertise HBR3 for GEN11+""
--:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#11: 
-619ad4874585 ("drm/i915/ddi: Don't frob the DP link scramble disabling flag")
-
-total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
 
 
 _______________________________________________
