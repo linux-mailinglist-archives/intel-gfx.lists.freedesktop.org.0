@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D772220C55
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:52:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBBCF220C6C
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:53:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 356A26EB17;
-	Wed, 15 Jul 2020 11:52:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B74AE6EB37;
+	Wed, 15 Jul 2020 11:53:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C811A6EAD2
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:52:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6264E6EAD9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:52:04 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21826114-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21826115-1500050 
  for multiple; Wed, 15 Jul 2020 12:51:50 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Jul 2020 12:50:49 +0100
-Message-Id: <20200715115147.11866-8-chris@chris-wilson.co.uk>
+Date: Wed, 15 Jul 2020 12:50:50 +0100
+Message-Id: <20200715115147.11866-9-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200715115147.11866-1-chris@chris-wilson.co.uk>
 References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/66] drm/i915: Make the stale cached active
- node available for any timeline
+Subject: [Intel-gfx] [PATCH 09/66] drm/i915: Provide a fastpath for waiting
+ on vma bindings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,56 +45,66 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rather than require the next timeline after idling to match the MRU
-before idling, reset the index on the node and allow it to match the
-first request. However, this requires cmpxchg(u64) and so is not trivial
-on 32b, so for compatibility we just fallback to keeping the cached node
-pointing to the MRU timeline.
+Before we can execute a request, we must wait for all of its vma to be
+bound. This is a frequent operation for which we can optimise away a
+few atomic operations (notably a cmpxchg) in lieu of the RCU protection.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_active.c | 21 +++++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_active.h | 15 +++++++++++++++
+ drivers/gpu/drm/i915/i915_vma.c    |  9 +++++++--
+ 2 files changed, 22 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index 0854b1552bc1..6737b5615c0c 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -157,6 +157,10 @@ __active_retire(struct i915_active *ref)
- 		rb_link_node(&ref->cache->node, NULL, &ref->tree.rb_node);
- 		rb_insert_color(&ref->cache->node, &ref->tree);
- 		GEM_BUG_ON(ref->tree.rb_node != &ref->cache->node);
-+
-+		/* Make the cached node available for reuse with any timeline */
-+		if (IS_ENABLED(CONFIG_64BIT))
-+			ref->cache->timeline = 0; /* needs cmpxchg(u64) */
- 	}
+diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
+index b9e0394e2975..fb165d3f01cf 100644
+--- a/drivers/gpu/drm/i915/i915_active.h
++++ b/drivers/gpu/drm/i915/i915_active.h
+@@ -231,4 +231,19 @@ struct i915_active *i915_active_create(void);
+ struct i915_active *i915_active_get(struct i915_active *ref);
+ void i915_active_put(struct i915_active *ref);
  
- 	spin_unlock_irqrestore(&ref->tree_lock, flags);
-@@ -235,9 +239,22 @@ static struct active_node *__active_lookup(struct i915_active *ref, u64 idx)
- {
- 	struct active_node *it;
- 
-+	GEM_BUG_ON(idx == 0); /* 0 is the unordered timeline, rsvd for cache */
++static inline int __i915_request_await_exclusive(struct i915_request *rq,
++						 struct i915_active *active)
++{
++	struct dma_fence *fence;
++	int err = 0;
 +
- 	it = READ_ONCE(ref->cache);
--	if (it && it->timeline == idx)
--		return it;
-+	if (it) {
-+		u64 cached = READ_ONCE(it->timeline);
-+
-+		if (cached == idx)
-+			return it;
-+
-+#ifdef CONFIG_64BIT /* for cmpxchg(u64) */
-+		if (!cached && !cmpxchg(&it->timeline, 0, idx)) {
-+			GEM_BUG_ON(i915_active_fence_isset(&it->base));
-+			return it;
-+		}
-+#endif
++	fence = i915_active_fence_get(&active->excl);
++	if (fence) {
++		err = i915_request_await_dma_fence(rq, fence);
++		dma_fence_put(fence);
 +	}
++
++	return err;
++}
++
+ #endif /* _I915_ACTIVE_H_ */
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index bc64f773dcdb..cd12047c7791 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -1167,6 +1167,12 @@ void i915_vma_revoke_mmap(struct i915_vma *vma)
+ 		list_del(&vma->obj->userfault_link);
+ }
  
- 	BUILD_BUG_ON(offsetof(typeof(*it), node));
++static int
++__i915_request_await_bind(struct i915_request *rq, struct i915_vma *vma)
++{
++	return __i915_request_await_exclusive(rq, &vma->active);
++}
++
+ int __i915_vma_move_to_active(struct i915_vma *vma, struct i915_request *rq)
+ {
+ 	int err;
+@@ -1174,8 +1180,7 @@ int __i915_vma_move_to_active(struct i915_vma *vma, struct i915_request *rq)
+ 	GEM_BUG_ON(!i915_vma_is_pinned(vma));
+ 
+ 	/* Wait for the vma to be bound before we start! */
+-	err = i915_request_await_active(rq, &vma->active,
+-					I915_ACTIVE_AWAIT_EXCL);
++	err = __i915_request_await_bind(rq, vma);
+ 	if (err)
+ 		return err;
  
 -- 
 2.20.1
