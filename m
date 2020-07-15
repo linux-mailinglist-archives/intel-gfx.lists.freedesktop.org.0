@@ -2,36 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A41E22132C
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 19:07:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C34C22136D
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 19:18:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F00626EBDF;
-	Wed, 15 Jul 2020 17:06:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 066A06EBE0;
+	Wed, 15 Jul 2020 17:18:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C9676EBDC;
- Wed, 15 Jul 2020 17:06:53 +0000 (UTC)
-Received: from ravnborg.org (unknown [188.228.123.71])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id BDAF32003D;
- Wed, 15 Jul 2020 19:06:50 +0200 (CEST)
-Date: Wed, 15 Jul 2020 19:06:49 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20200715170649.GB1785807@ravnborg.org>
-References: <1594760265-11618-1-git-send-email-anitha.chrisanthus@intel.com>
- <20200715150549.GL3278063@phenom.ffwll.local>
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0DF46E3CE;
+ Wed, 15 Jul 2020 17:17:59 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id A8A94AC37;
+ Wed, 15 Jul 2020 17:18:01 +0000 (UTC)
+Date: Wed, 15 Jul 2020 19:17:56 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200715171756.GA18606@linux-uq9g>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200715150549.GL3278063@phenom.ffwll.local>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=f+hm+t6M c=1 sm=1 tr=0
- a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
- a=kj9zAlcOel0A:10 a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8
- a=Wk9AzPC2wjdKAl7LsWUA:9 a=CjuIK1q_8ugA:10 a=AjGcO6oz07-iQ99wixmX:22
-Subject: Re: [Intel-gfx] [PATCH v2 00/59] Add support for KeemBay DRM driver
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,83 +35,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Anitha Chrisanthus <anitha.chrisanthus@intel.com>, daniel.vetter@intel.com,
- intel-gfx@lists.freedesktop.org, edmund.j.dea@intel.com,
- dri-devel@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 15, 2020 at 05:05:49PM +0200, Daniel Vetter wrote:
-> Hi Anitha
-> 
-> On Tue, Jul 14, 2020 at 01:56:46PM -0700, Anitha Chrisanthus wrote:
-> > This is a new DRM driver for Intel's KeemBay SOC.
-> > The SoC couples an ARM Cortex A53 CPU with an Intel
-> > Movidius VPU.
-> > 
-> > This driver is tested with the KMB EVM board which is the refernce baord
-> > for Keem Bay SOC. The SOC's display pipeline is as follows
-> > 
-> > +--------------+    +---------+    +-----------------------+
-> > |LCD controller| -> |Mipi DSI | -> |Mipi to HDMI Converter |
-> > +--------------+    +---------+    +-----------------------+
-> > 
-> > LCD controller and Mipi DSI transmitter are part of the SOC and
-> > mipi to HDMI converter is ADV7535 for KMB EVM board.
-> > 
-> > The DRM driver is a basic KMS atomic modesetting display driver and
-> > has no 2D or 3D graphics.It calls into the ADV bridge driver at
-> > the connector level.
-> > 
-> > Only 1080p resolution and single plane is supported at this time.
-> > The usecase is for debugging video and camera outputs.
-> > 
-> > Device tree patches are under review here
-> > https://lore.kernel.org/linux-arm-kernel/20200708175020.194436-1-daniele.alessandrelli@linux.intel.com/T/
-> 
-> Cool, new driver, thanks a lot for submitting.
-> 
-> > Changes since v1:
-> > - Removed redundant license text, updated license
-> > - Rearranged include blocks
-> > - renamed global vars and removed extern in c
-> > - Used upclassing for dev_private
-> > - Used drm_dev_init in drm device create (will be updated to use
-> >   devm_drm_dev_alloc() in a separate patch later as kmb driver is currently
-> >   developed on 5.4 kernel)
-> 
-> drm moves fairly quickly, please develop the upstream submission on top of
-> linux-next or similar. We constantly add new helpers to simplify drivers,
-> and we expect new driver submissions to be up to date with all that.
-Seconded!
+Hi Dave and Daniel,
 
-> 
-> Another thing: From your description it sounds like it's a very simple
-> driver, just a single plane/crtc, nothing fancy, plus adv bridge output.
-> Is the driver already using simple display pipeline helpers? I think that
-> would be an ideal fit and probably greatly simplifies the code.
-> 
-> > - minor cleanups
-> 
-> The patch series looks like it contains the entire development history, or
-> at least large chunks of it. That's useful for you, but for upstreaming
-> the main focues (especially for smaller drivers) is whether your driver
-> uses all the available helpers and integrations correctly. And for that
-> it's much easier if the history is cleaned up, and all intermediate steps
-> removed.
-And also agree on this point.
-The submission could be split up in a few patches where the split is
-file based. So only with the latest patch, containing Makefile +
-Kconfig,the driver i buildable.
-This would ease review as one looses focus when trying to review 1000+
-lines in one mail.
+here is the PR for the current drm-misc-fixes. The aspeed fix is only
+about dmesg noise. The dmabuf locking appears to be a real bug.
 
-You will loose some of the internal history - but if important keep
-relevant parts in sensible comments.
+Best regards
+Thomas
 
-	Sam
+drm-misc-fixes-2020-07-15:
+ * aspeed: setup fbdev console after registering device; avoids warning
+   and stacktrace in dmesg log
+ * dmabuf: protect dmabuf->name with a spinlock; avoids sleeping in
+   atomic context
+The following changes since commit 00debf8109e5fad3db31375be2a3c515e1461b4a:
+
+  drm/hisilicon/hibmc: Move drm_fbdev_generic_setup() down to avoid the splat (2020-07-08 09:08:22 +0000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2020-07-15
+
+for you to fetch changes up to 6348dd291e3653534a9e28e6917569bc9967b35b:
+
+  dmabuf: use spinlock to access dmabuf->name (2020-07-10 15:39:29 +0530)
+
+----------------------------------------------------------------
+ * aspeed: setup fbdev console after registering device; avoids warning
+   and stacktrace in dmesg log
+ * dmabuf: protect dmabuf->name with a spinlock; avoids sleeping in
+   atomic context
+
+----------------------------------------------------------------
+Charan Teja Kalla (1):
+      dmabuf: use spinlock to access dmabuf->name
+
+Guenter Roeck (1):
+      drm/aspeed: Call drm_fbdev_generic_setup after drm_dev_register
+
+ drivers/dma-buf/dma-buf.c               | 11 +++++++----
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c |  3 +--
+ include/linux/dma-buf.h                 |  1 +
+ 3 files changed, 9 insertions(+), 6 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
