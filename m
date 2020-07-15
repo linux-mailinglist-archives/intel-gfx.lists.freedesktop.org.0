@@ -2,39 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8188220DA8
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 15:09:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E42C220DCD
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 15:15:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 187DD6EB58;
-	Wed, 15 Jul 2020 13:09:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0F646E04A;
+	Wed, 15 Jul 2020 13:15:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07E9C6EB58;
- Wed, 15 Jul 2020 13:09:02 +0000 (UTC)
-IronPort-SDR: qPtwiJSZ237Tv2pjbNVisw7dpEUrTALMA3Lv8LlaLHzdug6w7dpa4ZOq60/FepVdlKiw1CMVK6
- B2ugT37dD35g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9682"; a="233995367"
-X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="233995367"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA74E6E04A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 13:15:20 +0000 (UTC)
+IronPort-SDR: +S8nPPnsmysBoWnbSH0kyxNC4nNF/vHdtQ6zwZfH3zLq6RswjlV/xfdUiXh4FSFVi7Jv023caw
+ nW0W8k1cvu7g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9682"; a="233996438"
+X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="233996438"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2020 06:09:01 -0700
-IronPort-SDR: iuyOv+5U2Q0pnQtO+aCbqrZzFSKykM3QhqEbY+s1fvFjZ+WR6OdooY5Nbuf+qRE3AdBKHpUQPp
- 5OLtHyTQKBjw==
-X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="460075438"
-Received: from iferdane-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.55.197])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2020 06:08:53 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
+ 15 Jul 2020 06:15:20 -0700
+IronPort-SDR: wB2pXnpGwL6QpVdPmGB6aj2Uu41DLEGRLM1uaN8QLdo4u0urlokB8JEDpGEE9J9QfhdzZCUMrS
+ DetlI4Db4r/g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="308246428"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+ by fmsmga004.fm.intel.com with ESMTP; 15 Jul 2020 06:15:18 -0700
+Received: from ahiler-desk1.fi.intel.com (10.237.68.143) by
+ IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 15 Jul 2020 14:15:14 +0100
+Date: Wed, 15 Jul 2020 16:15:11 +0300
+From: Arkadiusz Hiler <arkadiusz.hiler@intel.com>
+To: Melissa Wen <melissa.srw@gmail.com>
+Message-ID: <20200715131511.hgm6sby3hvj7aatb@ahiler-desk1.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Wed, 15 Jul 2020 16:08:46 +0300
-Message-ID: <87ft9t0vtt.fsf@intel.com>
+X-Patchwork-Hint: comment
+References: <cover.1592991729.git.melissa.srw@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+Content-Disposition: inline
+In-Reply-To: <cover.1592991729.git.melissa.srw@gmail.com>
+X-Originating-IP: [10.237.68.143]
+Subject: Re: [Intel-gfx] [PATCH i-g-t 0/2] minor improvements to the
+ kms_cursor_crc doc and some comments cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,49 +55,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: rodrigosiqueiramelo@gmail.com, intel-gfx@lists.freedesktop.org,
+ Rodrigo.Siqueira@amd.com, kernel-usp@googlegroups.com,
+ aurabindo.pillai@amd.com, nicholas.kazlauskas@amd.com, twoerner@gmail.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CkhpIERhdmUgJiBEYW5pZWwgLQoKZHJtLWludGVsLWZpeGVzLTIwMjAtMDctMTU6CmRybS9pOTE1
-IGZpeGVzIGZvciB2NS44LXJjNjoKLSBGQkMgdy9hIHN0cmlkZSBmaXgKLSBGaXggdXNlLWFmdGVy
-LWZyZWUgZml4IG9uIG1vZHVsZSByZWxvYWQKLSBJZ25vcmUgaXJxIGVuYWJsaW5nIG9uIHRoZSB2
-aXJ0dWFsIGVuZ2luZXMgdG8gZml4IGRldmljZSBzbGVlcAotIFVzZSBHVFQgd2hlbiBzYXZpbmcv
-cmVzdG9yaW5nIGVuZ2luZSBHUFIKLSBGaXggc2VsZnRlc3Qgc29ydCBmdW5jdGlvbgoKQlIsCkph
-bmkuCgpUaGUgZm9sbG93aW5nIGNoYW5nZXMgc2luY2UgY29tbWl0IDExYmE0Njg4NzdiYjIzZjI4
-OTU2YTM1ZTg5NjM1NjI1MmQ2M2M5ODM6CgogIExpbnV4IDUuOC1yYzUgKDIwMjAtMDctMTIgMTY6
-MzQ6NTAgLTA3MDApCgphcmUgYXZhaWxhYmxlIGluIHRoZSBHaXQgcmVwb3NpdG9yeSBhdDoKCiAg
-Z2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZHJtL2RybS1pbnRlbCB0YWdzL2RybS1pbnRl
-bC1maXhlcy0yMDIwLTA3LTE1Cgpmb3IgeW91IHRvIGZldGNoIGNoYW5nZXMgdXAgdG8gOTJlMDU3
-NWI5OTgzNWI1YjNhYWFiMjEzMmRkNTUxZTBlMDRlYjk2YToKCiAgZHJtL2k5MTU6IFJlY2FsY3Vs
-YXRlIEZCQyB3L2Egc3RyaWRlIHdoZW4gbmVlZGVkICgyMDIwLTA3LTE0IDIwOjMxOjQ1ICswMzAw
-KQoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQpkcm0vaTkxNSBmaXhlcyBmb3IgdjUuOC1yYzY6Ci0gRkJDIHcvYSBzdHJpZGUg
-Zml4Ci0gRml4IHVzZS1hZnRlci1mcmVlIGZpeCBvbiBtb2R1bGUgcmVsb2FkCi0gSWdub3JlIGly
-cSBlbmFibGluZyBvbiB0aGUgdmlydHVhbCBlbmdpbmVzIHRvIGZpeCBkZXZpY2Ugc2xlZXAKLSBV
-c2UgR1RUIHdoZW4gc2F2aW5nL3Jlc3RvcmluZyBlbmdpbmUgR1BSCi0gRml4IHNlbGZ0ZXN0IHNv
-cnQgZnVuY3Rpb24KCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0KQ2hyaXMgV2lsc29uICgyKToKICAgICAgZHJtL2k5MTUvZ3Q6
-IElnbm9yZSBpcnEgZW5hYmxpbmcgb24gdGhlIHZpcnR1YWwgZW5naW5lcwogICAgICBkcm0vaTkx
-NS9ndDogT25seSBzd2FwIHRvIGEgcmFuZG9tIHNpYmxpbmcgb25jZSB1cG9uIGNyZWF0aW9uCgpN
-YWFydGVuIExhbmtob3JzdCAoMSk6CiAgICAgIGRybS9pOTE1OiBNb3ZlIGNlY19ub3RpZmllciB0
-byBpbnRlbF9oZG1pX2Nvbm5lY3Rvcl91bnJlZ2lzdGVyLCB2Mi4KClN1ZGVlcCBIb2xsYSAoMSk6
-CiAgICAgIGRybS9pOTE1L3NlbGZ0ZXN0czogRml4IGNvbXBhcmUgZnVuY3Rpb25zIHByb3ZpZGVk
-IGZvciBzb3J0aW5nCgpVbWVzaCBOZXJsaWdlIFJhbWFwcGEgKDEpOgogICAgICBkcm0vaTkxNS9w
-ZXJmOiBVc2UgR1RUIHdoZW4gc2F2aW5nL3Jlc3RvcmluZyBlbmdpbmUgR1BSCgpWaWxsZSBTeXJq
-w6Rsw6QgKDEpOgogICAgICBkcm0vaTkxNTogUmVjYWxjdWxhdGUgRkJDIHcvYSBzdHJpZGUgd2hl
-biBuZWVkZWQKCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jICB8IDMz
-ICsrKysrKysrKysrKysrKysrKysrKysrKy0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfaGRtaS5jIHwgMTAgKystLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3QvaW50ZWxfbHJjLmMgICAgICAgfCAxOSArKysrKy0tLS0tLS0tLS0tLS0KIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3Jwcy5jICAgIHwgIDggKysrKy0tLS0KIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfZHJ2LmggICAgICAgICAgIHwgIDEgKwogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9wZXJmLmMgICAgICAgICAgfCAgMSArCiA2IGZpbGVzIGNoYW5nZWQsIDM5IGluc2Vy
-dGlvbnMoKyksIDMzIGRlbGV0aW9ucygtKQoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNv
-dXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+On Wed, Jun 24, 2020 at 06:54:00AM -0300, Melissa Wen wrote:
+> Hi,
+> 
+> I was studying the code of kms_cursor_crc test, and I just adjusted some comments
+> and added descriptions for subtests.
+> 
+> Melissa Wen (2):
+>   lib/igt_fb: change comments with fd description
+>   test/kms_cursor_crc: update subtests descriptions and some comments
+
+Seems like there's a conflict caused by your patch removing unused
+parameters from igt_put_cairo_ctx().
+
+Can you an send updated version and CC me on it?
+
+In case of false positives please comment on the CI results with a short
+explanation and CC Lakshmi <lakshminarayana.vudum@intel.com>
+
+Thanks for the cleanup!
+
+-- 
+Cheers,
+Arek
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
