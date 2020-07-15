@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E917D220C46
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:52:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24170220C6E
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:53:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D5596EB0A;
-	Wed, 15 Jul 2020 11:52:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A3E46EB20;
+	Wed, 15 Jul 2020 11:53:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2CE96EAD2
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:52:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F7776EACF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:52:04 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21826119-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21826120-1500050 
  for multiple; Wed, 15 Jul 2020 12:51:51 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Jul 2020 12:50:53 +0100
-Message-Id: <20200715115147.11866-12-chris@chris-wilson.co.uk>
+Date: Wed, 15 Jul 2020 12:50:54 +0100
+Message-Id: <20200715115147.11866-13-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200715115147.11866-1-chris@chris-wilson.co.uk>
 References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 12/66] drm/i915: Switch to object allocations
- for page directories
+Subject: [Intel-gfx] [PATCH 13/66] drm/i915/gem: Don't drop the timeline
+ lock during execbuf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,1619 +39,811 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The GEM object is grossly overweight for the practicality of tracking
-large numbers of individual pages, yet it is currently our only
-abstraction for tracking DMA allocations. Since those allocations need
-to be reserved upfront before an operation, and that we need to break
-away from simple system memory, we need to ditch using plain struct page
-wrappers.
+Our timeline lock is our defence against a concurrent execbuf
+interrupting our request construction. we need hold it throughout or,
+for example, a second thread may interject a relocation request in
+between our own relocation request and execution in the ring.
 
-In the process, we drop the WC mapping as we ended up clflushing
-everything anyway due to various issues across a wider range of
-platforms. Though in a future step, we need to drop the kmap_atomic
-approach which suggests we need to pre-map all the pages and keep them
-mapped.
-
-v2: Verify our large scratch page is suitably DMA aligned; and manually
-clear the scratch since we are allocating random struct pages.
+A second, major benefit, is that it allows us to preserve a large chunk
+of the ringbuffer for our exclusive use; which should virtually
+eliminate the threat of hitting a wait_for_space during request
+construction -- although we should have already dropped other
+contentious locks at that point.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |   1 +
- .../gpu/drm/i915/gem/selftests/huge_pages.c   |   2 +-
- .../drm/i915/gem/selftests/i915_gem_context.c |   2 +-
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  53 +--
- drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |   1 +
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  89 ++---
- drivers/gpu/drm/i915/gt/intel_ggtt.c          |  37 ++-
- drivers/gpu/drm/i915/gt/intel_gtt.c           | 303 ++++--------------
- drivers/gpu/drm/i915/gt/intel_gtt.h           |  94 ++----
- drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  42 ++-
- .../gpu/drm/i915/gt/intel_ring_submission.c   |  16 +-
- drivers/gpu/drm/i915/gvt/scheduler.c          |  17 +-
- drivers/gpu/drm/i915/i915_drv.c               |   1 +
- drivers/gpu/drm/i915/i915_drv.h               |   5 -
- drivers/gpu/drm/i915/i915_vma.c               |  18 +-
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  23 ++
- drivers/gpu/drm/i915/selftests/i915_perf.c    |   4 +-
- drivers/gpu/drm/i915/selftests/mock_gtt.c     |   4 +
- 18 files changed, 289 insertions(+), 423 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 413 +++++++++++-------
+ .../i915/gem/selftests/i915_gem_execbuffer.c  |  24 +-
+ 2 files changed, 281 insertions(+), 156 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index 5335f799b548..d0847d7896f9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -282,6 +282,7 @@ struct drm_i915_gem_object {
- 		} userptr;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 719ba9fe3e85..af3499aafd22 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -259,6 +259,8 @@ struct i915_execbuffer {
+ 		bool has_fence : 1;
+ 		bool needs_unfenced : 1;
  
- 		unsigned long scratch;
-+		u64 encode;
++		struct intel_context *ce;
++
+ 		struct i915_vma *target;
+ 		struct i915_request *rq;
+ 		struct i915_vma *rq_vma;
+@@ -639,6 +641,35 @@ static int eb_reserve_vma(const struct i915_execbuffer *eb,
+ 	return 0;
+ }
  
- 		void *gvt_info;
- 	};
-diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index 8291ede6902c..e2f3d014acb2 100644
---- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -393,7 +393,7 @@ static int igt_mock_exhaust_device_supported_pages(void *arg)
++static void retire_requests(struct intel_timeline *tl)
++{
++	struct i915_request *rq, *rn;
++
++	list_for_each_entry_safe(rq, rn, &tl->requests, link)
++		if (!i915_request_retire(rq))
++			break;
++}
++
++static int wait_for_timeline(struct intel_timeline *tl)
++{
++	do {
++		struct dma_fence *fence;
++		int err;
++
++		fence = i915_active_fence_get(&tl->last_request);
++		if (!fence)
++			return 0;
++
++		err = dma_fence_wait(fence, true);
++		dma_fence_put(fence);
++		if (err)
++			return err;
++
++		/* Retiring may trigger a barrier, requiring an extra pass */
++		retire_requests(tl);
++	} while (1);
++}
++
+ static int eb_reserve(struct i915_execbuffer *eb)
+ {
+ 	const unsigned int count = eb->buffer_count;
+@@ -646,7 +677,6 @@ static int eb_reserve(struct i915_execbuffer *eb)
+ 	struct list_head last;
+ 	struct eb_vma *ev;
+ 	unsigned int i, pass;
+-	int err = 0;
+ 
+ 	/*
+ 	 * Attempt to pin all of the buffers into the GTT.
+@@ -662,18 +692,37 @@ static int eb_reserve(struct i915_execbuffer *eb)
+ 	 * room for the earlier objects *unless* we need to defragment.
  	 */
  
- 	for (i = 1; i < BIT(ARRAY_SIZE(page_sizes)); i++) {
--		unsigned int combination = 0;
-+		unsigned int combination = SZ_4K; /* Required for ppGTT */
- 
- 		for (j = 0; j < ARRAY_SIZE(page_sizes); j++) {
- 			if (i & BIT(j))
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index 7ffc3c751432..d176b015353f 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -1748,7 +1748,7 @@ static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
- 	if (!vm)
- 		return -ENODEV;
- 
--	page = vm->scratch[0].base.page;
-+	page = __px_page(vm->scratch[0]);
- 	if (!page) {
- 		pr_err("No scratch page!\n");
- 		return -EINVAL;
-diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-index ee2e149454cb..a823d2e3c39c 100644
---- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-@@ -16,8 +16,10 @@ static inline void gen6_write_pde(const struct gen6_ppgtt *ppgtt,
- 				  const unsigned int pde,
- 				  const struct i915_page_table *pt)
- {
-+	dma_addr_t addr = pt ? px_dma(pt) : px_dma(ppgtt->base.vm.scratch[1]);
-+
- 	/* Caller needs to make sure the write completes if necessary */
--	iowrite32(GEN6_PDE_ADDR_ENCODE(px_dma(pt)) | GEN6_PDE_VALID,
-+	iowrite32(GEN6_PDE_ADDR_ENCODE(addr) | GEN6_PDE_VALID,
- 		  ppgtt->pd_addr + pde);
- }
- 
-@@ -79,7 +81,7 @@ static void gen6_ppgtt_clear_range(struct i915_address_space *vm,
- {
- 	struct gen6_ppgtt * const ppgtt = to_gen6_ppgtt(i915_vm_to_ppgtt(vm));
- 	const unsigned int first_entry = start / I915_GTT_PAGE_SIZE;
--	const gen6_pte_t scratch_pte = vm->scratch[0].encode;
-+	const gen6_pte_t scratch_pte = vm->scratch[0]->encode;
- 	unsigned int pde = first_entry / GEN6_PTES;
- 	unsigned int pte = first_entry % GEN6_PTES;
- 	unsigned int num_entries = length / I915_GTT_PAGE_SIZE;
-@@ -90,8 +92,6 @@ static void gen6_ppgtt_clear_range(struct i915_address_space *vm,
- 		const unsigned int count = min(num_entries, GEN6_PTES - pte);
- 		gen6_pte_t *vaddr;
- 
--		GEM_BUG_ON(px_base(pt) == px_base(&vm->scratch[1]));
+-	if (mutex_lock_interruptible(&eb->i915->drm.struct_mutex))
+-		return -EINTR;
 -
- 		num_entries -= count;
- 
- 		GEM_BUG_ON(count > atomic_read(&pt->used));
-@@ -127,7 +127,7 @@ static void gen6_ppgtt_insert_entries(struct i915_address_space *vm,
- 	struct sgt_dma iter = sgt_dma(vma);
- 	gen6_pte_t *vaddr;
- 
--	GEM_BUG_ON(pd->entry[act_pt] == &vm->scratch[1]);
-+	GEM_BUG_ON(!pd->entry[act_pt]);
- 
- 	vaddr = kmap_atomic_px(i915_pt_entry(pd, act_pt));
+ 	pass = 0;
  	do {
-@@ -192,16 +192,17 @@ static void gen6_alloc_va_range(struct i915_address_space *vm,
- 	gen6_for_each_pde(pt, pd, start, length, pde) {
- 		const unsigned int count = gen6_pte_count(start, length);
- 
--		if (px_base(pt) == px_base(&vm->scratch[1])) {
-+		if (!pt) {
- 			spin_unlock(&pd->lock);
- 
- 			pt = stash->pt[0];
--			GEM_BUG_ON(!pt);
-+			__i915_gem_object_pin_pages(pt->base);
-+			i915_gem_object_make_unshrinkable(pt->base);
- 
--			fill32_px(pt, vm->scratch[0].encode);
-+			fill32_px(pt, vm->scratch[0]->encode);
- 
- 			spin_lock(&pd->lock);
--			if (pd->entry[pde] == &vm->scratch[1]) {
-+			if (!pd->entry[pde]) {
- 				stash->pt[0] = pt->stash;
- 				atomic_set(&pt->used, 0);
- 				pd->entry[pde] = pt;
-@@ -227,24 +228,27 @@ static void gen6_alloc_va_range(struct i915_address_space *vm,
- static int gen6_ppgtt_init_scratch(struct gen6_ppgtt *ppgtt)
- {
- 	struct i915_address_space * const vm = &ppgtt->base.vm;
--	struct i915_page_directory * const pd = ppgtt->base.pd;
- 	int ret;
- 
--	ret = setup_scratch_page(vm, __GFP_HIGHMEM);
-+	ret = setup_scratch_page(vm);
- 	if (ret)
- 		return ret;
- 
--	vm->scratch[0].encode =
--		vm->pte_encode(px_dma(&vm->scratch[0]),
-+	vm->scratch[0]->encode =
-+		vm->pte_encode(px_dma(vm->scratch[0]),
- 			       I915_CACHE_NONE, PTE_READ_ONLY);
- 
--	if (unlikely(setup_page_dma(vm, px_base(&vm->scratch[1])))) {
--		cleanup_scratch_page(vm);
--		return -ENOMEM;
-+	vm->scratch[1] = vm->alloc_pt_dma(vm, I915_GTT_PAGE_SIZE_4K);
-+	if (IS_ERR(vm->scratch[1]))
-+		return PTR_ERR(vm->scratch[1]);
++		int err = 0;
 +
-+	ret = pin_pt_dma(vm, vm->scratch[1]);
-+	if (ret) {
-+		i915_gem_object_put(vm->scratch[1]);
-+		return ret;
- 	}
- 
--	fill32_px(&vm->scratch[1], vm->scratch[0].encode);
--	memset_p(pd->entry, &vm->scratch[1], I915_PDES);
-+	fill32_px(vm->scratch[1], vm->scratch[0]->encode);
- 
- 	return 0;
- }
-@@ -252,13 +256,11 @@ static int gen6_ppgtt_init_scratch(struct gen6_ppgtt *ppgtt)
- static void gen6_ppgtt_free_pd(struct gen6_ppgtt *ppgtt)
- {
- 	struct i915_page_directory * const pd = ppgtt->base.pd;
--	struct i915_page_dma * const scratch =
--		px_base(&ppgtt->base.vm.scratch[1]);
- 	struct i915_page_table *pt;
- 	u32 pde;
- 
- 	gen6_for_all_pdes(pt, pd, pde)
--		if (px_base(pt) != scratch)
-+		if (pt)
- 			free_px(&ppgtt->base.vm, pt);
- }
- 
-@@ -299,7 +301,7 @@ static void pd_vma_bind(struct i915_address_space *vm,
- 	struct gen6_ppgtt *ppgtt = vma->private;
- 	u32 ggtt_offset = i915_ggtt_offset(vma) / I915_GTT_PAGE_SIZE;
- 
--	px_base(ppgtt->base.pd)->ggtt_offset = ggtt_offset * sizeof(gen6_pte_t);
-+	ppgtt->pp_dir = ggtt_offset * sizeof(gen6_pte_t) << 10;
- 	ppgtt->pd_addr = (gen6_pte_t __iomem *)ggtt->gsm + ggtt_offset;
- 
- 	gen6_flush_pd(ppgtt, 0, ppgtt->base.vm.total);
-@@ -309,8 +311,6 @@ static void pd_vma_unbind(struct i915_address_space *vm, struct i915_vma *vma)
- {
- 	struct gen6_ppgtt *ppgtt = vma->private;
- 	struct i915_page_directory * const pd = ppgtt->base.pd;
--	struct i915_page_dma * const scratch =
--		px_base(&ppgtt->base.vm.scratch[1]);
- 	struct i915_page_table *pt;
- 	unsigned int pde;
- 
-@@ -319,11 +319,11 @@ static void pd_vma_unbind(struct i915_address_space *vm, struct i915_vma *vma)
- 
- 	/* Free all no longer used page tables */
- 	gen6_for_all_pdes(pt, ppgtt->base.pd, pde) {
--		if (px_base(pt) == scratch || atomic_read(&pt->used))
-+		if (!pt || atomic_read(&pt->used))
- 			continue;
- 
- 		free_px(&ppgtt->base.vm, pt);
--		pd->entry[pde] = scratch;
-+		pd->entry[pde] = NULL;
- 	}
- 
- 	ppgtt->scan_for_unused_pt = false;
-@@ -444,6 +444,7 @@ struct i915_ppgtt *gen6_ppgtt_create(struct intel_gt *gt)
- 	ppgtt->base.vm.insert_entries = gen6_ppgtt_insert_entries;
- 	ppgtt->base.vm.cleanup = gen6_ppgtt_cleanup;
- 
-+	ppgtt->base.vm.alloc_pt_dma = alloc_pt_dma;
- 	ppgtt->base.vm.pte_encode = ggtt->vm.pte_encode;
- 
- 	ppgtt->base.pd = __alloc_pd(sizeof(*ppgtt->base.pd));
-diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.h b/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
-index 72e481806c96..7249672e5802 100644
---- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
-+++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
-@@ -14,6 +14,7 @@ struct gen6_ppgtt {
- 	struct mutex flush;
- 	struct i915_vma *vma;
- 	gen6_pte_t __iomem *pd_addr;
-+	u32 pp_dir;
- 
- 	atomic_t pin_count;
- 	struct mutex pin_mutex;
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index c3cadc70dae2..e3afd250cd7f 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -199,7 +199,7 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
- 			      struct i915_page_directory * const pd,
- 			      u64 start, const u64 end, int lvl)
- {
--	const struct i915_page_scratch * const scratch = &vm->scratch[lvl];
-+	const struct drm_i915_gem_object * const scratch = vm->scratch[lvl];
- 	unsigned int idx, len;
- 
- 	GEM_BUG_ON(end > vm->total >> GEN8_PTE_SHIFT);
-@@ -239,7 +239,7 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
- 
- 			vaddr = kmap_atomic_px(pt);
- 			memset64(vaddr + gen8_pd_index(start, 0),
--				 vm->scratch[0].encode,
-+				 vm->scratch[0]->encode,
- 				 count);
- 			kunmap_atomic(vaddr);
- 
-@@ -296,12 +296,13 @@ static void __gen8_ppgtt_alloc(struct i915_address_space * const vm,
- 			    __func__, vm, lvl + 1, idx);
- 
- 			pt = stash->pt[!!lvl];
--			GEM_BUG_ON(!pt);
-+			__i915_gem_object_pin_pages(pt->base);
-+			i915_gem_object_make_unshrinkable(pt->base);
- 
- 			if (lvl ||
- 			    gen8_pt_count(*start, end) < I915_PDES ||
- 			    intel_vgpu_active(vm->i915))
--				fill_px(pt, vm->scratch[lvl].encode);
-+				fill_px(pt, vm->scratch[lvl]->encode);
- 
- 			spin_lock(&pd->lock);
- 			if (likely(!pd->entry[idx])) {
-@@ -356,16 +357,6 @@ static void gen8_ppgtt_alloc(struct i915_address_space *vm,
- 			   &start, start + length, vm->top);
- }
- 
--static __always_inline void
--write_pte(gen8_pte_t *pte, const gen8_pte_t val)
--{
--	/* Magic delays? Or can we refine these to flush all in one pass? */
--	*pte = val;
--	wmb(); /* cpu to cache */
--	clflush(pte); /* cache to memory */
--	wmb(); /* visible to all */
--}
--
- static __always_inline u64
- gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
- 		      struct i915_page_directory *pdp,
-@@ -382,8 +373,7 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
- 	vaddr = kmap_atomic_px(i915_pt_entry(pd, gen8_pd_index(idx, 1)));
- 	do {
- 		GEM_BUG_ON(iter->sg->length < I915_GTT_PAGE_SIZE);
--		write_pte(&vaddr[gen8_pd_index(idx, 0)],
--			  pte_encode | iter->dma);
-+		vaddr[gen8_pd_index(idx, 0)] = pte_encode | iter->dma;
- 
- 		iter->dma += I915_GTT_PAGE_SIZE;
- 		if (iter->dma >= iter->max) {
-@@ -406,10 +396,12 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
- 				pd = pdp->entry[gen8_pd_index(idx, 2)];
- 			}
- 
-+			clflush_cache_range(vaddr, PAGE_SIZE);
- 			kunmap_atomic(vaddr);
- 			vaddr = kmap_atomic_px(i915_pt_entry(pd, gen8_pd_index(idx, 1)));
++		/*
++		 * We need to hold one lock as we bind all the vma so that
++		 * we have a consistent view of the entire vm and can plan
++		 * evictions to fill the whole GTT. If we allow a second
++		 * thread to run as we do this, it will either unbind
++		 * everything we want pinned, or steal space that we need for
++		 * ourselves. The closer we are to a full GTT, the more likely
++		 * such contention will cause us to fail to bind the workload
++		 * for this batch. Since we know at this point we need to
++		 * find space for new buffers, we know that extra pressure
++		 * from contention is likely.
++		 *
++		 * In lieu of being able to hold vm->mutex for the entire
++		 * sequence (it's complicated!), we opt for struct_mutex.
++		 */
++		if (mutex_lock_interruptible(&eb->i915->drm.struct_mutex))
++			return -EINTR;
++
+ 		list_for_each_entry(ev, &eb->unbound, bind_link) {
+ 			err = eb_reserve_vma(eb, ev, pin_flags);
+ 			if (err)
+ 				break;
  		}
- 	} while (1);
-+	clflush_cache_range(vaddr, PAGE_SIZE);
- 	kunmap_atomic(vaddr);
- 
- 	return idx;
-@@ -465,7 +457,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
- 
- 		do {
- 			GEM_BUG_ON(iter->sg->length < page_size);
--			write_pte(&vaddr[index++], encode | iter->dma);
-+			vaddr[index++] = encode | iter->dma;
- 
- 			start += page_size;
- 			iter->dma += page_size;
-@@ -490,6 +482,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
- 			}
- 		} while (rem >= page_size && index < I915_PDES);
- 
-+		clflush_cache_range(vaddr, PAGE_SIZE);
- 		kunmap_atomic(vaddr);
- 
- 		/*
-@@ -521,7 +514,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
- 			if (I915_SELFTEST_ONLY(vma->vm->scrub_64K)) {
- 				u16 i;
- 
--				encode = vma->vm->scratch[0].encode;
-+				encode = vma->vm->scratch[0]->encode;
- 				vaddr = kmap_atomic_px(i915_pt_entry(pd, maybe_64K));
- 
- 				for (i = 1; i < index; i += 16)
-@@ -575,27 +568,37 @@ static int gen8_init_scratch(struct i915_address_space *vm)
- 		GEM_BUG_ON(!clone->has_read_only);
- 
- 		vm->scratch_order = clone->scratch_order;
--		memcpy(vm->scratch, clone->scratch, sizeof(vm->scratch));
--		px_dma(&vm->scratch[0]) = 0; /* no xfer of ownership */
-+		for (i = 0; i <= vm->top; i++)
-+			vm->scratch[i] = i915_gem_object_get(clone->scratch[i]);
-+
- 		return 0;
- 	}
- 
--	ret = setup_scratch_page(vm, __GFP_HIGHMEM);
-+	ret = setup_scratch_page(vm);
- 	if (ret)
- 		return ret;
- 
--	vm->scratch[0].encode =
--		gen8_pte_encode(px_dma(&vm->scratch[0]),
-+	vm->scratch[0]->encode =
-+		gen8_pte_encode(px_dma(vm->scratch[0]),
- 				I915_CACHE_LLC, vm->has_read_only);
- 
- 	for (i = 1; i <= vm->top; i++) {
--		if (unlikely(setup_page_dma(vm, px_base(&vm->scratch[i]))))
-+		struct drm_i915_gem_object *obj;
-+
-+		obj = vm->alloc_pt_dma(vm, I915_GTT_PAGE_SIZE_4K);
-+		if (IS_ERR(obj))
- 			goto free_scratch;
- 
--		fill_px(&vm->scratch[i], vm->scratch[i - 1].encode);
--		vm->scratch[i].encode =
--			gen8_pde_encode(px_dma(&vm->scratch[i]),
--					I915_CACHE_LLC);
-+		ret = pin_pt_dma(vm, obj);
-+		if (ret) {
-+			i915_gem_object_put(obj);
-+			goto free_scratch;
-+		}
-+
-+		fill_px(obj, vm->scratch[i - 1]->encode);
-+		obj->encode = gen8_pde_encode(px_dma(obj), I915_CACHE_LLC);
-+
-+		vm->scratch[i] = obj;
- 	}
- 
- 	return 0;
-@@ -616,12 +619,20 @@ static int gen8_preallocate_top_level_pdp(struct i915_ppgtt *ppgtt)
- 
- 	for (idx = 0; idx < GEN8_3LVL_PDPES; idx++) {
- 		struct i915_page_directory *pde;
-+		int err;
- 
- 		pde = alloc_pd(vm);
- 		if (IS_ERR(pde))
- 			return PTR_ERR(pde);
- 
--		fill_px(pde, vm->scratch[1].encode);
-+		err = pin_pt_dma(vm, pde->pt.base);
-+		if (err) {
-+			i915_gem_object_put(pde->pt.base);
-+			kfree(pde);
+-		if (!(err == -ENOSPC || err == -EAGAIN))
+-			break;
++		if (!(err == -ENOSPC || err == -EAGAIN)) {
++			mutex_unlock(&eb->i915->drm.struct_mutex);
 +			return err;
 +		}
+ 
+ 		/* Resort *all* the objects into priority order */
+ 		INIT_LIST_HEAD(&eb->unbound);
+@@ -702,38 +751,50 @@ static int eb_reserve(struct i915_execbuffer *eb)
+ 				list_add_tail(&ev->bind_link, &last);
+ 		}
+ 		list_splice_tail(&last, &eb->unbound);
++		mutex_unlock(&eb->i915->drm.struct_mutex);
+ 
+ 		if (err == -EAGAIN) {
+-			mutex_unlock(&eb->i915->drm.struct_mutex);
+ 			flush_workqueue(eb->i915->mm.userptr_wq);
+-			mutex_lock(&eb->i915->drm.struct_mutex);
+ 			continue;
+ 		}
+ 
++		/*
++		 * We failed to bind our workload; there's not enough space.
++		 *
++		 * This could be due to userspace trying to submit a workload
++		 * that requires more space than is available in an empty GTT,
++		 * but more likely it means that some client is temporarily
++		 * holding onto pressure space. If we wait and flush the
++		 * timeline, that will reduce the concurrent pressure
++		 * giving us a clean shot at allocating our workload.
++		 *
++		 * However, after waiting we may compete once more with new
++		 * clients. Without a ticketlock or some other mechanism,
++		 * there is no guarantee that we will succeed in claiming
++		 * total ownership of the vm.
++		 */
+ 		switch (pass++) {
+ 		case 0:
+ 			break;
+ 
+ 		case 1:
+-			/* Too fragmented, unbind everything and retry */
+-			mutex_lock(&eb->context->vm->mutex);
+-			err = i915_gem_evict_vm(eb->context->vm);
+-			mutex_unlock(&eb->context->vm->mutex);
++			/*
++			 * Too fragmented, retire everything on the timeline
++			 * and so make it all [contexts included] available to
++			 * evict.
++			 */
++			err = wait_for_timeline(eb->context->timeline);
+ 			if (err)
+-				goto unlock;
++				return err;
 +
-+		fill_px(pde, vm->scratch[1]->encode);
- 		set_pd_entry(pd, idx, pde);
- 		atomic_inc(px_used(pde)); /* keep pinned */
- 	}
-@@ -635,6 +646,7 @@ gen8_alloc_top_pd(struct i915_address_space *vm)
- {
- 	const unsigned int count = gen8_pd_top_count(vm);
- 	struct i915_page_directory *pd;
-+	int err;
+ 			break;
  
- 	GEM_BUG_ON(count > ARRAY_SIZE(pd->entry));
+ 		default:
+-			err = -ENOSPC;
+-			goto unlock;
++			return -ENOSPC;
+ 		}
  
-@@ -642,12 +654,20 @@ gen8_alloc_top_pd(struct i915_address_space *vm)
- 	if (unlikely(!pd))
- 		return ERR_PTR(-ENOMEM);
- 
--	if (unlikely(setup_page_dma(vm, px_base(pd)))) {
-+	pd->pt.base = vm->alloc_pt_dma(vm, I915_GTT_PAGE_SIZE_4K);
-+	if (IS_ERR(pd->pt.base)) {
- 		kfree(pd);
- 		return ERR_PTR(-ENOMEM);
- 	}
- 
--	fill_page_dma(px_base(pd), vm->scratch[vm->top].encode, count);
-+	err = pin_pt_dma(vm, pd->pt.base);
-+	if (err) {
-+		i915_gem_object_put(pd->pt.base);
-+		kfree(pd);
-+		return ERR_PTR(err);
-+	}
-+
-+	fill_page_dma(px_base(pd), vm->scratch[vm->top]->encode, count);
- 	atomic_inc(px_used(pd)); /* mark as pinned */
- 	return pd;
- }
-@@ -682,12 +702,7 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt)
- 	 */
- 	ppgtt->vm.has_read_only = !IS_GEN_RANGE(gt->i915, 11, 12);
- 
--	/*
--	 * There are only few exceptions for gen >=6. chv and bxt.
--	 * And we are not sure about the latter so play safe for now.
--	 */
--	if (IS_CHERRYVIEW(gt->i915) || IS_BROXTON(gt->i915))
--		ppgtt->vm.pt_kmap_wc = true;
-+	ppgtt->vm.alloc_pt_dma = alloc_pt_dma;
- 
- 	err = gen8_init_scratch(&ppgtt->vm);
- 	if (err)
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 5a33056ab976..33a3f627ddb1 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -78,8 +78,6 @@ int i915_ggtt_init_hw(struct drm_i915_private *i915)
- {
- 	int ret;
- 
--	stash_init(&i915->mm.wc_stash);
+ 		pin_flags = PIN_USER;
+ 	} while (1);
 -
- 	/*
- 	 * Note that we use page colouring to enforce a guard page at the
- 	 * end of the address space. This is required as the CS may prefetch
-@@ -232,7 +230,7 @@ static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
- 
- 	/* Fill the allocated but "unused" space beyond the end of the buffer */
- 	while (gte < end)
--		gen8_set_pte(gte++, vm->scratch[0].encode);
-+		gen8_set_pte(gte++, vm->scratch[0]->encode);
- 
- 	/*
- 	 * We want to flush the TLBs only after we're certain all the PTE
-@@ -283,7 +281,7 @@ static void gen6_ggtt_insert_entries(struct i915_address_space *vm,
- 
- 	/* Fill the allocated but "unused" space beyond the end of the buffer */
- 	while (gte < end)
--		iowrite32(vm->scratch[0].encode, gte++);
-+		iowrite32(vm->scratch[0]->encode, gte++);
- 
- 	/*
- 	 * We want to flush the TLBs only after we're certain all the PTE
-@@ -303,7 +301,7 @@ static void gen8_ggtt_clear_range(struct i915_address_space *vm,
- 	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
- 	unsigned int first_entry = start / I915_GTT_PAGE_SIZE;
- 	unsigned int num_entries = length / I915_GTT_PAGE_SIZE;
--	const gen8_pte_t scratch_pte = vm->scratch[0].encode;
-+	const gen8_pte_t scratch_pte = vm->scratch[0]->encode;
- 	gen8_pte_t __iomem *gtt_base =
- 		(gen8_pte_t __iomem *)ggtt->gsm + first_entry;
- 	const int max_entries = ggtt_total_entries(ggtt) - first_entry;
-@@ -401,7 +399,7 @@ static void gen6_ggtt_clear_range(struct i915_address_space *vm,
- 		 first_entry, num_entries, max_entries))
- 		num_entries = max_entries;
- 
--	scratch_pte = vm->scratch[0].encode;
-+	scratch_pte = vm->scratch[0]->encode;
- 	for (i = 0; i < num_entries; i++)
- 		iowrite32(scratch_pte, &gtt_base[i]);
+-unlock:
+-	mutex_unlock(&eb->i915->drm.struct_mutex);
+-	return err;
  }
-@@ -617,6 +615,10 @@ static int init_aliasing_ppgtt(struct i915_ggtt *ggtt)
- 	if (err)
- 		goto err_ppgtt;
  
-+	err = i915_vm_pin_pt_stash(&ppgtt->vm, &stash);
-+	if (err)
-+		goto err_stash;
-+
- 	/*
- 	 * Note we only pre-allocate as far as the end of the global
- 	 * GTT. On 48b / 4-level page-tables, the difference is very,
-@@ -637,6 +639,8 @@ static int init_aliasing_ppgtt(struct i915_ggtt *ggtt)
- 	i915_vm_free_pt_stash(&ppgtt->vm, &stash);
- 	return 0;
- 
-+err_stash:
-+	i915_vm_free_pt_stash(&ppgtt->vm, &stash);
- err_ppgtt:
- 	i915_vm_put(&ppgtt->vm);
+ static unsigned int eb_batch_index(const struct i915_execbuffer *eb)
+@@ -1007,13 +1068,44 @@ static int reloc_gpu_chain(struct reloc_cache *cache)
  	return err;
-@@ -712,18 +716,11 @@ static void ggtt_cleanup_hw(struct i915_ggtt *ggtt)
- void i915_ggtt_driver_release(struct drm_i915_private *i915)
+ }
+ 
++static struct i915_request *
++nested_request_create(struct intel_context *ce)
++{
++	struct i915_request *rq;
++
++	/* XXX This only works once; replace with shared timeline */
++	mutex_lock_nested(&ce->timeline->mutex, SINGLE_DEPTH_NESTING);
++	intel_context_enter(ce);
++
++	rq = __i915_request_create(ce, GFP_KERNEL);
++
++	intel_context_exit(ce);
++	if (IS_ERR(rq))
++		mutex_unlock(&ce->timeline->mutex);
++
++	return rq;
++}
++
++static void __i915_request_add(struct i915_request *rq,
++			       struct i915_sched_attr *attr)
++{
++	struct intel_timeline * const tl = i915_request_timeline(rq);
++
++	lockdep_assert_held(&tl->mutex);
++	lockdep_unpin_lock(&tl->mutex, rq->cookie);
++
++	__i915_request_commit(rq);
++	__i915_request_queue(rq, attr);
++}
++
+ static unsigned int reloc_bb_flags(const struct reloc_cache *cache)
  {
- 	struct i915_ggtt *ggtt = &i915->ggtt;
--	struct pagevec *pvec;
+ 	return cache->gen > 5 ? 0 : I915_DISPATCH_SECURE;
+ }
  
- 	fini_aliasing_ppgtt(ggtt);
+-static int reloc_gpu_flush(struct reloc_cache *cache)
++static int reloc_gpu_flush(struct i915_execbuffer *eb)
+ {
++	struct reloc_cache *cache = &eb->reloc_cache;
+ 	struct i915_request *rq;
+ 	int err;
  
- 	intel_ggtt_fini_fences(ggtt);
- 	ggtt_cleanup_hw(ggtt);
+@@ -1044,7 +1136,9 @@ static int reloc_gpu_flush(struct reloc_cache *cache)
+ 		i915_request_set_error_once(rq, err);
+ 
+ 	intel_gt_chipset_flush(rq->engine->gt);
+-	i915_request_add(rq);
++	__i915_request_add(rq, &eb->gem_context->sched);
++	if (i915_request_timeline(rq) != eb->context->timeline)
++		mutex_unlock(&i915_request_timeline(rq)->mutex);
+ 
+ 	return err;
+ }
+@@ -1103,27 +1197,15 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+ 	if (err)
+ 		goto err_unmap;
+ 
+-	if (engine == eb->context->engine) {
+-		rq = i915_request_create(eb->context);
+-	} else {
+-		struct intel_context *ce;
 -
--	pvec = &i915->mm.wc_stash.pvec;
--	if (pvec->nr) {
--		set_pages_array_wb(pvec->pages, pvec->nr);
--		__pagevec_release(pvec);
+-		ce = intel_context_create(engine);
+-		if (IS_ERR(ce)) {
+-			err = PTR_ERR(ce);
+-			goto err_unpin;
+-		}
+-
+-		i915_vm_put(ce->vm);
+-		ce->vm = i915_vm_get(eb->context->vm);
+-
+-		rq = intel_context_create_request(ce);
+-		intel_context_put(ce);
 -	}
- }
- 
- static unsigned int gen6_get_total_gtt_size(u16 snb_gmch_ctl)
-@@ -786,7 +783,7 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
- 		return -ENOMEM;
++	if (cache->ce == eb->context)
++		rq = __i915_request_create(cache->ce, GFP_KERNEL);
++	else
++		rq = nested_request_create(cache->ce);
+ 	if (IS_ERR(rq)) {
+ 		err = PTR_ERR(rq);
+ 		goto err_unpin;
  	}
++	rq->cookie = lockdep_pin_lock(&i915_request_timeline(rq)->mutex);
  
--	ret = setup_scratch_page(&ggtt->vm, GFP_DMA32);
-+	ret = setup_scratch_page(&ggtt->vm);
- 	if (ret) {
- 		drm_err(&i915->drm, "Scratch setup failed\n");
- 		/* iounmap will also get called at remove, but meh */
-@@ -794,8 +791,8 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
- 		return ret;
+ 	err = intel_gt_buffer_pool_mark_active(pool, rq);
+ 	if (err)
+@@ -1151,7 +1233,9 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+ skip_request:
+ 	i915_request_set_error_once(rq, err);
+ err_request:
+-	i915_request_add(rq);
++	__i915_request_add(rq, &eb->gem_context->sched);
++	if (i915_request_timeline(rq) != eb->context->timeline)
++		mutex_unlock(&i915_request_timeline(rq)->mutex);
+ err_unpin:
+ 	i915_vma_unpin(batch);
+ err_unmap:
+@@ -1161,11 +1245,6 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+ 	return err;
+ }
+ 
+-static bool reloc_can_use_engine(const struct intel_engine_cs *engine)
+-{
+-	return engine->class != VIDEO_DECODE_CLASS || !IS_GEN(engine->i915, 6);
+-}
+-
+ static u32 *reloc_gpu(struct i915_execbuffer *eb,
+ 		      struct i915_vma *vma,
+ 		      unsigned int len)
+@@ -1177,12 +1256,6 @@ static u32 *reloc_gpu(struct i915_execbuffer *eb,
+ 	if (unlikely(!cache->rq)) {
+ 		struct intel_engine_cs *engine = eb->engine;
+ 
+-		if (!reloc_can_use_engine(engine)) {
+-			engine = engine->gt->engine_class[COPY_ENGINE_CLASS][0];
+-			if (!engine)
+-				return ERR_PTR(-ENODEV);
+-		}
+-
+ 		err = __reloc_gpu_alloc(eb, engine, len);
+ 		if (unlikely(err))
+ 			return ERR_PTR(err);
+@@ -1513,7 +1586,7 @@ static int eb_relocate(struct i915_execbuffer *eb)
+ 				break;
+ 		}
+ 
+-		flush = reloc_gpu_flush(&eb->reloc_cache);
++		flush = reloc_gpu_flush(eb);
+ 		if (!err)
+ 			err = flush;
  	}
- 
--	ggtt->vm.scratch[0].encode =
--		ggtt->vm.pte_encode(px_dma(&ggtt->vm.scratch[0]),
-+	ggtt->vm.scratch[0]->encode =
-+		ggtt->vm.pte_encode(px_dma(ggtt->vm.scratch[0]),
- 				    I915_CACHE_NONE, 0);
- 
- 	return 0;
-@@ -821,7 +818,7 @@ static void gen6_gmch_remove(struct i915_address_space *vm)
- 	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
- 
- 	iounmap(ggtt->gsm);
--	cleanup_scratch_page(vm);
-+	free_scratch(vm);
+@@ -1706,20 +1779,9 @@ static int __eb_parse(struct dma_fence_work *work)
+ 				       pw->trampoline);
  }
  
- static struct resource pci_resource(struct pci_dev *pdev, int bar)
-@@ -849,6 +846,8 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 	else
- 		size = gen8_get_total_gtt_size(snb_gmch_ctl);
+-static void __eb_parse_release(struct dma_fence_work *work)
+-{
+-	struct eb_parse_work *pw = container_of(work, typeof(*pw), base);
+-
+-	if (pw->trampoline)
+-		i915_active_release(&pw->trampoline->active);
+-	i915_active_release(&pw->shadow->active);
+-	i915_active_release(&pw->batch->active);
+-}
+-
+ static const struct dma_fence_work_ops eb_parse_ops = {
+ 	.name = "eb_parse",
+ 	.work = __eb_parse,
+-	.release = __eb_parse_release,
+ };
  
-+	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
-+
- 	ggtt->vm.total = (size / sizeof(gen8_pte_t)) * I915_GTT_PAGE_SIZE;
- 	ggtt->vm.cleanup = gen6_gmch_remove;
- 	ggtt->vm.insert_page = gen8_ggtt_insert_page;
-@@ -997,6 +996,8 @@ static int gen6_gmch_probe(struct i915_ggtt *ggtt)
- 	size = gen6_get_total_gtt_size(snb_gmch_ctl);
- 	ggtt->vm.total = (size / sizeof(gen6_pte_t)) * I915_GTT_PAGE_SIZE;
- 
-+	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
-+
- 	ggtt->vm.clear_range = nop_clear_range;
- 	if (!HAS_FULL_PPGTT(i915) || intel_scanout_needs_vtd_wa(i915))
- 		ggtt->vm.clear_range = gen6_ggtt_clear_range;
-@@ -1047,6 +1048,8 @@ static int i915_gmch_probe(struct i915_ggtt *ggtt)
- 	ggtt->gmadr =
- 		(struct resource)DEFINE_RES_MEM(gmadr_base, ggtt->mappable_end);
- 
-+	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
-+
- 	ggtt->do_idle_maps = needs_idle_maps(i915);
- 	ggtt->vm.insert_page = i915_ggtt_insert_page;
- 	ggtt->vm.insert_entries = i915_ggtt_insert_entries;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 2a72cce63fd9..795ed81ba358 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -11,160 +11,21 @@
- #include "intel_gt.h"
- #include "intel_gtt.h"
- 
--void stash_init(struct pagestash *stash)
-+struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz)
+ static inline int
+@@ -1737,21 +1799,23 @@ parser_mark_active(struct eb_parse_work *pw, struct intel_timeline *tl)
  {
--	pagevec_init(&stash->pvec);
--	spin_lock_init(&stash->lock);
-+	return i915_gem_object_create_internal(vm->i915, sz);
- }
+ 	int err;
  
--static struct page *stash_pop_page(struct pagestash *stash)
-+int pin_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
- {
--	struct page *page = NULL;
-+	int err;
- 
--	spin_lock(&stash->lock);
--	if (likely(stash->pvec.nr))
--		page = stash->pvec.pages[--stash->pvec.nr];
--	spin_unlock(&stash->lock);
-+	err = i915_gem_object_pin_pages(obj);
+-	mutex_lock(&tl->mutex);
++	err = i915_active_ref(&pw->batch->active,
++			      tl->fence_context,
++			      &pw->base.dma);
 +	if (err)
 +		return err;
  
--	return page;
--}
--
--static void stash_push_pagevec(struct pagestash *stash, struct pagevec *pvec)
--{
--	unsigned int nr;
--
--	spin_lock_nested(&stash->lock, SINGLE_DEPTH_NESTING);
--
--	nr = min_t(typeof(nr), pvec->nr, pagevec_space(&stash->pvec));
--	memcpy(stash->pvec.pages + stash->pvec.nr,
--	       pvec->pages + pvec->nr - nr,
--	       sizeof(pvec->pages[0]) * nr);
--	stash->pvec.nr += nr;
--
--	spin_unlock(&stash->lock);
--
--	pvec->nr -= nr;
--}
--
--static struct page *vm_alloc_page(struct i915_address_space *vm, gfp_t gfp)
--{
--	struct pagevec stack;
--	struct page *page;
--
--	if (I915_SELFTEST_ONLY(should_fail(&vm->fault_attr, 1)))
--		i915_gem_shrink_all(vm->i915);
--
--	page = stash_pop_page(&vm->free_pages);
--	if (page)
--		return page;
--
--	if (!vm->pt_kmap_wc)
--		return alloc_page(gfp);
--
--	/* Look in our global stash of WC pages... */
--	page = stash_pop_page(&vm->i915->mm.wc_stash);
--	if (page)
--		return page;
--
--	/*
--	 * Otherwise batch allocate pages to amortize cost of set_pages_wc.
--	 *
--	 * We have to be careful as page allocation may trigger the shrinker
--	 * (via direct reclaim) which will fill up the WC stash underneath us.
--	 * So we add our WB pages into a temporary pvec on the stack and merge
--	 * them into the WC stash after all the allocations are complete.
--	 */
--	pagevec_init(&stack);
--	do {
--		struct page *page;
--
--		page = alloc_page(gfp);
--		if (unlikely(!page))
--			break;
--
--		stack.pages[stack.nr++] = page;
--	} while (pagevec_space(&stack));
--
--	if (stack.nr && !set_pages_array_wc(stack.pages, stack.nr)) {
--		page = stack.pages[--stack.nr];
--
--		/* Merge spare WC pages to the global stash */
--		if (stack.nr)
--			stash_push_pagevec(&vm->i915->mm.wc_stash, &stack);
--
--		/* Push any surplus WC pages onto the local VM stash */
--		if (stack.nr)
--			stash_push_pagevec(&vm->free_pages, &stack);
--	}
--
--	/* Return unwanted leftovers */
--	if (unlikely(stack.nr)) {
--		WARN_ON_ONCE(set_pages_array_wb(stack.pages, stack.nr));
--		__pagevec_release(&stack);
--	}
--
--	return page;
--}
--
--static void vm_free_pages_release(struct i915_address_space *vm,
--				  bool immediate)
--{
--	struct pagevec *pvec = &vm->free_pages.pvec;
--	struct pagevec stack;
--
--	lockdep_assert_held(&vm->free_pages.lock);
--	GEM_BUG_ON(!pagevec_count(pvec));
--
--	if (vm->pt_kmap_wc) {
--		/*
--		 * When we use WC, first fill up the global stash and then
--		 * only if full immediately free the overflow.
--		 */
--		stash_push_pagevec(&vm->i915->mm.wc_stash, pvec);
--
--		/*
--		 * As we have made some room in the VM's free_pages,
--		 * we can wait for it to fill again. Unless we are
--		 * inside i915_address_space_fini() and must
--		 * immediately release the pages!
--		 */
--		if (pvec->nr <= (immediate ? 0 : PAGEVEC_SIZE - 1))
--			return;
--
--		/*
--		 * We have to drop the lock to allow ourselves to sleep,
--		 * so take a copy of the pvec and clear the stash for
--		 * others to use it as we sleep.
--		 */
--		stack = *pvec;
--		pagevec_reinit(pvec);
--		spin_unlock(&vm->free_pages.lock);
--
--		pvec = &stack;
--		set_pages_array_wb(pvec->pages, pvec->nr);
--
--		spin_lock(&vm->free_pages.lock);
--	}
--
--	__pagevec_release(pvec);
--}
--
--static void vm_free_page(struct i915_address_space *vm, struct page *page)
--{
--	/*
--	 * On !llc, we need to change the pages back to WB. We only do so
--	 * in bulk, so we rarely need to change the page attributes here,
--	 * but doing so requires a stop_machine() from deep inside arch/x86/mm.
--	 * To make detection of the possible sleep more likely, use an
--	 * unconditional might_sleep() for everybody.
--	 */
--	might_sleep();
--	spin_lock(&vm->free_pages.lock);
--	while (!pagevec_space(&vm->free_pages.pvec))
--		vm_free_pages_release(vm, false);
--	GEM_BUG_ON(pagevec_count(&vm->free_pages.pvec) >= PAGEVEC_SIZE);
--	pagevec_add(&vm->free_pages.pvec, page);
--	spin_unlock(&vm->free_pages.lock);
-+	i915_gem_object_make_unshrinkable(obj);
+ 	err = __parser_mark_active(pw->shadow, tl, &pw->base.dma);
+ 	if (err)
+-		goto unlock;
++		return err;
+ 
+ 	if (pw->trampoline) {
+ 		err = __parser_mark_active(pw->trampoline, tl, &pw->base.dma);
+ 		if (err)
+-			goto unlock;
++			return err;
+ 	}
+ 
+-unlock:
+-	mutex_unlock(&tl->mutex);
+-	return err;
 +	return 0;
  }
  
- void __i915_vm_close(struct i915_address_space *vm)
-@@ -194,14 +55,7 @@ void __i915_vm_close(struct i915_address_space *vm)
+ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+@@ -1765,20 +1829,6 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 	if (!pw)
+ 		return -ENOMEM;
  
- void i915_address_space_fini(struct i915_address_space *vm)
- {
--	spin_lock(&vm->free_pages.lock);
--	if (pagevec_count(&vm->free_pages.pvec))
--		vm_free_pages_release(vm, true);
--	GEM_BUG_ON(pagevec_count(&vm->free_pages.pvec));
--	spin_unlock(&vm->free_pages.lock);
+-	err = i915_active_acquire(&eb->batch->vma->active);
+-	if (err)
+-		goto err_free;
 -
- 	drm_mm_takedown(&vm->mm);
+-	err = i915_active_acquire(&shadow->active);
+-	if (err)
+-		goto err_batch;
 -
- 	mutex_destroy(&vm->mutex);
- }
- 
-@@ -246,8 +100,6 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
- 	drm_mm_init(&vm->mm, 0, vm->total);
- 	vm->mm.head_node.color = I915_COLOR_UNEVICTABLE;
- 
--	stash_init(&vm->free_pages);
--
- 	INIT_LIST_HEAD(&vm->bound_list);
- }
- 
-@@ -264,64 +116,50 @@ void clear_pages(struct i915_vma *vma)
- 	memset(&vma->page_sizes, 0, sizeof(vma->page_sizes));
- }
- 
--static int __setup_page_dma(struct i915_address_space *vm,
--			    struct i915_page_dma *p,
--			    gfp_t gfp)
--{
--	p->page = vm_alloc_page(vm, gfp | I915_GFP_ALLOW_FAIL);
--	if (unlikely(!p->page))
--		return -ENOMEM;
--
--	p->daddr = dma_map_page_attrs(vm->dma,
--				      p->page, 0, PAGE_SIZE,
--				      PCI_DMA_BIDIRECTIONAL,
--				      DMA_ATTR_SKIP_CPU_SYNC |
--				      DMA_ATTR_NO_WARN);
--	if (unlikely(dma_mapping_error(vm->dma, p->daddr))) {
--		vm_free_page(vm, p->page);
--		return -ENOMEM;
+-	if (trampoline) {
+-		err = i915_active_acquire(&trampoline->active);
+-		if (err)
+-			goto err_shadow;
 -	}
 -
--	return 0;
--}
+ 	dma_fence_work_init(&pw->base, &eb_parse_ops);
+ 
+ 	pw->engine = eb->engine;
+@@ -1827,14 +1877,6 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 	i915_sw_fence_set_error_once(&pw->base.chain, err);
+ 	dma_fence_work_commit_imm(&pw->base);
+ 	return err;
 -
--int setup_page_dma(struct i915_address_space *vm, struct i915_page_dma *p)
-+dma_addr_t __px_dma(struct drm_i915_gem_object *p)
- {
--	return __setup_page_dma(vm, p, __GFP_HIGHMEM);
-+	GEM_BUG_ON(!i915_gem_object_has_pages(p));
-+	return sg_dma_address(p->mm.pages->sgl);
+-err_shadow:
+-	i915_active_release(&shadow->active);
+-err_batch:
+-	i915_active_release(&eb->batch->vma->active);
+-err_free:
+-	kfree(pw);
+-	return err;
  }
  
--void cleanup_page_dma(struct i915_address_space *vm, struct i915_page_dma *p)
-+struct page *__px_page(struct drm_i915_gem_object *p)
- {
--	dma_unmap_page(vm->dma, p->daddr, PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
--	vm_free_page(vm, p->page);
-+	GEM_BUG_ON(!i915_gem_object_has_pages(p));
-+	return sg_page(p->mm.pages->sgl);
+ static int eb_parse(struct i915_execbuffer *eb)
+@@ -2043,32 +2085,61 @@ static struct i915_request *eb_throttle(struct intel_context *ce)
+ 	return i915_request_get(rq);
  }
  
- void
--fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count)
-+fill_page_dma(struct drm_i915_gem_object *p, const u64 val, unsigned int count)
+-static int __eb_pin_engine(struct i915_execbuffer *eb, struct intel_context *ce)
++static bool reloc_can_use_engine(const struct intel_engine_cs *engine)
  {
--	kunmap_atomic(memset64(kmap_atomic(p->page), val, count));
-+	struct page *page = __px_page(p);
-+	void *vaddr;
-+
-+	vaddr = kmap(page);
-+	memset64(vaddr, val, count);
-+	clflush_cache_range(vaddr, PAGE_SIZE);
-+	kunmap(page);
- }
- 
--static void poison_scratch_page(struct page *page, unsigned long size)
-+static void poison_scratch_page(struct drm_i915_gem_object *scratch)
- {
--	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
--		return;
-+	struct sgt_iter sgt;
-+	struct page *page;
-+	u8 val;
- 
--	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
-+	val = 0;
-+	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-+		val = POISON_FREE;
- 
--	do {
-+	for_each_sgt_page(page, sgt, scratch->mm.pages) {
- 		void *vaddr;
- 
- 		vaddr = kmap(page);
--		memset(vaddr, POISON_FREE, PAGE_SIZE);
-+		memset(vaddr, val, PAGE_SIZE);
- 		kunmap(page);
--
--		page = pfn_to_page(page_to_pfn(page) + 1);
--		size -= PAGE_SIZE;
--	} while (size);
-+	}
- }
- 
--int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
-+int setup_scratch_page(struct i915_address_space *vm)
- {
- 	unsigned long size;
- 
-@@ -338,21 +176,27 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
- 	 */
- 	size = I915_GTT_PAGE_SIZE_4K;
- 	if (i915_vm_is_4lvl(vm) &&
--	    HAS_PAGE_SIZES(vm->i915, I915_GTT_PAGE_SIZE_64K)) {
-+	    HAS_PAGE_SIZES(vm->i915, I915_GTT_PAGE_SIZE_64K))
- 		size = I915_GTT_PAGE_SIZE_64K;
--		gfp |= __GFP_NOWARN;
--	}
--	gfp |= __GFP_ZERO | __GFP_RETRY_MAYFAIL;
- 
- 	do {
--		unsigned int order = get_order(size);
--		struct page *page;
--		dma_addr_t addr;
-+		struct drm_i915_gem_object *obj;
- 
--		page = alloc_pages(gfp, order);
--		if (unlikely(!page))
-+		obj = vm->alloc_pt_dma(vm, size);
-+		if (IS_ERR(obj))
- 			goto skip;
- 
-+		if (pin_pt_dma(vm, obj))
-+			goto skip_obj;
-+
-+		/* We need a single contiguous page for our scratch */
-+		if (obj->mm.page_sizes.sg < size)
-+			goto skip_obj;
-+
-+		/* And it needs to be correspondingly aligned */
-+		if (__px_dma(obj) & (size - 1))
-+			goto skip_obj;
-+
- 		/*
- 		 * Use a non-zero scratch page for debugging.
- 		 *
-@@ -362,61 +206,28 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
- 		 * should it ever be accidentally used, the effect should be
- 		 * fairly benign.
- 		 */
--		poison_scratch_page(page, size);
--
--		addr = dma_map_page_attrs(vm->dma,
--					  page, 0, size,
--					  PCI_DMA_BIDIRECTIONAL,
--					  DMA_ATTR_SKIP_CPU_SYNC |
--					  DMA_ATTR_NO_WARN);
--		if (unlikely(dma_mapping_error(vm->dma, addr)))
--			goto free_page;
--
--		if (unlikely(!IS_ALIGNED(addr, size)))
--			goto unmap_page;
--
--		vm->scratch[0].base.page = page;
--		vm->scratch[0].base.daddr = addr;
--		vm->scratch_order = order;
-+		poison_scratch_page(obj);
-+
-+		vm->scratch[0] = obj;
-+		vm->scratch_order = get_order(size);
- 		return 0;
- 
--unmap_page:
--		dma_unmap_page(vm->dma, addr, size, PCI_DMA_BIDIRECTIONAL);
--free_page:
--		__free_pages(page, order);
-+skip_obj:
-+		i915_gem_object_put(obj);
- skip:
- 		if (size == I915_GTT_PAGE_SIZE_4K)
- 			return -ENOMEM;
- 
- 		size = I915_GTT_PAGE_SIZE_4K;
--		gfp &= ~__GFP_NOWARN;
- 	} while (1);
- }
- 
--void cleanup_scratch_page(struct i915_address_space *vm)
--{
--	struct i915_page_dma *p = px_base(&vm->scratch[0]);
--	unsigned int order = vm->scratch_order;
--
--	dma_unmap_page(vm->dma, p->daddr, BIT(order) << PAGE_SHIFT,
--		       PCI_DMA_BIDIRECTIONAL);
--	__free_pages(p->page, order);
--}
--
- void free_scratch(struct i915_address_space *vm)
- {
- 	int i;
- 
--	if (!px_dma(&vm->scratch[0])) /* set to 0 on clones */
--		return;
--
--	for (i = 1; i <= vm->top; i++) {
--		if (!px_dma(&vm->scratch[i]))
--			break;
--		cleanup_page_dma(vm, px_base(&vm->scratch[i]));
--	}
--
--	cleanup_scratch_page(vm);
-+	for (i = 0; i <= vm->top; i++)
-+		i915_gem_object_put(vm->scratch[i]);
- }
- 
- void gtt_write_workarounds(struct intel_gt *gt)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index 0d9f29aea6b4..6abab2d37b6f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -134,31 +134,19 @@ typedef u64 gen8_pte_t;
- #define GEN8_PDE_IPS_64K BIT(11)
- #define GEN8_PDE_PS_2M   BIT(7)
- 
-+enum i915_cache_level;
-+
-+struct drm_i915_file_private;
-+struct drm_i915_gem_object;
- struct i915_fence_reg;
-+struct i915_vma;
-+struct intel_gt;
- 
- #define for_each_sgt_daddr(__dp, __iter, __sgt) \
- 	__for_each_sgt_daddr(__dp, __iter, __sgt, I915_GTT_PAGE_SIZE)
- 
--struct i915_page_dma {
--	struct page *page;
--	union {
--		dma_addr_t daddr;
--
--		/*
--		 * For gen6/gen7 only. This is the offset in the GGTT
--		 * where the page directory entries for PPGTT begin
--		 */
--		u32 ggtt_offset;
--	};
--};
--
--struct i915_page_scratch {
--	struct i915_page_dma base;
--	u64 encode;
--};
--
- struct i915_page_table {
--	struct i915_page_dma base;
-+	struct drm_i915_gem_object *base;
- 	union {
- 		atomic_t used;
- 		struct i915_page_table *stash;
-@@ -179,12 +167,14 @@ struct i915_page_directory {
- 	other)
- 
- #define px_base(px) \
--	__px_choose_expr(px, struct i915_page_dma *, __x, \
--	__px_choose_expr(px, struct i915_page_scratch *, &__x->base, \
--	__px_choose_expr(px, struct i915_page_table *, &__x->base, \
--	__px_choose_expr(px, struct i915_page_directory *, &__x->pt.base, \
--	(void)0))))
--#define px_dma(px) (px_base(px)->daddr)
-+	__px_choose_expr(px, struct drm_i915_gem_object *, __x, \
-+	__px_choose_expr(px, struct i915_page_table *, __x->base, \
-+	__px_choose_expr(px, struct i915_page_directory *, __x->pt.base, \
-+	(void)0)))
-+
-+struct page *__px_page(struct drm_i915_gem_object *p);
-+dma_addr_t __px_dma(struct drm_i915_gem_object *p);
-+#define px_dma(px) (__px_dma(px_base(px)))
- 
- #define px_pt(px) \
- 	__px_choose_expr(px, struct i915_page_table *, __x, \
-@@ -192,13 +182,6 @@ struct i915_page_directory {
- 	(void)0))
- #define px_used(px) (&px_pt(px)->used)
- 
--enum i915_cache_level;
--
--struct drm_i915_file_private;
--struct drm_i915_gem_object;
--struct i915_vma;
--struct intel_gt;
--
- struct i915_vm_pt_stash {
- 	/* preallocated chains of page tables/directories */
- 	struct i915_page_table *pt[2];
-@@ -222,13 +205,6 @@ struct i915_vma_ops {
- 	void (*clear_pages)(struct i915_vma *vma);
- };
- 
--struct pagestash {
--	spinlock_t lock;
--	struct pagevec pvec;
--};
--
--void stash_init(struct pagestash *stash);
--
- struct i915_address_space {
- 	struct kref ref;
- 	struct rcu_work rcu;
-@@ -265,20 +241,15 @@ struct i915_address_space {
- #define VM_CLASS_GGTT 0
- #define VM_CLASS_PPGTT 1
- 
--	struct i915_page_scratch scratch[4];
-+	struct drm_i915_gem_object *scratch[4];
- 	/**
- 	 * List of vma currently bound.
- 	 */
- 	struct list_head bound_list;
- 
--	struct pagestash free_pages;
--
- 	/* Global GTT */
- 	bool is_ggtt:1;
- 
--	/* Some systems require uncached updates of the page directories */
--	bool pt_kmap_wc:1;
--
- 	/* Some systems support read-only mappings for GGTT and/or PPGTT */
- 	bool has_read_only:1;
- 
-@@ -286,6 +257,9 @@ struct i915_address_space {
- 	u8 pd_shift;
- 	u8 scratch_order;
- 
-+	struct drm_i915_gem_object *
-+		(*alloc_pt_dma)(struct i915_address_space *vm, int sz);
-+
- 	u64 (*pte_encode)(dma_addr_t addr,
- 			  enum i915_cache_level level,
- 			  u32 flags); /* Create a valid PTE */
-@@ -501,9 +475,9 @@ i915_pd_entry(const struct i915_page_directory * const pdp,
- static inline dma_addr_t
- i915_page_dir_dma_addr(const struct i915_ppgtt *ppgtt, const unsigned int n)
- {
--	struct i915_page_dma *pt = ppgtt->pd->entry[n];
-+	struct i915_page_table *pt = ppgtt->pd->entry[n];
- 
--	return px_dma(pt ?: px_base(&ppgtt->vm.scratch[ppgtt->vm.top]));
-+	return __px_dma(pt ? px_base(pt) : ppgtt->vm.scratch[ppgtt->vm.top]);
- }
- 
- void ppgtt_init(struct i915_ppgtt *ppgtt, struct intel_gt *gt);
-@@ -528,13 +502,10 @@ struct i915_ppgtt *i915_ppgtt_create(struct intel_gt *gt);
- void i915_ggtt_suspend(struct i915_ggtt *gtt);
- void i915_ggtt_resume(struct i915_ggtt *ggtt);
- 
--int setup_page_dma(struct i915_address_space *vm, struct i915_page_dma *p);
--void cleanup_page_dma(struct i915_address_space *vm, struct i915_page_dma *p);
--
--#define kmap_atomic_px(px) kmap_atomic(px_base(px)->page)
-+#define kmap_atomic_px(px) kmap_atomic(__px_page(px_base(px)))
- 
- void
--fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count);
-+fill_page_dma(struct drm_i915_gem_object *p, const u64 val, unsigned int count);
- 
- #define fill_px(px, v) fill_page_dma(px_base(px), (v), PAGE_SIZE / sizeof(u64))
- #define fill32_px(px, v) do {						\
-@@ -542,37 +513,38 @@ fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count);
- 	fill_px((px), v__ << 32 | v__);					\
- } while (0)
- 
--int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp);
--void cleanup_scratch_page(struct i915_address_space *vm);
-+int setup_scratch_page(struct i915_address_space *vm);
- void free_scratch(struct i915_address_space *vm);
- 
-+struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz);
- struct i915_page_table *alloc_pt(struct i915_address_space *vm);
- struct i915_page_directory *alloc_pd(struct i915_address_space *vm);
- struct i915_page_directory *__alloc_pd(size_t sz);
- 
--void free_pd(struct i915_address_space *vm, struct i915_page_dma *pd);
-+int pin_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj);
- 
--#define free_px(vm, px) free_pd(vm, px_base(px))
-+void free_pt(struct i915_address_space *vm, struct i915_page_table *pt);
-+#define free_px(vm, px) free_pt(vm, px_pt(px))
- 
- void
- __set_pd_entry(struct i915_page_directory * const pd,
- 	       const unsigned short idx,
--	       struct i915_page_dma * const to,
-+	       struct i915_page_table *pt,
- 	       u64 (*encode)(const dma_addr_t, const enum i915_cache_level));
- 
- #define set_pd_entry(pd, idx, to) \
--	__set_pd_entry((pd), (idx), px_base(to), gen8_pde_encode)
-+	__set_pd_entry((pd), (idx), px_pt(to), gen8_pde_encode)
- 
- void
- clear_pd_entry(struct i915_page_directory * const pd,
- 	       const unsigned short idx,
--	       const struct i915_page_scratch * const scratch);
-+	       const struct drm_i915_gem_object * const scratch);
- 
- bool
- release_pd_entry(struct i915_page_directory * const pd,
- 		 const unsigned short idx,
- 		 struct i915_page_table * const pt,
--		 const struct i915_page_scratch * const scratch);
-+		 const struct drm_i915_gem_object * const scratch);
- void gen6_ggtt_invalidate(struct i915_ggtt *ggtt);
- 
- int ggtt_set_pages(struct i915_vma *vma);
-@@ -594,6 +566,8 @@ void setup_private_pat(struct intel_uncore *uncore);
- int i915_vm_alloc_pt_stash(struct i915_address_space *vm,
- 			   struct i915_vm_pt_stash *stash,
- 			   u64 size);
-+int i915_vm_pin_pt_stash(struct i915_address_space *vm,
-+			 struct i915_vm_pt_stash *stash);
- void i915_vm_free_pt_stash(struct i915_address_space *vm,
- 			   struct i915_vm_pt_stash *stash);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-index 7c3f50948829..1f80d79a6588 100644
---- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-@@ -18,7 +18,8 @@ struct i915_page_table *alloc_pt(struct i915_address_space *vm)
- 	if (unlikely(!pt))
- 		return ERR_PTR(-ENOMEM);
- 
--	if (unlikely(setup_page_dma(vm, &pt->base))) {
-+	pt->base = vm->alloc_pt_dma(vm, I915_GTT_PAGE_SIZE_4K);
-+	if (IS_ERR(pt->base)) {
- 		kfree(pt);
- 		return ERR_PTR(-ENOMEM);
- 	}
-@@ -47,7 +48,8 @@ struct i915_page_directory *alloc_pd(struct i915_address_space *vm)
- 	if (unlikely(!pd))
- 		return ERR_PTR(-ENOMEM);
- 
--	if (unlikely(setup_page_dma(vm, px_base(pd)))) {
-+	pd->pt.base = vm->alloc_pt_dma(vm, I915_GTT_PAGE_SIZE_4K);
-+	if (IS_ERR(pd->pt.base)) {
- 		kfree(pd);
- 		return ERR_PTR(-ENOMEM);
- 	}
-@@ -55,27 +57,28 @@ struct i915_page_directory *alloc_pd(struct i915_address_space *vm)
- 	return pd;
- }
- 
--void free_pd(struct i915_address_space *vm, struct i915_page_dma *pd)
-+void free_pt(struct i915_address_space *vm, struct i915_page_table *pt)
- {
--	cleanup_page_dma(vm, pd);
--	kfree(pd);
-+	i915_gem_object_put(pt->base);
-+	kfree(pt);
- }
- 
- static inline void
--write_dma_entry(struct i915_page_dma * const pdma,
-+write_dma_entry(struct drm_i915_gem_object * const pdma,
- 		const unsigned short idx,
- 		const u64 encoded_entry)
- {
--	u64 * const vaddr = kmap_atomic(pdma->page);
-+	u64 * const vaddr = kmap_atomic(__px_page(pdma));
- 
- 	vaddr[idx] = encoded_entry;
-+	clflush_cache_range(&vaddr[idx], sizeof(u64));
- 	kunmap_atomic(vaddr);
- }
- 
- void
- __set_pd_entry(struct i915_page_directory * const pd,
- 	       const unsigned short idx,
--	       struct i915_page_dma * const to,
-+	       struct i915_page_table * const to,
- 	       u64 (*encode)(const dma_addr_t, const enum i915_cache_level))
- {
- 	/* Each thread pre-pins the pd, and we may have a thread per pde. */
-@@ -83,13 +86,13 @@ __set_pd_entry(struct i915_page_directory * const pd,
- 
- 	atomic_inc(px_used(pd));
- 	pd->entry[idx] = to;
--	write_dma_entry(px_base(pd), idx, encode(to->daddr, I915_CACHE_LLC));
-+	write_dma_entry(px_base(pd), idx, encode(px_dma(to), I915_CACHE_LLC));
- }
- 
- void
- clear_pd_entry(struct i915_page_directory * const pd,
- 	       const unsigned short idx,
--	       const struct i915_page_scratch * const scratch)
-+	       const struct drm_i915_gem_object * const scratch)
- {
- 	GEM_BUG_ON(atomic_read(px_used(pd)) == 0);
- 
-@@ -102,7 +105,7 @@ bool
- release_pd_entry(struct i915_page_directory * const pd,
- 		 const unsigned short idx,
- 		 struct i915_page_table * const pt,
--		 const struct i915_page_scratch * const scratch)
-+		 const struct drm_i915_gem_object * const scratch)
- {
- 	bool free = false;
- 
-@@ -234,6 +237,23 @@ int i915_vm_alloc_pt_stash(struct i915_address_space *vm,
- 	return 0;
- }
- 
-+int i915_vm_pin_pt_stash(struct i915_address_space *vm,
-+			 struct i915_vm_pt_stash *stash)
-+{
-+	struct i915_page_table *pt;
-+	int n, err;
-+
-+	for (n = 0; n < ARRAY_SIZE(stash->pt); n++) {
-+		for (pt = stash->pt[n]; pt; pt = pt->stash) {
-+			err = pin_pt_dma(vm, pt->base);
-+			if (err)
-+				return err;
-+		}
-+	}
-+
-+	return 0;
+-	struct intel_timeline *tl;
+-	struct i915_request *rq;
++	return engine->class != VIDEO_DECODE_CLASS || !IS_GEN(engine->i915, 6);
 +}
 +
- void i915_vm_free_pt_stash(struct i915_address_space *vm,
- 			   struct i915_vm_pt_stash *stash)
- {
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 94915f668715..9a126ad517c1 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -201,16 +201,18 @@ static struct i915_address_space *vm_alias(struct i915_address_space *vm)
- 	return vm;
- }
- 
-+static u32 pp_dir(struct i915_address_space *vm)
++static int __eb_pin_reloc_engine(struct i915_execbuffer *eb)
 +{
-+	return to_gen6_ppgtt(i915_vm_to_ppgtt(vm))->pp_dir;
-+}
-+
- static void set_pp_dir(struct intel_engine_cs *engine)
- {
- 	struct i915_address_space *vm = vm_alias(engine->gt->vm);
++	struct intel_engine_cs *engine = eb->engine;
++	struct intel_context *ce;
+ 	int err;
  
- 	if (vm) {
--		struct i915_ppgtt *ppgtt = i915_vm_to_ppgtt(vm);
--
- 		ENGINE_WRITE(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
--		ENGINE_WRITE(engine, RING_PP_DIR_BASE,
--			     px_base(ppgtt->pd)->ggtt_offset << 10);
-+		ENGINE_WRITE(engine, RING_PP_DIR_BASE, pp_dir(vm));
- 	}
- }
- 
-@@ -608,7 +610,7 @@ static const struct intel_context_ops ring_context_ops = {
- };
- 
- static int load_pd_dir(struct i915_request *rq,
--		       const struct i915_ppgtt *ppgtt,
-+		       struct i915_address_space *vm,
- 		       u32 valid)
- {
- 	const struct intel_engine_cs * const engine = rq->engine;
-@@ -624,7 +626,7 @@ static int load_pd_dir(struct i915_request *rq,
- 
- 	*cs++ = MI_LOAD_REGISTER_IMM(1);
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
--	*cs++ = px_base(ppgtt->pd)->ggtt_offset << 10;
-+	*cs++ = pp_dir(vm);
- 
- 	/* Stall until the page table load is complete? */
- 	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
-@@ -826,7 +828,7 @@ static int switch_mm(struct i915_request *rq, struct i915_address_space *vm)
- 	 * post-sync op, this extra pass appears vital before a
- 	 * mm switch!
- 	 */
--	ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
-+	ret = load_pd_dir(rq, vm, PP_DIR_DCLV_2G);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
-index 3c3b9842bbbd..1570eb8aa978 100644
---- a/drivers/gpu/drm/i915/gvt/scheduler.c
-+++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-@@ -403,6 +403,14 @@ static void release_shadow_wa_ctx(struct intel_shadow_wa_ctx *wa_ctx)
- 	wa_ctx->indirect_ctx.shadow_va = NULL;
- }
- 
-+static void set_dma_address(struct i915_page_directory *pd, dma_addr_t addr)
-+{
-+	struct scatterlist *sg = pd->pt.base->mm.pages->sgl;
-+
-+	/* This is not a good idea */
-+	sg->dma_address = addr;
-+}
-+
- static void set_context_ppgtt_from_shadow(struct intel_vgpu_workload *workload,
- 					  struct intel_context *ce)
- {
-@@ -411,7 +419,7 @@ static void set_context_ppgtt_from_shadow(struct intel_vgpu_workload *workload,
- 	int i = 0;
- 
- 	if (mm->ppgtt_mm.root_entry_type == GTT_TYPE_PPGTT_ROOT_L4_ENTRY) {
--		px_dma(ppgtt->pd) = mm->ppgtt_mm.shadow_pdps[0];
-+		set_dma_address(ppgtt->pd, mm->ppgtt_mm.shadow_pdps[0]);
- 	} else {
- 		for (i = 0; i < GVT_RING_CTX_NR_PDPS; i++) {
- 			struct i915_page_directory * const pd =
-@@ -421,7 +429,8 @@ static void set_context_ppgtt_from_shadow(struct intel_vgpu_workload *workload,
- 			   shadow ppgtt. */
- 			if (!pd)
- 				break;
--			px_dma(pd) = mm->ppgtt_mm.shadow_pdps[i];
-+
-+			set_dma_address(pd, mm->ppgtt_mm.shadow_pdps[i]);
- 		}
- 	}
- }
-@@ -1240,13 +1249,13 @@ i915_context_ppgtt_root_restore(struct intel_vgpu_submission *s,
- 	int i;
- 
- 	if (i915_vm_is_4lvl(&ppgtt->vm)) {
--		px_dma(ppgtt->pd) = s->i915_context_pml4;
-+		set_dma_address(ppgtt->pd, s->i915_context_pml4);
- 	} else {
- 		for (i = 0; i < GEN8_3LVL_PDPES; i++) {
- 			struct i915_page_directory * const pd =
- 				i915_pd_entry(ppgtt->pd, i);
- 
--			px_dma(pd) = s->i915_context_pdps[i];
-+			set_dma_address(pd, s->i915_context_pdps[i]);
- 		}
- 	}
- }
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 5fd5af4bc855..503a89e0ea09 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -1075,6 +1075,7 @@ static void i915_driver_release(struct drm_device *dev)
- 
- 	intel_memory_regions_driver_release(dev_priv);
- 	i915_ggtt_driver_release(dev_priv);
-+	i915_gem_drain_freed_objects(dev_priv);
- 
- 	i915_driver_mmio_release(dev_priv);
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 9ba6cfff9e3f..bd7ff2ad6514 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -591,11 +591,6 @@ struct i915_gem_mm {
- 	 */
- 	atomic_t free_count;
- 
--	/**
--	 * Small stash of WC pages
+-	/*
+-	 * ABI: Before userspace accesses the GPU (e.g. execbuffer), report
+-	 * EIO if the GPU is already wedged.
 -	 */
--	struct pagestash wc_stash;
--
- 	/**
- 	 * tmpfs instance used for shmem backed objects
- 	 */
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index a9e79b67035e..c6bf04ca2032 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -872,24 +872,30 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+-	err = intel_gt_terminally_wedged(ce->engine->gt);
+-	if (err)
+-		return err;
++	if (reloc_can_use_engine(engine)) {
++		eb->reloc_cache.ce = eb->context;
++		return 0;
++	}
+ 
+-	if (unlikely(intel_context_is_banned(ce)))
+-		return -EIO;
++	engine = engine->gt->engine_class[COPY_ENGINE_CLASS][0];
++	if (!engine)
++		return -ENODEV;
++
++	ce = intel_context_create(engine);
++	if (IS_ERR(ce))
++		return PTR_ERR(ce);
++
++	/* Reuse eb->context->timeline with scheduler! */
++
++	i915_vm_put(ce->vm);
++	ce->vm = i915_vm_get(eb->context->vm);
+ 
+-	/*
+-	 * Pinning the contexts may generate requests in order to acquire
+-	 * GGTT space, so do this first before we reserve a seqno for
+-	 * ourselves.
+-	 */
+ 	err = intel_context_pin(ce);
  	if (err)
  		return err;
  
-+	if (flags & PIN_GLOBAL)
-+		wakeref = intel_runtime_pm_get(&vma->vm->i915->runtime_pm);
++	eb->reloc_cache.ce = ce;
++	return 0;
++}
 +
- 	if (flags & vma->vm->bind_async_flags) {
- 		work = i915_vma_work();
- 		if (!work) {
- 			err = -ENOMEM;
--			goto err_pages;
-+			goto err_rpm;
- 		}
- 
- 		work->vm = i915_vm_get(vma->vm);
- 
- 		/* Allocate enough page directories to used PTE */
--		if (vma->vm->allocate_va_range)
-+		if (vma->vm->allocate_va_range) {
- 			i915_vm_alloc_pt_stash(vma->vm,
- 					       &work->stash,
- 					       vma->size);
--	}
- 
--	if (flags & PIN_GLOBAL)
--		wakeref = intel_runtime_pm_get(&vma->vm->i915->runtime_pm);
-+			err = i915_vm_pin_pt_stash(vma->vm,
-+						   &work->stash);
-+			if (err)
-+				goto err_fence;
-+		}
-+	}
- 
++static void __eb_unpin_reloc_engine(struct i915_execbuffer *eb)
++{
++	struct intel_context *ce = eb->reloc_cache.ce;
++
++	if (ce == eb->context)
++		return;
++
++	intel_context_unpin(ce);
++	intel_context_put(ce);
++}
++
++static int eb_lock_engine(struct i915_execbuffer *eb)
++{
++	struct intel_context *ce = eb->context;
++	struct intel_timeline *tl;
++	struct i915_request *rq;
++	int err;
++
  	/*
- 	 * Differentiate between user/kernel vma inside the aliasing-ppgtt.
-@@ -978,9 +984,9 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- err_fence:
- 	if (work)
- 		dma_fence_work_commit_imm(&work->base);
-+err_rpm:
- 	if (wakeref)
- 		intel_runtime_pm_put(&vma->vm->i915->runtime_pm, wakeref);
--err_pages:
- 	vma_put_pages(vma);
- 	return err;
- }
-diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-index 9b8fc990e9ef..af8205a2bd8f 100644
---- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-@@ -178,6 +178,12 @@ static int igt_ppgtt_alloc(void *arg)
- 		if (err)
- 			goto err_ppgtt_cleanup;
+ 	 * Take a local wakeref for preparing to dispatch the execbuf as
+ 	 * we expect to access the hardware fairly frequently in the
+@@ -2078,17 +2149,17 @@ static int __eb_pin_engine(struct i915_execbuffer *eb, struct intel_context *ce)
+ 	 * taken on the engine, and the parent device.
+ 	 */
+ 	tl = intel_context_timeline_lock(ce);
+-	if (IS_ERR(tl)) {
+-		err = PTR_ERR(tl);
+-		goto err_unpin;
+-	}
++	if (IS_ERR(tl))
++		return PTR_ERR(tl);
  
-+		err = i915_vm_pin_pt_stash(&ppgtt->vm, &stash);
-+		if (err) {
-+			i915_vm_free_pt_stash(&ppgtt->vm, &stash);
-+			goto err_ppgtt_cleanup;
-+		}
+ 	intel_context_enter(ce);
+-	rq = eb_throttle(ce);
+-
+-	intel_context_timeline_unlock(tl);
+ 
+-	if (rq) {
++	/*
++	 * Before we begin, make sure there is enough space in the ring to
++	 * build the mightiest of requests, and to ratelimits those hogs
++	 * who do succeed in flooding the rings.
++	 */
++	while ((rq = eb_throttle(ce))) {
+ 		bool nonblock = eb->file->filp->f_flags & O_NONBLOCK;
+ 		long timeout;
+ 
+@@ -2096,40 +2167,51 @@ static int __eb_pin_engine(struct i915_execbuffer *eb, struct intel_context *ce)
+ 		if (nonblock)
+ 			timeout = 0;
+ 
++		mutex_unlock(&tl->mutex);
 +
- 		ppgtt->vm.allocate_va_range(&ppgtt->vm, &stash, 0, size);
- 		cond_resched();
+ 		timeout = i915_request_wait(rq,
+ 					    I915_WAIT_INTERRUPTIBLE,
+ 					    timeout);
+ 		i915_request_put(rq);
  
-@@ -194,6 +200,12 @@ static int igt_ppgtt_alloc(void *arg)
- 		if (err)
- 			goto err_ppgtt_cleanup;
- 
-+		err = i915_vm_pin_pt_stash(&ppgtt->vm, &stash);
-+		if (err) {
-+			i915_vm_free_pt_stash(&ppgtt->vm, &stash);
-+			goto err_ppgtt_cleanup;
-+		}
++		mutex_lock(&tl->mutex);
 +
- 		ppgtt->vm.allocate_va_range(&ppgtt->vm, &stash,
- 					    last, size - last);
- 		cond_resched();
-@@ -289,6 +301,11 @@ static int lowlevel_hole(struct i915_address_space *vm,
- 							   BIT_ULL(size)))
- 					break;
- 
-+				if (i915_vm_pin_pt_stash(vm, &stash)) {
-+					i915_vm_free_pt_stash(vm, &stash);
-+					break;
-+				}
+ 		if (timeout < 0) {
+ 			err = nonblock ? -EWOULDBLOCK : timeout;
+ 			goto err_exit;
+ 		}
 +
- 				vm->allocate_va_range(vm, &stash,
- 						      addr, BIT_ULL(size));
- 
-@@ -1912,6 +1929,12 @@ static int igt_cs_tlb(void *arg)
- 			if (err)
- 				goto end;
- 
-+			err = i915_vm_pin_pt_stash(vm, &stash);
-+			if (err) {
-+				i915_vm_free_pt_stash(vm, &stash);
-+				goto end;
-+			}
-+
- 			vm->allocate_va_range(vm, &stash, offset, chunk_size);
- 
- 			i915_vm_free_pt_stash(vm, &stash);
-diff --git a/drivers/gpu/drm/i915/selftests/i915_perf.c b/drivers/gpu/drm/i915/selftests/i915_perf.c
-index c2d001d9c0ec..debbac660519 100644
---- a/drivers/gpu/drm/i915/selftests/i915_perf.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_perf.c
-@@ -307,7 +307,7 @@ static int live_noa_gpr(void *arg)
++		retire_requests(tl);
  	}
  
- 	/* Poison the ce->vm so we detect writes not to the GGTT gt->scratch */
--	scratch = kmap(ce->vm->scratch[0].base.page);
-+	scratch = kmap(__px_page(ce->vm->scratch[0]));
- 	memset(scratch, POISON_FREE, PAGE_SIZE);
- 
- 	rq = intel_context_create_request(ce);
-@@ -405,7 +405,7 @@ static int live_noa_gpr(void *arg)
- out_rq:
- 	i915_request_put(rq);
- out_ce:
--	kunmap(ce->vm->scratch[0].base.page);
-+	kunmap(__px_page(ce->vm->scratch[0]));
- 	intel_context_put(ce);
- out:
- 	stream_destroy(stream);
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gtt.c b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-index 5e4fb0fba34b..7270fc8ca801 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gtt.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-@@ -78,6 +78,8 @@ struct i915_ppgtt *mock_ppgtt(struct drm_i915_private *i915, const char *name)
- 
- 	i915_address_space_init(&ppgtt->vm, VM_CLASS_PPGTT);
- 
-+	ppgtt->vm.alloc_pt_dma = alloc_pt_dma;
+-	eb->engine = ce->engine;
+-	eb->context = ce;
++	err = __eb_pin_reloc_engine(eb);
++	if (err)
++		goto err_exit;
 +
- 	ppgtt->vm.clear_range = mock_clear_range;
- 	ppgtt->vm.insert_page = mock_insert_page;
- 	ppgtt->vm.insert_entries = mock_insert_entries;
-@@ -116,6 +118,8 @@ void mock_init_ggtt(struct drm_i915_private *i915, struct i915_ggtt *ggtt)
- 	ggtt->mappable_end = resource_size(&ggtt->gmadr);
- 	ggtt->vm.total = 4096 * PAGE_SIZE;
+ 	return 0;
  
-+	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
+ err_exit:
+-	mutex_lock(&tl->mutex);
+ 	intel_context_exit(ce);
+ 	intel_context_timeline_unlock(tl);
+-err_unpin:
+-	intel_context_unpin(ce);
+ 	return err;
+ }
+ 
+-static void eb_unpin_engine(struct i915_execbuffer *eb)
++static void eb_unlock_engine(struct i915_execbuffer *eb)
+ {
+ 	struct intel_context *ce = eb->context;
+-	struct intel_timeline *tl = ce->timeline;
+ 
+-	mutex_lock(&tl->mutex);
++	__eb_unpin_reloc_engine(eb);
 +
- 	ggtt->vm.clear_range = mock_clear_range;
- 	ggtt->vm.insert_page = mock_insert_page;
- 	ggtt->vm.insert_entries = mock_insert_entries;
++	/* Try to clean up the client's timeline after submitting the request */
++	retire_requests(ce->timeline);
++
+ 	intel_context_exit(ce);
+-	mutex_unlock(&tl->mutex);
++	intel_context_timeline_unlock(ce->timeline);
++}
+ 
+-	intel_context_unpin(ce);
++static void eb_unpin_engine(struct i915_execbuffer *eb)
++{
++	intel_context_unpin(eb->context);
+ }
+ 
+ static unsigned int
+@@ -2176,6 +2258,35 @@ eb_select_legacy_ring(struct i915_execbuffer *eb,
+ 	return user_ring_map[user_ring_id];
+ }
+ 
++static int __eb_pin_engine(struct i915_execbuffer *eb, struct intel_context *ce)
++{
++	int err;
++
++	/*
++	 * ABI: Before userspace accesses the GPU (e.g. execbuffer), report
++	 * EIO if the GPU is already wedged.
++	 */
++	err = intel_gt_terminally_wedged(ce->engine->gt);
++	if (err)
++		return err;
++
++	if (unlikely(intel_context_is_banned(ce)))
++		return -EIO;
++
++	/*
++	 * Pinning the contexts may generate requests in order to acquire
++	 * GGTT space, so do this first before we reserve a seqno for
++	 * ourselves.
++	 */
++	err = intel_context_pin(ce);
++	if (err)
++		return err;
++
++	eb->engine = ce->engine;
++	eb->context = ce;
++	return 0;
++}
++
+ static int
+ eb_pin_engine(struct i915_execbuffer *eb,
+ 	      struct drm_file *file,
+@@ -2329,28 +2440,18 @@ signal_fence_array(struct i915_execbuffer *eb,
+ 	}
+ }
+ 
+-static void retire_requests(struct intel_timeline *tl, struct i915_request *end)
+-{
+-	struct i915_request *rq, *rn;
+-
+-	list_for_each_entry_safe(rq, rn, &tl->requests, link)
+-		if (rq == end || !i915_request_retire(rq))
+-			break;
+-}
+-
+ static void eb_request_add(struct i915_execbuffer *eb)
+ {
+ 	struct i915_request *rq = eb->request;
+ 	struct intel_timeline * const tl = i915_request_timeline(rq);
+ 	struct i915_sched_attr attr = {};
+-	struct i915_request *prev;
+ 
+ 	lockdep_assert_held(&tl->mutex);
+ 	lockdep_unpin_lock(&tl->mutex, rq->cookie);
+ 
+ 	trace_i915_request_add(rq);
+ 
+-	prev = __i915_request_commit(rq);
++	__i915_request_commit(rq);
+ 
+ 	/* Check that the context wasn't destroyed before submission */
+ 	if (likely(!intel_context_is_closed(eb->context))) {
+@@ -2362,12 +2463,6 @@ static void eb_request_add(struct i915_execbuffer *eb)
+ 	}
+ 
+ 	__i915_request_queue(rq, &attr);
+-
+-	/* Try to clean up the client's timeline after submitting the request */
+-	if (prev)
+-		retire_requests(tl, prev);
+-
+-	mutex_unlock(&tl->mutex);
+ }
+ 
+ static int
+@@ -2455,6 +2550,12 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	if (unlikely(err))
+ 		goto err_context;
+ 
++	/* *** TIMELINE LOCK *** */
++	err = eb_lock_engine(&eb);
++	if (unlikely(err))
++		goto err_engine;
++	lockdep_assert_held(&eb.context->timeline->mutex);
++
+ 	err = eb_relocate(&eb);
+ 	if (err) {
+ 		/*
+@@ -2521,11 +2622,12 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	GEM_BUG_ON(eb.reloc_cache.rq);
+ 
+ 	/* Allocate a request for this batch buffer nice and early. */
+-	eb.request = i915_request_create(eb.context);
++	eb.request = __i915_request_create(eb.context, GFP_KERNEL);
+ 	if (IS_ERR(eb.request)) {
+ 		err = PTR_ERR(eb.request);
+ 		goto err_batch_unpin;
+ 	}
++	eb.request->cookie = lockdep_pin_lock(&eb.context->timeline->mutex);
+ 
+ 	if (in_fence) {
+ 		if (args->flags & I915_EXEC_FENCE_SUBMIT)
+@@ -2567,23 +2669,13 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	trace_i915_request_queue(eb.request, eb.batch_flags);
+ 	err = eb_submit(&eb, batch);
+ err_request:
+-	add_to_client(eb.request, file);
+ 	i915_request_get(eb.request);
+ 	eb_request_add(&eb);
+ 
+ 	if (fences)
+ 		signal_fence_array(&eb, fences);
+ 
+-	if (out_fence) {
+-		if (err == 0) {
+-			fd_install(out_fence_fd, out_fence->file);
+-			args->rsvd2 &= GENMASK_ULL(31, 0); /* keep in-fence */
+-			args->rsvd2 |= (u64)out_fence_fd << 32;
+-			out_fence_fd = -1;
+-		} else {
+-			fput(out_fence->file);
+-		}
+-	}
++	add_to_client(eb.request, file);
+ 	i915_request_put(eb.request);
+ 
+ err_batch_unpin:
+@@ -2595,12 +2687,25 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ err_vma:
+ 	if (eb.trampoline)
+ 		i915_vma_unpin(eb.trampoline);
++	eb_unlock_engine(&eb);
++	/* *** TIMELINE UNLOCK *** */
++err_engine:
+ 	eb_unpin_engine(&eb);
+ err_context:
+ 	i915_gem_context_put(eb.gem_context);
+ err_destroy:
+ 	eb_destroy(&eb);
+ err_out_fence:
++	if (out_fence) {
++		if (err == 0) {
++			fd_install(out_fence_fd, out_fence->file);
++			args->rsvd2 &= GENMASK_ULL(31, 0); /* keep in-fence */
++			args->rsvd2 |= (u64)out_fence_fd << 32;
++			out_fence_fd = -1;
++		} else {
++			fput(out_fence->file);
++		}
++	}
+ 	if (out_fence_fd != -1)
+ 		put_unused_fd(out_fence_fd);
+ err_in_fence:
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+index 57c14d3340cd..992d46db1b33 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+@@ -7,6 +7,9 @@
+ 
+ #include "gt/intel_engine_pm.h"
+ #include "selftests/igt_flush_test.h"
++#include "selftests/mock_drm.h"
++
++#include "mock_context.h"
+ 
+ static u64 read_reloc(const u32 *map, int x, const u64 mask)
+ {
+@@ -60,7 +63,7 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+ 
+ 	GEM_BUG_ON(!eb->reloc_cache.rq);
+ 	rq = i915_request_get(eb->reloc_cache.rq);
+-	err = reloc_gpu_flush(&eb->reloc_cache);
++	err = reloc_gpu_flush(eb);
+ 	if (err)
+ 		goto put_rq;
+ 	GEM_BUG_ON(eb->reloc_cache.rq);
+@@ -100,14 +103,22 @@ static int igt_gpu_reloc(void *arg)
+ {
+ 	struct i915_execbuffer eb;
+ 	struct drm_i915_gem_object *scratch;
++	struct file *file;
+ 	int err = 0;
+ 	u32 *map;
+ 
++	file = mock_file(arg);
++	if (IS_ERR(file))
++		return PTR_ERR(file);
++
+ 	eb.i915 = arg;
++	eb.gem_context = live_context(arg, file);
++	if (IS_ERR(eb.gem_context))
++		goto err_file;
+ 
+ 	scratch = i915_gem_object_create_internal(eb.i915, 4096);
+ 	if (IS_ERR(scratch))
+-		return PTR_ERR(scratch);
++		goto err_file;
+ 
+ 	map = i915_gem_object_pin_map(scratch, I915_MAP_WC);
+ 	if (IS_ERR(map)) {
+@@ -130,8 +141,15 @@ static int igt_gpu_reloc(void *arg)
+ 		if (err)
+ 			goto err_put;
+ 
++		mutex_lock(&eb.context->timeline->mutex);
++		intel_context_enter(eb.context);
++		eb.reloc_cache.ce = eb.context;
++
+ 		err = __igt_gpu_reloc(&eb, scratch);
+ 
++		intel_context_exit(eb.context);
++		mutex_unlock(&eb.context->timeline->mutex);
++
+ 		intel_context_unpin(eb.context);
+ err_put:
+ 		intel_context_put(eb.context);
+@@ -146,6 +164,8 @@ static int igt_gpu_reloc(void *arg)
+ 
+ err_scratch:
+ 	i915_gem_object_put(scratch);
++err_file:
++	fput(file);
+ 	return err;
+ }
+ 
 -- 
 2.20.1
 
