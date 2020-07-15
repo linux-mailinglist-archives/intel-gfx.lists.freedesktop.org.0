@@ -1,56 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3339220AA3
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:05:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A814220B27
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:11:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1B576E082;
-	Wed, 15 Jul 2020 11:05:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 633536EAA2;
+	Wed, 15 Jul 2020 11:11:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com
- [IPv6:2607:f8b0:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 770D76E082
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:05:18 +0000 (UTC)
-Received: by mail-il1-x12b.google.com with SMTP id h16so1570892ilj.11
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 04:05:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=basnieuwenhuizen-nl.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ouG49VA4xk2vrvpG0VnN69idUXmFZrH/pn1ZmxXpzDU=;
- b=Sr5FqN/0aOR+KGr5kKNyZvHHas9BR6wkNR5nQSIO13n5K1CIuzqHk3EOk8vKhRUAez
- 1XcOCU7/Tnq5lsGuMEtBqk4Jm/pXwD4gq00+ga/i0iMSaODmcY4SsEFe1kaxgbNo2g8H
- DfRHenbLfYihQd0MWJafryvTYt4E/PH0dFOyshcEF/UrflHUcErSk1FKSwWd+zTqfZpR
- 8TqZoEBg01ZyfslmPjARTDRFqXZM4pb2FIolaOI1zi3tqc4mE+RYta8XH2Tmbswue+py
- Bvb1X64tI31op9ryGM+/raT3mBNYBK0OZ6MOslFX9W+Qvizrh1Z/DP3so7H+EEbHgICT
- ENfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ouG49VA4xk2vrvpG0VnN69idUXmFZrH/pn1ZmxXpzDU=;
- b=VpHGhgVvu/XmGf5/LqAOiPm4i+YxJYATvA9dKNAKwgDwTpR/RGGweMDyIsQvRs3kFR
- wXditP5jBiPLYjHkATAdSHikCCpogJtXsK90NLkCeFoLtd4K0m3OFfHOgwNWv9/8Vj/b
- LZ8fQFj8nRxPZrRgL11xW2yolfuHFG0QWbY3vq7QzBgH5XIX577v0yvKYM5u7DKSREGh
- f0tEgSErGCTYTfITcUbGUomECor5l6WjGI1GhLbT2Sa27/lvKq8xfWHQNArdHft8jkCX
- YFSCDMm9kbZYBIv9WscbFM51nVqvSlvOHLatCsxoYW6bLxC8aUK3ZAgEDr4kNN2pULak
- gG/g==
-X-Gm-Message-State: AOAM53186t1BJLpccG8jZI9FAEQKxzU2EwOGl6sN9+JDqAqR3vC2qKXT
- vZKy6bebaWXhfqF5EvccMEhPaUxLTA4YeZpOs0j3+bE6COByuA==
-X-Google-Smtp-Source: ABdhPJzYSTbo8+bXktW4UUhmN9qzR9fploDu1xkeIs5QRM7sQX6kde2xpE9yEtWma280/dlZ4LexdNHEMtHvpzs/u0M=
-X-Received: by 2002:a92:8b0e:: with SMTP id i14mr8801447ild.307.1594811117684; 
- Wed, 15 Jul 2020 04:05:17 -0700 (PDT)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D2C36EAA2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:11:13 +0000 (UTC)
+IronPort-SDR: 0uHXzYSD2i7rTs1Sz0EMWBXOZMs7CO+Ns6IB6urdXXEsu67R0RNLXPLTXLJbjy1vmf+n+FwviW
+ afpV11YCZ3jA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9682"; a="128686978"
+X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="128686978"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2020 04:11:12 -0700
+IronPort-SDR: /bxQx4WT0UA3/CWG88WKI3nqwdQikt7XazKTArTQA3di9onUgurjkPR2NzqyMStt8zxZ+9L4F4
+ 8zp5gebM2uMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="308217267"
+Received: from unknown (HELO [10.252.47.234]) ([10.252.47.234])
+ by fmsmga004.fm.intel.com with ESMTP; 15 Jul 2020 04:11:11 -0700
+To: intel-gfx@lists.freedesktop.org
+References: <20200708131751.334457-1-lionel.g.landwerlin@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <6f8e6d8b-291c-e744-c569-9307cc22b493@intel.com>
+Date: Wed, 15 Jul 2020 14:11:10 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-References: <20200715100432.13928-1-chris@chris-wilson.co.uk>
- <CAP+8YyF9djTo++3Gww2NNkOE_=fu9n+HzjoN7e78pVgJf_SP7A@mail.gmail.com>
- <159480926758.13728.809663901463022623@build.alporthouse.com>
-In-Reply-To: <159480926758.13728.809663901463022623@build.alporthouse.com>
-From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-Date: Wed, 15 Jul 2020 13:05:06 +0200
-Message-ID: <CAP+8YyHDYQSBmRohBwnhcB96p+ZHU2hT106CS6_-8A0Fk1Hegw@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] sw_sync deadlock avoidance, take 3
+In-Reply-To: <20200708131751.334457-1-lionel.g.landwerlin@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v12 0/3] drm/i915: timeline semaphore support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,36 +52,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 15, 2020 at 12:34 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Quoting Bas Nieuwenhuizen (2020-07-15 11:23:35)
-> > Hi Chris,
-> >
-> > My concern with going in this direction was that we potentially allow
-> > an application to allocate a lot of kernel memory but not a lot of fds
-> > by creating lots of fences and then closing the fds but never
-> > signaling them. Is that not an issue?
->
-> I did look to see if there was a quick way we could couple into the
-> sync_file release itself to remove the syncpt from the timeline, but
-> decided that for a debug feature, it wasn't a pressing concern.
->
-> Maybe now is the time to ask: are you using sw_sync outside of
-> validation?
+Ping?
 
-Yes, this is used as part of the Android stack on Chrome OS (need to
-see if ChromeOS specific, but
-https://source.android.com/devices/graphics/sync#sync_timeline
-suggests not)
+On 08/07/2020 16:17, Lionel Landwerlin wrote:
+> Hi all,
+>
+> This is resuming the work on trying to get timeline semaphore support
+> for i915 upstream, now that some selftests have been added to
+> dma-fence-chain.
+>
+> There are a few fix from the last iteration and a rebase following the
+> changes in the upstream execbuf code.
+>
+> Cheers,
+>
+> Lionel Landwerlin (3):
+>    drm/i915: introduce a mechanism to extend execbuf2
+>    drm/i915: add syncobj timeline support
+>    drm/i915: peel dma-fence-chains wait fences
+>
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 333 +++++++++++++++---
+>   drivers/gpu/drm/i915/i915_drv.c               |   3 +-
+>   drivers/gpu/drm/i915/i915_getparam.c          |   1 +
+>   include/uapi/drm/i915_drm.h                   |  65 +++-
+>   4 files changed, 342 insertions(+), 60 deletions(-)
+>
+> --
+> 2.27.0
 
-> -Chris
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
