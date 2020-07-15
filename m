@@ -2,56 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B7B1220FBE
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 16:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67B51220FC5
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 16:47:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D8D86E982;
-	Wed, 15 Jul 2020 14:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D41B56EB78;
+	Wed, 15 Jul 2020 14:47:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
- [IPv6:2607:f8b0:4864:20::244])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7858B6E982
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 14:46:21 +0000 (UTC)
-Received: by mail-oi1-x244.google.com with SMTP id h17so2398268oie.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 07:46:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=CagZzgMrU4eCZIriE5QO01v+DjsMk01y7RGm/HUhEd0=;
- b=MQF1ph7cNa7whGx+wTgkb3HICiePnbOJBnNb6phhgza8AmnLi2VLmKpKwskIXzV4R5
- JPjHAGDozZxBNxgoIPNWWxS+pG6oesOWcpAYvSufpGKzWGIfOofP3C9hQeS1XrKk5jvO
- MjfH/Ti1LU9oiFqjhIupEaqOATfgSUY92AR8o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=CagZzgMrU4eCZIriE5QO01v+DjsMk01y7RGm/HUhEd0=;
- b=Yq9AHnIutr8DzFhKMpUbpVhlhsfC8RA3vvg99HviJHJfZoR7SoLs8UUBSM6Zc4Uo93
- 56ke6JiZf3YM6TJrx5tp3ixbCbS6JB8JEsRcZ+wK2HwglasqX/yA1FXWR3zw+HlKUcX+
- 1jTgPj9wFmQjBkqD0IKA+MknF/L6erhApVC1eBxo7H7o/sBb2WRybRbi+9MPuFo4FoFF
- YpsSuNvDonlzj+Aa3DkpMmQL7+TPK+0WZuA/T54Katnx/0rk86OA+hzxKmo5azpRxykt
- 3P1PsCu5c66ibiB73vOH4qjuc2DKjIXOriVoG4ziDBPElXmZ7LewVwTLZsOMTURcd3sC
- g3ow==
-X-Gm-Message-State: AOAM530OqcKqRR3NHpOLtH+TvLZ0e1mNF83zrw4QSZQgfh3DNDxC84am
- y0kzzOWCgCDSG1QrAoqJe7LU/QyFa5HROiWvT/9s57/d
-X-Google-Smtp-Source: ABdhPJwrHCH3VMAzjfmjULjN/sMVoDywmNXdrYOtDdbIgNi7to3qvY54405EIQrUkD89Ng3Y4lHUJQMjmYD75lQ7tZg=
-X-Received: by 2002:aca:da03:: with SMTP id r3mr91545oig.14.1594824380757;
- Wed, 15 Jul 2020 07:46:20 -0700 (PDT)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 241CF6EB78
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 14:47:18 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 21828496-1500050 for multiple; Wed, 15 Jul 2020 15:47:16 +0100
 MIME-Version: 1.0
-References: <20200715104905.11006-1-chris@chris-wilson.co.uk>
- <20200715104905.11006-2-chris@chris-wilson.co.uk>
- <20200715121022.GK3278063@phenom.ffwll.local>
- <159481570397.13728.7155187046112827709@build.alporthouse.com>
- <159481680826.13728.12654400528941223194@build.alporthouse.com>
- <CAKMK7uGtGkYnq+Fe1jD7t315OOgRCiZhqvpTjoOLuYhuV3Qy3A@mail.gmail.com>
- <159482387319.13728.9618623288194653161@build.alporthouse.com>
-In-Reply-To: <159482387319.13728.9618623288194653161@build.alporthouse.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 15 Jul 2020 16:46:09 +0200
-Message-ID: <CAKMK7uEPZDjZGe_5prz+6my8vzTMK1yLzD-VYHS0ri576tfsDw@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 2/2] dma-buf/dma-fence: Add quick tests
- before dma_fence_remove_callback
+In-Reply-To: <079def6f-2382-6f55-cf1a-1f3e47d32fe0@linux.intel.com>
+References: <20200715105004.17973-1-chris@chris-wilson.co.uk>
+ <2bbb4568-2f73-bedc-8f3b-726bb19a62f2@linux.intel.com>
+ <079def6f-2382-6f55-cf1a-1f3e47d32fe0@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Jul 2020 15:47:15 +0100
+Message-ID: <159482443523.13728.2597038711540808670@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Reduce i915_request.lock
+ contention for i915_request_wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,143 +42,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 15, 2020 at 4:37 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Quoting Daniel Vetter (2020-07-15 15:03:34)
-> > On Wed, Jul 15, 2020 at 2:40 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > > There's a further problem in that we call INIT_LIST_HEAD on the
-> > > dma_fence_cb before the signal callback. So even if list_empty_careful()
-> > > confirms the dma_fence_cb to be completely decoupled, the containing
-> > > struct may still be inuse.
-> >
-> > The kerneldoc of dma_fence_remove_callback() already has a very stern
-> > warning that this will blow up if you don't hold a full reference or
-> > otherwise control the lifetime of this stuff. So I don't think we have
-> > to worry about any of that. Or do you mean something else?
->
-> It's the struct dma_fence_cb itself that may be freed/reused. Consider
-> dma_fence_default_wait(). That uses struct default_wait_cb on the stack,
-> so in order to ensure that the callback is completed the list_empty
-> check has to remain under the spinlock, or else
-> dma_fence_default_wait_cb() can still be dereferencing wait->task as the
-> function returns.
-
-The current implementation of remove_callback doesn't work if you
-don't own the callback structure. Or control its lifetime through some
-other means.
-
-So if we have callers removing other callback structures, that just
-doesn't work, you can only remove your own.
-
-From a quick spot check across a few callers we don't seem to have a
-problem here, all current callers for this function are in various
-wait functions (driver specific, or multi fence waits, stuff like
-that).
--Daniel
-
-> So currently it is:
->
-> signed long
-> dma_fence_default_wait(struct dma_fence *fence, bool intr, signed long timeout)
-> {
->         struct default_wait_cb cb;
->         unsigned long flags;
->         signed long ret = timeout ? timeout : 1;
->
->         spin_lock_irqsave(fence->lock, flags);
->
->         if (intr && signal_pending(current)) {
->                 ret = -ERESTARTSYS;
->                 goto out;
->         }
->
->         if (!__dma_fence_enable_signaling(fence))
->                 goto out;
->
->         if (!timeout) {
->                 ret = 0;
->                 goto out;
->         }
->
->         cb.base.func = dma_fence_default_wait_cb;
->         cb.task = current;
->         list_add(&cb.base.node, &fence->cb_list);
->
->         while (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) && ret > 0) {
->                 if (intr)
->                         __set_current_state(TASK_INTERRUPTIBLE);
->                 else
->                         __set_current_state(TASK_UNINTERRUPTIBLE);
->                 spin_unlock_irqrestore(fence->lock, flags);
->
->                 ret = schedule_timeout(ret);
->
->                 spin_lock_irqsave(fence->lock, flags);
->                 if (ret > 0 && intr && signal_pending(current))
->                         ret = -ERESTARTSYS;
->         }
->
->         if (!list_empty(&cb.base.node))
->                 list_del(&cb.base.node);
->         __set_current_state(TASK_RUNNING);
->
-> out:
->         spin_unlock_irqrestore(fence->lock, flags);
->         return ret;
-> }
->
-> but it could be written as:
->
-> signed long
-> dma_fence_default_wait(struct dma_fence *fence, bool intr, signed long timeout)
-> {
->         struct default_wait_cb cb;
->         int state = intr ? TASK_INTERRUPTIBLE : TASK_UNINTERRUPTIBLE;
->
->         cb.task = current;
->         if (dma_fence_add_callback(fence, &cb.base, dma_fence_default_wait_cb))
->                 return timeout ? timeout : 1;
->
->         for (;;) {
->                 set_current_state(state);
->
->                 if (dma_fence_is_signaled(fence)) {
->                         timeout = timeout ? timeout : 1;
->                         break;
->                 }
->
->                 if (signal_pending_state(state, current)) {
->                         timeout = -ERESTARTSYS;
->                         break;
->                 }
->
->                 if (!timeout)
->                         break;
->
->                 timeout = schedule_timeout(timeout);
->         }
->         __set_current_state(TASK_RUNNING);
->
->         dma_fence_remove_callback(fence, &cb.base);
->
->         return timeout;
-> }
-> -Chris
-
-
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAyMC0wNy0xNSAxMzoyNjoyMykKPiAKPiBPbiAxNS8w
+Ny8yMDIwIDEzOjA2LCBUdnJ0a28gVXJzdWxpbiB3cm90ZToKPiA+IAo+ID4gT24gMTUvMDcvMjAy
+MCAxMTo1MCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4+IEN1cnJlbnRseSwgd2UgdXNlIGk5MTVf
+cmVxdWVzdF9jb21wbGV0ZWQoKSBkaXJlY3RseSBpbgo+ID4+IGk5MTVfcmVxdWVzdF93YWl0KCkg
+YW5kIGZvbGxvdyB1cCB3aXRoIGEgbWFudWFsIGludm9jYXRpb24gb2YKPiA+PiBkbWFfZmVuY2Vf
+c2lnbmFsKCkuIFRoaXMgYXBwZWFycyB0byBjYXVzZSBhIGxhcmdlIG51bWJlciBvZiBjb250ZW50
+aW9ucwo+ID4+IG9uIGk5MTVfcmVxdWVzdC5sb2NrIGFzIHdoZW4gdGhlIHByb2Nlc3MgaXMgd29r
+ZW4gdXAgYWZ0ZXIgdGhlIGZlbmNlIGlzCj4gPj4gc2lnbmFsZWQgYnkgYW4gaW50ZXJydXB0LCB3
+ZSB3aWxsIHRoZW4gdHJ5IGFuZCBjYWxsIGRtYV9mZW5jZV9zaWduYWwoKQo+ID4+IG91cnNlbHZl
+cyB3aGlsZSB0aGUgc2lnbmFsZXIgaXMgc3RpbGwgaG9sZGluZyB0aGUgbG9jay4KPiA+PiBkbWFf
+ZmVuY2VfaXNfc2lnbmFsZWQoKSBoYXMgdGhlIGJlbmVmaXQgb2YgY2hlY2tpbmcgdGhlCj4gPj4g
+RE1BX0ZFTkNFX0ZMQUdfU0lHTkFMRURfQklUIHByaW9yIHRvIGNhbGxpbmcgZG1hX2ZlbmNlX3Np
+Z25hbCgpIGFuZCBzbwo+ID4+IGF2b2lkcyBtb3N0IG9mIHRoYXQgY29udGVudGlvbi4KPiA+Pgo+
+ID4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVr
+Pgo+ID4+IENjOiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cj4gPj4gQ2M6
+IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4gPj4gLS0tCj4gPj4g
+wqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZXF1ZXN0LmMgfCAxMiArKysrLS0tLS0tLS0K
+PiA+PiDCoCAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQo+
+ID4+Cj4gPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVxdWVzdC5j
+IAo+ID4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZXF1ZXN0LmMKPiA+PiBpbmRleCAw
+YjJmZTU1ZTYxOTQuLmJiNGViMWE4NzgwZSAxMDA2NDQKPiA+PiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X3JlcXVlc3QuYwo+ID4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfcmVxdWVzdC5jCj4gPj4gQEAgLTE2NDAsNyArMTY0MCw3IEBAIHN0YXRpYyBib29sIGJ1c3l3
+YWl0X3N0b3AodW5zaWduZWQgbG9uZyB0aW1lb3V0LCAKPiA+PiB1bnNpZ25lZCBpbnQgY3B1KQo+
+ID4+IMKgwqDCoMKgwqAgcmV0dXJuIHRoaXNfY3B1ICE9IGNwdTsKPiA+PiDCoCB9Cj4gPj4gLXN0
+YXRpYyBib29sIF9faTkxNV9zcGluX3JlcXVlc3QoY29uc3Qgc3RydWN0IGk5MTVfcmVxdWVzdCAq
+IGNvbnN0IHJxLCAKPiA+PiBpbnQgc3RhdGUpCj4gPj4gK3N0YXRpYyBib29sIF9faTkxNV9zcGlu
+X3JlcXVlc3Qoc3RydWN0IGk5MTVfcmVxdWVzdCAqIGNvbnN0IHJxLCBpbnQgCj4gPj4gc3RhdGUp
+Cj4gPj4gwqAgewo+ID4+IMKgwqDCoMKgwqAgdW5zaWduZWQgbG9uZyB0aW1lb3V0X25zOwo+ID4+
+IMKgwqDCoMKgwqAgdW5zaWduZWQgaW50IGNwdTsKPiA+PiBAQCAtMTY3Myw3ICsxNjczLDcgQEAg
+c3RhdGljIGJvb2wgX19pOTE1X3NwaW5fcmVxdWVzdChjb25zdCBzdHJ1Y3QgCj4gPj4gaTkxNV9y
+ZXF1ZXN0ICogY29uc3QgcnEsIGludCBzdGF0ZSkKPiA+PiDCoMKgwqDCoMKgIHRpbWVvdXRfbnMg
+PSBSRUFEX09OQ0UocnEtPmVuZ2luZS0+cHJvcHMubWF4X2J1c3l3YWl0X2R1cmF0aW9uX25zKTsK
+PiA+PiDCoMKgwqDCoMKgIHRpbWVvdXRfbnMgKz0gbG9jYWxfY2xvY2tfbnMoJmNwdSk7Cj4gPj4g
+wqDCoMKgwqDCoCBkbyB7Cj4gPj4gLcKgwqDCoMKgwqDCoMKgIGlmIChpOTE1X3JlcXVlc3RfY29t
+cGxldGVkKHJxKSkKPiA+PiArwqDCoMKgwqDCoMKgwqAgaWYgKGRtYV9mZW5jZV9pc19zaWduYWxl
+ZCgmcnEtPmZlbmNlKSkKPiA+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gdHJ1
+ZTsKPiA+PiDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKHNpZ25hbF9wZW5kaW5nX3N0YXRlKHN0YXRl
+LCBjdXJyZW50KSkKPiA+PiBAQCAtMTc2NiwxMCArMTc2Niw4IEBAIGxvbmcgaTkxNV9yZXF1ZXN0
+X3dhaXQoc3RydWN0IGk5MTVfcmVxdWVzdCAqcnEsCj4gPj4gwqDCoMKgwqDCoMKgICogZHVyYXRp
+b24sIHdoaWNoIHdlIGN1cnJlbnRseSBsYWNrLgo+ID4+IMKgwqDCoMKgwqDCoCAqLwo+ID4+IMKg
+wqDCoMKgwqAgaWYgKElTX0FDVElWRShDT05GSUdfRFJNX0k5MTVfTUFYX1JFUVVFU1RfQlVTWVdB
+SVQpICYmCj4gPj4gLcKgwqDCoMKgwqDCoMKgIF9faTkxNV9zcGluX3JlcXVlc3QocnEsIHN0YXRl
+KSkgewo+ID4+IC3CoMKgwqDCoMKgwqDCoCBkbWFfZmVuY2Vfc2lnbmFsKCZycS0+ZmVuY2UpOwo+
+ID4+ICvCoMKgwqDCoMKgwqDCoCBfX2k5MTVfc3Bpbl9yZXF1ZXN0KHJxLCBzdGF0ZSkpCj4gPj4g
+wqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gb3V0Owo+ID4+IC3CoMKgwqAgfQo+ID4+IMKgwqDCoMKg
+wqAgLyoKPiA+PiDCoMKgwqDCoMKgwqAgKiBUaGlzIGNsaWVudCBpcyBhYm91dCB0byBzdGFsbCB3
+YWl0aW5nIGZvciB0aGUgR1BVLiBJbiBtYW55IGNhc2VzCj4gPj4gQEAgLTE3OTYsMTAgKzE3OTQs
+OCBAQCBsb25nIGk5MTVfcmVxdWVzdF93YWl0KHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxLAo+ID4+
+IMKgwqDCoMKgwqAgZm9yICg7Oykgewo+ID4+IMKgwqDCoMKgwqDCoMKgwqDCoCBzZXRfY3VycmVu
+dF9zdGF0ZShzdGF0ZSk7Cj4gPj4gLcKgwqDCoMKgwqDCoMKgIGlmIChpOTE1X3JlcXVlc3RfY29t
+cGxldGVkKHJxKSkgewo+ID4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRtYV9mZW5jZV9zaWdu
+YWwoJnJxLT5mZW5jZSk7Cj4gPj4gK8KgwqDCoMKgwqDCoMKgIGlmIChkbWFfZmVuY2VfaXNfc2ln
+bmFsZWQoJnJxLT5mZW5jZSkpCj4gPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYnJlYWs7
+Cj4gPj4gLcKgwqDCoMKgwqDCoMKgIH0KPiA+PiDCoMKgwqDCoMKgwqDCoMKgwqAgaW50ZWxfZW5n
+aW5lX2ZsdXNoX3N1Ym1pc3Npb24ocnEtPmVuZ2luZSk7Cj4gPj4KPiA+IAo+ID4gSW4gb3RoZXIg
+d29yZHMgcHV0dGluZyBzb21lIGxhdGVuY3kgYmFjayBpbnRvIHRoZSB3YWl0ZXJzLCB3aGljaCBp
+cyAKPiA+IHByb2JhYmx5IG9rYXksIHNpbmNlIHN5bmMgd2FpdHMgaXMgbm90IG91ciBwcmltYXJ5
+IG1vZGVsLgo+ID4gCj4gPiBJIGhhdmUgYSBzbGlnaHQgY29uY2VybiBhYm91dCB0aGUgcmVtYWlu
+aW5nIHZhbHVlIG9mIGJ1c3kgc3Bpbm5pbmcgaWYgCj4gPiBpOTE1X3JlcXVlc3RfY29tcGxldGVk
+IGNoZWNrIGlzIHJlbW92ZWQgZnJvbSB0aGVyZSBhcyB3ZWxsLiBPZiBjb3Vyc2UgaXQgCj4gPiBk
+b2Vzbid0IG1ha2Ugc2Vuc2UgdG8gaGF2ZSBkaWZmZXJlbnQgY29tcGxldGlvbiBjcml0ZXJpYSBi
+ZXR3ZWVuIHRoZSAKPiA+IHR3by4uIFdlIGNvdWxkIHdhaXQgYSBiaXQgbG9uZ2VyIGlmIHJlYWwg
+Y2hlY2sgaW4gYnVzeXNwaW4gc2FpZCByZXF1ZXN0IAo+ID4gaXMgYWN0dWFsbHkgY29tcGxldGVk
+LCBqdXN0IG5vdCBzaWduYWwgaXQgYnV0IHdhaXQgZm9yIHRoZSBicmVhZGNydW1icyAKPiA+IHRv
+IGRvIGl0Lgo+IAo+IFdoYXQgYSBsb2FkIG9mIG5vbnNlbnNlLi4gOikKPiAKPiBPa2F5LCBJIHRo
+aW5rIHRoZSBvbmx5IHJlYWwgcXVlc3Rpb24gaXMgaTkxNV9yZXF1ZXN0X2NvbXBsZXRlZCB2cyAK
+PiBkbWFfZmVuY2Vfc2lnbmFsZWQgaW4gX19pOTE1X3NwaW5fcmVxdWVzdC4gRG8gd2Ugd2FudCB0
+byBidXJuIENQVSBjeWNsZXMgCj4gd2FpdGluZyBvbiBHUFUgYW5kIGJyZWFkY3J1bWIgaXJxIHdv
+cmssIG9yIGp1c3QgdGhlIEdQVS4KCmRtYV9mZW5jZV9pc19zaWduYWxlZCgpIHsKCWlmICh0ZXN0
+X2JpdChTSUdOQUxFRF9CSVQpKQoJCXJldHVybiB0cnVlOwoJCglpZiAoaTkxNV9yZXF1ZXN0X2Nv
+bXBsZXRlZCgpKSB7CgkJZG1hX2ZlbmNlX3NpZ25hbCgpOwoJCXJldHVybiB0cnVlOwoJfQoJCgly
+ZXR1cm4gZmFsc2U7Cn0KCndpdGggdGhlIGluZGlyZWN0aW9uLiBTbyB0aGUgcXVlc3Rpb24gaXMg
+d2hldGhlciB0aGUgaW5kaXJlY3Rpb24gaXMKd29ydGggdGhlIGV4dHJhIHRlc3QgYml0LiBKdXN0
+IHB1cmVseSBsb29raW5nIGF0IHRoZSBpOTE1X3JlcXVlc3QubG9jawpjb250ZW50aW9uIHN1Z2dl
+c3RzIHRoYXQgaXQgcHJvYmFibHkgaXMuIEZvciB0aGUgc3Bpbm5lciwgYnVybmluZyBhIGZldwpl
+eHRyYSBDUFUgY3ljbGVzIGZvciAqdmZ1bmMgaXMgbm90IGFuIGlzc3VlLCBpdCdzIHRoZSB3YWtl
+dXAgbGF0ZW5jeSwKYW5kIHNpbmNlIHdlIGFyZSBjYWxsaW5nIGRtYV9mZW5jZV9zaWduYWwoKSB1
+cG9uIHdha2V1cCB3ZSBkbyB0YWtlIHRoZQpzcGlubG9jayB3aXRob3V0IGNoZWNraW5nIGZvciBh
+biBlYXJseSByZXR1cm4gZnJvbSB0aGUgU0lHTkFMRURfQklULgpTbyBJIHRoaW5rIGl0J3MgYSBu
+ZXQgcG9zaXRpdmUuIFRoZSBhbHRlcm5hdGl2ZSB3YXMgdG8gd3JpdGUKCglpZiAoaTkxNV9yZXF1
+ZXN0X2NvbXBsZXRlZCgpKSB7CgkJaWYgKCFpOTE1X3JlcXVlc3RfaXNfc2lnbmFsZWQoKSkKCQkJ
+ZG1hX2ZlbmNlX3NpZ25hbCgpOwoJCWJyZWFrOwoJfQoKYnV0CgoJaWYgKGRtYV9mZW5jZV9pc19z
+aWduYWxlZCgpKQoJCWJyZWFrOwoKZG9lcyBhcHBlYXIgc2ltcGxlciwgaWYgb25seSBieSB2aXJ0
+dWUgb2YgaGlkaW5nIHRoZSBkZXRhaWxzIGluIGFuCmlubGluZS4KLUNocmlzCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
