@@ -1,34 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 786E2220CD5
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 14:21:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CA1B220CE1
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 14:26:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B04AE6EB40;
-	Wed, 15 Jul 2020 12:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24CC56EB36;
+	Wed, 15 Jul 2020 12:26:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A5BA6E1BC;
- Wed, 15 Jul 2020 12:21:49 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21826678-1500050 for multiple; Wed, 15 Jul 2020 13:21:45 +0100
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1E8D6EB36
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 12:26:28 +0000 (UTC)
+IronPort-SDR: HROKzCcHNpHUT+GkBu2KMgPZN5ga2IF6x7ewtpJSVRMn0+/INv7p4bYY9bg+RrAJFGF/jS1e5v
+ gSDSHZWO59hQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9682"; a="129221310"
+X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="129221310"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2020 05:26:28 -0700
+IronPort-SDR: 9IUuM9PB5fSLeZHFubmNcCyVQUmM7Zya9Q7SXetsD4QZ/yfVtgAcwumMNDnTr3oL2pEaMVBeq1
+ ymA+aU4MKK0w==
+X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="486224055"
+Received: from yluzon-mobl.ger.corp.intel.com (HELO [10.251.165.215])
+ ([10.251.165.215])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2020 05:26:26 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200715105004.17973-1-chris@chris-wilson.co.uk>
+ <2bbb4568-2f73-bedc-8f3b-726bb19a62f2@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <079def6f-2382-6f55-cf1a-1f3e47d32fe0@linux.intel.com>
+Date: Wed, 15 Jul 2020 13:26:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200715121022.GK3278063@phenom.ffwll.local>
-References: <20200715104905.11006-1-chris@chris-wilson.co.uk>
- <20200715104905.11006-2-chris@chris-wilson.co.uk>
- <20200715121022.GK3278063@phenom.ffwll.local>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 15 Jul 2020 13:21:43 +0100
-Message-ID: <159481570397.13728.7155187046112827709@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/2] dma-buf/dma-fence: Add quick tests
- before dma_fence_remove_callback
+In-Reply-To: <2bbb4568-2f73-bedc-8f3b-726bb19a62f2@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Reduce i915_request.lock
+ contention for i915_request_wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,56 +54,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Matthew Auld <matthew.auld@intel.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniel Vetter (2020-07-15 13:10:22)
-> On Wed, Jul 15, 2020 at 11:49:05AM +0100, Chris Wilson wrote:
-> > When waiting with a callback on the stack, we must remove the callback
-> > upon wait completion. Since this will be notified by the fence signal
-> > callback, the removal often contends with the fence->lock being held by
-> > the signaler. We can look at the list entry to see if the callback was
-> > already signaled before we take the contended lock.
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >  drivers/dma-buf/dma-fence.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
-> > index 8d5bdfce638e..b910d7bc0854 100644
-> > --- a/drivers/dma-buf/dma-fence.c
-> > +++ b/drivers/dma-buf/dma-fence.c
-> > @@ -420,6 +420,9 @@ dma_fence_remove_callback(struct dma_fence *fence, struct dma_fence_cb *cb)
-> >       unsigned long flags;
-> >       bool ret;
-> >  
-> > +     if (list_empty(&cb->node))
-> 
-> I was about to say "but the races" but then noticed that Paul fixed
-> list_empty to use READ_ONCE like 5 years ago :-)
-
-I'm always going "when exactly do we need list_empty_careful()"?
-
-We can rule out a concurrent dma_fence_add_callback() for the same
-dma_fence_cb, as that is a lost cause. So we only have to worry about
-the concurrent list_del_init() from dma_fence_signal_locked(). So it's
-the timing of
-	list_del_init(): WRITE_ONCE(list->next, list)
-vs
-	READ_ONCE(list->next) == list
-and we don't need to care about the trailing instructions in
-list_del_init()...
-
-Wait that trailing instruction is actually important here if the
-dma_fence_cb is on the stack, or other imminent free.
-
-Ok, this does need to be list_empty_careful!
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDE1LzA3LzIwMjAgMTM6MDYsIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+IAo+IE9uIDE1LzA3
+LzIwMjAgMTE6NTAsIENocmlzIFdpbHNvbiB3cm90ZToKPj4gQ3VycmVudGx5LCB3ZSB1c2UgaTkx
+NV9yZXF1ZXN0X2NvbXBsZXRlZCgpIGRpcmVjdGx5IGluCj4+IGk5MTVfcmVxdWVzdF93YWl0KCkg
+YW5kIGZvbGxvdyB1cCB3aXRoIGEgbWFudWFsIGludm9jYXRpb24gb2YKPj4gZG1hX2ZlbmNlX3Np
+Z25hbCgpLiBUaGlzIGFwcGVhcnMgdG8gY2F1c2UgYSBsYXJnZSBudW1iZXIgb2YgY29udGVudGlv
+bnMKPj4gb24gaTkxNV9yZXF1ZXN0LmxvY2sgYXMgd2hlbiB0aGUgcHJvY2VzcyBpcyB3b2tlbiB1
+cCBhZnRlciB0aGUgZmVuY2UgaXMKPj4gc2lnbmFsZWQgYnkgYW4gaW50ZXJydXB0LCB3ZSB3aWxs
+IHRoZW4gdHJ5IGFuZCBjYWxsIGRtYV9mZW5jZV9zaWduYWwoKQo+PiBvdXJzZWx2ZXMgd2hpbGUg
+dGhlIHNpZ25hbGVyIGlzIHN0aWxsIGhvbGRpbmcgdGhlIGxvY2suCj4+IGRtYV9mZW5jZV9pc19z
+aWduYWxlZCgpIGhhcyB0aGUgYmVuZWZpdCBvZiBjaGVja2luZyB0aGUKPj4gRE1BX0ZFTkNFX0ZM
+QUdfU0lHTkFMRURfQklUIHByaW9yIHRvIGNhbGxpbmcgZG1hX2ZlbmNlX3NpZ25hbCgpIGFuZCBz
+bwo+PiBhdm9pZHMgbW9zdCBvZiB0aGF0IGNvbnRlbnRpb24uCj4+Cj4+IFNpZ25lZC1vZmYtYnk6
+IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+PiBDYzogTWF0dGhldyBB
+dWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgo+PiBDYzogVHZydGtvIFVyc3VsaW4gPHR2cnRr
+by51cnN1bGluQGludGVsLmNvbT4KPj4gLS0tCj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfcmVxdWVzdC5jIHwgMTIgKysrKy0tLS0tLS0tCj4+IMKgIDEgZmlsZSBjaGFuZ2VkLCA0IGlu
+c2VydGlvbnMoKyksIDggZGVsZXRpb25zKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X3JlcXVlc3QuYyAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X3JlcXVlc3QuYwo+PiBpbmRleCAwYjJmZTU1ZTYxOTQuLmJiNGViMWE4NzgwZSAxMDA2NDQKPj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZXF1ZXN0LmMKPj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9yZXF1ZXN0LmMKPj4gQEAgLTE2NDAsNyArMTY0MCw3IEBAIHN0
+YXRpYyBib29sIGJ1c3l3YWl0X3N0b3AodW5zaWduZWQgbG9uZyB0aW1lb3V0LCAKPj4gdW5zaWdu
+ZWQgaW50IGNwdSkKPj4gwqDCoMKgwqDCoCByZXR1cm4gdGhpc19jcHUgIT0gY3B1Owo+PiDCoCB9
+Cj4+IC1zdGF0aWMgYm9vbCBfX2k5MTVfc3Bpbl9yZXF1ZXN0KGNvbnN0IHN0cnVjdCBpOTE1X3Jl
+cXVlc3QgKiBjb25zdCBycSwgCj4+IGludCBzdGF0ZSkKPj4gK3N0YXRpYyBib29sIF9faTkxNV9z
+cGluX3JlcXVlc3Qoc3RydWN0IGk5MTVfcmVxdWVzdCAqIGNvbnN0IHJxLCBpbnQgCj4+IHN0YXRl
+KQo+PiDCoCB7Cj4+IMKgwqDCoMKgwqAgdW5zaWduZWQgbG9uZyB0aW1lb3V0X25zOwo+PiDCoMKg
+wqDCoMKgIHVuc2lnbmVkIGludCBjcHU7Cj4+IEBAIC0xNjczLDcgKzE2NzMsNyBAQCBzdGF0aWMg
+Ym9vbCBfX2k5MTVfc3Bpbl9yZXF1ZXN0KGNvbnN0IHN0cnVjdCAKPj4gaTkxNV9yZXF1ZXN0ICog
+Y29uc3QgcnEsIGludCBzdGF0ZSkKPj4gwqDCoMKgwqDCoCB0aW1lb3V0X25zID0gUkVBRF9PTkNF
+KHJxLT5lbmdpbmUtPnByb3BzLm1heF9idXN5d2FpdF9kdXJhdGlvbl9ucyk7Cj4+IMKgwqDCoMKg
+wqAgdGltZW91dF9ucyArPSBsb2NhbF9jbG9ja19ucygmY3B1KTsKPj4gwqDCoMKgwqDCoCBkbyB7
+Cj4+IC3CoMKgwqDCoMKgwqDCoCBpZiAoaTkxNV9yZXF1ZXN0X2NvbXBsZXRlZChycSkpCj4+ICvC
+oMKgwqDCoMKgwqDCoCBpZiAoZG1hX2ZlbmNlX2lzX3NpZ25hbGVkKCZycS0+ZmVuY2UpKQo+PiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gdHJ1ZTsKPj4gwqDCoMKgwqDCoMKgwqDC
+oMKgIGlmIChzaWduYWxfcGVuZGluZ19zdGF0ZShzdGF0ZSwgY3VycmVudCkpCj4+IEBAIC0xNzY2
+LDEwICsxNzY2LDggQEAgbG9uZyBpOTE1X3JlcXVlc3Rfd2FpdChzdHJ1Y3QgaTkxNV9yZXF1ZXN0
+ICpycSwKPj4gwqDCoMKgwqDCoMKgICogZHVyYXRpb24sIHdoaWNoIHdlIGN1cnJlbnRseSBsYWNr
+Lgo+PiDCoMKgwqDCoMKgwqAgKi8KPj4gwqDCoMKgwqDCoCBpZiAoSVNfQUNUSVZFKENPTkZJR19E
+Uk1fSTkxNV9NQVhfUkVRVUVTVF9CVVNZV0FJVCkgJiYKPj4gLcKgwqDCoMKgwqDCoMKgIF9faTkx
+NV9zcGluX3JlcXVlc3QocnEsIHN0YXRlKSkgewo+PiAtwqDCoMKgwqDCoMKgwqAgZG1hX2ZlbmNl
+X3NpZ25hbCgmcnEtPmZlbmNlKTsKPj4gK8KgwqDCoMKgwqDCoMKgIF9faTkxNV9zcGluX3JlcXVl
+c3QocnEsIHN0YXRlKSkKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gb3V0Owo+PiAtwqDCoMKg
+IH0KPj4gwqDCoMKgwqDCoCAvKgo+PiDCoMKgwqDCoMKgwqAgKiBUaGlzIGNsaWVudCBpcyBhYm91
+dCB0byBzdGFsbCB3YWl0aW5nIGZvciB0aGUgR1BVLiBJbiBtYW55IGNhc2VzCj4+IEBAIC0xNzk2
+LDEwICsxNzk0LDggQEAgbG9uZyBpOTE1X3JlcXVlc3Rfd2FpdChzdHJ1Y3QgaTkxNV9yZXF1ZXN0
+ICpycSwKPj4gwqDCoMKgwqDCoCBmb3IgKDs7KSB7Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBzZXRf
+Y3VycmVudF9zdGF0ZShzdGF0ZSk7Cj4+IC3CoMKgwqDCoMKgwqDCoCBpZiAoaTkxNV9yZXF1ZXN0
+X2NvbXBsZXRlZChycSkpIHsKPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZG1hX2ZlbmNlX3Np
+Z25hbCgmcnEtPmZlbmNlKTsKPj4gK8KgwqDCoMKgwqDCoMKgIGlmIChkbWFfZmVuY2VfaXNfc2ln
+bmFsZWQoJnJxLT5mZW5jZSkpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGJyZWFrOwo+
+PiAtwqDCoMKgwqDCoMKgwqAgfQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgaW50ZWxfZW5naW5lX2Zs
+dXNoX3N1Ym1pc3Npb24ocnEtPmVuZ2luZSk7Cj4+Cj4gCj4gSW4gb3RoZXIgd29yZHMgcHV0dGlu
+ZyBzb21lIGxhdGVuY3kgYmFjayBpbnRvIHRoZSB3YWl0ZXJzLCB3aGljaCBpcyAKPiBwcm9iYWJs
+eSBva2F5LCBzaW5jZSBzeW5jIHdhaXRzIGlzIG5vdCBvdXIgcHJpbWFyeSBtb2RlbC4KPiAKPiBJ
+IGhhdmUgYSBzbGlnaHQgY29uY2VybiBhYm91dCB0aGUgcmVtYWluaW5nIHZhbHVlIG9mIGJ1c3kg
+c3Bpbm5pbmcgaWYgCj4gaTkxNV9yZXF1ZXN0X2NvbXBsZXRlZCBjaGVjayBpcyByZW1vdmVkIGZy
+b20gdGhlcmUgYXMgd2VsbC4gT2YgY291cnNlIGl0IAo+IGRvZXNuJ3QgbWFrZSBzZW5zZSB0byBo
+YXZlIGRpZmZlcmVudCBjb21wbGV0aW9uIGNyaXRlcmlhIGJldHdlZW4gdGhlIAo+IHR3by4uIFdl
+IGNvdWxkIHdhaXQgYSBiaXQgbG9uZ2VyIGlmIHJlYWwgY2hlY2sgaW4gYnVzeXNwaW4gc2FpZCBy
+ZXF1ZXN0IAo+IGlzIGFjdHVhbGx5IGNvbXBsZXRlZCwganVzdCBub3Qgc2lnbmFsIGl0IGJ1dCB3
+YWl0IGZvciB0aGUgYnJlYWRjcnVtYnMgCj4gdG8gZG8gaXQuCgpXaGF0IGEgbG9hZCBvZiBub25z
+ZW5zZS4uIDopCgpPa2F5LCBJIHRoaW5rIHRoZSBvbmx5IHJlYWwgcXVlc3Rpb24gaXMgaTkxNV9y
+ZXF1ZXN0X2NvbXBsZXRlZCB2cyAKZG1hX2ZlbmNlX3NpZ25hbGVkIGluIF9faTkxNV9zcGluX3Jl
+cXVlc3QuIERvIHdlIHdhbnQgdG8gYnVybiBDUFUgY3ljbGVzIAp3YWl0aW5nIG9uIEdQVSBhbmQg
+YnJlYWRjcnVtYiBpcnEgd29yaywgb3IganVzdCB0aGUgR1BVLgoKUmVnYXJkcywKClR2cnRrbwoK
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
