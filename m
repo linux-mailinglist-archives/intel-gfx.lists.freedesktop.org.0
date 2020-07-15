@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2147F220C2C
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:52:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDFBE220C36
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 13:52:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E7F16EAD4;
-	Wed, 15 Jul 2020 11:52:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64CC46EB0B;
+	Wed, 15 Jul 2020 11:52:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 685B16EACB
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:52:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4903A6EACC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 11:52:02 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21826173-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21826174-1500050 
  for multiple; Wed, 15 Jul 2020 12:52:00 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Jul 2020 12:51:46 +0100
-Message-Id: <20200715115147.11866-65-chris@chris-wilson.co.uk>
+Date: Wed, 15 Jul 2020 12:51:47 +0100
+Message-Id: <20200715115147.11866-66-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200715115147.11866-1-chris@chris-wilson.co.uk>
 References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 65/66] drm/i915/gt: Enable ring scheduling for
- gen6/7
+Subject: [Intel-gfx] [PATCH 66/66] drm/i915/gem: Remove timeline nesting
+ from snb relocs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,71 +45,76 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Switch over from FIFO global submission to the priority-sorted
-topographical scheduler. At the cost of more busy work on the CPU to
-keep the GPU supplied with the next packet of requests, this allows us
-to reorder requests around submission stalls.
-
-This also enables the timer based RPS, with the exception of Valleyview
-who's PCU doesn't take kindly to our interference.
+As snb is the only one to require an alternative engine for performing
+relocations, we know that we can reuse a common timeline between
+engines.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c | 2 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c             | 2 ++
- drivers/gpu/drm/i915/gt/intel_rps.c                   | 6 ++----
- 3 files changed, 5 insertions(+), 5 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 22 +++++--------------
+ 1 file changed, 5 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index f2a307b4146e..55f09ab7136a 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -94,7 +94,7 @@ static int live_nop_switch(void *arg)
- 			rq = i915_request_get(this);
- 			i915_request_add(this);
- 		}
--		if (i915_request_wait(rq, 0, HZ / 5) < 0) {
-+		if (i915_request_wait(rq, 0, HZ) < 0) {
- 			pr_err("Failed to populated %d contexts\n", nctx);
- 			intel_gt_set_wedged(&i915->gt);
- 			i915_request_put(rq);
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index df234ce10907..c9db59b9bacf 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -863,6 +863,8 @@ int intel_engines_init(struct intel_gt *gt)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index d9f1403ddfa4..28f5c28a9449 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1965,16 +1965,9 @@ nested_request_create(struct intel_context *ce, struct i915_execbuffer *eb)
+ {
+ 	struct i915_request *rq;
  
- 	if (HAS_EXECLISTS(gt->i915))
- 		setup = intel_execlists_submission_setup;
-+	else if (INTEL_GEN(gt->i915) >= 6)
-+		setup = intel_ring_scheduler_setup;
- 	else
- 		setup = intel_ring_submission_setup;
+-	/* XXX This only works once; replace with shared timeline */
+-	if (ce->timeline != eb->context->timeline)
+-		mutex_lock_nested(&ce->timeline->mutex, SINGLE_DEPTH_NESTING);
+ 	intel_context_enter(ce);
+-
+ 	rq = __i915_request_create(ce, GFP_KERNEL);
+-
+ 	intel_context_exit(ce);
+-	if (IS_ERR(rq) && ce->timeline != eb->context->timeline)
+-		mutex_unlock(&ce->timeline->mutex);
  
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 49910425e986..bf923df212d1 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1052,9 +1052,7 @@ static bool gen6_rps_enable(struct intel_rps *rps)
- 	intel_uncore_write_fw(uncore, GEN6_RP_DOWN_TIMEOUT, 50000);
- 	intel_uncore_write_fw(uncore, GEN6_RP_IDLE_HYSTERSIS, 10);
- 
--	rps->pm_events = (GEN6_PM_RP_UP_THRESHOLD |
--			  GEN6_PM_RP_DOWN_THRESHOLD |
--			  GEN6_PM_RP_DOWN_TIMEOUT);
-+	rps->pm_events = GEN6_PM_RP_UP_THRESHOLD | GEN6_PM_RP_DOWN_THRESHOLD;
- 
- 	return rps_reset(rps);
+ 	return rq;
  }
-@@ -1362,7 +1360,7 @@ void intel_rps_enable(struct intel_rps *rps)
- 	GEM_BUG_ON(rps->efficient_freq < rps->min_freq);
- 	GEM_BUG_ON(rps->efficient_freq > rps->max_freq);
+@@ -2021,9 +2014,6 @@ reloc_gpu_flush(struct i915_execbuffer *eb, struct i915_request *rq, int err)
+ 	intel_gt_chipset_flush(rq->engine->gt);
+ 	__i915_request_add(rq, &eb->gem_context->sched);
  
--	if (has_busy_stats(rps))
-+	if (has_busy_stats(rps) && !IS_VALLEYVIEW(i915))
- 		intel_rps_set_timer(rps);
- 	else if (INTEL_GEN(i915) >= 6)
- 		intel_rps_set_interrupts(rps);
+-	if (i915_request_timeline(rq) != eb->context->timeline)
+-		mutex_unlock(&i915_request_timeline(rq)->mutex);
+-
+ 	return err;
+ }
+ 
+@@ -2426,10 +2416,7 @@ static struct i915_request *reloc_gpu_alloc(struct i915_execbuffer *eb)
+ 	struct reloc_cache *cache = &eb->reloc_cache;
+ 	struct i915_request *rq;
+ 
+-	if (cache->ce == eb->context)
+-		rq = __i915_request_create(cache->ce, GFP_KERNEL);
+-	else
+-		rq = nested_request_create(cache->ce, eb);
++	rq = nested_request_create(cache->ce, eb);
+ 	if (IS_ERR(rq))
+ 		return rq;
+ 
+@@ -2968,13 +2955,14 @@ static int __eb_pin_reloc_engine(struct i915_execbuffer *eb)
+ 	if (!engine)
+ 		return -ENODEV;
+ 
++	if (!intel_engine_has_scheduler(engine))
++		return -ENODEV;
++
+ 	ce = intel_context_create(engine);
+ 	if (IS_ERR(ce))
+ 		return PTR_ERR(ce);
+ 
+-	/* Reuse eb->context->timeline with scheduler! */
+-	if (intel_engine_has_scheduler(engine))
+-		ce->timeline = intel_timeline_get(eb->context->timeline);
++	ce->timeline = intel_timeline_get(eb->context->timeline);
+ 
+ 	i915_vm_put(ce->vm);
+ 	ce->vm = i915_vm_get(eb->context->vm);
 -- 
 2.20.1
 
