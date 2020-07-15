@@ -2,47 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BAA220E43
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 15:37:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1B9220E64
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2020 15:45:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 793D26EB5F;
-	Wed, 15 Jul 2020 13:37:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B6F989F61;
+	Wed, 15 Jul 2020 13:45:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FBF86EB5F
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 13:37:03 +0000 (UTC)
-IronPort-SDR: 45vqBneUdG2uH27hvV1wOMgOBYZVkmAJuHY7dqdaWPPWkWzQFL2D5KjuUNwsVrqOoLkfiv4SAS
- RBLTjKY+0ueQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9682"; a="150554998"
-X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="150554998"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 780CC89F61
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 13:45:37 +0000 (UTC)
+IronPort-SDR: jJXdqp1tnitRdfBnlyOFpWXMgvCreDO0frwU/RewIwYL21DjMO9rpQAr712palagCqkZYPWflP
+ dQQfRehkKMkw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9682"; a="146653883"
+X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="146653883"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2020 06:37:02 -0700
-IronPort-SDR: suu6cBZnjCtOAZjdY7TbxOHljj+AdykijxomWe7YzHLLU2VU+am8xGBBrjx1RxHrKmW15JY/wf
- GvtpYx3LD9dw==
-X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="486242488"
-Received: from yluzon-mobl.ger.corp.intel.com (HELO [10.251.165.215])
- ([10.251.165.215])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2020 06:37:01 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200714094709.15775-1-chris@chris-wilson.co.uk>
- <89dd9513-6fc3-106c-2f7e-41bd193460ee@linux.intel.com>
- <159481732140.13728.18368699381715163331@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <1b2656da-ebea-1cb7-dcdc-cb859f12b583@linux.intel.com>
-Date: Wed, 15 Jul 2020 14:36:58 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2020 06:45:36 -0700
+IronPort-SDR: Dy0SlwW9XdQlf0ZrY2/Ry6Eb3DR/DRP1HLByQfTInB3XJn3V+/65Vh7DqisCpF/+UbHJbWzMpz
+ 2UhfxxNHId+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,355,1589266800"; d="scan'208";a="286108777"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 15 Jul 2020 06:45:34 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 15 Jul 2020 16:45:33 +0300
+Date: Wed, 15 Jul 2020 16:45:33 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200715134533.GR6112@intel.com>
+References: <20200713235334.84263-1-jose.souza@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <159481732140.13728.18368699381715163331@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Remove i915_request.lock
- requirement for execution callbacks
+Content-Disposition: inline
+In-Reply-To: <20200713235334.84263-1-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v5 1/2] drm/i915/display: Implement HOBL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,182 +52,234 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Jul 13, 2020 at 04:53:33PM -0700, Jos=E9 Roberto de Souza wrote:
+> Hours Of Battery Life is a new GEN12+ power-saving feature that allows
+> supported motherboards to use a special voltage swing table for eDP
+> panels that uses less power.
+> =
 
-On 15/07/2020 13:48, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-07-15 13:39:56)
->>
->> On 14/07/2020 10:47, Chris Wilson wrote:
->>> We are using the i915_request.lock to serialise adding an execution
->>> callback with __i915_request_submit. However, if we use an atomic
->>> llist_add to serialise multiple waiters and then check to see if the
->>> request is already executing, we can remove the irq-spinlock.
->>>
->>> Fixes: 1d9221e9d395 ("drm/i915: Skip signaling a signaled request")
->>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/i915_request.c | 38 +++++++----------------------
->>>    1 file changed, 9 insertions(+), 29 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
->>> index 0b2fe55e6194..c59315def07d 100644
->>> --- a/drivers/gpu/drm/i915/i915_request.c
->>> +++ b/drivers/gpu/drm/i915/i915_request.c
->>> @@ -190,13 +190,11 @@ static void __notify_execute_cb(struct i915_request *rq)
->>>    {
->>>        struct execute_cb *cb, *cn;
->>>    
->>> -     lockdep_assert_held(&rq->lock);
->>> -
->>> -     GEM_BUG_ON(!i915_request_is_active(rq));
->>>        if (llist_empty(&rq->execute_cb))
->>>                return;
->>>    
->>> -     llist_for_each_entry_safe(cb, cn, rq->execute_cb.first, work.llnode)
->>> +     llist_for_each_entry_safe(cb, cn,
->>> +                               llist_del_all(&rq->execute_cb), work.llnode)
->>>                irq_work_queue(&cb->work);
->>>    
->>>        /*
->>> @@ -209,7 +207,6 @@ static void __notify_execute_cb(struct i915_request *rq)
->>>         * preempt-to-idle cycle on the target engine, all the while the
->>>         * master execute_cb may refire.
->>>         */
->>> -     init_llist_head(&rq->execute_cb);
->>>    }
->>>    
->>>    static inline void
->>> @@ -276,6 +273,7 @@ static void remove_from_engine(struct i915_request *rq)
->>>        list_del_init(&rq->sched.link);
->>>        clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
->>>        clear_bit(I915_FENCE_FLAG_HOLD, &rq->fence.flags);
->>> +     set_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
->>>        spin_unlock_irq(&locked->active.lock);
->>>    }
->>>    
->>> @@ -323,12 +321,8 @@ bool i915_request_retire(struct i915_request *rq)
->>>                GEM_BUG_ON(!atomic_read(&rq->engine->gt->rps.num_waiters));
->>>                atomic_dec(&rq->engine->gt->rps.num_waiters);
->>>        }
->>> -     if (!test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags)) {
->>> -             set_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
->>> -             __notify_execute_cb(rq);
->>> -     }
->>> -     GEM_BUG_ON(!llist_empty(&rq->execute_cb));
->>>        spin_unlock_irq(&rq->lock);
->>> +     __notify_execute_cb(rq);
->>>    
->>>        remove_from_client(rq);
->>>        __list_del_entry(&rq->link); /* poison neither prev/next (RCU walks) */
->>> @@ -357,12 +351,6 @@ void i915_request_retire_upto(struct i915_request *rq)
->>>        } while (i915_request_retire(tmp) && tmp != rq);
->>>    }
->>>    
->>> -static void __llist_add(struct llist_node *node, struct llist_head *head)
->>> -{
->>> -     node->next = head->first;
->>> -     head->first = node;
->>> -}
->>> -
->>>    static struct i915_request * const *
->>>    __engine_active(struct intel_engine_cs *engine)
->>>    {
->>> @@ -439,18 +427,11 @@ __await_execution(struct i915_request *rq,
->>>                cb->work.func = irq_execute_cb_hook;
->>>        }
->>>    
->>> -     spin_lock_irq(&signal->lock);
->>> -     if (i915_request_is_active(signal) || __request_in_flight(signal)) {
->>> -             if (hook) {
->>> -                     hook(rq, &signal->fence);
->>> -                     i915_request_put(signal);
->>> -             }
->>> -             i915_sw_fence_complete(cb->fence);
->>> -             kmem_cache_free(global.slab_execute_cbs, cb);
->>> -     } else {
->>> -             __llist_add(&cb->work.llnode, &signal->execute_cb);
->>> +     if (llist_add(&cb->work.llnode, &signal->execute_cb)) {
->>> +             if (i915_request_is_active(signal) ||
->>> +                 __request_in_flight(signal))
->>> +                     __notify_execute_cb(signal);
->>
->> Any reason why the hook couldn't be called straight away but needs to
->> always go through the worker now?
->>
->> Maybe it would be easier to figure out if it is race free that way..
->>
->> if (llist_add(..)) {
->>          llist_for_each_entry_safe(.., llist_del_all(..), .)
-> 
-> Then you would tell me off for open coding __notify_execute_cb for the
-> benefit of not going through the irq_work. Something like
-> 
-> @@ -186,7 +186,7 @@ static void irq_execute_cb_hook(struct irq_work *wrk)
->          irq_execute_cb(wrk);
->   }
-> 
-> -static void __notify_execute_cb(struct i915_request *rq)
-> +static void __execute_cb_irq(struct i915_request *rq)
->   {
->          struct execute_cb *cb, *cn;
-> 
-> @@ -209,6 +209,15 @@ static void __notify_execute_cb(struct i915_request *rq)
->           */
->   }
-> 
-> +static void __execute_cb_imm(struct i915_request *rq)
+> So here if supported by HW, OEM will set it in VBT and i915 will try
+> to train link with HOBL vswing table if link training fails it fall
+> back to the original table.
+> =
+
+> intel_ddi_dp_preemph_max() was optimized to only check the HOBL flag
+> instead of do something like is done in intel_ddi_dp_voltage_max()
+> because it is only called after the first entry of the voltage swing
+> table was loaded so the HOBL flag is valid at that point.
+> =
+
+> v3:
+> - removed a few parameters of icl_ddi_combo_vswing_program() that
+> can be taken from encoder
+> =
+
+> v4:
+> - using the HOBL vswing table until training fails completely (Ville)
+> =
+
+> v5:
+> - not reducing lane or link rate when link training fails with HOBL
+> active
+> - duplicated the HOBL voltage swing entry to match DP spec requirement
+> =
+
+> BSpec: 49291
+> BSpec: 49399
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Animesh Manna <animesh.manna@intel.com>
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 42 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  .../drm/i915/display/intel_dp_link_training.c | 19 ++++++---
+>  drivers/gpu/drm/i915/i915_reg.h               |  2 +
+>  4 files changed, 59 insertions(+), 6 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 2c484b55bcdf..92ae036440fa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -706,6 +706,29 @@ static const struct cnl_ddi_buf_trans tgl_combo_phy_=
+ddi_translations_dp_hbr2[] =3D
+>  	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 900   900      0.0   */
+>  };
+>  =
+
+> +/*
+> + * Cloned the HOBL entry to comply with the voltage and pre-emphasis ent=
+ries
+> + * that DisplayPort specification requires
+> + */
+> +static const struct cnl_ddi_buf_trans tgl_combo_phy_ddi_translations_edp=
+_hbr2_hobl[] =3D {
+> +						/* VS	pre-emp	*/
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 0	0	*/
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 0	1	*/
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 0	2	*/
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 0	3	*/
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 1	0	*/
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 1	1	*/
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 1	2	*/
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 2	0	*/
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 2	1	*/
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 3	0	*/
+> +};
+> +
+> +static bool is_hobl_buf_trans(const struct cnl_ddi_buf_trans *table)
 > +{
-> +       struct execute_cb *cb, *cn;
-> +
-> +       llist_for_each_entry_safe(cb, cn,
-> +                                 llist_del_all(&rq->execute_cb), work.llnode)
-> +               cb->work.func(&cb->work);
+> +	return table =3D=3D tgl_combo_phy_ddi_translations_edp_hbr2_hobl;
 > +}
+
+OK, so after further thought I guess the double boolean is the least
+annoying apporach atm. Slight concerns about this function becoming a
+bit of maintenance nightmare, but if we want to improve it then I
+suspect we want to revamp the overall buf trans stuff. Eg. I had
+one idea to declare the capabilities in each buf trans table. But
+not sure if that's viable. Anyway more long term idea.
+
 > +
->   static inline void
->   remove_from_client(struct i915_request *request)
->   {
-> @@ -323,7 +332,7 @@ bool i915_request_retire(struct i915_request *rq)
->                  atomic_dec(&rq->engine->gt->rps.num_waiters);
->          }
->          spin_unlock_irq(&rq->lock);
-> -       __notify_execute_cb(rq);
-> +       __execute_cb_imm(rq);
-> 
->          remove_from_client(rq);
->          __list_del_entry(&rq->link); /* poison neither prev/next (RCU walks) */
-> @@ -431,7 +440,7 @@ __await_execution(struct i915_request *rq,
->          if (llist_add(&cb->work.llnode, &signal->execute_cb)) {
->                  if (i915_request_is_active(signal) ||
->                      __request_in_flight(signal))
-> -                       __notify_execute_cb(signal);
-> +                       __execute_cb_imm(signal);
->          }
-> 
->          return 0;
-> @@ -547,7 +556,7 @@ bool __i915_request_submit(struct i915_request *request)
->                  list_move_tail(&request->sched.link, &engine->active.requests);
->                  clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
->          }
-> -       __notify_execute_cb(request);
-> +       __execute_cb_irq(request);
-> 
->          /* We may be recursing from the signal callback of another i915 fence */
->          if (!i915_request_signaled(request)) {
+>  static const struct ddi_buf_trans *
+>  bdw_get_buf_trans_edp(struct intel_encoder *encoder, int *n_entries)
+>  {
+> @@ -1050,6 +1073,16 @@ static const struct cnl_ddi_buf_trans *
+>  tgl_get_combo_buf_trans(struct intel_encoder *encoder, int type, int rat=
+e,
+>  			int *n_entries)
+>  {
+> +	if (type =3D=3D INTEL_OUTPUT_EDP && dev_priv->vbt.edp.hobl) {
+> +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> +
+> +		if (!intel_dp->hobl_failed && rate <=3D 540000) {
+> +			/* Same table applies to TGL, RKL and DG1 */
+> +			*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_edp_hbr2_hob=
+l);
+> +			return tgl_combo_phy_ddi_translations_edp_hbr2_hobl;
+> +		}
+> +	}
+> +
+>  	if (type =3D=3D INTEL_OUTPUT_HDMI || type =3D=3D INTEL_OUTPUT_EDP) {
+>  		return icl_get_combo_buf_trans(encoder, type, rate, n_entries);
+>  	} else if (rate > 270000) {
+> @@ -2392,6 +2425,15 @@ static void icl_ddi_combo_vswing_program(struct in=
+tel_encoder *encoder,
+>  		level =3D n_entries - 1;
+>  	}
+>  =
 
-I think so. IRQ callback can call the imm version and check for if 
-(..func) needs to go somewhere.
+> +	if (type =3D=3D INTEL_OUTPUT_EDP) {
+> +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> +
+> +		val =3D EDP4K2K_MODE_OVRD_EN | EDP4K2K_MODE_OVRD_OPTIMIZED;
+> +		intel_dp->hobl_active =3D is_hobl_buf_trans(ddi_translations);
 
-Regards,
+Slightly irks me that we basically now compute this piece of state in
+the middle here. But not sure if there's a better way. Anything else
+might require yet another call site for the get_buf_trans() stuff
+which is probably not good from maintenance POV given the current
+code structure.
 
-Tvrtko
+Also not a huge fan of doing this special programming for eDP only.
+But as long as we need to mutate intel_dp->whatever I guess we need
+some checks. Maybe it would be nicer to pass the encoder to
+is_hobl_buf_trans() and doing the check in there. Or I guess adding
+one more extra layer of abstraction would be one option. But probably
+not worth the hassle.
 
+> +		intel_de_rmw(dev_priv, ICL_PORT_CL_DW10(phy), val,
+> +			     intel_dp->hobl_active ? val : 0);
+> +	}
+> +
+>  	/* Set PORT_TX_DW5 */
+>  	val =3D intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
+>  	val &=3D ~(SCALING_MODE_SEL_MASK | RTERM_SELECT_MASK |
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index e8f809161c75..5e6634b55e84 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1375,6 +1375,8 @@ struct intel_dp {
+>  =
 
+>  	/* Display stream compression testing */
+>  	bool force_dsc_en;
+> +
+> +	u8 hobl_failed : 1, hobl_active : 1;
+
+Pls use actual bools. Also if we're worried about the size we
+should probably pack way more stuff to bitfiels. Otherwise IMO
+separate bools like everything else should do just fine.
+
+With those as bool this is
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+>  };
+>  =
+
+>  enum lspcon_vendor {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index a23ed7290843..f2c8b56be9ea 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -410,10 +410,17 @@ intel_dp_start_link_train(struct intel_dp *intel_dp)
+>  		    intel_connector->base.base.id,
+>  		    intel_connector->base.name,
+>  		    intel_dp->link_rate, intel_dp->lane_count);
+> -	if (!intel_dp_get_link_train_fallback_values(intel_dp,
+> -						     intel_dp->link_rate,
+> -						     intel_dp->lane_count))
+> -		/* Schedule a Hotplug Uevent to userspace to start modeset */
+> -		schedule_work(&intel_connector->modeset_retry_work);
+> -	return;
+> +
+> +	if (intel_dp->hobl_active) {
+> +		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+> +			    "Link Training failed with HOBL active, not enabling it from now =
+on");
+> +		intel_dp->hobl_failed =3D true;
+> +	} else if (intel_dp_get_link_train_fallback_values(intel_dp,
+> +							   intel_dp->link_rate,
+> +							   intel_dp->lane_count)) {
+> +		return;
+> +	}
+> +
+> +	/* Schedule a Hotplug Uevent to userspace to start modeset */
+> +	schedule_work(&intel_connector->modeset_retry_work);
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 86a23ced051b..ea16931c0fa4 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1898,6 +1898,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t r=
+eg)
+>  #define  PWR_DOWN_LN_3_1_0		(0xb << 4)
+>  #define  PWR_DOWN_LN_MASK		(0xf << 4)
+>  #define  PWR_DOWN_LN_SHIFT		4
+> +#define  EDP4K2K_MODE_OVRD_EN		(1 << 3)
+> +#define  EDP4K2K_MODE_OVRD_OPTIMIZED	(1 << 2)
+>  =
+
+>  #define ICL_PORT_CL_DW12(phy)		_MMIO(_ICL_PORT_CL_DW(12, phy))
+>  #define   ICL_LANE_ENABLE_AUX		(1 << 0)
+> -- =
+
+> 2.27.0
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
