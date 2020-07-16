@@ -2,29 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61480222049
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 12:08:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A125B22204F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 12:11:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 581D66E120;
-	Thu, 16 Jul 2020 10:07:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98F806E11B;
+	Thu, 16 Jul 2020 10:11:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2A446E120
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 10:07:57 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21836431-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 11:07:54 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Jul 2020 11:07:54 +0100
-Message-Id: <20200716100754.5670-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8E366E11B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 10:11:36 +0000 (UTC)
+IronPort-SDR: nNLHEg6PyJWolPpu/EGFdCIQniboThnIy62yRSWqmuBKNjbqBl6gSQhFyLpqJyqrkK5GDHl8bb
+ bUChexZz2TrA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9683"; a="150733781"
+X-IronPort-AV: E=Sophos;i="5.75,358,1589266800"; d="scan'208";a="150733781"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2020 03:11:35 -0700
+IronPort-SDR: hAHBZ95Hc8+IhWcIorOk8NrI+pf+pByxUi2Bm3CMAjFVhV5NUvZTfKTT4z+5g+tlWMubNGM1RU
+ XKuYL+EbFqaQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,358,1589266800"; d="scan'208";a="269214510"
+Received: from tnimni-mobl.ger.corp.intel.com (HELO [10.254.157.71])
+ ([10.254.157.71])
+ by fmsmga007.fm.intel.com with ESMTP; 16 Jul 2020 03:11:33 -0700
+To: Dave Airlie <airlied@gmail.com>
+References: <20200710115757.290984-1-matthew.auld@intel.com>
+ <20200710115757.290984-34-matthew.auld@intel.com>
+ <CAPM=9tzvetxhBJBOC60ydOVcTN9ujtHLCODFNwGtONTDzuzwZA@mail.gmail.com>
+ <c6cd965d-9a03-10fd-517e-a44934a2b0c9@intel.com>
+ <CAPM=9txaksu8brsPTHsLkQudpNLd6O1MOzG8APGTrMaoXMioqw@mail.gmail.com>
+From: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <d7e7b910-81d0-d7b2-b426-51b0714836eb@intel.com>
+Date: Thu, 16 Jul 2020 11:11:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Reduce i915_request.lock contention for
- i915_request_wait
+In-Reply-To: <CAPM=9txaksu8brsPTHsLkQudpNLd6O1MOzG8APGTrMaoXMioqw@mail.gmail.com>
+Content-Language: en-GB
+Subject: Re: [Intel-gfx] [RFC 33/60] drm/i915/lmem: support pwrite
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,98 +55,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, we use i915_request_completed() directly in
-i915_request_wait() and follow up with a manual invocation of
-dma_fence_signal(). This appears to cause a large number of contentions
-on i915_request.lock as when the process is woken up after the fence is
-signaled by an interrupt, we will then try and call dma_fence_signal()
-ourselves while the signaler is still holding the lock.
-dma_fence_is_signaled() has the benefit of checking the
-DMA_FENCE_FLAG_SIGNALED_BIT prior to calling dma_fence_signal() and so
-avoids most of that contention.
+On 16/07/2020 01:43, Dave Airlie wrote:
+> On Wed, 15 Jul 2020 at 00:35, Matthew Auld <matthew.auld@intel.com> wrote:
+>>
+>> On 13/07/2020 06:09, Dave Airlie wrote:
+>>> On Fri, 10 Jul 2020 at 22:00, Matthew Auld <matthew.auld@intel.com> wrote:
+>>>>
+>>>> We need to add support for pwrite'ing an LMEM object.
+>>>
+>>> why? DG1 is a discrete GPU, these interfaces we already gross and
+>>> overly hacky for integrated, I'd prefer not to drag them across into
+>>> discrete land.
+>>>
+>>> same goes for pread.
+>>>
+>>> You have no legacy userspace here, userspace needs change to support
+>>> LMEM, it can be fixed to avoid legacy ioctls paths.
+>>
+>> Ok, there have also been similar discussions internally in the past. I
+>> think one of the reasons was around IGT, and how keeping the
+>> pread/pwrite interface meant slightly less pain, also it's not much
+>> effort to implement for LMEM. If this is a NACK, then I guess the other
+>> idea was to somehow fallback to mmap and update IGT accordingly.
+> 
+> I just don't think we should have internal kernel interfaces for
+> mapping ram in the kernel address space, seems pointless, makes less
+> sense with a discrete GPU in the mix, so yes I think NAK for
+> pread/pwrite at least at this time.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_request.c | 18 ++++++++----------
- 1 file changed, 8 insertions(+), 10 deletions(-)
+Ok.
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 0b2fe55e6194..49f181ab4982 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1640,7 +1640,7 @@ static bool busywait_stop(unsigned long timeout, unsigned int cpu)
- 	return this_cpu != cpu;
- }
- 
--static bool __i915_spin_request(const struct i915_request * const rq, int state)
-+static bool __i915_spin_request(struct i915_request * const rq, int state)
- {
- 	unsigned long timeout_ns;
- 	unsigned int cpu;
-@@ -1673,7 +1673,7 @@ static bool __i915_spin_request(const struct i915_request * const rq, int state)
- 	timeout_ns = READ_ONCE(rq->engine->props.max_busywait_duration_ns);
- 	timeout_ns += local_clock_ns(&cpu);
- 	do {
--		if (i915_request_completed(rq))
-+		if (dma_fence_is_signaled(&rq->fence))
- 			return true;
- 
- 		if (signal_pending_state(state, current))
-@@ -1697,7 +1697,7 @@ static void request_wait_wake(struct dma_fence *fence, struct dma_fence_cb *cb)
- {
- 	struct request_wait *wait = container_of(cb, typeof(*wait), cb);
- 
--	wake_up_process(wait->tsk);
-+	wake_up_process(fetch_and_zero(&wait->tsk));
- }
- 
- /**
-@@ -1766,10 +1766,8 @@ long i915_request_wait(struct i915_request *rq,
- 	 * duration, which we currently lack.
- 	 */
- 	if (IS_ACTIVE(CONFIG_DRM_I915_MAX_REQUEST_BUSYWAIT) &&
--	    __i915_spin_request(rq, state)) {
--		dma_fence_signal(&rq->fence);
-+	    __i915_spin_request(rq, state))
- 		goto out;
--	}
- 
- 	/*
- 	 * This client is about to stall waiting for the GPU. In many cases
-@@ -1796,10 +1794,8 @@ long i915_request_wait(struct i915_request *rq,
- 	for (;;) {
- 		set_current_state(state);
- 
--		if (i915_request_completed(rq)) {
--			dma_fence_signal(&rq->fence);
-+		if (dma_fence_is_signaled(&rq->fence))
- 			break;
--		}
- 
- 		intel_engine_flush_submission(rq->engine);
- 
-@@ -1817,7 +1813,9 @@ long i915_request_wait(struct i915_request *rq,
- 	}
- 	__set_current_state(TASK_RUNNING);
- 
--	dma_fence_remove_callback(&rq->fence, &wait.cb);
-+	if (READ_ONCE(wait.tsk))
-+		dma_fence_remove_callback(&rq->fence, &wait.cb);
-+	GEM_BUG_ON(!list_empty(&wait.cb.node));
- 
- out:
- 	mutex_release(&rq->engine->gt->reset.mutex.dep_map, _THIS_IP_);
--- 
-2.20.1
+> 
+> I'd also like to see a hard no relocs policy for DG1 enforced in the kernel.
 
+Ok, just checking, is that the case even if we don't require extra code 
+to support it? We recently dropped the CPU reloc path completely, in 
+favour of single GPU reloc path, and so no special code is required to 
+support LMEM, it should just work. IGT of course makes heavy use of 
+relocs, so that would need an overhaul.
+
+> 
+> Dave.
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
