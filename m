@@ -2,55 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B02221905
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 02:43:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF721221B67
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 06:28:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCE206E09A;
-	Thu, 16 Jul 2020 00:43:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 645F36E045;
+	Thu, 16 Jul 2020 04:28:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
- [IPv6:2a00:1450:4864:20::544])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAD6A6E09A
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 00:43:21 +0000 (UTC)
-Received: by mail-ed1-x544.google.com with SMTP id by13so3251827edb.11
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jul 2020 17:43:21 -0700 (PDT)
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
+ [IPv6:2607:f8b0:4864:20::743])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 444476E045;
+ Thu, 16 Jul 2020 04:28:08 +0000 (UTC)
+Received: by mail-qk1-x743.google.com with SMTP id k18so4372178qke.4;
+ Wed, 15 Jul 2020 21:28:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=wm5rJ32rLxO+HO9N/RfA/c5d8e0S0rmJhNnlIvFPu/g=;
- b=XzgEBvzua4F/MqATPSgL7+0zde3fT1UZ8TftoriI0pnSYV/5xcioHnAOx4KV4nP5JE
- E6zpg17luVhyb4EfBTYnF/bsS8oFxV8ZBD2UVNG8/z4QlhPgwcQePd80Y0zuLxTdnBjs
- su37JSP8dqRE/R1cLWk3wdOjV8XEX3Ia5ws5UCc3pwzItW9l7bXl/5U5b7dApSWlaY7x
- ZSJ80Mdp5Yz3JvtbWPrc3Bc5k1cpLWGB/QTSrhKxflgU+S58CvZuU2JriWowdRggHqcL
- T7hgVb0N5m4+60tNjRZ4qXiyI/mr5iW6ZgWPaI4yGTiJyOU9Xeee4h6GBm+bUvaFvYOF
- h6rw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=M/DmHETZOAY7H70Ux+TlQEI0fnuJDUnsXDXca6tT46g=;
+ b=MttvtiJAL/Z4cy1qvGZG6Fln4g0zsBEgJIxXkKsC5wdcZx5VUygmatZNCIGxxsU5mk
+ YxAFJdhdO4N+HPCFbCjs3j0W/ECegXrJRvfaxzgzZU4DTbw99XWQrvLjfsBMxgMiWN06
+ z3Ouhbx4RtJrgLFfurVRxZAEd+/+SDC/JI0INOUTHf01E8uE6CclPefOiZ9qZyMgjhYP
+ W/F6ULpN4aoc6gcBYcd21XIUMrmqJIDTX091uoovWUBKDFm+21OsblbEvkoNFb/jzA5f
+ GzQzQoHCnoG72CVLGShWNmtt98ZqsyeA5UJgeE0votEVQqDXRN8kq6lyBRDxrWD3v8xg
+ Ro0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=wm5rJ32rLxO+HO9N/RfA/c5d8e0S0rmJhNnlIvFPu/g=;
- b=q0+HI1YzfZ3JXZHzv03Ylh37bR5gj13EIRpSLtxlU8AnP8Ff+aKp1zcLI+FnUbadRW
- zyoSoBbPmQELaVqftgiUPYauMO93e9QHGYsR5AcK+7ThMJUwr7o5l7lpPGTSjXnFPxpv
- AwaDz2NH+6mbEnncIKW3RWcgQI+NQ1Qog0S4ot+Y+T0fvv6vtAWafFLzGRjsn/uQSfZe
- 7ia3O5Kg991dahiSxm42uCRJ5nEClOl6bl1mLd7a7JvYoV08+hg9l7+ZEw/Hp+a+JX8k
- ycRV4IWwjn1xbiartztKeVrgGiSD5zwUtU4GJQKm5+NlyQMt+vxxoB/fEGML0wu49PTW
- 6H/Q==
-X-Gm-Message-State: AOAM531vUzZcyy+G1TE+ikNZzGnR1J7PAxdm6RMKR2qVkXDWAFHD/L4N
- kk1yjJSfmY2Ljd7UJfTMxZaajBqu6cWXpWahBIQ=
-X-Google-Smtp-Source: ABdhPJwGpc4Lxfce33OEdBBuSfcfDP33JIUqfDcw5DDZ3V8E4HVGHAsjGJKq/H/TFYfSSagWtuOtUFcwzvr2DXe49+8=
-X-Received: by 2002:a50:e883:: with SMTP id f3mr2173979edn.220.1594860200343; 
- Wed, 15 Jul 2020 17:43:20 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=M/DmHETZOAY7H70Ux+TlQEI0fnuJDUnsXDXca6tT46g=;
+ b=kFSzcXKTE/QGz7ZmPj9gBmC0v5GcGzY8x85HrCuK8MyEsEjlZzXPxs5bz4t6c3d8AS
+ X2o7eJwOP6400MTZl2BStCG7N8CBFhuLUMGI1KXI25mJsSysbWzBklIpsp0dVJypRLlR
+ 9TJnVv8IJWrZ3r79XiF8jDfXWseb1fv3i4H5VZYBkjQrfTZmFD40ql8OSQQBnErKxqZM
+ n3fifbkO25/GZVlW8zJGzoTVK6SJGp/82Vev00s7RaITfmnKeqkJtAS1hS0VWUaEpU5t
+ JoehhPI9tMdmp1c0//8o49+Z0FFLJw/OE8pIc9USCjr6uNHo56Fch+z8DIW7gP5LSJTI
+ b6Qw==
+X-Gm-Message-State: AOAM5314YCxY3tAnGHc7ba7r/Hth0NuQz4rSDHMLs4EjRgoMspuL5ZnU
+ GJiIz+JbkVMod0Y09sdBwXQ=
+X-Google-Smtp-Source: ABdhPJyqZ06OE7DJZF6oZZcBoK379ofd//uSbRPcAsHFWSjy6GHaa3/nYk1wRYFZasP51XtjA7fXvg==
+X-Received: by 2002:a37:9b08:: with SMTP id d8mr2291995qke.105.1594873687122; 
+ Wed, 15 Jul 2020 21:28:07 -0700 (PDT)
+Received: from localhost.localdomain ([2604:1380:45d1:2600::1])
+ by smtp.gmail.com with ESMTPSA id 79sm5466778qkd.134.2020.07.15.21.28.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 15 Jul 2020 21:28:06 -0700 (PDT)
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Wed, 15 Jul 2020 21:27:42 -0700
+Message-Id: <20200716042742.123169-1-natechancellor@gmail.com>
+X-Mailer: git-send-email 2.28.0.rc0
 MIME-Version: 1.0
-References: <20200710115757.290984-1-matthew.auld@intel.com>
- <20200710115757.290984-34-matthew.auld@intel.com>
- <CAPM=9tzvetxhBJBOC60ydOVcTN9ujtHLCODFNwGtONTDzuzwZA@mail.gmail.com>
- <c6cd965d-9a03-10fd-517e-a44934a2b0c9@intel.com>
-In-Reply-To: <c6cd965d-9a03-10fd-517e-a44934a2b0c9@intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Thu, 16 Jul 2020 10:43:09 +1000
-Message-ID: <CAPM=9txaksu8brsPTHsLkQudpNLd6O1MOzG8APGTrMaoXMioqw@mail.gmail.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Subject: Re: [Intel-gfx] [RFC 33/60] drm/i915/lmem: support pwrite
+X-Patchwork-Bot: notify
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Ensure that ret is always
+ initialized in icl_combo_phy_verify_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,43 +68,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, clang-built-linux@googlegroups.com,
+ Nathan Chancellor <natechancellor@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 15 Jul 2020 at 00:35, Matthew Auld <matthew.auld@intel.com> wrote:
->
-> On 13/07/2020 06:09, Dave Airlie wrote:
-> > On Fri, 10 Jul 2020 at 22:00, Matthew Auld <matthew.auld@intel.com> wrote:
-> >>
-> >> We need to add support for pwrite'ing an LMEM object.
-> >
-> > why? DG1 is a discrete GPU, these interfaces we already gross and
-> > overly hacky for integrated, I'd prefer not to drag them across into
-> > discrete land.
-> >
-> > same goes for pread.
-> >
-> > You have no legacy userspace here, userspace needs change to support
-> > LMEM, it can be fixed to avoid legacy ioctls paths.
->
-> Ok, there have also been similar discussions internally in the past. I
-> think one of the reasons was around IGT, and how keeping the
-> pread/pwrite interface meant slightly less pain, also it's not much
-> effort to implement for LMEM. If this is a NACK, then I guess the other
-> idea was to somehow fallback to mmap and update IGT accordingly.
+Clang warns:
 
-I just don't think we should have internal kernel interfaces for
-mapping ram in the kernel address space, seems pointless, makes less
-sense with a discrete GPU in the mix, so yes I think NAK for
-pread/pwrite at least at this time.
+drivers/gpu/drm/i915/display/intel_combo_phy.c:268:3: warning: variable
+'ret' is uninitialized when used here [-Wuninitialized]
+                ret &= check_phy_reg(dev_priv, phy, ICL_PORT_TX_DW8_LN0(phy),
+                ^~~
+drivers/gpu/drm/i915/display/intel_combo_phy.c:261:10: note: initialize
+the variable 'ret' to silence this warning
+        bool ret;
+                ^
+                 = 0
+1 warning generated.
 
-I'd also like to see a hard no relocs policy for DG1 enforced in the kernel.
+In practice, the bug this warning appears to be concerned with would not
+actually matter because ret gets initialized to the return value of
+cnl_verify_procmon_ref_values. However, that does appear to be a bug
+since it means the first hunk of the patch this fixes won't actually do
+anything (since the values of check_phy_reg won't factor into the final
+ret value). Initialize ret to true then make all of the assignments a
+bitwise AND with itself so that the function always does what it should
+do.
 
-Dave.
+Fixes: 239bef676d8e ("drm/i915/display: Implement new combo phy initialization step")
+Link: https://github.com/ClangBuiltLinux/linux/issues/1094
+Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_combo_phy.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+index eccaa79cb4a9..a4b8aa6d0a9e 100644
+--- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+@@ -258,7 +258,7 @@ static bool phy_is_master(struct drm_i915_private *dev_priv, enum phy phy)
+ static bool icl_combo_phy_verify_state(struct drm_i915_private *dev_priv,
+ 				       enum phy phy)
+ {
+-	bool ret;
++	bool ret = true;
+ 	u32 expected_val = 0;
+ 
+ 	if (!icl_combo_phy_enabled(dev_priv, phy))
+@@ -276,7 +276,7 @@ static bool icl_combo_phy_verify_state(struct drm_i915_private *dev_priv,
+ 				     DCC_MODE_SELECT_CONTINUOSLY);
+ 	}
+ 
+-	ret = cnl_verify_procmon_ref_values(dev_priv, phy);
++	ret &= cnl_verify_procmon_ref_values(dev_priv, phy);
+ 
+ 	if (phy_is_master(dev_priv, phy)) {
+ 		ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW8(phy),
+
+base-commit: ca0e494af5edb59002665bf12871e94b4163a257
+-- 
+2.28.0.rc0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
