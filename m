@@ -1,32 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BE7222263E
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 16:52:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E0CE22268B
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 17:09:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36D976EC6B;
-	Thu, 16 Jul 2020 14:52:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6E776EC73;
+	Thu, 16 Jul 2020 15:09:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AEBA86EBB1;
- Thu, 16 Jul 2020 14:52:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A8191A41FB;
- Thu, 16 Jul 2020 14:52:41 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 872DE6EC73
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 15:09:54 +0000 (UTC)
+IronPort-SDR: KHQZWax6Y5vbwBmkWoekkJ5JN4vT9wnWzwxpNlZR4d3F4LVH3+7ASO1LhU4lMMU3pxA/LM6CMF
+ xpM5oOJEW9TQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9683"; a="210932019"
+X-IronPort-AV: E=Sophos;i="5.75,359,1589266800"; d="scan'208";a="210932019"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2020 08:09:53 -0700
+IronPort-SDR: 9T/GCKawNpUmpRSVW1HlQVlhIO2iJcCegaSF04HDrOF6Na0KyC6/vTId5mtvtosnQ/SiHdBbnt
+ jYCepFXVInew==
+X-IronPort-AV: E=Sophos;i="5.75,359,1589266800"; d="scan'208";a="460503654"
+Received: from unknown (HELO [10.249.34.86]) ([10.249.34.86])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2020 08:09:52 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200716113357.7644-1-chris@chris-wilson.co.uk>
+ <20200716113357.7644-3-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <7e1d4f6d-014d-04e3-03df-55198ebe56af@linux.intel.com>
+Date: Thu, 16 Jul 2020 16:09:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 16 Jul 2020 14:52:41 -0000
-Message-ID: <159491116165.25375.6538795679953302597@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200716142207.13003-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200716142207.13003-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915=3A_Be_wary_of_data_ra?=
- =?utf-8?q?ces_when_reading_the_active_execlists?=
+In-Reply-To: <20200716113357.7644-3-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915: Remove requirement for
+ holding i915_request.lock for breadcrumbs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,300 +53,341 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0623468791=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0623468791==
-Content-Type: multipart/alternative;
- boundary="===============2635660259265277605=="
 
---===============2635660259265277605==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 16/07/2020 12:33, Chris Wilson wrote:
+> Since the breadcrumb enabling/cancelling itself is serialised by the
+> breadcrumbs.irq_lock, with a bit of care we can remove the outer
+> serialisation with i915_request.lock for concurrent
+> dma_fence_enable_signaling(). This has the important side-effect of
+> eliminating the nested i915_request.lock within request submission.
+> 
+> The challenge in serialisation is around the unsubmission where we take
+> an active request that wants a breadcrumb on the signaling engine and
+> put it to sleep. We do not want a concurrent
+> dma_fence_enable_signaling() to attach a breadcrumb as we unsubmit, so
+> we must mark the request as no longer active before serialising with the
+> concurrent enable-signaling.
+> 
+> On retire, we serialise with the concurrent enable-signaling, but
+> instead of clearing ACTIVE, we mark it as SIGNALED.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 130 +++++++++++++-------
+>   drivers/gpu/drm/i915/gt/intel_lrc.c         |  14 ---
+>   drivers/gpu/drm/i915/i915_request.c         |  39 +++---
+>   3 files changed, 100 insertions(+), 83 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index 91786310c114..a0f52417238c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -220,17 +220,17 @@ static void signal_irq_work(struct irq_work *work)
+>   	}
+>   }
+>   
+> -static bool __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+> +static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+>   {
+>   	struct intel_engine_cs *engine =
+>   		container_of(b, struct intel_engine_cs, breadcrumbs);
+>   
+>   	lockdep_assert_held(&b->irq_lock);
+>   	if (b->irq_armed)
+> -		return true;
+> +		return;
+>   
+>   	if (!intel_gt_pm_get_if_awake(engine->gt))
+> -		return false;
+> +		return;
+>   
+>   	/*
+>   	 * The breadcrumb irq will be disarmed on the interrupt after the
+> @@ -250,8 +250,6 @@ static bool __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+>   
+>   	if (!b->irq_enabled++)
+>   		irq_enable(engine);
+> -
+> -	return true;
+>   }
+>   
+>   void intel_engine_init_breadcrumbs(struct intel_engine_cs *engine)
+> @@ -310,57 +308,99 @@ void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine)
+>   {
+>   }
+>   
+> -bool i915_request_enable_breadcrumb(struct i915_request *rq)
+> +static void insert_breadcrumb(struct i915_request *rq,
+> +			      struct intel_breadcrumbs *b)
+>   {
+> -	lockdep_assert_held(&rq->lock);
+> +	struct intel_context *ce = rq->context;
+> +	struct list_head *pos;
+>   
+> -	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &rq->fence.flags))
+> -		return true;
+> +	if (test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags))
+> +		return;
+>   
+> -	if (test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags)) {
+> -		struct intel_breadcrumbs *b = &rq->engine->breadcrumbs;
+> -		struct intel_context *ce = rq->context;
+> -		struct list_head *pos;
+> +	__intel_breadcrumbs_arm_irq(b);
+>   
+> -		spin_lock(&b->irq_lock);
+> +	/*
+> +	 * We keep the seqno in retirement order, so we can break
+> +	 * inside intel_engine_signal_breadcrumbs as soon as we've
+> +	 * passed the last completed request (or seen a request that
+> +	 * hasn't event started). We could walk the timeline->requests,
+> +	 * but keeping a separate signalers_list has the advantage of
+> +	 * hopefully being much smaller than the full list and so
+> +	 * provides faster iteration and detection when there are no
+> +	 * more interrupts required for this context.
+> +	 *
+> +	 * We typically expect to add new signalers in order, so we
+> +	 * start looking for our insertion point from the tail of
+> +	 * the list.
+> +	 */
+> +	list_for_each_prev(pos, &ce->signals) {
+> +		struct i915_request *it =
+> +			list_entry(pos, typeof(*it), signal_link);
+>   
+> -		if (test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags))
+> -			goto unlock;
+> +		if (i915_seqno_passed(rq->fence.seqno, it->fence.seqno))
+> +			break;
+> +	}
+> +	list_add(&rq->signal_link, pos);
+> +	if (pos == &ce->signals) /* catch transitions from empty list */
+> +		list_move_tail(&ce->signal_link, &b->signalers);
+> +	GEM_BUG_ON(!check_signal_order(ce, rq));
+>   
+> -		if (!__intel_breadcrumbs_arm_irq(b))
+> -			goto unlock;
+> +	set_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+> +}
+>   
+> -		/*
+> -		 * We keep the seqno in retirement order, so we can break
+> -		 * inside intel_engine_signal_breadcrumbs as soon as we've
+> -		 * passed the last completed request (or seen a request that
+> -		 * hasn't event started). We could walk the timeline->requests,
+> -		 * but keeping a separate signalers_list has the advantage of
+> -		 * hopefully being much smaller than the full list and so
+> -		 * provides faster iteration and detection when there are no
+> -		 * more interrupts required for this context.
+> -		 *
+> -		 * We typically expect to add new signalers in order, so we
+> -		 * start looking for our insertion point from the tail of
+> -		 * the list.
+> -		 */
+> -		list_for_each_prev(pos, &ce->signals) {
+> -			struct i915_request *it =
+> -				list_entry(pos, typeof(*it), signal_link);
+> +bool i915_request_enable_breadcrumb(struct i915_request *rq)
+> +{
+> +	struct intel_breadcrumbs *b;
+>   
+> -			if (i915_seqno_passed(rq->fence.seqno, it->fence.seqno))
+> -				break;
+> -		}
+> -		list_add(&rq->signal_link, pos);
+> -		if (pos == &ce->signals) /* catch transitions from empty list */
+> -			list_move_tail(&ce->signal_link, &b->signalers);
+> -		GEM_BUG_ON(!check_signal_order(ce, rq));
+> +	/* Seralises with i915_request_retire() using rq->lock */
 
-== Series Details ==
+Serialises
 
-Series: series starting with [CI,1/2] drm/i915: Be wary of data races when reading the active execlists
-URL   : https://patchwork.freedesktop.org/series/79556/
-State : success
+> +	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &rq->fence.flags))
+> +		return true;
+>   
+> -		set_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+> -unlock:
+> +	/*
+> +	 * Peek at i915_request_submit()/i915_request_unsubmit() status.
+> +	 *
+> +	 * If the request is not yet active (and not signaled), we will
+> +	 * attach the breadcrumb later.
+> +	 */
+> +	if (!test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags))
+> +		return true;
+> +
+> +	/*
+> +	 * rq->engine is locked by rq->engine->active.lock. That however
+> +	 * is not known until after rq->engine has been dereferenced and
+> +	 * the lock acquired. Hence we acquire the lock and then validate
+> +	 * that rq->engine still matches the lock we hold for it.
+> +	 *
+> +	 * Here, we are using the breadcrumb lock as a proxy for the
+> +	 * rq->engine->active.lock, and we know that since the breadcrumb
+> +	 * will be serialised within i915_request_submit/i915_request_unsubmit,
+> +	 * the engine cannot change while active as long as we hold the
+> +	 * breadcrumb lock on that engine.
+> +	 *
+> +	 * From the dma_fence_enable_signaling() path, we are outside of the
+> +	 * request submit/unsubmit path, and so we must be more careful to
+> +	 * acquire the right lock.
+> +	 */
+> +	b = &READ_ONCE(rq->engine)->breadcrumbs;
+> +	spin_lock(&b->irq_lock);
+> +	while (unlikely(b != &READ_ONCE(rq->engine)->breadcrumbs)) {
+>   		spin_unlock(&b->irq_lock);
+> +		b = &READ_ONCE(rq->engine)->breadcrumbs;
+> +		spin_lock(&b->irq_lock);
+>   	}
+>   
+> +	/*
+> +	 * Now that we are finally serialised with request submit/unsubmit,
+> +	 * [with b->irq_lock] and with i915_request_reitre() [via checking
 
-== Summary ==
+retire
 
-CI Bug Log - changes from CI_DRM_8754 -> Patchwork_18190
-====================================================
+> +	 * SIGNALED with rq->lock] confirm the request is indeed active. If
+> +	 * it is no longer active, the breadcrumb will be attached upon
+> +	 * i915_request_submit().
+> +	 */
+> +	if (test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags))
+> +		insert_breadcrumb(rq, b);
+> +
+> +	spin_unlock(&b->irq_lock);
+> +
+>   	return !__request_completed(rq);
+>   }
+>   
+> @@ -368,8 +408,6 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
+>   {
+>   	struct intel_breadcrumbs *b = &rq->engine->breadcrumbs;
+>   
+> -	lockdep_assert_held(&rq->lock);
+> -
+>   	/*
+>   	 * We must wait for b->irq_lock so that we know the interrupt handler
+>   	 * has released its reference to the intel_context and has completed
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 29c0fde8b4df..21c16e31c4fe 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1148,20 +1148,6 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+>   		} else {
+>   			struct intel_engine_cs *owner = rq->context->engine;
+>   
+> -			/*
+> -			 * Decouple the virtual breadcrumb before moving it
+> -			 * back to the virtual engine -- we don't want the
+> -			 * request to complete in the background and try
+> -			 * and cancel the breadcrumb on the virtual engine
+> -			 * (instead of the old engine where it is linked)!
+> -			 */
+> -			if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+> -				     &rq->fence.flags)) {
+> -				spin_lock_nested(&rq->lock,
+> -						 SINGLE_DEPTH_NESTING);
+> -				i915_request_cancel_breadcrumb(rq);
+> -				spin_unlock(&rq->lock);
+> -			}
+>   			WRITE_ONCE(rq->engine, owner);
+>   			owner->submit_request(rq);
+>   			active = NULL;
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 2ef17b11ca4b..8c345ead04a6 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -320,11 +320,12 @@ bool i915_request_retire(struct i915_request *rq)
+>   		dma_fence_signal_locked(&rq->fence);
+>   	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags))
+>   		i915_request_cancel_breadcrumb(rq);
+> +	spin_unlock_irq(&rq->lock);
+> +
+>   	if (i915_request_has_waitboost(rq)) {
+>   		GEM_BUG_ON(!atomic_read(&rq->engine->gt->rps.num_waiters));
+>   		atomic_dec(&rq->engine->gt->rps.num_waiters);
+>   	}
+> -	spin_unlock_irq(&rq->lock);
+>   
+>   	/*
+>   	 * We only loosely track inflight requests across preemption,
+> @@ -608,17 +609,9 @@ bool __i915_request_submit(struct i915_request *request)
+>   	 */
+>   	__notify_execute_cb_irq(request);
+>   
+> -	/* We may be recursing from the signal callback of another i915 fence */
+> -	if (!i915_request_signaled(request)) {
+> -		spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+> -
+> -		if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+> -			     &request->fence.flags) &&
+> -		    !i915_request_enable_breadcrumb(request))
+> -			intel_engine_signal_breadcrumbs(engine);
+> -
+> -		spin_unlock(&request->lock);
+> -	}
+> +	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
+> +	    !i915_request_enable_breadcrumb(request))
+> +		intel_engine_signal_breadcrumbs(engine);
+>   
+>   	return result;
+>   }
+> @@ -640,27 +633,27 @@ void __i915_request_unsubmit(struct i915_request *request)
+>   {
+>   	struct intel_engine_cs *engine = request->engine;
+>   
+> +	/*
+> +	 * Only unwind in reverse order, required so that the per-context list
+> +	 * is kept in seqno/ring order.
+> +	 */
+>   	RQ_TRACE(request, "\n");
+>   
+>   	GEM_BUG_ON(!irqs_disabled());
+>   	lockdep_assert_held(&engine->active.lock);
+>   
+>   	/*
+> -	 * Only unwind in reverse order, required so that the per-context list
+> -	 * is kept in seqno/ring order.
+> +	 * Before we remove this breadcrumb from the signal list, we have
+> +	 * to ensure that a concurrent dma_fence_enable_signaling() does not
+> +	 * attach itself. We first mark the request as no longer active and
+> +	 * make sure that is visible to other cores, and then remove the
+> +	 * breadcrumb if attached.
+>   	 */
+> -
+> -	/* We may be recursing from the signal callback of another i915 fence */
+> -	spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+> -
+> +	GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags));
+> +	clear_bit_unlock(I915_FENCE_FLAG_ACTIVE, &request->fence.flags);
+>   	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags))
+>   		i915_request_cancel_breadcrumb(request);
+>   
+> -	GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags));
+> -	clear_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags);
+> -
+> -	spin_unlock(&request->lock);
+> -
+>   	/* We've already spun, don't charge on resubmitting. */
+>   	if (request->sched.semaphores && i915_request_started(request))
+>   		request->sched.semaphores = 0;
+> 
 
-Summary
--------
+I did not find a hole (race) after quite a bit of straining the grey 
+matter so.. lets see..
 
-  **SUCCESS**
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-  No regressions found.
+Regards,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/index.html
+Tvrtko
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18190 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_store@basic:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-tgl-y/igt@gem_exec_store@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-tgl-y/igt@gem_exec_store@basic.html
-
-  * igt@i915_module_load@reload:
-    - fi-apl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#1635] / [i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-apl-guc/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-apl-guc/igt@i915_module_load@reload.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-tgl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#402])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@basic:
-    - fi-tgl-y:           [DMESG-WARN][9] ([i915#402]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-tgl-y/igt@gem_flink_basic@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-tgl-y/igt@gem_flink_basic@basic.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-tgl-u2:          [INCOMPLETE][11] ([i915#2045]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-tgl-u2:          [DMESG-FAIL][13] ([i915#1233]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#1982] / [i915#62] / [i915#92])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][19] ([fdo#109271]) -> [DMESG-FAIL][20] ([i915#62] / [i915#95])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92]) -> [DMESG-WARN][24] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2045]: https://gitlab.freedesktop.org/drm/intel/issues/2045
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (45 -> 40)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8754 -> Patchwork_18190
-
-  CI-20190529: 20190529
-  CI_DRM_8754: 5e2a3a9c4ca7fe59db74a1fffe29e6a2012e2225 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5738: bc8b56fe177af34fbde7b96f1f66614a0014c6ef @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18190: b3af951bbc96eac8d9f1825d953edce250d0434f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b3af951bbc96 drm/i915: Remove i915_request.lock requirement for execution callbacks
-a9025407e910 drm/i915: Be wary of data races when reading the active execlists
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/index.html
-
---===============2635660259265277605==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/2] drm/i915: Be wary of data races when reading the active execlists</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/79556/">https://patchwork.freedesktop.org/series/79556/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8754 -&gt; Patchwork_18190</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18190 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_store@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-tgl-y/igt@gem_exec_store@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-tgl-y/igt@gem_exec_store@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-apl-guc/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-apl-guc/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-tgl-u2/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-tgl-y/igt@gem_flink_basic@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-tgl-y/igt@gem_flink_basic@basic.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2045">i915#2045</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1233">i915#1233</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@a-dp1:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8754/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18190/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 40)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_8754 -&gt; Patchwork_18190</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8754: 5e2a3a9c4ca7fe59db74a1fffe29e6a2012e2225 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5738: bc8b56fe177af34fbde7b96f1f66614a0014c6ef @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18190: b3af951bbc96eac8d9f1825d953edce250d0434f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>b3af951bbc96 drm/i915: Remove i915_request.lock requirement for execution callbacks<br />
-a9025407e910 drm/i915: Be wary of data races when reading the active execlists</p>
-
-</body>
-</html>
-
---===============2635660259265277605==--
-
---===============0623468791==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0623468791==--
