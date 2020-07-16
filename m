@@ -2,43 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C03C222039
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 12:03:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61480222049
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 12:08:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 969D36E0DD;
-	Thu, 16 Jul 2020 10:03:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 581D66E120;
+	Thu, 16 Jul 2020 10:07:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 346CD6E0DD
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 10:03:30 +0000 (UTC)
-IronPort-SDR: Q4wrGSSQ7k+xhte28g//SR7OlI3DN0JlqRYOllYvMhPnuYY2VvoHbUe4jUKS0bZG+UAsWy4MV6
- 9mnb744ByHbg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9683"; a="136801689"
-X-IronPort-AV: E=Sophos;i="5.75,358,1589266800"; d="scan'208";a="136801689"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2020 03:03:29 -0700
-IronPort-SDR: CjkEgKeL1rWeDNATVoYWrFHNf+t7ESyN5H2rd5YMsF3akOJvGvt4GEvqxjfr+sZyUusUwtFPdC
- 09i3UOFwdiQw==
-X-IronPort-AV: E=Sophos;i="5.75,358,1589266800"; d="scan'208";a="460424077"
-Received: from unknown (HELO [10.249.34.86]) ([10.249.34.86])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2020 03:03:28 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200716094643.31410-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <1f4e4566-53eb-a91d-fa3e-0576324042fa@linux.intel.com>
-Date: Thu, 16 Jul 2020 11:03:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2A446E120
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 10:07:57 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21836431-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 11:07:54 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Jul 2020 11:07:54 +0100
+Message-Id: <20200716100754.5670-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20200716094643.31410-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Provide the perf pmu.module
+Subject: [Intel-gfx] [CI] drm/i915: Reduce i915_request.lock contention for
+ i915_request_wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,67 +37,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Currently, we use i915_request_completed() directly in
+i915_request_wait() and follow up with a manual invocation of
+dma_fence_signal(). This appears to cause a large number of contentions
+on i915_request.lock as when the process is woken up after the fence is
+signaled by an interrupt, we will then try and call dma_fence_signal()
+ourselves while the signaler is still holding the lock.
+dma_fence_is_signaled() has the benefit of checking the
+DMA_FENCE_FLAG_SIGNALED_BIT prior to calling dma_fence_signal() and so
+avoids most of that contention.
 
-On 16/07/2020 10:46, Chris Wilson wrote:
-> Rather than manually implement our own module reference counting for perf
-> pmu events, finally realise that there is a module parameter to struct
-> pmu for this very purpose.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: stable@vger.kernel.org
-> ---
->   drivers/gpu/drm/i915/i915_pmu.c | 7 ++-----
->   1 file changed, 2 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index 28bc5f13ae52..056994224c6b 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -445,8 +445,6 @@ static void i915_pmu_event_destroy(struct perf_event *event)
->   		container_of(event->pmu, typeof(*i915), pmu.base);
->   
->   	drm_WARN_ON(&i915->drm, event->parent);
-> -
-> -	module_put(THIS_MODULE);
->   }
->   
->   static int
-> @@ -538,10 +536,8 @@ static int i915_pmu_event_init(struct perf_event *event)
->   	if (ret)
->   		return ret;
->   
-> -	if (!event->parent) {
-> -		__module_get(THIS_MODULE);
-> +	if (!event->parent)
->   		event->destroy = i915_pmu_event_destroy;
-> -	}
->   
->   	return 0;
->   }
-> @@ -1130,6 +1126,7 @@ void i915_pmu_register(struct drm_i915_private *i915)
->   	if (!pmu->base.attr_groups)
->   		goto err_attr;
->   
-> +	pmu->base.module	= THIS_MODULE;
->   	pmu->base.task_ctx_nr	= perf_invalid_context;
->   	pmu->base.event_init	= i915_pmu_event_init;
->   	pmu->base.add		= i915_pmu_event_add;
-> 
-
-Okay!
-
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/i915_request.c | 18 ++++++++----------
+ 1 file changed, 8 insertions(+), 10 deletions(-)
 
-Regards,
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 0b2fe55e6194..49f181ab4982 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1640,7 +1640,7 @@ static bool busywait_stop(unsigned long timeout, unsigned int cpu)
+ 	return this_cpu != cpu;
+ }
+ 
+-static bool __i915_spin_request(const struct i915_request * const rq, int state)
++static bool __i915_spin_request(struct i915_request * const rq, int state)
+ {
+ 	unsigned long timeout_ns;
+ 	unsigned int cpu;
+@@ -1673,7 +1673,7 @@ static bool __i915_spin_request(const struct i915_request * const rq, int state)
+ 	timeout_ns = READ_ONCE(rq->engine->props.max_busywait_duration_ns);
+ 	timeout_ns += local_clock_ns(&cpu);
+ 	do {
+-		if (i915_request_completed(rq))
++		if (dma_fence_is_signaled(&rq->fence))
+ 			return true;
+ 
+ 		if (signal_pending_state(state, current))
+@@ -1697,7 +1697,7 @@ static void request_wait_wake(struct dma_fence *fence, struct dma_fence_cb *cb)
+ {
+ 	struct request_wait *wait = container_of(cb, typeof(*wait), cb);
+ 
+-	wake_up_process(wait->tsk);
++	wake_up_process(fetch_and_zero(&wait->tsk));
+ }
+ 
+ /**
+@@ -1766,10 +1766,8 @@ long i915_request_wait(struct i915_request *rq,
+ 	 * duration, which we currently lack.
+ 	 */
+ 	if (IS_ACTIVE(CONFIG_DRM_I915_MAX_REQUEST_BUSYWAIT) &&
+-	    __i915_spin_request(rq, state)) {
+-		dma_fence_signal(&rq->fence);
++	    __i915_spin_request(rq, state))
+ 		goto out;
+-	}
+ 
+ 	/*
+ 	 * This client is about to stall waiting for the GPU. In many cases
+@@ -1796,10 +1794,8 @@ long i915_request_wait(struct i915_request *rq,
+ 	for (;;) {
+ 		set_current_state(state);
+ 
+-		if (i915_request_completed(rq)) {
+-			dma_fence_signal(&rq->fence);
++		if (dma_fence_is_signaled(&rq->fence))
+ 			break;
+-		}
+ 
+ 		intel_engine_flush_submission(rq->engine);
+ 
+@@ -1817,7 +1813,9 @@ long i915_request_wait(struct i915_request *rq,
+ 	}
+ 	__set_current_state(TASK_RUNNING);
+ 
+-	dma_fence_remove_callback(&rq->fence, &wait.cb);
++	if (READ_ONCE(wait.tsk))
++		dma_fence_remove_callback(&rq->fence, &wait.cb);
++	GEM_BUG_ON(!list_empty(&wait.cb.node));
+ 
+ out:
+ 	mutex_release(&rq->engine->gt->reset.mutex.dep_map, _THIS_IP_);
+-- 
+2.20.1
 
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
