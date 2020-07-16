@@ -2,43 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D8B22253B
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 16:24:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 960FE22257A
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jul 2020 16:29:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 288F96E05C;
-	Thu, 16 Jul 2020 14:24:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E94126EBA4;
+	Thu, 16 Jul 2020 14:29:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 576796E05C
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:24:08 +0000 (UTC)
-IronPort-SDR: zRq6wFqrlhIpnVtgcJaxaOsIs20wNcsMr5aUoZw9OacxEHMS5sht9CuHFqQp0i0xkUfsxCzdXe
- pX0QiGYcY1RQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9683"; a="210918905"
-X-IronPort-AV: E=Sophos;i="5.75,359,1589266800"; d="scan'208";a="210918905"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C51E76EBA4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:29:10 +0000 (UTC)
+IronPort-SDR: +mq6bBc/nKCVZhXn740w1QSuvdXpUY4SP5UY1/MVcOdQ7e0G3CKsMbTiER6fp/PYC4YlmQM88v
+ V1A5SUhhvduQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9683"; a="129456840"
+X-IronPort-AV: E=Sophos;i="5.75,359,1589266800"; d="scan'208";a="129456840"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2020 07:24:07 -0700
-IronPort-SDR: WfmjJ+elTe5GQ4znTkntsw0mEk1eNrflWrrJn+TjZ0/TH9EflDn8oucCN3XJhWLlmjLh/iQyYz
- pETEB0SFmLAw==
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2020 07:29:10 -0700
+IronPort-SDR: fWFpk51E2AfLLIL842+Jzb3DYLiRl0Hp2zhKWCPg6VshWLcBUp+GPmZEml4NmVIHhpefLPUZ2B
+ hB1Dyki/Ip2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,359,1589266800"; d="scan'208";a="430510655"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga004.jf.intel.com with ESMTP; 16 Jul 2020 07:24:06 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id C666B5C0D7C; Thu, 16 Jul 2020 17:23:43 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200715115147.11866-10-chris@chris-wilson.co.uk>
-References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <20200715115147.11866-10-chris@chris-wilson.co.uk>
-Date: Thu, 16 Jul 2020 17:23:43 +0300
-Message-ID: <87blkf35e8.fsf@gaia.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.75,359,1589266800"; d="scan'208";a="269265820"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+ by fmsmga007.fm.intel.com with ESMTP; 16 Jul 2020 07:29:10 -0700
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 16 Jul 2020 07:29:10 -0700
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 16 Jul 2020 07:29:09 -0700
+Received: from bgsmsx101.gar.corp.intel.com (10.223.4.170) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Thu, 16 Jul 2020 07:29:09 -0700
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.234]) by
+ BGSMSX101.gar.corp.intel.com ([169.254.1.200]) with mapi id 14.03.0439.000;
+ Thu, 16 Jul 2020 19:59:07 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display/fbc: Disable fbc by
+ default on TGL
+Thread-Index: AQHWW0qEizM2SkbC00CXwCx6jQk+6akJyRyAgAAC/YCAAHfukA==
+Date: Thu, 16 Jul 2020 14:29:06 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F825BC9C5@BGSMSX104.gar.corp.intel.com>
+References: <20200716085540.2211-1-uma.shankar@intel.com>
+ <20200716123803.GU6112@intel.com> <20200716124845.GV6112@intel.com>
+In-Reply-To: <20200716124845.GV6112@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 10/66] drm/i915: Soften the tasklet flush
- frequency before waits
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/fbc: Disable fbc by
+ default on TGL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,71 +74,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> We include a tasklet flush before waiting on a request as a precaution
-> against the HW being lax in event signaling. We now have a precautionary
-> flush in the engine's heartbeat and so do not need to be quite so
-> zealous on every request wait. If we focus on the request, the only
-> tasklet flush that matters is if there is a delay in submitting this
-> request to HW, so if the request is not ready to be executed no
-> advantage in reducing this wait can be gained by running the tasklet.
-> And there is little point in doing busy work for no result.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Thursday, July 16, 2020 6:19 PM
+> To: Shankar, Uma <uma.shankar@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/fbc: Disable fbc by def=
+ault on
+> TGL
+> =
 
-> ---
->  drivers/gpu/drm/i915/i915_request.c | 20 ++++++++++++++++++--
->  1 file changed, 18 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index 29b5e71307e3..f58beff5e859 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -1760,14 +1760,30 @@ long i915_request_wait(struct i915_request *rq,
->  	if (dma_fence_add_callback(&rq->fence, &wait.cb, request_wait_wake))
->  		goto out;
->  
-> +	/*
-> +	 * Flush the submission tasklet, but only if it may help this request.
-> +	 *
-> +	 * We sometimes experience some latency between the HW interrupts and
-> +	 * tasklet execution (mostly due to ksoftirqd latency, but it can also
-> +	 * be due to lazy CS events), so lets run the tasklet manually if there
-> +	 * is a chance it may submit this request. If the request is not ready
-> +	 * to run, as it is waiting for other fences to be signaled, flushing
-> +	 * the tasklet is busy work without any advantage for this client.
-> +	 *
-> +	 * If the HW is being lazy, this is the last chance before we go to
-> +	 * sleep to catch any pending events. We will check periodically in
-> +	 * the heartbeat to flush the submission tasklets as a last resort
-> +	 * for unhappy HW.
-> +	 */
-> +	if (i915_request_is_ready(rq))
-> +		intel_engine_flush_submission(rq->engine);
-> +
->  	for (;;) {
->  		set_current_state(state);
->  
->  		if (dma_fence_is_signaled(&rq->fence))
->  			break;
->  
-> -		intel_engine_flush_submission(rq->engine);
-> -
->  		if (signal_pending_state(state, current)) {
->  			timeout = -ERESTARTSYS;
->  			break;
-> -- 
-> 2.20.1
+> On Thu, Jul 16, 2020 at 03:38:03PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Thu, Jul 16, 2020 at 02:25:40PM +0530, Uma Shankar wrote:
+> > > Fbc is causing random underruns in CI execution on TGL platforms.
+> > > Disabling the same while the problem is being debugged and analyzed.
+> > >
+> > > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> >
+> > Acked-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> Scratch that...
+> =
+
+> >
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_fbc.c | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > index 3a4f980788a6..1d6370b29b27 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > @@ -1420,6 +1420,13 @@ void intel_fbc_handle_fifo_underrun_irq(struct
+> drm_i915_private *dev_priv)
+> > >   */
+> > >  static int intel_sanitize_fbc_option(struct drm_i915_private
+> > > *dev_priv)  {
+> > > +	/*
+> > > +	 * Fbc is causing random underruns in CI execution on TGL platforms.
+> > > +	 * Disabling the same while the problem is being debugged and analy=
+zed.
+> > > +	 */
+> > > +	if (IS_TIGERLAKE(dev_priv))
+> > > +		return 0;
+> =
+
+> ... looks lke this should be done *after* the modparam check below.
+> Otherwise we can't enable fbc for testing via the modparam.
+
+Oh yeah, updated the change and sent a v2 with fix. Thanks Ville.
+
+Regards,
+Uma Shankar
+
+> > > +
+> > >  	if (dev_priv->params.enable_fbc >=3D 0)
+> > >  		return !!dev_priv->params.enable_fbc;
+> > >
+> > > --
+> > > 2.22.0
+> >
+> > --
+> > Ville Syrj=E4l=E4
+> > Intel
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
+
+> --
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
