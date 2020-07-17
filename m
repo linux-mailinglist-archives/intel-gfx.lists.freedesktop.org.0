@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CA5C223DB0
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 16:06:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3322223DD2
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 16:10:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E2976EDD4;
-	Fri, 17 Jul 2020 14:06:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 590546EDD7;
+	Fri, 17 Jul 2020 14:10:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEC6F6EDD3
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 14:06:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5E126EDD7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 14:10:14 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21850665-1500050 
- for multiple; Fri, 17 Jul 2020 15:06:06 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21850716-1500050 
+ for multiple; Fri, 17 Jul 2020 15:09:39 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Jul 2020 15:06:05 +0100
-Message-Id: <20200717140605.24328-1-chris@chris-wilson.co.uk>
+Date: Fri, 17 Jul 2020 15:09:39 +0100
+Message-Id: <20200717140939.31217-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200717140605.24328-1-chris@chris-wilson.co.uk>
+References: <20200717140605.24328-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/gem: Remove disordered per-file
  request list for throttling
@@ -51,12 +53,12 @@ walking it to find a particular aged request made sense.
 That is no more. We now have many timelines with a file, as many as the
 user wants to construct (essentially per-engine, per-context). Each of
 those run independently and so make the single list futile. Remove the
-disordered list, and iterate over all the timlines to find a request to
-wait on in each to satisfy the criteria that all the CPU is no more than
-20ms ahead of its oldest request.
+disordered list, and iterate over all the timelines to find a request to
+wait on in each to satisfy the criteria that the CPU is no more than 20ms
+ahead of its oldest request.
 
 It should go without saying that the I915_GEM_THROTTLE ioctl is no
-longer used as the primary means of throttling, so to makes sense to push
+longer used as the primary means of throttling, so it makes sense to push
 the complication into the ioctl where it only impacts upon its few
 irregular users, rather than the execbuf/retire where everybody has to
 pay the cost. Fortunately, the few users do not create vast amount of
@@ -67,14 +69,14 @@ Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 13 -----
- drivers/gpu/drm/i915/gem/i915_gem_throttle.c  | 58 ++++++++++++-------
+ drivers/gpu/drm/i915/gem/i915_gem_throttle.c  | 56 ++++++++++++-------
  drivers/gpu/drm/i915/gt/selftest_lrc.c        |  5 +-
  drivers/gpu/drm/i915/i915_drv.c               |  1 -
  drivers/gpu/drm/i915/i915_drv.h               |  6 --
  drivers/gpu/drm/i915/i915_gem.c               | 18 ------
  drivers/gpu/drm/i915/i915_request.c           | 21 -------
  drivers/gpu/drm/i915/i915_request.h           |  4 --
- 8 files changed, 40 insertions(+), 86 deletions(-)
+ 8 files changed, 39 insertions(+), 85 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 index 6b4ec66cb558..b7a86cdec9b5 100644
@@ -108,7 +110,7 @@ index 6b4ec66cb558..b7a86cdec9b5 100644
  	eb_request_add(&eb);
  
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_throttle.c b/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
-index 540ef0551789..ecdecef4992e 100644
+index 540ef0551789..7e73b8cffa8c 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
 @@ -9,6 +9,7 @@
@@ -186,13 +188,12 @@ index 540ef0551789..ecdecef4992e 100644
 +						MAX_SCHEDULE_TIMEOUT);
 +			i915_request_put(target);
 +			if (ret < 0)
-+				return ret;
++				break;
 +		}
 +		i915_gem_context_unlock_engines(ctx);
 +	}
  
--	return ret < 0 ? ret : 0;
-+	return 0;
+ 	return ret < 0 ? ret : 0;
  }
 diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
 index 3fc5de961280..f749071f54a7 100644
