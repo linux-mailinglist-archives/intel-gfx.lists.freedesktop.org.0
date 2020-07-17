@@ -1,41 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F73223D5B
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 15:54:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CA5C223DB0
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 16:06:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEB806EC8D;
-	Fri, 17 Jul 2020 13:54:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E2976EDD4;
+	Fri, 17 Jul 2020 14:06:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 924646EC7A;
- Fri, 17 Jul 2020 13:54:43 +0000 (UTC)
-IronPort-SDR: mcTztTu54ZPCyHpRd7x9dEZWHaoFq8MRQN4929vaXDB+FOr1DJPhNIc45pDU6Z2YCvbf+q5lGC
- ipb05wQvByLw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9684"; a="214304244"
-X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="214304244"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2020 06:54:42 -0700
-IronPort-SDR: 1DE6JHLS0jmQphB5rtxkSKoB918oKzEBJDeFXp4wLJs12CnZGuPKTwR4xcjDhCwdMhRP+47czv
- Qu+k97VSzQIw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="326848245"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 17 Jul 2020 06:54:40 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Jul 2020 16:54:39 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Fri, 17 Jul 2020 16:54:39 +0300
-Message-Id: <20200717135439.5996-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEC6F6EDD3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 14:06:41 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21850665-1500050 
+ for multiple; Fri, 17 Jul 2020 15:06:06 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Jul 2020 15:06:05 +0100
+Message-Id: <20200717140605.24328-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/todo: Plumb drm_atomic_state all over
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Remove disordered per-file
+ request list for throttling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,59 +37,330 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkFk
-ZCBhIFRPRE8gZm9yIHBsdW1iaW5nIGRybV9hdG9taWNfc3RhdGUgYWxsIG92ZXIgdG8gZWFzZQp0
-aGUgaHVyZGxlcyBvZiBhY2Nlc3NpbmcgYWRkaXRpb25hbCBvYmplY3Qgc3RhdGVzLgoKUmV2aWV3
-ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+ICNpcmMKU2lnbmVk
-LW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
-LS0tCiBEb2N1bWVudGF0aW9uL2dwdS90b2RvLnJzdCB8IDQ2ICsrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgNDYgaW5zZXJ0aW9ucygrKQoKZGlm
-ZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZ3B1L3RvZG8ucnN0IGIvRG9jdW1lbnRhdGlvbi9ncHUv
-dG9kby5yc3QKaW5kZXggNzk2OWYxMDY4NzdkLi5iMGVhMTdkYThmZjYgMTAwNjQ0Ci0tLSBhL0Rv
-Y3VtZW50YXRpb24vZ3B1L3RvZG8ucnN0CisrKyBiL0RvY3VtZW50YXRpb24vZ3B1L3RvZG8ucnN0
-CkBAIC00MDMsNiArNDAzLDUyIEBAIENvbnRhY3Q6IEVtaWwgVmVsaWtvdiwgcmVzcGVjdGl2ZSBk
-cml2ZXIgbWFpbnRhaW5lcnMKIAogTGV2ZWw6IEludGVybWVkaWF0ZQogCitQbHVtYiBkcm1fYXRv
-bWljX3N0YXRlIGFsbCBvdmVyCistLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCisKK0N1
-cnJlbnRseSB2YXJpb3VzIGF0b21pYyBmdW5jdGlvbnMgdGFrZSBqdXN0IGEgc2luZ2xlIG9yIGEg
-aGFuZGZ1bCBvZgorb2JqZWN0IHN0YXRlcyAoZWcuIHBsYW5lIHN0YXRlKS4gV2hpbGUgdGhhdCBz
-aW5nbGUgb2JqZWN0IHN0YXRlIGNhbgorc3VmZmljZSBmb3Igc29tZSBzaW1wbGUgY2FzZXMsIHdl
-IG9mdGVuIGhhdmUgdG8gZGlnIG91dCBhZGRpdGlvbmFsCitvYmplY3Qgc3RhdGVzIGZvciBkZWFs
-aW5nIHdpdGggdmFyaW91cyBkZXBlbmRlbmNpZXMgYmV0d2VlbiB0aGUgaW5kaXZpZHVhbAorb2Jq
-ZWN0cyBvciB0aGUgaGFyZHdhcmUgdGhleSByZXByZXNlbnQuIFRoZSBwcm9jZXNzIG9mIGRpZ2dp
-bmcgb3V0IHRoZQorYWRkaXRpb25hbCBzdGF0ZXMgaXMgcmF0aGVyIG5vbi1pbnR1aXRpdmUgYW5k
-IGVycm9yIHByb25lLgorCitUbyBmaXggdGhhdCBtb3N0IGZ1bmN0aW9ucyBzaG91bGQgcmF0aGVy
-IHRha2UgdGhlIG92ZXJhbGwKK2RybV9hdG9taWNfc3RhdGUgYXMgb25lIG9mIHRoZWlyIHBhcmFt
-ZXRlcnMuIFRoZSBvdGhlciBwYXJhbWV0ZXJzCit3b3VsZCBnZW5lcmFsbHkgYmUgdGhlIG9iamVj
-dChzKSB3ZSBtYWlubHkgd2FudCB0byBpbnRlcmFjdCB3aXRoLgorCitGb3IgZXhhbXBsZSwgaW5z
-dGVhZCBvZgorCisuLiBjb2RlLWJsb2NrOjogYworCisgICBpbnQgKCphdG9taWNfY2hlY2spKHN0
-cnVjdCBkcm1fcGxhbmUgKnBsYW5lLCBzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlICpzdGF0ZSk7CisK
-K3dlIHdvdWxkIGhhdmUgc29tZXRoaW5nIGxpa2UKKworLi4gY29kZS1ibG9jazo6IGMKKworICAg
-aW50ICgqYXRvbWljX2NoZWNrKShzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwgc3RydWN0IGRybV9h
-dG9taWNfc3RhdGUgKnN0YXRlKTsKKworVGhlIGltcGxlbWVudGF0aW9uIGNhbiB0aGVuIHRyaXZp
-YWxseSBnYWluIGFjY2VzcyB0byBhbnkgcmVxdWlyZWQgb2JqZWN0CitzdGF0ZShzKSB2aWEgZHJt
-X2F0b21pY19nZXRfcGxhbmVfc3RhdGUoKSwgZHJtX2F0b21pY19nZXRfbmV3X3BsYW5lX3N0YXRl
-KCksCitkcm1fYXRvbWljX2dldF9vbGRfcGxhbmVfc3RhdGUoKSwgYW5kIHRoZWlyIGVxdWl2YWxl
-bnRzIGZvcgorb3RoZXIgb2JqZWN0IHR5cGVzLgorCitBZGRpdGlvbmFsbHkgbWFueSBkcml2ZXJz
-IGN1cnJlbnRseSBhY2Nlc3MgdGhlIG9iamVjdC0+c3RhdGUgcG9pbnRlcgorZGlyZWN0bHkgaW4g
-dGhlaXIgY29tbWl0IGZ1bmN0aW9ucy4gVGhhdCBpcyBub3QgZ29pbmcgdG8gd29yayBpZiB3ZQor
-ZWcuIHdhbnQgdG8gYWxsb3cgZGVlcGVyIGNvbW1pdCBwaXBlbGluZXMgYXMgdGhvc2UgcG9pbnRl
-cnMgY291bGQKK3RoZW4gcG9pbnQgdG8gdGhlIHN0YXRlcyBjb3JyZXNwb25kaW5nIHRvIGEgZnV0
-dXJlIGNvbW1pdCBpbnN0ZWFkIG9mCit0aGUgY3VycmVudCBjb21taXQgd2UncmUgdHJ5aW5nIHRv
-IHByb2Nlc3MuIEFsc28gbm9uLWJsb2NraW5nIGNvbW1pdHMKK2V4ZWN1dGUgbG9ja2xlc3NseSBz
-byB0aGVyZSBhcmUgc2VyaW91cyBjb25jZXJucyB3aXRoIGRlcmVmZXJlbmNpbmcKK3RoZSBvYmpl
-Y3QtPnN0YXRlIHBvaW50ZXJzIHdpdGhvdXQgaG9sZGluZyB0aGUgbG9ja3MgdGhhdCBwcm90ZWN0
-IHRoZW0uCitVc2Ugb2YgZHJtX2F0b21pY19nZXRfbmV3X3BsYW5lX3N0YXRlKCksIGRybV9hdG9t
-aWNfZ2V0X29sZF9wbGFuZV9zdGF0ZSgpLAorZXRjLiBhdm9pZHMgdGhlc2UgcHJvYmxlbXMgYXMg
-d2VsbCBzaW5jZSB0aGV5IHJlbGF0ZSB0byBhIHNwZWNpZmljCitjb21taXQgdmlhIHRoZSBwYXNz
-ZWQgaW4gZHJtX2F0b21pY19zdGF0ZS4KKworQ29udGFjdDogVmlsbGUgU3lyasOkbMOkLCBEYW5p
-ZWwgVmV0dGVyCisKK0xldmVsOiBJbnRlcm1lZGlhdGUKKwogCiBDb3JlIHJlZmFjdG9yaW5ncwog
-PT09PT09PT09PT09PT09PT0KLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+I915_GEM_THROTTLE dates back to the time before contexts where there was
+just a single engine, and therefore a single timeline and request list
+per file. That request list was in execution/retirement order, and so
+walking it to find a particular aged request made sense.
+
+That is no more. We now have many timelines with a file, as many as the
+user wants to construct (essentially per-engine, per-context). Each of
+those run independently and so make the single list futile. Remove the
+disordered list, and iterate over all the timlines to find a request to
+wait on in each to satisfy the criteria that all the CPU is no more than
+20ms ahead of its oldest request.
+
+It should go without saying that the I915_GEM_THROTTLE ioctl is no
+longer used as the primary means of throttling, so to makes sense to push
+the complication into the ioctl where it only impacts upon its few
+irregular users, rather than the execbuf/retire where everybody has to
+pay the cost. Fortunately, the few users do not create vast amount of
+contexts, so the loops over contexts/engines should be concise.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 13 -----
+ drivers/gpu/drm/i915/gem/i915_gem_throttle.c  | 58 ++++++++++++-------
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  5 +-
+ drivers/gpu/drm/i915/i915_drv.c               |  1 -
+ drivers/gpu/drm/i915/i915_drv.h               |  6 --
+ drivers/gpu/drm/i915/i915_gem.c               | 18 ------
+ drivers/gpu/drm/i915/i915_request.c           | 21 -------
+ drivers/gpu/drm/i915/i915_request.h           |  4 --
+ 8 files changed, 40 insertions(+), 86 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 6b4ec66cb558..b7a86cdec9b5 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1916,18 +1916,6 @@ static int eb_parse(struct i915_execbuffer *eb)
+ 	return err;
+ }
+ 
+-static void
+-add_to_client(struct i915_request *rq, struct drm_file *file)
+-{
+-	struct drm_i915_file_private *file_priv = file->driver_priv;
+-
+-	rq->file_priv = file_priv;
+-
+-	spin_lock(&file_priv->mm.lock);
+-	list_add_tail(&rq->client_link, &file_priv->mm.request_list);
+-	spin_unlock(&file_priv->mm.lock);
+-}
+-
+ static int eb_submit(struct i915_execbuffer *eb, struct i915_vma *batch)
+ {
+ 	int err;
+@@ -2567,7 +2555,6 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	trace_i915_request_queue(eb.request, eb.batch_flags);
+ 	err = eb_submit(&eb, batch);
+ err_request:
+-	add_to_client(eb.request, file);
+ 	i915_request_get(eb.request);
+ 	eb_request_add(&eb);
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_throttle.c b/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
+index 540ef0551789..ecdecef4992e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
+@@ -9,6 +9,7 @@
+ #include <drm/drm_file.h>
+ 
+ #include "i915_drv.h"
++#include "i915_gem_context.h"
+ #include "i915_gem_ioctls.h"
+ #include "i915_gem_object.h"
+ 
+@@ -35,9 +36,10 @@ int
+ i915_gem_throttle_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file)
+ {
++	const unsigned long recent_enough = jiffies - DRM_I915_THROTTLE_JIFFIES;
+ 	struct drm_i915_file_private *file_priv = file->driver_priv;
+-	unsigned long recent_enough = jiffies - DRM_I915_THROTTLE_JIFFIES;
+-	struct i915_request *request, *target = NULL;
++	struct i915_gem_context *ctx;
++	unsigned long idx;
+ 	long ret;
+ 
+ 	/* ABI: return -EIO if already wedged */
+@@ -45,27 +47,43 @@ i915_gem_throttle_ioctl(struct drm_device *dev, void *data,
+ 	if (ret)
+ 		return ret;
+ 
+-	spin_lock(&file_priv->mm.lock);
+-	list_for_each_entry(request, &file_priv->mm.request_list, client_link) {
+-		if (time_after_eq(request->emitted_jiffies, recent_enough))
+-			break;
++	xa_for_each(&file_priv->context_xa, idx, ctx) {
++		struct i915_gem_engines_iter it;
++		struct intel_context *ce;
+ 
+-		if (target && xchg(&target->file_priv, NULL))
+-			list_del(&target->client_link);
++		for_each_gem_engine(ce,
++				    i915_gem_context_lock_engines(ctx),
++				    it) {
++			struct i915_request *rq, *target = NULL;
+ 
+-		target = request;
+-	}
+-	if (target)
+-		i915_request_get(target);
+-	spin_unlock(&file_priv->mm.lock);
++			if (!ce->timeline)
++				continue;
++
++			mutex_lock(&ce->timeline->mutex);
++			list_for_each_entry_reverse(rq,
++						    &ce->timeline->requests,
++						    link) {
++				if (i915_request_completed(rq))
++					break;
+ 
+-	if (!target)
+-		return 0;
++				if (time_after(rq->emitted_jiffies,
++					       recent_enough))
++					continue;
+ 
+-	ret = i915_request_wait(target,
+-				I915_WAIT_INTERRUPTIBLE,
+-				MAX_SCHEDULE_TIMEOUT);
+-	i915_request_put(target);
++				target = i915_request_get(rq);
++				break;
++			}
++			mutex_unlock(&ce->timeline->mutex);
++
++			ret = i915_request_wait(target,
++						I915_WAIT_INTERRUPTIBLE,
++						MAX_SCHEDULE_TIMEOUT);
++			i915_request_put(target);
++			if (ret < 0)
++				return ret;
++		}
++		i915_gem_context_unlock_engines(ctx);
++	}
+ 
+-	return ret < 0 ? ret : 0;
++	return 0;
+ }
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 3fc5de961280..f749071f54a7 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -2729,7 +2729,7 @@ static int create_gang(struct intel_engine_cs *engine,
+ 	i915_gem_object_put(obj);
+ 	intel_context_put(ce);
+ 
+-	rq->client_link.next = &(*prev)->client_link;
++	rq->mock.link.next = &(*prev)->mock.link;
+ 	*prev = rq;
+ 	return 0;
+ 
+@@ -2970,8 +2970,7 @@ static int live_preempt_gang(void *arg)
+ 		}
+ 
+ 		while (rq) { /* wait for each rq from highest to lowest prio */
+-			struct i915_request *n =
+-				list_next_entry(rq, client_link);
++			struct i915_request *n = list_next_entry(rq, mock.link);
+ 
+ 			if (err == 0 && i915_request_wait(rq, 0, HZ / 5) < 0) {
+ 				struct drm_printer p =
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 5fd5af4bc855..a5f58ed219fe 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -1119,7 +1119,6 @@ static void i915_driver_postclose(struct drm_device *dev, struct drm_file *file)
+ 	struct drm_i915_file_private *file_priv = file->driver_priv;
+ 
+ 	i915_gem_context_close(file);
+-	i915_gem_release(dev, file);
+ 
+ 	kfree_rcu(file_priv, rcu);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index e4f7f6518945..2a0b5017d12c 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -203,11 +203,6 @@ struct drm_i915_file_private {
+ 		struct rcu_head rcu;
+ 	};
+ 
+-	struct {
+-		spinlock_t lock;
+-		struct list_head request_list;
+-	} mm;
+-
+ 	struct xarray context_xa;
+ 	struct xarray vm_xa;
+ 
+@@ -1831,7 +1826,6 @@ void i915_gem_suspend_late(struct drm_i915_private *dev_priv);
+ void i915_gem_resume(struct drm_i915_private *dev_priv);
+ 
+ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
+-void i915_gem_release(struct drm_device *dev, struct drm_file *file);
+ 
+ int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
+ 				    enum i915_cache_level cache_level);
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 9aa3066cb75d..e1de50780ed5 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1301,21 +1301,6 @@ int i915_gem_freeze_late(struct drm_i915_private *i915)
+ 	return 0;
+ }
+ 
+-void i915_gem_release(struct drm_device *dev, struct drm_file *file)
+-{
+-	struct drm_i915_file_private *file_priv = file->driver_priv;
+-	struct i915_request *request;
+-
+-	/* Clean up our request list when the client is going away, so that
+-	 * later retire_requests won't dereference our soon-to-be-gone
+-	 * file_priv.
+-	 */
+-	spin_lock(&file_priv->mm.lock);
+-	list_for_each_entry(request, &file_priv->mm.request_list, client_link)
+-		request->file_priv = NULL;
+-	spin_unlock(&file_priv->mm.lock);
+-}
+-
+ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
+ {
+ 	struct drm_i915_file_private *file_priv;
+@@ -1331,9 +1316,6 @@ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
+ 	file_priv->dev_priv = i915;
+ 	file_priv->file = file;
+ 
+-	spin_lock_init(&file_priv->mm.lock);
+-	INIT_LIST_HEAD(&file_priv->mm.request_list);
+-
+ 	file_priv->bsd_engine = -1;
+ 	file_priv->hang_timestamp = jiffies;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 679a915e9a63..050b55f0f5c0 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -216,24 +216,6 @@ static void __notify_execute_cb_imm(struct i915_request *rq)
+ 	__notify_execute_cb(rq, irq_work_imm);
+ }
+ 
+-static inline void
+-remove_from_client(struct i915_request *request)
+-{
+-	struct drm_i915_file_private *file_priv;
+-
+-	if (!READ_ONCE(request->file_priv))
+-		return;
+-
+-	rcu_read_lock();
+-	file_priv = xchg(&request->file_priv, NULL);
+-	if (file_priv) {
+-		spin_lock(&file_priv->mm.lock);
+-		list_del(&request->client_link);
+-		spin_unlock(&file_priv->mm.lock);
+-	}
+-	rcu_read_unlock();
+-}
+-
+ static void free_capture_list(struct i915_request *request)
+ {
+ 	struct i915_capture_list *capture;
+@@ -341,7 +323,6 @@ bool i915_request_retire(struct i915_request *rq)
+ 	remove_from_engine(rq);
+ 	GEM_BUG_ON(!llist_empty(&rq->execute_cb));
+ 
+-	remove_from_client(rq);
+ 	__list_del_entry(&rq->link); /* poison neither prev/next (RCU walks) */
+ 
+ 	intel_context_exit(rq->context);
+@@ -799,7 +780,6 @@ static void __i915_request_ctor(void *arg)
+ 
+ 	dma_fence_init(&rq->fence, &i915_fence_ops, &rq->lock, 0, 0);
+ 
+-	rq->file_priv = NULL;
+ 	rq->capture_list = NULL;
+ 
+ 	init_llist_head(&rq->execute_cb);
+@@ -889,7 +869,6 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+ 
+ 	/* No zalloc, everything must be cleared after use */
+ 	rq->batch = NULL;
+-	GEM_BUG_ON(rq->file_priv);
+ 	GEM_BUG_ON(rq->capture_list);
+ 	GEM_BUG_ON(!llist_empty(&rq->execute_cb));
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 590762820761..fc18378c685d 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -284,10 +284,6 @@ struct i915_request {
+ 	/** timeline->request entry for this request */
+ 	struct list_head link;
+ 
+-	struct drm_i915_file_private *file_priv;
+-	/** file_priv list entry for this request */
+-	struct list_head client_link;
+-
+ 	I915_SELFTEST_DECLARE(struct {
+ 		struct list_head link;
+ 		unsigned long delay;
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
