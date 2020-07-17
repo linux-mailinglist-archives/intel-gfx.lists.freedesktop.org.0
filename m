@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF128223CF9
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 15:39:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23113223CFE
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 15:39:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F37C6EDC6;
-	Fri, 17 Jul 2020 13:39:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 151F36EDCA;
+	Fri, 17 Jul 2020 13:39:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
  [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFBBA6EDC6
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 13:39:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B759C6EDCA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 13:39:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1594993144;
+ s=mimecast20190719; t=1594993158;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=1V2c/64RZn70JrVNqYPs5uTiS7MghLouOUSREBgE3zw=;
- b=E/ENw540ORZ4zIs1aNsrp62ak//Z3Ml7c6z+70/bJxAGsCrHpRbulxZXYa4TgUENfkGJwo
- WTJXUf5bwNrYeclycFjv+4lzNY+f6Jq1vNwbBUjUj59+TfBZ9igb6UfMAgBWlAJA9S5JXq
- AQ39AKNcE4XVRDTfOmrczgGxxJ63yv8=
+ bh=0E358gUSBhGTotJA8GEwcHbmCx7Te/Sih/QfnaV6xJs=;
+ b=dzkluc6mghKVCbtJLiC7Gl851H6If6reuJ6Zc+Aea8y4737nTYXB6CXxOSvlLEdEvVToiB
+ Is5j7DdQjyHt6HI5v2eRH/7novbxVd8i9opQ+Mq0uPwLZy6tL2V+l+NUjwEdL90SpIs7x1
+ EckVF+9MWRZCOFJHPbeA718NL0DyZRE=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-38-NlhfjF17PvqhAKI_cKxcvA-1; Fri, 17 Jul 2020 09:39:02 -0400
-X-MC-Unique: NlhfjF17PvqhAKI_cKxcvA-1
+ us-mta-412-E5p5wfHEMOWmvwGIQj0xbQ-1; Fri, 17 Jul 2020 09:39:13 -0400
+X-MC-Unique: E5p5wfHEMOWmvwGIQj0xbQ-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id B892D14A49;
- Fri, 17 Jul 2020 13:38:53 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 3259580BCCB;
+ Fri, 17 Jul 2020 13:39:00 +0000 (UTC)
 Received: from x1.localdomain.com (ovpn-112-162.ams2.redhat.com
  [10.36.112.162])
- by smtp.corp.redhat.com (Postfix) with ESMTP id EA2CE8FA27;
- Fri, 17 Jul 2020 13:38:50 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 089428FA3C;
+ Fri, 17 Jul 2020 13:38:53 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Thierry Reding <thierry.reding@gmail.com>,
  =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
@@ -45,13 +45,14 @@ To: Thierry Reding <thierry.reding@gmail.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <lenb@kernel.org>
-Date: Fri, 17 Jul 2020 15:37:49 +0200
-Message-Id: <20200717133753.127282-13-hdegoede@redhat.com>
+Date: Fri, 17 Jul 2020 15:37:50 +0200
+Message-Id: <20200717133753.127282-14-hdegoede@redhat.com>
 In-Reply-To: <20200717133753.127282-1-hdegoede@redhat.com>
 References: <20200717133753.127282-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: [Intel-gfx] [PATCH v5 12/16] pwm: crc: Implement get_state() method
+Subject: [Intel-gfx] [PATCH v5 13/16] drm/i915: panel: Add
+ get_vbt_pwm_freq() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,49 +66,79 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-pwm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ Jani Nikula <jani.nikula@intel.com>,
  intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Mika Westerberg <mika.westerberg@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SW1wbGVtZW50IHRoZSBwd21fb3BzLmdldF9zdGF0ZSgpIG1ldGhvZCB0byBjb21wbGV0ZSB0aGUg
-c3VwcG9ydCBmb3IgdGhlCm5ldyBhdG9taWMgUFdNIEFQSS4KClJldmlld2VkLWJ5OiBBbmR5IFNo
-ZXZjaGVua28gPGFuZHJpeS5zaGV2Y2hlbmtvQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1i
-eTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KLS0tCkNoYW5nZXMgaW4gdjU6
-Ci0gRml4IGFuIGluZGVudGF0aW9uIGlzc3VlCgpDaGFuZ2VzIGluIHY0OgotIFVzZSBESVZfUk9V
-TkRfVVAgd2hlbiBjYWxjdWxhdGluZyB0aGUgcGVyaW9kIGFuZCBkdXR5X2N5Y2xlIGZyb20gdGhl
-CiAgY29udHJvbGxlcidzIHJlZ2lzdGVyIHZhbHVlcwoKQ2hhbmdlcyBpbiB2MzoKLSBBZGQgQW5k
-eSdzIFJldmlld2VkLWJ5IHRhZwotIFJlbW92ZSBleHRyYSB3aGl0ZXNwYWNlIHRvIGFsaWduIHNv
-bWUgY29kZSBhZnRlciBhc3NpZ25tZW50cyAocmVxdWVzdGVkIGJ5CiAgVXdlIEtsZWluZS1Lw7Zu
-aWcpCi0tLQogZHJpdmVycy9wd20vcHdtLWNyYy5jIHwgMzEgKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDMxIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL3B3bS9wd20tY3JjLmMgYi9kcml2ZXJzL3B3bS9wd20tY3JjLmMKaW5kZXggOGE3
-ZjQ3MDcyNzljLi4zNzBhYjgyNmEyMGIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvcHdtL3B3bS1jcmMu
-YworKysgYi9kcml2ZXJzL3B3bS9wd20tY3JjLmMKQEAgLTExOSw4ICsxMTksMzkgQEAgc3RhdGlj
-IGludCBjcmNfcHdtX2FwcGx5KHN0cnVjdCBwd21fY2hpcCAqY2hpcCwgc3RydWN0IHB3bV9kZXZp
-Y2UgKnB3bSwKIAlyZXR1cm4gMDsKIH0KIAorc3RhdGljIHZvaWQgY3JjX3B3bV9nZXRfc3RhdGUo
-c3RydWN0IHB3bV9jaGlwICpjaGlwLCBzdHJ1Y3QgcHdtX2RldmljZSAqcHdtLAorCQkJICAgICAg
-c3RydWN0IHB3bV9zdGF0ZSAqc3RhdGUpCit7CisJc3RydWN0IGNyeXN0YWxjb3ZlX3B3bSAqY3Jj
-X3B3bSA9IHRvX2NyY19wd20oY2hpcCk7CisJc3RydWN0IGRldmljZSAqZGV2ID0gY3JjX3B3bS0+
-Y2hpcC5kZXY7CisJdW5zaWduZWQgaW50IGNsa19kaXYsIGNsa19kaXZfcmVnLCBkdXR5X2N5Y2xl
-X3JlZzsKKwlpbnQgZXJyb3I7CisKKwllcnJvciA9IHJlZ21hcF9yZWFkKGNyY19wd20tPnJlZ21h
-cCwgUFdNMF9DTEtfRElWLCAmY2xrX2Rpdl9yZWcpOworCWlmIChlcnJvcikgeworCQlkZXZfZXJy
-KGRldiwgIkVycm9yIHJlYWRpbmcgUFdNMF9DTEtfRElWICVkXG4iLCBlcnJvcik7CisJCXJldHVy
-bjsKKwl9CisKKwllcnJvciA9IHJlZ21hcF9yZWFkKGNyY19wd20tPnJlZ21hcCwgUFdNMF9EVVRZ
-X0NZQ0xFLCAmZHV0eV9jeWNsZV9yZWcpOworCWlmIChlcnJvcikgeworCQlkZXZfZXJyKGRldiwg
-IkVycm9yIHJlYWRpbmcgUFdNMF9EVVRZX0NZQ0xFICVkXG4iLCBlcnJvcik7CisJCXJldHVybjsK
-Kwl9CisKKwljbGtfZGl2ID0gKGNsa19kaXZfcmVnICYgflBXTV9PVVRQVVRfRU5BQkxFKSArIDE7
-CisKKwlzdGF0ZS0+cGVyaW9kID0KKwkJRElWX1JPVU5EX1VQKGNsa19kaXYgKiBOU0VDX1BFUl9V
-U0VDICogMjU2LCBQV01fQkFTRV9DTEtfTUhaKTsKKwlzdGF0ZS0+ZHV0eV9jeWNsZSA9CisJCURJ
-Vl9ST1VORF9VUChkdXR5X2N5Y2xlX3JlZyAqIHN0YXRlLT5wZXJpb2QsIFBXTV9NQVhfTEVWRUwp
-OworCXN0YXRlLT5wb2xhcml0eSA9IFBXTV9QT0xBUklUWV9OT1JNQUw7CisJc3RhdGUtPmVuYWJs
-ZWQgPSAhIShjbGtfZGl2X3JlZyAmIFBXTV9PVVRQVVRfRU5BQkxFKTsKK30KKwogc3RhdGljIGNv
-bnN0IHN0cnVjdCBwd21fb3BzIGNyY19wd21fb3BzID0gewogCS5hcHBseSA9IGNyY19wd21fYXBw
-bHksCisJLmdldF9zdGF0ZSA9IGNyY19wd21fZ2V0X3N0YXRlLAogfTsKIAogc3RhdGljIGludCBj
-cnlzdGFsY292ZV9wd21fcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKLS0gCjIu
-MjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
-ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Factor the code which checks and drm_dbg_kms-s the VBT PWM frequency
+out of get_backlight_max_vbt().
+
+This is a preparation patch for honering the VBT PWM frequency for
+devices which use an external PWM controller (devices using
+pwm_setup_backlight()).
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ drivers/gpu/drm/i915/display/intel_panel.c | 27 ++++++++++++++--------
+ 1 file changed, 17 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index 3c5056dbf607..8efdd9f08a08 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -1543,18 +1543,9 @@ static u32 vlv_hz_to_pwm(struct intel_connector *connector, u32 pwm_freq_hz)
+ 	return DIV_ROUND_CLOSEST(clock, pwm_freq_hz * mul);
+ }
+ 
+-static u32 get_backlight_max_vbt(struct intel_connector *connector)
++static u16 get_vbt_pwm_freq(struct drm_i915_private *dev_priv)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+-	struct intel_panel *panel = &connector->panel;
+ 	u16 pwm_freq_hz = dev_priv->vbt.backlight.pwm_freq_hz;
+-	u32 pwm;
+-
+-	if (!panel->backlight.hz_to_pwm) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "backlight frequency conversion not supported\n");
+-		return 0;
+-	}
+ 
+ 	if (pwm_freq_hz) {
+ 		drm_dbg_kms(&dev_priv->drm,
+@@ -1567,6 +1558,22 @@ static u32 get_backlight_max_vbt(struct intel_connector *connector)
+ 			    pwm_freq_hz);
+ 	}
+ 
++	return pwm_freq_hz;
++}
++
++static u32 get_backlight_max_vbt(struct intel_connector *connector)
++{
++	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
++	struct intel_panel *panel = &connector->panel;
++	u16 pwm_freq_hz = get_vbt_pwm_freq(dev_priv);
++	u32 pwm;
++
++	if (!panel->backlight.hz_to_pwm) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "backlight frequency conversion not supported\n");
++		return 0;
++	}
++
+ 	pwm = panel->backlight.hz_to_pwm(connector, pwm_freq_hz);
+ 	if (!pwm) {
+ 		drm_dbg_kms(&dev_priv->drm,
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
