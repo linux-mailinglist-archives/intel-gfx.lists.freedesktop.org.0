@@ -2,46 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE50C223C4E
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 15:23:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C850F223CDC
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 15:38:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B529F6EC69;
-	Fri, 17 Jul 2020 13:23:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A40B6EC8C;
+	Fri, 17 Jul 2020 13:38:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E563C6EC69
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 13:23:25 +0000 (UTC)
-IronPort-SDR: JGSD0WiEpQ40Bp9puZVPcQh/InZviG9aGblTjRyca9Nad96QBxek87QB8qDMTtEnpDXb9vbHg6
- JW8qrZgze15w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9684"; a="147568555"
-X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="147568555"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2020 06:23:25 -0700
-IronPort-SDR: E1x4befntIXD+bVPrpYlat9E1RJ6uxsBDcO5PdrNOZxiEN3Eh7+TNvEs+k577Cus+5pHTRnaGp
- 6DGZGxy5BJHA==
-X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="460845889"
-Received: from gpanagop-mobl.ger.corp.intel.com (HELO [10.249.33.238])
- ([10.249.33.238])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2020 06:23:24 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <20200715115147.11866-9-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <fd62e818-2f60-3c34-afed-27d9226e3c65@linux.intel.com>
-Date: Fri, 17 Jul 2020 14:23:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 425356EC8C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 13:38:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1594993081;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rkMZSQba86giMjUJYDHSci638nlcSpXyRKRn/y8AUNM=;
+ b=AnoqkKkVX2hMPtPNAJrRwzUb+504309jvU9HYGOZUQGG2t0w701JqJ6ka64OcCLYgBL6WM
+ 32WcjA6jLJzQsbiDdoQ0j5xPwwbW/uMvjf4ZHNCeuORsWNnjFFnstA8y61Xgo26tGUZRlL
+ +EeNuhPPMy24dZzSmsp32Z7TyoRImBU=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-28-glvKm1WQP0S1InhgB9-oQQ-1; Fri, 17 Jul 2020 09:37:59 -0400
+X-MC-Unique: glvKm1WQP0S1InhgB9-oQQ-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 67A401081;
+ Fri, 17 Jul 2020 13:37:57 +0000 (UTC)
+Received: from x1.localdomain.com (ovpn-112-162.ams2.redhat.com
+ [10.36.112.162])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 9895E8FA27;
+ Fri, 17 Jul 2020 13:37:54 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+ =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <lenb@kernel.org>
+Date: Fri, 17 Jul 2020 15:37:37 +0200
+Message-Id: <20200717133753.127282-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20200715115147.11866-9-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 09/66] drm/i915: Provide a fastpath for
- waiting on vma bindings
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Subject: [Intel-gfx] [PATCH v5 00/16] acpi/pwm/i915: Convert pwm-crc and
+ i915 driver's PWM code to use the atomic PWM API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,83 +62,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-pwm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi All,
 
-On 15/07/2020 12:50, Chris Wilson wrote:
-> Before we can execute a request, we must wait for all of its vma to be
-> bound. This is a frequent operation for which we can optimise away a
-> few atomic operations (notably a cmpxchg) in lieu of the RCU protection.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   drivers/gpu/drm/i915/i915_active.h | 15 +++++++++++++++
->   drivers/gpu/drm/i915/i915_vma.c    |  9 +++++++--
->   2 files changed, 22 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-> index b9e0394e2975..fb165d3f01cf 100644
-> --- a/drivers/gpu/drm/i915/i915_active.h
-> +++ b/drivers/gpu/drm/i915/i915_active.h
-> @@ -231,4 +231,19 @@ struct i915_active *i915_active_create(void);
->   struct i915_active *i915_active_get(struct i915_active *ref);
->   void i915_active_put(struct i915_active *ref);
->   
-> +static inline int __i915_request_await_exclusive(struct i915_request *rq,
-> +						 struct i915_active *active)
-> +{
-> +	struct dma_fence *fence;
-> +	int err = 0;
-> +
-> +	fence = i915_active_fence_get(&active->excl);
-> +	if (fence) {
-> +		err = i915_request_await_dma_fence(rq, fence);
-> +		dma_fence_put(fence);
-> +	}
-> +
-> +	return err;
-> +}
-> +
->   #endif /* _I915_ACTIVE_H_ */
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index bc64f773dcdb..cd12047c7791 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1167,6 +1167,12 @@ void i915_vma_revoke_mmap(struct i915_vma *vma)
->   		list_del(&vma->obj->userfault_link);
->   }
->   
-> +static int
-> +__i915_request_await_bind(struct i915_request *rq, struct i915_vma *vma)
-> +{
-> +	return __i915_request_await_exclusive(rq, &vma->active);
-> +}
-> +
->   int __i915_vma_move_to_active(struct i915_vma *vma, struct i915_request *rq)
->   {
->   	int err;
-> @@ -1174,8 +1180,7 @@ int __i915_vma_move_to_active(struct i915_vma *vma, struct i915_request *rq)
->   	GEM_BUG_ON(!i915_vma_is_pinned(vma));
->   
->   	/* Wait for the vma to be bound before we start! */
-> -	err = i915_request_await_active(rq, &vma->active,
-> -					I915_ACTIVE_AWAIT_EXCL);
-> +	err = __i915_request_await_bind(rq, vma);
->   	if (err)
->   		return err;
->   
-> 
+Here is v5 of my patch series converting the i915 driver's code for
+controlling the panel's backlight with an external PWM controller to
+use the atomic PWM API. See below for the changelog.
 
-Looks like for like, apart from missing i915_active_acquire_if_busy 
-across the operation. Remind me please what is acquire/release 
-protecting against? :)
+This series consists of 4 parts:
+
+1. acpi_lpss fixes workarounds for Cherry Trail DSTD nastiness
+2. various fixes to the pwm-lpss driver
+3. convert the pwm-crc driver to support the atomic PWM API and
+4. convert the i915 driver's PWM code to use the atomic PWM API
+
+The involved acpi_lpss and pwm drivers do not see a whole lot of churn,
+so the plan is to merge this all through drm-intel-next-queued (dinq)
+once all the patches are reviewed / have acks.
+
+Specifically patches 5-9, 11 still need an Acked- / Reviewed-by
+
+Andy, can you please take a look at the unreviewed patches? Specifically
+patches 5-6 should address your review remarks from v4 of this set
+and I've addressed your review remarks on patches 7-9 in v3 already.
+A review of patch 11 would also be welcome
+
+Uwe, can you please take a look at the unreviewed patches?
+
+Uwe, may I have your Acked-by for merging this series through the
+drm-intel-next-queued branch once all PWM patches have an Acked- or
+Reviewed-by ?
+
+This series has been tested (and re-tested after adding various bug-fixes)
+extensively. It has been tested on the following devices:
+
+-Asus T100TA  BYT + CRC-PMIC PWM
+-Toshiba WT8-A  BYT + CRC-PMIC PWM
+-Thundersoft TS178 BYT + CRC-PMIC PWM, inverse PWM
+-Asus T100HA  CHT + CRC-PMIC PWM
+-Terra Pad 1061  BYT + LPSS PWM
+-Trekstor Twin 10.1 BYT + LPSS PWM
+-Asus T101HA  CHT + CRC-PMIC PWM
+-GPD Pocket  CHT + CRC-PMIC PWM
+
+Changelog:
+Changes in v5:
+- Dropped the "pwm: lpss: Correct get_state result for base_unit == 0"
+  patch. The base_unit == 0 condition should never happen and sofar it is
+  unclear what the proper behavior / correct values to store in the
+  pwm_state should be when this does happen.  Since this patch was added as
+  an extra pwm-lpss fix in v4 of this patch-set and otherwise is orthogonal
+  to the of this patch-set just drop it (again).
+- "[PATCH 04/16] pwm: lpss: Add range limit check for the base_unit register value"
+  - Use clamp_val(... instead of clam_t(unsigned long long, ...
+- "[PATCH 05/16] pwm: lpss: Add pwm_lpss_prepare_enable() helper"
+  - This is a new patch in v5 of this patchset
+- [PATCH 06/16] pwm: lpss: Use pwm_lpss_apply() when restoring state on resume
+  - Use the new pwm_lpss_prepare_enable() helper
+
+Changes in v4:
+- "[PATCH v4 06/16] pwm: lpss: Correct get_state result for base_unit == 0"
+  - This is a new patch in v4 of this patchset
+- "[PATCH v4 12/16] pwm: crc: Implement get_state() method"
+  - Use DIV_ROUND_UP when calculating the period and duty_cycle values
+- "[PATCH v4 16/16] drm/i915: panel: Use atomic PWM API for devs with an external PWM controller"
+  - Add a note to the commit message about the changes in pwm_disable_backlight()
+  - Use the pwm_set/get_relative_duty_cycle() helpers
+
+Changes in v3:
+- "[PATCH v3 04/15] pwm: lpss: Add range limit check for the base_unit register value"
+  - Use base_unit_range - 1 as maximum value for the clamp()
+- "[PATCH v3 05/15] pwm: lpss: Use pwm_lpss_apply() when restoring state on resume"
+  - This replaces the "pwm: lpss: Set SW_UPDATE bit when enabling the PWM"
+    patch from previous versions of this patch-set, which really was a hack
+    working around the resume issue which this patch fixes properly.
+- PATCH v3 6 - 11 pwm-crc changes:
+  - Various small changes resulting from the reviews by Andy and Uwe,
+    including some refactoring of the patches to reduce the amount of churn
+    in the patch-set
+
+Changes in v2:
+- Fix coverletter subject
+- Drop accidentally included debugging patch
+- "[PATCH v3 02/15] ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (
+  - Move #define LPSS_SAVE_CTX_ONCE define to group it with LPSS_SAVE_CTX
 
 Regards,
 
-Tvrtko
+Hans
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
