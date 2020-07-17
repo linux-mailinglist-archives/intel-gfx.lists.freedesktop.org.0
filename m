@@ -1,47 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88EA0223B02
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 14:00:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07926223B38
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 14:16:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2EEA6E13F;
-	Fri, 17 Jul 2020 12:00:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AEF46ED9E;
+	Fri, 17 Jul 2020 12:16:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F222E6E1EC
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 12:00:38 +0000 (UTC)
-IronPort-SDR: ok4UNd988V1v/45jkUrFDp1KxYqoYq8qNYqHzcZrDxZjESStl9dvrUNNnrkuYgp4vUeMLYeuxO
- +ZxH07QFsd5Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9684"; a="167707163"
-X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="167707163"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 156EF6ED9E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 12:16:05 +0000 (UTC)
+IronPort-SDR: UJ1/yMVKu6iUNP5US+Ix+u6aG7j0tAn6xGYt54D2PIVwGk+1KObRmqIvsaXCB2bmBEk3oRnwPg
+ pXM8hr0AJHOQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9684"; a="167709562"
+X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="167709562"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2020 05:00:38 -0700
-IronPort-SDR: L2rRcs0LEOdpzk/wTtRlWL+SlHkfYvBJmgowQ7LSQRU+jWTVJYkomS06hinFsIuRfv3e01kzWr
- PnYTujAcoM/g==
-X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="460825724"
-Received: from gpanagop-mobl.ger.corp.intel.com (HELO [10.249.33.238])
- ([10.249.33.238])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2020 05:00:37 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <20200715115147.11866-4-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <54fe92b8-c6f1-ae7c-a5bf-9f283b952ed0@linux.intel.com>
-Date: Fri, 17 Jul 2020 13:00:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ 17 Jul 2020 05:16:04 -0700
+IronPort-SDR: Lc82KRMMcUVvBpf3FDkPcGN8cXA7CHRsqg1oCDGu3B3cerGamq1JDKjBjcRZqksFnrJDQ3Vs6Y
+ 1BIfrAh5tv6Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="318759950"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by fmsmga002.fm.intel.com with ESMTP; 17 Jul 2020 05:16:03 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Jul 2020 17:34:25 +0530
+Message-Id: <20200717120425.20947-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20200715115147.11866-4-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 04/66] drm/i915: Add a couple of missing
- i915_active_fini()
+Subject: [Intel-gfx] [RFC] drm/i915: Disable connector polling at runtime
+ suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,59 +47,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+While i915 device is in runtime suspend, DRM connector polling
+causing device to wakeup from runtime suspend.
+This harm overall cpu idle statistics, therefore
+disabling polling while in runtime suspend.
 
-On 15/07/2020 12:50, Chris Wilson wrote:
-> We use i915_active_fini() as a debug check on the i915_active state
-> before freeing. If we forget to call it, we may end up angering the
-> debugobjects contained within.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   drivers/gpu/drm/i915/display/intel_frontbuffer.c    | 2 ++
->   drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c | 5 ++++-
->   2 files changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> index 2979ed2588eb..d898b370d7a4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> @@ -232,6 +232,8 @@ static void frontbuffer_release(struct kref *ref)
->   	RCU_INIT_POINTER(obj->frontbuffer, NULL);
->   	spin_unlock(&to_i915(obj->base.dev)->fb_tracking.lock);
->   
-> +	i915_active_fini(&front->write);
-> +
->   	i915_gem_object_put(obj);
->   	kfree_rcu(front, rcu);
->   }
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> index 73243ba59c7d..e73854dd2fe0 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> @@ -47,7 +47,10 @@ static int pulse_active(struct i915_active *active)
->   
->   static void pulse_free(struct kref *kref)
->   {
-> -	kfree(container_of(kref, struct pulse, kref));
-> +	struct pulse *p = container_of(kref, typeof(*p), kref);
-> +
-> +	i915_active_fini(&p->active);
-> +	kfree(p);
->   }
->   
->   static void pulse_put(struct pulse *p)
-> 
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 5fd5af4bc855..1229c72f19c9 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -1595,6 +1595,8 @@ static int intel_runtime_suspend(struct device *kdev)
+ 
+ 	disable_rpm_wakeref_asserts(rpm);
+ 
++	drm_kms_helper_poll_disable(&dev_priv->drm);
++
+ 	/*
+ 	 * We are safe here against re-faults, since the fault handler takes
+ 	 * an RPM reference.
+@@ -1699,6 +1701,8 @@ static int intel_runtime_resume(struct device *kdev)
+ 	 */
+ 	intel_gt_runtime_resume(&dev_priv->gt);
+ 
++	drm_kms_helper_poll_enable(&dev_priv->drm);
++
+ 	/*
+ 	 * On VLV/CHV display interrupts are part of the display
+ 	 * power well, so hpd is reinitialized from there. For
+-- 
+2.26.2
 
-Regards,
-
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
