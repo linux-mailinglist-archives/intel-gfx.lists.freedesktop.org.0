@@ -1,34 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C16922391E
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 12:19:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1631822392F
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 12:24:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 600436ED93;
-	Fri, 17 Jul 2020 10:19:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 881F76E044;
+	Fri, 17 Jul 2020 10:24:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4492A6ED93;
- Fri, 17 Jul 2020 10:19:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE5826E044
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 10:24:40 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21847943-1500050 for multiple; Fri, 17 Jul 2020 11:19:16 +0100
+ 21848000-1500050 for multiple; Fri, 17 Jul 2020 11:24:36 +0100
 MIME-Version: 1.0
-In-Reply-To: <d92eb09d-788f-784a-9784-f2500daf9964@linux.intel.com>
-References: <20200716204448.737869-1-chris@chris-wilson.co.uk>
- <d92eb09d-788f-784a-9784-f2500daf9964@linux.intel.com>
+In-Reply-To: <875zam35o0.fsf@gaia.fi.intel.com>
+References: <20200716203201.11977-1-chris@chris-wilson.co.uk>
+ <20200716203201.11977-2-chris@chris-wilson.co.uk>
+ <875zam35o0.fsf@gaia.fi.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Jul 2020 11:19:16 +0100
-Message-ID: <159498115632.13677.3761366228685182736@build.alporthouse.com>
+Date: Fri, 17 Jul 2020 11:24:36 +0100
+Message-ID: <159498147691.13677.14118716321763834482@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Race
- breadcrumb signaling against timeslicing
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Wait for aux invalidation
+ on Tigerlake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,46 +42,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-07-17 09:34:07)
+Quoting Mika Kuoppala (2020-07-17 09:30:07)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
 > 
-> On 16/07/2020 21:44, Chris Wilson wrote:
-> I am not sure if the batch duration is not too short in practice, the 
-> add loop will really rapidly end all, just needs 64 iterations on 
-> average to end all 32 I think. So 64 WC writes from the CPU compared to 
-> CSB processing and breadcrumb signaling latencies might be too short. 
-> Maybe some small random udelays in the loop would be more realistic. 
-> Maybe as a 2nd flavour of the test just in case.. more coverage the better.
+> > Add a SRM read back of the aux invalidation register after poking
+> > hsdes: 1809175790, as failing to do so leads to writes going astray.
+> >
+> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2169
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_lrc.c | 31 ++++++++++++++++++++++-------
+> >  1 file changed, 24 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index e0280a672f1d..c9e46792b976 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -4757,14 +4757,21 @@ static int gen12_emit_flush(struct i915_request *request, u32 mode)
+> >       intel_engine_mask_t aux_inv = 0;
+> >       u32 cmd, *cs;
+> >  
+> > +     cmd = 4;
+> > +     if (mode & EMIT_INVALIDATE)
+> > +             cmd += 2;
+> >       if (mode & EMIT_INVALIDATE)
+> >               aux_inv = request->engine->mask & ~BIT(BCS0);
+> > +     if (aux_inv)
+> > +             cmd += 2 * hweight8(aux_inv) + 6;
+> >  
+> > -     cs = intel_ring_begin(request,
+> > -                           4 + (aux_inv ? 2 * hweight8(aux_inv) + 2 : 0));
+> > +     cs = intel_ring_begin(request, cmd);
+> >       if (IS_ERR(cs))
+> >               return PTR_ERR(cs);
+> >  
+> > +     if (mode & EMIT_INVALIDATE)
+> > +             *cs++ = preparser_disable(true);
+> 
+> This makes sense. Could be even separate patch.
+> 
+> On invalidate, care to try if the actual invalidate LRI
+> with POSTED set (after disabling preparser) could also fix this?
 
-GPU			kernel			IGT
-semaphore wait
-  -> raise interrupt
-			handle interrupt
-			  -> kick tasklet
-			begin preempt-to-busy   semaphore signal
-semaphore completes
-request completes
-			submit new ELSP[]
-			  -> stale unwound request
-
-Duration of the batch/semaphore itself doesn't really factor into it,
-it's that we have to let batch complete after we begin the process of
-scheduling it out for an expired timeslice. It's such a small window and
-I don't see a good way of hitting it reliably from userspace.
-
-With some printk, I was able to confirm that we were timeslicing virtual
-requests and moving them between engines with active breadcrumbs. But I
-never once saw any of the bugs with the stale requests, using this test.
-
-Somehow we want to length the preempt-to-busy window and coincide the
-request completion at the same time. So far all I have is yucky (too
-single purpose, we would be better off writing unit tests for each of
-the steps involved).
+I may have accidentally broke tgl1-gem and it needs some tlc ;)
 -Chris
 _______________________________________________
 Intel-gfx mailing list
