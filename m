@@ -2,45 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E31FD224032
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 18:10:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5084224066
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 18:15:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 283936E07D;
-	Fri, 17 Jul 2020 16:10:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB2886E160;
+	Fri, 17 Jul 2020 16:15:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3847B6E07D
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 16:10:43 +0000 (UTC)
-IronPort-SDR: FrhF/2CgoYiDRUBxDRNoVsTECk1w+JMqfo7UcMLEKSz5j/oaBuMbzhT7zI5Afp+nRrH8sFsCti
- Xickmdrb+ajA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9685"; a="234473326"
-X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="234473326"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2020 09:10:42 -0700
-IronPort-SDR: 1BIc21azbWnqCM8NMG+IcHkrWvY7Ylw+2zSCdi1kZ65+cnVxk3fZFp5/NVWrUuTcwlqxEd7r6L
- JDZdIA/Wyc4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="286854591"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 17 Jul 2020 09:10:40 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Jul 2020 19:10:39 +0300
-Date: Fri, 17 Jul 2020 19:10:39 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200717161039.GX6112@intel.com>
-References: <20200714163236.14105-1-imre.deak@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCC1B6E160
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 16:15:17 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21852304-1500050 
+ for multiple; Fri, 17 Jul 2020 17:15:00 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Jul 2020 17:15:00 +0100
+Message-Id: <20200717161500.14171-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200717140605.24328-1-chris@chris-wilson.co.uk>
+References: <20200717140605.24328-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200714163236.14105-1-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl+: Fix Combo PHY DPLL
- fractional divider for 38.4MHz ref clock
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Remove disordered per-file
+ request list for throttling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,153 +39,332 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 14, 2020 at 07:32:36PM +0300, Imre Deak wrote:
-> Apply Display WA #22010492432 for combo PHY PLLs too. This should fix a
-> problem where the PLL output frequency is slightly off with the current
-> PLL fractional divider value.
-> =
+I915_GEM_THROTTLE dates back to the time before contexts where there was
+just a single engine, and therefore a single timeline and request list
+globally. That request list was in execution/retirement order, and so
+walking it to find a particular aged request made sense and could be
+split per file.
 
-> I haven't seen an actual case where this causes a problem, but let's
-> follow the spec. It's also needed on some EHL platforms, but for that we
-> also need a way to distinguish the affected EHL SKUs, so I leave that
-> for a follow-up.
-> =
+That is no more. We now have many timelines with a file, as many as the
+user wants to construct (essentially per-engine, per-context). Each of
+those run independently and so make the single list futile. Remove the
+disordered list, and iterate over all the timelines to find a request to
+wait on in each to satisfy the criteria that the CPU is no more than 20ms
+ahead of its oldest request.
 
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 54 +++++++++++++++++--
->  1 file changed, 49 insertions(+), 5 deletions(-)
-> =
+It should go without saying that the I915_GEM_THROTTLE ioctl is no
+longer used as the primary means of throttling, so it makes sense to push
+the complication into the ioctl where it only impacts upon its few
+irregular users, rather than the execbuf/retire where everybody has to
+pay the cost. Fortunately, the few users do not create vast amount of
+contexts, so the loops over contexts/engines should be concise.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
-drm/i915/display/intel_dpll_mgr.c
-> index aeb6ee395cce..aee9101f5e7c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -2887,7 +2887,7 @@ static const struct icl_combo_pll_params icl_dp_com=
-bo_pll_24MHz_values[] =3D {
->  };
->  =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 13 -----
+ drivers/gpu/drm/i915/gem/i915_gem_throttle.c  | 58 +++++++++++++------
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  5 +-
+ drivers/gpu/drm/i915/i915_drv.c               |  1 -
+ drivers/gpu/drm/i915/i915_drv.h               |  6 --
+ drivers/gpu/drm/i915/i915_gem.c               | 18 ------
+ drivers/gpu/drm/i915/i915_request.c           | 21 -------
+ drivers/gpu/drm/i915/i915_request.h           |  4 --
+ 8 files changed, 41 insertions(+), 85 deletions(-)
 
->  =
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 6b4ec66cb558..b7a86cdec9b5 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1916,18 +1916,6 @@ static int eb_parse(struct i915_execbuffer *eb)
+ 	return err;
+ }
+ 
+-static void
+-add_to_client(struct i915_request *rq, struct drm_file *file)
+-{
+-	struct drm_i915_file_private *file_priv = file->driver_priv;
+-
+-	rq->file_priv = file_priv;
+-
+-	spin_lock(&file_priv->mm.lock);
+-	list_add_tail(&rq->client_link, &file_priv->mm.request_list);
+-	spin_unlock(&file_priv->mm.lock);
+-}
+-
+ static int eb_submit(struct i915_execbuffer *eb, struct i915_vma *batch)
+ {
+ 	int err;
+@@ -2567,7 +2555,6 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	trace_i915_request_queue(eb.request, eb.batch_flags);
+ 	err = eb_submit(&eb, batch);
+ err_request:
+-	add_to_client(eb.request, file);
+ 	i915_request_get(eb.request);
+ 	eb_request_add(&eb);
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_throttle.c b/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
+index 540ef0551789..68c8cffac6fc 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
+@@ -9,6 +9,7 @@
+ #include <drm/drm_file.h>
+ 
+ #include "i915_drv.h"
++#include "i915_gem_context.h"
+ #include "i915_gem_ioctls.h"
+ #include "i915_gem_object.h"
+ 
+@@ -35,9 +36,10 @@ int
+ i915_gem_throttle_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file)
+ {
++	const unsigned long recent_enough = jiffies - DRM_I915_THROTTLE_JIFFIES;
+ 	struct drm_i915_file_private *file_priv = file->driver_priv;
+-	unsigned long recent_enough = jiffies - DRM_I915_THROTTLE_JIFFIES;
+-	struct i915_request *request, *target = NULL;
++	struct i915_gem_context *ctx;
++	unsigned long idx;
+ 	long ret;
+ 
+ 	/* ABI: return -EIO if already wedged */
+@@ -45,27 +47,45 @@ i915_gem_throttle_ioctl(struct drm_device *dev, void *data,
+ 	if (ret)
+ 		return ret;
+ 
+-	spin_lock(&file_priv->mm.lock);
+-	list_for_each_entry(request, &file_priv->mm.request_list, client_link) {
+-		if (time_after_eq(request->emitted_jiffies, recent_enough))
+-			break;
++	xa_for_each(&file_priv->context_xa, idx, ctx) {
++		struct i915_gem_engines_iter it;
++		struct intel_context *ce;
+ 
+-		if (target && xchg(&target->file_priv, NULL))
+-			list_del(&target->client_link);
++		for_each_gem_engine(ce,
++				    i915_gem_context_lock_engines(ctx),
++				    it) {
++			struct i915_request *rq, *target = NULL;
+ 
+-		target = request;
+-	}
+-	if (target)
+-		i915_request_get(target);
+-	spin_unlock(&file_priv->mm.lock);
++			if (!ce->timeline)
++				continue;
++
++			mutex_lock(&ce->timeline->mutex);
++			list_for_each_entry_reverse(rq,
++						    &ce->timeline->requests,
++						    link) {
++				if (i915_request_completed(rq))
++					break;
+ 
+-	if (!target)
+-		return 0;
++				if (time_after(rq->emitted_jiffies,
++					       recent_enough))
++					continue;
+ 
+-	ret = i915_request_wait(target,
+-				I915_WAIT_INTERRUPTIBLE,
+-				MAX_SCHEDULE_TIMEOUT);
+-	i915_request_put(target);
++				target = i915_request_get(rq);
++				break;
++			}
++			mutex_unlock(&ce->timeline->mutex);
++			if (!target)
++				continue;
++
++			ret = i915_request_wait(target,
++						I915_WAIT_INTERRUPTIBLE,
++						MAX_SCHEDULE_TIMEOUT);
++			i915_request_put(target);
++			if (ret < 0)
++				break;
++		}
++		i915_gem_context_unlock_engines(ctx);
++	}
+ 
+ 	return ret < 0 ? ret : 0;
+ }
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 3fc5de961280..f749071f54a7 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -2729,7 +2729,7 @@ static int create_gang(struct intel_engine_cs *engine,
+ 	i915_gem_object_put(obj);
+ 	intel_context_put(ce);
+ 
+-	rq->client_link.next = &(*prev)->client_link;
++	rq->mock.link.next = &(*prev)->mock.link;
+ 	*prev = rq;
+ 	return 0;
+ 
+@@ -2970,8 +2970,7 @@ static int live_preempt_gang(void *arg)
+ 		}
+ 
+ 		while (rq) { /* wait for each rq from highest to lowest prio */
+-			struct i915_request *n =
+-				list_next_entry(rq, client_link);
++			struct i915_request *n = list_next_entry(rq, mock.link);
+ 
+ 			if (err == 0 && i915_request_wait(rq, 0, HZ / 5) < 0) {
+ 				struct drm_printer p =
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 5fd5af4bc855..a5f58ed219fe 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -1119,7 +1119,6 @@ static void i915_driver_postclose(struct drm_device *dev, struct drm_file *file)
+ 	struct drm_i915_file_private *file_priv = file->driver_priv;
+ 
+ 	i915_gem_context_close(file);
+-	i915_gem_release(dev, file);
+ 
+ 	kfree_rcu(file_priv, rcu);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index e4f7f6518945..2a0b5017d12c 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -203,11 +203,6 @@ struct drm_i915_file_private {
+ 		struct rcu_head rcu;
+ 	};
+ 
+-	struct {
+-		spinlock_t lock;
+-		struct list_head request_list;
+-	} mm;
+-
+ 	struct xarray context_xa;
+ 	struct xarray vm_xa;
+ 
+@@ -1831,7 +1826,6 @@ void i915_gem_suspend_late(struct drm_i915_private *dev_priv);
+ void i915_gem_resume(struct drm_i915_private *dev_priv);
+ 
+ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
+-void i915_gem_release(struct drm_device *dev, struct drm_file *file);
+ 
+ int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
+ 				    enum i915_cache_level cache_level);
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 9aa3066cb75d..e1de50780ed5 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1301,21 +1301,6 @@ int i915_gem_freeze_late(struct drm_i915_private *i915)
+ 	return 0;
+ }
+ 
+-void i915_gem_release(struct drm_device *dev, struct drm_file *file)
+-{
+-	struct drm_i915_file_private *file_priv = file->driver_priv;
+-	struct i915_request *request;
+-
+-	/* Clean up our request list when the client is going away, so that
+-	 * later retire_requests won't dereference our soon-to-be-gone
+-	 * file_priv.
+-	 */
+-	spin_lock(&file_priv->mm.lock);
+-	list_for_each_entry(request, &file_priv->mm.request_list, client_link)
+-		request->file_priv = NULL;
+-	spin_unlock(&file_priv->mm.lock);
+-}
+-
+ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
+ {
+ 	struct drm_i915_file_private *file_priv;
+@@ -1331,9 +1316,6 @@ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
+ 	file_priv->dev_priv = i915;
+ 	file_priv->file = file;
+ 
+-	spin_lock_init(&file_priv->mm.lock);
+-	INIT_LIST_HEAD(&file_priv->mm.request_list);
+-
+ 	file_priv->bsd_engine = -1;
+ 	file_priv->hang_timestamp = jiffies;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 679a915e9a63..050b55f0f5c0 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -216,24 +216,6 @@ static void __notify_execute_cb_imm(struct i915_request *rq)
+ 	__notify_execute_cb(rq, irq_work_imm);
+ }
+ 
+-static inline void
+-remove_from_client(struct i915_request *request)
+-{
+-	struct drm_i915_file_private *file_priv;
+-
+-	if (!READ_ONCE(request->file_priv))
+-		return;
+-
+-	rcu_read_lock();
+-	file_priv = xchg(&request->file_priv, NULL);
+-	if (file_priv) {
+-		spin_lock(&file_priv->mm.lock);
+-		list_del(&request->client_link);
+-		spin_unlock(&file_priv->mm.lock);
+-	}
+-	rcu_read_unlock();
+-}
+-
+ static void free_capture_list(struct i915_request *request)
+ {
+ 	struct i915_capture_list *capture;
+@@ -341,7 +323,6 @@ bool i915_request_retire(struct i915_request *rq)
+ 	remove_from_engine(rq);
+ 	GEM_BUG_ON(!llist_empty(&rq->execute_cb));
+ 
+-	remove_from_client(rq);
+ 	__list_del_entry(&rq->link); /* poison neither prev/next (RCU walks) */
+ 
+ 	intel_context_exit(rq->context);
+@@ -799,7 +780,6 @@ static void __i915_request_ctor(void *arg)
+ 
+ 	dma_fence_init(&rq->fence, &i915_fence_ops, &rq->lock, 0, 0);
+ 
+-	rq->file_priv = NULL;
+ 	rq->capture_list = NULL;
+ 
+ 	init_llist_head(&rq->execute_cb);
+@@ -889,7 +869,6 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+ 
+ 	/* No zalloc, everything must be cleared after use */
+ 	rq->batch = NULL;
+-	GEM_BUG_ON(rq->file_priv);
+ 	GEM_BUG_ON(rq->capture_list);
+ 	GEM_BUG_ON(!llist_empty(&rq->execute_cb));
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 590762820761..fc18378c685d 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -284,10 +284,6 @@ struct i915_request {
+ 	/** timeline->request entry for this request */
+ 	struct list_head link;
+ 
+-	struct drm_i915_file_private *file_priv;
+-	/** file_priv list entry for this request */
+-	struct list_head client_link;
+-
+ 	I915_SELFTEST_DECLARE(struct {
+ 		struct list_head link;
+ 		unsigned long delay;
+-- 
+2.20.1
 
-> -/* Also used for 38.4 MHz values. */
-> +/* On ICL also used for 38.4 MHz values. */
->  static const struct icl_combo_pll_params icl_dp_combo_pll_19_2MHz_values=
-[] =3D {
->  	{ 540000,
->  	  { .dco_integer =3D 0x1A5, .dco_fraction =3D 0x7000,		/* [0]: 5.4 */
-> @@ -2915,6 +2915,37 @@ static const struct icl_combo_pll_params icl_dp_co=
-mbo_pll_19_2MHz_values[] =3D {
->  	    .pdiv =3D 0x1 /* 2 */, .kdiv =3D 1, .qdiv_mode =3D 0, .qdiv_ratio =
-=3D 0, }, },
->  };
->  =
-
-> +/*
-> + * Display WA #22010492432: tgl
-> + * Divide the nominal .dco_fraction value by 2.
-> + */
-> +static const struct icl_combo_pll_params tgl_dp_combo_pll_38_4MHz_values=
-[] =3D {
-> +	{ 540000,
-> +	  { .dco_integer =3D 0x1A5, .dco_fraction =3D 0x3800,		/* [0]: 5.4 */
-> +	    .pdiv =3D 0x2 /* 3 */, .kdiv =3D 1, .qdiv_mode =3D 0, .qdiv_ratio =
-=3D 0, }, },
-> +	{ 270000,
-> +	  { .dco_integer =3D 0x1A5, .dco_fraction =3D 0x3800,		/* [1]: 2.7 */
-> +	    .pdiv =3D 0x2 /* 3 */, .kdiv =3D 2, .qdiv_mode =3D 0, .qdiv_ratio =
-=3D 0, }, },
-> +	{ 162000,
-> +	  { .dco_integer =3D 0x1A5, .dco_fraction =3D 0x3800,		/* [2]: 1.62 */
-> +	    .pdiv =3D 0x4 /* 5 */, .kdiv =3D 2, .qdiv_mode =3D 0, .qdiv_ratio =
-=3D 0, }, },
-> +	{ 324000,
-> +	  { .dco_integer =3D 0x1A5, .dco_fraction =3D 0x3800,		/* [3]: 3.24 */
-> +	    .pdiv =3D 0x4 /* 5 */, .kdiv =3D 1, .qdiv_mode =3D 0, .qdiv_ratio =
-=3D 0, }, },
-> +	{ 216000,
-> +	  { .dco_integer =3D 0x1C2, .dco_fraction =3D 0x0000,		/* [4]: 2.16 */
-> +	    .pdiv =3D 0x1 /* 2 */, .kdiv =3D 2, .qdiv_mode =3D 1, .qdiv_ratio =
-=3D 2, }, },
-> +	{ 432000,
-> +	  { .dco_integer =3D 0x1C2, .dco_fraction =3D 0x0000,		/* [5]: 4.32 */
-> +	    .pdiv =3D 0x1 /* 2 */, .kdiv =3D 2, .qdiv_mode =3D 0, .qdiv_ratio =
-=3D 0, }, },
-> +	{ 648000,
-> +	  { .dco_integer =3D 0x1FA, .dco_fraction =3D 0x1000,		/* [6]: 6.48 */
-> +	    .pdiv =3D 0x2 /* 3 */, .kdiv =3D 1, .qdiv_mode =3D 0, .qdiv_ratio =
-=3D 0, }, },
-> +	{ 810000,
-> +	  { .dco_integer =3D 0x1A5, .dco_fraction =3D 0x3800,		/* [7]: 8.1 */
-> +	    .pdiv =3D 0x1 /* 2 */, .kdiv =3D 1, .qdiv_mode =3D 0, .qdiv_ratio =
-=3D 0, }, },
-> +};
-> +
->  static const struct skl_wrpll_params icl_tbt_pll_24MHz_values =3D {
->  	.dco_integer =3D 0x151, .dco_fraction =3D 0x4000,
->  	.pdiv =3D 0x4 /* 5 */, .kdiv =3D 1, .qdiv_mode =3D 0, .qdiv_ratio =3D 0,
-> @@ -2950,13 +2981,26 @@ static bool icl_calc_dp_combo_pll(struct intel_cr=
-tc_state *crtc_state,
->  				  struct skl_wrpll_params *pll_params)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
-v);
-> -	const struct icl_combo_pll_params *params =3D
-> -		dev_priv->dpll.ref_clks.nssc =3D=3D 24000 ?
-> -		icl_dp_combo_pll_24MHz_values :
-> -		icl_dp_combo_pll_19_2MHz_values;
-> +	const struct icl_combo_pll_params *params;
->  	int clock =3D crtc_state->port_clock;
->  	int i;
->  =
-
-> +	switch (dev_priv->dpll.ref_clks.nssc) {
-> +	case 19200:
-> +		params =3D icl_dp_combo_pll_19_2MHz_values;
-> +		break;
-> +	case 24000:
-> +		params =3D icl_dp_combo_pll_24MHz_values;
-> +		break;
-> +	case 38400:
-> +		/* TODO: Apply WA #22010492432 on EHL too. */
-> +		if (IS_TIGERLAKE(dev_priv))
-> +			params =3D tgl_dp_combo_pll_38_4MHz_values;
-> +		else
-> +			params =3D icl_dp_combo_pll_19_2MHz_values;
-> +		break;
-> +	}
-
-Hmm. This only takes care of DP AFAICS. What about HDMI?
-Also doesn't readout need some tweaking too?
-
-Should we rather consider pushing this w/a deeper into
-the register progamming/readout code?
-
-> +
->  	for (i =3D 0; i < ARRAY_SIZE(icl_dp_combo_pll_24MHz_values); i++) {
->  		if (clock =3D=3D params[i].clock) {
->  			*pll_params =3D params[i].wrpll;
-> -- =
-
-> 2.23.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
