@@ -2,45 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 370EC223717
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 10:34:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F97722373D
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jul 2020 10:37:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E09A6E0FF;
-	Fri, 17 Jul 2020 08:34:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 939A16ED57;
+	Fri, 17 Jul 2020 08:37:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 828B66E0FF;
- Fri, 17 Jul 2020 08:34:11 +0000 (UTC)
-IronPort-SDR: J4/mLQDXPgdY2ch+x1sTnkQDx1ARDbOLzYf8Bwlvk0kxUSNBM91fvOyyPE/Y5QCS1Zef/bxhjQ
- mKhJ4tDe66ZA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9684"; a="167689124"
-X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="167689124"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B86D6ED57
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 08:37:55 +0000 (UTC)
+IronPort-SDR: 5MUPgeMi9J4wXkXw2iJ7c89CiQN5Q7f4h4iZkGGLVSR3lLpEjAdSKEbaMyY8mIpKCKkVVJ/IKc
+ UtJXo5pN7gQg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9684"; a="211096231"
+X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="211096231"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2020 01:34:11 -0700
-IronPort-SDR: ocl+GPfs1HOyl3RnD33K1XD47f8E82SL+cEgylhgRmkJ8pWexBT+ymonHxKeaZwTibX+zWtEvs
- n0kxZp+vHiyA==
-X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="430778854"
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2020 01:37:54 -0700
+IronPort-SDR: wgn7WqpI3P66emljp/szib1mtXfwZWugXHVMTBj3SfJHmibTKzeOyMNdKp9VPqOIxIOntce1kU
+ 33Jba3TjkpQw==
+X-IronPort-AV: E=Sophos;i="5.75,362,1589266800"; d="scan'208";a="430779577"
 Received: from gpanagop-mobl.ger.corp.intel.com (HELO [10.249.33.238])
  ([10.249.33.238])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2020 01:34:09 -0700
+ 17 Jul 2020 01:37:54 -0700
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200716204448.737869-1-chris@chris-wilson.co.uk>
+References: <20200716113357.7644-4-chris@chris-wilson.co.uk>
+ <20200716172845.31427-1-chris@chris-wilson.co.uk>
+ <9f617a7c-8b62-fa67-07dc-0a9f8c0d2a88@linux.intel.com>
+ <159497425828.27598.4204263809628931202@build.alporthouse.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <d92eb09d-788f-784a-9784-f2500daf9964@linux.intel.com>
-Date: Fri, 17 Jul 2020 09:34:07 +0100
+Message-ID: <0debaba5-b70e-913f-21a8-2e01cbf0ae29@linux.intel.com>
+Date: Fri, 17 Jul 2020 09:37:52 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200716204448.737869-1-chris@chris-wilson.co.uk>
+In-Reply-To: <159497425828.27598.4204263809628931202@build.alporthouse.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Race
- breadcrumb signaling against timeslicing
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Replace
+ intel_engine_transfer_stale_breadcrumbs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,176 +56,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 16/07/2020 21:44, Chris Wilson wrote:
-> This is an attempt to chase down some preempt-to-busy races with
-> breadcrumb signaling on the virtual engines. By using more semaphore
-> spinners than available engines, we encourage very short timeslices, and
-> we make each batch of random duration to try and coincide the end of a
-> batch with the context being scheduled out.
+On 17/07/2020 09:24, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-07-17 09:13:21)
+>>
+>> On 16/07/2020 18:28, Chris Wilson wrote:
+>>> @@ -341,8 +325,10 @@ static void insert_breadcrumb(struct i915_request *rq,
+>>>                        break;
+>>>        }
+>>>        list_add(&rq->signal_link, pos);
+>>> -     if (pos == &ce->signals) /* catch transitions from empty list */
+>>> +     if (pos == &ce->signals) { /* catch transitions from empty list */
+>>>                list_move_tail(&ce->signal_link, &b->signalers);
+>>> +             irq_work_queue(&b->irq_work); /* check after enabling irq */
+>>> +     }
+>>>        GEM_BUG_ON(!check_signal_order(ce, rq));
+>>>    
+>>>        set_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+>>> @@ -401,7 +387,7 @@ bool i915_request_enable_breadcrumb(struct i915_request *rq)
+>>>    
+>>>        spin_unlock(&b->irq_lock);
+>>>    
+>>> -     return !__request_completed(rq);
+>>> +     return true;
+>>
+>> Maybe my in head diff apply is failing me, but I think there isn't a
+>> "return false" path left so could be made a return void function.
 > 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   tests/i915/gem_exec_balancer.c | 109 +++++++++++++++++++++++++++++++++
->   1 file changed, 109 insertions(+)
-> 
-> diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
-> index c5c0055fc..e4d9e0464 100644
-> --- a/tests/i915/gem_exec_balancer.c
-> +++ b/tests/i915/gem_exec_balancer.c
-> @@ -2240,6 +2240,112 @@ static void hog(int i915)
->   	gem_quiescent_gpu(i915);
->   }
->   
-> +static uint32_t sema_create(int i915, uint64_t addr, uint32_t **x)
-> +{
-> +	uint32_t handle = gem_create(i915, 4096);
-> +
-> +	*x = gem_mmap__device_coherent(i915, handle, 0, 4096, PROT_WRITE);
-> +	for (int n = 1; n <= 32; n++) {
-> +		uint32_t *cs = *x + n * 16;
+> There is no return false path anymore (since we always queue the worker
+> which should run immediately after dma_fence_enable_signaling if
+> necessary, that seemed to be more sensible than conditionally using the
+> worker, I also looked at splitting enable_breadcrumb and
+> activate_breadcrumb, but the two paths are more similar than not), I
+> kept it bool so that it matched i915_fence_enable_signaling.
 
-Okay so semaphore target is in the batch itself, that's why first 16 
-dwords are nops for convenience.
-
-> +
-> +		*cs++ = MI_SEMAPHORE_WAIT |
-> +			MI_SEMAPHORE_POLL |
-> +			MI_SEMAPHORE_SAD_GTE_SDD |
-> +			(4 - 2);
-> +		*cs++ = n;
-> +		*cs++ = addr;
-> +		*cs++ = addr >> 32;
-> +
-> +		*cs++ = MI_BATCH_BUFFER_END;
-> +	}
-> +
-> +	return handle;
-> +}
-> +
-> +static uint32_t *sema(int i915, uint32_t ctx)
-> +{
-> +	uint32_t *ctl;
-> +	struct drm_i915_gem_exec_object2 batch = {
-> +		.handle = sema_create(i915, 64 << 20, &ctl),
-> +		.offset = 64 << 20,
-> +		.flags = EXEC_OBJECT_PINNED
-> +	};
-> +	struct drm_i915_gem_execbuffer2 execbuf = {
-> +		.buffers_ptr = to_user_pointer(&batch),
-> +		.buffer_count = 1,
-> +		.rsvd1 = gem_context_clone_with_engines(i915, ctx),
-> +	};
-> +	int64_t poll = 1;
-> +
-> +	for (int n = 1; n <= 32; n++) {
-> +		execbuf.batch_start_offset = 64 * n,
-> +		gem_execbuf(i915, &execbuf);
-> +		/* Force a breadcrumb to be installed on each request */
-> +		gem_wait(i915, batch.handle, &poll);
-> +	}
-> +
-> +	gem_context_destroy(i915, execbuf.rsvd1);
-> +
-> +	igt_assert(gem_bo_busy(i915, batch.handle));
-> +	gem_close(i915, batch.handle);
-> +
-> +	return ctl;
-> +}
-> +
-> +static void __waits(int i915, int timeout, uint32_t ctx, unsigned int count)
-> +{
-> +	uint32_t *semaphores[count + 1];
-> +
-> +	for (int i = 0; i <= count; i++)
-> +		semaphores[i] = sema(i915, ctx);
-> +
-> +	igt_until_timeout(timeout) {
-> +		int i = rand() % (count + 1);
-> +
-> +		if ((*semaphores[i] += rand() % 32) >= 32) {
-
-Write releases some batch buffers, until it knows it released all of 
-them when it creates a new set.
-
-> +			munmap(semaphores[i], 4096);
-> +			semaphores[i] = sema(i915, ctx);
-> +		}
-> +	}
-> +
-> +	for (int i = 0; i <= count; i++) {
-> +		*semaphores[i] = 0xffffffff;
-> +		munmap(semaphores[i], 4096);
-> +	}
-> +}
-> +
-> +static void waits(int i915, int timeout)
-> +{
-> +	igt_require(gem_scheduler_has_preemption(i915));
-> +	igt_require(gem_scheduler_has_semaphores(i915));
-> +
-> +	for (int class = 0; class < 32; class++) {
-> +		struct i915_engine_class_instance *ci;
-> +		unsigned int count;
-> +		uint32_t ctx;
-> +
-> +		ci = list_engines(i915, 1u << class, &count);
-> +		if (!ci)
-> +			continue;
-> +
-> +		if (count < 2) {
-> +			free(ci);
-> +			continue;
-> +		}
-> +
-> +		ctx = load_balancer_create(i915, ci, count);
-> +
-> +		__waits(i915, timeout, ctx, count);
-> +
-> +		gem_context_destroy(i915, ctx);
-> +		igt_waitchildren();
-
-Don't see any forking in the test.
-
-> +
-> +		free(ci);
-> +	}
-> +
-> +	gem_quiescent_gpu(i915);
-> +}
-> +
->   static void nop(int i915)
->   {
->   	struct drm_i915_gem_exec_object2 batch = {
-> @@ -2729,6 +2835,9 @@ igt_main
->   	igt_subtest("hog")
->   		hog(i915);
->   
-> +	igt_subtest("waits")
-> +		waits(i915, 5);
-> +
->   	igt_subtest("smoke")
->   		smoketest(i915, 20);
->   
-> 
-
-Looks okay in principle.
+It's a bit questionable, in this case it would probably be better to 
+have explicit "return true" in i915_fence_enable_signaling. But it is a 
+minor point anyway and bugfix trumps it.
 
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-I am not sure if the batch duration is not too short in practice, the 
-add loop will really rapidly end all, just needs 64 iterations on 
-average to end all 32 I think. So 64 WC writes from the CPU compared to 
-CSB processing and breadcrumb signaling latencies might be too short. 
-Maybe some small random udelays in the loop would be more realistic. 
-Maybe as a 2nd flavour of the test just in case.. more coverage the better.
 
 Regards,
 
