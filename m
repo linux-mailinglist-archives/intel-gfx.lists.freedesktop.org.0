@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE5A225DB0
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jul 2020 13:45:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30802225DB8
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jul 2020 13:46:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C30B86E16F;
-	Mon, 20 Jul 2020 11:45:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 812F86E0D2;
+	Mon, 20 Jul 2020 11:46:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50CC06E082
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jul 2020 11:45:47 +0000 (UTC)
-IronPort-SDR: p9avfBzIEu+xaMViWB0Usm+X+8QX+1MBD7i+u7aOjuyOUM1ZQoVYJRaT0VVqJ1JODt00+apjUE
- JznGVGpa08NQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9687"; a="129460424"
-X-IronPort-AV: E=Sophos;i="5.75,374,1589266800"; d="scan'208";a="129460424"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C21AF6E0D2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jul 2020 11:46:16 +0000 (UTC)
+IronPort-SDR: /cQZBdHW1sCMkoHrv17nkV+TJgLw72WWBrZwxqczlxduhzCYYOtBDWiBGbKQqguzNoy0WdYyOO
+ +tvwiRhHCPHw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9687"; a="168023689"
+X-IronPort-AV: E=Sophos;i="5.75,374,1589266800"; d="scan'208";a="168023689"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2020 04:45:47 -0700
-IronPort-SDR: vTdy0LC3p+9q3oHQNpt1V1Z8bg8vkSi6RolqD+Mi7MND9kupbxpr6TKhXxaCmqj64Z4DAjZ7uY
- rzOUA1DdjtLw==
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2020 04:46:16 -0700
+IronPort-SDR: yXMMd7wLEGR17UMZLDXBTRQAJXU+wlT7lTWRsGuSTv5wRIEm9PrhuH1Yt9pAZUtf2Y/MvjGPqB
+ WT3+jIwQWO0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,374,1589266800"; d="scan'208";a="326039008"
+X-IronPort-AV: E=Sophos;i="5.75,374,1589266800"; d="scan'208";a="487216422"
 Received: from bhanu-nuc8i7beh.iind.intel.com ([10.145.162.210])
- by FMSMGA003.fm.intel.com with ESMTP; 20 Jul 2020 04:45:45 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 20 Jul 2020 04:46:15 -0700
 From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
 To: bhanuprakash.modem@intel.com,
 	intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Jul 2020 01:10:53 +0530
-Message-Id: <20200720194053.24700-3-bhanuprakash.modem@intel.com>
+Date: Tue, 21 Jul 2020 01:11:25 +0530
+Message-Id: <20200720194127.24750-1-bhanuprakash.modem@intel.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200720194053.24700-1-bhanuprakash.modem@intel.com>
-References: <20200720194053.24700-1-bhanuprakash.modem@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] i915/debug: Expose Max BPC info via debugfs
+Subject: [Intel-gfx] [PATCH 0/2] Expose crtc dither state and connector max
+ bpc via debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,54 +53,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-It's useful to know the max supported panel BPC for IGT testing.
+[why]
+It's useful to know the max supported panel BPC and PIPE dither state
+for IGT testing.
 
-[How]
-Expose the max supported BPC for the panel via a debugfs file on the
-connector, "output_bpc".
+[how]
+* Expose the connector max supported BPC for the panel via a debugfs file on the
+  connector, "output_bpc".
+  Example: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
 
-Example usage: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
+* Expose the dithering state for the crtc via a debugfs file "dither".
+  Example: cat /sys/kernel/debug/dri/0/crtc-0/dither
 
-Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
----
+Test-with: 20200720165011.23918-1-bhanuprakash.modem@intel.com 
+
+Bhanuprakash Modem (2):
+  i915/debug: Expose crtc dither state via debugfs
+  i915/debug: Expose Max BPC info via debugfs
+
  .../drm/i915/display/intel_display_debugfs.c    | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ drivers/gpu/drm/i915/i915_debugfs.c             | 17 +++++++++++++++++
+ 2 files changed, 34 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 3644752cc5ec..0877d029af77 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -2185,6 +2185,20 @@ static const struct file_operations i915_dsc_fec_support_fops = {
- 	.write = i915_dsc_fec_support_write
- };
- 
-+/*
-+ * Returns the maximum output bpc for the connector.
-+ * Example usage: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
-+ */
-+static int output_bpc_show(struct seq_file *m, void *data)
-+{
-+	struct drm_connector *connector = m->private;
-+
-+	seq_printf(m, "Maximum: %u\n", connector->display_info.bpc);
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(output_bpc);
-+
- /**
-  * intel_connector_debugfs_add - add i915 specific connector debugfs files
-  * @connector: pointer to a registered drm_connector
-@@ -2235,5 +2249,8 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
- 		debugfs_create_file("i915_lpsp_capability", 0444, root,
- 				    connector, &i915_lpsp_capability_fops);
- 
-+	debugfs_create_file("output_bpc", S_IRUGO, root,
-+			connector, &output_bpc_fops);
-+
- 	return 0;
- }
 -- 
 2.20.1
 
