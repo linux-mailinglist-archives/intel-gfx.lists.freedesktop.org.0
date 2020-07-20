@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27C32225B5F
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jul 2020 11:23:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D111225B5B
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jul 2020 11:23:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BD176E2A8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 221D26E27C;
 	Mon, 20 Jul 2020 09:23:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0CA06E271
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jul 2020 09:23:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 328DA6E27C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jul 2020 09:23:27 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21870897-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21870899-1500050 
  for multiple; Mon, 20 Jul 2020 10:23:14 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Jul 2020 10:23:03 +0100
-Message-Id: <20200720092312.16975-1-chris@chris-wilson.co.uk>
+Date: Mon, 20 Jul 2020 10:23:04 +0100
+Message-Id: <20200720092312.16975-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200720092312.16975-1-chris@chris-wilson.co.uk>
+References: <20200720092312.16975-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/10] drm/i915/gem: Remove disordered per-file
- request list for throttling
+Subject: [Intel-gfx] [PATCH 02/10] drm/i915: Remove requirement for holding
+ i915_request.lock for breadcrumbs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,332 +45,316 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I915_GEM_THROTTLE dates back to the time before contexts where there was
-just a single engine, and therefore a single timeline and request list
-globally. That request list was in execution/retirement order, and so
-walking it to find a particular aged request made sense and could be
-split per file.
+Since the breadcrumb enabling/cancelling itself is serialised by the
+breadcrumbs.irq_lock, with a bit of care we can remove the outer
+serialisation with i915_request.lock for concurrent
+dma_fence_enable_signaling(). This has the important side-effect of
+eliminating the nested i915_request.lock within request submission.
 
-That is no more. We now have many timelines with a file, as many as the
-user wants to construct (essentially per-engine, per-context). Each of
-those run independently and so make the single list futile. Remove the
-disordered list, and iterate over all the timelines to find a request to
-wait on in each to satisfy the criteria that the CPU is no more than 20ms
-ahead of its oldest request.
+The challenge in serialisation is around the unsubmission where we take
+an active request that wants a breadcrumb on the signaling engine and
+put it to sleep. We do not want a concurrent
+dma_fence_enable_signaling() to attach a breadcrumb as we unsubmit, so
+we must mark the request as no longer active before serialising with the
+concurrent enable-signaling.
 
-It should go without saying that the I915_GEM_THROTTLE ioctl is no
-longer used as the primary means of throttling, so it makes sense to push
-the complication into the ioctl where it only impacts upon its few
-irregular users, rather than the execbuf/retire where everybody has to
-pay the cost. Fortunately, the few users do not create vast amount of
-contexts, so the loops over contexts/engines should be concise.
+On retire, we serialise with the concurrent enable-signaling, but
+instead of clearing ACTIVE, we mark it as SIGNALED.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 13 ----
- drivers/gpu/drm/i915/gem/i915_gem_throttle.c  | 67 +++++++++++++------
- drivers/gpu/drm/i915/gt/selftest_lrc.c        |  5 +-
- drivers/gpu/drm/i915/i915_drv.c               |  1 -
- drivers/gpu/drm/i915/i915_drv.h               |  6 --
- drivers/gpu/drm/i915/i915_gem.c               | 18 -----
- drivers/gpu/drm/i915/i915_request.c           | 21 ------
- drivers/gpu/drm/i915/i915_request.h           |  4 --
- 8 files changed, 50 insertions(+), 85 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 130 +++++++++++++-------
+ drivers/gpu/drm/i915/gt/intel_lrc.c         |  14 ---
+ drivers/gpu/drm/i915/i915_request.c         |  39 +++---
+ 3 files changed, 100 insertions(+), 83 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 6b4ec66cb558..b7a86cdec9b5 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1916,18 +1916,6 @@ static int eb_parse(struct i915_execbuffer *eb)
- 	return err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index 91786310c114..3d211a0c2b5a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -220,17 +220,17 @@ static void signal_irq_work(struct irq_work *work)
+ 	}
  }
  
--static void
--add_to_client(struct i915_request *rq, struct drm_file *file)
--{
--	struct drm_i915_file_private *file_priv = file->driver_priv;
--
--	rq->file_priv = file_priv;
--
--	spin_lock(&file_priv->mm.lock);
--	list_add_tail(&rq->client_link, &file_priv->mm.request_list);
--	spin_unlock(&file_priv->mm.lock);
--}
--
- static int eb_submit(struct i915_execbuffer *eb, struct i915_vma *batch)
+-static bool __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
++static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
  {
- 	int err;
-@@ -2567,7 +2555,6 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	trace_i915_request_queue(eb.request, eb.batch_flags);
- 	err = eb_submit(&eb, batch);
- err_request:
--	add_to_client(eb.request, file);
- 	i915_request_get(eb.request);
- 	eb_request_add(&eb);
+ 	struct intel_engine_cs *engine =
+ 		container_of(b, struct intel_engine_cs, breadcrumbs);
  
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_throttle.c b/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
-index 540ef0551789..1929d6cf4150 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_throttle.c
-@@ -9,6 +9,7 @@
- #include <drm/drm_file.h>
+ 	lockdep_assert_held(&b->irq_lock);
+ 	if (b->irq_armed)
+-		return true;
++		return;
  
- #include "i915_drv.h"
-+#include "i915_gem_context.h"
- #include "i915_gem_ioctls.h"
- #include "i915_gem_object.h"
+ 	if (!intel_gt_pm_get_if_awake(engine->gt))
+-		return false;
++		return;
  
-@@ -35,9 +36,10 @@ int
- i915_gem_throttle_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file)
+ 	/*
+ 	 * The breadcrumb irq will be disarmed on the interrupt after the
+@@ -250,8 +250,6 @@ static bool __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+ 
+ 	if (!b->irq_enabled++)
+ 		irq_enable(engine);
+-
+-	return true;
+ }
+ 
+ void intel_engine_init_breadcrumbs(struct intel_engine_cs *engine)
+@@ -310,57 +308,99 @@ void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine)
  {
-+	const unsigned long recent_enough = jiffies - DRM_I915_THROTTLE_JIFFIES;
- 	struct drm_i915_file_private *file_priv = file->driver_priv;
--	unsigned long recent_enough = jiffies - DRM_I915_THROTTLE_JIFFIES;
--	struct i915_request *request, *target = NULL;
-+	struct i915_gem_context *ctx;
-+	unsigned long idx;
- 	long ret;
+ }
  
- 	/* ABI: return -EIO if already wedged */
-@@ -45,27 +47,54 @@ i915_gem_throttle_ioctl(struct drm_device *dev, void *data,
- 	if (ret)
- 		return ret;
+-bool i915_request_enable_breadcrumb(struct i915_request *rq)
++static void insert_breadcrumb(struct i915_request *rq,
++			      struct intel_breadcrumbs *b)
+ {
+-	lockdep_assert_held(&rq->lock);
++	struct intel_context *ce = rq->context;
++	struct list_head *pos;
  
--	spin_lock(&file_priv->mm.lock);
--	list_for_each_entry(request, &file_priv->mm.request_list, client_link) {
--		if (time_after_eq(request->emitted_jiffies, recent_enough))
--			break;
-+	rcu_read_lock();
-+	xa_for_each(&file_priv->context_xa, idx, ctx) {
-+		struct i915_gem_engines_iter it;
-+		struct intel_context *ce;
+-	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &rq->fence.flags))
+-		return true;
++	if (test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags))
++		return;
  
--		if (target && xchg(&target->file_priv, NULL))
--			list_del(&target->client_link);
-+		if (!kref_get_unless_zero(&ctx->ref))
-+			continue;
-+		rcu_read_unlock();
+-	if (test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags)) {
+-		struct intel_breadcrumbs *b = &rq->engine->breadcrumbs;
+-		struct intel_context *ce = rq->context;
+-		struct list_head *pos;
++	__intel_breadcrumbs_arm_irq(b);
  
--		target = request;
--	}
--	if (target)
--		i915_request_get(target);
--	spin_unlock(&file_priv->mm.lock);
-+		for_each_gem_engine(ce,
-+				    i915_gem_context_lock_engines(ctx),
-+				    it) {
-+			struct i915_request *rq, *target = NULL;
-+
-+			if (!ce->timeline)
-+				continue;
-+
-+			mutex_lock(&ce->timeline->mutex);
-+			list_for_each_entry_reverse(rq,
-+						    &ce->timeline->requests,
-+						    link) {
-+				if (i915_request_completed(rq))
-+					break;
+-		spin_lock(&b->irq_lock);
++	/*
++	 * We keep the seqno in retirement order, so we can break
++	 * inside intel_engine_signal_breadcrumbs as soon as we've
++	 * passed the last completed request (or seen a request that
++	 * hasn't event started). We could walk the timeline->requests,
++	 * but keeping a separate signalers_list has the advantage of
++	 * hopefully being much smaller than the full list and so
++	 * provides faster iteration and detection when there are no
++	 * more interrupts required for this context.
++	 *
++	 * We typically expect to add new signalers in order, so we
++	 * start looking for our insertion point from the tail of
++	 * the list.
++	 */
++	list_for_each_prev(pos, &ce->signals) {
++		struct i915_request *it =
++			list_entry(pos, typeof(*it), signal_link);
  
--	if (!target)
--		return 0;
-+				if (time_after(rq->emitted_jiffies,
-+					       recent_enough))
-+					continue;
- 
--	ret = i915_request_wait(target,
--				I915_WAIT_INTERRUPTIBLE,
--				MAX_SCHEDULE_TIMEOUT);
--	i915_request_put(target);
-+				target = i915_request_get(rq);
-+				break;
-+			}
-+			mutex_unlock(&ce->timeline->mutex);
-+			if (!target)
-+				continue;
-+
-+			ret = i915_request_wait(target,
-+						I915_WAIT_INTERRUPTIBLE,
-+						MAX_SCHEDULE_TIMEOUT);
-+			i915_request_put(target);
-+			if (ret < 0)
-+				break;
-+		}
-+		i915_gem_context_unlock_engines(ctx);
-+		i915_gem_context_put(ctx);
-+
-+		rcu_read_lock();
+-		if (test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags))
+-			goto unlock;
++		if (i915_seqno_passed(rq->fence.seqno, it->fence.seqno))
++			break;
 +	}
-+	rcu_read_unlock();
++	list_add(&rq->signal_link, pos);
++	if (pos == &ce->signals) /* catch transitions from empty list */
++		list_move_tail(&ce->signal_link, &b->signalers);
++	GEM_BUG_ON(!check_signal_order(ce, rq));
  
- 	return ret < 0 ? ret : 0;
+-		if (!__intel_breadcrumbs_arm_irq(b))
+-			goto unlock;
++	set_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
++}
+ 
+-		/*
+-		 * We keep the seqno in retirement order, so we can break
+-		 * inside intel_engine_signal_breadcrumbs as soon as we've
+-		 * passed the last completed request (or seen a request that
+-		 * hasn't event started). We could walk the timeline->requests,
+-		 * but keeping a separate signalers_list has the advantage of
+-		 * hopefully being much smaller than the full list and so
+-		 * provides faster iteration and detection when there are no
+-		 * more interrupts required for this context.
+-		 *
+-		 * We typically expect to add new signalers in order, so we
+-		 * start looking for our insertion point from the tail of
+-		 * the list.
+-		 */
+-		list_for_each_prev(pos, &ce->signals) {
+-			struct i915_request *it =
+-				list_entry(pos, typeof(*it), signal_link);
++bool i915_request_enable_breadcrumb(struct i915_request *rq)
++{
++	struct intel_breadcrumbs *b;
+ 
+-			if (i915_seqno_passed(rq->fence.seqno, it->fence.seqno))
+-				break;
+-		}
+-		list_add(&rq->signal_link, pos);
+-		if (pos == &ce->signals) /* catch transitions from empty list */
+-			list_move_tail(&ce->signal_link, &b->signalers);
+-		GEM_BUG_ON(!check_signal_order(ce, rq));
++	/* Serialises with i915_request_retire() using rq->lock */
++	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &rq->fence.flags))
++		return true;
+ 
+-		set_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+-unlock:
++	/*
++	 * Peek at i915_request_submit()/i915_request_unsubmit() status.
++	 *
++	 * If the request is not yet active (and not signaled), we will
++	 * attach the breadcrumb later.
++	 */
++	if (!test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags))
++		return true;
++
++	/*
++	 * rq->engine is locked by rq->engine->active.lock. That however
++	 * is not known until after rq->engine has been dereferenced and
++	 * the lock acquired. Hence we acquire the lock and then validate
++	 * that rq->engine still matches the lock we hold for it.
++	 *
++	 * Here, we are using the breadcrumb lock as a proxy for the
++	 * rq->engine->active.lock, and we know that since the breadcrumb
++	 * will be serialised within i915_request_submit/i915_request_unsubmit,
++	 * the engine cannot change while active as long as we hold the
++	 * breadcrumb lock on that engine.
++	 *
++	 * From the dma_fence_enable_signaling() path, we are outside of the
++	 * request submit/unsubmit path, and so we must be more careful to
++	 * acquire the right lock.
++	 */
++	b = &READ_ONCE(rq->engine)->breadcrumbs;
++	spin_lock(&b->irq_lock);
++	while (unlikely(b != &READ_ONCE(rq->engine)->breadcrumbs)) {
+ 		spin_unlock(&b->irq_lock);
++		b = &READ_ONCE(rq->engine)->breadcrumbs;
++		spin_lock(&b->irq_lock);
+ 	}
+ 
++	/*
++	 * Now that we are finally serialised with request submit/unsubmit,
++	 * [with b->irq_lock] and with i915_request_retire() [via checking
++	 * SIGNALED with rq->lock] confirm the request is indeed active. If
++	 * it is no longer active, the breadcrumb will be attached upon
++	 * i915_request_submit().
++	 */
++	if (test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags))
++		insert_breadcrumb(rq, b);
++
++	spin_unlock(&b->irq_lock);
++
+ 	return !__request_completed(rq);
  }
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 3fc5de961280..f749071f54a7 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -2729,7 +2729,7 @@ static int create_gang(struct intel_engine_cs *engine,
- 	i915_gem_object_put(obj);
- 	intel_context_put(ce);
  
--	rq->client_link.next = &(*prev)->client_link;
-+	rq->mock.link.next = &(*prev)->mock.link;
- 	*prev = rq;
- 	return 0;
- 
-@@ -2970,8 +2970,7 @@ static int live_preempt_gang(void *arg)
- 		}
- 
- 		while (rq) { /* wait for each rq from highest to lowest prio */
--			struct i915_request *n =
--				list_next_entry(rq, client_link);
-+			struct i915_request *n = list_next_entry(rq, mock.link);
- 
- 			if (err == 0 && i915_request_wait(rq, 0, HZ / 5) < 0) {
- 				struct drm_printer p =
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 5fd5af4bc855..a5f58ed219fe 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -1119,7 +1119,6 @@ static void i915_driver_postclose(struct drm_device *dev, struct drm_file *file)
- 	struct drm_i915_file_private *file_priv = file->driver_priv;
- 
- 	i915_gem_context_close(file);
--	i915_gem_release(dev, file);
- 
- 	kfree_rcu(file_priv, rcu);
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 56dfc6d98caa..cb848ee6a19d 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -203,11 +203,6 @@ struct drm_i915_file_private {
- 		struct rcu_head rcu;
- 	};
- 
--	struct {
--		spinlock_t lock;
--		struct list_head request_list;
--	} mm;
--
- 	struct xarray context_xa;
- 	struct xarray vm_xa;
- 
-@@ -1839,7 +1834,6 @@ void i915_gem_suspend_late(struct drm_i915_private *dev_priv);
- void i915_gem_resume(struct drm_i915_private *dev_priv);
- 
- int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
--void i915_gem_release(struct drm_device *dev, struct drm_file *file);
- 
- int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
- 				    enum i915_cache_level cache_level);
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 9aa3066cb75d..e1de50780ed5 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1301,21 +1301,6 @@ int i915_gem_freeze_late(struct drm_i915_private *i915)
- 	return 0;
- }
- 
--void i915_gem_release(struct drm_device *dev, struct drm_file *file)
--{
--	struct drm_i915_file_private *file_priv = file->driver_priv;
--	struct i915_request *request;
--
--	/* Clean up our request list when the client is going away, so that
--	 * later retire_requests won't dereference our soon-to-be-gone
--	 * file_priv.
--	 */
--	spin_lock(&file_priv->mm.lock);
--	list_for_each_entry(request, &file_priv->mm.request_list, client_link)
--		request->file_priv = NULL;
--	spin_unlock(&file_priv->mm.lock);
--}
--
- int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
+@@ -368,8 +408,6 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
  {
- 	struct drm_i915_file_private *file_priv;
-@@ -1331,9 +1316,6 @@ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
- 	file_priv->dev_priv = i915;
- 	file_priv->file = file;
+ 	struct intel_breadcrumbs *b = &rq->engine->breadcrumbs;
  
--	spin_lock_init(&file_priv->mm.lock);
--	INIT_LIST_HEAD(&file_priv->mm.request_list);
+-	lockdep_assert_held(&rq->lock);
 -
- 	file_priv->bsd_engine = -1;
- 	file_priv->hang_timestamp = jiffies;
+ 	/*
+ 	 * We must wait for b->irq_lock so that we know the interrupt handler
+ 	 * has released its reference to the intel_context and has completed
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 29c0fde8b4df..21c16e31c4fe 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1148,20 +1148,6 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+ 		} else {
+ 			struct intel_engine_cs *owner = rq->context->engine;
  
+-			/*
+-			 * Decouple the virtual breadcrumb before moving it
+-			 * back to the virtual engine -- we don't want the
+-			 * request to complete in the background and try
+-			 * and cancel the breadcrumb on the virtual engine
+-			 * (instead of the old engine where it is linked)!
+-			 */
+-			if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+-				     &rq->fence.flags)) {
+-				spin_lock_nested(&rq->lock,
+-						 SINGLE_DEPTH_NESTING);
+-				i915_request_cancel_breadcrumb(rq);
+-				spin_unlock(&rq->lock);
+-			}
+ 			WRITE_ONCE(rq->engine, owner);
+ 			owner->submit_request(rq);
+ 			active = NULL;
 diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 679a915e9a63..050b55f0f5c0 100644
+index 050b55f0f5c0..58e37f96ae21 100644
 --- a/drivers/gpu/drm/i915/i915_request.c
 +++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -216,24 +216,6 @@ static void __notify_execute_cb_imm(struct i915_request *rq)
- 	__notify_execute_cb(rq, irq_work_imm);
- }
+@@ -304,11 +304,12 @@ bool i915_request_retire(struct i915_request *rq)
+ 		dma_fence_signal_locked(&rq->fence);
+ 	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags))
+ 		i915_request_cancel_breadcrumb(rq);
++	spin_unlock_irq(&rq->lock);
++
+ 	if (i915_request_has_waitboost(rq)) {
+ 		GEM_BUG_ON(!atomic_read(&rq->engine->gt->rps.num_waiters));
+ 		atomic_dec(&rq->engine->gt->rps.num_waiters);
+ 	}
+-	spin_unlock_irq(&rq->lock);
  
--static inline void
--remove_from_client(struct i915_request *request)
--{
--	struct drm_i915_file_private *file_priv;
+ 	/*
+ 	 * We only loosely track inflight requests across preemption,
+@@ -591,17 +592,9 @@ bool __i915_request_submit(struct i915_request *request)
+ 	 */
+ 	__notify_execute_cb_irq(request);
+ 
+-	/* We may be recursing from the signal callback of another i915 fence */
+-	if (!i915_request_signaled(request)) {
+-		spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
 -
--	if (!READ_ONCE(request->file_priv))
--		return;
+-		if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+-			     &request->fence.flags) &&
+-		    !i915_request_enable_breadcrumb(request))
+-			intel_engine_signal_breadcrumbs(engine);
 -
--	rcu_read_lock();
--	file_priv = xchg(&request->file_priv, NULL);
--	if (file_priv) {
--		spin_lock(&file_priv->mm.lock);
--		list_del(&request->client_link);
--		spin_unlock(&file_priv->mm.lock);
+-		spin_unlock(&request->lock);
 -	}
--	rcu_read_unlock();
--}
--
- static void free_capture_list(struct i915_request *request)
++	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
++	    !i915_request_enable_breadcrumb(request))
++		intel_engine_signal_breadcrumbs(engine);
+ 
+ 	return result;
+ }
+@@ -623,27 +616,27 @@ void __i915_request_unsubmit(struct i915_request *request)
  {
- 	struct i915_capture_list *capture;
-@@ -341,7 +323,6 @@ bool i915_request_retire(struct i915_request *rq)
- 	remove_from_engine(rq);
- 	GEM_BUG_ON(!llist_empty(&rq->execute_cb));
+ 	struct intel_engine_cs *engine = request->engine;
  
--	remove_from_client(rq);
- 	__list_del_entry(&rq->link); /* poison neither prev/next (RCU walks) */
++	/*
++	 * Only unwind in reverse order, required so that the per-context list
++	 * is kept in seqno/ring order.
++	 */
+ 	RQ_TRACE(request, "\n");
  
- 	intel_context_exit(rq->context);
-@@ -799,7 +780,6 @@ static void __i915_request_ctor(void *arg)
+ 	GEM_BUG_ON(!irqs_disabled());
+ 	lockdep_assert_held(&engine->active.lock);
  
- 	dma_fence_init(&rq->fence, &i915_fence_ops, &rq->lock, 0, 0);
- 
--	rq->file_priv = NULL;
- 	rq->capture_list = NULL;
- 
- 	init_llist_head(&rq->execute_cb);
-@@ -889,7 +869,6 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
- 
- 	/* No zalloc, everything must be cleared after use */
- 	rq->batch = NULL;
--	GEM_BUG_ON(rq->file_priv);
- 	GEM_BUG_ON(rq->capture_list);
- 	GEM_BUG_ON(!llist_empty(&rq->execute_cb));
- 
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index 590762820761..fc18378c685d 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -284,10 +284,6 @@ struct i915_request {
- 	/** timeline->request entry for this request */
- 	struct list_head link;
- 
--	struct drm_i915_file_private *file_priv;
--	/** file_priv list entry for this request */
--	struct list_head client_link;
+ 	/*
+-	 * Only unwind in reverse order, required so that the per-context list
+-	 * is kept in seqno/ring order.
++	 * Before we remove this breadcrumb from the signal list, we have
++	 * to ensure that a concurrent dma_fence_enable_signaling() does not
++	 * attach itself. We first mark the request as no longer active and
++	 * make sure that is visible to other cores, and then remove the
++	 * breadcrumb if attached.
+ 	 */
 -
- 	I915_SELFTEST_DECLARE(struct {
- 		struct list_head link;
- 		unsigned long delay;
+-	/* We may be recursing from the signal callback of another i915 fence */
+-	spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+-
++	GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags));
++	clear_bit_unlock(I915_FENCE_FLAG_ACTIVE, &request->fence.flags);
+ 	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags))
+ 		i915_request_cancel_breadcrumb(request);
+ 
+-	GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags));
+-	clear_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags);
+-
+-	spin_unlock(&request->lock);
+-
+ 	/* We've already spun, don't charge on resubmitting. */
+ 	if (request->sched.semaphores && i915_request_started(request))
+ 		request->sched.semaphores = 0;
 -- 
 2.20.1
 
