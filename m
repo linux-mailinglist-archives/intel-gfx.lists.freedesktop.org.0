@@ -1,59 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F699225452
-	for <lists+intel-gfx@lfdr.de>; Sun, 19 Jul 2020 23:52:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A3B32259F2
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jul 2020 10:23:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB8689F2E;
-	Sun, 19 Jul 2020 21:52:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08ACF89E57;
+	Mon, 20 Jul 2020 08:23:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com
- [IPv6:2a00:1450:4864:20::643])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5066B89F2E
- for <intel-gfx@lists.freedesktop.org>; Sun, 19 Jul 2020 21:52:32 +0000 (UTC)
-Received: by mail-ej1-x643.google.com with SMTP id ga4so16110139ejb.11
- for <intel-gfx@lists.freedesktop.org>; Sun, 19 Jul 2020 14:52:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=TK6UZWqV3v9AsE0nLBHTNz04/TlgDJqoZSAoxS2zCfE=;
- b=XXlSK2V4/sVm66sKxGO+i7cb1CmK4qf/5GbzUqyy9Glfjkl1JbtfU941Jk490xs2K0
- bLd00kqKsDO6gT2/Ev8woRgYLpsWh5qZUPEsf5Nh9KLafne81UgUUJWg3sJLhvbVUV5d
- r0p1wZnMagv8TASZf4ClnQCfbnOcLRj2lSyzscsd5rLLtfzaQnDVHQC63n5isOT1IgEW
- iZrNhfPVI5ixfoMlf8GLYAKfHHbsSCrNm5m0k2rvXwe6EGX1n7zmqXg0Ihu1IBjREgU5
- alHFJkc4+yuhIS0tWxVO6AfDoOmhqlooHXbd0sLYXzQr8fHtM1v4PuOcAeBQ6VYtseYW
- Z8jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=TK6UZWqV3v9AsE0nLBHTNz04/TlgDJqoZSAoxS2zCfE=;
- b=i7n0vHZEaLVz9OwYOVjJQ5E6fHYUh1Ptdb/nxSYKj83BO4f95Eq+0anZbUwgmSQcbN
- 1Xdf3SFAmvdC/3GCEwkcs2rKNEZte/DOXDXC3o+JRsZ5no/6Nf93ZUvNlc19LnnBGl7e
- QrKXMxOcgx8nFkPfh2rRtei717TqRMvFFe1+VbLExUlu8rLr+yGzNH/CwMQ+zY3gk2Bt
- v7JWDaTWEAPUu3CipAueSH8uepSoEMpHJx4AxYrZotJkk+wkxtLnnORZGTul/BFeO95P
- dg6mw8wZZoD8dAxo3rs3K4rOlaluFAZrvKftpbqPy390YM7RKBKHq1RxmsMLvbFaqyIs
- mrEw==
-X-Gm-Message-State: AOAM530uSD1QdKs8dnJB9fyFgcIHUMAxETRzx3iRosetseceAN0c0Cww
- Pik+RTC0mfKHo5RpWPdJCO77tXoNfWND1Hg7cwg=
-X-Google-Smtp-Source: ABdhPJx7r+Sa0yh91AORHNc/rBKySVEeM+5wS+xrjmgLY7kN6tu+bIyD8zRzX5iUDCnsbUosJ1fvePfZy4zP7vr+oVg=
-X-Received: by 2002:a17:906:4158:: with SMTP id
- l24mr15545350ejk.101.1595195550578; 
- Sun, 19 Jul 2020 14:52:30 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 218CC89E06;
+ Mon, 20 Jul 2020 08:23:03 +0000 (UTC)
+IronPort-SDR: 2bbjL1fOwux/hRnmeCtFsHpSG1jldFIObFuEiyh0fP5y5FSlBZAHsza09PyBb0UICRSsaJk6VI
+ G7ly0Ijn2dxA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9687"; a="151217019"
+X-IronPort-AV: E=Sophos;i="5.75,374,1589266800"; 
+ d="asc'?scan'208";a="151217019"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2020 01:23:02 -0700
+IronPort-SDR: fzNvU1cMfYDQpHo1NOfeWxx91WEwTvytZDg2M1o4YwZ18eFI1dmzp2cc80qBLqHYdBiW4VhaMu
+ k/nulwtHwwqw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,374,1589266800"; 
+ d="asc'?scan'208";a="317947493"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by orsmga008.jf.intel.com with ESMTP; 20 Jul 2020 01:23:00 -0700
+Date: Mon, 20 Jul 2020 16:05:41 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Message-ID: <20200720080541.GT27035@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-References: <20200710115757.290984-1-matthew.auld@intel.com>
- <20200710115757.290984-34-matthew.auld@intel.com>
- <CAPM=9tzvetxhBJBOC60ydOVcTN9ujtHLCODFNwGtONTDzuzwZA@mail.gmail.com>
- <c6cd965d-9a03-10fd-517e-a44934a2b0c9@intel.com>
- <CAPM=9txaksu8brsPTHsLkQudpNLd6O1MOzG8APGTrMaoXMioqw@mail.gmail.com>
- <d7e7b910-81d0-d7b2-b426-51b0714836eb@intel.com>
-In-Reply-To: <d7e7b910-81d0-d7b2-b426-51b0714836eb@intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Mon, 20 Jul 2020 07:52:19 +1000
-Message-ID: <CAPM=9tx0TW1ooPb89ifN6=OAYEt8f71=cMnZJzFf_p3xOmWFfw@mail.gmail.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Subject: Re: [Intel-gfx] [RFC 33/60] drm/i915/lmem: support pwrite
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: [Intel-gfx] [PULL] gvt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,74 +51,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============0012737517=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Jul 2020 at 20:11, Matthew Auld <matthew.auld@intel.com> wrote:
->
-> On 16/07/2020 01:43, Dave Airlie wrote:
-> > On Wed, 15 Jul 2020 at 00:35, Matthew Auld <matthew.auld@intel.com> wrote:
-> >>
-> >> On 13/07/2020 06:09, Dave Airlie wrote:
-> >>> On Fri, 10 Jul 2020 at 22:00, Matthew Auld <matthew.auld@intel.com> wrote:
-> >>>>
-> >>>> We need to add support for pwrite'ing an LMEM object.
-> >>>
-> >>> why? DG1 is a discrete GPU, these interfaces we already gross and
-> >>> overly hacky for integrated, I'd prefer not to drag them across into
-> >>> discrete land.
-> >>>
-> >>> same goes for pread.
-> >>>
-> >>> You have no legacy userspace here, userspace needs change to support
-> >>> LMEM, it can be fixed to avoid legacy ioctls paths.
-> >>
-> >> Ok, there have also been similar discussions internally in the past. I
-> >> think one of the reasons was around IGT, and how keeping the
-> >> pread/pwrite interface meant slightly less pain, also it's not much
-> >> effort to implement for LMEM. If this is a NACK, then I guess the other
-> >> idea was to somehow fallback to mmap and update IGT accordingly.
-> >
-> > I just don't think we should have internal kernel interfaces for
-> > mapping ram in the kernel address space, seems pointless, makes less
-> > sense with a discrete GPU in the mix, so yes I think NAK for
-> > pread/pwrite at least at this time.
->
-> Ok.
->
-> >
-> > I'd also like to see a hard no relocs policy for DG1 enforced in the kernel.
->
-> Ok, just checking, is that the case even if we don't require extra code
-> to support it? We recently dropped the CPU reloc path completely, in
-> favour of single GPU reloc path, and so no special code is required to
-> support LMEM, it should just work. IGT of course makes heavy use of
-> relocs, so that would need an overhaul.
 
-The GPU reloc path is optimising a path that we simply shouldn't need
-or be using.
+--===============0012737517==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="pd495SECmvzXpBRb"
+Content-Disposition: inline
 
-IGT tests relocs, ripping out relocs should reduce the amount of
-testing IGT has to do and reduce CI run times. Why carry the techincal
-debt deliberately.
 
-I expect the kernel team to be a bit more authorative inside Intel on
-why uAPI gets exposed and why, it seems like everytime there is an
-attempt to limit the tech debt of carrying forward unnecessary uAPIs
-there is some push back for media driver or IGT. Fix stuff and be
-harder in pushing back on carrying unneeded interfaces forward so we
-future products are less mired in pointless debt. DG1 uAPI should
-really be a chance to full review the legacy of integrated graphics +
-pre-48-bit VM interfaces and they should all be turned off for DG1 so
-that future discrete GPUs can move forward cleaner. I really shouldn't
-be the one enforcing this, the i915 team needs to be a bit
-authoritative on what is necessary to support.
+--pd495SECmvzXpBRb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Dave.
+
+Hi,
+
+Sorry that this might be a bit late as last week our QA people were
+busy on something else..So this is gvt changes queued for 5.9 which is
+to improve guest suspend/resume with proper PCI PM state tracking for
+resource handling, e.g ppgtt. Hopefully this could still be in queue
+for 5.9.
+
+Thanks
+--
+The following changes since commit d524b87f77364db096855d7eb714ffacec974ddf:
+
+  drm/i915: Update DRIVER_DATE to 20200702 (2020-07-02 21:25:28 +0300)
+
+are available in the Git repository at:
+
+  https://github.com/intel/gvt-linux tags/gvt-next-2020-07-20
+
+for you to fetch changes up to 02b5fc1527c0bb26a1012c6a806dc033f3b125a6:
+
+  drm/i915/gvt: Remove intel_vgpu_reset_gtt() since no one use it. (2020-07=
+-14 16:42:14 +0800)
+
+----------------------------------------------------------------
+gvt-next-2020-07-20
+
+- Improve guest suspend/resume handling (Colin)
+
+----------------------------------------------------------------
+Colin Xu (3):
+      drm/i915/gvt: Do not destroy ppgtt_mm during vGPU D3->D0.
+      drm/i915/gvt: Do not reset pv_notified when vGPU transit from D3->D0
+      drm/i915/gvt: Remove intel_vgpu_reset_gtt() since no one use it.
+
+ drivers/gpu/drm/i915/gvt/cfg_space.c | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/gvt/gtt.c       | 20 +-------------------
+ drivers/gpu/drm/i915/gvt/gtt.h       |  3 ++-
+ drivers/gpu/drm/i915/gvt/gvt.h       |  3 +++
+ drivers/gpu/drm/i915/gvt/vgpu.c      | 20 +++++++++++++++++---
+ 5 files changed, 47 insertions(+), 23 deletions(-)
+--=20
+
+--pd495SECmvzXpBRb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXxVQVQAKCRCxBBozTXgY
+J6cnAJ0d/ODdvDrSsY5gcaFLScA89r0O1gCeJgZ3DOwb2fv/olf4ISvioQuK44Q=
+=fEL6
+-----END PGP SIGNATURE-----
+
+--pd495SECmvzXpBRb--
+
+--===============0012737517==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0012737517==--
