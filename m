@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BB3D225DAF
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jul 2020 13:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE5A225DB0
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jul 2020 13:45:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 700BC6E082;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C30B86E16F;
 	Mon, 20 Jul 2020 11:45:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF4CC6E082
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jul 2020 11:45:45 +0000 (UTC)
-IronPort-SDR: 2HQE6mcF8PG6cghirqLr55iH2HONgy/rqv3jKyhohqZqSVwcGtYwF8qYP5/RYDMdYl4kQ646ON
- bDsBfzACE9Zg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9687"; a="129460421"
-X-IronPort-AV: E=Sophos;i="5.75,374,1589266800"; d="scan'208";a="129460421"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50CC06E082
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jul 2020 11:45:47 +0000 (UTC)
+IronPort-SDR: p9avfBzIEu+xaMViWB0Usm+X+8QX+1MBD7i+u7aOjuyOUM1ZQoVYJRaT0VVqJ1JODt00+apjUE
+ JznGVGpa08NQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9687"; a="129460424"
+X-IronPort-AV: E=Sophos;i="5.75,374,1589266800"; d="scan'208";a="129460424"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2020 04:45:45 -0700
-IronPort-SDR: HNNA+QQRuPz3iSDHs1OCW3+739//WD64gFxDVZ1j4dOhCyM2LwuT1eAO0b9QWjEPFwylIAb975
- QTmzErKWhg0g==
+ 20 Jul 2020 04:45:47 -0700
+IronPort-SDR: vTdy0LC3p+9q3oHQNpt1V1Z8bg8vkSi6RolqD+Mi7MND9kupbxpr6TKhXxaCmqj64Z4DAjZ7uY
+ rzOUA1DdjtLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,374,1589266800"; d="scan'208";a="326039004"
+X-IronPort-AV: E=Sophos;i="5.75,374,1589266800"; d="scan'208";a="326039008"
 Received: from bhanu-nuc8i7beh.iind.intel.com ([10.145.162.210])
- by FMSMGA003.fm.intel.com with ESMTP; 20 Jul 2020 04:45:43 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 20 Jul 2020 04:45:45 -0700
 From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
 To: bhanuprakash.modem@intel.com,
 	intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Jul 2020 01:10:52 +0530
-Message-Id: <20200720194053.24700-2-bhanuprakash.modem@intel.com>
+Date: Tue, 21 Jul 2020 01:10:53 +0530
+Message-Id: <20200720194053.24700-3-bhanuprakash.modem@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200720194053.24700-1-bhanuprakash.modem@intel.com>
 References: <20200720194053.24700-1-bhanuprakash.modem@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] i915/debug: Expose crtc dither state via
- debugfs
+Subject: [Intel-gfx] [PATCH 2/2] i915/debug: Expose Max BPC info via debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,53 +55,53 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-It's useful to know the dithering state for IGT testing.
+It's useful to know the max supported panel BPC for IGT testing.
 
 [How]
-Expose the dithering state for the crtc via a debugfs file "dither".
+Expose the max supported BPC for the panel via a debugfs file on the
+connector, "output_bpc".
 
-Example usage: cat /sys/kernel/debug/dri/0/crtc-0/dither
+Example usage: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
 
 Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
 ---
- drivers/gpu/drm/i915/i915_debugfs.c | 17 +++++++++++++++++
+ .../drm/i915/display/intel_display_debugfs.c    | 17 +++++++++++++++++
  1 file changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 94ed442910d6..18646566f2ea 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -1902,13 +1902,30 @@ static const struct i915_debugfs_files {
- #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 3644752cc5ec..0877d029af77 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -2185,6 +2185,20 @@ static const struct file_operations i915_dsc_fec_support_fops = {
+ 	.write = i915_dsc_fec_support_write
  };
  
-+static int dither_state_show(struct seq_file *m, void *data)
++/*
++ * Returns the maximum output bpc for the connector.
++ * Example usage: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
++ */
++static int output_bpc_show(struct seq_file *m, void *data)
 +{
-+	struct intel_crtc *crtc = to_intel_crtc(m->private);
-+	struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
++	struct drm_connector *connector = m->private;
 +
-+	seq_printf(m, "Dither: %u\n", crtc_state->dither);
++	seq_printf(m, "Maximum: %u\n", connector->display_info.bpc);
 +
 +	return 0;
 +}
-+DEFINE_SHOW_ATTRIBUTE(dither_state);
++DEFINE_SHOW_ATTRIBUTE(output_bpc);
 +
- void i915_debugfs_register(struct drm_i915_private *dev_priv)
- {
- 	struct drm_minor *minor = dev_priv->drm.primary;
-+	struct drm_device *dev = &dev_priv->drm;
-+	struct drm_crtc *crtc;
- 	int i;
+ /**
+  * intel_connector_debugfs_add - add i915 specific connector debugfs files
+  * @connector: pointer to a registered drm_connector
+@@ -2235,5 +2249,8 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
+ 		debugfs_create_file("i915_lpsp_capability", 0444, root,
+ 				    connector, &i915_lpsp_capability_fops);
  
- 	i915_debugfs_params(dev_priv);
- 
-+	drm_for_each_crtc(crtc, dev)
-+		debugfs_create_file("dither", S_IRUGO, crtc->debugfs_entry, crtc,
-+				&dither_state_fops);
++	debugfs_create_file("output_bpc", S_IRUGO, root,
++			connector, &output_bpc_fops);
 +
- 	debugfs_create_file("i915_forcewake_user", S_IRUSR, minor->debugfs_root,
- 			    to_i915(minor->dev), &i915_forcewake_fops);
- 	for (i = 0; i < ARRAY_SIZE(i915_debugfs_files); i++) {
+ 	return 0;
+ }
 -- 
 2.20.1
 
