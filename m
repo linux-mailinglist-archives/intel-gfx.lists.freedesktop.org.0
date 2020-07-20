@@ -2,90 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8655922EC34
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jul 2020 14:31:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BA7A22EC35
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jul 2020 14:31:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FEE689D79;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAAC489D7B;
 	Mon, 27 Jul 2020 12:31:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5F5B6E178;
- Mon, 20 Jul 2020 07:41:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
- s=20170329; 
- h=Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:References:Cc:To:From:Subject;
- bh=zKloZSiobw3jlXQasA0k5/s1eYMAWFXIkqzzZ8euj/s=; 
- b=QcrjeJXwuSPmu9x821YGFGbULY9Z/k1kL9nFrjryLU2K1nzPb3IgvMbRwoHytfaOZfmDTM6utBIAma4jKs7Dk6LRVoCHr+Is3JaCr6sIeehquMnw/yk3ezfIo/3vupqj4V/1pnJWxhbHj5r/wVVvbk/MI00pPG5KK4AMw9yXGS1Kkp189UmA/V/HVOdxiaqheH0Ahv9v9ek6DHZyCNEVvqf04fqTv+KhrQXGmZfRWbJIm6iTNFoP33OuKssy+Ej9LkijNF8T4WxZJWZCVXAo10mrcb4QW3lWX4Dlhwn0sL7gyUvAeR2Qa9tH4A4qEO3AFvlXC41nNzKe8ladbozSqw==;
-Received: from 11.red-79-157-245.dynamicip.rima-tde.net ([79.157.245.11]
- helo=[192.168.2.252]) by fanzine.igalia.com with esmtpsa 
- (Cipher TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim)
- id 1jxQQF-0005um-Ez; Mon, 20 Jul 2020 09:41:15 +0200
-From: =?UTF-8?Q?Samuel_Iglesias_Gons=c3=a1lvez?= <siglesias@igalia.com>
-To: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>,
- "events@lists.x.org" <events@lists.x.org>,
- "xorg-devel@lists.freedesktop.org" <xorg-devel@lists.freedesktop.org>,
- "wayland-devel@lists.freedesktop.org" <wayland-devel@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <4e5319c905109f9fe4ca48dee0e89d83ec73f2da.camel@igalia.com>
-Autocrypt: addr=siglesias@igalia.com; keydata=
- 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
- zYa9Fv+6Emblbj8n
-Message-ID: <b7a10661-2e4d-4462-98f6-de13226eeccc@igalia.com>
-Date: Mon, 20 Jul 2020 09:41:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2054.outbound.protection.outlook.com [40.107.237.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B4C16E29E;
+ Mon, 20 Jul 2020 09:29:55 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=b8vdar3sv6FNjXXesVHGnEXZbTptboNeBxEPSHDHGdK5JUUMHdQVIUZnuja9sA1qQS9N7vL8KAoEG14y5IFxnI1QhMDHYlGWUt/OTbDLq52du/YdTGdAyWfr3TROSsXo36ZTSVU9AhsIU9/ExBSX7+Veo+zYsVLDUPBL3hmCmCGo6Gb0GAH9OP53rhgbf2ynMAXKpTApDBl5C7GGiV97ZMdDfNbyz4MZuodDufi8A0aPsg2fSCPGWlHtXIR9c+6yBNNoZhDLBW+pW1n/BDjT2bNZ8mP5QmOhWTxUdPtwmeAJC0J8aNKqS9fSjkvTQJycyYZ9BzDty8n8LRQVEt3OGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Nek5Zqf8hx2vS9vYzikSMCmAdVX/iYhKdicyqZ+RA7w=;
+ b=A1LU3owdLwy1hdozXHPZCo02MUsNImeaEpOP+9bzexj0W55nTS2edaYYrJ7etcJMKC06oKg7Rw96xAPBq+IRCM8vTLLwrnKDlLfxmigu7I8fpJpJ9UezXDwWHgIeaagPXZj22F7ZLfwJHuy0N4fIwD6Cuu2TAyFY+u1Ugvpw56wrzFFdCNW1h/EbHXSPvSGeha5n6+kpKATvwPJwLi4isOH4eOU44ye1aL9+D40GKtoSqY6KL/ROqaj7lqNNdISZLEfCidVCqIPoJVUxybfwGmuwhRceMXYrLRRxcEOLiCNTEPo+XQd7edpB3sTb236kJir2uIwhqzt5hVNIo+/eVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synaptics.com; dmarc=pass action=none
+ header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Nek5Zqf8hx2vS9vYzikSMCmAdVX/iYhKdicyqZ+RA7w=;
+ b=jTwsphCW2Uhz2vgCPlAoo/QbWkSuSIDyCSoJzicWemZMLzrzzKkbQfMglpm+OzTatNKYAwY25V3qI939G+AaHs6pi5Y3c4oVJQqu87vr80sTo0pWJnxu8IjxdwhZQvYQREQzjfEJpBmZbBA4bMVvKxUtyjbq8Ic1CdAgcSwvK7c=
+Authentication-Results: chris-wilson.co.uk; dkim=none (message not signed)
+ header.d=none;chris-wilson.co.uk; dmarc=none action=none
+ header.from=synaptics.com;
+Received: from BYAPR03MB3573.namprd03.prod.outlook.com (2603:10b6:a02:ae::15)
+ by BY5PR03MB5347.namprd03.prod.outlook.com (2603:10b6:a03:218::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.17; Mon, 20 Jul
+ 2020 09:29:53 +0000
+Received: from BYAPR03MB3573.namprd03.prod.outlook.com
+ ([fe80::b5cc:ca6b:3c25:a99c]) by BYAPR03MB3573.namprd03.prod.outlook.com
+ ([fe80::b5cc:ca6b:3c25:a99c%4]) with mapi id 15.20.3195.025; Mon, 20 Jul 2020
+ 09:29:53 +0000
+Date: Mon, 20 Jul 2020 17:29:00 +0800
+From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200720170950.75c989d4@xhacker.debian>
+In-Reply-To: <159501436493.15672.10863611355648667796@build.alporthouse.com>
+References: <20200717141138.4a4289ac@xhacker.debian>
+ <159501436493.15672.10863611355648667796@build.alporthouse.com>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+X-ClientProxiedBy: HKAPR03CA0005.apcprd03.prod.outlook.com
+ (2603:1096:203:c8::10) To BYAPR03MB3573.namprd03.prod.outlook.com
+ (2603:10b6:a02:ae::15)
 MIME-Version: 1.0
-In-Reply-To: <4e5319c905109f9fe4ca48dee0e89d83ec73f2da.camel@igalia.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from xhacker.debian (124.74.246.114) by
+ HKAPR03CA0005.apcprd03.prod.outlook.com (2603:1096:203:c8::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3216.17 via Frontend Transport; Mon, 20 Jul 2020 09:29:50 +0000
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+X-Originating-IP: [124.74.246.114]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 442aebe8-4a0f-4fe6-2073-08d82c8f7529
+X-MS-TrafficTypeDiagnostic: BY5PR03MB5347:
+X-Microsoft-Antispam-PRVS: <BY5PR03MB53472B7CA6A28186D02220B9ED7B0@BY5PR03MB5347.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: EkrP5L7WUDKCZQbJQXoac8Y2AkxsY5wxyjIyEw2mW8SIILo41lxg/+BBQfSjNXhn7mqHx0L7XexKmkwaGqQQ7uVg3ncg2TlII4J6218Y+UKF8X+EkeVEDEiqkovus4cYGOXmIRRneEEZR0/fIU0OFcKODPEfB7t0cYjx3Aa2aflHCaLzk9HvRWkoaAze0RFEEgAmZ0ohh8rB1rhE3u1zYyE8FRm08t/nlwWLxVOdRsv41pBJl6Bfbxke4xL/PutFgOA4bt986iMl4vxnlf4xTXhPNy2jAe2oLZ5y8S2Am9bgVNR6+zRx3pj+keNFB8INecI7xwf/mQmRCkQMxs+CwQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR03MB3573.namprd03.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(366004)(39860400002)(396003)(136003)(376002)(346002)(55016002)(4744005)(9686003)(66476007)(66946007)(66556008)(5660300002)(1076003)(83380400001)(16526019)(2906002)(6666004)(26005)(8936002)(6506007)(7696005)(52116002)(478600001)(6916009)(186003)(54906003)(4326008)(8676002)(316002)(86362001)(956004);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: ZNjqKIVarPanUTX4KRSDU+x0CmwXqZl4ffDw89Hs1ZeAEnluxc+M6eFY+h92J/nKiss+cxvffbH7sMwSDSwkAgc5DTOMY5rUzgorSFwarD+6g9MypMtmK8zyFzDf3pNW2JsVBFtX9FEkHDZEr9MxjYVT50Fkz4lv7mwrZEaQaaDFLcIhPYIOmrVC1anuBraCkFpsQOthzjDZWrMHRe6zVkcGKxNlODJ3SE2NekaIRbA6kS9/yubulqUbMejvQT2lgIqSoHC1gPVkxFfsshRU5gD2PDDFfDgrBTQieDSrm2F6e+0WJX1jQ24o3K2p8zTimrhPSfaXFqIcSDXLyPv/MxZEZ8TUBKlvvM1Y8k60UjSBHBEiGD/Tr7bLenljEUedThs8dIq5mbIVaAM/2+AZsZ8BIbpku88tG9EA4BiDiw4ZgV/ID2XF9Q0QANZQgozlDAtQUYZloXeMq7sPyDJXcBTJ122yaFY+xr+sqEMPTfzTTQ8Z5EC5SgdIjKO3OqN7
+X-OriginatorOrg: synaptics.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 442aebe8-4a0f-4fe6-2073-08d82c8f7529
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB3573.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2020 09:29:53.3318 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: V+aNbSjdgogNjveQ6Mx2unXum4BKV5C24Y7tZ5Sb2Fgw5NFkCMxZ0G7BFWOO7opRMfEN0smjpEGCKN8uHCWifA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR03MB5347
 X-Mailman-Approved-At: Mon, 27 Jul 2020 12:31:38 +0000
-Subject: Re: [Intel-gfx] [Mesa-dev] [XDC 2020] Virtual conference + Call for
- Proposals extended 2 weeks more
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't force IOSF_MBI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,108 +97,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "board@foundation.x.org" <board@foundation.x.org>
-Content-Type: multipart/mixed; boundary="===============0449627852=="
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0449627852==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="ZQoaTBgo848hWk0E0C9NphXkPLcGLe8RU"
+On Fri, 17 Jul 2020 20:32:44 +0100 Chris Wilson  wrote:
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---ZQoaTBgo848hWk0E0C9NphXkPLcGLe8RU
-Content-Type: multipart/mixed; boundary="mwiVjPF7I377Vg5TCaroOAumpIL9da1EC"
+> 
+> 
+> Quoting Jisheng Zhang (2020-07-17 07:11:38)
+> > The i915 doesn't depend on IOSF_MBI, asm/iosf_mbi.h already defines
+> > isof_mbi_* APIs when ISOF_MBI is disabled.
+> >
+> > Don't force IOSF_MBI to allow disabling IOSF_MBI for non SoC platforms.  
+> 
+> But it is required for Valleyview/Cherryview and we want to support
+> those by default. Tricky.
 
---mwiVjPF7I377Vg5TCaroOAumpIL9da1EC
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+If linux kernel is built for Valleyview/Cherryview, ISOF_MBI has to be
+enabled. The dependency is met there.
 
-
-
-On 7/3/20 4:41 PM, Samuel Iglesias Gons=C3=A1lvez wrote:
-> Hi,
->=20
-> In the last meeting, X.Org Foundation board has decided that XDC 2020
-> will be a virtual conference, given the uncertain COVID-19 situation in=
-
-> Europe by September, including the possibility of a second wave,
-> outbreaks and travel restrictions, either in Poland or in other
-> countries.
->=20
-> XDC 2020 organization team agrees on this decision and it volunteered
-> to organize our first virtual XDC!
->=20
-> We would like to announce as well that the new CFP deadline is Sunday
-> July 19th 2020. Don't forget to submit your talk, demo and workshop
-> proposals!
->=20
-
-As approved in last board's meeting [0], CfP is extended until two weeks
-before the conference, or until we fill all the slots (whichever happens
-first). Please submit your talk proposals early!
-
-Last two years we had lots of talks about new and fresh development and
-we prioritized those over other kind of talks, as they had more
-potential for discussions and hallway track. However, this year that
-doesn't make too much sense, so we encourage our community to submit any
-talk related to open-source graphics stack, including those that focus
-on project status updates.
-
-Sam
-
-[0] https://www.x.org/wiki/BoardOfDirectors/MeetingSummaries/2020/07-16/
-
-> Thanks,
->=20
-> Sam
->=20
->=20
-> _______________________________________________
-> mesa-dev mailing list
-> mesa-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
->=20
-
-
---mwiVjPF7I377Vg5TCaroOAumpIL9da1EC--
-
---ZQoaTBgo848hWk0E0C9NphXkPLcGLe8RU
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAl8VSpEACgkQf/S6MvF9
-w0OoXQ//aV7u8Q3LO6+yzmhnP5Mr4K/j16dVyjxaUd6+kf95xT2ng9ivvEWqguHh
-XOeRPW6Mbs4hfW2SpUfeeKZtjRxEQ/G6H2wqVE7ZQR5UQfO0XwuTRJjuFeOSbqj9
-lrNvUh7eoZWPlQUEgjOpGMJJrJpI6lE9ibT3JP7HFS0ejmohiu5A5R+DKR5yLfX6
-VhbWmHe5xpiXZ2+Dwhhu0oJ+Mm+4qSftAuPRqrad15isfrVbJc763t+XoV+KyjJV
-P3RUlCSNgN6OwUukOMrAy7rgEQlExJkFU08t6wvQ755PvAyd7oU98hqSdl/uwc5D
-pqhnctVV+xbfHjL4OF9WYlykCNFYV13iQIJ5SCLLBb1ZNNTfcFzr2QjzFn50JA+C
-c4Ccli2RfoyumQjc9h0ucW4wiQraSrJPWydGK7YsXuzo8Fx9E5ib0aHC0khqR8gy
-2NLa9VkAm4pskRQdKtE3YLykpittd4ixjiMtsD8TeQXskLgzfRERwyO2tuJ6QR0A
-RdcnZuMDJRV7M32t7IcDhwrqwJubO36/bOOR9il7dfQ75vU6r2kGD2nHA+lBMZdZ
-ZBTEHIn/kMEZImLvb5SC0VQEKcXKy2FRv0QajJYzfuMlLEvZZHEX9Su2mYf5d0Z6
-jdGoRSuBydp+CuCLCCSk8OT9hhov8rZ5JvqPpxfB6jzcjmxBaI8=
-=UDoL
------END PGP SIGNATURE-----
-
---ZQoaTBgo848hWk0E0C9NphXkPLcGLe8RU--
-
---===============0449627852==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Thanks
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0449627852==--
