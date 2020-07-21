@@ -2,55 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FFB922808D
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jul 2020 15:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2496D228107
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jul 2020 15:35:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D2146E290;
-	Tue, 21 Jul 2020 13:07:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C45FB6E1D7;
+	Tue, 21 Jul 2020 13:35:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B71306E25A
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 13:07:04 +0000 (UTC)
-IronPort-SDR: OU0Y8dD8zQpKiNv9kW1Km6/FxyurV5j9peQtbTioy4t7wQ9xOA1JPiqiSGQAwpYdxTPKdqs1s9
- KXpzJti6z1VQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9688"; a="130191600"
-X-IronPort-AV: E=Sophos;i="5.75,378,1589266800"; d="scan'208";a="130191600"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 797B36E1D7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 13:35:05 +0000 (UTC)
+IronPort-SDR: 4+KGvZtJWAn2rIJp4DwRW1JGTRWI710tVm8umJdmwoWqqhX7lEJ9i/562Kxa+sKjrofUPoT34a
+ UtIdaZHj4rEw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9688"; a="214781341"
+X-IronPort-AV: E=Sophos;i="5.75,379,1589266800"; d="scan'208";a="214781341"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2020 06:06:40 -0700
-IronPort-SDR: 1f9g+T99IbrmyFt7xBCselt0GPuvuJ3RrAXPC5kATSHrbPKrQpJOfcGQvBkbWmxTDVJnIFVMfr
- g3LXCjN1Bflw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,378,1589266800"; d="scan'208";a="283853844"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga003.jf.intel.com with ESMTP; 21 Jul 2020 06:06:40 -0700
-Received: from [10.249.224.14] (abudanko-mobl.ccr.corp.intel.com
- [10.249.224.14])
- by linux.intel.com (Postfix) with ESMTP id E3853580299;
- Tue, 21 Jul 2020 06:06:35 -0700 (PDT)
-From: Alexey Budankov <alexey.budankov@linux.intel.com>
-To: Arnaldo Carvalho de Melo <acme@kernel.org>
-References: <f96f8f8a-e65c-3f36-dc85-fc3f5191e8c5@linux.intel.com>
- <76718dc6-5483-5e2e-85b8-64e70306ee1f@linux.ibm.com>
- <7776fa40-6c65-2aa6-1322-eb3a01201000@linux.intel.com>
- <20200710170911.GD7487@kernel.org>
- <0d2e2306-22b2-a730-dc3f-edb3538b6561@linux.intel.com>
- <20200713121746.GA7029@kernel.org>
- <0fadcf78-8b0e-ed03-a554-cc172b7d249c@linux.intel.com>
- <20200713185152.GA18094@kernel.org>
-Organization: Intel Corp.
-Message-ID: <8d6030a4-ff2c-230c-c36e-d0a8c68832ac@linux.intel.com>
-Date: Tue, 21 Jul 2020 16:06:34 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2020 06:35:04 -0700
+IronPort-SDR: gWTjGa9aWzE+YZtp3tcSUKBTxf50WhMtpiTjDUKfMZTY+2g7kG5sleapo+DDPVXcR0dAVrppf7
+ jmVo2Msrz1+Q==
+X-IronPort-AV: E=Sophos;i="5.75,379,1589266800"; d="scan'208";a="431998412"
+Received: from ideak-desk.fi.intel.com ([10.237.68.147])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2020 06:35:03 -0700
+Date: Tue, 21 Jul 2020 16:32:17 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200721133217.GA24622@ideak-desk.fi.intel.com>
+References: <20200717120425.20947-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200713185152.GA18094@kernel.org>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v8 00/12] Introduce CAP_PERFMON to secure
- system performance monitoring and observability
+Content-Disposition: inline
+In-Reply-To: <20200717120425.20947-1-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [RFC] drm/i915: Disable connector polling at
+ runtime suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,127 +50,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ravi Bangoria <ravi.bangoria@linux.ibm.com>,
- Song Liu <songliubraving@fb.com>, Andi Kleen <ak@linux.intel.com>,
- linux-man@vger.kernel.org,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Igor Lubashev <ilubashe@akamai.com>, Alexei Starovoitov <ast@kernel.org>,
- Stephane Eranian <eranian@google.com>, James Morris <jmorris@namei.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- Jiri Olsa <jolsa@redhat.com>, Serge Hallyn <serge@hallyn.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDEzLjA3LjIwMjAgMjE6NTEsIEFybmFsZG8gQ2FydmFsaG8gZGUgTWVsbyB3cm90ZToKPiBF
-bSBNb24sIEp1bCAxMywgMjAyMCBhdCAwMzozNzo1MVBNICswMzAwLCBBbGV4ZXkgQnVkYW5rb3Yg
-ZXNjcmV2ZXU6Cj4+Cj4+IE9uIDEzLjA3LjIwMjAgMTU6MTcsIEFybmFsZG8gQ2FydmFsaG8gZGUg
-TWVsbyB3cm90ZToKPj4+IEVtIE1vbiwgSnVsIDEzLCAyMDIwIGF0IDEyOjQ4OjI1UE0gKzAzMDAs
-IEFsZXhleSBCdWRhbmtvdiBlc2NyZXZldToKPj4+Pgo+Pj4+IE9uIDEwLjA3LjIwMjAgMjA6MDks
-IEFybmFsZG8gQ2FydmFsaG8gZGUgTWVsbyB3cm90ZToKPj4+Pj4gRW0gRnJpLCBKdWwgMTAsIDIw
-MjAgYXQgMDU6MzA6NTBQTSArMDMwMCwgQWxleGV5IEJ1ZGFua292IGVzY3JldmV1Ogo+Pj4+Pj4g
-T24gMTAuMDcuMjAyMCAxNjozMSwgUmF2aSBCYW5nb3JpYSB3cm90ZToKPj4+Pj4+Pj4gQ3VycmVu
-dGx5IGFjY2VzcyB0byBwZXJmX2V2ZW50cywgaTkxNV9wZXJmIGFuZCBvdGhlciBwZXJmb3JtYW5j
-ZQo+Pj4+Pj4+PiBtb25pdG9yaW5nIGFuZCBvYnNlcnZhYmlsaXR5IHN1YnN5c3RlbXMgb2YgdGhl
-IGtlcm5lbCBpcyBvcGVuIG9ubHkgZm9yCj4+Pj4+Pj4+IGEgcHJpdmlsZWdlZCBwcm9jZXNzIFsx
-XSB3aXRoIENBUF9TWVNfQURNSU4gY2FwYWJpbGl0eSBlbmFibGVkIGluIHRoZQo+Pj4+Pj4+PiBw
-cm9jZXNzIGVmZmVjdGl2ZSBzZXQgWzJdLgo+Pj4KPj4+Pj4+Pj4gVGhpcyBwYXRjaCBzZXQgaW50
-cm9kdWNlcyBDQVBfUEVSRk1PTiBjYXBhYmlsaXR5IGRlc2lnbmVkIHRvIHNlY3VyZQo+Pj4+Pj4+
-PiBzeXN0ZW0gcGVyZm9ybWFuY2UgbW9uaXRvcmluZyBhbmQgb2JzZXJ2YWJpbGl0eSBvcGVyYXRp
-b25zIHNvIHRoYXQKPj4+Pj4+Pj4gQ0FQX1BFUkZNT04gd291bGQgYXNzaXN0IENBUF9TWVNfQURN
-SU4gY2FwYWJpbGl0eSBpbiBpdHMgZ292ZXJuaW5nIHJvbGUKPj4+Pj4+Pj4gZm9yIHBlcmZvcm1h
-bmNlIG1vbml0b3JpbmcgYW5kIG9ic2VydmFiaWxpdHkgc3Vic3lzdGVtcyBvZiB0aGUga2VybmVs
-Lgo+Pj4KPj4+Pj4+PiBJJ20gc2VlaW5nIGFuIGlzc3VlIHdpdGggQ0FQX1BFUkZNT04gd2hlbiBJ
-IHRyeSB0byByZWNvcmQgZGF0YSBmb3IgYQo+Pj4+Pj4+IHNwZWNpZmljIHRhcmdldC4gSSBkb24n
-dCBrbm93IHdoZXRoZXIgdGhpcyBpcyBzb3J0IG9mIGEgcmVncmVzc2lvbiBvcgo+Pj4+Pj4+IGFu
-IGV4cGVjdGVkIGJlaGF2aW9yLgo+Pj4KPj4+Pj4+IFRoYW5rcyBmb3IgcmVwb3J0aW5nIGFuZCBy
-b290IGNhdXNpbmcgdGhpcyBjYXNlLiBUaGUgYmVoYXZpb3IgbG9va3MgbGlrZQo+Pj4+Pj4ga2lu
-ZCBvZiBleHBlY3RlZCBzaW5jZSBjdXJyZW50bHkgQ0FQX1BFUkZNT04gdGFrZXMgb3ZlciB0aGUg
-cmVsYXRlZCBwYXJ0Cj4+Pj4+PiBvZiBDQVBfU1lTX0FETUlOIGNyZWRlbnRpYWxzIG9ubHkuIEFj
-dHVhbGx5IFBlcmYgc2VjdXJpdHkgZG9jcyBbMV0gc2F5Cj4+Pj4+PiB0aGF0IGFjY2VzcyBjb250
-cm9sIGlzIGFsc28gc3ViamVjdCB0byBDQVBfU1lTX1BUUkFDRSBjcmVkZW50aWFscy4KPj4+Cj4+
-Pj4+IEkgdGhpbmsgdGhhdCBzdGF0aW5nIHRoYXQgaW4gdGhlIGVycm9yIG1lc3NhZ2Ugd291bGQg
-YmUgaGVscGZ1bCwgYWZ0ZXIKPj4+Pj4gYWxsLCB3aG8gcmVhZHMgZG9jcz8gOC0pCj4+Pgo+Pj4+
-IEF0IGxlYXN0IHRob3NlIHdobyB3cml0ZSBpdCA6RCAuLi4KPj4+Cj4+PiBFdmVyeWJvZHkgc2hv
-dWxkIHJlYWQgaXQsIHN1cmUgOi0pCj4+PiAgCj4+Pj4+IEkuZS4sIHRoaXM6Cj4+Pj4+Cj4+Pj4+
-ICQgLi9wZXJmIHN0YXQgbHMKPj4+Pj4gwqAgRXJyb3I6Cj4+Pj4+IMKgIEFjY2VzcyB0byBwZXJm
-b3JtYW5jZSBtb25pdG9yaW5nIGFuZCBvYnNlcnZhYmlsaXR5IG9wZXJhdGlvbnMgaXMgbGltaXRl
-ZC4KPj4+Pj4gJAo+Pj4+Pgo+Pj4+PiBDb3VsZCBiZWNvbWU6Cj4+Pj4+Cj4+Pj4+ICQgLi9wZXJm
-IHN0YXQgbHMKPj4+Pj4gwqAgRXJyb3I6Cj4+Pj4+IMKgIEFjY2VzcyB0byBwZXJmb3JtYW5jZSBt
-b25pdG9yaW5nIGFuZCBvYnNlcnZhYmlsaXR5IG9wZXJhdGlvbnMgaXMgbGltaXRlZC4KPj4+Pj4g
-ICBSaWdodCBub3cgb25seSBDQVBfUEVSRk1PTiBpcyBncmFudGVkLCB5b3UgbWF5IG5lZWQgQ0FQ
-X1NZU19QVFJBQ0UuCj4+Pj4+ICQKPj4+Pgo+Pj4+IEl0IHdvdWxkIGJldHRlciBwcm92aWRlIHJl
-ZmVyZW5jZSB0byBwZXJmIHNlY3VyaXR5IGRvY3MgaW4gdGhlIHRvb2wgb3V0cHV0Lgo+Pj4KPj4+
-IFNvIGFkZCBhIDNyZCBsaW5lOgo+Pj4KPj4+ICQgLi9wZXJmIHN0YXQgbHMKPj4+IMKgIEVycm9y
-Ogo+Pj4gwqAgQWNjZXNzIHRvIHBlcmZvcm1hbmNlIG1vbml0b3JpbmcgYW5kIG9ic2VydmFiaWxp
-dHkgb3BlcmF0aW9ucyBpcyBsaW1pdGVkLgo+Pj4gICBSaWdodCBub3cgb25seSBDQVBfUEVSRk1P
-TiBpcyBncmFudGVkLCB5b3UgbWF5IG5lZWQgQ0FQX1NZU19QVFJBQ0UuCj4+PiAgIFBsZWFzZSBy
-ZWFkIHRoZSAnUGVyZiBldmVudHMgYW5kIHRvb2wgc2VjdXJpdHknIGRvY3VtZW50Ogo+Pj4gICBo
-dHRwczovL3d3dy5rZXJuZWwub3JnL2RvYy9odG1sL2xhdGVzdC9hZG1pbi1ndWlkZS9wZXJmLXNl
-Y3VyaXR5Lmh0bWwKPiAKPj4gSWYgaXQgaGFkIHRoYXQgcGF0Y2ggYmVsb3cgdGhlbiBtZXNzYWdl
-IGNoYW5nZSB3b3VsZCBub3QgYmUgcmVxdWlyZWQuCj4gCj4gU3VyZSwgYnV0IHRoZSB0b29sIHNo
-b3VsZCBjb250aW51ZSB0byB3b3JrIGFuZCBwcm92aWRlIHVzZWZ1bCBtZXNzYWdlcwo+IHdoZW4g
-cnVubmluZyBvbiBrZXJuZWxzIHdpdGhvdXQgdGhhdCBjaGFuZ2UuIFBvaW50aW5nIHRvIHRoZSBk
-b2N1bWVudCBpcwo+IHZhbGlkIGFuZCBzaG91bGQgYmUgZG9uZSwgdGhhdCBpcyBhbiBhZ3JlZWQg
-cG9pbnQuIEJ1dCB0aGUgdG9vbCBjYW4gZG8KPiBzb21lIGNoZWNrcywgbmFycm93IGRvd24gdGhl
-IHBvc3NpYmxlIGNhdXNlcyBmb3IgdGhlIGVycm9yIG1lc3NhZ2UgYW5kCj4gcHJvdmlkZSBzb21l
-dGhpbmcgdGhhdCBpbiBtb3N0IGNhc2VzIHdpbGwgbWFrZSB0aGUgdXNlciBtYWtlIHByb2dyZXNz
-Lgo+IAo+PiBIb3dldmVyIHRoaXMgdHdvIHNlbnRlbmNlcyBpbiB0aGUgZW5kIG9mIHdob2xlIG1l
-c3NhZ2Ugd291bGQgc3RpbGwgYWRkIHVwOgo+PiAiUGxlYXNlIHJlYWQgdGhlICdQZXJmIGV2ZW50
-cyBhbmQgdG9vbCBzZWN1cml0eScgZG9jdW1lbnQ6Cj4+ICBodHRwczovL3d3dy5rZXJuZWwub3Jn
-L2RvYy9odG1sL2xhdGVzdC9hZG1pbi1ndWlkZS9wZXJmLXNlY3VyaXR5Lmh0bWwiCj4gCj4gV2Un
-cmUgaW4gdmlvbGVudCBhZ3JlZW1lbnQgaGVyZS4gOi0pCgpIZXJlIGlzIHRoZSBtZXNzYWdlIGRy
-YWZ0IG1lbnRpb25pbmcgYSkgQ0FQX1NZU19QVFJBQ0UsIGZvciBrZXJuZWxzIHByaW9yCnY1Ljgs
-IGFuZCBiKSBQZXJmIHNlY3VyaXR5IGRvY3VtZW50IGxpbmsuIFRoZSBwbGFuIGlzIHRvIHNlbmQg
-YSBwYXRjaCBleHRlbmRpbmcKcGVyZl9ldmVudHMgd2l0aCBDQVBfUEVSRk1PTiBjaGVjayBbMV0g
-Zm9yIHB0cmFjZV9tYXlfYWNjZXNzKCkgYW5kIGV4dGVuZGluZwp0aGUgdG9vbCB3aXRoIHRoaXMg
-bWVzc2FnZS4KCiJBY2Nlc3MgdG8gcGVyZm9ybWFuY2UgbW9uaXRvcmluZyBhbmQgb2JzZXJ2YWJp
-bGl0eSBvcGVyYXRpb25zIGlzIGxpbWl0ZWQuCiBFbmZvcmNlZCBNQUMgcG9saWN5IHNldHRpbmdz
-IChTRUxpbnV4KSBjYW4gbGltaXQgYWNjZXNzIHRvIHBlcmZvcm1hbmNlCiBtb25pdG9yaW5nIGFu
-ZCBvYnNlcnZhYmlsaXR5IG9wZXJhdGlvbnMuIEluc3BlY3Qgc3lzdGVtIGF1ZGl0IHJlY29yZHMg
-Zm9yCiBtb3JlIHBlcmZfZXZlbnQgYWNjZXNzIGNvbnRyb2wgaW5mb3JtYXRpb24gYW5kIGFkanVz
-dGluZyB0aGUgcG9saWN5LgogQ29uc2lkZXIgYWRqdXN0aW5nIC9wcm9jL3N5cy9rZXJuZWwvcGVy
-Zl9ldmVudF9wYXJhbm9pZCBzZXR0aW5nIHRvIG9wZW4KIGFjY2VzcyB0byBwZXJmb3JtYW5jZSBt
-b25pdG9yaW5nIGFuZCBvYnNlcnZhYmlsaXR5IG9wZXJhdGlvbnMgZm9yIHByb2Nlc3Nlcwogd2l0
-aG91dCBDQVBfUEVSRk1PTiwgQ0FQX1NZU19QVFJBQ0Ugb3IgQ0FQX1NZU19BRE1JTiBMaW51eCBj
-YXBhYmlsaXR5LgogTW9yZSBpbmZvcm1hdGlvbiBjYW4gYmUgZm91bmQgYXQgJ1BlcmYgZXZlbnRz
-IGFuZCB0b29sIHNlY3VyaXR5JyBkb2N1bWVudDoKIGh0dHBzOi8vd3d3Lmtlcm5lbC5vcmcvZG9j
-L2h0bWwvbGF0ZXN0L2FkbWluLWd1aWRlL3BlcmYtc2VjdXJpdHkuaHRtbAogcGVyZl9ldmVudF9w
-YXJhbm9pZCBzZXR0aW5nIGlzIC0xOgogICAgIC0xOiBBbGxvdyB1c2Ugb2YgKGFsbW9zdCkgYWxs
-IGV2ZW50cyBieSBhbGwgdXNlcnMKICAgICAgICAgICBJZ25vcmUgbWxvY2sgbGltaXQgYWZ0ZXIg
-cGVyZl9ldmVudF9tbG9ja19rYiB3aXRob3V0IENBUF9JUENfTE9DSwogPj0gMDogRGlzYWxsb3cg
-cmF3IGFuZCBmdHJhY2UgZnVuY3Rpb24gdHJhY2Vwb2ludCBhY2Nlc3MKID49IDE6IERpc2FsbG93
-IENQVSBldmVudCBhY2Nlc3MKID49IDI6IERpc2FsbG93IGtlcm5lbCBwcm9maWxpbmcKIFRvIG1h
-a2UgdGhlIGFkanVzdGVkIHBlcmZfZXZlbnRfcGFyYW5vaWQgc2V0dGluZyBwZXJtYW5lbnQgcHJl
-c2VydmUgaXQKIGluIC9ldGMvc3lzY3RsLmNvbmYgKGUuZy4ga2VybmVsLnBlcmZfZXZlbnRfcGFy
-YW5vaWQgPSA8c2V0dGluZz4pIgoKQWxleGVpCgpbMV0gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
-bGttbC8yMDIwMDcxMzEyMTc0Ni5HQTcwMjlAa2VybmVsLm9yZy8KCj4gIAo+Pj4KPj4+PiBMb29r
-cyBsaWtlIGV4dGVuZGluZyBwdHJhY2VfbWF5X2FjY2VzcygpIGNoZWNrIGZvciBwZXJmX2V2ZW50
-cyB3aXRoIENBUF9QRVJGTU9OCj4+Pgo+Pj4gWW91IG1lYW4gdGhlIGZvbGxvd2luZz8KPj4KPj4g
-RXhhY3RseSB0aGF0Lgo+IAo+IFN1cmUsIGxldHMgdGhlbiB3YWl0IGZvciBvdGhlcnMgdG8gY2hp
-bWUgaW4gYW5kIHRoZW4geW91IGNhbiBnbyBhaGVhZAo+IGFuZCBzdWJtaXQgdGhhdCBwYXRjaC4K
-PiAKPiBQZXRlcj8KPiAKPiAtIEFybmFsZG8KPiAgCj4+Pgo+Pj4gZGlmZiAtLWdpdCBhL2tlcm5l
-bC9ldmVudHMvY29yZS5jIGIva2VybmVsL2V2ZW50cy9jb3JlLmMKPj4+IGluZGV4IDg1NmQ5OGMz
-NmY1Ni4uYTIzOTdmNzI0YzEwIDEwMDY0NAo+Pj4gLS0tIGEva2VybmVsL2V2ZW50cy9jb3JlLmMK
-Pj4+ICsrKyBiL2tlcm5lbC9ldmVudHMvY29yZS5jCj4+PiBAQCAtMTE1OTUsNyArMTE1OTUsNyBA
-QCBTWVNDQUxMX0RFRklORTUocGVyZl9ldmVudF9vcGVuLAo+Pj4gIAkJICogcGVyZl9ldmVudF9l
-eGl0X3Rhc2soKSB0aGF0IGNvdWxkIGltcGx5KS4KPj4+ICAJCSAqLwo+Pj4gIAkJZXJyID0gLUVB
-Q0NFUzsKPj4+IC0JCWlmICghcHRyYWNlX21heV9hY2Nlc3ModGFzaywgUFRSQUNFX01PREVfUkVB
-RF9SRUFMQ1JFRFMpKQo+Pj4gKwkJaWYgKCFwZXJmbW9uX2NhcGFibGUoKSAmJiAhcHRyYWNlX21h
-eV9hY2Nlc3ModGFzaywgUFRSQUNFX01PREVfUkVBRF9SRUFMQ1JFRFMpKQo+Pj4gIAkJCWdvdG8g
-ZXJyX2NyZWQ7Cj4+PiAgCX0KPj4+Cj4+Pj4gbWFrZXMgbW9uaXRvcmluZyBzaW1wbGVyIGFuZCBl
-dmVuIG1vcmUgc2VjdXJlIHRvIHVzZSBzaW5jZSBQZXJmIHRvb2wgbmVlZAo+Pj4+IG5vdCB0byBz
-dGFydC9zdG9wL3NpbmdsZS1zdGVwIGFuZCByZWFkL3dyaXRlIHJlZ2lzdGVycyBhbmQgbWVtb3J5
-IGFuZCBzbyBvbgo+Pj4+IGxpa2UgYSBkZWJ1Z2dlciBvciBzdHJhY2UtbGlrZSB0b29sLiBXaGF0
-IGRvIHlvdSB0aGluaz8KPj4+Cj4+PiBJIHRlbmQgdG8gYWdyZWUsIFBldGVyPwo+Pj4gIAo+Pj4+
-IEFsZXhlaQo+Pj4+Cj4+Pj4+Cj4+Pj4+IC0gQXJuYWxkbwo+Pgo+PiBBbGV4ZWkKPiAKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Fri, Jul 17, 2020 at 05:34:25PM +0530, Anshuman Gupta wrote:
+> While i915 device is in runtime suspend, DRM connector polling
+> causing device to wakeup from runtime suspend.
+> This harm overall cpu idle statistics, therefore
+> disabling polling while in runtime suspend.
+
+Before disabling polling we would need to enable hotplug interrupts
+during the runtime suspended state. Also I haven't seen yet stats where
+polling (which has a 10 sec period) have a significant effect on
+idle residencies.
+
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_drv.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> index 5fd5af4bc855..1229c72f19c9 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -1595,6 +1595,8 @@ static int intel_runtime_suspend(struct device *kdev)
+>  
+>  	disable_rpm_wakeref_asserts(rpm);
+>  
+> +	drm_kms_helper_poll_disable(&dev_priv->drm);
+> +
+>  	/*
+>  	 * We are safe here against re-faults, since the fault handler takes
+>  	 * an RPM reference.
+> @@ -1699,6 +1701,8 @@ static int intel_runtime_resume(struct device *kdev)
+>  	 */
+>  	intel_gt_runtime_resume(&dev_priv->gt);
+>  
+> +	drm_kms_helper_poll_enable(&dev_priv->drm);
+> +
+>  	/*
+>  	 * On VLV/CHV display interrupts are part of the display
+>  	 * power well, so hpd is reinitialized from there. For
+> -- 
+> 2.26.2
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
