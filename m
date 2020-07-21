@@ -2,29 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85D99227B7F
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jul 2020 11:19:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07FA4227BA2
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jul 2020 11:24:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF43F89F01;
-	Tue, 21 Jul 2020 09:19:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E1D689C61;
+	Tue, 21 Jul 2020 09:24:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE7B689F01
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 09:19:12 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21882397-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 10:19:09 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Jul 2020 10:19:09 +0100
-Message-Id: <20200721091909.20671-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com
+ [IPv6:2607:f8b0:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B77EF6E51C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 09:24:32 +0000 (UTC)
+Received: by mail-ot1-x344.google.com with SMTP id 18so14555453otv.6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 02:24:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=nquXkdQRYOPtoNI/3pjve4BmhzPYso4IxoVNtZc0VME=;
+ b=CjocwH1W7nFMYJlFZJt0tm40L0soTBLF2A1OyB8G88wf51ZiFhqG/CutsmKeZ5Tdmn
+ Y5Pra1EDDvtZhDbFNA40Deym9NI9pzjBkrIByHZc4nyCatLi/P96S+39Zw9EyC+sMvmu
+ rkq8EcEXbJqZEJMu9S+hwNyEDe9BYYwCY1240=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=nquXkdQRYOPtoNI/3pjve4BmhzPYso4IxoVNtZc0VME=;
+ b=c9oAOzR90MBXk1JQp6NWwuUe+V1T8RhMAK15+6qZwADiQmcGxetByooWwYjIgbsT6z
+ Qgp/35OA3eMYbzIjrDMYVkUPc724mTAxGc6VU0QkwMQohuj3xQ+GdROCP0f0cc3LoKsK
+ AwutJBa2Mk4/bh3yrMPfCXe52Js0POMA6RjrEVh0OkPGwQYO/kbIUJH6OXge7C1nBvs7
+ i4SkV77aagjmfCj+Sq+o8XpHjCpiXAv0dU+Zdqx26nkYPQtgb9XvIreuE9Gz/fWg8kdO
+ cJf6zYijRNoW8gR+XbrMTJmdK2B1s2GYRROFieM/RX3qTM6JZD7EWw22yv28o66Kr6Mj
+ ihqg==
+X-Gm-Message-State: AOAM530jgJK/3vqNiS10vFmsyukGeatmT2snJLCBPklA94eDeeWsLynU
+ VDkYY3nhL5g51WDA0Ninf2U6LTdj6OQytKIv++EE9Q==
+X-Google-Smtp-Source: ABdhPJwWzQp8+gEl+OMQCIoHdSTE3WuDzqd0vQntTpza9P5RjwTtbLNRcl1/BieXye7/bW+4dhAaba2R8DiOHrzunIU=
+X-Received: by 2002:a05:6830:1d0:: with SMTP id
+ r16mr25072001ota.188.1595323471609; 
+ Tue, 21 Jul 2020 02:24:31 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] HAX sched/core: Paper over the ttwu() race [take
- two]
+References: <20200707201229.472834-4-daniel.vetter@ffwll.ch>
+ <20200709123339.547390-1-daniel.vetter@ffwll.ch>
+ <93b673b7-bb48-96eb-dc2c-bd4f9304000e@shipmail.org>
+ <20200721074157.GB3278063@phenom.ffwll.local>
+ <3603bb71-318b-eb53-0532-9daab62dce86@amd.com>
+ <57a5eb9d-b74f-8ce4-7199-94e911d9b68b@shipmail.org>
+ <2ca2c004-1e11-87f5-4bd8-761e1b44d21f@amd.com>
+ <CAKMK7uHcWMGnLqmNqoyYmk_UcErEZwRon-ybc9t-Joa+bHacaQ@mail.gmail.com>
+In-Reply-To: <CAKMK7uHcWMGnLqmNqoyYmk_UcErEZwRon-ybc9t-Joa+bHacaQ@mail.gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 21 Jul 2020 11:24:20 +0200
+Message-ID: <CAKMK7uF6L1vZR9VxTdvN80xQ3Qn6jBnGV5QQCBUrNOwrWPjruw@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 1/2] dma-buf.rst: Document
+ why indefinite fences are a bad idea
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,84 +67,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Stone <daniels@collabora.com>,
+ linux-rdma <linux-rdma@vger.kernel.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Steve Pronovost <spronovo@microsoft.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Jesse Natalie <jenatali@microsoft.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On all Core platforms we see
-
-<4> [181.766629] WARNING: CPU: 0 PID: 1524 at kernel/sched/core.c:2388 ttwu_queue_wakelist+0xbc/0xd0
-<4> [181.766637] Modules linked in: i915(+) vgem snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio amdgpu mei_hdcp x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul btusb btrtl btbcm btintel bluetooth snd_hda_codec_hdmi ghash_clmulni_intel e1000e ecdh_generic snd_intel_dspcfg ecc igb snd_hda_codec ptp pps_core snd_hwdep snd_hda_core snd_pcm mei_me gpu_sched ttm mei intel_lpss_pci prime_numbers pinctrl_sunrisepoint pinctrl_intel [last unloaded: i915]
-<4> [181.766685] CPU: 0 PID: 1524 Comm: igt/4 Tainted: G     U            5.8.0-rc4-gb182a04c513e3-drmtip_541+ #1
-<4> [181.766694] Hardware name: Intel Corporation NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0047.2018.0718.1706 07/18/2018
-<4> [181.766705] RIP: 0010:ttwu_queue_wakelist+0xbc/0xd0
-<4> [181.766710] Code: 00 00 00 5b 5d 41 5c 41 5d c3 31 c0 5b 5d 41 5c 41 5d c3 31 c0 f6 c3 08 74 f2 48 c7 c2 00 ad 03 00 83 7c 11 40 01 77 e4 eb 80 <0f> 0b 31 c0 eb dc 0f 1f 40 00 66 2e 0f 1f 84 00 00 00 00 00 bf 17
-<4> [181.766726] RSP: 0018:ffffc90000003e08 EFLAGS: 00010046
-<4> [181.766733] RAX: 0000000000000000 RBX: 00000000ffffffff RCX: ffff888276a00000
-<4> [181.766740] RDX: 000000000003ad00 RSI: ffffffff8232045b RDI: ffffffff8233103e
-<4> [181.766747] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000001
-<4> [181.766754] R10: 00000000d3fa25c3 R11: 0000000053712267 R12: ffff88825b912940
-<4> [181.766761] R13: 0000000000000000 R14: 0000000000000087 R15: 000000000003ad00
-<4> [181.766769] FS:  0000000000000000(0000) GS:ffff888276a00000(0000) knlGS:0000000000000000
-<4> [181.766777] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [181.766783] CR2: 000055b8245814e0 CR3: 0000000005610003 CR4: 00000000003606f0
-<4> [181.766790] Call Trace:
-<4> [181.766794]  <IRQ>
-<4> [181.766798]  try_to_wake_up+0x21b/0x690
-<4> [181.766805]  autoremove_wake_function+0xc/0x50
-<4> [181.766858]  __i915_sw_fence_complete+0x1ee/0x250 [i915]
-<4> [181.766912]  dma_i915_sw_fence_wake+0x2d/0x40 [i915]
-<4> [181.766962]  signal_irq_work+0x38b/0x530 [i915]
-<4> [181.766971]  irq_work_single+0x44/0x80
-<4> [181.766977]  irq_work_run_list+0x28/0x40
-<4> [181.766982]  irq_work_run+0x26/0x40
-<4> [181.766988]  __sysvec_irq_work+0x3f/0x1d0
-<4> [181.766993]  asm_call_on_stack+0x12/0x20
-<4> [181.766997]  </IRQ>
-<4> [181.767000]  sysvec_irq_work+0xdd/0x100
-<4> [181.767005]  asm_sysvec_irq_work+0x12/0x20
-<4> [181.767009] RIP: 0010:_raw_spin_unlock_irqrestore+0x49/0x60
-
-about 90% of the time.
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2110
-References: b6e13e85829f ("sched/core: Fix ttwu() race")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- kernel/sched/core.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
-
-diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index 6148aa6ff26d..a7bfc57efce5 100644
---- a/kernel/sched/core.c
-+++ b/kernel/sched/core.c
-@@ -2378,9 +2378,6 @@ static inline bool ttwu_queue_cond(int cpu, int wake_flags)
- 
- static bool ttwu_queue_wakelist(struct task_struct *p, int cpu, int wake_flags)
- {
--	if (!p->on_cpu)
--		return false;
--
- 	if (sched_feat(TTWU_QUEUE) && ttwu_queue_cond(cpu, wake_flags)) {
- 		if (WARN_ON_ONCE(cpu == smp_processor_id()))
- 			return false;
-@@ -2641,8 +2638,9 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
- 	 * to ensure we observe the correct CPU on which the task is currently
- 	 * scheduling.
- 	 */
--	if (smp_load_acquire(&p->on_cpu) &&
--	    ttwu_queue_wakelist(p, task_cpu(p), wake_flags | WF_ON_CPU))
-+	cpu = smp_load_acquire(&p->on_cpu) ? task_cpu(p) : -1;
-+	if (cpu != -1 &&
-+	    ttwu_queue_wakelist(p, cpu, wake_flags | WF_ON_CPU))
- 		goto unlock;
- 
- 	/*
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCBKdWwgMjEsIDIwMjAgYXQgMTE6MTYgQU0gRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZm
+d2xsLmNoPiB3cm90ZToKPgo+IE9uIFR1ZSwgSnVsIDIxLCAyMDIwIGF0IDEwOjU1IEFNIENocmlz
+dGlhbiBLw7ZuaWcKPiA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPiB3cm90ZToKPiA+Cj4gPiBB
+bSAyMS4wNy4yMCB1bSAxMDo0NyBzY2hyaWViIFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCk6Cj4g
+PiA+Cj4gPiA+IE9uIDcvMjEvMjAgOTo0NSBBTSwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPiA+
+ID4+IEFtIDIxLjA3LjIwIHVtIDA5OjQxIHNjaHJpZWIgRGFuaWVsIFZldHRlcjoKPiA+ID4+PiBP
+biBNb24sIEp1bCAyMCwgMjAyMCBhdCAwMToxNToxN1BNICswMjAwLCBUaG9tYXMgSGVsbHN0csO2
+bSAoSW50ZWwpCj4gPiA+Pj4gd3JvdGU6Cj4gPiA+Pj4+IEhpLAo+ID4gPj4+Pgo+ID4gPj4+PiBP
+biA3LzkvMjAgMjozMyBQTSwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+ID4+Pj4+IENvbWVzIHVw
+IGV2ZXJ5IGZldyB5ZWFycywgZ2V0cyBzb21ld2hhdCB0ZWRpb3VzIHRvIGRpc2N1c3MsIGxldCdz
+Cj4gPiA+Pj4+PiB3cml0ZSB0aGlzIGRvd24gb25jZSBhbmQgZm9yIGFsbC4KPiA+ID4+Pj4+Cj4g
+PiA+Pj4+PiBXaGF0IEknbSBub3Qgc3VyZSBhYm91dCBpcyB3aGV0aGVyIHRoZSB0ZXh0IHNob3Vs
+ZCBiZSBtb3JlCj4gPiA+Pj4+PiBleHBsaWNpdCBpbgo+ID4gPj4+Pj4gZmxhdCBvdXQgbWFuZGF0
+aW5nIHRoZSBhbWRrZmQgZXZpY3Rpb24gZmVuY2VzIGZvciBsb25nIHJ1bm5pbmcKPiA+ID4+Pj4+
+IGNvbXB1dGUKPiA+ID4+Pj4+IHdvcmtsb2FkcyBvciB3b3JrbG9hZHMgd2hlcmUgdXNlcnNwYWNl
+IGZlbmNpbmcgaXMgYWxsb3dlZC4KPiA+ID4+Pj4gQWx0aG91Z2ggKGluIG15IGh1bWJsZSBvcGlu
+aW9uKSBpdCBtaWdodCBiZSBwb3NzaWJsZSB0byBjb21wbGV0ZWx5Cj4gPiA+Pj4+IHVudGFuZ2xl
+Cj4gPiA+Pj4+IGtlcm5lbC1pbnRyb2R1Y2VkIGZlbmNlcyBmb3IgcmVzb3VyY2UgbWFuYWdlbWVu
+dCBhbmQgZG1hLWZlbmNlcwo+ID4gPj4+PiB1c2VkIGZvcgo+ID4gPj4+PiBjb21wbGV0aW9uLSBh
+bmQgZGVwZW5kZW5jeSB0cmFja2luZyBhbmQgbGlmdCBhIGxvdCBvZiByZXN0cmljdGlvbnMKPiA+
+ID4+Pj4gZm9yIHRoZQo+ID4gPj4+PiBkbWEtZmVuY2VzLCBpbmNsdWRpbmcgcHJvaGliaXRpbmcg
+aW5maW5pdGUgb25lcywgSSB0aGluayB0aGlzIG1ha2VzCj4gPiA+Pj4+IHNlbnNlCj4gPiA+Pj4+
+IGRlc2NyaWJpbmcgdGhlIGN1cnJlbnQgc3RhdGUuCj4gPiA+Pj4gWWVhaCBJIHRoaW5rIGEgZnV0
+dXJlIHBhdGNoIG5lZWRzIHRvIHR5cGUgdXAgaG93IHdlIHdhbnQgdG8gbWFrZSB0aGF0Cj4gPiA+
+Pj4gaGFwcGVuIChmb3Igc29tZSBjcm9zcyBkcml2ZXIgY29uc2lzdGVuY3kpIGFuZCB3aGF0IG5l
+ZWRzIHRvIGJlCj4gPiA+Pj4gY29uc2lkZXJlZC4gU29tZSBvZiB0aGUgbmVjZXNzYXJ5IHBhcnRz
+IGFyZSBhbHJlYWR5IHRoZXJlICh3aXRoIGxpa2UKPiA+ID4+PiB0aGUKPiA+ID4+PiBwcmVlbXB0
+aW9uIGZlbmNlcyBhbWRrZmQgaGFzIGFzIGFuIGV4YW1wbGUpLCBidXQgSSB0aGluayBzb21lIGNs
+ZWFyCj4gPiA+Pj4gZG9jcwo+ID4gPj4+IG9uIHdoYXQncyByZXF1aXJlZCBmcm9tIGJvdGggaHcs
+IGRyaXZlcnMgYW5kIHVzZXJzcGFjZSB3b3VsZCBiZSByZWFsbHkKPiA+ID4+PiBnb29kLgo+ID4g
+Pj4KPiA+ID4+IEknbSBjdXJyZW50bHkgd3JpdGluZyB0aGF0IHVwLCBidXQgcHJvYmFibHkgc3Rp
+bGwgbmVlZCBhIGZldyBkYXlzIGZvcgo+ID4gPj4gdGhpcy4KPiA+ID4KPiA+ID4gR3JlYXQhIEkg
+cHV0IGRvd24gc29tZSAodmVyeSkgaW5pdGlhbCB0aG91Z2h0cyBhIGNvdXBsZSBvZiB3ZWVrcyBh
+Z28KPiA+ID4gYnVpbGRpbmcgb24gZXZpY3Rpb24gZmVuY2VzIGZvciB2YXJpb3VzIGhhcmR3YXJl
+IGNvbXBsZXhpdHkgbGV2ZWxzIGhlcmU6Cj4gPiA+Cj4gPiA+IGh0dHBzOi8vbmFtMTEuc2FmZWxp
+bmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmdpdGxhYi5mcmVl
+ZGVza3RvcC5vcmclMkZ0aG9tYXNoJTJGZG9jcyUyRi0lMkZibG9iJTJGbWFzdGVyJTJGVW50YW5n
+bGluZyUyNTIwZG1hLWZlbmNlJTI1MjBhbmQlMjUyMG1lbW9yeSUyNTIwYWxsb2NhdGlvbi5vZHQm
+YW1wO2RhdGE9MDIlN0MwMSU3Q2NocmlzdGlhbi5rb2VuaWclNDBhbWQuY29tJTdDODk3OGJiZDc4
+MjNlNGI0MTY2MzcwOGQ4MmQ1MmFkZDMlN0MzZGQ4OTYxZmU0ODg0ZTYwOGUxMWE4MmQ5OTRlMTgz
+ZCU3QzAlN0MwJTdDNjM3MzA5MTgwNDI0MzEyMzkwJmFtcDtzZGF0YT10VHh4MnZmemZ3TE0xSUJK
+U3FxQVpSdzE2MDRSJTJGMGJJM013TjElMkZCZjJWUSUzRCZhbXA7cmVzZXJ2ZWQ9MAo+ID4gPgo+
+ID4KPiA+IEkgZG9uJ3QgdGhpbmsgdGhhdCB0aGlzIHdpbGwgZXZlciBiZSBwb3NzaWJsZS4KPiA+
+Cj4gPiBTZWUgdGhhdCBEYW5pZWwgZGVzY3JpYmVzIGluIGhpcyB0ZXh0IGlzIHRoYXQgaW5kZWZp
+bml0ZSBmZW5jZXMgYXJlIGEKPiA+IGJhZCBpZGVhIGZvciBtZW1vcnkgbWFuYWdlbWVudCwgYW5k
+IEkgdGhpbmsgdGhhdCB0aGlzIGlzIGEgZml4ZWQgZmFjdC4KPiA+Cj4gPiBJbiBvdGhlciB3b3Jk
+cyB0aGUgd2hvbGUgY29uY2VwdCBvZiBzdWJtaXR0aW5nIHdvcmsgdG8gdGhlIGtlcm5lbCB3aGlj
+aAo+ID4gZGVwZW5kcyBvbiBzb21lIHVzZXIgc3BhY2UgaW50ZXJhY3Rpb24gZG9lc24ndCB3b3Jr
+IGFuZCBuZXZlciB3aWxsLgo+ID4KPiA+IFdoYXQgY2FuIGJlIGRvbmUgaXMgdGhhdCBkbWFfZmVu
+Y2VzIHdvcmsgd2l0aCBoYXJkd2FyZSBzY2hlZHVsZXJzLiBFLmcuCj4gPiB3aGF0IHRoZSBLRkQg
+dHJpZXMgdG8gZG8gd2l0aCBpdHMgcHJlZW1wdGlvbiBmZW5jZXMuCj4gPgo+ID4gQnV0IGZvciB0
+aGlzIHlvdSBuZWVkIGEgYmV0dGVyIGNvbmNlcHQgYW5kIGRlc2NyaXB0aW9uIG9mIHdoYXQgdGhl
+Cj4gPiBoYXJkd2FyZSBzY2hlZHVsZXIgaXMgc3VwcG9zZWQgdG8gZG8gYW5kIGhvdyB0aGF0IGlu
+dGVyYWN0cyB3aXRoCj4gPiBkbWFfZmVuY2Ugb2JqZWN0cy4KPgo+IFllYWggSSB0aGluayB0cnlp
+bmcgdG8gc3BsaXQgZG1hX2ZlbmNlIHdvbnQgd29yaywgc2ltcGx5IGJlY2F1c2Ugb2YKPiBpbmVy
+dGlhLiBDcmVhdGluZyBhbiBlbnRpcmVseSBuZXcgdGhpbmcgZm9yIGF1Z21lbnRlZCB1c2Vyc3Bh
+Y2UKPiBjb250cm9sbGVkIGZlbmNpbmcsIGFuZCB0aGVuIGpvdHRpbmcgZG93biBhbGwgdGhlIHJ1
+bGVzIHRoZQo+IGtlcm5lbC9ody91c2Vyc3BhY2UgbmVlZCB0byBvYmV5IHRvIG5vdCBicmVhayBk
+bWFfZmVuY2UgaXMgd2hhdCBJIGhhZAo+IGluIG1pbmQuIEFuZCBJIGd1ZXNzIHRoYXQncyBhbHNv
+IHdoYXQgQ2hyaXN0aWFuIGlzIHdvcmtpbmcgb24uIEUuZy4KPiBqdXN0IGdvaW5nIHRocm91Z2gg
+YWxsIHRoZSBjYXNlcyBvZiBob3cgbXVjaCB5b3VyIGh3IGNhbiBwcmVlbXB0IG9yCj4gaGFuZGxl
+IHBhZ2UgZmF1bHRzIG9uIHRoZSBncHUsIGFuZCB3aGF0IHRoYXQgbWVhbnMgaW4gdGVybXMgb2YK
+PiBkbWFfZmVuY2VfYmVnaW4vZW5kX3NpZ25hbGxpbmcgYW5kIG90aGVyIGNvbnN0cmFpbnRzIHdv
+dWxkIGJlIHJlYWxseQo+IGdvb2QuCgpPciByZXBocmFzZWQgaW4gdGVybXMgb2YgVGhvbWFzJyBk
+b2M6IGRtYS1mZW5jZSB3aWxsIHN0YXkgdGhlIG1lbW9yeQpmZW5jZSwgYW5kIGFsc28gdGhlIHN5
+bmMgZmVuY2UgZm9yIGN1cnJlbnQgdXNlcnNwYWNlIGFuZCB3aW5zeXMuCgpUaGVuIHdlIGNyZWF0
+ZSBhIG5ldyB0aGluZyBhbmQgY29tcGxldGUgcHJvdG9jb2wgYW5kIGRyaXZlciByZXZpbmcgb2YK
+dGhlIGVudGlyZSB3b3JsZC4gVGhlIHJlYWxseSBoYXJkIHBhcnQgaXMgdGhhdCBydW5uaW5nIG9s
+ZCBzdHVmZiBvbiBhCm5ldyBzdGFjayBpcyBwb3NzaWJsZSAod2UnZCBiZSB0b3RhbGx5IHNjcmV3
+ZWQgb3RoZXJ3aXNlLCBzaW5jZSBpdAp3b3VsZCBiZWNvbWUgYSBzeXN0ZW0gd2lkZSBmbGFnIGRh
+eSkuIEJ1dCBydW5uaW5nIG5ldyBzdHVmZiBvbiBhbiBvbGQKc3RhY2sgKGV2ZW4gaWYgaXQncyBq
+dXN0IHNvbWV0aGluZyBpbiB1c2Vyc3BhY2UgbGlrZSB0aGUgY29tcG9zaXRvcikKZG9lc24ndCB3
+b3JrLCBiZWNhdXNlIHRoZW4geW91IHRpZSB0aGUgbmV3IHN5bmNocm9uaXphdGlvbiBmZW5jZXMg
+YmFjawppbnRvIHRoZSBkbWEtZmVuY2UgbWVtb3J5IGZlbmNlcywgYW5kIGdhbWUgb3Zlci4KClNv
+IHllYWggYXJvdW5kIDUgeWVhcnMgb3Igc28gZm9yIGFueXRoaW5nIHRoYXQgd2FudHMgdG8gdXNl
+IGEgd2luc3lzLApvciBhdCBsZWFzdCB0aGF0J3Mgd2hhdCBpdCB1c3VhbGx5IHRha2VzIHVzIHRv
+IGRvIHNvbWV0aGluZyBsaWtlIHRoaXMKOi0vIEVudGlyZWx5IHN0YW5kLWFsb25lIGNvbXB1dGUg
+d29ya2xvYWRzIChpcnJlc3BlY3RpdmUgd2hldGhlciBpdCdzCmN1ZGEsIGNsLCB2ayBvciB3aGF0
+ZXZlcikgZG9lc24ndCBoYXZlIHRoYXQgcHJvYmxlbSBvZmMuCi1EYW5pZWwKCj4gLURhbmllbAo+
+Cj4gPgo+ID4gQ2hyaXN0aWFuLgo+ID4KPiA+ID4KPiA+ID4gL1Rob21hcwo+ID4gPgo+ID4gPgo+
+ID4KPgo+Cj4gLS0KPiBEYW5pZWwgVmV0dGVyCj4gU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENv
+cnBvcmF0aW9uCj4gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKCgoKLS0gCkRhbmllbCBWZXR0ZXIKU29m
+dHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
