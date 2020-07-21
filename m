@@ -1,50 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07C2F22846C
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jul 2020 18:01:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78105228660
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jul 2020 18:46:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E0276E424;
-	Tue, 21 Jul 2020 16:01:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E68236E055;
+	Tue, 21 Jul 2020 16:46:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 269A16E424;
- Tue, 21 Jul 2020 16:01:01 +0000 (UTC)
-IronPort-SDR: 5B9LAzehoIvEbBDdvpqOChS1x8AWCh+wpJPqXOI3J6KfieBBymlAUes4lVTAxmf4oFagIPz3gN
- MatZca/C5kPA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9689"; a="149317288"
-X-IronPort-AV: E=Sophos;i="5.75,379,1589266800"; d="scan'208";a="149317288"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 000BF6E055
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 16:46:21 +0000 (UTC)
+IronPort-SDR: hWFnfcLyynUUyktA4hTL1sva/YOGzmTEmrdm9wcgp7EkqLV7jx799kaIqCc8t5I3tMCEFmPLAz
+ twcnIdpmhJOw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9689"; a="148118183"
+X-IronPort-AV: E=Sophos;i="5.75,379,1589266800"; d="scan'208";a="148118183"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2020 09:01:00 -0700
-IronPort-SDR: ZaKq67pMrZn6Fm9phMZIm9o0L6OqSDfdBjzsrC9q79xMY2MRISyHjiyvS6v7UIer/mwHjnUXhc
- 3n/5AxzSEnmA==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2020 09:46:21 -0700
+IronPort-SDR: +Uw8ybF4YvfMV/keEkWDXT2xV9+sC3DhCcekofRgu1+RYLmaKC9BBr3zXODHK/RKC7RTskYk3K
+ NseqBr9aF31Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,379,1589266800"; d="scan'208";a="432043968"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
- by orsmga004.jf.intel.com with ESMTP; 21 Jul 2020 09:00:58 -0700
-Received: from andy by smile with local (Exim 4.94)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1jxuhO-0035zQ-T5; Tue, 21 Jul 2020 19:00:58 +0300
-Date: Tue, 21 Jul 2020 19:00:58 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- dri-devel@lists.freedesktop.org
-Message-ID: <20200721160058.GP3703480@smile.fi.intel.com>
-References: <20200529123317.20470-1-andriy.shevchenko@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.75,379,1589266800"; d="scan'208";a="319965581"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by fmsmga002.fm.intel.com with ESMTP; 21 Jul 2020 09:46:20 -0700
+Date: Tue, 21 Jul 2020 22:04:12 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200721163411.GA30020@intel.com>
+References: <20200717120425.20947-1-anshuman.gupta@intel.com>
+ <20200721133217.GA24622@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200529123317.20470-1-andriy.shevchenko@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v1] drm/i915/dsi: Drop double check for ACPI
- companion device
+In-Reply-To: <20200721133217.GA24622@ideak-desk.fi.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [RFC] drm/i915: Disable connector polling at
+ runtime suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,70 +51,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 29, 2020 at 03:33:17PM +0300, Andy Shevchenko wrote:
-> acpi_dev_get_resources() does perform the NULL pointer check against
-> ACPI companion device which is given as function parameter. Thus,
-> there is no need to duplicate this check in the caller.
-
-Any comment so far?
-
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 24 ++++++++------------
->  1 file changed, 10 insertions(+), 14 deletions(-)
+On 2020-07-21 at 16:32:17 +0300, Imre Deak wrote:
+> On Fri, Jul 17, 2020 at 05:34:25PM +0530, Anshuman Gupta wrote:
+> > While i915 device is in runtime suspend, DRM connector polling
+> > causing device to wakeup from runtime suspend.
+> > This harm overall cpu idle statistics, therefore
+> > disabling polling while in runtime suspend.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> index 574dcfec9577..6f9e08cda964 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> @@ -426,23 +426,19 @@ static void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
->  {
->  	struct drm_device *drm_dev = intel_dsi->base.base.dev;
->  	struct device *dev = &drm_dev->pdev->dev;
-> -	struct acpi_device *acpi_dev;
-> +	struct acpi_device *acpi_dev = ACPI_COMPANION(dev);
->  	struct list_head resource_list;
->  	struct i2c_adapter_lookup lookup;
->  
-> -	acpi_dev = ACPI_COMPANION(dev);
-> -	if (acpi_dev) {
-> -		memset(&lookup, 0, sizeof(lookup));
-> -		lookup.slave_addr = slave_addr;
-> -		lookup.intel_dsi = intel_dsi;
-> -		lookup.dev_handle = acpi_device_handle(acpi_dev);
-> -
-> -		INIT_LIST_HEAD(&resource_list);
-> -		acpi_dev_get_resources(acpi_dev, &resource_list,
-> -				       i2c_adapter_lookup,
-> -				       &lookup);
-> -		acpi_dev_free_resource_list(&resource_list);
-> -	}
-> +	memset(&lookup, 0, sizeof(lookup));
-> +	lookup.slave_addr = slave_addr;
-> +	lookup.intel_dsi = intel_dsi;
-> +	lookup.dev_handle = acpi_device_handle(acpi_dev);
-> +
-> +	INIT_LIST_HEAD(&resource_list);
-> +	acpi_dev_get_resources(acpi_dev, &resource_list,
-> +			       i2c_adapter_lookup, &lookup);
-> +	acpi_dev_free_resource_list(&resource_list);
->  }
->  #else
->  static inline void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
-> -- 
-> 2.26.2
+> Before disabling polling we would need to enable hotplug interrupts
+> during the runtime suspended state. Also I haven't seen yet stats where
+IMHO whilst it is deepest display C state, HOTPLUG interrupt will be
+disabled.
+> polling (which has a 10 sec period) have a significant effect on
+> idle residencies.
+IMHO it can still affect the runtime s0ix.
+
+Thanks,
+Anshuman Gupta.
+
 > 
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> > Cc: Imre Deak <imre.deak@intel.com>
+> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_drv.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> > index 5fd5af4bc855..1229c72f19c9 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.c
+> > +++ b/drivers/gpu/drm/i915/i915_drv.c
+> > @@ -1595,6 +1595,8 @@ static int intel_runtime_suspend(struct device *kdev)
+> >  
+> >  	disable_rpm_wakeref_asserts(rpm);
+> >  
+> > +	drm_kms_helper_poll_disable(&dev_priv->drm);
+> > +
+> >  	/*
+> >  	 * We are safe here against re-faults, since the fault handler takes
+> >  	 * an RPM reference.
+> > @@ -1699,6 +1701,8 @@ static int intel_runtime_resume(struct device *kdev)
+> >  	 */
+> >  	intel_gt_runtime_resume(&dev_priv->gt);
+> >  
+> > +	drm_kms_helper_poll_enable(&dev_priv->drm);
+> > +
+> >  	/*
+> >  	 * On VLV/CHV display interrupts are part of the display
+> >  	 * power well, so hpd is reinitialized from there. For
+> > -- 
+> > 2.26.2
+> > 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
