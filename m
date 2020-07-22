@@ -1,63 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B49229747
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jul 2020 13:19:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0DDB22977C
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jul 2020 13:33:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 224CB6E0AC;
-	Wed, 22 Jul 2020 11:19:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D3D16E49D;
+	Wed, 22 Jul 2020 11:33:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
- [213.80.101.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 973986E0AC
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jul 2020 11:19:32 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 9AC853FBBA;
- Wed, 22 Jul 2020 13:19:29 +0200 (CEST)
-Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=ZESlHtDC; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jD4aq4WFzEzo; Wed, 22 Jul 2020 13:19:28 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 7B8BA3FB79;
- Wed, 22 Jul 2020 13:19:28 +0200 (CEST)
-Received: from [192.168.0.100] (h-205-35.A357.priv.bahnhof.se [155.4.205.35])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 3FC7B362551;
- Wed, 22 Jul 2020 13:19:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1595416769; bh=Cz6wfOlPIdikJOscKb/y5l0M/cJKB/U+UqOz7ewTzGo=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=ZESlHtDCTDHVdkWCwUiqs3BMLktdPPVL/PhAm587a1F1rFicrI+6MUSDLYmeRl4fB
- kxVW2uAOF+/mb6wGSQFb080hW2VLKUL9zJGOFeWuSRCihqUGaK7yQ1YQVWBR3LvNlQ
- Hgw/ahAPpdbTscNM5pVH2o8JNtWw2rDh1mc5p3qY=
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <20200715115147.11866-8-chris@chris-wilson.co.uk>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <305ab51a-2424-10e3-771f-8c4d0935c862@shipmail.org>
-Date: Wed, 22 Jul 2020 13:19:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4821389B4D;
+ Wed, 22 Jul 2020 11:33:32 +0000 (UTC)
+IronPort-SDR: 9YFp9nAOfyA6c6+x6pYp6kabMihn/c2aLJoYmQPcgG+se8JNDm1PQdZmuvt93VYlEtUanwaHU+
+ fJGNCHb/K0Qg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9689"; a="147807473"
+X-IronPort-AV: E=Sophos;i="5.75,381,1589266800"; d="scan'208";a="147807473"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2020 04:33:31 -0700
+IronPort-SDR: crb0g6DXLg7BYUWf2B208Qvj2EicPyZp2PefbqKNCNUb8raK4+G1cXn5SWWRYqUz7yoxq86/gc
+ 3vYsnm181upg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,381,1589266800"; d="scan'208";a="326667254"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 22 Jul 2020 04:33:28 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 22 Jul 2020 14:33:28 +0300
+Date: Wed, 22 Jul 2020 14:33:28 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Message-ID: <20200722113328.GA6112@intel.com>
+References: <20200529123317.20470-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200715115147.11866-8-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 08/66] drm/i915: Make the stale cached
- active node available for any timeline
+Content-Disposition: inline
+In-Reply-To: <20200529123317.20470-1-andriy.shevchenko@linux.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v1] drm/i915/dsi: Drop double check for ACPI
+ companion device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,48 +53,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDIwMjAtMDctMTUgMTM6NTAsIENocmlzIFdpbHNvbiB3cm90ZToKPiBSYXRoZXIgdGhhbiBy
-ZXF1aXJlIHRoZSBuZXh0IHRpbWVsaW5lIGFmdGVyIGlkbGluZyB0byBtYXRjaCB0aGUgTVJVCj4g
-YmVmb3JlIGlkbGluZywgcmVzZXQgdGhlIGluZGV4IG9uIHRoZSBub2RlIGFuZCBhbGxvdyBpdCB0
-byBtYXRjaCB0aGUKPiBmaXJzdCByZXF1ZXN0LiBIb3dldmVyLCB0aGlzIHJlcXVpcmVzIGNtcHhj
-aGcodTY0KSBhbmQgc28gaXMgbm90IHRyaXZpYWwKPiBvbiAzMmIsIHNvIGZvciBjb21wYXRpYmls
-aXR5IHdlIGp1c3QgZmFsbGJhY2sgdG8ga2VlcGluZyB0aGUgY2FjaGVkIG5vZGUKPiBwb2ludGlu
-ZyB0byB0aGUgTVJVIHRpbWVsaW5lLgo+Cj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxj
-aHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X2FjdGl2ZS5jIHwgMjEgKysrKysrKysrKysrKysrKysrKy0tCj4gICAxIGZpbGUgY2hhbmdl
-ZCwgMTkgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2FjdGl2ZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9hY3RpdmUuYwo+IGluZGV4IDA4NTRiMTU1MmJjMS4uNjczN2I1NjE1YzBjIDEwMDY0NAo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfYWN0aXZlLmMKPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2FjdGl2ZS5jCj4gQEAgLTE1Nyw2ICsxNTcsMTAgQEAgX19hY3RpdmVf
-cmV0aXJlKHN0cnVjdCBpOTE1X2FjdGl2ZSAqcmVmKQo+ICAgCQlyYl9saW5rX25vZGUoJnJlZi0+
-Y2FjaGUtPm5vZGUsIE5VTEwsICZyZWYtPnRyZWUucmJfbm9kZSk7Cj4gICAJCXJiX2luc2VydF9j
-b2xvcigmcmVmLT5jYWNoZS0+bm9kZSwgJnJlZi0+dHJlZSk7Cj4gICAJCUdFTV9CVUdfT04ocmVm
-LT50cmVlLnJiX25vZGUgIT0gJnJlZi0+Y2FjaGUtPm5vZGUpOwo+ICsKPiArCQkvKiBNYWtlIHRo
-ZSBjYWNoZWQgbm9kZSBhdmFpbGFibGUgZm9yIHJldXNlIHdpdGggYW55IHRpbWVsaW5lICovCj4g
-KwkJaWYgKElTX0VOQUJMRUQoQ09ORklHXzY0QklUKSkKPiArCQkJcmVmLT5jYWNoZS0+dGltZWxp
-bmUgPSAwOyAvKiBuZWVkcyBjbXB4Y2hnKHU2NCkgKi8KPiAgIAl9Cj4gICAKPiAgIAlzcGluX3Vu
-bG9ja19pcnFyZXN0b3JlKCZyZWYtPnRyZWVfbG9jaywgZmxhZ3MpOwo+IEBAIC0yMzUsOSArMjM5
-LDIyIEBAIHN0YXRpYyBzdHJ1Y3QgYWN0aXZlX25vZGUgKl9fYWN0aXZlX2xvb2t1cChzdHJ1Y3Qg
-aTkxNV9hY3RpdmUgKnJlZiwgdTY0IGlkeCkKPiAgIHsKPiAgIAlzdHJ1Y3QgYWN0aXZlX25vZGUg
-Kml0Owo+ICAgCj4gKwlHRU1fQlVHX09OKGlkeCA9PSAwKTsgLyogMCBpcyB0aGUgdW5vcmRlcmVk
-IHRpbWVsaW5lLCByc3ZkIGZvciBjYWNoZSAqLwo+ICsKPiAgIAlpdCA9IFJFQURfT05DRShyZWYt
-PmNhY2hlKTsKPiAtCWlmIChpdCAmJiBpdC0+dGltZWxpbmUgPT0gaWR4KQo+IC0JCXJldHVybiBp
-dDsKPiArCWlmIChpdCkgewo+ICsJCXU2NCBjYWNoZWQgPSBSRUFEX09OQ0UoaXQtPnRpbWVsaW5l
-KTsKPiArCj4gKwkJaWYgKGNhY2hlZCA9PSBpZHgpCj4gKwkJCXJldHVybiBpdDsKPiArCj4gKyNp
-ZmRlZiBDT05GSUdfNjRCSVQgLyogZm9yIGNtcHhjaGcodTY0KSAqLwo+ICsJCWlmICghY2FjaGVk
-ICYmICFjbXB4Y2hnKCZpdC0+dGltZWxpbmUsIDAsIGlkeCkpIHsKCkRvZXNuJ3QgY21weGNoZygp
-IGFscmVhZHkgZG8gYW4gdW5sb2NrZWQgY29tcGFyZSBiZWZvcmUgYXR0ZW1wdGluZyB0aGUgCmxv
-Y2tlZCBjeWNsZT8KCk90aGVyd2lzZSBsZ3RtLgoKUmV2aWV3ZWQtYnk6IFRob21hcyBIZWxsc3Ry
-w7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGludGVsLmNvbT4KCgo+ICsJCQlHRU1fQlVHX09OKGk5MTVf
-YWN0aXZlX2ZlbmNlX2lzc2V0KCZpdC0+YmFzZSkpOwo+ICsJCQlyZXR1cm4gaXQ7Cj4gKwkJfQo+
-ICsjZW5kaWYKPiArCX0KPiAgIAo+ICAgCUJVSUxEX0JVR19PTihvZmZzZXRvZih0eXBlb2YoKml0
-KSwgbm9kZSkpOwo+ICAgCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+On Fri, May 29, 2020 at 03:33:17PM +0300, Andy Shevchenko wrote:
+> acpi_dev_get_resources() does perform the NULL pointer check against
+> ACPI companion device which is given as function parameter. Thus,
+> there is no need to duplicate this check in the caller.
+> =
+
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
+Sorry, I did look at this but apparently forgot to reply...
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 24 ++++++++------------
+>  1 file changed, 10 insertions(+), 14 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/d=
+rm/i915/display/intel_dsi_vbt.c
+> index 574dcfec9577..6f9e08cda964 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> @@ -426,23 +426,19 @@ static void i2c_acpi_find_adapter(struct intel_dsi =
+*intel_dsi,
+>  {
+>  	struct drm_device *drm_dev =3D intel_dsi->base.base.dev;
+>  	struct device *dev =3D &drm_dev->pdev->dev;
+> -	struct acpi_device *acpi_dev;
+> +	struct acpi_device *acpi_dev =3D ACPI_COMPANION(dev);
+>  	struct list_head resource_list;
+>  	struct i2c_adapter_lookup lookup;
+>  =
+
+> -	acpi_dev =3D ACPI_COMPANION(dev);
+> -	if (acpi_dev) {
+> -		memset(&lookup, 0, sizeof(lookup));
+> -		lookup.slave_addr =3D slave_addr;
+> -		lookup.intel_dsi =3D intel_dsi;
+> -		lookup.dev_handle =3D acpi_device_handle(acpi_dev);
+> -
+> -		INIT_LIST_HEAD(&resource_list);
+> -		acpi_dev_get_resources(acpi_dev, &resource_list,
+> -				       i2c_adapter_lookup,
+> -				       &lookup);
+> -		acpi_dev_free_resource_list(&resource_list);
+> -	}
+> +	memset(&lookup, 0, sizeof(lookup));
+> +	lookup.slave_addr =3D slave_addr;
+> +	lookup.intel_dsi =3D intel_dsi;
+> +	lookup.dev_handle =3D acpi_device_handle(acpi_dev);
+
+struct i2c_adapter_lookup lookup =3D {
+	.slave_addr =3D ...
+};
+
+?
+
+> +
+> +	INIT_LIST_HEAD(&resource_list);
+
+Declare as LIST_HEAD(resource_list); ?
+
+> +	acpi_dev_get_resources(acpi_dev, &resource_list,
+> +			       i2c_adapter_lookup, &lookup);
+> +	acpi_dev_free_resource_list(&resource_list);
+
+I was very confused by this code since on the first glance it appears to
+absolutely nothing. After a deeper look it looks like
+i2c_adapter_lookup() magically mutates intel_dsi->i2c_bus_num.
+Did I mention I hate functions with side effects? IMO would be much
+better if i2c_adapter_lookup() did what it says on the tin and just
+returned the adapter number and let the caller deal with it. But
+this is a pre-existing issue with the code and so not directly related
+to your patch.
+
+>  }
+>  #else
+>  static inline void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
+> -- =
+
+> 2.26.2
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
