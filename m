@@ -2,73 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B49CD229905
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jul 2020 15:12:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 110DB229929
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jul 2020 15:26:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D6A96E366;
-	Wed, 22 Jul 2020 13:12:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 530CF6E827;
+	Wed, 22 Jul 2020 13:26:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12D676E366;
- Wed, 22 Jul 2020 13:12:12 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id D70B13F634;
- Wed, 22 Jul 2020 15:12:09 +0200 (CEST)
-Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=m8x/rX9A; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id LpwrYAHQP3Iq; Wed, 22 Jul 2020 15:12:09 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 420893F29E;
- Wed, 22 Jul 2020 15:12:05 +0200 (CEST)
-Received: from [192.168.0.100] (h-205-35.A357.priv.bahnhof.se [155.4.205.35])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 7831D362551;
- Wed, 22 Jul 2020 15:12:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1595423525; bh=BkLRqDnF6XeEiFgBNy2htn8KfcdCEjHm5mJt4RvFSnY=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=m8x/rX9A/5dWwW9deLLc6aLIe4nKw3T+GjV3Mey9FdcHPjjgoDT8c+S8HtNfUdSry
- hyK2SRYBZv+xlR+pd8m2hEh+pGKmkJMiDw0KlyvoimmBHTzNHUQfUUCgDwzI4bxZ8g
- QuFArKmKCeFm9S1vgSmn0RJWQHG/kF/iJyd5XVgo=
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <20200707201229.472834-4-daniel.vetter@ffwll.ch>
- <20200709123339.547390-1-daniel.vetter@ffwll.ch>
- <93b673b7-bb48-96eb-dc2c-bd4f9304000e@shipmail.org>
- <20200721074157.GB3278063@phenom.ffwll.local>
- <3603bb71-318b-eb53-0532-9daab62dce86@amd.com>
- <57a5eb9d-b74f-8ce4-7199-94e911d9b68b@shipmail.org>
- <CAPM=9twUWeenf-26GEvkuKo3wHgS3BCyrva=sNaWo6+=A5qdoQ@mail.gmail.com>
- <805c49b7-f0b3-45dc-5fe3-b352f0971527@shipmail.org>
- <CAKMK7uHhhxBC2MvnNnU9FjxJaWkEcP3m5m7AN3yzfw=wxFsckA@mail.gmail.com>
- <92393d26-d863-aac6-6d27-53cad6854e13@shipmail.org>
- <CAKMK7uF8jpyuCF8uUbEeJUedErxqRGa8JY+RuURg7H1XXWXzkw@mail.gmail.com>
- <8fd999f2-cbf6-813c-6ad4-131948fb5cc5@shipmail.org>
- <CAKMK7uH0rcyepP2hDpNB-yuvNyjee1tPmxWUyefS5j7i-N6Pfw@mail.gmail.com>
- <df5414f5-ac5c-d212-500c-b05c7c78ce84@shipmail.org>
- <CAKMK7uF27SifuvMatuP2kJPTf+LVmVbG098cE2cqorYYo7UHkw@mail.gmail.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <697d1b5e-5d1c-1655-23f8-7a3f652606f3@shipmail.org>
-Date: Wed, 22 Jul 2020 15:12:05 +0200
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 824AA6E829
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jul 2020 13:26:41 +0000 (UTC)
+IronPort-SDR: RcuDZqofeW/aHJIHonPazblT0/aoW7SU4wr1DVjz3BoQwQdFAgtLt5O7tA0P0i6M4qd4zN9xZK
+ GqGJRl13hPng==
+X-IronPort-AV: E=McAfee;i="6000,8403,9689"; a="168467252"
+X-IronPort-AV: E=Sophos;i="5.75,383,1589266800"; d="scan'208";a="168467252"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2020 06:26:40 -0700
+IronPort-SDR: 4ENgfhj78uoS+e2SaeUz3A3EyD/xnJpTTaxQioywrlBjhoA9t4zEq3OvYOjO3RfyVoFTzzSdKq
+ gkhd7qBXxSXg==
+X-IronPort-AV: E=Sophos;i="5.75,383,1589266800"; d="scan'208";a="462452227"
+Received: from unknown (HELO [10.214.224.104]) ([10.214.224.104])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2020 06:26:39 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200720092312.16975-1-chris@chris-wilson.co.uk>
+ <20200720092312.16975-8-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <59af1fe0-9aaa-6ac7-02ba-b1e573f9ad40@linux.intel.com>
+Date: Wed, 22 Jul 2020 14:26:36 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAKMK7uF27SifuvMatuP2kJPTf+LVmVbG098cE2cqorYYo7UHkw@mail.gmail.com>
+In-Reply-To: <20200720092312.16975-8-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 1/2] dma-buf.rst: Document
- why indefinite fences are a bad idea
+Subject: Re: [Intel-gfx] [PATCH 08/10] drm/i915/gt: Track signaled
+ breadcrumbs outside of the breadcrumb spinlock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,66 +53,170 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>,
- Daniel Stone <daniels@collabora.com>, linux-rdma <linux-rdma@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Steve Pronovost <spronovo@microsoft.com>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Jesse Natalie <jenatali@microsoft.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 2020-07-22 14:41, Daniel Vetter wrote:
->
-> Ah I think I misunderstood which options you want to compare here. I'm
-> not sure how much pain fixing up "dma-fence as memory fence" really
-> is. That's kinda why I want a lot more testing on my annotation
-> patches, to figure that out. Not much feedback aside from amdgpu and
-> intel, and those two drivers pretty much need to sort out their memory
-> fence issues anyway (because of userptr and stuff like that).
->
-> The only other issues outside of these two drivers I'm aware of:
-> - various scheduler drivers doing allocations in the drm/scheduler
-> critical section. Since all arm-soc drivers have a mildly shoddy
-> memory model of "we just pin everything" they don't really have to
-> deal with this. So we might just declare arm as a platform broken and
-> not taint the dma-fence critical sections with fs_reclaim. Otoh we
-> need to fix this for drm/scheduler anyway, I think best option would
-> be to have a mempool for hw fences in the scheduler itself, and at
-> that point fixing the other drivers shouldn't be too onerous.
->
-> - vmwgfx doing a dma_resv in the atomic commit tail. Entirely
-> orthogonal to the entire memory fence discussion.
+On 20/07/2020 10:23, Chris Wilson wrote:
+> Make b->signaled_requests a lockless-list so that we can manipulate it
+> outside of the b->irq_lock.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 42 +++++++++----------
+>   .../gpu/drm/i915/gt/intel_breadcrumbs_types.h |  2 +-
+>   drivers/gpu/drm/i915/i915_request.h           |  6 ++-
+>   3 files changed, 26 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index 59e8cd505569..2b3ad17c63b9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -175,32 +175,23 @@ static void add_retire(struct intel_breadcrumbs *b, struct intel_timeline *tl)
+>   		intel_engine_add_retire(b->irq_engine, tl);
+>   }
+>   
+> -static bool __signal_request(struct i915_request *rq, struct list_head *signals)
+> -{
+> -	clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+> -
+> -	if (!__dma_fence_signal(&rq->fence))
+> -		return false;
+> -
+> -	list_add_tail(&rq->signal_link, signals);
+> -	return true;
+> -}
+> -
+>   static void signal_irq_work(struct irq_work *work)
+>   {
+>   	struct intel_breadcrumbs *b = container_of(work, typeof(*b), irq_work);
+>   	const ktime_t timestamp = ktime_get();
+> +	struct llist_node *signal, *sn;
+>   	struct intel_context *ce, *cn;
+>   	struct list_head *pos, *next;
+> -	LIST_HEAD(signal);
+> +
+> +	signal = NULL;
+> +	if (!llist_empty(&b->signaled_requests))
+> +		signal = llist_del_all(&b->signaled_requests);
 
-With vmwgfx there is another issue that is hit when the gpu signals an 
-error. At that point the batch might be restarted with a new meta 
-command buffer that needs to be allocated out of a dma pool. in the 
-fence critical section. That's probably a bit nasty to fix, but not 
-impossible.
+Uncoditional llist_del_all? It's not likely list will be empty and if it 
+is llist_del_all will return NULL.
 
->
-> I'm pretty sure there's more bugs, I just haven't heard from them yet.
-> Also due to the opt-in nature of dma-fence we can limit the scope of
-> what we fix fairly naturally, just don't put them where no one cares
-> :-) Of course that also hides general locking issues in dma_fence
-> signalling code, but well *shrug*.
-Hmm, yes. Another potential big problem would be drivers that want to 
-use gpu page faults in the dma-fence critical sections with the 
-batch-based programming model.
+>   
+>   	spin_lock(&b->irq_lock);
+>   
+> -	if (b->irq_armed && list_empty(&b->signalers))
+> +	if (!signal && b->irq_armed && list_empty(&b->signalers))
 
-/Thomas
+Why !signal check in here? Couldn't figure out what changed to make this 
+needed.
 
+>   		__intel_breadcrumbs_disarm_irq(b);
+>   
+> -	list_splice_init(&b->signaled_requests, &signal);
+> -
+>   	list_for_each_entry_safe(ce, cn, &b->signalers, signal_link) {
+>   		GEM_BUG_ON(list_empty(&ce->signals));
+>   
+> @@ -217,8 +208,13 @@ static void signal_irq_work(struct irq_work *work)
+>   			 * spinlock as the callback chain may end up adding
+>   			 * more signalers to the same context or engine.
+>   			 */
+> -			if (!__signal_request(rq, &signal))
+> +			clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+> +			if (__dma_fence_signal(&rq->fence)) {
+> +				rq->signal_node.next = signal;
+> +				signal = &rq->signal_node;
 
+Okay it creates a bit of a differently ordered list like this but I 
+think it doesn't matter.
+
+> +			} else {
+>   				i915_request_put(rq);
+> +			}
+>   		}
+>   
+>   		/*
+> @@ -238,9 +234,9 @@ static void signal_irq_work(struct irq_work *work)
+>   
+>   	spin_unlock(&b->irq_lock);
+>   
+> -	list_for_each_safe(pos, next, &signal) {
+> +	llist_for_each_safe(signal, sn, signal) {
+>   		struct i915_request *rq =
+> -			list_entry(pos, typeof(*rq), signal_link);
+> +			llist_entry(signal, typeof(*rq), signal_node);
+>   		struct list_head cb_list;
+>   
+>   		spin_lock(&rq->lock);
+> @@ -264,7 +260,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
+>   
+>   	spin_lock_init(&b->irq_lock);
+>   	INIT_LIST_HEAD(&b->signalers);
+> -	INIT_LIST_HEAD(&b->signaled_requests);
+> +	init_llist_head(&b->signaled_requests);
+>   
+>   	init_irq_work(&b->irq_work, signal_irq_work);
+>   
+> @@ -329,10 +325,12 @@ static void insert_breadcrumb(struct i915_request *rq,
+>   	 * its signal completion.
+>   	 */
+>   	if (__request_completed(rq)) {
+> -		if (__signal_request(rq, &b->signaled_requests))
+> -			irq_work_queue(&b->irq_work);
+> -		else
+> +		if (__dma_fence_signal(&rq->fence)) {
+> +			if (llist_add(&rq->signal_node, &b->signaled_requests))
+> +				irq_work_queue(&b->irq_work);
+> +		} else {
+>   			i915_request_put(rq);
+> +		}
+>   		return;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> index 8e53b9942695..3fa19820b37a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> @@ -35,7 +35,7 @@ struct intel_breadcrumbs {
+>   	struct intel_engine_cs *irq_engine;
+>   
+>   	struct list_head signalers;
+> -	struct list_head signaled_requests;
+> +	struct llist_head signaled_requests;
+>   
+>   	struct irq_work irq_work; /* for use from inside irq_lock */
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 16b721080195..874af6db6103 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -176,7 +176,11 @@ struct i915_request {
+>   	struct intel_context *context;
+>   	struct intel_ring *ring;
+>   	struct intel_timeline __rcu *timeline;
+> -	struct list_head signal_link;
+> +
+> +	union {
+> +		struct list_head signal_link;
+> +		struct llist_node signal_node;
+
+Transition is only from signal_link to signal_node, which uses and 
+initializes only one field, so I think potential garbage in other ones 
+is safe.
+
+> +	};
+>   
+>   	/*
+>   	 * The rcu epoch of when this request was allocated. Used to judiciously
+> 
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
