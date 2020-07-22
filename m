@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85369229BB4
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jul 2020 17:44:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 723CB229BB3
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jul 2020 17:44:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14DBC6E0F5;
-	Wed, 22 Jul 2020 15:44:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0E6389956;
+	Wed, 22 Jul 2020 15:44:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFFE6E0F5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3445389956
  for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jul 2020 15:44:17 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21897669-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21897670-1500050 
  for multiple; Wed, 22 Jul 2020 16:44:10 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Jul 2020 16:44:08 +0100
-Message-Id: <20200722154409.24555-1-chris@chris-wilson.co.uk>
+Date: Wed, 22 Jul 2020 16:44:09 +0100
+Message-Id: <20200722154409.24555-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200722154409.24555-1-chris@chris-wilson.co.uk>
+References: <20200722154409.24555-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Reduce ctx->engine_mutex for
- reading the clone source
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Reduce ctx->engines_mutex for
+ get_engines()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,96 +45,80 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When cloning the engines from the source context, we need to ensure that
-the engines are not freed as we copy them, and that the flags we clone
-from the source correspond with the engines we copy across. To do this
-we need only take a reference to the src->engines, rather than hold the
-src->engine_mutex, so long as we verify that nothing changed under the
-read.
+Take a snapshot of the ctx->engines, so we can avoid taking the
+ctx->engines_mutex for a mere read in get_engines().
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 24 +++++++++++++--------
- 1 file changed, 15 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 39 +++++----------------
+ 1 file changed, 8 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index d0bdb6d447ed..b5b179f96d77 100644
+index b5b179f96d77..f43f0ca4eec9 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -752,7 +752,8 @@ __create_context(struct drm_i915_private *i915)
+@@ -1862,27 +1862,6 @@ set_engines(struct i915_gem_context *ctx,
+ 	return 0;
  }
  
- static inline struct i915_gem_engines *
--__context_engines_await(const struct i915_gem_context *ctx)
-+__context_engines_await(const struct i915_gem_context *ctx,
-+			bool *user_engines)
- {
- 	struct i915_gem_engines *engines;
- 
-@@ -761,6 +762,10 @@ __context_engines_await(const struct i915_gem_context *ctx)
- 		engines = rcu_dereference(ctx->engines);
- 		GEM_BUG_ON(!engines);
- 
-+		if (user_engines)
-+			*user_engines = i915_gem_context_user_engines(ctx);
-+
-+		/* successful await => strong mb */
- 		if (unlikely(!i915_sw_fence_await(&engines->fence)))
- 			continue;
- 
-@@ -784,7 +789,7 @@ context_apply_all(struct i915_gem_context *ctx,
- 	struct intel_context *ce;
+-static struct i915_gem_engines *
+-__copy_engines(struct i915_gem_engines *e)
+-{
+-	struct i915_gem_engines *copy;
+-	unsigned int n;
+-
+-	copy = alloc_engines(e->num_engines);
+-	if (!copy)
+-		return ERR_PTR(-ENOMEM);
+-
+-	for (n = 0; n < e->num_engines; n++) {
+-		if (e->engines[n])
+-			copy->engines[n] = intel_context_get(e->engines[n]);
+-		else
+-			copy->engines[n] = NULL;
+-	}
+-	copy->num_engines = n;
+-
+-	return copy;
+-}
+-
+ static int
+ get_engines(struct i915_gem_context *ctx,
+ 	    struct drm_i915_gem_context_param *args)
+@@ -1890,19 +1869,17 @@ get_engines(struct i915_gem_context *ctx,
+ 	struct i915_context_param_engines __user *user;
+ 	struct i915_gem_engines *e;
+ 	size_t n, count, size;
++	bool user_engines;
  	int err = 0;
  
--	e = __context_engines_await(ctx);
-+	e = __context_engines_await(ctx, NULL);
- 	for_each_gem_engine(ce, e, it) {
- 		err = fn(ce, data);
- 		if (err)
-@@ -1117,7 +1122,7 @@ static int context_barrier_task(struct i915_gem_context *ctx,
- 		return err;
- 	}
- 
--	e = __context_engines_await(ctx);
-+	e = __context_engines_await(ctx, NULL);
- 	if (!e) {
- 		i915_active_release(&cb->base);
- 		return -ENOENT;
-@@ -2114,11 +2119,14 @@ static int copy_ring_size(struct intel_context *dst,
- static int clone_engines(struct i915_gem_context *dst,
- 			 struct i915_gem_context *src)
- {
--	struct i915_gem_engines *e = i915_gem_context_lock_engines(src);
--	struct i915_gem_engines *clone;
-+	struct i915_gem_engines *clone, *e;
- 	bool user_engines;
- 	unsigned long n;
- 
-+	e = __context_engines_await(src, &user_engines);
+-	err = mutex_lock_interruptible(&ctx->engines_mutex);
+-	if (err)
+-		return err;
++	e = __context_engines_await(ctx, &user_engines);
 +	if (!e)
 +		return -ENOENT;
-+
- 	clone = alloc_engines(e->num_engines);
- 	if (!clone)
- 		goto err_unlock;
-@@ -2160,9 +2168,7 @@ static int clone_engines(struct i915_gem_context *dst,
- 		}
+ 
+-	e = NULL;
+-	if (i915_gem_context_user_engines(ctx))
+-		e = __copy_engines(i915_gem_context_engines(ctx));
+-	mutex_unlock(&ctx->engines_mutex);
+-	if (IS_ERR_OR_NULL(e)) {
++	if (!user_engines) {
++		i915_sw_fence_complete(&e->fence);
+ 		args->size = 0;
+-		return PTR_ERR_OR_ZERO(e);
++		return 0;
  	}
- 	clone->num_engines = n;
--
--	user_engines = i915_gem_context_user_engines(src);
--	i915_gem_context_unlock_engines(src);
-+	i915_sw_fence_complete(&e->fence);
  
- 	/* Serialised by constructor */
- 	engines_idle_release(dst, rcu_replace_pointer(dst->engines, clone, 1));
-@@ -2173,7 +2179,7 @@ static int clone_engines(struct i915_gem_context *dst,
- 	return 0;
+ 	count = e->num_engines;
+@@ -1953,7 +1930,7 @@ get_engines(struct i915_gem_context *ctx,
+ 	args->size = size;
  
- err_unlock:
--	i915_gem_context_unlock_engines(src);
+ err_free:
+-	free_engines(e);
 +	i915_sw_fence_complete(&e->fence);
- 	return -ENOMEM;
+ 	return err;
  }
  
 -- 
