@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0283D22902E
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jul 2020 07:55:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B29AB22902D
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jul 2020 07:55:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB186E32B;
-	Wed, 22 Jul 2020 05:55:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A52F6E393;
+	Wed, 22 Jul 2020 05:55:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC78A6E329
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9D516E328
  for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jul 2020 05:55:19 +0000 (UTC)
-IronPort-SDR: cQarCiUBCNR1kdINw+UG4OU0YC1iciUv0gzKBTnZv4SBMnJz+GeGaLWoI9GiZFZVSDpnC9wVu+
- XdB66gIJExwg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9689"; a="211818697"
-X-IronPort-AV: E=Sophos;i="5.75,381,1589266800"; d="scan'208";a="211818697"
+IronPort-SDR: O5p51TCZWauUYuDhLPd4zQ4b3go5cuacvq3o1Nrs19xSxZXp/4OfdzPvHpCen5TqVkQSqdviKj
+ 8dE3SXtB8gPQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9689"; a="211818698"
+X-IronPort-AV: E=Sophos;i="5.75,381,1589266800"; d="scan'208";a="211818698"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Jul 2020 22:55:18 -0700
-IronPort-SDR: wjYQEy2iKwHVgfJqT7aa2J6aLJ5Pj46wtO+UACROfQtxqB1grT+GuT1PjNmjFY1+s4GJpeh/0u
- lBqzUlkcXeVA==
+IronPort-SDR: 8np5PVvBs77PMboVzOVTW1NSSHnDicutN5o8+6yjscmGUsT1EYMIs4n/Klg+MbfNxYJYz18av/
+ Bk8Y3D4XY7dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,381,1589266800"; d="scan'208";a="284112231"
+X-IronPort-AV: E=Sophos;i="5.75,381,1589266800"; d="scan'208";a="284112233"
 Received: from orsosgc001.ra.intel.com ([10.23.184.150])
  by orsmga003.jf.intel.com with ESMTP; 21 Jul 2020 22:55:18 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Jul 2020 22:55:17 -0700
-Message-Id: <20200722055518.44028-4-umesh.nerlige.ramappa@intel.com>
+Date: Tue, 21 Jul 2020 22:55:18 -0700
+Message-Id: <20200722055518.44028-5-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200722055518.44028-1-umesh.nerlige.ramappa@intel.com>
 References: <20200722055518.44028-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/4] drm/i915/perf: Whitelist OA counter and
- buffer registers
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915/perf: Map OA buffer to user space
+ for gen12 performance query
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,209 +57,496 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Piotr Maciejewski <piotr.maciejewski@intel.com>
 
-It is useful to have markers in the OA reports to identify triggered
-reports. Whitelist some OA counters that can be used as markers.
+i915 used to support time based sampling mode which is good for overall
+system monitoring, but is not enough for query mode used to measure a
+single draw call or dispatch. Gen9-Gen11 are using current i915 perf
+implementation for query, but Gen12+ requires a new approach for query
+based on triggered reports within oa buffer.
 
-A triggered report can be found faster if we can sample the HW tail and
-head registers when the report was triggered. Whitelist OA buffer
-specific registers.
+Triggering reports into the OA buffer is achieved by writing into a
+a trigger register. Optionally an unused counter/register is set with a
+marker value such that a triggered report can be identified in the OA
+buffer. Reports are usually triggered at the start and end of work that
+is measured.
+
+Since OA buffer is large and queries can be frequent, an efficient way
+to look for triggered reports is required. By knowing the current head
+and tail offsets into the OA buffer, it is easier to determine the
+locality of the reports of interest.
+
+Current perf OA interface does not expose head/tail information to the
+user and it filters out invalid reports before sending data to user.
+Also considering limited size of user buffer used during a query,
+creating a 1:1 copy of the OA buffer at the user space added undesired
+complexity.
+
+The solution was to map the OA buffer to user space provided
+
+(1) that it is accessed from a privileged user.
+(2) OA report filtering is not used.
+
+These 2 conditions would satisfy the safety criteria that the current
+perf interface addresses.
+
+To enable the query:
+- Add an ioctl to expose head and tail to the user
+- Add an ioctl to return size and offset of the OA buffer
+- Map the OA buffer to the user space
 
 v2:
-- Bump up the perf revision (Lionel)
-- Use indexing for counters (Lionel)
-- Fix selftest for oa ticking register (Umesh)
+- Improve commit message (Chris)
+- Do not mmap based on gem object filp. Instead, use perf_fd and support
+  mmap syscall (Chris)
+- Pass non-zero offset in mmap to enforce the right object is
+  mapped (Chris)
+- Do not expose gpu_address (Chris)
+- Verify start and length of vma for page alignment (Lionel)
+- Move SQNTL config out (Lionel)
 
-v3: Pardon whitelisted registers for selftest (Umesh)
-v4:
-- Document whitelisted registers (Lionel)
-- Fix live isolated whitelist for OA regs (Umesh)
+v3: (Chris)
+- Omit redundant checks
+- Return VM_FAULT_SIGBUS is old stream is closed
+- Maintain reference counts to stream in vm_open and vm_close
+- Use switch to identify object to be mapped
+
+v4: Call kref_put on closing perf fd (Chris)
 
 Signed-off-by: Piotr Maciejewski <piotr.maciejewski@intel.com>
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_workarounds.c   | 34 +++++++++++++++++++
- .../gpu/drm/i915/gt/selftest_workarounds.c    | 30 +++++++++++++++-
- drivers/gpu/drm/i915/i915_perf.c              |  8 ++++-
- drivers/gpu/drm/i915/i915_reg.h               | 10 ++++++
- 4 files changed, 80 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.h |   2 +
+ drivers/gpu/drm/i915/i915_perf.c         | 211 ++++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_perf_types.h   |  17 ++
+ include/uapi/drm/i915_drm.h              |  32 ++++
+ 5 files changed, 261 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index a72ebfd115e5..c950d07beec3 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1392,6 +1392,23 @@ static void gen9_whitelist_build_performance_counters(struct i915_wa_list *w)
- 	/* OA buffer trigger report 2/6 used by performance query */
- 	whitelist_reg(w, OAREPORTTRIG2);
- 	whitelist_reg(w, OAREPORTTRIG6);
-+
-+	/* Performance counters A18-20 used by tbs marker query */
-+	whitelist_reg_ext(w, OA_PERF_COUNTER_A(18),
-+			  RING_FORCE_TO_NONPRIV_ACCESS_RW |
-+			  RING_FORCE_TO_NONPRIV_RANGE_4);
-+
-+	whitelist_reg(w, OA_PERF_COUNTER_A(20));
-+	whitelist_reg(w, OA_PERF_COUNTER_A_UPPER(20));
-+
-+	/* Read access to gpu ticks */
-+	whitelist_reg_ext(w, GEN8_GPU_TICKS,
-+			  RING_FORCE_TO_NONPRIV_ACCESS_RD);
-+
-+	/* Read access to: oa status, head, tail, buffer settings */
-+	whitelist_reg_ext(w, GEN8_OASTATUS,
-+			  RING_FORCE_TO_NONPRIV_ACCESS_RD |
-+			  RING_FORCE_TO_NONPRIV_RANGE_4);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index b23368529a40..7c4b9b0c334b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -204,7 +204,7 @@ compute_partial_view(const struct drm_i915_gem_object *obj,
+ 	return view;
  }
  
- static void gen12_whitelist_build_performance_counters(struct i915_wa_list *w)
-@@ -1399,6 +1416,23 @@ static void gen12_whitelist_build_performance_counters(struct i915_wa_list *w)
- 	/* OA buffer trigger report 2/6 used by performance query */
- 	whitelist_reg(w, GEN12_OAG_OAREPORTTRIG2);
- 	whitelist_reg(w, GEN12_OAG_OAREPORTTRIG6);
-+
-+	/* Performance counters A18-20 used by tbs marker query */
-+	whitelist_reg_ext(w, GEN12_OAG_PERF_COUNTER_A(18),
-+			  RING_FORCE_TO_NONPRIV_ACCESS_RW |
-+			  RING_FORCE_TO_NONPRIV_RANGE_4);
-+
-+	whitelist_reg(w, GEN12_OAG_PERF_COUNTER_A(20));
-+	whitelist_reg(w, GEN12_OAG_PERF_COUNTER_A_UPPER(20));
-+
-+	/* Read access to gpu ticks */
-+	whitelist_reg_ext(w, GEN12_OAG_GPU_TICKS,
-+			  RING_FORCE_TO_NONPRIV_ACCESS_RD);
-+
-+	/* Read access to: oa status, head, tail, buffer settings */
-+	whitelist_reg_ext(w, GEN12_OAG_OASTATUS,
-+			  RING_FORCE_TO_NONPRIV_ACCESS_RD |
-+			  RING_FORCE_TO_NONPRIV_RANGE_4);
- }
- 
- static void gen9_whitelist_build(struct i915_wa_list *w)
-diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-index 3b1d3dbcd477..7c2c2be8d212 100644
---- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-@@ -431,6 +431,19 @@ static bool timestamp(const struct intel_engine_cs *engine, u32 reg)
- 	}
- }
- 
-+static bool oa_gpu_ticks(u32 reg)
-+{
-+	reg = reg & ~RING_FORCE_TO_NONPRIV_ACCESS_MASK;
-+	switch (reg) {
-+	case 0x2910:
-+	case 0xda90:
-+		return true;
-+
-+	default:
-+		return false;
-+	}
-+}
-+
- static bool ro_register(u32 reg)
+-static vm_fault_t i915_error_to_vmf_fault(int err)
++vm_fault_t i915_error_to_vmf_fault(int err)
  {
- 	if ((reg & RING_FORCE_TO_NONPRIV_ACCESS_MASK) ==
-@@ -511,7 +524,7 @@ static int check_dirty_whitelist(struct intel_context *ce)
- 		if (wo_register(engine, reg))
- 			continue;
+ 	switch (err) {
+ 	default:
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.h b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
+index efee9e0d2508..1190a3a228ea 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
+@@ -29,4 +29,6 @@ void i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj);
  
--		if (timestamp(engine, reg))
-+		if (timestamp(engine, reg) || oa_gpu_ticks(reg))
- 			continue; /* timestamps are expected to autoincrement */
+ void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj);
  
- 		ro_reg = ro_register(reg);
-@@ -918,6 +931,9 @@ static bool find_reg(struct drm_i915_private *i915,
- {
- 	u32 offset = i915_mmio_reg_offset(reg);
- 
-+	/* Clear non priv flags */
-+	offset &= RING_FORCE_TO_NONPRIV_ADDRESS_MASK;
++vm_fault_t i915_error_to_vmf_fault(int err);
 +
- 	while (count--) {
- 		if (INTEL_INFO(i915)->gen_mask & tbl->gen_mask &&
- 		    i915_mmio_reg_offset(tbl->reg) == offset)
-@@ -938,6 +954,12 @@ static bool pardon_reg(struct drm_i915_private *i915, i915_reg_t reg)
- 		{ OAREPORTTRIG6, INTEL_GEN_MASK(8, 11) },
- 		{ GEN12_OAG_OAREPORTTRIG2, INTEL_GEN_MASK(12, 12) },
- 		{ GEN12_OAG_OAREPORTTRIG6, INTEL_GEN_MASK(12, 12) },
-+		{ OA_PERF_COUNTER_A(18), INTEL_GEN_MASK(8, 11) },
-+		{ OA_PERF_COUNTER_A(20), INTEL_GEN_MASK(8, 11) },
-+		{ OA_PERF_COUNTER_A_UPPER(20), INTEL_GEN_MASK(8, 11) },
-+		{ GEN12_OAG_PERF_COUNTER_A(18), INTEL_GEN_MASK(12, 12) },
-+		{ GEN12_OAG_PERF_COUNTER_A(20), INTEL_GEN_MASK(12, 12) },
-+		{ GEN12_OAG_PERF_COUNTER_A_UPPER(20), INTEL_GEN_MASK(12, 12) },
- 	};
- 
- 	return find_reg(i915, reg, pardon, ARRAY_SIZE(pardon));
-@@ -964,6 +986,12 @@ static bool writeonly_reg(struct drm_i915_private *i915, i915_reg_t reg)
- 		{ OAREPORTTRIG6, INTEL_GEN_MASK(8, 11) },
- 		{ GEN12_OAG_OAREPORTTRIG2, INTEL_GEN_MASK(12, 12) },
- 		{ GEN12_OAG_OAREPORTTRIG6, INTEL_GEN_MASK(12, 12) },
-+		{ OA_PERF_COUNTER_A(18), INTEL_GEN_MASK(8, 11) },
-+		{ OA_PERF_COUNTER_A(20), INTEL_GEN_MASK(8, 11) },
-+		{ OA_PERF_COUNTER_A_UPPER(20), INTEL_GEN_MASK(8, 11) },
-+		{ GEN12_OAG_PERF_COUNTER_A(18), INTEL_GEN_MASK(12, 12) },
-+		{ GEN12_OAG_PERF_COUNTER_A(20), INTEL_GEN_MASK(12, 12) },
-+		{ GEN12_OAG_PERF_COUNTER_A_UPPER(20), INTEL_GEN_MASK(12, 12) },
- 	};
- 
- 	return find_reg(i915, reg, wo, ARRAY_SIZE(wo));
+ #endif
 diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 30f6aeb819aa..2f23aad12c60 100644
+index 2f23aad12c60..331c3f9c59e2 100644
 --- a/drivers/gpu/drm/i915/i915_perf.c
 +++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -4450,8 +4450,14 @@ int i915_perf_ioctl_version(void)
- 	 *
- 	 * 6: Whitelist OATRIGGER registers to allow user to trigger reports
- 	 *    into the OA buffer. This applies only to gen8+.
-+	 *
-+	 * 7: Whitelist below OA registers for user to identify the location of
-+	 *    triggered reports in the OA buffer. This applies only to gen8+.
-+	 *
-+	 *    - OA buffer head/tail/status/buffer registers for read only
-+	 *    - OA counters A18, A19, A20 for read/write
+@@ -192,10 +192,12 @@
+  */
+ 
+ #include <linux/anon_inodes.h>
++#include <linux/mman.h>
+ #include <linux/sizes.h>
+ #include <linux/uuid.h>
+ 
+ #include "gem/i915_gem_context.h"
++#include "gem/i915_gem_mman.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_engine_user.h"
+ #include "gt/intel_gt.h"
+@@ -378,6 +380,24 @@ static struct ctl_table_header *sysctl_header;
+ 
+ static enum hrtimer_restart oa_poll_check_timer_cb(struct hrtimer *hrtimer);
+ 
++static void free_stream(struct kref *kref)
++{
++	struct i915_perf_stream *stream =
++		container_of(kref, typeof(*stream), refcount);
++
++	kfree(stream);
++}
++
++static void perf_stream_get(struct i915_perf_stream *stream)
++{
++	kref_get(&stream->refcount);
++}
++
++static void perf_stream_put(struct i915_perf_stream *stream)
++{
++	kref_put(&stream->refcount, free_stream);
++}
++
+ void i915_oa_config_release(struct kref *ref)
+ {
+ 	struct i915_oa_config *oa_config =
+@@ -434,6 +454,30 @@ static u32 gen7_oa_hw_tail_read(struct i915_perf_stream *stream)
+ 	return oastatus1 & GEN7_OASTATUS1_TAIL_MASK;
+ }
+ 
++static u32 gen12_oa_hw_head_read(struct i915_perf_stream *stream)
++{
++	struct intel_uncore *uncore = stream->uncore;
++
++	return intel_uncore_read(uncore, GEN12_OAG_OAHEADPTR) &
++	       GEN12_OAG_OAHEADPTR_MASK;
++}
++
++static u32 gen8_oa_hw_head_read(struct i915_perf_stream *stream)
++{
++	struct intel_uncore *uncore = stream->uncore;
++
++	return intel_uncore_read(uncore, GEN8_OAHEADPTR) &
++	       GEN8_OAHEADPTR_MASK;
++}
++
++static u32 gen7_oa_hw_head_read(struct i915_perf_stream *stream)
++{
++	struct intel_uncore *uncore = stream->uncore;
++	u32 oastatus2 = intel_uncore_read(uncore, GEN7_OASTATUS2);
++
++	return oastatus2 & GEN7_OASTATUS2_HEAD_MASK;
++}
++
+ /**
+  * oa_buffer_check_unlocked - check for data and update tail ptr state
+  * @stream: i915 stream instance
+@@ -2934,6 +2978,7 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+ 	stream->poll_check_timer.function = oa_poll_check_timer_cb;
+ 	init_waitqueue_head(&stream->poll_wq);
+ 	spin_lock_init(&stream->oa_buffer.ptr_lock);
++	kref_init(&stream->refcount);
+ 
+ 	return 0;
+ 
+@@ -3214,6 +3259,69 @@ static long i915_perf_config_locked(struct i915_perf_stream *stream,
+ 	return ret;
+ }
+ 
++/**
++ * i915_perf_oa_buffer_head_tail_locked - head and tail of the OA buffer
++ * @stream: i915 perf stream
++ * @arg: pointer to oa buffer head and tail filled by this function.
++ */
++static int i915_perf_oa_buffer_head_tail_locked(struct i915_perf_stream *stream,
++						unsigned long arg)
++{
++	struct drm_i915_perf_oa_buffer_head_tail ht;
++	void __user *output = (void __user *)arg;
++	u32 gtt_offset = i915_ggtt_offset(stream->oa_buffer.vma);
++
++	if (i915_perf_stream_paranoid && !perfmon_capable()) {
++		DRM_DEBUG("Insufficient privileges to access OA buffer info\n");
++		return -EACCES;
++	}
++
++	if (!output)
++		return -EINVAL;
++
++	memset(&ht, 0, sizeof(ht));
++
++	ht.head = stream->perf->ops.oa_hw_head_read(stream) - gtt_offset;
++	ht.tail = stream->perf->ops.oa_hw_tail_read(stream) - gtt_offset;
++
++	if (copy_to_user(output, &ht, sizeof(ht)))
++		return -EFAULT;
++
++	return 0;
++}
++
++#define I915_PERF_OA_BUFFER_MMAP_OFFSET 1
++
++/**
++ * i915_perf_oa_buffer_info_locked - size and offset of the OA buffer
++ * @stream: i915 perf stream
++ * @arg: pointer to oa buffer info filled by this function.
++ */
++static int i915_perf_oa_buffer_info_locked(struct i915_perf_stream *stream,
++					   unsigned long arg)
++{
++	struct drm_i915_perf_oa_buffer_info info;
++	void __user *output = (void __user *)arg;
++
++	if (i915_perf_stream_paranoid && !perfmon_capable()) {
++		DRM_DEBUG("Insufficient privileges to access OA buffer info\n");
++		return -EACCES;
++	}
++
++	if (!output)
++		return -EINVAL;
++
++	memset(&info, 0, sizeof(info));
++
++	info.size = stream->oa_buffer.vma->size;
++	info.offset = I915_PERF_OA_BUFFER_MMAP_OFFSET * PAGE_SIZE;
++
++	if (copy_to_user(output, &info, sizeof(info)))
++		return -EFAULT;
++
++	return 0;
++}
++
+ /**
+  * i915_perf_ioctl - support ioctl() usage with i915 perf stream FDs
+  * @stream: An i915 perf stream
+@@ -3239,6 +3347,10 @@ static long i915_perf_ioctl_locked(struct i915_perf_stream *stream,
+ 		return 0;
+ 	case I915_PERF_IOCTL_CONFIG:
+ 		return i915_perf_config_locked(stream, arg);
++	case I915_PERF_IOCTL_GET_OA_BUFFER_INFO:
++		return i915_perf_oa_buffer_info_locked(stream, arg);
++	case I915_PERF_IOCTL_GET_OA_BUFFER_HEAD_TAIL:
++		return i915_perf_oa_buffer_head_tail_locked(stream, arg);
+ 	}
+ 
+ 	return -EINVAL;
+@@ -3291,7 +3403,8 @@ static void i915_perf_destroy_locked(struct i915_perf_stream *stream)
+ 	if (stream->ctx)
+ 		i915_gem_context_put(stream->ctx);
+ 
+-	kfree(stream);
++	WRITE_ONCE(stream->closed, true);
++	perf_stream_put(stream);
+ }
+ 
+ /**
+@@ -3314,12 +3427,98 @@ static int i915_perf_release(struct inode *inode, struct file *file)
+ 	i915_perf_destroy_locked(stream);
+ 	mutex_unlock(&perf->lock);
+ 
++	unmap_mapping_range(file->f_mapping, 0, OA_BUFFER_SIZE, 1);
++
+ 	/* Release the reference the perf stream kept on the driver. */
+ 	drm_dev_put(&perf->i915->drm);
+ 
+ 	return 0;
+ }
+ 
++static void vm_open_oa(struct vm_area_struct *vma)
++{
++	struct i915_perf_stream *stream = vma->vm_private_data;
++
++	GEM_BUG_ON(!stream);
++	perf_stream_get(stream);
++}
++
++static void vm_close_oa(struct vm_area_struct *vma)
++{
++	struct i915_perf_stream *stream = vma->vm_private_data;
++
++	GEM_BUG_ON(!stream);
++	perf_stream_put(stream);
++}
++
++static vm_fault_t vm_fault_oa(struct vm_fault *vmf)
++{
++	struct vm_area_struct *vma = vmf->vma;
++	struct i915_perf_stream *stream = vma->vm_private_data;
++	struct i915_perf *perf = stream->perf;
++	struct drm_i915_gem_object *obj = stream->oa_buffer.vma->obj;
++	int err;
++	bool closed;
++
++	mutex_lock(&perf->lock);
++	closed = READ_ONCE(stream->closed);
++	mutex_unlock(&perf->lock);
++
++	if (closed)
++		return VM_FAULT_SIGBUS;
++
++	err = i915_gem_object_pin_pages(obj);
++	if (err)
++		goto out;
++
++	err = remap_io_sg(vma,
++			  vma->vm_start, vma->vm_end - vma->vm_start,
++			  obj->mm.pages->sgl, -1);
++
++	i915_gem_object_unpin_pages(obj);
++
++out:
++	return i915_error_to_vmf_fault(err);
++}
++
++static const struct vm_operations_struct vm_ops_oa = {
++	.open = vm_open_oa,
++	.close = vm_close_oa,
++	.fault = vm_fault_oa,
++};
++
++int i915_perf_mmap(struct file *file, struct vm_area_struct *vma)
++{
++	struct i915_perf_stream *stream = file->private_data;
++
++	if (i915_perf_stream_paranoid && !perfmon_capable()) {
++		DRM_DEBUG("Insufficient privileges to map OA buffer\n");
++		return -EACCES;
++	}
++
++	switch (vma->vm_pgoff) {
++	case I915_PERF_OA_BUFFER_MMAP_OFFSET:
++		if (vma->vm_end - vma->vm_start > OA_BUFFER_SIZE)
++			return -EINVAL;
++
++		if (vma->vm_flags & VM_WRITE)
++			return -EINVAL;
++
++		break;
++
++	default:
++		return -EINVAL;
++	}
++
++	vma->vm_flags &= ~(VM_MAYWRITE | VM_MAYEXEC | VM_MAYSHARE);
++	vma->vm_flags |= VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP;
++	vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
++	vma->vm_private_data = stream;
++	vma->vm_ops = &vm_ops_oa;
++	vm_open_oa(vma);
++
++	return 0;
++}
+ 
+ static const struct file_operations fops = {
+ 	.owner		= THIS_MODULE,
+@@ -3332,6 +3531,7 @@ static const struct file_operations fops = {
+ 	 * to handle 32bits compatibility.
  	 */
--	return 6;
-+	return 7;
+ 	.compat_ioctl   = i915_perf_ioctl,
++	.mmap		= i915_perf_mmap,
+ };
+ 
+ 
+@@ -4260,6 +4460,7 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 		perf->ops.oa_disable = gen7_oa_disable;
+ 		perf->ops.read = gen7_oa_read;
+ 		perf->ops.oa_hw_tail_read = gen7_oa_hw_tail_read;
++		perf->ops.oa_hw_head_read = gen7_oa_hw_head_read;
+ 
+ 		perf->oa_formats = hsw_oa_formats;
+ 	} else if (HAS_LOGICAL_RING_CONTEXTS(i915)) {
+@@ -4291,6 +4492,7 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 			perf->ops.enable_metric_set = gen8_enable_metric_set;
+ 			perf->ops.disable_metric_set = gen8_disable_metric_set;
+ 			perf->ops.oa_hw_tail_read = gen8_oa_hw_tail_read;
++			perf->ops.oa_hw_head_read = gen8_oa_hw_head_read;
+ 
+ 			if (IS_GEN(i915, 8)) {
+ 				perf->ctx_oactxctrl_offset = 0x120;
+@@ -4318,6 +4520,7 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 			perf->ops.enable_metric_set = gen8_enable_metric_set;
+ 			perf->ops.disable_metric_set = gen10_disable_metric_set;
+ 			perf->ops.oa_hw_tail_read = gen8_oa_hw_tail_read;
++			perf->ops.oa_hw_head_read = gen8_oa_hw_head_read;
+ 
+ 			if (IS_GEN(i915, 10)) {
+ 				perf->ctx_oactxctrl_offset = 0x128;
+@@ -4342,6 +4545,7 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 			perf->ops.enable_metric_set = gen12_enable_metric_set;
+ 			perf->ops.disable_metric_set = gen12_disable_metric_set;
+ 			perf->ops.oa_hw_tail_read = gen12_oa_hw_tail_read;
++			perf->ops.oa_hw_head_read = gen12_oa_hw_head_read;
+ 
+ 			perf->ctx_flexeu0_offset = 0;
+ 			perf->ctx_oactxctrl_offset = 0x144;
+@@ -4456,8 +4660,11 @@ int i915_perf_ioctl_version(void)
+ 	 *
+ 	 *    - OA buffer head/tail/status/buffer registers for read only
+ 	 *    - OA counters A18, A19, A20 for read/write
++	 *
++	 * 8: Added an option to map oa buffer at umd driver level and trigger
++	 *    oa reports within oa buffer from command buffer.
+ 	 */
+-	return 7;
++	return 8;
  }
  
  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 9cc3e312b6b7..c68dc3f39e62 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -675,6 +675,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define  GEN7_OASTATUS2_HEAD_MASK           0xffffffc0
- #define  GEN7_OASTATUS2_MEM_SELECT_GGTT     (1 << 0) /* 0: PPGTT, 1: GGTT */
- 
-+#define GEN8_GPU_TICKS _MMIO(0x2910)
- #define GEN8_OASTATUS _MMIO(0x2b08)
- #define  GEN8_OASTATUS_OVERRUN_STATUS	    (1 << 3)
- #define  GEN8_OASTATUS_COUNTER_OVERFLOW     (1 << 2)
-@@ -733,6 +734,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define  GEN12_OAG_OA_DEBUG_DISABLE_GO_1_0_REPORTS     (1 << 2)
- #define  GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS (1 << 1)
- 
-+#define GEN12_OAG_GPU_TICKS _MMIO(0xda90)
- #define GEN12_OAG_OASTATUS _MMIO(0xdafc)
- #define  GEN12_OAG_OASTATUS_COUNTER_OVERFLOW (1 << 2)
- #define  GEN12_OAG_OASTATUS_BUFFER_OVERFLOW  (1 << 1)
-@@ -974,6 +976,14 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define OAREPORTTRIG8_NOA_SELECT_6_SHIFT    24
- #define OAREPORTTRIG8_NOA_SELECT_7_SHIFT    28
- 
-+/* Performance counters registers */
-+#define OA_PERF_COUNTER_A(idx)       _MMIO(0x2800 + 8 * (idx))
-+#define OA_PERF_COUNTER_A_UPPER(idx) _MMIO(0x2800 + 8 * (idx) + 4)
+diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
+index a36a455ae336..2efbe35c5fa9 100644
+--- a/drivers/gpu/drm/i915/i915_perf_types.h
++++ b/drivers/gpu/drm/i915/i915_perf_types.h
+@@ -311,6 +311,18 @@ struct i915_perf_stream {
+ 	 * buffer should be checked for available data.
+ 	 */
+ 	u64 poll_oa_period;
 +
-+/* Gen12 Performance counters registers */
-+#define GEN12_OAG_PERF_COUNTER_A(idx)       _MMIO(0xD980 + 8 * (idx))
-+#define GEN12_OAG_PERF_COUNTER_A_UPPER(idx) _MMIO(0xD980 + 8 * (idx) + 4)
++	/**
++	 * @closed: Open or closed state of the stream.
++	 * True if stream is closed.
++	 */
++	bool closed;
 +
- /* Same layout as OASTARTTRIGX */
- #define GEN12_OAG_OASTARTTRIG1 _MMIO(0xd900)
- #define GEN12_OAG_OASTARTTRIG2 _MMIO(0xd904)
++	/**
++	 * @refcount: References to the mapped OA buffer managed by this
++	 * stream.
++	 */
++	struct kref refcount;
+ };
+ 
+ /**
+@@ -377,6 +389,11 @@ struct i915_oa_ops {
+ 	 * generations.
+ 	 */
+ 	u32 (*oa_hw_tail_read)(struct i915_perf_stream *stream);
++
++	/**
++	 * @oa_hw_head_read: read the OA head pointer register
++	 */
++	u32 (*oa_hw_head_read)(struct i915_perf_stream *stream);
+ };
+ 
+ struct i915_perf {
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 00546062e023..2042f6339182 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -2048,6 +2048,38 @@ struct drm_i915_perf_open_param {
+  */
+ #define I915_PERF_IOCTL_CONFIG	_IO('i', 0x2)
+ 
++/**
++ * Returns OA buffer properties to be used with mmap.
++ *
++ * This ioctl is available in perf revision 8.
++ */
++#define I915_PERF_IOCTL_GET_OA_BUFFER_INFO _IO('i', 0x3)
++
++/**
++ * OA buffer size and offset.
++ */
++struct drm_i915_perf_oa_buffer_info {
++	__u32 size;
++	__u32 offset;
++	__u64 reserved[4];
++};
++
++/**
++ * Returns current position of OA buffer head and tail.
++ *
++ * This ioctl is available in perf revision 8.
++ */
++#define I915_PERF_IOCTL_GET_OA_BUFFER_HEAD_TAIL _IO('i', 0x4)
++
++/**
++ * OA buffer head and tail.
++ */
++struct drm_i915_perf_oa_buffer_head_tail {
++	__u32 head;
++	__u32 tail;
++	__u64 reserved[4];
++};
++
+ /**
+  * Common to all i915 perf records
+  */
 -- 
 2.20.1
 
