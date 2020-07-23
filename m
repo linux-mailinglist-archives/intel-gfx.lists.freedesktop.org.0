@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7394222B6F1
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jul 2020 21:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB9122B70F
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jul 2020 21:58:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBB0E6E179;
-	Thu, 23 Jul 2020 19:51:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB3606E25C;
+	Thu, 23 Jul 2020 19:58:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A02796E179
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jul 2020 19:51:25 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21911859-1500050 
- for multiple; Thu, 23 Jul 2020 20:51:12 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jul 2020 20:51:10 +0100
-Message-Id: <20200723195110.11540-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EF8036E258;
+ Thu, 23 Jul 2020 19:58:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EA2EFA0BC6;
+ Thu, 23 Jul 2020 19:58:53 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Filter wake_flags passed to
- default_wake_function
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 23 Jul 2020 19:58:53 -0000
+Message-ID: <159553433395.23573.3862902773173009279@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200723195110.11540-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200723195110.11540-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Filter_wake=5Fflags_passed_to_default=5Fwake=5Ffunc?=
+ =?utf-8?q?tion?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,52 +39,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The flags passed to the wait_entry.func are passed onwards to
-try_to_wake_up(), which has a very particular interpretation for its
-wake_flags. In particular, beyond the published WF_SYNC, it has a few
-internal flags as well. Since we passed the fence->error down the chain
-via the flags argument, these ended up in the default_wake_function
-confusing the kernel/sched.
+== Series Details ==
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2110
-Fixes: ef4688497512 ("drm/i915: Propagate fence errors")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: <stable@vger.kernel.org> # v5.4+
----
- drivers/gpu/drm/i915/i915_sw_fence.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+Series: drm/i915: Filter wake_flags passed to default_wake_function
+URL   : https://patchwork.freedesktop.org/series/79824/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index 295b9829e2da..4cd2038cbe35 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -164,9 +164,13 @@ static void __i915_sw_fence_wake_up_all(struct i915_sw_fence *fence,
- 
- 		do {
- 			list_for_each_entry_safe(pos, next, &x->head, entry) {
--				pos->func(pos,
--					  TASK_NORMAL, fence->error,
--					  &extra);
-+				int wake_flags;
-+
-+				wake_flags = fence->error;
-+				if (pos->func == autoremove_wake_function)
-+					wake_flags = 0;
-+
-+				pos->func(pos, TASK_NORMAL, wake_flags, &extra);
- 			}
- 
- 			if (list_empty(&extra))
--- 
-2.20.1
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+
 
 _______________________________________________
 Intel-gfx mailing list
