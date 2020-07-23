@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEFAA22B4DB
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jul 2020 19:31:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3503E22B4EA
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jul 2020 19:31:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46EFD6E2D1;
-	Thu, 23 Jul 2020 17:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FE9E6E2D6;
+	Thu, 23 Jul 2020 17:31:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B00446E154;
- Thu, 23 Jul 2020 17:31:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 24FC66E154;
+ Thu, 23 Jul 2020 17:31:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A96B4A73C7;
- Thu, 23 Jul 2020 17:31:03 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2322EA73C7;
+ Thu, 23 Jul 2020 17:31:22 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 23 Jul 2020 17:31:03 -0000
-Message-ID: <159552546366.23573.6585478644820464473@emeril.freedesktop.org>
+Date: Thu, 23 Jul 2020 17:31:22 -0000
+Message-ID: <159552548214.23571.1437946564700868910@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200723172119.17649-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200723172119.17649-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm=3A_Restore_driver=2Eprec?=
- =?utf-8?q?lose=28=29_for_all_to_use?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/3=5D_drm=3A_Restore_driver=2Epreclose?=
+ =?utf-8?q?=28=29_for_all_to_use?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,15 +54,9 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-33b94230c8dd drm: Restore driver.preclose() for all to use
--:16: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9acdac68bcdc ("drm: rename drm_fops.c to drm_file.c")'
-#16: 
-References: 9acdac68bcdc ("drm: rename drm_fops.c to drm_file.c")
-
-total: 1 errors, 0 warnings, 0 checks, 9 lines checked
-ef3d91e3226a drm/i915/gem: Move context decoupling from postclose to preclose
-4d19d4c90cab drm/i915/gem: Serialise debugfs i915_gem_objects with ctx->mutex
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
 
 
 _______________________________________________
