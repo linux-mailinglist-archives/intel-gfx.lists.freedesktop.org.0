@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 720A222B0FF
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jul 2020 16:08:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA08C22B117
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jul 2020 16:15:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8C0E6E20B;
-	Thu, 23 Jul 2020 14:08:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0DCA6E0AF;
+	Thu, 23 Jul 2020 14:15:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CAFB6E20B
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jul 2020 14:08:00 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21908110-1500050 
- for multiple; Thu, 23 Jul 2020 15:07:49 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jul 2020 15:07:47 +0100
-Message-Id: <20200723140747.27839-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 902256E0A6;
+ Thu, 23 Jul 2020 14:15:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 886A6A0BC6;
+ Thu, 23 Jul 2020 14:15:48 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Downgrade severity of
- CS/SRM frequency scaling
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 23 Jul 2020 14:15:48 -0000
+Message-ID: <159551374852.23572.17392948479486164158@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200723140747.27839-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200723140747.27839-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/selftests=3A_Downgrade_severity_of_CS/SRM_frequency_sc?=
+ =?utf-8?q?aling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,46 +39,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Gracefully skip over the failures in the frequency scaling for the
-moment, the results are under review.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
-Cc: "Ewins, Jon" <jon.ewins@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_rps.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Series: drm/i915/selftests: Downgrade severity of CS/SRM frequency scaling
+URL   : https://patchwork.freedesktop.org/series/79805/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 8624f5d2a1f3..b50ed20c427c 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -700,7 +700,7 @@ int live_rps_frequency_cs(void *arg)
- 				f = act; /* may skip ahead [pcu granularity] */
- 			}
- 
--			err = -EINVAL;
-+			err = -EINTR;
- 		}
- 
- err_vma:
-@@ -841,7 +841,7 @@ int live_rps_frequency_srm(void *arg)
- 				f = act; /* may skip ahead [pcu granularity] */
- 			}
- 
--			err = -EINVAL;
-+			err = -EINTR;
- 		}
- 
- err_vma:
--- 
-2.20.1
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+
 
 _______________________________________________
 Intel-gfx mailing list
