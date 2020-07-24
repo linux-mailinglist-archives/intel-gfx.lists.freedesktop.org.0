@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B187522C496
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 13:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 230FE22C497
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 13:54:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40FAB6E0E0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7549C6E956;
 	Fri, 24 Jul 2020 11:54:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 984A56E0E0
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 11:54:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5236E0E0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 11:54:06 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21918180-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21918181-1500050 
  for multiple; Fri, 24 Jul 2020 12:53:54 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jul 2020 12:53:51 +0100
-Message-Id: <20200724115352.19892-2-chris@chris-wilson.co.uk>
+Date: Fri, 24 Jul 2020 12:53:52 +0100
+Message-Id: <20200724115352.19892-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200724115352.19892-1-chris@chris-wilson.co.uk>
 References: <20200724115352.19892-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/gt: Stall around xcs invalidations
- on tgl
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/selftests: Add compiler paranoia
+ for checking HWSP values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,71 +45,77 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Whether this is an arbitrary stall or a vital ingredient, neverthess the
-impact is noticeable. If we do not have the stall around the xcs
-invalidation before a request, writes within that request sometimes go
-astray.
+Since we want to read the values from the HWSP as written to by the GPU,
+warn the compiler that the values are volatile.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2169
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_timeline.c | 23 +++++++++++----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 353b1717fe84..104bef04498d 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -4761,10 +4761,12 @@ static int gen12_emit_flush_render(struct i915_request *request,
+diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+index fb5b7d3498a6..1203b7460557 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
++++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+@@ -491,7 +491,7 @@ checked_intel_timeline_create(struct intel_gt *gt)
+ 	if (IS_ERR(tl))
+ 		return tl;
  
- static int gen12_emit_flush(struct i915_request *request, u32 mode)
- {
-+#define WA_CNT 32 /* Magic delay */
- 	intel_engine_mask_t aux_inv = 0;
- 	u32 cmd, *cs;
-+	int n;
+-	if (*tl->hwsp_seqno != tl->seqno) {
++	if (READ_ONCE(*tl->hwsp_seqno) != tl->seqno) {
+ 		pr_err("Timeline created with incorrect breadcrumb, found %x, expected %x\n",
+ 		       *tl->hwsp_seqno, tl->seqno);
+ 		intel_timeline_put(tl);
+@@ -561,9 +561,9 @@ static int live_hwsp_engine(void *arg)
+ 	for (n = 0; n < count; n++) {
+ 		struct intel_timeline *tl = timelines[n];
  
--	cmd = 4;
-+	cmd = 4 * WA_CNT;
- 	if (mode & EMIT_INVALIDATE)
- 		cmd += 2;
- 	if (mode & EMIT_INVALIDATE)
-@@ -4781,7 +4783,8 @@ static int gen12_emit_flush(struct i915_request *request, u32 mode)
+-		if (!err && *tl->hwsp_seqno != n) {
+-			pr_err("Invalid seqno stored in timeline %lu @ %x, found 0x%x\n",
+-			       n, tl->hwsp_offset, *tl->hwsp_seqno);
++		if (!err && READ_ONCE(*tl->hwsp_seqno) != n) {
++			GEM_TRACE_ERR("Invalid seqno:%lu stored in timeline %llu @ %x, found 0x%x\n",
++				      n, tl->fence_context, tl->hwsp_offset, *tl->hwsp_seqno);
+ 			GEM_TRACE_DUMP();
+ 			err = -EINVAL;
+ 		}
+@@ -633,9 +633,9 @@ static int live_hwsp_alternate(void *arg)
+ 	for (n = 0; n < count; n++) {
+ 		struct intel_timeline *tl = timelines[n];
  
- 	cmd = MI_FLUSH_DW + 1;
+-		if (!err && *tl->hwsp_seqno != n) {
+-			pr_err("Invalid seqno stored in timeline %lu @ %x, found 0x%x\n",
+-			       n, tl->hwsp_offset, *tl->hwsp_seqno);
++		if (!err && READ_ONCE(*tl->hwsp_seqno) != n) {
++			GEM_TRACE_ERR("Invalid seqno:%lu stored in timeline %llu @ %x, found 0x%x\n",
++				      n, tl->fence_context, tl->hwsp_offset, *tl->hwsp_seqno);
+ 			GEM_TRACE_DUMP();
+ 			err = -EINVAL;
+ 		}
+@@ -733,7 +733,8 @@ static int live_hwsp_wrap(void *arg)
+ 			goto out;
+ 		}
  
--	/* We always require a command barrier so that subsequent
-+	/*
-+	 * We always require a command barrier so that subsequent
- 	 * commands, such as breadcrumb interrupts, are strictly ordered
- 	 * wrt the contents of the write cache being flushed to memory
- 	 * (and thus being coherent from the CPU).
-@@ -4794,10 +4797,12 @@ static int gen12_emit_flush(struct i915_request *request, u32 mode)
- 			cmd |= MI_INVALIDATE_BSD;
- 	}
+-		if (*hwsp_seqno[0] != seqno[0] || *hwsp_seqno[1] != seqno[1]) {
++		if (READ_ONCE(*hwsp_seqno[0]) != seqno[0] ||
++		    READ_ONCE(*hwsp_seqno[1]) != seqno[1]) {
+ 			pr_err("Bad timeline values: found (%x, %x), expected (%x, %x)\n",
+ 			       *hwsp_seqno[0], *hwsp_seqno[1],
+ 			       seqno[0], seqno[1]);
+@@ -966,9 +967,9 @@ static int live_hwsp_recycle(void *arg)
+ 				break;
+ 			}
  
--	*cs++ = cmd;
--	*cs++ = LRC_PPHWSP_SCRATCH_ADDR;
--	*cs++ = 0; /* upper addr */
--	*cs++ = 0; /* value */
-+	for (n = 0; n < WA_CNT; n++) {
-+		*cs++ = cmd;
-+		*cs++ = LRC_PPHWSP_SCRATCH_ADDR;
-+		*cs++ = 0; /* upper addr */
-+		*cs++ = 0; /* value */
-+	}
- 
- 	if (aux_inv) { /* hsdes: 1809175790 */
- 		struct intel_engine_cs *engine;
-@@ -4818,6 +4823,7 @@ static int gen12_emit_flush(struct i915_request *request, u32 mode)
- 	intel_ring_advance(request, cs);
- 
- 	return 0;
-+#undef WA_CNT
- }
- 
- static void assert_request_valid(struct i915_request *rq)
+-			if (*tl->hwsp_seqno != count) {
+-				pr_err("Invalid seqno stored in timeline %lu @ tl->hwsp_offset, found 0x%x\n",
+-				       count, *tl->hwsp_seqno);
++			if (READ_ONCE(*tl->hwsp_seqno) != count) {
++				GEM_TRACE_ERR("Invalid seqno:%lu stored in timeline %llu @ %x found 0x%x\n",
++					      count, tl->fence_context, tl->hwsp_offset, *tl->hwsp_seqno);
+ 				GEM_TRACE_DUMP();
+ 				err = -EINVAL;
+ 			}
 -- 
 2.20.1
 
