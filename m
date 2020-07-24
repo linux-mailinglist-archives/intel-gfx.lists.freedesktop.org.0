@@ -2,30 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4263222BBA6
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 03:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D939322BBC7
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 03:55:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A940E6E8BF;
-	Fri, 24 Jul 2020 01:44:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 904FC6E8CA;
+	Fri, 24 Jul 2020 01:55:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9C6F06E8BF;
- Fri, 24 Jul 2020 01:44:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 960FFA73C8;
- Fri, 24 Jul 2020 01:44:23 +0000 (UTC)
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com
+ [IPv6:2607:f8b0:4864:20::12a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A6D46E8CA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 01:55:16 +0000 (UTC)
+Received: by mail-il1-x12a.google.com with SMTP id j9so2632385ilc.11
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jul 2020 18:55:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=pDtZHlgS/fdzHOKrMN9FvOHNUw5Bk42S9SbCsdmezuU=;
+ b=t8MHrk+8UxxQBk/ZSfuA3Mz67APWsxQQzhZRr2ZotRWn1TQBWBxCG/ZNnWPcR5Q6En
+ +SXyDGgbZZcb4S3GK4RjIGxl53w0kPiotwbEKIjL1EJFcL25rCVAEr8Fx+6IldWKRgI0
+ ucFpDO6scC5MI4rczyf3lcE/ArAVd7yfGZVeXbp72+cjFtZj0zXg83ZpmWVgVA1gQvoH
+ Bn5Ci/Qcau7fQFJ/eaUk97D3r9xFjb5Df3Cu9eQUWHEkwBXYvgw2b9BJVf11KEGdCx4d
+ rXrJJtmSl/3imNI0j36U1VtEOqFpbR8TM5t/p73g8C/xqZIc+5RoeIzNT+TILPhnAonJ
+ Bgeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=pDtZHlgS/fdzHOKrMN9FvOHNUw5Bk42S9SbCsdmezuU=;
+ b=gGMhZzkm1wZ95scuskJ6os6Dx8BDcbXsYj1izDGVq2Wt+PAs8UXGMsbXa6g/NiGPtl
+ ZSmhr9zply7FWzk+rMt9MdVlY/svZOt1gqTSxSjKZ3VZN7PWVbn3xOfWbyB4ymp4LOUF
+ IiZ/RTbfwmi2CKAD/TsJZxLqCXgqAz2fyZUhHTeSzWSLxO1nwRYMM5ekBp5JQQgp7Ero
+ EkCgO0m++EkfAGOMt2XIUCt7gyDiOptw6AJF6nK/TR7bij0zYaYUTMGjhlBECFNEiSiZ
+ HR7kdLvYCpZ0eflP429XUov/RlZ7EMe8DUKC++ppoPBe3YBSKmsKcJ2PSgCk6GOrDPIU
+ nP7g==
+X-Gm-Message-State: AOAM531GGdn2ex0gv5eoVVDu5I2lY7257fgFBVvDMuS5IPmeH8gSzeIV
+ d4iH+W5YxflR3UZ2mWPtO9l6cbKclKHlWBDIv3wIdnf5
+X-Google-Smtp-Source: ABdhPJzlurS6NxCdS/tiu2AESfSzivOv726E7HMF0tuqNyZ0RWkmNRlDECaLkyXiTNmkuK8xBU3aK75xDsfCIcMhi1U=
+X-Received: by 2002:a92:cd10:: with SMTP id z16mr8184904iln.77.1595555715394; 
+ Thu, 23 Jul 2020 18:55:15 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Date: Fri, 24 Jul 2020 01:44:23 -0000
-Message-ID: <159555506358.15334.3648701667579658137@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200724001901.35662-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20200724001901.35662-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQWxs?=
- =?utf-8?q?ow_privileged_user_to_map_the_OA_buffer_=28rev5=29?=
+From: Andrew Parsons <parsonsandrew1@gmail.com>
+Date: Thu, 23 Jul 2020 21:55:04 -0400
+Message-ID: <CAKZBjpsz7huH0R5VzK2gQQ7wtQ9N2b4sxSNpJ=kjaBbFv5qCgw@mail.gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [Intel-gfx] [Question] More CRTCs than supported displays;
+ questions about intel-virtual-output and VIRTUAL1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,420 +58,192 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0712562749=="
+Content-Type: multipart/mixed; boundary="===============2099582347=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0712562749==
-Content-Type: multipart/alternative;
- boundary="===============4768731065592654130=="
+--===============2099582347==
+Content-Type: multipart/alternative; boundary="000000000000a2b12c05ab26438a"
 
---===============4768731065592654130==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--000000000000a2b12c05ab26438a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hello all,
 
-Series: Allow privileged user to map the OA buffer (rev5)
-URL   : https://patchwork.freedesktop.org/series/79460/
-State : failure
+TL;DR: my questions concern the following two topics:
+- CRTCs and Intel integrated GPUs
+- intel-virtual-output utility
 
-== Summary ==
+I have a laptop with both an Intel integrated GPU and an AMD discrete GPU.
 
-CI Bug Log - changes from CI_DRM_8783 -> Patchwork_18237
-====================================================
+```
+=E2=9E=9C  ~ xrandr --listproviders
+Providers: number : 2
+Provider 0: id: 0x70 cap: 0x9, Source Output, Sink Offload crtcs: 4
+outputs: 8 associated providers: 1 name:Intel
+Provider 1: id: 0x44 cap: 0x6, Sink Output, Source Offload crtcs: 5
+outputs: 0 associated providers: 1 name:AMD Radeon Pro WX3100 @
+pci:0000:3b:00.0
+```
 
-Summary
--------
+I am certain that both are configured correctly:
 
-  **FAILURE**
+```
+=E2=9E=9C  ~ DRI_PRIME=3D0 glxinfo | grep "OpenGL renderer"
+OpenGL renderer string: Mesa DRI Intel(R) UHD Graphics 620 (WHL GT2)
+=E2=9E=9C  ~ DRI_PRIME=3D1 glxinfo | grep "OpenGL renderer"
+OpenGL renderer string: AMD Radeon Pro WX3100 (POLARIS12, DRM 3.33.0,
+5.3.0-53-generic, LLVM 9.0.1)
+```
 
-  Serious unknown changes coming with Patchwork_18237 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18237, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+I had hoped to configure a four-way multihead configuration (3 monitors
+using the dGPU, and the built-in display driven by the iGPU). Alas, this
+seems to be impossible with my hardware; the AMD device lacks an output and
+merely serves as an offloading device.
+While investigating this, I came across something I didn't quite
+understand. Officially, the Intel UHD 620 supports three displays. However,
+`xrandr` shows that there are four CTRCs available on Provider 0 (Intel).
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/index.html
+```
+=E2=9E=9C  ~ xrandr --verbose | grep CRTC
+CRTC:       0
+CRTCs:      1 0 2
+CRTCs:      1 0 2
+CRTC:       1
+CRTCs:      1 0 2
+CRTC:       2
+CRTCs:      1 0 2
+CRTCs:      1 0 2
+CRTCs:      1 0 2
+CRTCs:      1 0 2
+CRTCs:      3
+```
 
-Possible new issues
--------------------
+It seems that the fourth CRTC ("third" when zero-indexed) is used by
+VIRTUAL1 output.
 
-  Here are the unknown changes that may have been introduced in Patchwork_18237:
+```
+=E2=9E=9C  ~ xrandr --verbose | tail
+VIRTUAL1 disconnected (normal left inverted right x axis y axis)
+Identifier: 0x6f
+Timestamp:  22792
+Subpixel:   no subpixels
+Clones:
+CRTCs:      3
+Transform:  1.000000 0.000000 0.000000
+           0.000000 1.000000 0.000000
+           0.000000 0.000000 1.000000
+          filter:
+```
 
-### IGT changes ###
+Out of curiosity, I thought to move CRTC 3 to a connected but disabled
+monitor (DP2). However, this doesn't seem to work.
 
-#### Possible regressions ####
+```
+=E2=9E=9C  ~ xrandr --output DP2 --crtc 3
+xrandr: output DP2 cannot use crtc 0x67
+```
 
-  * igt@i915_selftest@live@workarounds:
-    - fi-skl-6700k2:      [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-skl-6700k2/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-skl-6700k2/igt@i915_selftest@live@workarounds.html
-    - fi-kbl-x1275:       [PASS][3] -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-x1275/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-x1275/igt@i915_selftest@live@workarounds.html
-    - fi-cfl-guc:         [PASS][5] -> [DMESG-FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-cfl-guc/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-cfl-guc/igt@i915_selftest@live@workarounds.html
-    - fi-skl-guc:         [PASS][7] -> [DMESG-FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-skl-guc/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-skl-guc/igt@i915_selftest@live@workarounds.html
-    - fi-skl-6600u:       [PASS][9] -> [DMESG-FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-skl-6600u/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-skl-6600u/igt@i915_selftest@live@workarounds.html
-    - fi-kbl-8809g:       [PASS][11] -> [DMESG-FAIL][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-8809g/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-8809g/igt@i915_selftest@live@workarounds.html
-    - fi-cfl-8700k:       [PASS][13] -> [DMESG-FAIL][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-cfl-8700k/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-cfl-8700k/igt@i915_selftest@live@workarounds.html
-    - fi-kbl-r:           [PASS][15] -> [DMESG-FAIL][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-r/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-r/igt@i915_selftest@live@workarounds.html
-    - fi-cfl-8109u:       [PASS][17] -> [DMESG-FAIL][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-cfl-8109u/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-cfl-8109u/igt@i915_selftest@live@workarounds.html
-    - fi-skl-lmem:        [PASS][19] -> [DMESG-FAIL][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-skl-lmem/igt@i915_selftest@live@workarounds.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-skl-lmem/igt@i915_selftest@live@workarounds.html
-    - fi-kbl-7500u:       [PASS][21] -> [DMESG-FAIL][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-7500u/igt@i915_selftest@live@workarounds.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-7500u/igt@i915_selftest@live@workarounds.html
-    - fi-kbl-guc:         [PASS][23] -> [DMESG-FAIL][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-guc/igt@i915_selftest@live@workarounds.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-guc/igt@i915_selftest@live@workarounds.html
-    - fi-kbl-soraka:      [PASS][25] -> [DMESG-FAIL][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-soraka/igt@i915_selftest@live@workarounds.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-soraka/igt@i915_selftest@live@workarounds.html
+After some Googling, I've come to believe that the VIRTUAL1 output has been
+created by the intel-virtual-output utility. To be honest, I find the man
+page for this package vague. "The tool connects local VirtualHeads to a
+remote output, allowing the primary display to extend onto the remote
+outputs."
+I'm admittedly (and probably quite clearly) a newbie when it comes to
+graphics, so this description tells me very little. Moreover, the help menu
+lists options for starting Bumblebee, something I believe is
+Nvidia-specific.  Every forum thread I've read mentioning this utility
+involves an Nvidia card.
 
-  
-#### Suppressed ####
+My questions are:
+1. Why or how can I have more CRTCs than officially supported outputs for
+the Intel UHD 620?
+2. What does the intel-virtual-output utility do for me, a hybrid Intel/AMD
+user?
+3. Why do I need VIRTUAL1?
+4. What would happen if I removed the intel-virtual-output utility?
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+Thank you in advance,
+Andrew Parsons
 
-  * igt@i915_selftest@live@workarounds:
-    - {fi-kbl-7560u}:     [PASS][27] -> [DMESG-FAIL][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-7560u/igt@i915_selftest@live@workarounds.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-7560u/igt@i915_selftest@live@workarounds.html
+--000000000000a2b12c05ab26438a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-  
-Known issues
-------------
+<div dir=3D"ltr">Hello all,<div><div dir=3D"ltr" class=3D"gmail_signature" =
+data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><=
+div><br></div><div>TL;DR: my questions concern the following two topics:<br=
+></div><div>- CRTCs and Intel integrated GPUs</div><div>- intel-virtual-out=
+put utility<br></div><div><br></div><div>I have a laptop with both an Intel=
+ integrated GPU and an AMD discrete GPU.</div><div><br></div><div>```</div>=
+<div>=E2=9E=9C =C2=A0~ xrandr --listproviders<br>Providers: number : 2<br>P=
+rovider 0: id: 0x70 cap: 0x9, Source Output, Sink Offload crtcs: 4 outputs:=
+ 8 associated providers: 1 name:Intel<br>Provider
+ 1: id: 0x44 cap: 0x6, Sink Output, Source Offload crtcs: 5 outputs: 0=20
+associated providers: 1 name:AMD Radeon Pro WX3100 @ pci:0000:3b:00.0<br></=
+div><div>```</div><div><br></div><div>I am certain that both are configured=
+ correctly:</div><div><br></div><div>```</div><div>=E2=9E=9C =C2=A0~ DRI_PR=
+IME=3D0 glxinfo | grep &quot;OpenGL renderer&quot;<br>OpenGL renderer strin=
+g: Mesa DRI Intel(R) UHD Graphics 620 (WHL GT2)<br>=E2=9E=9C =C2=A0~ DRI_PR=
+IME=3D1 glxinfo | grep &quot;OpenGL renderer&quot;<br>OpenGL renderer strin=
+g: AMD Radeon Pro WX3100 (POLARIS12, DRM 3.33.0, 5.3.0-53-generic, LLVM 9.0=
+.1)</div><div>```<br></div><div><br></div><div>I
+ had hoped to configure a four-way multihead configuration (3 monitors=20
+using the dGPU, and the built-in display driven by the iGPU). Alas, this
+ seems to be impossible with my hardware; the AMD device lacks an output
+ and merely serves as an offloading device.</div><div>While=20
+investigating this, I came across something I didn&#39;t quite understand.=
+=20
+Officially, the Intel UHD 620 supports three displays. However, `xrandr`
+ shows that there are four CTRCs available on Provider 0 (Intel). </div><di=
+v><br></div><div>```</div><div>=E2=9E=9C =C2=A0~ xrandr --verbose | grep CR=
+TC =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>	CRTC: =C2=A0=
+ =C2=A0 =C2=A0 0<br>	CRTCs: =C2=A0 =C2=A0 =C2=A01 0 2<br>	CRTCs: =C2=A0 =C2=
+=A0 =C2=A01 0 2<br>	CRTC: =C2=A0 =C2=A0 =C2=A0 1<br>	CRTCs: =C2=A0 =C2=A0 =
+=C2=A01 0 2<br>	CRTC: =C2=A0 =C2=A0 =C2=A0 2<br>	CRTCs: =C2=A0 =C2=A0 =C2=
+=A01 0 2<br>	CRTCs: =C2=A0 =C2=A0 =C2=A01 0 2<br>	CRTCs: =C2=A0 =C2=A0 =C2=
+=A01 0 2<br>	CRTCs: =C2=A0 =C2=A0 =C2=A01 0 2<br>	CRTCs: =C2=A0 =C2=A0 =C2=
+=A03<br></div><div>```</div><div><br></div><div>It seems that the fourth CR=
+TC (&quot;third&quot; when zero-indexed) is used by VIRTUAL1 output.</div><=
+div><br></div><div>```</div>=E2=9E=9C =C2=A0~ xrandr --verbose | tail<br>VI=
+RTUAL1 disconnected (normal left inverted right x axis y axis)<br>	Identifi=
+er: 0x6f<br>	Timestamp: =C2=A022792<br>	Subpixel: =C2=A0 no subpixels<br>	C=
+lones: =C2=A0 =C2=A0<br>	CRTCs: =C2=A0 =C2=A0 =C2=A03<br>	Transform: =C2=A0=
+1.000000 0.000000 0.000000<br>	 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.=
+000000 1.000000 0.000000<br>	 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.00=
+0000 0.000000 1.000000<br>	 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 filter: <br>=
+<div>```<br></div><div><br></div><div>Out of curiosity, I thought to move C=
+RTC 3 to a connected but disabled monitor (DP2). However, this doesn&#39;t =
+seem to work.</div><div><br></div><div>```</div><div>=E2=9E=9C =C2=A0~ xran=
+dr --output DP2 --crtc 3 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>xrand=
+r: output DP2 cannot use crtc 0x67</div><div>```</div><div><br></div><div>A=
+fter
+ some Googling, I&#39;ve come to believe that the VIRTUAL1 output has been=
+=20
+created by the intel-virtual-output utility. To be honest, I find the=20
+man page for this package vague. &quot;The tool connects local VirtualHeads=
+=20
+to a remote output, allowing the primary display to extend onto the=20
+remote outputs.&quot;</div><div>I&#39;m admittedly (and probably quite clea=
+rly) a
+ newbie when it comes to graphics, so this description tells me very=20
+little. Moreover, the help menu lists options for starting Bumblebee,=20
+something I believe is Nvidia-specific.=C2=A0 Every forum thread I&#39;ve r=
+ead=20
+mentioning this utility involves an Nvidia card.<br></div><div><br></div><d=
+iv>My questions are:</div><div>1. Why or how can I have more CRTCs than off=
+icially supported outputs for the Intel UHD 620?</div><div>2. What does the=
+ intel-virtual-output utility do for me, a hybrid Intel/AMD user?</div><div=
+>3. Why do I need VIRTUAL1?<br></div><div>4. What would happen if I removed=
+ the intel-virtual-output utility?<br></div><div><br></div><div>Thank you i=
+n advance,<br></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D=
+"ltr"><div>Andrew Parsons</div></div></div></div></div></div></div></div></=
+div></div></div></div>
 
-  Here are the changes found in Patchwork_18237 that come from known issues:
+--000000000000a2b12c05ab26438a--
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][29] -> [FAIL][30] ([i915#1888])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_module_load@reload:
-    - fi-apl-guc:         [PASS][31] -> [DMESG-WARN][32] ([i915#1635] / [i915#1982])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-apl-guc/igt@i915_module_load@reload.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-apl-guc/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-apl-guc:         [PASS][33] -> [DMESG-FAIL][34] ([i915#1635])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-apl-guc/igt@i915_selftest@live@workarounds.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-apl-guc/igt@i915_selftest@live@workarounds.html
-    - fi-bxt-dsi:         [PASS][35] -> [DMESG-FAIL][36] ([i915#1635])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-bxt-dsi/igt@i915_selftest@live@workarounds.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-bxt-dsi/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_addfb_basic@addfb25-yf-tiled:
-    - fi-tgl-y:           [PASS][37] -> [DMESG-WARN][38] ([i915#402]) +1 similar issue
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-tgl-y/igt@kms_addfb_basic@addfb25-yf-tiled.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-tgl-y/igt@kms_addfb_basic@addfb25-yf-tiled.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][39] ([i915#1888]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_module_load@reload:
-    - fi-bsw-kefka:       [DMESG-WARN][41] ([i915#1982]) -> [PASS][42] +1 similar issue
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-bsw-kefka/igt@i915_module_load@reload.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-bsw-kefka/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-tgl-u2:          [DMESG-FAIL][43] ([i915#1233]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [DMESG-WARN][45] ([i915#402]) -> [PASS][46] +1 similar issue
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-
-  
-#### Warnings ####
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-kbl-x1275:       [DMESG-WARN][47] ([i915#62] / [i915#92]) -> [DMESG-WARN][48] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][49] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][50] ([i915#62] / [i915#92]) +4 similar issues
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (47 -> 40)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * IGT: IGT_5746 -> IGTPW_4796
-  * Linux: CI_DRM_8783 -> Patchwork_18237
-
-  CI-20190529: 20190529
-  CI_DRM_8783: 9780545cd4109baff8c6eb1cb1060a29b7ab919f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_4796: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_4796/index.html
-  IGT_5746: d818f0c54e5e781ba3fb372aab8f270cf153776c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18237: 8bcbc3e0f07c9452c99d8245fde369f01d5b64d5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8bcbc3e0f07c drm/i915/perf: Map OA buffer to user space for gen12 performance query
-0830d3c4ac64 drm/i915/perf: Whitelist OA counter and buffer registers
-2626ca288d71 drm/i915/perf: Whitelist OA report trigger registers
-3af9e7de1bfe drm/i915/perf: Ensure observation logic is not clock gated
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/index.html
-
---===============4768731065592654130==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Allow privileged user to map the OA buffer (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/79460/">https://patchwork.freedesktop.org/series/79460/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8783 -&gt; Patchwork_18237</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_18237 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_18237, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_18237:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>
-<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-skl-6700k2/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-skl-6700k2/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-x1275/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-x1275/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-cfl-guc/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-cfl-guc/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-skl-guc/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-skl-guc/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-skl-6600u/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-skl-6600u/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-8809g/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-8809g/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-cfl-8700k/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-cfl-8700k/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-r/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-r/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-cfl-8109u/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-cfl-8109u/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-skl-lmem:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-skl-lmem/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-skl-lmem/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-7500u/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-7500u/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-guc/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-guc/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-soraka/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-soraka/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-7560u/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-7560u/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18237 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-apl-guc/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-apl-guc/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-apl-guc/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-apl-guc/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a>)</p>
-</li>
-<li>
-<p>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-bxt-dsi/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-bxt-dsi/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-yf-tiled:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-tgl-y/igt@kms_addfb_basic@addfb25-yf-tiled.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-tgl-y/igt@kms_addfb_basic@addfb25-yf-tiled.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-bsw-kefka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-bsw-kefka/igt@i915_module_load@reload.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1233">i915#1233</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-edid:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8783/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18237/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +4 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (47 -&gt; 40)</h2>
-<p>Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_5746 -&gt; IGTPW_4796</li>
-<li>Linux: CI_DRM_8783 -&gt; Patchwork_18237</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8783: 9780545cd4109baff8c6eb1cb1060a29b7ab919f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGTPW_4796: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_4796/index.html<br />
-  IGT_5746: d818f0c54e5e781ba3fb372aab8f270cf153776c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18237: 8bcbc3e0f07c9452c99d8245fde369f01d5b64d5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8bcbc3e0f07c drm/i915/perf: Map OA buffer to user space for gen12 performance query<br />
-0830d3c4ac64 drm/i915/perf: Whitelist OA counter and buffer registers<br />
-2626ca288d71 drm/i915/perf: Whitelist OA report trigger registers<br />
-3af9e7de1bfe drm/i915/perf: Ensure observation logic is not clock gated</p>
-
-</body>
-</html>
-
---===============4768731065592654130==--
-
---===============0712562749==
+--===============2099582347==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -462,4 +254,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0712562749==--
+--===============2099582347==--
