@@ -1,52 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F8F22BAE0
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 02:17:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FFC422BAE4
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 02:19:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5F9C6E8AB;
-	Fri, 24 Jul 2020 00:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C3706E8AC;
+	Fri, 24 Jul 2020 00:19:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com
- [IPv6:2607:f8b0:4864:20::941])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0B3D6E8A9
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 00:17:37 +0000 (UTC)
-Received: by mail-ua1-x941.google.com with SMTP id n4so2416274uae.5
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jul 2020 17:17:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Tn6bqYg/1KWkV4kpAzCYFhcP+XCPRuDgdoeZet33vWk=;
- b=awreHD28nDVNZexMGVyopatjZJnZVe7HOWZqVLh+RCrrko33Dtr7aUGgwOkz5TkDTZ
- 0yYGVwi8WX8RUoZPeer0O6R6Mkxv2fwqIKd57tgnZhCiaJXkJVcV2SPbhNZ3XCGWvsmS
- wfHBen5QSZrel1hvkK/0sXZYsKhLRDS4KyFac=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Tn6bqYg/1KWkV4kpAzCYFhcP+XCPRuDgdoeZet33vWk=;
- b=Z976ws46q/GK+9nkfNbY7owM6FpFdlSg9faiu8nMvR820usChUTfUJVsTDfqRLSG4G
- Hv+Lg5XKa2Qwo9qD9X/N/pz08wL1Qz9A5hfsuEsiXU+xIjmK+Cvzjw3YplfEG3FFXqhp
- 2rw4MADJApo4R1GvBOX7Cd7Dn6s8hCvvfO/cj0cNvjL/xKu8rAEHrlkmd4/mUKTZVdW+
- 7zsleKVOb1g6Wl2zgzGtHIabiO3Y3m9QU4MqTNyYmHK/SvZWhdlShmfKDwf3IGWfvgtO
- lprk7wb7M5nUOPBEyZH+VfGWDhF1FvpDBiN4lTKz3HDH9DHg5zVcdgieRfqG93DL9HAG
- U1/g==
-X-Gm-Message-State: AOAM532yi0egqfX0C9nJKXdAkmB4m/4gDjPOT7fPobs8UwchhWXESFV0
- 4IrbNWeRN7Lv/Yf6JYuf6RV8VKmv8PXSXn2rw+9E9w==
-X-Google-Smtp-Source: ABdhPJyap0e7CTwf8HrhrJhPhF9DOR7AKPD9OIoxL1bXe7v3Dk4cmLWDUcc1+/hhsto3hTn53fbsk/M7qmHWyPm46q8=
-X-Received: by 2002:a9f:22c4:: with SMTP id 62mr6134025uan.135.1595549856863; 
- Thu, 23 Jul 2020 17:17:36 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 285846E2B6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 00:19:02 +0000 (UTC)
+IronPort-SDR: Bvb2xNuAEx8Din+DsyRf8NMj16bdn/uV9fiL9NThDzDmblY0I8Z2yPvz9MCY3hTB7ZF7gkPP4Q
+ Ii9YP0yRjw4g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9691"; a="149830249"
+X-IronPort-AV: E=Sophos;i="5.75,388,1589266800"; d="scan'208";a="149830249"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2020 17:19:01 -0700
+IronPort-SDR: sHEUo1SySQwi2OhjyGNvKukSYpi1hYwPjOQaBZUmMgfllbZG0mPbr2w/XL1sb9ZM+hoqi65Y1V
+ drsRYFB+O4Tw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,388,1589266800"; d="scan'208";a="311217838"
+Received: from orsosgc001.ra.intel.com ([10.23.184.150])
+ by fmsmga004.fm.intel.com with ESMTP; 23 Jul 2020 17:19:01 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Jul 2020 17:18:57 -0700
+Message-Id: <20200724001901.35662-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20200627070307.516803-1-drinkcat@chromium.org>
- <20200627070307.516803-2-drinkcat@chromium.org> <878sfanzft.fsf@kernel.org>
-In-Reply-To: <878sfanzft.fsf@kernel.org>
-From: Nicolas Boichat <drinkcat@chromium.org>
-Date: Fri, 24 Jul 2020 08:17:25 +0800
-Message-ID: <CANMq1KDugXcmvrGOJzcvWvbzScPDsQVuJ4gSDXTJan+FY1H3Ew@mail.gmail.com>
-To: Felipe Balbi <balbi@kernel.org>
-Subject: Re: [Intel-gfx] [PATCH 1/4] usb: cdns3: gadget: Replace
- trace_printk by dev_dbg
+Subject: [Intel-gfx] [PATCH 0/4] Allow privileged user to map the OA buffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,82 +46,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Peter Chen <peter.chen@nxp.com>,
- "Guilherme G . Piccoli" <gpiccoli@canonical.com>,
- Rafael Aquini <aquini@redhat.com>, Sam Ravnborg <sam@ravnborg.org>,
- David Airlie <airlied@linux.ie>, Todor Tomov <todor.too@gmail.com>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- David Howells <dhowells@redhat.com>, Tiezhu Yang <yangtiezhu@loongson.cn>,
- Will Deacon <will@kernel.org>,
- Christian Brauner <christian.brauner@ubuntu.com>,
- Kees Cook <keescook@chromium.org>, devel@driverdev.osuosl.org,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Jayshri Pawar <jpawar@cadence.com>, Masahiro Yamada <masahiroy@kernel.org>,
- Alexei Starovoitov <alexei.starovoitov@gmail.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Andy Gross <agross@kernel.org>,
- Tomas Winkler <tomas.winkler@intel.com>, Alexey Dobriyan <adobriyan@gmail.com>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Pawel Laszczak <pawell@cadence.com>, Arnd Bergmann <arnd@arndb.de>,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Chao Yu <chao@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
- Jaegeuk Kim <jaegeuk@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Roger Quadros <rogerq@ti.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, linux-usb@vger.kernel.org,
- lkml <linux-kernel@vger.kernel.org>, linux-f2fs-devel@lists.sourceforge.net,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Colin Ian King <colin.king@canonical.com>,
- Andrew Morton <akpm@linux-foundation.org>, Divya Indi <divya.indi@oracle.com>
+Cc: Chris Wilson <chris.p.wilson@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 23, 2020 at 9:17 PM Felipe Balbi <balbi@kernel.org> wrote:
->
-> Nicolas Boichat <drinkcat@chromium.org> writes:
->
-> > trace_printk should not be used in production code, replace it
-> > call with dev_dbg.
-> >
-> > Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
-> >
-> > ---
-> >
-> > Unclear why a trace_printk was used in the first place, it's
-> > possible that some rate-limiting is necessary here.
-> >
-> >  drivers/usb/cdns3/gadget.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/usb/cdns3/gadget.c b/drivers/usb/cdns3/gadget.c
-> > index 5e24c2e57c0d8c8..c303ab7c62d1651 100644
-> > --- a/drivers/usb/cdns3/gadget.c
-> > +++ b/drivers/usb/cdns3/gadget.c
-> > @@ -421,7 +421,7 @@ static int cdns3_start_all_request(struct cdns3_device *priv_dev,
-> >               if ((priv_req->flags & REQUEST_INTERNAL) ||
-> >                   (priv_ep->flags & EP_TDLCHK_EN) ||
-> >                       priv_ep->use_streams) {
-> > -                     trace_printk("Blocking external request\n");
-> > +                     dev_dbg(priv_dev->dev, "Blocking external request\n");
->
-> Instead, I would suggest adding a proper trace event here; one that
-> includes "priv_ep->flags" in the output.
+This cover letter is included to trigger "Test-with" an IGT patch.
 
-The patch was already merged by Greg
-(https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/usb/cdns3/gadget.c?id=b3a5ce874c2619c9b8a6c5bbcfefdb95e0227600),
-but feel free to do that as a follow-up CL.
+Tests - https://patchwork.freedesktop.org/series/79829/
 
-Looks like Peter -- the main author, is ok with dev_dbg (also,
-apologies for missing the R-b tag when I sent a v2 -- which is the one
-that was merged by Greg).
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Test-with: 20200724001521.35201-1-umesh.nerlige.ramappa@intel.com
 
-Thanks,
+Piotr Maciejewski (4):
+  drm/i915/perf: Ensure observation logic is not clock gated
+  drm/i915/perf: Whitelist OA report trigger registers
+  drm/i915/perf: Whitelist OA counter and buffer registers
+  drm/i915/perf: Map OA buffer to user space for gen12 performance query
 
->
-> --
-> balbi
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.h      |   2 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |  60 +++++
+ .../gpu/drm/i915/gt/selftest_workarounds.c    |  38 ++-
+ drivers/gpu/drm/i915/i915_perf.c              | 254 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_perf_types.h        |  17 ++
+ drivers/gpu/drm/i915/i915_reg.h               |  12 +
+ include/uapi/drm/i915_drm.h                   |  32 +++
+ 8 files changed, 411 insertions(+), 6 deletions(-)
+
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
