@@ -2,31 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2CCA22C2AF
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 11:58:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC9B22C2CD
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 12:07:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22F176E945;
-	Fri, 24 Jul 2020 09:58:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44D756E946;
+	Fri, 24 Jul 2020 10:07:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83F4E6E945
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 09:58:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21916592-1500050 for multiple; Fri, 24 Jul 2020 10:58:28 +0100
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D491F6E946
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 10:07:21 +0000 (UTC)
+IronPort-SDR: nCrbH+q76+5Z7wAm9J9WT+k9S+LKpqHiYm3Q9uhnu1k0kpPfDuW3WBLoBYQpFUzcfyeEn5LLiB
+ 4sZlcd0++4+Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9691"; a="149875025"
+X-IronPort-AV: E=Sophos;i="5.75,390,1589266800"; d="scan'208";a="149875025"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2020 03:07:21 -0700
+IronPort-SDR: 7qkU6bxtxdmqv7y5n54kb0OE+YrIMad4LuJKeNWQ92r9I51Mg31v+0cn0Qg9rHEPs4qSsIaJh+
+ xwBrLI2pjPXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,390,1589266800"; d="scan'208";a="463180451"
+Received: from dmackroy-mobl1.ger.corp.intel.com (HELO [10.249.37.188])
+ ([10.249.37.188])
+ by orsmga005.jf.intel.com with ESMTP; 24 Jul 2020 03:07:19 -0700
+To: Chris Wilson <chris.p.wilson@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200724001901.35662-1-umesh.nerlige.ramappa@intel.com>
+ <20200724001901.35662-3-umesh.nerlige.ramappa@intel.com>
+ <159558277976.21069.2416672457874030480@build.alporthouse.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <dd661523-be0f-e90d-f450-2079fb109ce0@intel.com>
+Date: Fri, 24 Jul 2020 13:07:18 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAKZBjpsz7huH0R5VzK2gQQ7wtQ9N2b4sxSNpJ=kjaBbFv5qCgw@mail.gmail.com>
-References: <CAKZBjpsz7huH0R5VzK2gQQ7wtQ9N2b4sxSNpJ=kjaBbFv5qCgw@mail.gmail.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Andrew Parsons <parsonsandrew1@gmail.com>, intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jul 2020 10:58:27 +0100
-Message-ID: <159558470750.21069.13484671138303293599@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [Question] More CRTCs than supported displays;
- questions about intel-virtual-output and VIRTUAL1
+In-Reply-To: <159558277976.21069.2416672457874030480@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/perf: Whitelist OA report
+ trigger registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,87 +58,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBBbmRyZXcgUGFyc29ucyAoMjAyMC0wNy0yNCAwMjo1NTowNCkKPiBIZWxsbyBhbGws
-Cj4gCj4gVEw7RFI6IG15IHF1ZXN0aW9ucyBjb25jZXJuIHRoZSBmb2xsb3dpbmcgdHdvIHRvcGlj
-czoKPiAtIENSVENzIGFuZCBJbnRlbCBpbnRlZ3JhdGVkIEdQVXMKPiAtIGludGVsLXZpcnR1YWwt
-b3V0cHV0IHV0aWxpdHkKPiAKPiBJIGhhdmUgYSBsYXB0b3Agd2l0aCBib3RoIGFuIEludGVsIGlu
-dGVncmF0ZWQgR1BVIGFuZCBhbiBBTUQgZGlzY3JldGUgR1BVLgo+IAo+IGBgYAo+IOKenCDCoH4g
-eHJhbmRyIC0tbGlzdHByb3ZpZGVycwo+IFByb3ZpZGVyczogbnVtYmVyIDogMgo+IFByb3ZpZGVy
-IDA6IGlkOiAweDcwIGNhcDogMHg5LCBTb3VyY2UgT3V0cHV0LCBTaW5rIE9mZmxvYWQgY3J0Y3M6
-IDQgb3V0cHV0czogOAo+IGFzc29jaWF0ZWQgcHJvdmlkZXJzOiAxIG5hbWU6SW50ZWwKPiBQcm92
-aWRlciAxOiBpZDogMHg0NCBjYXA6IDB4NiwgU2luayBPdXRwdXQsIFNvdXJjZSBPZmZsb2FkIGNy
-dGNzOiA1IG91dHB1dHM6IDAKPiBhc3NvY2lhdGVkIHByb3ZpZGVyczogMSBuYW1lOkFNRCBSYWRl
-b24gUHJvIFdYMzEwMCBAIHBjaTowMDAwOjNiOjAwLjAKPiBgYGAKPiAKPiBJIGFtIGNlcnRhaW4g
-dGhhdCBib3RoIGFyZSBjb25maWd1cmVkIGNvcnJlY3RseToKPiAKPiBgYGAKPiDinpwgwqB+IERS
-SV9QUklNRT0wIGdseGluZm8gfCBncmVwICJPcGVuR0wgcmVuZGVyZXIiCj4gT3BlbkdMIHJlbmRl
-cmVyIHN0cmluZzogTWVzYSBEUkkgSW50ZWwoUikgVUhEIEdyYXBoaWNzIDYyMCAoV0hMIEdUMikK
-PiDinpwgwqB+IERSSV9QUklNRT0xIGdseGluZm8gfCBncmVwICJPcGVuR0wgcmVuZGVyZXIiCj4g
-T3BlbkdMIHJlbmRlcmVyIHN0cmluZzogQU1EIFJhZGVvbiBQcm8gV1gzMTAwIChQT0xBUklTMTIs
-IERSTSAzLjMzLjAsCj4gNS4zLjAtNTMtZ2VuZXJpYywgTExWTSA5LjAuMSkKPiBgYGAKPiAKPiBJ
-IGhhZCBob3BlZCB0byBjb25maWd1cmUgYSBmb3VyLXdheSBtdWx0aWhlYWQgY29uZmlndXJhdGlv
-biAoMyBtb25pdG9ycyB1c2luZwo+IHRoZSBkR1BVLCBhbmQgdGhlIGJ1aWx0LWluIGRpc3BsYXkg
-ZHJpdmVuIGJ5IHRoZSBpR1BVKS4gQWxhcywgdGhpcyBzZWVtcyB0byBiZQo+IGltcG9zc2libGUg
-d2l0aCBteSBoYXJkd2FyZTsgdGhlIEFNRCBkZXZpY2UgbGFja3MgYW4gb3V0cHV0IGFuZCBtZXJl
-bHkgc2VydmVzCj4gYXMgYW4gb2ZmbG9hZGluZyBkZXZpY2UuCgpJdCBhbGwgZGVwZW5kcyBvbiBo
-b3cgdGhleSBhcmUgcGh5c2ljYWxseSB3aXJlZCB1cC4gSWYgYWxsIHRoZQpjb25uZWN0b3JzIGFy
-ZSB3aXJlZCB0byB0aGUgaWdmeCBhbmQgbm9uZSB0byB0aGUgZGdwdSwgeW91IGFyZSBsaW1pdGVk
-CnRvIHVzaW5nIHRoZSBpZ2Z4IGZvciBvdXRwdXQuCgo+IFdoaWxlIGludmVzdGlnYXRpbmcgdGhp
-cywgSSBjYW1lIGFjcm9zcyBzb21ldGhpbmcgSSBkaWRuJ3QgcXVpdGUgdW5kZXJzdGFuZC4KPiBP
-ZmZpY2lhbGx5LCB0aGUgSW50ZWwgVUhEIDYyMCBzdXBwb3J0cyB0aHJlZSBkaXNwbGF5cy4gSG93
-ZXZlciwgYHhyYW5kcmAgc2hvd3MKPiB0aGF0IHRoZXJlIGFyZSBmb3VyIENUUkNzIGF2YWlsYWJs
-ZSBvbiBQcm92aWRlciAwIChJbnRlbCkuCj4gCj4gYGBgCj4g4p6cIMKgfiB4cmFuZHIgLS12ZXJi
-b3NlIHwgZ3JlcCBDUlRDIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgCj4gQ1JUQzogwqAgwqAgwqAg
-MAo+IENSVENzOiDCoCDCoCDCoDEgMCAyCj4gQ1JUQ3M6IMKgIMKgIMKgMSAwIDIKPiBDUlRDOiDC
-oCDCoCDCoCAxCj4gQ1JUQ3M6IMKgIMKgIMKgMSAwIDIKPiBDUlRDOiDCoCDCoCDCoCAyCj4gQ1JU
-Q3M6IMKgIMKgIMKgMSAwIDIKPiBDUlRDczogwqAgwqAgwqAxIDAgMgo+IENSVENzOiDCoCDCoCDC
-oDEgMCAyCj4gQ1JUQ3M6IMKgIMKgIMKgMSAwIDIKPiBDUlRDczogwqAgwqAgwqAzCj4gYGBgCj4g
-Cj4gSXQgc2VlbXMgdGhhdCB0aGUgZm91cnRoIENSVEMgKCJ0aGlyZCIgd2hlbiB6ZXJvLWluZGV4
-ZWQpIGlzIHVzZWQgYnkgVklSVFVBTDEKPiBvdXRwdXQuCj4gCj4gYGBgCj4g4p6cIMKgfiB4cmFu
-ZHIgLS12ZXJib3NlIHwgdGFpbAo+IFZJUlRVQUwxIGRpc2Nvbm5lY3RlZCAobm9ybWFsIGxlZnQg
-aW52ZXJ0ZWQgcmlnaHQgeCBheGlzIHkgYXhpcykKPiBJZGVudGlmaWVyOiAweDZmCj4gVGltZXN0
-YW1wOiDCoDIyNzkyCj4gU3VicGl4ZWw6IMKgIG5vIHN1YnBpeGVscwo+IENsb25lczogwqAgwqAK
-PiBDUlRDczogwqAgwqAgwqAzCj4gVHJhbnNmb3JtOiDCoDEuMDAwMDAwIDAuMDAwMDAwIDAuMDAw
-MDAwCj4gwqAgwqAgwqAgwqAgwqAgwqAwLjAwMDAwMCAxLjAwMDAwMCAwLjAwMDAwMAo+IMKgIMKg
-IMKgIMKgIMKgIMKgMC4wMDAwMDAgMC4wMDAwMDAgMS4wMDAwMDAKPiDCoCDCoCDCoCDCoCDCoCBm
-aWx0ZXI6Cj4gYGBgCj4gCj4gT3V0IG9mIGN1cmlvc2l0eSwgSSB0aG91Z2h0IHRvIG1vdmUgQ1JU
-QyAzIHRvIGEgY29ubmVjdGVkIGJ1dCBkaXNhYmxlZCBtb25pdG9yCj4gKERQMikuIEhvd2V2ZXIs
-IHRoaXMgZG9lc24ndCBzZWVtIHRvIHdvcmsuCgpDb25uZWN0b3JzIGFyZSBsaW1pdGVkIHRvIHdo
-aWNoIHBpcGUgY2FuIGRyaXZlIHRoZW0gKGFzIHRoZXkgbmVlZCB0aGUKcGl4ZWwgcHVtcCBhbmQg
-ZW5jb2RlciB0byBjb252ZXJ0IGludG8gdGhlIGFwcHJvcHJpYXRlIHNpZ25hbCwgYW5kIG5vdAph
-bGwgQ1JUQyBjYW4gYmUgYXR0YWNoZWQgdG8gYWxsIHN1Y2ggSFcpLgoKPiAKPiBgYGAKPiDinpwg
-wqB+IHhyYW5kciAtLW91dHB1dCBEUDIgLS1jcnRjIDMgwqAgwqAgwqAgwqAgwqAgwqAKPiB4cmFu
-ZHI6IG91dHB1dCBEUDIgY2Fubm90IHVzZSBjcnRjIDB4NjcKPiBgYGAKPiAKPiBBZnRlciBzb21l
-IEdvb2dsaW5nLCBJJ3ZlIGNvbWUgdG8gYmVsaWV2ZSB0aGF0IHRoZSBWSVJUVUFMMSBvdXRwdXQg
-aGFzIGJlZW4KPiBjcmVhdGVkIGJ5IHRoZSBpbnRlbC12aXJ0dWFsLW91dHB1dCB1dGlsaXR5LiBU
-byBiZSBob25lc3QsIEkgZmluZCB0aGUgbWFuIHBhZ2UKPiBmb3IgdGhpcyBwYWNrYWdlIHZhZ3Vl
-LiAiVGhlIHRvb2wgY29ubmVjdHMgbG9jYWwgVmlydHVhbEhlYWRzIHRvIGEgcmVtb3RlCj4gb3V0
-cHV0LCBhbGxvd2luZyB0aGUgcHJpbWFyeSBkaXNwbGF5IHRvIGV4dGVuZCBvbnRvIHRoZSByZW1v
-dGUgb3V0cHV0cy4iCj4gSSdtIGFkbWl0dGVkbHkgKGFuZCBwcm9iYWJseSBxdWl0ZSBjbGVhcmx5
-KSBhIG5ld2JpZSB3aGVuIGl0IGNvbWVzIHRvIGdyYXBoaWNzLAo+IHNvIHRoaXMgZGVzY3JpcHRp
-b24gdGVsbHMgbWUgdmVyeSBsaXR0bGUuIE1vcmVvdmVyLCB0aGUgaGVscCBtZW51IGxpc3RzIG9w
-dGlvbnMKPiBmb3Igc3RhcnRpbmcgQnVtYmxlYmVlLCBzb21ldGhpbmcgSSBiZWxpZXZlIGlzIE52
-aWRpYS1zcGVjaWZpYy7CoCBFdmVyeSBmb3J1bQo+IHRocmVhZCBJJ3ZlIHJlYWQgbWVudGlvbmlu
-ZyB0aGlzIHV0aWxpdHkgaW52b2x2ZXMgYW4gTnZpZGlhIGNhcmQuCj4gCj4gTXkgcXVlc3Rpb25z
-IGFyZToKPiAxLiBXaHkgb3IgaG93IGNhbiBJIGhhdmUgbW9yZSBDUlRDcyB0aGFuIG9mZmljaWFs
-bHkgc3VwcG9ydGVkIG91dHB1dHMgZm9yIHRoZQo+IEludGVsIFVIRCA2MjA/CgpCZWNhdXNlIGl0
-J3MgYW4gW2FjdHVhbGx5LCBtb3JlIHRoYW4gb25lXSBhYnN0cmFjdGlvbiBsYXllciBvdmVyIEhX
-LgoKPiAyLiBXaGF0IGRvZXMgdGhlIGludGVsLXZpcnR1YWwtb3V0cHV0IHV0aWxpdHkgZG8gZm9y
-IG1lLCBhIGh5YnJpZCBJbnRlbC9BTUQKPiB1c2VyPwoKSW4geW91ciBzZXR1cCwgbm8uIEl0IHJ1
-bnMgYXMgYSBwcm94eSBiZXR3ZWVuIGRpc2NyZXRlIFggc2VydmVycywKbWlycm9yaW5nIHRoZSBj
-b25maWd1cmF0aW9uIG9udG8gdGhlIHZpcnR1YWwgb3V0cHV0cywgc3VjaCB0aGF0IHlvdSBjYW4K
-Y29uc3RydWN0IGEgc2luZ2xlIHNjcmVlbiBvdXQgb2YgbXVsdGlwbGUuIFh2bmMgaW4gcmV2ZXJz
-ZSwgc2ltaWxhciB0bwpNaXJhY2FzdCAvIFdpRGkuCgo+IDMuIFdoeSBkbyBJIG5lZWQgVklSVFVB
-TDE/CgpJZiB5b3UgZG9uJ3QgbmVlZCBpdCwgdGhlbiB5b3UgZG9uJ3QuIEl0J3MgYSBzbWFsbCBh
-bGxvY2F0aW9uLCBidXQKcmVxdWlyZXMgYW4gWG9yZy5jb25mIHRvIGRpc2FibGUuIFRoZSBjb252
-ZW5pZW5jZSBmYWN0b3Igb2Ygbm90IGhhdmluZwp0byBoYXZlIGFuIFhvcmcuY29uZiB0byB1c2Ug
-aXQsIG91dHdlaWdoZWQgdGhlIGluY29udmVuaWVuY2Ugb2YgdGhlCndhc3RlZCBhbGxvY2F0aW9u
-LgoKPiA0LiBXaGF0IHdvdWxkIGhhcHBlbiBpZiBJIHJlbW92ZWQgdGhlIGludGVsLXZpcnR1YWwt
-b3V0cHV0IHV0aWxpdHk/CgpZb3Ugc2F2ZSA2NEsgb2YgZGlzayBzcGFjZS4KLUNocmlzCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On 24/07/2020 12:26, Chris Wilson wrote:
+> Quoting Umesh Nerlige Ramappa (2020-07-24 01:18:59)
+>> From: Piotr Maciejewski <piotr.maciejewski@intel.com>
+>>
+>> OA reports can be triggered into the OA buffer by writing into the
+>> OAREPORTTRIG registers. Whitelist the registers to allow user to trigger
+>> reports.
+>>
+>> v2:
+>> - Move related change to this patch (Lionel)
+>> - Bump up perf revision (Lionel)
+>>
+>> v3: Pardon whitelisted registers for selftest (Umesh)
+>> v4: Document supported gens for the feature (Lionel)
+>>
+>> Signed-off-by: Piotr Maciejewski <piotr.maciejewski@intel.com>
+>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/intel_workarounds.c   | 26 +++++++++++++++++++
+>>   .../gpu/drm/i915/gt/selftest_workarounds.c    |  8 ++++++
+>>   drivers/gpu/drm/i915/i915_perf.c              | 11 +++++---
+>>   3 files changed, 42 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> index cef1c122696f..a72ebfd115e5 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> @@ -1387,6 +1387,20 @@ whitelist_reg(struct i915_wa_list *wal, i915_reg_t reg)
+>>          whitelist_reg_ext(wal, reg, RING_FORCE_TO_NONPRIV_ACCESS_RW);
+>>   }
+>>   
+>> +static void gen9_whitelist_build_performance_counters(struct i915_wa_list *w)
+>> +{
+>> +       /* OA buffer trigger report 2/6 used by performance query */
+>> +       whitelist_reg(w, OAREPORTTRIG2);
+>> +       whitelist_reg(w, OAREPORTTRIG6);
+> The other question is: are you sure these are per-context registers?
+All the registers exposed in this series are global.
+>> +}
+>> +
+>> +static void gen12_whitelist_build_performance_counters(struct i915_wa_list *w)
+>> +{
+>> +       /* OA buffer trigger report 2/6 used by performance query */
+>> +       whitelist_reg(w, GEN12_OAG_OAREPORTTRIG2);
+>> +       whitelist_reg(w, GEN12_OAG_OAREPORTTRIG6);
+>> +}
+>> +
+>>   static void gen9_whitelist_build(struct i915_wa_list *w)
+>>   {
+>>          /* WaVFEStateAfterPipeControlwithMediaStateClear:skl,bxt,glk,cfl */
+>> @@ -1400,6 +1414,9 @@ static void gen9_whitelist_build(struct i915_wa_list *w)
+>>   
+>>          /* WaSendPushConstantsFromMMIO:skl,bxt */
+>>          whitelist_reg(w, COMMON_SLICE_CHICKEN2);
+>> +
+>> +       /* Performance counters support */
+>> +       gen9_whitelist_build_performance_counters(w);
+>>   }
+>>   
+>>   static void skl_whitelist_build(struct intel_engine_cs *engine)
+>> @@ -1493,6 +1510,9 @@ static void cnl_whitelist_build(struct intel_engine_cs *engine)
+>>   
+>>          /* WaEnablePreemptionGranularityControlByUMD:cnl */
+>>          whitelist_reg(w, GEN8_CS_CHICKEN1);
+>> +
+>> +       /* Performance counters support */
+>> +       gen9_whitelist_build_performance_counters(w);
+>>   }
+>>   
+>>   static void icl_whitelist_build(struct intel_engine_cs *engine)
+>> @@ -1522,6 +1542,9 @@ static void icl_whitelist_build(struct intel_engine_cs *engine)
+>>                  whitelist_reg_ext(w, PS_INVOCATION_COUNT,
+>>                                    RING_FORCE_TO_NONPRIV_ACCESS_RD |
+>>                                    RING_FORCE_TO_NONPRIV_RANGE_4);
+>> +
+>> +               /* Performance counters support */
+>> +               gen9_whitelist_build_performance_counters(w);
+>>                  break;
+>>   
+>>          case VIDEO_DECODE_CLASS:
+>> @@ -1572,6 +1595,9 @@ static void tgl_whitelist_build(struct intel_engine_cs *engine)
+>>   
+>>                  /* Wa_1806527549:tgl */
+>>                  whitelist_reg(w, HIZ_CHICKEN);
+>> +
+>> +               /* Performance counters support */
+>> +               gen12_whitelist_build_performance_counters(w);
+>>                  break;
+>>          default:
+>>                  whitelist_reg_ext(w,
+>> diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+>> index febc9e6692ba..3b1d3dbcd477 100644
+>> --- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+>> @@ -934,6 +934,10 @@ static bool pardon_reg(struct drm_i915_private *i915, i915_reg_t reg)
+>>          static const struct regmask pardon[] = {
+>>                  { GEN9_CTX_PREEMPT_REG, INTEL_GEN_MASK(9, 9) },
+>>                  { GEN8_L3SQCREG4, INTEL_GEN_MASK(9, 9) },
+>> +               { OAREPORTTRIG2, INTEL_GEN_MASK(8, 11) },
+>> +               { OAREPORTTRIG6, INTEL_GEN_MASK(8, 11) },
+>> +               { GEN12_OAG_OAREPORTTRIG2, INTEL_GEN_MASK(12, 12) },
+>> +               { GEN12_OAG_OAREPORTTRIG6, INTEL_GEN_MASK(12, 12) },
+> Because we are not making the mistake of exposing more globals, and the
+> pardon is a list of our past sins, not an excuse for more.
+
+I'm afraid the HW design leave us no choice on Gen12 :(
+
+
+-Lionel
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
