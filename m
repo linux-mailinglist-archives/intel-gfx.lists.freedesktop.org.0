@@ -1,45 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB2A222CB21
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 18:34:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DEA922CB33
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 18:38:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 386BD6E0B6;
-	Fri, 24 Jul 2020 16:34:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79B5A6E133;
+	Fri, 24 Jul 2020 16:38:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5872D6E0B6
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 16:34:29 +0000 (UTC)
-IronPort-SDR: snNfqsVioRf+pqssda2fUyJIfIzHbrSbkJY88Xt6U2glRMHn1xdAwqwT86KE6HTx1NAKaGcIuK
- kvJ2/3kPgvNw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9692"; a="148651102"
-X-IronPort-AV: E=Sophos;i="5.75,391,1589266800"; d="scan'208";a="148651102"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2020 09:34:20 -0700
-IronPort-SDR: WbP1ciPUpqwZn+xJDi2clv453mT9vFjlxw57z7In/0wNvrTnVNsSczSrriLA2+hF2cB2u4Cwkc
- ZVCRPsA5PC7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,391,1589266800"; d="scan'208";a="327366206"
-Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.213.227.31])
- by FMSMGA003.fm.intel.com with ESMTP; 24 Jul 2020 09:34:12 -0700
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 406C56E117
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 16:38:05 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21921776-1500050 
+ for multiple; Fri, 24 Jul 2020 17:37:58 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Jul 2020 17:37:57 +0100
+Message-Id: <20200724163757.10737-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20200724162956.GB28353@orsosgc001.amr.corp.intel.com>
-References: <20200724001901.35662-1-umesh.nerlige.ramappa@intel.com>
- <20200724001901.35662-5-umesh.nerlige.ramappa@intel.com>
- <159559455387.21069.937949659631730547@build.alporthouse.com>
- <20200724162956.GB28353@orsosgc001.amr.corp.intel.com>
-From: Chris Wilson <chris.p.wilson@intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Date: Fri, 24 Jul 2020 17:34:11 +0100
-Message-ID: <159560845126.2889.3198879925052513730@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/perf: Map OA buffer to user
- space for gen12 performance query
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Delay taking the spinlock for
+ grabbing from the buffer pool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,167 +37,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Umesh Nerlige Ramappa (2020-07-24 17:29:56)
-> On Fri, Jul 24, 2020 at 01:42:33PM +0100, Chris Wilson wrote:
-> >Quoting Umesh Nerlige Ramappa (2020-07-24 01:19:01)
-> >> From: Piotr Maciejewski <piotr.maciejewski@intel.com>
-> >>
-> >> i915 used to support time based sampling mode which is good for overall
-> >> system monitoring, but is not enough for query mode used to measure a
-> >> single draw call or dispatch. Gen9-Gen11 are using current i915 perf
-> >> implementation for query, but Gen12+ requires a new approach for query
-> >> based on triggered reports within oa buffer.
-> >>
-> >> Triggering reports into the OA buffer is achieved by writing into a
-> >> a trigger register. Optionally an unused counter/register is set with a
-> >> marker value such that a triggered report can be identified in the OA
-> >> buffer. Reports are usually triggered at the start and end of work that
-> >> is measured.
-> >>
-> >> Since OA buffer is large and queries can be frequent, an efficient way
-> >> to look for triggered reports is required. By knowing the current head
-> >> and tail offsets into the OA buffer, it is easier to determine the
-> >> locality of the reports of interest.
-> >>
-> >> Current perf OA interface does not expose head/tail information to the
-> >> user and it filters out invalid reports before sending data to user.
-> >> Also considering limited size of user buffer used during a query,
-> >> creating a 1:1 copy of the OA buffer at the user space added undesired
-> >> complexity.
-> >>
-> >> The solution was to map the OA buffer to user space provided
-> >>
-> >> (1) that it is accessed from a privileged user.
-> >> (2) OA report filtering is not used.
-> >>
-> >> These 2 conditions would satisfy the safety criteria that the current
-> >> perf interface addresses.
-> >>
-> >> To enable the query:
-> >> - Add an ioctl to expose head and tail to the user
-> >> - Add an ioctl to return size and offset of the OA buffer
-> >> - Map the OA buffer to the user space
-> >>
-> >> v2:
-> >> - Improve commit message (Chris)
-> >> - Do not mmap based on gem object filp. Instead, use perf_fd and support
-> >>   mmap syscall (Chris)
-> >> - Pass non-zero offset in mmap to enforce the right object is
-> >>   mapped (Chris)
-> >> - Do not expose gpu_address (Chris)
-> >> - Verify start and length of vma for page alignment (Lionel)
-> >> - Move SQNTL config out (Lionel)
-> >>
-> >> v3: (Chris)
-> >> - Omit redundant checks
-> >> - Return VM_FAULT_SIGBUS is old stream is closed
-> >> - Maintain reference counts to stream in vm_open and vm_close
-> >> - Use switch to identify object to be mapped
-> >>
-> >> v4: Call kref_put on closing perf fd (Chris)
-> >> v5:
-> >> - Strip access to OA buffer from unprivileged child of a privileged
-> >>   parent. Use VM_DONTCOPY
-> >> - Enforce MAP_PRIVATE by checking for VM_MAYSHARE
-> >>
-> >> Signed-off-by: Piotr Maciejewski <piotr.maciejewski@intel.com>
-> >> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> >> ---
-> >> @@ -3314,12 +3427,113 @@ static int i915_perf_release(struct inode *inode, struct file *file)
-> >>         i915_perf_destroy_locked(stream);
-> >>         mutex_unlock(&perf->lock);
-> >>
-> >> +       unmap_mapping_range(file->f_mapping, 0, OA_BUFFER_SIZE, 1);
-> >
-> >You can just used unmap_mapping_range(file->f_mapping, 0, -1, 1);
-> >It scales with the number of vma present, so no worries, be conservative.
-> >(Otherwise, you need s/0/OA_BUFFER_OFFSET/.)
-> >
-> >> +
-> >>         /* Release the reference the perf stream kept on the driver. */
-> >>         drm_dev_put(&perf->i915->drm);
-> >>
-> >>         return 0;
-> >>  }
-> >>
-> >> +static void vm_open_oa(struct vm_area_struct *vma)
-> >> +{
-> >> +       struct i915_perf_stream *stream = vma->vm_private_data;
-> >> +
-> >> +       GEM_BUG_ON(!stream);
-> >> +       perf_stream_get(stream);
-> >> +}
-> >> +
-> >> +static void vm_close_oa(struct vm_area_struct *vma)
-> >> +{
-> >> +       struct i915_perf_stream *stream = vma->vm_private_data;
-> >> +
-> >> +       GEM_BUG_ON(!stream);
-> >> +       perf_stream_put(stream);
-> >> +}
-> >> +
-> >> +static vm_fault_t vm_fault_oa(struct vm_fault *vmf)
-> >> +{
-> >> +       struct vm_area_struct *vma = vmf->vma;
-> >> +       struct i915_perf_stream *stream = vma->vm_private_data;
-> >> +       struct i915_perf *perf = stream->perf;
-> >> +       struct drm_i915_gem_object *obj = stream->oa_buffer.vma->obj;
-> >> +       int err;
-> >> +       bool closed;
-> >
-> >So vm_area_struct has a reference to the stream, that looks good now.
-> >But there's no reference held to the vma itself.
-> 
-> How do I get a reference to the vma.
+Some very low hanging fruit, but contention on the pool->lock is
+noticeable between intel_gt_get_buffer_pool() and pool_retire(), with
+the majority of the hold time due to the locked list iteration. If we
+make the node itself RCU protected, we can perform the search for an
+suitable node just under RCU, reserving taking the lock itself for
+claiming the node and manipulating the list.
 
-That would be i915_vma_get(), but you don't need to if we control the
-order correctly, as then neither the PTE nor the ongoing faulthandler
-last longer than the i915_perf_stream
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gt/intel_gt_buffer_pool.c    | 57 ++++++++++++-------
+ .../drm/i915/gt/intel_gt_buffer_pool_types.h  |  7 ++-
+ 2 files changed, 44 insertions(+), 20 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+index 418ae184cecf..7c688dee982b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+@@ -35,37 +35,46 @@ static void node_free(struct intel_gt_buffer_pool_node *node)
+ {
+ 	i915_gem_object_put(node->obj);
+ 	i915_active_fini(&node->active);
+-	kfree(node);
++	kfree_rcu(node, rcu);
+ }
  
-> >> +       mutex_lock(&perf->lock);
-> >> +       closed = READ_ONCE(stream->closed);
-> >> +       mutex_unlock(&perf->lock);
-> >
-> >We do WRITE_ONCE(stream->closed, true) then invalidate all the mappings,
-> >so that part looks good. The invalidate is serialised with the
-> >vm_fault_oa, so we can just use a plain READ_ONCE(stream->closed) here
-> >and not worry about the perf->lock.
-> 
-> will do
-> >
-> >However... I think it should close&invalidate before releasing
-> >stream->oa_buffer.
-> 
-> will do
-> >
-> >And the read here of stream->oa_buffer should be after checking
-> >stream->closed.
-> 
-> I don't understand. I am checking for closed before remap_io_sg.
+ static void pool_free_work(struct work_struct *wrk)
+ {
+ 	struct intel_gt_buffer_pool *pool =
+ 		container_of(wrk, typeof(*pool), work.work);
+-	struct intel_gt_buffer_pool_node *node, *next;
++	struct intel_gt_buffer_pool_node *node, *stale = NULL;
+ 	unsigned long old = jiffies - HZ;
+ 	bool active = false;
+-	LIST_HEAD(stale);
+ 	int n;
+ 
+ 	/* Free buffers that have not been used in the past second */
+-	spin_lock_irq(&pool->lock);
+ 	for (n = 0; n < ARRAY_SIZE(pool->cache_list); n++) {
+ 		struct list_head *list = &pool->cache_list[n];
+ 
+-		/* Most recent at head; oldest at tail */
+-		list_for_each_entry_safe_reverse(node, next, list, link) {
+-			if (time_before(node->age, old))
+-				break;
++		if (list_empty(list))
++			continue;
+ 
+-			list_move(&node->link, &stale);
++		/* Most recent at head; oldest at tail */
++		if (spin_trylock_irq(&pool->lock)) {
++			list_for_each_entry_reverse(node, list, link) {
++				if (time_before(node->age, old))
++					break;
++
++				node->age = 0;
++				list_del_rcu(&node->link);
++				node->free = stale;
++				stale = node;
++			}
++			spin_unlock_irq(&pool->lock);
+ 		}
++
+ 		active |= !list_empty(list);
+ 	}
+-	spin_unlock_irq(&pool->lock);
+ 
+-	list_for_each_entry_safe(node, next, &stale, link)
++	while ((node = stale)) {
++		stale = stale->free;
+ 		node_free(node);
++	}
+ 
+ 	if (active)
+ 		schedule_delayed_work(&pool->work,
+@@ -110,7 +119,7 @@ static void pool_retire(struct i915_active *ref)
+ 
+ 	spin_lock_irqsave(&pool->lock, flags);
+ 	node->age = jiffies;
+-	list_add(&node->link, list);
++	list_add_rcu(&node->link, list);
+ 	spin_unlock_irqrestore(&pool->lock, flags);
+ 
+ 	schedule_delayed_work(&pool->work,
+@@ -151,22 +160,32 @@ intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size)
+ 	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
+ 	struct intel_gt_buffer_pool_node *node;
+ 	struct list_head *list;
+-	unsigned long flags;
++	bool found = false;
+ 	int ret;
+ 
+ 	size = PAGE_ALIGN(size);
+ 	list = bucket_for_size(pool, size);
+ 
+-	spin_lock_irqsave(&pool->lock, flags);
+-	list_for_each_entry(node, list, link) {
++	rcu_read_lock();
++	list_for_each_entry_rcu(node, list, link) {
++		unsigned long flags;
++
+ 		if (node->obj->base.size < size)
+ 			continue;
+-		list_del(&node->link);
+-		break;
++
++		spin_lock_irqsave(&pool->lock, flags);
++		if (node->age) {
++			list_del_rcu(&node->link);
++			node->age = 0;
++			found = true;
++		}
++		spin_unlock_irqrestore(&pool->lock, flags);
++		if (found)
++			break;
+ 	}
+-	spin_unlock_irqrestore(&pool->lock, flags);
++	rcu_read_unlock();
+ 
+-	if (&node->link == list) {
++	if (!found) {
+ 		node = node_create(pool, size);
+ 		if (IS_ERR(node))
+ 			return node;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
+index e28bdda771ed..d30dc6d32f10 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
+@@ -25,8 +25,13 @@ struct intel_gt_buffer_pool_node {
+ 	struct i915_active active;
+ 	struct drm_i915_gem_object *obj;
+ 	struct list_head link;
+-	struct intel_gt_buffer_pool *pool;
++	union {
++		struct intel_gt_buffer_pool *pool;
++		struct intel_gt_buffer_pool_node *free;
++		struct rcu_head rcu;
++	};
+ 	unsigned long age;
++
+ };
+ 
+ #endif /* INTEL_GT_BUFFER_POOL_TYPES_H */
+-- 
+2.20.1
 
-It's the 
-
-struct drm_i915_gem_object *obj = stream->oa_buffer.vma->obj;
-
-that's before the stream->closed check. That's dereferencing vma, but vma
-will be set to NULL in i915_perf_destroy.
--Chris
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
