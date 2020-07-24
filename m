@@ -2,43 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE4022C237
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 11:26:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B7AD22C28B
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jul 2020 11:46:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82E7E6E4F8;
-	Fri, 24 Jul 2020 09:26:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 331096E505;
+	Fri, 24 Jul 2020 09:46:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2BF06E4F4
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 09:26:23 +0000 (UTC)
-IronPort-SDR: 9Aoh9BuQlF0pmIcCNfspVklgKdn2VUSDOZsK9a1A6oINJd+kdCEjsuyBiKBgv3ST37dnpE1Xjc
- MAzGFfMf7cQg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9691"; a="150667754"
-X-IronPort-AV: E=Sophos;i="5.75,390,1589266800"; d="scan'208";a="150667754"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E797F6E505
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 09:46:04 +0000 (UTC)
+IronPort-SDR: qIQF1d3e3F8rT1zgSXirUu9kcAWIwpllV84uJB4b+9Ojct5rH1bcBlCGg5+If4W/LmiSReGbYZ
+ X92whxpkkdOw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9691"; a="235561957"
+X-IronPort-AV: E=Sophos;i="5.75,390,1589266800"; d="scan'208";a="235561957"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2020 02:26:22 -0700
-IronPort-SDR: R6nMtqitDkGP83LQZje9TK3UH3WFxR4tsvFIwnYeXA7BmS9iUlO9wIMxKkD6u6n1Xj+KlVnFo/
- P/xejsKKlraA==
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2020 02:46:04 -0700
+IronPort-SDR: 0W7kPpD+LfSUd2OBQCiLv/DSF0MjTVzgBDWMkMeSSngz8E3BWq1Cmobqy3u/ZKOD5+Nc/V88Bp
+ nd8Wp3v4+A3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,390,1589266800"; d="scan'208";a="288933573"
-Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.213.227.31])
- by orsmga006.jf.intel.com with ESMTP; 24 Jul 2020 02:26:20 -0700
+X-IronPort-AV: E=Sophos;i="5.75,390,1589266800"; d="scan'208";a="328860333"
+Received: from ahershco-mobl1.ger.corp.intel.com (HELO [10.254.144.190])
+ ([10.254.144.190])
+ by orsmga007.jf.intel.com with ESMTP; 24 Jul 2020 02:46:02 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200723195110.11540-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <29ee42c5-ff73-9019-5aae-e246ef684052@intel.com>
+Date: Fri, 24 Jul 2020 10:46:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200724001901.35662-3-umesh.nerlige.ramappa@intel.com>
-References: <20200724001901.35662-1-umesh.nerlige.ramappa@intel.com>
- <20200724001901.35662-3-umesh.nerlige.ramappa@intel.com>
-From: Chris Wilson <chris.p.wilson@intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jul 2020 10:26:19 +0100
-Message-ID: <159558277976.21069.2416672457874030480@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/perf: Whitelist OA report
- trigger registers
+In-Reply-To: <20200723195110.11540-1-chris@chris-wilson.co.uk>
+Content-Language: en-GB
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Filter wake_flags passed to
+ default_wake_function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,127 +52,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: stable@vger.kernel.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Umesh Nerlige Ramappa (2020-07-24 01:18:59)
-> From: Piotr Maciejewski <piotr.maciejewski@intel.com>
+On 23/07/2020 20:51, Chris Wilson wrote:
+> The flags passed to the wait_entry.func are passed onwards to
+> try_to_wake_up(), which has a very particular interpretation for its
+> wake_flags. In particular, beyond the published WF_SYNC, it has a few
+> internal flags as well. Since we passed the fence->error down the chain
+> via the flags argument, these ended up in the default_wake_function
+> confusing the kernel/sched.
 > 
-> OA reports can be triggered into the OA buffer by writing into the
-> OAREPORTTRIG registers. Whitelist the registers to allow user to trigger
-> reports.
-> 
-> v2:
-> - Move related change to this patch (Lionel)
-> - Bump up perf revision (Lionel)
-> 
-> v3: Pardon whitelisted registers for selftest (Umesh)
-> v4: Document supported gens for the feature (Lionel)
-> 
-> Signed-off-by: Piotr Maciejewski <piotr.maciejewski@intel.com>
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 26 +++++++++++++++++++
->  .../gpu/drm/i915/gt/selftest_workarounds.c    |  8 ++++++
->  drivers/gpu/drm/i915/i915_perf.c              | 11 +++++---
->  3 files changed, 42 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index cef1c122696f..a72ebfd115e5 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -1387,6 +1387,20 @@ whitelist_reg(struct i915_wa_list *wal, i915_reg_t reg)
->         whitelist_reg_ext(wal, reg, RING_FORCE_TO_NONPRIV_ACCESS_RW);
->  }
->  
-> +static void gen9_whitelist_build_performance_counters(struct i915_wa_list *w)
-> +{
-> +       /* OA buffer trigger report 2/6 used by performance query */
-> +       whitelist_reg(w, OAREPORTTRIG2);
-> +       whitelist_reg(w, OAREPORTTRIG6);
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2110
+> Fixes: ef4688497512 ("drm/i915: Propagate fence errors")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.4+
 
-The other question is: are you sure these are per-context registers?
-> +}
-> +
-> +static void gen12_whitelist_build_performance_counters(struct i915_wa_list *w)
-> +{
-> +       /* OA buffer trigger report 2/6 used by performance query */
-> +       whitelist_reg(w, GEN12_OAG_OAREPORTTRIG2);
-> +       whitelist_reg(w, GEN12_OAG_OAREPORTTRIG6);
-> +}
-> +
->  static void gen9_whitelist_build(struct i915_wa_list *w)
->  {
->         /* WaVFEStateAfterPipeControlwithMediaStateClear:skl,bxt,glk,cfl */
-> @@ -1400,6 +1414,9 @@ static void gen9_whitelist_build(struct i915_wa_list *w)
->  
->         /* WaSendPushConstantsFromMMIO:skl,bxt */
->         whitelist_reg(w, COMMON_SLICE_CHICKEN2);
-> +
-> +       /* Performance counters support */
-> +       gen9_whitelist_build_performance_counters(w);
->  }
->  
->  static void skl_whitelist_build(struct intel_engine_cs *engine)
-> @@ -1493,6 +1510,9 @@ static void cnl_whitelist_build(struct intel_engine_cs *engine)
->  
->         /* WaEnablePreemptionGranularityControlByUMD:cnl */
->         whitelist_reg(w, GEN8_CS_CHICKEN1);
-> +
-> +       /* Performance counters support */
-> +       gen9_whitelist_build_performance_counters(w);
->  }
->  
->  static void icl_whitelist_build(struct intel_engine_cs *engine)
-> @@ -1522,6 +1542,9 @@ static void icl_whitelist_build(struct intel_engine_cs *engine)
->                 whitelist_reg_ext(w, PS_INVOCATION_COUNT,
->                                   RING_FORCE_TO_NONPRIV_ACCESS_RD |
->                                   RING_FORCE_TO_NONPRIV_RANGE_4);
-> +
-> +               /* Performance counters support */
-> +               gen9_whitelist_build_performance_counters(w);
->                 break;
->  
->         case VIDEO_DECODE_CLASS:
-> @@ -1572,6 +1595,9 @@ static void tgl_whitelist_build(struct intel_engine_cs *engine)
->  
->                 /* Wa_1806527549:tgl */
->                 whitelist_reg(w, HIZ_CHICKEN);
-> +
-> +               /* Performance counters support */
-> +               gen12_whitelist_build_performance_counters(w);
->                 break;
->         default:
->                 whitelist_reg_ext(w,
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-> index febc9e6692ba..3b1d3dbcd477 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-> @@ -934,6 +934,10 @@ static bool pardon_reg(struct drm_i915_private *i915, i915_reg_t reg)
->         static const struct regmask pardon[] = {
->                 { GEN9_CTX_PREEMPT_REG, INTEL_GEN_MASK(9, 9) },
->                 { GEN8_L3SQCREG4, INTEL_GEN_MASK(9, 9) },
-> +               { OAREPORTTRIG2, INTEL_GEN_MASK(8, 11) },
-> +               { OAREPORTTRIG6, INTEL_GEN_MASK(8, 11) },
-> +               { GEN12_OAG_OAREPORTTRIG2, INTEL_GEN_MASK(12, 12) },
-> +               { GEN12_OAG_OAREPORTTRIG6, INTEL_GEN_MASK(12, 12) },
-
-Because we are not making the mistake of exposing more globals, and the
-pardon is a list of our past sins, not an excuse for more.
--Chris
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
