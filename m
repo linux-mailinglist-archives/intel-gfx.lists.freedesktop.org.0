@@ -1,42 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FC6F22D41E
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Jul 2020 05:08:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C1AF22D63C
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Jul 2020 10:54:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15E726EA58;
-	Sat, 25 Jul 2020 03:08:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCBDF6E027;
+	Sat, 25 Jul 2020 08:54:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B97106EA58
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Jul 2020 03:08:12 +0000 (UTC)
-IronPort-SDR: KFevufdco3VWNB2OV12vqekieUvi7pLHbLCWQXuygNW4DE3O66wZ43Rl8oARhQRW08XZyZ/CYg
- u4BD1T8gaWog==
-X-IronPort-AV: E=McAfee;i="6000,8403,9692"; a="149995023"
-X-IronPort-AV: E=Sophos;i="5.75,392,1589266800"; d="scan'208";a="149995023"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2020 20:08:12 -0700
-IronPort-SDR: rBIpEIBWPSFUpqSEJP4bLJNXuXlAEZhzSNdk0ZXv/NuZTGjuMW5OPuf4ndkhhpU0Zcyp5Hxr2b
- jZzVer7XrNyg==
-X-IronPort-AV: E=Sophos;i="5.75,392,1589266800"; d="scan'208";a="463436822"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2020 20:08:11 -0700
-Date: Fri, 24 Jul 2020 20:08:10 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200725030810.GM3650202@mdroper-desk1.amr.corp.intel.com>
-References: <20200723221021.40456-1-jose.souza@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6D116E027
+ for <intel-gfx@lists.freedesktop.org>; Sat, 25 Jul 2020 08:54:34 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21926792-1500050 
+ for multiple; Sat, 25 Jul 2020 09:54:25 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat, 25 Jul 2020 09:54:24 +0100
+Message-Id: <20200725085424.523604-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.28.0.rc1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200723221021.40456-1-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Implement WA 14011294188
+Subject: [Intel-gfx] [PATCH i-g-t] drm_import_export: Check for working and
+ known GPU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,87 +37,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 23, 2020 at 03:10:21PM -0700, Jos=E9 Roberto de Souza wrote:
-> Although the WA description targets the platforms it is a workaround
-> for the affected PCHs, that is why it is being checked.
-> =
+Since this relies on libdrm being updated for new GPUs [spoiler
+warning], just mark future failures with a skip until support lands.
 
-> BSpec: 52890
-> BSpec: 53273
-> BSpec: 52888
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 5 +++++
->  drivers/gpu/drm/i915/i915_reg.h                    | 1 +
->  2 files changed, 6 insertions(+)
-> =
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/2220
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/drm_import_export.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index 0c713e83274d..3efb3d6e4474 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -5302,6 +5302,11 @@ static void icl_display_core_init(struct drm_i915_=
-private *dev_priv,
->  =
+diff --git a/tests/drm_import_export.c b/tests/drm_import_export.c
+index 6174c9973..d8ae84b32 100644
+--- a/tests/drm_import_export.c
++++ b/tests/drm_import_export.c
+@@ -40,6 +40,8 @@
+ #include <unistd.h>
+ #include <sys/syscall.h>
+ 
++#include "i915/gem.h"
++
+ #define DURATION 10
+ 
+ int fd;
+@@ -235,13 +237,14 @@ igt_main {
+ 	igt_fixture {
+ 		fd1 = drm_open_driver(DRIVER_INTEL);
+ 		igt_assert(fd1 >= 0);
++		igt_require_gem(fd1);
++
+ 		bufmgr1 = drm_intel_bufmgr_gem_init(fd1, 8 *1024);
+-		igt_assert(bufmgr1);
++		igt_require(bufmgr1);
+ 
+ 		drm_intel_bufmgr_gem_enable_reuse(bufmgr1);
+ 
+-		fd = drm_open_driver(DRIVER_INTEL);
+-		igt_assert(fd >= 0);
++		fd = gem_reopen_driver(fd1);
+ 		bufmgr = drm_intel_bufmgr_gem_init(fd, 8 *1024);
+ 		igt_assert(bufmgr);
+ 
+-- 
+2.28.0.rc1
 
->  	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
->  =
-
-> +	/* Wa_14011294188:ehl,jsl,tgl,rkl */
-> +	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_JSP)
-
-I think we also want an "&& INTEL_PCH_TYPE < PCH_DG1" here to exclude
-"fake" PCH's.
-
-Aside from that,
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-
-> +		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D, 0,
-> +			     PCH_DPMGUNIT_CLOCK_GATE_DISABLE);
-> +
->  	/* 1. Enable PCH reset handshake. */
->  	intel_pch_reset_handshake(dev_priv, !HAS_PCH_NOP(dev_priv));
->  =
-
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index a0d31f3bf634..5eae593ee784 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -8730,6 +8730,7 @@ enum {
->  #define  PCH_GMBUSUNIT_CLOCK_GATE_DISABLE (1 << 31)
->  #define  PCH_DPLUNIT_CLOCK_GATE_DISABLE (1 << 30)
->  #define  PCH_DPLSUNIT_CLOCK_GATE_DISABLE (1 << 29)
-> +#define  PCH_DPMGUNIT_CLOCK_GATE_DISABLE (1 << 15)
->  #define  PCH_CPUNIT_CLOCK_GATE_DISABLE (1 << 14)
->  #define  CNP_PWM_CGE_GATING_DISABLE (1 << 13)
->  #define  PCH_LP_PARTITION_LEVEL_DISABLE  (1 << 12)
-> -- =
-
-> 2.27.0
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
