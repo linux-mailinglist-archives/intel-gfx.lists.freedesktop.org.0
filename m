@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AE7C22DC29
-	for <lists+intel-gfx@lfdr.de>; Sun, 26 Jul 2020 07:17:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 842A822DC2A
+	for <lists+intel-gfx@lfdr.de>; Sun, 26 Jul 2020 07:17:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0BF36E09A;
-	Sun, 26 Jul 2020 05:17:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3B276E098;
+	Sun, 26 Jul 2020 05:17:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CCACF6E098;
- Sun, 26 Jul 2020 05:17:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7AA8F6E098;
+ Sun, 26 Jul 2020 05:17:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C022FA011B;
- Sun, 26 Jul 2020 05:17:00 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 78825A011B;
+ Sun, 26 Jul 2020 05:17:19 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
-Date: Sun, 26 Jul 2020 05:17:00 -0000
-Message-ID: <159574062075.29011.6913695487478915728@emeril.freedesktop.org>
+Date: Sun, 26 Jul 2020 05:17:19 -0000
+Message-ID: <159574063949.29011.469001218021711890@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200726130400.10160-1-bhanuprakash.modem@intel.com>
 In-Reply-To: <20200726130400.10160-1-bhanuprakash.modem@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Expose_crtc_dither_state_and_connector_max_bpc_via_debugfs_?=
- =?utf-8?b?KHJldjMp?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Expose_crtc_dither_state_and_connector_max_bpc_via_debugfs_=28r?=
+ =?utf-8?q?ev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,29 +54,9 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-232926bcfcea i915/debug: Expose crtc dither state via debugfs
--:46: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO' are not preferred. Consider using octal permissions '0444'.
-#46: FILE: drivers/gpu/drm/i915/i915_debugfs.c:1674:
-+		debugfs_create_file("dither", S_IRUGO, crtc->debugfs_entry, crtc,
-
--:47: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#47: FILE: drivers/gpu/drm/i915/i915_debugfs.c:1675:
-+		debugfs_create_file("dither", S_IRUGO, crtc->debugfs_entry, crtc,
-+				&dither_state_fops);
-
-total: 0 errors, 1 warnings, 1 checks, 30 lines checked
-051cfceeae4d i915/debug: Expose Max BPC info via debugfs
--:47: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO' are not preferred. Consider using octal permissions '0444'.
-#47: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2252:
-+	debugfs_create_file("output_bpc", S_IRUGO, root,
-
--:48: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#48: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2253:
-+	debugfs_create_file("output_bpc", S_IRUGO, root,
-+			connector, &output_bpc_fops);
-
-total: 0 errors, 1 warnings, 1 checks, 28 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
 
 
 _______________________________________________
