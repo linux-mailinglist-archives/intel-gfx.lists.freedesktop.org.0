@@ -2,59 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C7522E8D8
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jul 2020 11:24:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4560B22E917
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jul 2020 11:36:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39C4489CA1;
-	Mon, 27 Jul 2020 09:24:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F7E289BFD;
+	Mon, 27 Jul 2020 09:36:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa3.bahnhof.se (pio-pvt-msa3.bahnhof.se [79.136.2.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C19689CA1
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jul 2020 09:24:39 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTP id EB5B93F5DF;
- Mon, 27 Jul 2020 11:24:36 +0200 (CEST)
-Authentication-Results: pio-pvt-msa3.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=d4bKdL+G; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.442
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.442 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.343,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from pio-pvt-msa3.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id FLIbT1SfhaRK; Mon, 27 Jul 2020 11:24:36 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTPA id 8A06A3F515;
- Mon, 27 Jul 2020 11:24:33 +0200 (CEST)
-Received: from localhost.localdomain (unknown [134.134.137.77])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 295AB360305;
- Mon, 27 Jul 2020 11:24:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1595841873; bh=LjvWITxRQuU+xFbmSCZGEX3gKYVgXjk4baHU9TR4Wb4=;
- h=Subject:To:References:From:Cc:Date:In-Reply-To:From;
- b=d4bKdL+GSUSrFtC7M/1ubzNqULnX7Y8OEi1ouAB+ZUALAwmTOUi2+pejmLquohRtx
- uR63PKxer9DsoSzjBQ+Vzr+7utQjkbAi+U0OobXh4qXW+gJXmmP8bno3eqOzfdtWfF
- d74zXP+/ShEbAYF2QHw5a5201EDDyvjf0uDKDpdk=
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3ACC89BFD
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jul 2020 09:36:09 +0000 (UTC)
+IronPort-SDR: bz4SPLQzqVj+CSznVray/990fw0SuYcFBSL8NqAWhi1zWWMaRvaf8QmE589zf6UPXG4A1nekRp
+ GrtQ7M7lYWDg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9694"; a="152238772"
+X-IronPort-AV: E=Sophos;i="5.75,402,1589266800"; d="scan'208";a="152238772"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2020 02:36:09 -0700
+IronPort-SDR: DGYbESPlKleVVNcaASaFnAPkc5UZKoL5YJN8027pol+9vRV9OTyYj1paZNnsh1VTiTefPTcjMs
+ xSAPSu+X4x2Q==
+X-IronPort-AV: E=Sophos;i="5.75,402,1589266800"; d="scan'208";a="433871310"
+Received: from hmiron-mobl1.ger.corp.intel.com (HELO [10.251.169.133])
+ ([10.251.169.133])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2020 02:36:07 -0700
+To: Dave Airlie <airlied@gmail.com>, Chris Wilson <chris@chris-wilson.co.uk>
 References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <20200715115147.11866-11-chris@chris-wilson.co.uk>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <dabc6756-3ba8-ee58-ca6c-e2ae2f0227ac@shipmail.org>
-Date: Mon, 27 Jul 2020 11:24:24 +0200
+ <CAPM=9txAqRB=+DZ4To5911Bx_ZgiTSUGFaHR86YEXm6w+pzHyA@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <89c0b469-1930-a6f6-e818-4b44ac71e022@linux.intel.com>
+Date: Mon, 27 Jul 2020 10:35:47 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200715115147.11866-11-chris@chris-wilson.co.uk>
+In-Reply-To: <CAPM=9txAqRB=+DZ4To5911Bx_ZgiTSUGFaHR86YEXm6w+pzHyA@mail.gmail.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 11/66] drm/i915: Preallocate stashes for vma
- page-directories
+Subject: Re: [Intel-gfx] [PATCH 01/66] drm/i915: Reduce i915_request.lock
+ contention for i915_request_wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,40 +54,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Chris,
 
-It appears to me like this series is doing a lot of different things:
+On 23/07/2020 21:32, Dave Airlie wrote:
+> I've got a 66 patch series here, does it have a cover letter I missed?
+ >
+ > Does it have a what is the goal of this series? Does it tell the
+ > reviewer where things are headed and why this is a good idea from a
+ > high level.
 
-- Various optimizations
-- Locking rework
-- Adding schedulers
-- Other misc fixes
+Chris sent it on one of the previous rounds upon my request - please see 
+https://www.spinics.net/lists/intel-gfx/msg243461.html. First paragraph 
+is the key.
 
-Could you please separate out as much as possible the locking rework 
-prerequisites in one series with cover letter, and most importantly the 
-major part of the locking rework (only) with a more elaborate cover 
-letter discussing, if not trivial, how each patch fits in and on design 
-and future directions, Questions that I have stumbled on so far (being a 
-new-to-the-driver reviewer):
+This series of 66 is some other unrelated work which is a bit 
+misleading, but that the usual. :) Real amount of patches is more around 
+20, like that posting which had a cover letter.
 
-- When are memory allocations disallowed? If we need to pre-allocate in 
-execbuf, when? why?
-- When is the request dma-fence published?
-- Do we need to keep cpu asynchronous execbuf tasks after this? why?
-- What about userptr pinning ending up in the dma_fence critical path?
+> The problem with these series is they are impossible to review from a
+> WTF does it do, and it forces people to review at a patch level, but
+> the high level concepts and implications go unmissed.
 
-And then move anything non-related to separate series?
+I've been reviewing both implementations so in case it helps I'll write 
+a few words... We had internal discussions and meetings on two different 
+approaches. With this in mind, I agree it is hard to get the full 
+picture looking from the outside when only limited amount of information 
+went out (in the for of the cover letter).
 
-Thanks,
+In short, core idea the series is doing is splitting out object backing 
+store reservation from address space management. This way it is able to 
+collect all possible backing store (and kernel memory allocations) into 
+this first stage, and it also does not have to feed the ww context down 
+the stack. (Because parts lower in the stack can therefore never try to 
+obtain a new buffer objects, or do memory allocation.)
 
-Thomas
+To me that sounds a solid approach which is in line with obj dma_resv 
+locking rules.
 
+And it definitely is not to be reviewed (just) on the patch-per-patch 
+basis. Applying all of it and looking at the end result is what is 
+needed and what I have done first before proceeded to look at individual 
+patches.
 
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
