@@ -1,47 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4560B22E917
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jul 2020 11:36:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB23C22E954
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jul 2020 11:42:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F7E289BFD;
-	Mon, 27 Jul 2020 09:36:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3596989CE2;
+	Mon, 27 Jul 2020 09:42:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3ACC89BFD
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jul 2020 09:36:09 +0000 (UTC)
-IronPort-SDR: bz4SPLQzqVj+CSznVray/990fw0SuYcFBSL8NqAWhi1zWWMaRvaf8QmE589zf6UPXG4A1nekRp
- GrtQ7M7lYWDg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9694"; a="152238772"
-X-IronPort-AV: E=Sophos;i="5.75,402,1589266800"; d="scan'208";a="152238772"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 388B589CE2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jul 2020 09:42:33 +0000 (UTC)
+IronPort-SDR: XUQXvS/d4JYpzbMeqEhbLmTzupcMJVsnsVR4isx2qXWbGLWhpTuRZTg9vHLsr44FYZPntiJNz4
+ pOfis8dhQzzQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9694"; a="130530624"
+X-IronPort-AV: E=Sophos;i="5.75,402,1589266800"; d="scan'208";a="130530624"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2020 02:36:09 -0700
-IronPort-SDR: DGYbESPlKleVVNcaASaFnAPkc5UZKoL5YJN8027pol+9vRV9OTyYj1paZNnsh1VTiTefPTcjMs
- xSAPSu+X4x2Q==
-X-IronPort-AV: E=Sophos;i="5.75,402,1589266800"; d="scan'208";a="433871310"
-Received: from hmiron-mobl1.ger.corp.intel.com (HELO [10.251.169.133])
- ([10.251.169.133])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2020 02:36:07 -0700
-To: Dave Airlie <airlied@gmail.com>, Chris Wilson <chris@chris-wilson.co.uk>
-References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <CAPM=9txAqRB=+DZ4To5911Bx_ZgiTSUGFaHR86YEXm6w+pzHyA@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <89c0b469-1930-a6f6-e818-4b44ac71e022@linux.intel.com>
-Date: Mon, 27 Jul 2020 10:35:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2020 02:42:32 -0700
+IronPort-SDR: IvdtE2YHede/YUjXvyyIpu7LmT15BRQtaMC/dw3jvw9f8o4d2qW69R2Ack/aPiGFBdtuOIHEkt
+ wGnqbxijV4UA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,402,1589266800"; d="scan'208";a="289727530"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga006.jf.intel.com with ESMTP; 27 Jul 2020 02:42:31 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id B697D5C28AA; Mon, 27 Jul 2020 12:41:59 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200727084058.7204-1-chris@chris-wilson.co.uk>
+References: <20200727084058.7204-1-chris@chris-wilson.co.uk>
+Date: Mon, 27 Jul 2020 12:41:59 +0300
+Message-ID: <87y2n547mg.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAPM=9txAqRB=+DZ4To5911Bx_ZgiTSUGFaHR86YEXm6w+pzHyA@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 01/66] drm/i915: Reduce i915_request.lock
- contention for i915_request_wait
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Reduce register reads around GT
+ interrupts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,58 +50,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 23/07/2020 21:32, Dave Airlie wrote:
-> I've got a 66 patch series here, does it have a cover letter I missed?
- >
- > Does it have a what is the goal of this series? Does it tell the
- > reviewer where things are headed and why this is a good idea from a
- > high level.
-
-Chris sent it on one of the previous rounds upon my request - please see 
-https://www.spinics.net/lists/intel-gfx/msg243461.html. First paragraph 
-is the key.
-
-This series of 66 is some other unrelated work which is a bit 
-misleading, but that the usual. :) Real amount of patches is more around 
-20, like that posting which had a cover letter.
-
-> The problem with these series is they are impossible to review from a
-> WTF does it do, and it forces people to review at a patch level, but
-> the high level concepts and implications go unmissed.
-
-I've been reviewing both implementations so in case it helps I'll write 
-a few words... We had internal discussions and meetings on two different 
-approaches. With this in mind, I agree it is hard to get the full 
-picture looking from the outside when only limited amount of information 
-went out (in the for of the cover letter).
-
-In short, core idea the series is doing is splitting out object backing 
-store reservation from address space management. This way it is able to 
-collect all possible backing store (and kernel memory allocations) into 
-this first stage, and it also does not have to feed the ww context down 
-the stack. (Because parts lower in the stack can therefore never try to 
-obtain a new buffer objects, or do memory allocation.)
-
-To me that sounds a solid approach which is in line with obj dma_resv 
-locking rules.
-
-And it definitely is not to be reviewed (just) on the patch-per-patch 
-basis. Applying all of it and looking at the end result is what is 
-needed and what I have done first before proceeded to look at individual 
-patches.
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyaXRlczoKCj4gVGhlIEdU
+IHN1YnN5c3RlbSBpcyBoaWdobHkgZGVwZW5kZW50IG9uIGludGVycnVwdHMgZm9yIGRyaXZpbmcg
+dGhlIEdQVTsKPiB3aGlsZSB0aGUgaW50ZXJydXB0IGlzIGJlaW5nIHByb2Nlc3NlZCB0aGUgR1BV
+IG1heSBpZGxlIGxlYWRpbmcgdG8gbG93ZXIKPiB0aHJvdWdocHV0IGFuZCBoaWdoZXIgbGF0ZW5j
+eS4gU2luY2UgdGhlIEdUIGludGVycnVwdHMgZG9taW5hdGUsIHB1c2gKPiB0aGUgaW5jaWRlbnRh
+bCBkaXNwbGF5IGludGVycnVwdCBoYW5kbGluZyB0byBsYXRlci4KPgo+IGdlbV9leGVjX25vcC9w
+YXJhbGxlbCBvbiBpdmIgW2k3LTM3MjBRTV06Cj4KPiBCZWZvcmU6Cj4gICBhdmVyYWdlIChpbmRp
+dmlkdWFsbHkpOiAyLjI3OHVzCj4gICByY3MwOiA4MzM3Njc0IGN5Y2xlcywgMi4zOTl1cwo+ICAg
+dmNzMDogMzI4Njk5MCBjeWNsZXMsIDYuMDg1dXMKPiAgIGJjczA6IDIwNDc5MTcgY3ljbGVzLCA5
+Ljc2NnVzCj4KPiBBZnRlcjoKPiAgIGF2ZXJhZ2UgKGluZGl2aWR1YWxseSk6IDIuMTE4dXMKPiAg
+IHJjczA6IDEwMTMyNDYyIGN5Y2xlcywgMS45NzR1cwo+ICAgYmNzMDogMzY2NzEzMCBjeWNsZXMs
+IDUuNDU0dXMKPiAgIHZjczA6IDM2MTY2MTggY3ljbGVzLCA1LjUzMHVzCj4KPiBTaWduZWQtb2Zm
+LWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiBDYzogTWlrYSBL
+dW9wcGFsYSA8bWlrYS5rdW9wcGFsYUBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IFZpbGxlIFN5cmrD
+pGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CgpSZXZpZXdlZC1ieTogTWlrYSBL
+dW9wcGFsYSA8bWlrYS5rdW9wcGFsYUBsaW51eC5pbnRlbC5jb20+Cgo+IC0tLQo+ICBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIHwgNTggKysrKysrKysrKysrKysrKystLS0tLS0tLS0t
+LS0tLS0tCj4gIDEgZmlsZSBjaGFuZ2VkLCAzMCBpbnNlcnRpb25zKCspLCAyOCBkZWxldGlvbnMo
+LSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwo+IGluZGV4IDFmYTY3NzAwZDhmNC4uZTE1NmRl
+ODhiZGM2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gQEAgLTIwOTksMjkgKzIwOTks
+MTYgQEAgc3RhdGljIGlycXJldHVybl90IGlsa19pcnFfaGFuZGxlcihpbnQgaXJxLCB2b2lkICph
+cmcpCj4gIHsKPiAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gYXJnOwo+ICAJdm9p
+ZCBfX2lvbWVtICogY29uc3QgcmVncyA9IGk5MTUtPnVuY29yZS5yZWdzOwo+IC0JdTMyIGRlX2lp
+ciwgZ3RfaWlyLCBkZV9pZXIsIHNkZV9pZXIgPSAwOwo+ICsJdTMyIGRlX2lpciwgZ3RfaWlyLCBk
+ZV9pZXI7Cj4gIAlpcnFyZXR1cm5fdCByZXQgPSBJUlFfTk9ORTsKPiAgCj4gIAlpZiAodW5saWtl
+bHkoIWludGVsX2lycXNfZW5hYmxlZChpOTE1KSkpCj4gIAkJcmV0dXJuIElSUV9OT05FOwo+ICAK
+PiAtCS8qIElSUXMgYXJlIHN5bmNlZCBkdXJpbmcgcnVudGltZV9zdXNwZW5kLCB3ZSBkb24ndCBy
+ZXF1aXJlIGEgd2FrZXJlZiAqLwo+IC0JZGlzYWJsZV9ycG1fd2FrZXJlZl9hc3NlcnRzKCZpOTE1
+LT5ydW50aW1lX3BtKTsKPiAtCj4gIAkvKiBkaXNhYmxlIG1hc3RlciBpbnRlcnJ1cHQgYmVmb3Jl
+IGNsZWFyaW5nIGlpciAgKi8KPiAgCWRlX2llciA9IHJhd19yZWdfcmVhZChyZWdzLCBERUlFUik7
+Cj4gIAlyYXdfcmVnX3dyaXRlKHJlZ3MsIERFSUVSLCBkZV9pZXIgJiB+REVfTUFTVEVSX0lSUV9D
+T05UUk9MKTsKPiAgCj4gLQkvKiBEaXNhYmxlIHNvdXRoIGludGVycnVwdHMuIFdlJ2xsIG9ubHkg
+d3JpdGUgdG8gU0RFSUlSIG9uY2UsIHNvIGZ1cnRoZXIKPiAtCSAqIGludGVycnVwdHMgd2lsbCB3
+aWxsIGJlIHN0b3JlZCBvbiBpdHMgYmFjayBxdWV1ZSwgYW5kIHRoZW4gd2UnbGwgYmUKPiAtCSAq
+IGFibGUgdG8gcHJvY2VzcyB0aGVtIGFmdGVyIHdlIHJlc3RvcmUgU0RFSUVSIChhcyBzb29uIGFz
+IHdlIHJlc3RvcmUKPiAtCSAqIGl0LCB3ZSdsbCBnZXQgYW4gaW50ZXJydXB0IGlmIFNERUlJUiBz
+dGlsbCBoYXMgc29tZXRoaW5nIHRvIHByb2Nlc3MKPiAtCSAqIGR1ZSB0byBpdHMgYmFjayBxdWV1
+ZSkuICovCj4gLQlpZiAoIUhBU19QQ0hfTk9QKGk5MTUpKSB7Cj4gLQkJc2RlX2llciA9IHJhd19y
+ZWdfcmVhZChyZWdzLCBTREVJRVIpOwo+IC0JCXJhd19yZWdfd3JpdGUocmVncywgU0RFSUVSLCAw
+KTsKPiAtCX0KPiAtCj4gIAkvKiBGaW5kLCBjbGVhciwgdGhlbiBwcm9jZXNzIGVhY2ggc291cmNl
+IG9mIGludGVycnVwdCAqLwo+ICAKPiAgCWd0X2lpciA9IHJhd19yZWdfcmVhZChyZWdzLCBHVElJ
+Uik7Cj4gQEAgLTIxMzQsMzIgKzIxMjEsNDcgQEAgc3RhdGljIGlycXJldHVybl90IGlsa19pcnFf
+aGFuZGxlcihpbnQgaXJxLCB2b2lkICphcmcpCj4gIAkJcmV0ID0gSVJRX0hBTkRMRUQ7Cj4gIAl9
+Cj4gIAo+ICsJaWYgKElOVEVMX0dFTihpOTE1KSA+PSA2KSB7Cj4gKwkJdTMyIHBtX2lpciA9IHJh
+d19yZWdfcmVhZChyZWdzLCBHRU42X1BNSUlSKTsKPiArCQlpZiAocG1faWlyKSB7Cj4gKwkJCXJh
+d19yZWdfd3JpdGUocmVncywgR0VONl9QTUlJUiwgcG1faWlyKTsKPiArCQkJZ2VuNl9ycHNfaXJx
+X2hhbmRsZXIoJmk5MTUtPmd0LnJwcywgcG1faWlyKTsKPiArCQkJcmV0ID0gSVJRX0hBTkRMRUQ7
+Cj4gKwkJfQo+ICsJfQo+ICsKPiAgCWRlX2lpciA9IHJhd19yZWdfcmVhZChyZWdzLCBERUlJUik7
+Cj4gIAlpZiAoZGVfaWlyKSB7Cj4gKwkJdTMyIHNkZV9pZXIgPSAwOwo+ICsKPiArCQkvKgo+ICsJ
+CSAqIERpc2FibGUgc291dGggaW50ZXJydXB0cy4gV2UnbGwgb25seSB3cml0ZSB0byBTREVJSVIg
+b25jZSwKPiArCQkgKiBzbyBmdXJ0aGVyIGludGVycnVwdHMgd2lsbCB3aWxsIGJlIHN0b3JlZCBv
+biBpdHMgYmFjayBxdWV1ZSwKPiArCQkgKiBhbmQgdGhlbiB3ZSdsbCBiZSBhYmxlIHRvIHByb2Nl
+c3MgdGhlbSBhZnRlciB3ZSByZXN0b3JlCj4gKwkJICogU0RFSUVSIChhcyBzb29uIGFzIHdlIHJl
+c3RvcmUgaXQsIHdlJ2xsIGdldCBhbiBpbnRlcnJ1cHQgaWYKPiArCQkgKiBTREVJSVIgc3RpbGwg
+aGFzIHNvbWV0aGluZyB0byBwcm9jZXNzIGR1ZSB0byBpdHMgYmFjayBxdWV1ZSkuCj4gKwkJICov
+Cj4gKwkJaWYgKCFIQVNfUENIX05PUChpOTE1KSkgewo+ICsJCQlzZGVfaWVyID0gcmF3X3JlZ19y
+ZWFkKHJlZ3MsIFNERUlFUik7Cj4gKwkJCXJhd19yZWdfd3JpdGUocmVncywgU0RFSUVSLCAwKTsK
+PiArCQl9Cj4gKwo+ICsJCWRpc2FibGVfcnBtX3dha2VyZWZfYXNzZXJ0cygmaTkxNS0+cnVudGlt
+ZV9wbSk7Cj4gKwo+ICAJCXJhd19yZWdfd3JpdGUocmVncywgREVJSVIsIGRlX2lpcik7Cj4gIAkJ
+aWYgKElOVEVMX0dFTihpOTE1KSA+PSA3KQo+ICAJCQlpdmJfZGlzcGxheV9pcnFfaGFuZGxlcihp
+OTE1LCBkZV9paXIpOwo+ICAJCWVsc2UKPiAgCQkJaWxrX2Rpc3BsYXlfaXJxX2hhbmRsZXIoaTkx
+NSwgZGVfaWlyKTsKPiArCj4gKwkJZW5hYmxlX3JwbV93YWtlcmVmX2Fzc2VydHMoJmk5MTUtPnJ1
+bnRpbWVfcG0pOwo+ICAJCXJldCA9IElSUV9IQU5ETEVEOwo+IC0JfQo+ICAKPiAtCWlmIChJTlRF
+TF9HRU4oaTkxNSkgPj0gNikgewo+IC0JCXUzMiBwbV9paXIgPSByYXdfcmVnX3JlYWQocmVncywg
+R0VONl9QTUlJUik7Cj4gLQkJaWYgKHBtX2lpcikgewo+IC0JCQlyYXdfcmVnX3dyaXRlKHJlZ3Ms
+IEdFTjZfUE1JSVIsIHBtX2lpcik7Cj4gLQkJCWdlbjZfcnBzX2lycV9oYW5kbGVyKCZpOTE1LT5n
+dC5ycHMsIHBtX2lpcik7Cj4gLQkJCXJldCA9IElSUV9IQU5ETEVEOwo+IC0JCX0KPiArCQlpZiAo
+c2RlX2llcikKPiArCQkJcmF3X3JlZ193cml0ZShyZWdzLCBTREVJRVIsIHNkZV9pZXIpOwo+ICAJ
+fQo+ICAKPiAgCXJhd19yZWdfd3JpdGUocmVncywgREVJRVIsIGRlX2llcik7Cj4gLQlpZiAoc2Rl
+X2llcikKPiAtCQlyYXdfcmVnX3dyaXRlKHJlZ3MsIFNERUlFUiwgc2RlX2llcik7Cj4gLQo+IC0J
+LyogSVJRcyBhcmUgc3luY2VkIGR1cmluZyBydW50aW1lX3N1c3BlbmQsIHdlIGRvbid0IHJlcXVp
+cmUgYSB3YWtlcmVmICovCj4gLQllbmFibGVfcnBtX3dha2VyZWZfYXNzZXJ0cygmaTkxNS0+cnVu
+dGltZV9wbSk7Cj4gLQo+ICAJcmV0dXJuIHJldDsKPiAgfQo+ICAKPiAtLSAKPiAyLjIwLjEKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
+aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
