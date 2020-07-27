@@ -1,40 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37CCC22FB4C
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jul 2020 23:24:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52C0722FB80
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jul 2020 23:35:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEB286E038;
-	Mon, 27 Jul 2020 21:24:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FDE46E051;
+	Mon, 27 Jul 2020 21:35:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF71C6E044;
- Mon, 27 Jul 2020 21:24:44 +0000 (UTC)
-Received: from localhost (unknown [13.85.75.251])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 6300320809;
- Mon, 27 Jul 2020 21:24:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1595885084;
- bh=iZs/YNdw8Qu+Yk7iYYu8kLcOVP0Gfdc/QojMyHdgvC0=;
- h=Date:From:To:To:To:Cc:Cc:Cc:Cc:Cc:Subject:In-Reply-To:References:
- From;
- b=FQuXrMUdM2g5+U5CphrPkQNG49cMF5W8a7Euj3BuP0HaYDu/lyNYtq1A5cs1SKV9G
- l/dNYzpfUs2yJLmEUtsE+32mdJMbxFVAJHoHqkOzxN2LleQbMZVD49hNwukty8BxOg
- EZNPynY4H49QsIU9+Nb7fvfb4Dqjw8Akj1ECNTvk=
-Date: Mon, 27 Jul 2020 21:24:43 +0000
-From: Sasha Levin <sashal@kernel.org>
-To: Sasha Levin <sashal@kernel.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200723172119.17649-3-chris@chris-wilson.co.uk>
-References: <20200723172119.17649-3-chris@chris-wilson.co.uk>
-Message-Id: <20200727212444.6300320809@mail.kernel.org>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/gem: Serialise debugfs
- i915_gem_objects with ctx->mutex
+Received: from hqnvemgate24.nvidia.com (hqnvemgate24.nvidia.com
+ [216.228.121.143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D262D89119;
+ Mon, 27 Jul 2020 20:50:23 +0000 (UTC)
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+ id <B5f1f3db50000>; Mon, 27 Jul 2020 13:48:53 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+ by hqpgpgate102.nvidia.com (PGP Universal service);
+ Mon, 27 Jul 2020 13:50:23 -0700
+X-PGP-Universal: processed;
+ by hqpgpgate102.nvidia.com on Mon, 27 Jul 2020 13:50:23 -0700
+Received: from lenny.nvidia.com (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 27 Jul
+ 2020 20:50:20 +0000
+From: Daniel Dadap <ddadap@nvidia.com>
+To: <dri-devel@lists.freedesktop.org>, <lukas@wunner.de>,
+ <intel-gfx@lists.freedesktop.org>, <jani.nikula@linux.intel.com>,
+ <joonas.lahtinen@linux.intel.com>, <rodrigo.vivi@intel.com>
+Date: Mon, 27 Jul 2020 15:51:06 -0500
+Message-ID: <20200727205112.27698-1-ddadap@nvidia.com>
+X-Mailer: git-send-email 2.18.4
+In-Reply-To: <ba78cd19-45ad-b17e-5174-256cc11f36c2%40nvidia.com>
+References: <ba78cd19-45ad-b17e-5174-256cc11f36c2%40nvidia.com>
+X-NVConfidentiality: public
+MIME-Version: 1.0
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1595882933; bh=z5Jc9i+TiTEi55M4vxDMTLo+EJu+zbC9sADpEVJmrhk=;
+ h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+ In-Reply-To:References:X-NVConfidentiality:MIME-Version:
+ X-Originating-IP:X-ClientProxiedBy:Content-Type;
+ b=A2WkCFSLhAfUBKHcaOm/rx5W5AnaQA/omA9OcoEuqBB+paOUwOyLJ9V+Lg/cs5yXC
+ olVidr3uZtAX648Swmtxb9nS1ZZH7AzVmOZWA8ML3JvxK0ARLrbToUgkITjyZPZ6RF
+ 96o9St9btYXZzW5GwMYiznzowP48Nd69CTgdKXr+8w82mnnjz6JpkLuAdL5/EQxoD4
+ LMoPf1JKm+n5Zle0v+mtV9pmmzLZoYzO0l7/C16/4dK/HBW+YtohugZwMIDcqt61Oy
+ 5B1q1KY4DgsoDzXDyfOtlWkvBbs1RKu3PtFlKz/V5aJepooBbzn1cxDtKKkk/SsiV8
+ jeOXnDHCTpEGw==
+X-Mailman-Approved-At: Mon, 27 Jul 2020 21:35:38 +0000
+Subject: [Intel-gfx] [PATCH 0/6] vga-switcheroo: initial dynamic mux switch
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,102 +64,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-MIME-Version: 1.0
+Cc: Daniel Dadap <ddadap@nvidia.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+Changes to allow vga-switcheroo to switch the mux while modesetting
+clients remain active. There is existing support for switching the
+mux without checking can_switch; however, this support also does not
+reprobe after the mux switch is complete. This patch series adds a new
+type of switch event which switches immediately while still calling
+client driver callbacks, and updates the i915 DRM-KMS driver to reprobe
+eDP outputs after switching the mux to an i915-driven GPU, and to avoid
+using eDP links (which i915 always assumes to be connected) while the
+mux is switched away.
 
-[This is an automated email]
+Daniel Dadap (6):
+  vga-switcheroo: add new "immediate" switch event type
+  vga-switcheroo: Add a way to test for the active client
+  vga-switcheroo: notify clients of pending/completed switch events
+  i915: implement vga-switcheroo reprobe() callback
+  i915: fail atomic commit when muxed away
+  i915: bail out of eDP link training while mux-switched away
 
-This commit has been processed because it contains a -stable tag.
-The stable tag indicates that it's relevant for the following trees: all
-
-The bot has tested the following trees: v5.7.10, v5.4.53, v4.19.134, v4.14.189, v4.9.231, v4.4.231.
-
-v5.7.10: Build OK!
-v5.4.53: Failed to apply! Possible dependencies:
-    061489c65ff5 ("drm/i915/dsb: single register write function for DSB.")
-    11988e393813 ("drm/i915/execlists: Try rearranging breadcrumb flush")
-    2850748ef876 ("drm/i915: Pull i915_vma_pin under the vm->mutex")
-    5a90606df7cb ("drm/i915: Replace obj->pin_global with obj->frontbuffer")
-    67f3b58f3bac ("drm/i915/dsb: DSB context creation.")
-    8a9a982767b7 ("drm/i915: use a separate context for gpu relocs")
-    a4e7ccdac38e ("drm/i915: Move context management under GEM")
-    b27a96ad72fd ("drm/i915/dsb: Indexed register write function for DSB.")
-    bb120e1171a9 ("drm/i915: Show the logical context ring state on dumping")
-    c210e85b8f33 ("drm/i915/tgl: Extend MI_SEMAPHORE_WAIT")
-    d19d71fc2b15 ("drm/i915: Mark i915_request.timeline as a volatile, rcu pointer")
-    e8f6b4952ec5 ("drm/i915/execlists: Flush the post-sync breadcrumb write harder")
-
-v4.19.134: Failed to apply! Possible dependencies:
-    0258404f9d38 ("drm/i915: start moving runtime device info to a separate struct")
-    026844460743 ("drm/i915: Remove intel_context.active_link")
-    07d805721938 ("drm/i915: Introduce intel_runtime_pm_disable to pair intel_runtime_pm_enable")
-    13f1bfd3b332 ("drm/i915: Make object/vma allocation caches global")
-    1c71bc565cdb ("drm/i915/perf: simplify configure all context function")
-    2cc8376fd350 ("drm/i915: rename dev_priv info to __info to avoid usage")
-    2cd9a689e97b ("drm/i915: Refactor intel_display_set_init_power() logic")
-    37d7c9cc2eb6 ("drm/i915: Check engine->default_state mapping on module load")
-    55ac5a1614f9 ("drm/i915: Attach the pci match data to the device upon creation")
-    666424abfb86 ("drm/i915/execlists: Use coherent writes into the context image")
-    6dfc4a8f134f ("drm/i915: Verify power domains after enabling them")
-    722f3de39e03 ("i915/oa: Simplify updating contexts")
-    900ccf30f9e1 ("drm/i915: Only force GGTT coherency w/a on required chipsets")
-    c4d52feb2c46 ("drm/i915: Move over to intel_context_lookup()")
-    f6e8aa387171 ("drm/i915: Report the number of closed vma held by each context in debugfs")
-    fa9f668141f4 ("drm/i915: Export intel_context_instance()")
-
-v4.14.189: Failed to apply! Possible dependencies:
-    3bd4073524fa ("drm/i915: Consolidate get_fence with pin_fence")
-    465c403cb508 ("drm/i915: introduce simple gemfs")
-    66df1014efba ("drm/i915: Keep a small stash of preallocated WC pages")
-    67b48040255b ("drm/i915: Assert that the handle->vma lut is empty on object close")
-    73ebd503034c ("drm/i915: make mappable struct resource centric")
-    7789422665f5 ("drm/i915: make dsm struct resource centric")
-    82ad6443a55e ("drm/i915/gtt: Rename i915_hw_ppgtt base member")
-    969b0950a188 ("drm/i915: Add interface to reserve fence registers for vGPU")
-    a65adaf8a834 ("drm/i915: Track user GTT faulting per-vma")
-    b4563f595ed4 ("drm/i915: Pin fence for iomap")
-    e91ef99b9543 ("drm/i915/selftests: Remember to create the fake preempt context")
-    f6e8aa387171 ("drm/i915: Report the number of closed vma held by each context in debugfs")
-    f773568b6ff8 ("drm/i915: nuke the duplicated stolen discovery")
-
-v4.9.231: Failed to apply! Possible dependencies:
-    0e70447605f4 ("drm/i915: Move common code out of i915_gpu_error.c")
-    1b36595ffb35 ("drm/i915: Show RING registers through debugfs")
-    28a60dee2ce6 ("drm/i915/gvt: vGPU HW resource management")
-    3b3f1650b1ca ("drm/i915: Allocate intel_engine_cs structure only for the enabled engines")
-    82ad6443a55e ("drm/i915/gtt: Rename i915_hw_ppgtt base member")
-    85fd4f58d7ef ("drm/i915: Mark all non-vma being inserted into the address spaces")
-    9c870d03674f ("drm/i915: Use RPM as the barrier for controlling user mmap access")
-    bb6dc8d96b68 ("drm/i915: Implement pread without struct-mutex")
-    d636951ec01b ("drm/i915: Cleanup instdone collection")
-    e007b19d7ba7 ("drm/i915: Use the MRU stack search after evicting")
-    f6e8aa387171 ("drm/i915: Report the number of closed vma held by each context in debugfs")
-    f9e613728090 ("drm/i915: Try to print INSTDONE bits for all slice/subslice")
-
-v4.4.231: Failed to apply! Possible dependencies:
-    1b683729e7ac ("drm/i915: Remove redundant check in i915_gem_obj_to_vma")
-    1c7f4bca5a6f ("drm/i915: Rename vma->*_list to *_link for consistency")
-    3272db53136f ("drm/i915: Combine all i915_vma bitfields into a single set of flags")
-    596c5923197b ("drm/i915: Reduce the pointer dance of i915_is_ggtt()")
-    c1a415e261aa ("drm/i915: Disable shrinker for non-swapped backed objects")
-    d0710abbcd88 ("drm/i915: Set the map-and-fenceable flag for preallocated objects")
-    f6e8aa387171 ("drm/i915: Report the number of closed vma held by each context in debugfs")
-
-
-NOTE: The patch will not be queued to stable trees until it is upstream.
-
-How should we proceed with this patch?
+ drivers/gpu/drm/i915/display/intel_display.c  |   7 +
+ .../drm/i915/display/intel_dp_link_training.c |   9 ++
+ drivers/gpu/drm/i915/i915_switcheroo.c        |  27 +++-
+ drivers/gpu/vga/vga_switcheroo.c              | 153 ++++++++++++++----
+ include/linux/vga_switcheroo.h                |  20 +++
+ 5 files changed, 185 insertions(+), 31 deletions(-)
 
 -- 
-Thanks
-Sasha
+2.18.4
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
