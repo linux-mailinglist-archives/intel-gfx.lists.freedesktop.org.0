@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E043122E7F0
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jul 2020 10:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 675AC22E849
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jul 2020 10:58:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42CB9891DC;
-	Mon, 27 Jul 2020 08:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFBCB89C89;
+	Mon, 27 Jul 2020 08:58:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFEEE891DC
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jul 2020 08:41:11 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21942581-1500050 
- for multiple; Mon, 27 Jul 2020 09:40:58 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Jul 2020 09:40:58 +0100
-Message-Id: <20200727084058.7204-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CA8EE89C86;
+ Mon, 27 Jul 2020 08:58:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C2D81A0BC6;
+ Mon, 27 Jul 2020 08:58:54 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Reduce register reads around GT
- interrupts
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 27 Jul 2020 08:58:54 -0000
+Message-ID: <159584033477.26748.13562844191882395999@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200727084058.7204-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200727084058.7204-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Reduce_register_reads_around_GT_interrupts?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,81 +38,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhlIEdUIHN1YnN5c3RlbSBpcyBoaWdobHkgZGVwZW5kZW50IG9uIGludGVycnVwdHMgZm9yIGRy
-aXZpbmcgdGhlIEdQVTsKd2hpbGUgdGhlIGludGVycnVwdCBpcyBiZWluZyBwcm9jZXNzZWQgdGhl
-IEdQVSBtYXkgaWRsZSBsZWFkaW5nIHRvIGxvd2VyCnRocm91Z2hwdXQgYW5kIGhpZ2hlciBsYXRl
-bmN5LiBTaW5jZSB0aGUgR1QgaW50ZXJydXB0cyBkb21pbmF0ZSwgcHVzaAp0aGUgaW5jaWRlbnRh
-bCBkaXNwbGF5IGludGVycnVwdCBoYW5kbGluZyB0byBsYXRlci4KCmdlbV9leGVjX25vcC9wYXJh
-bGxlbCBvbiBpdmIgW2k3LTM3MjBRTV06CgpCZWZvcmU6CiAgYXZlcmFnZSAoaW5kaXZpZHVhbGx5
-KTogMi4yNzh1cwogIHJjczA6IDgzMzc2NzQgY3ljbGVzLCAyLjM5OXVzCiAgdmNzMDogMzI4Njk5
-MCBjeWNsZXMsIDYuMDg1dXMKICBiY3MwOiAyMDQ3OTE3IGN5Y2xlcywgOS43NjZ1cwoKQWZ0ZXI6
-CiAgYXZlcmFnZSAoaW5kaXZpZHVhbGx5KTogMi4xMTh1cwogIHJjczA6IDEwMTMyNDYyIGN5Y2xl
-cywgMS45NzR1cwogIGJjczA6IDM2NjcxMzAgY3ljbGVzLCA1LjQ1NHVzCiAgdmNzMDogMzYxNjYx
-OCBjeWNsZXMsIDUuNTMwdXMKClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hy
-aXMtd2lsc29uLmNvLnVrPgpDYzogTWlrYSBLdW9wcGFsYSA8bWlrYS5rdW9wcGFsYUBsaW51eC5p
-bnRlbC5jb20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgfCA1OCArKysrKysrKysr
-KysrKysrKy0tLS0tLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAzMCBpbnNlcnRpb25zKCsp
-LCAyOCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X2lycS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwppbmRleCAxZmE2NzcwMGQ4
-ZjQuLmUxNTZkZTg4YmRjNiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9p
-cnEuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCkBAIC0yMDk5LDI5ICsy
-MDk5LDE2IEBAIHN0YXRpYyBpcnFyZXR1cm5fdCBpbGtfaXJxX2hhbmRsZXIoaW50IGlycSwgdm9p
-ZCAqYXJnKQogewogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gYXJnOwogCXZvaWQg
-X19pb21lbSAqIGNvbnN0IHJlZ3MgPSBpOTE1LT51bmNvcmUucmVnczsKLQl1MzIgZGVfaWlyLCBn
-dF9paXIsIGRlX2llciwgc2RlX2llciA9IDA7CisJdTMyIGRlX2lpciwgZ3RfaWlyLCBkZV9pZXI7
-CiAJaXJxcmV0dXJuX3QgcmV0ID0gSVJRX05PTkU7CiAKIAlpZiAodW5saWtlbHkoIWludGVsX2ly
-cXNfZW5hYmxlZChpOTE1KSkpCiAJCXJldHVybiBJUlFfTk9ORTsKIAotCS8qIElSUXMgYXJlIHN5
-bmNlZCBkdXJpbmcgcnVudGltZV9zdXNwZW5kLCB3ZSBkb24ndCByZXF1aXJlIGEgd2FrZXJlZiAq
-LwotCWRpc2FibGVfcnBtX3dha2VyZWZfYXNzZXJ0cygmaTkxNS0+cnVudGltZV9wbSk7Ci0KIAkv
-KiBkaXNhYmxlIG1hc3RlciBpbnRlcnJ1cHQgYmVmb3JlIGNsZWFyaW5nIGlpciAgKi8KIAlkZV9p
-ZXIgPSByYXdfcmVnX3JlYWQocmVncywgREVJRVIpOwogCXJhd19yZWdfd3JpdGUocmVncywgREVJ
-RVIsIGRlX2llciAmIH5ERV9NQVNURVJfSVJRX0NPTlRST0wpOwogCi0JLyogRGlzYWJsZSBzb3V0
-aCBpbnRlcnJ1cHRzLiBXZSdsbCBvbmx5IHdyaXRlIHRvIFNERUlJUiBvbmNlLCBzbyBmdXJ0aGVy
-Ci0JICogaW50ZXJydXB0cyB3aWxsIHdpbGwgYmUgc3RvcmVkIG9uIGl0cyBiYWNrIHF1ZXVlLCBh
-bmQgdGhlbiB3ZSdsbCBiZQotCSAqIGFibGUgdG8gcHJvY2VzcyB0aGVtIGFmdGVyIHdlIHJlc3Rv
-cmUgU0RFSUVSIChhcyBzb29uIGFzIHdlIHJlc3RvcmUKLQkgKiBpdCwgd2UnbGwgZ2V0IGFuIGlu
-dGVycnVwdCBpZiBTREVJSVIgc3RpbGwgaGFzIHNvbWV0aGluZyB0byBwcm9jZXNzCi0JICogZHVl
-IHRvIGl0cyBiYWNrIHF1ZXVlKS4gKi8KLQlpZiAoIUhBU19QQ0hfTk9QKGk5MTUpKSB7Ci0JCXNk
-ZV9pZXIgPSByYXdfcmVnX3JlYWQocmVncywgU0RFSUVSKTsKLQkJcmF3X3JlZ193cml0ZShyZWdz
-LCBTREVJRVIsIDApOwotCX0KLQogCS8qIEZpbmQsIGNsZWFyLCB0aGVuIHByb2Nlc3MgZWFjaCBz
-b3VyY2Ugb2YgaW50ZXJydXB0ICovCiAKIAlndF9paXIgPSByYXdfcmVnX3JlYWQocmVncywgR1RJ
-SVIpOwpAQCAtMjEzNCwzMiArMjEyMSw0NyBAQCBzdGF0aWMgaXJxcmV0dXJuX3QgaWxrX2lycV9o
-YW5kbGVyKGludCBpcnEsIHZvaWQgKmFyZykKIAkJcmV0ID0gSVJRX0hBTkRMRUQ7CiAJfQogCisJ
-aWYgKElOVEVMX0dFTihpOTE1KSA+PSA2KSB7CisJCXUzMiBwbV9paXIgPSByYXdfcmVnX3JlYWQo
-cmVncywgR0VONl9QTUlJUik7CisJCWlmIChwbV9paXIpIHsKKwkJCXJhd19yZWdfd3JpdGUocmVn
-cywgR0VONl9QTUlJUiwgcG1faWlyKTsKKwkJCWdlbjZfcnBzX2lycV9oYW5kbGVyKCZpOTE1LT5n
-dC5ycHMsIHBtX2lpcik7CisJCQlyZXQgPSBJUlFfSEFORExFRDsKKwkJfQorCX0KKwogCWRlX2lp
-ciA9IHJhd19yZWdfcmVhZChyZWdzLCBERUlJUik7CiAJaWYgKGRlX2lpcikgeworCQl1MzIgc2Rl
-X2llciA9IDA7CisKKwkJLyoKKwkJICogRGlzYWJsZSBzb3V0aCBpbnRlcnJ1cHRzLiBXZSdsbCBv
-bmx5IHdyaXRlIHRvIFNERUlJUiBvbmNlLAorCQkgKiBzbyBmdXJ0aGVyIGludGVycnVwdHMgd2ls
-bCB3aWxsIGJlIHN0b3JlZCBvbiBpdHMgYmFjayBxdWV1ZSwKKwkJICogYW5kIHRoZW4gd2UnbGwg
-YmUgYWJsZSB0byBwcm9jZXNzIHRoZW0gYWZ0ZXIgd2UgcmVzdG9yZQorCQkgKiBTREVJRVIgKGFz
-IHNvb24gYXMgd2UgcmVzdG9yZSBpdCwgd2UnbGwgZ2V0IGFuIGludGVycnVwdCBpZgorCQkgKiBT
-REVJSVIgc3RpbGwgaGFzIHNvbWV0aGluZyB0byBwcm9jZXNzIGR1ZSB0byBpdHMgYmFjayBxdWV1
-ZSkuCisJCSAqLworCQlpZiAoIUhBU19QQ0hfTk9QKGk5MTUpKSB7CisJCQlzZGVfaWVyID0gcmF3
-X3JlZ19yZWFkKHJlZ3MsIFNERUlFUik7CisJCQlyYXdfcmVnX3dyaXRlKHJlZ3MsIFNERUlFUiwg
-MCk7CisJCX0KKworCQlkaXNhYmxlX3JwbV93YWtlcmVmX2Fzc2VydHMoJmk5MTUtPnJ1bnRpbWVf
-cG0pOworCiAJCXJhd19yZWdfd3JpdGUocmVncywgREVJSVIsIGRlX2lpcik7CiAJCWlmIChJTlRF
-TF9HRU4oaTkxNSkgPj0gNykKIAkJCWl2Yl9kaXNwbGF5X2lycV9oYW5kbGVyKGk5MTUsIGRlX2lp
-cik7CiAJCWVsc2UKIAkJCWlsa19kaXNwbGF5X2lycV9oYW5kbGVyKGk5MTUsIGRlX2lpcik7CisK
-KwkJZW5hYmxlX3JwbV93YWtlcmVmX2Fzc2VydHMoJmk5MTUtPnJ1bnRpbWVfcG0pOwogCQlyZXQg
-PSBJUlFfSEFORExFRDsKLQl9CiAKLQlpZiAoSU5URUxfR0VOKGk5MTUpID49IDYpIHsKLQkJdTMy
-IHBtX2lpciA9IHJhd19yZWdfcmVhZChyZWdzLCBHRU42X1BNSUlSKTsKLQkJaWYgKHBtX2lpcikg
-ewotCQkJcmF3X3JlZ193cml0ZShyZWdzLCBHRU42X1BNSUlSLCBwbV9paXIpOwotCQkJZ2VuNl9y
-cHNfaXJxX2hhbmRsZXIoJmk5MTUtPmd0LnJwcywgcG1faWlyKTsKLQkJCXJldCA9IElSUV9IQU5E
-TEVEOwotCQl9CisJCWlmIChzZGVfaWVyKQorCQkJcmF3X3JlZ193cml0ZShyZWdzLCBTREVJRVIs
-IHNkZV9pZXIpOwogCX0KIAogCXJhd19yZWdfd3JpdGUocmVncywgREVJRVIsIGRlX2llcik7Ci0J
-aWYgKHNkZV9pZXIpCi0JCXJhd19yZWdfd3JpdGUocmVncywgU0RFSUVSLCBzZGVfaWVyKTsKLQot
-CS8qIElSUXMgYXJlIHN5bmNlZCBkdXJpbmcgcnVudGltZV9zdXNwZW5kLCB3ZSBkb24ndCByZXF1
-aXJlIGEgd2FrZXJlZiAqLwotCWVuYWJsZV9ycG1fd2FrZXJlZl9hc3NlcnRzKCZpOTE1LT5ydW50
-aW1lX3BtKTsKLQogCXJldHVybiByZXQ7CiB9CiAKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: drm/i915: Reduce register reads around GT interrupts
+URL   : https://patchwork.freedesktop.org/series/79919/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+84189faf3bc4 drm/i915: Reduce register reads around GT interrupts
+-:73: WARNING:LINE_SPACING: Missing a blank line after declarations
+#73: FILE: drivers/gpu/drm/i915/i915_irq.c:2126:
++		u32 pm_iir = raw_reg_read(regs, GEN6_PMIIR);
++		if (pm_iir) {
+
+total: 0 errors, 1 warnings, 0 checks, 91 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
