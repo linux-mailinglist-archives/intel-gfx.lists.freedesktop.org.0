@@ -1,32 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CDA52312C7
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 21:36:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D78B2312CA
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 21:36:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2256F6E2D1;
-	Tue, 28 Jul 2020 19:36:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CF526E339;
+	Tue, 28 Jul 2020 19:36:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA0C16E2D1
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 19:36:08 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21961898-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 20:36:04 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jul 2020 20:36:05 +0100
-Message-Id: <20200728193605.10888-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200728155935.17708-1-chris@chris-wilson.co.uk>
-References: <20200728155935.17708-1-chris@chris-wilson.co.uk>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 685886E339;
+ Tue, 28 Jul 2020 19:36:39 +0000 (UTC)
+IronPort-SDR: mHYTYQuHH8h8rYvLPXk1twdUPPDvBj3vb8bVnftsVeZYWpKVDP4SoLuQTQUwbT7MYsTjL6OoHA
+ Gp9IZ9QjQPcg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9696"; a="131370023"
+X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="131370023"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2020 12:36:38 -0700
+IronPort-SDR: rVy/b5juKZjeUz5zuIonmVHDxeoIOIdZ+V6UuWEsdjhL1w+GTRPIMoXzVYs0VJQLKQAEoeERIs
+ 9GwSB6ogLrNQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="364612411"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by orsmga001.jf.intel.com with ESMTP; 28 Jul 2020 12:36:35 -0700
+Received: from andy by smile with local (Exim 4.94)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1k0VOs-004WaC-VC; Tue, 28 Jul 2020 22:36:34 +0300
+Date: Tue, 28 Jul 2020 22:36:34 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200728193634.GD3703480@smile.fi.intel.com>
+References: <20200717133753.127282-1-hdegoede@redhat.com>
+ <20200717133753.127282-8-hdegoede@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Delay taking the spinlock for
- grabbing from the buffer pool
+Content-Disposition: inline
+In-Reply-To: <20200717133753.127282-8-hdegoede@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v5 07/16] pwm: crc: Fix period / duty_cycle
+ times being off by a factor of 256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,163 +54,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some very low hanging fruit, but contention on the pool->lock is
-noticeable between intel_gt_get_buffer_pool() and pool_retire(), with
-the majority of the hold time due to the locked list iteration. If we
-make the node itself RCU protected, we can perform the search for an
-suitable node just under RCU, reserving taking the lock itself for
-claiming the node and manipulating the list.
+On Fri, Jul 17, 2020 at 03:37:44PM +0200, Hans de Goede wrote:
+> While looking into adding atomic-pwm support to the pwm-crc driver I
+> noticed something odd, there is a PWM_BASE_CLK define of 6 MHz and
+> there is a clock-divider which divides this with a value between 1-128,
+> and there are 256 duty-cycle steps.
+> 
+> The pwm-crc code before this commit assumed that a clock-divider
+> setting of 1 means that the PWM output is running at 6 MHZ, if that
+> is true, where do these 256 duty-cycle steps come from?
+> 
+> This would require an internal frequency of 256 * 6 MHz = 1.5 GHz, that
+> seems unlikely for a PMIC which is using a silicon process optimized for
+> power-switching transistors. It is way more likely that there is an 8
+> bit counter for the duty cycle which acts as an extra fixed divider
+> wrt the PWM output frequency.
+> 
+> The main user of the pwm-crc driver is the i915 GPU driver which uses it
+> for backlight control. Lets compare the PWM register values set by the
+> video-BIOS (the GOP), assuming the extra fixed divider is present versus
+> the PWM frequency specified in the Video-BIOS-Tables:
+> 
+> Device:		PWM Hz set by BIOS	PWM Hz specified in VBT
+> Asus T100TA 	200			200
+> Asus T100HA 	200			200
+> Lenovo Miix 2 8	23437			20000
+> Toshiba WT8-A	23437			20000
+> 
+> So as we can see if we assume the extra division by 256 then the register
+> values set by the GOP are an exact match for the VBT values, where as
+> otherwise the values would be of by a factor of 256.
+> 
+> This commit fixes the period / duty_cycle calculations to take the
+> extra division by 256 into account.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- .../gpu/drm/i915/gt/intel_gt_buffer_pool.c    | 65 +++++++++++++------
- .../drm/i915/gt/intel_gt_buffer_pool_types.h  |  6 +-
- 2 files changed, 51 insertions(+), 20 deletions(-)
+So, base clock is 6MHz, then 7 bit divisor. That's what original values
+were for. On top of that there is 8-bit duty cycle control ("divide by 256"
+whatever it means) with the output range 23.437kHz..183Hz.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-index 418ae184cecf..612aa2741e73 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-@@ -35,37 +35,54 @@ static void node_free(struct intel_gt_buffer_pool_node *node)
- {
- 	i915_gem_object_put(node->obj);
- 	i915_active_fini(&node->active);
--	kfree(node);
-+	kfree_rcu(node, rcu);
- }
- 
- static void pool_free_work(struct work_struct *wrk)
- {
- 	struct intel_gt_buffer_pool *pool =
- 		container_of(wrk, typeof(*pool), work.work);
--	struct intel_gt_buffer_pool_node *node, *next;
-+	struct intel_gt_buffer_pool_node *node, *stale = NULL;
- 	unsigned long old = jiffies - HZ;
- 	bool active = false;
--	LIST_HEAD(stale);
- 	int n;
- 
- 	/* Free buffers that have not been used in the past second */
--	spin_lock_irq(&pool->lock);
- 	for (n = 0; n < ARRAY_SIZE(pool->cache_list); n++) {
- 		struct list_head *list = &pool->cache_list[n];
- 
--		/* Most recent at head; oldest at tail */
--		list_for_each_entry_safe_reverse(node, next, list, link) {
--			if (time_before(node->age, old))
--				break;
-+		if (list_empty(list))
-+			continue;
-+
-+		if (spin_trylock_irq(&pool->lock)) {
-+			struct list_head *pos;
-+
-+			/* Most recent at head; oldest at tail */
-+			list_for_each_prev(pos, list) {
-+				node = list_entry(pos, typeof(*node), link);
-+				if (time_before(node->age, old))
-+					break;
-+
-+				/* Check we are the first to claim this node */
-+				if (!xchg(&node->age, 0))
-+					break;
- 
--			list_move(&node->link, &stale);
-+				node->free = stale;
-+				stale = node;
-+			}
-+			if (!list_is_last(pos, list))
-+				__list_del_many(pos, list);
-+
-+			spin_unlock_irq(&pool->lock);
- 		}
-+
- 		active |= !list_empty(list);
- 	}
--	spin_unlock_irq(&pool->lock);
- 
--	list_for_each_entry_safe(node, next, &stale, link)
-+	while ((node = stale)) {
-+		stale = stale->free;
- 		node_free(node);
-+	}
- 
- 	if (active)
- 		schedule_delayed_work(&pool->work,
-@@ -108,9 +125,9 @@ static void pool_retire(struct i915_active *ref)
- 	/* Return this object to the shrinker pool */
- 	i915_gem_object_make_purgeable(node->obj);
- 
-+	WRITE_ONCE(node->age, jiffies ?: 1); /* 0 reserved for active nodes */
- 	spin_lock_irqsave(&pool->lock, flags);
--	node->age = jiffies;
--	list_add(&node->link, list);
-+	list_add_rcu(&node->link, list);
- 	spin_unlock_irqrestore(&pool->lock, flags);
- 
- 	schedule_delayed_work(&pool->work,
-@@ -151,20 +168,30 @@ intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size)
- 	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
- 	struct intel_gt_buffer_pool_node *node;
- 	struct list_head *list;
--	unsigned long flags;
- 	int ret;
- 
- 	size = PAGE_ALIGN(size);
- 	list = bucket_for_size(pool, size);
- 
--	spin_lock_irqsave(&pool->lock, flags);
--	list_for_each_entry(node, list, link) {
-+	rcu_read_lock();
-+	list_for_each_entry_rcu(node, list, link) {
-+		unsigned long age;
-+
- 		if (node->obj->base.size < size)
- 			continue;
--		list_del(&node->link);
--		break;
-+
-+		age = READ_ONCE(node->age);
-+		if (!age)
-+			continue;
-+
-+		if (cmpxchg(&node->age, age, 0) == age) {
-+			spin_lock_irq(&pool->lock);
-+			list_del_rcu(&node->link);
-+			spin_unlock_irq(&pool->lock);
-+			break;
-+		}
- 	}
--	spin_unlock_irqrestore(&pool->lock, flags);
-+	rcu_read_unlock();
- 
- 	if (&node->link == list) {
- 		node = node_create(pool, size);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-index e28bdda771ed..bcf1658c9633 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-@@ -25,7 +25,11 @@ struct intel_gt_buffer_pool_node {
- 	struct i915_active active;
- 	struct drm_i915_gem_object *obj;
- 	struct list_head link;
--	struct intel_gt_buffer_pool *pool;
-+	union {
-+		struct intel_gt_buffer_pool *pool;
-+		struct intel_gt_buffer_pool_node *free;
-+		struct rcu_head rcu;
-+	};
- 	unsigned long age;
- };
- 
+> 
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+> Changes in v3:
+> - Use NSEC_PER_USEC instead of adding a new (non-sensical) NSEC_PER_MHZ define
+> ---
+>  drivers/pwm/pwm-crc.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/pwm/pwm-crc.c b/drivers/pwm/pwm-crc.c
+> index 272eeb071147..c056eb9b858c 100644
+> --- a/drivers/pwm/pwm-crc.c
+> +++ b/drivers/pwm/pwm-crc.c
+> @@ -21,8 +21,8 @@
+>  
+>  #define PWM_MAX_LEVEL		0xFF
+>  
+> -#define PWM_BASE_CLK		6000000  /* 6 MHz */
+> -#define PWM_MAX_PERIOD_NS	21333    /* 46.875KHz */
+> +#define PWM_BASE_CLK_MHZ	6	/* 6 MHz */
+> +#define PWM_MAX_PERIOD_NS	5461333	/* 183 Hz */
+>  
+>  /**
+>   * struct crystalcove_pwm - Crystal Cove PWM controller
+> @@ -72,7 +72,7 @@ static int crc_pwm_config(struct pwm_chip *c, struct pwm_device *pwm,
+>  
+>  		/* changing the clk divisor, need to disable fisrt */
+>  		crc_pwm_disable(c, pwm);
+> -		clk_div = PWM_BASE_CLK * period_ns / NSEC_PER_SEC;
+> +		clk_div = PWM_BASE_CLK_MHZ * period_ns / (256 * NSEC_PER_USEC);
+>  
+>  		regmap_write(crc_pwm->regmap, PWM0_CLK_DIV,
+>  					clk_div | PWM_OUTPUT_ENABLE);
+> -- 
+> 2.26.2
+> 
+
 -- 
-2.20.1
+With Best Regards,
+Andy Shevchenko
+
 
 _______________________________________________
 Intel-gfx mailing list
