@@ -1,47 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 245EB231210
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 20:57:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0B0231211
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 20:57:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8056E241;
-	Tue, 28 Jul 2020 18:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 625046E260;
+	Tue, 28 Jul 2020 18:57:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C3F589D5E;
- Tue, 28 Jul 2020 18:57:08 +0000 (UTC)
-IronPort-SDR: A1kQaf8icL4iJnXp5Hm6xU8uA2lNqWm0caDq3e3kg5BC0/AvbQ9Uit450w38sRN7bpmP36Bsni
- SdG9wiJTaKiw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9696"; a="139314532"
-X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="139314532"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2020 11:57:07 -0700
-IronPort-SDR: UmduEKAs43os32xUjafr9i+QhylJuv1Ke5h4kc5YbuMpJDI/CH0Q6CjoAW8Gt55YsmGeo6NmF6
- aH/dwdSgnEGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="286260467"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
- by orsmga003.jf.intel.com with ESMTP; 28 Jul 2020 11:57:04 -0700
-Received: from andy by smile with local (Exim 4.94)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1k0Umd-004WCX-TA; Tue, 28 Jul 2020 21:57:03 +0300
-Date: Tue, 28 Jul 2020 21:57:03 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20200728185703.GA3703480@smile.fi.intel.com>
-References: <20200717133753.127282-1-hdegoede@redhat.com>
- <20200717133753.127282-7-hdegoede@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5B6C189D5E;
+ Tue, 28 Jul 2020 18:57:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 55A1DA0BC6;
+ Tue, 28 Jul 2020 18:57:31 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200717133753.127282-7-hdegoede@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v5 06/16] pwm: lpss: Use pwm_lpss_apply()
- when restoring state on resume
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 28 Jul 2020 18:57:31 -0000
+Message-ID: <159596265134.21871.17496688574293984275@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200728152501.26685-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200728152501.26685-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/12=5D_drm/i915=3A_Remove_gen_che?=
+ =?utf-8?q?ck_before_calling_intel=5Frps=5Fboost?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,122 +39,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 17, 2020 at 03:37:43PM +0200, Hans de Goede wrote:
-> Before this commit a suspend + resume of the LPSS PWM controller
-> would result in the controller being reset to its defaults of
-> output-freq = clock/256, duty-cycle=100%, until someone changes
-> to the output-freq and/or duty-cycle are made.
-> 
-> This problem has been masked so far because the main consumer
-> (the i915 driver) was always making duty-cycle changes on resume.
-> With the conversion of the i915 driver to the atomic PWM API the
-> driver now only disables/enables the PWM on suspend/resume leaving
-> the output-freq and duty as is, triggering this problem.
-> 
-> The LPSS PWM controller has a mechanism where the ctrl register value
-> and the actual base-unit and on-time-div values used are latched. When
-> software sets the SW_UPDATE bit then at the end of the current PWM cycle,
-> the new values from the ctrl-register will be latched into the actual
-> registers, and the SW_UPDATE bit will be cleared.
-> 
-> The problem is that before this commit our suspend/resume handling
-> consisted of simply saving the PWM ctrl register on suspend and
-> restoring it on resume, without setting the PWM_SW_UPDATE bit.
-> When the controller has lost its state over a suspend/resume and thus
-> has been reset to the defaults, just restoring the register is not
-> enough. We must also set the SW_UPDATE bit to tell the controller to
-> latch the restored values into the actual registers.
-> 
-> Fixing this problem is not as simple as just or-ing in the value which
-> is being restored with SW_UPDATE. If the PWM was enabled before we must
-> write the new settings + PWM_SW_UPDATE before setting PWM_ENABLE.
-> We must also wait for PWM_SW_UPDATE to become 0 again and depending on the
-> model we must do this either before or after the setting of PWM_ENABLE.
-> 
-> All the necessary logic for doing this is already present inside
-> pwm_lpss_apply(), so instead of duplicating this inside the resume
-> handler, this commit makes the resume handler use pwm_lpss_apply() to
-> restore the settings when necessary. This fixes the output-freq and
-> duty-cycle being reset to their defaults on resume.
+== Series Details ==
 
-...
+Series: series starting with [01/12] drm/i915: Remove gen check before calling intel_rps_boost
+URL   : https://patchwork.freedesktop.org/series/79988/
+State : warning
 
-> -static int pwm_lpss_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> -			  const struct pwm_state *state)
-> +static int __pwm_lpss_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			    const struct pwm_state *state, bool from_resume)
->  {
->  	struct pwm_lpss_chip *lpwm = to_lpwm(chip);
->  	int ret = 0;
->  
->  	if (state->enabled) {
->  		if (!pwm_is_enabled(pwm)) {
-> -			pm_runtime_get_sync(chip->dev);
-> +			if (!from_resume)
-> +				pm_runtime_get_sync(chip->dev);
-> +
->  			ret = pwm_lpss_prepare_enable(lpwm, pwm, state, true);
-> -			if (ret)
-> +			if (ret && !from_resume)
->  				pm_runtime_put(chip->dev);
->  		} else {
->  			ret = pwm_lpss_prepare_enable(lpwm, pwm, state, false);
->  		}
->  	} else if (pwm_is_enabled(pwm)) {
->  		pwm_lpss_write(pwm, pwm_lpss_read(pwm) & ~PWM_ENABLE);
-> -		pm_runtime_put(chip->dev);
-> +
-> +		if (!from_resume)
-> +			pm_runtime_put(chip->dev);
->  	}
->  
->  	return ret;
->  }
+== Summary ==
 
-Maybe I'm too picky, but I would go even further and split apply to two versions
+$ dim checkpatch origin/drm-tip
+e55a35c962bb drm/i915: Remove gen check before calling intel_rps_boost
+04fbf7fabc07 drm/i915: Remove requirement for holding i915_request.lock for breadcrumbs
+c12c89dac122 drm/i915/gt: Replace intel_engine_transfer_stale_breadcrumbs
+712663ebd43b drm/i915/gt: Only transfer the virtual context to the new engine if active
+-:28: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#28: 
+References: 6d06779e8672 ("drm/i915: Load balancing across a virtual engine"
 
-static int pwm_lpss_apply_on_resume(struct pwm_chip *chip, struct pwm_device *pwm,
-			  const struct pwm_state *state)
->  {
->  	struct pwm_lpss_chip *lpwm = to_lpwm(chip);
->  
->  	if (state->enabled)
->  		return pwm_lpss_prepare_enable(lpwm, pwm, state, !pwm_is_enabled(pwm));
->  	if (pwm_is_enabled(pwm)) {
->  		pwm_lpss_write(pwm, pwm_lpss_read(pwm) & ~PWM_ENABLE);
->  	return 0;
->  }
+-:28: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 6d06779e8672 ("drm/i915: Load balancing across a virtual engine")'
+#28: 
+References: 6d06779e8672 ("drm/i915: Load balancing across a virtual engine"
 
-and another one for !from_resume.
+total: 1 errors, 1 warnings, 0 checks, 81 lines checked
+7f9af8c69662 drm/i915/gt: Distinguish the virtual breadcrumbs from the irq breadcrumbs
+-:212: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#212: 
+new file mode 100644
 
-> +static int pwm_lpss_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			  const struct pwm_state *state)
-> +{
-> +	return __pwm_lpss_apply(chip, pwm, state, false);
-> +}
+total: 0 errors, 1 warnings, 0 checks, 513 lines checked
+912b242b2268 drm/i915/gt: Move intel_breadcrumbs_arm_irq earlier
+9ed189ae62fa drm/i915/gt: Hold context/request reference while breadcrumbs are active
+5dfa302c9527 drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock
+cc2cd7609c9e drm/i915/gt: Protect context lifetime with RCU
+a91359c80fc4 drm/i915/gt: Split the breadcrumb spinlock between global and contexts
+-:287: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#287: FILE: drivers/gpu/drm/i915/gt/intel_context_types.h:54:
++	spinlock_t signal_lock;
 
-...
-
-> +		ret = __pwm_lpss_apply(&lpwm->chip, pwm, &saved_state, true);
-> +		if (ret)
-> +			dev_err(dev, "Error restoring state on resume\n");
-
-I'm wondering if it's a real error why we do not bail out?
-Otherwise dev_warn() ?
-
--- 
-With Best Regards,
-Andy Shevchenko
+total: 0 errors, 0 warnings, 1 checks, 248 lines checked
+845e59d9f06b drm/i915: Drop i915_request.lock serialisation around await_start
+5c5097e2fc38 drm/i915: Drop i915_request.lock requirement for intel_rps_boost()
 
 
 _______________________________________________
