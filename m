@@ -1,29 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D60C8230D99
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:22:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC629230DAF
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:25:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50E506E343;
-	Tue, 28 Jul 2020 15:22:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D99936E369;
+	Tue, 28 Jul 2020 15:25:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E5E56E343
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:22:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E5136E34D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:25:18 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959497-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 16:22:18 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959516-1500050 
+ for multiple; Tue, 28 Jul 2020 16:25:01 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jul 2020 16:22:19 +0100
-Message-Id: <20200728152219.1387-1-chris@chris-wilson.co.uk>
+Date: Tue, 28 Jul 2020 16:24:50 +0100
+Message-Id: <20200728152501.26685-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Remove gen check before calling
+Subject: [Intel-gfx] [PATCH 01/12] drm/i915: Remove gen check before calling
  intel_rps_boost
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -37,6 +37,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: thomas.hellstrom@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
