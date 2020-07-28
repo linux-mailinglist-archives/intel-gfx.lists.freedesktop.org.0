@@ -2,30 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F773230DC4
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA417230DCF
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:29:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C0CA6E357;
-	Tue, 28 Jul 2020 15:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49B116E36F;
+	Tue, 28 Jul 2020 15:29:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F60E6E34D
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:28:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCB486E366
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:29:00 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959537-1500050 
- for multiple; Tue, 28 Jul 2020 16:28:12 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959553-1500050 
+ for multiple; Tue, 28 Jul 2020 16:28:50 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jul 2020 16:28:12 +0100
-Message-Id: <20200728152812.26962-2-chris@chris-wilson.co.uk>
+Date: Tue, 28 Jul 2020 16:28:49 +0100
+Message-Id: <20200728152850.27264-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200728152812.26962-1-chris@chris-wilson.co.uk>
-References: <20200728152812.26962-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Reduce ctx->engine_mutex for
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Reduce ctx->engine_mutex for
  reading the clone source
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
