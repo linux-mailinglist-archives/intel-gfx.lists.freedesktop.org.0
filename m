@@ -1,32 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AC6A2311D1
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 20:36:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF35F2311E8
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 20:45:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AEF76E046;
-	Tue, 28 Jul 2020 18:36:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F30B6E249;
+	Tue, 28 Jul 2020 18:45:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A9AD6E046
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 18:36:12 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21961494-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 19:36:08 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jul 2020 19:36:09 +0100
-Message-Id: <20200728183609.17735-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200728155935.17708-1-chris@chris-wilson.co.uk>
-References: <20200728155935.17708-1-chris@chris-wilson.co.uk>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24B006E249;
+ Tue, 28 Jul 2020 18:45:57 +0000 (UTC)
+IronPort-SDR: 0AjXZtWOFWotc2Ef6K+1hJvBle5Axy0ottPbDWVq51vhp7Jtan5UZghMH2Ja35rAvPTJ0NcQdA
+ lWqP4KPeVrkg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9696"; a="130852354"
+X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="130852354"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2020 11:45:56 -0700
+IronPort-SDR: wwWappNoJfKls/eFsEdb++nFi5WOaro8lC2t0gajQmO4NdQk54sfqMRwrDFI40pe+1MnoCMCo0
+ VeDEfvP1Pujw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="394420092"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by fmsmga001.fm.intel.com with ESMTP; 28 Jul 2020 11:45:53 -0700
+Received: from andy by smile with local (Exim 4.94)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1k0Ubp-004W6J-2e; Tue, 28 Jul 2020 21:45:53 +0300
+Date: Tue, 28 Jul 2020 21:45:53 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200728184553.GZ3703480@smile.fi.intel.com>
+References: <20200717133753.127282-1-hdegoede@redhat.com>
+ <20200717133753.127282-6-hdegoede@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Delay taking the spinlock for
- grabbing from the buffer pool
+Content-Disposition: inline
+In-Reply-To: <20200717133753.127282-6-hdegoede@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v5 05/16] pwm: lpss: Add
+ pwm_lpss_prepare_enable() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,160 +54,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some very low hanging fruit, but contention on the pool->lock is
-noticeable between intel_gt_get_buffer_pool() and pool_retire(), with
-the majority of the hold time due to the locked list iteration. If we
-make the node itself RCU protected, we can perform the search for an
-suitable node just under RCU, reserving taking the lock itself for
-claiming the node and manipulating the list.
+On Fri, Jul 17, 2020 at 03:37:42PM +0200, Hans de Goede wrote:
+> In the not-enabled -> enabled path pwm_lpss_apply() needs to get a
+> runtime-pm reference; and then on any errors it needs to release it
+> again.
+> 
+> This leads to somewhat hard to read code. This commit introduces a new
+> pwm_lpss_prepare_enable() helper and moves all the steps necessary for
+> the not-enabled -> enabled transition there, so that we can error check
+> the entire transition in a single place and only have one pm_runtime_put()
+> on failure call site.
+> 
+> While working on this I noticed that the enabled -> enabled (update
+> settings) path was quite similar, so I've added an enable parameter to
+> the new pwm_lpss_prepare_enable() helper, which allows using it in that
+> path too.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- .../gpu/drm/i915/gt/intel_gt_buffer_pool.c    | 62 +++++++++++++------
- .../drm/i915/gt/intel_gt_buffer_pool_types.h  |  6 +-
- 2 files changed, 48 insertions(+), 20 deletions(-)
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+But see below.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-index 418ae184cecf..b9c2183bb513 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-@@ -35,37 +35,51 @@ static void node_free(struct intel_gt_buffer_pool_node *node)
- {
- 	i915_gem_object_put(node->obj);
- 	i915_active_fini(&node->active);
--	kfree(node);
-+	kfree_rcu(node, rcu);
- }
- 
- static void pool_free_work(struct work_struct *wrk)
- {
- 	struct intel_gt_buffer_pool *pool =
- 		container_of(wrk, typeof(*pool), work.work);
--	struct intel_gt_buffer_pool_node *node, *next;
-+	struct intel_gt_buffer_pool_node *node, *stale = NULL;
- 	unsigned long old = jiffies - HZ;
- 	bool active = false;
--	LIST_HEAD(stale);
- 	int n;
- 
- 	/* Free buffers that have not been used in the past second */
--	spin_lock_irq(&pool->lock);
- 	for (n = 0; n < ARRAY_SIZE(pool->cache_list); n++) {
- 		struct list_head *list = &pool->cache_list[n];
- 
--		/* Most recent at head; oldest at tail */
--		list_for_each_entry_safe_reverse(node, next, list, link) {
--			if (time_before(node->age, old))
--				break;
-+		if (list_empty(list))
-+			continue;
-+
-+		if (spin_trylock_irq(&pool->lock)) {
-+			struct list_head *pos;
-+
-+			/* Most recent at head; oldest at tail */
-+			list_for_each_prev(pos, list) {
-+				node = list_entry(pos, typeof(*node), link);
-+				if (time_before(node->age, old))
-+					break;
- 
--			list_move(&node->link, &stale);
-+				node->age = 0;
-+				node->free = stale;
-+				stale = node;
-+			}
-+			if (!list_is_last(pos, list))
-+				__list_del_many(pos, list);
-+
-+			spin_unlock_irq(&pool->lock);
- 		}
-+
- 		active |= !list_empty(list);
- 	}
--	spin_unlock_irq(&pool->lock);
- 
--	list_for_each_entry_safe(node, next, &stale, link)
-+	while ((node = stale)) {
-+		stale = stale->free;
- 		node_free(node);
-+	}
- 
- 	if (active)
- 		schedule_delayed_work(&pool->work,
-@@ -108,9 +122,9 @@ static void pool_retire(struct i915_active *ref)
- 	/* Return this object to the shrinker pool */
- 	i915_gem_object_make_purgeable(node->obj);
- 
-+	WRITE_ONCE(node->age, jiffies ?: 1); /* 0 reserved for active nodes */
- 	spin_lock_irqsave(&pool->lock, flags);
--	node->age = jiffies;
--	list_add(&node->link, list);
-+	list_add_rcu(&node->link, list);
- 	spin_unlock_irqrestore(&pool->lock, flags);
- 
- 	schedule_delayed_work(&pool->work,
-@@ -151,20 +165,30 @@ intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size)
- 	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
- 	struct intel_gt_buffer_pool_node *node;
- 	struct list_head *list;
--	unsigned long flags;
- 	int ret;
- 
- 	size = PAGE_ALIGN(size);
- 	list = bucket_for_size(pool, size);
- 
--	spin_lock_irqsave(&pool->lock, flags);
--	list_for_each_entry(node, list, link) {
-+	rcu_read_lock();
-+	list_for_each_entry_rcu(node, list, link) {
-+		unsigned long age;
-+
- 		if (node->obj->base.size < size)
- 			continue;
--		list_del(&node->link);
--		break;
-+
-+		age = READ_ONCE(node->age);
-+		if (!age)
-+			continue;
-+
-+		if (cmpxchg(&node->age, age, 0) == age) {
-+			spin_lock_irq(&pool->lock);
-+			list_del_rcu(&node->link);
-+			spin_unlock_irq(&pool->lock);
-+			break;
-+		}
- 	}
--	spin_unlock_irqrestore(&pool->lock, flags);
-+	rcu_read_unlock();
- 
- 	if (&node->link == list) {
- 		node = node_create(pool, size);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-index e28bdda771ed..bcf1658c9633 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-@@ -25,7 +25,11 @@ struct intel_gt_buffer_pool_node {
- 	struct i915_active active;
- 	struct drm_i915_gem_object *obj;
- 	struct list_head link;
--	struct intel_gt_buffer_pool *pool;
-+	union {
-+		struct intel_gt_buffer_pool *pool;
-+		struct intel_gt_buffer_pool_node *free;
-+		struct rcu_head rcu;
-+	};
- 	unsigned long age;
- };
- 
+> Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  drivers/pwm/pwm-lpss.c | 45 ++++++++++++++++++++++++------------------
+>  1 file changed, 26 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/pwm/pwm-lpss.c b/drivers/pwm/pwm-lpss.c
+> index da9bc3d10104..8a136ba2a583 100644
+> --- a/drivers/pwm/pwm-lpss.c
+> +++ b/drivers/pwm/pwm-lpss.c
+> @@ -122,41 +122,48 @@ static inline void pwm_lpss_cond_enable(struct pwm_device *pwm, bool cond)
+>  		pwm_lpss_write(pwm, pwm_lpss_read(pwm) | PWM_ENABLE);
+>  }
+>  
+> +static int pwm_lpss_prepare_enable(struct pwm_lpss_chip *lpwm,
+> +				   struct pwm_device *pwm,
+> +				   const struct pwm_state *state,
+> +				   bool enable)
+> +{
+> +	int ret;
+> +
+> +	ret = pwm_lpss_is_updating(pwm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pwm_lpss_prepare(lpwm, pwm, state->duty_cycle, state->period);
+> +	pwm_lpss_cond_enable(pwm, enable && lpwm->info->bypass == false);
+> +	ret = pwm_lpss_wait_for_update(pwm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pwm_lpss_cond_enable(pwm, enable && lpwm->info->bypass == true);
+> +	return 0;
+> +}
+> +
+>  static int pwm_lpss_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>  			  const struct pwm_state *state)
+>  {
+>  	struct pwm_lpss_chip *lpwm = to_lpwm(chip);
+> -	int ret;
+
+> +	int ret = 0;
+
+We can avoid this change...
+
+>  	if (state->enabled) {
+>  		if (!pwm_is_enabled(pwm)) {
+>  			pm_runtime_get_sync(chip->dev);
+> -			ret = pwm_lpss_is_updating(pwm);
+> -			if (ret) {
+> -				pm_runtime_put(chip->dev);
+> -				return ret;
+> -			}
+> -			pwm_lpss_prepare(lpwm, pwm, state->duty_cycle, state->period);
+> -			pwm_lpss_cond_enable(pwm, lpwm->info->bypass == false);
+> -			ret = pwm_lpss_wait_for_update(pwm);
+> -			if (ret) {
+> +			ret = pwm_lpss_prepare_enable(lpwm, pwm, state, true);
+> +			if (ret)
+>  				pm_runtime_put(chip->dev);
+> -				return ret;
+> -			}
+> -			pwm_lpss_cond_enable(pwm, lpwm->info->bypass == true);
+>  		} else {
+> -			ret = pwm_lpss_is_updating(pwm);
+> -			if (ret)
+> -				return ret;
+> -			pwm_lpss_prepare(lpwm, pwm, state->duty_cycle, state->period);
+> -			return pwm_lpss_wait_for_update(pwm);
+
+> +			ret = pwm_lpss_prepare_enable(lpwm, pwm, state, false);
+
+...by simple return directly from here. But I admit I haven't seen the next patch yet.
+
+>  		}
+>  	} else if (pwm_is_enabled(pwm)) {
+>  		pwm_lpss_write(pwm, pwm_lpss_read(pwm) & ~PWM_ENABLE);
+>  		pm_runtime_put(chip->dev);
+>  	}
+>  
+> -	return 0;
+> +	return ret;
+>  }
+>  
+>  static void pwm_lpss_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+> -- 
+> 2.26.2
+> 
+
 -- 
-2.20.1
+With Best Regards,
+Andy Shevchenko
+
 
 _______________________________________________
 Intel-gfx mailing list
