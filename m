@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8DE223152B
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 23:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E24B231536
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 23:54:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E4CE6E0DF;
-	Tue, 28 Jul 2020 21:48:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6971E89D9B;
+	Tue, 28 Jul 2020 21:54:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F272A6E0DF
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 21:48:14 +0000 (UTC)
-IronPort-SDR: KsEa/9JJ8pF5S1JWIhUCSU1GNzzFgwfJC6cz2qXu3DxImw7FkZgxjWUWA7L9Zn8VstCcwrmK6q
- x0gznwAeJGow==
-X-IronPort-AV: E=McAfee;i="6000,8403,9696"; a="150489499"
-X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="150489499"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37E1489D9B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 21:54:21 +0000 (UTC)
+IronPort-SDR: 7BUNtSV6gZUH2OLXZkfqu8uI+4AAH5y7PRuP3MGYk0ENrmpwpxRV+HgXPcqTEFsdXRV7o+Kfa+
+ J23FAvGBIfpQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9696"; a="148780673"
+X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="148780673"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2020 14:48:14 -0700
-IronPort-SDR: x8HlwuCi2vE3Ow5SU1xS0zQG0kydi4ci9DvNZhVsxYR4Q/7V6KO911dArloTdiTGY60cZscB40
- +cm2WEcR1rNA==
-X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="490521734"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2020 14:54:20 -0700
+IronPort-SDR: kieJgHhxHC1ZOwaHQhFeAMEIHX8x+PbDpoUXx/MgSsTF8Zx7swqFs9GNloJjLMd+AD2U0Xc6tt
+ bxIfZnfpNVFg==
+X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="312786043"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2020 14:48:14 -0700
-Date: Tue, 28 Jul 2020 14:48:13 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2020 14:54:20 -0700
+Date: Tue, 28 Jul 2020 14:54:18 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20200728214813.GE35208@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20200728215418.GF35208@mdroper-desk1.amr.corp.intel.com>
 References: <20200724213918.27424-1-lucas.demarchi@intel.com>
- <20200724213918.27424-5-lucas.demarchi@intel.com>
+ <20200724213918.27424-7-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200724213918.27424-5-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 04/22] drm/i915/dg1: Increase mmio size
- to 4MB
+In-Reply-To: <20200724213918.27424-7-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 06/22] drm/i915/dg1: Add DPLL macros for
+ DG1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,54 +57,100 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 24, 2020 at 02:39:00PM -0700, Lucas De Marchi wrote:
-> From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+On Fri, Jul 24, 2020 at 02:39:02PM -0700, Lucas De Marchi wrote:
+> From: Aditya Swarup <aditya.swarup@intel.com>
 > 
-> On dgfx register range has been extended to go up to 4MB.
-> 
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> DG1 has 4 DPLLs where DPLL0 and DPLL1 drive DDIA/B and
+> DPLL2 and DPLL3 drive DDIC/DDID.
 
-We may want to provide "Bspec: 53616" as a reference.  Technically the
-overall space reserved for MMIO is 8MB, but that page helps detail the
-layout.  The registers we actually use top out out 28_0000 I believe, so
-a 4MB range should be sufficient.
+Since this is a DG1-specific commit with DG1-specific macros, we should
+also use the DG1-specific terminology in the commit message to avoid
+confusion (i.e., DDI-TC1 and DDI-TC2 instead of DDIC/DDID).
+
+Aside from that,
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/intel_uncore.c | 4 ++++
->  1 file changed, 4 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-> index f5edee17902a..8f9c82aa7338 100644
-> --- a/drivers/gpu/drm/i915/intel_uncore.c
-> +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> @@ -1701,11 +1701,15 @@ static int uncore_mmio_setup(struct intel_uncore *uncore)
->  	 * clobbering the GTT which we want ioremap_wc instead. Fortunately,
->  	 * the register BAR remains the same size for all the earlier
->  	 * generations up to Ironlake.
-> +	 * For dgfx chips register range is expanded to 4MB.
+> Introduce DG1_DPLL_CFCRx() helper macros to configure
+> DPLL registers.
+> 
+> Bspec: 50288, 50299
+> 
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.h | 17 +++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h               | 17 ++++++++++++++++-
+>  2 files changed, 33 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> index 5d9a2bc371e7..205542fb8dc7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> @@ -154,6 +154,23 @@ enum intel_dpll_id {
+>  	 * @DPLL_ID_TGL_MGPLL6: TGL TC PLL port 6 (TC6)
 >  	 */
->  	if (INTEL_GEN(i915) < 5)
->  		mmio_size = 512 * 1024;
-> +	else if (IS_DGFX(i915))
-> +		mmio_size = 4 * 1024 * 1024;
->  	else
->  		mmio_size = 2 * 1024 * 1024;
+>  	DPLL_ID_TGL_MGPLL6 = 8,
 > +
->  	uncore->regs = pci_iomap(pdev, mmio_bar, mmio_size);
->  	if (uncore->regs == NULL) {
->  		drm_err(&i915->drm, "failed to map registers\n");
+> +	/**
+> +	 * @DPLL_ID_DG1_DPLL0: DG1 combo PHY DPLL0
+> +	 */
+> +	DPLL_ID_DG1_DPLL0 = 0,
+> +	/**
+> +	 * @DPLL_ID_DG1_DPLL1: DG1 combo PHY DPLL1
+> +	 */
+> +	DPLL_ID_DG1_DPLL1 = 1,
+> +	/**
+> +	 * @DPLL_ID_DG1_DPLL2: DG1 combo PHY DPLL2
+> +	 */
+> +	DPLL_ID_DG1_DPLL2 = 2,
+> +	/**
+> +	 * @DPLL_ID_DG1_DPLL3: DG1 combo PHY DPLL3
+> +	 */
+> +	DPLL_ID_DG1_DPLL3 = 3,
+>  };
+>  
+>  #define I915_NUM_PLLS 9
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 3767b32127da..986e31af7763 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -242,7 +242,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>  #define _MMIO_PIPE3(pipe, a, b, c)	_MMIO(_PICK(pipe, a, b, c))
+>  #define _MMIO_PORT3(pipe, a, b, c)	_MMIO(_PICK(pipe, a, b, c))
+>  #define _MMIO_PHY3(phy, a, b, c)	_MMIO(_PHY3(phy, a, b, c))
+> -#define _MMIO_PLL3(pll, a, b, c)	_MMIO(_PICK(pll, a, b, c))
+> +#define _MMIO_PLL3(pll, ...)		_MMIO(_PICK(pll, __VA_ARGS__))
+> +
+>  
+>  /*
+>   * Device info offset array based helpers for groups of registers with unevenly
+> @@ -10547,6 +10548,20 @@ enum skl_power_gate {
+>  #define RKL_DPLL_CFGCR1(pll)		_MMIO_PLL(pll, _TGL_DPLL0_CFGCR1, \
+>  						  _TGL_DPLL1_CFGCR1)
+>  
+> +#define _DG1_DPLL2_CFGCR0		0x16C284
+> +#define _DG1_DPLL3_CFGCR0		0x16C28C
+> +#define DG1_DPLL_CFGCR0(pll)		_MMIO_PLL3(pll, _TGL_DPLL0_CFGCR0, \
+> +						   _TGL_DPLL1_CFGCR0, \
+> +						   _DG1_DPLL2_CFGCR0, \
+> +						   _DG1_DPLL3_CFGCR0)
+> +
+> +#define _DG1_DPLL2_CFGCR1               0x16C288
+> +#define _DG1_DPLL3_CFGCR1               0x16C290
+> +#define DG1_DPLL_CFGCR1(pll)            _MMIO_PLL3(pll, _TGL_DPLL0_CFGCR1, \
+> +						   _TGL_DPLL1_CFGCR1, \
+> +						   _DG1_DPLL2_CFGCR1, \
+> +						   _DG1_DPLL3_CFGCR1)
+> +
+>  #define _DKL_PHY1_BASE			0x168000
+>  #define _DKL_PHY2_BASE			0x169000
+>  #define _DKL_PHY3_BASE			0x16A000
 > -- 
 > 2.26.2
 > 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- 
 Matt Roper
