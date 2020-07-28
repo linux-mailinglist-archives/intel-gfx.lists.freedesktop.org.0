@@ -2,75 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5101231333
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 21:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 724A123135C
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 22:00:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F83F6E3D6;
-	Tue, 28 Jul 2020 19:55:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6253F6E0A1;
+	Tue, 28 Jul 2020 20:00:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com
- (us-smtp-delivery-1.mimecast.com [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTP id DE1AB6E3D6
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 19:55:29 +0000 (UTC)
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7BA896E0A1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 20:00:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1595966128;
+ s=mimecast20190719; t=1595966429;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=SH5q26piEln6+brQgUs5QwIsRcXrNMf3SmQsNLqi3Vo=;
- b=NGUCQyW2ybnnkcwURLh4X4Gzprhvzm5BxaA6rF44ih+WQPq6UYYi+eqCbH8+sy0+w2Uagg
- 5P4VdBuMa8hXotJQ7Cj+SqRug4kDFVS+cb4T0UaThPMZgKLAJChrKpk5BTnZQSI0yaN29j
- wkMtqm3Q14neQu7Fl8VVJ+ddC7GVRp0=
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
- [209.85.218.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-135-y-WZd0cwMtqaWsR264GU-w-1; Tue, 28 Jul 2020 15:55:25 -0400
-X-MC-Unique: y-WZd0cwMtqaWsR264GU-w-1
-Received: by mail-ej1-f71.google.com with SMTP id b14so7673640ejv.14
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 12:55:24 -0700 (PDT)
+ bh=hSzFFDyUfAnXvkkVJ84iprpsx2ZHjX86onKI2woEOHU=;
+ b=D+T8/GpaDWT//rJYg/LyqSwyeSOkVS/wypRYQhSzq/kMGOYiaIgYrIA7ohoe3GNksyAg9H
+ mn9irEOBaUwFWLyXcvjaNihuzriqwxuM7K0rkFKndHHOCAzMHOOIl4mOalNrSerc31N8PP
+ KhC+dQrPw31hRkGa8fnCVTEd41GA36U=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-238-fX03FejJM8i4QGwPr78uMw-1; Tue, 28 Jul 2020 16:00:27 -0400
+X-MC-Unique: fX03FejJM8i4QGwPr78uMw-1
+Received: by mail-ej1-f72.google.com with SMTP id cf15so7621669ejb.6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 13:00:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=SH5q26piEln6+brQgUs5QwIsRcXrNMf3SmQsNLqi3Vo=;
- b=rSVWeP24CD4Qh4d4lbf0SAMtQcahgpE1lnWW3fuRk39wsZ3jbm8IvUbJDDJiRtJxtz
- 2h5oziyFlSro7ABI2efWbcf7xNJiD29dP/ciuk13PcDpALCTeXgkPweojYm/6oAHJ29t
- CVMV3LP+5kjPzSnTliH2jntdp0sWsGZVuuph98iwxIqkFsvlyYHNu+9f6b6QnpiYw9hj
- 88Drcw/o3Y4oTzmvo+tw428ZplZRZ5EDi5SH9psie3zgDncs+QYGzpor/kKLqDRK02BS
- 4Hxhu31v/ua/NZbFlKmQZ0I/uUYEMfeS2INc9S6GqsyV9ay3+kKao7YneX7JEaWnNTDV
- RBrg==
-X-Gm-Message-State: AOAM531j9AD+/v0PiTKT2apGhLjQZ6d/wfl2AwTVvR1f9XfTqHw4I4Rx
- YcvMMwKlnobylvKJdpbA2zvUPRq9LPyrdVu0QETnDPx6M1eBQSuScaE91rlf6TbssXnP1GuiZ+s
- hAKX8Onlv87rnC+rpOvLvvMCOwfZf
-X-Received: by 2002:aa7:c655:: with SMTP id z21mr27771983edr.330.1595966123729; 
- Tue, 28 Jul 2020 12:55:23 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxwya90PeANkl56GbLL/sAAQgT++JcBuCdnZPXxsUt2lGBGTS4oefB9O+jlvr2TwUYPoNeYaw==
-X-Received: by 2002:aa7:c655:: with SMTP id z21mr27771962edr.330.1595966123458; 
- Tue, 28 Jul 2020 12:55:23 -0700 (PDT)
+ bh=hSzFFDyUfAnXvkkVJ84iprpsx2ZHjX86onKI2woEOHU=;
+ b=TyBIQc8nDqNyE6qLREpFjKha/6uOZfmmr4u3t1EquYvChJ2akLXCKxvCvNPPbSrfAS
+ EbPRx9+8CmpIWdc+3HSrkQ9qNYX855MRE+5F3bfU663yTPOHQd8lgeLw6rcL9S7PmFXS
+ oyDO0TqBPXd/XneSuDQvQ6Ga/8982GLM3X9DtwVW+2eaP6jgfdZNsDH8S9so2/W5IlHf
+ CzCDvhGH9ENVWW/KzYh0vmS4SuOecU4teORpltFu8Pr+DTcs1fTlaJycTm5uVSYjt3yD
+ lLIv7Vm6cyTkCcPc6IMlw1vMykkqy+Rp2ffTAwGAS0xrc572HO3H/P7fxA2XVx+/sJ4s
+ rsfg==
+X-Gm-Message-State: AOAM531ZW5doS/CYXvfrEjAxsIUeIiSDZ4sqIGu+S+dG91qTr5Yc1dyU
+ 8oKsG7smKOvYlfb3ivDTFgQfRMKBBSqFSWFKLtC4D0rkUs34Ixwz2wJhI4zgch6ntfMo6irBz8C
+ 2aPjbkwUAXrnmg7PJlxTR8mCCyx8B
+X-Received: by 2002:a17:906:e46:: with SMTP id
+ q6mr25991236eji.234.1595966425299; 
+ Tue, 28 Jul 2020 13:00:25 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzV14O9arRYB6XE8+8IFKAQO6S/91DQBaJNDTc1IjVEOlhbwsAm5kcJXeUo4rgsWkPdUP3wYw==
+X-Received: by 2002:a17:906:e46:: with SMTP id
+ q6mr25991222eji.234.1595966425063; 
+ Tue, 28 Jul 2020 13:00:25 -0700 (PDT)
 Received: from x1.localdomain
  (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
- by smtp.gmail.com with ESMTPSA id gh25sm4295031ejb.109.2020.07.28.12.55.22
+ by smtp.gmail.com with ESMTPSA id y22sm9846217ejf.108.2020.07.28.13.00.24
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 28 Jul 2020 12:55:22 -0700 (PDT)
+ Tue, 28 Jul 2020 13:00:24 -0700 (PDT)
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 References: <20200717133753.127282-1-hdegoede@redhat.com>
- <20200717133753.127282-7-hdegoede@redhat.com>
- <20200728185703.GA3703480@smile.fi.intel.com>
+ <20200717133753.127282-8-hdegoede@redhat.com>
+ <20200728193634.GD3703480@smile.fi.intel.com>
 From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <1e19e31f-cf68-5607-3027-3b963ce53c39@redhat.com>
-Date: Tue, 28 Jul 2020 21:55:22 +0200
+Message-ID: <a05f24ec-3be5-42c7-38b8-69e8a3a2b330@redhat.com>
+Date: Tue, 28 Jul 2020 22:00:23 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200728185703.GA3703480@smile.fi.intel.com>
+In-Reply-To: <20200728193634.GD3703480@smile.fi.intel.com>
 Content-Language: en-US
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH v5 06/16] pwm: lpss: Use pwm_lpss_apply()
- when restoring state on resume
+Subject: Re: [Intel-gfx] [PATCH v5 07/16] pwm: crc: Fix period / duty_cycle
+ times being off by a factor of 256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,142 +97,98 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi,
 
-On 7/28/20 8:57 PM, Andy Shevchenko wrote:
-> On Fri, Jul 17, 2020 at 03:37:43PM +0200, Hans de Goede wrote:
->> Before this commit a suspend + resume of the LPSS PWM controller
->> would result in the controller being reset to its defaults of
->> output-freq = clock/256, duty-cycle=100%, until someone changes
->> to the output-freq and/or duty-cycle are made.
+On 7/28/20 9:36 PM, Andy Shevchenko wrote:
+> On Fri, Jul 17, 2020 at 03:37:44PM +0200, Hans de Goede wrote:
+>> While looking into adding atomic-pwm support to the pwm-crc driver I
+>> noticed something odd, there is a PWM_BASE_CLK define of 6 MHz and
+>> there is a clock-divider which divides this with a value between 1-128,
+>> and there are 256 duty-cycle steps.
 >>
->> This problem has been masked so far because the main consumer
->> (the i915 driver) was always making duty-cycle changes on resume.
->> With the conversion of the i915 driver to the atomic PWM API the
->> driver now only disables/enables the PWM on suspend/resume leaving
->> the output-freq and duty as is, triggering this problem.
+>> The pwm-crc code before this commit assumed that a clock-divider
+>> setting of 1 means that the PWM output is running at 6 MHZ, if that
+>> is true, where do these 256 duty-cycle steps come from?
 >>
->> The LPSS PWM controller has a mechanism where the ctrl register value
->> and the actual base-unit and on-time-div values used are latched. When
->> software sets the SW_UPDATE bit then at the end of the current PWM cycle,
->> the new values from the ctrl-register will be latched into the actual
->> registers, and the SW_UPDATE bit will be cleared.
+>> This would require an internal frequency of 256 * 6 MHz = 1.5 GHz, that
+>> seems unlikely for a PMIC which is using a silicon process optimized for
+>> power-switching transistors. It is way more likely that there is an 8
+>> bit counter for the duty cycle which acts as an extra fixed divider
+>> wrt the PWM output frequency.
 >>
->> The problem is that before this commit our suspend/resume handling
->> consisted of simply saving the PWM ctrl register on suspend and
->> restoring it on resume, without setting the PWM_SW_UPDATE bit.
->> When the controller has lost its state over a suspend/resume and thus
->> has been reset to the defaults, just restoring the register is not
->> enough. We must also set the SW_UPDATE bit to tell the controller to
->> latch the restored values into the actual registers.
+>> The main user of the pwm-crc driver is the i915 GPU driver which uses it
+>> for backlight control. Lets compare the PWM register values set by the
+>> video-BIOS (the GOP), assuming the extra fixed divider is present versus
+>> the PWM frequency specified in the Video-BIOS-Tables:
 >>
->> Fixing this problem is not as simple as just or-ing in the value which
->> is being restored with SW_UPDATE. If the PWM was enabled before we must
->> write the new settings + PWM_SW_UPDATE before setting PWM_ENABLE.
->> We must also wait for PWM_SW_UPDATE to become 0 again and depending on the
->> model we must do this either before or after the setting of PWM_ENABLE.
+>> Device:		PWM Hz set by BIOS	PWM Hz specified in VBT
+>> Asus T100TA 	200			200
+>> Asus T100HA 	200			200
+>> Lenovo Miix 2 8	23437			20000
+>> Toshiba WT8-A	23437			20000
 >>
->> All the necessary logic for doing this is already present inside
->> pwm_lpss_apply(), so instead of duplicating this inside the resume
->> handler, this commit makes the resume handler use pwm_lpss_apply() to
->> restore the settings when necessary. This fixes the output-freq and
->> duty-cycle being reset to their defaults on resume.
+>> So as we can see if we assume the extra division by 256 then the register
+>> values set by the GOP are an exact match for the VBT values, where as
+>> otherwise the values would be of by a factor of 256.
+>>
+>> This commit fixes the period / duty_cycle calculations to take the
+>> extra division by 256 into account.
 > 
-> ...
-> 
->> -static int pwm_lpss_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->> -			  const struct pwm_state *state)
->> +static int __pwm_lpss_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->> +			    const struct pwm_state *state, bool from_resume)
->>   {
->>   	struct pwm_lpss_chip *lpwm = to_lpwm(chip);
->>   	int ret = 0;
->>   
->>   	if (state->enabled) {
->>   		if (!pwm_is_enabled(pwm)) {
->> -			pm_runtime_get_sync(chip->dev);
->> +			if (!from_resume)
->> +				pm_runtime_get_sync(chip->dev);
->> +
->>   			ret = pwm_lpss_prepare_enable(lpwm, pwm, state, true);
->> -			if (ret)
->> +			if (ret && !from_resume)
->>   				pm_runtime_put(chip->dev);
->>   		} else {
->>   			ret = pwm_lpss_prepare_enable(lpwm, pwm, state, false);
->>   		}
->>   	} else if (pwm_is_enabled(pwm)) {
->>   		pwm_lpss_write(pwm, pwm_lpss_read(pwm) & ~PWM_ENABLE);
->> -		pm_runtime_put(chip->dev);
->> +
->> +		if (!from_resume)
->> +			pm_runtime_put(chip->dev);
->>   	}
->>   
->>   	return ret;
->>   }
-> 
-> Maybe I'm too picky, but I would go even further and split apply to two versions
-> 
-> static int pwm_lpss_apply_on_resume(struct pwm_chip *chip, struct pwm_device *pwm,
-> 			  const struct pwm_state *state)
->>   {
->>   	struct pwm_lpss_chip *lpwm = to_lpwm(chip);
->>   
->>   	if (state->enabled)
->>   		return pwm_lpss_prepare_enable(lpwm, pwm, state, !pwm_is_enabled(pwm));
->>   	if (pwm_is_enabled(pwm)) {
->>   		pwm_lpss_write(pwm, pwm_lpss_read(pwm) & ~PWM_ENABLE);
->>   	return 0;
->>   }
-> 
-> and another one for !from_resume.
+> So, base clock is 6MHz, then 7 bit divisor. That's what original values
+> were for. On top of that there is 8-bit duty cycle control ("divide by 256"
+> whatever it means) with the output range 23.437kHz..183Hz.
 
-It is a bit picky :) But that is actually not a bad idea, although I would write
-it like this for more symmetry with the normal (not on_resume) apply version,
-while at it I also renamed the function:
+Right, so that range matches with a clock div of 1*256 (6 MHz/256 = 23437.5KHz)
+to 128*256 (6 MHz/(128*256) = 183.1Hz) IOW this patch is correct.
 
-/*
-  * This is a mirror of pwm_lpss_apply() without pm_runtime reference handling
-  * for restoring the PWM state on resume.
-  */
-static int pwm_lpss_restore_state(struct pwm_chip *chip, struct pwm_device *pwm,
-                                   const struct pwm_state *state)
-{
-    	struct pwm_lpss_chip *lpwm = to_lpwm(chip);
-	int ret = 0;
-
-    	if (state->enabled)
-    		ret = pwm_lpss_prepare_enable(lpwm, pwm, state, !pwm_is_enabled(pwm));
-    	else if (pwm_is_enabled(pwm))
-    		pwm_lpss_write(pwm, pwm_lpss_read(pwm) & ~PWM_ENABLE);
-
-    	return ret;
-}
-
-Would that work for you?
-
->> +static int pwm_lpss_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->> +			  const struct pwm_state *state)
->> +{
->> +	return __pwm_lpss_apply(chip, pwm, state, false);
->> +}
-> 
-> ...
-> 
->> +		ret = __pwm_lpss_apply(&lpwm->chip, pwm, &saved_state, true);
->> +		if (ret)
->> +			dev_err(dev, "Error restoring state on resume\n");
-> 
-> I'm wondering if it's a real error why we do not bail out?
-> Otherwise dev_warn() ?
-
-It is a real error, but a single PWM chip might have multiple controllers
-and bailing out early would mean not even trying to restore the state on
-the other controllers.  As for propagating the error, AFAIK the pm framework
-does not do anything with resume errors other then log an extra error.
+Before this patch the code assumed a clkdiv of 1-128 (*), which leads to a
+very different output frequency range.
 
 Regards,
 
 Hans
+
+
+*) 0-127 really, that is fixed in a followup patch
+
+
+
+> 
+>>
+>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>> ---
+>> Changes in v3:
+>> - Use NSEC_PER_USEC instead of adding a new (non-sensical) NSEC_PER_MHZ define
+>> ---
+>>   drivers/pwm/pwm-crc.c | 6 +++---
+>>   1 file changed, 3 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/pwm/pwm-crc.c b/drivers/pwm/pwm-crc.c
+>> index 272eeb071147..c056eb9b858c 100644
+>> --- a/drivers/pwm/pwm-crc.c
+>> +++ b/drivers/pwm/pwm-crc.c
+>> @@ -21,8 +21,8 @@
+>>   
+>>   #define PWM_MAX_LEVEL		0xFF
+>>   
+>> -#define PWM_BASE_CLK		6000000  /* 6 MHz */
+>> -#define PWM_MAX_PERIOD_NS	21333    /* 46.875KHz */
+>> +#define PWM_BASE_CLK_MHZ	6	/* 6 MHz */
+>> +#define PWM_MAX_PERIOD_NS	5461333	/* 183 Hz */
+>>   
+>>   /**
+>>    * struct crystalcove_pwm - Crystal Cove PWM controller
+>> @@ -72,7 +72,7 @@ static int crc_pwm_config(struct pwm_chip *c, struct pwm_device *pwm,
+>>   
+>>   		/* changing the clk divisor, need to disable fisrt */
+>>   		crc_pwm_disable(c, pwm);
+>> -		clk_div = PWM_BASE_CLK * period_ns / NSEC_PER_SEC;
+>> +		clk_div = PWM_BASE_CLK_MHZ * period_ns / (256 * NSEC_PER_USEC);
+>>   
+>>   		regmap_write(crc_pwm->regmap, PWM0_CLK_DIV,
+>>   					clk_div | PWM_OUTPUT_ENABLE);
+>> -- 
+>> 2.26.2
+>>
+> 
 
 _______________________________________________
 Intel-gfx mailing list
