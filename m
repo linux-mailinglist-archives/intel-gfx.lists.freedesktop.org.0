@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6632230DA8
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:25:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0664230DA4
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:25:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A7D66E356;
-	Tue, 28 Jul 2020 15:25:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 291FA6E147;
+	Tue, 28 Jul 2020 15:25:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D16F6E34C
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:25:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85A5B6E34A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:25:14 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959526-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959527-1500050 
  for multiple; Tue, 28 Jul 2020 16:25:03 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jul 2020 16:25:00 +0100
-Message-Id: <20200728152501.26685-11-chris@chris-wilson.co.uk>
+Date: Tue, 28 Jul 2020 16:25:01 +0100
+Message-Id: <20200728152501.26685-12-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200728152501.26685-1-chris@chris-wilson.co.uk>
 References: <20200728152501.26685-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 11/12] drm/i915: Drop i915_request.lock
- serialisation around await_start
+Subject: [Intel-gfx] [PATCH 12/12] drm/i915: Drop i915_request.lock
+ requirement for intel_rps_boost()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,49 +45,69 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Originally, we used the signal->lock as a means of following the
-previous link in its timeline and peeking at the previous fence.
-However, we have replaced the explicit serialisation with a series of
-very careful probes that anticipate the links being deleted and the
-fences recycled before we are able to acquire a strong reference to it.
-We do not need the signal->lock crutch anymore, nor want the contention.
+Since we use a flag within i915_request.flags to indicate when we have
+boosted the request (so that we only apply the boost) once, this can be
+used as the serialisation with i915_request_retire() to avoid having to
+explicitly take the i915_request.lock which is more heavily contended.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/i915_request.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rps.c | 15 ++++++---------
+ drivers/gpu/drm/i915/i915_request.c |  4 +---
+ 2 files changed, 7 insertions(+), 12 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index e6a00eea0631..2a43e216e0d4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -889,17 +889,15 @@ void intel_rps_park(struct intel_rps *rps)
+ 
+ void intel_rps_boost(struct i915_request *rq)
+ {
+-	struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
+-	unsigned long flags;
+-
+-	if (i915_request_signaled(rq) || !intel_rps_is_active(rps))
++	if (i915_request_signaled(rq) || i915_request_has_waitboost(rq))
+ 		return;
+ 
+ 	/* Serializes with i915_request_retire() */
+-	spin_lock_irqsave(&rq->lock, flags);
+-	if (!i915_request_has_waitboost(rq) &&
+-	    !dma_fence_is_signaled_locked(&rq->fence)) {
+-		set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
++	if (!test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags)) {
++		struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
++
++		if (!intel_rps_is_active(rps))
++			return;
+ 
+ 		GT_TRACE(rps_to_gt(rps), "boost fence:%llx:%llx\n",
+ 			 rq->fence.context, rq->fence.seqno);
+@@ -910,7 +908,6 @@ void intel_rps_boost(struct i915_request *rq)
+ 
+ 		atomic_inc(&rps->boosts);
+ 	}
+-	spin_unlock_irqrestore(&rq->lock, flags);
+ }
+ 
+ int intel_rps_set(struct intel_rps *rps, u8 val)
 diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index c8ad14aa9d84..9172159ac633 100644
+index 9172159ac633..686ee9205357 100644
 --- a/drivers/gpu/drm/i915/i915_request.c
 +++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -976,9 +976,16 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
- 	if (i915_request_started(signal))
- 		return 0;
+@@ -324,10 +324,8 @@ bool i915_request_retire(struct i915_request *rq)
+ 		spin_unlock_irq(&rq->lock);
+ 	}
  
-+	/*
-+	 * The caller holds a reference on @signal, but we do not serialise
-+	 * against it being retired and removed from the lists.
-+	 *
-+	 * We do not hold a reference to the request before @signal, and
-+	 * so must be very careful to ensure that it is not _recycled_ as
-+	 * we follow the link backwards.
-+	 */
- 	fence = NULL;
- 	rcu_read_lock();
--	spin_lock_irq(&signal->lock);
- 	do {
- 		struct list_head *pos = READ_ONCE(signal->link.prev);
- 		struct i915_request *prev;
-@@ -1009,7 +1016,6 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+-	if (i915_request_has_waitboost(rq)) {
+-		GEM_BUG_ON(!atomic_read(&rq->engine->gt->rps.num_waiters));
++	if (test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags))
+ 		atomic_dec(&rq->engine->gt->rps.num_waiters);
+-	}
  
- 		fence = &prev->fence;
- 	} while (0);
--	spin_unlock_irq(&signal->lock);
- 	rcu_read_unlock();
- 	if (!fence)
- 		return 0;
+ 	/*
+ 	 * We only loosely track inflight requests across preemption,
 -- 
 2.20.1
 
