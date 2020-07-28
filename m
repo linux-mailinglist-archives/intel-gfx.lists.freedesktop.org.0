@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C7E9230D96
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:21:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D60C8230D99
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:22:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BDD36E33D;
-	Tue, 28 Jul 2020 15:21:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50E506E343;
+	Tue, 28 Jul 2020 15:22:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3EF96E33D
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:21:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E5E56E343
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:22:22 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959491-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 16:21:43 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959497-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 16:22:18 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jul 2020 16:21:44 +0100
-Message-Id: <20200728152144.1100-1-chris@chris-wilson.co.uk>
+Date: Tue, 28 Jul 2020 16:22:19 +0100
+Message-Id: <20200728152219.1387-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Filter wake_flags passed to
- default_wake_function
+Subject: [Intel-gfx] [CI] drm/i915: Remove gen check before calling
+ intel_rps_boost
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,44 +42,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The flags passed to the wait_entry.func are passed onwards to
-try_to_wake_up(), which has a very particular interpretation for its
-wake_flags. In particular, beyond the published WF_SYNC, it has a few
-internal flags as well. Since we passed the fence->error down the chain
-via the flags argument, these ended up in the default_wake_function
-confusing the kernel/sched.
+It's been a while since gen6_rps_boost() [that only worked on gen6+] was
+replaced by intel_rps_boost() that understood itself when rps was
+active. Since the intel_rps_boost() is gen-agnostic, just call it.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2110
-Fixes: ef4688497512 ("drm/i915: Propagate fence errors")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: <stable@vger.kernel.org> # v5.4+
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_sw_fence.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/i915_request.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index 295b9829e2da..4cd2038cbe35 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -164,9 +164,13 @@ static void __i915_sw_fence_wake_up_all(struct i915_sw_fence *fence,
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 679a915e9a63..e48daeef6882 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1823,11 +1823,8 @@ long i915_request_wait(struct i915_request *rq,
+ 	 * but at a cost of spending more power processing the workload
+ 	 * (bad for battery).
+ 	 */
+-	if (flags & I915_WAIT_PRIORITY) {
+-		if (!i915_request_started(rq) &&
+-		    INTEL_GEN(rq->engine->i915) >= 6)
+-			intel_rps_boost(rq);
+-	}
++	if (flags & I915_WAIT_PRIORITY && !i915_request_started(rq))
++		intel_rps_boost(rq);
  
- 		do {
- 			list_for_each_entry_safe(pos, next, &x->head, entry) {
--				pos->func(pos,
--					  TASK_NORMAL, fence->error,
--					  &extra);
-+				int wake_flags;
-+
-+				wake_flags = fence->error;
-+				if (pos->func == autoremove_wake_function)
-+					wake_flags = 0;
-+
-+				pos->func(pos, TASK_NORMAL, wake_flags, &extra);
- 			}
- 
- 			if (list_empty(&extra))
+ 	wait.tsk = current;
+ 	if (dma_fence_add_callback(&rq->fence, &wait.cb, request_wait_wake))
 -- 
 2.20.1
 
