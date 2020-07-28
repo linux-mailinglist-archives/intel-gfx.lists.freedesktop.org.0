@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C70230DCC
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37693230DDA
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:31:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF6476E366;
-	Tue, 28 Jul 2020 15:29:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59C986E348;
+	Tue, 28 Jul 2020 15:31:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFEB66E36F
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:29:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD35D6E348
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:31:01 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959554-1500050 
- for multiple; Tue, 28 Jul 2020 16:28:50 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959606-1500050 
+ for multiple; Tue, 28 Jul 2020 16:30:48 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jul 2020 16:28:50 +0100
-Message-Id: <20200728152850.27264-2-chris@chris-wilson.co.uk>
+Date: Tue, 28 Jul 2020 16:30:43 +0100
+Message-Id: <20200728153049.27682-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200728152850.27264-1-chris@chris-wilson.co.uk>
-References: <20200728152850.27264-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Reduce ctx->engines_mutex for
- get_engines()
+Subject: [Intel-gfx] [PATCH 1/7] drm/i915: Add a couple of missing
+ i915_active_fini()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,91 +38,40 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: thomas.hellstrom@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Take a snapshot of the ctx->engines, so we can avoid taking the
-ctx->engines_mutex for a mere read in get_engines().
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 39 +++++----------------
- 1 file changed, 8 insertions(+), 31 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index b5b179f96d77..f43f0ca4eec9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -1862,27 +1862,6 @@ set_engines(struct i915_gem_context *ctx,
- 	return 0;
- }
- 
--static struct i915_gem_engines *
--__copy_engines(struct i915_gem_engines *e)
--{
--	struct i915_gem_engines *copy;
--	unsigned int n;
--
--	copy = alloc_engines(e->num_engines);
--	if (!copy)
--		return ERR_PTR(-ENOMEM);
--
--	for (n = 0; n < e->num_engines; n++) {
--		if (e->engines[n])
--			copy->engines[n] = intel_context_get(e->engines[n]);
--		else
--			copy->engines[n] = NULL;
--	}
--	copy->num_engines = n;
--
--	return copy;
--}
--
- static int
- get_engines(struct i915_gem_context *ctx,
- 	    struct drm_i915_gem_context_param *args)
-@@ -1890,19 +1869,17 @@ get_engines(struct i915_gem_context *ctx,
- 	struct i915_context_param_engines __user *user;
- 	struct i915_gem_engines *e;
- 	size_t n, count, size;
-+	bool user_engines;
- 	int err = 0;
- 
--	err = mutex_lock_interruptible(&ctx->engines_mutex);
--	if (err)
--		return err;
-+	e = __context_engines_await(ctx, &user_engines);
-+	if (!e)
-+		return -ENOENT;
- 
--	e = NULL;
--	if (i915_gem_context_user_engines(ctx))
--		e = __copy_engines(i915_gem_context_engines(ctx));
--	mutex_unlock(&ctx->engines_mutex);
--	if (IS_ERR_OR_NULL(e)) {
-+	if (!user_engines) {
-+		i915_sw_fence_complete(&e->fence);
- 		args->size = 0;
--		return PTR_ERR_OR_ZERO(e);
-+		return 0;
- 	}
- 
- 	count = e->num_engines;
-@@ -1953,7 +1930,7 @@ get_engines(struct i915_gem_context *ctx,
- 	args->size = size;
- 
- err_free:
--	free_engines(e);
-+	i915_sw_fence_complete(&e->fence);
- 	return err;
- }
- 
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgdXNlIGk5MTVfYWN0aXZlX2ZpbmkoKSBhcyBhIGRlYnVnIGNoZWNrIG9uIHRoZSBpOTE1X2Fj
+dGl2ZSBzdGF0ZQpiZWZvcmUgZnJlZWluZy4gSWYgd2UgZm9yZ2V0IHRvIGNhbGwgaXQsIHdlIG1h
+eSBlbmQgdXAgYW5nZXJpbmcgdGhlCmRlYnVnb2JqZWN0cyBjb250YWluZWQgd2l0aGluLgoKU2ln
+bmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+ClJldmll
+d2VkLWJ5OiBUdnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgpSZXZpZXdl
+ZC1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgotLS0K
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZnJvbnRidWZmZXIuYyAgICB8IDIg
+KysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2VuZ2luZV9oZWFydGJlYXQuYyB8
+IDUgKysrKy0KIDIgZmlsZXMgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0p
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mcm9udGJ1
+ZmZlci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mcm9udGJ1ZmZlci5j
+CmluZGV4IDI5NzllZDI1ODhlYi4uZDg5OGIzNzBkN2E0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Zyb250YnVmZmVyLmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mcm9udGJ1ZmZlci5jCkBAIC0yMzIsNiArMjMyLDggQEAg
+c3RhdGljIHZvaWQgZnJvbnRidWZmZXJfcmVsZWFzZShzdHJ1Y3Qga3JlZiAqcmVmKQogCVJDVV9J
+TklUX1BPSU5URVIob2JqLT5mcm9udGJ1ZmZlciwgTlVMTCk7CiAJc3Bpbl91bmxvY2soJnRvX2k5
+MTUob2JqLT5iYXNlLmRldiktPmZiX3RyYWNraW5nLmxvY2spOwogCisJaTkxNV9hY3RpdmVfZmlu
+aSgmZnJvbnQtPndyaXRlKTsKKwogCWk5MTVfZ2VtX29iamVjdF9wdXQob2JqKTsKIAlrZnJlZV9y
+Y3UoZnJvbnQsIHJjdSk7CiB9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9z
+ZWxmdGVzdF9lbmdpbmVfaGVhcnRiZWF0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxm
+dGVzdF9lbmdpbmVfaGVhcnRiZWF0LmMKaW5kZXggNzMyNDNiYTU5YzdkLi5lNzM4NTRkZDJmZTAg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2VuZ2luZV9oZWFy
+dGJlYXQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9lbmdpbmVfaGVh
+cnRiZWF0LmMKQEAgLTQ3LDcgKzQ3LDEwIEBAIHN0YXRpYyBpbnQgcHVsc2VfYWN0aXZlKHN0cnVj
+dCBpOTE1X2FjdGl2ZSAqYWN0aXZlKQogCiBzdGF0aWMgdm9pZCBwdWxzZV9mcmVlKHN0cnVjdCBr
+cmVmICprcmVmKQogewotCWtmcmVlKGNvbnRhaW5lcl9vZihrcmVmLCBzdHJ1Y3QgcHVsc2UsIGty
+ZWYpKTsKKwlzdHJ1Y3QgcHVsc2UgKnAgPSBjb250YWluZXJfb2Yoa3JlZiwgdHlwZW9mKCpwKSwg
+a3JlZik7CisKKwlpOTE1X2FjdGl2ZV9maW5pKCZwLT5hY3RpdmUpOworCWtmcmVlKHApOwogfQog
+CiBzdGF0aWMgdm9pZCBwdWxzZV9wdXQoc3RydWN0IHB1bHNlICpwKQotLSAKMi4yMC4xCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
