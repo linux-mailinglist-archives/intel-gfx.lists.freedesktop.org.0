@@ -1,47 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D78B2312CA
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 21:36:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3D1F2312D8
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 21:39:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CF526E339;
-	Tue, 28 Jul 2020 19:36:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5880D6E127;
+	Tue, 28 Jul 2020 19:39:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 685886E339;
- Tue, 28 Jul 2020 19:36:39 +0000 (UTC)
-IronPort-SDR: mHYTYQuHH8h8rYvLPXk1twdUPPDvBj3vb8bVnftsVeZYWpKVDP4SoLuQTQUwbT7MYsTjL6OoHA
- Gp9IZ9QjQPcg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9696"; a="131370023"
-X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="131370023"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5427A6E127
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 19:38:59 +0000 (UTC)
+IronPort-SDR: EWWkViQL+ZXx4Wqj2DtFfbx0cZDja+/9ChZxNHicrCTSe+M5TuAej73evq+IIlNi6gRZimGluj
+ cCcOWe1BwsQg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9696"; a="139323186"
+X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="139323186"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2020 12:36:38 -0700
-IronPort-SDR: rVy/b5juKZjeUz5zuIonmVHDxeoIOIdZ+V6UuWEsdjhL1w+GTRPIMoXzVYs0VJQLKQAEoeERIs
- 9GwSB6ogLrNQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="364612411"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
- by orsmga001.jf.intel.com with ESMTP; 28 Jul 2020 12:36:35 -0700
-Received: from andy by smile with local (Exim 4.94)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1k0VOs-004WaC-VC; Tue, 28 Jul 2020 22:36:34 +0300
-Date: Tue, 28 Jul 2020 22:36:34 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20200728193634.GD3703480@smile.fi.intel.com>
-References: <20200717133753.127282-1-hdegoede@redhat.com>
- <20200717133753.127282-8-hdegoede@redhat.com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2020 12:38:58 -0700
+IronPort-SDR: 8OLsfn4UsReTYEgyEOKJoMIBgI5zxk9f6LkyrlH1hH9nUaVJCVPkaNw35RdhxozSS/utl7Po0V
+ LpvEjZOXy4AA==
+X-IronPort-AV: E=Sophos;i="5.75,407,1589266800"; d="scan'208";a="330164235"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2020 12:38:58 -0700
+Date: Tue, 28 Jul 2020 12:38:57 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20200728193857.GC35208@mdroper-desk1.amr.corp.intel.com>
+References: <20200724213918.27424-1-lucas.demarchi@intel.com>
+ <20200724213918.27424-3-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200717133753.127282-8-hdegoede@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v5 07/16] pwm: crc: Fix period / duty_cycle
- times being off by a factor of 256
+In-Reply-To: <20200724213918.27424-3-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 02/22] drm/i915/dg1: Define MOCS table
+ for DG1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,96 +51,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 17, 2020 at 03:37:44PM +0200, Hans de Goede wrote:
-> While looking into adding atomic-pwm support to the pwm-crc driver I
-> noticed something odd, there is a PWM_BASE_CLK define of 6 MHz and
-> there is a clock-divider which divides this with a value between 1-128,
-> and there are 256 duty-cycle steps.
+On Fri, Jul 24, 2020 at 02:38:58PM -0700, Lucas De Marchi wrote:
+> DG1 has a new MOCS table. We still use the old definition of the table,
+> but as for any dgfx card it doesn't contain the control_value values
+> (these values don't matter as we won't program them).
 > 
-> The pwm-crc code before this commit assumed that a clock-divider
-> setting of 1 means that the PWM output is running at 6 MHZ, if that
-> is true, where do these 256 duty-cycle steps come from?
+> Bspec: 45101
 > 
-> This would require an internal frequency of 256 * 6 MHz = 1.5 GHz, that
-> seems unlikely for a PMIC which is using a silicon process optimized for
-> power-switching transistors. It is way more likely that there is an 8
-> bit counter for the duty cycle which acts as an extra fixed divider
-> wrt the PWM output frequency.
-> 
-> The main user of the pwm-crc driver is the i915 GPU driver which uses it
-> for backlight control. Lets compare the PWM register values set by the
-> video-BIOS (the GOP), assuming the extra fixed divider is present versus
-> the PWM frequency specified in the Video-BIOS-Tables:
-> 
-> Device:		PWM Hz set by BIOS	PWM Hz specified in VBT
-> Asus T100TA 	200			200
-> Asus T100HA 	200			200
-> Lenovo Miix 2 8	23437			20000
-> Toshiba WT8-A	23437			20000
-> 
-> So as we can see if we assume the extra division by 256 then the register
-> values set by the GOP are an exact match for the VBT values, where as
-> otherwise the values would be of by a factor of 256.
-> 
-> This commit fixes the period / duty_cycle calculations to take the
-> extra division by 256 into account.
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-So, base clock is 6MHz, then 7 bit divisor. That's what original values
-were for. On top of that there is 8-bit duty cycle control ("divide by 256"
-whatever it means) with the output range 23.437kHz..183Hz.
+Matches the bspec
 
-> 
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+I do notice that the general comment farther up the file says "The last
+two entries are reserved by the hardware." --- I wonder if we should
+change that to "the last few" since DG1 technically has four reserved
+entries instead of just two.
+
+
+Matt
+
 > ---
-> Changes in v3:
-> - Use NSEC_PER_USEC instead of adding a new (non-sensical) NSEC_PER_MHZ define
-> ---
->  drivers/pwm/pwm-crc.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/i915/gt/intel_mocs.c | 39 +++++++++++++++++++++++++++-
+>  1 file changed, 38 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/pwm/pwm-crc.c b/drivers/pwm/pwm-crc.c
-> index 272eeb071147..c056eb9b858c 100644
-> --- a/drivers/pwm/pwm-crc.c
-> +++ b/drivers/pwm/pwm-crc.c
-> @@ -21,8 +21,8 @@
+> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> index 632e08a4592b..7217c6e2087c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> @@ -280,6 +280,39 @@ static const struct drm_i915_mocs_entry icl_mocs_table[] = {
+>  	GEN11_MOCS_ENTRIES
+>  };
 >  
->  #define PWM_MAX_LEVEL		0xFF
+> +static const struct drm_i915_mocs_entry dg1_mocs_table[] = {
+> +	/* Error */
+> +	MOCS_ENTRY(0, 0, L3_0_DIRECT),
+> +
+> +	/* UC */
+> +	MOCS_ENTRY(1, 0, L3_1_UC),
+> +
+> +	/* Reserved */
+> +	MOCS_ENTRY(2, 0, L3_0_DIRECT),
+> +	MOCS_ENTRY(3, 0, L3_0_DIRECT),
+> +	MOCS_ENTRY(4, 0, L3_0_DIRECT),
+> +
+> +	/* WB - L3 */
+> +	MOCS_ENTRY(5, 0, L3_3_WB),
+> +	/* WB - L3 50% */
+> +	MOCS_ENTRY(6, 0, L3_ESC(1) | L3_SCC(1) | L3_3_WB),
+> +	/* WB - L3 25% */
+> +	MOCS_ENTRY(7, 0, L3_ESC(1) | L3_SCC(3) | L3_3_WB),
+> +	/* WB - L3 12.5% */
+> +	MOCS_ENTRY(8, 0, L3_ESC(1) | L3_SCC(7) | L3_3_WB),
+> +
+> +	/* HDC:L1 + L3 */
+> +	MOCS_ENTRY(48, 0, L3_3_WB),
+> +	/* HDC:L1 */
+> +	MOCS_ENTRY(49, 0, L3_1_UC),
+> +
+> +	/* HW Reserved */
+> +	MOCS_ENTRY(60, 0, L3_1_UC),
+> +	MOCS_ENTRY(61, 0, L3_1_UC),
+> +	MOCS_ENTRY(62, 0, L3_1_UC),
+> +	MOCS_ENTRY(63, 0, L3_1_UC),
+> +};
+> +
+>  enum {
+>  	HAS_GLOBAL_MOCS = BIT(0),
+>  	HAS_ENGINE_MOCS = BIT(1),
+> @@ -306,7 +339,11 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
+>  {
+>  	unsigned int flags;
 >  
-> -#define PWM_BASE_CLK		6000000  /* 6 MHz */
-> -#define PWM_MAX_PERIOD_NS	21333    /* 46.875KHz */
-> +#define PWM_BASE_CLK_MHZ	6	/* 6 MHz */
-> +#define PWM_MAX_PERIOD_NS	5461333	/* 183 Hz */
->  
->  /**
->   * struct crystalcove_pwm - Crystal Cove PWM controller
-> @@ -72,7 +72,7 @@ static int crc_pwm_config(struct pwm_chip *c, struct pwm_device *pwm,
->  
->  		/* changing the clk divisor, need to disable fisrt */
->  		crc_pwm_disable(c, pwm);
-> -		clk_div = PWM_BASE_CLK * period_ns / NSEC_PER_SEC;
-> +		clk_div = PWM_BASE_CLK_MHZ * period_ns / (256 * NSEC_PER_USEC);
->  
->  		regmap_write(crc_pwm->regmap, PWM0_CLK_DIV,
->  					clk_div | PWM_OUTPUT_ENABLE);
+> -	if (INTEL_GEN(i915) >= 12) {
+> +	if (IS_DG1(i915)) {
+> +		table->size = ARRAY_SIZE(dg1_mocs_table);
+> +		table->table = dg1_mocs_table;
+> +		table->n_entries = GEN11_NUM_MOCS_ENTRIES;
+> +	} else if (INTEL_GEN(i915) >= 12) {
+>  		table->size  = ARRAY_SIZE(tgl_mocs_table);
+>  		table->table = tgl_mocs_table;
+>  		table->n_entries = GEN11_NUM_MOCS_ENTRIES;
 > -- 
 > 2.26.2
 > 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
