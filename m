@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 830D7230DAC
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:25:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C086230DA7
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jul 2020 17:25:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67D4D6E354;
-	Tue, 28 Jul 2020 15:25:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77B7C6E353;
+	Tue, 28 Jul 2020 15:25:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 757C96E34B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71B566E34A
  for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 15:25:15 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959523-1500050 
- for multiple; Tue, 28 Jul 2020 16:25:02 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21959524-1500050 
+ for multiple; Tue, 28 Jul 2020 16:25:03 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jul 2020 16:24:57 +0100
-Message-Id: <20200728152501.26685-8-chris@chris-wilson.co.uk>
+Date: Tue, 28 Jul 2020 16:24:58 +0100
+Message-Id: <20200728152501.26685-9-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200728152501.26685-1-chris@chris-wilson.co.uk>
 References: <20200728152501.26685-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/12] drm/i915/gt: Track signaled breadcrumbs
- outside of the breadcrumb spinlock
+Subject: [Intel-gfx] [PATCH 09/12] drm/i915/gt: Protect context lifetime
+ with RCU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,136 +45,446 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make b->signaled_requests a lockless-list so that we can manipulate it
-outside of the b->irq_lock.
+Allow a brief period for continued access to a dead intel_context by
+deferring the release of the struct until after an RCU grace period.
+As we are using a dedicated slab cache for the contexts, we can defer
+the release of the slab pages via RCU, with the caveat that individual
+structs may be reused from the freelist within an RCU grace period. To
+handle that, we have to avoid clearing members of the zombie struct.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 30 +++++++++++--------
- .../gpu/drm/i915/gt/intel_breadcrumbs_types.h |  2 +-
- drivers/gpu/drm/i915/i915_request.h           |  6 +++-
- 3 files changed, 23 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c | 330 +++++++++++++-----------
+ drivers/gpu/drm/i915/i915_active.c      |  10 +
+ drivers/gpu/drm/i915/i915_active.h      |   2 +
+ drivers/gpu/drm/i915/i915_utils.h       |   7 +
+ 4 files changed, 202 insertions(+), 147 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index fc6f0223d2c8..6a278bf0fc6b 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -174,16 +174,13 @@ static void add_retire(struct intel_breadcrumbs *b, struct intel_timeline *tl)
- 		intel_engine_add_retire(b->irq_engine, tl);
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 52db2bde44a3..4e7924640ffa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -22,7 +22,7 @@ static struct i915_global_context {
+ 
+ static struct intel_context *intel_context_alloc(void)
+ {
+-	return kmem_cache_zalloc(global.slab_ce, GFP_KERNEL);
++	return kmem_cache_alloc(global.slab_ce, GFP_KERNEL);
  }
  
--static bool __signal_request(struct i915_request *rq, struct list_head *signals)
-+static bool __signal_request(struct i915_request *rq)
- {
--	clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
--
- 	if (!__dma_fence_signal(&rq->fence)) {
- 		i915_request_put(rq);
- 		return false;
- 	}
- 
--	list_add_tail(&rq->signal_link, signals);
- 	return true;
+ void intel_context_free(struct intel_context *ce)
+@@ -30,6 +30,177 @@ void intel_context_free(struct intel_context *ce)
+ 	kmem_cache_free(global.slab_ce, ce);
  }
  
-@@ -191,17 +188,19 @@ static void signal_irq_work(struct irq_work *work)
++static int __context_pin_state(struct i915_vma *vma)
++{
++	unsigned int bias = i915_ggtt_pin_bias(vma) | PIN_OFFSET_BIAS;
++	int err;
++
++	err = i915_ggtt_pin(vma, 0, bias | PIN_HIGH);
++	if (err)
++		return err;
++
++	err = i915_active_acquire(&vma->active);
++	if (err)
++		goto err_unpin;
++
++	/*
++	 * And mark it as a globally pinned object to let the shrinker know
++	 * it cannot reclaim the object until we release it.
++	 */
++	i915_vma_make_unshrinkable(vma);
++	vma->obj->mm.dirty = true;
++
++	return 0;
++
++err_unpin:
++	i915_vma_unpin(vma);
++	return err;
++}
++
++static void __context_unpin_state(struct i915_vma *vma)
++{
++	i915_vma_make_shrinkable(vma);
++	i915_active_release(&vma->active);
++	__i915_vma_unpin(vma);
++}
++
++static int __ring_active(struct intel_ring *ring)
++{
++	int err;
++
++	err = intel_ring_pin(ring);
++	if (err)
++		return err;
++
++	err = i915_active_acquire(&ring->vma->active);
++	if (err)
++		goto err_pin;
++
++	return 0;
++
++err_pin:
++	intel_ring_unpin(ring);
++	return err;
++}
++
++static void __ring_retire(struct intel_ring *ring)
++{
++	i915_active_release(&ring->vma->active);
++	intel_ring_unpin(ring);
++}
++
++__i915_active_call
++static void __intel_context_retire(struct i915_active *active)
++{
++	struct intel_context *ce = container_of(active, typeof(*ce), active);
++
++	CE_TRACE(ce, "retire runtime: { total:%lluns, avg:%lluns }\n",
++		 intel_context_get_total_runtime_ns(ce),
++		 intel_context_get_avg_runtime_ns(ce));
++
++	set_bit(CONTEXT_VALID_BIT, &ce->flags);
++	if (ce->state)
++		__context_unpin_state(ce->state);
++
++	intel_timeline_unpin(ce->timeline);
++	__ring_retire(ce->ring);
++
++	intel_context_put(ce);
++}
++
++static int __intel_context_active(struct i915_active *active)
++{
++	struct intel_context *ce = container_of(active, typeof(*ce), active);
++	int err;
++
++	CE_TRACE(ce, "active\n");
++
++	intel_context_get(ce);
++
++	err = __ring_active(ce->ring);
++	if (err)
++		goto err_put;
++
++	err = intel_timeline_pin(ce->timeline);
++	if (err)
++		goto err_ring;
++
++	if (!ce->state)
++		return 0;
++
++	err = __context_pin_state(ce->state);
++	if (err)
++		goto err_timeline;
++
++	return 0;
++
++err_timeline:
++	intel_timeline_unpin(ce->timeline);
++err_ring:
++	__ring_retire(ce->ring);
++err_put:
++	intel_context_put(ce);
++	return err;
++}
++
++static void __intel_context_ctor(void *arg)
++{
++	struct intel_context *ce = arg;
++
++	INIT_LIST_HEAD(&ce->signal_link);
++	INIT_LIST_HEAD(&ce->signals);
++
++	atomic_set(&ce->pin_count, 0);
++	mutex_init(&ce->pin_mutex);
++
++	ce->active_count = 0;
++	i915_active_init(&ce->active,
++			 __intel_context_active, __intel_context_retire);
++
++	ce->inflight = NULL;
++	ce->lrc_reg_state = NULL;
++	ce->lrc.desc = 0;
++}
++
++static void
++__intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
++{
++	GEM_BUG_ON(!engine->cops);
++	GEM_BUG_ON(!engine->gt->vm);
++
++	kref_init(&ce->ref);
++	i915_active_reinit(&ce->active);
++	mutex_reinit(&ce->pin_mutex);
++
++	ce->engine = engine;
++	ce->ops = engine->cops;
++	ce->sseu = engine->sseu;
++
++	ce->wa_bb_page = 0;
++	ce->flags = 0;
++	ce->tag = 0;
++
++	memset(&ce->runtime, 0, sizeof(ce->runtime));
++
++	ce->vm = i915_vm_get(engine->gt->vm);
++	ce->gem_context = NULL;
++
++	ce->ring = __intel_context_ring_size(SZ_4K);
++	ce->timeline = NULL;
++	ce->state = NULL;
++
++	GEM_BUG_ON(atomic_read(&ce->pin_count));
++	GEM_BUG_ON(ce->active_count);
++	GEM_BUG_ON(ce->inflight);
++}
++
++void
++intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
++{
++	__intel_context_ctor(ce);
++	__intel_context_init(ce, engine);
++}
++
+ struct intel_context *
+ intel_context_create(struct intel_engine_cs *engine)
  {
- 	struct intel_breadcrumbs *b = container_of(work, typeof(*b), irq_work);
- 	const ktime_t timestamp = ktime_get();
-+	struct llist_node *signal, *sn;
- 	struct intel_context *ce, *cn;
- 	struct list_head *pos, *next;
--	LIST_HEAD(signal);
-+
-+	signal = NULL;
-+	if (unlikely(!llist_empty(&b->signaled_requests)))
-+		signal = llist_del_all(&b->signaled_requests);
+@@ -39,7 +210,7 @@ intel_context_create(struct intel_engine_cs *engine)
+ 	if (!ce)
+ 		return ERR_PTR(-ENOMEM);
  
- 	spin_lock(&b->irq_lock);
+-	intel_context_init(ce, engine);
++	__intel_context_init(ce, engine);
+ 	return ce;
+ }
  
--	if (list_empty(&b->signalers))
-+	if (!signal && list_empty(&b->signalers))
- 		__intel_breadcrumbs_disarm_irq(b);
- 
--	list_splice_init(&b->signaled_requests, &signal);
--
- 	list_for_each_entry_safe(ce, cn, &b->signalers, signal_link) {
- 		GEM_BUG_ON(list_empty(&ce->signals));
- 
-@@ -218,7 +217,11 @@ static void signal_irq_work(struct irq_work *work)
- 			 * spinlock as the callback chain may end up adding
- 			 * more signalers to the same context or engine.
- 			 */
--			__signal_request(rq, &signal);
-+			clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
-+			if (__signal_request(rq)) {
-+				rq->signal_node.next = signal;
-+				signal = &rq->signal_node;
-+			}
- 		}
- 
- 		/*
-@@ -238,9 +241,9 @@ static void signal_irq_work(struct irq_work *work)
- 
- 	spin_unlock(&b->irq_lock);
- 
--	list_for_each_safe(pos, next, &signal) {
-+	llist_for_each_safe(signal, sn, signal) {
- 		struct i915_request *rq =
--			list_entry(pos, typeof(*rq), signal_link);
-+			llist_entry(signal, typeof(*rq), signal_node);
- 		struct list_head cb_list;
- 
- 		spin_lock(&rq->lock);
-@@ -264,7 +267,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
- 
- 	spin_lock_init(&b->irq_lock);
- 	INIT_LIST_HEAD(&b->signalers);
--	INIT_LIST_HEAD(&b->signaled_requests);
-+	init_llist_head(&b->signaled_requests);
- 
- 	init_irq_work(&b->irq_work, signal_irq_work);
- 
-@@ -327,7 +330,8 @@ static void insert_breadcrumb(struct i915_request *rq,
- 	 * its signal completion.
- 	 */
- 	if (__request_completed(rq)) {
--		if (__signal_request(rq, &b->signaled_requests))
-+		if (__signal_request(rq) &&
-+		    llist_add(&rq->signal_node, &b->signaled_requests))
- 			irq_work_queue(&b->irq_work);
- 		return;
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-index 8e53b9942695..3fa19820b37a 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-@@ -35,7 +35,7 @@ struct intel_breadcrumbs {
- 	struct intel_engine_cs *irq_engine;
- 
- 	struct list_head signalers;
--	struct list_head signaled_requests;
-+	struct llist_head signaled_requests;
- 
- 	struct irq_work irq_work; /* for use from inside irq_lock */
- 
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index 513c12d23c2b..3cc57383f297 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -176,7 +176,11 @@ struct i915_request {
- 	struct intel_context *context;
- 	struct intel_ring *ring;
- 	struct intel_timeline __rcu *timeline;
--	struct list_head signal_link;
-+
-+	union {
-+		struct list_head signal_link;
-+		struct llist_node signal_node;
-+	};
- 
+@@ -158,154 +329,13 @@ void intel_context_unpin(struct intel_context *ce)
  	/*
- 	 * The rcu epoch of when this request was allocated. Used to judiciously
+ 	 * Once released, we may asynchronously drop the active reference.
+ 	 * As that may be the only reference keeping the context alive,
+-	 * take an extra now so that it is not freed before we finish
++	 * hold onto RCU so that it is not freed before we finish
+ 	 * dereferencing it.
+ 	 */
+-	intel_context_get(ce);
++	rcu_read_lock();
+ 	intel_context_active_release(ce);
+-	intel_context_put(ce);
+-}
+-
+-static int __context_pin_state(struct i915_vma *vma)
+-{
+-	unsigned int bias = i915_ggtt_pin_bias(vma) | PIN_OFFSET_BIAS;
+-	int err;
+-
+-	err = i915_ggtt_pin(vma, 0, bias | PIN_HIGH);
+-	if (err)
+-		return err;
+-
+-	err = i915_active_acquire(&vma->active);
+-	if (err)
+-		goto err_unpin;
+-
+-	/*
+-	 * And mark it as a globally pinned object to let the shrinker know
+-	 * it cannot reclaim the object until we release it.
+-	 */
+-	i915_vma_make_unshrinkable(vma);
+-	vma->obj->mm.dirty = true;
+-
+-	return 0;
+-
+-err_unpin:
+-	i915_vma_unpin(vma);
+-	return err;
+-}
+-
+-static void __context_unpin_state(struct i915_vma *vma)
+-{
+-	i915_vma_make_shrinkable(vma);
+-	i915_active_release(&vma->active);
+-	__i915_vma_unpin(vma);
+-}
+-
+-static int __ring_active(struct intel_ring *ring)
+-{
+-	int err;
+-
+-	err = intel_ring_pin(ring);
+-	if (err)
+-		return err;
+-
+-	err = i915_active_acquire(&ring->vma->active);
+-	if (err)
+-		goto err_pin;
+-
+-	return 0;
+-
+-err_pin:
+-	intel_ring_unpin(ring);
+-	return err;
+-}
+-
+-static void __ring_retire(struct intel_ring *ring)
+-{
+-	i915_active_release(&ring->vma->active);
+-	intel_ring_unpin(ring);
++	rcu_read_unlock();
+ }
+-
+-__i915_active_call
+-static void __intel_context_retire(struct i915_active *active)
+-{
+-	struct intel_context *ce = container_of(active, typeof(*ce), active);
+-
+-	CE_TRACE(ce, "retire runtime: { total:%lluns, avg:%lluns }\n",
+-		 intel_context_get_total_runtime_ns(ce),
+-		 intel_context_get_avg_runtime_ns(ce));
+-
+-	set_bit(CONTEXT_VALID_BIT, &ce->flags);
+-	if (ce->state)
+-		__context_unpin_state(ce->state);
+-
+-	intel_timeline_unpin(ce->timeline);
+-	__ring_retire(ce->ring);
+-
+-	intel_context_put(ce);
+-}
+-
+-static int __intel_context_active(struct i915_active *active)
+-{
+-	struct intel_context *ce = container_of(active, typeof(*ce), active);
+-	int err;
+-
+-	CE_TRACE(ce, "active\n");
+-
+-	intel_context_get(ce);
+-
+-	err = __ring_active(ce->ring);
+-	if (err)
+-		goto err_put;
+-
+-	err = intel_timeline_pin(ce->timeline);
+-	if (err)
+-		goto err_ring;
+-
+-	if (!ce->state)
+-		return 0;
+-
+-	err = __context_pin_state(ce->state);
+-	if (err)
+-		goto err_timeline;
+-
+-	return 0;
+-
+-err_timeline:
+-	intel_timeline_unpin(ce->timeline);
+-err_ring:
+-	__ring_retire(ce->ring);
+-err_put:
+-	intel_context_put(ce);
+-	return err;
+-}
+-
+-void
+-intel_context_init(struct intel_context *ce,
+-		   struct intel_engine_cs *engine)
+-{
+-	GEM_BUG_ON(!engine->cops);
+-	GEM_BUG_ON(!engine->gt->vm);
+-
+-	kref_init(&ce->ref);
+-
+-	ce->engine = engine;
+-	ce->ops = engine->cops;
+-	ce->sseu = engine->sseu;
+-	ce->ring = __intel_context_ring_size(SZ_4K);
+-
+-	ewma_runtime_init(&ce->runtime.avg);
+-
+-	ce->vm = i915_vm_get(engine->gt->vm);
+-
+-	INIT_LIST_HEAD(&ce->signal_link);
+-	INIT_LIST_HEAD(&ce->signals);
+-
+-	mutex_init(&ce->pin_mutex);
+-
+-	i915_active_init(&ce->active,
+-			 __intel_context_active, __intel_context_retire);
+-}
+-
+ void intel_context_fini(struct intel_context *ce)
+ {
+ 	if (ce->timeline)
+@@ -333,7 +363,13 @@ static struct i915_global_context global = { {
+ 
+ int __init i915_global_context_init(void)
+ {
+-	global.slab_ce = KMEM_CACHE(intel_context, SLAB_HWCACHE_ALIGN);
++	global.slab_ce =
++		kmem_cache_create("intel_context",
++				  sizeof(struct intel_context),
++				  __alignof__(struct intel_context),
++				  SLAB_HWCACHE_ALIGN |
++				  SLAB_TYPESAFE_BY_RCU,
++				  __intel_context_ctor);
+ 	if (!global.slab_ce)
+ 		return -ENOMEM;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index d960d0be5bd2..adec6740b1ff 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -662,6 +662,16 @@ void i915_active_fini(struct i915_active *ref)
+ }
+ #endif
+ 
++void i915_active_reinit(struct i915_active *ref)
++{
++	GEM_BUG_ON(!i915_active_is_idle(ref));
++	debug_active_init(ref);
++	mutex_reinit(&ref->mutex);
++
++	ref->cache = NULL;
++	ref->tree = RB_ROOT;
++}
++
+ static inline bool is_idle_barrier(struct active_node *node, u64 idx)
+ {
+ 	return node->timeline == idx && !i915_active_fence_isset(&node->base);
+diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
+index cf4058150966..e0c2f13ac53c 100644
+--- a/drivers/gpu/drm/i915/i915_active.h
++++ b/drivers/gpu/drm/i915/i915_active.h
+@@ -219,6 +219,8 @@ void i915_active_fini(struct i915_active *ref);
+ static inline void i915_active_fini(struct i915_active *ref) { }
+ #endif
+ 
++void i915_active_reinit(struct i915_active *ref);
++
+ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
+ 					    struct intel_engine_cs *engine);
+ void i915_active_acquire_barrier(struct i915_active *ref);
+diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+index 54773371e6bd..ef8db3aa75c7 100644
+--- a/drivers/gpu/drm/i915/i915_utils.h
++++ b/drivers/gpu/drm/i915/i915_utils.h
+@@ -443,6 +443,13 @@ static inline bool timer_expired(const struct timer_list *t)
+ 	return READ_ONCE(t->expires) && !timer_pending(t);
+ }
+ 
++static inline void mutex_reinit(struct mutex *lock)
++{
++#if IS_ENABLED(CONFIG_DEBUG_MUTEXES)
++	lock->magic = lock;
++#endif
++}
++
+ /*
+  * This is a lookalike for IS_ENABLED() that takes a kconfig value,
+  * e.g. CONFIG_DRM_I915_SPIN_REQUEST, and evaluates whether it is non-zero
 -- 
 2.20.1
 
