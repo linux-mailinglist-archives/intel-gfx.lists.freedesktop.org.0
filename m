@@ -1,60 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB58231EA6
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jul 2020 14:36:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D6E231EAD
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jul 2020 14:40:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4860D6E4E8;
-	Wed, 29 Jul 2020 12:36:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4878889C3F;
+	Wed, 29 Jul 2020 12:40:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24DEA6E4E8
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 12:36:13 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id 88so21473553wrh.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 05:36:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=ZLcwZPLbP+ZHMlpXtf/e+P4ovvxWowgaoiSfHWx6jSw=;
- b=ZXgYx4CmrxzlLhqBg1dvwVOBBf0lJ1GUoAEAmQpppe/3brpTppeUyVpaCClz1m9bha
- N75KcKsh0EhC60mLyKRnuGR5GGew8S5/AFkpxVE89llGfBbmC/Vcm9mp5nQVUUe5OMFe
- byPzHy7gn8Gs175l2Bqq5UTRz0yBxOucg8WwQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=ZLcwZPLbP+ZHMlpXtf/e+P4ovvxWowgaoiSfHWx6jSw=;
- b=p/bm1mNwZxeGaMcgcTXbBqRYWnW5tL3MfNPejXclyNjGjYWOXBn9dEPaZfxjQmZEU2
- 9PKPINfr0oyWQVTLxxidVYxJ5iohE8biUZHf46Wq2DmS5rWs4pPywIIA8Hv6fmb+6lGq
- L2obGBUUj1W4XE4JPxdRJUPyQtiw+djBO65x1891zuWBWTpg0soFTo3jOImItJcpNAv+
- OG+vLDRFakLeZ8ASVXd0gcH+Z/RYDEJlJdcqqQc3zRd8JHKfz4dlaRaVOdYAYuyMPF+y
- UOKFobxtnorO8LY+/Zc+V2LoHWwxKTivoo9gJ4OO832piB9+vgY4CbPdYf9DN9DhPiiw
- +E1g==
-X-Gm-Message-State: AOAM5325BMy4jeGfW4Fx5cJ4K8qeRMdahvcrWzfRz0hnR8cINNisEx4R
- lYaQ8gRDayVrrBWrt9McsdSQc9D9MpE=
-X-Google-Smtp-Source: ABdhPJzdzpxb2VBV1UBJcT/Mfo8c9uB8BjT+f8eDNHkvELP95EEz2Y8VFkV4MYJ5E+1zV6v9DvOaqQ==
-X-Received: by 2002:adf:f488:: with SMTP id l8mr28789156wro.123.1596026171809; 
- Wed, 29 Jul 2020 05:36:11 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u186sm4924419wmu.10.2020.07.29.05.36.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Jul 2020 05:36:11 -0700 (PDT)
-Date: Wed, 29 Jul 2020 14:36:09 +0200
-From: daniel@ffwll.ch
-To: 
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <20200729123609.GL6419@phenom.ffwll.local>
-References: <20200708131751.334457-1-lionel.g.landwerlin@intel.com>
- <20200708131751.334457-4-lionel.g.landwerlin@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F4D689C3F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 12:40:45 +0000 (UTC)
+IronPort-SDR: guFQ8GihYnL/L0jgmUocZHkwrqSsNlcQIc/Q+DKkxCieibB4kTI7k4pcOZmcOe4HBwx4yt09bt
+ WaWO9BReYAkA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9696"; a="139418650"
+X-IronPort-AV: E=Sophos;i="5.75,410,1589266800"; d="scan'208";a="139418650"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2020 05:40:44 -0700
+IronPort-SDR: QOzJB/D+b46qPEcbl/ExJbauKnuoaZRhqlzeeCWA7NbAmfYJAQXTY6ZA/25NLntRoMPACmCWNQ
+ rtjoC5DCkLTw==
+X-IronPort-AV: E=Sophos;i="5.75,410,1589266800"; d="scan'208";a="490740877"
+Received: from eziedan-mobl.ger.corp.intel.com (HELO [10.255.199.43])
+ ([10.255.199.43])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2020 05:40:42 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
+ <20200715115147.11866-8-chris@chris-wilson.co.uk>
+ <54de929a-9449-8ac2-a8bd-641a61d0525e@linux.intel.com>
+ <159594649917.665.6631422765642650487@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <3274fa3b-7c34-1925-2cd6-145c73acb63b@linux.intel.com>
+Date: Wed, 29 Jul 2020 13:40:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200708131751.334457-4-lionel.g.landwerlin@intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH v12 3/3] drm/i915: peel dma-fence-chains
- wait fences
+In-Reply-To: <159594649917.665.6631422765642650487@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 08/66] drm/i915: Make the stale cached
+ active node available for any timeline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,105 +56,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 08, 2020 at 04:17:51PM +0300, Lionel Landwerlin wrote:
-> To allow faster engine to engine synchronization, peel the layer of
-> dma-fence-chain to expose potential i915 fences so that the
-> i915-request code can emit HW semaphore wait/signal operations in the
-> ring which is faster than waking up the host to submit unblocked
-> workloads after interrupt notification.
+
+On 28/07/2020 15:28, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-07-17 14:04:58)
+>>
+>> On 15/07/2020 12:50, Chris Wilson wrote:
+>>> Rather than require the next timeline after idling to match the MRU
+>>> before idling, reset the index on the node and allow it to match the
+>>> first request. However, this requires cmpxchg(u64) and so is not trivial
+>>> on 32b, so for compatibility we just fallback to keeping the cached node
+>>> pointing to the MRU timeline.
+>>>
+>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>> ---
+>>>    drivers/gpu/drm/i915/i915_active.c | 21 +++++++++++++++++++--
+>>>    1 file changed, 19 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+>>> index 0854b1552bc1..6737b5615c0c 100644
+>>> --- a/drivers/gpu/drm/i915/i915_active.c
+>>> +++ b/drivers/gpu/drm/i915/i915_active.c
+>>> @@ -157,6 +157,10 @@ __active_retire(struct i915_active *ref)
+>>>                rb_link_node(&ref->cache->node, NULL, &ref->tree.rb_node);
+>>>                rb_insert_color(&ref->cache->node, &ref->tree);
+>>>                GEM_BUG_ON(ref->tree.rb_node != &ref->cache->node);
+>>> +
+>>> +             /* Make the cached node available for reuse with any timeline */
+>>> +             if (IS_ENABLED(CONFIG_64BIT))
+>>> +                     ref->cache->timeline = 0; /* needs cmpxchg(u64) */
+>>
+>> Or when fence context wraps shock horror.
 > 
-> v2: Also deal with chains where the last node is not a dma-fence-chain
+> I more concerned about that we use timeline:0 as a special unordered
+> timeline. It's reserved by use in the dma_fence_stub, and everything
+> will start to break when the timelines wrap. The earliest causalities
+> will be the kernel_context timelines which are also very special indices
+> for the barriers.
 > 
-> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> ---
->  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 39 ++++++++++++++++++-
->  1 file changed, 38 insertions(+), 1 deletion(-)
+>>
+>>>        }
+>>>    
+>>>        spin_unlock_irqrestore(&ref->tree_lock, flags);
+>>> @@ -235,9 +239,22 @@ static struct active_node *__active_lookup(struct i915_active *ref, u64 idx)
+>>>    {
+>>>        struct active_node *it;
+>>>    
+>>> +     GEM_BUG_ON(idx == 0); /* 0 is the unordered timeline, rsvd for cache */
+>>> +
+>>>        it = READ_ONCE(ref->cache);
+>>> -     if (it && it->timeline == idx)
+>>> -             return it;
+>>> +     if (it) {
+>>> +             u64 cached = READ_ONCE(it->timeline);
+>>> +
+>>> +             if (cached == idx)
+>>> +                     return it;
+>>> +
+>>> +#ifdef CONFIG_64BIT /* for cmpxchg(u64) */
+>>> +             if (!cached && !cmpxchg(&it->timeline, 0, idx)) {
+>>> +                     GEM_BUG_ON(i915_active_fence_isset(&it->base));
+>>> +                     return it;
+>>
+>> cpmxchg suggests this needs to be atomic, however above the check for
+>> equality comes from a separate read.
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index d8814e637e71..3ffd95d1dc2c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -2403,6 +2403,7 @@ await_fence_array(struct i915_execbuffer *eb)
->  
->  	for (n = 0; n < eb->n_fences; n++) {
->  		struct drm_syncobj *syncobj;
-> +		struct dma_fence_chain *chain;
->  		struct dma_fence *fence;
->  		unsigned int flags;
->  
-> @@ -2423,7 +2424,43 @@ await_fence_array(struct i915_execbuffer *eb)
->  				continue;
->  		}
->  
-> -		err = i915_request_await_dma_fence(eb->request, fence);
-> +		chain = to_dma_fence_chain(fence);
-> +		if (chain) {
-> +			struct dma_fence *iter;
-> +
-> +			/*
-> +			 * If we're dealing with a dma-fence-chain, peel the
-> +			 * chain by adding all of the unsignaled fences
-> +			 * (dma_fence_chain_for_each does that for us) the
-> +			 * chain points to.
-> +			 *
-> +			 * This enables us to identify waits on i915 fences
-> +			 * and allows for faster engine-to-engine
-> +			 * synchronization using HW semaphores.
-> +			 */
-> +			dma_fence_chain_for_each(iter, fence) {
-> +				struct dma_fence_chain *iter_chain =
-> +					to_dma_fence_chain(iter);
-> +
-> +				/*
-> +				 * It is possible that the last item in the
-> +				 * chain is not a dma_fence_chain.
-> +				 */
-> +				if (iter_chain) {
-> +					err = i915_request_await_dma_fence(eb->request,
-> +									   iter_chain->fence);
-> +				} else {
-> +					err = i915_request_await_dma_fence(eb->request, iter);
+> That's fine, and quite common to avoid cmpxchg if the current value
+> already does not match the expected condition.
 
-I'm kinda wondering whether there should be a limit to how deep we go
-before we just give up and wait on the chain, since all we're doing here
-(in the worst case at least) is rebuilding the chain.
+How? What is another thread is about to install its idx into 
+it->timeline with cmpxchg and this thread does not see it because it 
+just returned on the "cached == idx" condition.
 
-But hey we can figure this out later on when it actually hurts ...
-
-On the series:
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-> +				}
-> +				if (err < 0) {
-> +					dma_fence_put(iter);
-> +					break;
-> +				}
-> +			}
-> +		} else {
-> +			err = i915_request_await_dma_fence(eb->request, fence);
-> +		}
-> +
->  		dma_fence_put(fence);
->  		if (err < 0)
->  			return err;
-> -- 
-> 2.27.0
 > 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>> Since there is a lookup code path under the spinlock, perhaps the
+>> unlocked lookup could just fail, and then locked lookup could re-assign
+>> the timeline without the need for cmpxchg?
+> 
+> The unlocked/locked lookup are the same routine. You pointed that out
+> :-p
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Like I remember from ten days ago.. Anyway, I am pointing out it still 
+doesn't smell right.
+
+__active_lookup(...) -> lockless
+{
+...
+	it = fetch_node(ref->tree.rb_node);
+	while (it) {
+		if (it->timeline < idx) {
+			it = fetch_node(it->node.rb_right);
+		} else if (it->timeline > idx) {
+			it = fetch_node(it->node.rb_left);
+		} else {
+			WRITE_ONCE(ref->cache, it);
+			break;
+		}
+	}
+...
+}
+
+Then in active_instance, locked:
+
+...
+	parent = NULL;
+	p = &ref->tree.rb_node;
+	while (*p) {
+		parent = *p;
+
+		node = rb_entry(parent, struct active_node, node);
+		if (node->timeline == idx) {
+			kmem_cache_free(global.slab_cache, prealloc);
+			goto out;
+		}
+
+		if (node->timeline < idx)
+			p = &parent->rb_right;
+		else
+			p = &parent->rb_left;
+			WRITE_ONCE(ref->cache, it);
+			break;
+		}
+	}
+...
+
+Tree walk could be consolidated between the two.
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
