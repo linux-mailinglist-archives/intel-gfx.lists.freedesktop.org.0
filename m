@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CB51231F0B
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jul 2020 15:09:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C37D231F07
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jul 2020 15:09:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CF786E4EC;
-	Wed, 29 Jul 2020 13:09:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF6B76E02B;
+	Wed, 29 Jul 2020 13:09:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C0D56E4EC
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 13:09:39 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21969151-1500050 
- for multiple; Wed, 29 Jul 2020 14:09:12 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Jul 2020 14:09:12 +0100
-Message-Id: <20200729130912.30093-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 456D76E02B;
+ Wed, 29 Jul 2020 13:09:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3E5F5A47DF;
+ Wed, 29 Jul 2020 13:09:19 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Check for an LPSP encoder
- before dereferencing
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ayaz A Siddiqui" <ayaz.siddiqui@intel.com>
+Date: Wed, 29 Jul 2020 13:09:19 -0000
+Message-ID: <159602815922.20645.2906153706937493291@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200729102539.134731-1-ayaz.siddiqui@intel.com>
+In-Reply-To: <20200729102539.134731-1-ayaz.siddiqui@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/gt=3A_Initialize_reserved_and_unspecified_MOCS_indices?=
+ =?utf-8?q?_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,63 +39,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXZvaWQgYSBHUEYgYXQKCjwxPlsgICAyMC4xNzczMjBdIEJVRzoga2VybmVsIE5VTEwgcG9pbnRl
-ciBkZXJlZmVyZW5jZSwgYWRkcmVzczogMDAwMDAwMDAwMDAwMDA3Ywo8MT5bICAgMjAuMTc3MzIy
-XSAjUEY6IHN1cGVydmlzb3IgcmVhZCBhY2Nlc3MgaW4ga2VybmVsIG1vZGUKPDE+WyAgIDIwLjE3
-NzMyM10gI1BGOiBlcnJvcl9jb2RlKDB4MDAwMCkgLSBub3QtcHJlc2VudCBwYWdlCjw2PlsgICAy
-MC4xNzczMjRdIFBHRCAwIFA0RCAwCjw0PlsgICAyMC4xNzczMjddIE9vcHM6IDAwMDAgWyMxXSBQ
-UkVFTVBUIFNNUCBQVEkKPDQ+WyAgIDIwLjE3NzMyOF0gQ1BVOiAxIFBJRDogOTQ0IENvbW06IGRl
-YnVnZnNfdGVzdCBOb3QgdGFpbnRlZCA1LjguMC1yYzctQ0ktQ0lfRFJNXzg4MTQrICMxCjw0Plsg
-ICAyMC4xNzczMzBdIEhhcmR3YXJlIG5hbWU6IERlbGwgSW5jLiBYUFMgMTMgOTM2MC8wODIzVlcs
-IEJJT1MgMi45LjAgMDcvMDkvMjAxOAo8ND5bICAgMjAuMTc3MzcyXSBSSVA6IDAwMTA6aTkxNV9s
-cHNwX2NhcGFiaWxpdHlfc2hvdysweDQ0LzB4YzAgW2k5MTVdCjw0PlsgICAyMC4xNzczNzRdIENv
-ZGU6IDBmIGI2IDgxIGNhIDBkIDAwIDAwIDNjIDBiIDc0IDc3IDc2IDE5IDNjIDBjIDc1IDQ0IDgz
-IDdlIDdjIDAxIDdlIDJmIDQ4IGM3IGM2IGQ3IGI5IDQ3IGEwIGU4IDQzIGRmIDA2IGUxIDMxIGMw
-IGMzIDNjIDA5IDcyIDJiIDw4Yj4gNDYgN2MgODUgYzAgNzUgZTYgOGIgODIgZTQgMDAgMDAgMDAg
-ODkgYzIgODMgZTIgZmIgODMgZmEgMGEgNzQKPDQ+WyAgIDIwLjE3NzM3Nl0gUlNQOiAwMDE4OmZm
-ZmZjOTAwMDBjZWJlMzggRUZMQUdTOiAwMDAxMDI0Ngo8ND5bICAgMjAuMTc3Mzc3XSBSQVg6IDAw
-MDAwMDAwMDAwMDAwMDkgUkJYOiBmZmZmODg4MjY3ZmU2YTU4IFJDWDogZmZmZjg4ODI1MmQxMDAw
-MAo8ND5bICAgMjAuMTc3Mzc4XSBSRFg6IGZmZmY4ODgyNGE5YTQwMDAgUlNJOiAwMDAwMDAwMDAw
-MDAwMDAwIFJESTogZmZmZjg4ODI2N2ZlNmEzMAo8ND5bICAgMjAuMTc3Mzc5XSBSQlA6IDAwMDAw
-MDAwMDAwMDAwMDAgUjA4OiAwMDAwMDAwMDAwMDAwMDAwIFIwOTogMDAwMDAwMDAwMDAwMDAwMQo8
-ND5bICAgMjAuMTc3MzgwXSBSMTA6IDAwMDAwMDAwMDAwMDAwMDEgUjExOiAwMDAwMDAwMDAwMDAw
-MDAwIFIxMjogZmZmZmM5MDAwMGNlYmYwOAo8ND5bICAgMjAuMTc3MzgxXSBSMTM6IDAwMDAwMDAw
-ZmZmZmZmZmYgUjE0OiAwMDAwMDAwMDAwMDAwMDAxIFIxNTogZmZmZjg4ODI2N2ZlNmEzMAo8ND5b
-ICAgMjAuMTc3MzgzXSBGUzogIDAwMDA3ZjZmOWM2YjVlNDAoMDAwMCkgR1M6ZmZmZjg4ODI3NjQ4
-MDAwMCgwMDAwKSBrbmxHUzowMDAwMDAwMDAwMDAwMDAwCjw0PlsgICAyMC4xNzczODRdIENTOiAg
-MDAxMCBEUzogMDAwMCBFUzogMDAwMCBDUjA6IDAwMDAwMDAwODAwNTAwMzMKPDQ+WyAgIDIwLjE3
-NzM4NV0gQ1IyOiAwMDAwMDAwMDAwMDAwMDdjIENSMzogMDAwMDAwMDI1NWYwNDAwNiBDUjQ6IDAw
-MDAwMDAwMDAzNjA2ZTAKPDQ+WyAgIDIwLjE3NzM4Nl0gQ2FsbCBUcmFjZToKPDQ+WyAgIDIwLjE3
-NzM5MF0gIHNlcV9yZWFkKzB4Y2IvMHg0MjAKCndoaWNoIGlzIHByZXN1bWFibHkgZnJvbSBoYXZp
-bmcgbm8gZW5jb2RlciBhdHRhY2hlZCBhdCB0aGF0IHRpbWUuCgpGaXhlczogODgwNjIxMWZlN2Iz
-ICgiZHJtL2k5MTU6IEFkZCBpOTE1X2xwc3BfY2FwYWJpbGl0eSBkZWJ1Z2ZzIikKU2lnbmVkLW9m
-Zi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CkNjOiBBbmltZXNo
-IE1hbm5hIDxhbmltZXNoLm1hbm5hQGludGVsLmNvbT4KQ2M6IEFuc2h1bWFuIEd1cHRhIDxhbnNo
-dW1hbi5ndXB0YUBpbnRlbC5jb20+CkNjOiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwu
-Y29tPgpDYzogIlZpbGxlIFN5cmrDpGzDpCIgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
-PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2Zz
-LmMgfCA3ICsrKysrLS0KIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDIgZGVsZXRp
-b25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5X2RlYnVnZnMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheV9kZWJ1Z2ZzLmMKaW5kZXggMzY0NDc1MmNjNWVjLi41YTVjZmUyNTA4NWIgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMu
-YwpAQCAtMjA0NCw5ICsyMDQ0LDEyIEBAIERFRklORV9TSE9XX0FUVFJJQlVURShpOTE1X2hkY3Bf
-c2lua19jYXBhYmlsaXR5KTsKIHN0YXRpYyBpbnQgaTkxNV9scHNwX2NhcGFiaWxpdHlfc2hvdyhz
-dHJ1Y3Qgc2VxX2ZpbGUgKm0sIHZvaWQgKmRhdGEpCiB7CiAJc3RydWN0IGRybV9jb25uZWN0b3Ig
-KmNvbm5lY3RvciA9IG0tPnByaXZhdGU7Ci0Jc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIg
-PQotCQkJaW50ZWxfYXR0YWNoZWRfZW5jb2Rlcih0b19pbnRlbF9jb25uZWN0b3IoY29ubmVjdG9y
-KSk7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KGNvbm5lY3Rvci0+
-ZGV2KTsKKwlzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcjsKKworCWVuY29kZXIgPSBpbnRl
-bF9hdHRhY2hlZF9lbmNvZGVyKHRvX2ludGVsX2Nvbm5lY3Rvcihjb25uZWN0b3IpKTsKKwlpZiAo
-IWVuY29kZXIpCisJCXJldHVybiAtRU5PREVWOwogCiAJaWYgKGNvbm5lY3Rvci0+c3RhdHVzICE9
-IGNvbm5lY3Rvcl9zdGF0dXNfY29ubmVjdGVkKQogCQlyZXR1cm4gLUVOT0RFVjsKLS0gCjIuMjAu
-MQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: drm/i915/gt: Initialize reserved and unspecified MOCS indices (rev5)
+URL   : https://patchwork.freedesktop.org/series/78012/
+State : warning
+
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
