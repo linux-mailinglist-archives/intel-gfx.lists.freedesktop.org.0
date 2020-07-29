@@ -1,42 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E401D231CB6
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jul 2020 12:29:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0FBD231CB2
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jul 2020 12:29:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 517E66E4AE;
-	Wed, 29 Jul 2020 10:29:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B02546E4AB;
+	Wed, 29 Jul 2020 10:29:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5DC56E4AE
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 10:29:16 +0000 (UTC)
-IronPort-SDR: B3abC94W3DcS3ksEAo0WcXi9uanj/QHA/u/AZDN/OabCoJAbTE7WEsHQZ6t00QT5xWAKwpJbk6
- KPPquBXYOANA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9696"; a="138921585"
-X-IronPort-AV: E=Sophos;i="5.75,410,1589266800"; d="scan'208";a="138921585"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FEDF6E4AB;
+ Wed, 29 Jul 2020 10:29:00 +0000 (UTC)
+IronPort-SDR: pDeMQBANAtYduu1dIbo/brWNv12iu35fZzD8CThD0YTHhZhYD11Hm55A5l99JaJREMlO3UeEZ8
+ KjXNpwXXFPhw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9696"; a="212924255"
+X-IronPort-AV: E=Sophos;i="5.75,410,1589266800"; d="scan'208";a="212924255"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2020 03:29:16 -0700
-IronPort-SDR: IRRXTxjpkNrjiRn9Smn3dc7Q2MC4eun+wvvEEpVqT0lC826M6yXFCML5JZB+bc6hg0HsebQN1S
- mkOeKyOES9jg==
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2020 03:28:59 -0700
+IronPort-SDR: pFmGOE9DMDUahmu6PJQM3J5A2wCVQQ5sHKOG7eFdxyD/ywAhnoazswxstxySaUcNNceehnJwEc
+ BArPWz+zBtng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,410,1589266800"; d="scan'208";a="273851369"
-Received: from ayazahma-nuc8i7beh.iind.intel.com ([10.145.162.59])
- by fmsmga008.fm.intel.com with ESMTP; 29 Jul 2020 03:29:12 -0700
-From: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Jul 2020 15:55:39 +0530
-Message-Id: <20200729102539.134731-2-ayaz.siddiqui@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200729102539.134731-1-ayaz.siddiqui@intel.com>
-References: <20200729102539.134731-1-ayaz.siddiqui@intel.com>
+X-IronPort-AV: E=Sophos;i="5.75,410,1589266800"; d="scan'208";a="273851313"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by fmsmga008.fm.intel.com with ESMTP; 29 Jul 2020 03:28:56 -0700
+Received: from andy by smile with local (Exim 4.94)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1k0jKR-004ffH-Rm; Wed, 29 Jul 2020 13:28:55 +0300
+Date: Wed, 29 Jul 2020 13:28:55 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200729102855.GP3703480@smile.fi.intel.com>
+References: <20200717133753.127282-1-hdegoede@redhat.com>
+ <20200717133753.127282-9-hdegoede@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 1/1] drm/i915/gt: Initialize reserved and
- unspecified MOCS indices
+Content-Disposition: inline
+In-Reply-To: <20200717133753.127282-9-hdegoede@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v5 08/16] pwm: crc: Fix off-by-one error in
+ the clock-divider calculations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,83 +54,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Spruit Neil R <neil.r.spruit@intel.com>,
- Mathew Alwin <alwin.mathew@intel.com>, Zhou Cheng <cheng.zhou@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Benemelis Mike G <mike.g.benemelis@intel.com>,
- Mcguire Russell W <russell.w.mcguire@intel.com>
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In order to avoid functional breakage of mis-programmed applications that
-have grown to depend on unused MOCS entries, we are programming
-those entries to be equal to fully cached ("L3 + LLC") entry.
+On Fri, Jul 17, 2020 at 03:37:45PM +0200, Hans de Goede wrote:
+> The CRC PWM controller has a clock-divider which divides the clock with
+> a value between 1-128. But as can seen from the PWM_DIV_CLK_xxx
+> defines, this range maps to a register value of 0-127.
+> 
+> So after calculating the clock-divider we must subtract 1 to get the
+> register value, unless the requested frequency was so high that the
+> calculation has already resulted in a (rounded) divider value of 0.
+> 
+> Note that before this fix, setting a period of PWM_MAX_PERIOD_NS which
+> corresponds to the max. divider value of 128 could have resulted in a
+> bug where the code would use 128 as divider-register value which would
+> have resulted in an actual divider value of 0 (and the enable bit being
+> set). A rounding error stopped this bug from actually happen. This
+> same rounding error means that after the subtraction of 1 it is impossible
+> to set the divider to 128. Also bump PWM_MAX_PERIOD_NS by 1 ns to allow
+> setting a divider of 128 (register-value 127).
 
-These reserved and unspecified entries should not be used as they may be
-changed to less performant variants with better coherency in the future
-if more entries are needed.
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-V2: As suggested by Lucas De Marchi to utilise __init_mocs_table for
-programming default value, setting I915_MOCS_PTE index of tgl_mocs_table
-with desired value.
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+> Changes in v3:
+> - Introduce crc_pwm_calc_clk_div() here instead of later in the patch-set
+>   to reduce the amount of churn in the patch-set a bit
+> ---
+>  drivers/pwm/pwm-crc.c | 17 ++++++++++++++---
+>  1 file changed, 14 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/pwm/pwm-crc.c b/drivers/pwm/pwm-crc.c
+> index c056eb9b858c..44ec7d5b63e1 100644
+> --- a/drivers/pwm/pwm-crc.c
+> +++ b/drivers/pwm/pwm-crc.c
+> @@ -22,7 +22,7 @@
+>  #define PWM_MAX_LEVEL		0xFF
+>  
+>  #define PWM_BASE_CLK_MHZ	6	/* 6 MHz */
+> -#define PWM_MAX_PERIOD_NS	5461333	/* 183 Hz */
+> +#define PWM_MAX_PERIOD_NS	5461334	/* 183 Hz */
+>  
+>  /**
+>   * struct crystalcove_pwm - Crystal Cove PWM controller
+> @@ -39,6 +39,18 @@ static inline struct crystalcove_pwm *to_crc_pwm(struct pwm_chip *pc)
+>  	return container_of(pc, struct crystalcove_pwm, chip);
+>  }
+>  
+> +static int crc_pwm_calc_clk_div(int period_ns)
+> +{
+> +	int clk_div;
+> +
+> +	clk_div = PWM_BASE_CLK_MHZ * period_ns / (256 * NSEC_PER_USEC);
+> +	/* clk_div 1 - 128, maps to register values 0-127 */
+> +	if (clk_div > 0)
+> +		clk_div--;
+> +
+> +	return clk_div;
+> +}
+> +
+>  static int crc_pwm_enable(struct pwm_chip *c, struct pwm_device *pwm)
+>  {
+>  	struct crystalcove_pwm *crc_pwm = to_crc_pwm(c);
+> @@ -68,11 +80,10 @@ static int crc_pwm_config(struct pwm_chip *c, struct pwm_device *pwm,
+>  	}
+>  
+>  	if (pwm_get_period(pwm) != period_ns) {
+> -		int clk_div;
+> +		int clk_div = crc_pwm_calc_clk_div(period_ns);
+>  
+>  		/* changing the clk divisor, need to disable fisrt */
+>  		crc_pwm_disable(c, pwm);
+> -		clk_div = PWM_BASE_CLK_MHZ * period_ns / (256 * NSEC_PER_USEC);
+>  
+>  		regmap_write(crc_pwm->regmap, PWM0_CLK_DIV,
+>  					clk_div | PWM_OUTPUT_ENABLE);
+> -- 
+> 2.26.2
+> 
 
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Tomasz Lis <tomasz.lis@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Francisco Jerez <currojerez@riseup.net>
-Cc: Mathew Alwin <alwin.mathew@intel.com>
-Cc: Mcguire Russell W <russell.w.mcguire@intel.com>
-Cc: Spruit Neil R <neil.r.spruit@intel.com>
-Cc: Zhou Cheng <cheng.zhou@intel.com>
-Cc: Benemelis Mike G <mike.g.benemelis@intel.com>
-
-Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_mocs.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
-index 632e08a4592b..f5dde723f612 100644
---- a/drivers/gpu/drm/i915/gt/intel_mocs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-@@ -234,11 +234,17 @@ static const struct drm_i915_mocs_entry broxton_mocs_table[] = {
- 		   L3_1_UC)
- 
- static const struct drm_i915_mocs_entry tgl_mocs_table[] = {
--	/* Base - Error (Reserved for Non-Use) */
--	MOCS_ENTRY(0, 0x0, 0x0),
--	/* Base - Reserved */
--	MOCS_ENTRY(1, 0x0, 0x0),
- 
-+	/* NOTE:
-+	 * Reserved and unspecified MOCS indices have been set to (L3 + LCC).
-+	 * These reserved entries should never be used, they may be changed
-+	 * to low performant variants with better coherency in the future if
-+	 * more entries are needed. We are programming index I915_MOCS_PTE(1)
-+	 * only, __init_mocs_table() take care to program unused index with
-+	 * this entry.
-+	 */
-+	MOCS_ENTRY(1, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
-+		   L3_3_WB),
- 	GEN11_MOCS_ENTRIES,
- 
- 	/* Implicitly enable L1 - HDC:L1 + L3 + LLC */
-@@ -265,6 +271,7 @@ static const struct drm_i915_mocs_entry tgl_mocs_table[] = {
- 	MOCS_ENTRY(61,
- 		   LE_1_UC | LE_TC_1_LLC,
- 		   L3_3_WB),
-+
- };
- 
- static const struct drm_i915_mocs_entry icl_mocs_table[] = {
 -- 
-2.26.2
+With Best Regards,
+Andy Shevchenko
+
 
 _______________________________________________
 Intel-gfx mailing list
