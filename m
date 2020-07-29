@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47FDB231CC7
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jul 2020 12:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DDA1231CE6
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jul 2020 12:49:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FBE2897E7;
-	Wed, 29 Jul 2020 10:35:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 834DF6E4B0;
+	Wed, 29 Jul 2020 10:49:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1D5B0897E7;
- Wed, 29 Jul 2020 10:34:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 174C2A0BC6;
- Wed, 29 Jul 2020 10:34:59 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0696E6E4B0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 10:49:13 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21967538-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 11:49:09 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Jul 2020 11:49:10 +0100
+Message-Id: <20200729104910.10036-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ayaz A Siddiqui" <ayaz.siddiqui@intel.com>
-Date: Wed, 29 Jul 2020 10:34:59 -0000
-Message-ID: <159601889906.20645.18163404441386579471@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200729102539.134731-1-ayaz.siddiqui@intel.com>
-In-Reply-To: <20200729102539.134731-1-ayaz.siddiqui@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/gt=3A_Initialize_reserved_and_unspecified_MOCS_indices?=
- =?utf-8?q?_=28rev4=29?=
+Subject: [Intel-gfx] [CI] drm/i915/gt: Fix termination condition for freeing
+ all buffer objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,25 +37,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+A last minute change, that unfortunately broke CI so badly it declared
+SUCCESS, was to refactor the debug free all buffer pool code to reuse
+the normal worker, inverted the termination condition so that it instead
+of discarding the nodes, they were all declared young enough and
+eligible for reuse.
 
-Series: drm/i915/gt: Initialize reserved and unspecified MOCS indices (rev4)
-URL   : https://patchwork.freedesktop.org/series/78012/
-State : warning
+Fixes: 03cc6e2cb6da ("drm/i915/gt: Delay taking the spinlock for grabbing from the buffer pool")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.0
-Fast mode used, each commit won't be checked separately.
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+index 16dbf5436179..09351868bf02 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+@@ -230,7 +230,7 @@ void intel_gt_flush_buffer_pool(struct intel_gt *gt)
+ 	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
+ 
+ 	do {
+-		while (pool_free_older_than(pool, jiffies + 1))
++		while (pool_free_older_than(pool, jiffies - LONG_MAX))
+ 			;
+ 	} while (cancel_delayed_work_sync(&pool->work));
+ }
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
