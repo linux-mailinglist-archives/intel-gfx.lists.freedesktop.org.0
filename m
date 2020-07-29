@@ -1,66 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84939231AAE
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jul 2020 09:57:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3528F231ABB
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jul 2020 10:02:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 432D56E466;
-	Wed, 29 Jul 2020 07:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37A386E448;
+	Wed, 29 Jul 2020 08:02:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 082A86E466
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 07:56:59 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 134483F47A;
- Wed, 29 Jul 2020 09:56:56 +0200 (CEST)
-Authentication-Results: pio-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=mD/2E+Pd; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.911
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.911 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.812,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id lU0QADMJm6Hw; Wed, 29 Jul 2020 09:56:54 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id CA8443F449;
- Wed, 29 Jul 2020 09:56:52 +0200 (CEST)
-Received: from localhost.localdomain (jfdmzpr06-ext.jf.intel.com
- [134.134.137.75])
- by mail1.shipmail.org (Postfix) with ESMTPSA id A1DD93607C5;
- Wed, 29 Jul 2020 09:56:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1596009413; bh=zGoHebjNr08G+riXGtQLf4aaQWtEC5q/N+45bZ9ZCyo=;
- h=Subject:From:To:References:Date:In-Reply-To:From;
- b=mD/2E+PdNpUoRzgrGk3zzuXlZr1fkN+wyb5+117gvHWzbTmq0BTu5m5qDCmU31xXB
- SV6bAdLB5J5yIQyXiSek/0dk0NLxhK5Vj5cYQ2TzFEmcLXl1WP03wS09IPAsmPrZPR
- hMC1/zGV616kooDVD5i3HyiEIif3kagYnsHOvQkQ=
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <20200715115147.11866-28-chris@chris-wilson.co.uk>
- <4c92b001-fa38-1720-cd66-15038617342d@linux.intel.com>
- <69739483-8392-1a89-f028-766d994e1281@linux.intel.com>
- <546a2b6b-4369-db68-5083-3e91cc1771b2@shipmail.org>
-Message-ID: <c6064da3-4447-9a6a-e158-ea6d2579d922@shipmail.org>
-Date: Wed, 29 Jul 2020 09:56:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA7266E448
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 08:02:48 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21965418-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 09:02:44 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Jul 2020 09:02:45 +0100
+Message-Id: <20200729080245.8070-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <546a2b6b-4369-db68-5083-3e91cc1771b2@shipmail.org>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 28/66] drm/i915/gem: Replace
- i915_gem_object.mm.mutex with reservation_ww_class
+Subject: [Intel-gfx] [CI] drm/i915/gt: Delay taking the spinlock for
+ grabbing from the buffer pool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,163 +37,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDcvMjgvMjAgMToxNyBQTSwgVGhvbWFzIEhlbGxzdHLDtm0gKEludGVsKSB3cm90ZToKPgo+
-IE9uIDcvMTYvMjAgNTo1MyBQTSwgVHZydGtvIFVyc3VsaW4gd3JvdGU6Cj4+Cj4+IE9uIDE1LzA3
-LzIwMjAgMTY6NDMsIE1hYXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+Pj4gT3AgMTUtMDctMjAyMCBv
-bSAxMzo1MSBzY2hyZWVmIENocmlzIFdpbHNvbjoKPj4+PiBPdXIgZ29hbCBpcyB0byBwdWxsIGFs
-bCBtZW1vcnkgcmVzZXJ2YXRpb25zIChuZXh0IGl0ZXJhdGlvbgo+Pj4+IG9iai0+b3BzLT5nZXRf
-cGFnZXMoKSkgdW5kZXIgYSB3d19tdXRleCwgYW5kIHRvIGFsaWduIHRob3NlIAo+Pj4+IHJlc2Vy
-dmF0aW9ucwo+Pj4+IHdpdGggb3RoZXIgZHJpdmVycywgaS5lLiBjb250cm9sIGFsbCBzdWNoIGFs
-bG9jYXRpb25zIHdpdGggdGhlCj4+Pj4gcmVzZXJ2YXRpb25fd3dfY2xhc3MuIEN1cnJlbnRseSwg
-dGhpcyBpcyB1bmRlciB0aGUgcHVydmlldyBvZiB0aGUKPj4+PiBvYmotPm1tLm11dGV4LCBhbmQg
-d2hpbGUgb2JqLT5tbSByZW1haW5zIGFuIGVtYmVkZGVkIHN0cnVjdCB3ZSBjYW4KPj4+PiAic2lt
-cGx5IiBzd2l0Y2ggdG8gdXNpbmcgdGhlIHJlc2VydmF0aW9uX3d3X2NsYXNzIG9iai0+YmFzZS5y
-ZXN2LT5sb2NrCj4+Pj4KPj4+PiBUaGUgbWFqb3IgY29uc2VxdWVuY2UgaXMgdGhlIGltcGFjdCBv
-biB0aGUgc2hyaW5rZXIgcGF0aHMgYXMgdGhlCj4+Pj4gcmVzZXJ2YXRpb25fd3dfY2xhc3MgaXMg
-dXNlZCB0byB3cmFwIGFsbG9jYXRpb25zLCBhbmQgYSB3d19tdXRleCBkb2VzCj4+Pj4gbm90IHN1
-cHBvcnQgc3ViY2xhc3Npbmcgc28gd2UgY2Fubm90IGRvIG91ciB1c3VhbCB0cmljayBvZiBrbm93
-aW5nIAo+Pj4+IHRoYXQKPj4+PiB3ZSBuZXZlciByZWN1cnNlIGluc2lkZSB0aGUgc2hyaW5rZXIg
-YW5kIGluc3RlYWQgaGF2ZSB0byBmaW5pc2ggdGhlCj4+Pj4gcmVjbGFpbSB3aXRoIGEgdHJ5bG9j
-ay4gVGhpcyBtYXkgcmVzdWx0IGluIHVzIGZhaWxpbmcgdG8gcmVsZWFzZSB0aGUKPj4+PiBwYWdl
-cyBhZnRlciBoYXZpbmcgcmVsZWFzZWQgdGhlIHZtYS4gVGhpcyB3aWxsIGhhdmUgdG8gZG8gdW50
-aWwgYSAKPj4+PiBiZXR0ZXIKPj4+PiBpZGVhIGNvbWVzIGFsb25nLgo+Pj4+Cj4+Pj4gSG93ZXZl
-ciwgdGhpcyBzdGVwIG9ubHkgY29udmVydHMgdGhlIG11dGV4IG92ZXIgYW5kIGNvbnRpbnVlcyB0
-byB0cmVhdAo+Pj4+IGV2ZXJ5dGhpbmcgYXMgYSBzaW5nbGUgYWxsb2NhdGlvbiBhbmQgcGlubmlu
-ZyB0aGUgcGFnZXMuIFdpdGggdGhlCj4+Pj4gd3dfbXV0ZXggaW4gcGxhY2Ugd2UgY2FuIHJlbW92
-ZSB0aGUgdGVtcG9yYXJ5IHBpbm5pbmcsIGFzIHdlIGNhbiB0aGVuCj4+Pj4gcmVzZXJ2ZSBhbGwg
-c3RvcmFnZSBlbiBtYXNzZS4KPj4+Pgo+Pj4+IE9uZSBsYXN0IHRoaW5nIHRvIGRvOiBraWxsIHRo
-ZSBpbXBsaWN0IHBhZ2UgcGlubmluZyBmb3IgYWN0aXZlIHZtYS4KPj4+PiBUaGlzIHdpbGwgcmVx
-dWlyZSB1cyB0byBpbnZhbGlkYXRlIHRoZSB2bWEtPnBhZ2VzIHdoZW4gdGhlIGJhY2tpbmcgCj4+
-Pj4gc3RvcmUKPj4+PiBpcyByZW1vdmVkIChhbmQgd2UgZXhwZWN0IHRoYXQgd2hpbGUgdGhlIHZt
-YSBpcyBhY3RpdmUsIHdlIG1hcmsgdGhlCj4+Pj4gYmFja2luZyBzdG9yZSBhcyBhY3RpdmUgc28g
-dGhhdCBpdCBjYW5ub3QgYmUgcmVtb3ZlZCB3aGlsZSB0aGUgSFcgaXMKPj4+PiBidXN5LikKPj4+
-Pgo+Pj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNv
-LnVrPgo+Pgo+PiBbc25pcF0KPj4KPj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ2VtL2k5MTVfZ2VtX3Nocmlua2VyLmMgCj4+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-ZW0vaTkxNV9nZW1fc2hyaW5rZXIuYwo+Pj4+IGluZGV4IGRjOGYwNTJhMGZmZS4uNGU5MjgxMDNh
-MzhmIDEwMDY0NAo+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9z
-aHJpbmtlci5jCj4+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3No
-cmlua2VyLmMKPj4+PiBAQCAtNDcsMTAgKzQ3LDcgQEAgc3RhdGljIGJvb2wgdW5zYWZlX2Ryb3Bf
-cGFnZXMoc3RydWN0IAo+Pj4+IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKPj4+PiDCoMKgwqDC
-oMKgIGlmICghKHNocmluayAmIEk5MTVfU0hSSU5LX0JPVU5EKSkKPj4+PiDCoMKgwqDCoMKgwqDC
-oMKgwqAgZmxhZ3MgPSBJOTE1X0dFTV9PQkpFQ1RfVU5CSU5EX1RFU1Q7Cj4+Pj4gwqAgLcKgwqDC
-oCBpZiAoaTkxNV9nZW1fb2JqZWN0X3VuYmluZChvYmosIGZsYWdzKSA9PSAwKQo+Pj4+IC3CoMKg
-wqDCoMKgwqDCoCBfX2k5MTVfZ2VtX29iamVjdF9wdXRfcGFnZXMob2JqKTsKPj4+PiAtCj4+Pj4g
-LcKgwqDCoCByZXR1cm4gIWk5MTVfZ2VtX29iamVjdF9oYXNfcGFnZXMob2JqKTsKPj4+PiArwqDC
-oMKgIHJldHVybiBpOTE1X2dlbV9vYmplY3RfdW5iaW5kKG9iaiwgZmxhZ3MpID09IDA7Cj4+Pj4g
-wqAgfQo+Pj4+IMKgIMKgIHN0YXRpYyB2b2lkIHRyeV90b193cml0ZWJhY2soc3RydWN0IGRybV9p
-OTE1X2dlbV9vYmplY3QgKm9iaiwKPj4+PiBAQCAtMTk5LDE0ICsxOTYsMTQgQEAgaTkxNV9nZW1f
-c2hyaW5rKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+Pj4+IHNwaW5fdW5sb2NrX2ly
-cXJlc3RvcmUoJmk5MTUtPm1tLm9ial9sb2NrLCBmbGFncyk7Cj4+Pj4gwqAgLcKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgaWYgKHVuc2FmZV9kcm9wX3BhZ2VzKG9iaiwgc2hyaW5rKSkgewo+Pj4+IC3C
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLyogTWF5IGFycml2ZSBmcm9tIGdldF9wYWdl
-cyBvbiBhbm90aGVyIGJvICovCj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBt
-dXRleF9sb2NrKCZvYmotPm1tLmxvY2spOwo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlm
-ICh1bnNhZmVfZHJvcF9wYWdlcyhvYmosIHNocmluaykgJiYKPj4+PiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGk5MTVfZ2VtX29iamVjdF90cnlsb2NrKG9iaikpIHsKPj4KPj4+IFdo
-eSB0cnlsb2NrPyBCZWNhdXNlIG9mIHRoZSBuZXN0aW5nPyBJbiB0aGF0IGNhc2UsIHN0aWxsIHVz
-ZSB3dyBjdHggCj4+PiBpZiBwcm92aWRlZCBwbGVhc2UKPj4KPj4gQnkgImlmIHByb3ZpZGVkIiB5
-b3UgbWVhbiBmb3IgY29kZSBwYXRocyB3aGVyZSB3ZSBhcmUgY2FsbGluZyB0aGUgCj4+IHNocmlu
-a2VyIG91cnNlbHZlcywgYXMgb3Bwb3NlZCB0byByZWNsYWltLCBsaWtlIHNobWVtX2dldF9wYWdl
-cz8KPj4KPj4gVGhhdCBpbmRlZWQgc291bmRzIGxpa2UgdGhlIHJpZ2h0IHRoaW5nIHRvIGRvLCBz
-aW5jZSBhbGwgdGhlIAo+PiBnZXRfcGFnZXMgZnJvbSBleGVjYnVmIGFyZSBpbiB0aGUgcmVzZXJ2
-YXRpb24gcGhhc2UsIGNvbGxlY3RpbmcgYSAKPj4gbGlzdCBvZiBHRU0gb2JqZWN0cyB0byBsb2Nr
-LCB0aGUgb25lcyB0byBzaHJpbmsgc291bmQgbGlrZSBzaG91bGQgYmUgCj4+IG9uIHRoYXQgbGlz
-dC4KPj4KPj4+PiArIF9faTkxNV9nZW1fb2JqZWN0X3B1dF9wYWdlcyhvYmopOwo+Pj4+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKCFpOTE1X2dlbV9vYmplY3RfaGFzX3Bh
-Z2VzKG9iaikpIHsKPj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgdHJ5X3RvX3dyaXRlYmFjayhvYmosIHNocmluayk7Cj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvdW50ICs9IG9iai0+YmFzZS5zaXplID4+IFBBR0Vf
-U0hJRlQ7Cj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Cj4+Pj4gLcKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtdXRleF91bmxvY2soJm9iai0+bW0ubG9jayk7
-Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfdW5s
-b2NrKG9iaik7Cj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfQo+Pj4+IMKgIMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIHNjYW5uZWQgKz0gb2JqLT5iYXNlLnNpemUgPj4gUEFHRV9T
-SElGVDsKPj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X3RpbGluZy5jIAo+Pj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3RpbGlu
-Zy5jCj4+Pj4gaW5kZXggZmY3MmVlMmZkOWNkLi5hYzEyZTFjMjBlNjYgMTAwNjQ0Cj4+Pj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3RpbGluZy5jCj4+Pj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3RpbGluZy5jCj4+Pj4gQEAgLTI2NSw3
-ICsyNjUsNiBAQCBpOTE1X2dlbV9vYmplY3Rfc2V0X3RpbGluZyhzdHJ1Y3QgCj4+Pj4gZHJtX2k5
-MTVfZ2VtX29iamVjdCAqb2JqLAo+Pj4+IMKgwqDCoMKgwqDCoCAqIHBhZ2VzIHRvIHByZXZlbnQg
-dGhlbSBiZWluZyBzd2FwcGVkIG91dCBhbmQgY2F1c2luZyAKPj4+PiBjb3JydXB0aW9uCj4+Pj4g
-wqDCoMKgwqDCoMKgICogZHVlIHRvIHRoZSBjaGFuZ2UgaW4gc3dpenpsaW5nLgo+Pj4+IMKgwqDC
-oMKgwqDCoCAqLwo+Pj4+IC3CoMKgwqAgbXV0ZXhfbG9jaygmb2JqLT5tbS5sb2NrKTsKPj4+PiDC
-oMKgwqDCoMKgIGlmIChpOTE1X2dlbV9vYmplY3RfaGFzX3BhZ2VzKG9iaikgJiYKPj4+PiDCoMKg
-wqDCoMKgwqDCoMKgwqAgb2JqLT5tbS5tYWR2ID09IEk5MTVfTUFEVl9XSUxMTkVFRCAmJgo+Pj4+
-IMKgwqDCoMKgwqDCoMKgwqDCoCBpOTE1LT5xdWlya3MgJiBRVUlSS19QSU5fU1dJWlpMRURfUEFH
-RVMpIHsKPj4+PiBAQCAtMjgwLDcgKzI3OSw2IEBAIGk5MTVfZ2VtX29iamVjdF9zZXRfdGlsaW5n
-KHN0cnVjdCAKPj4+PiBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmosCj4+Pj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgb2JqLT5tbS5xdWlya2VkID0gdHJ1ZTsKPj4+PiDCoMKgwqDCoMKgwqDC
-oMKgwqAgfQo+Pj4+IMKgwqDCoMKgwqAgfQo+Pj4+IC3CoMKgwqAgbXV0ZXhfdW5sb2NrKCZvYmot
-Pm1tLmxvY2spOwo+Pj4+IMKgIMKgwqDCoMKgwqAgc3Bpbl9sb2NrKCZvYmotPnZtYS5sb2NrKTsK
-Pj4+PiDCoMKgwqDCoMKgIGZvcl9lYWNoX2dndHRfdm1hKHZtYSwgb2JqKSB7Cj4+Pj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV91c2VycHRyLmMgCj4+Pj4g
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdXNlcnB0ci5jCj4+Pj4gaW5kZXgg
-ZTk0NjAzMmIxM2U0Li44MDkwN2MwMGM2ZmQgMTAwNjQ0Cj4+Pj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3VzZXJwdHIuYwo+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2dlbS9pOTE1X2dlbV91c2VycHRyLmMKPj4+PiBAQCAtMTI5LDggKzEyOSwxNSBAQCB1
-c2VycHRyX21uX2ludmFsaWRhdGVfcmFuZ2Vfc3RhcnQoc3RydWN0IAo+Pj4+IG1tdV9ub3RpZmll
-ciAqX21uLAo+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZXQgPSBpOTE1X2dlbV9vYmplY3RfdW5i
-aW5kKG9iaiwKPj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIEk5MTVfR0VNX09CSkVDVF9VTkJJTkRfQUNUSVZFIHwKPj4+PiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEk5MTVfR0VNX09CSkVD
-VF9VTkJJTkRfQkFSUklFUik7CgpRdWVzdGlvbjogV2hhdCBoYXBwZW5zIGFib3ZlIGlmIHNvbWVv
-bmUgaXMgcHJlcGFyaW5nIGNzIHdpdGggdGhlIGFib3ZlIApvYmplY3QsIGlzIGhvbGRpbmcgaXRz
-IHJlc2VydmF0aW9uIG9iamVjdCBhbmQgaXMganVzdCBhYm91dCB0byBzdWJtaXQ/IApEb2Vzbid0
-IHRoZSBwcGd0dCBiaW5kaW5nIGdvIGF3YXkgZnJvbSB1bmRlciBpdD8KCgo+Pj4+IC3CoMKgwqDC
-oMKgwqDCoCBpZiAocmV0ID09IDApCj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0ID0g
-X19pOTE1X2dlbV9vYmplY3RfcHV0X3BhZ2VzKG9iaik7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgIGlm
-IChyZXQgPT0gMCkgewo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC8qIHd3X211dGV4IGFu
-ZCBtbXVfbm90aWZpZXIgaXMgZnNfcmVjbGFpbSB0YWludGVkICovCj4+Pj4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgaWYgKGk5MTVfZ2VtX29iamVjdF90cnlsb2NrKG9iaikpIHsKPj4+PiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldCA9IF9faTkxNV9nZW1fb2JqZWN0X3B1dF9w
-YWdlcyhvYmopOwo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaTkxNV9nZW1f
-b2JqZWN0X3VubG9jayhvYmopOwo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH0gZWxzZSB7
-Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXQgPSAtRUFHQUlOOwo+Pj4+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH0KPj4+PiArwqDCoMKgwqDCoMKgwqAgfQo+Pj4KPj4+
-IEknbSBub3Qgc3VyZSB1cHN0cmVhbSB3aWxsIGFncmVlIHdpdGggdGhpcyBraW5kIG9mIEFQSToK
-Pj4+Cj4+PiAxLiBJdCB3aWxsIGRlYWRsb2NrIHdoZW4gUlQgdGFza3MgYXJlIHVzZWQuCj4+Cj4+
-IEl0IHdpbGwgb3IgaXQgY2FuPyBXaGljaCBwYXJ0PyBJdCB3aWxsIGJyZWFrIG91dCBvZiB0aGUg
-bG9vcCBpZiAKPj4gdHJ5bG9jayBmYWlscy4KPj4KPj4+Cj4+PiAyLiBZb3Ugc3RhcnQgdGhyb3dp
-bmcgLUVBR0FJTiBiZWNhdXNlIHlvdSBkb24ndCBoYXZlIHRoZSBjb3JyZWN0IAo+Pj4gb3JkZXJp
-bmcgb2YgbG9ja2luZywgdGhpcyBuZWVkcyBmaXhpbmcgZmlyc3QuCj4+Cj4+IElzIGl0IGFib3V0
-IGNvcnJlY3Qgb3JkZXJpbmcgb2YgbG9ja3Mgb3Igc29tZXRoaW5nIGVsc2U/IElmIG1lbW9yeSAK
-Pj4gYWxsb2NhdGlvbiBpcyBhbGxvd2VkIHVuZGVyIGRtYV9yZXN2LmxvY2ssIHRoZW4gdGhlIG9w
-cG9zaXRlIG9yZGVyIAo+PiBjYW5ub3QgYmUgdGFrZW4gaW4gYW55IGNhc2UuCj4+Cj4+IEkndmUg
-aGFkIGEgYnJpZWYgbG9vayBhdCB0aGUgYW1kZ3B1IHNvbHV0aW9uIGFuZCBtYXliZSBJIAo+PiBt
-aXN1bmRlcnN0b29kIHNvbWV0aGluZywgYnV0IGl0IGxvb2tzIGxpa2UgYSBCS0wgYXBwcm9hY2gg
-d2l0aCB0aGUgCj4+IGRldmljZSBsZXZlbCBub3RpZmllcl9sb2NrLiBUaGVpciB1c2VycHRyIG5v
-dGlmaWVyIGJsb2NrcyBvbiB0aGF0IAo+PiBvbmUsIG5vdCBvbiBkbWFfcmVzdiBsb2NrLCBidXQg
-dGhhdCBhbHNvIG1lYW5zIHRoZWlyIGNvbW1hbmQgCj4+IHN1Ym1pc3Npb24gKGFtZGdwdV9jc19z
-dWJtaXQpIGJsb2NrcyBvbiB0aGUgc2FtZSBsb2NrIHdoaWxlIG9idGFpbmluZyAKPj4gYmFja2lu
-ZyBzdG9yZS4KPgo+IElmIEkgcmVhZCBDaHJpc3RpYW4gcmlnaHQsIGl0IGJsb2NrcyBvbiB0aGF0
-IGxvY2sgb25seSBqdXN0IGJlZm9yZSAKPiBjb21tYW5kIHN1Ym1pc3Npb24gdG8gdmFsaWRhdGUg
-dGhhdCBzZXF1ZW5jZSBudW1iZXIuIElmIHRoZXJlIGlzIGEgCj4gbWlzbWF0Y2gsIGl0IG5lZWRz
-IHRvIHJlcnVuIENTLiBJJ20gbm90IHN1cmUgaG93IGNvbW1vbiB1c2VycHRyIAo+IGJ1ZmZlcnMg
-YXJlLCBidXQgaWYgYSBkZXZpY2Utd2lkZSBtdXRleCBodXJ0cyB0b28gbXVjaCwgVGhlcmUgYXJl
-IAo+IHBlcmhhcHMgbW9yZSBmaW5lLWdyYWluZWQgc29sdXRpb25zLiAoTGlrZSBhbiBydyBzZW1h
-cGhvcmUsIGFuZCB1bmxvY2sgCj4gYmVmb3JlIHRoZSBmZW5jZSB3YWl0IGluIHRoZSBub3RpZmll
-cjogQ1Mgd2hpY2ggYXJlIHVuYWZmZWN0ZWQgCj4gc2hvdWxkbid0IG5lZWQgdG8gd2FpdC4uLiku
-Cj4KPj4KPj4gU28gaXQgbG9va3MgbGlrZSBhIGJpZyBoYW1tZXIgYXBwcm9hY2ggbm90IGRpcmVj
-dGx5IHJlbGF0ZWQgdG8gdGhlIAo+PiBzdG9yeSBvZiBkbWFfcmVzdiBsb2NraW5nLiBNYXliZSB3
-ZSBjb3VsZCBkbyB0aGUgc2FtZSBiaWcgaGFtbWVyIAo+PiBhcHByb2FjaCwgYWx0aG91Z2ggSSBh
-bSBub3Qgc3VyZSBob3cgaXQgaXMgZGVhZGxvY2sgZnJlZS4KPj4KPj4gV2hhdCBoYXBwZW5zIGZv
-ciBpbnN0YW5jZSBpZiBzb21lb25lIHN1Ym1pdHMgYW4gdXNlcnB0ciBiYXRjaCB3aGljaCAKPj4g
-Z2V0cyB1bm1hcHBlZCB3aGlsZSBhbWRncHVfY3Nfc3VibWl0IGlzIGhvbGRpbmcgdGhlIG5vdGlm
-aWVyX2xvY2s/Cj4KPiBNeSB1bmRlcnN0YW5kaW5nIGlzIHRoZSB1bm1hcHBpbmcgb3BlcmF0aW9u
-IGJsb2NrcyBvbiB0aGUgCj4gbm90aWZpZXJfbG9jayBpbiB0aGUgbW11IG5vdGlmaWVyPwo+Cj4g
-L1Rob21hcwo+Cj4KPj4KPj4gSWYgeW91IHVuZGVyc3RhbmQgYW1kZ3B1IGJldHRlciBwbGVhc2Ug
-c2hhcmUgc29tZSBpbnNpZ2h0cy4gSSAKPj4gY2VydGFpbmx5IG9ubHkgbG9va2VkIGF0IGl0IGJy
-aWVmbHkgdG9kYXkgc28gbWF5IGJlIHdyb25nLgo+Pgo+PiBSZWdhcmRzLAo+Pgo+PiBUdnJ0a28K
-Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gSW50
-ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+PiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+
-IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Some very low hanging fruit, but contention on the pool->lock is
+noticeable between intel_gt_get_buffer_pool() and pool_retire(), with
+the majority of the hold time due to the locked list iteration. If we
+make the node itself RCU protected, we can perform the search for an
+suitable node just under RCU, reserving taking the lock itself for
+claiming the node and manipulating the list.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ .../gpu/drm/i915/gt/intel_gt_buffer_pool.c    | 100 +++++++++++-------
+ .../drm/i915/gt/intel_gt_buffer_pool_types.h  |   6 +-
+ 2 files changed, 64 insertions(+), 42 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+index 418ae184cecf..16dbf5436179 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+@@ -35,39 +35,62 @@ static void node_free(struct intel_gt_buffer_pool_node *node)
+ {
+ 	i915_gem_object_put(node->obj);
+ 	i915_active_fini(&node->active);
+-	kfree(node);
++	kfree_rcu(node, rcu);
+ }
+ 
+-static void pool_free_work(struct work_struct *wrk)
++static bool
++pool_free_older_than(struct intel_gt_buffer_pool *pool, unsigned long old)
+ {
+-	struct intel_gt_buffer_pool *pool =
+-		container_of(wrk, typeof(*pool), work.work);
+-	struct intel_gt_buffer_pool_node *node, *next;
+-	unsigned long old = jiffies - HZ;
++	struct intel_gt_buffer_pool_node *node, *stale = NULL;
+ 	bool active = false;
+-	LIST_HEAD(stale);
+ 	int n;
+ 
+ 	/* Free buffers that have not been used in the past second */
+-	spin_lock_irq(&pool->lock);
+ 	for (n = 0; n < ARRAY_SIZE(pool->cache_list); n++) {
+ 		struct list_head *list = &pool->cache_list[n];
+ 
+-		/* Most recent at head; oldest at tail */
+-		list_for_each_entry_safe_reverse(node, next, list, link) {
+-			if (time_before(node->age, old))
+-				break;
++		if (list_empty(list))
++			continue;
++
++		if (spin_trylock_irq(&pool->lock)) {
++			struct list_head *pos;
+ 
+-			list_move(&node->link, &stale);
++			/* Most recent at head; oldest at tail */
++			list_for_each_prev(pos, list) {
++				node = list_entry(pos, typeof(*node), link);
++				if (time_before(node->age, old))
++					break;
++
++				/* Check we are the first to claim this node */
++				if (!xchg(&node->age, 0))
++					break;
++
++				node->free = stale;
++				stale = node;
++			}
++			if (!list_is_last(pos, list))
++				__list_del_many(pos, list);
++
++			spin_unlock_irq(&pool->lock);
+ 		}
++
+ 		active |= !list_empty(list);
+ 	}
+-	spin_unlock_irq(&pool->lock);
+ 
+-	list_for_each_entry_safe(node, next, &stale, link)
++	while ((node = stale)) {
++		stale = stale->free;
+ 		node_free(node);
++	}
++
++	return active;
++}
++
++static void pool_free_work(struct work_struct *wrk)
++{
++	struct intel_gt_buffer_pool *pool =
++		container_of(wrk, typeof(*pool), work.work);
+ 
+-	if (active)
++	if (pool_free_older_than(pool, jiffies - HZ))
+ 		schedule_delayed_work(&pool->work,
+ 				      round_jiffies_up_relative(HZ));
+ }
+@@ -108,9 +131,9 @@ static void pool_retire(struct i915_active *ref)
+ 	/* Return this object to the shrinker pool */
+ 	i915_gem_object_make_purgeable(node->obj);
+ 
++	WRITE_ONCE(node->age, jiffies ?: 1); /* 0 reserved for active nodes */
+ 	spin_lock_irqsave(&pool->lock, flags);
+-	node->age = jiffies;
+-	list_add(&node->link, list);
++	list_add_rcu(&node->link, list);
+ 	spin_unlock_irqrestore(&pool->lock, flags);
+ 
+ 	schedule_delayed_work(&pool->work,
+@@ -151,20 +174,30 @@ intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size)
+ 	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
+ 	struct intel_gt_buffer_pool_node *node;
+ 	struct list_head *list;
+-	unsigned long flags;
+ 	int ret;
+ 
+ 	size = PAGE_ALIGN(size);
+ 	list = bucket_for_size(pool, size);
+ 
+-	spin_lock_irqsave(&pool->lock, flags);
+-	list_for_each_entry(node, list, link) {
++	rcu_read_lock();
++	list_for_each_entry_rcu(node, list, link) {
++		unsigned long age;
++
+ 		if (node->obj->base.size < size)
+ 			continue;
+-		list_del(&node->link);
+-		break;
++
++		age = READ_ONCE(node->age);
++		if (!age)
++			continue;
++
++		if (cmpxchg(&node->age, age, 0) == age) {
++			spin_lock_irq(&pool->lock);
++			list_del_rcu(&node->link);
++			spin_unlock_irq(&pool->lock);
++			break;
++		}
+ 	}
+-	spin_unlock_irqrestore(&pool->lock, flags);
++	rcu_read_unlock();
+ 
+ 	if (&node->link == list) {
+ 		node = node_create(pool, size);
+@@ -192,28 +225,13 @@ void intel_gt_init_buffer_pool(struct intel_gt *gt)
+ 	INIT_DELAYED_WORK(&pool->work, pool_free_work);
+ }
+ 
+-static void pool_free_imm(struct intel_gt_buffer_pool *pool)
+-{
+-	int n;
+-
+-	spin_lock_irq(&pool->lock);
+-	for (n = 0; n < ARRAY_SIZE(pool->cache_list); n++) {
+-		struct intel_gt_buffer_pool_node *node, *next;
+-		struct list_head *list = &pool->cache_list[n];
+-
+-		list_for_each_entry_safe(node, next, list, link)
+-			node_free(node);
+-		INIT_LIST_HEAD(list);
+-	}
+-	spin_unlock_irq(&pool->lock);
+-}
+-
+ void intel_gt_flush_buffer_pool(struct intel_gt *gt)
+ {
+ 	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
+ 
+ 	do {
+-		pool_free_imm(pool);
++		while (pool_free_older_than(pool, jiffies + 1))
++			;
+ 	} while (cancel_delayed_work_sync(&pool->work));
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
+index e28bdda771ed..bcf1658c9633 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
+@@ -25,7 +25,11 @@ struct intel_gt_buffer_pool_node {
+ 	struct i915_active active;
+ 	struct drm_i915_gem_object *obj;
+ 	struct list_head link;
+-	struct intel_gt_buffer_pool *pool;
++	union {
++		struct intel_gt_buffer_pool *pool;
++		struct intel_gt_buffer_pool_node *free;
++		struct rcu_head rcu;
++	};
+ 	unsigned long age;
+ };
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
