@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3637A232F9F
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jul 2020 11:38:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F841232FA4
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jul 2020 11:38:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40AFC6E8AE;
-	Thu, 30 Jul 2020 09:38:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CE586E8B6;
+	Thu, 30 Jul 2020 09:38:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC0E588E7E
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 09:38:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCA0088E7E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 09:38:08 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21979068-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21979070-1500050 
  for multiple; Thu, 30 Jul 2020 10:38:03 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Jul 2020 10:37:55 +0100
-Message-Id: <20200730093756.16737-21-chris@chris-wilson.co.uk>
+Date: Thu, 30 Jul 2020 10:37:56 +0100
+Message-Id: <20200730093756.16737-22-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200730093756.16737-1-chris@chris-wilson.co.uk>
 References: <20200730093756.16737-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 20/21] drm/i915: Drop i915_request.lock
- requirement for intel_rps_boost()
+Subject: [Intel-gfx] [PATCH 21/21] drm/i915/gem: Delay tracking the GEM
+ context until it is registered
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,75 +39,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ thomas.hellstrom@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since we use a flag within i915_request.flags to indicate when we have
-boosted the request (so that we only apply the boost) once, this can be
-used as the serialisation with i915_request_retire() to avoid having to
-explicitly take the i915_request.lock which is more heavily contended.
+Avoid exposing a partially constructed context by deferring the
+list_add() from the initial construction to the end of registration.
+Otherwise, if we peek into the list of contexts from inside debugfs, we
+may see the partially constructed context and chase down some dangling
+incomplete pointers.
 
+Reported-by: CQ Tang <cq.tang@intel.com>
+Fixes: 3aa9945a528e ("drm/i915: Separate GEM context construction and registration to userspace")
+References: f6e8aa387171 ("drm/i915: Report the number of closed vma held by each context in debugfs")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: CQ Tang <cq.tang@intel.com>
+Cc: <stable@vger.kernel.org> # v5.2+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_rps.c | 15 ++++++---------
- drivers/gpu/drm/i915/i915_request.c |  4 +---
- 2 files changed, 7 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index e6a00eea0631..2a43e216e0d4 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -889,17 +889,15 @@ void intel_rps_park(struct intel_rps *rps)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index f43f0ca4eec9..d308cefb2b34 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -713,6 +713,7 @@ __create_context(struct drm_i915_private *i915)
+ 	ctx->i915 = i915;
+ 	ctx->sched.priority = I915_USER_PRIORITY(I915_PRIORITY_NORMAL);
+ 	mutex_init(&ctx->mutex);
++	INIT_LIST_HEAD(&ctx->link);
  
- void intel_rps_boost(struct i915_request *rq)
- {
--	struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
--	unsigned long flags;
+ 	spin_lock_init(&ctx->stale.lock);
+ 	INIT_LIST_HEAD(&ctx->stale.engines);
+@@ -740,10 +741,6 @@ __create_context(struct drm_i915_private *i915)
+ 	for (i = 0; i < ARRAY_SIZE(ctx->hang_timestamp); i++)
+ 		ctx->hang_timestamp[i] = jiffies - CONTEXT_FAST_HANG_JIFFIES;
+ 
+-	spin_lock(&i915->gem.contexts.lock);
+-	list_add_tail(&ctx->link, &i915->gem.contexts.list);
+-	spin_unlock(&i915->gem.contexts.lock);
 -
--	if (i915_request_signaled(rq) || !intel_rps_is_active(rps))
-+	if (i915_request_signaled(rq) || i915_request_has_waitboost(rq))
- 		return;
+ 	return ctx;
  
- 	/* Serializes with i915_request_retire() */
--	spin_lock_irqsave(&rq->lock, flags);
--	if (!i915_request_has_waitboost(rq) &&
--	    !dma_fence_is_signaled_locked(&rq->fence)) {
--		set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
-+	if (!test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags)) {
-+		struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
+ err_free:
+@@ -936,6 +933,7 @@ static int gem_context_register(struct i915_gem_context *ctx,
+ 				struct drm_i915_file_private *fpriv,
+ 				u32 *id)
+ {
++	struct drm_i915_private *i915 = ctx->i915;
+ 	struct i915_address_space *vm;
+ 	int ret;
+ 
+@@ -954,8 +952,16 @@ static int gem_context_register(struct i915_gem_context *ctx,
+ 	/* And finally expose ourselves to userspace via the idr */
+ 	ret = xa_alloc(&fpriv->context_xa, id, ctx, xa_limit_32b, GFP_KERNEL);
+ 	if (ret)
+-		put_pid(fetch_and_zero(&ctx->pid));
++		goto err_pid;
 +
-+		if (!intel_rps_is_active(rps))
-+			return;
++	spin_lock(&i915->gem.contexts.lock);
++	list_add_tail(&ctx->link, &i915->gem.contexts.list);
++	spin_unlock(&i915->gem.contexts.lock);
++
++	return 0;
  
- 		GT_TRACE(rps_to_gt(rps), "boost fence:%llx:%llx\n",
- 			 rq->fence.context, rq->fence.seqno);
-@@ -910,7 +908,6 @@ void intel_rps_boost(struct i915_request *rq)
- 
- 		atomic_inc(&rps->boosts);
- 	}
--	spin_unlock_irqrestore(&rq->lock, flags);
++err_pid:
++	put_pid(fetch_and_zero(&ctx->pid));
+ 	return ret;
  }
  
- int intel_rps_set(struct intel_rps *rps, u8 val)
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 247e021203c2..43614d8fa18d 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -306,10 +306,8 @@ bool i915_request_retire(struct i915_request *rq)
- 		spin_unlock_irq(&rq->lock);
- 	}
- 
--	if (i915_request_has_waitboost(rq)) {
--		GEM_BUG_ON(!atomic_read(&rq->engine->gt->rps.num_waiters));
-+	if (test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags))
- 		atomic_dec(&rq->engine->gt->rps.num_waiters);
--	}
- 
- 	/*
- 	 * We only loosely track inflight requests across preemption,
 -- 
 2.20.1
 
