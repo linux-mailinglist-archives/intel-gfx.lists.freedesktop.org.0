@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17CAE232FAC
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jul 2020 11:38:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 427B0232FA8
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jul 2020 11:38:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCF3A6E8BA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32EE56E8AB;
 	Thu, 30 Jul 2020 09:38:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1973E6E169
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 09:38:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA49E6E091
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 09:38:11 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21979053-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21979054-1500050 
  for multiple; Thu, 30 Jul 2020 10:38:00 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Jul 2020 10:37:40 +0100
-Message-Id: <20200730093756.16737-6-chris@chris-wilson.co.uk>
+Date: Thu, 30 Jul 2020 10:37:41 +0100
+Message-Id: <20200730093756.16737-7-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200730093756.16737-1-chris@chris-wilson.co.uk>
 References: <20200730093756.16737-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 05/21] drm/i915: Make the stale cached active
- node available for any timeline
+Subject: [Intel-gfx] [PATCH 06/21] drm/i915: Reduce locking around
+ i915_active_acquire_preallocate_barrier()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,56 +40,61 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: thomas.hellstrom@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UmF0aGVyIHRoYW4gcmVxdWlyZSB0aGUgbmV4dCB0aW1lbGluZSBhZnRlciBpZGxpbmcgdG8gbWF0
-Y2ggdGhlIE1SVQpiZWZvcmUgaWRsaW5nLCByZXNldCB0aGUgaW5kZXggb24gdGhlIG5vZGUgYW5k
-IGFsbG93IGl0IHRvIG1hdGNoIHRoZQpmaXJzdCByZXF1ZXN0LiBIb3dldmVyLCB0aGlzIHJlcXVp
-cmVzIGNtcHhjaGcodTY0KSBhbmQgc28gaXMgbm90IHRyaXZpYWwKb24gMzJiLCBzbyBmb3IgY29t
-cGF0aWJpbGl0eSB3ZSBqdXN0IGZhbGxiYWNrIHRvIGtlZXBpbmcgdGhlIGNhY2hlZCBub2RlCnBv
-aW50aW5nIHRvIHRoZSBNUlUgdGltZWxpbmUuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24g
-PGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KUmV2aWV3ZWQtYnk6IFRob21hcyBIZWxsc3Ryw7Zt
-IDx0aG9tYXMuaGVsbHN0cm9tQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IFR2cnRrbyBVcnN1bGlu
-IDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9hY3RpdmUuYyB8IDMwICsrKysrKysrKysrKysrKysrKysrKysrKysrKystLQogMSBmaWxlIGNo
-YW5nZWQsIDI4IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9hY3RpdmUuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfYWN0aXZlLmMKaW5kZXggYjliZDU1NzhmZjU0Li43YjUxMDQ1Yzg0NjEgMTAwNjQ0Ci0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfYWN0aXZlLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9hY3RpdmUuYwpAQCAtMTU3LDYgKzE1NywxMCBAQCBfX2FjdGl2ZV9yZXRpcmUo
-c3RydWN0IGk5MTVfYWN0aXZlICpyZWYpCiAJCXJiX2xpbmtfbm9kZSgmcmVmLT5jYWNoZS0+bm9k
-ZSwgTlVMTCwgJnJlZi0+dHJlZS5yYl9ub2RlKTsKIAkJcmJfaW5zZXJ0X2NvbG9yKCZyZWYtPmNh
-Y2hlLT5ub2RlLCAmcmVmLT50cmVlKTsKIAkJR0VNX0JVR19PTihyZWYtPnRyZWUucmJfbm9kZSAh
-PSAmcmVmLT5jYWNoZS0+bm9kZSk7CisKKwkJLyogTWFrZSB0aGUgY2FjaGVkIG5vZGUgYXZhaWxh
-YmxlIGZvciByZXVzZSB3aXRoIGFueSB0aW1lbGluZSAqLworCQlpZiAoSVNfRU5BQkxFRChDT05G
-SUdfNjRCSVQpKQorCQkJcmVmLT5jYWNoZS0+dGltZWxpbmUgPSAwOyAvKiBuZWVkcyBjbXB4Y2hn
-KHU2NCkgKi8KIAl9CiAKIAlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZyZWYtPnRyZWVfbG9jaywg
-ZmxhZ3MpOwpAQCAtMjM1LDYgKzIzOSw4IEBAIHN0YXRpYyBzdHJ1Y3QgYWN0aXZlX25vZGUgKl9f
-YWN0aXZlX2xvb2t1cChzdHJ1Y3QgaTkxNV9hY3RpdmUgKnJlZiwgdTY0IGlkeCkKIHsKIAlzdHJ1
-Y3QgYWN0aXZlX25vZGUgKml0OwogCisJR0VNX0JVR19PTihpZHggPT0gMCk7IC8qIDAgaXMgdGhl
-IHVub3JkZXJlZCB0aW1lbGluZSwgcnN2ZCBmb3IgY2FjaGUgKi8KKwogCS8qCiAJICogV2UgdHJh
-Y2sgdGhlIG1vc3QgcmVjZW50bHkgdXNlZCB0aW1lbGluZSB0byBza2lwIGEgcmJ0cmVlIHNlYXJj
-aAogCSAqIGZvciB0aGUgY29tbW9uIGNhc2UsIHVuZGVyIHR5cGljYWwgbG9hZHMgd2UgbmV2ZXIg
-bmVlZCB0aGUgcmJ0cmVlCkBAIC0yNDMsOCArMjQ5LDI4IEBAIHN0YXRpYyBzdHJ1Y3QgYWN0aXZl
-X25vZGUgKl9fYWN0aXZlX2xvb2t1cChzdHJ1Y3QgaTkxNV9hY3RpdmUgKnJlZiwgdTY0IGlkeCkK
-IAkgKiBjdXJyZW50IHRpbWVsaW5lLgogCSAqLwogCWl0ID0gUkVBRF9PTkNFKHJlZi0+Y2FjaGUp
-OwotCWlmIChpdCAmJiBpdC0+dGltZWxpbmUgPT0gaWR4KQotCQlyZXR1cm4gaXQ7CisJaWYgKGl0
-KSB7CisJCXU2NCBjYWNoZWQgPSBSRUFEX09OQ0UoaXQtPnRpbWVsaW5lKTsKKworCQkvKiBPbmNl
-IGNsYWltZWQsIHRoaXMgc2xvdCB3aWxsIG9ubHkgYmVsb25nIHRvIHRoaXMgaWR4ICovCisJCWlm
-IChjYWNoZWQgPT0gaWR4KQorCQkJcmV0dXJuIGl0OworCisjaWZkZWYgQ09ORklHXzY0QklUIC8q
-IGZvciBjbXB4Y2hnKHU2NCkgKi8KKwkJLyoKKwkJICogQW4gdW5jbGFpbWVkIGNhY2hlIFsudGlt
-ZWxpbmU9MF0gY2FuIG9ubHkgYmUgY2xhaW1lZCBvbmNlLgorCQkgKgorCQkgKiBJZiB0aGUgdmFs
-dWUgaXMgYWxyZWFkeSBub24temVybywgc29tZSBvdGhlciB0aHJlYWQgaGFzCisJCSAqIGNsYWlt
-ZWQgdGhlIGNhY2hlIGFuZCB3ZSBrbm93IHRoYXQgaXMgZG9lcyBub3QgbWF0Y2ggb3VyCisJCSAq
-IGlkeC4gSWYsIGFuZCBvbmx5IGlmLCB0aGUgdGltZWxpbmUgaXMgY3VycmVudGx5IHplcm8gaXMg
-aXQKKwkJICogd29ydGggY29tcGV0aW5nIHRvIGNsYWltIGl0IGF0b21pY2FsbHkgZm9yIG91cnNl
-bHZlcyAoZm9yCisJCSAqIG9ubHkgdGhlIHdpbm5lciBvZiB0aGF0IHJhY2Ugd2lsbCBjbXB4Y2hn
-IHJldHVybiB0aGUgb2xkCisJCSAqIHZhbHVlIG9mIDApLgorCQkgKi8KKwkJaWYgKCFjYWNoZWQg
-JiYgIWNtcHhjaGcoJml0LT50aW1lbGluZSwgMCwgaWR4KSkKKwkJCXJldHVybiBpdDsKKyNlbmRp
-ZgorCX0KIAogCUJVSUxEX0JVR19PTihvZmZzZXRvZih0eXBlb2YoKml0KSwgbm9kZSkpOwogCi0t
-IAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+As the conversion between idle-barrier and full i915_active_fence is
+already serialised by explicit memory barriers, we can reduce the
+spinlock in i915_active_acquire_preallocate_barrier() for finding an
+idle-barrier to reuse to an RCU read lock to ensure the fence remains
+valid, only taking the spinlock for the update of the rbtree itself.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/i915_active.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index 7b51045c8461..5dd52bb6d38c 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -807,7 +807,6 @@ static struct active_node *reuse_idle_barrier(struct i915_active *ref, u64 idx)
+ 	if (RB_EMPTY_ROOT(&ref->tree))
+ 		return NULL;
+ 
+-	spin_lock_irq(&ref->tree_lock);
+ 	GEM_BUG_ON(i915_active_is_idle(ref));
+ 
+ 	/*
+@@ -872,11 +871,10 @@ static struct active_node *reuse_idle_barrier(struct i915_active *ref, u64 idx)
+ 			goto match;
+ 	}
+ 
+-	spin_unlock_irq(&ref->tree_lock);
+-
+ 	return NULL;
+ 
+ match:
++	spin_lock_irq(&ref->tree_lock);
+ 	rb_erase(p, &ref->tree); /* Hide from waits and sibling allocations */
+ 	if (p == &ref->cache->node)
+ 		WRITE_ONCE(ref->cache, NULL);
+@@ -911,7 +909,9 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
+ 		struct llist_node *prev = first;
+ 		struct active_node *node;
+ 
++		rcu_read_lock();
+ 		node = reuse_idle_barrier(ref, idx);
++		rcu_read_unlock();
+ 		if (!node) {
+ 			node = kmem_cache_alloc(global.slab_cache, GFP_KERNEL);
+ 			if (!node) {
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
