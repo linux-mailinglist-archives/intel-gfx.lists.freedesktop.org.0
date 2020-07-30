@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B8B232FA5
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jul 2020 11:38:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BEBB232FA6
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jul 2020 11:38:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D49646E8B7;
-	Thu, 30 Jul 2020 09:38:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 986FC6E8B1;
+	Thu, 30 Jul 2020 09:38:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2494C6E091
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C37EB6E8B0
  for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 09:38:09 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21979055-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21979056-1500050 
  for multiple; Thu, 30 Jul 2020 10:38:00 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Jul 2020 10:37:42 +0100
-Message-Id: <20200730093756.16737-8-chris@chris-wilson.co.uk>
+Date: Thu, 30 Jul 2020 10:37:43 +0100
+Message-Id: <20200730093756.16737-9-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200730093756.16737-1-chris@chris-wilson.co.uk>
 References: <20200730093756.16737-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 07/21] drm/i915: Provide a fastpath for waiting
- on vma bindings
+Subject: [Intel-gfx] [PATCH 08/21] drm/i915/gem: Reduce ctx->engine_mutex
+ for reading the clone source
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,50 +40,107 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: thomas.hellstrom@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QmVmb3JlIHdlIGNhbiBleGVjdXRlIGEgcmVxdWVzdCwgd2UgbXVzdCB3YWl0IGZvciBhbGwgb2Yg
-aXRzIHZtYSB0byBiZQpib3VuZC4gVGhpcyBpcyBhIGZyZXF1ZW50IG9wZXJhdGlvbiBmb3Igd2hp
-Y2ggd2UgY2FuIG9wdGltaXNlIGF3YXkgYQpmZXcgYXRvbWljIG9wZXJhdGlvbnMgKG5vdGFibHkg
-YSBjbXB4Y2hnKSBpbiBsaWV1IG9mIHRoZSBSQ1UgcHJvdGVjdGlvbi4KClNpZ25lZC1vZmYtYnk6
-IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpSZXZpZXdlZC1ieTogVGhv
-bWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgpSZXZpZXdlZC1ieTog
-VHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2FjdGl2ZS5oIHwgMTUgKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X3ZtYS5jICAgIHwgIDkgKysrKysrKy0tCiAyIGZpbGVzIGNoYW5nZWQs
-IDIyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9hY3RpdmUuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfYWN0
-aXZlLmgKaW5kZXggYjllMDM5NGUyOTc1Li5mYjE2NWQzZjAxY2YgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfYWN0aXZlLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9hY3RpdmUuaApAQCAtMjMxLDQgKzIzMSwxOSBAQCBzdHJ1Y3QgaTkxNV9hY3RpdmUgKmk5
-MTVfYWN0aXZlX2NyZWF0ZSh2b2lkKTsKIHN0cnVjdCBpOTE1X2FjdGl2ZSAqaTkxNV9hY3RpdmVf
-Z2V0KHN0cnVjdCBpOTE1X2FjdGl2ZSAqcmVmKTsKIHZvaWQgaTkxNV9hY3RpdmVfcHV0KHN0cnVj
-dCBpOTE1X2FjdGl2ZSAqcmVmKTsKIAorc3RhdGljIGlubGluZSBpbnQgX19pOTE1X3JlcXVlc3Rf
-YXdhaXRfZXhjbHVzaXZlKHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxLAorCQkJCQkJIHN0cnVjdCBp
-OTE1X2FjdGl2ZSAqYWN0aXZlKQoreworCXN0cnVjdCBkbWFfZmVuY2UgKmZlbmNlOworCWludCBl
-cnIgPSAwOworCisJZmVuY2UgPSBpOTE1X2FjdGl2ZV9mZW5jZV9nZXQoJmFjdGl2ZS0+ZXhjbCk7
-CisJaWYgKGZlbmNlKSB7CisJCWVyciA9IGk5MTVfcmVxdWVzdF9hd2FpdF9kbWFfZmVuY2UocnEs
-IGZlbmNlKTsKKwkJZG1hX2ZlbmNlX3B1dChmZW5jZSk7CisJfQorCisJcmV0dXJuIGVycjsKK30K
-KwogI2VuZGlmIC8qIF9JOTE1X0FDVElWRV9IXyAqLwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV92bWEuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdm1hLmMKaW5k
-ZXggYmM2NGY3NzNkY2RiLi5jZDEyMDQ3Yzc3OTEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfdm1hLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92bWEuYwpA
-QCAtMTE2Nyw2ICsxMTY3LDEyIEBAIHZvaWQgaTkxNV92bWFfcmV2b2tlX21tYXAoc3RydWN0IGk5
-MTVfdm1hICp2bWEpCiAJCWxpc3RfZGVsKCZ2bWEtPm9iai0+dXNlcmZhdWx0X2xpbmspOwogfQog
-CitzdGF0aWMgaW50CitfX2k5MTVfcmVxdWVzdF9hd2FpdF9iaW5kKHN0cnVjdCBpOTE1X3JlcXVl
-c3QgKnJxLCBzdHJ1Y3QgaTkxNV92bWEgKnZtYSkKK3sKKwlyZXR1cm4gX19pOTE1X3JlcXVlc3Rf
-YXdhaXRfZXhjbHVzaXZlKHJxLCAmdm1hLT5hY3RpdmUpOworfQorCiBpbnQgX19pOTE1X3ZtYV9t
-b3ZlX3RvX2FjdGl2ZShzdHJ1Y3QgaTkxNV92bWEgKnZtYSwgc3RydWN0IGk5MTVfcmVxdWVzdCAq
-cnEpCiB7CiAJaW50IGVycjsKQEAgLTExNzQsOCArMTE4MCw3IEBAIGludCBfX2k5MTVfdm1hX21v
-dmVfdG9fYWN0aXZlKHN0cnVjdCBpOTE1X3ZtYSAqdm1hLCBzdHJ1Y3QgaTkxNV9yZXF1ZXN0ICpy
-cSkKIAlHRU1fQlVHX09OKCFpOTE1X3ZtYV9pc19waW5uZWQodm1hKSk7CiAKIAkvKiBXYWl0IGZv
-ciB0aGUgdm1hIHRvIGJlIGJvdW5kIGJlZm9yZSB3ZSBzdGFydCEgKi8KLQllcnIgPSBpOTE1X3Jl
-cXVlc3RfYXdhaXRfYWN0aXZlKHJxLCAmdm1hLT5hY3RpdmUsCi0JCQkJCUk5MTVfQUNUSVZFX0FX
-QUlUX0VYQ0wpOworCWVyciA9IF9faTkxNV9yZXF1ZXN0X2F3YWl0X2JpbmQocnEsIHZtYSk7CiAJ
-aWYgKGVycikKIAkJcmV0dXJuIGVycjsKIAotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+When cloning the engines from the source context, we need to ensure that
+the engines are not freed as we copy them, and that the flags we clone
+from the source correspond with the engines we copy across. To do this
+we need only take a reference to the src->engines, rather than hold the
+src->engine_mutex, so long as we verify that nothing changed under the
+read.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 24 +++++++++++++--------
+ 1 file changed, 15 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index d0bdb6d447ed..b5b179f96d77 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -752,7 +752,8 @@ __create_context(struct drm_i915_private *i915)
+ }
+ 
+ static inline struct i915_gem_engines *
+-__context_engines_await(const struct i915_gem_context *ctx)
++__context_engines_await(const struct i915_gem_context *ctx,
++			bool *user_engines)
+ {
+ 	struct i915_gem_engines *engines;
+ 
+@@ -761,6 +762,10 @@ __context_engines_await(const struct i915_gem_context *ctx)
+ 		engines = rcu_dereference(ctx->engines);
+ 		GEM_BUG_ON(!engines);
+ 
++		if (user_engines)
++			*user_engines = i915_gem_context_user_engines(ctx);
++
++		/* successful await => strong mb */
+ 		if (unlikely(!i915_sw_fence_await(&engines->fence)))
+ 			continue;
+ 
+@@ -784,7 +789,7 @@ context_apply_all(struct i915_gem_context *ctx,
+ 	struct intel_context *ce;
+ 	int err = 0;
+ 
+-	e = __context_engines_await(ctx);
++	e = __context_engines_await(ctx, NULL);
+ 	for_each_gem_engine(ce, e, it) {
+ 		err = fn(ce, data);
+ 		if (err)
+@@ -1117,7 +1122,7 @@ static int context_barrier_task(struct i915_gem_context *ctx,
+ 		return err;
+ 	}
+ 
+-	e = __context_engines_await(ctx);
++	e = __context_engines_await(ctx, NULL);
+ 	if (!e) {
+ 		i915_active_release(&cb->base);
+ 		return -ENOENT;
+@@ -2114,11 +2119,14 @@ static int copy_ring_size(struct intel_context *dst,
+ static int clone_engines(struct i915_gem_context *dst,
+ 			 struct i915_gem_context *src)
+ {
+-	struct i915_gem_engines *e = i915_gem_context_lock_engines(src);
+-	struct i915_gem_engines *clone;
++	struct i915_gem_engines *clone, *e;
+ 	bool user_engines;
+ 	unsigned long n;
+ 
++	e = __context_engines_await(src, &user_engines);
++	if (!e)
++		return -ENOENT;
++
+ 	clone = alloc_engines(e->num_engines);
+ 	if (!clone)
+ 		goto err_unlock;
+@@ -2160,9 +2168,7 @@ static int clone_engines(struct i915_gem_context *dst,
+ 		}
+ 	}
+ 	clone->num_engines = n;
+-
+-	user_engines = i915_gem_context_user_engines(src);
+-	i915_gem_context_unlock_engines(src);
++	i915_sw_fence_complete(&e->fence);
+ 
+ 	/* Serialised by constructor */
+ 	engines_idle_release(dst, rcu_replace_pointer(dst->engines, clone, 1));
+@@ -2173,7 +2179,7 @@ static int clone_engines(struct i915_gem_context *dst,
+ 	return 0;
+ 
+ err_unlock:
+-	i915_gem_context_unlock_engines(src);
++	i915_sw_fence_complete(&e->fence);
+ 	return -ENOMEM;
+ }
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
