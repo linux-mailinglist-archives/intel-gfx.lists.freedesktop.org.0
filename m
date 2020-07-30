@@ -2,55 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48EEC232763
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jul 2020 00:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5B8D23291C
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jul 2020 02:48:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 541836E7E5;
-	Wed, 29 Jul 2020 22:10:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C6466E821;
+	Thu, 30 Jul 2020 00:48:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A9636E162;
- Wed, 29 Jul 2020 22:10:54 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id g10so3031599wmc.1;
- Wed, 29 Jul 2020 15:10:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=VRmXX22Ht9Ug7pe7RoctKCZnQAxX1VH0Ou5Q8SMIejk=;
- b=Xt2cZ1tWt2tIeIk0lGFPYBvi2AJQmiptaxJ/IrqrJHsJP0XcurZ7xsprx89qWRSeas
- euW6FnIpxp07vyK+XaFIVryYYhIAN1YBPz3zm3lqJADQ5omnUDX0NP6grbTBUtPnhsdF
- J3TU+Tk7qY+yTiPGhkvo5ja7npziNhpk/3uANV7RSJ0qhUSFxcZcaFPS9YVbbb3ZWKzz
- kC+nHw97kt9XnnF0enP57i1SXtmprwiM9sDxXIHlr2UdMmazSH55332PFuAEcA8lGpD2
- HUsRWoWlUt/ckjME1OdX86A+vCEj4oTXxTKGCUYxq/u3kAikEIkm045zrIeEm5tnz0pe
- lZUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=VRmXX22Ht9Ug7pe7RoctKCZnQAxX1VH0Ou5Q8SMIejk=;
- b=q4maFbZjBESWjXhSujIeaUhjxUKSI2BXVD7VPmJnGaFw7Li4RxDTXf85kGAbAEKs8B
- LNiyet4yx4DiOHKrGP6SlSlkt7rkj7K7y385xl7o4Jyqz5TW7Vv8fcpTTdraM4Dn947O
- e1Qy6mLCmt9UNEGVQ99ZMSVhAiewvrQDBTJJzN4r7Xjl6/kUz0N4x7/xIu65taVxaPZY
- dYLhTcO5jpivPeRcJDdh0DzUJpLR4PdAJVJLjtgubP74KA3Gp7sH4R9m7oDv1Q0UB8dE
- PT3crHcsJIqAtqwrX6Psd1YkI1zhd8UP0NTfHkFwmIDYMzSI6cmHULFlT21LhiP8WgB1
- lDqQ==
-X-Gm-Message-State: AOAM533qdvQz1WWpsFs1Mh6wAAqc4I/o10C2y1ZLdjnNtehPYrvjkF93
- a/a1SY4MPGAC9T3FKsFW8cbMgV9TSjMgYToc5FI=
-X-Google-Smtp-Source: ABdhPJy8ks1gVFBsd4+PvZ7RcVx+rmeF3fW3P6eru07cUIBqON0J65m9pkCTSrgJ1mggZhfdeqSwdUdDfuQuzzSeZtw=
-X-Received: by 2002:a1c:2:: with SMTP id 2mr10843270wma.79.1596060652954; Wed,
- 29 Jul 2020 15:10:52 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21BED6E820
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 00:48:28 +0000 (UTC)
+IronPort-SDR: uomvNe/h1ToTswT031ib8v6XyveYLgVxevgTXL66gkxFiZbvVgu/YNJQODz39IJ8XShfc+Ykxo
+ eFMl1Hrs16bA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9697"; a="152751065"
+X-IronPort-AV: E=Sophos;i="5.75,412,1589266800"; d="scan'208";a="152751065"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2020 17:48:27 -0700
+IronPort-SDR: kU2pjNNlQa86WK4AaCHV6gj6h8G3nemoAkEq+cMePdosr7tMc/kgUJwqH/c+qltamPZHx+ljMT
+ D0OqHwQaF2Sw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,412,1589266800"; d="scan'208";a="274032915"
+Received: from orsosgc001.ra.intel.com ([10.23.184.150])
+ by fmsmga008.fm.intel.com with ESMTP; 29 Jul 2020 17:48:27 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Jul 2020 17:48:20 -0700
+Message-Id: <20200730004826.8415-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20200727213017.852589-1-daniel.vetter@ffwll.ch>
- <d4e687e9-cf0b-384f-5982-849d0fa11147@amd.com>
-In-Reply-To: <d4e687e9-cf0b-384f-5982-849d0fa11147@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 29 Jul 2020 18:10:42 -0400
-Message-ID: <CADnq5_OdpSD3xRufctNedeiehiA80XcN1YOA7d58nMFcrp8vhg@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/amdgpu/dc: Stop dma_resv_lock inversion
- in commit_tail
+Subject: [Intel-gfx] [PATCH 0/6] Allow privileged user to map the OA buffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,89 +46,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- linux-media <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris.p.wilson@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXBwbGllZC4gIFRoYW5rcyEKCkFsZXgKCk9uIFR1ZSwgSnVsIDI4LCAyMDIwIGF0IDI6NTYgQU0g
-Q2hyaXN0aWFuIEvDtm5pZwo8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPiB3cm90ZToKPgo+IEFt
-IDI3LjA3LjIwIHVtIDIzOjMwIHNjaHJpZWIgRGFuaWVsIFZldHRlcjoKPiA+IFRyeWluZyB0byBn
-cmFiIGRtYV9yZXN2X2xvY2sgd2hpbGUgaW4gY29tbWl0X3RhaWwgYmVmb3JlIHdlJ3ZlIGRvbmUK
-PiA+IGFsbCB0aGUgY29kZSB0aGF0IGxlYWRzIHRvIHRoZSBldmVudHVhbCBzaWduYWxsaW5nIG9m
-IHRoZSB2YmxhbmsgZXZlbnQKPiA+ICh3aGljaCBjYW4gYmUgYSBkbWFfZmVuY2UpIGlzIGRlYWRs
-b2NrLXkuIERvbid0IGRvIHRoYXQuCj4gPgo+ID4gSGVyZSB0aGUgc29sdXRpb24gaXMgZWFzeSBi
-ZWNhdXNlIGp1c3QgZ3JhYmJpbmcgbG9ja3MgdG8gcmVhZAo+ID4gc29tZXRoaW5nIHJhY2VzIGFu
-eXdheS4gV2UgZG9uJ3QgbmVlZCB0byBib3RoZXIsIFJFQURfT05DRSBpcwo+ID4gZXF1aXZhbGVu
-dC4gQW5kIGF2b2lkcyB0aGUgbG9ja2luZyBpc3N1ZS4KPiA+Cj4gPiB2MjogQWxzbyB0YWtlIGlu
-dG8gYWNjb3VudCB0bXpfc3VyZmFjZSBib29sZWFuLCBwbHVzIGp1c3QgZGVsZXRlIHRoZQo+ID4g
-b2xkIGNvZGUuCj4gPgo+ID4gQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZwo+ID4gQ2M6
-IGxpbmFyby1tbS1zaWdAbGlzdHMubGluYXJvLm9yZwo+ID4gQ2M6IGxpbnV4LXJkbWFAdmdlci5r
-ZXJuZWwub3JnCj4gPiBDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IENjOiBp
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiBDYzogQ2hyaXMgV2lsc29uIDxjaHJp
-c0BjaHJpcy13aWxzb24uY28udWs+Cj4gPiBDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4u
-bGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPiA+IENjOiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJp
-c3RpYW4ua29lbmlnQGFtZC5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxk
-YW5pZWwudmV0dGVyQGludGVsLmNvbT4KPiA+IC0tLQo+ID4gREMtZm9sa3MsIEkgdGhpbmsgdGhp
-cyBzcGxpdCBvdXQgcGF0Y2ggZnJvbSBteSBzZXJpZXMgaGVyZQo+ID4KPiA+IGh0dHBzOi8vbmFt
-MTEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmxv
-cmUua2VybmVsLm9yZyUyRmRyaS1kZXZlbCUyRjIwMjAwNzA3MjAxMjI5LjQ3MjgzNC0xLWRhbmll
-bC52ZXR0ZXIlNDBmZndsbC5jaCUyRiZhbXA7ZGF0YT0wMiU3QzAxJTdDY2hyaXN0aWFuLmtvZW5p
-ZyU0MGFtZC5jb20lN0M4YTRmNTczNjY4MmE0YjVjOTQzZTA4ZDgzMjc0N2FiMSU3QzNkZDg5NjFm
-ZTQ4ODRlNjA4ZTExYTgyZDk5NGUxODNkJTdDMCU3QzAlN0M2MzczMTQ4MjMxNDU1MjE4NDAmYW1w
-O3NkYXRhPXFkN05yb3g2MkxyJTJGWFdiSkpGVnNrZzlSWUw0JTJGb1JWQ0ZqUjZyVURNQTVFJTNE
-JmFtcDtyZXNlcnZlZD0wCj4gPgo+ID4gc2hvdWxkIGJlIHJlYWR5IGZvciByZXZpZXcvbWVyZ2lu
-Zy4gSSBmaXhlZCBpdCB1cCBhIGJpdCBzbyB0aGF0IGl0J3Mgbm90Cj4gPiBqdXN0IGEgZ3Jvc3Mg
-aGFjayA6LSkKPiA+Cj4gPiBDaGVlcnMsIERhbmllbAo+ID4KPiA+Cj4gPiAtLS0KPiA+ICAgLi4u
-L2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jIHwgMTkgKysrKysrLS0t
-LS0tLS0tLS0tLQo+ID4gICAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCAxMyBkZWxl
-dGlvbnMoLSkKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5
-L2FtZGdwdV9kbS9hbWRncHVfZG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRn
-cHVfZG0vYW1kZ3B1X2RtLmMKPiA+IGluZGV4IDIxZWM2NGZlNTUyNy4uYTIwYjYyYjFmMmVmIDEw
-MDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRn
-cHVfZG0uYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9h
-bWRncHVfZG0uYwo+ID4gQEAgLTY5NTksMjAgKzY5NTksMTMgQEAgc3RhdGljIHZvaWQgYW1kZ3B1
-X2RtX2NvbW1pdF9wbGFuZXMoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLAo+ID4gICAg
-ICAgICAgICAgICAgICAgICAgIERSTV9FUlJPUigiV2FpdGluZyBmb3IgZmVuY2VzIHRpbWVkIG91
-dCEiKTsKPiA+Cj4gPiAgICAgICAgICAgICAgIC8qCj4gPiAtICAgICAgICAgICAgICAqIFRPRE8g
-VGhpcyBtaWdodCBmYWlsIGFuZCBoZW5jZSBiZXR0ZXIgbm90IHVzZWQsIHdhaXQKPiA+IC0gICAg
-ICAgICAgICAgICogZXhwbGljaXRseSBvbiBmZW5jZXMgaW5zdGVhZAo+ID4gLSAgICAgICAgICAg
-ICAgKiBhbmQgaW4gZ2VuZXJhbCBzaG91bGQgYmUgY2FsbGVkIGZvcgo+ID4gLSAgICAgICAgICAg
-ICAgKiBibG9ja2luZyBjb21taXQgdG8gYXMgcGVyIGZyYW1ld29yayBoZWxwZXJzCj4gPiArICAg
-ICAgICAgICAgICAqIFdlIGNhbm5vdCByZXNlcnZlIGJ1ZmZlcnMgaGVyZSwgd2hpY2ggbWVhbnMg
-dGhlIG5vcm1hbCBmbGFnCj4gPiArICAgICAgICAgICAgICAqIGFjY2VzcyBmdW5jdGlvbnMgZG9u
-J3Qgd29yay4gUGFwZXIgb3ZlciB0aGlzIHdpdGggUkVBRF9PTkNFLAo+ID4gKyAgICAgICAgICAg
-ICAgKiBidXQgbWF5YmUgdGhlIGZsYWdzIGFyZSBpbnZhcmlhbnQgZW5vdWdoIHRoYXQgbm90IGV2
-ZW4gdGhhdAo+ID4gKyAgICAgICAgICAgICAgKiB3b3VsZCBiZSBuZWVkZWQuCj4gPiAgICAgICAg
-ICAgICAgICAqLwo+ID4gLSAgICAgICAgICAgICByID0gYW1kZ3B1X2JvX3Jlc2VydmUoYWJvLCB0
-cnVlKTsKPiA+IC0gICAgICAgICAgICAgaWYgKHVubGlrZWx5KHIgIT0gMCkpCj4gPiAtICAgICAg
-ICAgICAgICAgICAgICAgRFJNX0VSUk9SKCJmYWlsZWQgdG8gcmVzZXJ2ZSBidWZmZXIgYmVmb3Jl
-IGZsaXBcbiIpOwo+ID4gLQo+ID4gLSAgICAgICAgICAgICBhbWRncHVfYm9fZ2V0X3RpbGluZ19m
-bGFncyhhYm8sICZ0aWxpbmdfZmxhZ3MpOwo+ID4gLQo+ID4gLSAgICAgICAgICAgICB0bXpfc3Vy
-ZmFjZSA9IGFtZGdwdV9ib19lbmNyeXB0ZWQoYWJvKTsKPiA+IC0KPiA+IC0gICAgICAgICAgICAg
-YW1kZ3B1X2JvX3VucmVzZXJ2ZShhYm8pOwo+ID4gKyAgICAgICAgICAgICB0aWxpbmdfZmxhZ3Mg
-PSBSRUFEX09OQ0UoYWJvLT50aWxpbmdfZmxhZ3MpOwo+ID4gKyAgICAgICAgICAgICB0bXpfc3Vy
-ZmFjZSA9IFJFQURfT05DRShhYm8tPmZsYWdzKSAmIEFNREdQVV9HRU1fQ1JFQVRFX0VOQ1JZUFRF
-RDsKPgo+IFllYWgsIHRoZSBhYm8tPmZsYWdzIGFyZSBtb3N0bHkgZml4ZWQgYWZ0ZXIgY3JlYXRp
-b24sIGVzcGVjaWFsbHkgdGhlCj4gZW5jcnlwdGVkIGZsYWcgY2FuJ3QgY2hhbmdlIG9yIHdlIGNv
-cnJ1cHQgcGFnZSB0YWJsZSB0YWJsZXMuIFNvIHRoYXQKPiBzaG91bGQgd29yayBmaW5lLgo+Cj4g
-QW55Ym9keSB3aG8gcGlja3MgdGhpcyB1cCBmZWVsIGZyZWUgdG8gYWRkIGFuIFJldmlld2VkLWJ5
-OiBDaHJpc3RpYW4KPiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4uCj4KPiBSZWdh
-cmRzLAo+IENocmlzdGlhbi4KPgo+ID4KPiA+ICAgICAgICAgICAgICAgZmlsbF9kY19wbGFuZV9p
-bmZvX2FuZF9hZGRyKAo+ID4gICAgICAgICAgICAgICAgICAgICAgIGRtLT5hZGV2LCBuZXdfcGxh
-bmVfc3RhdGUsIHRpbGluZ19mbGFncywKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPiBhbWQtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vYW1kLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZngK
+This cover letter is included to trigger "Test-with" an IGT patch.
+
+Tests - https://patchwork.freedesktop.org/series/80059/
+
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Test-with: 20200730004603.8171-1-umesh.nerlige.ramappa@intel.com
+
+Piotr Maciejewski (4):
+  drm/i915/perf: Ensure observation logic is not clock gated
+  drm/i915/perf: Whitelist OA report trigger registers
+  drm/i915/perf: Whitelist OA counter and buffer registers
+  drm/i915/perf: Map OA buffer to user space for gen12 performance query
+
+Umesh Nerlige Ramappa (2):
+  drm/i915: Allow removal of whitelist register and refactor
+  drm/i915/selftests: Clear flags when using wa->reg for comparison
+
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.h      |   2 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 157 +++++++++++++---
+ drivers/gpu/drm/i915/gt/intel_workarounds.h   |   3 +
+ .../gpu/drm/i915/gt/selftest_workarounds.c    |   3 +
+ drivers/gpu/drm/i915/i915_perf.c              | 169 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_perf_types.h        |   5 +
+ drivers/gpu/drm/i915/i915_reg.h               |  10 ++
+ include/uapi/drm/i915_drm.h                   |  16 ++
+ 9 files changed, 339 insertions(+), 28 deletions(-)
+
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
