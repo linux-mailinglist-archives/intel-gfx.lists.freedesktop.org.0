@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 424DF23471E
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 15:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6730823471C
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 15:46:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8149F6EABB;
-	Fri, 31 Jul 2020 13:46:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 769136EAB4;
+	Fri, 31 Jul 2020 13:46:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE2D6EAB4
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 13:46:00 +0000 (UTC)
-IronPort-SDR: k59q3dUNWAQs7TyfbKMnnVM9E1AeBClLic5hXYoEhZf0qNBZ3x65VYlP85KhNTn2i21ENHJo6F
- bSypzzLQJASA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9698"; a="216227535"
-X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="216227535"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DD6C6EAB4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 13:46:02 +0000 (UTC)
+IronPort-SDR: RfLdQIjdDlK5hoid9HZRn60wyce0qINpnqTWcrscDbALW2fyHxqJARp3WEKUU4ZJcaykJHsI8y
+ qHvdRs3npNAA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9698"; a="216227540"
+X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="216227540"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2020 06:46:00 -0700
-IronPort-SDR: RD5UdKEqL202D69KpXFtsaVwdXamno+Z8j2aDp7raLzkzWMHQajE9Re1SoE5upuRV2GRghL/iX
- U4+BIA/3zKxw==
+ 31 Jul 2020 06:46:01 -0700
+IronPort-SDR: PYwSsktvs6o9UuPzZNrOy3ljJABtP8TcQmiRopIuNHnxzEScBRNfc4XSL+yqHe9lbe+beraZ5d
+ +YTtrotLT+eg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="273205798"
+X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="273205809"
 Received: from fmihut-mobl1.ger.corp.intel.com (HELO delly.ger.corp.intel.com)
  ([10.252.59.1])
- by fmsmga007.fm.intel.com with ESMTP; 31 Jul 2020 06:45:58 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 31 Jul 2020 06:46:00 -0700
 From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jul 2020 16:45:51 +0300
-Message-Id: <20200731134553.156492-2-lionel.g.landwerlin@intel.com>
+Date: Fri, 31 Jul 2020 16:45:52 +0300
+Message-Id: <20200731134553.156492-3-lionel.g.landwerlin@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20200731134553.156492-1-lionel.g.landwerlin@intel.com>
 References: <20200731134553.156492-1-lionel.g.landwerlin@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: introduce a mechanism to extend
- execbuf2
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: add syncobj timeline support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,392 +49,366 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We're planning to use this for a couple of new feature where we need
-to provide additional parameters to execbuf.
+Introduces a new parameters to execbuf so that we can specify syncobj
+handles as well as timeline points.
 
-v2: Check for invalid flags in execbuffer2 (Lionel)
+v2: Reuse i915_user_extension_fn
 
-v3: Rename I915_EXEC_EXT -> I915_EXEC_USE_EXTENSIONS (Chris)
+v3: Check that the chained extension is only present once (Chris)
 
-v4: Rebase
-    Move array fence parsing in i915_gem_do_execbuffer()
+v4: Check that dma_fence_chain_find_seqno returns a non NULL fence (Lionel)
+
+v5: Use BIT_ULL (Chris)
+
+v6: Fix issue with already signaled timeline points,
+    dma_fence_chain_find_seqno() setting fence to NULL (Chris)
+
+v7: Report ENOENT with invalid syncobj handle (Lionel)
+
+v8: Check for out of order timeline point insertion (Chris)
+
+v9: After explanations on
+    https://lists.freedesktop.org/archives/dri-devel/2019-August/229287.html
+    drop the ordering check from v8 (Lionel)
+
+v10: Set first extension enum item to 1 (Jason)
+
+v11: Rebase
 
 Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk> (v1)
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 131 +++++++++++-------
- include/uapi/drm/i915_drm.h                   |  26 +++-
- 2 files changed, 103 insertions(+), 54 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 167 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_drv.c               |   3 +-
+ drivers/gpu/drm/i915/i915_getparam.c          |   1 +
+ include/uapi/drm/i915_drm.h                   |  39 ++++
+ 4 files changed, 203 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index b7a86cdec9b5..5aac474c058f 100644
+index 5aac474c058f..652f3b30a374 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -26,6 +26,7 @@
- #include "i915_gem_ioctls.h"
- #include "i915_sw_fence_work.h"
- #include "i915_trace.h"
-+#include "i915_user_extensions.h"
+@@ -285,6 +285,8 @@ struct i915_execbuffer {
  
- struct eb_vma {
- 	struct i915_vma *vma;
-@@ -281,6 +282,13 @@ struct i915_execbuffer {
- 	int lut_size;
- 	struct hlist_head *buckets; /** ht for relocation handles */
- 	struct eb_vma_array *array;
-+
-+	struct i915_eb_fence {
-+		struct drm_syncobj *syncobj; /* Use with ptr_mask_bits() */
-+	} *fences;
-+	u32 n_fences;
-+
-+	u64 extension_flags; /** Available extensions parameters */
- };
+ 	struct i915_eb_fence {
+ 		struct drm_syncobj *syncobj; /* Use with ptr_mask_bits() */
++		u64 value;
++		struct dma_fence_chain *chain_fence;
+ 	} *fences;
+ 	u32 n_fences;
  
- static inline bool eb_use_cmdparser(const struct i915_execbuffer *eb)
-@@ -1622,7 +1630,8 @@ static int i915_gem_check_execbuffer(struct drm_i915_gem_execbuffer2 *exec)
- 		return -EINVAL;
- 
- 	/* Kernel clipping was a DRI1 misfeature */
--	if (!(exec->flags & I915_EXEC_FENCE_ARRAY)) {
-+	if (!(exec->flags & (I915_EXEC_FENCE_ARRAY |
-+			     I915_EXEC_USE_EXTENSIONS))) {
- 		if (exec->num_cliprects || exec->cliprects_ptr)
- 			return -EINVAL;
- 	}
-@@ -2189,41 +2198,41 @@ eb_pin_engine(struct i915_execbuffer *eb,
- }
- 
+@@ -2200,14 +2202,121 @@ eb_pin_engine(struct i915_execbuffer *eb,
  static void
--__free_fence_array(struct drm_syncobj **fences, unsigned int n)
-+__free_fence_array(struct i915_eb_fence *fences, unsigned int n)
+ __free_fence_array(struct i915_eb_fence *fences, unsigned int n)
  {
- 	while (n--)
--		drm_syncobj_put(ptr_mask_bits(fences[n], 2));
-+		drm_syncobj_put(ptr_mask_bits(fences[n].syncobj, 2));
+-	while (n--)
++	while (n--) {
+ 		drm_syncobj_put(ptr_mask_bits(fences[n].syncobj, 2));
++		kfree(fences[n].chain_fence);
++	}
  	kvfree(fences);
  }
  
--static struct drm_syncobj **
+ static int
+-get_fence_array(struct drm_i915_gem_execbuffer2 *args,
+-		struct i915_execbuffer *eb)
++get_timeline_fence_array(const struct drm_i915_gem_execbuffer_ext_timeline_fences *timeline_fences,
++			 struct i915_execbuffer *eb)
++{
++	struct drm_i915_gem_exec_fence __user *user_fences;
++	struct i915_eb_fence *fences;
++	u64 __user *user_values;
++	u64 num_fences, num_user_fences = timeline_fences->fence_count;
++	unsigned long n;
++	int err;
++
++	/* Check multiplication overflow for access_ok() and kvmalloc_array() */
++	BUILD_BUG_ON(sizeof(size_t) > sizeof(unsigned long));
++	if (num_user_fences > min_t(unsigned long,
++				    ULONG_MAX / sizeof(*user_fences),
++				    SIZE_MAX / sizeof(*fences)))
++		return -EINVAL;
++
++	user_fences = u64_to_user_ptr(timeline_fences->handles_ptr);
++	if (!access_ok(user_fences, num_user_fences * sizeof(*user_fences)))
++		return -EFAULT;
++
++	user_values = u64_to_user_ptr(timeline_fences->values_ptr);
++	if (!access_ok(user_values, num_user_fences * sizeof(*user_values)))
++		return -EFAULT;
++
++	fences = kvmalloc_array(num_user_fences, sizeof(*fences),
++				__GFP_NOWARN | GFP_KERNEL);
++	if (!fences)
++		return -ENOMEM;
++
++	BUILD_BUG_ON(~(ARCH_KMALLOC_MINALIGN - 1) &
++		     ~__I915_EXEC_FENCE_UNKNOWN_FLAGS);
++
++	for (n = 0, num_fences = 0; n < timeline_fences->fence_count; n++) {
++		struct drm_i915_gem_exec_fence fence;
++		struct drm_syncobj *syncobj;
++		u64 point;
++
++		if (__copy_from_user(&fence, user_fences++, sizeof(fence))) {
++			err = -EFAULT;
++			goto err;
++		}
++
++		if (fence.flags & __I915_EXEC_FENCE_UNKNOWN_FLAGS) {
++			err = -EINVAL;
++			goto err;
++		}
++
++		if (__get_user(point, user_values++)) {
++			err = -EFAULT;
++			goto err;
++		}
++
++		syncobj = drm_syncobj_find(eb->file, fence.handle);
++		if (!syncobj) {
++			DRM_DEBUG("Invalid syncobj handle provided\n");
++			err = -ENOENT;
++			goto err;
++		}
++
++		/*
++		 * For timeline syncobjs we need to preallocate chains for
++		 * later signaling.
++		 */
++		if (point != 0 && fence.flags & I915_EXEC_FENCE_SIGNAL) {
++			/*
++			 * Waiting and signaling the same point (when point !=
++			 * 0) would break the timeline.
++			 */
++			if (fence.flags & I915_EXEC_FENCE_WAIT) {
++				DRM_DEBUG("Tring to wait & signal the same timeline point.\n");
++				err = -EINVAL;
++				drm_syncobj_put(syncobj);
++				goto err;
++			}
++
++			fences[num_fences].chain_fence =
++				kmalloc(sizeof(*fences[num_fences].chain_fence),
++					GFP_KERNEL);
++			if (!fences[num_fences].chain_fence) {
++				drm_syncobj_put(syncobj);
++				err = -ENOMEM;
++				DRM_DEBUG("Unable to alloc chain_fence\n");
++				goto err;
++			}
++		} else {
++			fences[num_fences].chain_fence = NULL;
++		}
++
++		fences[num_fences].syncobj = ptr_pack_bits(syncobj, fence.flags, 2);
++		fences[num_fences].value = point;
++		num_fences++;
++	}
++
++	eb->fences = fences;
++	eb->n_fences = num_fences;
++
++	return 0;
++
++err:
++	__free_fence_array(fences, num_fences);
++	return err;
++}
++
 +static int
- get_fence_array(struct drm_i915_gem_execbuffer2 *args,
--		struct drm_file *file)
-+		struct i915_execbuffer *eb)
++get_legacy_fence_array(struct drm_i915_gem_execbuffer2 *args,
++		       struct i915_execbuffer *eb)
  {
  	const unsigned long nfences = args->num_cliprects;
  	struct drm_i915_gem_exec_fence __user *user;
--	struct drm_syncobj **fences;
-+	struct i915_eb_fence *fences;
- 	unsigned long n;
- 	int err;
- 
- 	if (!(args->flags & I915_EXEC_FENCE_ARRAY))
--		return NULL;
-+		return 0;
- 
- 	/* Check multiplication overflow for access_ok() and kvmalloc_array() */
+@@ -2222,7 +2331,7 @@ get_fence_array(struct drm_i915_gem_execbuffer2 *args,
  	BUILD_BUG_ON(sizeof(size_t) > sizeof(unsigned long));
  	if (nfences > min_t(unsigned long,
  			    ULONG_MAX / sizeof(*user),
- 			    SIZE_MAX / sizeof(*fences)))
--		return ERR_PTR(-EINVAL);
-+		return -EINVAL;
+-			    SIZE_MAX / sizeof(*fences)))
++			    SIZE_MAX / sizeof(*eb->fences)))
+ 		return -EINVAL;
  
  	user = u64_to_user_ptr(args->cliprects_ptr);
- 	if (!access_ok(user, nfences * sizeof(*user)))
--		return ERR_PTR(-EFAULT);
-+		return -EFAULT;
- 
- 	fences = kvmalloc_array(nfences, sizeof(*fences),
- 				__GFP_NOWARN | GFP_KERNEL);
- 	if (!fences)
--		return ERR_PTR(-ENOMEM);
-+		return -ENOMEM;
- 
- 	for (n = 0; n < nfences; n++) {
- 		struct drm_i915_gem_exec_fence fence;
-@@ -2239,7 +2248,7 @@ get_fence_array(struct drm_i915_gem_execbuffer2 *args,
- 			goto err;
- 		}
- 
--		syncobj = drm_syncobj_find(file, fence.handle);
-+		syncobj = drm_syncobj_find(eb->file, fence.handle);
- 		if (!syncobj) {
- 			DRM_DEBUG("Invalid syncobj handle provided\n");
- 			err = -ENOENT;
-@@ -2249,38 +2258,31 @@ get_fence_array(struct drm_i915_gem_execbuffer2 *args,
- 		BUILD_BUG_ON(~(ARCH_KMALLOC_MINALIGN - 1) &
+@@ -2259,6 +2368,8 @@ get_fence_array(struct drm_i915_gem_execbuffer2 *args,
  			     ~__I915_EXEC_FENCE_UNKNOWN_FLAGS);
  
--		fences[n] = ptr_pack_bits(syncobj, fence.flags, 2);
-+		fences[n].syncobj = ptr_pack_bits(syncobj, fence.flags, 2);
+ 		fences[n].syncobj = ptr_pack_bits(syncobj, fence.flags, 2);
++		fences[n].value = 0;
++		fences[n].chain_fence = NULL;
  	}
  
--	return fences;
-+	eb->fences = fences;
-+	eb->n_fences = nfences;
+ 	eb->fences = fences;
+@@ -2290,6 +2401,15 @@ await_fence_array(struct i915_execbuffer *eb)
+ 		if (!fence)
+ 			return -EINVAL;
+ 
++		if (eb->fences[n].value) {
++			err = dma_fence_chain_find_seqno(&fence, eb->fences[n].value);
++			if (err)
++				return err;
 +
-+	return 0;
- 
- err:
- 	__free_fence_array(fences, n);
--	return ERR_PTR(err);
--}
--
--static void
--put_fence_array(struct drm_i915_gem_execbuffer2 *args,
--		struct drm_syncobj **fences)
--{
--	if (fences)
--		__free_fence_array(fences, args->num_cliprects);
-+	return err;
- }
- 
- static int
--await_fence_array(struct i915_execbuffer *eb,
--		  struct drm_syncobj **fences)
-+await_fence_array(struct i915_execbuffer *eb)
- {
--	const unsigned int nfences = eb->args->num_cliprects;
- 	unsigned int n;
- 	int err;
- 
--	for (n = 0; n < nfences; n++) {
-+	for (n = 0; n < eb->n_fences; n++) {
- 		struct drm_syncobj *syncobj;
- 		struct dma_fence *fence;
- 		unsigned int flags;
- 
--		syncobj = ptr_unpack_bits(fences[n], &flags, 2);
-+		syncobj = ptr_unpack_bits(eb->fences[n].syncobj, &flags, 2);
- 		if (!(flags & I915_EXEC_FENCE_WAIT))
- 			continue;
- 
-@@ -2298,18 +2300,16 @@ await_fence_array(struct i915_execbuffer *eb,
- }
- 
- static void
--signal_fence_array(struct i915_execbuffer *eb,
--		   struct drm_syncobj **fences)
-+signal_fence_array(struct i915_execbuffer *eb)
- {
--	const unsigned int nfences = eb->args->num_cliprects;
- 	struct dma_fence * const fence = &eb->request->fence;
- 	unsigned int n;
- 
--	for (n = 0; n < nfences; n++) {
-+	for (n = 0; n < eb->n_fences; n++) {
- 		struct drm_syncobj *syncobj;
- 		unsigned int flags;
- 
--		syncobj = ptr_unpack_bits(fences[n], &flags, 2);
-+		syncobj = ptr_unpack_bits(eb->fences[n].syncobj, &flags, 2);
++			if (!fence)
++				continue;
++		}
++
+ 		err = i915_request_await_dma_fence(eb->request, fence);
+ 		dma_fence_put(fence);
+ 		if (err < 0)
+@@ -2313,7 +2433,17 @@ signal_fence_array(struct i915_execbuffer *eb)
  		if (!(flags & I915_EXEC_FENCE_SIGNAL))
  			continue;
  
-@@ -2358,12 +2358,38 @@ static void eb_request_add(struct i915_execbuffer *eb)
+-		drm_syncobj_replace_fence(syncobj, fence);
++		if (eb->fences[n].chain_fence) {
++			drm_syncobj_add_point(syncobj, eb->fences[n].chain_fence,
++					      fence, eb->fences[n].value);
++			/*
++			 * The chain's ownership is transferred to the
++			 * timeline.
++			 */
++			eb->fences[n].chain_fence = NULL;
++		} else {
++			drm_syncobj_replace_fence(syncobj, fence);
++		}
+ 	}
+ }
+ 
+@@ -2358,7 +2488,32 @@ static void eb_request_add(struct i915_execbuffer *eb)
  	mutex_unlock(&tl->mutex);
  }
  
-+static const i915_user_extension_fn execbuf_extensions[] = {
-+};
-+
-+static int
-+parse_execbuf2_extensions(struct drm_i915_gem_execbuffer2 *args,
-+			  struct i915_execbuffer *eb)
++static int parse_timeline_fences(struct i915_user_extension __user *ext, void *data)
 +{
-+	eb->extension_flags = 0;
++	struct drm_i915_gem_execbuffer_ext_timeline_fences timeline_fences;
++	struct i915_execbuffer *eb = data;
 +
-+	if (!(args->flags & I915_EXEC_USE_EXTENSIONS))
-+		return 0;
-+
-+	/* The execbuf2 extension mechanism reuses cliprects_ptr. So we cannot
-+	 * have another flag also using it at the same time.
-+	 */
++	/* Timeline fences are incompatible with the fence array flag. */
 +	if (eb->args->flags & I915_EXEC_FENCE_ARRAY)
 +		return -EINVAL;
 +
-+	if (args->num_cliprects != 0)
++	/*
++	 * Prevent the drm_i915_gem_execbuffer_ext_timeline_fences structure
++	 * to be included multiple times.
++	 */
++	if (eb->extension_flags & BIT_ULL(DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES))
 +		return -EINVAL;
 +
-+	return i915_user_extensions(u64_to_user_ptr(args->cliprects_ptr),
-+				    execbuf_extensions,
-+				    ARRAY_SIZE(execbuf_extensions),
-+				    eb);
++	if (copy_from_user(&timeline_fences, ext, sizeof(timeline_fences)))
++		return -EFAULT;
++
++	eb->extension_flags |= BIT_ULL(DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES);
++
++	return get_timeline_fence_array(&timeline_fences, eb);
 +}
 +
+ static const i915_user_extension_fn execbuf_extensions[] = {
++	[DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES] = parse_timeline_fences,
+ };
+ 
  static int
- i915_gem_do_execbuffer(struct drm_device *dev,
- 		       struct drm_file *file,
- 		       struct drm_i915_gem_execbuffer2 *args,
--		       struct drm_i915_gem_exec_object2 *exec,
--		       struct drm_syncobj **fences)
-+		       struct drm_i915_gem_exec_object2 *exec)
- {
- 	struct drm_i915_private *i915 = to_i915(dev);
- 	struct i915_execbuffer eb;
-@@ -2393,6 +2419,9 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	eb.batch_len = args->batch_len;
- 	eb.trampoline = NULL;
- 
-+	eb.fences = NULL;
-+	eb.n_fences = 0;
-+
- 	eb.batch_flags = 0;
- 	if (args->flags & I915_EXEC_SECURE) {
- 		if (INTEL_GEN(i915) >= 11)
-@@ -2429,10 +2458,18 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 		}
- 	}
- 
--	err = eb_create(&eb);
-+	err = parse_execbuf2_extensions(args, &eb);
+@@ -2462,7 +2617,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
  	if (err)
  		goto err_out_fence;
  
-+	err = get_fence_array(args, &eb);
-+	if (err)
-+		goto err_arr_fence;
-+
-+	err = eb_create(&eb);
-+	if (err)
-+		goto err_arr_fence;
-+
- 	GEM_BUG_ON(!eb.lut_size);
+-	err = get_fence_array(args, &eb);
++	err = get_legacy_fence_array(args, &eb);
+ 	if (err)
+ 		goto err_arr_fence;
  
- 	err = eb_select_context(&eb);
-@@ -2527,8 +2564,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 			goto err_request;
- 	}
- 
--	if (fences) {
--		err = await_fence_array(&eb, fences);
-+	if (eb.n_fences) {
-+		err = await_fence_array(&eb);
- 		if (err)
- 			goto err_request;
- 	}
-@@ -2558,8 +2595,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	i915_request_get(eb.request);
- 	eb_request_add(&eb);
- 
--	if (fences)
--		signal_fence_array(&eb, fences);
-+	if (eb.n_fences)
-+		signal_fence_array(&eb);
- 
- 	if (out_fence) {
- 		if (err == 0) {
-@@ -2587,6 +2624,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	i915_gem_context_put(eb.gem_context);
- err_destroy:
- 	eb_destroy(&eb);
-+err_arr_fence:
-+	__free_fence_array(eb.fences, eb.n_fences);
- err_out_fence:
- 	if (out_fence_fd != -1)
- 		put_unused_fd(out_fence_fd);
-@@ -2686,7 +2725,7 @@ i915_gem_execbuffer_ioctl(struct drm_device *dev, void *data,
- 			exec2_list[i].flags = 0;
- 	}
- 
--	err = i915_gem_do_execbuffer(dev, file, &exec2, exec2_list, NULL);
-+	err = i915_gem_do_execbuffer(dev, file, &exec2, exec2_list);
- 	if (exec2.flags & __EXEC_HAS_RELOC) {
- 		struct drm_i915_gem_exec_object __user *user_exec_list =
- 			u64_to_user_ptr(args->buffers_ptr);
-@@ -2718,7 +2757,6 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
- 	struct drm_i915_private *i915 = to_i915(dev);
- 	struct drm_i915_gem_execbuffer2 *args = data;
- 	struct drm_i915_gem_exec_object2 *exec2_list;
--	struct drm_syncobj **fences = NULL;
- 	const size_t count = args->buffer_count;
- 	int err;
- 
-@@ -2746,15 +2784,7 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
- 		return -EFAULT;
- 	}
- 
--	if (args->flags & I915_EXEC_FENCE_ARRAY) {
--		fences = get_fence_array(args, file);
--		if (IS_ERR(fences)) {
--			kvfree(exec2_list);
--			return PTR_ERR(fences);
--		}
--	}
--
--	err = i915_gem_do_execbuffer(dev, file, args, exec2_list, fences);
-+	err = i915_gem_do_execbuffer(dev, file, args, exec2_list);
- 
- 	/*
- 	 * Now that we have begun execution of the batchbuffer, we ignore
-@@ -2795,7 +2825,6 @@ end:;
- 	}
- 
- 	args->flags &= ~__I915_EXEC_UNKNOWN_FLAGS;
--	put_fence_array(args, fences);
- 	kvfree(exec2_list);
- 	return err;
- }
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index a5f58ed219fe..705e20e62db1 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -1845,7 +1845,8 @@ static struct drm_driver driver = {
+ 	 */
+ 	.driver_features =
+ 	    DRIVER_GEM |
+-	    DRIVER_RENDER | DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_SYNCOBJ,
++	    DRIVER_RENDER | DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_SYNCOBJ |
++	    DRIVER_SYNCOBJ_TIMELINE,
+ 	.release = i915_driver_release,
+ 	.open = i915_driver_open,
+ 	.lastclose = i915_driver_lastclose,
+diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+index 421613219ae9..f96032c60a12 100644
+--- a/drivers/gpu/drm/i915/i915_getparam.c
++++ b/drivers/gpu/drm/i915/i915_getparam.c
+@@ -132,6 +132,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+ 	case I915_PARAM_HAS_EXEC_BATCH_FIRST:
+ 	case I915_PARAM_HAS_EXEC_FENCE_ARRAY:
+ 	case I915_PARAM_HAS_EXEC_SUBMIT_FENCE:
++	case I915_PARAM_HAS_EXEC_TIMELINE_FENCES:
+ 		/* For the time being all of these are always true;
+ 		 * if some supported hardware does not have one of these
+ 		 * features this value needs to be provided from
 diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 00546062e023..0efded7b15f0 100644
+index 0efded7b15f0..021276c39842 100644
 --- a/include/uapi/drm/i915_drm.h
 +++ b/include/uapi/drm/i915_drm.h
-@@ -1046,6 +1046,10 @@ struct drm_i915_gem_exec_fence {
- 	__u32 flags;
+@@ -619,6 +619,13 @@ typedef struct drm_i915_irq_wait {
+  */
+ #define I915_PARAM_PERF_REVISION	54
+ 
++/* Query whether DRM_I915_GEM_EXECBUFFER2 supports supplying an array of
++ * timeline syncobj through drm_i915_gem_execbuf_ext_timeline_fences. See
++ * I915_EXEC_USE_EXTENSIONS.
++ */
++#define I915_PARAM_HAS_EXEC_TIMELINE_FENCES 55
++
++
+ /* Must be kept compact -- no holes and well documented */
+ 
+ typedef struct drm_i915_getparam {
+@@ -1047,9 +1054,41 @@ struct drm_i915_gem_exec_fence {
  };
  
-+enum drm_i915_gem_execbuffer_ext {
-+	DRM_I915_GEM_EXECBUFFER_EXT_MAX /* non-ABI */
+ enum drm_i915_gem_execbuffer_ext {
++	/**
++	 * See drm_i915_gem_execbuf_ext_timeline_fences.
++	 */
++	DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES = 1,
++
+ 	DRM_I915_GEM_EXECBUFFER_EXT_MAX /* non-ABI */
+ };
+ 
++/**
++ * This structure describes an array of drm_syncobj and associated points for
++ * timeline variants of drm_syncobj. It is invalid to append this structure to
++ * the execbuf if I915_EXEC_FENCE_ARRAY is set.
++ */
++struct drm_i915_gem_execbuffer_ext_timeline_fences {
++	struct i915_user_extension base;
++
++	/**
++	 * Number of element in the handles_ptr & value_ptr arrays.
++	 */
++	__u64 fence_count;
++
++	/**
++	 * Pointer to an array of struct drm_i915_gem_exec_fence of length
++	 * fence_count.
++	 */
++	__u64 handles_ptr;
++
++	/**
++	 * Pointer to an array of u64 values of length fence_count. Values
++	 * must be 0 for a binary drm_syncobj. A Value of 0 for a timeline
++	 * drm_syncobj is invalid as it turns a drm_syncobj into a binary one.
++	 */
++	__u64 values_ptr;
 +};
 +
  struct drm_i915_gem_execbuffer2 {
  	/**
  	 * List of gem_exec_object2 structs
-@@ -1062,8 +1066,15 @@ struct drm_i915_gem_execbuffer2 {
- 	__u32 num_cliprects;
- 	/**
- 	 * This is a struct drm_clip_rect *cliprects if I915_EXEC_FENCE_ARRAY
--	 * is not set.  If I915_EXEC_FENCE_ARRAY is set, then this is a
--	 * struct drm_i915_gem_exec_fence *fences.
-+	 * & I915_EXEC_USE_EXTENSIONS are not set.
-+	 *
-+	 * If I915_EXEC_FENCE_ARRAY is set, then this is a pointer to an array
-+	 * of struct drm_i915_gem_exec_fence and num_cliprects is the length
-+	 * of the array.
-+	 *
-+	 * If I915_EXEC_USE_EXTENSIONS is set, then this is a pointer to a
-+	 * single struct drm_i915_gem_base_execbuffer_ext and num_cliprects is
-+	 * 0.
- 	 */
- 	__u64 cliprects_ptr;
- #define I915_EXEC_RING_MASK              (0x3f)
-@@ -1181,7 +1192,16 @@ struct drm_i915_gem_execbuffer2 {
-  */
- #define I915_EXEC_FENCE_SUBMIT		(1 << 20)
- 
--#define __I915_EXEC_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_SUBMIT << 1))
-+/*
-+ * Setting I915_EXEC_USE_EXTENSIONS implies that
-+ * drm_i915_gem_execbuffer2.cliprects_ptr is treated as a pointer to an linked
-+ * list of i915_user_extension. Each i915_user_extension node is the base of a
-+ * larger structure. The list of supported structures are listed in the
-+ * drm_i915_gem_execbuffer_ext enum.
-+ */
-+#define I915_EXEC_USE_EXTENSIONS	(1 << 21)
-+
-+#define __I915_EXEC_UNKNOWN_FLAGS (-(I915_EXEC_USE_EXTENSIONS<<1))
- 
- #define I915_EXEC_CONTEXT_ID_MASK	(0xffffffff)
- #define i915_execbuffer2_set_context_id(eb2, context) \
 -- 
 2.28.0
 
