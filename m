@@ -1,34 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18E2723425C
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 11:21:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BDA523428C
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 11:23:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CDB56EA46;
-	Fri, 31 Jul 2020 09:21:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 799DB6EA47;
+	Fri, 31 Jul 2020 09:23:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF8676EA46
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 09:21:26 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 21990739-1500050 for multiple; Fri, 31 Jul 2020 10:21:23 +0100
+Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4755A6EA47
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 09:23:49 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 8F6573F50F;
+ Fri, 31 Jul 2020 11:23:47 +0200 (CEST)
+Authentication-Results: pio-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="gh6HuxfS";
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.442
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.442 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.343,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id fdUrRk64ZrJY; Fri, 31 Jul 2020 11:23:45 +0200 (CEST)
+Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35]) (Authenticated sender: mb878879)
+ by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 6AB383F3B5;
+ Fri, 31 Jul 2020 11:23:44 +0200 (CEST)
+Received: from localhost.localdomain (unknown [134.134.137.77])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 375DC361FD5;
+ Fri, 31 Jul 2020 11:23:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1596187424; bh=xk0MiUCunLwB2MeAGyZW25iXj5Jb9eALiyvjLosfQ0A=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=gh6HuxfS3FMYICZq9u2Eb68Na9yVKBjsmPeAP/GRrEvV9mJStMbn5iLjmO9whDdPU
+ qRkhlVynNX6fO5kpx8ePQNfi4/puJJn37tEHHE3+SZj/KRZ1+1KH1hVl5A+hFJJQZs
+ mLQpjZpSMQgXOdO14UIzUqs6FKOqKypyiTgHUPXI=
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
+ <20200715115147.11866-20-chris@chris-wilson.co.uk>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <f6a96696-b0f2-310d-5582-d0aa5f94ed6f@shipmail.org>
+Date: Fri, 31 Jul 2020 11:23:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200731060723.3911-2-umesh.nerlige.ramappa@intel.com>
-References: <20200731060723.3911-1-umesh.nerlige.ramappa@intel.com>
- <20200731060723.3911-2-umesh.nerlige.ramappa@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jul 2020 10:21:22 +0100
-Message-ID: <159618728227.9621.5465800347924580622@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/perf: Ensure observation logic
- is not clock gated
+In-Reply-To: <20200715115147.11866-20-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 20/66] drm/i915/gem: Separate the ww_mutex
+ walker into its own list
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,83 +67,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Umesh Nerlige Ramappa (2020-07-31 07:07:20)
-> From: Piotr Maciejewski <piotr.maciejewski@intel.com>
-> 
-> A clock gating switch can control if the performance monitoring and
-> observation logic is enaled or not. Ensure that we enable the clocks.
-> 
-> v2: Separate code from other patches (Lionel)
-> v3: Reset PMON enable when disabling perf to save power (Lionel)
-> 
-> Fixes: 00a7f0d7155c ("drm/i915/tgl: Add perf support on TGL")
-> Signed-off-by: Piotr Maciejewski <piotr.maciejewski@intel.com>
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_perf.c | 13 +++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h  |  2 ++
->  2 files changed, 15 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index c6f6370283cf..fe408c327d3c 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -2493,6 +2493,14 @@ gen12_enable_metric_set(struct i915_perf_stream *stream,
->                             (period_exponent << GEN12_OAG_OAGLBCTXCTRL_TIMER_PERIOD_SHIFT))
->                             : 0);
->  
-> +       /*
-> +        * Initialize Super Queue Internal Cnt Register
-> +        * Set PMON Enable in order to collect valid metrics.
-> +        */
-> +       intel_uncore_write(uncore, GEN12_SQCNT1,
-> +                          intel_uncore_read(uncore, GEN12_SQCNT1) |
-> +                          GEN12_SQCNT1_PMON_ENABLE);
-
-intel_uncore_rmw(uncore, GEN12_SQCNT, 0 GEN12_SQCNT1_PMON_ENABLE);
-
-> +
->         /*
->          * Update all contexts prior writing the mux configurations as we need
->          * to make sure all slices/subslices are ON before writing to NOA
-> @@ -2552,6 +2560,11 @@ static void gen12_disable_metric_set(struct i915_perf_stream *stream)
->  
->         /* Make sure we disable noa to save power. */
->         intel_uncore_rmw(uncore, RPM_CONFIG1, GEN10_GT_NOA_ENABLE, 0);
-> +
-> +       /* Reset PMON Enable to save power. */
-> +       intel_uncore_write(uncore, GEN12_SQCNT1,
-> +                          intel_uncore_read(uncore, GEN12_SQCNT1) &
-> +                          ~GEN12_SQCNT1_PMON_ENABLE);
-
-intel_uncore_rmw(uncore, GEN12_SQCNT, GEN12_SQCNT1_PMON_ENABLE, 0);
-
-Tempting to suggest we add intel_uncore_set_bit/clr_bit helpers around
-the rmw helper.
-
->  }
->  
->  static void gen7_oa_enable(struct i915_perf_stream *stream)
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 5eae593ee784..377339399458 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -696,6 +696,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
->  #define OABUFFER_SIZE_16M   (7 << 3)
->  
->  #define GEN12_OA_TLB_INV_CR _MMIO(0xceec)
-> +#define GEN12_SQCNT1 _MMIO(0x8718)
-> +#define  GEN12_SQCNT1_PMON_ENABLE (1 << 30)
-
-REG_BIT(30)
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDcvMTUvMjAgMTo1MSBQTSwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+IEluIHByZXBhcmF0aW9u
+IGZvciBtYWtpbmcgZWJfdm1hIGJpZ2dlciBhbmQgaGVhdnkgdG8gcnVuIGluIHBhcmFsbGVsLAo+
+IHdlIG5lZWQgdG8gc3RvcCBhcHBseWluZyBhbiBpbi1wbGFjZSBzd2FwKCkgdG8gcmVvcmRlciBh
+cm91bmQgd3dfbXV0ZXgKPiBkZWFkbG9ja3MuIEtlZXAgdGhlIGFycmF5IGludGFjdCBhbmQgcmVv
+cmRlciB0aGUgbG9ja3MgdXNpbmcgYSBkZWRpY2F0ZWQKPiBsaXN0Lgo+Cj4gU2lnbmVkLW9mZi1i
+eTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gUmV2aWV3ZWQtYnk6
+IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+CgpSZXZpZXdlZC1ieTog
+VGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgoKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
+IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
