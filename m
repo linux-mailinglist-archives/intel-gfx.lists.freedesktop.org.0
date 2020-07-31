@@ -1,63 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 728DA2346E9
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 15:32:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5681323471B
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 15:46:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B40756EAAC;
-	Fri, 31 Jul 2020 13:32:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8F5B6EAB8;
+	Fri, 31 Jul 2020 13:46:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88FB46EAAC
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 13:32:11 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 58F2E3F652;
- Fri, 31 Jul 2020 15:32:09 +0200 (CEST)
-Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=a7Od8F1/; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.911
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.911 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.812,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id vCWilIOPstuP; Fri, 31 Jul 2020 15:32:08 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 8E3913F5F9;
- Fri, 31 Jul 2020 15:32:04 +0200 (CEST)
-Received: from localhost.localdomain (unknown [134.134.137.77])
- by mail1.shipmail.org (Postfix) with ESMTPSA id D60A5361FD5;
- Fri, 31 Jul 2020 15:32:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1596202324; bh=JZW9+qgvmIe9WDbNGVRvj+heTG+YWnQlt/8fHKP3LlM=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=a7Od8F1/MI5HCvmvdrYQwhOCocLYJZ5rSCEe9VZMjGK+DVA6dmLMxCCp71ASN8zQU
- qbY1xOAwbANU3J/YqwRMkZSk8TapDkGKt9HVwNbpiSNeQ1y91COG/88o/LSS71ipqE
- lH/aR01LODznPhA/TRNE1fZ97DxhfUZJ+WQE1YBM=
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <20200715115147.11866-18-chris@chris-wilson.co.uk>
- <c847f75c-25f5-2157-c5c8-07bd6c252213@shipmail.org>
- <159620211510.21624.14815026034384682088@build.alporthouse.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <26ff0948-b546-53b5-90d3-25e85e6faf78@shipmail.org>
-Date: Fri, 31 Jul 2020 15:31:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02EA96EAB4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 13:45:59 +0000 (UTC)
+IronPort-SDR: NEID8y6ZuoDwWAPGYVh7jK0avQs95NoYMDIMzI/cXx5zckF+hZY0uR5OWmqf7zomYU2hhAU2Ze
+ rSJDomAdFSEw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9698"; a="216227532"
+X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="216227532"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2020 06:45:59 -0700
+IronPort-SDR: R4zYBjT1YmRLqQv6AbD8W/0TTvaReraEw/sa6Owoo9kpnbG6KwWhSdZJC6/JZPmjkzjmyGrVz2
+ b+pF5I5uRPKw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="273205779"
+Received: from fmihut-mobl1.ger.corp.intel.com (HELO delly.ger.corp.intel.com)
+ ([10.252.59.1])
+ by fmsmga007.fm.intel.com with ESMTP; 31 Jul 2020 06:45:58 -0700
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 31 Jul 2020 16:45:50 +0300
+Message-Id: <20200731134553.156492-1-lionel.g.landwerlin@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <159620211510.21624.14815026034384682088@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 18/66] drm/i915: Always defer fenced work to
- the worker
+Subject: [Intel-gfx] [PATCH 0/3] drm/i915: timeline semaphore support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,31 +47,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDcvMzEvMjAgMzoyOCBQTSwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+IFF1b3RpbmcgVGhvbWFz
-IEhlbGxzdHLDtm0gKEludGVsKSAoMjAyMC0wNy0zMSAxMDowMzo1OSkKPj4gT24gNy8xNS8yMCAx
-OjUwIFBNLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4+PiBDdXJyZW50bHksIGlmIGFuIGVycm9yIGlz
-IHJhaXNlZCB3ZSBhbHdheXMgY2FsbCB0aGUgY2xlYW51cCBsb2NhbGx5Cj4+PiBbYW5kIHNraXAg
-dGhlIG1haW4gd29yayBjYWxsYmFja10uIEhvd2V2ZXIsIHNvbWUgZnV0dXJlIHVzZXJzCj4+IENv
-dWxkIHlvdSBhZGQgYW4gZXhhbXBsZSBvZiB0aG9zZSBmdXR1cmUgdXNlcnM/Cj4gSW4gdGhlIG5l
-eHQgKG9yIHR3bykgcGF0Y2gsIHRoZSBjb2RlIG5lZWRzIHRvIGRvIHRoZSBlcnJvciBjbGVhbnVw
-IGZyb20KPiBwcm9jZXNzIGNvbnRleHQuIFNpbmNlIHRoZSBlcnJvciBwYXRocyBzaG91bGQgYmUg
-cmVsYXRpdmVseSBpbmZyZXF1ZW50LAo+IGFuZCBtb3JlIG9mdGVuIHRoYW4gbm90IHJhaXNlZCBz
-eW5jaHJvbm91c2x5LCBJIGRpZG4ndCBzZWUgYSByZWFzb24gdG8KPiBidWlsZCBpbiBhIGZsYWcg
-dG8gc2F5IHdoZXRoZXIgb3Igbm90IHRoZSByZWxlYXNlLW9uLWVycm9yIGNvdWxkIGJlCj4gcGVy
-Zm9ybWVkIGltbWVkaWF0ZWx5IGZyb20gdGhlIGludGVycnVwdCBjb250ZXh0Lgo+Cj4gVGhlIGV4
-YW1wbGUgaW4gdGhpcyBzZXJpZXMgaXMgdGhhdCBldmVuIGlmIGFuIGVycm9yIGlzIHRocm93biwg
-d2UgaGF2ZQo+IGNvbW1pdHRlZCBjaGFuZ2VzIHRvIHRoZSBwcEdUVCBsYXlvdXQgKGluIHBhcnRp
-Y3VsYXIgbWFya2luZyBQVEUgdG8gYmUKPiBldmljdGVkKSBhbmQgc28gd2UgbXVzdCBjb21wbGV0
-ZSB1bmJpbmRpbmcgdGhlIG9sZCBwYWdlcyBmcm9tIHRoZSBwcEdUVCwKPiBvdGhlcndpc2UgdGhl
-eSBtYXkgcmVtYWluIGFjY2Vzc2libGUuCgoKVGhhbmtzLgoKPiAgIEkgd2FzIG1vc3RseSB0aGlu
-a2luZyBpZiB0aGlzIG9yIHNvbWV0aGluZyBzaW1pbGFyIGNvdWxkIGJlIGFkZGVkIHRvIHRoZSBj
-b21taXQgbWVzc2FnZSB0byBhaWQgaW4gdW5kZXJzdGFuZGluZyB3aHkgdGhlIGNoYW5nZSBpcyBu
-ZWVkZWQuCgovVGhvbWFzCgoKCgo+IC1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+Hi all,
+
+Reviewed series, just getting a CI run with the CI.
+
+Cheers,
+
+Test-with: 20200731134120.156288-1-lionel.g.landwerlin@intel.com
+
+Lionel Landwerlin (3):
+  drm/i915: introduce a mechanism to extend execbuf2
+  drm/i915: add syncobj timeline support
+  drm/i915: peel dma-fence-chains wait fences
+
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 333 +++++++++++++++---
+ drivers/gpu/drm/i915/i915_drv.c               |   3 +-
+ drivers/gpu/drm/i915/i915_getparam.c          |   1 +
+ include/uapi/drm/i915_drm.h                   |  65 +++-
+ 4 files changed, 342 insertions(+), 60 deletions(-)
+
+--
+2.28.0
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
