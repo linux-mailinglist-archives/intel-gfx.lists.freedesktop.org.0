@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 089DC234826
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 17:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47387234827
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 17:05:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 513596EAF0;
-	Fri, 31 Jul 2020 15:04:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E38E6EAD2;
+	Fri, 31 Jul 2020 15:05:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4922D6EAD2;
- Fri, 31 Jul 2020 15:04:08 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F2E116EADB;
+ Fri, 31 Jul 2020 15:04:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3A7D9A8169;
- Fri, 31 Jul 2020 15:04:08 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E9875A8169;
+ Fri, 31 Jul 2020 15:04:59 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Date: Fri, 31 Jul 2020 15:04:08 -0000
-Message-ID: <159620784821.10473.438569190375975120@emeril.freedesktop.org>
+Date: Fri, 31 Jul 2020 15:04:59 -0000
+Message-ID: <159620789995.10474.1380802972079804124@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200731144643.32364-1-umesh.nerlige.ramappa@intel.com>
 In-Reply-To: <20200731144643.32364-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Allow_privileged_user_to_map_the_OA_buffer?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Allow_privileged_user_to_map_the_OA_buffer?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,33 +53,9 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-5b0cda02e636 drm/i915/perf: Ensure observation logic is not clock gated
-c203e309db25 drm/i915/perf: Whitelist OA report trigger registers
-d6cb11d40b08 drm/i915/perf: Whitelist OA counter and buffer registers
-e7339aa045d6 drm/i915/perf: Map OA buffer to user space for gen12 performance query
--:142: ERROR:CODE_INDENT: code indent should use tabs where possible
-#142: FILE: drivers/gpu/drm/i915/i915_perf.c:3278:
-+^I^I^I^I   ^I   unsigned int cmd,$
-
--:142: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#142: FILE: drivers/gpu/drm/i915/i915_perf.c:3278:
-+^I^I^I^I   ^I   unsigned int cmd,$
-
--:142: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#142: FILE: drivers/gpu/drm/i915/i915_perf.c:3278:
-+static int i915_perf_oa_buffer_info_locked(struct i915_perf_stream *stream,
-+				   	   unsigned int cmd,
-
--:323: ERROR:TRAILING_WHITESPACE: trailing whitespace
-#323: FILE: include/uapi/drm/i915_drm.h:2070:
-+ *   read-only mmapping is allowed. $
-
--:326: ERROR:TRAILING_WHITESPACE: trailing whitespace
-#326: FILE: include/uapi/drm/i915_drm.h:2073:
-+ *   format as specified by user config. The buffer provides reports that have $
-
-total: 3 errors, 1 warnings, 1 checks, 225 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
 
 
 _______________________________________________
