@@ -1,60 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9DED23444E
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 12:52:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D41234454
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 12:53:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B81276EA61;
-	Fri, 31 Jul 2020 10:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5204F6EA64;
+	Fri, 31 Jul 2020 10:53:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61CED6EA61
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 10:52:06 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 2F9B03F714;
- Fri, 31 Jul 2020 12:52:03 +0200 (CEST)
-Authentication-Results: pio-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=ZqhAtNS5; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.911
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.911 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.812,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Ub1-Z-JlanWY; Fri, 31 Jul 2020 12:52:02 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 9528A3F54A;
- Fri, 31 Jul 2020 12:52:02 +0200 (CEST)
-Received: from localhost.localdomain (unknown [134.134.137.77])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 5FB35361FD5;
- Fri, 31 Jul 2020 12:52:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1596192724; bh=NzD3fSnwF5WPO8wJ+esF5fPZKbP9cWPnNuyIrgTeicw=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=ZqhAtNS5RSCk2wZc/eUahkfrqm785QHZSfscxmEIIHJSK1NiOgFNoAPU62GnAeSRz
- 5lWIxZDx/mRL7OxRo5vt+NWXRlRRH7/p7SoO91o2eihJN+a0r+a8HQ2sCU9r+M1GlP
- EsTSJFxMF/QhqvbbLhD818xQzTTpW1CnMYsozITg=
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <20200715115147.11866-33-chris@chris-wilson.co.uk>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <35cd001c-b665-2967-4732-5801a7a3b23e@shipmail.org>
-Date: Fri, 31 Jul 2020 12:51:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6862B6EA5B;
+ Fri, 31 Jul 2020 10:53:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 620CDA011A;
+ Fri, 31 Jul 2020 10:53:48 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200715115147.11866-33-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 33/66] drm/i915: Remove unused
- i915_gem_evict_vm()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 31 Jul 2020 10:53:48 -0000
+Message-ID: <159619282839.10473.17233436809326826837@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200731102206.6793-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200731102206.6793-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/selftests=3A_Drop_stale_timeline_constructor_assert?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,15 +38,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDcvMTUvMjAgMTo1MSBQTSwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+IE9ic29sZXRlLCBsYXN0
-IHVzZXIgcmVtb3ZlZC4KPgo+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hy
-aXMtd2lsc29uLmNvLnVrPgoKUmV2aWV3ZWQtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMu
-aGVsbHN0cm9tQGludGVsLmNvbT4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+== Series Details ==
+
+Series: drm/i915/selftests: Drop stale timeline constructor assert
+URL   : https://patchwork.freedesktop.org/series/80138/
+State : warning
+
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
