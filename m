@@ -1,64 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D53234059
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 09:44:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D965234089
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 09:53:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3537D6EA10;
-	Fri, 31 Jul 2020 07:44:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFA636EA0F;
+	Fri, 31 Jul 2020 07:53:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9B26EA10
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 07:44:01 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 94EDA3F6A9;
- Fri, 31 Jul 2020 09:43:59 +0200 (CEST)
-Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=WajAByta; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.911
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.911 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.812,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Vo0MxuJ0m1tH; Fri, 31 Jul 2020 09:43:58 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id C51E63F3B8;
- Fri, 31 Jul 2020 09:43:57 +0200 (CEST)
-Received: from localhost.localdomain (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 1C899361FD5;
- Fri, 31 Jul 2020 09:43:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1596181437; bh=zahQJRRypLGkg5SeDLvDlcZk2inIdb/KRL3GjbXqrfg=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=WajABytalJFRqqZlsargvge5M+VPWm1CqSQF187gXpJVjf2ZA9mgE8uSfR0wB44iq
- xeP9yBaay/EdQPLXVImZOiU82C4/MNRvYe1wh9gqIvyALll02LpIkh7+PvIPxG7LCF
- DS8lE7Oc9t3BjOXP/9ayKC/ie80et2XAXIuOxB20=
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <20200715115147.11866-11-chris@chris-wilson.co.uk>
- <ce53a500-4ec1-44f4-17d9-c63fad5aaf21@shipmail.org>
- <159594736565.665.915217302462044205@build.alporthouse.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <0295557e-29ba-ff4e-8117-65ef918145e3@shipmail.org>
-Date: Fri, 31 Jul 2020 09:43:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3F716EA0F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 07:53:44 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id q76so7154134wme.4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 00:53:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=0psmwajGcXOL84pLN4Gz093pgl80GmuNkldwWTZ4VNA=;
+ b=myUndLhnJi0EnXd6Uw5pBhPcBAsVxtsQRj3bOByXC+tkvO0hvwqQgj3iR5soPm9nuK
+ PXwg4PVLwcG5j5fWYj6xI2GMMqj3yGf/Gbe61shhQ11qcoXYUMiX4H8tFthtUs4f2sbw
+ qHypybDHdwNn20v+gItZUpF7jsC03dlQ2jBLIV1gCBAQLDPj4bIhHAR1uelLPPnW48xO
+ 99xYRTj+wNwRPqzSQ7GQbYO3zIVLNrA5eGyRY1zTFOUrZDR75CdaPzCzdo786HYB8vOW
+ XEaYKnjbxalDguAOdgEJ8bGaFhdGaUQRK2Dzql0T2HcUD4vAoV2+xCb9n7b524GTyrqj
+ 0NnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=0psmwajGcXOL84pLN4Gz093pgl80GmuNkldwWTZ4VNA=;
+ b=TdxeX/ILP0Pt4W+YOfMcHfRkVRQXpiC76NP/Ouhb5Pw5b5HMzsvsmY81SuelVJsIvz
+ UhCs7PoL9B4cexudULHr3zFKISm9VQQy6k8VjAUDxomT3qlbWRKHBdIRNesuyyuVUFeZ
+ BBwmXrsN7P/VLZyXu87eTQPp5pOHnT/o7U0TDebhO+8/6BgbMc9VPpZcD0fgQf2qzFRO
+ 5TW11RiG619hQOYcG2hF2PMz5R+FVOnXM7MUZcdKuVLArNY9hoymBwsMs+uDhgSjFyAF
+ MkoFOSPjLJA36upBr9v0qaE4mihnRB4HaIZHYphKFzDU3IpuC/ziJbJnJoNFn1hrcvwo
+ 9Fyw==
+X-Gm-Message-State: AOAM5301vA4guUxzr6wNO0UpmA8bXtMofK2xMdG14Ogyk+S/VC5L7wt6
+ 1J8YzeThphzXezYscKwuwPOl8Qn5qZZxPkMSNj0=
+X-Google-Smtp-Source: ABdhPJxfZf0ivO0j0nF6vwaFqX2r6X1O8i5QJZ7LFRLYe0A9+QQcf3lHo+XAbKXaZeWukCbFroJY1m+Kfsq1K8pmcIw=
+X-Received: by 2002:a1c:b785:: with SMTP id h127mr2047951wmf.100.1596182023397; 
+ Fri, 31 Jul 2020 00:53:43 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <159594736565.665.915217302462044205@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 11/66] drm/i915: Preallocate stashes for vma
- page-directories
+References: <20200612204734.3674650-1-matthew.d.roper@intel.com>
+In-Reply-To: <20200612204734.3674650-1-matthew.d.roper@intel.com>
+From: Lucas De Marchi <lucas.de.marchi@gmail.com>
+Date: Fri, 31 Jul 2020 00:53:31 -0700
+Message-ID: <CAKi4VAJz1SWT64SWwZSfASmmRLsNru7wZpFeXgmMbnWHrEpH8w@mail.gmail.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Update bw_buddy pagemask table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,60 +60,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDcvMjgvMjAgNDo0MiBQTSwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+IFF1b3RpbmcgVGhvbWFz
-IEhlbGxzdHLDtm0gKEludGVsKSAoMjAyMC0wNy0yMyAxNTozMzoyMCkKPj4gT24gMjAyMC0wNy0x
-NSAxMzo1MCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+Pj4gV2UgbmVlZCB0byBtYWtlIHRoZSBETUEg
-YWxsb2NhdGlvbnMgdXNlZCBmb3IgcGFnZSBkaXJlY3RvcmllcyB0byBiZQo+Pj4gcGVyZm9ybWVk
-IHVwIGZyb250IHNvIHRoYXQgd2UgY2FuIGluY2x1ZGUgdGhvc2UgYWxsb2NhdGlvbnMgaW4gb3Vy
-Cj4+PiBtZW1vcnkgcmVzZXJ2YXRpb24gcGFzcy4gVGhlIGRvd25zaWRlIGlzIHRoYXQgd2UgaGF2
-ZSB0byBhc3N1bWUgdGhlCj4+PiB3b3JzdCBjYXNlLCBldmVuIGJlZm9yZSB3ZSBrbm93IHRoZSBm
-aW5hbCBsYXlvdXQsIGFuZCBhbHdheXMgYWxsb2NhdGUKPj4+IGVub3VnaCBwYWdlIGRpcmVjdG9y
-aWVzIGZvciB0aGlzIG9iamVjdCwgZXZlbiB3aGVuIHRoZXJlIHdpbGwgYmUgb3ZlcmxhcC4KPj4+
-IFRoaXMgdW5mb3J0dW5hdGVseSBjYW4gYmUgcXVpdGUgZXhwZW5zaXZlLCBlc3BlY2lhbGx5IGFz
-IHdlIGhhdmUgdG8KPj4+IGNsZWFyL3Jlc2V0IHRoZSBwYWdlIGRpcmVjdG9yaWVzIGFuZCBETUEg
-cGFnZXMsIGJ1dCBpdCBzaG91bGQgb25seSBiZQo+Pj4gcmVxdWlyZWQgZHVyaW5nIGVhcmx5IHBo
-YXNlcyBvZiBhIHdvcmtsb2FkIHdoZW4gbmV3IG9iamVjdHMgYXJlIGJlaW5nCj4+PiBkaXNjb3Zl
-cmVkLCBvciBhZnRlciBtZW1vcnkvZXZpY3Rpb24gcHJlc3N1cmUgd2hlbiB3ZSBuZWVkIHRvIHJl
-YmluZC4KPj4+IE9uY2Ugd2UgcmVhY2ggc3RlYWR5IHN0YXRlLCB0aGUgb2JqZWN0cyBzaG91bGQg
-bm90IGJlIG1vdmVkIGFuZCB3ZSBubwo+Pj4gbG9uZ2VyIG5lZWQgdG8gcHJlYWxsb2NhdGluZyB0
-aGUgcGFnZXMgdGFibGVzLgo+Pj4KPj4+IEl0IHNob3VsZCBiZSBub3RlZCB0aGF0IHRoZSBsaWZl
-dGltZSBmb3IgdGhlIHBhZ2UgZGlyZWN0b3JpZXMgRE1BIGlzCj4+PiBtb3JlIG9yIGxlc3MgZGVj
-b3VwbGVkIGZyb20gaW5kaXZpZHVhbCBmZW5jZXMgYXMgdGhleSB3aWxsIGJlIHNoYXJlZAo+Pj4g
-YWNyb3NzIG9iamVjdHMgYWNyb3NzIHRpbWVsaW5lcy4KPj4+Cj4+PiB2MjogT25seSBhbGxvY2F0
-ZSBlbm91Z2ggUEQgc3BhY2UgZm9yIHRoZSBQVEUgd2UgbWF5IHVzZSwgd2UgZG8gbm90IG5lZWQK
-Pj4+IHRvIGFsbG9jYXRlIFBEIHRoYXQgd2lsbCBiZSBsZWZ0IGFzIHNjcmF0Y2guCj4+PiB2Mzog
-U3RvcmUgdGhlIHNoaWZ0IHVudG8gdGhlIGZpcnN0IFBEIGxldmVsIHRvIGVuY2Fwc3VsYXRlIHRo
-ZSBkaWZmZXJlbnQKPj4+IFBURSBjb3VudHMgZm9yIGdlbjYvZ2VuOC4KPj4+Cj4+PiBTaWduZWQt
-b2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPj4+IENjOiBN
-YXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cj4+PiAtLS0KPj4+ICAgIC4uLi9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NsaWVudF9ibHQuYyAgICB8IDExICstLQo+Pj4gICAg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvZ2VuNl9wcGd0dC5jICAgICAgICAgIHwgNDAgKysrKy0t
-LS0tCj4+PiAgICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9nZW44X3BwZ3R0LmMgICAgICAgICAg
-fCA3OCArKysrKy0tLS0tLS0tLS0tLQo+Pj4gICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfZ2d0dC5jICAgICAgICAgIHwgNjAgKysrKysrLS0tLS0tLS0KPj4+ICAgIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2d0L2ludGVsX2d0dC5oICAgICAgICAgICB8IDQ2ICsrKysrKy0tLS0KPj4+ICAg
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3BwZ3R0LmMgICAgICAgICB8IDgzICsrKysr
-KysrKysrKysrKystLS0KPj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdm1hLmMgICAg
-ICAgICAgICAgICB8IDI3ICsrKy0tLQo+Pj4gICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRl
-c3RzL2k5MTVfZ2VtX2d0dC5jIHwgNjAgKysrKysrKystLS0tLS0KPj4+ICAgIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L3NlbGZ0ZXN0cy9tb2NrX2d0dC5jICAgICB8IDIyICsrLS0tCj4+PiAgICA5IGZp
-bGVzIGNoYW5nZWQsIDIzNyBpbnNlcnRpb25zKCspLCAxOTAgZGVsZXRpb25zKC0pCj4+IEhpLCBD
-aHJpcywKPj4KPj4gT3ZlcmFsbCBsb29rcyBnb29kLCBidXQgYSBxdWVzdGlvbjogV2h5IGNhbid0
-IHdlIHBlcmZvcm0gcGFnZS10YWJsZQo+PiBtZW1vcnkgYWxsb2NhdGlvbiBvbiBkZW1hbmQgd2hl
-biBuZWVkZWQ/Cj4gV2UgbmVlZCB0byBhbGxvY2F0ZSBkZXZpY2UgbWVtb3J5IGZvciB0aGUgcGFn
-ZSB0YWJsZXMuIFRoZSBpbnRlbnRpb24KPiBoZXJlIGlzIGdhdGhlciB1cCBhbGwgdGhlIHJlc291
-cmNlIHJlcXVpcmVtZW50cyBmb3IgYW4gb3BlcmF0aW9uIGFuZAo+IHJlc2VydmUgdGhlbSBpbiBh
-IHNpbmdsZSBwYXNzLgo+ICAgCj4+IEFyZSB3ZSB0aGVuIHVuZGVyIGEgbXV0ZXggdGhhdCB3ZSBh
-bHNvIHRha2UgZHVyaW5nIHJlY2xhaW0/Cj4gWWVzLCB0aGUgdm0tPm11dGV4IGlzIHVzZWQgZHVy
-aW5nIHRoZSBzaHJpbmtlciB0byByZXZva2UgdGhlIEdQVQo+IGJpbmRpbmdzIGJlZm9yZSByZXR1
-cm5pbmcgbWVtb3J5IHRvIHRoZSBzeXN0ZW0uCj4gLUNocmlzCgpSZXZpZXdlZC1ieTogVGhvbWFz
-IEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgoKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Fri, Jun 12, 2020 at 1:47 PM Matt Roper <matthew.d.roper@intel.com> wrote:
+>
+> A recent bspec update removed the LPDDR4 single channel entry from the
+> buddy register table, but added a new four-channel entry.
+>
+> Workaround 1409767108 hasn't been updated with any guidance for four
+> channel configurations, so we leave that alternate table unchanged for
+> now.
+>
+> Bspec 49218
+> Fixes: 3fa01d642fa7 ("drm/i915/tgl: Program BW_BUDDY registers during display init")
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+
+Matches spec.
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 24a2aa1fdc9c..a592a7dd71a3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -5240,10 +5240,10 @@ struct buddy_page_mask {
+>  };
+>
+>  static const struct buddy_page_mask tgl_buddy_page_masks[] = {
+> -       { .num_channels = 1, .type = INTEL_DRAM_LPDDR4, .page_mask = 0xE },
+>         { .num_channels = 1, .type = INTEL_DRAM_DDR4,   .page_mask = 0xF },
+>         { .num_channels = 2, .type = INTEL_DRAM_LPDDR4, .page_mask = 0x1C },
+>         { .num_channels = 2, .type = INTEL_DRAM_DDR4,   .page_mask = 0x1F },
+> +       { .num_channels = 4, .type = INTEL_DRAM_LPDDR4, .page_mask = 0x38 },
+>         {}
+>  };
+>
+> --
+> 2.24.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+
+
+-- 
+Lucas De Marchi
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
