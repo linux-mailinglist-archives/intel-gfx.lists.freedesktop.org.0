@@ -1,31 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D476F233F42
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 08:43:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7607233FF1
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 09:24:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30DCF6E9DF;
-	Fri, 31 Jul 2020 06:43:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09AF96E0BC;
+	Fri, 31 Jul 2020 07:24:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 43DCE6E9DF;
- Fri, 31 Jul 2020 06:42:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3A288A47E2;
- Fri, 31 Jul 2020 06:42:59 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B95186E0BC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 07:24:15 +0000 (UTC)
+IronPort-SDR: EeG92sS12kIqRf96nirm7BBagrl8mou4zpS/cXgNcz4pk6qwZK6wi3pICyONVkM86r4Nn7l+0d
+ ycU1HMeRf03w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9698"; a="216196862"
+X-IronPort-AV: E=Sophos;i="5.75,417,1589266800"; d="scan'208";a="216196862"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2020 00:24:13 -0700
+IronPort-SDR: eEd33LBv0Ws5e/hUUE30fJ64AZNOCd04uZTTbC+6RU2Y0lSA4+csGZbsTcxX4Rn15DW9W367BC
+ qrRdjmVhQgZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,417,1589266800"; d="scan'208";a="435322603"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+ by orsmga004.jf.intel.com with ESMTP; 31 Jul 2020 00:24:13 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 31 Jul 2020 00:24:13 -0700
+Received: from bgsmsx601.gar.corp.intel.com (10.109.78.80) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 31 Jul 2020 00:24:11 -0700
+Received: from bgsmsx601.gar.corp.intel.com ([10.109.78.80]) by
+ BGSMSX601.gar.corp.intel.com ([10.109.78.80]) with mapi id 15.01.1713.004;
+ Fri, 31 Jul 2020 12:53:57 +0530
+From: "Siddiqui, Ayaz A" <ayaz.siddiqui@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v4 1/1] drm/i915/gt: Initialize reserved and unspecified
+ MOCS indices
+Thread-Index: AQHWZZMf1cfxNGVTdkGahCrQ0N32sakhSvbg
+Date: Fri, 31 Jul 2020 07:23:57 +0000
+Message-ID: <6464923397924b9ab6a9e0926d61a672@intel.com>
+References: <20200729102539.134731-1-ayaz.siddiqui@intel.com>
+ <20200729102539.134731-2-ayaz.siddiqui@intel.com>
+In-Reply-To: <20200729102539.134731-2-ayaz.siddiqui@intel.com>
+Accept-Language: en-IN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Date: Fri, 31 Jul 2020 06:42:59 -0000
-Message-ID: <159617777920.10473.1120062620464328705@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200731060723.3911-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20200731060723.3911-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWxs?=
- =?utf-8?q?ow_privileged_user_to_map_the_OA_buffer_=28rev8=29?=
+Subject: Re: [Intel-gfx] [PATCH v4 1/1] drm/i915/gt: Initialize reserved and
+ unspecified MOCS indices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,288 +70,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1077059423=="
+Cc: "Spruit, Neil R" <neil.r.spruit@intel.com>, "Mathew,
+ Alwin" <alwin.mathew@intel.com>, "Zhou, Cheng" <cheng.zhou@intel.com>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, "Benemelis,
+ Mike G" <mike.g.benemelis@intel.com>, "Mcguire,
+ Russell W" <russell.w.mcguire@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1077059423==
-Content-Type: multipart/alternative;
- boundary="===============7476164333663086695=="
 
---===============7476164333663086695==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+> -----Original Message-----
+> From: Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
+> Sent: Wednesday, July 29, 2020 3:56 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>; Chris Wilson <chris@chris-
+> wilson.co.uk>; De Marchi, Lucas <lucas.demarchi@intel.com>; Lis, Tomasz
+> <tomasz.lis@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>;
+> Joonas Lahtinen <joonas.lahtinen@linux.intel.com>; Francisco Jerez
+> <currojerez@riseup.net>; Mathew, Alwin <alwin.mathew@intel.com>; Mcguire,
+> Russell W <russell.w.mcguire@intel.com>; Spruit, Neil R
+> <neil.r.spruit@intel.com>; Zhou, Cheng <cheng.zhou@intel.com>; Benemelis,
+> Mike G <mike.g.benemelis@intel.com>
+> Subject: [PATCH v4 1/1] drm/i915/gt: Initialize reserved and unspecified MOCS
+> indices
+> 
+> In order to avoid functional breakage of mis-programmed applications that have
+> grown to depend on unused MOCS entries, we are programming those entries to
+> be equal to fully cached ("L3 + LLC") entry.
+> 
+> These reserved and unspecified entries should not be used as they may be
+> changed to less performant variants with better coherency in the future if more
+> entries are needed.
+> 
+> V2: As suggested by Lucas De Marchi to utilise __init_mocs_table for
+> programming default value, setting I915_MOCS_PTE index of tgl_mocs_table
+> with desired value.
+> 
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Tomasz Lis <tomasz.lis@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Francisco Jerez <currojerez@riseup.net>
+> Cc: Mathew Alwin <alwin.mathew@intel.com>
+> Cc: Mcguire Russell W <russell.w.mcguire@intel.com>
+> Cc: Spruit Neil R <neil.r.spruit@intel.com>
+> Cc: Zhou Cheng <cheng.zhou@intel.com>
+> Cc: Benemelis Mike G <mike.g.benemelis@intel.com>
+> 
+> Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_mocs.c | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
+> 
 
-Series: Allow privileged user to map the OA buffer (rev8)
-URL   : https://patchwork.freedesktop.org/series/79460/
-State : success
+I'm getting a false failure with this patch , which I tested locally and its passing
+with this patch. I think that this failure is blocking merge of this patch.
+Can Someone please let me know how to proceed in this case for merging?
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8819 -> Patchwork_18280
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18280 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-bsw-kefka/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-bsw-kefka/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bsw-n3050:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-7500u:       [PASS][5] -> [DMESG-WARN][6] ([i915#2203])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
+Regards
+-Ayaz
   
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-apl-guc:         [DMESG-WARN][9] ([i915#1635] / [i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-apl-guc/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-apl-guc/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@b-dsi1:
-    - {fi-tgl-dsi}:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-dpms@b-dsi1.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-dpms@b-dsi1.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +4 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (42 -> 36)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * IGT: IGT_5752 -> IGTPW_4832
-  * Linux: CI_DRM_8819 -> Patchwork_18280
-
-  CI-20190529: 20190529
-  CI_DRM_8819: 63d27529eb30be3212b7e47a91b0ccc01b31690b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_4832: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_4832/index.html
-  IGT_5752: 3ecf9d88803a686354394ea60164551646235273 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18280: 2359baf61eaf1a5b494ed0c41e7909ce618130f6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2359baf61eaf drm/i915/perf: Map OA buffer to user space for gen12 performance query
-dc30a98c6354 drm/i915/perf: Whitelist OA counter and buffer registers
-d4c2b283a92f drm/i915/perf: Whitelist OA report trigger registers
-04024320d6bb drm/i915/perf: Ensure observation logic is not clock gated
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/index.html
-
---===============7476164333663086695==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Allow privileged user to map the OA buffer (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/79460/">https://patchwork.freedesktop.org/series/79460/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8819 -&gt; Patchwork_18280</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18280 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-bsw-kefka/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-bsw-kefka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-apl-guc/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-apl-guc/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-dsi1:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-dpms@b-dsi1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-dpms@b-dsi1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8819/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18280/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +4 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 36)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_5752 -&gt; IGTPW_4832</li>
-<li>Linux: CI_DRM_8819 -&gt; Patchwork_18280</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8819: 63d27529eb30be3212b7e47a91b0ccc01b31690b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGTPW_4832: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_4832/index.html<br />
-  IGT_5752: 3ecf9d88803a686354394ea60164551646235273 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18280: 2359baf61eaf1a5b494ed0c41e7909ce618130f6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2359baf61eaf drm/i915/perf: Map OA buffer to user space for gen12 performance query<br />
-dc30a98c6354 drm/i915/perf: Whitelist OA counter and buffer registers<br />
-d4c2b283a92f drm/i915/perf: Whitelist OA report trigger registers<br />
-04024320d6bb drm/i915/perf: Ensure observation logic is not clock gated</p>
-
-</body>
-</html>
-
---===============7476164333663086695==--
-
---===============1077059423==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c
+> b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> index 632e08a4592b..f5dde723f612 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> @@ -234,11 +234,17 @@ static const struct drm_i915_mocs_entry
+> broxton_mocs_table[] = {
+>  		   L3_1_UC)
+> 
+>  static const struct drm_i915_mocs_entry tgl_mocs_table[] = {
+> -	/* Base - Error (Reserved for Non-Use) */
+> -	MOCS_ENTRY(0, 0x0, 0x0),
+> -	/* Base - Reserved */
+> -	MOCS_ENTRY(1, 0x0, 0x0),
+> 
+> +	/* NOTE:
+> +	 * Reserved and unspecified MOCS indices have been set to (L3 + LCC).
+> +	 * These reserved entries should never be used, they may be changed
+> +	 * to low performant variants with better coherency in the future if
+> +	 * more entries are needed. We are programming index
+> I915_MOCS_PTE(1)
+> +	 * only, __init_mocs_table() take care to program unused index with
+> +	 * this entry.
+> +	 */
+> +	MOCS_ENTRY(1, LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+> +		   L3_3_WB),
+>  	GEN11_MOCS_ENTRIES,
+> 
+>  	/* Implicitly enable L1 - HDC:L1 + L3 + LLC */ @@ -265,6 +271,7 @@
+> static const struct drm_i915_mocs_entry tgl_mocs_table[] = {
+>  	MOCS_ENTRY(61,
+>  		   LE_1_UC | LE_TC_1_LLC,
+>  		   L3_3_WB),
+> +
+>  };
+> 
+>  static const struct drm_i915_mocs_entry icl_mocs_table[] = {
+> --
+> 2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1077059423==--
