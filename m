@@ -2,59 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE0C2343A4
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 11:47:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C37852343BC
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 11:54:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E90836EA51;
-	Fri, 31 Jul 2020 09:47:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B53D6EA50;
+	Fri, 31 Jul 2020 09:54:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08B726EA51
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 09:47:52 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 71C233F50F;
- Fri, 31 Jul 2020 11:47:50 +0200 (CEST)
-Authentication-Results: pio-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="ZbR0TjA/";
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.442
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.442 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.343,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id VNAqBXJvEySX; Fri, 31 Jul 2020 11:47:49 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id CF8D73F41B;
- Fri, 31 Jul 2020 11:47:48 +0200 (CEST)
-Received: from localhost.localdomain (unknown [134.134.137.77])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 53A10361FD5;
- Fri, 31 Jul 2020 11:47:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1596188868; bh=aH2TnGRhSps+OH8AXRbp5BhvRzrNBHnWT8ckTzPqHAw=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=ZbR0TjA/jlDRb8pXUFXjzMqVUl1tJEfuukDtgrCDzFjzttZplzXFzsofjSO/Dttg3
- eeJRIzwvD1tDoEiDG6EQTCjBemK1Sy3n15TDQcEFMa9jbMdIpnA1ED0NJBv+sRJIw8
- QL9sYLW0RvbYqGkEkuUmEFK/n8DLEzen6O2Lxzd8=
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200715115147.11866-1-chris@chris-wilson.co.uk>
- <20200715115147.11866-24-chris@chris-wilson.co.uk>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <068b2592-7b01-0628-84d0-a46155da7f50@shipmail.org>
-Date: Fri, 31 Jul 2020 11:47:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com
+ [IPv6:2607:f8b0:4864:20::e43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0CCA6EA52;
+ Fri, 31 Jul 2020 09:54:19 +0000 (UTC)
+Received: by mail-vs1-xe43.google.com with SMTP id p25so15444035vsg.4;
+ Fri, 31 Jul 2020 02:54:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=fIgx6a0nEk2Dykey8Qk47khszuzKHoTSyZMoHdp9N5E=;
+ b=BnT56yFW7eNoVzCjIFPkkoW2s8YcuKJFT3U7tQutkYZwS+/Zto7OVpfpe00bbn1k/U
+ T3jqQV0TZJg7pAbLPVemRzWfCz5sLfDNvIXwiDa2LFnDF5BnMqaJAZn6ynKVmmWZshKD
+ E2chS8ivtZZ5J7vXK2iov9Ch/BTML6xD8/07B23PN3RS016C8qlFRw2/xxvdATC9AYHG
+ feqMVZuen6GlWyPHPW2h99/5/oBVf15uYOw+V9YwyRREEzAGMYGGlHVeFOPx1bEoZhl7
+ 9MJXm0KXhhWuIPFn19NPqDj8Gm0wPRkXH5tEMpgUCEfIm3oYxU1KsNiGVQdD8CbsKe3d
+ lL8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=fIgx6a0nEk2Dykey8Qk47khszuzKHoTSyZMoHdp9N5E=;
+ b=EG7SicwXCoo/VWwcooD9n8Be8/J1914NT46CYdkVOO3OpvddqG2+WI3rLL3cBsGe1o
+ VmJnMlyT5V1Bjhhk9pDm/wKsGe5fJLf2HK5piemhEggdyAw1eVUtyMQ3KzX7EuYzMfQu
+ a6K0zktPuZ3mNb+bKQ24Ou1jnuM0HunmD25xMzxqbnaC+BYRy033AI4k6Vh71FBAC9aR
+ XW6tEzR+mvj2vcoZU4U78aNIgh1HPZ4EiqmOAd9Mp1nuMsk7mrpe7fancnQPyXPR65IU
+ q2Fe+oODgbaYsHMh/kOfpS/kmvmbCRcYEDmUgNqu4zjhua/9pQEjvF+H10lNPogeyOnN
+ LKCg==
+X-Gm-Message-State: AOAM531E/1m2ZwjZ0S0LRhAhBlH6TWkdkUGByft2lPG+pyqf3VLjZYme
+ ztRQEGIei38B9sfWiEzfRa/pTV2T7e0jZ+wbcKaUiBax
+X-Google-Smtp-Source: ABdhPJz/9CnZB1G+QeRMWkjzA/25jwCPp2xQIGfDAFyqST8TAt+19SBEi0yx9OJuhcoAKtCMNT01x/9yCp+iVagtX7k=
+X-Received: by 2002:a67:d714:: with SMTP id p20mr979321vsj.119.1596189259165; 
+ Fri, 31 Jul 2020 02:54:19 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200715115147.11866-24-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 24/66] drm/i915/gem: Include secure batch in
- common execbuf pinning
+References: <20200731091548.815898-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200731091548.815898-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 31 Jul 2020 10:53:52 +0100
+Message-ID: <CAM0jSHOOK695iA8CpqTOnO7qPuKs5h9mBZ+zNbYC+Ai62aOseA@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_ctx_ringsize:
+ Manually control timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,17 +61,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: igt-dev@lists.freedesktop.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDcvMTUvMjAgMTo1MSBQTSwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+IFB1bGwgdGhlIEdHVFQg
-YmluZGluZyBmb3IgdGhlIHNlY3VyZSBiYXRjaCBkaXNwYXRjaCBpbnRvIHRoZSBjb21tb24gdm1h
-Cj4gcGlubmluZyByb3V0aW5lIGZvciBleGVjYnVmLCBzbyB0aGF0IHRoZXJlIGlzIGp1c3QgYSBz
-aW5nbGUgY2VudHJhbAo+IHBsYWNlIGZvciBhbGwgaTkxNV92bWFfcGluKCkuCj4KPiBTaWduZWQt
-b2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KClJldmlld2Vk
-LWJ5OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBpbnRlbC5jb20+CgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Fri, 31 Jul 2020 at 10:15, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Manually setup the signal handler for SIGARLM so that we can dump some
+> debug information for test failures.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Acked-by: Matthew Auld <matthew.auld@intel.com>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
