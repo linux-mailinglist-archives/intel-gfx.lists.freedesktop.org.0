@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C64B23477E
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 16:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B60D223479B
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 16:17:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7C9B6E27C;
-	Fri, 31 Jul 2020 14:12:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC7C66EAC1;
+	Fri, 31 Jul 2020 14:17:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 203136E27C
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 14:12:53 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21994283-1500050 
- for multiple; Fri, 31 Jul 2020 15:12:47 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jul 2020 15:12:45 +0100
-Message-Id: <20200731141245.11483-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CD0CD6EABE;
+ Fri, 31 Jul 2020 14:17:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C07F8A363D;
+ Fri, 31 Jul 2020 14:17:47 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Decouple obj<->fence reference
- cycles on freeing the GT pool
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Fri, 31 Jul 2020 14:17:47 -0000
+Message-ID: <159620506775.10472.12400611464449558876@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200731134553.156492-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200731134553.156492-1-lionel.g.landwerlin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_timeline_semaphore_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,47 +38,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make sure that the obj->base.resv does not hold a reference to a fence
-that itself has an active reference on the object. There is no automatic
-pruning, so we must decouple such reference cycles (just in case they
-exist) before discarding the pool->obj.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Series: drm/i915: timeline semaphore support
+URL   : https://patchwork.freedesktop.org/series/80146/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-index 4b7671ac5dca..6411ebdf9468 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-@@ -31,9 +31,18 @@ bucket_for_size(struct intel_gt_buffer_pool *pool, size_t sz)
- 	return &pool->cache_list[n];
- }
- 
-+static void dma_resv_prune(struct dma_resv *resv)
-+{
-+	dma_resv_lock(resv, NULL);
-+	dma_resv_add_excl_fence(resv, NULL);
-+	dma_resv_unlock(resv);
-+}
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+1d1036f097fd drm/i915: introduce a mechanism to extend execbuf2
+-:377: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#377: FILE: include/uapi/drm/i915_drm.h:1204:
++#define __I915_EXEC_UNKNOWN_FLAGS (-(I915_EXEC_USE_EXTENSIONS<<1))
+                                                              ^
+
+total: 0 errors, 0 warnings, 1 checks, 333 lines checked
+6ce048ef3ae9 drm/i915: add syncobj timeline support
+-:25: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#25: 
+    https://lists.freedesktop.org/archives/dri-devel/2019-August/229287.html
+
+-:308: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#308: FILE: include/uapi/drm/i915_drm.h:628:
 +
- static void node_free(struct intel_gt_buffer_pool_node *node)
- {
-+	dma_resv_prune(node->obj->base.resv);
- 	i915_gem_object_put(node->obj);
 +
- 	i915_active_fini(&node->active);
- 	kfree_rcu(node, rcu);
- }
--- 
-2.20.1
+
+total: 0 errors, 1 warnings, 1 checks, 291 lines checked
+13d5e473be67 drm/i915: peel dma-fence-chains wait fences
+
 
 _______________________________________________
 Intel-gfx mailing list
