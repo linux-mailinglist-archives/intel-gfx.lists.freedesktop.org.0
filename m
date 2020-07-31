@@ -2,41 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B3023471D
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 15:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C64B23477E
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 16:12:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C89906EAB9;
-	Fri, 31 Jul 2020 13:46:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7C9B6E27C;
+	Fri, 31 Jul 2020 14:12:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69E316EAB4
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 13:46:03 +0000 (UTC)
-IronPort-SDR: M8ru8dPV+nychDU6z7O5ZuwurDyIrYG/5KKtYXvt6T1pz6zxuGu7FuUES+HitxFWr126zX1wti
- A4HVqh48snsw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9698"; a="216227543"
-X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="216227543"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2020 06:46:03 -0700
-IronPort-SDR: ZXqDA3ndtmWmSunF2ORvRidRfbkmMv8zgll3YZHivobArDgz2lqQ07Htq7/0UiboBCiiXPaDrQ
- N0YfoOm364qA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="273205815"
-Received: from fmihut-mobl1.ger.corp.intel.com (HELO delly.ger.corp.intel.com)
- ([10.252.59.1])
- by fmsmga007.fm.intel.com with ESMTP; 31 Jul 2020 06:46:02 -0700
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 203136E27C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 14:12:53 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21994283-1500050 
+ for multiple; Fri, 31 Jul 2020 15:12:47 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jul 2020 16:45:53 +0300
-Message-Id: <20200731134553.156492-4-lionel.g.landwerlin@intel.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200731134553.156492-1-lionel.g.landwerlin@intel.com>
-References: <20200731134553.156492-1-lionel.g.landwerlin@intel.com>
+Date: Fri, 31 Jul 2020 15:12:45 +0100
+Message-Id: <20200731141245.11483-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: peel dma-fence-chains wait fences
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Decouple obj<->fence reference
+ cycles on freeing the GT pool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,85 +37,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To allow faster engine to engine synchronization, peel the layer of
-dma-fence-chain to expose potential i915 fences so that the
-i915-request code can emit HW semaphore wait/signal operations in the
-ring which is faster than waking up the host to submit unblocked
-workloads after interrupt notification.
+Make sure that the obj->base.resv does not hold a reference to a fence
+that itself has an active reference on the object. There is no automatic
+pruning, so we must decouple such reference cycles (just in case they
+exist) before discarding the pool->obj.
 
-v2: Also deal with chains where the last node is not a dma-fence-chain
-
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 39 ++++++++++++++++++-
- 1 file changed, 38 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 652f3b30a374..01e22b303e34 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2390,6 +2390,7 @@ await_fence_array(struct i915_execbuffer *eb)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+index 4b7671ac5dca..6411ebdf9468 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+@@ -31,9 +31,18 @@ bucket_for_size(struct intel_gt_buffer_pool *pool, size_t sz)
+ 	return &pool->cache_list[n];
+ }
  
- 	for (n = 0; n < eb->n_fences; n++) {
- 		struct drm_syncobj *syncobj;
-+		struct dma_fence_chain *chain;
- 		struct dma_fence *fence;
- 		unsigned int flags;
- 
-@@ -2410,7 +2411,43 @@ await_fence_array(struct i915_execbuffer *eb)
- 				continue;
- 		}
- 
--		err = i915_request_await_dma_fence(eb->request, fence);
-+		chain = to_dma_fence_chain(fence);
-+		if (chain) {
-+			struct dma_fence *iter;
++static void dma_resv_prune(struct dma_resv *resv)
++{
++	dma_resv_lock(resv, NULL);
++	dma_resv_add_excl_fence(resv, NULL);
++	dma_resv_unlock(resv);
++}
 +
-+			/*
-+			 * If we're dealing with a dma-fence-chain, peel the
-+			 * chain by adding all of the unsignaled fences
-+			 * (dma_fence_chain_for_each does that for us) the
-+			 * chain points to.
-+			 *
-+			 * This enables us to identify waits on i915 fences
-+			 * and allows for faster engine-to-engine
-+			 * synchronization using HW semaphores.
-+			 */
-+			dma_fence_chain_for_each(iter, fence) {
-+				struct dma_fence_chain *iter_chain =
-+					to_dma_fence_chain(iter);
+ static void node_free(struct intel_gt_buffer_pool_node *node)
+ {
++	dma_resv_prune(node->obj->base.resv);
+ 	i915_gem_object_put(node->obj);
 +
-+				/*
-+				 * It is possible that the last item in the
-+				 * chain is not a dma_fence_chain.
-+				 */
-+				if (iter_chain) {
-+					err = i915_request_await_dma_fence(eb->request,
-+									   iter_chain->fence);
-+				} else {
-+					err = i915_request_await_dma_fence(eb->request, iter);
-+				}
-+				if (err < 0) {
-+					dma_fence_put(iter);
-+					break;
-+				}
-+			}
-+		} else {
-+			err = i915_request_await_dma_fence(eb->request, fence);
-+		}
-+
- 		dma_fence_put(fence);
- 		if (err < 0)
- 			return err;
+ 	i915_active_fini(&node->active);
+ 	kfree_rcu(node, rcu);
+ }
 -- 
-2.28.0
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
