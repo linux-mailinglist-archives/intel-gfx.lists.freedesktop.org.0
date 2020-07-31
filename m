@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7550234532
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 14:04:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 060422345C2
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 14:24:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55A9B6EA73;
-	Fri, 31 Jul 2020 12:04:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B80D6EA76;
+	Fri, 31 Jul 2020 12:24:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D098B6EA6F
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 12:04:32 +0000 (UTC)
-IronPort-SDR: IUmQ9NaWXY6mXmAb8Yza9bnx8ugVlXfSXBFf7b42E4yqbqHCpa/jpw5x2+UES9kjhaTfvhkqbq
- M5/eZjA8qLBw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9698"; a="216218214"
-X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="216218214"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2020 05:04:32 -0700
-IronPort-SDR: jn8Pa3alFGxC2wDixcfKX9ORV4MvSYhcbkEyOY8UujomLE/pKhcwDn2mNxqALumdRbG/haOSMy
- DcFzVDbVUDXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="273188211"
-Received: from anusha.jf.intel.com ([10.165.21.155])
- by fmsmga007.fm.intel.com with ESMTP; 31 Jul 2020 05:04:32 -0700
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jul 2020 04:50:15 -0700
-Message-Id: <20200731115015.19706-2-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200731115015.19706-1-anusha.srivatsa@intel.com>
-References: <20200731115015.19706-1-anusha.srivatsa@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CCB746EA75;
+ Fri, 31 Jul 2020 12:24:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C51B2A47E2;
+ Fri, 31 Jul 2020 12:24:11 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dmc: Load DMC firmware v2.02 for
- Rocket Lake
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 31 Jul 2020 12:24:11 -0000
+Message-ID: <159619825177.10474.10767624965109643349@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200729164219.5737-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200729164219.5737-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5BCI=2C1/3=5D_drm/i915=3A_Preallocate_sta?=
+ =?utf-8?q?shes_for_vma_page-directories_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,36 +39,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The latest firmware contains fix for PSR2 power saving.
+== Series Details ==
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_csr.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Series: series starting with [CI,1/3] drm/i915: Preallocate stashes for vma page-directories (rev3)
+URL   : https://patchwork.freedesktop.org/series/80045/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
-index eb74eb123148..b6d0ce627d07 100644
---- a/drivers/gpu/drm/i915/display/intel_csr.c
-+++ b/drivers/gpu/drm/i915/display/intel_csr.c
-@@ -40,8 +40,8 @@
- 
- #define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
- 
--#define RKL_CSR_PATH			"i915/rkl_dmc_ver2_01.bin"
--#define RKL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 1)
-+#define RKL_CSR_PATH			"i915/rkl_dmc_ver2_02.bin"
-+#define RKL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
- MODULE_FIRMWARE(RKL_CSR_PATH);
- 
- #define TGL_CSR_PATH			"i915/tgl_dmc_ver2_07.bin"
--- 
-2.25.0
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+
 
 _______________________________________________
 Intel-gfx mailing list
