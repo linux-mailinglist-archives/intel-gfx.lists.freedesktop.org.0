@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F132E2348A3
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 17:48:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B353B2348A5
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jul 2020 17:48:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 650006EB09;
-	Fri, 31 Jul 2020 15:48:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EC0B6EB0E;
+	Fri, 31 Jul 2020 15:48:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 904336EB0D
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 15:48:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73C0F6EB0D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 15:48:38 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21995296-1500050 
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 16:48:34 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 21995297-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 16:48:35 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jul 2020 16:48:32 +0100
-Message-Id: <20200731154834.8378-2-chris@chris-wilson.co.uk>
+Date: Fri, 31 Jul 2020 16:48:33 +0100
+Message-Id: <20200731154834.8378-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200731154834.8378-1-chris@chris-wilson.co.uk>
 References: <20200731154834.8378-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/4] drm/i915/gt: Replace
- intel_engine_transfer_stale_breadcrumbs
+Subject: [Intel-gfx] [CI 3/4] drm/i915/gt: Only transfer the virtual context
+ to the new engine if active
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,182 +44,123 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After staring at the breadcrumb enabling/cancellation and coming to the
-conclusion that the cause of the mysterious stale breadcrumbs must the
-act of submitting a completed requests, we can then redirect those
-completed requests onto a dedicated signaled_list at the time of
-construction and so eliminate intel_engine_transfer_stale_breadcrumbs().
+One more complication of preempt-to-busy with respect to the virtual
+engine is that we may have retired the last request along the virtual
+engine at the same time as preparing to submit the completed request to
+a new engine. That submit will be shortcircuited, but not before we have
+updated the context with the new register offsets and marked the virtual
+engine as bound to the new engine (by calling swap on ve->siblings[]).
+As we may have just retired the completed request, we may also be in the
+middle of calling virtual_context_exit() to turn off the power management
+associated with the virtual engine, and that in turn walks the
+ve->siblings[]. If we happen to call swap() on the array as we walk, we
+will call intel_engine_pm_put() twice on the same engine.
 
+In this patch, we prevent this by only updating the bound engine after a
+successful submission which weeds out the already completed requests.
+
+Alternatively, we could walk a non-volatile array for the pm, such as
+using the engine->mask. The small advantage to performing the update
+after the submit is that we then only have to do a swap for active
+requests.
+
+Fixes: 22b7a426bbe1 ("drm/i915/execlists: Preempt-to-busy")
+References: 6d06779e8672 ("drm/i915: Load balancing across a virtual engine"
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: "Nayana, Venkata Ramana" <venkata.ramana.nayana@intel.com>
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 50 ++++++++-------------
- drivers/gpu/drm/i915/gt/intel_engine.h      |  3 --
- drivers/gpu/drm/i915/gt/intel_lrc.c         | 15 -------
- drivers/gpu/drm/i915/i915_request.c         |  5 +--
- 4 files changed, 21 insertions(+), 52 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 65 ++++++++++++++++++-----------
+ 1 file changed, 40 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index 3d211a0c2b5a..fbdc465a5870 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -142,16 +142,16 @@ static void add_retire(struct intel_breadcrumbs *b, struct intel_timeline *tl)
- 	intel_engine_add_retire(engine, tl);
- }
- 
--static void __signal_request(struct i915_request *rq, struct list_head *signals)
-+static bool __signal_request(struct i915_request *rq, struct list_head *signals)
- {
--	GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags));
- 	clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
- 
- 	if (!__dma_fence_signal(&rq->fence))
--		return;
-+		return false;
- 
- 	i915_request_get(rq);
- 	list_add_tail(&rq->signal_link, signals);
-+	return true;
- }
- 
- static void signal_irq_work(struct irq_work *work)
-@@ -278,32 +278,6 @@ void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine)
- 	spin_unlock_irqrestore(&b->irq_lock, flags);
- }
- 
--void intel_engine_transfer_stale_breadcrumbs(struct intel_engine_cs *engine,
--					     struct intel_context *ce)
--{
--	struct intel_breadcrumbs *b = &engine->breadcrumbs;
--	unsigned long flags;
--
--	spin_lock_irqsave(&b->irq_lock, flags);
--	if (!list_empty(&ce->signals)) {
--		struct i915_request *rq, *next;
--
--		/* Queue for executing the signal callbacks in the irq_work */
--		list_for_each_entry_safe(rq, next, &ce->signals, signal_link) {
--			GEM_BUG_ON(rq->engine != engine);
--			GEM_BUG_ON(!__request_completed(rq));
--
--			__signal_request(rq, &b->signaled_requests);
--		}
--
--		INIT_LIST_HEAD(&ce->signals);
--		list_del_init(&ce->signal_link);
--
--		irq_work_queue(&b->irq_work);
--	}
--	spin_unlock_irqrestore(&b->irq_lock, flags);
--}
--
- void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine)
- {
- }
-@@ -317,6 +291,17 @@ static void insert_breadcrumb(struct i915_request *rq,
- 	if (test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags))
- 		return;
- 
-+	/*
-+	 * If the request is already completed, we can transfer it
-+	 * straight onto a signaled list, and queue the irq worker for
-+	 * its signal completion.
-+	 */
-+	if (__request_completed(rq)) {
-+		if (__signal_request(rq, &b->signaled_requests))
-+			irq_work_queue(&b->irq_work);
-+		return;
-+	}
-+
- 	__intel_breadcrumbs_arm_irq(b);
- 
- 	/*
-@@ -344,8 +329,11 @@ static void insert_breadcrumb(struct i915_request *rq,
- 	if (pos == &ce->signals) /* catch transitions from empty list */
- 		list_move_tail(&ce->signal_link, &b->signalers);
- 	GEM_BUG_ON(!check_signal_order(ce, rq));
--
- 	set_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
-+
-+	/* Check after attaching to irq, interrupt may have already fired. */
-+	if (__request_completed(rq))
-+		irq_work_queue(&b->irq_work);
- }
- 
- bool i915_request_enable_breadcrumb(struct i915_request *rq)
-@@ -401,7 +389,7 @@ bool i915_request_enable_breadcrumb(struct i915_request *rq)
- 
- 	spin_unlock(&b->irq_lock);
- 
--	return !__request_completed(rq);
-+	return true;
- }
- 
- void i915_request_cancel_breadcrumb(struct i915_request *rq)
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-index a9249a23903a..faf00a353e25 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-@@ -237,9 +237,6 @@ intel_engine_signal_breadcrumbs(struct intel_engine_cs *engine)
- void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine);
- void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
- 
--void intel_engine_transfer_stale_breadcrumbs(struct intel_engine_cs *engine,
--					     struct intel_context *ce);
--
- void intel_engine_print_breadcrumbs(struct intel_engine_cs *engine,
- 				    struct drm_printer *p);
- 
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index d06e8420ee59..94c0942934ff 100644
+index 94c0942934ff..f1267fa95234 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1805,18 +1805,6 @@ static bool virtual_matches(const struct virtual_engine *ve,
+@@ -1805,6 +1805,33 @@ static bool virtual_matches(const struct virtual_engine *ve,
  	return true;
  }
  
--static void virtual_xfer_breadcrumbs(struct virtual_engine *ve)
--{
--	/*
--	 * All the outstanding signals on ve->siblings[0] must have
--	 * been completed, just pending the interrupt handler. As those
--	 * signals still refer to the old sibling (via rq->engine), we must
--	 * transfer those to the old irq_worker to keep our locking
--	 * consistent.
--	 */
--	intel_engine_transfer_stale_breadcrumbs(ve->siblings[0], &ve->context);
--}
--
++static void virtual_xfer_context(struct virtual_engine *ve,
++				 struct intel_engine_cs *engine)
++{
++	unsigned int n;
++
++	if (likely(engine == ve->siblings[0]))
++		return;
++
++	GEM_BUG_ON(READ_ONCE(ve->context.inflight));
++	if (!intel_engine_has_relative_mmio(engine))
++		virtual_update_register_offsets(ve->context.lrc_reg_state,
++						engine);
++
++	/*
++	 * Move the bound engine to the top of the list for
++	 * future execution. We then kick this tasklet first
++	 * before checking others, so that we preferentially
++	 * reuse this set of bound registers.
++	 */
++	for (n = 1; n < ve->num_siblings; n++) {
++		if (ve->siblings[n] == engine) {
++			swap(ve->siblings[n], ve->siblings[0]);
++			break;
++		}
++	}
++}
++
  #define for_each_waiter(p__, rq__) \
  	list_for_each_entry_lockless(p__, \
  				     &(rq__)->sched.waiters_list, \
-@@ -2275,9 +2263,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 					virtual_update_register_offsets(regs,
- 									engine);
+@@ -2253,35 +2280,23 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			GEM_BUG_ON(!(rq->execution_mask & engine->mask));
+ 			WRITE_ONCE(rq->engine, engine);
  
--				if (!list_empty(&ve->context.signals))
--					virtual_xfer_breadcrumbs(ve);
+-			if (engine != ve->siblings[0]) {
+-				u32 *regs = ve->context.lrc_reg_state;
+-				unsigned int n;
 -
+-				GEM_BUG_ON(READ_ONCE(ve->context.inflight));
+-
+-				if (!intel_engine_has_relative_mmio(engine))
+-					virtual_update_register_offsets(regs,
+-									engine);
+-
++			if (__i915_request_submit(rq)) {
  				/*
- 				 * Move the bound engine to the top of the list
- 				 * for future execution. We then kick this
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 350bf6f158cb..0cf2a10a24f1 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -592,9 +592,8 @@ bool __i915_request_submit(struct i915_request *request)
- 	 */
- 	__notify_execute_cb_irq(request);
+-				 * Move the bound engine to the top of the list
+-				 * for future execution. We then kick this
+-				 * tasklet first before checking others, so that
+-				 * we preferentially reuse this set of bound
+-				 * registers.
++				 * Only after we confirm that we will submit
++				 * this request (i.e. it has not already
++				 * completed), do we want to update the context.
++				 *
++				 * This serves two purposes. It avoids
++				 * unnecessary work if we are resubmitting an
++				 * already completed request after timeslicing.
++				 * But more importantly, it prevents us altering
++				 * ve->siblings[] on an idle context, where
++				 * we may be using ve->siblings[] in
++				 * virtual_context_enter / virtual_context_exit.
+ 				 */
+-				for (n = 1; n < ve->num_siblings; n++) {
+-					if (ve->siblings[n] == engine) {
+-						swap(ve->siblings[n],
+-						     ve->siblings[0]);
+-						break;
+-					}
+-				}
+-
++				virtual_xfer_context(ve, engine);
+ 				GEM_BUG_ON(ve->siblings[0] != engine);
+-			}
  
--	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
--	    !i915_request_enable_breadcrumb(request))
--		intel_engine_signal_breadcrumbs(engine);
-+	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags))
-+		i915_request_enable_breadcrumb(request);
- 
- 	return result;
- }
+-			if (__i915_request_submit(rq)) {
+ 				submit = true;
+ 				last = rq;
+ 			}
 -- 
 2.20.1
 
