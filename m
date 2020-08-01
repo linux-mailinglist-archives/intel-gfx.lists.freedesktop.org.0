@@ -1,53 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DFEE235169
-	for <lists+intel-gfx@lfdr.de>; Sat,  1 Aug 2020 11:22:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B518235281
+	for <lists+intel-gfx@lfdr.de>; Sat,  1 Aug 2020 15:03:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D9DE6EB67;
-	Sat,  1 Aug 2020 09:22:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 367EF6EB79;
+	Sat,  1 Aug 2020 13:03:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com
- [IPv6:2607:f8b0:4864:20::243])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A6646EB67
- for <intel-gfx@lists.freedesktop.org>; Sat,  1 Aug 2020 09:21:59 +0000 (UTC)
-Received: by mail-oi1-x243.google.com with SMTP id a24so8418693oia.6
- for <intel-gfx@lists.freedesktop.org>; Sat, 01 Aug 2020 02:21:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=zwWs+YsY/PuUQJ/WUIE1Kse2qSG6qC/DZ8taau+b2dY=;
- b=IgCkAPJ81H9Gi55pKFCO0wr8bMrEOkm5DeuAtZcOS2957xqKSBu51BysdaJb8r+1Fb
- SY6g8BzzsrECx9NqJkRyh2GnYcSx+TcqDdhK5bj/9YnnZ5HMG7Kk0/sJ15iCxek23VjD
- jK0ABmwDjENSMBupJf+EA4V9I1iWl0ISSklGE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=zwWs+YsY/PuUQJ/WUIE1Kse2qSG6qC/DZ8taau+b2dY=;
- b=GZhA3sC1q4YzJeankwstcqBJm4f7hRz0CPvtGRs+s1Z0UinHlGYBzIrcxVQySVJ8q4
- +MH5MXCgKDtw/xeigQ/Jy8CX2oHuTNAA7G3n6diKJdkNrjDMPQtbPA3hQFi4wF3zBNn9
- cAdaP1WuRC871GFP+9adj+E3kLn6cTVhrNFz6gppkY0cdUmz0wk4+Gb5tnGrEI3LeE7C
- +Rn8OQwi3UL3l83SrPxmN8SslBGJnUpKEG1NdWn2HzoU4mOxxxKdVmvUaCaDYvnSqzXq
- md8LscRsYb4Eau6Sa1geL89BY+5SiP1VrMreEShpRHGe/kTiT916zcrhGVagQZdhRLWy
- GL8g==
-X-Gm-Message-State: AOAM530lRrs9uMPAtZOqfrErLemDRMTAIQplYqgUV6ch3rywi6IacPbd
- 3xzbZuBinx+9oIcXShkyOp+yrdWjtX325BDVuhqAow==
-X-Google-Smtp-Source: ABdhPJzykxUZzoY70zlvf99Lgi1ubHjP4tQw6y0xe34QvxNco0DvmeTWAayKsmQPEY9oYWIDY3llg5MohJzb4PYMFco=
-X-Received: by 2002:aca:da03:: with SMTP id r3mr5971241oig.14.1596273718711;
- Sat, 01 Aug 2020 02:21:58 -0700 (PDT)
+X-Greylist: delayed 396 seconds by postgrey-1.36 at gabe;
+ Sat, 01 Aug 2020 13:03:22 UTC
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF8966EB79;
+ Sat,  1 Aug 2020 13:03:22 +0000 (UTC)
+Received: from nazgul.tnic (unknown [78.130.214.198])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id B8CAE1EC02FA;
+ Sat,  1 Aug 2020 14:56:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1596286602;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=NfmlZOrLaBmBGlzbXE5z6x4RKpqqJJmlzC4+91fmYUA=;
+ b=n/7VNWjNwrVYldmM5JNyqQEVZd3Vp3hpjJSMuFhfSkrW8mQhIHtpfasKy9w1BEromsKKyZ
+ /CdJ8nlcvZTCqyn05aBVgUH+WGtmqEhe61zMEoDcH8PmujGuHYORgBg9sVbSuZSh5qLljK
+ uihuEhdcnAWg6tPbjyrRXoOKhqTEw/0=
+Date: Sat, 1 Aug 2020 14:56:57 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: "Saheed O. Bolarinwa" <refactormyself@gmail.com>
+Message-ID: <20200801125657.GA25391@nazgul.tnic>
+References: <20200801112446.149549-1-refactormyself@gmail.com>
 MIME-Version: 1.0
-References: <20200731134553.156492-1-lionel.g.landwerlin@intel.com>
- <20200731134553.156492-3-lionel.g.landwerlin@intel.com>
- <159620585968.21624.902926301015466462@build.alporthouse.com>
- <28cadfb8-528a-7683-9b82-a2fbdf494f68@intel.com>
-In-Reply-To: <28cadfb8-528a-7683-9b82-a2fbdf494f68@intel.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Sat, 1 Aug 2020 11:21:47 +0200
-Message-ID: <CAKMK7uEwosYw7uGNWCNhq-oD7TWaHsncLjGbmtz4n-FZNFTLzg@mail.gmail.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: add syncobj timeline support
+Content-Disposition: inline
+In-Reply-To: <20200801112446.149549-1-refactormyself@gmail.com>
+Subject: Re: [Intel-gfx] [RFC PATCH 00/17] Drop uses of pci_read_config_*()
+ return value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,46 +50,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, linux-pci@vger.kernel.org,
+ linux-fpga@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-ide@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-i2c@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ linux-rdma@vger.kernel.org, Richard Weinberger <richard@nod.at>,
+ Joerg Roedel <joro@8bytes.org>, linux-atm-general@lists.sourceforge.net,
+ helgaas@kernel.org, Jakub Kicinski <kuba@kernel.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org,
+ Wolfgang Grandegger <wg@grandegger.com>, intel-gfx@lists.freedesktop.org,
+ linux-gpio@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
+ skhan@linuxfoundation.org, bjorn@helgaas.com,
+ Kalle Valo <kvalo@codeaurora.org>, linux-edac@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ iommu@lists.linux-foundation.org, linux-crypto@vger.kernel.org,
+ dmaengine@vger.kernel.org, "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 31, 2020 at 9:07 PM Lionel Landwerlin
-<lionel.g.landwerlin@intel.com> wrote:
->
-> On 31/07/2020 17:30, Chris Wilson wrote:
-> > Quoting Lionel Landwerlin (2020-07-31 14:45:52)
-> >> -               drm_syncobj_replace_fence(syncobj, fence);
-> >> +               if (eb->fences[n].chain_fence) {
-> >> +                       drm_syncobj_add_point(syncobj, eb->fences[n].chain_fence,
-> >> +                                             fence, eb->fences[n].value);
-> > This function remains not acceptable. It is trivial to write an igt test
-> > that causes the DRM_ERROR. A user controllable error message is still
-> > not allowed. If you do not have such a test in your igt series, then that
-> > too is lacking.
-> > -Chris
->
-> As far as I remember there are IGT tests for this (*unordered* subtests).
->
-> So CI should report a fairlure. The IGT test itself won't fail though.
+On Sat, Aug 01, 2020 at 01:24:29PM +0200, Saheed O. Bolarinwa wrote:
+> The return value of pci_read_config_*() may not indicate a device error.
+> However, the value read by these functions is more likely to indicate
+> this kind of error. This presents two overlapping ways of reporting
+> errors and complicates error checking.
 
-CI did catch it.
+So why isn't the *value check done in the pci_read_config_* functions
+instead of touching gazillion callers?
 
-> I thought we removed that DRM_ERROR a while ago.
->
-> I'll send a patch to remove it. Thanks.
+For example, pci_conf{1,2}_read() could check whether the u32 *value it
+just read depending on the access method, whether that value is ~0 and
+return proper PCIBIOS_ error in that case.
 
-Typed it already (since I didn't see yours), as soon as it's pushed
-you can just hit the retest button with your current series and then
-we see whether it's all gone.
--Daniel
+The check you're replicating
+
+	if (val32 == (u32)~0)
+
+everywhere, instead, is just ugly and tests a naked value ~0 which
+doesn't mean anything...
+
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
