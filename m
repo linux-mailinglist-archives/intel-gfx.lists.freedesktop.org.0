@@ -2,47 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A0D62356B0
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Aug 2020 13:25:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 444082356B6
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Aug 2020 13:40:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D7D46E0FF;
-	Sun,  2 Aug 2020 11:25:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C43B989CAF;
+	Sun,  2 Aug 2020 11:40:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 413966E0FF;
- Sun,  2 Aug 2020 11:25:30 +0000 (UTC)
-IronPort-SDR: H5sM5qUnI1i9g+Mb4SN+wegLE9MloZf8GoD7tIMOlCDNZGVyraHuTlC1T/vyx6PqXFN82T/Lmj
- JjUNZCU9ETmw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9700"; a="213523576"
-X-IronPort-AV: E=Sophos;i="5.75,426,1589266800"; d="scan'208";a="213523576"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BDD189C96;
+ Sun,  2 Aug 2020 11:40:51 +0000 (UTC)
+IronPort-SDR: +vZxP5qq/ipmYYS9nCz4JlIndGS7vjJWP5cxKPu7WiVxYhMZNh3kzcoxhvNUBHPCro6jubjihP
+ OK1+833IU7NQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9700"; a="153201992"
+X-IronPort-AV: E=Sophos;i="5.75,426,1589266800"; d="scan'208";a="153201992"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2020 04:25:28 -0700
-IronPort-SDR: UTOmpJ4fZQD2Rw5VNiUh+1mVo9aD5GDEpqPm95/RPFxD7Iwv7woQUiF1/Rm20KQhIGKuCd79wP
- imQWstfJClOA==
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2020 04:40:50 -0700
+IronPort-SDR: zTmAvTqRF5Q/d8MAJQczFCPyOgqePoEIe4gpsyHTg45B1dHmF8LJdjZvJFUotZCyOJbim2Oxxp
+ KUn8qpeVMTlg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,426,1589266800"; d="scan'208";a="305523573"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
- by orsmga002.jf.intel.com with ESMTP; 02 Aug 2020 04:25:25 -0700
-Received: from andy by smile with local (Exim 4.94)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1k2C7I-005iAE-LN; Sun, 02 Aug 2020 14:25:24 +0300
-Date: Sun, 2 Aug 2020 14:25:24 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20200802112524.GS3703480@smile.fi.intel.com>
-References: <20200717133753.127282-1-hdegoede@redhat.com>
- <20200729105436.GT3703480@smile.fi.intel.com>
- <e8f93474-1775-b20c-f9f2-e33592a02028@redhat.com>
+X-IronPort-AV: E=Sophos;i="5.75,426,1589266800"; d="scan'208";a="366035580"
+Received: from cahanley-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.10.182])
+ by orsmga001.jf.intel.com with ESMTP; 02 Aug 2020 04:40:45 -0700
+Date: Sun, 2 Aug 2020 14:40:44 +0300
+From: Andi Shyti <andi.shyti@intel.com>
+To: Tianjia Zhang <tianjia.zhang@linux.alibaba.com>
+Message-ID: <20200802114044.GD4705@intel.intel>
+References: <20200802111534.5155-1-tianjia.zhang@linux.alibaba.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <e8f93474-1775-b20c-f9f2-e33592a02028@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v5 00/16] acpi/pwm/i915: Convert pwm-crc and
- i915 driver's PWM code to use the atomic PWM API
+In-Reply-To: <20200802111534.5155-1-tianjia.zhang@linux.alibaba.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix wrong return value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,41 +49,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, airlied@linux.ie,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ chris@chris-wilson.co.uk, tianjia.zhang@alibaba.com, matthew.auld@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Aug 01, 2020 at 04:38:16PM +0200, Hans de Goede wrote:
-> On 7/29/20 12:54 PM, Andy Shevchenko wrote:
-> > On Fri, Jul 17, 2020 at 03:37:37PM +0200, Hans de Goede wrote:
+Hi Tianjia,
 
-...
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index d960d0be5bd2..cc017e3cc9c5 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -758,7 +758,7 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
+>  	intel_engine_mask_t tmp, mask = engine->mask;
+>  	struct llist_node *first = NULL, *last = NULL;
+>  	struct intel_gt *gt = engine->gt;
+> -	int err;
+> +	int err = 0;
 
-> > One comment to consider, though. There are three channels in that PWM AFAIU.
-> > One of them is backlight control, another one can be attached to haptics. The
-> > concern is how this series may (or may not?) affect haptics behaviour.
-> 
-> When you say "in that PWM" do you mean the LPSS one or the CRC one ?
+you don't need the initialization here.
 
-CRC one. I have read it from PMIC spec, that's why the question.
-
-> The CRC PWM driver patches do make it honor the requested output frequency,
-> where before, because of a bug, it would stick with the out frequency
-> setup by the firmware (or the power-on-reset value if no value is set
-> by the firmware). This fix causing this is very clearly correct, but
-> it could have unexpected side-effects.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thanks,
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
