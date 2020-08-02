@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56030235943
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Aug 2020 18:44:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C652D23591F
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Aug 2020 18:44:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74D0A6E1F6;
-	Sun,  2 Aug 2020 16:44:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB1366E15D;
+	Sun,  2 Aug 2020 16:44:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56DDA6E1BB
- for <intel-gfx@lists.freedesktop.org>; Sun,  2 Aug 2020 16:44:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00F536E158
+ for <intel-gfx@lists.freedesktop.org>; Sun,  2 Aug 2020 16:44:17 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22010431-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22010432-1500050 
  for multiple; Sun, 02 Aug 2020 17:44:15 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun,  2 Aug 2020 17:43:42 +0100
-Message-Id: <20200802164412.2738-13-chris@chris-wilson.co.uk>
+Date: Sun,  2 Aug 2020 17:43:43 +0100
+Message-Id: <20200802164412.2738-14-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200802164412.2738-1-chris@chris-wilson.co.uk>
 References: <20200802164412.2738-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 12/42] drm/i915: Reduce test_and_set_bit to
- set_bit in i915_request_submit()
+Subject: [Intel-gfx] [PATCH 13/42] drm/i915/gt: Decouple completed requests
+ on unwind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,48 +45,52 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid the full blown memory barrier of test_and_set_bit() by noting the
-completed request and removing it from the lists.
+Since the introduction of preempt-to-busy, requests can complete in the
+background, even while they are not on the engine->active.requests list.
+As such, the engine->active.request list itself is not in strict
+retirement order, and we have to scan the entire list while unwinding to
+not miss any. However, if the request is completed we currently leave it
+on the list [until retirement], but we could just as simply remove it
+and stop treating it as active. We would only have to then traverse it
+once while unwinding in quick succession.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_request.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 6 ++++--
+ drivers/gpu/drm/i915/i915_request.c | 3 ++-
+ 2 files changed, 6 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index cb04bc5474be..f9aa44f222db 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1116,8 +1116,10 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+ 	list_for_each_entry_safe_reverse(rq, rn,
+ 					 &engine->active.requests,
+ 					 sched.link) {
+-		if (i915_request_completed(rq))
+-			continue; /* XXX */
++		if (i915_request_completed(rq)) {
++			list_del_init(&rq->sched.link);
++			continue;
++		}
+ 
+ 		__i915_request_unsubmit(rq);
+ 
 diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 67267b0d5b06..1cd102591b36 100644
+index 1cd102591b36..ebfa195d6463 100644
 --- a/drivers/gpu/drm/i915/i915_request.c
 +++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -537,8 +537,10 @@ bool __i915_request_submit(struct i915_request *request)
- 	 * dropped upon retiring. (Otherwise if resubmit a *retired*
- 	 * request, this would be a horrible use-after-free.)
+@@ -319,7 +319,8 @@ bool i915_request_retire(struct i915_request *rq)
+ 	 * after removing the breadcrumb and signaling it, so that we do not
+ 	 * inadvertently attach the breadcrumb to a completed request.
  	 */
--	if (i915_request_completed(request))
--		goto xfer;
-+	if (i915_request_completed(request)) {
-+		list_del_init(&request->sched.link);
-+		goto active;
-+	}
+-	remove_from_engine(rq);
++	if (!list_empty(&rq->sched.link))
++		remove_from_engine(rq);
+ 	GEM_BUG_ON(!llist_empty(&rq->execute_cb));
  
- 	if (unlikely(intel_context_is_banned(request->context)))
- 		i915_request_set_error_once(request, -EIO);
-@@ -572,11 +574,11 @@ bool __i915_request_submit(struct i915_request *request)
- 	engine->serial++;
- 	result = true;
- 
--xfer:
--	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
--		list_move_tail(&request->sched.link, &engine->active.requests);
--		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
--	}
-+	GEM_BUG_ON(test_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags));
-+	list_move_tail(&request->sched.link, &engine->active.requests);
-+active:
-+	clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
-+	set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags);
- 
- 	/*
- 	 * XXX Rollback bonded-execution on __i915_request_unsubmit()?
+ 	__list_del_entry(&rq->link); /* poison neither prev/next (RCU walks) */
 -- 
 2.20.1
 
