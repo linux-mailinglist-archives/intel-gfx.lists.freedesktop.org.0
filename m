@@ -1,37 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 996B523A72A
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Aug 2020 15:04:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1016423A726
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Aug 2020 15:04:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC0E96E284;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60DFE6E279;
 	Mon,  3 Aug 2020 13:04:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 306 seconds by postgrey-1.36 at gabe;
- Sun, 02 Aug 2020 11:20:45 UTC
-Received: from out30-43.freemail.mail.aliyun.com
- (out30-43.freemail.mail.aliyun.com [115.124.30.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C6786E0F2
- for <intel-gfx@lists.freedesktop.org>; Sun,  2 Aug 2020 11:20:44 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R171e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01f04397;
- MF=tianjia.zhang@linux.alibaba.com; NM=1; PH=DS; RN=14; SR=0;
- TI=SMTPD_---0U4T30D9_1596366934; 
+Received: from out4436.biz.mail.alibaba.com (out4436.biz.mail.alibaba.com
+ [47.88.44.36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E65B06E0F2;
+ Sun,  2 Aug 2020 11:15:48 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R211e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04426;
+ MF=tianjia.zhang@linux.alibaba.com; NM=1; PH=DS; RN=16; SR=0;
+ TI=SMTPD_---0U4TqfqO_1596366935; 
 Received: from localhost(mailfrom:tianjia.zhang@linux.alibaba.com
- fp:SMTPD_---0U4T30D9_1596366934) by smtp.aliyun-inc.com(127.0.0.1);
- Sun, 02 Aug 2020 19:15:34 +0800
+ fp:SMTPD_---0U4TqfqO_1596366935) by smtp.aliyun-inc.com(127.0.0.1);
+ Sun, 02 Aug 2020 19:15:35 +0800
 From: Tianjia Zhang <tianjia.zhang@linux.alibaba.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
- chris@chris-wilson.co.uk, matthew.auld@intel.com, tvrtko.ursulin@intel.com,
- mika.kuoppala@linux.intel.com, andi.shyti@intel.com
-Date: Sun,  2 Aug 2020 19:15:34 +0800
-Message-Id: <20200802111534.5155-1-tianjia.zhang@linux.alibaba.com>
+ ville.syrjala@linux.intel.com, jose.souza@intel.com,
+ maarten.lankhorst@linux.intel.com, chris@chris-wilson.co.uk,
+ manasi.d.navare@intel.com, wambui.karugax@gmail.com,
+ stanislav.lisovskiy@intel.com
+Date: Sun,  2 Aug 2020 19:15:35 +0800
+Message-Id: <20200802111535.5200-1-tianjia.zhang@linux.alibaba.com>
 X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 03 Aug 2020 13:04:28 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix wrong return value
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix wrong return value in
+ intel_atomic_check()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,62 +48,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: tianjia.zhang@alibaba.com, intel-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In function i915_active_acquire_preallocate_barrier(), not all
-paths have the return value set correctly, and in case of memory
-allocation failure, a negative error code should be returned.
-
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Tianjia Zhang <tianjia.zhang@linux.alibaba.com>
----
- drivers/gpu/drm/i915/i915_active.c            | 4 ++--
- drivers/gpu/drm/i915/selftests/i915_request.c | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index d960d0be5bd2..cc017e3cc9c5 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -758,7 +758,7 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
- 	intel_engine_mask_t tmp, mask = engine->mask;
- 	struct llist_node *first = NULL, *last = NULL;
- 	struct intel_gt *gt = engine->gt;
--	int err;
-+	int err = 0;
- 
- 	GEM_BUG_ON(i915_active_is_idle(ref));
- 
-@@ -782,7 +782,7 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
- 		if (!node) {
- 			node = kmem_cache_alloc(global.slab_cache, GFP_KERNEL);
- 			if (!node) {
--				err = ENOMEM;
-+				err = -ENOMEM;
- 				goto unwind;
- 			}
- 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 6014e8dfcbb1..dda801a87b8a 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -326,7 +326,7 @@ static int __igt_breadcrumbs_smoketest(void *arg)
- 		if (!wait) {
- 			i915_sw_fence_commit(submit);
- 			heap_fence_put(submit);
--			err = ENOMEM;
-+			err = -ENOMEM;
- 			break;
- 		}
- 
--- 
-2.26.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SW4gdGhlIGNhc2Ugb2YgY2FsbGluZyBjaGVja19kaWdpdGFsX3BvcnRfY29uZmxpY3RzKCkgZmFp
+bGVkLCBhCm5lZ2F0aXZlIGVycm9yIGNvZGUgLUVJTlZBTCBzaG91bGQgYmUgcmV0dXJuZWQuCgpG
+aXhlczogYmY1ZGE4M2U0YmQ4MCAoImRybS9pOTE1OiBNb3ZlIGNoZWNrX2RpZ2l0YWxfcG9ydF9j
+b25mbGljdHMoKSBlYXJpZXIiKQpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxp
+bnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogVGlhbmppYSBaaGFuZyA8dGlhbmppYS56aGFu
+Z0BsaW51eC5hbGliYWJhLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXkuYyB8IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBk
+ZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+LmMKaW5kZXggMjY5OTZlMTgzOWUyLi45ZjNhN2VmNThhYmEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC0xNDg3Miw3ICsxNDg3Miw3IEBAIHN0
+YXRpYyBpbnQgaW50ZWxfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiAJaWYg
+KGFueV9tcyAmJiAhY2hlY2tfZGlnaXRhbF9wb3J0X2NvbmZsaWN0cyhzdGF0ZSkpIHsKIAkJZHJt
+X2RiZ19rbXMoJmRldl9wcml2LT5kcm0sCiAJCQkgICAgInJlamVjdGluZyBjb25mbGljdGluZyBk
+aWdpdGFsIHBvcnQgY29uZmlndXJhdGlvblxuIik7Ci0JCXJldCA9IEVJTlZBTDsKKwkJcmV0ID0g
+LUVJTlZBTDsKIAkJZ290byBmYWlsOwogCX0KIAotLSAKMi4yNi4yCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
