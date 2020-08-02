@@ -1,56 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D485235435
-	for <lists+intel-gfx@lfdr.de>; Sat,  1 Aug 2020 21:47:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A0D62356B0
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Aug 2020 13:25:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A25BB6EC05;
-	Sat,  1 Aug 2020 19:47:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D7D46E0FF;
+	Sun,  2 Aug 2020 11:25:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D91646EC05
- for <intel-gfx@lists.freedesktop.org>; Sat,  1 Aug 2020 19:47:19 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id bo3so12090860ejb.11
- for <intel-gfx@lists.freedesktop.org>; Sat, 01 Aug 2020 12:47:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=Q/pr0+x3jRF6pgee1xgitBU/WDW71fZGFVLRjVWcmcA=;
- b=XiEVyEKgtPke01kznugUmOXDVkmIWAD743yQuuViGZzE55v1MGQeIsB7ddvuONnwgs
- RVKJQVcB6aILY/KrhTXIfBnPGYO/Ei6C8+MjwY550jm1HUz41o6IAvCxwsSZGhA41b/i
- W4x+FMmLupHgZQVhXeMZdpzMp+tYiDf5qndxw2Yua5Mhw9Xmk63DnFPC6YkPepRR0cbU
- LPuqT/ZQnzSSDw/tId5YvzZ94oEV3U4C1Kk8k+B9gkVHj6zOi1s+cN8f40H1eglJvy/6
- ZqxYThbAwSUdXdnz9P2Vojds6C8FNv2AxkaXVt0Xbjiy03wxp3x/Oe0eEEamBAhqy1Ix
- pV0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=Q/pr0+x3jRF6pgee1xgitBU/WDW71fZGFVLRjVWcmcA=;
- b=UtmH0f4ngqaTF/K9NJcpjAdp+t/sPbE3rmExYyqfTA4oeM6V8EX0xYga5DhnfnTgzs
- iEZ4DBt0Mf+VzMijbe2AioUmf6xAeHhttG2IsHhv7grX4zh2+XGsfRCvoeaJ8qLCNEhQ
- zYqx0WSetMfL/L8pO5XTRvRsj0qGizecRQ79eQvt8YCNsseQYZCDvS3LfvmBeZM5GCxp
- nt/JkcGKHMr5u8tvGtyASH2o4YY1lEZCWxx4Tdd7vkkoQc51uFSng/0x0HIkhQCfHOal
- CUyqJDVBaeomRCBFl5gQUgfac/IXG/ZkvtZypM8HMP4ppP3DD/aO4hvFh+ncPb4N9zGt
- eZyw==
-X-Gm-Message-State: AOAM5308RoRD9og99oeUrvhPu60zw5E/EUGTB+mroAl8QGfmjFnUjfNr
- 93rV4+AVXQuDKztLdOJhxLr9xYcXFWgqLWTDHf99XMOl
-X-Google-Smtp-Source: ABdhPJyxNENnY65xZEBg+4wdDZQR18idhMfZ0ny+0WS1O2g5LOUMZ1nyX/D2+G4OlKO0586zMlmmWrLTO2ljFo5K9h4=
-X-Received: by 2002:a17:906:8782:: with SMTP id
- za2mr9588619ejb.419.1596311238378; 
- Sat, 01 Aug 2020 12:47:18 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 413966E0FF;
+ Sun,  2 Aug 2020 11:25:30 +0000 (UTC)
+IronPort-SDR: H5sM5qUnI1i9g+Mb4SN+wegLE9MloZf8GoD7tIMOlCDNZGVyraHuTlC1T/vyx6PqXFN82T/Lmj
+ JjUNZCU9ETmw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9700"; a="213523576"
+X-IronPort-AV: E=Sophos;i="5.75,426,1589266800"; d="scan'208";a="213523576"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2020 04:25:28 -0700
+IronPort-SDR: UTOmpJ4fZQD2Rw5VNiUh+1mVo9aD5GDEpqPm95/RPFxD7Iwv7woQUiF1/Rm20KQhIGKuCd79wP
+ imQWstfJClOA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,426,1589266800"; d="scan'208";a="305523573"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by orsmga002.jf.intel.com with ESMTP; 02 Aug 2020 04:25:25 -0700
+Received: from andy by smile with local (Exim 4.94)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1k2C7I-005iAE-LN; Sun, 02 Aug 2020 14:25:24 +0300
+Date: Sun, 2 Aug 2020 14:25:24 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200802112524.GS3703480@smile.fi.intel.com>
+References: <20200717133753.127282-1-hdegoede@redhat.com>
+ <20200729105436.GT3703480@smile.fi.intel.com>
+ <e8f93474-1775-b20c-f9f2-e33592a02028@redhat.com>
 MIME-Version: 1.0
-References: <20200801182917.28991-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200801182917.28991-1-chris@chris-wilson.co.uk>
-From: Dave Airlie <airlied@gmail.com>
-Date: Sun, 2 Aug 2020 05:47:07 +1000
-Message-ID: <CAPM=9ty12emwCEi2L+fX_owNr06rehYEzeAQeMFVoYBe3TrtYw@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [CI] drm/i915/gem: Don't drop the timeline lock
- during execbuf
+Content-Disposition: inline
+In-Reply-To: <e8f93474-1775-b20c-f9f2-e33592a02028@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v5 00/16] acpi/pwm/i915: Convert pwm-crc and
+ i915 driver's PWM code to use the atomic PWM API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,33 +55,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gU3VuLCAyIEF1ZyAyMDIwIGF0IDA0OjI5LCBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdp
-bHNvbi5jby51az4gd3JvdGU6Cj4KPiBPdXIgdGltZWxpbmUgbG9jayBpcyBvdXIgZGVmZW5jZSBh
-Z2FpbnN0IGEgY29uY3VycmVudCBleGVjYnVmCj4gaW50ZXJydXB0aW5nIG91ciByZXF1ZXN0IGNv
-bnN0cnVjdGlvbi4gd2UgbmVlZCBob2xkIGl0IHRocm91Z2hvdXQgb3IsCj4gZm9yIGV4YW1wbGUs
-IGEgc2Vjb25kIHRocmVhZCBtYXkgaW50ZXJqZWN0IGEgcmVsb2NhdGlvbiByZXF1ZXN0IGluCj4g
-YmV0d2VlbiBvdXIgb3duIHJlbG9jYXRpb24gcmVxdWVzdCBhbmQgZXhlY3V0aW9uIGluIHRoZSBy
-aW5nLgo+Cj4gQSBzZWNvbmQsIG1ham9yIGJlbmVmaXQsIGlzIHRoYXQgaXQgYWxsb3dzIHVzIHRv
-IHByZXNlcnZlIGEgbGFyZ2UgY2h1bmsKPiBvZiB0aGUgcmluZ2J1ZmZlciBmb3Igb3VyIGV4Y2x1
-c2l2ZSB1c2U7IHdoaWNoIHNob3VsZCB2aXJ0dWFsbHkKPiBlbGltaW5hdGUgdGhlIHRocmVhdCBv
-ZiBoaXR0aW5nIGEgd2FpdF9mb3Jfc3BhY2UgZHVyaW5nIHJlcXVlc3QKPiBjb25zdHJ1Y3Rpb24g
-LS0gYWx0aG91Z2ggd2Ugc2hvdWxkIGhhdmUgYWxyZWFkeSBkcm9wcGVkIG90aGVyCj4gY29udGVu
-dGlvdXMgbG9ja3MgYXQgdGhhdCBwb2ludC4KCldoZW4gSSBmaXJzdCBjYW1lIGhlcmUsIHRoaXMg
-d2FzIGFsbCBzd2FtcC4gRXZlcnlvbmUgc2FpZCBJIHdhcyBkYWZ0CnRvIGJ1aWxkIGEgY2FzdGxl
-IG9uIGEgc3dhbXAsIGJ1dCBJIGJ1aWx0IGl0IGFsbCB0aGUgc2FtZSwganVzdCB0bwpzaG93IHRo
-ZW0uIEl0IHNhbmsgaW50byB0aGUgc3dhbXAuIFNvIEkgYnVpbHQgYSBzZWNvbmQgb25lLiBBbmQg
-dGhhdApvbmUgc2FuayBpbnRvIHRoZSBzd2FtcC4gU28gSSBidWlsdCBhIHRoaXJkLiBUaGF0IGJ1
-cm5lZCBkb3duLCBmZWxsCm92ZXIsIGFuZCB0aGVuIHNhbmsgaW50byB0aGUgc3dhbXAuIEJ1dCB0
-aGUgZm91cnRoIG9uZSBzdGF5ZWQgdXAuIEFuZAp0aGF04oCZcyB3aGF0IHlvdeKAmXJlIGdvaW5n
-IHRvIGdldCwgU29uLCB0aGUgc3Ryb25nZXN0IGNhc3RsZSBpbiBhbGwgb2YKRW5nbGFuZC4KClRo
-aXMgcGF0Y2ggbWFrZXMgbWUgZmVlbCB3ZSBhcmUgc29tZXdoZXJlIGJldHdlZW4gdGhlIHNlY29u
-ZCBjYXN0bGUKYW5kIHRoZSBidXJuaW5nIGRvd24uCgpEYXZlLgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Sat, Aug 01, 2020 at 04:38:16PM +0200, Hans de Goede wrote:
+> On 7/29/20 12:54 PM, Andy Shevchenko wrote:
+> > On Fri, Jul 17, 2020 at 03:37:37PM +0200, Hans de Goede wrote:
+
+...
+
+> > One comment to consider, though. There are three channels in that PWM AFAIU.
+> > One of them is backlight control, another one can be attached to haptics. The
+> > concern is how this series may (or may not?) affect haptics behaviour.
+> 
+> When you say "in that PWM" do you mean the LPSS one or the CRC one ?
+
+CRC one. I have read it from PMIC spec, that's why the question.
+
+> The CRC PWM driver patches do make it honor the requested output frequency,
+> where before, because of a bug, it would stick with the out frequency
+> setup by the firmware (or the power-on-reset value if no value is set
+> by the firmware). This fix causing this is very clearly correct, but
+> it could have unexpected side-effects.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
