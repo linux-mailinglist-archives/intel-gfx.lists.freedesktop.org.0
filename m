@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5F9823A28E
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Aug 2020 12:11:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2060A23A290
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Aug 2020 12:11:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14AD16E22D;
-	Mon,  3 Aug 2020 10:11:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C9D06E235;
+	Mon,  3 Aug 2020 10:11:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 838B26E22C;
- Mon,  3 Aug 2020 10:11:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7B3E5A47DB;
- Mon,  3 Aug 2020 10:11:19 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91EDE6E22B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Aug 2020 10:11:42 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22015630-1500050 
+ for multiple; Mon, 03 Aug 2020 11:11:32 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  3 Aug 2020 11:11:27 +0100
+Message-Id: <20200803101133.4529-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Date: Mon, 03 Aug 2020 10:11:19 -0000
-Message-ID: <159644947947.19295.14719903557814820929@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200803090506.260325-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20200803090506.260325-1-lionel.g.landwerlin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_timeline_semaphore_support?=
+Subject: [Intel-gfx] [PATCH 1/7] drm/i915/gem: Reduce context termination
+ list iteration guard to RCU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,42 +37,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As we now protect the timeline list using RCU, we can drop the
+timeline->mutex for guarding the list iteration during context close, as
+we are searching for an inflight request. Any new request will see the
+context is banned and not be submitted. In doing so, pull the checks for
+a concurrent submission of the request (notably the
+i915_request_completed()) under the engine spinlock, to fully serialise
+with __i915_request_submit()). That is in the case of preempt-to-busy
+where the request may be completed during the __i915_request_submit(),
+we need to be careful that we sample the request status after
+serialising so that we don't miss the request the engine is actually
+submitting.
 
-Series: drm/i915: timeline semaphore support
-URL   : https://patchwork.freedesktop.org/series/80201/
-State : warning
+Fixes: 4a3174152147 ("drm/i915/gem: Refine occupancy test in kill_context()")
+References: d22d2d073ef8 ("drm/i915: Protect i915_request_await_start from early waits") # rcu protection of timeline->requests
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/1622
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 32 ++++++++++++---------
+ 1 file changed, 19 insertions(+), 13 deletions(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-d38db3114f74 drm/i915: introduce a mechanism to extend execbuf2
--:377: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#377: FILE: include/uapi/drm/i915_drm.h:1204:
-+#define __I915_EXEC_UNKNOWN_FLAGS (-(I915_EXEC_USE_EXTENSIONS<<1))
-                                                              ^
-
-total: 0 errors, 0 warnings, 1 checks, 333 lines checked
-c93fd82a57f8 drm/i915: add syncobj timeline support
--:25: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#25: 
-    https://lists.freedesktop.org/archives/dri-devel/2019-August/229287.html
-
--:308: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#308: FILE: include/uapi/drm/i915_drm.h:628:
-+
-+
-
-total: 0 errors, 1 warnings, 1 checks, 291 lines checked
-c245506d0af1 drm/i915: peel dma-fence-chains wait fences
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index d8cccbab7a51..db893f6c516b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -439,29 +439,36 @@ static bool __cancel_engine(struct intel_engine_cs *engine)
+ 	return __reset_engine(engine);
+ }
+ 
+-static struct intel_engine_cs *__active_engine(struct i915_request *rq)
++static bool
++__active_engine(struct i915_request *rq, struct intel_engine_cs **active)
+ {
+ 	struct intel_engine_cs *engine, *locked;
++	bool ret = false;
+ 
+ 	/*
+ 	 * Serialise with __i915_request_submit() so that it sees
+ 	 * is-banned?, or we know the request is already inflight.
++	 *
++	 * Note that rq->engine is unstable, and so we double
++	 * check that we have acquired the lock on the final engine.
+ 	 */
+ 	locked = READ_ONCE(rq->engine);
+ 	spin_lock_irq(&locked->active.lock);
+ 	while (unlikely(locked != (engine = READ_ONCE(rq->engine)))) {
+ 		spin_unlock(&locked->active.lock);
+-		spin_lock(&engine->active.lock);
+ 		locked = engine;
++		spin_lock(&locked->active.lock);
+ 	}
+ 
+-	engine = NULL;
+-	if (i915_request_is_active(rq) && rq->fence.error != -EIO)
+-		engine = rq->engine;
++	if (!i915_request_completed(rq)) {
++		if (i915_request_is_active(rq) && rq->fence.error != -EIO)
++			*active = locked;
++		ret = true;
++	}
+ 
+ 	spin_unlock_irq(&locked->active.lock);
+ 
+-	return engine;
++	return ret;
+ }
+ 
+ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+@@ -472,17 +479,16 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+ 	if (!ce->timeline)
+ 		return NULL;
+ 
+-	mutex_lock(&ce->timeline->mutex);
+-	list_for_each_entry_reverse(rq, &ce->timeline->requests, link) {
+-		if (i915_request_completed(rq))
+-			break;
++	rcu_read_lock();
++	list_for_each_entry_rcu(rq, &ce->timeline->requests, link) {
++		if (i915_request_is_active(rq) && i915_request_completed(rq))
++			continue;
+ 
+ 		/* Check with the backend if the request is inflight */
+-		engine = __active_engine(rq);
+-		if (engine)
++		if (__active_engine(rq, &engine))
+ 			break;
+ 	}
+-	mutex_unlock(&ce->timeline->mutex);
++	rcu_read_unlock();
+ 
+ 	return engine;
+ }
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
