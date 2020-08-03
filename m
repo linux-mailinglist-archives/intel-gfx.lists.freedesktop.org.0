@@ -1,57 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A13423AE09
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Aug 2020 22:18:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E68A23AE83
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Aug 2020 22:56:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B50FF6E321;
-	Mon,  3 Aug 2020 20:17:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5B156E33D;
+	Mon,  3 Aug 2020 20:56:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC5C6E0DC
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Aug 2020 20:17:58 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id c19so719101wmd.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 03 Aug 2020 13:17:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=wMtWe8HLd6qhGo0uyNBhMlZkLAgDLyE6yKYxPU9nn14=;
- b=RhZiLPJRHXyOnx+U2VYZmcRIja9AItS2UQD+LQHX2A4ETJDMs4P3kigTqzlhK2x0y3
- VjKzL/H1T7BjZyWoj/IsTUmk/ufZZ3mHZbPa7ohfZbRfC0rcqUCvzkr6Si2+ZCHhdWxr
- Ufu+PRBOMOgigKDXW7bnnuF0w4YkeHWYRZNeqpaDGiLgulw1BDLlRVLK/wUSd7C24oYB
- iZ1P3XKNgJM0wnUjtV3O3UygsmfrvPMkyUt02Ucrcqt7900VmFIbtd4FbuRlXd2jwH4x
- vprDtuhtaeJU/VoogbeBxdEJJksJCzaSjmgxs3ViLU/AsnGHBoILn6LR9FPhG0sOuazM
- HLmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=wMtWe8HLd6qhGo0uyNBhMlZkLAgDLyE6yKYxPU9nn14=;
- b=cl532CbDtaNEvAq3nB+A4XexzwMNAqS61hmONmYTQIj/OF+Y+weZwXT+RF9k+kVv1k
- LT5t/6h688RvCr3P4aac45Kr8xmNbgdT3mubAwefTn8osOAh1jsGMdGgiYRPZ/jBKqCo
- GZNm1wu+/ODVnzo9FExBgAK7zgPyKB2ftV0E2Ud355eRmPSnjYerAhC+vMQmTlMM7K5E
- 2/ZomrXPxp54ZRaLqOaGvUlRnHbQnB9b0kVbYAhrSlVJkQx86Pi8sQTo4v2G9/nXF0ry
- GyZ2L23pForSkY+RnYJRZ27PRh6Wr5Gtww19pHBNbywx4fZz9q8jXSQeMsN2/opVPOPj
- lGhQ==
-X-Gm-Message-State: AOAM531Rl6N0hnfSQwAQWghFX9K3sClZPCzcnGEc2rYh7/1Q0ymSCVAG
- SKFT57v+Pb0K3nbhUtBCSiZyjchtzizVBok2z6RnXWsu
-X-Google-Smtp-Source: ABdhPJzGWVbDEEim3BKO1WnIy/VdT5/yItpHCJ8I+NsGGUF7UCuiCsgCz8RvFbDGnhpBdqd/YVVOiuw3PDRkdIh1uB4=
-X-Received: by 2002:a1c:b785:: with SMTP id h127mr831347wmf.100.1596485876739; 
- Mon, 03 Aug 2020 13:17:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200710115757.290984-1-matthew.auld@intel.com>
- <20200710115757.290984-35-matthew.auld@intel.com>
- <CAKi4VAJORkqgs=6EaxiHe2nmXVaYT-1EqMCXKGkbc0aH1VYbCQ@mail.gmail.com>
-In-Reply-To: <CAKi4VAJORkqgs=6EaxiHe2nmXVaYT-1EqMCXKGkbc0aH1VYbCQ@mail.gmail.com>
-From: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Date: Mon, 3 Aug 2020 13:17:44 -0700
-Message-ID: <CAKi4VAJFPh7+2D84rwpuZS9N0B4hrgYb8AiqK4Aqngm9TmhyCg@mail.gmail.com>
-To: Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [RFC 34/60] drm/i915: introduce kernel
- blitter_context
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C22CD6E200;
+ Mon,  3 Aug 2020 20:56:39 +0000 (UTC)
+IronPort-SDR: 4mvSTlWu3F470G8ANF0dtwsZ8fLq9nZOBkZ1j4LoRVSt16gDdy6Do6bO2LW7NX8dhsxpLiLOF6
+ LQInh1YjtSgA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9702"; a="213742266"
+X-IronPort-AV: E=Sophos;i="5.75,431,1589266800"; d="scan'208";a="213742266"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2020 13:56:34 -0700
+IronPort-SDR: 0Jm/oUogUcObN7UjpTe8pC1P6P197sz2YOLl8bsF87cHDqd3fFUcx69XCHUkLyV/spxzjsRS1t
+ GQdDQVU5VQRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,431,1589266800"; d="scan'208";a="324300101"
+Received: from unknown (HELO achrisan-DESK2.amr.corp.intel.com)
+ ([10.254.186.200])
+ by fmsmga002.fm.intel.com with ESMTP; 03 Aug 2020 13:56:34 -0700
+From: Anitha Chrisanthus <anitha.chrisanthus@intel.com>
+To: dri-devel@lists.freedesktop.org, anitha.chrisanthus@intel.com,
+ bob.j.paauwe@intel.com, edmund.j.dea@intel.com
+Date: Mon,  3 Aug 2020 13:56:22 -0700
+Message-Id: <1596488183-9030-1-git-send-email-anitha.chrisanthus@intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [Intel-gfx] [PATCH v5] Add support for KeemBay DRM driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,67 +47,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>
+Cc: daniel.vetter@intel.com, intel-gfx@lists.freedesktop.org, sam@ravnborg.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+Chris Wilson
+This is a new DRM driver for Intel's KeemBay SOC.
+The SoC couples an ARM Cortex A53 CPU with an Intel
+Movidius VPU.
 
-On Mon, Aug 3, 2020 at 12:59 PM Lucas De Marchi
-<lucas.de.marchi@gmail.com> wrote:
->
-> On Fri, Jul 10, 2020 at 5:00 AM Matthew Auld <matthew.auld@intel.com> wrote:
-> >
-> > We may be without a context to perform various internal blitter
-> > operations, for example when performing object migration. Piggybacking
-> > off the kernel_context is probably a bad idea, since it has other uses.
-> >
-> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 30 +++++++++++++++++---
-> >  drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 +
-> >  2 files changed, 27 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > index dd1a42c4d344..1df94e82550f 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > @@ -792,6 +792,7 @@ create_kernel_context(struct intel_engine_cs *engine)
-> >         int err;
-> >
-> >         ce = intel_context_create(engine);
-> > +
-> >         if (IS_ERR(ce))
-> >                 return ce;
-> >
-> > @@ -845,16 +846,32 @@ static int engine_init_common(struct intel_engine_cs *engine)
-> >                 return PTR_ERR(ce);
-> >
-> >         ret = measure_breadcrumb_dw(ce);
-> > -       if (ret < 0)
-> > -               goto err_context;
-> > +       if (ret < 0) {
-> > +               intel_context_put(ce);
->
-> I think it's easier to follow the code if the error handling is in one
-> place. Since you have to put the context.
-> And since create_kernel_context() pins it, don't we have to
-> intel_context_unpin() like we are doing
-> in intel_engine_cleanup_common()?  Which would also mean to probably
-> factor out a `destroy_kernel_context()`
-> to always do it, and call from here and from intel_engine_cleanup_common().
+This driver is tested with the KMB EVM board which is the refernce baord
+for Keem Bay SOC. The SOC's display pipeline is as follows
 
-We actually had a destroy_kernel_context() and the unpin, but that got dropped
-by e6ba76480299 ("drm/i915: Remove i915->kernel_context") .
++--------------+    +---------+    +-----------------------+
+|LCD controller| -> |Mipi DSI | -> |Mipi to HDMI Converter |
++--------------+    +---------+    +-----------------------+
 
+LCD controller and Mipi DSI transmitter are part of the SOC and
+mipi to HDMI converter is ADV7535 for KMB EVM board.
 
-Wouldn't we hit a GEM_BUG_ON() in the destroy function if we don't unpin it ?
+The DRM driver is a basic KMS atomic modesetting display driver and
+has no 2D or 3D graphics.It calls into the ADV bridge driver at
+the connector level.
 
-Lucas De Marchi
+Only 1080p resolution and single plane is supported at this time.
+The usecase is for debugging video and camera outputs.
+
+Device tree patches are under review here
+https://lore.kernel.org/linux-arm-kernel/20200708175020.194436-1-daniele.alessandrelli@linux.intel.com/T
+/
+
+Changes since v1:
+- Removed redundant license text, updated license
+- Rearranged include blocks
+- renamed global vars and removed extern in c
+- Used upclassing for dev_private
+- Used drm_dev_init in drm device create
+- minor cleanups
+
+Changes since v2:
+- squashed all commits to a single commit
+- logging changed to drm_info, drm_dbg etc.
+- used devm_drm_dev_alloc()
+- removed commented out sections and general cleanup
+
+Changes since v3:
+- renamed dev_p to kmb
+- moved clocks under kmb_clock, consolidated clk initializations
+- use drmm functions
+- use DRM_GEM_CMA_DRIVER_OPS_VMAP
+- more cleanups
+
+Changes since v4:
+- corrected spellings
+
+Anitha Chrisanthus (1):
+  drm/kmb: Add support for KeemBay Display
+
+ drivers/gpu/drm/Kconfig         |    2 +
+ drivers/gpu/drm/Makefile        |    1 +
+ drivers/gpu/drm/kmb/Kconfig     |   13 +
+ drivers/gpu/drm/kmb/Makefile    |    2 +
+ drivers/gpu/drm/kmb/kmb_crtc.c  |  217 +++++
+ drivers/gpu/drm/kmb/kmb_crtc.h  |   36 +
+ drivers/gpu/drm/kmb/kmb_drv.c   |  728 ++++++++++++++++
+ drivers/gpu/drm/kmb/kmb_drv.h   |  172 ++++
+ drivers/gpu/drm/kmb/kmb_dsi.c   | 1834 +++++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/kmb/kmb_dsi.h   |  370 ++++++++
+ drivers/gpu/drm/kmb/kmb_plane.c |  518 +++++++++++
+ drivers/gpu/drm/kmb/kmb_plane.h |  124 +++
+ drivers/gpu/drm/kmb/kmb_regs.h  |  738 ++++++++++++++++
+ 13 files changed, 4755 insertions(+)
+ create mode 100644 drivers/gpu/drm/kmb/Kconfig
+ create mode 100644 drivers/gpu/drm/kmb/Makefile
+ create mode 100644 drivers/gpu/drm/kmb/kmb_crtc.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_crtc.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_drv.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_drv.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_dsi.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_dsi.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_plane.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_plane.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_regs.h
+
+-- 
+2.7.4
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
