@@ -1,55 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55C9923A02D
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Aug 2020 09:16:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6351A23A131
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Aug 2020 10:42:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFFC76E212;
-	Mon,  3 Aug 2020 07:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D05976E21E;
+	Mon,  3 Aug 2020 08:42:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com
- [IPv6:2a00:1450:4864:20::644])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8C336E212
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Aug 2020 07:16:52 +0000 (UTC)
-Received: by mail-ej1-x644.google.com with SMTP id jp10so10961793ejb.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 03 Aug 2020 00:16:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=fNExgD8cQYK/vFe1jPUGAJYqJPBpgG+9G+wlsFyx4sM=;
- b=ebz8d2sD6Zgc05OUcr2Z1JxmKS56IA59Zg6W0mvtQDkUylKRKgg7hYykGGBvzMfgM/
- FC+9jqTxk8sr4m355L6eGmScK2C0QuACSyeOrReYIBI34oRTUp+uR5RqyyE5w3htIHRJ
- hN/htMUU35rdLYUNOhOv8zeXpCVu6yoUQ9wIMHEp0rGAi9hBiwk7S8vkAiVcUBvLKCmD
- 6m08YUDBwUz33dZz8LCskqpL73gPWXedrGSfbwy7WNhKep0AM4DXt13KhgYMGagSPqBD
- CJvAfZX5fxG4nMX60KDBgoRr7pwfTdQScDX9Z84nyobx5VyqonG5vNo41Ck9DNbIZLO0
- 1wTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=fNExgD8cQYK/vFe1jPUGAJYqJPBpgG+9G+wlsFyx4sM=;
- b=KAth1ebg5GNigJHM2h1vVvEDVWD/OdOSxAu9CI0ufwX4PlP0OL/XvpAUyT7vzxDjhP
- AMnXDWQnzoFL0yIN+edTHoLYU9vyq1FCvxFlzCQ7QixG9nNARd5OdWxinYPGbGxWkLM4
- oxQb9S4NR2TCuhKuMJZSqje5oqIzoAmoUo2rufaoTW95Na/STuG7V0SFVN9s/+U36mS9
- pzquaGcDPpl42I4lv9kLZx3nQUOQjQDnYfZyPVR13oVwnd7i/xwJbuZdhhL4LPeKXufB
- WnGDUbJ3srIusbGVEi4Lq6w+7yB/mPoCQuIdlvD8+5yzu+jEVc2Nuku0WgaU4SJg3+DF
- RK6Q==
-X-Gm-Message-State: AOAM530FPhzy3AG6HrO6po04smw5NXEuVwS1lbDyroSbWRE0KY2Skb7W
- ilZJrsJWQezQUy/PmPGpFvCLq2JyS7jkqesj/wQAnA==
-X-Google-Smtp-Source: ABdhPJwdNZ1ra9b2AVf6fPPJF9ZbuVlEtZOmdXalvpPjqzlk2rlNYAyj/etiGtMPf5ySU9uZemMiqka7o1f8swiRcsM=
-X-Received: by 2002:a17:907:72c8:: with SMTP id
- du8mr14939193ejc.237.1596439011301; 
- Mon, 03 Aug 2020 00:16:51 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 141826E21E;
+ Mon,  3 Aug 2020 08:42:02 +0000 (UTC)
+IronPort-SDR: nXf0sI2A1cQRlyl4QPRWLhcfw7xWULB8MZQg/qS3oQyhgK33e/sgjZ9iTHYpYEP99uMR8faUiV
+ XI9sQzEbsrPA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9701"; a="140015549"
+X-IronPort-AV: E=Sophos;i="5.75,429,1589266800"; d="scan'208";a="140015549"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2020 01:42:01 -0700
+IronPort-SDR: jdqq4oNfED4wgeLRjHMaHuNP8RyD9MdyK9lfemnRpVQM6L/Ft6bG1h6r8EWEU5WDugyaVOv/MK
+ 0sYucpi5FI1w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,429,1589266800"; d="scan'208";a="273862936"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by fmsmga007.fm.intel.com with ESMTP; 03 Aug 2020 01:41:58 -0700
+Received: from andy by smile with local (Exim 4.94)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1k2W2f-005tVV-LR; Mon, 03 Aug 2020 11:41:57 +0300
+Date: Mon, 3 Aug 2020 11:41:57 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200803084157.GW3703480@smile.fi.intel.com>
+References: <20200717133753.127282-1-hdegoede@redhat.com>
+ <20200717133753.127282-7-hdegoede@redhat.com>
+ <20200728185703.GA3703480@smile.fi.intel.com>
+ <1e19e31f-cf68-5607-3027-3b963ce53c39@redhat.com>
+ <20200729081218.GH3703480@smile.fi.intel.com>
+ <0e8595ff-2ebb-76a6-a43d-d670154c0352@redhat.com>
 MIME-Version: 1.0
-References: <20200728152144.1100-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200728152144.1100-1-chris@chris-wilson.co.uk>
-From: Dave Airlie <airlied@gmail.com>
-Date: Mon, 3 Aug 2020 17:16:40 +1000
-Message-ID: <CAPM=9twnbntmtCqoKa6RsDeKEwrjjJBi=St7mDtMXtP9Uy+EZA@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [CI] drm/i915: Filter wake_flags passed to
- default_wake_function
+Content-Disposition: inline
+In-Reply-To: <0e8595ff-2ebb-76a6-a43d-d670154c0352@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v5 06/16] pwm: lpss: Use pwm_lpss_apply()
+ when restoring state on resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,67 +58,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 29 Jul 2020 at 01:21, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> The flags passed to the wait_entry.func are passed onwards to
-> try_to_wake_up(), which has a very particular interpretation for its
-> wake_flags. In particular, beyond the published WF_SYNC, it has a few
-> internal flags as well. Since we passed the fence->error down the chain
-> via the flags argument, these ended up in the default_wake_function
-> confusing the kernel/sched.
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2110
-> Fixes: ef4688497512 ("drm/i915: Propagate fence errors")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.4+
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_sw_fence.c | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-> index 295b9829e2da..4cd2038cbe35 100644
-> --- a/drivers/gpu/drm/i915/i915_sw_fence.c
-> +++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-> @@ -164,9 +164,13 @@ static void __i915_sw_fence_wake_up_all(struct i915_sw_fence *fence,
->
->                 do {
->                         list_for_each_entry_safe(pos, next, &x->head, entry) {
-> -                               pos->func(pos,
-> -                                         TASK_NORMAL, fence->error,
-> -                                         &extra);
-> +                               int wake_flags;
-> +
-> +                               wake_flags = fence->error;
-> +                               if (pos->func == autoremove_wake_function)
-> +                                       wake_flags = 0;
-> +
-> +                               pos->func(pos, TASK_NORMAL, wake_flags, &extra);
->                         }
->
->                         if (list_empty(&extra))
+On Sun, Aug 02, 2020 at 10:51:34PM +0200, Hans de Goede wrote:
+> On 7/29/20 10:12 AM, Andy Shevchenko wrote:
 
-This seems to be heading for my tree at the moment, there is only one
-place in the kernel where someone compares pos->func with
-autoremove_wake_function, and it's in this file.
+...
 
-This seems horribly brittle, can we at least make this better in -next
-even if we have to have this fix in fixes?
+> Ok, I've added the suggested/discussed helper in my personal tree. Is it ok
+> if I add your Reviewed-by with that change in place.
 
-I also have to question the whole raison d'etre for i915_sw_fence,
-it's initial commit says it was meant to be a core kernel struct, but
-I haven't seen any effort on behalf of i915 team to make that happen,
-I expect when that is attempted the whole thing will get shredded for
-layering violations like the above.
+Yes, go ahead!
 
-Dave.
+> This is the last unreviewed
+> bit, so I would rather not respin the series just for this (there will be one
+> more respin when I rebase it on 5.9-rc1).
+> 
+> If you want to check out what the patch looks like now, the new version from
+> my personal tree is here:
+> 
+> https://github.com/jwrdegoede/linux-sunxi/commit/e4869830d88bb8cb8251718e0086ac189abc0f56
+
+Thanks, looks good to me.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
