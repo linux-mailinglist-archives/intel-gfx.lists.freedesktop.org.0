@@ -2,50 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6351A23A131
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Aug 2020 10:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83CCE23A177
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Aug 2020 11:05:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D05976E21E;
-	Mon,  3 Aug 2020 08:42:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 989686E220;
+	Mon,  3 Aug 2020 09:05:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 141826E21E;
- Mon,  3 Aug 2020 08:42:02 +0000 (UTC)
-IronPort-SDR: nXf0sI2A1cQRlyl4QPRWLhcfw7xWULB8MZQg/qS3oQyhgK33e/sgjZ9iTHYpYEP99uMR8faUiV
- XI9sQzEbsrPA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9701"; a="140015549"
-X-IronPort-AV: E=Sophos;i="5.75,429,1589266800"; d="scan'208";a="140015549"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A48B6E220
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Aug 2020 09:05:15 +0000 (UTC)
+IronPort-SDR: iGMdHdM3czAwI/aAyO32TCQps2nm2axzx9U3aokCTVRFRDfJfQ8B3ED3VVJvRq0Cvu5r7AVTs6
+ obcf3Xj60NDw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9701"; a="213602690"
+X-IronPort-AV: E=Sophos;i="5.75,429,1589266800"; d="scan'208";a="213602690"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2020 01:42:01 -0700
-IronPort-SDR: jdqq4oNfED4wgeLRjHMaHuNP8RyD9MdyK9lfemnRpVQM6L/Ft6bG1h6r8EWEU5WDugyaVOv/MK
- 0sYucpi5FI1w==
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2020 02:05:14 -0700
+IronPort-SDR: ZvX5na+NELRGmXqRi/SDg7qrvTSkiF4BJOXeyYcaqcUA7RP63nsGvtlnAbp6bNsqCOlRjHS+KU
+ cmmLKvytu+Iw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,429,1589266800"; d="scan'208";a="273862936"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
- by fmsmga007.fm.intel.com with ESMTP; 03 Aug 2020 01:41:58 -0700
-Received: from andy by smile with local (Exim 4.94)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1k2W2f-005tVV-LR; Mon, 03 Aug 2020 11:41:57 +0300
-Date: Mon, 3 Aug 2020 11:41:57 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20200803084157.GW3703480@smile.fi.intel.com>
-References: <20200717133753.127282-1-hdegoede@redhat.com>
- <20200717133753.127282-7-hdegoede@redhat.com>
- <20200728185703.GA3703480@smile.fi.intel.com>
- <1e19e31f-cf68-5607-3027-3b963ce53c39@redhat.com>
- <20200729081218.GH3703480@smile.fi.intel.com>
- <0e8595ff-2ebb-76a6-a43d-d670154c0352@redhat.com>
+X-IronPort-AV: E=Sophos;i="5.75,429,1589266800"; d="scan'208";a="273868575"
+Received: from unknown (HELO delly.ger.corp.intel.com) ([10.252.62.231])
+ by fmsmga007.fm.intel.com with ESMTP; 03 Aug 2020 02:05:13 -0700
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  3 Aug 2020 12:05:03 +0300
+Message-Id: <20200803090506.260325-1-lionel.g.landwerlin@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <0e8595ff-2ebb-76a6-a43d-d670154c0352@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v5 06/16] pwm: lpss: Use pwm_lpss_apply()
- when restoring state on resume
+Subject: [Intel-gfx] [PATCH 0/3] drm/i915: timeline semaphore support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,42 +46,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Aug 02, 2020 at 10:51:34PM +0200, Hans de Goede wrote:
-> On 7/29/20 10:12 AM, Andy Shevchenko wrote:
+Hi all,
 
-...
+Hopefully this last run is all clean. No changes in this series, just
+a rebase on top of Danvet's s/DRM_ERROR/DRM_DEBUG/.
 
-> Ok, I've added the suggested/discussed helper in my personal tree. Is it ok
-> if I add your Reviewed-by with that change in place.
+Test-with: 20200803090053.260115-1-lionel.g.landwerlin@intel.com
 
-Yes, go ahead!
+Cheers,
 
-> This is the last unreviewed
-> bit, so I would rather not respin the series just for this (there will be one
-> more respin when I rebase it on 5.9-rc1).
-> 
-> If you want to check out what the patch looks like now, the new version from
-> my personal tree is here:
-> 
-> https://github.com/jwrdegoede/linux-sunxi/commit/e4869830d88bb8cb8251718e0086ac189abc0f56
+Lionel Landwerlin (3):
+  drm/i915: introduce a mechanism to extend execbuf2
+  drm/i915: add syncobj timeline support
+  drm/i915: peel dma-fence-chains wait fences
 
-Thanks, looks good to me.
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 333 +++++++++++++++---
+ drivers/gpu/drm/i915/i915_drv.c               |   3 +-
+ drivers/gpu/drm/i915/i915_getparam.c          |   1 +
+ include/uapi/drm/i915_drm.h                   |  65 +++-
+ 4 files changed, 342 insertions(+), 60 deletions(-)
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--
+2.28.0
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
