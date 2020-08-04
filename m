@@ -2,47 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EB8A23C0E1
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Aug 2020 22:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3729223C1B0
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Aug 2020 23:45:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B65376E08C;
-	Tue,  4 Aug 2020 20:43:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA4A89D61;
+	Tue,  4 Aug 2020 21:45:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9CB16E08C
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Aug 2020 20:43:40 +0000 (UTC)
-IronPort-SDR: QroxV5Lv32b4ftinsDiw+s4Qwd0CpEaqbGyYNBE1k4gd9e/DtCec7ZtY6lHeYv1ZRD7Sqq08OI
- +SKGzFcS1ZQw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9703"; a="140319874"
-X-IronPort-AV: E=Sophos;i="5.75,435,1589266800"; d="scan'208";a="140319874"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2020 13:43:40 -0700
-IronPort-SDR: laz5X6jBYgM2JmYukn0Zy9oXQjEFsJAtVBwkSzzUBKulad0LGUp3miunU88zOp/DOHnDpzSVrO
- 6tXWA6YYZZhg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,435,1589266800"; d="scan'208";a="492588376"
-Received: from akrolak-mobl.ger.corp.intel.com (HELO [10.249.43.120])
- ([10.249.43.120])
- by fmsmga006.fm.intel.com with ESMTP; 04 Aug 2020 13:43:38 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200804085954.350343-1-lionel.g.landwerlin@intel.com>
- <20200804085954.350343-3-lionel.g.landwerlin@intel.com>
- <159656655139.4193.15369815764606779771@build.alporthouse.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <4f7590c3-4ec9-fec1-32c6-d8245f3c38f3@intel.com>
-Date: Tue, 4 Aug 2020 23:43:38 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
+ [IPv6:2a00:1450:4864:20::536])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FBD68981D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Aug 2020 21:45:38 +0000 (UTC)
+Received: by mail-ed1-x536.google.com with SMTP id df16so14640851edb.9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Aug 2020 14:45:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=eKqzGF/Sd/cvWrhXsYSRUKX4gtV2FhAvyIH/uRuYKNY=;
+ b=j56WPbHFRVu4aGGFpnc2MP3ehB6RNNFfMB7qefM21E8DM1k5dDRELt5Pp6n8O2G2Xg
+ mTVVATnL7jYzfLKsJS/FJNd4VJkzJsHKwBmxKV1ZaQSH6JCpcNWgOXMG71Qwo3GLdjGX
+ BAEcUNZLjqEnlNdTdfqVQnjc/7CpWYpreqQgxDO6MHCPK5JCy36Kko4tYn/LioanI7Iq
+ 9f9jdOVmJ8w8Wld1GIF5mGZfXY9LRN14J+BB1mmBtApo4JZ0Kx3br+UNgcyKWcRJkWbt
+ TiGyFHPsKAAL8sCriO939IyBM8UyrOW/ZORKCzYIOBn8L1QvN+xTpofkRdgD89Qdr+pl
+ d1Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=eKqzGF/Sd/cvWrhXsYSRUKX4gtV2FhAvyIH/uRuYKNY=;
+ b=PpUCZkDzzlUlKxH5rBiJYcpRcyarDUZ1VtRH/Z1ZCCl6f09YlB3aGPXq9Pdu7fj6qO
+ rqo5Y+Nwf5HAAXc5/v61XcrPFNyZ+xV6ArsJhEHJF+UCTCImrLO4DQl4JxSuI5E4/IeB
+ GQag18iHrhvn1aJ7vQ1EDvrOhfwGy1Z9ZX8Zwtrz2ySG5qFHD/W2iYj3nGevPOtgTi5e
+ lXRbc2RZZ0NnFHP3Zxufu40bFDK9vhgcO1LuB5FhZDrvYudh9zmEy2gxSwnC8tIwPQ0x
+ ELFedD62Tax0KZZzseACsEO0RCy6sXzzzEBOzlyL0yfr21Ws1xVxMBXFhNA03SyzZwZV
+ aGiQ==
+X-Gm-Message-State: AOAM533d0QIxIwnvor7CbF1JC15dr52Ch5S++BnUsRErfXgZkfekMWoi
+ Bsq3fqTn7/jQQJTjNg8kqydu8GQWOxWV/f5gKM7mnLdN
+X-Google-Smtp-Source: ABdhPJwPnxWP9K8moAW9XB3eMCjexd9MJCaVazioJXq3kARy9JohyXrvTc4XBt+noer0+nZksDYkSfoO4qU3H4z1fOw=
+X-Received: by 2002:aa7:cc10:: with SMTP id q16mr9945935edt.298.1596577537055; 
+ Tue, 04 Aug 2020 14:45:37 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <159656655139.4193.15369815764606779771@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: add syncobj timeline support
+References: <20200802164412.2738-1-chris@chris-wilson.co.uk>
+ <CAPM=9twmsrNehJjFZrehwORg-Nyzo_cEq8CiY5=bzsOv8G7pPA@mail.gmail.com>
+ <159639701401.26228.4061968059817196468@build.alporthouse.com>
+In-Reply-To: <159639701401.26228.4061968059817196468@build.alporthouse.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Wed, 5 Aug 2020 07:45:25 +1000
+Message-ID: <CAPM=9twb2jhWhwvD3HWjG04ihxnYv+EgJ0rQPwL_aHSjJn-NNQ@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] Time, where did it go?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,56 +62,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 04/08/2020 21:42, Chris Wilson wrote:
-> Quoting Lionel Landwerlin (2020-08-04 09:59:54)
->> Introduces a new parameters to execbuf so that we can specify syncobj
->> handles as well as timeline points.
->>
->> v2: Reuse i915_user_extension_fn
->>
->> v3: Check that the chained extension is only present once (Chris)
->>
->> v4: Check that dma_fence_chain_find_seqno returns a non NULL fence (Lionel)
->>
->> v5: Use BIT_ULL (Chris)
->>
->> v6: Fix issue with already signaled timeline points,
->>      dma_fence_chain_find_seqno() setting fence to NULL (Chris)
->>
->> v7: Report ENOENT with invalid syncobj handle (Lionel)
->>
->> v8: Check for out of order timeline point insertion (Chris)
->>
->> v9: After explanations on
->>      https://lists.freedesktop.org/archives/dri-devel/2019-August/229287.html
->>      drop the ordering check from v8 (Lionel)
->>
->> v10: Set first extension enum item to 1 (Jason)
->>
->> v11: Rebase
->>
->> v12: All multiple extension nodes of timeline syncobj (Chris)
->>
->> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->> Co-authored-by: Chris Wilson <chris@chris-wilson.co.uk>
->> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch> (v11)
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+On Mon, 3 Aug 2020 at 05:36, Chris Wilson <chris@chris-wilson.co.uk> wrote:
 >
-> One last detail Joonas will ask for is the Link: for the anv code.
-> -Chris
+> Quoting Dave Airlie (2020-08-02 18:56:44)
+> > On Mon, 3 Aug 2020 at 02:44, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > >
+> > > Lots of small incremental improvements to reduce execution latency
+> > > which basically offsets the small regressions incurred when compared to
+> > > 5.7. And then there are some major fixes found while staring agape at
+> > > lockstat.
+> >
+> > What introduced the 5.7 regressions? are they documented somewhere.
+>
+> No. There's a 5.8-rc1 bisect (to the merge but not into rc1) for
+> something in the core causing perf fluctuations, but I have not yet
+> reproduced that one to bisect into the rc1 merge. [The system that showed
+> the issue has historically seen strong swings from p-state setup, might
+> be that again?]. This is from measuring simulated transcode workloads that
+> we've built up to track KPI. That we can then compare against the real
+> workloads run by other groups.
+>
+> > What is the goal here, is there a benchmark or application that this
+> > benefits that you can quantify the benefits?
+>
+> Entirely motivated by not wanting to have to explain why there's even a
+> 1% regression in their client metrics. They wouldn't even notice for a
+> few releases by which point the problem is likely compounded and we
+> suddenly have crisis meetings.
+>
+> > Is the lack of userspace command submission a problem vs other vendors here?
+>
+> If you mean HW scheduling (which is the bit that we are most in dire need
+> of for replacing this series), not really, our closest equivalent has not
+> yet proven itself, at least in previous incarnations, adequate to their
+> requirements.
 
-I always forget the tag for it : 
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/2901
+I don't think this sort of thing is acceptable for upstream. This is
+the platform problem going crazy.
+Something regresses in the kernel core, and you refactor the i915
+driver to get horribly more complicated to avoid fixing the core
+kernel regressions?
 
+This has to stop, if Intel can't stop it internally, i.e. the GEM
+kernel team hasn't got the sort of power, then it has to stop
+upstream.
 
--Lionel
+This is a hard NAK for this sort of refactoring, now and in the future.
 
+Dave.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
