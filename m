@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995DE23CA80
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Aug 2020 14:23:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D2D23CA84
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Aug 2020 14:23:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16C1D6E5A1;
-	Wed,  5 Aug 2020 12:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB6E26E57A;
+	Wed,  5 Aug 2020 12:22:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 056AC6E57E
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 12:22:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB3186E573
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 12:22:49 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22039483-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22039484-1500050 
  for multiple; Wed, 05 Aug 2020 13:22:35 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Aug 2020 13:22:18 +0100
-Message-Id: <20200805122231.23313-25-chris@chris-wilson.co.uk>
+Date: Wed,  5 Aug 2020 13:22:19 +0100
+Message-Id: <20200805122231.23313-26-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200805122231.23313-1-chris@chris-wilson.co.uk>
 References: <20200805122231.23313-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 24/37] drm/i915/gem: Reintroduce multiple passes
- for reloc processing
+Subject: [Intel-gfx] [PATCH 25/37] drm/i915: Add an implementation for
+ common reservation_ww_class locking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,1478 +39,237 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The prospect of locking the entire submission sequence under a wide
-ww_mutex re-imposes some key restrictions, in particular that we must
-not call copy_(from|to)_user underneath the mutex (as the faulthandlers
-themselves may need to take the ww_mutex). To satisfy this requirement,
-we need to split the relocation handling into multiple phases again.
-After dropping the reservations, we need to allocate enough buffer space
-to both copy the relocations from userspace into, and serve as the
-relocation command buffer. Once we have finished copying the
-relocations, we can then re-aquire all the objects for the execbuf and
-rebind them, including our new relocations objects. After we have bound
-all the new and old objects into their final locations, we can then
-convert the relocation entries into the GPU commands to update the
-relocated vma. Finally, once it is all over and we have dropped the
-ww_mutex for the last time, we can then complete the update of the user
-relocation entries.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 883 +++++++++---------
- .../i915/gem/selftests/i915_gem_execbuffer.c  | 206 ++--
- .../drm/i915/gt/intel_gt_buffer_pool_types.h  |   2 +-
- 3 files changed, 585 insertions(+), 506 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 0839397c7e50..58e40348b551 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -59,6 +59,20 @@ struct eb_vma_array {
- 	struct eb_vma vma[];
- };
- 
-+struct eb_relocs_link {
-+	unsigned long rsvd; /* overwritten by MI_BATCH_BUFFER_END */
-+	struct i915_vma *vma;
-+};
-+
-+struct eb_relocs {
-+	struct i915_vma *head;
-+	struct drm_i915_gem_relocation_entry *map;
-+	unsigned int pos;
-+	unsigned int max;
-+
-+	unsigned int bufsz;
-+};
-+
- #define __EXEC_OBJECT_HAS_PIN		BIT(31)
- #define __EXEC_OBJECT_HAS_FENCE		BIT(30)
- #define __EXEC_OBJECT_NEEDS_MAP		BIT(29)
-@@ -250,6 +264,7 @@ struct i915_execbuffer {
- 
- 	struct intel_engine_cs *engine; /** engine to queue the request to */
- 	struct intel_context *context; /* logical state for the request */
-+	struct intel_context *reloc_context; /* distinct context for relocs */
- 	struct i915_gem_context *gem_context; /** caller's context */
- 
- 	struct i915_request *request; /** our request to build */
-@@ -261,27 +276,11 @@ struct i915_execbuffer {
- 	/** list of all vma required to be bound for this execbuf */
- 	struct list_head bind_list;
- 
--	/** list of vma that have execobj.relocation_count */
--	struct list_head relocs_list;
--
- 	struct list_head submit_list;
- 
--	/**
--	 * Track the most recently used object for relocations, as we
--	 * frequently have to perform multiple relocations within the same
--	 * obj/page
--	 */
--	struct reloc_cache {
--		struct drm_mm_node node; /** temporary GTT binding */
--
--		struct intel_context *ce;
--
--		struct i915_vma *target;
--		struct i915_request *rq;
--		struct i915_vma *rq_vma;
--		u32 *rq_cmd;
--		unsigned int rq_size;
--	} reloc_cache;
-+	/** list of vma that have execobj.relocation_count */
-+	struct list_head relocs_list;
-+	unsigned long relocs_count;
- 
- 	struct eb_cmdparser {
- 		struct eb_vma *shadow;
-@@ -297,7 +296,6 @@ struct i915_execbuffer {
- 
- 	unsigned int gen; /** Cached value of INTEL_GEN */
- 	bool use_64bit_reloc : 1;
--	bool has_llc : 1;
- 	bool has_fence : 1;
- 	bool needs_unfenced : 1;
- 
-@@ -485,6 +483,7 @@ static int eb_create(struct i915_execbuffer *eb)
- 	INIT_LIST_HEAD(&eb->bind_list);
- 	INIT_LIST_HEAD(&eb->submit_list);
- 	INIT_LIST_HEAD(&eb->relocs_list);
-+	eb->relocs_count = 0;
- 
- 	return 0;
- }
-@@ -631,8 +630,10 @@ eb_add_vma(struct i915_execbuffer *eb,
- 	list_add_tail(&ev->bind_link, &eb->bind_list);
- 	list_add_tail(&ev->submit_link, &eb->submit_list);
- 
--	if (entry->relocation_count)
-+	if (entry->relocation_count) {
- 		list_add_tail(&ev->reloc_link, &eb->relocs_list);
-+		eb->relocs_count += entry->relocation_count;
-+	}
- 
- 	/*
- 	 * SNA is doing fancy tricks with compressing batch buffers, which leads
-@@ -1889,8 +1890,6 @@ eb_get_vma(const struct i915_execbuffer *eb, unsigned long handle)
- 
- static void eb_destroy(const struct i915_execbuffer *eb)
- {
--	GEM_BUG_ON(eb->reloc_cache.rq);
--
- 	eb_vma_array_put(eb->array);
- 	if (eb->lut_size > 0)
- 		kfree(eb->buckets);
-@@ -1908,90 +1907,11 @@ static void eb_info_init(struct i915_execbuffer *eb,
- {
- 	/* Must be a variable in the struct to allow GCC to unroll. */
- 	eb->gen = INTEL_GEN(i915);
--	eb->has_llc = HAS_LLC(i915);
- 	eb->use_64bit_reloc = HAS_64BIT_RELOC(i915);
- 	eb->has_fence = eb->gen < 4;
- 	eb->needs_unfenced = INTEL_INFO(i915)->unfenced_needs_alignment;
- }
- 
--static void reloc_cache_init(struct reloc_cache *cache)
--{
--	cache->node.flags = 0;
--	cache->rq = NULL;
--	cache->target = NULL;
--}
--
--#define RELOC_TAIL 4
--
--static int reloc_gpu_chain(struct i915_execbuffer *eb)
--{
--	struct reloc_cache *cache = &eb->reloc_cache;
--	struct intel_gt_buffer_pool_node *pool;
--	struct i915_request *rq = cache->rq;
--	struct i915_vma *batch;
--	u32 *cmd;
--	int err;
--
--	pool = intel_gt_get_buffer_pool(rq->engine->gt, PAGE_SIZE);
--	if (IS_ERR(pool))
--		return PTR_ERR(pool);
--
--	batch = i915_vma_instance(pool->obj, rq->context->vm, NULL);
--	if (IS_ERR(batch)) {
--		err = PTR_ERR(batch);
--		goto out_pool;
--	}
--
--	err = i915_vma_pin(batch, 0, 0, PIN_USER | PIN_NONBLOCK);
--	if (err)
--		goto out_pool;
--
--	GEM_BUG_ON(cache->rq_size + RELOC_TAIL > PAGE_SIZE  / sizeof(u32));
--	cmd = cache->rq_cmd + cache->rq_size;
--	*cmd++ = MI_ARB_CHECK;
--	if (eb->gen >= 8)
--		*cmd++ = MI_BATCH_BUFFER_START_GEN8;
--	else if (eb->gen >= 6)
--		*cmd++ = MI_BATCH_BUFFER_START;
--	else
--		*cmd++ = MI_BATCH_BUFFER_START | MI_BATCH_GTT;
--	*cmd++ = lower_32_bits(batch->node.start);
--	*cmd++ = upper_32_bits(batch->node.start); /* Always 0 for gen<8 */
--	i915_gem_object_flush_map(cache->rq_vma->obj);
--	i915_gem_object_unpin_map(cache->rq_vma->obj);
--	cache->rq_vma = NULL;
--
--	err = intel_gt_buffer_pool_mark_active(pool, rq);
--	if (err == 0) {
--		i915_vma_lock(batch);
--		err = i915_request_await_object(rq, batch->obj, false);
--		if (err == 0)
--			err = i915_vma_move_to_active(batch, rq, 0);
--		i915_vma_unlock(batch);
--	}
--	i915_vma_unpin(batch);
--	if (err)
--		goto out_pool;
--
--	cmd = i915_gem_object_pin_map(batch->obj,
--				      eb->has_llc ?
--				      I915_MAP_FORCE_WB :
--				      I915_MAP_FORCE_WC);
--	if (IS_ERR(cmd)) {
--		err = PTR_ERR(cmd);
--		goto out_pool;
--	}
--
--	/* Return with batch mapping (cmd) still pinned */
--	cache->rq_cmd = cmd;
--	cache->rq_size = 0;
--	cache->rq_vma = batch;
--
--out_pool:
--	intel_gt_buffer_pool_put(pool);
--	return err;
--}
--
- static struct i915_request *
- nested_request_create(struct intel_context *ce, struct i915_execbuffer *eb)
- {
-@@ -2028,28 +1948,43 @@ static unsigned int reloc_bb_flags(const struct i915_execbuffer *eb)
- 	return eb->gen > 5 ? 0 : I915_DISPATCH_SECURE;
- }
- 
--static int reloc_gpu_flush(struct i915_execbuffer *eb)
-+static struct intel_gt_buffer_pool_node *reloc_node(struct i915_vma *vma)
- {
--	struct reloc_cache *cache = &eb->reloc_cache;
--	struct i915_request *rq;
--	int err;
-+	return vma->private;
-+}
- 
--	rq = fetch_and_zero(&cache->rq);
--	if (!rq)
--		return 0;
-+static struct eb_relocs_link *as_link(struct eb_relocs *relocs, int pos)
-+{
-+	return (struct eb_relocs_link *)(relocs->map + pos);
-+}
- 
--	if (cache->rq_vma) {
--		struct drm_i915_gem_object *obj = cache->rq_vma->obj;
-+static void eb_relocs_close(struct eb_relocs *relocs)
-+{
-+	struct i915_vma *vma = relocs->head;
-+
-+	while (vma) {
-+		struct i915_vma *next = as_link(relocs, relocs->max)->vma;
- 
--		GEM_BUG_ON(cache->rq_size >= obj->base.size / sizeof(u32));
--		cache->rq_cmd[cache->rq_size++] = MI_BATCH_BUFFER_END;
-+		i915_gem_object_unpin_map(vma->obj);
-+		intel_gt_buffer_pool_put(reloc_node(vma));
- 
--		__i915_gem_object_flush_map(obj,
--					    0, sizeof(u32) * cache->rq_size);
--		i915_gem_object_unpin_map(obj);
-+		vma = next;
- 	}
-+}
-+
-+static int
-+reloc_gpu_flush(struct i915_execbuffer *eb,
-+		struct eb_relocs *relocs,
-+		struct i915_request *rq,
-+		int err)
-+{
-+	u32 *cs;
-+
-+	cs = (u32 *)(relocs->map + relocs->pos);
-+	*cs++ = MI_BATCH_BUFFER_END;
-+	__i915_gem_object_flush_map(relocs->head->obj,
-+				    0, (void *)cs - (void *)relocs->map);
- 
--	err = 0;
- 	if (rq->engine->emit_init_breadcrumb)
- 		err = rq->engine->emit_init_breadcrumb(rq);
- 	if (!err)
-@@ -2079,7 +2014,7 @@ static int reloc_move_to_gpu(struct i915_request *rq, struct i915_vma *vma)
- 		i915_gem_clflush_object(obj, 0);
- 	obj->write_domain = 0;
- 
--	err = i915_request_await_object(rq, vma->obj, true);
-+	err = i915_request_await_object(rq, obj, true);
- 	if (err == 0)
- 		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
- 
-@@ -2088,130 +2023,6 @@ static int reloc_move_to_gpu(struct i915_request *rq, struct i915_vma *vma)
- 	return err;
- }
- 
--static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
--			     struct intel_engine_cs *engine,
--			     unsigned int len)
--{
--	struct reloc_cache *cache = &eb->reloc_cache;
--	struct intel_gt_buffer_pool_node *pool;
--	struct i915_request *rq;
--	struct i915_vma *batch;
--	u32 *cmd;
--	int err;
--
--	pool = intel_gt_get_buffer_pool(engine->gt, PAGE_SIZE);
--	if (IS_ERR(pool))
--		return PTR_ERR(pool);
--
--	cmd = i915_gem_object_pin_map(pool->obj,
--				      eb->has_llc ?
--				      I915_MAP_FORCE_WB :
--				      I915_MAP_FORCE_WC);
--	if (IS_ERR(cmd)) {
--		err = PTR_ERR(cmd);
--		goto out_pool;
--	}
--
--	batch = i915_vma_instance(pool->obj, eb->context->vm, NULL);
--	if (IS_ERR(batch)) {
--		err = PTR_ERR(batch);
--		goto err_unmap;
--	}
--
--	err = i915_vma_pin(batch, 0, 0, PIN_USER | PIN_NONBLOCK);
--	if (err)
--		goto err_unmap;
--
--	if (cache->ce == eb->context)
--		rq = __i915_request_create(cache->ce, GFP_KERNEL);
--	else
--		rq = nested_request_create(cache->ce, eb);
--	if (IS_ERR(rq)) {
--		err = PTR_ERR(rq);
--		goto err_unpin;
--	}
--	rq->cookie = lockdep_pin_lock(&i915_request_timeline(rq)->mutex);
--
--	err = intel_gt_buffer_pool_mark_active(pool, rq);
--	if (err)
--		goto err_request;
--
--	i915_vma_lock(batch);
--	err = i915_request_await_object(rq, batch->obj, false);
--	if (err == 0)
--		err = i915_vma_move_to_active(batch, rq, 0);
--	i915_vma_unlock(batch);
--	if (err)
--		goto skip_request;
--
--	rq->batch = batch;
--	i915_vma_unpin(batch);
--
--	cache->rq = rq;
--	cache->rq_cmd = cmd;
--	cache->rq_size = 0;
--	cache->rq_vma = batch;
--
--	/* Return with batch mapping (cmd) still pinned */
--	goto out_pool;
--
--skip_request:
--	i915_request_set_error_once(rq, err);
--err_request:
--	__i915_request_add(rq, &eb->gem_context->sched);
--	if (i915_request_timeline(rq) != eb->context->timeline)
--		mutex_unlock(&i915_request_timeline(rq)->mutex);
--err_unpin:
--	i915_vma_unpin(batch);
--err_unmap:
--	i915_gem_object_unpin_map(pool->obj);
--out_pool:
--	intel_gt_buffer_pool_put(pool);
--	return err;
--}
--
--static u32 *reloc_gpu(struct i915_execbuffer *eb,
--		      struct i915_vma *vma,
--		      unsigned int len)
--{
--	struct reloc_cache *cache = &eb->reloc_cache;
--	u32 *cmd;
--	int err;
--
--	if (unlikely(!cache->rq)) {
--		struct intel_engine_cs *engine = eb->engine;
--
--		err = __reloc_gpu_alloc(eb, engine, len);
--		if (unlikely(err))
--			return ERR_PTR(err);
--	}
--
--	if (vma != cache->target) {
--		err = reloc_move_to_gpu(cache->rq, vma);
--		if (unlikely(err)) {
--			i915_request_set_error_once(cache->rq, err);
--			return ERR_PTR(err);
--		}
--
--		cache->target = vma;
--	}
--
--	if (unlikely(cache->rq_size + len >
--		     PAGE_SIZE / sizeof(u32) - RELOC_TAIL)) {
--		err = reloc_gpu_chain(eb);
--		if (unlikely(err)) {
--			i915_request_set_error_once(cache->rq, err);
--			return ERR_PTR(err);
--		}
--	}
--
--	GEM_BUG_ON(cache->rq_size + len >= PAGE_SIZE  / sizeof(u32));
--	cmd = cache->rq_cmd + cache->rq_size;
--	cache->rq_size += len;
--
--	return cmd;
--}
--
- static unsigned long vma_phys_addr(struct i915_vma *vma, u32 offset)
- {
- 	struct page *page;
-@@ -2226,30 +2037,29 @@ static unsigned long vma_phys_addr(struct i915_vma *vma, u32 offset)
- 	return addr + offset_in_page(offset);
- }
- 
--static int __reloc_entry_gpu(struct i915_execbuffer *eb,
--			     struct i915_vma *vma,
--			     u64 offset,
--			     u64 target_addr)
-+static bool
-+eb_relocs_vma_entry(struct i915_execbuffer *eb,
-+		    const struct eb_vma *ev,
-+		    struct drm_i915_gem_relocation_entry *reloc)
- {
- 	const unsigned int gen = eb->gen;
--	unsigned int len;
-+	struct i915_vma *target = eb_get_vma(eb, reloc->target_handle)->vma;
-+	const u64 target_addr = relocation_target(reloc, target);
-+	const u64 presumed = gen8_noncanonical_addr(reloc->presumed_offset);
-+	u64 offset = reloc->offset;
- 	u32 *batch;
--	u64 addr;
- 
--	if (gen >= 8)
--		len = offset & 7 ? 8 : 5;
--	else if (gen >= 4)
--		len = 4;
--	else
--		len = 3;
-+	GEM_BUG_ON(!i915_vma_is_pinned(target));
- 
--	batch = reloc_gpu(eb, vma, len);
--	if (IS_ERR(batch))
--		return PTR_ERR(batch);
-+	/* Replace the reloc entry with the GPU commands */
-+	batch = memset(reloc, 0, sizeof(*reloc));
-+	if (presumed == target->node.start)
-+		return false;
- 
--	addr = gen8_canonical_addr(vma->node.start + offset);
- 	if (gen >= 8) {
--		if (offset & 7) {
-+		u64 addr = gen8_canonical_addr(ev->vma->node.start + offset);
-+
-+		if (addr & 7) {
- 			*batch++ = MI_STORE_DWORD_IMM_GEN4;
- 			*batch++ = lower_32_bits(addr);
- 			*batch++ = upper_32_bits(addr);
-@@ -2271,107 +2081,65 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
- 	} else if (gen >= 6) {
- 		*batch++ = MI_STORE_DWORD_IMM_GEN4;
- 		*batch++ = 0;
--		*batch++ = addr;
-+		*batch++ = ev->vma->node.start + offset;
- 		*batch++ = target_addr;
- 	} else if (IS_I965G(eb->i915)) {
- 		*batch++ = MI_STORE_DWORD_IMM_GEN4;
- 		*batch++ = 0;
--		*batch++ = vma_phys_addr(vma, offset);
-+		*batch++ = vma_phys_addr(ev->vma, offset);
- 		*batch++ = target_addr;
- 	} else if (gen >= 4) {
- 		*batch++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
- 		*batch++ = 0;
--		*batch++ = addr;
-+		*batch++ = ev->vma->node.start + offset;
- 		*batch++ = target_addr;
--	} else if (gen >= 3 &&
--		   !(IS_I915G(eb->i915) || IS_I915GM(eb->i915))) {
-+	} else if (gen >= 3 && !(IS_I915G(eb->i915) || IS_I915GM(eb->i915))) {
- 		*batch++ = MI_STORE_DWORD_IMM | MI_MEM_VIRTUAL;
--		*batch++ = addr;
-+		*batch++ = ev->vma->node.start + offset;
- 		*batch++ = target_addr;
- 	} else {
- 		*batch++ = MI_STORE_DWORD_IMM;
--		*batch++ = vma_phys_addr(vma, offset);
-+		*batch++ = vma_phys_addr(ev->vma, offset);
- 		*batch++ = target_addr;
- 	}
-+	GEM_BUG_ON(batch > (u32 *)(reloc + 1));
- 
--	return 0;
--}
--
--static u64
--relocate_entry(struct i915_execbuffer *eb,
--	       struct i915_vma *vma,
--	       const struct drm_i915_gem_relocation_entry *reloc,
--	       const struct i915_vma *target)
--{
--	u64 target_addr = relocation_target(reloc, target);
--	int err;
--
--	err = __reloc_entry_gpu(eb, vma, reloc->offset, target_addr);
--	if (err)
--		return err;
--
--	return target->node.start | UPDATE;
--}
--
--static int gen6_fixup_ggtt(struct i915_vma *vma)
--{
--	int err;
--
--	if (i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND))
--		return 0;
--
--	err = i915_vma_wait_for_bind(vma);
--	if (err)
--		return err;
--
--	mutex_lock(&vma->vm->mutex);
--	if (!(atomic_fetch_or(I915_VMA_GLOBAL_BIND, &vma->flags) & I915_VMA_GLOBAL_BIND)) {
--		__i915_gem_object_pin_pages(vma->obj);
--		vma->ops->bind_vma(vma->vm, NULL, vma,
--				   vma->obj->cache_level,
--				   I915_VMA_GLOBAL_BIND);
--	}
--	mutex_unlock(&vma->vm->mutex);
--
--	return 0;
-+	return true;
- }
- 
--static u64
--eb_relocate_entry(struct i915_execbuffer *eb,
--		  struct eb_vma *ev,
--		  const struct drm_i915_gem_relocation_entry *reloc)
-+static int
-+eb_relocs_check_entry(struct i915_execbuffer *eb,
-+		      const struct eb_vma *ev,
-+		      const struct drm_i915_gem_relocation_entry *reloc)
- {
- 	struct drm_i915_private *i915 = eb->i915;
- 	struct eb_vma *target;
--	int err;
- 
- 	/* we've already hold a reference to all valid objects */
- 	target = eb_get_vma(eb, reloc->target_handle);
- 	if (unlikely(!target))
- 		return -ENOENT;
- 
--	GEM_BUG_ON(!i915_vma_is_pinned(target->vma));
--
- 	/* Validate that the target is in a valid r/w GPU domain */
- 	if (unlikely(reloc->write_domain & (reloc->write_domain - 1))) {
- 		drm_dbg(&i915->drm, "reloc with multiple write domains: "
--			  "target %d offset %d "
--			  "read %08x write %08x",
--			  reloc->target_handle,
--			  (int) reloc->offset,
--			  reloc->read_domains,
--			  reloc->write_domain);
-+			"target %d offset %llu "
-+			"read %08x write %08x",
-+			reloc->target_handle,
-+			reloc->offset,
-+			reloc->read_domains,
-+			reloc->write_domain);
- 		return -EINVAL;
- 	}
- 	if (unlikely((reloc->write_domain | reloc->read_domains)
- 		     & ~I915_GEM_GPU_DOMAINS)) {
- 		drm_dbg(&i915->drm, "reloc with read/write non-GPU domains: "
--			  "target %d offset %d "
--			  "read %08x write %08x",
--			  reloc->target_handle,
--			  (int) reloc->offset,
--			  reloc->read_domains,
--			  reloc->write_domain);
-+			"target %d offset %llu "
-+			"read %08x write %08x",
-+			reloc->target_handle,
-+			reloc->offset,
-+			reloc->read_domains,
-+			reloc->write_domain);
- 		return -EINVAL;
- 	}
- 
-@@ -2385,155 +2153,400 @@ eb_relocate_entry(struct i915_execbuffer *eb,
- 		 * batchbuffers.
- 		 */
- 		if (reloc->write_domain == I915_GEM_DOMAIN_INSTRUCTION &&
--		    IS_GEN(eb->i915, 6)) {
--			err = gen6_fixup_ggtt(target->vma);
--			if (err)
--				return err;
--		}
-+		    IS_GEN(eb->i915, 6))
-+			target->flags |= EXEC_OBJECT_NEEDS_GTT;
- 	}
- 
--	/*
--	 * If the relocation already has the right value in it, no
--	 * more work needs to be done.
--	 */
--	if (gen8_canonical_addr(target->vma->node.start) == reloc->presumed_offset)
--		return 0;
-+	if ((int)reloc->delta < 0)
-+		target->bias = max_t(u32, target->bias, -(int)reloc->delta);
- 
- 	/* Check that the relocation address is valid... */
- 	if (unlikely(reloc->offset >
- 		     ev->vma->size - (eb->use_64bit_reloc ? 8 : 4))) {
- 		drm_dbg(&i915->drm, "Relocation beyond object bounds: "
--			  "target %d offset %d size %d.\n",
--			  reloc->target_handle,
--			  (int)reloc->offset,
--			  (int)ev->vma->size);
-+			"target %d offset %llu size %llu.\n",
-+			reloc->target_handle,
-+			reloc->offset,
-+			ev->vma->size);
- 		return -EINVAL;
- 	}
- 	if (unlikely(reloc->offset & 3)) {
- 		drm_dbg(&i915->drm, "Relocation not 4-byte aligned: "
--			  "target %d offset %d.\n",
--			  reloc->target_handle,
--			  (int)reloc->offset);
-+			"target %d offset %llu.\n",
-+			reloc->target_handle,
-+			reloc->offset);
- 		return -EINVAL;
- 	}
- 
--	/*
--	 * If we write into the object, we need to force the synchronisation
--	 * barrier, either with an asynchronous clflush or if we executed the
--	 * patching using the GPU (though that should be serialised by the
--	 * timeline). To be completely sure, and since we are required to
--	 * do relocations we are already stalling, disable the user's opt
--	 * out of our synchronisation.
--	 */
--	ev->flags &= ~EXEC_OBJECT_ASYNC;
-+	return 0;
-+}
-+
-+static struct drm_i915_gem_relocation_entry *
-+eb_relocs_grow(struct i915_execbuffer *eb,
-+	       struct eb_relocs *relocs,
-+	       unsigned long *count)
-+{
-+	struct drm_i915_gem_relocation_entry *r;
-+	unsigned long remain;
-+
-+	GEM_BUG_ON(relocs->pos > relocs->max);
-+	remain = relocs->max - relocs->pos;
-+	if (remain == 0) {
-+		struct intel_gt_buffer_pool_node *pool;
-+		struct i915_vma *vma;
-+		struct eb_vma *ev;
-+
-+		pool = intel_gt_get_buffer_pool(eb->engine->gt, relocs->bufsz);
-+		if (IS_ERR(pool))
-+			return ERR_CAST(pool);
-+
-+		i915_gem_object_set_readonly(pool->obj);
-+		if (eb->gen >= 6)
-+			i915_gem_object_set_cache_coherency(pool->obj,
-+							    I915_CACHE_LLC);
-+
-+		vma = i915_vma_instance(pool->obj, eb->context->vm, NULL);
-+		if (IS_ERR(vma)) {
-+			intel_gt_buffer_pool_put(pool);
-+			return ERR_CAST(vma);
-+		}
-+
-+		ev = kzalloc(sizeof(*ev), GFP_KERNEL);
-+		if (!ev) {
-+			intel_gt_buffer_pool_put(pool);
-+			return ERR_PTR(-ENOMEM);
-+		}
-+
-+		vma->private = pool;
-+		ev->vma = i915_vma_get(vma);
-+		ev->exec = &no_entry;
-+		ev->flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
-+		list_add_tail(&ev->bind_link, &eb->bind_list);
-+		list_add(&ev->reloc_link, &eb->array->aux_list);
-+
-+		if (!relocs->head)
-+			relocs->head = vma;
-+		else
-+			as_link(relocs, relocs->pos)->vma = vma;
-+
-+		relocs->pos = 0;
-+		relocs->map = i915_gem_object_pin_map(vma->obj, I915_MAP_WB);
-+		if (IS_ERR(relocs->map))
-+			return ERR_CAST(relocs->map);
-+
-+		memset(relocs->map + relocs->max, 0,
-+		       sizeof(struct eb_relocs_link));
-+		remain = relocs->max;
-+	}
-+	*count = min(remain, *count);
-+
-+	GEM_BUG_ON(!relocs->map);
-+	r = relocs->map + relocs->pos;
-+	relocs->pos += *count;
-+	GEM_BUG_ON(relocs->pos > relocs->max);
- 
--	/* and update the user's relocation entry */
--	return relocate_entry(eb, ev->vma, reloc, target->vma);
-+	return r;
- }
- 
--static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
-+static int
-+eb_relocs_copy_vma(struct i915_execbuffer *eb,
-+		   struct eb_relocs *relocs,
-+		   const struct eb_vma *ev)
- {
--#define N_RELOC(x) ((x) / sizeof(struct drm_i915_gem_relocation_entry))
--	struct drm_i915_gem_relocation_entry stack[N_RELOC(512)];
- 	const struct drm_i915_gem_exec_object2 *entry = ev->exec;
--	struct drm_i915_gem_relocation_entry __user *urelocs =
-+	const struct drm_i915_gem_relocation_entry __user *ureloc =
- 		u64_to_user_ptr(entry->relocs_ptr);
- 	unsigned long remain = entry->relocation_count;
- 
--	if (unlikely(remain > N_RELOC(ULONG_MAX)))
-+	if (unlikely(remain > ULONG_MAX / sizeof(*ureloc)))
- 		return -EINVAL;
- 
--	/*
--	 * We must check that the entire relocation array is safe
--	 * to read. However, if the array is not writable the user loses
--	 * the updated relocation values.
--	 */
--	if (unlikely(!access_ok(urelocs, remain * sizeof(*urelocs))))
--		return -EFAULT;
--
- 	do {
--		struct drm_i915_gem_relocation_entry *r = stack;
--		unsigned int count =
--			min_t(unsigned long, remain, ARRAY_SIZE(stack));
--		unsigned int copied;
-+		struct drm_i915_gem_relocation_entry *r;
-+		unsigned long count = remain;
-+		int err;
- 
--		/*
--		 * This is the fast path and we cannot handle a pagefault
--		 * whilst holding the struct mutex lest the user pass in the
--		 * relocations contained within a mmaped bo. For in such a case
--		 * we, the page fault handler would call i915_gem_fault() and
--		 * we would try to acquire the struct mutex again. Obviously
--		 * this is bad and so lockdep complains vehemently.
--		 */
--		copied = __copy_from_user(r, urelocs, count * sizeof(r[0]));
--		if (unlikely(copied))
-+		r = eb_relocs_grow(eb, relocs, &count);
-+		if (IS_ERR(r))
-+			return PTR_ERR(r);
-+
-+		GEM_BUG_ON(!count);
-+		if (unlikely(copy_from_user(r, ureloc, count * sizeof(r[0]))))
- 			return -EFAULT;
- 
- 		remain -= count;
--		do {
--			u64 offset = eb_relocate_entry(eb, ev, r);
-+		ureloc += count;
- 
--			if (likely(offset == 0)) {
--			} else if ((s64)offset < 0) {
--				return (int)offset;
--			} else {
--				/*
--				 * Note that reporting an error now
--				 * leaves everything in an inconsistent
--				 * state as we have *already* changed
--				 * the relocation value inside the
--				 * object. As we have not changed the
--				 * reloc.presumed_offset or will not
--				 * change the execobject.offset, on the
--				 * call we may not rewrite the value
--				 * inside the object, leaving it
--				 * dangling and causing a GPU hang. Unless
--				 * userspace dynamically rebuilds the
--				 * relocations on each execbuf rather than
--				 * presume a static tree.
--				 *
--				 * We did previously check if the relocations
--				 * were writable (access_ok), an error now
--				 * would be a strange race with mprotect,
--				 * having already demonstrated that we
--				 * can read from this userspace address.
--				 */
--				offset = gen8_canonical_addr(offset & ~UPDATE);
--				__put_user(offset,
--					   &urelocs[r - stack].presumed_offset);
--			}
--		} while (r++, --count);
--		urelocs += ARRAY_SIZE(stack);
-+		do {
-+			err = eb_relocs_check_entry(eb, ev, r++);
-+			if (err)
-+				return err;
-+		} while (--count);
- 	} while (remain);
- 
- 	return 0;
- }
- 
-+static int eb_relocs_copy_user(struct i915_execbuffer *eb,
-+			       struct eb_relocs *relocs)
-+{
-+	struct eb_vma *ev;
-+	int err;
-+
-+	relocs->head = NULL;
-+	relocs->pos = relocs->max;
-+
-+	/* Note: must be holding no locks nor pinned user buffers */
-+	list_for_each_entry(ev, &eb->relocs_list, reloc_link) {
-+		err = eb_relocs_copy_vma(eb, relocs, ev);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static struct drm_i915_gem_relocation_entry *
-+get_gpu_relocs(struct i915_execbuffer *eb,
-+	       struct eb_relocs *relocs,
-+	       struct i915_request *rq,
-+	       unsigned long *count)
-+{
-+	struct drm_i915_gem_relocation_entry *r;
-+	unsigned long remain;
-+
-+	GEM_BUG_ON(relocs->pos > relocs->max);
-+	remain = relocs->max - relocs->pos;
-+	if (remain == 0) {
-+		struct i915_vma *next;
-+		const int gen = eb->gen;
-+		u32 *cs;
-+
-+		GEM_BUG_ON(!relocs->head);
-+		GEM_BUG_ON(!relocs->map);
-+
-+		next = as_link(relocs, relocs->pos)->vma;
-+		GEM_BUG_ON(!next);
-+		GEM_BUG_ON(!i915_vma_is_pinned(next));
-+
-+		/* Chain [jump] from the end of the last buffer to the next */
-+		cs = (u32 *)(relocs->map + relocs->pos);
-+		*cs++ = MI_ARB_CHECK;
-+		if (gen >= 8)
-+			*cs++ = MI_BATCH_BUFFER_START_GEN8;
-+		else if (gen >= 6)
-+			*cs++ = MI_BATCH_BUFFER_START;
-+		else
-+			*cs++ = MI_BATCH_BUFFER_START | MI_BATCH_GTT;
-+		*cs++ = lower_32_bits(next->node.start);
-+		*cs++ = upper_32_bits(next->node.start);
-+		i915_gem_object_flush_map(relocs->head->obj);
-+		i915_gem_object_unpin_map(relocs->head->obj);
-+
-+		intel_gt_buffer_pool_put(reloc_node(relocs->head));
-+
-+		relocs->head = next;
-+		relocs->map = NULL;
-+	}
-+
-+	if (!relocs->map) {
-+		struct i915_vma *vma = relocs->head;
-+		int err;
-+
-+		GEM_BUG_ON(!vma);
-+
-+		/* Keep the buffer cache claimed until completion */
-+		err = i915_active_add_request(&reloc_node(vma)->active, rq);
-+		if (err < 0)
-+			return ERR_PTR(err);
-+
-+		/* Wait for the vma to be bound and keep it alive for relocs */
-+		err = __i915_vma_move_to_active(vma, rq);
-+		if (err)
-+			return ERR_PTR(err);
-+
-+		GEM_BUG_ON(!i915_gem_object_has_pinned_pages(vma->obj));
-+		relocs->map = page_mask_bits(vma->obj->mm.mapping);
-+		relocs->pos = 0;
-+
-+		remain = relocs->max;
-+	}
-+
-+	*count = min(remain, *count);
-+
-+	GEM_BUG_ON(!relocs->map);
-+	r = relocs->map + relocs->pos;
-+	relocs->pos += *count;
-+	GEM_BUG_ON(relocs->pos > relocs->max);
-+
-+	return r;
-+}
-+
-+static int eb_relocs_gpu_vma(struct i915_execbuffer *eb,
-+			     struct eb_relocs *relocs,
-+			     struct i915_request *rq,
-+			     const struct eb_vma *ev)
-+{
-+	const struct drm_i915_gem_exec_object2 *entry = ev->exec;
-+	unsigned long remain = entry->relocation_count;
-+	bool write = false;
-+	int err = 0;
-+
-+	/*
-+	 * All the user relocation entries have been copied into system
-+	 * memory (tracked by our GEM objects). Those GEM objects have
-+	 * been bound into the user's GTT, now we will convert the relocation
-+	 * entries into the GPU comands to update the target buffers.
-+	 */
-+	do {
-+		struct drm_i915_gem_relocation_entry *r;
-+		unsigned long count = remain;
-+
-+		r = get_gpu_relocs(eb, relocs, rq, &count);
-+		if (IS_ERR(r))
-+			return PTR_ERR(r);
-+
-+		GEM_BUG_ON(!count);
-+		remain -= count;
-+		do {
-+			write |= eb_relocs_vma_entry(eb, ev, r++);
-+		} while (--count);
-+	} while (remain);
-+
-+	/* Mark the target vma as being written to for execbuf sync */
-+	if (write)
-+		err = reloc_move_to_gpu(rq, ev->vma);
-+
-+	return err;
-+}
-+
-+static struct i915_request *reloc_gpu_alloc(struct i915_execbuffer *eb)
-+{
-+	struct i915_request *rq;
-+
-+	if (eb->reloc_context == eb->context)
-+		rq = __i915_request_create(eb->reloc_context, GFP_KERNEL);
-+	else
-+		rq = nested_request_create(eb->reloc_context, eb);
-+	if (IS_ERR(rq))
-+		return rq;
-+
-+	rq->cookie = lockdep_pin_lock(&i915_request_timeline(rq)->mutex);
-+	return rq;
-+}
-+
-+static int eb_relocs_gpu(struct i915_execbuffer *eb, struct eb_relocs *relocs)
-+{
-+	struct i915_request *rq;
-+	struct eb_vma *ev;
-+	int err;
-+
-+	rq = reloc_gpu_alloc(eb);
-+	if (IS_ERR(rq))
-+		return PTR_ERR(rq);
-+
-+	rq->batch = relocs->head;
-+
-+	relocs->map = NULL;
-+	relocs->pos = 0;
-+
-+	err = 0;
-+	list_for_each_entry(ev, &eb->relocs_list, reloc_link) {
-+		/* Chain together all the reloc entries to form the batch */
-+		err = eb_relocs_gpu_vma(eb, relocs, rq, ev);
-+		if (err)
-+			break;
-+	}
-+
-+	/* Terminate the batch and submit */
-+	return reloc_gpu_flush(eb, relocs, rq, err);
-+}
-+
-+static void eb_relocs_update_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
-+{
-+	const struct drm_i915_gem_exec_object2 *entry = ev->exec;
-+	struct drm_i915_gem_relocation_entry __user *ureloc =
-+		u64_to_user_ptr(entry->relocs_ptr);
-+	unsigned long count = entry->relocation_count;
-+
-+	do {
-+		u32 handle;
-+
-+		if (get_user(handle, &ureloc->target_handle) == 0) {
-+			struct i915_vma *vma = eb_get_vma(eb, handle)->vma;
-+			u64 offset = gen8_canonical_addr(vma->node.start);
-+
-+			if (put_user(offset, &ureloc->presumed_offset))
-+				return;
-+		}
-+	} while (ureloc++, --count);
-+}
-+
-+static void eb_relocs_update_user(struct i915_execbuffer *eb)
-+{
-+	struct eb_vma *ev;
-+
-+	if (!(eb->args->flags & __EXEC_HAS_RELOC))
-+		return;
-+
-+	/* About to write into user memory, no locks nor user pinned allowed */
-+	list_for_each_entry(ev, &eb->relocs_list, reloc_link)
-+		eb_relocs_update_vma(eb, ev);
-+}
-+
- static int eb_relocate(struct i915_execbuffer *eb)
- {
-+	const size_t sz = sizeof(struct drm_i915_gem_relocation_entry);
-+	struct eb_relocs relocs;
-+	unsigned long bufsz;
-+	struct eb_vma *ev;
- 	int err;
- 
-+	/* Drop everything before we copy_from_user */
-+	list_for_each_entry(ev, &eb->bind_list, bind_link)
-+		eb_unreserve_vma(ev);
-+
-+	/* Pick a single buffer for all relocs, within reason */
-+	bufsz = round_up(eb->relocs_count * sz + sz, SZ_4K);
-+	relocs.bufsz = clamp_val(bufsz, SZ_4K, SZ_256K);
-+
-+	/* We leave the final slot for chaining together or termination */
-+	relocs.max = relocs.bufsz / sz - 1;
-+
-+	/* Copy the user's relocations into plain system memory */
-+	err = eb_relocs_copy_user(eb, &relocs);
-+	if (err)
-+		goto out_close;
-+
-+	/* Now reacquire everything, including the extra reloc bo */
- 	err = eb_reserve_vm(eb);
- 	if (err)
--		return err;
-+		goto out_close;
- 
--	/* The objects are in their final locations, apply the relocations. */
--	if (eb->args->flags & __EXEC_HAS_RELOC) {
--		struct eb_vma *ev;
--		int flush;
-+	/* The objects are now final, convert the relocations into commands. */
-+	err = eb_relocs_gpu(eb, &relocs);
- 
--		list_for_each_entry(ev, &eb->relocs_list, reloc_link) {
--			err = eb_relocate_vma(eb, ev);
--			if (err)
--				break;
--		}
-+out_close:
-+	eb_relocs_close(&relocs);
-+	return err;
-+}
- 
--		flush = reloc_gpu_flush(eb);
--		if (!err)
--			err = flush;
-+static int eb_reserve(struct i915_execbuffer *eb)
-+{
-+	int err;
-+
-+	err = eb_reserve_vm(eb);
-+	if (err)
-+		return err;
-+
-+	if (eb->args->flags & __EXEC_HAS_RELOC &&
-+	    !list_empty(&eb->relocs_list)) {
-+		err = eb_relocate(eb);
-+		if (err)
-+			return err;
- 	}
- 
--	return err;
-+	return 0;
- }
- 
- static int eb_move_to_gpu(struct i915_execbuffer *eb)
-@@ -2966,7 +2979,7 @@ static int __eb_pin_reloc_engine(struct i915_execbuffer *eb)
- 	int err;
- 
- 	if (reloc_can_use_engine(engine)) {
--		eb->reloc_cache.ce = eb->context;
-+		eb->reloc_context = eb->context;
- 		return 0;
- 	}
- 
-@@ -2989,13 +3002,13 @@ static int __eb_pin_reloc_engine(struct i915_execbuffer *eb)
- 	if (err)
- 		return err;
- 
--	eb->reloc_cache.ce = ce;
-+	eb->reloc_context = ce;
- 	return 0;
- }
- 
- static void __eb_unpin_reloc_engine(struct i915_execbuffer *eb)
- {
--	struct intel_context *ce = eb->reloc_cache.ce;
-+	struct intel_context *ce = eb->reloc_context;
- 
- 	if (ce == eb->context)
- 		return;
-@@ -3544,7 +3557,6 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 
- 	eb.invalid_flags = __EXEC_OBJECT_UNKNOWN_FLAGS;
- 	eb_info_init(&eb, eb.i915);
--	reloc_cache_init(&eb.reloc_cache);
- 
- 	eb.buffer_count = args->buffer_count;
- 	eb.batch_start_offset = args->batch_start_offset;
-@@ -3624,7 +3636,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 		goto err_engine;
- 	lockdep_assert_held(&eb.context->timeline->mutex);
- 
--	err = eb_relocate(&eb);
-+	err = eb_reserve(&eb);
- 	if (err) {
- 		/*
- 		 * If the user expects the execobject.offset and
-@@ -3641,9 +3653,6 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	if (err)
- 		goto err_vma;
- 
--	/* All GPU relocation batches must be submitted prior to the user rq */
--	GEM_BUG_ON(eb.reloc_cache.rq);
--
- 	/* Allocate a request for this batch buffer nice and early. */
- 	eb.request = __i915_request_create(eb.context, GFP_KERNEL);
- 	if (IS_ERR(eb.request)) {
-@@ -3704,6 +3713,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- err_vma:
- 	eb_unlock_engine(&eb);
- 	/* *** TIMELINE UNLOCK *** */
-+
-+	eb_relocs_update_user(&eb);
- err_engine:
- 	eb_unpin_engine(&eb);
- err_context:
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-index 13f17d6b5c66..df02cb8b27ed 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-@@ -11,7 +11,7 @@
- 
- #include "mock_context.h"
- 
--static u64 read_reloc(const u32 *map, int x, const u64 mask)
-+static u64 read_reloc(const char *map, int x, const u64 mask)
- {
- 	u64 reloc;
- 
-@@ -19,89 +19,122 @@ static u64 read_reloc(const u32 *map, int x, const u64 mask)
- 	return reloc & mask;
- }
- 
--static int __igt_gpu_reloc(struct i915_execbuffer *eb,
--			   struct drm_i915_gem_object *obj)
-+static int mock_relocs_copy_user(struct i915_execbuffer *eb,
-+				 struct eb_relocs *relocs,
-+				 struct eb_vma *ev)
- {
--	const unsigned int offsets[] = { 8, 3, 0 };
--	const u64 mask = GENMASK_ULL(eb->use_64bit_reloc ? 63 : 31, 0);
--	const u32 *map = page_mask_bits(obj->mm.mapping);
--	struct i915_request *rq;
--	struct i915_vma *vma;
--	int err;
--	int i;
-+	const int stride = 2 * sizeof(u64);
-+	struct drm_i915_gem_object *obj = ev->vma->obj;
-+	void *last = NULL;
-+	int n, total = 0;
-+
-+	relocs->head = NULL;
-+	relocs->pos = relocs->max;
-+
-+	for (n = 0; n < obj->base.size / stride; n++) {
-+		struct drm_i915_gem_relocation_entry *r;
-+		unsigned long count = 1;
-+
-+		r = eb_relocs_grow(eb, relocs, &count);
-+		if (IS_ERR(r))
-+			return PTR_ERR(r);
-+
-+		if (!count)
-+			return -EINVAL;
-+
-+		if (relocs->map != last) {
-+			pr_info("%s New reloc buffer @ %d\n",
-+				eb->engine->name, n);
-+			last = relocs->map;
-+			total++;
-+		}
- 
--	vma = i915_vma_instance(obj, eb->context->vm, NULL);
--	if (IS_ERR(vma))
--		return PTR_ERR(vma);
-+		r->target_handle = 0;
-+		r->offset = n * stride;
-+		if (n & 1)
-+			r->offset += sizeof(u32);
-+		r->delta = n;
-+	}
- 
--	err = i915_vma_pin(vma, 0, 0, PIN_USER | PIN_HIGH);
--	if (err)
--		return err;
-+	pr_info("%s: %d relocs, %d buffers\n", eb->engine->name, n, total);
- 
--	/* 8-Byte aligned */
--	err = __reloc_entry_gpu(eb, vma, offsets[0] * sizeof(u32), 0);
--	if (err)
--		goto unpin_vma;
-+	return n;
-+}
- 
--	/* !8-Byte aligned */
--	err = __reloc_entry_gpu(eb, vma, offsets[1] * sizeof(u32), 1);
-+static int check_relocs(struct i915_execbuffer *eb, struct eb_vma *ev)
-+{
-+	const u64 mask = GENMASK_ULL(eb->use_64bit_reloc ? 63 : 31, 0);
-+	const int stride = 2 * sizeof(u64);
-+	struct drm_i915_gem_object *obj = ev->vma->obj;
-+	const void *map = __i915_gem_object_mapping(obj);
-+	int n, err = 0;
-+
-+	for (n = 0; n < obj->base.size / stride; n++) {
-+		unsigned int offset;
-+		u64 address, reloc;
-+
-+		address = gen8_canonical_addr(ev->vma->node.start + n);
-+		address &= mask;
-+
-+		offset = n * stride;
-+		if (n & 1)
-+			offset += sizeof(u32);
-+
-+		reloc = read_reloc(map, offset, mask);
-+		if (reloc != address) {
-+			pr_err("%s[%d]: map[%x] %llx != %llx\n",
-+			       eb->engine->name, n, offset, reloc, address);
-+			err = -EINVAL;
-+		}
-+	}
- 	if (err)
--		goto unpin_vma;
-+		igt_hexdump(map, obj->base.size);
- 
--	/* Skip to the end of the cmd page */
--	i = PAGE_SIZE / sizeof(u32) - RELOC_TAIL - 1;
--	i -= eb->reloc_cache.rq_size;
--	memset32(eb->reloc_cache.rq_cmd + eb->reloc_cache.rq_size,
--		 MI_NOOP, i);
--	eb->reloc_cache.rq_size += i;
-+	return err;
-+}
- 
--	/* Force batch chaining */
--	err = __reloc_entry_gpu(eb, vma, offsets[2] * sizeof(u32), 2);
--	if (err)
--		goto unpin_vma;
-+static int mock_reloc_gpu(struct i915_execbuffer *eb, struct eb_relocs *relocs)
-+{
-+	int err;
- 
--	GEM_BUG_ON(!eb->reloc_cache.rq);
--	rq = i915_request_get(eb->reloc_cache.rq);
--	err = reloc_gpu_flush(eb);
--	if (err)
--		goto put_rq;
--	GEM_BUG_ON(eb->reloc_cache.rq);
-+	err = eb_reserve_vm(eb);
-+	if (err == 0)
-+		err = eb_relocs_gpu(eb, relocs);
- 
--	err = i915_gem_object_wait(obj, I915_WAIT_INTERRUPTIBLE, HZ / 2);
--	if (err) {
--		intel_gt_set_wedged(eb->engine->gt);
--		goto put_rq;
--	}
-+	eb_relocs_close(relocs);
-+	return err;
-+}
- 
--	if (!i915_request_completed(rq)) {
--		pr_err("%s: did not wait for relocations!\n", eb->engine->name);
--		err = -EINVAL;
--		goto put_rq;
--	}
-+static int __igt_gpu_reloc(struct i915_execbuffer *eb,
-+			   struct eb_relocs *relocs,
-+			   struct eb_vma *ev)
-+{
-+	int err;
- 
--	for (i = 0; i < ARRAY_SIZE(offsets); i++) {
--		u64 reloc = read_reloc(map, offsets[i], mask);
-+	err = mock_relocs_copy_user(eb, relocs, ev);
-+	if (err < 0)
-+		return err;
-+	ev->exec->relocation_count = err;
- 
--		if (reloc != i) {
--			pr_err("%s[%d]: map[%d] %llx != %x\n",
--			       eb->engine->name, i, offsets[i], reloc, i);
--			err = -EINVAL;
--		}
--	}
-+	err = mock_reloc_gpu(eb, relocs);
- 	if (err)
--		igt_hexdump(map, 4096);
-+		return err;
- 
--put_rq:
--	i915_request_put(rq);
--unpin_vma:
--	i915_vma_unpin(vma);
--	return err;
-+	if (i915_gem_object_wait(ev->vma->obj,
-+				 I915_WAIT_INTERRUPTIBLE, HZ / 2)) {
-+		intel_gt_set_wedged(eb->engine->gt);
-+		return -EIO;
-+	}
-+
-+	return check_relocs(eb, ev);
- }
- 
- static int igt_gpu_reloc(void *arg)
- {
- 	struct i915_execbuffer eb;
- 	struct drm_i915_gem_object *scratch;
-+	struct drm_i915_gem_exec_object2 exec;
-+	struct eb_vma ev = { .exec = &exec };
- 	struct file *file;
- 	int err = 0;
- 	u32 *map;
-@@ -111,11 +144,13 @@ static int igt_gpu_reloc(void *arg)
- 		return PTR_ERR(file);
- 
- 	eb.i915 = arg;
-+	INIT_LIST_HEAD(&eb.relocs_list);
-+
- 	eb.gem_context = live_context(arg, file);
- 	if (IS_ERR(eb.gem_context))
- 		goto err_file;
- 
--	scratch = i915_gem_object_create_internal(eb.i915, 4096);
-+	scratch = i915_gem_object_create_internal(eb.i915, SZ_32K);
- 	if (IS_ERR(scratch))
- 		goto err_file;
- 
-@@ -125,22 +160,52 @@ static int igt_gpu_reloc(void *arg)
- 		goto err_scratch;
- 	}
- 
-+	eb.lut_size = -1;
-+	eb.vma = &ev;
-+	list_add(&ev.reloc_link, &eb.relocs_list);
-+	GEM_BUG_ON(eb_get_vma(&eb, 0) != &ev);
-+
- 	eb_info_init(&eb, eb.i915);
- 	for_each_uabi_engine(eb.engine, eb.i915) {
--		reloc_cache_init(&eb.reloc_cache);
--		memset(map, POISON_INUSE, 4096);
-+		struct eb_relocs relocs;
-+
-+		INIT_LIST_HEAD(&eb.bind_list);
-+		memset(map, POISON_INUSE, scratch->base.size);
-+		wmb();
-+
-+		relocs.bufsz = SZ_4K;
-+		relocs.max = relocs.bufsz;
-+		relocs.max /= sizeof(struct drm_i915_gem_relocation_entry);
-+		relocs.max--; /* leave room for terminator */
- 
- 		intel_engine_pm_get(eb.engine);
-+
-+		eb.array = eb_vma_array_create(1);
-+		if (!eb.array) {
-+			err = -ENOMEM;
-+			goto err_pm;
-+		}
-+
- 		eb.context = intel_context_create(eb.engine);
- 		if (IS_ERR(eb.context)) {
- 			err = PTR_ERR(eb.context);
--			goto err_pm;
-+			goto err_array;
- 		}
- 
- 		err = intel_context_pin(eb.context);
- 		if (err)
- 			goto err_put;
- 
-+		ev.vma = i915_vma_instance(scratch, eb.context->vm, NULL);
-+		if (IS_ERR(ev.vma)) {
-+			err = PTR_ERR(ev.vma);
-+			goto err_unpin;
-+		}
-+
-+		err = i915_vma_pin(ev.vma, 0, 0, PIN_USER | PIN_HIGH);
-+		if (err)
-+			goto err_unpin;
-+
- 		mutex_lock(&eb.context->timeline->mutex);
- 		intel_context_enter(eb.context);
- 
-@@ -148,16 +213,19 @@ static int igt_gpu_reloc(void *arg)
- 		if (err)
- 			goto err_exit;
- 
--		err = __igt_gpu_reloc(&eb, scratch);
-+		err = __igt_gpu_reloc(&eb, &relocs, &ev);
- 
- 		__eb_unpin_reloc_engine(&eb);
- err_exit:
- 		intel_context_exit(eb.context);
- 		mutex_unlock(&eb.context->timeline->mutex);
--
-+		i915_vma_unpin(ev.vma);
-+err_unpin:
- 		intel_context_unpin(eb.context);
- err_put:
- 		intel_context_put(eb.context);
-+err_array:
-+		eb_vma_array_put(eb.array);
- err_pm:
- 		intel_engine_pm_put(eb.engine);
- 		if (err)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-index bcf1658c9633..bb8b0312cb74 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-@@ -17,7 +17,7 @@ struct drm_i915_gem_object;
- 
- struct intel_gt_buffer_pool {
- 	spinlock_t lock;
--	struct list_head cache_list[4];
-+	struct list_head cache_list[5];
- 	struct delayed_work work;
- };
- 
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNv
+bT4KCmk5MTVfZ2VtX3d3X2N0eCBpcyB1c2VkIHRvIGxvY2sgYWxsIGdlbSBibydzIGZvciBwaW5u
+aW5nIGFuZCBtZW1vcnkKZXZpY3Rpb24uIFdlIGRvbid0IHVzZSBpdCB5ZXQsIGJ1dCBsZXRzIHN0
+YXJ0IGFkZGluZyB0aGUgZGVmaW5pdGlvbgpmaXJzdC4KClRvIHVzZSBpdCwgd2UgaGF2ZSB0byBw
+YXNzIGEgbm9uLU5VTEwgd3cgdG8gZ2VtX29iamVjdF9sb2NrLCBhbmQgZG9uJ3QKdW5sb2NrIGRp
+cmVjdGx5LiBJdCBpcyBkb25lIGluIGk5MTVfZ2VtX3d3X2N0eF9maW5pLgoKQ2hhbmdlcyBzaW5j
+ZSB2MToKLSBDaGFuZ2Ugd3dfY3R4IGFuZCBvYmogb3JkZXIgaW4gbG9ja2luZyBmdW5jdGlvbnMg
+KEpvbmFzIExhaHRpbmVuKQoKdjM6IEJ1aWxkIGEgbGlzdCBvZiBhbGwgb2JqZWN0cyBmaXJzdCwg
+Y2VudHJhbGlzZSAtRURFQURMSyBoYW5kbGluZwoKU2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5r
+aG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IFRo
+b21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGludGVsLmNvbT4KLS0tCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9NYWtlZmlsZSAgICAgICAgICAgICAgICAgfCAgIDQgKwogZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaTkxNV9nbG9iYWxzLmMgICAgICAgICAgIHwgICAxICsKIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfZ2xvYmFscy5oICAgICAgICAgICB8ICAgMSArCiBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9tbS9pOTE1X2FjcXVpcmVfY3R4LmMgICAgfCAxMzkgKysrKysrKysrKwogZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvbW0vaTkxNV9hY3F1aXJlX2N0eC5oICAgIHwgIDM0ICsrKwogZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvbW0vc3RfYWNxdWlyZV9jdHguYyAgICAgIHwgMjQyICsrKysrKysrKysr
+KysrKysrKwogLi4uL2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X21vY2tfc2VsZnRlc3RzLmggIHwg
+ICAxICsKIDcgZmlsZXMgY2hhbmdlZCwgNDIyIGluc2VydGlvbnMoKykKIGNyZWF0ZSBtb2RlIDEw
+MDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9tbS9pOTE1X2FjcXVpcmVfY3R4LmMKIGNyZWF0ZSBt
+b2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9tbS9pOTE1X2FjcXVpcmVfY3R4LmgKIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9tbS9zdF9hY3F1aXJlX2N0eC5j
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9NYWtlZmlsZQppbmRleCBiZGE0YzBlNDA4ZjguLmEzYTRjOGE1NTVlYyAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvTWFrZWZpbGUKQEAgLTEyNSw2ICsxMjUsMTAgQEAgZ3QteSArPSBcCiAJZ3QvZ2Vu
+OV9yZW5kZXJzdGF0ZS5vCiBpOTE1LXkgKz0gJChndC15KQogCisjIE1lbW9yeSArIERNQSBtYW5h
+Z2VtZW50CitpOTE1LXkgKz0gXAorCW1tL2k5MTVfYWNxdWlyZV9jdHgubworCiAjIEdFTSAoR3Jh
+cGhpY3MgRXhlY3V0aW9uIE1hbmFnZW1lbnQpIGNvZGUKIGdlbS15ICs9IFwKIAlnZW0vaTkxNV9n
+ZW1fYnVzeS5vIFwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2xvYmFs
+cy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nbG9iYWxzLmMKaW5kZXggM2FhMjEzNjg0
+MjkzLi41MWVjNDJhMTQ2OTQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+Z2xvYmFscy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2xvYmFscy5jCkBAIC04
+Nyw2ICs4Nyw3IEBAIHN0YXRpYyB2b2lkIF9faTkxNV9nbG9iYWxzX2NsZWFudXAodm9pZCkKIAog
+c3RhdGljIF9faW5pdGNvbnN0IGludCAoKiBjb25zdCBpbml0Zm5bXSkodm9pZCkgPSB7CiAJaTkx
+NV9nbG9iYWxfYWN0aXZlX2luaXQsCisJaTkxNV9nbG9iYWxfYWNxdWlyZV9pbml0LAogCWk5MTVf
+Z2xvYmFsX2J1ZGR5X2luaXQsCiAJaTkxNV9nbG9iYWxfY29udGV4dF9pbml0LAogCWk5MTVfZ2xv
+YmFsX2dlbV9jb250ZXh0X2luaXQsCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2dsb2JhbHMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2xvYmFscy5oCmluZGV4
+IGIyZjVjZDliOWIxYS4uMTEyMjdhYmYyNzY5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2dsb2JhbHMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dsb2Jh
+bHMuaApAQCAtMjcsNiArMjcsNyBAQCB2b2lkIGk5MTVfZ2xvYmFsc19leGl0KHZvaWQpOwogCiAv
+KiBjb25zdHJ1Y3RvcnMgKi8KIGludCBpOTE1X2dsb2JhbF9hY3RpdmVfaW5pdCh2b2lkKTsKK2lu
+dCBpOTE1X2dsb2JhbF9hY3F1aXJlX2luaXQodm9pZCk7CiBpbnQgaTkxNV9nbG9iYWxfYnVkZHlf
+aW5pdCh2b2lkKTsKIGludCBpOTE1X2dsb2JhbF9jb250ZXh0X2luaXQodm9pZCk7CiBpbnQgaTkx
+NV9nbG9iYWxfZ2VtX2NvbnRleHRfaW5pdCh2b2lkKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L21tL2k5MTVfYWNxdWlyZV9jdHguYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L21t
+L2k5MTVfYWNxdWlyZV9jdHguYwpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMDAw
+MDAuLmQxYzNiOTU4YzE1ZAotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L21tL2k5MTVfYWNxdWlyZV9jdHguYwpAQCAtMCwwICsxLDEzOSBAQAorLy8gU1BEWC1MaWNlbnNl
+LUlkZW50aWZpZXI6IE1JVAorLyoKKyAqIENvcHlyaWdodCDCqSAyMDIwIEludGVsIENvcnBvcmF0
+aW9uCisgKi8KKworI2luY2x1ZGUgPGxpbnV4L2RtYS1yZXN2Lmg+CisKKyNpbmNsdWRlICJpOTE1
+X2dsb2JhbHMuaCIKKyNpbmNsdWRlICJnZW0vaTkxNV9nZW1fb2JqZWN0LmgiCisKKyNpbmNsdWRl
+ICJpOTE1X2FjcXVpcmVfY3R4LmgiCisKK3N0YXRpYyBzdHJ1Y3QgaTkxNV9nbG9iYWxfYWNxdWly
+ZSB7CisJc3RydWN0IGk5MTVfZ2xvYmFsIGJhc2U7CisJc3RydWN0IGttZW1fY2FjaGUgKnNsYWJf
+YWNxdWlyZXM7Cit9IGdsb2JhbDsKKworc3RydWN0IGk5MTVfYWNxdWlyZSB7CisJc3RydWN0IGRy
+bV9pOTE1X2dlbV9vYmplY3QgKm9iajsKKwlzdHJ1Y3QgaTkxNV9hY3F1aXJlICpuZXh0OworfTsK
+Kworc3RhdGljIHN0cnVjdCBpOTE1X2FjcXVpcmUgKmk5MTVfYWNxdWlyZV9hbGxvYyh2b2lkKQor
+eworCXJldHVybiBrbWVtX2NhY2hlX2FsbG9jKGdsb2JhbC5zbGFiX2FjcXVpcmVzLCBHRlBfS0VS
+TkVMKTsKK30KKworc3RhdGljIHZvaWQgaTkxNV9hY3F1aXJlX2ZyZWUoc3RydWN0IGk5MTVfYWNx
+dWlyZSAqbG5rKQoreworCWttZW1fY2FjaGVfZnJlZShnbG9iYWwuc2xhYl9hY3F1aXJlcywgbG5r
+KTsKK30KKwordm9pZCBpOTE1X2FjcXVpcmVfY3R4X2luaXQoc3RydWN0IGk5MTVfYWNxdWlyZV9j
+dHggKmN0eCkKK3sKKwl3d19hY3F1aXJlX2luaXQoJmN0eC0+Y3R4LCAmcmVzZXJ2YXRpb25fd3df
+Y2xhc3MpOworCWN0eC0+bG9ja2VkID0gTlVMTDsKK30KKworaW50IGk5MTVfYWNxdWlyZV9jdHhf
+bG9jayhzdHJ1Y3QgaTkxNV9hY3F1aXJlX2N0eCAqY3R4LAorCQkJICBzdHJ1Y3QgZHJtX2k5MTVf
+Z2VtX29iamVjdCAqb2JqKQoreworCXN0cnVjdCBpOTE1X2FjcXVpcmUgKmxvY2ssICpsbms7CisJ
+aW50IGVycjsKKworCWxvY2sgPSBpOTE1X2FjcXVpcmVfYWxsb2MoKTsKKwlpZiAoIWxvY2spCisJ
+CXJldHVybiAtRU5PTUVNOworCisJbG9jay0+b2JqID0gaTkxNV9nZW1fb2JqZWN0X2dldChvYmop
+OworCWxvY2stPm5leHQgPSBOVUxMOworCisJd2hpbGUgKChsbmsgPSBsb2NrKSkgeworCQlvYmog
+PSBsbmstPm9iajsKKwkJbG9jayA9IGxuay0+bmV4dDsKKworCQllcnIgPSBkbWFfcmVzdl9sb2Nr
+X2ludGVycnVwdGlibGUob2JqLT5iYXNlLnJlc3YsICZjdHgtPmN0eCk7CisJCWlmIChlcnIgPT0g
+LUVERUFETEspIHsKKwkJCXN0cnVjdCBpOTE1X2FjcXVpcmUgKm9sZDsKKworCQkJd2hpbGUgKChv
+bGQgPSBjdHgtPmxvY2tlZCkpIHsKKwkJCQlpOTE1X2dlbV9vYmplY3RfdW5sb2NrKG9sZC0+b2Jq
+KTsKKwkJCQljdHgtPmxvY2tlZCA9IG9sZC0+bmV4dDsKKwkJCQlvbGQtPm5leHQgPSBsb2NrOwor
+CQkJCWxvY2sgPSBvbGQ7CisJCQl9CisKKwkJCWVyciA9IGRtYV9yZXN2X2xvY2tfc2xvd19pbnRl
+cnJ1cHRpYmxlKG9iai0+YmFzZS5yZXN2LAorCQkJCQkJCSAgICAgICAmY3R4LT5jdHgpOworCQl9
+CisJCWlmICghZXJyKSB7CisJCQlsbmstPm5leHQgPSBjdHgtPmxvY2tlZDsKKwkJCWN0eC0+bG9j
+a2VkID0gbG5rOworCQl9IGVsc2UgeworCQkJaTkxNV9nZW1fb2JqZWN0X3B1dChvYmopOworCQkJ
+aTkxNV9hY3F1aXJlX2ZyZWUobG5rKTsKKwkJfQorCQlpZiAoZXJyID09IC1FQUxSRUFEWSkKKwkJ
+CWVyciA9IDA7CisJCWlmIChlcnIpCisJCQlicmVhazsKKwl9CisKKwl3aGlsZSAoKGxuayA9IGxv
+Y2spKSB7CisJCWxvY2sgPSBsbmstPm5leHQ7CisJCWk5MTVfZ2VtX29iamVjdF9wdXQobG5rLT5v
+YmopOworCQlpOTE1X2FjcXVpcmVfZnJlZShsbmspOworCX0KKworCXJldHVybiBlcnI7Cit9CisK
+K2ludCBpOTE1X2FjcXVpcmVfbW0oc3RydWN0IGk5MTVfYWNxdWlyZV9jdHggKmFjcXVpcmUpCit7
+CisJcmV0dXJuIDA7Cit9CisKK3ZvaWQgaTkxNV9hY3F1aXJlX2N0eF9maW5pKHN0cnVjdCBpOTE1
+X2FjcXVpcmVfY3R4ICpjdHgpCit7CisJc3RydWN0IGk5MTVfYWNxdWlyZSAqbG5rOworCisJd2hp
+bGUgKChsbmsgPSBjdHgtPmxvY2tlZCkpIHsKKwkJaTkxNV9nZW1fb2JqZWN0X3VubG9jayhsbmst
+Pm9iaik7CisJCWk5MTVfZ2VtX29iamVjdF9wdXQobG5rLT5vYmopOworCisJCWN0eC0+bG9ja2Vk
+ID0gbG5rLT5uZXh0OworCQlpOTE1X2FjcXVpcmVfZnJlZShsbmspOworCX0KKworCXd3X2FjcXVp
+cmVfZmluaSgmY3R4LT5jdHgpOworfQorCisjaWYgSVNfRU5BQkxFRChDT05GSUdfRFJNX0k5MTVf
+U0VMRlRFU1QpCisjaW5jbHVkZSAic3RfYWNxdWlyZV9jdHguYyIKKyNlbmRpZgorCitzdGF0aWMg
+dm9pZCBpOTE1X2dsb2JhbF9hY3F1aXJlX3Nocmluayh2b2lkKQoreworCWttZW1fY2FjaGVfc2hy
+aW5rKGdsb2JhbC5zbGFiX2FjcXVpcmVzKTsKK30KKworc3RhdGljIHZvaWQgaTkxNV9nbG9iYWxf
+YWNxdWlyZV9leGl0KHZvaWQpCit7CisJa21lbV9jYWNoZV9kZXN0cm95KGdsb2JhbC5zbGFiX2Fj
+cXVpcmVzKTsKK30KKworc3RhdGljIHN0cnVjdCBpOTE1X2dsb2JhbF9hY3F1aXJlIGdsb2JhbCA9
+IHsgeworCS5zaHJpbmsgPSBpOTE1X2dsb2JhbF9hY3F1aXJlX3NocmluaywKKwkuZXhpdCA9IGk5
+MTVfZ2xvYmFsX2FjcXVpcmVfZXhpdCwKK30gfTsKKworaW50IF9faW5pdCBpOTE1X2dsb2JhbF9h
+Y3F1aXJlX2luaXQodm9pZCkKK3sKKwlnbG9iYWwuc2xhYl9hY3F1aXJlcyA9IEtNRU1fQ0FDSEUo
+aTkxNV9hY3F1aXJlLCAwKTsKKwlpZiAoIWdsb2JhbC5zbGFiX2FjcXVpcmVzKQorCQlyZXR1cm4g
+LUVOT01FTTsKKworCWk5MTVfZ2xvYmFsX3JlZ2lzdGVyKCZnbG9iYWwuYmFzZSk7CisJcmV0dXJu
+IDA7Cit9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9tbS9pOTE1X2FjcXVpcmVf
+Y3R4LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9tbS9pOTE1X2FjcXVpcmVfY3R4LmgKbmV3IGZp
+bGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi4yZDI2M2FjMTQ2MGQKLS0tIC9kZXYv
+bnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9tbS9pOTE1X2FjcXVpcmVfY3R4LmgKQEAg
+LTAsMCArMSwzNCBAQAorLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVCAqLworLyoKKyAq
+IENvcHlyaWdodCDCqSAyMDIwIEludGVsIENvcnBvcmF0aW9uCisgKi8KKworI2lmbmRlZiBfX0k5
+MTVfQUNRVUlSRV9DVFhfSF9fCisjZGVmaW5lIF9fSTkxNV9BQ1FVSVJFX0NUWF9IX18KKworI2lu
+Y2x1ZGUgPGxpbnV4L2xpc3QuaD4KKyNpbmNsdWRlIDxsaW51eC93d19tdXRleC5oPgorCitzdHJ1
+Y3QgZHJtX2k5MTVfZ2VtX29iamVjdDsKK3N0cnVjdCBpOTE1X2FjcXVpcmU7CisKK3N0cnVjdCBp
+OTE1X2FjcXVpcmVfY3R4IHsKKwlzdHJ1Y3Qgd3dfYWNxdWlyZV9jdHggY3R4OworCXN0cnVjdCBp
+OTE1X2FjcXVpcmUgKmxvY2tlZDsKK307CisKK3ZvaWQgaTkxNV9hY3F1aXJlX2N0eF9pbml0KHN0
+cnVjdCBpOTE1X2FjcXVpcmVfY3R4ICphY3F1aXJlKTsKKworc3RhdGljIGlubGluZSB2b2lkIGk5
+MTVfYWNxdWlyZV9jdHhfZG9uZShzdHJ1Y3QgaTkxNV9hY3F1aXJlX2N0eCAqYWNxdWlyZSkKK3sK
+Kwl3d19hY3F1aXJlX2RvbmUoJmFjcXVpcmUtPmN0eCk7Cit9CisKK3ZvaWQgaTkxNV9hY3F1aXJl
+X2N0eF9maW5pKHN0cnVjdCBpOTE1X2FjcXVpcmVfY3R4ICphY3F1aXJlKTsKKworaW50IF9fbXVz
+dF9jaGVjayBpOTE1X2FjcXVpcmVfY3R4X2xvY2soc3RydWN0IGk5MTVfYWNxdWlyZV9jdHggKmFj
+cXVpcmUsCisJCQkJICAgICAgIHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopOworCitp
+bnQgaTkxNV9hY3F1aXJlX21tKHN0cnVjdCBpOTE1X2FjcXVpcmVfY3R4ICphY3F1aXJlKTsKKwor
+I2VuZGlmIC8qIF9fSTkxNV9BQ1FVSVJFX0NUWF9IX18gKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L21tL3N0X2FjcXVpcmVfY3R4LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9t
+bS9zdF9hY3F1aXJlX2N0eC5jCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAwMDAw
+MC4uNmU5NGJkYmIzMjY1Ci0tLSAvZGV2L251bGwKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+bW0vc3RfYWNxdWlyZV9jdHguYwpAQCAtMCwwICsxLDI0MiBAQAorLy8gU1BEWC1MaWNlbnNlLUlk
+ZW50aWZpZXI6IE1JVAorLyoKKyAqIENvcHlyaWdodCDCqSAyMDIwIEludGVsIENvcnBvcmF0aW9u
+CisgKi8KKworI2luY2x1ZGUgImk5MTVfZHJ2LmgiCisjaW5jbHVkZSAiaTkxNV9zZWxmdGVzdC5o
+IgorCisjaW5jbHVkZSAic2VsZnRlc3RzL2k5MTVfcmFuZG9tLmgiCisjaW5jbHVkZSAic2VsZnRl
+c3RzL21vY2tfZ2VtX2RldmljZS5oIgorCitzdGF0aWMgaW50IGNoZWNrZWRfYWNxdWlyZV9sb2Nr
+KHN0cnVjdCBpOTE1X2FjcXVpcmVfY3R4ICphY3F1aXJlLAorCQkJCXN0cnVjdCBkcm1faTkxNV9n
+ZW1fb2JqZWN0ICpvYmosCisJCQkJY29uc3QgY2hhciAqbmFtZSkKK3sKKwlpbnQgZXJyOworCisJ
+ZXJyID0gaTkxNV9hY3F1aXJlX2N0eF9sb2NrKGFjcXVpcmUsIG9iaik7CisJaWYgKGVycikgewor
+CQlwcl9lcnIoImk5MTVfYWNxdWlyZV9sb2NrKCVzKSBmYWlsZWQsIGVycjolZFxuIiwgbmFtZSwg
+ZXJyKTsKKwkJcmV0dXJuIGVycjsKKwl9CisKKwlpZiAoIW11dGV4X2lzX2xvY2tlZCgmb2JqLT5i
+YXNlLnJlc3YtPmxvY2suYmFzZSkpIHsKKwkJcHJfZXJyKCJGYWlsZWQgdG8gbG9jayAlcyFcbiIs
+IG5hbWUpOworCQlyZXR1cm4gLUVJTlZBTDsKKwl9CisKKwlyZXR1cm4gMDsKK30KKworc3RhdGlj
+IGludCBpZ3RfYWNxdWlyZV9sb2NrKHZvaWQgKmFyZykKK3sKKwlzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqaTkxNSA9IGFyZzsKKwlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqYSwgKmI7CisJ
+c3RydWN0IGk5MTVfYWNxdWlyZV9jdHggYWNxdWlyZTsKKwlpbnQgZXJyOworCisJYSA9IGk5MTVf
+Z2VtX29iamVjdF9jcmVhdGVfaW50ZXJuYWwoaTkxNSwgUEFHRV9TSVpFKTsKKwlpZiAoSVNfRVJS
+KGEpKQorCQlyZXR1cm4gUFRSX0VSUihhKTsKKworCWIgPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRl
+X2ludGVybmFsKGk5MTUsIFBBR0VfU0laRSk7CisJaWYgKElTX0VSUihiKSkgeworCQllcnIgPSBQ
+VFJfRVJSKGIpOworCQlnb3RvIG91dF9hOworCX0KKworCWk5MTVfYWNxdWlyZV9jdHhfaW5pdCgm
+YWNxdWlyZSk7CisKKwllcnIgPSBjaGVja2VkX2FjcXVpcmVfbG9jaygmYWNxdWlyZSwgYSwgIkEi
+KTsKKwlpZiAoZXJyKQorCQlnb3RvIG91dF9maW5pOworCisJZXJyID0gY2hlY2tlZF9hY3F1aXJl
+X2xvY2soJmFjcXVpcmUsIGIsICJCIik7CisJaWYgKGVycikKKwkJZ290byBvdXRfZmluaTsKKwor
+CS8qIEFnYWluIGZvciBFQUxSRUFEWSAqLworCisJZXJyID0gY2hlY2tlZF9hY3F1aXJlX2xvY2so
+JmFjcXVpcmUsIGEsICJBIik7CisJaWYgKGVycikKKwkJZ290byBvdXRfZmluaTsKKworCWVyciA9
+IGNoZWNrZWRfYWNxdWlyZV9sb2NrKCZhY3F1aXJlLCBiLCAiQiIpOworCWlmIChlcnIpCisJCWdv
+dG8gb3V0X2Zpbmk7CisKKwlpOTE1X2FjcXVpcmVfY3R4X2RvbmUoJmFjcXVpcmUpOworCisJaWYg
+KCFtdXRleF9pc19sb2NrZWQoJmEtPmJhc2UucmVzdi0+bG9jay5iYXNlKSkgeworCQlwcl9lcnIo
+IkZhaWxlZCB0byBsb2NrIEEsIGFmdGVyIGk5MTVfYWNxdWlyZV9kb25lXG4iKTsKKwkJZXJyID0g
+LUVJTlZBTDsKKwl9CisJaWYgKCFtdXRleF9pc19sb2NrZWQoJmItPmJhc2UucmVzdi0+bG9jay5i
+YXNlKSkgeworCQlwcl9lcnIoIkZhaWxlZCB0byBsb2NrIEIsIGFmdGVyIGk5MTVfYWNxdWlyZV9k
+b25lXG4iKTsKKwkJZXJyID0gLUVJTlZBTDsKKwl9CisKK291dF9maW5pOgorCWk5MTVfYWNxdWly
+ZV9jdHhfZmluaSgmYWNxdWlyZSk7CisKKwlpZiAobXV0ZXhfaXNfbG9ja2VkKCZhLT5iYXNlLnJl
+c3YtPmxvY2suYmFzZSkpIHsKKwkJcHJfZXJyKCJBIGlzIHN0aWxsIGxvY2tlZCFcbiIpOworCQll
+cnIgPSAtRUlOVkFMOworCX0KKwlpZiAobXV0ZXhfaXNfbG9ja2VkKCZiLT5iYXNlLnJlc3YtPmxv
+Y2suYmFzZSkpIHsKKwkJcHJfZXJyKCJCIGlzIHN0aWxsIGxvY2tlZCFcbiIpOworCQllcnIgPSAt
+RUlOVkFMOworCX0KKworCWk5MTVfZ2VtX29iamVjdF9wdXQoYik7CitvdXRfYToKKwlpOTE1X2dl
+bV9vYmplY3RfcHV0KGEpOworCXJldHVybiBlcnI7Cit9CisKK3N0cnVjdCBkZWFkbG9jayB7CisJ
+c3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9ials2NF07Cit9OworCitzdGF0aWMgaW50IF9f
+aWd0X2FjcXVpcmVfZGVhZGxvY2sodm9pZCAqYXJnKQoreworCXN0cnVjdCBkZWFkbG9jayAqZGwg
+PSBhcmc7CisJY29uc3QgdW5zaWduZWQgaW50IHRvdGFsID0gQVJSQVlfU0laRShkbC0+b2JqKTsK
+KwlJOTE1X1JORF9TVEFURShwcm5nKTsKKwl1bnNpZ25lZCBpbnQgKm9yZGVyOworCWludCBuLCBj
+b3VudCwgZXJyID0gMDsKKworCW9yZGVyID0gaTkxNV9yYW5kb21fb3JkZXIodG90YWwsICZwcm5n
+KTsKKwlpZiAoIW9yZGVyKQorCQlyZXR1cm4gLUVOT01FTTsKKworCXdoaWxlICgha3RocmVhZF9z
+aG91bGRfc3RvcCgpKSB7CisJCXN0cnVjdCBpOTE1X2FjcXVpcmVfY3R4IGFjcXVpcmU7CisKKwkJ
+aTkxNV9yYW5kb21fcmVvcmRlcihvcmRlciwgdG90YWwsICZwcm5nKTsKKwkJY291bnQgPSBpOTE1
+X3ByYW5kb21fdTMyX21heF9zdGF0ZSh0b3RhbCwgJnBybmcpOworCisJCWk5MTVfYWNxdWlyZV9j
+dHhfaW5pdCgmYWNxdWlyZSk7CisKKwkJZm9yIChuID0gMDsgbiA8IGNvdW50OyBuKyspIHsKKwkJ
+CXN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmogPSBkbC0+b2JqW29yZGVyW25dXTsKKwor
+CQkJZXJyID0gY2hlY2tlZF9hY3F1aXJlX2xvY2soJmFjcXVpcmUsIG9iaiwgImRsIik7CisJCQlp
+ZiAoZXJyKSB7CisJCQkJaTkxNV9hY3F1aXJlX2N0eF9maW5pKCZhY3F1aXJlKTsKKwkJCQlnb3Rv
+IG91dDsKKwkJCX0KKwkJfQorCisJCWk5MTVfYWNxdWlyZV9jdHhfZG9uZSgmYWNxdWlyZSk7CisK
+KyNpZiBJU19FTkFCTEVEKENPTkZJR19MT0NLREVQKQorCQlmb3IgKG4gPSAwOyBuIDwgY291bnQ7
+IG4rKykgeworCQkJc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiA9IGRsLT5vYmpbb3Jk
+ZXJbbl1dOworCisJCQlpZiAoIWxvY2tkZXBfaXNfaGVsZCgmb2JqLT5iYXNlLnJlc3YtPmxvY2su
+YmFzZSkpIHsKKwkJCQlwcl9lcnIoImxvY2sgbm90IHRha2VuIVxuIik7CisJCQkJaTkxNV9hY3F1
+aXJlX2N0eF9maW5pKCZhY3F1aXJlKTsKKwkJCQllcnIgPSAtRUlOVkFMOworCQkJCWdvdG8gb3V0
+OworCQkJfQorCQl9CisjZW5kaWYKKworCQlpOTE1X2FjcXVpcmVfY3R4X2ZpbmkoJmFjcXVpcmUp
+OworCisjaWYgSVNfRU5BQkxFRChDT05GSUdfTE9DS0RFUCkKKwkJZm9yIChuID0gMDsgbiA8IGNv
+dW50OyBuKyspIHsKKwkJCXN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmogPSBkbC0+b2Jq
+W29yZGVyW25dXTsKKworCQkJaWYgKGxvY2tkZXBfaXNfaGVsZCgmb2JqLT5iYXNlLnJlc3YtPmxv
+Y2suYmFzZSkpIHsKKwkJCQlwcl9lcnIoImxvY2sgc3RpbGwgaGVsZCBhZnRlciBmaW5pIVxuIik7
+CisJCQkJZXJyID0gLUVJTlZBTDsKKwkJCQlnb3RvIG91dDsKKwkJCX0KKwkJfQorI2VuZGlmCisJ
+fQorCitvdXQ6CisJa2ZyZWUob3JkZXIpOworCXJldHVybiBlcnI7Cit9CisKK3N0YXRpYyBpbnQg
+aWd0X2FjcXVpcmVfZGVhZGxvY2sodm9pZCAqYXJnKQoreworCXVuc2lnbmVkIGludCBuY3B1cyA9
+IG51bV9vbmxpbmVfY3B1cygpOworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gYXJn
+OworCXN0cnVjdCB0YXNrX3N0cnVjdCAqKnRocmVhZHM7CisJc3RydWN0IGRlYWRsb2NrIGRsOwor
+CWludCByZXQgPSAwLCBuOworCisJdGhyZWFkcyA9IGtjYWxsb2MobmNwdXMsIHNpemVvZigqdGhy
+ZWFkcyksIEdGUF9LRVJORUwpOworCWlmICghdGhyZWFkcykKKwkJcmV0dXJuIC1FTk9NRU07CisK
+Kwlmb3IgKG4gPSAwOyBuIDwgQVJSQVlfU0laRShkbC5vYmopOyBuICs9IDIpIHsKKwkJZGwub2Jq
+W25dID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9pbnRlcm5hbChpOTE1LCBQQUdFX1NJWkUpOwor
+CQlpZiAoSVNfRVJSKGRsLm9ialtuXSkpIHsKKwkJCXJldCA9IFBUUl9FUlIoZGwub2JqW25dKTsK
+KwkJCWdvdG8gb3V0X29iajsKKwkJfQorCisJCS8qIFJlcGVhdCB0aGUgb2JqZWN0cyBmb3IgLUVB
+TFJFQURZICovCisJCWRsLm9ialtuICsgMV0gPSBpOTE1X2dlbV9vYmplY3RfZ2V0KGRsLm9ialtu
+XSk7CisJfQorCisJZm9yIChuID0gMDsgbiA8IG5jcHVzOyBuKyspIHsKKwkJdGhyZWFkc1tuXSA9
+IGt0aHJlYWRfcnVuKF9faWd0X2FjcXVpcmVfZGVhZGxvY2ssCisJCQkJCSAmZGwsICJpZ3QvJWQi
+LCBuKTsKKwkJaWYgKElTX0VSUih0aHJlYWRzW25dKSkgeworCQkJcmV0ID0gUFRSX0VSUih0aHJl
+YWRzW25dKTsKKwkJCW5jcHVzID0gbjsKKwkJCWJyZWFrOworCQl9CisKKwkJZ2V0X3Rhc2tfc3Ry
+dWN0KHRocmVhZHNbbl0pOworCX0KKworCXlpZWxkKCk7IC8qIHN0YXJ0IGFsbCB0aHJlYWRzIGJl
+Zm9yZSB3ZSBiZWdpbiAqLworCW1zbGVlcChqaWZmaWVzX3RvX21zZWNzKGk5MTVfc2VsZnRlc3Qu
+dGltZW91dF9qaWZmaWVzKSk7CisKKwlmb3IgKG4gPSAwOyBuIDwgbmNwdXM7IG4rKykgeworCQlp
+bnQgZXJyOworCisJCWVyciA9IGt0aHJlYWRfc3RvcCh0aHJlYWRzW25dKTsKKwkJaWYgKGVyciA8
+IDAgJiYgIXJldCkKKwkJCXJldCA9IGVycjsKKworCQlwdXRfdGFza19zdHJ1Y3QodGhyZWFkc1tu
+XSk7CisJfQorCitvdXRfb2JqOgorCWZvciAobiA9IDA7IG4gPCBBUlJBWV9TSVpFKGRsLm9iaik7
+IG4rKykgeworCQlpZiAoSVNfRVJSKGRsLm9ialtuXSkpCisJCQlicmVhazsKKwkJaTkxNV9nZW1f
+b2JqZWN0X3B1dChkbC5vYmpbbl0pOworCX0KKwlrZnJlZSh0aHJlYWRzKTsKKwlyZXR1cm4gcmV0
+OworfQorCitpbnQgaTkxNV9hY3F1aXJlX21vY2tfc2VsZnRlc3RzKHZvaWQpCit7CisJc3RhdGlj
+IGNvbnN0IHN0cnVjdCBpOTE1X3N1YnRlc3QgdGVzdHNbXSA9IHsKKwkJU1VCVEVTVChpZ3RfYWNx
+dWlyZV9sb2NrKSwKKwkJU1VCVEVTVChpZ3RfYWNxdWlyZV9kZWFkbG9jayksCisJfTsKKwlzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNTsKKwlpbnQgZXJyID0gMDsKKworCWk5MTUgPSBtb2Nr
+X2dlbV9kZXZpY2UoKTsKKwlpZiAoIWk5MTUpCisJCXJldHVybiAtRU5PTUVNOworCisJZXJyID0g
+aTkxNV9zdWJ0ZXN0cyh0ZXN0cywgaTkxNSk7CisJZHJtX2Rldl9wdXQoJmk5MTUtPmRybSk7CisK
+KwlyZXR1cm4gZXJyOworfQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRl
+c3RzL2k5MTVfbW9ja19zZWxmdGVzdHMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0
+cy9pOTE1X21vY2tfc2VsZnRlc3RzLmgKaW5kZXggM2RiMzRkM2VlYTU4Li5jYjZmOTQ2MzMzNTYg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X21vY2tfc2Vs
+ZnRlc3RzLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfbW9ja19z
+ZWxmdGVzdHMuaApAQCAtMjYsNiArMjYsNyBAQCBzZWxmdGVzdChlbmdpbmUsIGludGVsX2VuZ2lu
+ZV9jc19tb2NrX3NlbGZ0ZXN0cykKIHNlbGZ0ZXN0KHRpbWVsaW5lcywgaW50ZWxfdGltZWxpbmVf
+bW9ja19zZWxmdGVzdHMpCiBzZWxmdGVzdChyZXF1ZXN0cywgaTkxNV9yZXF1ZXN0X21vY2tfc2Vs
+ZnRlc3RzKQogc2VsZnRlc3Qob2JqZWN0cywgaTkxNV9nZW1fb2JqZWN0X21vY2tfc2VsZnRlc3Rz
+KQorc2VsZnRlc3QoYWNxdWlyZSwgaTkxNV9hY3F1aXJlX21vY2tfc2VsZnRlc3RzKQogc2VsZnRl
+c3QocGh5cywgaTkxNV9nZW1fcGh5c19tb2NrX3NlbGZ0ZXN0cykKIHNlbGZ0ZXN0KGRtYWJ1Ziwg
+aTkxNV9nZW1fZG1hYnVmX21vY2tfc2VsZnRlc3RzKQogc2VsZnRlc3Qodm1hLCBpOTE1X3ZtYV9t
+b2NrX3NlbGZ0ZXN0cykKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vaW50ZWwtZ2Z4Cg==
