@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E2B523CA94
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Aug 2020 14:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71AFB23CA86
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Aug 2020 14:23:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 984FB6E5CF;
-	Wed,  5 Aug 2020 12:23:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E0506E5A0;
+	Wed,  5 Aug 2020 12:22:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4E856E57A
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 12:22:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00D406E591
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 12:22:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22039481-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22039482-1500050 
  for multiple; Wed, 05 Aug 2020 13:22:34 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Aug 2020 13:22:16 +0100
-Message-Id: <20200805122231.23313-23-chris@chris-wilson.co.uk>
+Date: Wed,  5 Aug 2020 13:22:17 +0100
+Message-Id: <20200805122231.23313-24-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200805122231.23313-1-chris@chris-wilson.co.uk>
 References: <20200805122231.23313-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 22/37] drm/i915/gem: Include secure batch in
- common execbuf pinning
+Subject: [Intel-gfx] [PATCH 23/37] drm/i915/gem: Manage GTT placement bias
+ (starting offset) explicitly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,104 +39,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UHVsbCB0aGUgR0dUVCBiaW5kaW5nIGZvciB0aGUgc2VjdXJlIGJhdGNoIGRpc3BhdGNoIGludG8g
-dGhlIGNvbW1vbiB2bWEKcGlubmluZyByb3V0aW5lIGZvciBleGVjYnVmLCBzbyB0aGF0IHRoZXJl
-IGlzIGp1c3QgYSBzaW5nbGUgY2VudHJhbApwbGFjZSBmb3IgYWxsIGk5MTVfdm1hX3BpbigpLgoK
-U2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+ClJl
-dmlld2VkLWJ5OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBpbnRlbC5jb20+
-Ci0tLQogLi4uL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jICAgIHwgODgg
-KysrKysrKysrKystLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDUxIGluc2VydGlvbnMoKyksIDM3
-IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
-X2dlbV9leGVjYnVmZmVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhl
-Y2J1ZmZlci5jCmluZGV4IDIzNmQ0YWQzNTE2Yi4uMTljYWI1NTQxZGJjIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMKQEAgLTE2NzQsNiArMTY3
-NCw0OCBAQCBzdGF0aWMgaW50IGViX2FsbG9jX2NtZHBhcnNlcihzdHJ1Y3QgaTkxNV9leGVjYnVm
-ZmVyICplYikKIAlyZXR1cm4gZXJyOwogfQogCitzdGF0aWMgaW50IGViX3NlY3VyZV9iYXRjaChz
-dHJ1Y3QgaTkxNV9leGVjYnVmZmVyICplYikKK3sKKwlzdHJ1Y3QgaTkxNV92bWEgKnZtYSA9IGVi
-LT5iYXRjaC0+dm1hOworCisJLyoKKwkgKiBzbmIvaXZiL3ZsdiBjb25mbGF0ZSB0aGUgImJhdGNo
-IGluIHBwZ3R0IiBiaXQgd2l0aCB0aGUgIm5vbi1zZWN1cmUKKwkgKiBiYXRjaCIgYml0LiBIZW5j
-ZSB3ZSBuZWVkIHRvIHBpbiBzZWN1cmUgYmF0Y2hlcyBpbnRvIHRoZSBnbG9iYWwgZ3R0LgorCSAq
-IGhzdyBzaG91bGQgaGF2ZSB0aGlzIGZpeGVkLCBidXQgYmR3IG11Y2tzIGl0IHVwIGFnYWluLgor
-CSAqLworCWlmICghKGViLT5iYXRjaF9mbGFncyAmIEk5MTVfRElTUEFUQ0hfU0VDVVJFKSkKKwkJ
-cmV0dXJuIDA7CisKKwlpZiAoR0VNX1dBUk5fT04odm1hLT52bSAhPSAmZWItPmVuZ2luZS0+Z3Qt
-PmdndHQtPnZtKSkgeworCQlzdHJ1Y3QgZWJfdm1hICpldjsKKworCQlldiA9IGt6YWxsb2Moc2l6
-ZW9mKCpldiksIEdGUF9LRVJORUwpOworCQlpZiAoIWV2KQorCQkJcmV0dXJuIC1FTk9NRU07CisK
-KwkJdm1hID0gaTkxNV92bWFfaW5zdGFuY2Uodm1hLT5vYmosCisJCQkJCSZlYi0+ZW5naW5lLT5n
-dC0+Z2d0dC0+dm0sCisJCQkJCU5VTEwpOworCQlpZiAoSVNfRVJSKHZtYSkpIHsKKwkJCWtmcmVl
-KGV2KTsKKwkJCXJldHVybiBQVFJfRVJSKHZtYSk7CisJCX0KKworCQlldi0+dm1hID0gaTkxNV92
-bWFfZ2V0KHZtYSk7CisJCWV2LT5leGVjID0gJm5vX2VudHJ5OworCisJCWxpc3RfYWRkKCZldi0+
-c3VibWl0X2xpbmssICZlYi0+c3VibWl0X2xpc3QpOworCQlsaXN0X2FkZCgmZXYtPnJlbG9jX2xp
-bmssICZlYi0+YXJyYXktPmF1eF9saXN0KTsKKwkJbGlzdF9hZGQoJmV2LT5iaW5kX2xpbmssICZl
-Yi0+YmluZF9saXN0KTsKKworCQlHRU1fQlVHX09OKGViLT5iYXRjaC0+dm1hLT5wcml2YXRlKTsK
-KwkJZWItPmJhdGNoID0gZXY7CisJfQorCisJZWItPmJhdGNoLT5mbGFncyB8PSBFWEVDX09CSkVD
-VF9ORUVEU19HVFQ7CisJcmV0dXJuIDA7Cit9CisKIHN0YXRpYyB1bnNpZ25lZCBpbnQgZWJfYmF0
-Y2hfaW5kZXgoY29uc3Qgc3RydWN0IGk5MTVfZXhlY2J1ZmZlciAqZWIpCiB7CiAJaWYgKGViLT5h
-cmdzLT5mbGFncyAmIEk5MTVfRVhFQ19CQVRDSF9GSVJTVCkKQEAgLTE4MjMsNiArMTg2NSwxMCBA
-QCBzdGF0aWMgaW50IGViX2xvb2t1cF92bWFzKHN0cnVjdCBpOTE1X2V4ZWNidWZmZXIgKmViKQog
-CWlmIChlcnIpCiAJCXJldHVybiBlcnI7CiAKKwllcnIgPSBlYl9zZWN1cmVfYmF0Y2goZWIpOwor
-CWlmIChlcnIpCisJCXJldHVybiBlcnI7CisKIAlyZXR1cm4gMDsKIH0KIApAQCAtMjc5OCw3ICsy
-ODQ0LDcgQEAgc3RhdGljIGludCBlYl9wYXJzZShzdHJ1Y3QgaTkxNV9leGVjYnVmZmVyICplYikK
-IAlyZXR1cm4gMDsKIH0KIAotc3RhdGljIGludCBlYl9zdWJtaXQoc3RydWN0IGk5MTVfZXhlY2J1
-ZmZlciAqZWIsIHN0cnVjdCBpOTE1X3ZtYSAqYmF0Y2gpCitzdGF0aWMgaW50IGViX3N1Ym1pdChz
-dHJ1Y3QgaTkxNV9leGVjYnVmZmVyICplYikKIHsKIAlpbnQgZXJyOwogCkBAIC0yODI1LDcgKzI4
-NzEsNyBAQCBzdGF0aWMgaW50IGViX3N1Ym1pdChzdHJ1Y3QgaTkxNV9leGVjYnVmZmVyICplYiwg
-c3RydWN0IGk5MTVfdm1hICpiYXRjaCkKIAl9CiAKIAllcnIgPSBlYi0+ZW5naW5lLT5lbWl0X2Ji
-X3N0YXJ0KGViLT5yZXF1ZXN0LAotCQkJCQliYXRjaC0+bm9kZS5zdGFydCArCisJCQkJCWViLT5i
-YXRjaC0+dm1hLT5ub2RlLnN0YXJ0ICsKIAkJCQkJZWItPmJhdGNoX3N0YXJ0X29mZnNldCwKIAkJ
-CQkJZWItPmJhdGNoX2xlbiwKIAkJCQkJZWItPmJhdGNoX2ZsYWdzKTsKQEAgLTM0ODYsNyArMzUz
-Miw2IEBAIGk5MTVfZ2VtX2RvX2V4ZWNidWZmZXIoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKIAlz
-dHJ1Y3QgaTkxNV9leGVjYnVmZmVyIGViOwogCXN0cnVjdCBkbWFfZmVuY2UgKmluX2ZlbmNlID0g
-TlVMTDsKIAlzdHJ1Y3Qgc3luY19maWxlICpvdXRfZmVuY2UgPSBOVUxMOwotCXN0cnVjdCBpOTE1
-X3ZtYSAqYmF0Y2g7CiAJaW50IG91dF9mZW5jZV9mZCA9IC0xOwogCWludCBlcnI7CiAKQEAgLTM2
-MDEsMzQgKzM2NDYsNiBAQCBpOTE1X2dlbV9kb19leGVjYnVmZmVyKHN0cnVjdCBkcm1fZGV2aWNl
-ICpkZXYsCiAJaWYgKGVycikKIAkJZ290byBlcnJfdm1hOwogCi0JLyoKLQkgKiBzbmIvaXZiL3Zs
-diBjb25mbGF0ZSB0aGUgImJhdGNoIGluIHBwZ3R0IiBiaXQgd2l0aCB0aGUgIm5vbi1zZWN1cmUK
-LQkgKiBiYXRjaCIgYml0LiBIZW5jZSB3ZSBuZWVkIHRvIHBpbiBzZWN1cmUgYmF0Y2hlcyBpbnRv
-IHRoZSBnbG9iYWwgZ3R0LgotCSAqIGhzdyBzaG91bGQgaGF2ZSB0aGlzIGZpeGVkLCBidXQgYmR3
-IG11Y2tzIGl0IHVwIGFnYWluLiAqLwotCWJhdGNoID0gaTkxNV92bWFfZ2V0KGViLmJhdGNoLT52
-bWEpOwotCWlmIChlYi5iYXRjaF9mbGFncyAmIEk5MTVfRElTUEFUQ0hfU0VDVVJFKSB7Ci0JCXN0
-cnVjdCBpOTE1X3ZtYSAqdm1hOwotCi0JCS8qCi0JCSAqIFNvIG9uIGZpcnN0IGdsYW5jZSBpdCBs
-b29rcyBmcmVha3kgdGhhdCB3ZSBwaW4gdGhlIGJhdGNoIGhlcmUKLQkJICogb3V0c2lkZSBvZiB0
-aGUgcmVzZXJ2YXRpb24gbG9vcC4gQnV0OgotCQkgKiAtIFRoZSBiYXRjaCBpcyBhbHJlYWR5IHBp
-bm5lZCBpbnRvIHRoZSByZWxldmFudCBwcGd0dCwgc28gd2UKLQkJICogICBhbHJlYWR5IGhhdmUg
-dGhlIGJhY2tpbmcgc3RvcmFnZSBmdWxseSBhbGxvY2F0ZWQuCi0JCSAqIC0gTm8gb3RoZXIgQk8g
-dXNlcyB0aGUgZ2xvYmFsIGd0dCAod2VsbCBjb250ZXh0cywgYnV0IG1laCksCi0JCSAqICAgc28g
-d2UgZG9uJ3QgcmVhbGx5IGhhdmUgaXNzdWVzIHdpdGggbXVsdGlwbGUgb2JqZWN0cyBub3QKLQkJ
-ICogICBmaXR0aW5nIGR1ZSB0byBmcmFnbWVudGF0aW9uLgotCQkgKiBTbyB0aGlzIGlzIGFjdHVh
-bGx5IHNhZmUuCi0JCSAqLwotCQl2bWEgPSBpOTE1X2dlbV9vYmplY3RfZ2d0dF9waW4oYmF0Y2gt
-Pm9iaiwgTlVMTCwgMCwgMCwgMCk7Ci0JCWlmIChJU19FUlIodm1hKSkgewotCQkJZXJyID0gUFRS
-X0VSUih2bWEpOwotCQkJZ290byBlcnJfdm1hOwotCQl9Ci0KLQkJR0VNX0JVR19PTih2bWEtPm9i
-aiAhPSBiYXRjaC0+b2JqKTsKLQkJYmF0Y2ggPSB2bWE7Ci0JfQotCiAJLyogQWxsIEdQVSByZWxv
-Y2F0aW9uIGJhdGNoZXMgbXVzdCBiZSBzdWJtaXR0ZWQgcHJpb3IgdG8gdGhlIHVzZXIgcnEgKi8K
-IAlHRU1fQlVHX09OKGViLnJlbG9jX2NhY2hlLnJxKTsKIApAQCAtMzYzNiw3ICszNjUzLDcgQEAg
-aTkxNV9nZW1fZG9fZXhlY2J1ZmZlcihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCWViLnJlcXVl
-c3QgPSBfX2k5MTVfcmVxdWVzdF9jcmVhdGUoZWIuY29udGV4dCwgR0ZQX0tFUk5FTCk7CiAJaWYg
-KElTX0VSUihlYi5yZXF1ZXN0KSkgewogCQllcnIgPSBQVFJfRVJSKGViLnJlcXVlc3QpOwotCQln
-b3RvIGVycl9iYXRjaF91bnBpbjsKKwkJZ290byBlcnJfdm1hOwogCX0KIAllYi5yZXF1ZXN0LT5j
-b29raWUgPSBsb2NrZGVwX3Bpbl9sb2NrKCZlYi5jb250ZXh0LT50aW1lbGluZS0+bXV0ZXgpOwog
-CkBAIC0zNjczLDEzICszNjkwLDEzIEBAIGk5MTVfZ2VtX2RvX2V4ZWNidWZmZXIoc3RydWN0IGRy
-bV9kZXZpY2UgKmRldiwKIAkgKiBpbmFjdGl2ZV9saXN0IGFuZCBsb3NlIGl0cyBhY3RpdmUgcmVm
-ZXJlbmNlLiBIZW5jZSB3ZSBkbyBub3QgbmVlZAogCSAqIHRvIGV4cGxpY2l0bHkgaG9sZCBhbm90
-aGVyIHJlZmVyZW5jZSBoZXJlLgogCSAqLwotCWViLnJlcXVlc3QtPmJhdGNoID0gYmF0Y2g7CisJ
-ZWIucmVxdWVzdC0+YmF0Y2ggPSBlYi5iYXRjaC0+dm1hOwogCWlmIChlYi5wYXJzZXIuc2hhZG93
-KQogCQlpbnRlbF9ndF9idWZmZXJfcG9vbF9tYXJrX2FjdGl2ZShlYi5wYXJzZXIuc2hhZG93LT52
-bWEtPnByaXZhdGUsCiAJCQkJCQkgZWIucmVxdWVzdCk7CiAKIAl0cmFjZV9pOTE1X3JlcXVlc3Rf
-cXVldWUoZWIucmVxdWVzdCwgZWIuYmF0Y2hfZmxhZ3MpOwotCWVyciA9IGViX3N1Ym1pdCgmZWIs
-IGJhdGNoKTsKKwllcnIgPSBlYl9zdWJtaXQoJmViKTsKIGVycl9yZXF1ZXN0OgogCWk5MTVfcmVx
-dWVzdF9nZXQoZWIucmVxdWVzdCk7CiAJZWJfcmVxdWVzdF9hZGQoJmViKTsKQEAgLTM2ODksOSAr
-MzcwNiw2IEBAIGk5MTVfZ2VtX2RvX2V4ZWNidWZmZXIoc3RydWN0IGRybV9kZXZpY2UgKmRldiwK
-IAogCWk5MTVfcmVxdWVzdF9wdXQoZWIucmVxdWVzdCk7CiAKLWVycl9iYXRjaF91bnBpbjoKLQlp
-ZiAoZWIuYmF0Y2hfZmxhZ3MgJiBJOTE1X0RJU1BBVENIX1NFQ1VSRSkKLQkJaTkxNV92bWFfdW5w
-aW4oYmF0Y2gpOwogZXJyX3ZtYToKIAllYl91bmxvY2tfZW5naW5lKCZlYik7CiAJLyogKioqIFRJ
-TUVMSU5FIFVOTE9DSyAqKiogKi8KLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Since we can control placement in the ppGTT explicitly, we can specify
+our desired starting offset exactly on a per-vma basis. This prevents us
+falling down a few corner cases where we confuse the user with our choices.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 67 +++++++++----------
+ 1 file changed, 31 insertions(+), 36 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 19cab5541dbc..0839397c7e50 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -36,6 +36,7 @@ struct eb_vma {
+ 
+ 	/** This vma's place in the execbuf reservation list */
+ 	struct drm_i915_gem_exec_object2 *exec;
++	u32 bias;
+ 
+ 	struct list_head bind_link;
+ 	struct list_head unbound_link;
+@@ -61,15 +62,12 @@ struct eb_vma_array {
+ #define __EXEC_OBJECT_HAS_PIN		BIT(31)
+ #define __EXEC_OBJECT_HAS_FENCE		BIT(30)
+ #define __EXEC_OBJECT_NEEDS_MAP		BIT(29)
+-#define __EXEC_OBJECT_NEEDS_BIAS	BIT(28)
+-#define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 28) /* all of the above */
++#define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 29) /* all of the above */
+ 
+ #define __EXEC_HAS_RELOC	BIT(31)
+ #define __EXEC_INTERNAL_FLAGS	(~0u << 31)
+ #define UPDATE			PIN_OFFSET_FIXED
+ 
+-#define BATCH_OFFSET_BIAS (256*1024)
+-
+ #define __I915_EXEC_ILLEGAL_FLAGS \
+ 	(__I915_EXEC_UNKNOWN_FLAGS | \
+ 	 I915_EXEC_CONSTANTS_MASK  | \
+@@ -291,7 +289,7 @@ struct i915_execbuffer {
+ 	} parser;
+ 
+ 	u64 invalid_flags; /** Set of execobj.flags that are invalid */
+-	u32 context_flags; /** Set of execobj.flags to insert from the ctx */
++	u32 context_bias;
+ 
+ 	u32 batch_start_offset; /** Location within object of batch */
+ 	u32 batch_len; /** Length of batch within object */
+@@ -491,11 +489,12 @@ static int eb_create(struct i915_execbuffer *eb)
+ 	return 0;
+ }
+ 
+-static bool
+-eb_vma_misplaced(const struct drm_i915_gem_exec_object2 *entry,
+-		 const struct i915_vma *vma,
+-		 unsigned int flags)
++static bool eb_vma_misplaced(const struct eb_vma *ev)
+ {
++	const struct drm_i915_gem_exec_object2 *entry = ev->exec;
++	const struct i915_vma *vma = ev->vma;
++	unsigned int flags = ev->flags;
++
+ 	if (test_bit(I915_VMA_ERROR_BIT, __i915_vma_flags(vma)))
+ 		return true;
+ 
+@@ -509,8 +508,7 @@ eb_vma_misplaced(const struct drm_i915_gem_exec_object2 *entry,
+ 	    vma->node.start != entry->offset)
+ 		return true;
+ 
+-	if (flags & __EXEC_OBJECT_NEEDS_BIAS &&
+-	    vma->node.start < BATCH_OFFSET_BIAS)
++	if (vma->node.start < ev->bias)
+ 		return true;
+ 
+ 	if (!(flags & EXEC_OBJECT_SUPPORTS_48B_ADDRESS) &&
+@@ -529,10 +527,7 @@ static bool eb_pin_vma_fence_inplace(struct eb_vma *ev)
+ 	return false; /* We need to add some new fence serialisation */
+ }
+ 
+-static inline bool
+-eb_pin_vma_inplace(struct i915_execbuffer *eb,
+-		   const struct drm_i915_gem_exec_object2 *entry,
+-		   struct eb_vma *ev)
++static inline bool eb_pin_vma_inplace(struct eb_vma *ev)
+ {
+ 	struct i915_vma *vma = ev->vma;
+ 	unsigned int pin_flags;
+@@ -541,7 +536,7 @@ eb_pin_vma_inplace(struct i915_execbuffer *eb,
+ 	if (!i915_active_is_idle(&vma->vm->binding))
+ 		return false;
+ 
+-	if (eb_vma_misplaced(entry, vma, ev->flags))
++	if (eb_vma_misplaced(ev))
+ 		return false;
+ 
+ 	pin_flags = PIN_USER;
+@@ -559,7 +554,7 @@ eb_pin_vma_inplace(struct i915_execbuffer *eb,
+ 		}
+ 	}
+ 
+-	GEM_BUG_ON(eb_vma_misplaced(entry, vma, ev->flags));
++	GEM_BUG_ON(eb_vma_misplaced(ev));
+ 
+ 	ev->flags |= __EXEC_OBJECT_HAS_PIN;
+ 	return true;
+@@ -608,9 +603,6 @@ eb_validate_vma(struct i915_execbuffer *eb,
+ 			entry->flags |= EXEC_OBJECT_NEEDS_GTT | __EXEC_OBJECT_NEEDS_MAP;
+ 	}
+ 
+-	if (!(entry->flags & EXEC_OBJECT_PINNED))
+-		entry->flags |= eb->context_flags;
+-
+ 	return 0;
+ }
+ 
+@@ -627,6 +619,7 @@ eb_add_vma(struct i915_execbuffer *eb,
+ 	ev->vma = vma;
+ 	ev->exec = entry;
+ 	ev->flags = entry->flags;
++	ev->bias = eb->context_bias;
+ 
+ 	if (eb->lut_size > 0) {
+ 		ev->handle = entry->handle;
+@@ -653,7 +646,8 @@ eb_add_vma(struct i915_execbuffer *eb,
+ 	if (i == batch_idx) {
+ 		if (entry->relocation_count &&
+ 		    !(ev->flags & EXEC_OBJECT_PINNED))
+-			ev->flags |= __EXEC_OBJECT_NEEDS_BIAS;
++			ev->bias = max_t(u32, ev->bias, SZ_256K);
++
+ 		if (eb->has_fence)
+ 			ev->flags |= EXEC_OBJECT_NEEDS_FENCE;
+ 
+@@ -979,8 +973,9 @@ static int eb_reserve_vma(struct eb_vm_work *work, struct eb_bind_vma *bind)
+ 	const unsigned int exec_flags = bind->ev->flags;
+ 	struct i915_vma *vma = bind->ev->vma;
+ 	struct i915_address_space *vm = vma->vm;
+-	u64 start = 0, end = vm->total;
+ 	u64 align = entry->alignment ?: I915_GTT_MIN_ALIGNMENT;
++	u64 start = round_up(bind->ev->bias, align);
++	u64 end = vm->total;
+ 	unsigned int bind_flags;
+ 	int err;
+ 
+@@ -999,7 +994,7 @@ static int eb_reserve_vma(struct eb_vm_work *work, struct eb_bind_vma *bind)
+ 	GEM_BUG_ON(!vma->size);
+ 
+ 	/* Reuse old address (if it doesn't conflict with new requirements) */
+-	if (eb_vma_misplaced(entry, vma, exec_flags)) {
++	if (eb_vma_misplaced(bind->ev)) {
+ 		vma->node.start = entry->offset & PIN_OFFSET_MASK;
+ 		vma->node.size = max(entry->pad_to_size, vma->size);
+ 		vma->node.color = 0;
+@@ -1021,11 +1016,8 @@ static int eb_reserve_vma(struct eb_vm_work *work, struct eb_bind_vma *bind)
+ 		align = max_t(u64, align, vma->fence_alignment);
+ 	}
+ 
+-	if (exec_flags & __EXEC_OBJECT_NEEDS_BIAS)
+-		start = BATCH_OFFSET_BIAS;
+-
+ 	GEM_BUG_ON(!vma->node.size);
+-	if (vma->node.size > end - start)
++	if (start > end || vma->node.size > end - start)
+ 		return -E2BIG;
+ 
+ 	/* Try the user's preferred location first (mandatory if soft-pinned) */
+@@ -1108,7 +1100,7 @@ static int eb_reserve_vma(struct eb_vm_work *work, struct eb_bind_vma *bind)
+ 	}
+ 
+ 	bind->ev->flags |= __EXEC_OBJECT_HAS_PIN;
+-	GEM_BUG_ON(eb_vma_misplaced(entry, vma, bind->ev->flags));
++	GEM_BUG_ON(eb_vma_misplaced(bind->ev));
+ 
+ 	if (unlikely(exec_flags & EXEC_OBJECT_NEEDS_FENCE)) {
+ 		err = __i915_vma_pin_fence_async(vma, &work->base);
+@@ -1341,8 +1333,7 @@ static int wait_for_unbinds(struct i915_execbuffer *eb,
+ 
+ 		GEM_BUG_ON(ev->flags & __EXEC_OBJECT_HAS_PIN);
+ 
+-		if (drm_mm_node_allocated(&vma->node) &&
+-		    eb_vma_misplaced(ev->exec, vma, ev->flags)) {
++		if (drm_mm_node_allocated(&vma->node) && eb_vma_misplaced(ev)) {
+ 			err = i915_vma_unbind(vma);
+ 			if (err)
+ 				return err;
+@@ -1391,10 +1382,10 @@ static int eb_reserve_vm(struct i915_execbuffer *eb)
+ 	count = 0;
+ 	INIT_LIST_HEAD(&unbound);
+ 	list_for_each_entry(ev, &eb->bind_list, bind_link) {
+-		struct drm_i915_gem_exec_object2 *entry = ev->exec;
+-		struct i915_vma *vma = ev->vma;
++		if (eb_pin_vma_inplace(ev)) {
++			struct drm_i915_gem_exec_object2 *entry = ev->exec;
++			struct i915_vma *vma = ev->vma;
+ 
+-		if (eb_pin_vma_inplace(eb, entry, ev)) {
+ 			if (entry != &no_entry &&
+ 			    entry->offset != vma->node.start) {
+ 				entry->offset = vma->node.start | UPDATE;
+@@ -1478,7 +1469,7 @@ static int eb_reserve_vm(struct i915_execbuffer *eb)
+ 			 * we cannot handle migrating the vma inside the worker.
+ 			 */
+ 			if (drm_mm_node_allocated(&vma->node)) {
+-				if (eb_vma_misplaced(ev->exec, vma, ev->flags)) {
++				if (eb_vma_misplaced(ev)) {
+ 					err = -ENOSPC;
+ 					break;
+ 				}
+@@ -1736,9 +1727,13 @@ static int eb_select_context(struct i915_execbuffer *eb)
+ 	if (rcu_access_pointer(ctx->vm))
+ 		eb->invalid_flags |= EXEC_OBJECT_NEEDS_GTT;
+ 
+-	eb->context_flags = 0;
++	/*
++	 * At the user's discretion, ensure that we place no objects at
++	 * offset 0, allowing them to use 0 as a 'NULL' pointer.
++	 */
++	eb->context_bias = 0;
+ 	if (test_bit(UCONTEXT_NO_ZEROMAP, &ctx->user_flags))
+-		eb->context_flags |= __EXEC_OBJECT_NEEDS_BIAS;
++		eb->context_bias = I915_GTT_MIN_ALIGNMENT;
+ 
+ 	return 0;
+ }
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
