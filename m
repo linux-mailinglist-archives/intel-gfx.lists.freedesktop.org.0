@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E5323CA91
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Aug 2020 14:23:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CEB823CA82
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Aug 2020 14:23:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D1516E5C8;
-	Wed,  5 Aug 2020 12:23:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 352206E59F;
+	Wed,  5 Aug 2020 12:22:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D97B66E573
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 12:22:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 015766E57A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 12:22:52 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22039489-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22039490-1500050 
  for multiple; Wed, 05 Aug 2020 13:22:36 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Aug 2020 13:22:24 +0100
-Message-Id: <20200805122231.23313-31-chris@chris-wilson.co.uk>
+Date: Wed,  5 Aug 2020 13:22:25 +0100
+Message-Id: <20200805122231.23313-32-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200805122231.23313-1-chris@chris-wilson.co.uk>
 References: <20200805122231.23313-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 30/37] drm/i915: Hold wakeref for the duration
- of the vma GGTT binding
+Subject: [Intel-gfx] [PATCH 31/37] drm/i915/gt: Refactor heartbeat request
+ construction and submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,83 +39,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tm93IHRoYXQgd2UgaGF2ZSBwdXNoZWQgdGhlIGJpbmRpbmcgaXRzZWxmIG91dHNpZGUgb2YgdGhl
-IHZtLT5tdXRleCwgd2UKYXJlIGNsZWFyIG9mIHRoZSBwb3RlbnRpYWwgd2FrZXJlZiBpbnZlcnNp
-b25zIGFuZCBjYW4gdGFrZSB0aGUgd2FrZXJlZgphcm91bmQgdGhlIGFjdHVhbCBkdXJhdGlvbiBv
-ZiB0aGUgSFcgaW50ZXJhY3Rpb24uCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlz
-QGNocmlzLXdpbHNvbi5jby51az4KUmV2aWV3ZWQtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9t
-YXMuaGVsbHN0cm9tQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRl
-bF9nZ3R0LmMgfCAzOSArKysrKysrKysrKysrKysrLS0tLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X3ZtYS5jICAgICAgfCAgNiAtLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCAyMiBp
-bnNlcnRpb25zKCspLCAyMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF9nZ3R0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9n
-Z3R0LmMKaW5kZXggOTJiNmNjNzU0ZDViLi5hMmM3YzU1YjM1OGQgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2dndHQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC9pbnRlbF9nZ3R0LmMKQEAgLTQzNCwyNyArNDM0LDM5IEBAIHN0YXRpYyB2b2lkIGk5MTVf
-Z2d0dF9jbGVhcl9yYW5nZShzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlICp2bSwKIAlpbnRlbF9n
-dHRfY2xlYXJfcmFuZ2Uoc3RhcnQgPj4gUEFHRV9TSElGVCwgbGVuZ3RoID4+IFBBR0VfU0hJRlQp
-OwogfQogCi1zdGF0aWMgdm9pZCBnZ3R0X2JpbmRfdm1hKHN0cnVjdCBpOTE1X2FkZHJlc3Nfc3Bh
-Y2UgKnZtLAotCQkJICBzdHJ1Y3QgaTkxNV92bV9wdF9zdGFzaCAqc3Rhc2gsCi0JCQkgIHN0cnVj
-dCBpOTE1X3ZtYSAqdm1hLAotCQkJICBlbnVtIGk5MTVfY2FjaGVfbGV2ZWwgY2FjaGVfbGV2ZWws
-Ci0JCQkgIHUzMiBmbGFncykKK3N0YXRpYyB2b2lkIF9fZ2d0dF9iaW5kX3ZtYShzdHJ1Y3QgaTkx
-NV9hZGRyZXNzX3NwYWNlICp2bSwKKwkJCSAgICBzdHJ1Y3QgaTkxNV92bV9wdF9zdGFzaCAqc3Rh
-c2gsCisJCQkgICAgc3RydWN0IGk5MTVfdm1hICp2bWEsCisJCQkgICAgZW51bSBpOTE1X2NhY2hl
-X2xldmVsIGNhY2hlX2xldmVsLAorCQkJICAgIHUzMiBmbGFncykKIHsKIAlzdHJ1Y3QgZHJtX2k5
-MTVfZ2VtX29iamVjdCAqb2JqID0gdm1hLT5vYmo7CisJaW50ZWxfd2FrZXJlZl90IHdha2VyZWY7
-CiAJdTMyIHB0ZV9mbGFnczsKIAotCWlmIChpOTE1X3ZtYV9pc19ib3VuZCh2bWEsIH5mbGFncyAm
-IEk5MTVfVk1BX0JJTkRfTUFTSykpCi0JCXJldHVybjsKLQogCS8qIEFwcGxpY2FibGUgdG8gVkxW
-IChnZW44KyBkbyBub3Qgc3VwcG9ydCBSTyBpbiB0aGUgR0dUVCkgKi8KIAlwdGVfZmxhZ3MgPSAw
-OwogCWlmIChpOTE1X2dlbV9vYmplY3RfaXNfcmVhZG9ubHkob2JqKSkKIAkJcHRlX2ZsYWdzIHw9
-IFBURV9SRUFEX09OTFk7CiAKLQl2bS0+aW5zZXJ0X2VudHJpZXModm0sIHZtYSwgY2FjaGVfbGV2
-ZWwsIHB0ZV9mbGFncyk7CisJd2l0aF9pbnRlbF9ydW50aW1lX3BtKHZtLT5ndC0+dW5jb3JlLT5y
-cG0sIHdha2VyZWYpCisJCXZtLT5pbnNlcnRfZW50cmllcyh2bSwgdm1hLCBjYWNoZV9sZXZlbCwg
-cHRlX2ZsYWdzKTsKKwogCXZtYS0+cGFnZV9zaXplcy5ndHQgPSBJOTE1X0dUVF9QQUdFX1NJWkU7
-CiB9CiAKK3N0YXRpYyB2b2lkIGdndHRfYmluZF92bWEoc3RydWN0IGk5MTVfYWRkcmVzc19zcGFj
-ZSAqdm0sCisJCQkgIHN0cnVjdCBpOTE1X3ZtX3B0X3N0YXNoICpzdGFzaCwKKwkJCSAgc3RydWN0
-IGk5MTVfdm1hICp2bWEsCisJCQkgIGVudW0gaTkxNV9jYWNoZV9sZXZlbCBjYWNoZV9sZXZlbCwK
-KwkJCSAgdTMyIGZsYWdzKQoreworCWlmIChpOTE1X3ZtYV9pc19ib3VuZCh2bWEsIH5mbGFncyAm
-IEk5MTVfVk1BX0JJTkRfTUFTSykpCisJCXJldHVybjsKKworCV9fZ2d0dF9iaW5kX3ZtYSh2bSwg
-c3Rhc2gsIHZtYSwgY2FjaGVfbGV2ZWwsIGZsYWdzKTsKK30KKwogc3RhdGljIHZvaWQgZ2d0dF91
-bmJpbmRfdm1hKHN0cnVjdCBpOTE1X2FkZHJlc3Nfc3BhY2UgKnZtLCBzdHJ1Y3QgaTkxNV92bWEg
-KnZtYSkKIHsKIAl2bS0+Y2xlYXJfcmFuZ2Uodm0sIHZtYS0+bm9kZS5zdGFydCwgdm1hLT5zaXpl
-KTsKQEAgLTU3MSwxOSArNTgzLDEyIEBAIHN0YXRpYyB2b2lkIGFsaWFzaW5nX2d0dF9iaW5kX3Zt
-YShzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlICp2bSwKIAkJCQkgIGVudW0gaTkxNV9jYWNoZV9s
-ZXZlbCBjYWNoZV9sZXZlbCwKIAkJCQkgIHUzMiBmbGFncykKIHsKLQl1MzIgcHRlX2ZsYWdzOwot
-Ci0JLyogQ3VycmVudGx5IGFwcGxpY2FibGUgb25seSB0byBWTFYgKi8KLQlwdGVfZmxhZ3MgPSAw
-OwotCWlmIChpOTE1X2dlbV9vYmplY3RfaXNfcmVhZG9ubHkodm1hLT5vYmopKQotCQlwdGVfZmxh
-Z3MgfD0gUFRFX1JFQURfT05MWTsKLQogCWlmIChmbGFncyAmIEk5MTVfVk1BX0xPQ0FMX0JJTkQp
-CiAJCXBwZ3R0X2JpbmRfdm1hKCZpOTE1X3ZtX3RvX2dndHQodm0pLT5hbGlhcy0+dm0sCiAJCQkg
-ICAgICAgc3Rhc2gsIHZtYSwgY2FjaGVfbGV2ZWwsIGZsYWdzKTsKIAogCWlmIChmbGFncyAmIEk5
-MTVfVk1BX0dMT0JBTF9CSU5EKQotCQl2bS0+aW5zZXJ0X2VudHJpZXModm0sIHZtYSwgY2FjaGVf
-bGV2ZWwsIHB0ZV9mbGFncyk7CisJCV9fZ2d0dF9iaW5kX3ZtYSh2bSwgc3Rhc2gsIHZtYSwgY2Fj
-aGVfbGV2ZWwsIGZsYWdzKTsKIH0KIAogc3RhdGljIHZvaWQgYWxpYXNpbmdfZ3R0X3VuYmluZF92
-bWEoc3RydWN0IGk5MTVfYWRkcmVzc19zcGFjZSAqdm0sCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X3ZtYS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92bWEuYwpp
-bmRleCA0MGUzOGI1MzNiNTkuLjMyMGY2ZjhlYzA0MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV92bWEuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3ZtYS5j
-CkBAIC03OTQsNyArNzk0LDYgQEAgc3RhdGljIGludCBfX3dhaXRfZm9yX3VuYmluZChzdHJ1Y3Qg
-aTkxNV92bWEgKnZtYSwgdW5zaWduZWQgaW50IGZsYWdzKQogaW50IGk5MTVfdm1hX3BpbihzdHJ1
-Y3QgaTkxNV92bWEgKnZtYSwgdTY0IHNpemUsIHU2NCBhbGlnbm1lbnQsIHU2NCBmbGFncykKIHsK
-IAlzdHJ1Y3QgaTkxNV92bWFfd29yayAqd29yayA9IE5VTEw7Ci0JaW50ZWxfd2FrZXJlZl90IHdh
-a2VyZWYgPSAwOwogCXVuc2lnbmVkIGludCBib3VuZDsKIAlpbnQgZXJyOwogCkBAIC04MTMsOSAr
-ODEyLDYgQEAgaW50IGk5MTVfdm1hX3BpbihzdHJ1Y3QgaTkxNV92bWEgKnZtYSwgdTY0IHNpemUs
-IHU2NCBhbGlnbm1lbnQsIHU2NCBmbGFncykKIAkJCXJldHVybiBlcnI7CiAJfQogCi0JaWYgKGZs
-YWdzICYgUElOX0dMT0JBTCkKLQkJd2FrZXJlZiA9IGludGVsX3J1bnRpbWVfcG1fZ2V0KCZ2bWEt
-PnZtLT5pOTE1LT5ydW50aW1lX3BtKTsKLQogCWVyciA9IF9fd2FpdF9mb3JfdW5iaW5kKHZtYSwg
-ZmxhZ3MpOwogCWlmIChlcnIpCiAJCWdvdG8gZXJyX3JwbTsKQEAgLTkyNSw4ICs5MjEsNiBAQCBp
-bnQgaTkxNV92bWFfcGluKHN0cnVjdCBpOTE1X3ZtYSAqdm1hLCB1NjQgc2l6ZSwgdTY0IGFsaWdu
-bWVudCwgdTY0IGZsYWdzKQogZXJyX2ZlbmNlOgogCWRtYV9mZW5jZV93b3JrX2NvbW1pdF9pbW0o
-JndvcmstPmJhc2UpOwogZXJyX3JwbToKLQlpZiAod2FrZXJlZikKLQkJaW50ZWxfcnVudGltZV9w
-bV9wdXQoJnZtYS0+dm0tPmk5MTUtPnJ1bnRpbWVfcG0sIHdha2VyZWYpOwogCWlmICh2bWEtPm9i
-aikKIAkJaTkxNV9nZW1fb2JqZWN0X3VucGluX3BhZ2VzKHZtYS0+b2JqKTsKIAlyZXR1cm4gZXJy
-OwotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+Pull the individual strands of creating a custom heartbeat requests into
+a pair of common functions. This will reduce the number of changes we
+will need to make in future.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 59 +++++++++++++------
+ 1 file changed, 41 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+index 8ffdf676c0a0..377cbfdb3355 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+@@ -37,12 +37,33 @@ static bool next_heartbeat(struct intel_engine_cs *engine)
+ 	return true;
+ }
+ 
++static struct i915_request *
++heartbeat_create(struct intel_context *ce, gfp_t gfp)
++{
++	struct i915_request *rq;
++
++	intel_context_enter(ce);
++	rq = __i915_request_create(ce, gfp);
++	intel_context_exit(ce);
++
++	return rq;
++}
++
+ static void idle_pulse(struct intel_engine_cs *engine, struct i915_request *rq)
+ {
+ 	engine->wakeref_serial = READ_ONCE(engine->serial) + 1;
+ 	i915_request_add_active_barriers(rq);
+ }
+ 
++static void heartbeat_commit(struct i915_request *rq,
++			     const struct i915_sched_attr *attr)
++{
++	idle_pulse(rq->engine, rq);
++
++	__i915_request_commit(rq);
++	__i915_request_queue(rq, attr);
++}
++
+ static void show_heartbeat(const struct i915_request *rq,
+ 			   struct intel_engine_cs *engine)
+ {
+@@ -137,18 +158,14 @@ static void heartbeat(struct work_struct *wrk)
+ 		goto out;
+ 	}
+ 
+-	intel_context_enter(ce);
+-	rq = __i915_request_create(ce, GFP_NOWAIT | __GFP_NOWARN);
+-	intel_context_exit(ce);
++	rq = heartbeat_create(ce, GFP_NOWAIT | __GFP_NOWARN);
+ 	if (IS_ERR(rq))
+ 		goto unlock;
+ 
+-	idle_pulse(engine, rq);
+ 	if (engine->i915->params.enable_hangcheck)
+ 		engine->heartbeat.systole = i915_request_get(rq);
+ 
+-	__i915_request_commit(rq);
+-	__i915_request_queue(rq, &attr);
++	heartbeat_commit(rq, &attr);
+ 
+ unlock:
+ 	mutex_unlock(&ce->timeline->mutex);
+@@ -220,19 +237,14 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
+ 		goto out_rpm;
+ 	}
+ 
+-	intel_context_enter(ce);
+-	rq = __i915_request_create(ce, GFP_NOWAIT | __GFP_NOWARN);
+-	intel_context_exit(ce);
++	rq = heartbeat_create(ce, GFP_NOWAIT | __GFP_NOWARN);
+ 	if (IS_ERR(rq)) {
+ 		err = PTR_ERR(rq);
+ 		goto out_unlock;
+ 	}
+ 
+ 	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
+-	idle_pulse(engine, rq);
+-
+-	__i915_request_commit(rq);
+-	__i915_request_queue(rq, &attr);
++	heartbeat_commit(rq, &attr);
+ 	GEM_BUG_ON(rq->sched.attr.priority < I915_PRIORITY_BARRIER);
+ 	err = 0;
+ 
+@@ -245,8 +257,12 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
+ 
+ int intel_engine_flush_barriers(struct intel_engine_cs *engine)
+ {
++	struct i915_sched_attr attr = {
++		.priority = I915_USER_PRIORITY(I915_PRIORITY_MIN),
++	};
++	struct intel_context *ce = engine->kernel_context;
+ 	struct i915_request *rq;
+-	int err = 0;
++	int err;
+ 
+ 	if (llist_empty(&engine->barrier_tasks))
+ 		return 0;
+@@ -254,15 +270,22 @@ int intel_engine_flush_barriers(struct intel_engine_cs *engine)
+ 	if (!intel_engine_pm_get_if_awake(engine))
+ 		return 0;
+ 
+-	rq = i915_request_create(engine->kernel_context);
++	if (mutex_lock_interruptible(&ce->timeline->mutex)) {
++		err = -EINTR;
++		goto out_rpm;
++	}
++
++	rq = heartbeat_create(ce, GFP_KERNEL);
+ 	if (IS_ERR(rq)) {
+ 		err = PTR_ERR(rq);
+-		goto out_rpm;
++		goto out_unlock;
+ 	}
+ 
+-	idle_pulse(engine, rq);
+-	i915_request_add(rq);
++	heartbeat_commit(rq, &attr);
+ 
++	err = 0;
++out_unlock:
++	mutex_unlock(&ce->timeline->mutex);
+ out_rpm:
+ 	intel_engine_pm_put(engine);
+ 	return err;
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
