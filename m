@@ -2,54 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3729223C1B0
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Aug 2020 23:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0626723C44C
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Aug 2020 06:10:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA4A89D61;
-	Tue,  4 Aug 2020 21:45:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7D8B6E4CA;
+	Wed,  5 Aug 2020 04:10:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
- [IPv6:2a00:1450:4864:20::536])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FBD68981D
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Aug 2020 21:45:38 +0000 (UTC)
-Received: by mail-ed1-x536.google.com with SMTP id df16so14640851edb.9
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Aug 2020 14:45:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=eKqzGF/Sd/cvWrhXsYSRUKX4gtV2FhAvyIH/uRuYKNY=;
- b=j56WPbHFRVu4aGGFpnc2MP3ehB6RNNFfMB7qefM21E8DM1k5dDRELt5Pp6n8O2G2Xg
- mTVVATnL7jYzfLKsJS/FJNd4VJkzJsHKwBmxKV1ZaQSH6JCpcNWgOXMG71Qwo3GLdjGX
- BAEcUNZLjqEnlNdTdfqVQnjc/7CpWYpreqQgxDO6MHCPK5JCy36Kko4tYn/LioanI7Iq
- 9f9jdOVmJ8w8Wld1GIF5mGZfXY9LRN14J+BB1mmBtApo4JZ0Kx3br+UNgcyKWcRJkWbt
- TiGyFHPsKAAL8sCriO939IyBM8UyrOW/ZORKCzYIOBn8L1QvN+xTpofkRdgD89Qdr+pl
- d1Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=eKqzGF/Sd/cvWrhXsYSRUKX4gtV2FhAvyIH/uRuYKNY=;
- b=PpUCZkDzzlUlKxH5rBiJYcpRcyarDUZ1VtRH/Z1ZCCl6f09YlB3aGPXq9Pdu7fj6qO
- rqo5Y+Nwf5HAAXc5/v61XcrPFNyZ+xV6ArsJhEHJF+UCTCImrLO4DQl4JxSuI5E4/IeB
- GQag18iHrhvn1aJ7vQ1EDvrOhfwGy1Z9ZX8Zwtrz2ySG5qFHD/W2iYj3nGevPOtgTi5e
- lXRbc2RZZ0NnFHP3Zxufu40bFDK9vhgcO1LuB5FhZDrvYudh9zmEy2gxSwnC8tIwPQ0x
- ELFedD62Tax0KZZzseACsEO0RCy6sXzzzEBOzlyL0yfr21Ws1xVxMBXFhNA03SyzZwZV
- aGiQ==
-X-Gm-Message-State: AOAM533d0QIxIwnvor7CbF1JC15dr52Ch5S++BnUsRErfXgZkfekMWoi
- Bsq3fqTn7/jQQJTjNg8kqydu8GQWOxWV/f5gKM7mnLdN
-X-Google-Smtp-Source: ABdhPJwPnxWP9K8moAW9XB3eMCjexd9MJCaVazioJXq3kARy9JohyXrvTc4XBt+noer0+nZksDYkSfoO4qU3H4z1fOw=
-X-Received: by 2002:aa7:cc10:: with SMTP id q16mr9945935edt.298.1596577537055; 
- Tue, 04 Aug 2020 14:45:37 -0700 (PDT)
+Received: from ozlabs.org (ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5425E6E4BB;
+ Wed,  5 Aug 2020 04:10:08 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4BLynj73ftz9sPB;
+ Wed,  5 Aug 2020 14:10:01 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1596600605;
+ bh=EDbOdXhB1TuEBU9puRY1xAP4ZxDZ7O7baOhMHFmh68c=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=VY96+FzXDSNkzH5t3nOkfEHh/5sTtDsb2WaRwUbi51sm/UcOPyjoDvN8BE2azoBy2
+ rprTCpTHXSCs6SZGC2ffuFIwpuiLOlroiSAjfOAuYXlv3RbVCVqJUkd78yliCkbGm5
+ eA/DMlaD3SyAFLZ2YBe3gppMlQ9f5aKqKBpIV0PbSsFwfVz4HOSg55DaEEWWYWmI9v
+ 1UKK1jv3EldWt5fqV6I97hC7BgP9MPGbglOBDPFg4XnJ/JrzuWDgCke7gVSe3Cx6+B
+ mxPqy+nlFdAMJeXfK+bUNDFu6wT94WZidOwHDEjcJvd66rzIg0VDP0d7+VY4/I49oW
+ brnW9TTKSfRCA==
+Date: Wed, 5 Aug 2020 14:10:01 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: DRI <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@linux.ie>
+Message-ID: <20200805141001.61d49007@canb.auug.org.au>
+In-Reply-To: <20200703143550.7ebbe771@canb.auug.org.au>
+References: <20200703143550.7ebbe771@canb.auug.org.au>
 MIME-Version: 1.0
-References: <20200802164412.2738-1-chris@chris-wilson.co.uk>
- <CAPM=9twmsrNehJjFZrehwORg-Nyzo_cEq8CiY5=bzsOv8G7pPA@mail.gmail.com>
- <159639701401.26228.4061968059817196468@build.alporthouse.com>
-In-Reply-To: <159639701401.26228.4061968059817196468@build.alporthouse.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Wed, 5 Aug 2020 07:45:25 +1000
-Message-ID: <CAPM=9twb2jhWhwvD3HWjG04ihxnYv+EgJ0rQPwL_aHSjJn-NNQ@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] Time, where did it go?
+Subject: Re: [Intel-gfx] linux-next: manual merge of the kspp tree with the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,61 +49,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Kees Cook <keescook@chromium.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Suraj Upadhyay <usuraj35@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0671043905=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 3 Aug 2020 at 05:36, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Quoting Dave Airlie (2020-08-02 18:56:44)
-> > On Mon, 3 Aug 2020 at 02:44, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > >
-> > > Lots of small incremental improvements to reduce execution latency
-> > > which basically offsets the small regressions incurred when compared to
-> > > 5.7. And then there are some major fixes found while staring agape at
-> > > lockstat.
-> >
-> > What introduced the 5.7 regressions? are they documented somewhere.
->
-> No. There's a 5.8-rc1 bisect (to the merge but not into rc1) for
-> something in the core causing perf fluctuations, but I have not yet
-> reproduced that one to bisect into the rc1 merge. [The system that showed
-> the issue has historically seen strong swings from p-state setup, might
-> be that again?]. This is from measuring simulated transcode workloads that
-> we've built up to track KPI. That we can then compare against the real
-> workloads run by other groups.
->
-> > What is the goal here, is there a benchmark or application that this
-> > benefits that you can quantify the benefits?
->
-> Entirely motivated by not wanting to have to explain why there's even a
-> 1% regression in their client metrics. They wouldn't even notice for a
-> few releases by which point the problem is likely compounded and we
-> suddenly have crisis meetings.
->
-> > Is the lack of userspace command submission a problem vs other vendors here?
->
-> If you mean HW scheduling (which is the bit that we are most in dire need
-> of for replacing this series), not really, our closest equivalent has not
-> yet proven itself, at least in previous incarnations, adequate to their
-> requirements.
+--===============0671043905==
+Content-Type: multipart/signed; boundary="Sig_/AzVZzTwidl13XJIF7qAgGko";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-I don't think this sort of thing is acceptable for upstream. This is
-the platform problem going crazy.
-Something regresses in the kernel core, and you refactor the i915
-driver to get horribly more complicated to avoid fixing the core
-kernel regressions?
+--Sig_/AzVZzTwidl13XJIF7qAgGko
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-This has to stop, if Intel can't stop it internally, i.e. the GEM
-kernel team hasn't got the sort of power, then it has to stop
-upstream.
+Hi all,
 
-This is a hard NAK for this sort of refactoring, now and in the future.
+On Fri, 3 Jul 2020 14:35:50 +1000 Stephen Rothwell <sfr@canb.auug.org.au> w=
+rote:
+>=20
+> Today's linux-next merge of the kspp tree got a conflict in:
+>=20
+>   drivers/gpu/drm/drm_edid.c
+>=20
+> between commit:
+>=20
+>   948de84233d3 ("drm : Insert blank lines after declarations.")
+>=20
+> from the drm-misc tree and commit:
+>=20
+>   80b89ab785a4 ("treewide: Remove uninitialized_var() usage")
+>=20
+> from the kspp tree.
+>=20
+> I fixed it up (see below) and can carry the fix as necessary. This
+> is now fixed as far as linux-next is concerned, but any non trivial
+> conflicts should be mentioned to your upstream maintainer when your tree
+> is submitted for merging.  You may also want to consider cooperating
+> with the maintainer of the conflicting tree to minimise any particularly
+> complex conflicts.
+>=20
+> diff --cc drivers/gpu/drm/drm_edid.c
+> index 252e89cb54a3,b98fa573e706..000000000000
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@@ -3095,8 -3051,7 +3095,8 @@@ static int drm_cvt_modes(struct drm_con
+>   	const u8 empty[3] =3D { 0, 0, 0 };
+>  =20
+>   	for (i =3D 0; i < 4; i++) {
+> - 		int uninitialized_var(width), height;
+> + 		int width, height;
+>  +
+>   		cvt =3D &(timing->data.other_data.data.cvt[i]);
+>  =20
+>   		if (!memcmp(cvt->code, empty, 3))
 
-Dave.
+This is now a conflict between the drm tree and Linus' tree.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/AzVZzTwidl13XJIF7qAgGko
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl8qMRkACgkQAVBC80lX
+0Gx5EAf6AztnEL2f7GwFk68W7nbVmiG9c42Q99fUgYjjroldpn3PxcIFCK9HYeRT
+zzlzfsACmqM9JIIRl152AIsBSINaiwrcOhWEIzQZa0/iUXiPSiv4TzZHycuqFZpg
+UFBtg4BpWjSNEIlMKXa7hD0hi0NR1REHmLAKM54IS14g8Y27iwCWK8BN/osdmhXD
+eyvXf9+U6Qm2f5SksMng15+jWg19faq01pUbKK762A95aJ6FUIbRTqRYmFk0vj/6
+TRx05Zga+JriB2Kjc0ky2UUX56M36FQ6rl6+EWVb2afRkGLFiS8uwekKqk0m3sND
+E8V47EqoKKyoNZmDDL4CYMvHUB4JOA==
+=R67q
+-----END PGP SIGNATURE-----
+
+--Sig_/AzVZzTwidl13XJIF7qAgGko--
+
+--===============0671043905==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0671043905==--
