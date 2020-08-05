@@ -2,41 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0626723C44C
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Aug 2020 06:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A96D23C7A5
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Aug 2020 10:20:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7D8B6E4CA;
-	Wed,  5 Aug 2020 04:10:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B26989FBC;
+	Wed,  5 Aug 2020 08:20:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5425E6E4BB;
- Wed,  5 Aug 2020 04:10:08 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4BLynj73ftz9sPB;
- Wed,  5 Aug 2020 14:10:01 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1596600605;
- bh=EDbOdXhB1TuEBU9puRY1xAP4ZxDZ7O7baOhMHFmh68c=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=VY96+FzXDSNkzH5t3nOkfEHh/5sTtDsb2WaRwUbi51sm/UcOPyjoDvN8BE2azoBy2
- rprTCpTHXSCs6SZGC2ffuFIwpuiLOlroiSAjfOAuYXlv3RbVCVqJUkd78yliCkbGm5
- eA/DMlaD3SyAFLZ2YBe3gppMlQ9f5aKqKBpIV0PbSsFwfVz4HOSg55DaEEWWYWmI9v
- 1UKK1jv3EldWt5fqV6I97hC7BgP9MPGbglOBDPFg4XnJ/JrzuWDgCke7gVSe3Cx6+B
- mxPqy+nlFdAMJeXfK+bUNDFu6wT94WZidOwHDEjcJvd66rzIg0VDP0d7+VY4/I49oW
- brnW9TTKSfRCA==
-Date: Wed, 5 Aug 2020 14:10:01 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: DRI <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@linux.ie>
-Message-ID: <20200805141001.61d49007@canb.auug.org.au>
-In-Reply-To: <20200703143550.7ebbe771@canb.auug.org.au>
-References: <20200703143550.7ebbe771@canb.auug.org.au>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEF9E89F97;
+ Wed,  5 Aug 2020 08:20:08 +0000 (UTC)
+IronPort-SDR: GvGyDtxx40jyH1VkqbYtonPRBYOTnpOcgRjQ6M8w5iO4nHmL1k2HJRihBLViapfnGkhgoXHYIU
+ Wg7FVLuOMBOQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9703"; a="152457857"
+X-IronPort-AV: E=Sophos;i="5.75,436,1589266800"; 
+ d="asc'?scan'208";a="152457857"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2020 01:20:07 -0700
+IronPort-SDR: QONzq60Tiae7XlMP7uZShVEnOv0PTZBwTi+lJxJVVnwdUge3O21lOMfoJFt7dN+O+bkVQCOnLo
+ W+otXhV0l7Yw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,436,1589266800"; 
+ d="asc'?scan'208";a="437093478"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by orsmga004.jf.intel.com with ESMTP; 05 Aug 2020 01:20:02 -0700
+Date: Wed, 5 Aug 2020 16:02:07 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Message-ID: <20200805080207.GY27035@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] linux-next: manual merge of the kspp tree with the
- drm-misc tree
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: [Intel-gfx] [PULL] gvt-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,89 +51,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kees Cook <keescook@chromium.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Suraj Upadhyay <usuraj35@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0671043905=="
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============0606553887=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0671043905==
-Content-Type: multipart/signed; boundary="Sig_/AzVZzTwidl13XJIF7qAgGko";
- protocol="application/pgp-signature"; micalg=pgp-sha256
 
---Sig_/AzVZzTwidl13XJIF7qAgGko
-Content-Type: text/plain; charset=US-ASCII
+--===============0606553887==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="XZn3P0VKTizxZG2b"
+Content-Disposition: inline
+
+
+--XZn3P0VKTizxZG2b
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
 
-On Fri, 3 Jul 2020 14:35:50 +1000 Stephen Rothwell <sfr@canb.auug.org.au> w=
-rote:
->=20
-> Today's linux-next merge of the kspp tree got a conflict in:
->=20
->   drivers/gpu/drm/drm_edid.c
->=20
-> between commit:
->=20
->   948de84233d3 ("drm : Insert blank lines after declarations.")
->=20
-> from the drm-misc tree and commit:
->=20
->   80b89ab785a4 ("treewide: Remove uninitialized_var() usage")
->=20
-> from the kspp tree.
->=20
-> I fixed it up (see below) and can carry the fix as necessary. This
-> is now fixed as far as linux-next is concerned, but any non trivial
-> conflicts should be mentioned to your upstream maintainer when your tree
-> is submitted for merging.  You may also want to consider cooperating
-> with the maintainer of the conflicting tree to minimise any particularly
-> complex conflicts.
->=20
-> diff --cc drivers/gpu/drm/drm_edid.c
-> index 252e89cb54a3,b98fa573e706..000000000000
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@@ -3095,8 -3051,7 +3095,8 @@@ static int drm_cvt_modes(struct drm_con
->   	const u8 empty[3] =3D { 0, 0, 0 };
->  =20
->   	for (i =3D 0; i < 4; i++) {
-> - 		int uninitialized_var(width), height;
-> + 		int width, height;
->  +
->   		cvt =3D &(timing->data.other_data.data.cvt[i]);
->  =20
->   		if (!memcmp(cvt->code, empty, 3))
+Hi,
 
-This is now a conflict between the drm tree and Linus' tree.
+Here's to only include gvt fixes for 5.9-rc1. Two fixes to make
+guest suspend/resume working gracefully are included.
 
+Thanks
 --=20
-Cheers,
-Stephen Rothwell
+The following changes since commit e57bd05ec0d2d82d63725dedf9f5a063f879de25:
 
---Sig_/AzVZzTwidl13XJIF7qAgGko
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+  drm/i915: Update DRIVER_DATE to 20200715 (2020-07-15 14:18:02 +0300)
+
+are available in the Git repository at:
+
+  https://github.com/intel/gvt-linux tags/gvt-next-fixes-2020-08-05
+
+for you to fetch changes up to 9e7c0efadb86ddb58965561bbca638d44792d78f:
+
+  drm/i915/gvt: Do not reset pv_notified when vGPU transit from D3->D0 (202=
+0-07-29 14:18:32 +0800)
+
+----------------------------------------------------------------
+gvt-next-fixes-2020-08-05
+
+- Fix guest suspend/resume low performance handling of shadow ppgtt (Colin)
+- Fix PV notifier handling for guest suspend/resume (Colin)
+
+----------------------------------------------------------------
+Colin Xu (2):
+      drm/i915/gvt: Do not destroy ppgtt_mm during vGPU D3->D0.
+      drm/i915/gvt: Do not reset pv_notified when vGPU transit from D3->D0
+
+ drivers/gpu/drm/i915/gvt/cfg_space.c | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/gvt/gtt.c       |  2 +-
+ drivers/gpu/drm/i915/gvt/gtt.h       |  2 ++
+ drivers/gpu/drm/i915/gvt/gvt.h       |  3 +++
+ drivers/gpu/drm/i915/gvt/vgpu.c      | 20 +++++++++++++++++---
+ 5 files changed, 47 insertions(+), 4 deletions(-)
+
+
+--XZn3P0VKTizxZG2b
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl8qMRkACgkQAVBC80lX
-0Gx5EAf6AztnEL2f7GwFk68W7nbVmiG9c42Q99fUgYjjroldpn3PxcIFCK9HYeRT
-zzlzfsACmqM9JIIRl152AIsBSINaiwrcOhWEIzQZa0/iUXiPSiv4TzZHycuqFZpg
-UFBtg4BpWjSNEIlMKXa7hD0hi0NR1REHmLAKM54IS14g8Y27iwCWK8BN/osdmhXD
-eyvXf9+U6Qm2f5SksMng15+jWg19faq01pUbKK762A95aJ6FUIbRTqRYmFk0vj/6
-TRx05Zga+JriB2Kjc0ky2UUX56M36FQ6rl6+EWVb2afRkGLFiS8uwekKqk0m3sND
-E8V47EqoKKyoNZmDDL4CYMvHUB4JOA==
-=R67q
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXypnfwAKCRCxBBozTXgY
+J+9fAJ4/bf/u1d5LhJiPrdJTEc9svLQqiwCdFOOTrT+3u0TBAcU7Nxq96RaIy5M=
+=IDcs
 -----END PGP SIGNATURE-----
 
---Sig_/AzVZzTwidl13XJIF7qAgGko--
+--XZn3P0VKTizxZG2b--
 
---===============0671043905==
+--===============0606553887==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -142,4 +134,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0671043905==--
+--===============0606553887==--
