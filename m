@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DDEC23DB2E
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Aug 2020 16:33:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68F1023DB30
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Aug 2020 16:35:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0314E6E8BA;
-	Thu,  6 Aug 2020 14:33:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03B946E8BD;
+	Thu,  6 Aug 2020 14:35:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10C646E8BA
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 14:33:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9511F8996E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 14:35:47 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22051121-1500050 
- for multiple; Thu, 06 Aug 2020 15:33:39 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22051141-1500050 
+ for multiple; Thu, 06 Aug 2020 15:35:38 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  6 Aug 2020 15:33:38 +0100
-Message-Id: <20200806143338.15864-1-chris@chris-wilson.co.uk>
+Date: Thu,  6 Aug 2020 15:35:36 +0100
+Message-Id: <20200806143536.16012-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200806143338.15864-1-chris@chris-wilson.co.uk>
+References: <20200806143338.15864-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Prevent selecting 0 for our
  random width/align
@@ -54,11 +56,13 @@ the range!
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Matthew Auld <matthew.auld@intel.com>
 ---
+I feel into the same trap of not fixing up the random return of 0
+---
  drivers/gpu/drm/i915/selftests/intel_memory_region.c | 7 ++++---
  1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-index 6e80d99048e4..32a199b8df8a 100644
+index 6e80d99048e4..54e683bb220b 100644
 --- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
 +++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
 @@ -522,9 +522,10 @@ static int igt_lmem_write_cpu(void *arg)
@@ -69,7 +73,7 @@ index 6e80d99048e4..32a199b8df8a 100644
 -	bytes[0] = igt_random_offset(&prng, 0, PAGE_SIZE, sizeof(u32),
 -				     sizeof(u32));
 +	/* A random multiple of u32, picked between [64, PAGE_SIZE - 64] */
-+	bytes[0] = prandom_u32_state(&prng);
++	bytes[0] = 1 + prandom_u32_state(&prng);
 +	bytes[0] = round_up(bytes[0], 64) & (PAGE_SIZE - 1);
 +	GEM_BUG_ON(!IS_ALIGNED(bytes[0], sizeof(u32)));
  
