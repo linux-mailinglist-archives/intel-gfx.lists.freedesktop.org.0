@@ -2,74 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA15423D87A
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Aug 2020 11:20:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D05923D87E
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Aug 2020 11:21:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 118646E8A8;
-	Thu,  6 Aug 2020 09:20:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA1556E8AA;
+	Thu,  6 Aug 2020 09:21:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8A396E8A7;
- Thu,  6 Aug 2020 09:20:25 +0000 (UTC)
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
- by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0769DP4M134775;
- Thu, 6 Aug 2020 09:20:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=corp-2020-01-29;
- bh=K6nnIq7KbMdGmwq3DRCgXsdqJJG+nAKIN0b+IcOgc+k=;
- b=VBCNZ0B6tMfR1rKyX72Att5NUO6if4UBo9dHYDl+0D3q1NcsaDvCWtVjbHrVRnGpz+Ud
- x+ihOlgeDyR0x8PKISxsN7Wi0fs5rpqTqv77K4/3mB4xa8FbFlAx9iXJJ4ZMJO6qom7y
- umDcAh0fQbfMZh7yUC7s9oHI3OQ4H1pkGd/yCX4uFpcF8WusdLnV5nfVpNiqj4xyY49D
- AqxiVxYwMXOT1eEQP9aq1XCh5vWufjALgF8rY86Br7SxI+DUP7f1hNi71z1q7WUMAvyk
- daIl/wf/W3yD2yONtZ7Sym3V7oP4TmG+WPmyJSLme8ucD0jSm14WEvh5Vaas/7mgW53G tg== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
- by userp2130.oracle.com with ESMTP id 32r6gwssvs-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
- Thu, 06 Aug 2020 09:20:15 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
- by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0769Dnvf019978;
- Thu, 6 Aug 2020 09:20:15 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
- by userp3030.oracle.com with ESMTP id 32r6cv0q8m-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 06 Aug 2020 09:20:14 +0000
-Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
- by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 0769KB5b024041;
- Thu, 6 Aug 2020 09:20:11 GMT
-Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Thu, 06 Aug 2020 02:20:10 -0700
-Date: Thu, 6 Aug 2020 12:20:02 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Oleksandr Andrushchenko <Oleksandr_Andrushchenko@epam.com>
-Message-ID: <20200806092001.GV5493@kadam>
-References: <20200731125109.18666-1-andr2000@gmail.com>
- <20200731125109.18666-3-andr2000@gmail.com>
- <6d719ab2-d9f6-2c3c-8979-b12a4d10b96d@suse.com>
- <0ed5082f-0280-16c0-7410-f6a90262bcee@epam.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C00A56E8AA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 09:21:43 +0000 (UTC)
+IronPort-SDR: 7FpMOJ0eyam+t3JkX3OnTkpo0RDoDNoTtEFYsGetZxmsYdQ24oM7WbSJYOx3nB/d0iPw815Sk8
+ aLoznzrjyXFA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9704"; a="132843869"
+X-IronPort-AV: E=Sophos;i="5.75,441,1589266800"; d="scan'208";a="132843869"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2020 02:21:43 -0700
+IronPort-SDR: srtxzHrQQUl4i1MLogPj1PoG8wFc6QkzDrSAFEUXcQOZrUix62d1xdzeaol+KQeBgBgNMAWos8
+ YJ6dYMbqHF6w==
+X-IronPort-AV: E=Sophos;i="5.75,441,1589266800"; d="scan'208";a="467783049"
+Received: from amarcian-mobl1.ger.corp.intel.com (HELO [10.214.252.52])
+ ([10.214.252.52])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2020 02:21:41 -0700
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <20200805122231.23313-1-chris@chris-wilson.co.uk>
+ <8be11356-9899-cb6d-7ec5-e1388eb4c721@shipmail.org>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <dd962d57-2446-660f-1c87-a04e5235536e@linux.intel.com>
+Date: Thu, 6 Aug 2020 10:21:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <0ed5082f-0280-16c0-7410-f6a90262bcee@epam.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9704
- signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- mlxscore=0 bulkscore=0
- spamscore=0 adultscore=0 mlxlogscore=999 phishscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2008060065
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9704
- signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
- bulkscore=0 spamscore=0
- impostorscore=0 mlxscore=0 mlxlogscore=999 adultscore=0 priorityscore=1501
- phishscore=0 clxscore=1015 suspectscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2008060065
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/xen-front: Fix misused
- IS_ERR_OR_NULL checks
+In-Reply-To: <8be11356-9899-cb6d-7ec5-e1388eb4c721@shipmail.org>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 00/37] Replace obj->mm.lock with
+ reservation_ww_class
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,71 +56,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?iso-8859-1?Q?J=FCrgen_Gro=DF?= <jgross@suse.com>,
- "sstabellini@kernel.org" <sstabellini@kernel.org>,
- Oleksandr Andrushchenko <andr2000@gmail.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "airlied@linux.ie" <airlied@linux.ie>,
- "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>,
- "boris.ostrovsky@oracle.com" <boris.ostrovsky@oracle.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 04, 2020 at 06:35:20AM +0000, Oleksandr Andrushchenko wrote:
-> =
-
-> On 8/4/20 9:12 AM, J=FCrgen Gro=DF wrote:
-> > On 31.07.20 14:51, Oleksandr Andrushchenko wrote:
-> >> From: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
-> >>
-> >> The patch c575b7eeb89f: "drm/xen-front: Add support for Xen PV
-> >> display frontend" from Apr 3, 2018, leads to the following static
-> >> checker warning:
-> >>
-> >> =A0=A0=A0=A0drivers/gpu/drm/xen/xen_drm_front_gem.c:140 xen_drm_front_=
-gem_create()
-> >> =A0=A0=A0=A0warn: passing zero to 'ERR_CAST'
-> >>
-> >> drivers/gpu/drm/xen/xen_drm_front_gem.c
-> >> =A0=A0=A0 133=A0 struct drm_gem_object *xen_drm_front_gem_create(struc=
-t drm_device *dev,
-> >> =A0=A0=A0 134=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0 size_t size)
-> >> =A0=A0=A0 135=A0 {
-> >> =A0=A0=A0 136=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct xen_gem_object *xen_ob=
-j;
-> >> =A0=A0=A0 137
-> >> =A0=A0=A0 138=A0=A0=A0=A0=A0=A0=A0=A0=A0 xen_obj =3D gem_create(dev, s=
-ize);
-> >> =A0=A0=A0 139=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (IS_ERR_OR_NULL(xen_obj))
-> >> =A0=A0=A0 140=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 retur=
-n ERR_CAST(xen_obj);
-> >>
-> >> Fix this and the rest of misused places with IS_ERR_OR_NULL in the
-> >> driver.
-> >>
-> >> Fixes:=A0 c575b7eeb89f: "drm/xen-front: Add support for Xen PV display=
- frontend"
-> >
-> > Again forgot to Cc stable?
-> =
-
-> I was just not sure if these minor fixes need to go the stable, but I wil=
-l add
-
-Correct.  It's still a bug because it's setting the error code
-incorrectly on the impossible path.  But fortunately impossible things
-don't affect runtime.
-
-regards,
-dan carpenter
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDA1LzA4LzIwMjAgMTc6MjIsIFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCkgd3JvdGU6Cj4g
+SGksIENocmlzLAo+IAo+IAo+IE9uIDgvNS8yMCAyOjIxIFBNLCBDaHJpcyBXaWxzb24gd3JvdGU6
+Cj4+IExvbmcgc3Rvcnkgc2hvcnQsIHdlIG5lZWQgdG8gbWFuYWdlIGV2aWN0aW9ucyB1c2luZyBk
+bWFfcmVzdiAmIGRtYV9mZW5jZQo+PiB0cmFja2luZy4gVGhlIGJhY2tpbmcgc3RvcmFnZSB3aWxs
+IHRoZW4gYmUgbWFuYWdlZCB1c2luZyB0aGUgd3dfbXV0ZXgKPj4gYm9ycm93ZWQgZnJvbSAoYW5k
+IHNoYXJlZCB2aWEpIG9iai0+YmFzZS5yZXN2LCByYXRoZXIgdGhhbiB0aGUgY3VycmVudAo+PiBv
+YmotPm1tLmxvY2suCj4+Cj4+IFNraXBwaW5nIG92ZXIgdGhlIGJyZWFkY3J1bWJzLAo+IAo+IFdo
+aWxlIHBlcmhhcHMgbmVlZGVkIGZpeGVzLCBjb3VsZCB3ZSBzdWJtaXQgdGhlbSBhcyBhIHNlcGFy
+YXRlIHNlcmllcywgCj4gc2luY2UgdGhleSwgZnJvbSB3aGF0IEkgY2FuIHRlbGwsIGFyZSBub3Qg
+YSBkaXJlY3QgcGFydCBvZiB0aGUgbG9ja2luZyAKPiByZXdvcmssIGFuZCBzb21lIG9mIHRoZW0g
+d2VyZSBhY3R1YWxseSBwYXJ0IG9mIGEgc2VyaWVzIHRoYXQgRGF2ZSBOYUsnZWQgCj4gYW5kIG1h
+eSByZXF1aXJlIGFkZGl0aW9uYWwganVzdGlmaWNhdGlvbj8KPiAKPiAKPj4gwqAgdGhlIGZpcnN0
+IHN0ZXAgaXMgdG8gcmVtb3ZlIHRoZSBmaW5hbAo+PiBjcnV0Y2hlcyBvZiBzdHJ1Y3RfbXV0ZXgg
+ZnJvbSBleGVjYnVmIGFuZCB0byBicm9hZGVuIHRoZSBob2xkIGZvciB0aGUKPj4gZG1hLXJlc3Yg
+dG8gZ3VhcmQgbm90IGp1c3QgcHVibGlzaGluZyB0aGUgZG1hLWZlbmNlcywgYnV0IGZvciB0aGUK
+Pj4gZHVyYXRpb24gb2YgdGhlIGV4ZWNidWYgc3VibWlzc2lvbiAoaG9sZGluZyBhbGwgb2JqZWN0
+cyBhbmQgdGhlaXIKPj4gYmFja2luZyBzdG9yZSBmcm9tIHRoZSBwb2ludCBvZiBhY3F1aXNpdGlv
+biB0byBwdWJsaXNoaW5nIG9mIHRoZSBmaW5hbAo+PiBHUFUgd29yaywgYWZ0ZXIgd2hpY2ggdGhl
+IGd1YXJkIGlzIGRlbGVnYXRlZCB0byB0aGUgZG1hLWZlbmNlcykuCj4+Cj4+IFRoaXMgaXMgb2Yg
+Y291cnNlIG1hZGUgY29tcGxpY2F0ZWQgYnkgb3VyIGhpc3RvcnkuIE9uIHRvcCBvZiB0aGUgdXNl
+cidzCj4+IG9iamVjdHMsIHdlIGFsc28gaGF2ZSB0aGUgSFcva2VybmVsIG9iamVjdHMgd2l0aCB0
+aGVpciBvd24gbGlmZXRpbWVzLAo+PiBhbmQgYSBidW5jaCBvZiBhdXhpbGlhcnkgb2JqZWN0cyB1
+c2VkIGZvciB3b3JraW5nIGFyb3VuZCB1bmhhcHB5IEhXIGFuZAo+PiBmb3IgcHJvdmlkaW5nIHRo
+ZSBsZWdhY3kgcmVsb2NhdGlvbiBtZWNoYW5pc20uIFdlIGFkZCBldmVyeSBhdXhpbGlhcnkKPj4g
+b2JqZWN0IHRvIHRoZSBsaXN0IG9mIHVzZXIgb2JqZWN0cyByZXF1aXJlZCwgYW5kIGF0dGVtcHQg
+dG8gYWNxdWlyZSB0aGVtCj4+IGVuIG1hc3NlLiBTaW5jZSBhbGwgdGhlIG9iamVjdHMgY2FuIGJl
+IGtub3duIGEgcHJpb3JpLCB3ZSBjYW4gYnVpbGQgYQo+PiBsaXN0IG9mIHRob3NlIG9iamVjdHMg
+YW5kIHBhc3MgdGhhdCB0byBhIHJvdXRpbmUgdGhhdCBjYW4gcmVzb2x2ZSB0aGUKPj4gLUVERUFE
+TEsgKGFuZCBldmljdGlvbnMpLiBbVG8gYXZvaWQgcmVsb2NhdGlvbnMgaW1wb3NpbmcgYSBwZW5h
+bHR5IG9uCj4+IHNhbmUgdXNlcnNwYWNlIHRoYXQgYXZvaWRzIHRoZW0sIHdlIGRvIG5vdCB0b3Vj
+aCBhbnkgcmVsb2NhdGlvbnMgdW50aWwKPj4gbmVjZXNzYXJ5LCBhdCB3aWxsIHBvaW50IHdlIGhh
+dmUgdG8gdW5yb2xsIHRoZSBzdGF0ZSwgYW5kIHJlYnVpbGQgYSBuZXcKPj4gbGlzdCB3aXRoIG1v
+cmUgYXV4aWxpYXJ5IGJ1ZmZlcnMgdG8gYWNjb21tb2RhdGUgdGhlIGV4dHJhIAo+PiBjb3B5X2Zy
+b21fdXNlcl0uCj4+IE1vcmUgZXhhbXBsZXMgYXJlIGluY2x1ZGVkIGFzIHRvIGhvdyB3ZSBjYW4g
+YnJlYWsgZG93biBvcGVyYXRpb25zCj4+IGludm9sdmluZyBtdWx0aXBsZSBvYmplY3RzIGludG8g
+YW4gYWNxdWlyZSBwaGFzZSBwcmlvciB0byB0aG9zZQo+PiBvcGVyYXRpb25zLCBrZWVwaW5nIHRo
+ZSAtRURFQURMSyBoYW5kbGluZyB1bmRlciBjb250cm9sLgo+Pgo+PiBleGVjYnVmIGlzIHRoZSB1
+bmlxdWUgaW50ZXJmYWNlIGluIHRoYXQgaXQgZGVhbHMgd2l0aCBtdWx0aXBsZSB1c2VyCj4+IGFu
+ZCBrZXJuZWwgYnVmZmVycy4gQWZ0ZXIgdGhhdCwgd2UgaGF2ZSBjYWxsZXJzIHRoYXQgaW4gcHJp
+bmNpcGxlIGNhcmUKPj4gYWJvdXQgYWNjZXNzaW5nIGEgc2luZ2xlIGJ1ZmZlciwgYW5kIHNvIGNh
+biBiZSBtaWdyYXRlZCBvdmVyIHRvIGEgaGVscGVyCj4+IHRoYXQgcGVybWl0cyBvbmx5IGhvbGRp
+bmcgb25lIHN1Y2ggYnVmZmVyIGF0IGEgdGltZS4gVGhhdCBlbmFibGVzIHVzIHRvCj4+IHN3YXAg
+b3V0IG9iai0+bW0ubG9jayBmb3Igb2JqLT5iYXNlLnJlc3YtPmxvY2ssIGFuZCB1c2UgbG9ja2Rl
+cCB0byBzcG90Cj4+IGlsbGVnYWwgbmVzdGluZywgYW5kIHRvIHRocm93IGF3YXkgdGhlIHRlbXBv
+cmFyeSBwaW5zIGJ5IHJlcGxhY2luZyB0aGVtCj4+IHdpdGggaG9sZGluZyB0aGUgd3dfbXV0ZXgg
+Zm9yIHRoZSBkdXJhdGlvbiBpbnN0ZWFkLgo+Pgo+PiBXaGF0J3MgY2hhbmdlZD8gU29tZSBwYXRj
+aCBzcGxpdHRpbmcgYW5kIHdlIG5lZWQgdG8gcHVsbCBpbiBNYXR0aGV3J3MKPj4gcGF0Y2ggdG8g
+bWFwIHRoZSBwYWdlIGRpcmVjdG9yaWVzIHVuZGVyIHRoZSB3d19tdXRleC4KPiAKPiBJIHdvdWxk
+IHN0aWxsIGxpa2UgdG8gc2VlIGEganVzdGlmaWNhdGlvbiBmb3IgdGhlIG5ld2x5IGludHJvZHVj
+ZWQgYXN5bmMgCj4gd29yaywgYXMgb3Bwb3NlZCB0byBhZGQgaXQgYXMgYW4gb3B0aW1pemluZyAv
+IHJlZ3Jlc3Npb24gZml4aW5nIHNlcmllcyAKPiBmb2xsb3cgdGhlIGxvY2tpbmcgcmV3b3JrLiBU
+aGF0IGFzeW5jIHdvcmsgaW50cm9kdWNlcyBhIGJ1bmNoIG9mIGNvZGUgCj4gY29tcGxleGl0eSBh
+bmQgaXQgd291bGQgYmUgYmVuZWZpY2lhbCB0byBzZWUgYSBkaXNjdXNzaW9uIG9mIHRoZSAKPiB0
+cmFkZW9mZnMgYW5kIGhvdyBpdCBhbGlnbmVzIHdpdGggdGhlIHVwc3RyZWFtIHByb3Bvc2VkIGRt
+YS1mZW5jZSAKPiBhbm5vdGF0aW9ucwoKT24gdGhlIHRvcGljIG9mIGFubm90YXRpb25zLCBtYXli
+ZSBkbyBhIHRyeWJvdCBydW4gd2l0aCB0aGVtIGVuYWJsZWQgCndpdGggdGhlIGxhdGVzdCBzZXJp
+ZXMgYW5kIHRoZW4gc2VlIHdoYXQgcG9wcyB1cC4KCitEYW5pZWwsIHNpbmNlIEkgbm90aWNlZCBs
+YXN0IHRpbWUgaGUgd2FzIGRvaW5nIHRoYXQgb25lIG9mIHRoZSBzcGxhdHMgCihwb3NzaWJseSB0
+aGUgb25seSBvbmU/KSB3YXMgYWN0dWFsbHkgY2F1c2VkIGJ5IGRtYV9mZW5jZV9pc19zaWduYWxl
+ZC4gCldoaWNoIEkgdGhpbmsgY29tZXMgdW5kZXIgdGhlIG9wcG9ydHVuaXN0aWMgc2lnbmFsaW5n
+IHJ1bGUgZm9yIHRoZSAKYW5ub3RhdGlvbiBrZXJuZWxkb2Mgc28gbG9va2VkIGxpa2UgYSBmYWxz
+ZSBwb3NpdGl2ZSB0byBtZS4gTm90IHN1cmUgaG93IAp0byBhdm9pZCB0aGF0IG9uZSwgYXBhcnQg
+ZnJvbSBtYWtpbmcgaXQgY2FsbCBhIHNwZWNpYWwsIHVuLWFubm90YXRlZCwgCmZsYXZvdXJzIG9m
+IGRtYV9mZW5jZV9zaWduYWwoX2xvY2tlZCkuCgpSZWdhcmRzLAoKVHZydGtvCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
