@@ -2,47 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D0C323D73B
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Aug 2020 09:21:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77C3323D866
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Aug 2020 11:17:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9F2F6E175;
-	Thu,  6 Aug 2020 07:21:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3301E6E8A6;
+	Thu,  6 Aug 2020 09:17:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2189 seconds by postgrey-1.36 at gabe;
- Thu, 06 Aug 2020 07:21:03 UTC
-Received: from www262.sakura.ne.jp (www262.sakura.ne.jp [202.181.97.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7367D6E175
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 07:21:03 +0000 (UTC)
-Received: from fsav404.sakura.ne.jp (fsav404.sakura.ne.jp [133.242.250.103])
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 0766h3Ud099616;
- Thu, 6 Aug 2020 15:43:03 +0900 (JST)
- (envelope-from penguin-kernel@i-love.sakura.ne.jp)
-Received: from www262.sakura.ne.jp (202.181.97.72)
- by fsav404.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav404.sakura.ne.jp);
- Thu, 06 Aug 2020 15:43:03 +0900 (JST)
-X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav404.sakura.ne.jp)
-Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
- (authenticated bits=0)
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 0766h2O5099613
- (version=TLSv1.2 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
- Thu, 6 Aug 2020 15:43:03 +0900 (JST)
- (envelope-from penguin-kernel@i-love.sakura.ne.jp)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20200612160056.2082681-1-daniel.vetter@ffwll.ch>
- <20200702112722.GA18036@pendragon.ideasonboard.com>
- <CAKMK7uGny5Kssrusr5JQSV29WJE62iigD+hx8bgWYAYqhJAiYw@mail.gmail.com>
-From: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>
-Message-ID: <a0efe731-dd81-03c7-a539-769492222e42@i-love.sakura.ne.jp>
-Date: Thu, 6 Aug 2020 15:43:02 +0900
-User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50CDC6E8A2;
+ Thu,  6 Aug 2020 09:17:38 +0000 (UTC)
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+ by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0769DMXU134762;
+ Thu, 6 Aug 2020 09:17:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=1mPUi5W2MorAFmoBzG9tPbGD54xKE1Byrx1RzDX0UmU=;
+ b=eKiFr4Bs/bpWdX6yLxeMc5sFEBJ30+bhMqjEFXaCXU9wW5n47PIATToBiWpr+CLVaKDP
+ 8A0tZz0TZdkw0tEIcpW0won99EJYkQ61jOuiGMnuepmHxUSOsxqA5JJ5wKYcJVq9OHaq
+ pBALBvxS0QXNV4kM/rwuYDhi3OakRkd3/PSjnbSO/1A48svKmA+oG131xfSZev+LJtub
+ qaecgcJ+E6qYTHY8Lb+CsIAGpJ7PEWqQfkjE/RVUhkE/V9xIB61oP9mBuPunQR0qJtkJ
+ 7UQpAp1LRsK/9rfQca8fG0SveJMrEtCLE+oBzPX+VjLOeCGIz1EAujV989TnlId5PiMo fg== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+ by userp2130.oracle.com with ESMTP id 32r6gwssfh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Thu, 06 Aug 2020 09:17:29 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+ by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0769CwME158826;
+ Thu, 6 Aug 2020 09:17:28 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+ by aserp3020.oracle.com with ESMTP id 32pdnvtwtd-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 06 Aug 2020 09:17:28 +0000
+Received: from abhmp0007.oracle.com (abhmp0007.oracle.com [141.146.116.13])
+ by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 0769HI56012706;
+ Thu, 6 Aug 2020 09:17:18 GMT
+Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Thu, 06 Aug 2020 02:17:17 -0700
+Date: Thu, 6 Aug 2020 12:17:09 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Oleksandr Andrushchenko <andr2000@gmail.com>
+Message-ID: <20200806091709.GU5493@kadam>
+References: <20200731125109.18666-1-andr2000@gmail.com>
+ <20200731125109.18666-3-andr2000@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAKMK7uGny5Kssrusr5JQSV29WJE62iigD+hx8bgWYAYqhJAiYw@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/atomic-helper: reset vblank on crtc
- reset
+Content-Disposition: inline
+In-Reply-To: <20200731125109.18666-3-andr2000@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9704
+ signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ spamscore=0 mlxscore=0
+ bulkscore=0 adultscore=0 phishscore=0 malwarescore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2008060065
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9704
+ signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
+ bulkscore=0 spamscore=0
+ impostorscore=0 mlxscore=0 mlxlogscore=999 adultscore=0 priorityscore=1501
+ phishscore=0 clxscore=1011 suspectscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2008060065
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/xen-front: Fix misused
+ IS_ERR_OR_NULL checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,156 +80,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- David Airlie <airlied@linux.ie>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>, Sam Ravnborg <sam@ravnborg.org>,
- Emil Velikov <emil.velikov@collabora.com>,
- "open list:DRM DRIVERS FOR RENESAS" <linux-renesas-soc@vger.kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- Thierry Reding <treding@nvidia.com>, Brian Masney <masneyb@onstation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Jyri Sarha <jsarha@ti.com>, Sean Paul <seanpaul@chromium.org>,
- Maxime Ripard <mripard@kernel.org>, linux-tegra <linux-tegra@vger.kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Boris Brezillon <bbrezillon@kernel.org>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, zhengbin <zhengbin13@huawei.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: jgross@suse.com, sstabellini@kernel.org,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, airlied@linux.ie,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ boris.ostrovsky@oracle.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As of commit 47ec5303d73ea344 ("Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next") on linux.git ,
-my VMware environment cannot boot. Do I need to bisect?
+Looks great!  Thanks.
 
-[    9.314496][    T1] vga16fb: mapped to 0x0000000071050562
-[    9.467770][    T1] Console: switching to colour frame buffer device 80x30
-[    9.632092][    T1] fb0: VGA16 VGA frame buffer device
-[    9.651768][    T1] ACPI: AC Adapter [ACAD] (on-line)
-[    9.672544][    T1] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
-[    9.722373][    T1] ACPI: Power Button [PWRF]
-[    9.744231][    T1] ioatdma: Intel(R) QuickData Technology Driver 5.00
-[    9.820147][    T1] N_HDLC line discipline registered with maxframe=4096
-[    9.835649][    T1] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
-[    9.852567][    T1] 00:05: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
-[   10.033372][    T1] Cyclades driver 2.6
-[   10.049928][    T1] Initializing Nozomi driver 2.1d
-[   10.065493][    T1] RocketPort device driver module, version 2.09, 12-June-2003
-[   10.095368][    T1] No rocketport ports found; unloading driver
-[   10.112430][    T1] Non-volatile memory driver v1.3
-[   10.127090][    T1] Linux agpgart interface v0.103
-[   10.144037][    T1] agpgart-intel 0000:00:00.0: Intel 440BX Chipset
-[   10.162275][    T1] agpgart-intel 0000:00:00.0: AGP aperture is 256M @ 0x0
-[   10.181130][    T1] [drm] DMA map mode: Caching DMA mappings.
-[   10.195150][    T1] [drm] Capabilities:
-[   10.208728][    T1] [drm]   Rect copy.
-[   10.222772][    T1] [drm]   Cursor.
-[   10.235364][    T1] [drm]   Cursor bypass.
-[   10.249121][    T1] [drm]   Cursor bypass 2.
-[   10.260590][    T1] [drm]   8bit emulation.
-[   10.272220][    T1] [drm]   Alpha cursor.
-[   10.284670][    T1] [drm]   3D.
-[   10.295051][    T1] [drm]   Extended Fifo.
-[   10.305180][    T1] [drm]   Multimon.
-[   10.315506][    T1] [drm]   Pitchlock.
-[   10.325167][    T1] [drm]   Irq mask.
-[   10.334262][    T1] [drm]   Display Topology.
-[   10.343519][    T1] [drm]   GMR.
-[   10.352775][    T1] [drm]   Traces.
-[   10.362166][    T1] [drm]   GMR2.
-[   10.370716][    T1] [drm]   Screen Object 2.
-[   10.379220][    T1] [drm]   Command Buffers.
-[   10.388489][    T1] [drm]   Command Buffers 2.
-[   10.396055][    T1] [drm]   Guest Backed Resources.
-[   10.403290][    T1] [drm]   DX Features.
-[   10.409911][    T1] [drm]   HP Command Queue.
-[   10.417820][    T1] [drm] Capabilities2:
-[   10.424216][    T1] [drm]   Grow oTable.
-[   10.430423][    T1] [drm]   IntraSurface copy.
-[   10.436371][    T1] [drm] Max GMR ids is 64
-[   10.442651][    T1] [drm] Max number of GMR pages is 65536
-[   10.450317][    T1] [drm] Max dedicated hypervisor surface memory is 0 kiB
-[   10.458809][    T1] [drm] Maximum display memory size is 262144 kiB
-[   10.466330][    T1] [drm] VRAM at 0xe8000000 size is 4096 kiB
-[   10.474704][    T1] [drm] MMIO at 0xfe000000 size is 256 kiB
-[   10.484625][    T1] [TTM] Zone  kernel: Available graphics memory: 4030538 KiB
-[   10.500730][    T1] [TTM] Zone   dma32: Available graphics memory: 2097152 KiB
-[   10.516851][    T1] [TTM] Initializing pool allocator
-[   10.527542][    T1] [TTM] Initializing DMA pool allocator
-[   10.540197][    T1] BUG: kernel NULL pointer dereference, address: 0000000000000438
-[   10.550087][    T1] #PF: supervisor read access in kernel mode
-[   10.550087][    T1] #PF: error_code(0x0000) - not-present page
-[   10.550087][    T1] PGD 0 P4D 0 
-[   10.550087][    T1] Oops: 0000 [#1] PREEMPT SMP
-[   10.550087][    T1] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.8.0+ #271
-[   10.550087][    T1] Hardware name: VMware, Inc. VMware Virtual Platform/440BX Desktop Reference Platform, BIOS 6.00 02/27/2020
-[   10.550087][    T1] RIP: 0010:drm_dev_has_vblank+0x9/0x20
-[   10.550087][    T1] Code: 5d 41 5e 41 5f e9 e7 fa 01 ff e8 e2 fa 01 ff 45 31 e4 41 8b 5f 48 eb a7 cc cc cc cc cc cc cc cc cc 53 48 89 fb e8 c7 fa 01 ff <8b> 83 38 04 00 00 5b 85 c0 0f 95 c0 c3 66 2e 0f 1f 84 00 00 00 00
-[   10.550087][    T1] RSP: 0000:ffffc90000027b80 EFLAGS: 00010293
-[   10.550087][    T1] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
-[   10.550087][    T1] RDX: ffff88823544c040 RSI: ffffffff823265b9 RDI: 0000000000000000
-[   10.550087][    T1] RBP: ffff888227238800 R08: 0000000000000001 R09: 0000000000000000
-[   10.550087][    T1] R10: ffff888227238800 R11: 0000000000000001 R12: 0000000000000000
-[   10.550087][    T1] R13: ffff888235103000 R14: 0000000000000000 R15: ffff888226cc6af0
-[   10.850690][    T1] FS:  0000000000000000(0000) GS:ffff888236e00000(0000) knlGS:0000000000000000
-[   10.850690][    T1] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   10.850690][    T1] CR2: 0000000000000438 CR3: 0000000004a89001 CR4: 00000000003706f0
-[   10.850690][    T1] Call Trace:
-[   10.850690][    T1]  __drm_atomic_helper_crtc_reset+0x28/0x50
-[   10.850690][    T1]  vmw_du_crtc_reset+0x62/0x80
-[   10.850690][    T1]  vmw_kms_stdu_init_display+0x302/0x3f0
-[   10.850690][    T1]  vmw_kms_init+0x6f/0xe0
-[   10.850690][    T1]  vmw_probe+0xd52/0x1730
-[   10.850690][    T1]  local_pci_probe+0x3a/0x90
-[   10.850690][    T1]  pci_device_probe+0x163/0x230
-[   10.850690][    T1]  ? pci_device_remove+0x100/0x100
-[   10.850690][    T1]  really_probe+0x228/0x480
-[   10.850690][    T1]  ? rdinit_setup+0x3b/0x3b
-[   10.850690][    T1]  driver_probe_device+0x6c/0xe0
-[   10.850690][    T1]  device_driver_attach+0x5a/0x60
-[   10.850690][    T1]  __driver_attach+0xbd/0x100
-[   10.850690][    T1]  ? device_driver_attach+0x60/0x60
-[   10.850690][    T1]  bus_for_each_dev+0x9e/0x110
-[   10.850690][    T1]  bus_add_driver+0x1c8/0x260
-[   10.850690][    T1]  driver_register+0x96/0x160
-[   10.850690][    T1]  ? i915_global_vma_init+0x51/0x51
-[   11.202435][    T1]  vmwgfx_init+0x2e/0x4e
-[   11.202435][    T1]  do_one_initcall+0x84/0x4a0
-[   11.202435][    T1]  ? rdinit_setup+0x3b/0x3b
-[   11.202435][    T1]  ? rcu_read_lock_sched_held+0x4d/0x80
-[   11.202435][    T1]  ? cpumask_test_cpu.constprop.19+0x12/0x30
-[   11.202435][    T1]  ? rdinit_setup+0x3b/0x3b
-[   11.202435][    T1]  kernel_init_freeable+0x298/0x30c
-[   11.202435][    T1]  ? rest_init+0x2c0/0x2c0
-[   11.202435][    T1]  kernel_init+0xf/0x170
-[   11.282173][    T1]  ? _raw_spin_unlock_irq+0x3a/0x50
-[   11.282173][    T1]  ? rest_init+0x2c0/0x2c0
-[   11.282173][    T1]  ret_from_fork+0x1f/0x30
-[   11.282173][    T1] Modules linked in:
-[   11.282173][    T1] CR2: 0000000000000438
-[   11.282173][    T1] ---[ end trace fb560758d9d704d3 ]---
-[   11.282173][    T1] RIP: 0010:drm_dev_has_vblank+0x9/0x20
-[   11.282173][    T1] Code: 5d 41 5e 41 5f e9 e7 fa 01 ff e8 e2 fa 01 ff 45 31 e4 41 8b 5f 48 eb a7 cc cc cc cc cc cc cc cc cc 53 48 89 fb e8 c7 fa 01 ff <8b> 83 38 04 00 00 5b 85 c0 0f 95 c0 c3 66 2e 0f 1f 84 00 00 00 00
-[   11.282173][    T1] RSP: 0000:ffffc90000027b80 EFLAGS: 00010293
-[   11.282173][    T1] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
-[   11.282173][    T1] RDX: ffff88823544c040 RSI: ffffffff823265b9 RDI: 0000000000000000
-[   11.282173][    T1] RBP: ffff888227238800 R08: 0000000000000001 R09: 0000000000000000
-[   11.282173][    T1] R10: ffff888227238800 R11: 0000000000000001 R12: 0000000000000000
-[   11.282173][    T1] R13: ffff888235103000 R14: 0000000000000000 R15: ffff888226cc6af0
-[   11.282173][    T1] FS:  0000000000000000(0000) GS:ffff888236e00000(0000) knlGS:0000000000000000
-[   11.282173][    T1] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   11.282173][    T1] CR2: 0000000000000438 CR3: 0000000004a89001 CR4: 00000000003706f0
-[   11.282173][    T1] Kernel panic - not syncing: Fatal exception
-[   11.282173][    T1] Kernel Offset: disabled
-[   11.282173][    T1] Rebooting in 86400 seconds..
+Reviewed-by: Dan Carpenter <dan.carpenter@oracle.com>
 
+regards,
+dan carpenter
 
 _______________________________________________
 Intel-gfx mailing list
