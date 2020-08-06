@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFD3423E416
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 00:38:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5363F23E441
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 01:03:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D02CC6E927;
-	Thu,  6 Aug 2020 22:38:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18EB76E930;
+	Thu,  6 Aug 2020 23:03:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E479B6E927
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 22:38:40 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22055132-1500050 
- for multiple; Thu, 06 Aug 2020 23:38:28 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  6 Aug 2020 23:38:27 +0100
-Message-Id: <20200806223827.13084-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6E26F6E92F;
+ Thu,  6 Aug 2020 23:03:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6952DAA0EA;
+ Thu,  6 Aug 2020 23:03:05 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Remove defunct
- intel_virtual_engine_get_sibling()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 06 Aug 2020 23:03:05 -0000
+Message-ID: <159675498542.5532.1916254867396866233@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200806223827.13084-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200806223827.13084-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/gt=3A_Remove_defunct_intel=5Fvirtual=5Fengine=5Fget=5F?=
+ =?utf-8?b?c2libGluZygp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,64 +39,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As the last user was eliminated in commit e21fecdcde40 ("drm/i915/gt:
-Distinguish the virtual breadcrumbs from the irq breadcrumbs"), we can
-remove the function. One less implementation detail creeping beyond its
-scope.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 12 ------------
- drivers/gpu/drm/i915/gt/intel_lrc.h |  4 ----
- 2 files changed, 16 deletions(-)
+Series: drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()
+URL   : https://patchwork.freedesktop.org/series/80364/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 417f6b0c6c61..0c632f15f677 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -5882,18 +5882,6 @@ int intel_virtual_engine_attach_bond(struct intel_engine_cs *engine,
- 	return 0;
- }
- 
--struct intel_engine_cs *
--intel_virtual_engine_get_sibling(struct intel_engine_cs *engine,
--				 unsigned int sibling)
--{
--	struct virtual_engine *ve = to_virtual_engine(engine);
--
--	if (sibling >= ve->num_siblings)
--		return NULL;
--
--	return ve->siblings[sibling];
--}
--
- void intel_execlists_show_requests(struct intel_engine_cs *engine,
- 				   struct drm_printer *m,
- 				   void (*show_request)(struct drm_printer *m,
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
-index 91fd8e452d9b..c2d287f25497 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.h
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
-@@ -121,10 +121,6 @@ int intel_virtual_engine_attach_bond(struct intel_engine_cs *engine,
- 				     const struct intel_engine_cs *master,
- 				     const struct intel_engine_cs *sibling);
- 
--struct intel_engine_cs *
--intel_virtual_engine_get_sibling(struct intel_engine_cs *engine,
--				 unsigned int sibling);
--
- bool
- intel_engine_in_execlists_submission_mode(const struct intel_engine_cs *engine);
- 
--- 
-2.20.1
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+
 
 _______________________________________________
 Intel-gfx mailing list
