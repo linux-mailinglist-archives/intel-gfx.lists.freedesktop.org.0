@@ -1,37 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D9E723EFBA
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 17:03:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EE7E23EFD7
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 17:12:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 882726E9FF;
-	Fri,  7 Aug 2020 15:03:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A77986E138;
+	Fri,  7 Aug 2020 15:12:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20E346E9FF
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Aug 2020 15:02:59 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22062491-1500050 for multiple; Fri, 07 Aug 2020 16:02:56 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E15756E087;
+ Fri,  7 Aug 2020 15:12:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DC45DA7DFB;
+ Fri,  7 Aug 2020 15:12:42 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <ae75cddc-6941-3047-bb08-0f3ed5ce881e@linux.intel.com>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 07 Aug 2020 15:12:42 -0000
+Message-ID: <159681316288.26560.9227691365810945465@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20200807125440.3419-1-chris@chris-wilson.co.uk>
- <20200807125440.3419-6-chris@chris-wilson.co.uk>
- <d5757dac-00c4-20ab-fb95-a7ca123fd920@linux.intel.com>
- <159681105101.9674.2447685393799323843@build.alporthouse.com>
- <ae75cddc-6941-3047-bb08-0f3ed5ce881e@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 07 Aug 2020 16:02:55 +0100
-Message-ID: <159681257571.9674.10035590572703981616@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915/gt: Split the breadcrumb
- spinlock between global and contexts
+In-Reply-To: <20200807125440.3419-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/7=5D_drm/i915/gt=3A_Remove_defunc?=
+ =?utf-8?q?t_intel=5Fvirtual=5Fengine=5Fget=5Fsibling=28=29_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,260 +39,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-08-07 15:45:54)
-> 
-> On 07/08/2020 15:37, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-08-07 15:25:53)
-> >>
-> >> On 07/08/2020 13:54, Chris Wilson wrote:
-> >>> As we funnel more and more contexts into the breadcrumbs on an engine,
-> >>> the hold time of b->irq_lock grows. As we may then contend with the
-> >>> b->irq_lock during request submission, this increases the burden upon
-> >>> the engine->active.lock and so directly impacts both our execution
-> >>> latency and client latency. If we split the b->irq_lock by introducing a
-> >>> per-context spinlock to manage the signalers within a context, we then
-> >>> only need the b->irq_lock for enabling/disabling the interrupt and can
-> >>> avoid taking the lock for walking the list of contexts within the signal
-> >>> worker. Even with the current setup, this greatly reduces the number of
-> >>> times we have to take and fight for b->irq_lock.
-> >>>
-> >>> Furthermore, this closes the race between enabling the signaling context
-> >>> while it is in the process of being signaled and removed:
-> >>>
-> >>> <4>[  416.208555] list_add corruption. prev->next should be next (ffff8881951d5910), but was dead000000000100. (prev=ffff8882781bb870).
-> >>> <4>[  416.208573] WARNING: CPU: 7 PID: 0 at lib/list_debug.c:28 __list_add_valid+0x4d/0x70
-> >>> <4>[  416.208575] Modules linked in: i915(+) vgem snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio mei_hdcp x86_pkg_temp_thermal coretemp ax88179_178a usbnet mii crct10dif_pclmul snd_intel_dspcfg crc32_pclmul snd_hda_codec snd_hwdep ghash_clmulni_intel snd_hda_core e1000e snd_pcm ptp pps_core mei_me mei prime_numbers intel_lpss_pci [last unloaded: i915]
-> >>> <4>[  416.208611] CPU: 7 PID: 0 Comm: swapper/7 Tainted: G     U            5.8.0-CI-CI_DRM_8852+ #1
-> >>> <4>[  416.208614] Hardware name: Intel Corporation Ice Lake Client Platform/IceLake Y LPDDR4x T4 RVP TLC, BIOS ICLSFWR1.R00.3212.A00.1905212112 05/21/2019
-> >>> <4>[  416.208627] RIP: 0010:__list_add_valid+0x4d/0x70
-> >>> <4>[  416.208631] Code: c3 48 89 d1 48 c7 c7 60 18 33 82 48 89 c2 e8 ea e0 b6 ff 0f 0b 31 c0 c3 48 89 c1 4c 89 c6 48 c7 c7 b0 18 33 82 e8 d3 e0 b6 ff <0f> 0b 31 c0 c3 48 89 f2 4c 89 c1 48 89 fe 48 c7 c7 00 19 33 82 e8
-> >>> <4>[  416.208633] RSP: 0018:ffffc90000280e18 EFLAGS: 00010086
-> >>> <4>[  416.208636] RAX: 0000000000000000 RBX: ffff888250a44880 RCX: 0000000000000105
-> >>> <4>[  416.208639] RDX: 0000000000000105 RSI: ffffffff82320c5b RDI: 00000000ffffffff
-> >>> <4>[  416.208641] RBP: ffff8882781bb870 R08: 0000000000000000 R09: 0000000000000001
-> >>> <4>[  416.208643] R10: 00000000054d2957 R11: 000000006abbd991 R12: ffff8881951d58c8
-> >>> <4>[  416.208646] R13: ffff888286073880 R14: ffff888286073848 R15: ffff8881951d5910
-> >>> <4>[  416.208669] FS:  0000000000000000(0000) GS:ffff88829c180000(0000) knlGS:0000000000000000
-> >>> <4>[  416.208671] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> >>> <4>[  416.208673] CR2: 0000556231326c48 CR3: 0000000005610001 CR4: 0000000000760ee0
-> >>> <4>[  416.208675] PKRU: 55555554
-> >>> <4>[  416.208677] Call Trace:
-> >>> <4>[  416.208679]  <IRQ>
-> >>> <4>[  416.208751]  i915_request_enable_breadcrumb+0x278/0x400 [i915]
-> >>> <4>[  416.208839]  __i915_request_submit+0xca/0x2a0 [i915]
-> >>> <4>[  416.208892]  __execlists_submission_tasklet+0x480/0x1830 [i915]
-> >>> <4>[  416.208942]  execlists_submission_tasklet+0xc4/0x130 [i915]
-> >>> <4>[  416.208947]  tasklet_action_common.isra.17+0x6c/0x1c0
-> >>> <4>[  416.208954]  __do_softirq+0xdf/0x498
-> >>> <4>[  416.208960]  ? handle_fasteoi_irq+0x150/0x150
-> >>> <4>[  416.208964]  asm_call_on_stack+0xf/0x20
-> >>> <4>[  416.208966]  </IRQ>
-> >>> <4>[  416.208969]  do_softirq_own_stack+0xa1/0xc0
-> >>> <4>[  416.208972]  irq_exit_rcu+0xb5/0xc0
-> >>> <4>[  416.208976]  common_interrupt+0xf7/0x260
-> >>> <4>[  416.208980]  asm_common_interrupt+0x1e/0x40
-> >>> <4>[  416.208985] RIP: 0010:cpuidle_enter_state+0xb6/0x410
-> >>> <4>[  416.208987] Code: 00 31 ff e8 9c 3e 89 ff 80 7c 24 0b 00 74 12 9c 58 f6 c4 02 0f 85 31 03 00 00 31 ff e8 e3 6c 90 ff e8 fe a4 94 ff fb 45 85 ed <0f> 88 c7 02 00 00 49 63 c5 4c 2b 24 24 48 8d 14 40 48 8d 14 90 48
-> >>> <4>[  416.208989] RSP: 0018:ffffc90000143e70 EFLAGS: 00000206
-> >>> <4>[  416.208991] RAX: 0000000000000007 RBX: ffffe8ffffda8070 RCX: 0000000000000000
-> >>> <4>[  416.208993] RDX: 0000000000000000 RSI: ffffffff8238b4ee RDI: ffffffff8233184f
-> >>> <4>[  416.208995] RBP: ffffffff826b4e00 R08: 0000000000000000 R09: 0000000000000000
-> >>> <4>[  416.208997] R10: 0000000000000001 R11: 0000000000000000 R12: 00000060e7f24a8f
-> >>> <4>[  416.208998] R13: 0000000000000003 R14: 0000000000000003 R15: 0000000000000003
-> >>> <4>[  416.209012]  cpuidle_enter+0x24/0x40
-> >>> <4>[  416.209016]  do_idle+0x22f/0x2d0
-> >>> <4>[  416.209022]  cpu_startup_entry+0x14/0x20
-> >>> <4>[  416.209025]  start_secondary+0x158/0x1a0
-> >>> <4>[  416.209030]  secondary_startup_64+0xa4/0xb0
-> >>> <4>[  416.209039] irq event stamp: 10186977
-> >>> <4>[  416.209042] hardirqs last  enabled at (10186976): [<ffffffff810b9363>] tasklet_action_common.isra.17+0xe3/0x1c0
-> >>> <4>[  416.209044] hardirqs last disabled at (10186977): [<ffffffff81a5e5ed>] _raw_spin_lock_irqsave+0xd/0x50
-> >>> <4>[  416.209047] softirqs last  enabled at (10186968): [<ffffffff810b9a1a>] irq_enter_rcu+0x6a/0x70
-> >>> <4>[  416.209049] softirqs last disabled at (10186969): [<ffffffff81c00f4f>] asm_call_on_stack+0xf/0x20
-> >>>
-> >>> <4>[  416.209317] list_del corruption, ffff8882781bb870->next is LIST_POISON1 (dead000000000100)
-> >>> <4>[  416.209317] WARNING: CPU: 7 PID: 46 at lib/list_debug.c:47 __list_del_entry_valid+0x4e/0x90
-> >>> <4>[  416.209317] Modules linked in: i915(+) vgem snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio mei_hdcp x86_pkg_temp_thermal coretemp ax88179_178a usbnet mii crct10dif_pclmul snd_intel_dspcfg crc32_pclmul snd_hda_codec snd_hwdep ghash_clmulni_intel snd_hda_core e1000e snd_pcm ptp pps_core mei_me mei prime_numbers intel_lpss_pci [last unloaded: i915]
-> >>> <4>[  416.209317] CPU: 7 PID: 46 Comm: ksoftirqd/7 Tainted: G     U  W         5.8.0-CI-CI_DRM_8852+ #1
-> >>> <4>[  416.209317] Hardware name: Intel Corporation Ice Lake Client Platform/IceLake Y LPDDR4x T4 RVP TLC, BIOS ICLSFWR1.R00.3212.A00.1905212112 05/21/2019
-> >>> <4>[  416.209317] RIP: 0010:__list_del_entry_valid+0x4e/0x90
-> >>> <4>[  416.209317] Code: 2e 48 8b 32 48 39 fe 75 3a 48 8b 50 08 48 39 f2 75 48 b8 01 00 00 00 c3 48 89 fe 48 89 c2 48 c7 c7 38 19 33 82 e8 62 e0 b6 ff <0f> 0b 31 c0 c3 48 89 fe 48 c7 c7 70 19 33 82 e8 4e e0 b6 ff 0f 0b
-> >>> <4>[  416.209317] RSP: 0018:ffffc90000280de8 EFLAGS: 00010086
-> >>> <4>[  416.209317] RAX: 0000000000000000 RBX: ffff8882781bb848 RCX: 0000000000010104
-> >>> <4>[  416.209317] RDX: 0000000000010104 RSI: ffffffff8238b4ee RDI: 00000000ffffffff
-> >>> <4>[  416.209317] RBP: ffff8882781bb880 R08: 0000000000000000 R09: 0000000000000001
-> >>> <4>[  416.209317] R10: 000000009fb6666e R11: 00000000feca9427 R12: ffffc90000280e18
-> >>> <4>[  416.209317] R13: ffff8881951d5930 R14: dead0000000000d8 R15: ffff8882781bb880
-> >>> <4>[  416.209317] FS:  0000000000000000(0000) GS:ffff88829c180000(0000) knlGS:0000000000000000
-> >>> <4>[  416.209317] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> >>> <4>[  416.209317] CR2: 0000556231326c48 CR3: 0000000005610001 CR4: 0000000000760ee0
-> >>> <4>[  416.209317] PKRU: 55555554
-> >>> <4>[  416.209317] Call Trace:
-> >>> <4>[  416.209317]  <IRQ>
-> >>> <4>[  416.209317]  remove_signaling_context.isra.13+0xd/0x70 [i915]
-> >>> <4>[  416.209513]  signal_irq_work+0x1f7/0x4b0 [i915]
-> >>>
-> >>> This is caused by virtual engines where although we take the breadcrumb
-> >>> lock on each of the active engines, they may be different engines on
-> >>> different requests, It turns out that the b->irq_lock was not a
-> >>> sufficient proxy for the engine->active.lock in the case of more than
-> >>> one request, so introduce an explicit lock around ce->signals.
-> >>>
-> >>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2276
-> >>> Fixes: f94343d0a622 ("drm/i915: Remove requirement for holding i915_request.lock for breadcrumbs")
-> >>> Fixes: bda4d4db6dd6 ("drm/i915/gt: Replace intel_engine_transfer_stale_breadcrumbs")
-> >>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>> ---
-> >>>    drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 173 +++++++++++-------
-> >>>    .../gpu/drm/i915/gt/intel_breadcrumbs_types.h |   6 +-
-> >>>    drivers/gpu/drm/i915/gt/intel_context.c       |   3 +-
-> >>>    drivers/gpu/drm/i915/gt/intel_context_types.h |   9 +-
-> >>>    4 files changed, 114 insertions(+), 77 deletions(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> >>> index a077ef3d02b4..e28efc1bb41d 100644
-> >>> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> >>> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> >>> @@ -101,18 +101,27 @@ static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
-> >>>        intel_gt_pm_put_async(b->irq_engine->gt);
-> >>>    }
-> >>>    
-> >>> +static void intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
-> >>> +{
-> >>> +     spin_lock(&b->irq_lock);
-> >>> +     if (b->irq_armed)
-> >>> +             __intel_breadcrumbs_disarm_irq(b);
-> >>> +     spin_unlock(&b->irq_lock);
-> >>> +}
-> >>> +
-> >>>    static void add_signaling_context(struct intel_breadcrumbs *b,
-> >>>                                  struct intel_context *ce)
-> >>>    {
-> >>> -     intel_context_get(ce);
-> >>> -     list_add_tail(&ce->signal_link, &b->signalers);
-> >>> +     lockdep_assert_held(&b->signalers_lock);
-> >>> +     list_add_rcu(&ce->signal_link, &b->signalers);
-> >>>    }
-> >>>    
-> >>>    static void remove_signaling_context(struct intel_breadcrumbs *b,
-> >>>                                     struct intel_context *ce)
-> >>>    {
-> >>> -     list_del(&ce->signal_link);
-> >>> -     intel_context_put(ce);
-> >>> +     spin_lock(&b->signalers_lock);
-> >>> +     list_del_rcu(&ce->signal_link);
-> >>> +     spin_unlock(&b->signalers_lock);
-> >>>    }
-> >>>    
-> >>>    static inline bool __request_completed(const struct i915_request *rq)
-> >>> @@ -195,15 +204,12 @@ static void signal_irq_work(struct irq_work *work)
-> >>>        struct intel_breadcrumbs *b = container_of(work, typeof(*b), irq_work);
-> >>>        const ktime_t timestamp = ktime_get();
-> >>>        struct llist_node *signal, *sn;
-> >>> -     struct intel_context *ce, *cn;
-> >>> -     struct list_head *pos, *next;
-> >>> +     struct intel_context *ce;
-> >>>    
-> >>>        signal = NULL;
-> >>>        if (unlikely(!llist_empty(&b->signaled_requests)))
-> >>>                signal = llist_del_all(&b->signaled_requests);
-> >>>    
-> >>> -     spin_lock(&b->irq_lock);
-> >>> -
-> >>>        /*
-> >>>         * Keep the irq armed until the interrupt after all listeners are gone.
-> >>>         *
-> >>> @@ -230,10 +236,32 @@ static void signal_irq_work(struct irq_work *work)
-> >>>         * like powertop.
-> >>>         */
-> >>>        if (!signal && b->irq_armed && list_empty(&b->signalers))
-> >>> -             __intel_breadcrumbs_disarm_irq(b);
-> >>> +             intel_breadcrumbs_disarm_irq(b);
-> >>
-> >> Disarming checks are now all unlocked so are you confident code won't
-> >> miss to re-arm if here it races with someone else adding signalers?
-> > 
-> > I pushed the spin_lock into a wrapper.
-> > 
-> > intel_breadcrumbs_disarm_irq() takes the spinlock around
-> > __intel_breadcrumbs_disarm_irq(). It had pleasing symmetry with
-> > intel_breadcrumbs_arm_irq() & __intel_breadcrumbs_arm_irq().
-> > 
-> > We very much need spinlocks here as the irq-worker can run concurrently
-> > on multiple cores. That did come as a nasty shock.
-> 
-> Yes, the actual enable count and that, but the list empty status? If is 
-> sees empty here but someone actually adds in parallel will it get armed 
-> somewhere else?
+== Series Details ==
 
-The thread adding to the list will run the irq-worker after themselves,
-and we rearm at the end of the irq-worker.
+Series: series starting with [1/7] drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling() (rev2)
+URL   : https://patchwork.freedesktop.org/series/80393/
+State : warning
 
-> Hm or pull up the rcu_read_lock to above the disarm check even if it 
-> means little or nothing?
+== Summary ==
 
-It means nothing, as there is no dereference and READ_ONCE used by
-list_empty() suffices. I like the look of
+$ dim checkpatch origin/drm-tip
+423786160985 drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()
+b60c43f1b554 drm/i915/gt: Protect context lifetime with RCU
+c1f2e1672d57 drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission
+b73b5a3bfec2 drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock
+2debc1598e3e drm/i915/gt: Don't cancel the interrupt shadow too early
+0d54a2698fa2 drm/i915/gt: Split the breadcrumb spinlock between global and contexts
+-:21: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#21: 
+<4>[  416.208555] list_add corruption. prev->next should be next (ffff8881951d5910), but was dead000000000100. (prev=ffff8882781bb870).
 
-        rcu_read_lock();
-        list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
-	}
-        rcu_read_unlock();
+total: 0 errors, 1 warnings, 0 checks, 322 lines checked
+b59671512b13 drm/i915/gt: Free stale request on destroying the virtual engine
 
-that's the only reason I'm hesitant to change.
 
-> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> >>> index 18622f1a0249..edb50cbc0eb3 100644
-> >>> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> >>> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> >>> @@ -57,7 +57,14 @@ struct intel_context {
-> >>>        struct i915_address_space *vm;
-> >>>        struct i915_gem_context __rcu *gem_context;
-> >>>    
-> >>> -     struct list_head signal_link;
-> >>> +     /*
-> >>> +      * @signal_lock protects the list of requests that need signaling,
-> >>> +      * @signals. While there are any requests that need signaling,
-> >>> +      * we add the context to the breadcrumbs worker, and remove it
-> >>> +      * upon completion/cancellation of the last request.
-> >>> +      */
-> >>> +     spinlock_t signal_lock;
-> >>> +     struct list_head signal_link; /* Accessed under RCU */
-> >>
-> >> Isn't signal_lock used under RCU as well? Are you sure it is safe to do
-> >> spin_lock_init on it?
-> > 
-> > We call intel_context_put() upon removing the context after
-> > spin_unlock(ce->signal_lock).
-> > 
-> > My original intention was to be able to use signal_lock on the zombie by
-> > keeping it alive under RCU (and so why I originally had to use the ctor).
-> > But it turns out that debugobjects is checked at kmem_cache_free() even
-> > for TYPESAFE_BY_RCU and that complains if you have an active spinlock at
-> > that time. My dastardly plan was foiled, but it does mean that all but
-> > one field is under the reference.
-> 
-> How do I translate this - you think it is safe? Spinlock access is 
-> always with a strong reference? In print_signals at least it doesn't 
-> appear so. Lock won't be freed but can't be re-cycled mid loop. Or you 
-> think it can't?
-
-No. print_signals() I completely forgot about.
-
-Hmm.
-
-Nope. You are right, even in the main loop since we take ce->signal_lock
-prior to checking ce->signals that is a pure RCU access.
-
-That means the spin_lock_init() in intel_context_init() is dangerous and
-we need the ctor again. /o\
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
