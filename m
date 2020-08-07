@@ -2,33 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E72C223E793
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 09:12:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD2A23E881
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 10:05:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C64216E063;
-	Fri,  7 Aug 2020 07:12:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA8B6E061;
+	Fri,  7 Aug 2020 08:04:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CDB96E063
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Aug 2020 07:12:40 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22056909-1500050 for multiple; Fri, 07 Aug 2020 08:12:37 +0100
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E84BB6E053;
+ Fri,  7 Aug 2020 08:04:56 +0000 (UTC)
+IronPort-SDR: GSE+5CCvH2Q3DYEnXPWja3lY9OGnWhUfodYEdG//p0933r7UJiK9kMeonuTs37t+och83iAzg4
+ cuF16/DK4ipw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9705"; a="214556548"
+X-IronPort-AV: E=Sophos;i="5.75,444,1589266800"; d="scan'208";a="214556548"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2020 01:04:56 -0700
+IronPort-SDR: PQOSgDI3+nBL0kcN9NchwEdvD491fGNm8VP2pA8AXjkRAYklvdSTNMfGY1gIRdTgcV9vfxZ6jJ
+ /Mj6VBIqqD7Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,444,1589266800"; d="scan'208";a="397517187"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga001.fm.intel.com with ESMTP; 07 Aug 2020 01:04:55 -0700
+Received: from bgsmsx605.gar.corp.intel.com (10.67.234.7) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 7 Aug 2020 01:04:54 -0700
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ BGSMSX605.gar.corp.intel.com (10.67.234.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 7 Aug 2020 13:34:52 +0530
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
+ IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
+ Fri, 7 Aug 2020 09:04:50 +0100
+From: "Grzegorzek, Dominik" <dominik.grzegorzek@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
+Thread-Topic: [PATCH i-g-t] i915/gem_caching: Fix mmap protection for writes
+Thread-Index: AQHWbB/fOspK208NwkOqd+ed2RzjPqksOdUA
+Date: Fri, 7 Aug 2020 08:04:50 +0000
+Message-ID: <938038521cf2f066d592fabff750356103057389.camel@intel.com>
+References: <20200806183143.311857-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200806183143.311857-1-chris@chris-wilson.co.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.213.30.247]
+Content-ID: <8895935013595840903C0C5DDAD6977A@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAPM=9twb2jhWhwvD3HWjG04ihxnYv+EgJ0rQPwL_aHSjJn-NNQ@mail.gmail.com>
-References: <20200802164412.2738-1-chris@chris-wilson.co.uk>
- <CAPM=9twmsrNehJjFZrehwORg-Nyzo_cEq8CiY5=bzsOv8G7pPA@mail.gmail.com>
- <159639701401.26228.4061968059817196468@build.alporthouse.com>
- <CAPM=9twb2jhWhwvD3HWjG04ihxnYv+EgJ0rQPwL_aHSjJn-NNQ@mail.gmail.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Dave Airlie <airlied@gmail.com>
-Date: Fri, 07 Aug 2020 08:12:36 +0100
-Message-ID: <159678435631.14655.6966712365882745877@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] Time, where did it go?
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_caching: Fix mmap protection
+ for writes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,132 +68,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Dave Airlie (2020-08-04 22:45:25)
-> On Mon, 3 Aug 2020 at 05:36, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> >
-> > Quoting Dave Airlie (2020-08-02 18:56:44)
-> > > On Mon, 3 Aug 2020 at 02:44, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > > >
-> > > > Lots of small incremental improvements to reduce execution latency
-> > > > which basically offsets the small regressions incurred when compared to
-> > > > 5.7. And then there are some major fixes found while staring agape at
-> > > > lockstat.
-> > >
-> > > What introduced the 5.7 regressions? are they documented somewhere.
-> >
-> > No. There's a 5.8-rc1 bisect (to the merge but not into rc1) for
-> > something in the core causing perf fluctuations, but I have not yet
-> > reproduced that one to bisect into the rc1 merge. [The system that showed
-> > the issue has historically seen strong swings from p-state setup, might
-> > be that again?]. This is from measuring simulated transcode workloads that
-> > we've built up to track KPI. That we can then compare against the real
-> > workloads run by other groups.
-> >
-> > > What is the goal here, is there a benchmark or application that this
-> > > benefits that you can quantify the benefits?
-> >
-> > Entirely motivated by not wanting to have to explain why there's even a
-> > 1% regression in their client metrics. They wouldn't even notice for a
-> > few releases by which point the problem is likely compounded and we
-> > suddenly have crisis meetings.
-> >
-> > > Is the lack of userspace command submission a problem vs other vendors here?
-> >
-> > If you mean HW scheduling (which is the bit that we are most in dire need
-> > of for replacing this series), not really, our closest equivalent has not
-> > yet proven itself, at least in previous incarnations, adequate to their
-> > requirements.
+On Thu, 2020-08-06 at 19:31 +0100, Chris Wilson wrote:
+> As we are about to write into the mmap'ed pointer using memset, we
+> need
+> to specify PROT_WRITE [if we only say PROT_READ, then the memset
+> should
+> generate a SIGSEGV].
 > 
-> I don't think this sort of thing is acceptable for upstream. This is
-> the platform problem going crazy.
-> Something regresses in the kernel core, and you refactor the i915
-> driver to get horribly more complicated to avoid fixing the core
-> kernel regressions?
-
-Far from it. We are removing the complication we added to submit to the
-HW from two places and only allowing it to be done from one, with the
-resulting simplification and removal of the associated locking.
-
-The impact on v5.7 can be seen as bimodal distributions, like
-
-+mB--------------------------------------------------------------------+
-|                                                                b     |
-|                                                                bbb   |
-|                                                               bbbb   |
-|                                                               bbbbb  |
-|                                                             b bbbbb  |
-|                                                             b bbbbb  |
-|   a                                                 b   b   b bbbbb  |
-|   aa                                                b  bb   bbbbbbb  |
-|  aaa                                                b  bb  bbbbbbbbb |
-|  aaa                                            b   bb bbbbbbbbbbbbb |
-|a aaaa                                           b b bbbbbbbbbbbbbbbbb|
-|   A_|                                                          MA_|  |
-+----------------------------------------------------------------------+
-    N                Min           Max        Median           Avg        Stddev
-a  16( 12)      0.879662      0.889174     0.8855545    0.88558567  0.0010029988
-b 224(159)      0.971574       1.00869     0.9999995     1.0005503  0.0018680506
-
-where it took a substantial of runs to settle at the level of previous
-kernels. That repeats across many different simulations.
-
-With v5.8, the slow start is gone again
-+mB--------------------------------------------------------------------+
-|                                                 bbba.                |
-|                                               bbb..a. aaa            |
-|                                             b bb.......aabaab        |
-|                                             b .b.......a.....        |
-|                                      b aa  bbb...............bb      |
-|            a           a a b   b  ba b aab bbb...............bb      |
-|            aa     a    a aa.   b  b.bbaa.ba.b.................b  b   |
-|b.a   a     .aa .  abbb ..aa.b a. ab..b...b..b....................b .b|
-|                                                  |_MA____|           |
-|                                               |___A___|              |
-+----------------------------------------------------------------------+
-    N                Min           Max        Median           Avg        Stddev
-a 224(159)      0.971574       1.00869     0.9999995     1.0005503  0.0018680506
-b 240(155)      0.971079       1.00927      0.999126    0.99905576  0.0016999716
-Difference with 100.0% confidence: -0.00149458 (-0.15%)
-
-As for the impact of shaving an average of 0.4us from the submission
-paths?
-
-+mB--------------------------------------------------------------------+
-|                                   d                                  |
-|                                   -                                  |
-|                                   +.                                 |
-|                                  d+. c  a                            |
-|                                ..d+- c  a                           b|
-|b              b      b   ab ab.-.-++-.-a.aa d         b    b        b|
-|                                 |__MA____|                           |
-|                                   A_|                                |
-|                                   A_|                                |
-|                                   A|                                 |
-+----------------------------------------------------------------------+
-                    Min           Max        Median           Avg        Stddev
-1 client           -4.01           3.8         0.245         0.822     1.6734194
-2 clients         -15.88          15.4          0.08    0.21222222    0.36365429
-4 clients          -1.68          1.36         0.045    0.12916667    0.28137514
-8 clients          -1.49          4.49         0.055         0.043   0.045227818
-(normalized, %)
-
-And this simulations do not even touch upon the implementation bugs that cause
-quadratic worst case complexity in a linear algorithm.
-
-> This has to stop, if Intel can't stop it internally, i.e. the GEM
-> kernel team hasn't got the sort of power, then it has to stop
-> upstream.
+Thank you for fixing that.
+> Fixes: 897d21d14e99 ("i915/gem_caching: Remove libdrm dependency")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+> ---
+>  tests/i915/gem_caching.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> This is a hard NAK for this sort of refactoring, now and in the future.
-
-Your assessment of the nature of the changes is flawed.
--Chris
+> diff --git a/tests/i915/gem_caching.c b/tests/i915/gem_caching.c
+> index 1d8989db7..894c4b12e 100644
+> --- a/tests/i915/gem_caching.c
+> +++ b/tests/i915/gem_caching.c
+> @@ -282,7 +282,7 @@ igt_main
+>  			val2 = i + 63;
+>  			cpu_ptr = gem_mmap__cpu(data.fd, scratch_buf-
+> >handle,
+>  						0, scratch_buf-
+> >surface[0].size,
+> -						PROT_READ);
+> +						PROT_WRITE);
+>  
+>  			memset(cpu_ptr + start, val2, len);
+>  
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
