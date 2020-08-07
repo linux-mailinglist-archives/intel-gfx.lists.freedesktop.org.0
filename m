@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD16123EC4F
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 13:22:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E7E23EC6A
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 13:26:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 414B66E9CB;
-	Fri,  7 Aug 2020 11:22:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0CD86E0D4;
+	Fri,  7 Aug 2020 11:26:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F3DC6E9D5
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Aug 2020 11:22:21 +0000 (UTC)
-IronPort-SDR: 0j8tjIgSBECXzT0ae19UjzNNQOqwPgFwYc8aj2xIFvvA31kP9ZYhXHck8lfIlHCBG66eJvAuHf
- WSAgIjLIzH5g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9705"; a="214586897"
-X-IronPort-AV: E=Sophos;i="5.75,445,1589266800"; d="scan'208";a="214586897"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0093A6E0D4
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Aug 2020 11:26:47 +0000 (UTC)
+IronPort-SDR: GReL0Uyj3EaumpiEt5Wuyiv+G13NNymMSQMa3sbhaFsDTaCxfYG98djE8Np9KqRYzr/xH9r875
+ rX1SP5+WF0Nw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9705"; a="140648906"
+X-IronPort-AV: E=Sophos;i="5.75,445,1589266800"; d="scan'208";a="140648906"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2020 04:21:58 -0700
-IronPort-SDR: oyqBHLJ0UOfxmL/QftcL+pW4x/GkbEnX4pS5MfpuiFm19XbcjR3+vy72v64/GiTelRVadSkge+
- 9YzEQaZNOBWw==
-X-IronPort-AV: E=Sophos;i="5.75,445,1589266800"; d="scan'208";a="437875528"
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2020 04:26:47 -0700
+IronPort-SDR: TaUJhaVcRWjxwfbSuXSVBA324D37SHs+RJn6BrJS5zBGJr5yA8yWd224hns18pSCibOG8s+LVg
+ ohQH8QMJdceQ==
+X-IronPort-AV: E=Sophos;i="5.75,445,1589266800"; d="scan'208";a="437876463"
 Received: from kmatyuch-mobl.ger.corp.intel.com (HELO [10.255.197.120])
  ([10.255.197.120])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2020 04:21:56 -0700
+ 07 Aug 2020 04:26:45 -0700
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20200807083256.32761-1-chris@chris-wilson.co.uk>
- <20200807083256.32761-3-chris@chris-wilson.co.uk>
+ <20200807083256.32761-4-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <24a4f550-9879-24a5-8af3-cd4f86fed9fa@linux.intel.com>
-Date: Fri, 7 Aug 2020 12:21:53 +0100
+Message-ID: <8dc16013-5104-b328-0ddb-15d4cc14b027@linux.intel.com>
+Date: Fri, 7 Aug 2020 12:26:41 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200807083256.32761-3-chris@chris-wilson.co.uk>
+In-Reply-To: <20200807083256.32761-4-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/gt: Defer enabling the
- breadcrumb interrupt to after submission
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/gt: Track signaled breadcrumbs
+ outside of the breadcrumb spinlock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,222 +61,151 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 07/08/2020 09:32, Chris Wilson wrote:
-> Move the register slow register write and readback from out of the
-> critical path for execlists submission and delay it until the following
-> worker, shaving off around 200us. Note that the same signal_irq_work() is
-> allowed to run concurrently on each CPU (but it will only be queued once,
-> once running though it can be requeued and reexecuted) so we have to
-> remember to lock the global interactions as we cannot rely on the
-> signal_irq_work() itself providing the serialisation (in constrast to a
-> tasklet).
+> Make b->signaled_requests a lockless-list so that we can manipulate it
+> outside of the b->irq_lock.
 > 
-> By pushing the arm/disarm into the central signaling worker we can close
-> the race for disarming the interrupt (and dropping its associated
-> GT wakeref) on parking the engine. If we loose the race, that GT wakeref
-> may be held indefinitely, preventing the machine from sleeping while
-> the GPU is ostensibly idle.
-> 
-> v2: Move the self-arming parking of the signal_irq_work to a flush of
-> the irq-work from intel_breadcrumbs_park().
-> 
-> Fixes: dfeba1ae34c8 ("drm/i915/gt: Hold context/request reference while breadcrumbs are active")
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 106 +++++++++++++-------
->   1 file changed, 67 insertions(+), 39 deletions(-)
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 33 ++++++++++++-------
+>   .../gpu/drm/i915/gt/intel_breadcrumbs_types.h |  2 +-
+>   drivers/gpu/drm/i915/i915_request.h           |  6 +++-
+>   3 files changed, 27 insertions(+), 14 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> index d8b206e53660..6c321419441f 100644
+> index 6c321419441f..98923344f491 100644
 > --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
 > +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> @@ -30,18 +30,21 @@
->   #include "i915_trace.h"
->   #include "intel_breadcrumbs.h"
->   #include "intel_context.h"
-> +#include "intel_engine_pm.h"
->   #include "intel_gt_pm.h"
->   #include "intel_gt_requests.h"
->   
-> -static void irq_enable(struct intel_engine_cs *engine)
-> +static bool irq_enable(struct intel_engine_cs *engine)
->   {
->   	if (!engine->irq_enable)
-> -		return;
-> +		return false;
->   
->   	/* Caller disables interrupts */
->   	spin_lock(&engine->gt->irq_lock);
->   	engine->irq_enable(engine);
->   	spin_unlock(&engine->gt->irq_lock);
-> +
-> +	return true;
+> @@ -173,26 +173,34 @@ static void add_retire(struct intel_breadcrumbs *b, struct intel_timeline *tl)
+>   		intel_engine_add_retire(b->irq_engine, tl);
 >   }
 >   
->   static void irq_disable(struct intel_engine_cs *engine)
-> @@ -57,12 +60,11 @@ static void irq_disable(struct intel_engine_cs *engine)
->   
->   static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+> -static bool __signal_request(struct i915_request *rq, struct list_head *signals)
+> +static bool __signal_request(struct i915_request *rq)
 >   {
-> -	lockdep_assert_held(&b->irq_lock);
+> -	clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
 > -
-> -	if (!b->irq_engine || b->irq_armed)
-> -		return;
-> -
-> -	if (!intel_gt_pm_get_if_awake(b->irq_engine->gt))
-> +	/*
-> +	 * Since we are waiting on a request, the GPU should be busy
-> +	 * and should have its own rpm reference.
-> +	 */
-> +	if (GEM_WARN_ON(!intel_gt_pm_get_if_awake(b->irq_engine->gt)))
->   		return;
+>   	if (!__dma_fence_signal(&rq->fence)) {
+>   		i915_request_put(rq);
+>   		return false;
+>   	}
 >   
->   	/*
-> @@ -73,25 +75,24 @@ static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
->   	 */
->   	WRITE_ONCE(b->irq_armed, true);
->   
-> -	/*
-> -	 * Since we are waiting on a request, the GPU should be busy
-> -	 * and should have its own rpm reference. This is tracked
-> -	 * by i915->gt.awake, we can forgo holding our own wakref
-> -	 * for the interrupt as before i915->gt.awake is released (when
-> -	 * the driver is idle) we disarm the breadcrumbs.
-> -	 */
-> -
-> -	if (!b->irq_enabled++)
-> -		irq_enable(b->irq_engine);
-> +	/* Requests may have completed before we could enable the interrupt. */
-> +	if (!b->irq_enabled++ && irq_enable(b->irq_engine))
-> +		irq_work_queue(&b->irq_work);
+> -	list_add_tail(&rq->signal_link, signals);
+>   	return true;
 >   }
 >   
-> -static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
-> +static void intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
->   {
-> -	lockdep_assert_held(&b->irq_lock);
-> -
-> -	if (!b->irq_engine || !b->irq_armed)
-> +	if (!b->irq_engine)
->   		return;
->   
-> +	spin_lock(&b->irq_lock);
-> +	if (!b->irq_armed)
-> +		__intel_breadcrumbs_arm_irq(b);
-> +	spin_unlock(&b->irq_lock);
+> +static struct llist_node *
+> +__llist_add(struct llist_node *node, struct llist_node *head)
+> +{
+> +	node->next = head;
+> +	return node;
 > +}
 > +
-> +static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
-> +{
->   	GEM_BUG_ON(!b->irq_enabled);
->   	if (!--b->irq_enabled)
->   		irq_disable(b->irq_engine);
-> @@ -105,8 +106,6 @@ static void add_signaling_context(struct intel_breadcrumbs *b,
+>   static void signal_irq_work(struct irq_work *work)
 >   {
->   	intel_context_get(ce);
->   	list_add_tail(&ce->signal_link, &b->signalers);
-> -	if (list_is_first(&ce->signal_link, &b->signalers))
-> -		__intel_breadcrumbs_arm_irq(b);
->   }
->   
->   static void remove_signaling_context(struct intel_breadcrumbs *b,
-> @@ -197,7 +196,32 @@ static void signal_irq_work(struct irq_work *work)
+>   	struct intel_breadcrumbs *b = container_of(work, typeof(*b), irq_work);
+>   	const ktime_t timestamp = ktime_get();
+> +	struct llist_node *signal, *sn;
+>   	struct intel_context *ce, *cn;
+>   	struct list_head *pos, *next;
+> -	LIST_HEAD(signal);
+> +
+> +	signal = NULL;
+> +	if (unlikely(!llist_empty(&b->signaled_requests)))
+> +		signal = llist_del_all(&b->signaled_requests);
 >   
 >   	spin_lock(&b->irq_lock);
 >   
-> -	if (list_empty(&b->signalers))
-> +	/*
-> +	 * Keep the irq armed until the interrupt after all listeners are gone.
-> +	 *
-> +	 * Enabling/disabling the interrupt is rather costly, roughly a couple
-> +	 * of hundred microseconds. If we are proactive and enable/disable
-> +	 * the interrupt around every request that wants a breadcrumb, we
-> +	 * quickly drown in the extra orders of magnitude of latency imposed
-> +	 * on request submission.
-> +	 *
-> +	 * So we try to be lazy, and keep the interrupts enabled until no
-> +	 * more listeners appear within a breadcrumb interrupt interval (that
-> +	 * is until a request completes that no one cares about). The
-> +	 * observation is that listeners come in batches, and will often
-> +	 * listen to a bunch of requests in succession. Though note on icl+,
-> +	 * interrupts are always enabled due to concerns with rc6 being
-> +	 * dysfunctional with per-engine interrupt masking.
-> +	 *
-> +	 * We also try to avoid raising too many interrupts, as they may
-> +	 * be generated by userspace batches and it is unfortunately rather
-> +	 * too easy to drown the CPU under a flood of GPU interrupts. Thus
-> +	 * whenever no one appears to be listening, we turn off the interrupts.
-> +	 * Fewer interrupts should conserve power -- at the very least, fewer
-> +	 * interrupt draw less ire from other users of the system and tools
-> +	 * like powertop.
-> +	 */
-> +	if (b->irq_armed && list_empty(&b->signalers))
+> @@ -224,8 +232,6 @@ static void signal_irq_work(struct irq_work *work)
+>   	if (b->irq_armed && list_empty(&b->signalers))
 >   		__intel_breadcrumbs_disarm_irq(b);
 >   
->   	list_splice_init(&b->signaled_requests, &signal);
-> @@ -251,6 +275,9 @@ static void signal_irq_work(struct irq_work *work)
->   
->   		i915_request_put(rq);
->   	}
-> +
-> +	if (!b->irq_armed && !list_empty(&b->signalers))
-> +		intel_breadcrumbs_arm_irq(b);
->   }
->   
->   struct intel_breadcrumbs *
-> @@ -292,21 +319,19 @@ void intel_breadcrumbs_reset(struct intel_breadcrumbs *b)
->   
->   void intel_breadcrumbs_park(struct intel_breadcrumbs *b)
->   {
-> -	unsigned long flags;
+> -	list_splice_init(&b->signaled_requests, &signal);
 > -
-> -	if (!READ_ONCE(b->irq_armed))
-> -		return;
-> -
-> -	spin_lock_irqsave(&b->irq_lock, flags);
-> -	__intel_breadcrumbs_disarm_irq(b);
-> -	spin_unlock_irqrestore(&b->irq_lock, flags);
-> -
-> -	if (!list_empty(&b->signalers))
-> -		irq_work_queue(&b->irq_work);
-> +	/* Kick the work once more to drain the signalers */
-> +	irq_work_sync(&b->irq_work);
-> +	while (unlikely(READ_ONCE(b->irq_armed))) {
-> +		local_irq_disable();
-> +		signal_irq_work(&b->irq_work);
-> +		local_irq_enable();
-> +		cond_resched();
-> +	}
->   }
+>   	list_for_each_entry_safe(ce, cn, &b->signalers, signal_link) {
+>   		GEM_BUG_ON(list_empty(&ce->signals));
 >   
->   void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
->   {
-> +	irq_work_sync(&b->irq_work);
->   	kfree(b);
->   }
->   
-> @@ -362,9 +387,12 @@ static void insert_breadcrumb(struct i915_request *rq,
->   	GEM_BUG_ON(!check_signal_order(ce, rq));
->   	set_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
->   
-> -	/* Check after attaching to irq, interrupt may have already fired. */
-> -	if (__request_completed(rq))
-> -		irq_work_queue(&b->irq_work);
-> +	/*
-> +	 * Defer enabling the interrupt to after HW submission and recheck
-> +	 * the request as it may have completed and raised the interrupt as
-> +	 * we were attaching it into the lists.
-> +	 */
-> +	irq_work_queue(&b->irq_work);
->   }
->   
->   bool i915_request_enable_breadcrumb(struct i915_request *rq)
-> 
+> @@ -242,7 +248,9 @@ static void signal_irq_work(struct irq_work *work)
+>   			 * spinlock as the callback chain may end up adding
+>   			 * more signalers to the same context or engine.
+>   			 */
+> -			__signal_request(rq, &signal);
+> +			clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+> +			if (__signal_request(rq))
+> +				signal = __llist_add(&rq->signal_node, signal);
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Presumably here you count on no possible races, allowing for a more 
+optimized, custom, __llist_add. It needs a comment at minimum, or even 
+better just use llist_add.
 
 Regards,
 
 Tvrtko
+
+>   		}
+>   
+>   		/*
+> @@ -262,9 +270,9 @@ static void signal_irq_work(struct irq_work *work)
+>   
+>   	spin_unlock(&b->irq_lock);
+>   
+> -	list_for_each_safe(pos, next, &signal) {
+> +	llist_for_each_safe(signal, sn, signal) {
+>   		struct i915_request *rq =
+> -			list_entry(pos, typeof(*rq), signal_link);
+> +			llist_entry(signal, typeof(*rq), signal_node);
+>   		struct list_head cb_list;
+>   
+>   		spin_lock(&rq->lock);
+> @@ -291,7 +299,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
+>   
+>   	spin_lock_init(&b->irq_lock);
+>   	INIT_LIST_HEAD(&b->signalers);
+> -	INIT_LIST_HEAD(&b->signaled_requests);
+> +	init_llist_head(&b->signaled_requests);
+>   
+>   	init_irq_work(&b->irq_work, signal_irq_work);
+>   
+> @@ -352,7 +360,8 @@ static void insert_breadcrumb(struct i915_request *rq,
+>   	 * its signal completion.
+>   	 */
+>   	if (__request_completed(rq)) {
+> -		if (__signal_request(rq, &b->signaled_requests))
+> +		if (__signal_request(rq) &&
+> +		    llist_add(&rq->signal_node, &b->signaled_requests))
+>   			irq_work_queue(&b->irq_work);
+>   		return;
+>   	}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> index 8e53b9942695..3fa19820b37a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> @@ -35,7 +35,7 @@ struct intel_breadcrumbs {
+>   	struct intel_engine_cs *irq_engine;
+>   
+>   	struct list_head signalers;
+> -	struct list_head signaled_requests;
+> +	struct llist_head signaled_requests;
+>   
+>   	struct irq_work irq_work; /* for use from inside irq_lock */
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 16b721080195..874af6db6103 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -176,7 +176,11 @@ struct i915_request {
+>   	struct intel_context *context;
+>   	struct intel_ring *ring;
+>   	struct intel_timeline __rcu *timeline;
+> -	struct list_head signal_link;
+> +
+> +	union {
+> +		struct list_head signal_link;
+> +		struct llist_node signal_node;
+> +	};
+>   
+>   	/*
+>   	 * The rcu epoch of when this request was allocated. Used to judiciously
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
