@@ -1,32 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29AA323EEF8
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 16:22:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A586323EEFB
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 16:26:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95BAF6E8EC;
-	Fri,  7 Aug 2020 14:22:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3624C6E8ED;
+	Fri,  7 Aug 2020 14:26:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8D5AF6E8DE;
- Fri,  7 Aug 2020 14:22:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8694BA47EA;
- Fri,  7 Aug 2020 14:22:23 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 07 Aug 2020 14:22:23 -0000
-Message-ID: <159681014351.26557.4292658401444252636@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3001C6E8ED
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Aug 2020 14:26:00 +0000 (UTC)
+IronPort-SDR: vAixGCEu6su3Tebi9jVq8YGC/wcS9rLZPIOC9hosWfQhoaQsU4j41QGosTTUZhBfIrqKIg09R8
+ O5bBstrDOjSw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9705"; a="154217342"
+X-IronPort-AV: E=Sophos;i="5.75,446,1589266800"; d="scan'208";a="154217342"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2020 07:25:59 -0700
+IronPort-SDR: h174ZeF4GT7FHDSc6mZRDKlxQs7F1jdzQXrUFGAB7Kkn4oqIGJPqqE7QaBRVbAdmWw/I1vbY38
+ jU6AWopBqxcg==
+X-IronPort-AV: E=Sophos;i="5.75,446,1589266800"; d="scan'208";a="437917231"
+Received: from kmatyuch-mobl.ger.corp.intel.com (HELO [10.255.197.120])
+ ([10.255.197.120])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2020 07:25:58 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20200807125440.3419-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200807125440.3419-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/7=5D_drm/i915/gt=3A_Remove_defunct_intel?=
- =?utf-8?b?X3ZpcnR1YWxfZW5naW5lX2dldF9zaWJsaW5nKCk=?=
+ <20200807125440.3419-6-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <d5757dac-00c4-20ab-fb95-a7ca123fd920@linux.intel.com>
+Date: Fri, 7 Aug 2020 15:25:53 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200807125440.3419-6-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915/gt: Split the breadcrumb
+ spinlock between global and contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,451 +54,486 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1332570499=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1332570499==
-Content-Type: multipart/alternative;
- boundary="===============6110708647892937320=="
 
---===============6110708647892937320==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 07/08/2020 13:54, Chris Wilson wrote:
+> As we funnel more and more contexts into the breadcrumbs on an engine,
+> the hold time of b->irq_lock grows. As we may then contend with the
+> b->irq_lock during request submission, this increases the burden upon
+> the engine->active.lock and so directly impacts both our execution
+> latency and client latency. If we split the b->irq_lock by introducing a
+> per-context spinlock to manage the signalers within a context, we then
+> only need the b->irq_lock for enabling/disabling the interrupt and can
+> avoid taking the lock for walking the list of contexts within the signal
+> worker. Even with the current setup, this greatly reduces the number of
+> times we have to take and fight for b->irq_lock.
+> 
+> Furthermore, this closes the race between enabling the signaling context
+> while it is in the process of being signaled and removed:
+> 
+> <4>[  416.208555] list_add corruption. prev->next should be next (ffff8881951d5910), but was dead000000000100. (prev=ffff8882781bb870).
+> <4>[  416.208573] WARNING: CPU: 7 PID: 0 at lib/list_debug.c:28 __list_add_valid+0x4d/0x70
+> <4>[  416.208575] Modules linked in: i915(+) vgem snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio mei_hdcp x86_pkg_temp_thermal coretemp ax88179_178a usbnet mii crct10dif_pclmul snd_intel_dspcfg crc32_pclmul snd_hda_codec snd_hwdep ghash_clmulni_intel snd_hda_core e1000e snd_pcm ptp pps_core mei_me mei prime_numbers intel_lpss_pci [last unloaded: i915]
+> <4>[  416.208611] CPU: 7 PID: 0 Comm: swapper/7 Tainted: G     U            5.8.0-CI-CI_DRM_8852+ #1
+> <4>[  416.208614] Hardware name: Intel Corporation Ice Lake Client Platform/IceLake Y LPDDR4x T4 RVP TLC, BIOS ICLSFWR1.R00.3212.A00.1905212112 05/21/2019
+> <4>[  416.208627] RIP: 0010:__list_add_valid+0x4d/0x70
+> <4>[  416.208631] Code: c3 48 89 d1 48 c7 c7 60 18 33 82 48 89 c2 e8 ea e0 b6 ff 0f 0b 31 c0 c3 48 89 c1 4c 89 c6 48 c7 c7 b0 18 33 82 e8 d3 e0 b6 ff <0f> 0b 31 c0 c3 48 89 f2 4c 89 c1 48 89 fe 48 c7 c7 00 19 33 82 e8
+> <4>[  416.208633] RSP: 0018:ffffc90000280e18 EFLAGS: 00010086
+> <4>[  416.208636] RAX: 0000000000000000 RBX: ffff888250a44880 RCX: 0000000000000105
+> <4>[  416.208639] RDX: 0000000000000105 RSI: ffffffff82320c5b RDI: 00000000ffffffff
+> <4>[  416.208641] RBP: ffff8882781bb870 R08: 0000000000000000 R09: 0000000000000001
+> <4>[  416.208643] R10: 00000000054d2957 R11: 000000006abbd991 R12: ffff8881951d58c8
+> <4>[  416.208646] R13: ffff888286073880 R14: ffff888286073848 R15: ffff8881951d5910
+> <4>[  416.208669] FS:  0000000000000000(0000) GS:ffff88829c180000(0000) knlGS:0000000000000000
+> <4>[  416.208671] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> <4>[  416.208673] CR2: 0000556231326c48 CR3: 0000000005610001 CR4: 0000000000760ee0
+> <4>[  416.208675] PKRU: 55555554
+> <4>[  416.208677] Call Trace:
+> <4>[  416.208679]  <IRQ>
+> <4>[  416.208751]  i915_request_enable_breadcrumb+0x278/0x400 [i915]
+> <4>[  416.208839]  __i915_request_submit+0xca/0x2a0 [i915]
+> <4>[  416.208892]  __execlists_submission_tasklet+0x480/0x1830 [i915]
+> <4>[  416.208942]  execlists_submission_tasklet+0xc4/0x130 [i915]
+> <4>[  416.208947]  tasklet_action_common.isra.17+0x6c/0x1c0
+> <4>[  416.208954]  __do_softirq+0xdf/0x498
+> <4>[  416.208960]  ? handle_fasteoi_irq+0x150/0x150
+> <4>[  416.208964]  asm_call_on_stack+0xf/0x20
+> <4>[  416.208966]  </IRQ>
+> <4>[  416.208969]  do_softirq_own_stack+0xa1/0xc0
+> <4>[  416.208972]  irq_exit_rcu+0xb5/0xc0
+> <4>[  416.208976]  common_interrupt+0xf7/0x260
+> <4>[  416.208980]  asm_common_interrupt+0x1e/0x40
+> <4>[  416.208985] RIP: 0010:cpuidle_enter_state+0xb6/0x410
+> <4>[  416.208987] Code: 00 31 ff e8 9c 3e 89 ff 80 7c 24 0b 00 74 12 9c 58 f6 c4 02 0f 85 31 03 00 00 31 ff e8 e3 6c 90 ff e8 fe a4 94 ff fb 45 85 ed <0f> 88 c7 02 00 00 49 63 c5 4c 2b 24 24 48 8d 14 40 48 8d 14 90 48
+> <4>[  416.208989] RSP: 0018:ffffc90000143e70 EFLAGS: 00000206
+> <4>[  416.208991] RAX: 0000000000000007 RBX: ffffe8ffffda8070 RCX: 0000000000000000
+> <4>[  416.208993] RDX: 0000000000000000 RSI: ffffffff8238b4ee RDI: ffffffff8233184f
+> <4>[  416.208995] RBP: ffffffff826b4e00 R08: 0000000000000000 R09: 0000000000000000
+> <4>[  416.208997] R10: 0000000000000001 R11: 0000000000000000 R12: 00000060e7f24a8f
+> <4>[  416.208998] R13: 0000000000000003 R14: 0000000000000003 R15: 0000000000000003
+> <4>[  416.209012]  cpuidle_enter+0x24/0x40
+> <4>[  416.209016]  do_idle+0x22f/0x2d0
+> <4>[  416.209022]  cpu_startup_entry+0x14/0x20
+> <4>[  416.209025]  start_secondary+0x158/0x1a0
+> <4>[  416.209030]  secondary_startup_64+0xa4/0xb0
+> <4>[  416.209039] irq event stamp: 10186977
+> <4>[  416.209042] hardirqs last  enabled at (10186976): [<ffffffff810b9363>] tasklet_action_common.isra.17+0xe3/0x1c0
+> <4>[  416.209044] hardirqs last disabled at (10186977): [<ffffffff81a5e5ed>] _raw_spin_lock_irqsave+0xd/0x50
+> <4>[  416.209047] softirqs last  enabled at (10186968): [<ffffffff810b9a1a>] irq_enter_rcu+0x6a/0x70
+> <4>[  416.209049] softirqs last disabled at (10186969): [<ffffffff81c00f4f>] asm_call_on_stack+0xf/0x20
+> 
+> <4>[  416.209317] list_del corruption, ffff8882781bb870->next is LIST_POISON1 (dead000000000100)
+> <4>[  416.209317] WARNING: CPU: 7 PID: 46 at lib/list_debug.c:47 __list_del_entry_valid+0x4e/0x90
+> <4>[  416.209317] Modules linked in: i915(+) vgem snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio mei_hdcp x86_pkg_temp_thermal coretemp ax88179_178a usbnet mii crct10dif_pclmul snd_intel_dspcfg crc32_pclmul snd_hda_codec snd_hwdep ghash_clmulni_intel snd_hda_core e1000e snd_pcm ptp pps_core mei_me mei prime_numbers intel_lpss_pci [last unloaded: i915]
+> <4>[  416.209317] CPU: 7 PID: 46 Comm: ksoftirqd/7 Tainted: G     U  W         5.8.0-CI-CI_DRM_8852+ #1
+> <4>[  416.209317] Hardware name: Intel Corporation Ice Lake Client Platform/IceLake Y LPDDR4x T4 RVP TLC, BIOS ICLSFWR1.R00.3212.A00.1905212112 05/21/2019
+> <4>[  416.209317] RIP: 0010:__list_del_entry_valid+0x4e/0x90
+> <4>[  416.209317] Code: 2e 48 8b 32 48 39 fe 75 3a 48 8b 50 08 48 39 f2 75 48 b8 01 00 00 00 c3 48 89 fe 48 89 c2 48 c7 c7 38 19 33 82 e8 62 e0 b6 ff <0f> 0b 31 c0 c3 48 89 fe 48 c7 c7 70 19 33 82 e8 4e e0 b6 ff 0f 0b
+> <4>[  416.209317] RSP: 0018:ffffc90000280de8 EFLAGS: 00010086
+> <4>[  416.209317] RAX: 0000000000000000 RBX: ffff8882781bb848 RCX: 0000000000010104
+> <4>[  416.209317] RDX: 0000000000010104 RSI: ffffffff8238b4ee RDI: 00000000ffffffff
+> <4>[  416.209317] RBP: ffff8882781bb880 R08: 0000000000000000 R09: 0000000000000001
+> <4>[  416.209317] R10: 000000009fb6666e R11: 00000000feca9427 R12: ffffc90000280e18
+> <4>[  416.209317] R13: ffff8881951d5930 R14: dead0000000000d8 R15: ffff8882781bb880
+> <4>[  416.209317] FS:  0000000000000000(0000) GS:ffff88829c180000(0000) knlGS:0000000000000000
+> <4>[  416.209317] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> <4>[  416.209317] CR2: 0000556231326c48 CR3: 0000000005610001 CR4: 0000000000760ee0
+> <4>[  416.209317] PKRU: 55555554
+> <4>[  416.209317] Call Trace:
+> <4>[  416.209317]  <IRQ>
+> <4>[  416.209317]  remove_signaling_context.isra.13+0xd/0x70 [i915]
+> <4>[  416.209513]  signal_irq_work+0x1f7/0x4b0 [i915]
+> 
+> This is caused by virtual engines where although we take the breadcrumb
+> lock on each of the active engines, they may be different engines on
+> different requests, It turns out that the b->irq_lock was not a
+> sufficient proxy for the engine->active.lock in the case of more than
+> one request, so introduce an explicit lock around ce->signals.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2276
+> Fixes: f94343d0a622 ("drm/i915: Remove requirement for holding i915_request.lock for breadcrumbs")
+> Fixes: bda4d4db6dd6 ("drm/i915/gt: Replace intel_engine_transfer_stale_breadcrumbs")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 173 +++++++++++-------
+>   .../gpu/drm/i915/gt/intel_breadcrumbs_types.h |   6 +-
+>   drivers/gpu/drm/i915/gt/intel_context.c       |   3 +-
+>   drivers/gpu/drm/i915/gt/intel_context_types.h |   9 +-
+>   4 files changed, 114 insertions(+), 77 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index a077ef3d02b4..e28efc1bb41d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -101,18 +101,27 @@ static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+>   	intel_gt_pm_put_async(b->irq_engine->gt);
+>   }
+>   
+> +static void intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+> +{
+> +	spin_lock(&b->irq_lock);
+> +	if (b->irq_armed)
+> +		__intel_breadcrumbs_disarm_irq(b);
+> +	spin_unlock(&b->irq_lock);
+> +}
+> +
+>   static void add_signaling_context(struct intel_breadcrumbs *b,
+>   				  struct intel_context *ce)
+>   {
+> -	intel_context_get(ce);
+> -	list_add_tail(&ce->signal_link, &b->signalers);
+> +	lockdep_assert_held(&b->signalers_lock);
+> +	list_add_rcu(&ce->signal_link, &b->signalers);
+>   }
+>   
+>   static void remove_signaling_context(struct intel_breadcrumbs *b,
+>   				     struct intel_context *ce)
+>   {
+> -	list_del(&ce->signal_link);
+> -	intel_context_put(ce);
+> +	spin_lock(&b->signalers_lock);
+> +	list_del_rcu(&ce->signal_link);
+> +	spin_unlock(&b->signalers_lock);
+>   }
+>   
+>   static inline bool __request_completed(const struct i915_request *rq)
+> @@ -195,15 +204,12 @@ static void signal_irq_work(struct irq_work *work)
+>   	struct intel_breadcrumbs *b = container_of(work, typeof(*b), irq_work);
+>   	const ktime_t timestamp = ktime_get();
+>   	struct llist_node *signal, *sn;
+> -	struct intel_context *ce, *cn;
+> -	struct list_head *pos, *next;
+> +	struct intel_context *ce;
+>   
+>   	signal = NULL;
+>   	if (unlikely(!llist_empty(&b->signaled_requests)))
+>   		signal = llist_del_all(&b->signaled_requests);
+>   
+> -	spin_lock(&b->irq_lock);
+> -
+>   	/*
+>   	 * Keep the irq armed until the interrupt after all listeners are gone.
+>   	 *
+> @@ -230,10 +236,32 @@ static void signal_irq_work(struct irq_work *work)
+>   	 * like powertop.
+>   	 */
+>   	if (!signal && b->irq_armed && list_empty(&b->signalers))
+> -		__intel_breadcrumbs_disarm_irq(b);
+> +		intel_breadcrumbs_disarm_irq(b);
 
-== Series Details ==
+Disarming checks are now all unlocked so are you confident code won't 
+miss to re-arm if here it races with someone else adding signalers?
 
-Series: series starting with [1/7] drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()
-URL   : https://patchwork.freedesktop.org/series/80393/
-State : failure
+> +
+> +	rcu_read_lock();
+> +	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
+> +		struct list_head *pos, *next;
+> +		bool release = false;
+> +
+> +		/*
+> +		 * Since the signal_irq_worker may in fact be running on
+> +		 * different cores simultaneously, just skip over the other
+> +		 * thread if it is in the middle of processing the signals.
+> +		 * We will then advance to the next context, and the other
+> +		 * core will then skip over us, splitting the work between
+> +		 * the multiple cores that just happen to processing the
+> +		 * worker simultaneously.
+> +		 *
+> +		 * The other use of ce->signal_lock to add new requests
+> +		 * to be signaled will always kick the worker afterwards
+> +		 * ensuring that ce->signals will always be processed at
+> +		 * least once (even after being skipped).
+> +		 */
+> +		if (!spin_trylock(&ce->signal_lock))
+> +			continue;
+>   
+> -	list_for_each_entry_safe(ce, cn, &b->signalers, signal_link) {
+> -		GEM_BUG_ON(list_empty(&ce->signals));
+> +		if (list_empty(&ce->signals))
+> +			goto unlock;
+>   
+>   		list_for_each_safe(pos, next, &ce->signals) {
+>   			struct i915_request *rq =
+> @@ -265,11 +293,16 @@ static void signal_irq_work(struct irq_work *work)
+>   			if (&ce->signals == pos) { /* now empty */
+>   				add_retire(b, ce->timeline);
+>   				remove_signaling_context(b, ce);
+> +				release = true;
+>   			}
+>   		}
+> -	}
+>   
+> -	spin_unlock(&b->irq_lock);
+> +unlock:
+> +		spin_unlock(&ce->signal_lock);
+> +		if (release)
+> +			intel_context_put(ce);
+> +	}
+> +	rcu_read_unlock();
+>   
+>   	llist_for_each_safe(signal, sn, signal) {
+>   		struct i915_request *rq =
+> @@ -298,14 +331,15 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
+>   	if (!b)
+>   		return NULL;
+>   
+> -	spin_lock_init(&b->irq_lock);
+> +	b->irq_engine = irq_engine;
+> +
+> +	spin_lock_init(&b->signalers_lock);
+>   	INIT_LIST_HEAD(&b->signalers);
+>   	init_llist_head(&b->signaled_requests);
+>   
+> +	spin_lock_init(&b->irq_lock);
+>   	init_irq_work(&b->irq_work, signal_irq_work);
+>   
+> -	b->irq_engine = irq_engine;
+> -
 
-== Summary ==
+Why these changes?
 
-CI Bug Log - changes from CI_DRM_8856 -> Patchwork_18322
-====================================================
+>   	return b;
+>   }
+>   
+> @@ -344,9 +378,9 @@ void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
+>   	kfree(b);
+>   }
+>   
+> -static void insert_breadcrumb(struct i915_request *rq,
+> -			      struct intel_breadcrumbs *b)
+> +static void insert_breadcrumb(struct i915_request *rq)
+>   {
+> +	struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
+>   	struct intel_context *ce = rq->context;
+>   	struct list_head *pos;
+>   
+> @@ -368,7 +402,33 @@ static void insert_breadcrumb(struct i915_request *rq,
+>   	}
+>   
+>   	if (list_empty(&ce->signals)) {
+> +		/*
+> +		 * rq->engine is locked by rq->engine->active.lock. That
+> +		 * however is not known until after rq->engine has been
+> +		 * dereferenced and the lock acquired. Hence we acquire the
+> +		 * lock and then validate that rq->engine still matches the
+> +		 * lock we hold for it.
+> +		 *
+> +		 * Here, we are using the breadcrumb lock as a proxy for the
+> +		 * rq->engine->active.lock, and we know that since the
+> +		 * breadcrumb will be serialised within i915_request_submit
+> +		 * the engine cannot change while active as long as we hold
+> +		 * the breadcrumb lock on that engine.
+> +		 *
+> +		 * From the dma_fence_enable_signaling() path, we are outside
+> +		 * of the request submit/unsubmit path, and so we must be more
+> +		 * careful to acquire the right lock.
+> +		 */
+> +		intel_context_get(ce);
+> +		spin_lock(&b->signalers_lock);
+> +		while (unlikely(b != READ_ONCE(rq->engine)->breadcrumbs)) {
+> +			spin_unlock(&b->signalers_lock);
+> +			b = READ_ONCE(rq->engine)->breadcrumbs;
+> +			spin_lock(&b->signalers_lock);
+> +		}
+>   		add_signaling_context(b, ce);
+> +		spin_unlock(&b->signalers_lock);
+> +
+>   		pos = &ce->signals;
+>   	} else {
+>   		/*
+> @@ -407,7 +467,7 @@ static void insert_breadcrumb(struct i915_request *rq,
+>   
+>   bool i915_request_enable_breadcrumb(struct i915_request *rq)
+>   {
+> -	struct intel_breadcrumbs *b;
+> +	struct intel_context *ce = rq->context;
+>   
+>   	/* Serialises with i915_request_retire() using rq->lock */
+>   	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &rq->fence.flags))
+> @@ -422,67 +482,37 @@ bool i915_request_enable_breadcrumb(struct i915_request *rq)
+>   	if (!test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags))
+>   		return true;
+>   
+> -	/*
+> -	 * rq->engine is locked by rq->engine->active.lock. That however
+> -	 * is not known until after rq->engine has been dereferenced and
+> -	 * the lock acquired. Hence we acquire the lock and then validate
+> -	 * that rq->engine still matches the lock we hold for it.
+> -	 *
+> -	 * Here, we are using the breadcrumb lock as a proxy for the
+> -	 * rq->engine->active.lock, and we know that since the breadcrumb
+> -	 * will be serialised within i915_request_submit/i915_request_unsubmit,
+> -	 * the engine cannot change while active as long as we hold the
+> -	 * breadcrumb lock on that engine.
+> -	 *
+> -	 * From the dma_fence_enable_signaling() path, we are outside of the
+> -	 * request submit/unsubmit path, and so we must be more careful to
+> -	 * acquire the right lock.
+> -	 */
+> -	b = READ_ONCE(rq->engine)->breadcrumbs;
+> -	spin_lock(&b->irq_lock);
+> -	while (unlikely(b != READ_ONCE(rq->engine)->breadcrumbs)) {
+> -		spin_unlock(&b->irq_lock);
+> -		b = READ_ONCE(rq->engine)->breadcrumbs;
+> -		spin_lock(&b->irq_lock);
+> -	}
+> -
+> -	/*
+> -	 * Now that we are finally serialised with request submit/unsubmit,
+> -	 * [with b->irq_lock] and with i915_request_retire() [via checking
+> -	 * SIGNALED with rq->lock] confirm the request is indeed active. If
+> -	 * it is no longer active, the breadcrumb will be attached upon
+> -	 * i915_request_submit().
+> -	 */
+> +	spin_lock(&ce->signal_lock);
+>   	if (test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags))
+> -		insert_breadcrumb(rq, b);
+> -
+> -	spin_unlock(&b->irq_lock);
+> +		insert_breadcrumb(rq);
+> +	spin_unlock(&ce->signal_lock);
+>   
+>   	return true;
+>   }
+>   
+>   void i915_request_cancel_breadcrumb(struct i915_request *rq)
+>   {
+> -	struct intel_breadcrumbs *b = rq->engine->breadcrumbs;
+> +	struct intel_context *ce = rq->context;
+> +	bool release = false;
+>   
+> -	/*
+> -	 * We must wait for b->irq_lock so that we know the interrupt handler
+> -	 * has released its reference to the intel_context and has completed
+> -	 * the DMA_FENCE_FLAG_SIGNALED_BIT/I915_FENCE_FLAG_SIGNAL dance (if
+> -	 * required).
+> -	 */
+> -	spin_lock(&b->irq_lock);
+> +	if (!test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags))
+> +		return;
+> +
+> +	spin_lock(&ce->signal_lock);
+>   	if (test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags)) {
+> -		struct intel_context *ce = rq->context;
+> +		clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+>   
+>   		list_del(&rq->signal_link);
+> -		if (list_empty(&ce->signals))
+> -			remove_signaling_context(b, ce);
+> +		if (list_empty(&ce->signals)) {
+> +			remove_signaling_context(rq->engine->breadcrumbs, ce);
+> +			release = true;
+> +		}
+>   
+> -		clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+>   		i915_request_put(rq);
+>   	}
+> -	spin_unlock(&b->irq_lock);
+> +	spin_unlock(&ce->signal_lock);
+> +	if (release)
+> +		intel_context_put(ce);
+>   }
+>   
+>   static void print_signals(struct intel_breadcrumbs *b, struct drm_printer *p)
+> @@ -492,18 +522,19 @@ static void print_signals(struct intel_breadcrumbs *b, struct drm_printer *p)
+>   
+>   	drm_printf(p, "Signals:\n");
+>   
+> -	spin_lock_irq(&b->irq_lock);
+> -	list_for_each_entry(ce, &b->signalers, signal_link) {
+> -		list_for_each_entry(rq, &ce->signals, signal_link) {
+> +	rcu_read_lock();
+> +	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
+> +		spin_lock_irq(&ce->signal_lock);
+> +		list_for_each_entry(rq, &ce->signals, signal_link)
+>   			drm_printf(p, "\t[%llx:%llx%s] @ %dms\n",
+>   				   rq->fence.context, rq->fence.seqno,
+>   				   i915_request_completed(rq) ? "!" :
+>   				   i915_request_started(rq) ? "*" :
+>   				   "",
+>   				   jiffies_to_msecs(jiffies - rq->emitted_jiffies));
+> -		}
+> +		spin_unlock_irq(&ce->signal_lock);
+>   	}
+> -	spin_unlock_irq(&b->irq_lock);
+> +	rcu_read_unlock();
+>   }
+>   
+>   void intel_engine_print_breadcrumbs(struct intel_engine_cs *engine,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> index 3fa19820b37a..a74bb3062bd8 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> @@ -29,18 +29,16 @@
+>    * the overhead of waking that client is much preferred.
+>    */
+>   struct intel_breadcrumbs {
+> -	spinlock_t irq_lock; /* protects the lists used in hardirq context */
+> -
+>   	/* Not all breadcrumbs are attached to physical HW */
+>   	struct intel_engine_cs *irq_engine;
+>   
+> +	spinlock_t signalers_lock; /* protects the list of signalers */
+>   	struct list_head signalers;
+>   	struct llist_head signaled_requests;
+>   
+> +	spinlock_t irq_lock; /* protects the interrupt from hardirq context */
+>   	struct irq_work irq_work; /* for use from inside irq_lock */
+> -
+>   	unsigned int irq_enabled;
+> -
+>   	bool irq_armed;
+>   };
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 8eebb31c6c28..b202dceeb4ec 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -302,7 +302,8 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+>   
+>   	ce->vm = i915_vm_get(engine->gt->vm);
+>   
+> -	INIT_LIST_HEAD(&ce->signal_link);
+> +	/* NB ce->signal_link is used under RCU */
+> +	spin_lock_init(&ce->signal_lock);
+>   	INIT_LIST_HEAD(&ce->signals);
+>   
+>   	atomic_set(&ce->pin_count, 0);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index 18622f1a0249..edb50cbc0eb3 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -57,7 +57,14 @@ struct intel_context {
+>   	struct i915_address_space *vm;
+>   	struct i915_gem_context __rcu *gem_context;
+>   
+> -	struct list_head signal_link;
+> +	/*
+> +	 * @signal_lock protects the list of requests that need signaling,
+> +	 * @signals. While there are any requests that need signaling,
+> +	 * we add the context to the breadcrumbs worker, and remove it
+> +	 * upon completion/cancellation of the last request.
+> +	 */
+> +	spinlock_t signal_lock;
+> +	struct list_head signal_link; /* Accessed under RCU */
 
-Summary
--------
+Isn't signal_lock used under RCU as well? Are you sure it is safe to do 
+spin_lock_init on it?
 
-  **FAILURE**
+>   	struct list_head signals;
+>   
+>   	struct i915_vma *state;
+> 
 
-  Serious unknown changes coming with Patchwork_18322 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18322, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Regards,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_18322:
-
-### CI changes ###
-
-#### Possible regressions ####
-
-  * boot:
-    - fi-kbl-8809g:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-8809g/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-8809g/boot.html
-    - fi-icl-y:           [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-icl-y/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-icl-y/boot.html
-    - fi-snb-2520m:       [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-snb-2520m/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-snb-2520m/boot.html
-    - fi-bsw-nick:        [PASS][7] -> [FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bsw-nick/boot.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bsw-nick/boot.html
-    - fi-gdg-551:         [PASS][9] -> [FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-gdg-551/boot.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-gdg-551/boot.html
-    - fi-icl-u2:          [PASS][11] -> [FAIL][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-icl-u2/boot.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-icl-u2/boot.html
-    - fi-cfl-8109u:       [PASS][13] -> [FAIL][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-cfl-8109u/boot.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-cfl-8109u/boot.html
-    - fi-skl-6600u:       [PASS][15] -> [FAIL][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-skl-6600u/boot.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-skl-6600u/boot.html
-    - fi-byt-j1900:       [PASS][17] -> [FAIL][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-byt-j1900/boot.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-byt-j1900/boot.html
-    - fi-cfl-8700k:       [PASS][19] -> [FAIL][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-cfl-8700k/boot.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-cfl-8700k/boot.html
-    - fi-cml-u2:          [PASS][21] -> [FAIL][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-cml-u2/boot.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-cml-u2/boot.html
-    - fi-pnv-d510:        [PASS][23] -> [FAIL][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-pnv-d510/boot.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-pnv-d510/boot.html
-    - fi-ilk-650:         [PASS][25] -> [FAIL][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-ilk-650/boot.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-ilk-650/boot.html
-    - fi-tgl-u2:          [PASS][27] -> [FAIL][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-tgl-u2/boot.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-tgl-u2/boot.html
-    - fi-bsw-n3050:       [PASS][29] -> [FAIL][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bsw-n3050/boot.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bsw-n3050/boot.html
-    - fi-skl-6700k2:      [PASS][31] -> [FAIL][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-skl-6700k2/boot.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-skl-6700k2/boot.html
-    - fi-hsw-4770:        [PASS][33] -> [FAIL][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-hsw-4770/boot.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-hsw-4770/boot.html
-    - fi-kbl-soraka:      [PASS][35] -> [FAIL][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-soraka/boot.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-soraka/boot.html
-    - fi-cml-s:           [PASS][37] -> [FAIL][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-cml-s/boot.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-cml-s/boot.html
-    - fi-elk-e7500:       [PASS][39] -> [FAIL][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-elk-e7500/boot.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-elk-e7500/boot.html
-    - fi-skl-lmem:        [PASS][41] -> [FAIL][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-skl-lmem/boot.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-skl-lmem/boot.html
-    - fi-ivb-3770:        [PASS][43] -> [FAIL][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-ivb-3770/boot.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-ivb-3770/boot.html
-    - fi-snb-2600:        [PASS][45] -> [FAIL][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-snb-2600/boot.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-snb-2600/boot.html
-    - fi-kbl-guc:         [PASS][47] -> [FAIL][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-guc/boot.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-guc/boot.html
-    - fi-bsw-kefka:       [PASS][49] -> [FAIL][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bsw-kefka/boot.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bsw-kefka/boot.html
-    - fi-kbl-x1275:       [PASS][51] -> [FAIL][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-x1275/boot.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-x1275/boot.html
-    - fi-bdw-gvtdvm:      [PASS][53] -> [FAIL][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bdw-gvtdvm/boot.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bdw-gvtdvm/boot.html
-    - fi-kbl-7500u:       [PASS][55] -> [FAIL][56]
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-7500u/boot.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-7500u/boot.html
-    - fi-blb-e6850:       [PASS][57] -> [FAIL][58]
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-blb-e6850/boot.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-blb-e6850/boot.html
-    - fi-bwr-2160:        [PASS][59] -> [FAIL][60]
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bwr-2160/boot.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bwr-2160/boot.html
-    - fi-bdw-5557u:       [PASS][61] -> [FAIL][62]
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bdw-5557u/boot.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bdw-5557u/boot.html
-    - fi-skl-guc:         [PASS][63] -> [FAIL][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-skl-guc/boot.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-skl-guc/boot.html
-    - fi-kbl-r:           [PASS][65] -> [FAIL][66]
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-r/boot.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-r/boot.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * boot:
-    - {fi-tgl-dsi}:       [PASS][67] -> [FAIL][68]
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-tgl-dsi/boot.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-tgl-dsi/boot.html
-    - {fi-kbl-7560u}:     [PASS][69] -> [FAIL][70]
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-7560u/boot.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-7560u/boot.html
-    - {fi-ehl-1}:         [PASS][71] -> [FAIL][72]
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-ehl-1/boot.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-ehl-1/boot.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18322 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-apl-guc:         [PASS][73] -> [FAIL][74] ([i915#1635] / [i915#348])
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-apl-guc/boot.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-apl-guc/boot.html
-    - fi-bxt-dsi:         [PASS][75] -> [FAIL][76] ([i915#1635])
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bxt-dsi/boot.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bxt-dsi/boot.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#348]: https://gitlab.freedesktop.org/drm/intel/issues/348
-
-
-Participating hosts (44 -> 38)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * IGT: IGT_5764 -> None
-  * Linux: CI_DRM_8856 -> Patchwork_18322
-
-  CI-20190529: 20190529
-  CI_DRM_8856: 238c742f0beea85fc171bfc3eef05cf284af6d4d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5764: 0f91c80b4c809cf48afff65a2ea68590389aa5ba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18322: cfd370c67224a0b3d3b0440e2738c12b39d63247 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-cfd370c67224 drm/i915/gt: Free stale request on destroying the virtual engine
-435242a104ce drm/i915/gt: Split the breadcrumb spinlock between global and contexts
-7f54c977c742 drm/i915/gt: Don't cancel the interrupt shadow too early
-45d3f0fee88b drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock
-9676cd4fcbab drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission
-9d375c4552bf drm/i915/gt: Protect context lifetime with RCU
-f82f8ef253eb drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/index.html
-
---===============6110708647892937320==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/7] drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/80393/">https://patchwork.freedesktop.org/series/80393/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8856 -&gt; Patchwork_18322</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_18322 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_18322, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_18322:</p>
-<h3>CI changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>boot:</p>
-<ul>
-<li>
-<p>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-8809g/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-8809g/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-icl-y/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-icl-y/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-snb-2520m/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-snb-2520m/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bsw-nick/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bsw-nick/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-gdg-551:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-gdg-551/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-gdg-551/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-icl-u2/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-icl-u2/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-cfl-8109u/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-skl-6600u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-skl-6600u/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-byt-j1900/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-byt-j1900/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-cfl-8700k/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-cfl-8700k/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-cml-u2/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-cml-u2/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-pnv-d510/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-pnv-d510/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-ilk-650/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-ilk-650/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-tgl-u2/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-tgl-u2/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bsw-n3050/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bsw-n3050/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-skl-6700k2/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-skl-6700k2/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-hsw-4770/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-hsw-4770/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-soraka/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-soraka/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-cml-s/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-cml-s/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-elk-e7500/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-elk-e7500/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-skl-lmem:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-skl-lmem/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-skl-lmem/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-ivb-3770/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-ivb-3770/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-snb-2600/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-snb-2600/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-guc/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bsw-kefka/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bsw-kefka/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-x1275/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-x1275/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bdw-gvtdvm/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bdw-gvtdvm/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-7500u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-7500u/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-blb-e6850/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-blb-e6850/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-bwr-2160:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bwr-2160/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bwr-2160/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bdw-5557u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bdw-5557u/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-skl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-skl-guc/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-r/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-r/boot.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>boot:</p>
-<ul>
-<li>
-<p>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-tgl-dsi/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-tgl-dsi/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-kbl-7560u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-kbl-7560u/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>{fi-ehl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-ehl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-ehl-1/boot.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18322 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>boot:</p>
-<ul>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-apl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/348">i915#348</a>)</p>
-</li>
-<li>
-<p>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8856/fi-bxt-dsi/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18322/fi-bxt-dsi/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 38)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_5764 -&gt; None</li>
-<li>Linux: CI_DRM_8856 -&gt; Patchwork_18322</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8856: 238c742f0beea85fc171bfc3eef05cf284af6d4d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5764: 0f91c80b4c809cf48afff65a2ea68590389aa5ba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18322: cfd370c67224a0b3d3b0440e2738c12b39d63247 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>cfd370c67224 drm/i915/gt: Free stale request on destroying the virtual engine<br />
-435242a104ce drm/i915/gt: Split the breadcrumb spinlock between global and contexts<br />
-7f54c977c742 drm/i915/gt: Don't cancel the interrupt shadow too early<br />
-45d3f0fee88b drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock<br />
-9676cd4fcbab drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission<br />
-9d375c4552bf drm/i915/gt: Protect context lifetime with RCU<br />
-f82f8ef253eb drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()</p>
-
-</body>
-</html>
-
---===============6110708647892937320==--
-
---===============1332570499==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1332570499==--
