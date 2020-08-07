@@ -1,32 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998F923F00E
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 17:35:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4777823F130
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 18:24:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C6A16E9E5;
-	Fri,  7 Aug 2020 15:34:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4E7C6E139;
+	Fri,  7 Aug 2020 16:24:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B86FA6E145;
- Fri,  7 Aug 2020 15:34:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B1E3AA00E6;
- Fri,  7 Aug 2020 15:34:57 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0E1F6E139
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Aug 2020 16:24:31 +0000 (UTC)
+IronPort-SDR: +xFqAgOFZWpsFzaoAd461Jd+39LWABoIYj94GvCkjKWChhga5ZAJqeQGCi3ktG8S75TW1tJvgN
+ Vu0j6Ilif3Ag==
+X-IronPort-AV: E=McAfee;i="6000,8403,9706"; a="217452206"
+X-IronPort-AV: E=Sophos;i="5.75,446,1589266800"; d="scan'208";a="217452206"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2020 09:24:30 -0700
+IronPort-SDR: pGTU7PWSxOgy28NoSiS8ARNN/6GFxm7fvJCO+ljdhxIXGXR/LMcCh84YpOK7DyzO6gLK+vOyXK
+ K/s0XSsIChqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,446,1589266800"; d="scan'208";a="325805250"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga002.fm.intel.com with ESMTP; 07 Aug 2020 09:24:30 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 7 Aug 2020 09:24:29 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 7 Aug 2020 09:24:28 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
+ Fri, 7 Aug 2020 09:24:28 -0700
+From: "Tang, CQ" <cq.tang@intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Dave Airlie
+ <airlied@gmail.com>
+Thread-Topic: [RFC 53/60] drm/i915: Create stolen memory region from local
+ memory
+Thread-Index: AQHWVrHl1suxT5ICy0evISrR4wmNxKkFabKAgAI9k4D//6IScIAAp+YAgCUT1YD///lX4A==
+Date: Fri, 7 Aug 2020 16:24:28 +0000
+Message-ID: <52ae377c9ec94c6987dea05fb1931630@intel.com>
+References: <20200710115757.290984-1-matthew.auld@intel.com>
+ <20200710115757.290984-54-matthew.auld@intel.com>
+ <CAPM=9twBBVQy_0O6ES5UjtBpn0hfjaWoo24miziBj+VMrbciWg@mail.gmail.com>
+ <84ff0146-0a35-c66e-2c33-2ce22aae4c6c@intel.com>
+ <1D440B9B88E22A4ABEF89F9F1F81BC290117BB8F99@ORSMSX163.amr.corp.intel.com>
+ <CAPM=9txUuw23Y5q9SndkMM+ZuXLyC60P0HqG-=4GSbPPujh+Vw@mail.gmail.com>
+ <159679313093.9764.11140358447333089444@jlahtine-mobl.ger.corp.intel.com>
+In-Reply-To: <159679313093.9764.11140358447333089444@jlahtine-mobl.ger.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.1.200.100]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 07 Aug 2020 15:34:57 -0000
-Message-ID: <159681449769.26559.410541368026082468@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200807125440.3419-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200807125440.3419-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/7=5D_drm/i915/gt=3A_Remove_defunct_intel?=
- =?utf-8?b?X3ZpcnR1YWxfZW5naW5lX2dldF9zaWJsaW5nKCkgKHJldjIp?=
+Subject: Re: [Intel-gfx] [RFC 53/60] drm/i915: Create stolen memory region
+ from local memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,244 +77,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1194944121=="
+Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, "De Marchi,
+ Lucas" <lucas.demarchi@intel.com>, "Wilson,
+ Chris P" <chris.p.wilson@intel.com>, "Auld, Matthew" <matthew.auld@intel.com>,
+ Neel Desai <neel.desai@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1194944121==
-Content-Type: multipart/alternative;
- boundary="===============0722739225657238617=="
-
---===============0722739225657238617==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [1/7] drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling() (rev2)
-URL   : https://patchwork.freedesktop.org/series/80393/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8857 -> Patchwork_18323
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18323 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [PASS][1] -> [DMESG-WARN][2] ([i915#62] / [i915#92] / [i915#95])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - {fi-kbl-7560u}:     [WARN][7] ([i915#2249]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-kbl-7560u/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-kbl-7560u/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92]) -> [DMESG-WARN][10] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +4 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2249]: https://gitlab.freedesktop.org/drm/intel/issues/2249
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-Participating hosts (44 -> 38)
-------------------------------
+> -----Original Message-----
+> From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Sent: Friday, August 7, 2020 2:39 AM
+> To: Tang, CQ <cq.tang@intel.com>; Dave Airlie <airlied@gmail.com>
+> Cc: Auld, Matthew <matthew.auld@intel.com>; Intel Graphics Development
+> <intel-gfx@lists.freedesktop.org>; Abdiel Janulgue
+> <abdiel.janulgue@linux.intel.com>; Wilson, Chris P
+> <chris.p.wilson@intel.com>; Balestrieri, Francesco
+> <francesco.balestrieri@intel.com>; Vishwanathapura, Niranjana
+> <niranjana.vishwanathapura@intel.com>; Dhanalakota, Venkata S
+> <venkata.s.dhanalakota@intel.com>; Neel Desai <neel.desai@intel.com>;
+> Brost, Matthew <matthew.brost@intel.com>; Dutt, Sudeep
+> <sudeep.dutt@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>
+> Subject: Re: [RFC 53/60] drm/i915: Create stolen memory region from local
+> memory
+> 
+> Quoting Dave Airlie (2020-07-14 22:26:16)
+> > On Wed, 15 Jul 2020 at 02:57, Tang, CQ <cq.tang@intel.com> wrote:
+> > >
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Auld, Matthew <matthew.auld@intel.com>
+> > > > Sent: Tuesday, July 14, 2020 8:02 AM
+> > > > To: Dave Airlie <airlied@gmail.com>
+> > > > Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>;
+> > > > Tang, CQ <cq.tang@intel.com>; Joonas Lahtinen
+> > > > <joonas.lahtinen@linux.intel.com>;
+> > > > Abdiel Janulgue <abdiel.janulgue@linux.intel.com>; Wilson, Chris P
+> > > > <chris.p.wilson@intel.com>; Balestrieri, Francesco
+> > > > <francesco.balestrieri@intel.com>; Vishwanathapura, Niranjana
+> > > > <niranjana.vishwanathapura@intel.com>; Dhanalakota, Venkata S
+> > > > <venkata.s.dhanalakota@intel.com>; Neel Desai
+> > > > <neel.desai@intel.com>; Brost, Matthew <matthew.brost@intel.com>;
+> > > > Dutt, Sudeep <sudeep.dutt@intel.com>; De Marchi, Lucas
+> > > > <lucas.demarchi@intel.com>
+> > > > Subject: Re: [RFC 53/60] drm/i915: Create stolen memory region
+> > > > from local memory
+> > > >
+> > > > On 13/07/2020 05:48, Dave Airlie wrote:
+> > > > > On Fri, 10 Jul 2020 at 22:01, Matthew Auld
+> > > > > <matthew.auld@intel.com>
+> > > > wrote:
+> > > > >>
+> > > > >> From: CQ Tang <cq.tang@intel.com>
+> > > > >>
+> > > > >> Add "REGION_STOLEN" device info to dg1, create stolen memory
+> > > > >> region from upper portion of local device memory, starting from
+> DSMBASE.
+> > > > >>
+> > > > >> The memory region is marked with "is_devmem=true".
+> > > > >
+> > > > > So is stolen fake on LMEM devices? The concept of stolen doesn't
+> > > > > seem to make much sense with VRAM, so please enlighten me.
+> > > >
+> > > > CQ, do we actually need an explicit stolen LMEM region? The idea
+> > > > of having a DSM like stolen region for LMEM does sound
+> > > > strange(outside of the usual reserved portions which are for HW
+> > > > use etc), since the driver has complete control over LMEM. Is it
+> > > > just a convenience thing to keep things working as-is for fbc, initial fb,
+> etc. or is there more to it?
+> > > > There is buddy_alloc_range() for LMEM which we could potentially
+> > > > use to wrap an object around for things like the initial fb or similar.
+> > >
+> > > This is a natural extension from IGT stolen memory region into DGT, we
+> want to allocate objects from stolen area. In DGT, we have one stolen area
+> per tile so we create one region in each of these area. Using memory region
+> is easier to manage objects allocation and free. Other than fbc and rc6, we
+> have gt/ring allocate stolen memory objects when without LMEM, so only
+> apply to IGT case:
+> > >
+> > > display/intel_display.c:        obj =
+> i915_gem_object_create_stolen_for_preallocated(dev_priv,
+> > > display/intel_fbdev.c:                  obj =
+> i915_gem_object_create_stolen(dev_priv, size);
+> > > display/intel_overlay.c:        obj = i915_gem_object_create_stolen(i915,
+> PAGE_SIZE);
+> > > intel_rc6.c:            pctx =
+> i915_gem_object_create_stolen_for_preallocated(i915,
+> > > intel_rc6.c:    pctx = i915_gem_object_create_stolen(i915, pctx_size);
+> > >
+> > > intel_ring.c:                   obj = intel_gt_object_create_stolen(ggtt->vm.gt,
+> size);
+> > > intel_gt.c:             obj = intel_gt_object_create_stolen(gt, size);
+> > >
+> > > For some reason, we don't use buddy allocator to manage the stolen
+> memory, instead, we use drm_mm_node allocator directly, we have one-to-
+> one mapping between drm_mm address space to dma address of the stolen
+> memory. We also use contiguous allocation where an object always get a
+> single contiguous block of pages.
+> > >
+> > > So fundamentally, we want to use the same code to work on both IGT
+> stolen memory and DGT stolen memory.
+> >
+> > If this is fundamentally a software construct then it's horrible, if
+> > the HW has a stolen base like Ville said, and it needs to be in a
+> > chunk of VRAM, how do you go about sizing that, and carving it out
+> > from the user?
+> >
+> > I don't think wanting to share the same codepaths here is an
+> > acceptable answer, just fix the code to handle LMEM vs stolen, but if
+> > there are hw reasons on why this is required it would be good to
+> > enumerate exactly what they are and document them.
+> 
+> The boot firmware does configure the stolen region, so it's not fake.
+> 
+> But there's no need to expose the stolen memory to userspace, so these
+> patches will be dropped.
 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+Yes, I confirmed that on discrete GPU with display, firmware does reserve a portion of device local memory as stolen memory region, and used by device hardware, the usage of this local stolen memory is the same as system stolen memory on integrated GPU.
 
+So we need to continue to create this local stolen memory region in driver. However, because this stolen memory region is only used by driver and hardware, there is no need to expose the stolen memory region to userspace.
 
-Build changes
--------------
+--CQ
 
-  * Linux: CI_DRM_8857 -> Patchwork_18323
-
-  CI-20190529: 20190529
-  CI_DRM_8857: 009d7480effe9b4d0d70a15f97fe21f80bfcbc25 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5765: 9f0977284d54ed37496260988dfcd6d2ad72dd1e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18323: b59671512b13c003557926c0c0a16630eea0266a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b59671512b13 drm/i915/gt: Free stale request on destroying the virtual engine
-0d54a2698fa2 drm/i915/gt: Split the breadcrumb spinlock between global and contexts
-2debc1598e3e drm/i915/gt: Don't cancel the interrupt shadow too early
-b73b5a3bfec2 drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock
-c1f2e1672d57 drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission
-b60c43f1b554 drm/i915/gt: Protect context lifetime with RCU
-423786160985 drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/index.html
-
---===============0722739225657238617==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/7] drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling() (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/80393/">https://patchwork.freedesktop.org/series/80393/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8857 -&gt; Patchwork_18323</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18323 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-kbl-x1275/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-kbl-x1275/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-kbl-7560u/igt@i915_pm_rpm@module-reload.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2249">i915#2249</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-kbl-7560u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-edid:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8857/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18323/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +4 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 38)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_8857 -&gt; Patchwork_18323</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8857: 009d7480effe9b4d0d70a15f97fe21f80bfcbc25 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5765: 9f0977284d54ed37496260988dfcd6d2ad72dd1e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18323: b59671512b13c003557926c0c0a16630eea0266a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>b59671512b13 drm/i915/gt: Free stale request on destroying the virtual engine<br />
-0d54a2698fa2 drm/i915/gt: Split the breadcrumb spinlock between global and contexts<br />
-2debc1598e3e drm/i915/gt: Don't cancel the interrupt shadow too early<br />
-b73b5a3bfec2 drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock<br />
-c1f2e1672d57 drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission<br />
-b60c43f1b554 drm/i915/gt: Protect context lifetime with RCU<br />
-423786160985 drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()</p>
-
-</body>
-</html>
-
---===============0722739225657238617==--
-
---===============1194944121==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> 
+> Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1194944121==--
