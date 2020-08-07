@@ -2,33 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 903C623E9D3
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 11:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1D923EA19
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 11:21:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E20006E98D;
-	Fri,  7 Aug 2020 09:11:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 124346E999;
+	Fri,  7 Aug 2020 09:21:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E39B36E98D;
- Fri,  7 Aug 2020 09:11:19 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22058318-1500050 for multiple; Fri, 07 Aug 2020 10:11:16 +0100
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C8076E994;
+ Fri,  7 Aug 2020 09:21:50 +0000 (UTC)
+IronPort-SDR: 2LIJf/l9HcGSK+lmUFW7Ui3n6AJ8XXiCk2z29YLtaRW6Vze2qlF/gelUbD6LEC6RvJbU6cI+rD
+ 33VwGGGPbOpQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9705"; a="171106835"
+X-IronPort-AV: E=Sophos;i="5.75,445,1589266800"; d="scan'208";a="171106835"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2020 02:21:40 -0700
+IronPort-SDR: m5G3uvXRjrtnVATY4xrG1JQoMHxvzpjLthTleWa8uCrrHQe0qmddqE0P3NDkHsBHTd8wm0DM7C
+ C5T0BGmwnZLw==
+X-IronPort-AV: E=Sophos;i="5.75,445,1589266800"; d="scan'208";a="333492052"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2020 02:21:38 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Fri,  7 Aug 2020 11:19:46 +0200
+Message-Id: <20200807092002.32350-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-In-Reply-To: <25f28f97-1e1f-e11f-ee6a-c524e4f854b2@intel.com>
-References: <20200807084506.473089-1-chris@chris-wilson.co.uk>
- <25f28f97-1e1f-e11f-ee6a-c524e4f854b2@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 07 Aug 2020 10:11:15 +0100
-Message-ID: <159679147552.16647.11735803367843972389@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_exec_fence: Use
- default-context for syncobj-timeline-wait
+Subject: [Intel-gfx] [PATCH i-g-t v2 00/16] tests/core_hotunplug: Fixes and
+ enhancements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,40 +47,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lionel Landwerlin (2020-08-07 10:00:14)
-> On 07/08/2020 11:45, Chris Wilson wrote:
-> > syncobj-timeline-wait is only exercising waits on the syncobj along a
-> > single timeline, for which it can use the universally available default
-> > context, and so not try and fail to create a HW context on very old
-> > platforms.
-> >
-> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2308
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> 
-> 
-> Hm... I thought maybe we didn't get all the engines on the default context.
-
-A fresh context, either the default for a new fd or from
-gem_context_create(), only gets the default set of engines. The context
-created here has a clone of the engines from the default context, which
-we hope has been reconfigured already to have the set of all available
-engines.
-
-__for_each_physical_engine() works by querying the kernel and
-reconfiguring the default context to suite. Fortunately that is run in a
-fixture early on in gem_exec_fence, so by the time we get to the syncobj
-group, we have all engines available.
-
-Looks like we're good to iterate over them all :)
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q2xlYW4gdXAgdGhlIHRlc3QgY29kZSBhbmQgdW5ibG9jayB1bmJpbmQgdmFyaWFudHMuCgpATWlj
+aGHFgjogU2luY2UgbW9zdCB2MiB1cGRhdGVzIGFyZSB0cml2aWFsLCBJJ3ZlIHByZXNlcnZlZCB5
+b3VyClJldmlld2QtYnk6IGV4Y2VwdCBmb3IgcGF0Y2ggMTEvMTYgIkZvbGxvdyBmYWlsZWQgc3Vi
+dGVzdHMgd2l0aCBoZWFsdGgKY2hlY2tzIiAtIHBsZWFzZSBoYXZlIGEgbG9vayBhbmQgY29uZmly
+bSBpZiB5b3UgYXJlIHN0aWxsIE9LIHdpdGggaXQuCgpUaGFua3MsCkphbnVzegoKSmFudXN6IEty
+enlzenRvZmlrICgxNik6CiAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFVzZSBpZ3RfYXNzZXJ0X2Zk
+KCkKICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogQ29uc3RpZnkgZGV2X2J1c19hZGRyIHN0cmluZwog
+IHRlc3RzL2NvcmVfaG90dW5wbHVnOiBDb25zb2xpZGF0ZSBkdXBsaWNhdGVkIGRlYnVnIG1lc3Nh
+Z2VzCiAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEFzc2VydCBzdWNjZXNzZnVsIGRldmljZSBmaWx0
+ZXIgYXBwbGljYXRpb24KICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogRml4IG1pc3NpbmcgbmV3bGlu
+ZQogIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBNYWludGFpbiBhIHNpbmdsZSBkYXRhIHN0cnVjdHVy
+ZSBpbnN0YW5jZQogIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBQYXNzIGVycm9ycyB2aWEgYSBkYXRh
+IHN0cnVjdHVyZSBmaWVsZAogIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBIYW5kbGUgZGV2aWNlIGNs
+b3NlIGVycm9ycwogIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBQcmVwYXJlIGludmFyaWFudCBkYXRh
+IG9uY2UgcGVyIHRlc3QgcnVuCiAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFNraXAgc2VsZWN0aXZl
+bHkgb24gc3lzZnMgY2xvc2UgZXJyb3JzCiAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEZvbGxvdyBm
+YWlsZWQgc3VidGVzdHMgd2l0aCBoZWFsdGggY2hlY2tzCiAgdGVzdHMvY29yZV9ob3R1bnBsdWc6
+IEZhaWwgc3VidGVzdHMgb24gZGV2aWNlIGNsb3NlIGVycm9ycwogIHRlc3RzL2NvcmVfaG90dW5w
+bHVnOiBQcm9jZXNzIHJldHVybiB2YWx1ZXMgb2Ygc3lzZnMgb3BlcmF0aW9ucwogIHRlc3RzL2Nv
+cmVfaG90dW5wbHVnOiBBc3NlcnQgZXhwZWN0ZWQgZGV2aWNlIHByZXNlbmNlL2Fic2VuY2UKICB0
+ZXN0cy9jb3JlX2hvdHVucGx1ZzogRXhwbGljaXRseSBpZ25vcmUgdW51c2VkIHJldHVybiB2YWx1
+ZXMKICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogVW4tYmxvY2tsaXN0ICp1bmJpbmQqIHN1YnRlc3Rz
+CgogdGVzdHMvY29yZV9ob3R1bnBsdWcuYyAgICAgICB8IDMzNCArKysrKysrKysrKysrKysrKysr
+KystLS0tLS0tLS0tLS0tLQogdGVzdHMvaW50ZWwtY2kvYmxhY2tsaXN0LnR4dCB8ICAgMiArLQog
+MiBmaWxlcyBjaGFuZ2VkLCAyMDQgaW5zZXJ0aW9ucygrKSwgMTMyIGRlbGV0aW9ucygtKQoKLS0g
+CjIuMjEuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
