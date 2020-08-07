@@ -2,45 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A1623EAEE
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 11:51:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4856923EB0C
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 12:01:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 966426E9AA;
-	Fri,  7 Aug 2020 09:51:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86BB16E9B4;
+	Fri,  7 Aug 2020 10:01:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDDEA6E9AA
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Aug 2020 09:51:03 +0000 (UTC)
-IronPort-SDR: Fpt3/IY5RYmHU0SC81lyoiIZ5Tz/mYyabZDVmwJ0wBjRdifyJ3aXdSp3LF4Vtv830VbgWONmYS
- oxrvXj107uXQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9705"; a="154172140"
-X-IronPort-AV: E=Sophos;i="5.75,445,1589266800"; d="scan'208";a="154172140"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D6166E9B3;
+ Fri,  7 Aug 2020 10:01:43 +0000 (UTC)
+IronPort-SDR: 6SIBp2BbrCQNInadZilLMHW+2jb56X20TfmjZl9xVZL8mmR/f7E+IdG2pMCaPBF9wTex0z4jvb
+ 3ND2ArUf/p7w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9705"; a="132604136"
+X-IronPort-AV: E=Sophos;i="5.75,445,1589266800"; d="scan'208";a="132604136"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2020 02:51:03 -0700
-IronPort-SDR: Owq1oMatugPW7m32Pj/fN1NeM2vVrGGoWeSSrDYsFfEoIL0st3iQfNrqy9G+yp0ob1aH1owsUP
- 3/V/mxsbuh4A==
-X-IronPort-AV: E=Sophos;i="5.75,445,1589266800"; d="scan'208";a="437857289"
-Received: from kmatyuch-mobl.ger.corp.intel.com (HELO [10.255.197.120])
- ([10.255.197.120])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2020 02:51:01 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200807083256.32761-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <7c53f59c-928f-64a3-9011-cc0e69e46b11@linux.intel.com>
-Date: Fri, 7 Aug 2020 10:50:58 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2020 03:01:42 -0700
+IronPort-SDR: uP17cghi6CrmO6qEZztzamxQHUs7zAQaEc+pkIkCWCGFijRM8zfRlSyp/RA3eoyyUwBsKDKzOS
+ 3d2RlKYFJVBQ==
+X-IronPort-AV: E=Sophos;i="5.75,445,1589266800"; d="scan'208";a="468178347"
+Received: from unknown (HELO karthik-2012-Client-Platform.iind.intel.com)
+ ([10.223.74.217])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 07 Aug 2020 03:01:39 -0700
+From: Karthik B S <karthik.b.s@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  7 Aug 2020 15:05:44 +0530
+Message-Id: <20200807093551.10673-1-karthik.b.s@intel.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-In-Reply-To: <20200807083256.32761-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915/gt: Remove defunct
- intel_virtual_engine_get_sibling()
+Subject: [Intel-gfx] [PATCH v6 0/7] Asynchronous flip implementation for i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,70 +47,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: paulo.r.zanoni@intel.com, michel@daenzer.net,
+ dri-devel@lists.freedesktop.org, daniel.vetter@intel.com,
+ harry.wentland@amd.com, nicholas.kazlauskas@amd.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Without async flip support in the kernel, fullscreen apps where game
+resolution is equal to the screen resolution, must perform an extra blit
+per frame prior to flipping.
 
-On 07/08/2020 09:32, Chris Wilson wrote:
-> As the last user was eliminated in commit e21fecdcde40 ("drm/i915/gt:
-> Distinguish the virtual breadcrumbs from the irq breadcrumbs"), we can
-> remove the function. One less implementation detail creeping beyond its
-> scope.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c | 12 ------------
->   drivers/gpu/drm/i915/gt/intel_lrc.h |  4 ----
->   2 files changed, 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 417f6b0c6c61..0c632f15f677 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -5882,18 +5882,6 @@ int intel_virtual_engine_attach_bond(struct intel_engine_cs *engine,
->   	return 0;
->   }
->   
-> -struct intel_engine_cs *
-> -intel_virtual_engine_get_sibling(struct intel_engine_cs *engine,
-> -				 unsigned int sibling)
-> -{
-> -	struct virtual_engine *ve = to_virtual_engine(engine);
-> -
-> -	if (sibling >= ve->num_siblings)
-> -		return NULL;
-> -
-> -	return ve->siblings[sibling];
-> -}
-> -
->   void intel_execlists_show_requests(struct intel_engine_cs *engine,
->   				   struct drm_printer *m,
->   				   void (*show_request)(struct drm_printer *m,
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
-> index 91fd8e452d9b..c2d287f25497 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
-> @@ -121,10 +121,6 @@ int intel_virtual_engine_attach_bond(struct intel_engine_cs *engine,
->   				     const struct intel_engine_cs *master,
->   				     const struct intel_engine_cs *sibling);
->   
-> -struct intel_engine_cs *
-> -intel_virtual_engine_get_sibling(struct intel_engine_cs *engine,
-> -				 unsigned int sibling);
-> -
->   bool
->   intel_engine_in_execlists_submission_mode(const struct intel_engine_cs *engine);
->   
-> 
+Asynchronous page flips will also boost the FPS of Mesa benchmarks.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+v2: -Few patches have been squashed and patches have been shuffled as
+     per the reviews on the previous version.
 
-Regards,
+v3: -Few patches have been squashed and patches have been shuffled as
+     per the reviews on the previous version.
 
-Tvrtko
+v4: -Made changes to fix the sequence and time stamp issue as per the
+     comments received on the previous version.
+    -Timestamps are calculated using the flip done time stamp and current
+     timestamp. Here I915_MODE_FLAG_GET_SCANLINE_FROM_TIMESTAMP flag is used
+     for timestamp calculations.
+    -Event is sent from the interrupt handler immediately using this
+     updated timestamps and sequence.
+    -Added more state checks as async flip should only allow change in plane
+     surface address and nothing else should be allowed to change.
+    -Added a separate plane hook for async flip.
+    -Need to find a way to reject fbc enabling if it comes as part of this
+     flip as bspec states that changes to FBC are not allowed.
+
+v5: -Fixed the Checkpatch and sparse warnings.
+
+v6: -Reverted back to the old timestamping code as per the feedback received.
+    -Added documentation.
+
+Test-with: <20200806132935.23293-1-karthik.b.s@intel.com>
+
+Karthik B S (7):
+  drm/i915: Add enable/disable flip done and flip done handler
+  drm/i915: Add support for async flips in I915
+  drm/i915: Add checks specific to async flips
+  drm/i915: Do not call drm_crtc_arm_vblank_event in async flips
+  drm/i915: Add dedicated plane hook for async flip case
+  Documentation/gpu: Add asynchronous flip documentation for i915
+  drm/i915: Enable async flips in i915
+
+ Documentation/gpu/i915.rst                   |   6 +
+ drivers/gpu/drm/i915/display/intel_display.c | 127 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_sprite.c  |  33 ++++-
+ drivers/gpu/drm/i915/i915_irq.c              |  52 ++++++++
+ drivers/gpu/drm/i915/i915_irq.h              |   2 +
+ drivers/gpu/drm/i915/i915_reg.h              |   1 +
+ 6 files changed, 220 insertions(+), 1 deletion(-)
+
+-- 
+2.22.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
