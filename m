@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FCD023F20E
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 19:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BC9623F21D
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 19:45:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 278B46EA1D;
-	Fri,  7 Aug 2020 17:40:54 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A2A26E15F
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Aug 2020 17:40:47 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22064283-1500050 
- for <intel-gfx@lists.freedesktop.org>; Fri, 07 Aug 2020 18:40:43 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 Aug 2020 18:40:43 +0100
-Message-Id: <20200807174043.21594-4-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200807174043.21594-1-chris@chris-wilson.co.uk>
-References: <20200807174043.21594-1-chris@chris-wilson.co.uk>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 872C2897E3;
+	Fri,  7 Aug 2020 17:45:23 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A091897EE
+ for <Intel-GFX@lists.freedesktop.org>; Fri,  7 Aug 2020 17:45:22 +0000 (UTC)
+IronPort-SDR: 19HNawkuKdGtpDlgphAvy6NUJMvuMSrdUPvT1freZKDUGEztInoo4L3+zRAw4U+NyMJKyy57VX
+ qLTK3UIa/VLw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9706"; a="132712919"
+X-IronPort-AV: E=Sophos;i="5.75,446,1589266800"; d="scan'208";a="132712919"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2020 10:45:21 -0700
+IronPort-SDR: dF73hKkYAdMOl8t62UAO4d6tIMwb8C/ZgEvxOT1SYbHL8GgT3Em4nc8qDEPYE///bjS1M6RsA8
+ 36Sed7xvJZoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,446,1589266800"; d="scan'208";a="307447331"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by orsmga002.jf.intel.com with ESMTP; 07 Aug 2020 10:45:21 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Fri,  7 Aug 2020 10:46:35 -0700
+Message-Id: <20200807174637.375324-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 4/4] drm/i915/gt: Don't cancel the interrupt shadow
- too early
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Subject: [Intel-gfx] [PATCH 0/2] drm/i915/guc: Update to GuC v45
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,34 +53,35 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We currently want to keep the interrupt enabled until the interrupt after
-which we have no more work to do. This heuristic was broken by us
-kicking the irq-work on adding a completed request without attaching a
-signaler -- hence it appearing to the irq-worker that an interrupt had
-fired when we were idle.
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Fixes: bda4d4db6dd6 ("drm/i915/gt: Replace intel_engine_transfer_stale_breadcrumbs")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Update to the latest GuC firmware and enable by default.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index 4ff2cf493cca..a077ef3d02b4 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -229,7 +229,7 @@ static void signal_irq_work(struct irq_work *work)
- 	 * interrupt draw less ire from other users of the system and tools
- 	 * like powertop.
- 	 */
--	if (b->irq_armed && list_empty(&b->signalers))
-+	if (!signal && b->irq_armed && list_empty(&b->signalers))
- 		__intel_breadcrumbs_disarm_irq(b);
- 
- 	list_for_each_entry_safe(ce, cn, &b->signalers, signal_link) {
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+
+Daniele Ceraolo Spurio (1):
+  drm/i915/uc: turn on GuC/HuC auto mode by default
+
+John Harrison (1):
+  drm/i915/guc: Update to GuC v45.0.0
+
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    |   3 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c       | 125 +++++++----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_abi.h   | 215 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c   | 116 ++++++++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c    |  21 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h  | 110 ++++------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h   |   5 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c     |  27 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h     |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h |   6 +-
+ drivers/gpu/drm/i915/i915_params.h           |   2 +-
+ 11 files changed, 486 insertions(+), 146 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_abi.h
+
 -- 
-2.20.1
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
