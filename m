@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA8B23EE9C
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 16:07:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A24C023EEA6
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Aug 2020 16:08:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E9BE6E13B;
-	Fri,  7 Aug 2020 14:07:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 175E66E8EE;
+	Fri,  7 Aug 2020 14:08:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A3BAE89242;
- Fri,  7 Aug 2020 14:07:24 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5209889242;
+ Fri,  7 Aug 2020 14:08:12 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9DBD0A00E6;
- Fri,  7 Aug 2020 14:07:24 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 50083A00E6;
+ Fri,  7 Aug 2020 14:08:12 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 07 Aug 2020 14:07:24 -0000
-Message-ID: <159680924461.26560.5140895635861729052@emeril.freedesktop.org>
+Date: Fri, 07 Aug 2020 14:08:12 -0000
+Message-ID: <159680929232.26558.16795934629814576878@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200807125440.3419-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200807125440.3419-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/7=5D_drm/i915/gt=3A_Remove_defunc?=
- =?utf-8?q?t_intel=5Fvirtual=5Fengine=5Fget=5Fsibling=28=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/7=5D_drm/i915/gt=3A_Remove_defunct_in?=
+ =?utf-8?q?tel=5Fvirtual=5Fengine=5Fget=5Fsibling=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,19 +54,9 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-f82f8ef253eb drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()
-9d375c4552bf drm/i915/gt: Protect context lifetime with RCU
-9676cd4fcbab drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission
-45d3f0fee88b drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock
-7f54c977c742 drm/i915/gt: Don't cancel the interrupt shadow too early
-435242a104ce drm/i915/gt: Split the breadcrumb spinlock between global and contexts
--:21: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#21: 
-<4>[  416.208555] list_add corruption. prev->next should be next (ffff8881951d5910), but was dead000000000100. (prev=ffff8882781bb870).
-
-total: 0 errors, 1 warnings, 0 checks, 322 lines checked
-cfd370c67224 drm/i915/gt: Free stale request on destroying the virtual engine
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
 
 
 _______________________________________________
