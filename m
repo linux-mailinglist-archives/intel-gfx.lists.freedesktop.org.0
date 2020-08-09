@@ -1,55 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E4023FCF9
-	for <lists+intel-gfx@lfdr.de>; Sun,  9 Aug 2020 08:17:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5987823FD0C
+	for <lists+intel-gfx@lfdr.de>; Sun,  9 Aug 2020 08:49:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1789D6E171;
-	Sun,  9 Aug 2020 06:17:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E11D96E270;
+	Sun,  9 Aug 2020 06:48:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com
- [IPv6:2a00:1450:4864:20::642])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF6E6E171;
- Sun,  9 Aug 2020 06:17:54 +0000 (UTC)
-Received: by mail-ej1-x642.google.com with SMTP id m22so6211699eje.10;
- Sat, 08 Aug 2020 23:17:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=8/WAyXxEK6f4eGf236GZbQc5j4me7n0Ad/X2a4kTwOE=;
- b=g0wkBOA3EmdhKYruxbUmwfZmyVVTTidomJP8brzeZl79rzKBdFEI8mraRU6x8pZqlf
- OMasWBFRtzBR+dXkmerWTSMGVErG+6gCap7t9JAqwsy7SZvwAyvDHYOh29Fo8hXC+C6N
- VkU+xRYgfagEmoUY8iuHEKYtB+GOmRNYTGb8sUJoktf4T6P530ou9X63PDraRWYODKHT
- FAt5M4KU4em8Ppf1hcOU4by0PYNgM66MkWOx+ZJSjqqgBHV6o648IG8e3c02PmV+OGm1
- YfwJ62JXegpiBF0rA1UZppSgk9lC+O1TqsAqx+1YSCbL+HyvK7xTt2+1tBDOnE/z94p6
- uR0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=8/WAyXxEK6f4eGf236GZbQc5j4me7n0Ad/X2a4kTwOE=;
- b=OPsIbN56xtFIqZEmzo47iHyGLlGAlbcdG2Oh4z6/z8SuvnzXg+Yuph4V/N7gqFqRzd
- Ce6yb8gE0dZti17xmrcoC9IaZ53efroQfzqvBUW7NgbQTsyWGD7xHHh06cRP2Ggkr9x8
- MTUX5vvE0hzUFTD49rO1etcFJ6KZh7wrTj05GNo7Z42tE61veaXKbLfNxSPBNjxS9sLM
- A4lTG3nbki7nXlbG52jcAAj6Ekx2eFEsEoYLT8QBveQu6VyBJWSaYTZys+inNTLg7ymM
- dCVc1+IL4/ZWyruXaLjPrvsn0I3Cj7goCIcotXRkO7I61RYm5kSn+ZG6/zTD2P/tHnZw
- R39A==
-X-Gm-Message-State: AOAM530RQzsHy9M0j3/QQWIB9Rj1dDbapWdjW/GAVtH7YxLNdk2e7yIF
- nozC+l1v4sWYcLxB3EZ87KQ=
-X-Google-Smtp-Source: ABdhPJzAWTtG0O3pCQAx7xu92rq1VP07wg1HoGT+dX5bPPDs3LBi5kspOwUUzgtQT2hF3gwlm3mvyA==
-X-Received: by 2002:a17:906:24d0:: with SMTP id
- f16mr15910842ejb.325.1596953873009; 
- Sat, 08 Aug 2020 23:17:53 -0700 (PDT)
-Received: from felia.fritz.box ([2001:16b8:2d48:c300:9164:4bc4:8f8b:2b7d])
- by smtp.gmail.com with ESMTPSA id j1sm5175454edq.58.2020.08.08.23.17.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 08 Aug 2020 23:17:52 -0700 (PDT)
-From: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Sun,  9 Aug 2020 08:17:39 +0200
-Message-Id: <20200809061739.16803-1-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] dma-buf.rst: repair length of title underline
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 966EA6E270;
+ Sun,  9 Aug 2020 06:48:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8F106A7DFD;
+ Sun,  9 Aug 2020 06:48:57 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lukas Bulwahn" <lukas.bulwahn@gmail.com>
+Date: Sun, 09 Aug 2020 06:48:57 -0000
+Message-ID: <159695573755.30398.8053203074171931503@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200809061739.16803-1-lukas.bulwahn@gmail.com>
+In-Reply-To: <20200809061739.16803-1-lukas.bulwahn@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZG1h?=
+ =?utf-8?q?-buf=2Erst=3A_repair_length_of_title_underline?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,52 +38,231 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, linux-rdma@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Jonathan Corbet <corbet@lwn.net>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1297364988=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With commit 72b6ede73623 ("dma-buf.rst: Document why indefinite fences are
-a bad idea"), document generation warns:
+--===============1297364988==
+Content-Type: multipart/alternative;
+ boundary="===============3869416570224354755=="
 
-  Documentation/driver-api/dma-buf.rst:182: \
-  WARNING: Title underline too short.
+--===============3869416570224354755==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Repair length of title underline to remove warning.
+== Series Details ==
 
-Fixes: 72b6ede73623 ("dma-buf.rst: Document why indefinite fences are a bad idea")
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
-Daniel, please pick this minor non-urgent fix to your new documentation.
+Series: dma-buf.rst: repair length of title underline
+URL   : https://patchwork.freedesktop.org/series/80428/
+State : success
 
- Documentation/driver-api/dma-buf.rst | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/Documentation/driver-api/dma-buf.rst b/Documentation/driver-api/dma-buf.rst
-index 100bfd227265..13ea0cc0a3fa 100644
---- a/Documentation/driver-api/dma-buf.rst
-+++ b/Documentation/driver-api/dma-buf.rst
-@@ -179,7 +179,7 @@ DMA Fence uABI/Sync File
-    :internal:
- 
- Indefinite DMA Fences
--~~~~~~~~~~~~~~~~~~~~
-+~~~~~~~~~~~~~~~~~~~~~
- 
- At various times &dma_fence with an indefinite time until dma_fence_wait()
- finishes have been proposed. Examples include:
--- 
-2.17.1
+CI Bug Log - changes from CI_DRM_8861 -> Patchwork_18328
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18328 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:
+    - fi-skl-guc:         [PASS][1] -> [DMESG-WARN][2] ([i915#2203])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - fi-byt-j1900:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4] +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-byt-j1900/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-byt-j1900/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-icl-u2:          [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  
+#### Warnings ####
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#62] / [i915#92]) +2 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (43 -> 37)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8861 -> Patchwork_18328
+
+  CI-20190529: 20190529
+  CI_DRM_8861: bf06cb001cd5b243d35b115c43f47fa11bd27d3b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5765: 9f0977284d54ed37496260988dfcd6d2ad72dd1e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18328: 9e7af991aca443b5baedcae916a70aaed6c0c48d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9e7af991aca4 dma-buf.rst: repair length of title underline
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/index.html
+
+--===============3869416570224354755==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>dma-buf.rst: repair length of title underline</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/80428/">https://patchwork.freedesktop.org/series/80428/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_8861 -&gt; Patchwork_18328</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18328 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-edid:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8861/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18328/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 37)</h2>
+<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_8861 -&gt; Patchwork_18328</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_8861: bf06cb001cd5b243d35b115c43f47fa11bd27d3b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5765: 9f0977284d54ed37496260988dfcd6d2ad72dd1e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18328: 9e7af991aca443b5baedcae916a70aaed6c0c48d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9e7af991aca4 dma-buf.rst: repair length of title underline</p>
+
+</body>
+</html>
+
+--===============3869416570224354755==--
+
+--===============1297364988==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1297364988==--
