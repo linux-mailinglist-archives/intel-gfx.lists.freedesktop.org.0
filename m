@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC8B32411EE
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Aug 2020 22:53:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF02F24129B
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Aug 2020 23:54:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C086E0F7;
-	Mon, 10 Aug 2020 20:53:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A1466E15E;
+	Mon, 10 Aug 2020 21:54:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72DA66E0F7
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Aug 2020 20:53:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22089368-1500050 for multiple; Mon, 10 Aug 2020 21:53:44 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200810180851.2746267-1-matthew.d.roper@intel.com>
-References: <20200810180851.2746267-1-matthew.d.roper@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Aug 2020 21:53:44 +0100
-Message-ID: <159709282441.2955.11306667328253055885@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't try to check max stride for
- disabled/non-existent display
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FDDE6E040;
+ Mon, 10 Aug 2020 21:54:06 +0000 (UTC)
+IronPort-SDR: k/L7Cc/3zxwzWl/vFzmL6ZfRTBQ3ve8MgtJErSxpikN+5VVruYd9FuPc7lkSr+cUwUVgXMWC6V
+ i3uedcOtzMpg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9709"; a="133167702"
+X-IronPort-AV: E=Sophos;i="5.75,458,1589266800"; d="scan'208";a="133167702"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2020 14:54:06 -0700
+IronPort-SDR: PuvagK85VG6fywXATMNutSXGiNgPCrpyuAV6p4allL5dEhZxl3FrpCiV64+d43ovMl9SRb3Iz4
+ MgD2F6ZeOUAw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,458,1589266800"; d="scan'208";a="326644067"
+Received: from caezeany-mobl.amr.corp.intel.com (HELO
+ achrisan-DESK2.amr.corp.intel.com) ([10.254.61.211])
+ by fmsmga002.fm.intel.com with ESMTP; 10 Aug 2020 14:54:05 -0700
+From: Anitha Chrisanthus <anitha.chrisanthus@intel.com>
+To: dri-devel@lists.freedesktop.org, anitha.chrisanthus@intel.com,
+ bob.j.paauwe@intel.com, edmund.j.dea@intel.com
+Date: Mon, 10 Aug 2020 14:53:37 -0700
+Message-Id: <1597096418-28937-1-git-send-email-anitha.chrisanthus@intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [Intel-gfx] [PATCH v6] Add support for KeemBay DRM driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,30 +47,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: daniel.vetter@intel.com, intel-gfx@lists.freedesktop.org, sam@ravnborg.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matt Roper (2020-08-10 19:08:51)
-> Userspace may still create GEM dumb buffers even on platforms with
-> disabled or non-existent display.  When creating dumb buffers we try to
-> check the max fb stride for the platform by looking at the first pipe on
-> the platform.  We previously fixed a crash related to accessing the
-> non-existent PIPE_A in commit 8ac495f624a4 ("drm/i915: Don't oops in
-> dumb_create ioctl if we have no crtcs") but the crash is back as of
-> commit eae3da27ba84 ("drm/i915: Get first crtc instead of PIPE_A crtc")
-> because we now try to iterate over the [uninitialized] crtc list.
+This is a new DRM driver for Intel's KeemBay SOC.
+The SoC couples an ARM Cortex A53 CPU with an Intel
+Movidius VPU.
 
-drm_mode_config_init() is still being called
-i915_driver_probe
-  -> i915_driver_modeset_probe_noirq
-    -> intel_modeset_init_noirq
-      -> intel_mode_config_init
-        -> drm_mode_config_init
-regardless of the status for HAS_DISPLAY or INTEL_DISPLAY_ENABLED. So
-drm_crtc_index(0) should be returning NULL?
--Chris
+This driver is tested with the KMB EVM board which is the refernce baord
+for Keem Bay SOC. The SOC's display pipeline is as follows
+
++--------------+    +---------+    +-----------------------+
+|LCD controller| -> |Mipi DSI | -> |Mipi to HDMI Converter |
++--------------+    +---------+    +-----------------------+
+
+LCD controller and Mipi DSI transmitter are part of the SOC and
+mipi to HDMI converter is ADV7535 for KMB EVM board.
+
+The DRM driver is a basic KMS atomic modesetting display driver and
+has no 2D or 3D graphics.It calls into the ADV bridge driver at
+the connector level.
+
+Only 1080p resolution and single plane is supported at this time.
+The usecase is for debugging video and camera outputs.
+
+Device tree patches are under review here
+https://lore.kernel.org/linux-arm-kernel/20200708175020.194436-1-daniele.alessandrelli@linux.intel.com/T/
+
+Changes since v1:
+- Removed redundant license text, updated license
+- Rearranged include blocks
+- renamed global vars and removed extern in c
+- Used upclassing for dev_private
+- Used drm_dev_init in drm device create
+- minor cleanups
+
+Changes since v2:
+- squashed all commits to a single commit
+- logging changed to drm_info, drm_dbg etc.
+- used devm_drm_dev_alloc()
+- removed commented out sections and general cleanup
+
+Changes since v3:
+- renamed dev_p to kmb
+- moved clocks under kmb_clock, consolidated clk initializations
+- use drmm functions
+- use DRM_GEM_CMA_DRIVER_OPS_VMAP
+- more cleanups
+
+Changes since v4:
+- corrected spellings
+
+Changes since v5:
+- corrected checkpatch warnings/checks
+	-Please ignore checkpatch checks on Camelcase - this is how it is
+	named in the databook
+	- Please ignore checkpatch warnings on misspelled for hsa, dout,
+	widthn etc. - they are spelled as in the databook
+	- Please ignore checkpatch checks on macro arguments reuse - 
+	its confirmed ok
+
+Anitha Chrisanthus (1):
+  drm/kmb: Add support for KeemBay Display
+
+ drivers/gpu/drm/Kconfig         |    2 +
+ drivers/gpu/drm/Makefile        |    1 +
+ drivers/gpu/drm/kmb/Kconfig     |   13 +
+ drivers/gpu/drm/kmb/Makefile    |    2 +
+ drivers/gpu/drm/kmb/kmb_crtc.c  |  217 +++++
+ drivers/gpu/drm/kmb/kmb_crtc.h  |   36 +
+ drivers/gpu/drm/kmb/kmb_drv.c   |  725 ++++++++++++++++
+ drivers/gpu/drm/kmb/kmb_drv.h   |  172 ++++
+ drivers/gpu/drm/kmb/kmb_dsi.c   | 1828 +++++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/kmb/kmb_dsi.h   |  370 ++++++++
+ drivers/gpu/drm/kmb/kmb_plane.c |  519 +++++++++++
+ drivers/gpu/drm/kmb/kmb_plane.h |  124 +++
+ drivers/gpu/drm/kmb/kmb_regs.h  |  748 ++++++++++++++++
+ 13 files changed, 4757 insertions(+)
+ create mode 100644 drivers/gpu/drm/kmb/Kconfig
+ create mode 100644 drivers/gpu/drm/kmb/Makefile
+ create mode 100644 drivers/gpu/drm/kmb/kmb_crtc.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_crtc.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_drv.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_drv.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_dsi.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_dsi.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_plane.c
+ create mode 100644 drivers/gpu/drm/kmb/kmb_plane.h
+ create mode 100644 drivers/gpu/drm/kmb/kmb_regs.h
+
+-- 
+2.7.4
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
