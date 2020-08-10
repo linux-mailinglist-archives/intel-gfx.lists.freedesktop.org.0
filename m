@@ -2,33 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F8B2403A9
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Aug 2020 10:56:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4A3C2403B7
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Aug 2020 10:59:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66F736E3AA;
-	Mon, 10 Aug 2020 08:56:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF4B16E3B2;
+	Mon, 10 Aug 2020 08:59:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 169226E398;
- Mon, 10 Aug 2020 08:56:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F4046E3B2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Aug 2020 08:59:03 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22081672-1500050 for multiple; Mon, 10 Aug 2020 09:56:34 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200810082242.GH7444@platvala-desk.ger.corp.intel.com>
-References: <20200806144529.140512-1-chris@chris-wilson.co.uk>
- <20200810080807.GA3956@zkempczy-mobl2>
- <20200810082242.GH7444@platvala-desk.ger.corp.intel.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22081695-1500050 
+ for multiple; Mon, 10 Aug 2020 09:58:55 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Petri Latvala <petri.latvala@intel.com>, Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-Date: Mon, 10 Aug 2020 09:56:34 +0100
-Message-ID: <159704979478.6812.5770687018171262759@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] lib: Use unsigned gen for
- forward compatible tests
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 10 Aug 2020 09:58:53 +0100
+Message-Id: <20200810085855.28433-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Signal cancelled requests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,30 +36,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBQZXRyaSBMYXR2YWxhICgyMDIwLTA4LTEwIDA5OjIyOjQyKQo+IE9uIE1vbiwgQXVn
-IDEwLCAyMDIwIGF0IDEwOjA5OjQ2QU0gKzAyMDAsIFpiaWduaWV3IEtlbXBjennFhHNraSB3cm90
-ZToKPiA+IE9uIFRodSwgQXVnIDA2LCAyMDIwIGF0IDAzOjQ1OjI5UE0gKzAxMDAsIENocmlzIFdp
-bHNvbiB3cm90ZToKPiA+ID4gVW5rbm93biwgc28gZnV0dXJlLCBnZW4gYXJlIG1hcmtlZCBhcyAt
-MSB3aGljaCB3ZSB3YW50IHRvIHRyZWF0IGFzIC0xdQo+ID4gPiBzbyB0aGF0IGFsd2F5cyBwYXNz
-ID49IGdlbiBjaGVja3MuCj4gPiAKPiA+IERvIHdlIHJlYWxseSB3YW50IHRvIGVuYWJsZSB0aGUg
-dGVzdHMgd2hlbiBwbGF0Zm9ybSBpcyBub3QgZnVsbHkKPiA+IGVuYWJsZWQgaW4gSUdUPwo+IAo+
-IFdoYXQgZG9lcyAiZnVsbHkgZW5hYmxlZCIgbWVhbj8KPiAKPiBJZiB0aGUgdGVzdCBpcyBjaGVj
-a2luZyBmb3IganVzdCAiZ2VuID4geCIsIHRoZSB0ZXN0IHNob3VsZCB3b3JrCj4gYWxyZWFkeS4g
-SWYgdGhlIHRlc3QgaXMgYWxzbyBjaGVja2luZyBmb3IgImdlbiA8IHkiIHRoZW4gd2UgZ2V0IGEK
-PiBzcHVyaW91cyBmYWlsdXJlLCBidXQgZWl0aGVyIHdheSBDSSBpcyBnb2luZyB0byB0ZWxsIHlv
-dSB0aGF0Cj4gc29tZXRoaW5nIGlzIG5vdCBwYXNzaW5nLiBXaXRob3V0IHRoaXMgaXQgd2lsbCBi
-ZSBhIHNraXAsIGFsb25nIHdpdGgKPiBza2lwcGluZyBpbiB0aGUgY2FzZSB0aGF0IHNob3VsZCBq
-dXN0IHdvcmsgYWxyZWFkeSB3aXRob3V0IGFjdHVhbCB0ZXN0Cj4gY2hhbmdlcy4KCkFuZCBmb3Ig
-YSB2ZXJ5IGxhcmdlIGZyYWN0aW9uIG9mIHRlc3RzLCB0aGUgYmVoYXZpb3VyIG9mIG5leHQgZ2Vu
-CmZvbGxvd3MgY3VycmVudCBnZW4uIFRob3NlIHRoYXQgZG8gbm90IGFyZSB2ZXJ5IGludGVyZXN0
-aW5nLCBhbmQgd2lsbCBiZQphIG11Y2ggc21hbGxlciBudW1iZXIgdGhhbiB0aGUgdm9sdW1lIG9m
-IHNraXBzIHdlIGhhdmUgdG8gcHJvY2Vzcy4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+After making the requests on an engine as cancelled upon wedging, send
+any signals for their completions.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c             | 1 +
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 417f6b0c6c61..4c7130580966 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4338,6 +4338,7 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
+ 	/* Mark all executing requests as skipped. */
+ 	list_for_each_entry(rq, &engine->active.requests, sched.link)
+ 		mark_eio(rq);
++	intel_engine_signal_breadcrumbs(engine);
+ 
+ 	/* Flush the queued requests to the timeline list (for retiring). */
+ 	while ((rb = rb_first_cached(&execlists->queue))) {
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index a3b10f3c83eb..2326a6383dd5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -444,6 +444,7 @@ static void reset_cancel(struct intel_engine_cs *engine)
+ 		i915_request_set_error_once(request, -EIO);
+ 		i915_request_mark_complete(request);
+ 	}
++	intel_engine_signal_breadcrumbs(engine);
+ 
+ 	/* Remaining _unready_ requests will be nop'ed when submitted */
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
