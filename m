@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 681B42412D4
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Aug 2020 00:09:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14FA624133A
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Aug 2020 00:30:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30F986E47E;
-	Mon, 10 Aug 2020 22:09:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2017E6E055;
+	Mon, 10 Aug 2020 22:30:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 74DE76E47E;
- Mon, 10 Aug 2020 22:09:01 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 19C0889D99;
+ Mon, 10 Aug 2020 22:30:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6D65CA47DB;
- Mon, 10 Aug 2020 22:09:01 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 09472A7DFB;
+ Mon, 10 Aug 2020 22:30:16 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Anitha Chrisanthus" <anitha.chrisanthus@intel.com>
-Date: Mon, 10 Aug 2020 22:09:01 -0000
-Message-ID: <159709734141.17063.14916395933509279660@emeril.freedesktop.org>
+Date: Mon, 10 Aug 2020 22:30:16 -0000
+Message-ID: <159709861600.17064.8988927573214286593@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <1597096418-28937-1-git-send-email-anitha.chrisanthus@intel.com>
 In-Reply-To: <1597096418-28937-1-git-send-email-anitha.chrisanthus@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/kmb=3A_Add_support_for_KeemBay_Display_=28rev4=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/kmb=3A_Add_support_for_KeemBay_Display_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,331 +40,255 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0834468091=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+
+--===============0834468091==
+Content-Type: multipart/alternative;
+ boundary="===============1365169358882162015=="
+
+--===============1365169358882162015==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
 Series: drm/kmb: Add support for KeemBay Display (rev4)
 URL   : https://patchwork.freedesktop.org/series/79615/
-State : warning
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
+CI Bug Log - changes from CI_DRM_8866 -> Patchwork_18336
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18336 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-x1275:       [PASS][1] -> [DMESG-WARN][2] ([i915#62] / [i915#92] / [i915#95])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:
+    - fi-skl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#2203])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-byt-j1900:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6] +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [INCOMPLETE][7] ([i915#2276]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - {fi-kbl-7560u}:     [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +5 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
+  [i915#2276]: https://gitlab.freedesktop.org/drm/intel/issues/2276
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (44 -> 37)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8866 -> Patchwork_18336
+
+  CI-20190529: 20190529
+  CI_DRM_8866: 14e46145f8add798ffc8d63a53e803749ccd3286 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5766: fc9f95086fc23f7f2226f7603241fbad3a214ee1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18336: 7aaa226cd61cc1df04614bad7468774f50ff06d1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
 7aaa226cd61c drm/kmb: Add support for KeemBay Display
--:58: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#58: 
-new file mode 100644
 
--:699: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_CFG>
-#699: FILE: drivers/gpu/drm/kmb/kmb_drv.c:345:
-+						    LCD_LAYERn_DMA_CFG
-
--:1024: WARNING:UNDOCUMENTED_DT_STRING: DT compatible string "intel,kmb_display" appears un-documented -- check ./Documentation/devicetree/bindings/
-#1024: FILE: drivers/gpu/drm/kmb/kmb_drv.c:670:
-+	{.compatible = "intel,kmb_display"},
-
--:1120: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#1120: FILE: drivers/gpu/drm/kmb/kmb_drv.h:35:
-+	spinlock_t			irq_lock;
-
--:1773: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_FGn_SECTo_PH>
-#1773: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:510:
-+		       (MIPI_TXm_HS_FGn_SECTo_PH(ctrl_no, frame_id, section)),
-
--:1785: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_FGn_SECT_UNPACKED_BYTES0>
-#1785: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:522:
-+	    MIPI_TXm_HS_FGn_SECT_UNPACKED_BYTES0(ctrl_no,
-
--:1794: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_FGn_SECTo_LINE_CFG>
-#1794: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:531:
-+	reg_adr = MIPI_TXm_HS_FGn_SECTo_LINE_CFG(ctrl_no, frame_id, section);
-
--:1871: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_FGn_NUM_LINES>
-#1871: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:608:
-+	reg_adr = MIPI_TXm_HS_FGn_NUM_LINES(ctrl_no, frame_gen);
-
--:1881: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_VSYNC_WIDTHn>
-#1881: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:618:
-+	reg_adr = MIPI_TXm_HS_VSYNC_WIDTHn(ctrl_no, frame_gen / 2);
-
--:1885: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_V_BACKPORCHESn>
-#1885: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:622:
-+	reg_adr = MIPI_TXm_HS_V_BACKPORCHESn(ctrl_no, frame_gen / 2);
-
--:1889: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_V_FRONTPORCHESn>
-#1889: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:626:
-+	reg_adr = MIPI_TXm_HS_V_FRONTPORCHESn(ctrl_no, frame_gen / 2);
-
--:1893: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_V_ACTIVEn>
-#1893: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:630:
-+	reg_adr = MIPI_TXm_HS_V_ACTIVEn(ctrl_no, frame_gen / 2);
-
--:1897: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_HSYNC_WIDTHn>
-#1897: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:634:
-+	reg_adr = MIPI_TXm_HS_HSYNC_WIDTHn(ctrl_no, frame_gen);
-
--:1902: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_H_BACKPORCHn>
-#1902: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:639:
-+	reg_adr = MIPI_TXm_HS_H_BACKPORCHn(ctrl_no, frame_gen);
-
--:1907: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_H_FRONTPORCHn>
-#1907: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:644:
-+	reg_adr = MIPI_TXm_HS_H_FRONTPORCHn(ctrl_no, frame_gen);
-
--:1912: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_H_ACTIVEn>
-#1912: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:649:
-+	reg_adr = MIPI_TXm_HS_H_ACTIVEn(ctrl_no, frame_gen);
-
--:1921: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_LLP_HSYNC_WIDTHn>
-#1921: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:658:
-+	reg_adr = MIPI_TXm_HS_LLP_HSYNC_WIDTHn(ctrl_no, frame_gen);
-
--:1925: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_LLP_H_BACKPORCHn>
-#1925: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:662:
-+	reg_adr = MIPI_TXm_HS_LLP_H_BACKPORCHn(ctrl_no, frame_gen);
-
--:1929: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_LLP_H_FRONTPORCHn>
-#1929: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:666:
-+	reg_adr = MIPI_TXm_HS_LLP_H_FRONTPORCHn(ctrl_no, frame_gen);
-
--:1993: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_MC_FIFO_CTRL_EN>
-#1993: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:730:
-+	kmb_set_bit_mipi(kmb, MIPI_TXm_HS_MC_FIFO_CTRL_EN(ctrl_no),
-
--:2050: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_SYNC_CFG>
-#2050: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:787:
-+	kmb_write_mipi(kmb, MIPI_TXm_HS_SYNC_CFG(ctrl_no), sync_cfg);
-
--:2051: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_CTRL>
-#2051: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:788:
-+	kmb_write_mipi(kmb, MIPI_TXm_HS_CTRL(ctrl_no), ctrl);
-
--:2062: CHECK:CAMELCASE: Avoid CamelCase: <TP_SEL_VCm>
-#2062: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:799:
-+	val = TP_SEL_VCm(vc, tp_sel);
-
--:2065: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_TEST_PAT_COLOR0>
-#2065: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:802:
-+	kmb_write_mipi(kmb, MIPI_TXm_HS_TEST_PAT_COLOR0(ctrl_no), color0);
-
--:2066: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_TEST_PAT_COLOR1>
-#2066: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:803:
-+	kmb_write_mipi(kmb, MIPI_TXm_HS_TEST_PAT_COLOR1(ctrl_no), color1);
-
--:2069: CHECK:CAMELCASE: Avoid CamelCase: <TP_EN_VCm>
-#2069: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:806:
-+	val |= TP_EN_VCm(vc);
-
--:2070: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_TEST_PAT_CTRL>
-#2070: FILE: drivers/gpu/drm/kmb/kmb_dsi.c:807:
-+	kmb_write_mipi(kmb, MIPI_TXm_HS_TEST_PAT_CTRL(ctrl_no), val);
-
--:3688: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_COEFF11>
-#3688: FILE: drivers/gpu/drm/kmb/kmb_plane.c:215:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF11(plane_id), csc_coef_lcd[0]);
-
--:3689: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_COEFF12>
-#3689: FILE: drivers/gpu/drm/kmb/kmb_plane.c:216:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF12(plane_id), csc_coef_lcd[1]);
-
--:3690: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_COEFF13>
-#3690: FILE: drivers/gpu/drm/kmb/kmb_plane.c:217:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF13(plane_id), csc_coef_lcd[2]);
-
--:3691: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_COEFF21>
-#3691: FILE: drivers/gpu/drm/kmb/kmb_plane.c:218:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF21(plane_id), csc_coef_lcd[3]);
-
--:3692: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_COEFF22>
-#3692: FILE: drivers/gpu/drm/kmb/kmb_plane.c:219:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF22(plane_id), csc_coef_lcd[4]);
-
--:3693: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_COEFF23>
-#3693: FILE: drivers/gpu/drm/kmb/kmb_plane.c:220:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF23(plane_id), csc_coef_lcd[5]);
-
--:3694: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_COEFF31>
-#3694: FILE: drivers/gpu/drm/kmb/kmb_plane.c:221:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF31(plane_id), csc_coef_lcd[6]);
-
--:3695: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_COEFF32>
-#3695: FILE: drivers/gpu/drm/kmb/kmb_plane.c:222:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF32(plane_id), csc_coef_lcd[7]);
-
--:3696: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_COEFF33>
-#3696: FILE: drivers/gpu/drm/kmb/kmb_plane.c:223:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF33(plane_id), csc_coef_lcd[8]);
-
--:3697: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_OFF1>
-#3697: FILE: drivers/gpu/drm/kmb/kmb_plane.c:224:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_OFF1(plane_id), csc_coef_lcd[9]);
-
--:3698: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_OFF2>
-#3698: FILE: drivers/gpu/drm/kmb/kmb_plane.c:225:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_OFF2(plane_id), csc_coef_lcd[10]);
-
--:3699: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CSC_OFF3>
-#3699: FILE: drivers/gpu/drm/kmb/kmb_plane.c:226:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CSC_OFF3(plane_id), csc_coef_lcd[11]);
-
--:3748: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_LEN>
-#3748: FILE: drivers/gpu/drm/kmb/kmb_plane.c:275:
-+	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LEN(plane_id), dma_len);
-
--:3749: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_LEN_SHADOW>
-#3749: FILE: drivers/gpu/drm/kmb/kmb_plane.c:276:
-+	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LEN_SHADOW(plane_id), dma_len);
-
--:3750: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_LINE_VSTRIDE>
-#3750: FILE: drivers/gpu/drm/kmb/kmb_plane.c:277:
-+	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LINE_VSTRIDE(plane_id),
-
--:3752: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_LINE_WIDTH>
-#3752: FILE: drivers/gpu/drm/kmb/kmb_plane.c:279:
-+	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LINE_WIDTH(plane_id),
-
--:3757: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_START_ADDR>
-#3757: FILE: drivers/gpu/drm/kmb/kmb_plane.c:284:
-+	kmb_write_lcd(kmb, LCD_LAYERn_DMA_START_ADDR(plane_id),
-
--:3763: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_CB_LINE_VSTRIDE>
-#3763: FILE: drivers/gpu/drm/kmb/kmb_plane.c:290:
-+		kmb_write_lcd(kmb, LCD_LAYERn_DMA_CB_LINE_VSTRIDE(plane_id),
-
--:3765: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_CB_LINE_WIDTH>
-#3765: FILE: drivers/gpu/drm/kmb/kmb_plane.c:292:
-+		kmb_write_lcd(kmb, LCD_LAYERn_DMA_CB_LINE_WIDTH(plane_id),
-
--:3773: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_START_CR_ADR>
-#3773: FILE: drivers/gpu/drm/kmb/kmb_plane.c:300:
-+				      LCD_LAYERn_DMA_START_CR_ADR(plane_id),
-
--:3777: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_START_CB_ADR>
-#3777: FILE: drivers/gpu/drm/kmb/kmb_plane.c:304:
-+				      LCD_LAYERn_DMA_START_CB_ADR(plane_id),
-
--:3782: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_CR_LINE_VSTRIDE>
-#3782: FILE: drivers/gpu/drm/kmb/kmb_plane.c:309:
-+				      LCD_LAYERn_DMA_CR_LINE_VSTRIDE(plane_id),
-
--:3786: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_CR_LINE_WIDTH>
-#3786: FILE: drivers/gpu/drm/kmb/kmb_plane.c:313:
-+				      LCD_LAYERn_DMA_CR_LINE_WIDTH(plane_id),
-
--:3805: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_WIDTH>
-#3805: FILE: drivers/gpu/drm/kmb/kmb_plane.c:332:
-+	kmb_write_lcd(kmb, LCD_LAYERn_WIDTH(plane_id), src_w - 1);
-
--:3806: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_HEIGHT>
-#3806: FILE: drivers/gpu/drm/kmb/kmb_plane.c:333:
-+	kmb_write_lcd(kmb, LCD_LAYERn_HEIGHT(plane_id), src_h - 1);
-
--:3807: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_COL_START>
-#3807: FILE: drivers/gpu/drm/kmb/kmb_plane.c:334:
-+	kmb_write_lcd(kmb, LCD_LAYERn_COL_START(plane_id), crtc_x);
-
--:3808: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_ROW_START>
-#3808: FILE: drivers/gpu/drm/kmb/kmb_plane.c:335:
-+	kmb_write_lcd(kmb, LCD_LAYERn_ROW_START(plane_id), crtc_y);
-
--:3819: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CFG>
-#3819: FILE: drivers/gpu/drm/kmb/kmb_plane.c:346:
-+	kmb_write_lcd(kmb, LCD_LAYERn_CFG(plane_id), val);
-
--:4323: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_SCALE_CFG>
-#4323: FILE: drivers/gpu/drm/kmb/kmb_regs.h:195:
-+#define LCD_LAYERn_SCALE_CFG(N)		(LCD_LAYER0_SCALE_CFG + (0x400 * (N)))
-
--:4325: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_ALPHA>
-#4325: FILE: drivers/gpu/drm/kmb/kmb_regs.h:197:
-+#define LCD_LAYERn_ALPHA(N)		(LCD_LAYER0_ALPHA + (0x400 * (N)))
-
--:4327: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_INV_COLOUR_LS>
-#4327: FILE: drivers/gpu/drm/kmb/kmb_regs.h:199:
-+#define LCD_LAYERn_INV_COLOUR_LS(N)	(LCD_LAYER0_INV_COLOUR_LS + \
-
--:4330: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_INV_COLOUR_MS>
-#4330: FILE: drivers/gpu/drm/kmb/kmb_regs.h:202:
-+#define LCD_LAYERn_INV_COLOUR_MS(N)	(LCD_LAYER0_INV_COLOUR_MS + \
-
--:4333: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_TRANS_COLOUR_LS>
-#4333: FILE: drivers/gpu/drm/kmb/kmb_regs.h:205:
-+#define LCD_LAYERn_TRANS_COLOUR_LS(N)	(LCD_LAYER0_TRANS_COLOUR_LS + \
-
--:4336: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_TRANS_COLOUR_MS>
-#4336: FILE: drivers/gpu/drm/kmb/kmb_regs.h:208:
-+#define LCD_LAYERn_TRANS_COLOUR_MS(N)	(LCD_LAYER0_TRANS_COLOUR_MS + \
-
--:4396: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_START_SHADOW>
-#4396: FILE: drivers/gpu/drm/kmb/kmb_regs.h:268:
-+#define LCD_LAYERn_DMA_START_SHADOW(N)		(LCD_LAYER0_DMA_START_SHADOW \
-
--:4405: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_STATUS>
-#4405: FILE: drivers/gpu/drm/kmb/kmb_regs.h:277:
-+#define LCD_LAYERn_DMA_STATUS(N)		(LCD_LAYER0_DMA_STATUS + \
-
--:4414: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_FIFO_STATUS>
-#4414: FILE: drivers/gpu/drm/kmb/kmb_regs.h:286:
-+#define LCD_LAYERn_DMA_FIFO_STATUS(N)		(LCD_LAYER0_DMA_FIFO_STATUS + \
-
--:4417: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_CFG2>
-#4417: FILE: drivers/gpu/drm/kmb/kmb_regs.h:289:
-+#define LCD_LAYERn_CFG2(N)			(LCD_LAYER0_CFG2 + (0x400 * (N)))
-
--:4422: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_START_CB_SHADOW>
-#4422: FILE: drivers/gpu/drm/kmb/kmb_regs.h:294:
-+#define LCD_LAYERn_DMA_START_CB_SHADOW(N)	(LCD_LAYER0_DMA_START_CB_SHADOW\
-
--:4434: CHECK:CAMELCASE: Avoid CamelCase: <LCD_LAYERn_DMA_START_CR_SHADOW>
-#4434: FILE: drivers/gpu/drm/kmb/kmb_regs.h:306:
-+#define LCD_LAYERn_DMA_START_CR_SHADOW(N)	\
-
--:4649: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_MC_FIFO_CHAN_ALLOCn>
-#4649: FILE: drivers/gpu/drm/kmb/kmb_regs.h:521:
-+#define   MIPI_TXm_HS_MC_FIFO_CHAN_ALLOCn(M, N)	\
-
--:4652: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'vc' - possible side-effects?
-#4652: FILE: drivers/gpu/drm/kmb/kmb_regs.h:524:
-+#define   SET_MC_FIFO_CHAN_ALLOC(dev, ctrl, vc, sz)	\
-+		kmb_write_bits_mipi(dev, \
-+				MIPI_TXm_HS_MC_FIFO_CHAN_ALLOCn(ctrl, \
-+				(vc) / 2), ((vc) % 2) * 16, 16, sz)
-
--:4658: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TXm_HS_MC_FIFO_RTHRESHOLDn>
-#4658: FILE: drivers/gpu/drm/kmb/kmb_regs.h:530:
-+#define   MIPI_TXm_HS_MC_FIFO_RTHRESHOLDn(M, N)	\
-
--:4661: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'vc' - possible side-effects?
-#4661: FILE: drivers/gpu/drm/kmb/kmb_regs.h:533:
-+#define   SET_MC_FIFO_RTHRESHOLD(dev, ctrl, vc, th)	\
-+	kmb_write_bits_mipi(dev, MIPI_TXm_HS_MC_FIFO_RTHRESHOLDn(ctrl, \
-+				(vc) / 2), ((vc) % 2) * 16, 16, th)
-
--:4699: CHECK:CAMELCASE: Avoid CamelCase: <MIPI_TX_HS_IRQ_STATUSm>
-#4699: FILE: drivers/gpu/drm/kmb/kmb_regs.h:571:
-+#define   MIPI_TX_HS_IRQ_STATUSm(M)		(MIPI_TX_HS_IRQ_STATUS + \
-
--:4807: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dphy' - possible side-effects?
-#4807: FILE: drivers/gpu/drm/kmb/kmb_regs.h:679:
-+#define   SET_DPHY_FREQ_CTRL0_3(dev, dphy, val)	\
-+			kmb_write_bits_mipi(dev, DPHY_FREQ_CTRL0_3 \
-+			+ (((dphy) / 4) * 4), (dphy % 4) * 8, 6, val)
-
--:4815: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dphy' - possible side-effects?
-#4815: FILE: drivers/gpu/drm/kmb/kmb_regs.h:687:
-+#define	  GET_STOPSTATE_DATA(dev, dphy)		\
-+			(((kmb_read_mipi(dev, MIPI_DPHY_STAT0_3 + \
-+					 ((dphy) / 4) * 4)) >> \
-+					 (((dphy % 4) * 8) + 4)) & 0x03)
-
-total: 0 errors, 2 warnings, 72 checks, 4769 lines checked
-
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/index.html
+
+--===============1365169358882162015==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/kmb: Add support for KeemBay Display (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/79615/">https://patchwork.freedesktop.org/series/79615/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_8866 -&gt; Patchwork_18336</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18336 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-kbl-x1275/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-kbl-x1275/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-icl-y/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2276">i915#2276</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-icl-y/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8866/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18336/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +5 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 37)</h2>
+<p>Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_8866 -&gt; Patchwork_18336</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_8866: 14e46145f8add798ffc8d63a53e803749ccd3286 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5766: fc9f95086fc23f7f2226f7603241fbad3a214ee1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18336: 7aaa226cd61cc1df04614bad7468774f50ff06d1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>7aaa226cd61c drm/kmb: Add support for KeemBay Display</p>
+
+</body>
+</html>
+
+--===============1365169358882162015==--
+
+--===============0834468091==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0834468091==--
