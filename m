@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE69E2403B9
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Aug 2020 10:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D91D62403DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Aug 2020 11:12:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA376E398;
-	Mon, 10 Aug 2020 08:59:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 599B96E3BC;
+	Mon, 10 Aug 2020 09:12:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F7E06E398
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Aug 2020 08:59:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22081697-1500050 
- for multiple; Mon, 10 Aug 2020 09:58:56 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Aug 2020 09:58:55 +0100
-Message-Id: <20200810085855.28433-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200810085855.28433-1-chris@chris-wilson.co.uk>
-References: <20200810085855.28433-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5D6326E3BB;
+ Mon, 10 Aug 2020 09:12:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 57368A73C9;
+ Mon, 10 Aug 2020 09:12:06 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Retire cancelled requests on
- unload
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 10 Aug 2020 09:12:06 -0000
+Message-ID: <159705072632.17061.6106775320341040693@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200810085855.28433-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200810085855.28433-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/3=5D_drm/i915/gt=3A_Signal_cancelled_?=
+ =?utf-8?q?requests?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,45 +39,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we manage to hit the intel_gt_set_wedged_on_fini() while active, i.e.
-module unload during a stress test, we may cancel the requests but not
-clean up. This leads to a slow module unload as we wait for something or
-other to trigger the retirement flushing. Instead if we explicitly
-cancel then cleanup on an active unload, it should be instant.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_reset.c | 2 ++
- 1 file changed, 2 insertions(+)
+Series: series starting with [1/3] drm/i915/gt: Signal cancelled requests
+URL   : https://patchwork.freedesktop.org/series/80459/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index ac36b67fb46b..4e5e13dc95da 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -19,6 +19,7 @@
- #include "intel_engine_pm.h"
- #include "intel_gt.h"
- #include "intel_gt_pm.h"
-+#include "intel_gt_requests.h"
- #include "intel_reset.h"
- 
- #include "uc/intel_guc.h"
-@@ -1370,6 +1371,7 @@ void intel_gt_set_wedged_on_fini(struct intel_gt *gt)
- {
- 	intel_gt_set_wedged(gt);
- 	set_bit(I915_WEDGED_ON_FINI, &gt->reset.flags);
-+	intel_gt_retire_requests(gt); /* cleanup any wedged requests */
- }
- 
- void intel_gt_init_reset(struct intel_gt *gt)
--- 
-2.20.1
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
+
 
 _______________________________________________
 Intel-gfx mailing list
