@@ -2,45 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DDDE240647
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Aug 2020 14:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3823E240659
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Aug 2020 15:06:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 053F289DFC;
-	Mon, 10 Aug 2020 12:58:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2A456E0D5;
+	Mon, 10 Aug 2020 13:06:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E076989DFC
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Aug 2020 12:58:46 +0000 (UTC)
-IronPort-SDR: oNLjJOTEMqUWsmU0LIa349+F9OkMVOReAvt3LIJySJI8BFU5SKbE2vC5zkjOsTGccFmg+TAWht
- BPJxBI8XBf+A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9708"; a="217863990"
-X-IronPort-AV: E=Sophos;i="5.75,457,1589266800"; d="scan'208";a="217863990"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2020 05:58:46 -0700
-IronPort-SDR: fbn9HyMIBARpRVrqRT2GG1EcPUkfr0ab4aMqNtExed6t6PywdZYYdD1iamA99ydLpv8Qz5rAW+
- Cc/vaFITH9NQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,457,1589266800"; d="scan'208";a="317342598"
-Received: from chadjitt-mobl1.ger.corp.intel.com (HELO [10.249.44.177])
- ([10.249.44.177])
- by fmsmga004.fm.intel.com with ESMTP; 10 Aug 2020 05:58:45 -0700
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-References: <20200810103103.303818-1-maarten.lankhorst@linux.intel.com>
- <20200810103103.303818-10-maarten.lankhorst@linux.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <aff78ecb-0c8a-21f6-e06d-873ea54f027c@linux.intel.com>
-Date: Mon, 10 Aug 2020 14:58:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4C2D6E421
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Aug 2020 13:06:24 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id g8so7569765wmk.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Aug 2020 06:06:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to; bh=GPx3S/8jhM90DHfD4TRK0ne1wHxOQ88UPQC+FKKE7b4=;
+ b=ZJTdwcMw05cWS5PqS2LysIVEc5cxxTh/xM1RqHbECyfWRIXZvCen0clWxvPs6VsL8q
+ Cq6EQCAbihLLjPKPJyDKllfTFcwVKAcaBSZfEd8ufk46Z2BFSR46ol4PLs7U8qV3LRsD
+ Jlxb5d3xrm9mAiALhf8zqBuK3j/akqDOrDtQs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :content-transfer-encoding:in-reply-to;
+ bh=GPx3S/8jhM90DHfD4TRK0ne1wHxOQ88UPQC+FKKE7b4=;
+ b=pnqEMFtgbvbEv0gLQSGsjYSTuKSRJpFBymRbMjEn6KlsxECsLOfgULH8OUhjkaDFGE
+ UM1bLIjBx0H7OPs3pdN1LANTUw1duclY2Kv0smiUa5Q+1dt3XMI4G+UxgtO+h18/Wqu1
+ WJTVOIDwFJ4oVnDzZcyfht7aJaBL3Ysyx1D8uegQ9qbx/tFiLxZCXg59sUUOEJMz5OtW
+ irlJc4Pu+b9y4bRkoURGSmnX6xUnh8hDFnEzvJn9GCuXicym+jjZmI1h/Skfw+uqA+3O
+ mRuI74LhhaFM5+ge7Ax0UvK3wnd1tGomafs7eMR1LU5FN+piTPZNSAnH8kJFZI5toIa0
+ FcIQ==
+X-Gm-Message-State: AOAM531nW+NvUC4KCFxNXsNOa5UtlAOntnsjdIAKnpZkGCusq/mS1R/T
+ a8cMSVTQcXaeG+C2FGojoSm0ag==
+X-Google-Smtp-Source: ABdhPJyEBEPA21RLrPg4igFyKps9/jMj+ZOxleXUovW4dpHkDIerMq8VNi+ipVYxHqvklkBZYu8Xbw==
+X-Received: by 2002:a7b:c954:: with SMTP id i20mr27324020wml.189.1597064783265; 
+ Mon, 10 Aug 2020 06:06:23 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id p6sm22227267wmg.0.2020.08.10.06.06.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 10 Aug 2020 06:06:22 -0700 (PDT)
+Date: Mon, 10 Aug 2020 15:06:20 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: christian.koenig@amd.com
+Message-ID: <20200810130620.GS2352366@phenom.ffwll.local>
+Mail-Followup-To: christian.koenig@amd.com,
+ Lukas Bulwahn <lukas.bulwahn@gmail.com>, linux-doc@vger.kernel.org,
+ linux-rdma@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Jonathan Corbet <corbet@lwn.net>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ dri-devel@lists.freedesktop.org,
+ Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
+References: <20200809061739.16803-1-lukas.bulwahn@gmail.com>
+ <7d434810-79bd-89a3-18f8-c5c2a2524822@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200810103103.303818-10-maarten.lankhorst@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 09/24] drm/i915: make lockdep slightly
- happier about execbuf.
+Content-Disposition: inline
+In-Reply-To: <7d434810-79bd-89a3-18f8-c5c2a2524822@gmail.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH] dma-buf.rst: repair length of title
+ underline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,103 +74,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-doc@vger.kernel.org, linux-rdma@vger.kernel.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Jonathan Corbet <corbet@lwn.net>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ dri-devel@lists.freedesktop.org, Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 10-08-2020 om 12:30 schreef Maarten Lankhorst:
-> As soon as we install fences, we should stop allocating memory
-> in order to prevent any potential deadlocks.
->
-> This is required later on, when we start adding support for
-> dma-fence annotations, and also required for userptr.
-This patch causes the dmesg-fail in gem_busy, can be dropped for now, will investigate what's going wrong.
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 18 ++++++++++++------
->  drivers/gpu/drm/i915/i915_vma.c                |  8 +++++---
->  drivers/gpu/drm/i915/i915_vma.h                |  3 +++
->  3 files changed, 20 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 5d08ce71f341..12397fbc0971 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -48,11 +48,12 @@ enum {
->  #define DBG_FORCE_RELOC 0 /* choose one of the above! */
->  };
->  
-> -#define __EXEC_OBJECT_HAS_PIN		BIT(31)
-> -#define __EXEC_OBJECT_HAS_FENCE		BIT(30)
-> -#define __EXEC_OBJECT_NEEDS_MAP		BIT(29)
-> -#define __EXEC_OBJECT_NEEDS_BIAS	BIT(28)
-> -#define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 28) /* all of the above */
-> +/* __EXEC_OBJECT_NO_RESERVE is BIT(31), defined in i915_vma.h */
-> +#define __EXEC_OBJECT_HAS_PIN		BIT(30)
-> +#define __EXEC_OBJECT_HAS_FENCE		BIT(29)
-> +#define __EXEC_OBJECT_NEEDS_MAP		BIT(28)
-> +#define __EXEC_OBJECT_NEEDS_BIAS	BIT(27)
-> +#define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 27) /* all of the above + */
->  #define __EXEC_OBJECT_RESERVED (__EXEC_OBJECT_HAS_PIN | __EXEC_OBJECT_HAS_FENCE)
->  
->  #define __EXEC_HAS_RELOC	BIT(31)
-> @@ -2094,7 +2095,8 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
->  		}
->  
->  		if (err == 0)
-> -			err = i915_vma_move_to_active(vma, eb->request, flags);
-> +			err = i915_vma_move_to_active(vma, eb->request,
-> +						      flags | __EXEC_OBJECT_NO_RESERVE);
->  	}
->  
->  	if (unlikely(err))
-> @@ -2291,6 +2293,10 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
->  	if (err)
->  		goto err_commit;
->  
-> +	err = dma_resv_reserve_shared(shadow->resv, 1);
-> +	if (err)
-> +		goto err_commit;
-> +
->  	/* Wait for all writes (and relocs) into the batch to complete */
->  	err = i915_sw_fence_await_reservation(&pw->base.chain,
->  					      pw->batch->resv, NULL, false,
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index c6bf04ca2032..8066f167d6b9 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1227,9 +1227,11 @@ int i915_vma_move_to_active(struct i915_vma *vma,
->  		obj->write_domain = I915_GEM_DOMAIN_RENDER;
->  		obj->read_domains = 0;
->  	} else {
-> -		err = dma_resv_reserve_shared(vma->resv, 1);
-> -		if (unlikely(err))
-> -			return err;
-> +		if (!(flags & __EXEC_OBJECT_NO_RESERVE)) {
-> +			err = dma_resv_reserve_shared(vma->resv, 1);
-> +			if (unlikely(err))
-> +				return err;
-> +		}
->  
->  		dma_resv_add_shared_fence(vma->resv, &rq->fence);
->  		obj->write_domain = 0;
-> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-> index d0d01f909548..4b325a670a04 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.h
-> +++ b/drivers/gpu/drm/i915/i915_vma.h
-> @@ -52,6 +52,9 @@ static inline bool i915_vma_is_active(const struct i915_vma *vma)
->  	return !i915_active_is_idle(&vma->active);
->  }
->  
-> +/* do not reserve memory to prevent deadlocks */
-> +#define __EXEC_OBJECT_NO_RESERVE BIT(31)
-> +
->  int __must_check __i915_vma_move_to_active(struct i915_vma *vma,
->  					   struct i915_request *rq);
->  int __must_check i915_vma_move_to_active(struct i915_vma *vma,
+On Mon, Aug 10, 2020 at 01:25:40PM +0200, Christian K=F6nig wrote:
+> Am 09.08.20 um 08:17 schrieb Lukas Bulwahn:
+> > With commit 72b6ede73623 ("dma-buf.rst: Document why indefinite fences =
+are
+> > a bad idea"), document generation warns:
+> > =
+
+> >    Documentation/driver-api/dma-buf.rst:182: \
+> >    WARNING: Title underline too short.
+> > =
+
+> > Repair length of title underline to remove warning.
+> > =
+
+> > Fixes: 72b6ede73623 ("dma-buf.rst: Document why indefinite fences are a=
+ bad idea")
+> > Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+> =
+
+> Acked-by: Christian K=F6nig <christian.koenig@amd.com>
+> =
+
+> Should I pick it up into drm-misc-next?
+
+Yes please. For the future if you need to check if someone has commit
+rights and can push themselves:
+
+https://people.freedesktop.org/~seanpaul/whomisc.html
+
+Yeah with gitlab this would all be a bit more reasonable, but we get by
+meanwhile :-)
+
+Cheers, Daniel
+> =
+
+> > ---
+> > Daniel, please pick this minor non-urgent fix to your new documentation.
+> > =
+
+> >   Documentation/driver-api/dma-buf.rst | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > =
+
+> > diff --git a/Documentation/driver-api/dma-buf.rst b/Documentation/drive=
+r-api/dma-buf.rst
+> > index 100bfd227265..13ea0cc0a3fa 100644
+> > --- a/Documentation/driver-api/dma-buf.rst
+> > +++ b/Documentation/driver-api/dma-buf.rst
+> > @@ -179,7 +179,7 @@ DMA Fence uABI/Sync File
+> >      :internal:
+> >   Indefinite DMA Fences
+> > -~~~~~~~~~~~~~~~~~~~~
+> > +~~~~~~~~~~~~~~~~~~~~~
+> >   At various times &dma_fence with an indefinite time until dma_fence_w=
+ait()
+> >   finishes have been proposed. Examples include:
+> =
 
 
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
