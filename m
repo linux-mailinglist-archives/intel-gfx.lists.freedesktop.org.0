@@ -2,33 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A365240440
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Aug 2020 11:51:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 502D924046B
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Aug 2020 12:00:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5025089E35;
-	Mon, 10 Aug 2020 09:51:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B48E589C68;
+	Mon, 10 Aug 2020 09:59:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BF5789E35
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Aug 2020 09:51:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22082675-1500050 for multiple; Mon, 10 Aug 2020 10:51:48 +0100
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F54089E08;
+ Mon, 10 Aug 2020 09:59:58 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1k54au-0005nX-RN; Mon, 10 Aug 2020 09:59:52 +0000
+From: Colin King <colin.king@canonical.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Mon, 10 Aug 2020 10:59:52 +0100
+Message-Id: <20200810095952.60968-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <dd962d57-2446-660f-1c87-a04e5235536e@linux.intel.com>
-References: <20200805122231.23313-1-chris@chris-wilson.co.uk>
- <8be11356-9899-cb6d-7ec5-e1388eb4c721@shipmail.org>
- <dd962d57-2446-660f-1c87-a04e5235536e@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Thomas Hellström (Intel) <thomas_os@shipmail.org>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Aug 2020 10:51:48 +0100
-Message-ID: <159705310833.28521.10340512205153631314@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 00/37] Replace obj->mm.lock with
- reservation_ww_class
+Subject: [Intel-gfx] [PATCH] drm/i915/vlv_dsi_pll: fix spelling mistake
+ "Cant" -> "Can't"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,90 +42,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAyMC0wOC0wNiAxMDoyMTozOCkKPiAKPiBPbiAwNS8w
-OC8yMDIwIDE3OjIyLCBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwpIHdyb3RlOgo+ID4gSGksIENo
-cmlzLAo+ID4gCj4gPiAKPiA+IE9uIDgvNS8yMCAyOjIxIFBNLCBDaHJpcyBXaWxzb24gd3JvdGU6
-Cj4gPj4gTG9uZyBzdG9yeSBzaG9ydCwgd2UgbmVlZCB0byBtYW5hZ2UgZXZpY3Rpb25zIHVzaW5n
-IGRtYV9yZXN2ICYgZG1hX2ZlbmNlCj4gPj4gdHJhY2tpbmcuIFRoZSBiYWNraW5nIHN0b3JhZ2Ug
-d2lsbCB0aGVuIGJlIG1hbmFnZWQgdXNpbmcgdGhlIHd3X211dGV4Cj4gPj4gYm9ycm93ZWQgZnJv
-bSAoYW5kIHNoYXJlZCB2aWEpIG9iai0+YmFzZS5yZXN2LCByYXRoZXIgdGhhbiB0aGUgY3VycmVu
-dAo+ID4+IG9iai0+bW0ubG9jay4KPiA+Pgo+ID4+IFNraXBwaW5nIG92ZXIgdGhlIGJyZWFkY3J1
-bWJzLAo+ID4gCj4gPiBXaGlsZSBwZXJoYXBzIG5lZWRlZCBmaXhlcywgY291bGQgd2Ugc3VibWl0
-IHRoZW0gYXMgYSBzZXBhcmF0ZSBzZXJpZXMsIAo+ID4gc2luY2UgdGhleSwgZnJvbSB3aGF0IEkg
-Y2FuIHRlbGwsIGFyZSBub3QgYSBkaXJlY3QgcGFydCBvZiB0aGUgbG9ja2luZyAKPiA+IHJld29y
-aywgYW5kIHNvbWUgb2YgdGhlbSB3ZXJlIGFjdHVhbGx5IHBhcnQgb2YgYSBzZXJpZXMgdGhhdCBE
-YXZlIE5hSydlZCAKPiA+IGFuZCBtYXkgcmVxdWlyZSBhZGRpdGlvbmFsIGp1c3RpZmljYXRpb24/
-Cj4gPiAKPiA+IAo+ID4+IMKgIHRoZSBmaXJzdCBzdGVwIGlzIHRvIHJlbW92ZSB0aGUgZmluYWwK
-PiA+PiBjcnV0Y2hlcyBvZiBzdHJ1Y3RfbXV0ZXggZnJvbSBleGVjYnVmIGFuZCB0byBicm9hZGVu
-IHRoZSBob2xkIGZvciB0aGUKPiA+PiBkbWEtcmVzdiB0byBndWFyZCBub3QganVzdCBwdWJsaXNo
-aW5nIHRoZSBkbWEtZmVuY2VzLCBidXQgZm9yIHRoZQo+ID4+IGR1cmF0aW9uIG9mIHRoZSBleGVj
-YnVmIHN1Ym1pc3Npb24gKGhvbGRpbmcgYWxsIG9iamVjdHMgYW5kIHRoZWlyCj4gPj4gYmFja2lu
-ZyBzdG9yZSBmcm9tIHRoZSBwb2ludCBvZiBhY3F1aXNpdGlvbiB0byBwdWJsaXNoaW5nIG9mIHRo
-ZSBmaW5hbAo+ID4+IEdQVSB3b3JrLCBhZnRlciB3aGljaCB0aGUgZ3VhcmQgaXMgZGVsZWdhdGVk
-IHRvIHRoZSBkbWEtZmVuY2VzKS4KPiA+Pgo+ID4+IFRoaXMgaXMgb2YgY291cnNlIG1hZGUgY29t
-cGxpY2F0ZWQgYnkgb3VyIGhpc3RvcnkuIE9uIHRvcCBvZiB0aGUgdXNlcidzCj4gPj4gb2JqZWN0
-cywgd2UgYWxzbyBoYXZlIHRoZSBIVy9rZXJuZWwgb2JqZWN0cyB3aXRoIHRoZWlyIG93biBsaWZl
-dGltZXMsCj4gPj4gYW5kIGEgYnVuY2ggb2YgYXV4aWxpYXJ5IG9iamVjdHMgdXNlZCBmb3Igd29y
-a2luZyBhcm91bmQgdW5oYXBweSBIVyBhbmQKPiA+PiBmb3IgcHJvdmlkaW5nIHRoZSBsZWdhY3kg
-cmVsb2NhdGlvbiBtZWNoYW5pc20uIFdlIGFkZCBldmVyeSBhdXhpbGlhcnkKPiA+PiBvYmplY3Qg
-dG8gdGhlIGxpc3Qgb2YgdXNlciBvYmplY3RzIHJlcXVpcmVkLCBhbmQgYXR0ZW1wdCB0byBhY3F1
-aXJlIHRoZW0KPiA+PiBlbiBtYXNzZS4gU2luY2UgYWxsIHRoZSBvYmplY3RzIGNhbiBiZSBrbm93
-biBhIHByaW9yaSwgd2UgY2FuIGJ1aWxkIGEKPiA+PiBsaXN0IG9mIHRob3NlIG9iamVjdHMgYW5k
-IHBhc3MgdGhhdCB0byBhIHJvdXRpbmUgdGhhdCBjYW4gcmVzb2x2ZSB0aGUKPiA+PiAtRURFQURM
-SyAoYW5kIGV2aWN0aW9ucykuIFtUbyBhdm9pZCByZWxvY2F0aW9ucyBpbXBvc2luZyBhIHBlbmFs
-dHkgb24KPiA+PiBzYW5lIHVzZXJzcGFjZSB0aGF0IGF2b2lkcyB0aGVtLCB3ZSBkbyBub3QgdG91
-Y2ggYW55IHJlbG9jYXRpb25zIHVudGlsCj4gPj4gbmVjZXNzYXJ5LCBhdCB3aWxsIHBvaW50IHdl
-IGhhdmUgdG8gdW5yb2xsIHRoZSBzdGF0ZSwgYW5kIHJlYnVpbGQgYSBuZXcKPiA+PiBsaXN0IHdp
-dGggbW9yZSBhdXhpbGlhcnkgYnVmZmVycyB0byBhY2NvbW1vZGF0ZSB0aGUgZXh0cmEgCj4gPj4g
-Y29weV9mcm9tX3VzZXJdLgo+ID4+IE1vcmUgZXhhbXBsZXMgYXJlIGluY2x1ZGVkIGFzIHRvIGhv
-dyB3ZSBjYW4gYnJlYWsgZG93biBvcGVyYXRpb25zCj4gPj4gaW52b2x2aW5nIG11bHRpcGxlIG9i
-amVjdHMgaW50byBhbiBhY3F1aXJlIHBoYXNlIHByaW9yIHRvIHRob3NlCj4gPj4gb3BlcmF0aW9u
-cywga2VlcGluZyB0aGUgLUVERUFETEsgaGFuZGxpbmcgdW5kZXIgY29udHJvbC4KPiA+Pgo+ID4+
-IGV4ZWNidWYgaXMgdGhlIHVuaXF1ZSBpbnRlcmZhY2UgaW4gdGhhdCBpdCBkZWFscyB3aXRoIG11
-bHRpcGxlIHVzZXIKPiA+PiBhbmQga2VybmVsIGJ1ZmZlcnMuIEFmdGVyIHRoYXQsIHdlIGhhdmUg
-Y2FsbGVycyB0aGF0IGluIHByaW5jaXBsZSBjYXJlCj4gPj4gYWJvdXQgYWNjZXNzaW5nIGEgc2lu
-Z2xlIGJ1ZmZlciwgYW5kIHNvIGNhbiBiZSBtaWdyYXRlZCBvdmVyIHRvIGEgaGVscGVyCj4gPj4g
-dGhhdCBwZXJtaXRzIG9ubHkgaG9sZGluZyBvbmUgc3VjaCBidWZmZXIgYXQgYSB0aW1lLiBUaGF0
-IGVuYWJsZXMgdXMgdG8KPiA+PiBzd2FwIG91dCBvYmotPm1tLmxvY2sgZm9yIG9iai0+YmFzZS5y
-ZXN2LT5sb2NrLCBhbmQgdXNlIGxvY2tkZXAgdG8gc3BvdAo+ID4+IGlsbGVnYWwgbmVzdGluZywg
-YW5kIHRvIHRocm93IGF3YXkgdGhlIHRlbXBvcmFyeSBwaW5zIGJ5IHJlcGxhY2luZyB0aGVtCj4g
-Pj4gd2l0aCBob2xkaW5nIHRoZSB3d19tdXRleCBmb3IgdGhlIGR1cmF0aW9uIGluc3RlYWQuCj4g
-Pj4KPiA+PiBXaGF0J3MgY2hhbmdlZD8gU29tZSBwYXRjaCBzcGxpdHRpbmcgYW5kIHdlIG5lZWQg
-dG8gcHVsbCBpbiBNYXR0aGV3J3MKPiA+PiBwYXRjaCB0byBtYXAgdGhlIHBhZ2UgZGlyZWN0b3Jp
-ZXMgdW5kZXIgdGhlIHd3X211dGV4Lgo+ID4gCj4gPiBJIHdvdWxkIHN0aWxsIGxpa2UgdG8gc2Vl
-IGEganVzdGlmaWNhdGlvbiBmb3IgdGhlIG5ld2x5IGludHJvZHVjZWQgYXN5bmMgCj4gPiB3b3Jr
-LCBhcyBvcHBvc2VkIHRvIGFkZCBpdCBhcyBhbiBvcHRpbWl6aW5nIC8gcmVncmVzc2lvbiBmaXhp
-bmcgc2VyaWVzIAo+ID4gZm9sbG93IHRoZSBsb2NraW5nIHJld29yay4gVGhhdCBhc3luYyB3b3Jr
-IGludHJvZHVjZXMgYSBidW5jaCBvZiBjb2RlIAo+ID4gY29tcGxleGl0eSBhbmQgaXQgd291bGQg
-YmUgYmVuZWZpY2lhbCB0byBzZWUgYSBkaXNjdXNzaW9uIG9mIHRoZSAKPiA+IHRyYWRlb2ZmcyBh
-bmQgaG93IGl0IGFsaWduZXMgd2l0aCB0aGUgdXBzdHJlYW0gcHJvcG9zZWQgZG1hLWZlbmNlIAo+
-ID4gYW5ub3RhdGlvbnMKPiAKPiBPbiB0aGUgdG9waWMgb2YgYW5ub3RhdGlvbnMsIG1heWJlIGRv
-IGEgdHJ5Ym90IHJ1biB3aXRoIHRoZW0gZW5hYmxlZCAKPiB3aXRoIHRoZSBsYXRlc3Qgc2VyaWVz
-IGFuZCB0aGVuIHNlZSB3aGF0IHBvcHMgdXAuCgpJdCBkaWRuJ3QgY2hhbmdlIHNpbmNlIHRoZSBy
-dW4gRGFuaWVsIGRpZC4gSW4gdGhhdCBydW4gdGhlcmUgd2VyZSB0d28Kc3BsYXRzIEkgZm91bmQs
-Cgp2bS0+bXV0ZXggLT4gZG1hX2ZlbmNlX2lzX3NpZ25hbGVkL2RtYV9mZW5jZV9zaWduYWwgLT4g
-YXN5bmMgd29yayArIHZtLT5tdXRleAoKVGhpcyBpcyB0aGUgb3ZlcmNvbnN0cmFpbnQgRGFuaWVs
-IG1lbnRpb25lZCwgaXQncyBhbiBlbnRpcmVseSBmYWxzZQpjb3VwbGluZyBmcm9tIHRoZSBhc3N1
-bXB0aW9uIHRoYXQgdGhlIGFzeW5jIHdvcmsgcnVucyBpbnNpZGUgdGhlCnBhcmVudCdzIHNpZ25h
-bGluZyBjb250ZXh0LiBHdXQgZmVlbGluZyBzYXlzIHRoYXQgc2hvdWxkIGJlIHJlc29sdmFibGUK
-YnkgdXNpbmcgbG9ja2RlcCdzIGRlcGVuZGVuY3kgYW5hbHlzaXMgYmV0d2VlbiBsb2NhbCBleGVj
-dXRpb24vc2lnbmFsCmNvbnRleHRzLgoKVGhlIG90aGVyIHdhcwoKdXNlcnB0ciBtbXVfbm90aWZp
-ZXIgLT4gaTkxNV92bWFfdW5iaW5kICsgaTkxNV92bWFfcmV2b2tlIC0+IG1tdV9ub3RpZmllcgpb
-d2l0aCB0aGUgaW50ZXJwbGF5IGJldHdlZW4gdGhlIHR3byBnbG9iYWwgbG9ja21hcCdzLCB0d28g
-c3RyaWtlcz9dCgpBbmQgdGhhdCBpcyB0aGUgd2VsbCBrbm93biBmYWxzZSBwb3NpdGl2ZSBmb3Ig
-dXNlcnB0ciB0aGF0IHdlIGJyZWFrIGJ5Cm5ldmVyIGFsbG93aW5nIHRoZSB1c2VycHRyIHRvIGlu
-IGJlIHRoZSBkZXYtPm1hcHBpbmcuCgpBIHBhdGggbm90IGV4ZXJjaXNlZCBidXQgaXQgc2hvdWxk
-IGZpbmQgaXMgc3luY2hyb25vdXMgZmVuY2UgZXZpY3Rpb24uCldoaWxlIGJpbmRpbmcgYSBmcmVz
-aCBmZW5jZSBlbnN1cmVzIHRoZSB2bWEgaXMgaWRsZSBiZWZvcmUgc3RhcnRpbmcsIHdlCmRvIG5v
-dCBkbyB0aGUgc2FtZSBmb3IgdGhlIGZlbmNlIHdlIHN0ZWFsLiBUaGF0J3Mgd2h5IGNhcmUgd2Fz
-IHRha2VuIGZvcgpleGVjYnVmLCBhbmQgaXQganVzdCBtZWFucyB0ZWFjaGluZyB0aGUgc3luY2hy
-b25vdXMgcGF0aCB0byBzaW1pbGFybHkKbW92ZSB0aGUgd2FpdCBvdXRzaWRlIG9mIHRoZSBtdXRl
-eCAodGhlIHNpbXBsZXN0IHdpbGwgYmUgdG8gd3JhcCB0aGUKYXN5bmMgaGFuZGxpbmcpLgotQ2hy
-aXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+From: Colin Ian King <colin.king@canonical.com>
+
+There is a spelling mistake in a drm_err message. Fix it.
+
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+index d0a514301575..4070b00c3690 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+@@ -483,7 +483,7 @@ int bxt_dsi_pll_compute(struct intel_encoder *encoder,
+ 
+ 	if (dsi_ratio < dsi_ratio_min || dsi_ratio > dsi_ratio_max) {
+ 		drm_err(&dev_priv->drm,
+-			"Cant get a suitable ratio from DSI PLL ratios\n");
++			"Can't get a suitable ratio from DSI PLL ratios\n");
+ 		return -ECHRNG;
+ 	} else
+ 		drm_dbg_kms(&dev_priv->drm, "DSI PLL calculation is Done!!\n");
+-- 
+2.27.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
