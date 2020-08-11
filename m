@@ -2,47 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A696A241AAF
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Aug 2020 13:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1391B241ACE
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Aug 2020 14:11:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E89C36E181;
-	Tue, 11 Aug 2020 11:56:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C65AB6E359;
+	Tue, 11 Aug 2020 12:11:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A19C16E181
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Aug 2020 11:56:21 +0000 (UTC)
-IronPort-SDR: 2w8yQAzgFD5FQRhBQXmnjKT24TYL6GUk3/DYrDog7bbAtjEXmMNXStHF+jt/xR/Q8s94XfKL0L
- ZGEWKOXXzygQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9709"; a="133250654"
-X-IronPort-AV: E=Sophos;i="5.75,461,1589266800"; d="scan'208";a="133250654"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2020 04:56:20 -0700
-IronPort-SDR: vNOerGtDqL98x0ThJqsjyu0PS4WnsPDdk4q1UHgeWbzz3l+99A9GNbqc8XeUE3sBohBnBPRaHo
- Wz34V938nX0Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,461,1589266800"; d="scan'208";a="317701858"
-Received: from vgurevix-mobl1.ger.corp.intel.com (HELO [10.249.45.68])
- ([10.249.45.68])
- by fmsmga004.fm.intel.com with ESMTP; 11 Aug 2020 04:56:20 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
- intel-gfx@lists.freedesktop.org
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB6D96E52A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Aug 2020 12:11:44 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id r4so11239275wrx.9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Aug 2020 05:11:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=DOtOs+sWtH/1nuV09kmX1GYeOtrxq7M5W2eUURltzOs=;
+ b=eAQWmAhE+bohsA4E7Eho0WFsnILnMlJpuEKNlIsYJCaecQELs+XBa7VYscGLJ+oC6I
+ H2E28RBIADh4hb7uZNuwWgM1ycNGelYN5xLLIRmJmH5x9fTBvMn/e7rwdwP/clJMvmcZ
+ /2elNmjR31eYoD0xYOkTwZFAK7W5IdNAzuQ0c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=DOtOs+sWtH/1nuV09kmX1GYeOtrxq7M5W2eUURltzOs=;
+ b=QgeC4VLNBhLssIOKjWngGltHQ00ehsw6JRc2UPUWkxG4DEV8iNadglR5/X3G3H7EnD
+ 2yKUBqtcGTayTv6Lyi69CRqWT+RBOh83UVybt8KVtP6HMtdou87aWIsYzD82cNG4ca8J
+ 991EgyGnQTRIqQl8OICVTb0qP8AfBD2uozyKBjRq88sbYF57j3rUJ+s6U4efMld4uemF
+ 4HXyLDgxzVHcQo5DxFYsCfzXDT7b9vwpwY7nYYugZkC5DqJQ4Z3k1rDaekG84vA/6nlQ
+ WQUJLzsitxc3FoeYoYSSamn2CLbjWlt2+x8Z4I2C+yz5xeY0cxKHFqQGSyIWv4uR3Yrh
+ kHQw==
+X-Gm-Message-State: AOAM531DkTWSAZn9NwcLeqvSoA1/Ecr/V8GjYB0fxJNUKkyiBeftP/YR
+ IW31A8+IIPYOUWwSoVDNKUO0c7kgiWA=
+X-Google-Smtp-Source: ABdhPJxK5tDNoRmvkUeZ4Twh16ihLs1103Ec9pM9yweM67ET+4ijEimM4V9Q1ItPl5qP5ao/jfjXBw==
+X-Received: by 2002:a5d:6a4a:: with SMTP id t10mr6233866wrw.360.1597147903243; 
+ Tue, 11 Aug 2020 05:11:43 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id b14sm4672263wrj.93.2020.08.11.05.11.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 Aug 2020 05:11:42 -0700 (PDT)
+Date: Tue, 11 Aug 2020 14:11:40 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <20200811121140.GB2352366@phenom.ffwll.local>
 References: <20200810103103.303818-1-maarten.lankhorst@linux.intel.com>
- <20200810103103.303818-10-maarten.lankhorst@linux.intel.com>
- <47a24089-9db1-0b57-2dee-7ee8ec887624@shipmail.org>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <ec72a8a4-ab1e-9121-a84b-8ca586ad94c9@linux.intel.com>
-Date: Tue, 11 Aug 2020 13:56:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ <20200810103103.303818-2-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <47a24089-9db1-0b57-2dee-7ee8ec887624@shipmail.org>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 09/24] drm/i915: make lockdep slightly
- happier about execbuf.
+Content-Disposition: inline
+In-Reply-To: <20200810103103.303818-2-maarten.lankhorst@linux.intel.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH 01/24] Revert "drm/i915/gem: Async GPU
+ relocations only"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,47 +66,536 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T3AgMTEtMDgtMjAyMCBvbSAwOTozNCBzY2hyZWVmIFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCk6
-Cj4KPiBPbiA4LzEwLzIwIDEyOjMwIFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPj4gQXMg
-c29vbiBhcyB3ZSBpbnN0YWxsIGZlbmNlcywgd2Ugc2hvdWxkIHN0b3AgYWxsb2NhdGluZyBtZW1v
-cnkKPj4gaW4gb3JkZXIgdG8gcHJldmVudCBhbnkgcG90ZW50aWFsIGRlYWRsb2Nrcy4KPj4KPj4g
-VGhpcyBpcyByZXF1aXJlZCBsYXRlciBvbiwgd2hlbiB3ZSBzdGFydCBhZGRpbmcgc3VwcG9ydCBm
-b3IKPj4gZG1hLWZlbmNlIGFubm90YXRpb25zLCBhbmQgYWxzbyByZXF1aXJlZCBmb3IgdXNlcnB0
-ci4KPj4KPj4gU2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hv
-cnN0QGxpbnV4LmludGVsLmNvbT4KPj4gLS0tCj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
-bS9pOTE1X2dlbV9leGVjYnVmZmVyLmMgfCAxOCArKysrKysrKysrKystLS0tLS0KPj4gwqAgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV92bWEuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCB8wqAgOCArKysrKy0tLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3ZtYS5owqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAzICsrKwo+PiDCoCAzIGZpbGVzIGNoYW5n
-ZWQsIDIwIGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYwo+PiBpbmRleCA1ZDA4Y2U3MWYz
-NDEuLjEyMzk3ZmJjMDk3MSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX2V4ZWNidWZmZXIuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-aTkxNV9nZW1fZXhlY2J1ZmZlci5jCj4+IEBAIC00OCwxMSArNDgsMTIgQEAgZW51bSB7Cj4+IMKg
-ICNkZWZpbmUgREJHX0ZPUkNFX1JFTE9DIDAgLyogY2hvb3NlIG9uZSBvZiB0aGUgYWJvdmUhICov
-Cj4+IMKgIH07Cj4+IMKgIC0jZGVmaW5lIF9fRVhFQ19PQkpFQ1RfSEFTX1BJTsKgwqDCoMKgwqDC
-oMKgIEJJVCgzMSkKPj4gLSNkZWZpbmUgX19FWEVDX09CSkVDVF9IQVNfRkVOQ0XCoMKgwqDCoMKg
-wqDCoCBCSVQoMzApCj4+IC0jZGVmaW5lIF9fRVhFQ19PQkpFQ1RfTkVFRFNfTUFQwqDCoMKgwqDC
-oMKgwqAgQklUKDI5KQo+PiAtI2RlZmluZSBfX0VYRUNfT0JKRUNUX05FRURTX0JJQVPCoMKgwqAg
-QklUKDI4KQo+PiAtI2RlZmluZSBfX0VYRUNfT0JKRUNUX0lOVEVSTkFMX0ZMQUdTwqDCoMKgICh+
-MHUgPDwgMjgpIC8qIGFsbCBvZiB0aGUgYWJvdmUgKi8KPj4gKy8qIF9fRVhFQ19PQkpFQ1RfTk9f
-UkVTRVJWRSBpcyBCSVQoMzEpLCBkZWZpbmVkIGluIGk5MTVfdm1hLmggKi8KPgo+IEhtbS4gQ291
-bGQgd2UgZWl0aGVyIG1vdmUgYWxsIHRoZXNlIGZsYWcgZGVmaW5pdGlvbnMgdG8gYSBoZWFkZXIg
-b3IgYWRkIGFuIGk5MTVfdm1hX21vdmVfdG9fYWN0aXZlKCk/IAoKCkkgaGF2ZSBkcm9wcGVkIHRo
-aXMgcGF0Y2ggZm9yIG5vdy4gVGhlIHJlYWwgZml4IGlzIGEgcmVtb3ZhbCBvZiB0aGF0IGNodW5r
-IGluCmk5MTVfdm1hX21vdmVfdG9fYWN0aXZlLiBXZSBuZWVkIHRvIHN0b3AgYWxsb2NhdGluZyBt
-ZW1vcnkgdGhhdCBsYXRlLCBhbmQgb25seQppbnN0YWxsIGZlbmNlcyBhbmQgc3VibWl0LgoKU3Bl
-Y2lmaWNhbGx5LCBlYl9zdWJtaXQoKSBzaG91bGQgbm90IGJlIGFsbG93ZWQgdG8gYWxsb2NhdGUg
-bWVtb3J5IGFmdGVyIGEgY2VydGFpbgpwb2ludCBhbmQgdGhlbiBjb21wbGV0ZSB3aXRob3V0IGVy
-cm9yLiBUaGVyZSBhcmUgdG9vIG1hbnkgcGxhY2VzIHRoYXQgZG8gdGhpcyB0bwpmaXggaXQgdXAg
-aW4gdGhpcyBzZXJpZXMsIGJ1dCB0aGlzIHdpbGwgZGVmaW5pdGVseSBoYXZlIHRvIGJlIGRvbmUg
-aW4gdGhlIGZ1dHVyZS4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+On Mon, Aug 10, 2020 at 12:30:40PM +0200, Maarten Lankhorst wrote:
+> This reverts commit 9e0f9464e2ab36b864359a59b0e9058fdef0ce47,
+
+Missed one, you need to dim cite the above so the commit subject is
+included. Also too long sha1.
+-Daniel
+
+> and related commit 7ac2d2536dfa7 ("drm/i915/gem: Delete unused code").
+> 
+> Async GPU relocations are not the path forward, we want to remove
+> GPU accelerated relocation support eventually when userspace is fixed
+> to use VM_BIND, and this is the first step towards that. We will keep
+> async gpu relocations around for now, until userspace is fixed.
+> 
+> Relocation support will be disabled completely on platforms where there
+> was never any userspace that depends on it, as the hardware doesn't
+> require it from at least gen9+ onward. For older platforms, the plan
+> is to use cpu relocations only.
+> 
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 319 ++++++++++++++++--
+>  .../i915/gem/selftests/i915_gem_execbuffer.c  |  21 +-
+>  2 files changed, 313 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 24a1486d2dc5..c6a613d92a13 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -46,6 +46,13 @@ struct eb_vma_array {
+>  	struct eb_vma vma[];
+>  };
+>  
+> +enum {
+> +	FORCE_CPU_RELOC = 1,
+> +	FORCE_GTT_RELOC,
+> +	FORCE_GPU_RELOC,
+> +#define DBG_FORCE_RELOC 0 /* choose one of the above! */
+> +};
+> +
+>  #define __EXEC_OBJECT_HAS_PIN		BIT(31)
+>  #define __EXEC_OBJECT_HAS_FENCE		BIT(30)
+>  #define __EXEC_OBJECT_NEEDS_MAP		BIT(29)
+> @@ -261,6 +268,8 @@ struct i915_execbuffer {
+>  	 */
+>  	struct reloc_cache {
+>  		struct drm_mm_node node; /** temporary GTT binding */
+> +		unsigned long vaddr; /** Current kmap address */
+> +		unsigned long page; /** Currently mapped page index */
+>  		unsigned int gen; /** Cached value of INTEL_GEN */
+>  		bool use_64bit_reloc : 1;
+>  		bool has_llc : 1;
+> @@ -607,6 +616,23 @@ eb_add_vma(struct i915_execbuffer *eb,
+>  	}
+>  }
+>  
+> +static inline int use_cpu_reloc(const struct reloc_cache *cache,
+> +				const struct drm_i915_gem_object *obj)
+> +{
+> +	if (!i915_gem_object_has_struct_page(obj))
+> +		return false;
+> +
+> +	if (DBG_FORCE_RELOC == FORCE_CPU_RELOC)
+> +		return true;
+> +
+> +	if (DBG_FORCE_RELOC == FORCE_GTT_RELOC)
+> +		return false;
+> +
+> +	return (cache->has_llc ||
+> +		obj->cache_dirty ||
+> +		obj->cache_level != I915_CACHE_NONE);
+> +}
+> +
+>  static int eb_reserve_vma(const struct i915_execbuffer *eb,
+>  			  struct eb_vma *ev,
+>  			  u64 pin_flags)
+> @@ -937,6 +963,8 @@ relocation_target(const struct drm_i915_gem_relocation_entry *reloc,
+>  static void reloc_cache_init(struct reloc_cache *cache,
+>  			     struct drm_i915_private *i915)
+>  {
+> +	cache->page = -1;
+> +	cache->vaddr = 0;
+>  	/* Must be a variable in the struct to allow GCC to unroll. */
+>  	cache->gen = INTEL_GEN(i915);
+>  	cache->has_llc = HAS_LLC(i915);
+> @@ -948,6 +976,25 @@ static void reloc_cache_init(struct reloc_cache *cache,
+>  	cache->target = NULL;
+>  }
+>  
+> +static inline void *unmask_page(unsigned long p)
+> +{
+> +	return (void *)(uintptr_t)(p & PAGE_MASK);
+> +}
+> +
+> +static inline unsigned int unmask_flags(unsigned long p)
+> +{
+> +	return p & ~PAGE_MASK;
+> +}
+> +
+> +#define KMAP 0x4 /* after CLFLUSH_FLAGS */
+> +
+> +static inline struct i915_ggtt *cache_to_ggtt(struct reloc_cache *cache)
+> +{
+> +	struct drm_i915_private *i915 =
+> +		container_of(cache, struct i915_execbuffer, reloc_cache)->i915;
+> +	return &i915->ggtt;
+> +}
+> +
+>  #define RELOC_TAIL 4
+>  
+>  static int reloc_gpu_chain(struct reloc_cache *cache)
+> @@ -1060,6 +1107,186 @@ static int reloc_gpu_flush(struct reloc_cache *cache)
+>  	return err;
+>  }
+>  
+> +static void reloc_cache_reset(struct reloc_cache *cache)
+> +{
+> +	void *vaddr;
+> +
+> +	if (!cache->vaddr)
+> +		return;
+> +
+> +	vaddr = unmask_page(cache->vaddr);
+> +	if (cache->vaddr & KMAP) {
+> +		if (cache->vaddr & CLFLUSH_AFTER)
+> +			mb();
+> +
+> +		kunmap_atomic(vaddr);
+> +		i915_gem_object_finish_access((struct drm_i915_gem_object *)cache->node.mm);
+> +	} else {
+> +		struct i915_ggtt *ggtt = cache_to_ggtt(cache);
+> +
+> +		intel_gt_flush_ggtt_writes(ggtt->vm.gt);
+> +		io_mapping_unmap_atomic((void __iomem *)vaddr);
+> +
+> +		if (drm_mm_node_allocated(&cache->node)) {
+> +			ggtt->vm.clear_range(&ggtt->vm,
+> +					     cache->node.start,
+> +					     cache->node.size);
+> +			mutex_lock(&ggtt->vm.mutex);
+> +			drm_mm_remove_node(&cache->node);
+> +			mutex_unlock(&ggtt->vm.mutex);
+> +		} else {
+> +			i915_vma_unpin((struct i915_vma *)cache->node.mm);
+> +		}
+> +	}
+> +
+> +	cache->vaddr = 0;
+> +	cache->page = -1;
+> +}
+> +
+> +static void *reloc_kmap(struct drm_i915_gem_object *obj,
+> +			struct reloc_cache *cache,
+> +			unsigned long pageno)
+> +{
+> +	void *vaddr;
+> +	struct page *page;
+> +
+> +	if (cache->vaddr) {
+> +		kunmap_atomic(unmask_page(cache->vaddr));
+> +	} else {
+> +		unsigned int flushes;
+> +		int err;
+> +
+> +		err = i915_gem_object_prepare_write(obj, &flushes);
+> +		if (err)
+> +			return ERR_PTR(err);
+> +
+> +		BUILD_BUG_ON(KMAP & CLFLUSH_FLAGS);
+> +		BUILD_BUG_ON((KMAP | CLFLUSH_FLAGS) & PAGE_MASK);
+> +
+> +		cache->vaddr = flushes | KMAP;
+> +		cache->node.mm = (void *)obj;
+> +		if (flushes)
+> +			mb();
+> +	}
+> +
+> +	page = i915_gem_object_get_page(obj, pageno);
+> +	if (!obj->mm.dirty)
+> +		set_page_dirty(page);
+> +
+> +	vaddr = kmap_atomic(page);
+> +	cache->vaddr = unmask_flags(cache->vaddr) | (unsigned long)vaddr;
+> +	cache->page = pageno;
+> +
+> +	return vaddr;
+> +}
+> +
+> +static void *reloc_iomap(struct drm_i915_gem_object *obj,
+> +			 struct reloc_cache *cache,
+> +			 unsigned long page)
+> +{
+> +	struct i915_ggtt *ggtt = cache_to_ggtt(cache);
+> +	unsigned long offset;
+> +	void *vaddr;
+> +
+> +	if (cache->vaddr) {
+> +		intel_gt_flush_ggtt_writes(ggtt->vm.gt);
+> +		io_mapping_unmap_atomic((void __force __iomem *) unmask_page(cache->vaddr));
+> +	} else {
+> +		struct i915_vma *vma;
+> +		int err;
+> +
+> +		if (i915_gem_object_is_tiled(obj))
+> +			return ERR_PTR(-EINVAL);
+> +
+> +		if (use_cpu_reloc(cache, obj))
+> +			return NULL;
+> +
+> +		i915_gem_object_lock(obj);
+> +		err = i915_gem_object_set_to_gtt_domain(obj, true);
+> +		i915_gem_object_unlock(obj);
+> +		if (err)
+> +			return ERR_PTR(err);
+> +
+> +		vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0,
+> +					       PIN_MAPPABLE |
+> +					       PIN_NONBLOCK /* NOWARN */ |
+> +					       PIN_NOEVICT);
+> +		if (IS_ERR(vma)) {
+> +			memset(&cache->node, 0, sizeof(cache->node));
+> +			mutex_lock(&ggtt->vm.mutex);
+> +			err = drm_mm_insert_node_in_range
+> +				(&ggtt->vm.mm, &cache->node,
+> +				 PAGE_SIZE, 0, I915_COLOR_UNEVICTABLE,
+> +				 0, ggtt->mappable_end,
+> +				 DRM_MM_INSERT_LOW);
+> +			mutex_unlock(&ggtt->vm.mutex);
+> +			if (err) /* no inactive aperture space, use cpu reloc */
+> +				return NULL;
+> +		} else {
+> +			cache->node.start = vma->node.start;
+> +			cache->node.mm = (void *)vma;
+> +		}
+> +	}
+> +
+> +	offset = cache->node.start;
+> +	if (drm_mm_node_allocated(&cache->node)) {
+> +		ggtt->vm.insert_page(&ggtt->vm,
+> +				     i915_gem_object_get_dma_address(obj, page),
+> +				     offset, I915_CACHE_NONE, 0);
+> +	} else {
+> +		offset += page << PAGE_SHIFT;
+> +	}
+> +
+> +	vaddr = (void __force *)io_mapping_map_atomic_wc(&ggtt->iomap,
+> +							 offset);
+> +	cache->page = page;
+> +	cache->vaddr = (unsigned long)vaddr;
+> +
+> +	return vaddr;
+> +}
+> +
+> +static void *reloc_vaddr(struct drm_i915_gem_object *obj,
+> +			 struct reloc_cache *cache,
+> +			 unsigned long page)
+> +{
+> +	void *vaddr;
+> +
+> +	if (cache->page == page) {
+> +		vaddr = unmask_page(cache->vaddr);
+> +	} else {
+> +		vaddr = NULL;
+> +		if ((cache->vaddr & KMAP) == 0)
+> +			vaddr = reloc_iomap(obj, cache, page);
+> +		if (!vaddr)
+> +			vaddr = reloc_kmap(obj, cache, page);
+> +	}
+> +
+> +	return vaddr;
+> +}
+> +
+> +static void clflush_write32(u32 *addr, u32 value, unsigned int flushes)
+> +{
+> +	if (unlikely(flushes & (CLFLUSH_BEFORE | CLFLUSH_AFTER))) {
+> +		if (flushes & CLFLUSH_BEFORE) {
+> +			clflushopt(addr);
+> +			mb();
+> +		}
+> +
+> +		*addr = value;
+> +
+> +		/*
+> +		 * Writes to the same cacheline are serialised by the CPU
+> +		 * (including clflush). On the write path, we only require
+> +		 * that it hits memory in an orderly fashion and place
+> +		 * mb barriers at the start and end of the relocation phase
+> +		 * to ensure ordering of clflush wrt to the system.
+> +		 */
+> +		if (flushes & CLFLUSH_AFTER)
+> +			clflushopt(addr);
+> +	} else
+> +		*addr = value;
+> +}
+> +
+>  static int reloc_move_to_gpu(struct i915_request *rq, struct i915_vma *vma)
+>  {
+>  	struct drm_i915_gem_object *obj = vma->obj;
+> @@ -1225,6 +1452,17 @@ static u32 *reloc_gpu(struct i915_execbuffer *eb,
+>  	return cmd;
+>  }
+>  
+> +static inline bool use_reloc_gpu(struct i915_vma *vma)
+> +{
+> +	if (DBG_FORCE_RELOC == FORCE_GPU_RELOC)
+> +		return true;
+> +
+> +	if (DBG_FORCE_RELOC)
+> +		return false;
+> +
+> +	return !dma_resv_test_signaled_rcu(vma->resv, true);
+> +}
+> +
+>  static unsigned long vma_phys_addr(struct i915_vma *vma, u32 offset)
+>  {
+>  	struct page *page;
+> @@ -1239,10 +1477,10 @@ static unsigned long vma_phys_addr(struct i915_vma *vma, u32 offset)
+>  	return addr + offset_in_page(offset);
+>  }
+>  
+> -static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+> -			     struct i915_vma *vma,
+> -			     u64 offset,
+> -			     u64 target_addr)
+> +static bool __reloc_entry_gpu(struct i915_execbuffer *eb,
+> +			      struct i915_vma *vma,
+> +			      u64 offset,
+> +			      u64 target_addr)
+>  {
+>  	const unsigned int gen = eb->reloc_cache.gen;
+>  	unsigned int len;
+> @@ -1258,7 +1496,7 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+>  
+>  	batch = reloc_gpu(eb, vma, len);
+>  	if (IS_ERR(batch))
+> -		return PTR_ERR(batch);
+> +		return false;
+>  
+>  	addr = gen8_canonical_addr(vma->node.start + offset);
+>  	if (gen >= 8) {
+> @@ -1307,21 +1545,55 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+>  		*batch++ = target_addr;
+>  	}
+>  
+> -	return 0;
+> +	return true;
+> +}
+> +
+> +static bool reloc_entry_gpu(struct i915_execbuffer *eb,
+> +			    struct i915_vma *vma,
+> +			    u64 offset,
+> +			    u64 target_addr)
+> +{
+> +	if (eb->reloc_cache.vaddr)
+> +		return false;
+> +
+> +	if (!use_reloc_gpu(vma))
+> +		return false;
+> +
+> +	return __reloc_entry_gpu(eb, vma, offset, target_addr);
+>  }
+>  
+>  static u64
+> -relocate_entry(struct i915_execbuffer *eb,
+> -	       struct i915_vma *vma,
+> +relocate_entry(struct i915_vma *vma,
+>  	       const struct drm_i915_gem_relocation_entry *reloc,
+> +	       struct i915_execbuffer *eb,
+>  	       const struct i915_vma *target)
+>  {
+>  	u64 target_addr = relocation_target(reloc, target);
+> -	int err;
+> -
+> -	err = __reloc_entry_gpu(eb, vma, reloc->offset, target_addr);
+> -	if (err)
+> -		return err;
+> +	u64 offset = reloc->offset;
+> +
+> +	if (!reloc_entry_gpu(eb, vma, offset, target_addr)) {
+> +		bool wide = eb->reloc_cache.use_64bit_reloc;
+> +		void *vaddr;
+> +
+> +repeat:
+> +		vaddr = reloc_vaddr(vma->obj,
+> +				    &eb->reloc_cache,
+> +				    offset >> PAGE_SHIFT);
+> +		if (IS_ERR(vaddr))
+> +			return PTR_ERR(vaddr);
+> +
+> +		GEM_BUG_ON(!IS_ALIGNED(offset, sizeof(u32)));
+> +		clflush_write32(vaddr + offset_in_page(offset),
+> +				lower_32_bits(target_addr),
+> +				eb->reloc_cache.vaddr);
+> +
+> +		if (wide) {
+> +			offset += sizeof(u32);
+> +			target_addr >>= 32;
+> +			wide = false;
+> +			goto repeat;
+> +		}
+> +	}
+>  
+>  	return target->node.start | UPDATE;
+>  }
+> @@ -1386,7 +1658,8 @@ eb_relocate_entry(struct i915_execbuffer *eb,
+>  	 * If the relocation already has the right value in it, no
+>  	 * more work needs to be done.
+>  	 */
+> -	if (gen8_canonical_addr(target->vma->node.start) == reloc->presumed_offset)
+> +	if (!DBG_FORCE_RELOC &&
+> +	    gen8_canonical_addr(target->vma->node.start) == reloc->presumed_offset)
+>  		return 0;
+>  
+>  	/* Check that the relocation address is valid... */
+> @@ -1418,7 +1691,7 @@ eb_relocate_entry(struct i915_execbuffer *eb,
+>  	ev->flags &= ~EXEC_OBJECT_ASYNC;
+>  
+>  	/* and update the user's relocation entry */
+> -	return relocate_entry(eb, ev->vma, reloc, target->vma);
+> +	return relocate_entry(ev->vma, reloc, eb, target->vma);
+>  }
+>  
+>  static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+> @@ -1456,8 +1729,10 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+>  		 * this is bad and so lockdep complains vehemently.
+>  		 */
+>  		copied = __copy_from_user(r, urelocs, count * sizeof(r[0]));
+> -		if (unlikely(copied))
+> -			return -EFAULT;
+> +		if (unlikely(copied)) {
+> +			remain = -EFAULT;
+> +			goto out;
+> +		}
+>  
+>  		remain -= count;
+>  		do {
+> @@ -1465,7 +1740,8 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+>  
+>  			if (likely(offset == 0)) {
+>  			} else if ((s64)offset < 0) {
+> -				return (int)offset;
+> +				remain = (int)offset;
+> +				goto out;
+>  			} else {
+>  				/*
+>  				 * Note that reporting an error now
+> @@ -1495,8 +1771,9 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+>  		} while (r++, --count);
+>  		urelocs += ARRAY_SIZE(stack);
+>  	} while (remain);
+> -
+> -	return 0;
+> +out:
+> +	reloc_cache_reset(&eb->reloc_cache);
+> +	return remain;
+>  }
+>  
+>  static int eb_relocate(struct i915_execbuffer *eb)
+> @@ -2573,7 +2850,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  	eb.i915 = i915;
+>  	eb.file = file;
+>  	eb.args = args;
+> -	if (!(args->flags & I915_EXEC_NO_RELOC))
+> +	if (DBG_FORCE_RELOC || !(args->flags & I915_EXEC_NO_RELOC))
+>  		args->flags |= __EXEC_HAS_RELOC;
+>  
+>  	eb.exec = exec;
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+> index 57c14d3340cd..a49016f8ee0d 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+> @@ -37,14 +37,20 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+>  		return err;
+>  
+>  	/* 8-Byte aligned */
+> -	err = __reloc_entry_gpu(eb, vma, offsets[0] * sizeof(u32), 0);
+> -	if (err)
+> +	if (!__reloc_entry_gpu(eb, vma,
+> +			       offsets[0] * sizeof(u32),
+> +			       0)) {
+> +		err = -EIO;
+>  		goto unpin_vma;
+> +	}
+>  
+>  	/* !8-Byte aligned */
+> -	err = __reloc_entry_gpu(eb, vma, offsets[1] * sizeof(u32), 1);
+> -	if (err)
+> +	if (!__reloc_entry_gpu(eb, vma,
+> +			       offsets[1] * sizeof(u32),
+> +			       1)) {
+> +		err = -EIO;
+>  		goto unpin_vma;
+> +	}
+>  
+>  	/* Skip to the end of the cmd page */
+>  	i = PAGE_SIZE / sizeof(u32) - RELOC_TAIL - 1;
+> @@ -54,9 +60,12 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+>  	eb->reloc_cache.rq_size += i;
+>  
+>  	/* Force batch chaining */
+> -	err = __reloc_entry_gpu(eb, vma, offsets[2] * sizeof(u32), 2);
+> -	if (err)
+> +	if (!__reloc_entry_gpu(eb, vma,
+> +			       offsets[2] * sizeof(u32),
+> +			       2)) {
+> +		err = -EIO;
+>  		goto unpin_vma;
+> +	}
+>  
+>  	GEM_BUG_ON(!eb->reloc_cache.rq);
+>  	rq = i915_request_get(eb->reloc_cache.rq);
+> -- 
+> 2.28.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
