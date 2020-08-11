@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0B672418BD
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Aug 2020 11:13:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ADE02418BE
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Aug 2020 11:14:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3780A89C09;
-	Tue, 11 Aug 2020 09:13:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A63089D2E;
+	Tue, 11 Aug 2020 09:13:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 864B789C09;
- Tue, 11 Aug 2020 09:13:40 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 222E589C6A;
+ Tue, 11 Aug 2020 09:13:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 806E6A47E9;
- Tue, 11 Aug 2020 09:13:40 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 20118A47E9;
+ Tue, 11 Aug 2020 09:13:59 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gaurav K Singh" <gaurav.k.singh@intel.com>
-Date: Tue, 11 Aug 2020 09:13:40 -0000
-Message-ID: <159713722050.3770.17753195394376869508@emeril.freedesktop.org>
+Date: Tue, 11 Aug 2020 09:13:59 -0000
+Message-ID: <159713723912.3770.15455388055778588229@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200807115633.16328-1-gaurav.k.singh@intel.com>
 In-Reply-To: <20200807115633.16328-1-gaurav.k.singh@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_i915/gem=3A_Force_HW_tracking_to_exit_PSR_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?i915/gem=3A_Force_HW_tracking_to_exit_PSR_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,14 +53,9 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-f25572dd467f i915/gem: Force HW tracking to exit PSR
--:44: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#44: FILE: drivers/gpu/drm/i915/gem/i915_gem_domain.c:561:
-+			i915_gem_object_invalidate_frontbuffer(obj,
-+								ORIGIN_CPU);
-
-total: 0 errors, 0 warnings, 1 checks, 22 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.0
+Fast mode used, each commit won't be checked separately.
 
 
 _______________________________________________
