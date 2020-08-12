@@ -2,43 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8112429BE
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Aug 2020 14:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1762F242A3A
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Aug 2020 15:24:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB31D6E0DD;
-	Wed, 12 Aug 2020 12:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B3E6E13D;
+	Wed, 12 Aug 2020 13:24:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75D846E0DA;
- Wed, 12 Aug 2020 12:50:08 +0000 (UTC)
-IronPort-SDR: X/yqTdiGGTKu8rcnFu+wKqQiKuRQIF1bG9D7nndNfYOTzHbjsGBdUekdz+vWV919IERr128x+Q
- UvAjhFEpbXpA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9710"; a="141564917"
-X-IronPort-AV: E=Sophos;i="5.76,304,1592895600"; d="scan'208";a="141564917"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91F5D6E109;
+ Wed, 12 Aug 2020 13:24:37 +0000 (UTC)
+IronPort-SDR: ZdVQzlRv18N1G293eIpbLR7SZbUT3tb6D7SXRz4F/OB9AZlfKLp+Utrrky3IErP0HEmD07hV8h
+ kvdg77nyjXHQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9710"; a="141569741"
+X-IronPort-AV: E=Sophos;i="5.76,304,1592895600"; d="scan'208";a="141569741"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2020 05:50:07 -0700
-IronPort-SDR: 2WQa6/x/9zAcIShlqVdkSGhpTsDpiQ0556BmeX26Td5ngSnoN3k8xQBgzMERJQqg7kuesFeqE4
- E4V7L8v4d4/A==
-X-IronPort-AV: E=Sophos;i="5.76,304,1592895600"; d="scan'208";a="469811508"
-Received: from mcintra-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.49.240])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2020 05:50:01 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-In-Reply-To: <CAPM=9tygv6dqg8sMgQ-fF4bAr+QY4zDVczbj6qV0jFcVX0-p3Q@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200730162652.GA90813@jlahtine-desk.ger.corp.intel.com>
- <CAPM=9tygv6dqg8sMgQ-fF4bAr+QY4zDVczbj6qV0jFcVX0-p3Q@mail.gmail.com>
-Date: Wed, 12 Aug 2020 15:49:56 +0300
-Message-ID: <87ft8shvuz.fsf@intel.com>
+ 12 Aug 2020 06:24:36 -0700
+IronPort-SDR: miMmxn9KccU84+Ewg0KkaAX2MHNnnfZrodgK2LjFKqULhRVO2jOOEuSo5fCgHpEZI71tVtjTit
+ +h/oTnDwMKDg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,304,1592895600"; d="scan'208";a="295065873"
+Received: from cwilli-mobl.ger.corp.intel.com (HELO [10.252.41.147])
+ ([10.252.41.147])
+ by orsmga006.jf.intel.com with ESMTP; 12 Aug 2020 06:24:33 -0700
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <d50eb2e0-75c8-b724-006f-5e7b391961ff@linux.intel.com>
+Date: Wed, 12 Aug 2020 15:24:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PULL] drm-intel-next-fixes
+Content-Language: en-US
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,30 +49,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "DRM maintainer tools announcements, discussion,
- and development" <dim-tools@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 10 Aug 2020, Dave Airlie <airlied@gmail.com> wrote:
-> Like this stuff has been getting past me for years but I'm not happy
-> about it anymore, I'm going to just be grumpy asshole going forward.
-> If we introduced scheduler races in linux-next, I want to see reverts,
-> and reverts only until we stopped introducing them.
+drm-misc-fixes-2020-08-12:
+drm-misc-fixes for v5.9-rc1:
+- Add missing dma_fence_put() in virtio_gpu_execbuffer_ioctl().
+- Fix memory leak in virtio_gpu_cleanup_object().
+The following changes since commit b5ac98cbb8e5e30c34ebc837d1e5a3982d2b5f5c:
 
-I'll redo the fixes once we have dinq sorted out.
+  drm: Added orientation quirk for ASUS tablet model T103HAF (2020-08-04 11:45:23 +0200)
 
-BR,
-Jani.
+are available in the Git repository at:
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2020-08-12
+
+for you to fetch changes up to 836b194d65782aaec4485a07d2aab52d3f698505:
+
+  drm/virtio: fix memory leak in virtio_gpu_cleanup_object() (2020-08-07 13:59:08 +0200)
+
+----------------------------------------------------------------
+drm-misc-fixes for v5.9-rc1:
+- Add missing dma_fence_put() in virtio_gpu_execbuffer_ioctl().
+- Fix memory leak in virtio_gpu_cleanup_object().
+
+----------------------------------------------------------------
+Qi Liu (1):
+      drm/virtio: fix missing dma_fence_put() in virtio_gpu_execbuffer_ioctl()
+
+Xin He (1):
+      drm/virtio: fix memory leak in virtio_gpu_cleanup_object()
+
+ drivers/gpu/drm/virtio/virtgpu_ioctl.c  | 1 +
+ drivers/gpu/drm/virtio/virtgpu_object.c | 1 +
+ 2 files changed, 2 insertions(+)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
