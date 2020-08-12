@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 292D4243083
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Aug 2020 23:34:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F522430A7
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Aug 2020 23:53:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6C36E950;
-	Wed, 12 Aug 2020 21:33:58 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7156F6E950;
- Wed, 12 Aug 2020 21:33:57 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22110799-1500050 
- for multiple; Wed, 12 Aug 2020 22:33:51 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Aug 2020 22:33:49 +0100
-Message-Id: <20200812213349.905842-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200812213300.905759-1-chris@chris-wilson.co.uk>
-References: <20200812213300.905759-1-chris@chris-wilson.co.uk>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 996E36E127;
+	Wed, 12 Aug 2020 21:53:52 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EBCA6E127
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 12 Aug 2020 21:53:51 +0000 (UTC)
+IronPort-SDR: ZnszVuMR1XWnJ2i3iKOldrxwt8kLFlCwLVogGO8osRaDlRdbn2GjuUZvpYgZeUmRGFFvQcBYQY
+ q3ttQCDtYFKQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9711"; a="172131123"
+X-IronPort-AV: E=Sophos;i="5.76,305,1592895600"; d="scan'208";a="172131123"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2020 14:53:50 -0700
+IronPort-SDR: gzD+H+OcwzqwC4G/lwsq4Pbs2lR9NED/qskvu4XjdWqWJxPz6KnT4ptBFnQ8LGOwz/C4a2YIsL
+ SJZmc7ecyYyA==
+X-IronPort-AV: E=Sophos;i="5.76,305,1592895600"; d="scan'208";a="469977446"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2020 14:53:50 -0700
+Date: Wed, 12 Aug 2020 14:53:49 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: clinton.a.taylor@intel.com
+Message-ID: <20200812215349.GD2903088@mdroper-desk1.amr.corp.intel.com>
+References: <20200805232920.15085-1-clinton.a.taylor@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_persistence: Exercise
- cleanup after disabling heartbeats
+Content-Disposition: inline
+In-Reply-To: <20200805232920.15085-1-clinton.a.taylor@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Implement WA_1406941453
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,140 +49,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We expose the heartbeat interval on each engine, allowing the sysadim to
-disable them if they prefer avoiding any interruption for their GPU
-tasks. A caveat to allowing the contexts to run without checks is that
-we require such contexts to be non-persistent and so cleaned up on
-closure (including abnormal process termination). However, we also need
-to flush any persistent contexts that are still inflight at that time,
-lest they continue to run unchecked.
+On Wed, Aug 05, 2020 at 04:29:20PM -0700, clinton.a.taylor@intel.com wrote:
+> From: Clint Taylor <clinton.a.taylor@intel.com>
+> 
+> Enable HW Default flip for small PL.
+> 
+> bspec: 52890
+> bspec: 53508
+> bspec: 53273
+> 
+> v2: rebase to drm-tip
+> Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+> Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
+>  drivers/gpu/drm/i915/i915_reg.h             | 1 +
+>  2 files changed, 7 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index cef1c122696f..cb02813c5e92 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -639,6 +639,9 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  	       FF_MODE2_GS_TIMER_MASK | FF_MODE2_TDS_TIMER_MASK,
+>  	       FF_MODE2_GS_TIMER_224  | FF_MODE2_TDS_TIMER_128,
+>  	       0);
+> +
+> +	/* Wa_1406941453:gen12 */
+> +	WA_SET_BIT_MASKED(GEN10_SAMPLER_MODE, ENABLE_SMALLPL);
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
-git add
----
- tests/i915/gem_ctx_persistence.c | 92 ++++++++++++++++++++++++++++++++
- 1 file changed, 92 insertions(+)
+Is this register part of the engine context on gen12?  I see it in the
+context for ICL (bspec 18907), but not for TGL (46255).  So I think this
+should either be a GT or engine workaround, not a context workaround,
+right?
 
-diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
-index e73a3e6a0..d9c972130 100644
---- a/tests/i915/gem_ctx_persistence.c
-+++ b/tests/i915/gem_ctx_persistence.c
-@@ -426,6 +426,87 @@ static void test_nohangcheck_hang(int i915)
- 	close(dir);
- }
- 
-+static bool set_heartbeat(int i915, const char *name, unsigned int value)
-+{
-+	return gem_engine_property_printf(i915, name,
-+					  "heartbeat_interval_ms",
-+					  "%d", value) > 0;
-+}
-+
-+static void test_noheartbeat_many(int i915, int count, unsigned int flags)
-+{
-+	cleanup(i915);
-+
-+	/*
-+	 * If the user disables the heartbeat, after leaving behind
-+	 * a number of long running *persistent* contexts, check they get
-+	 * cleaned up.
-+	 */
-+
-+	for_each_engine(e, i915) {
-+		igt_spin_t *spin[count];
-+
-+		if (!set_heartbeat(i915, e->full_name, 100))
-+			continue;
-+
-+		for (int n = 0; n < ARRAY_SIZE(spin); n++) {
-+			uint32_t ctx;
-+
-+			ctx = gem_context_create(i915);
-+			spin[n] = igt_spin_new(i915, ctx, .engine = eb_ring(e),
-+					       .flags = (IGT_SPIN_FENCE_OUT |
-+							 flags));
-+			gem_context_destroy(i915, ctx);
-+		}
-+
-+		if (set_heartbeat(i915, e->full_name, 0)) {
-+			for (int n = 0; n < ARRAY_SIZE(spin); n++) {
-+				igt_assert_eq(wait_for_status(spin[n]->out_fence, reset_timeout_ms),
-+					      -EIO);
-+			}
-+		}
-+
-+		for (int n = 0; n < ARRAY_SIZE(spin); n++)
-+			igt_spin_free(i915, spin[n]);
-+
-+		set_heartbeat(i915, e->full_name, 2500);
-+		cleanup(i915);
-+	}
-+}
-+
-+static void test_noheartbeat_close(int i915, unsigned int flags)
-+{
-+	cleanup(i915);
-+
-+	/*
-+	 * Check that non-persistent contexts are also cleaned up if we
-+	 * close the context while they are active, but the engine's
-+	 * heartbeat has already been disabled.
-+	 */
-+
-+	for_each_engine(e, i915) {
-+		igt_spin_t *spin;
-+		uint32_t ctx;
-+
-+		if (!set_heartbeat(i915, e->full_name, 0))
-+			continue;
-+
-+		ctx = gem_context_create(i915);
-+		gem_context_set_persistence(i915, ctx, false);
-+		spin = igt_spin_new(i915, ctx, .engine = eb_ring(e),
-+				    .flags = (IGT_SPIN_FENCE_OUT | flags));
-+		gem_context_destroy(i915, ctx);
-+
-+		set_heartbeat(i915, e->full_name, 2500);
-+
-+		igt_assert_eq(wait_for_status(spin->out_fence, reset_timeout_ms),
-+			      -EIO);
-+
-+		igt_spin_free(i915, spin);
-+		cleanup(i915);
-+	}
-+}
-+
- static void test_nonpersistent_file(int i915)
- {
- 	int debugfs = i915;
-@@ -1157,6 +1238,17 @@ igt_main
- 	igt_subtest("hang")
- 		test_nohangcheck_hang(i915);
- 
-+	igt_subtest("heartbeat-stop")
-+		test_noheartbeat_many(i915, 1, 0);
-+	igt_subtest("heartbeat-hang")
-+		test_noheartbeat_many(i915, 1, IGT_SPIN_NO_PREEMPTION);
-+	igt_subtest("heartbeat-many")
-+		test_noheartbeat_many(i915, 16, 0);
-+	igt_subtest("heartbeat-close")
-+		test_noheartbeat_close(i915, 0);
-+	igt_subtest("heartbeat-hostile")
-+		test_noheartbeat_close(i915, IGT_SPIN_NO_PREEMPTION);
-+
- 	igt_subtest_group {
- 		igt_fixture
- 			gem_require_contexts(i915);
+>  }
+>  
+>  static void
+> @@ -1522,6 +1525,9 @@ static void icl_whitelist_build(struct intel_engine_cs *engine)
+>  		whitelist_reg_ext(w, PS_INVOCATION_COUNT,
+>  				  RING_FORCE_TO_NONPRIV_ACCESS_RD |
+>  				  RING_FORCE_TO_NONPRIV_RANGE_4);
+> +
+> +		/* Wa_1406941453:gen12 */
+> +		whitelist_reg(w, GEN10_SAMPLER_MODE);
+
+Do we need to whitelist this?  If we're applying the workaround in the
+kernel then the UMD shouldn't need to worry about it if they don't
+otherwise have access or need to change the register value.
+
+
+Matt
+
+>  		break;
+>  
+>  	case VIDEO_DECODE_CLASS:
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 2b403df03404..494b2e1e358e 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9314,6 +9314,7 @@ enum {
+>  #define   GEN11_LSN_UNSLCVC_GAFS_HALF_SF_MAXALLOC	(1 << 7)
+>  
+>  #define GEN10_SAMPLER_MODE		_MMIO(0xE18C)
+> +#define   ENABLE_SMALLPL			REG_BIT(15)
+>  #define   GEN11_SAMPLER_ENABLE_HEADLESS_MSG	REG_BIT(5)
+>  
+>  /* IVYBRIDGE DPF */
+> -- 
+> 2.27.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
 -- 
-2.28.0
-
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
