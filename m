@@ -1,40 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D312424305D
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Aug 2020 23:07:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A52C243078
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Aug 2020 23:29:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 423A46E1ED;
-	Wed, 12 Aug 2020 21:07:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C6AA6E94E;
+	Wed, 12 Aug 2020 21:29:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56AD16E1ED
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Aug 2020 21:07:08 +0000 (UTC)
-IronPort-SDR: vvZtNMX3CKn7vsJhDFzG3V+ilAZbYo3mrOqhhPVuDPuoF1HZ6KB2OHrR4z7a3+/BVXvBezZS6u
- jZMfDCI8MdJQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9711"; a="218408848"
-X-IronPort-AV: E=Sophos;i="5.76,305,1592895600"; d="scan'208";a="218408848"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2020 14:07:04 -0700
-IronPort-SDR: wB/3BpKRal6M/XhtvOnmD6CgwW8lIVZa46yfers8H51SexCtY+6aCWZRcsOjX2bZoZY/R6wepC
- BY4xEj5nyoog==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,305,1592895600"; d="scan'208";a="308839295"
-Received: from vramriex-mobl1.amr.corp.intel.com (HELO
- msatwood-mobl.intel.com) ([10.212.11.164])
- by orsmga002.jf.intel.com with ESMTP; 12 Aug 2020 14:07:03 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Aug 2020 14:07:02 -0700
-Message-Id: <20200812210702.7153-1-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.21.3
+Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
+ [213.80.101.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A60846E94E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Aug 2020 21:29:34 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 80A7D3F539;
+ Wed, 12 Aug 2020 23:29:30 +0200 (CEST)
+Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=BFWk+h86; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -3.554
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.554 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-1.455,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id RdnhnPIlROYO; Wed, 12 Aug 2020 23:29:29 +0200 (CEST)
+Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35]) (Authenticated sender: mb878879)
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 53F6A3F4CF;
+ Wed, 12 Aug 2020 23:29:28 +0200 (CEST)
+Received: from localhost.localdomain (jfdmzpr03-ext.jf.intel.com
+ [134.134.139.72])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 5A28A360507;
+ Wed, 12 Aug 2020 23:29:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1597267770; bh=Ih3KFbGuDk0yZ26B5TnfWzr2y/rbA7NL6wtGowueEn0=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=BFWk+h86n4updQywadMHNLw9Vx+5NMqxxYeIrjhH68+Q4BnWVQKBQJD8vMCsJzrQd
+ 85xBiQdcpo4AomI8E4tLxGA9QJdz9hhKfgBApjSeyr8L80nc2O//yRorHuVpSZxXBt
+ FxaCDvdCY7qn7SFy2Y07kic6XXPxwIRH/FxDF6T4=
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200810103103.303818-1-maarten.lankhorst@linux.intel.com>
+ <20200810103103.303818-5-maarten.lankhorst@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <f8a5ca8b-9b38-be81-df91-2a7c1890d247@shipmail.org>
+Date: Wed, 12 Aug 2020 23:29:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Apply Wa_14011264657:gen11+
+In-Reply-To: <20200810103103.303818-5-maarten.lankhorst@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 04/24] Revert "drm/i915/gem: Split eb_vma
+ into its own allocation"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,107 +72,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add minimum width to planes, variable with specific formats for gen11+
-to reflect recent bspec changes.
-
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 54 +++++++++++++++++---
- 1 file changed, 46 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 2ddabf92adde..b5ebcff8d56e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3762,6 +3762,44 @@ static int glk_max_plane_width(const struct drm_framebuffer *fb,
- 	}
- }
- 
-+static int icl_min_plane_width(const struct drm_framebuffer *fb)
-+{
-+	/* Wa_14011264657, Wa_14011050563: gen11+ */
-+	switch (fb->format->format) {
-+	case DRM_FORMAT_C8:
-+		return 18;
-+	case DRM_FORMAT_RGB565:
-+		return 10;
-+	case DRM_FORMAT_XRGB8888:
-+	case DRM_FORMAT_XBGR8888:
-+	case DRM_FORMAT_ARGB8888:
-+	case DRM_FORMAT_ABGR8888:
-+	case DRM_FORMAT_XRGB2101010:
-+	case DRM_FORMAT_XBGR2101010:
-+	case DRM_FORMAT_ARGB2101010:
-+	case DRM_FORMAT_ABGR2101010:
-+	case DRM_FORMAT_XVYU2101010:
-+	case DRM_FORMAT_Y212:
-+	case DRM_FORMAT_Y216:
-+		return 6;
-+	case DRM_FORMAT_NV12:
-+		return 20;
-+	case DRM_FORMAT_P010:
-+	case DRM_FORMAT_P012:
-+	case DRM_FORMAT_P016:
-+		return 12;
-+	case DRM_FORMAT_XRGB16161616F:
-+	case DRM_FORMAT_XBGR16161616F:
-+	case DRM_FORMAT_ARGB16161616F:
-+	case DRM_FORMAT_ABGR16161616F:
-+	case DRM_FORMAT_XVYU12_16161616:
-+	case DRM_FORMAT_XVYU16161616:
-+		return 4;
-+	default:
-+		return 1;
-+	}
-+}
-+
- static int icl_max_plane_width(const struct drm_framebuffer *fb,
- 			       int color_plane,
- 			       unsigned int rotation)
-@@ -3844,15 +3882,15 @@ static int skl_check_main_surface(struct intel_plane_state *plane_state)
- 	int y = plane_state->uapi.src.y1 >> 16;
- 	int w = drm_rect_width(&plane_state->uapi.src) >> 16;
- 	int h = drm_rect_height(&plane_state->uapi.src) >> 16;
--	int max_width;
--	int max_height;
--	u32 alignment;
--	u32 offset;
-+	int max_width, min_width = 1, max_height;
-+	u32 alignment, offset;
- 	int aux_plane = intel_main_to_aux_plane(fb, 0);
- 	u32 aux_offset = plane_state->color_plane[aux_plane].offset;
- 
--	if (INTEL_GEN(dev_priv) >= 11)
-+	if (INTEL_GEN(dev_priv) >= 11) {
- 		max_width = icl_max_plane_width(fb, 0, rotation);
-+		min_width = icl_min_plane_width(fb);
-+	}
- 	else if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
- 		max_width = glk_max_plane_width(fb, 0, rotation);
- 	else
-@@ -3863,10 +3901,10 @@ static int skl_check_main_surface(struct intel_plane_state *plane_state)
- 	else
- 		max_height = skl_max_plane_height();
- 
--	if (w > max_width || h > max_height) {
-+	if (w > max_width || w < min_width || h > max_height) {
- 		drm_dbg_kms(&dev_priv->drm,
--			    "requested Y/RGB source size %dx%d too big (limit %dx%d)\n",
--			    w, h, max_width, max_height);
-+			    "requested Y/RGB source size %dx%d outside limits (min: %dx1 max: %dx%d)\n",
-+			    w, h, min_width, max_width, max_height);
- 		return -EINVAL;
- 	}
- 
--- 
-2.21.3
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDgvMTAvMjAgMTI6MzAgUE0sIE1hYXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+IFRoaXMgcmV2
+ZXJ0cyBjb21taXQgMGYxZGQwMjI5NWYzNWRjZGNiYWFmY2JjYmJlYzA3NTM4ODRhYjk3NC4KPiBX
+aXRoIHRoZSBXVyBsb2NraW5nLCB3ZSB3aWxsIGRyb3AgYWxsIHJlZmVyZW5jZXMgb25seSBhdCB0
+aGUKPiBlbmQsIHNvIHJlZmNvdW50aW5nIGNhbiBiZSByZW1vdmVkLgo+Cj4gU2lnbmVkLW9mZi1i
+eTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4K
+ClJldmlld2VkLWJ5OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBpbnRlbC5j
+b20+CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
