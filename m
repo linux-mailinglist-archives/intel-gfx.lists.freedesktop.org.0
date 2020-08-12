@@ -1,55 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E670624230D
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Aug 2020 02:14:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AF85242408
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Aug 2020 04:24:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB1CA6E87A;
-	Wed, 12 Aug 2020 00:14:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFE606E899;
+	Wed, 12 Aug 2020 02:24:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com
- [IPv6:2607:f8b0:4864:20::b41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69BDA6E876;
- Wed, 12 Aug 2020 00:14:20 +0000 (UTC)
-Received: by mail-yb1-xb41.google.com with SMTP id x10so381934ybj.13;
- Tue, 11 Aug 2020 17:14:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=EECTvhpW/4wcpyDgeePO+k8+09CeEjLorKKfjs56l98=;
- b=Q7mm1elliLh/UHacUbs4AY6GzuGqv/sobvXgMmVVIShQYXgCmqnAGdxtfzkOMnC+U/
- bhK/Rrt2OcBrfZTy4gWrnEhDbvLF3xeXFlxU9b7UYSEQhMjrrdMaDipYZ22OcBarKkPL
- 4xh+Ewx5xqfkO2AsIqAtBWeB1ddRjT64B5XOHmXlJRwzFCb6QSW58qMInr8KAKvj3rC1
- RV1Z/2FdmkaULwxSy1edCGimjZcn4ylBhuKORFgccLca3NIpsg6q2p6AMhV+NdGOkPx6
- n/Mb9EGoFCSOtrzG4rOpqtK7RDNmyYwSDJF49Soxc7v9kt1xLOuOhz1Bs6WpoQgnFKgX
- fTyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=EECTvhpW/4wcpyDgeePO+k8+09CeEjLorKKfjs56l98=;
- b=R3lyqFSiZ9yqIoK/UurKv6wXWwDVEE/mbtMxbqJngtzq5jiJkFmHVTE2VEBX0pJfui
- Yk1Ho4MTPs4661Ni2Jt1tKyE+RVqslsOXNQG0g2JoLN7Z05AnxyY5q/CMVGM7NZWAv8O
- ShNcCM7ONb2qG4YaEuFDz46Yjl4ND8Ou2DIw4mGonuNuqMiloswgtYGGFnBO0s7y3rAy
- EueO5SAOHnAohwkj4N+r8QNmg4ab/k23m1XyY5pbPrdNh4E8kH70nIkSXAi/s/jgsHKf
- wdj7s778ciK/g8TFBplI6V0eXmpI0N/RNx1DOlzcHU9AWKILZXdSA59Gbqn3/ECPBs+c
- tHGA==
-X-Gm-Message-State: AOAM533Tu+gvhXME/gXsqH1QZRQxmzGwonDP37tTWBChsZ/4gRIIbjAh
- bmCIWBtLTaziPvM7OPciyl+Zd7fX0yJFShT0a/9uZhTr
-X-Google-Smtp-Source: ABdhPJz8vAYmgWrlaT2Xtt9QXJflCYBZrH/2sTBupWHilMsBAP29/w6/2o4L00xaJt4ODsqFKmzqgguw39l/xleeVQE=
-X-Received: by 2002:a25:9c01:: with SMTP id c1mr26232297ybo.83.1597191259687; 
- Tue, 11 Aug 2020 17:14:19 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 841DF6E899
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Aug 2020 02:24:43 +0000 (UTC)
+IronPort-SDR: kyx08K2fBmnVr150hYjPwMQDO+476guyik8bavbTqW0FdyLNWH46tBx058K1aq9U1H0zNG8Guj
+ vLFJLTcg2+Qg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9710"; a="215388861"
+X-IronPort-AV: E=Sophos;i="5.76,302,1592895600"; 
+ d="asc'?scan'208";a="215388861"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2020 19:24:42 -0700
+IronPort-SDR: sDn2iAOnX9mhI9Nv3GF7T+7Pf0twoyaXkCz6MMAiGWJyHRMtediD+kzI43g87lDV9Yy0F2Czma
+ O8HvftZ9ZcjQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,302,1592895600"; 
+ d="asc'?scan'208";a="294911761"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by orsmga006.jf.intel.com with ESMTP; 11 Aug 2020 19:24:41 -0700
+Date: Wed, 12 Aug 2020 10:06:31 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200812020631.GP27035@zhen-hp.sh.intel.com>
+References: <20200811030209.21058-1-yan.y.zhao@intel.com>
+ <20200811092532.13753-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-References: <20200811200457.134743-1-lyude@redhat.com>
- <20200811200457.134743-21-lyude@redhat.com>
-In-Reply-To: <20200811200457.134743-21-lyude@redhat.com>
-From: Ben Skeggs <skeggsb@gmail.com>
-Date: Wed, 12 Aug 2020 10:14:08 +1000
-Message-ID: <CACAvsv7cqKLa+wSz3JQhZ7sr8dDXeqZt1VjkpGY8E=E2xFaCCQ@mail.gmail.com>
-To: Lyude Paul <lyude@redhat.com>
-Subject: Re: [Intel-gfx] [Nouveau] [RFC 20/20] drm/nouveau/kms: Start using
- drm_dp_read_dpcd_caps()
+In-Reply-To: <20200811092532.13753-1-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Drop runtime-pm assert from vgpu
+ io accessors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,63 +53,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, ML nouveau <nouveau@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Ben Skeggs <bskeggs@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Yan Zhao <yan.y.zhao@intel.com>
+Content-Type: multipart/mixed; boundary="===============1256614729=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 12 Aug 2020 at 06:07, Lyude Paul <lyude@redhat.com> wrote:
->
-> Now that we've extracted i915's code for reading both the normal DPCD
-> caps and extended DPCD caps into a shared helper, let's start using this
-> in nouveau to enable us to start checking extended DPCD caps for free.
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
 
+--===============1256614729==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="JlQgkxKsF3TswZob"
+Content-Disposition: inline
+
+
+--JlQgkxKsF3TswZob
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2020.08.11 10:25:32 +0100, Chris Wilson wrote:
+> The "mmio" writes into vgpu registers are simple memory traps from the
+> guest into the host. We do not need to assert in the guest that the
+> device is awake for the io as we do not write to the device itself.
+>=20
+> However, over time we have refactored all the mmio accessors with the
+> result that the vgpu reuses the gen2 accessors and so inherits the
+> assert for runtime-pm of the native device. The assert though has
+> actually been there since commit 3be0bf5acca6 ("drm/i915: Create vGPU
+> specific MMIO operations to reduce traps").
+>=20
+> References: 3be0bf5acca6 ("drm/i915: Create vGPU specific MMIO operations=
+ to reduce traps")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Yan Zhao <yan.y.zhao@intel.com>
+> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
 > ---
->  drivers/gpu/drm/nouveau/nouveau_dp.c | 14 ++++++--------
->  1 file changed, 6 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-> index f41fa513023fd..a4e07d116972f 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-> @@ -55,15 +55,13 @@ nouveau_dp_probe_dpcd(struct nouveau_connector *nv_connector,
->         int ret;
->         u8 *dpcd = outp->dp.dpcd;
->
-> -       ret = drm_dp_dpcd_read(aux, DP_DPCD_REV, dpcd, DP_RECEIVER_CAP_SIZE);
-> -       if (ret == DP_RECEIVER_CAP_SIZE && dpcd[DP_DPCD_REV]) {
-> -               ret = drm_dp_read_desc(aux, &outp->dp.desc,
-> -                                      drm_dp_is_branch(dpcd));
-> -               if (ret < 0)
-> -                       goto out;
-> -       } else {
-> +       ret = drm_dp_read_dpcd_caps(aux, dpcd);
-> +       if (ret < 0)
-> +               goto out;
+
+Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+Thanks!
+
+>  drivers/gpu/drm/i915/intel_uncore.c | 27 ++++++++++++++++++++++++++-
+>  1 file changed, 26 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/i=
+ntel_uncore.c
+> index f5edee17902a..6d3310794d0f 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -1209,6 +1209,18 @@ unclaimed_reg_debug(struct intel_uncore *uncore,
+>  		spin_unlock(&uncore->debug->lock);
+>  }
+> =20
+> +#define __vgpu_read(x) \
+> +static u##x \
+> +vgpu_read##x(struct intel_uncore *uncore, i915_reg_t reg, bool trace) { \
+> +	u##x val =3D __raw_uncore_read##x(uncore, reg); \
+> +	trace_i915_reg_rw(false, reg, val, sizeof(val), trace); \
+> +	return val; \
+> +}
+> +__vgpu_read(8)
+> +__vgpu_read(16)
+> +__vgpu_read(32)
+> +__vgpu_read(64)
 > +
-> +       ret = drm_dp_read_desc(aux, &outp->dp.desc, drm_dp_is_branch(dpcd));
-> +       if (ret < 0)
->                 goto out;
-> -       }
->
->         if (nouveau_mst) {
->                 mstm = outp->dp.mstm;
-> --
-> 2.26.2
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>  #define GEN2_READ_HEADER(x) \
+>  	u##x val =3D 0; \
+>  	assert_rpm_wakelock_held(uncore->rpm);
+> @@ -1414,6 +1426,16 @@ __gen_reg_write_funcs(gen8);
+>  #undef GEN6_WRITE_FOOTER
+>  #undef GEN6_WRITE_HEADER
+> =20
+> +#define __vgpu_write(x) \
+> +static void \
+> +vgpu_write##x(struct intel_uncore *uncore, i915_reg_t reg, u##x val, boo=
+l trace) { \
+> +	trace_i915_reg_rw(true, reg, val, sizeof(val), trace); \
+> +	__raw_uncore_write##x(uncore, reg, val); \
+> +}
+> +__vgpu_write(8)
+> +__vgpu_write(16)
+> +__vgpu_write(32)
+> +
+>  #define ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, x) \
+>  do { \
+>  	(uncore)->funcs.mmio_writeb =3D x##_write8; \
+> @@ -1735,7 +1757,10 @@ static void uncore_raw_init(struct intel_uncore *u=
+ncore)
+>  {
+>  	GEM_BUG_ON(intel_uncore_has_forcewake(uncore));
+> =20
+> -	if (IS_GEN(uncore->i915, 5)) {
+> +	if (intel_vgpu_active(uncore->i915)) {
+> +		ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, vgpu);
+> +		ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, vgpu);
+> +	} else if (IS_GEN(uncore->i915, 5)) {
+>  		ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, gen5);
+>  		ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, gen5);
+>  	} else {
+> --=20
+> 2.20.1
+>=20
+
+--=20
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--JlQgkxKsF3TswZob
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXzNOpwAKCRCxBBozTXgY
+J7BrAJ4nIxjGH1duKkUDAIoWMNmlnIMG4gCfT/gSO3c5fkYtDuoUDpZvnf2Gl3A=
+=Ox/A
+-----END PGP SIGNATURE-----
+
+--JlQgkxKsF3TswZob--
+
+--===============1256614729==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1256614729==--
