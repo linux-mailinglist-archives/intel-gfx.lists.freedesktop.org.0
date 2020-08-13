@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A5724383F
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Aug 2020 12:11:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23162243856
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Aug 2020 12:17:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C55536E999;
-	Thu, 13 Aug 2020 10:11:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CB3D6E9B0;
+	Thu, 13 Aug 2020 10:17:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0F5D26E991;
- Thu, 13 Aug 2020 10:11:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 078FBA47EE;
- Thu, 13 Aug 2020 10:11:08 +0000 (UTC)
+Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1D186E9A1;
+ Thu, 13 Aug 2020 10:17:11 +0000 (UTC)
+Received: from ravnborg.org (unknown [188.228.123.71])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id 346C580503;
+ Thu, 13 Aug 2020 12:17:01 +0200 (CEST)
+Date: Thu, 13 Aug 2020 12:16:59 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20200813101659.GA752979@ravnborg.org>
+References: <20200813083644.31711-1-tzimmermann@suse.de>
+ <20200813083644.31711-21-tzimmermann@suse.de>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 13 Aug 2020 10:11:08 -0000
-Message-ID: <159731346800.14257.4610565179090995135@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200812223621.22292-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200812223621.22292-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Cancel_outstanding_work?=
- =?utf-8?q?_after_disabling_heartbeats_on_an_engine_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20200813083644.31711-21-tzimmermann@suse.de>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=aP3eV41m c=1 sm=1 tr=0
+ a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+ a=kj9zAlcOel0A:10 a=N6sGBX8BiyC5GP_3pz8A:9 a=EQFFPReBfTXNiWI6:21
+ a=YPaO2tjWljxz4Jer:21 a=CjuIK1q_8ugA:10
+Subject: Re: [Intel-gfx] [PATCH 20/20] drm: Remove obsolete GEM and PRIME
+ callbacks from struct drm_driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,250 +45,414 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0477650874=="
+Cc: hamohammed.sa@gmail.com, heiko@sntech.de, andrey.grodzovsky@amd.com,
+ airlied@linux.ie, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, michal.simek@xilinx.com, eric@anholt.net,
+ krzk@kernel.org, sumit.semwal@linaro.org, emil.velikov@collabora.com,
+ abdiel.janulgue@linux.intel.com, linux-samsung-soc@vger.kernel.org,
+ jy0922.shim@samsung.com, oleksandr_andrushchenko@epam.com,
+ tomi.valkeinen@ti.com, linux-tegra@vger.kernel.org, linux@armlinux.org.uk,
+ jonathanh@nvidia.com, linux-rockchip@lists.infradead.org, kgene@kernel.org,
+ bskeggs@redhat.com, xen-devel@lists.xenproject.org, miaoqinglang@huawei.com,
+ intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
+ chunkuang.hu@kernel.org, linux-arm-msm@vger.kernel.org, marek.olsak@amd.com,
+ tianci.yin@amd.com, etnaviv@lists.freedesktop.org, inki.dae@samsung.com,
+ christian.gmeiner@gmail.com, linux-mediatek@lists.infradead.org,
+ mripard@kernel.org, matthias.bgg@gmail.com, evan.quan@amd.com,
+ linux-arm-kernel@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ laurent.pinchart@ideasonboard.com, hyun.kwon@xilinx.com,
+ rodrigosiqueiramelo@gmail.com, aaron.liu@amd.com, Felix.Kuehling@amd.com,
+ xinhui.pan@amd.com, sw0312.kim@samsung.com, hjc@rock-chips.com,
+ chris@chris-wilson.co.uk, kyungmin.park@samsung.com, nirmoy.das@amd.com,
+ p.zabel@pengutronix.de, alexander.deucher@amd.com, Hawking.Zhang@amd.com,
+ freedreno@lists.freedesktop.org, christian.koenig@amd.com,
+ l.stach@pengutronix.de
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0477650874==
-Content-Type: multipart/alternative;
- boundary="===============5734191158631464773=="
+Hi Thomas.
 
---===============5734191158631464773==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Aug 13, 2020 at 10:36:44AM +0200, Thomas Zimmermann wrote:
+> Several GEM and PRIME callbacks have been deprecated in favor of
+> per-instance GEM object functions. Remove the callbacks as they are
+> now unused. The only exception is .gem_prime_mmap, which is still
+> in use by several drivers.
+> 
+> What is also gone is gem_vm_ops in struct drm_driver. All drivers now
+> use struct drm_gem_object_funcs.vm_ops instead.
+> 
+> While at it, the patch also improves error handling around calls
+> to .free and .get_sg_table callbacks.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-== Series Details ==
+After this following entry in todo.rst is done?
 
-Series: series starting with [1/3] drm/i915: Cancel outstanding work after disabling heartbeats on an engine (rev3)
-URL   : https://patchwork.freedesktop.org/series/80573/
-State : success
+"
+struct drm_gem_object_funcs
+---------------------------
 
-== Summary ==
+GEM objects can now have a function table instead of having the callbacks on the
+DRM driver struct. This is now the preferred way and drivers can be moved over.
 
-CI Bug Log - changes from CI_DRM_8880 -> Patchwork_18354
-====================================================
+We also need a 2nd version of the CMA define that doesn't require the
+vmapping to be present (different hook for prime importing). Plus this needs to
+be rolled out to all drivers using their own implementations, too.
+"
 
-Summary
--------
+If yes, then delete it too.
 
-  **SUCCESS**
+	Sam
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18354 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [DMESG-WARN][1] ([i915#1982]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-byt-j1900/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-byt-j1900/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-n3050:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_busy@basic@flip:
-    - {fi-tgl-dsi}:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-tgl-dsi/igt@kms_busy@basic@flip.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-tgl-dsi/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-bsw-kefka:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][13] ([fdo#109271]) -> [DMESG-FAIL][14] ([i915#62])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (44 -> 36)
-------------------------------
-
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-tgl-u2 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8880 -> Patchwork_18354
-
-  CI-20190529: 20190529
-  CI_DRM_8880: 105bb2602f98f6acb503ad62a5b6a86e1f454ca5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18354: 434db75339f60817f84b4112c4989f74f56473f1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-434db75339f6 drm/i915/gem: Always test execution status on closing the context
-e3073657dc9c drm/i915/gt: Always send a pulse down the engine after disabling heartbeat
-4fc2a2215e7e drm/i915: Cancel outstanding work after disabling heartbeats on an engine
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/index.html
-
---===============5734191158631464773==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915: Cancel outstanding work after disabling heartbeats on an engine (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/80573/">https://patchwork.freedesktop.org/series/80573/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8880 -&gt; Patchwork_18354</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18354 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-tgl-dsi/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-tgl-dsi/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>
-<p>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-a:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8880/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18354/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 36)</h2>
-<p>Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-tgl-u2 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_8880 -&gt; Patchwork_18354</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8880: 105bb2602f98f6acb503ad62a5b6a86e1f454ca5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18354: 434db75339f60817f84b4112c4989f74f56473f1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>434db75339f6 drm/i915/gem: Always test execution status on closing the context<br />
-e3073657dc9c drm/i915/gt: Always send a pulse down the engine after disabling heartbeat<br />
-4fc2a2215e7e drm/i915: Cancel outstanding work after disabling heartbeats on an engine</p>
-
-</body>
-</html>
-
---===============5734191158631464773==--
-
---===============0477650874==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> ---
+>  drivers/gpu/drm/drm_gem.c            | 35 +++---------
+>  drivers/gpu/drm/drm_gem_cma_helper.c |  6 +-
+>  drivers/gpu/drm/drm_prime.c          | 17 +++---
+>  include/drm/drm_drv.h                | 85 ++--------------------------
+>  4 files changed, 23 insertions(+), 120 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index 19d73868490e..96945bed8291 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -247,12 +247,9 @@ drm_gem_object_release_handle(int id, void *ptr, void *data)
+>  {
+>  	struct drm_file *file_priv = data;
+>  	struct drm_gem_object *obj = ptr;
+> -	struct drm_device *dev = obj->dev;
+>  
+>  	if (obj->funcs && obj->funcs->close)
+>  		obj->funcs->close(obj, file_priv);
+> -	else if (dev->driver->gem_close_object)
+> -		dev->driver->gem_close_object(obj, file_priv);
+>  
+>  	drm_gem_remove_prime_handles(obj, file_priv);
+>  	drm_vma_node_revoke(&obj->vma_node, file_priv);
+> @@ -407,10 +404,6 @@ drm_gem_handle_create_tail(struct drm_file *file_priv,
+>  		ret = obj->funcs->open(obj, file_priv);
+>  		if (ret)
+>  			goto err_revoke;
+> -	} else if (dev->driver->gem_open_object) {
+> -		ret = dev->driver->gem_open_object(obj, file_priv);
+> -		if (ret)
+> -			goto err_revoke;
+>  	}
+>  
+>  	*handlep = handle;
+> @@ -982,12 +975,11 @@ drm_gem_object_free(struct kref *kref)
+>  {
+>  	struct drm_gem_object *obj =
+>  		container_of(kref, struct drm_gem_object, refcount);
+> -	struct drm_device *dev = obj->dev;
+>  
+> -	if (obj->funcs)
+> -		obj->funcs->free(obj);
+> -	else if (dev->driver->gem_free_object_unlocked)
+> -		dev->driver->gem_free_object_unlocked(obj);
+> +	if (drm_WARN_ON_ONCE(obj->dev, !obj->funcs || !obj->funcs->free))
+> +		return;
+> +
+> +	obj->funcs->free(obj);
+>  }
+>  EXPORT_SYMBOL(drm_gem_object_free);
+>  
+> @@ -1049,9 +1041,9 @@ EXPORT_SYMBOL(drm_gem_vm_close);
+>   * @obj_size: the object size to be mapped, in bytes
+>   * @vma: VMA for the area to be mapped
+>   *
+> - * Set up the VMA to prepare mapping of the GEM object using the gem_vm_ops
+> - * provided by the driver. Depending on their requirements, drivers can either
+> - * provide a fault handler in their gem_vm_ops (in which case any accesses to
+> + * Set up the VMA to prepare mapping of the GEM object using the GEM object's
+> + * vm_ops. Depending on their requirements, GEM objects can either
+> + * provide a fault handler in their vm_ops (in which case any accesses to
+>   * the object will be trapped, to perform migration, GTT binding, surface
+>   * register allocation, or performance monitoring), or mmap the buffer memory
+>   * synchronously after calling drm_gem_mmap_obj.
+> @@ -1065,12 +1057,11 @@ EXPORT_SYMBOL(drm_gem_vm_close);
+>   * callers must verify access restrictions before calling this helper.
+>   *
+>   * Return 0 or success or -EINVAL if the object size is smaller than the VMA
+> - * size, or if no gem_vm_ops are provided.
+> + * size, or if no vm_ops are provided.
+>   */
+>  int drm_gem_mmap_obj(struct drm_gem_object *obj, unsigned long obj_size,
+>  		     struct vm_area_struct *vma)
+>  {
+> -	struct drm_device *dev = obj->dev;
+>  	int ret;
+>  
+>  	/* Check for valid size. */
+> @@ -1095,8 +1086,6 @@ int drm_gem_mmap_obj(struct drm_gem_object *obj, unsigned long obj_size,
+>  	} else {
+>  		if (obj->funcs && obj->funcs->vm_ops)
+>  			vma->vm_ops = obj->funcs->vm_ops;
+> -		else if (dev->driver->gem_vm_ops)
+> -			vma->vm_ops = dev->driver->gem_vm_ops;
+>  		else {
+>  			drm_gem_object_put(obj);
+>  			return -EINVAL;
+> @@ -1206,8 +1195,6 @@ int drm_gem_pin(struct drm_gem_object *obj)
+>  {
+>  	if (obj->funcs && obj->funcs->pin)
+>  		return obj->funcs->pin(obj);
+> -	else if (obj->dev->driver->gem_prime_pin)
+> -		return obj->dev->driver->gem_prime_pin(obj);
+>  	else
+>  		return 0;
+>  }
+> @@ -1216,8 +1203,6 @@ void drm_gem_unpin(struct drm_gem_object *obj)
+>  {
+>  	if (obj->funcs && obj->funcs->unpin)
+>  		obj->funcs->unpin(obj);
+> -	else if (obj->dev->driver->gem_prime_unpin)
+> -		obj->dev->driver->gem_prime_unpin(obj);
+>  }
+>  
+>  void *drm_gem_vmap(struct drm_gem_object *obj)
+> @@ -1226,8 +1211,6 @@ void *drm_gem_vmap(struct drm_gem_object *obj)
+>  
+>  	if (obj->funcs && obj->funcs->vmap)
+>  		vaddr = obj->funcs->vmap(obj);
+> -	else if (obj->dev->driver->gem_prime_vmap)
+> -		vaddr = obj->dev->driver->gem_prime_vmap(obj);
+>  	else
+>  		vaddr = ERR_PTR(-EOPNOTSUPP);
+>  
+> @@ -1244,8 +1227,6 @@ void drm_gem_vunmap(struct drm_gem_object *obj, void *vaddr)
+>  
+>  	if (obj->funcs && obj->funcs->vunmap)
+>  		obj->funcs->vunmap(obj, vaddr);
+> -	else if (obj->dev->driver->gem_prime_vunmap)
+> -		obj->dev->driver->gem_prime_vunmap(obj, vaddr);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/drm_gem_cma_helper.c b/drivers/gpu/drm/drm_gem_cma_helper.c
+> index 822edeadbab3..209202257cc2 100644
+> --- a/drivers/gpu/drm/drm_gem_cma_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_cma_helper.c
+> @@ -419,7 +419,7 @@ EXPORT_SYMBOL(drm_gem_cma_print_info);
+>   *
+>   * This function exports a scatter/gather table suitable for PRIME usage by
+>   * calling the standard DMA mapping API. Drivers using the CMA helpers should
+> - * set this as their &drm_driver.gem_prime_get_sg_table callback.
+> + * set this as their &drm_gem_object_funcs.get_sg_table callback.
+>   *
+>   * Returns:
+>   * A pointer to the scatter/gather table of pinned pages or NULL on failure.
+> @@ -542,7 +542,7 @@ EXPORT_SYMBOL_GPL(drm_gem_cma_prime_mmap);
+>   * virtual address space. Since the CMA buffers are already mapped into the
+>   * kernel virtual address space this simply returns the cached virtual
+>   * address. Drivers using the CMA helpers should set this as their DRM
+> - * driver's &drm_driver.gem_prime_vmap callback.
+> + * driver's &drm_gem_object_funcs.vmap callback.
+>   *
+>   * Returns:
+>   * The kernel virtual address of the CMA GEM object's backing store.
+> @@ -564,7 +564,7 @@ EXPORT_SYMBOL_GPL(drm_gem_cma_prime_vmap);
+>   * This function removes a buffer exported via DRM PRIME from the kernel's
+>   * virtual address space. This is a no-op because CMA buffers cannot be
+>   * unmapped from kernel space. Drivers using the CMA helpers should set this
+> - * as their &drm_driver.gem_prime_vunmap callback.
+> + * as their &drm_gem_object_funcs.vunmap callback.
+>   */
+>  void drm_gem_cma_prime_vunmap(struct drm_gem_object *obj, void *vaddr)
+>  {
+> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+> index 1693aa7c14b5..9a87639e7008 100644
+> --- a/drivers/gpu/drm/drm_prime.c
+> +++ b/drivers/gpu/drm/drm_prime.c
+> @@ -386,10 +386,6 @@ static struct dma_buf *export_and_register_object(struct drm_device *dev,
+>  
+>  	if (obj->funcs && obj->funcs->export)
+>  		dmabuf = obj->funcs->export(obj, flags);
+> -	else if (dev->driver->gem_prime_export)
+> -		dmabuf = dev->driver->gem_prime_export(obj, flags);
+> -	else
+> -		dmabuf = drm_gem_prime_export(obj, flags);
+>  	if (IS_ERR(dmabuf)) {
+>  		/* normally the created dma-buf takes ownership of the ref,
+>  		 * but if that fails then drop the ref
+> @@ -419,7 +415,7 @@ static struct dma_buf *export_and_register_object(struct drm_device *dev,
+>   * This is the PRIME export function which must be used mandatorily by GEM
+>   * drivers to ensure correct lifetime management of the underlying GEM object.
+>   * The actual exporting from GEM object to a dma-buf is done through the
+> - * &drm_driver.gem_prime_export driver callback.
+> + * &drm_gem_object_funcs.export callback.
+>   */
+>  int drm_gem_prime_handle_to_fd(struct drm_device *dev,
+>  			       struct drm_file *file_priv, uint32_t handle,
+> @@ -616,15 +612,18 @@ struct sg_table *drm_gem_map_dma_buf(struct dma_buf_attachment *attach,
+>  				     enum dma_data_direction dir)
+>  {
+>  	struct drm_gem_object *obj = attach->dmabuf->priv;
+> -	struct sg_table *sgt;
+> +	struct sg_table *sgt = NULL;
+>  
+>  	if (WARN_ON(dir == DMA_NONE))
+>  		return ERR_PTR(-EINVAL);
+>  
+> -	if (obj->funcs)
+> +	if (obj->funcs && obj->funcs->get_sg_table)
+>  		sgt = obj->funcs->get_sg_table(obj);
+> -	else
+> -		sgt = obj->dev->driver->gem_prime_get_sg_table(obj);
+> +
+> +	if (!sgt)
+> +		return ERR_PTR(-EINVAL);
+> +	else if (IS_ERR(sgt))
+> +		return sgt;
+>  
+>  	if (!dma_map_sg_attrs(attach->dev, sgt->sgl, sgt->nents, dir,
+>  			      DMA_ATTR_SKIP_CPU_SYNC)) {
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index 7116abc1a04e..8b325bf6cef4 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -36,10 +36,12 @@ struct drm_file;
+>  struct drm_gem_object;
+>  struct drm_master;
+>  struct drm_minor;
+> +struct dma_buf;
+>  struct dma_buf_attachment;
+>  struct drm_display_mode;
+>  struct drm_mode_create_dumb;
+>  struct drm_printer;
+> +struct sg_table;
+>  
+>  /**
+>   * enum drm_driver_feature - feature flags
+> @@ -327,32 +329,6 @@ struct drm_driver {
+>  	 */
+>  	void (*debugfs_init)(struct drm_minor *minor);
+>  
+> -	/**
+> -	 * @gem_free_object_unlocked: deconstructor for drm_gem_objects
+> -	 *
+> -	 * This is deprecated and should not be used by new drivers. Use
+> -	 * &drm_gem_object_funcs.free instead.
+> -	 */
+> -	void (*gem_free_object_unlocked) (struct drm_gem_object *obj);
+> -
+> -	/**
+> -	 * @gem_open_object:
+> -	 *
+> -	 * This callback is deprecated in favour of &drm_gem_object_funcs.open.
+> -	 *
+> -	 * Driver hook called upon gem handle creation
+> -	 */
+> -	int (*gem_open_object) (struct drm_gem_object *, struct drm_file *);
+> -
+> -	/**
+> -	 * @gem_close_object:
+> -	 *
+> -	 * This callback is deprecated in favour of &drm_gem_object_funcs.close.
+> -	 *
+> -	 * Driver hook called upon gem handle release
+> -	 */
+> -	void (*gem_close_object) (struct drm_gem_object *, struct drm_file *);
+> -
+>  	/**
+>  	 * @gem_create_object: constructor for gem objects
+>  	 *
+> @@ -361,6 +337,7 @@ struct drm_driver {
+>  	 */
+>  	struct drm_gem_object *(*gem_create_object)(struct drm_device *dev,
+>  						    size_t size);
+> +
+>  	/**
+>  	 * @prime_handle_to_fd:
+>  	 *
+> @@ -383,14 +360,7 @@ struct drm_driver {
+>  	 */
+>  	int (*prime_fd_to_handle)(struct drm_device *dev, struct drm_file *file_priv,
+>  				int prime_fd, uint32_t *handle);
+> -	/**
+> -	 * @gem_prime_export:
+> -	 *
+> -	 * Export hook for GEM drivers. Deprecated in favour of
+> -	 * &drm_gem_object_funcs.export.
+> -	 */
+> -	struct dma_buf * (*gem_prime_export)(struct drm_gem_object *obj,
+> -					     int flags);
+> +
+>  	/**
+>  	 * @gem_prime_import:
+>  	 *
+> @@ -400,29 +370,6 @@ struct drm_driver {
+>  	 */
+>  	struct drm_gem_object * (*gem_prime_import)(struct drm_device *dev,
+>  				struct dma_buf *dma_buf);
+> -
+> -	/**
+> -	 * @gem_prime_pin:
+> -	 *
+> -	 * Deprecated hook in favour of &drm_gem_object_funcs.pin.
+> -	 */
+> -	int (*gem_prime_pin)(struct drm_gem_object *obj);
+> -
+> -	/**
+> -	 * @gem_prime_unpin:
+> -	 *
+> -	 * Deprecated hook in favour of &drm_gem_object_funcs.unpin.
+> -	 */
+> -	void (*gem_prime_unpin)(struct drm_gem_object *obj);
+> -
+> -
+> -	/**
+> -	 * @gem_prime_get_sg_table:
+> -	 *
+> -	 * Deprecated hook in favour of &drm_gem_object_funcs.get_sg_table.
+> -	 */
+> -	struct sg_table *(*gem_prime_get_sg_table)(struct drm_gem_object *obj);
+> -
+>  	/**
+>  	 * @gem_prime_import_sg_table:
+>  	 *
+> @@ -433,22 +380,6 @@ struct drm_driver {
+>  				struct drm_device *dev,
+>  				struct dma_buf_attachment *attach,
+>  				struct sg_table *sgt);
+> -	/**
+> -	 * @gem_prime_vmap:
+> -	 *
+> -	 * Deprecated vmap hook for GEM drivers. Please use
+> -	 * &drm_gem_object_funcs.vmap instead.
+> -	 */
+> -	void *(*gem_prime_vmap)(struct drm_gem_object *obj);
+> -
+> -	/**
+> -	 * @gem_prime_vunmap:
+> -	 *
+> -	 * Deprecated vunmap hook for GEM drivers. Please use
+> -	 * &drm_gem_object_funcs.vunmap instead.
+> -	 */
+> -	void (*gem_prime_vunmap)(struct drm_gem_object *obj, void *vaddr);
+> -
+>  	/**
+>  	 * @gem_prime_mmap:
+>  	 *
+> @@ -523,14 +454,6 @@ struct drm_driver {
+>  			    struct drm_device *dev,
+>  			    uint32_t handle);
+>  
+> -	/**
+> -	 * @gem_vm_ops: Driver private ops for this object
+> -	 *
+> -	 * For GEM drivers this is deprecated in favour of
+> -	 * &drm_gem_object_funcs.vm_ops.
+> -	 */
+> -	const struct vm_operations_struct *gem_vm_ops;
+> -
+>  	/** @major: driver major number */
+>  	int major;
+>  	/** @minor: driver minor number */
+> -- 
+> 2.28.0
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0477650874==--
