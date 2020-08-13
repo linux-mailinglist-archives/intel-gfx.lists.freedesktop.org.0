@@ -1,34 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA69C243458
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Aug 2020 09:05:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04382243597
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Aug 2020 09:56:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 413886E452;
-	Thu, 13 Aug 2020 07:05:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F7B46E179;
+	Thu, 13 Aug 2020 07:56:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB196E452;
- Thu, 13 Aug 2020 07:05:30 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id A22C1B163;
- Thu, 13 Aug 2020 07:05:50 +0000 (UTC)
-To: Oleksandr Andrushchenko <Oleksandr_Andrushchenko@epam.com>,
- "boris.ostrovsky@oracle.com" <boris.ostrovsky@oracle.com>
-References: <20200813062113.11030-1-andr2000@gmail.com>
- <7c8cb6e9-8270-d27a-6480-793ef5599d09@epam.com>
-From: =?UTF-8?B?SsO8cmdlbiBHcm/Dnw==?= <jgross@suse.com>
-Message-ID: <231ee1e7-c2fa-3c2a-f444-f9f813fc906d@suse.com>
-Date: Thu, 13 Aug 2020 09:05:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 109C76E179
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Aug 2020 07:56:37 +0000 (UTC)
+IronPort-SDR: j24YhqVqtcCur/UqrZgYf5mFRgUD4oMFtiSt7kqwPtJv3REPLToMBJiq16hyyIHVMVqsIOJ5gN
+ 4NH4d4RQjjuA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9711"; a="151598188"
+X-IronPort-AV: E=Sophos;i="5.76,307,1592895600"; d="scan'208";a="151598188"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2020 00:56:36 -0700
+IronPort-SDR: Sgkyh/KTWTx6Ys38eMzkgTE5BxOat01TIcsoOMW3RrEGBkROoiYTDTshb6KsclJHj7vc6BSpY1
+ +p6itqPect/A==
+X-IronPort-AV: E=Sophos;i="5.76,307,1592895600"; d="scan'208";a="495780161"
+Received: from stallamr-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.213.186.225])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2020 00:56:35 -0700
+Date: Thu, 13 Aug 2020 00:56:31 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200813075631.oansfg5sstiynjgk@ldmartin-desk1>
+X-Patchwork-Hint: ignore
+References: <20200724213918.27424-1-lucas.demarchi@intel.com>
+ <20200724213918.27424-23-lucas.demarchi@intel.com>
+ <b74c416a220331321552464c33bb06080dd99baa.camel@intel.com>
+ <20200807131424.GD30770@intel.com>
+ <63bc6529b69d6c632f9bbd750db7296cab03abf0.camel@intel.com>
+ <20200810054811.GE30770@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <7c8cb6e9-8270-d27a-6480-793ef5599d09@epam.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 0/5] Fixes and improvements for Xen pvdrm
+Content-Disposition: inline
+In-Reply-To: <20200810054811.GE30770@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 22/22] drm/i915/dg1: Change DMC_DEBUG{1,
+ 2} registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,100 +56,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "sstabellini@kernel.org" <sstabellini@kernel.org>,
- Oleksandr Andrushchenko <andr2000@gmail.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "airlied@linux.ie" <airlied@linux.ie>,
- "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>,
- "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 13.08.20 08:32, Oleksandr Andrushchenko wrote:
-> Juergen, Boris,
-> 
-> can we please merge these via Xen Linux tree as I have collected enough Ack/R-b?
-> 
-> The series has DRM patches, but those anyway are Xen related, so I think
-> 
-> this should be fine from DRI point of view.
+On Mon, Aug 10, 2020 at 11:18:11AM +0530, Anshuman Gupta wrote:
+>On 2020-08-07 at 22:56:54 +0530, Souza, Jose wrote:
+>> On Fri, 2020-08-07 at 18:44 +0530, Anshuman Gupta wrote:
+>> > On 2020-08-04 at 05:01:37 +0530, Souza, Jose wrote:
+>> > > On Fri, 2020-07-24 at 14:39 -0700, Lucas De Marchi wrote:
+>> > > > From: Anshuman Gupta <
+>> > > > anshuman.gupta@intel.com
+>> > > >
+>> > > >
+>> > > > DGFX devices have different DMC_DEBUG* counter MMIO address
+>> > > > offset. Incorporate these changes in i915_reg.h for DG1 DC5/DC6
+>> > > > counter and handle i915_dmc_info accordingly.
+>> > > >
+>> > > > Cc: Uma Shankar <
+>> > > > uma.shankar@intel.com
+>> > > >
+>> > > >
+>> > > > Signed-off-by: Anshuman Gupta <
+>> > > > anshuman.gupta@intel.com
+>> > > >
+>> > > >
+>> > > > Signed-off-by: Lucas De Marchi <
+>> > > > lucas.demarchi@intel.com
+>> > > >
+>> > > >
+>> > > > ---
+>> > > >  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 9 +++++++--
+>> > > >  drivers/gpu/drm/i915/i915_reg.h                      | 2 ++
+>> > > >  2 files changed, 9 insertions(+), 2 deletions(-)
+>> > > >
+>> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c =
+b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> > > > index 3644752cc5ec..e3536edcb394 100644
+>> > > > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> > > > @@ -515,8 +515,13 @@ static int i915_dmc_info(struct seq_file *m, =
+void *unused)
+>> > > >  		   CSR_VERSION_MINOR(csr->version));
+>> > > >
+>> > > >  	if (INTEL_GEN(dev_priv) >=3D 12) {
+>> > > > -		dc5_reg =3D TGL_DMC_DEBUG_DC5_COUNT;
+>> > > > -		dc6_reg =3D TGL_DMC_DEBUG_DC6_COUNT;
+>> > > > +		if (IS_DG1(dev_priv)) {
+>> > > > +			dc5_reg =3D DG1_DMC_DEBUG_DC5_COUNT;
+>> > > > +		} else {
+>> > > > +			dc5_reg =3D TGL_DMC_DEBUG_DC5_COUNT;
+>> > > > +			dc6_reg =3D TGL_DMC_DEBUG_DC6_COUNT;
+>> > > > +		}
+>> > > > +
+>> > > >  		/*
+>> > > >  		 * NOTE: DMC_DEBUG3 is a general purpose reg.
+>> > > >  		 * According to B.Specs:49196 DMC f/w reuses DC5/6 counter
+>> > > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i91=
+5/i915_reg.h
+>> > > > index 4e95312eba24..78bdce67da08 100644
+>> > > > --- a/drivers/gpu/drm/i915/i915_reg.h
+>> > > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> > > > @@ -7549,6 +7549,8 @@ enum {
+>> > > >  #define BXT_CSR_DC3_DC5_COUNT	_MMIO(0x80038)
+>> > > >  #define TGL_DMC_DEBUG_DC5_COUNT	_MMIO(0x101084)
+>> > > >  #define TGL_DMC_DEBUG_DC6_COUNT	_MMIO(0x101088)
+>> > > > +#define DG1_DMC_DEBUG_DC5_COUNT	_MMIO(0x134154)
+>> > > > +#define DG1_DMC_DEBUG_DC6_COUNT	_MMIO(0x134158)
+>> > >
+>> > > DG1_DMC_DEBUG_DC6_COUNT is not used as DG1 do not support DC6.
+>> > > Removing it:
+>> >
+>> > DG1_DMC_DEBUG_DC6_COUNT is still valid DMC_DEBUG counter for future
+>> > igfx platforms, considering name consistency it has been kept with nam=
+e DG1_*
+>> > inline to B.Spec Index:49787.
+>>
+>> A discrete graphics card will never be able to reach DC6 as it is a SOC =
+power saving feature.
+>Is it documented some where, AFAIK DC6 is still diplay C state where it po=
+wer off its innermost power well,
+>with involvment of some non display third party f/w.
+>IMHO if any discrete-gfx would support DC6, it would be useful in the use =
+cases where driver is yet to request runtime suspend (DC9)
+>but display is already being powered off.
 
-Yes, fine with me.
+Correct, but I think the more relevant argument here is that it is _not
+used_. If it was a bitfield, then ok. But it is a register. I don't think
+we want to add all the unused registers. Chances are a new platform that
+supports it will already have it in another address already.
+
+I will remove it in the next version. And this is also =
 
 
-Juergen
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-> 
-> Thank you,
-> 
-> Oleksandr
-> 
-> On 8/13/20 9:21 AM, Oleksandr Andrushchenko wrote:
->> From: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
->>
->> Hello,
->>
->> This series contains an assorted set of fixes and improvements for
->> the Xen para-virtualized display driver and grant device driver which
->> I have collected over the last couple of months:
->>
->> 1. Minor fixes to grant device driver and drm/xen-front.
->>
->> 2. New format (YUYV) added to the list of the PV DRM supported formats
->> which allows the driver to be used in zero-copying use-cases when
->> a camera device is the source of the dma-bufs.
->>
->> 3. Synchronization with the latest para-virtualized protocol definition
->> in Xen [1].
->>
->> 4. SGT offset is now propagated to the backend: while importing a dmabuf
->> it is possible that the data of the buffer is put with offset which is
->> indicated by the SGT offset. This is needed for some GPUs which have
->> non-zero offset.
->>
->> Thank you,
->> Oleksandr Andrushchenko
->>
->> [1] https://urldefense.com/v3/__https://xenbits.xen.org/gitweb/?p=xen.git;a=commit;h=c27a184225eab54d20435c8cab5ad0ef384dc2c0__;!!GF_29dbcQIUBPA!iAHOdk4M167VNM1AypMGVmyKJu-iqC9e5cXyu6N595Np3iyIZDnZl0MIBX3IROJSD1GSMX_GfQ$ [xenbits[.]xen[.]org]
->>
->> Changes since v1:
->> =================
->>
->> 1. Removed patch which adds EDID to PV DRM as it needs more time for review:
->> "5. Version 2 of the Xen displif protocol adds XENDISPL_OP_GET_EDID
->> request which allows frontends to request EDID structure per
->> connector. This request is optional and if not supported by the
->> backend then visible area is still defined by the relevant
->> XenStore's "resolution" property.
->> If backend provides EDID with XENDISPL_OP_GET_EDID request then
->> its values must take precedence over the resolutions defined in
->> XenStore."
->> I will send this as a dedicated patch.
->>
->> 2. Added missing CC stable for the patches with fixes
->>
->> Oleksandr Andrushchenko (5):
->>     xen/gntdev: Fix dmabuf import with non-zero sgt offset
->>     drm/xen-front: Fix misused IS_ERR_OR_NULL checks
->>     drm/xen-front: Add YUYV to supported formats
->>     xen: Sync up with the canonical protocol definition in Xen
->>     drm/xen-front: Pass dumb buffer data offset to the backend
->>
->>    drivers/gpu/drm/xen/xen_drm_front.c      | 10 +--
->>    drivers/gpu/drm/xen/xen_drm_front.h      |  2 +-
->>    drivers/gpu/drm/xen/xen_drm_front_conn.c |  1 +
->>    drivers/gpu/drm/xen/xen_drm_front_gem.c  | 11 +--
->>    drivers/gpu/drm/xen/xen_drm_front_kms.c  |  2 +-
->>    drivers/xen/gntdev-dmabuf.c              |  8 +++
->>    include/xen/interface/io/displif.h       | 91 +++++++++++++++++++++++-
->>    7 files changed, 111 insertions(+), 14 deletions(-)
->>
-> 
 
+Lucas De Marchi
+>Thanks,
+>Anshuman Gupta.
+>>
+>> >
+>> > Thanks,
+>> > Anshuman Gupta.
+>> > > Reviewed-by: Jos=E9 Roberto de Souza <
+>> > > jose.souza@intel.com
+>> > > >
+>> > >
+>> > >
+>> > > >
+>> > > >  #define DMC_DEBUG3		_MMIO(0x101090)
+>> > > >
+>> > > >
+>> > >
+>> > > _______________________________________________
+>> > > Intel-gfx mailing list
+>> > > Intel-gfx@lists.freedesktop.org
+>> > >
+>> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>> > >
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
