@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 630882437A6
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Aug 2020 11:28:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE802437B0
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Aug 2020 11:30:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBA96E984;
-	Thu, 13 Aug 2020 09:28:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 076896E98D;
+	Thu, 13 Aug 2020 09:30:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 103C36E984
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Aug 2020 09:28:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22114544-1500050 
- for multiple; Thu, 13 Aug 2020 10:28:34 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Aug 2020 10:28:33 +0100
-Message-Id: <20200813092833.14355-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200812223621.22292-3-chris@chris-wilson.co.uk>
-References: <20200812223621.22292-3-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 912306E989;
+ Thu, 13 Aug 2020 09:30:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 81289A47E8;
+ Thu, 13 Aug 2020 09:30:18 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Always test execution status on
- closing the context
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Date: Thu, 13 Aug 2020 09:30:18 -0000
+Message-ID: <159731101852.14258.15665527315044539446@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200813083644.31711-1-tzimmermann@suse.de>
+In-Reply-To: <20200813083644.31711-1-tzimmermann@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Convert_all_remaining_drivers_to_GEM_object_functions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,149 +38,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Verify that if a context is active at the time it is closed, that it is
-either persistent and preemptible (with hangcheck running) or it shall
-be removed from execution.
+== Series Details ==
 
-Fixes: 9a40bddd47ca ("drm/i915/gt: Expose heartbeat interval via sysfs")
-Testcase: igt/gem_ctx_persistence/heartbeat-close
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: <stable@vger.kernel.org> # v5.7+
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 48 +++++----------------
- 1 file changed, 10 insertions(+), 38 deletions(-)
+Series: Convert all remaining drivers to GEM object functions
+URL   : https://patchwork.freedesktop.org/series/80593/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index db893f6c516b..15d3ccb8f164 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -390,24 +390,6 @@ __context_engines_static(const struct i915_gem_context *ctx)
- 	return rcu_dereference_protected(ctx->engines, true);
- }
- 
--static bool __reset_engine(struct intel_engine_cs *engine)
--{
--	struct intel_gt *gt = engine->gt;
--	bool success = false;
--
--	if (!intel_has_reset_engine(gt))
--		return false;
--
--	if (!test_and_set_bit(I915_RESET_ENGINE + engine->id,
--			      &gt->reset.flags)) {
--		success = intel_engine_reset(engine, NULL) == 0;
--		clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id,
--				      &gt->reset.flags);
--	}
--
--	return success;
--}
--
- static void __reset_context(struct i915_gem_context *ctx,
- 			    struct intel_engine_cs *engine)
- {
-@@ -431,12 +413,7 @@ static bool __cancel_engine(struct intel_engine_cs *engine)
- 	 * kill the banned context, we fallback to doing a local reset
- 	 * instead.
- 	 */
--	if (IS_ACTIVE(CONFIG_DRM_I915_PREEMPT_TIMEOUT) &&
--	    !intel_engine_pulse(engine))
--		return true;
--
--	/* If we are unable to send a pulse, try resetting this engine. */
--	return __reset_engine(engine);
-+	return intel_engine_pulse(engine) == 0;
- }
- 
- static bool
-@@ -493,7 +470,7 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
- 	return engine;
- }
- 
--static void kill_engines(struct i915_gem_engines *engines)
-+static void kill_engines(struct i915_gem_engines *engines, bool ban)
- {
- 	struct i915_gem_engines_iter it;
- 	struct intel_context *ce;
-@@ -508,7 +485,7 @@ static void kill_engines(struct i915_gem_engines *engines)
- 	for_each_gem_engine(ce, engines, it) {
- 		struct intel_engine_cs *engine;
- 
--		if (intel_context_set_banned(ce))
-+		if (ban && intel_context_set_banned(ce))
- 			continue;
- 
- 		/*
-@@ -521,7 +498,7 @@ static void kill_engines(struct i915_gem_engines *engines)
- 		engine = active_engine(ce);
- 
- 		/* First attempt to gracefully cancel the context */
--		if (engine && !__cancel_engine(engine))
-+		if (engine && !__cancel_engine(engine) && ban)
- 			/*
- 			 * If we are unable to send a preemptive pulse to bump
- 			 * the context from the GPU, we have to resort to a full
-@@ -531,8 +508,10 @@ static void kill_engines(struct i915_gem_engines *engines)
- 	}
- }
- 
--static void kill_stale_engines(struct i915_gem_context *ctx)
-+static void kill_context(struct i915_gem_context *ctx)
- {
-+	bool ban = (!i915_gem_context_is_persistent(ctx) ||
-+		    !ctx->i915->params.enable_hangcheck);
- 	struct i915_gem_engines *pos, *next;
- 
- 	spin_lock_irq(&ctx->stale.lock);
-@@ -545,7 +524,7 @@ static void kill_stale_engines(struct i915_gem_context *ctx)
- 
- 		spin_unlock_irq(&ctx->stale.lock);
- 
--		kill_engines(pos);
-+		kill_engines(pos, ban);
- 
- 		spin_lock_irq(&ctx->stale.lock);
- 		GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
-@@ -557,11 +536,6 @@ static void kill_stale_engines(struct i915_gem_context *ctx)
- 	spin_unlock_irq(&ctx->stale.lock);
- }
- 
--static void kill_context(struct i915_gem_context *ctx)
--{
--	kill_stale_engines(ctx);
--}
--
- static void engines_idle_release(struct i915_gem_context *ctx,
- 				 struct i915_gem_engines *engines)
- {
-@@ -596,7 +570,7 @@ static void engines_idle_release(struct i915_gem_context *ctx,
- 
- kill:
- 	if (list_empty(&engines->link)) /* raced, already closed */
--		kill_engines(engines);
-+		kill_engines(engines, true);
- 
- 	i915_sw_fence_commit(&engines->fence);
- }
-@@ -654,9 +628,7 @@ static void context_close(struct i915_gem_context *ctx)
- 	 * case we opt to forcibly kill off all remaining requests on
- 	 * context close.
- 	 */
--	if (!i915_gem_context_is_persistent(ctx) ||
--	    !ctx->i915->params.enable_hangcheck)
--		kill_context(ctx);
-+	kill_context(ctx);
- 
- 	i915_gem_context_put(ctx);
- }
--- 
-2.20.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+3432354b0aba drm/amdgpu: Introduce GEM object functions
+a6636204e871 drm/armada: Introduce GEM object functions
+419237bb45ec drm/etnaviv: Introduce GEM object functions
+5ac6227c35a6 drm/exynos: Introduce GEM object functions
+bece754b7d5e drm/gma500: Introduce GEM object functions
+975a7cc97edf drm/i915: Introduce GEM object functions
+8f9c261ff43a drm/mediatek: Introduce GEM object functions
+8901932a7d0b drm/msm: Introduce GEM object funcs
+8e0a96b9b934 drm/nouveau: Introduce GEM object functions
+6db00555b27f drm/omapdrm: Introduce GEM object functions
+9f951cff95de drm/pl111: Introduce GEM object functions
+d35bbda1b7a0 drm/radeon: Introduce GEM object functions
+-:85: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#85: FILE: drivers/gpu/drm/radeon/radeon_object.c:48:
++void radeon_gem_object_free(struct drm_gem_object *obj);
+
+-:86: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#86: FILE: drivers/gpu/drm/radeon/radeon_object.c:49:
++int radeon_gem_object_open(struct drm_gem_object *obj,
+
+-:87: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#87: FILE: drivers/gpu/drm/radeon/radeon_object.c:50:
++int radeon_gem_object_open(struct drm_gem_object *obj,
++				struct drm_file *file_priv);
+
+-:88: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#88: FILE: drivers/gpu/drm/radeon/radeon_object.c:51:
++void radeon_gem_object_close(struct drm_gem_object *obj,
+
+-:89: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#89: FILE: drivers/gpu/drm/radeon/radeon_object.c:52:
++void radeon_gem_object_close(struct drm_gem_object *obj,
++				struct drm_file *file_priv);
+
+-:93: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#93: FILE: drivers/gpu/drm/radeon/radeon_object.c:56:
++int radeon_gem_prime_pin(struct drm_gem_object *obj);
+
+-:94: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#94: FILE: drivers/gpu/drm/radeon/radeon_object.c:57:
++void radeon_gem_prime_unpin(struct drm_gem_object *obj);
+
+-:96: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#96: FILE: drivers/gpu/drm/radeon/radeon_object.c:59:
++void radeon_gem_prime_vunmap(struct drm_gem_object *obj, void *vaddr);
+
+total: 0 errors, 6 warnings, 2 checks, 101 lines checked
+67f82bee99a9 drm/rockchip: Convert to drm_gem_object_funcs
+dabc081c2725 drm/tegra: Introduce GEM object functions
+082439f00666 drm/vc4: Introduce GEM object functions
+fff50ea99db8 drm/vgem: Introduce GEM object functions
+700a27560ff8 drm/vkms: Introduce GEM object functions
+e7063ad8ca7d drm/xen: Introduce GEM object functions
+57a3d52d4eaf drm/xlnx: Initialize DRM driver instance with CMA helper macro
+f887ba13ff85 drm: Remove obsolete GEM and PRIME callbacks from struct drm_driver
+
 
 _______________________________________________
 Intel-gfx mailing list
