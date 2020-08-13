@@ -2,57 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B5324331B
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Aug 2020 06:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C6802433E3
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Aug 2020 08:21:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF3A16E198;
-	Thu, 13 Aug 2020 04:07:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9E8E6E24E;
+	Thu, 13 Aug 2020 06:21:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28D6E6E198
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Aug 2020 04:07:41 +0000 (UTC)
-Received: from mail-pl1-f197.google.com ([209.85.214.197])
- by youngberry.canonical.com with esmtps
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <kai.heng.feng@canonical.com>) id 1k64Wh-0006w5-TZ
- for intel-gfx@lists.freedesktop.org; Thu, 13 Aug 2020 04:07:40 +0000
-Received: by mail-pl1-f197.google.com with SMTP id f7so3108320plj.16
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Aug 2020 21:07:39 -0700 (PDT)
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com
+ [IPv6:2a00:1450:4864:20::144])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE746E217;
+ Thu, 13 Aug 2020 06:21:17 +0000 (UTC)
+Received: by mail-lf1-x144.google.com with SMTP id j22so2452852lfm.2;
+ Wed, 12 Aug 2020 23:21:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=wDWU02+wCKok8nwDMeBlH97/pQcKgRkp+JF5JymdpUo=;
+ b=jDpTVC3sIm7gufDjf0d+/+hJrzDRXPB5ir1t8eW5KL1T4aQ4sPLBnwenLQJBq8qKIT
+ jbWxj5JszQNrbU7t/NghozcTj8mbbQlIm6qR389+tdkpQMibep+6sVKx04ZpKchRa7LV
+ GNarSi2rJdVEBIeItxbNSzQqwt1BU78frDE9wbp2rvt/2v1RWsrdGtn4StePHqGj+jOs
+ 0hkOuKOaNcoKsUQjwgop4MRJCWhnqOQS/C5bdq1bBa5QlE+tS3/4sQxnvthYHBWU4xY8
+ HfUDYiAqSdSuj7GT21GU5fs5apPoGqXCDyMaqNXkiNYk+hF3l+HR3QJrDN2l/Qih7nVD
+ R67Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:content-transfer-encoding:mime-version
- :subject:message-id:date:cc:to;
- bh=mEHwsfmkTZJWIzaKF8yFqaX/0DquB6n/mWzEiW5khM4=;
- b=KzwtC51yNtUSQzaYyXyU4s/Cp1kCOwPlYTPHXq77Q5Bb481hFge0BHXVLxwWXgfCvP
- k2HbcqRfLaiH+ah+EozuMxi9ow7a427QtDNFQUvQ0aRmxupfXoqurD/hZRU2NiUWSEuz
- fmvP82SuWuZ1Nee0zfS9sw9S8DUvlvUxnmwKdZKAkMObV+eTJ49If0S7gj4woNDuA6VU
- NGYOMWPiIkzQguOy1maB9BS7frckkfhNVxg+Ml0O47VJPV9TLqDiYRuw2NHbRPu/dqgZ
- 0a5TSra4/Wh7GN0oP4CjxpNWt290HpTSLL0meapRGgNKWaDhrv13p2DhSDHENt/V45r8
- RcSQ==
-X-Gm-Message-State: AOAM532Bg8tdgL4SaDWiqNYTQ1MC51Er3JtTFYBSWCeA9b/FUtQ56iIG
- 0MED3bcoG1xl0taJ69Zlb+JhZtFCOqjhVVNbRXNUqM26CRqoROjTaWAxVBHeAzLffCpDEhkoB/0
- uac9W+ws0A3NjJf8CmsiHHFyBk4cl5/Y0QaOPKlb6DIW98Q==
-X-Received: by 2002:a65:5aca:: with SMTP id d10mr2115932pgt.247.1597291658064; 
- Wed, 12 Aug 2020 21:07:38 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx1u+kF44TT4iqFhGW2wajqSTXBrBvqo/Uqr5cMsbGcDoBoXCRl70FkM60+O4SVrCsKxnNXxA==
-X-Received: by 2002:a65:5aca:: with SMTP id d10mr2115915pgt.247.1597291657609; 
- Wed, 12 Aug 2020 21:07:37 -0700 (PDT)
-Received: from [192.168.1.208] (220-133-187-190.HINET-IP.hinet.net.
- [220.133.187.190])
- by smtp.gmail.com with ESMTPSA id bj18sm3475675pjb.5.2020.08.12.21.07.36
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 12 Aug 2020 21:07:37 -0700 (PDT)
-From: Kai-Heng Feng <kai.heng.feng@canonical.com>
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.1\))
-Message-Id: <844BC1FA-9C2F-4AAF-A0D9-B9A1EA40F51D@canonical.com>
-Date: Thu, 13 Aug 2020 12:07:34 +0800
-To: =?utf-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, arthur.j.runyan@intel.com
-X-Mailer: Apple Mail (2.3608.120.23.2.1)
-Subject: [Intel-gfx] [Regression] "drm/i915: Implement display w/a #1143"
- breaks HDMI on ASUS GL552VW
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=wDWU02+wCKok8nwDMeBlH97/pQcKgRkp+JF5JymdpUo=;
+ b=BzkC4Q+asMc/lE6RZtxbx1JbbfiK2pvKeWkdYqvL9jh5g17jwhXHY/AbR75DKD+7ko
+ Uxo6xERuZVXKjLAp7SGxjWvzDglU88INibiirYMZEJ08cnkbP8F0KnB/bm5iHixrQto5
+ VGZ0fG5dUTKkP5SWIQVpM9y3hRAgB2AoUrPw+LnC2h2U/3ajsfNHG7bQSWJzqayaj1Qo
+ n0I2BuhyBuletqAnFHzljESW9fl/qfsxwEEkK6tyJp36PN5ejAOpJcl5KfbmS+9RZA1C
+ OExPjZdZqXSzkb2GHCD9PANkFqPCtzHfNy91VMCUtvCPrBSDTA01vo33FuPyniwbVBWU
+ S2Jg==
+X-Gm-Message-State: AOAM530AY5zhhbgvxh+ionNZqsO5Z2ClQzRUm+OrSPUPf064iilioIAO
+ vSDowlO4wWGmsLzUXMuooig=
+X-Google-Smtp-Source: ABdhPJyM6kqvqKmDAxBHlLEed6fda0trrJcviieTKINPyset90Po5kDy6xXF6opl++WeilsLdmCx8A==
+X-Received: by 2002:ac2:5ec8:: with SMTP id d8mr1391609lfq.169.1597299675256; 
+ Wed, 12 Aug 2020 23:21:15 -0700 (PDT)
+Received: from a2klaptop.localdomain ([185.199.97.5])
+ by smtp.gmail.com with ESMTPSA id f14sm964060lfd.2.2020.08.12.23.21.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 12 Aug 2020 23:21:14 -0700 (PDT)
+From: Oleksandr Andrushchenko <andr2000@gmail.com>
+To: xen-devel@lists.xenproject.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, boris.ostrovsky@oracle.com, jgross@suse.com,
+ airlied@linux.ie, daniel@ffwll.ch
+Date: Thu, 13 Aug 2020 09:21:08 +0300
+Message-Id: <20200813062113.11030-1-andr2000@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH v2 0/5] Fixes and improvements for Xen pvdrm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,39 +63,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, sstabellini@kernel.org,
+ dan.carpenter@oracle.com,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGksCgpUaGVyZSdzIGEgcmVncmVzc2lvbiByZXBvcnRlZCB0aGF0IEhETUkgb3V0cHV0IHN0b3Bz
-IHdvcmtpbmcgYWZ0ZXIgb3MgdXBncmFkZToKaHR0cHM6Ly9idWdzLmxhdW5jaHBhZC5uZXQvYnVn
-cy8xODcxNzIxCgpIZXJlJ3MgdGhlIGJpc2VjdCByZXN1bHQ6CjA1MTljMTAyZjUyODU0NzZkNzg2
-OGEzODdiZGI2YzU4Mzg1ZTQwNzQgaXMgdGhlIGZpcnN0IGJhZCBjb21taXQKY29tbWl0IDA1MTlj
-MTAyZjUyODU0NzZkNzg2OGEzODdiZGI2YzU4Mzg1ZTQwNzQKQXV0aG9yOiBWaWxsZSBTeXJqw6Rs
-w6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpEYXRlOiAgIE1vbiBKYW4gMjIgMTk6
-NDE6MzEgMjAxOCArMDIwMAoKICAgIGRybS9pOTE1OiBJbXBsZW1lbnQgZGlzcGxheSB3L2EgIzEx
-NDMKCiAgICBBcHBhcmVudGx5IFNLTC9LQkwvQ0ZMIG5lZWQgc29tZSBtYW51YWwgaGVscCB0byBn
-ZXQgdGhlCiAgICBwcm9ncmFtbWVkIEhETUkgdnN3aW5nIHRvIHN0aWNrLiBJbXBsZW1lbnQgdGhl
-IHJlbGV2YW50CiAgICB3b3JrYXJvdW5kIChkaXNwbGF5IHcvYSAjMTE0MykuCgogICAgTm90ZSB0
-aGF0IHRoZSByZWxldmFudCBjaGlja2VuIGJpdHMgbGl2ZSBpbiBhIHRyYW5zY29kZXIgcmVnaXN0
-ZXIKICAgIGV2ZW4gdGhvdWdoIHRoZSBiaXRzIGFmZmVjdCBhIHNwZWNpZmljIERESSBwb3J0IHJh
-dGhlciB0aGFuIGEKICAgIHNwZWNpZmljIHRyYW5zY29kZXIuIEhlbmNlIHdlIG11c3QgcGljayB0
-aGUgY29ycmVjdCB0cmFuc2NvZGVyCiAgICByZWdpc3RlciBpbnN0YW5jZSBiYXNlZCBvbiB0aGUg
-cG9ydCByYXRoZXIgdGhhbiBiYXNlZCBvbiB0aGUKICAgIGNwdV90cmFuc2NvZGVyLgoKICAgIEFs
-c28gbm90ZSB0aGF0IGZvciBjb21wbGV0ZW5lc3MgSSBpbmNsdWRlZCBzdXBwb3J0IGZvciBEREkg
-QS9FCiAgICBpbiB0aGUgY29kZSBldmVuIHRob3VnaCB3ZSBuZXZlciBoYXZlIEhETUkgb24gdGhv
-c2UgcG9ydHMuCgogICAgdjI6IENGTCBuZWVkcyB0aGUgdy9hIGFzIHdlbGwgKFJvZHJpZ28gYW5k
-IEFydCkKCiAgICBDYzogUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPgogICAg
-Q2M6IEFydCBSdW55YW4gPGFydGh1ci5qLnJ1bnlhbkBpbnRlbC5jb20+CiAgICBTaWduZWQtb2Zm
-LWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgogICAg
-TGluazogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoL21zZ2lkLzIwMTgw
-MTIyMTc0MTMxLjI4MDQ2LTEtdmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20KICAgIFJldmll
-d2VkLWJ5OiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+CgoKZG1lc2cgZnJv
-bSBkcm0tdGlwIHdpdGggZHJtLmRlYnVnPTB4ZSBjYW4gYmUgZm91bmQgaGVyZToKaHR0cHM6Ly9i
-dWdzLmxhdW5jaHBhZC5uZXQvdWJ1bnR1Lytzb3VyY2UvbGludXgvK2J1Zy8xODcxNzIxL2NvbW1l
-bnRzLzY0CgpLYWktSGVuZwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZngK
+From: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+
+Hello,
+
+This series contains an assorted set of fixes and improvements for
+the Xen para-virtualized display driver and grant device driver which
+I have collected over the last couple of months:
+
+1. Minor fixes to grant device driver and drm/xen-front.
+
+2. New format (YUYV) added to the list of the PV DRM supported formats
+which allows the driver to be used in zero-copying use-cases when
+a camera device is the source of the dma-bufs.
+
+3. Synchronization with the latest para-virtualized protocol definition
+in Xen [1].
+
+4. SGT offset is now propagated to the backend: while importing a dmabuf
+it is possible that the data of the buffer is put with offset which is
+indicated by the SGT offset. This is needed for some GPUs which have
+non-zero offset.
+
+Thank you,
+Oleksandr Andrushchenko
+
+[1] https://xenbits.xen.org/gitweb/?p=xen.git;a=commit;h=c27a184225eab54d20435c8cab5ad0ef384dc2c0
+
+Changes since v1:
+=================
+
+1. Removed patch which adds EDID to PV DRM as it needs more time for review:
+"5. Version 2 of the Xen displif protocol adds XENDISPL_OP_GET_EDID
+request which allows frontends to request EDID structure per
+connector. This request is optional and if not supported by the
+backend then visible area is still defined by the relevant
+XenStore's "resolution" property.
+If backend provides EDID with XENDISPL_OP_GET_EDID request then
+its values must take precedence over the resolutions defined in
+XenStore."
+I will send this as a dedicated patch.
+
+2. Added missing CC stable for the patches with fixes
+
+Oleksandr Andrushchenko (5):
+  xen/gntdev: Fix dmabuf import with non-zero sgt offset
+  drm/xen-front: Fix misused IS_ERR_OR_NULL checks
+  drm/xen-front: Add YUYV to supported formats
+  xen: Sync up with the canonical protocol definition in Xen
+  drm/xen-front: Pass dumb buffer data offset to the backend
+
+ drivers/gpu/drm/xen/xen_drm_front.c      | 10 +--
+ drivers/gpu/drm/xen/xen_drm_front.h      |  2 +-
+ drivers/gpu/drm/xen/xen_drm_front_conn.c |  1 +
+ drivers/gpu/drm/xen/xen_drm_front_gem.c  | 11 +--
+ drivers/gpu/drm/xen/xen_drm_front_kms.c  |  2 +-
+ drivers/xen/gntdev-dmabuf.c              |  8 +++
+ include/xen/interface/io/displif.h       | 91 +++++++++++++++++++++++-
+ 7 files changed, 111 insertions(+), 14 deletions(-)
+
+-- 
+2.17.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
