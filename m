@@ -1,60 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3BD9244AA4
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Aug 2020 15:39:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F6A0244C5B
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Aug 2020 17:57:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BD0D6EB4D;
-	Fri, 14 Aug 2020 13:39:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5729A6E0FD;
+	Fri, 14 Aug 2020 15:57:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34EE96EB4D
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Aug 2020 13:39:16 +0000 (UTC)
-IronPort-SDR: ITHldcDVGknyhD5d50O8BiwCA3X81s3lGazmRFyJmgappbZYQ6ZnPRaU2a00ZPXmX+wDTvjpAh
- Kek4+S/v/Oyw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9712"; a="142242600"
-X-IronPort-AV: E=Sophos;i="5.76,312,1592895600"; d="scan'208";a="142242600"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2020 06:39:15 -0700
-IronPort-SDR: Q3PcVlUNmavQZkZKKEc2L1M4S0OUHDAvq5LpDNfIqh2J65uAfS/l5+CuZnh9VXTyzZ76Ju3iIp
- NivSxpbsZm9A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,312,1592895600"; d="scan'208";a="309383578"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
- by orsmga002.jf.intel.com with ESMTP; 14 Aug 2020 06:39:15 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 14 Aug 2020 14:39:13 +0100
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Fri, 14 Aug 2020 19:09:12 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Varide, Nischal" <nischal.varide@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 1/8] Critical KlockWork Error - Fixes -
- intel_cdclk.c - Possible NullPointerDereference1
-Thread-Index: AQHWch/Kiwck9vF+ckee5+F4EVkmfKk3m0oQ
-Date: Fri, 14 Aug 2020 13:39:12 +0000
-Message-ID: <26eb49d2d21e4250b548f924bf1fb35d@intel.com>
-References: <20200814024950.26830-1-nischal.varide@intel.com>
-In-Reply-To: <20200814024950.26830-1-nischal.varide@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 709D36EA82
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Aug 2020 15:57:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22129560-1500050 
+ for multiple; Fri, 14 Aug 2020 16:57:37 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 14 Aug 2020 16:57:33 +0100
+Message-Id: <20200814155735.29138-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/8] Critical KlockWork Error - Fixes -
- intel_cdclk.c - Possible NullPointerDereference1
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Widen CSB pointer to u64 for
+ the parsers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,92 +37,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Varide, Nischal" <nischal.varide@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+A CSB entry is 64b, and it is simpler for us to treat it as an array of
+64b entries than as an array of pairs of 32b entries.
 
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c          | 33 ++++++++++----------
+ 2 files changed, 17 insertions(+), 18 deletions(-)
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Nischal
-> Varide
-> Sent: Friday, August 14, 2020 8:20 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Varide, Nischal <nischal.varide@intel.com>
-> Subject: [Intel-gfx] [PATCH 1/8] Critical KlockWork Error - Fixes - intel_cdclk.c -
-> Possible NullPointerDereference1
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index c400aaa2287b..ee6312601c56 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -278,7 +278,7 @@ struct intel_engine_execlists {
+ 	 *
+ 	 * Note these register may be either mmio or HWSP shadow.
+ 	 */
+-	u32 *csb_status;
++	u64 *csb_status;
+ 
+ 	/**
+ 	 * @csb_size: context status buffer FIFO size
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 82742c6f423c..db982fc0f0bc 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2464,7 +2464,7 @@ cancel_port_requests(struct intel_engine_execlists * const execlists)
+ }
+ 
+ static inline void
+-invalidate_csb_entries(const u32 *first, const u32 *last)
++invalidate_csb_entries(const u64 *first, const u64 *last)
+ {
+ 	clflush((void *)first);
+ 	clflush((void *)last);
+@@ -2496,14 +2496,12 @@ invalidate_csb_entries(const u32 *first, const u32 *last)
+  *     bits 47-57: sw context id of the lrc the GT switched away from
+  *     bits 58-63: sw counter of the lrc the GT switched away from
+  */
+-static inline bool
+-gen12_csb_parse(const struct intel_engine_execlists *execlists, const u32 *csb)
++static inline bool gen12_csb_parse(const u64 *csb)
+ {
+-	u32 lower_dw = csb[0];
+-	u32 upper_dw = csb[1];
+-	bool ctx_to_valid = GEN12_CSB_CTX_VALID(lower_dw);
+-	bool ctx_away_valid = GEN12_CSB_CTX_VALID(upper_dw);
+-	bool new_queue = lower_dw & GEN12_CTX_STATUS_SWITCHED_TO_NEW_QUEUE;
++	u64 entry = READ_ONCE(*csb);
++	bool ctx_away_valid = GEN12_CSB_CTX_VALID(upper_32_bits(entry));
++	bool new_queue =
++		lower_32_bits(entry) & GEN12_CTX_STATUS_SWITCHED_TO_NEW_QUEUE;
+ 
+ 	/*
+ 	 * The context switch detail is not guaranteed to be 5 when a preemption
+@@ -2513,7 +2511,7 @@ gen12_csb_parse(const struct intel_engine_execlists *execlists, const u32 *csb)
+ 	 * would require some extra handling, but we don't support that.
+ 	 */
+ 	if (!ctx_away_valid || new_queue) {
+-		GEM_BUG_ON(!ctx_to_valid);
++		GEM_BUG_ON(!GEN12_CSB_CTX_VALID(lower_32_bits(entry)));
+ 		return true;
+ 	}
+ 
+@@ -2522,12 +2520,11 @@ gen12_csb_parse(const struct intel_engine_execlists *execlists, const u32 *csb)
+ 	 * context switch on an unsuccessful wait instruction since we always
+ 	 * use polling mode.
+ 	 */
+-	GEM_BUG_ON(GEN12_CTX_SWITCH_DETAIL(upper_dw));
++	GEM_BUG_ON(GEN12_CTX_SWITCH_DETAIL(upper_32_bits(entry)));
+ 	return false;
+ }
+ 
+-static inline bool
+-gen8_csb_parse(const struct intel_engine_execlists *execlists, const u32 *csb)
++static inline bool gen8_csb_parse(const u64 *csb)
+ {
+ 	return *csb & (GEN8_CTX_STATUS_IDLE_ACTIVE | GEN8_CTX_STATUS_PREEMPTED);
+ }
+@@ -2535,7 +2532,7 @@ gen8_csb_parse(const struct intel_engine_execlists *execlists, const u32 *csb)
+ static void process_csb(struct intel_engine_cs *engine)
+ {
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+-	const u32 * const buf = execlists->csb_status;
++	const u64 * const buf = execlists->csb_status;
+ 	const u8 num_entries = execlists->csb_size;
+ 	u8 head, tail;
+ 
+@@ -2616,12 +2613,14 @@ static void process_csb(struct intel_engine_cs *engine)
+ 		 */
+ 
+ 		ENGINE_TRACE(engine, "csb[%d]: status=0x%08x:0x%08x\n",
+-			     head, buf[2 * head + 0], buf[2 * head + 1]);
++			     head,
++			     upper_32_bits(buf[head]),
++			     lower_32_bits(buf[head]));
+ 
+ 		if (INTEL_GEN(engine->i915) >= 12)
+-			promote = gen12_csb_parse(execlists, buf + 2 * head);
++			promote = gen12_csb_parse(buf + head);
+ 		else
+-			promote = gen8_csb_parse(execlists, buf + 2 * head);
++			promote = gen8_csb_parse(buf + head);
+ 		if (promote) {
+ 			struct i915_request * const *old = execlists->active;
+ 
+@@ -5148,7 +5147,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
+ 	}
+ 
+ 	execlists->csb_status =
+-		&engine->status_page.addr[I915_HWS_CSB_BUF0_INDEX];
++		(u64 *)&engine->status_page.addr[I915_HWS_CSB_BUF0_INDEX];
+ 
+ 	execlists->csb_write =
+ 		&engine->status_page.addr[intel_hws_csb_write_index(i915)];
+-- 
+2.20.1
 
-Add some commit description explaining the clockwork warning.
-
-Also append all display patches (in display folder) with "drm/i915/display :"
-in the commit headers. For generic path have "drm/i915:" as prefix.
-Please check the format used in patches already merged to tree.
-
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 9d6cacbdb691..1cd0ab5b36d2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1926,7 +1926,11 @@ intel_set_cdclk_pre_plane_update(struct
-> intel_atomic_state *state)
->  		intel_atomic_get_old_cdclk_state(state);
->  	const struct intel_cdclk_state *new_cdclk_state =
->  		intel_atomic_get_new_cdclk_state(state);
-> -	enum pipe pipe = new_cdclk_state->pipe;
-> +	enum pipe pipe;
-> +
-> +	if (!(old_cdclk_state && new_cdclk_state))
-> +		return
-> +	(void)(pipe = new_cdclk_state->pipe);
-
-Is this typecast really needed ?
-
-> 
->  	if (!intel_cdclk_changed(&old_cdclk_state->actual,
->  				 &new_cdclk_state->actual))
-> @@ -1955,7 +1959,13 @@ intel_set_cdclk_post_plane_update(struct
-> intel_atomic_state *state)
->  		intel_atomic_get_old_cdclk_state(state);
->  	const struct intel_cdclk_state *new_cdclk_state =
->  		intel_atomic_get_new_cdclk_state(state);
-> -	enum pipe pipe = new_cdclk_state->pipe;
-> +	enum pipe pipe;
-> +
-> +	if (!(old_cdclk_state && new_cdclk_state))
-> +		return
-> +	(void)(pipe = new_cdclk_state->pipe);
-
-Same here.
-
-> +
-> +
-> 
->  	if (!intel_cdclk_changed(&old_cdclk_state->actual,
->  				 &new_cdclk_state->actual))
-> @@ -2484,6 +2494,9 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state
-> *state)
-> 
->  	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
-> 
-> +	if (!(old_cdclk_state && new_cdclk_state))
-> +		return
-> +
->  	new_cdclk_state->active_pipes =
->  		intel_calc_active_pipes(state, old_cdclk_state->active_pipes);
-> 
-> --
-> 2.26.0
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
