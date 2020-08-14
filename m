@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5C092447B8
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Aug 2020 12:09:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 270142447C6
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Aug 2020 12:14:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCFE76EB24;
-	Fri, 14 Aug 2020 10:09:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FD006EB25;
+	Fri, 14 Aug 2020 10:14:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0973D6EB1D;
- Fri, 14 Aug 2020 10:09:46 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5F5336EB1D;
+ Fri, 14 Aug 2020 10:14:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 02A7FA011B;
- Fri, 14 Aug 2020 10:09:45 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 595BDA66C7;
+ Fri, 14 Aug 2020 10:14:00 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Fri, 14 Aug 2020 10:09:45 -0000
-Message-ID: <159739978597.3439.10282597925887987477@emeril.freedesktop.org>
+To: "Nischal Varide" <nischal.varide@intel.com>
+Date: Fri, 14 Aug 2020 10:14:00 -0000
+Message-ID: <159740004033.3438.11995246586072941657@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200814093842.3048472-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200814093842.3048472-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/modeset-lock=3A_Take_the_modeset_BKL_for_legacy_drivers?=
+References: <20200814024950.26830-1-nischal.varide@intel.com>
+In-Reply-To: <20200814024950.26830-1-nischal.varide@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/8=5D_Critical_KlockWork_Error_-_F?=
+ =?utf-8?q?ixes_-_intel=5Fcdclk=2Ec_-_Possible_NullPointerDereference1?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,223 +41,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0674343730=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0674343730==
-Content-Type: multipart/alternative;
- boundary="===============2166814145791379048=="
-
---===============2166814145791379048==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/modeset-lock: Take the modeset BKL for legacy drivers
-URL   : https://patchwork.freedesktop.org/series/80620/
-State : success
+Series: series starting with [1/8] Critical KlockWork Error - Fixes - intel_cdclk.c - Possible NullPointerDereference1
+URL   : https://patchwork.freedesktop.org/series/80622/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8882 -> Patchwork_18356
-====================================================
+$ dim checkpatch origin/drm-tip
+b5bd9c17f5da Critical KlockWork Error - Fixes - intel_cdclk.c - Possible NullPointerDereference1
+-:9: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-Summary
--------
+-:36: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#36: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:1968:
++
++
 
-  **SUCCESS**
+-:49: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-  No regressions found.
+total: 1 errors, 1 warnings, 1 checks, 35 lines checked
+40f6a6747f32 Critical KlockWork Error - Fixes - intel_atomic.c - Possible NullPointerDereference1
+-:9: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/index.html
+-:20: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-Known issues
-------------
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+72231b698a7d Critical KlockWork Error - Fixes - intel_fbdev.c - Possible NullPointerDereference1
+-:9: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  Here are the changes found in Patchwork_18356 that come from known issues:
+-:18: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#18: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:598:
++	if (ifbdev->fb && intel_fb_obj(&ifbdev->fb->base)) {
++	    if (state == FBINFO_STATE_RUNNING &&
 
-### IGT changes ###
+-:19: WARNING:TABSTOP: Statements should start on a tabstop
+#19: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:599:
++	    if (state == FBINFO_STATE_RUNNING &&
 
-#### Possible fixes ####
+-:20: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#20: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:600:
++	    if (state == FBINFO_STATE_RUNNING &&
++		    intel_fb_obj(&ifbdev->fb->base)->stolen)
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][1] ([i915#1888]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+-:25: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-kbl-r:           [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+total: 1 errors, 3 warnings, 1 checks, 13 lines checked
+f2f5b020a8e8 Critical KlockWork Error - Fixes - intel_display.c - Possible NullPointerDereference1
+-:9: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  
-#### Warnings ####
+-:19: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#19: FILE: drivers/gpu/drm/i915/display/intel_display.c:2268:
++	if (obj)
++	    vma = i915_gem_object_pin_to_display_plane(obj,
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][7] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][8] ([i915#62] / [i915#92]) +3 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+-:21: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#21: FILE: drivers/gpu/drm/i915/display/intel_display.c:2270:
++	    vma = i915_gem_object_pin_to_display_plane(obj,
++		    alignment, view, pinctl);
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [SKIP][9] ([fdo#109271]) -> [DMESG-FAIL][10] ([i915#62])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+-:24: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+total: 1 errors, 2 warnings, 1 checks, 12 lines checked
+ad3c9fa781ce Critical KlockWork Error - Fixes - intel_sdvo.c - Possible NullPointerDereference1
+-:9: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:16: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#16: FILE: drivers/gpu/drm/i915/display/intel_sdvo.c:2508:
++	if (!(new_conn_state && old_conn_state && old_state && new_state))
++	    return 0;
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+-:17: WARNING:TABSTOP: Statements should start on a tabstop
+#17: FILE: drivers/gpu/drm/i915/display/intel_sdvo.c:2509:
++	    return 0;
 
+-:21: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-Participating hosts (44 -> 37)
-------------------------------
+total: 1 errors, 3 warnings, 0 checks, 9 lines checked
+35e611290838 Critical KlockWork Error - Fixes - intel_tv.c - Possible NullPointerDereference1
+-:9: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+-:21: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#21: FILE: drivers/gpu/drm/i915/display/intel_tv.c:1845:
++	if (old_state && new_state && new_crtc_state) {
+[...]
++	    if (old_state->tv.mode != new_state->tv.mode ||
 
+-:22: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#22: FILE: drivers/gpu/drm/i915/display/intel_tv.c:1846:
++	if (old_state && new_state && new_crtc_state) {
++
 
-Build changes
--------------
+-:23: WARNING:TABSTOP: Statements should start on a tabstop
+#23: FILE: drivers/gpu/drm/i915/display/intel_tv.c:1847:
++	    if (old_state->tv.mode != new_state->tv.mode ||
 
-  * Linux: CI_DRM_8882 -> Patchwork_18356
+-:24: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#24: FILE: drivers/gpu/drm/i915/display/intel_tv.c:1848:
++	    if (old_state->tv.mode != new_state->tv.mode ||
++		    old_state->tv.margins.left != new_state->tv.margins.left ||
 
-  CI-20190529: 20190529
-  CI_DRM_8882: bc285974fbc945765c176218aba7a003b687eea9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18356: 4be15a75c756cef4e20c6c47638d6719d1c250e2 @ git://anongit.freedesktop.org/gfx-ci/linux
+-:31: WARNING:TABSTOP: Statements should start on a tabstop
+#31: FILE: drivers/gpu/drm/i915/display/intel_tv.c:1855:
++	    }
 
+-:34: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-== Linux commits ==
+total: 1 errors, 4 warnings, 2 checks, 22 lines checked
+b91c796bdad7 Critical KlockWork Error - Fixes - intel_display_power.c - Possible NullPointerDereference2
+-:9: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-4be15a75c756 drm/modeset-lock: Take the modeset BKL for legacy drivers
+-:16: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#16: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:604:
++^Iif (!dig_port) $
 
-== Logs ==
+-:16: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#16: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:604:
++	if (!dig_port) 
++	    return;
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/index.html
+-:17: WARNING:TABSTOP: Statements should start on a tabstop
+#17: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:605:
++	    return;
 
---===============2166814145791379048==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:21: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
+total: 2 errors, 3 warnings, 0 checks, 9 lines checked
+aae7f8d354af Critical KlockWork Error - Fixes - intel_combo_phy.c Uninitialized Variable-1
+-:9: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+-:20: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/modeset-lock: Take the modeset BKL for legacy drivers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/80620/">https://patchwork.freedesktop.org/series/80620/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8882 -&gt; Patchwork_18356</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18356 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>
-<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-<li>
-<p>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8882/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18356/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 37)</h2>
-<p>Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_8882 -&gt; Patchwork_18356</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8882: bc285974fbc945765c176218aba7a003b687eea9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18356: 4be15a75c756cef4e20c6c47638d6719d1c250e2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4be15a75c756 drm/modeset-lock: Take the modeset BKL for legacy drivers</p>
-
-</body>
-</html>
-
---===============2166814145791379048==--
-
---===============0674343730==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0674343730==--
