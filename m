@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C25D1244EE7
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Aug 2020 21:41:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEA9E244EEA
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Aug 2020 21:43:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DEB86EB90;
-	Fri, 14 Aug 2020 19:41:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3521F6EC08;
+	Fri, 14 Aug 2020 19:43:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4FF96EB90
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Aug 2020 19:41:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDA2F6EC08
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Aug 2020 19:43:28 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22131583-1500050 for multiple; Fri, 14 Aug 2020 20:41:35 +0100
+ 22131590-1500050 for multiple; Fri, 14 Aug 2020 20:43:27 +0100
 MIME-Version: 1.0
-In-Reply-To: <87ft8p135h.fsf@gaia.fi.intel.com>
+In-Reply-To: <87imdl13ps.fsf@gaia.fi.intel.com>
 References: <20200814155735.29138-1-chris@chris-wilson.co.uk>
- <20200814155735.29138-3-chris@chris-wilson.co.uk>
- <87ft8p135h.fsf@gaia.fi.intel.com>
+ <87imdl13ps.fsf@gaia.fi.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Aug 2020 20:41:32 +0100
-Message-ID: <159743409290.31882.4297809836771338545@build.alporthouse.com>
+Date: Fri, 14 Aug 2020 20:43:24 +0100
+Message-ID: <159743420496.31882.5716914620781264689@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Apply the CSB w/a for all
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Widen CSB pointer to u64
+ for the parsers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,57 +46,69 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-08-14 19:41:14)
+Quoting Mika Kuoppala (2020-08-14 19:29:03)
 > Chris Wilson <chris@chris-wilson.co.uk> writes:
 > 
-> > Since we expect to inline the csb_parse() routines, the w/a for the
-> > stale CSB data on Tigerlake will be pulled into process_csb(), and so we
-> > might as well simply reuse the logic for all, and so will hopefully
-> > avoid any strange behaviour on Icelake that was not covered by our
-> > previous w/a.
+> > A CSB entry is 64b, and it is simpler for us to treat it as an array of
+> > 64b entries than as an array of pairs of 32b entries.
 > >
-> > References: d8f505311717 ("drm/i915/icl: Forcibly evict stale csb entries")
 > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > Cc: Bruce Chang <yu.bruce.chang@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/gt/intel_lrc.c | 70 +++++++++++++++++------------
-> >  1 file changed, 42 insertions(+), 28 deletions(-)
+> >  drivers/gpu/drm/i915/gt/intel_engine_types.h |  2 +-
+> >  drivers/gpu/drm/i915/gt/intel_lrc.c          | 33 ++++++++++----------
+> >  2 files changed, 17 insertions(+), 18 deletions(-)
 > >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> > index c400aaa2287b..ee6312601c56 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> > @@ -278,7 +278,7 @@ struct intel_engine_execlists {
+> >        *
+> >        * Note these register may be either mmio or HWSP shadow.
+> >        */
+> > -     u32 *csb_status;
+> > +     u64 *csb_status;
+> >  
+> >       /**
+> >        * @csb_size: context status buffer FIFO size
 > > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > index 3b8161c6b601..c176a029f27b 100644
+> > index 82742c6f423c..db982fc0f0bc 100644
 > > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 > > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > @@ -2496,25 +2496,11 @@ invalidate_csb_entries(const u64 *first, const u64 *last)
+> > @@ -2464,7 +2464,7 @@ cancel_port_requests(struct intel_engine_execlists * const execlists)
+> >  }
+> >  
+> >  static inline void
+> > -invalidate_csb_entries(const u32 *first, const u32 *last)
+> > +invalidate_csb_entries(const u64 *first, const u64 *last)
+> >  {
+> >       clflush((void *)first);
+> >       clflush((void *)last);
+> > @@ -2496,14 +2496,12 @@ invalidate_csb_entries(const u32 *first, const u32 *last)
 > >   *     bits 47-57: sw context id of the lrc the GT switched away from
 > >   *     bits 58-63: sw counter of the lrc the GT switched away from
 > >   */
-> > -static inline bool gen12_csb_parse(const u64 *csb)
-> > +static inline bool gen12_csb_parse(const u64 csb)
+> > -static inline bool
+> > -gen12_csb_parse(const struct intel_engine_execlists *execlists, const u32 *csb)
+> > +static inline bool gen12_csb_parse(const u64 *csb)
 > >  {
-> > -     bool ctx_away_valid;
-> > -     bool new_queue;
-> > -     u64 entry;
-> > -
-> > -     /* XXX HSD */
-> > -     entry = READ_ONCE(*csb);
-> > -     if (unlikely(entry == -1)) {
-> > -             preempt_disable();
-> > -             if (wait_for_atomic_us((entry = READ_ONCE(*csb)) != -1, 50))
+> > -     u32 lower_dw = csb[0];
+> > -     u32 upper_dw = csb[1];
+> > -     bool ctx_to_valid = GEN12_CSB_CTX_VALID(lower_dw);
+> > -     bool ctx_away_valid = GEN12_CSB_CTX_VALID(upper_dw);
+> > -     bool new_queue = lower_dw & GEN12_CTX_STATUS_SWITCHED_TO_NEW_QUEUE;
+> > +     u64 entry = READ_ONCE(*csb);
+> > +     bool ctx_away_valid = GEN12_CSB_CTX_VALID(upper_32_bits(entry));
+> > +     bool new_queue =
+> > +             lower_32_bits(entry) & GEN12_CTX_STATUS_SWITCHED_TO_NEW_QUEUE;
 > 
-> If we get this deep into desperation, should we start to apply more
-> pressure. Ie, rmb instead of just instructing the compiler. And could also
-> start to invalidate the entry which obviously if of no use.
+> Opportunity to constify, tho stylistic.
 
-I had a rmb() here; removing it did not appear to make any difference
-whatsoever to the average delay. The extreme case would be a full
-mb(); clflush(); mb() read. I haven't timed the average for that....
- 
-> It could even be that the invalidate pays out as the correct value
-> bubbles throught hierarchy faster?
-
-I had the same thought... But atm my feeling is the issue is not on the
-CPU side (or at least controllable from our code on the CPU).
+Opportunity lost in the next patch, found again in the 3rd patch. If you
+get really fancy, we only use them once. gcc is already smart enough to
+reduce the pair down to a trivial set of bit ops rather than conditions.
+So I left it alone.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
