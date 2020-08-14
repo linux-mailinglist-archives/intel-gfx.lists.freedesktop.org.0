@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 151C9244A74
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Aug 2020 15:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3BD9244AA4
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Aug 2020 15:39:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68B886E045;
-	Fri, 14 Aug 2020 13:35:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BD0D6EB4D;
+	Fri, 14 Aug 2020 13:39:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3CAC6E045
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Aug 2020 13:35:16 +0000 (UTC)
-IronPort-SDR: f2FrBnecfwXvUkEpziAqoPHr9y3Y5sl6y1V7Dl5D3l4p3vEfYClR0dYlD9ZeRIm/ttw2bW37Hr
- yxhaxxrMi27w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9712"; a="142025934"
-X-IronPort-AV: E=Sophos;i="5.76,312,1592895600"; d="scan'208";a="142025934"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34EE96EB4D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Aug 2020 13:39:16 +0000 (UTC)
+IronPort-SDR: ITHldcDVGknyhD5d50O8BiwCA3X81s3lGazmRFyJmgappbZYQ6ZnPRaU2a00ZPXmX+wDTvjpAh
+ Kek4+S/v/Oyw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9712"; a="142242600"
+X-IronPort-AV: E=Sophos;i="5.76,312,1592895600"; d="scan'208";a="142242600"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2020 06:35:16 -0700
-IronPort-SDR: quyppxmkdylMqEKcwELWSZUR3d82QWGc89OGvp6yI1S8JRh8UnYP4ujZlsrR/NZhnEka4U2S7F
- 4HCoxyZ+///Q==
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2020 06:39:15 -0700
+IronPort-SDR: Q3PcVlUNmavQZkZKKEc2L1M4S0OUHDAvq5LpDNfIqh2J65uAfS/l5+CuZnh9VXTyzZ76Ju3iIp
+ NivSxpbsZm9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,312,1592895600"; d="scan'208";a="309382970"
-Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
- by orsmga002.jf.intel.com with ESMTP; 14 Aug 2020 06:35:15 -0700
+X-IronPort-AV: E=Sophos;i="5.76,312,1592895600"; d="scan'208";a="309383578"
+Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
+ by orsmga002.jf.intel.com with ESMTP; 14 Aug 2020 06:39:15 -0700
 Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 14 Aug 2020 14:35:14 +0100
+ 15.1.1713.5; Fri, 14 Aug 2020 14:39:13 +0100
 Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
  BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Fri, 14 Aug 2020 19:05:12 +0530
+ Fri, 14 Aug 2020 19:09:12 +0530
 From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Varide, Nischal" <nischal.varide@intel.com>
-Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcgZm9y?=
- =?utf-8?B?IHNlcmllcyBzdGFydGluZyB3aXRoIFsxLzhdIENyaXRpY2FsIEtsb2NrV29y?=
- =?utf-8?B?ayBFcnJvciAtIEZpeGVzIC0gaW50ZWxfY2RjbGsuYyAtIFBvc3NpYmxlIE51?=
- =?utf-8?Q?llPointerDereference1?=
-Thread-Index: AQHWciO0H9ZM6sDr4EKecBuOb+m9Pqk3mx3A
-Date: Fri, 14 Aug 2020 13:35:12 +0000
-Message-ID: <ae005571f465444d8b1ae1e8db229538@intel.com>
+To: "Varide, Nischal" <nischal.varide@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 1/8] Critical KlockWork Error - Fixes -
+ intel_cdclk.c - Possible NullPointerDereference1
+Thread-Index: AQHWch/Kiwck9vF+ckee5+F4EVkmfKk3m0oQ
+Date: Fri, 14 Aug 2020 13:39:12 +0000
+Message-ID: <26eb49d2d21e4250b548f924bf1fb35d@intel.com>
 References: <20200814024950.26830-1-nischal.varide@intel.com>
- <159740004033.3438.11995246586072941657@emeril.freedesktop.org>
-In-Reply-To: <159740004033.3438.11995246586072941657@emeril.freedesktop.org>
+In-Reply-To: <20200814024950.26830-1-nischal.varide@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -56,10 +53,8 @@ dlp-reaction: no-action
 dlp-version: 11.5.1.3
 x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/8=5D_Critical_KlockWork_Error_-_F?=
- =?utf-8?q?ixes_-_intel=5Fcdclk=2Ec_-_Possible_NullPointerDereference1?=
+Subject: Re: [Intel-gfx] [PATCH 1/8] Critical KlockWork Error - Fixes -
+ intel_cdclk.c - Possible NullPointerDereference1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,130 +67,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Varide, Nischal" <nischal.varide@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBQYXRjaHdv
-cmsNCj4gU2VudDogRnJpZGF5LCBBdWd1c3QgMTQsIDIwMjAgMzo0NCBQTQ0KPiBUbzogVmFyaWRl
-LCBOaXNjaGFsIDxuaXNjaGFsLnZhcmlkZUBpbnRlbC5jb20+DQo+IENjOiBpbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFtJbnRlbC1nZnhdIOKclyBGaS5DSS5DSEVD
-S1BBVENIOiB3YXJuaW5nIGZvciBzZXJpZXMgc3RhcnRpbmcgd2l0aCBbMS84XQ0KPiBDcml0aWNh
-bCBLbG9ja1dvcmsgRXJyb3IgLSBGaXhlcyAtIGludGVsX2NkY2xrLmMgLSBQb3NzaWJsZSBOdWxs
-UG9pbnRlckRlcmVmZXJlbmNlMQ0KPiANCj4gPT0gU2VyaWVzIERldGFpbHMgPT0NCj4gDQo+IFNl
-cmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvOF0gQ3JpdGljYWwgS2xvY2tXb3JrIEVycm9y
-IC0gRml4ZXMgLSBpbnRlbF9jZGNsay5jIC0NCj4gUG9zc2libGUgTnVsbFBvaW50ZXJEZXJlZmVy
-ZW5jZTENCj4gVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVz
-LzgwNjIyLw0KPiBTdGF0ZSA6IHdhcm5pbmcNCg0KUGxlYXNlIGZpeCB0aGUgY2hlY2twYXRjaCB3
-YXJuaW5ncyBhbmQgcmVzZW5kLg0KDQo+ID09IFN1bW1hcnkgPT0NCj4gDQo+ICQgZGltIGNoZWNr
-cGF0Y2ggb3JpZ2luL2RybS10aXANCj4gYjViZDljMTdmNWRhIENyaXRpY2FsIEtsb2NrV29yayBF
-cnJvciAtIEZpeGVzIC0gaW50ZWxfY2RjbGsuYyAtIFBvc3NpYmxlDQo+IE51bGxQb2ludGVyRGVy
-ZWZlcmVuY2UxDQo+IC06OTogV0FSTklORzpDT01NSVRfTUVTU0FHRTogTWlzc2luZyBjb21taXQg
-ZGVzY3JpcHRpb24gLSBBZGQgYW4NCj4gYXBwcm9wcmlhdGUgb25lDQo+IA0KPiAtOjM2OiBDSEVD
-SzpMSU5FX1NQQUNJTkc6IFBsZWFzZSBkb24ndCB1c2UgbXVsdGlwbGUgYmxhbmsgbGluZXMNCj4g
-IzM2OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmM6MTk2
-ODoNCj4gKw0KPiArDQo+IA0KPiAtOjQ5OiBFUlJPUjpNSVNTSU5HX1NJR05fT0ZGOiBNaXNzaW5n
-IFNpZ25lZC1vZmYtYnk6IGxpbmUocykNCj4gDQo+IHRvdGFsOiAxIGVycm9ycywgMSB3YXJuaW5n
-cywgMSBjaGVja3MsIDM1IGxpbmVzIGNoZWNrZWQNCj4gNDBmNmE2NzQ3ZjMyIENyaXRpY2FsIEts
-b2NrV29yayBFcnJvciAtIEZpeGVzIC0gaW50ZWxfYXRvbWljLmMgLSBQb3NzaWJsZQ0KPiBOdWxs
-UG9pbnRlckRlcmVmZXJlbmNlMQ0KPiAtOjk6IFdBUk5JTkc6Q09NTUlUX01FU1NBR0U6IE1pc3Np
-bmcgY29tbWl0IGRlc2NyaXB0aW9uIC0gQWRkIGFuDQo+IGFwcHJvcHJpYXRlIG9uZQ0KPiANCj4g
-LToyMDogRVJST1I6TUlTU0lOR19TSUdOX09GRjogTWlzc2luZyBTaWduZWQtb2ZmLWJ5OiBsaW5l
-KHMpDQo+IA0KPiB0b3RhbDogMSBlcnJvcnMsIDEgd2FybmluZ3MsIDAgY2hlY2tzLCA4IGxpbmVz
-IGNoZWNrZWQgNzIyMzFiNjk4YTdkIENyaXRpY2FsDQo+IEtsb2NrV29yayBFcnJvciAtIEZpeGVz
-IC0gaW50ZWxfZmJkZXYuYyAtIFBvc3NpYmxlIE51bGxQb2ludGVyRGVyZWZlcmVuY2UxDQo+IC06
-OTogV0FSTklORzpDT01NSVRfTUVTU0FHRTogTWlzc2luZyBjb21taXQgZGVzY3JpcHRpb24gLSBB
-ZGQgYW4NCj4gYXBwcm9wcmlhdGUgb25lDQo+IA0KPiAtOjE4OiBXQVJOSU5HOlNVU1BFQ1RfQ09E
-RV9JTkRFTlQ6IHN1c3BlY3QgY29kZSBpbmRlbnQgZm9yIGNvbmRpdGlvbmFsDQo+IHN0YXRlbWVu
-dHMgKDgsIDEyKQ0KPiAjMTg6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZmJkZXYuYzo1OTg6DQo+ICsJaWYgKGlmYmRldi0+ZmIgJiYgaW50ZWxfZmJfb2JqKCZpZmJk
-ZXYtPmZiLT5iYXNlKSkgew0KPiArCSAgICBpZiAoc3RhdGUgPT0gRkJJTkZPX1NUQVRFX1JVTk5J
-TkcgJiYNCj4gDQo+IC06MTk6IFdBUk5JTkc6VEFCU1RPUDogU3RhdGVtZW50cyBzaG91bGQgc3Rh
-cnQgb24gYSB0YWJzdG9wDQo+ICMxOTogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9mYmRldi5jOjU5OToNCj4gKwkgICAgaWYgKHN0YXRlID09IEZCSU5GT19TVEFURV9S
-VU5OSU5HICYmDQo+IA0KPiAtOjIwOiBDSEVDSzpQQVJFTlRIRVNJU19BTElHTk1FTlQ6IEFsaWdu
-bWVudCBzaG91bGQgbWF0Y2ggb3Blbg0KPiBwYXJlbnRoZXNpcw0KPiAjMjA6IEZJTEU6IGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYzo2MDA6DQo+ICsJICAgIGlmIChz
-dGF0ZSA9PSBGQklORk9fU1RBVEVfUlVOTklORyAmJg0KPiArCQkgICAgaW50ZWxfZmJfb2JqKCZp
-ZmJkZXYtPmZiLT5iYXNlKS0+c3RvbGVuKQ0KPiANCj4gLToyNTogRVJST1I6TUlTU0lOR19TSUdO
-X09GRjogTWlzc2luZyBTaWduZWQtb2ZmLWJ5OiBsaW5lKHMpDQo+IA0KPiB0b3RhbDogMSBlcnJv
-cnMsIDMgd2FybmluZ3MsIDEgY2hlY2tzLCAxMyBsaW5lcyBjaGVja2VkDQo+IGYyZjViMDIwYThl
-OCBDcml0aWNhbCBLbG9ja1dvcmsgRXJyb3IgLSBGaXhlcyAtIGludGVsX2Rpc3BsYXkuYyAtIFBv
-c3NpYmxlDQo+IE51bGxQb2ludGVyRGVyZWZlcmVuY2UxDQo+IC06OTogV0FSTklORzpDT01NSVRf
-TUVTU0FHRTogTWlzc2luZyBjb21taXQgZGVzY3JpcHRpb24gLSBBZGQgYW4NCj4gYXBwcm9wcmlh
-dGUgb25lDQo+IA0KPiAtOjE5OiBXQVJOSU5HOlNVU1BFQ1RfQ09ERV9JTkRFTlQ6IHN1c3BlY3Qg
-Y29kZSBpbmRlbnQgZm9yIGNvbmRpdGlvbmFsDQo+IHN0YXRlbWVudHMgKDgsIDEyKQ0KPiAjMTk6
-IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jOjIyNjg6
-DQo+ICsJaWYgKG9iaikNCj4gKwkgICAgdm1hID0gaTkxNV9nZW1fb2JqZWN0X3Bpbl90b19kaXNw
-bGF5X3BsYW5lKG9iaiwNCj4gDQo+IC06MjE6IENIRUNLOlBBUkVOVEhFU0lTX0FMSUdOTUVOVDog
-QWxpZ25tZW50IHNob3VsZCBtYXRjaCBvcGVuDQo+IHBhcmVudGhlc2lzDQo+ICMyMTogRklMRTog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmM6MjI3MDoNCj4gKwkg
-ICAgdm1hID0gaTkxNV9nZW1fb2JqZWN0X3Bpbl90b19kaXNwbGF5X3BsYW5lKG9iaiwNCj4gKwkJ
-ICAgIGFsaWdubWVudCwgdmlldywgcGluY3RsKTsNCj4gDQo+IC06MjQ6IEVSUk9SOk1JU1NJTkdf
-U0lHTl9PRkY6IE1pc3NpbmcgU2lnbmVkLW9mZi1ieTogbGluZShzKQ0KPiANCj4gdG90YWw6IDEg
-ZXJyb3JzLCAyIHdhcm5pbmdzLCAxIGNoZWNrcywgMTIgbGluZXMgY2hlY2tlZCBhZDNjOWZhNzgx
-Y2UgQ3JpdGljYWwNCj4gS2xvY2tXb3JrIEVycm9yIC0gRml4ZXMgLSBpbnRlbF9zZHZvLmMgLSBQ
-b3NzaWJsZSBOdWxsUG9pbnRlckRlcmVmZXJlbmNlMQ0KPiAtOjk6IFdBUk5JTkc6Q09NTUlUX01F
-U1NBR0U6IE1pc3NpbmcgY29tbWl0IGRlc2NyaXB0aW9uIC0gQWRkIGFuDQo+IGFwcHJvcHJpYXRl
-IG9uZQ0KPiANCj4gLToxNjogV0FSTklORzpTVVNQRUNUX0NPREVfSU5ERU5UOiBzdXNwZWN0IGNv
-ZGUgaW5kZW50IGZvciBjb25kaXRpb25hbA0KPiBzdGF0ZW1lbnRzICg4LCAxMikNCj4gIzE2OiBG
-SUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nkdm8uYzoyNTA4Og0KPiAr
-CWlmICghKG5ld19jb25uX3N0YXRlICYmIG9sZF9jb25uX3N0YXRlICYmIG9sZF9zdGF0ZSAmJiBu
-ZXdfc3RhdGUpKQ0KPiArCSAgICByZXR1cm4gMDsNCj4gDQo+IC06MTc6IFdBUk5JTkc6VEFCU1RP
-UDogU3RhdGVtZW50cyBzaG91bGQgc3RhcnQgb24gYSB0YWJzdG9wDQo+ICMxNzogRklMRTogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zZHZvLmM6MjUwOToNCj4gKwkgICAgcmV0
-dXJuIDA7DQo+IA0KPiAtOjIxOiBFUlJPUjpNSVNTSU5HX1NJR05fT0ZGOiBNaXNzaW5nIFNpZ25l
-ZC1vZmYtYnk6IGxpbmUocykNCj4gDQo+IHRvdGFsOiAxIGVycm9ycywgMyB3YXJuaW5ncywgMCBj
-aGVja3MsIDkgbGluZXMgY2hlY2tlZA0KPiAzNWU2MTEyOTA4MzggQ3JpdGljYWwgS2xvY2tXb3Jr
-IEVycm9yIC0gRml4ZXMgLSBpbnRlbF90di5jIC0gUG9zc2libGUNCj4gTnVsbFBvaW50ZXJEZXJl
-ZmVyZW5jZTENCj4gLTo5OiBXQVJOSU5HOkNPTU1JVF9NRVNTQUdFOiBNaXNzaW5nIGNvbW1pdCBk
-ZXNjcmlwdGlvbiAtIEFkZCBhbg0KPiBhcHByb3ByaWF0ZSBvbmUNCj4gDQo+IC06MjE6IFdBUk5J
-Tkc6U1VTUEVDVF9DT0RFX0lOREVOVDogc3VzcGVjdCBjb2RlIGluZGVudCBmb3IgY29uZGl0aW9u
-YWwNCj4gc3RhdGVtZW50cyAoOCwgMTIpDQo+ICMyMTogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF90di5jOjE4NDU6DQo+ICsJaWYgKG9sZF9zdGF0ZSAmJiBuZXdfc3Rh
-dGUgJiYgbmV3X2NydGNfc3RhdGUpIHsNCj4gWy4uLl0NCj4gKwkgICAgaWYgKG9sZF9zdGF0ZS0+
-dHYubW9kZSAhPSBuZXdfc3RhdGUtPnR2Lm1vZGUgfHwNCj4gDQo+IC06MjI6IENIRUNLOkJSQUNF
-UzogQmxhbmsgbGluZXMgYXJlbid0IG5lY2Vzc2FyeSBhZnRlciBhbiBvcGVuIGJyYWNlICd7Jw0K
-PiAjMjI6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdHYuYzoxODQ2
-Og0KPiArCWlmIChvbGRfc3RhdGUgJiYgbmV3X3N0YXRlICYmIG5ld19jcnRjX3N0YXRlKSB7DQo+
-ICsNCj4gDQo+IC06MjM6IFdBUk5JTkc6VEFCU1RPUDogU3RhdGVtZW50cyBzaG91bGQgc3RhcnQg
-b24gYSB0YWJzdG9wDQo+ICMyMzogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF90di5jOjE4NDc6DQo+ICsJICAgIGlmIChvbGRfc3RhdGUtPnR2Lm1vZGUgIT0gbmV3X3N0
-YXRlLT50di5tb2RlIHx8DQo+IA0KPiAtOjI0OiBDSEVDSzpQQVJFTlRIRVNJU19BTElHTk1FTlQ6
-IEFsaWdubWVudCBzaG91bGQgbWF0Y2ggb3Blbg0KPiBwYXJlbnRoZXNpcw0KPiAjMjQ6IEZJTEU6
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdHYuYzoxODQ4Og0KPiArCSAgICBp
-ZiAob2xkX3N0YXRlLT50di5tb2RlICE9IG5ld19zdGF0ZS0+dHYubW9kZSB8fA0KPiArCQkgICAg
-b2xkX3N0YXRlLT50di5tYXJnaW5zLmxlZnQgIT0gbmV3X3N0YXRlLT50di5tYXJnaW5zLmxlZnQg
-fHwNCj4gDQo+IC06MzE6IFdBUk5JTkc6VEFCU1RPUDogU3RhdGVtZW50cyBzaG91bGQgc3RhcnQg
-b24gYSB0YWJzdG9wDQo+ICMzMTogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF90di5jOjE4NTU6DQo+ICsJICAgIH0NCj4gDQo+IC06MzQ6IEVSUk9SOk1JU1NJTkdfU0lH
-Tl9PRkY6IE1pc3NpbmcgU2lnbmVkLW9mZi1ieTogbGluZShzKQ0KPiANCj4gdG90YWw6IDEgZXJy
-b3JzLCA0IHdhcm5pbmdzLCAyIGNoZWNrcywgMjIgbGluZXMgY2hlY2tlZA0KPiBiOTFjNzk2YmRh
-ZDcgQ3JpdGljYWwgS2xvY2tXb3JrIEVycm9yIC0gRml4ZXMgLSBpbnRlbF9kaXNwbGF5X3Bvd2Vy
-LmMgLSBQb3NzaWJsZQ0KPiBOdWxsUG9pbnRlckRlcmVmZXJlbmNlMg0KPiAtOjk6IFdBUk5JTkc6
-Q09NTUlUX01FU1NBR0U6IE1pc3NpbmcgY29tbWl0IGRlc2NyaXB0aW9uIC0gQWRkIGFuDQo+IGFw
-cHJvcHJpYXRlIG9uZQ0KPiANCj4gLToxNjogRVJST1I6VFJBSUxJTkdfV0hJVEVTUEFDRTogdHJh
-aWxpbmcgd2hpdGVzcGFjZQ0KPiAjMTY6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGlzcGxheV9wb3dlci5jOjYwNDoNCj4gK15JaWYgKCFkaWdfcG9ydCkgJA0KPiAN
-Cj4gLToxNjogV0FSTklORzpTVVNQRUNUX0NPREVfSU5ERU5UOiBzdXNwZWN0IGNvZGUgaW5kZW50
-IGZvciBjb25kaXRpb25hbA0KPiBzdGF0ZW1lbnRzICg4LCAxMikNCj4gIzE2OiBGSUxFOiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYzo2MDQ6DQo+ICsJ
-aWYgKCFkaWdfcG9ydCkNCj4gKwkgICAgcmV0dXJuOw0KPiANCj4gLToxNzogV0FSTklORzpUQUJT
-VE9QOiBTdGF0ZW1lbnRzIHNob3VsZCBzdGFydCBvbiBhIHRhYnN0b3ANCj4gIzE3OiBGSUxFOiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYzo2MDU6DQo+
-ICsJICAgIHJldHVybjsNCj4gDQo+IC06MjE6IEVSUk9SOk1JU1NJTkdfU0lHTl9PRkY6IE1pc3Np
-bmcgU2lnbmVkLW9mZi1ieTogbGluZShzKQ0KPiANCj4gdG90YWw6IDIgZXJyb3JzLCAzIHdhcm5p
-bmdzLCAwIGNoZWNrcywgOSBsaW5lcyBjaGVja2VkIGFhZTdmOGQzNTRhZiBDcml0aWNhbA0KPiBL
-bG9ja1dvcmsgRXJyb3IgLSBGaXhlcyAtIGludGVsX2NvbWJvX3BoeS5jIFVuaW5pdGlhbGl6ZWQg
-VmFyaWFibGUtMQ0KPiAtOjk6IFdBUk5JTkc6Q09NTUlUX01FU1NBR0U6IE1pc3NpbmcgY29tbWl0
-IGRlc2NyaXB0aW9uIC0gQWRkIGFuDQo+IGFwcHJvcHJpYXRlIG9uZQ0KPiANCj4gLToyMDogRVJS
-T1I6TUlTU0lOR19TSUdOX09GRjogTWlzc2luZyBTaWduZWQtb2ZmLWJ5OiBsaW5lKHMpDQo+IA0K
-PiB0b3RhbDogMSBlcnJvcnMsIDEgd2FybmluZ3MsIDAgY2hlY2tzLCA4IGxpbmVzIGNoZWNrZWQN
-Cj4gDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xw0KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0DQo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcNCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
-bnRlbC1nZngNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+
+
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Nischal
+> Varide
+> Sent: Friday, August 14, 2020 8:20 AM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Varide, Nischal <nischal.varide@intel.com>
+> Subject: [Intel-gfx] [PATCH 1/8] Critical KlockWork Error - Fixes - intel_cdclk.c -
+> Possible NullPointerDereference1
+
+Add some commit description explaining the clockwork warning.
+
+Also append all display patches (in display folder) with "drm/i915/display :"
+in the commit headers. For generic path have "drm/i915:" as prefix.
+Please check the format used in patches already merged to tree.
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 17 +++++++++++++++--
+>  1 file changed, 15 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 9d6cacbdb691..1cd0ab5b36d2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1926,7 +1926,11 @@ intel_set_cdclk_pre_plane_update(struct
+> intel_atomic_state *state)
+>  		intel_atomic_get_old_cdclk_state(state);
+>  	const struct intel_cdclk_state *new_cdclk_state =
+>  		intel_atomic_get_new_cdclk_state(state);
+> -	enum pipe pipe = new_cdclk_state->pipe;
+> +	enum pipe pipe;
+> +
+> +	if (!(old_cdclk_state && new_cdclk_state))
+> +		return
+> +	(void)(pipe = new_cdclk_state->pipe);
+
+Is this typecast really needed ?
+
+> 
+>  	if (!intel_cdclk_changed(&old_cdclk_state->actual,
+>  				 &new_cdclk_state->actual))
+> @@ -1955,7 +1959,13 @@ intel_set_cdclk_post_plane_update(struct
+> intel_atomic_state *state)
+>  		intel_atomic_get_old_cdclk_state(state);
+>  	const struct intel_cdclk_state *new_cdclk_state =
+>  		intel_atomic_get_new_cdclk_state(state);
+> -	enum pipe pipe = new_cdclk_state->pipe;
+> +	enum pipe pipe;
+> +
+> +	if (!(old_cdclk_state && new_cdclk_state))
+> +		return
+> +	(void)(pipe = new_cdclk_state->pipe);
+
+Same here.
+
+> +
+> +
+> 
+>  	if (!intel_cdclk_changed(&old_cdclk_state->actual,
+>  				 &new_cdclk_state->actual))
+> @@ -2484,6 +2494,9 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state
+> *state)
+> 
+>  	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
+> 
+> +	if (!(old_cdclk_state && new_cdclk_state))
+> +		return
+> +
+>  	new_cdclk_state->active_pipes =
+>  		intel_calc_active_pipes(state, old_cdclk_state->active_pipes);
+> 
+> --
+> 2.26.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
