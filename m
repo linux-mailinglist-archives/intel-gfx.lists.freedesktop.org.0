@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C457C2464D7
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Aug 2020 12:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E220424658C
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Aug 2020 13:34:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B80766E16B;
-	Mon, 17 Aug 2020 10:53:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26B216E271;
+	Mon, 17 Aug 2020 11:34:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C8AF6E16B
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Aug 2020 10:53:07 +0000 (UTC)
-IronPort-SDR: Ypf5pcB8hLczdUMNfQggydIfBuy5wHMltZXv60KTv3LY9HmC0NXvKQaYJddJmuRudqO854rkUU
- 2Bdh+aPHCmeg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9715"; a="152319954"
-X-IronPort-AV: E=Sophos;i="5.76,322,1592895600"; d="scan'208";a="152319954"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2020 03:53:06 -0700
-IronPort-SDR: jl8Ca/NxWJ6PxfnkTfFPrDEqzXJWq0nRg04WwPhjSK8FWgO0Sc0HjeI/8DxHI6JYDIL1GTEaHx
- qBe3kSNz6xgQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,322,1592895600"; d="scan'208";a="296449474"
-Received: from unknown (HELO linuxpresi1-desktop.iind.intel.com)
- ([10.223.74.152])
- by orsmga006.jf.intel.com with ESMTP; 17 Aug 2020 03:53:05 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 17 Aug 2020 16:55:29 +0530
-Message-Id: <20200817112529.24478-1-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.22.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 75B7B6E26F;
+ Mon, 17 Aug 2020 11:34:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 70044A3C0D;
+ Mon, 17 Aug 2020 11:34:37 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v2] drm/i915/display: Add an extra vblank wait before
- fbc activation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Date: Mon, 17 Aug 2020 11:34:37 -0000
+Message-ID: <159766407742.22668.5269827531100948866@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200817112529.24478-1-uma.shankar@intel.com>
+In-Reply-To: <20200817112529.24478-1-uma.shankar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Add_an_extra_vblank_wait_before_fbc_activation?=
+ =?utf-8?q?_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,50 +39,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1274098718=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add an extra vblank before fbc is activated.
-WA: 1409689360
-Corruption with FBC around plane 1A enabling. In the Frame Buffer
-Compression programming sequence "Display Plane Enabling with FBC"
-add a wait for vblank between plane enabling step 1 and FBC enabling
-step 2.
+--===============1274098718==
+Content-Type: multipart/alternative;
+ boundary="===============6097489035260086493=="
 
-v2: Add wait only for active crtc
+--===============6097489035260086493==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 2ab32e6532ff..2a9d4796c4a8 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1085,10 +1085,13 @@ static void __intel_fbc_post_update(struct intel_crtc *crtc)
- 	if (!intel_fbc_can_activate(crtc))
- 		return;
- 
--	if (!fbc->busy_bits)
-+	if (!fbc->busy_bits) {
-+		if (IS_TIGERLAKE(dev_priv))
-+			intel_wait_for_vblank_if_active(dev_priv, crtc->pipe);
- 		intel_fbc_hw_activate(dev_priv);
--	else
-+	} else {
- 		intel_fbc_deactivate(dev_priv, "frontbuffer write");
-+	}
- }
- 
- void intel_fbc_post_update(struct intel_atomic_state *state,
--- 
-2.22.0
+Series: drm/i915/display: Add an extra vblank wait before fbc activation (rev2)
+URL   : https://patchwork.freedesktop.org/series/80668/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8888 -> Patchwork_18363
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18363 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8888/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_module_load@reload:
+    - fi-apl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#1635] / [i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8888/fi-apl-guc/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/fi-apl-guc/igt@i915_module_load@reload.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-7500u:       [DMESG-WARN][5] ([i915#2203]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8888/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:
+    - fi-skl-guc:         [DMESG-WARN][7] ([i915#2203]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8888/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
+
+  
+  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
+
+
+Participating hosts (40 -> 34)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-kbl-x1275 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8888 -> Patchwork_18363
+
+  CI-20190529: 20190529
+  CI_DRM_8888: e1604b8c27033cb338a34edd2a4ce0b3042b4c71 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18363: decde2d96574de65dce4e559752ac8fef3b58f98 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+decde2d96574 drm/i915/display: Add an extra vblank wait before fbc activation
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/index.html
+
+--===============6097489035260086493==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Add an extra vblank wait before fbc activation (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/80668/">https://patchwork.freedesktop.org/series/80668/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_8888 -&gt; Patchwork_18363</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18363 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8888/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8888/fi-apl-guc/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/fi-apl-guc/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8888/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8888/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18363/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 34)</h2>
+<p>Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-kbl-x1275 fi-byt-clapper fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_8888 -&gt; Patchwork_18363</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_8888: e1604b8c27033cb338a34edd2a4ce0b3042b4c71 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18363: decde2d96574de65dce4e559752ac8fef3b58f98 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>decde2d96574 drm/i915/display: Add an extra vblank wait before fbc activation</p>
+
+</body>
+</html>
+
+--===============6097489035260086493==--
+
+--===============1274098718==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1274098718==--
