@@ -1,62 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47201248A32
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Aug 2020 17:41:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 017C2248AFF
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Aug 2020 18:04:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B2CF89307;
-	Tue, 18 Aug 2020 15:41:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC9406E06E;
+	Tue, 18 Aug 2020 16:04:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com
- [IPv6:2607:f8b0:4864:20::736])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3DEC89D39
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 15:41:00 +0000 (UTC)
-Received: by mail-qk1-x736.google.com with SMTP id i20so4417766qkk.8
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 08:41:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=C6JA84dIaZ11HyqM4BJFq1gjxCCw+H+XuRWP0H8A44I=;
- b=UZDNGxWGnlg/157lVbApqZd7ccYF6A02ZLuv19ChGmPF0hGiNv5mfaFDV+0c9H+PKI
- BITb0mQfmwqvyBd8OPGoNyBBt7n4SgoNmzTUOXjrDQXtn1UnFolrNKMRjk/eota0l8PO
- rTLLTWGgWXJXyGSJ7Sug889pGzi+DFGC+w7LK/SQ55+nHXNShIFKs1U/5bJuq2sH08mP
- ovTGaSI8EjbinXiOiCPvm3HTnwFEls53MetHBGpb5KZwEnAE8xf4VZUTzkk2nDVWMfyA
- tkyQSBs5kK2gsezU5R9R1S4VJ9Bu2FbuCb7/fPQUOxJgwpZWu/2gsa9+oAPLApGPs3Bi
- mAOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=C6JA84dIaZ11HyqM4BJFq1gjxCCw+H+XuRWP0H8A44I=;
- b=HrWLenP9lfGsLjtcldYgu3L7KB4zDbTRugPyDSj7qwAUr/mS/Qe5uHE/S6J4CuVjDs
- 4J0pOUfQEh4iTt/LdOUmarWeq64UeS6HqvvYw8vuZzA5dzBZoWf11HAzj5EfGd60dFKD
- J1Sd1B7Aoy0238Zm2tQN5ib4o8mORhakzC6MYi9dNcmgLbX+tNDDe22ioB7+zpUJXSlb
- qDay7b+hAyOs2YIGn5+LEGD2mR4t05rj8pcNBCRwkGKqn0b8bRmw8x7CMD0Tlm7h2noF
- h49fD5IcBptW4L29nnMycViv57tMOjL6D4bcyc8j9A6mFnQ3lw1QbiddJXQcUalTS0ux
- gjDg==
-X-Gm-Message-State: AOAM532xRtfiPE8IzDoGpHyo6E39RfSI6cMjkm+LptyJi1/+34QClv8X
- sHSyVdyuGYzPD9df26oUpm0ACQ==
-X-Google-Smtp-Source: ABdhPJwFqeN7X2MNu1RSZlcXjpMaqihvRq+/UUZxlYbScUYJq0TvRJK2a9doT9z8/Y7Xewn8wJPm+w==
-X-Received: by 2002:a37:9d53:: with SMTP id g80mr17236395qke.17.1597765259867; 
- Tue, 18 Aug 2020 08:40:59 -0700 (PDT)
-Received: from localhost (mobile-166-170-57-144.mycingular.net.
- [166.170.57.144])
- by smtp.gmail.com with ESMTPSA id r188sm21138131qkb.122.2020.08.18.08.40.59
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 18 Aug 2020 08:40:59 -0700 (PDT)
-From: Sean Paul <sean@poorly.run>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- juston.li@intel.com, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- anshuman.gupta@intel.com
-Date: Tue, 18 Aug 2020 11:39:05 -0400
-Message-Id: <20200818153910.27894-18-sean@poorly.run>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200818153910.27894-1-sean@poorly.run>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D41D76E04B;
+ Tue, 18 Aug 2020 16:04:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CCCA0A3ECB;
+ Tue, 18 Aug 2020 16:04:34 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sean Paul" <sean@poorly.run>
+Date: Tue, 18 Aug 2020 16:04:34 -0000
+Message-ID: <159776667481.18757.15559915844467594681@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20200818153910.27894-1-sean@poorly.run>
-Subject: [Intel-gfx] [PATCH v8 17/17] drm/i915: Add HDCP 1.4 support for MST
- connectors
+In-Reply-To: <20200818153910.27894-1-sean@poorly.run>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_support_for_HDCP_1=2E4_over_MST_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,215 +38,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, daniel.vetter@ffwll.ch,
- Sean Paul <seanpaul@chromium.org>
-MIME-Version: 1.0
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@chromium.org>
+== Series Details ==
 
-Now that all the groundwork has been laid, we can turn on HDCP 1.4 over
-MST. Everything except for toggling the HDCP signalling and HDCP 2.2
-support is the same as the DP case, so we'll re-use those callbacks
+Series: drm/i915: Add support for HDCP 1.4 over MST (rev2)
+URL   : https://patchwork.freedesktop.org/series/78749/
+State : warning
 
-Cc: Juston Li <juston.li@intel.com>
-Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-12-sean@poorly.run #v1
-Link: https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-13-sean@poorly.run #v2
-Link: https://patchwork.freedesktop.org/patch/msgid/20200117193103.156821-13-sean@poorly.run #v3
-Link: https://patchwork.freedesktop.org/patch/msgid/20200218220242.107265-15-sean@poorly.run #v4
-Link: https://patchwork.freedesktop.org/patch/msgid/20200305201236.152307-17-sean@poorly.run #v5
-Link: https://patchwork.freedesktop.org/patch/msgid/20200429195502.39919-17-sean@poorly.run #v6
-Link: https://patchwork.freedesktop.org/patch/msgid/20200623155907.22961-18-sean@poorly.run #v7
+== Summary ==
 
-Changes in v2:
--Toggle HDCP from encoder disable/enable
--Don't disable HDCP on MST connector destroy, leave that for encoder
- disable, just ensure the check_work routine isn't running any longer
-Changes in v3:
--Place the shim in the new intel_dp_hdcp.c file (Ville)
-Changes in v4:
--Actually use the mst shim for mst connections (Juston)
--Use QUERY_STREAM_ENC_STATUS MST message to verify channel is encrypted
-Changes in v5:
--Add sleep on disable signalling to match hdmi delay
-Changes in v6:
--Disable HDCP over MST on GEN12+ since I'm unsure how it should work and I
- don't have hardware to test it
-Changes in v7:
--Remove hdcp2 shims for MST in favor of skipping hdcp2 init (Ramalingam)
-Changes in v8:
--None
----
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 66 +++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c  | 18 ++++++
- drivers/gpu/drm/i915/display/intel_hdcp.c    |  2 +-
- 3 files changed, 84 insertions(+), 2 deletions(-)
+$ dim checkpatch origin/drm-tip
+ad446f228d24 drm/i915: Fix sha_text population code
+-:72: WARNING:LINE_SPACING: Missing a blank line after declarations
+#72: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:341:
++			u8 off = ((sizeof(sha_text) - j - 1 - sha_leftovers) * 8);
++			sha_text |= ksv[j] << off;
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index b744253a5924..03424d20e9f7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -7,10 +7,12 @@
-  */
- 
- #include <drm/drm_dp_helper.h>
-+#include <drm/drm_dp_mst_helper.h>
- #include <drm/drm_hdcp.h>
- #include <drm/drm_print.h>
- 
- #include "intel_display_types.h"
-+#include "intel_ddi.h"
- #include "intel_dp.h"
- #include "intel_hdcp.h"
- 
-@@ -619,6 +621,65 @@ static const struct intel_hdcp_shim intel_dp_hdcp_shim = {
- 	.protocol = HDCP_PROTOCOL_DP,
- };
- 
-+static int
-+intel_dp_mst_hdcp_toggle_signalling(struct intel_digital_port *dig_port,
-+				    enum transcoder cpu_transcoder,
-+				    bool enable)
-+{
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	int ret;
+total: 0 errors, 1 warnings, 0 checks, 61 lines checked
+be78fd1d52cb drm/i915: Clear the repeater bit on HDCP disable
+96f56301c229 drm/i915: WARN if HDCP signalling is enabled upon disable
+2a9f21eb9c09 drm/i915: Intercept Aksv writes in the aux hooks
+1a56bdc02def drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP signalling
+8d6b5fe7b16e drm/i915: Factor out hdcp->value assignments
+-:78: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#78: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:930:
++			intel_hdcp_update_value(connector,
++				DRM_MODE_CONTENT_PROTECTION_ENABLED, true);
+
+-:123: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#123: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1799:
++			intel_hdcp_update_value(connector,
++					DRM_MODE_CONTENT_PROTECTION_ENABLED,
+
+-:135: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#135: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1814:
++			intel_hdcp_update_value(connector,
++					DRM_MODE_CONTENT_PROTECTION_ENABLED,
+
+-:147: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#147: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1834:
++		intel_hdcp_update_value(connector,
++				DRM_MODE_CONTENT_PROTECTION_DESIRED, true);
+
+total: 0 errors, 0 warnings, 4 checks, 138 lines checked
+d8b168bd5d5a drm/i915: Protect workers against disappearing connectors
+-:95: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#95: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:2205:
++	drm_WARN_ON(connector->base.dev,
++		connector->base.registration_state == DRM_CONNECTOR_REGISTERED);
+
+total: 0 errors, 0 warnings, 1 checks, 71 lines checked
+5390eda47a58 drm/i915: Clean up intel_hdcp_disable
+a82bad65d0b2 drm/i915: Don't fully disable HDCP on a port if multiple pipes are using it
+f155946735e0 drm/i915: Support DP MST in enc_to_dig_port() function
+260f90f909b5 drm/i915: Use ddi_update_pipe in intel_dp_mst
+8b7aea4234cf drm/i915: Factor out HDCP shim functions from dp for use by dp_mst
+-:692: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#692: 
+new file mode 100644
+
+-:697: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_dp_hdcp.c', please use '//' instead
+#697: FILE: drivers/gpu/drm/i915/display/intel_dp_hdcp.c:1:
++/* SPDX-License-Identifier: MIT */
+
+-:697: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#697: FILE: drivers/gpu/drm/i915/display/intel_dp_hdcp.c:1:
++/* SPDX-License-Identifier: MIT */
+
+-:878: WARNING:LINE_SPACING: Missing a blank line after declarations
+#878: FILE: drivers/gpu/drm/i915/display/intel_dp_hdcp.c:182:
++		size_t len = min(num_downstream - i, 3) * DRM_HDCP_KSV_LEN;
++		ret = drm_dp_dpcd_read(&dig_port->dp.aux,
+
+-:1254: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#1254: FILE: drivers/gpu/drm/i915/display/intel_dp_hdcp.c:558:
 +
-+	if (!enable)
-+		usleep_range(6, 60); /* Bspec says >= 6us */
-+
-+	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base,
-+					       cpu_transcoder, enable);
-+	if (ret)
++}
+
+total: 0 errors, 4 warnings, 1 checks, 1276 lines checked
+8379b02b9940 drm/i915: Plumb port through hdcp init
+bbb5610468ab drm/i915: Add connector to hdcp_shim->check_link()
+f4915cd92791 drm/mst: Add support for QUERY_STREAM_ENCRYPTION_STATUS MST sideband message
+-:115: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#115: FILE: drivers/gpu/drm/drm_dp_mst_topology.c:982:
++drm_dp_sideband_parse_query_stream_enc_status(
+
+-:193: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#193: FILE: drivers/gpu/drm/drm_dp_mst_topology.c:3256:
++int drm_dp_send_query_stream_enc_status(struct drm_dp_mst_topology_mgr *mgr,
++		struct drm_dp_mst_port *port,
+
+-:373: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#373: FILE: include/drm/drm_dp_mst_helper.h:853:
++int drm_dp_send_query_stream_enc_status(struct drm_dp_mst_topology_mgr *mgr,
++		struct drm_dp_mst_port *port,
+
+total: 0 errors, 0 warnings, 3 checks, 315 lines checked
+f589de4d6946 drm/i915: Print HDCP version info for all connectors
+3a5e18d9ce36 drm/i915: Add HDCP 1.4 support for MST connectors
+-:76: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#76: FILE: drivers/gpu/drm/i915/display/intel_dp_hdcp.c:639:
 +		drm_dbg_kms(&i915->drm, "%s HDCP signalling failed (%d)\n",
 +			      enable ? "Enable" : "Disable", ret);
-+	return ret;
-+}
-+
-+static
-+bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
-+				  struct intel_connector *connector)
-+{
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_dp *intel_dp = &dig_port->dp;
-+	struct drm_dp_query_stream_enc_status_ack_reply reply;
-+	int ret;
-+
-+	if (!intel_dp_hdcp_check_link(dig_port, connector))
-+		return false;
-+
-+	ret = drm_dp_send_query_stream_enc_status(&intel_dp->mst_mgr,
-+						  connector->port, &reply);
-+	if (ret) {
-+		drm_dbg_kms(&i915->drm,
-+			    "[CONNECTOR:%d:%s] failed QSES ret=%d\n",
-+			    connector->base.base.id, connector->base.name, ret);
-+		return false;
-+	}
-+
-+	return reply.auth_completed && reply.encryption_enabled;
-+}
-+
-+static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
-+	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
-+	.read_bksv = intel_dp_hdcp_read_bksv,
-+	.read_bstatus = intel_dp_hdcp_read_bstatus,
-+	.repeater_present = intel_dp_hdcp_repeater_present,
-+	.read_ri_prime = intel_dp_hdcp_read_ri_prime,
-+	.read_ksv_ready = intel_dp_hdcp_read_ksv_ready,
-+	.read_ksv_fifo = intel_dp_hdcp_read_ksv_fifo,
-+	.read_v_prime_part = intel_dp_hdcp_read_v_prime_part,
-+	.toggle_signalling = intel_dp_mst_hdcp_toggle_signalling,
-+	.check_link = intel_dp_mst_hdcp_check_link,
-+	.hdcp_capable = intel_dp_hdcp_capable,
-+
-+	.protocol = HDCP_PROTOCOL_DP,
-+};
-+
- int intel_dp_init_hdcp(struct intel_digital_port *dig_port,
- 		       struct intel_connector *intel_connector)
- {
-@@ -631,7 +692,10 @@ int intel_dp_init_hdcp(struct intel_digital_port *dig_port,
- 	if (!is_hdcp_supported(dev_priv, port))
- 		return 0;
- 
--	if (!intel_dp_is_edp(intel_dp))
-+	if (intel_connector->mst_port)
-+		return intel_hdcp_init(intel_connector, port,
-+				       &intel_dp_mst_hdcp_shim);
-+	else if (!intel_dp_is_edp(intel_dp))
- 		return intel_hdcp_init(intel_connector, port,
- 				       &intel_dp_hdcp_shim);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index b97b2918d802..b6424bf5d544 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -37,6 +37,7 @@
- #include "intel_dp.h"
- #include "intel_dp_mst.h"
- #include "intel_dpio_phy.h"
-+#include "intel_hdcp.h"
- 
- static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
- 					    struct intel_crtc_state *crtc_state,
-@@ -352,6 +353,8 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
- 	drm_dbg_kms(&i915->drm, "active links %d\n",
- 		    intel_dp->active_mst_links);
- 
-+	intel_hdcp_disable(intel_mst->connector);
-+
- 	drm_dp_mst_reset_vcpi_slots(&intel_dp->mst_mgr, connector->port);
- 
- 	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr);
-@@ -556,6 +559,13 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
- 
- 	if (pipe_config->has_audio)
- 		intel_audio_codec_enable(encoder, pipe_config, conn_state);
-+
-+	/* Enable hdcp if it's desired */
-+	if (conn_state->content_protection ==
-+	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
-+		intel_hdcp_enable(to_intel_connector(conn_state->connector),
-+				  pipe_config->cpu_transcoder,
-+				  (u8)conn_state->hdcp_content_type);
- }
- 
- static bool intel_dp_mst_enc_get_hw_state(struct intel_encoder *encoder,
-@@ -799,6 +809,14 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 	intel_attach_force_audio_property(connector);
- 	intel_attach_broadcast_rgb_property(connector);
+
+-:174: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#174: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:812:
  
 +
-+	/* TODO: Figure out how to make HDCP work on GEN12+ */
-+	if (INTEL_GEN(dev_priv) < 12) {
-+		ret = intel_dp_init_hdcp(dig_port, intel_connector);
-+		if (ret)
-+			DRM_DEBUG_KMS("HDCP init failed, skipping.\n");
-+	}
-+
- 	/*
- 	 * Reuse the prop from the SST connector because we're
- 	 * not allowed to create new props after device registration.
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 028cf3ac548f..0455a3bff72b 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -2059,7 +2059,7 @@ int intel_hdcp_init(struct intel_connector *connector,
- 	if (!shim)
- 		return -EINVAL;
- 
--	if (is_hdcp2_supported(dev_priv))
-+	if (is_hdcp2_supported(dev_priv) && !connector->mst_port)
- 		intel_hdcp2_init(connector, port, shim);
- 
- 	ret =
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
+
+total: 0 errors, 0 warnings, 2 checks, 138 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
