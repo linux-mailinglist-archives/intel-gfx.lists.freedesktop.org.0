@@ -2,32 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A8E4248412
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Aug 2020 13:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A842248442
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Aug 2020 13:56:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0439B89BB3;
-	Tue, 18 Aug 2020 11:44:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33A9C899EA;
+	Tue, 18 Aug 2020 11:56:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 751AE89BB3
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 11:44:50 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22162018-1500050 for multiple; Tue, 18 Aug 2020 12:44:45 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 30E8D899EA;
+ Tue, 18 Aug 2020 11:56:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 29ECEA7DFF;
+ Tue, 18 Aug 2020 11:56:36 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <CA+GA0_tJyx-Xj6ORoBWj8+E8hXftWj4+qDMqvy83W7gQpMZ9oA@mail.gmail.com>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Marcin_=C5=9Alusarz?= <marcin.slusarz@gmail.com>
+Date: Tue, 18 Aug 2020 11:56:36 -0000
+Message-ID: <159775179613.18758.15790430072303340976@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <CA+GA0_srCED0nX7XkiuOBxsxPy8xskG0Z-Lu9bWnD=tknnJNww@mail.gmail.com>
- <CA+GA0_tJyx-Xj6ORoBWj8+E8hXftWj4+qDMqvy83W7gQpMZ9oA@mail.gmail.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Marcin Ślusarz <marcin.slusarz@gmail.com>, intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Aug 2020 12:44:46 +0100
-Message-ID: <159775108662.667.4098859189018751595@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: raise logging level of
- "gpu reset disabled" message
+In-Reply-To: <CA+GA0_srCED0nX7XkiuOBxsxPy8xskG0Z-Lu9bWnD=tknnJNww@mail.gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/2=5D_drm/i915/gt=3A_obey_=22reset=22_m?=
+ =?utf-8?q?odule_parameter?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,19 +39,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBNYXJjaW4gxZpsdXNhcnogKDIwMjAtMDgtMTggMTI6Mzc6MjApCj4gRnJvbTogTWFy
-Y2luIMWabHVzYXJ6IDxtYXJjaW4uc2x1c2FyekBpbnRlbC5jb20+Cj4gCj4gRmV3IGxpbmVzIGFi
-b3ZlIHRoZXJlJ3MgZHJtX25vdGljZSBzYXlpbmcgdGhhdCB0aGUgZ3B1IHdpbGwgYmUgcmVzZXQu
-Cj4gUHJpbnRpbmcgImdwdSByZXNldCBkaXNhYmxlZCIgdXNpbmcgbG93ZXIgbG9nZ2luZyBsZXZl
-bCBtYWtlcyBpdAo+IGhhcmRlciB0byBmaWd1cmUgb3V0IHdoYXQgaGFwcGVuZWQuCgpJdCdzIGRp
-c2FibGVkIGJ5IHVzZXIgcmVxdWVzdCwgYW5kIHdlIG1heSBkbyB0aGlzIHZlcnkgdmVyeSBmcmVx
-dWVudGx5LgpJZiB5b3UgYXJlIHdpc2UgZW5vdWdoIHRvIHRvdWNoIGFuIHVuc2FmZSBtb2R1bGUg
-cGFyYW1ldGVyLCB5b3UgZ2V0IHRvCmtlZXAgYWxsIHRoZSBwaWVjZXMuCi1DaHJpcwpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: series starting with [1/2] drm/i915/gt: obey "reset" module parameter
+URL   : https://patchwork.freedesktop.org/series/80734/
+State : failure
+
+== Summary ==
+
+Applying: drm/i915/gt: obey "reset" module parameter
+error: git diff header lacks filename information when removing 1 leading pathname component (line 6)
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/i915/gt: obey "reset" module parameter
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
