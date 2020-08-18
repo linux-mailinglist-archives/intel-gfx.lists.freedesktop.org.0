@@ -2,62 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75064248FCC
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Aug 2020 23:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59BCC249017
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Aug 2020 23:28:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 280C689A9F;
-	Tue, 18 Aug 2020 21:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3FD96E188;
+	Tue, 18 Aug 2020 21:28:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
- [66.63.167.143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5377889A8C;
- Tue, 18 Aug 2020 21:00:48 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by bedivere.hansenpartnership.com (Postfix) with ESMTP id E76FB8EE1A9;
- Tue, 18 Aug 2020 14:00:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=hansenpartnership.com;
- s=20151216; t=1597784444;
- bh=tbsUcv475+YCZw1GTj2PQ6LvX4vSQZaYxn4zaS+R/4c=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=Qrj9DcFVwfv3LQ3ogFCLogZ3MFRIrVuZOGzCtGnuXEksHbYpCf4MOzhnjK48hnLeJ
- WBJIwZcuhQRmEISK3OYmfO8zwCeV5WGheC1BlogkcVwtiUSnVqiZDKUeoZ3ftkI0DB
- 8C1HptXhFOQveW6XttTml0y/WCVpA+LP1XIfDIQU=
-Received: from bedivere.hansenpartnership.com ([127.0.0.1])
- by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
- port 10024)
- with ESMTP id yxTvzG0VvDFx; Tue, 18 Aug 2020 14:00:43 -0700 (PDT)
-Received: from [153.66.254.174] (c-73-35-198-56.hsd1.wa.comcast.net
- [73.35.198.56])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id 3908A8EE17F;
- Tue, 18 Aug 2020 14:00:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=hansenpartnership.com;
- s=20151216; t=1597784443;
- bh=tbsUcv475+YCZw1GTj2PQ6LvX4vSQZaYxn4zaS+R/4c=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=D+8/Cr58B/oiGrsp2scAFTKzPpwuRrxI0nzk9/FGC1mH6aV1pe7T9eKYXHzydxf7e
- uxoPDcWpTJmWe7T3PSHxKLwqMdOy0OFGWtWHPKks90yqeWzrewWrtu8v+gZ22+Y9Xp
- 3BintrUiXfYlFbDYGCbt6iSJyrOyqS5V85WlObHk=
-Message-ID: <1597784438.3978.6.camel@HansenPartnership.com>
-From: James Bottomley <James.Bottomley@HansenPartnership.com>
-To: Kees Cook <keescook@chromium.org>
-Date: Tue, 18 Aug 2020 14:00:38 -0700
-In-Reply-To: <202008181309.FD3940A2D5@keescook>
-References: <20200817091617.28119-1-allen.cryptic@gmail.com>
- <20200817091617.28119-2-allen.cryptic@gmail.com>
- <b5508ca4-0641-7265-2939-5f03cbfab2e2@kernel.dk>
- <202008171228.29E6B3BB@keescook>
- <161b75f1-4e88-dcdf-42e8-b22504d7525c@kernel.dk>
- <202008171246.80287CDCA@keescook>
- <df645c06-c30b-eafa-4d23-826b84f2ff48@kernel.dk>
- <1597780833.3978.3.camel@HansenPartnership.com>
- <202008181309.FD3940A2D5@keescook>
-X-Mailer: Evolution 3.26.6 
-Mime-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] block: convert tasklets to use new
- tasklet_setup() API
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 470626E0C6;
+ Tue, 18 Aug 2020 21:27:59 +0000 (UTC)
+IronPort-SDR: VkJAMfZ71D/JVRfE8wReztPSm5BWueu7z9Qp0PuxXJrfnoW4ZULscwdH6bcLmGiCrfm6Zh+A01
+ ZmJDOnUY06Bw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9717"; a="135076163"
+X-IronPort-AV: E=Sophos;i="5.76,328,1592895600"; d="scan'208";a="135076163"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2020 14:27:58 -0700
+IronPort-SDR: WqDwyFyoqEZJ5oUrz/K18O6HD9bMmUaQ4gmBdtp1MWJI+3gKfB92Olb6HGdZyb2mu153jJ2v8q
+ w4txHT0ZdYIQ==
+X-IronPort-AV: E=Sophos;i="5.76,328,1592895600"; d="scan'208";a="336747615"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2020 14:27:58 -0700
+Date: Tue, 18 Aug 2020 14:29:14 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Message-ID: <20200818212908.GA4908@labuser-Z97X-UD5H>
+References: <20200723003627.31198-1-khaled.almahallawy@intel.com>
+ <20200723003627.31198-2-khaled.almahallawy@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200723003627.31198-2-khaled.almahallawy@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/dp: TPS4 PHY test pattern
+ compliance support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,100 +52,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ulf.hansson@linaro.org, linux-atm-general@lists.sourceforge.net,
- manohar.vanga@gmail.com, airlied@linux.ie, Allen Pais <allen.lkml@gmail.com>,
- linux-hyperv@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kys@microsoft.com,
- anton.ivanov@cambridgegreys.com, devel@driverdev.osuosl.org,
- linux-s390@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
- maximlevitsky@gmail.com, richard@nod.at, deller@gmx.de,
- jassisinghbrar@gmail.com, 3chas3@gmail.com, intel-gfx@lists.freedesktop.org,
- kuba@kernel.org, mporter@kernel.crashing.org, jdike@addtoit.com,
- oakad@yahoo.com, s.hauer@pengutronix.de, linux-input@vger.kernel.org,
- linux-um@lists.infradead.org, linux-block@vger.kernel.org, broonie@kernel.org,
- openipmi-developer@lists.sourceforge.net, mitch@sfgoth.com,
- linux-arm-kernel@lists.infradead.org, Jens Axboe <axboe@kernel.dk>,
- linux-parisc@vger.kernel.org, netdev@vger.kernel.org, martyn@welchs.me.uk,
- dmitry.torokhov@gmail.com, linux-mmc@vger.kernel.org, sre@kernel.org,
- linux-spi@vger.kernel.org, alex.bou9@gmail.com,
- Allen Pais <allen.cryptic@gmail.com>, stefanr@s5r6.in-berlin.de,
- linux-ntb@googlegroups.com, Romain Perier <romain.perier@gmail.com>,
- shawnguo@kernel.org, davem@davemloft.net
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-08-18 at 13:10 -0700, Kees Cook wrote:
-> On Tue, Aug 18, 2020 at 01:00:33PM -0700, James Bottomley wrote:
-> > On Mon, 2020-08-17 at 13:02 -0700, Jens Axboe wrote:
-> > > On 8/17/20 12:48 PM, Kees Cook wrote:
-> > > > On Mon, Aug 17, 2020 at 12:44:34PM -0700, Jens Axboe wrote:
-> > > > > On 8/17/20 12:29 PM, Kees Cook wrote:
-> > > > > > On Mon, Aug 17, 2020 at 06:56:47AM -0700, Jens Axboe wrote:
-> > > > > > > On 8/17/20 2:15 AM, Allen Pais wrote:
-> > > > > > > > From: Allen Pais <allen.lkml@gmail.com>
-> > > > > > > > 
-> > > > > > > > In preparation for unconditionally passing the
-> > > > > > > > struct tasklet_struct pointer to all tasklet
-> > > > > > > > callbacks, switch to using the new tasklet_setup()
-> > > > > > > > and from_tasklet() to pass the tasklet pointer
-> > > > > > > > explicitly.
-> > > > > > > 
-> > > > > > > Who came up with the idea to add a macro 'from_tasklet'
-> > > > > > > that
-> > > > > > > is just container_of? container_of in the code would be
-> > > > > > > _much_ more readable, and not leave anyone guessing wtf
-> > > > > > > from_tasklet is doing.
-> > > > > > > 
-> > > > > > > I'd fix that up now before everything else goes in...
-> > > > > > 
-> > > > > > As I mentioned in the other thread, I think this makes
-> > > > > > things
-> > > > > > much more readable. It's the same thing that the
-> > > > > > timer_struct
-> > > > > > conversion did (added a container_of wrapper) to avoid the
-> > > > > > ever-repeating use of typeof(), long lines, etc.
-> > > > > 
-> > > > > But then it should use a generic name, instead of each sub-
-> > > > > system 
-> > > > > using some random name that makes people look up exactly what
-> > > > > it
-> > > > > does. I'm not huge fan of the container_of() redundancy, but
-> > > > > adding private variants of this doesn't seem like the best
-> > > > > way
-> > > > > forward. Let's have a generic helper that does this, and use
-> > > > > it
-> > > > > everywhere.
-> > > > 
-> > > > I'm open to suggestions, but as things stand, these kinds of
-> > > > treewide
-> > > 
-> > > On naming? Implementation is just as it stands, from_tasklet() is
-> > > totally generic which is why I objected to it. from_member()? Not
-> > > great with naming... But I can see this going further and then
-> > > we'll
-> > > suddenly have tons of these. It's not good for readability.
-> > 
-> > Since both threads seem to have petered out, let me suggest in
-> > kernel.h:
-> > 
-> > #define cast_out(ptr, container, member) \
-> > 	container_of(ptr, typeof(*container), member)
-> > 
-> > It does what you want, the argument order is the same as
-> > container_of with the only difference being you name the containing
-> > structure instead of having to specify its type.
+On Wed, Jul 22, 2020 at 05:36:27PM -0700, Khaled Almahallawy wrote:
+> Adding support for TPS4 (CP2520 Pattern 3) PHY pattern source tests.
 > 
-> I like this! Shall I send this to Linus to see if this can land in
-> -rc2 for use going forward?
+> v2: uniform bit names TP4a/b/c (Manasi)
+> 
+> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
 
-Sure ... he's probably been lurking on this thread anyway ... it's
-about time he got off his arse^Wthe fence and made an executive
-decision ...
+Looks good to me,
 
-James
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
+Khaled, could you also give a tested by here?
+
+Manasi
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 14 ++++++++++++--
+>  drivers/gpu/drm/i915/i915_reg.h         |  4 ++++
+>  2 files changed, 16 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index d6295eb20b63..4b74b2ec5665 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5371,7 +5371,7 @@ static void intel_dp_phy_pattern_update(struct intel_dp *intel_dp)
+>  			&intel_dp->compliance.test_data.phytest;
+>  	struct intel_crtc *crtc = to_intel_crtc(dig_port->base.base.crtc);
+>  	enum pipe pipe = crtc->pipe;
+> -	u32 pattern_val;
+> +	u32 pattern_val, dp_tp_ctl;
+>  
+>  	switch (data->phy_pattern) {
+>  	case DP_PHY_TEST_PATTERN_NONE:
+> @@ -5411,7 +5411,7 @@ static void intel_dp_phy_pattern_update(struct intel_dp *intel_dp)
+>  			       DDI_DP_COMP_CTL_ENABLE |
+>  			       DDI_DP_COMP_CTL_CUSTOM80);
+>  		break;
+> -	case DP_PHY_TEST_PATTERN_CP2520:
+> +	case DP_PHY_TEST_PATTERN_CP2520_PAT1:
+>  		/*
+>  		 * FIXME: Ideally pattern should come from DPCD 0x24A. As
+>  		 * current firmware of DPR-100 could not set it, so hardcoding
+> @@ -5423,6 +5423,16 @@ static void intel_dp_phy_pattern_update(struct intel_dp *intel_dp)
+>  			       DDI_DP_COMP_CTL_ENABLE | DDI_DP_COMP_CTL_HBR2 |
+>  			       pattern_val);
+>  		break;
+> +		case DP_PHY_TEST_PATTERN_CP2520_PAT3:
+> +			DRM_DEBUG_KMS("Set TPS4 Phy Test Pattern\n");
+> +			intel_de_write(dev_priv, DDI_DP_COMP_CTL(pipe), 0x0);
+> +			dp_tp_ctl = intel_de_read(dev_priv, TGL_DP_TP_CTL(pipe));
+> +			dp_tp_ctl &= ~DP_TP_CTL_TRAIN_PAT4_SEL_MASK;
+> +			dp_tp_ctl |= DP_TP_CTL_TRAIN_PAT4_SEL_TP4a;
+> +			dp_tp_ctl &= ~DP_TP_CTL_LINK_TRAIN_MASK;
+> +			dp_tp_ctl |= DP_TP_CTL_LINK_TRAIN_PAT4;
+> +			intel_de_write(dev_priv, TGL_DP_TP_CTL(pipe), dp_tp_ctl);
+> +			break;
+>  	default:
+>  		WARN(1, "Invalid Phy Test Pattern\n");
+>  	}
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index a0d31f3bf634..c586595b9e76 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9982,6 +9982,10 @@ enum skl_power_gate {
+>  #define  DP_TP_CTL_MODE_SST			(0 << 27)
+>  #define  DP_TP_CTL_MODE_MST			(1 << 27)
+>  #define  DP_TP_CTL_FORCE_ACT			(1 << 25)
+> +#define  DP_TP_CTL_TRAIN_PAT4_SEL_MASK		(3 << 19)
+> +#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4a		(0 << 19)
+> +#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4b		(1 << 19)
+> +#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4c		(2 << 19)
+>  #define  DP_TP_CTL_ENHANCED_FRAME_ENABLE	(1 << 18)
+>  #define  DP_TP_CTL_FDI_AUTOTRAIN		(1 << 15)
+>  #define  DP_TP_CTL_LINK_TRAIN_MASK		(7 << 8)
+> -- 
+> 2.17.1
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
