@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6557D248A16
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Aug 2020 17:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CD76248A19
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Aug 2020 17:40:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D33789EA3;
-	Tue, 18 Aug 2020 15:40:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53FAE89F53;
+	Tue, 18 Aug 2020 15:40:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
- [IPv6:2607:f8b0:4864:20::741])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C8E789C51
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 15:40:03 +0000 (UTC)
-Received: by mail-qk1-x741.google.com with SMTP id n129so18633871qkd.6
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 08:40:03 -0700 (PDT)
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
+ [IPv6:2607:f8b0:4864:20::743])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E3E789F63
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 15:40:08 +0000 (UTC)
+Received: by mail-qk1-x743.google.com with SMTP id j187so18611068qke.11
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 08:40:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=idNcMCa5docR2LUb8IpS4YUOTnM7JrE8AsaDh7Ncv+g=;
- b=NlVfNDTPuablXt5EbVMR1G4wT3b9GTziHw2AyB2g41D/b6zPTF6DcbvQoRKNV8Zhmp
- pxdMXRH2gn6r1GPXhRILXLaKYsp5OTr1qF6ta2naul6rdXE1AGiiwNYrieEMfKj3gXMS
- AdM4PkkfEFU/RWF9ZPcNshBm8xz0M07+NOcdhn3S6iT6U8Xw56ZTI/4xZtR3Ut84K0Gk
- 3nO4iXx1ETd/ffStiNxphQ5Axq7odnqDgT5Y8K90l21riKNpUbbKIE0pUuOsRzyAAyDK
- Zce8pcqL6aJRpeWTkkeoFWIRCvlTOMpnsT7AodalUUONQqQS3DnkccT0iv7r4cfR/g6/
- L+4Q==
+ bh=uKRhQTU/J2vI5UvdMPkx+k4mn6hIbmJ+8/ruJ2N39Ps=;
+ b=a6T9qDykn0Y+qIZ3iReFFEa2DupXVbGlUE1u+8Hi/nVPIQIeCjuWlTx7vgQZ5ZK8yP
+ E/5GXS0cBTVNdBy7bjZ0ccLWrsZsTyzKO8eUbvazgkBQYcuuEgBF0a9e+GxO6IzTfrSC
+ Wx1Sms1Fpb3L9ZwYKmOYgG3hFf9l49x0cT3GLEd4RgG5uBcfKFaEb95DX6QBYRLKf98I
+ P0xvhleAvw/Rikghvp0583eXYp9N7RHn2U+bDg6hzK8kTkLujZoO/TqrhUiF32cuB6ye
+ nALWv/3UxdGrxet3BOdAVXW9jLJZezIgsULxVNafu9qLeO/LFADimaza1GjLfu2hIshQ
+ +fhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=idNcMCa5docR2LUb8IpS4YUOTnM7JrE8AsaDh7Ncv+g=;
- b=CPAUouYuDbnIsMBeKOOdf5vA7KfMd9wO9lPlGujhR1T6EUi3nqB43L8hhOyRAFVumP
- OzE4Jgof+FeqT0B1pUr6zXFOMackJe/Dvbz+rdXKd/zotqGDMVk7Akmf8mnoPW/eoYkI
- LVcjA84yFnSY+KDM4yETdOlKKV7tz6kWNKyxKZHgaXpY3iue1Tv6+IxHTZjUmll6yrRp
- ktiCqQuk1RQUq1lk6beSMBcank1ndJdO8w3iUzMZ/8AObDTJkUtPGNbZzUjdAIp3Hnzz
- XdvNC8jIzzPrxXULUVUEv76QWQI1/2TdG7K4qhJmLse2XuQakmC3fivvoIEU1aeAqsHX
- OUoA==
-X-Gm-Message-State: AOAM530SOnNhgngDsQWfkXH95kU7ibVQ2Zev9YW1quf2YUAv9xFtx9e2
- 0ecUFvcXDh8c92pIVHmjgWhMdQ==
-X-Google-Smtp-Source: ABdhPJzuoB9V2O8tnnrY8PKR85QvWH5rzACLPg5ylQY28/VKt6qIKoXWReLyGO9unX0yW0UOVPvt1A==
-X-Received: by 2002:a05:620a:4006:: with SMTP id
- h6mr17834979qko.174.1597765202338; 
- Tue, 18 Aug 2020 08:40:02 -0700 (PDT)
+ bh=uKRhQTU/J2vI5UvdMPkx+k4mn6hIbmJ+8/ruJ2N39Ps=;
+ b=ci2rIb32IExVdIFoAHckOTlrm2zR1Q8jmQpOZhObWCMMsaHOYDfMEL1WPTGxzdoDWZ
+ dJuSvsTh5U/644k5P4bhtGTOE2x1jfAgLtdhBM7hGLCshY+WDdSyeOfK4f6u4zuuw5ag
+ 53GRr4xC+Lo6XBO46zcb46o+f0QEcasVRoycpwiPYD0+0WJxhmqsBoQ0PAthPrYLhMNY
+ z3pJZYX+3gmW8TK4fDMvhNnhIp4kbxxY56q3w2rXlVqv0kFGUTz/VIzE9lFeOoyBHh9U
+ tjWZXemBr5KsylKtK2VETZ4k3GTXLu44ao0IbAp4Gom8ZFUeUNrr7Xvy1OoPtNN0wN6v
+ NxzA==
+X-Gm-Message-State: AOAM532EEh8KnY7VPOsFz3IvB/V79y/Rty1Bm1kplUi2M1VGYFhCbZJv
+ K3B3gxgIuTwSeD48tcXY+SRUFQ==
+X-Google-Smtp-Source: ABdhPJxQ6vlZBMTYlaXfH6ab7p26HJOa1b/08e3C8+spfsZycRBE5/zdOO5brmPXrfrx3LMb2/hvpw==
+X-Received: by 2002:a05:620a:1257:: with SMTP id
+ a23mr17481534qkl.207.1597765207532; 
+ Tue, 18 Aug 2020 08:40:07 -0700 (PDT)
 Received: from localhost (mobile-166-170-57-144.mycingular.net.
  [166.170.57.144])
- by smtp.gmail.com with ESMTPSA id u8sm11803008qkj.9.2020.08.18.08.40.01
+ by smtp.gmail.com with ESMTPSA id y3sm24970649qtj.55.2020.08.18.08.40.06
  (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 18 Aug 2020 08:40:01 -0700 (PDT)
+ Tue, 18 Aug 2020 08:40:07 -0700 (PDT)
 From: Sean Paul <sean@poorly.run>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  juston.li@intel.com, jani.nikula@linux.intel.com,
  joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
  anshuman.gupta@intel.com
-Date: Tue, 18 Aug 2020 11:38:54 -0400
-Message-Id: <20200818153910.27894-7-sean@poorly.run>
+Date: Tue, 18 Aug 2020 11:38:55 -0400
+Message-Id: <20200818153910.27894-8-sean@poorly.run>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200818153910.27894-1-sean@poorly.run>
 References: <20200818153910.27894-1-sean@poorly.run>
-Subject: [Intel-gfx] [PATCH v8 06/17] drm/i915: Factor out hdcp->value
- assignments
+Subject: [Intel-gfx] [PATCH v8 07/17] drm/i915: Protect workers against
+ disappearing connectors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,26 +80,33 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Sean Paul <seanpaul@chromium.org>
 
-This is a bit of housecleaning for a future patch. Instead of sprinkling
-hdcp->value assignments and prop_work scheduling everywhere, introduce a
-function to do it for us.
+This patch adds some protection against connectors being destroyed
+before the HDCP workers are finished.
+
+For check_work, we do a synchronous cancel after the connector is
+unregistered which will ensure that it is finished before destruction.
+
+In the case of prop_work, we can't do a synchronous wait since it needs
+to take connection_mutex which could cause deadlock. Instead, we'll take
+a reference on the connector when scheduling prop_work and give it up
+once we're done.
 
 Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
 Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-7-sean@poorly.run #v1
-Link: https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-7-sean@poorly.run #v2
-Link: https://patchwork.freedesktop.org/patch/msgid/20200117193103.156821-7-sean@poorly.run #v3
-Link: https://patchwork.freedesktop.org/patch/msgid/20200218220242.107265-7-sean@poorly.run #v4
-Link: https://patchwork.freedesktop.org/patch/msgid/20200305201236.152307-7-sean@poorly.run #v5
-Link: https://patchwork.freedesktop.org/patch/msgid/20200429195502.39919-7-sean@poorly.run #v6
-Link: https://patchwork.freedesktop.org/patch/msgid/20200623155907.22961-7-sean@poorly.run #v7
+Link: https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-8-sean@poorly.run #v2
+Link: https://patchwork.freedesktop.org/patch/msgid/20200117193103.156821-8-sean@poorly.run #v3
+Link: https://patchwork.freedesktop.org/patch/msgid/20200218220242.107265-8-sean@poorly.run #v4
+Link: https://patchwork.freedesktop.org/patch/msgid/20200305201236.152307-8-sean@poorly.run #v5
+Link: https://patchwork.freedesktop.org/patch/msgid/20200429195502.39919-8-sean@poorly.run #v6
+Link: https://patchwork.freedesktop.org/patch/msgid/20200623155907.22961-8-sean@poorly.run #v7
 
 Changes in v2:
--None
+-Added to the set
 Changes in v3:
--None
+-Change the WARN_ON condition in intel_hdcp_cleanup to allow for
+ initializing connectors as well
 Changes in v4:
--Rebased on top of drm_* logging changes
+-None
 Changes in v5:
 -Change WARN_ON to drm_WARN_ON
 Changes in v6:
@@ -109,160 +116,88 @@ Changes in v7:
 Changes in v8:
 -None
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 67 ++++++++++++++++-------
- 1 file changed, 46 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 44 ++++++++++++++++++++---
+ 1 file changed, 39 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index b28a351f3a98..ab2e2f9d0020 100644
+index ab2e2f9d0020..fe9377a6e4d5 100644
 --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
 +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -876,6 +876,21 @@ static struct intel_connector *intel_hdcp_to_connector(struct intel_hdcp *hdcp)
- 	return container_of(hdcp, struct intel_connector, hdcp);
+@@ -887,8 +887,10 @@ static void intel_hdcp_update_value(struct intel_connector *connector,
+ 		return;
+ 
+ 	hdcp->value = value;
+-	if (update_property)
++	if (update_property) {
++		drm_connector_get(&connector->base);
+ 		schedule_work(&hdcp->prop_work);
++	}
  }
  
-+static void intel_hdcp_update_value(struct intel_connector *connector,
-+				    u64 value, bool update_property)
-+{
-+	struct intel_hdcp *hdcp = &connector->hdcp;
-+
-+	drm_WARN_ON(connector->base.dev, !mutex_is_locked(&hdcp->mutex));
-+
-+	if (hdcp->value == value)
-+		return;
-+
-+	hdcp->value = value;
-+	if (update_property)
-+		schedule_work(&hdcp->prop_work);
-+}
-+
  /* Implements Part 3 of the HDCP authorization procedure */
- static int intel_hdcp_check_link(struct intel_connector *connector)
- {
-@@ -903,15 +918,16 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 			connector->base.name, connector->base.base.id,
- 			intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)));
- 		ret = -ENXIO;
--		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
--		schedule_work(&hdcp->prop_work);
-+		intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_DESIRED,
-+					true);
- 		goto out;
- 	}
- 
- 	if (hdcp->shim->check_link(dig_port)) {
- 		if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
--			hdcp->value = DRM_MODE_CONTENT_PROTECTION_ENABLED;
--			schedule_work(&hdcp->prop_work);
-+			intel_hdcp_update_value(connector,
-+				DRM_MODE_CONTENT_PROTECTION_ENABLED, true);
- 		}
- 		goto out;
- 	}
-@@ -923,16 +939,18 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 	ret = _intel_hdcp_disable(connector);
- 	if (ret) {
- 		drm_err(&dev_priv->drm, "Failed to disable hdcp (%d)\n", ret);
--		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
--		schedule_work(&hdcp->prop_work);
-+		intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_DESIRED,
-+					true);
- 		goto out;
- 	}
- 
- 	ret = _intel_hdcp_enable(connector);
- 	if (ret) {
- 		drm_err(&dev_priv->drm, "Failed to enable hdcp (%d)\n", ret);
--		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
--		schedule_work(&hdcp->prop_work);
-+		intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_DESIRED,
-+					true);
- 		goto out;
- 	}
- 
-@@ -1768,16 +1786,18 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 			"HDCP2.2 link stopped the encryption, %x\n",
- 			intel_de_read(dev_priv, HDCP2_STATUS(dev_priv, cpu_transcoder, port)));
- 		ret = -ENXIO;
--		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
--		schedule_work(&hdcp->prop_work);
-+		intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_DESIRED,
-+					true);
- 		goto out;
- 	}
- 
- 	ret = hdcp->shim->check_2_2_link(dig_port);
- 	if (ret == HDCP_LINK_PROTECTED) {
- 		if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
--			hdcp->value = DRM_MODE_CONTENT_PROTECTION_ENABLED;
--			schedule_work(&hdcp->prop_work);
-+			intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_ENABLED,
-+					true);
- 		}
- 		goto out;
- 	}
-@@ -1790,8 +1810,9 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 			    "HDCP2.2 Downstream topology change\n");
- 		ret = hdcp2_authenticate_repeater_topology(connector);
- 		if (!ret) {
--			hdcp->value = DRM_MODE_CONTENT_PROTECTION_ENABLED;
--			schedule_work(&hdcp->prop_work);
-+			intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_ENABLED,
-+					true);
- 			goto out;
- 		}
- 		drm_dbg_kms(&dev_priv->drm,
-@@ -1809,8 +1830,8 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 		drm_err(&dev_priv->drm,
- 			"[%s:%d] Failed to disable hdcp2.2 (%d)\n",
- 			connector->base.name, connector->base.base.id, ret);
--		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
--		schedule_work(&hdcp->prop_work);
-+		intel_hdcp_update_value(connector,
-+				DRM_MODE_CONTENT_PROTECTION_DESIRED, true);
- 		goto out;
- 	}
- 
-@@ -1820,8 +1841,9 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 			    "[%s:%d] Failed to enable hdcp2.2 (%d)\n",
- 			    connector->base.name, connector->base.base.id,
- 			    ret);
--		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
--		schedule_work(&hdcp->prop_work);
-+		intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_DESIRED,
-+					true);
- 		goto out;
- 	}
- 
-@@ -2064,8 +2086,9 @@ int intel_hdcp_enable(struct intel_connector *connector,
- 
- 	if (!ret) {
- 		schedule_delayed_work(&hdcp->check_work, check_link_interval);
--		hdcp->value = DRM_MODE_CONTENT_PROTECTION_ENABLED;
--		schedule_work(&hdcp->prop_work);
-+		intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_ENABLED,
-+					true);
- 	}
+@@ -980,6 +982,8 @@ static void intel_hdcp_prop_work(struct work_struct *work)
  
  	mutex_unlock(&hdcp->mutex);
-@@ -2083,7 +2106,9 @@ int intel_hdcp_disable(struct intel_connector *connector)
- 	mutex_lock(&hdcp->mutex);
+ 	drm_modeset_unlock(&dev_priv->drm.mode_config.connection_mutex);
++
++	drm_connector_put(&connector->base);
+ }
  
- 	if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
--		hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
-+		intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_UNDESIRED,
-+					false);
- 		if (hdcp->hdcp2_encrypted)
- 			ret = _intel_hdcp2_disable(connector);
- 		else if (hdcp->hdcp_encrypted)
+ bool is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port)
+@@ -1859,6 +1863,9 @@ static void intel_hdcp_check_work(struct work_struct *work)
+ 					       check_work);
+ 	struct intel_connector *connector = intel_hdcp_to_connector(hdcp);
+ 
++	if (drm_connector_is_unregistered(&connector->base))
++		return;
++
+ 	if (!intel_hdcp2_check_link(connector))
+ 		schedule_delayed_work(&hdcp->check_work,
+ 				      DRM_HDCP2_CHECK_PERIOD_MS);
+@@ -2185,12 +2192,39 @@ void intel_hdcp_component_fini(struct drm_i915_private *dev_priv)
+ 
+ void intel_hdcp_cleanup(struct intel_connector *connector)
+ {
+-	if (!connector->hdcp.shim)
++	struct intel_hdcp *hdcp = &connector->hdcp;
++
++	if (!hdcp->shim)
+ 		return;
+ 
+-	mutex_lock(&connector->hdcp.mutex);
+-	kfree(connector->hdcp.port_data.streams);
+-	mutex_unlock(&connector->hdcp.mutex);
++	/*
++	 * If the connector is registered, it's possible userspace could kick
++	 * off another HDCP enable, which would re-spawn the workers.
++	 */
++	drm_WARN_ON(connector->base.dev,
++		connector->base.registration_state == DRM_CONNECTOR_REGISTERED);
++
++	/*
++	 * Now that the connector is not registered, check_work won't be run,
++	 * but cancel any outstanding instances of it
++	 */
++	cancel_delayed_work_sync(&hdcp->check_work);
++
++	/*
++	 * We don't cancel prop_work in the same way as check_work since it
++	 * requires connection_mutex which could be held while calling this
++	 * function. Instead, we rely on the connector references grabbed before
++	 * scheduling prop_work to ensure the connector is alive when prop_work
++	 * is run. So if we're in the destroy path (which is where this
++	 * function should be called), we're "guaranteed" that prop_work is not
++	 * active (tl;dr This Should Never Happen).
++	 */
++	drm_WARN_ON(connector->base.dev, work_pending(&hdcp->prop_work));
++
++	mutex_lock(&hdcp->mutex);
++	kfree(hdcp->port_data.streams);
++	hdcp->shim = NULL;
++	mutex_unlock(&hdcp->mutex);
+ }
+ 
+ void intel_hdcp_atomic_check(struct drm_connector *connector,
 -- 
 Sean Paul, Software Engineer, Google / Chromium OS
 
