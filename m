@@ -1,49 +1,25 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F171724A081
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 15:49:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A2E24A149
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 16:09:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEA766E3EF;
-	Wed, 19 Aug 2020 13:49:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68BE26E329;
+	Wed, 19 Aug 2020 14:09:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6B106E3F0;
- Wed, 19 Aug 2020 13:49:54 +0000 (UTC)
-IronPort-SDR: +S25vxUpYrJ6TDLDNfnMDQAVODH+QzeTCN9TlJDlx6RQ3hwYuH+r39LkHqn5yt1XFpxESYuaBA
- UvUjPu5WYm7w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9717"; a="135175492"
-X-IronPort-AV: E=Sophos;i="5.76,331,1592895600"; d="scan'208";a="135175492"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2020 06:49:54 -0700
-IronPort-SDR: EQhxDIqXc4pRtB715GwacIoIwzSCJG1jZ7qoM0O/+MMz/0kEKZWE60L0IttRR7xl6GyQqu2YFT
- CQ4m+v1BsHYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,331,1592895600"; d="scan'208";a="327093717"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
- by orsmga008.jf.intel.com with ESMTP; 19 Aug 2020 06:49:52 -0700
-Received: from andy by smile with local (Exim 4.94)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1k8OTO-009szE-G9; Wed, 19 Aug 2020 16:49:50 +0300
-Date: Wed, 19 Aug 2020 16:49:50 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200819134950.GO1891694@smile.fi.intel.com>
-References: <20200819115353.59592-1-andriy.shevchenko@linux.intel.com>
- <159783838601.667.13987031157680370712@build.alporthouse.com>
- <87h7sy7r1a.fsf@intel.com>
- <159784117463.667.14083963249056080662@build.alporthouse.com>
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A6826E329
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 14:09:10 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Aug 2020 16:08:40 +0200
+Message-Id: <20200819140904.1708856-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <159784117463.667.14083963249056080662@build.alporthouse.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v1] drm/i915/gt: convert tasklets to use new
- tasklet_setup() API
+Subject: [Intel-gfx] [PATCH v2 00/24] drm/i915: Correct the locking
+ hierarchy in gem, v2.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,31 +32,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 19, 2020 at 01:46:14PM +0100, Chris Wilson wrote:
-> Quoting Jani Nikula (2020-08-19 13:34:41)
-> > On Wed, 19 Aug 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > > Quoting Andy Shevchenko (2020-08-19 12:53:53)
-> > >> In preparation for unconditionally passing the struct tasklet_struct
-> > >> pointer to all tasklet callbacks, switch to using the new tasklet_setup()
-> > >> and from_tasklet() to pass the tasklet pointer explicitly.
-> > >> 
-> > >> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+First start with a few reverts, to get to a good starting base for this
+series:
+- Async gpu relocations are not the way to go, for new platforms we will
+  disable gpu relocations altogether.
+- We also need the relocation slowpath (EFAULT handling) back.
+- The eb_vma no longer needs to be refcounted, with the next
+  patch that removes all vma's at a single place only.
 
-I sent too early, I will send v2 and thanks for review.
+Some igt tests will be broken, because they rely on certain behavior of
+relocations, mostly that they are taken without any ww locks, or the tests
+wiil fail.
 
+This is because the tests themselves are broken wrt upstream behavior,
+and hangcheck should kick in to stop them.
+
+After those changes, we can finally plug in the full ww locking to execbuf,
+inverting the locking hierarchy between reservation_object and the timeline
+lock as well. The ww lock becomes the outer lock, and the timeline lock the
+inner lock.
+
+Lastly, we fix all the fallout from inverting the locks, except all
+selftests have not been fixed yet completely, they use a lockdep nesting
+hack until they are finally fixed. As this code is never run by normal
+users, it's safe for now until that conversion is done separately.
+
+There is also a final fix for context isolation, contexts currently share
+a single page because of breadcrumbs. We split out the timelines into one
+page per context. This fixes the isolation tests, and ensures one
+misbehaving context cannot affect another.
+
+After this series, we hook up ww locking in a few more places, fix userptr
+and finally flatten obj->mm.lock and remove the different subclasses of
+this lock, as a preparation to removing it altogether in the near future.
+
+Changes since v1 series:
+- Address review feedback regarding commit messages.
+- Remove extra reloc_gpu_flush().
+- Add patch to fix isolation.
+
+Maarten Lankhorst (24):
+  Revert "drm/i915/gem: Async GPU relocations only"
+  drm/i915: Revert relocation chaining commits.
+  Revert "drm/i915/gem: Drop relocation slowpath".
+  Revert "drm/i915/gem: Split eb_vma into its own allocation"
+  drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+  drm/i915: Remove locking from i915_gem_object_prepare_read/write
+  drm/i915: Parse command buffer earlier in eb_relocate(slow)
+  drm/i915: Use per object locking in execbuf, v12.
+  drm/i915: Use ww locking in intel_renderstate.
+  drm/i915: Add ww context handling to context_barrier_task
+  drm/i915: Nuke arguments to eb_pin_engine
+  drm/i915: Pin engine before pinning all objects, v5.
+  drm/i915: Rework intel_context pinning to do everything outside of
+    pin_mutex
+  drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
+  drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as
+    well, v2.
+  drm/i915: Kill last user of intel_context_create_request outside of
+    selftests
+  drm/i915: Convert i915_perf to ww locking as well
+  drm/i915: Dirty hack to fix selftests locking inversion
+  drm/i915/selftests: Fix locking inversion in lrc selftest.
+  drm/i915: Use ww pinning for intel_context_create_request()
+  drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion,
+    v3.
+  drm/i915: Add ww locking to vm_fault_gtt
+  drm/i915: Add ww locking to pin_to_display_plane, v2.
+  drm/i915: Do not share hwsp across contexts any more
+
+ drivers/gpu/drm/i915/display/intel_display.c  |    6 +-
+ .../gpu/drm/i915/gem/i915_gem_client_blt.c    |   78 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |   55 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |    4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c    |   80 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 1601 +++++++++++------
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |   51 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   40 +-
+ .../gpu/drm/i915/gem/i915_gem_object_blt.c    |  152 +-
+ .../gpu/drm/i915/gem/i915_gem_object_blt.h    |    3 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |    9 +
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c        |    2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |    2 +-
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |    7 +-
+ .../i915/gem/selftests/i915_gem_client_blt.c  |    2 +-
+ .../i915/gem/selftests/i915_gem_coherency.c   |   50 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c |  142 +-
+ .../i915/gem/selftests/i915_gem_execbuffer.c  |   60 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |   45 +-
+ .../drm/i915/gem/selftests/i915_gem_phys.c    |    2 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |    4 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |    4 +-
+ drivers/gpu/drm/i915/gt/intel_context.c       |  309 ++--
+ drivers/gpu/drm/i915/gt/intel_context.h       |   13 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h |    5 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   23 +-
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |    4 -
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |   37 +-
+ drivers/gpu/drm/i915/gt/intel_renderstate.c   |   73 +-
+ drivers/gpu/drm/i915/gt/intel_renderstate.h   |    9 +-
+ drivers/gpu/drm/i915/gt/intel_ring.c          |   10 +-
+ drivers/gpu/drm/i915/gt/intel_ring.h          |    3 +-
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |   20 +-
+ drivers/gpu/drm/i915/gt/intel_timeline.c      |  392 +---
+ drivers/gpu/drm/i915/gt/intel_timeline.h      |    3 +-
+ .../gpu/drm/i915/gt/intel_timeline_types.h    |   15 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |   43 +-
+ drivers/gpu/drm/i915/gt/mock_engine.c         |   14 +-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |   17 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c        |   30 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c   |   15 +-
+ .../gpu/drm/i915/gt/selftest_workarounds.c    |    2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |    2 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |    3 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   13 +-
+ drivers/gpu/drm/i915/i915_gem.c               |   89 +-
+ drivers/gpu/drm/i915/i915_gem.h               |   12 +
+ drivers/gpu/drm/i915/i915_perf.c              |   57 +-
+ drivers/gpu/drm/i915/i915_request.c           |    4 -
+ drivers/gpu/drm/i915/i915_request.h           |   10 -
+ drivers/gpu/drm/i915/i915_vma.c               |   13 +-
+ drivers/gpu/drm/i915/i915_vma.h               |   13 +-
+ drivers/gpu/drm/i915/selftests/i915_gem.c     |   41 +
+ drivers/gpu/drm/i915/selftests/i915_request.c |   18 +-
+ drivers/gpu/drm/i915/selftests/i915_vma.c     |    2 +-
+ .../drm/i915/selftests/intel_memory_region.c  |    2 +-
+ 57 files changed, 2301 insertions(+), 1416 deletions(-)
+
+
+base-commit: ff7e5d4b71dc3fd8413b2d47e73ed3a2a5caccc6
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
