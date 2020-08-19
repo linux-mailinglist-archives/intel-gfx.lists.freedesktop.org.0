@@ -1,49 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58226249FEB
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 15:30:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D400424A02A
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 15:36:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A9946E311;
-	Wed, 19 Aug 2020 13:30:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F2856E2E1;
+	Wed, 19 Aug 2020 13:36:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 351036E041;
- Wed, 19 Aug 2020 13:30:18 +0000 (UTC)
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
- [83.86.89.107])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 42672205CB;
- Wed, 19 Aug 2020 13:30:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1597843817;
- bh=c/KIC1N+AThogXaPD4LYqtNhwTUgeFy5H658qfX3o6Y=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ybzJlclj7PKty/unc+4cb9Wd4WHHmVOSQ6smTxURwMsk2udx7+cwI/ct/VWqBRcaK
- TPHq+CA3SbHrkQu/Yr3Og03gF7ak5urBzCx3tlqFTNnNw+aON11BMaSWgLTxyquPrd
- 2nUrrz+cKds/3opgas5LKByGC0micQy3OPDbdyF4=
-Date: Wed, 19 Aug 2020 15:30:39 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Jens Axboe <axboe@kernel.dk>
-Message-ID: <20200819133039.GA3192753@kroah.com>
-References: <20200817091617.28119-2-allen.cryptic@gmail.com>
- <b5508ca4-0641-7265-2939-5f03cbfab2e2@kernel.dk>
- <202008171228.29E6B3BB@keescook>
- <161b75f1-4e88-dcdf-42e8-b22504d7525c@kernel.dk>
- <202008171246.80287CDCA@keescook>
- <df645c06-c30b-eafa-4d23-826b84f2ff48@kernel.dk>
- <1597780833.3978.3.camel@HansenPartnership.com>
- <f3312928-430c-25f3-7112-76f2754df080@kernel.dk>
- <20200819131158.GA2591006@kroah.com>
- <4f5a225d-460f-978f-e3cf-3f505140a515@kernel.dk>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D3726E2CC;
+ Wed, 19 Aug 2020 13:36:47 +0000 (UTC)
+IronPort-SDR: dfmqCkdOBr/kCG7lnih6kEAGtaDSpAXoFm/e4a6Ca/03EWbjkx6BM2P1qQ9Q4m2GzPHU1ed08H
+ kTSI2hABQoXw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9717"; a="135173735"
+X-IronPort-AV: E=Sophos;i="5.76,331,1592895600"; d="scan'208";a="135173735"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2020 06:36:47 -0700
+IronPort-SDR: wupw10x47QTvQsX8uLKmucEHHjhZwB2sMBeZrdlytcpYwiJiGFiYKXB+QPFzMVJdMrHTnj8QQN
+ XgX6Zs0YUyUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,331,1592895600"; d="scan'208";a="400827921"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by fmsmga001.fm.intel.com with ESMTP; 19 Aug 2020 06:36:46 -0700
+Received: from irsmsx606.ger.corp.intel.com (163.33.146.139) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Wed, 19 Aug 2020 14:36:45 +0100
+Received: from irsmsx103.ger.corp.intel.com (163.33.3.157) by
+ irsmsx606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Wed, 19 Aug 2020 14:36:45 +0100
+Received: from lfiedoro-desk1.igk.intel.com (10.213.6.50) by
+ IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 19 Aug 2020 14:36:43 +0100
+From: Lukasz Fiedorowicz <lukasz.fiedorowicz@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <20200806152856.254510-1-chris@chris-wilson.co.uk>
+References: <20200806152856.254510-1-chris@chris-wilson.co.uk>
+Date: Wed, 19 Aug 2020 15:36:42 +0200
+Message-ID: <87d03mbvv9.fsf@lfiedoro-desk1.igk.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <4f5a225d-460f-978f-e3cf-3f505140a515@kernel.dk>
-Subject: Re: [Intel-gfx] [PATCH] block: convert tasklets to use new
- tasklet_setup() API
+X-Originating-IP: [10.213.6.50]
+Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915: Treat gen as unsigned for
+ forward compatibility
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,127 +60,700 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ulf.hansson@linaro.org, jassisinghbrar@gmail.com, manohar.vanga@gmail.com,
- airlied@linux.ie, linux-hyperv@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Allen Pais <allen.lkml@gmail.com>,
- James Bottomley <James.Bottomley@hansenpartnership.com>, shawnguo@kernel.org,
- linux1394-devel@lists.sourceforge.net, anton.ivanov@cambridgegreys.com,
- devel@driverdev.osuosl.org, linux-s390@vger.kernel.org,
- maximlevitsky@gmail.com, richard@nod.at, deller@gmx.de,
- linux-atm-general@lists.sourceforge.net, 3chas3@gmail.com,
- linux-input@vger.kernel.org, kuba@kernel.org, mporter@kernel.crashing.org,
- jdike@addtoit.com, Kees Cook <keescook@chromium.org>, oakad@yahoo.com,
- s.hauer@pengutronix.de, linux-um@lists.infradead.org,
- linux-block@vger.kernel.org, broonie@kernel.org,
- openipmi-developer@lists.sourceforge.net, mitch@sfgoth.com,
- linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
- netdev@vger.kernel.org, martyn@welchs.me.uk, dmitry.torokhov@gmail.com,
- linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org, alex.bou9@gmail.com,
- Allen Pais <allen.cryptic@gmail.com>, stefanr@s5r6.in-berlin.de,
- sre@kernel.org, linux-ntb@googlegroups.com,
- Romain Perier <romain.perier@gmail.com>, intel-gfx@lists.freedesktop.org,
- davem@davemloft.net
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 19, 2020 at 07:17:19AM -0600, Jens Axboe wrote:
-> On 8/19/20 6:11 AM, Greg KH wrote:
-> > On Wed, Aug 19, 2020 at 07:00:53AM -0600, Jens Axboe wrote:
-> >> On 8/18/20 1:00 PM, James Bottomley wrote:
-> >>> On Mon, 2020-08-17 at 13:02 -0700, Jens Axboe wrote:
-> >>>> On 8/17/20 12:48 PM, Kees Cook wrote:
-> >>>>> On Mon, Aug 17, 2020 at 12:44:34PM -0700, Jens Axboe wrote:
-> >>>>>> On 8/17/20 12:29 PM, Kees Cook wrote:
-> >>>>>>> On Mon, Aug 17, 2020 at 06:56:47AM -0700, Jens Axboe wrote:
-> >>>>>>>> On 8/17/20 2:15 AM, Allen Pais wrote:
-> >>>>>>>>> From: Allen Pais <allen.lkml@gmail.com>
-> >>>>>>>>>
-> >>>>>>>>> In preparation for unconditionally passing the
-> >>>>>>>>> struct tasklet_struct pointer to all tasklet
-> >>>>>>>>> callbacks, switch to using the new tasklet_setup()
-> >>>>>>>>> and from_tasklet() to pass the tasklet pointer explicitly.
-> >>>>>>>>
-> >>>>>>>> Who came up with the idea to add a macro 'from_tasklet' that
-> >>>>>>>> is just container_of? container_of in the code would be
-> >>>>>>>> _much_ more readable, and not leave anyone guessing wtf
-> >>>>>>>> from_tasklet is doing.
-> >>>>>>>>
-> >>>>>>>> I'd fix that up now before everything else goes in...
-> >>>>>>>
-> >>>>>>> As I mentioned in the other thread, I think this makes things
-> >>>>>>> much more readable. It's the same thing that the timer_struct
-> >>>>>>> conversion did (added a container_of wrapper) to avoid the
-> >>>>>>> ever-repeating use of typeof(), long lines, etc.
-> >>>>>>
-> >>>>>> But then it should use a generic name, instead of each sub-system 
-> >>>>>> using some random name that makes people look up exactly what it
-> >>>>>> does. I'm not huge fan of the container_of() redundancy, but
-> >>>>>> adding private variants of this doesn't seem like the best way
-> >>>>>> forward. Let's have a generic helper that does this, and use it
-> >>>>>> everywhere.
-> >>>>>
-> >>>>> I'm open to suggestions, but as things stand, these kinds of
-> >>>>> treewide
-> >>>>
-> >>>> On naming? Implementation is just as it stands, from_tasklet() is
-> >>>> totally generic which is why I objected to it. from_member()? Not
-> >>>> great with naming... But I can see this going further and then we'll
-> >>>> suddenly have tons of these. It's not good for readability.
-> >>>
-> >>> Since both threads seem to have petered out, let me suggest in
-> >>> kernel.h:
-> >>>
-> >>> #define cast_out(ptr, container, member) \
-> >>> 	container_of(ptr, typeof(*container), member)
-> >>>
-> >>> It does what you want, the argument order is the same as container_of
-> >>> with the only difference being you name the containing structure
-> >>> instead of having to specify its type.
-> >>
-> >> Not to incessantly bike shed on the naming, but I don't like cast_out,
-> >> it's not very descriptive. And it has connotations of getting rid of
-> >> something, which isn't really true.
-> > 
-> > I agree, if we want to bike shed, I don't like this color either.
-> > 
-> >> FWIW, I like the from_ part of the original naming, as it has some clues
-> >> as to what is being done here. Why not just from_container()? That
-> >> should immediately tell people what it does without having to look up
-> >> the implementation, even before this becomes a part of the accepted
-> >> coding norm.
-> > 
-> > Why are people hating on the well-known and used container_of()?
-> > 
-> > If you really hate to type the type and want a new macro, what about
-> > 'container_from()'?  (noun/verb is nicer to sort symbols by...)
-> > 
-> > But really, why is this even needed?
-> 
-> container_from() or from_container(), either works just fine for me
-> in terms of naming.
-> 
-> I think people are hating on it because it makes for _really_ long
-> lines, and it's arguably cleaner/simpler to just pass in the pointer
-> type instead. Then you end up with lines like this:
-> 
-> 	struct request_queue *q =                                               
-> 		container_of(work, struct request_queue, requeue_work.work);  
-> 
-> But I'm not the one that started this addition of from_tasklet(), my
-> objection was adding a private macro for something that should be
-> generic functionality.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Agreed.
+> We want to recognise future devices (gen = -1u) and treat them as an
+> extension of the latest known device, which is typically true.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-> Hence I think we either need to provide that, or
-> tell the from_tasklet() folks that they should just use container_of().
+CI failures looked to be unrelated to those changes so
+Acked-by: Lukasz Fiedorowicz <lukasz.fiedorowicz@intel.com>
 
-Also agreed, thanks.
-
-greg k-h
+> ---
+>  tests/i915/gem_bad_reloc.c            |  2 +-
+>  tests/i915/gem_ctx_create.c           |  2 +-
+>  tests/i915/gem_ctx_engines.c          |  2 +-
+>  tests/i915/gem_ctx_isolation.c        |  2 +-
+>  tests/i915/gem_ctx_shared.c           |  4 ++--
+>  tests/i915/gem_ctx_thrash.c           |  2 +-
+>  tests/i915/gem_exec_async.c           |  2 +-
+>  tests/i915/gem_exec_await.c           |  2 +-
+>  tests/i915/gem_exec_capture.c         |  4 ++--
+>  tests/i915/gem_exec_fence.c           | 10 +++++-----
+>  tests/i915/gem_exec_flush.c           |  4 ++--
+>  tests/i915/gem_exec_gttfill.c         |  2 +-
+>  tests/i915/gem_exec_latency.c         |  4 ++--
+>  tests/i915/gem_exec_nop.c             |  4 ++--
+>  tests/i915/gem_exec_parallel.c        |  2 +-
+>  tests/i915/gem_exec_params.c          |  2 +-
+>  tests/i915/gem_exec_reloc.c           |  8 ++++----
+>  tests/i915/gem_exec_schedule.c        |  8 ++++----
+>  tests/i915/gem_exec_store.c           |  6 +++---
+>  tests/i915/gem_exec_suspend.c         |  2 +-
+>  tests/i915/gem_exec_whisper.c         |  2 +-
+>  tests/i915/gem_render_copy.c          |  6 +++---
+>  tests/i915/gem_ringfill.c             |  2 +-
+>  tests/i915/gem_softpin.c              |  4 ++--
+>  tests/i915/gem_sync.c                 |  8 ++++----
+>  tests/i915/gem_tiled_fence_blits.c    |  2 +-
+>  tests/i915/gem_userptr_blits.c        |  4 ++--
+>  tests/i915/gem_vm_create.c            |  2 +-
+>  tests/i915/i915_module_load.c         |  4 ++--
+>  tests/i915/i915_pm_rc6_residency.c    |  4 ++--
+>  tests/i915/sysfs_timeslice_duration.c |  2 +-
+>  31 files changed, 57 insertions(+), 57 deletions(-)
+>
+> diff --git a/tests/i915/gem_bad_reloc.c b/tests/i915/gem_bad_reloc.c
+> index 7eb7fa538..6acc1724f 100644
+> --- a/tests/i915/gem_bad_reloc.c
+> +++ b/tests/i915/gem_bad_reloc.c
+> @@ -113,7 +113,7 @@ static void negative_reloc(int fd, unsigned flags)
+>  
+>  static void negative_reloc_blt(int fd)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+>  	struct drm_i915_gem_exec_object2 obj[1024][2];
+>  	struct drm_i915_gem_relocation_entry reloc;
+> diff --git a/tests/i915/gem_ctx_create.c b/tests/i915/gem_ctx_create.c
+> index 39305f026..c7295f705 100644
+> --- a/tests/i915/gem_ctx_create.c
+> +++ b/tests/i915/gem_ctx_create.c
+> @@ -419,7 +419,7 @@ static void basic_ext_param(int i915)
+>  static void check_single_timeline(int i915, uint32_t ctx, int num_engines)
+>  {
+>  #define RCS_TIMESTAMP (0x2000 + 0x358)
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	const int has_64bit_reloc = gen >= 8;
+>  	struct drm_i915_gem_exec_object2 results = { .handle = gem_create(i915, 4096) };
+>  	const uint32_t bbe = MI_BATCH_BUFFER_END;
+> diff --git a/tests/i915/gem_ctx_engines.c b/tests/i915/gem_ctx_engines.c
+> index e6def511b..7d4abdb5c 100644
+> --- a/tests/i915/gem_ctx_engines.c
+> +++ b/tests/i915/gem_ctx_engines.c
+> @@ -482,7 +482,7 @@ static uint32_t read_result(int timeline, uint32_t *map, int idx)
+>  static void independent(int i915)
+>  {
+>  #define RCS_TIMESTAMP (0x2000 + 0x358)
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	const int has_64bit_reloc = gen >= 8;
+>  	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines , I915_EXEC_RING_MASK + 1);
+>  	struct drm_i915_gem_context_param param = {
+> diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
+> index 9fdf78bb8..58a35b487 100644
+> --- a/tests/i915/gem_ctx_isolation.c
+> +++ b/tests/i915/gem_ctx_isolation.c
+> @@ -501,7 +501,7 @@ static void dump_regs(int fd,
+>  		      const struct intel_execution_engine2 *e,
+>  		      unsigned int regs)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const unsigned int gen_bit = 1 << gen;
+>  	const unsigned int engine_bit = ENGINE(e->class, e->instance);
+>  	const uint32_t mmio_base = gem_engine_mmio_base(fd, e->name);
+> diff --git a/tests/i915/gem_ctx_shared.c b/tests/i915/gem_ctx_shared.c
+> index 55678d96f..616462d79 100644
+> --- a/tests/i915/gem_ctx_shared.c
+> +++ b/tests/i915/gem_ctx_shared.c
+> @@ -186,7 +186,7 @@ static void exhaust_shared_gtt(int i915, unsigned int flags)
+>  
+>  static void exec_shared_gtt(int i915, unsigned int ring)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	const uint32_t bbe = MI_BATCH_BUFFER_END;
+>  	struct drm_i915_gem_exec_object2 obj = {};
+>  	struct drm_i915_gem_execbuffer2 execbuf = {
+> @@ -436,7 +436,7 @@ static void store_dword(int i915, uint32_t ctx, unsigned ring,
+>  			uint32_t target, uint32_t offset, uint32_t value,
+>  			uint32_t cork, unsigned write_domain)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	struct drm_i915_gem_exec_object2 obj[3];
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> diff --git a/tests/i915/gem_ctx_thrash.c b/tests/i915/gem_ctx_thrash.c
+> index dc7259c18..d32619d5d 100644
+> --- a/tests/i915/gem_ctx_thrash.c
+> +++ b/tests/i915/gem_ctx_thrash.c
+> @@ -46,7 +46,7 @@ static void xchg_int(void *array, unsigned i, unsigned j)
+>  
+>  static unsigned context_size(int fd)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  
+>  	switch (gen) {
+>  	case 0:
+> diff --git a/tests/i915/gem_exec_async.c b/tests/i915/gem_exec_async.c
+> index 035e78377..9f2c80f05 100644
+> --- a/tests/i915/gem_exec_async.c
+> +++ b/tests/i915/gem_exec_async.c
+> @@ -29,7 +29,7 @@ IGT_TEST_DESCRIPTION("Check that we can issue concurrent writes across the engin
+>  static void store_dword(int fd, unsigned ring,
+>  			uint32_t target, uint32_t offset, uint32_t value)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> diff --git a/tests/i915/gem_exec_await.c b/tests/i915/gem_exec_await.c
+> index 6bc624e4a..70fda968e 100644
+> --- a/tests/i915/gem_exec_await.c
+> +++ b/tests/i915/gem_exec_await.c
+> @@ -59,7 +59,7 @@ static void wide(int fd, int ring_size, int timeout, unsigned int flags)
+>  {
+>  	const struct intel_execution_engine2 *engine;
+>  	const uint32_t bbe = MI_BATCH_BUFFER_END;
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct {
+>  		struct drm_i915_gem_exec_object2 *obj;
+>  		struct drm_i915_gem_exec_object2 exec[2];
+> diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
+> index 1a53d2fb7..d250c8166 100644
+> --- a/tests/i915/gem_exec_capture.c
+> +++ b/tests/i915/gem_exec_capture.c
+> @@ -61,7 +61,7 @@ static void check_error_state(int dir, struct drm_i915_gem_exec_object2 *obj)
+>  
+>  static void __capture1(int fd, int dir, unsigned ring, uint32_t target)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj[4];
+>  #define SCRATCH 0
+>  #define CAPTURE 1
+> @@ -196,7 +196,7 @@ static struct offset {
+>  	      unsigned int flags)
+>  #define INCREMENTAL 0x1
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 *obj;
+>  	struct drm_i915_gem_relocation_entry reloc[2];
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
+> index c9b95fe64..0992314d3 100644
+> --- a/tests/i915/gem_exec_fence.c
+> +++ b/tests/i915/gem_exec_fence.c
+> @@ -61,7 +61,7 @@ static void store(int fd, const struct intel_execution_engine2 *e,
+>  {
+>  	const int SCRATCH = 0;
+>  	const int BATCH = 1;
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> @@ -122,7 +122,7 @@ static bool fence_busy(int fence)
+>  static void test_fence_busy(int fd, const struct intel_execution_engine2 *e,
+>  			    unsigned flags)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj;
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> @@ -218,7 +218,7 @@ static void test_fence_busy(int fd, const struct intel_execution_engine2 *e,
+>  static void test_fence_busy_all(int fd, unsigned flags)
+>  {
+>  	const struct intel_execution_engine2 *e;
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj;
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> @@ -598,7 +598,7 @@ static int __execbuf(int fd, struct drm_i915_gem_execbuffer2 *execbuf)
+>  static void test_parallel(int i915, const struct intel_execution_engine2 *e)
+>  {
+>  	const struct intel_execution_engine2 *e2;
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	uint32_t scratch = gem_create(i915, 4096);
+>  	uint32_t *out = gem_mmap__wc(i915, scratch, 0, 4096, PROT_READ);
+>  	uint32_t handle[I915_EXEC_RING_MASK];
+> @@ -704,7 +704,7 @@ static void test_parallel(int i915, const struct intel_execution_engine2 *e)
+>  
+>  static void test_concurrent(int i915, const struct intel_execution_engine2 *e)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	struct drm_i915_gem_relocation_entry reloc = {
+>  		.target_handle =  gem_create(i915, 4096),
+>  		.write_domain = I915_GEM_DOMAIN_RENDER,
+> diff --git a/tests/i915/gem_exec_flush.c b/tests/i915/gem_exec_flush.c
+> index 7d9fcbfcb..403e498bd 100644
+> --- a/tests/i915/gem_exec_flush.c
+> +++ b/tests/i915/gem_exec_flush.c
+> @@ -78,7 +78,7 @@ static uint32_t movnt(uint32_t *map, int i)
+>  static void run(int fd, unsigned ring, int nchild, int timeout,
+>  		unsigned flags)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  
+>  	/* The crux of this testing is whether writes by the GPU are coherent
+>  	 * from the CPU.
+> @@ -355,7 +355,7 @@ enum batch_mode {
+>  static void batch(int fd, unsigned ring, int nchild, int timeout,
+>  		  enum batch_mode mode, unsigned flags)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  
+>  	if (mode == BATCH_GTT)
+>  		gem_require_mappable_ggtt(fd);
+> diff --git a/tests/i915/gem_exec_gttfill.c b/tests/i915/gem_exec_gttfill.c
+> index 7a6d7c0fb..8f2336a30 100644
+> --- a/tests/i915/gem_exec_gttfill.c
+> +++ b/tests/i915/gem_exec_gttfill.c
+> @@ -107,7 +107,7 @@ static void submit(int fd, int gen,
+>  
+>  static void fillgtt(int fd, unsigned ring, int timeout)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+>  	struct drm_i915_gem_relocation_entry reloc[2];
+>  	volatile uint64_t *shared;
+> diff --git a/tests/i915/gem_exec_latency.c b/tests/i915/gem_exec_latency.c
+> index 198e54fd2..568d727f2 100644
+> --- a/tests/i915/gem_exec_latency.c
+> +++ b/tests/i915/gem_exec_latency.c
+> @@ -109,7 +109,7 @@ static void latency_on_ring(int fd,
+>  			    unsigned ring, const char *name,
+>  			    unsigned flags)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const int has_64bit_reloc = gen >= 8;
+>  	struct drm_i915_gem_exec_object2 obj[3];
+>  	struct drm_i915_gem_relocation_entry reloc;
+> @@ -258,7 +258,7 @@ static void latency_from_ring(int fd,
+>  			      unsigned ring, const char *name,
+>  			      unsigned flags)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const int has_64bit_reloc = gen >= 8;
+>  	struct drm_i915_gem_exec_object2 obj[3];
+>  	struct drm_i915_gem_relocation_entry reloc;
+> diff --git a/tests/i915/gem_exec_nop.c b/tests/i915/gem_exec_nop.c
+> index 21a937c83..62554ecb2 100644
+> --- a/tests/i915/gem_exec_nop.c
+> +++ b/tests/i915/gem_exec_nop.c
+> @@ -104,7 +104,7 @@ static double nop_on_ring(int fd, uint32_t handle,
+>  static void poll_ring(int fd, const struct intel_execution_engine2 *e,
+>  		      int timeout)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const uint32_t MI_ARB_CHK = 0x5 << 23;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+>  	struct drm_i915_gem_exec_object2 obj;
+> @@ -214,7 +214,7 @@ static void poll_ring(int fd, const struct intel_execution_engine2 *e,
+>  
+>  static void poll_sequential(int fd, const char *name, int timeout)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const struct intel_execution_engine2 *e;
+>  	const uint32_t MI_ARB_CHK = 0x5 << 23;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> diff --git a/tests/i915/gem_exec_parallel.c b/tests/i915/gem_exec_parallel.c
+> index bf94b93d4..cb8488f3b 100644
+> --- a/tests/i915/gem_exec_parallel.c
+> +++ b/tests/i915/gem_exec_parallel.c
+> @@ -166,7 +166,7 @@ static void check_bo(int fd, uint32_t handle, int pass, struct thread *threads)
+>  
+>  static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	pthread_mutex_t mutex;
+>  	pthread_cond_t cond;
+>  	struct thread *threads;
+> diff --git a/tests/i915/gem_exec_params.c b/tests/i915/gem_exec_params.c
+> index f8a940740..e0bbea94b 100644
+> --- a/tests/i915/gem_exec_params.c
+> +++ b/tests/i915/gem_exec_params.c
+> @@ -91,7 +91,7 @@ static bool has_resource_streamer(int fd)
+>  
+>  static void test_batch_first(int fd)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+>  	struct drm_i915_gem_exec_object2 obj[3];
+>  	struct drm_i915_gem_relocation_entry reloc[2];
+> diff --git a/tests/i915/gem_exec_reloc.c b/tests/i915/gem_exec_reloc.c
+> index d50a8b694..a86d22029 100644
+> --- a/tests/i915/gem_exec_reloc.c
+> +++ b/tests/i915/gem_exec_reloc.c
+> @@ -64,7 +64,7 @@ static void write_dword(int fd,
+>  			uint64_t target_offset,
+>  			uint32_t value)
+>  {
+> -	int gen = intel_gen(intel_get_drm_devid(fd));
+> +	unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct drm_i915_gem_relocation_entry reloc;
+> @@ -266,7 +266,7 @@ static void check_bo(int fd, uint32_t handle)
+>  
+>  static void active(int fd, unsigned engine)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> @@ -1081,7 +1081,7 @@ static void parallel(int i915)
+>  static uint64_t concurrent_relocs(int i915, int idx, int count)
+>  {
+>  	struct drm_i915_gem_relocation_entry *reloc;
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	unsigned long sz;
+>  	int offset;
+>  
+> @@ -1180,7 +1180,7 @@ static void concurrent_child(int i915,
+>  
+>  static uint32_t create_concurrent_batch(int i915, unsigned int count)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	size_t sz = ALIGN(4 * (1 + 4 * count), 4096);
+>  	uint32_t handle = gem_create(i915, sz);
+>  	uint32_t *map, *cs;
+> diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
+> index 488d93511..72277e57f 100644
+> --- a/tests/i915/gem_exec_schedule.c
+> +++ b/tests/i915/gem_exec_schedule.c
+> @@ -94,7 +94,7 @@ static uint32_t __store_dword(int fd, uint32_t ctx, unsigned ring,
+>  			      uint32_t target, uint32_t offset, uint32_t value,
+>  			      uint32_t cork, int fence, unsigned write_domain)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj[3];
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> @@ -1062,7 +1062,7 @@ static void semaphore_resolve(int i915)
+>  
+>  static void semaphore_noskip(int i915)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	const struct intel_execution_engine2 *outer, *inner;
+>  	uint32_t ctx;
+>  
+> @@ -1695,7 +1695,7 @@ static void deep(int fd, unsigned ring)
+>  
+>  	/* Create a deep dependency chain, with a few branches */
+>  	for (n = 0; n < nreq && igt_seconds_elapsed(&tv) < 2; n++) {
+> -		const int gen = intel_gen(intel_get_drm_devid(fd));
+> +		const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  		struct drm_i915_gem_exec_object2 obj[3];
+>  		struct drm_i915_gem_relocation_entry reloc;
+>  		struct drm_i915_gem_execbuffer2 eb = {
+> @@ -1848,7 +1848,7 @@ static void wide(int fd, unsigned ring)
+>  static void reorder_wide(int fd, unsigned ring)
+>  {
+>  	const unsigned int ring_size = gem_submission_measure(fd, ring);
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const int priorities[] = { MIN_PRIO, MAX_PRIO };
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_exec_object2 obj[2];
+> diff --git a/tests/i915/gem_exec_store.c b/tests/i915/gem_exec_store.c
+> index 272ab9cd8..771ee1690 100644
+> --- a/tests/i915/gem_exec_store.c
+> +++ b/tests/i915/gem_exec_store.c
+> @@ -38,7 +38,7 @@
+>  
+>  static void store_dword(int fd, const struct intel_execution_engine2 *e)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> @@ -96,7 +96,7 @@ static void store_dword(int fd, const struct intel_execution_engine2 *e)
+>  static void store_cachelines(int fd, const struct intel_execution_engine2 *e,
+>  			     unsigned int flags)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 *obj;
+>  	struct drm_i915_gem_relocation_entry *reloc;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> @@ -172,7 +172,7 @@ static void store_cachelines(int fd, const struct intel_execution_engine2 *e,
+>  
+>  static void store_all(int fd)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct intel_execution_engine2 *engine;
+>  	struct drm_i915_gem_relocation_entry *reloc;
+> diff --git a/tests/i915/gem_exec_suspend.c b/tests/i915/gem_exec_suspend.c
+> index d768db911..6886bccd4 100644
+> --- a/tests/i915/gem_exec_suspend.c
+> +++ b/tests/i915/gem_exec_suspend.c
+> @@ -89,7 +89,7 @@ static bool has_semaphores(int fd)
+>  
+>  static void run_test(int fd, unsigned engine, unsigned flags)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const uint32_t bbe = MI_BATCH_BUFFER_END;
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct drm_i915_gem_relocation_entry reloc;
+> diff --git a/tests/i915/gem_exec_whisper.c b/tests/i915/gem_exec_whisper.c
+> index 1fded7618..9acf6c306 100644
+> --- a/tests/i915/gem_exec_whisper.c
+> +++ b/tests/i915/gem_exec_whisper.c
+> @@ -168,7 +168,7 @@ static void ctx_set_random_priority(int fd, uint32_t ctx)
+>  static void whisper(int fd, unsigned engine, unsigned flags)
+>  {
+>  	const uint32_t bbe = MI_BATCH_BUFFER_END;
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 batches[QLEN];
+>  	struct drm_i915_gem_relocation_entry inter[QLEN];
+>  	struct drm_i915_gem_relocation_entry reloc;
+> diff --git a/tests/i915/gem_render_copy.c b/tests/i915/gem_render_copy.c
+> index 1e1e79b95..2da9837aa 100644
+> --- a/tests/i915/gem_render_copy.c
+> +++ b/tests/i915/gem_render_copy.c
+> @@ -131,7 +131,7 @@ static void scratch_buf_write_to_png(data_t *data, struct igt_buf *buf,
+>  static void *linear_copy_ccs(data_t *data, struct igt_buf *buf)
+>  {
+>  	void *ccs_data, *linear;
+> -	int gen = intel_gen(data->devid);
+> +	unsigned int gen = intel_gen(data->devid);
+>  	int ccs_size = igt_buf_intel_ccs_width(gen, buf) *
+>  		igt_buf_intel_ccs_height(gen, buf);
+>  
+> @@ -154,7 +154,7 @@ static void scratch_buf_ccs_write_to_png(data_t *data,
+>  	cairo_surface_t *surface;
+>  	cairo_status_t ret;
+>  	void *linear;
+> -	int gen = intel_gen(data->devid);
+> +	unsigned int gen = intel_gen(data->devid);
+>  	unsigned int ccs_width = igt_buf_intel_ccs_width(gen, buf);
+>  	unsigned int ccs_height = igt_buf_intel_ccs_height(gen, buf);
+>  
+> @@ -348,7 +348,7 @@ scratch_buf_check_all(data_t *data,
+>  static void scratch_buf_ccs_check(data_t *data,
+>  				  struct igt_buf *buf)
+>  {
+> -	int gen = intel_gen(data->devid);
+> +	unsigned int gen = intel_gen(data->devid);
+>  	int ccs_size = igt_buf_intel_ccs_width(gen, buf) *
+>  		igt_buf_intel_ccs_height(gen, buf);
+>  	uint8_t *linear;
+> diff --git a/tests/i915/gem_ringfill.c b/tests/i915/gem_ringfill.c
+> index 3e24ccf18..c499cb0dd 100644
+> --- a/tests/i915/gem_ringfill.c
+> +++ b/tests/i915/gem_ringfill.c
+> @@ -99,7 +99,7 @@ static void setup_execbuf(int fd,
+>  			  struct drm_i915_gem_relocation_entry *reloc,
+>  			  unsigned int ring)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const uint32_t bbe = MI_BATCH_BUFFER_END;
+>  	uint32_t *batch, *b;
+>  	int i;
+> diff --git a/tests/i915/gem_softpin.c b/tests/i915/gem_softpin.c
+> index 202abdd88..fcaf8ef30 100644
+> --- a/tests/i915/gem_softpin.c
+> +++ b/tests/i915/gem_softpin.c
+> @@ -265,7 +265,7 @@ static void test_reverse(int i915)
+>  
+>  static uint64_t busy_batch(int fd)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	unsigned const int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const int has_64bit_reloc = gen >= 8;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+>  	struct drm_i915_gem_exec_object2 object[2];
+> @@ -452,7 +452,7 @@ static void xchg_offset(void *array, unsigned i, unsigned j)
+>  enum sleep { NOSLEEP, SUSPEND, HIBERNATE };
+>  static void test_noreloc(int fd, enum sleep sleep, unsigned flags)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	unsigned const int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const uint32_t size = 4096;
+>  	const uint32_t bbe = MI_BATCH_BUFFER_END;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> diff --git a/tests/i915/gem_sync.c b/tests/i915/gem_sync.c
+> index b317a3927..a82bda924 100644
+> --- a/tests/i915/gem_sync.c
+> +++ b/tests/i915/gem_sync.c
+> @@ -491,7 +491,7 @@ active_wakeup_ring(int fd, unsigned ring, int timeout, int wlen)
+>  static void
+>  store_ring(int fd, unsigned ring, int num_children, int timeout)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct intel_engine_data ied;
+>  
+>  	ied = list_store_engines(fd, ring);
+> @@ -587,7 +587,7 @@ store_ring(int fd, unsigned ring, int num_children, int timeout)
+>  static void
+>  switch_ring(int fd, unsigned ring, int num_children, int timeout)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct intel_engine_data ied;
+>  
+>  	gem_require_contexts(fd);
+> @@ -766,7 +766,7 @@ static void *waiter(void *arg)
+>  static void
+>  __store_many(int fd, unsigned ring, int timeout, unsigned long *cycles)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const uint32_t bbe = MI_BATCH_BUFFER_END;
+>  	struct drm_i915_gem_exec_object2 object[2];
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> @@ -971,7 +971,7 @@ sync_all(int fd, int num_children, int timeout)
+>  static void
+>  store_all(int fd, int num_children, int timeout)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct intel_engine_data ied;
+>  
+>  	ied = list_store_engines(fd, ALL_ENGINES);
+> diff --git a/tests/i915/gem_tiled_fence_blits.c b/tests/i915/gem_tiled_fence_blits.c
+> index 99ec78f9b..0a633d91b 100644
+> --- a/tests/i915/gem_tiled_fence_blits.c
+> +++ b/tests/i915/gem_tiled_fence_blits.c
+> @@ -88,7 +88,7 @@ static void check_bo(int fd, uint32_t handle, uint32_t start_val)
+>  static uint32_t
+>  create_batch(int fd, struct drm_i915_gem_relocation_entry *reloc)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	const bool has_64b_reloc = gen >= 8;
+>  	uint32_t *batch;
+>  	uint32_t handle;
+> diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
+> index 268423dcd..3ae022016 100644
+> --- a/tests/i915/gem_userptr_blits.c
+> +++ b/tests/i915/gem_userptr_blits.c
+> @@ -300,7 +300,7 @@ blit(int fd, uint32_t dst, uint32_t src, uint32_t *all_bo, int n_bo)
+>  static void store_dword(int fd, uint32_t target,
+>  			uint32_t offset, uint32_t value)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> @@ -1125,7 +1125,7 @@ static void store_dword_rand(int i915, unsigned int engine,
+>  			     uint32_t target, uint64_t sz,
+>  			     int count)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	struct drm_i915_gem_relocation_entry *reloc;
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct drm_i915_gem_execbuffer2 exec;
+> diff --git a/tests/i915/gem_vm_create.c b/tests/i915/gem_vm_create.c
+> index e8af68f19..8843b1b3b 100644
+> --- a/tests/i915/gem_vm_create.c
+> +++ b/tests/i915/gem_vm_create.c
+> @@ -250,7 +250,7 @@ static void execbuf(int i915)
+>  static void
+>  write_to_address(int fd, uint32_t ctx, uint64_t addr, uint32_t value)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 batch = {
+>  		.handle = gem_create(fd, 4096)
+>  	};
+> diff --git a/tests/i915/i915_module_load.c b/tests/i915/i915_module_load.c
+> index 77aaac5c6..aa998b992 100644
+> --- a/tests/i915/i915_module_load.c
+> +++ b/tests/i915/i915_module_load.c
+> @@ -40,7 +40,7 @@
+>  
+>  static void store_dword(int fd, unsigned ring)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct drm_i915_gem_relocation_entry reloc;
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> @@ -102,7 +102,7 @@ static void store_dword(int fd, unsigned ring)
+>  
+>  static void store_all(int fd)
+>  {
+> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>  	struct drm_i915_gem_exec_object2 obj[2];
+>  	struct drm_i915_gem_relocation_entry reloc[32];
+>  	struct drm_i915_gem_execbuffer2 execbuf;
+> diff --git a/tests/i915/i915_pm_rc6_residency.c b/tests/i915/i915_pm_rc6_residency.c
+> index 6fdc607e3..d484121e7 100644
+> --- a/tests/i915/i915_pm_rc6_residency.c
+> +++ b/tests/i915/i915_pm_rc6_residency.c
+> @@ -361,7 +361,7 @@ static void rc6_idle(int i915)
+>  {
+>  	const int64_t duration_ns = SLEEP_DURATION * (int64_t)NSEC_PER_SEC;
+>  	const int tolerance = 20; /* Some RC6 is better than none! */
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	struct {
+>  		const char *name;
+>  		unsigned int flags;
+> @@ -452,7 +452,7 @@ static void rc6_fence(int i915)
+>  {
+>  	const int64_t duration_ns = SLEEP_DURATION * (int64_t)NSEC_PER_SEC;
+>  	const int tolerance = 20; /* Some RC6 is better than none! */
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	const struct intel_execution_engine2 *e;
+>  	struct power_sample sample[2];
+>  	unsigned long slept;
+> diff --git a/tests/i915/sysfs_timeslice_duration.c b/tests/i915/sysfs_timeslice_duration.c
+> index 2b1e52c80..b5b6ded78 100644
+> --- a/tests/i915/sysfs_timeslice_duration.c
+> +++ b/tests/i915/sysfs_timeslice_duration.c
+> @@ -186,7 +186,7 @@ static uint64_t __test_duration(int i915, int engine, unsigned int timeout)
+>  		.buffer_count = ARRAY_SIZE(obj),
+>  		.buffers_ptr = to_user_pointer(obj),
+>  	};
+> -	const int gen = intel_gen(intel_get_drm_devid(i915));
+> +	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
+>  	double duration = clockrate(i915);
+>  	unsigned int class, inst, mmio;
+>  	uint32_t *cs, *map;
+> -- 
+> 2.28.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
