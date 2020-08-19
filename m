@@ -1,46 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1477249CC1
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 13:53:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6865A249CC3
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 13:54:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0001F6E2F3;
-	Wed, 19 Aug 2020 11:53:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAA406E2F8;
+	Wed, 19 Aug 2020 11:54:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 166E56E2F3;
- Wed, 19 Aug 2020 11:53:57 +0000 (UTC)
-IronPort-SDR: EAfyb8Y1bg3dtpCnrIxlcmJA6+06z9Krw7NQI1t5QWwkMx3RLQiDFCZ0iBzyCIRP3/Og7sauhN
- 0EyzMjDZ2Zow==
-X-IronPort-AV: E=McAfee;i="6000,8403,9717"; a="239922207"
-X-IronPort-AV: E=Sophos;i="5.76,331,1592895600"; d="scan'208";a="239922207"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2020 04:53:56 -0700
-IronPort-SDR: tH4X2Paq3XfvQA2RiM8Y1LC6aKCErJ17exgjAh7BFc8iQvzE35GvKOqV4ZBB1Rm+yTgBBsOIfY
- 433WjNqDmt2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,331,1592895600"; d="scan'208";a="334658309"
-Received: from black.fi.intel.com ([10.237.72.28])
- by FMSMGA003.fm.intel.com with ESMTP; 19 Aug 2020 04:53:54 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 9A95A1FD; Wed, 19 Aug 2020 14:53:53 +0300 (EEST)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Date: Wed, 19 Aug 2020 14:53:53 +0300
-Message-Id: <20200819115353.59592-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.28.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D86A36E2F8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 11:54:14 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22173032-1500050 
+ for multiple; Wed, 19 Aug 2020 12:54:05 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Aug 2020 12:54:07 +0100
+Message-Id: <20200819115407.17519-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v1] drm/i915/gt: convert tasklets to use new
- tasklet_setup() API
+Subject: [Intel-gfx] [PATCH] drm/i915: Initialise outparam for error return
+ from wait_for_register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,72 +37,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In preparation for unconditionally passing the struct tasklet_struct
-pointer to all tasklet callbacks, switch to using the new tasklet_setup()
-and from_tasklet() to pass the tasklet pointer explicitly.
+Just in case the caller passes in 0 for both slow&fast timeouts, make
+sure we initialise the stack value returned. Add an assert so that we
+don't make the mistake of passing 0 timeouts for the wait.
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+drivers/gpu/drm/i915/intel_uncore.c:2011 __intel_wait_for_register_fw() error: uninitialized symbol 'reg_value'.
+
+References: 3f649ab728cd ("treewide: Remove uninitialized_var() usage")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 15 ++++++---------
- 1 file changed, 6 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/intel_uncore.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 9eeaca957a7e..5854fd2f046c 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3137,9 +3137,9 @@ static bool preempt_timeout(const struct intel_engine_cs *const engine)
-  * Check the unread Context Status Buffers and manage the submission of new
-  * contexts to the ELSP accordingly.
-  */
--static void execlists_submission_tasklet(unsigned long data)
-+static void execlists_submission_tasklet(struct tasklet_struct *t)
+diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+index 8d5a933e6af6..263ffcb832b7 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.c
++++ b/drivers/gpu/drm/i915/intel_uncore.c
+@@ -1993,13 +1993,14 @@ int __intel_wait_for_register_fw(struct intel_uncore *uncore,
+ 				 unsigned int slow_timeout_ms,
+ 				 u32 *out_value)
  {
--	struct intel_engine_cs * const engine = (struct intel_engine_cs *)data;
-+	struct intel_engine_cs * const engine = from_tasklet(engine, t, execlists.tasklet);
- 	bool timeout = preempt_timeout(engine);
+-	u32 reg_value;
++	u32 reg_value = 0;
+ #define done (((reg_value = intel_uncore_read_fw(uncore, reg)) & mask) == value)
+ 	int ret;
  
- 	process_csb(engine);
-@@ -5120,8 +5120,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
- 	struct intel_uncore *uncore = engine->uncore;
- 	u32 base = engine->mmio_base;
+ 	/* Catch any overuse of this function */
+ 	might_sleep_if(slow_timeout_ms);
+ 	GEM_BUG_ON(fast_timeout_us > 20000);
++	GEM_BUG_ON(!fast_timeout_us && !slow_timeout_ms);
  
--	tasklet_init(&engine->execlists.tasklet,
--		     execlists_submission_tasklet, (unsigned long)engine);
-+	tasklet_setup(&engine->execlists.tasklet, execlists_submission_tasklet);
- 	timer_setup(&engine->execlists.timer, execlists_timeslice, 0);
- 	timer_setup(&engine->execlists.preempt, execlists_preempt, 0);
- 
-@@ -5516,9 +5515,9 @@ static intel_engine_mask_t virtual_submission_mask(struct virtual_engine *ve)
- 	return mask;
- }
- 
--static void virtual_submission_tasklet(unsigned long data)
-+static void virtual_submission_tasklet(struct tasklet_struct *t)
- {
--	struct virtual_engine * const ve = (struct virtual_engine *)data;
-+	struct virtual_engine * const ve = from_tasklet(ve, t, base.execlists.tasklet);
- 	const int prio = READ_ONCE(ve->base.execlists.queue_priority_hint);
- 	intel_engine_mask_t mask;
- 	unsigned int n;
-@@ -5731,9 +5730,7 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
- 
- 	INIT_LIST_HEAD(virtual_queue(ve));
- 	ve->base.execlists.queue_priority_hint = INT_MIN;
--	tasklet_init(&ve->base.execlists.tasklet,
--		     virtual_submission_tasklet,
--		     (unsigned long)ve);
-+	tasklet_setup(&ve->base.execlists.tasklet, virtual_submission_tasklet);
- 
- 	intel_context_init(&ve->context, &ve->base);
- 
+ 	ret = -ETIMEDOUT;
+ 	if (fast_timeout_us && fast_timeout_us <= 20000)
 -- 
-2.28.0
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
