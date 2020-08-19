@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AC5624A15D
+	by mail.lfdr.de (Postfix) with ESMTPS id C165624A15E
 	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 16:09:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8A506E434;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9E756E431;
 	Wed, 19 Aug 2020 14:09:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E205A6E3B5
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 14:09:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 698FA6E3F7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 14:09:13 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Aug 2020 16:08:54 +0200
-Message-Id: <20200819140904.1708856-15-maarten.lankhorst@linux.intel.com>
+Date: Wed, 19 Aug 2020 16:08:55 +0200
+Message-Id: <20200819140904.1708856-16-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20200819140904.1708856-1-maarten.lankhorst@linux.intel.com>
 References: <20200819140904.1708856-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 14/24] drm/i915: Make sure execbuffer always
- passes ww state to i915_vma_pin.
+Subject: [Intel-gfx] [PATCH v2 15/24] drm/i915: Convert
+ i915_gem_object/client_blt.c to use ww locking as well, v2.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,1093 +34,240 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As a preparation step for full object locking and wait/wound handling
-during pin and object mapping, ensure that we always pass the ww context
-in i915_gem_execbuffer.c to i915_vma_pin, use lockdep to ensure this
-happens.
-
-This also requires changing the order of eb_parse slightly, to ensure
-we pass ww at a point where we could still handle -EDEADLK safely.
-
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |   4 +-
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 140 ++++++++++--------
- .../i915/gem/selftests/i915_gem_execbuffer.c  |   4 +-
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |   4 +-
- drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |   4 +-
- drivers/gpu/drm/i915/gt/intel_context.c       |  65 +++++---
- drivers/gpu/drm/i915/gt/intel_context.h       |  13 ++
- drivers/gpu/drm/i915/gt/intel_context_types.h |   3 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
- drivers/gpu/drm/i915/gt/intel_gt.c            |   2 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c           |   5 +-
- drivers/gpu/drm/i915/gt/intel_renderstate.c   |   2 +-
- drivers/gpu/drm/i915/gt/intel_ring.c          |  10 +-
- drivers/gpu/drm/i915/gt/intel_ring.h          |   3 +-
- .../gpu/drm/i915/gt/intel_ring_submission.c   |  15 +-
- drivers/gpu/drm/i915/gt/intel_timeline.c      |  12 +-
- drivers/gpu/drm/i915/gt/intel_timeline.h      |   3 +-
- drivers/gpu/drm/i915/gt/mock_engine.c         |   3 +-
- drivers/gpu/drm/i915/gt/selftest_lrc.c        |   2 +-
- drivers/gpu/drm/i915/gt/selftest_timeline.c   |   4 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   2 +-
- drivers/gpu/drm/i915/i915_drv.h               |  13 +-
- drivers/gpu/drm/i915/i915_gem.c               |  11 +-
- drivers/gpu/drm/i915/i915_vma.c               |  13 +-
- drivers/gpu/drm/i915/i915_vma.h               |  13 +-
- 26 files changed, 217 insertions(+), 137 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 68432288c632..6bf595d63a71 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3451,7 +3451,7 @@ initial_plane_vma(struct drm_i915_private *i915,
- 	if (IS_ERR(vma))
- 		goto err_obj;
- 
--	if (i915_ggtt_pin(vma, 0, PIN_MAPPABLE | PIN_OFFSET_FIXED | base))
-+	if (i915_ggtt_pin(vma, NULL, 0, PIN_MAPPABLE | PIN_OFFSET_FIXED | base))
- 		goto err_obj;
- 
- 	if (i915_gem_object_is_tiled(obj) &&
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 34c8b0dd85e0..cf5ecbde9e06 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -1154,7 +1154,7 @@ static int context_barrier_task(struct i915_gem_context *ctx,
- 
- 		i915_gem_ww_ctx_init(&ww, true);
- retry:
--		err = intel_context_pin(ce);
-+		err = intel_context_pin_ww(ce, &ww);
- 		if (err)
- 			goto err;
- 
-@@ -1247,7 +1247,7 @@ static int pin_ppgtt_update(struct intel_context *ce, struct i915_gem_ww_ctx *ww
- 
- 	if (!HAS_LOGICAL_RING_CONTEXTS(vm->i915))
- 		/* ppGTT is not part of the legacy context image */
--		return gen6_ppgtt_pin(i915_vm_to_ppgtt(vm));
-+		return gen6_ppgtt_pin(i915_vm_to_ppgtt(vm), ww);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index d3c47390ef53..ae63748e90bd 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -436,16 +436,17 @@ eb_pin_vma(struct i915_execbuffer *eb,
- 		pin_flags |= PIN_GLOBAL;
- 
- 	/* Attempt to reuse the current location if available */
--	if (unlikely(i915_vma_pin(vma, 0, 0, pin_flags))) {
-+	/* TODO: Add -EDEADLK handling here */
-+	if (unlikely(i915_vma_pin_ww(vma, &eb->ww, 0, 0, pin_flags))) {
- 		if (entry->flags & EXEC_OBJECT_PINNED)
- 			return false;
- 
- 		/* Failing that pick any _free_ space if suitable */
--		if (unlikely(i915_vma_pin(vma,
--					  entry->pad_to_size,
--					  entry->alignment,
--					  eb_pin_flags(entry, ev->flags) |
--					  PIN_USER | PIN_NOEVICT)))
-+		if (unlikely(i915_vma_pin_ww(vma, &eb->ww,
-+					     entry->pad_to_size,
-+					     entry->alignment,
-+					     eb_pin_flags(entry, ev->flags) |
-+					     PIN_USER | PIN_NOEVICT)))
- 			return false;
- 	}
- 
-@@ -586,7 +587,7 @@ static inline int use_cpu_reloc(const struct reloc_cache *cache,
- 		obj->cache_level != I915_CACHE_NONE);
- }
- 
--static int eb_reserve_vma(const struct i915_execbuffer *eb,
-+static int eb_reserve_vma(struct i915_execbuffer *eb,
- 			  struct eb_vma *ev,
- 			  u64 pin_flags)
- {
-@@ -601,7 +602,7 @@ static int eb_reserve_vma(const struct i915_execbuffer *eb,
- 			return err;
- 	}
- 
--	err = i915_vma_pin(vma,
-+	err = i915_vma_pin_ww(vma, &eb->ww,
- 			   entry->pad_to_size, entry->alignment,
- 			   eb_pin_flags(entry, ev->flags) | pin_flags);
- 	if (err)
-@@ -1132,9 +1133,10 @@ static void *reloc_kmap(struct drm_i915_gem_object *obj,
- }
- 
- static void *reloc_iomap(struct drm_i915_gem_object *obj,
--			 struct reloc_cache *cache,
-+			 struct i915_execbuffer *eb,
- 			 unsigned long page)
- {
-+	struct reloc_cache *cache = &eb->reloc_cache;
- 	struct i915_ggtt *ggtt = cache_to_ggtt(cache);
- 	unsigned long offset;
- 	void *vaddr;
-@@ -1156,10 +1158,13 @@ static void *reloc_iomap(struct drm_i915_gem_object *obj,
- 		if (err)
- 			return ERR_PTR(err);
- 
--		vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0,
--					       PIN_MAPPABLE |
--					       PIN_NONBLOCK /* NOWARN */ |
--					       PIN_NOEVICT);
-+		vma = i915_gem_object_ggtt_pin_ww(obj, &eb->ww, NULL, 0, 0,
-+						  PIN_MAPPABLE |
-+						  PIN_NONBLOCK /* NOWARN */ |
-+						  PIN_NOEVICT);
-+		if (vma == ERR_PTR(-EDEADLK))
-+			return vma;
-+
- 		if (IS_ERR(vma)) {
- 			memset(&cache->node, 0, sizeof(cache->node));
- 			mutex_lock(&ggtt->vm.mutex);
-@@ -1195,9 +1200,10 @@ static void *reloc_iomap(struct drm_i915_gem_object *obj,
- }
- 
- static void *reloc_vaddr(struct drm_i915_gem_object *obj,
--			 struct reloc_cache *cache,
-+			 struct i915_execbuffer *eb,
- 			 unsigned long page)
- {
-+	struct reloc_cache *cache = &eb->reloc_cache;
- 	void *vaddr;
- 
- 	if (cache->page == page) {
-@@ -1205,7 +1211,7 @@ static void *reloc_vaddr(struct drm_i915_gem_object *obj,
- 	} else {
- 		vaddr = NULL;
- 		if ((cache->vaddr & KMAP) == 0)
--			vaddr = reloc_iomap(obj, cache, page);
-+			vaddr = reloc_iomap(obj, eb, page);
- 		if (!vaddr)
- 			vaddr = reloc_kmap(obj, cache, page);
- 	}
-@@ -1292,7 +1298,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 		goto err_unmap;
- 	}
- 
--	err = i915_vma_pin(batch, 0, 0, PIN_USER | PIN_NONBLOCK);
-+	err = i915_vma_pin_ww(batch, &eb->ww, 0, 0, PIN_USER | PIN_NONBLOCK);
- 	if (err)
- 		goto err_unmap;
- 
-@@ -1313,7 +1319,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 			eb->reloc_context = ce;
- 		}
- 
--		err = intel_context_pin(ce);
-+		err = intel_context_pin_ww(ce, &eb->ww);
- 		if (err)
- 			goto err_unpin;
- 
-@@ -1536,8 +1542,7 @@ relocate_entry(struct i915_vma *vma,
- 		void *vaddr;
- 
- repeat:
--		vaddr = reloc_vaddr(vma->obj,
--				    &eb->reloc_cache,
-+		vaddr = reloc_vaddr(vma->obj, eb,
- 				    offset >> PAGE_SHIFT);
- 		if (IS_ERR(vaddr))
- 			return PTR_ERR(vaddr);
-@@ -1953,6 +1958,7 @@ static noinline int eb_relocate_parse_slow(struct i915_execbuffer *eb,
- 	rq = eb_pin_engine(eb, false);
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
-+		rq = NULL;
- 		goto err;
- 	}
- 
-@@ -2236,7 +2242,8 @@ static int i915_reset_gen7_sol_offsets(struct i915_request *rq)
- }
- 
- static struct i915_vma *
--shadow_batch_pin(struct drm_i915_gem_object *obj,
-+shadow_batch_pin(struct i915_execbuffer *eb,
-+		 struct drm_i915_gem_object *obj,
- 		 struct i915_address_space *vm,
- 		 unsigned int flags)
- {
-@@ -2247,7 +2254,7 @@ shadow_batch_pin(struct drm_i915_gem_object *obj,
- 	if (IS_ERR(vma))
- 		return vma;
- 
--	err = i915_vma_pin(vma, 0, 0, flags);
-+	err = i915_vma_pin_ww(vma, &eb->ww, 0, 0, flags);
- 	if (err)
- 		return ERR_PTR(err);
- 
-@@ -2397,16 +2404,33 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
- 	return err;
- }
- 
-+static struct i915_vma *eb_dispatch_secure(struct i915_execbuffer *eb, struct i915_vma *vma)
-+{
-+	/*
-+	 * snb/ivb/vlv conflate the "batch in ppgtt" bit with the "non-secure
-+	 * batch" bit. Hence we need to pin secure batches into the global gtt.
-+	 * hsw should have this fixed, but bdw mucks it up again. */
-+	if (eb->batch_flags & I915_DISPATCH_SECURE)
-+		return i915_gem_object_ggtt_pin_ww(vma->obj, &eb->ww, NULL, 0, 0, 0);
-+
-+	return NULL;
-+}
-+
- static int eb_parse(struct i915_execbuffer *eb)
- {
- 	struct drm_i915_private *i915 = eb->i915;
- 	struct intel_gt_buffer_pool_node *pool = eb->batch_pool;
--	struct i915_vma *shadow, *trampoline;
-+	struct i915_vma *shadow, *trampoline, *batch;
- 	unsigned int len;
- 	int err;
- 
--	if (!eb_use_cmdparser(eb))
--		return 0;
-+	if (!eb_use_cmdparser(eb)) {
-+		batch = eb_dispatch_secure(eb, eb->batch->vma);
-+		if (IS_ERR(batch))
-+			return PTR_ERR(batch);
-+
-+		goto secure_batch;
-+	}
- 
- 	len = eb->batch_len;
- 	if (!CMDPARSER_USES_GGTT(eb->i915)) {
-@@ -2434,7 +2458,7 @@ static int eb_parse(struct i915_execbuffer *eb)
- 	if (err)
- 		goto err;
- 
--	shadow = shadow_batch_pin(pool->obj, eb->context->vm, PIN_USER);
-+	shadow = shadow_batch_pin(eb, pool->obj, eb->context->vm, PIN_USER);
- 	if (IS_ERR(shadow)) {
- 		err = PTR_ERR(shadow);
- 		goto err;
-@@ -2446,7 +2470,7 @@ static int eb_parse(struct i915_execbuffer *eb)
- 	if (CMDPARSER_USES_GGTT(eb->i915)) {
- 		trampoline = shadow;
- 
--		shadow = shadow_batch_pin(pool->obj,
-+		shadow = shadow_batch_pin(eb, pool->obj,
- 					  &eb->engine->gt->ggtt->vm,
- 					  PIN_GLOBAL);
- 		if (IS_ERR(shadow)) {
-@@ -2459,19 +2483,34 @@ static int eb_parse(struct i915_execbuffer *eb)
- 		eb->batch_flags |= I915_DISPATCH_SECURE;
- 	}
- 
-+	batch = eb_dispatch_secure(eb, shadow);
-+	if (IS_ERR(batch)) {
-+		err = PTR_ERR(batch);
-+		goto err_trampoline;
-+	}
-+
- 	err = eb_parse_pipeline(eb, shadow, trampoline);
- 	if (err)
--		goto err_trampoline;
-+		goto err_unpin_batch;
- 
--	eb->vma[eb->buffer_count].vma = i915_vma_get(shadow);
--	eb->vma[eb->buffer_count].flags = __EXEC_OBJECT_HAS_PIN;
- 	eb->batch = &eb->vma[eb->buffer_count++];
-+	eb->batch->vma = i915_vma_get(shadow);
-+	eb->batch->flags = __EXEC_OBJECT_HAS_PIN;
- 
- 	eb->trampoline = trampoline;
- 	eb->batch_start_offset = 0;
- 
-+secure_batch:
-+	if (batch) {
-+		eb->batch = &eb->vma[eb->buffer_count++];
-+		eb->batch->flags = __EXEC_OBJECT_HAS_PIN;
-+		eb->batch->vma = i915_vma_get(batch);
-+	}
- 	return 0;
- 
-+err_unpin_batch:
-+	if (batch)
-+		i915_vma_unpin(batch);
- err_trampoline:
- 	if (trampoline)
- 		i915_vma_unpin(trampoline);
-@@ -2613,7 +2652,7 @@ static struct i915_request *eb_pin_engine(struct i915_execbuffer *eb, bool throt
- 	 * GGTT space, so do this first before we reserve a seqno for
- 	 * ourselves.
- 	 */
--	err = intel_context_pin(ce);
-+	err = intel_context_pin_ww(ce, &eb->ww);
- 	if (err)
- 		return ERR_PTR(err);
- 
-@@ -3231,33 +3270,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 
- 	ww_acquire_done(&eb.ww.ctx);
- 
--	/*
--	 * snb/ivb/vlv conflate the "batch in ppgtt" bit with the "non-secure
--	 * batch" bit. Hence we need to pin secure batches into the global gtt.
--	 * hsw should have this fixed, but bdw mucks it up again. */
--	if (eb.batch_flags & I915_DISPATCH_SECURE) {
--		struct i915_vma *vma;
--
--		/*
--		 * So on first glance it looks freaky that we pin the batch here
--		 * outside of the reservation loop. But:
--		 * - The batch is already pinned into the relevant ppgtt, so we
--		 *   already have the backing storage fully allocated.
--		 * - No other BO uses the global gtt (well contexts, but meh),
--		 *   so we don't really have issues with multiple objects not
--		 *   fitting due to fragmentation.
--		 * So this is actually safe.
--		 */
--		vma = i915_gem_object_ggtt_pin(eb.batch->vma->obj, NULL, 0, 0, 0);
--		if (IS_ERR(vma)) {
--			err = PTR_ERR(vma);
--			goto err_vma;
--		}
--
--		batch = vma;
--	} else {
--		batch = eb.batch->vma;
--	}
-+	batch = eb.batch->vma;
- 
- 	/* All GPU relocation batches must be submitted prior to the user rq */
- 	GEM_BUG_ON(eb.reloc_cache.rq);
-@@ -3266,7 +3279,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	eb.request = i915_request_create(eb.context);
- 	if (IS_ERR(eb.request)) {
- 		err = PTR_ERR(eb.request);
--		goto err_batch_unpin;
-+		goto err_vma;
- 	}
- 
- 	if (in_fence) {
-@@ -3327,9 +3340,6 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	}
- 	i915_request_put(eb.request);
- 
--err_batch_unpin:
--	if (eb.batch_flags & I915_DISPATCH_SECURE)
--		i915_vma_unpin(batch);
- err_vma:
- 	eb_release_vmas(&eb, true);
- 	if (eb.trampoline)
-@@ -3417,7 +3427,9 @@ i915_gem_execbuffer_ioctl(struct drm_device *dev, void *data,
- 	/* Copy in the exec list from userland */
- 	exec_list = kvmalloc_array(count, sizeof(*exec_list),
- 				   __GFP_NOWARN | GFP_KERNEL);
--	exec2_list = kvmalloc_array(count + 1, eb_element_size(),
-+
-+	/* Allocate extra slots for use by the command parser */
-+	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
- 				    __GFP_NOWARN | GFP_KERNEL);
- 	if (exec_list == NULL || exec2_list == NULL) {
- 		drm_dbg(&i915->drm,
-@@ -3494,8 +3506,8 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
- 	if (err)
- 		return err;
- 
--	/* Allocate an extra slot for use by the command parser */
--	exec2_list = kvmalloc_array(count + 1, eb_element_size(),
-+	/* Allocate extra slots for use by the command parser */
-+	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
- 				    __GFP_NOWARN | GFP_KERNEL);
- 	if (exec2_list == NULL) {
- 		drm_dbg(&i915->drm, "Failed to allocate exec list for %zd buffers\n",
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-index 563839cbaf1c..e1d50a5a1477 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
-@@ -36,7 +36,7 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
- 	if (err)
- 		return err;
- 
--	err = i915_vma_pin(vma, 0, 0, PIN_USER | PIN_HIGH);
-+	err = i915_vma_pin_ww(vma, &eb->ww, 0, 0, PIN_USER | PIN_HIGH);
- 	if (err)
- 		return err;
- 
-@@ -139,7 +139,7 @@ static int igt_gpu_reloc(void *arg)
- 
- 		i915_gem_ww_ctx_init(&eb.ww, false);
- retry:
--		err = intel_context_pin(eb.context);
-+		err = intel_context_pin_ww(eb.context, &eb.ww);
- 		if (!err) {
- 			err = __igt_gpu_reloc(&eb, scratch);
- 
-diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-index 7e5a86b774a7..fd0d24d28763 100644
---- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-@@ -368,7 +368,7 @@ static struct i915_vma *pd_vma_create(struct gen6_ppgtt *ppgtt, int size)
- 	return vma;
- }
- 
--int gen6_ppgtt_pin(struct i915_ppgtt *base)
-+int gen6_ppgtt_pin(struct i915_ppgtt *base, struct i915_gem_ww_ctx *ww)
- {
- 	struct gen6_ppgtt *ppgtt = to_gen6_ppgtt(base);
- 	int err;
-@@ -394,7 +394,7 @@ int gen6_ppgtt_pin(struct i915_ppgtt *base)
- 	 */
- 	err = 0;
- 	if (!atomic_read(&ppgtt->pin_count))
--		err = i915_ggtt_pin(ppgtt->vma, GEN6_PD_ALIGN, PIN_HIGH);
-+		err = i915_ggtt_pin(ppgtt->vma, ww, GEN6_PD_ALIGN, PIN_HIGH);
- 	if (!err)
- 		atomic_inc(&ppgtt->pin_count);
- 	mutex_unlock(&ppgtt->pin_mutex);
-diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.h b/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
-index 7249672e5802..3357228f3304 100644
---- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
-+++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
-@@ -8,6 +8,8 @@
- 
- #include "intel_gtt.h"
- 
-+struct i915_gem_ww_ctx;
-+
- struct gen6_ppgtt {
- 	struct i915_ppgtt base;
- 
-@@ -67,7 +69,7 @@ static inline struct gen6_ppgtt *to_gen6_ppgtt(struct i915_ppgtt *base)
- 		     (pt = i915_pt_entry(pd, iter), true);		\
- 	     ++iter)
- 
--int gen6_ppgtt_pin(struct i915_ppgtt *base);
-+int gen6_ppgtt_pin(struct i915_ppgtt *base, struct i915_gem_ww_ctx *ww);
- void gen6_ppgtt_unpin(struct i915_ppgtt *base);
- void gen6_ppgtt_unpin_all(struct i915_ppgtt *base);
- void gen6_ppgtt_enable(struct intel_gt *gt);
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index efe9a7a89ede..c05ef213bdc2 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -93,12 +93,12 @@ static void intel_context_active_release(struct intel_context *ce)
- 	i915_active_release(&ce->active);
- }
- 
--static int __context_pin_state(struct i915_vma *vma)
-+static int __context_pin_state(struct i915_vma *vma, struct i915_gem_ww_ctx *ww)
- {
- 	unsigned int bias = i915_ggtt_pin_bias(vma) | PIN_OFFSET_BIAS;
- 	int err;
- 
--	err = i915_ggtt_pin(vma, 0, bias | PIN_HIGH);
-+	err = i915_ggtt_pin(vma, ww, 0, bias | PIN_HIGH);
- 	if (err)
- 		return err;
- 
-@@ -127,11 +127,12 @@ static void __context_unpin_state(struct i915_vma *vma)
- 	__i915_vma_unpin(vma);
- }
- 
--static int __ring_active(struct intel_ring *ring)
-+static int __ring_active(struct intel_ring *ring,
-+			 struct i915_gem_ww_ctx *ww)
- {
- 	int err;
- 
--	err = intel_ring_pin(ring);
-+	err = intel_ring_pin(ring, ww);
- 	if (err)
- 		return err;
- 
-@@ -152,24 +153,25 @@ static void __ring_retire(struct intel_ring *ring)
- 	intel_ring_unpin(ring);
- }
- 
--static int intel_context_pre_pin(struct intel_context *ce)
-+static int intel_context_pre_pin(struct intel_context *ce,
-+				 struct i915_gem_ww_ctx *ww)
- {
- 	int err;
- 
- 	CE_TRACE(ce, "active\n");
- 
--	err = __ring_active(ce->ring);
-+	err = __ring_active(ce->ring, ww);
- 	if (err)
- 		return err;
- 
--	err = intel_timeline_pin(ce->timeline);
-+	err = intel_timeline_pin(ce->timeline, ww);
- 	if (err)
- 		goto err_ring;
- 
- 	if (!ce->state)
- 		return 0;
- 
--	err = __context_pin_state(ce->state);
-+	err = __context_pin_state(ce->state, ww);
- 	if (err)
- 		goto err_timeline;
- 
-@@ -192,7 +194,8 @@ static void intel_context_post_unpin(struct intel_context *ce)
- 	__ring_retire(ce->ring);
- }
- 
--int __intel_context_do_pin(struct intel_context *ce)
-+int __intel_context_do_pin_ww(struct intel_context *ce,
-+			      struct i915_gem_ww_ctx *ww)
- {
- 	bool handoff = false;
- 	void *vaddr;
-@@ -209,7 +212,14 @@ int __intel_context_do_pin(struct intel_context *ce)
- 	 * refcount for __intel_context_active(), which prevent a lock
- 	 * inversion of ce->pin_mutex vs dma_resv_lock().
- 	 */
--	err = intel_context_pre_pin(ce);
-+
-+	err = i915_gem_object_lock(ce->timeline->hwsp_ggtt->obj, ww);
-+	if (!err && ce->ring->vma->obj)
-+		err = i915_gem_object_lock(ce->ring->vma->obj, ww);
-+	if (!err && ce->state)
-+		err = i915_gem_object_lock(ce->state->obj, ww);
-+	if (!err)
-+		err = intel_context_pre_pin(ce, ww);
- 	if (err)
- 		return err;
- 
-@@ -217,7 +227,7 @@ int __intel_context_do_pin(struct intel_context *ce)
- 	if (err)
- 		goto err_ctx_unpin;
- 
--	err = ce->ops->pre_pin(ce, &vaddr);
-+	err = ce->ops->pre_pin(ce, ww, &vaddr);
- 	if (err)
- 		goto err_release;
- 
-@@ -264,6 +274,23 @@ int __intel_context_do_pin(struct intel_context *ce)
- 	return err;
- }
- 
-+int __intel_context_do_pin(struct intel_context *ce)
-+{
-+	struct i915_gem_ww_ctx ww;
-+	int err;
-+
-+	i915_gem_ww_ctx_init(&ww, true);
-+retry:
-+	err = __intel_context_do_pin_ww(ce, &ww);
-+	if (err == -EDEADLK) {
-+		err = i915_gem_ww_ctx_backoff(&ww);
-+		if (!err)
-+			goto retry;
-+	}
-+	i915_gem_ww_ctx_fini(&ww);
-+	return err;
-+}
-+
- void intel_context_unpin(struct intel_context *ce)
- {
- 	if (!atomic_dec_and_test(&ce->pin_count))
-@@ -301,18 +328,14 @@ static void __intel_context_retire(struct i915_active *active)
- static int __intel_context_active(struct i915_active *active)
- {
- 	struct intel_context *ce = container_of(active, typeof(*ce), active);
--	int err;
- 
- 	intel_context_get(ce);
- 
- 	/* everything should already be activated by intel_context_pre_pin() */
--	err = __ring_active(ce->ring);
--	if (GEM_WARN_ON(err))
--		goto err_put;
-+	GEM_WARN_ON(!i915_active_acquire_if_busy(&ce->ring->vma->active));
-+	__intel_ring_pin(ce->ring);
- 
--	err = intel_timeline_pin(ce->timeline);
--	if (GEM_WARN_ON(err))
--		goto err_ring;
-+	__intel_timeline_pin(ce->timeline);
- 
- 	if (ce->state) {
- 		GEM_WARN_ON(!i915_active_acquire_if_busy(&ce->state->active));
-@@ -321,12 +344,6 @@ static int __intel_context_active(struct i915_active *active)
- 	}
- 
- 	return 0;
--
--err_ring:
--	__ring_retire(ce->ring);
--err_put:
--	intel_context_put(ce);
--	return err;
- }
- 
- void
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index 07be021882cc..fda2eba81e22 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -25,6 +25,8 @@
- 		     ##__VA_ARGS__);					\
- } while (0)
- 
-+struct i915_gem_ww_ctx;
-+
- void intel_context_init(struct intel_context *ce,
- 			struct intel_engine_cs *engine);
- void intel_context_fini(struct intel_context *ce);
-@@ -81,6 +83,8 @@ static inline void intel_context_unlock_pinned(struct intel_context *ce)
- }
- 
- int __intel_context_do_pin(struct intel_context *ce);
-+int __intel_context_do_pin_ww(struct intel_context *ce,
-+			      struct i915_gem_ww_ctx *ww);
- 
- static inline bool intel_context_pin_if_active(struct intel_context *ce)
- {
-@@ -95,6 +99,15 @@ static inline int intel_context_pin(struct intel_context *ce)
- 	return __intel_context_do_pin(ce);
- }
- 
-+static inline int intel_context_pin_ww(struct intel_context *ce,
-+				       struct i915_gem_ww_ctx *ww)
-+{
-+	if (likely(intel_context_pin_if_active(ce)))
-+		return 0;
-+
-+	return __intel_context_do_pin_ww(ce, ww);
-+}
-+
- static inline void __intel_context_pin(struct intel_context *ce)
- {
- 	GEM_BUG_ON(!intel_context_is_pinned(ce));
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index ca8e05b4d3ef..552cb57a2e8c 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -23,6 +23,7 @@
- DECLARE_EWMA(runtime, 3, 8);
- 
- struct i915_gem_context;
-+struct i915_gem_ww_ctx;
- struct i915_vma;
- struct intel_context;
- struct intel_ring;
-@@ -30,7 +31,7 @@ struct intel_ring;
- struct intel_context_ops {
- 	int (*alloc)(struct intel_context *ce);
- 
--	int (*pre_pin)(struct intel_context *ce, void **vaddr);
-+	int (*pre_pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void **vaddr);
- 	int (*pin)(struct intel_context *ce, void *vaddr);
- 	void (*unpin)(struct intel_context *ce);
- 	void (*post_unpin)(struct intel_context *ce);
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index ea4ba2afe9f9..f231edd3fa3a 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -635,7 +635,7 @@ static int pin_ggtt_status_page(struct intel_engine_cs *engine,
- 	else
- 		flags = PIN_HIGH;
- 
--	return i915_ggtt_pin(vma, 0, flags);
-+	return i915_ggtt_pin(vma, NULL, 0, flags);
- }
- 
- static int init_status_page(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 8694ddbdac4c..39b428c5049c 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -356,7 +356,7 @@ static int intel_gt_init_scratch(struct intel_gt *gt, unsigned int size)
- 		goto err_unref;
- 	}
- 
--	ret = i915_ggtt_pin(vma, 0, PIN_HIGH);
-+	ret = i915_ggtt_pin(vma, NULL, 0, PIN_HIGH);
- 	if (ret)
- 		goto err_unref;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index fd06e39ced84..ef919e82c0cd 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3468,7 +3468,8 @@ __execlists_update_reg_state(const struct intel_context *ce,
- }
- 
- static int
--execlists_context_pre_pin(struct intel_context *ce, void **vaddr)
-+execlists_context_pre_pin(struct intel_context *ce,
-+			  struct i915_gem_ww_ctx *ww, void **vaddr)
- {
- 	GEM_BUG_ON(!ce->state);
- 	GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
-@@ -3887,7 +3888,7 @@ static int lrc_setup_wa_ctx(struct intel_engine_cs *engine)
- 		goto err;
- 	}
- 
--	err = i915_ggtt_pin(vma, 0, PIN_HIGH);
-+	err = i915_ggtt_pin(vma, NULL, 0, PIN_HIGH);
- 	if (err)
- 		goto err;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-index 5164de04049d..ea2a77c7b469 100644
---- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-@@ -184,7 +184,7 @@ int intel_renderstate_init(struct intel_renderstate *so,
- 
- 	i915_gem_ww_ctx_init(&so->ww, true);
- retry:
--	err = intel_context_pin(ce);
-+	err = intel_context_pin_ww(ce, &so->ww);
- 	if (err)
- 		goto err_fini;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-index bdb324167ef3..4034a4bac7f0 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-@@ -21,7 +21,13 @@ unsigned int intel_ring_update_space(struct intel_ring *ring)
- 	return space;
- }
- 
--int intel_ring_pin(struct intel_ring *ring)
-+void __intel_ring_pin(struct intel_ring *ring)
-+{
-+	GEM_BUG_ON(!atomic_read(&ring->pin_count));
-+	atomic_inc(&ring->pin_count);
-+}
-+
-+int intel_ring_pin(struct intel_ring *ring, struct i915_gem_ww_ctx *ww)
- {
- 	struct i915_vma *vma = ring->vma;
- 	unsigned int flags;
-@@ -39,7 +45,7 @@ int intel_ring_pin(struct intel_ring *ring)
- 	else
- 		flags |= PIN_HIGH;
- 
--	ret = i915_ggtt_pin(vma, 0, flags);
-+	ret = i915_ggtt_pin(vma, ww, 0, flags);
- 	if (unlikely(ret))
- 		goto err_unpin;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.h b/drivers/gpu/drm/i915/gt/intel_ring.h
-index cc0ebca65167..1700579bdc93 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.h
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.h
-@@ -21,7 +21,8 @@ int intel_ring_cacheline_align(struct i915_request *rq);
- 
- unsigned int intel_ring_update_space(struct intel_ring *ring);
- 
--int intel_ring_pin(struct intel_ring *ring);
-+void __intel_ring_pin(struct intel_ring *ring);
-+int intel_ring_pin(struct intel_ring *ring, struct i915_gem_ww_ctx *ww);
- void intel_ring_unpin(struct intel_ring *ring);
- void intel_ring_reset(struct intel_ring *ring, u32 tail);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 93cf72cfd318..1ca1bac81cf6 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -477,14 +477,16 @@ static void ring_context_destroy(struct kref *ref)
- 	intel_context_free(ce);
- }
- 
--static int __context_pin_ppgtt(struct intel_context *ce)
-+static int ring_context_pre_pin(struct intel_context *ce,
-+				struct i915_gem_ww_ctx *ww,
-+				void **unused)
- {
- 	struct i915_address_space *vm;
- 	int err = 0;
- 
- 	vm = vm_alias(ce->vm);
- 	if (vm)
--		err = gen6_ppgtt_pin(i915_vm_to_ppgtt((vm)));
-+		err = gen6_ppgtt_pin(i915_vm_to_ppgtt((vm)), ww);
- 
- 	return err;
- }
-@@ -591,11 +593,6 @@ static int ring_context_alloc(struct intel_context *ce)
- 	return 0;
- }
- 
--static int ring_context_pre_pin(struct intel_context *ce, void **unused)
--{
--	return __context_pin_ppgtt(ce);
--}
--
- static int ring_context_pin(struct intel_context *ce, void *unused)
- {
- 	return 0;
-@@ -1272,7 +1269,7 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
- 	}
- 	GEM_BUG_ON(timeline->has_initial_breadcrumb);
- 
--	err = intel_timeline_pin(timeline);
-+	err = intel_timeline_pin(timeline, NULL);
- 	if (err)
- 		goto err_timeline;
- 
-@@ -1282,7 +1279,7 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
- 		goto err_timeline_unpin;
- 	}
- 
--	err = intel_ring_pin(ring);
-+	err = intel_ring_pin(ring, NULL);
- 	if (err)
- 		goto err_ring;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-index 2baecf414acb..a2f74cefe4c3 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-@@ -317,14 +317,20 @@ __intel_timeline_create(struct intel_gt *gt,
- 	return timeline;
- }
- 
--int intel_timeline_pin(struct intel_timeline *tl)
-+void __intel_timeline_pin(struct intel_timeline *tl)
-+{
-+	GEM_BUG_ON(!atomic_read(&tl->pin_count));
-+	atomic_inc(&tl->pin_count);
-+}
-+
-+int intel_timeline_pin(struct intel_timeline *tl, struct i915_gem_ww_ctx *ww)
- {
- 	int err;
- 
- 	if (atomic_add_unless(&tl->pin_count, 1, 0))
- 		return 0;
- 
--	err = i915_ggtt_pin(tl->hwsp_ggtt, 0, PIN_HIGH);
-+	err = i915_ggtt_pin(tl->hwsp_ggtt, ww, 0, PIN_HIGH);
- 	if (err)
- 		return err;
- 
-@@ -467,7 +473,7 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
- 		goto err_rollback;
- 	}
- 
--	err = i915_ggtt_pin(vma, 0, PIN_HIGH);
-+	err = i915_ggtt_pin(vma, NULL, 0, PIN_HIGH);
- 	if (err) {
- 		__idle_hwsp_free(vma->private, cacheline);
- 		goto err_rollback;
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
-index 06bd06c6595f..9882cd911d8e 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.h
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
-@@ -88,7 +88,8 @@ static inline bool intel_timeline_sync_is_later(struct intel_timeline *tl,
- 	return __intel_timeline_sync_is_later(tl, fence->context, fence->seqno);
- }
- 
--int intel_timeline_pin(struct intel_timeline *tl);
-+void __intel_timeline_pin(struct intel_timeline *tl);
-+int intel_timeline_pin(struct intel_timeline *tl, struct i915_gem_ww_ctx *ww);
- void intel_timeline_enter(struct intel_timeline *tl);
- int intel_timeline_get_seqno(struct intel_timeline *tl,
- 			     struct i915_request *rq,
-diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-index c8e631222f23..dfd1cfb8a7ec 100644
---- a/drivers/gpu/drm/i915/gt/mock_engine.c
-+++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-@@ -167,7 +167,8 @@ static int mock_context_alloc(struct intel_context *ce)
- 	return 0;
- }
- 
--static int mock_context_pre_pin(struct intel_context *ce, void **unused)
-+static int mock_context_pre_pin(struct intel_context *ce,
-+				struct i915_gem_ww_ctx *ww, void **unused)
- {
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index f749071f54a7..7faba9f91224 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -3089,7 +3089,7 @@ static struct i915_vma *create_global(struct intel_gt *gt, size_t sz)
- 		return vma;
- 	}
- 
--	err = i915_ggtt_pin(vma, 0, 0);
-+	err = i915_ggtt_pin(vma, NULL, 0, 0);
- 	if (err) {
- 		i915_vma_put(vma);
- 		return ERR_PTR(err);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-index 98ceac2fb77d..96d164a3841d 100644
---- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-@@ -455,7 +455,7 @@ tl_write(struct intel_timeline *tl, struct intel_engine_cs *engine, u32 value)
- 	struct i915_request *rq;
- 	int err;
- 
--	err = intel_timeline_pin(tl);
-+	err = intel_timeline_pin(tl, NULL);
- 	if (err) {
- 		rq = ERR_PTR(err);
- 		goto out;
-@@ -667,7 +667,7 @@ static int live_hwsp_wrap(void *arg)
- 	if (!tl->has_initial_breadcrumb || !tl->hwsp_cacheline)
- 		goto out_free;
- 
--	err = intel_timeline_pin(tl);
-+	err = intel_timeline_pin(tl, NULL);
- 	if (err)
- 		goto out_free;
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 861657897c0f..942c7c187adb 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -677,7 +677,7 @@ struct i915_vma *intel_guc_allocate_vma(struct intel_guc *guc, u32 size)
- 		goto err;
- 
- 	flags = PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
--	ret = i915_ggtt_pin(vma, 0, flags);
-+	ret = i915_ggtt_pin(vma, NULL, 0, flags);
- 	if (ret) {
- 		vma = ERR_PTR(ret);
- 		goto err;
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 8e25dd15a2ec..b03647517699 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1816,11 +1816,18 @@ static inline void i915_gem_drain_workqueue(struct drm_i915_private *i915)
- }
- 
- struct i915_vma * __must_check
-+i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
-+			    struct i915_gem_ww_ctx *ww,
-+			    const struct i915_ggtt_view *view,
-+			    u64 size, u64 alignment, u64 flags);
-+
-+static inline struct i915_vma * __must_check
- i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
- 			 const struct i915_ggtt_view *view,
--			 u64 size,
--			 u64 alignment,
--			 u64 flags);
-+			 u64 size, u64 alignment, u64 flags)
-+{
-+	return i915_gem_object_ggtt_pin_ww(obj, NULL, view, size, alignment, flags);
-+}
- 
- int i915_gem_object_unbind(struct drm_i915_gem_object *obj,
- 			   unsigned long flags);
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index f6615d942b60..bb0c12975f38 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -962,11 +962,10 @@ static void discard_ggtt_vma(struct i915_vma *vma)
- }
- 
- struct i915_vma *
--i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
--			 const struct i915_ggtt_view *view,
--			 u64 size,
--			 u64 alignment,
--			 u64 flags)
-+i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
-+			    struct i915_gem_ww_ctx *ww,
-+			    const struct i915_ggtt_view *view,
-+			    u64 size, u64 alignment, u64 flags)
- {
- 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
- 	struct i915_ggtt *ggtt = &i915->ggtt;
-@@ -1032,7 +1031,7 @@ i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
- 			return ERR_PTR(ret);
- 	}
- 
--	ret = i915_vma_pin(vma, size, alignment, flags | PIN_GLOBAL);
-+	ret = i915_vma_pin_ww(vma, ww, size, alignment, flags | PIN_GLOBAL);
- 	if (ret)
- 		return ERR_PTR(ret);
- 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index c6bf04ca2032..495d28f6d160 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -852,13 +852,19 @@ static void vma_unbind_pages(struct i915_vma *vma)
- 	__vma_put_pages(vma, count | count << I915_VMA_PAGES_BIAS);
- }
- 
--int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
-+int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
-+		    u64 size, u64 alignment, u64 flags)
- {
- 	struct i915_vma_work *work = NULL;
- 	intel_wakeref_t wakeref = 0;
- 	unsigned int bound;
- 	int err;
- 
-+#ifdef CONFIG_PROVE_LOCKING
-+	if (debug_locks && lockdep_is_held(&vma->vm->i915->drm.struct_mutex))
-+		WARN_ON(!ww);
-+#endif
-+
- 	BUILD_BUG_ON(PIN_GLOBAL != I915_VMA_GLOBAL_BIND);
- 	BUILD_BUG_ON(PIN_USER != I915_VMA_LOCAL_BIND);
- 
-@@ -1002,7 +1008,8 @@ static void flush_idle_contexts(struct intel_gt *gt)
- 	intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
- }
- 
--int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags)
-+int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
-+		  u32 align, unsigned int flags)
- {
- 	struct i915_address_space *vm = vma->vm;
- 	int err;
-@@ -1010,7 +1017,7 @@ int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags)
- 	GEM_BUG_ON(!i915_vma_is_ggtt(vma));
- 
- 	do {
--		err = i915_vma_pin(vma, 0, align, flags | PIN_GLOBAL);
-+		err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
- 		if (err != -ENOSPC) {
- 			if (!err) {
- 				err = i915_vma_wait_for_bind(vma);
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index d0d01f909548..5b3a3c653454 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -237,8 +237,17 @@ static inline void i915_vma_unlock(struct i915_vma *vma)
- }
- 
- int __must_check
--i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags);
--int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags);
-+i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
-+		u64 size, u64 alignment, u64 flags);
-+
-+static inline int __must_check
-+i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
-+{
-+	return i915_vma_pin_ww(vma, NULL, size, alignment, flags);
-+}
-+
-+int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
-+		  u32 align, unsigned int flags);
- 
- static inline int i915_vma_pin_count(const struct i915_vma *vma)
- {
--- 
-2.28.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBpcyB0aGUgbGFzdCBwYXJ0IG91dHNpZGUgb2Ygc2VsZnRlc3RzIHRoYXQgc3RpbGwgZG9u
+J3QgdXNlIHRoZQpjb3JyZWN0IGxvY2sgb3JkZXJpbmcgb2YgdGltZWxpbmUtPm11dGV4IHZzIHJl
+c3ZfbG9jay4KCldpdGggZ2VtIGZpeGVkLCB0aGVyZSBhcmUgYSBmZXcgcGxhY2VzIHRoYXQgc3Rp
+bGwgZ2V0IGxvY2tpbmcgd3Jvbmc6Ci0gZ3Z0L3NjaGVkdWxlci5jCi0gaTkxNV9wZXJmLmMKLSBN
+b3N0IGlmIG5vdCBhbGwgc2VsZnRlc3RzLgoKQ2hhbmdlcyBzaW5jZSB2MToKLSBBZGQgaW50ZWxf
+ZW5naW5lX3BtX2dldC9wdXQoKSBjYWxscyB0byBmaXggdXNlLWFmdGVyLWZyZWUgd2hlbiB1c2lu
+ZwogIGludGVsX2VuZ2luZV9nZXRfcG9vbCgpLgoKU2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5r
+aG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IFRo
+b21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGludGVsLmNvbT4KLS0tCiAuLi4vZ3B1
+L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jbGllbnRfYmx0LmMgICAgfCAgNzggKysrKysrKy0tCiAu
+Li4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3RfYmx0LmMgICAgfCAxNTIgKysrKysr
+KysrKysrLS0tLS0tCiAuLi4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3RfYmx0Lmgg
+ICAgfCAgIDMgKwogMyBmaWxlcyBjaGFuZ2VkLCAxNjMgaW5zZXJ0aW9ucygrKSwgNzAgZGVsZXRp
+b25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2Ns
+aWVudF9ibHQuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jbGllbnRfYmx0
+LmMKaW5kZXggYTg1OTA3ZjI5YzUzLi4yNzJjZjNlYTY4ZDUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jbGllbnRfYmx0LmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NsaWVudF9ibHQuYwpAQCAtMTU4LDYgKzE1OCw3IEBAIHN0
+YXRpYyB2b2lkIGNsZWFyX3BhZ2VzX3dvcmtlcihzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmspCiAJ
+c3RydWN0IGNsZWFyX3BhZ2VzX3dvcmsgKncgPSBjb250YWluZXJfb2Yod29yaywgdHlwZW9mKCp3
+KSwgd29yayk7CiAJc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiA9IHctPnNsZWV2ZS0+
+dm1hLT5vYmo7CiAJc3RydWN0IGk5MTVfdm1hICp2bWEgPSB3LT5zbGVldmUtPnZtYTsKKwlzdHJ1
+Y3QgaTkxNV9nZW1fd3dfY3R4IHd3OwogCXN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxOwogCXN0cnVj
+dCBpOTE1X3ZtYSAqYmF0Y2g7CiAJaW50IGVyciA9IHctPmRtYS5lcnJvcjsKQEAgLTE3MywxNyAr
+MTc0LDIwIEBAIHN0YXRpYyB2b2lkIGNsZWFyX3BhZ2VzX3dvcmtlcihzdHJ1Y3Qgd29ya19zdHJ1
+Y3QgKndvcmspCiAJb2JqLT5yZWFkX2RvbWFpbnMgPSBJOTE1X0dFTV9HUFVfRE9NQUlOUzsKIAlv
+YmotPndyaXRlX2RvbWFpbiA9IDA7CiAKLQllcnIgPSBpOTE1X3ZtYV9waW4odm1hLCAwLCAwLCBQ
+SU5fVVNFUik7Ci0JaWYgKHVubGlrZWx5KGVycikpCisJaTkxNV9nZW1fd3dfY3R4X2luaXQoJnd3
+LCBmYWxzZSk7CisJaW50ZWxfZW5naW5lX3BtX2dldCh3LT5jZS0+ZW5naW5lKTsKK3JldHJ5Ogor
+CWVyciA9IGludGVsX2NvbnRleHRfcGluX3d3KHctPmNlLCAmd3cpOworCWlmIChlcnIpCiAJCWdv
+dG8gb3V0X3NpZ25hbDsKIAotCWJhdGNoID0gaW50ZWxfZW1pdF92bWFfZmlsbF9ibHQody0+Y2Us
+IHZtYSwgdy0+dmFsdWUpOworCWJhdGNoID0gaW50ZWxfZW1pdF92bWFfZmlsbF9ibHQody0+Y2Us
+IHZtYSwgJnd3LCB3LT52YWx1ZSk7CiAJaWYgKElTX0VSUihiYXRjaCkpIHsKIAkJZXJyID0gUFRS
+X0VSUihiYXRjaCk7Ci0JCWdvdG8gb3V0X3VucGluOworCQlnb3RvIG91dF9jdHg7CiAJfQogCi0J
+cnEgPSBpbnRlbF9jb250ZXh0X2NyZWF0ZV9yZXF1ZXN0KHctPmNlKTsKKwlycSA9IGk5MTVfcmVx
+dWVzdF9jcmVhdGUody0+Y2UpOwogCWlmIChJU19FUlIocnEpKSB7CiAJCWVyciA9IFBUUl9FUlIo
+cnEpOwogCQlnb3RvIG91dF9iYXRjaDsKQEAgLTIyNSw5ICsyMjksMTkgQEAgc3RhdGljIHZvaWQg
+Y2xlYXJfcGFnZXNfd29ya2VyKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKIAlpOTE1X3JlcXVl
+c3RfYWRkKHJxKTsKIG91dF9iYXRjaDoKIAlpbnRlbF9lbWl0X3ZtYV9yZWxlYXNlKHctPmNlLCBi
+YXRjaCk7Ci1vdXRfdW5waW46Ci0JaTkxNV92bWFfdW5waW4odm1hKTsKK291dF9jdHg6CisJaW50
+ZWxfY29udGV4dF91bnBpbih3LT5jZSk7CiBvdXRfc2lnbmFsOgorCWlmIChlcnIgPT0gLUVERUFE
+TEspIHsKKwkJZXJyID0gaTkxNV9nZW1fd3dfY3R4X2JhY2tvZmYoJnd3KTsKKwkJaWYgKCFlcnIp
+CisJCQlnb3RvIHJldHJ5OworCX0KKwlpOTE1X2dlbV93d19jdHhfZmluaSgmd3cpOworCisJaTkx
+NV92bWFfdW5waW4ody0+c2xlZXZlLT52bWEpOworCWludGVsX2VuZ2luZV9wbV9wdXQody0+Y2Ut
+PmVuZ2luZSk7CisKIAlpZiAodW5saWtlbHkoZXJyKSkgewogCQlkbWFfZmVuY2Vfc2V0X2Vycm9y
+KCZ3LT5kbWEsIGVycik7CiAJCWRtYV9mZW5jZV9zaWduYWwoJnctPmRtYSk7CkBAIC0yMzUsNiAr
+MjQ5LDQ0IEBAIHN0YXRpYyB2b2lkIGNsZWFyX3BhZ2VzX3dvcmtlcihzdHJ1Y3Qgd29ya19zdHJ1
+Y3QgKndvcmspCiAJfQogfQogCitzdGF0aWMgaW50IHBpbl93YWl0X2NsZWFyX3BhZ2VzX3dvcmso
+c3RydWN0IGNsZWFyX3BhZ2VzX3dvcmsgKncsCisJCQkJICAgICBzdHJ1Y3QgaW50ZWxfY29udGV4
+dCAqY2UpCit7CisJc3RydWN0IGk5MTVfdm1hICp2bWEgPSB3LT5zbGVldmUtPnZtYTsKKwlzdHJ1
+Y3QgaTkxNV9nZW1fd3dfY3R4IHd3OworCWludCBlcnI7CisKKwlpOTE1X2dlbV93d19jdHhfaW5p
+dCgmd3csIGZhbHNlKTsKK3JldHJ5OgorCWVyciA9IGk5MTVfZ2VtX29iamVjdF9sb2NrKHZtYS0+
+b2JqLCAmd3cpOworCWlmIChlcnIpCisJCWdvdG8gb3V0OworCisJZXJyID0gaTkxNV92bWFfcGlu
+X3d3KHZtYSwgJnd3LCAwLCAwLCBQSU5fVVNFUik7CisJaWYgKHVubGlrZWx5KGVycikpCisJCWdv
+dG8gb3V0OworCisJZXJyID0gaTkxNV9zd19mZW5jZV9hd2FpdF9yZXNlcnZhdGlvbigmdy0+d2Fp
+dCwKKwkJCQkJICAgICAgdm1hLT5vYmotPmJhc2UucmVzdiwgTlVMTCwKKwkJCQkJICAgICAgdHJ1
+ZSwgMCwgSTkxNV9GRU5DRV9HRlApOworCWlmIChlcnIpCisJCWdvdG8gZXJyX3VucGluX3ZtYTsK
+KworCWRtYV9yZXN2X2FkZF9leGNsX2ZlbmNlKHZtYS0+b2JqLT5iYXNlLnJlc3YsICZ3LT5kbWEp
+OworCitlcnJfdW5waW5fdm1hOgorCWlmIChlcnIpCisJCWk5MTVfdm1hX3VucGluKHZtYSk7Citv
+dXQ6CisJaWYgKGVyciA9PSAtRURFQURMSykgeworCQllcnIgPSBpOTE1X2dlbV93d19jdHhfYmFj
+a29mZigmd3cpOworCQlpZiAoIWVycikKKwkJCWdvdG8gcmV0cnk7CisJfQorCWk5MTVfZ2VtX3d3
+X2N0eF9maW5pKCZ3dyk7CisJcmV0dXJuIGVycjsKK30KKwogc3RhdGljIGludCBfX2k5MTVfc3df
+ZmVuY2VfY2FsbAogY2xlYXJfcGFnZXNfd29ya19ub3RpZnkoc3RydWN0IGk5MTVfc3dfZmVuY2Ug
+KmZlbmNlLAogCQkJZW51bSBpOTE1X3N3X2ZlbmNlX25vdGlmeSBzdGF0ZSkKQEAgLTI4OCwxNyAr
+MzQwLDkgQEAgaW50IGk5MTVfZ2VtX3NjaGVkdWxlX2ZpbGxfcGFnZXNfYmx0KHN0cnVjdCBkcm1f
+aTkxNV9nZW1fb2JqZWN0ICpvYmosCiAJZG1hX2ZlbmNlX2luaXQoJndvcmstPmRtYSwgJmNsZWFy
+X3BhZ2VzX3dvcmtfb3BzLCAmZmVuY2VfbG9jaywgMCwgMCk7CiAJaTkxNV9zd19mZW5jZV9pbml0
+KCZ3b3JrLT53YWl0LCBjbGVhcl9wYWdlc193b3JrX25vdGlmeSk7CiAKLQlpOTE1X2dlbV9vYmpl
+Y3RfbG9jayhvYmosIE5VTEwpOwotCWVyciA9IGk5MTVfc3dfZmVuY2VfYXdhaXRfcmVzZXJ2YXRp
+b24oJndvcmstPndhaXQsCi0JCQkJCSAgICAgIG9iai0+YmFzZS5yZXN2LCBOVUxMLCB0cnVlLCAw
+LAotCQkJCQkgICAgICBJOTE1X0ZFTkNFX0dGUCk7Ci0JaWYgKGVyciA8IDApIHsKKwllcnIgPSBw
+aW5fd2FpdF9jbGVhcl9wYWdlc193b3JrKHdvcmssIGNlKTsKKwlpZiAoZXJyIDwgMCkKIAkJZG1h
+X2ZlbmNlX3NldF9lcnJvcigmd29yay0+ZG1hLCBlcnIpOwotCX0gZWxzZSB7Ci0JCWRtYV9yZXN2
+X2FkZF9leGNsX2ZlbmNlKG9iai0+YmFzZS5yZXN2LCAmd29yay0+ZG1hKTsKLQkJZXJyID0gMDsK
+LQl9Ci0JaTkxNV9nZW1fb2JqZWN0X3VubG9jayhvYmopOwogCiAJZG1hX2ZlbmNlX2dldCgmd29y
+ay0+ZG1hKTsKIAlpOTE1X3N3X2ZlbmNlX2NvbW1pdCgmd29yay0+d2FpdCk7CmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0X2JsdC5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdF9ibHQuYwppbmRleCBiZmRiMzJkNDY4
+NzcuLmQ5M2ViMzYxNjBjOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5
+MTVfZ2VtX29iamVjdF9ibHQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
+ZW1fb2JqZWN0X2JsdC5jCkBAIC0xNCw2ICsxNCw3IEBACiAKIHN0cnVjdCBpOTE1X3ZtYSAqaW50
+ZWxfZW1pdF92bWFfZmlsbF9ibHQoc3RydWN0IGludGVsX2NvbnRleHQgKmNlLAogCQkJCQkgc3Ry
+dWN0IGk5MTVfdm1hICp2bWEsCisJCQkJCSBzdHJ1Y3QgaTkxNV9nZW1fd3dfY3R4ICp3dywKIAkJ
+CQkJIHUzMiB2YWx1ZSkKIHsKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IGNlLT52
+bS0+aTkxNTsKQEAgLTM5LDEwICs0MCwyNCBAQCBzdHJ1Y3QgaTkxNV92bWEgKmludGVsX2VtaXRf
+dm1hX2ZpbGxfYmx0KHN0cnVjdCBpbnRlbF9jb250ZXh0ICpjZSwKIAkJZ290byBvdXRfcG07CiAJ
+fQogCisJZXJyID0gaTkxNV9nZW1fb2JqZWN0X2xvY2socG9vbC0+b2JqLCB3dyk7CisJaWYgKGVy
+cikKKwkJZ290byBvdXRfcHV0OworCisJYmF0Y2ggPSBpOTE1X3ZtYV9pbnN0YW5jZShwb29sLT5v
+YmosIGNlLT52bSwgTlVMTCk7CisJaWYgKElTX0VSUihiYXRjaCkpIHsKKwkJZXJyID0gUFRSX0VS
+UihiYXRjaCk7CisJCWdvdG8gb3V0X3B1dDsKKwl9CisKKwllcnIgPSBpOTE1X3ZtYV9waW5fd3co
+YmF0Y2gsIHd3LCAwLCAwLCBQSU5fVVNFUik7CisJaWYgKHVubGlrZWx5KGVycikpCisJCWdvdG8g
+b3V0X3B1dDsKKwogCWNtZCA9IGk5MTVfZ2VtX29iamVjdF9waW5fbWFwKHBvb2wtPm9iaiwgSTkx
+NV9NQVBfV0MpOwogCWlmIChJU19FUlIoY21kKSkgewogCQllcnIgPSBQVFJfRVJSKGNtZCk7Ci0J
+CWdvdG8gb3V0X3B1dDsKKwkJZ290byBvdXRfdW5waW47CiAJfQogCiAJcmVtID0gdm1hLT5zaXpl
+OwpAQCAtODQsMTkgKzk5LDExIEBAIHN0cnVjdCBpOTE1X3ZtYSAqaW50ZWxfZW1pdF92bWFfZmls
+bF9ibHQoc3RydWN0IGludGVsX2NvbnRleHQgKmNlLAogCiAJaW50ZWxfZ3RfY2hpcHNldF9mbHVz
+aChjZS0+dm0tPmd0KTsKIAotCWJhdGNoID0gaTkxNV92bWFfaW5zdGFuY2UocG9vbC0+b2JqLCBj
+ZS0+dm0sIE5VTEwpOwotCWlmIChJU19FUlIoYmF0Y2gpKSB7Ci0JCWVyciA9IFBUUl9FUlIoYmF0
+Y2gpOwotCQlnb3RvIG91dF9wdXQ7Ci0JfQotCi0JZXJyID0gaTkxNV92bWFfcGluKGJhdGNoLCAw
+LCAwLCBQSU5fVVNFUik7Ci0JaWYgKHVubGlrZWx5KGVycikpCi0JCWdvdG8gb3V0X3B1dDsKLQog
+CWJhdGNoLT5wcml2YXRlID0gcG9vbDsKIAlyZXR1cm4gYmF0Y2g7CiAKK291dF91bnBpbjoKKwlp
+OTE1X3ZtYV91bnBpbihiYXRjaCk7CiBvdXRfcHV0OgogCWludGVsX2d0X2J1ZmZlcl9wb29sX3B1
+dChwb29sKTsKIG91dF9wbToKQEAgLTEwOCwxMSArMTE1LDkgQEAgaW50IGludGVsX2VtaXRfdm1h
+X21hcmtfYWN0aXZlKHN0cnVjdCBpOTE1X3ZtYSAqdm1hLCBzdHJ1Y3QgaTkxNV9yZXF1ZXN0ICpy
+cSkKIHsKIAlpbnQgZXJyOwogCi0JaTkxNV92bWFfbG9jayh2bWEpOwogCWVyciA9IGk5MTVfcmVx
+dWVzdF9hd2FpdF9vYmplY3QocnEsIHZtYS0+b2JqLCBmYWxzZSk7CiAJaWYgKGVyciA9PSAwKQog
+CQllcnIgPSBpOTE1X3ZtYV9tb3ZlX3RvX2FjdGl2ZSh2bWEsIHJxLCAwKTsKLQlpOTE1X3ZtYV91
+bmxvY2sodm1hKTsKIAlpZiAodW5saWtlbHkoZXJyKSkKIAkJcmV0dXJuIGVycjsKIApAQCAtMTQx
+LDYgKzE0Niw3IEBAIGludCBpOTE1X2dlbV9vYmplY3RfZmlsbF9ibHQoc3RydWN0IGRybV9pOTE1
+X2dlbV9vYmplY3QgKm9iaiwKIAkJCSAgICAgc3RydWN0IGludGVsX2NvbnRleHQgKmNlLAogCQkJ
+ICAgICB1MzIgdmFsdWUpCiB7CisJc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCB3dzsKIAlzdHJ1Y3Qg
+aTkxNV9yZXF1ZXN0ICpycTsKIAlzdHJ1Y3QgaTkxNV92bWEgKmJhdGNoOwogCXN0cnVjdCBpOTE1
+X3ZtYSAqdm1hOwpAQCAtMTUwLDE3ICsxNTYsMjggQEAgaW50IGk5MTVfZ2VtX29iamVjdF9maWxs
+X2JsdChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqLAogCWlmIChJU19FUlIodm1hKSkK
+IAkJcmV0dXJuIFBUUl9FUlIodm1hKTsKIAotCWVyciA9IGk5MTVfdm1hX3Bpbih2bWEsIDAsIDAs
+IFBJTl9VU0VSKTsKLQlpZiAodW5saWtlbHkoZXJyKSkKLQkJcmV0dXJuIGVycjsKKwlpOTE1X2dl
+bV93d19jdHhfaW5pdCgmd3csIHRydWUpOworCWludGVsX2VuZ2luZV9wbV9nZXQoY2UtPmVuZ2lu
+ZSk7CityZXRyeToKKwllcnIgPSBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmosICZ3dyk7CisJaWYg
+KGVycikKKwkJZ290byBvdXQ7CiAKLQliYXRjaCA9IGludGVsX2VtaXRfdm1hX2ZpbGxfYmx0KGNl
+LCB2bWEsIHZhbHVlKTsKKwllcnIgPSBpbnRlbF9jb250ZXh0X3Bpbl93dyhjZSwgJnd3KTsKKwlp
+ZiAoZXJyKQorCQlnb3RvIG91dDsKKworCWVyciA9IGk5MTVfdm1hX3Bpbl93dyh2bWEsICZ3dywg
+MCwgMCwgUElOX1VTRVIpOworCWlmIChlcnIpCisJCWdvdG8gb3V0X2N0eDsKKworCWJhdGNoID0g
+aW50ZWxfZW1pdF92bWFfZmlsbF9ibHQoY2UsIHZtYSwgJnd3LCB2YWx1ZSk7CiAJaWYgKElTX0VS
+UihiYXRjaCkpIHsKIAkJZXJyID0gUFRSX0VSUihiYXRjaCk7Ci0JCWdvdG8gb3V0X3VucGluOwor
+CQlnb3RvIG91dF92bWE7CiAJfQogCi0JcnEgPSBpbnRlbF9jb250ZXh0X2NyZWF0ZV9yZXF1ZXN0
+KGNlKTsKKwlycSA9IGk5MTVfcmVxdWVzdF9jcmVhdGUoY2UpOwogCWlmIChJU19FUlIocnEpKSB7
+CiAJCWVyciA9IFBUUl9FUlIocnEpOwogCQlnb3RvIG91dF9iYXRjaDsKQEAgLTE3MCwxMSArMTg3
+LDkgQEAgaW50IGk5MTVfZ2VtX29iamVjdF9maWxsX2JsdChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29i
+amVjdCAqb2JqLAogCWlmICh1bmxpa2VseShlcnIpKQogCQlnb3RvIG91dF9yZXF1ZXN0OwogCi0J
+aTkxNV92bWFfbG9jayh2bWEpOwogCWVyciA9IG1vdmVfb2JqX3RvX2dwdSh2bWEtPm9iaiwgcnEs
+IHRydWUpOwogCWlmIChlcnIgPT0gMCkKIAkJZXJyID0gaTkxNV92bWFfbW92ZV90b19hY3RpdmUo
+dm1hLCBycSwgRVhFQ19PQkpFQ1RfV1JJVEUpOwotCWk5MTVfdm1hX3VubG9jayh2bWEpOwogCWlm
+ICh1bmxpa2VseShlcnIpKQogCQlnb3RvIG91dF9yZXF1ZXN0OwogCkBAIC0xOTMsOCArMjA4LDE4
+IEBAIGludCBpOTE1X2dlbV9vYmplY3RfZmlsbF9ibHQoc3RydWN0IGRybV9pOTE1X2dlbV9vYmpl
+Y3QgKm9iaiwKIAlpOTE1X3JlcXVlc3RfYWRkKHJxKTsKIG91dF9iYXRjaDoKIAlpbnRlbF9lbWl0
+X3ZtYV9yZWxlYXNlKGNlLCBiYXRjaCk7Ci1vdXRfdW5waW46CitvdXRfdm1hOgogCWk5MTVfdm1h
+X3VucGluKHZtYSk7CitvdXRfY3R4OgorCWludGVsX2NvbnRleHRfdW5waW4oY2UpOworb3V0Ogor
+CWlmIChlcnIgPT0gLUVERUFETEspIHsKKwkJZXJyID0gaTkxNV9nZW1fd3dfY3R4X2JhY2tvZmYo
+Jnd3KTsKKwkJaWYgKCFlcnIpCisJCQlnb3RvIHJldHJ5OworCX0KKwlpOTE1X2dlbV93d19jdHhf
+ZmluaSgmd3cpOworCWludGVsX2VuZ2luZV9wbV9wdXQoY2UtPmVuZ2luZSk7CiAJcmV0dXJuIGVy
+cjsKIH0KIApAQCAtMjEwLDYgKzIzNSw3IEBAIHN0YXRpYyBib29sIHdhXzEyMDk2NDQ2MTFfYXBw
+bGllcyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgdTMyIHNpemUpCiB9CiAKIHN0cnVj
+dCBpOTE1X3ZtYSAqaW50ZWxfZW1pdF92bWFfY29weV9ibHQoc3RydWN0IGludGVsX2NvbnRleHQg
+KmNlLAorCQkJCQkgc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3csCiAJCQkJCSBzdHJ1Y3QgaTkx
+NV92bWEgKnNyYywKIAkJCQkJIHN0cnVjdCBpOTE1X3ZtYSAqZHN0KQogewpAQCAtMjM2LDEwICsy
+NjIsMjQgQEAgc3RydWN0IGk5MTVfdm1hICppbnRlbF9lbWl0X3ZtYV9jb3B5X2JsdChzdHJ1Y3Qg
+aW50ZWxfY29udGV4dCAqY2UsCiAJCWdvdG8gb3V0X3BtOwogCX0KIAorCWVyciA9IGk5MTVfZ2Vt
+X29iamVjdF9sb2NrKHBvb2wtPm9iaiwgd3cpOworCWlmIChlcnIpCisJCWdvdG8gb3V0X3B1dDsK
+KworCWJhdGNoID0gaTkxNV92bWFfaW5zdGFuY2UocG9vbC0+b2JqLCBjZS0+dm0sIE5VTEwpOwor
+CWlmIChJU19FUlIoYmF0Y2gpKSB7CisJCWVyciA9IFBUUl9FUlIoYmF0Y2gpOworCQlnb3RvIG91
+dF9wdXQ7CisJfQorCisJZXJyID0gaTkxNV92bWFfcGluX3d3KGJhdGNoLCB3dywgMCwgMCwgUElO
+X1VTRVIpOworCWlmICh1bmxpa2VseShlcnIpKQorCQlnb3RvIG91dF9wdXQ7CisKIAljbWQgPSBp
+OTE1X2dlbV9vYmplY3RfcGluX21hcChwb29sLT5vYmosIEk5MTVfTUFQX1dDKTsKIAlpZiAoSVNf
+RVJSKGNtZCkpIHsKIAkJZXJyID0gUFRSX0VSUihjbWQpOwotCQlnb3RvIG91dF9wdXQ7CisJCWdv
+dG8gb3V0X3VucGluOwogCX0KIAogCXJlbSA9IHNyYy0+c2l6ZTsKQEAgLTI5NiwyMCArMzM2LDEx
+IEBAIHN0cnVjdCBpOTE1X3ZtYSAqaW50ZWxfZW1pdF92bWFfY29weV9ibHQoc3RydWN0IGludGVs
+X2NvbnRleHQgKmNlLAogCWk5MTVfZ2VtX29iamVjdF91bnBpbl9tYXAocG9vbC0+b2JqKTsKIAog
+CWludGVsX2d0X2NoaXBzZXRfZmx1c2goY2UtPnZtLT5ndCk7Ci0KLQliYXRjaCA9IGk5MTVfdm1h
+X2luc3RhbmNlKHBvb2wtPm9iaiwgY2UtPnZtLCBOVUxMKTsKLQlpZiAoSVNfRVJSKGJhdGNoKSkg
+ewotCQllcnIgPSBQVFJfRVJSKGJhdGNoKTsKLQkJZ290byBvdXRfcHV0OwotCX0KLQotCWVyciA9
+IGk5MTVfdm1hX3BpbihiYXRjaCwgMCwgMCwgUElOX1VTRVIpOwotCWlmICh1bmxpa2VseShlcnIp
+KQotCQlnb3RvIG91dF9wdXQ7Ci0KIAliYXRjaC0+cHJpdmF0ZSA9IHBvb2w7CiAJcmV0dXJuIGJh
+dGNoOwogCitvdXRfdW5waW46CisJaTkxNV92bWFfdW5waW4oYmF0Y2gpOwogb3V0X3B1dDoKIAlp
+bnRlbF9ndF9idWZmZXJfcG9vbF9wdXQocG9vbCk7CiBvdXRfcG06CkBAIC0zMjEsMTAgKzM1Miw5
+IEBAIGludCBpOTE1X2dlbV9vYmplY3RfY29weV9ibHQoc3RydWN0IGRybV9pOTE1X2dlbV9vYmpl
+Y3QgKnNyYywKIAkJCSAgICAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKmRzdCwKIAkJCSAg
+ICAgc3RydWN0IGludGVsX2NvbnRleHQgKmNlKQogewotCXN0cnVjdCBkcm1fZ2VtX29iamVjdCAq
+b2Jqc1tdID0geyAmc3JjLT5iYXNlLCAmZHN0LT5iYXNlIH07CiAJc3RydWN0IGk5MTVfYWRkcmVz
+c19zcGFjZSAqdm0gPSBjZS0+dm07CiAJc3RydWN0IGk5MTVfdm1hICp2bWFbMl0sICpiYXRjaDsK
+LQlzdHJ1Y3Qgd3dfYWNxdWlyZV9jdHggYWNxdWlyZTsKKwlzdHJ1Y3QgaTkxNV9nZW1fd3dfY3R4
+IHd3OwogCXN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxOwogCWludCBlcnIsIGk7CiAKQEAgLTMzMiwy
+NSArMzYyLDM2IEBAIGludCBpOTE1X2dlbV9vYmplY3RfY29weV9ibHQoc3RydWN0IGRybV9pOTE1
+X2dlbV9vYmplY3QgKnNyYywKIAlpZiAoSVNfRVJSKHZtYVswXSkpCiAJCXJldHVybiBQVFJfRVJS
+KHZtYVswXSk7CiAKLQllcnIgPSBpOTE1X3ZtYV9waW4odm1hWzBdLCAwLCAwLCBQSU5fVVNFUik7
+Ci0JaWYgKHVubGlrZWx5KGVycikpCi0JCXJldHVybiBlcnI7Ci0KIAl2bWFbMV0gPSBpOTE1X3Zt
+YV9pbnN0YW5jZShkc3QsIHZtLCBOVUxMKTsKIAlpZiAoSVNfRVJSKHZtYVsxXSkpCi0JCWdvdG8g
+b3V0X3VucGluX3NyYzsKKwkJcmV0dXJuIFBUUl9FUlIodm1hKTsKIAotCWVyciA9IGk5MTVfdm1h
+X3Bpbih2bWFbMV0sIDAsIDAsIFBJTl9VU0VSKTsKKwlpOTE1X2dlbV93d19jdHhfaW5pdCgmd3cs
+IHRydWUpOworCWludGVsX2VuZ2luZV9wbV9nZXQoY2UtPmVuZ2luZSk7CityZXRyeToKKwllcnIg
+PSBpOTE1X2dlbV9vYmplY3RfbG9jayhzcmMsICZ3dyk7CisJaWYgKCFlcnIpCisJCWVyciA9IGk5
+MTVfZ2VtX29iamVjdF9sb2NrKGRzdCwgJnd3KTsKKwlpZiAoIWVycikKKwkJZXJyID0gaW50ZWxf
+Y29udGV4dF9waW5fd3coY2UsICZ3dyk7CisJaWYgKGVycikKKwkJZ290byBvdXQ7CisKKwllcnIg
+PSBpOTE1X3ZtYV9waW5fd3codm1hWzBdLCAmd3csIDAsIDAsIFBJTl9VU0VSKTsKKwlpZiAoZXJy
+KQorCQlnb3RvIG91dF9jdHg7CisKKwllcnIgPSBpOTE1X3ZtYV9waW5fd3codm1hWzFdLCAmd3cs
+IDAsIDAsIFBJTl9VU0VSKTsKIAlpZiAodW5saWtlbHkoZXJyKSkKIAkJZ290byBvdXRfdW5waW5f
+c3JjOwogCi0JYmF0Y2ggPSBpbnRlbF9lbWl0X3ZtYV9jb3B5X2JsdChjZSwgdm1hWzBdLCB2bWFb
+MV0pOworCWJhdGNoID0gaW50ZWxfZW1pdF92bWFfY29weV9ibHQoY2UsICZ3dywgdm1hWzBdLCB2
+bWFbMV0pOwogCWlmIChJU19FUlIoYmF0Y2gpKSB7CiAJCWVyciA9IFBUUl9FUlIoYmF0Y2gpOwog
+CQlnb3RvIG91dF91bnBpbl9kc3Q7CiAJfQogCi0JcnEgPSBpbnRlbF9jb250ZXh0X2NyZWF0ZV9y
+ZXF1ZXN0KGNlKTsKKwlycSA9IGk5MTVfcmVxdWVzdF9jcmVhdGUoY2UpOwogCWlmIChJU19FUlIo
+cnEpKSB7CiAJCWVyciA9IFBUUl9FUlIocnEpOwogCQlnb3RvIG91dF9iYXRjaDsKQEAgLTM2MCwx
+NCArNDAxLDEwIEBAIGludCBpOTE1X2dlbV9vYmplY3RfY29weV9ibHQoc3RydWN0IGRybV9pOTE1
+X2dlbV9vYmplY3QgKnNyYywKIAlpZiAodW5saWtlbHkoZXJyKSkKIAkJZ290byBvdXRfcmVxdWVz
+dDsKIAotCWVyciA9IGRybV9nZW1fbG9ja19yZXNlcnZhdGlvbnMob2JqcywgQVJSQVlfU0laRShv
+YmpzKSwgJmFjcXVpcmUpOwotCWlmICh1bmxpa2VseShlcnIpKQotCQlnb3RvIG91dF9yZXF1ZXN0
+OwotCiAJZm9yIChpID0gMDsgaSA8IEFSUkFZX1NJWkUodm1hKTsgaSsrKSB7CiAJCWVyciA9IG1v
+dmVfb2JqX3RvX2dwdSh2bWFbaV0tPm9iaiwgcnEsIGkpOwogCQlpZiAodW5saWtlbHkoZXJyKSkK
+LQkJCWdvdG8gb3V0X3VubG9jazsKKwkJCWdvdG8gb3V0X3JlcXVlc3Q7CiAJfQogCiAJZm9yIChp
+ID0gMDsgaSA8IEFSUkFZX1NJWkUodm1hKTsgaSsrKSB7CkBAIC0zNzUsMjAgKzQxMiwxOSBAQCBp
+bnQgaTkxNV9nZW1fb2JqZWN0X2NvcHlfYmx0KHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpz
+cmMsCiAKIAkJZXJyID0gaTkxNV92bWFfbW92ZV90b19hY3RpdmUodm1hW2ldLCBycSwgZmxhZ3Mp
+OwogCQlpZiAodW5saWtlbHkoZXJyKSkKLQkJCWdvdG8gb3V0X3VubG9jazsKKwkJCWdvdG8gb3V0
+X3JlcXVlc3Q7CiAJfQogCiAJaWYgKHJxLT5lbmdpbmUtPmVtaXRfaW5pdF9icmVhZGNydW1iKSB7
+CiAJCWVyciA9IHJxLT5lbmdpbmUtPmVtaXRfaW5pdF9icmVhZGNydW1iKHJxKTsKIAkJaWYgKHVu
+bGlrZWx5KGVycikpCi0JCQlnb3RvIG91dF91bmxvY2s7CisJCQlnb3RvIG91dF9yZXF1ZXN0Owog
+CX0KIAogCWVyciA9IHJxLT5lbmdpbmUtPmVtaXRfYmJfc3RhcnQocnEsCiAJCQkJCWJhdGNoLT5u
+b2RlLnN0YXJ0LCBiYXRjaC0+bm9kZS5zaXplLAogCQkJCQkwKTsKLW91dF91bmxvY2s6Ci0JZHJt
+X2dlbV91bmxvY2tfcmVzZXJ2YXRpb25zKG9ianMsIEFSUkFZX1NJWkUob2JqcyksICZhY3F1aXJl
+KTsKKwogb3V0X3JlcXVlc3Q6CiAJaWYgKHVubGlrZWx5KGVycikpCiAJCWk5MTVfcmVxdWVzdF9z
+ZXRfZXJyb3Jfb25jZShycSwgZXJyKTsKQEAgLTQwMCw2ICs0MzYsMTYgQEAgaW50IGk5MTVfZ2Vt
+X29iamVjdF9jb3B5X2JsdChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqc3JjLAogCWk5MTVf
+dm1hX3VucGluKHZtYVsxXSk7CiBvdXRfdW5waW5fc3JjOgogCWk5MTVfdm1hX3VucGluKHZtYVsw
+XSk7CitvdXRfY3R4OgorCWludGVsX2NvbnRleHRfdW5waW4oY2UpOworb3V0OgorCWlmIChlcnIg
+PT0gLUVERUFETEspIHsKKwkJZXJyID0gaTkxNV9nZW1fd3dfY3R4X2JhY2tvZmYoJnd3KTsKKwkJ
+aWYgKCFlcnIpCisJCQlnb3RvIHJldHJ5OworCX0KKwlpOTE1X2dlbV93d19jdHhfZmluaSgmd3cp
+OworCWludGVsX2VuZ2luZV9wbV9wdXQoY2UtPmVuZ2luZSk7CiAJcmV0dXJuIGVycjsKIH0KIApk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdF9ibHQu
+aCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3RfYmx0LmgKaW5kZXgg
+OGJjZDMzNmE5MGRjLi4yNDA5ZmRjY2NmMGUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV9vYmplY3RfYmx0LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z2VtL2k5MTVfZ2VtX29iamVjdF9ibHQuaApAQCAtMTMsMTIgKzEzLDE1IEBACiAjaW5jbHVkZSAi
+aTkxNV92bWEuaCIKIAogc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Q7CitzdHJ1Y3QgaTkxNV9n
+ZW1fd3dfY3R4OwogCiBzdHJ1Y3QgaTkxNV92bWEgKmludGVsX2VtaXRfdm1hX2ZpbGxfYmx0KHN0
+cnVjdCBpbnRlbF9jb250ZXh0ICpjZSwKIAkJCQkJIHN0cnVjdCBpOTE1X3ZtYSAqdm1hLAorCQkJ
+CQkgc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3csCiAJCQkJCSB1MzIgdmFsdWUpOwogCiBzdHJ1
+Y3QgaTkxNV92bWEgKmludGVsX2VtaXRfdm1hX2NvcHlfYmx0KHN0cnVjdCBpbnRlbF9jb250ZXh0
+ICpjZSwKKwkJCQkJIHN0cnVjdCBpOTE1X2dlbV93d19jdHggKnd3LAogCQkJCQkgc3RydWN0IGk5
+MTVfdm1hICpzcmMsCiAJCQkJCSBzdHJ1Y3QgaTkxNV92bWEgKmRzdCk7CiAKLS0gCjIuMjguMAoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
