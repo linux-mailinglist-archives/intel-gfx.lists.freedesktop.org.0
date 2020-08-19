@@ -2,26 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A68124A15B
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 16:09:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A0B24A1C7
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 16:31:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8F7D6E432;
-	Wed, 19 Aug 2020 14:09:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 630EB6E045;
+	Wed, 19 Aug 2020 14:31:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 415806E3F4
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 14:09:14 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Aug 2020 16:09:04 +0200
-Message-Id: <20200819140904.1708856-25-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200819140904.1708856-1-maarten.lankhorst@linux.intel.com>
-References: <20200819140904.1708856-1-maarten.lankhorst@linux.intel.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 24/24] drm/i915: Do not share hwsp across
- contexts any more
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
+ [IPv6:2607:f8b0:4864:20::743])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0435F6E14B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 14:31:40 +0000 (UTC)
+Received: by mail-qk1-x743.google.com with SMTP id p4so21775585qkf.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 07:31:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=hXzFL4KE7k0dSeP5KD3V+ObTUw3O6/zvVmYc5yQLvsY=;
+ b=A4iO4lAR8nK9td1V4HB/VS4Ch+dcjWlVfGmry9P5tDFbNSzSkQkjPkHTyhz/u/taue
+ lPcrdoxWSOGJ0nd2eyL3QY/JO4RjunojmTEH4QiMmHc8Xht3ntBijEqUkuIMz2Q34ejU
+ /LTNC6dZvExqbvs11YpLcOzLgoHjbB/GnbbKkmeUjh71F7RLvIZw0gzCDmGdOcHckBYN
+ pRFXKpWBEW+kUH7IbIR9D3ti9Nqf0HfazUIeb4Rhdcu59qNbsloBsT+vhQPQbZqa/vas
+ WQKc59UjcTimbHLW0XgObBLuoU+wnOwiDOusynRJgoLJ5mQ8v3dh9MK+18D+wyer9mqR
+ ZNYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=hXzFL4KE7k0dSeP5KD3V+ObTUw3O6/zvVmYc5yQLvsY=;
+ b=BUVMqHfuW0zOUREdGNOgVQa23+1WHoKEDObrXoLp87925qKNwKbUJC+5zUoQ7zAyOT
+ BfIQ1Wp7Tfa02KARycNRHjgEMTfjzpxM4oL/piU5DegORCLjV03g1zt3mnzl7/5QLTUO
+ zzTs0nCdei97SHC/A1wrOOpQqQ75uzTwhXnZMVddSTRHivuFxKbdTAvDesfGQVXeEf/3
+ y+WRjScUQrJ7o/E+4SrA3G5uWXUWRtj4cv7m00sKyFvRw2+i56Zg5pmwv6MW+kAEiCja
+ m9zKM5Ffvr0Evs2lfKp5ZsZQ6YmdSqw/6YDd+auHtDc8dFnsoKTxm5z4G0cYFYrb+gsS
+ kIAg==
+X-Gm-Message-State: AOAM530GQa0XhMct2L4RDAxAbFM0gSaItK5e2yZT+WT/ONEfjAwhsUKM
+ WNzV3zPSmtfkQAsjBZKHrRKyLg==
+X-Google-Smtp-Source: ABdhPJwoksaRSjiw4RN8B3WPniYEmfBPoAZMxuSD19MMYicTSENJocqMImv6HgE/y780P83sn16d6A==
+X-Received: by 2002:ae9:efcd:: with SMTP id
+ d196mr21694818qkg.251.1597847498781; 
+ Wed, 19 Aug 2020 07:31:38 -0700 (PDT)
+Received: from localhost (mobile-166-177-185-175.mycingular.net.
+ [166.177.185.175])
+ by smtp.gmail.com with ESMTPSA id 205sm24163482qkj.19.2020.08.19.07.31.37
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 19 Aug 2020 07:31:38 -0700 (PDT)
+From: Sean Paul <sean@poorly.run>
+To: lyude@redhat.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, juston.li@intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, anshuman.gupta@intel.com
+Date: Wed, 19 Aug 2020 10:31:24 -0400
+Message-Id: <20200819143133.46232-1-sean@poorly.run>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <11e78f1f2a56e69f29cb9e8c078c158c9ff401fb.camel@redhat.com>
+References: <11e78f1f2a56e69f29cb9e8c078c158c9ff401fb.camel@redhat.com>
+Subject: [Intel-gfx] [PATCH v8.5] drm/mst: Add support for
+ QUERY_STREAM_ENCRYPTION_STATUS MST sideband message
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,686 +70,398 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Sean Paul <seanpaul@chromium.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of sharing pages with breadcrumbs, give each timeline a
-single page. This allows unrelated timelines not to share locks
-any more during command submission.
+From: Sean Paul <seanpaul@chromium.org>
 
-As an additional benefit, seqno wraparound no longer requires
-i915_vma_pin, which means we no longer need to worry about a
-potential -EDEADLK at a point where we are ready to submit.
+Used to query whether an MST stream is encrypted or not.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+Signed-off-by: Sean Paul <seanpaul@chromium.org>
+
+Link: https://patchwork.freedesktop.org/patch/msgid/20200218220242.107265-14-sean@poorly.run #v4
+Link: https://patchwork.freedesktop.org/patch/msgid/20200305201236.152307-15-sean@poorly.run #v5
+Link: https://patchwork.freedesktop.org/patch/msgid/20200429195502.39919-15-sean@poorly.run #v6
+Link: https://patchwork.freedesktop.org/patch/msgid/20200623155907.22961-16-sean@poorly.run #v7
+Link: https://patchwork.freedesktop.org/patch/msgid/20200818153910.27894-16-sean@poorly.run #v8
+
+Changes in v4:
+-Added to the set
+Changes in v5:
+-None
+Changes in v6:
+-Use FIELD_PREP to generate request buffer bitfields (Lyude)
+-Add mst selftest and dump/decode_sideband_req for QSES (Lyude)
+Changes in v7:
+-None
+Changes in v8:
+-Reverse the parsing on the hdcp_*x_device_present bits and leave
+ breadcrumb in case this is incorrect (Anshuman)
+Changes in v8.5:
+-s/DRM_DEBUG_KMS/drm_dbg_kms/ (Lyude)
 ---
- drivers/gpu/drm/i915/gt/intel_gt_types.h      |   4 -
- drivers/gpu/drm/i915/gt/intel_timeline.c      | 382 +++---------------
- .../gpu/drm/i915/gt/intel_timeline_types.h    |  15 +-
- drivers/gpu/drm/i915/gt/selftest_timeline.c   |  11 +-
- drivers/gpu/drm/i915/i915_request.c           |   4 -
- drivers/gpu/drm/i915/i915_request.h           |  10 -
- 6 files changed, 56 insertions(+), 370 deletions(-)
+ drivers/gpu/drm/drm_dp_mst_topology.c         | 150 ++++++++++++++++++
+ .../drm/selftests/test-drm_dp_mst_helper.c    |  17 ++
+ include/drm/drm_dp_helper.h                   |   3 +
+ include/drm/drm_dp_mst_helper.h               |  44 +++++
+ 4 files changed, 214 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index 6d39a4a11bf3..7aff8350c364 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -39,10 +39,6 @@ struct intel_gt {
- 	struct intel_gt_timelines {
- 		spinlock_t lock; /* protects active_list */
- 		struct list_head active_list;
--
--		/* Pack multiple timelines' seqnos into the same page */
--		spinlock_t hwsp_lock;
--		struct list_head hwsp_free_list;
- 	} timelines;
+diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+index 67dd72ea200e..0968fc716d81 100644
+--- a/drivers/gpu/drm/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+@@ -20,11 +20,13 @@
+  * OF THIS SOFTWARE.
+  */
  
- 	struct intel_gt_requests {
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-index a2f74cefe4c3..6385eddb8e75 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-@@ -12,21 +12,7 @@
- #include "intel_ring.h"
- #include "intel_timeline.h"
- 
--#define ptr_set_bit(ptr, bit) ((typeof(ptr))((unsigned long)(ptr) | BIT(bit)))
--#define ptr_test_bit(ptr, bit) ((unsigned long)(ptr) & BIT(bit))
--
--#define CACHELINE_BITS 6
--#define CACHELINE_FREE CACHELINE_BITS
--
--struct intel_timeline_hwsp {
--	struct intel_gt *gt;
--	struct intel_gt_timelines *gt_timelines;
--	struct list_head free_link;
--	struct i915_vma *vma;
--	u64 free_bitmap;
--};
--
--static struct i915_vma *__hwsp_alloc(struct intel_gt *gt)
-+static struct i915_vma *hwsp_alloc(struct intel_gt *gt)
- {
- 	struct drm_i915_private *i915 = gt->i915;
- 	struct drm_i915_gem_object *obj;
-@@ -42,177 +28,29 @@ static struct i915_vma *__hwsp_alloc(struct intel_gt *gt)
- 	if (IS_ERR(vma))
- 		i915_gem_object_put(obj);
- 
--	return vma;
--}
--
--static struct i915_vma *
--hwsp_alloc(struct intel_timeline *timeline, unsigned int *cacheline)
--{
--	struct intel_gt_timelines *gt = &timeline->gt->timelines;
--	struct intel_timeline_hwsp *hwsp;
--
--	BUILD_BUG_ON(BITS_PER_TYPE(u64) * CACHELINE_BYTES > PAGE_SIZE);
--
--	spin_lock_irq(&gt->hwsp_lock);
--
--	/* hwsp_free_list only contains HWSP that have available cachelines */
--	hwsp = list_first_entry_or_null(&gt->hwsp_free_list,
--					typeof(*hwsp), free_link);
--	if (!hwsp) {
--		struct i915_vma *vma;
--
--		spin_unlock_irq(&gt->hwsp_lock);
--
--		hwsp = kmalloc(sizeof(*hwsp), GFP_KERNEL);
--		if (!hwsp)
--			return ERR_PTR(-ENOMEM);
--
--		vma = __hwsp_alloc(timeline->gt);
--		if (IS_ERR(vma)) {
--			kfree(hwsp);
--			return vma;
--		}
--
--		GT_TRACE(timeline->gt, "new HWSP allocated\n");
--
--		vma->private = hwsp;
--		hwsp->gt = timeline->gt;
--		hwsp->vma = vma;
--		hwsp->free_bitmap = ~0ull;
--		hwsp->gt_timelines = gt;
--
--		spin_lock_irq(&gt->hwsp_lock);
--		list_add(&hwsp->free_link, &gt->hwsp_free_list);
--	}
--
--	GEM_BUG_ON(!hwsp->free_bitmap);
--	*cacheline = __ffs64(hwsp->free_bitmap);
--	hwsp->free_bitmap &= ~BIT_ULL(*cacheline);
--	if (!hwsp->free_bitmap)
--		list_del(&hwsp->free_link);
--
--	spin_unlock_irq(&gt->hwsp_lock);
--
--	GEM_BUG_ON(hwsp->vma->private != hwsp);
--	return hwsp->vma;
--}
--
--static void __idle_hwsp_free(struct intel_timeline_hwsp *hwsp, int cacheline)
--{
--	struct intel_gt_timelines *gt = hwsp->gt_timelines;
--	unsigned long flags;
--
--	spin_lock_irqsave(&gt->hwsp_lock, flags);
--
--	/* As a cacheline becomes available, publish the HWSP on the freelist */
--	if (!hwsp->free_bitmap)
--		list_add_tail(&hwsp->free_link, &gt->hwsp_free_list);
--
--	GEM_BUG_ON(cacheline >= BITS_PER_TYPE(hwsp->free_bitmap));
--	hwsp->free_bitmap |= BIT_ULL(cacheline);
--
--	/* And if no one is left using it, give the page back to the system */
--	if (hwsp->free_bitmap == ~0ull) {
--		i915_vma_put(hwsp->vma);
--		list_del(&hwsp->free_link);
--		kfree(hwsp);
--	}
--
--	spin_unlock_irqrestore(&gt->hwsp_lock, flags);
--}
--
--static void __rcu_cacheline_free(struct rcu_head *rcu)
--{
--	struct intel_timeline_cacheline *cl =
--		container_of(rcu, typeof(*cl), rcu);
--
--	i915_active_fini(&cl->active);
--	kfree(cl);
--}
--
--static void __idle_cacheline_free(struct intel_timeline_cacheline *cl)
--{
--	GEM_BUG_ON(!i915_active_is_idle(&cl->active));
--
--	i915_gem_object_unpin_map(cl->hwsp->vma->obj);
--	i915_vma_put(cl->hwsp->vma);
--	__idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
--
--	call_rcu(&cl->rcu, __rcu_cacheline_free);
-+       return vma;
++#include <linux/bitfield.h>
+ #include <linux/delay.h>
+ #include <linux/errno.h>
+ #include <linux/i2c.h>
+ #include <linux/init.h>
+ #include <linux/kernel.h>
++#include <linux/random.h>
+ #include <linux/sched.h>
+ #include <linux/seq_file.h>
+ #include <linux/iopoll.h>
+@@ -423,6 +425,22 @@ drm_dp_encode_sideband_req(const struct drm_dp_sideband_msg_req_body *req,
+ 		memcpy(&buf[idx], req->u.i2c_write.bytes, req->u.i2c_write.num_bytes);
+ 		idx += req->u.i2c_write.num_bytes;
+ 		break;
++	case DP_QUERY_STREAM_ENC_STATUS: {
++		const struct drm_dp_query_stream_enc_status *msg;
++
++		msg = &req->u.enc_status;
++		buf[idx] = msg->stream_id;
++		idx++;
++		memcpy(&buf[idx], msg->client_id, sizeof(msg->client_id));
++		idx += sizeof(msg->client_id);
++		buf[idx] = 0;
++		buf[idx] |= FIELD_PREP(GENMASK(1, 0), msg->stream_event);
++		buf[idx] |= msg->valid_stream_event ? BIT(2) : 0;
++		buf[idx] |= FIELD_PREP(GENMASK(4, 3), msg->stream_behavior);
++		buf[idx] |= msg->valid_stream_behavior ? BIT(5) : 0;
++		idx++;
++		}
++		break;
+ 	}
+ 	raw->cur_len = idx;
  }
- 
- __i915_active_call
--static void __cacheline_retire(struct i915_active *active)
-+static void __timeline_retire(struct i915_active *active)
- {
--	struct intel_timeline_cacheline *cl =
--		container_of(active, typeof(*cl), active);
-+	struct intel_timeline *tl =
-+		container_of(active, typeof(*tl), active);
- 
--	i915_vma_unpin(cl->hwsp->vma);
--	if (ptr_test_bit(cl->vaddr, CACHELINE_FREE))
--		__idle_cacheline_free(cl);
-+	i915_vma_unpin(tl->hwsp_ggtt);
-+	intel_timeline_put(tl);
- }
- 
--static int __cacheline_active(struct i915_active *active)
-+static int __timeline_active(struct i915_active *active)
- {
--	struct intel_timeline_cacheline *cl =
--		container_of(active, typeof(*cl), active);
-+	struct intel_timeline *tl =
-+		container_of(active, typeof(*tl), active);
- 
--	__i915_vma_pin(cl->hwsp->vma);
-+	__i915_vma_pin(tl->hwsp_ggtt);
-+	intel_timeline_get(tl);
- 	return 0;
- }
- 
--static struct intel_timeline_cacheline *
--cacheline_alloc(struct intel_timeline_hwsp *hwsp, unsigned int cacheline)
--{
--	struct intel_timeline_cacheline *cl;
--	void *vaddr;
--
--	GEM_BUG_ON(cacheline >= BIT(CACHELINE_BITS));
--
--	cl = kmalloc(sizeof(*cl), GFP_KERNEL);
--	if (!cl)
--		return ERR_PTR(-ENOMEM);
--
--	vaddr = i915_gem_object_pin_map(hwsp->vma->obj, I915_MAP_WB);
--	if (IS_ERR(vaddr)) {
--		kfree(cl);
--		return ERR_CAST(vaddr);
--	}
--
--	i915_vma_get(hwsp->vma);
--	cl->hwsp = hwsp;
--	cl->vaddr = page_pack_bits(vaddr, cacheline);
--
--	i915_active_init(&cl->active, __cacheline_active, __cacheline_retire);
--
--	return cl;
--}
--
--static void cacheline_acquire(struct intel_timeline_cacheline *cl)
--{
--	if (cl)
--		i915_active_acquire(&cl->active);
--}
--
--static void cacheline_release(struct intel_timeline_cacheline *cl)
--{
--	if (cl)
--		i915_active_release(&cl->active);
--}
--
--static void cacheline_free(struct intel_timeline_cacheline *cl)
--{
--	if (!i915_active_acquire_if_busy(&cl->active)) {
--		__idle_cacheline_free(cl);
--		return;
--	}
--
--	GEM_BUG_ON(ptr_test_bit(cl->vaddr, CACHELINE_FREE));
--	cl->vaddr = ptr_set_bit(cl->vaddr, CACHELINE_FREE);
--
--	i915_active_release(&cl->active);
--}
--
- static int intel_timeline_init(struct intel_timeline *timeline,
- 			       struct intel_gt *gt,
- 			       struct i915_vma *hwsp,
-@@ -225,38 +63,25 @@ static int intel_timeline_init(struct intel_timeline *timeline,
- 
- 	timeline->gt = gt;
- 
--	timeline->has_initial_breadcrumb = !hwsp;
--	timeline->hwsp_cacheline = NULL;
--
--	if (!hwsp) {
--		struct intel_timeline_cacheline *cl;
--		unsigned int cacheline;
--
--		hwsp = hwsp_alloc(timeline, &cacheline);
-+	if (hwsp) {
-+		timeline->hwsp_offset = offset;
-+		timeline->hwsp_ggtt = i915_vma_get(hwsp);
-+	} else {
-+		timeline->has_initial_breadcrumb = true;
-+		hwsp = hwsp_alloc(gt);
- 		if (IS_ERR(hwsp))
- 			return PTR_ERR(hwsp);
--
--		cl = cacheline_alloc(hwsp->private, cacheline);
--		if (IS_ERR(cl)) {
--			__idle_hwsp_free(hwsp->private, cacheline);
--			return PTR_ERR(cl);
--		}
--
--		timeline->hwsp_cacheline = cl;
--		timeline->hwsp_offset = cacheline * CACHELINE_BYTES;
--
--		vaddr = page_mask_bits(cl->vaddr);
--	} else {
--		timeline->hwsp_offset = offset;
--		vaddr = i915_gem_object_pin_map(hwsp->obj, I915_MAP_WB);
--		if (IS_ERR(vaddr))
--			return PTR_ERR(vaddr);
-+		timeline->hwsp_ggtt = hwsp;
+@@ -551,6 +569,20 @@ drm_dp_decode_sideband_req(const struct drm_dp_sideband_msg_tx *raw,
+ 				return -ENOMEM;
+ 		}
+ 		break;
++	case DP_QUERY_STREAM_ENC_STATUS:
++		req->u.enc_status.stream_id = buf[idx++];
++		for (i = 0; i < sizeof(req->u.enc_status.client_id); i++)
++			req->u.enc_status.client_id[i] = buf[idx++];
++
++		req->u.enc_status.stream_event = FIELD_GET(GENMASK(1, 0),
++							   buf[idx]);
++		req->u.enc_status.valid_stream_event = FIELD_GET(BIT(2),
++								 buf[idx]);
++		req->u.enc_status.stream_behavior = FIELD_GET(GENMASK(4, 3),
++							      buf[idx]);
++		req->u.enc_status.valid_stream_behavior = FIELD_GET(BIT(5),
++								    buf[idx]);
++		break;
  	}
  
--	timeline->hwsp_seqno =
--		memset(vaddr + timeline->hwsp_offset, 0, CACHELINE_BYTES);
-+	vaddr = i915_gem_object_pin_map(hwsp->obj, I915_MAP_WB);
-+	if (IS_ERR(vaddr))
-+		return PTR_ERR(vaddr);
+ 	return 0;
+@@ -629,6 +661,16 @@ drm_dp_dump_sideband_msg_req_body(const struct drm_dp_sideband_msg_req_body *req
+ 		  req->u.i2c_write.num_bytes, req->u.i2c_write.num_bytes,
+ 		  req->u.i2c_write.bytes);
+ 		break;
++	case DP_QUERY_STREAM_ENC_STATUS:
++		P("stream_id=%u client_id=%*ph stream_event=%x "
++		  "valid_event=%d stream_behavior=%x valid_behavior=%d",
++		  req->u.enc_status.stream_id,
++		  (int)ARRAY_SIZE(req->u.enc_status.client_id),
++		  req->u.enc_status.client_id, req->u.enc_status.stream_event,
++		  req->u.enc_status.valid_stream_event,
++		  req->u.enc_status.stream_behavior,
++		  req->u.enc_status.valid_stream_behavior);
++		break;
+ 	default:
+ 		P("???\n");
+ 		break;
+@@ -936,6 +978,42 @@ static bool drm_dp_sideband_parse_power_updown_phy_ack(struct drm_dp_sideband_ms
+ 	return true;
+ }
+ 
++static bool
++drm_dp_sideband_parse_query_stream_enc_status(
++				struct drm_dp_sideband_msg_rx *raw,
++				struct drm_dp_sideband_msg_reply_body *repmsg)
++{
++	struct drm_dp_query_stream_enc_status_ack_reply *reply;
 +
-+	timeline->hwsp_map = vaddr;
-+	timeline->hwsp_seqno = vaddr + timeline->hwsp_offset;
-+	WRITE_ONCE(*(u32 *)timeline->hwsp_seqno, 0);
- 
--	timeline->hwsp_ggtt = i915_vma_get(hwsp);
- 	GEM_BUG_ON(timeline->hwsp_offset >= hwsp->size);
- 
- 	timeline->fence_context = dma_fence_context_alloc(1);
-@@ -267,6 +92,7 @@ static int intel_timeline_init(struct intel_timeline *timeline,
- 	INIT_LIST_HEAD(&timeline->requests);
- 
- 	i915_syncmap_init(&timeline->sync);
-+	i915_active_init(&timeline->active, __timeline_active, __timeline_retire);
- 
- 	return 0;
- }
-@@ -277,9 +103,6 @@ void intel_gt_init_timelines(struct intel_gt *gt)
- 
- 	spin_lock_init(&timelines->lock);
- 	INIT_LIST_HEAD(&timelines->active_list);
--
--	spin_lock_init(&timelines->hwsp_lock);
--	INIT_LIST_HEAD(&timelines->hwsp_free_list);
- }
- 
- static void intel_timeline_fini(struct intel_timeline *timeline)
-@@ -288,12 +111,10 @@ static void intel_timeline_fini(struct intel_timeline *timeline)
- 	GEM_BUG_ON(!list_empty(&timeline->requests));
- 	GEM_BUG_ON(timeline->retire);
- 
--	if (timeline->hwsp_cacheline)
--		cacheline_free(timeline->hwsp_cacheline);
--	else
--		i915_gem_object_unpin_map(timeline->hwsp_ggtt->obj);
-+	i915_gem_object_unpin_map(timeline->hwsp_ggtt->obj);
- 
- 	i915_vma_put(timeline->hwsp_ggtt);
-+	i915_active_fini(&timeline->active);
- }
- 
- struct intel_timeline *
-@@ -340,9 +161,9 @@ int intel_timeline_pin(struct intel_timeline *tl, struct i915_gem_ww_ctx *ww)
- 	GT_TRACE(tl->gt, "timeline:%llx using HWSP offset:%x\n",
- 		 tl->fence_context, tl->hwsp_offset);
- 
--	cacheline_acquire(tl->hwsp_cacheline);
-+	i915_active_acquire(&tl->active);
- 	if (atomic_fetch_inc(&tl->pin_count)) {
--		cacheline_release(tl->hwsp_cacheline);
-+		i915_active_acquire(&tl->active);
- 		__i915_vma_unpin(tl->hwsp_ggtt);
- 	}
- 
-@@ -429,106 +250,20 @@ static u32 timeline_advance(struct intel_timeline *tl)
- 	return tl->seqno += 1 + tl->has_initial_breadcrumb;
- }
- 
--static void timeline_rollback(struct intel_timeline *tl)
--{
--	tl->seqno -= 1 + tl->has_initial_breadcrumb;
--}
--
- static noinline int
- __intel_timeline_get_seqno(struct intel_timeline *tl,
- 			   struct i915_request *rq,
- 			   u32 *seqno)
- {
--	struct intel_timeline_cacheline *cl;
--	unsigned int cacheline;
--	struct i915_vma *vma;
--	void *vaddr;
--	int err;
-+	tl->hwsp_offset = i915_ggtt_offset(tl->hwsp_ggtt) +
-+		offset_in_page(tl->hwsp_offset + CACHELINE_BYTES);
- 
--	might_lock(&tl->gt->ggtt->vm.mutex);
--	GT_TRACE(tl->gt, "timeline:%llx wrapped\n", tl->fence_context);
--
--	/*
--	 * If there is an outstanding GPU reference to this cacheline,
--	 * such as it being sampled by a HW semaphore on another timeline,
--	 * we cannot wraparound our seqno value (the HW semaphore does
--	 * a strict greater-than-or-equals compare, not i915_seqno_passed).
--	 * So if the cacheline is still busy, we must detach ourselves
--	 * from it and leave it inflight alongside its users.
--	 *
--	 * However, if nobody is watching and we can guarantee that nobody
--	 * will, we could simply reuse the same cacheline.
--	 *
--	 * if (i915_active_request_is_signaled(&tl->last_request) &&
--	 *     i915_active_is_signaled(&tl->hwsp_cacheline->active))
--	 *	return 0;
--	 *
--	 * That seems unlikely for a busy timeline that needed to wrap in
--	 * the first place, so just replace the cacheline.
--	 */
--
--	vma = hwsp_alloc(tl, &cacheline);
--	if (IS_ERR(vma)) {
--		err = PTR_ERR(vma);
--		goto err_rollback;
--	}
--
--	err = i915_ggtt_pin(vma, NULL, 0, PIN_HIGH);
--	if (err) {
--		__idle_hwsp_free(vma->private, cacheline);
--		goto err_rollback;
--	}
--
--	cl = cacheline_alloc(vma->private, cacheline);
--	if (IS_ERR(cl)) {
--		err = PTR_ERR(cl);
--		__idle_hwsp_free(vma->private, cacheline);
--		goto err_unpin;
--	}
--	GEM_BUG_ON(cl->hwsp->vma != vma);
--
--	/*
--	 * Attach the old cacheline to the current request, so that we only
--	 * free it after the current request is retired, which ensures that
--	 * all writes into the cacheline from previous requests are complete.
--	 */
--	err = i915_active_ref(&tl->hwsp_cacheline->active,
--			      tl->fence_context,
--			      &rq->fence);
--	if (err)
--		goto err_cacheline;
--
--	cacheline_release(tl->hwsp_cacheline); /* ownership now xfered to rq */
--	cacheline_free(tl->hwsp_cacheline);
--
--	i915_vma_unpin(tl->hwsp_ggtt); /* binding kept alive by old cacheline */
--	i915_vma_put(tl->hwsp_ggtt);
--
--	tl->hwsp_ggtt = i915_vma_get(vma);
--
--	vaddr = page_mask_bits(cl->vaddr);
--	tl->hwsp_offset = cacheline * CACHELINE_BYTES;
--	tl->hwsp_seqno =
--		memset(vaddr + tl->hwsp_offset, 0, CACHELINE_BYTES);
--
--	tl->hwsp_offset += i915_ggtt_offset(vma);
--	GT_TRACE(tl->gt, "timeline:%llx using HWSP offset:%x\n",
--		 tl->fence_context, tl->hwsp_offset);
--
--	cacheline_acquire(cl);
--	tl->hwsp_cacheline = cl;
-+	tl->hwsp_seqno = tl->hwsp_map + offset_in_page(tl->hwsp_offset);
-+	intel_timeline_reset_seqno(tl);
- 
- 	*seqno = timeline_advance(tl);
- 	GEM_BUG_ON(i915_seqno_passed(*tl->hwsp_seqno, *seqno));
- 	return 0;
--
--err_cacheline:
--	cacheline_free(cl);
--err_unpin:
--	i915_vma_unpin(vma);
--err_rollback:
--	timeline_rollback(tl);
--	return err;
- }
- 
- int intel_timeline_get_seqno(struct intel_timeline *tl,
-@@ -538,53 +273,36 @@ int intel_timeline_get_seqno(struct intel_timeline *tl,
- 	*seqno = timeline_advance(tl);
- 
- 	/* Replace the HWSP on wraparound for HW semaphores */
--	if (unlikely(!*seqno && tl->hwsp_cacheline))
-+	if (unlikely(!*seqno && tl->has_initial_breadcrumb))
- 		return __intel_timeline_get_seqno(tl, rq, seqno);
- 
- 	return 0;
- }
- 
--static int cacheline_ref(struct intel_timeline_cacheline *cl,
--			 struct i915_request *rq)
--{
--	return i915_active_add_request(&cl->active, rq);
--}
--
- int intel_timeline_read_hwsp(struct i915_request *from,
- 			     struct i915_request *to,
- 			     u32 *hwsp)
- {
--	struct intel_timeline_cacheline *cl;
-+	struct intel_timeline *tl;
- 	int err;
- 
--	GEM_BUG_ON(!rcu_access_pointer(from->hwsp_cacheline));
--
- 	rcu_read_lock();
--	cl = rcu_dereference(from->hwsp_cacheline);
--	if (i915_request_completed(from)) /* confirm cacheline is valid */
--		goto unlock;
--	if (unlikely(!i915_active_acquire_if_busy(&cl->active)))
--		goto unlock; /* seqno wrapped and completed! */
--	if (unlikely(i915_request_completed(from)))
--		goto release;
-+	tl = rcu_dereference(from->timeline);
-+	if (tl && (i915_request_completed(from) ||
-+	    !i915_active_acquire_if_busy(&tl->active)))
-+		tl = NULL;
- 	rcu_read_unlock();
- 
--	err = cacheline_ref(cl, to);
--	if (err)
--		goto out;
-+	if (!tl)
-+		return 1;
- 
--	*hwsp = i915_ggtt_offset(cl->hwsp->vma) +
--		ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) * CACHELINE_BYTES;
-+	/* hwsp_offset may wraparound, so use from->hwsp_seqno */
-+	*hwsp = i915_ggtt_offset(tl->hwsp_ggtt) +
-+			offset_in_page(from->hwsp_seqno);
- 
--out:
--	i915_active_release(&cl->active);
-+	err = i915_active_add_request(&tl->active, to);
-+	i915_active_release(&tl->active);
- 	return err;
--
--release:
--	i915_active_release(&cl->active);
--unlock:
--	rcu_read_unlock();
--	return 1;
- }
- 
- void intel_timeline_unpin(struct intel_timeline *tl)
-@@ -593,8 +311,7 @@ void intel_timeline_unpin(struct intel_timeline *tl)
- 	if (!atomic_dec_and_test(&tl->pin_count))
- 		return;
- 
--	cacheline_release(tl->hwsp_cacheline);
--
-+	i915_active_release(&tl->active);
- 	__i915_vma_unpin(tl->hwsp_ggtt);
- }
- 
-@@ -612,7 +329,6 @@ void intel_gt_fini_timelines(struct intel_gt *gt)
- 	struct intel_gt_timelines *timelines = &gt->timelines;
- 
- 	GEM_BUG_ON(!list_empty(&timelines->active_list));
--	GEM_BUG_ON(!list_empty(&timelines->hwsp_free_list));
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-index 02181c5020db..610d593b5bda 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-@@ -18,7 +18,6 @@
- struct i915_vma;
- struct i915_syncmap;
- struct intel_gt;
--struct intel_timeline_hwsp;
- 
- struct intel_timeline {
- 	u64 fence_context;
-@@ -45,12 +44,11 @@ struct intel_timeline {
- 	atomic_t pin_count;
- 	atomic_t active_count;
- 
-+	void *hwsp_map;
- 	const u32 *hwsp_seqno;
- 	struct i915_vma *hwsp_ggtt;
- 	u32 hwsp_offset;
- 
--	struct intel_timeline_cacheline *hwsp_cacheline;
--
- 	bool has_initial_breadcrumb;
- 
- 	/**
-@@ -67,6 +65,8 @@ struct intel_timeline {
- 	 */
- 	struct i915_active_fence last_request;
- 
-+	struct i915_active active;
++	reply = &repmsg->u.enc_status;
 +
- 	/** A chain of completed timelines ready for early retirement. */
- 	struct intel_timeline *retire;
++	reply->stream_id = raw->msg[3];
++
++	reply->reply_signed = raw->msg[2] & BIT(0);
++
++	/*
++	 * NOTE: It's my impression from reading the spec that the below parsing
++	 * is correct. However I noticed while testing with an HDCP 1.4 display
++	 * through an HDCP 2.2 hub that only bit 3 was set. In that case, I
++	 * would expect both bits to be set. So keep the parsing following the
++	 * spec, but beware reality might not match the spec (at least for some
++	 * configurations).
++	 */
++	reply->hdcp_1x_device_present = raw->msg[2] & BIT(4);
++	reply->hdcp_2x_device_present = raw->msg[2] & BIT(3);
++
++	reply->query_capable_device_present = raw->msg[2] & BIT(5);
++	reply->legacy_device_present = raw->msg[2] & BIT(6);
++	reply->unauthorizable_device_present = raw->msg[2] & BIT(7);
++
++	reply->auth_completed = !!(raw->msg[1] & BIT(3));
++	reply->encryption_enabled = !!(raw->msg[1] & BIT(4));
++	reply->repeater_present = !!(raw->msg[1] & BIT(5));
++	reply->state = (raw->msg[1] & GENMASK(7, 6)) >> 6;
++
++	return true;
++}
++
+ static bool drm_dp_sideband_parse_reply(struct drm_dp_sideband_msg_rx *raw,
+ 					struct drm_dp_sideband_msg_reply_body *msg)
+ {
+@@ -970,6 +1048,8 @@ static bool drm_dp_sideband_parse_reply(struct drm_dp_sideband_msg_rx *raw,
+ 		return drm_dp_sideband_parse_power_updown_phy_ack(raw, msg);
+ 	case DP_CLEAR_PAYLOAD_ID_TABLE:
+ 		return true; /* since there's nothing to parse */
++	case DP_QUERY_STREAM_ENC_STATUS:
++		return drm_dp_sideband_parse_query_stream_enc_status(raw, msg);
+ 	default:
+ 		DRM_ERROR("Got unknown reply 0x%02x (%s)\n", msg->req_type,
+ 			  drm_dp_mst_req_type_str(msg->req_type));
+@@ -1121,6 +1201,25 @@ static void build_power_updown_phy(struct drm_dp_sideband_msg_tx *msg,
+ 	msg->path_msg = true;
+ }
  
-@@ -88,13 +88,4 @@ struct intel_timeline {
- 	struct rcu_head rcu;
++static int
++build_query_stream_enc_status(struct drm_dp_sideband_msg_tx *msg, u8 stream_id,
++			      u8 *q_id)
++{
++	struct drm_dp_sideband_msg_req_body req;
++
++	req.req_type = DP_QUERY_STREAM_ENC_STATUS;
++	req.u.enc_status.stream_id = stream_id;
++	memcpy(req.u.enc_status.client_id, q_id,
++	       sizeof(req.u.enc_status.client_id));
++	req.u.enc_status.stream_event = 0;
++	req.u.enc_status.valid_stream_event = false;
++	req.u.enc_status.stream_behavior = 0;
++	req.u.enc_status.valid_stream_behavior = false;
++
++	drm_dp_encode_sideband_req(&req, msg);
++	return 0;
++}
++
+ static int drm_dp_mst_assign_payload_id(struct drm_dp_mst_topology_mgr *mgr,
+ 					struct drm_dp_vcpi *vcpi)
+ {
+@@ -3153,6 +3252,57 @@ int drm_dp_send_power_updown_phy(struct drm_dp_mst_topology_mgr *mgr,
+ }
+ EXPORT_SYMBOL(drm_dp_send_power_updown_phy);
+ 
++int drm_dp_send_query_stream_enc_status(struct drm_dp_mst_topology_mgr *mgr,
++		struct drm_dp_mst_port *port,
++		struct drm_dp_query_stream_enc_status_ack_reply *status)
++{
++	struct drm_dp_sideband_msg_tx *txmsg;
++	u8 nonce[7];
++	int len, ret;
++
++	txmsg = kzalloc(sizeof(*txmsg), GFP_KERNEL);
++	if (!txmsg)
++		return -ENOMEM;
++
++	port = drm_dp_mst_topology_get_port_validated(mgr, port);
++	if (!port) {
++		ret = -EINVAL;
++		goto out_get_port;
++	}
++
++	get_random_bytes(nonce, sizeof(nonce));
++
++	/*
++	 * "Source device targets the QUERY_STREAM_ENCRYPTION_STATUS message
++	 *  transaction at the MST Branch device directly connected to the
++	 *  Source"
++	 */
++	txmsg->dst = mgr->mst_primary;
++
++	len = build_query_stream_enc_status(txmsg, port->vcpi.vcpi, nonce);
++
++	drm_dp_queue_down_tx(mgr, txmsg);
++
++	ret = drm_dp_mst_wait_tx_reply(mgr->mst_primary, txmsg);
++	if (ret < 0) {
++		goto out;
++	} else if (txmsg->reply.reply_type == DP_SIDEBAND_REPLY_NAK) {
++		drm_dbg_kms(mgr->dev, "query encryption status nak received\n");
++		ret = -ENXIO;
++		goto out;
++	}
++
++	ret = 0;
++	memcpy(status, &txmsg->reply.u.enc_status, sizeof(*status));
++
++out:
++	drm_dp_mst_topology_put_port(port);
++out_get_port:
++	kfree(txmsg);
++	return ret;
++}
++EXPORT_SYMBOL(drm_dp_send_query_stream_enc_status);
++
+ static int drm_dp_create_payload_step1(struct drm_dp_mst_topology_mgr *mgr,
+ 				       int id,
+ 				       struct drm_dp_payload *payload)
+diff --git a/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c b/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c
+index bd990d178765..1d696ec001cf 100644
+--- a/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c
++++ b/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c
+@@ -5,6 +5,8 @@
+ 
+ #define PREFIX_STR "[drm_dp_mst_helper]"
+ 
++#include <linux/random.h>
++
+ #include <drm/drm_dp_mst_helper.h>
+ #include <drm/drm_print.h>
+ 
+@@ -237,6 +239,21 @@ int igt_dp_mst_sideband_msg_req_decode(void *unused)
+ 	in.u.i2c_write.bytes = data;
+ 	DO_TEST();
+ 
++	in.req_type = DP_QUERY_STREAM_ENC_STATUS;
++	in.u.enc_status.stream_id = 1;
++	DO_TEST();
++	get_random_bytes(in.u.enc_status.client_id,
++			 sizeof(in.u.enc_status.client_id));
++	DO_TEST();
++	in.u.enc_status.stream_event = 3;
++	DO_TEST();
++	in.u.enc_status.valid_stream_event = 0;
++	DO_TEST();
++	in.u.enc_status.stream_behavior = 3;
++	DO_TEST();
++	in.u.enc_status.valid_stream_behavior = 1;
++	DO_TEST();
++
+ #undef DO_TEST
+ 	return 0;
+ }
+diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+index 5c2819924862..5e41e15cb5a1 100644
+--- a/include/drm/drm_dp_helper.h
++++ b/include/drm/drm_dp_helper.h
+@@ -1109,6 +1109,9 @@
+ #define DP_POWER_DOWN_PHY		0x25
+ #define DP_SINK_EVENT_NOTIFY		0x30
+ #define DP_QUERY_STREAM_ENC_STATUS	0x38
++#define  DP_QUERY_STREAM_ENC_STATUS_STATE_NO_EXIST	0
++#define  DP_QUERY_STREAM_ENC_STATUS_STATE_INACTIVE	1
++#define  DP_QUERY_STREAM_ENC_STATUS_STATE_ACTIVE	2
+ 
+ /* DP 1.2 MST sideband reply types */
+ #define DP_SIDEBAND_REPLY_ACK		0x00
+diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
+index 8b9eb4db3381..371eef8798ad 100644
+--- a/include/drm/drm_dp_mst_helper.h
++++ b/include/drm/drm_dp_mst_helper.h
+@@ -313,6 +313,34 @@ struct drm_dp_remote_i2c_write_ack_reply {
+ 	u8 port_number;
  };
  
--struct intel_timeline_cacheline {
--	struct i915_active active;
--
--	struct intel_timeline_hwsp *hwsp;
--	void *vaddr;
--
--	struct rcu_head rcu;
--};
--
- #endif /* __I915_TIMELINE_TYPES_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-index 96d164a3841d..0a5f2b16b8ec 100644
---- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-@@ -664,7 +664,7 @@ static int live_hwsp_wrap(void *arg)
- 	if (IS_ERR(tl))
- 		return PTR_ERR(tl);
++struct drm_dp_query_stream_enc_status_ack_reply {
++	/* Bit[23:16]- Stream Id */
++	u8 stream_id;
++
++	/* Bit[15]- Signed */
++	bool reply_signed;
++
++	/* Bit[10:8]- Stream Output Sink Type */
++	bool unauthorizable_device_present;
++	bool legacy_device_present;
++	bool query_capable_device_present;
++
++	/* Bit[12:11]- Stream Output CP Type */
++	bool hdcp_1x_device_present;
++	bool hdcp_2x_device_present;
++
++	/* Bit[4]- Stream Authentication */
++	bool auth_completed;
++
++	/* Bit[3]- Stream Encryption */
++	bool encryption_enabled;
++
++	/* Bit[2]- Stream Repeater Function Present */
++	bool repeater_present;
++
++	/* Bit[1:0]- Stream State */
++	u8 state;
++};
  
--	if (!tl->has_initial_breadcrumb || !tl->hwsp_cacheline)
-+	if (!tl->has_initial_breadcrumb)
- 		goto out_free;
+ #define DRM_DP_MAX_SDP_STREAMS 16
+ struct drm_dp_allocate_payload {
+@@ -374,6 +402,15 @@ struct drm_dp_remote_i2c_write {
+ 	u8 *bytes;
+ };
  
- 	err = intel_timeline_pin(tl, NULL);
-@@ -780,9 +780,7 @@ static int live_hwsp_rollover_kernel(void *arg)
- 		}
++struct drm_dp_query_stream_enc_status {
++	u8 stream_id;
++	u8 client_id[7];	/* 56-bit nonce */
++	u8 stream_event;
++	bool valid_stream_event;
++	u8 stream_behavior;
++	u8 valid_stream_behavior;
++};
++
+ /* this covers ENUM_RESOURCES, POWER_DOWN_PHY, POWER_UP_PHY */
+ struct drm_dp_port_number_req {
+ 	u8 port_number;
+@@ -422,6 +459,8 @@ struct drm_dp_sideband_msg_req_body {
  
- 		GEM_BUG_ON(i915_active_fence_isset(&tl->last_request));
--		tl->seqno = 0;
--		timeline_rollback(tl);
--		timeline_rollback(tl);
-+		tl->seqno = -2u;
- 		WRITE_ONCE(*(u32 *)tl->hwsp_seqno, tl->seqno);
+ 		struct drm_dp_remote_i2c_read i2c_read;
+ 		struct drm_dp_remote_i2c_write i2c_write;
++
++		struct drm_dp_query_stream_enc_status enc_status;
+ 	} u;
+ };
  
- 		for (i = 0; i < ARRAY_SIZE(rq); i++) {
-@@ -862,11 +860,10 @@ static int live_hwsp_rollover_user(void *arg)
- 			goto out;
+@@ -444,6 +483,8 @@ struct drm_dp_sideband_msg_reply_body {
+ 		struct drm_dp_remote_i2c_read_ack_reply remote_i2c_read_ack;
+ 		struct drm_dp_remote_i2c_read_nak_reply remote_i2c_read_nack;
+ 		struct drm_dp_remote_i2c_write_ack_reply remote_i2c_write_ack;
++
++		struct drm_dp_query_stream_enc_status_ack_reply enc_status;
+ 	} u;
+ };
  
- 		tl = ce->timeline;
--		if (!tl->has_initial_breadcrumb || !tl->hwsp_cacheline)
-+		if (!tl->has_initial_breadcrumb)
- 			goto out;
+@@ -808,6 +849,9 @@ drm_dp_atomic_release_vcpi_slots(struct drm_atomic_state *state,
+ 				 struct drm_dp_mst_port *port);
+ int drm_dp_send_power_updown_phy(struct drm_dp_mst_topology_mgr *mgr,
+ 				 struct drm_dp_mst_port *port, bool power_up);
++int drm_dp_send_query_stream_enc_status(struct drm_dp_mst_topology_mgr *mgr,
++		struct drm_dp_mst_port *port,
++		struct drm_dp_query_stream_enc_status_ack_reply *status);
+ int __must_check drm_dp_mst_atomic_check(struct drm_atomic_state *state);
  
--		timeline_rollback(tl);
--		timeline_rollback(tl);
-+		tl->seqno = -4u;
- 		WRITE_ONCE(*(u32 *)tl->hwsp_seqno, tl->seqno);
- 
- 		for (i = 0; i < ARRAY_SIZE(rq); i++) {
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 0208e917d14a..0fdcd521b6c0 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -846,7 +846,6 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
- 	rq->fence.seqno = seqno;
- 
- 	RCU_INIT_POINTER(rq->timeline, tl);
--	RCU_INIT_POINTER(rq->hwsp_cacheline, tl->hwsp_cacheline);
- 	rq->hwsp_seqno = tl->hwsp_seqno;
- 	GEM_BUG_ON(i915_request_completed(rq));
- 
-@@ -1085,9 +1084,6 @@ emit_semaphore_wait(struct i915_request *to,
- 	if (i915_request_has_initial_breadcrumb(to))
- 		goto await_fence;
- 
--	if (!rcu_access_pointer(from->hwsp_cacheline))
--		goto await_fence;
--
- 	/*
- 	 * If this or its dependents are waiting on an external fence
- 	 * that may fail catastrophically, then we want to avoid using
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index 16b721080195..03ba7c85929c 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -234,16 +234,6 @@ struct i915_request {
- 	 */
- 	const u32 *hwsp_seqno;
- 
--	/*
--	 * If we need to access the timeline's seqno for this request in
--	 * another request, we need to keep a read reference to this associated
--	 * cacheline, so that we do not free and recycle it before the foreign
--	 * observers have completed. Hence, we keep a pointer to the cacheline
--	 * inside the timeline's HWSP vma, but it is only valid while this
--	 * request has not completed and guarded by the timeline mutex.
--	 */
--	struct intel_timeline_cacheline __rcu *hwsp_cacheline;
--
- 	/** Position in the ring of the start of the request */
- 	u32 head;
- 
+ void drm_dp_mst_get_port_malloc(struct drm_dp_mst_port *port);
 -- 
-2.28.0
+Sean Paul, Software Engineer, Google / Chromium OS
 
 _______________________________________________
 Intel-gfx mailing list
