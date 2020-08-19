@@ -2,62 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AC7B24A314
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 17:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E80AB24A340
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 17:38:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE6886E46C;
-	Wed, 19 Aug 2020 15:29:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C19F56E46B;
+	Wed, 19 Aug 2020 15:38:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com
- [IPv6:2607:f8b0:4864:20::f41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B3336E483
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 15:29:17 +0000 (UTC)
-Received: by mail-qv1-xf41.google.com with SMTP id x6so11451142qvr.8
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 08:29:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=JQQjyzH42+NC39XApcYZGEZ0FS1brQBGuBw1l1VaGpE=;
- b=KPnpdewWWrntfbDkrHQKlIaN6Vfj3yI6Zv02G0Jjm64j2CHKKic3s84zf6tiWndCUi
- 0tb7s6BxUHR/bnQq1JRTUz/f19bY3/1qNWV4CnTKzSBmFq3eAuraxG1IEAqrPfAYVC+X
- bX/TaH3KXEpuZMB3zIOawc9eVN1uCl85igrlzmaP1TG9bvonWz5s4nEQuTX+8NA06faU
- cKmOvYZc8ox385XhWJCcV1yxjdKwvYJvl4RFuljLgikgoP2dSD5jn5xLa3GkdkWxMI8w
- 16U2fwhvcca2rc7T5LAhu+VUqWQqUy5DcMloIgt9XQoVUBsUQGmpkSLhW7/oAoHEFVDu
- W6lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=JQQjyzH42+NC39XApcYZGEZ0FS1brQBGuBw1l1VaGpE=;
- b=GSNvCROyw34M0+zULrRReDHKeeiRmfNxuq2MUnXBrJL6N60nKRAqnyR36A42jevqM6
- /eHHOawwNh9bUMYkHI6IVebqJ1VmEJKwnmN6O3hVB9bzvUHX64fnCSLP5c8Kgk/DYdIv
- NcnVk7rdhOZyKoD0Hk4Yw4n5sC2GoRc3h8aSy7SYI15fClKwBszZZ/GF7GIY2HsvKnat
- epS0lZB1ZReWSmTBedUTguzhYvHFaXuqaAwAOlEsgID7W+SWllpYE8bgidFSAD5opXvb
- d95c0m3mdLEJ9KlmWU+xP+9MHGLnegRIpzd+2aUBOvwxhkjFQ3dAe8GuLURcdC0IGaKz
- Ufmg==
-X-Gm-Message-State: AOAM531d9GhpYgFOGAuTNZpUqfFImqc3Q0d8igeULvaOZ6KepzP/Pesf
- gEhzGKXvCs+N78BbMPT304NWeA==
-X-Google-Smtp-Source: ABdhPJyUflRKSbZVkflpzoIR4wWnDkDCoAJZOvFOqoqGLwo5VzXLHUtEJBP/fHO9V7UW/6DcjpKnsg==
-X-Received: by 2002:a0c:d981:: with SMTP id y1mr24864637qvj.124.1597850956436; 
- Wed, 19 Aug 2020 08:29:16 -0700 (PDT)
-Received: from localhost (mobile-166-177-185-175.mycingular.net.
- [166.177.185.175])
- by smtp.gmail.com with ESMTPSA id o25sm23855350qkm.42.2020.08.19.08.29.15
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 19 Aug 2020 08:29:15 -0700 (PDT)
-Date: Wed, 19 Aug 2020 11:29:14 -0400
-From: Sean Paul <sean@poorly.run>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <20200819152914.GE46474@art_vandelay>
-References: <20200811200457.134743-1-lyude@redhat.com>
- <20200811200457.134743-20-lyude@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CE94C6E3B0;
+ Wed, 19 Aug 2020 15:38:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C85DEA0BD0;
+ Wed, 19 Aug 2020 15:38:22 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200811200457.134743-20-lyude@redhat.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [RFC 19/20] drm/i915/dp: Extract
- drm_dp_read_dpcd_caps()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sean Paul" <sean@poorly.run>
+Date: Wed, 19 Aug 2020 15:38:22 -0000
+Message-ID: <159785150279.23595.15672290332001226012@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200818153910.27894-1-sean@poorly.run>
+In-Reply-To: <20200818153910.27894-1-sean@poorly.run>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Add_support_for_HDCP_1=2E4_over_MST_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,268 +38,259 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Wambui Karuga <wambui.karugax@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1241077378=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 11, 2020 at 04:04:56PM -0400, Lyude Paul wrote:
-> Since DP 1.3, it's been possible for DP receivers to specify an
-> additional set of DPCD capabilities, which can take precedence over the
-> capabilities reported at DP_DPCD_REV.
-> 
-> Basically any device supporting DP is going to need to read these in an
-> identical manner, in particular nouveau, so let's go ahead and just move
-> this code out of i915 into a shared DRM DP helper that we can use in
-> other drivers.
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
->  drivers/gpu/drm/drm_dp_helper.c             | 76 +++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dp.c     | 60 +---------------
->  drivers/gpu/drm/i915/display/intel_dp.h     |  1 -
->  drivers/gpu/drm/i915/display/intel_lspcon.c |  2 +-
->  include/drm/drm_dp_helper.h                 |  3 +
->  5 files changed, 82 insertions(+), 60 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-> index 0ff2959c8f8e8..f9445915c6c26 100644
-> --- a/drivers/gpu/drm/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -423,6 +423,82 @@ bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
->  }
->  EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
->  
-> +static int drm_dp_read_extended_dpcd_caps(struct drm_dp_aux *aux,
-> +					  u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> +{
-> +	u8 dpcd_ext[6];
-> +	int ret;
-> +
-> +	/*
-> +	 * Prior to DP1.3 the bit represented by
-> +	 * DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT was reserved.
-> +	 * If it is set DP_DPCD_REV at 0000h could be at a value less than
-> +	 * the true capability of the panel. The only way to check is to
-> +	 * then compare 0000h and 2200h.
-> +	 */
-> +	if (!(dpcd[DP_TRAINING_AUX_RD_INTERVAL] &
-> +	      DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT))
-> +		return 0;
-> +
-> +	ret = drm_dp_dpcd_read(aux, DP_DP13_DPCD_REV, &dpcd_ext,
-> +			       sizeof(dpcd_ext));
-> +	if (ret != sizeof(dpcd_ext))
-> +		return -EIO;
-> +
-> +	if (dpcd[DP_DPCD_REV] > dpcd_ext[DP_DPCD_REV]) {
-> +		DRM_DEBUG_KMS("%s: Extended DPCD rev less than base DPCD rev (%d > %d)\n",
-> +			      aux->name, dpcd[DP_DPCD_REV],
-> +			      dpcd_ext[DP_DPCD_REV]);
+--===============1241077378==
+Content-Type: multipart/alternative;
+ boundary="===============7700408884291690175=="
 
-Might be a good opportunity to convert all of these to drm_dbg_dp()?
+--===============7700408884291690175==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> +		return 0;
-> +	}
-> +
-> +	if (!memcmp(dpcd, dpcd_ext, sizeof(dpcd_ext)))
-> +		return 0;
-> +
-> +	DRM_DEBUG_KMS("%s: Base DPCD: %*ph\n",
-> +		      aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
-> +
-> +	memcpy(dpcd, dpcd_ext, sizeof(dpcd_ext));
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * drm_dp_read_dpcd_caps() - read DPCD caps and extended DPCD caps if
-> + * available
-> + * @aux: DisplayPort AUX channel
-> + * @dpcd: Buffer to store the resulting DPCD in
-> + *
-> + * Attempts to read the base DPCD caps for @aux. Additionally, this function
-> + * checks for and reads the extended DPRX caps (%DP_DP13_DPCD_REV) if
-> + * present.
-> + *
-> + * Returns: %0 if the DPCD was read successfully, negative error code
-> + * otherwise.
-> + */
-> +int drm_dp_read_dpcd_caps(struct drm_dp_aux *aux,
-> +			  u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> +{
-> +	int ret;
-> +
-> +	ret = drm_dp_dpcd_read(aux, DP_DPCD_REV, dpcd, DP_RECEIVER_CAP_SIZE);
-> +	if (ret != DP_RECEIVER_CAP_SIZE || dpcd[DP_DPCD_REV] == 0)
-> +		return -EIO;
-> +
-> +	ret = drm_dp_read_extended_dpcd_caps(aux, dpcd);
-> +	if (ret < 0)
-> +		return ret;
+== Series Details ==
 
-I wonder if we should just go with the "regular" dpcd caps we just read in this
-case?
+Series: drm/i915: Add support for HDCP 1.4 over MST (rev3)
+URL   : https://patchwork.freedesktop.org/series/78749/
+State : success
 
-Regardless of my nits,
+== Summary ==
 
-Reviewed-by: Sean Paul <sean@poorly.run>
+CI Bug Log - changes from CI_DRM_8908 -> Patchwork_18375
+====================================================
 
-> +
-> +	DRM_DEBUG_KMS("%s: DPCD: %*ph\n",
-> +		      aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
-> +
-> +	if (dpcd[DP_DPCD_REV] == 0)
-> +		ret = -EIO;
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL(drm_dp_read_dpcd_caps);
-> +
->  /**
->   * drm_dp_downstream_read_info() - read DPCD downstream port info if available
->   * @aux: DisplayPort AUX channel
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index e343965a483df..230aa0360dc61 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4449,62 +4449,6 @@ intel_dp_link_down(struct intel_encoder *encoder,
->  	}
->  }
->  
-> -static void
-> -intel_dp_extended_receiver_capabilities(struct intel_dp *intel_dp)
-> -{
-> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> -	u8 dpcd_ext[6];
-> -
-> -	/*
-> -	 * Prior to DP1.3 the bit represented by
-> -	 * DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT was reserved.
-> -	 * if it is set DP_DPCD_REV at 0000h could be at a value less than
-> -	 * the true capability of the panel. The only way to check is to
-> -	 * then compare 0000h and 2200h.
-> -	 */
-> -	if (!(intel_dp->dpcd[DP_TRAINING_AUX_RD_INTERVAL] &
-> -	      DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT))
-> -		return;
-> -
-> -	if (drm_dp_dpcd_read(&intel_dp->aux, DP_DP13_DPCD_REV,
-> -			     &dpcd_ext, sizeof(dpcd_ext)) != sizeof(dpcd_ext)) {
-> -		drm_err(&i915->drm,
-> -			"DPCD failed read at extended capabilities\n");
-> -		return;
-> -	}
-> -
-> -	if (intel_dp->dpcd[DP_DPCD_REV] > dpcd_ext[DP_DPCD_REV]) {
-> -		drm_dbg_kms(&i915->drm,
-> -			    "DPCD extended DPCD rev less than base DPCD rev\n");
-> -		return;
-> -	}
-> -
-> -	if (!memcmp(intel_dp->dpcd, dpcd_ext, sizeof(dpcd_ext)))
-> -		return;
-> -
-> -	drm_dbg_kms(&i915->drm, "Base DPCD: %*ph\n",
-> -		    (int)sizeof(intel_dp->dpcd), intel_dp->dpcd);
-> -
-> -	memcpy(intel_dp->dpcd, dpcd_ext, sizeof(dpcd_ext));
-> -}
-> -
-> -bool
-> -intel_dp_read_dpcd(struct intel_dp *intel_dp)
-> -{
-> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> -
-> -	if (drm_dp_dpcd_read(&intel_dp->aux, 0x000, intel_dp->dpcd,
-> -			     sizeof(intel_dp->dpcd)) < 0)
-> -		return false; /* aux transfer failed */
-> -
-> -	intel_dp_extended_receiver_capabilities(intel_dp);
-> -
-> -	drm_dbg_kms(&i915->drm, "DPCD: %*ph\n", (int)sizeof(intel_dp->dpcd),
-> -		    intel_dp->dpcd);
-> -
-> -	return intel_dp->dpcd[DP_DPCD_REV] != 0;
-> -}
-> -
->  bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
->  {
->  	u8 dprx = 0;
-> @@ -4563,7 +4507,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
->  	/* this function is meant to be called only once */
->  	drm_WARN_ON(&dev_priv->drm, intel_dp->dpcd[DP_DPCD_REV] != 0);
->  
-> -	if (!intel_dp_read_dpcd(intel_dp))
-> +	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0)
->  		return false;
->  
->  	drm_dp_read_desc(&intel_dp->aux, &intel_dp->desc,
-> @@ -4650,7 +4594,7 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
->  {
->  	int ret;
->  
-> -	if (!intel_dp_read_dpcd(intel_dp))
-> +	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd))
->  		return false;
->  
->  	/*
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> index b901ab850cbd9..0a3af3410d52e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -99,7 +99,6 @@ bool intel_dp_source_supports_hbr3(struct intel_dp *intel_dp);
->  bool
->  intel_dp_get_link_status(struct intel_dp *intel_dp, u8 *link_status);
->  
-> -bool intel_dp_read_dpcd(struct intel_dp *intel_dp);
->  bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp);
->  int intel_dp_link_required(int pixel_clock, int bpp);
->  int intel_dp_max_data_rate(int max_link_clock, int max_lanes);
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> index b781bf4696443..dc1b35559afdf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> @@ -571,7 +571,7 @@ bool lspcon_init(struct intel_digital_port *dig_port)
->  		return false;
->  	}
->  
-> -	if (!intel_dp_read_dpcd(dp)) {
-> +	if (drm_dp_read_dpcd_caps(&dp->aux, dp->dpcd) != 0) {
->  		DRM_ERROR("LSPCON DPCD read failed\n");
->  		return false;
->  	}
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 0c141fc81aaa8..11649e93e5bb6 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1607,6 +1607,9 @@ static inline ssize_t drm_dp_dpcd_writeb(struct drm_dp_aux *aux,
->  	return drm_dp_dpcd_write(aux, offset, &value, 1);
->  }
->  
-> +int drm_dp_read_dpcd_caps(struct drm_dp_aux *aux,
-> +			  u8 dpcd[DP_RECEIVER_CAP_SIZE]);
-> +
->  int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
->  				 u8 status[DP_LINK_STATUS_SIZE]);
->  
-> -- 
-> 2.26.2
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Summary
+-------
 
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18375 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][1] -> [DMESG-FAIL][2] ([i915#1993])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-tgl-u2:          [PASS][3] -> [DMESG-FAIL][4] ([i915#1233])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-bsw-n3050:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#62] / [i915#92]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +8 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#1993]: https://gitlab.freedesktop.org/drm/intel/issues/1993
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (39 -> 34)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8908 -> Patchwork_18375
+
+  CI-20190529: 20190529
+  CI_DRM_8908: 03a59fdcea84502e199bf7fa55fd117dcd161dab @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18375: 4e90cfaa37a596889db30ec5df8554617f6876c7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4e90cfaa37a5 drm/i915: Add HDCP 1.4 support for MST connectors
+8b877b97b221 drm/i915: Print HDCP version info for all connectors
+ee796c747bb0 drm/mst: Add support for QUERY_STREAM_ENCRYPTION_STATUS MST sideband message
+88ed54f45d4a drm/i915: Add connector to hdcp_shim->check_link()
+cbf6864233d8 drm/i915: Plumb port through hdcp init
+3c4ef5d3a2fa drm/i915: Factor out HDCP shim functions from dp for use by dp_mst
+ec3ad644d55f drm/i915: Use ddi_update_pipe in intel_dp_mst
+2b6b206b775b drm/i915: Support DP MST in enc_to_dig_port() function
+c9bf9bc90816 drm/i915: Don't fully disable HDCP on a port if multiple pipes are using it
+aae84a3d1e58 drm/i915: Clean up intel_hdcp_disable
+f6bb1a3e3379 drm/i915: Protect workers against disappearing connectors
+7659c82aec36 drm/i915: Factor out hdcp->value assignments
+cd2828c49252 drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP signalling
+f61be32af4f4 drm/i915: Intercept Aksv writes in the aux hooks
+f75a1292a09a drm/i915: WARN if HDCP signalling is enabled upon disable
+2022ef4a6151 drm/i915: Clear the repeater bit on HDCP disable
+75835fa85a82 drm/i915: Fix sha_text population code
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/index.html
+
+--===============7700408884291690175==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add support for HDCP 1.4 over MST (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/78749/">https://patchwork.freedesktop.org/series/78749/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_8908 -&gt; Patchwork_18375</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18375 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-icl-y/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-icl-y/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1993">i915#1993</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1233">i915#1233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_pm_rpm@basic-pci-d3-state:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (39 -&gt; 34)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_8908 -&gt; Patchwork_18375</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_8908: 03a59fdcea84502e199bf7fa55fd117dcd161dab @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18375: 4e90cfaa37a596889db30ec5df8554617f6876c7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>4e90cfaa37a5 drm/i915: Add HDCP 1.4 support for MST connectors<br />
+8b877b97b221 drm/i915: Print HDCP version info for all connectors<br />
+ee796c747bb0 drm/mst: Add support for QUERY_STREAM_ENCRYPTION_STATUS MST sideband message<br />
+88ed54f45d4a drm/i915: Add connector to hdcp_shim-&gt;check_link()<br />
+cbf6864233d8 drm/i915: Plumb port through hdcp init<br />
+3c4ef5d3a2fa drm/i915: Factor out HDCP shim functions from dp for use by dp_mst<br />
+ec3ad644d55f drm/i915: Use ddi_update_pipe in intel_dp_mst<br />
+2b6b206b775b drm/i915: Support DP MST in enc_to_dig_port() function<br />
+c9bf9bc90816 drm/i915: Don't fully disable HDCP on a port if multiple pipes are using it<br />
+aae84a3d1e58 drm/i915: Clean up intel_hdcp_disable<br />
+f6bb1a3e3379 drm/i915: Protect workers against disappearing connectors<br />
+7659c82aec36 drm/i915: Factor out hdcp-&gt;value assignments<br />
+cd2828c49252 drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP signalling<br />
+f61be32af4f4 drm/i915: Intercept Aksv writes in the aux hooks<br />
+f75a1292a09a drm/i915: WARN if HDCP signalling is enabled upon disable<br />
+2022ef4a6151 drm/i915: Clear the repeater bit on HDCP disable<br />
+75835fa85a82 drm/i915: Fix sha_text population code</p>
+
+</body>
+</html>
+
+--===============7700408884291690175==--
+
+--===============1241077378==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1241077378==--
