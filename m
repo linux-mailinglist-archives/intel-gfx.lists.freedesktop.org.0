@@ -2,24 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79A2E24A149
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 16:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F4C524A148
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 16:09:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68BE26E329;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8944A6E3F0;
 	Wed, 19 Aug 2020 14:09:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A6826E329
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA206E3A6
  for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 14:09:10 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Aug 2020 16:08:40 +0200
-Message-Id: <20200819140904.1708856-1-maarten.lankhorst@linux.intel.com>
+Date: Wed, 19 Aug 2020 16:08:41 +0200
+Message-Id: <20200819140904.1708856-2-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200819140904.1708856-1-maarten.lankhorst@linux.intel.com>
+References: <20200819140904.1708856-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 00/24] drm/i915: Correct the locking
- hierarchy in gem, v2.
+Subject: [Intel-gfx] [PATCH v2 01/24] Revert "drm/i915/gem: Async GPU
+ relocations only"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -32,141 +34,521 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-First start with a few reverts, to get to a good starting base for this
-series:
-- Async gpu relocations are not the way to go, for new platforms we will
-  disable gpu relocations altogether.
-- We also need the relocation slowpath (EFAULT handling) back.
-- The eb_vma no longer needs to be refcounted, with the next
-  patch that removes all vma's at a single place only.
+This reverts commit 9e0f9464e2ab ("drm/i915/gem: Async GPU relocations only"),
+and related commit 7ac2d2536dfa7 ("drm/i915/gem: Delete unused code").
 
-Some igt tests will be broken, because they rely on certain behavior of
-relocations, mostly that they are taken without any ww locks, or the tests
-wiil fail.
+Async GPU relocations are not the path forward, we want to remove
+GPU accelerated relocation support eventually when userspace is fixed
+to use VM_BIND, and this is the first step towards that. We will keep
+async gpu relocations around for now, until userspace is fixed.
 
-This is because the tests themselves are broken wrt upstream behavior,
-and hangcheck should kick in to stop them.
+Relocation support will be disabled completely on platforms where there
+was never any userspace that depends on it, as the hardware doesn't
+require it from at least gen9+ onward. For older platforms, the plan
+is to use cpu relocations only.
 
-After those changes, we can finally plug in the full ww locking to execbuf,
-inverting the locking hierarchy between reservation_object and the timeline
-lock as well. The ww lock becomes the outer lock, and the timeline lock the
-inner lock.
+The igt side is fixed in igt commit 39e9aa1032a4e ("tests/i915: Remove
+subtests that rely on async relocation behavior").
 
-Lastly, we fix all the fallout from inverting the locks, except all
-selftests have not been fixed yet completely, they use a lockdep nesting
-hack until they are finally fixed. As this code is never run by normal
-users, it's safe for now until that conversion is done separately.
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 319 ++++++++++++++++--
+ .../i915/gem/selftests/i915_gem_execbuffer.c  |  21 +-
+ 2 files changed, 313 insertions(+), 27 deletions(-)
 
-There is also a final fix for context isolation, contexts currently share
-a single page because of breadcrumbs. We split out the timelines into one
-page per context. This fixes the isolation tests, and ensures one
-misbehaving context cannot affect another.
-
-After this series, we hook up ww locking in a few more places, fix userptr
-and finally flatten obj->mm.lock and remove the different subclasses of
-this lock, as a preparation to removing it altogether in the near future.
-
-Changes since v1 series:
-- Address review feedback regarding commit messages.
-- Remove extra reloc_gpu_flush().
-- Add patch to fix isolation.
-
-Maarten Lankhorst (24):
-  Revert "drm/i915/gem: Async GPU relocations only"
-  drm/i915: Revert relocation chaining commits.
-  Revert "drm/i915/gem: Drop relocation slowpath".
-  Revert "drm/i915/gem: Split eb_vma into its own allocation"
-  drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
-  drm/i915: Remove locking from i915_gem_object_prepare_read/write
-  drm/i915: Parse command buffer earlier in eb_relocate(slow)
-  drm/i915: Use per object locking in execbuf, v12.
-  drm/i915: Use ww locking in intel_renderstate.
-  drm/i915: Add ww context handling to context_barrier_task
-  drm/i915: Nuke arguments to eb_pin_engine
-  drm/i915: Pin engine before pinning all objects, v5.
-  drm/i915: Rework intel_context pinning to do everything outside of
-    pin_mutex
-  drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
-  drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as
-    well, v2.
-  drm/i915: Kill last user of intel_context_create_request outside of
-    selftests
-  drm/i915: Convert i915_perf to ww locking as well
-  drm/i915: Dirty hack to fix selftests locking inversion
-  drm/i915/selftests: Fix locking inversion in lrc selftest.
-  drm/i915: Use ww pinning for intel_context_create_request()
-  drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion,
-    v3.
-  drm/i915: Add ww locking to vm_fault_gtt
-  drm/i915: Add ww locking to pin_to_display_plane, v2.
-  drm/i915: Do not share hwsp across contexts any more
-
- drivers/gpu/drm/i915/display/intel_display.c  |    6 +-
- .../gpu/drm/i915/gem/i915_gem_client_blt.c    |   78 +-
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |   55 +-
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |    4 +-
- drivers/gpu/drm/i915/gem/i915_gem_domain.c    |   80 +-
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 1601 +++++++++++------
- drivers/gpu/drm/i915/gem/i915_gem_mman.c      |   51 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |   40 +-
- .../gpu/drm/i915/gem/i915_gem_object_blt.c    |  152 +-
- .../gpu/drm/i915/gem/i915_gem_object_blt.h    |    3 +
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |    9 +
- drivers/gpu/drm/i915/gem/i915_gem_pm.c        |    2 +-
- drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |    2 +-
- .../gpu/drm/i915/gem/selftests/huge_pages.c   |    7 +-
- .../i915/gem/selftests/i915_gem_client_blt.c  |    2 +-
- .../i915/gem/selftests/i915_gem_coherency.c   |   50 +-
- .../drm/i915/gem/selftests/i915_gem_context.c |  142 +-
- .../i915/gem/selftests/i915_gem_execbuffer.c  |   60 +-
- .../drm/i915/gem/selftests/i915_gem_mman.c    |   45 +-
- .../drm/i915/gem/selftests/i915_gem_phys.c    |    2 +-
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |    4 +-
- drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |    4 +-
- drivers/gpu/drm/i915/gt/intel_context.c       |  309 ++--
- drivers/gpu/drm/i915/gt/intel_context.h       |   13 +
- drivers/gpu/drm/i915/gt/intel_context_types.h |    5 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    2 +-
- drivers/gpu/drm/i915/gt/intel_gt.c            |   23 +-
- drivers/gpu/drm/i915/gt/intel_gt_types.h      |    4 -
- drivers/gpu/drm/i915/gt/intel_lrc.c           |   37 +-
- drivers/gpu/drm/i915/gt/intel_renderstate.c   |   73 +-
- drivers/gpu/drm/i915/gt/intel_renderstate.h   |    9 +-
- drivers/gpu/drm/i915/gt/intel_ring.c          |   10 +-
- drivers/gpu/drm/i915/gt/intel_ring.h          |    3 +-
- .../gpu/drm/i915/gt/intel_ring_submission.c   |   20 +-
- drivers/gpu/drm/i915/gt/intel_timeline.c      |  392 +---
- drivers/gpu/drm/i915/gt/intel_timeline.h      |    3 +-
- .../gpu/drm/i915/gt/intel_timeline_types.h    |   15 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c   |   43 +-
- drivers/gpu/drm/i915/gt/mock_engine.c         |   14 +-
- drivers/gpu/drm/i915/gt/selftest_lrc.c        |   17 +-
- drivers/gpu/drm/i915/gt/selftest_rps.c        |   30 +-
- drivers/gpu/drm/i915/gt/selftest_timeline.c   |   15 +-
- .../gpu/drm/i915/gt/selftest_workarounds.c    |    2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c        |    2 +-
- drivers/gpu/drm/i915/gvt/cmd_parser.c         |    3 +-
- drivers/gpu/drm/i915/i915_drv.h               |   13 +-
- drivers/gpu/drm/i915/i915_gem.c               |   89 +-
- drivers/gpu/drm/i915/i915_gem.h               |   12 +
- drivers/gpu/drm/i915/i915_perf.c              |   57 +-
- drivers/gpu/drm/i915/i915_request.c           |    4 -
- drivers/gpu/drm/i915/i915_request.h           |   10 -
- drivers/gpu/drm/i915/i915_vma.c               |   13 +-
- drivers/gpu/drm/i915/i915_vma.h               |   13 +-
- drivers/gpu/drm/i915/selftests/i915_gem.c     |   41 +
- drivers/gpu/drm/i915/selftests/i915_request.c |   18 +-
- drivers/gpu/drm/i915/selftests/i915_vma.c     |    2 +-
- .../drm/i915/selftests/intel_memory_region.c  |    2 +-
- 57 files changed, 2301 insertions(+), 1416 deletions(-)
-
-
-base-commit: ff7e5d4b71dc3fd8413b2d47e73ed3a2a5caccc6
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 24a1486d2dc5..c6a613d92a13 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -46,6 +46,13 @@ struct eb_vma_array {
+ 	struct eb_vma vma[];
+ };
+ 
++enum {
++	FORCE_CPU_RELOC = 1,
++	FORCE_GTT_RELOC,
++	FORCE_GPU_RELOC,
++#define DBG_FORCE_RELOC 0 /* choose one of the above! */
++};
++
+ #define __EXEC_OBJECT_HAS_PIN		BIT(31)
+ #define __EXEC_OBJECT_HAS_FENCE		BIT(30)
+ #define __EXEC_OBJECT_NEEDS_MAP		BIT(29)
+@@ -261,6 +268,8 @@ struct i915_execbuffer {
+ 	 */
+ 	struct reloc_cache {
+ 		struct drm_mm_node node; /** temporary GTT binding */
++		unsigned long vaddr; /** Current kmap address */
++		unsigned long page; /** Currently mapped page index */
+ 		unsigned int gen; /** Cached value of INTEL_GEN */
+ 		bool use_64bit_reloc : 1;
+ 		bool has_llc : 1;
+@@ -607,6 +616,23 @@ eb_add_vma(struct i915_execbuffer *eb,
+ 	}
+ }
+ 
++static inline int use_cpu_reloc(const struct reloc_cache *cache,
++				const struct drm_i915_gem_object *obj)
++{
++	if (!i915_gem_object_has_struct_page(obj))
++		return false;
++
++	if (DBG_FORCE_RELOC == FORCE_CPU_RELOC)
++		return true;
++
++	if (DBG_FORCE_RELOC == FORCE_GTT_RELOC)
++		return false;
++
++	return (cache->has_llc ||
++		obj->cache_dirty ||
++		obj->cache_level != I915_CACHE_NONE);
++}
++
+ static int eb_reserve_vma(const struct i915_execbuffer *eb,
+ 			  struct eb_vma *ev,
+ 			  u64 pin_flags)
+@@ -937,6 +963,8 @@ relocation_target(const struct drm_i915_gem_relocation_entry *reloc,
+ static void reloc_cache_init(struct reloc_cache *cache,
+ 			     struct drm_i915_private *i915)
+ {
++	cache->page = -1;
++	cache->vaddr = 0;
+ 	/* Must be a variable in the struct to allow GCC to unroll. */
+ 	cache->gen = INTEL_GEN(i915);
+ 	cache->has_llc = HAS_LLC(i915);
+@@ -948,6 +976,25 @@ static void reloc_cache_init(struct reloc_cache *cache,
+ 	cache->target = NULL;
+ }
+ 
++static inline void *unmask_page(unsigned long p)
++{
++	return (void *)(uintptr_t)(p & PAGE_MASK);
++}
++
++static inline unsigned int unmask_flags(unsigned long p)
++{
++	return p & ~PAGE_MASK;
++}
++
++#define KMAP 0x4 /* after CLFLUSH_FLAGS */
++
++static inline struct i915_ggtt *cache_to_ggtt(struct reloc_cache *cache)
++{
++	struct drm_i915_private *i915 =
++		container_of(cache, struct i915_execbuffer, reloc_cache)->i915;
++	return &i915->ggtt;
++}
++
+ #define RELOC_TAIL 4
+ 
+ static int reloc_gpu_chain(struct reloc_cache *cache)
+@@ -1060,6 +1107,186 @@ static int reloc_gpu_flush(struct reloc_cache *cache)
+ 	return err;
+ }
+ 
++static void reloc_cache_reset(struct reloc_cache *cache)
++{
++	void *vaddr;
++
++	if (!cache->vaddr)
++		return;
++
++	vaddr = unmask_page(cache->vaddr);
++	if (cache->vaddr & KMAP) {
++		if (cache->vaddr & CLFLUSH_AFTER)
++			mb();
++
++		kunmap_atomic(vaddr);
++		i915_gem_object_finish_access((struct drm_i915_gem_object *)cache->node.mm);
++	} else {
++		struct i915_ggtt *ggtt = cache_to_ggtt(cache);
++
++		intel_gt_flush_ggtt_writes(ggtt->vm.gt);
++		io_mapping_unmap_atomic((void __iomem *)vaddr);
++
++		if (drm_mm_node_allocated(&cache->node)) {
++			ggtt->vm.clear_range(&ggtt->vm,
++					     cache->node.start,
++					     cache->node.size);
++			mutex_lock(&ggtt->vm.mutex);
++			drm_mm_remove_node(&cache->node);
++			mutex_unlock(&ggtt->vm.mutex);
++		} else {
++			i915_vma_unpin((struct i915_vma *)cache->node.mm);
++		}
++	}
++
++	cache->vaddr = 0;
++	cache->page = -1;
++}
++
++static void *reloc_kmap(struct drm_i915_gem_object *obj,
++			struct reloc_cache *cache,
++			unsigned long pageno)
++{
++	void *vaddr;
++	struct page *page;
++
++	if (cache->vaddr) {
++		kunmap_atomic(unmask_page(cache->vaddr));
++	} else {
++		unsigned int flushes;
++		int err;
++
++		err = i915_gem_object_prepare_write(obj, &flushes);
++		if (err)
++			return ERR_PTR(err);
++
++		BUILD_BUG_ON(KMAP & CLFLUSH_FLAGS);
++		BUILD_BUG_ON((KMAP | CLFLUSH_FLAGS) & PAGE_MASK);
++
++		cache->vaddr = flushes | KMAP;
++		cache->node.mm = (void *)obj;
++		if (flushes)
++			mb();
++	}
++
++	page = i915_gem_object_get_page(obj, pageno);
++	if (!obj->mm.dirty)
++		set_page_dirty(page);
++
++	vaddr = kmap_atomic(page);
++	cache->vaddr = unmask_flags(cache->vaddr) | (unsigned long)vaddr;
++	cache->page = pageno;
++
++	return vaddr;
++}
++
++static void *reloc_iomap(struct drm_i915_gem_object *obj,
++			 struct reloc_cache *cache,
++			 unsigned long page)
++{
++	struct i915_ggtt *ggtt = cache_to_ggtt(cache);
++	unsigned long offset;
++	void *vaddr;
++
++	if (cache->vaddr) {
++		intel_gt_flush_ggtt_writes(ggtt->vm.gt);
++		io_mapping_unmap_atomic((void __force __iomem *) unmask_page(cache->vaddr));
++	} else {
++		struct i915_vma *vma;
++		int err;
++
++		if (i915_gem_object_is_tiled(obj))
++			return ERR_PTR(-EINVAL);
++
++		if (use_cpu_reloc(cache, obj))
++			return NULL;
++
++		i915_gem_object_lock(obj);
++		err = i915_gem_object_set_to_gtt_domain(obj, true);
++		i915_gem_object_unlock(obj);
++		if (err)
++			return ERR_PTR(err);
++
++		vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0,
++					       PIN_MAPPABLE |
++					       PIN_NONBLOCK /* NOWARN */ |
++					       PIN_NOEVICT);
++		if (IS_ERR(vma)) {
++			memset(&cache->node, 0, sizeof(cache->node));
++			mutex_lock(&ggtt->vm.mutex);
++			err = drm_mm_insert_node_in_range
++				(&ggtt->vm.mm, &cache->node,
++				 PAGE_SIZE, 0, I915_COLOR_UNEVICTABLE,
++				 0, ggtt->mappable_end,
++				 DRM_MM_INSERT_LOW);
++			mutex_unlock(&ggtt->vm.mutex);
++			if (err) /* no inactive aperture space, use cpu reloc */
++				return NULL;
++		} else {
++			cache->node.start = vma->node.start;
++			cache->node.mm = (void *)vma;
++		}
++	}
++
++	offset = cache->node.start;
++	if (drm_mm_node_allocated(&cache->node)) {
++		ggtt->vm.insert_page(&ggtt->vm,
++				     i915_gem_object_get_dma_address(obj, page),
++				     offset, I915_CACHE_NONE, 0);
++	} else {
++		offset += page << PAGE_SHIFT;
++	}
++
++	vaddr = (void __force *)io_mapping_map_atomic_wc(&ggtt->iomap,
++							 offset);
++	cache->page = page;
++	cache->vaddr = (unsigned long)vaddr;
++
++	return vaddr;
++}
++
++static void *reloc_vaddr(struct drm_i915_gem_object *obj,
++			 struct reloc_cache *cache,
++			 unsigned long page)
++{
++	void *vaddr;
++
++	if (cache->page == page) {
++		vaddr = unmask_page(cache->vaddr);
++	} else {
++		vaddr = NULL;
++		if ((cache->vaddr & KMAP) == 0)
++			vaddr = reloc_iomap(obj, cache, page);
++		if (!vaddr)
++			vaddr = reloc_kmap(obj, cache, page);
++	}
++
++	return vaddr;
++}
++
++static void clflush_write32(u32 *addr, u32 value, unsigned int flushes)
++{
++	if (unlikely(flushes & (CLFLUSH_BEFORE | CLFLUSH_AFTER))) {
++		if (flushes & CLFLUSH_BEFORE) {
++			clflushopt(addr);
++			mb();
++		}
++
++		*addr = value;
++
++		/*
++		 * Writes to the same cacheline are serialised by the CPU
++		 * (including clflush). On the write path, we only require
++		 * that it hits memory in an orderly fashion and place
++		 * mb barriers at the start and end of the relocation phase
++		 * to ensure ordering of clflush wrt to the system.
++		 */
++		if (flushes & CLFLUSH_AFTER)
++			clflushopt(addr);
++	} else
++		*addr = value;
++}
++
+ static int reloc_move_to_gpu(struct i915_request *rq, struct i915_vma *vma)
+ {
+ 	struct drm_i915_gem_object *obj = vma->obj;
+@@ -1225,6 +1452,17 @@ static u32 *reloc_gpu(struct i915_execbuffer *eb,
+ 	return cmd;
+ }
+ 
++static inline bool use_reloc_gpu(struct i915_vma *vma)
++{
++	if (DBG_FORCE_RELOC == FORCE_GPU_RELOC)
++		return true;
++
++	if (DBG_FORCE_RELOC)
++		return false;
++
++	return !dma_resv_test_signaled_rcu(vma->resv, true);
++}
++
+ static unsigned long vma_phys_addr(struct i915_vma *vma, u32 offset)
+ {
+ 	struct page *page;
+@@ -1239,10 +1477,10 @@ static unsigned long vma_phys_addr(struct i915_vma *vma, u32 offset)
+ 	return addr + offset_in_page(offset);
+ }
+ 
+-static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+-			     struct i915_vma *vma,
+-			     u64 offset,
+-			     u64 target_addr)
++static bool __reloc_entry_gpu(struct i915_execbuffer *eb,
++			      struct i915_vma *vma,
++			      u64 offset,
++			      u64 target_addr)
+ {
+ 	const unsigned int gen = eb->reloc_cache.gen;
+ 	unsigned int len;
+@@ -1258,7 +1496,7 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+ 
+ 	batch = reloc_gpu(eb, vma, len);
+ 	if (IS_ERR(batch))
+-		return PTR_ERR(batch);
++		return false;
+ 
+ 	addr = gen8_canonical_addr(vma->node.start + offset);
+ 	if (gen >= 8) {
+@@ -1307,21 +1545,55 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+ 		*batch++ = target_addr;
+ 	}
+ 
+-	return 0;
++	return true;
++}
++
++static bool reloc_entry_gpu(struct i915_execbuffer *eb,
++			    struct i915_vma *vma,
++			    u64 offset,
++			    u64 target_addr)
++{
++	if (eb->reloc_cache.vaddr)
++		return false;
++
++	if (!use_reloc_gpu(vma))
++		return false;
++
++	return __reloc_entry_gpu(eb, vma, offset, target_addr);
+ }
+ 
+ static u64
+-relocate_entry(struct i915_execbuffer *eb,
+-	       struct i915_vma *vma,
++relocate_entry(struct i915_vma *vma,
+ 	       const struct drm_i915_gem_relocation_entry *reloc,
++	       struct i915_execbuffer *eb,
+ 	       const struct i915_vma *target)
+ {
+ 	u64 target_addr = relocation_target(reloc, target);
+-	int err;
+-
+-	err = __reloc_entry_gpu(eb, vma, reloc->offset, target_addr);
+-	if (err)
+-		return err;
++	u64 offset = reloc->offset;
++
++	if (!reloc_entry_gpu(eb, vma, offset, target_addr)) {
++		bool wide = eb->reloc_cache.use_64bit_reloc;
++		void *vaddr;
++
++repeat:
++		vaddr = reloc_vaddr(vma->obj,
++				    &eb->reloc_cache,
++				    offset >> PAGE_SHIFT);
++		if (IS_ERR(vaddr))
++			return PTR_ERR(vaddr);
++
++		GEM_BUG_ON(!IS_ALIGNED(offset, sizeof(u32)));
++		clflush_write32(vaddr + offset_in_page(offset),
++				lower_32_bits(target_addr),
++				eb->reloc_cache.vaddr);
++
++		if (wide) {
++			offset += sizeof(u32);
++			target_addr >>= 32;
++			wide = false;
++			goto repeat;
++		}
++	}
+ 
+ 	return target->node.start | UPDATE;
+ }
+@@ -1386,7 +1658,8 @@ eb_relocate_entry(struct i915_execbuffer *eb,
+ 	 * If the relocation already has the right value in it, no
+ 	 * more work needs to be done.
+ 	 */
+-	if (gen8_canonical_addr(target->vma->node.start) == reloc->presumed_offset)
++	if (!DBG_FORCE_RELOC &&
++	    gen8_canonical_addr(target->vma->node.start) == reloc->presumed_offset)
+ 		return 0;
+ 
+ 	/* Check that the relocation address is valid... */
+@@ -1418,7 +1691,7 @@ eb_relocate_entry(struct i915_execbuffer *eb,
+ 	ev->flags &= ~EXEC_OBJECT_ASYNC;
+ 
+ 	/* and update the user's relocation entry */
+-	return relocate_entry(eb, ev->vma, reloc, target->vma);
++	return relocate_entry(ev->vma, reloc, eb, target->vma);
+ }
+ 
+ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+@@ -1456,8 +1729,10 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 		 * this is bad and so lockdep complains vehemently.
+ 		 */
+ 		copied = __copy_from_user(r, urelocs, count * sizeof(r[0]));
+-		if (unlikely(copied))
+-			return -EFAULT;
++		if (unlikely(copied)) {
++			remain = -EFAULT;
++			goto out;
++		}
+ 
+ 		remain -= count;
+ 		do {
+@@ -1465,7 +1740,8 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 
+ 			if (likely(offset == 0)) {
+ 			} else if ((s64)offset < 0) {
+-				return (int)offset;
++				remain = (int)offset;
++				goto out;
+ 			} else {
+ 				/*
+ 				 * Note that reporting an error now
+@@ -1495,8 +1771,9 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 		} while (r++, --count);
+ 		urelocs += ARRAY_SIZE(stack);
+ 	} while (remain);
+-
+-	return 0;
++out:
++	reloc_cache_reset(&eb->reloc_cache);
++	return remain;
+ }
+ 
+ static int eb_relocate(struct i915_execbuffer *eb)
+@@ -2573,7 +2850,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	eb.i915 = i915;
+ 	eb.file = file;
+ 	eb.args = args;
+-	if (!(args->flags & I915_EXEC_NO_RELOC))
++	if (DBG_FORCE_RELOC || !(args->flags & I915_EXEC_NO_RELOC))
+ 		args->flags |= __EXEC_HAS_RELOC;
+ 
+ 	eb.exec = exec;
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+index 57c14d3340cd..a49016f8ee0d 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+@@ -37,14 +37,20 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+ 		return err;
+ 
+ 	/* 8-Byte aligned */
+-	err = __reloc_entry_gpu(eb, vma, offsets[0] * sizeof(u32), 0);
+-	if (err)
++	if (!__reloc_entry_gpu(eb, vma,
++			       offsets[0] * sizeof(u32),
++			       0)) {
++		err = -EIO;
+ 		goto unpin_vma;
++	}
+ 
+ 	/* !8-Byte aligned */
+-	err = __reloc_entry_gpu(eb, vma, offsets[1] * sizeof(u32), 1);
+-	if (err)
++	if (!__reloc_entry_gpu(eb, vma,
++			       offsets[1] * sizeof(u32),
++			       1)) {
++		err = -EIO;
+ 		goto unpin_vma;
++	}
+ 
+ 	/* Skip to the end of the cmd page */
+ 	i = PAGE_SIZE / sizeof(u32) - RELOC_TAIL - 1;
+@@ -54,9 +60,12 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+ 	eb->reloc_cache.rq_size += i;
+ 
+ 	/* Force batch chaining */
+-	err = __reloc_entry_gpu(eb, vma, offsets[2] * sizeof(u32), 2);
+-	if (err)
++	if (!__reloc_entry_gpu(eb, vma,
++			       offsets[2] * sizeof(u32),
++			       2)) {
++		err = -EIO;
+ 		goto unpin_vma;
++	}
+ 
+ 	GEM_BUG_ON(!eb->reloc_cache.rq);
+ 	rq = i915_request_get(eb->reloc_cache.rq);
 -- 
 2.28.0
 
