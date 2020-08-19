@@ -1,31 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E80AB24A340
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 17:38:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7562E24A46C
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 18:56:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C19F56E46B;
-	Wed, 19 Aug 2020 15:38:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE1756E478;
+	Wed, 19 Aug 2020 16:56:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CE94C6E3B0;
- Wed, 19 Aug 2020 15:38:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C85DEA0BD0;
- Wed, 19 Aug 2020 15:38:22 +0000 (UTC)
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com
+ [IPv6:2607:f8b0:4864:20::1041])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8542489BF1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 16:56:15 +0000 (UTC)
+Received: by mail-pj1-x1041.google.com with SMTP id nv17so1154200pjb.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 09:56:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=kernel-dk.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=DyPe34DueaqLfEcDqZqm300kn/odPwqy1uJt22bP0Z8=;
+ b=XsGUJB1Hdc8az/rXuro1bWhBsdgGdQHjYKQpuunAo8x0WekUdWBNsmSDFJj67GVWVG
+ 5hPdTKlI6scfsCliWtIOLtIYsVj1YwZaDB5Moe7+6/awpbvAiGHWPGqlMMiQH755AjTS
+ vfPiJNDbB+aPu6VjtibhyAOy9LSk3+Tr2jZ+44/eXBtbf+XOZ8K+VQwL9BGEgF8JGQKK
+ 5KG7zpuu/Xea1f/72jgUaeUpmt4D/ORaIe5NpGI/tYWzxvMEzO/L884n90j+BH7HiH1m
+ QMIIcf8a02yI8nCtJ4GjS4kGwrIFsNa8Q8Tri7Y3/f7lv1J5QYlIRrGUMNjHynb2RGMA
+ GacA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=DyPe34DueaqLfEcDqZqm300kn/odPwqy1uJt22bP0Z8=;
+ b=WsMRLHQl5Zma+xt111AN+XYYZrUEwY9HAoA4hAIqzHgDTgnEgbXcoqnu7w9FL6jbX+
+ 9KGP4NavTUif9x6iQ4AUhV/xP4Dfaen9ShcLc1kC+heY6+50UNZ7/h7vK+U4PXBlwNfg
+ 5GXgOsgIdzBs4ZZnw9Az6FwecYD0X4zkeSn0KlKUIQ0LaRF+HjEAVuvIaRXnRojQP7mb
+ aZcVoUdpnHv5nReF5neB9pl4wtNTh4pvqS2qIO93f2hsFKQb5C/OOV64YJTw6lorEVAZ
+ sDIMbod5ulPRi5fsjVh59jF/yMHgr7ndgFTCC5gnEtw0a46So/KBCXvk3HabLqzD84x6
+ uHog==
+X-Gm-Message-State: AOAM532LDXuth4NE6kAYX+Mf7DnHrXYnUMnX6QAc+B3PSek3hgwyZyHN
+ osEvqlwyK4pU7/CUtEEveDK2fA==
+X-Google-Smtp-Source: ABdhPJwmU9GVpeA/a5GSwGnni05DgMGKqd87OvDU6WClq1X+wlrKxKnBzQboSPP7uq4T48DrxExHZQ==
+X-Received: by 2002:a17:90a:f2c7:: with SMTP id
+ gt7mr4669042pjb.204.1597856175023; 
+ Wed, 19 Aug 2020 09:56:15 -0700 (PDT)
+Received: from [192.168.1.182] ([66.219.217.173])
+ by smtp.gmail.com with ESMTPSA id w23sm25765910pgj.5.2020.08.19.09.56.10
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 19 Aug 2020 09:56:14 -0700 (PDT)
+To: Allen <allen.lkml@gmail.com>,
+ James Bottomley <James.Bottomley@hansenpartnership.com>
+References: <20200817091617.28119-1-allen.cryptic@gmail.com>
+ <20200817091617.28119-2-allen.cryptic@gmail.com>
+ <b5508ca4-0641-7265-2939-5f03cbfab2e2@kernel.dk>
+ <202008171228.29E6B3BB@keescook>
+ <161b75f1-4e88-dcdf-42e8-b22504d7525c@kernel.dk>
+ <202008171246.80287CDCA@keescook>
+ <df645c06-c30b-eafa-4d23-826b84f2ff48@kernel.dk>
+ <1597780833.3978.3.camel@HansenPartnership.com>
+ <f3312928-430c-25f3-7112-76f2754df080@kernel.dk>
+ <1597849185.3875.7.camel@HansenPartnership.com>
+ <CAOMdWSJRR0BhjJK1FxD7UKxNd5sk4ycmEX6TYtJjRNR6UFAj6Q@mail.gmail.com>
+From: Jens Axboe <axboe@kernel.dk>
+Message-ID: <2b1a5987-9b54-d63e-b3da-d3024505776c@kernel.dk>
+Date: Wed, 19 Aug 2020 10:56:08 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sean Paul" <sean@poorly.run>
-Date: Wed, 19 Aug 2020 15:38:22 -0000
-Message-ID: <159785150279.23595.15672290332001226012@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200818153910.27894-1-sean@poorly.run>
-In-Reply-To: <20200818153910.27894-1-sean@poorly.run>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_support_for_HDCP_1=2E4_over_MST_=28rev3=29?=
+In-Reply-To: <CAOMdWSJRR0BhjJK1FxD7UKxNd5sk4ycmEX6TYtJjRNR6UFAj6Q@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] block: convert tasklets to use new
+ tasklet_setup() API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,259 +83,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1241077378=="
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ linux-atm-general@lists.sourceforge.net, manohar.vanga@gmail.com,
+ airlied@linux.ie, linux-hyperv@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kys@microsoft.com, anton.ivanov@cambridgegreys.com, devel@driverdev.osuosl.org,
+ linux-s390@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
+ maximlevitsky@gmail.com, richard@nod.at, deller@gmx.de,
+ jassisinghbrar@gmail.com, 3chas3@gmail.com, intel-gfx@lists.freedesktop.org,
+ Jakub Kicinski <kuba@kernel.org>, mporter@kernel.crashing.org,
+ jdike@addtoit.com, Kees Cook <keescook@chromium.org>, oakad@yahoo.com,
+ s.hauer@pengutronix.de, linux-input@vger.kernel.org,
+ linux-um@lists.infradead.org, linux-block@vger.kernel.org, broonie@kernel.org,
+ openipmi-developer@lists.sourceforge.net, mitch@sfgoth.com,
+ linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
+ netdev@vger.kernel.org, martyn@welchs.me.uk, dmitry.torokhov@gmail.com,
+ linux-mmc@vger.kernel.org, sre@kernel.org, linux-spi@vger.kernel.org,
+ alex.bou9@gmail.com, Allen Pais <allen.cryptic@gmail.com>,
+ stefanr@s5r6.in-berlin.de, linux-ntb@googlegroups.com,
+ Romain Perier <romain.perier@gmail.com>, shawnguo@kernel.org,
+ David Miller <davem@davemloft.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1241077378==
-Content-Type: multipart/alternative;
- boundary="===============7700408884291690175=="
+On 8/19/20 9:24 AM, Allen wrote:
+>> [...]
+>>>> Since both threads seem to have petered out, let me suggest in
+>>>> kernel.h:
+>>>>
+>>>> #define cast_out(ptr, container, member) \
+>>>>     container_of(ptr, typeof(*container), member)
+>>>>
+>>>> It does what you want, the argument order is the same as
+>>>> container_of with the only difference being you name the containing
+>>>> structure instead of having to specify its type.
+>>>
+>>> Not to incessantly bike shed on the naming, but I don't like
+>>> cast_out, it's not very descriptive. And it has connotations of
+>>> getting rid of something, which isn't really true.
+>>
+>> Um, I thought it was exactly descriptive: you're casting to the outer
+>> container.  I thought about following the C++ dynamic casting style, so
+>> out_cast(), but that seemed a bit pejorative.  What about outer_cast()?
+>>
+>>> FWIW, I like the from_ part of the original naming, as it has some
+>>> clues as to what is being done here. Why not just from_container()?
+>>> That should immediately tell people what it does without having to
+>>> look up the implementation, even before this becomes a part of the
+>>> accepted coding norm.
+>>
+>> I'm not opposed to container_from() but it seems a little less
+>> descriptive than outer_cast() but I don't really care.  I always have
+>> to look up container_of() when I'm using it so this would just be
+>> another macro of that type ...
+>>
+> 
+>  So far we have a few which have been suggested as replacement
+> for from_tasklet()
+> 
+> - out_cast() or outer_cast()
+> - from_member().
+> - container_from() or from_container()
+> 
+> from_container() sounds fine, would trimming it a bit work? like from_cont().
 
---===============7700408884291690175==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+I like container_from() the most, since it's the closest to contain_of()
+which is a well known idiom for years. The lines will already be shorter
+without the need to specify the struct, so don't like the idea of
+squeezing container into cont for any of them. For most people, cont is
+usually short for continue, not container.
 
-== Series Details ==
-
-Series: drm/i915: Add support for HDCP 1.4 over MST (rev3)
-URL   : https://patchwork.freedesktop.org/series/78749/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8908 -> Patchwork_18375
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18375 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [PASS][1] -> [DMESG-FAIL][2] ([i915#1993])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-tgl-u2:          [PASS][3] -> [DMESG-FAIL][4] ([i915#1233])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#62] / [i915#92]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +8 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#1993]: https://gitlab.freedesktop.org/drm/intel/issues/1993
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (39 -> 34)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8908 -> Patchwork_18375
-
-  CI-20190529: 20190529
-  CI_DRM_8908: 03a59fdcea84502e199bf7fa55fd117dcd161dab @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18375: 4e90cfaa37a596889db30ec5df8554617f6876c7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4e90cfaa37a5 drm/i915: Add HDCP 1.4 support for MST connectors
-8b877b97b221 drm/i915: Print HDCP version info for all connectors
-ee796c747bb0 drm/mst: Add support for QUERY_STREAM_ENCRYPTION_STATUS MST sideband message
-88ed54f45d4a drm/i915: Add connector to hdcp_shim->check_link()
-cbf6864233d8 drm/i915: Plumb port through hdcp init
-3c4ef5d3a2fa drm/i915: Factor out HDCP shim functions from dp for use by dp_mst
-ec3ad644d55f drm/i915: Use ddi_update_pipe in intel_dp_mst
-2b6b206b775b drm/i915: Support DP MST in enc_to_dig_port() function
-c9bf9bc90816 drm/i915: Don't fully disable HDCP on a port if multiple pipes are using it
-aae84a3d1e58 drm/i915: Clean up intel_hdcp_disable
-f6bb1a3e3379 drm/i915: Protect workers against disappearing connectors
-7659c82aec36 drm/i915: Factor out hdcp->value assignments
-cd2828c49252 drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP signalling
-f61be32af4f4 drm/i915: Intercept Aksv writes in the aux hooks
-f75a1292a09a drm/i915: WARN if HDCP signalling is enabled upon disable
-2022ef4a6151 drm/i915: Clear the repeater bit on HDCP disable
-75835fa85a82 drm/i915: Fix sha_text population code
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/index.html
-
---===============7700408884291690175==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Add support for HDCP 1.4 over MST (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/78749/">https://patchwork.freedesktop.org/series/78749/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8908 -&gt; Patchwork_18375</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18375 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-icl-y/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-icl-y/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1993">i915#1993</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1233">i915#1233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_pm_rpm@basic-pci-d3-state:<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8908/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18375/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (39 -&gt; 34)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_8908 -&gt; Patchwork_18375</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8908: 03a59fdcea84502e199bf7fa55fd117dcd161dab @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18375: 4e90cfaa37a596889db30ec5df8554617f6876c7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4e90cfaa37a5 drm/i915: Add HDCP 1.4 support for MST connectors<br />
-8b877b97b221 drm/i915: Print HDCP version info for all connectors<br />
-ee796c747bb0 drm/mst: Add support for QUERY_STREAM_ENCRYPTION_STATUS MST sideband message<br />
-88ed54f45d4a drm/i915: Add connector to hdcp_shim-&gt;check_link()<br />
-cbf6864233d8 drm/i915: Plumb port through hdcp init<br />
-3c4ef5d3a2fa drm/i915: Factor out HDCP shim functions from dp for use by dp_mst<br />
-ec3ad644d55f drm/i915: Use ddi_update_pipe in intel_dp_mst<br />
-2b6b206b775b drm/i915: Support DP MST in enc_to_dig_port() function<br />
-c9bf9bc90816 drm/i915: Don't fully disable HDCP on a port if multiple pipes are using it<br />
-aae84a3d1e58 drm/i915: Clean up intel_hdcp_disable<br />
-f6bb1a3e3379 drm/i915: Protect workers against disappearing connectors<br />
-7659c82aec36 drm/i915: Factor out hdcp-&gt;value assignments<br />
-cd2828c49252 drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP signalling<br />
-f61be32af4f4 drm/i915: Intercept Aksv writes in the aux hooks<br />
-f75a1292a09a drm/i915: WARN if HDCP signalling is enabled upon disable<br />
-2022ef4a6151 drm/i915: Clear the repeater bit on HDCP disable<br />
-75835fa85a82 drm/i915: Fix sha_text population code</p>
-
-</body>
-</html>
-
---===============7700408884291690175==--
-
---===============1241077378==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+Jens Axboe
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1241077378==--
