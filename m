@@ -2,80 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4956524909B
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 00:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C4412491DC
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 02:38:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E0306E0C2;
-	Tue, 18 Aug 2020 22:13:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD8F89E3B;
+	Wed, 19 Aug 2020 00:38:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA2D86E0C2
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 22:13:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1597788809;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=2VdePHzp+6FjiacQB/K4E13PADgrzeOxI3/My9I00VY=;
- b=BnmA+1FVJXyo85Iu7JK6cWbJ64/rFAH7BUxsb3uqiPW97jLt8Ym+KwSdGPqngMIF76KJFU
- VG4308hFctUwuEwAibEqUU0PIpSnHZa7mzwwY3KeC8iJdhITx33GN4fc1EjbzJvbpfHVJD
- 9tE2/1KxmIcvy53kqmO7S84rmeCacAM=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-233-B1P-LbaBPEuOoav8zTGrPw-1; Tue, 18 Aug 2020 18:12:19 -0400
-X-MC-Unique: B1P-LbaBPEuOoav8zTGrPw-1
-Received: by mail-qk1-f197.google.com with SMTP id 1so14124135qkm.19
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 15:12:19 -0700 (PDT)
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com
+ [IPv6:2a00:1450:4864:20::144])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E05489E3B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 00:38:30 +0000 (UTC)
+Received: by mail-lf1-x144.google.com with SMTP id d2so11178444lfj.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 17:38:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=yd8RQiYd3lIlnveKq9AD3vAUL0UPw0snW7rgN+Ot8+A=;
+ b=YWKYVyFKZKU8Du8+0eku2p5ObHZXJkU0CbMfnVxdCIL9RSlgf5EBwXe+dKU14eyYUO
+ +iL7GeDnuanZIJgxOkMR4E8EbAjyPFiGvW6/wCGigLTZ8AKm6yL1sM1IyuikinZ8PyH4
+ d20kY/3xnxM/f+cb3jcvtnmo+t0BTkuumJlJ4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
- :in-reply-to:references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=2VdePHzp+6FjiacQB/K4E13PADgrzeOxI3/My9I00VY=;
- b=K1K/S/xrPX8fscUiJZzqHEzprkw5AJc83RFgXDuOk6MbGio4IKUc5hPtQrdSQMNw5t
- gFRg2ylAFN48KDa/STkCjMKKippEbMebpv/SSkufAqPw89dxjsRdNIS8uu/mM5fwXXGs
- 8RXPWEgmi6qvalk9OUnWaGRLk7NRTi/TnJK5wOxwnvjEJXe8R9eyDd9WQwg/tjnrsnhO
- Nj0kec9Oxsz4rP7FVohFX0Sh66Tr0f3xVCdAxvjamUjtFbYHjkuc7HeI7sRTwCuJ/4g2
- l70ELXdpJplwXqToGAJ7vsz25ox58rHBbd1GuW29crKhMvdjwu8eZQ7OrUTH/nLqbVLw
- ZGdw==
-X-Gm-Message-State: AOAM532mII57dVkU19dOvBEV3yNKRsKLzw/bHpJeaPnGIfggjgvmDCJO
- OLNHqiNjnlyFW7yNTojzcMWDu5iSn/+V25VVyZSEFRljKPkhqq4KU8uCRPa8CDoIKxnz0IGozJW
- R/J7h/Zym0WprdB18g6ebINaCKkc+
-X-Received: by 2002:a05:620a:792:: with SMTP id
- 18mr19343762qka.346.1597788739099; 
- Tue, 18 Aug 2020 15:12:19 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwotrmkw0gAIBk1JYilKrB4veAPgkHXCxFv8l9JRfNpty6jp4HX7k/Gj4zaZ/s2vJoCPFQg9A==
-X-Received: by 2002:a05:620a:792:: with SMTP id
- 18mr19343732qka.346.1597788738737; 
- Tue, 18 Aug 2020 15:12:18 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id n184sm22269509qkn.49.2020.08.18.15.12.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 Aug 2020 15:12:17 -0700 (PDT)
-Message-ID: <11e78f1f2a56e69f29cb9e8c078c158c9ff401fb.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, juston.li@intel.com, 
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, 
- rodrigo.vivi@intel.com, anshuman.gupta@intel.com
-Date: Tue, 18 Aug 2020 18:12:16 -0400
-In-Reply-To: <20200818153910.27894-16-sean@poorly.run>
-References: <20200818153910.27894-1-sean@poorly.run>
- <20200818153910.27894-16-sean@poorly.run>
-Organization: Red Hat
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=yd8RQiYd3lIlnveKq9AD3vAUL0UPw0snW7rgN+Ot8+A=;
+ b=WPXil7BApQlXeBu4LFNLgdLi/kbUmnnmjin3mHs+P+nhC9cg/66kBEs5O1JhYwqHNp
+ GyIoRMUOm3v8qcmhx0JI/oS9xXTW2RZoDerEvXHrpmrRnuQGhC9/p0E7OX2d6aLZqqQh
+ kWFOCb2O4dS4JBygRuDeD8AbM8PgwCP//XC+I4W4DZfkSBAuK27VaV87C34NeFgQo1xE
+ clc0Evc+CgktY7MI90u6rCpGALpcMm/v2O4i/mgGsxl93fh6dKW843UT6k9W91Z/mn6W
+ FqAlvz9yuO7ZE2d2NKaFlGq/cM/tYdbDNTEf3IEAM+2OOt8xVhFVR4cg3ixfpqc9rlL2
+ kWpQ==
+X-Gm-Message-State: AOAM533H1w/PBjkkgJpvveIAv9RFz2AuB7wzFbvsi7WRIS4Xb9FNQ829
+ oZTDaP7v1zVuLkjuA7bAHE0mKIole/iR8w==
+X-Google-Smtp-Source: ABdhPJxvB/GRcQSJtFdJNq5fqwhyeDtRBYDFdH/DrsUsQ13GfxeLWHi/lHZvPRY9Z+9jLu5qnDknfg==
+X-Received: by 2002:a19:c852:: with SMTP id y79mr10833377lff.37.1597797508249; 
+ Tue, 18 Aug 2020 17:38:28 -0700 (PDT)
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com.
+ [209.85.208.179])
+ by smtp.gmail.com with ESMTPSA id c21sm6833472lfh.38.2020.08.18.17.38.26
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 18 Aug 2020 17:38:27 -0700 (PDT)
+Received: by mail-lj1-f179.google.com with SMTP id v4so23496703ljd.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Aug 2020 17:38:26 -0700 (PDT)
+X-Received: by 2002:a2e:7615:: with SMTP id r21mr10229382ljc.371.1597797506311; 
+ Tue, 18 Aug 2020 17:38:26 -0700 (PDT)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0.003
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH v8 15/17] drm/mst: Add support for
- QUERY_STREAM_ENCRYPTION_STATUS MST sideband message
+References: <20200817161132.GA4711@amd>
+In-Reply-To: <20200817161132.GA4711@amd>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Tue, 18 Aug 2020 17:38:10 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wh6_eWwvpL=AhOeY0btf_dkpu+0joNzPZWfbBWgAeAhMA@mail.gmail.com>
+Message-ID: <CAHk-=wh6_eWwvpL=AhOeY0btf_dkpu+0joNzPZWfbBWgAeAhMA@mail.gmail.com>
+To: Pavel Machek <pavel@ucw.cz>, Chris Wilson <chris@chris-wilson.co.uk>, 
+ Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [Intel-gfx] 5.9-rc1: graphics regression moved from -next to
+ mainline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,429 +71,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Cc: David Airlie <airlied@linux.ie>, daniel.vetter@ffwll.ch,
- Maxime Ripard <mripard@kernel.org>, Sean Paul <seanpaul@chromium.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ kernel list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Just one small comment
+Ping on this?
 
-On Tue, 2020-08-18 at 11:39 -0400, Sean Paul wrote:
-> From: Sean Paul <seanpaul@chromium.org>
-> 
-> Used to query whether an MST stream is encrypted or not.
-> 
-> Cc: Lyude Paul <lyude@redhat.com>
-> Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> 
-> Link: 
-> https://patchwork.freedesktop.org/patch/msgid/20200218220242.107265-14-sean@poorly.run
-> #v4
-> Link: 
-> https://patchwork.freedesktop.org/patch/msgid/20200305201236.152307-15-sean@poorly.run
-> #v5
-> Link: 
-> https://patchwork.freedesktop.org/patch/msgid/20200429195502.39919-15-sean@poorly.run
-> #v6
-> Link: 
-> https://patchwork.freedesktop.org/patch/msgid/20200623155907.22961-16-sean@poorly.run
-> #v7
-> 
-> Changes in v4:
-> -Added to the set
-> Changes in v5:
-> -None
-> Changes in v6:
-> -Use FIELD_PREP to generate request buffer bitfields (Lyude)
-> -Add mst selftest and dump/decode_sideband_req for QSES (Lyude)
-> Changes in v7:
-> -None
-> Changes in v8:
-> -Reverse the parsing on the hdcp_*x_device_present bits and leave
->  breadcrumb in case this is incorrect (Anshuman)
-> ---
->  drivers/gpu/drm/drm_dp_mst_topology.c         | 150 ++++++++++++++++++
->  .../drm/selftests/test-drm_dp_mst_helper.c    |  17 ++
->  include/drm/drm_dp_helper.h                   |   3 +
->  include/drm/drm_dp_mst_helper.h               |  44 +++++
->  4 files changed, 214 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c
-> b/drivers/gpu/drm/drm_dp_mst_topology.c
-> index 67dd72ea200e..f2b77ef40281 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -20,11 +20,13 @@
->   * OF THIS SOFTWARE.
->   */
->  
-> +#include <linux/bitfield.h>
->  #include <linux/delay.h>
->  #include <linux/errno.h>
->  #include <linux/i2c.h>
->  #include <linux/init.h>
->  #include <linux/kernel.h>
-> +#include <linux/random.h>
->  #include <linux/sched.h>
->  #include <linux/seq_file.h>
->  #include <linux/iopoll.h>
-> @@ -423,6 +425,22 @@ drm_dp_encode_sideband_req(const struct
-> drm_dp_sideband_msg_req_body *req,
->  		memcpy(&buf[idx], req->u.i2c_write.bytes, req-
-> >u.i2c_write.num_bytes);
->  		idx += req->u.i2c_write.num_bytes;
->  		break;
-> +	case DP_QUERY_STREAM_ENC_STATUS: {
-> +		const struct drm_dp_query_stream_enc_status *msg;
-> +
-> +		msg = &req->u.enc_status;
-> +		buf[idx] = msg->stream_id;
-> +		idx++;
-> +		memcpy(&buf[idx], msg->client_id, sizeof(msg->client_id));
-> +		idx += sizeof(msg->client_id);
-> +		buf[idx] = 0;
-> +		buf[idx] |= FIELD_PREP(GENMASK(1, 0), msg->stream_event);
-> +		buf[idx] |= msg->valid_stream_event ? BIT(2) : 0;
-> +		buf[idx] |= FIELD_PREP(GENMASK(4, 3), msg->stream_behavior);
-> +		buf[idx] |= msg->valid_stream_behavior ? BIT(5) : 0;
-> +		idx++;
-> +		}
-> +		break;
->  	}
->  	raw->cur_len = idx;
->  }
-> @@ -551,6 +569,20 @@ drm_dp_decode_sideband_req(const struct
-> drm_dp_sideband_msg_tx *raw,
->  				return -ENOMEM;
->  		}
->  		break;
-> +	case DP_QUERY_STREAM_ENC_STATUS:
-> +		req->u.enc_status.stream_id = buf[idx++];
-> +		for (i = 0; i < sizeof(req->u.enc_status.client_id); i++)
-> +			req->u.enc_status.client_id[i] = buf[idx++];
-> +
-> +		req->u.enc_status.stream_event = FIELD_GET(GENMASK(1, 0),
-> +							   buf[idx]);
-> +		req->u.enc_status.valid_stream_event = FIELD_GET(BIT(2),
-> +								 buf[idx]);
-> +		req->u.enc_status.stream_behavior = FIELD_GET(GENMASK(4, 3),
-> +							      buf[idx]);
-> +		req->u.enc_status.valid_stream_behavior = FIELD_GET(BIT(5),
-> +								    buf[idx]);
-> +		break;
->  	}
->  
->  	return 0;
-> @@ -629,6 +661,16 @@ drm_dp_dump_sideband_msg_req_body(const struct
-> drm_dp_sideband_msg_req_body *req
->  		  req->u.i2c_write.num_bytes, req->u.i2c_write.num_bytes,
->  		  req->u.i2c_write.bytes);
->  		break;
-> +	case DP_QUERY_STREAM_ENC_STATUS:
-> +		P("stream_id=%u client_id=%*ph stream_event=%x "
-> +		  "valid_event=%d stream_behavior=%x valid_behavior=%d",
-> +		  req->u.enc_status.stream_id,
-> +		  (int)ARRAY_SIZE(req->u.enc_status.client_id),
-> +		  req->u.enc_status.client_id, req->u.enc_status.stream_event,
-> +		  req->u.enc_status.valid_stream_event,
-> +		  req->u.enc_status.stream_behavior,
-> +		  req->u.enc_status.valid_stream_behavior);
-> +		break;
->  	default:
->  		P("???\n");
->  		break;
-> @@ -936,6 +978,42 @@ static bool
-> drm_dp_sideband_parse_power_updown_phy_ack(struct drm_dp_sideband_ms
->  	return true;
->  }
->  
-> +static bool
-> +drm_dp_sideband_parse_query_stream_enc_status(
-> +				struct drm_dp_sideband_msg_rx *raw,
-> +				struct drm_dp_sideband_msg_reply_body *repmsg)
-> +{
-> +	struct drm_dp_query_stream_enc_status_ack_reply *reply;
-> +
-> +	reply = &repmsg->u.enc_status;
-> +
-> +	reply->stream_id = raw->msg[3];
-> +
-> +	reply->reply_signed = raw->msg[2] & BIT(0);
-> +
-> +	/*
-> +	 * NOTE: It's my impression from reading the spec that the below parsing
-> +	 * is correct. However I noticed while testing with an HDCP 1.4 display
-> +	 * through an HDCP 2.2 hub that only bit 3 was set. In that case, I
-> +	 * would expect both bits to be set. So keep the parsing following the
-> +	 * spec, but beware reality might not match the spec (at least for some
-> +	 * configurations).
-> +	 */
-> +	reply->hdcp_1x_device_present = raw->msg[2] & BIT(4);
-> +	reply->hdcp_2x_device_present = raw->msg[2] & BIT(3);
-> +
-> +	reply->query_capable_device_present = raw->msg[2] & BIT(5);
-> +	reply->legacy_device_present = raw->msg[2] & BIT(6);
-> +	reply->unauthorizable_device_present = raw->msg[2] & BIT(7);
-> +
-> +	reply->auth_completed = !!(raw->msg[1] & BIT(3));
-> +	reply->encryption_enabled = !!(raw->msg[1] & BIT(4));
-> +	reply->repeater_present = !!(raw->msg[1] & BIT(5));
-> +	reply->state = (raw->msg[1] & GENMASK(7, 6)) >> 6;
-> +
-> +	return true;
-> +}
-> +
->  static bool drm_dp_sideband_parse_reply(struct drm_dp_sideband_msg_rx *raw,
->  					struct drm_dp_sideband_msg_reply_body
-> *msg)
->  {
-> @@ -970,6 +1048,8 @@ static bool drm_dp_sideband_parse_reply(struct
-> drm_dp_sideband_msg_rx *raw,
->  		return drm_dp_sideband_parse_power_updown_phy_ack(raw, msg);
->  	case DP_CLEAR_PAYLOAD_ID_TABLE:
->  		return true; /* since there's nothing to parse */
-> +	case DP_QUERY_STREAM_ENC_STATUS:
-> +		return drm_dp_sideband_parse_query_stream_enc_status(raw, msg);
->  	default:
->  		DRM_ERROR("Got unknown reply 0x%02x (%s)\n", msg->req_type,
->  			  drm_dp_mst_req_type_str(msg->req_type));
-> @@ -1121,6 +1201,25 @@ static void build_power_updown_phy(struct
-> drm_dp_sideband_msg_tx *msg,
->  	msg->path_msg = true;
->  }
->  
-> +static int
-> +build_query_stream_enc_status(struct drm_dp_sideband_msg_tx *msg, u8
-> stream_id,
-> +			      u8 *q_id)
-> +{
-> +	struct drm_dp_sideband_msg_req_body req;
-> +
-> +	req.req_type = DP_QUERY_STREAM_ENC_STATUS;
-> +	req.u.enc_status.stream_id = stream_id;
-> +	memcpy(req.u.enc_status.client_id, q_id,
-> +	       sizeof(req.u.enc_status.client_id));
-> +	req.u.enc_status.stream_event = 0;
-> +	req.u.enc_status.valid_stream_event = false;
-> +	req.u.enc_status.stream_behavior = 0;
-> +	req.u.enc_status.valid_stream_behavior = false;
-> +
-> +	drm_dp_encode_sideband_req(&req, msg);
-> +	return 0;
-> +}
-> +
->  static int drm_dp_mst_assign_payload_id(struct drm_dp_mst_topology_mgr *mgr,
->  					struct drm_dp_vcpi *vcpi)
->  {
-> @@ -3153,6 +3252,57 @@ int drm_dp_send_power_updown_phy(struct
-> drm_dp_mst_topology_mgr *mgr,
->  }
->  EXPORT_SYMBOL(drm_dp_send_power_updown_phy);
->  
-> +int drm_dp_send_query_stream_enc_status(struct drm_dp_mst_topology_mgr *mgr,
-> +		struct drm_dp_mst_port *port,
-> +		struct drm_dp_query_stream_enc_status_ack_reply *status)
-> +{
-> +	struct drm_dp_sideband_msg_tx *txmsg;
-> +	u8 nonce[7];
-> +	int len, ret;
-> +
-> +	txmsg = kzalloc(sizeof(*txmsg), GFP_KERNEL);
-> +	if (!txmsg)
-> +		return -ENOMEM;
-> +
-> +	port = drm_dp_mst_topology_get_port_validated(mgr, port);
-> +	if (!port) {
-> +		ret = -EINVAL;
-> +		goto out_get_port;
-> +	}
-> +
-> +	get_random_bytes(nonce, sizeof(nonce));
-> +
-> +	/*
-> +	 * "Source device targets the QUERY_STREAM_ENCRYPTION_STATUS message
-> +	 *  transaction at the MST Branch device directly connected to the
-> +	 *  Source"
-> +	 */
-> +	txmsg->dst = mgr->mst_primary;
-> +
-> +	len = build_query_stream_enc_status(txmsg, port->vcpi.vcpi, nonce);
-> +
-> +	drm_dp_queue_down_tx(mgr, txmsg);
-> +
-> +	ret = drm_dp_mst_wait_tx_reply(mgr->mst_primary, txmsg);
-> +	if (ret < 0) {
-> +		goto out;
-> +	} else if (txmsg->reply.reply_type == DP_SIDEBAND_REPLY_NAK) {
-> +		DRM_DEBUG_KMS("query encryption status nak received\n");
-Should probably just use drm_dbg_kms() here
+The code disassembles to
 
-Otherwise:
+  24: 8b 85 d0 fd ff ff    mov    -0x230(%ebp),%eax
+  2a:* c7 03 01 00 40 10    movl   $0x10400001,(%ebx) <-- trapping instruction
+  30: 89 43 04              mov    %eax,0x4(%ebx)
+  33: 8b 85 b4 fd ff ff    mov    -0x24c(%ebp),%eax
+  39: 89 43 08              mov    %eax,0x8(%ebx)
+  3c: e9                    jmp ...
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+which looks like is one of the cases in __reloc_entry_gpu(). I *think*
+it's this one:
 
-> +		ret = -ENXIO;
-> +		goto out;
-> +	}
-> +
-> +	ret = 0;
-> +	memcpy(status, &txmsg->reply.u.enc_status, sizeof(*status));
-> +
-> +out:
-> +	drm_dp_mst_topology_put_port(port);
-> +out_get_port:
-> +	kfree(txmsg);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL(drm_dp_send_query_stream_enc_status);
-> +
->  static int drm_dp_create_payload_step1(struct drm_dp_mst_topology_mgr *mgr,
->  				       int id,
->  				       struct drm_dp_payload *payload)
-> diff --git a/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c
-> b/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c
-> index bd990d178765..1d696ec001cf 100644
-> --- a/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c
-> +++ b/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c
-> @@ -5,6 +5,8 @@
->  
->  #define PREFIX_STR "[drm_dp_mst_helper]"
->  
-> +#include <linux/random.h>
-> +
->  #include <drm/drm_dp_mst_helper.h>
->  #include <drm/drm_print.h>
->  
-> @@ -237,6 +239,21 @@ int igt_dp_mst_sideband_msg_req_decode(void *unused)
->  	in.u.i2c_write.bytes = data;
->  	DO_TEST();
->  
-> +	in.req_type = DP_QUERY_STREAM_ENC_STATUS;
-> +	in.u.enc_status.stream_id = 1;
-> +	DO_TEST();
-> +	get_random_bytes(in.u.enc_status.client_id,
-> +			 sizeof(in.u.enc_status.client_id));
-> +	DO_TEST();
-> +	in.u.enc_status.stream_event = 3;
-> +	DO_TEST();
-> +	in.u.enc_status.valid_stream_event = 0;
-> +	DO_TEST();
-> +	in.u.enc_status.stream_behavior = 3;
-> +	DO_TEST();
-> +	in.u.enc_status.valid_stream_behavior = 1;
-> +	DO_TEST();
-> +
->  #undef DO_TEST
->  	return 0;
->  }
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 5c2819924862..5e41e15cb5a1 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1109,6 +1109,9 @@
->  #define DP_POWER_DOWN_PHY		0x25
->  #define DP_SINK_EVENT_NOTIFY		0x30
->  #define DP_QUERY_STREAM_ENC_STATUS	0x38
-> +#define  DP_QUERY_STREAM_ENC_STATUS_STATE_NO_EXIST	0
-> +#define  DP_QUERY_STREAM_ENC_STATUS_STATE_INACTIVE	1
-> +#define  DP_QUERY_STREAM_ENC_STATUS_STATE_ACTIVE	2
->  
->  /* DP 1.2 MST sideband reply types */
->  #define DP_SIDEBAND_REPLY_ACK		0x00
-> diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
-> index 8b9eb4db3381..371eef8798ad 100644
-> --- a/include/drm/drm_dp_mst_helper.h
-> +++ b/include/drm/drm_dp_mst_helper.h
-> @@ -313,6 +313,34 @@ struct drm_dp_remote_i2c_write_ack_reply {
->  	u8 port_number;
->  };
->  
-> +struct drm_dp_query_stream_enc_status_ack_reply {
-> +	/* Bit[23:16]- Stream Id */
-> +	u8 stream_id;
-> +
-> +	/* Bit[15]- Signed */
-> +	bool reply_signed;
-> +
-> +	/* Bit[10:8]- Stream Output Sink Type */
-> +	bool unauthorizable_device_present;
-> +	bool legacy_device_present;
-> +	bool query_capable_device_present;
-> +
-> +	/* Bit[12:11]- Stream Output CP Type */
-> +	bool hdcp_1x_device_present;
-> +	bool hdcp_2x_device_present;
-> +
-> +	/* Bit[4]- Stream Authentication */
-> +	bool auth_completed;
-> +
-> +	/* Bit[3]- Stream Encryption */
-> +	bool encryption_enabled;
-> +
-> +	/* Bit[2]- Stream Repeater Function Present */
-> +	bool repeater_present;
-> +
-> +	/* Bit[1:0]- Stream State */
-> +	u8 state;
-> +};
->  
->  #define DRM_DP_MAX_SDP_STREAMS 16
->  struct drm_dp_allocate_payload {
-> @@ -374,6 +402,15 @@ struct drm_dp_remote_i2c_write {
->  	u8 *bytes;
->  };
->  
-> +struct drm_dp_query_stream_enc_status {
-> +	u8 stream_id;
-> +	u8 client_id[7];	/* 56-bit nonce */
-> +	u8 stream_event;
-> +	bool valid_stream_event;
-> +	u8 stream_behavior;
-> +	u8 valid_stream_behavior;
-> +};
-> +
->  /* this covers ENUM_RESOURCES, POWER_DOWN_PHY, POWER_UP_PHY */
->  struct drm_dp_port_number_req {
->  	u8 port_number;
-> @@ -422,6 +459,8 @@ struct drm_dp_sideband_msg_req_body {
->  
->  		struct drm_dp_remote_i2c_read i2c_read;
->  		struct drm_dp_remote_i2c_write i2c_write;
-> +
-> +		struct drm_dp_query_stream_enc_status enc_status;
->  	} u;
->  };
->  
-> @@ -444,6 +483,8 @@ struct drm_dp_sideband_msg_reply_body {
->  		struct drm_dp_remote_i2c_read_ack_reply remote_i2c_read_ack;
->  		struct drm_dp_remote_i2c_read_nak_reply remote_i2c_read_nack;
->  		struct drm_dp_remote_i2c_write_ack_reply remote_i2c_write_ack;
-> +
-> +		struct drm_dp_query_stream_enc_status_ack_reply enc_status;
->  	} u;
->  };
->  
-> @@ -808,6 +849,9 @@ drm_dp_atomic_release_vcpi_slots(struct drm_atomic_state
-> *state,
->  				 struct drm_dp_mst_port *port);
->  int drm_dp_send_power_updown_phy(struct drm_dp_mst_topology_mgr *mgr,
->  				 struct drm_dp_mst_port *port, bool power_up);
-> +int drm_dp_send_query_stream_enc_status(struct drm_dp_mst_topology_mgr *mgr,
-> +		struct drm_dp_mst_port *port,
-> +		struct drm_dp_query_stream_enc_status_ack_reply *status);
->  int __must_check drm_dp_mst_atomic_check(struct drm_atomic_state *state);
->  
->  void drm_dp_mst_get_port_malloc(struct drm_dp_mst_port *port);
--- 
-Sincerely,
-      Lyude Paul (she/her)
-      Software Engineer at Red Hat
+        } else if (gen >= 3 &&
+                   !(IS_I915G(eb->i915) || IS_I915GM(eb->i915))) {
+                *batch++ = MI_STORE_DWORD_IMM | MI_MEM_VIRTUAL;
+                *batch++ = addr;
+                *batch++ = target_addr;
 
+where that "batch" pointer is 0xf8601000, so it looks like it just
+overflowed into the next page that isn't there.
+
+The cleaned-up call trace is
+
+  drm_ioctl+0x1f4/0x38b ->
+    drm_ioctl_kernel+0x87/0xd0 ->
+      i915_gem_execbuffer2_ioctl+0xdd/0x360 ->
+        i915_gem_do_execbuffer+0xaab/0x2780 ->
+          eb_relocate_vma
+
+but there's a lot of inling going on, so..
+
+The obvious suspect is commit 9e0f9464e2ab ("drm/i915/gem: Async GPU
+relocations only") but that's going purely by "that seems to be the
+main relocation change this mmrge window".
+
+                     Linus
+
+On Mon, Aug 17, 2020 at 9:11 AM Pavel Machek <pavel@ucw.cz> wrote:
+>
+> Hi!
+>
+> After about half an hour of uptime, screen starts blinking on thinkpad
+> x60 and machine becomes unusable.
+>
+> I already reported this in -next, and now it is in mainline. It is
+> 32-bit x86 system.
+>
+>
+>                                                                 Pavel
+>
+>
+> Aug 17 17:36:04 amd ovpn-castor[2828]: UDPv4 link local (bound):
+> [undef]
+> Aug 17 17:36:04 amd ovpn-castor[2828]: UDPv4 link remote:
+> [AF_INET]87.138.219.28:1194
+> Aug 17 17:36:23 amd kernel: BUG: unable to handle page fault for
+> address: f8601000
+> Aug 17 17:36:23 amd kernel: #PF: supervisor write access in kernel
+> mode
+> Aug 17 17:36:23 amd kernel: #PF: error_code(0x0002) - not-present page
+> Aug 17 17:36:23 amd kernel: *pdpt = 00000000318f2001 *pde =
+> 0000000000000000
+> Aug 17 17:36:23 amd kernel: Oops: 0002 [#1] PREEMPT SMP PTI
+> Aug 17 17:36:23 amd kernel: CPU: 1 PID: 3004 Comm: Xorg Not tainted
+> 5.9.0-rc1+ #86
+> Aug 17 17:36:23 amd kernel: Hardware name: LENOVO 17097HU/17097HU,
+> BIOS 7BETD8WW (2.19 ) 03/31
+> /2011
+> Aug 17 17:36:23 amd kernel: EIP: eb_relocate_vma+0xcf6/0xf20
+> Aug 17 17:36:23 amd kernel: Code: e9 ff f7 ff ff c7 85 c0 fd ff ff ed
+> ff ff ff c7 85 c4 fd ff
+> ff ff ff ff ff 8b 85 c0 fd ff ff e9 a5 f8 ff ff 8b 85 d0 fd ff ff <c7>
+> 03 01 00 40 10 89 43 04
+>  8b 85 b4 fd ff ff 89 43 08 e9 9f f7 ff
+>  Aug 17 17:36:23 amd kernel: EAX: 003c306c EBX: f8601000 ECX: 00847000
+>  EDX: 00000000
+>  Aug 17 17:36:23 amd kernel: ESI: 00847000 EDI: 00000000 EBP: f1947c68
+>  ESP: f19479fc
+>  Aug 17 17:36:23 amd kernel: DS: 007b ES: 007b FS: 00d8 GS: 00e0 SS:
+>  0068 EFLAGS: 00210246
+>  Aug 17 17:36:23 amd kernel: CR0: 80050033 CR2: f8601000 CR3: 31a1e000
+>  CR4: 000006b0
+>  Aug 17 17:36:23 amd kernel: Call Trace:
+>  Aug 17 17:36:23 amd kernel: ? i915_vma_pin+0xc5/0x8c0
+>  Aug 17 17:36:23 amd kernel: ? __mutex_unlock_slowpath+0x2b/0x280
+>  Aug 17 17:36:23 amd kernel: ? __active_retire+0x7e/0xd0
+>  Aug 17 17:36:23 amd kernel: ? mutex_unlock+0xb/0x10
+>  Aug 17 17:36:23 amd kernel: ? i915_vma_pin+0xc5/0x8c0
+>  Aug 17 17:36:23 amd kernel: ? __lock_acquire.isra.31+0x261/0x530
+>  Aug 17 17:36:23 amd kernel: ? eb_lookup_vmas+0x1f5/0x9e0
+>  Aug 17 17:36:23 amd kernel: i915_gem_do_execbuffer+0xaab/0x2780
+>  Aug 17 17:36:23 amd kernel: ? _raw_spin_unlock_irqrestore+0x27/0x40
+>  Aug 17 17:36:23 amd kernel: ? __lock_acquire.isra.31+0x261/0x530
+>  Aug 17 17:36:23 amd kernel: ? __lock_acquire.isra.31+0x261/0x530
+>  Aug 17 17:36:23 amd kernel: ? kvmalloc_node+0x69/0x70
+>  Aug 17 17:36:23 amd kernel: i915_gem_execbuffer2_ioctl+0xdd/0x360
+>  Aug 17 17:36:23 amd kernel: ? i915_gem_execbuffer_ioctl+0x2b0/0x2b0
+>  Aug 17 17:36:23 amd kernel: drm_ioctl_kernel+0x87/0xd0
+>  Aug 17 17:36:23 amd kernel: drm_ioctl+0x1f4/0x38b
+>  Aug 17 17:36:23 amd kernel: ? i915_gem_execbuffer_ioctl+0x2b0/0x2b0
+>  Aug 17 17:36:23 amd kernel: ? posix_get_monotonic_timespec+0x1c/0x90
+>  Aug 17 17:36:23 amd kernel: ? ktime_get_ts64+0x7a/0x1e0
+>  Aug 17 17:36:23 amd kernel: ? drm_ioctl_kernel+0xd0/0xd0
+>  Aug 17 17:36:23 amd kernel: __ia32_sys_ioctl+0x1ad/0x799
+>  Aug 17 17:36:23 amd kernel: ? debug_smp_processor_id+0x12/0x20
+>  Aug 17 17:36:23 amd kernel: ? exit_to_user_mode_prepare+0x4f/0x100
+>  Aug 17 17:36:23 amd kernel: do_int80_syscall_32+0x2c/0x40
+>  Aug 17 17:36:23 amd kernel: entry_INT80_32+0x111/0x111
+>  Aug 17 17:36:23 amd kernel: EIP: 0xb7fbc092
+>  Aug 17 17:36:23 amd kernel: Code: 00 00 00 e9 90 ff ff ff ff a3 24 00
+>  00 00 68 30 00 00 00 e9 80 ff ff ff ff a3 e8 ff ff ff 66 90 00 00 00
+>  00 00 00 00 00 cd 80 <c3> 8d b4 26 00 00 00 00 8d b6 00 00 00 00 8b
+>  1c 24 c3 8d b4 26 00
+>  Aug 17 17:36:23 amd kernel: EAX: ffffffda EBX: 0000000a ECX: c0406469
+>  EDX: bff0ae3c
+>  Aug 17 17:36:23 amd kernel: ESI: b73aa000 EDI: c0406469 EBP: 0000000a
+>  ESP: bff0adb4
+>  Aug 17 17:36:23 amd kernel: DS: 007b ES: 007b FS: 0000 GS: 0033 SS:
+>  007b EFLAGS: 00200296
+>  Aug 17 17:36:23 amd kernel: ? asm_exc_nmi+0xcc/0x2bc
+>  Aug 17 17:36:23 amd kernel: Modules linked in:
+>  Aug 17 17:36:23 amd kernel: CR2: 00000000f8601000
+>  Aug 17 17:36:23 amd kernel: ---[ end trace 2ca9775068bbac06 ]---
+>
+> --
+> (english) http://www.livejournal.com/~pavelmachek
+> (cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
