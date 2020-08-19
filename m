@@ -2,46 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A64249895
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 10:51:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6810B24984F
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Aug 2020 10:35:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E0FF89C37;
-	Wed, 19 Aug 2020 08:51:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B476E1FB;
+	Wed, 19 Aug 2020 08:34:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA0AA89C37
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 08:51:27 +0000 (UTC)
-IronPort-SDR: sBUWepkKfZR61kI5xDmNpS5EfQgRnDGBWu9I04UlDT5hXSnwEMTIldlXaA4ud4z8tW25RmA5rS
- Z8OAo9ONLPmQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9717"; a="152690148"
-X-IronPort-AV: E=Sophos;i="5.76,330,1592895600"; 
- d="asc'?scan'208";a="152690148"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 257676E1D7;
+ Wed, 19 Aug 2020 08:34:53 +0000 (UTC)
+IronPort-SDR: MoOKDaxTm7RTEYODTlE9TXxlhwOWxTcfl1+VwdMkmbY0OxDjLMDPCeyrqtJbVZSaP+wOlmwxWl
+ p5/vCOGaAbcA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9717"; a="152486343"
+X-IronPort-AV: E=Sophos;i="5.76,330,1592895600"; d="scan'208";a="152486343"
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2020 01:51:27 -0700
-IronPort-SDR: JAVDtM2QE1LJs+HBx58iUarS7IrcfHHb1X/VhPueAPFs39ilpZupLEM/X0CTX+IJfmBeD+Rw7a
- fNn8AmrREQmQ==
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2020 01:34:53 -0700
+IronPort-SDR: ojXyNQAOV54rMVE0+cGMHVvdpdBod5qvWye7l07Ii4BR6k93iFS1xC5SMRDtdAVxh2uLHyTd3u
+ +b7mp3egCtIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,330,1592895600"; 
- d="asc'?scan'208";a="278276204"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by fmsmga007.fm.intel.com with ESMTP; 19 Aug 2020 01:51:26 -0700
-Date: Wed, 19 Aug 2020 16:32:59 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200819083259.GD32450@zhen-hp.sh.intel.com>
-References: <20200811030209.21058-1-yan.y.zhao@intel.com>
- <20200811092532.13753-1-chris@chris-wilson.co.uk>
- <20200812020631.GP27035@zhen-hp.sh.intel.com>
+X-IronPort-AV: E=Sophos;i="5.76,330,1592895600"; d="scan'208";a="371175800"
+Received: from fmsmsx601-2.cps.intel.com (HELO fmsmsx601.amr.corp.intel.com)
+ ([10.18.84.211])
+ by orsmga001.jf.intel.com with ESMTP; 19 Aug 2020 01:34:53 -0700
+Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 19 Aug 2020 01:34:51 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX606.gar.corp.intel.com (10.67.234.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 19 Aug 2020 14:04:49 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Wed, 19 Aug 2020 14:04:49 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Laxminarayan Bharadiya, Pankaj"
+ <pankaj.laxminarayan.bharadiya@intel.com>, "jani.nikula@linux.intel.com"
+ <jani.nikula@linux.intel.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "daniels@collabora.com" <daniels@collabora.com>, "Lattannavar, Sameer"
+ <sameer.lattannavar@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, "Souza, Jose" <jose.souza@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Chris Wilson
+ <chris@chris-wilson.co.uk>, "Navare, Manasi D" <manasi.d.navare@intel.com>,
+ Wambui Karuga <wambui.karugax@gmail.com>, "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>, "C, Ramalingam" <ramalingam.c@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v5 4/5] drm/i915/display: Add
+ Nearest-neighbor based integer scaling support
+Thread-Index: AQHWaU+GRJiA1iU9KUS6Flyaa2wIIKk/NCXg
+Date: Wed, 19 Aug 2020 08:34:49 +0000
+Message-ID: <72ad3e8d1071469ca647c8188d37612f@intel.com>
+References: <20200803042953.7626-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200803042953.7626-5-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200803042953.7626-5-pankaj.laxminarayan.bharadiya@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-In-Reply-To: <20200812020631.GP27035@zhen-hp.sh.intel.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Drop runtime-pm assert from vgpu
- io accessors
+Subject: Re: [Intel-gfx] [PATCH v5 4/5] drm/i915/display: Add
+ Nearest-neighbor based integer scaling support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,150 +85,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Yan Zhao <yan.y.zhao@intel.com>
-Content-Type: multipart/mixed; boundary="===============0120550613=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============0120550613==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="k3qmt+ucFURmlhDS"
-Content-Disposition: inline
 
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Pankaj
+> Bharadiya
+> Sent: Monday, August 3, 2020 10:00 AM
+> To: jani.nikula@linux.intel.com; daniel@ffwll.ch; intel-gfx@lists.freedesktop.org;
+> dri-devel@lists.freedesktop.org; ville.syrjala@linux.intel.com;
+> daniels@collabora.com; Lattannavar, Sameer <sameer.lattannavar@intel.com>;
+> Joonas Lahtinen <joonas.lahtinen@linux.intel.com>; Vivi, Rodrigo
+> <rodrigo.vivi@intel.com>; David Airlie <airlied@linux.ie>; Souza, Jose
+> <jose.souza@intel.com>; Maarten Lankhorst
+> <maarten.lankhorst@linux.intel.com>; Chris Wilson <chris@chris-wilson.co.uk>;
+> Navare, Manasi D <manasi.d.navare@intel.com>; Wambui Karuga
+> <wambui.karugax@gmail.com>; De Marchi, Lucas <lucas.demarchi@intel.com>;
+> C, Ramalingam <ramalingam.c@intel.com>
+> Subject: [Intel-gfx] [PATCH v5 4/5] drm/i915/display: Add Nearest-neighbor based
+> integer scaling support
+> 
+> Integer scaling (IS) is a nearest-neighbor upscaling technique that simply scales
+> up the existing pixels by an integer (i.e., whole number) multiplier.Nearest-
+> neighbor (NN) interpolation works by filling in the missing color values in the
+> upscaled image with that of the coordinate-mapped nearest source pixel value.
+> 
+> Both IS and NN preserve the clarity of the original image. Integer scaling is
+> particularly useful for pixel art games that rely on sharp, blocky images to deliver
+> their distinctive look.
+> 
+> Introduce functions to configure the scaler filter coefficients to enable nearest-
+> neighbor filtering.
+> 
+> Bspec: 49247
+> 
+> changes since v3:
+> * None
+> changes since v2:
+> * Move APIs from 5/5 into this patch.
+> * Change filter programming related function names to cnl_*, move
+>   filter select bits related code into inline function (Ville) changes since v1:
+> * Rearrange skl_scaler_setup_nearest_neighbor_filter() to iterate the
+>   registers directly instead of the phases and taps (Ville)
+> 
+> changes since RFC:
+> * Refine the skl_scaler_setup_nearest_neighbor_filter() logic (Ville)
+> 
+> Signed-off-by: Shashank Sharma <shashank.sharma@intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 99 ++++++++++++++++++++
+> drivers/gpu/drm/i915/display/intel_display.h |  4 +
+>  2 files changed, 103 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index db2a5a1a9b35..388999404e05 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -6233,6 +6233,105 @@ void skl_scaler_disable(const struct intel_crtc_state
+> *old_crtc_state)
+>  		skl_detach_scaler(crtc, i);
+>  }
+> 
+> +static int cnl_coef_tap(int i)
 
---k3qmt+ucFURmlhDS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You can make this inline.
 
+> +{
+> +	return i % 7;
+> +}
+> +
+> +static u16 cnl_nearest_filter_coef(int t) {
 
-ping for committing?
+Same here.
 
-On 2020.08.12 10:06:31 +0800, Zhenyu Wang wrote:
-> On 2020.08.11 10:25:32 +0100, Chris Wilson wrote:
-> > The "mmio" writes into vgpu registers are simple memory traps from the
-> > guest into the host. We do not need to assert in the guest that the
-> > device is awake for the io as we do not write to the device itself.
-> >=20
-> > However, over time we have refactored all the mmio accessors with the
-> > result that the vgpu reuses the gen2 accessors and so inherits the
-> > assert for runtime-pm of the native device. The assert though has
-> > actually been there since commit 3be0bf5acca6 ("drm/i915: Create vGPU
-> > specific MMIO operations to reduce traps").
-> >=20
-> > References: 3be0bf5acca6 ("drm/i915: Create vGPU specific MMIO operatio=
-ns to reduce traps")
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Yan Zhao <yan.y.zhao@intel.com>
-> > Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> > ---
->=20
-> Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
->=20
-> Thanks!
->=20
-> >  drivers/gpu/drm/i915/intel_uncore.c | 27 ++++++++++++++++++++++++++-
-> >  1 file changed, 26 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915=
-/intel_uncore.c
-> > index f5edee17902a..6d3310794d0f 100644
-> > --- a/drivers/gpu/drm/i915/intel_uncore.c
-> > +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> > @@ -1209,6 +1209,18 @@ unclaimed_reg_debug(struct intel_uncore *uncore,
-> >  		spin_unlock(&uncore->debug->lock);
-> >  }
-> > =20
-> > +#define __vgpu_read(x) \
-> > +static u##x \
-> > +vgpu_read##x(struct intel_uncore *uncore, i915_reg_t reg, bool trace) =
-{ \
-> > +	u##x val =3D __raw_uncore_read##x(uncore, reg); \
-> > +	trace_i915_reg_rw(false, reg, val, sizeof(val), trace); \
-> > +	return val; \
-> > +}
-> > +__vgpu_read(8)
-> > +__vgpu_read(16)
-> > +__vgpu_read(32)
-> > +__vgpu_read(64)
-> > +
-> >  #define GEN2_READ_HEADER(x) \
-> >  	u##x val =3D 0; \
-> >  	assert_rpm_wakelock_held(uncore->rpm);
-> > @@ -1414,6 +1426,16 @@ __gen_reg_write_funcs(gen8);
-> >  #undef GEN6_WRITE_FOOTER
-> >  #undef GEN6_WRITE_HEADER
-> > =20
-> > +#define __vgpu_write(x) \
-> > +static void \
-> > +vgpu_write##x(struct intel_uncore *uncore, i915_reg_t reg, u##x val, b=
-ool trace) { \
-> > +	trace_i915_reg_rw(true, reg, val, sizeof(val), trace); \
-> > +	__raw_uncore_write##x(uncore, reg, val); \
-> > +}
-> > +__vgpu_write(8)
-> > +__vgpu_write(16)
-> > +__vgpu_write(32)
-> > +
-> >  #define ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, x) \
-> >  do { \
-> >  	(uncore)->funcs.mmio_writeb =3D x##_write8; \
-> > @@ -1735,7 +1757,10 @@ static void uncore_raw_init(struct intel_uncore =
-*uncore)
-> >  {
-> >  	GEM_BUG_ON(intel_uncore_has_forcewake(uncore));
-> > =20
-> > -	if (IS_GEN(uncore->i915, 5)) {
-> > +	if (intel_vgpu_active(uncore->i915)) {
-> > +		ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, vgpu);
-> > +		ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, vgpu);
-> > +	} else if (IS_GEN(uncore->i915, 5)) {
-> >  		ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, gen5);
-> >  		ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, gen5);
-> >  	} else {
-> > --=20
-> > 2.20.1
-> >=20
->=20
-> --=20
->=20
-> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+Overall, Changes look good to me.
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>  
 
-
-
+> +	return t == 3 ? 0x0800 : 0x3000;
+> +}
+> +
+> +/**
+> + *  Theory behind setting nearest-neighbor integer scaling:
+> + *
+> + *  17 phase of 7 taps requires 119 coefficients in 60 dwords per set.
+> + *  The letter represents the filter tap (D is the center tap) and the
+> +number
+> + *  represents the coefficient set for a phase (0-16).
+> + *
+> + *         +------------+------------------------+------------------------+
+> + *         |Index value | Data value coeffient 1 | Data value coeffient 2 |
+> + *         +------------+------------------------+------------------------+
+> + *         |   00h      |          B0            |          A0            |
+> + *         +------------+------------------------+------------------------+
+> + *         |   01h      |          D0            |          C0            |
+> + *         +------------+------------------------+------------------------+
+> + *         |   02h      |          F0            |          E0            |
+> + *         +------------+------------------------+------------------------+
+> + *         |   03h      |          A1            |          G0            |
+> + *         +------------+------------------------+------------------------+
+> + *         |   04h      |          C1            |          B1            |
+> + *         +------------+------------------------+------------------------+
+> + *         |   ...      |          ...           |          ...           |
+> + *         +------------+------------------------+------------------------+
+> + *         |   38h      |          B16           |          A16           |
+> + *         +------------+------------------------+------------------------+
+> + *         |   39h      |          D16           |          C16           |
+> + *         +------------+------------------------+------------------------+
+> + *         |   3Ah      |          F16           |          C16           |
+> + *         +------------+------------------------+------------------------+
+> + *         |   3Bh      |        Reserved        |          G16           |
+> + *         +------------+------------------------+------------------------+
+> + *
+> + *  To enable nearest-neighbor scaling:  program scaler coefficents
+> +with
+> + *  the center tap (Dxx) values set to 1 and all other values set to 0
+> +as per
+> + *  SCALER_COEFFICIENT_FORMAT
+> + *
+> + */
+> +
+> +static void cnl_program_nearest_filter_coefs(struct drm_i915_private *dev_priv,
+> +					     enum pipe pipe, int id, int set) {
+> +	int i;
+> +
+> +	intel_de_write_fw(dev_priv, CNL_PS_COEF_INDEX_SET(pipe, id, set),
+> +			  PS_COEE_INDEX_AUTO_INC);
+> +
+> +	for (i = 0; i < 17 * 7; i += 2) {
+> +		u32 tmp;
+> +		int t;
+> +
+> +		t = cnl_coef_tap(i);
+> +		tmp = cnl_nearest_filter_coef(t);
+> +
+> +		t = cnl_coef_tap(i + 1);
+> +		tmp |= cnl_nearest_filter_coef(t) << 16;
+> +
+> +		intel_de_write_fw(dev_priv, CNL_PS_COEF_DATA_SET(pipe, id,
+> set),
+> +				  tmp);
+> +	}
+> +
+> +	intel_de_write_fw(dev_priv, CNL_PS_COEF_INDEX_SET(pipe, id, set), 0);
+> +}
+> +
+> +inline u32 skl_scaler_get_filter_select(enum drm_scaling_filter filter,
+> +int set) {
+> +	if (filter == DRM_SCALING_FILTER_NEAREST_NEIGHBOR) {
+> +		return (PS_FILTER_PROGRAMMED |
+> +			PS_Y_VERT_FILTER_SELECT(set) |
+> +			PS_Y_HORZ_FILTER_SELECT(set) |
+> +			PS_UV_VERT_FILTER_SELECT(set) |
+> +			PS_UV_HORZ_FILTER_SELECT(set));
+> +	}
+> +
+> +	return PS_FILTER_MEDIUM;
+> +}
+> +
+> +void skl_scaler_setup_filter(struct drm_i915_private *dev_priv, enum pipe pipe,
+> +			     int id, int set, enum drm_scaling_filter filter) {
+> +	switch (filter) {
+> +	case DRM_SCALING_FILTER_DEFAULT:
+> +		break;
+> +	case DRM_SCALING_FILTER_NEAREST_NEIGHBOR:
+> +		cnl_program_nearest_filter_coefs(dev_priv, pipe, id, set);
+> +		break;
+> +	default:
+> +		MISSING_CASE(filter);
+> +	}
+> +}
+> +
+>  static void skl_pfit_enable(const struct intel_crtc_state *crtc_state)  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h
+> b/drivers/gpu/drm/i915/display/intel_display.h
+> index e890c8fb779b..878bb36d8322 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -28,6 +28,7 @@
+>  #include <drm/drm_util.h>
+> 
+>  enum link_m_n_set;
+> +enum drm_scaling_filter;
+>  struct dpll;
+>  struct drm_connector;
+>  struct drm_device;
+> @@ -599,6 +600,9 @@ void intel_crtc_arm_fifo_underrun(struct intel_crtc *crtc,
+> 
+>  u16 skl_scaler_calc_phase(int sub, int scale, bool chroma_center);  void
+> skl_scaler_disable(const struct intel_crtc_state *old_crtc_state);
+> +u32 skl_scaler_get_filter_select(enum drm_scaling_filter filter, int
+> +set); void skl_scaler_setup_filter(struct drm_i915_private *dev_priv, enum pipe
+> pipe,
+> +			     int id, int set, enum drm_scaling_filter filter);
+>  void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state);
+>  u32 glk_plane_color_ctl(const struct intel_crtc_state *crtc_state,
+>  			const struct intel_plane_state *plane_state);
+> --
+> 2.23.0
+> 
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
-
---=20
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---k3qmt+ucFURmlhDS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXzzjuwAKCRCxBBozTXgY
-J1IkAJ9jE1wqV3x2b3unH5qHITcOG85HZwCfeTyyLZvjubA6gTI21CABXS6jEps=
-=ljzm
------END PGP SIGNATURE-----
-
---k3qmt+ucFURmlhDS--
-
---===============0120550613==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0120550613==--
