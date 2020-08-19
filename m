@@ -2,60 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBFC824A97B
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 00:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14DDD24A9BD
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 00:53:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 303EE6E864;
-	Wed, 19 Aug 2020 22:38:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 774386E87A;
+	Wed, 19 Aug 2020 22:53:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD006E864
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 22:38:21 +0000 (UTC)
-IronPort-SDR: HFcGT97XNbQDxllH89X0kkWbjQYQ0KmDyOpPaojVH5slLVwJbI8l/G8IDcWaRIpMhcm05805ux
- ooeWOJcW8CLg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9718"; a="134727344"
-X-IronPort-AV: E=Sophos;i="5.76,332,1592895600"; d="scan'208";a="134727344"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C53566E87A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 22:53:53 +0000 (UTC)
+IronPort-SDR: cu9S2e+3QDKpWaex7yCsTRZ3yEeOgpYZWXbE9EMmeA81AMNx3tAkDwybt40EjCPzFz1hzvUqb3
+ CZ2ppkCrq4iQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9718"; a="216741623"
+X-IronPort-AV: E=Sophos;i="5.76,332,1592895600"; d="scan'208";a="216741623"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2020 15:38:21 -0700
-IronPort-SDR: G4eBATo9bVhpYizwJ99uTt7bKlp8Xz6PqhimgvbN/iS3eA83ukNt8Q05ugq2TcRbgEk1CtGmzS
- RunvNETwScng==
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2020 15:53:53 -0700
+IronPort-SDR: lfBq5IgCnvx/UqA6N4kYTyDv6DwD+YysJr/XHExUQwzbKu8V7J0yqkT7p9TxmQD4yTS6aPpcj1
+ OL2cc0fFUHRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,332,1592895600"; d="scan'208";a="400963330"
-Received: from fmsmsx602-2.cps.intel.com (HELO fmsmsx602.amr.corp.intel.com)
- ([10.18.84.212])
- by fmsmga001.fm.intel.com with ESMTP; 19 Aug 2020 15:38:20 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.76,332,1592895600"; d="scan'208";a="320649169"
+Received: from fmsmsx601-2.cps.intel.com (HELO fmsmsx601.amr.corp.intel.com)
+ ([10.18.84.211])
+ by fmsmga004.fm.intel.com with ESMTP; 19 Aug 2020 15:53:52 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 19 Aug 2020 15:38:20 -0700
-Received: from fmsmsx123.amr.corp.intel.com (10.18.125.38) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ 15.1.1713.5; Wed, 19 Aug 2020 15:53:52 -0700
+Received: from fmsmsx125.amr.corp.intel.com (10.18.125.40) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Wed, 19 Aug 2020 15:38:20 -0700
+ via Frontend Transport; Wed, 19 Aug 2020 15:53:52 -0700
 Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.136]) by
- fmsmsx123.amr.corp.intel.com ([169.254.7.125]) with mapi id 14.03.0439.000;
- Wed, 19 Aug 2020 15:38:20 -0700
+ FMSMSX125.amr.corp.intel.com ([169.254.2.226]) with mapi id 14.03.0439.000;
+ Wed, 19 Aug 2020 15:53:52 -0700
 From: "Souza, Jose" <jose.souza@intel.com>
-To: "Atwood, Matthew S" <matthew.s.atwood@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Apply Wa_14011264657:gen11+
-Thread-Index: AQHWcOyX1fyRR60KPkiXrdT2OzA2K6lAhxUA
-Date: Wed, 19 Aug 2020 22:38:20 +0000
-Message-ID: <a0d065c3b3d152297682bfb35bb0ac1ecd8557cc.camel@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Atwood, Matthew S" <matthew.s.atwood@intel.com>
+Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJtL2k5?=
+ =?utf-8?Q?15:_Apply_Wa=5F14011264657:gen11+_(rev2)?=
+Thread-Index: AQHWcSHlhMT9LELAtUijU15pq2SsF6lAiwCA
+Date: Wed, 19 Aug 2020 22:53:52 +0000
+Message-ID: <76a1406106f3d952fcb691db30503aefc2d72bfb.camel@intel.com>
 References: <20200812210702.7153-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20200812210702.7153-1-matthew.s.atwood@intel.com>
+ <159728932945.14258.13905772410614544709@emeril.freedesktop.org>
+In-Reply-To: <159728932945.14258.13905772410614544709@emeril.freedesktop.org>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.240.12]
-Content-ID: <9DC45893D7BB994EAD5F0B8FBAB1C6E1@intel.com>
+Content-ID: <CFB25F45844A744C8F640E60143C3533@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Apply Wa_14011264657:gen11+
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Apply_Wa=5F14011264657=3Agen11+_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,73 +72,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIwLTA4LTEyIGF0IDE0OjA3IC0wNzAwLCBNYXR0IEF0d29vZCB3cm90ZToNCj4g
-QWRkIG1pbmltdW0gd2lkdGggdG8gcGxhbmVzLCB2YXJpYWJsZSB3aXRoIHNwZWNpZmljIGZvcm1h
-dHMgZm9yIGdlbjExKw0KPiB0byByZWZsZWN0IHJlY2VudCBic3BlYyBjaGFuZ2VzLg0KPiANCj4g
-U2lnbmVkLW9mZi1ieTogTWF0dCBBdHdvb2QgPA0KPiBtYXR0aGV3LnMuYXR3b29kQGludGVsLmNv
-bQ0KPiA+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmMgfCA1NCArKysrKysrKysrKysrKysrKy0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDQ2IGlu
-c2VydGlvbnMoKyksIDggZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiBpbmRleCAyZGRhYmY5MmFkZGUuLmI1ZWJjZmY4
-ZDU2ZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmMNCj4gQEAgLTM3NjIsNiArMzc2Miw0NCBAQCBzdGF0aWMgaW50IGdsa19tYXhfcGxhbmVf
-d2lkdGgoY29uc3Qgc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZmIsDQo+ICAJfQ0KPiAgfQ0KPiAg
-DQo+ICtzdGF0aWMgaW50IGljbF9taW5fcGxhbmVfd2lkdGgoY29uc3Qgc3RydWN0IGRybV9mcmFt
-ZWJ1ZmZlciAqZmIpDQo+ICt7DQo+ICsJLyogV2FfMTQwMTEyNjQ2NTcsIFdhXzE0MDExMDUwNTYz
-OiBnZW4xMSsgKi8NCj4gKwlzd2l0Y2ggKGZiLT5mb3JtYXQtPmZvcm1hdCkgew0KPiArCWNhc2Ug
-RFJNX0ZPUk1BVF9DODoNCj4gKwkJcmV0dXJuIDE4Ow0KPiArCWNhc2UgRFJNX0ZPUk1BVF9SR0I1
-NjU6DQo+ICsJCXJldHVybiAxMDsNCj4gKwljYXNlIERSTV9GT1JNQVRfWFJHQjg4ODg6DQo+ICsJ
-Y2FzZSBEUk1fRk9STUFUX1hCR1I4ODg4Og0KPiArCWNhc2UgRFJNX0ZPUk1BVF9BUkdCODg4ODoN
-Cj4gKwljYXNlIERSTV9GT1JNQVRfQUJHUjg4ODg6DQo+ICsJY2FzZSBEUk1fRk9STUFUX1hSR0Iy
-MTAxMDEwOg0KPiArCWNhc2UgRFJNX0ZPUk1BVF9YQkdSMjEwMTAxMDoNCj4gKwljYXNlIERSTV9G
-T1JNQVRfQVJHQjIxMDEwMTA6DQo+ICsJY2FzZSBEUk1fRk9STUFUX0FCR1IyMTAxMDEwOg0KPiAr
-CWNhc2UgRFJNX0ZPUk1BVF9YVllVMjEwMTAxMDoNCj4gKwljYXNlIERSTV9GT1JNQVRfWTIxMjoN
-Cj4gKwljYXNlIERSTV9GT1JNQVRfWTIxNjoNCj4gKwkJcmV0dXJuIDY7DQo+ICsJY2FzZSBEUk1f
-Rk9STUFUX05WMTI6DQo+ICsJCXJldHVybiAyMDsNCj4gKwljYXNlIERSTV9GT1JNQVRfUDAxMDoN
-Cj4gKwljYXNlIERSTV9GT1JNQVRfUDAxMjoNCj4gKwljYXNlIERSTV9GT1JNQVRfUDAxNjoNCj4g
-KwkJcmV0dXJuIDEyOw0KPiArCWNhc2UgRFJNX0ZPUk1BVF9YUkdCMTYxNjE2MTZGOg0KPiArCWNh
-c2UgRFJNX0ZPUk1BVF9YQkdSMTYxNjE2MTZGOg0KPiArCWNhc2UgRFJNX0ZPUk1BVF9BUkdCMTYx
-NjE2MTZGOg0KPiArCWNhc2UgRFJNX0ZPUk1BVF9BQkdSMTYxNjE2MTZGOg0KPiArCWNhc2UgRFJN
-X0ZPUk1BVF9YVllVMTJfMTYxNjE2MTY6DQo+ICsJY2FzZSBEUk1fRk9STUFUX1hWWVUxNjE2MTYx
-NjoNCj4gKwkJcmV0dXJuIDQ7DQo+ICsJZGVmYXVsdDoNCj4gKwkJcmV0dXJuIDE7DQo+ICsJfQ0K
-PiArfQ0KPiArDQo+ICBzdGF0aWMgaW50IGljbF9tYXhfcGxhbmVfd2lkdGgoY29uc3Qgc3RydWN0
-IGRybV9mcmFtZWJ1ZmZlciAqZmIsDQo+ICAJCQkgICAgICAgaW50IGNvbG9yX3BsYW5lLA0KPiAg
-CQkJICAgICAgIHVuc2lnbmVkIGludCByb3RhdGlvbikNCj4gQEAgLTM4NDQsMTUgKzM4ODIsMTUg
-QEAgc3RhdGljIGludCBza2xfY2hlY2tfbWFpbl9zdXJmYWNlKHN0cnVjdCBpbnRlbF9wbGFuZV9z
-dGF0ZSAqcGxhbmVfc3RhdGUpDQo+ICAJaW50IHkgPSBwbGFuZV9zdGF0ZS0+dWFwaS5zcmMueTEg
-Pj4gMTY7DQo+ICAJaW50IHcgPSBkcm1fcmVjdF93aWR0aCgmcGxhbmVfc3RhdGUtPnVhcGkuc3Jj
-KSA+PiAxNjsNCj4gIAlpbnQgaCA9IGRybV9yZWN0X2hlaWdodCgmcGxhbmVfc3RhdGUtPnVhcGku
-c3JjKSA+PiAxNjsNCj4gLQlpbnQgbWF4X3dpZHRoOw0KPiAtCWludCBtYXhfaGVpZ2h0Ow0KPiAt
-CXUzMiBhbGlnbm1lbnQ7DQo+IC0JdTMyIG9mZnNldDsNCj4gKwlpbnQgbWF4X3dpZHRoLCBtaW5f
-d2lkdGggPSAxLCBtYXhfaGVpZ2h0Ow0KPiArCXUzMiBhbGlnbm1lbnQsIG9mZnNldDsNCj4gIAlp
-bnQgYXV4X3BsYW5lID0gaW50ZWxfbWFpbl90b19hdXhfcGxhbmUoZmIsIDApOw0KPiAgCXUzMiBh
-dXhfb2Zmc2V0ID0gcGxhbmVfc3RhdGUtPmNvbG9yX3BsYW5lW2F1eF9wbGFuZV0ub2Zmc2V0Ow0K
-PiAgDQo+IC0JaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTEpDQo+ICsJaWYgKElOVEVMX0dF
-TihkZXZfcHJpdikgPj0gMTEpIHsNCj4gIAkJbWF4X3dpZHRoID0gaWNsX21heF9wbGFuZV93aWR0
-aChmYiwgMCwgcm90YXRpb24pOw0KPiArCQltaW5fd2lkdGggPSBpY2xfbWluX3BsYW5lX3dpZHRo
-KGZiKTsNCj4gKwl9DQoNCldpdGggdGhlIHN0eWxlIGZpeGVkLCBMR1RNLg0KSXQgaXMgc21hbGwg
-ZW5vdWdoIHRvIGJlIGZpeGVkIHdoaWxlIHB1c2hpbmcgaXQsIHdpbGwgZml4IGFuZCBwdXNoIGl0
-IGZvciB5b3UuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNv
-dXphQGludGVsLmNvbT4NCg0KPiAgCWVsc2UgaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTAg
-fHwgSVNfR0VNSU5JTEFLRShkZXZfcHJpdikpDQo+ICAJCW1heF93aWR0aCA9IGdsa19tYXhfcGxh
-bmVfd2lkdGgoZmIsIDAsIHJvdGF0aW9uKTsNCj4gIAllbHNlDQo+IEBAIC0zODYzLDEwICszOTAx
-LDEwIEBAIHN0YXRpYyBpbnQgc2tsX2NoZWNrX21haW5fc3VyZmFjZShzdHJ1Y3QgaW50ZWxfcGxh
-bmVfc3RhdGUgKnBsYW5lX3N0YXRlKQ0KPiAgCWVsc2UNCj4gIAkJbWF4X2hlaWdodCA9IHNrbF9t
-YXhfcGxhbmVfaGVpZ2h0KCk7DQo+ICANCj4gLQlpZiAodyA+IG1heF93aWR0aCB8fCBoID4gbWF4
-X2hlaWdodCkgew0KPiArCWlmICh3ID4gbWF4X3dpZHRoIHx8IHcgPCBtaW5fd2lkdGggfHwgaCA+
-IG1heF9oZWlnaHQpIHsNCj4gIAkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sDQo+IC0JCQkg
-ICAgInJlcXVlc3RlZCBZL1JHQiBzb3VyY2Ugc2l6ZSAlZHglZCB0b28gYmlnIChsaW1pdCAlZHgl
-ZClcbiIsDQo+IC0JCQkgICAgdywgaCwgbWF4X3dpZHRoLCBtYXhfaGVpZ2h0KTsNCj4gKwkJCSAg
-ICAicmVxdWVzdGVkIFkvUkdCIHNvdXJjZSBzaXplICVkeCVkIG91dHNpZGUgbGltaXRzIChtaW46
-ICVkeDEgbWF4OiAlZHglZClcbiIsDQo+ICsJCQkgICAgdywgaCwgbWluX3dpZHRoLCBtYXhfd2lk
-dGgsIG1heF9oZWlnaHQpOw0KPiAgCQlyZXR1cm4gLUVJTlZBTDsNCj4gIAl9DQo+ICANCj4gDQpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Thu, 2020-08-13 at 03:28 +0000, Patchwork wrote:
+> Patch Details
+> Series:	drm/i915: Apply Wa_14011264657:gen11+ (rev2)
+> URL:	https://patchwork.freedesktop.org/series/78430/
+> State:	success
+> Details:	https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18349/index.html
+> CI Bug Log - changes from CI_DRM_8879_full -> Patchwork_18349_full
+> Summary
+> SUCCESS
+> 
+> No regressions found.
+
+Pushed to dinq with a minor checkstyle fix, thanks for the patch.
+
+> 
+> Known issues
+> Here are the changes found in Patchwork_18349_full that come from known issues:
+> 
+> IGT changes
+> Issues hit
+> igt@kms_concurrent@pipe-c:
+> 
+> shard-skl: PASS -> DMESG-WARN (i915#1982) +11 similar issues
+> igt@kms_cursor_crc@pipe-c-cursor-suspend:
+> 
+> shard-iclb: PASS -> INCOMPLETE (i915#1185)
+> igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a1:
+> 
+> shard-glk: PASS -> FAIL (i915#79)
+> igt@kms_flip@flip-vs-suspend@c-dp1:
+> 
+> shard-kbl: PASS -> DMESG-WARN (i915#180) +4 similar issues
+> igt@kms_flip@plain-flip-ts-check-interruptible@b-edp1:
+> 
+> shard-skl: PASS -> FAIL (i915#2122)
+> igt@kms_frontbuffer_tracking@fbc-rgb101010-draw-mmap-cpu:
+> 
+> shard-kbl: PASS -> DMESG-WARN (i915#1982)
+> igt@kms_frontbuffer_tracking@psr-shrfb-scaledprimary:
+> 
+> shard-iclb: PASS -> DMESG-WARN (i915#1982) +1 similar issue
+> igt@kms_hdr@bpc-switch-dpms:
+> 
+> shard-skl: PASS -> FAIL (i915#1188)
+> igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
+> 
+> shard-skl: PASS -> FAIL (fdo#108145 / i915#265) +1 similar issue
+> igt@kms_plane_scaling@pipe-b-scaler-with-rotation:
+> 
+> shard-iclb: PASS -> FAIL (fdo#109052) +4 similar issues
+> igt@kms_plane_scaling@pipe-d-scaler-with-pixel-format:
+> 
+> shard-tglb: PASS -> FAIL (i915#1214) +6 similar issues
+> igt@kms_psr@psr2_cursor_plane_onoff:
+> 
+> shard-iclb: PASS -> SKIP (fdo#109441)
+> Possible fixes
+> igt@gem_exec_whisper@basic-contexts-forked:
+> 
+> shard-glk: DMESG-WARN (i915#118 / i915#95) -> PASS +1 similar issue
+> igt@gem_pwrite@basic-random:
+> 
+> shard-snb: TIMEOUT (i915#1958) -> PASS +2 similar issues
+> igt@i915_selftest@live@execlists:
+> 
+> shard-tglb: INCOMPLETE (i915#2268) -> PASS
+> igt@i915_selftest@mock@contexts:
+> 
+> shard-skl: INCOMPLETE (i915#198 / i915#2278) -> PASS
+> igt@kms_big_fb@linear-64bpp-rotate-0:
+> 
+> shard-glk: DMESG-FAIL (i915#118 / i915#95) -> PASS
+> igt@kms_color@pipe-b-ctm-0-5:
+> 
+> shard-skl: FAIL (i915#182) -> PASS
+> igt@kms_color@pipe-c-ctm-0-25:
+> 
+> shard-skl: DMESG-WARN (i915#1982) -> PASS +8 similar issues
+> igt@kms_color@pipe-c-ctm-green-to-red:
+> 
+> shard-skl: FAIL (i915#129) -> PASS
+> igt@kms_cursor_crc@pipe-a-cursor-64x64-offscreen:
+> 
+> shard-apl: FAIL (i915#1635 / i915#54) -> PASS
+> igt@kms_cursor_crc@pipe-a-cursor-suspend:
+> 
+> shard-kbl: DMESG-WARN (i915#180) -> PASS +7 similar issues
+> igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1:
+> 
+> shard-skl: FAIL (i915#79) -> PASS +1 similar issue
+> igt@kms_flip@flip-vs-suspend-interruptible@b-edp1:
+> 
+> shard-skl: INCOMPLETE (i915#198) -> PASS
+> igt@kms_frontbuffer_tracking@fbc-rgb101010-draw-mmap-cpu:
+> 
+> shard-tglb: DMESG-WARN (i915#1982) -> PASS +2 similar issues
+> igt@kms_frontbuffer_tracking@fbc-rgb101010-draw-render:
+> 
+> shard-iclb: DMESG-WARN (i915#1982) -> PASS +1 similar issue
+> igt@kms_hdr@bpc-switch:
+> 
+> shard-skl: FAIL (i915#1188) -> PASS
+> igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
+> 
+> shard-skl: FAIL (fdo#108145 / i915#265) -> PASS
+> igt@kms_psr2_su@frontbuffer:
+> 
+> shard-iclb: SKIP (fdo#109642 / fdo#111068) -> PASS
+> igt@kms_psr@psr2_sprite_plane_move:
+> 
+> shard-iclb: SKIP (fdo#109441) -> PASS
+> igt@kms_vblank@pipe-c-ts-continuation-dpms-suspend:
+> 
+> shard-skl: INCOMPLETE -> PASS
+> igt@perf@blocking-parameterized:
+> 
+> shard-iclb: FAIL (i915#1542) -> PASS
+> Warnings
+> igt@gem_exec_reloc@basic-concurrent16:
+> 
+> shard-snb: TIMEOUT (i915#1958) -> FAIL (i915#1930)
+> 
+> shard-glk: TIMEOUT (i915#1958) -> INCOMPLETE (i915#1958)
+> 
+> igt@kms_color@pipe-a-ctm-max:
+> 
+> shard-snb: TIMEOUT (i915#1958) -> SKIP (fdo#109271) +1 similar issue
+> igt@kms_color_chamelium@pipe-c-ctm-0-5:
+> 
+> shard-snb: TIMEOUT (i915#1958) -> SKIP (fdo#109271 / fdo#111827)
+> igt@kms_content_protection@srm:
+> 
+> shard-kbl: TIMEOUT (i915#1319) -> TIMEOUT (i915#1319 / i915#1958)
+> igt@kms_dp_dsc@basic-dsc-enable-edp:
+> 
+> shard-iclb: SKIP (fdo#109349) -> DMESG-WARN (i915#1226)
+> igt@kms_plane_alpha_blend@pipe-a-alpha-7efc:
+> 
+> shard-skl: FAIL (fdo#108145 / i915#265) -> DMESG-FAIL (fdo#108145 / i915#1982)
+> Participating hosts (11 -> 11)
+> No changes in participating hosts
+> 
+> Build changes
+> Linux: CI_DRM_8879 -> Patchwork_18349
+> CI-20190529: 20190529
+> CI_DRM_8879: 383f247a5884778b21e17dc9537e0bdeae503953 @ git://anongit.freedesktop.org/gfx-ci/linux
+> IGT_5768: 4ce2f30715836214d7b4452ada8c63b23eba73b7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+> Patchwork_18349: 9ee56d53b00b040e07daff2d2b805c8d4992a091 @ git://anongit.freedesktop.org/gfx-ci/linux
+> piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> 
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
