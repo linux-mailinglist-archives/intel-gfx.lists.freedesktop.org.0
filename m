@@ -2,42 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84F0A24C465
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 19:21:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E38B524C48B
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 19:29:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8A5C6E999;
-	Thu, 20 Aug 2020 17:21:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3B176E99A;
+	Thu, 20 Aug 2020 17:29:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 169856E99B
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Aug 2020 17:21:29 +0000 (UTC)
-IronPort-SDR: vJ9T/8UqbE80+VcLsV9+AZgehDm0YnqKHKqFD81IdCfWRKjXNCWI14x5BDHFXfmhbcj9t++hC1
- q/NGaMN+Bncg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9718"; a="156416948"
-X-IronPort-AV: E=Sophos;i="5.76,333,1592895600"; d="scan'208";a="156416948"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2020 10:21:27 -0700
-IronPort-SDR: o/4zDyDGQ2RwVQ23bCxWvuu27+sx5sIgY3REZHCI0EmajCzC9tkpgmUpVpJONdzT0gE7kr6ou2
- BN/DeSlRCSSA==
-X-IronPort-AV: E=Sophos;i="5.76,333,1592895600"; d="scan'208";a="320959826"
-Received: from bucherax-mobl.amr.corp.intel.com (HELO
- josouza-MOBL2.amr.corp.intel.com) ([10.255.82.219])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2020 10:21:27 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Aug 2020 10:23:53 -0700
-Message-Id: <20200820172353.15773-2-jose.souza@intel.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200820172353.15773-1-jose.souza@intel.com>
-References: <20200820172353.15773-1-jose.souza@intel.com>
+Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2091A6E98D;
+ Thu, 20 Aug 2020 17:29:33 +0000 (UTC)
+Received: from ravnborg.org (unknown [188.228.123.71])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id 40DC62001E;
+ Thu, 20 Aug 2020 19:29:30 +0200 (CEST)
+Date: Thu, 20 Aug 2020 19:29:28 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Anitha Chrisanthus <anitha.chrisanthus@intel.com>
+Message-ID: <20200820172928.GC194134@ravnborg.org>
+References: <1597096418-28937-1-git-send-email-anitha.chrisanthus@intel.com>
+ <1597096418-28937-2-git-send-email-anitha.chrisanthus@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/drrs: Disable DRRS when needed in
- fastsets
+Content-Disposition: inline
+In-Reply-To: <1597096418-28937-2-git-send-email-anitha.chrisanthus@intel.com>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=f+hm+t6M c=1 sm=1 tr=0
+ a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+ a=8nJEP1OIZ-IA:10 a=cz9QPSLc_2ERrwG0xJgA:9 a=1qB7dQoxvKhqk_Vz:21
+ a=m1QiOsuidX_Vl2ZZ:21 a=wPNLvfGTeEIA:10
+Subject: Re: [Intel-gfx] [PATCH v6] drm/kmb: Add support for KeemBay Display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,129 +44,764 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hariom Pandey <hariom.pandey@intel.com>, Srinivas K <srinivasx.k@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: daniel.vetter@intel.com, intel-gfx@lists.freedesktop.org,
+ edmund.j.dea@intel.com, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q2hhbmdlcyBpbiB0aGUgY29uZmlndXJhdGlvbiBjb3VsZCBjYXVzZSBQU1IgdG8gYmUgY29tcGF0
-aWJsZSBhbmQKZW5hYmxlZCBzbyBkcml2ZXIgbXVzdCBhbHNvIGJlIGFibGUgdG8gZGlzYWJsZSBE
-UlJTIHdoZW4gZG9pbmcKZmFzdHNldHMuCgpDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNr
-dG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvMjA5CkNsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJl
-ZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8xNzMKQ2xvc2VzOiBodHRwczovL2dpdGxh
-Yi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzIwOQpDYzogU3Jpbml2YXMgSyA8
-c3Jpbml2YXN4LmtAaW50ZWwuY29tPgpDYzogSGFyaW9tIFBhbmRleSA8aGFyaW9tLnBhbmRleUBp
-bnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291
-emFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRp
-LmMgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICB8IDg0
-ICsrKysrKysrKysrKysrKysrKystLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kcC5oICB8ICAyICsKIDMgZmlsZXMgY2hhbmdlZCwgNzEgaW5zZXJ0aW9ucygrKSwgMTcg
-ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKaW5k
-ZXggZGU1YjIxNjU2MWQ4Li5mZjA1YTg1MjQxN2MgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kZGkuYwpAQCAtNDAxMiw3ICs0MDEyLDcgQEAgc3RhdGljIHZvaWQgaW50ZWxf
-ZGRpX3VwZGF0ZV9waXBlX2RwKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCiAJ
-aW50ZWxfcHNyX3VwZGF0ZShpbnRlbF9kcCwgY3J0Y19zdGF0ZSwgY29ubl9zdGF0ZSk7CiAJaW50
-ZWxfZHBfc2V0X2luZm9mcmFtZXMoZW5jb2RlciwgdHJ1ZSwgY3J0Y19zdGF0ZSwgY29ubl9zdGF0
-ZSk7Ci0JaW50ZWxfZWRwX2RycnNfZW5hYmxlKGludGVsX2RwLCBjcnRjX3N0YXRlKTsKKwlpbnRl
-bF9lZHBfZHJyc191cGRhdGUoaW50ZWxfZHAsIGNydGNfc3RhdGUpOwogCiAJaW50ZWxfcGFuZWxf
-dXBkYXRlX2JhY2tsaWdodChzdGF0ZSwgZW5jb2RlciwgY3J0Y19zdGF0ZSwgY29ubl9zdGF0ZSk7
-CiB9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKaW5kZXggM2JmNTBiMWFl
-OTgzLi5kZTJjOTg1MTM5NWQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZHAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-LmMKQEAgLTI1NzYsOSArMjU3Niw5IEBAIGludGVsX2RwX2NvbXB1dGVfaGRyX21ldGFkYXRhX2lu
-Zm9mcmFtZV9zZHAoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKIH0KIAogc3RhdGljIHZvaWQK
-LWludGVsX2RwX2RycnNfY29tcHV0ZV9jb25maWcoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwK
-LQkJCSAgICAgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKnBpcGVfY29uZmlnLAotCQkJICAgICBp
-bnQgb3V0cHV0X2JwcCwgYm9vbCBjb25zdGFudF9uKQoraW50ZWxfZHBfY29tcHV0ZV9kcnJzKHN0
-cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCisJCSAgICAgIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
-ICpwaXBlX2NvbmZpZywKKwkJICAgICAgaW50IG91dHB1dF9icHAsIGJvb2wgY29uc3RhbnRfbikK
-IHsKIAlzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICppbnRlbF9jb25uZWN0b3IgPSBpbnRlbF9kcC0+
-YXR0YWNoZWRfY29ubmVjdG9yOwogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9
-IGRwX3RvX2k5MTUoaW50ZWxfZHApOwpAQCAtMjU4Niw4ICsyNTg2LDggQEAgaW50ZWxfZHBfZHJy
-c19jb21wdXRlX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCS8qCiAJICogRFJS
-UyBhbmQgUFNSIGNhbid0IGJlIGVuYWJsZSB0b2dldGhlciwgc28gZ2l2aW5nIHByZWZlcmVuY2Ug
-dG8gUFNSCiAJICogYXMgaXQgYWxsb3dzIG1vcmUgcG93ZXItc2F2aW5ncyBieSBjb21wbGV0ZSBz
-aHV0dGluZyBkb3duIGRpc3BsYXksCi0JICogc28gdG8gZ3VhcmFudGVlIHRoaXMsIGludGVsX2Rw
-X2RycnNfY29tcHV0ZV9jb25maWcoKSBtdXN0IGJlIGNhbGxlZAotCSAqIGFmdGVyIGludGVsX3Bz
-cl9jb21wdXRlX2NvbmZpZygpLgorCSAqIHNvIHRvIGd1YXJhbnRlZSB0aGlzLCBpbnRlbF9kcF9j
-b21wdXRlX2RycnMoKSBtdXN0IGJlIGNhbGxlZCBhZnRlcgorCSAqIGludGVsX3Bzcl9jb21wdXRl
-X2NvbmZpZygpLgogCSAqLwogCWlmIChwaXBlX2NvbmZpZy0+aGFzX3BzcikKIAkJcmV0dXJuOwpA
-QCAtMjY4OCw4ICsyNjg4LDcgQEAgaW50ZWxfZHBfY29tcHV0ZV9jb25maWcoc3RydWN0IGludGVs
-X2VuY29kZXIgKmVuY29kZXIsCiAJCWludGVsX2RwX3NldF9jbG9jayhlbmNvZGVyLCBwaXBlX2Nv
-bmZpZyk7CiAKIAlpbnRlbF9wc3JfY29tcHV0ZV9jb25maWcoaW50ZWxfZHAsIHBpcGVfY29uZmln
-KTsKLQlpbnRlbF9kcF9kcnJzX2NvbXB1dGVfY29uZmlnKGludGVsX2RwLCBwaXBlX2NvbmZpZywg
-b3V0cHV0X2JwcCwKLQkJCQkgICAgIGNvbnN0YW50X24pOworCWludGVsX2RwX2NvbXB1dGVfZHJy
-cyhpbnRlbF9kcCwgcGlwZV9jb25maWcsIG91dHB1dF9icHAsIGNvbnN0YW50X24pOwogCWludGVs
-X2RwX2NvbXB1dGVfdnNjX3NkcChpbnRlbF9kcCwgcGlwZV9jb25maWcsIGNvbm5fc3RhdGUpOwog
-CWludGVsX2RwX2NvbXB1dGVfaGRyX21ldGFkYXRhX2luZm9mcmFtZV9zZHAoaW50ZWxfZHAsIHBp
-cGVfY29uZmlnLCBjb25uX3N0YXRlKTsKIApAQCAtNzczNiw2ICs3NzM1LDE1IEBAIHN0YXRpYyB2
-b2lkIGludGVsX2RwX3NldF9kcnJzX3N0YXRlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZf
-cHJpdiwKIAkJICAgIHJlZnJlc2hfcmF0ZSk7CiB9CiAKK3N0YXRpYyB2b2lkCitpbnRlbF9lZHBf
-ZHJyc19lbmFibGVfbG9ja2VkKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApCit7CisJc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7CisKKwlk
-ZXZfcHJpdi0+ZHJycy5idXN5X2Zyb250YnVmZmVyX2JpdHMgPSAwOworCWRldl9wcml2LT5kcnJz
-LmRwID0gaW50ZWxfZHA7Cit9CisKIC8qKgogICogaW50ZWxfZWRwX2RycnNfZW5hYmxlIC0gaW5p
-dCBkcnJzIHN0cnVjdCBpZiBzdXBwb3J0ZWQKICAqIEBpbnRlbF9kcDogRFAgc3RydWN0CkBAIC03
-NzUyLDE5ICs3NzYwLDM0IEBAIHZvaWQgaW50ZWxfZWRwX2RycnNfZW5hYmxlKHN0cnVjdCBpbnRl
-bF9kcCAqaW50ZWxfZHAsCiAJCXJldHVybjsKIAogCW11dGV4X2xvY2soJmRldl9wcml2LT5kcnJz
-Lm11dGV4KTsKKwogCWlmIChkZXZfcHJpdi0+ZHJycy5kcCkgewotCQlkcm1fZGJnX2ttcygmZGV2
-X3ByaXYtPmRybSwgIkRSUlMgYWxyZWFkeSBlbmFibGVkXG4iKTsKKwkJZHJtX3dhcm4oJmRldl9w
-cml2LT5kcm0sICJEUlJTIGFscmVhZHkgZW5hYmxlZFxuIik7CiAJCWdvdG8gdW5sb2NrOwogCX0K
-IAotCWRldl9wcml2LT5kcnJzLmJ1c3lfZnJvbnRidWZmZXJfYml0cyA9IDA7Ci0KLQlkZXZfcHJp
-di0+ZHJycy5kcCA9IGludGVsX2RwOworCWludGVsX2VkcF9kcnJzX2VuYWJsZV9sb2NrZWQoaW50
-ZWxfZHApOwogCiB1bmxvY2s6CiAJbXV0ZXhfdW5sb2NrKCZkZXZfcHJpdi0+ZHJycy5tdXRleCk7
-CiB9CiAKK3N0YXRpYyB2b2lkCitpbnRlbF9lZHBfZHJyc19kaXNhYmxlX2xvY2tlZChzdHJ1Y3Qg
-aW50ZWxfZHAgKmludGVsX2RwLAorCQkJICAgICAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3Rh
-dGUgKmNydGNfc3RhdGUpCit7CisJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0g
-ZHBfdG9faTkxNShpbnRlbF9kcCk7CisKKwlpZiAoZGV2X3ByaXYtPmRycnMucmVmcmVzaF9yYXRl
-X3R5cGUgPT0gRFJSU19MT1dfUlIpIHsKKwkJaW50IHJlZnJlc2g7CisKKwkJcmVmcmVzaCA9IGRy
-bV9tb2RlX3ZyZWZyZXNoKGludGVsX2RwLT5hdHRhY2hlZF9jb25uZWN0b3ItPnBhbmVsLmZpeGVk
-X21vZGUpOworCQlpbnRlbF9kcF9zZXRfZHJyc19zdGF0ZShkZXZfcHJpdiwgY3J0Y19zdGF0ZSwg
-cmVmcmVzaCk7CisJfQorCisJZGV2X3ByaXYtPmRycnMuZHAgPSBOVUxMOworfQorCiAvKioKICAq
-IGludGVsX2VkcF9kcnJzX2Rpc2FibGUgLSBEaXNhYmxlIERSUlMKICAqIEBpbnRlbF9kcDogRFAg
-c3RydWN0CkBAIC03Nzg1LDE2ICs3ODA4LDQ1IEBAIHZvaWQgaW50ZWxfZWRwX2RycnNfZGlzYWJs
-ZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCQlyZXR1cm47CiAJfQogCi0JaWYgKGRldl9w
-cml2LT5kcnJzLnJlZnJlc2hfcmF0ZV90eXBlID09IERSUlNfTE9XX1JSKQotCQlpbnRlbF9kcF9z
-ZXRfZHJyc19zdGF0ZShkZXZfcHJpdiwgb2xkX2NydGNfc3RhdGUsCi0JCQlkcm1fbW9kZV92cmVm
-cmVzaChpbnRlbF9kcC0+YXR0YWNoZWRfY29ubmVjdG9yLT5wYW5lbC5maXhlZF9tb2RlKSk7Ci0K
-LQlkZXZfcHJpdi0+ZHJycy5kcCA9IE5VTEw7CisJaW50ZWxfZWRwX2RycnNfZGlzYWJsZV9sb2Nr
-ZWQoaW50ZWxfZHAsIG9sZF9jcnRjX3N0YXRlKTsKIAltdXRleF91bmxvY2soJmRldl9wcml2LT5k
-cnJzLm11dGV4KTsKIAogCWNhbmNlbF9kZWxheWVkX3dvcmtfc3luYygmZGV2X3ByaXYtPmRycnMu
-d29yayk7CiB9CiAKKy8qKgorICogaW50ZWxfZWRwX2RycnNfdXBkYXRlIC0gVXBkYXRlIERSUlMg
-c3RhdGUKKyAqIEBpbnRlbF9kcDogSW50ZWwgRFAKKyAqIEBjcnRjX3N0YXRlOiBuZXcgQ1JUQyBz
-dGF0ZQorICoKKyAqIFRoaXMgZnVuY3Rpb24gd2lsbCB1cGRhdGUgRFJSUyBzdGF0ZXMsIGRpc2Fi
-bGluZyBvciBlbmFibGluZyBEUlJTIHdoZW4KKyAqIGV4ZWN1dGluZyBmYXN0c2V0cy4gRm9yIGZ1
-bGwgbW9kZXNldCwgaW50ZWxfZWRwX2RycnNfZGlzYWJsZSgpIGFuZAorICogaW50ZWxfZWRwX2Ry
-cnNfZW5hYmxlKCkgc2hvdWxkIGJlIGNhbGxlZCBpbnN0ZWFkLgorICovCit2b2lkCitpbnRlbF9l
-ZHBfZHJyc191cGRhdGUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKKwkJICAgICAgY29uc3Qg
-c3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCit7CisJc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7CisKKwlpZiAoZGV2X3By
-aXYtPmRycnMudHlwZSAhPSBTRUFNTEVTU19EUlJTX1NVUFBPUlQpCisJCXJldHVybjsKKworCW11
-dGV4X2xvY2soJmRldl9wcml2LT5kcnJzLm11dGV4KTsKKworCS8qIE5ldyBzdGF0ZSBtYXRjaGVz
-IGN1cnJlbnQgb25lPyAqLworCWlmIChjcnRjX3N0YXRlLT5oYXNfZHJycyA9PSAhIWRldl9wcml2
-LT5kcnJzLmRwKQorCQlnb3RvIHVubG9jazsKKworCWlmIChjcnRjX3N0YXRlLT5oYXNfZHJycykK
-KwkJaW50ZWxfZWRwX2RycnNfZW5hYmxlX2xvY2tlZChpbnRlbF9kcCk7CisJZWxzZQorCQlpbnRl
-bF9lZHBfZHJyc19kaXNhYmxlX2xvY2tlZChpbnRlbF9kcCwgY3J0Y19zdGF0ZSk7CisKK3VubG9j
-azoKKwltdXRleF91bmxvY2soJmRldl9wcml2LT5kcnJzLm11dGV4KTsKK30KKwogc3RhdGljIHZv
-aWQgaW50ZWxfZWRwX2RycnNfZG93bmNsb2NrX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3Jr
-KQogewogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9CmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmggYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RwLmgKaW5kZXggYjkwMWFiODUwY2JkLi4wNTdiMmMxNTJjYmQg
-MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaAorKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmgKQEAgLTgxLDYgKzgxLDgg
-QEAgdm9pZCBpbnRlbF9lZHBfZHJyc19lbmFibGUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwK
-IAkJCSAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKTsKIHZvaWQg
-aW50ZWxfZWRwX2RycnNfZGlzYWJsZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCQkJICAg
-IGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKTsKK3ZvaWQgaW50ZWxf
-ZWRwX2RycnNfdXBkYXRlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCisJCQkgICBjb25zdCBz
-dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7CiB2b2lkIGludGVsX2VkcF9kcnJz
-X2ludmFsaWRhdGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAogCQkJICAgICAg
-IHVuc2lnbmVkIGludCBmcm9udGJ1ZmZlcl9iaXRzKTsKIHZvaWQgaW50ZWxfZWRwX2RycnNfZmx1
-c2goc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAotLSAKMi4yOC4wCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Hi Anitha.
+
+On Mon, Aug 10, 2020 at 02:53:38PM -0700, Anitha Chrisanthus wrote:
+> This is a basic KMS atomic modesetting display driver for KeemBay family =
+of
+> SOCs. Driver has no 2D or 3D graphics.It calls into the ADV bridge
+> driver at the connector level.
+> =
+
+> Single CRTC with LCD controller->mipi DSI-> ADV bridge
+> =
+
+> Only 1080p resolution and single plane is supported at this time.
+> =
+
+> v2: moved extern to .h, removed license text
+>     use drm_dev_init, upclassed dev_private, removed HAVE_IRQ.
+> =
+
+> v3: Squashed all 59 commits to one
+> =
+
+> v4: review changes from Sam Ravnborg
+> 	renamed dev_p to kmb
+> 	moved clocks under kmb_clock, consolidated clk initializations
+> 	use drmm functions
+> 	use DRM_GEM_CMA_DRIVER_OPS_VMAP
+> =
+
+> v5: corrected spellings
+> v6: corrected checkpatch warnings
+
+I have asked a few persons to review, but they lack time at the moment.
+So I will continue this monolouge of review feedback.
+
+I had hoped to provide all feedback in a few itearations, but I continue
+to find more stuff.
+
+First part of this round is some feedback on plane stuff
+
+	Sam
+
+
+> diff --git a/drivers/gpu/drm/kmb/kmb_plane.c b/drivers/gpu/drm/kmb/kmb_pl=
+ane.c
+> new file mode 100644
+> index 0000000..31bcba0
+> --- /dev/null
+> +++ b/drivers/gpu/drm/kmb/kmb_plane.c
+> @@ -0,0 +1,519 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright =A9 2018-2020 Intel Corporation
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/platform_data/simplefb.h>
+Not used I think.
+
+> +#include <video/videomode.h>
+Not used I hope.
+
+> +
+> +#include <drm/drm_atomic.h>
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_crtc.h>
+> +#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_fb_cma_helper.h>
+> +#include <drm/drm_fb_helper.h>
+> +#include <drm/drm_gem_cma_helper.h>
+> +#include <drm/drm_of.h>
+> +#include <drm/drm_plane_helper.h>
+> +#include <drm/drm_managed.h>
+> +
+> +#include "kmb_crtc.h"
+> +#include "kmb_drv.h"
+> +#include "kmb_plane.h"
+> +#include "kmb_regs.h"
+> +
+> +struct layer_status plane_status[KMB_MAX_PLANES];
+Embed plane_status in struct kmb_plane so you avoid an extra statically
+allocated variable here. And it is then together with other relevant
+data.
+
+> +const u32 layer_irqs[] =3D {
+> +	LCD_INT_VL0,
+> +	LCD_INT_VL1,
+> +	LCD_INT_GL0,
+> +	LCD_INT_GL1
+> +};
+> +
+> +static unsigned int check_pixel_format(struct drm_plane *plane, u32 form=
+at)
+> +{
+> +	int i;
+> +
+> +	for (i =3D 0; i < plane->format_count; i++) {
+> +		if (plane->format_types[i] =3D=3D format)
+> +			return 0;
+> +	}
+> +	return -EINVAL;
+> +}
+> +
+> +static int kmb_plane_atomic_check(struct drm_plane *plane,
+> +				  struct drm_plane_state *state)
+> +{
+> +	struct drm_framebuffer *fb;
+> +	int ret;
+> +
+> +	fb =3D state->fb;
+> +	if (!fb || !state->crtc)
+> +		return 0;
+> +
+Should drm_atomic_helper_check_plane_state() be called here?
+
+> +	ret =3D check_pixel_format(plane, fb->format->format);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (state->crtc_w > KMB_MAX_WIDTH || state->crtc_h > KMB_MAX_HEIGHT)
+> +		return -EINVAL;
+> +	if (state->crtc_w < KMB_MIN_WIDTH || state->crtc_h < KMB_MIN_HEIGHT)
+> +		return -EINVAL;
+> +	return 0;
+> +}
+> +
+> +static void kmb_plane_atomic_disable(struct drm_plane *plane,
+> +				     struct drm_plane_state *state)
+> +{
+> +	struct kmb_plane *kmb_plane =3D to_kmb_plane(plane);
+> +	int plane_id =3D kmb_plane->id;
+> +
+> +	switch (plane_id) {
+> +	case LAYER_0:
+> +		plane_status[plane_id].ctrl =3D LCD_CTRL_VL1_ENABLE;
+> +		break;
+> +	case LAYER_1:
+> +		plane_status[plane_id].ctrl =3D LCD_CTRL_VL2_ENABLE;
+> +		break;
+> +	case LAYER_2:
+> +		plane_status[plane_id].ctrl =3D LCD_CTRL_GL1_ENABLE;
+> +		break;
+> +	case LAYER_3:
+> +		plane_status[plane_id].ctrl =3D LCD_CTRL_GL2_ENABLE;
+> +		break;
+> +	}
+> +
+> +	plane_status[plane_id].disable =3D true;
+> +}
+> +
+> +unsigned int set_pixel_format(u32 format)
+> +{
+> +	unsigned int val =3D 0;
+> +
+> +	switch (format) {
+> +		/* planar formats */
+> +	case DRM_FORMAT_YUV444:
+> +		val =3D LCD_LAYER_FORMAT_YCBCR444PLAN | LCD_LAYER_PLANAR_STORAGE;
+> +		break;
+> +	case DRM_FORMAT_YVU444:
+> +		val =3D LCD_LAYER_FORMAT_YCBCR444PLAN | LCD_LAYER_PLANAR_STORAGE
+> +		    | LCD_LAYER_CRCB_ORDER;
+> +		break;
+> +	case DRM_FORMAT_YUV422:
+> +		val =3D LCD_LAYER_FORMAT_YCBCR422PLAN | LCD_LAYER_PLANAR_STORAGE;
+> +		break;
+> +	case DRM_FORMAT_YVU422:
+> +		val =3D LCD_LAYER_FORMAT_YCBCR422PLAN | LCD_LAYER_PLANAR_STORAGE
+> +		    | LCD_LAYER_CRCB_ORDER;
+> +		break;
+> +	case DRM_FORMAT_YUV420:
+> +		val =3D LCD_LAYER_FORMAT_YCBCR420PLAN | LCD_LAYER_PLANAR_STORAGE;
+> +		break;
+> +	case DRM_FORMAT_YVU420:
+> +		val =3D LCD_LAYER_FORMAT_YCBCR420PLAN | LCD_LAYER_PLANAR_STORAGE
+> +		    | LCD_LAYER_CRCB_ORDER;
+> +		break;
+> +	case DRM_FORMAT_NV12:
+> +		val =3D LCD_LAYER_FORMAT_NV12 | LCD_LAYER_PLANAR_STORAGE;
+> +		break;
+> +	case DRM_FORMAT_NV21:
+> +		val =3D LCD_LAYER_FORMAT_NV12 | LCD_LAYER_PLANAR_STORAGE
+> +		    | LCD_LAYER_CRCB_ORDER;
+> +		break;
+> +		/* packed formats */
+> +		/* looks hw requires B & G to be swapped when RGB */
+> +	case DRM_FORMAT_RGB332:
+> +		val =3D LCD_LAYER_FORMAT_RGB332 | LCD_LAYER_BGR_ORDER;
+> +		break;
+> +	case DRM_FORMAT_XBGR4444:
+> +		val =3D LCD_LAYER_FORMAT_RGBX4444;
+> +		break;
+> +	case DRM_FORMAT_ARGB4444:
+> +		val =3D LCD_LAYER_FORMAT_RGBA4444 | LCD_LAYER_BGR_ORDER;
+> +		break;
+> +	case DRM_FORMAT_ABGR4444:
+> +		val =3D LCD_LAYER_FORMAT_RGBA4444;
+> +		break;
+> +	case DRM_FORMAT_XRGB1555:
+> +		val =3D LCD_LAYER_FORMAT_XRGB1555 | LCD_LAYER_BGR_ORDER;
+> +		break;
+> +	case DRM_FORMAT_XBGR1555:
+> +		val =3D LCD_LAYER_FORMAT_XRGB1555;
+> +		break;
+> +	case DRM_FORMAT_ARGB1555:
+> +		val =3D LCD_LAYER_FORMAT_RGBA1555 | LCD_LAYER_BGR_ORDER;
+> +		break;
+> +	case DRM_FORMAT_ABGR1555:
+> +		val =3D LCD_LAYER_FORMAT_RGBA1555;
+> +		break;
+> +	case DRM_FORMAT_RGB565:
+> +		val =3D LCD_LAYER_FORMAT_RGB565 | LCD_LAYER_BGR_ORDER;
+> +		break;
+> +	case DRM_FORMAT_BGR565:
+> +		val =3D LCD_LAYER_FORMAT_RGB565;
+> +		break;
+> +	case DRM_FORMAT_RGB888:
+> +		val =3D LCD_LAYER_FORMAT_RGB888 | LCD_LAYER_BGR_ORDER;
+> +		break;
+> +	case DRM_FORMAT_BGR888:
+> +		val =3D LCD_LAYER_FORMAT_RGB888;
+> +		break;
+> +	case DRM_FORMAT_XRGB8888:
+> +		val =3D LCD_LAYER_FORMAT_RGBX8888 | LCD_LAYER_BGR_ORDER;
+> +		break;
+> +	case DRM_FORMAT_XBGR8888:
+> +		val =3D LCD_LAYER_FORMAT_RGBX8888;
+> +		break;
+> +	case DRM_FORMAT_ARGB8888:
+> +		val =3D LCD_LAYER_FORMAT_RGBA8888 | LCD_LAYER_BGR_ORDER;
+> +		break;
+> +	case DRM_FORMAT_ABGR8888:
+> +		val =3D LCD_LAYER_FORMAT_RGBA8888;
+> +		break;
+> +	}
+> +	DRM_INFO_ONCE("%s : %d format=3D0x%x val=3D0x%x\n",
+> +		      __func__, __LINE__, format, val);
+> +	return val;
+> +}
+> +
+> +unsigned int set_bits_per_pixel(const struct drm_format_info *format)
+This is not a set function - nothing is set.
+Maybe just rename it to get_*
+
+> +{
+> +	u32 bpp =3D 0;
+> +	unsigned int val =3D 0;
+> +
+> +	if (format->num_planes > 1) {
+> +		val =3D LCD_LAYER_8BPP;
+> +		return val;
+> +	}
+> +
+> +	bpp +=3D 8 * format->cpp[0];
+> +
+> +	switch (bpp) {
+> +	case 8:
+> +		val =3D LCD_LAYER_8BPP;
+> +		break;
+> +	case 16:
+> +		val =3D LCD_LAYER_16BPP;
+> +		break;
+> +	case 24:
+> +		val =3D LCD_LAYER_24BPP;
+> +		break;
+> +	case 32:
+> +		val =3D LCD_LAYER_32BPP;
+> +		break;
+> +	}
+> +
+> +	DRM_DEBUG("bpp=3D%d val=3D0x%x\n", bpp, val);
+> +	return val;
+> +}
+> +
+> +static void config_csc(struct kmb_drm_private *kmb, int plane_id)
+> +{
+> +	/* YUV to RGB conversion using the fixed matrix csc_coef_lcd */
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF11(plane_id), csc_coef_lcd[0]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF12(plane_id), csc_coef_lcd[1]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF13(plane_id), csc_coef_lcd[2]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF21(plane_id), csc_coef_lcd[3]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF22(plane_id), csc_coef_lcd[4]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF23(plane_id), csc_coef_lcd[5]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF31(plane_id), csc_coef_lcd[6]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF32(plane_id), csc_coef_lcd[7]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_COEFF33(plane_id), csc_coef_lcd[8]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_OFF1(plane_id), csc_coef_lcd[9]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_OFF2(plane_id), csc_coef_lcd[10]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CSC_OFF3(plane_id), csc_coef_lcd[11]);
+> +}
+> +
+> +static void kmb_plane_atomic_update(struct drm_plane *plane,
+> +				    struct drm_plane_state *state)
+> +{
+> +	struct drm_framebuffer *fb;
+> +	struct kmb_drm_private *kmb;
+> +	unsigned int width;
+> +	unsigned int height;
+> +	unsigned int dma_len;
+> +	struct kmb_plane *kmb_plane;
+> +	unsigned int dma_cfg;
+> +	unsigned int ctrl =3D 0, val =3D 0, out_format =3D 0;
+> +	unsigned int src_w, src_h, crtc_x, crtc_y;
+> +	unsigned char plane_id;
+> +	int num_planes;
+> +	static dma_addr_t addr[MAX_SUB_PLANES] =3D { 0, 0, 0 };
+I *think* some compilers will choke on this. And the assignment seems
+not to be needed, they are all assigned before use as far as I could
+tell.
+
+> +
+> +	if (!plane || !plane->state || !state)
+> +		return;
+> +
+> +	fb =3D plane->state->fb;
+> +	if (!fb)
+> +		return;
+> +	num_planes =3D fb->format->num_planes;
+> +	kmb_plane =3D to_kmb_plane(plane);
+> +	plane_id =3D kmb_plane->id;
+> +
+> +	kmb =3D to_kmb(plane->dev);
+> +
+> +	if (kmb_under_flow || kmb_flush_done) {
+> +		drm_dbg(&kmb->drm, "plane_update:underflow!!!! returning");
+> +		return;
+> +	}
+> +
+> +	src_w =3D (plane->state->src_w >> 16);
+> +	src_h =3D plane->state->src_h >> 16;
+> +	crtc_x =3D plane->state->crtc_x;
+> +	crtc_y =3D plane->state->crtc_y;
+> +
+> +	drm_dbg(&kmb->drm,
+> +		"src_w=3D%d src_h=3D%d, fb->format->format=3D0x%x fb->flags=3D0x%x\n",
+> +		  src_w, src_h, fb->format->format, fb->flags);
+> +
+> +	width =3D fb->width;
+> +	height =3D fb->height;
+> +	dma_len =3D (width * height * fb->format->cpp[0]);
+> +	drm_dbg(&kmb->drm, "dma_len=3D%d ", dma_len);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LEN(plane_id), dma_len);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LEN_SHADOW(plane_id), dma_len);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LINE_VSTRIDE(plane_id),
+> +		      fb->pitches[0]);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_DMA_LINE_WIDTH(plane_id),
+> +		      (width * fb->format->cpp[0]));
+> +
+> +	addr[Y_PLANE] =3D drm_fb_cma_get_gem_addr(fb, plane->state, 0);
+> +	kmb->fb_addr =3D addr[Y_PLANE];
+> +	kmb_write_lcd(kmb, LCD_LAYERn_DMA_START_ADDR(plane_id),
+> +		      addr[Y_PLANE] + fb->offsets[0]);
+> +	val =3D set_pixel_format(fb->format->format);
+> +	val |=3D set_bits_per_pixel(fb->format);
+> +	/* Program Cb/Cr for planar formats */
+> +	if (num_planes > 1) {
+> +		kmb_write_lcd(kmb, LCD_LAYERn_DMA_CB_LINE_VSTRIDE(plane_id),
+> +			      width * fb->format->cpp[0]);
+> +		kmb_write_lcd(kmb, LCD_LAYERn_DMA_CB_LINE_WIDTH(plane_id),
+> +			      (width * fb->format->cpp[0]));
+> +
+> +		addr[U_PLANE] =3D drm_fb_cma_get_gem_addr(fb, plane->state,
+> +							U_PLANE);
+> +		/* check if Cb/Cr is swapped*/
+> +		if (num_planes =3D=3D 3 && (val & LCD_LAYER_CRCB_ORDER))
+> +			kmb_write_lcd(kmb,
+> +				      LCD_LAYERn_DMA_START_CR_ADR(plane_id),
+> +					addr[U_PLANE]);
+> +		else
+> +			kmb_write_lcd(kmb,
+> +				      LCD_LAYERn_DMA_START_CB_ADR(plane_id),
+> +					addr[U_PLANE]);
+> +
+> +		if (num_planes =3D=3D 3) {
+> +			kmb_write_lcd(kmb,
+> +				      LCD_LAYERn_DMA_CR_LINE_VSTRIDE(plane_id),
+> +				      ((width) * fb->format->cpp[0]));
+> +
+> +			kmb_write_lcd(kmb,
+> +				      LCD_LAYERn_DMA_CR_LINE_WIDTH(plane_id),
+> +				      ((width) * fb->format->cpp[0]));
+> +
+> +			addr[V_PLANE] =3D drm_fb_cma_get_gem_addr(fb,
+> +								plane->state,
+> +								V_PLANE);
+> +
+> +			/* check if Cb/Cr is swapped*/
+> +			if (val & LCD_LAYER_CRCB_ORDER)
+> +				kmb_write_lcd(kmb,
+> +					      LCD_LAYERn_DMA_START_CB_ADR(plane_id),
+> +					      addr[V_PLANE]);
+> +			else
+> +				kmb_write_lcd(kmb,
+> +					      LCD_LAYERn_DMA_START_CR_ADR(plane_id),
+> +					      addr[V_PLANE]);
+> +		}
+> +	}
+> +
+> +	kmb_write_lcd(kmb, LCD_LAYERn_WIDTH(plane_id), src_w - 1);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_HEIGHT(plane_id), src_h - 1);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_COL_START(plane_id), crtc_x);
+> +	kmb_write_lcd(kmb, LCD_LAYERn_ROW_START(plane_id), crtc_y);
+> +
+> +	val |=3D LCD_LAYER_FIFO_100;
+> +
+> +	if (val & LCD_LAYER_PLANAR_STORAGE) {
+> +		val |=3D LCD_LAYER_CSC_EN;
+> +
+> +		/* Enable CSC if input is planar and output is RGB */
+> +		config_csc(kmb, plane_id);
+> +	}
+> +
+> +	kmb_write_lcd(kmb, LCD_LAYERn_CFG(plane_id), val);
+> +
+> +	switch (plane_id) {
+> +	case LAYER_0:
+> +		ctrl =3D LCD_CTRL_VL1_ENABLE;
+> +		break;
+> +	case LAYER_1:
+> +		ctrl =3D LCD_CTRL_VL2_ENABLE;
+> +		break;
+> +	case LAYER_2:
+> +		ctrl =3D LCD_CTRL_GL1_ENABLE;
+> +		break;
+> +	case LAYER_3:
+> +		ctrl =3D LCD_CTRL_GL2_ENABLE;
+> +		break;
+> +	}
+> +
+> +	ctrl |=3D LCD_CTRL_PROGRESSIVE | LCD_CTRL_TIM_GEN_ENABLE
+> +	    | LCD_CTRL_CONTINUOUS | LCD_CTRL_OUTPUT_ENABLED;
+> +
+> +	/* LCD is connected to MIPI on kmb
+> +	 * Therefore this bit is required for DSI Tx
+> +	 */
+> +	ctrl |=3D LCD_CTRL_VHSYNC_IDLE_LVL;
+> +
+> +	kmb_set_bitmask_lcd(kmb, LCD_CONTROL, ctrl);
+> +
+> +	/* FIXME no doc on how to set output format,these values are
+> +	 * taken from the Myriadx tests
+> +	 */
+> +	out_format |=3D LCD_OUTF_FORMAT_RGB888;
+> +
+> +	/* Leave RGB order,conversion mode and clip mode to default */
+> +	/* do not interleave RGB channels for mipi Tx compatibility */
+> +	out_format |=3D LCD_OUTF_MIPI_RGB_MODE;
+> +	kmb_write_lcd(kmb, LCD_OUT_FORMAT_CFG, out_format);
+> +
+> +	dma_cfg =3D LCD_DMA_LAYER_ENABLE | LCD_DMA_LAYER_VSTRIDE_EN |
+> +	    LCD_DMA_LAYER_CONT_UPDATE | LCD_DMA_LAYER_AXI_BURST_16;
+> +
+> +	/* Enable DMA */
+> +	kmb_write_lcd(kmb, LCD_LAYERn_DMA_CFG(plane_id), dma_cfg);
+> +	drm_dbg(&kmb->drm, "dma_cfg=3D0x%x LCD_DMA_CFG=3D0x%x\n", dma_cfg,
+> +		kmb_read_lcd(kmb, LCD_LAYERn_DMA_CFG(plane_id)));
+> +
+> +	kmb_set_bitmask_lcd(kmb, LCD_INT_CLEAR, LCD_INT_EOF |
+> +			LCD_INT_DMA_ERR);
+> +	kmb_set_bitmask_lcd(kmb, LCD_INT_ENABLE, LCD_INT_EOF |
+> +			LCD_INT_DMA_ERR);
+> +}
+> +
+> +static const struct drm_plane_helper_funcs kmb_plane_helper_funcs =3D {
+> +	.atomic_check =3D kmb_plane_atomic_check,
+> +	.atomic_update =3D kmb_plane_atomic_update,
+> +	.atomic_disable =3D kmb_plane_atomic_disable
+> +};
+> +
+> +void kmb_plane_destroy(struct drm_plane *plane)
+> +{
+> +	struct kmb_plane *kmb_plane =3D to_kmb_plane(plane);
+> +
+> +	drm_plane_cleanup(plane);
+> +	kfree(kmb_plane);
+> +}
+> +
+> +static void kmb_destroy_plane_state(struct drm_plane *plane,
+> +				    struct drm_plane_state *state)
+> +{
+> +	struct kmb_plane_state *kmb_state =3D to_kmb_plane_state(state);
+> +
+> +	__drm_atomic_helper_plane_destroy_state(state);
+> +	kfree(kmb_state);
+> +}
+> +
+> +struct drm_plane_state *kmb_plane_duplicate_state(struct drm_plane *plan=
+e)
+> +{
+Use __drm_atomic_helper_plane_duplicate_state() - which requires a few
+updates.
+See other users.
+
+> +	struct drm_plane_state *state;
+> +	struct kmb_plane_state *kmb_state;
+> +
+> +	kmb_state =3D kmemdup(plane->state, sizeof(*kmb_state), GFP_KERNEL);
+> +	if (!kmb_state)
+> +		return NULL;
+> +
+> +	state =3D &kmb_state->base_plane_state;
+> +	__drm_atomic_helper_plane_duplicate_state(plane, state);
+> +
+> +	return state;
+> +}
+> +
+> +static void kmb_plane_reset(struct drm_plane *plane)
+> +{
+> +	struct kmb_plane_state *kmb_state =3D to_kmb_plane_state(plane->state);
+> +
+> +	if (kmb_state)
+> +		__drm_atomic_helper_plane_destroy_state
+> +		    (&kmb_state->base_plane_state);
+Join lines - this is not readable.
+
+> +	kfree(kmb_state);
+> +
+> +	plane->state =3D NULL;
+> +	kmb_state =3D kzalloc(sizeof(*kmb_state), GFP_KERNEL);
+Use __drm_atomic_helper_plane_reset()
+> +	if (kmb_state) {
+> +		kmb_state->base_plane_state.plane =3D plane;
+> +		kmb_state->base_plane_state.rotation =3D DRM_MODE_ROTATE_0;
+> +		plane->state =3D &kmb_state->base_plane_state;
+> +		kmb_state->no_planes =3D KMB_MAX_PLANES;
+> +	}
+> +}
+> +
+> +static const struct drm_plane_funcs kmb_plane_funcs =3D {
+> +	.update_plane =3D drm_atomic_helper_update_plane,
+> +	.disable_plane =3D drm_atomic_helper_disable_plane,
+> +	.destroy =3D kmb_plane_destroy,
+> +	.reset =3D kmb_plane_reset,
+> +	.atomic_duplicate_state =3D kmb_plane_duplicate_state,
+> +	.atomic_destroy_state =3D kmb_destroy_plane_state,
+> +};
+> +
+> +struct kmb_plane *kmb_plane_init(struct drm_device *drm)
+> +{
+> +	struct kmb_drm_private *lcd =3D to_kmb(drm);
+Name it kmb? s/lcd/kmb/
+
+> +	struct kmb_plane *plane =3D NULL;
+> +	struct kmb_plane *primary =3D NULL;
+> +	int i =3D 0;
+> +	int ret =3D 0;
+> +	enum drm_plane_type plane_type;
+> +	const u32 *plane_formats;
+> +	int num_plane_formats;
+> +
+> +	for (i =3D 0; i < lcd->n_layers; i++) {
+> +		plane =3D drmm_kzalloc(drm, sizeof(*plane), GFP_KERNEL);
+> +
+> +		if (!plane) {
+> +			drm_err(drm, "Failed to allocate plane\n");
+> +			return ERR_PTR(-ENOMEM);
+> +		}
+> +
+> +		plane_type =3D (i =3D=3D 0) ? DRM_PLANE_TYPE_PRIMARY :
+> +		    DRM_PLANE_TYPE_OVERLAY;
+> +		if (i < 2) {
+> +			plane_formats =3D kmb_formats_v;
+> +			num_plane_formats =3D ARRAY_SIZE(kmb_formats_v);
+> +		} else {
+> +			plane_formats =3D kmb_formats_g;
+> +			num_plane_formats =3D ARRAY_SIZE(kmb_formats_g);
+> +		}
+> +
+> +		ret =3D drm_universal_plane_init(drm, &plane->base_plane,
+> +					       POSSIBLE_CRTCS, &kmb_plane_funcs,
+> +					       plane_formats, num_plane_formats,
+> +					       NULL, plane_type, "plane %d", i);
+> +		if (ret < 0) {
+> +			drm_err(drm, "drm_universal_plane_init failed (ret=3D%d)",
+> +				ret);
+> +			goto cleanup;
+> +		}
+> +		drm_dbg(drm, "%s : %d i=3D%d type=3D%d",
+> +			__func__, __LINE__,
+> +			  i, plane_type);
+> +		drm_plane_helper_add(&plane->base_plane,
+> +				     &kmb_plane_helper_funcs);
+> +		if (plane_type =3D=3D DRM_PLANE_TYPE_PRIMARY) {
+> +			primary =3D plane;
+> +			lcd->plane =3D plane;
+> +		}
+> +		drm_dbg(drm, "%s : %d primary=3D%p\n", __func__, __LINE__,
+> +			&primary->base_plane);
+> +		plane->id =3D i;
+> +	}
+> +
+> +	return primary;
+> +cleanup:
+> +	kfree(plane);
+> +	return ERR_PTR(ret);
+> +}
+> diff --git a/drivers/gpu/drm/kmb/kmb_plane.h b/drivers/gpu/drm/kmb/kmb_pl=
+ane.h
+> new file mode 100644
+> index 0000000..48f237f
+> --- /dev/null
+> +++ b/drivers/gpu/drm/kmb/kmb_plane.h
+> @@ -0,0 +1,124 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only
+> + *
+> + * Copyright =A9 2018-2020 Intel Corporation
+> + */
+> +
+> +#ifndef __KMB_PLANE_H__
+> +#define __KMB_PLANE_H__
+> +
+> +#include "kmb_drv.h"
+> +
+> +extern int kmb_under_flow;
+> +extern int kmb_flush_done;
+> +
+> +#define LCD_INT_VL0_ERR ((LAYER0_DMA_FIFO_UNDERFLOW) | \
+> +			(LAYER0_DMA_FIFO_OVERFLOW) | \
+> +			(LAYER0_DMA_CB_FIFO_OVERFLOW) | \
+> +			(LAYER0_DMA_CB_FIFO_UNDERFLOW) | \
+> +			(LAYER0_DMA_CR_FIFO_OVERFLOW) | \
+> +			(LAYER0_DMA_CR_FIFO_UNDERFLOW))
+> +
+> +#define LCD_INT_VL1_ERR ((LAYER1_DMA_FIFO_UNDERFLOW) | \
+> +			(LAYER1_DMA_FIFO_OVERFLOW) | \
+> +			(LAYER1_DMA_CB_FIFO_OVERFLOW) | \
+> +			(LAYER1_DMA_CB_FIFO_UNDERFLOW) | \
+> +			(LAYER1_DMA_CR_FIFO_OVERFLOW) | \
+> +			(LAYER1_DMA_CR_FIFO_UNDERFLOW))
+> +
+> +#define LCD_INT_GL0_ERR (LAYER2_DMA_FIFO_OVERFLOW | LAYER2_DMA_FIFO_UNDE=
+RFLOW)
+> +#define LCD_INT_GL1_ERR (LAYER3_DMA_FIFO_OVERFLOW | LAYER3_DMA_FIFO_UNDE=
+RFLOW)
+> +#define LCD_INT_VL0 (LAYER0_DMA_DONE | LAYER0_DMA_IDLE | LCD_INT_VL0_ERR)
+> +#define LCD_INT_VL1 (LAYER1_DMA_DONE | LAYER1_DMA_IDLE | LCD_INT_VL1_ERR)
+> +#define LCD_INT_GL0 (LAYER2_DMA_DONE | LAYER2_DMA_IDLE | LCD_INT_GL0_ERR)
+> +#define LCD_INT_GL1 (LAYER3_DMA_DONE | LAYER3_DMA_IDLE | LCD_INT_GL1_ERR)
+> +#define LCD_INT_DMA_ERR (LCD_INT_VL0_ERR | LCD_INT_VL1_ERR \
+> +		| LCD_INT_GL0_ERR | LCD_INT_GL1_ERR)
+> +
+> +#define POSSIBLE_CRTCS 1
+
+> +#define INITIALIZED 1
+Not used I think.
+> +#define to_kmb_plane(x) container_of(x, struct kmb_plane, base_plane)
+> +
+> +#define to_kmb_plane_state(x) \
+> +		container_of(x, struct kmb_plane_state, base_plane_state)
+> +
+> +enum layer_id {
+> +	LAYER_0,
+> +	LAYER_1,
+> +	LAYER_2,
+> +	LAYER_3,
+> +//	KMB_MAX_PLANES,
+> +};
+> +
+> +#define KMB_MAX_PLANES 1
+> +
+> +enum sub_plane_id {
+> +	Y_PLANE,
+> +	U_PLANE,
+> +	V_PLANE,
+> +	MAX_SUB_PLANES,
+> +};
+> +
+> +struct kmb_plane {
+> +	struct drm_plane base_plane;
+
+> +	struct kmb_drm_private kmb_dev;
+This is wrong, embedding kmb_drm_private here is not correct.
+
+> +	unsigned char id;
+> +};
+If possible embedding the planes in kmb_drm_private would be preferable.
+This is how other drivers do it with success.
+
+The id part seems pretty unique - but maybe other drivers has the same
+but name it different.
+
+> +
+> +struct kmb_plane_state {
+> +	struct drm_plane_state base_plane_state;
+> +	unsigned char no_planes;
+no_planes is not used - so the whole kmb_plane_state can be dropped.
+And this should kill a few helper functions too.
+
+I know part of this is prepared for multiple planes.
+But keep it lean and clean now - maybe addding extra planes later needs
+to be done different than what the code tries to prepare for.
+
+> +};
+> +
+> +/* Graphics layer (layers 2 & 3) formats, only packed formats  are suppo=
+rted */
+> +static const u32 kmb_formats_g[] =3D {
+> +	DRM_FORMAT_RGB332,
+> +	DRM_FORMAT_XRGB4444, DRM_FORMAT_XBGR4444,
+> +	DRM_FORMAT_ARGB4444, DRM_FORMAT_ABGR4444,
+> +	DRM_FORMAT_XRGB1555, DRM_FORMAT_XBGR1555,
+> +	DRM_FORMAT_ARGB1555, DRM_FORMAT_ABGR1555,
+> +	DRM_FORMAT_RGB565, DRM_FORMAT_BGR565,
+> +	DRM_FORMAT_RGB888, DRM_FORMAT_BGR888,
+> +	DRM_FORMAT_XRGB8888, DRM_FORMAT_XBGR8888,
+> +	DRM_FORMAT_ARGB8888, DRM_FORMAT_ABGR8888,
+> +};
+> +
+> +#define MAX_FORMAT_G	(ARRAY_SIZE(kmb_formats_g))
+> +#define MAX_FORMAT_V	(ARRAY_SIZE(kmb_formats_v))
+> +
+> +/* Video layer ( 0 & 1) formats, packed and planar formats are supported=
+ */
+> +static const u32 kmb_formats_v[] =3D {
+> +	/* packed formats */
+> +	DRM_FORMAT_RGB332,
+> +	DRM_FORMAT_XRGB4444, DRM_FORMAT_XBGR4444,
+> +	DRM_FORMAT_ARGB4444, DRM_FORMAT_ABGR4444,
+> +	DRM_FORMAT_XRGB1555, DRM_FORMAT_XBGR1555,
+> +	DRM_FORMAT_ARGB1555, DRM_FORMAT_ABGR1555,
+> +	DRM_FORMAT_RGB565, DRM_FORMAT_BGR565,
+> +	DRM_FORMAT_RGB888, DRM_FORMAT_BGR888,
+> +	DRM_FORMAT_XRGB8888, DRM_FORMAT_XBGR8888,
+> +	DRM_FORMAT_ARGB8888, DRM_FORMAT_ABGR8888,
+> +	/*planar formats */
+> +	DRM_FORMAT_YUV420, DRM_FORMAT_YVU420,
+> +	DRM_FORMAT_YUV422, DRM_FORMAT_YVU422,
+> +	DRM_FORMAT_YUV444, DRM_FORMAT_YVU444,
+> +	DRM_FORMAT_NV12, DRM_FORMAT_NV21,
+> +};
+> +
+> +/* Conversion (yuv->rgb) matrix from myriadx */
+> +static const u32 csc_coef_lcd[] =3D {
+> +	1024, 0, 1436,
+> +	1024, -352, -731,
+> +	1024, 1814, 0,
+> +	-179, 125, -226
+> +};
+> +
+> +struct layer_status {
+> +	bool disable;
+> +	u32 ctrl;
+> +};
+> +
+> +extern struct layer_status plane_status[KMB_MAX_PLANES];
+> +
+> +struct kmb_plane *kmb_plane_init(struct drm_device *drm);
+> +void kmb_plane_destroy(struct drm_plane *plane);
+> +#endif /* __KMB_PLANE_H__ */
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
