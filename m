@@ -1,77 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D900124C39A
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 18:49:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F92724C466
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 19:21:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C4236E985;
-	Thu, 20 Aug 2020 16:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A3706E99C;
+	Thu, 20 Aug 2020 17:21:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C78CD6E3C1
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Aug 2020 16:49:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1597942189;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=dW8r8JdJJ1XvxqUMvr8aT7H6lBrW72ZARyz6ehntw7M=;
- b=LnB7H2K/MLjznYehCMWzKih3meLatXFozGsiWpGJusx5JyJQZanm8Mx7i/HihOVQI+GI6A
- 9ALtJjIllTs3oQfCdxuF8fkimZxrJ/7eNIJCPkE8F0Q3Jn8Qf8Nn8+rh7K1Rw2lg2crITn
- Ttc0X08fxh0hrmZRDLduizW/boNhvu0=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-377-CmZnQ1WSM8qvccgxEhX4ZQ-1; Thu, 20 Aug 2020 12:49:44 -0400
-X-MC-Unique: CmZnQ1WSM8qvccgxEhX4ZQ-1
-Received: by mail-qt1-f199.google.com with SMTP id r24so1966974qtu.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Aug 2020 09:49:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
- :in-reply-to:references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=dW8r8JdJJ1XvxqUMvr8aT7H6lBrW72ZARyz6ehntw7M=;
- b=k4lor2csiDgToJqdV8aMxiOWRXYxbFfXeDMh3VLhxhMrCUltj+tHerQv2pYqAMn9QC
- wjPAM7KcXTaNxH+BEsh8Ud5sS51f1qL4WimZ7xoM2jOlPZMxuMTXf3SNIcFp3ooDNwYh
- G18zMyYoMAxs2BAIDJWIIGktnQN/jr6N4rIoU2c73x4nZkKVjPBTHhAoqs1ygi97h7vp
- KedBzCiRTuUxA+H2OII398h/qO19DWiK3fn5NHjMuzL8smrBRx3b/Ni/KeEMDQ3x9yD6
- UKO46em1kGlxuwO5/1vzo23FwJQdMISq80wgCL8Z9hjfm3DdccplGDIMfwTCkpOPv+13
- jNZg==
-X-Gm-Message-State: AOAM532PzHZeupk+c9W+NxwCNemAORZBd+VsrxHogzAcGjYt9HXufyZ2
- ah5Oj+BFaPzqvWOfR2MDT3iZ5GEedTkPOO1tAFfmfbOol4kbcVHtjufHTHuKI4yGfNwwu/BUzvo
- 2QA0yZJp/0afLrK1qpj2XH+YMnYfn
-X-Received: by 2002:ac8:72cb:: with SMTP id o11mr3580679qtp.13.1597942184159; 
- Thu, 20 Aug 2020 09:49:44 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzdJLNsMa2rhIfJlw/yMUDCjOhhaVf2QMxZHnbrsfhT2Zb3XRU8t0cqYl15X39VId9T64toFw==
-X-Received: by 2002:ac8:72cb:: with SMTP id o11mr3580638qtp.13.1597942183827; 
- Thu, 20 Aug 2020 09:49:43 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id a20sm3549908qtw.45.2020.08.20.09.49.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Aug 2020 09:49:42 -0700 (PDT)
-Message-ID: <501a431dce94fdaa086324ed6660b1188e1f3390.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Sean Paul <sean@poorly.run>
-Date: Thu, 20 Aug 2020 12:49:41 -0400
-In-Reply-To: <20200819152914.GE46474@art_vandelay>
-References: <20200811200457.134743-1-lyude@redhat.com>
- <20200811200457.134743-20-lyude@redhat.com>
- <20200819152914.GE46474@art_vandelay>
-Organization: Red Hat
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD59C6E999
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Aug 2020 17:21:28 +0000 (UTC)
+IronPort-SDR: sXA+0oRl38jG9KbjOiWc4Qm+kO6iYhlrwrmmq2PXKX0ZksizoL8vnkZWDZ8zoktGOaDRLA1ofu
+ TN7td5Ukdcdw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9718"; a="156416947"
+X-IronPort-AV: E=Sophos;i="5.76,333,1592895600"; d="scan'208";a="156416947"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2020 10:21:27 -0700
+IronPort-SDR: xUq+aOsh1JRQWuFTUaKXCiJYHb8d+6WQsDsFoJRwFRPgjkq5rEaJu1vSFuW9485dmtFmf7e44g
+ 4AMd3TVaMvHA==
+X-IronPort-AV: E=Sophos;i="5.76,333,1592895600"; d="scan'208";a="320959823"
+Received: from bucherax-mobl.amr.corp.intel.com (HELO
+ josouza-MOBL2.amr.corp.intel.com) ([10.255.82.219])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2020 10:21:27 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Aug 2020 10:23:52 -0700
+Message-Id: <20200820172353.15773-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0.002
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [RFC 19/20] drm/i915/dp: Extract
- drm_dp_read_dpcd_caps()
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Compute has_drrs after compute
+ has_psr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,286 +48,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Wambui Karuga <wambui.karugax@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Hariom Pandey <hariom.pandey@intel.com>, Srinivas K <srinivasx.k@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2020-08-19 at 11:29 -0400, Sean Paul wrote:
-> On Tue, Aug 11, 2020 at 04:04:56PM -0400, Lyude Paul wrote:
-> > Since DP 1.3, it's been possible for DP receivers to specify an
-> > additional set of DPCD capabilities, which can take precedence over the
-> > capabilities reported at DP_DPCD_REV.
-> > 
-> > Basically any device supporting DP is going to need to read these in an
-> > identical manner, in particular nouveau, so let's go ahead and just move
-> > this code out of i915 into a shared DRM DP helper that we can use in
-> > other drivers.
-> > 
-> > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > ---
-> >  drivers/gpu/drm/drm_dp_helper.c             | 76 +++++++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_dp.c     | 60 +---------------
-> >  drivers/gpu/drm/i915/display/intel_dp.h     |  1 -
-> >  drivers/gpu/drm/i915/display/intel_lspcon.c |  2 +-
-> >  include/drm/drm_dp_helper.h                 |  3 +
-> >  5 files changed, 82 insertions(+), 60 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_dp_helper.c
-> > b/drivers/gpu/drm/drm_dp_helper.c
-> > index 0ff2959c8f8e8..f9445915c6c26 100644
-> > --- a/drivers/gpu/drm/drm_dp_helper.c
-> > +++ b/drivers/gpu/drm/drm_dp_helper.c
-> > @@ -423,6 +423,82 @@ bool drm_dp_send_real_edid_checksum(struct drm_dp_aux
-> > *aux,
-> >  }
-> >  EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
-> >  
-> > +static int drm_dp_read_extended_dpcd_caps(struct drm_dp_aux *aux,
-> > +					  u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> > +{
-> > +	u8 dpcd_ext[6];
-> > +	int ret;
-> > +
-> > +	/*
-> > +	 * Prior to DP1.3 the bit represented by
-> > +	 * DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT was reserved.
-> > +	 * If it is set DP_DPCD_REV at 0000h could be at a value less than
-> > +	 * the true capability of the panel. The only way to check is to
-> > +	 * then compare 0000h and 2200h.
-> > +	 */
-> > +	if (!(dpcd[DP_TRAINING_AUX_RD_INTERVAL] &
-> > +	      DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT))
-> > +		return 0;
-> > +
-> > +	ret = drm_dp_dpcd_read(aux, DP_DP13_DPCD_REV, &dpcd_ext,
-> > +			       sizeof(dpcd_ext));
-> > +	if (ret != sizeof(dpcd_ext))
-> > +		return -EIO;
-> > +
-> > +	if (dpcd[DP_DPCD_REV] > dpcd_ext[DP_DPCD_REV]) {
-> > +		DRM_DEBUG_KMS("%s: Extended DPCD rev less than base DPCD rev (%d
-> > > %d)\n",
-> > +			      aux->name, dpcd[DP_DPCD_REV],
-> > +			      dpcd_ext[DP_DPCD_REV]);
-> 
-> Might be a good opportunity to convert all of these to drm_dbg_dp()?
-Oh also - thought about this as well, but this would be easier as a follow-up
-patch since we'd want to add a backpointer to the original DRM device (not 100%
-sure we can just determine the drm device parent from the aux device's parent)
-> 
-> > +		return 0;
-> > +	}
-> > +
-> > +	if (!memcmp(dpcd, dpcd_ext, sizeof(dpcd_ext)))
-> > +		return 0;
-> > +
-> > +	DRM_DEBUG_KMS("%s: Base DPCD: %*ph\n",
-> > +		      aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
-> > +
-> > +	memcpy(dpcd, dpcd_ext, sizeof(dpcd_ext));
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +/**
-> > + * drm_dp_read_dpcd_caps() - read DPCD caps and extended DPCD caps if
-> > + * available
-> > + * @aux: DisplayPort AUX channel
-> > + * @dpcd: Buffer to store the resulting DPCD in
-> > + *
-> > + * Attempts to read the base DPCD caps for @aux. Additionally, this
-> > function
-> > + * checks for and reads the extended DPRX caps (%DP_DP13_DPCD_REV) if
-> > + * present.
-> > + *
-> > + * Returns: %0 if the DPCD was read successfully, negative error code
-> > + * otherwise.
-> > + */
-> > +int drm_dp_read_dpcd_caps(struct drm_dp_aux *aux,
-> > +			  u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> > +{
-> > +	int ret;
-> > +
-> > +	ret = drm_dp_dpcd_read(aux, DP_DPCD_REV, dpcd, DP_RECEIVER_CAP_SIZE);
-> > +	if (ret != DP_RECEIVER_CAP_SIZE || dpcd[DP_DPCD_REV] == 0)
-> > +		return -EIO;
-> > +
-> > +	ret = drm_dp_read_extended_dpcd_caps(aux, dpcd);
-> > +	if (ret < 0)
-> > +		return ret;
-> 
-> I wonder if we should just go with the "regular" dpcd caps we just read in
-> this
-> case?
-> 
-> Regardless of my nits,
-> 
-> Reviewed-by: Sean Paul <sean@poorly.run>
-> 
-> > +
-> > +	DRM_DEBUG_KMS("%s: DPCD: %*ph\n",
-> > +		      aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
-> > +
-> > +	if (dpcd[DP_DPCD_REV] == 0)
-> > +		ret = -EIO;
-> > +
-> > +	return ret;
-> > +}
-> > +EXPORT_SYMBOL(drm_dp_read_dpcd_caps);
-> > +
-> >  /**
-> >   * drm_dp_downstream_read_info() - read DPCD downstream port info if
-> > available
-> >   * @aux: DisplayPort AUX channel
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index e343965a483df..230aa0360dc61 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -4449,62 +4449,6 @@ intel_dp_link_down(struct intel_encoder *encoder,
-> >  	}
-> >  }
-> >  
-> > -static void
-> > -intel_dp_extended_receiver_capabilities(struct intel_dp *intel_dp)
-> > -{
-> > -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > -	u8 dpcd_ext[6];
-> > -
-> > -	/*
-> > -	 * Prior to DP1.3 the bit represented by
-> > -	 * DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT was reserved.
-> > -	 * if it is set DP_DPCD_REV at 0000h could be at a value less than
-> > -	 * the true capability of the panel. The only way to check is to
-> > -	 * then compare 0000h and 2200h.
-> > -	 */
-> > -	if (!(intel_dp->dpcd[DP_TRAINING_AUX_RD_INTERVAL] &
-> > -	      DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT))
-> > -		return;
-> > -
-> > -	if (drm_dp_dpcd_read(&intel_dp->aux, DP_DP13_DPCD_REV,
-> > -			     &dpcd_ext, sizeof(dpcd_ext)) != sizeof(dpcd_ext)) {
-> > -		drm_err(&i915->drm,
-> > -			"DPCD failed read at extended capabilities\n");
-> > -		return;
-> > -	}
-> > -
-> > -	if (intel_dp->dpcd[DP_DPCD_REV] > dpcd_ext[DP_DPCD_REV]) {
-> > -		drm_dbg_kms(&i915->drm,
-> > -			    "DPCD extended DPCD rev less than base DPCD rev\n");
-> > -		return;
-> > -	}
-> > -
-> > -	if (!memcmp(intel_dp->dpcd, dpcd_ext, sizeof(dpcd_ext)))
-> > -		return;
-> > -
-> > -	drm_dbg_kms(&i915->drm, "Base DPCD: %*ph\n",
-> > -		    (int)sizeof(intel_dp->dpcd), intel_dp->dpcd);
-> > -
-> > -	memcpy(intel_dp->dpcd, dpcd_ext, sizeof(dpcd_ext));
-> > -}
-> > -
-> > -bool
-> > -intel_dp_read_dpcd(struct intel_dp *intel_dp)
-> > -{
-> > -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > -
-> > -	if (drm_dp_dpcd_read(&intel_dp->aux, 0x000, intel_dp->dpcd,
-> > -			     sizeof(intel_dp->dpcd)) < 0)
-> > -		return false; /* aux transfer failed */
-> > -
-> > -	intel_dp_extended_receiver_capabilities(intel_dp);
-> > -
-> > -	drm_dbg_kms(&i915->drm, "DPCD: %*ph\n", (int)sizeof(intel_dp->dpcd),
-> > -		    intel_dp->dpcd);
-> > -
-> > -	return intel_dp->dpcd[DP_DPCD_REV] != 0;
-> > -}
-> > -
-> >  bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
-> >  {
-> >  	u8 dprx = 0;
-> > @@ -4563,7 +4507,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
-> >  	/* this function is meant to be called only once */
-> >  	drm_WARN_ON(&dev_priv->drm, intel_dp->dpcd[DP_DPCD_REV] != 0);
-> >  
-> > -	if (!intel_dp_read_dpcd(intel_dp))
-> > +	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0)
-> >  		return false;
-> >  
-> >  	drm_dp_read_desc(&intel_dp->aux, &intel_dp->desc,
-> > @@ -4650,7 +4594,7 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
-> >  {
-> >  	int ret;
-> >  
-> > -	if (!intel_dp_read_dpcd(intel_dp))
-> > +	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd))
-> >  		return false;
-> >  
-> >  	/*
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.h
-> > b/drivers/gpu/drm/i915/display/intel_dp.h
-> > index b901ab850cbd9..0a3af3410d52e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> > @@ -99,7 +99,6 @@ bool intel_dp_source_supports_hbr3(struct intel_dp
-> > *intel_dp);
-> >  bool
-> >  intel_dp_get_link_status(struct intel_dp *intel_dp, u8 *link_status);
-> >  
-> > -bool intel_dp_read_dpcd(struct intel_dp *intel_dp);
-> >  bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp);
-> >  int intel_dp_link_required(int pixel_clock, int bpp);
-> >  int intel_dp_max_data_rate(int max_link_clock, int max_lanes);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > index b781bf4696443..dc1b35559afdf 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > @@ -571,7 +571,7 @@ bool lspcon_init(struct intel_digital_port *dig_port)
-> >  		return false;
-> >  	}
-> >  
-> > -	if (!intel_dp_read_dpcd(dp)) {
-> > +	if (drm_dp_read_dpcd_caps(&dp->aux, dp->dpcd) != 0) {
-> >  		DRM_ERROR("LSPCON DPCD read failed\n");
-> >  		return false;
-> >  	}
-> > diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> > index 0c141fc81aaa8..11649e93e5bb6 100644
-> > --- a/include/drm/drm_dp_helper.h
-> > +++ b/include/drm/drm_dp_helper.h
-> > @@ -1607,6 +1607,9 @@ static inline ssize_t drm_dp_dpcd_writeb(struct
-> > drm_dp_aux *aux,
-> >  	return drm_dp_dpcd_write(aux, offset, &value, 1);
-> >  }
-> >  
-> > +int drm_dp_read_dpcd_caps(struct drm_dp_aux *aux,
-> > +			  u8 dpcd[DP_RECEIVER_CAP_SIZE]);
-> > +
-> >  int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
-> >  				 u8 status[DP_LINK_STATUS_SIZE]);
-> >  
-> > -- 
-> > 2.26.2
-> > 
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
--- 
-Sincerely,
-      Lyude Paul (she/her)
-      Software Engineer at Red Hat
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RFJSUyBhbmQgUFNSIGNhbid0IGJlIGVuYWJsZSB0b2dldGhlciwgc28gZ2l2aW5nIHByZWZlcmVu
+Y2UgdG8gUFNSCmFzIGl0IGFsbG93cyBtb3JlIHBvd2VyLXNhdmluZ3MgYnkgY29tcGxldGUgc2h1
+dHRpbmcgZG93biBkaXNwbGF5LApzbyB0byBndWFyYW50ZWUgdGhpcywgaXQgc2hvdWxkIGNvbXB1
+dGUgRFJSUyBzdGF0ZSBhZnRlciBjb21wdXRlIFBTUi4KCkNjOiBTcmluaXZhcyBLIDxzcmluaXZh
+c3gua0BpbnRlbC5jb20+CkNjOiBIYXJpb20gUGFuZGV5IDxoYXJpb20ucGFuZGV5QGludGVsLmNv
+bT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRl
+bC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIHwgNTIg
+KysrKysrKysrKysrKysrLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDMxIGluc2VydGlvbnMo
+KyksIDIxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZHAuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAu
+YwppbmRleCA3OWMyN2Y5MWY0MmMuLjNiZjUwYjFhZTk4MyAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZHAuYwpAQCAtMjU3NSw2ICsyNTc1LDM0IEBAIGludGVsX2RwX2NvbXB1
+dGVfaGRyX21ldGFkYXRhX2luZm9mcmFtZV9zZHAoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwK
+IAkJaW50ZWxfaGRtaV9pbmZvZnJhbWVfZW5hYmxlKEhETUlfUEFDS0VUX1RZUEVfR0FNVVRfTUVU
+QURBVEEpOwogfQogCitzdGF0aWMgdm9pZAoraW50ZWxfZHBfZHJyc19jb21wdXRlX2NvbmZpZyhz
+dHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAorCQkJICAgICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
+ZSAqcGlwZV9jb25maWcsCisJCQkgICAgIGludCBvdXRwdXRfYnBwLCBib29sIGNvbnN0YW50X24p
+Cit7CisJc3RydWN0IGludGVsX2Nvbm5lY3RvciAqaW50ZWxfY29ubmVjdG9yID0gaW50ZWxfZHAt
+PmF0dGFjaGVkX2Nvbm5lY3RvcjsKKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYg
+PSBkcF90b19pOTE1KGludGVsX2RwKTsKKworCS8qCisJICogRFJSUyBhbmQgUFNSIGNhbid0IGJl
+IGVuYWJsZSB0b2dldGhlciwgc28gZ2l2aW5nIHByZWZlcmVuY2UgdG8gUFNSCisJICogYXMgaXQg
+YWxsb3dzIG1vcmUgcG93ZXItc2F2aW5ncyBieSBjb21wbGV0ZSBzaHV0dGluZyBkb3duIGRpc3Bs
+YXksCisJICogc28gdG8gZ3VhcmFudGVlIHRoaXMsIGludGVsX2RwX2RycnNfY29tcHV0ZV9jb25m
+aWcoKSBtdXN0IGJlIGNhbGxlZAorCSAqIGFmdGVyIGludGVsX3Bzcl9jb21wdXRlX2NvbmZpZygp
+LgorCSAqLworCWlmIChwaXBlX2NvbmZpZy0+aGFzX3BzcikKKwkJcmV0dXJuOworCisJaWYgKCFp
+bnRlbF9jb25uZWN0b3ItPnBhbmVsLmRvd25jbG9ja19tb2RlIHx8CisJICAgIGRldl9wcml2LT5k
+cnJzLnR5cGUgIT0gU0VBTUxFU1NfRFJSU19TVVBQT1JUKQorCQlyZXR1cm47CisKKwlwaXBlX2Nv
+bmZpZy0+aGFzX2RycnMgPSB0cnVlOworCWludGVsX2xpbmtfY29tcHV0ZV9tX24ob3V0cHV0X2Jw
+cCwgcGlwZV9jb25maWctPmxhbmVfY291bnQsCisJCQkgICAgICAgaW50ZWxfY29ubmVjdG9yLT5w
+YW5lbC5kb3duY2xvY2tfbW9kZS0+Y2xvY2ssCisJCQkgICAgICAgcGlwZV9jb25maWctPnBvcnRf
+Y2xvY2ssICZwaXBlX2NvbmZpZy0+ZHBfbTJfbjIsCisJCQkgICAgICAgY29uc3RhbnRfbiwgcGlw
+ZV9jb25maWctPmZlY19lbmFibGUpOworfQorCiBpbnQKIGludGVsX2RwX2NvbXB1dGVfY29uZmln
+KHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCQkJc3RydWN0IGludGVsX2NydGNfc3Rh
+dGUgKnBpcGVfY29uZmlnLApAQCAtMjYwNSw3ICsyNjMzLDYgQEAgaW50ZWxfZHBfY29tcHV0ZV9j
+b25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJaWYgKHJldCkKIAkJcmV0dXJu
+IHJldDsKIAotCXBpcGVfY29uZmlnLT5oYXNfZHJycyA9IGZhbHNlOwogCWlmICghaW50ZWxfZHBf
+cG9ydF9oYXNfYXVkaW8oZGV2X3ByaXYsIHBvcnQpKQogCQlwaXBlX2NvbmZpZy0+aGFzX2F1ZGlv
+ID0gZmFsc2U7CiAJZWxzZSBpZiAoaW50ZWxfY29ubl9zdGF0ZS0+Zm9yY2VfYXVkaW8gPT0gSERN
+SV9BVURJT19BVVRPKQpAQCAtMjY1NywyMSArMjY4NCwxMiBAQCBpbnRlbF9kcF9jb21wdXRlX2Nv
+bmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJCSAgICAgICAmcGlwZV9jb25m
+aWctPmRwX21fbiwKIAkJCSAgICAgICBjb25zdGFudF9uLCBwaXBlX2NvbmZpZy0+ZmVjX2VuYWJs
+ZSk7CiAKLQlpZiAoaW50ZWxfY29ubmVjdG9yLT5wYW5lbC5kb3duY2xvY2tfbW9kZSAhPSBOVUxM
+ICYmCi0JCWRldl9wcml2LT5kcnJzLnR5cGUgPT0gU0VBTUxFU1NfRFJSU19TVVBQT1JUKSB7Ci0J
+CQlwaXBlX2NvbmZpZy0+aGFzX2RycnMgPSB0cnVlOwotCQkJaW50ZWxfbGlua19jb21wdXRlX21f
+bihvdXRwdXRfYnBwLAotCQkJCQkgICAgICAgcGlwZV9jb25maWctPmxhbmVfY291bnQsCi0JCQkJ
+CSAgICAgICBpbnRlbF9jb25uZWN0b3ItPnBhbmVsLmRvd25jbG9ja19tb2RlLT5jbG9jaywKLQkJ
+CQkJICAgICAgIHBpcGVfY29uZmlnLT5wb3J0X2Nsb2NrLAotCQkJCQkgICAgICAgJnBpcGVfY29u
+ZmlnLT5kcF9tMl9uMiwKLQkJCQkJICAgICAgIGNvbnN0YW50X24sIHBpcGVfY29uZmlnLT5mZWNf
+ZW5hYmxlKTsKLQl9Ci0KIAlpZiAoIUhBU19EREkoZGV2X3ByaXYpKQogCQlpbnRlbF9kcF9zZXRf
+Y2xvY2soZW5jb2RlciwgcGlwZV9jb25maWcpOwogCiAJaW50ZWxfcHNyX2NvbXB1dGVfY29uZmln
+KGludGVsX2RwLCBwaXBlX2NvbmZpZyk7CisJaW50ZWxfZHBfZHJyc19jb21wdXRlX2NvbmZpZyhp
+bnRlbF9kcCwgcGlwZV9jb25maWcsIG91dHB1dF9icHAsCisJCQkJICAgICBjb25zdGFudF9uKTsK
+IAlpbnRlbF9kcF9jb21wdXRlX3ZzY19zZHAoaW50ZWxfZHAsIHBpcGVfY29uZmlnLCBjb25uX3N0
+YXRlKTsKIAlpbnRlbF9kcF9jb21wdXRlX2hkcl9tZXRhZGF0YV9pbmZvZnJhbWVfc2RwKGludGVs
+X2RwLCBwaXBlX2NvbmZpZywgY29ubl9zdGF0ZSk7CiAKQEAgLTc3MzAsMTYgKzc3NDgsOCBAQCB2
+b2lkIGludGVsX2VkcF9kcnJzX2VuYWJsZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogewog
+CXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IGRwX3RvX2k5MTUoaW50ZWxfZHAp
+OwogCi0JaWYgKCFjcnRjX3N0YXRlLT5oYXNfZHJycykgewotCQlkcm1fZGJnX2ttcygmZGV2X3By
+aXYtPmRybSwgIlBhbmVsIGRvZXNuJ3Qgc3VwcG9ydCBEUlJTXG4iKTsKKwlpZiAoIWNydGNfc3Rh
+dGUtPmhhc19kcnJzKQogCQlyZXR1cm47Ci0JfQotCi0JaWYgKGRldl9wcml2LT5wc3IuZW5hYmxl
+ZCkgewotCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwKLQkJCSAgICAiUFNSIGVuYWJsZWQu
+IE5vdCBlbmFibGluZyBEUlJTLlxuIik7Ci0JCXJldHVybjsKLQl9CiAKIAltdXRleF9sb2NrKCZk
+ZXZfcHJpdi0+ZHJycy5tdXRleCk7CiAJaWYgKGRldl9wcml2LT5kcnJzLmRwKSB7Ci0tIAoyLjI4
+LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
+LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
