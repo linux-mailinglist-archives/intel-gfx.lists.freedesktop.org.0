@@ -2,43 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B3ED24ACA0
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 03:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E904524AD45
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 05:25:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADAE16E0EE;
-	Thu, 20 Aug 2020 01:29:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8DD26E891;
+	Thu, 20 Aug 2020 03:25:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 231D76E0EE
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Aug 2020 01:29:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:Message-ID:Subject:To:From:Date:Sender:
- Reply-To:Cc:Content-ID:Content-Description;
- bh=xaxXqdpS74cNSxj/Y2sXvNlljNTwknRKu7QvddkLfLA=; b=UUz5F/Mc0CbqbCyNIdyMjR7wp7
- xdTuaZwdsoOOEoWJppFlFJgD+XLSaPL74RPdduDeqkWSUrsmr9NbTRvB7dPxnkSL7SmSfubfIAbhD
- Y48CYkVzhE5WR4izzualSGIt8d1WZ8+wVMgF2eZr4AJb9it61gkZHcM+kghxQAtut0CFmEtJE5FTI
- hkseCTrx/SULPTuBWO+m3LmiAW/yUqXpeKwBb4RZbqe+Xu/D9ST17120ooaSzCA/qt16OCD+NCEGh
- QWv8ZzaEDFiNUzU6AFHTjbXiXfpzDr/oic+8P64LKe85xG6rR+3neXqtkUs2PNjudC2uxK6H9D7+H
- qM0kqSlQ==;
-Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1k8ZOc-0006qY-Bn
- for intel-gfx@lists.freedesktop.org; Thu, 20 Aug 2020 01:29:38 +0000
-Date: Thu, 20 Aug 2020 02:29:38 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20200820012938.GK17456@casper.infradead.org>
-References: <20200819184850.24779-1-willy@infradead.org>
- <159786536403.23598.3689667945091435003@emeril.freedesktop.org>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBE266E891
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Aug 2020 03:25:10 +0000 (UTC)
+IronPort-SDR: a1d1H7S3M82UdgihgGz32Sel4nARiVe2QpFPs1peGAmnYtIsvBU1zH1jLKnUS/RyK179En6r/h
+ 0x9M+qroSqPA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9718"; a="219538577"
+X-IronPort-AV: E=Sophos;i="5.76,332,1592895600"; d="scan'208";a="219538577"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2020 20:25:10 -0700
+IronPort-SDR: FmmoCxWLZfU83xoc3RIs2+eTsPfVAZHX6HQuNqjZJ5Fy5gtobZO8RmsPAmMypcpC726OdZuHF6
+ Hs+cta0+LpKg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,332,1592895600"; d="scan'208";a="278503686"
+Received: from lkp-server01.sh.intel.com (HELO 4cedd236b688) ([10.239.97.150])
+ by fmsmga007.fm.intel.com with ESMTP; 19 Aug 2020 20:25:08 -0700
+Received: from kbuild by 4cedd236b688 with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1k8bCO-0000ku-57; Thu, 20 Aug 2020 03:25:08 +0000
+Date: Thu, 20 Aug 2020 11:24:57 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nischal Varide <nischal.varide@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <202008201129.35PcFyIc%lkp@intel.com>
+References: <20200819043409.26010-2-nischal.varide@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <159786536403.23598.3689667945091435003@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBS?=
- =?utf-8?q?eturn_head_pages_from_find=5Fget=5Fentry_and_find=5Flock=5Fentr?=
- =?utf-8?q?y_=28rev2=29?=
+In-Reply-To: <20200819043409.26010-2-nischal.varide@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 2/5]
+ Critical-KlockWork-Fixes-intel_display.c-NullDeref
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,35 +53,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: kbuild-all@lists.01.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBBdWcgMTksIDIwMjAgYXQgMDc6Mjk6MjRQTSAtMDAwMCwgUGF0Y2h3b3JrIHdyb3Rl
-Ogo+ID09IFNlcmllcyBEZXRhaWxzID09Cj4gCj4gU2VyaWVzOiBSZXR1cm4gaGVhZCBwYWdlcyBm
-cm9tIGZpbmRfZ2V0X2VudHJ5IGFuZCBmaW5kX2xvY2tfZW50cnkgKHJldjIpCj4gVVJMICAgOiBo
-dHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzgwODE4Lwo+IFN0YXRlIDog
-ZmFpbHVyZQo+IAo+ID09IFN1bW1hcnkgPT0KPiAKPiBDQUxMICAgIHNjcmlwdHMvY2hlY2tzeXNj
-YWxscy5zaAo+ICAgQ0FMTCAgICBzY3JpcHRzL2F0b21pYy9jaGVjay1hdG9taWNzLnNoCj4gICBE
-RVNDRU5EICBvYmp0b29sCj4gICBDSEsgICAgIGluY2x1ZGUvZ2VuZXJhdGVkL2NvbXBpbGUuaAo+
-ICAgQ0MgICAgICBtbS9tZW1jb250cm9sLm8KPiBtbS9tZW1jb250cm9sLmM6IEluIGZ1bmN0aW9u
-IOKAmG1jX2hhbmRsZV9maWxlX3B0ZeKAmToKPiBtbS9tZW1jb250cm9sLmM6NTU0ODo5OiBlcnJv
-cjogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24g4oCYZmluZF9nZXRfc3dhcF9wYWdl
-4oCZOyBkaWQgeW91IG1lYW4g4oCYZ2V0X3N3YXBfcGFnZeKAmT8gWy1XZXJyb3I9aW1wbGljaXQt
-ZnVuY3Rpb24tZGVjbGFyYXRpb25dCj4gICByZXR1cm4gZmluZF9nZXRfc3dhcF9wYWdlKHZtYS0+
-dm1fZmlsZS0+Zl9tYXBwaW5nLAo+ICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fgo+ICAgICAg
-ICAgIGdldF9zd2FwX3BhZ2UKPiBtbS9tZW1jb250cm9sLmM6NTU0ODo5OiB3YXJuaW5nOiByZXR1
-cm4gbWFrZXMgcG9pbnRlciBmcm9tIGludGVnZXIgd2l0aG91dCBhIGNhc3QgWy1XaW50LWNvbnZl
-cnNpb25dCj4gICByZXR1cm4gZmluZF9nZXRfc3dhcF9wYWdlKHZtYS0+dm1fZmlsZS0+Zl9tYXBw
-aW5nLAo+ICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
-fn4KPiAgICAgbGluZWFyX3BhZ2VfaW5kZXgodm1hLCBhZGRyKSk7Cj4gICAgIH5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn5+Cj4gY2MxOiBzb21lIHdhcm5pbmdzIGJlaW5nIHRyZWF0ZWQgYXMg
-ZXJyb3JzCgpUaGlzIGRvZXNuJ3QgbWFrZSBzZW5zZS4gIERhdmUgQWlybGllIHBvaW50ZWQgbWUg
-YXQgd2hhdCBoZSBiZWxpZXZlcyB0bwpiZSB0aGUgY29uZmlnIGZpbGUgdXNlZCBbMV0gYW5kIEkg
-Y2FuJ3QgcmVwcm9kdWNlIGl0LiAgSXMgaXQgcG9zc2libGUKdGhlIGJ1aWxkLWJvdCBhcHBsaWVk
-IG9ubHkgMi84IGFuZCBub3QgMS84PwoKWzFdIGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9y
-Zy9nZngtY2kvaTkxNS1pbmZyYS8tL2Jsb2IvbWFzdGVyL2tjb25maWcvZGVidWcKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Hi Nischal,
+
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on v5.9-rc1 next-20200819]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Nischal-Varide/Critical-Kc=
+lockWork-Fixes-intel_atomi-c-PossibleNull/20200819-193249
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+compiler: gcc-9 (Debian 9.3.0-15) 9.3.0
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+
+cppcheck warnings: (new ones prefixed by >>)
+
+        ^
+   drivers/gpu/drm/i915/display/intel_display.c:4308:7: warning: Local vari=
+able src_w shadows outer variable [shadowVar]
+     int src_w =3D drm_rect_width(&plane_state->uapi.src) >> 16;
+         ^
+   drivers/gpu/drm/i915/display/intel_display.c:4271:20: note: Shadowed dec=
+laration
+    int src_x, src_y, src_w;
+                      ^
+   drivers/gpu/drm/i915/display/intel_display.c:4308:7: note: Shadow variab=
+le
+     int src_w =3D drm_rect_width(&plane_state->uapi.src) >> 16;
+         ^
+   drivers/gpu/drm/i915/display/intel_display.c:11169:7: warning: Local var=
+iable tmp shadows outer variable [shadowVar]
+     u32 tmp =3D intel_de_read(dev_priv,
+         ^
+   drivers/gpu/drm/i915/display/intel_display.c:11133:6: note: Shadowed dec=
+laration
+    u32 tmp;
+        ^
+   drivers/gpu/drm/i915/display/intel_display.c:11169:7: note: Shadow varia=
+ble
+     u32 tmp =3D intel_de_read(dev_priv,
+         ^
+   drivers/gpu/drm/i915/display/intel_display.c:14246:4: warning: Local var=
+iable __ret_warn_on shadows outer variable [shadowVar]
+      I915_STATE_WARN(active,
+      ^
+   drivers/gpu/drm/i915/display/intel_display.c:14237:3: note: Shadowed dec=
+laration
+     I915_STATE_WARN(!!encoder->base.crtc !=3D enabled,
+     ^
+   drivers/gpu/drm/i915/display/intel_display.c:14246:4: note: Shadow varia=
+ble
+      I915_STATE_WARN(active,
+      ^
+   drivers/gpu/drm/i915/display/intel_display.c:14293:3: warning: Local var=
+iable __ret_warn_on shadows outer variable [shadowVar]
+     I915_STATE_WARN(active !=3D new_crtc_state->hw.active,
+     ^
+   drivers/gpu/drm/i915/display/intel_display.c:14279:2: note: Shadowed dec=
+laration
+    I915_STATE_WARN(new_crtc_state->hw.active !=3D active,
+    ^
+   drivers/gpu/drm/i915/display/intel_display.c:14293:3: note: Shadow varia=
+ble
+     I915_STATE_WARN(active !=3D new_crtc_state->hw.active,
+     ^
+   drivers/gpu/drm/i915/display/intel_display.c:14298:3: warning: Local var=
+iable __ret_warn_on shadows outer variable [shadowVar]
+     I915_STATE_WARN(active && crtc->pipe !=3D pipe,
+     ^
+   drivers/gpu/drm/i915/display/intel_display.c:14279:2: note: Shadowed dec=
+laration
+    I915_STATE_WARN(new_crtc_state->hw.active !=3D active,
+    ^
+   drivers/gpu/drm/i915/display/intel_display.c:14298:3: note: Shadow varia=
+ble
+     I915_STATE_WARN(active && crtc->pipe !=3D pipe,
+     ^
+   drivers/gpu/drm/i915/display/intel_display.c:14315:3: warning: Local var=
+iable __ret_warn_on shadows outer variable [shadowVar]
+     I915_STATE_WARN(1, "pipe state doesn't match!n");
+     ^
+   drivers/gpu/drm/i915/display/intel_display.c:14279:2: note: Shadowed dec=
+laration
+    I915_STATE_WARN(new_crtc_state->hw.active !=3D active,
+    ^
+   drivers/gpu/drm/i915/display/intel_display.c:14315:3: note: Shadow varia=
+ble
+     I915_STATE_WARN(1, "pipe state doesn't match!n");
+     ^
+   drivers/gpu/drm/i915/display/intel_display.c:18447:23: warning: Local va=
+riable crtc shadows outer variable [shadowVar]
+      struct intel_crtc *crtc;
+                         ^
+   drivers/gpu/drm/i915/display/intel_display.c:18385:21: note: Shadowed de=
+claration
+    struct intel_crtc *crtc;
+                       ^
+   drivers/gpu/drm/i915/display/intel_display.c:18447:23: note: Shadow vari=
+able
+      struct intel_crtc *crtc;
+                         ^
+   drivers/gpu/drm/i915/display/intel_display.c:6103:35: warning: Shifting =
+signed 32-bit value by 31 bits is undefined behaviour [shiftTooManyBitsSign=
+ed]
+    scaler_state->scaler_users |=3D (1 << scaler_user);
+                                     ^
+   drivers/gpu/drm/i915/display/intel_display.c:6127:6: note: Calling funct=
+ion 'skl_update_scaler', 3rd argument '31' value is 31
+        SKL_CRTC_INDEX,
+        ^
+   drivers/gpu/drm/i915/display/intel_display.c:6103:35: note: Shift
+    scaler_state->scaler_users |=3D (1 << scaler_user);
+                                     ^
+   drivers/gpu/drm/i915/display/intel_display.c:10477:36: warning: Shifting=
+ signed 32-bit value by 31 bits is undefined behaviour [shiftTooManyBitsSig=
+ned]
+     scaler_state->scaler_users |=3D (1 << SKL_CRTC_INDEX);
+                                      ^
+   drivers/gpu/drm/i915/display/intel_display.c:10479:37: warning: Shifting=
+ signed 32-bit value by 31 bits is undefined behaviour [shiftTooManyBitsSig=
+ned]
+     scaler_state->scaler_users &=3D ~(1 << SKL_CRTC_INDEX);
+                                       ^
+>> drivers/gpu/drm/i915/display/intel_display.c:11280:9: warning: Uninitial=
+ized variable: base [uninitvar]
+    return base + plane_state->color_plane[0].offset;
+           ^
+
+# https://github.com/0day-ci/linux/commit/5d862961b8571914f726e947570316016=
+ec67c5d
+git remote add linux-review https://github.com/0day-ci/linux
+git fetch --no-tags linux-review Nischal-Varide/Critical-KclockWork-Fixes-i=
+ntel_atomi-c-PossibleNull/20200819-193249
+git checkout 5d862961b8571914f726e947570316016ec67c5d
+vim +11280 drivers/gpu/drm/i915/display/intel_display.c
+
+0e8ffe1bf81b07 drivers/gpu/drm/i915/intel_display.c         Daniel Vetter  =
+       2013-03-28  11263  =
+
+cd5dcbf1b26c60 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11264  static u32 intel_cursor_base(const struct in=
+tel_plane_state *plane_state)
+1cecc830e6b662 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11265  {
+1cecc830e6b662 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11266  	struct drm_i915_private *dev_priv =3D
+f90a85e76c2a89 drivers/gpu/drm/i915/display/intel_display.c Maarten Lankhor=
+st     2019-10-31  11267  		to_i915(plane_state->uapi.plane->dev);
+7b3cb17a48dc1b drivers/gpu/drm/i915/display/intel_display.c Maarten Lankhor=
+st     2019-10-31  11268  	const struct drm_framebuffer *fb =3D plane_state=
+->hw.fb;
+1cecc830e6b662 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11269  	const struct drm_i915_gem_object *obj =3D i=
+ntel_fb_obj(fb);
+1cecc830e6b662 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11270  	u32 base;
+1cecc830e6b662 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11271  =
+
+5d862961b85719 drivers/gpu/drm/i915/display/intel_display.c Nischal Varide =
+       2020-08-19  11272  	if (obj) {
+5d862961b85719 drivers/gpu/drm/i915/display/intel_display.c Nischal Varide =
+       2020-08-19  11273  =
+
+d53db442db36fd drivers/gpu/drm/i915/intel_display.c         Jos=E9 Roberto =
+de Souza 2018-11-30  11274  		if (INTEL_INFO(dev_priv)->display.cursor_need=
+s_physical)
+c6790dc22312f5 drivers/gpu/drm/i915/display/intel_display.c Chris Wilson   =
+       2020-02-02  11275  			base =3D sg_dma_address(obj->mm.pages->sgl);
+1cecc830e6b662 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11276  		else
+1cecc830e6b662 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11277  			base =3D intel_plane_ggtt_offset(plane_st=
+ate);
+5d862961b85719 drivers/gpu/drm/i915/display/intel_display.c Nischal Varide =
+       2020-08-19  11278  	}
+1cecc830e6b662 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11279  =
+
+30a027dcccc270 drivers/gpu/drm/i915/display/intel_display.c Ville Syrj=E4l=
+=E4         2019-10-15 @11280  	return base + plane_state->color_plane[0].o=
+ffset;
+1cecc830e6b662 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11281  }
+1cecc830e6b662 drivers/gpu/drm/i915/intel_display.c         Ville Syrj=E4l=
+=E4         2017-03-27  11282  =
+
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
