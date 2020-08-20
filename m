@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BED8524C743
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 23:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C69924C7D0
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Aug 2020 00:38:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3994A6E0C5;
-	Thu, 20 Aug 2020 21:45:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C347D6E122;
+	Thu, 20 Aug 2020 22:38:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF0B76E0C5;
- Thu, 20 Aug 2020 21:45:25 +0000 (UTC)
-IronPort-SDR: BXwkJmV4EIeuAf674nma4nUSU7iR3rrXb9p0Tr6+sdLx7Q93T01QU13BTsFGqjU0HGKQqkrDWO
- CIpPYIdNKdVw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9719"; a="153021246"
-X-IronPort-AV: E=Sophos;i="5.76,334,1592895600"; d="scan'208";a="153021246"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E5716E122;
+ Thu, 20 Aug 2020 22:38:02 +0000 (UTC)
+IronPort-SDR: dWrktVoERuSjDH2fFKLcE2aa0nGqpkKiNUbFBTB2VTjl66nFFLaPu+XkdpleCKIz8JklQUu7F1
+ yIaaWonfNK2g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9719"; a="153026428"
+X-IronPort-AV: E=Sophos;i="5.76,334,1592895600"; d="scan'208";a="153026428"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2020 14:45:25 -0700
-IronPort-SDR: iX1hmToPkFN4pYXAWZshaRbJNdR68CVFZZHh3iDagQPbHzX6YptLzI2oncHbPyVXowYaptstjB
- ev5NIB4dTOyQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,334,1592895600"; d="scan'208";a="278745313"
-Received: from aanderso-mobl3.amr.corp.intel.com (HELO [10.249.47.109])
- ([10.249.47.109])
- by fmsmga007.fm.intel.com with ESMTP; 20 Aug 2020 14:45:24 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
-References: <20200820182640.65842-1-chris@chris-wilson.co.uk>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <5bdb17eb-4f92-ac67-5d89-de7b797663f8@intel.com>
-Date: Fri, 21 Aug 2020 00:45:23 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ 20 Aug 2020 15:38:01 -0700
+IronPort-SDR: 56GHsub0ZbS7dKgKU0Y7VCiNcICQ2w+MnV3IdgCvvNmvhgz1+XfJjBINfxX75DKMA1kmoAAVm7
+ FrNdTs90N5Tw==
+X-IronPort-AV: E=Sophos;i="5.76,334,1592895600"; d="scan'208";a="321054249"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2020 15:37:57 -0700
+Date: Fri, 21 Aug 2020 01:37:54 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20200820223754.GA17451@ideak-desk.fi.intel.com>
+References: <20200811200457.134743-1-lyude@redhat.com>
+ <20200811200457.134743-14-lyude@redhat.com>
+ <20200819151547.GB46474@art_vandelay>
+ <4d74a74aefcd8d0ea048b70252efda18820bc911.camel@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20200820182640.65842-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH i-g-t 1/4] i915/perf: 32bit printf cleanup
+Content-Disposition: inline
+In-Reply-To: <4d74a74aefcd8d0ea048b70252efda18820bc911.camel@redhat.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [RFC 13/20] drm/i915/dp: Extract
+ drm_dp_downstream_read_info()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,84 +53,206 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Wambui Karuga <wambui.karugax@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 20/08/2020 20:26, Chris Wilson wrote:
-> Use PRI[du]64 as necessary for 32bit builds.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+On Wed, Aug 19, 2020 at 05:34:15PM -0400, Lyude Paul wrote:
+> (adding Ville and Imre to the cc here, they might be interested to know about
+> this, comments down below)
+> 
+> On Wed, 2020-08-19 at 11:15 -0400, Sean Paul wrote:
+> > On Tue, Aug 11, 2020 at 04:04:50PM -0400, Lyude Paul wrote:
+> > > We're going to be doing the same probing process in nouveau for
+> > > determining downstream DP port capabilities, so let's deduplicate the
+> > > work by moving i915's code for handling this into a shared helper:
+> > > drm_dp_downstream_read_info().
+> > > 
+> > > Note that when we do this, we also do make some functional changes while
+> > > we're at it:
+> > > * We always clear the downstream port info before trying to read it,
+> > >   just to make things easier for the caller
+> > > * We skip reading downstream port info if the DPCD indicates that we
+> > >   don't support downstream port info
+> > > * We only read as many bytes as needed for the reported number of
+> > >   downstream ports, no sense in reading the whole thing every time
+> > > 
+> > > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > > ---
+> > >  drivers/gpu/drm/drm_dp_helper.c         | 32 +++++++++++++++++++++++++
+> > >  drivers/gpu/drm/i915/display/intel_dp.c | 14 ++---------
+> > >  include/drm/drm_dp_helper.h             |  3 +++
+> > >  3 files changed, 37 insertions(+), 12 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/drm_dp_helper.c
+> > > b/drivers/gpu/drm/drm_dp_helper.c
+> > > index 4c21cf69dad5a..9703b33599c3b 100644
+> > > --- a/drivers/gpu/drm/drm_dp_helper.c
+> > > +++ b/drivers/gpu/drm/drm_dp_helper.c
+> > > @@ -423,6 +423,38 @@ bool drm_dp_send_real_edid_checksum(struct drm_dp_aux
+> > > *aux,
+> > >  }
+> > >  EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
+> > >  
+> > > +/**
+> > > + * drm_dp_downstream_read_info() - read DPCD downstream port info if
+> > > available
+> > > + * @aux: DisplayPort AUX channel
+> > > + * @dpcd: A cached copy of the port's DPCD
+> > > + * @downstream_ports: buffer to store the downstream port info in
+> > > + *
+> > > + * Returns: 0 if either the downstream port info was read successfully or
+> > > + * there was no downstream info to read, or a negative error code
+> > > otherwise.
+> > > + */
+> > > +int drm_dp_downstream_read_info(struct drm_dp_aux *aux,
+> > > +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> > > +				u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS])
+> > > +{
+> > > +	int ret;
+> > > +	u8 len;
+> > > +
+> > > +	memset(downstream_ports, 0, DP_MAX_DOWNSTREAM_PORTS);
+> > > +
+> > > +	/* No downstream info to read */
+> > > +	if (!drm_dp_is_branch(dpcd) ||
+> > > +	    dpcd[DP_DPCD_REV] < DP_DPCD_REV_10 ||
+> > > +	    !(dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT))
+> > > +		return 0;
+> > > +
+> > > +	len = (dpcd[DP_DOWN_STREAM_PORT_COUNT] & DP_PORT_COUNT_MASK) * 4;
+> > 
+> > I'm having a hard time rationalizing DP_MAX_DOWNSTREAM_PORTS being 16, but
+> > only
+> > having 4 ports worth of data in the DP_DOWNSTREAM_PORT_* registers. Do you
+> > know
+> > what's supposed to happen if dpcd[DP_DOWN_STREAM_PORT_COUNT] is > 4?
+> > 
+> ok!! Taking a lesson from our available_pbn/full_pbn confusion in the past, I
+> squinted very hard at the specification and eventually found something that I
+> think clears this up. Surprise - we definitely had this implemented incorrectly
+> in i915
 
-Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To me it looks correct, only DFP0's cap info is used, by also handling
+the DP_DETAILED_CAP_INFO_AVAILABLE=0/1 cases.
 
+The wording is a bit unclear, but as I understand the Standard only
+calls for the above:
 
-Thanks!
+"""
+A DP upstream device shall read the capability from DPCD Addresses 00080h
+through 00083h. A DP Branch device with multiple DFPs shall report the detailed
+capability information of the lowest DFP number to which a downstream device
+is connected, consistent with the DisplayID or legacy EDID access routing policy
+of an SST-only DP Branch device as described in Section 2.1.4.1.
+"""
 
--Lionel
+> 
+> From section 5.3.3.1:
+> 
+>    Either one or four bytes are used, per DFP type indication. Therefore, up to
+>    16 (with 1-byte descriptor) or four (with 4-byte descriptor) DFP capabilities
+>    can be stored.
+> 
+> So, a couple takeaways from this:
+> 
+>  * A DisplayPort connector can have *multiple* different downstream port types,
+>    which I think actually makes sense as I've seen an adapter like this before.
+>  * We actually added the ability to determine the downstream port type for DP
+>    connectors using the subconnector prop, but it seems like if we want to aim
+>    for completeness we're going to need to come up with a new prop that can
+>    report multiple downstream port types :\.
 
-> ---
->   tests/i915/perf.c                    | 8 ++++----
->   tools/i915-perf/i915_perf_recorder.c | 2 +-
->   2 files changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/tests/i915/perf.c b/tests/i915/perf.c
-> index 92edc9f1f..a894fd382 100644
-> --- a/tests/i915/perf.c
-> +++ b/tests/i915/perf.c
-> @@ -2077,7 +2077,7 @@ test_blocking(uint64_t requested_oa_period, bool set_kernel_hrtimer, uint64_t ke
->   	user_ns = (end_times.tms_utime - start_times.tms_utime) * tick_ns;
->   	kernel_ns = (end_times.tms_stime - start_times.tms_stime) * tick_ns;
->   
-> -	igt_debug("%d blocking reads during test with %lu Hz OA sampling (expect no more than %d)\n",
-> +	igt_debug("%d blocking reads during test with %"PRIu64" Hz OA sampling (expect no more than %d)\n",
->   		  n, NSEC_PER_SEC / oa_period, max_iterations);
->   	igt_debug("%d extra iterations seen, not related to periodic sampling (e.g. context switches)\n",
->   		  n_extra_iterations);
-> @@ -2265,7 +2265,7 @@ test_polling(uint64_t requested_oa_period, bool set_kernel_hrtimer, uint64_t ker
->   	user_ns = (end_times.tms_utime - start_times.tms_utime) * tick_ns;
->   	kernel_ns = (end_times.tms_stime - start_times.tms_stime) * tick_ns;
->   
-> -	igt_debug("%d non-blocking reads during test with %lu Hz OA sampling (expect no more than %d)\n",
-> +	igt_debug("%d non-blocking reads during test with %"PRIu64" Hz OA sampling (expect no more than %d)\n",
->   		  n, NSEC_PER_SEC / oa_period, max_iterations);
->   	igt_debug("%d extra iterations seen, not related to periodic sampling (e.g. context switches)\n",
->   		  n_extra_iterations);
-> @@ -2357,7 +2357,7 @@ num_valid_reports_captured(struct drm_i915_perf_open_param *param,
->   	int64_t start, end;
->   	int num_reports = 0;
->   
-> -	igt_debug("Expected duration = %lu\n", *duration_ns);
-> +	igt_debug("Expected duration = %"PRId64"\n", *duration_ns);
->   
->   	stream_fd = __perf_open(drm_fd, param, true);
->   
-> @@ -2389,7 +2389,7 @@ num_valid_reports_captured(struct drm_i915_perf_open_param *param,
->   
->   	*duration_ns = end - start;
->   
-> -	igt_debug("Actual duration = %lu\n", *duration_ns);
-> +	igt_debug("Actual duration = %"PRIu64"\n", *duration_ns);
->   
->   	return num_reports;
->   }
-> diff --git a/tools/i915-perf/i915_perf_recorder.c b/tools/i915-perf/i915_perf_recorder.c
-> index 7671f39b4..adc41c29f 100644
-> --- a/tools/i915-perf/i915_perf_recorder.c
-> +++ b/tools/i915-perf/i915_perf_recorder.c
-> @@ -1001,7 +1001,7 @@ main(int argc, char *argv[])
->   	}
->   
->   	ctx.oa_exponent = oa_exponent_for_period(ctx.timestamp_frequency, perf_period);
-> -	fprintf(stdout, "Opening perf stream with metric_id=%lu oa_exponent=%u\n",
-> +	fprintf(stdout, "Opening perf stream with metric_id=%"PRIu64" oa_exponent=%u\n",
->   		ctx.metric_set->perf_oa_metrics_set, ctx.oa_exponent);
->   
->   	ctx.perf_fd = perf_open(&ctx);
+This makes sense to me.
 
+>  * It's not explicitly mentioned, but I'm assuming the correct way of handling
+>    multiple downstream BPC/pixel clock capabilities is to assume the max
+>    BPC/pixel clock is derived from the lowest max BPC/pixel clock we find on
+>    *connected* downstream ports (anything else wouldn't really make sense, imho)
 
+This would limit the case where the user only cares about the output
+with a higher BW requirement on a DFP even if another DFP with a lower
+BW cap is also connected. Not sure if it's a real world use-case though.
+
+> So I'm going to rewrite this so we handle this properly in
+> drm_dp_downstream_read_info() and related helpers. I don't currently have the
+> time to do this, but if there's interest upstream in properly reporting the
+> downstream port types of DP ports in userspace someone might want to consider
+> coming up with another prop that accounts for multiple different downstream port
+> types.
+> 
+> > Sean
+> > 
+> > > +	ret = drm_dp_dpcd_read(aux, DP_DOWNSTREAM_PORT_0, downstream_ports,
+> > > +			       len);
+> > > +
+> > > +	return ret == len ? 0 : -EIO;
+> > > +}
+> > > +EXPORT_SYMBOL(drm_dp_downstream_read_info);
+> > > +
+> > >  /**
+> > >   * drm_dp_downstream_max_clock() - extract branch device max
+> > >   *                                 pixel rate for legacy VGA
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > index 1e29d3a012856..984e49194ca31 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > @@ -4685,18 +4685,8 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+> > >  			return false;
+> > >  	}
+> > >  
+> > > -	if (!drm_dp_is_branch(intel_dp->dpcd))
+> > > -		return true; /* native DP sink */
+> > > -
+> > > -	if (intel_dp->dpcd[DP_DPCD_REV] == 0x10)
+> > > -		return true; /* no per-port downstream info */
+> > > -
+> > > -	if (drm_dp_dpcd_read(&intel_dp->aux, DP_DOWNSTREAM_PORT_0,
+> > > -			     intel_dp->downstream_ports,
+> > > -			     DP_MAX_DOWNSTREAM_PORTS) < 0)
+> > > -		return false; /* downstream port status fetch failed */
+> > > -
+> > > -	return true;
+> > > +	return drm_dp_downstream_read_info(&intel_dp->aux, intel_dp->dpcd,
+> > > +					   intel_dp->downstream_ports) == 0;
+> > >  }
+> > >  
+> > >  static bool
+> > > diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> > > index 5c28199248626..1349f16564ace 100644
+> > > --- a/include/drm/drm_dp_helper.h
+> > > +++ b/include/drm/drm_dp_helper.h
+> > > @@ -1613,6 +1613,9 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux
+> > > *aux,
+> > >  bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
+> > >  				    u8 real_edid_checksum);
+> > >  
+> > > +int drm_dp_downstream_read_info(struct drm_dp_aux *aux,
+> > > +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> > > +				u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS]);
+> > >  int drm_dp_downstream_max_clock(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> > >  				const u8 port_cap[4]);
+> > >  int drm_dp_downstream_max_bpc(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> > > -- 
+> > > 2.26.2
+> > > 
+> > > _______________________________________________
+> > > dri-devel mailing list
+> > > dri-devel@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> -- 
+> Sincerely,
+>       Lyude Paul (she/her)
+>       Software Engineer at Red Hat
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
