@@ -1,67 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF5A24C334
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 18:16:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C283824C3A8
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 18:52:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DB1B6E978;
-	Thu, 20 Aug 2020 16:16:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDD4F6E98A;
+	Thu, 20 Aug 2020 16:52:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com
- [IPv6:2a00:1450:4864:20::243])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE7976E97A
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Aug 2020 16:16:38 +0000 (UTC)
-Received: by mail-lj1-x243.google.com with SMTP id g6so2706173ljn.11
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Aug 2020 09:16:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=5xeIwLlcwmJre/+GlBmcVZ7Sd7o8tK/OUft1ViF+Bxg=;
- b=VP2o2XQxdH6lx+R+XdDm4NWPrnmnUd3eVwSmAxyehr3UxgL2fLZ64Hq67rzqibjkHR
- J3skI4G4+0Ol2U/jGF4Zv+XZemL2A5VVx+QpRmHnPvprIPX5bZbcGHCaNWMxJr6awKbI
- 0eS766tO419YaS+Ky3cNYc6/GJDlKEHHHcyoU=
+Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com
+ [209.85.218.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B66D6E8AD;
+ Thu, 20 Aug 2020 06:32:55 +0000 (UTC)
+Received: by mail-ej1-f67.google.com with SMTP id kq25so1234037ejb.3;
+ Wed, 19 Aug 2020 23:32:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=5xeIwLlcwmJre/+GlBmcVZ7Sd7o8tK/OUft1ViF+Bxg=;
- b=SfV0yO6/gLVm+OhwVHtagTl/RdtNH5cd9RTegLma0Ctb8ASFyTYeWjyvt1hPsG/UQy
- 0G8kNh9vEShav2X/NIgopYoJjd1g/pUUwTh3/JJJLkhRTfAPhHDgBLPprdrU9VaciAC2
- L1Aj0oZpqF+1g9pePLJwOo1OyFr/CydaAKKz4UybEgYR+5VjGJzjgCTfA8YTb+6KfnfZ
- s4M9Jdc3iknCK3CZYHixcv40VPDrbU9JLyJ+fnISdI7e+o766nrUjp4sauHBfYn61ZkH
- YbzFYd2sL/xXGhz5Yfh/5jiLcOvHl3144CTEyVSKmGDIV/KFyY5+XswSKfPwuTTKSI0H
- WLuA==
-X-Gm-Message-State: AOAM532xjRdqbRjWQO3AYa9T1ubrCATGgHgrsWZ8Oip969aF1gULPGu/
- ECCkydBggGkmHGDMc4iKZn/uaayh560mXg==
-X-Google-Smtp-Source: ABdhPJwsaGAkadORhK21syQGi1f/7yk3ytu9zzbvr+aJ+aCQ9nPQL+xkOvdE4ursGV8rDEfgWVuLDQ==
-X-Received: by 2002:a2e:5cc9:: with SMTP id q192mr1976503ljb.452.1597940196890; 
- Thu, 20 Aug 2020 09:16:36 -0700 (PDT)
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com.
- [209.85.208.172])
- by smtp.gmail.com with ESMTPSA id g21sm531583ljh.103.2020.08.20.09.16.35
- for <intel-gfx@lists.freedesktop.org>
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=SgEFdKBZY//GtW7WsFuomYHty6ucGmzytYgl2NILbLg=;
+ b=gPC7CRtvG8z52bdq4R51HuS6ryvmjgOyuNXTyCuqmo3TxEeoSbQFwzv10kPtLKYCKQ
+ kqbE/gfoG/LZvH95Ww1nb/oK3JxJIJx6CxYLVTUs1jkgCaNd217u3GQe9ut++evKMrRC
+ G0dmSVKxTW4kLR1UWJPL/fYHWkM2RvIYySE5YvuaJYg5SF4w1UjIUiwgF8uTQX0266y0
+ K9uiTfrf2EBGDd6UbTgRcX1bXzkusiP91A7JoVxIgrG/Rq+rf3K2N7LMdlObC6y08mXu
+ zc2YfWh/ace9Nyp8roe1VV90Q9cKcjb0dVp0evrDExCr8plEo7Ma2Rt9ix0eYiQanr+l
+ URZw==
+X-Gm-Message-State: AOAM533y2TwabTgRZ2KlKDNp8r0P1wRPDMVSwScAtSf8VpPFV0MamJev
+ SHmfNkGL8bJJSS2Yxibw2ck=
+X-Google-Smtp-Source: ABdhPJyHawhDiHi/8EM4M6MQhQhAbU8noSyyH9M22iSRBN8m/XtenQpygiq47OuBbRtJNtz77xVc2A==
+X-Received: by 2002:a17:906:ca5a:: with SMTP id
+ jx26mr1780134ejb.62.1597905174107; 
+ Wed, 19 Aug 2020 23:32:54 -0700 (PDT)
+Received: from ?IPv6:2a0b:e7c0:0:107::49? ([2a0b:e7c0:0:107::49])
+ by smtp.gmail.com with ESMTPSA id y9sm707523edt.34.2020.08.19.23.32.52
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 20 Aug 2020 09:16:35 -0700 (PDT)
-Received: by mail-lj1-f172.google.com with SMTP id h19so2702388ljg.13
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Aug 2020 09:16:35 -0700 (PDT)
-X-Received: by 2002:a2e:2e04:: with SMTP id u4mr1858085lju.102.1597940195085; 
- Thu, 20 Aug 2020 09:16:35 -0700 (PDT)
+ Wed, 19 Aug 2020 23:32:53 -0700 (PDT)
+To: Gerd Hoffmann <kraxel@redhat.com>
+References: <20200707201229.472834-4-daniel.vetter@ffwll.ch>
+ <20200709123339.547390-1-daniel.vetter@ffwll.ch>
+ <20200709123339.547390-2-daniel.vetter@ffwll.ch>
+ <5cb80369-75a5-fc83-4683-3a6fc2814104@kernel.org>
+ <20200819132408.jnqjhdgd4jbnarhh@sirius.home.kraxel.org>
+From: Jiri Slaby <jirislaby@kernel.org>
+Message-ID: <8a80b434-c8ed-daa3-753b-dd2ec89b9067@kernel.org>
+Date: Thu, 20 Aug 2020 08:32:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <20200817161132.GA4711@amd>
- <CAHk-=wh6_eWwvpL=AhOeY0btf_dkpu+0joNzPZWfbBWgAeAhMA@mail.gmail.com>
- <CAPM=9tw8LVWsuA6m_nkUDgm00iz2txYRNZY0b0WWZbyiUVzLEw@mail.gmail.com>
- <CAHk-=wg34bw1ude07nC_XCPOJHZ21-v6117p4574d5S7iP4gxw@mail.gmail.com>
- <20200820092349.GA3792@amd>
-In-Reply-To: <20200820092349.GA3792@amd>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Thu, 20 Aug 2020 09:16:18 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wjX=ck_u8uvp=PjGCQ3M9igE-yqyRPsJ54th1gQWpwMnA@mail.gmail.com>
-Message-ID: <CAHk-=wjX=ck_u8uvp=PjGCQ3M9igE-yqyRPsJ54th1gQWpwMnA@mail.gmail.com>
-To: Pavel Machek <pavel@ucw.cz>
-Subject: Re: [Intel-gfx] 5.9-rc1: graphics regression moved from -next to
- mainline
+In-Reply-To: <20200819132408.jnqjhdgd4jbnarhh@sirius.home.kraxel.org>
+Content-Language: en-US
+X-Mailman-Approved-At: Thu, 20 Aug 2020 16:52:12 +0000
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/virtio: Remove open-coded
+ commit-tail function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,28 +66,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- kernel list <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
+Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ virtualization@lists.linux-foundation.org, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 20, 2020 at 2:23 AM Pavel Machek <pavel@ucw.cz> wrote:
->
-> Yes, it seems they make things work. (Chris asked for new patch to be
-> tested, so I am switching to his kernel, but it survived longer than
-> it usually does.)
+On 19. 08. 20, 15:24, Gerd Hoffmann wrote:
+> On Wed, Aug 19, 2020 at 02:43:28PM +0200, Jiri Slaby wrote:
+>> On 09. 07. 20, 14:33, Daniel Vetter wrote:
+>>> Exactly matches the one in the helpers.
+>>
+>> It's not that exact. The order of modeset_enables and planes is
+>> different. And this causes a regression -- no fb in qemu.
+> 
+> Does https://patchwork.freedesktop.org/patch/385980/ help?
 
-Ok, so at worst we know how to solve it, at best the reverts won't be
-needed because Chris' patch will fix the issue properly.
+Yes, it does.
 
-So I'll archive this thread, but remind me if this hasn't gotten
-sorted out in the later rc's.
-
-             Linus
+thanks,
+-- 
+js
+suse labs
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
