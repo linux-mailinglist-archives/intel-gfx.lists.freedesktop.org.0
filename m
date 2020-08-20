@@ -1,35 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C63F424B03A
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 09:36:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5139E24B03D
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 09:37:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEC816E8B4;
-	Thu, 20 Aug 2020 07:36:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5A1A6E8F7;
+	Thu, 20 Aug 2020 07:37:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B176D6E8B4
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Aug 2020 07:36:39 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22181544-1500050 for multiple; Thu, 20 Aug 2020 08:36:13 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 176946E8ED;
+ Thu, 20 Aug 2020 07:37:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1192CA47E1;
+ Thu, 20 Aug 2020 07:37:34 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200819193326.p62h2dj7jpzfkeyy@duo.ucw.cz>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 20 Aug 2020 07:37:34 -0000
+Message-ID: <159790905406.19437.15720163296849091472@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20200819103952.19083-1-chris@chris-wilson.co.uk>
- <20200819172331.GA4796@amd>
- <159785861047.667.10730572472834322633@build.alporthouse.com>
- <20200819193326.p62h2dj7jpzfkeyy@duo.ucw.cz>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Pavel Machek <pavel@ucw.cz>
-Date: Thu, 20 Aug 2020 08:36:11 +0100
-Message-ID: <159790897155.667.4491040035549523476@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Replace reloc chain with
- terminator on error unwind
+In-Reply-To: <20200819103952.19083-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/2=5D_drm/i915/gem=3A_Replace_reloc_cha?=
+ =?utf-8?q?in_with_terminator_on_error_unwind_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,57 +39,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Pavel Machek (2020-08-19 20:33:26)
-> Hi!
-> 
-> > > > If we hit an error during construction of the reloc chain, we need to
-> > > > replace the chain into the next batch with the terminator so that upon
-> > > > flushing the relocations so far, we do not execute a hanging batch.
-> > > 
-> > > Thanks for the patches. I assume this should fix problem from
-> > > "5.9-rc1: graphics regression moved from -next to mainline" thread.
-> > > 
-> > > I have applied them over current -next, and my machine seems to be
-> > > working so far (but uptime is less than 30 minutes).
-> > > 
-> > > If the machine still works tommorow, I'll assume problem is solved.
-> > 
-> > Aye, best wait until we have to start competing with Chromium for
-> > memory... The suspicion is that it was the resource allocation failure
-> > path.
-> 
-> Yep, my machines are low on memory.
-> 
-> But ... test did not work that well. I have dead X and blinking
-> screen. Machine still works reasonably well over ssh, so I guess
-> that's an improvement.
+== Series Details ==
 
-Well my last remaining 32bit gen3 device is currently pushing up the
-daises, so could you try removing the attempt to use WC? Something like
+Series: series starting with [1/2] drm/i915/gem: Replace reloc chain with terminator on error unwind (rev2)
+URL   : https://patchwork.freedesktop.org/series/80795/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 44df98d85b38..b26f7de913c3 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -955,10 +955,7 @@ static u32 *__reloc_gpu_map(struct reloc_cache *cache,
- {
-        u32 *map;
+== Summary ==
 
--       map = i915_gem_object_pin_map(pool->obj,
--                                     cache->has_llc ?
--                                     I915_MAP_FORCE_WB :
--                                     I915_MAP_FORCE_WC);
-+       map = i915_gem_object_pin_map(pool->obj, I915_MAP_FORCE_WB);
+Applying: drm/i915/gem: Replace reloc chain with terminator on error unwind
+error: corrupt patch at line 15
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/i915/gem: Replace reloc chain with terminator on error unwind
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-on top of the previous patch. Faultinjection didn't turn up anything in
-eb_relocate_vma, so we need to dig deeper.
--Chris
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
