@@ -2,37 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1535124C69E
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 22:10:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DE6624C72F
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 23:29:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 629E06EA3D;
-	Thu, 20 Aug 2020 20:10:22 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 389036EA38;
- Thu, 20 Aug 2020 20:10:19 +0000 (UTC)
-Received: from ravnborg.org (unknown [188.228.123.71])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id A624E2001E;
- Thu, 20 Aug 2020 22:10:16 +0200 (CEST)
-Date: Thu, 20 Aug 2020 22:10:14 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Anitha Chrisanthus <anitha.chrisanthus@intel.com>
-Message-ID: <20200820201014.GA205582@ravnborg.org>
-References: <1597096418-28937-1-git-send-email-anitha.chrisanthus@intel.com>
- <1597096418-28937-2-git-send-email-anitha.chrisanthus@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20FC46E0B7;
+	Thu, 20 Aug 2020 21:29:25 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78F366E0B7
+ for <Intel-GFX@lists.freedesktop.org>; Thu, 20 Aug 2020 21:29:23 +0000 (UTC)
+IronPort-SDR: iNQrMQbfkogUEA1ehTt/0sg3AxLKyEYoDvVAAs/XCJwCzK9PTvBdLNDRZ3Mqev6u/Jb98PAZCO
+ nKT0bdHPy95Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9719"; a="154683291"
+X-IronPort-AV: E=Sophos;i="5.76,334,1592895600"; d="scan'208";a="154683291"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2020 14:29:19 -0700
+IronPort-SDR: N8Veqi0pAWiR7hnmF2rSRsh/SgAQmgDCFyquaKo5+noAGm8c/mOo5dMh+sSqd4E6YSGA6zC78B
+ I7Fs9WaQEnyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,334,1592895600"; d="scan'208";a="442129576"
+Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.209.156.160])
+ ([10.209.156.160])
+ by orsmga004.jf.intel.com with ESMTP; 20 Aug 2020 14:29:18 -0700
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>, John.C.Harrison@Intel.com, 
+ Intel-GFX@Lists.FreeDesktop.Org
+References: <20200807174637.375324-1-John.C.Harrison@Intel.com>
+ <20200807174637.375324-2-John.C.Harrison@Intel.com>
+ <49855416-a10a-d386-a1f7-bc2e8e76c91c@intel.com>
+ <1d66e55c-4aac-e710-19bf-e5fd589ceaaf@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <689eff99-7aa6-6ad9-763c-21faf8755ea8@intel.com>
+Date: Thu, 20 Aug 2020 14:29:18 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1597096418-28937-2-git-send-email-anitha.chrisanthus@intel.com>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=f+hm+t6M c=1 sm=1 tr=0
- a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
- a=8nJEP1OIZ-IA:10 a=GdXEA3OUgThQMUdsAyEA:9
- a=7Zwj6sZBwVKJAoWSPKxL6X1jA+E=:19 a=0zEunsaDUJGKOHBF:21
- a=zU1bfcpZqNV-HDbG:21 a=LW5kojtaO_oBte4d:21 a=wPNLvfGTeEIA:10
-Subject: Re: [Intel-gfx] [PATCH v6] drm/kmb: Add support for KeemBay Display
+In-Reply-To: <1d66e55c-4aac-e710-19bf-e5fd589ceaaf@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/guc: Update to GuC v45.0.0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,2330 +55,913 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@intel.com, intel-gfx@lists.freedesktop.org,
- edmund.j.dea@intel.com, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Anitha.
-
-Feedback on kmb_dsi.
-
-The main feedback can be found after the kmb_dsi_init function.
-The highligt of the feedback is that, in my opinion, the
-best would be to use the drm_bridge abstraction for the kmb_dsi.
-Maybe because I am biased - and this is just overhead.
-But it just looks simpler to me.
-
-There are several chunks of code surrounded by #ifdef.
-It would be good if they could all be handled so no more #ifdef are
-required.
-
-There is also a lot of debug prints. Maybe this can be trimmed now that
-the driver works?
-
-There is a lot of variables that should all be included in a struct
-kmb_dsi that should be allocated in the probe function (if this becomes
-a bridge driver).
-
-I hope this does not scare you away! If I am right about the ocnversion
-to a drm_bridge, then I hope it is semi trivial to do.
-All the hard HW init stuff is done.
-
-	Sam
-
-> diff --git a/drivers/gpu/drm/kmb/kmb_dsi.c b/drivers/gpu/drm/kmb/kmb_dsi.c
-> new file mode 100644
-> index 0000000..21745ae
-> --- /dev/null
-> +++ b/drivers/gpu/drm/kmb/kmb_dsi.c
-> @@ -0,0 +1,1828 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright =A9 2019-2020 Intel Corporation
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/slab.h>
-> +#include <linux/spinlock.h>
-> +
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_connector.h>
-> +#include <drm/drm_crtc.h>
-> +#include <drm/drm_crtc_helper.h>
-> +#include <drm/drm_edid.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_print.h>
-> +#include <drm/drm_probe_helper.h>
-> +
-> +#include "kmb_drv.h"
-> +#include "kmb_dsi.h"
-> +#include "kmb_regs.h"
-> +
-> +static int hw_initialized;
-> +/* #define MIPI_TX_TEST_PATTERN_GENERATION */
-> +/* #define DPHY_GET_FSM */
-> +/* #define DPHY_READ_TESTCODE */
-> +
-> +static struct mipi_dsi_host *dsi_host;
-> +static struct mipi_dsi_device *dsi_device;
-> +
-> +/* Default setting is 1080p, 4 lanes */
-> +#define IMG_HEIGHT_LINES  1080
-> +#define IMG_WIDTH_PX      1920
-> +#define MIPI_TX_ACTIVE_LANES 4
-> +
-> +struct mipi_tx_frame_section_cfg mipi_tx_frame0_sect_cfg =3D {
-> +	.width_pixels =3D IMG_WIDTH_PX,
-> +	.height_lines =3D IMG_HEIGHT_LINES,
-> +	.data_type =3D DSI_LP_DT_PPS_RGB888_24B,
-> +	.data_mode =3D MIPI_DATA_MODE1,
-> +	.dma_packed =3D 0
-> +};
-> +
-> +struct mipi_tx_frame_cfg mipitx_frame0_cfg =3D {
-> +	.sections[0] =3D &mipi_tx_frame0_sect_cfg,
-> +	.sections[1] =3D NULL,
-> +	.sections[2] =3D NULL,
-> +	.sections[3] =3D NULL,
-> +	.vsync_width =3D 5,
-> +	.v_backporch =3D 36,
-> +	.v_frontporch =3D 4,
-> +	.hsync_width =3D 44,
-> +	.h_backporch =3D 148,
-> +	.h_frontporch =3D 88
-> +};
-> +
-> +struct mipi_tx_dsi_cfg mipitx_dsi_cfg =3D {
-> +	.hfp_blank_en =3D 0,
-> +	.eotp_en =3D 0,
-> +	.lpm_last_vfp_line =3D 0,
-> +	.lpm_first_vsa_line =3D 0,
-> +	.sync_pulse_eventn =3D DSI_VIDEO_MODE_NO_BURST_EVENT,
-> +	.hfp_blanking =3D SEND_BLANK_PACKET,
-> +	.hbp_blanking =3D SEND_BLANK_PACKET,
-> +	.hsa_blanking =3D SEND_BLANK_PACKET,
-> +	.v_blanking =3D SEND_BLANK_PACKET,
-> +};
-> +
-> +struct mipi_ctrl_cfg mipi_tx_init_cfg =3D {
-> +	.index =3D MIPI_CTRL6,
-> +	.type =3D MIPI_DSI,
-> +	.dir =3D MIPI_TX,
-> +	.active_lanes =3D MIPI_TX_ACTIVE_LANES,
-> +	.lane_rate_mbps =3D MIPI_TX_LANE_DATA_RATE_MBPS,
-> +	.ref_clk_khz =3D MIPI_TX_REF_CLK_KHZ,
-> +	.cfg_clk_khz =3D MIPI_TX_CFG_CLK_KHZ,
-> +	.data_if =3D MIPI_IF_PARALLEL,
-> +	.tx_ctrl_cfg =3D {
-> +			.frames[0] =3D &mipitx_frame0_cfg,
-> +			.frames[1] =3D NULL,
-> +			.frames[2] =3D NULL,
-> +			.frames[3] =3D NULL,
-> +			.tx_dsi_cfg =3D &mipitx_dsi_cfg,
-> +			.line_sync_pkt_en =3D 0,
-> +			.line_counter_active =3D 0,
-> +			.frame_counter_active =3D 0,
-> +			.tx_always_use_hact =3D 1,
-> +			.tx_hact_wait_stop =3D 1,
-> +			}
-> +};
-> +
-> +struct  mipi_hs_freq_range_cfg {
-> +	u16 default_bit_rate_mbps;
-> +	u8 hsfreqrange_code;
-> +};
-> +
-> +struct vco_params {
-> +	u32 freq;
-> +	u32 range;
-> +	u32 divider;
-> +};
-> +
-> +static struct vco_params vco_table[] =3D {
-> +	{52, 0x3f, 8},
-> +	{80, 0x39, 8},
-> +	{105, 0x2f, 4},
-> +	{160, 0x29, 4},
-> +	{210, 0x1f, 2},
-> +	{320, 0x19, 2},
-> +	{420, 0x0f, 1},
-> +	{630, 0x09, 1},
-> +	{1100, 0x03, 1},
-> +	{0xffff, 0x01, 1},
-> +};
-> +
-> +static struct mipi_hs_freq_range_cfg
-> +mipi_hs_freq_range[MIPI_DPHY_DEFAULT_BIT_RATES] =3D {
-> +	{.default_bit_rate_mbps =3D 80, .hsfreqrange_code =3D 0x00},
-> +	{.default_bit_rate_mbps =3D 90, .hsfreqrange_code =3D 0x10},
-> +	{.default_bit_rate_mbps =3D 100, .hsfreqrange_code =3D 0x20},
-> +	{.default_bit_rate_mbps =3D 110, .hsfreqrange_code =3D 0x30},
-> +	{.default_bit_rate_mbps =3D 120, .hsfreqrange_code =3D 0x01},
-> +	{.default_bit_rate_mbps =3D 130, .hsfreqrange_code =3D 0x11},
-> +	{.default_bit_rate_mbps =3D 140, .hsfreqrange_code =3D 0x21},
-> +	{.default_bit_rate_mbps =3D 150, .hsfreqrange_code =3D 0x31},
-> +	{.default_bit_rate_mbps =3D 160, .hsfreqrange_code =3D 0x02},
-> +	{.default_bit_rate_mbps =3D 170, .hsfreqrange_code =3D 0x12},
-> +	{.default_bit_rate_mbps =3D 180, .hsfreqrange_code =3D 0x22},
-> +	{.default_bit_rate_mbps =3D 190, .hsfreqrange_code =3D 0x32},
-> +	{.default_bit_rate_mbps =3D 205, .hsfreqrange_code =3D 0x03},
-> +	{.default_bit_rate_mbps =3D 220, .hsfreqrange_code =3D 0x13},
-> +	{.default_bit_rate_mbps =3D 235, .hsfreqrange_code =3D 0x23},
-> +	{.default_bit_rate_mbps =3D 250, .hsfreqrange_code =3D 0x33},
-> +	{.default_bit_rate_mbps =3D 275, .hsfreqrange_code =3D 0x04},
-> +	{.default_bit_rate_mbps =3D 300, .hsfreqrange_code =3D 0x14},
-> +	{.default_bit_rate_mbps =3D 325, .hsfreqrange_code =3D 0x25},
-> +	{.default_bit_rate_mbps =3D 350, .hsfreqrange_code =3D 0x35},
-> +	{.default_bit_rate_mbps =3D 400, .hsfreqrange_code =3D 0x05},
-> +	{.default_bit_rate_mbps =3D 450, .hsfreqrange_code =3D 0x16},
-> +	{.default_bit_rate_mbps =3D 500, .hsfreqrange_code =3D 0x26},
-> +	{.default_bit_rate_mbps =3D 550, .hsfreqrange_code =3D 0x37},
-> +	{.default_bit_rate_mbps =3D 600, .hsfreqrange_code =3D 0x07},
-> +	{.default_bit_rate_mbps =3D 650, .hsfreqrange_code =3D 0x18},
-> +	{.default_bit_rate_mbps =3D 700, .hsfreqrange_code =3D 0x28},
-> +	{.default_bit_rate_mbps =3D 750, .hsfreqrange_code =3D 0x39},
-> +	{.default_bit_rate_mbps =3D 800, .hsfreqrange_code =3D 0x09},
-> +	{.default_bit_rate_mbps =3D 850, .hsfreqrange_code =3D 0x19},
-> +	{.default_bit_rate_mbps =3D 900, .hsfreqrange_code =3D 0x29},
-> +	{.default_bit_rate_mbps =3D 1000, .hsfreqrange_code =3D 0x0A},
-> +	{.default_bit_rate_mbps =3D 1050, .hsfreqrange_code =3D 0x1A},
-> +	{.default_bit_rate_mbps =3D 1100, .hsfreqrange_code =3D 0x2A},
-> +	{.default_bit_rate_mbps =3D 1150, .hsfreqrange_code =3D 0x3B},
-> +	{.default_bit_rate_mbps =3D 1200, .hsfreqrange_code =3D 0x0B},
-> +	{.default_bit_rate_mbps =3D 1250, .hsfreqrange_code =3D 0x1B},
-> +	{.default_bit_rate_mbps =3D 1300, .hsfreqrange_code =3D 0x2B},
-> +	{.default_bit_rate_mbps =3D 1350, .hsfreqrange_code =3D 0x3C},
-> +	{.default_bit_rate_mbps =3D 1400, .hsfreqrange_code =3D 0x0C},
-> +	{.default_bit_rate_mbps =3D 1450, .hsfreqrange_code =3D 0x1C},
-> +	{.default_bit_rate_mbps =3D 1500, .hsfreqrange_code =3D 0x2C},
-> +	{.default_bit_rate_mbps =3D 1550, .hsfreqrange_code =3D 0x3D},
-> +	{.default_bit_rate_mbps =3D 1600, .hsfreqrange_code =3D 0x0D},
-> +	{.default_bit_rate_mbps =3D 1650, .hsfreqrange_code =3D 0x1D},
-> +	{.default_bit_rate_mbps =3D 1700, .hsfreqrange_code =3D 0x2E},
-> +	{.default_bit_rate_mbps =3D 1750, .hsfreqrange_code =3D 0x3E},
-> +	{.default_bit_rate_mbps =3D 1800, .hsfreqrange_code =3D 0x0E},
-> +	{.default_bit_rate_mbps =3D 1850, .hsfreqrange_code =3D 0x1E},
-> +	{.default_bit_rate_mbps =3D 1900, .hsfreqrange_code =3D 0x2F},
-> +	{.default_bit_rate_mbps =3D 1950, .hsfreqrange_code =3D 0x3F},
-> +	{.default_bit_rate_mbps =3D 2000, .hsfreqrange_code =3D 0x0F},
-> +	{.default_bit_rate_mbps =3D 2050, .hsfreqrange_code =3D 0x40},
-> +	{.default_bit_rate_mbps =3D 2100, .hsfreqrange_code =3D 0x41},
-> +	{.default_bit_rate_mbps =3D 2150, .hsfreqrange_code =3D 0x42},
-> +	{.default_bit_rate_mbps =3D 2200, .hsfreqrange_code =3D 0x43},
-> +	{.default_bit_rate_mbps =3D 2250, .hsfreqrange_code =3D 0x44},
-> +	{.default_bit_rate_mbps =3D 2300, .hsfreqrange_code =3D 0x45},
-> +	{.default_bit_rate_mbps =3D 2350, .hsfreqrange_code =3D 0x46},
-> +	{.default_bit_rate_mbps =3D 2400, .hsfreqrange_code =3D 0x47},
-> +	{.default_bit_rate_mbps =3D 2450, .hsfreqrange_code =3D 0x48},
-> +	{.default_bit_rate_mbps =3D 2500, .hsfreqrange_code =3D 0x49}
-> +};
-> +
-> +union mipi_irq_cfg int_cfg =3D {
-> +	.irq_cfg.frame_done =3D 1,
-> +	.irq_cfg.ctrl_error =3D 1,
-> +};
-> +
-> +static enum drm_mode_status
-> +kmb_dsi_mode_valid(struct drm_connector *connector,
-> +		   struct drm_display_mode *mode)
-There is a third argument in latest drm code.
-
-> +{
-> +	struct drm_device *dev =3D connector->dev;
-> +	struct drm_mode_config *mode_config =3D &dev->mode_config;
-> +
-> +	if (mode->hdisplay < mode_config->min_width ||
-> +	    mode->hdisplay > mode_config->max_width)
-> +		return MODE_BAD_HVALUE;
-> +
-> +	if (mode->vdisplay < mode_config->min_height ||
-> +	    mode->vdisplay > mode_config->max_height)
-> +		return MODE_BAD_VVALUE;
-> +
-> +	return MODE_OK;
-> +}
-> +
-> +static int kmb_dsi_get_modes(struct drm_connector *connector)
-> +{
-> +	int num_modes =3D 0;
-> +
-> +	num_modes =3D drm_add_modes_noedid(connector,
-> +					 connector->dev->mode_config.max_width,
-> +			 connector->dev->mode_config.max_height);
-> +
-> +	DRM_INFO("width=3D%d height=3D%d\n",
-> +		 connector->dev->mode_config.max_width,
-> +		 connector->dev->mode_config.max_height);
-> +	DRM_INFO("num modes=3D%d\n", num_modes);
-> +
-> +	return num_modes;
-> +}
-> +
-> +void kmb_dsi_host_unregister(void)
-> +{
-> +	mipi_dsi_host_unregister(dsi_host);
-> +	kfree(dsi_host);
-> +}
-> +
-> +static void kmb_dsi_connector_destroy(struct drm_connector *connector)
-> +{
-> +	struct kmb_connector *kmb_connector =3D to_kmb_connector(connector);
-> +
-> +	drm_connector_cleanup(connector);
-> +	kfree(kmb_connector);
-> +}
-> +
-> +static void kmb_dsi_encoder_destroy(struct drm_encoder *encoder)
-> +{
-> +	struct kmb_dsi *kmb_dsi =3D to_kmb_dsi(encoder);
-> +
-> +	if (!kmb_dsi)
-> +		return;
-> +
-> +	kfree(kmb_dsi->dsi_host);
-> +
-> +	drm_encoder_cleanup(encoder);
-> +
-> +	kmb_dsi_connector_destroy(&kmb_dsi->attached_connector->base);
-> +
-> +	kfree(kmb_dsi);
-> +	if (!dsi_device)
-> +		kfree(dsi_device);
-> +}
-> +
-> +static const struct drm_encoder_funcs kmb_dsi_funcs =3D {
-> +	.destroy =3D kmb_dsi_encoder_destroy,
-> +};
-> +
-> +static const struct
-> +drm_connector_helper_funcs kmb_dsi_connector_helper_funcs =3D {
-> +	.get_modes =3D kmb_dsi_get_modes,
-> +	.mode_valid =3D kmb_dsi_mode_valid,
-> +};
-> +
-> +static const struct drm_connector_funcs kmb_dsi_connector_funcs =3D {
-> +	.destroy =3D kmb_dsi_connector_destroy,
-> +	.fill_modes =3D drm_helper_probe_single_connector_modes,
-> +	.reset =3D drm_atomic_helper_connector_reset,
-> +	.atomic_destroy_state =3D drm_atomic_helper_connector_destroy_state,
-> +	.atomic_duplicate_state =3D drm_atomic_helper_connector_duplicate_state,
-> +};
-> +
-> +static ssize_t kmb_dsi_host_transfer(struct mipi_dsi_host *host,
-> +				     const struct mipi_dsi_msg *msg)
-> +{
-> +	return 0;
-> +}
-> +
-> +static int kmb_dsi_host_attach(struct mipi_dsi_host *host,
-> +			       struct mipi_dsi_device *dev)
-> +{
-> +	return 0;
-> +}
-> +
-> +static int kmb_dsi_host_detach(struct mipi_dsi_host *host,
-> +			       struct mipi_dsi_device *dev)
-> +{
-> +	return 0;
-> +}
-> +
-> +static const struct mipi_dsi_host_ops kmb_dsi_host_ops =3D {
-> +	.attach =3D kmb_dsi_host_attach,
-> +	.detach =3D kmb_dsi_host_detach,
-> +	.transfer =3D kmb_dsi_host_transfer,
-> +};
-> +
-> +static struct kmb_dsi_host *kmb_dsi_host_init(struct drm_device *drm,
-> +					      struct kmb_dsi *kmb_dsi)
-> +{
-> +	struct kmb_dsi_host *host;
-> +
-> +	host =3D kzalloc(sizeof(*host), GFP_KERNEL);
-> +	if (!host)
-> +		return NULL;
-> +
-> +	host->base =3D dsi_host;
-> +	host->base->ops =3D &kmb_dsi_host_ops;
-> +	host->kmb_dsi =3D kmb_dsi;
-> +
-> +	host->base->dev =3D drm->dev;
-> +
-> +	dsi_device->host =3D host->base;
-> +	host->device =3D dsi_device;
-> +	return host;
-> +}
-> +
-> +struct drm_bridge *kmb_dsi_host_bridge_init(struct device *dev)
-> +{
-If this becomes a bridge driver, then part of this belongs in the probe
-function.
-
-> +	struct drm_bridge *bridge =3D NULL;
-> +	struct device_node *encoder_node;
-> +
-> +	/* Create and register MIPI DSI host */
-> +	if (!dsi_host) {
-> +		dsi_host =3D kzalloc(sizeof(*dsi_host), GFP_KERNEL);
-> +		if (!dsi_host)
-> +			return ERR_PTR(-ENOMEM);
-> +
-> +		dsi_host->ops =3D &kmb_dsi_host_ops;
-> +
-> +		if (!dsi_device) {
-> +			dsi_device =3D kzalloc(sizeof(*dsi_device), GFP_KERNEL);
-> +			if (!dsi_device) {
-> +				kfree(dsi_host);
-> +				return ERR_PTR(-ENOMEM);
-> +			}
-> +		}
-> +
-> +		dsi_host->dev =3D dev;
-> +		mipi_dsi_host_register(dsi_host);
-> +	}
-> +	/* Find ADV7535 node and initialize it */
-> +	encoder_node =3D of_parse_phandle(dev->of_node, "encoder-slave", 0);
-> +
-> +	if (!encoder_node) {
-> +		DRM_ERROR("Failed to get bridge info from DT\n");
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	/* Locate drm bridge from the hdmi encoder DT node */
-> +	bridge =3D of_drm_find_bridge(encoder_node);
-> +	of_node_put(encoder_node);
-> +	if (!bridge) {
-> +		DRM_INFO("Wait for external bridge driver DT\n");
-> +		return ERR_PTR(-EPROBE_DEFER);
-> +	}
-> +	return bridge;
-> +}
-> +
-> +u32 mipi_get_datatype_params(u32 data_type, u32 data_mode,
-> +			     struct mipi_data_type_params *params)
-static
-
-> +{
-> +	struct mipi_data_type_params data_type_param;
-> +
-> +	switch (data_type) {
-> +	case DSI_LP_DT_PPS_YCBCR420_12B:
-> +		data_type_param.size_constraint_pixels =3D 2;
-> +		data_type_param.size_constraint_bytes =3D 3;
-> +		switch (data_mode) {
-> +			/* Case 0 not supported according to MDK */
-> +		case 1:
-> +		case 2:
-> +		case 3:
-> +			data_type_param.pixels_per_pclk =3D 2;
-> +			data_type_param.bits_per_pclk =3D 24;
-> +			break;
-> +		default:
-> +			DRM_ERROR("DSI: Invalid data_mode %d\n", data_mode);
-> +			return -EINVAL;
-> +		};
-> +		break;
-> +	case DSI_LP_DT_PPS_YCBCR422_16B:
-> +		data_type_param.size_constraint_pixels =3D 2;
-> +		data_type_param.size_constraint_bytes =3D 4;
-> +		switch (data_mode) {
-> +			/* Case 0 and 1 not supported according
-> +			 * to MDK
-> +			 */
-> +		case 2:
-> +			data_type_param.pixels_per_pclk =3D 1;
-> +			data_type_param.bits_per_pclk =3D 16;
-> +			break;
-> +		case 3:
-> +			data_type_param.pixels_per_pclk =3D 2;
-> +			data_type_param.bits_per_pclk =3D 32;
-> +			break;
-> +		default:
-> +			DRM_ERROR("DSI: Invalid data_mode %d\n", data_mode);
-> +			return -EINVAL;
-> +		};
-> +		break;
-> +	case DSI_LP_DT_LPPS_YCBCR422_20B:
-> +	case DSI_LP_DT_PPS_YCBCR422_24B:
-> +		data_type_param.size_constraint_pixels =3D 2;
-> +		data_type_param.size_constraint_bytes =3D 6;
-> +		switch (data_mode) {
-> +			/* Case 0 not supported according to MDK */
-> +		case 1:
-> +		case 2:
-> +		case 3:
-> +			data_type_param.pixels_per_pclk =3D 1;
-> +			data_type_param.bits_per_pclk =3D 24;
-> +			break;
-> +		default:
-> +			DRM_ERROR("DSI: Invalid data_mode %d\n", data_mode);
-> +			return -EINVAL;
-> +		};
-> +		break;
-> +	case DSI_LP_DT_PPS_RGB565_16B:
-> +		data_type_param.size_constraint_pixels =3D 1;
-> +		data_type_param.size_constraint_bytes =3D 2;
-> +		switch (data_mode) {
-> +		case 0:
-> +		case 1:
-> +			data_type_param.pixels_per_pclk =3D 1;
-> +			data_type_param.bits_per_pclk =3D 16;
-> +			break;
-> +		case 2:
-> +		case 3:
-> +			data_type_param.pixels_per_pclk =3D 2;
-> +			data_type_param.bits_per_pclk =3D 32;
-> +			break;
-> +		default:
-> +			DRM_ERROR("DSI: Invalid data_mode %d\n", data_mode);
-> +			return -EINVAL;
-> +		};
-> +		break;
-> +	case DSI_LP_DT_PPS_RGB666_18B:
-> +		data_type_param.size_constraint_pixels =3D 4;
-> +		data_type_param.size_constraint_bytes =3D 9;
-> +		data_type_param.bits_per_pclk =3D 18;
-> +		data_type_param.pixels_per_pclk =3D 1;
-> +		break;
-> +	case DSI_LP_DT_LPPS_RGB666_18B:
-> +	case DSI_LP_DT_PPS_RGB888_24B:
-> +		data_type_param.size_constraint_pixels =3D 1;
-> +		data_type_param.size_constraint_bytes =3D 3;
-> +		data_type_param.bits_per_pclk =3D 24;
-> +		data_type_param.pixels_per_pclk =3D 1;
-> +		break;
-> +	case DSI_LP_DT_PPS_RGB101010_30B:
-> +		data_type_param.size_constraint_pixels =3D 4;
-> +		data_type_param.size_constraint_bytes =3D 15;
-> +		data_type_param.bits_per_pclk =3D 30;
-> +		data_type_param.pixels_per_pclk =3D 1;
-> +		break;
-> +	default:
-> +		DRM_ERROR("DSI: Invalid data_type %d\n", data_type);
-> +		return -EINVAL;
-> +	};
-> +
-> +	*params =3D data_type_param;
-> +	return 0;
-> +}
-> +
-> +static u32 compute_wc(u32 width_px, u8 size_constr_p, u8 size_constr_b)
-> +{
-> +	/* Calculate the word count for each long packet */
-> +	return (((width_px / size_constr_p) * size_constr_b) & 0xffff);
-> +}
-> +
-> +static u32 compute_unpacked_bytes(u32 wc, u8 bits_per_pclk)
-> +{
-> +	/* Number of PCLK cycles needed to transfer a line
-> +	 * with each PCLK cycle, 4 Bytes are sent through the PPL module
-> +	 */
-> +	return ((wc * 8) / bits_per_pclk) * 4;
-> +}
-> +
-> +static u32 mipi_tx_fg_section_cfg_regs(struct kmb_drm_private *kmb,
-> +				       u8 frame_id, u8 section,
-> +				       u32 height_lines, u32 unpacked_bytes,
-> +				       struct mipi_tx_frame_sect_phcfg *ph_cfg)
-> +{
-> +	u32 cfg =3D 0;
-> +	u32 ctrl_no =3D MIPI_CTRL6;
-> +	u32 reg_adr;
-> +
-> +	/* Frame section packet header */
-> +	/* Word count bits [15:0] */
-> +	cfg =3D (ph_cfg->wc & MIPI_TX_SECT_WC_MASK) << 0;
-> +
-> +	/* Data type (bits [21:16]) */
-> +	cfg |=3D ((ph_cfg->data_type & MIPI_TX_SECT_DT_MASK)
-> +		<< MIPI_TX_SECT_DT_SHIFT);
-> +
-> +	/* Virtual channel (bits [23:22]) */
-> +	cfg |=3D ((ph_cfg->vchannel & MIPI_TX_SECT_VC_MASK)
-> +		<< MIPI_TX_SECT_VC_SHIFT);
-> +
-> +	/* Data mode (bits [24:25]) */
-> +	cfg |=3D ((ph_cfg->data_mode & MIPI_TX_SECT_DM_MASK)
-> +		<< MIPI_TX_SECT_DM_SHIFT);
-> +	if (ph_cfg->dma_packed)
-> +		cfg |=3D MIPI_TX_SECT_DMA_PACKED;
-> +
-> +	drm_dbg(&kmb->drm,
-> +		"ctrl=3D%d frame_id=3D%d section=3D%d cfg=3D%x packed=3D%d\n",
-> +		  ctrl_no, frame_id, section, cfg, ph_cfg->dma_packed);
-> +	kmb_write_mipi(kmb,
-> +		       (MIPI_TXm_HS_FGn_SECTo_PH(ctrl_no, frame_id, section)),
-> +		       cfg);
-> +
-> +	/* Unpacked bytes */
-> +
-> +	/* There are 4 frame generators and each fg has 4 sections
-> +	 * There are 2 registers for unpacked bytes (# bytes each
-> +	 * section occupies in memory)
-> +	 * REG_UNPACKED_BYTES0: [15:0]-BYTES0, [31:16]-BYTES1
-> +	 * REG_UNPACKED_BYTES1: [15:0]-BYTES2, [31:16]-BYTES3
-> +	 */
-> +	reg_adr =3D
-> +	    MIPI_TXm_HS_FGn_SECT_UNPACKED_BYTES0(ctrl_no,
-> +						 frame_id) + (section / 2) * 4;
-> +	kmb_write_bits_mipi(kmb, reg_adr, (section % 2) * 16, 16,
-> +			    unpacked_bytes);
-> +	drm_dbg(&kmb->drm,
-> +		"unpacked_bytes =3D %d, wordcount =3D %d\n", unpacked_bytes,
-> +		  ph_cfg->wc);
-> +
-> +	/* Line config */
-> +	reg_adr =3D MIPI_TXm_HS_FGn_SECTo_LINE_CFG(ctrl_no, frame_id, section);
-> +	kmb_write_mipi(kmb, reg_adr, height_lines);
-> +	return 0;
-> +}
-> +
-> +static u32 mipi_tx_fg_section_cfg(struct kmb_drm_private *kmb,
-> +				  u8 frame_id, u8 section,
-> +				  struct mipi_tx_frame_section_cfg *frame_scfg,
-> +				  u32 *bits_per_pclk, u32 *wc)
-> +{
-> +	u32 ret =3D 0;
-> +	u32 unpacked_bytes;
-> +	struct mipi_data_type_params data_type_parameters;
-> +	struct mipi_tx_frame_sect_phcfg ph_cfg;
-> +
-> +	ret =3D mipi_get_datatype_params(frame_scfg->data_type,
-> +				       frame_scfg->data_mode,
-> +				       &data_type_parameters);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Packet width has to be a multiple of the minimum packet width
-> +	 * (in pixels) set for each data type
-> +	 */
-> +	if (frame_scfg->width_pixels %
-> +	    data_type_parameters.size_constraint_pixels !=3D 0)
-> +		return -EINVAL;
-> +
-> +	*wc =3D compute_wc(frame_scfg->width_pixels,
-> +			 data_type_parameters.size_constraint_pixels,
-> +			 data_type_parameters.size_constraint_bytes);
-> +	unpacked_bytes =3D compute_unpacked_bytes(*wc,
-> +						data_type_parameters.bits_per_pclk);
-> +	ph_cfg.wc =3D *wc;
-> +	ph_cfg.data_mode =3D frame_scfg->data_mode;
-> +	ph_cfg.data_type =3D frame_scfg->data_type;
-> +	ph_cfg.dma_packed =3D frame_scfg->dma_packed;
-> +	ph_cfg.vchannel =3D frame_id;
-> +
-> +	mipi_tx_fg_section_cfg_regs(kmb, frame_id, section,
-> +				    frame_scfg->height_lines,
-> +				    unpacked_bytes, &ph_cfg);
-> +
-> +	/* Caller needs bits_per_clk for additional caluclations */
-> +	*bits_per_pclk =3D data_type_parameters.bits_per_pclk;
-> +
-> +	return 0;
-> +}
-> +
-> +static void mipi_tx_fg_cfg_regs(struct kmb_drm_private *kmb, u8 frame_ge=
-n,
-> +				struct mipi_tx_frame_timing_cfg *fg_cfg)
-> +{
-> +	u32 sysclk;
-> +	u32 ppl_llp_ratio;
-> +	u32 ctrl_no =3D MIPI_CTRL6, reg_adr, val, offset;
-> +
-> +	/* 500 Mhz system clock minus 50 to account for the difference in
-> +	 * MIPI clock speed in RTL tests
-> +	 */
-> +	sysclk =3D kmb->sys_clk_mhz - 50;
-> +
-> +	/* PPL-Pixel Packing Layer, LLP-Low Level Protocol
-> +	 * Frame genartor timing parameters are clocked on the system clock,
-> +	 * whereas as the equivalent parameters in the LLP blocks are clocked
-> +	 * on LLP Tx clock from the D-PHY - BYTE clock
-> +	 */
-> +
-> +	/* Multiply by 1000 to maintain precision */
-> +	ppl_llp_ratio =3D ((fg_cfg->bpp / 8) * sysclk * 1000) /
-> +	    ((fg_cfg->lane_rate_mbps / 8) * fg_cfg->active_lanes);
-> +
-> +	drm_dbg(&kmb->drm, "ppl_llp_ratio=3D%d\n", ppl_llp_ratio);
-> +	drm_dbg(&kmb->drm, "bpp=3D%d sysclk=3D%d lane-rate=3D%d active-lanes=3D=
-%d\n",
-> +		fg_cfg->bpp, sysclk, fg_cfg->lane_rate_mbps,
-> +		 fg_cfg->active_lanes);
-> +
-> +	/* Frame generator number of lines */
-> +	reg_adr =3D MIPI_TXm_HS_FGn_NUM_LINES(ctrl_no, frame_gen);
-> +	kmb_write_mipi(kmb, reg_adr, fg_cfg->v_active);
-> +
-> +	/* vsync width
-> +	 * There are 2 registers for vsync width (VSA in lines for
-> +	 * channels 0-3)
-> +	 * REG_VSYNC_WIDTH0: [15:0]-VSA for channel0, [31:16]-VSA for channel1
-> +	 * REG_VSYNC_WIDTH1: [15:0]-VSA for channel2, [31:16]-VSA for channel3
-> +	 */
-> +	offset =3D (frame_gen % 2) * 16;
-> +	reg_adr =3D MIPI_TXm_HS_VSYNC_WIDTHn(ctrl_no, frame_gen / 2);
-> +	kmb_write_bits_mipi(kmb, reg_adr, offset, 16, fg_cfg->vsync_width);
-> +
-> +	/* vertical backporch (vbp) */
-> +	reg_adr =3D MIPI_TXm_HS_V_BACKPORCHESn(ctrl_no, frame_gen / 2);
-> +	kmb_write_bits_mipi(kmb, reg_adr, offset, 16, fg_cfg->v_backporch);
-> +
-> +	/* vertical frontporch (vfp) */
-> +	reg_adr =3D MIPI_TXm_HS_V_FRONTPORCHESn(ctrl_no, frame_gen / 2);
-> +	kmb_write_bits_mipi(kmb, reg_adr, offset, 16, fg_cfg->v_frontporch);
-> +
-> +	/* vertical active (vactive) */
-> +	reg_adr =3D MIPI_TXm_HS_V_ACTIVEn(ctrl_no, frame_gen / 2);
-> +	kmb_write_bits_mipi(kmb, reg_adr, offset, 16, fg_cfg->v_active);
-> +
-> +	/* hsync width */
-> +	reg_adr =3D MIPI_TXm_HS_HSYNC_WIDTHn(ctrl_no, frame_gen);
-> +	kmb_write_mipi(kmb, reg_adr,
-> +		       (fg_cfg->hsync_width * ppl_llp_ratio) / 1000);
-> +
-> +	/* horizontal backporch (hbp) */
-> +	reg_adr =3D MIPI_TXm_HS_H_BACKPORCHn(ctrl_no, frame_gen);
-> +	kmb_write_mipi(kmb, reg_adr,
-> +		       (fg_cfg->h_backporch * ppl_llp_ratio) / 1000);
-> +
-> +	/* horizontal frontporch (hfp) */
-> +	reg_adr =3D MIPI_TXm_HS_H_FRONTPORCHn(ctrl_no, frame_gen);
-> +	kmb_write_mipi(kmb, reg_adr,
-> +		       (fg_cfg->h_frontporch * ppl_llp_ratio) / 1000);
-> +
-> +	/* horizontal active (ha) */
-> +	reg_adr =3D MIPI_TXm_HS_H_ACTIVEn(ctrl_no, frame_gen);
-> +
-> +	/* convert h_active which is wc in bytes to cycles */
-> +	val =3D (fg_cfg->h_active * sysclk * 1000) /
-> +	    ((fg_cfg->lane_rate_mbps / 8) * fg_cfg->active_lanes);
-> +	val /=3D 1000;
-> +	kmb_write_mipi(kmb, reg_adr, val);
-> +
-> +	/* llp hsync width */
-> +	reg_adr =3D MIPI_TXm_HS_LLP_HSYNC_WIDTHn(ctrl_no, frame_gen);
-> +	kmb_write_mipi(kmb, reg_adr, fg_cfg->hsync_width * (fg_cfg->bpp / 8));
-> +
-> +	/* llp h backporch */
-> +	reg_adr =3D MIPI_TXm_HS_LLP_H_BACKPORCHn(ctrl_no, frame_gen);
-> +	kmb_write_mipi(kmb, reg_adr, fg_cfg->h_backporch * (fg_cfg->bpp / 8));
-> +
-> +	/* llp h frontporch */
-> +	reg_adr =3D MIPI_TXm_HS_LLP_H_FRONTPORCHn(ctrl_no, frame_gen);
-> +	kmb_write_mipi(kmb, reg_adr,
-> +		       fg_cfg->h_frontporch * (fg_cfg->bpp / 8));
-> +}
-> +
-> +static void mipi_tx_fg_cfg(struct kmb_drm_private *kmb, u8 frame_gen,
-> +			   u8 active_lanes, u32 bpp, u32 wc,
-> +			   u32 lane_rate_mbps, struct mipi_tx_frame_cfg *fg_cfg)
-> +{
-> +	u32 i, fg_num_lines =3D 0;
-> +	struct mipi_tx_frame_timing_cfg fg_t_cfg;
-> +
-> +	/* Calculate the total frame generator number of
-> +	 * lines based on it's active sections
-> +	 */
-> +	for (i =3D 0; i < MIPI_TX_FRAME_GEN_SECTIONS; i++) {
-> +		if (fg_cfg->sections[i])
-> +			fg_num_lines +=3D fg_cfg->sections[i]->height_lines;
-> +	}
-> +
-> +	fg_t_cfg.bpp =3D bpp;
-> +	fg_t_cfg.lane_rate_mbps =3D lane_rate_mbps;
-> +	fg_t_cfg.hsync_width =3D fg_cfg->hsync_width;
-> +	fg_t_cfg.h_backporch =3D fg_cfg->h_backporch;
-> +	fg_t_cfg.h_frontporch =3D fg_cfg->h_frontporch;
-> +	fg_t_cfg.h_active =3D wc;
-> +	fg_t_cfg.vsync_width =3D fg_cfg->vsync_width;
-> +	fg_t_cfg.v_backporch =3D fg_cfg->v_backporch;
-> +	fg_t_cfg.v_frontporch =3D fg_cfg->v_frontporch;
-> +	fg_t_cfg.v_active =3D fg_num_lines;
-> +	fg_t_cfg.active_lanes =3D active_lanes;
-> +
-> +	/* Apply frame generator timing setting */
-> +	mipi_tx_fg_cfg_regs(kmb, frame_gen, &fg_t_cfg);
-> +}
-> +
-> +static void mipi_tx_multichannel_fifo_cfg(struct kmb_drm_private *kmb,
-> +					  u8 active_lanes, u8 vchannel_id)
-> +{
-> +	u32 fifo_size, fifo_rthreshold;
-> +	u32 ctrl_no =3D MIPI_CTRL6;
-> +
-> +	/* Clear all mc fifo channel sizes and thresholds */
-> +	kmb_write_mipi(kmb, MIPI_TX_HS_MC_FIFO_CTRL_EN, 0);
-> +	kmb_write_mipi(kmb, MIPI_TX_HS_MC_FIFO_CHAN_ALLOC0, 0);
-> +	kmb_write_mipi(kmb, MIPI_TX_HS_MC_FIFO_CHAN_ALLOC1, 0);
-> +	kmb_write_mipi(kmb, MIPI_TX_HS_MC_FIFO_RTHRESHOLD0, 0);
-> +	kmb_write_mipi(kmb, MIPI_TX_HS_MC_FIFO_RTHRESHOLD1, 0);
-> +
-> +	fifo_size =3D ((active_lanes > MIPI_D_LANES_PER_DPHY) ?
-> +		     MIPI_CTRL_4LANE_MAX_MC_FIFO_LOC :
-> +		     MIPI_CTRL_2LANE_MAX_MC_FIFO_LOC) - 1;
-> +
-> +	/* MC fifo size for virtual channels 0-3
-> +	 * REG_MC_FIFO_CHAN_ALLOC0: [8:0]-channel0, [24:16]-channel1
-> +	 * REG_MC_FIFO_CHAN_ALLOC1: [8:0]-2, [24:16]-channel3
-> +	 */
-> +	SET_MC_FIFO_CHAN_ALLOC(kmb, ctrl_no, vchannel_id, fifo_size);
-> +
-> +	/* Set threshold to half the fifo size, actual size=3Dsize*16 */
-> +	fifo_rthreshold =3D ((fifo_size) * 8) & BIT_MASK_16;
-> +	SET_MC_FIFO_RTHRESHOLD(kmb, ctrl_no, vchannel_id, fifo_rthreshold);
-> +
-> +	/* Enable the MC FIFO channel corresponding to the Virtual Channel */
-> +	kmb_set_bit_mipi(kmb, MIPI_TXm_HS_MC_FIFO_CTRL_EN(ctrl_no),
-> +			 vchannel_id);
-> +}
-> +
-> +static void mipi_tx_ctrl_cfg(struct kmb_drm_private *kmb, u8 fg_id,
-> +			     struct mipi_ctrl_cfg *ctrl_cfg)
-> +{
-> +	u32 sync_cfg =3D 0, ctrl =3D 0, fg_en;
-> +	u32 ctrl_no =3D MIPI_CTRL6;
-> +
-> +	/* MIPI_TX_HS_SYNC_CFG */
-> +	if (ctrl_cfg->tx_ctrl_cfg.line_sync_pkt_en)
-> +		sync_cfg |=3D LINE_SYNC_PKT_ENABLE;
-> +	if (ctrl_cfg->tx_ctrl_cfg.frame_counter_active)
-> +		sync_cfg |=3D FRAME_COUNTER_ACTIVE;
-> +	if (ctrl_cfg->tx_ctrl_cfg.line_counter_active)
-> +		sync_cfg |=3D LINE_COUNTER_ACTIVE;
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_dsi_cfg->v_blanking)
-> +		sync_cfg |=3D DSI_V_BLANKING;
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_dsi_cfg->hsa_blanking)
-> +		sync_cfg |=3D DSI_HSA_BLANKING;
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_dsi_cfg->hbp_blanking)
-> +		sync_cfg |=3D DSI_HBP_BLANKING;
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_dsi_cfg->hfp_blanking)
-> +		sync_cfg |=3D DSI_HFP_BLANKING;
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_dsi_cfg->sync_pulse_eventn)
-> +		sync_cfg |=3D DSI_SYNC_PULSE_EVENTN;
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_dsi_cfg->lpm_first_vsa_line)
-> +		sync_cfg |=3D DSI_LPM_FIRST_VSA_LINE;
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_dsi_cfg->lpm_last_vfp_line)
-> +		sync_cfg |=3D DSI_LPM_LAST_VFP_LINE;
-> +
-> +	/* Enable frame generator */
-> +	fg_en =3D 1 << fg_id;
-> +	sync_cfg |=3D FRAME_GEN_EN(fg_en);
-> +
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_always_use_hact)
-> +		sync_cfg |=3D ALWAYS_USE_HACT(fg_en);
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_hact_wait_stop)
-> +		sync_cfg |=3D HACT_WAIT_STOP(fg_en);
-> +
-> +	drm_dbg(&kmb->drm, "sync_cfg=3D%d fg_en=3D%d\n", sync_cfg, fg_en);
-> +
-> +	/* MIPI_TX_HS_CTRL */
-> +
-> +	/* type:DSI, source:LCD */
-> +	ctrl =3D HS_CTRL_EN | TX_SOURCE;
-> +	ctrl |=3D LCD_VC(fg_id);
-> +	ctrl |=3D ACTIVE_LANES(ctrl_cfg->active_lanes - 1);
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_dsi_cfg->eotp_en)
-> +		ctrl |=3D DSI_EOTP_EN;
-> +	if (ctrl_cfg->tx_ctrl_cfg.tx_dsi_cfg->hfp_blank_en)
-> +		ctrl |=3D DSI_CMD_HFP_EN;
-> +
-> +	/*67 ns stop time */
-> +	ctrl |=3D HSEXIT_CNT(0x43);
-> +
-> +	kmb_write_mipi(kmb, MIPI_TXm_HS_SYNC_CFG(ctrl_no), sync_cfg);
-> +	kmb_write_mipi(kmb, MIPI_TXm_HS_CTRL(ctrl_no), ctrl);
-> +}
-> +
-> +#ifdef MIPI_TX_TEST_PATTERN_GENERATION
-> +static void mipi_tx_hs_tp_gen(struct kmb_drm_private *kmb, int vc,
-> +			      int tp_sel, u32 stripe_width, u32 color0,
-> +			      u32 color1, u32 ctrl_no)
-> +{
-> +	int val =3D 0;
-> +
-> +	/* Select test pattern mode on the virtual channel */
-> +	val =3D TP_SEL_VCm(vc, tp_sel);
-> +
-> +	/* Configure test pattern colors */
-> +	kmb_write_mipi(kmb, MIPI_TXm_HS_TEST_PAT_COLOR0(ctrl_no), color0);
-> +	kmb_write_mipi(kmb, MIPI_TXm_HS_TEST_PAT_COLOR1(ctrl_no), color1);
-> +
-> +	/* Enable test pattern generation on the virtual channel */
-> +	val |=3D TP_EN_VCm(vc);
-> +	kmb_write_mipi(kmb, MIPI_TXm_HS_TEST_PAT_CTRL(ctrl_no), val);
-> +}
-> +#endif
-> +
-> +static u32 mipi_tx_init_cntrl(struct kmb_drm_private *kmb,
-> +			      struct mipi_ctrl_cfg *ctrl_cfg)
-> +{
-> +	u32 ret =3D 0;
-> +	u8 active_vchannels =3D 0;
-> +	u8 frame_id, sect;
-> +	u32 bits_per_pclk =3D 0;
-> +	u32 word_count =3D 0;
-> +	struct mipi_tx_frame_cfg *frame;
-> +
-> +	/* This is the order to initialize MIPI TX:
-> +	 * 1. set frame section parameters
-> +	 * 2. set frame specific parameters
-> +	 * 3. connect lcd to mipi
-> +	 * 4. multi channel fifo cfg
-> +	 * 5. set mipitxcctrlcfg
-> +	 */
-> +
-> +	for (frame_id =3D 0; frame_id < 4; frame_id++) {
-> +		frame =3D ctrl_cfg->tx_ctrl_cfg.frames[frame_id];
-> +
-> +		/* Find valid frame, assume only one valid frame */
-> +		if (!frame)
-> +			continue;
-> +
-> +		/* Frame Section configuration */
-> +		/* TODO - assume there is only one valid section in a frame,
-> +		 * so bits_per_pclk and word_count are only set once
-> +		 */
-> +		for (sect =3D 0; sect < MIPI_CTRL_VIRTUAL_CHANNELS; sect++) {
-> +			if (!frame->sections[sect])
-> +				continue;
-> +
-> +			ret =3D mipi_tx_fg_section_cfg(kmb, frame_id, sect,
-> +						     frame->sections[sect],
-> +						     &bits_per_pclk,
-> +						     &word_count);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +
-> +		/* Set frame specific parameters */
-> +		mipi_tx_fg_cfg(kmb, frame_id, ctrl_cfg->active_lanes,
-> +			       bits_per_pclk, word_count,
-> +			       ctrl_cfg->lane_rate_mbps, frame);
-> +
-> +		active_vchannels++;
-> +
-> +		/* Stop iterating as only one virtual channel
-> +		 * shall be used for LCD connection
-> +		 */
-> +		break;
-> +	}
-> +
-> +	if (active_vchannels =3D=3D 0)
-> +		return -EINVAL;
-> +	/* Multi-Channel FIFO Configuration */
-> +	mipi_tx_multichannel_fifo_cfg(kmb, ctrl_cfg->active_lanes, frame_id);
-> +
-> +	/* Frame Generator Enable */
-> +	mipi_tx_ctrl_cfg(kmb, frame_id, ctrl_cfg);
-> +
-> +#ifdef MIPI_TX_TEST_PATTERN_GENERATION
-> +	mipi_tx_hs_tp_gen(kmb, 0, MIPI_TX_HS_TP_V_STRIPES,
-> +			  0x8, 0xff, 0xff00, MIPI_CTRL6);
-> +#endif
-> +
-> +	drm_dbg(&kmb->drm, "IRQ_STATUS =3D 0x%x\n",
-> +		GET_MIPI_TX_HS_IRQ_STATUS(kmb, MIPI_CTRL6));
-> +
-> +	return ret;
-> +}
-> +
-> +#ifdef DPHY_READ_TESTCODE
-> +int dphy_read_testcode(struct kmb_drm_private *kmb, int dphy_sel,
-> +		       int test_code)
-> +{
-> +	u32 reg_wr_data;
-> +	u32 reg_rd_data;
-> +	int data;
-> +
-> +	reg_wr_data =3D dphy_sel;
-> +	kmb_write_mipi(kmb, DPHY_TEST_CTRL1, reg_wr_data);
-> +
-> +	data =3D 0;
-> +	reg_wr_data =3D 0;
-> +	reg_rd_data =3D 0;
-> +
-> +	if (((dphy_sel >> 0 & 0x1) =3D=3D 1) | ((dphy_sel >> 4 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 8 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 0;
-> +	if (((dphy_sel >> 1 & 0x1) =3D=3D 1) | ((dphy_sel >> 5 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 9 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 8;
-> +	if (((dphy_sel >> 2 & 0x1) =3D=3D 1) | ((dphy_sel >> 6 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 10 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 16;
-> +	if (((dphy_sel >> 3 & 0x1) =3D=3D 1) | ((dphy_sel >> 7 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 11 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 24;
-> +
-> +	if ((dphy_sel >> 0 & 0xf) > 0)
-> +		kmb_write_mipi(kmb, DPHY_TEST_DIN0_3, reg_wr_data);
-> +	if ((dphy_sel >> 4 & 0xf) > 0)
-> +		kmb_write_mipi(kmb, DPHY_TEST_DIN4_7, reg_wr_data);
-> +	if ((dphy_sel >> 8 & 0x3) > 0)
-> +		kmb_write_mipi(kmb, DPHY_TEST_DIN8_9, reg_wr_data);
-> +
-> +	reg_wr_data =3D 0;
-> +	reg_wr_data =3D (dphy_sel | dphy_sel << 12);
-> +	kmb_write_mipi(kmb, DPHY_TEST_CTRL1, reg_wr_data);
-> +
-> +	reg_wr_data =3D 0;
-> +	reg_wr_data =3D dphy_sel << 12;
-> +	kmb_write_mipi(kmb, DPHY_TEST_CTRL1, reg_wr_data);
-> +
-> +	reg_wr_data =3D 0;
-> +	kmb_write_mipi(kmb, DPHY_TEST_CTRL1, reg_wr_data);
-> +
-> +	data =3D test_code >> 8 & 0xf;
-> +	reg_wr_data =3D 0;
-> +
-> +	if (((dphy_sel >> 0 & 0x1) =3D=3D 1) | ((dphy_sel >> 4 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 8 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 0;
-> +	if (((dphy_sel >> 1 & 0x1) =3D=3D 1) | ((dphy_sel >> 5 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 9 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 8;
-> +	if (((dphy_sel >> 2 & 0x1) =3D=3D 1) | ((dphy_sel >> 6 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 10 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 16;
-> +	if (((dphy_sel >> 3 & 0x1) =3D=3D 1) | ((dphy_sel >> 7 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 11 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 24;
-> +
-> +	if ((dphy_sel >> 0 & 0xf) > 0)
-> +		kmb_write_mipi(kmb, DPHY_TEST_DIN0_3, reg_wr_data);
-> +	if ((dphy_sel >> 4 & 0xf) > 0)
-> +		kmb_write_mipi(kmb, DPHY_TEST_DIN4_7, reg_wr_data);
-> +	if ((dphy_sel >> 8 & 0x3) > 0)
-> +		kmb_write_mipi(kmb, DPHY_TEST_DIN8_9, reg_wr_data);
-> +
-> +	reg_wr_data =3D 0;
-> +	reg_wr_data =3D dphy_sel;
-> +	kmb_write_mipi(kmb, DPHY_TEST_CTRL1, reg_wr_data);
-> +
-> +	data =3D test_code & 0xff;
-> +	reg_wr_data =3D 0;
-> +
-> +	if (((dphy_sel >> 0 & 0x1) =3D=3D 1) | ((dphy_sel >> 4 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 8 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 0;
-> +	if (((dphy_sel >> 1 & 0x1) =3D=3D 1) | ((dphy_sel >> 5 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 9 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 8;
-> +	if (((dphy_sel >> 2 & 0x1) =3D=3D 1) | ((dphy_sel >> 6 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 10 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 16;
-> +	if (((dphy_sel >> 3 & 0x1) =3D=3D 1) | ((dphy_sel >> 7 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 11 & 0x1) =3D=3D 1))
-> +		reg_wr_data |=3D data << 24;
-> +
-> +	if ((dphy_sel >> 0 & 0xf) > 0)
-> +		kmb_write_mipi(kmb, DPHY_TEST_DIN0_3, reg_wr_data);
-> +	if ((dphy_sel >> 4 & 0xf) > 0)
-> +		kmb_write_mipi(kmb, DPHY_TEST_DIN4_7, reg_wr_data);
-> +	if ((dphy_sel >> 8 & 0x3) > 0)
-> +		kmb_write_mipi(kmb, DPHY_TEST_DIN8_9, reg_wr_data);
-> +
-> +	reg_wr_data =3D 0;
-> +	reg_wr_data =3D (dphy_sel | dphy_sel << 12);
-> +	kmb_write_mipi(kmb, DPHY_TEST_CTRL1, reg_wr_data);
-> +
-> +	reg_wr_data =3D 0;
-> +	reg_wr_data =3D dphy_sel << 12;
-> +	kmb_write_mipi(kmb, DPHY_TEST_CTRL1, reg_wr_data);
-> +
-> +	reg_wr_data =3D 0;
-> +	kmb_write_mipi(kmb, DPHY_TEST_CTRL1, reg_wr_data);
-> +
-> +	if ((dphy_sel >> 0 & 0xf) > 0)
-> +		reg_rd_data =3D kmb_read_mipi(kmb, DPHY_TEST_DOUBT0_3);
-> +	if ((dphy_sel >> 4 & 0xf) > 0)
-> +		reg_rd_data =3D kmb_read_mipi(kmb, DPHY_TEST_DOUBT4_7);
-> +	if ((dphy_sel >> 8 & 0x3) > 0)
-> +		reg_rd_data =3D kmb_read_mipi(kmb, DPHY_TEST_DOUBT8_9);
-> +
-> +	if (((dphy_sel >> 0 & 0x1) =3D=3D 1) | ((dphy_sel >> 4 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 8 & 0x1) =3D=3D 1))
-> +		data =3D reg_rd_data >> 0;
-> +	if (((dphy_sel >> 1 & 0x1) =3D=3D 1) | ((dphy_sel >> 5 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 9 & 0x1) =3D=3D 1))
-> +		data =3D reg_rd_data >> 8;
-> +	if (((dphy_sel >> 2 & 0x1) =3D=3D 1) | ((dphy_sel >> 6 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 10 & 0x1) =3D=3D 1))
-> +		data =3D reg_rd_data >> 16;
-> +	if (((dphy_sel >> 3 & 0x1) =3D=3D 1) | ((dphy_sel >> 7 & 0x1) =3D=3D 1)=
- |
-> +	    ((dphy_sel >> 11 & 0x1) =3D=3D 1))
-> +		data =3D reg_rd_data >> 24;
-> +
-> +	return data;
-> +}
-> +#endif
-> +
-> +static void test_mode_send(struct kmb_drm_private *kmb, u32 dphy_no,
-> +			   u32 test_code, u32 test_data)
-> +{
-> +	if (test_code !=3D TEST_CODE_FSM_CONTROL)
-> +		drm_dbg(&kmb->drm,
-> +			"test_code =3D %02x, test_data =3D %08x\n", test_code,
-> +			 test_data);
-> +	/* Steps to send test code:
-> +	 * - set testclk HIGH
-> +	 * - set testdin with test code
-> +	 * - set testen HIGH
-> +	 * - set testclk LOW
-> +	 * - set testen LOW
-> +	 */
-> +
-> +	/* Set testclk high */
-> +	SET_DPHY_TEST_CTRL1_CLK(kmb, dphy_no);
-> +
-> +	/* Set testdin */
-> +	SET_TEST_DIN0_3(kmb, dphy_no, test_code);
-> +
-> +	/* Set testen high */
-> +	SET_DPHY_TEST_CTRL1_EN(kmb, dphy_no);
-> +
-> +	/* Set testclk low */
-> +	CLR_DPHY_TEST_CTRL1_CLK(kmb, dphy_no);
-> +
-> +	/* Set testen low */
-> +	CLR_DPHY_TEST_CTRL1_EN(kmb, dphy_no);
-> +
-> +	if (test_code) {
-> +		/*  Steps to send test data:
-> +		 * - set testen LOW
-> +		 * - set testclk LOW
-> +		 * - set testdin with data
-> +		 * - set testclk HIGH
-> +		 */
-> +
-> +		/* Set testen low */
-> +		CLR_DPHY_TEST_CTRL1_EN(kmb, dphy_no);
-> +
-> +		/* Set testclk low */
-> +		CLR_DPHY_TEST_CTRL1_CLK(kmb, dphy_no);
-> +
-> +		/* Set data in testdin */
-> +		kmb_write_mipi(kmb,
-> +			       DPHY_TEST_DIN0_3 + ((dphy_no / 0x4) * 0x4),
-> +			       test_data << ((dphy_no % 4) * 8));
-> +
-> +		/* Set testclk high */
-> +		SET_DPHY_TEST_CTRL1_CLK(kmb, dphy_no);
-> +	}
-> +}
-> +
-> +static inline void
-> +	set_test_mode_src_osc_freq_target_low_bits(struct kmb_drm_private *kmb,
-> +						   u32 dphy_no,
-> +						   u32 freq)
-> +{
-> +	/* Typical rise/fall time=3D166, refer Table 1207 databook,
-> +	 * sr_osc_freq_target[7:0]
-> +	 */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_SLEW_RATE_DDL_CYCLES,
-> +		       (freq & 0x7f));
-> +}
-> +
-> +static inline void
-> +	set_test_mode_src_osc_freq_target_hi_bits(struct kmb_drm_private *kmb,
-> +						  u32 dphy_no,
-> +						  u32 freq)
-> +{
-> +	u32 data;
-> +
-> +	/* Flag this as high nibble */
-> +	data =3D ((freq >> 6) & 0x1f) | (1 << 7);
-> +
-> +	/* Typical rise/fall time=3D166, refer Table 1207 databook,
-> +	 * sr_osc_freq_target[11:7]
-> +	 */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_SLEW_RATE_DDL_CYCLES, data);
-> +}
-> +
-> +static void mipi_tx_get_vco_params(struct vco_params *vco)
-> +{
-> +	int i;
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(vco_table); i++) {
-> +		if (vco->freq < vco_table[i].freq) {
-> +			*vco =3D vco_table[i];
-> +			return;
-> +		}
-> +	}
-> +
-> +	WARN_ONCE(1, "Invalid vco freq =3D %u for PLL setup\n", vco->freq);
-> +}
-> +
-> +static void mipi_tx_pll_setup(struct kmb_drm_private *kmb, u32 dphy_no,
-> +			      u32 ref_clk_mhz, u32 target_freq_mhz)
-> +{
-> +	u32 best_n =3D 0, best_m =3D 0;
-> +	u32 n =3D 0, m =3D 0, div =3D 0, delta, freq =3D 0, t_freq;
-> +	u32 best_freq_delta =3D 3000;
-> +
-> +	/* pll_ref_clk: - valid range: 2~64 MHz; Typically 24 MHz
-> +	 * Fvco: - valid range: 320~1250 MHz (Gen3 D-PHY)
-> +	 * Fout: - valid range: 40~1250 MHz (Gen3 D-PHY)
-> +	 * n: - valid range [0 15]
-> +	 * N: - N =3D n + 1
-> +	 *      -valid range: [1 16]
-> +	 *      -conditions: - (pll_ref_clk / N) >=3D 2 MHz
-> +	 *              -(pll_ref_clk / N) <=3D 8 MHz
-> +	 * m: valid range [62 623]
-> +	 * M: - M =3D m + 2
-> +	 *      -valid range [64 625]
-> +	 *      -Fvco =3D (M/N) * pll_ref_clk
-> +	 */
-> +	struct vco_params vco_p =3D {
-> +		.range =3D 0,
-> +		.divider =3D 1,
-> +	};
-> +
-> +	vco_p.freq =3D target_freq_mhz;
-> +	mipi_tx_get_vco_params(&vco_p);
-> +
-> +	/* Search pll n parameter */
-> +	for (n =3D PLL_N_MIN; n <=3D PLL_N_MAX; n++) {
-> +		/* Calculate the pll input frequency division ratio
-> +		 * multiply by 1000 for precision -
-> +		 * no floating point, add n for rounding
-> +		 */
-> +		div =3D ((ref_clk_mhz * 1000) + n) / (n + 1);
-> +
-> +		/* Found a valid n parameter */
-> +		if ((div < 2000 || div > 8000))
-> +			continue;
-> +
-> +		/* Search pll m parameter */
-> +		for (m =3D PLL_M_MIN; m <=3D PLL_M_MAX; m++) {
-> +			/* Calculate the Fvco(DPHY PLL output frequency)
-> +			 * using the current n,m params
-> +			 */
-> +			freq =3D div * (m + 2);
-> +			freq /=3D 1000;
-> +
-> +			/* Trim the potential pll freq to max supported */
-> +			if (freq > PLL_FVCO_MAX)
-> +				continue;
-> +
-> +			delta =3D abs(freq - target_freq_mhz);
-> +
-> +			/* Select the best (closest to target pll freq)
-> +			 * n,m parameters so far
-> +			 */
-> +			if (delta < best_freq_delta) {
-> +				best_n =3D n;
-> +				best_m =3D m;
-> +				best_freq_delta =3D delta;
-> +			}
-> +		}
-> +	}
-> +
-> +	/* Program vco_cntrl parameter
-> +	 * PLL_VCO_Control[5:0] =3D pll_vco_cntrl_ovr,
-> +	 * PLL_VCO_Control[6]   =3D pll_vco_cntrl_ovr_en
-> +	 */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_VCO_CTRL, (vco_p.range
-> +								| (1 << 6)));
-> +
-> +	/* Program m, n pll parameters */
-> +	drm_dbg(&kmb->drm, "m =3D %d n =3D %d\n", best_m, best_n);
-> +
-> +	/* PLL_Input_Divider_Ratio[3:0] =3D pll_n_ovr */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_INPUT_DIVIDER,
-> +		       (best_n & 0x0f));
-> +
-> +	/* m - low nibble PLL_Loop_Divider_Ratio[4:0]
-> +	 * pll_m_ovr[4:0]
-> +	 */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_FEEDBACK_DIVIDER,
-> +		       (best_m & 0x1f));
-> +
-> +	/* m - high nibble PLL_Loop_Divider_Ratio[4:0]
-> +	 * pll_m_ovr[9:5]
-> +	 */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_FEEDBACK_DIVIDER,
-> +		       ((best_m >> 5) & 0x1f) | PLL_FEEDBACK_DIVIDER_HIGH);
-> +
-> +	/* Enable overwrite of n,m parameters :pll_n_ovr_en, pll_m_ovr_en */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_OUTPUT_CLK_SEL,
-> +		       (PLL_N_OVR_EN | PLL_M_OVR_EN));
-> +
-> +	/* Program Charge-Pump parameters */
-> +
-> +	/* pll_prop_cntrl-fixed values for prop_cntrl from DPHY doc */
-> +	t_freq =3D target_freq_mhz * vco_p.divider;
-> +	test_mode_send(kmb, dphy_no,
-> +		       TEST_CODE_PLL_PROPORTIONAL_CHARGE_PUMP_CTRL,
-> +		       ((t_freq > 1150) ? 0x0C : 0x0B));
-> +
-> +	/* pll_int_cntrl-fixed value for int_cntrl from DPHY doc */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_INTEGRAL_CHARGE_PUMP_CTRL,
-> +		       0x00);
-> +
-> +	/* pll_gmp_cntrl-fixed value for gmp_cntrl from DPHY doci */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_GMP_CTRL, 0x10);
-> +
-> +	/* pll_cpbias_cntrl-fixed value for cpbias_cntrl from DPHY doc */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_CHARGE_PUMP_BIAS, 0x10);
-> +
-> +	/* pll_th1 -Lock Detector Phase error threshold,
-> +	 * document gives fixed value
-> +	 */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_PHASE_ERR_CTRL, 0x02);
-> +
-> +	/* PLL Lock Configuration */
-> +
-> +	/* pll_th2 - Lock Filter length, document gives fixed value */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_LOCK_FILTER, 0x60);
-> +
-> +	/* pll_th3- PLL Unlocking filter, document gives fixed value */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_UNLOCK_FILTER, 0x03);
-> +
-> +	/* pll_lock_sel-PLL Lock Detector Selection,
-> +	 * document gives fixed value
-> +	 */
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_PLL_LOCK_DETECTOR, 0x02);
-> +}
-> +
-> +#ifdef DPHY_GET_FSM
-> +static void dphy_get_fsm(struct kmb_drm_private *kmb, u32 dphy_no)
-> +{
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_FSM_CONTROL, 0x80);
-> +
-> +	drm_dbg(&kmb->drm, "dphy %d fsm_state =3D 0%x\n", dphy_no,
-> +		kmb_read_mipi(kmb, DPHY_TEST_DOUBT4_7));
-> +}
-> +#endif
-> +
-> +static void dphy_init_sequence(struct kmb_drm_private *kmb,
-> +			       struct mipi_ctrl_cfg *cfg, u32 dphy_no,
-> +			       int active_lanes, enum dphy_mode mode)
-> +{
-
-This function is too long.
-Try to:
-- drop irrelevant debug prints
-- make a few helpers - maybe the long if () else if () else could cll
-  functions.
-
-> +	u32 test_code =3D 0, test_data =3D 0, val;
-> +	int i =3D 0;
-> +
-> +	drm_info(&kmb->drm,
-> +		 "dphy=3D%d mode=3D%d active_lanes=3D%d\n", dphy_no, mode,
-> +		 active_lanes);
-> +	drm_dbg(&kmb->drm, "MIPI_DPHY_STAT0_4_7 =3D 0x%x)\n",
-> +		kmb_read_mipi(kmb, MIPI_DPHY_STAT4_7));
-> +
-> +	/* Set D-PHY in shutdown mode */
-> +	/* Assert RSTZ signal */
-> +	CLR_DPHY_INIT_CTRL0(kmb, dphy_no, RESETZ);
-> +
-> +	/* Assert SHUTDOWNZ signal */
-> +	CLR_DPHY_INIT_CTRL0(kmb, dphy_no, SHUTDOWNZ);
-> +	val =3D kmb_read_mipi(kmb, DPHY_INIT_CTRL0);
-> +
-> +	drm_dbg(&kmb->drm, "DPHY_INIT_CTRL0 =3D 0x%x\n", val);
-> +
-> +	/* Init D-PHY_n
-> +	 * Pulse testclear signal to make sure the d-phy configuration
-> +	 * starts from a clean base
-> +	 */
-> +	CLR_DPHY_TEST_CTRL0(kmb, dphy_no);
-> +	ndelay(15);
-> +	SET_DPHY_TEST_CTRL0(kmb, dphy_no);
-> +	ndelay(15);
-> +	CLR_DPHY_TEST_CTRL0(kmb, dphy_no);
-> +	ndelay(15);
-> +
-> +	drm_dbg(&kmb->drm, "DPHY_TEST_CTRL0=3D0x%x\n",
-> +		kmb_read_mipi(kmb, DPHY_TEST_CTRL0));
-> +
-> +	/* Set mastermacro bit - Master or slave mode */
-> +	test_code =3D TEST_CODE_MULTIPLE_PHY_CTRL;
-> +
-> +	/* DPHY has its own clock lane enabled (master) */
-> +	if (mode =3D=3D MIPI_DPHY_MASTER)
-> +		test_data =3D 0x01;
-> +	else
-> +		test_data =3D 0x00;
-> +
-> +	/* Send the test code and data */
-> +	test_mode_send(kmb, dphy_no, test_code, test_data);
-> +
-> +	/* Set the lane data rate */
-> +	for (i =3D 0; i < MIPI_DPHY_DEFAULT_BIT_RATES; i++) {
-> +		if (mipi_hs_freq_range[i].default_bit_rate_mbps <
-> +		    cfg->lane_rate_mbps)
-> +			continue;
-> +
-> +		/* Send the test code and data */
-> +		/* bit[6:0] =3D hsfreqrange_ovr bit[7] =3D hsfreqrange_ovr_en */
-> +		test_code =3D TEST_CODE_HS_FREQ_RANGE_CFG;
-> +		test_data =3D (mipi_hs_freq_range[i].hsfreqrange_code & 0x7f) |
-> +		    (1 << 7);
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +		break;
-> +	}
-> +
-> +	/* High-Speed Tx Slew Rate Calibration
-> +	 * BitRate: > 1.5 Gbps && <=3D 2.5 Gbps: slew rate control OFF
-> +	 */
-> +	if (cfg->lane_rate_mbps > 1500) {
-> +		/* Bypass slew rate calibration algorithm
-> +		 * bits[1:0} srcal_en_ovr_en, srcal_en_ovr
-> +		 */
-> +		test_code =3D TEST_CODE_SLEW_RATE_OVERRIDE_CTRL;
-> +		test_data =3D 0x02;
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +
-> +		/* Disable slew rate calibration */
-> +		test_code =3D TEST_CODE_SLEW_RATE_DDL_LOOP_CTRL;
-> +		test_data =3D 0x00;
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +	} else if (cfg->lane_rate_mbps > 1000) {
-> +		/* BitRate: > 1 Gbps && <=3D 1.5 Gbps: - slew rate control ON
-> +		 * typical rise/fall times: 166 ps
-> +		 */
-> +
-> +		/* Do not bypass slew rate calibration algorithm
-> +		 * bits[1:0}=3Dsrcal_en_ovr_en, srcal_en_ovr, bit[6]=3Dsr_range
-> +		 */
-> +		test_code =3D TEST_CODE_SLEW_RATE_OVERRIDE_CTRL;
-> +		test_data =3D (0x03 | (1 << 6));
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +
-> +		/* Enable slew rate calibration */
-> +		test_code =3D TEST_CODE_SLEW_RATE_DDL_LOOP_CTRL;
-> +		test_data =3D 0x01;
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +
-> +		/* Set sr_osc_freq_target[6:0] low nibble
-> +		 * typical rise/fall time=3D166, refer Table 1207 databook
-> +		 */
-> +		test_code =3D TEST_CODE_SLEW_RATE_DDL_CYCLES;
-> +		test_data =3D (0x72f & 0x7f);
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +
-> +		/* Set sr_osc_freq_target[11:7] high nibble
-> +		 * Typical rise/fall time=3D166, refer Table 1207 databook
-> +		 */
-> +		test_code =3D TEST_CODE_SLEW_RATE_DDL_CYCLES;
-> +		test_data =3D ((0x72f >> 6) & 0x1f) | (1 << 7);
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +	} else {
-> +		/* lane_rate_mbps <=3D 1000 Mbps
-> +		 * BitRate:  <=3D 1 Gbps:
-> +		 * - slew rate control ON
-> +		 * - typical rise/fall times: 225 ps
-> +		 */
-> +
-> +		/* Do not bypass slew rate calibration algorithm */
-> +		test_code =3D TEST_CODE_SLEW_RATE_OVERRIDE_CTRL;
-> +		test_data =3D (0x03 | (1 << 6));
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +
-> +		/* Enable slew rate calibration */
-> +		test_code =3D TEST_CODE_SLEW_RATE_DDL_LOOP_CTRL;
-> +		test_data =3D 0x01;
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +
-> +		/* Typical rise/fall time=3D255, refer Table 1207 databook */
-> +		test_code =3D TEST_CODE_SLEW_RATE_DDL_CYCLES;
-> +		test_data =3D (0x523 & 0x7f);
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +
-> +		/* Set sr_osc_freq_target[11:7] high nibble */
-> +		test_code =3D TEST_CODE_SLEW_RATE_DDL_CYCLES;
-> +		test_data =3D ((0x523 >> 6) & 0x1f) | (1 << 7);
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +	}
-> +
-> +	/* Set cfgclkfreqrange */
-> +	val =3D (((cfg->cfg_clk_khz / 1000) - 17) * 4) & 0x3f;
-> +	SET_DPHY_FREQ_CTRL0_3(kmb, dphy_no, val);
-> +
-> +	drm_dbg(&kmb->drm, "DPHY_FREQ =3D 0x%x\n",
-> +		kmb_read_mipi(kmb, DPHY_FREQ_CTRL0_3 + 4));
-> +	drm_dbg(&kmb->drm, "MIPI_DPHY_STAT0_4_7 =3D 0x%x)\n",
-> +		kmb_read_mipi(kmb, MIPI_DPHY_STAT4_7));
-> +
-> +	/* Enable config clk for the corresponding d-phy */
-> +	kmb_set_bit_mipi(kmb, DPHY_CFG_CLK_EN, dphy_no);
-> +
-> +	drm_dbg(&kmb->drm, "DPHY_CFG_CLK_EN =3D 0x%x\n",
-> +		kmb_read_mipi(kmb, DPHY_CFG_CLK_EN));
-> +
-> +	/* PLL setup */
-> +	if (mode =3D=3D MIPI_DPHY_MASTER) {
-> +		/* Set PLL regulator in bypass */
-> +		test_code =3D TEST_CODE_PLL_ANALOG_PROG;
-> +		test_data =3D 0x01;
-> +		test_mode_send(kmb, dphy_no, test_code, test_data);
-> +
-> +		/* PLL Parameters Setup */
-> +		mipi_tx_pll_setup(kmb, dphy_no, cfg->ref_clk_khz / 1000,
-> +				  cfg->lane_rate_mbps / 2);
-> +
-> +		/* Set clksel */
-> +		kmb_write_bits_mipi(kmb, DPHY_INIT_CTRL1,
-> +				    PLL_CLKSEL_0, 2, 0x01);
-> +
-> +		/* Set pll_shadow_control */
-> +		kmb_set_bit_mipi(kmb, DPHY_INIT_CTRL1, PLL_SHADOW_CTRL);
-> +
-> +		drm_dbg(&kmb->drm, "DPHY_INIT_CTRL1 =3D 0x%x\n",
-> +			kmb_read_mipi(kmb, DPHY_INIT_CTRL1));
-> +	}
-> +
-> +	drm_dbg(&kmb->drm, "MIPI_DPHY_STAT0_4_7 =3D 0x%x)\n",
-> +		kmb_read_mipi(kmb, MIPI_DPHY_STAT4_7));
-> +
-> +//#define MIPI_TX_FORCE_VOD
-> +#ifdef MIPI_TX_FORCE_VOD
-> +#define MIPI_TX_VOD_LVL	450
-> +#define TEST_CODE_BANDGAP 0x24
-> +	/* Set bandgap/VOD level */
-> +	switch (MIPI_TX_VOD_LVL) {
-> +	case 200:
-> +		test_data =3D 0x00;
-> +		break;
-> +	case 300:
-> +		test_data =3D 0x20;
-> +		break;
-> +	case 350:
-> +		test_data =3D 0x40;
-> +		break;
-> +	case 450:
-> +		test_data =3D 0x60;
-> +		break;
-> +	case 400:
-> +	default:
-> +		test_data =3D 0x70;
-> +		break;
-> +	}
-> +	test_mode_send(kmb, dphy_no, TEST_CODE_BANDGAP, test_data);
-> +#endif
-> +
-> +	/* Send NORMAL OPERATION test code */
-> +	test_code =3D 0x0;
-> +	test_data =3D 0x0;
-> +	test_mode_send(kmb, dphy_no, test_code, test_data);
-> +
-> +	/* Configure BASEDIR for data lanes
-> +	 * NOTE: basedir only applies to LANE_0 of each D-PHY.
-> +	 * The other lanes keep their direction based on the D-PHY type,
-> +	 * either Rx or Tx.
-> +	 * bits[5:0]  - BaseDir: 1 =3D Rx
-> +	 * bits[9:6] - BaseDir: 0 =3D Tx
-> +	 */
-> +	drm_dbg(&kmb->drm, "MIPI_DPHY_STAT0_4_7 =3D 0x%x)\n",
-> +		kmb_read_mipi(kmb, MIPI_DPHY_STAT4_7));
-> +
-> +	kmb_write_bits_mipi(kmb, DPHY_INIT_CTRL2, 0, 9, 0x03f);
-> +	ndelay(15);
-> +
-> +	/* Enable CLOCK LANE
-> +	 * Clock lane should be enabled regardless of the direction
-> +	 * set for the D-PHY (Rx/Tx)
-> +	 */
-> +	kmb_set_bit_mipi(kmb, DPHY_INIT_CTRL2, 12 + dphy_no);
-> +
-> +	drm_dbg(&kmb->drm, "DPHY_INIT_CTRL2 =3D 0x%x\n",
-> +		kmb_read_mipi(kmb, DPHY_INIT_CTRL2));
-> +
-> +	/* Enable DATA LANES */
-> +	kmb_write_bits_mipi(kmb, DPHY_ENABLE, dphy_no * 2, 2,
-> +			    ((1 << active_lanes) - 1));
-> +
-> +	drm_dbg(&kmb->drm,
-> +		"DPHY_ENABLE =3D 0x%x\n", kmb_read_mipi(kmb, DPHY_ENABLE));
-> +	ndelay(15);
-> +
-> +	/* Take D-PHY out of shutdown mode */
-> +	/* Deassert SHUTDOWNZ signal */
-> +	drm_dbg(&kmb->drm, "MIPI_DPHY_STAT0_4_7 =3D 0x%x)\n",
-> +		kmb_read_mipi(kmb, MIPI_DPHY_STAT4_7));
-> +	SET_DPHY_INIT_CTRL0(kmb, dphy_no, SHUTDOWNZ);
-> +	ndelay(15);
-> +
-> +	/* Deassert RSTZ signal */
-> +	SET_DPHY_INIT_CTRL0(kmb, dphy_no, RESETZ);
-> +	drm_dbg(&kmb->drm, "DPHY_INIT_CTRL0 =3D 0x%x\n",
-> +		kmb_read_mipi(kmb, DPHY_INIT_CTRL0));
-> +}
-> +
-> +static void dphy_wait_fsm(struct kmb_drm_private *kmb, u32 dphy_no,
-> +			  enum dphy_tx_fsm fsm_state)
-> +{
-> +	enum dphy_tx_fsm val =3D DPHY_TX_POWERDWN;
-> +	int i =3D 0;
-> +	int status =3D 1;
-> +
-> +	do {
-> +		test_mode_send(kmb, dphy_no, TEST_CODE_FSM_CONTROL, 0x80);
-> +
-> +		val =3D GET_TEST_DOUT4_7(kmb, dphy_no);
-> +		i++;
-> +		if (i > TIMEOUT) {
-> +			status =3D 0;
-> +			break;
-> +		}
-> +	} while (val !=3D fsm_state);
-> +
-> +	drm_dbg(&kmb->drm, "%s: dphy %d val =3D %x\n", __func__, dphy_no, val);
-> +	drm_info(&kmb->drm, "********** DPHY %d WAIT_FSM %s **********\n",
-> +		 dphy_no, status ? "SUCCESS" : "FAILED");
-> +}
-> +
-> +static void wait_init_done(struct kmb_drm_private *kmb, u32 dphy_no,
-> +			   u32 active_lanes)
-> +{
-> +	u32 stopstatedata =3D 0;
-> +	u32 data_lanes =3D (1 << active_lanes) - 1;
-> +	int i =3D 0, val;
-> +	int status =3D 1;
-> +
-> +	drm_dbg(&kmb->drm, "dphy=3D%d active_lanes=3D%d data_lanes=3D%d\n", dph=
-y_no,
-> +		active_lanes, data_lanes);
-> +
-> +	do {
-> +		val =3D kmb_read_mipi(kmb, MIPI_DPHY_STAT4_7);
-> +		stopstatedata =3D GET_STOPSTATE_DATA(kmb, dphy_no) & data_lanes;
-> +
-> +		/* TODO-need to add a time out and return failure */
-> +		i++;
-> +
-> +		if (i > TIMEOUT) {
-> +			status =3D 0;
-> +
-> +			drm_info(&kmb->drm,
-> +				 "! WAIT_INIT_DONE: TIMING OUT!(err_stat=3D%d)",
-> +				 kmb_read_mipi(kmb, MIPI_DPHY_ERR_STAT6_7));
-> +			drm_dbg(&kmb->drm,
-> +				"MIPI_DPHY_STAT0_4_7 =3D 0x%x)\n", val);
-> +			drm_dbg(&kmb->drm,
-> +				"stopdata =3D 0x%x data_lanes=3D0x%x\n",
-> +				 stopstatedata, data_lanes);
-> +
-> +			break;
-> +		}
-> +
-> +		if (i < 3) {
-> +			drm_dbg(&kmb->drm,
-> +				"stopdata =3D 0x%x data_lanes=3D0x%x\n",
-> +				 stopstatedata, data_lanes);
-> +			drm_dbg(&kmb->drm,
-> +				"MIPI_DPHY_STAT0_4_7 =3D 0x%x)\n", val);
-> +		}
-> +	} while (stopstatedata !=3D data_lanes);
-> +
-> +	drm_info(&kmb->drm, "********** DPHY %d INIT - %s **********\n",
-> +		 dphy_no, status ? "SUCCESS" : "FAILED");
-> +}
-> +
-> +static void wait_pll_lock(struct kmb_drm_private *kmb, u32 dphy_no)
-> +{
-> +	int i =3D 0;
-> +	int status =3D 1;
-> +
-> +	do {
-> +		/* TODO-need to add a time out and return failure */
-> +		i++;
-> +		if (i > TIMEOUT) {
-> +			status =3D 0;
-> +
-> +			drm_info(&kmb->drm, "%s: timing out", __func__);
-> +			drm_dbg(&kmb->drm,
-> +				"%s : PLL_LOCK =3D 0x%x ", __func__,
-> +				kmb_read_mipi(kmb, DPHY_PLL_LOCK));
-> +
-> +			break;
-> +		}
-> +
-> +		if ((i % 100) =3D=3D 0)
-> +			drm_dbg(&kmb->drm,
-> +				"%s : PLL_LOCK =3D 0x%x\n", __func__,
-> +				kmb_read_mipi(kmb, DPHY_PLL_LOCK));
-> +	} while (!GET_PLL_LOCK(kmb, dphy_no));
-> +
-> +	drm_info(&kmb->drm, "***** PLL Locked for DPHY %d - %s *****\n",
-> +		 dphy_no, status ? "SUCCESS" : "FAILED");
-> +}
-> +
-> +static u32 mipi_tx_init_dphy(struct kmb_drm_private *kmb,
-> +			     struct mipi_ctrl_cfg *cfg)
-> +{
-> +	u32 dphy_no =3D MIPI_DPHY6;
-> +
-> +	drm_info(&kmb->drm,
-> +		 "active_lanes=3D%d lane_rate=3D%d\n", cfg->active_lanes,
-> +		MIPI_TX_LANE_DATA_RATE_MBPS);
-> +
-> +	/* Multiple D-PHYs needed */
-> +	if (cfg->active_lanes > MIPI_DPHY_D_LANES) {
-> +		/*
-> +		 *Initialization for Tx aggregation mode is done according to
-> +		 *a. start init PHY1
-> +		 *b. poll for PHY1 FSM state LOCK
-> +		 *   b1. reg addr 0x03[3:0] - state_main[3:0] =3D=3D 5 (LOCK)
-> +		 *c. poll for PHY1 calibrations done :
-> +		 *   c1. termination calibration lower section: addr 0x22[5]
-> +		 *   - rescal_done
-> +		 *   c2. slewrate calibration (if data rate < =3D 1500 Mbps):
-> +		 *     addr 0xA7[3:2] - srcal_done, sr_finished
-> +		 *d. start init PHY0
-> +		 *e. poll for PHY0 stopstate
-> +		 *f. poll for PHY1 stopstate
-> +		 */
-> +		/* PHY #N+1 ('slave') */
-> +
-> +		dphy_init_sequence(kmb, cfg, dphy_no + 1,
-> +				   (cfg->active_lanes - MIPI_DPHY_D_LANES),
-> +				   MIPI_DPHY_SLAVE);
-> +		dphy_wait_fsm(kmb, dphy_no + 1, DPHY_TX_LOCK);
-> +
-> +		/* PHY #N master */
-> +		dphy_init_sequence(kmb, cfg, dphy_no, MIPI_DPHY_D_LANES,
-> +				   MIPI_DPHY_MASTER);
-> +
-> +		/* Wait for DPHY init to complete */
-> +		wait_init_done(kmb, dphy_no, MIPI_DPHY_D_LANES);
-> +		wait_init_done(kmb, dphy_no + 1,
-> +			       cfg->active_lanes - MIPI_DPHY_D_LANES);
-> +		wait_pll_lock(kmb, dphy_no);
-> +		wait_pll_lock(kmb, dphy_no + 1);
-> +		dphy_wait_fsm(kmb, dphy_no, DPHY_TX_IDLE);
-> +	} else {		/* Single DPHY */
-> +		dphy_init_sequence(kmb, cfg, dphy_no, cfg->active_lanes,
-> +				   MIPI_DPHY_MASTER);
-> +		dphy_wait_fsm(kmb, dphy_no, DPHY_TX_IDLE);
-> +		wait_init_done(kmb, dphy_no, cfg->active_lanes);
-> +		wait_pll_lock(kmb, dphy_no);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +void connect_lcd_to_mipi(struct kmb_drm_private *kmb)
-static
-
-> +{
-> +	/* DISABLE MIPI->CIF CONNECTION */
-> +	kmb_write_msscam(kmb, MSS_MIPI_CIF_CFG, 0);
-> +
-> +	/* ENABLE LCD->MIPI CONNECTION */
-> +	kmb_write_msscam(kmb, MSS_LCD_MIPI_CFG, 1);
-> +
-> +	/* DISABLE LCD->CIF LOOPBACK */
-> +	kmb_write_msscam(kmb, MSS_LOOPBACK_CFG, 0);
-> +}
-> +
-> +int kmb_dsi_hw_init(struct drm_device *dev, struct drm_display_mode *mod=
-e)
-> +{
-> +	struct kmb_drm_private *kmb =3D to_kmb(dev);
-> +	u64 data_rate;
-> +
-> +	mipi_tx_init_cfg.active_lanes =3D MIPI_TX_ACTIVE_LANES;
-> +
-> +	if (mode) {
-I cannot see this function being called without a mode.
-
-> +		mipi_tx_frame0_sect_cfg.width_pixels =3D mode->crtc_hdisplay;
-> +		mipi_tx_frame0_sect_cfg.height_lines =3D mode->crtc_vdisplay;
-> +		mipitx_frame0_cfg.vsync_width =3D
-> +		    mode->crtc_vsync_end - mode->crtc_vsync_start;
-> +		mipitx_frame0_cfg.v_backporch =3D
-> +		    mode->crtc_vtotal - mode->crtc_vsync_end;
-> +		mipitx_frame0_cfg.v_frontporch =3D
-> +		    mode->crtc_vsync_start - mode->crtc_vdisplay;
-> +		mipitx_frame0_cfg.hsync_width =3D
-> +		    mode->crtc_hsync_end - mode->crtc_hsync_start;
-> +		mipitx_frame0_cfg.h_backporch =3D
-> +		    mode->crtc_htotal - mode->crtc_hsync_end;
-> +		mipitx_frame0_cfg.h_frontporch =3D
-> +		    mode->crtc_hsync_start - mode->crtc_hdisplay;
-> +
-> +		/* Lane rate =3D (vtotal*htotal*fps*bpp)/4 / 1000000
-> +		 * to convert to Mbps
-> +		 */
-> +		data_rate =3D ((((u32)mode->crtc_vtotal *
-> +				(u32)mode->crtc_htotal) *
-> +				(u32)(drm_mode_vrefresh(mode)) *
-> +			      MIPI_TX_BPP) / mipi_tx_init_cfg.active_lanes) /
-> +		    1000000;
-> +
-> +		drm_info(&kmb->drm, "htotal=3D%d vtotal=3D%d refresh=3D%d\n",
-> +			 mode->crtc_htotal, mode->crtc_vtotal,
-> +			 drm_mode_vrefresh(mode));
-> +		drm_info(&kmb->drm, "data_rate=3D%u active_lanes=3D%d\n",
-> +			 (u32)data_rate, mipi_tx_init_cfg.active_lanes);
-> +
-> +		/* When late rate < 800, modeset fails with 4 lanes,
-> +		 * so switch to 2 lanes
-> +		 */
-> +		if (data_rate < 800) {
-> +			mipi_tx_init_cfg.active_lanes =3D 2;
-> +			mipi_tx_init_cfg.lane_rate_mbps =3D data_rate * 2;
-> +		} else {
-> +			mipi_tx_init_cfg.lane_rate_mbps =3D data_rate;
-> +		}
-> +		drm_info(&kmb->drm,
-> +			 "lane rate=3D%d\n", mipi_tx_init_cfg.lane_rate_mbps);
-> +		drm_dbg(&kmb->drm,
-> +			"vfp=3D %d vbp=3D %d vsyc_len=3D%d hfp=3D%d hbp=3D%d hsync_len=3D%d l=
-ane-rate=3D%d",
-> +		     mipitx_frame0_cfg.v_frontporch,
-> +		     mipitx_frame0_cfg.v_backporch,
-> +		     mipitx_frame0_cfg.vsync_width,
-> +		     mipitx_frame0_cfg.h_frontporch,
-> +		     mipitx_frame0_cfg.h_backporch,
-> +		     mipitx_frame0_cfg.hsync_width,
-> +		     mipi_tx_init_cfg.lane_rate_mbps);
-> +	}
-> +
-> +	if (hw_initialized)
-> +		return 0;
-> +
-> +	kmb_write_mipi(kmb, DPHY_ENABLE, 0);
-> +	kmb_write_mipi(kmb, DPHY_INIT_CTRL0, 0);
-> +	kmb_write_mipi(kmb, DPHY_INIT_CTRL1, 0);
-> +	kmb_write_mipi(kmb, DPHY_INIT_CTRL2, 0);
-> +
-> +	/* Initialize mipi controller */
-> +	mipi_tx_init_cntrl(kmb, &mipi_tx_init_cfg);
-> +
-> +	/* Dphy initialization */
-> +	mipi_tx_init_dphy(kmb, &mipi_tx_init_cfg);
-> +	drm_dbg(&kmb->drm, "IRQ_STATUS =3D 0x%x\n",
-> +		GET_MIPI_TX_HS_IRQ_STATUS(kmb, MIPI_CTRL6));
-> +
-> +	connect_lcd_to_mipi(kmb);
-> +
-> +#ifdef MIPI_TX_TEST_PATTERN_GENERATION
-> +	mipi_tx_hs_tp_gen(kmb, 0, MIPI_TX_HS_TP_V_STRIPES,
-> +			  0x15, 0xff, 0xff00, MIPI_CTRL6);
-> +
-> +	drm_dbg(&kmb->drm, "IRQ_STATUS =3D 0x%x\n",
-> +		GET_MIPI_TX_HS_IRQ_STATUS(kmb, MIPI_CTRL6));
-> +#endif //MIPI_TX_TEST_PATTERN_GENERATION
-> +
-> +	hw_initialized =3D true;
-> +
-> +	drm_dbg(&kmb->drm, "MIPI_TXm_HS_CTRL =3D 0x%x\n",
-> +		kmb_read_mipi(kmb, MIPI_TXm_HS_CTRL(6)));
-> +	drm_dbg(&kmb->drm, "MIPI LOOP BACK =3D %x\n",
-> +		kmb_read_mipi(kmb, MIPI_CTRL_DIG_LOOPBACK));
-> +	drm_info(&kmb->drm, "mipi hw_initialized =3D %d\n", hw_initialized);
-> +
-> +	return 0;
-> +}
-> +
-> +int kmb_dsi_init(struct drm_device *dev, struct drm_bridge *bridge)
-> +{
-> +	struct kmb_dsi *kmb_dsi;
-> +	struct drm_encoder *encoder;
-> +	struct kmb_connector *kmb_connector;
-> +	struct drm_connector *connector;
-> +	struct kmb_dsi_host *host;
-> +	int ret =3D 0;
-> +
-> +	kmb_dsi =3D kzalloc(sizeof(*kmb_dsi), GFP_KERNEL);
-> +	if (!kmb_dsi) {
-> +		DRM_ERROR("failed to allocate kmb_dsi\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	kmb_connector =3D kzalloc(sizeof(*kmb_connector), GFP_KERNEL);
-> +	if (!kmb_connector) {
-> +		kfree(kmb_dsi);
-> +		DRM_ERROR("failed to allocate kmb_connector\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	kmb_dsi->attached_connector =3D kmb_connector;
-> +
-> +	host =3D kmb_dsi_host_init(dev, kmb_dsi);
-> +	if (!host) {
-> +		DRM_ERROR("Failed to allocate host\n");
-> +		kfree(kmb_dsi);
-> +		kfree(kmb_connector);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	kmb_dsi->dsi_host =3D host;
-> +	connector =3D &kmb_connector->base;
-> +	encoder =3D &kmb_dsi->base;
-> +	encoder->possible_crtcs =3D 1;
-> +	encoder->possible_clones =3D 0;
-> +
-> +	drm_encoder_init(dev, encoder, &kmb_dsi_funcs, DRM_MODE_ENCODER_DSI,
-> +			 "MIPI-DSI");
-Use drm_simple_encoder(). See other drivers how to do it.
-
-
-> +
-> +	drm_connector_init(dev, connector, &kmb_dsi_connector_funcs,
-> +			   DRM_MODE_CONNECTOR_DSI);
-> +
-> +	drm_connector_helper_add(connector, &kmb_dsi_connector_helper_funcs);
-> +
-> +	drm_info(dev, "connector =3D %s encoder =3D %s\n", connector->name,
-> +		 encoder->name);
-> +
-> +	ret =3D drm_connector_attach_encoder(connector, encoder);
-> +	drm_info(dev, "connector->encoder =3D 0x%p ret =3D %d\n",
-> +		 connector->encoder,
-> +		 ret);
-> +
-> +	/* Link drm_bridge to encoder */
-> +	ret =3D drm_bridge_attach(encoder, bridge, NULL, 0);
-
-This sequence is not optimal and not right.
-The new way, which new drivers shall use, is to let the bridge drivers prov=
-ide
-relevant operations and then the display driver uses drm_bridge_connector_i=
-nit()
-to create the connector.
-
-See for example mtk_dsi_encoder_init()
-
-The current design uses a thight coupling between the display driver and
-the kmb_dsi. I may be biased but to me it seems easier to make kmb_dsi
-a real bridge driver so we have a chain of bridges like this:
-
---------------------+   +----------------+   +----------------+
-                    |   |                |   |                |
- kmb display driver +---+ kmb_dsi bridge +---+ adv7535 bridge +=3D=3D HDMI
-                    |   |                |   |                |
---------------------+   +----------------+   +----------------+
-
-adv7535 then provides get_edit, detect, and hot-plug detect operations
-to be used by the connector.
-
-
-
-
-> +	if (ret) {
-> +		DRM_ERROR("failed to attach bridge to MIPI\n");
-> +		drm_encoder_cleanup(encoder);
-> +		return ret;
-> +	}
-> +	drm_info(dev, "Bridge attached : SUCCESS\n");
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/kmb/kmb_dsi.h b/drivers/gpu/drm/kmb/kmb_dsi.h
-> new file mode 100644
-> index 0000000..c980823
-> --- /dev/null
-> +++ b/drivers/gpu/drm/kmb/kmb_dsi.h
-> @@ -0,0 +1,370 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only
-> + *
-> + * Copyright =A9 2019-2020 Intel Corporation
-> + */
-> +
-> +#ifndef __KMB_DSI_H__
-> +#define __KMB_DSI_H__
-> +
-> +#include <drm/drm_crtc.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_modes.h>
-> +#include "kmb_drv.h"
-> +
-> +/* MIPI TX CFG*/
-> +#define MIPI_TX_LANE_DATA_RATE_MBPS 891
-> +#define MIPI_TX_REF_CLK_KHZ         24000
-> +#define MIPI_TX_CFG_CLK_KHZ         24000
-> +#define MIPI_TX_BPP		    24
-> +
-> +/* DPHY Tx test codes*/
-> +#define TEST_CODE_FSM_CONTROL				0x03
-> +#define TEST_CODE_MULTIPLE_PHY_CTRL			0x0C
-> +#define TEST_CODE_PLL_PROPORTIONAL_CHARGE_PUMP_CTRL	0x0E
-> +#define TEST_CODE_PLL_INTEGRAL_CHARGE_PUMP_CTRL		0x0F
-> +#define TEST_CODE_PLL_VCO_CTRL				0x12
-> +#define TEST_CODE_PLL_GMP_CTRL				0x13
-> +#define TEST_CODE_PLL_PHASE_ERR_CTRL			0x14
-> +#define TEST_CODE_PLL_LOCK_FILTER			0x15
-> +#define TEST_CODE_PLL_UNLOCK_FILTER			0x16
-> +#define TEST_CODE_PLL_INPUT_DIVIDER			0x17
-> +#define TEST_CODE_PLL_FEEDBACK_DIVIDER			0x18
-> +#define   PLL_FEEDBACK_DIVIDER_HIGH			BIT(7)
-> +#define TEST_CODE_PLL_OUTPUT_CLK_SEL			0x19
-> +#define   PLL_N_OVR_EN					BIT(4)
-> +#define   PLL_M_OVR_EN					BIT(5)
-> +#define TEST_CODE_VOD_LEVEL				0x24
-> +#define TEST_CODE_PLL_CHARGE_PUMP_BIAS			0x1C
-> +#define TEST_CODE_PLL_LOCK_DETECTOR			0x1D
-> +#define TEST_CODE_HS_FREQ_RANGE_CFG			0x44
-> +#define TEST_CODE_PLL_ANALOG_PROG			0x1F
-> +#define TEST_CODE_SLEW_RATE_OVERRIDE_CTRL		0xA0
-> +#define TEST_CODE_SLEW_RATE_DDL_LOOP_CTRL		0xA3
-> +#define TEST_CODE_SLEW_RATE_DDL_CYCLES			0xA4
-> +
-> +/* DPHY params */
-> +#define PLL_N_MIN	0
-> +#define PLL_N_MAX	15
-> +#define PLL_M_MIN	62
-> +#define PLL_M_MAX	623
-> +#define PLL_FVCO_MAX	1250
-> +
-> +#define TIMEOUT		600
-> +
-> +#define MIPI_TX_FRAME_GEN				4
-> +#define MIPI_TX_FRAME_GEN_SECTIONS			4
-> +#define MIPI_CTRL_VIRTUAL_CHANNELS			4
-> +#define MIPI_D_LANES_PER_DPHY				2
-> +#define MIPI_CTRL_2LANE_MAX_MC_FIFO_LOC			255
-> +#define MIPI_CTRL_4LANE_MAX_MC_FIFO_LOC			511
-> +/* 2 Data Lanes per D-PHY */
-> +#define MIPI_DPHY_D_LANES				2
-> +#define MIPI_DPHY_DEFAULT_BIT_RATES			63
-> +
-> +#define to_kmb_connector(x) container_of(x, struct kmb_connector, base)
-> +#define to_kmb_host(x) container_of(x, struct kmb_dsi_host, base)
-> +#define to_kmb_dsi(x) container_of(x, struct kmb_dsi, base)
-> +
-> +struct kmb_connector;
-> +struct kmb_dsi_host;
-> +
-> +struct kmb_dsi {
-> +	struct drm_encoder base;
-> +	struct kmb_connector *attached_connector;
-> +	struct kmb_dsi_host *dsi_host;
-> +	struct drm_bridge *bridge;
-> +};
-> +
-> +struct kmb_dsi_host {
-> +	struct mipi_dsi_host *base;
-> +	struct kmb_dsi *kmb_dsi;
-> +	struct mipi_dsi_device *device;
-> +};
-> +
-> +struct kmb_connector {
-> +	struct drm_connector base;
-> +	struct drm_encoder *encoder;
-> +	struct drm_display_mode *fixed_mode;
-> +};
-> +
-> +/* DPHY Tx test codes */
-> +
-> +enum mipi_ctrl_num {
-> +	MIPI_CTRL0 =3D 0,
-> +	MIPI_CTRL1,
-> +	MIPI_CTRL2,
-> +	MIPI_CTRL3,
-> +	MIPI_CTRL4,
-> +	MIPI_CTRL5,
-> +	MIPI_CTRL6,
-> +	MIPI_CTRL7,
-> +	MIPI_CTRL8,
-> +	MIPI_CTRL9,
-> +	MIPI_CTRL_NA
-> +};
-Not used?
-> +
-> +enum mipi_dphy_num {
-> +	MIPI_DPHY0 =3D 0,
-> +	MIPI_DPHY1,
-> +	MIPI_DPHY2,
-> +	MIPI_DPHY3,
-> +	MIPI_DPHY4,
-> +	MIPI_DPHY5,
-> +	MIPI_DPHY6,
-> +	MIPI_DPHY7,
-> +	MIPI_DPHY8,
-> +	MIPI_DPHY9,
-> +	MIPI_DPHY_NA
-> +};
-Not used?
-> +
-> +enum mipi_dir {
-> +	MIPI_RX,
-> +	MIPI_TX
-> +};
-> +
-> +enum mipi_ctrl_type {
-> +	MIPI_DSI,
-> +	MIPI_CSI
-> +};
-> +
-> +enum mipi_data_if {
-> +	MIPI_IF_DMA,
-> +	MIPI_IF_PARALLEL
-> +};
-> +
-> +enum mipi_data_mode {
-> +	MIPI_DATA_MODE0,
-> +	MIPI_DATA_MODE1,
-> +	MIPI_DATA_MODE2,
-> +	MIPI_DATA_MODE3
-> +};
-> +
-> +enum mipi_dsi_video_mode {
-> +	DSI_VIDEO_MODE_NO_BURST_PULSE,
-> +	DSI_VIDEO_MODE_NO_BURST_EVENT,
-> +	DSI_VIDEO_MODE_BURST
-> +};
-> +
-> +enum mipi_dsi_blanking_mode {
-> +	TRANSITION_TO_LOW_POWER,
-> +	SEND_BLANK_PACKET
-> +};
-> +
-> +enum mipi_dsi_eotp {
-> +	DSI_EOTP_DISABLED,
-> +	DSI_EOTP_ENABLES
-> +};
-> +
-> +enum mipi_dsi_data_type {
-> +	DSI_SP_DT_RESERVED_00 =3D 0x00,
-> +	DSI_SP_DT_VSYNC_START =3D 0x01,
-> +	DSI_SP_DT_COLOR_MODE_OFF =3D 0x02,
-> +	DSI_SP_DT_GENERIC_SHORT_WR =3D 0x03,
-> +	DSI_SP_DT_GENERIC_RD =3D 0x04,
-> +	DSI_SP_DT_DCS_SHORT_WR =3D 0x05,
-> +	DSI_SP_DT_DCS_RD =3D 0x06,
-> +	DSI_SP_DT_EOTP =3D 0x08,
-> +	DSI_LP_DT_NULL =3D 0x09,
-> +	DSI_LP_DT_RESERVED_0A =3D 0x0a,
-> +	DSI_LP_DT_RESERVED_0B =3D 0x0b,
-> +	DSI_LP_DT_LPPS_YCBCR422_20B =3D 0x0c,
-> +	DSI_LP_DT_PPS_RGB101010_30B =3D 0x0d,
-> +	DSI_LP_DT_PPS_RGB565_16B =3D 0x0e,
-> +	DSI_LP_DT_RESERVED_0F =3D 0x0f,
-> +
-> +	DSI_SP_DT_RESERVED_10 =3D 0x10,
-> +	DSI_SP_DT_VSYNC_END =3D 0x11,
-> +	DSI_SP_DT_COLOR_MODE_ON =3D 0x12,
-> +	DSI_SP_DT_GENERIC_SHORT_WR_1PAR =3D 0x13,
-> +	DSI_SP_DT_GENERIC_RD_1PAR =3D 0x14,
-> +	DSI_SP_DT_DCS_SHORT_WR_1PAR =3D 0x15,
-> +	DSI_SP_DT_RESERVED_16 =3D 0x16,
-> +	DSI_SP_DT_RESERVED_17 =3D 0x17,
-> +	DSI_SP_DT_RESERVED_18 =3D 0x18,
-> +	DSI_LP_DT_BLANK =3D 0x19,
-> +	DSI_LP_DT_RESERVED_1A =3D 0x1a,
-> +	DSI_LP_DT_RESERVED_1B =3D 0x1b,
-> +	DSI_LP_DT_PPS_YCBCR422_24B =3D 0x1c,
-> +	DSI_LP_DT_PPS_RGB121212_36B =3D 0x1d,
-> +	DSI_LP_DT_PPS_RGB666_18B =3D 0x1e,
-> +	DSI_LP_DT_RESERVED_1F =3D 0x1f,
-> +
-> +	DSI_SP_DT_RESERVED_20 =3D 0x20,
-> +	DSI_SP_DT_HSYNC_START =3D 0x21,
-> +	DSI_SP_DT_SHUT_DOWN_PERIPH_CMD =3D 0x22,
-> +	DSI_SP_DT_GENERIC_SHORT_WR_2PAR =3D 0x23,
-> +	DSI_SP_DT_GENERIC_RD_2PAR =3D 0x24,
-> +	DSI_SP_DT_RESERVED_25 =3D 0x25,
-> +	DSI_SP_DT_RESERVED_26 =3D 0x26,
-> +	DSI_SP_DT_RESERVED_27 =3D 0x27,
-> +	DSI_SP_DT_RESERVED_28 =3D 0x28,
-> +	DSI_LP_DT_GENERIC_LONG_WR =3D 0x29,
-> +	DSI_LP_DT_RESERVED_2A =3D 0x2a,
-> +	DSI_LP_DT_RESERVED_2B =3D 0x2b,
-> +	DSI_LP_DT_PPS_YCBCR422_16B =3D 0x2c,
-> +	DSI_LP_DT_RESERVED_2D =3D 0x2d,
-> +	DSI_LP_DT_LPPS_RGB666_18B =3D 0x2e,
-> +	DSI_LP_DT_RESERVED_2F =3D 0x2f,
-> +
-> +	DSI_SP_DT_RESERVED_30 =3D 0x30,
-> +	DSI_SP_DT_HSYNC_END =3D 0x31,
-> +	DSI_SP_DT_TURN_ON_PERIPH_CMD =3D 0x32,
-> +	DSI_SP_DT_RESERVED_33 =3D 0x33,
-> +	DSI_SP_DT_RESERVED_34 =3D 0x34,
-> +	DSI_SP_DT_RESERVED_35 =3D 0x35,
-> +	DSI_SP_DT_RESERVED_36 =3D 0x36,
-> +	DSI_SP_DT_SET_MAX_RETURN_PKT_SIZE =3D 0x37,
-> +	DSI_SP_DT_RESERVED_38 =3D 0x38,
-> +	DSI_LP_DT_DSC_LONG_WR =3D 0x39,
-> +	DSI_LP_DT_RESERVED_3A =3D 0x3a,
-> +	DSI_LP_DT_RESERVED_3B =3D 0x3b,
-> +	DSI_LP_DT_RESERVED_3C =3D 0x3c,
-> +	DSI_LP_DT_PPS_YCBCR420_12B =3D 0x3d,
-> +	DSI_LP_DT_PPS_RGB888_24B =3D 0x3e,
-> +	DSI_LP_DT_RESERVED_3F =3D 0x3f
-> +};
-> +
-> +enum mipi_tx_hs_tp_sel {
-> +	MIPI_TX_HS_TP_WHOLE_FRAME_COLOR0 =3D 0,
-> +	MIPI_TX_HS_TP_WHOLE_FRAME_COLOR1,
-> +	MIPI_TX_HS_TP_V_STRIPES,
-> +	MIPI_TX_HS_TP_H_STRIPES,
-> +};
-> +
-> +enum dphy_mode {
-> +	MIPI_DPHY_SLAVE =3D 0,
-> +	MIPI_DPHY_MASTER
-> +};
-> +
-> +enum dphy_tx_fsm {
-> +	DPHY_TX_POWERDWN =3D 0,
-> +	DPHY_TX_BGPON,
-> +	DPHY_TX_TERMCAL,
-> +	DPHY_TX_TERMCALUP,
-> +	DPHY_TX_OFFSETCAL,
-> +	DPHY_TX_LOCK,
-> +	DPHY_TX_SRCAL,
-> +	DPHY_TX_IDLE,
-> +	DPHY_TX_ULP,
-> +	DPHY_TX_LANESTART,
-> +	DPHY_TX_CLKALIGN,
-> +	DPHY_TX_DDLTUNNING,
-> +	DPHY_TX_ULP_FORCE_PLL,
-> +	DPHY_TX_LOCK_LOSS
-> +};
-> +
-> +struct mipi_data_type_params {
-> +	u8 size_constraint_pixels;
-> +	u8 size_constraint_bytes;
-> +	u8 pixels_per_pclk;
-> +	u8 bits_per_pclk;
-> +};
-> +
-> +struct mipi_tx_dsi_cfg {
-> +	u8 hfp_blank_en;	/*horizontal front porch blanking enable */
-> +	u8 eotp_en;	/*End of transmission packet enable */
-> +	/*last vertical front porch blanking mode */
-> +	u8 lpm_last_vfp_line;
-> +	/*first vertical sync active blanking mode */
-> +	u8 lpm_first_vsa_line;
-> +	u8 sync_pulse_eventn;	/*sync type */
-> +	u8 hfp_blanking;	/*horizontal front porch blanking mode */
-> +	u8 hbp_blanking;	/*horizontal back porch blanking mode */
-> +	u8 hsa_blanking;	/*horizontal sync active blanking mode */
-> +	u8 v_blanking;	/*vertical timing blanking mode */
-> +};
-> +
-> +struct mipi_tx_frame_section_cfg {
-> +	u32 dma_v_stride;
-> +	u16 dma_v_scale_cfg;
-> +	u16 width_pixels;
-> +	u16 height_lines;
-> +	u8 dma_packed;
-> +	u8 bpp;
-> +	u8 bpp_unpacked;
-> +	u8 dma_h_stride;
-> +	u8 data_type;
-> +	u8 data_mode;
-> +	u8 dma_flip_rotate_sel;
-> +};
-> +
-> +struct mipi_tx_frame_timing_cfg {
-> +	u32 bpp;
-> +	u32 lane_rate_mbps;
-> +	u32 hsync_width;
-> +	u32 h_backporch;
-> +	u32 h_frontporch;
-> +	u32 h_active;
-> +	u16 vsync_width;
-> +	u16 v_backporch;
-> +	u16 v_frontporch;
-> +	u16 v_active;
-> +	u8 active_lanes;
-> +};
-> +
-> +struct mipi_tx_frame_sect_phcfg {
-> +	u32 wc;
-> +	enum mipi_data_mode data_mode;
-> +	enum mipi_dsi_data_type data_type;
-> +	u8 vchannel;
-> +	u8 dma_packed;
-> +};
-> +
-> +struct mipi_tx_frame_cfg {
-> +	struct mipi_tx_frame_section_cfg *sections[MIPI_TX_FRAME_GEN_SECTIONS];
-> +	u32 hsync_width;	/*in pixels */
-> +	u32 h_backporch;	/*in pixels */
-> +	u32 h_frontporch;	/*in pixels */
-> +	u16 vsync_width;	/*in lines */
-> +	u16 v_backporch;	/*in lines */
-> +	u16 v_frontporch;	/*in lines */
-> +};
-> +
-> +struct mipi_tx_ctrl_cfg {
-> +	struct mipi_tx_frame_cfg *frames[MIPI_TX_FRAME_GEN];
-> +	struct mipi_tx_dsi_cfg *tx_dsi_cfg;
-> +	u8 line_sync_pkt_en;
-> +	u8 line_counter_active;
-> +	u8 frame_counter_active;
-> +	u8 tx_hsclkkidle_cnt;
-> +	u8 tx_hsexit_cnt;
-> +	u8 tx_crc_en;
-> +	u8 tx_hact_wait_stop;
-> +	u8 tx_always_use_hact;
-> +	u8 tx_wait_trig;
-> +	u8 tx_wait_all_sect;
-> +};
-> +
-> +/*configuration structure for MIPI control */
-> +struct mipi_ctrl_cfg {
-> +	/* controller index : CTRL6 for connecting to LCD */
-> +	u8 index;
-> +	u8 type;		/* controller type : MIPI_DSI */
-Some of the fields looks like they are only assigned but never used?
-
-
-> +	u8 dir;		/* controller direction : MIPI_TX */
-> +	u8 active_lanes;	/* # active lanes per controller 2/4 */
-> +	u32 lane_rate_mbps;	/*MBPS */
-> +	u32 ref_clk_khz;
-> +	u32 cfg_clk_khz;
-> +	u32 data_if;	/*MIPI_IF_DMA or MIPI_IF_PARALLEL */
-> +	struct mipi_tx_ctrl_cfg tx_ctrl_cfg;
-> +};
-> +
-> +/* Structure for storing user specified interrupts that are enabled */
-> +union mipi_irq_cfg {
-> +	u8 value;
-> +	struct {
-> +		u8 line_compare:1;
-> +		u8 dma_event:1;
-> +		u8 frame_done:1;
-> +		u8 ctrl_error:1;
-> +		u8 dphy_error:1;
-Most fields are not used??
-> +	} irq_cfg;
-> +};
-> +
-> +struct drm_bridge *kmb_dsi_host_bridge_init(struct device *dev);
-> +int kmb_dsi_init(struct drm_device *dev, struct drm_bridge *bridge);
-> +void kmb_plane_destroy(struct drm_plane *plane);
-Does not belong in this file
-
-> +void mipi_tx_handle_irqs(struct kmb_drm_private *dev_p);
-Does not exist - delete
-
-> +void kmb_dsi_host_unregister(void);
-> +int kmb_dsi_hw_init(struct drm_device *dev, struct drm_display_mode *mod=
-e);
-> +#endif /* __KMB_DSI_H__ */
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CgpPbiA4LzE5LzIwMjAgMjoxNCBQTSwgTWljaGFsIFdhamRlY3prbyB3cm90ZToKPgo+IE9uIDEx
+LjA4LjIwMjAgMDM6MDQsIERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gd3JvdGU6Cj4+Cj4+IE9uIDgv
+Ny8yMDIwIDEwOjQ2IEFNLCBKb2huLkMuSGFycmlzb25ASW50ZWwuY29tIHdyb3RlOgo+Pj4gRnJv
+bTogSm9obiBIYXJyaXNvbiA8Sm9obi5DLkhhcnJpc29uQEludGVsLmNvbT4KPj4+Cj4+PiBVcGRh
+dGUgdG8gdGhlIGxhdGVzdCBHdUMgZmlybXdhcmUuIFRoaXMgaW5jbHVkZXMgc29tZSBzaWduaWZp
+Y2FudAo+Pj4gY2hhbmdlcyB0byB0aGUgaW50ZXJmYWNlLgo+PiBBIGhpZ2ggbGV2ZWwgb3ZlcnZp
+ZXcgb2YgdGhlIGNoYW5nZXMgd291bGQgYmUgbmljZSBmb3IgZXh0cmEgY2xhcml0eS4gQQo+PiBj
+b3VwbGUgb2YgZXhhbXBsZToKPj4KPj4gLSBHdUMgbm93IHJlcXVpcmVzIGEgcHJpdmF0ZSBtZW1v
+cnkgYXJlYQo+PiAtIHlvdSdyZSBkcm9wcGluZyB0aGUgcHJvZ3JhbW1pbmcgb2YgdGhlIHJlZ19z
+dGF0ZSBzdHJ1Y3QsIGJ1dCB0aGF0J3MKPj4gYWN0dWFsbHkgc3RpbGwgZGVmaW5lZCBpbiB0aGUg
+c3RydWN0dXJlLCBzbyBJTU8gaXQncyB3b3J0aCBtZW50aW9uaW5nCj4+IHRoYXQgaXQgd2lsbCBj
+b21lIGJhY2sgd2l0aCBHdUMgc3VibWlzc2lvbi4KPj4KPj4+IFNpZ25lZC1vZmYtYnk6IEpvaG4g
+SGFycmlzb24gPEpvaG4uQy5IYXJyaXNvbkBJbnRlbC5jb20+Cj4+PiBBdXRob3I6IERhbmllbGUg
+Q2VyYW9sbyBTcHVyaW8gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+Cj4+PiBBdXRo
+b3I6IEpvaG4gSGFycmlzb24gPEpvaG4uQy5IYXJyaXNvbkBJbnRlbC5jb20+Cj4+PiBBdXRob3I6
+IE1hdHRoZXcgQnJvc3QgPG1hdHRoZXcuYnJvc3RAaW50ZWwuY29tPgo+Pj4gQXV0aG9yOiBNaWNo
+YWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KPj4+IEF1dGhvcjogTWlj
+aGVsIFRoaWVycnkgPG1pY2hlbC50aGllcnJ5QGludGVsLmNvbT4KPj4+IEF1dGhvcjogT3NjYXIg
+TWF0ZW8gPG9zY2FyLm1hdGVvQGludGVsLmNvbT4KPj4+IEF1dGhvcjogUm9kcmlnbyBWaXZpIDxy
+b2RyaWdvLnZpdmlAaW50ZWwuY29tPgo+IEZvciB0aGUgcmV2aWV3IHByb2Nlc3MgaXQgd291bGQg
+YmUgYmV0dGVyIHRvIGhhdmUgaW5kaXZpZHVhbCBwYXRjaGVzCj4gZnJvbSBlYWNoIGF1dGhvci4g
+V2UgY2FuIHNxdWFzaCB0aGVtIGp1c3QgYmVmb3JlIG1lcmdlLgo+Cj4+PiAtLS0KPj4+ICDCoCBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfY3MuY8KgwqDCoCB8wqDCoCAzICst
+Cj4+PiAgwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmPCoMKgwqDCoMKg
+wqAgfCAxMjUgKysrKysrKy0tLS0KPj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9p
+bnRlbF9ndWNfYWJpLmjCoMKgIHwgMjE1ICsrKysrKysrKysrKysrKysrKysKPj4+ICDCoCBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfYWRzLmPCoMKgIHwgMTE2ICsrKysrKysr
+LS0KPj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfZncuY8KgwqDC
+oCB8wqAgMjEgKy0KPj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNf
+ZndpZi5owqAgfCAxMTAgKysrKy0tLS0tLQo+Pj4gIMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L3VjL2ludGVsX2d1Y19yZWcuaMKgwqAgfMKgwqAgNSArCj4+PiAgwqAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvdWMvaW50ZWxfdWNfZncuY8KgwqDCoMKgIHzCoCAyNyArKy0KPj4+ICDCoCBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Y19mdy5owqDCoMKgwqAgfMKgwqAgMiArCj4+
+PiAgwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWNfZndfYWJpLmggfMKgwqAg
+NiArLQo+Pj4gIMKgIDEwIGZpbGVzIGNoYW5nZWQsIDQ4NSBpbnNlcnRpb25zKCspLCAxNDUgZGVs
+ZXRpb25zKC0pCj4+PiAgwqAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L3VjL2ludGVsX2d1Y19hYmkuaAo+Pj4KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfY3MuYwo+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+dC9pbnRlbF9lbmdpbmVfY3MuYwo+Pj4gaW5kZXggZWE0YmEyYWZlOWY5Li45Y2Q2MmQ2OGFiYzYg
+MTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfY3Mu
+Ywo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX2NzLmMKPj4+
+IEBAIC0zMDUsOCArMzA1LDkgQEAgc3RhdGljIGludCBpbnRlbF9lbmdpbmVfc2V0dXAoc3RydWN0
+IGludGVsX2d0ICpndCwKPj4+IGVudW0gaW50ZWxfZW5naW5lX2lkIGlkKQo+Pj4gIMKgwqDCoMKg
+wqAgZW5naW5lLT5pOTE1ID0gaTkxNTsKPj4+ICDCoMKgwqDCoMKgIGVuZ2luZS0+Z3QgPSBndDsK
+Pj4+ICDCoMKgwqDCoMKgIGVuZ2luZS0+dW5jb3JlID0gZ3QtPnVuY29yZTsKPj4+IC3CoMKgwqAg
+ZW5naW5lLT5od19pZCA9IGVuZ2luZS0+Z3VjX2lkID0gaW5mby0+aHdfaWQ7Cj4+PiAgwqDCoMKg
+wqDCoCBlbmdpbmUtPm1taW9fYmFzZSA9IF9fZW5naW5lX21taW9fYmFzZShpOTE1LCBpbmZvLT5t
+bWlvX2Jhc2VzKTsKPj4+ICvCoMKgwqAgZW5naW5lLT5od19pZCA9IGluZm8tPmh3X2lkOwo+Pj4g
+K8KgwqDCoCBlbmdpbmUtPmd1Y19pZCA9IE1BS0VfR1VDX0lEKGluZm8tPmNsYXNzLCBpbmZvLT5p
+bnN0YW5jZSk7Cj4+PiAgwqAgwqDCoMKgwqDCoCBlbmdpbmUtPmNsYXNzID0gaW5mby0+Y2xhc3M7
+Cj4+PiAgwqDCoMKgwqDCoCBlbmdpbmUtPmluc3RhbmNlID0gaW5mby0+aW5zdGFuY2U7Cj4+PiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMKPj4+IGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMKPj4+IGluZGV4IDg2MTY1Nzg5
+N2MwZi4uOGQzMGUxZDdkOGE2IDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvdWMvaW50ZWxfZ3VjLmMKPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2lu
+dGVsX2d1Yy5jCj4+PiBAQCAtNyw2ICs3LDcgQEAKPj4+ICDCoCAjaW5jbHVkZSAiZ3QvaW50ZWxf
+Z3RfaXJxLmgiCj4+PiAgwqAgI2luY2x1ZGUgImd0L2ludGVsX2d0X3BtX2lycS5oIgo+Pj4gIMKg
+ICNpbmNsdWRlICJpbnRlbF9ndWMuaCIKPj4+ICsjaW5jbHVkZSAiaW50ZWxfZ3VjX2FiaS5oIgo+
+Pj4gIMKgICNpbmNsdWRlICJpbnRlbF9ndWNfYWRzLmgiCj4+PiAgwqAgI2luY2x1ZGUgImludGVs
+X2d1Y19zdWJtaXNzaW9uLmgiCj4+PiAgwqAgI2luY2x1ZGUgImk5MTVfZHJ2LmgiCj4+PiBAQCAt
+MjEzLDIzICsyMTQsNiBAQCBzdGF0aWMgdTMyIGd1Y19jdGxfZmVhdHVyZV9mbGFncyhzdHJ1Y3Qg
+aW50ZWxfZ3VjCj4+PiAqZ3VjKQo+Pj4gIMKgwqDCoMKgwqAgcmV0dXJuIGZsYWdzOwo+Pj4gIMKg
+IH0KPj4+ICDCoCAtc3RhdGljIHUzMiBndWNfY3RsX2N0eGluZm9fZmxhZ3Moc3RydWN0IGludGVs
+X2d1YyAqZ3VjKQo+Pj4gLXsKPj4+IC3CoMKgwqAgdTMyIGZsYWdzID0gMDsKPj4+IC0KPj4+IC3C
+oMKgwqAgaWYgKGludGVsX2d1Y19zdWJtaXNzaW9uX2lzX3VzZWQoZ3VjKSkgewo+Pj4gLcKgwqDC
+oMKgwqDCoMKgIHUzMiBjdHhudW0sIGJhc2U7Cj4+PiAtCj4+PiAtwqDCoMKgwqDCoMKgwqAgYmFz
+ZSA9IGludGVsX2d1Y19nZ3R0X29mZnNldChndWMsIGd1Yy0+c3RhZ2VfZGVzY19wb29sKTsKPj4+
+IC3CoMKgwqDCoMKgwqDCoCBjdHhudW0gPSBHVUNfTUFYX1NUQUdFX0RFU0NSSVBUT1JTIC8gMTY7
+Cj4+PiAtCj4+PiAtwqDCoMKgwqDCoMKgwqAgYmFzZSA+Pj0gUEFHRV9TSElGVDsKPj4+IC3CoMKg
+wqDCoMKgwqDCoCBmbGFncyB8PSAoYmFzZSA8PCBHVUNfQ1RMX0JBU0VfQUREUl9TSElGVCkgfAo+
+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKGN0eG51bSA8PCBHVUNfQ1RMX0NUWE5VTV9JTjE2
+X1NISUZUKTsKPj4+IC3CoMKgwqAgfQo+Pj4gLcKgwqDCoCByZXR1cm4gZmxhZ3M7Cj4+PiAtfQo+
+Pj4gLQo+Pj4gIMKgIHN0YXRpYyB1MzIgZ3VjX2N0bF9sb2dfcGFyYW1zX2ZsYWdzKHN0cnVjdCBp
+bnRlbF9ndWMgKmd1YykKPj4+ICDCoCB7Cj4+PiAgwqDCoMKgwqDCoCB1MzIgb2Zmc2V0ID0gaW50
+ZWxfZ3VjX2dndHRfb2Zmc2V0KGd1YywgZ3VjLT5sb2cudm1hKSA+Pgo+Pj4gUEFHRV9TSElGVDsK
+Pj4+IEBAIC0yOTEsNyArMjc1LDYgQEAgc3RhdGljIHZvaWQgZ3VjX2luaXRfcGFyYW1zKHN0cnVj
+dCBpbnRlbF9ndWMgKmd1YykKPj4+ICDCoCDCoMKgwqDCoMKgIEJVSUxEX0JVR19PTihzaXplb2Yo
+Z3VjLT5wYXJhbXMpICE9IEdVQ19DVExfTUFYX0RXT1JEUyAqCj4+PiBzaXplb2YodTMyKSk7Cj4+
+PiAgwqAgLcKgwqDCoCBwYXJhbXNbR1VDX0NUTF9DVFhJTkZPXSA9IGd1Y19jdGxfY3R4aW5mb19m
+bGFncyhndWMpOwo+Pj4gIMKgwqDCoMKgwqAgcGFyYW1zW0dVQ19DVExfTE9HX1BBUkFNU10gPSBn
+dWNfY3RsX2xvZ19wYXJhbXNfZmxhZ3MoZ3VjKTsKPj4+ICDCoMKgwqDCoMKgIHBhcmFtc1tHVUNf
+Q1RMX0ZFQVRVUkVdID0gZ3VjX2N0bF9mZWF0dXJlX2ZsYWdzKGd1Yyk7Cj4+PiAgwqDCoMKgwqDC
+oCBwYXJhbXNbR1VDX0NUTF9ERUJVR10gPSBndWNfY3RsX2RlYnVnX2ZsYWdzKGd1Yyk7Cj4+PiBA
+QCAtNDAwLDMyICszODMsNjUgQEAgdm9pZCBpbnRlbF9ndWNfZmluaShzdHJ1Y3QgaW50ZWxfZ3Vj
+ICpndWMpCj4+PiAgwqDCoMKgwqDCoCBpbnRlbF91Y19md19maW5pKCZndWMtPmZ3KTsKPj4+ICDC
+oCB9Cj4+PiAgwqAgK3N0YXRpYyBib29sIGlzX3ZhbGlkX21taW9fYWN0aW9uKHUzMiBhY3Rpb24p
+Cj4+PiArewo+Pj4gK8KgwqDCoCByZXR1cm4gYWN0aW9uID09IEdVQ19BQ1RJT05fUkVHSVNURVJf
+Q1RCIHx8Cj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqAgYWN0aW9uID09IEdVQ19BQ1RJT05fREVS
+RUdJU1RFUl9DVEI7Cj4+PiArfQo+Pj4gKwo+Pj4gK3N0YXRpYyBpbnQgZ3VjX3N0YXR1c190b19l
+cnJubyh1MzIgc3RhdHVzKQo+Pj4gK3sKPj4+ICvCoMKgwqAgc3dpdGNoIChzdGF0dXMpIHsKPj4+
+ICvCoMKgwqAgY2FzZSBHVUNfU1RBVFVTX1VOS05PV05fQUNUSU9OOgo+Pj4gK8KgwqDCoMKgwqDC
+oMKgIHJldHVybiAtRU9QTk9UU1VQUDsKPj4+ICvCoMKgwqAgY2FzZSBHVUNfU1RBVFVTX0lOVkFM
+SURfUEFSQU1TOgo+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiAtRUlOVkFMOwo+Pj4gK8KgwqDC
+oCBjYXNlIEdVQ19TVEFUVVNfSU5WQUxJRF9BRERSOgo+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVy
+biAtRUZBVUxUOwo+Pj4gK8KgwqDCoCBjYXNlIEdVQ19TVEFUVVNfQ1RYX05PVF9SRUdJU1RFUkVE
+Ogo+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiAtRVNSQ0g7Cj4+PiArwqDCoMKgIGNhc2UgR1VD
+X1NUQVRVU19DVEJfRlVMTDoKPj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gLUVOT1NQQzsKPj4+
+ICvCoMKgwqAgY2FzZSBHVUNfU1RBVFVTX1VOQVVUSE9SSVpFRF9SRVFVRVNUOgo+Pj4gK8KgwqDC
+oMKgwqDCoMKgIHJldHVybiAtRUFDQ0VTOwo+Pj4gK8KgwqDCoCBjYXNlIEdVQ19TVEFUVVNfR0VO
+RVJJQ19GQUlMOgo+Pj4gK8KgwqDCoCBkZWZhdWx0Ogo+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVy
+biAtRU5YSU87Cj4+PiArwqDCoMKgIH0KPj4+ICt9Cj4+PiArCj4+PiAgwqAgLyoKPj4+ICDCoMKg
+ICogVGhpcyBmdW5jdGlvbiBpbXBsZW1lbnRzIHRoZSBNTUlPIGJhc2VkIGhvc3QgdG8gR3VDIGlu
+dGVyZmFjZS4KPj4+ICDCoMKgICovCj4+PiAtaW50IGludGVsX2d1Y19zZW5kX21taW8oc3RydWN0
+IGludGVsX2d1YyAqZ3VjLCBjb25zdCB1MzIgKmFjdGlvbiwgdTMyCj4+PiBsZW4sCj4+PiAraW50
+IGludGVsX2d1Y19zZW5kX21taW8oc3RydWN0IGludGVsX2d1YyAqZ3VjLCBjb25zdCB1MzIgKnJl
+cXVlc3QsCj4+PiB1MzIgbGVuLAo+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHUzMiAq
+cmVzcG9uc2VfYnVmLCB1MzIgcmVzcG9uc2VfYnVmX3NpemUpCj4+PiAgwqAgewo+Pj4gK8KgwqDC
+oCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IGd1Y190b19ndChndWMpLT5pOTE1Owo+
+Pj4gIMKgwqDCoMKgwqAgc3RydWN0IGludGVsX3VuY29yZSAqdW5jb3JlID0gZ3VjX3RvX2d0KGd1
+YyktPnVuY29yZTsKPj4+IC3CoMKgwqAgdTMyIHN0YXR1czsKPj4+ICvCoMKgwqAgdTMyIGFjdGlv
+biA9IEZJRUxEX0dFVChHVUNfTU1JT19SRVFVRVNUX0FDVElPTiwgKnJlcXVlc3QpOwo+Pj4gK8Kg
+wqDCoCB1MzIgc3ViY29kZSA9IEZJRUxEX0dFVChHVUNfTU1JT19SRVFVRVNUX1NVQkNPREUsICpy
+ZXF1ZXN0KTsKPj4+ICvCoMKgwqAgdTMyIG1hZ2ljID0gR1VDX01NSU9fTVNHX01BR0lDX0RFRkFV
+TFQ7Cj4+PiArwqDCoMKgIHUzMiBoZWFkZXI7Cj4+PiAgwqDCoMKgwqDCoCBpbnQgaTsKPj4+ICDC
+oMKgwqDCoMKgIGludCByZXQ7Cj4+PiAgwqAgwqDCoMKgwqDCoCBHRU1fQlVHX09OKCFsZW4pOwo+
+Pj4gIMKgwqDCoMKgwqAgR0VNX0JVR19PTihsZW4gPiBndWMtPnNlbmRfcmVncy5jb3VudCk7Cj4+
+PiAgwqAgLcKgwqDCoCAvKiBXZSBleHBlY3Qgb25seSBhY3Rpb24gY29kZSAqLwo+Pj4gLcKgwqDC
+oCBHRU1fQlVHX09OKCphY3Rpb24gJiB+SU5URUxfR1VDX01TR19DT0RFX01BU0spOwo+Pj4gK8Kg
+wqDCoCAvKiBXZSBleHBlY3QgdG8gdXNlIE1NSU8gb25seSBmb3Igc3BlY2lhbCBhY3Rpb25zICov
+Cj4+PiArwqDCoMKgIEdFTV9CVUdfT04oIWlzX3ZhbGlkX21taW9fYWN0aW9uKGFjdGlvbikpOwo+
+Pj4gIMKgIC3CoMKgwqAgLyogSWYgQ1QgaXMgYXZhaWxhYmxlLCB3ZSBleHBlY3QgdG8gdXNlIE1N
+SU8gb25seSBkdXJpbmcKPj4+IGluaXQvZmluaSAqLwo+Pj4gLcKgwqDCoCBHRU1fQlVHX09OKCph
+Y3Rpb24gIT0KPj4+IElOVEVMX0dVQ19BQ1RJT05fUkVHSVNURVJfQ09NTUFORF9UUkFOU1BPUlRf
+QlVGRkVSICYmCj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqAgKmFjdGlvbiAhPQo+Pj4gSU5URUxf
+R1VDX0FDVElPTl9ERVJFR0lTVEVSX0NPTU1BTkRfVFJBTlNQT1JUX0JVRkZFUik7Cj4+PiArwqDC
+oMKgIGhlYWRlciA9IEZJRUxEX1BSRVAoR1VDX01NSU9fTVNHX1RZUEUsIEdVQ19NTUlPX01TR19U
+WVBFX1JFUVVFU1QpIHwKPj4+ICvCoMKgwqDCoMKgwqDCoCBGSUVMRF9QUkVQKEdVQ19NTUlPX01T
+R19NQUdJQywgbWFnaWMpIHwKPj4+ICvCoMKgwqDCoMKgwqDCoCBGSUVMRF9QUkVQKEdVQ19NTUlP
+X1JFUVVFU1RfU1VCQ09ERSwgc3ViY29kZSkgfAo+Pj4gK8KgwqDCoMKgwqDCoMKgIEZJRUxEX1BS
+RVAoR1VDX01NSU9fUkVRVUVTVF9BQ1RJT04sIGFjdGlvbik7Cj4+PiAgwqAgwqDCoMKgwqDCoCBt
+dXRleF9sb2NrKCZndWMtPnNlbmRfbXV0ZXgpOwo+Pj4gIMKgwqDCoMKgwqAgaW50ZWxfdW5jb3Jl
+X2ZvcmNld2FrZV9nZXQodW5jb3JlLCBndWMtPnNlbmRfcmVncy5md19kb21haW5zKTsKPj4+ICDC
+oCAtwqDCoMKgIGZvciAoaSA9IDA7IGkgPCBsZW47IGkrKykKPj4+IC3CoMKgwqDCoMKgwqDCoCBp
+bnRlbF91bmNvcmVfd3JpdGUodW5jb3JlLCBndWNfc2VuZF9yZWcoZ3VjLCBpKSwgYWN0aW9uW2ld
+KTsKPj4+ICvCoMKgwqAgaW50ZWxfdW5jb3JlX3dyaXRlKHVuY29yZSwgZ3VjX3NlbmRfcmVnKGd1
+YywgMCksIGhlYWRlcik7Cj4+PiArwqDCoMKgIGZvciAoaSA9IDE7IGkgPCBsZW47IGkrKykKPj4+
+ICvCoMKgwqDCoMKgwqDCoCBpbnRlbF91bmNvcmVfd3JpdGUodW5jb3JlLCBndWNfc2VuZF9yZWco
+Z3VjLCBpKSwgcmVxdWVzdFtpXSk7Cj4+PiAgwqAgwqDCoMKgwqDCoCBpbnRlbF91bmNvcmVfcG9z
+dGluZ19yZWFkKHVuY29yZSwgZ3VjX3NlbmRfcmVnKGd1YywgaSAtIDEpKTsKPj4+ICDCoCBAQCAt
+NDM3LDE3ICs0NTMsNDUgQEAgaW50IGludGVsX2d1Y19zZW5kX21taW8oc3RydWN0IGludGVsX2d1
+YyAqZ3VjLAo+Pj4gY29uc3QgdTMyICphY3Rpb24sIHUzMiBsZW4sCj4+PiAgwqDCoMKgwqDCoMKg
+ICovCj4+PiAgwqDCoMKgwqDCoCByZXQgPSBfX2ludGVsX3dhaXRfZm9yX3JlZ2lzdGVyX2Z3KHVu
+Y29yZSwKPj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgZ3VjX3NlbmRfcmVnKGd1YywgMCksCj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgSU5URUxfR1VDX01TR19UWVBFX01BU0ssCj4+PiAtwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgSU5URUxfR1VDX01TR19UWVBFX1JF
+U1BPTlNFIDw8Cj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgSU5URUxfR1VDX01TR19UWVBFX1NISUZULAo+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIDEwLCAxMCwgJnN0YXR1cyk7Cj4+PiAtwqDCoMKgIC8qIElm
+IEd1QyBleHBsaWNpdGx5IHJldHVybmVkIGFuIGVycm9yLCBjb252ZXJ0IGl0IHRvIC1FSU8gKi8K
+Pj4+IC3CoMKgwqAgaWYgKCFyZXQgJiYgIUlOVEVMX0dVQ19NU0dfSVNfUkVTUE9OU0VfU1VDQ0VT
+UyhzdGF0dXMpKQo+Pj4gLcKgwqDCoMKgwqDCoMKgIHJldCA9IC1FSU87Cj4+PiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgR1VDX01NSU9fTVNHX09SSUdJTiwK
+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBGSUVMRF9Q
+UkVQKEdVQ19NTUlPX01TR19PUklHSU4sCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBHVUNfTU1JT19NU0dfT1JJR0lOX0dVQyks
+Cj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMTAsIDEw
+LCAmaGVhZGVyKTsKPj4+ICvCoMKgwqAgaWYgKHVubGlrZWx5KHJldCkpCj4+PiArwqDCoMKgwqDC
+oMKgwqAgZ290byBvdXQ7Cj4+PiAgwqAgLcKgwqDCoCBpZiAocmV0KSB7Cj4+PiAtwqDCoMKgwqDC
+oMKgwqAgRFJNX0VSUk9SKCJNTUlPOiBHdUMgYWN0aW9uICUjeCBmYWlsZWQgd2l0aCBlcnJvciAl
+ZCAlI3hcbiIsCj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYWN0aW9uWzBdLCByZXQs
+IHN0YXR1cyk7Cj4+PiArwqDCoMKgIGlmICh1bmxpa2VseShGSUVMRF9HRVQoR1VDX01NSU9fTVNH
+X01BR0lDLCBoZWFkZXIpICE9IG1hZ2ljKSkgewo+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldCA9IC1F
+U1RBTEU7Cj4+PiArwqDCoMKgwqDCoMKgwqAgZ290byBvdXQ7Cj4+PiArwqDCoMKgIH0KPj4gSSB0
+aGluayB3ZSBzaG91bGQgbW92ZSB0aGlzIGFmdGVyIHRoZSBjaGVjayBmb3IgYnVzeW5lc3MuIElJ
+UkMgdGhlCj4+IHByb3RvY29sIHNheXMgd2UgbmVlZCB0byB3YWl0IGZvciB0aGUgR3VDIHRvIHN0
+b3AgYmVpbmcgYnVzeSBiZWZvcmUKPj4gc2VuZGluZyBtb3JlIG1lc3NhZ2VzLiBUaGF0IHdheSB5
+b3UgY2FuIGFsc28gdW5pZnkgdGhpcyB3aXRoIHRoZSBvdGhlcgo+PiBzaW1pbGFyIGNoZWNrIGJl
+bG93Lgo+IGJ1dCBlYWNoIE1NSU8gbWVzc2FnZSBzaG91bGQgYmUgaGFuZGxlZCBzZXBhcmF0ZWx5
+IGFuZCBwYXJ0IG9mIHRoYXQKPiBoYW5kbGluZyBpcyBhIGNoZWNrIG9mIHRoZSAnbWFnaWMnIGZp
+ZWxkLCBzbyB3ZSBjYW4ndCBza2lwIGl0IGhlcmUKCkkgd2Fzbid0IHN1Z2dlc3RpbmcgdG8gc2tp
+cCB0aGUgbWFnaWMgY2hlY2ssIGp1c3QgdG8gZG8gaXQgYWZ0ZXIgdGhlIApidXN5bmVzcyBjaGVj
+ay4gSWYgd2UgZXhpdCB0aGlzIGZ1bmN0aW9uIHdoaWxlIHRoZXJlIGlzIGEgYnVzeSBtZXNzYWdl
+IAp0aGVyZSBpcyBhIHJpc2sgd2UgY291bGQgc2VuZCBhbm90aGVyIG1lc3NhZ2Ugd2hpbGUgdGhl
+IEd1QyBpcyBzdGlsbCAKYnVzeSB3aXRoIHRoaXMgbWVzc2FnZSwgd2hpY2ggd291bGQgbGlrZWx5
+IGxlYWQgdG8gdW5kZWZpbmVkIGJlaGF2aW9yLiAKTXkgc3VnZ2VzdGlvbiBpcyB0byBkbyBhcyBm
+b2xsb3c6CgogwqDCoMKgIHdhaXRfZm9yKG1lc3NhZ2UgaXMgcmVzcG9uc2UpOwogwqDCoMKgIGlm
+IChNU0dfVFlQRSA9PSBCVVNZKQogwqDCoMKgIMKgwqDCoCB3YWl0X2ZvciAoTVNHX1RZUEUgIT0g
+QlVTWSk7CgogwqDCoMKgIGlmIChNU0dfTUFHSUMgIT0gZXhwZWN0ZWQgbWFnaWMpCiDCoMKgwqAg
+wqDCoMKgIHJldHVybiBlcnJvcjsKCj4+PiArCj4+PiArwqDCoMKgIGlmIChGSUVMRF9HRVQoR1VD
+X01NSU9fTVNHX1RZUEUsIGhlYWRlcikgPT0KPj4+IEdVQ19NTUlPX01TR19UWVBFX0JVU1kpIHsK
+Pj4+ICsjZGVmaW5lIGRvbmUgKHsgaGVhZGVyID0gaW50ZWxfdW5jb3JlX3JlYWQodW5jb3JlLCBn
+dWNfc2VuZF9yZWcoZ3VjLAo+Pj4gMCkpOyBcCj4+PiArwqDCoMKgwqDCoMKgwqAgRklFTERfR0VU
+KEdVQ19NTUlPX01TR19UWVBFLCBoZWFkZXIpICE9Cj4+PiBHVUNfTU1JT19NU0dfVFlQRV9CVVNZ
+OyB9KQo+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldCA9IHdhaXRfZm9yKGRvbmUsIDEwMDApOwo+Pj4g
+K8KgwqDCoMKgwqDCoMKgIGlmICh1bmxpa2VseShyZXQpKQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgZ290byBvdXQ7Cj4+PiArwqDCoMKgwqDCoMKgwqAgaWYgKHVubGlrZWx5KEZJRUxEX0dF
+VChHVUNfTU1JT19NU0dfT1JJR0lOLCBoZWFkZXIpICE9Cj4+PiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgR1VDX01NSU9fTVNHX09SSUdJTl9HVUMpKSB7Cj4+
+IFRoaXMgY2hlY2sgb24gR1VDX01NSU9fTVNHX09SSUdJTiBpcyByZWR1bmRhbnQuIFdlIGFscmVh
+ZHkgd2FpdGVkIGZvciBpdAo+PiB0byBiZSBHVUNfTU1JT19NU0dfT1JJR0lOX0dVQyBkdXJpbmcg
+dGhlIHdhaXQgYWJvdmUgYW5kIHdlJ3JlIG5vdAo+PiBzZW5kaW5nIG90aGVyIG1lc3NhZ2UgZnJv
+bSBpOTE1IHdoaWxlIHdlJ3JlIHdhaXRpbmcgZm9yIHRoaXMgb25lLCBzbwo+PiB0aGF0IGZpZWxk
+IGNhbid0IGNoYW5nZS4KPiBpbiB0aGUgd2FpdCBhYm92ZSB3ZSBhcmUgd2FpdGluZyBmb3IgbWVz
+c2FnZSBkaWZmZXJlbnQgdGhhbiBCVVNZIGFuZCB3ZQo+IGV4cGVjdCB0aGF0IHRoaXMgb3RoZXIg
+bWVzc2FnZSB3aWxsIGJlIGZyb20gdGhlIEd1QyAoYXMgdGhpcyBpcyBwYXJ0IG9mCj4gdGhlIHBy
+b3RvY29sKSBidXQgd2Ugc2hvdWxkIHN0aWxsIGNoZWNrIHRoYXQgR3VDIGlzIGNvbXBsaWFudAoK
+SSB0aGluayB0aGlzIGlzIG92ZXJseSBwYXJhbm9pZC4gRXZlbiBpbiB0aGUgdmVyeSB1bmxpa2Vs
+eSBjYXNlIHRoYXQgdGhlIApHdUMgbWFya2VkIGl0cyBvd24gbWVzc2FnZXMgYXMgY29taW5nIGZy
+b20gdGhlIGhvc3QgYnkgbWlzdGFrZSwgd2h5IAp3b3VsZCB3ZSBjYXJlPyBXZSBhcmUgYWxyZWFk
+eSBzdXJlIHRoaXMgbWVzc2FnZSBpcyBjb21pbmcgZnJvbSB0aGUgR3VDLCAKbm8gbWF0dGVyIHdo
+YXQgdGhlIGJpdCBzYXlzLiBJTU8gaWYgeW91IHdhbnQgdGhpcyBraW5kIG9mIGNvbXBsaWFuY2Ug
+CmNvdmVyYWdlIGl0IHNob3VsZCBiZSBpbiBhIHRlc3QsIHByZWZlcmFibHkgb24gdGhlIEd1QyBz
+aWRlIG9mIHRoaW5ncy4KCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXQgPSAtRVBST1RP
+Owo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byBvdXQ7Cj4+PiArwqDCoMKgwqDCoMKg
+wqAgfQo+Pj4gK8KgwqDCoMKgwqDCoMKgIGlmICh1bmxpa2VseShGSUVMRF9HRVQoR1VDX01NSU9f
+TVNHX01BR0lDLCBoZWFkZXIpICE9IG1hZ2ljKSkgewo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgcmV0ID0gLUVTVEFMRTsKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gb3V0Owo+
+Pj4gK8KgwqDCoMKgwqDCoMKgIH0KPj4+ICsjdW5kZWYgZG9uZQo+Pj4gK8KgwqDCoCB9Cj4+PiAr
+Cj4+PiArwqDCoMKgIGlmIChGSUVMRF9HRVQoR1VDX01NSU9fTVNHX1RZUEUsIGhlYWRlcikgPT0K
+Pj4+IEdVQ19NTUlPX01TR19UWVBFX0VSUk9SKSB7Cj4+PiArwqDCoMKgwqDCoMKgwqAgdTMyIHN0
+YXR1cyA9IEZJRUxEX0dFVChHVUNfTU1JT19FUlJPUl9TVEFUVVMsIGhlYWRlcik7Cj4+PiArCj4+
+PiArwqDCoMKgwqDCoMKgwqAgcmV0ID0gZ3VjX3N0YXR1c190b19lcnJubyhzdGF0dXMpOwo+Pj4g
+K8KgwqDCoMKgwqDCoMKgIGdvdG8gb3V0Owo+Pj4gK8KgwqDCoCB9Cj4+PiArCj4+PiArwqDCoMKg
+IGlmIChGSUVMRF9HRVQoR1VDX01NSU9fTVNHX1RZUEUsIGhlYWRlcikgIT0KPj4+IEdVQ19NTUlP
+X01TR19UWVBFX1JFU1BPTlNFKSB7Cj4+PiArwqDCoMKgwqDCoMKgwqAgcmV0ID0gLUVQUk9UTzsK
+Pj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byBvdXQ7Cj4+PiAgwqDCoMKgwqDCoCB9Cj4+PiAg
+wqAgQEAgLTQ2MCwxMiArNTA0LDE3IEBAIGludCBpbnRlbF9ndWNfc2VuZF9tbWlvKHN0cnVjdCBp
+bnRlbF9ndWMgKmd1YywKPj4+IGNvbnN0IHUzMiAqYWN0aW9uLCB1MzIgbGVuLAo+Pj4gIMKgwqDC
+oMKgwqAgfQo+Pj4gIMKgIMKgwqDCoMKgwqAgLyogVXNlIGRhdGEgZnJvbSB0aGUgR3VDIHJlc3Bv
+bnNlIGFzIG91ciByZXR1cm4gdmFsdWUgKi8KPj4+IC3CoMKgwqAgcmV0ID0gSU5URUxfR1VDX01T
+R19UT19EQVRBKHN0YXR1cyk7Cj4+IElOVEVMX0dVQ19NU0dfVE9fREFUQSBpcyBzdGlsbCB1c2Vk
+IGluIGludGVsX2d1Y19jdC5jLiBFaXRoZXIgc3RpY2sgdG8KPj4gdGhhdCBvciB1cGRhdGUgdGhl
+IG90aGVyIHVzZS1jYXNlIHRvIHRoZSBuZXcgZGVmaW5lLgo+IHRoaXMgbmV3IGRlZmluZSBpcyBm
+b3IgTU1JTyBtZXNzYWdlcywgY2hhbmdlcyB0byBDVEIgbWVzc2FnZXMgd2lsbAo+IGZvbGxvdyBz
+b29uCj4KPj4+ICvCoMKgwqAgcmV0ID0gRklFTERfR0VUKEdVQ19NTUlPX1JFU1BPTlNFX0RBVEEw
+LCBoZWFkZXIpOwo+Pj4gIMKgIMKgIG91dDoKPj4+ICDCoMKgwqDCoMKgIGludGVsX3VuY29yZV9m
+b3JjZXdha2VfcHV0KHVuY29yZSwgZ3VjLT5zZW5kX3JlZ3MuZndfZG9tYWlucyk7Cj4+PiAgwqDC
+oMKgwqDCoCBtdXRleF91bmxvY2soJmd1Yy0+c2VuZF9tdXRleCk7Cj4+PiAgwqAgK8KgwqDCoCBp
+ZiAodW5saWtlbHkocmV0IDwgMCkpCj4+PiArwqDCoMKgwqDCoMKgwqAgZHJtX2VycigmaTkxNS0+
+ZHJtLAo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIkd1QyBNTUlPIGFjdGlvbiAlIzA2eCBm
+YWlsZWQgd2l0aCBlcnJvciAlZCAlI3hcbiIsCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAq
+cmVxdWVzdCwgcmV0LCBoZWFkZXIpOwo+Pj4gKwo+Pj4gIMKgwqDCoMKgwqAgcmV0dXJuIHJldDsK
+Pj4+ICDCoCB9Cj4+PiAgwqAgZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3Vj
+L2ludGVsX2d1Y19hYmkuaAo+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9n
+dWNfYWJpLmgKPj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4+PiBpbmRleCAwMDAwMDAwMDAwMDAu
+Ljk1MDQzNzg4ZTBhZAo+Pj4gLS0tIC9kZXYvbnVsbAo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2FiaS5oCj4+PiBAQCAtMCwwICsxLDIxNSBAQAo+Pj4gKy8q
+IFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KPj4+ICsvKgo+Pj4gKyAqIENvcHlyaWdo
+dCDCqSAyMDIwIEludGVsIENvcnBvcmF0aW9uCj4+PiArICovCj4+PiArCj4+PiArI2lmbmRlZiBf
+X0lOVEVMX0dVQ19BQklfSF9fCj4+PiArI2RlZmluZSBfX0lOVEVMX0dVQ19BQklfSF9fCj4+PiAr
+Cj4+PiArLyoqCj4+PiArICogRE9DOiBHdUMgTU1JTyBiYXNlZCBjb21tdW5pY2F0aW9uCj4+PiAr
+ICoKPj4+ICsgKiBUaGUgTU1JTyBiYXNlZCBjb21tdW5pY2F0aW9uIGJldHdlZW4gSG9zdCBhbmQg
+R3VDIHJlbGllcyBvbiBzcGVjaWFsCj4+PiArICogaGFyZHdhcmUgcmVnaXN0ZXJzIHdoaWNoIGZv
+cm1hdCBjb3VsZCBiZSBkZWZpbmVkIGJ5IHRoZSBzb2Z0d2FyZQo+Pj4gKyAqIChzbyBjYWxsZWQg
+c2NyYXRjaCByZWdpc3RlcnMpLgo+Pj4gKyAqCj4+PiArICogRWFjaCBNTUlPIGJhc2VkIG1lc3Nh
+Z2UsIGJvdGggSG9zdCB0byBHdUMgKEgyRykgYW5kIEd1QyB0byBIb3N0IChHMkgpCj4+PiArICog
+bWVzc2FnZXMsIHdoaWNoIG1heGltdW0gbGVuZ3RoIGRlcGVuZHMgb24gbnVtYmVyIG9mIGF2YWls
+YWJsZSBzY3JhdGNoCj4+PiArICogcmVnaXN0ZXJzLCBpcyBkaXJlY3RseSB3cml0dGVuIGludG8g
+dGhvc2Ugc2NyYXRjaCByZWdpc3RlcnMuCj4+PiArICoKPj4+ICsgKiBGb3IgR2VuOSssIHRoZXJl
+IGFyZSAxNiBzb2Z0d2FyZSBzY3JhdGNoIHJlZ2lzdGVycyAweEMxODAtMHhDMUI4LAo+Pj4gKyAq
+IGJ1dCBubyBIMkcgY29tbWFuZCB0YWtlcyBtb3JlIHRoYW4gOCBwYXJhbWV0ZXJzIGFuZCB0aGUg
+R3VDIGZpcm13YXJlCj4+PiArICogaXRzZWxmIHVzZXMgYW4gOC1lbGVtZW50IGFycmF5IHRvIHN0
+b3JlIHRoZSBIMkcgbWVzc2FnZS4KPj4+ICsgKgo+Pj4gKyAqIEZvciBHZW4xMSssIHRoZXJlIGFy
+ZSBhZGRpdGlvbmFsIDQgcmVnaXN0ZXJzIDB4MTkwMjQwLTB4MTkwMjRDLCB3aGljaAo+Pj4gKyAq
+IGFyZSwgcmVnYXJkbGVzcyBvbiBsb3dlciBjb3VudCwgcHJlZmZlcmVkIG92ZXIgbGVnYWN5IG9u
+ZXMuCj4+PiArICoKPj4+ICsgKiBUaGUgTU1JTyBiYXNlZCBjb21tdW5pY2F0aW9uIGlzIG1haW5s
+eSB1c2VkIGR1cmluZyBkcml2ZXIKPj4+IGluaXRpYWxpemF0aW9uCj4+PiArICogcGhhc2UgdG8g
+c2V0dXAgdGhlIENUQiBiYXNlZCBjb21tdW5pY2F0aW9uIHRoYXQgd2lsbCBiZSB1c2VkCj4+PiBh
+ZnRlcndhcmRzLgo+Pj4gKyAqCj4+PiArICogRGV0YWlscyBvZiB0aGUgbWVzc2FnZXMgZm9ybWF0
+cyBkZXBlbmQgb24gR3VDIGZpcm13YXJlIHZlcnNpb24KPj4+IGJlaW5nIHVzZWQKPj4+ICsgKiBi
+eSB0aGUgaG9zdCBkcml2ZXIuIERvY3VtZW50ZWQgaGVyZSBtZXNzYWdlcyBhcmUgZm9yIEd1QyA0
+NS4wIGFuZAo+Pj4gbmV3ZXIuCj4+PiArICovCj4+PiArCj4+PiArI2RlZmluZSBHVUNfTUFYX01N
+SU9fTVNHX0xFTsKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgOAo+PiBBcmUgd2Ugb2sgd2l0aCBub3Qg
+aGF2aW5nIGFuIElOVEVMXyBwcmVmaXggdG8gYWxsIHRoZSBkZWZpbmVzPyBJJ20gbm90Cj4+IGNv
+bXBsYWluaW5nLCB3ZSB1c3VhbGx5IHN0aWNrIHdpdGggdGhhdCBwcmVmaXggYnV0IEknbSBub3Qg
+c3VyZSBpZiBpdCBpcwo+PiBhbiBpcm9uIHJ1bGUgb3Igbm90Lgo+IGV4aXN0aW5nIGRlZmluZXMg
+aW4gaW50ZWxfZ3VjX2Z3aWYuaCBoYXZlICJHVUMiIGFuZCAiSU5URUxfR1VDIiAob3IKPiBub25l
+KSBwcmVmaXhlcyBhbmQgYXQgdGhlIHNhbWUgdGltZSBhbG1vc3QgYWxsIHN0cnVjdHMgaGF2ZSAi
+Z3VjIgo+IHByZWZpeCwgc28gdGhlIGJlc3Qgb3B0aW9uIElNSE8gaXMgdG8gc3RpY2sgd2l0aCBq
+dXN0IGd1Yy9HVUMgcHJlZml4LgoKT2sgZm9yIG1lLCBidXQgd2UnbGwgbmVlZCB0byBtaWdyYXRl
+IHRoZSBvdGhlciBkZWZpbmVzIGFzIHdlbGwgc28gd2UncmUgCmNvbnNpc3RlbnQuCgo+Pj4gKwo+
+Pj4gKy8qKgo+Pj4gKyAqIERPQzogR3VDIE1NSU8gbWVzc2FnZSBmb3JtYXQKPj4+ICsgKgo+Pj4g
+KyAqIEJpdHMgb2YgdGhlIGZpcnN0IHNjcmF0Y2ggcmVnaXN0ZXIgYXJlIHRyZWF0ZWQgYXMgYSBt
+ZXNzYWdlIGhlYWRlciwKPj4+ICsgKiBhbmQgb3RoZXIgcmVnaXN0ZXJzIHZhbHVlcyBhcmUgdXNl
+ZCB0byBob2xkIG1lc3NhZ2UgcGF5bG9hZCAoZGF0YSk6Ogo+Pj4gKyAqCj4+PiArICrCoMKgwqDC
+oMKgICs9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09Kwo+Pj4gKyAqwqDCoMKgwqDCoCB8wqAgU0NSQVRDSMKgIHzCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgfAo+Pj4gKyAqwqDCoMKgwqDCoCArLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPj4+ICsgKsKgwqDCoMKgwqAgfCAwIHwgMzE6
+MjggfCBtZXNzYWdlIE9SSUdJTi9UWVBFwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDCoMKgwqDCoCB8wqDCoCB8IDI3OjI0IHwgbWVzc2FnZSBN
+QUdJQ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIHwKPj4+ICsgKsKgwqDCoMKgwqAgfMKgwqAgfMKgIDIzOjAgfCBtZXNzYWdlIERBVEEwIChk
+ZXBlbmRzIG9uIFRZUEUpwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDCoMKgwqDCoCAr
+LS0tKy0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsK
+Pj4+ICsgKsKgwqDCoMKgwqAgfCAxIHzCoCAzMTowIHwgbWVzc2FnZSBEQVRBMSAoZGVwZW5kcyBv
+biBUWVBFKcKgwqDCoMKgwqDCoMKgwqDCoMKgIHwKPj4+ICsgKsKgwqDCoMKgwqAgfC4uLnzCoMKg
+wqDCoMKgwqAgfCBtZXNzYWdlIERBVEEyIChkZXBlbmRzIG9uIFRZUEUpwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgfAo+Pj4gKyAqwqDCoMKgwqDCoCB8IG4gfMKgwqDCoMKgwqDCoCB8IG1lc3NhZ2UgREFU
+QTMgKGRlcGVuZHMgb24gVFlQRSnCoMKgwqDCoMKgwqDCoMKgwqDCoCB8Cj4+PiArICrCoMKgwqDC
+oMKgICs9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09Kwo+Pj4gKyAqCj4+PiArICogV2hlcmU6Cj4+PiArICrCoCAtICoqVFlQRSoqIGlzIGEgNGIg
+bWVzc2FnZSB0eXBlIGlkZW50aWZpZXIuCj4+PiArICrCoCAtICoqTUFHSUMqKiBpcyBhIDRiIG1l
+c3NhZ2Ugc2VxdWVuY2UgbnVtYmVyLgo+Pj4gKyAqwqDCoMKgIFRoZSBzYW1lIHNlcXVlbmNlIG51
+bWJlciBtdXN0IGJlIGluY2x1ZGVkIGluIGFsbCByZWxhdGVkIG1lc3NhZ2VzLgo+Pj4gKyAqwqDC
+oMKgIFRoaXMgZmllbGQgaXMgdXNlZCBmb3IgdHJhY2tpbmcgYW5kIGRlYnVnIHB1cnBvc2VzLgo+
+PiBJIGRvbid0IHRoaW5rICJtYWdpYyIgaXMgYSBjbGVhciBlbm91Z2ggbmFtZSBmb3IgdGhlIHJv
+bGUgb2YgdGhlIGZpZWxkLgo+PiAiUmVxdWVzdCBpZCIgb3Igc29tZXRoaW5nIGxpa2UgdGhhdCB3
+b3VsZCBiZSBtb3JlIGFwcHJvcHJpYXRlIElNTy4KPiB3ZSBhcmUgZm9sbG93aW5nIG5hbWluZyBm
+cm9tIEd1QyBzcGVjCj4KPj4+ICsgKsKgIC0gKipEQVRBMC4uMyoqIGJpdHMgcmVwcmVzZW50cyBt
+ZXNzYWdlIHBheWxvYWQuCj4+PiArICrCoMKgwqAgRGVmaW5pdGlvbnMgb2YgdGhlc2UgYml0cyBk
+ZXBlbmRzIG9uIG1lc3NhZ2UgKipUWVBFKiouCj4+PiArICoKPj4+ICsgKiBUaGUgTVNCIG9mIHRo
+ZSBoZWFkZXIgYW5kICoqVFlQRSoqIGluZGljYXRlcyBvcmlnaW4gb2YgdGhlIG1lc3NhZ2U6Cj4+
+PiArICrCoCAtIDAgLSBtZXNzYWdlIGZyb20gdGhlIEhvc3QKPj4+ICsgKsKgIC0gMSAtIG1lc3Nh
+Z2UgZnJvbSB0aGUgR3VDCj4+PiArICoKPj4+ICsgKiBDdXJyZW50bHkgc3VwcG9ydGVkIG1lc3Nh
+Z2UgdHlwZXMgYXJlOgo+Pj4gKyAqwqAgLSAweDAgLSAqKlJFUVVFU1QqKiAtIHJlcHJlc2VudHMg
+SG9zdCByZXF1ZXN0IG1lc3NhZ2UgdG8gdGhlIEd1Qwo+Pj4gKyAqwqAgLSAweEYgLSAqKlNVQ0NF
+U1MgUkVTUE9OU0UqKiAtIEd1QyByZXBseSBmb3IgdGhlIGVhcmxpZXIgcmVxdWVzdAo+Pj4gKyAq
+wqAgLSAweEUgLSAqKkVSUk9SIFJFU1BPTlNFKiogLSBHdUMgZmFpbHVyZSByZXBseSBmb3IgdGhl
+IGVhcmxpZXIKPj4+IHJlcXVlc3QKPj4+ICsgKsKgIC0gMHhCIC0gKipCVVNZKiogLSBHdUMgd2ls
+bCBiZSBwcm9jZXNzaW5nIHJlcXVlc3QgZm9yIHRoZSBsb25nZXIKPj4+IHRpbWUKPj4+ICsgKi8K
+Pj4+ICsKPj4+ICsjZGVmaW5lIEdVQ19NTUlPX01TR19PUklHSU7CoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgICgweDEgPDwgMzEpCj4+PiArI2RlZmluZcKgwqAgR1VDX01NSU9fTVNHX09SSUdJTl9IT1NU
+wqDCoMKgwqDCoMKgwqAgMHUKPj4+ICsjZGVmaW5lwqDCoCBHVUNfTU1JT19NU0dfT1JJR0lOX0dV
+Q8KgwqDCoMKgwqDCoMKgIDF1Cj4+PiArCj4+PiArI2RlZmluZSBHVUNfTU1JT19NU0dfVFlQRcKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgKDB4RiA8PCAyOCkKPj4+ICsjZGVmaW5lwqDCoCBHVUNfTU1J
+T19NU0dfVFlQRV9SRVFVRVNUwqDCoMKgwqDCoMKgwqAgMHgwCj4+PiArI2RlZmluZcKgwqAgR1VD
+X01NSU9fTVNHX1RZUEVfUkVTUE9OU0XCoMKgwqDCoMKgwqDCoCAweEYKPj4+ICsjZGVmaW5lwqDC
+oCBHVUNfTU1JT19NU0dfVFlQRV9FUlJPUsKgwqDCoMKgwqDCoMKgIDB4RQo+Pj4gKyNkZWZpbmXC
+oMKgIEdVQ19NTUlPX01TR19UWVBFX0JVU1nCoMKgwqDCoMKgwqDCoCAweEIKPj4+ICsKPj4+ICsj
+ZGVmaW5lIEdVQ19NTUlPX01TR19NQUdJQ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKDB4RiA8PCAy
+NCkKPj4+ICsjZGVmaW5lwqDCoCBHVUNfTU1JT19NU0dfTUFHSUNfREVGQVVMVMKgwqDCoMKgwqDC
+oMKgIDB1Cj4+PiArCj4+PiArLyoqCj4+PiArICogRE9DOiBHdUMgTU1JTyBIMkcgUkVRVUVTVAo+
+Pj4gKyAqCj4+PiArICogVGhlIE1NSU8gSDJHIFJFUVVFU1QgbWVzc2FnZSBpcyB1c2VkIGJ5IHRo
+ZSBIb3N0IHRvIHJlcXVlc3Qgc29tZQo+Pj4gYWN0aW9uCj4+PiArICogdG8gYmUgcGVyZm9ybWVk
+IGJ5IHRoZSBHdUM6Ogo+Pj4gKyAqCj4+PiArICrCoMKgwqDCoMKgICs9PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Kwo+Pj4gKyAqwqDCoMKgwqDC
+oCB8wqAgU0NSQVRDSMKgIHzCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDC
+oMKgwqDCoCArPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PSsKPj4+ICsgKsKgwqDCoMKgwqAgfCAwIHwgMzE6MjggfCBtZXNzYWdlIFRZUEUgPSAw
+eDAgPSBSRVFVRVNUwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDCoMKgwqDC
+oCB8wqDCoCB8IDI3OjI0IHwgbWVzc2FnZSBNQUdJQ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwKPj4+ICsgKsKgwqDCoMKgwqAgfMKgwqAg
+fCAyMzoxNiB8IHJlcXVlc3QgU1VCQ09ERSAoZGVwZW5kcyBvbiBBQ1RJT04pwqDCoMKgwqDCoMKg
+IHwKPj4+ICsgKsKgwqDCoMKgwqAgfMKgwqAgfMKgIDE1OjAgfCByZXF1ZXN0IEFDVElPTiBjb2Rl
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDC
+oMKgwqDCoCArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLSsKPj4+ICsgKsKgwqDCoMKgwqAgfCAxIHzCoCAzMTowIHwgcmVxdWVzdCBEQVRBMSAo
+ZGVwZW5kcyBvbiBBQ1RJT04vU1VCQ09ERSkgfAo+Pj4gKyAqwqDCoMKgwqDCoCB8Li4ufMKgwqDC
+oMKgwqDCoCB8IHJlcXVlc3QgREFUQTIgKGRlcGVuZHMgb24gQUNUSU9OL1NVQkNPREUpIHwKPj4+
+ICsgKsKgwqDCoMKgwqAgfCBuIHzCoCAzMTowIHwgcmVxdWVzdCBEQVRBMyAoZGVwZW5kcyBvbiBB
+Q1RJT04vU1VCQ09ERSkgfAo+Pj4gKyAqwqDCoMKgwqDCoCArPT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSsKPj4+ICsgKgo+Pj4gKyAqIFdoZXJl
+Ogo+Pj4gKyAqwqAgLSAqKlRZUEUqKiBtdXN0IGJlIHNldCB0byB2YWx1ZSAweDAuCj4+PiArICrC
+oCAtICoqTUFHSUMqKiBtZXNzYWdlIHNlcXVlbmNlIG51bWJlciBpcyBnZW5lcmF0ZWQgYnkgdGhl
+IGhvc3QuCj4+PiArICrCoCAtICoqQUNUSU9OKiogcmVwcmVzZW50cyAxNmIgcmVxdWVzdCBhY3Rp
+b24gY29kZSB0aGF0IGRlZmluZXMgYm90aAo+Pj4gKyAqwqDCoMKgIHB1cnBvc2Ugb2YgdGhlIHJl
+cXVlc3QgYW5kIGZvcm1hdCBvZiB0aGUgcGFzc2VkIHBheWxvYWQgZGF0YS4KPj4+ICsgKsKgwqDC
+oCBMaXN0IG9mIHN1cHBvcnRlZCBjb2RlcyBkZXBlbmRzIG9uIEd1QyB2ZXJzaW9uIGFuZCBwbGFm
+b3JtLgo+Pj4gKyAqwqDCoMKgIEFjdGlvbiBjb2RlIGNhbid0IGJlIHplcm8uCj4+PiArICrCoCAt
+ICoqU1VCQ09ERSoqIGlzIG9wdGlvbmFsIDhiIGRhdGEgcmVsYXRlZCB0byB0aGUgKipBQ1RJT04q
+Ki4KPj4+ICsgKsKgwqDCoCBNQlogaWYgbm90IGV4cGxpY2l0bHkgZGVmaW5lZCBieSBnaXZlbiAq
+KkFDVElPTioqLgo+Pj4gKyAqwqAgLSAqKkRBVEExLi4zKiogYXJlIG9wdGlvbmFsIDMyYiBwYXls
+b2FkIGR3b3JkcyByZWxhdGVkIHRvCj4+PiAqKkFDVElPTioqLgo+Pj4gKyAqwqDCoMKgIEZvcm1h
+dCBvZiBlYWNoIGR3b3JkIGlzIGRlZmluZWQgYnkgc3BlY2lmaWMgKipBQ1RJT04qKi4KPj4+ICsg
+Ki8KPj4+ICsKPj4+ICsjZGVmaW5lIEdVQ19NTUlPX1JFUVVFU1RfU1VCQ09ERcKgwqDCoMKgwqDC
+oMKgICgweEZGIDw8IDE2KQo+Pj4gKyNkZWZpbmUgR1VDX01NSU9fUkVRVUVTVF9BQ1RJT07CoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgICgweEZGRkYgPDwgMCkKPj4+ICsjZGVmaW5lwqDCoCBHVUNfQUNU
+SU9OX0lOVkFMSUTCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4MDAwMAo+Pj4gKyNkZWZpbmXCoMKg
+IEdVQ19BQ1RJT05fUkVHSVNURVJfQ1RCwqDCoMKgwqDCoMKgwqAgMHg0NTA1Cj4+PiArI2RlZmlu
+ZcKgwqAgR1VDX0FDVElPTl9ERVJFR0lTVEVSX0NUQsKgwqDCoMKgwqDCoMKgIDB4NDUwNgo+PiBU
+aGVzZSBhcmUgbm93IGRlZmluZWQgdHdpY2UgKG9uY2UgaGVyZSBhbmQgb25jZSBpbiB0aGUgZW51
+bSkuIFdlIHNob3VsZAo+PiBwaWNrIG9uZSBmb3IgY29uc2lzdGVuY3kuCj4gd2UgY2FuIGRyb3Ag
+b2xkIG9uZXMgZnJvbSBpbnRlbF9ndWNfZndpZi5oCj4KPj4+ICsKPj4+ICsvKioKPj4+ICsgKiBE
+T0M6IEd1QyBNTUlPIEcySCBTVUNDRVNTIFJFU1BPTlNFCj4+PiArICoKPj4+ICsgKiBUaGUgTU1J
+TyBHMkggU1VDQ0VTUyBSRVNQT05TRSBtZXNzYWdlIGlzIHVzZWQgYnkgdGhlIEd1QyB0byByZXBs
+eSB0bwo+Pj4gKyAqIHRoZSBlYXJsaWVyIEgyRyByZXF1ZXN0IG1lc3NhZ2UuIFRoaXMgbWVzc2Fn
+ZSBpcyB1c2VkIGlmIG5vIGVycm9ycwo+Pj4gKyAqIHdlcmUgZW5jb3VudGVyZWQgYnkgdGhlIEd1
+QyBkdXJpbmcgcHJvY2Vzc2luZyBvZiB0aGUgcmVxdWVzdDo6Cj4+PiArICoKPj4+ICsgKsKgwqDC
+oMKgwqAgKz09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT0rCj4+PiArICrCoMKgwqDCoMKgIHzCoCBTQ1JBVENIwqAgfMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCB8Cj4+PiArICrCoMKgwqDCoMKgICs9PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Kwo+Pj4gKyAqwqDCoMKgwqDCoCB8IDAgfCAz
+MToyOCB8IG1lc3NhZ2UgVFlQRSA9IDB4RiA9IFNVQ0NFU1MgUkVTUE9OU0XCoMKgwqDCoCB8Cj4+
+PiArICrCoMKgwqDCoMKgIHzCoMKgIHwgMjc6MjQgfCBtZXNzYWdlIE1BR0lDwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDC
+oMKgwqDCoCB8wqDCoCB8wqAgMjM6MCB8IHJlc3BvbnNlIERBVEEwIChkZXBlbmRzIG9uIEFDVElP
+Ti9TVUJDT0RFKXwKPj4+ICsgKsKgwqDCoMKgwqAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4+PiArICrCoMKgwqDCoMKgIHwgMSB8wqAg
+MzE6MCB8IHJlc3BvbnNlIERBVEExIChkZXBlbmRzIG9uIEFDVElPTi9TVUJDT0RFKXwKPj4+ICsg
+KsKgwqDCoMKgwqAgfC4uLnzCoMKgwqDCoMKgwqAgfCByZXNwb25zZSBEQVRBMiAoZGVwZW5kcyBv
+biBBQ1RJT04vU1VCQ09ERSl8Cj4+PiArICrCoMKgwqDCoMKgIHwgbiB8wqAgMzE6MCB8IHJlc3Bv
+bnNlIERBVEEzIChkZXBlbmRzIG9uIEFDVElPTi9TVUJDT0RFKXwKPj4+ICsgKsKgwqDCoMKgwqAg
+Kz09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0r
+Cj4+PiArICoKPj4+ICsgKiBXaGVyZToKPj4+ICsgKsKgIC0gKipUWVBFKiogbXVzdCBiZSBzZXQg
+dG8gdmFsdWUgMHhGLgo+Pj4gKyAqwqAgLSAqKk1BR0lDKiogbXVzdCBtYXRjaCB2YWx1ZSB1c2Vk
+IGJ5IHRoZSBob3N0IGluICoqUkVRVUVTVCoqCj4+PiBtZXNzYWdlLgo+Pj4gKyAqwqAgLSAqKkRB
+VEEqKiBpcyBvcHRpb25hbCBwYXlsb2FkIGRhdGEgcmVsYXRlZCB0byAqKkFDVElPTioqLgo+Pj4g
+KyAqwqDCoMKgIEZvcm1hdCBpcyBkZWZpbmVkIGJ5IGVhY2ggKipBQ1RJT04qKiBzZXBhcmF0ZWx5
+Lgo+Pj4gKyAqLwo+Pj4gKwo+Pj4gKyNkZWZpbmUgR1VDX01NSU9fUkVTUE9OU0VfREFUQTDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgICgweEZGRkZGRiA8PCAwKQo+Pj4gKwo+Pj4gKy8qKgo+Pj4gKyAq
+IERPQzogR3VDIE1NSU8gRzJIIEVSUk9SIFJFU1BPTlNFCj4+PiArICoKPj4+ICsgKiBUaGUgTU1J
+TyBHMkggRVJST1IgUkVTUE9OU0UgbWVzc2FnZSBpcyB1c2VkIGJ5IHRoZSBHdUMgdG8gcmVwbHkg
+dG8KPj4+ICsgKiB0aGUgZWFybGllciBIMkcgcmVxdWVzdCBtZXNzYWdlLiBUaGlzIG1lc3NhZ2Ug
+aXMgdXNlZCBpZiBzb21lIGVycm9ycwo+Pj4gKyAqIHdlcmUgZW5jb3VudGVyZWQgYnkgdGhlIEd1
+QyBkdXJpbmcgcHJvY2Vzc2luZyBvZiB0aGUgcmVxdWVzdDo6Cj4+PiArICoKPj4+ICsgKsKgwqDC
+oMKgwqAgKz09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT0rCj4+PiArICrCoMKgwqDCoMKgIHzCoCBTQ1JBVENIwqAgfMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCB8Cj4+PiArICrCoMKgwqDCoMKgICs9PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Kwo+Pj4gKyAqwqDCoMKgwqDCoCB8IDAgfCAz
+MToyOCB8IG1lc3NhZ2UgVFlQRSA9IDB4RSA9IEVSUk9SIFJFU1BPTlNFwqDCoMKgwqDCoMKgIHwK
+Pj4+ICsgKsKgwqDCoMKgwqAgfMKgwqAgfCAyNzoyNCB8IG1lc3NhZ2UgTUFHSUPCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8Cj4+PiArICrC
+oMKgwqDCoMKgIHzCoMKgIHwgMjM6MTYgfCByZXNlcnZlZCBNQlrCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwKPj4+ICsgKsKgwqDCoMKg
+wqAgfMKgwqAgfMKgIDE1OjAgfCByZXNwb25zZSBTVEFUVVMgZmFpbHVyZSBjb2RlwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDCoMKgwqDCoCArLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPj4+ICsgKsKgwqDCoMKgwqAg
+fCAxIHzCoCAzMTowIHwgcmVzZXJ2ZWQgTUJawqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8Cj4+PiArICrCoMKgwqDCoMKgIHwuLi58wqDC
+oMKgwqDCoMKgIHwgcmVzZXJ2ZWQgTUJawqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8Cj4+PiArICrCoMKgwqDCoMKgIHwgbiB8wqAgMzE6
+MCB8IHJlc2VydmVkIE1CWsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDCoMKgwqDCoCArPT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSsKPj4+ICsgKgo+Pj4gKyAqIFdo
+ZXJlOgo+Pj4gKyAqwqAgLSAqKlRZUEUqKiBtdXN0IGJlIHNldCB0byB2YWx1ZSAweEUuCj4+PiAr
+ICrCoCAtICoqTUFHSUMqKiBtdXN0IG1hdGNoIHZhbHVlIHVzZWQgYnkgdGhlIGhvc3QgaW4gKipS
+RVFVRVNUKioKPj4+IG1lc3NhZ2UuCj4+PiArICrCoCAtICoqU1RBVFVTKiogcmVwcmVzZW50cyBu
+b24temVybyBmYWlsdXJlIGNvZGUuCj4+PiArICovCj4+PiArCj4+PiArI2RlZmluZSBHVUNfTU1J
+T19FUlJPUl9TVEFUVVPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICgweEZGRkYgPDwgMCkKPj4+ICsj
+ZGVmaW5lwqDCoCBHVUNfU1RBVFVTX1VOS05PV05fQUNUSU9OwqDCoMKgwqDCoMKgwqAgMHgzMAo+
+Pj4gKyNkZWZpbmXCoMKgIEdVQ19TVEFUVVNfSU5WQUxJRF9QQVJBTVPCoMKgwqDCoMKgwqDCoCAw
+eDYwCj4+PiArI2RlZmluZcKgwqAgR1VDX1NUQVRVU19JTlZBTElEX0FERFLCoMKgwqDCoMKgwqDC
+oCAweDgwCj4+PiArI2RlZmluZcKgwqAgR1VDX1NUQVRVU19DVFhfTk9UX1JFR0lTVEVSRUTCoMKg
+wqDCoMKgwqDCoCAweDEwMAo+Pj4gKyNkZWZpbmXCoMKgIEdVQ19TVEFUVVNfTk9fTE9DQUxfTUVN
+T1JZwqDCoMKgwqDCoMKgwqAgMHgyMDAKPj4+ICsjZGVmaW5lwqDCoCBHVUNfU1RBVFVTX05PX1ZJ
+UlRVQUxJWkFUSU9OwqDCoMKgwqDCoMKgwqAgMHgzMDAKPj4+ICsjZGVmaW5lwqDCoCBHVUNfU1RB
+VFVTX0NUQl9GVUxMwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDMwMQo+Pj4gKyNkZWZpbmXCoMKg
+IEdVQ19TVEFUVVNfVU5BVVRIT1JJWkVEX1JFUVVFU1TCoMKgwqAgMHgzMDIKPj4+ICsjZGVmaW5l
+wqDCoCBHVUNfU1RBVFVTX0dFTkVSSUNfRkFJTMKgwqDCoMKgwqDCoMKgIDB4RjAwMAo+Pj4gKwo+
+Pj4gKy8qKgo+Pj4gKyAqIERPQzogTU1JTyBHMkggQlVTWSBSRVNQT05TRQo+Pj4gKyAqCj4+PiAr
+ICogVGhlIE1NSU8gRzJIIEJVU1kgUkVTUE9OU0UgbWVzc2FnZSBpcyB1c2VkIGJ5IHRoZSBHdUMg
+dG8gcmVwbHkgdG8KPj4+ICsgKiB0aGUgZWFybGllciBIMkcgcmVxdWVzdCBtZXNzYWdlLiBUaGlz
+IG1lc3NhZ2UgaXMgdXNlZCBpZiBwcm9jZXNzaW5nCj4+PiArICogb2YgdGhlIHJlcXVlc3Qgd2ls
+bCB0YWtlIGxvbmdlciB0aW1lIGFuZCBmaW5hbCBTVUNDRVNTL0VSUk9SIHJlc3BvbnNlCj4+PiAr
+ICogbWVzc2FnZSB3aWxsIGJlIGRlbGl2ZXJlZCBsYXRlcjo6Cj4+PiArICoKPj4+ICsgKsKgwqDC
+oMKgwqAgKz09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT0rCj4+PiArICrCoMKgwqDCoMKgIHzCoCBTQ1JBVENIwqAgfMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCB8Cj4+PiArICrCoMKgwqDCoMKgICs9PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Kwo+Pj4gKyAqwqDCoMKgwqDCoCB8IDAgfCAz
+MToyOCB8IG1lc3NhZ2UgVFlQRSA9IDB4QiA9IEJVU1kgUkVTUE9OU0XCoMKgwqDCoMKgwqDCoCB8
+Cj4+PiArICrCoMKgwqDCoMKgIHzCoMKgIHwgMjc6MjQgfCBtZXNzYWdlIE1BR0lDwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAq
+wqDCoMKgwqDCoCB8wqDCoCB8wqAgMjM6MCB8IHJlc2VydmVkIE1CWsKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDCoMKg
+wqDCoCArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLSsKPj4+ICsgKsKgwqDCoMKgwqAgfCAxIHzCoCAzMTowIHwgcmVzZXJ2ZWQgTUJawqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8Cj4+
+PiArICrCoMKgwqDCoMKgIHwuLi58wqDCoMKgwqDCoMKgIHwgcmVzZXJ2ZWQgTUJawqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8Cj4+PiAr
+ICrCoMKgwqDCoMKgIHwgbiB8wqAgMzE6MCB8IHJlc2VydmVkIE1CWsKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDCoMKg
+wqDCoCArPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PSsKPj4+ICsgKgo+Pj4gKyAqIFdoZXJlOgo+Pj4gKyAqwqAgLSAqKlRZUEUqKiBtdXN0IGJl
+IHNldCB0byB2YWx1ZSAweEIuCj4+PiArICrCoCAtICoqTUFHSUMqKiBtdXN0IG1hdGNoIHZhbHVl
+IHVzZWQgYnkgdGhlIGhvc3QgaW4gKipSRVFVRVNUKioKPj4+IG1lc3NhZ2UuCj4+PiArICrCoCAt
+IGFsbCBvdGhlciBiaXRzIGFyZSByZXNlcnZlZCBhcyBNQlouCj4+PiArICovCj4+PiArCj4+PiAr
+I2VuZGlmIC8qIF9fSU5URUxfR1VDX0FCSV9IX18gKi8KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfYWRzLmMKPj4+IGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2Fkcy5jCj4+PiBpbmRleCBkNDQwNjEwMzNmMjMuLmU2NmNi
+ZjFiZTMyMCAxMDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVs
+X2d1Y19hZHMuYwo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3Vj
+X2Fkcy5jCj4+PiBAQCAtMTAsMTEgKzEwLDUyIEBACj4+PiAgwqAgwqAgLyoKPj4+ICDCoMKgICog
+VGhlIEFkZGl0aW9uYWwgRGF0YSBTdHJ1Y3QgKEFEUykgaGFzIHBvaW50ZXJzIGZvciBkaWZmZXJl
+bnQKPj4+IGJ1ZmZlcnMgdXNlZCBieQo+Pj4gLSAqIHRoZSBHdUMuIE9uZSBzaW5nbGUgZ2VtIG9i
+amVjdCBjb250YWlucyB0aGUgQURTIHN0cnVjdCBpdHNlbGYKPj4+IChndWNfYWRzKSwgdGhlCj4+
+PiAtICogc2NoZWR1bGluZyBwb2xpY2llcyAoZ3VjX3BvbGljaWVzKSwgYSBzdHJ1Y3R1cmUgZGVz
+Y3JpYmluZyBhCj4+PiBjb2xsZWN0aW9uIG9mCj4+PiAtICogcmVnaXN0ZXIgc2V0cyAoZ3VjX21t
+aW9fcmVnX3N0YXRlKSBhbmQgc29tZSBleHRyYSBwYWdlcyBmb3IgdGhlCj4+PiBHdUMgdG8gc2F2
+ZQo+Pj4gLSAqIGl0cyBpbnRlcm5hbCBzdGF0ZSBmb3Igc2xlZXAuCj4+PiArICogdGhlIEd1Qy4g
+T25lIHNpbmdsZSBnZW0gb2JqZWN0IGNvbnRhaW5zIHRoZSBBRFMgc3RydWN0IGl0c2VsZgo+Pj4g
+KGd1Y19hZHMpIGFuZAo+Pj4gKyAqIGFsbCB0aGUgZXh0cmEgYnVmZmVycyBpbmRpcmVjdGx5IGxp
+bmtlZCB2aWEgdGhlIEFEUyBzdHJ1Y3QncyBlbnRpcmVzLgo+Pj4gKyAqCj4+PiArICogTGF5b3V0
+IG9mIHRoZSBBRFMgYmxvYiBhbGxvY2F0ZWQgZm9yIHRoZSBHdUM6Cj4+PiArICoKPj4+ICsgKsKg
+wqDCoMKgwqAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsgPD09IGJh
+c2UKPj4+ICsgKsKgwqDCoMKgwqAgfCBndWNfYWRzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwKPj4+ICsgKsKgwqDCoMKgwqAgKy0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPj4+ICsgKsKgwqDCoMKgwqAg
+fCBndWNfcG9saWNpZXPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCB8Cj4+PiArICrCoMKgwqDCoMKgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0rCj4+PiArICrCoMKgwqDCoMKgIHwgZ3VjX2d0X3N5c3RlbV9pbmZvwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDCoMKgwqDCoCArLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+Pj4gKyAqwqDCoMKgwqDCoCB8
+IGd1Y19jbGllbnRzX2luZm/CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgfAo+Pj4gKyAqwqDCoMKgwqDCoCArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tKwo+Pj4gKyAqwqDCoMKgwqDCoCB8IGd1Y19jdF9wb29sX2VudHJ5W3NpemVdwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8Cj4+PiArICrCoMKgwqDCoMKgICstLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4+PiArICrCoMKgwqDCoMKgIHwgcGFkZGluZ8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCB8Cj4+PiArICrCoMKgwqDCoMKgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0rIDw9PSA0SyBhbGlnbmVkCj4+PiArICrCoMKgwqDCoMKgIHwgcHJpdmF0ZSBkYXRhwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAq
+wqDCoMKgwqDCoCArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+Pj4g
+KyAqwqDCoMKgwqDCoCB8IHBhZGRpbmfCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gKyAqwqDCoMKgwqDCoCArLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKyA8PT0gNEsgYWxpZ25lZAo+Pj4gIMKgwqAg
+Ki8KPj4gSSB0aGluayBpdCB3ZSBjb3VsZCBleHBhbmQgdGhlIGNvbW1lbnQgKG9yIGFkZCBhIG5l
+dyBvbmUpIHRvIG1ha2UgY2xlYXIKPj4gdGhhdCB0aGUgcHJpdmF0ZSBkYXRhIGlzIG5vdCBpbmNs
+dWRlZCBpbiB0aGUgX19ndWNfYWRzX2Jsb2IgdG8ga2VlcAo+PiB0aGluZ3Mgc2ltcGxlIHNpbmNl
+IGl0IGlzIHZhcmlhYmxlIGluIHNpemUsIGJ1dCBpdCBpcyBzdGlsbCBwYXJ0IG9mIHRoZQo+PiBh
+ZHNfYmxvYnBhc3NlcyB0byBHdUMuCj4+Cj4+PiArc3RydWN0IF9fZ3VjX2Fkc19ibG9iIHsKPj4+
+ICvCoMKgwqAgc3RydWN0IGd1Y19hZHMgYWRzOwo+Pj4gK8KgwqDCoCBzdHJ1Y3QgZ3VjX3BvbGlj
+aWVzIHBvbGljaWVzOwo+Pj4gK8KgwqDCoCBzdHJ1Y3QgZ3VjX2d0X3N5c3RlbV9pbmZvIHN5c3Rl
+bV9pbmZvOwo+Pj4gK8KgwqDCoCBzdHJ1Y3QgZ3VjX2NsaWVudHNfaW5mbyBjbGllbnRzX2luZm87
+Cj4+PiArwqDCoMKgIHN0cnVjdCBndWNfY3RfcG9vbF9lbnRyeSBjdF9wb29sW0dVQ19DVF9QT09M
+X1NJWkVdOwo+Pj4gK30gX19wYWNrZWQ7Cj4+PiArCj4+PiArc3RhdGljIHUzMiBndWNfYWRzX3By
+aXZhdGVfZGF0YV9zaXplKHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKPj4+ICt7Cj4+PiArwqDCoMKg
+IHJldHVybiBQQUdFX0FMSUdOKGd1Yy0+ZncucHJpdmF0ZV9kYXRhX3NpemUpOwo+Pj4gK30KPj4+
+ICsKPj4+ICtzdGF0aWMgdTMyIGd1Y19hZHNfcHJpdmF0ZV9kYXRhX29mZnNldChzdHJ1Y3QgaW50
+ZWxfZ3VjICpndWMpCj4+PiArewo+Pj4gK8KgwqDCoCByZXR1cm4gUEFHRV9BTElHTihzaXplb2Yo
+c3RydWN0IF9fZ3VjX2Fkc19ibG9iKSk7Cj4+PiArfQo+Pj4gKwo+Pj4gK3N0YXRpYyB1MzIgZ3Vj
+X2Fkc19ibG9iX3NpemUoc3RydWN0IGludGVsX2d1YyAqZ3VjKQo+Pj4gK3sKPj4+ICvCoMKgwqAg
+cmV0dXJuIGd1Y19hZHNfcHJpdmF0ZV9kYXRhX29mZnNldChndWMpICsKPj4+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBndWNfYWRzX3ByaXZhdGVfZGF0YV9zaXplKGd1Yyk7Cj4+PiArfQo+Pj4gIMKg
+IMKgIHN0YXRpYyB2b2lkIGd1Y19wb2xpY3lfaW5pdChzdHJ1Y3QgZ3VjX3BvbGljeSAqcG9saWN5
+KQo+Pj4gIMKgIHsKPj4+IEBAIC00OCwyMyArODksMzMgQEAgc3RhdGljIHZvaWQgZ3VjX2N0X3Bv
+b2xfZW50cmllc19pbml0KHN0cnVjdAo+Pj4gZ3VjX2N0X3Bvb2xfZW50cnkgKnBvb2wsIHUzMiBu
+dW0pCj4+PiAgwqDCoMKgwqDCoCBtZW1zZXQocG9vbCwgMCwgbnVtICogc2l6ZW9mKCpwb29sKSk7
+Cj4+PiAgwqAgfQo+Pj4gIMKgICtzdGF0aWMgdm9pZCBndWNfbWFwcGluZ190YWJsZV9pbml0KHN0
+cnVjdCBpbnRlbF9ndCAqZ3QsCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIHN0cnVjdCBndWNfZ3Rfc3lzdGVtX2luZm8gKnN5c3RlbV9pbmZvKQo+Pj4gK3sKPj4+ICvC
+oMKgwqAgdW5zaWduZWQgaW50IGksIGo7Cj4+PiArwqDCoMKgIHN0cnVjdCBpbnRlbF9lbmdpbmVf
+Y3MgKmVuZ2luZTsKPj4+ICvCoMKgwqAgZW51bSBpbnRlbF9lbmdpbmVfaWQgaWQ7Cj4+PiArCj4+
+PiArwqDCoMKgIC8qIFRhYmxlIG11c3QgYmUgc2V0IHRvIGludmFsaWQgdmFsdWVzIGZvciBlbnRy
+aWVzIG5vdCB1c2VkICovCj4+PiArwqDCoMKgIGZvciAoaSA9IDA7IGkgPCBHVUNfTUFYX0VOR0lO
+RV9DTEFTU0VTOyArK2kpCj4+PiArwqDCoMKgwqDCoMKgwqAgZm9yIChqID0gMDsgaiA8IEdVQ19N
+QVhfSU5TVEFOQ0VTX1BFUl9DTEFTUzsgKytqKQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+c3lzdGVtX2luZm8tPm1hcHBpbmdfdGFibGVbaV1bal0gPQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCBHVUNfTUFYX0lOU1RBTkNFU19QRVJfQ0xBU1M7Cj4+PiArCj4+PiArwqDC
+oMKgIGZvcl9lYWNoX2VuZ2luZShlbmdpbmUsIGd0LCBpZCkgewo+Pj4gK8KgwqDCoMKgwqDCoMKg
+IHU4IGd1Y19jbGFzcyA9IGVuZ2luZS0+Y2xhc3M7Cj4+PiArCj4+PiArwqDCoMKgwqDCoMKgwqAg
+c3lzdGVtX2luZm8tPm1hcHBpbmdfdGFibGVbZ3VjX2NsYXNzXVtlbmdpbmUtPmluc3RhbmNlXQo+
+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPSBlbmdpbmUtPmluc3RhbmNlOwo+Pj4gK8KgwqDC
+oCB9Cj4+PiArfQo+Pj4gKwo+Pj4gIMKgIC8qCj4+PiAgwqDCoCAqIFRoZSBmaXJzdCA4MCBkd29y
+ZHMgb2YgdGhlIHJlZ2lzdGVyIHN0YXRlIGNvbnRleHQsIGNvbnRhaW5pbmcgdGhlCj4+PiAgwqDC
+oCAqIGV4ZWNsaXN0cyBhbmQgcHBndHQgcmVnaXN0ZXJzLgo+Pj4gIMKgwqAgKi8KPj4+ICDCoCAj
+ZGVmaW5lIExSX0hXX0NPTlRFWFRfU0laRcKgwqDCoCAoODAgKiBzaXplb2YodTMyKSkKPj4+ICDC
+oCAtLyogVGhlIGFkcyBvYmogaW5jbHVkZXMgdGhlIHN0cnVjdCBpdHNlbGYgYW5kIGJ1ZmZlcnMg
+cGFzc2VkIHRvIEd1QyAqLwo+Pj4gLXN0cnVjdCBfX2d1Y19hZHNfYmxvYiB7Cj4+PiAtwqDCoMKg
+IHN0cnVjdCBndWNfYWRzIGFkczsKPj4+IC3CoMKgwqAgc3RydWN0IGd1Y19wb2xpY2llcyBwb2xp
+Y2llczsKPj4+IC3CoMKgwqAgc3RydWN0IGd1Y19tbWlvX3JlZ19zdGF0ZSByZWdfc3RhdGU7Cj4+
+PiAtwqDCoMKgIHN0cnVjdCBndWNfZ3Rfc3lzdGVtX2luZm8gc3lzdGVtX2luZm87Cj4+PiAtwqDC
+oMKgIHN0cnVjdCBndWNfY2xpZW50c19pbmZvIGNsaWVudHNfaW5mbzsKPj4+IC3CoMKgwqAgc3Ry
+dWN0IGd1Y19jdF9wb29sX2VudHJ5IGN0X3Bvb2xbR1VDX0NUX1BPT0xfU0laRV07Cj4+PiAtwqDC
+oMKgIHU4IHJlZ19zdGF0ZV9idWZmZXJbR1VDX1MzX1NBVkVfU1BBQ0VfUEFHRVMgKiBQQUdFX1NJ
+WkVdOwo+Pj4gLX0gX19wYWNrZWQ7Cj4+PiAtCj4+PiAgwqAgc3RhdGljIHZvaWQgX19ndWNfYWRz
+X2luaXQoc3RydWN0IGludGVsX2d1YyAqZ3VjKQo+Pj4gIMKgIHsKPj4+ICDCoMKgwqDCoMKgIHN0
+cnVjdCBpbnRlbF9ndCAqZ3QgPSBndWNfdG9fZ3QoZ3VjKTsKPj4+IEBAIC0xMDcsNiArMTU4LDE2
+IEBAIHN0YXRpYyB2b2lkIF9fZ3VjX2Fkc19pbml0KHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKPj4+
+ICDCoMKgwqDCoMKgIGJsb2ItPnN5c3RlbV9pbmZvLnZlYm94X2VuYWJsZV9tYXNrID0gVkVCT1hf
+TUFTSyhndCk7Cj4+PiAgwqDCoMKgwqDCoCBibG9iLT5zeXN0ZW1faW5mby52ZGJveF9zZmNfc3Vw
+cG9ydF9tYXNrID0KPj4+IGd0LT5pbmZvLnZkYm94X3NmY19hY2Nlc3M7Cj4+PiAgwqAgK8KgwqDC
+oCBpZiAoSU5URUxfR0VOKGd0LT5pOTE1KSA+PSAxMiAmJiAhSVNfREdGWChndC0+aTkxNSkpIHsK
+Pj4+ICvCoMKgwqDCoMKgwqDCoCB1MzIgZGlzdGRicmVnID0gaW50ZWxfdW5jb3JlX3JlYWQoZ3Qt
+PnVuY29yZSwKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBHRU4xMl9ESVNUX0RCU19QT1BVTEFURUQpOwo+Pj4gK8KgwqDCoMKgwqDCoMKgIGJs
+b2ItPnN5c3RlbV9pbmZvLm51bV9vZl9kb29yYmVsbHNfcGVyX3NxaWRpID0KPj4+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgICgoZGlzdGRicmVnID4+IEdFTjEyX0RPT1JCRUxMU19QRVJfU1FJRElf
+U0hJRlQpICYKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgR0VOMTJfRE9PUkJFTExTX1BF
+Ul9TUUlESSkgKyAxOwo+Pj4gK8KgwqDCoCB9Cj4+PiArCj4+PiArwqDCoMKgIGd1Y19tYXBwaW5n
+X3RhYmxlX2luaXQoZ3VjX3RvX2d0KGd1YyksICZibG9iLT5zeXN0ZW1faW5mbyk7Cj4+PiArCj4+
+PiAgwqDCoMKgwqDCoCBiYXNlID0gaW50ZWxfZ3VjX2dndHRfb2Zmc2V0KGd1YywgZ3VjLT5hZHNf
+dm1hKTsKPj4+ICDCoCDCoMKgwqDCoMKgIC8qIENsaWVudHMgaW5mb8KgICovCj4+PiBAQCAtMTE4
+LDExICsxNzksMTIgQEAgc3RhdGljIHZvaWQgX19ndWNfYWRzX2luaXQoc3RydWN0IGludGVsX2d1
+YyAqZ3VjKQo+Pj4gIMKgIMKgwqDCoMKgwqAgLyogQURTICovCj4+PiAgwqDCoMKgwqDCoCBibG9i
+LT5hZHMuc2NoZWR1bGVyX3BvbGljaWVzID0gYmFzZSArIHB0cl9vZmZzZXQoYmxvYiwgcG9saWNp
+ZXMpOwo+Pj4gLcKgwqDCoCBibG9iLT5hZHMucmVnX3N0YXRlX2J1ZmZlciA9IGJhc2UgKyBwdHJf
+b2Zmc2V0KGJsb2IsCj4+PiByZWdfc3RhdGVfYnVmZmVyKTsKPj4+IC3CoMKgwqAgYmxvYi0+YWRz
+LnJlZ19zdGF0ZV9hZGRyID0gYmFzZSArIHB0cl9vZmZzZXQoYmxvYiwgcmVnX3N0YXRlKTsKPj4+
+ICDCoMKgwqDCoMKgIGJsb2ItPmFkcy5ndF9zeXN0ZW1faW5mbyA9IGJhc2UgKyBwdHJfb2Zmc2V0
+KGJsb2IsIHN5c3RlbV9pbmZvKTsKPj4+ICDCoMKgwqDCoMKgIGJsb2ItPmFkcy5jbGllbnRzX2lu
+Zm8gPSBiYXNlICsgcHRyX29mZnNldChibG9iLCBjbGllbnRzX2luZm8pOwo+Pj4gIMKgICvCoMKg
+wqAgLyogUHJpdmF0ZSBEYXRhICovCj4+PiArwqDCoMKgIGJsb2ItPmFkcy5wcml2YXRlX2RhdGEg
+PSBiYXNlICsgZ3VjX2Fkc19wcml2YXRlX2RhdGFfb2Zmc2V0KGd1Yyk7Cj4+PiArCj4+PiAgwqDC
+oMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfZmx1c2hfbWFwKGd1Yy0+YWRzX3ZtYS0+b2JqKTsKPj4+
+ICDCoCB9Cj4+PiAgwqAgQEAgLTEzNSwxNCArMTk3LDE1IEBAIHN0YXRpYyB2b2lkIF9fZ3VjX2Fk
+c19pbml0KHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKPj4+ICDCoMKgICovCj4+PiAgwqAgaW50IGlu
+dGVsX2d1Y19hZHNfY3JlYXRlKHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKPj4+ICDCoCB7Cj4+PiAt
+wqDCoMKgIGNvbnN0IHUzMiBzaXplID0gUEFHRV9BTElHTihzaXplb2Yoc3RydWN0IF9fZ3VjX2Fk
+c19ibG9iKSk7Cj4+PiArwqDCoMKgIHUzMiBzaXplOwo+Pj4gIMKgwqDCoMKgwqAgaW50IHJldDsK
+Pj4+ICDCoCDCoMKgwqDCoMKgIEdFTV9CVUdfT04oZ3VjLT5hZHNfdm1hKTsKPj4+ICDCoCArwqDC
+oMKgIHNpemUgPSBndWNfYWRzX2Jsb2Jfc2l6ZShndWMpOwo+Pj4gKwo+Pj4gIMKgwqDCoMKgwqAg
+cmV0ID0gaW50ZWxfZ3VjX2FsbG9jYXRlX2FuZF9tYXBfdm1hKGd1Yywgc2l6ZSwgJmd1Yy0+YWRz
+X3ZtYSwKPj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgICh2b2lkICoqKSZndWMtPmFkc19ibG9iKTsKPj4+IC0KPj4+ICDCoMKgwqDCoMKgIGlm
+IChyZXQpCj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiByZXQ7Cj4+PiAgwqAgQEAgLTE1
+Niw2ICsyMTksMTggQEAgdm9pZCBpbnRlbF9ndWNfYWRzX2Rlc3Ryb3koc3RydWN0IGludGVsX2d1
+YyAqZ3VjKQo+Pj4gIMKgwqDCoMKgwqAgaTkxNV92bWFfdW5waW5fYW5kX3JlbGVhc2UoJmd1Yy0+
+YWRzX3ZtYSwgSTkxNV9WTUFfUkVMRUFTRV9NQVApOwo+Pj4gIMKgIH0KPj4+ICDCoCArdm9pZCBn
+dWNfYWRzX3ByaXZhdGVfZGF0YV9yZXNldChzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpCj4+PiArewo+
+Pj4gK8KgwqDCoCB1MzIgc2l6ZTsKPj4+ICsKPj4+ICvCoMKgwqAgc2l6ZSA9IGd1Y19hZHNfcHJp
+dmF0ZV9kYXRhX3NpemUoZ3VjKTsKPj4+ICvCoMKgwqAgaWYgKCFzaXplKQo+Pj4gK8KgwqDCoMKg
+wqDCoMKgIHJldHVybjsKPj4+ICsKPj4+ICvCoMKgwqAgbWVtc2V0KCh2b2lkICopZ3VjLT5hZHNf
+YmxvYiArIGd1Y19hZHNfcHJpdmF0ZV9kYXRhX29mZnNldChndWMpLCAwLAo+Pj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgIHNpemUpOwo+Pj4gK30KPj4+ICsKPj4+ICDCoCAvKioKPj4+ICDCoMKgICog
+aW50ZWxfZ3VjX2Fkc19yZXNldCgpIC0gcHJlcGFyZXMgR3VDIEFkZGl0aW9uYWwgRGF0YSBTdHJ1
+Y3QgZm9yCj4+PiByZXVzZQo+Pj4gIMKgwqAgKiBAZ3VjOiBpbnRlbF9ndWMgc3RydWN0Cj4+PiBA
+QCAtMTY4LDUgKzI0Myw4IEBAIHZvaWQgaW50ZWxfZ3VjX2Fkc19yZXNldChzdHJ1Y3QgaW50ZWxf
+Z3VjICpndWMpCj4+PiAgwqAgewo+Pj4gIMKgwqDCoMKgwqAgaWYgKCFndWMtPmFkc192bWEpCj4+
+PiAgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybjsKPj4+ICsKPj4+ICDCoMKgwqDCoMKgIF9fZ3Vj
+X2Fkc19pbml0KGd1Yyk7Cj4+PiArCj4+PiArwqDCoMKgIGd1Y19hZHNfcHJpdmF0ZV9kYXRhX3Jl
+c2V0KGd1Yyk7Cj4+PiAgwqAgfQo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L3VjL2ludGVsX2d1Y19mdy5jCj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2lu
+dGVsX2d1Y19mdy5jCj4+PiBpbmRleCBkNGE4N2Y0Yzk0MjEuLjIxMmRlMGE5MzliZiAxMDA2NDQK
+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19mdy5jCj4+PiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfZncuYwo+Pj4gQEAgLTc0
+LDggKzc0LDkgQEAgc3RhdGljIGlubGluZSBib29sIGd1Y19yZWFkeShzdHJ1Y3QgaW50ZWxfdW5j
+b3JlCj4+PiAqdW5jb3JlLCB1MzIgKnN0YXR1cykKPj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgKCh2
+YWwgJiBHU19NSUFfQ09SRV9TVEFURSkgJiYgKHVrX3ZhbCA9PQo+Pj4gR1NfVUtFUk5FTF9MQVBJ
+Q19ET05FKSk7Cj4+PiAgwqAgfQo+Pj4gIMKgIC1zdGF0aWMgaW50IGd1Y193YWl0X3Vjb2RlKHN0
+cnVjdCBpbnRlbF91bmNvcmUgKnVuY29yZSkKPj4+ICtzdGF0aWMgaW50IGd1Y193YWl0X3Vjb2Rl
+KHN0cnVjdCBpbnRlbF9ndCAqZ3QpCj4+PiAgwqAgewo+Pj4gK8KgwqDCoCBzdHJ1Y3QgaW50ZWxf
+dW5jb3JlICp1bmNvcmUgPSBndC0+dW5jb3JlOwo+PiBUaGUgZ3Qgc2VlbXMgdG8gYmUgdXNlZCBv
+bmx5IGZvciBndC0+aTkxNSwgd2h5IG5vdCBqdXN0IHVzZSB1bmNvcmUtPmk5MTU/Cj4+Cj4+PiAg
+wqDCoMKgwqDCoCB1MzIgc3RhdHVzOwo+Pj4gIMKgwqDCoMKgwqAgaW50IHJldDsKPj4+ICDCoCBA
+QCAtOTMsMTIgKzk0LDI0IEBAIHN0YXRpYyBpbnQgZ3VjX3dhaXRfdWNvZGUoc3RydWN0IGludGVs
+X3VuY29yZQo+Pj4gKnVuY29yZSkKPj4+ICDCoMKgwqDCoMKgIGlmICgoc3RhdHVzICYgR1NfQk9P
+VFJPTV9NQVNLKSA9PSBHU19CT09UUk9NX1JTQV9GQUlMRUQpIHsKPj4+ICDCoMKgwqDCoMKgwqDC
+oMKgwqAgRFJNX0VSUk9SKCJHdUMgZmlybXdhcmUgc2lnbmF0dXJlIHZlcmlmaWNhdGlvbiBmYWls
+ZWRcbiIpOwo+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoCByZXQgPSAtRU5PRVhFQzsKPj4+IC3CoMKg
+wqAgfQo+Pj4gLQo+Pj4gK8KgwqDCoCB9IGVsc2UKPj4+ICDCoMKgwqDCoMKgIGlmICgoc3RhdHVz
+ICYgR1NfVUtFUk5FTF9NQVNLKSA9PSBHU19VS0VSTkVMX0VYQ0VQVElPTikgewo+Pj4gIMKgwqDC
+oMKgwqDCoMKgwqDCoCBEUk1fRVJST1IoIkd1QyBmaXJtd2FyZSBleGNlcHRpb24uIEVJUDogJSN4
+XG4iLAo+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbnRlbF91bmNvcmVfcmVh
+ZCh1bmNvcmUsIFNPRlRfU0NSQVRDSCgxMykpKTsKPj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0
+ID0gLUVOWElPOwo+Pj4gK8KgwqDCoCB9IGVsc2UKPj4+ICvCoMKgwqAgaWYgKHJldCkgewo+Pj4g
+K8KgwqDCoMKgwqDCoMKgIGk5MTVfcHJvYmVfZXJyb3IoZ3QtPmk5MTUsICJHdUMgbG9hZCBmYWls
+ZWQ6IHN0YXR1cyA9IDB4JTA4WFxuIiwKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBzdGF0dXMpOwo+Pj4gK8KgwqDCoMKgwqDCoMKgIGk5MTVfcHJvYmVfZXJyb3IoZ3QtPmk5
+MTUsICJHdUMgc3RhdHVzOiBSZXNldCA9ICVkLCAiCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgIkJvb3RST00gPSAweCUwMlgsIFVLZXJuZWwgPSAweCUwMlgsICIKPj4+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiTUlBID0gMHglMDJYLCBBdXRoID0gMHgl
+MDJYXG4iLAo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIChzdGF0dXMgPj4g
+R1NfUkVTRVRfU0hJRlQpICYgMSwKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCAoc3RhdHVzICYgR1NfQk9PVFJPTV9NQVNLKSA+PiBHU19CT09UUk9NX1NISUZULAo+Pj4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIChzdGF0dXMgJiBHU19VS0VSTkVMX01BU0sp
+ID4+IEdTX1VLRVJORUxfU0hJRlQsCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgKHN0YXR1cyAmIEdTX01JQV9NQVNLKSA+PiBHU19NSUFfU0hJRlQsCj4+PiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKHN0YXR1cyAmIEdTX0FVVEhfU1RBVFVTX01BU0spID4+
+Cj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBHU19BVVRIX1NUQVRVU19TSElGVCk7Cj4+IG5pdDogSSB0aGluayB1c2luZyB0aGUg
+RklFTERfR0VUIG1hY3JvIGhlcmUgYXMgd2VsbCBjb3VsZCBtYWtlIHRoaW5ncwo+PiBjbGVhbmVy
+Cj4+Cj4+PiAgwqDCoMKgwqDCoCB9Cj4+PiAgwqAgwqDCoMKgwqDCoCByZXR1cm4gcmV0Owo+Pj4g
+QEAgLTEzOSw3ICsxNTIsNyBAQCBpbnQgaW50ZWxfZ3VjX2Z3X3VwbG9hZChzdHJ1Y3QgaW50ZWxf
+Z3VjICpndWMpCj4+PiAgwqDCoMKgwqDCoCBpZiAocmV0KQo+Pj4gIMKgwqDCoMKgwqDCoMKgwqDC
+oCBnb3RvIG91dDsKPj4+ICDCoCAtwqDCoMKgIHJldCA9IGd1Y193YWl0X3Vjb2RlKHVuY29yZSk7
+Cj4+PiArwqDCoMKgIHJldCA9IGd1Y193YWl0X3Vjb2RlKGd0KTsKPj4+ICDCoMKgwqDCoMKgIGlm
+IChyZXQpCj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gb3V0Owo+Pj4gIMKgIGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfZndpZi5oCj4+PiBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19md2lmLmgKPj4+IGluZGV4IGE2Yjcz
+M2MxNDZjOS4uNzdlNDlkNTNiYjVjIDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3QvdWMvaW50ZWxfZ3VjX2Z3aWYuaAo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvdWMvaW50ZWxfZ3VjX2Z3aWYuaAo+Pj4gQEAgLTI3LDcgKzI3LDcgQEAKPj4+ICDCoCAjZGVm
+aW5lIEdVQ19NQVhfRU5HSU5FU19OVU3CoMKgwqDCoMKgwqDCoCAoR1VDX1ZJREVPX0VOR0lORTIg
+KyAxKQo+Pj4gIMKgIMKgICNkZWZpbmUgR1VDX01BWF9FTkdJTkVfQ0xBU1NFU8KgwqDCoMKgwqDC
+oMKgIDUKPj4+IC0jZGVmaW5lIEdVQ19NQVhfSU5TVEFOQ0VTX1BFUl9DTEFTU8KgwqDCoCAxNgo+
+Pj4gKyNkZWZpbmUgR1VDX01BWF9JTlNUQU5DRVNfUEVSX0NMQVNTwqDCoMKgIDMyCj4+PiAgwqAg
+wqAgI2RlZmluZSBHVUNfRE9PUkJFTExfSU5WQUxJRMKgwqDCoMKgwqDCoMKgIDI1Ngo+Pj4gIMKg
+IEBAIC02MiwxMiArNjIsNyBAQAo+Pj4gIMKgICNkZWZpbmUgR1VDX1NUQUdFX0RFU0NfQVRUUl9Q
+Q0jCoMKgwqDCoMKgwqDCoCBCSVQoNikKPj4+ICDCoCAjZGVmaW5lIEdVQ19TVEFHRV9ERVNDX0FU
+VFJfVEVSTUlOQVRFRMKgwqDCoCBCSVQoNykKPj4+ICDCoCAtLyogTmV3IEd1QyBjb250cm9sIGRh
+dGEgKi8KPj4+IC0jZGVmaW5lIEdVQ19DVExfQ1RYSU5GT8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+MAo+Pj4gLSNkZWZpbmXCoMKgIEdVQ19DVExfQ1RYTlVNX0lOMTZfU0hJRlTCoMKgwqAgMAo+Pj4g
+LSNkZWZpbmXCoMKgIEdVQ19DVExfQkFTRV9BRERSX1NISUZUwqDCoMKgIDEyCj4+PiAtCj4+PiAt
+I2RlZmluZSBHVUNfQ1RMX0xPR19QQVJBTVPCoMKgwqDCoMKgwqDCoCAxCj4+PiArI2RlZmluZSBH
+VUNfQ1RMX0xPR19QQVJBTVPCoMKgwqDCoMKgwqDCoCAwCj4+PiAgwqAgI2RlZmluZcKgwqAgR1VD
+X0xPR19WQUxJRMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKDEgPDwgMCkKPj4+ICDCoCAjZGVmaW5l
+wqDCoCBHVUNfTE9HX05PVElGWV9PTl9IQUxGX0ZVTEzCoMKgwqAgKDEgPDwgMSkKPj4+ICDCoCAj
+ZGVmaW5lwqDCoCBHVUNfTE9HX0FMTE9DX0lOX01FR0FCWVRFwqDCoMKgICgxIDw8IDMpCj4+PiBA
+QCAtNzksMTEgKzc0LDExIEBACj4+PiAgwqAgI2RlZmluZcKgwqAgR1VDX0xPR19JU1JfTUFTS8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgKDB4NyA8PCBHVUNfTE9HX0lTUl9TSElGVCkKPj4+ICDCoCAj
+ZGVmaW5lwqDCoCBHVUNfTE9HX0JVRl9BRERSX1NISUZUwqDCoMKgIDEyCj4+PiAgwqAgLSNkZWZp
+bmUgR1VDX0NUTF9XQcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMgo+Pj4gLSNkZWZpbmUgR1VDX0NU
+TF9GRUFUVVJFwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAzCj4+PiArI2RlZmluZSBHVUNfQ1RMX1dB
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAxCj4+PiArI2RlZmluZSBHVUNfQ1RMX0ZFQVRVUkXCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIDIKPj4+ICDCoCAjZGVmaW5lwqDCoCBHVUNfQ1RMX0RJU0FCTEVf
+U0NIRURVTEVSwqDCoMKgICgxIDw8IDE0KQo+Pj4gIMKgIC0jZGVmaW5lIEdVQ19DVExfREVCVUfC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIDQKPj4+ICsjZGVmaW5lIEdVQ19DVExfREVCVUfCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIDMKPj4+ICDCoCAjZGVmaW5lwqDCoCBHVUNfTE9HX1ZFUkJPU0lUWV9T
+SElGVMKgwqDCoCAwCj4+PiAgwqAgI2RlZmluZcKgwqAgR1VDX0xPR19WRVJCT1NJVFlfTE9XwqDC
+oMKgwqDCoMKgwqAgKDAgPDwgR1VDX0xPR19WRVJCT1NJVFlfU0hJRlQpCj4+PiAgwqAgI2RlZmlu
+ZcKgwqAgR1VDX0xPR19WRVJCT1NJVFlfTUVEwqDCoMKgwqDCoMKgwqAgKDEgPDwgR1VDX0xPR19W
+RVJCT1NJVFlfU0hJRlQpCj4+PiBAQCAtOTcsMTIgKzkyLDMxIEBACj4+PiAgwqAgI2RlZmluZcKg
+wqAgR1VDX0xPR19ESVNBQkxFRMKgwqDCoMKgwqDCoMKgICgxIDw8IDYpCj4+PiAgwqAgI2RlZmlu
+ZcKgwqAgR1VDX1BST0ZJTEVfRU5BQkxFRMKgwqDCoMKgwqDCoMKgICgxIDw8IDcpCj4+PiAgwqAg
+LSNkZWZpbmUgR1VDX0NUTF9BRFPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDUKPj4+ICsjZGVmaW5l
+IEdVQ19DVExfQURTwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA0Cj4+PiAgwqAgI2RlZmluZcKgwqAg
+R1VDX0FEU19BRERSX1NISUZUwqDCoMKgwqDCoMKgwqAgMQo+Pj4gIMKgICNkZWZpbmXCoMKgIEdV
+Q19BRFNfQUREUl9NQVNLwqDCoMKgwqDCoMKgwqAgKDB4RkZGRkYgPDwgR1VDX0FEU19BRERSX1NI
+SUZUKQo+Pj4gIMKgIMKgICNkZWZpbmUgR1VDX0NUTF9NQVhfRFdPUkRTwqDCoMKgwqDCoMKgwqAg
+KFNPRlRfU0NSQVRDSF9DT1VOVCAtIDIpIC8qCj4+PiBbMS4uMTRdICovCj4+PiAgwqAgKy8qCj4+
+PiArICogVGhlIGNsYXNzIGdvZXMgaW4gYml0cyBbMC4uMl0gb2YgdGhlIEd1QyBJRCwgdGhlIGlu
+c3RhbmNlIGluIGJpdHMKPj4+IFszLi42XS4KPj4+ICsgKiBCaXQgNyBjYW4gYmUgdXNlZCBmb3Ig
+b3BlcmF0aW9ucyB0aGF0IGFwcGx5IHRvIGFsbCBlbmdpbmUKPj4+IGNsYXNzZXMmaW5zdGFuY2Vz
+Lgo+Pj4gKyAqLwo+Pj4gKyNkZWZpbmUgR1VDX0VOR0lORV9DTEFTU19TSElGVMKgwqDCoMKgwqDC
+oMKgIDAKPj4+ICsjZGVmaW5lIEdVQ19FTkdJTkVfQ0xBU1NfTUFTS8KgwqDCoMKgwqDCoMKgICgw
+eDcgPDwgR1VDX0VOR0lORV9DTEFTU19TSElGVCkKPj4+ICsjZGVmaW5lIEdVQ19FTkdJTkVfSU5T
+VEFOQ0VfU0hJRlTCoMKgwqAgMwo+Pj4gKyNkZWZpbmUgR1VDX0VOR0lORV9JTlNUQU5DRV9NQVNL
+wqDCoMKgICgweGYgPDwgR1VDX0VOR0lORV9JTlNUQU5DRV9TSElGVCkKPj4+ICsjZGVmaW5lIEdV
+Q19FTkdJTkVfQUxMX0lOU1RBTkNFU8KgwqDCoCAoMSA8PCA3KQo+Pj4gKwo+Pj4gKyNkZWZpbmUg
+TUFLRV9HVUNfSUQoY2xhc3MsIGluc3RhbmNlKSBcCj4+PiArwqDCoMKgICgoKGNsYXNzKSA8PCBH
+VUNfRU5HSU5FX0NMQVNTX1NISUZUKSB8IFwKPj4+ICvCoMKgwqDCoCAoKGluc3RhbmNlKSA8PCBH
+VUNfRU5HSU5FX0lOU1RBTkNFX1NISUZUKSkKPj4+ICsKPj4+ICsjZGVmaW5lIEdVQ19JRF9UT19F
+TkdJTkVfQ0xBU1MoZ3VjX2lkKSBcCj4+PiArwqDCoMKgICgoKGd1Y19pZCkgJiBHVUNfRU5HSU5F
+X0NMQVNTX01BU0spID4+IEdVQ19FTkdJTkVfQ0xBU1NfU0hJRlQpCj4+PiArI2RlZmluZSBHVUNf
+SURfVE9fRU5HSU5FX0lOU1RBTkNFKGd1Y19pZCkgXAo+Pj4gK8KgwqDCoCAoKChndWNfaWQpICYg
+R1VDX0VOR0lORV9JTlNUQU5DRV9NQVNLKSA+PiBHVUNfRU5HSU5FX0lOU1RBTkNFX1NISUZUKQo+
+Pj4gKwo+Pj4gIMKgIC8qIFdvcmsgaXRlbSBmb3Igc3VibWl0dGluZyB3b3JrbG9hZHMgaW50byB3
+b3JrIHF1ZXVlIG9mIEd1Qy4gKi8KPj4+ICDCoCBzdHJ1Y3QgZ3VjX3dxX2l0ZW0gewo+Pj4gIMKg
+wqDCoMKgwqAgdTMyIGhlYWRlcjsKPj4+IEBAIC0zMzgsNyArMzUyLDYgQEAgc3RydWN0IGd1Y19w
+b2xpY2llcyB7Cj4+PiAgwqAgLyogR3VDIE1NSU8gcmVnIHN0YXRlIHN0cnVjdCAqLwo+Pj4gIMKg
+IMKgIC0jZGVmaW5lIEdVQ19SRUdTRVRfTUFYX1JFR0lTVEVSU8KgwqDCoCA2NAo+Pj4gIMKgICNk
+ZWZpbmUgR1VDX1MzX1NBVkVfU1BBQ0VfUEFHRVPCoMKgwqDCoMKgwqDCoCAxMAo+Pj4gIMKgIMKg
+IHN0cnVjdCBndWNfbW1pb19yZWcgewo+Pj4gQEAgLTM0OCwxNiArMzYxLDE3IEBAIHN0cnVjdCBn
+dWNfbW1pb19yZWcgewo+Pj4gIMKgICNkZWZpbmUgR1VDX1JFR1NFVF9NQVNLRUTCoMKgwqDCoMKg
+wqDCoCAoMSA8PCAwKQo+Pj4gIMKgIH0gX19wYWNrZWQ7Cj4+PiAgwqAgLXN0cnVjdCBndWNfbW1p
+b19yZWdzZXQgewo+Pj4gLcKgwqDCoCBzdHJ1Y3QgZ3VjX21taW9fcmVnIHJlZ2lzdGVyc1tHVUNf
+UkVHU0VUX01BWF9SRUdJU1RFUlNdOwo+Pj4gLcKgwqDCoCB1MzIgdmFsdWVzX3ZhbGlkOwo+Pj4g
+LcKgwqDCoCB1MzIgbnVtYmVyX29mX3JlZ2lzdGVyczsKPj4+IC19IF9fcGFja2VkOwo+Pj4gLQo+
+Pj4gIMKgIC8qIEd1QyByZWdpc3RlciBzZXRzICovCj4+PiAtc3RydWN0IGd1Y19tbWlvX3JlZ19z
+dGF0ZSB7Cj4+PiAtwqDCoMKgIHN0cnVjdCBndWNfbW1pb19yZWdzZXQKPj4+IGVuZ2luZV9yZWdb
+R1VDX01BWF9FTkdJTkVfQ0xBU1NFU11bR1VDX01BWF9JTlNUQU5DRVNfUEVSX0NMQVNTXTsKPj4+
+IC3CoMKgwqAgdTMyIHJlc2VydmVkWzk4XTsKPj4+ICtzdHJ1Y3QgZ3VjX21taW9fcmVnX3NldCB7
+Cj4+PiArwqDCoMKgIHUzMiBhZGRyZXNzOwo+Pj4gK8KgwqDCoCB1bmlvbiB7Cj4+PiArwqDCoMKg
+wqDCoMKgwqAgc3RydWN0IHsKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHUzMiBjb3VudDox
+NjsKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHUzMiByZXNlcnZlZDE6MTI7Cj4+PiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCB1MzIgcmVzZXJ2ZWQyOjQ7Cj4+PiArwqDCoMKgwqDCoMKgwqAg
+fTsKPj4+ICvCoMKgwqDCoMKgwqDCoCB1MzIgY291bnRfdTMyOwo+Pj4gK8KgwqDCoCB9Owo+Pj4g
+IMKgIH0gX19wYWNrZWQ7Cj4+PiAgwqAgwqAgLyogSFcgaW5mbyAqLwo+Pj4gQEAgLTM2OSw3ICsz
+ODMsOSBAQCBzdHJ1Y3QgZ3VjX2d0X3N5c3RlbV9pbmZvIHsKPj4+ICDCoMKgwqDCoMKgIHUzMiB2
+ZGJveF9lbmFibGVfbWFzazsKPj4+ICDCoMKgwqDCoMKgIHUzMiB2ZGJveF9zZmNfc3VwcG9ydF9t
+YXNrOwo+Pj4gIMKgwqDCoMKgwqAgdTMyIHZlYm94X2VuYWJsZV9tYXNrOwo+Pj4gLcKgwqDCoCB1
+MzIgcmVzZXJ2ZWRbOV07Cj4+PiArwqDCoMKgIHUzMiBudW1fb2ZfZG9vcmJlbGxzX3Blcl9zcWlk
+aTsKPj4+ICvCoMKgwqAgdTgKPj4+IG1hcHBpbmdfdGFibGVbR1VDX01BWF9FTkdJTkVfQ0xBU1NF
+U11bR1VDX01BWF9JTlNUQU5DRVNfUEVSX0NMQVNTXTsKPj4+ICvCoMKgwqAgdTMyIHJlc2VydmVk
+Mls4XTsKPj4+ICDCoCB9IF9fcGFja2VkOwo+Pj4gIMKgIMKgIC8qIENsaWVudHMgaW5mbyAqLwo+
+Pj4gQEAgLTM5MCwxNSArNDA2LDE2IEBAIHN0cnVjdCBndWNfY2xpZW50c19pbmZvIHsKPj4+ICDC
+oCDCoCAvKiBHdUMgQWRkaXRpb25hbCBEYXRhIFN0cnVjdCAqLwo+Pj4gIMKgIHN0cnVjdCBndWNf
+YWRzIHsKPj4+IC3CoMKgwqAgdTMyIHJlZ19zdGF0ZV9hZGRyOwo+Pj4gLcKgwqDCoCB1MzIgcmVn
+X3N0YXRlX2J1ZmZlcjsKPj4+ICvCoMKgwqAgc3RydWN0IGd1Y19tbWlvX3JlZ19zZXQKPj4+IHJl
+Z19zdGF0ZV9saXN0W0dVQ19NQVhfRU5HSU5FX0NMQVNTRVNdW0dVQ19NQVhfSU5TVEFOQ0VTX1BF
+Ul9DTEFTU107Cj4+PiArwqDCoMKgIHUzMiByZXNlcnZlZDA7Cj4+PiAgwqDCoMKgwqDCoCB1MzIg
+c2NoZWR1bGVyX3BvbGljaWVzOwo+Pj4gIMKgwqDCoMKgwqAgdTMyIGd0X3N5c3RlbV9pbmZvOwo+
+Pj4gIMKgwqDCoMKgwqAgdTMyIGNsaWVudHNfaW5mbzsKPj4+ICDCoMKgwqDCoMKgIHUzMiBjb250
+cm9sX2RhdGE7Cj4+PiAgwqDCoMKgwqDCoCB1MzIgZ29sZGVuX2NvbnRleHRfbHJjYVtHVUNfTUFY
+X0VOR0lORV9DTEFTU0VTXTsKPj4+ICDCoMKgwqDCoMKgIHUzMiBlbmdfc3RhdGVfc2l6ZVtHVUNf
+TUFYX0VOR0lORV9DTEFTU0VTXTsKPj4+IC3CoMKgwqAgdTMyIHJlc2VydmVkWzE2XTsKPj4+ICvC
+oMKgwqAgdTMyIHByaXZhdGVfZGF0YTsKPj4+ICvCoMKgwqAgdTMyIHJlc2VydmVkWzE1XTsKPj4+
+ICDCoCB9IF9fcGFja2VkOwo+Pj4gIMKgIMKgIC8qIEd1QyBsb2dnaW5nIHN0cnVjdHVyZXMgKi8K
+Pj4+IEBAIC00NzQsNDkgKzQ5MSw2IEBAIHN0cnVjdCBndWNfc2hhcmVkX2N0eF9kYXRhIHsKPj4+
+ICDCoMKgwqDCoMKgIHN0cnVjdCBndWNfY3R4X3JlcG9ydCBwcmVlbXB0X2N0eF9yZXBvcnRbR1VD
+X01BWF9FTkdJTkVTX05VTV07Cj4+PiAgwqAgfSBfX3BhY2tlZDsKPj4+ICDCoCAtLyoqCj4+PiAt
+ICogRE9DOiBNTUlPIGJhc2VkIGNvbW11bmljYXRpb24KPj4+IC0gKgo+Pj4gLSAqIFRoZSBNTUlP
+IGJhc2VkIGNvbW11bmljYXRpb24gYmV0d2VlbiBIb3N0IGFuZCBHdUMgdXNlcyBzb2Z0d2FyZQo+
+Pj4gc2NyYXRjaAo+Pj4gLSAqIHJlZ2lzdGVycywgd2hlcmUgZmlyc3QgcmVnaXN0ZXIgaG9sZHMg
+ZGF0YSB0cmVhdGVkIGFzIG1lc3NhZ2UgaGVhZGVyLAo+Pj4gLSAqIGFuZCBvdGhlciByZWdpc3Rl
+cnMgYXJlIHVzZWQgdG8gaG9sZCBtZXNzYWdlIHBheWxvYWQuCj4+PiAtICoKPj4+IC0gKiBGb3Ig
+R2VuOSssIEd1QyB1c2VzIHNvZnR3YXJlIHNjcmF0Y2ggcmVnaXN0ZXJzIDB4QzE4MC0weEMxQjgs
+Cj4+PiAtICogYnV0IG5vIEgyRyBjb21tYW5kIHRha2VzIG1vcmUgdGhhbiA4IHBhcmFtZXRlcnMg
+YW5kIHRoZSBHdUMgRlcKPj4+IC0gKiBpdHNlbGYgdXNlcyBhbiA4LWVsZW1lbnQgYXJyYXkgdG8g
+c3RvcmUgdGhlIEgyRyBtZXNzYWdlLgo+Pj4gLSAqCj4+PiAtICrCoMKgwqDCoMKgICstLS0tLS0t
+LS0tLSstLS0tLS0tLS0rLS0tLS0tLS0tKy0tLS0tLS0tLSsKPj4+IC0gKsKgwqDCoMKgwqAgfMKg
+IE1NSU9bMF3CoCB8IE1NSU9bMV0gfMKgwqAgLi4uwqDCoCB8IE1NSU9bbl0gfAo+Pj4gLSAqwqDC
+oMKgwqDCoCArLS0tLS0tLS0tLS0rLS0tLS0tLS0tKy0tLS0tLS0tLSstLS0tLS0tLS0rCj4+PiAt
+ICrCoMKgwqDCoMKgIHwgaGVhZGVywqDCoMKgIHzCoMKgwqDCoMKgIG9wdGlvbmFsIHBheWxvYWTC
+oMKgwqDCoMKgwqAgfAo+Pj4gLSAqwqDCoMKgwqDCoCArPT09PT09Kz09PT0rPT09PT09PT09Kz09
+PT09PT09PSs9PT09PT09PT0rCj4+PiAtICrCoMKgwqDCoMKgIHwgMzE6Mjh8dHlwZXzCoMKgwqDC
+oMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoMKgIHwKPj4+IC0gKsKg
+wqDCoMKgwqAgKy0tLS0tLSstLS0tK8KgwqDCoMKgwqDCoMKgwqAgfMKgwqDCoMKgwqDCoMKgwqAg
+fMKgwqDCoMKgwqDCoMKgwqAgfAo+Pj4gLSAqwqDCoMKgwqDCoCB8IDI3OjE2fGRhdGF8wqDCoMKg
+wqDCoMKgwqDCoCB8wqDCoMKgwqDCoMKgwqDCoCB8wqDCoMKgwqDCoMKgwqDCoCB8Cj4+PiAtICrC
+oMKgwqDCoMKgICstLS0tLS0rLS0tLSvCoMKgwqDCoMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoMKg
+IHzCoMKgwqDCoMKgwqDCoMKgIHwKPj4+IC0gKsKgwqDCoMKgwqAgfMKgIDE1OjB8Y29kZXzCoMKg
+wqDCoMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoMKgIHwKPj4+IC0g
+KsKgwqDCoMKgwqAgKy0tLS0tLSstLS0tKy0tLS0tLS0tLSstLS0tLS0tLS0rLS0tLS0tLS0tKwo+
+Pj4gLSAqCj4+PiAtICogVGhlIG1lc3NhZ2UgaGVhZGVyIGNvbnNpc3RzIG9mOgo+Pj4gLSAqCj4+
+PiAtICogLSAqKnR5cGUqKiwgaW5kaWNhdGVzIG1lc3NhZ2UgdHlwZQo+Pj4gLSAqIC0gKipjb2Rl
+KiosIGluZGljYXRlcyBtZXNzYWdlIGNvZGUsIGlzIHNwZWNpZmljIGZvciAqKnR5cGUqKgo+Pj4g
+LSAqIC0gKipkYXRhKiosIGluZGljYXRlcyBtZXNzYWdlIGRhdGEsIG9wdGlvbmFsLCBkZXBlbmRz
+IG9uICoqY29kZSoqCj4+PiAtICoKPj4+IC0gKiBUaGUgZm9sbG93aW5nIG1lc3NhZ2UgKip0eXBl
+cyoqIGFyZSBzdXBwb3J0ZWQ6Cj4+PiAtICoKPj4+IC0gKiAtICoqUkVRVUVTVCoqLCBpbmRpY2F0
+ZXMgSG9zdC10by1HdUMgcmVxdWVzdCwgcmVxdWVzdGVkIEd1QyBhY3Rpb24KPj4+IGNvZGUKPj4+
+IC0gKsKgwqAgbXVzdCBiZSBwcmlvdmlkZWQgaW4gKipjb2RlKiogZmllbGQuIE9wdGlvbmFsIGFj
+dGlvbiBzcGVjaWZpYwo+Pj4gcGFyYW1ldGVycwo+Pj4gLSAqwqDCoCBjYW4gYmUgcHJvdmlkZWQg
+aW4gcmVtYWluaW5nIHBheWxvYWQgcmVnaXN0ZXJzIG9yICoqZGF0YSoqIGZpZWxkLgo+Pj4gLSAq
+Cj4+PiAtICogLSAqKlJFU1BPTlNFKiosIGluZGljYXRlcyBHdUMtdG8tSG9zdCByZXNwb25zZSBm
+cm9tIGVhcmxpZXIgR3VDCj4+PiByZXF1ZXN0LAo+Pj4gLSAqwqDCoCBhY3Rpb24gcmVzcG9uc2Ug
+c3RhdHVzIHdpbGwgYmUgcHJvdmlkZWQgaW4gKipjb2RlKiogZmllbGQuIE9wdGlvbmFsCj4+PiAt
+ICrCoMKgIHJlc3BvbnNlIGRhdGEgY2FuIGJlIHJldHVybmVkIGluIHJlbWFpbmluZyBwYXlsb2Fk
+IHJlZ2lzdGVycyBvcgo+Pj4gKipkYXRhKioKPj4+IC0gKsKgwqAgZmllbGQuCj4+PiAtICovCj4+
+PiAtCj4+PiAtI2RlZmluZSBHVUNfTUFYX01NSU9fTVNHX0xFTsKgwqDCoMKgwqDCoMKgIDgKPj4+
+IC0KPj4+ICDCoCAjZGVmaW5lIElOVEVMX0dVQ19NU0dfVFlQRV9TSElGVMKgwqDCoCAyOAo+Pj4g
+IMKgICNkZWZpbmUgSU5URUxfR1VDX01TR19UWVBFX01BU0vCoMKgwqDCoMKgwqDCoCAoMHhGIDw8
+Cj4+PiBJTlRFTF9HVUNfTVNHX1RZUEVfU0hJRlQpCj4+PiAgwqAgI2RlZmluZSBJTlRFTF9HVUNf
+TVNHX0RBVEFfU0hJRlTCoMKgwqAgMTYKPj4gVGhlc2UgR1VDX01TRyBkZWZpbmVzIGFyZSBhbHNv
+IGR1cGxpY2F0ZWQKPiBUaGVzZSBhcmUgc3RpbGwgdXNlZCBieSB0aGUgQ1RCIGFuZCB3ZSB3YW50
+IHRvIGtlZXAgQ1RCIGRlZmluaXRpb25zCj4gc2VwYXJhdGUgYXMgd2Ugd2lsbCBkbyBzb21lIHJl
+ZmFjdG9yaW5nIHRoZXJlIHRvby4KCklzIHRoZSBHdUMgY2hhbmdpbmcgdGhvc2UgZGVmaW5lcyBm
+b3IgdGhlIENUQiBpbiBhIGZ1dHVyZSByZWxlYXNlLCBvciBpcyAKdGhlIHJlZmFjdG9yaW5nIHB1
+cmVseSBvbiB0aGUgaTkxNSBzaWRlPyBpbiB0aGUgbGF0dGVyIGNhc2UgSSdkIHByZWZlciAKZm9y
+IGFsbCB0aGUgZHVwbGljYXRpb24gdG8gYmUgcmVtb3ZlZCBub3cgdW50aWwgdGhlIENUQiByZWZh
+Y3RvcmluZyBjb21lcy4KCkRhbmllbGUKCj4gTWljaGFsCj4KPj4gRGFuaWVsZQo+Pgo+Pj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19yZWcuaAo+Pj4g
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfcmVnLmgKPj4+IGluZGV4IDE5
+NDkzNDZlNzE0ZS4uYjM3ZmMyZmZhZWYyIDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3JlZy5oCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC91Yy9pbnRlbF9ndWNfcmVnLmgKPj4+IEBAIC0xMTgsNiArMTE4LDExIEBAIHN0cnVjdCBn
+dWNfZG9vcmJlbGxfaW5mbyB7Cj4+PiAgwqAgI2RlZmluZcKgwqAgR0VOOF9EUkJfVkFMSUTCoMKg
+wqDCoMKgwqDCoMKgwqAgKDE8PDApCj4+PiAgwqAgI2RlZmluZSBHRU44X0RSQlJFR1UoeCnCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIF9NTUlPKDB4MTAwMCArICh4KSAqIDggKyA0KQo+Pj4gIMKgICsj
+ZGVmaW5lIEdFTjEyX0RJU1RfREJTX1BPUFVMQVRFRMKgwqDCoMKgwqDCoMKgIF9NTUlPKDB4ZDA4
+KQo+Pj4gKyNkZWZpbmXCoMKgIEdFTjEyX0RPT1JCRUxMU19QRVJfU1FJRElfU0hJRlTCoMKgwqAg
+MTYKPj4+ICsjZGVmaW5lwqDCoCBHRU4xMl9ET09SQkVMTFNfUEVSX1NRSURJwqDCoMKgwqDCoMKg
+wqAgKDB4ZmYpCj4+PiArI2RlZmluZcKgwqAgR0VOMTJfU1FJRElTX0RPT1JCRUxMX0VYSVNUwqDC
+oMKgwqDCoMKgwqAgKDB4ZmZmZikKPj4+ICsKPj4+ICDCoCAjZGVmaW5lIERFX0dVQ1JNUsKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgX01NSU8oMHg0NDA1NCkKPj4+ICDCoCDCoCAjZGVmaW5lIEdVQ19C
+Q1NfUkNTX0lFUsKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgX01NSU8oMHhDNTUwKQo+Pj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3LmMKPj4+IGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWNfZncuYwo+Pj4gaW5kZXggNTliMjdhYmEx
+NWM2Li5mN2NiMGIxZjFiYTUgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+dC91Yy9pbnRlbF91Y19mdy5jCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9p
+bnRlbF91Y19mdy5jCj4+PiBAQCAtNDQsMjMgKzQ0LDE5IEBAIHZvaWQgaW50ZWxfdWNfZndfY2hh
+bmdlX3N0YXR1cyhzdHJ1Y3QgaW50ZWxfdWNfZncKPj4+ICp1Y19mdywKPj4+ICDCoMKgICogTGlz
+dCBvZiByZXF1aXJlZCBHdUMgYW5kIEh1QyBiaW5hcmllcyBwZXItcGxhdGZvcm0uCj4+PiAgwqDC
+oCAqIE11c3QgYmUgb3JkZXJlZCBiYXNlZCBvbiBwbGF0Zm9ybSArIHJldmlkLCBmcm9tIG5ld2Vy
+IHRvIG9sZGVyLgo+Pj4gIMKgwqAgKgo+Pj4gLSAqIFRHTCAzNS4yIGlzIGludGVyZmFjZS1jb21w
+YXRpYmxlIHdpdGggMzMuMCBmb3IgcHJldmlvdXMgR2Vucy4gVGhlCj4+PiBkZWx0YXMKPj4+IC0g
+KiBiZXR3ZWVuIDMzLjAgYW5kIDM1LjIgYXJlIG9ubHkgcmVsYXRlZCB0byBuZXcgYWRkaXRpb25z
+IHRvIHN1cHBvcnQKPj4+IG5ldyBHZW4xMgo+Pj4gLSAqIGZlYXR1cmVzLgo+Pj4gLSAqCj4+PiAg
+wqDCoCAqIE5vdGUgdGhhdCBSS0wgdXNlcyB0aGUgc2FtZSBmaXJtd2FyZSBhcyBUR0wuCj4+PiAg
+wqDCoCAqLwo+Pj4gIMKgICNkZWZpbmUgSU5URUxfVUNfRklSTVdBUkVfREVGUyhmd19kZWYsIGd1
+Y19kZWYsIGh1Y19kZWYpIFwKPj4+IC3CoMKgwqAgZndfZGVmKFJPQ0tFVExBS0UswqAgMCwgZ3Vj
+X2RlZih0Z2wsIDM1LCAyLCAwKSwgaHVjX2RlZih0Z2wswqAgNywKPj4+IDAsIDEyKSkgXAo+Pj4g
+LcKgwqDCoCBmd19kZWYoVElHRVJMQUtFLMKgwqAgMCwgZ3VjX2RlZih0Z2wsIDM1LCAyLCAwKSwg
+aHVjX2RlZih0Z2wswqAgNywKPj4+IDAsIDEyKSkgXAo+Pj4gLcKgwqDCoCBmd19kZWYoRUxLSEFS
+VExBS0UsIDAsIGd1Y19kZWYoZWhsLCAzMywgMCwgNCksIGh1Y19kZWYoZWhsLMKgIDksCj4+PiAw
+LCAwKSkgXAo+Pj4gLcKgwqDCoCBmd19kZWYoSUNFTEFLRSzCoMKgwqDCoCAwLCBndWNfZGVmKGlj
+bCwgMzMsIDAsIDApLCBodWNfZGVmKGljbCzCoCA5LAo+Pj4gMCwgMCkpIFwKPj4+IC3CoMKgwqAg
+ZndfZGVmKENPTUVUTEFLRSzCoMKgIDUsIGd1Y19kZWYoY21sLCAzMywgMCwgMCksIGh1Y19kZWYo
+Y21sLMKgIDQsCj4+PiAwLCAwKSkgXAo+Pj4gLcKgwqDCoCBmd19kZWYoQ09GRkVFTEFLRSzCoCAw
+LCBndWNfZGVmKGtibCwgMzMsIDAsIDApLCBodWNfZGVmKGtibCzCoCA0LAo+Pj4gMCwgMCkpIFwK
+Pj4+IC3CoMKgwqAgZndfZGVmKEdFTUlOSUxBS0UswqAgMCwgZ3VjX2RlZihnbGssIDMzLCAwLCAw
+KSwgaHVjX2RlZihnbGsswqAgNCwKPj4+IDAsIDApKSBcCj4+PiAtwqDCoMKgIGZ3X2RlZihLQUJZ
+TEFLRSzCoMKgwqAgMCwgZ3VjX2RlZihrYmwsIDMzLCAwLCAwKSwgaHVjX2RlZihrYmwswqAgNCwK
+Pj4+IDAsIDApKSBcCj4+PiAtwqDCoMKgIGZ3X2RlZihCUk9YVE9OLMKgwqDCoMKgIDAsIGd1Y19k
+ZWYoYnh0LCAzMywgMCwgMCksIGh1Y19kZWYoYnh0LMKgIDIsCj4+PiAwLCAwKSkgXAo+Pj4gLcKg
+wqDCoCBmd19kZWYoU0tZTEFLRSzCoMKgwqDCoCAwLCBndWNfZGVmKHNrbCwgMzMsIDAsIDApLCBo
+dWNfZGVmKHNrbCzCoCAyLAo+Pj4gMCwgMCkpCj4+PiArwqDCoMKgIGZ3X2RlZihST0NLRVRMQUtF
+LMKgIDAsIGd1Y19kZWYodGdsLCA0NSwgMCwgMCksIGh1Y19kZWYodGdsLMKgIDcsCj4+PiAwLCAx
+MikpIFwKPj4+ICvCoMKgwqAgZndfZGVmKFRJR0VSTEFLRSzCoMKgIDAsIGd1Y19kZWYodGdsLCA0
+NSwgMCwgMCksIGh1Y19kZWYodGdsLMKgIDcsCj4+PiAwLCAxMikpIFwKPj4+ICvCoMKgwqAgZndf
+ZGVmKEVMS0hBUlRMQUtFLCAwLCBndWNfZGVmKGVobCwgNDUsIDAsIDApLCBodWNfZGVmKGVobCzC
+oCA5LAo+Pj4gMCwgMCkpIFwKPj4+ICvCoMKgwqAgZndfZGVmKElDRUxBS0UswqDCoMKgwqAgMCwg
+Z3VjX2RlZihpY2wsIDQ1LCAwLCAwKSwgaHVjX2RlZihpY2wswqAgOSwKPj4+IDAsIDApKSBcCj4+
+PiArwqDCoMKgIGZ3X2RlZihDT01FVExBS0UswqDCoCA1LCBndWNfZGVmKGNtbCwgNDUsIDAsIDAp
+LCBodWNfZGVmKGNtbCzCoCA0LAo+Pj4gMCwgMCkpIFwKPj4+ICvCoMKgwqAgZndfZGVmKENPRkZF
+RUxBS0UswqAgMCwgZ3VjX2RlZihrYmwsIDQ1LCAwLCAwKSwgaHVjX2RlZihrYmwswqAgNCwKPj4+
+IDAsIDApKSBcCj4+PiArwqDCoMKgIGZ3X2RlZihHRU1JTklMQUtFLMKgIDAsIGd1Y19kZWYoZ2xr
+LCA0NSwgMCwgMCksIGh1Y19kZWYoZ2xrLMKgIDQsCj4+PiAwLCAwKSkgXAo+Pj4gK8KgwqDCoCBm
+d19kZWYoS0FCWUxBS0UswqDCoMKgIDAsIGd1Y19kZWYoa2JsLCA0NSwgMCwgMCksIGh1Y19kZWYo
+a2JsLMKgIDQsCj4+PiAwLCAwKSkgXAo+Pj4gK8KgwqDCoCBmd19kZWYoQlJPWFRPTizCoMKgwqDC
+oCAwLCBndWNfZGVmKGJ4dCwgNDUsIDAsIDApLCBodWNfZGVmKGJ4dCzCoCAyLAo+Pj4gMCwgMCkp
+IFwKPj4+ICvCoMKgwqAgZndfZGVmKFNLWUxBS0UswqDCoMKgwqAgMCwgZ3VjX2RlZihza2wsIDQ1
+LCAwLCAwKSwgaHVjX2RlZihza2wswqAgMiwKPj4+IDAsIDApKQo+Pj4gIMKgIMKgICNkZWZpbmUg
+X19NQUtFX1VDX0ZXX1BBVEgocHJlZml4XywgbmFtZV8sIG1ham9yXywgbWlub3JfLCBwYXRjaF8p
+IFwKPj4+ICDCoMKgwqDCoMKgICJpOTE1LyIgXAo+Pj4gQEAgLTM3MSw2ICszNjcsOSBAQCBpbnQg
+aW50ZWxfdWNfZndfZmV0Y2goc3RydWN0IGludGVsX3VjX2Z3ICp1Y19mdykKPj4+ICDCoMKgwqDC
+oMKgwqDCoMKgwqAgfQo+Pj4gIMKgwqDCoMKgwqAgfQo+Pj4gIMKgICvCoMKgwqAgaWYgKHVjX2Z3
+LT50eXBlID09IElOVEVMX1VDX0ZXX1RZUEVfR1VDKQo+Pj4gK8KgwqDCoMKgwqDCoMKgIHVjX2Z3
+LT5wcml2YXRlX2RhdGFfc2l6ZSA9IGNzcy0+cHJpdmF0ZV9kYXRhX3NpemU7Cj4+PiArCj4+PiAg
+wqDCoMKgwqDCoCBvYmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3NobWVtX2Zyb21fZGF0YShp
+OTE1LCBmdy0+ZGF0YSwKPj4+IGZ3LT5zaXplKTsKPj4+ICDCoMKgwqDCoMKgIGlmIChJU19FUlIo
+b2JqKSkgewo+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoCBlcnIgPSBQVFJfRVJSKG9iaik7Cj4+PiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWNfZncuaAo+Pj4g
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Y19mdy5oCj4+PiBpbmRleCAyM2Qz
+YTQyM2FjMGYuLjk5YmIxZmUxYWY2NiAxMDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L3VjL2ludGVsX3VjX2Z3LmgKPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L3VjL2ludGVsX3VjX2Z3LmgKPj4+IEBAIC04OCw2ICs4OCw4IEBAIHN0cnVjdCBpbnRlbF91Y19m
+dyB7Cj4+PiAgwqAgwqDCoMKgwqDCoCB1MzIgcnNhX3NpemU7Cj4+PiAgwqDCoMKgwqDCoCB1MzIg
+dWNvZGVfc2l6ZTsKPj4+ICsKPj4+ICvCoMKgwqAgdTMyIHByaXZhdGVfZGF0YV9zaXplOwo+Pj4g
+IMKgIH07Cj4+PiAgwqAgwqAgI2lmZGVmIENPTkZJR19EUk1fSTkxNV9ERUJVR19HVUMKPj4+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Y19md19hYmkuaAo+
+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Y19md19hYmkuaAo+Pj4gaW5k
+ZXggMDI5MjE0Y2RlZGQ1Li5lNDFmZmM3YTdmYmMgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Y19md19hYmkuaAo+Pj4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWNfZndfYWJpLmgKPj4+IEBAIC02OSw3ICs2OSwxMSBAQCBz
+dHJ1Y3QgdWNfY3NzX2hlYWRlciB7Cj4+PiAgwqAgI2RlZmluZSBDU1NfU1dfVkVSU0lPTl9VQ19N
+QUpPUsKgwqDCoMKgwqDCoMKgICgweEZGIDw8IDE2KQo+Pj4gIMKgICNkZWZpbmUgQ1NTX1NXX1ZF
+UlNJT05fVUNfTUlOT1LCoMKgwqDCoMKgwqDCoCAoMHhGRiA8PCA4KQo+Pj4gIMKgICNkZWZpbmUg
+Q1NTX1NXX1ZFUlNJT05fVUNfUEFUQ0jCoMKgwqDCoMKgwqDCoCAoMHhGRiA8PCAwKQo+Pj4gLcKg
+wqDCoCB1MzIgcmVzZXJ2ZWRbMTRdOwo+Pj4gK8KgwqDCoCB1MzIgcmVzZXJ2ZWQwWzEzXTsKPj4+
+ICvCoMKgwqAgdW5pb24gewo+Pj4gK8KgwqDCoMKgwqDCoMKgIHUzMiBwcml2YXRlX2RhdGFfc2l6
+ZTsgLyogb25seSBhcHBsaWVzIHRvIEd1QyAqLwo+Pj4gK8KgwqDCoMKgwqDCoMKgIHUzMiByZXNl
+cnZlZDE7Cj4+PiArwqDCoMKgIH07Cj4+PiAgwqDCoMKgwqDCoCB1MzIgaGVhZGVyX2luZm87Cj4+
+PiAgwqAgfSBfX3BhY2tlZDsKPj4+ICDCoCBzdGF0aWNfYXNzZXJ0KHNpemVvZihzdHJ1Y3QgdWNf
+Y3NzX2hlYWRlcikgPT0gMTI4KTsKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
