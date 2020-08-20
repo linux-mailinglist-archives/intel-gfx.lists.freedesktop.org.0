@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D784524C54A
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 20:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1E1024C549
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Aug 2020 20:26:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E0A66E9CF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 528536E9CE;
 	Thu, 20 Aug 2020 18:26:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3CF36E9C8;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA9056E9CB;
  Thu, 20 Aug 2020 18:26:49 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22190674-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22190675-1500050 
  for multiple; Thu, 20 Aug 2020 19:26:42 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: igt-dev@lists.freedesktop.org
-Date: Thu, 20 Aug 2020 19:26:38 +0100
-Message-Id: <20200820182640.65842-2-chris@chris-wilson.co.uk>
+Date: Thu, 20 Aug 2020 19:26:39 +0100
+Message-Id: <20200820182640.65842-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20200820182640.65842-1-chris@chris-wilson.co.uk>
 References: <20200820182640.65842-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 2/4] i915/gem_exec_fence: Cleanup 32bit
- printfs
+Subject: [Intel-gfx] [PATCH i-g-t 3/4] i915/bb: Cleanup 32bit printfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,62 +44,49 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use PRI[ux]64 for printing 64bit values in a 32bit build.
+Use PRIx64 for 64b addresses on a 32b build.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- tests/i915/gem_exec_fence.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ tests/i915/api_intel_bb.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
-index b240c30bf..0b8ab1400 100644
---- a/tests/i915/gem_exec_fence.c
-+++ b/tests/i915/gem_exec_fence.c
-@@ -2408,7 +2408,7 @@ static void build_wait_bb(struct inter_engine_context *context,
- 	uint64_t wait_value =
- 		0xffffffffffffffff - (delay * timestamp_frequency) / NSEC_PER_SEC;
+diff --git a/tests/i915/api_intel_bb.c b/tests/i915/api_intel_bb.c
+index 6967fc5d0..cf7f6e91b 100644
+--- a/tests/i915/api_intel_bb.c
++++ b/tests/i915/api_intel_bb.c
+@@ -260,9 +260,9 @@ static void blit(struct buf_ops *bops,
+ 	poff_bb = intel_bb_get_object_offset(ibb, ibb->handle);
+ 	poff_src = intel_bb_get_object_offset(ibb, src->handle);
+ 	poff_dst = intel_bb_get_object_offset(ibb, dst->handle);
+-	igt_debug("bb  presumed offset: 0x%lx\n", poff_bb);
+-	igt_debug("src presumed offset: 0x%lx\n", poff_src);
+-	igt_debug("dst presumed offset: 0x%lx\n", poff_dst);
++	igt_debug("bb  presumed offset: 0x%"PRIx64"\n", poff_bb);
++	igt_debug("src presumed offset: 0x%"PRIx64"\n", poff_src);
++	igt_debug("dst presumed offset: 0x%"PRIx64"\n", poff_dst);
+ 	if (reloc_obj == RELOC) {
+ 		igt_assert(poff_bb == 0);
+ 		igt_assert(poff_src == 0);
+@@ -289,12 +289,12 @@ static void blit(struct buf_ops *bops,
+ 	poff2_dst = intel_bb_get_object_offset(ibb, dst->handle);
  
--	igt_debug("wait_value=0x%lx\n", wait_value);
-+	igt_debug("wait_value=0x%"PRIx64"\n", wait_value);
- 
- 	*bb++ = MI_LOAD_REGISTER_IMM;
- 	*bb++ = 0x2000 + HSW_CS_GPR(0);
-@@ -2680,7 +2680,7 @@ static void setup_timeline_chain_engines(struct inter_engine_context *context, i
- 	}
- 
- 	for (uint32_t i = 0; i < 10; i++)
--		igt_debug("%u = %lu\n", i, fib(i));
-+		igt_debug("%u = %"PRIu64"\n", i, fib(i));
- 
- 	/* Bootstrap the fibonacci sequence */
- 	{
-@@ -2759,7 +2759,7 @@ static void test_syncobj_timeline_chain_engines(int fd, struct intel_engine_data
- 	counter_output = gem_mmap__wc(fd, ctx.engine_counter_object.handle, 0, 4096, PROT_READ);
- 
- 	for (uint32_t i = 0; i < ctx.engines->nengines; i++)
--		igt_debug("engine %i (%s)\t= %016lx\n", i,
-+		igt_debug("engine %i (%s)\t= %016"PRIx64"\n", i,
- 			  ctx.engines->engines[i].name, counter_output[i]);
- 
- 	/*
-@@ -2825,7 +2825,7 @@ static void test_syncobj_stationary_timeline_chain_engines(int fd, struct intel_
- 	counter_output = gem_mmap__wc(fd, ctx.engine_counter_object.handle, 0, 4096, PROT_READ);
- 
- 	for (uint32_t i = 0; i < ctx.engines->nengines; i++)
--		igt_debug("engine %i (%s)\t= %016lx\n", i,
-+		igt_debug("engine %i (%s)\t= %016"PRIx64"\n", i,
- 			  ctx.engines->engines[i].name, counter_output[i]);
- 	igt_assert_eq(counter_output[engines->nengines - 1],
- 		      fib(ARRAY_SIZE(ctx.iterations) * engines->nengines + 1));
-@@ -2886,7 +2886,7 @@ static void test_syncobj_backward_timeline_chain_engines(int fd, struct intel_en
- 	counter_output = gem_mmap__wc(fd, ctx.engine_counter_object.handle, 0, 4096, PROT_READ);
- 
- 	for (uint32_t i = 0; i < ctx.engines->nengines; i++)
--		igt_debug("engine %i (%s)\t= %016lx\n", i,
-+		igt_debug("engine %i (%s)\t= %016"PRIx64"\n", i,
- 			  ctx.engines->engines[i].name, counter_output[i]);
- 	igt_assert_eq(counter_output[engines->nengines - 1],
- 		      fib(ARRAY_SIZE(ctx.iterations) * engines->nengines + 1));
+ 	igt_debug("purge: %d, relocs: %d\n", purge_cache, do_relocs);
+-	igt_debug("bb  presumed offset: 0x%lx\n", poff_bb);
+-	igt_debug("src presumed offset: 0x%lx\n", poff_src);
+-	igt_debug("dst presumed offset: 0x%lx\n", poff_dst);
+-	igt_debug("bb2  presumed offset: 0x%lx\n", poff2_bb);
+-	igt_debug("src2 presumed offset: 0x%lx\n", poff2_src);
+-	igt_debug("dst2 presumed offset: 0x%lx\n", poff2_dst);
++	igt_debug("bb  presumed offset: 0x%"PRIx64"\n", poff_bb);
++	igt_debug("src presumed offset: 0x%"PRIx64"\n", poff_src);
++	igt_debug("dst presumed offset: 0x%"PRIx64"\n", poff_dst);
++	igt_debug("bb2  presumed offset: 0x%"PRIx64"\n", poff2_bb);
++	igt_debug("src2 presumed offset: 0x%"PRIx64"\n", poff2_src);
++	igt_debug("dst2 presumed offset: 0x%"PRIx64"\n", poff2_dst);
+ 	if (purge_cache) {
+ 		if (do_relocs) {
+ 			igt_assert(poff2_bb == 0);
 -- 
 2.28.0
 
