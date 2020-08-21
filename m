@@ -1,33 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A782E24D0D8
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Aug 2020 10:50:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F358A24D13B
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Aug 2020 11:14:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F1876E348;
-	Fri, 21 Aug 2020 08:50:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C82726EAB7;
+	Fri, 21 Aug 2020 09:14:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 924416E1D8
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Aug 2020 08:50:43 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22195100-1500050 
- for multiple; Fri, 21 Aug 2020 09:50:15 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: linux-kernel@vger.kernel.org,
-	intel-gfx@lists.freedesktop.org
-Date: Fri, 21 Aug 2020 09:50:11 +0100
-Message-Id: <20200821085011.28878-4-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200821085011.28878-1-chris@chris-wilson.co.uk>
-References: <20200821085011.28878-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BD00B6EAB5;
+ Fri, 21 Aug 2020 09:14:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B6782A3ECB;
+ Fri, 21 Aug 2020 09:14:07 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/gem: Replace reloc chain with
- terminator on error unwind
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 21 Aug 2020 09:14:07 -0000
+Message-ID: <159800124771.16200.5288075760755663094@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200821085011.28878-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200821085011.28878-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/4=5D_mm=3A_Export_flush=5Fvm=5Far?=
+ =?utf-8?q?ea=28=29_to_sync_the_PTEs_upon_construction?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,87 +39,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-mm@kvack.org, stable@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we hit an error during construction of the reloc chain, we need to
-replace the chain into the next batch with the terminator so that upon
-flushing the relocations so far, we do not execute a hanging batch.
+== Series Details ==
 
-Reported-by: Pavel Machek <pavel@ucw.cz>
-Fixes: 964a9b0f611e ("drm/i915/gem: Use chained reloc batches")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Pavel Machek <pavel@ucw.cz>
-Cc: <stable@vger.kernel.org> # v5.8+
----
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 31 ++++++++++---------
- 1 file changed, 16 insertions(+), 15 deletions(-)
+Series: series starting with [1/4] mm: Export flush_vm_area() to sync the PTEs upon construction
+URL   : https://patchwork.freedesktop.org/series/80892/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 24a1486d2dc5..a09f04eee417 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -972,21 +972,6 @@ static int reloc_gpu_chain(struct reloc_cache *cache)
- 	if (err)
- 		goto out_pool;
- 
--	GEM_BUG_ON(cache->rq_size + RELOC_TAIL > PAGE_SIZE  / sizeof(u32));
--	cmd = cache->rq_cmd + cache->rq_size;
--	*cmd++ = MI_ARB_CHECK;
--	if (cache->gen >= 8)
--		*cmd++ = MI_BATCH_BUFFER_START_GEN8;
--	else if (cache->gen >= 6)
--		*cmd++ = MI_BATCH_BUFFER_START;
--	else
--		*cmd++ = MI_BATCH_BUFFER_START | MI_BATCH_GTT;
--	*cmd++ = lower_32_bits(batch->node.start);
--	*cmd++ = upper_32_bits(batch->node.start); /* Always 0 for gen<8 */
--	i915_gem_object_flush_map(cache->rq_vma->obj);
--	i915_gem_object_unpin_map(cache->rq_vma->obj);
--	cache->rq_vma = NULL;
--
- 	err = intel_gt_buffer_pool_mark_active(pool, rq);
- 	if (err == 0) {
- 		i915_vma_lock(batch);
-@@ -999,15 +984,31 @@ static int reloc_gpu_chain(struct reloc_cache *cache)
- 	if (err)
- 		goto out_pool;
- 
-+	GEM_BUG_ON(cache->rq_size + RELOC_TAIL > PAGE_SIZE  / sizeof(u32));
-+	cmd = cache->rq_cmd + cache->rq_size;
-+	*cmd++ = MI_ARB_CHECK;
-+	if (cache->gen >= 8)
-+		*cmd++ = MI_BATCH_BUFFER_START_GEN8;
-+	else if (cache->gen >= 6)
-+		*cmd++ = MI_BATCH_BUFFER_START;
-+	else
-+		*cmd++ = MI_BATCH_BUFFER_START | MI_BATCH_GTT;
-+	*cmd++ = lower_32_bits(batch->node.start);
-+	*cmd++ = upper_32_bits(batch->node.start); /* Always 0 for gen<8 */
-+
- 	cmd = i915_gem_object_pin_map(batch->obj,
- 				      cache->has_llc ?
- 				      I915_MAP_FORCE_WB :
- 				      I915_MAP_FORCE_WC);
- 	if (IS_ERR(cmd)) {
-+		/* We will replace the BBS with BBE upon flushing the rq */
- 		err = PTR_ERR(cmd);
- 		goto out_pool;
- 	}
- 
-+	i915_gem_object_flush_map(cache->rq_vma->obj);
-+	i915_gem_object_unpin_map(cache->rq_vma->obj);
-+
- 	/* Return with batch mapping (cmd) still pinned */
- 	cache->rq_cmd = cmd;
- 	cache->rq_size = 0;
--- 
-2.20.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+dc5a3f725528 mm: Export flush_vm_area() to sync the PTEs upon construction
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+References: 2ba3e6947aed ("mm/vmalloc: track which page-table levels were modified")
+
+-:17: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2ba3e6947aed ("mm/vmalloc: track which page-table levels were modified")'
+#17: 
+References: 2ba3e6947aed ("mm/vmalloc: track which page-table levels were modified")
+
+-:18: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 86cf69f1d893 ("x86/mm/32: implement arch_sync_kernel_mappings()")'
+#18: 
+References: 86cf69f1d893 ("x86/mm/32: implement arch_sync_kernel_mappings()")
+
+-:38: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#38: FILE: include/linux/vmalloc.h:207:
++extern void flush_vm_area(struct vm_struct *area);
+
+total: 2 errors, 1 warnings, 1 checks, 29 lines checked
+2410d6d4185d drm/i915/gem: Sync the vmap PTEs upon construction
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+References: 2ba3e6947aed ("mm/vmalloc: track which page-table levels were modified")
+
+-:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2ba3e6947aed ("mm/vmalloc: track which page-table levels were modified")'
+#11: 
+References: 2ba3e6947aed ("mm/vmalloc: track which page-table levels were modified")
+
+total: 1 errors, 1 warnings, 0 checks, 7 lines checked
+6dc443ae9dba drm/i915/gem: Use set_pte_at() for assigning the vmapped PTE
+9e1d77a3e2fa drm/i915/gem: Replace reloc chain with terminator on error unwind
+
 
 _______________________________________________
 Intel-gfx mailing list
