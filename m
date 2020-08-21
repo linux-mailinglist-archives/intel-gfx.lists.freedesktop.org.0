@@ -2,42 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B5B224D16D
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Aug 2020 11:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03F5424D17D
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Aug 2020 11:30:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75B9F6EABF;
-	Fri, 21 Aug 2020 09:27:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61FAD6EAC1;
+	Fri, 21 Aug 2020 09:30:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7E846EABE;
- Fri, 21 Aug 2020 09:27:54 +0000 (UTC)
-IronPort-SDR: XCuNZ4Fy1m0w/mdwwYS5St/VPox1cRedYfSbGuIXz+NVdpLNHTqIRIFb8UhxQOk0fiGY0A1yxg
- vb+7G4H8MfTw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9719"; a="152908140"
-X-IronPort-AV: E=Sophos;i="5.76,335,1592895600"; d="scan'208";a="152908140"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2020 02:27:52 -0700
-IronPort-SDR: zYtNi7lGq0UAkTeGng+qj/ECxLELi++TAw7ZZa3Wan+kucgWhmjghIJFHzbJkejhlk78YLhvKb
- h9f8GzRVcEaw==
-X-IronPort-AV: E=Sophos;i="5.76,335,1592895600"; d="scan'208";a="472984736"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2020 02:27:52 -0700
-Date: Fri, 21 Aug 2020 14:57:40 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200821092740.GA16946@intel.com>
-References: <20200810124415.601096-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5BA046EABE;
+ Fri, 21 Aug 2020 09:29:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 54EFAA47EE;
+ Fri, 21 Aug 2020 09:29:59 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200810124415.601096-1-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/perf_pmu: Emit a semaphore to
- measure
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 21 Aug 2020 09:29:59 -0000
+Message-ID: <159800219931.16200.1226259132740863004@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200821085011.28878-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200821085011.28878-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_mm=3A_Export_flush=5Fvm=5Farea=28?=
+ =?utf-8?q?=29_to_sync_the_PTEs_upon_construction?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,196 +39,244 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1247343349=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-08-10 at 13:44:15 +0100, Chris Wilson wrote:
-> Don't assume the kernel will emit a semaphore to synchronise between two
-> engine, and emit the semaphore ourselves for the basis of our
-> measurements. The purpose of the test is to try and ascertain the
-> accuracy of the two sampling methods, semaphore busyness uses register
-> polling, whereas the engine busyness may use ktime_t of the CS events.
+--===============1247343349==
+Content-Type: multipart/alternative;
+ boundary="===============2643305447970113849=="
 
-Looks good to me.
+--===============2643305447970113849==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+== Series Details ==
 
-Tested on the platform too.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> ---
->  tests/i915/perf_pmu.c | 94 +++++++++++++++++++++++++++++--------------
->  1 file changed, 64 insertions(+), 30 deletions(-)
-> 
-> diff --git a/tests/i915/perf_pmu.c b/tests/i915/perf_pmu.c
-> index 13e1bd93e..ecd4afbd6 100644
-> --- a/tests/i915/perf_pmu.c
-> +++ b/tests/i915/perf_pmu.c
-> @@ -650,6 +650,7 @@ no_sema(int gem_fd, const struct intel_execution_engine2 *e, unsigned int flags)
->  #define MI_SEMAPHORE_WAIT	MI_INSTR(0x1c, 2) /* GEN8+ */
->  #define   MI_SEMAPHORE_POLL		(1<<15)
->  #define   MI_SEMAPHORE_SAD_GTE_SDD	(1<<12)
-> +#define   MI_SEMAPHORE_SAD_NEQ_SDD      (5 << 12)
->  
->  static void
->  sema_wait(int gem_fd, const struct intel_execution_engine2 *e,
-> @@ -751,10 +752,39 @@ sema_wait(int gem_fd, const struct intel_execution_engine2 *e,
->  	assert_within_epsilon(val[1] - val[0], slept, tolerance);
->  }
->  
-> +static uint32_t
-> +create_sema(int gem_fd, struct drm_i915_gem_relocation_entry *reloc)
-> +{
-> +	uint32_t cs[] = {
-> +		/* Reset our semaphore wait */
-> +		MI_STORE_DWORD_IMM,
-> +		0,
-> +		0,
-> +		1,
-> +
-> +		/* Wait until the semaphore value is set to 0 [by caller] */
-> +		MI_SEMAPHORE_WAIT | MI_SEMAPHORE_POLL | MI_SEMAPHORE_SAD_NEQ_SDD,
-> +		1,
-> +		0,
-> +		0,
-> +
-> +		MI_BATCH_BUFFER_END
-> +	};
-> +	uint32_t handle = gem_create(gem_fd, 4096);
-> +
-> +	memset(reloc, 0, 2 * sizeof(*reloc));
-> +	reloc[0].target_handle = handle;
-> +	reloc[0].offset = 64 + 1 * sizeof(uint32_t);
-> +	reloc[1].target_handle = handle;
-> +	reloc[1].offset = 64 + 6 * sizeof(uint32_t);
-> +
-> +	gem_write(gem_fd, handle, 64, cs, sizeof(cs));
-> +	return handle;
-> +}
-> +
->  static void
->  __sema_busy(int gem_fd, int pmu,
->  	    const struct intel_execution_engine2 *e,
-> -	    const struct intel_execution_engine2 *signal,
->  	    int sema_pct,
->  	    int busy_pct)
->  {
-> @@ -764,39 +794,54 @@ __sema_busy(int gem_fd, int pmu,
->  	};
->  	uint64_t total, sema, busy;
->  	uint64_t start[2], val[2];
-> -	igt_spin_t *spin[2];
-> +	struct drm_i915_gem_relocation_entry reloc[2];
-> +	struct drm_i915_gem_exec_object2 obj = {
-> +		.handle = create_sema(gem_fd, reloc),
-> +		.relocation_count = 2,
-> +		.relocs_ptr = to_user_pointer(reloc),
-> +	};
-> +	struct drm_i915_gem_execbuffer2 eb = {
-> +		.batch_start_offset = 64,
-> +		.buffer_count = 1,
-> +		.buffers_ptr = to_user_pointer(&obj),
-> +		.flags = e->flags,
-> +	};
-> +	igt_spin_t *spin;
-> +	uint32_t *map;
->  
->  	/* Time spent being busy includes time waiting on semaphores */
->  	igt_assert(busy_pct >= sema_pct);
->  
->  	gem_quiescent_gpu(gem_fd);
->  
-> -	spin[0] = igt_spin_new(gem_fd,
-> -			       .engine = signal->flags,
-> -			       .flags = IGT_SPIN_FENCE_OUT | IGT_SPIN_POLL_RUN);
-> -	spin[1] = igt_spin_new(gem_fd,
-> -			       .engine = e->flags,
-> -			       .fence = spin[0]->out_fence,
-> -			       .flags = IGT_SPIN_FENCE_IN);
-> +	map = gem_mmap__wc(gem_fd, obj.handle, 0, 4096, PROT_WRITE);
-> +	gem_execbuf(gem_fd, &eb);
-> +	spin = igt_spin_new(gem_fd, .engine = e->flags);
->  
-> -	igt_spin_busywait_until_started(spin[0]);
-> +	/* Wait until the batch is executed and the semaphore is busy-waiting */
-> +	while (!READ_ONCE(*map) && gem_bo_busy(gem_fd, obj.handle))
-> +		;
-> +	igt_assert(gem_bo_busy(gem_fd, obj.handle));
-> +	gem_close(gem_fd, obj.handle);
->  
->  	total = pmu_read_multi(pmu, 2, start);
->  
->  	sema = measured_usleep(batch_duration_ns * sema_pct / 100 / 1000);
-> -	igt_spin_end(spin[0]);
-> +	*map = 0; __sync_synchronize();
->  	busy = measured_usleep(batch_duration_ns * (busy_pct - sema_pct) / 100 / 1000);
-> -	igt_spin_end(spin[1]);
-> +	igt_spin_end(spin);
->  	measured_usleep(batch_duration_ns * (100 - busy_pct) / 100 / 1000);
->  
->  	total = pmu_read_multi(pmu, 2, val) - total;
-> +	igt_spin_free(gem_fd, spin);
-> +	munmap(map, 4096);
->  
->  	busy += sema;
->  	val[SEMA] -= start[SEMA];
->  	val[BUSY] -= start[BUSY];
->  
-> -	igt_info("%s<-%s, target: {%.1f%% [%d], %.1f%% [%d]}, measured: {%.1f%%, %.1f%%}\n",
-> -		 e->name, signal->name,
-> +	igt_info("%s, target: {%.1f%% [%d], %.1f%% [%d]}, measured: {%.1f%%, %.1f%%}\n",
-> +		 e->name,
->  		 sema * 100. / total, sema_pct,
->  		 busy * 100. / total, busy_pct,
->  		 val[SEMA] * 100. / total,
-> @@ -809,8 +854,6 @@ __sema_busy(int gem_fd, int pmu,
->  		     val[SEMA] * 1e-3, val[SEMA] * 100. / total,
->  		     val[BUSY] * 1e-3, val[BUSY] * 100. / total);
->  
-> -	igt_spin_free(gem_fd, spin[1]);
-> -	igt_spin_free(gem_fd, spin[0]);
->  }
->  
->  static void
-> @@ -818,25 +861,16 @@ sema_busy(int gem_fd,
->  	  const struct intel_execution_engine2 *e,
->  	  unsigned int flags)
->  {
-> -	const struct intel_execution_engine2 *signal;
->  	int fd;
->  
-> -	igt_require(gem_scheduler_has_semaphores(gem_fd));
-> -	igt_require(gem_scheduler_has_preemption(gem_fd));
-> +	igt_require(intel_gen(intel_get_drm_devid(gem_fd)) >= 8);
->  
-> -	fd = open_group(gem_fd,
-> -			I915_PMU_ENGINE_SEMA(e->class, e->instance), -1);
-> +	fd = open_group(gem_fd, I915_PMU_ENGINE_SEMA(e->class, e->instance), -1);
->  	open_group(gem_fd, I915_PMU_ENGINE_BUSY(e->class, e->instance), fd);
->  
-> -	__for_each_physical_engine(gem_fd, signal) {
-> -		if (e->class == signal->class &&
-> -		    e->instance == signal->instance)
-> -			continue;
-> -
-> -		__sema_busy(gem_fd, fd, e, signal, 50, 100);
-> -		__sema_busy(gem_fd, fd, e, signal, 25, 50);
-> -		__sema_busy(gem_fd, fd, e, signal, 75, 75);
-> -	}
-> +	__sema_busy(gem_fd, fd, e, 50, 100);
-> +	__sema_busy(gem_fd, fd, e, 25, 50);
-> +	__sema_busy(gem_fd, fd, e, 75, 75);
->  
->  	close(fd);
->  }
-> -- 
-> 2.28.0
-> 
+Series: series starting with [1/4] mm: Export flush_vm_area() to sync the PTEs upon construction
+URL   : https://patchwork.freedesktop.org/series/80892/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8911 -> Patchwork_18386
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18386 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-tgl-u2/igt@i915_module_load@reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-tgl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][5] -> [INCOMPLETE][6] ([i915#2276])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-x1275:       [PASS][7] -> [DMESG-WARN][8] ([i915#62] / [i915#92] / [i915#95])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-tgl-u2:          [DMESG-FAIL][9] ([i915#2373]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html
+
+  
+#### Warnings ####
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92]) +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2276]: https://gitlab.freedesktop.org/drm/intel/issues/2276
+  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (38 -> 34)
+------------------------------
+
+  Missing    (4): fi-byt-clapper fi-ilk-m540 fi-byt-squawks fi-bsw-cyan 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8911 -> Patchwork_18386
+
+  CI-20190529: 20190529
+  CI_DRM_8911: a1029718e0c12c304c20384a838b02c95f6262d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18386: 9e1d77a3e2faac6f5624fe505f2af1b80357ebf3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9e1d77a3e2fa drm/i915/gem: Replace reloc chain with terminator on error unwind
+6dc443ae9dba drm/i915/gem: Use set_pte_at() for assigning the vmapped PTE
+2410d6d4185d drm/i915/gem: Sync the vmap PTEs upon construction
+dc5a3f725528 mm: Export flush_vm_area() to sync the PTEs upon construction
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/index.html
+
+--===============2643305447970113849==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] mm: Export flush_vm_area() to sync the PTEs upon construction</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/80892/">https://patchwork.freedesktop.org/series/80892/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_8911 -&gt; Patchwork_18386</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18386 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-tgl-u2/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-tgl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-icl-y/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-icl-y/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2276">i915#2276</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-kbl-x1275/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-kbl-x1275/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_lrc:<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2373">i915#2373</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-tgl-u2/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_force_connector_basic@force-edid:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8911/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18386/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (38 -&gt; 34)</h2>
+<p>Missing    (4): fi-byt-clapper fi-ilk-m540 fi-byt-squawks fi-bsw-cyan </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_8911 -&gt; Patchwork_18386</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_8911: a1029718e0c12c304c20384a838b02c95f6262d5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5769: 4e5f76be680b65780204668e302026cf638decc9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18386: 9e1d77a3e2faac6f5624fe505f2af1b80357ebf3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9e1d77a3e2fa drm/i915/gem: Replace reloc chain with terminator on error unwind<br />
+6dc443ae9dba drm/i915/gem: Use set_pte_at() for assigning the vmapped PTE<br />
+2410d6d4185d drm/i915/gem: Sync the vmap PTEs upon construction<br />
+dc5a3f725528 mm: Export flush_vm_area() to sync the PTEs upon construction</p>
+
+</body>
+</html>
+
+--===============2643305447970113849==--
+
+--===============1247343349==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1247343349==--
