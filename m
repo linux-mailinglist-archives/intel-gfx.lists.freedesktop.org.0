@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6597F24D2A1
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Aug 2020 12:36:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA3F24D2E6
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Aug 2020 12:39:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D08D56EACA;
-	Fri, 21 Aug 2020 10:36:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A78AD6E10C;
+	Fri, 21 Aug 2020 10:39:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7157F6E10C
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Aug 2020 10:36:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE086E10C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Aug 2020 10:39:44 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22196525-1500050 for multiple; Fri, 21 Aug 2020 11:36:09 +0100
+ 22196569-1500050 for multiple; Fri, 21 Aug 2020 11:39:21 +0100
 MIME-Version: 1.0
-In-Reply-To: <20200821102204.GH3354@suse.de>
+In-Reply-To: <20200821102343.GI3354@suse.de>
 References: <20200821085011.28878-1-chris@chris-wilson.co.uk>
- <20200821095129.GF3354@suse.de>
- <159800366215.29194.8455636122843151159@build.alporthouse.com>
- <20200821102204.GH3354@suse.de>
+ <20200821100902.GG3354@suse.de>
+ <159800481672.29194.17217138842959831589@build.alporthouse.com>
+ <20200821102343.GI3354@suse.de>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Joerg Roedel <jroedel@suse.de>
-Date: Fri, 21 Aug 2020 11:36:07 +0100
-Message-ID: <159800616716.29194.8354000222129735639@build.alporthouse.com>
+Date: Fri, 21 Aug 2020 11:39:19 +0100
+Message-ID: <159800635942.29194.13489565974587679781@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 1/4] mm: Export flush_vm_area() to sync the
- PTEs upon construction
+Subject: Re: [Intel-gfx] [PATCH] mm: Track page table modifications in
+ __apply_to_page_range() construction
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,37 +52,16 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Joerg Roedel (2020-08-21 11:22:04)
-> On Fri, Aug 21, 2020 at 10:54:22AM +0100, Chris Wilson wrote:
-> > Ok. I thought it had to be after assigning the *ptep. If we apply the
-> > sync first, do not have to worry about PGTBL_PTE_MODIFIED from the
-> > *ptep?
+Quoting Joerg Roedel (2020-08-21 11:23:43)
+> On Fri, Aug 21, 2020 at 11:13:36AM +0100, Chris Wilson wrote:
+> > We need to store the initial addr, as here addr == end [or earlier on
+> > earlier], so range is (start, addr).
 > 
-> Hmm, if I understand the code correctly, you are re-implementing some
-> generic ioremap/vmalloc mapping logic in the i915 driver. I don't know
-> the reason, but if it is valid you need to manually call
-> arch_sync_kernel_mappings() from your driver like this to be correct:
-> 
->         if (ARCH_PAGE_TABLE_SYNC_MASK & PGTBL_PTE_MODIFIED)
->                 arch_sync_kernel_mappings();
-> 
-> In practice this is a no-op, because nobody sets PGTBL_PTE_MODIFIED in
-> ARCH_PAGE_TABLE_SYNC_MASK, so the above code would be optimized away.
-> 
-> But what you really care about is the tracking in apply_to_page_range(),
-> as that allocates the !pte levels of your page-table, which needs
-> synchronization on x86-32.
-> 
-> Btw, what are the reasons you can't use generic vmalloc/ioremap
-> interfaces to map the range?
+> Right, I missed that, thanks for pointing it out.
 
-ioremap_prot and ioremap_page_range assume a contiguous IO address. So
-we needed to allocate the vmalloc area [and would then need to iterate
-over the discontiguous iomem chunks with ioremap_page_range], and since
-alloc_vm_area returned the ptep, it looked clearer to then assign those
-according to whether we wanted ioremapping or a plain page. So we ended
-up with one call to the core to return us a vm_struct and a pte array
-that worked for either backing store.
+And with that (start, addr)
+
+Tested-by: Chris Wilson <chris@chris-wilson.co.uk> #x86-32
 -Chris
 _______________________________________________
 Intel-gfx mailing list
