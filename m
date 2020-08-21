@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39D9524D1FA
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Aug 2020 12:09:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D2224D202
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Aug 2020 12:11:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4826F6EAC6;
-	Fri, 21 Aug 2020 10:09:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C76D6EABD;
+	Fri, 21 Aug 2020 10:11:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A68A6EAC6
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Aug 2020 10:09:05 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id AD749AE38;
- Fri, 21 Aug 2020 10:09:31 +0000 (UTC)
-Date: Fri, 21 Aug 2020 12:09:02 +0200
-From: Joerg Roedel <jroedel@suse.de>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200821100902.GG3354@suse.de>
-References: <20200821085011.28878-1-chris@chris-wilson.co.uk>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D54886EABD;
+ Fri, 21 Aug 2020 10:11:54 +0000 (UTC)
+IronPort-SDR: ITlvnju7D86R3kvf/pvPRqIri4MxUByiluhkD7I7AYk/KymMJC38uBEYPIPi1UaH0Vi+cvVntp
+ NZFNJXzjhDqA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9719"; a="154771166"
+X-IronPort-AV: E=Sophos;i="5.76,335,1592895600"; d="scan'208";a="154771166"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2020 03:11:54 -0700
+IronPort-SDR: r3ulUXAh+zQab6O3LrV8c0uGvllAqJj4pZe2OwO6bq4CLjdcT6nVDfBITIpe0LmUdo4YBNAcQc
+ Y/bMYLOtTQhA==
+X-IronPort-AV: E=Sophos;i="5.76,335,1592895600"; d="scan'208";a="472998374"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2020 03:11:52 -0700
+Message-ID: <94bbee2d0e673ed4848c2839638acade90b73761.camel@linux.intel.com>
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Fri, 21 Aug 2020 12:11:50 +0200
+In-Reply-To: <20200820145215.13238-1-janusz.krzysztofik@linux.intel.com>
+References: <20200820145215.13238-1-janusz.krzysztofik@linux.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200821085011.28878-1-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: [Intel-gfx] [PATCH] mm: Track page table modifications in
- __apply_to_page_range() construction
+Subject: Re: [Intel-gfx] [PATCH i-g-t v3 00/19] tests/core_hotunplug: Fixes
+ and enhancements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,168 +51,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, linux-mm@kvack.org,
- David Vrabel <david.vrabel@citrix.com>, Pavel Machek <pavel@ucw.cz>,
- Dave Airlie <airlied@redhat.com>, Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The __apply_to_page_range() function is also used to change and/or
-allocate page-table pages in the vmalloc area of the address space.
-Make sure these changes get synchronized to other page-tables in the
-system by calling arch_sync_kernel_mappings() when necessary.
-
-Signed-off-by: Joerg Roedel <jroedel@suse.de>
----
-(Only compile tested on x86-64 so far)
-
- mm/memory.c | 32 +++++++++++++++++++++-----------
- 1 file changed, 21 insertions(+), 11 deletions(-)
-
-diff --git a/mm/memory.c b/mm/memory.c
-index 3a7779d9891d..fd845991f14a 100644
---- a/mm/memory.c
-+++ b/mm/memory.c
-@@ -83,6 +83,7 @@
- #include <asm/tlb.h>
- #include <asm/tlbflush.h>
- 
-+#include "pgalloc-track.h"
- #include "internal.h"
- 
- #if defined(LAST_CPUPID_NOT_IN_PAGE_FLAGS) && !defined(CONFIG_COMPILE_TEST)
-@@ -2206,7 +2207,8 @@ EXPORT_SYMBOL(vm_iomap_memory);
- 
- static int apply_to_pte_range(struct mm_struct *mm, pmd_t *pmd,
- 				     unsigned long addr, unsigned long end,
--				     pte_fn_t fn, void *data, bool create)
-+				     pte_fn_t fn, void *data, bool create,
-+				     pgtbl_mod_mask *mask)
- {
- 	pte_t *pte;
- 	int err = 0;
-@@ -2235,6 +2237,7 @@ static int apply_to_pte_range(struct mm_struct *mm, pmd_t *pmd,
- 				break;
- 		}
- 	} while (addr += PAGE_SIZE, addr != end);
-+	*mask |= PGTBL_PTE_MODIFIED;
- 
- 	arch_leave_lazy_mmu_mode();
- 
-@@ -2245,7 +2248,8 @@ static int apply_to_pte_range(struct mm_struct *mm, pmd_t *pmd,
- 
- static int apply_to_pmd_range(struct mm_struct *mm, pud_t *pud,
- 				     unsigned long addr, unsigned long end,
--				     pte_fn_t fn, void *data, bool create)
-+				     pte_fn_t fn, void *data, bool create,
-+				     pgtbl_mod_mask *mask)
- {
- 	pmd_t *pmd;
- 	unsigned long next;
-@@ -2254,7 +2258,7 @@ static int apply_to_pmd_range(struct mm_struct *mm, pud_t *pud,
- 	BUG_ON(pud_huge(*pud));
- 
- 	if (create) {
--		pmd = pmd_alloc(mm, pud, addr);
-+		pmd = pmd_alloc_track(mm, pud, addr, mask);
- 		if (!pmd)
- 			return -ENOMEM;
- 	} else {
-@@ -2264,7 +2268,7 @@ static int apply_to_pmd_range(struct mm_struct *mm, pud_t *pud,
- 		next = pmd_addr_end(addr, end);
- 		if (create || !pmd_none_or_clear_bad(pmd)) {
- 			err = apply_to_pte_range(mm, pmd, addr, next, fn, data,
--						 create);
-+						 create, mask);
- 			if (err)
- 				break;
- 		}
-@@ -2274,14 +2278,15 @@ static int apply_to_pmd_range(struct mm_struct *mm, pud_t *pud,
- 
- static int apply_to_pud_range(struct mm_struct *mm, p4d_t *p4d,
- 				     unsigned long addr, unsigned long end,
--				     pte_fn_t fn, void *data, bool create)
-+				     pte_fn_t fn, void *data, bool create,
-+				     pgtbl_mod_mask *mask)
- {
- 	pud_t *pud;
- 	unsigned long next;
- 	int err = 0;
- 
- 	if (create) {
--		pud = pud_alloc(mm, p4d, addr);
-+		pud = pud_alloc_track(mm, p4d, addr, mask);
- 		if (!pud)
- 			return -ENOMEM;
- 	} else {
-@@ -2291,7 +2296,7 @@ static int apply_to_pud_range(struct mm_struct *mm, p4d_t *p4d,
- 		next = pud_addr_end(addr, end);
- 		if (create || !pud_none_or_clear_bad(pud)) {
- 			err = apply_to_pmd_range(mm, pud, addr, next, fn, data,
--						 create);
-+						 create, mask);
- 			if (err)
- 				break;
- 		}
-@@ -2301,14 +2306,15 @@ static int apply_to_pud_range(struct mm_struct *mm, p4d_t *p4d,
- 
- static int apply_to_p4d_range(struct mm_struct *mm, pgd_t *pgd,
- 				     unsigned long addr, unsigned long end,
--				     pte_fn_t fn, void *data, bool create)
-+				     pte_fn_t fn, void *data, bool create,
-+				     pgtbl_mod_mask *mask)
- {
- 	p4d_t *p4d;
- 	unsigned long next;
- 	int err = 0;
- 
- 	if (create) {
--		p4d = p4d_alloc(mm, pgd, addr);
-+		p4d = p4d_alloc_track(mm, pgd, addr, mask);
- 		if (!p4d)
- 			return -ENOMEM;
- 	} else {
-@@ -2318,7 +2324,7 @@ static int apply_to_p4d_range(struct mm_struct *mm, pgd_t *pgd,
- 		next = p4d_addr_end(addr, end);
- 		if (create || !p4d_none_or_clear_bad(p4d)) {
- 			err = apply_to_pud_range(mm, p4d, addr, next, fn, data,
--						 create);
-+						 create, mask);
- 			if (err)
- 				break;
- 		}
-@@ -2333,6 +2339,7 @@ static int __apply_to_page_range(struct mm_struct *mm, unsigned long addr,
- 	pgd_t *pgd;
- 	unsigned long next;
- 	unsigned long end = addr + size;
-+	pgtbl_mod_mask mask = 0;
- 	int err = 0;
- 
- 	if (WARN_ON(addr >= end))
-@@ -2343,11 +2350,14 @@ static int __apply_to_page_range(struct mm_struct *mm, unsigned long addr,
- 		next = pgd_addr_end(addr, end);
- 		if (!create && pgd_none_or_clear_bad(pgd))
- 			continue;
--		err = apply_to_p4d_range(mm, pgd, addr, next, fn, data, create);
-+		err = apply_to_p4d_range(mm, pgd, addr, next, fn, data, create, &mask);
- 		if (err)
- 			break;
- 	} while (pgd++, addr = next, addr != end);
- 
-+	if (mask & ARCH_PAGE_TABLE_SYNC_MASK)
-+		arch_sync_kernel_mappings(addr, addr + size);
-+
- 	return err;
- }
- 
--- 
-2.28.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIwLTA4LTIwIGF0IDE2OjUxICswMjAwLCBKYW51c3ogS3J6eXN6dG9maWsgd3Jv
+dGU6Cj4gQ2xlYW4gdXAgdGhlIHRlc3QgY29kZSwgYWRkIHNvbWUgbmV3IGJhc2ljIHN1YnRlc3Rz
+LCB0aGVuIHVuYmxvY2sKPiB1bmJpbmQgdGVzdCB2YXJpYW50cy4KCkhpLAoKQ0kgcmVzdWx0cyBz
+aG93IHRoYXQgaTkxNSByZWNvdmVyeSBhZnRlciBhIGZhaWxlZCBoZWFsdGhjaGVjayBzdGlsbApu
+ZWVkcyBzb21lIHdvcmssIHNvIHBsZWFzZSBob2xkIG9uIHdpdGggeW91ciByZXZpZXdzLiAgSSdt
+IGdvaW5nIHRvCnN1Ym1pdCB2NCBzb29uLgoKVGhhbmtzLApKYW51c3oKCj4gCj4gT25lIHBhdGNo
+IGhhcyBiZWVuIHJlbmFtZWQsIHRocmVlIG5ldyBwYXRjaGVzIGFkZGVkIHRvIHRoZSBzZXJpZXMs
+IGFuZAo+IG9uZSBtb3JlIHBhdGNoIGZvcm0gYSBmb3JtZXJseSBzdWJtaXR0ZWQgc2VyaWVzIHdp
+dGggbmV3IHN1YnRlc3RzCj4gaW5jbHVkZWQuCj4gCj4gQE1pY2hhxYI6IFNpbmNlIG1vc3QgdjIv
+djMgdXBkYXRlcyBhcmUgdHJpdmlhbCwgSSd2ZSBwcmVzZXJ2ZWQgeW91cgo+IHYxL3YyIFJldmll
+d2QtYnk6IGV4Y2VwdCBmb3IgYSBmZXcgcGF0Y2hlcyB3aXRoIG5vbi10cml2aWFsIGNoYW5nZXMs
+Cj4gd2hlcmUgSSBtYXJrZWQgeW91ciBSLWIgYXMgdjEvdjIgYXBwbGljYWJsZS4gIFBsZWFzZSBo
+YXZlIGEgbG9vayBhbmQKPiBjb25maXJtIGlmIHlvdSBhcmUgc3RpbGwgT0sgd2l0aCB0aGVtLgo+
+IAo+IEBUdnJ0a286IFBsZWFzZSBzdXBwb3J0IG15IGF0dGVtcHQgdG8gcmVtb3ZlIHRoZSB1bmJp
+bmQgdGVzdCB2YXJpYW50cwo+IGZyb20gdGhlIGJsb2NrbGlzdC4KPiAKPiBAUGV0cmksIEBNYXJ0
+aW46IFBsZWFzZSBnaXZlIG1lIHlvdXIgZ3JlZW4gbGl0ZSBmb3IgbWVyZ2luZyB0aGlzCj4gc2Vy
+aWVzIGlmIHlvdSBoYXZlIG5vIG9iamVjdGlvbnMuCj4gCj4gVGhhbmtzLAo+IEphbnVzego+IAo+
+IEphbnVzeiBLcnp5c3p0b2ZpayAoMTkpOgo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFVzZSBp
+Z3RfYXNzZXJ0X2ZkKCkKPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBDb25zdGlmeSBkZXZfYnVz
+X2FkZHIgc3RyaW5nCj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogQ2xlYW4gdXAgZGV2aWNlIG9w
+ZW4gZXJyb3IgaGFuZGxpbmcKPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBDb25zb2xpZGF0ZSBk
+dXBsaWNhdGVkIGRlYnVnIG1lc3NhZ2VzICMgbmV3Cj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1Zzog
+QXNzZXJ0IHN1Y2Nlc3NmdWwgZGV2aWNlIGZpbHRlciBhcHBsaWNhdGlvbgo+ICAgdGVzdHMvY29y
+ZV9ob3R1bnBsdWc6IE1haW50YWluIGEgc2luZ2xlIGRhdGEgc3RydWN0dXJlIGluc3RhbmNlCj4g
+ICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogUGFzcyBlcnJvcnMgdmlhIGEgZGF0YSBzdHJ1Y3R1cmUg
+ZmllbGQKPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBIYW5kbGUgZGV2aWNlIGNsb3NlIGVycm9y
+cwo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFByZXBhcmUgaW52YXJpYW50IGRhdGEgb25jZSBw
+ZXIgdGVzdCBydW4KPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBTa2lwIHNlbGVjdGl2ZWx5IG9u
+IHN5c2ZzIGNsb3NlIGVycm9ycwo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFJlY292ZXIgZnJv
+bSBzdWJ0ZXN0IGZhaWx1cmVzICMgcmVuYW1lZAo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEZh
+aWwgc3VidGVzdHMgb24gZGV2aWNlIGNsb3NlIGVycm9ycwo+ICAgdGVzdHMvY29yZV9ob3R1bnBs
+dWc6IExldCB0aGUgZHJpdmVyIHRpbWUgb3V0IGVzc2VudGlhbCBzeXNmcyBvcGVyYXRpb25zICMg
+bmV3Cj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogUHJvY2VzcyByZXR1cm4gdmFsdWVzIG9mIHN5
+c2ZzIG9wZXJhdGlvbnMKPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBBc3NlcnQgZXhwZWN0ZWQg
+ZGV2aWNlIHByZXNlbmNlL2Fic2VuY2UKPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBFeHBsaWNp
+dGx5IGlnbm9yZSB1bnVzZWQgcmV0dXJuIHZhbHVlcwo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6
+IE1vcmUgdGhvcm91Z2ggaTkxNSBoZWFsdGhjaGVjayBhbmQgcmVjb3ZlcnkgIyBuZXcKPiAgIHRl
+c3RzL2NvcmVfaG90dW5wbHVnOiBBZGQgJ2xhdGVjbG9zZSBiZWZvcmUgcmVzdG9yZScgdmFyaWFu
+dHMgIyBpbmNsdWRlZAo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFVuLWJsb2NrbGlzdCAqYmlu
+ZCogc3VidGVzdHMKPiAKPiAgdGVzdHMvY29yZV9ob3R1bnBsdWcuYyAgICAgICB8IDUyNSArKysr
+KysrKysrKysrKysrKysrKysrKysrKy0tLS0tLS0tLQo+ICB0ZXN0cy9pbnRlbC1jaS9ibGFja2xp
+c3QudHh0IHwgICAyICstCj4gIDIgZmlsZXMgY2hhbmdlZCwgMzk2IGluc2VydGlvbnMoKyksIDEz
+MSBkZWxldGlvbnMoLSkKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeAo=
