@@ -1,34 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F0A224E713
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 Aug 2020 13:32:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C75E824E874
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Aug 2020 18:02:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2D4F6E053;
-	Sat, 22 Aug 2020 11:32:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3790E6E137;
+	Sat, 22 Aug 2020 16:02:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9BFD6E053
- for <intel-gfx@lists.freedesktop.org>; Sat, 22 Aug 2020 11:32:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 042A86E137
+ for <intel-gfx@lists.freedesktop.org>; Sat, 22 Aug 2020 16:02:29 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22207247-1500050 for multiple; Sat, 22 Aug 2020 12:31:56 +0100
-MIME-Version: 1.0
-In-Reply-To: <159805314945.32652.6355592202796435703@build.alporthouse.com>
-References: <20200821123746.16904-1-joro@8bytes.org>
- <20200821153412.5902e4ed0699615d8de4a595@linux-foundation.org>
- <159805314945.32652.6355592202796435703@build.alporthouse.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22208727-1500050 
+ for multiple; Sat, 22 Aug 2020 17:02:11 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Andrew Morton <akpm@linux-foundation.org>, Joerg Roedel <joro@8bytes.org>
-Date: Sat, 22 Aug 2020 12:31:55 +0100
-Message-ID: <159809591535.32652.4016790228519688343@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH v2] mm: Track page table modifications in
- __apply_to_page_range()
+To: iommu@lists.linux-foundation.org
+Date: Sat, 22 Aug 2020 17:02:09 +0100
+Message-Id: <20200822160209.28512-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] iommu/intel: Handle 36b addressing for x86-32
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,45 +36,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Joerg Roedel <jroedel@suse.de>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org, linux-mm@kvack.org,
- David Vrabel <david.vrabel@citrix.com>, Pavel Machek <pavel@ucw.cz>,
- Dave Airlie <airlied@redhat.com>,
- Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Joerg Roedel <jroedel@suse.de>, James Sewart <jamessewart@arista.com>,
+ intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Lu Baolu <baolu.lu@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-08-22 00:39:09)
-> Quoting Andrew Morton (2020-08-21 23:34:12)
-> > On Fri, 21 Aug 2020 14:37:46 +0200 Joerg Roedel <joro@8bytes.org> wrote:
-> > 
-> > > The __apply_to_page_range() function is also used to change and/or
-> > > allocate page-table pages in the vmalloc area of the address space.
-> > > Make sure these changes get synchronized to other page-tables in the
-> > > system by calling arch_sync_kernel_mappings() when necessary.
-> > > 
-> > > Tested-by: Chris Wilson <chris@chris-wilson.co.uk> #x86-32
-> > > Cc: <stable@vger.kernel.org> # v5.8+
-> > 
-> > I'm trying to figure out how you figured out that this is 5.8+.  Has a
-> > particular misbehaving commit been identified?
-> 
-> The two commits of relevance, in my eyes, were
-> 
->   2ba3e6947aed ("mm/vmalloc: track which page-table levels were modified")
->   86cf69f1d893 ("x86/mm/32: implement arch_sync_kernel_mappings()")
-> 
-> I can reproduce the failure on v5.8, but not on v5.7. A bisect would
-> seem to be plausible.
+Beware that the address size for x86-32 may exceed unsigned long.
 
-The active ingredient was
+[    0.368971] UBSAN: shift-out-of-bounds in drivers/iommu/intel/iommu.c:128:14
+[    0.369055] shift exponent 36 is too large for 32-bit type 'long unsigned int'
 
-7f0a002b5a21 ("x86/mm: remove vmalloc faulting")
+If we don't handle the wide addresses, the pages are mismapped and the
+device read/writes go astray, detected as DMAR faults and leading to
+device failure. The behaviour changed (from working to broken) in commit
+fa954e683178 ("iommu/vt-d: Delegate the dma domain to upper layer"), but
+the error looks older.
 
-which explains a lot.
--Chris
+Fixes: fa954e683178 ("iommu/vt-d: Delegate the dma domain to upper layer")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: James Sewart <jamessewart@arista.com>
+Cc: Lu Baolu <baolu.lu@linux.intel.com>
+Cc: Joerg Roedel <jroedel@suse.de>
+Cc: <stable@vger.kernel.org> # v5.3+
+---
+ drivers/iommu/intel/iommu.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
+index 2e9c8c3d0da4..ba78a2e854f9 100644
+--- a/drivers/iommu/intel/iommu.c
++++ b/drivers/iommu/intel/iommu.c
+@@ -123,29 +123,29 @@ static inline unsigned int level_to_offset_bits(int level)
+ 	return (level - 1) * LEVEL_STRIDE;
+ }
+ 
+-static inline int pfn_level_offset(unsigned long pfn, int level)
++static inline int pfn_level_offset(u64 pfn, int level)
+ {
+ 	return (pfn >> level_to_offset_bits(level)) & LEVEL_MASK;
+ }
+ 
+-static inline unsigned long level_mask(int level)
++static inline u64 level_mask(int level)
+ {
+-	return -1UL << level_to_offset_bits(level);
++	return -1ULL << level_to_offset_bits(level);
+ }
+ 
+-static inline unsigned long level_size(int level)
++static inline u64 level_size(int level)
+ {
+-	return 1UL << level_to_offset_bits(level);
++	return 1ULL << level_to_offset_bits(level);
+ }
+ 
+-static inline unsigned long align_to_level(unsigned long pfn, int level)
++static inline u64 align_to_level(u64 pfn, int level)
+ {
+ 	return (pfn + level_size(level) - 1) & level_mask(level);
+ }
+ 
+ static inline unsigned long lvl_to_nr_pages(unsigned int lvl)
+ {
+-	return  1 << min_t(int, (lvl - 1) * LEVEL_STRIDE, MAX_AGAW_PFN_WIDTH);
++	return 1UL << min_t(int, (lvl - 1) * LEVEL_STRIDE, MAX_AGAW_PFN_WIDTH);
+ }
+ 
+ /* VT-d pages must always be _smaller_ than MM pages. Otherwise things
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
