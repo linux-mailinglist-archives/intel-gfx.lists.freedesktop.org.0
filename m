@@ -2,31 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C055824FC4A
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Aug 2020 13:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2BAF24FD25
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Aug 2020 14:01:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28F4A6E1F3;
-	Mon, 24 Aug 2020 11:08:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2383C6E207;
+	Mon, 24 Aug 2020 12:01:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EA0276E1F3;
- Mon, 24 Aug 2020 11:08:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E39EFA47EE;
- Mon, 24 Aug 2020 11:08:28 +0000 (UTC)
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
+ [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29DB16E207
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 12:01:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1598270499;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=HpcDUK52/UDxZyv8A9aeHTJ/qDjPZ77nKjdZsqv7cec=;
+ b=UquJzuseO9o9W2hkkOhKkXFEKvDxUtnKOgD2CFFCsVYXPS7yf1UiMJujto1YDCFTRY/bT9
+ VvhJbbWxrmYpaAfpgucA0KvtSVKPC8CpVUwz5ccEwg15J3QAPcuauAZRA4USuKiuppT40P
+ yRBdNxlK+FoaqqcDPue0+4vPaxcTH38=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-58-ZCGUcaXJNWunUf1rkjsFeQ-1; Mon, 24 Aug 2020 08:01:35 -0400
+X-MC-Unique: ZCGUcaXJNWunUf1rkjsFeQ-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2E85D801AC9;
+ Mon, 24 Aug 2020 12:01:32 +0000 (UTC)
+Received: from x1.localdomain.com (ovpn-113-147.ams2.redhat.com
+ [10.36.113.147])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8E54F5D9DD;
+ Mon, 24 Aug 2020 12:01:28 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+ =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <lenb@kernel.org>
+Date: Mon, 24 Aug 2020 14:01:10 +0200
+Message-Id: <20200824120126.7116-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nischal Varide" <nischal.varide@intel.com>
-Date: Mon, 24 Aug 2020 11:08:28 -0000
-Message-ID: <159826730892.20780.7191075547574009702@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200824034556.26626-1-nischal.varide@intel.com>
-In-Reply-To: <20200824034556.26626-1-nischal.varide@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/5=5D_Fixing_Possible_Null_Pointer_Derefe?=
- =?utf-8?q?rence?=
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+Subject: [Intel-gfx] [PATCH v6 00/16] acpi/pwm/i915: Convert pwm-crc and
+ i915 driver's PWM code to use the atomic PWM API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,232 +62,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1982078314=="
+Cc: linux-pwm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1982078314==
-Content-Type: multipart/alternative;
- boundary="===============1958105591933049638=="
+Hi All,
 
---===============1958105591933049638==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Here is v6 of my patch series converting the i915 driver's code for
+controlling the panel's backlight with an external PWM controller to
+use the atomic PWM API. See below for the changelog.
 
-== Series Details ==
+This version of the series has been rebased on 5.9-rc1 and has
+a Reviewed-by or Acked-by for all patches.
 
-Series: series starting with [1/5] Fixing Possible Null Pointer Dereference
-URL   : https://patchwork.freedesktop.org/series/80939/
-State : success
+The main purpose of sending this new version out is to allow the
+intel-gfx CI to play with it.
 
-== Summary ==
+As discussed before, because of interdependencies of the patches
+I plan to push the entire series to drm-intel-next-queued once it
+has passed CI.
 
-CI Bug Log - changes from CI_DRM_8918 -> Patchwork_18392
-====================================================
+Thierry, I believe from our previous discussion that you are ok with
+pushing the pwm-crc and pwm-lpss patches through the drm-intel tree,
+but you have not given your Acked-by for this. If you are not ok with
+me pushing these out this way please let me now ASAP. If you are ok
+with this an Acked-by would be appreciated.
 
-Summary
--------
+This series has been tested (and re-tested after adding various bug-fixes)
+extensively. It has been tested on the following devices:
 
-  **SUCCESS**
+-Asus T100TA  BYT + CRC-PMIC PWM
+-Toshiba WT8-A  BYT + CRC-PMIC PWM
+-Thundersoft TS178 BYT + CRC-PMIC PWM, inverse PWM
+-Asus T100HA  CHT + CRC-PMIC PWM
+-Terra Pad 1061  BYT + LPSS PWM
+-Trekstor Twin 10.1 BYT + LPSS PWM
+-Asus T101HA  CHT + CRC-PMIC PWM
+-GPD Pocket  CHT + CRC-PMIC PWM
 
-  No regressions found.
+Regards,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18392 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-apl-guc:         [PASS][1] -> [DMESG-WARN][2] ([i915#1635] / [i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-n3050:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - fi-bsw-kefka:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:
-    - fi-skl-guc:         [DMESG-WARN][7] ([i915#2203]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
-
-  
-#### Warnings ####
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#62] / [i915#92]) +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Hans
 
 
-Participating hosts (37 -> 34)
-------------------------------
+Changelog:
 
-  Missing    (3): fi-byt-clapper fi-byt-squawks fi-bsw-cyan 
+Changes in v6:
+- Rebase on v5.9-rc1
+- Adjust pwm-crc patches for pwm_state.period and .duty_cycle now being u64
 
+Changes in v5:
+- Dropped the "pwm: lpss: Correct get_state result for base_unit == 0"
+  patch. The base_unit == 0 condition should never happen and sofar it is
+  unclear what the proper behavior / correct values to store in the
+  pwm_state should be when this does happen.  Since this patch was added as
+  an extra pwm-lpss fix in v4 of this patch-set and otherwise is orthogonal
+  to the of this patch-set just drop it (again).
+- "[PATCH 04/16] pwm: lpss: Add range limit check for the base_unit register value"
+  - Use clamp_val(... instead of clam_t(unsigned long long, ...
+- "[PATCH 05/16] pwm: lpss: Add pwm_lpss_prepare_enable() helper"
+  - This is a new patch in v5 of this patchset
+- [PATCH 06/16] pwm: lpss: Use pwm_lpss_apply() when restoring state on resume
+  - Use the new pwm_lpss_prepare_enable() helper
 
-Build changes
--------------
+Changes in v4:
+- "[PATCH v4 06/16] pwm: lpss: Correct get_state result for base_unit == 0"
+  - This is a new patch in v4 of this patchset
+- "[PATCH v4 12/16] pwm: crc: Implement get_state() method"
+  - Use DIV_ROUND_UP when calculating the period and duty_cycle values
+- "[PATCH v4 16/16] drm/i915: panel: Use atomic PWM API for devs with an external PWM controller"
+  - Add a note to the commit message about the changes in pwm_disable_backlight()
+  - Use the pwm_set/get_relative_duty_cycle() helpers
 
-  * Linux: CI_DRM_8918 -> Patchwork_18392
+Changes in v3:
+- "[PATCH v3 04/15] pwm: lpss: Add range limit check for the base_unit register value"
+  - Use base_unit_range - 1 as maximum value for the clamp()
+- "[PATCH v3 05/15] pwm: lpss: Use pwm_lpss_apply() when restoring state on resume"
+  - This replaces the "pwm: lpss: Set SW_UPDATE bit when enabling the PWM"
+    patch from previous versions of this patch-set, which really was a hack
+    working around the resume issue which this patch fixes properly.
+- PATCH v3 6 - 11 pwm-crc changes:
+  - Various small changes resulting from the reviews by Andy and Uwe,
+    including some refactoring of the patches to reduce the amount of churn
+    in the patch-set
 
-  CI-20190529: 20190529
-  CI_DRM_8918: 7296072da95d2d2550ef2d4836bc72663ee711cc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5770: f1d0c240ea2e631dfb9f493f37f8fb61cb2b1cf2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18392: fe514036c04927db4d21ec423cc1d3ff9747700e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fe514036c049 Fixing a Possible Null Pointer Dereference.
-932de90c59ae Fixing Possible Null Pointer Dereference.
-392417891b5b Fixing a Possible Null Pointer Dereference.
-3b7087647897 Fixing Possible Null Pointer Dereference.
-e2dc6f705c6e Fixing Possible Null Pointer Dereference
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/index.html
-
---===============1958105591933049638==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/5] Fixing Possible Null Pointer Dereference</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/80939/">https://patchwork.freedesktop.org/series/80939/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8918 -&gt; Patchwork_18392</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18392 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-apl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-apl-guc/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>
-<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></p>
-</li>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:</p>
-<ul>
-<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-kbl-x1275/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8918/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18392/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (37 -&gt; 34)</h2>
-<p>Missing    (3): fi-byt-clapper fi-byt-squawks fi-bsw-cyan </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_8918 -&gt; Patchwork_18392</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8918: 7296072da95d2d2550ef2d4836bc72663ee711cc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5770: f1d0c240ea2e631dfb9f493f37f8fb61cb2b1cf2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18392: fe514036c04927db4d21ec423cc1d3ff9747700e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fe514036c049 Fixing a Possible Null Pointer Dereference.<br />
-932de90c59ae Fixing Possible Null Pointer Dereference.<br />
-392417891b5b Fixing a Possible Null Pointer Dereference.<br />
-3b7087647897 Fixing Possible Null Pointer Dereference.<br />
-e2dc6f705c6e Fixing Possible Null Pointer Dereference</p>
-
-</body>
-</html>
-
---===============1958105591933049638==--
-
---===============1982078314==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Changes in v2:
+- Fix coverletter subject
+- Drop accidentally included debugging patch
+- "[PATCH v3 02/15] ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (
+  - Move #define LPSS_SAVE_CTX_ONCE define to group it with LPSS_SAVE_CTX
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1982078314==--
