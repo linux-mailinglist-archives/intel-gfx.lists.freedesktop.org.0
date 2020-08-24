@@ -2,42 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C4F250934
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Aug 2020 21:24:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2D225093C
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Aug 2020 21:29:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3AE76E0B9;
-	Mon, 24 Aug 2020 19:24:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B519B6E157;
+	Mon, 24 Aug 2020 19:29:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88C2B6E0B9
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 19:24:17 +0000 (UTC)
-IronPort-SDR: NdxEbTvCQxwtnqk8lZyhxoErbLZnnuz697c/IOi9Htl/aymKcimYBs8n6ZFowR+KIlKdLR3pFX
- 7qrGXq7JowhA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="174015134"
-X-IronPort-AV: E=Sophos;i="5.76,349,1592895600"; d="scan'208";a="174015134"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14A556E157
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 19:29:16 +0000 (UTC)
+IronPort-SDR: uEK1/zVLRB8twD7kASCT3+6bK1hd+g+CyrlulC+vNk6PnmP1sxR7SaLXBnGpqFBpajPPUySx2k
+ 0xRs2InSITwg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="136040089"
+X-IronPort-AV: E=Sophos;i="5.76,349,1592895600"; d="scan'208";a="136040089"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2020 12:24:16 -0700
-IronPort-SDR: ksX/F6EdSecZTJ6ewvxXZdGrsyhQNC6PFlvgTcFT1FCS/GanetBF+lGVtUONCIJdceiwYR6Mf8
- QD/QdgXQDJSQ==
-X-IronPort-AV: E=Sophos;i="5.76,349,1592895600"; d="scan'208";a="499583813"
-Received: from kdonepud-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.251.128.135])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2020 12:24:16 -0700
-Date: Mon, 24 Aug 2020 12:24:16 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200824192416.3a75wbqwhan2xdv5@ldmartin-desk1>
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2020 12:29:15 -0700
+IronPort-SDR: D695AKMWvnf1odz3Dys+cm1+/7AWGvo2H7ljrLhxcUQsafSmhd9B0lIPDKSnlZUnAsckOJtIkX
+ rIuJMF+69ZpA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,349,1592895600"; d="scan'208";a="281287711"
+Received: from fmsmsx603-2.cps.intel.com (HELO fmsmsx603.amr.corp.intel.com)
+ ([10.18.84.213])
+ by fmsmga008.fm.intel.com with ESMTP; 24 Aug 2020 12:29:15 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 24 Aug 2020 12:29:14 -0700
+Received: from fmsmsx108.amr.corp.intel.com (10.18.124.206) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Mon, 24 Aug 2020 12:29:14 -0700
+Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.136]) by
+ FMSMSX108.amr.corp.intel.com ([169.254.9.77]) with mapi id 14.03.0439.000;
+ Mon, 24 Aug 2020 12:29:14 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v5 05/22] drm/i915/dg1: Wait for
+ pcode/uncore handshake at startup
+Thread-Index: AQHWYgLxMAbu3Zz8SEqUR6oBJrnJ8aknjF0AgCC9RQCAAAIfgA==
+Date: Mon, 24 Aug 2020 19:29:13 +0000
+Message-ID: <dfc7b3e2d56f591e82e9e658a729a522726b73fd.camel@intel.com>
 References: <20200724213918.27424-1-lucas.demarchi@intel.com>
  <20200724213918.27424-6-lucas.demarchi@intel.com>
  <791224e3effd491cc3276cbe55a2958dafdfe3fd.camel@intel.com>
+ <20200824192416.3a75wbqwhan2xdv5@ldmartin-desk1>
+In-Reply-To: <20200824192416.3a75wbqwhan2xdv5@ldmartin-desk1>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.240.12]
+Content-ID: <E12F5DB26E22114287D343C2840A3B17@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <791224e3effd491cc3276cbe55a2958dafdfe3fd.camel@intel.com>
 Subject: Re: [Intel-gfx] [PATCH v5 05/22] drm/i915/dg1: Wait for
  pcode/uncore handshake at startup
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -53,172 +73,114 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 03, 2020 at 04:24:17PM -0700, Jose Souza wrote:
->On Fri, 2020-07-24 at 14:39 -0700, Lucas De Marchi wrote:
->> From: Matt Roper <
->> matthew.d.roper@intel.com
->> >
->>
->> DG1 does some additional pcode/uncore handshaking at
->> boot time; this handshaking must complete before various other pcode
->> commands are effective and before general work is submitted to the GPU.
->> We need to poll a new pcode mailbox during startup until it reports that
->> this handshaking is complete.
->>
->> The bspec doesn't give guidance on how long we may need to wait for this
->> handshaking to complete.  For now, let's just set a really long timeout;
->> if we still don't get a completion status by the end of that timeout,
->> we'll just continue on and hope for the best.
->>
->> Bspec: 52065
->> Cc: Clinton Taylor <
->> Clinton.A.Taylor@intel.com
->> >
->> Cc: Ville Syrj=E4l=E4 <
->> ville.syrjala@linux.intel.com
->> >
->> Cc: Radhakrishna Sripada <
->> radhakrishna.sripada@intel.com
->> >
->> Signed-off-by: Matt Roper <
->> matthew.d.roper@intel.com
->> >
->> Signed-off-by: Lucas De Marchi <
->> lucas.demarchi@intel.com
->> >
->> ---
->>  drivers/gpu/drm/i915/i915_drv.c       |  3 +++
->>  drivers/gpu/drm/i915/i915_reg.h       |  3 +++
->>  drivers/gpu/drm/i915/intel_sideband.c | 15 +++++++++++++++
->>  drivers/gpu/drm/i915/intel_sideband.h |  2 ++
->>  4 files changed, 23 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915=
-_drv.c
->> index 5fd5af4bc855..5473bfe9126c 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.c
->> +++ b/drivers/gpu/drm/i915/i915_drv.c
->> @@ -85,6 +85,7 @@
->>  #include "intel_gvt.h"
->>  #include "intel_memory_region.h"
->>  #include "intel_pm.h"
->> +#include "intel_sideband.h"
->>  #include "vlv_suspend.h"
->>
->>  static struct drm_driver driver;
->> @@ -737,6 +738,8 @@ static int i915_driver_hw_probe(struct drm_i915_priv=
-ate *dev_priv)
->>  	 */
->>  	intel_dram_detect(dev_priv);
->>
->> +	intel_pcode_init(dev_priv);
->> +
->>  	intel_bw_init_hw(dev_priv);
->>
->>  	return 0;
->> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915=
-_reg.h
->> index a0d31f3bf634..3767b32127da 100644
->> --- a/drivers/gpu/drm/i915/i915_reg.h
->> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> @@ -9245,6 +9245,9 @@ enum {
->>  #define     GEN9_SAGV_DISABLE			0x0
->>  #define     GEN9_SAGV_IS_DISABLED		0x1
->>  #define     GEN9_SAGV_ENABLE			0x3
->> +#define   DG1_PCODE_STATUS			0x7E
->> +#define     DG1_CHECK_UNCORE_INIT_STATUS	0x0
->> +#define     DG1_UNCORE_INIT_COMPLETE		0x1
->
->With s/DG1_CHECK_UNCORE_INIT_STATUS/DG1_CHECK_UNCORE_INIT_STATUS_COMPLETE =
-or something similar that makes easy to understand that 0x1 is the response
->of the DG1_CHECK_UNCORE_INIT_STATUS sub-command.
-
-checking all the other users of skl_pcode_request() I don't see a
-pattern there. Examples:
-
-ret =3D skl_pcode_request(dev_priv, SKL_PCODE_CDCLK_CONTROL,
-                         SKL_CDCLK_PREPARE_FOR_CHANGE,     =
-
-                         SKL_CDCLK_READY_FOR_CHANGE,       =
-
-                         SKL_CDCLK_READY_FOR_CHANGE, 3);   =
-
-
-ret =3D skl_pcode_request(dev_priv, GEN9_PCODE_SAGV_CONTROL,            =
-
-                         GEN9_SAGV_DISABLE,                            =
-
-                         GEN9_SAGV_IS_DISABLED, GEN9_SAGV_IS_DISABLED, =
-
-                         1);                                           =
-
-
-Giveng the current uses, I'd rather rename like:
-
-+#define   DG1_PCODE_STATUS			0x7E
-+#define     DG1_UNCORE_GET_INIT_STATUS		0x0
-+#define     DG1_UNCORE_INIT_STATUS_COMPLETE	0x1
-
-
->Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-
-does that still stands with the rename above?
-
-thanks
-Lucas De Marchi
-
->
->
->>  #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
->>  #define GEN6_PCODE_DATA				_MMIO(0x138128)
->>  #define   GEN6_PCODE_FREQ_IA_RATIO_SHIFT	8
->> diff --git a/drivers/gpu/drm/i915/intel_sideband.c b/drivers/gpu/drm/i91=
-5/intel_sideband.c
->> index 916ccd1c0e96..8b093525240d 100644
->> --- a/drivers/gpu/drm/i915/intel_sideband.c
->> +++ b/drivers/gpu/drm/i915/intel_sideband.c
->> @@ -543,3 +543,18 @@ int skl_pcode_request(struct drm_i915_private *i915=
-, u32 mbox, u32 request,
->>  	return ret ? ret : status;
->>  #undef COND
->>  }
->> +
->> +void intel_pcode_init(struct drm_i915_private *i915)
->> +{
->> +	int ret;
->> +
->> +	if (!IS_DGFX(i915))
->> +		return;
->> +
->> +	ret =3D skl_pcode_request(i915, DG1_PCODE_STATUS,
->> +				DG1_CHECK_UNCORE_INIT_STATUS,
->> +				DG1_UNCORE_INIT_COMPLETE,
->> +				DG1_UNCORE_INIT_COMPLETE, 50);
->> +	if (ret)
->> +		drm_err(&i915->drm, "Pcode did not report uncore initialization compl=
-etion!\n");
->> +}
->> diff --git a/drivers/gpu/drm/i915/intel_sideband.h b/drivers/gpu/drm/i91=
-5/intel_sideband.h
->> index 7fb95745a444..094c7b19c5d4 100644
->> --- a/drivers/gpu/drm/i915/intel_sideband.h
->> +++ b/drivers/gpu/drm/i915/intel_sideband.h
->> @@ -138,4 +138,6 @@ int sandybridge_pcode_write_timeout(struct drm_i915_=
-private *i915, u32 mbox,
->>  int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 requ=
-est,
->>  		      u32 reply_mask, u32 reply, int timeout_base_ms);
->>
->> +void intel_pcode_init(struct drm_i915_private *i915);
->> +
->>  #endif /* _INTEL_SIDEBAND_H */
->>
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAyMDIwLTA4LTI0IGF0IDEyOjI0IC0wNzAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
+DQo+IE9uIE1vbiwgQXVnIDAzLCAyMDIwIGF0IDA0OjI0OjE3UE0gLTA3MDAsIEpvc2UgU291emEg
+d3JvdGU6DQo+ID4gT24gRnJpLCAyMDIwLTA3LTI0IGF0IDE0OjM5IC0wNzAwLCBMdWNhcyBEZSBN
+YXJjaGkgd3JvdGU6DQo+ID4gPiBGcm9tOiBNYXR0IFJvcGVyIDwNCj4gPiA+IG1hdHRoZXcuZC5y
+b3BlckBpbnRlbC5jb20NCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiBERzEgZG9lcyBzb21lIGFkZGl0
+aW9uYWwgcGNvZGUvdW5jb3JlIGhhbmRzaGFraW5nIGF0DQo+ID4gPiBib290IHRpbWU7IHRoaXMg
+aGFuZHNoYWtpbmcgbXVzdCBjb21wbGV0ZSBiZWZvcmUgdmFyaW91cyBvdGhlciBwY29kZQ0KPiA+
+ID4gY29tbWFuZHMgYXJlIGVmZmVjdGl2ZSBhbmQgYmVmb3JlIGdlbmVyYWwgd29yayBpcyBzdWJt
+aXR0ZWQgdG8gdGhlIEdQVS4NCj4gPiA+IFdlIG5lZWQgdG8gcG9sbCBhIG5ldyBwY29kZSBtYWls
+Ym94IGR1cmluZyBzdGFydHVwIHVudGlsIGl0IHJlcG9ydHMgdGhhdA0KPiA+ID4gdGhpcyBoYW5k
+c2hha2luZyBpcyBjb21wbGV0ZS4NCj4gPiA+IA0KPiA+ID4gVGhlIGJzcGVjIGRvZXNuJ3QgZ2l2
+ZSBndWlkYW5jZSBvbiBob3cgbG9uZyB3ZSBtYXkgbmVlZCB0byB3YWl0IGZvciB0aGlzDQo+ID4g
+PiBoYW5kc2hha2luZyB0byBjb21wbGV0ZS4gIEZvciBub3csIGxldCdzIGp1c3Qgc2V0IGEgcmVh
+bGx5IGxvbmcgdGltZW91dDsNCj4gPiA+IGlmIHdlIHN0aWxsIGRvbid0IGdldCBhIGNvbXBsZXRp
+b24gc3RhdHVzIGJ5IHRoZSBlbmQgb2YgdGhhdCB0aW1lb3V0LA0KPiA+ID4gd2UnbGwganVzdCBj
+b250aW51ZSBvbiBhbmQgaG9wZSBmb3IgdGhlIGJlc3QuDQo+ID4gPiANCj4gPiA+IEJzcGVjOiA1
+MjA2NQ0KPiA+ID4gQ2M6IENsaW50b24gVGF5bG9yIDwNCj4gPiA+IENsaW50b24uQS5UYXlsb3JA
+aW50ZWwuY29tDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8DQo+
+ID4gPiB2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbQ0KPiA+ID4gDQo+ID4gPiANCj4gPiA+
+IENjOiBSYWRoYWtyaXNobmEgU3JpcGFkYSA8DQo+ID4gPiByYWRoYWtyaXNobmEuc3JpcGFkYUBp
+bnRlbC5jb20NCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVy
+IDwNCj4gPiA+IG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20NCj4gPiA+IA0KPiA+ID4gDQo+ID4g
+PiBTaWduZWQtb2ZmLWJ5OiBMdWNhcyBEZSBNYXJjaGkgPA0KPiA+ID4gbHVjYXMuZGVtYXJjaGlA
+aW50ZWwuY29tDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gLS0tDQo+ID4gPiAgZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9kcnYuYyAgICAgICB8ICAzICsrKw0KPiA+ID4gIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfcmVnLmggICAgICAgfCAgMyArKysNCj4gPiA+ICBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pbnRlbF9zaWRlYmFuZC5jIHwgMTUgKysrKysrKysrKysrKysrDQo+ID4gPiAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaW50ZWxfc2lkZWJhbmQuaCB8ICAyICsrDQo+ID4gPiAgNCBmaWxlcyBj
+aGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspDQo+ID4gPiANCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
+cnYuYw0KPiA+ID4gaW5kZXggNWZkNWFmNGJjODU1Li41NDczYmZlOTEyNmMgMTAwNjQ0DQo+ID4g
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jDQo+ID4gPiArKysgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jDQo+ID4gPiBAQCAtODUsNiArODUsNyBAQA0KPiA+
+ID4gICNpbmNsdWRlICJpbnRlbF9ndnQuaCINCj4gPiA+ICAjaW5jbHVkZSAiaW50ZWxfbWVtb3J5
+X3JlZ2lvbi5oIg0KPiA+ID4gICNpbmNsdWRlICJpbnRlbF9wbS5oIg0KPiA+ID4gKyNpbmNsdWRl
+ICJpbnRlbF9zaWRlYmFuZC5oIg0KPiA+ID4gICNpbmNsdWRlICJ2bHZfc3VzcGVuZC5oIg0KPiA+
+ID4gDQo+ID4gPiAgc3RhdGljIHN0cnVjdCBkcm1fZHJpdmVyIGRyaXZlcjsNCj4gPiA+IEBAIC03
+MzcsNiArNzM4LDggQEAgc3RhdGljIGludCBpOTE1X2RyaXZlcl9od19wcm9iZShzdHJ1Y3QgZHJt
+X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ID4gPiAgCSAqLw0KPiA+ID4gIAlpbnRlbF9kcmFt
+X2RldGVjdChkZXZfcHJpdik7DQo+ID4gPiANCj4gPiA+ICsJaW50ZWxfcGNvZGVfaW5pdChkZXZf
+cHJpdik7DQo+ID4gPiArDQo+ID4gPiAgCWludGVsX2J3X2luaXRfaHcoZGV2X3ByaXYpOw0KPiA+
+ID4gDQo+ID4gPiAgCXJldHVybiAwOw0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfcmVnLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+ID4g
+PiBpbmRleCBhMGQzMWYzYmY2MzQuLjM3NjdiMzIxMjdkYSAxMDA2NDQNCj4gPiA+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfcmVnLmgNCj4gPiA+IEBAIC05MjQ1LDYgKzkyNDUsOSBAQCBlbnVtIHsNCj4g
+PiA+ICAjZGVmaW5lICAgICBHRU45X1NBR1ZfRElTQUJMRQkJCTB4MA0KPiA+ID4gICNkZWZpbmUg
+ICAgIEdFTjlfU0FHVl9JU19ESVNBQkxFRAkJMHgxDQo+ID4gPiAgI2RlZmluZSAgICAgR0VOOV9T
+QUdWX0VOQUJMRQkJCTB4Mw0KPiA+ID4gKyNkZWZpbmUgICBERzFfUENPREVfU1RBVFVTCQkJMHg3
+RQ0KPiA+ID4gKyNkZWZpbmUgICAgIERHMV9DSEVDS19VTkNPUkVfSU5JVF9TVEFUVVMJMHgwDQo+
+ID4gPiArI2RlZmluZSAgICAgREcxX1VOQ09SRV9JTklUX0NPTVBMRVRFCQkweDENCj4gPiANCj4g
+PiBXaXRoIHMvREcxX0NIRUNLX1VOQ09SRV9JTklUX1NUQVRVUy9ERzFfQ0hFQ0tfVU5DT1JFX0lO
+SVRfU1RBVFVTX0NPTVBMRVRFIG9yIHNvbWV0aGluZyBzaW1pbGFyIHRoYXQgbWFrZXMgZWFzeSB0
+byB1bmRlcnN0YW5kIHRoYXQgMHgxIGlzIHRoZSByZXNwb25zZQ0KPiA+IG9mIHRoZSBERzFfQ0hF
+Q0tfVU5DT1JFX0lOSVRfU1RBVFVTIHN1Yi1jb21tYW5kLg0KPiANCj4gY2hlY2tpbmcgYWxsIHRo
+ZSBvdGhlciB1c2VycyBvZiBza2xfcGNvZGVfcmVxdWVzdCgpIEkgZG9uJ3Qgc2VlIGENCj4gcGF0
+dGVybiB0aGVyZS4gRXhhbXBsZXM6DQo+IA0KPiByZXQgPSBza2xfcGNvZGVfcmVxdWVzdChkZXZf
+cHJpdiwgU0tMX1BDT0RFX0NEQ0xLX0NPTlRST0wsDQo+ICAgICAgICAgICAgICAgICAgICAgICAg
+ICBTS0xfQ0RDTEtfUFJFUEFSRV9GT1JfQ0hBTkdFLCAgICAgDQo+ICAgICAgICAgICAgICAgICAg
+ICAgICAgICBTS0xfQ0RDTEtfUkVBRFlfRk9SX0NIQU5HRSwgICAgICAgDQo+ICAgICAgICAgICAg
+ICAgICAgICAgICAgICBTS0xfQ0RDTEtfUkVBRFlfRk9SX0NIQU5HRSwgMyk7ICAgDQo+IA0KPiBy
+ZXQgPSBza2xfcGNvZGVfcmVxdWVzdChkZXZfcHJpdiwgR0VOOV9QQ09ERV9TQUdWX0NPTlRST0ws
+ICAgICAgICAgICAgDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICBHRU45X1NBR1ZfRElTQUJM
+RSwgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQo+ICAgICAgICAgICAgICAgICAgICAgICAg
+ICBHRU45X1NBR1ZfSVNfRElTQUJMRUQsIEdFTjlfU0FHVl9JU19ESVNBQkxFRCwgDQo+ICAgICAg
+ICAgICAgICAgICAgICAgICAgICAxKTsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgDQo+IA0KPiBHaXZlbmcgdGhlIGN1cnJlbnQgdXNlcywgSSdkIHJhdGhlciByZW5h
+bWUgbGlrZToNCj4gDQo+ICsjZGVmaW5lICAgREcxX1BDT0RFX1NUQVRVUwkJCTB4N0UNCj4gKyNk
+ZWZpbmUgICAgIERHMV9VTkNPUkVfR0VUX0lOSVRfU1RBVFVTCQkweDANCj4gKyNkZWZpbmUgICAg
+IERHMV9VTkNPUkVfSU5JVF9TVEFUVVNfQ09NUExFVEUJMHgxDQo+IA0KPiANCj4gPiBSZXZpZXdl
+ZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8DQo+ID4gam9zZS5zb3V6YUBpbnRlbC5jb20N
+Cj4gPiA+DQo+IA0KPiBkb2VzIHRoYXQgc3RpbGwgc3RhbmRzIHdpdGggdGhlIHJlbmFtZSBhYm92
+ZT8NCg0KTEdUTSwga2VlcCBpdCBwbGVhc2UuDQoNCj4gDQo+IHRoYW5rcw0KPiBMdWNhcyBEZSBN
+YXJjaGkNCj4gDQo+ID4gDQo+ID4gPiAgI2RlZmluZSBHRU4xMl9QQ09ERV9SRUFEX1NBR1ZfQkxP
+Q0tfVElNRV9VUwkweDIzDQo+ID4gPiAgI2RlZmluZSBHRU42X1BDT0RFX0RBVEEJCQkJX01NSU8o
+MHgxMzgxMjgpDQo+ID4gPiAgI2RlZmluZSAgIEdFTjZfUENPREVfRlJFUV9JQV9SQVRJT19TSElG
+VAk4DQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc2lkZWJh
+bmQuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3NpZGViYW5kLmMNCj4gPiA+IGluZGV4
+IDkxNmNjZDFjMGU5Ni4uOGIwOTM1MjUyNDBkIDEwMDY0NA0KPiA+ID4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaW50ZWxfc2lkZWJhbmQuYw0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaW50ZWxfc2lkZWJhbmQuYw0KPiA+ID4gQEAgLTU0MywzICs1NDMsMTggQEAgaW50IHNr
+bF9wY29kZV9yZXF1ZXN0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCB1MzIgbWJveCwg
+dTMyIHJlcXVlc3QsDQo+ID4gPiAgCXJldHVybiByZXQgPyByZXQgOiBzdGF0dXM7DQo+ID4gPiAg
+I3VuZGVmIENPTkQNCj4gPiA+ICB9DQo+ID4gPiArDQo+ID4gPiArdm9pZCBpbnRlbF9wY29kZV9p
+bml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQ0KPiA+ID4gK3sNCj4gPiA+ICsJaW50
+IHJldDsNCj4gPiA+ICsNCj4gPiA+ICsJaWYgKCFJU19ER0ZYKGk5MTUpKQ0KPiA+ID4gKwkJcmV0
+dXJuOw0KPiA+ID4gKw0KPiA+ID4gKwlyZXQgPSBza2xfcGNvZGVfcmVxdWVzdChpOTE1LCBERzFf
+UENPREVfU1RBVFVTLA0KPiA+ID4gKwkJCQlERzFfQ0hFQ0tfVU5DT1JFX0lOSVRfU1RBVFVTLA0K
+PiA+ID4gKwkJCQlERzFfVU5DT1JFX0lOSVRfQ09NUExFVEUsDQo+ID4gPiArCQkJCURHMV9VTkNP
+UkVfSU5JVF9DT01QTEVURSwgNTApOw0KPiA+ID4gKwlpZiAocmV0KQ0KPiA+ID4gKwkJZHJtX2Vy
+cigmaTkxNS0+ZHJtLCAiUGNvZGUgZGlkIG5vdCByZXBvcnQgdW5jb3JlIGluaXRpYWxpemF0aW9u
+IGNvbXBsZXRpb24hXG4iKTsNCj4gPiA+ICt9DQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaW50ZWxfc2lkZWJhbmQuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
+X3NpZGViYW5kLmgNCj4gPiA+IGluZGV4IDdmYjk1NzQ1YTQ0NC4uMDk0YzdiMTljNWQ0IDEwMDY0
+NA0KPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc2lkZWJhbmQuaA0KPiA+
+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc2lkZWJhbmQuaA0KPiA+ID4gQEAg
+LTEzOCw0ICsxMzgsNiBAQCBpbnQgc2FuZHlicmlkZ2VfcGNvZGVfd3JpdGVfdGltZW91dChzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgdTMyIG1ib3gsDQo+ID4gPiAgaW50IHNrbF9wY29k
+ZV9yZXF1ZXN0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCB1MzIgbWJveCwgdTMyIHJl
+cXVlc3QsDQo+ID4gPiAgCQkgICAgICB1MzIgcmVwbHlfbWFzaywgdTMyIHJlcGx5LCBpbnQgdGlt
+ZW91dF9iYXNlX21zKTsNCj4gPiA+IA0KPiA+ID4gK3ZvaWQgaW50ZWxfcGNvZGVfaW5pdChzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSk7DQo+ID4gPiArDQo+ID4gPiAgI2VuZGlmIC8qIF9J
+TlRFTF9TSURFQkFORF9IICovDQo+ID4gPiANCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2ludGVsLWdmeAo=
