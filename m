@@ -2,44 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 740F4250B7B
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 00:14:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E995250C44
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 01:22:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29EB46E5CD;
-	Mon, 24 Aug 2020 22:14:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 410376E2BC;
+	Mon, 24 Aug 2020 23:22:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E52346E5CD
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 22:14:31 +0000 (UTC)
-IronPort-SDR: fo/G+akWzmu5rnzo7lIOrOEDcNPtstFO+93lB1+FnkQ59Rr5K+OgkUv5qR2V835T3fe1qVsE1U
- 53AdWrB7twtg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="135544635"
-X-IronPort-AV: E=Sophos;i="5.76,350,1592895600"; d="scan'208";a="135544635"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FCD26E2BC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 23:22:41 +0000 (UTC)
+IronPort-SDR: d2p03mUWGB11wagjtjAXTKjkOo3HR8CIE+D94OJBv0MRDt5n45wL2AD1TfMkTDAiuS13fmSzW7
+ xa3lY2GsonqQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="240824328"
+X-IronPort-AV: E=Sophos;i="5.76,350,1592895600"; d="scan'208";a="240824328"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2020 15:14:31 -0700
-IronPort-SDR: nRXbdrMRHiHGiSUilZnUawZfMVmbXZG7eiWuvVuPcca7wNcRJxrG4O4YqJ2Ccxwd+41UdstcZ0
- 09cHU9BTgFFw==
-X-IronPort-AV: E=Sophos;i="5.76,350,1592895600"; d="scan'208";a="328650309"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2020 15:14:31 -0700
-Date: Mon, 24 Aug 2020 15:15:58 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20200824221558.GA18640@labuser-Z97X-UD5H>
-References: <20200715224222.7557-1-manasi.d.navare@intel.com>
- <20200715224222.7557-10-manasi.d.navare@intel.com>
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2020 16:22:40 -0700
+IronPort-SDR: EE2ZQMOcxig+9Ol37Sk1E92lNprer4Cw3B4tIYIbIDXqsi0zBl7qrm598+Mu/rWwQ2kANg3Lbf
+ AJUKbOgI2e+g==
+X-IronPort-AV: E=Sophos;i="5.76,350,1592895600"; d="scan'208";a="322525327"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2020 16:22:40 -0700
+Date: Mon, 24 Aug 2020 16:22:39 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200824232239.GE3880425@mdroper-desk1.amr.corp.intel.com>
+References: <20200819185146.22109-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200715224222.7557-10-manasi.d.navare@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v6 10/11] drm/i915: Add
- intel_update_bigjoiner handling.
+In-Reply-To: <20200819185146.22109-1-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display/tgl: Use TGL DP tables
+ for eDP ports without low power support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,318 +50,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 15, 2020 at 03:42:21PM -0700, Manasi Navare wrote:
-> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> 
-> Enabling is done in a special sequence and so should plane updates
-> be. Ideally the end user never notices the second pipe is used,
-> so use the vblank evasion to cover both pipes.
-> 
-> This way ideally everything will be tear free, and updates are
-> really atomic as userspace expects it.
-> 
-> ****This needs to be checked if it still works since lot of refactoring
-> in skl_commit_modeset_enables
-> 
-> v2:
-> * Manual Rebase (Manasi)
-> * Refactoring on intel_update_crtc and enable_crtc and removing
-> special trans_port_sync_update (Manasi)
-> 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+On Wed, Aug 19, 2020 at 11:51:44AM -0700, Jos=E9 Roberto de Souza wrote:
+> Reusing icl_get_combo_buf_trans() for eDP was causing the wrong table
+> being used when the eDP port don't support low power voltage swing table.
+> =
 
-This looks good to me in terms of modeset enable sequence as per Bspec
-but would be good to get an ack from Ville/Maarten just to double
-check I didnt break anything while rebase
-
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-
-Manasi
-
+> Cc: Lee Shawn C <shawn.c.lee@intel.com>
+> Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 120 +++++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_sprite.c  |  25 +++-
->  drivers/gpu/drm/i915/display/intel_sprite.h  |   3 +-
->  3 files changed, 129 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index a1011414da6d..00b26863ffc6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -15656,7 +15656,7 @@ static void intel_update_crtc(struct intel_atomic_state *state,
->  	else
->  		i9xx_update_planes_on_crtc(state, crtc);
->  
-> -	intel_pipe_update_end(new_crtc_state);
-> +	intel_pipe_update_end(new_crtc_state, NULL);
->  
->  	/*
->  	 * We usually enable FIFO underrun interrupts as part of the
-> @@ -15754,6 +15754,52 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
->  	}
->  }
->  
-> +static void intel_update_bigjoiner(struct intel_crtc *crtc,
-> +				   struct intel_atomic_state *state,
-> +				   struct intel_crtc_state *old_crtc_state,
-> +				   struct intel_crtc_state *new_crtc_state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	bool modeset = needs_modeset(new_crtc_state);
-> +	struct intel_crtc *slave = new_crtc_state->bigjoiner_linked_crtc;
-> +	struct intel_crtc_state *new_slave_crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, slave);
-> +
-> +	if (modeset) {
-> +		/* Enable slave first */
-> +		intel_crtc_update_active_timings(new_slave_crtc_state);
-> +		dev_priv->display.crtc_enable(state, slave);
-> +
-> +		/* Then master */
-> +		intel_crtc_update_active_timings(new_crtc_state);
-> +		dev_priv->display.crtc_enable(state, crtc);
-> +
-> +		/* vblanks work again, re-enable pipe CRC. */
-> +		intel_crtc_enable_pipe_crc(crtc);
-> +
-> +	} else {
-> +		intel_pre_plane_update(state, crtc);
-> +		intel_pre_plane_update(state, slave);
-> +
-> +		if (new_crtc_state->update_pipe)
-> +			intel_encoders_update_pipe(state, crtc);
-> +	}
-> +
-> +	/*
-> +	 * Perform vblank evasion around commit operation, and make sure to
-> +	 * commit both planes simultaneously for best results.
-> +	 */
-> +	intel_pipe_update_start(new_crtc_state);
-> +
-> +	commit_pipe_config(state, crtc);
-> +	commit_pipe_config(state, slave);
-> +
-> +	skl_update_planes_on_crtc(state, crtc);
-> +	skl_update_planes_on_crtc(state, slave);
-> +
-> +	intel_pipe_update_end(new_crtc_state, new_slave_crtc_state);
-> +}
-> +
->  static void intel_commit_modeset_enables(struct intel_atomic_state *state)
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 52 +++++++++++++++---------
+>  1 file changed, 33 insertions(+), 19 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index de5b216561d8..9a035bb7bd06 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -1088,30 +1088,44 @@ tgl_get_combo_buf_trans(struct intel_encoder *enc=
+oder, int type, int rate,
 >  {
->  	struct intel_crtc_state *new_crtc_state;
-> @@ -15772,15 +15818,22 @@ static void intel_commit_modeset_enables(struct intel_atomic_state *state)
->  static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> -	struct intel_crtc *crtc;
-> +	struct intel_crtc *crtc, *slave;
->  	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
->  	struct skl_ddb_entry entries[I915_MAX_PIPES] = {};
-> +	struct skl_ddb_entry new_entries[I915_MAX_PIPES] = {};
->  	u8 update_pipes = 0, modeset_pipes = 0;
-> +	const struct intel_crtc_state *slave_crtc_state;
->  	int i;
->  
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
->  		enum pipe pipe = crtc->pipe;
->  
-> +		if (new_crtc_state->bigjoiner_slave) {
-> +			/* We're updated from master */
-> +			continue;
-> +		}
-> +
->  		if (!new_crtc_state->hw.active)
->  			continue;
->  
-> @@ -15791,6 +15844,34 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  		} else {
->  			modeset_pipes |= BIT(pipe);
->  		}
-> +
-> +		if (new_crtc_state->bigjoiner) {
-> +			slave = new_crtc_state->bigjoiner_linked_crtc;
-> +			slave_crtc_state =
-> +				intel_atomic_get_new_crtc_state(state,
-> +								slave);
-> +
-> +			/* put both entries in */
-> +			new_entries[i].start = new_crtc_state->wm.skl.ddb.start;
-> +			new_entries[i].end = slave_crtc_state->wm.skl.ddb.end;
-> +		} else {
-> +			new_entries[i] = new_crtc_state->wm.skl.ddb;
-> +		}
-> +
-> +		/* ignore allocations for crtc's that have been turned off during modeset. */
-> +		if (needs_modeset(new_crtc_state))
-> +			continue;
-> +
-> +		if (old_crtc_state->bigjoiner) {
-> +			slave = old_crtc_state->bigjoiner_linked_crtc;
-> +			slave_crtc_state =
-> +				intel_atomic_get_old_crtc_state(state, slave);
-> +
-> +			entries[i].start = old_crtc_state->wm.skl.ddb.start;
-> +			entries[i].end = slave_crtc_state->wm.skl.ddb.end;
-> +		} else {
-> +			entries[i] = old_crtc_state->wm.skl.ddb;
-> +		}
->  	}
->  
->  	/*
-> @@ -15806,28 +15887,34 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  						    new_crtc_state, i) {
->  			enum pipe pipe = crtc->pipe;
-> +			bool ddb_changed;
->  
->  			if ((update_pipes & BIT(pipe)) == 0)
->  				continue;
->  
-> -			if (skl_ddb_allocation_overlaps(&new_crtc_state->wm.skl.ddb,
-> +			if (skl_ddb_allocation_overlaps(&new_entries[pipe],
->  							entries, I915_MAX_PIPES, pipe))
->  				continue;
->  
-> -			entries[pipe] = new_crtc_state->wm.skl.ddb;
-> +			ddb_changed = !skl_ddb_entry_equal(&new_entries[pipe], &entries[pipe]);
-> +			entries[pipe] = new_entries[pipe];
->  			update_pipes &= ~BIT(pipe);
->  
-> -			intel_update_crtc(state, crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  =
+
+> -	if (type =3D=3D INTEL_OUTPUT_EDP && dev_priv->vbt.edp.hobl) {
+> -		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
 > -
->  			/*
->  			 * If this is an already active pipe, it's DDB changed,
->  			 * and this isn't the last pipe that needs updating
->  			 * then we need to wait for a vblank to pass for the
->  			 * new ddb allocation to take effect.
->  			 */
-> -			if (!skl_ddb_entry_equal(&new_crtc_state->wm.skl.ddb,
-> -						 &old_crtc_state->wm.skl.ddb) &&
-> -			    (update_pipes | modeset_pipes))
-> +			if (new_crtc_state->bigjoiner) {
-> +				intel_update_bigjoiner(crtc, state,
-> +						       old_crtc_state,
-> +						       new_crtc_state);
-> +			} else {
-> +				intel_update_crtc(state, crtc);
+> -		if (!intel_dp->hobl_failed && rate <=3D 540000) {
+> -			/* Same table applies to TGL, RKL and DG1 */
+> -			*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_edp_hbr2_hob=
+l);
+> -			return tgl_combo_phy_ddi_translations_edp_hbr2_hobl;
+> +	switch (type) {
+> +	case INTEL_OUTPUT_HDMI:
+> +		*n_entries =3D ARRAY_SIZE(icl_combo_phy_ddi_translations_hdmi);
+> +		return icl_combo_phy_ddi_translations_hdmi;
+> +	case INTEL_OUTPUT_EDP:
+> +		if (dev_priv->vbt.edp.hobl) {
+> +			struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> +
+> +			if (!intel_dp->hobl_failed && rate <=3D 540000) {
+> +				/* Same table applies to TGL, RKL and DG1 */
+> +				*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_edp_hbr2_ho=
+bl);
+> +				return tgl_combo_phy_ddi_translations_edp_hbr2_hobl;
+> +			}
+>  		}
+> -	}
+>  =
+
+> -	if (type =3D=3D INTEL_OUTPUT_HDMI || type =3D=3D INTEL_OUTPUT_EDP) {
+> -		return icl_get_combo_buf_trans(encoder, type, rate, n_entries);
+> -	} else if (rate > 270000) {
+> -		if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
+> -			*n_entries =3D ARRAY_SIZE(tgl_uy_combo_phy_ddi_translations_dp_hbr2);
+> -			return tgl_uy_combo_phy_ddi_translations_dp_hbr2;
+> +		if (rate > 540000) {
+> +			*n_entries =3D ARRAY_SIZE(icl_combo_phy_ddi_translations_edp_hbr3);
+> +			return icl_combo_phy_ddi_translations_edp_hbr3;
+
+So if we have (HBR3 && !low_vswing) we still want to use the eDP table
+values?  How did you figure that out?  The only relevant comment I see
+in the bspec is
+
+        eDP panels may support lower power, low voltage, swing values
+        using the "eDP" protocol values from the table or higher power,
+        high voltage, swing values using the "DP" protocol values. =
+
+
+which doesn't make any specific mention of HBR3 being a special case.
+
+
+Matt
+
+> +		} else if (dev_priv->vbt.edp.low_vswing) {
+> +			*n_entries =3D ARRAY_SIZE(icl_combo_phy_ddi_translations_edp_hbr2);
+> +			return icl_combo_phy_ddi_translations_edp_hbr2;
+> +		}
+> +		/* fall through */
+> +	default:
+> +		/* All combo DP and eDP ports that do not support low_vswing */
+> +		if (rate > 270000) {
+> +			if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
+> +				*n_entries =3D ARRAY_SIZE(tgl_uy_combo_phy_ddi_translations_dp_hbr2);
+> +				return tgl_uy_combo_phy_ddi_translations_dp_hbr2;
 > +			}
 > +
-> +			if (ddb_changed && (update_pipes | modeset_pipes))
->  				intel_wait_for_vblank(dev_priv, pipe);
+> +			*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_dp_hbr2);
+> +			return tgl_combo_phy_ddi_translations_dp_hbr2;
 >  		}
+>  =
+
+> -		*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_dp_hbr2);
+> -		return tgl_combo_phy_ddi_translations_dp_hbr2;
+> +		*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_dp_hbr);
+> +		return tgl_combo_phy_ddi_translations_dp_hbr;
 >  	}
-> @@ -15863,9 +15950,18 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  		if ((modeset_pipes & BIT(pipe)) == 0)
->  			continue;
->  
-> +		WARN_ON(skl_ddb_allocation_overlaps(&new_entries[pipe],
-> +						    entries, I915_MAX_PIPES, pipe));
-> +
-> +		entries[pipe] = new_entries[pipe];
->  		modeset_pipes &= ~BIT(pipe);
->  
-> -		intel_enable_crtc(state, crtc);
-> +		if (new_crtc_state->bigjoiner)
-> +			intel_update_bigjoiner(crtc, state,
-> +					       old_crtc_state,
-> +					       new_crtc_state);
-> +		else
-> +			intel_enable_crtc(state, crtc);
->  	}
->  
->  	/*
-> @@ -15877,10 +15973,10 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  		if ((update_pipes & BIT(pipe)) == 0)
->  			continue;
->  
-> -		drm_WARN_ON(&dev_priv->drm, skl_ddb_allocation_overlaps(&new_crtc_state->wm.skl.ddb,
-> +		drm_WARN_ON(&dev_priv->drm, skl_ddb_allocation_overlaps(&new_entries[pipe],
->  									entries, I915_MAX_PIPES, pipe));
->  
-> -		entries[pipe] = new_crtc_state->wm.skl.ddb;
-> +		entries[pipe] = new_entries[pipe];
->  		update_pipes &= ~BIT(pipe);
->  
->  		intel_update_crtc(state, crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> index 60eeed06a780..eaae5df546fe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -99,6 +99,8 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
->  
->  	/* FIXME needs to be calibrated sensibly */
->  	min = vblank_start - intel_usecs_to_scanlines(adjusted_mode,
-> +						      new_crtc_state->bigjoiner ?
-> +						      2 * VBLANK_EVASION_TIME_US :
->  						      VBLANK_EVASION_TIME_US);
->  	max = vblank_start - 1;
->  
-> @@ -191,7 +193,8 @@ void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state)
->   * re-enables interrupts and verifies the update was actually completed
->   * before a vblank.
->   */
-> -void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
-> +void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state,
-> +			   struct intel_crtc_state *slave_crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
->  	enum pipe pipe = crtc->pipe;
-> @@ -206,16 +209,26 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
->  	 * Would be slightly nice to just grab the vblank count and arm the
->  	 * event outside of the critical section - the spinlock might spin for a
->  	 * while ... */
-> -	if (new_crtc_state->uapi.event) {
-> -		drm_WARN_ON(&dev_priv->drm,
-> -			    drm_crtc_vblank_get(&crtc->base) != 0);
-> +	if (new_crtc_state->uapi.event || (slave_crtc_state && slave_crtc_state->uapi.event)) {
-> +		if (new_crtc_state->uapi.event)
-> +			drm_WARN_ON(&dev_priv->drm,
-> +				    drm_crtc_vblank_get(&crtc->base) != 0);
-> +		if (slave_crtc_state && slave_crtc_state->uapi.event)
-> +			drm_WARN_ON(&dev_priv->drm,
-> +				    drm_crtc_vblank_get(&crtc->base) != 0);
->  
->  		spin_lock(&crtc->base.dev->event_lock);
-> -		drm_crtc_arm_vblank_event(&crtc->base,
-> -				          new_crtc_state->uapi.event);
-> +		if (new_crtc_state->uapi.event)
-> +			drm_crtc_arm_vblank_event(&crtc->base,
-> +						  new_crtc_state->uapi.event);
-> +		if (slave_crtc_state && slave_crtc_state->uapi.event)
-> +			drm_crtc_arm_vblank_event(&crtc->base,
-> +						  slave_crtc_state->uapi.event);
->  		spin_unlock(&crtc->base.dev->event_lock);
->  
->  		new_crtc_state->uapi.event = NULL;
-> +		if (slave_crtc_state)
-> +			slave_crtc_state->uapi.event = NULL;
->  	}
->  
->  	local_irq_enable();
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.h b/drivers/gpu/drm/i915/display/intel_sprite.h
-> index cd2104ba1ca1..15e7c112ec77 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.h
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.h
-> @@ -24,7 +24,8 @@ struct intel_plane *intel_sprite_plane_create(struct drm_i915_private *dev_priv,
->  int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
->  				    struct drm_file *file_priv);
->  void intel_pipe_update_start(const struct intel_crtc_state *new_crtc_state);
-> -void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
-> +void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state,
-> +			   struct intel_crtc_state *slave_crtc_state);
->  int intel_plane_check_stride(const struct intel_plane_state *plane_state);
->  int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state);
->  int chv_plane_check_rotation(const struct intel_plane_state *plane_state);
-> -- 
-> 2.19.1
-> 
+> -
+> -	*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_dp_hbr);
+> -	return tgl_combo_phy_ddi_translations_dp_hbr;
+>  }
+>  =
+
+>  static const struct tgl_dkl_phy_ddi_buf_trans *
+> -- =
+
+> 2.28.0
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
