@@ -2,62 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BD15250C7E
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 01:45:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86D65250C91
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 01:52:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BD3F6E7D1;
-	Mon, 24 Aug 2020 23:45:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 975486E7D2;
+	Mon, 24 Aug 2020 23:52:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 855446E7D1
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 23:45:32 +0000 (UTC)
-IronPort-SDR: 7fee8LpMehn4neXaVURmKUAdkn7zXceJVaYu1Q0HEsHeHUeEk62Js/v4YausCNBjGxHMvViIFS
- 5F2SiSgm8iXA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="240827988"
-X-IronPort-AV: E=Sophos;i="5.76,350,1592895600"; d="scan'208";a="240827988"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7794A6E7D2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 23:52:31 +0000 (UTC)
+IronPort-SDR: h4rxppSCEYEkw6OECcRlhqO4Mw19FKHloea+fznXhODOV+dgCCQP+s7m/3mzgT6yHGSn3QVUXo
+ jdH8vR5Ym2qQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="217561622"
+X-IronPort-AV: E=Sophos;i="5.76,350,1592895600"; d="scan'208";a="217561622"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2020 16:45:32 -0700
-IronPort-SDR: SKDWTDUnhKwJrmeZGw2Y63aOj1ceA9fevAuCV5AcSRiS+tjwOH0AQHASZU+TboiK8eRFBGnaHB
- +tMSzFSdVC5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,350,1592895600"; d="scan'208";a="331193823"
-Received: from fmsmsx601-2.cps.intel.com (HELO fmsmsx601.amr.corp.intel.com)
- ([10.18.84.211])
- by fmsmga002.fm.intel.com with ESMTP; 24 Aug 2020 16:45:32 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 24 Aug 2020 16:45:31 -0700
-Received: from fmsmsx156.amr.corp.intel.com (10.18.116.74) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Mon, 24 Aug 2020 16:45:31 -0700
-Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.136]) by
- fmsmsx156.amr.corp.intel.com ([169.254.13.232]) with mapi id 14.03.0439.000;
- Mon, 24 Aug 2020 16:45:31 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 1/3] drm/i915/display/tgl: Use TGL DP
- tables for eDP ports without low power support
-Thread-Index: AQHWdllxgC6vhYt9jE+XDPZvkPEe3alIY5CAgAAHIIA=
-Date: Mon, 24 Aug 2020 23:45:31 +0000
-Message-ID: <7cbb410cdcbfe253c4f9d9ee67b9c09c6235dc2a.camel@intel.com>
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2020 16:52:30 -0700
+IronPort-SDR: NUPEOmLFGaROX3Qk+d0AH/nuBpvUERIPmTDPO7ppx75lLPDwkIBvsCum8/ee5aBE/pNq0a+SFS
+ DIx8Mb8Kr+Xw==
+X-IronPort-AV: E=Sophos;i="5.76,350,1592895600"; d="scan'208";a="298902272"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2020 16:52:30 -0700
+Date: Mon, 24 Aug 2020 16:52:28 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200824235228.GF3880425@mdroper-desk1.amr.corp.intel.com>
 References: <20200819185146.22109-1-jose.souza@intel.com>
- <20200824232239.GE3880425@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20200824232239.GE3880425@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.240.12]
-Content-ID: <8C552FCFF0953C4986EA890E1A4E759D@intel.com>
+ <20200819185146.22109-3-jose.souza@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display/tgl: Use TGL DP tables
- for eDP ports without low power support
+Content-Disposition: inline
+In-Reply-To: <20200819185146.22109-3-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/ehl: Update voltage swing table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,98 +50,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIwLTA4LTI0IGF0IDE2OjIyIC0wNzAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBP
-biBXZWQsIEF1ZyAxOSwgMjAyMCBhdCAxMTo1MTo0NEFNIC0wNzAwLCBKb3PDqSBSb2JlcnRvIGRl
-IFNvdXphIHdyb3RlOg0KPiA+IFJldXNpbmcgaWNsX2dldF9jb21ib19idWZfdHJhbnMoKSBmb3Ig
-ZURQIHdhcyBjYXVzaW5nIHRoZSB3cm9uZyB0YWJsZQ0KPiA+IGJlaW5nIHVzZWQgd2hlbiB0aGUg
-ZURQIHBvcnQgZG9uJ3Qgc3VwcG9ydCBsb3cgcG93ZXIgdm9sdGFnZSBzd2luZyB0YWJsZS4NCj4g
-PiANCj4gPiBDYzogTGVlIFNoYXduIEMgPA0KPiA+IHNoYXduLmMubGVlQGludGVsLmNvbQ0KPiA+
-ID4NCj4gPiBDYzogS2hhbGVkIEFsbWFoYWxsYXd5IDwNCj4gPiBraGFsZWQuYWxtYWhhbGxhd3lA
-aW50ZWwuY29tDQo+ID4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291
-emEgPA0KPiA+IGpvc2Uuc291emFAaW50ZWwuY29tDQo+ID4gPg0KPiA+IC0tLQ0KPiA+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIHwgNTIgKysrKysrKysrKysrKysr
-LS0tLS0tLS0tDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAzMyBpbnNlcnRpb25zKCspLCAxOSBkZWxl
-dGlvbnMoLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRp
-LmMNCj4gPiBpbmRleCBkZTViMjE2NTYxZDguLjlhMDM1YmI3YmQwNiAxMDA2NDQNCj4gPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+ID4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiA+IEBAIC0xMDg4LDMwICsx
-MDg4LDQ0IEBAIHRnbF9nZXRfY29tYm9fYnVmX3RyYW5zKHN0cnVjdCBpbnRlbF9lbmNvZGVyICpl
-bmNvZGVyLCBpbnQgdHlwZSwgaW50IHJhdGUsDQo+ID4gIHsNCj4gPiAgCXN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYpOw0KPiA+ICAN
-Cj4gPiAtCWlmICh0eXBlID09IElOVEVMX09VVFBVVF9FRFAgJiYgZGV2X3ByaXYtPnZidC5lZHAu
-aG9ibCkgew0KPiA+IC0JCXN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAgPSBlbmNfdG9faW50ZWxf
-ZHAoZW5jb2Rlcik7DQo+ID4gLQ0KPiA+IC0JCWlmICghaW50ZWxfZHAtPmhvYmxfZmFpbGVkICYm
-IHJhdGUgPD0gNTQwMDAwKSB7DQo+ID4gLQkJCS8qIFNhbWUgdGFibGUgYXBwbGllcyB0byBUR0ws
-IFJLTCBhbmQgREcxICovDQo+ID4gLQkJCSpuX2VudHJpZXMgPSBBUlJBWV9TSVpFKHRnbF9jb21i
-b19waHlfZGRpX3RyYW5zbGF0aW9uc19lZHBfaGJyMl9ob2JsKTsNCj4gPiAtCQkJcmV0dXJuIHRn
-bF9jb21ib19waHlfZGRpX3RyYW5zbGF0aW9uc19lZHBfaGJyMl9ob2JsOw0KPiA+ICsJc3dpdGNo
-ICh0eXBlKSB7DQo+ID4gKwljYXNlIElOVEVMX09VVFBVVF9IRE1JOg0KPiA+ICsJCSpuX2VudHJp
-ZXMgPSBBUlJBWV9TSVpFKGljbF9jb21ib19waHlfZGRpX3RyYW5zbGF0aW9uc19oZG1pKTsNCj4g
-PiArCQlyZXR1cm4gaWNsX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2hkbWk7DQo+ID4gKwlj
-YXNlIElOVEVMX09VVFBVVF9FRFA6DQo+ID4gKwkJaWYgKGRldl9wcml2LT52YnQuZWRwLmhvYmwp
-IHsNCj4gPiArCQkJc3RydWN0IGludGVsX2RwICppbnRlbF9kcCA9IGVuY190b19pbnRlbF9kcChl
-bmNvZGVyKTsNCj4gPiArDQo+ID4gKwkJCWlmICghaW50ZWxfZHAtPmhvYmxfZmFpbGVkICYmIHJh
-dGUgPD0gNTQwMDAwKSB7DQo+ID4gKwkJCQkvKiBTYW1lIHRhYmxlIGFwcGxpZXMgdG8gVEdMLCBS
-S0wgYW5kIERHMSAqLw0KPiA+ICsJCQkJKm5fZW50cmllcyA9IEFSUkFZX1NJWkUodGdsX2NvbWJv
-X3BoeV9kZGlfdHJhbnNsYXRpb25zX2VkcF9oYnIyX2hvYmwpOw0KPiA+ICsJCQkJcmV0dXJuIHRn
-bF9jb21ib19waHlfZGRpX3RyYW5zbGF0aW9uc19lZHBfaGJyMl9ob2JsOw0KPiA+ICsJCQl9DQo+
-ID4gIAkJfQ0KPiA+IC0JfQ0KPiA+ICANCj4gPiAtCWlmICh0eXBlID09IElOVEVMX09VVFBVVF9I
-RE1JIHx8IHR5cGUgPT0gSU5URUxfT1VUUFVUX0VEUCkgew0KPiA+IC0JCXJldHVybiBpY2xfZ2V0
-X2NvbWJvX2J1Zl90cmFucyhlbmNvZGVyLCB0eXBlLCByYXRlLCBuX2VudHJpZXMpOw0KPiA+IC0J
-fSBlbHNlIGlmIChyYXRlID4gMjcwMDAwKSB7DQo+ID4gLQkJaWYgKElTX1RHTF9VKGRldl9wcml2
-KSB8fCBJU19UR0xfWShkZXZfcHJpdikpIHsNCj4gPiAtCQkJKm5fZW50cmllcyA9IEFSUkFZX1NJ
-WkUodGdsX3V5X2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicjIpOw0KPiA+IC0JCQly
-ZXR1cm4gdGdsX3V5X2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicjI7DQo+ID4gKwkJ
-aWYgKHJhdGUgPiA1NDAwMDApIHsNCj4gPiArCQkJKm5fZW50cmllcyA9IEFSUkFZX1NJWkUoaWNs
-X2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2VkcF9oYnIzKTsNCj4gPiArCQkJcmV0dXJuIGlj
-bF9jb21ib19waHlfZGRpX3RyYW5zbGF0aW9uc19lZHBfaGJyMzsNCj4gDQo+IFNvIGlmIHdlIGhh
-dmUgKEhCUjMgJiYgIWxvd192c3dpbmcpIHdlIHN0aWxsIHdhbnQgdG8gdXNlIHRoZSBlRFAgdGFi
-bGUNCj4gdmFsdWVzPyAgSG93IGRpZCB5b3UgZmlndXJlIHRoYXQgb3V0PyAgVGhlIG9ubHkgcmVs
-ZXZhbnQgY29tbWVudCBJIHNlZQ0KPiBpbiB0aGUgYnNwZWMgaXMNCj4gDQo+ICAgICAgICAgZURQ
-IHBhbmVscyBtYXkgc3VwcG9ydCBsb3dlciBwb3dlciwgbG93IHZvbHRhZ2UsIHN3aW5nIHZhbHVl
-cw0KPiAgICAgICAgIHVzaW5nIHRoZSAiZURQIiBwcm90b2NvbCB2YWx1ZXMgZnJvbSB0aGUgdGFi
-bGUgb3IgaGlnaGVyIHBvd2VyLA0KPiAgICAgICAgIGhpZ2ggdm9sdGFnZSwgc3dpbmcgdmFsdWVz
-IHVzaW5nIHRoZSAiRFAiIHByb3RvY29sIHZhbHVlcy4gDQo+IA0KPiB3aGljaCBkb2Vzbid0IG1h
-a2UgYW55IHNwZWNpZmljIG1lbnRpb24gb2YgSEJSMyBiZWluZyBhIHNwZWNpYWwgY2FzZS4NCg0K
-QXMgY29tYm8gcG9ydHMgaW4gRFAgbW9kZSBkb24ndCBzdXBwb3J0IEhCUjMgaXQgaXMgdHJ5aW5n
-IHRvIHVzZSBIQlIzIHRhYmxlIHdpdGhvdXQgZXZlbiBjaGVjayBpZiBzdXBwb3J0ZWQsIGluIHRo
-aXMgY2FzZSBpZiB0aGUgbGluayB0cmFpbmluZw0KZmFpbHMgaW50ZWxfZHBfZ2V0X2xpbmtfdHJh
-aW5fZmFsbGJhY2tfdmFsdWVzKCkgd2lsbCByZWR1Y2UgdGhlIHJhdGUgYW5kIGxhbmVzIHVudGls
-IGxpbmsgdHJhaW5pbmcgc3VjY2VlZCBvciBjb21wbGV0ZWx5IGZhaWxzLg0KDQpCdXQgbG9va3Mg
-dW5saWtlbHkgdGhhdCBhIHZlbmRvciB3aWxsIGJlIHNoaXAgYSBwcm9kdWN0IHdpdGggYSBIQlIz
-IGVEUCBwYW5lbCBhbmQgbm90IHNldCBsb3dfdnN3aW5nIGluIFZCVC4NCg0KPiANCj4gDQo+IE1h
-dHQNCj4gDQo+ID4gKwkJfSBlbHNlIGlmIChkZXZfcHJpdi0+dmJ0LmVkcC5sb3dfdnN3aW5nKSB7
-DQo+ID4gKwkJCSpuX2VudHJpZXMgPSBBUlJBWV9TSVpFKGljbF9jb21ib19waHlfZGRpX3RyYW5z
-bGF0aW9uc19lZHBfaGJyMik7DQo+ID4gKwkJCXJldHVybiBpY2xfY29tYm9fcGh5X2RkaV90cmFu
-c2xhdGlvbnNfZWRwX2hicjI7DQo+ID4gKwkJfQ0KPiA+ICsJCS8qIGZhbGwgdGhyb3VnaCAqLw0K
-PiA+ICsJZGVmYXVsdDoNCj4gPiArCQkvKiBBbGwgY29tYm8gRFAgYW5kIGVEUCBwb3J0cyB0aGF0
-IGRvIG5vdCBzdXBwb3J0IGxvd192c3dpbmcgKi8NCj4gPiArCQlpZiAocmF0ZSA+IDI3MDAwMCkg
-ew0KPiA+ICsJCQlpZiAoSVNfVEdMX1UoZGV2X3ByaXYpIHx8IElTX1RHTF9ZKGRldl9wcml2KSkg
-ew0KPiA+ICsJCQkJKm5fZW50cmllcyA9IEFSUkFZX1NJWkUodGdsX3V5X2NvbWJvX3BoeV9kZGlf
-dHJhbnNsYXRpb25zX2RwX2hicjIpOw0KPiA+ICsJCQkJcmV0dXJuIHRnbF91eV9jb21ib19waHlf
-ZGRpX3RyYW5zbGF0aW9uc19kcF9oYnIyOw0KPiA+ICsJCQl9DQo+ID4gKw0KPiA+ICsJCQkqbl9l
-bnRyaWVzID0gQVJSQVlfU0laRSh0Z2xfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNfZHBfaGJy
-Mik7DQo+ID4gKwkJCXJldHVybiB0Z2xfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNfZHBfaGJy
-MjsNCj4gPiAgCQl9DQo+ID4gIA0KPiA+IC0JCSpuX2VudHJpZXMgPSBBUlJBWV9TSVpFKHRnbF9j
-b21ib19waHlfZGRpX3RyYW5zbGF0aW9uc19kcF9oYnIyKTsNCj4gPiAtCQlyZXR1cm4gdGdsX2Nv
-bWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicjI7DQo+ID4gKwkJKm5fZW50cmllcyA9IEFS
-UkFZX1NJWkUodGdsX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicik7DQo+ID4gKwkJ
-cmV0dXJuIHRnbF9jb21ib19waHlfZGRpX3RyYW5zbGF0aW9uc19kcF9oYnI7DQo+ID4gIAl9DQo+
-ID4gLQ0KPiA+IC0JKm5fZW50cmllcyA9IEFSUkFZX1NJWkUodGdsX2NvbWJvX3BoeV9kZGlfdHJh
-bnNsYXRpb25zX2RwX2hicik7DQo+ID4gLQlyZXR1cm4gdGdsX2NvbWJvX3BoeV9kZGlfdHJhbnNs
-YXRpb25zX2RwX2hicjsNCj4gPiAgfQ0KPiA+ICANCj4gPiAgc3RhdGljIGNvbnN0IHN0cnVjdCB0
-Z2xfZGtsX3BoeV9kZGlfYnVmX3RyYW5zICoNCj4gPiAtLSANCj4gPiAyLjI4LjANCj4gPiANCj4g
-PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiA+IElu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QNCj4gPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-DQo+ID4gDQo+ID4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngNCj4gPiANCj4gDQo+IA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Aug 19, 2020 at 11:51:46AM -0700, Jos=E9 Roberto de Souza wrote:
+> Update with latest tunning in the table.
+> =
+
+> BSpec: 21257
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+
+It looks like we now have separate tables for EHL and JSL; we probably
+need to handle them with separate tables now.
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 0fa4075036e6..6271034455a8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -572,14 +572,14 @@ static const struct cnl_ddi_buf_trans ehl_combo_phy=
+_ddi_translations_dp[] =3D {
+>  						/* NT mV Trans mV db    */
+>  	{ 0xA, 0x33, 0x3F, 0x00, 0x00 },	/* 350   350      0.0   */
+>  	{ 0xA, 0x47, 0x36, 0x00, 0x09 },	/* 350   500      3.1   */
+> -	{ 0xC, 0x64, 0x30, 0x00, 0x0F },	/* 350   700      6.0   */
+> -	{ 0x6, 0x7F, 0x2C, 0x00, 0x13 },	/* 350   900      8.2   */
+> +	{ 0xC, 0x64, 0x34, 0x00, 0x0B },	/* 350   700      6.0   */
+> +	{ 0x6, 0x7F, 0x30, 0x00, 0x0F },	/* 350   900      8.2   */
+>  	{ 0xA, 0x46, 0x3F, 0x00, 0x00 },	/* 500   500      0.0   */
+> -	{ 0xC, 0x64, 0x36, 0x00, 0x09 },	/* 500   700      2.9   */
+> -	{ 0x6, 0x7F, 0x30, 0x00, 0x0F },	/* 500   900      5.1   */
+> +	{ 0xC, 0x64, 0x38, 0x00, 0x07 },	/* 500   700      2.9   */
+> +	{ 0x6, 0x7F, 0x32, 0x00, 0x0D },	/* 500   900      5.1   */
+>  	{ 0xC, 0x61, 0x3F, 0x00, 0x00 },	/* 650   700      0.6   */
+> -	{ 0x6, 0x7F, 0x37, 0x00, 0x08 },	/* 600   900      3.5   */
+> -	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 900   900      0.0   */
+> +	{ 0x6, 0x7F, 0x37, 0x00, 0x07 },	/* 600   900      3.5   */
+> +	{ 0x6, 0x7F, 0x38, 0x00, 0x00 },	/* 900   900      0.0   */
+
+These last two entries might have already changed again in the bspec
+since you wrote this.  For EHL I see:
+
+        0x6, 0x7f, 0x38, 0x00, 0x07
+        0x6, 0x7f, 0x3f, 0x00, 0x00
+
+(i.e., the third column is slightly different).  And the JSL table has
+other deltas as well since it just got added.
+
+
+Matt
+
+>  };
+>  =
+
+>  struct icl_mg_phy_ddi_buf_trans {
+> -- =
+
+> 2.28.0
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
