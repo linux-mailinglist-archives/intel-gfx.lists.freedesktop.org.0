@@ -2,63 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90D2250997
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Aug 2020 21:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F262509AC
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Aug 2020 21:59:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FE086E573;
-	Mon, 24 Aug 2020 19:46:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE4836E558;
+	Mon, 24 Aug 2020 19:59:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 529D56E56D
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 19:46:35 +0000 (UTC)
-IronPort-SDR: cdbFvKKjYPDunJH5M8EzmO9p+cWhv1ex+VGO391xCebzhfvQkYhvPAsiJcffPvmiocUd/KNbAg
- AKJFRBnpc2cQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="153557066"
-X-IronPort-AV: E=Sophos;i="5.76,349,1592895600"; d="scan'208";a="153557066"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 479AF6E558
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 19:59:01 +0000 (UTC)
+IronPort-SDR: wTVfPgisagsk/aS32eBq+pQ+GVbTSZvSsu+ltorli2cwAiiR/hOIDyNm6p8HDQYBhVMGjqxOgE
+ bnbfwVJTibxQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="136044582"
+X-IronPort-AV: E=Sophos;i="5.76,349,1592895600"; d="scan'208";a="136044582"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2020 12:46:34 -0700
-IronPort-SDR: EqfAt/8zU3OP6jsjmqSzegJ+VLlZwOxdRd55gVKBVTpDkHCPmLijS2VPaYY8ZWkAeLEBIa9gw4
- lo9LhJRhebiw==
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2020 12:59:00 -0700
+IronPort-SDR: bhNh5yNCT1fM6fWuIoSOhuzzXhu5cIMOPRTf4cNpo+z4a1Sdeei3Jg33ziaHEsCJN5cvQFjbEb
+ X5z0f7b0UwlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,349,1592895600"; d="scan'208";a="322461960"
-Received: from unknown (HELO fmsmsx604.amr.corp.intel.com) ([10.18.84.214])
- by fmsmga004.fm.intel.com with ESMTP; 24 Aug 2020 12:46:33 -0700
-Received: from bgsmsx601.gar.corp.intel.com (10.109.78.80) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 24 Aug 2020 12:46:33 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX601.gar.corp.intel.com (10.109.78.80) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 25 Aug 2020 01:16:31 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Tue, 25 Aug 2020 01:16:30 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Add an extra vblank wait
- before fbc activation
-Thread-Index: AQHWdGW2dVtZXLeDJEK2aqC8Xxo7NalHQFSAgAB0YYA=
-Date: Mon, 24 Aug 2020 19:46:30 +0000
-Message-ID: <a9aa11e60f064837b106d1c93ee2b6fc@intel.com>
-References: <20200817074418.24045-1-uma.shankar@intel.com>
- <20200824181619.GJ6112@intel.com>
-In-Reply-To: <20200824181619.GJ6112@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+X-IronPort-AV: E=Sophos;i="5.76,349,1592895600"; d="scan'208";a="298836372"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 24 Aug 2020 12:58:58 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 24 Aug 2020 22:58:57 +0300
+Date: Mon, 24 Aug 2020 22:58:57 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Nischal Varide <nischal.varide@intel.com>
+Message-ID: <20200824195857.GK6112@intel.com>
+References: <20200824034556.26626-1-nischal.varide@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add an extra vblank wait
- before fbc activation
+Content-Disposition: inline
+In-Reply-To: <20200824034556.26626-1-nischal.varide@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/5] Fixing Possible Null Pointer Dereference
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,85 +52,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Aug 24, 2020 at 09:15:52AM +0530, Nischal Varide wrote:
+> There is a possble Null Pointer dereference in intel_atomic.c and this
+> patch fixes the same by introducting a check to old_state, new_state
+> old_conn_state and new_conn_state variables.
 
-> -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Monday, August 24, 2020 11:46 PM
-> To: Shankar, Uma <uma.shankar@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add an extra vblank wa=
-it
-> before fbc activation
+Not possible. In fact none of the supposed null ptrs in the series
+seem possible to me.
+
 > =
 
-> On Mon, Aug 17, 2020 at 01:14:18PM +0530, Uma Shankar wrote:
-> > Add an extra vblank before fbc is activated.
-> > WA: 1409689360
-> > Corruption with FBC around plane 1A enabling. In the Frame Buffer
-> > Compression programming sequence "Display Plane Enabling with FBC"
-> > add a wait for vblank between plane enabling step 1 and FBC enabling
-> > step 2.
+> Signed-off-by: Nischal Varide <nischal.varide@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_atomic.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 > =
 
-> Already there due to drm_atomic_helper_wait_for_flip_done().
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/dr=
+m/i915/display/intel_atomic.c
+> index 630f49b7aa01..ab58f061c8a7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -132,6 +132,9 @@ int intel_digital_connector_atomic_check(struct drm_c=
+onnector *conn,
+>  		to_intel_digital_connector_state(old_state);
+>  	struct drm_crtc_state *crtc_state;
+>  =
 
-Hi Ville,
-__intel_fbc_post_update is also called through intel_fbc_flush. The extra w=
-ait at that point seem
-to be taking care of this case as well.
+> +	if (!(new_state && new_conn_state && old_state && old_conn_state))
+> +		return 0;
+> +
+>  	intel_hdcp_atomic_check(conn, old_state, new_state);
+>  	intel_psr_atomic_check(conn, old_state, new_state);
+>  =
 
-We can add it in vblank worker as suggested by Maarten or do you feel this =
-should be handled differently.
+> @@ -192,6 +195,8 @@ intel_connector_needs_modeset(struct intel_atomic_sta=
+te *state,
+>  =
 
-Regards,
-Uma Shankar
+>  	old_conn_state =3D drm_atomic_get_old_connector_state(&state->base, con=
+nector);
+>  	new_conn_state =3D drm_atomic_get_new_connector_state(&state->base, con=
+nector);
+> +	if (!(old_conn_state && new_conn_state))
+> +		return 0;
+>  =
 
-> >
-> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_fbc.c | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > index 2ab32e6532ff..0ed252ff2c53 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > @@ -1085,10 +1085,12 @@ static void __intel_fbc_post_update(struct
-> intel_crtc *crtc)
-> >  	if (!intel_fbc_can_activate(crtc))
-> >  		return;
-> >
-> > -	if (!fbc->busy_bits)
-> > +	if (!fbc->busy_bits) {
-> > +		intel_wait_for_vblank(dev_priv, crtc->pipe);
-> >  		intel_fbc_hw_activate(dev_priv);
-> > -	else
-> > +	} else {
-> >  		intel_fbc_deactivate(dev_priv, "frontbuffer write");
-> > +	}
-> >  }
-> >
-> >  void intel_fbc_post_update(struct intel_atomic_state *state,
-> > --
-> > 2.22.0
-> >
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>  	return old_conn_state->crtc !=3D new_conn_state->crtc ||
+>  	       (new_conn_state->crtc &&
+> -- =
+
+> 2.26.0
 > =
 
-> --
-> Ville Syrj=E4l=E4
-> Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
