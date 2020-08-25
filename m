@@ -1,74 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5904251546
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 11:25:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3386925156E
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 11:34:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27CD16E893;
-	Tue, 25 Aug 2020 09:25:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A93526E894;
+	Tue, 25 Aug 2020 09:34:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F1EF6E893
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Aug 2020 09:25:19 +0000 (UTC)
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
- by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 07P9PGQs190697;
- Tue, 25 Aug 2020 09:25:16 GMT
+Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3976E6E895
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Aug 2020 09:34:08 +0000 (UTC)
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+ by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 07P9Njw6010729;
+ Tue, 25 Aug 2020 09:34:04 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
  h=date : from : to : cc
- : subject : message-id : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=corp-2020-01-29;
- bh=ramoFRiQxlaYqns0qDHU5lvPQnwhBU1O5TRUiuj5MHw=;
- b=u3cigbtD9SoUneolUOZApPXBM1evCOJVRl6xsycnQlIvDd50lg3r1MwVIgshkPaFqTFh
- b7xrEQvnBo0EDjVnL4QIQwTRSOtfSP9UkwqllRhErTFOAcof4wUluMk3Jc75T0FYef5L
- P/aSSkGhICoUCNfQofb3b3v4PSc+ap4CiINK6gtoB1FGaECua8hf0G5o0Z8v53g+GJkX
- 1UbNaTSCxyM9B3oLAH7wQP0L/cGqj519qcOWr3DNSBCCifwnhvZ9Qzcr6RuwolnoeLMu
- 71ik0WLnafxLlvV0dUAmVCsUK2ZlojMRX5Nib3HKxKN6W6eIRbh0AWVmqJb816F3le70 /Q== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
- by userp2120.oracle.com with ESMTP id 333w6tqx81-1
+ : subject : message-id : mime-version : content-type : in-reply-to;
+ s=corp-2020-01-29; bh=ZsNCQPm8cW1SShd9Sx13eKr2KYSKZiWhYOOQPk1DAP4=;
+ b=sCFGqFhr/7hlrzH8oaGo94p/IL5dYyYK4JzWgSr4acznt624+nmM67tKvSrufvaHzpHz
+ NqOeHbaXvvcRrYy0vnMMSO4xZgHNLVBCjgv6b8aSCcDZi5TszCo7rNKgLHJpu50nqIe6
+ SJQxij/jPz0vDta4EeOsBMSiYuJEoQUZJafOkrLxeML8r2L3WKHep+3XB36Se13aYqyO
+ ySP3X7pc+esX2qccYGuovnGcbHPmEsFkTngo5uBoEDTTkFccmKPr5yd2YBOKlhDAgiVW
+ zW8BvUEB3Cf9THNmGV293fcHgRhNfzrrYcWW8mlmttmXzJ7aYf+edma4hNkGnopwtEI5 Xw== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+ by aserp2120.oracle.com with ESMTP id 333dbrsem9-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
- Tue, 25 Aug 2020 09:25:16 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
- by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 07P9ABDL039317;
- Tue, 25 Aug 2020 09:25:15 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
- by aserp3020.oracle.com with ESMTP id 333ru728rf-1
+ Tue, 25 Aug 2020 09:34:04 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+ by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 07P9PIIO129943;
+ Tue, 25 Aug 2020 09:32:03 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+ by userp3030.oracle.com with ESMTP id 333r9jark1-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 25 Aug 2020 09:25:15 +0000
-Received: from abhmp0002.oracle.com (abhmp0002.oracle.com [141.146.116.8])
- by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 07P9PDau003775;
- Tue, 25 Aug 2020 09:25:13 GMT
+ Tue, 25 Aug 2020 09:32:03 +0000
+Received: from abhmp0004.oracle.com (abhmp0004.oracle.com [141.146.116.10])
+ by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 07P9W1n0011004;
+ Tue, 25 Aug 2020 09:32:02 GMT
 Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Tue, 25 Aug 2020 02:25:11 -0700
-Date: Tue, 25 Aug 2020 12:25:05 +0300
+ with ESMTP ; Tue, 25 Aug 2020 02:31:59 -0700
+Date: Tue, 25 Aug 2020 12:31:53 +0300
 From: Dan Carpenter <dan.carpenter@oracle.com>
 To: kbuild@lists.01.org, Nischal Varide <nischal.varide@intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <20200825092504.GS1793@kadam>
+Message-ID: <20200825093153.GU1793@kadam>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="MEatx1zidE5asLAI"
+Content-Type: multipart/mixed; boundary="lLbDBsvWahy0xqFJ"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200819043409.26010-2-nischal.varide@intel.com>
+In-Reply-To: <20200819043409.26010-4-nischal.varide@intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9723
  signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
  phishscore=0
- bulkscore=0 suspectscore=0 spamscore=0 mlxscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2008250072
+ suspectscore=0 malwarescore=0 spamscore=0 mlxlogscore=999 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2008250073
 X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9723
  signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- impostorscore=0
- mlxlogscore=999 suspectscore=0 phishscore=0 malwarescore=0 spamscore=0
- priorityscore=1501 clxscore=1011 mlxscore=0 lowpriorityscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2008250073
-Subject: Re: [Intel-gfx] [PATCH 2/5]
- Critical-KlockWork-Fixes-intel_display.c-NullDeref
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
+ clxscore=1015
+ priorityscore=1501 impostorscore=0 phishscore=0 malwarescore=0
+ mlxlogscore=999 spamscore=0 mlxscore=0 lowpriorityscore=0 suspectscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2008250073
+Subject: Re: [Intel-gfx] [PATCH 4/5]
+ Critical-KlockWork-Fix-intel_tv.c-Possible-Null
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,15 +79,14 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org
+Cc: kbuild-all@lists.01.org, Dan Carpenter <error27@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---MEatx1zidE5asLAI
-Content-Type: text/plain; charset=iso-8859-1
+--lLbDBsvWahy0xqFJ
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 
 Hi Nischal,
 
@@ -104,129 +101,61 @@ If you fix the issue, kindly add following tag as appropriate
 Reported-by: kernel test robot <lkp@intel.com>
 Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
 
-New smatch warnings:
-drivers/gpu/drm/i915/display/intel_display.c:2271 intel_pin_and_fence_fb_obj() error: uninitialized symbol 'vma'.
-drivers/gpu/drm/i915/display/intel_display.c:11280 intel_cursor_base() error: uninitialized symbol 'base'.
+smatch warnings:
+drivers/gpu/drm/i915/display/intel_tv.c:1842 intel_tv_atomic_check() warn: variable dereferenced before check 'new_state' (see line 1840)
 
-Old smatch warnings:
-drivers/gpu/drm/i915/display/intel_display.c:6183 skl_update_scaler_plane() error: we previously assumed 'fb' could be null (see line 6167)
-
-# https://github.com/0day-ci/linux/commit/5d862961b8571914f726e947570316016ec67c5d
+# https://github.com/0day-ci/linux/commit/6fb528c1b424d3c8095085afa7e777ac5502450b
 git remote add linux-review https://github.com/0day-ci/linux
 git fetch --no-tags linux-review Nischal-Varide/Critical-KclockWork-Fixes-intel_atomi-c-PossibleNull/20200819-193249
-git checkout 5d862961b8571914f726e947570316016ec67c5d
-vim +/vma +2271 drivers/gpu/drm/i915/display/intel_display.c
+git checkout 6fb528c1b424d3c8095085afa7e777ac5502450b
+vim +/new_state +1842 drivers/gpu/drm/i915/display/intel_tv.c
 
-058d88c4330f96 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-15  2217  struct i915_vma *
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2218  intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
-f5929c5309a6a4 drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-09-07  2219  			   const struct i915_ggtt_view *view,
-f7a02ad7d16b24 drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2220  			   bool uses_fence,
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2221  			   unsigned long *out_flags)
-6b95a207c1fd55 drivers/gpu/drm/i915/intel_display.c         Kristian Høgsberg      2009-11-18  2222  {
-850c4cdc6c223d drivers/gpu/drm/i915/intel_display.c         Tvrtko Ursulin         2014-10-30  2223  	struct drm_device *dev = fb->dev;
-fac5e23e3c385f drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-07-04  2224  	struct drm_i915_private *dev_priv = to_i915(dev);
-850c4cdc6c223d drivers/gpu/drm/i915/intel_display.c         Tvrtko Ursulin         2014-10-30  2225  	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
-1d264d91befc31 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2019-01-14  2226  	intel_wakeref_t wakeref;
-058d88c4330f96 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-15  2227  	struct i915_vma *vma;
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2228  	unsigned int pinctl;
-6b95a207c1fd55 drivers/gpu/drm/i915/intel_display.c         Kristian Høgsberg      2009-11-18  2229  	u32 alignment;
-6b95a207c1fd55 drivers/gpu/drm/i915/intel_display.c         Kristian Høgsberg      2009-11-18  2230  
-e57291c2d39522 drivers/gpu/drm/i915/display/intel_display.c Pankaj Bharadiya       2020-02-20  2231  	if (drm_WARN_ON(dev, !i915_gem_object_is_framebuffer(obj)))
-5a90606df7cb73 drivers/gpu/drm/i915/display/intel_display.c Chris Wilson           2019-09-02  2232  		return ERR_PTR(-EINVAL);
-ebcdd39eafb1d8 drivers/gpu/drm/i915/intel_display.c         Matt Roper             2014-07-09  2233  
-d88c4afddc5519 drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2017-03-07  2234  	alignment = intel_surf_alignment(fb, 0);
-e57291c2d39522 drivers/gpu/drm/i915/display/intel_display.c Pankaj Bharadiya       2020-02-20  2235  	if (drm_WARN_ON(dev, alignment && !is_power_of_2(alignment)))
-7361bdb26c2ca6 drivers/gpu/drm/i915/display/intel_display.c Imre Deak              2019-12-25  2236  		return ERR_PTR(-EINVAL);
-6b95a207c1fd55 drivers/gpu/drm/i915/intel_display.c         Kristian Høgsberg      2009-11-18  2237  
-693db1842d864c drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2013-03-05  2238  	/* Note that the w/a also requires 64 PTE of padding following the
-693db1842d864c drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2013-03-05  2239  	 * bo. We currently fill all unused PTE with the shadow page and so
-693db1842d864c drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2013-03-05  2240  	 * we should always have valid PTE following the scanout preventing
-693db1842d864c drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2013-03-05  2241  	 * the VT-d warning.
-693db1842d864c drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2013-03-05  2242  	 */
-48f112fed3b078 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-06-24  2243  	if (intel_scanout_needs_vtd_wa(dev_priv) && alignment < 256 * 1024)
-693db1842d864c drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2013-03-05  2244  		alignment = 256 * 1024;
-693db1842d864c drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2013-03-05  2245  
-d6dd6843ff4a57 drivers/gpu/drm/i915/intel_display.c         Paulo Zanoni           2014-08-15  2246  	/*
-d6dd6843ff4a57 drivers/gpu/drm/i915/intel_display.c         Paulo Zanoni           2014-08-15  2247  	 * Global gtt pte registers are special registers which actually forward
-d6dd6843ff4a57 drivers/gpu/drm/i915/intel_display.c         Paulo Zanoni           2014-08-15  2248  	 * writes to a chunk of system memory. Which means that there is no risk
-d6dd6843ff4a57 drivers/gpu/drm/i915/intel_display.c         Paulo Zanoni           2014-08-15  2249  	 * that the register values disappear as soon as we call
-d6dd6843ff4a57 drivers/gpu/drm/i915/intel_display.c         Paulo Zanoni           2014-08-15  2250  	 * intel_runtime_pm_put(), so it is correct to wrap only the
-d6dd6843ff4a57 drivers/gpu/drm/i915/intel_display.c         Paulo Zanoni           2014-08-15  2251  	 * pin/unpin/fence and not more.
-d6dd6843ff4a57 drivers/gpu/drm/i915/intel_display.c         Paulo Zanoni           2014-08-15  2252  	 */
-d858d5695f3897 drivers/gpu/drm/i915/intel_display.c         Daniele Ceraolo Spurio 2019-06-13  2253  	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
-d6dd6843ff4a57 drivers/gpu/drm/i915/intel_display.c         Paulo Zanoni           2014-08-15  2254  
-9db529aac9381e drivers/gpu/drm/i915/intel_display.c         Daniel Vetter          2017-08-08  2255  	atomic_inc(&dev_priv->gpu_error.pending_fb_pin);
-9db529aac9381e drivers/gpu/drm/i915/intel_display.c         Daniel Vetter          2017-08-08  2256  
-8b1c78e06e6167 drivers/gpu/drm/i915/display/intel_display.c Chris Wilson           2019-12-06  2257  	/*
-8b1c78e06e6167 drivers/gpu/drm/i915/display/intel_display.c Chris Wilson           2019-12-06  2258  	 * Valleyview is definitely limited to scanning out the first
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2259  	 * 512MiB. Lets presume this behaviour was inherited from the
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2260  	 * g4x display engine and that all earlier gen are similarly
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2261  	 * limited. Testing suggests that it is a little more
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2262  	 * complicated than this. For example, Cherryview appears quite
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2263  	 * happy to scanout from anywhere within its global aperture.
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2264  	 */
-8b1c78e06e6167 drivers/gpu/drm/i915/display/intel_display.c Chris Wilson           2019-12-06  2265  	pinctl = 0;
-b2ae318acdcaf1 drivers/gpu/drm/i915/intel_display.c         Rodrigo Vivi           2019-02-04  2266  	if (HAS_GMCH(dev_priv))
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2267  		pinctl |= PIN_MAPPABLE;
-5d862961b85719 drivers/gpu/drm/i915/display/intel_display.c Nischal Varide         2020-08-19  2268  	if (obj)
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2269  		vma = i915_gem_object_pin_to_display_plane(obj,
-f5929c5309a6a4 drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-09-07  2270  			alignment, view, pinctl);
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1831  static int intel_tv_atomic_check(struct drm_connector *connector,
+6f3b62781bbd26 drivers/gpu/drm/i915/intel_tv.c         Sean Paul         2019-06-11  1832  				 struct drm_atomic_state *state)
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1833  {
+6f3b62781bbd26 drivers/gpu/drm/i915/intel_tv.c         Sean Paul         2019-06-11  1834  	struct drm_connector_state *new_state;
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1835  	struct drm_crtc_state *new_crtc_state;
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1836  	struct drm_connector_state *old_state;
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1837  
+6f3b62781bbd26 drivers/gpu/drm/i915/intel_tv.c         Sean Paul         2019-06-11  1838  	new_state = drm_atomic_get_new_connector_state(state, connector);
+6f3b62781bbd26 drivers/gpu/drm/i915/intel_tv.c         Sean Paul         2019-06-11  1839  	old_state = drm_atomic_get_old_connector_state(state, connector);
+6f3b62781bbd26 drivers/gpu/drm/i915/intel_tv.c         Sean Paul         2019-06-11 @1840  	new_crtc_state = drm_atomic_get_new_crtc_state(state, new_state->crtc);
+                                                                                                                                                      ^^^^^^^^^^^^^^^
+Dereference
 
-"vma" not initialized on else path.
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1841  
+6fb528c1b424d3 drivers/gpu/drm/i915/display/intel_tv.c Nischal Varide    2020-08-19 @1842  	if (!(old_state && new_state && new_crtc_state))
+                                                                                                                   ^^^^^^^^^
+Checked too late
 
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18 @2271  	if (IS_ERR(vma))
-                                                                                                                   ^^^
-
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2272  		goto err;
-6b95a207c1fd55 drivers/gpu/drm/i915/intel_display.c         Kristian Høgsberg      2009-11-18  2273  
-f7a02ad7d16b24 drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2274  	if (uses_fence && i915_vma_is_map_and_fenceable(vma)) {
-85798ac9b35f8c drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2275  		int ret;
-85798ac9b35f8c drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2276  
-8b1c78e06e6167 drivers/gpu/drm/i915/display/intel_display.c Chris Wilson           2019-12-06  2277  		/*
-8b1c78e06e6167 drivers/gpu/drm/i915/display/intel_display.c Chris Wilson           2019-12-06  2278  		 * Install a fence for tiled scan-out. Pre-i965 always needs a
-6b95a207c1fd55 drivers/gpu/drm/i915/intel_display.c         Kristian Høgsberg      2009-11-18  2279  		 * fence, whereas 965+ only requires a fence if using
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2280  		 * framebuffer compression.  For simplicity, we always, when
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2281  		 * possible, install a fence as the cost is not that onerous.
-842315ee7e416f drivers/gpu/drm/i915/intel_display.c         Maarten Lankhorst      2015-08-05  2282  		 *
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2283  		 * If we fail to fence the tiled scanout, then either the
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2284  		 * modeset will reject the change (which is highly unlikely as
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2285  		 * the affected systems, all but one, do not have unmappable
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2286  		 * space) or we will not be able to enable full powersaving
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2287  		 * techniques (also likely not to apply due to various limits
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2288  		 * FBC and the like impose on the size of the buffer, which
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2289  		 * presumably we violated anyway with this unmappable buffer).
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2290  		 * Anyway, it is presumably better to stumble onwards with
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2291  		 * something and try to run the system in a "less than optimal"
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2292  		 * mode that matches the user configuration.
-842315ee7e416f drivers/gpu/drm/i915/intel_display.c         Maarten Lankhorst      2015-08-05  2293  		 */
-85798ac9b35f8c drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2294  		ret = i915_vma_pin_fence(vma);
-85798ac9b35f8c drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2295  		if (ret != 0 && INTEL_GEN(dev_priv) < 4) {
-7509702bd8bd09 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-03-05  2296  			i915_gem_object_unpin_from_display_plane(vma);
-85798ac9b35f8c drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2297  			vma = ERR_PTR(ret);
-85798ac9b35f8c drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2298  			goto err;
-85798ac9b35f8c drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2299  		}
-85798ac9b35f8c drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2300  
-85798ac9b35f8c drivers/gpu/drm/i915/intel_display.c         Ville Syrjälä          2018-02-21  2301  		if (ret == 0 && vma->fence)
-5935485f8eee35 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2018-02-20  2302  			*out_flags |= PLANE_HAS_FENCE;
-9807216f585fc6 drivers/gpu/drm/i915/intel_display.c         Vivek Kasireddy        2015-10-29  2303  	}
-6b95a207c1fd55 drivers/gpu/drm/i915/intel_display.c         Kristian Høgsberg      2009-11-18  2304  
-be1e341513ca23 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2017-01-16  2305  	i915_vma_get(vma);
-49ef5294cda256 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-18  2306  err:
-9db529aac9381e drivers/gpu/drm/i915/intel_display.c         Daniel Vetter          2017-08-08  2307  	atomic_dec(&dev_priv->gpu_error.pending_fb_pin);
-d858d5695f3897 drivers/gpu/drm/i915/intel_display.c         Daniele Ceraolo Spurio 2019-06-13  2308  	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
-058d88c4330f96 drivers/gpu/drm/i915/intel_display.c         Chris Wilson           2016-08-15  2309  	return vma;
-6b95a207c1fd55 drivers/gpu/drm/i915/intel_display.c         Kristian Høgsberg      2009-11-18  2310  }
+6fb528c1b424d3 drivers/gpu/drm/i915/display/intel_tv.c Nischal Varide    2020-08-19  1843  		return 0;
+6fb528c1b424d3 drivers/gpu/drm/i915/display/intel_tv.c Nischal Varide    2020-08-19  1844  
+6fb528c1b424d3 drivers/gpu/drm/i915/display/intel_tv.c Nischal Varide    2020-08-19  1845  	if (!new_state->crtc)
+6fb528c1b424d3 drivers/gpu/drm/i915/display/intel_tv.c Nischal Varide    2020-08-19  1846  		return 0;
+6fb528c1b424d3 drivers/gpu/drm/i915/display/intel_tv.c Nischal Varide    2020-08-19  1847  
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1848  	if (old_state->tv.mode != new_state->tv.mode ||
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1849  		old_state->tv.margins.left != new_state->tv.margins.left ||
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1850  		old_state->tv.margins.right != new_state->tv.margins.right ||
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1851  		old_state->tv.margins.top != new_state->tv.margins.top ||
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1852  		old_state->tv.margins.bottom != new_state->tv.margins.bottom) {
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1853  		/* Force a modeset. */
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1854  
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1855  		new_crtc_state->connectors_changed = true;
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1856  	}
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1857  
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1858  	return 0;
+0e891b3f447f4d drivers/gpu/drm/i915/intel_tv.c         Maarten Lankhorst 2017-04-10  1859  }
 
 ---
 0-DAY CI Kernel Test Service, Intel Corporation
 https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
---MEatx1zidE5asLAI
+--lLbDBsvWahy0xqFJ
 Content-Type: application/gzip
 Content-Disposition: attachment; filename=".config.gz"
 Content-Transfer-Encoding: base64
 
-H4sICEcHRF8AAy5jb25maWcAjDxJd9w20vf8in7OJTnEo8VWnPc9HUASZCNNEDQAtrp1wVPk
+H4sICPppRF8AAy5jb25maWcAjDxJd9w20vf8in7OJTnEo8VWnPc9HUASZCNNEDQAtrp1wVPk
 tkcvspTRMon//VcFcAFAsD05xGJVobAVakOhf/zhxxV5fXn8evNyd3tzf/9t9eXwcHi6eTl8
 Wn2+uz/836oQq0boFS2YfgvE9d3D6z//ujv/cLF6//bD25PV5vD0cLhf5Y8Pn+++vELLu8eH
 H378IRdNySqT52ZLpWKiMZru9OWbL7e3v/y2+qk4/HF387D67e3525NfTt//7P564zVjylR5
@@ -980,7 +909,7 @@ v+ppyx1Pe34gKs4u3bFjy1msaBIUGZUmLxYSCxCaLN42gR3Gmw8XN8Op6zseSx9Web4kX8RR
 o7/Xz19ECyxblRKOl1qU6gypukbzan/AgxuVTmf7n2q3eqrUA2KGnyeH1Zxy6BkUb8AQxeC6
 3frbgnG1rQJWiBPP662SaGyZgrxAzzzOIAoFjIwiGoINaTqHT47VSj6RvuL/Afj+CGQ3hQIA
 
---MEatx1zidE5asLAI
+--lLbDBsvWahy0xqFJ
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -991,4 +920,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---MEatx1zidE5asLAI--
+--lLbDBsvWahy0xqFJ--
