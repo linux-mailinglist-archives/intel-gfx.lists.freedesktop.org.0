@@ -1,56 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B24251D50
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 18:38:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79DCB251DDA
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 19:11:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62ABC6E102;
-	Tue, 25 Aug 2020 16:38:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C98906E39C;
+	Tue, 25 Aug 2020 17:11:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 382 seconds by postgrey-1.36 at gabe;
- Tue, 25 Aug 2020 16:38:21 UTC
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 203E66E102
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Aug 2020 16:38:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=skogtun.org
- ; s=ds201912;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Azq8s/g0P7WuVH3XCd58/5BNtHWhEWrZ8Xs/jBWMaEA=; b=gOzfmTZUDkwhzWbfXXFxiyUrJe
- iUX8kg4P+tCCZ6cTVVvJq59/y4QVEBCizu8a9cwNnRk9Lqy7YstihRDV36wxbC20Rc/k9T8eLRoqs
- aay6r4MgjFMBfhrcfyTcQIm4bfona+6074HuaNdRYd8IN5WtFsWULgDSMMxaVdvkODdLUkC+yVMJ5
- o4h/l5ylsG4Mh8Jh9Fkhwgzo3CFNFcZyTOMynPNBrwJD9PV2dtPNf5MAUk9KSyQN1Fe7aJsCrmkgn
- wsOzVD/C0j9SSQS9qUNXC8+ABxz3x2t5yAdEsmuSg/IUuwBpjQdAsEjPmCgVddvq7aeN12OHUHtG3
- rnH4ecVw==;
-Received: from [2a01:79c:cebf:7fb0:de97:df61:fecc:46bb] (port=53120)
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.92) (envelope-from <harald@skogtun.org>)
- id 1kAbrZ-00031x-Af; Tue, 25 Aug 2020 18:31:57 +0200
-To: Jani Nikula <jani.nikula@linux.intel.com>, Pavel Machek <pavel@ucw.cz>,
- Linus Torvalds <torvalds@linux-foundation.org>
-References: <20200817161132.GA4711@amd>
- <CAHk-=wh6_eWwvpL=AhOeY0btf_dkpu+0joNzPZWfbBWgAeAhMA@mail.gmail.com>
- <CAPM=9tw8LVWsuA6m_nkUDgm00iz2txYRNZY0b0WWZbyiUVzLEw@mail.gmail.com>
- <CAHk-=wg34bw1ude07nC_XCPOJHZ21-v6117p4574d5S7iP4gxw@mail.gmail.com>
- <20200820092349.GA3792@amd>
- <CAHk-=wjX=ck_u8uvp=PjGCQ3M9igE-yqyRPsJ54th1gQWpwMnA@mail.gmail.com>
- <20200821091900.hzbivycs5ky5d3iw@duo.ucw.cz> <87tuwr59te.fsf@intel.com>
-From: Harald Arnesen <harald@skogtun.org>
-Message-ID: <7efa547d-b7a4-b873-f1aa-4f19eb849fa3@skogtun.org>
-Date: Tue, 25 Aug 2020 18:31:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDA976E393
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Aug 2020 17:11:24 +0000 (UTC)
+IronPort-SDR: Q8o2QBB7qhT7FgiQfJGyNwq9QbwwcRd/1x4nSSMNTqzsmrHJERPpxDI9/bwlGrfLwmw6S28SMh
+ VUTN6ts0Y1dw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="143820945"
+X-IronPort-AV: E=Sophos;i="5.76,353,1592895600"; d="scan'208";a="143820945"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2020 10:11:10 -0700
+IronPort-SDR: mAOWqpFknB8lW6eyGP6LRsEsMiccYTX4OCzF7PrL/2RfqntZ31CvJPgupmde6y3hf0E+lFkKLL
+ dcj2RY1g1mng==
+X-IronPort-AV: E=Sophos;i="5.76,353,1592895600"; d="scan'208";a="299162296"
+Received: from josouza-mobl2.jf.intel.com (HELO josouza-MOBL2.intel.com)
+ ([10.24.14.51])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2020 10:11:10 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 25 Aug 2020 10:13:29 -0700
+Message-Id: <20200825171331.17971-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <87tuwr59te.fsf@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] 5.9-rc1: graphics regression moved from -next to
- mainline
+Subject: [Intel-gfx] [PATCH v3 1/3] drm/i915/display: Compute has_drrs after
+ compute has_psr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,49 +48,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- kernel list <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Hariom Pandey <hariom.pandey@intel.com>, Srinivas K <srinivasx.k@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Jani Nikula [25.08.2020 11:55]:
-
-> On Fri, 21 Aug 2020, Pavel Machek <pavel@ucw.cz> wrote:
->> On Thu 2020-08-20 09:16:18, Linus Torvalds wrote:
->>> On Thu, Aug 20, 2020 at 2:23 AM Pavel Machek <pavel@ucw.cz> wrote:
->>> >
->>> > Yes, it seems they make things work. (Chris asked for new patch to be
->>> > tested, so I am switching to his kernel, but it survived longer than
->>> > it usually does.)
->>> 
->>> Ok, so at worst we know how to solve it, at best the reverts won't be
->>> needed because Chris' patch will fix the issue properly.
->>> 
->>> So I'll archive this thread, but remind me if this hasn't gotten
->>> sorted out in the later rc's.
->>
->> Yes, thank you, it seems we have a solution w/o the revert.
-> 
-> For posterity, I'm told the fix is [1].
-> 
-> BR,
-> Jani.
-> 
-> 
-> [1] https://lore.kernel.org/intel-gfx/20200821123746.16904-1-joro@8bytes.org/
-
-Doesn't fix it for me. As soon as I start XFCE, the mouse and keyboard
-freeezes. I can still ssh into the machine
-
-The three reverts (763fedd6a216, 7ac2d2536dfa and 9e0f9464e2ab) fixes
-the bug for me.
--- 
-Hilsen Harald
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RFJSUyBhbmQgUFNSIGNhbid0IGJlIGVuYWJsZSB0b2dldGhlciwgc28gZ2l2aW5nIHByZWZlcmVu
+Y2UgdG8gUFNSCmFzIGl0IGFsbG93cyBtb3JlIHBvd2VyLXNhdmluZ3MgYnkgY29tcGxldGUgc2h1
+dHRpbmcgZG93biBkaXNwbGF5LApzbyB0byBndWFyYW50ZWUgdGhpcywgaXQgc2hvdWxkIGNvbXB1
+dGUgRFJSUyBzdGF0ZSBhZnRlciBjb21wdXRlIFBTUi4KCkNjOiBTcmluaXZhcyBLIDxzcmluaXZh
+c3gua0BpbnRlbC5jb20+CkNjOiBIYXJpb20gUGFuZGV5IDxoYXJpb20ucGFuZGV5QGludGVsLmNv
+bT4KUmV2aWV3ZWQtYnk6IEFuc2h1bWFuIEd1cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+
+ClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwu
+Y29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyB8IDUyICsr
+KysrKysrKysrKysrKy0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAzMiBpbnNlcnRpb25zKCsp
+LCAyMCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RwLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMK
+aW5kZXggNzljMjdmOTFmNDJjLi5hMDhkMDNjNjFiMDIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2RwLmMKQEAgLTI1NzUsNiArMjU3NSwzNCBAQCBpbnRlbF9kcF9jb21wdXRl
+X2hkcl9tZXRhZGF0YV9pbmZvZnJhbWVfc2RwKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCiAJ
+CWludGVsX2hkbWlfaW5mb2ZyYW1lX2VuYWJsZShIRE1JX1BBQ0tFVF9UWVBFX0dBTVVUX01FVEFE
+QVRBKTsKIH0KIAorc3RhdGljIHZvaWQKK2ludGVsX2RwX2RycnNfY29tcHV0ZV9jb25maWcoc3Ry
+dWN0IGludGVsX2RwICppbnRlbF9kcCwKKwkJCSAgICAgc3RydWN0IGludGVsX2NydGNfc3RhdGUg
+KnBpcGVfY29uZmlnLAorCQkJICAgICBpbnQgb3V0cHV0X2JwcCwgYm9vbCBjb25zdGFudF9uKQor
+eworCXN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmludGVsX2Nvbm5lY3RvciA9IGludGVsX2RwLT5h
+dHRhY2hlZF9jb25uZWN0b3I7CisJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0g
+ZHBfdG9faTkxNShpbnRlbF9kcCk7CisKKwkvKgorCSAqIERSUlMgYW5kIFBTUiBjYW4ndCBiZSBl
+bmFibGUgdG9nZXRoZXIsIHNvIGdpdmluZyBwcmVmZXJlbmNlIHRvIFBTUgorCSAqIGFzIGl0IGFs
+bG93cyBtb3JlIHBvd2VyLXNhdmluZ3MgYnkgY29tcGxldGUgc2h1dHRpbmcgZG93biBkaXNwbGF5
+LAorCSAqIHNvIHRvIGd1YXJhbnRlZSB0aGlzLCBpbnRlbF9kcF9kcnJzX2NvbXB1dGVfY29uZmln
+KCkgbXVzdCBiZSBjYWxsZWQKKwkgKiBhZnRlciBpbnRlbF9wc3JfY29tcHV0ZV9jb25maWcoKS4K
+KwkgKi8KKwlpZiAocGlwZV9jb25maWctPmhhc19wc3IpCisJCXJldHVybjsKKworCWlmICghaW50
+ZWxfY29ubmVjdG9yLT5wYW5lbC5kb3duY2xvY2tfbW9kZSB8fAorCSAgICBkZXZfcHJpdi0+ZHJy
+cy50eXBlICE9IFNFQU1MRVNTX0RSUlNfU1VQUE9SVCkKKwkJcmV0dXJuOworCisJcGlwZV9jb25m
+aWctPmhhc19kcnJzID0gdHJ1ZTsKKwlpbnRlbF9saW5rX2NvbXB1dGVfbV9uKG91dHB1dF9icHAs
+IHBpcGVfY29uZmlnLT5sYW5lX2NvdW50LAorCQkJICAgICAgIGludGVsX2Nvbm5lY3Rvci0+cGFu
+ZWwuZG93bmNsb2NrX21vZGUtPmNsb2NrLAorCQkJICAgICAgIHBpcGVfY29uZmlnLT5wb3J0X2Ns
+b2NrLCAmcGlwZV9jb25maWctPmRwX20yX24yLAorCQkJICAgICAgIGNvbnN0YW50X24sIHBpcGVf
+Y29uZmlnLT5mZWNfZW5hYmxlKTsKK30KKwogaW50CiBpbnRlbF9kcF9jb21wdXRlX2NvbmZpZyhz
+dHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
+ICpwaXBlX2NvbmZpZywKQEAgLTI2MDUsNyArMjYzMyw2IEBAIGludGVsX2RwX2NvbXB1dGVfY29u
+ZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCWlmIChyZXQpCiAJCXJldHVybiBy
+ZXQ7CiAKLQlwaXBlX2NvbmZpZy0+aGFzX2RycnMgPSBmYWxzZTsKIAlpZiAoIWludGVsX2RwX3Bv
+cnRfaGFzX2F1ZGlvKGRldl9wcml2LCBwb3J0KSkKIAkJcGlwZV9jb25maWctPmhhc19hdWRpbyA9
+IGZhbHNlOwogCWVsc2UgaWYgKGludGVsX2Nvbm5fc3RhdGUtPmZvcmNlX2F1ZGlvID09IEhETUlf
+QVVESU9fQVVUTykKQEAgLTI2NTcsMjEgKzI2ODQsMTIgQEAgaW50ZWxfZHBfY29tcHV0ZV9jb25m
+aWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJCQkgICAgICAgJnBpcGVfY29uZmln
+LT5kcF9tX24sCiAJCQkgICAgICAgY29uc3RhbnRfbiwgcGlwZV9jb25maWctPmZlY19lbmFibGUp
+OwogCi0JaWYgKGludGVsX2Nvbm5lY3Rvci0+cGFuZWwuZG93bmNsb2NrX21vZGUgIT0gTlVMTCAm
+JgotCQlkZXZfcHJpdi0+ZHJycy50eXBlID09IFNFQU1MRVNTX0RSUlNfU1VQUE9SVCkgewotCQkJ
+cGlwZV9jb25maWctPmhhc19kcnJzID0gdHJ1ZTsKLQkJCWludGVsX2xpbmtfY29tcHV0ZV9tX24o
+b3V0cHV0X2JwcCwKLQkJCQkJICAgICAgIHBpcGVfY29uZmlnLT5sYW5lX2NvdW50LAotCQkJCQkg
+ICAgICAgaW50ZWxfY29ubmVjdG9yLT5wYW5lbC5kb3duY2xvY2tfbW9kZS0+Y2xvY2ssCi0JCQkJ
+CSAgICAgICBwaXBlX2NvbmZpZy0+cG9ydF9jbG9jaywKLQkJCQkJICAgICAgICZwaXBlX2NvbmZp
+Zy0+ZHBfbTJfbjIsCi0JCQkJCSAgICAgICBjb25zdGFudF9uLCBwaXBlX2NvbmZpZy0+ZmVjX2Vu
+YWJsZSk7Ci0JfQotCiAJaWYgKCFIQVNfRERJKGRldl9wcml2KSkKIAkJaW50ZWxfZHBfc2V0X2Ns
+b2NrKGVuY29kZXIsIHBpcGVfY29uZmlnKTsKIAogCWludGVsX3Bzcl9jb21wdXRlX2NvbmZpZyhp
+bnRlbF9kcCwgcGlwZV9jb25maWcpOworCWludGVsX2RwX2RycnNfY29tcHV0ZV9jb25maWcoaW50
+ZWxfZHAsIHBpcGVfY29uZmlnLCBvdXRwdXRfYnBwLAorCQkJCSAgICAgY29uc3RhbnRfbik7CiAJ
+aW50ZWxfZHBfY29tcHV0ZV92c2Nfc2RwKGludGVsX2RwLCBwaXBlX2NvbmZpZywgY29ubl9zdGF0
+ZSk7CiAJaW50ZWxfZHBfY29tcHV0ZV9oZHJfbWV0YWRhdGFfaW5mb2ZyYW1lX3NkcChpbnRlbF9k
+cCwgcGlwZV9jb25maWcsIGNvbm5fc3RhdGUpOwogCkBAIC03NzMwLDE2ICs3NzQ4LDEwIEBAIHZv
+aWQgaW50ZWxfZWRwX2RycnNfZW5hYmxlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCiB7CiAJ
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7
+CiAKLQlpZiAoIWNydGNfc3RhdGUtPmhhc19kcnJzKSB7Ci0JCWRybV9kYmdfa21zKCZkZXZfcHJp
+di0+ZHJtLCAiUGFuZWwgZG9lc24ndCBzdXBwb3J0IERSUlNcbiIpOworCWlmICghY3J0Y19zdGF0
+ZS0+aGFzX2RycnMpCiAJCXJldHVybjsKLQl9CiAKLQlpZiAoZGV2X3ByaXYtPnBzci5lbmFibGVk
+KSB7Ci0JCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLAotCQkJICAgICJQU1IgZW5hYmxlZC4g
+Tm90IGVuYWJsaW5nIERSUlMuXG4iKTsKLQkJcmV0dXJuOwotCX0KKwlkcm1fZGJnX2ttcygmZGV2
+X3ByaXYtPmRybSwgIkVuYWJsaW5nIERSUlNcbiIpOwogCiAJbXV0ZXhfbG9jaygmZGV2X3ByaXYt
+PmRycnMubXV0ZXgpOwogCWlmIChkZXZfcHJpdi0+ZHJycy5kcCkgewotLSAKMi4yOC4wCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
