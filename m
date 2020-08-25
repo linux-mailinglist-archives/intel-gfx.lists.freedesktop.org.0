@@ -1,55 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 140F52522F8
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 23:38:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 524BA25232F
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 23:54:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE48389FC8;
-	Tue, 25 Aug 2020 21:38:41 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B1E689FC8
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Aug 2020 21:38:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=skogtun.org
- ; s=ds201912;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2YUB0zCC1yjXKOgC31O6AITpWrraJNSLRKsAGAlKpCk=; b=aTwX9Y01x8fsOS1FF7vt6zXU0J
- MjklaTlgYx3g9MR+KTs0uzQmFp+VbHME2psrmWwwwHwtBiPy5DGP4xsNhIqBjSBVd9FxTfbxy0Ye7
- 2cXUVhYnCNfsqHte5avNiVtO801xDM839ow+Vg9A/xln1j1wLl03gJEZh8i3eODp5cWoRgsTsYD4X
- Oa9jZiXZIaS3wVFAxGjdPgzbj+GMwCKfpRcX6WCDq8QU7+hzXOGydQJM67CoaBpB9Vccaf1ZmlOmp
- eCXUEnKOYTdpUrQ7XwiOIwwwpFlB2ltF43vAN5pcT154vHGVye4JHig4ibMbwwGY0D+ImRkciXpG1
- YeHhF24A==;
-Received: from [2a01:79c:cebf:7fb0:de97:df61:fecc:46bb] (port=53470)
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.92) (envelope-from <harald@skogtun.org>)
- id 1kAgeN-0004gO-2a; Tue, 25 Aug 2020 23:38:39 +0200
-To: Linus Torvalds <torvalds@linux-foundation.org>
-References: <20200817161132.GA4711@amd>
- <CAHk-=wh6_eWwvpL=AhOeY0btf_dkpu+0joNzPZWfbBWgAeAhMA@mail.gmail.com>
- <CAPM=9tw8LVWsuA6m_nkUDgm00iz2txYRNZY0b0WWZbyiUVzLEw@mail.gmail.com>
- <CAHk-=wg34bw1ude07nC_XCPOJHZ21-v6117p4574d5S7iP4gxw@mail.gmail.com>
- <20200820092349.GA3792@amd>
- <CAHk-=wjX=ck_u8uvp=PjGCQ3M9igE-yqyRPsJ54th1gQWpwMnA@mail.gmail.com>
- <20200821091900.hzbivycs5ky5d3iw@duo.ucw.cz> <87tuwr59te.fsf@intel.com>
- <7efa547d-b7a4-b873-f1aa-4f19eb849fa3@skogtun.org>
- <CAHk-=wj3WskPCtHncCWLdaP6xVecLp8bDBTT57vyiU-0=Ld6QQ@mail.gmail.com>
-From: Harald Arnesen <harald@skogtun.org>
-Message-ID: <0089e814-271e-b7e6-9ab8-851d9d2e54e0@skogtun.org>
-Date: Tue, 25 Aug 2020 23:38:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94FC46E0B7;
+	Tue, 25 Aug 2020 21:54:38 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F5496E0B7
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 25 Aug 2020 21:54:37 +0000 (UTC)
+IronPort-SDR: Yw6+mJjoWN9Wq2iFCv6UfmKua1QaQhyApjke/MWiQD5piN1ONtLt2KUe+uzoBwPGz7gUd1abwv
+ Nb2CFj9O9Opw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9724"; a="217749022"
+X-IronPort-AV: E=Sophos;i="5.76,354,1592895600"; d="scan'208";a="217749022"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2020 14:54:36 -0700
+IronPort-SDR: qMNXNzpCRecf+G0Slph48l1urKjZSjKyj/4vxoZgXWVcGZmQUL1/BGxH+s8SnEbOViHmaZL43t
+ CeHW33nKYTUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,354,1592895600"; d="scan'208";a="312692330"
+Received: from unknown (HELO cataylo2-MOBL1.amr.corp.intel.com)
+ ([10.254.124.161])
+ by orsmga002.jf.intel.com with ESMTP; 25 Aug 2020 14:54:36 -0700
+From: clinton.a.taylor@intel.com
+To: Intel-gfx@lists.freedesktop.org
+Date: Tue, 25 Aug 2020 14:54:34 -0700
+Message-Id: <20200825215434.6009-1-clinton.a.taylor@intel.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200805232920.15085-1-clinton.a.taylor@intel.com>
+References: <20200805232920.15085-1-clinton.a.taylor@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAHk-=wj3WskPCtHncCWLdaP6xVecLp8bDBTT57vyiU-0=Ld6QQ@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] 5.9-rc1: graphics regression moved from -next to
- mainline
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Implement WA_1406941453
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,30 +49,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- kernel list <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
- Pavel Machek <pavel@ucw.cz>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Linus Torvalds [25.08.2020 20:19]:
-
->> Doesn't fix it for me. As soon as I start XFCE, the mouse and keyboard
->> freeezes. I can still ssh into the machine
->>
->> The three reverts (763fedd6a216, 7ac2d2536dfa and 9e0f9464e2ab) fixes
->> the bug for me.
-> Do you get any oops or other indication of what ends up going wrong?
-> Since ssh works that should be fairly easy to see.
-
-Away from the machine now, will check tomorrow morning (CET).
--- 
-Hilsen Harald
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogQ2xpbnQgVGF5bG9yIDxjbGludG9uLmEudGF5bG9yQGludGVsLmNvbT4KCkVuYWJsZSBI
+VyBEZWZhdWx0IGZsaXAgZm9yIHNtYWxsIFBMLgoKYnNwZWM6IDUyODkwCmJzcGVjOiA1MzUwOApi
+c3BlYzogNTMyNzMKCnYyOiByZWJhc2UgdG8gZHJtLXRpcAp2MzogbW92ZSBmcm9tIGN0eCB0byBn
+dCB3b3JrYXJvdW5kcy4gUmVtb3ZlIHdoaXRlbGlzdC4KCkNjOiBNYXR0IEF0d29vZCA8bWF0dGhl
+dy5zLmF0d29vZEBpbnRlbC5jb20+CkNjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50
+ZWwuY29tPgpDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+
+ClNpZ25lZC1vZmYtYnk6IENsaW50IFRheWxvciA8Y2xpbnRvbi5hLnRheWxvckBpbnRlbC5jb20+
+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYyB8IDMgKysr
+CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgIHwgMSArCiAyIGZp
+bGVzIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
+bnRlbF93b3JrYXJvdW5kcy5jCmluZGV4IGEzZjcyYjc1YzYxZS4uMGFlY2I5N2ZkNDFjIDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMKQEAgLTEyMTEsNiAr
+MTIxMSw5IEBAIGdlbjEyX2d0X3dvcmthcm91bmRzX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZh
+dGUgKmk5MTUsCiAJCQkgIHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCkKIHsKIAl3YV9pbml0X21j
+cihpOTE1LCB3YWwpOworCisJLyogV2FfMTQwNjk0MTQ1MzpnZW4xMiAqLworCVdBX1NFVF9CSVRf
+TUFTS0VEKEdFTjEwX1NBTVBMRVJfTU9ERSwgRU5BQkxFX1NNQUxMUEwpOwogfQogCiBzdGF0aWMg
+dm9pZApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKaW5kZXggYWM2OTE5MjdlMjlkLi5hYjRiMWFiZDQz
+NjQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaApAQCAtOTMxNSw2ICs5MzE1LDcgQEAgZW51bSB7
+CiAjZGVmaW5lICAgR0VOMTFfTFNOX1VOU0xDVkNfR0FGU19IQUxGX1NGX01BWEFMTE9DCSgxIDw8
+IDcpCiAKICNkZWZpbmUgR0VOMTBfU0FNUExFUl9NT0RFCQlfTU1JTygweEUxOEMpCisjZGVmaW5l
+ICAgRU5BQkxFX1NNQUxMUEwJCQlSRUdfQklUKDE1KQogI2RlZmluZSAgIEdFTjExX1NBTVBMRVJf
+RU5BQkxFX0hFQURMRVNTX01TRwlSRUdfQklUKDUpCiAKIC8qIElWWUJSSURHRSBEUEYgKi8KLS0g
+CjIuMjguMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
