@@ -1,45 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2867250FE3
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 05:19:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69371251140
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Aug 2020 07:03:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 720146E81A;
-	Tue, 25 Aug 2020 03:19:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A42856E852;
+	Tue, 25 Aug 2020 05:03:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43F516E81A
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Aug 2020 03:19:01 +0000 (UTC)
-IronPort-SDR: VE5SKNeWkNZoJxTp+WD59prkCp0izRM4v4N/TwqH1xXoxMs9H6w5pSWWDv1wZUxyk4wHDnl0ph
- yS8NhNeSWzYA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="153450786"
-X-IronPort-AV: E=Sophos;i="5.76,351,1592895600"; d="scan'208";a="153450786"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2020 20:19:00 -0700
-IronPort-SDR: /QQMVKdVSaKxgnc2FhLKHODbI95P99e0htrtIEtX0rYLu784bzeG0YZ2Uy7MRBuJMq1MsMeW2u
- gqCAEPXk6YHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,351,1592895600"; d="scan'208";a="322591122"
-Received: from allen-box.sh.intel.com (HELO [10.239.159.139])
- ([10.239.159.139])
- by fmsmga004.fm.intel.com with ESMTP; 24 Aug 2020 20:18:59 -0700
-From: Lu Baolu <baolu.lu@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, iommu@lists.linux-foundation.org
-References: <20200822160209.28512-1-chris@chris-wilson.co.uk>
-Message-ID: <98c34926-6085-81f2-dce2-53ef1ce1edc8@linux.intel.com>
-Date: Tue, 25 Aug 2020 11:13:31 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+X-Greylist: delayed 392 seconds by postgrey-1.36 at gabe;
+ Tue, 25 Aug 2020 05:03:17 UTC
+Received: from smtprelay.hostedemail.com (smtprelay0127.hostedemail.com
+ [216.40.44.127])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 480E76E852
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Aug 2020 05:03:17 +0000 (UTC)
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
+ [10.5.19.251])
+ by smtpgrave07.hostedemail.com (Postfix) with ESMTP id 74C9E18024CF0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Aug 2020 04:56:45 +0000 (UTC)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay04.hostedemail.com (Postfix) with ESMTP id B846B180A9F54;
+ Tue, 25 Aug 2020 04:56:42 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 50, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
+ RULES_HIT:41:355:379:541:857:966:967:973:988:989:1260:1311:1314:1345:1437:1515:1535:1544:1711:1730:1747:1777:1792:1801:2196:2199:2393:2525:2560:2563:2682:2685:2859:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3354:3865:3867:3868:3870:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:4384:4385:4395:4605:5007:6119:6261:6737:6742:7875:9025:10004:10848:11026:11473:11658:11914:12043:12048:12050:12297:12438:12555:12679:12895:12986:13161:13229:13894:14096:14181:14394:14721:21080:21433:21451:21627:21740:21773:30054:30056,
+ 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
+ DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
+ LFtime:2, LUA_SUMMARY:none
+X-HE-Tag: chalk60_631385f27059
+X-Filterd-Recvd-Size: 5825
+Received: from joe-laptop.perches.com (unknown [47.151.133.149])
+ (Authenticated sender: joe@perches.com)
+ by omf08.hostedemail.com (Postfix) with ESMTPA;
+ Tue, 25 Aug 2020 04:56:38 +0000 (UTC)
+From: Joe Perches <joe@perches.com>
+To: Jiri Kosina <trivial@kernel.org>, oprofile-list@lists.sf.net,
+ linux-ide@vger.kernel.org, drbd-dev@lists.linbit.com,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org,
+ linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-bcache@vger.kernel.org, netdev@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ linux-fsdevel@vger.kernel.org, reiserfs-devel@vger.kernel.org,
+ linux-nfs@vger.kernel.org
+Date: Mon, 24 Aug 2020 21:55:57 -0700
+Message-Id: <cover.1598331148.git.joe@perches.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-In-Reply-To: <20200822160209.28512-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] iommu/intel: Handle 36b addressing for
- x86-32
+Subject: [Intel-gfx] [PATCH 00/29] treewide: Convert comma separated
+ statements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,91 +63,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: James Sewart <jamessewart@arista.com>, intel-gfx@lists.freedesktop.org,
- Joerg Roedel <jroedel@suse.de>, stable@vger.kernel.org,
- baolu.lu@linux.intel.com
+Cc: devel@driverdev.osuosl.org, linux-s390@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-ia64@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-kselftest@vger.kernel.org, linux-alpha@vger.kernel.org,
+ sparclinux@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+There are many comma separated statements in the kernel.
+See:https://lore.kernel.org/lkml/alpine.DEB.2.22.394.2008201856110.2524@hadrien/
 
-On 2020/8/23 0:02, Chris Wilson wrote:
-> Beware that the address size for x86-32 may exceed unsigned long.
-> 
-> [    0.368971] UBSAN: shift-out-of-bounds in drivers/iommu/intel/iommu.c:128:14
-> [    0.369055] shift exponent 36 is too large for 32-bit type 'long unsigned int'
-> 
-> If we don't handle the wide addresses, the pages are mismapped and the
-> device read/writes go astray, detected as DMAR faults and leading to
-> device failure. The behaviour changed (from working to broken) in commit
-> fa954e683178 ("iommu/vt-d: Delegate the dma domain to upper layer"), but
-commit <fa954e683178> ("iommu/vt-d: Delegate the dma domain to upper layer")
+Convert the comma separated statements that are in if/do/while blocks
+to use braces and semicolons.
 
-and adjust the title as "iommu/vt-d: Handle 36bit addressing for x86-32"
+Many comma separated statements still exist but those are changes for
+another day.
 
-with above two changes,
+Joe Perches (29):
+  coding-style.rst: Avoid comma statements
+  alpha: Avoid comma separated statements
+  ia64: Avoid comma separated statements
+  sparc: Avoid comma separated statements
+  ata: Avoid comma separated statements
+  drbd: Avoid comma separated statements
+  lp: Avoid comma separated statements
+  dma-buf: Avoid comma separated statements
+  drm/gma500: Avoid comma separated statements
+  drm/i915: Avoid comma separated statements
+  hwmon: (scmi-hwmon): Avoid comma separated statements
+  Input: MT - Avoid comma separated statements
+  bcache: Avoid comma separated statements
+  media: Avoid comma separated statements
+  mtd: Avoid comma separated statements
+  8390: Avoid comma separated statements
+  fs_enet: Avoid comma separated statements
+  wan: sbni: Avoid comma separated statements
+  s390/tty3270: Avoid comma separated statements
+  scai/arm: Avoid comma separated statements
+  media: atomisp: Avoid comma separated statements
+  video: fbdev: Avoid comma separated statements
+  fuse: Avoid comma separated statements
+  reiserfs: Avoid comma separated statements
+  lib/zlib: Avoid comma separated statements
+  lib: zstd: Avoid comma separated statements
+  ipv6: fib6: Avoid comma separated statements
+  sunrpc: Avoid comma separated statements
+  tools: Avoid comma separated statements
 
-Acked-by: Lu Baolu <baolu.lu@linux.intel.com>
+ Documentation/process/coding-style.rst        |  17 +
+ arch/alpha/kernel/pci_iommu.c                 |   8 +-
+ arch/alpha/oprofile/op_model_ev4.c            |  22 +-
+ arch/alpha/oprofile/op_model_ev5.c            |   8 +-
+ arch/ia64/kernel/smpboot.c                    |   7 +-
+ arch/sparc/kernel/smp_64.c                    |   7 +-
+ drivers/ata/pata_icside.c                     |  21 +-
+ drivers/block/drbd/drbd_receiver.c            |   6 +-
+ drivers/char/lp.c                             |   6 +-
+ drivers/dma-buf/st-dma-fence.c                |   7 +-
+ drivers/gpu/drm/gma500/mdfld_intel_display.c  |  44 ++-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |   8 +-
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c   |   6 +-
+ .../gpu/drm/i915/gt/selftest_workarounds.c    |   6 +-
+ drivers/gpu/drm/i915/intel_runtime_pm.c       |   6 +-
+ drivers/hwmon/scmi-hwmon.c                    |   6 +-
+ drivers/input/input-mt.c                      |  11 +-
+ drivers/md/bcache/bset.c                      |  12 +-
+ drivers/md/bcache/sysfs.c                     |   6 +-
+ drivers/media/i2c/msp3400-kthreads.c          |  12 +-
+ drivers/media/pci/bt8xx/bttv-cards.c          |   6 +-
+ drivers/media/pci/saa7134/saa7134-video.c     |   7 +-
+ drivers/mtd/devices/lart.c                    |  10 +-
+ drivers/net/ethernet/8390/axnet_cs.c          |  19 +-
+ drivers/net/ethernet/8390/lib8390.c           |  14 +-
+ drivers/net/ethernet/8390/pcnet_cs.c          |   6 +-
+ .../ethernet/freescale/fs_enet/fs_enet-main.c |  11 +-
+ drivers/net/wan/sbni.c                        | 101 +++---
+ drivers/s390/char/tty3270.c                   |   6 +-
+ drivers/scsi/arm/cumana_2.c                   |  19 +-
+ drivers/scsi/arm/eesox.c                      |   9 +-
+ drivers/scsi/arm/powertec.c                   |   9 +-
+ .../media/atomisp/pci/atomisp_subdev.c        |   6 +-
+ drivers/video/fbdev/tgafb.c                   |  12 +-
+ fs/fuse/dir.c                                 |  24 +-
+ fs/reiserfs/fix_node.c                        |  36 ++-
+ lib/zlib_deflate/deftree.c                    |  49 ++-
+ lib/zstd/compress.c                           | 120 ++++---
+ lib/zstd/fse_compress.c                       |  24 +-
+ lib/zstd/huf_compress.c                       |   6 +-
+ net/ipv6/ip6_fib.c                            |  12 +-
+ net/sunrpc/sysctl.c                           |   6 +-
+ tools/lib/subcmd/help.c                       |  10 +-
+ tools/power/cpupower/utils/cpufreq-set.c      |  14 +-
+ tools/testing/selftests/vm/gup_benchmark.c    |  18 +-
+ tools/testing/selftests/vm/userfaultfd.c      | 296 +++++++++++-------
+ 46 files changed, 694 insertions(+), 382 deletions(-)
 
-Best regards,
-baolu
+-- 
+2.26.0
 
-> the error looks older.
-> 
-> Fixes: fa954e683178 ("iommu/vt-d: Delegate the dma domain to upper layer")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: James Sewart <jamessewart@arista.com>
-> Cc: Lu Baolu <baolu.lu@linux.intel.com>
-> Cc: Joerg Roedel <jroedel@suse.de>
-> Cc: <stable@vger.kernel.org> # v5.3+
-> ---
->   drivers/iommu/intel/iommu.c | 14 +++++++-------
->   1 file changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
-> index 2e9c8c3d0da4..ba78a2e854f9 100644
-> --- a/drivers/iommu/intel/iommu.c
-> +++ b/drivers/iommu/intel/iommu.c
-> @@ -123,29 +123,29 @@ static inline unsigned int level_to_offset_bits(int level)
->   	return (level - 1) * LEVEL_STRIDE;
->   }
->   
-> -static inline int pfn_level_offset(unsigned long pfn, int level)
-> +static inline int pfn_level_offset(u64 pfn, int level)
->   {
->   	return (pfn >> level_to_offset_bits(level)) & LEVEL_MASK;
->   }
->   
-> -static inline unsigned long level_mask(int level)
-> +static inline u64 level_mask(int level)
->   {
-> -	return -1UL << level_to_offset_bits(level);
-> +	return -1ULL << level_to_offset_bits(level);
->   }
->   
-> -static inline unsigned long level_size(int level)
-> +static inline u64 level_size(int level)
->   {
-> -	return 1UL << level_to_offset_bits(level);
-> +	return 1ULL << level_to_offset_bits(level);
->   }
->   
-> -static inline unsigned long align_to_level(unsigned long pfn, int level)
-> +static inline u64 align_to_level(u64 pfn, int level)
->   {
->   	return (pfn + level_size(level) - 1) & level_mask(level);
->   }
->   
->   static inline unsigned long lvl_to_nr_pages(unsigned int lvl)
->   {
-> -	return  1 << min_t(int, (lvl - 1) * LEVEL_STRIDE, MAX_AGAW_PFN_WIDTH);
-> +	return 1UL << min_t(int, (lvl - 1) * LEVEL_STRIDE, MAX_AGAW_PFN_WIDTH);
->   }
->   
->   /* VT-d pages must always be _smaller_ than MM pages. Otherwise things
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
