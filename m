@@ -2,41 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC4872537D1
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 21:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F39FE2537DD
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 21:07:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEAFA6EA9E;
-	Wed, 26 Aug 2020 19:05:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A05E6EAA3;
+	Wed, 26 Aug 2020 19:07:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 642206E369
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 19:05:32 +0000 (UTC)
-IronPort-SDR: QlSX7yLz0talt+tQQ+io/sSN8MHoNCRO5G/j1/QfHptyZTkGsz1eG5aN09oh9Jje9L/uqp3qXX
- 5T38sYopXirQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9725"; a="153790977"
-X-IronPort-AV: E=Sophos;i="5.76,356,1592895600"; d="scan'208";a="153790977"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2020 12:05:32 -0700
-IronPort-SDR: Da2IP+U2JcXbn70p/5fJc1aXfyEJ5LhZQK+jpBvSvInkRfowtqhuISwgf20BE2EC+Zy1Y0tDs9
- g8q8dUdgpq8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,356,1592895600"; d="scan'208";a="403157647"
-Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
- by fmsmga001.fm.intel.com with ESMTP; 26 Aug 2020 12:05:31 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Aug 2020 12:06:57 -0700
-Message-Id: <20200826190657.18283-4-manasi.d.navare@intel.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20200826190657.18283-1-manasi.d.navare@intel.com>
-References: <20200826190657.18283-1-manasi.d.navare@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3E5726EA99;
+ Wed, 26 Aug 2020 19:07:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 36CB5A41FB;
+ Wed, 26 Aug 2020 19:07:51 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/display/dp: Do not enable PSR if
- VRR is enabled
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lyude Paul" <lyude@redhat.com>
+Date: Wed, 26 Aug 2020 19:07:51 -0000
+Message-ID: <159846887122.21253.10832733245700192047@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200826182456.322681-1-lyude@redhat.com>
+In-Reply-To: <20200826182456.322681-1-lyude@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/dp=2C_i915=2C_nouveau=3A_Cleanup_nouveau_HPD_and_add_DP?=
+ =?utf-8?q?_features_from_i915_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,30 +39,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RXZlbiB0aG91Z2ggb3VyIEhXIHN1cHBvcnRzIFBTUiArIFZSUiwgdGhlIGF2YWlsYWJsZSBwYW5l
-bHMKZG8gbm90IHdvcmsgcmVsaWFibHkgd2l0aCBQU1IgYW5kIFZSUiB0b2dldGhlci4gU28gaWYg
-dXNlcgpyZXF1ZXN0ZWQgVlJSIGFuZCBpcyBzdXBwb3J0ZWQgYnkgSFcgZW5hYmxlIHRoYXQgYW5k
-IGRvIG5vdAplbmFibGUgUFNSIGluIHRoYXQgY2FzZS4KCkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZp
-bGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpDYzogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5
-ZW9uZy5tdW5AaW50ZWwuY29tPgpDYzogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPgpT
-aWduZWQtb2ZmLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPgot
-LS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCA3ICsrKysrKysK
-IDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9wc3IuYwppbmRleCAyYjAwNGVlOTYxOWMuLmYzN2QxNzU2OTAwOSAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCkBAIC04MTEsNiArODExLDEzIEBA
-IHZvaWQgaW50ZWxfcHNyX2NvbXB1dGVfY29uZmlnKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAs
-CiAJCSZjcnRjX3N0YXRlLT5ody5hZGp1c3RlZF9tb2RlOwogCWludCBwc3Jfc2V0dXBfdGltZTsK
-IAorCS8qCisJICogQ3VycmVudCBQU1IgcGFuZWxzIGRvbnQgd29yayByZWxpYWJseSB3aXRoIFZS
-UiBlbmFibGVkCisJICogU28gaWYgVlJSIGlzIGVuYWJsZWQsIGRvIG5vdCBlbmFibGUgUFNSLgor
-CSAqLworCWlmIChjcnRjX3N0YXRlLT52cnIuZW5hYmxlKQorCQlyZXR1cm47CisKIAlpZiAoIUNB
-Tl9QU1IoZGV2X3ByaXYpKQogCQlyZXR1cm47CiAKLS0gCjIuMTkuMQoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: drm/dp, i915, nouveau: Cleanup nouveau HPD and add DP features from i915 (rev7)
+URL   : https://patchwork.freedesktop.org/series/80542/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+b76b4b6f3675 drm/nouveau/kms: Fix some indenting in nouveau_dp_detect()
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 21 lines checked
+376f1358fe13 drm/nouveau/kms/nv50-: Remove open-coded drm_dp_read_desc()
+-:102: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct nouveau_connector *' should also have an identifier name
+#102: FILE: drivers/gpu/drm/nouveau/nouveau_encoder.h:109:
++int nouveau_dp_detect(struct nouveau_connector *, struct nouveau_encoder *);
+
+-:102: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct nouveau_encoder *' should also have an identifier name
+#102: FILE: drivers/gpu/drm/nouveau/nouveau_encoder.h:109:
++int nouveau_dp_detect(struct nouveau_connector *, struct nouveau_encoder *);
+
+total: 0 errors, 2 warnings, 0 checks, 74 lines checked
+bb5629743bd6 drm/nouveau/kms/nv50-: Just use drm_dp_dpcd_read() in nouveau_dp.c
+5a0c0ceff3b9 drm/nouveau/kms/nv50-: Use macros for DP registers in nouveau_dp.c
+ed53a7f096cc drm/nouveau/kms: Don't clear DP_MST_CTRL DPCD in nv50_mstm_new()
+-:7: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fa3cdf8d0b09 ("drm/nouveau: Reset MST branching unit before enabling")'
+#7: 
+Since fa3cdf8d0b09 ("drm/nouveau: Reset MST branching unit before
+
+total: 1 errors, 0 warnings, 0 checks, 17 lines checked
+2e212bc94c2b drm/nouveau/kms: Search for encoders' connectors properly
+d5c0b632ff50 drm/nouveau/kms/nv50-: Use drm_dp_dpcd_(readb|writeb)() in nv50_sor_disable()
+a494bdb7a99a drm/nouveau/kms/nv50-: Refactor and cleanup DP HPD handling
+-:53: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#53: 
+* Enabling bits in MSTM_CTRL before calling drm_dp_mst_topology_mgr_set_mst().
+
+-:465: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_device *' should also have an identifier name
+#465: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:21:
++	void (*fini)(struct drm_device *, bool suspend, bool runtime);
+
+total: 0 errors, 2 warnings, 0 checks, 574 lines checked
+93c32b56a998 drm/i915/dp: Extract drm_dp_read_mst_cap()
+ab23bfd0015b drm/nouveau/kms: Use new drm_dp_read_mst_cap() helper for checking MST caps
+-:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 29 lines checked
+d218727b4477 drm/nouveau/kms: Move drm_dp_cec_unset_edid() into nouveau_connector_detect()
+375b0f4cdd81 drm/nouveau/kms: Only use hpd_work for reprobing in HPD paths
+-:279: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#279: FILE: drivers/gpu/drm/nouveau/nouveau_drv.h:201:
++	struct mutex hpd_lock;
+
+total: 0 errors, 0 warnings, 1 checks, 219 lines checked
+0134505297a1 drm/i915/dp: Extract drm_dp_read_downstream_info()
+-:38: WARNING:BAD_SIGN_OFF: Duplicate signature
+#38: 
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+
+total: 0 errors, 1 warnings, 0 checks, 109 lines checked
+c4728875a1e1 drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode validation
+-:63: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#63: FILE: drivers/gpu/drm/nouveau/nouveau_dp.c:194:
++	unsigned max_clock, ds_clock, clock;
+
+total: 0 errors, 1 warnings, 0 checks, 57 lines checked
+21a1acc8b05d drm/i915/dp: Extract drm_dp_read_sink_count_cap()
+b10ed3135378 drm/i915/dp: Extract drm_dp_read_sink_count()
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+* Add back comment and move back sink_count assignment in intel_dp_get_dpcd()
+
+total: 0 errors, 1 warnings, 0 checks, 74 lines checked
+9de8d3818bd8 drm/nouveau/kms/nv50-: Add support for DP_SINK_COUNT
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+plugged into it currently results in a bogus EDID retrieval error in the kernel log.
+
+total: 0 errors, 1 warnings, 0 checks, 107 lines checked
+b2ef4135a827 drm/nouveau/kms: Don't change EDID when it hasn't actually changed
+6da06b467e41 drm/i915/dp: Extract drm_dp_read_dpcd_caps()
+02383c82b60a drm/nouveau/kms: Start using drm_dp_read_dpcd_caps()
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
