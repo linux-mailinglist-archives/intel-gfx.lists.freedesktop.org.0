@@ -1,66 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F5C62535C0
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 19:10:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A36D2535CF
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 19:13:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE156E2A8;
-	Wed, 26 Aug 2020 17:10:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27C516E247;
+	Wed, 26 Aug 2020 17:13:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
  [205.139.110.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EADE6E2A8
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 17:10:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA00C6E247
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 17:13:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1598461853;
+ s=mimecast20190719; t=1598461981;
  h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=DcBa7RmDpyrfsqq3prem5Mbj7x2aZK4SMmHyJpvaSdY=;
- b=XZ8meuq+OrI8ugjyakJXBq4donyhGAhOFbkYDNNAM0fmnxOat+y1VqczdpLGu2zIas0O/P
- JvuD0E95QGiiYLRK8PKWlkSNIaL6UJcvCEMes7879EAhpY9gxvotmR7+RUVu25jCS4X56D
- vje00oYiYWBRgXOhravsO86/D5jRyec=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-544-dSZWrsS3MQ2l_gJ8CBGLpQ-1; Wed, 26 Aug 2020 13:10:52 -0400
-X-MC-Unique: dSZWrsS3MQ2l_gJ8CBGLpQ-1
-Received: by mail-qk1-f197.google.com with SMTP id c67so2242806qkd.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 10:10:51 -0700 (PDT)
+ bh=HNxk+EQ8wQ8tVIGqRrZql9fbdwG5Cj1VEgrvd+qiq60=;
+ b=akAIhKUD5Qk0ymiu4cPTtgx0EdDQHpIn9aJf96foNQ3hu/hLiOZulXvmlyg2+oYen5l/5M
+ esJp2HO7iZ1He4eLei4WGquGtJZ+lQOjhxA8h/iHh/LEgKtlIkYwIqGs6H0BtBoNtmgNsH
+ 1f86dgGDV5EohUCuV8r77FH/EWBRC6s=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-570-lyr4pp5NNjKlgfLFjNJd6w-1; Wed, 26 Aug 2020 13:12:59 -0400
+X-MC-Unique: lyr4pp5NNjKlgfLFjNJd6w-1
+Received: by mail-qk1-f199.google.com with SMTP id k142so2236454qke.7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 10:12:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
  :in-reply-to:references:organization:user-agent:mime-version
  :content-transfer-encoding;
- bh=DcBa7RmDpyrfsqq3prem5Mbj7x2aZK4SMmHyJpvaSdY=;
- b=C289ECCFNitOvgbQ+rlWCHjxuq8k9xAsHC8FKsvVjL8dVCJDJsWEy4IU9ZM9ejrq4b
- ywEUphR51JDnuTYg51ikY9JopZOSXVHl1rh7Lt6oViJhHv+IruB4quebZCtTxCqbDwdg
- R4yXoMGplgBFhmyD2827v4X54lYYBZ9D1H/O1LHFyn0Emmwc0KsfOwxXQCfbNQqwTG42
- W0E4YlyVCi2/qo/BTZhjVqdfhAs8DmRPnUrrELOU1iNurLcm5YZ0/ntL5aTikpHIOJey
- eJ+FAGptNLy8z+4xJPNOOzjcA0pJIBexNQZlOUkWyjDmuJDkBX3foTP0+5gjsYKLgEW/
- XuFg==
-X-Gm-Message-State: AOAM531nAFhVBiXi42A3ZW0R8ssYFEK4gclUIZcTOYumawtDIAh2Aj9e
- Ve4eDJxBalspCkyLCqRiWxU7hjoLU8/A3sb2JCRjLhhHzubmsj2PQMKZgI328mZ1w7OUaXNMRi5
- cvE8+ILb2xQxokjSUU7XP2v3N9CFh
-X-Received: by 2002:a37:8047:: with SMTP id b68mr13950673qkd.299.1598461848048; 
- Wed, 26 Aug 2020 10:10:48 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxLRLZZCBpS2vogSRffieTXOoNMCSrfZDg6zygX9GtwQ4vjjoF4TebV9dib0yFK6rSBjIZF/Q==
-X-Received: by 2002:a37:8047:: with SMTP id b68mr13950638qkd.299.1598461847705; 
- Wed, 26 Aug 2020 10:10:47 -0700 (PDT)
+ bh=HNxk+EQ8wQ8tVIGqRrZql9fbdwG5Cj1VEgrvd+qiq60=;
+ b=NGp47wIbBw6UPkLH2PJDdXAySiU4j6EOx1mjL4SezKF8kcADsArJnIru8HOULLEHK6
+ td6Gjrei4+On24vL6snDyWljTzazxx+cst+zljnoo5adphcNeBBMpep3RijyHuQeizCS
+ PKDpyeNhceljQmioQj104uqA7mFrpdBuVMhqHkXjXhxqskbsd0FTqHHoXc4aD5+sUwx8
+ H1XfspW6dNqwhDvc81fHgAmbelPT52nA6m4w2PRQIlAB7d4FfUZEjz2MoxtaEt9XGCBe
+ NEkcsZdJqeJ3nvZt9cTdYgvaIVdbo5wJPCkh+xOv96frJxFYajB5IkoiyI+vTtSUjMwi
+ F9fg==
+X-Gm-Message-State: AOAM530spKAFZPlOInsNeZP+zB5EXDZko7nRko2dGRGDZYlYyZY8N8LM
+ jncL0vK3iUaKzlMLfF4tg4TA8xRCfTC/mJ4Kq5WzaxV8Cf1A7xWtw1VxDUO69ukUzajFTI3MFhm
+ 3/u62l67LJEAQqjmNxwJQ6kCsmx2A
+X-Received: by 2002:ac8:458a:: with SMTP id l10mr14982605qtn.345.1598461974936; 
+ Wed, 26 Aug 2020 10:12:54 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxPN0gfqk25wNBQ7pctyKxl91Z5N9+T1TGM7wzP+o65H/927i5DVjZXXu0XPikzyIsh50ev/w==
+X-Received: by 2002:ac8:458a:: with SMTP id l10mr14982565qtn.345.1598461974593; 
+ Wed, 26 Aug 2020 10:12:54 -0700 (PDT)
 Received: from Whitewolf.lyude.net
  (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id x137sm2133134qkb.47.2020.08.26.10.10.46
+ by smtp.gmail.com with ESMTPSA id r73sm2063390qka.76.2020.08.26.10.12.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Aug 2020 10:10:46 -0700 (PDT)
-Message-ID: <2c1f86e1688e866dbae1e49d5032a7d4d8a2ca1c.camel@redhat.com>
+ Wed, 26 Aug 2020 10:12:54 -0700 (PDT)
+Message-ID: <0b9fe80d058320b4e8e4fdf51a5445eddb1b0467.camel@redhat.com>
 From: Lyude Paul <lyude@redhat.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>, 
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
  nouveau@lists.freedesktop.org
-Date: Wed, 26 Aug 2020 13:10:45 -0400
+Date: Wed, 26 Aug 2020 13:12:52 -0400
 In-Reply-To: <87o8mx6g6a.fsf@intel.com>
 References: <20200825195027.74681-1-lyude@redhat.com>
  <20200825195027.74681-17-lyude@redhat.com> <87o8mx6g6a.fsf@intel.com>
@@ -135,6 +135,10 @@ On Wed, 2020-08-26 at 10:05 +0300, Jani Nikula wrote:
 > For example, drm_dp_read_foo() for anything with DPCD access
 > vs. drm_dp_get_foo() or even simpler for anything that only processes
 > pre-read data?
+
+Forgot to address this comment - yeah, I think that would be a good idea. I'll
+go through my previous patches and make sure that they match this naming scheme
+as well.
 > 
 > > + * @aux: The DP AUX channel to use
 > > + *
@@ -158,12 +162,6 @@ On Wed, 2020-08-26 at 10:05 +0300, Jani Nikula wrote:
 > seems silly to set a precedent to start handling that return value all
 > over the place.
 > 
-Yeah definitely - I'm probably going to keep this code here for now, but I would
-like to convert drm_dp_dpcd_readb/writeb() to just return 0 on success (all
-bytes written, I've never once seen a situation where we got less bytes than we
-read - it's always all or nothing) and negative error code on failure. I'll get
-to that soon
-
 > BR,
 > Jani.
 > 
