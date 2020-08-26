@@ -2,64 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B182536B2
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 20:22:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 143602536CA
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 20:25:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1F5D6E2ED;
-	Wed, 26 Aug 2020 18:22:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BABE6E9BF;
+	Wed, 26 Aug 2020 18:25:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 529786E2ED
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 18:22:30 +0000 (UTC)
-IronPort-SDR: N5fW534zf6imw3N6htrShGBuACkXAGuF0IGcs23nJxwTy9YgZo+R1bEI3sw4x7NFLWM8o/orSj
- lkVleUVGkkdw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9725"; a="217914314"
-X-IronPort-AV: E=Sophos;i="5.76,356,1592895600"; d="scan'208";a="217914314"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2020 11:22:29 -0700
-IronPort-SDR: b31NZJ7VNPaIzmyeFA6cob+wdkjKohGLDCVf+Z3iOG30U4LwKpoNs6YRBDxp+/nyDmqwQnz88c
- xaUtWnmgbKkw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,356,1592895600"; d="scan'208";a="323297554"
-Received: from fmsmsx604-2.cps.intel.com (HELO fmsmsx604.amr.corp.intel.com)
- ([10.18.84.214])
- by fmsmga004.fm.intel.com with ESMTP; 26 Aug 2020 11:22:29 -0700
-Received: from fmsmsx604.amr.corp.intel.com (10.18.126.84) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 26 Aug 2020 11:22:28 -0700
-Received: from fmsmsx156.amr.corp.intel.com (10.18.116.74) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Wed, 26 Aug 2020 11:22:28 -0700
-Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.136]) by
- fmsmsx156.amr.corp.intel.com ([169.254.13.232]) with mapi id 14.03.0439.000;
- Wed, 26 Aug 2020 11:22:28 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Taylor, Clinton A" <clinton.a.taylor@intel.com>
-Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5?=
- =?utf-8?Q?15/gt:_Implement_WA=5F1406941453_(rev4)?=
-Thread-Index: AQHWe2v4Hrj7jGhqRkiiJHWRAvMKM6lLKvIA
-Date: Wed, 26 Aug 2020 18:22:28 +0000
-Message-ID: <4e3f239ebe401bdd1bf3c7a7a3a1584e701bb53b.camel@intel.com>
-References: <20200805232920.15085-1-clinton.a.taylor@intel.com>
- <159842065801.21251.13947776851854093150@emeril.freedesktop.org>
-In-Reply-To: <159842065801.21251.13947776851854093150@emeril.freedesktop.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.240.12]
-Content-ID: <388298011D4FE5438A56C6D7E565D9A7@intel.com>
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
+ [207.211.31.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C20F86E85D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 18:25:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1598466316;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=0vrJKSvfDSDZY8uMwS7EfqyWxwPx+edNGvuc7fbgOtg=;
+ b=a2sqs7T4ksYlwYt0WuaQuY/0I5GrZZ5xUD10FhkPIUd+WRhpHYmfpgJl0/+nYyDjO2iXel
+ Pdq3SfRa88nJ8SbMJYxZ1pIadl3HxajwgCDipl6YNiIeHjJ+BxprhS5RbuWefqxYlkAHSQ
+ 08SjUmEMLWU5R+Qvs8a11hrbo7lvqtQ=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-201-17Naue9gMM2QUdRRF0kcCQ-1; Wed, 26 Aug 2020 14:25:12 -0400
+X-MC-Unique: 17Naue9gMM2QUdRRF0kcCQ-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
+ [10.5.11.22])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9A163800C78;
+ Wed, 26 Aug 2020 18:25:11 +0000 (UTC)
+Received: from Whitewolf.redhat.com (ovpn-119-77.rdu2.redhat.com
+ [10.10.119.77])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 2084210021AA;
+ Wed, 26 Aug 2020 18:25:11 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Date: Wed, 26 Aug 2020 14:24:36 -0400
+Message-Id: <20200826182456.322681-1-lyude@redhat.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Implement_WA=5F1406941453_=28rev4=29?=
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0.002
+X-Mimecast-Originator: redhat.com
+Subject: [Intel-gfx] [PATCH v5 00/20] drm/dp, i915,
+ nouveau: Cleanup nouveau HPD and add DP features from i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,205 +66,109 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2020-08-26 at 05:44 +0000, Patchwork wrote:
-> Patch Details
-> Series:	drm/i915/gt: Implement WA_1406941453 (rev4)
-> URL:	https://patchwork.freedesktop.org/series/78243/
-> State:	failure
-> Details:	https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18404/index.html
-> CI Bug Log - changes from CI_DRM_8925_full -> Patchwork_18404_full
-> Summary
-> FAILURE
-> 
-> Serious unknown changes coming with Patchwork_18404_full absolutely need to be
-> verified manually.
-> 
-> If you think the reported changes have nothing to do with the changes
-> introduced in Patchwork_18404_full, please notify your bug team to allow them
-> to document this new failure mode, which will reduce false positives in CI.
-> 
-> Possible new issues
-> Here are the unknown changes that may have been introduced in Patchwork_18404_full:
-> 
-> IGT changes
-> Possible regressions
-> igt@kms_vblank@pipe-c-ts-continuation-modeset-hang:
-> 
-> shard-hsw: PASS -> INCOMPLETE
-> igt@sysfs_preempt_timeout@timeout@rcs0:
-> 
+Most of the reason I'm asking for an RFC here is because this
+code pulls a lot of code out of i915 and into shared DP helpers.
 
-This regressions are not related to the changes so pushed to dinq, thanks for the patch Clint.
+Anyway-nouveau's HPD related code has been collecting dust for a while.
+Other then the occasional runtime PM related and MST related fixes,
+we're missing a lot of nice things that have been added to DRM since
+this was originally written. Additionally, the code is just really
+unoptimized in general:
 
-> shard-skl: PASS -> FAIL
-> Known issues
-> Here are the changes found in Patchwork_18404_full that come from known issues:
-> 
-> IGT changes
-> Issues hit
-> igt@gem_exec_reloc@basic-concurrent0:
-> 
-> shard-kbl: PASS -> TIMEOUT (i915#1958) +3 similar issues
-> igt@gem_exec_reloc@basic-concurrent16:
-> 
-> shard-apl: PASS -> TIMEOUT (i915#1635 / i915#1958)
-> igt@gem_exec_whisper@basic-contexts-priority:
-> 
-> shard-iclb: PASS -> TIMEOUT (i915#1958) +1 similar issue
-> igt@gem_exec_whisper@basic-fds-priority:
-> 
-> shard-glk: PASS -> TIMEOUT (i915#1958) +3 similar issues
-> igt@gem_exec_whisper@basic-normal:
-> 
-> shard-tglb: PASS -> TIMEOUT (i915#1958)
-> igt@gem_exec_whisper@basic-queues-forked:
-> 
-> shard-skl: PASS -> TIMEOUT (i915#1958)
-> igt@gem_sync@basic-store-all:
-> 
-> shard-apl: PASS -> FAIL (i915#1635 / i915#2356)
-> 
-> shard-glk: PASS -> FAIL (i915#2356)
-> 
-> shard-skl: PASS -> FAIL (i915#2356)
-> 
-> igt@i915_selftest@mock@contexts:
-> 
-> shard-skl: PASS -> INCOMPLETE (i915#198 / i915#2278)
-> igt@kms_big_fb@x-tiled-64bpp-rotate-0:
-> 
-> shard-apl: PASS -> DMESG-WARN (i915#1635 / i915#1982)
-> igt@kms_cursor_edge_walk@pipe-c-64x64-left-edge:
-> 
-> shard-glk: PASS -> DMESG-WARN (i915#1982) +1 similar issue
-> igt@kms_draw_crc@draw-method-xrgb8888-blt-untiled:
-> 
-> shard-snb: PASS -> SKIP (fdo#109271)
-> igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a2:
-> 
-> shard-glk: PASS -> FAIL (i915#79)
-> igt@kms_flip@flip-vs-expired-vblank@b-edp1:
-> 
-> shard-skl: PASS -> FAIL (i915#79)
-> igt@kms_flip@flip-vs-suspend-interruptible@a-dp1:
-> 
-> shard-kbl: PASS -> DMESG-WARN (i915#180) +12 similar issues
-> igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-shrfb-draw-mmap-wc:
-> 
-> shard-tglb: PASS -> DMESG-WARN (i915#1982) +2 similar issues
-> igt@kms_hdr@bpc-switch:
-> 
-> shard-skl: PASS -> FAIL (i915#1188)
-> igt@kms_psr@no_drrs:
-> 
-> shard-iclb: PASS -> FAIL (i915#173)
-> igt@kms_psr@psr2_cursor_plane_move:
-> 
-> shard-iclb: PASS -> SKIP (fdo#109441) +1 similar issue
-> igt@kms_psr@suspend:
-> 
-> shard-skl: PASS -> INCOMPLETE (i915#198)
-> igt@perf@polling-parameterized:
-> 
-> shard-tglb: PASS -> FAIL (i915#1542)
-> igt@perf@polling-small-buf:
-> 
-> shard-skl: PASS -> DMESG-WARN (i915#1982) +15 similar issues
-> igt@sysfs_timeslice_duration@timeout@vecs0:
-> 
-> shard-tglb: PASS -> FAIL (i915#1755)
-> Possible fixes
-> igt@gem_exec_reloc@basic-concurrent0:
-> 
-> shard-apl: TIMEOUT (i915#1635 / i915#1958) -> PASS +3 similar issues
-> igt@gem_exec_suspend@basic-s3:
-> 
-> shard-kbl: DMESG-WARN (i915#180) -> PASS +4 similar issues
-> igt@gem_exec_whisper@basic-contexts-all:
-> 
-> shard-glk: TIMEOUT (i915#1958) -> PASS +2 similar issues
-> igt@gem_exec_whisper@basic-fds-priority:
-> 
-> shard-kbl: TIMEOUT (i915#1958) -> PASS +1 similar issue
-> igt@gem_exec_whisper@basic-queues:
-> 
-> shard-tglb: TIMEOUT (i915#1958) -> PASS
-> igt@i915_module_load@reload:
-> 
-> shard-tglb: DMESG-WARN (i915#1982) -> PASS +1 similar issue
-> igt@i915_selftest@mock@contexts:
-> 
-> shard-apl: INCOMPLETE (i915#1635 / i915#2278) -> PASS
-> igt@kms_flip@2x-blocking-wf_vblank@ab-vga1-hdmi-a1:
-> 
-> shard-hsw: DMESG-WARN (i915#1982) -> PASS
-> igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@a-dp1:
-> 
-> shard-kbl: DMESG-WARN (i915#1982) -> PASS +1 similar issue
-> igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1:
-> 
-> shard-skl: FAIL (i915#79) -> PASS
-> igt@kms_flip@flip-vs-suspend@a-edp1:
-> 
-> shard-skl: INCOMPLETE (i915#198) -> PASS
-> igt@kms_flip@plain-flip-fb-recreate@b-edp1:
-> 
-> shard-skl: FAIL (i915#2122) -> PASS
-> igt@kms_frontbuffer_tracking@fbc-1p-primscrn-shrfb-pgflip-blt:
-> 
-> shard-iclb: DMESG-WARN (i915#1982) -> PASS
-> igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-render:
-> 
-> shard-iclb: TIMEOUT (i915#123 / i915#1958) -> PASS
-> igt@kms_frontbuffer_tracking@psr-rgb565-draw-mmap-wc:
-> 
-> shard-skl: DMESG-WARN (i915#1982) -> PASS +4 similar issues
-> igt@kms_hdr@bpc-switch-dpms:
-> 
-> shard-skl: FAIL (i915#1188) -> PASS
-> igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-> 
-> shard-skl: FAIL (fdo#108145 / i915#265) -> PASS +1 similar issue
-> igt@kms_psr@psr2_basic:
-> 
-> shard-iclb: SKIP (fdo#109441) -> PASS +2 similar issues
-> igt@kms_setmode@basic:
-> 
-> shard-kbl: FAIL (i915#31) -> PASS
-> igt@kms_vblank@pipe-c-query-forked-busy:
-> 
-> shard-iclb: TIMEOUT (i915#1958) -> PASS +3 similar issues
-> igt@perf@blocking-parameterized:
-> 
-> shard-iclb: FAIL (i915#1542) -> PASS
-> Warnings
-> igt@gem_exec_whisper@basic-queues-forked-all:
-> 
-> shard-glk: DMESG-WARN (i915#118 / i915#95) -> TIMEOUT (i915#1958)
-> igt@kms_plane_alpha_blend@pipe-a-alpha-7efc:
-> 
-> shard-apl: FAIL (fdo#108145 / i915#1635 / i915#265) -> DMESG-FAIL (fdo#108145 / i915#1635 / i915#1982)
-> {name}: This element is suppressed. This means it is ignored when computing
-> the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
-> Participating hosts (10 -> 10)
-> No changes in participating hosts
-> 
-> Build changes
-> Linux: CI_DRM_8925 -> Patchwork_18404
-> CI-20190529: 20190529
-> CI_DRM_8925: b0f0c5e0b08e7d93135a27141919e765db3aaeef @ git://anongit.freedesktop.org/gfx-ci/linux
-> IGT_5771: f1d0c240ea2e631dfb9f493f37f8fb61cb2b1cf2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-> Patchwork_18404: 8b63f6a0a82d5b831461a1bcc9d15294aadc3084 @ git://anongit.freedesktop.org/gfx-ci/linux
-> piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> 
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
-> 
+* We handle connector probing in the same context that we handle short
+  IRQs in for DP, which means connector probing could potentially block
+  ESI handling for MST
+* When we receive a hotplug event from a connector, we reprobe every
+  single connector instead of just the connector that was hotplugged
+* Additionally because of the above reason, combined with the fact I had
+  the bad idea of reusing some of the MST locks when I last rewrote
+  nouveau's DP MST detection, trying to handle any other events that
+  require short HPD IRQs is a bit awkward to actually implement.
+* We don't actually properly check whether EDIDs change or not when
+  reprobing, which means we basically send out a hotplug event every
+  single time we receive one even if nothing has changed
+
+Additionally, the code for handling DP that we have in nouveau is also
+quite unoptimized in general, doesn't use a lot of helpers that have
+been added since it was written, and is also missing quite a number of
+features:
+
+* Downstream port capability probing
+* Extended DPRX cap parsing
+* SINK_COUNT handling for hpd on dongles
+
+Luckily for us - all of these are implemented in i915 already. Since
+there's no reason for us to reinvent the wheel, and having more shared
+code is always nice, I decided to take the opportunity to extract the
+code for all of these features from i915 into a set of core DP helpers,
+which both i915 and nouveau (and hopefully other drivers in the future)
+can use.
+
+As well, this patch series also addesses the other general
+connector probing related issues I mentioned above, along with rewriting
+how we handle MST probing so we don't hit any surprise locking design
+issues in the future.
+
+As a note - most of this work is motivated by the fact that I'm
+planning on adding max_bpc/output_bpc prop support, DSC support (for
+both MST and SST, along with proper helpers for handling bandwidth
+limitations and DSC), and fallback link retraining. I figured I might as
+clean this code up and implement missing DP features like the ones
+mentioned here before moving on to those tasks.
+
+Lyude Paul (20):
+  drm/nouveau/kms: Fix some indenting in nouveau_dp_detect()
+  drm/nouveau/kms/nv50-: Remove open-coded drm_dp_read_desc()
+  drm/nouveau/kms/nv50-: Just use drm_dp_dpcd_read() in nouveau_dp.c
+  drm/nouveau/kms/nv50-: Use macros for DP registers in nouveau_dp.c
+  drm/nouveau/kms: Don't clear DP_MST_CTRL DPCD in nv50_mstm_new()
+  drm/nouveau/kms: Search for encoders' connectors properly
+  drm/nouveau/kms/nv50-: Use drm_dp_dpcd_(readb|writeb)() in
+    nv50_sor_disable()
+  drm/nouveau/kms/nv50-: Refactor and cleanup DP HPD handling
+  drm/i915/dp: Extract drm_dp_read_mst_cap()
+  drm/nouveau/kms: Use new drm_dp_read_mst_cap() helper for checking MST
+    caps
+  drm/nouveau/kms: Move drm_dp_cec_unset_edid() into
+    nouveau_connector_detect()
+  drm/nouveau/kms: Only use hpd_work for reprobing in HPD paths
+  drm/i915/dp: Extract drm_dp_read_downstream_info()
+  drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode
+    validation
+  drm/i915/dp: Extract drm_dp_read_sink_count_cap()
+  drm/i915/dp: Extract drm_dp_read_sink_count()
+  drm/nouveau/kms/nv50-: Add support for DP_SINK_COUNT
+  drm/nouveau/kms: Don't change EDID when it hasn't actually changed
+  drm/i915/dp: Extract drm_dp_read_dpcd_caps()
+  drm/nouveau/kms: Start using drm_dp_read_dpcd_caps()
+
+ drivers/gpu/drm/drm_dp_helper.c             | 187 +++++++++++-
+ drivers/gpu/drm/drm_dp_mst_topology.c       |  22 ++
+ drivers/gpu/drm/i915/display/intel_dp.c     | 124 ++------
+ drivers/gpu/drm/i915/display/intel_dp.h     |   1 -
+ drivers/gpu/drm/i915/display/intel_lspcon.c |   2 +-
+ drivers/gpu/drm/nouveau/dispnv04/dac.c      |   2 +-
+ drivers/gpu/drm/nouveau/dispnv04/dfp.c      |   7 +-
+ drivers/gpu/drm/nouveau/dispnv04/disp.c     |  24 +-
+ drivers/gpu/drm/nouveau/dispnv04/disp.h     |   4 +
+ drivers/gpu/drm/nouveau/dispnv04/tvnv04.c   |   2 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c   |   2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     | 305 +++++++++++---------
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 132 ++++-----
+ drivers/gpu/drm/nouveau/nouveau_connector.h |   1 +
+ drivers/gpu/drm/nouveau/nouveau_display.c   |  72 ++++-
+ drivers/gpu/drm/nouveau/nouveau_display.h   |   3 +-
+ drivers/gpu/drm/nouveau/nouveau_dp.c        | 210 +++++++++++---
+ drivers/gpu/drm/nouveau/nouveau_drm.c       |   4 +-
+ drivers/gpu/drm/nouveau/nouveau_drv.h       |   2 +
+ drivers/gpu/drm/nouveau/nouveau_encoder.h   |  48 ++-
+ include/drm/drm_dp_helper.h                 |  15 +-
+ include/drm/drm_dp_mst_helper.h             |   3 +-
+ 22 files changed, 779 insertions(+), 393 deletions(-)
+
+-- 
+2.26.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
