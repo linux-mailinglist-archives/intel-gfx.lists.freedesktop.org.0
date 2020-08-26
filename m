@@ -1,39 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA38A253070
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 15:53:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FE1B253073
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 15:53:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 336246E9A0;
-	Wed, 26 Aug 2020 13:53:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E3286EA5E;
+	Wed, 26 Aug 2020 13:53:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A0DC6E384
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 13:53:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BE3E6EA5E;
+ Wed, 26 Aug 2020 13:53:48 +0000 (UTC)
 Received: from localhost (unknown [70.37.104.77])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id E3CEE208E4;
- Wed, 26 Aug 2020 13:53:42 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id C173722B49;
+ Wed, 26 Aug 2020 13:53:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1598450023;
- bh=Rj4Ua/+GZI4fqLHD2x5UsMtOLBJ1hsOVZa5hnctYvXk=;
- h=Date:From:To:To:To:Cc:Cc:Subject:In-Reply-To:References:From;
- b=wp1Nst1+/AVkTr5PSUD6v1NNBjuTXKMfixcQY5ZAIZQN54oGlmvBaCcxh+rhkUMp+
- 7m9w+Mo8YrNs0ZdFXLejvVa27ZwwtAyRdUV3ATUOWsbxbjXWyLd0cNWrn5L6Di3cgE
- AMWI1h3rE2W7t6o34hi+LU4ypJ3D/KgVPufUX9p4=
-Date: Wed, 26 Aug 2020 13:53:42 +0000
+ s=default; t=1598450028;
+ bh=eZsJDL9SLroB/bPNsmyrnqiBAWweo2HTBUEPozHxy3I=;
+ h=Date:From:To:To:To:To:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Subject:
+ In-Reply-To:References:From;
+ b=uaSreD/5m9CgL7AfiWQkpRS6pYn5IvN7G6X1xubxR2PQ2NfNaKmSuaHvOqXOXxvrX
+ MKXuGTZMs0EhOFoTG1Ozxr1wFBUA4Loivh/tATkCM9EEIrz1ALXAMrf11+rs+Sx5mk
+ CNaTKRFle+/dSiaTuld6rB+11nXV/NSmqLh2Cvds=
+Date: Wed, 26 Aug 2020 13:53:47 +0000
 From: Sasha Levin <sashal@kernel.org>
 To: Sasha Levin <sashal@kernel.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200812223621.22292-3-chris@chris-wilson.co.uk>
-References: <20200812223621.22292-3-chris@chris-wilson.co.uk>
-Message-Id: <20200826135342.E3CEE208E4@mail.kernel.org>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/gem: Always test execution
- status on closing the context
+To: Sean Paul <sean@poorly.run>
+To: Sean Paul <seanpaul@chromium.org>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200818153910.27894-2-sean@poorly.run>
+References: <20200818153910.27894-2-sean@poorly.run>
+Message-Id: <20200826135347.C173722B49@mail.kernel.org>
+Subject: Re: [Intel-gfx] [PATCH v8 01/17] drm/i915: Fix sha_text population
+ code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,7 +48,9 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Sean Paul <seanpaul@chromium.org>, stable@vger.kernel.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -58,28 +62,35 @@ Hi
 [This is an automated email]
 
 This commit has been processed because it contains a "Fixes:" tag
-fixing commit: 9a40bddd47ca ("drm/i915/gt: Expose heartbeat interval via sysfs").
+fixing commit: ee5e5e7a5e0f ("drm/i915: Add HDCP framework + base implementation").
 
-The bot has tested the following trees: v5.8.2, v5.7.16.
+The bot has tested the following trees: v5.8.2, v5.7.16, v5.4.59, v4.19.140.
 
-v5.8.2: Failed to apply! Possible dependencies:
-    1b90e4a43b74 ("drm/i915/selftests: Enable selftesting of busy-stats")
-    2d3879950f8a ("drm/i915: Add psr_safest_params")
-    4fe13f28d66a ("drm/i915/selftests: Add tests for timeslicing virtual engines")
-    67a64e51ba92 ("drm/i915/selftests: Refactor sibling selection")
-    8a25c4be583d ("drm/i915/params: switch to device specific parameters")
-    9199c070cdde ("drm/i915/selftests: Exercise far preemption rollbacks")
-    ad6586850b6d ("drm/i915/selftests: Change priority overflow detection")
-    d4b02a4c613e ("drm/i915/selftests: Trim execlists runtime")
-    f4bb45f72734 ("drm/i915: Trim set_timer_ms() intervals")
+v5.8.2: Build OK!
+v5.7.16: Build OK!
+v5.4.59: Failed to apply! Possible dependencies:
+    65833c463886 ("drm/i915/hdcp: conversion to struct drm_device based logging macros.")
+    667944ad77f1 ("drm/i915/hdcp: use intel_de_*() functions for register access")
+    692059318c0f ("drm/i915/hdcp: Enable HDCP 1.4 and 2.2 on Gen12+")
 
-v5.7.16: Failed to apply! Possible dependencies:
-    0c1abaa7fbfb ("drm: Constify adjusted_mode a bit")
-    13ea6db2cf24 ("drm/i915/edp: Ignore short pulse when panel powered off")
-    3dfd8d710419 ("drm/i915/display: use struct drm_device based logging")
-    81b55ef1f47b ("drm/i915: drop a bunch of superfluous inlines")
-    8a25c4be583d ("drm/i915/params: switch to device specific parameters")
-    af67009c1439 ("drm/i915/dp: use struct drm_device based logging")
+v4.19.140: Failed to apply! Possible dependencies:
+    09d7e46b97c6 ("drm/i915: Pull VM lists under the VM mutex.")
+    16e4dd0342a8 ("drm/i915: Markup paired operations on wakerefs")
+    1d455f8de8e8 ("drm/i915: rename intel_drv.h to display/intel_display_types.h")
+    27fec1f9734d ("drm/i915: extract intel_dp.h from intel_drv.h")
+    39e2f501c1b4 ("drm/i915: Split struct intel_context definition to its own header")
+    480cd6dd9287 ("drm/i915/selftests: Track evict objects explicitly")
+    499197dc1696 ("drm/i915: Stop tracking MRU activity on VMA")
+    528cbd17ceff ("drm/i915: Move vma lookup to its own lock")
+    531747b8200a ("drm/i915/dvo: rename dvo.h to intel_dvo_dev.h and make self-contained")
+    64d6c500a384 ("drm/i915: Generalise GPU activity tracking")
+    667944ad77f1 ("drm/i915/hdcp: use intel_de_*() functions for register access")
+    692059318c0f ("drm/i915/hdcp: Enable HDCP 1.4 and 2.2 on Gen12+")
+    71fc448c1aaf ("drm/i915/selftests: Make evict tolerant of foreign objects")
+    a037121c3c7f ("drm/i915: Mark up debugfs with rpm wakeref tracking")
+    c2400ec3b6d1 ("drm/i915: add Makefile magic for testing headers are self-contained")
+    d2ee2e8afeea ("drm/i915: extract intel_crt.h from intel_drv.h")
+    d4225a535b3b ("drm/i915: Syntatic sugar for using intel_runtime_pm")
 
 
 NOTE: The patch will not be queued to stable trees until it is upstream.
