@@ -2,41 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E41FD2538F6
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 22:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B636253901
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 22:19:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC92E6E366;
-	Wed, 26 Aug 2020 20:13:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B0DD6EACA;
+	Wed, 26 Aug 2020 20:19:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0958908C
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 20:13:18 +0000 (UTC)
-IronPort-SDR: gdpM0SKFhmREF4s8E4h7J6wV5lR4c9l+xf7Hi4HK0yiqm55nX/wd4zVkEJObOMUpW56s3C19cO
- k6nQDne7odOQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9725"; a="155636186"
-X-IronPort-AV: E=Sophos;i="5.76,356,1592895600"; d="scan'208";a="155636186"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2020 13:13:17 -0700
-IronPort-SDR: Y3p1hAowJQu7LwXYQGE3bTLGpVwWdecaKi7UBbzSG7buKmaYF/qvZqU1zPBbmSL0dYyMRiDnKb
- YVej7P4u6bgQ==
-X-IronPort-AV: E=Sophos;i="5.76,356,1592895600"; d="scan'208";a="474903239"
-Received: from vfumax-mobl.amr.corp.intel.com (HELO
- josouza-MOBL2.amr.corp.intel.com) ([10.254.62.93])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2020 13:13:13 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Aug 2020 13:15:49 -0700
-Message-Id: <20200826201549.83658-3-jose.souza@intel.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200826201549.83658-1-jose.souza@intel.com>
-References: <20200826201549.83658-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A83AD6EAC8;
+ Wed, 26 Aug 2020 20:19:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A1265A882F;
+ Wed, 26 Aug 2020 20:19:16 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 3/3] drm/i915/ehl: Update voltage swing table
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 26 Aug 2020 20:19:16 -0000
+Message-ID: <159847315663.21253.8847862765694213073@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200826201549.83658-1-jose.souza@intel.com>
+In-Reply-To: <20200826201549.83658-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv3=2C1/3=5D_drm/i915/display/tgl=3A?=
+ =?utf-8?q?_Use_TGL_DP_tables_for_eDP_ports_without_low_power_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,40 +39,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VXBkYXRlIHdpdGggbGF0ZXN0IHR1bm5pbmcgaW4gdGhlIHRhYmxlLgoKdjM6IEZpeCB2YWx1ZXMg
-b2YgdG8gbGFzdCBjb2x1bW5zLgoKQlNwZWM6IDIxMjU3CkNjOiBNYXR0IFJvcGVyIDxtYXR0aGV3
-LmQucm9wZXJAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IDxqb3NlLnNvdXphQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2RkaS5jIHwgMTAgKysrKystLS0tLQogMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9u
-cygrKSwgNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-ZGkuYwppbmRleCA2OTk1MTE4NzIyOTAuLjgyYzE4NDZkOWJlMSAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCkBAIC01NzIsMTMgKzU3MiwxMyBAQCBzdGF0aWMgY29u
-c3Qgc3RydWN0IGNubF9kZGlfYnVmX3RyYW5zIGVobF9jb21ib19waHlfZGRpX3RyYW5zbGF0aW9u
-c19kcFtdID0gewogCQkJCQkJLyogTlQgbVYgVHJhbnMgbVYgZGIgICAgKi8KIAl7IDB4QSwgMHgz
-MywgMHgzRiwgMHgwMCwgMHgwMCB9LAkvKiAzNTAgICAzNTAgICAgICAwLjAgICAqLwogCXsgMHhB
-LCAweDQ3LCAweDM2LCAweDAwLCAweDA5IH0sCS8qIDM1MCAgIDUwMCAgICAgIDMuMSAgICovCi0J
-eyAweEMsIDB4NjQsIDB4MzAsIDB4MDAsIDB4MEYgfSwJLyogMzUwICAgNzAwICAgICAgNi4wICAg
-Ki8KLQl7IDB4NiwgMHg3RiwgMHgyQywgMHgwMCwgMHgxMyB9LAkvKiAzNTAgICA5MDAgICAgICA4
-LjIgICAqLworCXsgMHhDLCAweDY0LCAweDM0LCAweDAwLCAweDBCIH0sCS8qIDM1MCAgIDcwMCAg
-ICAgIDYuMCAgICovCisJeyAweDYsIDB4N0YsIDB4MzAsIDB4MDAsIDB4MEYgfSwJLyogMzUwICAg
-OTAwICAgICAgOC4yICAgKi8KIAl7IDB4QSwgMHg0NiwgMHgzRiwgMHgwMCwgMHgwMCB9LAkvKiA1
-MDAgICA1MDAgICAgICAwLjAgICAqLwotCXsgMHhDLCAweDY0LCAweDM2LCAweDAwLCAweDA5IH0s
-CS8qIDUwMCAgIDcwMCAgICAgIDIuOSAgICovCi0JeyAweDYsIDB4N0YsIDB4MzAsIDB4MDAsIDB4
-MEYgfSwJLyogNTAwICAgOTAwICAgICAgNS4xICAgKi8KKwl7IDB4QywgMHg2NCwgMHgzOCwgMHgw
-MCwgMHgwNyB9LAkvKiA1MDAgICA3MDAgICAgICAyLjkgICAqLworCXsgMHg2LCAweDdGLCAweDMy
-LCAweDAwLCAweDBEIH0sCS8qIDUwMCAgIDkwMCAgICAgIDUuMSAgICovCiAJeyAweEMsIDB4NjEs
-IDB4M0YsIDB4MDAsIDB4MDAgfSwJLyogNjUwICAgNzAwICAgICAgMC42ICAgKi8KLQl7IDB4Niwg
-MHg3RiwgMHgzNywgMHgwMCwgMHgwOCB9LAkvKiA2MDAgICA5MDAgICAgICAzLjUgICAqLworCXsg
-MHg2LCAweDdGLCAweDM4LCAweDAwLCAweDA3IH0sCS8qIDYwMCAgIDkwMCAgICAgIDMuNSAgICov
-CiAJeyAweDYsIDB4N0YsIDB4M0YsIDB4MDAsIDB4MDAgfSwJLyogOTAwICAgOTAwICAgICAgMC4w
-ICAgKi8KIH07CiAKLS0gCjIuMjguMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: series starting with [v3,1/3] drm/i915/display/tgl: Use TGL DP tables for eDP ports without low power support
+URL   : https://patchwork.freedesktop.org/series/81083/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+8017026c4d9e drm/i915/display/tgl: Use TGL DP tables for eDP ports without low power support
+-:44: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#44: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1101:
++				*n_entries = ARRAY_SIZE(tgl_combo_phy_ddi_translations_edp_hbr2_hobl);
+
+-:63: WARNING:PREFER_FALLTHROUGH: Prefer 'fallthrough;' over fallthrough comment
+#63: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1113:
++		/* fall through */
+
+total: 0 errors, 2 warnings, 0 checks, 63 lines checked
+e9e33a64daf7 drm/i915/display/ehl: Use EHL DP tables for eDP ports without low power support
+-:42: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#42: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1088:
++				return icl_combo_phy_ddi_translations_edp_hbr3;
++			} else {
+
+-:47: WARNING:PREFER_FALLTHROUGH: Prefer 'fallthrough;' over fallthrough comment
+#47: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1093:
++		/* fall through */
+
+total: 0 errors, 2 warnings, 0 checks, 31 lines checked
+bafdc7600734 drm/i915/ehl: Update voltage swing table
+-:9: WARNING:TYPO_SPELLING: 'tunning' may be misspelled - perhaps 'tuning'?
+#9: 
+Update with latest tunning in the table.
+
+total: 0 errors, 1 warnings, 0 checks, 18 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
