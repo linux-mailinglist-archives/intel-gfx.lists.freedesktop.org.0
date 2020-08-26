@@ -1,18 +1,18 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94995253938
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 22:43:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0493253943
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 22:44:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68C706E418;
-	Wed, 26 Aug 2020 20:43:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17EEF6EADC;
+	Wed, 26 Aug 2020 20:44:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from smtp.domeneshop.no (smtp.domeneshop.no
  [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 327346E418
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 20:43:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B89266EADC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 20:44:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=skogtun.org
  ; s=ds201912;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
@@ -20,28 +20,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=skogtun.org
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ixkHCRJdIC6h9PWnFkCPzplR0jeUxkvYwD5QjYbVoF0=; b=CqgEgv/nQzM/0XqmWMa9fHRPLL
- ++EZK+dSb+K5QZTHM5jes/FWNLVecjz198HoMjtleZV251gMMoFrH6fYYBSGcwTrcCqYtCRMGk2M3
- X5w16YZWNEenf/lTOgcHYU0J/75fLOyHpXVrij/VeEfuh4bLzXUV5C45Mx4lKnx6rr0x/N+s6Axhx
- xcA0jOO2DclpWPp3klx5U2BbCVoW1rre1DJvAUUAVuvuJoSo0Ftl+RigjLuw4TgdNCqIzjYJfX0us
- 1dyOd58y+FURIeQkLSx+ddjLbGfS2ZkdmisJK3MqRaZPa6FYQJxjR8we//GnPYtPPvjT6zvqf/MVg
- Yyo4vg+Q==;
-Received: from [2a01:79c:cebf:7fb0:de97:df61:fecc:46bb] (port=56230)
+ bh=81QOHKG8nskBo8noIVLaJnv+JFBD/ZOyIUZnyD6RVw0=; b=XaNuR/x+4X9LjePdzfMotUT3X8
+ ordHvCiA1DEzi76Fzz0iiCngJfWoTzSKo9q/7M5ETM/tChFVtvYy4d5QQR5AFxyeSB4LfHhmwDPiv
+ D6/hHyUV+qACpv3c9tY7fgRmNA2PgQ9VDnVpkKdYxoRmW7nXFz8DpkfD9b4ORLBUcPPZQUNRgMnG9
+ D3Iwh2OQ1M7qNX9mRI03ELFfToCiMzpDBfrWOq0DiNzAvOVaIraFkfIMu9uwEBGAgQR1EgN8hSARl
+ I/12rWQWUm4enWjjRD398PqSgVTVNU/pPfLGo3cY0jsQ9IrYt8GhNpBFmaq8l8aTJRKhRxQ3PqKx5
+ aTSErK8g==;
+Received: from [2a01:79c:cebf:7fb0:de97:df61:fecc:46bb] (port=56236)
  by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
  (Exim 4.92) (envelope-from <harald@skogtun.org>)
- id 1kB2Gb-0006vA-3x; Wed, 26 Aug 2020 22:43:33 +0200
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200826132811.17577-1-chris@chris-wilson.co.uk>
+ id 1kB2HG-00075B-Qd; Wed, 26 Aug 2020 22:44:14 +0200
+To: Linus Torvalds <torvalds@linux-foundation.org>
+References: <20200817161132.GA4711@amd>
+ <CAHk-=wh6_eWwvpL=AhOeY0btf_dkpu+0joNzPZWfbBWgAeAhMA@mail.gmail.com>
+ <CAPM=9tw8LVWsuA6m_nkUDgm00iz2txYRNZY0b0WWZbyiUVzLEw@mail.gmail.com>
+ <CAHk-=wg34bw1ude07nC_XCPOJHZ21-v6117p4574d5S7iP4gxw@mail.gmail.com>
+ <20200820092349.GA3792@amd>
+ <CAHk-=wjX=ck_u8uvp=PjGCQ3M9igE-yqyRPsJ54th1gQWpwMnA@mail.gmail.com>
+ <20200821091900.hzbivycs5ky5d3iw@duo.ucw.cz> <87tuwr59te.fsf@intel.com>
+ <7efa547d-b7a4-b873-f1aa-4f19eb849fa3@skogtun.org>
+ <CAHk-=wj3WskPCtHncCWLdaP6xVecLp8bDBTT57vyiU-0=Ld6QQ@mail.gmail.com>
+ <d4db4a52-3001-cb02-4888-a9dfd55cdd7c@skogtun.org>
+ <656b8f9f-d696-c75d-aef6-2b8b5170f2f6@skogtun.org>
+ <CAHk-=wiAK=AiqTD47o-BFFZciQXpEC0SiiDnXLWJUcQtCo-Pig@mail.gmail.com>
 From: Harald Arnesen <harald@skogtun.org>
-Message-ID: <bb7583d9-a519-60cc-84b3-56de69a6ac21@skogtun.org>
-Date: Wed, 26 Aug 2020 22:43:32 +0200
+Message-ID: <101bff45-0ebd-8fb6-7c99-963aa4fcc588@skogtun.org>
+Date: Wed, 26 Aug 2020 22:44:12 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <20200826132811.17577-1-chris@chris-wilson.co.uk>
+In-Reply-To: <CAHk-=wiAK=AiqTD47o-BFFZciQXpEC0SiiDnXLWJUcQtCo-Pig@mail.gmail.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 01/39] drm/i915/gem: Avoid implicit vmap for
- highmem on x86-32
+Subject: Re: [Intel-gfx] 5.9-rc1: graphics regression moved from -next to
+ mainline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,32 +65,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ kernel list <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
+ Pavel Machek <pavel@ucw.cz>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson [26.08.2020 15:27]:
+Linus Torvalds [26.08.2020 20:04]:
 
-> On 32b, highmem uses a finite set of indirect PTE (i.e. vmap) to provide
-> virtual mappings of the high pages. As these are finite, map_new_virtual()
-> must wait for some other kmap() to finish when it runs out. If we map a
-> large number of objects, there is no method for it to tell us to release
-> the mappings, and we deadlock.
+> On Wed, Aug 26, 2020 at 2:30 AM Harald Arnesen <harald@skogtun.org> wrote:
+>> Somehow related to lightdm or xfce4? However, it is a regression, since
+>> kernel 5.8 works.
+> Yeah, apparently there's something else wrong with the relocation changes too.
 > 
-> However, if we make an explicit vmap of the page, that uses a larger
-> vmalloc arena, and also has the ability to tell us to release unwanted
-> mappings. Most importantly, it will fail and propagate an error instead
-> of waiting forever.
+> That said, does that patch at
 > 
-> Fixes: fb8621d3bee8 ("drm/i915: Avoid allocating a vmap arena for a single page") #x86-32
-> References: e87666b52f00 ("drm/i915/shrinker: Hook up vmap allocation failure notifier")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Harald Arnesen <harald@skogtun.org>
-> Cc: <stable@vger.kernel.org> # v4.7+
+>   https://lore.kernel.org/intel-gfx/20200821123746.16904-1-joro@8bytes.org/
+> 
+> change things at all? If there are two independent bugs, maybe
+> applying that patch might at least give you an oops that gets saved in
+> the logs?
+> 
+> (it might be worth waiting a bit after the machine locks up in case
+> the machine is alive enough so sync logs after a bit.. If ssh works,
+> that's obviously better yet)
 
-Sorry, doesn't help on my machine (Thinkpad T520).
+No, doesn't help. And I was wrong, ssh does not work at all when the
+display locks up.
 -- 
 Hilsen Harald
 _______________________________________________
