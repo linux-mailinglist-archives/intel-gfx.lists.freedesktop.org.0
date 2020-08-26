@@ -2,61 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 176BC253636
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 19:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDD50253641
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 20:04:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22EC16E857;
-	Wed, 26 Aug 2020 17:58:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E61806E359;
+	Wed, 26 Aug 2020 18:04:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com
- [IPv6:2607:f8b0:4864:20::142])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 407356E221;
- Wed, 26 Aug 2020 17:00:59 +0000 (UTC)
-Received: by mail-il1-x142.google.com with SMTP id j9so2383055ilc.11;
- Wed, 26 Aug 2020 10:00:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Iifl+SrM927K50PeABJCPm1vnXa9Xbx3f5/rhAuv9Uk=;
- b=UCIjmonqsdoZZADUxRAJErxSCQ15XXBm5g2t7eD7umbVbTkt95mBhxnPcyoiqdMx/f
- 4ZgPZTFwDWxO/9ZVmGdf9LPDnJXCKtig3T2BQcWEgkreb/2mFIu5yG4B33T7PobYhe50
- pLHQtCBOOSU9LEyJAIyaFrcb3ZI31jI5GxIcB21o6zVS3IFo3vJEBmWPPqIcvc0hwf7N
- EqkpOyj1qz4FmuO2LG2ehBAzEsIiauUHZcqh1e5ESjJdRZ0CUFyxdJqfG3oGzZ/+zJbj
- HGGUi22gfUelU1RgtqRjp3N1HZgSOyM2PZQZdMQkkjFM/694y+SxzKI3B8Z3sq5Pbkm+
- 3/ag==
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com
+ [IPv6:2a00:1450:4864:20::141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5383989FA0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 18:04:54 +0000 (UTC)
+Received: by mail-lf1-x141.google.com with SMTP id y26so1493440lfe.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 11:04:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=WS/uJxuwiLHzldorNgMUOjPOOvCspP/oXyUz1rKFvLY=;
+ b=gsl5MMtpFNjAqrtJTRY10b6SSrB695wNhgGZ6I864ob20EWqPgWYXe7hztu360LCIz
+ Bjd31nxkTx3ZxjFZilSSbLw0bSNbgFN95BuF3Ay9Zjo/uP/uhRyADieYZsLTvpujmFRZ
+ nNRbOTiwJDThrxDAFViWi7YqXoD/BG3OChA7w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Iifl+SrM927K50PeABJCPm1vnXa9Xbx3f5/rhAuv9Uk=;
- b=KZmuVuLEzYCJrdvakDATBvU0WeGP1JMaQPeDuvZW8E2JUpU1/i82JvO40Uhcgb4CiT
- hdtjmH8ow9UeNoHG8GYeJCgIBoupCsXqv8M/FXYfKJRVY+uRZ1mGYrFffGfQsgd57tWp
- wrABuv23SdsT2Dewwrc54aNOl1xDjWplQq0grSRlQv4JrpM73OIo5q193jjccrDjjMcI
- lOLmLO/563kTQ/+9WExICeVA1q3KgI4lVh9fEzDLjM0qmGXzOYkv+DFKwFACLpIBD8s5
- 62ypZpZ7ZjfT/wRWGk/7iUd+Qyytqi6zU0GoIXCA9W46tz3dXvybaA0CwFmZaEYRblpQ
- AgUA==
-X-Gm-Message-State: AOAM532U5J8D1+PPXPk6ZbHEughj+AshSw2sXzT6QqtNvjrLXvjrVb04
- rCAFOjLLiVAPrCYZt/01Z80=
-X-Google-Smtp-Source: ABdhPJxBi1zHiX32RRVtEu9X620S7bHDX1wd9DIE9g9VRWFTCA6+Ytp4dwOPtFz82AaD5G33jga18w==
-X-Received: by 2002:a92:d0c7:: with SMTP id y7mr14347265ila.224.1598461258562; 
- Wed, 26 Aug 2020 10:00:58 -0700 (PDT)
-Received: from frodo.hsd1.co.comcast.net ([2601:284:8203:5970::c4c])
- by smtp.googlemail.com with ESMTPSA id p78sm1479606iod.0.2020.08.26.10.00.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Aug 2020 10:00:57 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- jbaron@akamai.com
-Date: Wed, 26 Aug 2020 11:00:41 -0600
-Message-Id: <20200826170041.2497546-5-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200826170041.2497546-1-jim.cromie@gmail.com>
-References: <20200826170041.2497546-1-jim.cromie@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=WS/uJxuwiLHzldorNgMUOjPOOvCspP/oXyUz1rKFvLY=;
+ b=VfNPfUlK8ny/lOloE2skCkqA+iKaBUt0guiPb6wsT/Ro358OXpBhmULff9hI+PBgyO
+ tA+1aF5gkot2tqCYBjm6YW64fkkdWLYjxwC+cdguTHoukMBIDt/wdss9tUOg4+SJD/Uj
+ m/QZvhWXCH0WDlXptCjh5uMHNndOFxg001z3crxcw9ZJKa8p3wy6VwQlnWptebk9KfPE
+ Ho+e1esSyC0pmxFfnfeRzuy2VvtG/XRuwuaoU92w+sGh5Wm46p56JVWRKkBuvFoy6sGB
+ RpLgzQA6GWyiocpGE3CNy4mQpvEtPmQrw9p4VnVKjX0GBEavNzE4m/WtjLc2lokTJ2oL
+ 7A0Q==
+X-Gm-Message-State: AOAM5333NaLWnNMq6QXhPnehbRQLrp5va12VewYr6vn0MW0aF4jlKvjC
+ 3BEjU6P1uh3VneISKb2tPsGvbPxHtyABOg==
+X-Google-Smtp-Source: ABdhPJykgAVJmBFFfJgKWAY+owrXDjPxCAOiCutNkIccjTFw509LqRAixaR5jGbt0S15hzyRT6O6TA==
+X-Received: by 2002:a05:6512:74b:: with SMTP id
+ c11mr7734317lfs.119.1598465092040; 
+ Wed, 26 Aug 2020 11:04:52 -0700 (PDT)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com.
+ [209.85.208.178])
+ by smtp.gmail.com with ESMTPSA id g21sm653913ljh.103.2020.08.26.11.04.49
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 26 Aug 2020 11:04:49 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id g6so3399929ljn.11
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 11:04:49 -0700 (PDT)
+X-Received: by 2002:a2e:b008:: with SMTP id y8mr6907538ljk.421.1598465088967; 
+ Wed, 26 Aug 2020 11:04:48 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 26 Aug 2020 17:58:46 +0000
-Subject: [Intel-gfx] [PATCH 4/4] i915: POC use dynamic_debug_exec_queries to
- control pr_debugs in gvt
+References: <20200817161132.GA4711@amd>
+ <CAHk-=wh6_eWwvpL=AhOeY0btf_dkpu+0joNzPZWfbBWgAeAhMA@mail.gmail.com>
+ <CAPM=9tw8LVWsuA6m_nkUDgm00iz2txYRNZY0b0WWZbyiUVzLEw@mail.gmail.com>
+ <CAHk-=wg34bw1ude07nC_XCPOJHZ21-v6117p4574d5S7iP4gxw@mail.gmail.com>
+ <20200820092349.GA3792@amd>
+ <CAHk-=wjX=ck_u8uvp=PjGCQ3M9igE-yqyRPsJ54th1gQWpwMnA@mail.gmail.com>
+ <20200821091900.hzbivycs5ky5d3iw@duo.ucw.cz> <87tuwr59te.fsf@intel.com>
+ <7efa547d-b7a4-b873-f1aa-4f19eb849fa3@skogtun.org>
+ <CAHk-=wj3WskPCtHncCWLdaP6xVecLp8bDBTT57vyiU-0=Ld6QQ@mail.gmail.com>
+ <d4db4a52-3001-cb02-4888-a9dfd55cdd7c@skogtun.org>
+ <656b8f9f-d696-c75d-aef6-2b8b5170f2f6@skogtun.org>
+In-Reply-To: <656b8f9f-d696-c75d-aef6-2b8b5170f2f6@skogtun.org>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Wed, 26 Aug 2020 11:04:32 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wiAK=AiqTD47o-BFFZciQXpEC0SiiDnXLWJUcQtCo-Pig@mail.gmail.com>
+Message-ID: <CAHk-=wiAK=AiqTD47o-BFFZciQXpEC0SiiDnXLWJUcQtCo-Pig@mail.gmail.com>
+To: Harald Arnesen <harald@skogtun.org>
+Subject: Re: [Intel-gfx] 5.9-rc1: graphics regression moved from -next to
+ mainline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,137 +81,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ kernel list <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
+ Pavel Machek <pavel@ucw.cz>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The gvt component of this driver has ~120 pr_debugs, in 9 "classes".
-Add a "knob", like drm.debug, to map bits to these classes.
+On Wed, Aug 26, 2020 at 2:30 AM Harald Arnesen <harald@skogtun.org> wrote:
+>
+> Somehow related to lightdm or xfce4? However, it is a regression, since
+> kernel 5.8 works.
 
-bash-5.0# echo 0x01 > /sys/module/i915/parameters/debug_dyn
- set_dyndbg: result:0x1 from 0x01
- dyndbg: query 0: "format='^gvt: cmd: ' +p"
- dyndbg: entry, buf:'format='^gvt: cmd: ' +p'
- dyndbg: start-of-word:0 'format='^gvt: cmd: ' +p'
- dyndbg: start-of-word:1 ''^gvt: cmd: ' +p'
- dyndbg: start-of-word:2 '+p'
- dyndbg: split into words: "format" "^gvt: cmd: " "+p"
- dyndbg: op='+'
- dyndbg: flags=0x1
- dyndbg: *flagsp=0x1 *maskp=0xffffffff
- dyndbg: key:'format' arg:'^gvt: cmd: '
- dyndbg: parsed: func="" file="" module="i915" format="^gvt: cmd: " lineno=0-0
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:3081 [i915]init_cmd_table =p
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:1376 [i915]gen8_check_mi_display_flip =p
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:1373 [i915]gen8_check_mi_display_flip =p
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:745 [i915]parser_exec_state_dump =p
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:744 [i915]parser_exec_state_dump =p
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:742 [i915]parser_exec_state_dump =p
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:733 [i915]parser_exec_state_dump =p
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:729 [i915]parser_exec_state_dump =p
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:722 [i915]parser_exec_state_dump =p
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:716 [i915]parser_exec_state_dump =p
- dyndbg: changed drivers/gpu/drm/i915/gvt/cmd_parser.c:691 [i915]print_opcode =p
- dyndbg: applied: func="" file="" module="i915" format="^gvt: cmd: " lineno=0-0
- dyndbg: processed 1 queries, with 11 matches, 0 errs
- change ct:11 on format='gvt: cmd: '
- change ct:11
+Yeah, apparently there's something else wrong with the relocation changes too.
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/i915/i915_params.c | 76 ++++++++++++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+That said, does that patch at
 
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 8d8db9ff0a48..4e1f01ab4865 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -255,3 +255,79 @@ void i915_params_free(struct i915_params *params)
- 	I915_PARAMS_FOR_EACH(FREE);
- #undef FREE
- }
-+
-+/* POC for callback -> dynamic_debug_exec_queries */
-+unsigned long __new_knob;
-+EXPORT_SYMBOL(__new_knob);
-+
-+static char *pr_debug_classes[] = {
-+	"gvt: cmd: ",
-+	"gvt: core: ",
-+	"gvt: dpy: ",
-+	"gvt: el: ",
-+	"gvt: irq: ",
-+	"gvt: mm: ",
-+	"gvt: mmio: ",
-+	"gvt: render: ",
-+	"gvt: sched: "
-+};
-+#define NUM_CLASSES	ARRAY_SIZE(pr_debug_classes)
-+#define OUR_QUERY_SIZE	128 /* we need about 20 */
-+
-+#include <linux/module.h>
-+
-+static int param_set_dyndbg(const char *instr, const struct kernel_param *kp)
-+{
-+	static unsigned long int old_val;
-+        unsigned int val;
-+	unsigned long int changes, result;
-+	int rc, chgct = 0, totct = 0, bitpos;
-+	char query[OUR_QUERY_SIZE];
-+
-+	rc = kstrtouint(instr, 0, &val);
-+	if (rc) {
-+		pr_err("set_dyndbg: failed\n");
-+		return -EINVAL;
-+	}
-+	result = val;
-+	pr_info("set_dyndbg: result:0x%lx from %s\n", result, instr);
-+
-+	changes = result ^ old_val;
-+
-+	for_each_set_bit(bitpos, &changes, NUM_CLASSES) {
-+
-+		sprintf(query, "format='^%s' %cp", pr_debug_classes[bitpos],
-+			test_bit(bitpos, &result) ? '+' : '-');
-+
-+		chgct = dynamic_debug_exec_queries(query, "i915");
-+		totct += chgct;
-+		pr_info("change ct:%d on format='%s'\n", chgct,
-+			pr_debug_classes[bitpos]);
-+	}
-+	old_val = result;
-+	pr_info("change ct:%d\n", totct);
-+	return 0;
-+}
-+static int param_get_dyndbg(char *buffer, const struct kernel_param *kp)
-+{
-+	return scnprintf(buffer, PAGE_SIZE, "%u\n",
-+			 *((unsigned int *)kp->arg));
-+}
-+static const struct kernel_param_ops param_ops_dyndbg = {
-+	.set = param_set_dyndbg,
-+	.get = param_get_dyndbg,
-+};
-+
-+MODULE_PARM_DESC(debug_dyn, " enable dynamic-debug by format-string classifications.\n"
-+		 "\t\twhich are:"
-+		 "\n\t\t gvt: cmd:"
-+		 "\n\t\t gvt: core:"
-+		 "\n\t\t gvt: dpy:"
-+		 "\n\t\t gvt: el:"
-+		 "\n\t\t gvt: irq:"
-+		 "\n\t\t gvt: mm:"
-+		 "\n\t\t gvt: mmio:"
-+		 "\n\t\t gvt: render:"
-+		 "\n\t\t gvt: sched:" "\n");
-+
-+module_param_cb(debug_dyn, &param_ops_dyndbg, &__new_knob, 0644);
--- 
-2.26.2
+  https://lore.kernel.org/intel-gfx/20200821123746.16904-1-joro@8bytes.org/
 
+change things at all? If there are two independent bugs, maybe
+applying that patch might at least give you an oops that gets saved in
+the logs?
+
+(it might be worth waiting a bit after the machine locks up in case
+the machine is alive enough so sync logs after a bit.. If ssh works,
+that's obviously better yet)
+
+              Linus
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
