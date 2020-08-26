@@ -2,55 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B04272530CB
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 16:00:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 163A62530F6
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 16:12:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6F4B6E11E;
-	Wed, 26 Aug 2020 14:00:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BA446E151;
+	Wed, 26 Aug 2020 14:11:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
- [IPv6:2a00:1450:4864:20::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF3926E11E;
- Wed, 26 Aug 2020 14:00:31 +0000 (UTC)
-Received: by mail-lj1-x242.google.com with SMTP id v9so2483323ljk.6;
- Wed, 26 Aug 2020 07:00:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=qVfPLSfnWnXJeT5c1RJB7YyrqFBfvnlWvS99GyBiiO0=;
- b=WUH5XXUD4DhJkcZTRzZWzsSQ9iRu2X6W3NSaomGIoBQQJrYsKZ5l0wpwG1C5atHkFv
- VzsbFQJER7wWAqdQMaMnCwJIYh70tkyIpnmFpv7uc/paBrhmrZ9dyoERbKB9uQ9J1hjV
- sOoUbsEOaYC0Brq5/AZLjulJFXE7oWPYjewZam+mypLjL/o2cqU8hmKTRKep4bg8g3A3
- 2gqT5J6eomAVU5UYBLKJ+nsL4VGk7+2s8kA1N2lCD2CLMD/DnvLSQERatAwKXlGy9bP3
- yoqHqWgPLMZ8bp5jGkQggZf17IF8FdK4mipv1RNnE++F60vauCcn1AhKJSaw4Ni8Pk3f
- HzMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=qVfPLSfnWnXJeT5c1RJB7YyrqFBfvnlWvS99GyBiiO0=;
- b=YmtqDsEY7DRQZRC6g4pJh7atczV9gyfgPRzy8OJokMJEzDs8LDbWdsQgrOeV7m5e7q
- 4PiMbrSXUJqA0zdhD3gRxGXkIq/g3JgwZxCuJGdYpGN4vYS7nu9T6QsPnkbiSw/LaCyj
- f0YwTbZiKd63o8kdYWAXwiaFvwz121NEGktG6/duTjKdBMmQfH+oDHvz79/tL6GPa8CW
- hgVirQtf1IvbRma/G8lXySDebb6tb0r+CO9XnUqARHLsJ7fv58nWfJlXu5QBlWRJ2IAb
- cZ+3Qufjihw1XCl1OewA402j4LiaxI3IbKR0GFgGlc38GJDaO1/bGOUi32xPFztJ4QYc
- hVFQ==
-X-Gm-Message-State: AOAM532TUDWG4Ba++jWxP+QQTFMZF6yIomif1/eEN8qUuBjDxw6KqeiL
- XCGp3Mvpc/y1+KpmrXqIkR1WHoXHvhpjOA==
-X-Google-Smtp-Source: ABdhPJwM5AzljUPniiThBGHQK+WTRn7mNG7prfdccV0Yfs0bBoYSebnP3a00SB66u3EnzRRtjEp6IQ==
-X-Received: by 2002:a2e:851a:: with SMTP id j26mr6775056lji.251.1598450429491; 
- Wed, 26 Aug 2020 07:00:29 -0700 (PDT)
-Received: from a2klaptop.epam.com ([185.199.97.5])
- by smtp.gmail.com with ESMTPSA id z25sm532604ljz.13.2020.08.26.07.00.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Aug 2020 07:00:28 -0700 (PDT)
-From: Oleksandr Andrushchenko <andr2000@gmail.com>
-To: dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org
-Date: Wed, 26 Aug 2020 17:00:27 +0300
-Message-Id: <20200826140027.11728-1-andr2000@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/xen-front: Add support for EDID based
- configuration
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2260C6E14C;
+ Wed, 26 Aug 2020 14:11:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1B793A00CC;
+ Wed, 26 Aug 2020 14:11:57 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 26 Aug 2020 14:11:57 -0000
+Message-ID: <159845111707.21253.6495619463091581073@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200826132811.17577-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200826132811.17577-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/39=5D_drm/i915/gem=3A_Avoid_implicit_vm?=
+ =?utf-8?q?ap_for_highmem_on_x86-32?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,384 +39,423 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1124513015=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+--===============1124513015==
+Content-Type: multipart/alternative;
+ boundary="===============6966937204758459668=="
 
-Version 2 of the Xen displif protocol adds XENDISPL_OP_GET_EDID
-request which allows frontends to request EDID structure per
-connector. This request is optional and if not supported by the
-backend then visible area is still defined by the relevant
-XenStore's "resolution" property.
-If backend provides EDID with XENDISPL_OP_GET_EDID request then
-its values must take precedence over the resolutions defined in
-XenStore.
+--===============6966937204758459668==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
----
- drivers/gpu/drm/xen/xen_drm_front.c         | 62 ++++++++++++++++
- drivers/gpu/drm/xen/xen_drm_front.h         |  9 ++-
- drivers/gpu/drm/xen/xen_drm_front_cfg.c     | 82 +++++++++++++++++++++
- drivers/gpu/drm/xen/xen_drm_front_cfg.h     |  7 ++
- drivers/gpu/drm/xen/xen_drm_front_conn.c    | 26 ++++++-
- drivers/gpu/drm/xen/xen_drm_front_evtchnl.c |  4 +
- drivers/gpu/drm/xen/xen_drm_front_evtchnl.h |  3 +
- drivers/gpu/drm/xen/xen_drm_front_kms.c     |  5 ++
- 8 files changed, 195 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xen/xen_drm_front.c b/drivers/gpu/drm/xen/xen_drm_front.c
-index 013c9e0e412c..cc5981bdbfb3 100644
---- a/drivers/gpu/drm/xen/xen_drm_front.c
-+++ b/drivers/gpu/drm/xen/xen_drm_front.c
-@@ -381,6 +381,59 @@ void xen_drm_front_on_frame_done(struct xen_drm_front_info *front_info,
- 					fb_cookie);
- }
- 
-+int xen_drm_front_get_edid(struct xen_drm_front_info *front_info,
-+			   int conn_idx, struct page **pages,
-+			   u32 buffer_sz, u32 *edid_sz)
-+{
-+	struct xen_drm_front_evtchnl *evtchnl;
-+	struct xen_front_pgdir_shbuf_cfg buf_cfg;
-+	struct xen_front_pgdir_shbuf shbuf;
-+	struct xendispl_req *req;
-+	unsigned long flags;
-+	int ret;
-+
-+	if (unlikely(conn_idx >= front_info->num_evt_pairs))
-+		return -EINVAL;
-+
-+	memset(&buf_cfg, 0, sizeof(buf_cfg));
-+	buf_cfg.xb_dev = front_info->xb_dev;
-+	buf_cfg.num_pages = DIV_ROUND_UP(buffer_sz, PAGE_SIZE);
-+	buf_cfg.pages = pages;
-+	buf_cfg.pgdir = &shbuf;
-+	buf_cfg.be_alloc = false;
-+
-+	ret = xen_front_pgdir_shbuf_alloc(&buf_cfg);
-+	if (ret < 0)
-+		return ret;
-+
-+	evtchnl = &front_info->evt_pairs[conn_idx].req;
-+
-+	mutex_lock(&evtchnl->u.req.req_io_lock);
-+
-+	spin_lock_irqsave(&front_info->io_lock, flags);
-+	req = be_prepare_req(evtchnl, XENDISPL_OP_GET_EDID);
-+	req->op.get_edid.gref_directory =
-+		xen_front_pgdir_shbuf_get_dir_start(&shbuf);
-+	req->op.get_edid.buffer_sz = buffer_sz;
-+
-+	ret = be_stream_do_io(evtchnl, req);
-+	spin_unlock_irqrestore(&front_info->io_lock, flags);
-+
-+	if (ret < 0)
-+		goto fail;
-+
-+	ret = be_stream_wait_io(evtchnl);
-+	if (ret < 0)
-+		goto fail;
-+
-+	*edid_sz = evtchnl->u.req.resp.get_edid.edid_sz;
-+
-+fail:
-+	mutex_unlock(&evtchnl->u.req.req_io_lock);
-+	xen_front_pgdir_shbuf_free(&shbuf);
-+	return ret;
-+}
-+
- static int xen_drm_drv_dumb_create(struct drm_file *filp,
- 				   struct drm_device *dev,
- 				   struct drm_mode_create_dumb *args)
-@@ -466,6 +519,7 @@ static void xen_drm_drv_release(struct drm_device *dev)
- 		xenbus_switch_state(front_info->xb_dev,
- 				    XenbusStateInitialising);
- 
-+	xen_drm_front_cfg_free(front_info, &front_info->cfg);
- 	kfree(drm_info);
- }
- 
-@@ -562,6 +616,7 @@ static int xen_drm_drv_init(struct xen_drm_front_info *front_info)
- 	drm_mode_config_cleanup(drm_dev);
- 	drm_dev_put(drm_dev);
- fail:
-+	xen_drm_front_cfg_free(front_info, &front_info->cfg);
- 	kfree(drm_info);
- 	return ret;
- }
-@@ -622,7 +677,14 @@ static int displback_initwait(struct xen_drm_front_info *front_info)
- 
- static int displback_connect(struct xen_drm_front_info *front_info)
- {
-+	int ret;
-+
- 	xen_drm_front_evtchnl_set_state(front_info, EVTCHNL_STATE_CONNECTED);
-+
-+	/* We are all set to read additional configuration from the backend. */
-+	ret = xen_drm_front_cfg_tail(front_info, &front_info->cfg);
-+	if (ret < 0)
-+		return ret;
- 	return xen_drm_drv_init(front_info);
- }
- 
-diff --git a/drivers/gpu/drm/xen/xen_drm_front.h b/drivers/gpu/drm/xen/xen_drm_front.h
-index 54486d89650e..be0c982f4d82 100644
---- a/drivers/gpu/drm/xen/xen_drm_front.h
-+++ b/drivers/gpu/drm/xen/xen_drm_front.h
-@@ -112,9 +112,12 @@ struct xen_drm_front_drm_pipeline {
- 	struct drm_simple_display_pipe pipe;
- 
- 	struct drm_connector conn;
--	/* These are only for connector mode checking */
-+	/* These are only for connector mode checking if no EDID present */
- 	int width, height;
- 
-+	/* Is not NULL if EDID is used for connector configuration. */
-+	struct edid *edid;
-+
- 	struct drm_pending_vblank_event *pending_event;
- 
- 	struct delayed_work pflip_to_worker;
-@@ -160,4 +163,8 @@ int xen_drm_front_page_flip(struct xen_drm_front_info *front_info,
- void xen_drm_front_on_frame_done(struct xen_drm_front_info *front_info,
- 				 int conn_idx, u64 fb_cookie);
- 
-+int xen_drm_front_get_edid(struct xen_drm_front_info *front_info,
-+			   int conn_idx, struct page **pages,
-+			   u32 buffer_sz, u32 *edid_sz);
-+
- #endif /* __XEN_DRM_FRONT_H_ */
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_cfg.c b/drivers/gpu/drm/xen/xen_drm_front_cfg.c
-index ec53b9cc9e0e..f7c45a2fdab3 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_cfg.c
-+++ b/drivers/gpu/drm/xen/xen_drm_front_cfg.c
-@@ -45,6 +45,64 @@ static int cfg_connector(struct xen_drm_front_info *front_info,
- 	return 0;
- }
- 
-+static void
-+cfg_connector_free_edid(struct xen_drm_front_cfg_connector *connector)
-+{
-+	vfree(connector->edid);
-+	connector->edid = NULL;
-+}
-+
-+static void cfg_connector_edid(struct xen_drm_front_info *front_info,
-+			       struct xen_drm_front_cfg_connector *connector,
-+			       int index)
-+{
-+	struct page **pages;
-+	u32 edid_sz;
-+	int i, npages, ret = -ENOMEM;
-+
-+	connector->edid = vmalloc(XENDISPL_EDID_MAX_SIZE);
-+	if (!connector->edid)
-+		goto fail;
-+
-+	npages = DIV_ROUND_UP(XENDISPL_EDID_MAX_SIZE, PAGE_SIZE);
-+	pages = kvmalloc_array(npages, sizeof(struct page *), GFP_KERNEL);
-+	if (!pages)
-+		goto fail_free_edid;
-+
-+	for (i = 0; i < npages; i++)
-+		pages[i] = vmalloc_to_page((u8 *)connector->edid +
-+					   i * PAGE_SIZE);
-+
-+	ret = xen_drm_front_get_edid(front_info, index, pages,
-+				     XENDISPL_EDID_MAX_SIZE, &edid_sz);
-+
-+	kvfree(pages);
-+
-+	if (ret < 0)
-+		goto fail_free_edid;
-+
-+	ret = -EINVAL;
-+	if (!edid_sz || (edid_sz % EDID_LENGTH))
-+		goto fail_free_edid;
-+
-+	if (!drm_edid_is_valid(connector->edid))
-+		goto fail_free_edid;
-+
-+	DRM_INFO("Connector %s: using EDID for configuration, size %d\n",
-+		 connector->xenstore_path, edid_sz);
-+	return;
-+
-+fail_free_edid:
-+	cfg_connector_free_edid(connector);
-+fail:
-+	/*
-+	 * If any error this is not critical as we can still read
-+	 * connector settings from XenStore, so just warn.
-+	 */
-+	DRM_WARN("Connector %s: cannot read or wrong EDID: %d\n",
-+		 connector->xenstore_path, ret);
-+}
-+
- int xen_drm_front_cfg_card(struct xen_drm_front_info *front_info,
- 			   struct xen_drm_front_cfg *cfg)
- {
-@@ -75,3 +133,27 @@ int xen_drm_front_cfg_card(struct xen_drm_front_info *front_info,
- 	return 0;
- }
- 
-+int xen_drm_front_cfg_tail(struct xen_drm_front_info *front_info,
-+			   struct xen_drm_front_cfg *cfg)
-+{
-+	int i;
-+
-+	/*
-+	 * Try reading EDID(s) from the backend: it is not an error
-+	 * if backend doesn't support or provides no EDID.
-+	 */
-+	for (i = 0; i < cfg->num_connectors; i++)
-+		cfg_connector_edid(front_info, &cfg->connectors[i], i);
-+
-+	return 0;
-+}
-+
-+void xen_drm_front_cfg_free(struct xen_drm_front_info *front_info,
-+			    struct xen_drm_front_cfg *cfg)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(cfg->connectors); i++)
-+		cfg_connector_free_edid(&cfg->connectors[i]);
-+}
-+
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_cfg.h b/drivers/gpu/drm/xen/xen_drm_front_cfg.h
-index aa8490ba9146..57662506eee6 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_cfg.h
-+++ b/drivers/gpu/drm/xen/xen_drm_front_cfg.h
-@@ -19,6 +19,7 @@ struct xen_drm_front_cfg_connector {
- 	int width;
- 	int height;
- 	char *xenstore_path;
-+	struct edid *edid;
- };
- 
- struct xen_drm_front_cfg {
-@@ -34,4 +35,10 @@ struct xen_drm_front_cfg {
- int xen_drm_front_cfg_card(struct xen_drm_front_info *front_info,
- 			   struct xen_drm_front_cfg *cfg);
- 
-+int xen_drm_front_cfg_tail(struct xen_drm_front_info *front_info,
-+			   struct xen_drm_front_cfg *cfg);
-+
-+void xen_drm_front_cfg_free(struct xen_drm_front_info *front_info,
-+			    struct xen_drm_front_cfg *cfg);
-+
- #endif /* __XEN_DRM_FRONT_CFG_H_ */
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_conn.c b/drivers/gpu/drm/xen/xen_drm_front_conn.c
-index 44f1f70c0aed..c98d989a005f 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_conn.c
-+++ b/drivers/gpu/drm/xen/xen_drm_front_conn.c
-@@ -66,6 +66,16 @@ static int connector_get_modes(struct drm_connector *connector)
- 	struct videomode videomode;
- 	int width, height;
- 
-+	if (pipeline->edid) {
-+		int count;
-+
-+		drm_connector_update_edid_property(connector,
-+						   pipeline->edid);
-+		count = drm_add_edid_modes(connector, pipeline->edid);
-+		if (count)
-+			return count;
-+	}
-+
- 	mode = drm_mode_create(connector->dev);
- 	if (!mode)
- 		return 0;
-@@ -103,6 +113,7 @@ int xen_drm_front_conn_init(struct xen_drm_front_drm_info *drm_info,
- {
- 	struct xen_drm_front_drm_pipeline *pipeline =
- 			to_xen_drm_pipeline(connector);
-+	int ret;
- 
- 	drm_connector_helper_add(connector, &connector_helper_funcs);
- 
-@@ -111,6 +122,17 @@ int xen_drm_front_conn_init(struct xen_drm_front_drm_info *drm_info,
- 	connector->polled = DRM_CONNECTOR_POLL_CONNECT |
- 			DRM_CONNECTOR_POLL_DISCONNECT;
- 
--	return drm_connector_init(drm_info->drm_dev, connector,
--				  &connector_funcs, DRM_MODE_CONNECTOR_VIRTUAL);
-+	ret = drm_connector_init(drm_info->drm_dev, connector,
-+				 &connector_funcs, DRM_MODE_CONNECTOR_VIRTUAL);
-+	if (ret < 0)
-+		return ret;
-+
-+	/*
-+	 * Virtual connectors do not have EDID property, but we do,
-+	 * so add it manually if EDID is present.
-+	 */
-+	if (pipeline->edid)
-+		drm_connector_attach_edid_property(connector);
-+
-+	return 0;
- }
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_evtchnl.c b/drivers/gpu/drm/xen/xen_drm_front_evtchnl.c
-index e10d95dddb99..25e512445cb3 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_evtchnl.c
-+++ b/drivers/gpu/drm/xen/xen_drm_front_evtchnl.c
-@@ -44,6 +44,10 @@ static irqreturn_t evtchnl_interrupt_ctrl(int irq, void *dev_id)
- 			continue;
- 
- 		switch (resp->operation) {
-+		case XENDISPL_OP_GET_EDID:
-+			evtchnl->u.req.resp.get_edid =
-+				resp->op.get_edid;
-+			fallthrough;
- 		case XENDISPL_OP_PG_FLIP:
- 		case XENDISPL_OP_FB_ATTACH:
- 		case XENDISPL_OP_FB_DETACH:
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_evtchnl.h b/drivers/gpu/drm/xen/xen_drm_front_evtchnl.h
-index b0af6994332b..8267f40b6549 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_evtchnl.h
-+++ b/drivers/gpu/drm/xen/xen_drm_front_evtchnl.h
-@@ -53,6 +53,9 @@ struct xen_drm_front_evtchnl {
- 			struct completion completion;
- 			/* latest response status */
- 			int resp_status;
-+			union {
-+				struct xendispl_get_edid_resp get_edid;
-+			} resp;
- 			/* serializer for backend IO: request/response */
- 			struct mutex req_io_lock;
- 		} req;
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_kms.c b/drivers/gpu/drm/xen/xen_drm_front_kms.c
-index ef11b1e4de39..d7ff1a656d40 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_kms.c
-+++ b/drivers/gpu/drm/xen/xen_drm_front_kms.c
-@@ -288,6 +288,10 @@ display_mode_valid(struct drm_simple_display_pipe *pipe,
- 			container_of(pipe, struct xen_drm_front_drm_pipeline,
- 				     pipe);
- 
-+	/* We have nothing to check if EDID is present. */
-+	if (pipeline->edid)
-+		return MODE_OK;
-+
- 	if (mode->hdisplay != pipeline->width)
- 		return MODE_ERROR;
- 
-@@ -319,6 +323,7 @@ static int display_pipe_init(struct xen_drm_front_drm_info *drm_info,
- 	pipeline->index = index;
- 	pipeline->height = cfg->height;
- 	pipeline->width = cfg->width;
-+	pipeline->edid = cfg->edid;
- 
- 	INIT_DELAYED_WORK(&pipeline->pflip_to_worker, pflip_to_worker);
- 
--- 
-2.17.1
+Series: series starting with [01/39] drm/i915/gem: Avoid implicit vmap for highmem on x86-32
+URL   : https://patchwork.freedesktop.org/series/81064/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8928 -> Patchwork_18408
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_18408 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_18408, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_18408:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18408 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-tgl-u2:          [PASS][3] -> [TIMEOUT][4] ([i915#1418])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-tgl-u2/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-tgl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-tgl-u2:          [PASS][5] -> [SKIP][6] ([i915#579])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html
+    - fi-bsw-n3050:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - fi-icl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@engines@basic:
+    - fi-bxt-dsi:         [INCOMPLETE][11] ([i915#1635]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-bxt-dsi/igt@gem_exec_parallel@engines@basic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-bxt-dsi/igt@gem_exec_parallel@engines@basic.html
+
+  * igt@gem_exec_parallel@engines@fds:
+    - fi-cml-s:           [INCOMPLETE][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-cml-s/igt@gem_exec_parallel@engines@fds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-cml-s/igt@gem_exec_parallel@engines@fds.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [INCOMPLETE][15] ([i915#2271] / [i915#2276]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-tgl-u2:          [INCOMPLETE][17] ([i915#2045]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-bsw-n3050:       [DMESG-WARN][19] ([i915#1982]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
+    - fi-icl-u2:          [DMESG-WARN][21] ([i915#1982]) -> [PASS][22] +2 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [DMESG-FAIL][23] ([i915#62]) -> [DMESG-FAIL][24] ([i915#62] / [i915#95])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - fi-kbl-x1275:       [DMESG-WARN][25] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][26] ([i915#62] / [i915#92]) +6 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][27] ([i915#62] / [i915#92]) -> [DMESG-WARN][28] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1418]: https://gitlab.freedesktop.org/drm/intel/issues/1418
+  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2045]: https://gitlab.freedesktop.org/drm/intel/issues/2045
+  [i915#2100]: https://gitlab.freedesktop.org/drm/intel/issues/2100
+  [i915#2271]: https://gitlab.freedesktop.org/drm/intel/issues/2271
+  [i915#2276]: https://gitlab.freedesktop.org/drm/intel/issues/2276
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (37 -> 34)
+------------------------------
+
+  Missing    (3): fi-byt-clapper fi-byt-squawks fi-bsw-cyan 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8928 -> Patchwork_18408
+
+  CI-20190529: 20190529
+  CI_DRM_8928: 58f2939dbc6d2e11838ad8ef87250fcd1e3408ee @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5771: f1d0c240ea2e631dfb9f493f37f8fb61cb2b1cf2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18408: 66fe3636cbddd1342068687b179139d6b92022f1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+66fe3636cbdd drm/i915: Reduce GPU error capture mutex hold time
+cd003a3c264f drm/i915: Break up error capture compression loops with cond_resched()
+a27ed62350ef drm/i915/gt: Consolidate the CS timestamp clocks
+b351630e2023 drm/i915/selftests: Confirm RING_TIMESTAMP / CTX_TIMESTAMP share a clock
+c21667ad9925 drm/i915: Encode fence specific waitqueue behaviour into the wait.flags
+248b37a17e0a drm/i915/gt: Simplify virtual engine handling for execlists_hold()
+fd06edcbfd09 drm/i915/gt: Resubmit the virtual engine on schedule-out
+78a4eb721642 drm/i915/gt: Shrink the critical section for irq signaling
+a9e4e457612d drm/i915/gt: Remove virtual breadcrumb before transfer
+29827c6800f0 drm/i915/gt: Defer schedule_out until after the next dequeue
+8c9c5e79fefc drm/i915/gt: Decouple inflight virtual engines
+1c34cf8eff85 drm/i915/gt: Use virtual_engine during execlists_dequeue
+27e3ad18e225 drm/i915/gt: ce->inflight updates are now serialised
+d8c09ebb8832 drm/i915/gt: Replace direct submit with direct call to tasklet
+d2a5b17f11f8 drm/i915/gt: Check for a completed last request once
+b622fb3a7ea1 drm/i915/gt: Decouple completed requests on unwind
+2402fe2e390e drm/i915/gt: Move the breadcrumb to the signaler if completed upon cancel
+1b5b69bce739 drm/i915/gt: Split the breadcrumb spinlock between global and contexts
+4677dfe83ecf drm/i915/gt: Protect context lifetime with RCU
+95b18580a943 drm/i915/gt: Free stale request on destroying the virtual engine
+5cf5de2a0510 drm/i915/gt: Don't cancel the interrupt shadow too early
+a91f4c9f1716 drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock
+13c4f6affac1 drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission
+b549527fccdb drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()
+1d3e743a294e drm/i915/gt: Retire cancelled requests on unload
+0da106fcbd2a drm/i915/selftests: Finish pending mock requests on cancellation.
+1bbff171d997 drm/i915/gt: Signal cancelled requests
+0afa1a535c74 drm/i915/gem: Always test execution status on closing the context
+c44aed4680a7 drm/i915/gt: Always send a pulse down the engine after disabling heartbeat
+75b9fbba0fbb drm/i915: Cancel outstanding work after disabling heartbeats on an engine
+a37d770b0cfe drm/i915/gem: Hold request reference for canceling an active context
+19df6f774f8f drm/i915/gt: Show engine properties in the pretty printer
+82f82623922e drm/i915/gt: Apply the CSB w/a for all
+536206d193db drm/i915/gt: Wait for CSB entries on Tigerlake
+57381cfc1d88 drm/i915/gt: Widen CSB pointer to u64 for the parsers
+0dfcb8899225 drm/i915/gt: Clear the buffer pool age before use
+30590df29a8d drm/i915/gem: Prevent using pgprot_writecombine() if PAT is not supported
+2da2b39afc76 drm/i915/gem: Use set_pte_at() for assigning the vmapped PTE
+4d11ca4aabc3 drm/i915/gem: Avoid implicit vmap for highmem on x86-32
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/index.html
+
+--===============6966937204758459668==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [01/39] drm/i915/gem: Avoid implicit vmap for highmem on x86-32</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81064/">https://patchwork.freedesktop.org/series/81064/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_8928 -&gt; Patchwork_18408</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_18408 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_18408, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_18408:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s0:<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18408 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-tgl-u2/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-tgl-u2/igt@i915_module_load@reload.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1418">i915#1418</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</p>
+</li>
+<li>
+<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-bsw-n3050/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_parallel@engines@basic:</p>
+<ul>
+<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-bxt-dsi/igt@gem_exec_parallel@engines@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-bxt-dsi/igt@gem_exec_parallel@engines@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_parallel@engines@fds:</p>
+<ul>
+<li>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-cml-s/igt@gem_exec_parallel@engines@fds.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-cml-s/igt@gem_exec_parallel@engines@fds.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-icl-y/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2271">i915#2271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2276">i915#2276</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-icl-y/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2045">i915#2045</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +6 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-edid:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8928/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18408/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +5 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (37 -&gt; 34)</h2>
+<p>Missing    (3): fi-byt-clapper fi-byt-squawks fi-bsw-cyan </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_8928 -&gt; Patchwork_18408</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_8928: 58f2939dbc6d2e11838ad8ef87250fcd1e3408ee @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5771: f1d0c240ea2e631dfb9f493f37f8fb61cb2b1cf2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18408: 66fe3636cbddd1342068687b179139d6b92022f1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>66fe3636cbdd drm/i915: Reduce GPU error capture mutex hold time<br />
+cd003a3c264f drm/i915: Break up error capture compression loops with cond_resched()<br />
+a27ed62350ef drm/i915/gt: Consolidate the CS timestamp clocks<br />
+b351630e2023 drm/i915/selftests: Confirm RING_TIMESTAMP / CTX_TIMESTAMP share a clock<br />
+c21667ad9925 drm/i915: Encode fence specific waitqueue behaviour into the wait.flags<br />
+248b37a17e0a drm/i915/gt: Simplify virtual engine handling for execlists_hold()<br />
+fd06edcbfd09 drm/i915/gt: Resubmit the virtual engine on schedule-out<br />
+78a4eb721642 drm/i915/gt: Shrink the critical section for irq signaling<br />
+a9e4e457612d drm/i915/gt: Remove virtual breadcrumb before transfer<br />
+29827c6800f0 drm/i915/gt: Defer schedule_out until after the next dequeue<br />
+8c9c5e79fefc drm/i915/gt: Decouple inflight virtual engines<br />
+1c34cf8eff85 drm/i915/gt: Use virtual_engine during execlists_dequeue<br />
+27e3ad18e225 drm/i915/gt: ce-&gt;inflight updates are now serialised<br />
+d8c09ebb8832 drm/i915/gt: Replace direct submit with direct call to tasklet<br />
+d2a5b17f11f8 drm/i915/gt: Check for a completed last request once<br />
+b622fb3a7ea1 drm/i915/gt: Decouple completed requests on unwind<br />
+2402fe2e390e drm/i915/gt: Move the breadcrumb to the signaler if completed upon cancel<br />
+1b5b69bce739 drm/i915/gt: Split the breadcrumb spinlock between global and contexts<br />
+4677dfe83ecf drm/i915/gt: Protect context lifetime with RCU<br />
+95b18580a943 drm/i915/gt: Free stale request on destroying the virtual engine<br />
+5cf5de2a0510 drm/i915/gt: Don't cancel the interrupt shadow too early<br />
+a91f4c9f1716 drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock<br />
+13c4f6affac1 drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission<br />
+b549527fccdb drm/i915/gt: Remove defunct intel_virtual_engine_get_sibling()<br />
+1d3e743a294e drm/i915/gt: Retire cancelled requests on unload<br />
+0da106fcbd2a drm/i915/selftests: Finish pending mock requests on cancellation.<br />
+1bbff171d997 drm/i915/gt: Signal cancelled requests<br />
+0afa1a535c74 drm/i915/gem: Always test execution status on closing the context<br />
+c44aed4680a7 drm/i915/gt: Always send a pulse down the engine after disabling heartbeat<br />
+75b9fbba0fbb drm/i915: Cancel outstanding work after disabling heartbeats on an engine<br />
+a37d770b0cfe drm/i915/gem: Hold request reference for canceling an active context<br />
+19df6f774f8f drm/i915/gt: Show engine properties in the pretty printer<br />
+82f82623922e drm/i915/gt: Apply the CSB w/a for all<br />
+536206d193db drm/i915/gt: Wait for CSB entries on Tigerlake<br />
+57381cfc1d88 drm/i915/gt: Widen CSB pointer to u64 for the parsers<br />
+0dfcb8899225 drm/i915/gt: Clear the buffer pool age before use<br />
+30590df29a8d drm/i915/gem: Prevent using pgprot_writecombine() if PAT is not supported<br />
+2da2b39afc76 drm/i915/gem: Use set_pte_at() for assigning the vmapped PTE<br />
+4d11ca4aabc3 drm/i915/gem: Avoid implicit vmap for highmem on x86-32</p>
+
+</body>
+</html>
+
+--===============6966937204758459668==--
+
+--===============1124513015==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1124513015==--
