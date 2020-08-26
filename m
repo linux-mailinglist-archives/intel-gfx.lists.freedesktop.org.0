@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FE1B253073
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 15:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A298C25307C
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 15:54:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E3286EA5E;
-	Wed, 26 Aug 2020 13:53:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B46AF6EA96;
+	Wed, 26 Aug 2020 13:54:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BE3E6EA5E;
- Wed, 26 Aug 2020 13:53:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DF696EA93;
+ Wed, 26 Aug 2020 13:54:00 +0000 (UTC)
 Received: from localhost (unknown [70.37.104.77])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C173722B49;
- Wed, 26 Aug 2020 13:53:47 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id B68A822B4D;
+ Wed, 26 Aug 2020 13:53:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1598450028;
- bh=eZsJDL9SLroB/bPNsmyrnqiBAWweo2HTBUEPozHxy3I=;
+ s=default; t=1598450039;
+ bh=nY/mQP63g+dVLkoNfg6D//dAtihonZFm3EN1RTMaCyA=;
  h=Date:From:To:To:To:To:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Subject:
  In-Reply-To:References:From;
- b=uaSreD/5m9CgL7AfiWQkpRS6pYn5IvN7G6X1xubxR2PQ2NfNaKmSuaHvOqXOXxvrX
- MKXuGTZMs0EhOFoTG1Ozxr1wFBUA4Loivh/tATkCM9EEIrz1ALXAMrf11+rs+Sx5mk
- CNaTKRFle+/dSiaTuld6rB+11nXV/NSmqLh2Cvds=
-Date: Wed, 26 Aug 2020 13:53:47 +0000
+ b=mPejEj74JRSCSoGka5/zXIdjIYKq44gcYgcycvHlqP/uZA6bJMVWl9AM+4NUhEN24
+ sGI2LcPBDPeN4vEjKEp47s4uZYDHuDeBlpnB07D8OPHQIMjJynM2VNX6/z+jcVtyL+
+ pVTJC6muX8PBcA2cQuYdoDWe7nSaiaOTyL9Fz0gU=
+Date: Wed, 26 Aug 2020 13:53:59 +0000
 From: Sasha Levin <sashal@kernel.org>
 To: Sasha Levin <sashal@kernel.org>
 To: Sean Paul <sean@poorly.run>
 To: Sean Paul <seanpaul@chromium.org>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200818153910.27894-2-sean@poorly.run>
-References: <20200818153910.27894-2-sean@poorly.run>
-Message-Id: <20200826135347.C173722B49@mail.kernel.org>
-Subject: Re: [Intel-gfx] [PATCH v8 01/17] drm/i915: Fix sha_text population
- code
+In-Reply-To: <20200818153910.27894-3-sean@poorly.run>
+References: <20200818153910.27894-3-sean@poorly.run>
+Message-Id: <20200826135359.B68A822B4D@mail.kernel.org>
+Subject: Re: [Intel-gfx] [PATCH v8 02/17] drm/i915: Clear the repeater bit
+ on HDCP disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,31 +66,52 @@ fixing commit: ee5e5e7a5e0f ("drm/i915: Add HDCP framework + base implementation
 
 The bot has tested the following trees: v5.8.2, v5.7.16, v5.4.59, v4.19.140.
 
-v5.8.2: Build OK!
-v5.7.16: Build OK!
+v5.8.2: Failed to apply! Possible dependencies:
+    53de0a20c8cd ("drm/i915: Add {preemph,voltage}_max() vfuncs")
+    7801f3b792b0 ("drm/i915/display: prefer dig_port to reference intel_digital_port")
+    d1d08a4994a8 ("drm/i915: Fix cpt/ppt max pre-emphasis")
+    da882e6bb968 ("drm/i915: Fix ibx max vswing/preemph")
+
+v5.7.16: Failed to apply! Possible dependencies:
+    47bdb1caba0b ("drm/i915/ddi: use struct drm_device based logging")
+    589a4cd6cc43 ("drm/i915: Move TRANS_DDI_FUNC_CTL2 programming where it belongs")
+    7801f3b792b0 ("drm/i915/display: prefer dig_port to reference intel_digital_port")
+    7c2fedd7608f ("drm/i915: Push TRANS_DDI_FUNC_CTL into the encoder->enable() hook")
+    8b4f2137cc0f ("drm/i915/display/ddi: Prefer drm_WARN* over WARN*")
+    8fdda3854967 ("drm/i915: Introduce .set_idle_link_train() vfunc")
+    c38730987b4a ("drm/i915: Move the TRANS_DDI_FUNC_CTL enable to a later point")
+    eed22a46b979 ("drm/i915: Pass encoder all the way to intel_ddi_transcoder_func_reg_val_get()")
+    eee3f91195ad ("drm/i915: Introduce .set_link_train() vfunc")
+    fb83f72c48a5 ("drm/i915: Introduce .set_signal_levels() vfunc")
+
 v5.4.59: Failed to apply! Possible dependencies:
-    65833c463886 ("drm/i915/hdcp: conversion to struct drm_device based logging macros.")
-    667944ad77f1 ("drm/i915/hdcp: use intel_de_*() functions for register access")
-    692059318c0f ("drm/i915/hdcp: Enable HDCP 1.4 and 2.2 on Gen12+")
+    0456417ef680 ("drm: Add for_each_oldnew_intel_crtc_in_state_reverse()")
+    0486513935ef ("drm/i915/dsi: take compression into account in afe_clk()")
+    1326a92c3466 ("drm/i915: Perform automated conversions for crtc uapi/hw split, base -> hw.")
+    2225f3c6f1d7 ("drm/i915: Perform automated conversions for crtc uapi/hw split, base -> uapi.")
+    2b808b3a27d1 ("drm/i915: Add aliases for uapi and hw to crtc_state")
+    3e30d70805d5 ("drm/i915: Make .modeset_calc_cdclk() mandatory")
+    486bba4524e0 ("drm/i915/hdcp: Clean up local variables")
+    50003bf50d32 ("drm/i915/dsi: set pipe_bpp on ICL configure config")
+    54ed6902cabc ("drm/i915/dsi: abstract afe_clk calculation")
+    5d1db3f61aa9 ("drm/i915: Rename conn_to_dig_port() to intel_attached_dig_port()")
+    adf1bd3dfbae ("drm/i915/dsi: use afe_clk() instead of intel_dsi_bitrate()")
+    af9fbfa657c8 ("drm/i915: Introduce and use intel_atomic_crtc_state_for_each_plane_state.")
+    b7d02c3a124d ("drm/i915: Pass intel_encoder to enc_to_*()")
+    c47b7ddbcb29 ("drm/i915: Rename planar linked plane variables")
+    d06a79d33e0f ("drm/i915: Use enum pipe instead of crtc index to track active pipes")
+    fe4709a8d033 ("drm/i915: Extract intel_modeset_calc_cdclk()")
 
 v4.19.140: Failed to apply! Possible dependencies:
-    09d7e46b97c6 ("drm/i915: Pull VM lists under the VM mutex.")
-    16e4dd0342a8 ("drm/i915: Markup paired operations on wakerefs")
-    1d455f8de8e8 ("drm/i915: rename intel_drv.h to display/intel_display_types.h")
-    27fec1f9734d ("drm/i915: extract intel_dp.h from intel_drv.h")
-    39e2f501c1b4 ("drm/i915: Split struct intel_context definition to its own header")
-    480cd6dd9287 ("drm/i915/selftests: Track evict objects explicitly")
-    499197dc1696 ("drm/i915: Stop tracking MRU activity on VMA")
-    528cbd17ceff ("drm/i915: Move vma lookup to its own lock")
-    531747b8200a ("drm/i915/dvo: rename dvo.h to intel_dvo_dev.h and make self-contained")
-    64d6c500a384 ("drm/i915: Generalise GPU activity tracking")
-    667944ad77f1 ("drm/i915/hdcp: use intel_de_*() functions for register access")
-    692059318c0f ("drm/i915/hdcp: Enable HDCP 1.4 and 2.2 on Gen12+")
-    71fc448c1aaf ("drm/i915/selftests: Make evict tolerant of foreign objects")
-    a037121c3c7f ("drm/i915: Mark up debugfs with rpm wakeref tracking")
-    c2400ec3b6d1 ("drm/i915: add Makefile magic for testing headers are self-contained")
-    d2ee2e8afeea ("drm/i915: extract intel_crt.h from intel_drv.h")
-    d4225a535b3b ("drm/i915: Syntatic sugar for using intel_runtime_pm")
+    07d805721938 ("drm/i915: Introduce intel_runtime_pm_disable to pair intel_runtime_pm_enable")
+    2cd9a689e97b ("drm/i915: Refactor intel_display_set_init_power() logic")
+    486bba4524e0 ("drm/i915/hdcp: Clean up local variables")
+    48a287ed9d62 ("drm/i915: Rename intel_power_domains_fini() to intel_power_domains_fini_hw()")
+    49a630b00bac ("drm/i915: Enable and Disable of HDCP2.2")
+    6dfc4a8f134f ("drm/i915: Verify power domains after enabling them")
+    9055aac76589 ("drm/i915: MEI interface implementation")
+    bd780f37a361 ("drm/i915: Track all held rpm wakerefs")
+    f28ec6f4ea48 ("drm/i915: Constify power well descriptors")
 
 
 NOTE: The patch will not be queued to stable trees until it is upstream.
