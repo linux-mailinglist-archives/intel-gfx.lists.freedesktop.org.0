@@ -1,33 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BBF22539AC
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 23:24:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B222539AB
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 23:24:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C7F56EB09;
-	Wed, 26 Aug 2020 21:24:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FC196EB04;
+	Wed, 26 Aug 2020 21:24:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id CED826E859;
- Wed, 26 Aug 2020 18:14:37 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EF4DA101E;
- Wed, 26 Aug 2020 11:14:36 -0700 (PDT)
-Received: from [10.57.40.122] (unknown [10.57.40.122])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6133E3F71F;
- Wed, 26 Aug 2020 11:14:31 -0700 (PDT)
-To: Tom Murphy <murphyt7@tcd.ie>, iommu@lists.linux-foundation.org
-References: <20191221150402.13868-1-murphyt7@tcd.ie>
-From: Robin Murphy <robin.murphy@arm.com>
-Message-ID: <03caf286-09e8-a072-8d3a-b6bcca991516@arm.com>
-Date: Wed, 26 Aug 2020 19:14:28 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com
+ [IPv6:2607:f8b0:4864:20::d44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C6CF6E858
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 18:23:39 +0000 (UTC)
+Received: by mail-io1-xd44.google.com with SMTP id g14so3175889iom.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 11:23:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=tcd-ie.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=iYoq01qIbGPauST5RfEEhLR3G1zLYNWZoPlBmyH0nwc=;
+ b=rrACsr3CvBASDErVlhyy5K/fvnE8tuvuh2uL4jiaUL3ZGIxyyW4t874WgsTFTUoygE
+ 0nd8dw2k6j5xfynBZ5BbH95ghQWO1tmk7qS4QlhhS+UpQrW6VIixR6b9/tabHPbrZ1TA
+ woRwMlA1QVHyLaxTiI+ivqIC95ZJuDOtfQTTRjgK/HRRPkZA+BKnnG+a/1BKvKYfczZW
+ giax0/bYLHTK1M0qOlsm4qENxTU2Bh4hQC+PjQEIdvsBdLlLAs06s5gOU5WsPK3RNiVa
+ O8bil5tUrtg/+lUTAs1DLmtjKaPjTtBsrUkUk5J3gV7xeMNwjOueDK9lEWOPdwyFfjWL
+ 4fgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=iYoq01qIbGPauST5RfEEhLR3G1zLYNWZoPlBmyH0nwc=;
+ b=T8lwPBYwGOruQiPXHrLy7CzKKBqo+Of0y8iavlRFCHpsP7/0/gSv/eag//q90P3hc9
+ IfsZu1toFEblX0MGE+H0GZ5TjOPuXRBMK5xrHtND5jrDy8dbHMxQxrwu3C9pPE+n4s2P
+ XW3GKBVRnrPUEmYsF/35lV9R/CssP9UAFifKUbMgJZZSLoxH3ZwSfh+gcT0yNbT1SiH9
+ 1VkH4idi0yt5d3gclU/1ujLRdAtBKddP43ZuB279yydTRxJ+nJAkhaeuAlncxkAezmcy
+ RPuFNUZ+WPiviqgy33WODbQOEIpXTxwh426AJ0I7NneAK5tr+uJ6Rwd4z3z0bUCX6IyM
+ ZQzg==
+X-Gm-Message-State: AOAM532ZqozDJQaGpjBjOQWR5o/LvvQgrOKlNUabeIKfgBCNfIBGH+om
+ 3/X6kSgbrt/+Wlbw4EHwVbIvbQRO9Nb5PNFh79wF0A==
+X-Google-Smtp-Source: ABdhPJwFN6cBCs9PM+s7XTIce9XLWKWdjPF/GBPpGUznZWktGx6heltYKpGLa4ads24y20InNb1vg24deYZIDTRb1/0=
+X-Received: by 2002:a05:6638:258a:: with SMTP id
+ s10mr16082808jat.101.1598466218702; 
+ Wed, 26 Aug 2020 11:23:38 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20191221150402.13868-1-murphyt7@tcd.ie>
-Content-Language: en-GB
+References: <20191221150402.13868-1-murphyt7@tcd.ie>
+ <03caf286-09e8-a072-8d3a-b6bcca991516@arm.com>
+In-Reply-To: <03caf286-09e8-a072-8d3a-b6bcca991516@arm.com>
+From: Tom Murphy <murphyt7@tcd.ie>
+Date: Wed, 26 Aug 2020 14:23:26 -0400
+Message-ID: <CALQxJuttUa0=Z0dQrgxAE=+w-UeE5XPW3b3BBzujtJ3aw5J8LQ@mail.gmail.com>
+To: Robin Murphy <robin.murphy@arm.com>
 X-Mailman-Approved-At: Wed, 26 Aug 2020 21:24:47 +0000
 Subject: Re: [Intel-gfx] [PATCH 0/8] Convert the intel iommu driver to the
  dma-iommu api
@@ -58,88 +80,285 @@ Cc: Heiko Stuebner <heiko@sntech.de>, kvm@vger.kernel.org,
  Thomas Gleixner <tglx@linutronix.de>,
  virtualization@lists.linux-foundation.org,
  linux-arm-kernel@lists.infradead.org, Cornelia Huck <cohuck@redhat.com>,
- linux-kernel@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
- David Woodhouse <dwmw2@infradead.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+ linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
+ Kukjin Kim <kgene@kernel.org>, David Woodhouse <dwmw2@infradead.org>
+Content-Type: multipart/mixed; boundary="===============0056316504=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgVG9tLAoKT24gMjAxOS0xMi0yMSAxNTowMywgVG9tIE11cnBoeSB3cm90ZToKPiBUaGlzIHBh
-dGNoc2V0IGNvbnZlcnRzIHRoZSBpbnRlbCBpb21tdSBkcml2ZXIgdG8gdGhlIGRtYS1pb21tdSBh
-cGkuCj4gCj4gV2hpbGUgY29udmVydGluZyB0aGUgZHJpdmVyIEkgZXhwb3NlZCBhIGJ1ZyBpbiB0
-aGUgaW50ZWwgaTkxNSBkcml2ZXIgd2hpY2ggY2F1c2VzIGEgaHVnZSBhbW91bnQgb2YgYXJ0aWZh
-Y3RzIG9uIHRoZSBzY3JlZW4gb2YgbXkgbGFwdG9wLiBZb3UgY2FuIHNlZSBhIHBpY3R1cmUgb2Yg
-aXQgaGVyZToKPiBodHRwczovL2dpdGh1Yi5jb20vcGlwcHkzNjAva2VybmVsUGF0Y2hlcy9ibG9i
-L21hc3Rlci9JTUdfMjAxOTEyMTlfMjI1OTIyLmpwZwo+IAo+IFRoaXMgaXNzdWUgaXMgbW9zdCBs
-aWtlbHkgaW4gdGhlIGk5MTUgZHJpdmVyIGFuZCBpcyBtb3N0IGxpa2VseSBjYXVzZWQgYnkgdGhl
-IGRyaXZlciBub3QgcmVzcGVjdGluZyB0aGUgcmV0dXJuIHZhbHVlIG9mIHRoZSBkbWFfbWFwX29w
-czo6bWFwX3NnIGZ1bmN0aW9uLiBZb3UgY2FuIHNlZSB0aGUgZHJpdmVyIGlnbm9yaW5nIHRoZSBy
-ZXR1cm4gdmFsdWUgaGVyZToKPiBodHRwczovL2dpdGh1Yi5jb20vdG9ydmFsZHMvbGludXgvYmxv
-Yi83ZTAxNjViMmYxYTkxMmEwNmUzODFlOTFmMGY0ZTQ5NWY0YWMzNzM2L2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYyNMNTEKPiAKPiBQcmV2aW91c2x5IHRoaXMgZGlk
-buKAmXQgY2F1c2UgaXNzdWVzIGJlY2F1c2UgdGhlIGludGVsIG1hcF9zZyBhbHdheXMgcmV0dXJu
-ZWQgdGhlIHNhbWUgbnVtYmVyIG9mIGVsZW1lbnRzIGFzIHRoZSBpbnB1dCBzY2F0dGVyIGdhdGhl
-ciBsaXN0IGJ1dCB3aXRoIHRoZSBjaGFuZ2UgdG8gdGhpcyBkbWEtaW9tbXUgYXBpIHRoaXMgaXMg
-bm8gbG9uZ2VyIHRoZSBjYXNlLiBJIHdhc27igJl0IGFibGUgdG8gdHJhY2sgdGhlIGJ1ZyBkb3du
-IHRvIGEgc3BlY2lmaWMgbGluZSBvZiBjb2RlIHVuZm9ydHVuYXRlbHkuCj4gCj4gQ291bGQgc29t
-ZW9uZSBmcm9tIHRoZSBpbnRlbCB0ZWFtIGxvb2sgYXQgdGhpcz8KPiAKPiAKPiBJIGhhdmUgYmVl
-biB0ZXN0aW5nIG9uIGEgbGVub3ZvIHgxIGNhcmJvbiA1dGggZ2VuZXJhdGlvbi4gTGV0IG1lIGtu
-b3cgaWYgdGhlcmXigJlzIGFueSBtb3JlIGluZm9ybWF0aW9uIHlvdSBuZWVkLgo+IAo+IFRvIGFs
-bG93IG15IHBhdGNoIHNldCB0byBiZSB0ZXN0ZWQgSSBoYXZlIGFkZGVkIGEgcGF0Y2ggKHBhdGNo
-IDgvOCkgaW4gdGhpcyBzZXJpZXMgdG8gZGlzYWJsZSBjb21iaW5pbmcgc2cgc2VnbWVudHMgaW4g
-dGhlIGRtYS1pb21tdSBhcGkgd2hpY2ggZml4ZXMgdGhlIGJ1ZyBidXQgaXQgZG9lc24ndCBmaXgg
-dGhlIGFjdHVhbCBwcm9ibGVtLgo+IAo+IEFzIHBhcnQgb2YgdGhpcyBwYXRjaCBzZXJpZXMgSSBj
-b3BpZWQgdGhlIGludGVsIGJvdW5jZSBidWZmZXIgY29kZSB0byB0aGUgZG1hLWlvbW11IHBhdGgu
-IFRoZSBhZGRpdGlvbiBvZiB0aGUgYm91bmNlIGJ1ZmZlciBjb2RlIHRvb2sgbWUgYnkgc3VycHJp
-c2UuIEkgZGlkIG1vc3Qgb2YgbXkgZGV2ZWxvcG1lbnQgb24gdGhpcyBwYXRjaCBzZXJpZXMgYmVm
-b3JlIHRoZSBib3VuY2UgYnVmZmVyIGNvZGUgd2FzIGFkZGVkIGFuZCBteSByZWltcGxlbWVudGF0
-aW9uIGluIHRoZSBkbWEtaW9tbXUgcGF0aCBpcyB2ZXJ5IHJ1c2hlZCBhbmQgbm90IHByb3Blcmx5
-IHRlc3RlZCBidXQgSeKAmW0gcnVubmluZyBvdXQgb2YgdGltZSB0byB3b3JrIG9uIHRoaXMgcGF0
-Y2ggc2V0Lgo+IAo+IE9uIHRvcCBvZiB0aGF0IEkgYWxzbyBkaWRu4oCZdCBwb3J0IG92ZXIgdGhl
-IGludGVsIHRyYWNpbmcgY29kZSBmcm9tIHRoaXMgY29tbWl0Ogo+IGh0dHBzOi8vZ2l0aHViLmNv
-bS90b3J2YWxkcy9saW51eC9jb21taXQvM2I1MzAzNGMyNjhkNTUwZDllODUyMmU2MTNhMTRhYjUz
-Yjg4NDBkOCNkaWZmLTZiM2U3YzQ5OTNmMDVlNzYzMzFlNDYzYWIxZmM4N2UxCj4gU28gYWxsIHRo
-ZSB3b3JrIGluIHRoYXQgY29tbWl0IGlzIG5vdyB3YXN0ZWQuIFRoZSBjb2RlIHdpbGwgbmVlZCB0
-byBiZSByZW1vdmVkIGFuZCByZWltcGxlbWVudGVkIGluIHRoZSBkbWEtaW9tbXUgcGF0aC4gSSB3
-b3VsZCBsaWtlIHRvIHRha2UgdGhlIHRpbWUgdG8gZG8gdGhpcyBidXQgSSByZWFsbHkgZG9u4oCZ
-dCBoYXZlIHRoZSB0aW1lIGF0IHRoZSBtb21lbnQgYW5kIEkgd2FudCB0byBnZXQgdGhlc2UgY2hh
-bmdlcyBvdXQgYmVmb3JlIHRoZSBpb21tdSBjb2RlIGNoYW5nZXMgYW55IG1vcmUuCgpGdXJ0aGVy
-IHRvIHdoYXQgd2UganVzdCBkaXNjdXNzZWQgYXQgTFBDLCBJJ3ZlIHJlYWxpc2VkIHRoYXQgdHJh
-Y2Vwb2ludHMgCmFyZSBhY3R1YWxseSBzb21ldGhpbmcgSSBjb3VsZCBkbyB3aXRoICpyaWdodCBu
-b3cqIGZvciBkZWJ1Z2dpbmcgbXkgQXJtIApETUEgb3BzIHNlcmllcywgc28gaWYgSSdtIGdvaW5n
-IHRvIGhhY2sgc29tZXRoaW5nIHVwIGFueXdheSBJIG1heSBhcyAKd2VsbCB0YWtlIHJlc3BvbnNp
-YmlsaXR5IGZvciBwb2xpc2hpbmcgaXQgaW50byBhIHByb3BlciBwYXRjaCBhcyB3ZWxsIDopCgpS
-b2Jpbi4KCj4gCj4gVG9tIE11cnBoeSAoOCk6Cj4gICAgaW9tbXUvdnQtZDogY2xlYW4gdXAgMzJi
-aXQgc2lfZG9tYWluIGFzc2lnbm1lbnQKPiAgICBpb21tdS92dC1kOiBVc2UgZGVmYXVsdCBkbWFf
-ZGlyZWN0XyogbWFwcGluZyBmdW5jdGlvbnMgZm9yIGRpcmVjdAo+ICAgICAgbWFwcGVkIGRldmlj
-ZXMKPiAgICBpb21tdS92dC1kOiBSZW1vdmUgSU9WQSBoYW5kbGluZyBjb2RlIGZyb20gbm9uLWRt
-YV9vcHMgcGF0aAo+ICAgIGlvbW11OiBIYW5kbGUgZnJlZWxpc3RzIHdoZW4gdXNpbmcgZGVmZXJy
-ZWQgZmx1c2hpbmcgaW4gaW9tbXUgZHJpdmVycwo+ICAgIGlvbW11OiBBZGQgaW9tbXVfZG1hX2Zy
-ZWVfY3B1X2NhY2hlZF9pb3ZhcyBmdW5jdGlvbgo+ICAgIGlvbW11OiBhbGxvdyB0aGUgZG1hLWlv
-bW11IGFwaSB0byB1c2UgYm91bmNlIGJ1ZmZlcnMKPiAgICBpb21tdS92dC1kOiBDb252ZXJ0IGlu
-dGVsIGlvbW11IGRyaXZlciB0byB0aGUgaW9tbXUgb3BzCj4gICAgRE8gTk9UIE1FUkdFOiBpb21t
-dTogZGlzYWJsZSBsaXN0IGFwcGVuZGluZyBpbiBkbWEtaW9tbXUKPiAKPiAgIGRyaXZlcnMvaW9t
-bXUvS2NvbmZpZyAgICAgICAgICAgfCAgIDEgKwo+ICAgZHJpdmVycy9pb21tdS9hbWRfaW9tbXUu
-YyAgICAgICB8ICAxNCArLQo+ICAgZHJpdmVycy9pb21tdS9hcm0tc21tdS12My5jICAgICB8ICAg
-MyArLQo+ICAgZHJpdmVycy9pb21tdS9hcm0tc21tdS5jICAgICAgICB8ICAgMyArLQo+ICAgZHJp
-dmVycy9pb21tdS9kbWEtaW9tbXUuYyAgICAgICB8IDE4MyArKysrKy0tCj4gICBkcml2ZXJzL2lv
-bW11L2V4eW5vcy1pb21tdS5jICAgIHwgICAzICstCj4gICBkcml2ZXJzL2lvbW11L2ludGVsLWlv
-bW11LmMgICAgIHwgOTM2ICsrKystLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gICBkcml2
-ZXJzL2lvbW11L2lvbW11LmMgICAgICAgICAgIHwgIDM5ICstCj4gICBkcml2ZXJzL2lvbW11L2lw
-bW11LXZtc2EuYyAgICAgIHwgICAzICstCj4gICBkcml2ZXJzL2lvbW11L21zbV9pb21tdS5jICAg
-ICAgIHwgICAzICstCj4gICBkcml2ZXJzL2lvbW11L210a19pb21tdS5jICAgICAgIHwgICAzICst
-Cj4gICBkcml2ZXJzL2lvbW11L210a19pb21tdV92MS5jICAgIHwgICAzICstCj4gICBkcml2ZXJz
-L2lvbW11L29tYXAtaW9tbXUuYyAgICAgIHwgICAzICstCj4gICBkcml2ZXJzL2lvbW11L3Fjb21f
-aW9tbXUuYyAgICAgIHwgICAzICstCj4gICBkcml2ZXJzL2lvbW11L3JvY2tjaGlwLWlvbW11LmMg
-IHwgICAzICstCj4gICBkcml2ZXJzL2lvbW11L3MzOTAtaW9tbXUuYyAgICAgIHwgICAzICstCj4g
-ICBkcml2ZXJzL2lvbW11L3RlZ3JhLWdhcnQuYyAgICAgIHwgICAzICstCj4gICBkcml2ZXJzL2lv
-bW11L3RlZ3JhLXNtbXUuYyAgICAgIHwgICAzICstCj4gICBkcml2ZXJzL2lvbW11L3ZpcnRpby1p
-b21tdS5jICAgIHwgICAzICstCj4gICBkcml2ZXJzL3ZmaW8vdmZpb19pb21tdV90eXBlMS5jIHwg
-ICAyICstCj4gICBpbmNsdWRlL2xpbnV4L2RtYS1pb21tdS5oICAgICAgIHwgICAzICsKPiAgIGlu
-Y2x1ZGUvbGludXgvaW50ZWwtaW9tbXUuaCAgICAgfCAgIDEgLQo+ICAgaW5jbHVkZS9saW51eC9p
-b21tdS5oICAgICAgICAgICB8ICAzMiArLQo+ICAgMjMgZmlsZXMgY2hhbmdlZCwgMzQ1IGluc2Vy
-dGlvbnMoKyksIDkwOCBkZWxldGlvbnMoLSkKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+--===============0056316504==
+Content-Type: multipart/alternative; boundary="00000000000026d76505adcbeb74"
+
+--00000000000026d76505adcbeb74
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+That would be great!
+
+On Wed., Aug. 26, 2020, 2:14 p.m. Robin Murphy, <robin.murphy@arm.com>
+wrote:
+
+> Hi Tom,
+>
+> On 2019-12-21 15:03, Tom Murphy wrote:
+> > This patchset converts the intel iommu driver to the dma-iommu api.
+> >
+> > While converting the driver I exposed a bug in the intel i915 driver
+> which causes a huge amount of artifacts on the screen of my laptop. You c=
+an
+> see a picture of it here:
+> >
+> https://github.com/pippy360/kernelPatches/blob/master/IMG_20191219_225922=
+.jpg
+> >
+> > This issue is most likely in the i915 driver and is most likely caused
+> by the driver not respecting the return value of the dma_map_ops::map_sg
+> function. You can see the driver ignoring the return value here:
+> >
+> https://github.com/torvalds/linux/blob/7e0165b2f1a912a06e381e91f0f4e495f4=
+ac3736/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c#L51
+> >
+> > Previously this didn=E2=80=99t cause issues because the intel map_sg al=
+ways
+> returned the same number of elements as the input scatter gather list but
+> with the change to this dma-iommu api this is no longer the case. I wasn=
+=E2=80=99t
+> able to track the bug down to a specific line of code unfortunately.
+> >
+> > Could someone from the intel team look at this?
+> >
+> >
+> > I have been testing on a lenovo x1 carbon 5th generation. Let me know i=
+f
+> there=E2=80=99s any more information you need.
+> >
+> > To allow my patch set to be tested I have added a patch (patch 8/8) in
+> this series to disable combining sg segments in the dma-iommu api which
+> fixes the bug but it doesn't fix the actual problem.
+> >
+> > As part of this patch series I copied the intel bounce buffer code to
+> the dma-iommu path. The addition of the bounce buffer code took me by
+> surprise. I did most of my development on this patch series before the
+> bounce buffer code was added and my reimplementation in the dma-iommu pat=
+h
+> is very rushed and not properly tested but I=E2=80=99m running out of tim=
+e to work
+> on this patch set.
+> >
+> > On top of that I also didn=E2=80=99t port over the intel tracing code f=
+rom this
+> commit:
+> >
+> https://github.com/torvalds/linux/commit/3b53034c268d550d9e8522e613a14ab5=
+3b8840d8#diff-6b3e7c4993f05e76331e463ab1fc87e1
+> > So all the work in that commit is now wasted. The code will need to be
+> removed and reimplemented in the dma-iommu path. I would like to take the
+> time to do this but I really don=E2=80=99t have the time at the moment an=
+d I want
+> to get these changes out before the iommu code changes any more.
+>
+> Further to what we just discussed at LPC, I've realised that tracepoints
+> are actually something I could do with *right now* for debugging my Arm
+> DMA ops series, so if I'm going to hack something up anyway I may as
+> well take responsibility for polishing it into a proper patch as well :)
+>
+> Robin.
+>
+> >
+> > Tom Murphy (8):
+> >    iommu/vt-d: clean up 32bit si_domain assignment
+> >    iommu/vt-d: Use default dma_direct_* mapping functions for direct
+> >      mapped devices
+> >    iommu/vt-d: Remove IOVA handling code from non-dma_ops path
+> >    iommu: Handle freelists when using deferred flushing in iommu driver=
+s
+> >    iommu: Add iommu_dma_free_cpu_cached_iovas function
+> >    iommu: allow the dma-iommu api to use bounce buffers
+> >    iommu/vt-d: Convert intel iommu driver to the iommu ops
+> >    DO NOT MERGE: iommu: disable list appending in dma-iommu
+> >
+> >   drivers/iommu/Kconfig           |   1 +
+> >   drivers/iommu/amd_iommu.c       |  14 +-
+> >   drivers/iommu/arm-smmu-v3.c     |   3 +-
+> >   drivers/iommu/arm-smmu.c        |   3 +-
+> >   drivers/iommu/dma-iommu.c       | 183 +++++--
+> >   drivers/iommu/exynos-iommu.c    |   3 +-
+> >   drivers/iommu/intel-iommu.c     | 936 ++++---------------------------=
+-
+> >   drivers/iommu/iommu.c           |  39 +-
+> >   drivers/iommu/ipmmu-vmsa.c      |   3 +-
+> >   drivers/iommu/msm_iommu.c       |   3 +-
+> >   drivers/iommu/mtk_iommu.c       |   3 +-
+> >   drivers/iommu/mtk_iommu_v1.c    |   3 +-
+> >   drivers/iommu/omap-iommu.c      |   3 +-
+> >   drivers/iommu/qcom_iommu.c      |   3 +-
+> >   drivers/iommu/rockchip-iommu.c  |   3 +-
+> >   drivers/iommu/s390-iommu.c      |   3 +-
+> >   drivers/iommu/tegra-gart.c      |   3 +-
+> >   drivers/iommu/tegra-smmu.c      |   3 +-
+> >   drivers/iommu/virtio-iommu.c    |   3 +-
+> >   drivers/vfio/vfio_iommu_type1.c |   2 +-
+> >   include/linux/dma-iommu.h       |   3 +
+> >   include/linux/intel-iommu.h     |   1 -
+> >   include/linux/iommu.h           |  32 +-
+> >   23 files changed, 345 insertions(+), 908 deletions(-)
+> >
+>
+
+--00000000000026d76505adcbeb74
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">That would be great!</div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Wed., Aug. 26, 2020, 2:14 p.m. Rob=
+in Murphy, &lt;<a href=3D"mailto:robin.murphy@arm.com">robin.murphy@arm.com=
+</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi Tom,<br>
+<br>
+On 2019-12-21 15:03, Tom Murphy wrote:<br>
+&gt; This patchset converts the intel iommu driver to the dma-iommu api.<br=
+>
+&gt; <br>
+&gt; While converting the driver I exposed a bug in the intel i915 driver w=
+hich causes a huge amount of artifacts on the screen of my laptop. You can =
+see a picture of it here:<br>
+&gt; <a href=3D"https://github.com/pippy360/kernelPatches/blob/master/IMG_2=
+0191219_225922.jpg" rel=3D"noreferrer noreferrer" target=3D"_blank">https:/=
+/github.com/pippy360/kernelPatches/blob/master/IMG_20191219_225922.jpg</a><=
+br>
+&gt; <br>
+&gt; This issue is most likely in the i915 driver and is most likely caused=
+ by the driver not respecting the return value of the dma_map_ops::map_sg f=
+unction. You can see the driver ignoring the return value here:<br>
+&gt; <a href=3D"https://github.com/torvalds/linux/blob/7e0165b2f1a912a06e38=
+1e91f0f4e495f4ac3736/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c#L51" rel=3D=
+"noreferrer noreferrer" target=3D"_blank">https://github.com/torvalds/linux=
+/blob/7e0165b2f1a912a06e381e91f0f4e495f4ac3736/drivers/gpu/drm/i915/gem/i91=
+5_gem_dmabuf.c#L51</a><br>
+&gt; <br>
+&gt; Previously this didn=E2=80=99t cause issues because the intel map_sg a=
+lways returned the same number of elements as the input scatter gather list=
+ but with the change to this dma-iommu api this is no longer the case. I wa=
+sn=E2=80=99t able to track the bug down to a specific line of code unfortun=
+ately.<br>
+&gt; <br>
+&gt; Could someone from the intel team look at this?<br>
+&gt; <br>
+&gt; <br>
+&gt; I have been testing on a lenovo x1 carbon 5th generation. Let me know =
+if there=E2=80=99s any more information you need.<br>
+&gt; <br>
+&gt; To allow my patch set to be tested I have added a patch (patch 8/8) in=
+ this series to disable combining sg segments in the dma-iommu api which fi=
+xes the bug but it doesn&#39;t fix the actual problem.<br>
+&gt; <br>
+&gt; As part of this patch series I copied the intel bounce buffer code to =
+the dma-iommu path. The addition of the bounce buffer code took me by surpr=
+ise. I did most of my development on this patch series before the bounce bu=
+ffer code was added and my reimplementation in the dma-iommu path is very r=
+ushed and not properly tested but I=E2=80=99m running out of time to work o=
+n this patch set.<br>
+&gt; <br>
+&gt; On top of that I also didn=E2=80=99t port over the intel tracing code =
+from this commit:<br>
+&gt; <a href=3D"https://github.com/torvalds/linux/commit/3b53034c268d550d9e=
+8522e613a14ab53b8840d8#diff-6b3e7c4993f05e76331e463ab1fc87e1" rel=3D"norefe=
+rrer noreferrer" target=3D"_blank">https://github.com/torvalds/linux/commit=
+/3b53034c268d550d9e8522e613a14ab53b8840d8#diff-6b3e7c4993f05e76331e463ab1fc=
+87e1</a><br>
+&gt; So all the work in that commit is now wasted. The code will need to be=
+ removed and reimplemented in the dma-iommu path. I would like to take the =
+time to do this but I really don=E2=80=99t have the time at the moment and =
+I want to get these changes out before the iommu code changes any more.<br>
+<br>
+Further to what we just discussed at LPC, I&#39;ve realised that tracepoint=
+s <br>
+are actually something I could do with *right now* for debugging my Arm <br=
+>
+DMA ops series, so if I&#39;m going to hack something up anyway I may as <b=
+r>
+well take responsibility for polishing it into a proper patch as well :)<br=
+>
+<br>
+Robin.<br>
+<br>
+&gt; <br>
+&gt; Tom Murphy (8):<br>
+&gt;=C2=A0 =C2=A0 iommu/vt-d: clean up 32bit si_domain assignment<br>
+&gt;=C2=A0 =C2=A0 iommu/vt-d: Use default dma_direct_* mapping functions fo=
+r direct<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 mapped devices<br>
+&gt;=C2=A0 =C2=A0 iommu/vt-d: Remove IOVA handling code from non-dma_ops pa=
+th<br>
+&gt;=C2=A0 =C2=A0 iommu: Handle freelists when using deferred flushing in i=
+ommu drivers<br>
+&gt;=C2=A0 =C2=A0 iommu: Add iommu_dma_free_cpu_cached_iovas function<br>
+&gt;=C2=A0 =C2=A0 iommu: allow the dma-iommu api to use bounce buffers<br>
+&gt;=C2=A0 =C2=A0 iommu/vt-d: Convert intel iommu driver to the iommu ops<b=
+r>
+&gt;=C2=A0 =C2=A0 DO NOT MERGE: iommu: disable list appending in dma-iommu<=
+br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0drivers/iommu/Kconfig=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0|=C2=A0 =C2=A01 +<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/amd_iommu.c=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=
+=A0 14 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/arm-smmu-v3.c=C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=
+=A03 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/arm-smmu.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=
+=A0 =C2=A03 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/dma-iommu.c=C2=A0 =C2=A0 =C2=A0 =C2=A0| 183 =
++++++--<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/exynos-iommu.c=C2=A0 =C2=A0 |=C2=A0 =C2=A03 =
++-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/intel-iommu.c=C2=A0 =C2=A0 =C2=A0| 936 ++++-=
+---------------------------<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/iommu.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0|=C2=A0 39 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/ipmmu-vmsa.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=
+=A03 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/msm_iommu.c=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=
+=A0 =C2=A03 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/mtk_iommu.c=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=
+=A0 =C2=A03 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/mtk_iommu_v1.c=C2=A0 =C2=A0 |=C2=A0 =C2=A03 =
++-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/omap-iommu.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=
+=A03 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/qcom_iommu.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=
+=A03 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/rockchip-iommu.c=C2=A0 |=C2=A0 =C2=A03 +-<br=
+>
+&gt;=C2=A0 =C2=A0drivers/iommu/s390-iommu.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=
+=A03 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/tegra-gart.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=
+=A03 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/tegra-smmu.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=
+=A03 +-<br>
+&gt;=C2=A0 =C2=A0drivers/iommu/virtio-iommu.c=C2=A0 =C2=A0 |=C2=A0 =C2=A03 =
++-<br>
+&gt;=C2=A0 =C2=A0drivers/vfio/vfio_iommu_type1.c |=C2=A0 =C2=A02 +-<br>
+&gt;=C2=A0 =C2=A0include/linux/dma-iommu.h=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=
+=A0 =C2=A03 +<br>
+&gt;=C2=A0 =C2=A0include/linux/intel-iommu.h=C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=
+=A01 -<br>
+&gt;=C2=A0 =C2=A0include/linux/iommu.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0|=C2=A0 32 +-<br>
+&gt;=C2=A0 =C2=A023 files changed, 345 insertions(+), 908 deletions(-)<br>
+&gt; <br>
+</blockquote></div>
+
+--00000000000026d76505adcbeb74--
+
+--===============0056316504==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0056316504==--
