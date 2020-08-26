@@ -2,54 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AA6D2535D7
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 19:15:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0FF5253637
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 19:58:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2296E27C;
-	Wed, 26 Aug 2020 17:15:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78CF06E85F;
+	Wed, 26 Aug 2020 17:58:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
- [IPv6:2607:f8b0:4864:20::e42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BBF86E27C
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 17:15:43 +0000 (UTC)
-Received: by mail-vs1-xe42.google.com with SMTP id r7so1349284vsq.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 10:15:43 -0700 (PDT)
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com
+ [IPv6:2607:f8b0:4864:20::143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFAC16E228;
+ Wed, 26 Aug 2020 17:00:56 +0000 (UTC)
+Received: by mail-il1-x143.google.com with SMTP id q14so2385828ilj.8;
+ Wed, 26 Aug 2020 10:00:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=REaTehmhboYnMbL2bdtp9dndQp3r5vWDjV7Xywab6cM=;
- b=KNr6AlaDZVO8I/wc2PZbtqQHi7L8sme+Y1QtNgDSEnMYj7NQYl+yOpnRvNJRuue5Fn
- lT2R1NDXdxcybZgBtJ5j3KsZ7xlCqq6biWlAT+VkUkc9YwGcNpXJbvJQ8N/HbRwUM8VY
- GNjhzyKskC5Nzk9E8dOeVtWr4ICG0crnFOd6iNeLJxDJjYYbGR2U970ca0yA1mi8neIk
- elkjLDadGEnbqOoMpWC4zM1SiLENQYp2M3gSEPFwuGE757uXdSzLVQ+kd2+HPFoe0CrI
- koJg/wXzzYdORz9Ndq2nJACa8rQO0ZyPpJzSDmNi6tJZ82vO1L2vy4p7Nx08dYqFZUhS
- 3pHw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=F84GgHzsN1yeQN6PQRJoTTLm9lE05lKnfqitPnJqWLU=;
+ b=e4Vi6MHy6UTLsDMSjkNofHtVcQzUuSjP1UEi4Zl4t/K7FK4wYLGiwebK/NStDprP7I
+ odFjBwSqQCKsEVlcnX+yDkG/CENe6HUJJbKAsN/W791aS2qH2UWYswF/4ewLctaolHpV
+ CBm8TzzLoKGLF8vkT58wSBPAmXdL2F7T/66f8TVM9Gf3FamqClb7nmLl1NgqcEsVUmHo
+ dgabwZx0bB+Gx/t4j2JaxG/c/kX2yzPUPR68YgPP5jd8wvn7WTQR0BV2WhYxSEog3f9l
+ QghttGRVagCMEoeemQdkmK0WpfU9s6H6i6hxGmw16LnQM+gcSjIo4/FUoxg6Nb/fe5Ep
+ DnAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=REaTehmhboYnMbL2bdtp9dndQp3r5vWDjV7Xywab6cM=;
- b=exDCduwAxFRiZOwIN5vfEfImtpYecTL0f2TqXoY402IyFPUzDnNhzM/fq9pjrzkXYg
- bDPNZaEAx/RJeum+Os7n3iotAJ+W8Pb3Ayg/Tkh4lhPyBR7zrhB0hCLyqM/4wKVpPyyP
- ELwwCNOsCgoZR8qdZZB6ETnzZu9gCDhXmblPS5gCXwRMdGM29iMWO/4dd+kA/Keb6ZB9
- LsIugmWY/H8DLtdELmige4dMrpM8wX/fRYOp35mfhA5BqiHLVfhgb/VA83c0z/BDqnS9
- lm9hiP7vptyevNabYTyKZJKzFwWaJ/BhO/CHUAViBYP8s/KjnNE+Atg9s0eRhj+wtnZw
- JWfA==
-X-Gm-Message-State: AOAM531Nn5I3GR7IQh5pb1mZGqTRIsdzla0BpFF/CiS+mnl8z7RWgKPR
- Diw9VYzuoyPMsHr3AXSNsG8rfEn7/z4jtoyBijC/dQNdTyk=
-X-Google-Smtp-Source: ABdhPJzZQ6bTXEAzdinurERiwH4HDbA8aeoTC36BsF+yfJCj4BwRwcLjc6xVi9L13tbGiOd8dXJkhMv3+Fb/fG7TCPA=
-X-Received: by 2002:a67:1702:: with SMTP id 2mr4962720vsx.6.1598462142265;
- Wed, 26 Aug 2020 10:15:42 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=F84GgHzsN1yeQN6PQRJoTTLm9lE05lKnfqitPnJqWLU=;
+ b=IZsCJ6tRSgF8vckYtnInz6Mf3Efcl9pzfdbdCQLmnuzZcRPDrwaq4DHW5B8+gt+6tc
+ NR3pKtUTF6Qljyk6cbkvFpcXjNCXzRj7ub6mTjTHJEMcgoJrH9ol0nCFvsuvxIV+Jb1/
+ /++uY/3WMnCEPqmMvU5zEir3xqkdidJK/XJpULkvWzvJdcacBuaXvuJx0knzGN4B2DtZ
+ gtCgpKJ/BxYUSzvglhNGhI3goJdHH7N3FAi/IxhLZ7z3/5yEIHuMzjxFk/8rDUFAXVMb
+ 6/82wK4QbXA99Ixuw1VnmOO4lOAL8qnva9N19CHsZjKsq785YEhA+A0gx+YE8UxAP6A8
+ dIGg==
+X-Gm-Message-State: AOAM531kRgCs+uhqlh25OcBxL0yRPruvbX9GpIz/wHRKeV2kSpioNAiF
+ r26sU+l/zj69vm+5mfeRXt0=
+X-Google-Smtp-Source: ABdhPJym6BLUjQHAO+G1iUIi+hQhRvVbz7JUbJGnpDxNbIAXPZhbdIj6klLQKPC0ZPXyAe01GYF/mw==
+X-Received: by 2002:a92:bb8d:: with SMTP id x13mr13758338ilk.243.1598461256033; 
+ Wed, 26 Aug 2020 10:00:56 -0700 (PDT)
+Received: from frodo.hsd1.co.comcast.net ([2601:284:8203:5970::c4c])
+ by smtp.googlemail.com with ESMTPSA id p78sm1479606iod.0.2020.08.26.10.00.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 26 Aug 2020 10:00:55 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ jbaron@akamai.com
+Date: Wed, 26 Aug 2020 11:00:40 -0600
+Message-Id: <20200826170041.2497546-4-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200826170041.2497546-1-jim.cromie@gmail.com>
+References: <20200826170041.2497546-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
-References: <20200826132811.17577-1-chris@chris-wilson.co.uk>
- <20200826132811.17577-4-chris@chris-wilson.co.uk>
-In-Reply-To: <20200826132811.17577-4-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 26 Aug 2020 18:15:16 +0100
-Message-ID: <CAM0jSHPaUFND-XbQcaOzTfLg+BeZmBZc=jGXui+x6U66Wqe7Kg@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 04/39] drm/i915/gt: Clear the buffer pool
- age before use
+X-Mailman-Approved-At: Wed, 26 Aug 2020 17:58:46 +0000
+Subject: [Intel-gfx] [PATCH 3/4] i915: add -DDYNAMIC_DEBUG_MODULE to
+ i915/gvt/Makefile
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,24 +69,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: Jim Cromie <jim.cromie@gmail.com>, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, intel-gvt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 26 Aug 2020 at 14:28, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> If we create a new node, it is possible for the slab allocator to return
-> us a recently freed node. If that node was just retired, it will retain
-> the current jiffy as its node->age. There is then a miniscule window,
-> where as that node is retired, it will appear on the free list with an
-> incorrect age and be eligible for reuse by one thread, and then by a
-> second thread as the correct node->age is written.
->
-> Fixes: 8080ffd81600 ("drm/i915/gt: Delay taking the spinlock for grabbing from the buffer pool")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+This addition to cflags enables dyndbg in the gvt component of the
+i915 module, on a CONFIG_DYNAMIC_DEBUG_CORE build.
+
+So here are the message classifications that the gvt driver uses.
+
+   cut -d= -f2 | cut -d\  -f2,3 | \
+   perl -ne 'chomp $_ && $h{$_}++; END{print "$_\" \tseen $h{$_}\n" for sort keys %h}'
+
+"gvt: cmd:" 	seen 11
+"gvt: core:" 	seen 48
+"gvt: dpy:" 	seen 4
+"gvt: el:" 	seen 21
+"gvt: irq:" 	seen 1
+"gvt: mm:" 	seen 6
+"gvt: mmio:" 	seen 9
+"gvt: render:" 	seen 1
+"gvt: sched:" 	seen 15
+
+Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+---
+ drivers/gpu/drm/i915/gvt/Makefile | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gvt/Makefile b/drivers/gpu/drm/i915/gvt/Makefile
+index ea8324abc784..2c581e910688 100644
+--- a/drivers/gpu/drm/i915/gvt/Makefile
++++ b/drivers/gpu/drm/i915/gvt/Makefile
+@@ -5,5 +5,6 @@ GVT_SOURCE := gvt.o aperture_gm.o handlers.o vgpu.o trace_points.o firmware.o \
+ 	execlist.o scheduler.o sched_policy.o mmio_context.o cmd_parser.o debugfs.o \
+ 	fb_decoder.o dmabuf.o page_track.o
+ 
+-ccflags-y				+= -I $(srctree)/$(src) -I $(srctree)/$(src)/$(GVT_DIR)/
+-i915-y					+= $(addprefix $(GVT_DIR)/, $(GVT_SOURCE))
++ccflags-y	+= -I $(srctree)/$(src) -I $(srctree)/$(src)/$(GVT_DIR)/
++ccflags-y	+= -DDYNAMIC_DEBUG_MODULE
++i915-y		+= $(addprefix $(GVT_DIR)/, $(GVT_SOURCE))
+-- 
+2.26.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
