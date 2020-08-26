@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A097A252FC0
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 15:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13793252FCA
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 15:28:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5DC86EA60;
-	Wed, 26 Aug 2020 13:28:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E94D6EA79;
+	Wed, 26 Aug 2020 13:28:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F76B6EA5A
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 13:28:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04F3C6EA64
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 13:28:29 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22244750-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22244751-1500050 
  for multiple; Wed, 26 Aug 2020 14:28:17 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Aug 2020 14:27:56 +0100
-Message-Id: <20200826132811.17577-24-chris@chris-wilson.co.uk>
+Date: Wed, 26 Aug 2020 14:27:57 +0100
+Message-Id: <20200826132811.17577-25-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200826132811.17577-1-chris@chris-wilson.co.uk>
 References: <20200826132811.17577-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 24/39] drm/i915/gt: Decouple completed requests
- on unwind
+Subject: [Intel-gfx] [PATCH 25/39] drm/i915/gt: Check for a completed last
+ request once
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,52 +45,55 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since the introduction of preempt-to-busy, requests can complete in the
-background, even while they are not on the engine->active.requests list.
-As such, the engine->active.request list itself is not in strict
-retirement order, and we have to scan the entire list while unwinding to
-not miss any. However, if the request is completed we currently leave it
-on the list [until retirement], but we could just as simply remove it
-and stop treating it as active. We would only have to then traverse it
-once while unwinding in quick succession.
+Pull the repeated check for the last active request being completed to a
+single spot, when deciding whether or not execlist preemption is
+required.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 6 ++++--
- drivers/gpu/drm/i915/i915_request.c | 3 ++-
- 2 files changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 15 ++++-----------
+ 1 file changed, 4 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c2cd176f396d..4727348a48a2 100644
+index 4727348a48a2..26e63d6df01a 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1116,8 +1116,10 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
- 	list_for_each_entry_safe_reverse(rq, rn,
- 					 &engine->active.requests,
- 					 sched.link) {
--		if (i915_request_completed(rq))
--			continue; /* XXX */
-+		if (i915_request_completed(rq)) {
-+			list_del_init(&rq->sched.link);
-+			continue;
-+		}
- 
- 		__i915_request_unsubmit(rq);
- 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index c187e1ec0278..a17c0f297461 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -321,7 +321,8 @@ bool i915_request_retire(struct i915_request *rq)
- 	 * after removing the breadcrumb and signaling it, so that we do not
- 	 * inadvertently attach the breadcrumb to a completed request.
+@@ -2148,12 +2148,9 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
  	 */
--	remove_from_engine(rq);
-+	if (!list_empty(&rq->sched.link))
-+		remove_from_engine(rq);
- 	GEM_BUG_ON(!llist_empty(&rq->execute_cb));
  
- 	__list_del_entry(&rq->link); /* poison neither prev/next (RCU walks) */
+ 	if ((last = *active)) {
+-		if (need_preempt(engine, last, rb)) {
+-			if (i915_request_completed(last)) {
+-				tasklet_hi_schedule(&execlists->tasklet);
+-				return;
+-			}
+-
++		if (i915_request_completed(last)) {
++			goto check_secondary;
++		} else if (need_preempt(engine, last, rb)) {
+ 			ENGINE_TRACE(engine,
+ 				     "preempting last=%llx:%lld, prio=%d, hint=%d\n",
+ 				     last->fence.context,
+@@ -2181,11 +2178,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			last = NULL;
+ 		} else if (need_timeslice(engine, last, rb) &&
+ 			   timeslice_expired(execlists, last)) {
+-			if (i915_request_completed(last)) {
+-				tasklet_hi_schedule(&execlists->tasklet);
+-				return;
+-			}
+-
+ 			ENGINE_TRACE(engine,
+ 				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
+ 				     last->fence.context,
+@@ -2221,6 +2213,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			 * we hopefully coalesce several updates into a single
+ 			 * submission.
+ 			 */
++check_secondary:
+ 			if (!list_is_last(&last->sched.link,
+ 					  &engine->active.requests)) {
+ 				/*
 -- 
 2.20.1
 
