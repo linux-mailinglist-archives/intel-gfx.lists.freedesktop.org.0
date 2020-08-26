@@ -1,66 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4A3C253325
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 17:13:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5D2C2533F1
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 17:49:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B98456EA85;
-	Wed, 26 Aug 2020 15:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF676E071;
+	Wed, 26 Aug 2020 15:49:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
- [IPv6:2607:f8b0:4864:20::542])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97D296EA5D
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 15:13:32 +0000 (UTC)
-Received: by mail-pg1-x542.google.com with SMTP id o13so1186936pgf.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 08:13:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=CmlsOBKmXTTcSfq5zGubBNNUb0gupInXkPP8EnZ3d+A=;
- b=ZqQGx8lCIpp9MgN3WVINar6Fy8irHzrpJRsjxGoHQTeWbqHYD6il/g9q7DvpK/dmQm
- 0qW7aVa3Tr+PGt5edZDuPZxHNjlNPlIhusw3juLIWAAlHZXHD4KNjNATv1u3ZoCJvNEC
- S2smx23jdqkXqQh3IP6NS4LTsP6Gm53DxBdKk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=CmlsOBKmXTTcSfq5zGubBNNUb0gupInXkPP8EnZ3d+A=;
- b=OqwFOGb6eSU9CE0Ad06cX2OSX3dH7kHsOAjdkYK83axjV8F6zEeZ+zb4FMRr9ZDY4b
- xzg9B7xZGH20b+lInyNqMPIAlsDdJe5DCrJn+xhYHmX9esUFRqT6TTn5HrL6CNfuP0yD
- 2xEb6BCsAfCV6d4umvPKFKu4P4Tis/aCRjSpRuDWR+Ffehm8erOaJhM15sylIjyhfYOJ
- c8Cq9PfxDDuHzdP0ZJND/naK13FxLAh2xXAl+Px9j8ngt3kCwb72xEGNzay3lqFTRwFx
- RLfTK8NJpFnEBbKRFYpjKI6V57UeBmDRyvYTwtx/9mwMOKd0kFsnM6p6tnqfy6uXKP9T
- Y7PA==
-X-Gm-Message-State: AOAM531p9p4i5HQUW+mNHBcIOniHEYOqsAiehRuzmnOTx0xS3g+Jr1YO
- O/FeF2thkBPqdCDdb9oij+Tq4A==
-X-Google-Smtp-Source: ABdhPJz9xFq7qO/RuT9QubtB+V2mx2933Vq5WDSuN5fCly0WI0GYA2lIh7xhcXijBK2JnQjkWRm3gA==
-X-Received: by 2002:a63:f909:: with SMTP id h9mr10562477pgi.250.1598454811989; 
- Wed, 26 Aug 2020 08:13:31 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id d127sm3380122pfc.175.2020.08.26.08.13.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Aug 2020 08:13:30 -0700 (PDT)
-Date: Wed, 26 Aug 2020 08:13:29 -0700
-From: Kees Cook <keescook@chromium.org>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Message-ID: <202008260811.1CE425B5C2@keescook>
-References: <161b75f1-4e88-dcdf-42e8-b22504d7525c@kernel.dk>
- <202008171246.80287CDCA@keescook>
- <df645c06-c30b-eafa-4d23-826b84f2ff48@kernel.dk>
- <1597780833.3978.3.camel@HansenPartnership.com>
- <f3312928-430c-25f3-7112-76f2754df080@kernel.dk>
- <1597849185.3875.7.camel@HansenPartnership.com>
- <CAOMdWSJRR0BhjJK1FxD7UKxNd5sk4ycmEX6TYtJjRNR6UFAj6Q@mail.gmail.com>
- <1597873172.4030.2.camel@HansenPartnership.com>
- <CAEogwTCH8qqjAnSpT0GDn+NuAps8dNbfcPVQ9h8kfOWNbzrD0w@mail.gmail.com>
- <20200826095528.GX1793@kadam>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEC396E071
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 15:49:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=I18u0dNCe4slxMxufMguyF6f9uk6YgWYDMxiYXb8r/M=; b=UkAgccpf8C57KDxqkodEH9olO/
+ 1uRw550MvDayPZHtymBnFfxwmNtcgF2M6M96967ti7Q0kRqhAJD7EntbGZL40Lyy/dSXmziTiz7Hk
+ lbnctZsn662cXzfd6hEb2utiYDSGSBQ9MMuBEMkU4epwpDT9aRW6rBD0kAE2/WhSDIlgYgN0uvYHv
+ c5TtMuUjgUaaySu/tXn9XT3Fdu34TLsipV80GR1LCDvPxHlwYwEnRuupZUec5g7a9rqmgnBVv2OwM
+ AfLYitWZTrvbKthc6NKOJtYTa0Bz0jsofeKe/qhWz/aTsyo6BYZPDxDJfSEiDV625F6g9O9aiVfKH
+ 0a4QY2Ng==;
+Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1kAxfX-0005m4-3j; Wed, 26 Aug 2020 15:48:59 +0000
+Date: Wed, 26 Aug 2020 16:48:59 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Johannes Weiner <hannes@cmpxchg.org>
+Message-ID: <20200826154859.GT17456@casper.infradead.org>
+References: <20200819184850.24779-1-willy@infradead.org>
+ <20200819184850.24779-7-willy@infradead.org>
+ <20200826150925.GE988805@cmpxchg.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200826095528.GX1793@kadam>
-Subject: Re: [Intel-gfx] [PATCH] block: convert tasklets to use new
- tasklet_setup() API
+In-Reply-To: <20200826150925.GE988805@cmpxchg.org>
+Subject: Re: [Intel-gfx] [PATCH 6/8] mm: Convert find_get_entry to return
+ the head page
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,107 +49,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
- linux-atm-general@lists.sourceforge.net, s.hauer@pengutronix.de,
- manohar.vanga@gmail.com, airlied@linux.ie, linux-hyperv@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Allen <allen.lkml@gmail.com>,
- James Bottomley <James.Bottomley@hansenpartnership.com>,
- linux1394-devel@lists.sourceforge.net, anton.ivanov@cambridgegreys.com,
- devel@driverdev.osuosl.org, linux-s390@vger.kernel.org,
- maximlevitsky@gmail.com, richard@nod.at, deller@gmx.de,
- jassisinghbrar@gmail.com, 3chas3@gmail.com, linux-input@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>, mporter@kernel.crashing.org,
- jdike@addtoit.com, oakad@yahoo.com, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-um@lists.infradead.org,
- linux-block@vger.kernel.org, broonie@kernel.org,
- openipmi-developer@lists.sourceforge.net, mitch@sfgoth.com,
- linux-arm-kernel@lists.infradead.org, Jens Axboe <axboe@kernel.dk>,
- linux-parisc@vger.kernel.org, netdev@vger.kernel.org, martyn@welchs.me.uk,
- dmitry.torokhov@gmail.com, linux-mmc@vger.kernel.org, sre@kernel.org,
- linux-spi@vger.kernel.org, alex.bou9@gmail.com,
- Allen Pais <allen.cryptic@gmail.com>, stefanr@s5r6.in-berlin.de,
- linux-ntb@googlegroups.com, Romain Perier <romain.perier@gmail.com>,
- shawnguo@kernel.org, David Miller <davem@davemloft.net>
+Cc: William Kucharski <william.kucharski@oracle.com>,
+ intel-gfx@lists.freedesktop.org, Hugh Dickins <hughd@google.com>,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ linux-mm@kvack.org, Matthew Auld <matthew.auld@intel.com>,
+ Huang Ying <ying.huang@intel.com>, cgroups@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Alexey Dobriyan <adobriyan@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 26, 2020 at 12:55:28PM +0300, Dan Carpenter wrote:
-> On Wed, Aug 26, 2020 at 07:21:35AM +0530, Allen Pais wrote:
-> > On Thu, Aug 20, 2020 at 3:09 AM James Bottomley
-> > <James.Bottomley@hansenpartnership.com> wrote:
-> > >
-> > > On Wed, 2020-08-19 at 21:54 +0530, Allen wrote:
-> > > > > [...]
-> > > > > > > Since both threads seem to have petered out, let me suggest in
-> > > > > > > kernel.h:
-> > > > > > >
-> > > > > > > #define cast_out(ptr, container, member) \
-> > > > > > >     container_of(ptr, typeof(*container), member)
-> > > > > > >
-> > > > > > > It does what you want, the argument order is the same as
-> > > > > > > container_of with the only difference being you name the
-> > > > > > > containing structure instead of having to specify its type.
-> > > > > >
-> > > > > > Not to incessantly bike shed on the naming, but I don't like
-> > > > > > cast_out, it's not very descriptive. And it has connotations of
-> > > > > > getting rid of something, which isn't really true.
-> > > > >
-> > > > > Um, I thought it was exactly descriptive: you're casting to the
-> > > > > outer container.  I thought about following the C++ dynamic casting
-> > > > > style, so out_cast(), but that seemed a bit pejorative.  What about
-> > > > > outer_cast()?
-> > > > >
-> > > > > > FWIW, I like the from_ part of the original naming, as it has
-> > > > > > some clues as to what is being done here. Why not just
-> > > > > > from_container()? That should immediately tell people what it
-> > > > > > does without having to look up the implementation, even before
-> > > > > > this becomes a part of the accepted coding norm.
-> > > > >
-> > > > > I'm not opposed to container_from() but it seems a little less
-> > > > > descriptive than outer_cast() but I don't really care.  I always
-> > > > > have to look up container_of() when I'm using it so this would just
-> > > > > be another macro of that type ...
-> > > > >
-> > > >
-> > > >  So far we have a few which have been suggested as replacement
-> > > > for from_tasklet()
-> > > >
-> > > > - out_cast() or outer_cast()
-> > > > - from_member().
-> > > > - container_from() or from_container()
-> > > >
-> > > > from_container() sounds fine, would trimming it a bit work? like
-> > > > from_cont().
-> > >
-> > > I'm fine with container_from().  It's the same form as container_of()
-> > > and I think we need urgent agreement to not stall everything else so
-> > > the most innocuous name is likely to get the widest acceptance.
-> > 
-> > Kees,
-> > 
-> >   Will you be  sending the newly proposed API to Linus? I have V2
-> > which uses container_from()
-> > ready to be sent out.
+On Wed, Aug 26, 2020 at 11:09:25AM -0400, Johannes Weiner wrote:
+> On Wed, Aug 19, 2020 at 07:48:48PM +0100, Matthew Wilcox (Oracle) wrote:
+> > There are only three callers remaining of find_get_entry().
+> > find_get_swap_page() is happy to get the head page instead of the subpage.
+> > Add find_subpage() calls to find_lock_entry() and pagecache_get_page()
+> > to avoid auditing all their callers.
 > 
-> I liked that James swapped the first two arguments so that it matches
-> container_of().  Plus it's nice that when you have:
+> I believe this would cause a subtle bug in memcg charge moving for pte
+> mapped huge pages. We currently skip over tail pages in the range
+> (they don't have page->mem_cgroup set) and account for the huge page
+> once from the headpage. After this change, we would see the headpage
+> and account for it 512 times (or whatever the number is on non-x86).
+
+Hmm ... so if you have the last 511 pages of a huge page mapped, you
+actually don't charge for it at all today?
+
+I think you're right that I'd introduce this bug, and so that needs to
+be fixed.
+
+> But that aside, I don't quite understand the intent.
 > 
-> 	struct whatever *foo = container_from(ptr, foo, member);
+> Before, all these functions simply return the base page at @index,
+> whether it's a regular page or a tail page.
 > 
-> Then it means that "ptr == &foo->member".
+> Afterwards, find_lock_entry(), find_get_page() et al still do, but
+> find_get_entry() returns headpage at @index & HPAGE_CACHE_INDEX_MASK.
+> 
+> Shouldn't we be consistent about how we handle huge pages when
+> somebody queries the tree for a given base page index?
+> 
+> [ Wouldn't that mean that e.g. find_get_swap_page() would return tail
+>   pages for regular files and head pages for shmem files? ]
 
-I'm a bit stalled right now -- the merge window was keeping me busy, and
-this week is the Linux Plumbers Conference. This is on my list, but I
-haven't gotten back around to it. If you want, feel free to send the
-container_from() patch; you might be able to unblock this faster than me
-right now. :)
+What I'd _like_ to do is convert all the callers to cope with tail
+pages never being returned from all the find_* functions.  That seems
+like a lot of disruption.
 
--Kees
+My intent in this series is to get all the find_*_entr{y,ies}
+functions to the point where they don't return tail pages.
+Also find_get_pages_tag() because tags are only set on head pages.
 
--- 
-Kees Cook
+This is generally what the callers want anyway.  There's even a hack
+in find_get_entries() in current to terminate early on finding a THP
+(see commit 71725ed10c40696dc6bdccf8e225815dcef24dba).  If I want
+to remove that, I need to do _something_ to not put all the subpages
+of a THP into the pagevec.
+
+So the new rule will be that find_*_entry() don't return tail pages but
+find_*_page() do.  With the full THP patchset in place, THPs become quite
+common, so bugs in this area will surface quickly instead of lingering
+for years and only popping out in rare circumstances.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
