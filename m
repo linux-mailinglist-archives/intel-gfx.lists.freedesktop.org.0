@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65D5E252FD7
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 15:29:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33533252FC3
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 15:28:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 478826EA61;
-	Wed, 26 Aug 2020 13:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C28F6EA5F;
+	Wed, 26 Aug 2020 13:28:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6895B6E391
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 13:28:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCF0F6EA69
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 13:28:28 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22244756-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22244757-1500050 
  for multiple; Wed, 26 Aug 2020 14:28:18 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Aug 2020 14:28:02 +0100
-Message-Id: <20200826132811.17577-30-chris@chris-wilson.co.uk>
+Date: Wed, 26 Aug 2020 14:28:03 +0100
+Message-Id: <20200826132811.17577-31-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200826132811.17577-1-chris@chris-wilson.co.uk>
 References: <20200826132811.17577-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 30/39] drm/i915/gt: Defer schedule_out until
- after the next dequeue
+Subject: [Intel-gfx] [PATCH 31/39] drm/i915/gt: Remove virtual breadcrumb
+ before transfer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,314 +45,108 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Inside schedule_out, we do extra work upon idling the context, such as
-updating the runtime, kicking off retires, kicking virtual engines.
-However, if we are in a series of processing single requests per
-contexts, we may find ourselves scheduling out the context, only to
-immediately schedule it back in during dequeue. This is just extra work
-that we can avoid if we keep the context marked as inflight across the
-dequeue. This becomes more significant later on for minimising virtual
-engine misses.
+The issue with stale virtual breadcrumbs remain. Now we have the problem
+that if the irq-signaler is still referencing the stale breadcrumb as we
+transfer it to a new sibling, the list becomes spaghetti. This is a very
+small window, but that doesn't stop it being hit infrequently. To
+prevent the lists being tangled (the iterator starting on one engine's
+b->signalers but walking onto another list), always decouple the virtual
+breadcrumb on schedule-out and make sure that the walker has stepped out
+of the lists.
+
+Otherwise, we end up corrupting the lists upon signaling:
+
+<4> [412.623150] list_add corruption. prev->next should be next (ffff888284a98470), but was dead000000000100. (prev=ffff8882586fb870).
+<4> [412.623167] WARNING: CPU: 7 PID: 0 at lib/list_debug.c:28 __list_add_valid+0x4d/0x70
+<4> [412.623169] Modules linked in: i915(+) vgem snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio mei_hdcp x86_pkg_temp_thermal ax88179_178a usbnet coretemp snd_intel_dspcfg mii snd_hda_codec crct10dif_pclmul crc32_pclmul snd_hwdep snd_hda_core ghash_clmulni_intel snd_pcm e1000e mei_me mei ptp pps_core prime_numbers intel_lpss_pci [last unloaded: i915]
+<4> [412.623191] CPU: 7 PID: 0 Comm: swapper/7 Tainted: G     U            5.9.0-rc2-CI-CI_DRM_8925+ #1
+<4> [412.623194] Hardware name: Intel Corporation Ice Lake Client Platform/IceLake Y LPDDR4x T4 RVP TLC, BIOS ICLSFWR1.R00.3212.A00.1905212112 05/21/2019
+<4> [412.623197] RIP: 0010:__list_add_valid+0x4d/0x70
+<4> [412.623200] Code: c3 48 89 d1 48 c7 c7 18 57 33 82 48 89 c2 e8 fa 78 b6 ff 0f 0b 31 c0 c3 48 89 c1 4c 89 c6 48 c7 c7 68 57 33 82 e8 e3 78 b6 ff <0f> 0b 31 c0 c3 48 89 f2 4c 89 c1 48 89 fe 48 c7 c7 b8 57 33 82 e8
+<4> [412.623202] RSP: 0018:ffffc90000280e18 EFLAGS: 00010086
+<4> [412.623205] RAX: 0000000000000000 RBX: ffff88828dbd8d00 RCX: 0000000000000105
+<4> [412.623208] RDX: 0000000000000105 RSI: ffffffff82324b63 RDI: 00000000ffffffff
+<4> [412.623210] RBP: ffff8882586fb870 R08: ffff88829a144998 R09: 00000000fffffffe
+<4> [412.623212] R10: 00000000c4bbeb58 R11: 00000000eb0f6cb0 R12: ffff888284a98428
+<4> [412.623215] R13: ffff88827d7db880 R14: ffff88827d7db848 R15: ffff888284a98470
+<4> [412.623217] FS:  0000000000000000(0000) GS:ffff88829c180000(0000) knlGS:0000000000000000
+<4> [412.623220] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [412.623222] CR2: 0000561612b6e6e0 CR3: 0000000005610002 CR4: 0000000000770ee0
+<4> [412.623224] PKRU: 55555554
+<4> [412.623227] Call Trace:
+<4> [412.623229]  <IRQ>
+<4> [412.623307]  i915_request_enable_breadcrumb+0x278/0x400 [i915]
+<4> [412.623391]  __i915_request_submit+0xca/0x2a0 [i915]
+<4> [412.623461]  __execlists_submission_tasklet+0x480/0x1830 [i915]
+<4> [412.623572]  execlists_submission_tasklet+0xc4/0x130 [i915]
+<4> [412.623585]  tasklet_action_common.isra.17+0x198/0x1d0
+<4> [412.623606]  __do_softirq+0xe0/0x497
+<4> [412.623619]  ? handle_fasteoi_irq+0x150/0x150
+<4> [412.623622]  asm_call_on_stack+0xf/0x20
+<4> [412.623630]  </IRQ>
+<4> [412.623634]  do_softirq_own_stack+0x73/0x90
+<4> [412.623645]  irq_exit_rcu+0xa9/0xb0
+<4> [412.623648]  common_interrupt+0xdd/0x210
+<4> [412.623652]  asm_common_interrupt+0x1e/0x40
+
+So far this has only been seen in our selftests that emphasize lots of
+fast sibling switches for the virtual engines.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_context_types.h |   4 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 121 +++++++++++-------
- 2 files changed, 80 insertions(+), 45 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c |  5 +++--
+ drivers/gpu/drm/i915/gt/intel_lrc.c         | 15 +++++++++++++++
+ 2 files changed, 18 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 52fa9c132746..10830eeab0f7 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -58,8 +58,8 @@ struct intel_context {
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index f5f6feed0fa6..5b84f51931d9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -461,15 +461,16 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
+ {
+ 	struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
+ 	struct intel_context *ce = rq->context;
++	unsigned long flags;
+ 	bool release;
  
- 	struct intel_engine_cs *engine;
- 	struct intel_engine_cs *inflight;
--#define intel_context_inflight(ce) ptr_mask_bits(READ_ONCE((ce)->inflight), 2)
--#define intel_context_inflight_count(ce) ptr_unmask_bits(READ_ONCE((ce)->inflight), 2)
-+#define intel_context_inflight(ce) ptr_mask_bits(READ_ONCE((ce)->inflight), 3)
-+#define intel_context_inflight_count(ce) ptr_unmask_bits(READ_ONCE((ce)->inflight), 3)
+ 	if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags))
+ 		return;
  
- 	struct i915_address_space *vm;
- 	struct i915_gem_context __rcu *gem_context;
+-	spin_lock(&ce->signal_lock);
++	spin_lock_irqsave(&ce->signal_lock, flags);
+ 	list_del_rcu(&rq->signal_link);
+ 	release = remove_signaling_context(b, ce);
+-	spin_unlock(&ce->signal_lock);
++	spin_unlock_irqrestore(&ce->signal_lock, flags);
+ 	if (release)
+ 		intel_context_put(ce);
+ 
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 8ea63957ae59..f89e4f62c88d 100644
+index f89e4f62c88d..6e57f30c80f0 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2051,19 +2051,6 @@ static void set_preempt_timeout(struct intel_engine_cs *engine,
- 		     active_preempt_timeout(engine, rq));
- }
- 
--static inline void clear_ports(struct i915_request **ports, int count)
--{
--	memset_p((void **)ports, NULL, count);
--}
--
--static inline void
--copy_ports(struct i915_request **dst, struct i915_request **src, int count)
--{
--	/* A memcpy_p() would be very useful here! */
--	while (count--)
--		WRITE_ONCE(*dst++, *src++); /* avoid write tearing */
--}
--
- static void execlists_dequeue(struct intel_engine_cs *engine)
+@@ -1387,6 +1387,21 @@ static inline void execlists_schedule_in(struct i915_request *rq, int idx)
+ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
  {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
-@@ -2411,22 +2398,38 @@ static void execlists_dequeue_irq(struct intel_engine_cs *engine)
- 	local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
- }
- 
--static void
--cancel_port_requests(struct intel_engine_execlists * const execlists)
-+static inline void clear_ports(struct i915_request **ports, int count)
-+{
-+	memset_p((void **)ports, NULL, count);
-+}
+ 	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
++	struct intel_engine_cs *engine = rq->engine;
 +
-+static inline void
-+copy_ports(struct i915_request **dst, struct i915_request **src, int count)
-+{
-+	/* A memcpy_p() would be very useful here! */
-+	while (count--)
-+		WRITE_ONCE(*dst++, *src++); /* avoid write tearing */
-+}
-+
-+static struct i915_request **
-+cancel_port_requests(struct intel_engine_execlists * const execlists,
-+		     struct i915_request **inactive)
- {
- 	struct i915_request * const *port;
++	/* Flush concurrent rcu iterators in signal_irq_work */
++	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags)) {
++		/*
++		 * After this point, the rq may be transferred to a new
++		 * sibling, so before we clear ce->inflight make sure that
++		 * the context has been removed from the b->signalers and
++		 * furthermore we need to make sure that the concurrent
++		 * iterator in signal_irq_work is no longer following
++		 * ce->signal_link.
++		 */
++		i915_request_cancel_breadcrumb(rq);
++		irq_work_sync(&engine->breadcrumbs->irq_work);
++	}
  
- 	for (port = execlists->pending; *port; port++)
--		execlists_schedule_out(*port);
-+		*inactive++ = *port;
- 	clear_ports(execlists->pending, ARRAY_SIZE(execlists->pending));
- 
- 	/* Mark the end of active before we overwrite *active */
- 	for (port = xchg(&execlists->active, execlists->pending); *port; port++)
--		execlists_schedule_out(*port);
-+		*inactive++ = *port;
- 	clear_ports(execlists->inflight, ARRAY_SIZE(execlists->inflight));
- 
- 	smp_wmb(); /* complete the seqlock for execlists_active() */
- 	WRITE_ONCE(execlists->active, execlists->inflight);
-+
-+	return inactive;
- }
- 
- static inline void
-@@ -2523,7 +2526,8 @@ static inline u64 csb_read(u64 * const csb)
- 	return entry;
- }
- 
--static void process_csb(struct intel_engine_cs *engine)
-+static struct i915_request **
-+process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
- 	u64 * const buf = execlists->csb_status;
-@@ -2552,7 +2556,7 @@ static void process_csb(struct intel_engine_cs *engine)
- 	head = execlists->csb_head;
- 	tail = READ_ONCE(*execlists->csb_write);
- 	if (unlikely(head == tail))
--		return;
-+		return inactive;
- 
- 	/*
- 	 * We will consume all events from HW, or at least pretend to.
-@@ -2632,7 +2636,7 @@ static void process_csb(struct intel_engine_cs *engine)
- 			/* cancel old inflight, prepare for switch */
- 			trace_ports(execlists, "preempted", old);
- 			while (*old)
--				execlists_schedule_out(*old++);
-+				*inactive++ = *old++;
- 
- 			/* switch pending to inflight */
- 			GEM_BUG_ON(!assert_pending_valid(execlists, "promote"));
-@@ -2691,7 +2695,7 @@ static void process_csb(struct intel_engine_cs *engine)
- 					     regs[CTX_RING_TAIL]);
- 			}
- 
--			execlists_schedule_out(*execlists->active++);
-+			*inactive++ = *execlists->active++;
- 
- 			GEM_BUG_ON(execlists->active - execlists->inflight >
- 				   execlists_num_ports(execlists));
-@@ -2712,6 +2716,15 @@ static void process_csb(struct intel_engine_cs *engine)
- 	 * invalidation before.
- 	 */
- 	invalidate_csb_entries(&buf[0], &buf[num_entries - 1]);
-+
-+	return inactive;
-+}
-+
-+static void post_process_csb(struct i915_request **port,
-+			     struct i915_request **last)
-+{
-+	while (port != last)
-+		execlists_schedule_out(*port++);
- }
- 
- static void __execlists_hold(struct i915_request *rq)
-@@ -2982,8 +2995,8 @@ active_context(struct intel_engine_cs *engine, u32 ccid)
- 	for (port = el->active; (rq = *port); port++) {
- 		if (rq->context->lrc.ccid == ccid) {
- 			ENGINE_TRACE(engine,
--				     "ccid found at active:%zd\n",
--				     port - el->active);
-+				     "ccid:%x found at active:%zd\n",
-+				     ccid, port - el->active);
- 			return rq;
- 		}
- 	}
-@@ -2991,8 +3004,8 @@ active_context(struct intel_engine_cs *engine, u32 ccid)
- 	for (port = el->pending; (rq = *port); port++) {
- 		if (rq->context->lrc.ccid == ccid) {
- 			ENGINE_TRACE(engine,
--				     "ccid found at pending:%zd\n",
--				     port - el->pending);
-+				     "ccid:%x found at pending:%zd\n",
-+				     ccid, port - el->pending);
- 			return rq;
- 		}
- 	}
-@@ -3110,8 +3123,11 @@ static bool preempt_timeout(const struct intel_engine_cs *const engine)
- static void execlists_submission_tasklet(unsigned long data)
- {
- 	struct intel_engine_cs * const engine = (struct intel_engine_cs *)data;
-+	struct i915_request *post[2 * EXECLIST_MAX_PORTS];
-+	struct i915_request **inactive;
- 
--	process_csb(engine);
-+	inactive = process_csb(engine, post);
-+	GEM_BUG_ON(inactive - post > ARRAY_SIZE(post));
- 
- 	if (unlikely(preempt_timeout(engine)))
- 		engine->execlists.error_interrupt |= ERROR_PREEMPT;
-@@ -3135,6 +3151,8 @@ static void execlists_submission_tasklet(unsigned long data)
- 
- 	if (!engine->execlists.pending[0])
- 		execlists_dequeue_irq(engine);
-+
-+	post_process_csb(post, inactive);
- }
- 
- static void __execlists_kick(struct intel_engine_execlists *execlists)
-@@ -4065,8 +4083,6 @@ static void enable_execlists(struct intel_engine_cs *engine)
- 	ENGINE_POSTING_READ(engine, RING_HWS_PGA);
- 
- 	enable_error_interrupt(engine);
--
--	engine->context_tag = GENMASK(BITS_PER_LONG - 2, 0);
- }
- 
- static bool unexpected_starting_state(struct intel_engine_cs *engine)
-@@ -4155,22 +4171,29 @@ static void __execlists_reset_reg_state(const struct intel_context *ce,
- 	__reset_stop_ring(regs, engine);
- }
- 
--static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
-+static struct i915_request **reset_csb(struct intel_engine_cs *engine,
-+				       struct i915_request **inactive)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
--	struct intel_context *ce;
--	struct i915_request *rq;
--	u32 head;
- 
- 	mb(); /* paranoia: read the CSB pointers from after the reset */
- 	clflush(execlists->csb_write);
- 	mb();
- 
--	process_csb(engine); /* drain preemption events */
-+	inactive = process_csb(engine, inactive); /* drain preemption events */
- 
- 	/* Following the reset, we need to reload the CSB read/write pointers */
- 	reset_csb_pointers(engine);
- 
-+	return inactive;
-+}
-+
-+static void execlists_reset_active(struct intel_engine_cs *engine, bool stalled)
-+{
-+	struct intel_context *ce;
-+	struct i915_request *rq;
-+	u32 head;
-+
- 	/*
- 	 * Save the currently executing context, even if we completed
- 	 * its request, it was still running at the time of the
-@@ -4178,7 +4201,7 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
- 	 */
- 	rq = active_context(engine, engine->execlists.reset_ccid);
- 	if (!rq)
--		goto unwind;
-+		return;
- 
- 	ce = rq->context;
- 	GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
-@@ -4241,11 +4264,20 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
- 	__execlists_reset_reg_state(ce, engine);
- 	__execlists_update_reg_state(ce, engine, head);
- 	ce->lrc.desc |= CTX_DESC_FORCE_RESTORE; /* paranoid: GPU was reset! */
-+}
- 
--unwind:
--	/* Push back any incomplete requests for replay after the reset. */
--	cancel_port_requests(execlists);
--	__unwind_incomplete_requests(engine);
-+static void execlists_reset_csb(struct intel_engine_cs *engine, bool stalled)
-+{
-+	struct intel_engine_execlists * const execlists = &engine->execlists;
-+	struct i915_request *post[2 * EXECLIST_MAX_PORTS];
-+	struct i915_request **inactive;
-+
-+	inactive = reset_csb(engine, post);
-+
-+	execlists_reset_active(engine, true);
-+
-+	inactive = cancel_port_requests(execlists, inactive);
-+	post_process_csb(post, inactive);
- }
- 
- static void execlists_reset_rewind(struct intel_engine_cs *engine, bool stalled)
-@@ -4254,10 +4286,12 @@ static void execlists_reset_rewind(struct intel_engine_cs *engine, bool stalled)
- 
- 	ENGINE_TRACE(engine, "\n");
- 
--	spin_lock_irqsave(&engine->active.lock, flags);
--
--	__execlists_reset(engine, stalled);
-+	/* Process the csb, find the guilty context and throw away */
-+	execlists_reset_csb(engine, stalled);
- 
-+	/* Push back any incomplete requests for replay after the reset. */
-+	spin_lock_irqsave(&engine->active.lock, flags);
-+	__unwind_incomplete_requests(engine);
- 	spin_unlock_irqrestore(&engine->active.lock, flags);
- }
- 
-@@ -4292,9 +4326,9 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
- 	 * submission's irq state, we also wish to remind ourselves that
- 	 * it is irq state.)
- 	 */
--	spin_lock_irqsave(&engine->active.lock, flags);
-+	execlists_reset_csb(engine, true);
- 
--	__execlists_reset(engine, true);
-+	spin_lock_irqsave(&engine->active.lock, flags);
- 
- 	/* Mark all executing requests as skipped. */
- 	list_for_each_entry(rq, &engine->active.requests, sched.link)
-@@ -5120,6 +5154,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
- 	else
- 		execlists->csb_size = GEN11_CSB_ENTRIES;
- 
-+	engine->context_tag = GENMASK(BITS_PER_LONG - 2, 0);
- 	if (INTEL_GEN(engine->i915) >= 11) {
- 		execlists->ccid |= engine->instance << (GEN11_ENGINE_INSTANCE_SHIFT - 32);
- 		execlists->ccid |= engine->class << (GEN11_ENGINE_CLASS_SHIFT - 32);
+ 	if (READ_ONCE(ve->request))
+ 		tasklet_hi_schedule(&ve->base.execlists.tasklet);
 -- 
 2.20.1
 
