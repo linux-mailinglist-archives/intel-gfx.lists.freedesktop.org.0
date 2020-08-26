@@ -1,44 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45A052527C9
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 08:51:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE162252828
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 09:05:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5EE26EA24;
-	Wed, 26 Aug 2020 06:51:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5120C6EA26;
+	Wed, 26 Aug 2020 07:05:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D0986EA1E;
- Wed, 26 Aug 2020 06:51:27 +0000 (UTC)
-IronPort-SDR: dQiwOQn6Nuz5acPb/V0Zu6n/MH+JSfwHS6qbs2gDSuMpGZNhdv8TRbDN89nN+T5RruzMoJ7s7c
- oguKhdKkVQ8w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9724"; a="220505414"
-X-IronPort-AV: E=Sophos;i="5.76,354,1592895600"; d="scan'208";a="220505414"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92EF66E0F3;
+ Wed, 26 Aug 2020 07:05:11 +0000 (UTC)
+IronPort-SDR: Oj7nKL7pv5oJFkcRVWg9TlPzYyMP1SCd1lDdVDvw0cYA/7dUyf3rsq1BLZlsE0Did/l3n9qSLy
+ XzZ8zQIPQ5vA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9724"; a="153668932"
+X-IronPort-AV: E=Sophos;i="5.76,354,1592895600"; d="scan'208";a="153668932"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2020 23:51:26 -0700
-IronPort-SDR: 18Kq/bo3KG+2JklofckLvITM98eBKy6PzKdqzNhgUaZo6F7C1RgDNcRA+WafVqssMiI4sPbMmj
- JzDOdx2sfeiQ==
-X-IronPort-AV: E=Sophos;i="5.76,354,1592895600"; d="scan'208";a="474658678"
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2020 00:05:11 -0700
+IronPort-SDR: t9zAxUm+0FHTf119H7H8PV8/d7t15hFwVjWcUpPmVuSJw246+3dLtlSGJIJdZMZ+UVL+wne0mJ
+ l9sOlDzxYKFg==
+X-IronPort-AV: E=Sophos;i="5.76,354,1592895600"; d="scan'208";a="474661934"
 Received: from jguenthe-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.32.223])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2020 23:51:19 -0700
+ 26 Aug 2020 00:05:04 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-In-Reply-To: <20200825195027.74681-10-lyude@redhat.com>
+In-Reply-To: <20200825195027.74681-17-lyude@redhat.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20200825195027.74681-1-lyude@redhat.com>
- <20200825195027.74681-10-lyude@redhat.com>
-Date: Wed, 26 Aug 2020 09:51:16 +0300
-Message-ID: <87r1rt6gt7.fsf@intel.com>
+ <20200825195027.74681-17-lyude@redhat.com>
+Date: Wed, 26 Aug 2020 10:05:01 +0300
+Message-ID: <87o8mx6g6a.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC v4 09/20] drm/i915/dp: Extract drm_dp_has_mst()
+Subject: Re: [Intel-gfx] [RFC v4 16/20] drm/i915/dp: Extract
+ drm_dp_get_sink_count()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,100 +62,122 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 25 Aug 2020, Lyude Paul <lyude@redhat.com> wrote:
-> Just a tiny drive-by cleanup, we can consolidate i915's code for
-> checking for MST support into a helper to be shared across drivers.
+> And of course, we'll also need to read the sink count from other drivers
+> as well if we're checking whether or not it's supported. So, let's
+> extract the code for this into another helper.
+>
+> v2:
+> * Fix drm_dp_dpcd_readb() ret check
+> * Add back comment and move back sink_count assignment in intel_dp_get_dpcd()
 >
 > Signed-off-by: Lyude Paul <lyude@redhat.com>
 > Reviewed-by: Sean Paul <sean@poorly.run>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 18 ++----------------
->  include/drm/drm_dp_mst_helper.h         | 22 ++++++++++++++++++++++
->  2 files changed, 24 insertions(+), 16 deletions(-)
+>  drivers/gpu/drm/drm_dp_helper.c         | 22 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++------
+>  include/drm/drm_dp_helper.h             |  1 +
+>  3 files changed, 28 insertions(+), 6 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 79c27f91f42c0..1e29d3a012856 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4699,20 +4699,6 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
->  	return true;
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+> index 863e0babc1903..67ad05eb05b7e 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -736,6 +736,28 @@ bool drm_dp_has_sink_count(struct drm_connector *connector,
 >  }
->  
-> -static bool
-> -intel_dp_sink_can_mst(struct intel_dp *intel_dp)
-> -{
-> -	u8 mstm_cap;
-> -
-> -	if (intel_dp->dpcd[DP_DPCD_REV] < 0x12)
-> -		return false;
-> -
-> -	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_MSTM_CAP, &mstm_cap) != 1)
-> -		return false;
-> -
-> -	return mstm_cap & DP_MST_CAP;
-> -}
-> -
->  static bool
->  intel_dp_can_mst(struct intel_dp *intel_dp)
->  {
-> @@ -4720,7 +4706,7 @@ intel_dp_can_mst(struct intel_dp *intel_dp)
->  
->  	return i915->params.enable_dp_mst &&
->  		intel_dp->can_mst &&
-> -		intel_dp_sink_can_mst(intel_dp);
-> +		drm_dp_has_mst(&intel_dp->aux, intel_dp->dpcd);
->  }
->  
->  static void
-> @@ -4729,7 +4715,7 @@ intel_dp_configure_mst(struct intel_dp *intel_dp)
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	struct intel_encoder *encoder =
->  		&dp_to_dig_port(intel_dp)->base;
-> -	bool sink_can_mst = intel_dp_sink_can_mst(intel_dp);
-> +	bool sink_can_mst = drm_dp_has_mst(&intel_dp->aux, intel_dp->dpcd);
->  
->  	drm_dbg_kms(&i915->drm,
->  		    "[ENCODER:%d:%s] MST support: port: %s, sink: %s, modparam: %s\n",
-> diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
-> index 8b9eb4db3381c..2d8983a713e8c 100644
-> --- a/include/drm/drm_dp_mst_helper.h
-> +++ b/include/drm/drm_dp_mst_helper.h
-> @@ -911,4 +911,26 @@ __drm_dp_mst_state_iter_get(struct drm_atomic_state *state,
->  	for ((__i) = 0; (__i) < (__state)->num_private_objs; (__i)++) \
->  		for_each_if(__drm_dp_mst_state_iter_get((__state), &(mgr), NULL, &(new_state), (__i)))
+>  EXPORT_SYMBOL(drm_dp_has_sink_count);
 >  
 > +/**
-> + * drm_dp_has_mst() - check whether or not a sink supports MST
+> + * drm_dp_get_sink_count() - Retrieve the sink count for a given sink
+
+From the department of bikeshedding...
+
+Should we have a naming scheme where it's obvious whether a function
+will do DPCD access, or just shuffle existing data?
+
+For example, drm_dp_read_foo() for anything with DPCD access
+vs. drm_dp_get_foo() or even simpler for anything that only processes
+pre-read data?
+
 > + * @aux: The DP AUX channel to use
-> + * @dpcd: A cached copy of the DPCD capabilities for this sink
 > + *
-> + * Returns: %True if the sink supports MST, %false otherwise
+> + * Returns: The current sink count reported by @aux, or a negative error code
+> + * otherwise.
 > + */
-> +static inline bool
-
-I've become more and more critical of accumulating a lot of inlines in
-headers. Do we really want this in the header?
-
-> +drm_dp_has_mst(struct drm_dp_aux *aux,
-> +	       const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+> +int drm_dp_get_sink_count(struct drm_dp_aux *aux)
 > +{
-> +	u8 mstm_cap;
+> +	u8 count;
+> +	int ret;
 > +
-> +	if (dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
-> +		return false;
-> +
-> +	if (drm_dp_dpcd_readb(aux, DP_MSTM_CAP, &mstm_cap) != 1)
-> +		return false;
-> +
-> +	return !!(mstm_cap & DP_MST_CAP);
+> +	ret = drm_dp_dpcd_readb(aux, DP_SINK_COUNT, &count);
+> +	if (ret < 0)
+> +		return ret;
+> +	if (ret != 1)
+> +		return -EIO;
 
-The !! is superfluous.
+Makes me wonder if that shouldn't be at drm_dp_dpcd_read() level, for
+reads returning 0..len-1 bytes. Not necessarily part of this series, but
+seems silly to set a precedent to start handling that return value all
+over the place.
 
 BR,
 Jani.
 
-> +}
 > +
->  #endif
+> +	return DP_GET_SINK_COUNT(count);
+> +}
+> +EXPORT_SYMBOL(drm_dp_get_sink_count);
+> +
+>  /*
+>   * I2C-over-AUX implementation
+>   */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 35a4779a442e2..4337321a3be4f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4648,6 +4648,8 @@ intel_dp_has_sink_count(struct intel_dp *intel_dp)
+>  static bool
+>  intel_dp_get_dpcd(struct intel_dp *intel_dp)
+>  {
+> +	int ret;
+> +
+>  	if (!intel_dp_read_dpcd(intel_dp))
+>  		return false;
+>  
+> @@ -4664,11 +4666,8 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+>  	}
+>  
+>  	if (intel_dp_has_sink_count(intel_dp)) {
+> -		u8 count;
+> -		ssize_t r;
+> -
+> -		r = drm_dp_dpcd_readb(&intel_dp->aux, DP_SINK_COUNT, &count);
+> -		if (r < 1)
+> +		ret = drm_dp_get_sink_count(&intel_dp->aux);
+> +		if (ret < 0)
+>  			return false;
+>  
+>  		/*
+> @@ -4676,7 +4675,7 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+>  		 * a member variable in intel_dp will track any changes
+>  		 * between short pulse interrupts.
+>  		 */
+> -		intel_dp->sink_count = DP_GET_SINK_COUNT(count);
+> +		intel_dp->sink_count = ret;
+>  
+>  		/*
+>  		 * SINK_COUNT == 0 and DOWNSTREAM_PORT_PRESENT == 1 implies that
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> index a1413a531eaf4..0c141fc81aaa8 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1635,6 +1635,7 @@ struct drm_dp_desc;
+>  bool drm_dp_has_sink_count(struct drm_connector *connector,
+>  			   const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+>  			   const struct drm_dp_desc *desc);
+> +int drm_dp_get_sink_count(struct drm_dp_aux *aux);
+>  
+>  void drm_dp_remote_aux_init(struct drm_dp_aux *aux);
+>  void drm_dp_aux_init(struct drm_dp_aux *aux);
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
