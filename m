@@ -1,41 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE7A253251
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 16:54:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62787253303
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 17:10:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0B916E135;
-	Wed, 26 Aug 2020 14:54:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA6E86E992;
+	Wed, 26 Aug 2020 15:10:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D97A36E135
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 14:54:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=ZzsUdze8ZxaoitbjHVszLwTb08J5c1Hia45JcEtljE4=; b=jgWPg7Yh9RXA+VJEzrAs7yZ/cv
- +6tN1LkkGojOebzqvD2JVawUFjCGG8yz0u3rvFz6guuz0w3WLWXCE2k+oUxZZAW0Pw8Z4yBYImyEb
- eDFlYc5+atk/9+/V+mG6AfdNRYL1RsPPEgmLItcpiUa60+BoQv8XhlBO6Mg9Y50S1qMzHBW7biAD6
- IKG4ppnZvdtgSSnPglew/3F6cvM+/E0QB+NL0Bz4Cd/IsDMhZIcs2xcP6T3HvkjVevxf54/EddYV7
- 1s2e3+aaPq/jvT8+AYFsONTFGnqNFl/zEhPqPGbwgccPvl9AACur8zEmREPk7vnlcEvygyUxxt5YY
- lRKWXq3Q==;
-Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kAwoY-0001wl-7b; Wed, 26 Aug 2020 14:54:14 +0000
-Date: Wed, 26 Aug 2020 15:54:14 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: Johannes Weiner <hannes@cmpxchg.org>
-Message-ID: <20200826145414.GS17456@casper.infradead.org>
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
+ [IPv6:2607:f8b0:4864:20::841])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE7236E992
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 15:10:41 +0000 (UTC)
+Received: by mail-qt1-x841.google.com with SMTP id t20so1599376qtr.8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 08:10:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cmpxchg-org.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=vg8N6XsbIE7lvZX/pCZOFe+OtpGR0YWlM+DD8uHDUGQ=;
+ b=VAOKpGG4Zi1L0nHk3pQChVy6LRCqLG0qD/7fwLdWBi9XbsPa+O7Uq2p7C7i1gtvxuF
+ yUiWcAjIIr7W3J71zlqtWD7t2XecOSMv4Z8Vo9D22AEnwSYBdhp9bLlcsTyqyVT0PkOm
+ 6lQsFFPn4vjC5shx4wLOdylw9FIQcFWlFd3ZTCqMXpqDORJ6S0UXlw3Q0fAoeya9nGcK
+ 3KyT/337ybzoMJsqTLWcEEqoUj/7b0O+aIgq4feNby+j5A3AAgkMjCFhu93HxCQ+qRgQ
+ M0iItYBDqEZWD0cxnCQ3JfuMG9LqTb1O1DvejdQunzJkmhaRRPNY6924yuSU0CZRbhW2
+ Mkqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=vg8N6XsbIE7lvZX/pCZOFe+OtpGR0YWlM+DD8uHDUGQ=;
+ b=j8eGkurGuO9a1tiewZ6EUt5ZUIP3KeYrU21uws5Or9lX5zqvnUHlDyRvCWPsgc6u4S
+ BoeBZD1Zw8M+PJNc9jH5mDurke1kG0RJ1SLnplVPG4w+tgmvxKdGxOSSL/KWjSAntSQn
+ CfzQ714epsX3TEIdou/iUN/22IV39FD4ZrSeXw7X88hx/FHMG2FVg15QIHfBs481Fhu9
+ Zn4CTXfDA3KBMuWRrwlzOi+69uCsQkIT7XYoqFvhX2uQmSzGir72Y8eRKX+WVZSfa5us
+ o+aWLy8BLrJPHYT51zbB43nRDsEHZASoMV3fo/Vof8mdHYkx302s6QlieohyxfHQwpKa
+ uWvw==
+X-Gm-Message-State: AOAM533OXRXuWttPlyYhhROEFj1w+F87C94AKA8COg0RA0UksXJE2+fN
+ 0PBwNbE3evQi9babwxzbTJa/bw==
+X-Google-Smtp-Source: ABdhPJyt5sPyNEvrEG8BF3rvteWdGY+/4wN0nkQCox0ECjk0O8GV0igfnvyvxHfWRXyOyeHkjwh8dw==
+X-Received: by 2002:ac8:1ab3:: with SMTP id x48mr3056695qtj.153.1598454640731; 
+ Wed, 26 Aug 2020 08:10:40 -0700 (PDT)
+Received: from localhost ([2620:10d:c091:480::1:f52c])
+ by smtp.gmail.com with ESMTPSA id e21sm1802330qkl.88.2020.08.26.08.10.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 26 Aug 2020 08:10:40 -0700 (PDT)
+Date: Wed, 26 Aug 2020 11:09:25 -0400
+From: Johannes Weiner <hannes@cmpxchg.org>
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+Message-ID: <20200826150925.GE988805@cmpxchg.org>
 References: <20200819184850.24779-1-willy@infradead.org>
- <20200819184850.24779-3-willy@infradead.org>
- <20200826142002.GA988805@cmpxchg.org>
+ <20200819184850.24779-7-willy@infradead.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200826142002.GA988805@cmpxchg.org>
-Subject: Re: [Intel-gfx] [PATCH 2/8] mm: Use find_get_swap_page in memcontrol
+In-Reply-To: <20200819184850.24779-7-willy@infradead.org>
+Subject: Re: [Intel-gfx] [PATCH 6/8] mm: Convert find_get_entry to return
+ the head page
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,43 +81,31 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 26, 2020 at 10:20:02AM -0400, Johannes Weiner wrote:
-> On Wed, Aug 19, 2020 at 07:48:44PM +0100, Matthew Wilcox (Oracle) wrote:
-> > +	return find_get_swap_page(vma->vm_file->f_mapping,
-> > +			linear_page_index(vma, addr));
-> 
-> The refactor makes sense to me, but the name is confusing. We're not
-> looking for a swap page, we're primarily looking for a file page in
-> the page cache mapping that's handed in. Only in the special case
-> where it's a shmem mapping and there is a swap entry do we consult the
-> auxiliary swap cache.
-> 
-> How about find_get_page_or_swapcache()? find_get_page_shmemswap()?
-> Maybe you have a better idea. It's a fairly specialized operation that
-> isn't widely used, so a longer name isn't a bad thing IMO.
+On Wed, Aug 19, 2020 at 07:48:48PM +0100, Matthew Wilcox (Oracle) wrote:
+> There are only three callers remaining of find_get_entry().
+> find_get_swap_page() is happy to get the head page instead of the subpage.
+> Add find_subpage() calls to find_lock_entry() and pagecache_get_page()
+> to avoid auditing all their callers.
 
-Yeah, I had trouble with the naming here too.
+I believe this would cause a subtle bug in memcg charge moving for pte
+mapped huge pages. We currently skip over tail pages in the range
+(they don't have page->mem_cgroup set) and account for the huge page
+once from the headpage. After this change, we would see the headpage
+and account for it 512 times (or whatever the number is on non-x86).
 
-get_page_even_from_swap()
-find_get_shmem_page()
+But that aside, I don't quite understand the intent.
 
-or maybe refactor the whole thing:
+Before, all these functions simply return the base page at @index,
+whether it's a regular page or a tail page.
 
-	struct page *page = find_get_entry(mapping, index);
-	page = find_swap_page(mapping, page);
+Afterwards, find_lock_entry(), find_get_page() et al still do, but
+find_get_entry() returns headpage at @index & HPAGE_CACHE_INDEX_MASK.
 
-struct page *find_swap_page(struct address_space *mapping, struct page *page)
-{
-	swp_entry_t swp;
-	struct swap_info_struct *si;
+Shouldn't we be consistent about how we handle huge pages when
+somebody queries the tree for a given base page index?
 
-	if (!xa_is_value(page))
-		return page;
-	if (!shmem_mapping(mapping))
-		return NULL;
-
-	...
-}
+[ Wouldn't that mean that e.g. find_get_swap_page() would return tail
+  pages for regular files and head pages for shmem files? ]
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
