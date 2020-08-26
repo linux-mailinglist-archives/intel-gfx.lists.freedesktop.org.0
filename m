@@ -2,31 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BCF2253928
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 22:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94995253938
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 22:43:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BABB6EADA;
-	Wed, 26 Aug 2020 20:40:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68C706E418;
+	Wed, 26 Aug 2020 20:43:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 94DE76E418;
- Wed, 26 Aug 2020 20:40:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7BB15A011C;
- Wed, 26 Aug 2020 20:40:05 +0000 (UTC)
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 327346E418
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 20:43:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=skogtun.org
+ ; s=ds201912;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=ixkHCRJdIC6h9PWnFkCPzplR0jeUxkvYwD5QjYbVoF0=; b=CqgEgv/nQzM/0XqmWMa9fHRPLL
+ ++EZK+dSb+K5QZTHM5jes/FWNLVecjz198HoMjtleZV251gMMoFrH6fYYBSGcwTrcCqYtCRMGk2M3
+ X5w16YZWNEenf/lTOgcHYU0J/75fLOyHpXVrij/VeEfuh4bLzXUV5C45Mx4lKnx6rr0x/N+s6Axhx
+ xcA0jOO2DclpWPp3klx5U2BbCVoW1rre1DJvAUUAVuvuJoSo0Ftl+RigjLuw4TgdNCqIzjYJfX0us
+ 1dyOd58y+FURIeQkLSx+ddjLbGfS2ZkdmisJK3MqRaZPa6FYQJxjR8we//GnPYtPPvjT6zvqf/MVg
+ Yyo4vg+Q==;
+Received: from [2a01:79c:cebf:7fb0:de97:df61:fecc:46bb] (port=56230)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ (Exim 4.92) (envelope-from <harald@skogtun.org>)
+ id 1kB2Gb-0006vA-3x; Wed, 26 Aug 2020 22:43:33 +0200
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200826132811.17577-1-chris@chris-wilson.co.uk>
+From: Harald Arnesen <harald@skogtun.org>
+Message-ID: <bb7583d9-a519-60cc-84b3-56de69a6ac21@skogtun.org>
+Date: Wed, 26 Aug 2020 22:43:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Wed, 26 Aug 2020 20:40:05 -0000
-Message-ID: <159847440547.21252.17682522097052448642@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200826190657.18283-1-manasi.d.navare@intel.com>
-In-Reply-To: <20200826190657.18283-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv2=2C1/4=5D_drm/i915/display/dp=3A_Atta?=
- =?utf-8?q?ch_and_set_drm_connector_VRR_property_=28rev2=29?=
+In-Reply-To: <20200826132811.17577-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 01/39] drm/i915/gem: Avoid implicit vmap for
+ highmem on x86-32
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,59 +54,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Chris Wilson [26.08.2020 15:27]:
 
-Series: series starting with [v2,1/4] drm/i915/display/dp: Attach and set drm connector VRR property (rev2)
-URL   : https://patchwork.freedesktop.org/series/81081/
-State : warning
+> On 32b, highmem uses a finite set of indirect PTE (i.e. vmap) to provide
+> virtual mappings of the high pages. As these are finite, map_new_virtual()
+> must wait for some other kmap() to finish when it runs out. If we map a
+> large number of objects, there is no method for it to tell us to release
+> the mappings, and we deadlock.
+> 
+> However, if we make an explicit vmap of the page, that uses a larger
+> vmalloc arena, and also has the ability to tell us to release unwanted
+> mappings. Most importantly, it will fail and propagate an error instead
+> of waiting forever.
+> 
+> Fixes: fb8621d3bee8 ("drm/i915: Avoid allocating a vmap arena for a single page") #x86-32
+> References: e87666b52f00 ("drm/i915/shrinker: Hook up vmap allocation failure notifier")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Harald Arnesen <harald@skogtun.org>
+> Cc: <stable@vger.kernel.org> # v4.7+
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1311:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-
-
+Sorry, doesn't help on my machine (Thinkpad T520).
+-- 
+Hilsen Harald
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
