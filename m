@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99F72253138
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 16:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09FEF253148
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 16:28:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2B76E9AB;
-	Wed, 26 Aug 2020 14:25:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D30B96E141;
+	Wed, 26 Aug 2020 14:28:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com
- [IPv6:2607:f8b0:4864:20::f41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D27516E9AB
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 14:25:43 +0000 (UTC)
-Received: by mail-qv1-xf41.google.com with SMTP id r19so761457qvw.11
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 07:25:43 -0700 (PDT)
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
+ [IPv6:2607:f8b0:4864:20::743])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3DAC6EA57
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 14:28:19 +0000 (UTC)
+Received: by mail-qk1-x743.google.com with SMTP id o12so1957770qki.13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 07:28:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cmpxchg-org.20150623.gappssmtp.com; s=20150623;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=0MQzhYw1eFCZ4OasAAPt/4uM+WwEYftpqDc/VYHMtbk=;
- b=AEeeIKetXtIdWWb5SAUNf0CT75v612rlaNccc1LnuJpBb5OvgTvnreoT4A4OjAHh83
- 2gkDSfW8afxE84LI039FqJeIhxV2oGZ4RnkHwrgT7gaJY5kFVxvgD7z3kcBB0nmwawYl
- CS15Jy0Be3rJh0nkvXUGExE957xE1b+7UhD8hCHGOAkgpPAPwOWMKzZ3o/gby8vQ+sfN
- wDB5+JA+w8e/Hdgudw8JPIy+J6slyE1vtbucRIPeRAxApuJujob6n7+1FX7GzcKFLkOs
- Chs9V5WR7ttQDJxLdP5QRuGU/ZbDFDC5QqvZOLj2rWLfNycVtJZza+7sI/jmL4cSLtEa
- UEUQ==
+ bh=xk5PuaZ3h09SHfotxUuVEcyrelgIx31zSBn5gXVN9IM=;
+ b=OF5msf8xUCmN3Dyr5IsRi7XjXqiObhM2vxPE0Wx6z73yQzocQZyXZsVr5xG0GxVewc
+ 8mLHzkVTThC3XbmKu2Oa0VF7cELOHQSCp/cqw+5vpnsG3VZHJvXAr+JOvrRE6R63MecR
+ 5eKN8lU7SEwLqjplk8sot+PoejbjUxEv8shqxLgH73nW3b2ndtpOW1dPSVhhoQHC5XxK
+ PdD3gTbsv7nty7LeKQllTit9Ov259nDQt7vZU9yH1d6KPkehzqy90/rxUJUFDOLY8VkC
+ R2+yVQgS7FhIexvx3CAo8IWgUcOwpwxqj9aIgTPNL0TCgX8H7T0yWCtFyDa7/BtXGVhx
+ sMNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=0MQzhYw1eFCZ4OasAAPt/4uM+WwEYftpqDc/VYHMtbk=;
- b=Q18eAH8wPZ3o0oscHlE80dj93BqshNIZUogRrZfCLMVRtPH9jTLXJMs87dD+ihFeyL
- LgiZkVyoUYDHljkcc8KCzc17XfvPUfxlf2iVbAKggoKxr2WPU96KFwg4S4mzwwCHdIQf
- i2D9AFyVh3LKy3/JC4g83ZcSDk/Ova3S3jtpBNc6v+MzwM34h45vq1HZz0GDSJyU3Fbs
- lnOnvhBYuzG6IFoFMqXt8nKKM6vsN83L5WwGMEPXFV+v049DrN9gpGRUInmRZbqgkQhN
- +Y1WcRI0eFnm7eD6KqEiBIem8/tHNBUXH6ORrDk5C1Zos80EHSVucf5PjC2dUf8T6j0i
- zt2A==
-X-Gm-Message-State: AOAM5319NV2pDKCCSqoeoi/or0S5CQTnvSwqQCjaJiwuFH0zD6hs/39t
- 4UpRo2a6eG1NIp5/7cdztSVNPg==
-X-Google-Smtp-Source: ABdhPJyT1CcTFQngIw1LDN+6nfpS4iP5F+zti+vFgyKwmJgBJWLjcNUPyeRDliUrfesVkOYVF2X/xA==
-X-Received: by 2002:a0c:ea21:: with SMTP id t1mr14182769qvp.62.1598451942396; 
- Wed, 26 Aug 2020 07:25:42 -0700 (PDT)
-Received: from localhost ([2620:10d:c091:480::1:67b9])
- by smtp.gmail.com with ESMTPSA id a25sm2076443qtd.8.2020.08.26.07.25.41
+ bh=xk5PuaZ3h09SHfotxUuVEcyrelgIx31zSBn5gXVN9IM=;
+ b=q/+QXANwNGqIETwU2gWGjorbw7yyVZRr62OaBMm7zPfMe4+j1luTyLPRH3Ec6oTplN
+ LTsVUFmNW3LqoGYJJDlJDqE0tIg26ZejmKW2sVluVHI2L+Vk++eVjf/lj1j6FO7gaUp8
+ ag31sR0tOW8q1gbMszvJOgFWi7pXp52r1ylcxOTJm+T79bg73R3pLWk9M+U/PzasFYCb
+ /M+fkqiANUfW78jnTP2lwx8P2Mlh55KFJtgaYBewoz5oHYHpeS2M1RZFQ+abDol105hL
+ 9hKcDBBrgqDY6ovSk+3b+A/awI9Yh1Dl++FS0QNc+gI2HZJEoKfQDFB1LGsNNLq0bLqT
+ sdfQ==
+X-Gm-Message-State: AOAM532BUIyDxFvcZWeJZa6lm4MaqRl4tAlxnP4XI6hC7cAJBi0+7Dgd
+ Iz5FhF5XXUYA6XpjFIfpHoXw9A==
+X-Google-Smtp-Source: ABdhPJwTpEodJr7XmJ6vcGG/Qy1YoTKLrAkKtGQKZLh7Xqi5GwYySJHucKowPQ2UWvg/JqRFErD0OQ==
+X-Received: by 2002:a05:620a:1257:: with SMTP id
+ a23mr13959682qkl.207.1598452098795; 
+ Wed, 26 Aug 2020 07:28:18 -0700 (PDT)
+Received: from localhost ([2620:10d:c091:480::1:1f2b])
+ by smtp.gmail.com with ESMTPSA id v136sm1814940qkb.31.2020.08.26.07.28.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Aug 2020 07:25:41 -0700 (PDT)
-Date: Wed, 26 Aug 2020 10:24:27 -0400
+ Wed, 26 Aug 2020 07:28:18 -0700 (PDT)
+Date: Wed, 26 Aug 2020 10:27:03 -0400
 From: Johannes Weiner <hannes@cmpxchg.org>
 To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Message-ID: <20200826142427.GC988805@cmpxchg.org>
+Message-ID: <20200826142703.GD988805@cmpxchg.org>
 References: <20200819184850.24779-1-willy@infradead.org>
- <20200819184850.24779-5-willy@infradead.org>
+ <20200819184850.24779-6-willy@infradead.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200819184850.24779-5-willy@infradead.org>
-Subject: Re: [Intel-gfx] [PATCH 4/8] proc: Optimise smaps for shmem entries
+In-Reply-To: <20200819184850.24779-6-willy@infradead.org>
+Subject: Re: [Intel-gfx] [PATCH 5/8] i915: Use find_lock_page instead of
+ find_lock_entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,9 +82,9 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 19, 2020 at 07:48:46PM +0100, Matthew Wilcox (Oracle) wrote:
-> Avoid bumping the refcount on pages when we're only interested in the
-> swap entries.
+On Wed, Aug 19, 2020 at 07:48:47PM +0100, Matthew Wilcox (Oracle) wrote:
+> i915 does not want to see value entries.  Switch it to use
+> find_lock_page() instead, and remove the export of find_lock_entry().
 > 
 > Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 
