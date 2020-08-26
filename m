@@ -1,54 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1880025311B
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 16:20:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9290B25312A
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 16:24:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E70BF6EAA0;
-	Wed, 26 Aug 2020 14:20:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA0E36E144;
+	Wed, 26 Aug 2020 14:24:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com
- [IPv6:2607:f8b0:4864:20::942])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7F1D6EA57
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 14:20:32 +0000 (UTC)
-Received: by mail-ua1-x942.google.com with SMTP id d20so594167ual.13
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 07:20:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sjSOraiR4FbGG6Ur2UAs6+vtqCNJ1lx1JCgkMDPitTk=;
- b=qYue+NH8i/tJVUCVEI+sdB9jN4sluLwOQTwn3irlruHy2HpMFXOsBpCYc/Tgeyy5yH
- oSg9162QKzEbGZLczKXME7pZuJmWluphLspCvFuBtLcgbM+9gPVPZnonhwNp0dsvDPCE
- B78Z8OX4PRggahWB8DtA/TkU+zVZhJ1o9Ydw2iGMapErf0pMB1sjf8LK0CKc+Ve7BHVc
- V1eshEuRFWHmt3DH8OctSKkSHmTyDJL26AvoRPUtX03END81DrT9jqg7x0gZ7SHIOZub
- rjyueVimwAGawJD/kbqy4eNyP2Cl2K4d2fIlIEhl24W45vJpHvFyzRi4om4floqHTLMM
- eGLQ==
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
+ [IPv6:2607:f8b0:4864:20::843])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 760AE6E144
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 14:24:31 +0000 (UTC)
+Received: by mail-qt1-x843.google.com with SMTP id e5so1479874qth.5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 07:24:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cmpxchg-org.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=zlwE58oTu+f+CX5TRYYwuWXiyc0+G6WkfNqbI/+jdSY=;
+ b=cO+CBnh7nK5+bWxbN/rwQcj2H4qISpWSCtom8J3NYKwbjjXE4VHyCPU6l4SYsLNQmS
+ /WI/E5HAG6u+MoAcxZo9egIz5wDe5DDX4DfqLRODmFk9MExnxgPzPF23yCNm1kB3cvoV
+ JoRLPo24DnMgbfUAXBvkX2DO0dxWBYMNrm5mIDfNk6jWm/45g4hZat1hwqysM8GfOXFX
+ 0R9ZwQfqa5GixPcfpxcCrt6oIcNXd+0bZ32ZYNKsPrbRA29tlAUFbv+RobCsikP15Xj7
+ ssAysz8PU4hvGQHGShDiRr1e+3BKKvfW+PrqfNf1IzlNtqHYDXkI1vnfAQh1X9s1Ugev
+ bVmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=sjSOraiR4FbGG6Ur2UAs6+vtqCNJ1lx1JCgkMDPitTk=;
- b=ocXAn34R7TjxN6/62DXCaY6meo948bWkb80n7WX6okfzIsYxufrUNbJuvinaT6YQzr
- kP9MpqOju5I2UJIzE3PZOQpxjcRWOdxdc6YdXXaIcAP/QbJMWhK4+ou1K0YgDNcHJPhv
- J4r94FK/viIrxPlnNgvi2OqGg0XtxBj4DcqL2htKzI0ATNV6SmQy4d+a8kt5+pQkimrN
- 6gYkoxoO/z1mRnkZfo3zsgcyh2X51ukj9TCVzUkUxOe7+8dWB0UTZHphA89tskLBwOYY
- hAL4HJXWDD1NDn9vyB4bac8KRqk++WF2b8/HV+bCEqGC37krTJukd0mY1UUn2kG4dRog
- slrw==
-X-Gm-Message-State: AOAM5335swUxJS9qkND9u+Dm6QhIbpZ1PNFlT33J6xgvBwDAR7qtARXZ
- JuRgDM87qIfeFlnU3fs0RU5c0JwyGzVvXZyzClk=
-X-Google-Smtp-Source: ABdhPJxDqVMfk7ziG4e8i8XJU3zSsypVAXFKQYM2rdK1GF+a2S6Pl1Y5mpPV4XCaVjJUOW8bVQczn2r+UlJUU3NQqOY=
-X-Received: by 2002:ab0:64c3:: with SMTP id j3mr8755084uaq.129.1598451631838; 
- Wed, 26 Aug 2020 07:20:31 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=zlwE58oTu+f+CX5TRYYwuWXiyc0+G6WkfNqbI/+jdSY=;
+ b=sCHaw8I3hrGlzpBDU6gnHs6MfehxIO8kijDudx/pyz5K5WQ37N5cMXX/E9SVDHP1uy
+ Abl4l+q2jeMpsxyn81830+KwtK4g/NRDiExQjxVrVBZSHyB9MQEu3JAXxD6QT66fnb5o
+ vIAHB9njW0QaFwCwogZkdAARLe0bpbfz8ArHu3KasFCJNvhAi9vnvDshtNJuLycAJDnZ
+ xSsYHXakXdYtzgU8XlRXLb7YFQ4729oV4Vg7yqClwpyO69DA20DLnnGtn9EFyjVfGCXh
+ 24oKSh7gBMmlqAiGZ6wsqwsnFVJ9T0IP4/CO6Ev9aydPQsKChScw+QSjdrj2csltgv4F
+ Nm3A==
+X-Gm-Message-State: AOAM531v5hIW1gBtFj03/QATlYrWGqOz13Om1EfzzICu2PG0PVF0Y4sf
+ I8Q/JoqocPVhylzDTjBbI4NzpQ==
+X-Google-Smtp-Source: ABdhPJzBytYswWR/8B2VHm5Q2Kp/UY/Co8p03yrx9NKrzlbYv6CmqwA0aRiqdMFNUUKDmEF2RxDrxg==
+X-Received: by 2002:ac8:47c8:: with SMTP id d8mr13412483qtr.32.1598451870688; 
+ Wed, 26 Aug 2020 07:24:30 -0700 (PDT)
+Received: from localhost ([2620:10d:c091:480::1:f646])
+ by smtp.gmail.com with ESMTPSA id l1sm2016291qtp.96.2020.08.26.07.24.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 26 Aug 2020 07:24:29 -0700 (PDT)
+Date: Wed, 26 Aug 2020 10:23:15 -0400
+From: Johannes Weiner <hannes@cmpxchg.org>
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+Message-ID: <20200826142315.GB988805@cmpxchg.org>
+References: <20200819184850.24779-1-willy@infradead.org>
+ <20200819184850.24779-4-willy@infradead.org>
 MIME-Version: 1.0
-References: <20200826132811.17577-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200826132811.17577-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 26 Aug 2020 15:20:05 +0100
-Message-ID: <CAM0jSHNx0vL2y617r1xSdY3UnwBcCjuTmkz8nJjaEahqWM6WJQ@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 01/39] drm/i915/gem: Avoid implicit vmap for
- highmem on x86-32
+Content-Disposition: inline
+In-Reply-To: <20200819184850.24779-4-willy@infradead.org>
+Subject: Re: [Intel-gfx] [PATCH 3/8] mm: Optimise madvise WILLNEED
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,32 +68,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Harald Arnesen <harald@skogtun.org>, stable@vger.kernel.org
+Cc: William Kucharski <william.kucharski@oracle.com>,
+ intel-gfx@lists.freedesktop.org, Hugh Dickins <hughd@google.com>,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ linux-mm@kvack.org, Matthew Auld <matthew.auld@intel.com>,
+ Huang Ying <ying.huang@intel.com>, cgroups@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Alexey Dobriyan <adobriyan@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 26 Aug 2020 at 14:29, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> On 32b, highmem uses a finite set of indirect PTE (i.e. vmap) to provide
-> virtual mappings of the high pages. As these are finite, map_new_virtual()
-> must wait for some other kmap() to finish when it runs out. If we map a
-> large number of objects, there is no method for it to tell us to release
-> the mappings, and we deadlock.
->
-> However, if we make an explicit vmap of the page, that uses a larger
-> vmalloc arena, and also has the ability to tell us to release unwanted
-> mappings. Most importantly, it will fail and propagate an error instead
-> of waiting forever.
->
-> Fixes: fb8621d3bee8 ("drm/i915: Avoid allocating a vmap arena for a single page") #x86-32
-> References: e87666b52f00 ("drm/i915/shrinker: Hook up vmap allocation failure notifier")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Harald Arnesen <harald@skogtun.org>
-> Cc: <stable@vger.kernel.org> # v4.7+
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+On Wed, Aug 19, 2020 at 07:48:45PM +0100, Matthew Wilcox (Oracle) wrote:
+> Instead of calling find_get_entry() for every page index, use an XArray
+> iterator to skip over NULL entries, and avoid calling get_page(),
+> because we only want the swap entries.
+> 
+> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+
+Acked-by: Johannes Weiner <hannes@cmpxchg.org>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
