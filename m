@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5655252FDA
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 15:29:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21299252FB6
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Aug 2020 15:28:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8541F6EA7E;
-	Wed, 26 Aug 2020 13:29:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A45B6EA66;
+	Wed, 26 Aug 2020 13:28:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF71C6EA68
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 13:28:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFBAD6EA5F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 13:28:27 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22244725-1500050 
- for multiple; Wed, 26 Aug 2020 14:28:12 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22244726-1500050 
+ for multiple; Wed, 26 Aug 2020 14:28:13 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Aug 2020 14:27:33 +0100
-Message-Id: <20200826132811.17577-1-chris@chris-wilson.co.uk>
+Date: Wed, 26 Aug 2020 14:27:34 +0100
+Message-Id: <20200826132811.17577-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200826132811.17577-1-chris@chris-wilson.co.uk>
+References: <20200826132811.17577-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/39] drm/i915/gem: Avoid implicit vmap for
- highmem on x86-32
+Subject: [Intel-gfx] [PATCH 02/39] drm/i915/gem: Use set_pte_at() for
+ assigning the vmapped PTE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,70 +39,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harald Arnesen <harald@skogtun.org>, stable@vger.kernel.org,
+Cc: Matthew Auld <matthew.auld@intel.com>,
  Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 32b, highmem uses a finite set of indirect PTE (i.e. vmap) to provide
-virtual mappings of the high pages. As these are finite, map_new_virtual()
-must wait for some other kmap() to finish when it runs out. If we map a
-large number of objects, there is no method for it to tell us to release
-the mappings, and we deadlock.
+Use set_pte_at() to assign the PTE pointer returned by alloc_vm_area(),
+rather than a direct assignment.
 
-However, if we make an explicit vmap of the page, that uses a larger
-vmalloc arena, and also has the ability to tell us to release unwanted
-mappings. Most importantly, it will fail and propagate an error instead
-of waiting forever.
-
-Fixes: fb8621d3bee8 ("drm/i915: Avoid allocating a vmap arena for a single page") #x86-32
-References: e87666b52f00 ("drm/i915/shrinker: Hook up vmap allocation failure notifier")
+Fixes: 6056e50033d9 ("drm/i915/gem: Support discontiguous lmem object maps")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Harald Arnesen <harald@skogtun.org>
-Cc: <stable@vger.kernel.org> # v4.7+
+Cc: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_pages.c | 26 +++++++++++++++++++++--
- 1 file changed, 24 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c | 33 +++++++++++++++++++----
+ 1 file changed, 28 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 7050519c87a4..51b63e05dbe4 100644
+index 51b63e05dbe4..0c3d0d6429ae 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -255,8 +255,30 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
- 		return NULL;
+@@ -241,6 +241,17 @@ static inline pte_t iomap_pte(resource_size_t base,
+ 	return pte_mkspecial(pfn_pte((base + offset) >> PAGE_SHIFT, prot));
+ }
  
- 	/* A single page can always be kmapped */
--	if (n_pte == 1 && type == I915_MAP_WB)
--		return kmap(sg_page(sgt->sgl));
-+	if (n_pte == 1 && type == I915_MAP_WB) {
-+		struct page *page = sg_page(sgt->sgl);
++static void sync_vm_area(struct vm_struct *area)
++{
++	unsigned long start = (unsigned long)area->addr;
++	unsigned long end = start + area->size;
 +
-+		/*
-+		 * On 32b, highmem uses a finite set of indirect PTE (i.e.
-+		 * vmap) to provide virtual mappings of the high pages.
-+		 * As these are finite, map_new_virtual() must wait for some
-+		 * other kmap() to finish when it runs out. If we map a large
-+		 * number of objects, there is no method for it to tell us
-+		 * to release the mappings, and we deadlock.
-+		 *
-+		 * However, if we make an explicit vmap of the page, that
-+		 * uses a larger vmalloc arena, and also has the ability
-+		 * to tell us to release unwanted mappings. Most importantly,
-+		 * it will fail and propagate an error instead of waiting
-+		 * forever.
-+		 *
-+		 * So if the page is beyond the 32b boundary, make an explicit
-+		 * vmap. On 64b, this check will be optimised away as we can
-+		 * directly kmap any page on the system.
-+		 */
-+		if (!PageHighMem(page))
-+			return kmap(page);
-+	}
++	if (ARCH_PAGE_TABLE_SYNC_MASK & PGTBL_PTE_MODIFIED)
++		arch_sync_kernel_mappings(start, end); /* expected DCE */
++
++	flush_cache_vmap(start, end);
++}
++
+ /* The 'mapping' part of i915_gem_object_pin_map() below */
+ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
+ 				 enum i915_map_type type)
+@@ -308,24 +319,36 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
+ 	}
  
- 	mem = stack;
- 	if (n_pte > ARRAY_SIZE(stack)) {
+ 	if (i915_gem_object_has_struct_page(obj)) {
++		unsigned long addr = (unsigned long)area->addr;
+ 		struct sgt_iter iter;
+ 		struct page *page;
+ 		pte_t **ptes = mem;
+ 
+-		for_each_sgt_page(page, iter, sgt)
+-			**ptes++ = mk_pte(page, pgprot);
++		for_each_sgt_page(page, iter, sgt) {
++			set_pte_at(&init_mm, addr, *ptes, mk_pte(page, pgprot));
++			addr += PAGE_SIZE;
++			ptes++;
++		}
++		GEM_BUG_ON(addr != (unsigned long)area->addr + obj->base.size);
+ 	} else {
++		unsigned long addr = (unsigned long)area->addr;
+ 		resource_size_t iomap;
+ 		struct sgt_iter iter;
+ 		pte_t **ptes = mem;
+-		dma_addr_t addr;
++		dma_addr_t offset;
+ 
+ 		iomap = obj->mm.region->iomap.base;
+ 		iomap -= obj->mm.region->region.start;
+ 
+-		for_each_sgt_daddr(addr, iter, sgt)
+-			**ptes++ = iomap_pte(iomap, addr, pgprot);
++		for_each_sgt_daddr(offset, iter, sgt) {
++			set_pte_at(&init_mm, addr, *ptes,
++				   iomap_pte(iomap, offset, pgprot));
++			addr += PAGE_SIZE;
++			ptes++;
++		}
++		GEM_BUG_ON(addr != (unsigned long)area->addr + obj->base.size);
+ 	}
++	sync_vm_area(area);
+ 
+ 	if (mem != stack)
+ 		kvfree(mem);
 -- 
 2.20.1
 
