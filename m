@@ -1,64 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F40802545D9
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Aug 2020 15:24:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC8232545B2
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Aug 2020 15:09:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 373F96E2A9;
-	Thu, 27 Aug 2020 13:24:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 992836E07D;
+	Thu, 27 Aug 2020 13:09:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
- [IPv6:2607:f8b0:4864:20::244])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB0846EB1E;
- Thu, 27 Aug 2020 01:37:59 +0000 (UTC)
-Received: by mail-oi1-x244.google.com with SMTP id z22so3313620oid.1;
- Wed, 26 Aug 2020 18:37:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Rsb5LLd+wEYl5+11BE05ItDTZCXQhjeMW019xM5KW9w=;
- b=I80xaBRJ50n8a6fI5zGd+zDFXBJzdkM/CYwdFxWUUjYU3c+2p64n4BZ92Q57vwyNvT
- WA9AXEE5mkmSWs9RicapGSPmYl7SBg2jYYPKSa/nI/+15pdR7K1Y4Cu0DHfnjPwN8yXR
- icr8tNGeIcQL3s2nHPbJyB6yfauHJDS+gWazTyaRFZfsu6K/xYzwtyDy670Ye8cnRtyg
- TR/hJM9qLFyVWX5fPwsxGxi/JNo/PLB2M5jflTu50Xv+DnpTnsNDIefohCCH/iR6ipaV
- nyjrEne62FM9W1doljqrO4mZtREkO1PUraYtOXDLLpGubpcLL1+FWyQrEJDylKkUrU3D
- wKgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Rsb5LLd+wEYl5+11BE05ItDTZCXQhjeMW019xM5KW9w=;
- b=KlvsA7Shlx1OyAv0jhD8jEmcnXf2VNgMsTFddEcoW+9h/yHpxGUqFczuXH4wIU0evy
- MdqtACQe+IMz/0uzWMLXnQPbjkjCkjMJYCTxeXQZpvmcYe0+YqZDT86/MnPWFjQKQg0r
- px/iwNglayttpiqAs7bej19sKBy/NIV7UqkspakZP5bQN4I0Z4P+QcmpqBvuxJp6IzjY
- M7GOlHlfNXKNgpT6R5hpSKYrP6pifngK6beVypiJEFhkbftoP8Ca0TLRYynrOfM34Wnk
- +NXDEK2Id1Mn2kAKsMZgwzPxiYYtCzu+gbSc9N8YlSCfOhqe4W+lx4mAgNL9Uf+e6/Kq
- vWsw==
-X-Gm-Message-State: AOAM533ZH3+/hfjQ1kl8Gz+UK5rYCAmDdp1RfQgIL/dK+cGAf9gbcLw4
- DT8WHwVKPeURAxexTSeO0DxpGtCt7ctdBQTJwUU=
-X-Google-Smtp-Source: ABdhPJwhCHTUyQeL6NO7VZ9TErlPHSPJaUSJlRG8on4DJcl3XVowSsSaDNvfXk39W2OiRUOfnXZzLQickeYXItlZbbE=
-X-Received: by 2002:aca:ec95:: with SMTP id k143mr5299041oih.76.1598492278869; 
- Wed, 26 Aug 2020 18:37:58 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2FCB6E07D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Aug 2020 13:09:22 +0000 (UTC)
+IronPort-SDR: ruGGIoDMQytfYXJiWXhRYDGHtKIrbT2Z/zzsy7B+eDNOyI/9amimk/44GqnSTZMcrHKiVXc00V
+ 6BdsoM7WY2/g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9725"; a="144152161"
+X-IronPort-AV: E=Sophos;i="5.76,359,1592895600"; d="scan'208";a="144152161"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2020 06:09:22 -0700
+IronPort-SDR: KETtsR9ux/MR+pq4wKhyy5rL0khs6VONj5d+N1HbW/LSea2jf0uIDumit0J7b3AcEEIZE8R+ZO
+ A5jCLUHFvvLQ==
+X-IronPort-AV: E=Sophos;i="5.76,359,1592895600"; d="scan'208";a="475201177"
+Received: from jhaapako-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.249.33.115])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2020 06:09:20 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vincent Guenat <vincent.guenat@orange.fr>, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com
+In-Reply-To: <0bfcc9dd-942e-d9c7-dc23-f69998740419@orange.fr>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <0bfcc9dd-942e-d9c7-dc23-f69998740419@orange.fr>
+Date: Thu, 27 Aug 2020 16:09:17 +0300
+Message-ID: <87ft885j7m.fsf@intel.com>
 MIME-Version: 1.0
-References: <161b75f1-4e88-dcdf-42e8-b22504d7525c@kernel.dk>
- <202008171246.80287CDCA@keescook>
- <df645c06-c30b-eafa-4d23-826b84f2ff48@kernel.dk>
- <1597780833.3978.3.camel@HansenPartnership.com>
- <f3312928-430c-25f3-7112-76f2754df080@kernel.dk>
- <1597849185.3875.7.camel@HansenPartnership.com>
- <CAOMdWSJRR0BhjJK1FxD7UKxNd5sk4ycmEX6TYtJjRNR6UFAj6Q@mail.gmail.com>
- <1597873172.4030.2.camel@HansenPartnership.com>
- <CAEogwTCH8qqjAnSpT0GDn+NuAps8dNbfcPVQ9h8kfOWNbzrD0w@mail.gmail.com>
- <20200826095528.GX1793@kadam> <202008260811.1CE425B5C2@keescook>
-In-Reply-To: <202008260811.1CE425B5C2@keescook>
-From: Allen <allen.lkml@gmail.com>
-Date: Thu, 27 Aug 2020 07:07:47 +0530
-Message-ID: <CAOMdWSLyacdeoqnZBuLu6z1B6cY-WbtUJQm6+8=WHyE49tVaEg@mail.gmail.com>
-To: Kees Cook <keescook@chromium.org>
-X-Mailman-Approved-At: Thu, 27 Aug 2020 13:24:13 +0000
-Subject: Re: [Intel-gfx] [PATCH] block: convert tasklets to use new
- tasklet_setup() API
+Subject: Re: [Intel-gfx] [i915] flip_done timed out errors with i7-1065G7 on
+ kernel > 4.19
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,112 +51,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
- linux-atm-general@lists.sourceforge.net, s.hauer@pengutronix.de,
- manohar.vanga@gmail.com, airlied@linux.ie, linux-hyperv@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- James Bottomley <James.Bottomley@hansenpartnership.com>,
- linux1394-devel@lists.sourceforge.net, anton.ivanov@cambridgegreys.com,
- devel@driverdev.osuosl.org, linux-s390@vger.kernel.org,
- maximlevitsky@gmail.com, richard@nod.at, deller@gmx.de,
- jassisinghbrar@gmail.com, 3chas3@gmail.com, linux-input@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>, mporter@kernel.crashing.org,
- jdike@addtoit.com, Dan Carpenter <dan.carpenter@oracle.com>, oakad@yahoo.com,
- intel-gfx@lists.freedesktop.org, linux-um@lists.infradead.org,
- linux-block@vger.kernel.org, Mark Brown <broonie@kernel.org>,
- openipmi-developer@lists.sourceforge.net, mitch@sfgoth.com,
- linux-arm-kernel@lists.infradead.org, Jens Axboe <axboe@kernel.dk>,
- linux-parisc@vger.kernel.org, netdev@vger.kernel.org, martyn@welchs.me.uk,
- dmitry.torokhov@gmail.com, linux-mmc@vger.kernel.org, sre@kernel.org,
- linux-spi@vger.kernel.org, alex.bou9@gmail.com,
- Allen Pais <allen.cryptic@gmail.com>, stefanr@s5r6.in-berlin.de,
- linux-ntb@googlegroups.com, Romain Perier <romain.perier@gmail.com>,
- shawnguo@kernel.org, David Miller <davem@davemloft.net>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 26, 2020 at 8:43 PM Kees Cook <keescook@chromium.org> wrote:
+On Wed, 12 Aug 2020, Vincent Guenat <vincent.guenat@orange.fr> wrote:
+> Hello there,
 >
-> On Wed, Aug 26, 2020 at 12:55:28PM +0300, Dan Carpenter wrote:
-> > On Wed, Aug 26, 2020 at 07:21:35AM +0530, Allen Pais wrote:
-> > > On Thu, Aug 20, 2020 at 3:09 AM James Bottomley
-> > > <James.Bottomley@hansenpartnership.com> wrote:
-> > > >
-> > > > On Wed, 2020-08-19 at 21:54 +0530, Allen wrote:
-> > > > > > [...]
-> > > > > > > > Since both threads seem to have petered out, let me suggest in
-> > > > > > > > kernel.h:
-> > > > > > > >
-> > > > > > > > #define cast_out(ptr, container, member) \
-> > > > > > > >     container_of(ptr, typeof(*container), member)
-> > > > > > > >
-> > > > > > > > It does what you want, the argument order is the same as
-> > > > > > > > container_of with the only difference being you name the
-> > > > > > > > containing structure instead of having to specify its type.
-> > > > > > >
-> > > > > > > Not to incessantly bike shed on the naming, but I don't like
-> > > > > > > cast_out, it's not very descriptive. And it has connotations of
-> > > > > > > getting rid of something, which isn't really true.
-> > > > > >
-> > > > > > Um, I thought it was exactly descriptive: you're casting to the
-> > > > > > outer container.  I thought about following the C++ dynamic casting
-> > > > > > style, so out_cast(), but that seemed a bit pejorative.  What about
-> > > > > > outer_cast()?
-> > > > > >
-> > > > > > > FWIW, I like the from_ part of the original naming, as it has
-> > > > > > > some clues as to what is being done here. Why not just
-> > > > > > > from_container()? That should immediately tell people what it
-> > > > > > > does without having to look up the implementation, even before
-> > > > > > > this becomes a part of the accepted coding norm.
-> > > > > >
-> > > > > > I'm not opposed to container_from() but it seems a little less
-> > > > > > descriptive than outer_cast() but I don't really care.  I always
-> > > > > > have to look up container_of() when I'm using it so this would just
-> > > > > > be another macro of that type ...
-> > > > > >
-> > > > >
-> > > > >  So far we have a few which have been suggested as replacement
-> > > > > for from_tasklet()
-> > > > >
-> > > > > - out_cast() or outer_cast()
-> > > > > - from_member().
-> > > > > - container_from() or from_container()
-> > > > >
-> > > > > from_container() sounds fine, would trimming it a bit work? like
-> > > > > from_cont().
-> > > >
-> > > > I'm fine with container_from().  It's the same form as container_of()
-> > > > and I think we need urgent agreement to not stall everything else so
-> > > > the most innocuous name is likely to get the widest acceptance.
-> > >
-> > > Kees,
-> > >
-> > >   Will you be  sending the newly proposed API to Linus? I have V2
-> > > which uses container_from()
-> > > ready to be sent out.
-> >
-> > I liked that James swapped the first two arguments so that it matches
-> > container_of().  Plus it's nice that when you have:
-> >
-> >       struct whatever *foo = container_from(ptr, foo, member);
-> >
-> > Then it means that "ptr == &foo->member".
+> I am seeing this error after recently installing Archlinux on my Razer 
+> Blade Stealth with the kernel version 5.7.12. I have seen it as well on 
+> 4.19, 5.4.55 and 5.8.0.
 >
-> I'm a bit stalled right now -- the merge window was keeping me busy, and
-> this week is the Linux Plumbers Conference. This is on my list, but I
-> haven't gotten back around to it. If you want, feel free to send the
-> container_from() patch; you might be able to unblock this faster than me
-> right now. :)
+> The error happens during boot time where it significantly increases boot 
+> time. It starts with a time out in |drm_atomic_helper_wait_for_flip_done 
+> followed by more time out in |||drm_atomic_helper_wait_for_dependencies 
+> and |||||drm_atomic_helper_wait_for_flip_done, each of them taking about 
+> 10 seconds (which is the value in the source code as far as I can see). 
+> There are 11-12 time out at each boot.|||
+> ||||||
+> |||A similar issue was already discovered in previous version of the 
+> kernel, but the selected solution of adding video=SVIDEO-1:d to the 
+> kernel parameters has proved unsuccessful so far.|||
+> Note that Xorg also fails to launch, but this may be due to a 
+> misconfiguration from my side, as I start it with startx.
 >
+> There is more details (including a dmesg output for the kernel version 
+> 5.8.0) in my post on the Archlinux forums: 
+> https://bbs.archlinux.org/viewtopic.php?id=258051
 
-Sure, Thanks.
+Please file an issue at [1].
+
+Please add drm.debug=14 module parameter, remove video=SVIDEO-1:d
+(because it doesn't matter on your hardware), and attach to the bug the
+full dmesg from boot. If you can, please try the drm-tip branch,
+otherwise latest release or -rc kernel available.
+
+BR,
+Jani.
+
+
+[1] https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
+
+
 
 
 
 -- 
-       - Allen
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
