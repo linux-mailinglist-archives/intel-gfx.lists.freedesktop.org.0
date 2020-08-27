@@ -2,119 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0491254028
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Aug 2020 10:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2966C2540AE
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Aug 2020 10:24:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87B486E41B;
-	Thu, 27 Aug 2020 08:05:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63E066E484;
+	Thu, 27 Aug 2020 08:24:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8897D6E41B
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Aug 2020 08:05:06 +0000 (UTC)
-IronPort-SDR: Tu81Bzho5hC5+nUoyEu6+7YZ34uMo3aIIa45ioIFsh0Xwvy9mcZbyuQhvWMTke3xIWtKHDKInI
- MsA6icOkD1Pg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9725"; a="144118334"
-X-IronPort-AV: E=Sophos;i="5.76,359,1592895600"; d="scan'208";a="144118334"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB2996E484;
+ Thu, 27 Aug 2020 08:24:15 +0000 (UTC)
+IronPort-SDR: tyiHM1SOSYSXzrDu/MZpXGcPOMZTkZEu+ATEJ7c1XEvlr/0OaBZSnUsYA4UhJWhL6vPiTTivTU
+ Swn7/8FmoW/A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9725"; a="156447607"
+X-IronPort-AV: E=Sophos;i="5.76,359,1592895600"; d="scan'208";a="156447607"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2020 01:05:05 -0700
-IronPort-SDR: W6jxHyx7GkDi5thxRIcNSHD6n9haBHSuYJvh1swIBsx9wAN/f/eERFnfusihnyL1tviINm7NNp
- /jP5sDvnLBBQ==
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2020 01:24:14 -0700
+IronPort-SDR: YplK4/Ulb1XG9szeLa75MdRDw+lIsmtXEzU2X9sQA5wxETLOWgDNdjCI+dE7nsY9ugOeSNmPPe
+ GUdpRo1VILyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,359,1592895600"; d="scan'208";a="313153105"
-Received: from orsmsx601-2.jf.intel.com (HELO ORSMSX601.amr.corp.intel.com)
- ([10.22.229.81])
- by orsmga002.jf.intel.com with ESMTP; 27 Aug 2020 01:05:05 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 27 Aug 2020 01:05:01 -0700
-Received: from orsmsx116.amr.corp.intel.com (10.22.240.14) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 27 Aug 2020 01:05:01 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- ORSMSX116.amr.corp.intel.com (10.22.240.14) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 27 Aug 2020 01:05:01 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.105)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Thu, 27 Aug 2020 01:05:01 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fqrbWv+7g1eEhBkPbCFq0kx015LEQkiaozhGYfLkyqr8tqX0pLNTMEZk/5BRPDlKGwMW18ma4Y5wxe+rfi7tLPoRiiR6/sy6kYRQFCWOCcoXG7tkng5ar8f/LSL7Abr3gygKVXTg7Ufo7Kuub4Nw3UKmIhyfotOJRT01dCIN90sq18lpJWTcKPaA2gA1PCHYCSGAJVThMzQXPRY3u2NXGEW8eCpPH+nltQNvMhDgdpcv4b19kSMWtrx9nWoACnNFETiolAbgDvvq5WZ+BChjWJD8aFYFtXulhSzUt4PZH5NpxLoJLt9UfW2blsPiGLZi1p0KFhwLxVvCSciB3OD3Ng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kzghqqyX9/nwfhISSTwd8lZSx1KKdGQn71H++AgmxLc=;
- b=ixYBwEyYNaLzsuuK57vsW6L1dSoPCnTSTxaBq26BMkgyTUHqYDKAD4KJPuBvicsZJ7TAK+tquuaMg8gINVHb4VWFW1AEOVPsPPb9Mep25kHuh5nve91hNpPpu0dJSLxJO+ii4VXlKss4NtsG1MpT67idrQWGRLTiq/Dy4zSHdX/nffMag/N9de03aqN+a1WJ5FzU29R0uH7l43qrlhf1e62Bo4mUD9mnF49rTMFJZOjCiTkw3mfwDPKpZtpNHisEkhzPFn8PomBhJI+PmGvzniQGV8Bhqqbs9W+LwMEA3r8tX0OL7brHJoEZD3VBmPdTmrubjndmWRpM0nV8C6sSjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kzghqqyX9/nwfhISSTwd8lZSx1KKdGQn71H++AgmxLc=;
- b=QSmfdaMGJUMVzuufbBpJ2P3fEzllat3xNBGkMNSCBSS7gRXQS8eGuzFLN37E5iY4NuI12GBmjFbOxP5oGTi5KRsUGYPI8yVJp8d0KqC+wFBAP3/4KnymE08ZFMC8fRZn2v6Nuea0p4WQaZGVjwsxzWoysMBvXtGbHpOsgezRJWI=
-Received: from BL0PR11MB2993.namprd11.prod.outlook.com (2603:10b6:208:75::28)
- by MN2PR11MB4205.namprd11.prod.outlook.com (2603:10b6:208:192::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.26; Thu, 27 Aug
- 2020 08:04:59 +0000
-Received: from BL0PR11MB2993.namprd11.prod.outlook.com
- ([fe80::d187:3cc9:b83b:8c]) by BL0PR11MB2993.namprd11.prod.outlook.com
- ([fe80::d187:3cc9:b83b:8c%7]) with mapi id 15.20.3305.032; Thu, 27 Aug 2020
- 08:04:59 +0000
-From: "Kaparthi, SowmyaX" <sowmyax.kaparthi@intel.com>
-To: "Landwerlin, Lionel G" <lionel.g.landwerlin@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Nerlige
- Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
-Thread-Topic: [i-g-t] Fixing the latency of hrtimer
-Thread-Index: AQHWfEUJmxssEVZdvUuwAqYJplmI0KlLlMoAgAABLKA=
-Date: Thu, 27 Aug 2020 08:04:59 +0000
-Message-ID: <BL0PR11MB29932A74AC995B623E00F0E29B550@BL0PR11MB2993.namprd11.prod.outlook.com>
-References: <20200827073807.2965-1-sowmyax.kaparthi@intel.com>
- <ad028d55-996e-e4c2-2cb9-f68b0dc7a761@intel.com>
-In-Reply-To: <ad028d55-996e-e4c2-2cb9-f68b0dc7a761@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [115.98.221.224]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 76fe9b44-ea1c-4d72-6be0-08d84a5fe51b
-x-ms-traffictypediagnostic: MN2PR11MB4205:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR11MB4205BD738CF6B70E336105959B550@MN2PR11MB4205.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MVd8WakYc4sl3KXp/K66TIIsoJ4+CodkA5gHVl+bjeRkN5Whil3DyJtw12K3ZAlOiM9vTDSUaT2RIduNQx+ASpoYhz6ztq8tWDg5SeRlNOt02VmZQL36DCmR7GBKHRyfZ3imgIv05oxUqdXiF8VVhFkob2kb7JEZWwUvtmfNyiYMW+p43WkWHYQfRks5wOQvZpRypYGamTFuptLjQ1e2/YOE2vty5lq3JN0P6MOmQNDujWdx2/FqxERGlUgBSWeE1joPVGH8qzxoMemPYC7PsQbqYaxHG4CtgdF5YlBi97gUO99YC2iNYkkeIJ7X+ElYRp26rJCaykChLwei09Oopg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL0PR11MB2993.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(346002)(366004)(136003)(39860400002)(396003)(9686003)(186003)(6636002)(8936002)(5660300002)(83380400001)(64756008)(52536014)(66446008)(55016002)(66476007)(66946007)(2906002)(71200400001)(478600001)(26005)(76116006)(66556008)(6506007)(53546011)(86362001)(316002)(8676002)(33656002)(7696005)(110136005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: De5SKUBpXMbHWpiO04VE6vWUu4cEyQQG8z5mnUlzjI6I8CJeG4zNfEL0ZMuy9fhwrQ6BQqI3QJBhXEnpJR6dC3SLBQXO8GuuCoT+l1IO+IWdHhmwEBn9RE3Ued89R90srUFn+JR+l0YnwPMw66UQn0GZOmXxLpTCucnuEGGt9CrCWRrnIObshEMk/rLwsqwJKtDSAT4oMrooMZqnPJFX7Er/KVamEckhBEjlb9BnWmHaFD8FzJuuhO/1kHo5aY+FVc1ClnYsO6v9hQD6XCdHtUPnryiqUX91wWQv2J3JziVfpIAABpWaPy5e9QFfZ3WoftP30sPn6Pu7mkaa6cZ9xUBo7qk2LX7cZ4sI24rbP//QVys5SIgetLU5eHRfVEVmOuw2NCmFg8l5us0A5MViMjLuPthwYA8Y7DpB+vNpY4NG1QukcM/NUOO2ky4qpRVCO2RwOhfFfTTkfQP2snqSmKlxhBFHS/Y2rlMFKtcLmWekCAk1m9vJjKtLMwNV4c0QB5jm8cwFRURni5HYbc8FJ1pI0t7Mx1aUiwvb1ZGjeIJHijlrQL4AUwYzgc1qzplv+m2jCQ2YSxCgCpmLSviasNj384MlRIgKcvEmQvPXPkE93ljjm6xO+xs1oBCTXSTcFFrXD1kdtjR4jRO6Kd8pdw==
+X-IronPort-AV: E=Sophos;i="5.76,359,1592895600"; d="scan'208";a="500552217"
+Received: from unknown (HELO [10.239.160.21]) ([10.239.160.21])
+ by fmsmga005.fm.intel.com with ESMTP; 27 Aug 2020 01:24:12 -0700
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+References: <20200826063505.680733-1-colin.xu@intel.com>
+ <20200826091056.GT32450@zhen-hp.sh.intel.com>
+From: Colin Xu <Colin.Xu@intel.com>
+Message-ID: <3c3e0b38-5b7e-22b8-ace6-ee90c0707969@intel.com>
+Date: Thu, 27 Aug 2020 16:24:11 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR11MB2993.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76fe9b44-ea1c-4d72-6be0-08d84a5fe51b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2020 08:04:59.6647 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RM5oHoPix1k/tE5oq7q8TZLi+hxTdQEJgdlmUALIK4z7OdYiS5yXFwV2gmcqe16+ZnYUpgdoMRvyg8kFEnkQbkea631Vh5dYSS6vYc3xG8s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4205
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [i-g-t] Fixing the latency of hrtimer
+In-Reply-To: <20200826091056.GT32450@zhen-hp.sh.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/gvt: Save/restore HW status
+ for GVT during suspend/resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,74 +52,343 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: Colin.Xu@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lionel,
 
-Thanks for your suggestions. I will send the patch to igt-dev@lists.freedesktop.org.
-
-This patch is regarding the git lab issue #1542. Based on the ftrace, a 2ms hrtimer results in around 5000 calls to read (because test duration is 10s). Based on average read times (30us), the total kernel_ns is larger than the value being compared and this fix is to allow user to have a larger timer value than the default 5ms to avoid waking up too frequently.
-
-Thanks and Regards
-Sowmya
-
------Original Message-----
-From: Landwerlin, Lionel G <lionel.g.landwerlin@intel.com> 
-Sent: 27 August 2020 13:20
-To: Kaparthi, SowmyaX <sowmyax.kaparthi@intel.com>; intel-gfx@lists.freedesktop.org; Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [i-g-t] Fixing the latency of hrtimer
-
-Hi Sowmya,
-
-Thanks for the patch. If you could send it to the igt-dev@lists.freedesktop.org list instead, this is where the IGT patches go.
-
-Could you refresh my memory as to what this is fixing?
-It sounds like this is just adjusting a value to match more common settings.
-
-Cheers,
-
--Lionel
-
-On 27/08/2020 10:38, Sowmya Kaparthi wrote:
-> The blocking/polling parameterized tests were introduced to test 
-> different hrtimer configurations.These tests check how many times the 
-> process wakes up to read the reports with different hrtimer values (= 
-> duration of test / hrtimer value). A user is more likely to choose a 
-> larger hrtimer value than the default 5ms to avoid wake up too frequently.
+On 2020-08-26 17:10, Zhenyu Wang wrote:
+> On 2020.08.26 14:35:05 +0800, Colin Xu wrote:
+>> This patch save/restore necessary GVT info during i915 suspend/resume so
+>> that GVT enabled QEMU VM can continue running.
+>>
+>> Only GGTT and fence regs are saved/restored now. GVT will save GGTT
+>> entries into GVT in suspend routine, and restore the saved entries
+>> and re-init fence regs in resume routine.
+>>
+>> V2:
+>> - Change kzalloc/kfree to vzalloc/vfree since the space allocated
+>> from kmalloc may not enough for all saved GGTT entries.
+>> - Keep gvt suspend/resume wrapper in intel_gvt.h/intel_gvt.c and
+>> move the actual implementation to gvt.h/gvt.c. (zhenyu)
+>> - Check gvt config on and active with intel_gvt_active(). (zhenyu)
+>>
+>> Signed-off-by: Hang Yuan <hang.yuan@linux.intel.com>
+>> Signed-off-by: Colin Xu <colin.xu@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gvt/gtt.c      | 73 +++++++++++++++++++++++++++++
+>>   drivers/gpu/drm/i915/gvt/gtt.h      |  2 +
+>>   drivers/gpu/drm/i915/gvt/gvt.c      | 15 ++++++
+>>   drivers/gpu/drm/i915/gvt/gvt.h      |  6 +++
+>>   drivers/gpu/drm/i915/gvt/handlers.c | 20 ++++++++
+>>   drivers/gpu/drm/i915/gvt/mmio.h     |  3 ++
+>>   drivers/gpu/drm/i915/gvt/vgpu.c     |  1 +
+>>   drivers/gpu/drm/i915/intel_gvt.c    | 29 ++++++++++++
+>>   drivers/gpu/drm/i915/intel_gvt.h    | 10 ++++
+>>   9 files changed, 159 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
+>> index 04bf018ecc34..7907a535d49f 100644
+>> --- a/drivers/gpu/drm/i915/gvt/gtt.c
+>> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
+>> @@ -2533,6 +2533,11 @@ static void intel_vgpu_destroy_ggtt_mm(struct intel_vgpu *vgpu)
+>>   	}
+>>   	intel_vgpu_destroy_mm(vgpu->gtt.ggtt_mm);
+>>   	vgpu->gtt.ggtt_mm = NULL;
+>> +
+>> +	if (vgpu->ggtt_entries) {
+>> +		vfree(vgpu->ggtt_entries);
+>> +		vgpu->ggtt_entries = NULL;
+>> +	}
+>>   }
+>>   
+>>   /**
+>> @@ -2834,3 +2839,71 @@ void intel_vgpu_reset_ggtt(struct intel_vgpu *vgpu, bool invalidate_old)
+>>   
+>>   	ggtt_invalidate(gvt->gt);
+>>   }
+>> +
+>> +/**
+>> + * intel_gvt_save_ggtt - save all vGPU's ggtt entries
+>> + * @gvt: intel gvt device
+>> + *
+>> + * This function is called at driver suspend stage to save
+>> + * GGTT entries of every active vGPU.
+>> + *
+>> + */
+>> +void intel_gvt_save_ggtt(struct intel_gvt *gvt)
+>> +{
+>> +	struct intel_vgpu *vgpu;
+>> +	int id;
+>> +	u32 index, num_low, num_hi;
+>> +	void __iomem *addr;
+>> +
+>> +	for_each_active_vgpu(gvt, vgpu, id) {
+>> +		num_low = vgpu_aperture_sz(vgpu) >> PAGE_SHIFT;
+>> +		num_hi = vgpu_hidden_sz(vgpu) >> PAGE_SHIFT;
+>> +		vgpu->ggtt_entries = vzalloc((num_low + num_hi) * sizeof(u64));
+>> +		if (!vgpu->ggtt_entries)
+>> +			continue;
+>> +
+>> +		index = vgpu_aperture_gmadr_base(vgpu) >> PAGE_SHIFT;
+>> +		addr = (gen8_pte_t __iomem *)gvt->gt->i915->ggtt.gsm + index;
+>> +		memcpy(vgpu->ggtt_entries, addr, num_low);
+> Should use memcpy_fromio() and is the size right? It's the number of entries
+> instead of bytes count?
+Indeed this is a mistake. ggtt_entries is allocated num_entries * 8bytes 
+(sizeof(u64)) and copy should also count on bytes instead of num entries.
 >
-> Cc: Landwerlin, Lionel G <lionel.g.landwerlin@intel.com>
-> Signed-off-by: Sowmya Kaparthi <sowmyax.kaparthi@intel.com>
-> ---
->   tests/i915/perf.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>> +
+>> +		index = vgpu_hidden_gmadr_base(vgpu) >> PAGE_SHIFT;
+>> +		addr = (gen8_pte_t __iomem *)gvt->gt->i915->ggtt.gsm + index;
+>> +		memcpy((u64 *)vgpu->ggtt_entries + num_low, addr, num_hi);
+>> +	}
+> ditto
 >
-> diff --git a/tests/i915/perf.c b/tests/i915/perf.c index 
-> a894fd38..5fd1193f 100644
-> --- a/tests/i915/perf.c
-> +++ b/tests/i915/perf.c
-> @@ -4995,7 +4995,7 @@ igt_main
->   			      40 * 1000 * 1000 /* default 40ms hrtimer */);
->   		test_blocking(500 * 1000 /* 500us oa period */,
->   			      true /* set_kernel_hrtimer */,
-> -			      2 * 1000 * 1000 /* default 2ms hrtimer */);
-> +			      10 * 1000 * 1000 /* default 10ms hrtimer */);
->   	}
->   
->   	igt_describe("Test polled read with default hrtimer frequency"); @@ 
-> -5014,7 +5014,7 @@ igt_main
->   			     40 * 1000 * 1000 /* default 40ms hrtimer */);
->   		test_polling(500 * 1000 /* 500us oa period */,
->   			     true /* set_kernel_hrtimer */,
-> -			     2 * 1000 * 1000 /* default 2ms hrtimer */);
-> +			     10 * 1000 * 1000 /* default 10ms hrtimer */);
->   	}
->   
->   	igt_describe("Test polled read with buffer size smaller than 
-> available data");
-
+>> +}
+>> +
+>> +/**
+>> + * intel_gvt_restore_ggtt - restore all vGPU's ggtt entries
+>> + * @gvt: intel gvt device
+>> + *
+>> + * This function is called at driver resume stage to restore
+>> + * GGTT entries of every active vGPU.
+>> + *
+>> + */
+>> +void intel_gvt_restore_ggtt(struct intel_gvt *gvt)
+>> +{
+>> +	struct intel_vgpu *vgpu;
+>> +	int id;
+>> +	u32 index, num_low, num_hi;
+>> +	void __iomem *addr;
+>> +
+>> +	for_each_active_vgpu(gvt, vgpu, id) {
+>> +		if (!vgpu->ggtt_entries) {
+>> +			gvt_vgpu_err("fail to get saved ggtt\n");
+>> +			continue;
+>> +		}
+>> +
+>> +		num_low = vgpu_aperture_sz(vgpu) >> PAGE_SHIFT;
+>> +		num_hi = vgpu_hidden_sz(vgpu) >> PAGE_SHIFT;
+>> +
+>> +		index = vgpu_aperture_gmadr_base(vgpu) >> PAGE_SHIFT;
+>> +		addr = (gen8_pte_t __iomem *)gvt->gt->i915->ggtt.gsm + index;
+>> +		memcpy(addr, vgpu->ggtt_entries, num_low);
+> memcpy_toio()
+>
+>> +		index = vgpu_hidden_gmadr_base(vgpu) >> PAGE_SHIFT;
+>> +		addr = (gen8_pte_t __iomem *)gvt->gt->i915->ggtt.gsm + index;
+>> +		memcpy(addr, (u64 *)vgpu->ggtt_entries + num_low, num_hi);
+>> +
+>> +		vfree(vgpu->ggtt_entries);
+>> +		vgpu->ggtt_entries = NULL;
+>> +	}
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/gvt/gtt.h b/drivers/gpu/drm/i915/gvt/gtt.h
+>> index b76a262dd9bc..0d2fb2714852 100644
+>> --- a/drivers/gpu/drm/i915/gvt/gtt.h
+>> +++ b/drivers/gpu/drm/i915/gvt/gtt.h
+>> @@ -279,5 +279,7 @@ int intel_vgpu_emulate_ggtt_mmio_write(struct intel_vgpu *vgpu,
+>>   	unsigned int off, void *p_data, unsigned int bytes);
+>>   
+>>   void intel_vgpu_destroy_all_ppgtt_mm(struct intel_vgpu *vgpu);
+>> +void intel_gvt_save_ggtt(struct intel_gvt *gvt);
+>> +void intel_gvt_restore_ggtt(struct intel_gvt *gvt);
+>>   
+>>   #endif /* _GVT_GTT_H_ */
+>> diff --git a/drivers/gpu/drm/i915/gvt/gvt.c b/drivers/gpu/drm/i915/gvt/gvt.c
+>> index c7c561237883..3de740fa0911 100644
+>> --- a/drivers/gpu/drm/i915/gvt/gvt.c
+>> +++ b/drivers/gpu/drm/i915/gvt/gvt.c
+>> @@ -405,6 +405,21 @@ int intel_gvt_init_device(struct drm_i915_private *i915)
+>>   	return ret;
+>>   }
+>>   
+>> +int
+>> +intel_gvt_pm_suspend(struct intel_gvt *gvt)
+>> +{
+>> +	intel_gvt_save_ggtt(gvt);
+>> +	return 0;
+>> +}
+>> +
+>> +int
+>> +intel_gvt_pm_resume(struct intel_gvt *gvt)
+>> +{
+>> +	intel_gvt_restore_regs(gvt);
+>> +	intel_gvt_restore_ggtt(gvt);
+>> +	return 0;
+>> +}
+>> +
+>>   int
+>>   intel_gvt_register_hypervisor(struct intel_gvt_mpt *m)
+>>   {
+>> diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
+>> index 9831361f181e..6d99bb970214 100644
+>> --- a/drivers/gpu/drm/i915/gvt/gvt.h
+>> +++ b/drivers/gpu/drm/i915/gvt/gvt.h
+>> @@ -199,9 +199,13 @@ struct intel_vgpu {
+>>   	struct intel_vgpu_submission submission;
+>>   	struct radix_tree_root page_track_tree;
+>>   	u32 hws_pga[I915_NUM_ENGINES];
+>> +
+>>   	/* Set on PCI_D3, reset on DMLR, not reflecting the actual PM state */
+>>   	bool d3_entered;
+>>   
+>> +	/* Saved GGTT entries during host suspend state */
+>> +	u64 *ggtt_entries;
+>> +
+>>   	struct dentry *debugfs;
+>>   
+>>   	/* Hypervisor-specific device state. */
+>> @@ -685,6 +689,8 @@ void intel_gvt_debugfs_remove_vgpu(struct intel_vgpu *vgpu);
+>>   void intel_gvt_debugfs_init(struct intel_gvt *gvt);
+>>   void intel_gvt_debugfs_clean(struct intel_gvt *gvt);
+>>   
+>> +int intel_gvt_pm_suspend(struct intel_gvt *gvt);
+>> +int intel_gvt_pm_resume(struct intel_gvt *gvt);
+>>   
+>>   #include "trace.h"
+>>   #include "mpt.h"
+>> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+>> index 72860aaf1656..24e9dde656a4 100644
+>> --- a/drivers/gpu/drm/i915/gvt/handlers.c
+>> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
+>> @@ -3642,3 +3642,23 @@ int intel_vgpu_mmio_reg_rw(struct intel_vgpu *vgpu, unsigned int offset,
+>>   		intel_vgpu_default_mmio_read(vgpu, offset, pdata, bytes) :
+>>   		intel_vgpu_default_mmio_write(vgpu, offset, pdata, bytes);
+>>   }
+>> +
+>> +void intel_gvt_restore_regs(struct intel_gvt *gvt)
+>> +{
+>> +	struct drm_i915_private *dev_priv = gvt->gt->i915;
+>> +	struct intel_vgpu *vgpu;
+>> +	int i, id;
+>> +	u64 val;
+>> +
+>> +	for_each_active_vgpu(gvt, vgpu, id) {
+>> +		mmio_hw_access_pre(gvt->gt);
+>> +		for (i = 0; i < vgpu_fence_sz(vgpu); i++) {
+>> +			val = vgpu_vreg64(vgpu, fence_num_to_offset(i));
+>> +			intel_vgpu_write_fence(vgpu, i, val);
+>> +		}
+>> +
+>> +		I915_WRITE(_MMIO(TRTTE.reg), vgpu_vreg(vgpu, TRTTE.reg));
+> I915_WRITE(TRTTE, vgpu_vreg_t(vgpu, TRTTE));
+>
+>> +		I915_WRITE(_MMIO(0x4dfc), vgpu_vreg(vgpu, 0x4dfc));
+> Could we have an extra bit flag to tell which regs are required for suspend
+> restore?
+So that we can loop all MMIOs in list and check F_PM_SAVE to decide 
+whether or not save restore, instead of explicitly do one by one?
+>
+>> +		mmio_hw_access_post(gvt->gt);
+>> +	}
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/gvt/mmio.h b/drivers/gpu/drm/i915/gvt/mmio.h
+>> index cc4812648bf4..999d9dda0614 100644
+>> --- a/drivers/gpu/drm/i915/gvt/mmio.h
+>> +++ b/drivers/gpu/drm/i915/gvt/mmio.h
+>> @@ -104,4 +104,7 @@ int intel_vgpu_mmio_reg_rw(struct intel_vgpu *vgpu, unsigned int offset,
+>>   
+>>   int intel_vgpu_mask_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
+>>   				  void *p_data, unsigned int bytes);
+>> +
+>> +void intel_gvt_restore_regs(struct intel_gvt *gvt);
+>> +
+>>   #endif
+>> diff --git a/drivers/gpu/drm/i915/gvt/vgpu.c b/drivers/gpu/drm/i915/gvt/vgpu.c
+>> index e0e073045d83..a0c1c47a842b 100644
+>> --- a/drivers/gpu/drm/i915/gvt/vgpu.c
+>> +++ b/drivers/gpu/drm/i915/gvt/vgpu.c
+>> @@ -395,6 +395,7 @@ static struct intel_vgpu *__intel_gvt_create_vgpu(struct intel_gvt *gvt,
+>>   	idr_init(&vgpu->object_idr);
+>>   	intel_vgpu_init_cfg_space(vgpu, param->primary);
+>>   	vgpu->d3_entered = false;
+>> +	vgpu->ggtt_entries = NULL;
+>>   
+>>   	ret = intel_vgpu_init_mmio(vgpu);
+>>   	if (ret)
+>> diff --git a/drivers/gpu/drm/i915/intel_gvt.c b/drivers/gpu/drm/i915/intel_gvt.c
+>> index 99fe8aef1c67..33650daef567 100644
+>> --- a/drivers/gpu/drm/i915/intel_gvt.c
+>> +++ b/drivers/gpu/drm/i915/intel_gvt.c
+>> @@ -24,6 +24,7 @@
+>>   #include "i915_drv.h"
+>>   #include "i915_vgpu.h"
+>>   #include "intel_gvt.h"
+>> +#include "gvt/gvt.h"
+>>   
+>>   /**
+>>    * DOC: Intel GVT-g host support
+>> @@ -147,3 +148,31 @@ void intel_gvt_driver_remove(struct drm_i915_private *dev_priv)
+>>   
+>>   	intel_gvt_clean_device(dev_priv);
+>>   }
+>> +
+>> +/**
+>> + * intel_gvt_suspend - GVT suspend routine wapper
+>> + *
+>> + * @dev_priv: drm i915 private *
+>> + *
+>> + * This function is called at the i915 driver suspend stage to save necessary
+>> + * HW status for GVT so that vGPU can continue running after resume.
+>> + */
+>> +void intel_gvt_suspend(struct drm_i915_private *dev_priv)
+>> +{
+>> +	if (intel_gvt_active(dev_priv))
+>> +		intel_gvt_pm_suspend(dev_priv->gvt);
+>> +}
+>> +
+>> +/**
+>> + * intel_gvt_suspend - GVT resume routine wapper
+>> + *
+>> + * @dev_priv: drm i915 private *
+>> + *
+>> + * This function is called at the i915 driver resume stage to restore required
+>> + * HW status for GVT so that vGPU can continue running after resumed.
+>> + */
+>> +void intel_gvt_resume(struct drm_i915_private *dev_priv)
+>> +{
+>> +	if (intel_gvt_active(dev_priv))
+>> +		intel_gvt_pm_resume(dev_priv->gvt);
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/intel_gvt.h b/drivers/gpu/drm/i915/intel_gvt.h
+>> index 502fad8a8652..5732c7b10ab2 100644
+>> --- a/drivers/gpu/drm/i915/intel_gvt.h
+>> +++ b/drivers/gpu/drm/i915/intel_gvt.h
+>> @@ -33,6 +33,8 @@ int intel_gvt_init_device(struct drm_i915_private *dev_priv);
+>>   void intel_gvt_clean_device(struct drm_i915_private *dev_priv);
+>>   int intel_gvt_init_host(void);
+>>   void intel_gvt_sanitize_options(struct drm_i915_private *dev_priv);
+>> +void intel_gvt_suspend(struct drm_i915_private *dev_priv);
+>> +void intel_gvt_resume(struct drm_i915_private *dev_priv);
+>>   #else
+>>   static inline int intel_gvt_init(struct drm_i915_private *dev_priv)
+>>   {
+>> @@ -46,6 +48,14 @@ static inline void intel_gvt_driver_remove(struct drm_i915_private *dev_priv)
+>>   static inline void intel_gvt_sanitize_options(struct drm_i915_private *dev_priv)
+>>   {
+>>   }
+>> +
+>> +static inline void intel_gvt_suspend(struct drm_i915_private *dev_priv)
+>> +{
+>> +}
+>> +
+>> +static inline void intel_gvt_resume(struct drm_i915_private *dev_priv)
+>> +{
+>> +}
+>>   #endif
+>>   
+>>   #endif /* _INTEL_GVT_H_ */
+>> -- 
+>> 2.28.0
+>>
+-- 
+Best Regards,
+Colin Xu
 
 _______________________________________________
 Intel-gfx mailing list
