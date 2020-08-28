@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 193C72555D2
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Aug 2020 09:59:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B042555D3
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Aug 2020 09:59:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DECF6EB6F;
-	Fri, 28 Aug 2020 07:59:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9C816EB7F;
+	Fri, 28 Aug 2020 07:59:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A301B6EB7F;
- Fri, 28 Aug 2020 07:59:48 +0000 (UTC)
-IronPort-SDR: lTMyZXxvpI9VHQ8vtVs7a+wH2T3z4iv32Ll9IIuHxmQZTpuRJcbw1nBSFPZOsHixNBEjBgvJUn
- wqEJRpXe7I6A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9726"; a="136690199"
-X-IronPort-AV: E=Sophos;i="5.76,362,1592895600"; d="scan'208";a="136690199"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4622B6EB7F;
+ Fri, 28 Aug 2020 07:59:52 +0000 (UTC)
+IronPort-SDR: UHpBoWF1hUJPKDQafOQhDGDRKh/Uus0n3LSUK4Ql9K5HVE3Yuc0I8risWxiW0IIlWxkCkdvX2L
+ DQEnT58CFIbQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9726"; a="136690208"
+X-IronPort-AV: E=Sophos;i="5.76,362,1592895600"; d="scan'208";a="136690208"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2020 00:59:48 -0700
-IronPort-SDR: HddNPNvwzLPbKS8Ump/2VW1YTLX2Bu5T4BFx7iCKFt8r5Rm2FwfOBbQlMEt+0dHHuL9u3WkKSy
- eGPQx3K0crPg==
-X-IronPort-AV: E=Sophos;i="5.76,362,1592895600"; d="scan'208";a="444755817"
+ 28 Aug 2020 00:59:52 -0700
+IronPort-SDR: ZSeG8YHpQjLxtstj1i4i7dGZlkTow8ZrFyr7XgyNdmjpad/L06fFoqSwgISUeW2/eo8IrU8Sk/
+ Gumf3FXlkAGg==
+X-IronPort-AV: E=Sophos;i="5.76,362,1592895600"; d="scan'208";a="444755840"
 Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2020 00:59:46 -0700
+ 28 Aug 2020 00:59:48 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri, 28 Aug 2020 09:59:09 +0200
-Message-Id: <20200828075927.17061-4-janusz.krzysztofik@linux.intel.com>
+Date: Fri, 28 Aug 2020 09:59:10 +0200
+Message-Id: <20200828075927.17061-5-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200828075927.17061-1-janusz.krzysztofik@linux.intel.com>
 References: <20200828075927.17061-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v5 03/21] tests/core_hotunplug: Clean up
- device open error handling
+Subject: [Intel-gfx] [PATCH i-g-t v5 04/21] tests/core_hotunplug:
+ Consolidate duplicated debug messages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,105 +51,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We don't use drm_driver_open() since in case of an i915 device it keeps
-an extra file descriptor of the exercised device open for exit handler
-use, while we would like to be able to close the device completely
-before running certain test operations.  Instead, we call
-__drm_driver_open() and handle its result ourselves.  Unlike
-drm_driver_open() which skips on device open errors, we always fail or
-abort the test in such case.  Moreover, we don't ensure that the i915
-driver is idle before starting subtests like drm_open_driver() does.
-
-Skip instead of failing on initial device open error.  Also, call
-gem_quiescent_gpu() if an i915 device is detected.  For subsequent
-device opens, define a local helper that fails on error and use it.  If
-we think we need to abort the test execution on device open error, set
-our failure marker first to trigger the abort from a follow up
-igt_fixture section.
-
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- tests/core_hotunplug.c | 34 +++++++++++++++++++++++-----------
- 1 file changed, 23 insertions(+), 11 deletions(-)
-
-diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
-index a4071f51e..e576a6c6c 100644
---- a/tests/core_hotunplug.c
-+++ b/tests/core_hotunplug.c
-@@ -49,6 +49,21 @@ struct hotunplug {
- 
- /* Helpers */
- 
-+/**
-+ * Subtests must be able to close examined devices completely.  Don't
-+ * use drm_open_driver() since in case of an i915 device it opens it
-+ * twice and keeps a second file descriptor open for exit handler use.
-+ */
-+static int local_drm_open_driver(void)
-+{
-+	int fd_drm;
-+
-+	fd_drm = __drm_open_driver(DRIVER_ANY);
-+	igt_assert_fd(fd_drm);
-+
-+	return fd_drm;
-+}
-+
- static void prepare_for_unbind(struct hotunplug *priv, char *buf, int buflen)
- {
- 	int len;
-@@ -71,8 +86,7 @@ static void prepare_for_unbind(struct hotunplug *priv, char *buf, int buflen)
- static void prepare(struct hotunplug *priv, char *buf, int buflen)
- {
- 	igt_debug("opening device\n");
--	priv->fd.drm = __drm_open_driver(DRIVER_ANY);
--	igt_assert_fd(priv->fd.drm);
-+	priv->fd.drm = local_drm_open_driver();
- 
- 	priv->fd.sysfs_dev = igt_sysfs_open(priv->fd.drm);
- 	igt_assert_fd(priv->fd.sysfs_dev);
-@@ -145,8 +159,9 @@ static void healthcheck(void)
- 	igt_devices_scan(true);
- 
- 	igt_debug("reopening the device\n");
--	fd_drm = __drm_open_driver(DRIVER_ANY);
--	igt_abort_on_f(fd_drm < 0, "Device reopen failure");
-+	failure = "Device reopen failure!";
-+	fd_drm = local_drm_open_driver();
-+	failure = NULL;
- 
- 	if (is_i915_device(fd_drm)) {
- 		failure = "GEM failure";
-@@ -255,16 +270,13 @@ igt_main
- 	igt_fixture {
- 		int fd_drm;
- 
--		/**
--		 * As subtests must be able to close examined devices
--		 * completely, don't use drm_open_driver() as it keeps
--		 * a device file descriptor open for exit handler use.
--		 */
- 		fd_drm = __drm_open_driver(DRIVER_ANY);
--		igt_assert_fd(fd_drm);
-+		igt_skip_on_f(fd_drm < 0, "No known DRM device found\n");
- 
--		if (is_i915_device(fd_drm))
-+		if (is_i915_device(fd_drm)) {
-+			gem_quiescent_gpu(fd_drm);
- 			igt_require_gem(fd_drm);
-+		}
- 
- 		/* Make sure subtests always reopen the same device */
- 		set_filter_from_device(fd_drm);
--- 
-2.21.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+U29tZSBkZWJ1ZyBtZXNzYWdlcyB3aGljaCBkZXNpZ25hdGUgc3BlY2lmaWMgdGVzdCBvcGVyYXRp
+b25zLCBvciB0aGVpcgpncmVhdGVyIHBhcnRzIGF0IGxlYXN0LCBzb3VuZCBhbHdheXMgdGhlIHNh
+bWUsIG5vIG1hdHRlciB3aGljaCBzdWJ0ZXN0CnRoZXkgYXJlIGNhbGxlZCBmcm9tLiAgRW1pdCB0
+aGVtLCBwb3NzaWJseSB1cGRhdGVkIHdpdGggc3VidGVzdApzcGVjaWZpZWQgbW9kaWZpZXJzLCBm
+cm9tIGluc2lkZSByZXNwZWN0aXZlIGhlbHBlcnMgaW5zdGVhZCBvZgpkdXBsaWNhdGluZyB0aGVt
+IGluIHN1YnRlc3QgYm9kaWVzLgoKdjI6IFJlYmFzZSBvbmx5Lgp2MzogUmVmcmVzaCBhbmQgZXh0
+ZW5kIG92ZXIgbmV3IGNhc2UgKGxvY2FsX2RybV9vcGVuX2RyaXZlciksCiAgLSBhbGxvdyBjYWxs
+ZXJzIHRvIHNwZWNpZnkgYSBtZXNzYWdlIHN1ZmZpeCBhcyB3ZWxsIHdoZXJlIGFwcGxpY2FibGUu
+CgpTaWduZWQtb2ZmLWJ5OiBKYW51c3ogS3J6eXN6dG9maWsgPGphbnVzei5rcnp5c3p0b2Zpa0Bs
+aW51eC5pbnRlbC5jb20+ClJldmlld2VkLWJ5OiBNaWNoYcWCIFdpbmlhcnNraSA8bWljaGFsLndp
+bmlhcnNraUBpbnRlbC5jb20+ICMgdjEKLS0tCiB0ZXN0cy9jb3JlX2hvdHVucGx1Zy5jIHwgMzkg
+KysrKysrKysrKysrKysrKysrKystLS0tLS0tLS0tLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwg
+MjAgaW5zZXJ0aW9ucygrKSwgMTkgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvdGVzdHMvY29y
+ZV9ob3R1bnBsdWcuYyBiL3Rlc3RzL2NvcmVfaG90dW5wbHVnLmMKaW5kZXggZTU3NmE2YzZjLi41
+MDkzMjMzZDcgMTAwNjQ0Ci0tLSBhL3Rlc3RzL2NvcmVfaG90dW5wbHVnLmMKKysrIGIvdGVzdHMv
+Y29yZV9ob3R1bnBsdWcuYwpAQCAtNTQsMTAgKzU0LDEyIEBAIHN0cnVjdCBob3R1bnBsdWcgewog
+ICogdXNlIGRybV9vcGVuX2RyaXZlcigpIHNpbmNlIGluIGNhc2Ugb2YgYW4gaTkxNSBkZXZpY2Ug
+aXQgb3BlbnMgaXQKICAqIHR3aWNlIGFuZCBrZWVwcyBhIHNlY29uZCBmaWxlIGRlc2NyaXB0b3Ig
+b3BlbiBmb3IgZXhpdCBoYW5kbGVyIHVzZS4KICAqLwotc3RhdGljIGludCBsb2NhbF9kcm1fb3Bl
+bl9kcml2ZXIodm9pZCkKK3N0YXRpYyBpbnQgbG9jYWxfZHJtX29wZW5fZHJpdmVyKGNvbnN0IGNo
+YXIgKnByZWZpeCwgY29uc3QgY2hhciAqc3VmZml4KQogewogCWludCBmZF9kcm07CiAKKwlpZ3Rf
+ZGVidWcoIiVzb3BlbmluZyBkZXZpY2Ulc1xuIiwgcHJlZml4LCBzdWZmaXgpOworCiAJZmRfZHJt
+ID0gX19kcm1fb3Blbl9kcml2ZXIoRFJJVkVSX0FOWSk7CiAJaWd0X2Fzc2VydF9mZChmZF9kcm0p
+OwogCkBAIC04NSw4ICs4Nyw3IEBAIHN0YXRpYyB2b2lkIHByZXBhcmVfZm9yX3VuYmluZChzdHJ1
+Y3QgaG90dW5wbHVnICpwcml2LCBjaGFyICpidWYsIGludCBidWZsZW4pCiAKIHN0YXRpYyB2b2lk
+IHByZXBhcmUoc3RydWN0IGhvdHVucGx1ZyAqcHJpdiwgY2hhciAqYnVmLCBpbnQgYnVmbGVuKQog
+ewotCWlndF9kZWJ1Zygib3BlbmluZyBkZXZpY2VcbiIpOwotCXByaXYtPmZkLmRybSA9IGxvY2Fs
+X2RybV9vcGVuX2RyaXZlcigpOworCXByaXYtPmZkLmRybSA9IGxvY2FsX2RybV9vcGVuX2RyaXZl
+cigiIiwgIiBmb3Igc3VidGVzdCIpOwogCiAJcHJpdi0+ZmQuc3lzZnNfZGV2ID0gaWd0X3N5c2Zz
+X29wZW4ocHJpdi0+ZmQuZHJtKTsKIAlpZ3RfYXNzZXJ0X2ZkKHByaXYtPmZkLnN5c2ZzX2Rldik7
+CkBAIC0xMDQsOCArMTA1LDExIEBAIHN0YXRpYyB2b2lkIHByZXBhcmUoc3RydWN0IGhvdHVucGx1
+ZyAqcHJpdiwgY2hhciAqYnVmLCBpbnQgYnVmbGVuKQogc3RhdGljIGNvbnN0IGNoYXIgKmZhaWx1
+cmU7CiAKIC8qIFVuYmluZCB0aGUgZHJpdmVyIGZyb20gdGhlIGRldmljZSAqLwotc3RhdGljIHZv
+aWQgZHJpdmVyX3VuYmluZChpbnQgZmRfc3lzZnNfZHJ2LCBjb25zdCBjaGFyICpkZXZfYnVzX2Fk
+ZHIpCitzdGF0aWMgdm9pZCBkcml2ZXJfdW5iaW5kKGludCBmZF9zeXNmc19kcnYsIGNvbnN0IGNo
+YXIgKmRldl9idXNfYWRkciwKKwkJCSAgY29uc3QgY2hhciAqcHJlZml4KQogeworCWlndF9kZWJ1
+ZygiJXN1bmJpbmRpbmcgdGhlIGRyaXZlciBmcm9tIHRoZSBkZXZpY2VcbiIsIHByZWZpeCk7CisK
+IAlmYWlsdXJlID0gIkRyaXZlciB1bmJpbmQgdGltZW91dCEiOwogCWlndF9zZXRfdGltZW91dCg2
+MCwgZmFpbHVyZSk7CiAJaWd0X3N5c2ZzX3NldChmZF9zeXNmc19kcnYsICJ1bmJpbmQiLCBkZXZf
+YnVzX2FkZHIpOwpAQCAtMTE4LDYgKzEyMiw4IEBAIHN0YXRpYyB2b2lkIGRyaXZlcl91bmJpbmQo
+aW50IGZkX3N5c2ZzX2RydiwgY29uc3QgY2hhciAqZGV2X2J1c19hZGRyKQogLyogUmUtYmluZCB0
+aGUgZHJpdmVyIHRvIHRoZSBkZXZpY2UgKi8KIHN0YXRpYyB2b2lkIGRyaXZlcl9iaW5kKGludCBm
+ZF9zeXNmc19kcnYsIGNvbnN0IGNoYXIgKmRldl9idXNfYWRkcikKIHsKKwlpZ3RfZGVidWcoInJl
+YmluZGluZyB0aGUgZHJpdmVyIHRvIHRoZSBkZXZpY2VcbiIpOworCiAJZmFpbHVyZSA9ICJEcml2
+ZXIgcmUtYmluZCB0aW1lb3V0ISI7CiAJaWd0X3NldF90aW1lb3V0KDYwLCBmYWlsdXJlKTsKIAlp
+Z3Rfc3lzZnNfc2V0KGZkX3N5c2ZzX2RydiwgImJpbmQiLCBkZXZfYnVzX2FkZHIpOwpAQCAtMTI4
+LDggKzEzNCwxMCBAQCBzdGF0aWMgdm9pZCBkcml2ZXJfYmluZChpbnQgZmRfc3lzZnNfZHJ2LCBj
+b25zdCBjaGFyICpkZXZfYnVzX2FkZHIpCiB9CiAKIC8qIFJlbW92ZSAodmlydHVhbGx5IHVucGx1
+ZykgdGhlIGRldmljZSBmcm9tIGl0cyBidXMgKi8KLXN0YXRpYyB2b2lkIGRldmljZV91bnBsdWco
+aW50IGZkX3N5c2ZzX2RldikKK3N0YXRpYyB2b2lkIGRldmljZV91bnBsdWcoaW50IGZkX3N5c2Zz
+X2RldiwgY29uc3QgY2hhciAqcHJlZml4KQogeworCWlndF9kZWJ1ZygiJXN1bnBsdWdnaW5nIHRo
+ZSBkZXZpY2VcbiIsIHByZWZpeCk7CisKIAlmYWlsdXJlID0gIkRldmljZSB1bnBsdWcgdGltZW91
+dCEiOwogCWlndF9zZXRfdGltZW91dCg2MCwgZmFpbHVyZSk7CiAJaWd0X3N5c2ZzX3NldChmZF9z
+eXNmc19kZXYsICJkZXZpY2UvcmVtb3ZlIiwgIjEiKTsKQEAgLTE0Miw2ICsxNTAsOCBAQCBzdGF0
+aWMgdm9pZCBkZXZpY2VfdW5wbHVnKGludCBmZF9zeXNmc19kZXYpCiAvKiBSZS1kaXNjb3ZlciB0
+aGUgZGV2aWNlIGJ5IHJlc2Nhbm5pbmcgaXRzIGJ1cyAqLwogc3RhdGljIHZvaWQgYnVzX3Jlc2Nh
+bihpbnQgZmRfc3lzZnNfYnVzKQogeworCWlndF9kZWJ1ZygicmVkaXNjb3ZlcmluZyB0aGUgZGV2
+aWNlXG4iKTsKKwogCWZhaWx1cmUgPSAiQnVzIHJlc2NhbiB0aW1lb3V0ISI7CiAJaWd0X3NldF90
+aW1lb3V0KDYwLCBmYWlsdXJlKTsKIAlpZ3Rfc3lzZnNfc2V0KGZkX3N5c2ZzX2J1cywgInJlc2Nh
+biIsICIxIik7CkBAIC0xNTgsOSArMTY4LDggQEAgc3RhdGljIHZvaWQgaGVhbHRoY2hlY2sodm9p
+ZCkKIAkvKiBkZXZpY2UgbmFtZSBtYXkgaGF2ZSBjaGFuZ2VkLCByZWJ1aWxkIElHVCBkZXZpY2Ug
+bGlzdCAqLwogCWlndF9kZXZpY2VzX3NjYW4odHJ1ZSk7CiAKLQlpZ3RfZGVidWcoInJlb3Blbmlu
+ZyB0aGUgZGV2aWNlXG4iKTsKIAlmYWlsdXJlID0gIkRldmljZSByZW9wZW4gZmFpbHVyZSEiOwot
+CWZkX2RybSA9IGxvY2FsX2RybV9vcGVuX2RyaXZlcigpOworCWZkX2RybSA9IGxvY2FsX2RybV9v
+cGVuX2RyaXZlcigicmUiLCAiIGZvciBoZWFsdGhjaGVjayIpOwogCWZhaWx1cmUgPSBOVUxMOwog
+CiAJaWYgKGlzX2k5MTVfZGV2aWNlKGZkX2RybSkpIHsKQEAgLTE5OSwxMCArMjA4LDggQEAgc3Rh
+dGljIHZvaWQgdW5iaW5kX3JlYmluZCh2b2lkKQogCWlndF9kZWJ1ZygiY2xvc2luZyB0aGUgZGV2
+aWNlXG4iKTsKIAljbG9zZShwcml2LmZkLmRybSk7CiAKLQlpZ3RfZGVidWcoInVuYmluZGluZyB0
+aGUgZHJpdmVyIGZyb20gdGhlIGRldmljZVxuIik7Ci0JZHJpdmVyX3VuYmluZChwcml2LmZkLnN5
+c2ZzX2RydiwgcHJpdi5kZXZfYnVzX2FkZHIpOworCWRyaXZlcl91bmJpbmQocHJpdi5mZC5zeXNm
+c19kcnYsIHByaXYuZGV2X2J1c19hZGRyLCAiIik7CiAKLQlpZ3RfZGVidWcoInJlYmluZGluZyB0
+aGUgZHJpdmVyIHRvIHRoZSBkZXZpY2VcbiIpOwogCWRyaXZlcl9iaW5kKHByaXYuZmQuc3lzZnNf
+ZHJ2LCBwcml2LmRldl9idXNfYWRkcik7CiAKIAloZWFsdGhjaGVjaygpOwpAQCAtMjE3LDEwICsy
+MjQsOCBAQCBzdGF0aWMgdm9pZCB1bnBsdWdfcmVzY2FuKHZvaWQpCiAJaWd0X2RlYnVnKCJjbG9z
+aW5nIHRoZSBkZXZpY2VcbiIpOwogCWNsb3NlKHByaXYuZmQuZHJtKTsKIAotCWlndF9kZWJ1Zygi
+dW5wbHVnZ2luZyB0aGUgZGV2aWNlXG4iKTsKLQlkZXZpY2VfdW5wbHVnKHByaXYuZmQuc3lzZnNf
+ZGV2KTsKKwlkZXZpY2VfdW5wbHVnKHByaXYuZmQuc3lzZnNfZGV2LCAiIik7CiAKLQlpZ3RfZGVi
+dWcoInJlY292ZXJpbmcgdGhlIGRldmljZVxuIik7CiAJYnVzX3Jlc2Nhbihwcml2LmZkLnN5c2Zz
+X2J1cyk7CiAKIAloZWFsdGhjaGVjaygpOwpAQCAtMjMzLDEwICsyMzgsOCBAQCBzdGF0aWMgdm9p
+ZCBob3R1bmJpbmRfbGF0ZWNsb3NlKHZvaWQpCiAKIAlwcmVwYXJlKCZwcml2LCBidWYsIHNpemVv
+ZihidWYpKTsKIAotCWlndF9kZWJ1ZygiaG90IHVuYmluZGluZyB0aGUgZHJpdmVyIGZyb20gdGhl
+IGRldmljZVxuIik7Ci0JZHJpdmVyX3VuYmluZChwcml2LmZkLnN5c2ZzX2RydiwgcHJpdi5kZXZf
+YnVzX2FkZHIpOworCWRyaXZlcl91bmJpbmQocHJpdi5mZC5zeXNmc19kcnYsIHByaXYuZGV2X2J1
+c19hZGRyLCAiaG90ICIpOwogCi0JaWd0X2RlYnVnKCJyZWJpbmRpbmcgdGhlIGRyaXZlciB0byB0
+aGUgZGV2aWNlXG4iKTsKIAlkcml2ZXJfYmluZChwcml2LmZkLnN5c2ZzX2RydiwgcHJpdi5kZXZf
+YnVzX2FkZHIpOwogCiAJaWd0X2RlYnVnKCJsYXRlIGNsb3NpbmcgdGhlIHVuYm91bmQgZGV2aWNl
+IGluc3RhbmNlXG4iKTsKQEAgLTI1MSwxMCArMjU0LDggQEAgc3RhdGljIHZvaWQgaG90dW5wbHVn
+X2xhdGVjbG9zZSh2b2lkKQogCiAJcHJlcGFyZSgmcHJpdiwgTlVMTCwgMCk7CiAKLQlpZ3RfZGVi
+dWcoImhvdCB1bnBsdWdnaW5nIHRoZSBkZXZpY2VcbiIpOwotCWRldmljZV91bnBsdWcocHJpdi5m
+ZC5zeXNmc19kZXYpOworCWRldmljZV91bnBsdWcocHJpdi5mZC5zeXNmc19kZXYsICJob3QgIik7
+CiAKLQlpZ3RfZGVidWcoInJlY292ZXJpbmcgdGhlIGRldmljZVxuIik7CiAJYnVzX3Jlc2Nhbihw
+cml2LmZkLnN5c2ZzX2J1cyk7CiAKIAlpZ3RfZGVidWcoImxhdGUgY2xvc2luZyB0aGUgcmVtb3Zl
+ZCBkZXZpY2UgaW5zdGFuY2VcbiIpOwotLSAKMi4yMS4xCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
