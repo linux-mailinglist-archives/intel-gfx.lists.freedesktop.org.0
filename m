@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33D532555E3
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Aug 2020 10:00:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 134C52555E6
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Aug 2020 10:00:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C88B6EB85;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 318846EBA3;
 	Fri, 28 Aug 2020 08:00:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B3FD6EB94;
- Fri, 28 Aug 2020 08:00:26 +0000 (UTC)
-IronPort-SDR: ffADpk8kgHwYo94yZhNy5z4Eun1DlgsdAWj5O4ZwBf9HXWTTXjjEw5bPfOTqd9VW9YwrY8UORF
- 6yEn9swxDklA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9726"; a="144375154"
-X-IronPort-AV: E=Sophos;i="5.76,363,1592895600"; d="scan'208";a="144375154"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42A406EB94;
+ Fri, 28 Aug 2020 08:00:28 +0000 (UTC)
+IronPort-SDR: lply4t6R+6wWo4SKX0/jqU4WCmIzcI7jPjlOwVQm8W4T86wR7Hsak0jkEzC26aEMGS5oyQhKwC
+ dfLgkVwNq2eA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9726"; a="136690274"
+X-IronPort-AV: E=Sophos;i="5.76,362,1592895600"; d="scan'208";a="136690274"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2020 01:00:24 -0700
-IronPort-SDR: 1oej/7ILhSe4iNDYpwGwnwnSp2SsLcpF6irBYcFAkFQaqIdom7ONaJQLBbvgF4k1x0NK9SR4vu
- JxRJmXKaYNsQ==
-X-IronPort-AV: E=Sophos;i="5.76,363,1592895600"; d="scan'208";a="444756024"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2020 01:00:27 -0700
+IronPort-SDR: KHiKa28ntic34j4LAGBWoEYttp9WwII+x/jhLFD6nR2f3D1EWYjCygL4GJ71mfal/1WRTY3nqP
+ SLDNL5nf+3JQ==
+X-IronPort-AV: E=Sophos;i="5.76,363,1592895600"; d="scan'208";a="444756033"
 Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2020 01:00:22 -0700
+ 28 Aug 2020 01:00:24 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri, 28 Aug 2020 09:59:24 +0200
-Message-Id: <20200828075927.17061-19-janusz.krzysztofik@linux.intel.com>
+Date: Fri, 28 Aug 2020 09:59:25 +0200
+Message-Id: <20200828075927.17061-20-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200828075927.17061-1-janusz.krzysztofik@linux.intel.com>
 References: <20200828075927.17061-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v5 18/21] tests/core_hotunplug: Add
- 'lateclose before restore' variants
+Subject: [Intel-gfx] [PATCH i-g-t v5 19/21] tests/core_hotunplug: Duplicate
+ debug messages in dmesg
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,134 +51,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SWYgYSBHUFUgZ2V0cyB3ZWRnZWQgZHVyaW5nIGRyaXZlciByZWJpbmQgb3IgZGV2aWNlIHJlLXBs
-dWcgZm9yIHNvbWUKcmVhc29uLCBjdXJyZW50IGhvdHVuYmluZC9ob3R1bnBsdWcgdGVzdCB2YXJp
-YW50cyBtYXkgdGltZSBvdXQgYmVmb3JlCmxhdGVjbG9zZSBwaGFzZSwgcmVzdWx0aW5nIGluIGlu
-Y29tcGxldGUgQ0kgcmVwb3J0cy4KCkFkZCBuZXcgdGVzdCB2YXJpYW50cyB3aGljaCBjbG9zZSB0
-aGUgZGV2aWNlIGJlZm9yZSByZXN0b3JpbmcgaXQuICBBbHNvCnJlbmFtZSBvbGQgdmFyaWFudHMg
-dG8gbW9yZSBhZGVxdWF0ZSBob3RyZWJpbmQvaG90cmVwbHVnLWxhdGVjbG9zZSBhbmQKcGVyZm9y
-bSBoZWFsdGggY2hlY2tzIGJvdGggYmVmb3JlIGFuZCBhZnRlciBsYXRlIGNsb3NlLgoKdjI6IFJl
-YmFzZSBvbiB1cHN0cmVhbS4KdjM6IFJlZnJlc2gsCiAgLSBmdXJ0aGVyIHJlbmFtZSBob3R1bmJp
-bmQvaG90dW5wbHVnLWxhdGVjbG9zZSB0byBob3R1bmJpbmQtcmViaW5kCiAgICBhbmQgaG90dW5w
-bHVnLXJlc2NhbiByZXNwZWN0aXZlbHksIHRoZW4gYWRkIHR3byBtb3JlIHZhcmlhbnRzIHVuZGVy
-CiAgICB0aGUgb2xkIG5hbWVzIHdoaWNoIG9ubHkgZXhlcmNpc2UgbGF0ZSBjbG9zZSwgbGVhdmlu
-ZyByZWJpbmQgLwogICAgcmVzY2FuIHRvIGJlIGNhcmVkIG9mIGluIHRoZSBwb3N0LXN1YnRlc3Qg
-cmVjb3ZlcnkgcGhhc2UsCiAgLSBhbHNvIHVwZGF0ZSBkZXNjcmlwdGlvbnMgb2YgdW5tb2RpZmll
-ZCBzdWJ0ZXN0cyBmb3IgY29uc2lzdGVuY3kuCnY0OiBSZWZyZXNoLAogIC0gZHJvcCBzdWJ0ZXN0
-cyB3aXRoIG5vIGhlYWx0aCBjaGVja3MsIGFkanVzdCB0aW1lb3V0cyBpbiBzdWNjZXNzb3JzLAog
-IC0gcGVyZm9ybSBoZWFsdGggY2hlY2tzIG9mIGhvdCByZXN0b3JlZCBkZXZpY2VzIGFsc28gYmVm
-b3JlIGxhdGUKICAgIGNsb3NlLAogIC0gaW4gb3JkZXIgdG8gYmUgYWJsZSB0byBzYWZlbHkgcnVu
-IGEgaGVhbHRoIGNoZWNrIHdoaWxlIHN0aWxsCiAgICBrZWVwaW5nIGFuIHVuYm91bmQgLyB1bnBs
-dWdnZWQgZGV2aWNlIGluc3RhbmNlIG9wZW4sIGFsc28gcHJlc2VydmUKICAgIHRoZSBvcGVuIGRl
-dmljZSBmZCwgbm90IG9ubHkgYSBjbG9zZSBlcnJvciwKICAtIGFkanVzdCBzdWJ0ZXN0IGRlc2Ny
-aXB0aW9ucy4KClNpZ25lZC1vZmYtYnk6IEphbnVzeiBLcnp5c3p0b2ZpayA8amFudXN6Lmtyenlz
-enRvZmlrQGxpbnV4LmludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IE1pY2hhxYIgV2luaWFyc2tpIDxt
-aWNoYWwud2luaWFyc2tpQGludGVsLmNvbT4gIyB2MgotLS0KIHRlc3RzL2NvcmVfaG90dW5wbHVn
-LmMgfCA5OCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0KIDEgZmls
-ZSBjaGFuZ2VkLCA4MCBpbnNlcnRpb25zKCspLCAxOCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
-YS90ZXN0cy9jb3JlX2hvdHVucGx1Zy5jIGIvdGVzdHMvY29yZV9ob3R1bnBsdWcuYwppbmRleCAx
-ZjIxMWE4MjAuLjMwNWM1N2EzZiAxMDA2NDQKLS0tIGEvdGVzdHMvY29yZV9ob3R1bnBsdWcuYwor
-KysgYi90ZXN0cy9jb3JlX2hvdHVucGx1Zy5jCkBAIC0yNzYsMTcgKzI3NiwxOSBAQCBzdGF0aWMg
-aW50IGxvY2FsX2k5MTVfcmVjb3ZlcihpbnQgaTkxNSkKIAogc3RhdGljIHZvaWQgaGVhbHRoY2hl
-Y2soc3RydWN0IGhvdHVucGx1ZyAqcHJpdiwgYm9vbCByZWNvdmVyKQogewotCS8qIHByZXNlcnZl
-IGVycm9yIGNvZGUgcG90ZW50aWFsbHkgc3RvcmVkIGJlZm9yZSBpbiBwcml2LT5mZC5kcm0gKi8K
-KwkvKiBwcmVzZXJ2ZSBkZXZpY2UgZmQgLyBjbG9zZSBzdGF0dXMgc3RvcmVkIGluIHByaXYtPmZk
-LmRybSAqLworCWludCBmZF9kcm0sIHNhdmVkX2ZkX2RybSA9IHByaXYtPmZkLmRybTsKIAlib29s
-IGNsb3NlZCA9IHByaXYtPmZkLmRybSA9PSAtMTsKLQlpbnQgZmRfZHJtOwogCiAJLyogZGV2aWNl
-IG5hbWUgbWF5IGhhdmUgY2hhbmdlZCwgcmVidWlsZCBJR1QgZGV2aWNlIGxpc3QgKi8KIAlpZ3Rf
-ZGV2aWNlc19zY2FuKHRydWUpOwogCiAJcHJpdi0+ZmFpbHVyZSA9ICJEZXZpY2UgcmVvcGVuIGZh
-aWx1cmUhIjsKIAlmZF9kcm0gPSBsb2NhbF9kcm1fb3Blbl9kcml2ZXIoInJlIiwgIiBmb3IgaGVh
-bHRoY2hlY2siKTsKLQlpZiAoY2xvc2VkKQkvKiBzdG9yZSBmb3IgY2xlYW51cCBpZiBubyBlcnJv
-ciBjb2RlIHRvIHByZXNlcnZlICovCisJaWYgKGNsb3NlZCkJLyogc3RvcmUgZm9yIGNsZWFudXAg
-aWYgbm90IGRpcnR5ICovCiAJCXByaXYtPmZkLmRybSA9IGZkX2RybTsKKwllbHNlCQkvKiBmb3Jj
-ZSBjbG9zZSBlcnJvciBzaG91bGQgd2UgZmFpbCBwcmVtYXR1cmVseSAqLworCQlwcml2LT5mZC5k
-cm0gPSAtRUJBREY7CiAKIAlpZiAoaXNfaTkxNV9kZXZpY2UoZmRfZHJtKSkgewogCQljb25zdCBj
-aGFyICpmYWlsdXJlID0gTlVMTDsKQEAgLTMwOCw4ICszMTAsMTAgQEAgc3RhdGljIHZvaWQgaGVh
-bHRoY2hlY2soc3RydWN0IGhvdHVucGx1ZyAqcHJpdiwgYm9vbCByZWNvdmVyKQogCX0KIAogCWZk
-X2RybSA9IGNsb3NlX2RldmljZShmZF9kcm0pOwotCWlmIChjbG9zZWQpCS8qIHN0b3JlIHJlc3Vs
-dCBpZiBubyBlcnJvciBjb2RlIHRvIHByZXNlcnZlICovCisJaWYgKGNsb3NlZCkJLyogc3RvcmUg
-cmVzdWx0IGlmIG5vIGRpcnR5IHN0YXR1cyB0byBwcmVzZXJ2ZSAqLwogCQlwcml2LT5mZC5kcm0g
-PSBmZF9kcm07CisJZWxzZSBpZiAoZmRfZHJtID09IC0xKQkvKiBjYW5jZWwgZmFrZSBlcnJvciwg
-cmVzdG9yZSBzYXZlZCBzdGF0dXMgKi8KKwkJcHJpdi0+ZmQuZHJtID0gc2F2ZWRfZmRfZHJtOwog
-CiAJLyogbm90IG9ubHkgcmVxdWVzdCBpZ3RfYWJvcnQgb24gZmFpbHVyZSwgYWxzbyBmYWlsIHRo
-ZSBoZWFsdGggY2hlY2sgKi8KIAlpZ3RfZmFpbF9vbl9mKHByaXYtPmZhaWx1cmUsICIlc1xuIiwg
-cHJpdi0+ZmFpbHVyZSk7CkBAIC0zODEsMzEgKzM4NSw2NSBAQCBzdGF0aWMgdm9pZCB1bnBsdWdf
-cmVzY2FuKHN0cnVjdCBob3R1bnBsdWcgKnByaXYpCiAJaGVhbHRoY2hlY2socHJpdiwgZmFsc2Up
-OwogfQogCi1zdGF0aWMgdm9pZCBob3R1bmJpbmRfbGF0ZWNsb3NlKHN0cnVjdCBob3R1bnBsdWcg
-KnByaXYpCitzdGF0aWMgdm9pZCBob3R1bmJpbmRfcmViaW5kKHN0cnVjdCBob3R1bnBsdWcgKnBy
-aXYpCiB7CiAJaWd0X2Fzc2VydF9lcShwcml2LT5mZC5kcm0sIC0xKTsKLQlwcml2LT5mZC5kcm0g
-PSBsb2NhbF9kcm1fb3Blbl9kcml2ZXIoIiIsICIgZm9yIGhvdHVuYmluZCIpOworCXByaXYtPmZk
-LmRybSA9IGxvY2FsX2RybV9vcGVuX2RyaXZlcigiIiwgIiBmb3IgaG90cmViaW5kIik7CiAKIAlk
-cml2ZXJfdW5iaW5kKHByaXYsICJob3QgIiwgMCk7CiAKLQlkcml2ZXJfYmluZChwcml2LCAwKTsK
-LQogCWlndF9kZWJ1ZygibGF0ZSBjbG9zaW5nIHRoZSB1bmJvdW5kIGRldmljZSBpbnN0YW5jZVxu
-Iik7CiAJcHJpdi0+ZmQuZHJtID0gY2xvc2VfZGV2aWNlKHByaXYtPmZkLmRybSk7CiAJaWd0X2Fz
-c2VydF9lcShwcml2LT5mZC5kcm0sIC0xKTsKIAorCWRyaXZlcl9iaW5kKHByaXYsIDApOworCiAJ
-aGVhbHRoY2hlY2socHJpdiwgZmFsc2UpOwogfQogCi1zdGF0aWMgdm9pZCBob3R1bnBsdWdfbGF0
-ZWNsb3NlKHN0cnVjdCBob3R1bnBsdWcgKnByaXYpCitzdGF0aWMgdm9pZCBob3R1bnBsdWdfcmVz
-Y2FuKHN0cnVjdCBob3R1bnBsdWcgKnByaXYpCiB7CiAJaWd0X2Fzc2VydF9lcShwcml2LT5mZC5k
-cm0sIC0xKTsKLQlwcml2LT5mZC5kcm0gPSBsb2NhbF9kcm1fb3Blbl9kcml2ZXIoIiIsICIgZm9y
-IGhvdHVucGx1ZyIpOworCXByaXYtPmZkLmRybSA9IGxvY2FsX2RybV9vcGVuX2RyaXZlcigiIiwg
-IiBmb3IgaG90cmVwbHVnIik7CiAKIAlkZXZpY2VfdW5wbHVnKHByaXYsICJob3QgIiwgMCk7CiAK
-KwlpZ3RfZGVidWcoImxhdGUgY2xvc2luZyB0aGUgcmVtb3ZlZCBkZXZpY2UgaW5zdGFuY2VcbiIp
-OworCXByaXYtPmZkLmRybSA9IGNsb3NlX2RldmljZShwcml2LT5mZC5kcm0pOworCWlndF9hc3Nl
-cnRfZXEocHJpdi0+ZmQuZHJtLCAtMSk7CisKIAlidXNfcmVzY2FuKHByaXYsIDApOwogCisJaGVh
-bHRoY2hlY2socHJpdiwgZmFsc2UpOworfQorCitzdGF0aWMgdm9pZCBob3RyZWJpbmRfbGF0ZWNs
-b3NlKHN0cnVjdCBob3R1bnBsdWcgKnByaXYpCit7CisJcHJpdi0+ZmQuZHJtID0gbG9jYWxfZHJt
-X29wZW5fZHJpdmVyKCIiLCAiIGZvciBob3RyZWJpbmQiKTsKKworCWRyaXZlcl91bmJpbmQocHJp
-diwgImhvdCAiLCA2MCk7CisKKwlkcml2ZXJfYmluZChwcml2LCAwKTsKKworCWhlYWx0aGNoZWNr
-KHByaXYsIGZhbHNlKTsKKworCWlndF9kZWJ1ZygibGF0ZSBjbG9zaW5nIHRoZSB1bmJvdW5kIGRl
-dmljZSBpbnN0YW5jZVxuIik7CisJcHJpdi0+ZmQuZHJtID0gY2xvc2VfZGV2aWNlKHByaXYtPmZk
-LmRybSk7CisJaWd0X2Fzc2VydF9lcShwcml2LT5mZC5kcm0sIC0xKTsKKworCWhlYWx0aGNoZWNr
-KHByaXYsIGZhbHNlKTsKK30KKworc3RhdGljIHZvaWQgaG90cmVwbHVnX2xhdGVjbG9zZShzdHJ1
-Y3QgaG90dW5wbHVnICpwcml2KQoreworCXByaXYtPmZkLmRybSA9IGxvY2FsX2RybV9vcGVuX2Ry
-aXZlcigiIiwgIiBmb3IgaG90cmVwbHVnIik7CisKKwlkZXZpY2VfdW5wbHVnKHByaXYsICJob3Qg
-IiwgNjApOworCisJYnVzX3Jlc2Nhbihwcml2LCAwKTsKKworCWhlYWx0aGNoZWNrKHByaXYsIGZh
-bHNlKTsKKwogCWlndF9kZWJ1ZygibGF0ZSBjbG9zaW5nIHRoZSByZW1vdmVkIGRldmljZSBpbnN0
-YW5jZVxuIik7CiAJcHJpdi0+ZmQuZHJtID0gY2xvc2VfZGV2aWNlKHByaXYtPmZkLmRybSk7CiAJ
-aWd0X2Fzc2VydF9lcShwcml2LT5mZC5kcm0sIC0xKTsKQEAgLTQ0Myw3ICs0ODEsNyBAQCBpZ3Rf
-bWFpbgogCX0KIAogCWlndF9zdWJ0ZXN0X2dyb3VwIHsKLQkJaWd0X2Rlc2NyaWJlKCJDaGVjayBp
-ZiB0aGUgZHJpdmVyIGNhbiBiZSBjbGVhbmx5IHVuYm91bmQgZnJvbSBhIGRldmljZSBiZWxpZXZl
-ZCB0byBiZSBjbG9zZWQiKTsKKwkJaWd0X2Rlc2NyaWJlKCJDaGVjayBpZiB0aGUgZHJpdmVyIGNh
-biBiZSBjbGVhbmx5IHVuYm91bmQgZnJvbSBhIGRldmljZSBiZWxpZXZlZCB0byBiZSBjbG9zZWQs
-IHRoZW4gcmVib3VuZCIpOwogCQlpZ3Rfc3VidGVzdCgidW5iaW5kLXJlYmluZCIpCiAJCQl1bmJp
-bmRfcmViaW5kKCZwcml2KTsKIApAQCAtNDU1LDcgKzQ5Myw3IEBAIGlndF9tYWluCiAJCXBvc3Rf
-aGVhbHRoY2hlY2soJnByaXYpOwogCiAJaWd0X3N1YnRlc3RfZ3JvdXAgewotCQlpZ3RfZGVzY3Jp
-YmUoIkNoZWNrIGlmIGEgZGV2aWNlIGJlbGlldmVkIHRvIGJlIGNsb3NlZCBjYW4gYmUgY2xlYW5s
-eSB1bnBsdWdnZWQiKTsKKwkJaWd0X2Rlc2NyaWJlKCJDaGVjayBpZiBhIGRldmljZSBiZWxpZXZl
-ZCB0byBiZSBjbG9zZWQgY2FuIGJlIGNsZWFubHkgdW5wbHVnZ2VkLCB0aGVuIHJlc3RvcmVkIik7
-CiAJCWlndF9zdWJ0ZXN0KCJ1bnBsdWctcmVzY2FuIikKIAkJCXVucGx1Z19yZXNjYW4oJnByaXYp
-OwogCkBAIC00NjcsOSArNTA1LDMzIEBAIGlndF9tYWluCiAJCXBvc3RfaGVhbHRoY2hlY2soJnBy
-aXYpOwogCiAJaWd0X3N1YnRlc3RfZ3JvdXAgewotCQlpZ3RfZGVzY3JpYmUoIkNoZWNrIGlmIHRo
-ZSBkcml2ZXIgY2FuIGJlIGNsZWFubHkgdW5ib3VuZCBmcm9tIGEgc3RpbGwgb3BlbiBkZXZpY2Us
-IHRoZW4gcmVsZWFzZWQiKTsKLQkJaWd0X3N1YnRlc3QoImhvdHVuYmluZC1sYXRlY2xvc2UiKQot
-CQkJaG90dW5iaW5kX2xhdGVjbG9zZSgmcHJpdik7CisJCWlndF9kZXNjcmliZSgiQ2hlY2sgaWYg
-dGhlIGRyaXZlciBjYW4gYmUgY2xlYW5seSB1bmJvdW5kIGZyb20gYW4gb3BlbiBkZXZpY2UsIHRo
-ZW4gcmVsZWFzZWQgYW5kIHJlYm91bmQiKTsKKwkJaWd0X3N1YnRlc3QoImhvdHVuYmluZC1yZWJp
-bmQiKQorCQkJaG90dW5iaW5kX3JlYmluZCgmcHJpdik7CisKKwkJaWd0X2ZpeHR1cmUKKwkJCXJl
-Y292ZXIoJnByaXYpOworCX0KKworCWlndF9maXh0dXJlCisJCXBvc3RfaGVhbHRoY2hlY2soJnBy
-aXYpOworCisJaWd0X3N1YnRlc3RfZ3JvdXAgeworCQlpZ3RfZGVzY3JpYmUoIkNoZWNrIGlmIGFu
-IG9wZW4gZGV2aWNlIGNhbiBiZSBjbGVhbmx5IHVucGx1Z2dlZCwgdGhlbiByZWxlYXNlZCBhbmQg
-cmVzdG9yZWQiKTsKKwkJaWd0X3N1YnRlc3QoImhvdHVucGx1Zy1yZXNjYW4iKQorCQkJaG90dW5w
-bHVnX3Jlc2NhbigmcHJpdik7CisKKwkJaWd0X2ZpeHR1cmUKKwkJCXJlY292ZXIoJnByaXYpOwor
-CX0KKworCWlndF9maXh0dXJlCisJCXBvc3RfaGVhbHRoY2hlY2soJnByaXYpOworCisJaWd0X3N1
-YnRlc3RfZ3JvdXAgeworCQlpZ3RfZGVzY3JpYmUoIkNoZWNrIGlmIHRoZSBkcml2ZXIgaG90IHVu
-Ym91bmQgZnJvbSBhIHN0aWxsIG9wZW4gZGV2aWNlIGNhbiBiZSBjbGVhbmx5IHJlYm91bmQsIHRo
-ZW4gdGhlIG9sZCBpbnN0YW5jZSByZWxlYXNlZCIpOworCQlpZ3Rfc3VidGVzdCgiaG90cmViaW5k
-LWxhdGVjbG9zZSIpCisJCQlob3RyZWJpbmRfbGF0ZWNsb3NlKCZwcml2KTsKIAogCQlpZ3RfZml4
-dHVyZQogCQkJcmVjb3ZlcigmcHJpdik7CkBAIC00NzksOSArNTQxLDkgQEAgaWd0X21haW4KIAkJ
-cG9zdF9oZWFsdGhjaGVjaygmcHJpdik7CiAKIAlpZ3Rfc3VidGVzdF9ncm91cCB7Ci0JCWlndF9k
-ZXNjcmliZSgiQ2hlY2sgaWYgYSBzdGlsbCBvcGVuIGRldmljZSBjYW4gYmUgY2xlYW5seSB1bnBs
-dWdnZWQsIHRoZW4gcmVsZWFzZWQiKTsKLQkJaWd0X3N1YnRlc3QoImhvdHVucGx1Zy1sYXRlY2xv
-c2UiKQotCQkJaG90dW5wbHVnX2xhdGVjbG9zZSgmcHJpdik7CisJCWlndF9kZXNjcmliZSgiQ2hl
-Y2sgaWYgYSBzdGlsbCBvcGVuIHdoaWxlIGhvdCB1bnBsdWdnZWQgZGV2aWNlIGNhbiBiZSBjbGVh
-bmx5IHJlc3RvcmVkLCB0aGVuIHRoZSBvbGQgaW5zdGFuY2UgcmVsZWFzZWQiKTsKKwkJaWd0X3N1
-YnRlc3QoImhvdHJlcGx1Zy1sYXRlY2xvc2UiKQorCQkJaG90cmVwbHVnX2xhdGVjbG9zZSgmcHJp
-dik7CiAKIAkJaWd0X2ZpeHR1cmUKIAkJCXJlY292ZXIoJnByaXYpOwotLSAKMi4yMS4xCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+The purpose of debug messages displayed by the test is to make
+identification of a subtest phase that fails more easy.  Since issues
+exhibited by the test are mostly reported to dmesg, print those debug
+messages to /dev/kmsg as well.
+
+v2: Rebase on upstream.
+v3: Refresh.
+v4: Refresh.
+
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ tests/core_hotunplug.c | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
+
+diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
+index 305c57a3f..361d601af 100644
+--- a/tests/core_hotunplug.c
++++ b/tests/core_hotunplug.c
+@@ -52,6 +52,12 @@ struct hotunplug {
+ 
+ /* Helpers */
+ 
++#define local_debug(fmt, msg...)			       \
++({							       \
++	igt_debug(fmt, msg);				       \
++	igt_kmsg(KMSG_DEBUG "%s: " fmt, igt_test_name(), msg); \
++})
++
+ /**
+  * Subtests must be able to close examined devices completely.  Don't
+  * use drm_open_driver() since in case of an i915 device it opens it
+@@ -61,7 +67,7 @@ static int local_drm_open_driver(const char *prefix, const char *suffix)
+ {
+ 	int fd_drm;
+ 
+-	igt_debug("%sopening device%s\n", prefix, suffix);
++	local_debug("%sopening device%s\n", prefix, suffix);
+ 
+ 	fd_drm = __drm_open_driver(DRIVER_ANY);
+ 	igt_assert_fd(fd_drm);
+@@ -121,7 +127,7 @@ static void prepare(struct hotunplug *priv)
+ static void driver_unbind(struct hotunplug *priv, const char *prefix,
+ 			  int timeout)
+ {
+-	igt_debug("%sunbinding the driver from the device\n", prefix);
++	local_debug("%sunbinding the driver from the device\n", prefix);
+ 	priv->failure = "Driver unbind failure!";
+ 
+ 	igt_set_timeout(timeout, "Driver unbind timeout!");
+@@ -137,7 +143,7 @@ static void driver_unbind(struct hotunplug *priv, const char *prefix,
+ /* Re-bind the driver to the device */
+ static void driver_bind(struct hotunplug *priv, int timeout)
+ {
+-	igt_debug("rebinding the driver to the device\n");
++	local_debug("%s\n", "rebinding the driver to the device");
+ 	priv->failure = "Driver re-bind failure!";
+ 
+ 	igt_set_timeout(timeout, "Driver re-bind timeout!");
+@@ -161,7 +167,7 @@ static void device_unplug(struct hotunplug *priv, const char *prefix,
+ 				    O_DIRECTORY);
+ 	igt_assert_fd(priv->fd.sysfs_dev);
+ 
+-	igt_debug("%sunplugging the device\n", prefix);
++	local_debug("%sunplugging the device\n", prefix);
+ 	priv->failure = "Device unplug failure!";
+ 
+ 	igt_set_timeout(timeout, "Device unplug timeout!");
+@@ -179,7 +185,7 @@ static void device_unplug(struct hotunplug *priv, const char *prefix,
+ /* Re-discover the device by rescanning its bus */
+ static void bus_rescan(struct hotunplug *priv, int timeout)
+ {
+-	igt_debug("rediscovering the device\n");
++	local_debug("%s\n", "rediscovering the device");
+ 	priv->failure = "Bus rescan failure!";
+ 
+ 	igt_set_timeout(timeout, "Bus rescan timeout!");
+@@ -232,7 +238,7 @@ static int local_i915_healthcheck(int i915, const char *prefix)
+ 	if (hang_detected)
+ 		return -EIO;
+ 
+-	igt_debug("%srunning i915 GPU healthcheck\n", prefix);
++	local_debug("%s%s\n", prefix, "running i915 GPU healthcheck");
+ 
+ 	if (local_i915_is_wedged(i915))
+ 		return -EIO;
+@@ -267,7 +273,7 @@ static int local_i915_recover(int i915)
+ 	if (!local_i915_healthcheck(i915, "re-"))
+ 		return 0;
+ 
+-	igt_debug("forcing i915 GPU reset\n");
++	local_debug("%s\n", "forcing i915 GPU reset");
+ 	igt_force_gpu_reset(i915);
+ 
+ 	hang_detected = false;
+@@ -392,7 +398,7 @@ static void hotunbind_rebind(struct hotunplug *priv)
+ 
+ 	driver_unbind(priv, "hot ", 0);
+ 
+-	igt_debug("late closing the unbound device instance\n");
++	local_debug("%s\n", "late closing the unbound device instance");
+ 	priv->fd.drm = close_device(priv->fd.drm);
+ 	igt_assert_eq(priv->fd.drm, -1);
+ 
+@@ -408,7 +414,7 @@ static void hotunplug_rescan(struct hotunplug *priv)
+ 
+ 	device_unplug(priv, "hot ", 0);
+ 
+-	igt_debug("late closing the removed device instance\n");
++	local_debug("%s\n", "late closing the removed device instance");
+ 	priv->fd.drm = close_device(priv->fd.drm);
+ 	igt_assert_eq(priv->fd.drm, -1);
+ 
+@@ -427,7 +433,7 @@ static void hotrebind_lateclose(struct hotunplug *priv)
+ 
+ 	healthcheck(priv, false);
+ 
+-	igt_debug("late closing the unbound device instance\n");
++	local_debug("%s\n", "late closing the unbound device instance");
+ 	priv->fd.drm = close_device(priv->fd.drm);
+ 	igt_assert_eq(priv->fd.drm, -1);
+ 
+@@ -444,7 +450,7 @@ static void hotreplug_lateclose(struct hotunplug *priv)
+ 
+ 	healthcheck(priv, false);
+ 
+-	igt_debug("late closing the removed device instance\n");
++	local_debug("%s\n", "late closing the removed device instance");
+ 	priv->fd.drm = close_device(priv->fd.drm);
+ 	igt_assert_eq(priv->fd.drm, -1);
+ 
+-- 
+2.21.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
