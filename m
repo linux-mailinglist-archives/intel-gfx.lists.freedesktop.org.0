@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 312C0256DDB
-	for <lists+intel-gfx@lfdr.de>; Sun, 30 Aug 2020 14:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CA87256DE1
+	for <lists+intel-gfx@lfdr.de>; Sun, 30 Aug 2020 14:59:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7F4F6E320;
-	Sun, 30 Aug 2020 12:58:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 030A86E351;
+	Sun, 30 Aug 2020 12:59:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
  [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BEDA6E329
- for <intel-gfx@lists.freedesktop.org>; Sun, 30 Aug 2020 12:58:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C76AE6E32B
+ for <intel-gfx@lists.freedesktop.org>; Sun, 30 Aug 2020 12:58:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1598792322;
+ s=mimecast20190719; t=1598792328;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=pl9KVfD+7YlWJlLk8Ot+a3gHE/6VBv99WiVsPiXEvhY=;
- b=YcgIGUJPvbHdRZ6oVPjoEYvCj8gMrHxEHLWhOoy0MViwpbYLExKCamGyPfkkr4ids8m+/K
- V6iIWZGeZ9CHMBcc3omm5E5vo/3YQnRNKR0SS0Xxa2tRjQXN+v3YjKwv0I9REYr26NQMGz
- uXHZVCWlpG82O//PDBlOWAEjibzln7M=
+ bh=1wMXBHDyyQ6t98T6xFtSD2movAwUy8KekR8cCyDYfqQ=;
+ b=iRclTDezEXc9h660BQGRqWY1uTvW9GAfGsDNau+uT/xHxOay/OGp5RwwA9lNl4yym+L2zq
+ gBnX5QrKPOzYL7wraAIXBaqS/MAm4WtbM8Uvf/D0LEEjgRJZLn7vDOfIxbni/wF8nUJ3qa
+ zu89PPaFnalg9OMZVjVr/6e09rRNJqY=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-491-OtLgDS4ANNCChmh0PW_PGw-1; Sun, 30 Aug 2020 08:58:40 -0400
-X-MC-Unique: OtLgDS4ANNCChmh0PW_PGw-1
+ us-mta-555-cD2kDO3lO5mNHbOuhgplmA-1; Sun, 30 Aug 2020 08:58:43 -0400
+X-MC-Unique: cD2kDO3lO5mNHbOuhgplmA-1
 Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
  [10.5.11.23])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2DD2BE75F;
- Sun, 30 Aug 2020 12:58:38 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 35ED7801AC3;
+ Sun, 30 Aug 2020 12:58:41 +0000 (UTC)
 Received: from x1.localdomain.com (ovpn-112-77.ams2.redhat.com [10.36.112.77])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 8AAE7171C6;
- Sun, 30 Aug 2020 12:58:35 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 760C01A8EC;
+ Sun, 30 Aug 2020 12:58:38 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Thierry Reding <thierry.reding@gmail.com>,
  =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
@@ -44,13 +44,14 @@ To: Thierry Reding <thierry.reding@gmail.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <lenb@kernel.org>
-Date: Sun, 30 Aug 2020 14:57:49 +0200
-Message-Id: <20200830125753.230420-14-hdegoede@redhat.com>
+Date: Sun, 30 Aug 2020 14:57:50 +0200
+Message-Id: <20200830125753.230420-15-hdegoede@redhat.com>
 In-Reply-To: <20200830125753.230420-1-hdegoede@redhat.com>
 References: <20200830125753.230420-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-Subject: [Intel-gfx] [PATCH v8 13/17] pwm: crc: Implement get_state() method
+Subject: [Intel-gfx] [PATCH v8 14/17] drm/i915: panel: Add
+ get_vbt_pwm_freq() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,51 +65,79 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-pwm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ Jani Nikula <jani.nikula@intel.com>,
  intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Mika Westerberg <mika.westerberg@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SW1wbGVtZW50IHRoZSBwd21fb3BzLmdldF9zdGF0ZSgpIG1ldGhvZCB0byBjb21wbGV0ZSB0aGUg
-c3VwcG9ydCBmb3IgdGhlCm5ldyBhdG9taWMgUFdNIEFQSS4KClJldmlld2VkLWJ5OiBBbmR5IFNo
-ZXZjaGVua28gPGFuZHJpeS5zaGV2Y2hlbmtvQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1i
-eTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KLS0tCkNoYW5nZXMgaW4gdjY6
-Ci0gUmViYXNlIG9uIDUuOS1yYzEKLSBVc2UgRElWX1JPVU5EX1VQX1VMTCBiZWNhdXNlIHB3bV9z
-dGF0ZS5wZXJpb2QgYW5kIC5kdXR5X2N5Y2xlIGFyZSBub3cgdTY0CgpDaGFuZ2VzIGluIHY1Ogot
-IEZpeCBhbiBpbmRlbnRhdGlvbiBpc3N1ZQoKQ2hhbmdlcyBpbiB2NDoKLSBVc2UgRElWX1JPVU5E
-X1VQIHdoZW4gY2FsY3VsYXRpbmcgdGhlIHBlcmlvZCBhbmQgZHV0eV9jeWNsZSBmcm9tIHRoZQog
-IGNvbnRyb2xsZXIncyByZWdpc3RlciB2YWx1ZXMKCkNoYW5nZXMgaW4gdjM6Ci0gQWRkIEFuZHkn
-cyBSZXZpZXdlZC1ieSB0YWcKLSBSZW1vdmUgZXh0cmEgd2hpdGVzcGFjZSB0byBhbGlnbiBzb21l
-IGNvZGUgYWZ0ZXIgYXNzaWdubWVudHMgKHJlcXVlc3RlZCBieQogIFV3ZSBLbGVpbmUtS8O2bmln
-KQotLS0KIGRyaXZlcnMvcHdtL3B3bS1jcmMuYyB8IDMxICsrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAzMSBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9wd20vcHdtLWNyYy5jIGIvZHJpdmVycy9wd20vcHdtLWNyYy5jCmluZGV4IDI3ZGMz
-MDg4MjQyNC4uZWNmZGZhYzBjMmQ5IDEwMDY0NAotLS0gYS9kcml2ZXJzL3B3bS9wd20tY3JjLmMK
-KysrIGIvZHJpdmVycy9wd20vcHdtLWNyYy5jCkBAIC0xMjEsOCArMTIxLDM5IEBAIHN0YXRpYyBp
-bnQgY3JjX3B3bV9hcHBseShzdHJ1Y3QgcHdtX2NoaXAgKmNoaXAsIHN0cnVjdCBwd21fZGV2aWNl
-ICpwd20sCiAJcmV0dXJuIDA7CiB9CiAKK3N0YXRpYyB2b2lkIGNyY19wd21fZ2V0X3N0YXRlKHN0
-cnVjdCBwd21fY2hpcCAqY2hpcCwgc3RydWN0IHB3bV9kZXZpY2UgKnB3bSwKKwkJCSAgICAgIHN0
-cnVjdCBwd21fc3RhdGUgKnN0YXRlKQoreworCXN0cnVjdCBjcnlzdGFsY292ZV9wd20gKmNyY19w
-d20gPSB0b19jcmNfcHdtKGNoaXApOworCXN0cnVjdCBkZXZpY2UgKmRldiA9IGNyY19wd20tPmNo
-aXAuZGV2OworCXVuc2lnbmVkIGludCBjbGtfZGl2LCBjbGtfZGl2X3JlZywgZHV0eV9jeWNsZV9y
-ZWc7CisJaW50IGVycm9yOworCisJZXJyb3IgPSByZWdtYXBfcmVhZChjcmNfcHdtLT5yZWdtYXAs
-IFBXTTBfQ0xLX0RJViwgJmNsa19kaXZfcmVnKTsKKwlpZiAoZXJyb3IpIHsKKwkJZGV2X2Vycihk
-ZXYsICJFcnJvciByZWFkaW5nIFBXTTBfQ0xLX0RJViAlZFxuIiwgZXJyb3IpOworCQlyZXR1cm47
-CisJfQorCisJZXJyb3IgPSByZWdtYXBfcmVhZChjcmNfcHdtLT5yZWdtYXAsIFBXTTBfRFVUWV9D
-WUNMRSwgJmR1dHlfY3ljbGVfcmVnKTsKKwlpZiAoZXJyb3IpIHsKKwkJZGV2X2VycihkZXYsICJF
-cnJvciByZWFkaW5nIFBXTTBfRFVUWV9DWUNMRSAlZFxuIiwgZXJyb3IpOworCQlyZXR1cm47CisJ
-fQorCisJY2xrX2RpdiA9IChjbGtfZGl2X3JlZyAmIH5QV01fT1VUUFVUX0VOQUJMRSkgKyAxOwor
-CisJc3RhdGUtPnBlcmlvZCA9CisJCURJVl9ST1VORF9VUChjbGtfZGl2ICogTlNFQ19QRVJfVVNF
-QyAqIDI1NiwgUFdNX0JBU0VfQ0xLX01IWik7CisJc3RhdGUtPmR1dHlfY3ljbGUgPQorCQlESVZf
-Uk9VTkRfVVBfVUxMKGR1dHlfY3ljbGVfcmVnICogc3RhdGUtPnBlcmlvZCwgUFdNX01BWF9MRVZF
-TCk7CisJc3RhdGUtPnBvbGFyaXR5ID0gUFdNX1BPTEFSSVRZX05PUk1BTDsKKwlzdGF0ZS0+ZW5h
-YmxlZCA9ICEhKGNsa19kaXZfcmVnICYgUFdNX09VVFBVVF9FTkFCTEUpOworfQorCiBzdGF0aWMg
-Y29uc3Qgc3RydWN0IHB3bV9vcHMgY3JjX3B3bV9vcHMgPSB7CiAJLmFwcGx5ID0gY3JjX3B3bV9h
-cHBseSwKKwkuZ2V0X3N0YXRlID0gY3JjX3B3bV9nZXRfc3RhdGUsCiB9OwogCiBzdGF0aWMgaW50
-IGNyeXN0YWxjb3ZlX3B3bV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQotLSAK
-Mi4yOC4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
-bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Factor the code which checks and drm_dbg_kms-s the VBT PWM frequency
+out of get_backlight_max_vbt().
+
+This is a preparation patch for honering the VBT PWM frequency for
+devices which use an external PWM controller (devices using
+pwm_setup_backlight()).
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ drivers/gpu/drm/i915/display/intel_panel.c | 27 ++++++++++++++--------
+ 1 file changed, 17 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index 4072d7062efd..df7472a3b9f8 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -1543,18 +1543,9 @@ static u32 vlv_hz_to_pwm(struct intel_connector *connector, u32 pwm_freq_hz)
+ 	return DIV_ROUND_CLOSEST(clock, pwm_freq_hz * mul);
+ }
+ 
+-static u32 get_backlight_max_vbt(struct intel_connector *connector)
++static u16 get_vbt_pwm_freq(struct drm_i915_private *dev_priv)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+-	struct intel_panel *panel = &connector->panel;
+ 	u16 pwm_freq_hz = dev_priv->vbt.backlight.pwm_freq_hz;
+-	u32 pwm;
+-
+-	if (!panel->backlight.hz_to_pwm) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "backlight frequency conversion not supported\n");
+-		return 0;
+-	}
+ 
+ 	if (pwm_freq_hz) {
+ 		drm_dbg_kms(&dev_priv->drm,
+@@ -1567,6 +1558,22 @@ static u32 get_backlight_max_vbt(struct intel_connector *connector)
+ 			    pwm_freq_hz);
+ 	}
+ 
++	return pwm_freq_hz;
++}
++
++static u32 get_backlight_max_vbt(struct intel_connector *connector)
++{
++	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
++	struct intel_panel *panel = &connector->panel;
++	u16 pwm_freq_hz = get_vbt_pwm_freq(dev_priv);
++	u32 pwm;
++
++	if (!panel->backlight.hz_to_pwm) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "backlight frequency conversion not supported\n");
++		return 0;
++	}
++
+ 	pwm = panel->backlight.hz_to_pwm(connector, pwm_freq_hz);
+ 	if (!pwm) {
+ 		drm_dbg_kms(&dev_priv->drm,
+-- 
+2.28.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
