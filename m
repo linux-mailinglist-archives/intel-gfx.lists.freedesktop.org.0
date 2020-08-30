@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D43256E16
-	for <lists+intel-gfx@lfdr.de>; Sun, 30 Aug 2020 15:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83413256E1C
+	for <lists+intel-gfx@lfdr.de>; Sun, 30 Aug 2020 15:43:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56D18898AA;
-	Sun, 30 Aug 2020 13:25:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F8A66E0E3;
+	Sun, 30 Aug 2020 13:43:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1AC1189801;
- Sun, 30 Aug 2020 13:25:57 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 350936E0AB;
+ Sun, 30 Aug 2020 13:43:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1245EA73C7;
- Sun, 30 Aug 2020 13:25:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 25342A47E1;
+ Sun, 30 Aug 2020 13:43:05 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Hans de Goede" <hdegoede@redhat.com>
-Date: Sun, 30 Aug 2020 13:25:57 -0000
-Message-ID: <159879395703.18690.13529871566286732857@emeril.freedesktop.org>
+Date: Sun, 30 Aug 2020 13:43:05 -0000
+Message-ID: <159879498512.18691.767239706354216076@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200830125753.230420-1-hdegoede@redhat.com>
 In-Reply-To: <20200830125753.230420-1-hdegoede@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_acpi/pwm/i915=3A_Convert_pwm-crc_and_i915_driver=27s_PWM_co?=
- =?utf-8?q?de_to_use_the_atomic_PWM_API?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgYWNw?=
+ =?utf-8?q?i/pwm/i915=3A_Convert_pwm-crc_and_i915_driver=27s_PWM_code_to_u?=
+ =?utf-8?q?se_the_atomic_PWM_API?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,49 +41,271 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0339816268=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+
+--===============0339816268==
+Content-Type: multipart/alternative;
+ boundary="===============2914086028841868107=="
+
+--===============2914086028841868107==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
 Series: acpi/pwm/i915: Convert pwm-crc and i915 driver's PWM code to use the atomic PWM API
 URL   : https://patchwork.freedesktop.org/series/81176/
-State : warning
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-48148eeaab72 ACPI / LPSS: Resume Cherry Trail PWM controller in no-irq phase
-45a4de251846 ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (at activation)
-4f7f933a6af6 pwm: lpss: Fix off by one error in base_unit math in pwm_lpss_prepare()
-bea1f0a2539c pwm: lpss: Add range limit check for the base_unit register value
-c14d8f448f41 pwm: lpss: Add pwm_lpss_prepare_enable() helper
--:45: CHECK:BOOL_COMPARISON: Using comparison to false is error prone
-#45: FILE: drivers/pwm/pwm-lpss.c:137:
-+	pwm_lpss_cond_enable(pwm, enable && lpwm->info->bypass == false);
+CI Bug Log - changes from CI_DRM_8941 -> Patchwork_18422
+====================================================
 
--:50: CHECK:BOOL_COMPARISON: Using comparison to true is error prone
-#50: FILE: drivers/pwm/pwm-lpss.c:142:
-+	pwm_lpss_cond_enable(pwm, enable && lpwm->info->bypass == true);
+Summary
+-------
 
-total: 0 errors, 0 warnings, 2 checks, 67 lines checked
-4537cd716e11 pwm: lpss: Use pwm_lpss_restore() when restoring state on resume
-a12337a38581 pwm: lpss: Always update state and set update bit
-23074c82455a pwm: crc: Fix period / duty_cycle times being off by a factor of 256
-d6a64ac9e222 pwm: crc: Fix off-by-one error in the clock-divider calculations
-3eaa398d8d92 pwm: crc: Fix period changes not having any effect
-605d467e4d8d pwm: crc: Enable/disable PWM output on enable/disable
-8924b6bba39e pwm: crc: Implement apply() method to support the new atomic PWM API
-32379b451d32 pwm: crc: Implement get_state() method
-ada5a0b67cad drm/i915: panel: Add get_vbt_pwm_freq() helper
-b09d3cbb410b drm/i915: panel: Honor the VBT PWM frequency for devs with an external PWM controller
-823d349c8754 drm/i915: panel: Honor the VBT PWM min setting for devs with an external PWM controller
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18422 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][1] -> [INCOMPLETE][2] ([i915#2276])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-bsw-n3050:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - fi-bsw-kefka:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-bsw-kefka/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-bsw-kefka/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:
+    - fi-skl-guc:         [PASS][7] -> [DMESG-WARN][8] ([i915#2203])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - fi-skl-6600u:       [TIMEOUT][9] ([i915#1418]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-skl-6600u/igt@i915_module_load@reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-skl-6600u/igt@i915_module_load@reload.html
+    - fi-icl-y:           [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-icl-y/igt@i915_module_load@reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-icl-y/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6600u:       [SKIP][13] ([fdo#109271]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-byt-j1900:       [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1418]: https://gitlab.freedesktop.org/drm/intel/issues/1418
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
+  [i915#2276]: https://gitlab.freedesktop.org/drm/intel/issues/2276
+
+
+Participating hosts (38 -> 33)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_8941 -> Patchwork_18422
+
+  CI-20190529: 20190529
+  CI_DRM_8941: d23277ce277dfdc8ab6d43ae78808c9679910ac8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5774: 2a5db9f60241383272aeec176e1b97b3f487209f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18422: 263c2d7f2378c3407b0eaf4cc10b7e8c57d34038 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
 263c2d7f2378 drm/i915: panel: Use atomic PWM API for devs with an external PWM controller
+823d349c8754 drm/i915: panel: Honor the VBT PWM min setting for devs with an external PWM controller
+b09d3cbb410b drm/i915: panel: Honor the VBT PWM frequency for devs with an external PWM controller
+ada5a0b67cad drm/i915: panel: Add get_vbt_pwm_freq() helper
+32379b451d32 pwm: crc: Implement get_state() method
+8924b6bba39e pwm: crc: Implement apply() method to support the new atomic PWM API
+605d467e4d8d pwm: crc: Enable/disable PWM output on enable/disable
+3eaa398d8d92 pwm: crc: Fix period changes not having any effect
+d6a64ac9e222 pwm: crc: Fix off-by-one error in the clock-divider calculations
+23074c82455a pwm: crc: Fix period / duty_cycle times being off by a factor of 256
+a12337a38581 pwm: lpss: Always update state and set update bit
+4537cd716e11 pwm: lpss: Use pwm_lpss_restore() when restoring state on resume
+c14d8f448f41 pwm: lpss: Add pwm_lpss_prepare_enable() helper
+bea1f0a2539c pwm: lpss: Add range limit check for the base_unit register value
+4f7f933a6af6 pwm: lpss: Fix off by one error in base_unit math in pwm_lpss_prepare()
+45a4de251846 ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (at activation)
+48148eeaab72 ACPI / LPSS: Resume Cherry Trail PWM controller in no-irq phase
 
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/index.html
+
+--===============2914086028841868107==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>acpi/pwm/i915: Convert pwm-crc and i915 driver&#39;s PWM code to use the atomic PWM API</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81176/">https://patchwork.freedesktop.org/series/81176/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_8941 -&gt; Patchwork_18422</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18422 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-icl-y/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-icl-y/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2276">i915#2276</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-bsw-kefka/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-bsw-kefka/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-skl-6600u/igt@i915_module_load@reload.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1418">i915#1418</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-skl-6600u/igt@i915_module_load@reload.html">PASS</a></p>
+</li>
+<li>
+<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-icl-y/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-icl-y/igt@i915_module_load@reload.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8941/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18422/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (38 -&gt; 33)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_8941 -&gt; Patchwork_18422</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_8941: d23277ce277dfdc8ab6d43ae78808c9679910ac8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5774: 2a5db9f60241383272aeec176e1b97b3f487209f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18422: 263c2d7f2378c3407b0eaf4cc10b7e8c57d34038 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>263c2d7f2378 drm/i915: panel: Use atomic PWM API for devs with an external PWM controller<br />
+823d349c8754 drm/i915: panel: Honor the VBT PWM min setting for devs with an external PWM controller<br />
+b09d3cbb410b drm/i915: panel: Honor the VBT PWM frequency for devs with an external PWM controller<br />
+ada5a0b67cad drm/i915: panel: Add get_vbt_pwm_freq() helper<br />
+32379b451d32 pwm: crc: Implement get_state() method<br />
+8924b6bba39e pwm: crc: Implement apply() method to support the new atomic PWM API<br />
+605d467e4d8d pwm: crc: Enable/disable PWM output on enable/disable<br />
+3eaa398d8d92 pwm: crc: Fix period changes not having any effect<br />
+d6a64ac9e222 pwm: crc: Fix off-by-one error in the clock-divider calculations<br />
+23074c82455a pwm: crc: Fix period / duty_cycle times being off by a factor of 256<br />
+a12337a38581 pwm: lpss: Always update state and set update bit<br />
+4537cd716e11 pwm: lpss: Use pwm_lpss_restore() when restoring state on resume<br />
+c14d8f448f41 pwm: lpss: Add pwm_lpss_prepare_enable() helper<br />
+bea1f0a2539c pwm: lpss: Add range limit check for the base_unit register value<br />
+4f7f933a6af6 pwm: lpss: Fix off by one error in base_unit math in pwm_lpss_prepare()<br />
+45a4de251846 ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (at activation)<br />
+48148eeaab72 ACPI / LPSS: Resume Cherry Trail PWM controller in no-irq phase</p>
+
+</body>
+</html>
+
+--===============2914086028841868107==--
+
+--===============0339816268==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0339816268==--
