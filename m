@@ -2,50 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 029D6256BE3
-	for <lists+intel-gfx@lfdr.de>; Sun, 30 Aug 2020 08:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84489256DBA
+	for <lists+intel-gfx@lfdr.de>; Sun, 30 Aug 2020 14:58:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 514896E02A;
-	Sun, 30 Aug 2020 06:05:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE4866E2A0;
+	Sun, 30 Aug 2020 12:58:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com
- [IPv6:2607:f8b0:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B4916E02A
- for <intel-gfx@lists.freedesktop.org>; Sun, 30 Aug 2020 06:05:13 +0000 (UTC)
-Received: by mail-ot1-x334.google.com with SMTP id e23so2734159otk.7
- for <intel-gfx@lists.freedesktop.org>; Sat, 29 Aug 2020 23:05:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YJWHzNWM+WsKkdDuBjUbCjMWvYqp7LFWHT23hnbLJhM=;
- b=PQPdirbOmd3fH98e0MnlO0EfEgNFiHGcDGBD33QA543RjuC6iaBkO5StItBf1E3Y8/
- QX06XSHi+D8Ww/3PeQ8NNFbTzLSaPtgfxeISkX0C3MASj2p0PLd2Ht7arvPYbjJ9OUAH
- JjUZ2DwDWYYbt9XDDCIfnVI5wIm7G6V9z5LWU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=YJWHzNWM+WsKkdDuBjUbCjMWvYqp7LFWHT23hnbLJhM=;
- b=ZzozrmDVwcU5b7E/mlcoDui/AGlVZQ6knmWd27fXk6C4tZXrH6w9SSD5NSl6jv97hy
- zTtfkqgZRZvx0B+XjEH0rJ0iMFDqI3ZgKv0bth0hDW+p9/eScFUyNea6qoVogU8trgUQ
- ZS9Ofh1/we0wjB/6SSYk/RNGuEN71ip7Xw8LhZt45MFfTd2iOZaYsaurXFjZvyZb7Fpx
- wI6VR8+1BZe7TY4fQ4FkhpLf6Xv1WfFN0n7zrIL2bQoX7hvX/eWVGRDBaFN9cPsVN0V/
- yjXCNrwV8bohTqgKCVU0cEcUWovMVnFTyIxF96pUQXj3c/mZJkB+lsFWYKimNrpihZcf
- cFgg==
-X-Gm-Message-State: AOAM532MfusaRotcKevXPVQNTOghSvDbdxRIBCXVdrSmsekQy2/2s6B3
- 5KHsadSBSmQZczdOkXHPYB3LsajRMWRsCiYF2q7CyA==
-X-Google-Smtp-Source: ABdhPJwk57JKDbWRmzKsHVtbf6o7muH5y4/t/hpqgV5umHu4D6ud85OdUCaYAHVYTfTnQ4fd+d2551hjHKt1PcUiu94=
-X-Received: by 2002:a9d:7283:: with SMTP id t3mr3795420otj.303.1598767512948; 
- Sat, 29 Aug 2020 23:05:12 -0700 (PDT)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9827C6E2A0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 30 Aug 2020 12:58:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1598792284;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=mTcG81+e5ooagURVW0RXzcs3CQJCwmeINieDCvAZZnM=;
+ b=Oo+zxnqypxuQUPGD3V0A4r7Y3+8hRRpVrq4T/MtQLJmlsygI1hph0lWJB+GWrbAe/eEAYn
+ oAtGGSy4hx+sTOJHtk7ibPRk4liArhMcjWG8E9qZq5tD6x+whDSXKWFSeca9oCp/ib+ADX
+ 5xlYiYym1wnbiTZZpyoGjbsPdTAY7D8=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-385-2s25wwNrMQ2ioht6N4s9Tw-1; Sun, 30 Aug 2020 08:58:02 -0400
+X-MC-Unique: 2s25wwNrMQ2ioht6N4s9Tw-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id F3D7B801AC5;
+ Sun, 30 Aug 2020 12:57:59 +0000 (UTC)
+Received: from x1.localdomain.com (ovpn-112-77.ams2.redhat.com [10.36.112.77])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id CF5661A918;
+ Sun, 30 Aug 2020 12:57:55 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+ =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <lenb@kernel.org>
+Date: Sun, 30 Aug 2020 14:57:36 +0200
+Message-Id: <20200830125753.230420-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-References: <20200820125644.hee2jjtnef5bf74o@gilmour.lan>
- <87lfi167y8.fsf@intel.com>
-In-Reply-To: <87lfi167y8.fsf@intel.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Sun, 30 Aug 2020 08:05:01 +0200
-Message-ID: <CAKMK7uFJnm6jL+PdNROrzS2BprN4j2cvE-eZy90NQaB3Rg2-BQ@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [Intel-gfx] [PULL] drm-misc-next
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+Subject: [Intel-gfx] [PATCH v8 00/17] acpi/pwm/i915: Convert pwm-crc and
+ i915 driver's PWM code to use the atomic PWM API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,48 +61,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "DRM maintainer tools announcements, discussion,
- and development" <dim-tools@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
+Cc: linux-pwm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 26, 2020 at 12:02 PM Jani Nikula
-<jani.nikula@linux.intel.com> wrote:
->
-> On Thu, 20 Aug 2020, Maxime Ripard <maxime@cerno.tech> wrote:
-> > This PR diffstat is pretty massive since we merged 5.9-rc1 and it's not (yet?) in drm-next.
-> >
-> > I'm not entirely sure how to tackle this (if it causes an issue?).
-> >
-> > Let me know, thanks!
->
-> Whatever Dave & Daniel say, but previously the rule of thumb has been to
-> only ever do backmerges from drm-next. If you need a backmerge from
-> Linus' tree, you ask for a backmerge to drm-next, and then backmerge
-> that.
+Hi All,
 
-Yup. drm-misc docs even say that if you roll forward (or backmerge)
-before it's in drm.git it's going to be a bit of a mess.
--Daniel
+Unfortunately while testing some unrelated things I found another issue with
+this series related to the CHT ACPI GFX0._PS3 code poking the PWM controller
+in unexpected ways.
 
->
-> BR,
-> Jani.
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+This new version contains a new patch: "[PATCH v8 07/17] pwm: lpss: Always
+update state and set update bit" fixing this.  It also contains the same
+change in: "PATCH v8 06/17] pwm: lpss: Use pwm_lpss_restore() when restoring
+state on resume". Rather then adding the below check and then dropping it in
+the new patch, I've squashed the dropping of these lines:
+
+		/* If we did not reach S0i3/S3 the controller keeps its state */
+		if (ctrl == lpwm->saved_ctrl[i])
+			continue;
+
+Directly into the original commit leading to a cleaner history.
+
+As discussed before, because of interdependencies of the patches
+I plan to push the entire series to drm-intel-next-queued once the
+series has passed CI.
+
+I still plan to do this as soon as I get a Reviewed-by or Acked-by for
+the new pwm-lpss.c patch.
+
+Thierry, I believe from our previous discussion that you are ok with
+pushing the pwm-crc and pwm-lpss patches through the drm-intel tree,
+but you have not given your Acked-by for this. If you are not ok with
+me pushing these out this way please let me now ASAP. If you are ok
+with this an Acked-by would be appreciated.
+
+This series has been tested (and re-tested after adding various bug-fixes)
+extensively. It has been tested on the following devices:
+
+-Asus T100TA  BYT + CRC-PMIC PWM
+-Toshiba WT8-A  BYT + CRC-PMIC PWM
+-Thundersoft TS178  BYT + CRC-PMIC PWM, inverse PWM
+-Asus T100HA  CHT + CRC-PMIC PWM
+-Terra Pad 1061  BYT + LPSS PWM
+-Trekstor Twin 10.1  BYT + LPSS PWM
+-Asus T101HA  CHT + LPSS PWM
+-GPD Pocket  CHT + LPSS PWM
+-Acer One S1003  CHT + LPSS PWM
+
+Regards,
+
+Hans
 
 
+Changelog:
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Changes in v8:
+- Add a new patch dealing with the ACPI/DSDT GFX0._PS3 code poking the PWM controller
+  in unexpected ways on some Cherry Trail devices
+
+Changes in v7:
+- Fix a u64 divide leading to undefined reference to `__udivdi3' errors on 32 bit
+  platforms by casting the divisor to an unsigned long
+
+Changes in v6:
+- Rebase on v5.9-rc1
+- Adjust pwm-crc patches for pwm_state.period and .duty_cycle now being u64
+
+Changes in v5:
+- Dropped the "pwm: lpss: Correct get_state result for base_unit == 0"
+  patch. The base_unit == 0 condition should never happen and sofar it is
+  unclear what the proper behavior / correct values to store in the
+  pwm_state should be when this does happen.  Since this patch was added as
+  an extra pwm-lpss fix in v4 of this patch-set and otherwise is orthogonal
+  to the of this patch-set just drop it (again).
+- "[PATCH 04/16] pwm: lpss: Add range limit check for the base_unit register value"
+  - Use clamp_val(... instead of clam_t(unsigned long long, ...
+- "[PATCH 05/16] pwm: lpss: Add pwm_lpss_prepare_enable() helper"
+  - This is a new patch in v5 of this patchset
+- [PATCH 06/16] pwm: lpss: Use pwm_lpss_apply() when restoring state on resume
+  - Use the new pwm_lpss_prepare_enable() helper
+
+Changes in v4:
+- "[PATCH v4 06/16] pwm: lpss: Correct get_state result for base_unit == 0"
+  - This is a new patch in v4 of this patchset
+- "[PATCH v4 12/16] pwm: crc: Implement get_state() method"
+  - Use DIV_ROUND_UP when calculating the period and duty_cycle values
+- "[PATCH v4 16/16] drm/i915: panel: Use atomic PWM API for devs with an external PWM controller"
+  - Add a note to the commit message about the changes in pwm_disable_backlight()
+  - Use the pwm_set/get_relative_duty_cycle() helpers
+
+Changes in v3:
+- "[PATCH v3 04/15] pwm: lpss: Add range limit check for the base_unit register value"
+  - Use base_unit_range - 1 as maximum value for the clamp()
+- "[PATCH v3 05/15] pwm: lpss: Use pwm_lpss_apply() when restoring state on resume"
+  - This replaces the "pwm: lpss: Set SW_UPDATE bit when enabling the PWM"
+    patch from previous versions of this patch-set, which really was a hack
+    working around the resume issue which this patch fixes properly.
+- PATCH v3 6 - 11 pwm-crc changes:
+  - Various small changes resulting from the reviews by Andy and Uwe,
+    including some refactoring of the patches to reduce the amount of churn
+    in the patch-set
+
+Changes in v2:
+- Fix coverletter subject
+- Drop accidentally included debugging patch
+- "[PATCH v3 02/15] ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (
+  - Move #define LPSS_SAVE_CTX_ONCE define to group it with LPSS_SAVE_CTX
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
