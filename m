@@ -1,61 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C55F256F93
-	for <lists+intel-gfx@lfdr.de>; Sun, 30 Aug 2020 19:45:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CE4A256F94
+	for <lists+intel-gfx@lfdr.de>; Sun, 30 Aug 2020 19:45:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B3206E0D7;
-	Sun, 30 Aug 2020 17:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 722D86E0EC;
+	Sun, 30 Aug 2020 17:45:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
  [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4AD36E0D7;
- Sun, 30 Aug 2020 17:45:20 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id m7so4207004qki.12;
- Sun, 30 Aug 2020 10:45:20 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4F946E0EC;
+ Sun, 30 Aug 2020 17:45:26 +0000 (UTC)
+Received: by mail-qk1-x742.google.com with SMTP id d20so1462824qka.5;
+ Sun, 30 Aug 2020 10:45:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Ku6+xicRPIwzFPgdKexwIuePYKQBGLf4JoibsX0KXcg=;
- b=ZDxd1g0hfltAfVfILJBLlbZjCsUMhP7mDa8DKAR98Pu95vVVHbkZJE5FxdGzBH3/Zj
- kyjkAfk1G5GKYzNxqtDNxyyRVCgQSF965zIypBJ77rhkkbSE4Lgtn65I8ZpOWT7J7nbL
- yVCQuTIfoniKGU5mYFRtJ4OOK1meMWtaNMpkI0czWKt6CdOhgR7VdFdwU9PsGsnL3zsU
- fCnRlXgXvspqpl1DdD/qB83hfiTace1YdPgnbnIG0eLvCGdCAMo/zlNpAY1Q98O3e47z
- nT7AcJrrcW8U+fDa3FXjG2LGHYTw/A/ss+aT23aHYw4Rl5Jp/fFz4gPUpoBVChN9uSTm
- 62YA==
+ bh=TWKfk6TyMGUJprXCU281A1XBtSXXty7ZC0YTVE+qYNk=;
+ b=M/FIK39I42Shv3VKMYUkc/S4pKMPHjf3hOyQuyWA+fwzN/imME2LNewECwaJay2KfQ
+ DGcc5Q768akH8+6bwGo+MMym4U7Wv7T5nUs7GGH5rJbr5pxWuKJ7+YhbRpb/lGYHTbFO
+ 5WwLGz+rye8SUV8T1ppBn2+mqTG4hV0uGqZEuRqu7UtzBwo7mTYNo6mBEKAJ8WB16fU3
+ MgzHrAORN+a7/RMEbJAZbt2Og2l3L8GHpfO28k1URu/zU/oxU8Oke1uNWJP89gPypW3l
+ L3WKf8ePmWaf/licfGZwajWzlyGxD4wEu0wXz007Mb8JpLMHOojprOZx5Lx97SHhbeDD
+ CE3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Ku6+xicRPIwzFPgdKexwIuePYKQBGLf4JoibsX0KXcg=;
- b=fkUa49yV9my2PD46XZDeOj/odtwrqx40Dn8Ac+HNkory4hLiGKVs9oCvVL8TD0n//d
- 0yQAsfnzupQ0N/PC2k6exf5czpIARziAGIoaX8EuhUBGEgqm4jYX3SINXhsqZ4H8R8LW
- KVQnA41eymW/KlOe4EK530keMxTlqh8AOzMSX27RzpqKFYYrVR5XrQf3YqEsAQIuHGm1
- qxdeaAmATUvF0bwuXrZWoptaXDSDiVy/Dw234xFj1sleeaxh4s89hK2CaPu1Iaw61rb6
- iI7Qwe45M61c/4uco2APYZu+9GVgkd1ziXejcTab4f35tH5RV3h0KBClR+Pkv3rNJflc
- STfg==
-X-Gm-Message-State: AOAM533GzhcjEO44FJgHdeIqZrEmC9wLefxhMs98uXbEPhbCOs1MQrgD
- iU6xOS88WzRaaHLJERNOjnrGpwDRW0EHyg==
-X-Google-Smtp-Source: ABdhPJye3Qn7IgxphdJTaFOsSUxOKpT95qYgaukeiq8jdqAs/QVt/huXoU4nertK83zk3qw0Xu0egQ==
-X-Received: by 2002:a37:e103:: with SMTP id c3mr2166066qkm.90.1598809519363;
- Sun, 30 Aug 2020 10:45:19 -0700 (PDT)
+ bh=TWKfk6TyMGUJprXCU281A1XBtSXXty7ZC0YTVE+qYNk=;
+ b=J8HCYCJiT6p9aaEP9Y+7xwjSVB/wl85njPdzVbDST+DAkFC7bNj/sHC6pMJa/1jD1+
+ YkHXZvPYvV4y4QuqtjOiuE5EJAbdRCRbiPcApZ6HpBgteYwugF7dkEhKLbhubN80fnIC
+ Ac+Cg2Ff2cqGuB7cE75mk4wPcyEp4Bg5CO4Znacd4OZhcCEN04uZVP4ZRdKwRcgsDpfa
+ n29LldKHA8VLSWqEZ25JQzCdeOYOAaLOGCUVLvy4q1IvuZILYHWIMGVkj9Tf3l8Qrnx4
+ qAfsm8rxbDl/mUiPYuOYDJAUdh9QUiIOazxfIdiSH/0onx9O0Bt6VxZh5pDkAf0thQiZ
+ uXPA==
+X-Gm-Message-State: AOAM532O0bJ6YIyiRS2r6BkTXPaNChLak1UsY46bcP9hXyFe0TWAJ51I
+ SoasAM6mf/abiVFmYU8hERs3G5g/8wHT1w==
+X-Google-Smtp-Source: ABdhPJzDDpRHo4dPZ61Us3pe8d1uX23SbKfSH1el0c3FxjenoHfwiqgwwY+cs+qn6ccdJscb4G2brg==
+X-Received: by 2002:ae9:c007:: with SMTP id u7mr4426125qkk.450.1598809525634; 
+ Sun, 30 Aug 2020 10:45:25 -0700 (PDT)
 Received: from atma2.hitronhub.home ([2607:fea8:56e0:6d60::2db6])
- by smtp.gmail.com with ESMTPSA id l1sm6797662qtp.96.2020.08.30.10.45.17
+ by smtp.gmail.com with ESMTPSA id l1sm6797662qtp.96.2020.08.30.10.45.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 30 Aug 2020 10:45:18 -0700 (PDT)
+ Sun, 30 Aug 2020 10:45:25 -0700 (PDT)
 From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
 To: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  nd <nd@arm.com>
-Date: Sun, 30 Aug 2020 13:44:09 -0400
-Message-Id: <20200830174410.256533-4-rodrigosiqueiramelo@gmail.com>
+Date: Sun, 30 Aug 2020 13:44:10 -0400
+Message-Id: <20200830174410.256533-5-rodrigosiqueiramelo@gmail.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20200830174410.256533-1-rodrigosiqueiramelo@gmail.com>
 References: <20200830174410.256533-1-rodrigosiqueiramelo@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v9 3/4] lib: Add function to hash a
- framebuffer
+Subject: [Intel-gfx] [PATCH i-g-t v9 4/4] kms_writeback: Add
+ writeback-check-output
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,9 +68,9 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Simon Ser <simon.ser@intel.com>,
- Brian Starkey <rodrigosiqueiramelo@gmail.com>, Simon Ser <contact@emersion.fr>,
- melissa.srw@gmail.com, Maxime Ripard <maxime@cerno.tech>
+Cc: Brian Starkey <rodrigosiqueiramelo@gmail.com>,
+ Simon Ser <contact@emersion.fr>, melissa.srw@gmail.com,
+ Maxime Ripard <maxime@cerno.tech>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -78,126 +78,190 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Brian Starkey <rodrigosiqueiramelo@gmail.com>
 
-To use writeback buffers as a CRC source, we need to be able to hash
-them. Implement a simple FVA-1a hashing routine for this purpose.
+Add a test which makes commits using the writeback connector, and
+checks the output buffer hash to make sure it is/isn't written as
+appropriate.
 
-Doing a bytewise hash on the framebuffer directly can be very slow if
-the memory is noncached. By making a copy of each line in the FB first
-(which can take advantage of word-access speedup), we can do the hash
-on a cached copy, which is much faster (10x speedup on my platform).
+Changes since V8 (Arkadiusz Hiler):
+* Add short description
 
 Changes since V7 (Maxime Ripard):
-* Maxime Ripard:
-  - Replace `gem_mmap__gtt` by `igt_fb_map_buffer` on `igt_fb_get_crc()`
-* Rodrigo Siqueira:
-  - Rename igt_fb_get_crc to igt_fb_get_fnv1a_crc
+* Make fb_fill cross-platform
 
-Changes since V6 (Simon Ser):
-* Use plain uint32_t for FNV1a_OFFSET_BIAS and FNV1a_PRIME
-* Return -EINVAL in case fb->num_planes != 1
-* Just copy fb->width * cpp instead of copy the whole stride
-
-v5: use igt_memcpy_from_wc() instead of plain memcpy, as suggested by
-    Chris Wilson
+Changes since v6 (Simon Ser):
+* Add a descriptive error message if sync_fence_wait fail
+* Drop color_idx variable
+* Compute expected CRC based on input framebuffer in writeback_sequence
+* Remove unnecessary parentheses
+* Replace int variable for unsigned int
 
 Signed-off-by: Brian Starkey <brian.starkey@arm.com>
-[rebased and updated to the most recent API]
-Signed-off-by: Liviu Dudau <liviu.dudau@arm.com>
 [rebased and updated]
 Signed-off-by: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
-Reviewed-by: Simon Ser <simon.ser@intel.com>
 Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
 ---
- lib/igt_fb.c | 63 ++++++++++++++++++++++++++++++++++++++++++++++++++++
- lib/igt_fb.h |  2 ++
- 2 files changed, 65 insertions(+)
+ tests/kms_writeback.c | 134 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 134 insertions(+)
 
-diff --git a/lib/igt_fb.c b/lib/igt_fb.c
-index 3864b7a1..5e3706e9 100644
---- a/lib/igt_fb.c
-+++ b/lib/igt_fb.c
-@@ -3783,6 +3783,69 @@ bool igt_fb_supported_format(uint32_t drm_format)
- 	return true;
+diff --git a/tests/kms_writeback.c b/tests/kms_writeback.c
+index f8025538..60dbda2a 100644
+--- a/tests/kms_writeback.c
++++ b/tests/kms_writeback.c
+@@ -30,6 +30,14 @@
+ #include "igt.h"
+ #include "igt_core.h"
+ #include "igt_fb.h"
++#include "sw_sync.h"
++
++IGT_TEST_DESCRIPTION(
++   "This test validates the expected behavior of the writeback connectors "
++   "feature by checking if the target device support writeback; it validates "
++   "bad and good combination, check color format, and check the output result "
++   "by using CRC."
++);
+ 
+ static drmModePropertyBlobRes *get_writeback_formats_blob(igt_output_t *output)
+ {
+@@ -217,6 +225,118 @@ static void writeback_fb_id(igt_output_t *output, igt_fb_t *valid_fb, igt_fb_t *
+ 	igt_assert(ret == 0);
  }
  
-+/*
-+ * This implements the FNV-1a hashing algorithm instead of CRC, for
-+ * simplicity
-+ * http://www.isthe.com/chongo/tech/comp/fnv/index.html
-+ *
-+ * hash = offset_basis
-+ * for each octet_of_data to be hashed
-+ *         hash = hash xor octet_of_data
-+ *         hash = hash * FNV_prime
-+ * return hash
-+ *
-+ * 32 bit offset_basis = 2166136261
-+ * 32 bit FNV_prime = 224 + 28 + 0x93 = 16777619
-+ */
-+int igt_fb_get_fnv1a_crc(struct igt_fb *fb, igt_crc_t *crc)
++static void fill_fb(igt_fb_t *fb, uint32_t pixel)
 +{
-+	const uint32_t FNV1a_OFFSET_BIAS = 2166136261;
-+	const uint32_t FNV1a_PRIME = 16777619;
-+	uint32_t hash;
-+	void *map;
-+	char *ptr, *line = NULL;
-+	int x, y, cpp = igt_drm_format_to_bpp(fb->drm_format) / 8;
-+	uint32_t stride = calc_plane_stride(fb, 0);
++	void *ptr;
 +
-+	if (fb->num_planes != 1)
-+		return -EINVAL;
++	igt_assert(fb->drm_format == DRM_FORMAT_XRGB8888);
 +
 +	ptr = igt_fb_map_buffer(fb->fd, fb);
 +	igt_assert(ptr);
-+	map = ptr;
 +
-+	/*
-+	 * Framebuffers are often uncached, which can make byte-wise accesses
-+	 * very slow. We copy each line of the FB into a local buffer to speed
-+	 * up the hashing.
-+	 */
-+	line = malloc(stride);
-+	if (!line) {
-+		munmap(map, fb->size);
-+		return -ENOMEM;
-+	}
++	memset(ptr, pixel, fb->strides[0] * fb->height);
 +
-+	hash = FNV1a_OFFSET_BIAS;
-+
-+	for (y = 0; y < fb->height; y++, ptr += stride) {
-+
-+		igt_memcpy_from_wc(line, ptr, fb->width * cpp);
-+
-+		for (x = 0; x < fb->width * cpp; x++) {
-+			hash ^= line[x];
-+			hash *= FNV1a_PRIME;
-+		}
-+	}
-+
-+	crc->n_words = 1;
-+	crc->crc[0] = hash;
-+
-+	free(line);
-+	igt_fb_unmap_buffer(fb, map);
-+
-+	return 0;
++	igt_fb_unmap_buffer(fb, ptr);
 +}
 +
- /**
-  * igt_format_is_yuv:
-  * @drm_format: drm fourcc
-diff --git a/lib/igt_fb.h b/lib/igt_fb.h
-index 5ec906b7..debfb5ad 100644
---- a/lib/igt_fb.h
-+++ b/lib/igt_fb.h
-@@ -207,5 +207,7 @@ int igt_format_plane_bpp(uint32_t drm_format, int plane);
- void igt_format_array_fill(uint32_t **formats_array, unsigned int *count,
- 			   bool allow_yuv);
- 
-+int igt_fb_get_fnv1a_crc(struct igt_fb *fb, igt_crc_t *crc);
++static void get_and_wait_out_fence(igt_output_t *output)
++{
++	int ret;
 +
- #endif /* __IGT_FB_H__ */
++	igt_assert(output->writeback_out_fence_fd >= 0);
++
++	ret = sync_fence_wait(output->writeback_out_fence_fd, 1000);
++	igt_assert_f(ret == 0, "sync_fence_wait failed: %s\n", strerror(-ret));
++	close(output->writeback_out_fence_fd);
++	output->writeback_out_fence_fd = -1;
++}
++
++static void writeback_sequence(igt_output_t *output, igt_plane_t *plane,
++				igt_fb_t *in_fb, igt_fb_t *out_fbs[], int n_commits)
++{
++	int i = 0;
++	uint32_t in_fb_colors[2] = { 0xffff0000, 0xff00ff00 };
++	uint32_t clear_color = 0xffffffff;
++
++	igt_crc_t cleared_crc, out_expected;
++
++	for (i = 0; i < n_commits; i++) {
++		/* Change the input color each time */
++		fill_fb(in_fb, in_fb_colors[i % 2]);
++
++		if (out_fbs[i]) {
++			igt_crc_t out_before;
++
++			/* Get the expected CRC */
++			igt_fb_get_fnv1a_crc(in_fb, &out_expected);
++			fill_fb(out_fbs[i], clear_color);
++
++			if (i == 0)
++				igt_fb_get_fnv1a_crc(out_fbs[i], &cleared_crc);
++			igt_fb_get_fnv1a_crc(out_fbs[i], &out_before);
++			igt_assert_crc_equal(&cleared_crc, &out_before);
++		}
++
++		/* Commit */
++		igt_plane_set_fb(plane, in_fb);
++		igt_output_set_writeback_fb(output, out_fbs[i]);
++
++		igt_display_commit_atomic(output->display,
++					  DRM_MODE_ATOMIC_ALLOW_MODESET,
++					  NULL);
++		if (out_fbs[i])
++			get_and_wait_out_fence(output);
++
++		/* Make sure the old output buffer is untouched */
++		if (i > 0 && out_fbs[i - 1] && out_fbs[i] != out_fbs[i - 1]) {
++			igt_crc_t out_prev;
++			igt_fb_get_fnv1a_crc(out_fbs[i - 1], &out_prev);
++			igt_assert_crc_equal(&cleared_crc, &out_prev);
++		}
++
++		/* Make sure this output buffer is written */
++		if (out_fbs[i]) {
++			igt_crc_t out_after;
++			igt_fb_get_fnv1a_crc(out_fbs[i], &out_after);
++			igt_assert_crc_equal(&out_expected, &out_after);
++
++			/* And clear it, for the next time */
++			fill_fb(out_fbs[i], clear_color);
++		}
++	}
++}
++
++static void writeback_check_output(igt_output_t *output, igt_plane_t *plane,
++				   igt_fb_t *input_fb, igt_fb_t *output_fb)
++{
++	igt_fb_t *out_fbs[2] = { 0 };
++	igt_fb_t second_out_fb;
++	unsigned int fb_id;
++
++	/* One commit, with a writeback. */
++	writeback_sequence(output, plane, input_fb, &output_fb, 1);
++
++	/* Two commits, the second with no writeback */
++	out_fbs[0] = output_fb;
++	writeback_sequence(output, plane, input_fb, out_fbs, 2);
++
++	/* Two commits, both with writeback */
++	out_fbs[1] = output_fb;
++	writeback_sequence(output, plane, input_fb, out_fbs, 2);
++
++	fb_id = igt_create_fb(output_fb->fd, output_fb->width, output_fb->height,
++			      DRM_FORMAT_XRGB8888,
++			      igt_fb_mod_to_tiling(0),
++			      &second_out_fb);
++	igt_require(fb_id > 0);
++
++	/* Two commits, with different writeback buffers */
++	out_fbs[1] = &second_out_fb;
++	writeback_sequence(output, plane, input_fb, out_fbs, 2);
++
++	igt_remove_fb(output_fb->fd, &second_out_fb);
++}
++
+ igt_main
+ {
+ 	igt_display_t display;
+@@ -309,6 +429,20 @@ igt_main
+ 		igt_remove_fb(display.drm_fd, &output_fb);
+ 	}
  
++	igt_describe("Check writeback output with CRC validation");
++	igt_subtest("writeback-check-output") {
++		igt_fb_t output_fb;
++		fb_id = igt_create_fb(display.drm_fd, mode.hdisplay, mode.vdisplay,
++				      DRM_FORMAT_XRGB8888,
++				      igt_fb_mod_to_tiling(0),
++				      &output_fb);
++		igt_require(fb_id > 0);
++
++		writeback_check_output(output, plane, &input_fb, &output_fb);
++
++		igt_remove_fb(display.drm_fd, &output_fb);
++	}
++
+ 	igt_fixture {
+ 		igt_remove_fb(display.drm_fd, &input_fb);
+ 		igt_display_fini(&display);
 -- 
 2.28.0
 
