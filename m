@@ -2,43 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50DEC25667A
-	for <lists+intel-gfx@lfdr.de>; Sat, 29 Aug 2020 11:31:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 029D6256BE3
+	for <lists+intel-gfx@lfdr.de>; Sun, 30 Aug 2020 08:05:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3A88922B;
-	Sat, 29 Aug 2020 09:31:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 514896E02A;
+	Sun, 30 Aug 2020 06:05:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF93F8922B
- for <intel-gfx@lists.freedesktop.org>; Sat, 29 Aug 2020 09:31:26 +0000 (UTC)
-IronPort-SDR: RWPkozAc33ktRlg9KeGuQAlWmhnp/senltxr4haQ1ELpA3LVt1aJOJhutHXW0R5LOh2aCWApG5
- qQdR6F5kyR/g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9727"; a="241604772"
-X-IronPort-AV: E=Sophos;i="5.76,367,1592895600"; d="scan'208";a="241604772"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2020 02:31:26 -0700
-IronPort-SDR: JJxhgVCl0X0KoFn/lCq77GN0rdXAb6qnVR/3wCv2t3QIDe8IIhnuOM34VzXr7XYBa01lvqJSJA
- xhFVOYvHUKuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,367,1592895600"; d="scan'208";a="340134502"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga007.jf.intel.com with ESMTP; 29 Aug 2020 02:31:24 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id E49D55C2774; Sat, 29 Aug 2020 12:30:27 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200826132811.17577-10-chris@chris-wilson.co.uk>
-References: <20200826132811.17577-1-chris@chris-wilson.co.uk>
- <20200826132811.17577-10-chris@chris-wilson.co.uk>
-Date: Sat, 29 Aug 2020 12:30:27 +0300
-Message-ID: <87r1rpztn0.fsf@gaia.fi.intel.com>
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com
+ [IPv6:2607:f8b0:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B4916E02A
+ for <intel-gfx@lists.freedesktop.org>; Sun, 30 Aug 2020 06:05:13 +0000 (UTC)
+Received: by mail-ot1-x334.google.com with SMTP id e23so2734159otk.7
+ for <intel-gfx@lists.freedesktop.org>; Sat, 29 Aug 2020 23:05:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=YJWHzNWM+WsKkdDuBjUbCjMWvYqp7LFWHT23hnbLJhM=;
+ b=PQPdirbOmd3fH98e0MnlO0EfEgNFiHGcDGBD33QA543RjuC6iaBkO5StItBf1E3Y8/
+ QX06XSHi+D8Ww/3PeQ8NNFbTzLSaPtgfxeISkX0C3MASj2p0PLd2Ht7arvPYbjJ9OUAH
+ JjUZ2DwDWYYbt9XDDCIfnVI5wIm7G6V9z5LWU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=YJWHzNWM+WsKkdDuBjUbCjMWvYqp7LFWHT23hnbLJhM=;
+ b=ZzozrmDVwcU5b7E/mlcoDui/AGlVZQ6knmWd27fXk6C4tZXrH6w9SSD5NSl6jv97hy
+ zTtfkqgZRZvx0B+XjEH0rJ0iMFDqI3ZgKv0bth0hDW+p9/eScFUyNea6qoVogU8trgUQ
+ ZS9Ofh1/we0wjB/6SSYk/RNGuEN71ip7Xw8LhZt45MFfTd2iOZaYsaurXFjZvyZb7Fpx
+ wI6VR8+1BZe7TY4fQ4FkhpLf6Xv1WfFN0n7zrIL2bQoX7hvX/eWVGRDBaFN9cPsVN0V/
+ yjXCNrwV8bohTqgKCVU0cEcUWovMVnFTyIxF96pUQXj3c/mZJkB+lsFWYKimNrpihZcf
+ cFgg==
+X-Gm-Message-State: AOAM532MfusaRotcKevXPVQNTOghSvDbdxRIBCXVdrSmsekQy2/2s6B3
+ 5KHsadSBSmQZczdOkXHPYB3LsajRMWRsCiYF2q7CyA==
+X-Google-Smtp-Source: ABdhPJwk57JKDbWRmzKsHVtbf6o7muH5y4/t/hpqgV5umHu4D6ud85OdUCaYAHVYTfTnQ4fd+d2551hjHKt1PcUiu94=
+X-Received: by 2002:a9d:7283:: with SMTP id t3mr3795420otj.303.1598767512948; 
+ Sat, 29 Aug 2020 23:05:12 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 10/39] drm/i915: Cancel outstanding work
- after disabling heartbeats on an engine
+References: <20200820125644.hee2jjtnef5bf74o@gilmour.lan>
+ <87lfi167y8.fsf@intel.com>
+In-Reply-To: <87lfi167y8.fsf@intel.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Sun, 30 Aug 2020 08:05:01 +0200
+Message-ID: <CAKMK7uFJnm6jL+PdNROrzS2BprN4j2cvE-eZy90NQaB3Rg2-BQ@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,80 +58,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: "DRM maintainer tools announcements, discussion,
+ and development" <dim-tools@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> We only allow persistent requests to remain on the GPU past the closure
-> of their containing context (and process) so long as they are continuously
-> checked for hangs or allow other requests to preempt them, as we need to
-> ensure forward progress of the system. If we allow persistent contexts
-> to remain on the system after the the hangcheck mechanism is disabled,
-> the system may grind to a halt. On disabling the mechanism, we sent a
-> pulse along the engine to remove all executing contexts from the engine
-> which would check for hung contexts -- but we did not prevent those
-> contexts from being resubmitted if they survived the final hangcheck.
+On Wed, Aug 26, 2020 at 12:02 PM Jani Nikula
+<jani.nikula@linux.intel.com> wrote:
 >
-> Fixes: 9a40bddd47ca ("drm/i915/gt: Expose heartbeat interval via sysfs")
-> Testcase: igt/gem_ctx_persistence/heartbeat-stop
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v5.7+
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine.h | 9 +++++++++
->  drivers/gpu/drm/i915/i915_request.c    | 5 +++++
->  2 files changed, 14 insertions(+)
+> On Thu, 20 Aug 2020, Maxime Ripard <maxime@cerno.tech> wrote:
+> > This PR diffstat is pretty massive since we merged 5.9-rc1 and it's not (yet?) in drm-next.
+> >
+> > I'm not entirely sure how to tackle this (if it causes an issue?).
+> >
+> > Let me know, thanks!
 >
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index 08e2c000dcc3..7c3a1012e702 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -337,4 +337,13 @@ intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
->  	return intel_engine_has_preemption(engine);
->  }
->  
-> +static inline bool
-> +intel_engine_has_heartbeat(const struct intel_engine_cs *engine)
-> +{
-> +	if (!IS_ACTIVE(CONFIG_DRM_I915_HEARTBEAT_INTERVAL))
-> +		return false;
-> +
-> +	return READ_ONCE(engine->props.heartbeat_interval_ms);
-> +}
-> +
->  #endif /* _INTEL_RINGBUFFER_H_ */
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index a931b8b571d1..c187e1ec0278 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -542,8 +542,13 @@ bool __i915_request_submit(struct i915_request *request)
->  	if (i915_request_completed(request))
->  		goto xfer;
->  
-> +	if (unlikely(intel_context_is_closed(request->context) &&
-> +		     !intel_engine_has_heartbeat(engine)))
-> +		intel_context_set_banned(request->context);
-> +
->  	if (unlikely(intel_context_is_banned(request->context)))
->  		i915_request_set_error_once(request, -EIO);
-> +
->  	if (unlikely(fatal_error(request->fence.error)))
->  		__i915_request_skip(request);
->  
-> -- 
-> 2.20.1
+> Whatever Dave & Daniel say, but previously the rule of thumb has been to
+> only ever do backmerges from drm-next. If you need a backmerge from
+> Linus' tree, you ask for a backmerge to drm-next, and then backmerge
+> that.
+
+Yup. drm-misc docs even say that if you roll forward (or backmerge)
+before it's in drm.git it's going to be a bit of a mess.
+-Daniel
+
 >
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> BR,
+> Jani.
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
+
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
