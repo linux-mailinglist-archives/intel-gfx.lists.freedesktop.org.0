@@ -2,30 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD8E257E92
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Aug 2020 18:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6514B257FFE
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Aug 2020 19:57:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E71A6E158;
-	Mon, 31 Aug 2020 16:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9769E6E175;
+	Mon, 31 Aug 2020 17:57:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B920E6E05C;
- Mon, 31 Aug 2020 16:21:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B2582A73C7;
- Mon, 31 Aug 2020 16:21:34 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA40D89DC7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Aug 2020 17:57:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1598896655;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Fta6S09NuQr3NtP1v0gU8NpMcMvdjL+BAFEBhoAl3nw=;
+ b=KzhNwXKnVElvzYZZE6bpmiXxQJkGn6/f+9vN2N0zDb4TnYH6h2HjwnvYP1uRc+G+q9p/lR
+ RfgcPnwKqtD+pI+DD/xeAF57lzbpLWXPkU9oWnIoLihcNvYgFb1rxxCV80y0UplaI0Fxl9
+ vWVzRA5ym9HhKbPpvI1MKaLbv/Rasvg=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-183-U8-3QIrgOweUP898n1rOiA-1; Mon, 31 Aug 2020 13:57:33 -0400
+X-MC-Unique: U8-3QIrgOweUP898n1rOiA-1
+Received: by mail-ej1-f72.google.com with SMTP id q9so791962ejr.21
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Aug 2020 10:57:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=Fta6S09NuQr3NtP1v0gU8NpMcMvdjL+BAFEBhoAl3nw=;
+ b=EQ9SleVdlDn1BnW5kbhPRdNbmps4pRJTSPyI8SVCew4fJ93lXM3JEf2EH4uW3R35Uj
+ iN3ksCV9CqcbsR0gEB3C/JoxGBM5jqf3N4w6PoJp3qwsynsQTw+yDPn+u4hTpX+gVDWP
+ ND1B/0Q6U2jbHES3K8cMuJzY3EiyD2/ukCqVFRn3Gw5cVx0QDe8Ey7KqzKd2z3MYSq5j
+ Oj3HO4FykvY0lSgP6v/S+PtfsML9EMY6Ei8ydFnnyOVUWfSuvqDgD8am8Uxs7GCLtmf5
+ fO4ySW7CkoTyIXEf6tUMtAP9TiebQ23C9bAJPtP5ozcz030nZ7pPIFRhVDh5f4wyXisE
+ 1M0A==
+X-Gm-Message-State: AOAM531hetCJReSlOGvGEYTWiN7OnjsVOA/sdVT72X0r73RyxrGWP+X/
+ +XLMGELEGEzwa3Y+2m8ifzDM6J7n2rXOjFJBjrLw0TCwa81U3cYQMdprGDcj34yNrzmDL0j2ElB
+ BFmN0DPQ5ElAGomRSI+yaNNARTppD
+X-Received: by 2002:a05:6402:1710:: with SMTP id
+ y16mr2304642edu.197.1598896652402; 
+ Mon, 31 Aug 2020 10:57:32 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwTNia0aR3ARSWP7er9341p7NKAJ9h4bBKpm7KmLb2FIjWe4rKAGXCJJRlp89QldRBCgqjSUw==
+X-Received: by 2002:a05:6402:1710:: with SMTP id
+ y16mr2304604edu.197.1598896651988; 
+ Mon, 31 Aug 2020 10:57:31 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+ by smtp.gmail.com with ESMTPSA id l23sm8703136eje.46.2020.08.31.10.57.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 31 Aug 2020 10:57:31 -0700 (PDT)
+To: Thierry Reding <thierry.reding@gmail.com>
+References: <20200830125753.230420-1-hdegoede@redhat.com>
+ <20200830125753.230420-7-hdegoede@redhat.com> <20200831111006.GD1688464@ulmo>
+ <d63a89d2-84e5-ca05-aa96-a06291503c5f@redhat.com>
+ <20200831131533.GI1689119@ulmo>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <84887293-11b3-82c9-1e62-bac39861e39e@redhat.com>
+Date: Mon, 31 Aug 2020 19:57:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sam McNally" <sammc@chromium.org>
-Date: Mon, 31 Aug 2020 16:21:34 -0000
-Message-ID: <159889089470.7425.7068924947350191063@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200727160225.1.I4e95a534de051551cd143e6cb83d4c5a9b0ad1cd@changeid>
-In-Reply-To: <20200727160225.1.I4e95a534de051551cd143e6cb83d4c5a9b0ad1cd@changeid>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/dp=5Fmst=3A_Support_remote_i2c_writes?=
+In-Reply-To: <20200831131533.GI1689119@ulmo>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0.005
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v8 06/17] pwm: lpss: Use pwm_lpss_restore()
+ when restoring state on resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,237 +88,251 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0439061240=="
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0439061240==
-Content-Type: multipart/alternative;
- boundary="===============0383195306476357775=="
+Hi,
 
---===============0383195306476357775==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 8/31/20 3:15 PM, Thierry Reding wrote:
+> On Mon, Aug 31, 2020 at 01:46:28PM +0200, Hans de Goede wrote:
+>> Hi,
+>>
+>> On 8/31/20 1:10 PM, Thierry Reding wrote:
+>>> On Sun, Aug 30, 2020 at 02:57:42PM +0200, Hans de Goede wrote:
+>>>> Before this commit a suspend + resume of the LPSS PWM controller
+>>>> would result in the controller being reset to its defaults of
+>>>> output-freq = clock/256, duty-cycle=100%, until someone changes
+>>>> to the output-freq and/or duty-cycle are made.
+>>>>
+>>>> This problem has been masked so far because the main consumer
+>>>> (the i915 driver) was always making duty-cycle changes on resume.
+>>>> With the conversion of the i915 driver to the atomic PWM API the
+>>>> driver now only disables/enables the PWM on suspend/resume leaving
+>>>> the output-freq and duty as is, triggering this problem.
+>>>
+>>> Doesn't this imply that there's another bug at play here? At the PWM API
+>>> level you're applying a state and it's up to the driver to ensure that
+>>> the hardware state after ->apply() is what the software has requested.
+>>>
+>>> If you only switch the enable state and that doesn't cause period and
+>>> duty cycle to be updated it means that your driver isn't writing those
+>>> registers when it should be.
+>>
+>> Right, the driver was not committing those as it should *on resume*,
+>> that and it skips setting the update bit on the subsequent enable,
+>> which is an optimization which gets removed in 7/17.
+>>
+>> Before switching the i915 driver over to atomic, when the LPSS-PWM
+>> was used for the backlight we got the following order on suspend/resume
+>>
+>> 1. Set duty-cycle to 0%
+>> 2. Set enabled to 0
+>> 3. Save ctrl reg
+>> 4. Power-off PWM controller, it now looses all its state
+>> 5. Power-on PWM ctrl
+>> 6. Restore ctrl reg (as a single reg write)
+>> 7. Set enabled to 1, at this point one would expect the
+>> duty/freq from the restored ctrl-reg to apply, but:
+>> a) The resume code never sets the update bit (which this commit fixes); and
+>> b) On applying the pwm_state with enabled=1 the code applying the
+>> state does this (before setting the enabled bit in the ctrl reg):
+>>
+>> 	if (orig_ctrl != ctrl) {
+>> 		pwm_lpss_write(pwm, ctrl);
+>> 		pwm_lpss_write(pwm, ctrl | PWM_SW_UPDATE);
+>> 	}
+>> and since the restore of the ctrl reg set the old duty/freq the
+>> writes are skipped, so the update bit never gets set.
+>>
+>> 8. Set duty-cycle to the pre-suspend value (which is not 0)
+>> this does cause a change in the ctrl-reg, so now the update flag
+>> does get set.
+>>
+>> Note that 1-2 and 7-8 are both done by the non atomic i915 code,
+>> when moving the i915 code to atomic I decided that having these
+>> 2 separate steps here is non-sense, so the new i915 code just
+>> toggles the enable bit. So in essence the new atomic PWM
+>> i915 code drops step 1 and 8.
+>>
+>> Dropping steps 8 means that the update bit never gets set and we
+>> end up with the PWM running at its power-on-reset duty cycle.
+>>
+>> You are correct in your remark to patch 7/17 that since that removes
+>> the if (orig_ctrl != ctrl) for the writes that now step 7 will be
+>> sufficient to get the PWM to work again. But that only takes the i915
+>> usage into account.
+>>
+>> What if the PWM is used through the sysfs userspace API?
+>> Then only steps 3-6 will happen on suspend-resume and without
+>> fixing step 6 to properly restore the PWM controller in its
+>> pre-resume state (this patch) it will once again be running at
+>> its power-on-reset defaults instead of the values from the
+>> restored control register.
+> 
+> Actually PWM's sysfs code has suspend/resume callbacks that basically
+> make sysfs just a regular consumer of PWMs. So they do end up doing a
+> pwm_apply_state() on the PWM as well on suspend and restore the state
+> from before suspend on resume.
+> 
+> This was done very specifically because the suspend/resume order can be
+> unexpected under some circumstances, so for PWM we really want for the
+> consumer to always have ultimate control over when precisely the PWM is
+> restored on resume.
+>
+> The reason why we did this was because people observed weird glitches on
+> suspend/resume with different severity. In some cases a backlight would
+> be resumed before the display controller had had a chance to start
+> sending frames, causing on-screen corruption in some cases (such as
+> smart displays) and in other cases a PWM-controller regulator would be
+> resumed too late or too early, which I think was causing some issue with
+> the CPUs not working properly on resume.
+> 
+> So I'd prefer not to have any PWM driver save and restore its own
+> context on suspend/resume, because that's inevitably going to cause
+> unexpected behaviour at some point. If it's absolutely necessary we can
+> of course still do that, but I think in that case we need to at least
+> add a comment in the code about why context save/restore is needed in
+> this particular case and make it clear that this is not something that
+> other drivers should copy because they most likely won't be needing it.
+> 
+> Given the above it also doesn't sound to me like there's a real problem,
+> or at least that the bug is somewhere else. A consumer should always be
+> responsible for applying the pre-suspend state upon resume and it sounds
+> like that would be true after patch 7. Since sysfs is just a regular
+> consumer, the same should apply for sysfs-controlled PWMs as well.
 
-== Series Details ==
+Ok, I was not aware that for PWM the consumer is supposed to always
+be the one to restore the state. If that is the rule then we should probably
+just drop the save/restore suspend/resume code from pwm-lpss.
 
-Series: drm/dp_mst: Support remote i2c writes
-URL   : https://patchwork.freedesktop.org/series/81191/
-State : success
+It seems that I'm actually responsible for adding that suspend/resume
+code in the first place, see commit 1d375b58c12f ("pwm: lpss: platform:
+Save/restore the ctrl register over a suspend/resume") although the
+ctrl-register was already being saved/restored before that commit
+but then by the acpi/acpi_lpss.c code.
 
-== Summary ==
+One worry after dropping the suspend/resume save/restore code is what
+happens if the controller was enabled at the moment the system suspends
+and the consumers first post resume apply() call has pwm_state.enabled
+set too.
 
-CI Bug Log - changes from CI_DRM_8946 -> Patchwork_18424
-====================================================
+Currently pwm_lpss_apply() looks like this:
 
-Summary
--------
+         if (state->enabled) {
+                 if (!pwm_is_enabled(pwm)) {
+                         pm_runtime_get_sync(chip->dev);
+                         ret = pwm_lpss_prepare_enable(lpwm, pwm, state, true);
+                         if (ret)
+                                 pm_runtime_put(chip->dev);
+                 } else {
+                         ret = pwm_lpss_prepare_enable(lpwm, pwm, state, false);
+                 }
+         } else if (pwm_is_enabled(pwm)) {
 
-  **SUCCESS**
+Where the true / false parameter to pwm_lpss_prepare_enable()
+decides if pwm_lpss_prepare_enable() sets the enable bit in the controllers
+ctrl register, or if it skips that.
 
-  No regressions found.
+If we then come from a full system suspend (controller loses state,
+comes up with enable bit cleared) we will still enter the:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/index.html
+                         ret = pwm_lpss_prepare_enable(lpwm, pwm, state, false);
 
-Known issues
-------------
+Path since the !pwm_is_enabled(pwm) check checks the pwm_state struct,
+not the actual hw-enabled bit and then we do not (re)set the enabled after
+resume as we should when apply() is called with pwm_state.enabled set.
 
-  Here are the changes found in Patchwork_18424 that come from known issues:
+Fixing this is easy though, we still need to check for the disabled ->
+enabled transition for runtime pm refcounting, but we can also tell
+pwm_lpss_prepare_enable() to set the enable bit in the other path, this
+will be a no-op in case it is already set.
 
-### IGT changes ###
+So then the new apply() code would become:
 
-#### Issues hit ####
+         if (state->enabled) {
+                 if (!pwm_is_enabled(pwm)) {
+                         pm_runtime_get_sync(chip->dev);
+                         ret = pwm_lpss_prepare_enable(lpwm, pwm, state, true);
+                         if (ret)
+                                 pm_runtime_put(chip->dev);
+                 } else {
+                         ret = pwm_lpss_prepare_enable(lpwm, pwm, state, true);
+                 }
+         } else if (pwm_is_enabled(pwm)) {
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+(and we can even optimize out the enable parameter to pwm_lpss_prepare_enable
+then and always make it set the enable bit).
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-kbl-r:           [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+Together with patch 07/16 will make apply() always work independent of
+the state the controller was in before it got called. Which in light of
+all the subtle issues we have seen surrounding this is likely a good thing.
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+And with the fix to make apply() fully independent of the previous state
+of the controller, I'm all for dropping the suspend/resume state
+save/restore code.  Doing that makes things more KISS so I like it :)
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:
-    - fi-skl-guc:         [PASS][7] -> [DMESG-WARN][8] ([i915#2203])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html
+>> So at step 6, if the PWM was enabled before, we must set the update
+>> bit, and then wait for it to clear again so the controller is
+>> ready for subsequent updates. The waiting for it to clear again
+>> needs to happen before or after setting the enable bit depending
+>> on the hw generation, which leads to this patch.
+> 
+> But all of that should be happening as part of the call to
+> pwm_apply_state(), right? That path should be taken for all consumers on
+> resume, including sysfs.
 
-  
-#### Possible fixes ####
+Ack.
 
-  * igt@gem_exec_parallel@engines@basic:
-    - fi-bxt-dsi:         [INCOMPLETE][9] ([i915#1635] / [i915#2398]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-bxt-dsi/igt@gem_exec_parallel@engines@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-bxt-dsi/igt@gem_exec_parallel@engines@basic.html
+<snip>
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+>> See above, apply() was trying to be smart but the restore of ctrl
+>> on resume without setting the update bit was tricking it. That
+>> being too smart for its own good is removed in 7/16 as you
+>> rightfully point out. But this patch is still necessary for the
+>> PWM controller to be in the expected state between resume and the
+>> first apply() after resume (which may be quite a long time in
+>> the future when using e.g. the sysfs API).
+> 
+> Like I said, the sysfs code should be resuming any exported PWMs on
+> resume just like any other consumer.
+> 
+> Obviously it's always up to the consumer to call pwm_apply_state() at
+> the right time. If that's "too late" for some reason, then that's a bug
+> in the consumer driver. But as I explained above there are a number of
+> cases where restoring context in the PWM driver itself doesn't work
+> because it can cause sequencing issues.
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+Ack, I was not aware that PWM consumers are responsible for restoring
+their own state on resume. If that is the case then:
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+TL;DR:
 
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#2398]: https://gitlab.freedesktop.org/drm/intel/issues/2398
+1. We (I) should make apply() work independent of the current
+hardware state, instead of having it make various assumptions
+about that state as it now does.
 
+2. We (I) should drop the suspend/resume save/restore state
+handlers from pwm-lpss completely.
 
-Participating hosts (38 -> 33)
-------------------------------
+So I believe that I should prepare yet another version of this
+patch-set replacing 06/17 and 07/17 with 2 patches doing these
+2 things.
 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper 
+Thierry, Andy, does that sound good to you ?
 
+Regards,
 
-Build changes
--------------
-
-  * Linux: CI_DRM_8946 -> Patchwork_18424
-
-  CI-20190529: 20190529
-  CI_DRM_8946: e2a5eec44f19c7732c7114c62410914fda06e106 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5774: 2a5db9f60241383272aeec176e1b97b3f487209f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18424: efe6eb406477be941a39de90fd2181786079bf40 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-efe6eb406477 drm/dp_mst: Support remote i2c writes
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/index.html
-
---===============0383195306476357775==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dp_mst: Support remote i2c writes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81191/">https://patchwork.freedesktop.org/series/81191/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8946 -&gt; Patchwork_18424</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18424 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-kbl-r/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:</p>
-<ul>
-<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-skl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@basic:</p>
-<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-bxt-dsi/igt@gem_exec_parallel@engines@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2398">i915#2398</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-bxt-dsi/igt@gem_exec_parallel@engines@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8946/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18424/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (38 -&gt; 33)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_8946 -&gt; Patchwork_18424</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8946: e2a5eec44f19c7732c7114c62410914fda06e106 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5774: 2a5db9f60241383272aeec176e1b97b3f487209f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18424: efe6eb406477be941a39de90fd2181786079bf40 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>efe6eb406477 drm/dp_mst: Support remote i2c writes</p>
-
-</body>
-</html>
-
---===============0383195306476357775==--
-
---===============0439061240==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Hans
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0439061240==--
