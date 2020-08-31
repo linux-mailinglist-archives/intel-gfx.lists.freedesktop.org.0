@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE921258206
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Aug 2020 21:47:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 898A925820C
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Aug 2020 21:48:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9F946E3BC;
-	Mon, 31 Aug 2020 19:47:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDF7D6E42A;
+	Mon, 31 Aug 2020 19:48:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B22366E3BC
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Aug 2020 19:47:28 +0000 (UTC)
-IronPort-SDR: 1Ys62q8imLXfAHeHkpIcQTf6B6U9xgfTHhH+mL+wQFY81TXMkSc+4Ml43m89uOvFo6sSBPoadq
- OzrJh3h6iLzw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9730"; a="144795600"
-X-IronPort-AV: E=Sophos;i="5.76,376,1592895600"; d="scan'208";a="144795600"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30EFB6E42A;
+ Mon, 31 Aug 2020 19:48:27 +0000 (UTC)
+IronPort-SDR: Up1nNPhax3ZA9vXX3riRFq6AT/imXIMxEdgHSDA8+Nud9sAIx0MM43m7qMyxeXSaVAcQlgDepG
+ 0UDo61MXoS6g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9730"; a="221279010"
+X-IronPort-AV: E=Sophos;i="5.76,376,1592895600"; d="scan'208";a="221279010"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2020 12:47:26 -0700
-IronPort-SDR: XdkaW+KfWdMx8Vu2HoVlltcKZOyuSJNLvG/MjNTZt4pVrdmRAxSYex7wZfGzTmsLLdE/etgFy+
- cJr7TCPK/Edw==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2020 12:48:25 -0700
+IronPort-SDR: gML8hXmqtfjjuG40dmw03exE7XYZXpDxuL5Um8aFGI0ZxnjaK5qgiAog5/r59mPovT8zPll07b
+ ASzOLImW+inQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,376,1592895600"; d="scan'208";a="301163421"
+X-IronPort-AV: E=Sophos;i="5.76,376,1592895600"; d="scan'208";a="338320232"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 31 Aug 2020 12:47:23 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 31 Aug 2020 12:48:21 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 31 Aug 2020 22:47:22 +0300
-Date: Mon, 31 Aug 2020 22:47:22 +0300
+ Mon, 31 Aug 2020 22:48:20 +0300
+Date: Mon, 31 Aug 2020 22:48:20 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-Message-ID: <20200831194722.GA6112@intel.com>
-References: <20200828215832.11687-1-anusha.srivatsa@intel.com>
- <20200831134210.GX6112@intel.com>
- <83F5C7385F545743AD4FB2A62F75B0734E30EE06@ORSMSX151.amr.corp.intel.com>
+To: Kai Heng Feng <kai.heng.feng@canonical.com>
+Message-ID: <20200831194820.GB6112@intel.com>
+References: <20200826052143.17607-1-kai.heng.feng@canonical.com>
+ <20200826162458.GP6112@intel.com>
+ <6D40F1E0-AFF6-4D38-BB9B-C52B43F83266@canonical.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <83F5C7385F545743AD4FB2A62F75B0734E30EE06@ORSMSX151.amr.corp.intel.com>
+In-Reply-To: <6D40F1E0-AFF6-4D38-BB9B-C52B43F83266@canonical.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pll: Centralize PLL_ENABLE
- register lookup
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/lspcon: Limits to 8 bpc for
+ RGB/YCbCr444
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,138 +55,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 31, 2020 at 07:03:47PM +0000, Srivatsa, Anusha wrote:
+On Thu, Aug 27, 2020 at 01:04:54PM +0800, Kai Heng Feng wrote:
+> Hi Ville,
 > =
 
+> > On Aug 27, 2020, at 12:24 AM, Ville Syrj=E4l=E4 <ville.syrjala@linux.in=
+tel.com> wrote:
+> > =
+
+> > On Wed, Aug 26, 2020 at 01:21:15PM +0800, Kai-Heng Feng wrote:
+> >> LSPCON only supports 8 bpc for RGB/YCbCr444.
+> >> =
+
+> >> Set the correct bpp otherwise it renders blank screen.
+> > =
+
+> > Hmm. Does =
+
+> > git://github.com/vsyrjala/linux.git dp_downstream_ports_5
+> > work?
+> > =
+
+> > Actually better make that dp_downstream_ports_5^^^^^^^^^^^ aka.
+> > 54d846ce62a2 ("drm/i915: Do YCbCr 444->420 conversion via DP protocol
+> > converters") to avoid the experiments and hacks I have sitting on top.
 > =
 
-> > -----Original Message-----
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Sent: Monday, August 31, 2020 6:42 AM
-> > To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Subject: Re: [Intel-gfx] [PATCH] drm/i915/pll: Centralize PLL_ENABLE re=
-gister
-> > lookup
-> > =
+> Can you please rebase it to mainline master or drm-tip?
 
-> > On Fri, Aug 28, 2020 at 02:58:32PM -0700, Anusha Srivatsa wrote:
-> > > We currenty check for platform at multiple parts in the driver to grab
-> > > the correct PLL. Let us begin to centralize it through a helper
-> > > function.
-> > >
-> > > Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-> > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 27
-> > > ++++++++++++-------
-> > >  1 file changed, 17 insertions(+), 10 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > > index 81ab975fe4f0..388136618bb7 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > > @@ -147,6 +147,20 @@ void assert_shared_dpll(struct drm_i915_private
-> > *dev_priv,
-> > >  			pll->info->name, onoff(state), onoff(cur_state));  }
-> > >
-> > > +static
-> > > +i915_reg_t intel_get_pll_enable_reg(struct drm_i915_private *dev_pri=
-v,
-> > > +				    struct intel_shared_dpll *pll)
-> > =
+git://github.com/vsyrjala/linux.git dp_downstream_ports_6
 
-> > combo_pll_enable_reg() ?
-> Actually want to avoid mentioning combo in the name. We might have platfo=
-rms that do not have combo phys. We still want this function to be one plac=
-e where platforms gets the PLL_ENABLE register.
+I threw out the hacks/experimental stuff.
 
-There's no point in mixing up different PHY types in a single function.
-
->  =
-
-> > =
-
-> > > +{
-> > > +
-> > > +	if (IS_ELKHARTLAKE(dev_priv)) {
-> > > +		if (pll->info->id =3D=3D DPLL_ID_EHL_DPLL4)
-> > > +			return MG_PLL_ENABLE(0);
-> > > +	}
-> > =
-
-> > Ugly nested if.
->  Will change it.
 > =
 
-> Anusha =
+> I am getting errors on the branch:
+> =
 
-> > > +
-> > > +	return CNL_DPLL_ENABLE(pll->info->id);
-> > > +
-> > > +
-> > > +}
-> > >  /**
-> > >   * intel_prepare_shared_dpll - call a dpll's prepare hook
-> > >   * @crtc_state: CRTC, and its state, which has a shared dpll @@
-> > > -3842,12 +3856,7 @@ static bool combo_pll_get_hw_state(struct
-> > drm_i915_private *dev_priv,
-> > >  				   struct intel_shared_dpll *pll,
-> > >  				   struct intel_dpll_hw_state *hw_state)  {
-> > > -	i915_reg_t enable_reg =3D CNL_DPLL_ENABLE(pll->info->id);
-> > > -
-> > > -	if (IS_ELKHARTLAKE(dev_priv) &&
-> > > -	    pll->info->id =3D=3D DPLL_ID_EHL_DPLL4) {
-> > > -		enable_reg =3D MG_PLL_ENABLE(0);
-> > > -	}
-> > > +	i915_reg_t enable_reg =3D intel_get_pll_enable_reg(dev_priv, pll);
-> > >
-> > >  	return icl_pll_get_hw_state(dev_priv, pll, hw_state, enable_reg);  }
-> > > @@ -4045,11 +4054,10 @@ static void icl_pll_enable(struct
-> > > drm_i915_private *dev_priv,  static void combo_pll_enable(struct
-> > drm_i915_private *dev_priv,
-> > >  			     struct intel_shared_dpll *pll)  {
-> > > -	i915_reg_t enable_reg =3D CNL_DPLL_ENABLE(pll->info->id);
-> > > +	i915_reg_t enable_reg =3D intel_get_pll_enable_reg(dev_priv, pll);
-> > >
-> > >  	if (IS_ELKHARTLAKE(dev_priv) &&
-> > >  	    pll->info->id =3D=3D DPLL_ID_EHL_DPLL4) {
-> > > -		enable_reg =3D MG_PLL_ENABLE(0);
-> > >
-> > >  		/*
-> > >  		 * We need to disable DC states when this DPLL is enabled.
-> > > @@ -4157,11 +4165,10 @@ static void icl_pll_disable(struct
-> > > drm_i915_private *dev_priv,  static void combo_pll_disable(struct
-> > drm_i915_private *dev_priv,
-> > >  			      struct intel_shared_dpll *pll)  {
-> > > -	i915_reg_t enable_reg =3D CNL_DPLL_ENABLE(pll->info->id);
-> > > +	i915_reg_t enable_reg =3D intel_get_pll_enable_reg(dev_priv, pll);
-> > >
-> > >  	if (IS_ELKHARTLAKE(dev_priv) &&
-> > >  	    pll->info->id =3D=3D DPLL_ID_EHL_DPLL4) {
-> > > -		enable_reg =3D MG_PLL_ENABLE(0);
-> > >  		icl_pll_disable(dev_priv, pll, enable_reg);
-> > >
-> > >  		intel_display_power_put(dev_priv,
-> > POWER_DOMAIN_DPLL_DC_OFF,
-> > > --
-> > > 2.25.0
-> > >
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>   DESCEND  objtool
+>   CALL    scripts/atomic/check-atomics.sh
+>   CALL    scripts/checksyscalls.sh
+>   CHK     include/generated/compile.h
+>   Building modules, stage 2.
+>   MODPOST 166 modules
+>   LD      arch/x86/boot/compressed/vmlinux
+> ld: arch/x86/boot/compressed/pgtable_64.o:(.bss+0x0): multiple definition=
+ of `__force_order'; arch/x86/boot/compressed/kaslr_64.o:(.bss+0x0): first =
+defined here
+> ld: arch/x86/boot/compressed/head_64.o: warning: relocation in read-only =
+section `.head.text'
+> ld: warning: creating DT_TEXTREL in a PIE
+> make[2]: *** [arch/x86/boot/compressed/Makefile:119: arch/x86/boot/compre=
+ssed/vmlinux] Error 1
+> make[1]: *** [arch/x86/boot/Makefile:113: arch/x86/boot/compressed/vmlinu=
+x] Error 2
+> make: *** [arch/x86/Makefile:284: bzImage] Error 2
+> make: *** Waiting for unfinished jobs....
+> =
+
+> Kai-Heng
+> =
+
 > > =
 
-> > --
+> >> =
+
+> >> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2195
+> >> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> >> ---
+> >> drivers/gpu/drm/i915/display/intel_lspcon.c | 3 ++-
+> >> 1 file changed, 2 insertions(+), 1 deletion(-)
+> >> =
+
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu=
+/drm/i915/display/intel_lspcon.c
+> >> index b781bf469644..c7a44fcaade8 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> >> @@ -196,7 +196,8 @@ void lspcon_ycbcr420_config(struct drm_connector *=
+connector,
+> >> 		crtc_state->port_clock /=3D 2;
+> >> 		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR444;
+> >> 		crtc_state->lspcon_downsampling =3D true;
+> >> -	}
+> >> +	} else
+> >> +		crtc_state->pipe_bpp =3D 24;
+> >> }
+> >> =
+
+> >> static bool lspcon_probe(struct intel_lspcon *lspcon)
+> >> -- =
+
+> >> 2.17.1
+> > =
+
+> > -- =
+
 > > Ville Syrj=E4l=E4
 > > Intel
 
