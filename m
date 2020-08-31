@@ -1,32 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD8AE2575DD
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Aug 2020 10:52:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D18E12575E4
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Aug 2020 10:56:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C9689D44;
-	Mon, 31 Aug 2020 08:52:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB6E89BA5;
+	Mon, 31 Aug 2020 08:56:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5856389D2F;
- Mon, 31 Aug 2020 08:52:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 509D1A7DFB;
- Mon, 31 Aug 2020 08:52:48 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31E8889BA5;
+ Mon, 31 Aug 2020 08:56:56 +0000 (UTC)
+IronPort-SDR: I9idHf6agcU/YwCcb4jAM5nzRx5i1ROPiRMYlbE4CPGh+e3gWdOu1I2UUgySSEyL3C59c8kcHB
+ Kc+3L1RUkMtw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9729"; a="154337993"
+X-IronPort-AV: E=Sophos;i="5.76,375,1592895600"; d="scan'208";a="154337993"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2020 01:56:55 -0700
+IronPort-SDR: 9yN/1yUHqKELgGxgDMn4zYS+tfQ0H1S1gvVgEktTHAZNke7hmJJp9nZHec9rRoqP0OkxoPRziL
+ nwHRUbc8FLAA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,375,1592895600"; d="scan'208";a="330626277"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by orsmga008.jf.intel.com with ESMTP; 31 Aug 2020 01:56:52 -0700
+Received: from andy by smile with local (Exim 4.94)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1kCfcP-00CvS5-HF; Mon, 31 Aug 2020 11:56:49 +0300
+Date: Mon, 31 Aug 2020 11:56:49 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20200831085649.GB1891694@smile.fi.intel.com>
+References: <20200830125753.230420-1-hdegoede@redhat.com>
+ <20200830125753.230420-8-hdegoede@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Mon, 31 Aug 2020 08:52:48 -0000
-Message-ID: <159886396829.7423.4950296447299756493@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200831083657.15600-1-jani.nikula@intel.com>
-In-Reply-To: <20200831083657.15600-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv2=2C1/2=5D_drm/i915/opregion=3A_add_su?=
- =?utf-8?q?pport_for_mailbox_=235_EDID?=
+Content-Disposition: inline
+In-Reply-To: <20200830125753.230420-8-hdegoede@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v8 07/17] pwm: lpss: Always update state and
+ set update bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,62 +54,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Sun, Aug 30, 2020 at 02:57:43PM +0200, Hans de Goede wrote:
+> This commit removes a check where we would skip writing the ctrl register
+> and then setting the update bit in case the ctrl register already contains
+> the correct values.
+> 
+> In a perfect world skipping the update should be fine in these cases, but
+> on Cherry Trail devices the AML code in the GFX0 devices' PS0 and PS3
+> methods messes with the PWM controller.
+> 
+> The "ACPI / LPSS: Resume Cherry Trail PWM controller in no-irq phase" patch
+> earlier in this series stops the GFX0._PS0 method from messing with the PWM
+> controller and on the DSDT-s inspected sofar the _PS3 method only reads
+> from the PWM controller (and turns it off before we get a change to do so):
+> 
+>     {
+>         PWMB = PWMC /* \_SB_.PCI0.GFX0.PWMC */
+>         PSAT |= 0x03
+>         Local0 = PSAT /* \_SB_.PCI0.GFX0.PSAT */
+>     }
+> 
+> The PWM controller getting turning off before we do this ourselves is
+> a bit annoying but not really an issue.
+> 
+> The problem this patch fixes comes from a new variant of the GFX0._PS3 code
+> messing with the PWM controller found on the Acer One 10 S1003 (1):
+> 
+>     {
+>         PWMB = PWMC /* \_SB_.PCI0.GFX0.PWMC */
+>         PWMT = PWMC /* \_SB_.PCI0.GFX0.PWMC */
+>         PWMT &= 0xFF0000FF
+>         PWMT |= 0xC0000000
+>         PWMC = PWMT /* \_SB_.PCI0.GFX0.PWMT */
+>         PWMT = PWMC /* \_SB_.PCI0.GFX0.PWMC */
+>         Sleep (0x64)
+>         PWMB &= 0x3FFFFFFF
+>         PWMC = PWMB /* \_SB_.PCI0.GFX0.PWMB */
+>         PSAT |= 0x03
+>         Local0 = PSAT /* \_SB_.PCI0.GFX0.PSAT */
+>     }
+> 
+> This "beautiful" piece of code clears the base-unit part of the ctrl-reg,
+> which effectively disables the controller, and it sets the update flag
+> to apply this change. Then after this it restores the original ctrl-reg
+> value, so we do not see it has mucked with the controller.
+> 
+> *But* it does not set the update flag when restoring the original value.
+> So the check to see if we can skip writing the ctrl register succeeds
+> but since the update flag was not set, the old base-unit value of 0 is
+> still in use and the PWM controller is effectively disabled.
+> 
+> IOW this PWM controller poking means that we cannot trust the base-unit /
+> on-time-div value we read back from the PWM controller since it may not
+> have been applied/committed. Thus we must always update the ctrl-register
+> and set the update bit.
+> 
+> 1) And once I knew what to look for also in a bunch of other devices
+> including the popular Lenovo Ideapad Miix 310 and 320 models and
+> various Medion models.
 
-Series: series starting with [v2,1/2] drm/i915/opregion: add support for mailbox #5 EDID
-URL   : https://patchwork.freedesktop.org/series/81179/
-State : warning
+Despite the above mentioned issue I'm always in favour of not micro-optimizing I/O.
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-== Summary ==
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+> Changes in v8:
+> - New patch in v8 of this patch-set
+> ---
+>  drivers/pwm/pwm-lpss.c | 10 ++++------
+>  1 file changed, 4 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/pwm/pwm-lpss.c b/drivers/pwm/pwm-lpss.c
+> index 9a7400c6fb6e..20f6b6d6f874 100644
+> --- a/drivers/pwm/pwm-lpss.c
+> +++ b/drivers/pwm/pwm-lpss.c
+> @@ -85,7 +85,7 @@ static void pwm_lpss_prepare(struct pwm_lpss_chip *lpwm, struct pwm_device *pwm,
+>  	unsigned long long on_time_div;
+>  	unsigned long c = lpwm->info->clk_rate, base_unit_range;
+>  	unsigned long long base_unit, freq = NSEC_PER_SEC;
+> -	u32 orig_ctrl, ctrl;
+> +	u32 ctrl;
+>  
+>  	do_div(freq, period_ns);
+>  
+> @@ -104,16 +104,14 @@ static void pwm_lpss_prepare(struct pwm_lpss_chip *lpwm, struct pwm_device *pwm,
+>  	do_div(on_time_div, period_ns);
+>  	on_time_div = 255ULL - on_time_div;
+>  
+> -	orig_ctrl = ctrl = pwm_lpss_read(pwm);
+> +	ctrl = pwm_lpss_read(pwm);
+>  	ctrl &= ~PWM_ON_TIME_DIV_MASK;
+>  	ctrl &= ~((base_unit_range - 1) << PWM_BASE_UNIT_SHIFT);
+>  	ctrl |= (u32) base_unit << PWM_BASE_UNIT_SHIFT;
+>  	ctrl |= on_time_div;
+>  
+> -	if (orig_ctrl != ctrl) {
+> -		pwm_lpss_write(pwm, ctrl);
+> -		pwm_lpss_write(pwm, ctrl | PWM_SW_UPDATE);
+> -	}
+> +	pwm_lpss_write(pwm, ctrl);
+> +	pwm_lpss_write(pwm, ctrl | PWM_SW_UPDATE);
+>  }
+>  
+>  static inline void pwm_lpss_cond_enable(struct pwm_device *pwm, bool cond)
+> -- 
+> 2.28.0
+> 
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1311:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1440:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1494:15: warning: memset with byte count of 16777216
-+./include/linux/seqlock.h:752:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:778:16: warning: trying to copy expression type 31
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 _______________________________________________
