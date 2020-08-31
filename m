@@ -2,80 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6514B257FFE
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Aug 2020 19:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 348D42580F9
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Aug 2020 20:23:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9769E6E175;
-	Mon, 31 Aug 2020 17:57:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD126E3AE;
+	Mon, 31 Aug 2020 18:23:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA40D89DC7
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Aug 2020 17:57:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1598896655;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Fta6S09NuQr3NtP1v0gU8NpMcMvdjL+BAFEBhoAl3nw=;
- b=KzhNwXKnVElvzYZZE6bpmiXxQJkGn6/f+9vN2N0zDb4TnYH6h2HjwnvYP1uRc+G+q9p/lR
- RfgcPnwKqtD+pI+DD/xeAF57lzbpLWXPkU9oWnIoLihcNvYgFb1rxxCV80y0UplaI0Fxl9
- vWVzRA5ym9HhKbPpvI1MKaLbv/Rasvg=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-183-U8-3QIrgOweUP898n1rOiA-1; Mon, 31 Aug 2020 13:57:33 -0400
-X-MC-Unique: U8-3QIrgOweUP898n1rOiA-1
-Received: by mail-ej1-f72.google.com with SMTP id q9so791962ejr.21
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Aug 2020 10:57:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=Fta6S09NuQr3NtP1v0gU8NpMcMvdjL+BAFEBhoAl3nw=;
- b=EQ9SleVdlDn1BnW5kbhPRdNbmps4pRJTSPyI8SVCew4fJ93lXM3JEf2EH4uW3R35Uj
- iN3ksCV9CqcbsR0gEB3C/JoxGBM5jqf3N4w6PoJp3qwsynsQTw+yDPn+u4hTpX+gVDWP
- ND1B/0Q6U2jbHES3K8cMuJzY3EiyD2/ukCqVFRn3Gw5cVx0QDe8Ey7KqzKd2z3MYSq5j
- Oj3HO4FykvY0lSgP6v/S+PtfsML9EMY6Ei8ydFnnyOVUWfSuvqDgD8am8Uxs7GCLtmf5
- fO4ySW7CkoTyIXEf6tUMtAP9TiebQ23C9bAJPtP5ozcz030nZ7pPIFRhVDh5f4wyXisE
- 1M0A==
-X-Gm-Message-State: AOAM531hetCJReSlOGvGEYTWiN7OnjsVOA/sdVT72X0r73RyxrGWP+X/
- +XLMGELEGEzwa3Y+2m8ifzDM6J7n2rXOjFJBjrLw0TCwa81U3cYQMdprGDcj34yNrzmDL0j2ElB
- BFmN0DPQ5ElAGomRSI+yaNNARTppD
-X-Received: by 2002:a05:6402:1710:: with SMTP id
- y16mr2304642edu.197.1598896652402; 
- Mon, 31 Aug 2020 10:57:32 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwTNia0aR3ARSWP7er9341p7NKAJ9h4bBKpm7KmLb2FIjWe4rKAGXCJJRlp89QldRBCgqjSUw==
-X-Received: by 2002:a05:6402:1710:: with SMTP id
- y16mr2304604edu.197.1598896651988; 
- Mon, 31 Aug 2020 10:57:31 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
- by smtp.gmail.com with ESMTPSA id l23sm8703136eje.46.2020.08.31.10.57.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 31 Aug 2020 10:57:31 -0700 (PDT)
-To: Thierry Reding <thierry.reding@gmail.com>
-References: <20200830125753.230420-1-hdegoede@redhat.com>
- <20200830125753.230420-7-hdegoede@redhat.com> <20200831111006.GD1688464@ulmo>
- <d63a89d2-84e5-ca05-aa96-a06291503c5f@redhat.com>
- <20200831131533.GI1689119@ulmo>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <84887293-11b3-82c9-1e62-bac39861e39e@redhat.com>
-Date: Mon, 31 Aug 2020 19:57:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 389A36E3AA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Aug 2020 18:23:14 +0000 (UTC)
+IronPort-SDR: dXC9M02lidMqS1AKva32Sp/GkCZ2siBAg1SUf4eW1WJnrTy1JjBiIeWqOX4+C5x9z6sdaC3qXM
+ rOMttsc25c6g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9730"; a="158048568"
+X-IronPort-AV: E=Sophos;i="5.76,376,1592895600"; d="scan'208";a="158048568"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2020 11:23:12 -0700
+IronPort-SDR: wgv+OsNZXx0PQKySHDlAY9QWKS7WnCoN16T6CK8w2p+65GkyOsmq6r+oiX7WxANj2Ef+azOtvP
+ Li7uW6wL1nJw==
+X-IronPort-AV: E=Sophos;i="5.76,376,1592895600"; d="scan'208";a="476836479"
+Received: from ngbradon-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.94.237])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2020 11:23:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <20200831133905.GW6112@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200828061941.17051-1-jani.nikula@intel.com>
+ <20200831133905.GW6112@intel.com>
+Date: Mon, 31 Aug 2020 21:23:07 +0300
+Message-ID: <87imcy4qus.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200831131533.GI1689119@ulmo>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0.005
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v8 06/17] pwm: lpss: Use pwm_lpss_restore()
- when restoring state on resume
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/opregion: add support for
+ mailbox #5 EDID
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,251 +51,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On 8/31/20 3:15 PM, Thierry Reding wrote:
-> On Mon, Aug 31, 2020 at 01:46:28PM +0200, Hans de Goede wrote:
->> Hi,
->>
->> On 8/31/20 1:10 PM, Thierry Reding wrote:
->>> On Sun, Aug 30, 2020 at 02:57:42PM +0200, Hans de Goede wrote:
->>>> Before this commit a suspend + resume of the LPSS PWM controller
->>>> would result in the controller being reset to its defaults of
->>>> output-freq = clock/256, duty-cycle=100%, until someone changes
->>>> to the output-freq and/or duty-cycle are made.
->>>>
->>>> This problem has been masked so far because the main consumer
->>>> (the i915 driver) was always making duty-cycle changes on resume.
->>>> With the conversion of the i915 driver to the atomic PWM API the
->>>> driver now only disables/enables the PWM on suspend/resume leaving
->>>> the output-freq and duty as is, triggering this problem.
->>>
->>> Doesn't this imply that there's another bug at play here? At the PWM API
->>> level you're applying a state and it's up to the driver to ensure that
->>> the hardware state after ->apply() is what the software has requested.
->>>
->>> If you only switch the enable state and that doesn't cause period and
->>> duty cycle to be updated it means that your driver isn't writing those
->>> registers when it should be.
->>
->> Right, the driver was not committing those as it should *on resume*,
->> that and it skips setting the update bit on the subsequent enable,
->> which is an optimization which gets removed in 7/17.
->>
->> Before switching the i915 driver over to atomic, when the LPSS-PWM
->> was used for the backlight we got the following order on suspend/resume
->>
->> 1. Set duty-cycle to 0%
->> 2. Set enabled to 0
->> 3. Save ctrl reg
->> 4. Power-off PWM controller, it now looses all its state
->> 5. Power-on PWM ctrl
->> 6. Restore ctrl reg (as a single reg write)
->> 7. Set enabled to 1, at this point one would expect the
->> duty/freq from the restored ctrl-reg to apply, but:
->> a) The resume code never sets the update bit (which this commit fixes); and
->> b) On applying the pwm_state with enabled=1 the code applying the
->> state does this (before setting the enabled bit in the ctrl reg):
->>
->> 	if (orig_ctrl != ctrl) {
->> 		pwm_lpss_write(pwm, ctrl);
->> 		pwm_lpss_write(pwm, ctrl | PWM_SW_UPDATE);
->> 	}
->> and since the restore of the ctrl reg set the old duty/freq the
->> writes are skipped, so the update bit never gets set.
->>
->> 8. Set duty-cycle to the pre-suspend value (which is not 0)
->> this does cause a change in the ctrl-reg, so now the update flag
->> does get set.
->>
->> Note that 1-2 and 7-8 are both done by the non atomic i915 code,
->> when moving the i915 code to atomic I decided that having these
->> 2 separate steps here is non-sense, so the new i915 code just
->> toggles the enable bit. So in essence the new atomic PWM
->> i915 code drops step 1 and 8.
->>
->> Dropping steps 8 means that the update bit never gets set and we
->> end up with the PWM running at its power-on-reset duty cycle.
->>
->> You are correct in your remark to patch 7/17 that since that removes
->> the if (orig_ctrl != ctrl) for the writes that now step 7 will be
->> sufficient to get the PWM to work again. But that only takes the i915
->> usage into account.
->>
->> What if the PWM is used through the sysfs userspace API?
->> Then only steps 3-6 will happen on suspend-resume and without
->> fixing step 6 to properly restore the PWM controller in its
->> pre-resume state (this patch) it will once again be running at
->> its power-on-reset defaults instead of the values from the
->> restored control register.
-> 
-> Actually PWM's sysfs code has suspend/resume callbacks that basically
-> make sysfs just a regular consumer of PWMs. So they do end up doing a
-> pwm_apply_state() on the PWM as well on suspend and restore the state
-> from before suspend on resume.
-> 
-> This was done very specifically because the suspend/resume order can be
-> unexpected under some circumstances, so for PWM we really want for the
-> consumer to always have ultimate control over when precisely the PWM is
-> restored on resume.
->
-> The reason why we did this was because people observed weird glitches on
-> suspend/resume with different severity. In some cases a backlight would
-> be resumed before the display controller had had a chance to start
-> sending frames, causing on-screen corruption in some cases (such as
-> smart displays) and in other cases a PWM-controller regulator would be
-> resumed too late or too early, which I think was causing some issue with
-> the CPUs not working properly on resume.
-> 
-> So I'd prefer not to have any PWM driver save and restore its own
-> context on suspend/resume, because that's inevitably going to cause
-> unexpected behaviour at some point. If it's absolutely necessary we can
-> of course still do that, but I think in that case we need to at least
-> add a comment in the code about why context save/restore is needed in
-> this particular case and make it clear that this is not something that
-> other drivers should copy because they most likely won't be needing it.
-> 
-> Given the above it also doesn't sound to me like there's a real problem,
-> or at least that the bug is somewhere else. A consumer should always be
-> responsible for applying the pre-suspend state upon resume and it sounds
-> like that would be true after patch 7. Since sysfs is just a regular
-> consumer, the same should apply for sysfs-controlled PWMs as well.
-
-Ok, I was not aware that for PWM the consumer is supposed to always
-be the one to restore the state. If that is the rule then we should probably
-just drop the save/restore suspend/resume code from pwm-lpss.
-
-It seems that I'm actually responsible for adding that suspend/resume
-code in the first place, see commit 1d375b58c12f ("pwm: lpss: platform:
-Save/restore the ctrl register over a suspend/resume") although the
-ctrl-register was already being saved/restored before that commit
-but then by the acpi/acpi_lpss.c code.
-
-One worry after dropping the suspend/resume save/restore code is what
-happens if the controller was enabled at the moment the system suspends
-and the consumers first post resume apply() call has pwm_state.enabled
-set too.
-
-Currently pwm_lpss_apply() looks like this:
-
-         if (state->enabled) {
-                 if (!pwm_is_enabled(pwm)) {
-                         pm_runtime_get_sync(chip->dev);
-                         ret = pwm_lpss_prepare_enable(lpwm, pwm, state, true);
-                         if (ret)
-                                 pm_runtime_put(chip->dev);
-                 } else {
-                         ret = pwm_lpss_prepare_enable(lpwm, pwm, state, false);
-                 }
-         } else if (pwm_is_enabled(pwm)) {
-
-Where the true / false parameter to pwm_lpss_prepare_enable()
-decides if pwm_lpss_prepare_enable() sets the enable bit in the controllers
-ctrl register, or if it skips that.
-
-If we then come from a full system suspend (controller loses state,
-comes up with enable bit cleared) we will still enter the:
-
-                         ret = pwm_lpss_prepare_enable(lpwm, pwm, state, false);
-
-Path since the !pwm_is_enabled(pwm) check checks the pwm_state struct,
-not the actual hw-enabled bit and then we do not (re)set the enabled after
-resume as we should when apply() is called with pwm_state.enabled set.
-
-Fixing this is easy though, we still need to check for the disabled ->
-enabled transition for runtime pm refcounting, but we can also tell
-pwm_lpss_prepare_enable() to set the enable bit in the other path, this
-will be a no-op in case it is already set.
-
-So then the new apply() code would become:
-
-         if (state->enabled) {
-                 if (!pwm_is_enabled(pwm)) {
-                         pm_runtime_get_sync(chip->dev);
-                         ret = pwm_lpss_prepare_enable(lpwm, pwm, state, true);
-                         if (ret)
-                                 pm_runtime_put(chip->dev);
-                 } else {
-                         ret = pwm_lpss_prepare_enable(lpwm, pwm, state, true);
-                 }
-         } else if (pwm_is_enabled(pwm)) {
-
-(and we can even optimize out the enable parameter to pwm_lpss_prepare_enable
-then and always make it set the enable bit).
-
-Together with patch 07/16 will make apply() always work independent of
-the state the controller was in before it got called. Which in light of
-all the subtle issues we have seen surrounding this is likely a good thing.
-
-And with the fix to make apply() fully independent of the previous state
-of the controller, I'm all for dropping the suspend/resume state
-save/restore code.  Doing that makes things more KISS so I like it :)
-
->> So at step 6, if the PWM was enabled before, we must set the update
->> bit, and then wait for it to clear again so the controller is
->> ready for subsequent updates. The waiting for it to clear again
->> needs to happen before or after setting the enable bit depending
->> on the hw generation, which leads to this patch.
-> 
-> But all of that should be happening as part of the call to
-> pwm_apply_state(), right? That path should be taken for all consumers on
-> resume, including sysfs.
-
-Ack.
-
-<snip>
-
->> See above, apply() was trying to be smart but the restore of ctrl
->> on resume without setting the update bit was tricking it. That
->> being too smart for its own good is removed in 7/16 as you
->> rightfully point out. But this patch is still necessary for the
->> PWM controller to be in the expected state between resume and the
->> first apply() after resume (which may be quite a long time in
->> the future when using e.g. the sysfs API).
-> 
-> Like I said, the sysfs code should be resuming any exported PWMs on
-> resume just like any other consumer.
-> 
-> Obviously it's always up to the consumer to call pwm_apply_state() at
-> the right time. If that's "too late" for some reason, then that's a bug
-> in the consumer driver. But as I explained above there are a number of
-> cases where restoring context in the PWM driver itself doesn't work
-> because it can cause sequencing issues.
-
-Ack, I was not aware that PWM consumers are responsible for restoring
-their own state on resume. If that is the case then:
-
-TL;DR:
-
-1. We (I) should make apply() work independent of the current
-hardware state, instead of having it make various assumptions
-about that state as it now does.
-
-2. We (I) should drop the suspend/resume save/restore state
-handlers from pwm-lpss completely.
-
-So I believe that I should prepare yet another version of this
-patch-set replacing 06/17 and 07/17 with 2 patches doing these
-2 things.
-
-Thierry, Andy, does that sound good to you ?
-
-Regards,
-
-Hans
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAzMSBBdWcgMjAyMCwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gRnJpLCBBdWcgMjgsIDIwMjAgYXQgMDk6MTk6NDBBTSAr
+MDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IFRoZSBBQ1BJIE9wUmVnaW9uIE1haWxib3ggIzUg
+QVNMRSBleHRlbnNpb24gbWF5IGNvbnRhaW4gYW4gRURJRCB0byBiZQo+PiB1c2VkIGZvciB0aGUg
+ZW1iZWRkZWQgZGlzcGxheS4gQWRkIHN1cHBvcnQgZm9yIHVzaW5nIGl0IHZpYSB0aGUgRURJRAo+
+PiBvdmVycmlkZSBtZWNoYW5pc20uCj4KPiBBYnVzaW5nIHRoZSBvdmVycmlkZSBmb3IgdGhpcyBm
+ZWVscyBhIGJpdCBvZGQuCgpJdCdzIHRoZSBsZWFzdCBpbnRydXNpdmUgd2F5IHRvIG1ha2UgdGhp
+cyB3b3JrIGFjcm9zcyB0aGUgZHJtIGFuZCBkcml2ZXIKRURJRCBjb2RlIHRoYXQgSSBjb3VsZCB0
+aGluayBvZi4KCkJSLApKYW5pLgoKCj4KPiBBbHNvIEkgaGF2ZSBhIHZhZ3VlIHJlY29sbGVjdGlv
+biB0aGF0IHRoZXJlIHdhcyBwZXJoYXBzIHNvbWUKPiBsaW5rYWdlIGJldHdlZW4gdGhlIG1haWxi
+b3ggYW5kIHRoZSBBQ1BJIF9EREMgc3R1ZmY6Cj4gZ2l0Oi8vZ2l0aHViLmNvbS92c3lyamFsYS9s
+aW51eC5naXQgYWNwaV9lZGlkCj4KPj4gCj4+IE5vdGUgdGhhdCB0aGUgb3ZlcnJpZGUgRURJRCBt
+YXkgYmUgbGF0ZXIgcmVzZXQgb3IgY2hhbmdlZCB2aWEgZGVidWdmcywKPj4gYXMgdXN1YWwuCj4+
+IAo+PiBDYzogVW1hIFNoYW5rYXIgPHVtYS5zaGFua2FyQGludGVsLmNvbT4KPj4gU2lnbmVkLW9m
+Zi1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPj4gLS0tCj4+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX29wcmVnaW9uLmMgfCA0NiArKysrKysrKysr
+KysrKysrKystCj4+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX29wcmVnaW9u
+LmggfCAgOCArKysrCj4+ICAyIGZpbGVzIGNoYW5nZWQsIDUzIGluc2VydGlvbnMoKyksIDEgZGVs
+ZXRpb24oLSkKPj4gCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX29wcmVnaW9uLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX29w
+cmVnaW9uLmMKPj4gaW5kZXggZGU5OTUzNjJmNDI4Li4xMzQ4NTk2OWZhZmEgMTAwNjQ0Cj4+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ByZWdpb24uYwo+PiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX29wcmVnaW9uLmMKPj4gQEAgLTE5
+Niw2ICsxOTYsOCBAQCBzdHJ1Y3Qgb3ByZWdpb25fYXNsZV9leHQgewo+PiAgI2RlZmluZSBBU0xF
+X0lVRVJfV0lORE9XU19CVE4JCSgxIDw8IDEpCj4+ICAjZGVmaW5lIEFTTEVfSVVFUl9QT1dFUl9C
+VE4JCSgxIDw8IDApCj4+ICAKPj4gKyNkZWZpbmUgQVNMRV9QSEVEX0VESURfVkFMSURfTUFTSwkw
+eDMKPj4gKwo+PiAgLyogU29mdHdhcmUgU3lzdGVtIENvbnRyb2wgSW50ZXJydXB0IChTV1NDSSkg
+Ki8KPj4gICNkZWZpbmUgU1dTQ0lfU0NJQ19JTkRJQ0FUT1IJCSgxIDw8IDApCj4+ICAjZGVmaW5l
+IFNXU0NJX1NDSUNfTUFJTl9GVU5DVElPTl9TSElGVAkxCj4+IEBAIC05MDksOCArOTExLDEwIEBA
+IGludCBpbnRlbF9vcHJlZ2lvbl9zZXR1cChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
+aXYpCj4+ICAJCW9wcmVnaW9uLT5hc2xlLT5hcmR5ID0gQVNMRV9BUkRZX05PVF9SRUFEWTsKPj4g
+IAl9Cj4+ICAKPj4gLQlpZiAobWJveGVzICYgTUJPWF9BU0xFX0VYVCkKPj4gKwlpZiAobWJveGVz
+ICYgTUJPWF9BU0xFX0VYVCkgewo+PiAgCQlkcm1fZGJnKCZkZXZfcHJpdi0+ZHJtLCAiQVNMRSBl
+eHRlbnNpb24gc3VwcG9ydGVkXG4iKTsKPj4gKwkJb3ByZWdpb24tPmFzbGVfZXh0ID0gYmFzZSAr
+IE9QUkVHSU9OX0FTTEVfRVhUX09GRlNFVDsKPj4gKwl9Cj4+ICAKPj4gIAlpZiAoaW50ZWxfbG9h
+ZF92YnRfZmlybXdhcmUoZGV2X3ByaXYpID09IDApCj4+ICAJCWdvdG8gb3V0Owo+PiBAQCAtMTA0
+MSw2ICsxMDQ1LDQ1IEBAIGludGVsX29wcmVnaW9uX2dldF9wYW5lbF90eXBlKHN0cnVjdCBkcm1f
+aTkxNV9wcml2YXRlICpkZXZfcHJpdikKPj4gIAlyZXR1cm4gcmV0IC0gMTsKPj4gIH0KPj4gIAo+
+PiArdm9pZCBpbnRlbF9vcHJlZ2lvbl9lZGlkX292ZXJyaWRlKHN0cnVjdCBpbnRlbF9jb25uZWN0
+b3IgKmludGVsX2Nvbm5lY3RvcikKPj4gK3sKPj4gKwlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29u
+bmVjdG9yID0gJmludGVsX2Nvbm5lY3Rvci0+YmFzZTsKPj4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqaTkxNSA9IHRvX2k5MTUoY29ubmVjdG9yLT5kZXYpOwo+PiArCXN0cnVjdCBpbnRlbF9v
+cHJlZ2lvbiAqb3ByZWdpb24gPSAmaTkxNS0+b3ByZWdpb247Cj4+ICsJY29uc3Qgdm9pZCAqaW5f
+ZWRpZDsKPj4gKwljb25zdCBzdHJ1Y3QgZWRpZCAqZWRpZDsKPj4gKwlpbnQgbGVuLCByZXQ7Cj4+
+ICsKPj4gKwlpZiAoIW9wcmVnaW9uLT5hc2xlX2V4dCkKPj4gKwkJcmV0dXJuOwo+PiArCj4+ICsJ
+aW5fZWRpZCA9IG9wcmVnaW9uLT5hc2xlX2V4dC0+YmRkYzsKPj4gKwo+PiArCS8qIFZhbGlkaXR5
+IGNvcnJlc3BvbmRzIHRvIG51bWJlciBvZiAxMjgtYnl0ZSBibG9ja3MgKi8KPj4gKwlsZW4gPSAo
+b3ByZWdpb24tPmFzbGVfZXh0LT5waGVkICYgQVNMRV9QSEVEX0VESURfVkFMSURfTUFTSykgKiAx
+Mjg7Cj4+ICsJaWYgKCFsZW4gfHwgIW1lbWNocl9pbnYoaW5fZWRpZCwgMCwgbGVuKSkKPj4gKwkJ
+cmV0dXJuOwo+PiArCj4+ICsJZWRpZCA9IGluX2VkaWQ7Cj4+ICsKPj4gKwkvKgo+PiArCSAqIEZJ
+WE1FOiBNaWdodCBhbHNvIGNoZWNrIGRybV9lZGlkX2lzX3ZhbGlkKGVkaWQpIGhlcmUgYnV0IHRo
+YXQKPj4gKwkgKiByZXF1aXJlcyBtdXRhYmxlIGVkaWQuCj4+ICsJICovCj4+ICsJaWYgKGxlbiA8
+IEVESURfTEVOR1RIICogKDEgKyBlZGlkLT5leHRlbnNpb25zKSkgewo+PiArCQlkcm1fZGJnX2tt
+cygmaTkxNS0+ZHJtLCAiSW52YWxpZCBFRElEIGluIEFDUEkgT3BSZWdpb24gKE1haWxib3ggIzUp
+XG4iKTsKPj4gKwkJcmV0dXJuOwo+PiArCX0KPj4gKwo+PiArCWNvbm5lY3Rvci0+b3ZlcnJpZGVf
+ZWRpZCA9IGZhbHNlOwo+PiArCXJldCA9IGRybV9jb25uZWN0b3JfdXBkYXRlX2VkaWRfcHJvcGVy
+dHkoY29ubmVjdG9yLCBlZGlkKTsKPj4gKwlpZiAocmV0KQo+PiArCQlyZXR1cm47Cj4+ICsKPj4g
+Kwlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiVXNpbmcgT3BSZWdpb24gRURJRCBmb3IgW0NPTk5F
+Q1RPUjolZDolc11cbiIsCj4+ICsJCSAgICBjb25uZWN0b3ItPmJhc2UuaWQsIGNvbm5lY3Rvci0+
+bmFtZSk7Cj4+ICt9Cj4+ICsKPj4gIHZvaWQgaW50ZWxfb3ByZWdpb25fcmVnaXN0ZXIoc3RydWN0
+IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4+ICB7Cj4+ICAJc3RydWN0IGludGVsX29wcmVnaW9u
+ICpvcHJlZ2lvbiA9ICZpOTE1LT5vcHJlZ2lvbjsKPj4gQEAgLTExMzEsNiArMTE3NCw3IEBAIHZv
+aWQgaW50ZWxfb3ByZWdpb25fdW5yZWdpc3RlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkx
+NSkKPj4gIAlvcHJlZ2lvbi0+YWNwaSA9IE5VTEw7Cj4+ICAJb3ByZWdpb24tPnN3c2NpID0gTlVM
+TDsKPj4gIAlvcHJlZ2lvbi0+YXNsZSA9IE5VTEw7Cj4+ICsJb3ByZWdpb24tPmFzbGVfZXh0ID0g
+TlVMTDsKPj4gIAlvcHJlZ2lvbi0+dmJ0ID0gTlVMTDsKPj4gIAlvcHJlZ2lvbi0+bGlkX3N0YXRl
+ID0gTlVMTDsKPj4gIH0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfb3ByZWdpb24uaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+b3ByZWdpb24uaAo+PiBpbmRleCA0YWE2OGZmYmQzMGUuLmI0MDdhMDc0NGM0MCAxMDA2NDQKPj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJlZ2lvbi5oCj4+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ByZWdpb24uaAo+PiBAQCAt
+MjksMTIgKzI5LDE0IEBACj4+ICAjaW5jbHVkZSA8bGludXgvcGNpLmg+Cj4+ICAKPj4gIHN0cnVj
+dCBkcm1faTkxNV9wcml2YXRlOwo+PiArc3RydWN0IGludGVsX2Nvbm5lY3RvcjsKPj4gIHN0cnVj
+dCBpbnRlbF9lbmNvZGVyOwo+PiAgCj4+ICBzdHJ1Y3Qgb3ByZWdpb25faGVhZGVyOwo+PiAgc3Ry
+dWN0IG9wcmVnaW9uX2FjcGk7Cj4+ICBzdHJ1Y3Qgb3ByZWdpb25fc3dzY2k7Cj4+ICBzdHJ1Y3Qg
+b3ByZWdpb25fYXNsZTsKPj4gK3N0cnVjdCBvcHJlZ2lvbl9hc2xlX2V4dDsKPj4gIAo+PiAgc3Ry
+dWN0IGludGVsX29wcmVnaW9uIHsKPj4gIAlzdHJ1Y3Qgb3ByZWdpb25faGVhZGVyICpoZWFkZXI7
+Cj4+IEBAIC00Myw2ICs0NSw3IEBAIHN0cnVjdCBpbnRlbF9vcHJlZ2lvbiB7Cj4+ICAJdTMyIHN3
+c2NpX2diZGFfc3ViX2Z1bmN0aW9uczsKPj4gIAl1MzIgc3dzY2lfc2JjYl9zdWJfZnVuY3Rpb25z
+Owo+PiAgCXN0cnVjdCBvcHJlZ2lvbl9hc2xlICphc2xlOwo+PiArCXN0cnVjdCBvcHJlZ2lvbl9h
+c2xlX2V4dCAqYXNsZV9leHQ7Cj4+ICAJdm9pZCAqcnZkYTsKPj4gIAl2b2lkICp2YnRfZmlybXdh
+cmU7Cj4+ICAJY29uc3Qgdm9pZCAqdmJ0Owo+PiBAQCAtNzEsNiArNzQsNyBAQCBpbnQgaW50ZWxf
+b3ByZWdpb25fbm90aWZ5X2VuY29kZXIoc3RydWN0IGludGVsX2VuY29kZXIgKmludGVsX2VuY29k
+ZXIsCj4+ICBpbnQgaW50ZWxfb3ByZWdpb25fbm90aWZ5X2FkYXB0ZXIoc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmRldl9wcml2LAo+PiAgCQkJCSAgcGNpX3Bvd2VyX3Qgc3RhdGUpOwo+PiAgaW50
+IGludGVsX29wcmVnaW9uX2dldF9wYW5lbF90eXBlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpk
+ZXZfcHJpdik7Cj4+ICt2b2lkIGludGVsX29wcmVnaW9uX2VkaWRfb3ZlcnJpZGUoc3RydWN0IGlu
+dGVsX2Nvbm5lY3RvciAqY29ubmVjdG9yKTsKPj4gIAo+PiAgI2Vsc2UgLyogQ09ORklHX0FDUEkq
+Lwo+PiAgCj4+IEBAIC0xMTcsNiArMTIxLDEwIEBAIHN0YXRpYyBpbmxpbmUgaW50IGludGVsX29w
+cmVnaW9uX2dldF9wYW5lbF90eXBlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXYpCj4+ICAJ
+cmV0dXJuIC1FTk9ERVY7Cj4+ICB9Cj4+ICAKPj4gK3ZvaWQgaW50ZWxfb3ByZWdpb25fZWRpZF9v
+dmVycmlkZShzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IpCj4+ICt7Cj4+ICt9Cj4+
+ICsKPj4gICNlbmRpZiAvKiBDT05GSUdfQUNQSSAqLwo+PiAgCj4+ICAjZW5kaWYKPj4gLS0gCj4+
+IDIuMjAuMQo+PiAKPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KPj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+PiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNz
+IENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
