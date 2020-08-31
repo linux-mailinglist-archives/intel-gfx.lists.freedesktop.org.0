@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C89F2582A6
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Aug 2020 22:35:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E56C62582ED
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Aug 2020 22:41:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 001516E370;
-	Mon, 31 Aug 2020 20:35:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D3DE6E519;
+	Mon, 31 Aug 2020 20:41:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30FF56E507
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Aug 2020 20:35:03 +0000 (UTC)
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-409-SNDAmgB8P6O04OS5W6OoPg-1; Mon, 31 Aug 2020 16:33:47 -0400
-X-MC-Unique: SNDAmgB8P6O04OS5W6OoPg-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 1385E10ABDA6;
- Mon, 31 Aug 2020 20:33:46 +0000 (UTC)
-Received: from tyrion-bne-redhat-com.redhat.com (vpn2-54-195.bne.redhat.com
- [10.64.54.195])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 1E0DA747B0;
- Mon, 31 Aug 2020 20:33:44 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Date: Tue,  1 Sep 2020 06:33:43 +1000
-Message-Id: <20200831203343.1198057-1-airlied@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3A0906E519;
+ Mon, 31 Aug 2020 20:41:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3101EA7525;
+ Mon, 31 Aug 2020 20:41:32 +0000 (UTC)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=airlied@gmail.com
-X-Mimecast-Spam-Score: 0.001
-X-Mimecast-Originator: gmail.com
-Subject: [Intel-gfx] [PATCH] [RFC] drm/i915: make object creation avoid
- regions layering.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dave Airlie" <airlied@gmail.com>
+Date: Mon, 31 Aug 2020 20:41:32 -0000
+Message-ID: <159890649216.7426.2258326271608226059@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200831203343.1198057-1-airlied@gmail.com>
+In-Reply-To: <20200831203343.1198057-1-airlied@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_make_object_creation_avoid_regions_layering=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,349 +38,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
-
-This looked like indirect ptr for not much reason in the create
-object path, I just wonder why it couldn't be simpler like this,
-
-The tests aren't cleaned up but this was more of is this a good idea
-test patch.
----
- drivers/gpu/drm/i915/gem/i915_gem_lmem.c   | 16 ++++-------
- drivers/gpu/drm/i915/gem/i915_gem_region.c | 33 +++++++++-------------
- drivers/gpu/drm/i915/gem/i915_gem_region.h |  6 ++--
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c  | 22 ++++++---------
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 24 ++++++----------
- drivers/gpu/drm/i915/i915_gem.c            | 29 ++++++++-----------
- drivers/gpu/drm/i915/intel_memory_region.h |  5 ----
- drivers/gpu/drm/i915/intel_region_lmem.c   |  1 -
- 8 files changed, 50 insertions(+), 86 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-index 932ee21e6609..710fb1158904 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-@@ -27,18 +27,14 @@ i915_gem_object_create_lmem(struct drm_i915_private *i915,
- 			    resource_size_t size,
- 			    unsigned int flags)
- {
--	return i915_gem_object_create_region(i915->mm.regions[INTEL_REGION_LMEM],
--					     size, flags);
--}
--
--struct drm_i915_gem_object *
--__i915_gem_lmem_object_create(struct intel_memory_region *mem,
--			      resource_size_t size,
--			      unsigned int flags)
--{
-+	struct intel_memory_region *mem = i915->mm.regions[INTEL_REGION_LMEM];
- 	static struct lock_class_key lock_class;
--	struct drm_i915_private *i915 = mem->i915;
- 	struct drm_i915_gem_object *obj;
-+	int ret;
-+
-+	ret = i915_gem_object_pre_check(mem, &size, flags);
-+	if (ret)
-+		return ERR_PTR(ret);
- 
- 	obj = i915_gem_object_alloc();
- 	if (!obj)
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-index 1515384d7e0e..0902b3790e70 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-@@ -133,13 +133,12 @@ void i915_gem_object_release_memory_region(struct drm_i915_gem_object *obj)
- 	intel_memory_region_put(mem);
- }
- 
--struct drm_i915_gem_object *
--i915_gem_object_create_region(struct intel_memory_region *mem,
--			      resource_size_t size,
-+int i915_gem_object_pre_check(struct intel_memory_region *mem,
-+			      resource_size_t *size,
- 			      unsigned int flags)
- {
--	struct drm_i915_gem_object *obj;
- 
-+	GEM_BUG_ON(!is_power_of_2(mem->min_page_size));
- 	/*
- 	 * NB: Our use of resource_size_t for the size stems from using struct
- 	 * resource for the mem->region. We might need to revisit this in the
-@@ -148,13 +147,13 @@ i915_gem_object_create_region(struct intel_memory_region *mem,
- 
- 	GEM_BUG_ON(flags & ~I915_BO_ALLOC_FLAGS);
- 
--	if (!mem)
--		return ERR_PTR(-ENODEV);
-+	*size = round_up(*size, mem->min_page_size);
-+	if (*size == 0)
-+		return -EINVAL;
- 
--	size = round_up(size, mem->min_page_size);
--
--	GEM_BUG_ON(!size);
--	GEM_BUG_ON(!IS_ALIGNED(size, I915_GTT_MIN_ALIGNMENT));
-+	/* For most of the ABI (e.g. mmap) we think in system pages */
-+	GEM_BUG_ON(!IS_ALIGNED(*size, PAGE_SIZE));
-+	GEM_BUG_ON(!IS_ALIGNED(*size, I915_GTT_MIN_ALIGNMENT));
- 
- 	/*
- 	 * XXX: There is a prevalence of the assumption that we fit the
-@@ -163,15 +162,11 @@ i915_gem_object_create_region(struct intel_memory_region *mem,
- 	 * spot such a local variable, please consider fixing!
- 	 */
- 
--	if (size >> PAGE_SHIFT > INT_MAX)
--		return ERR_PTR(-E2BIG);
--
--	if (overflows_type(size, obj->base.size))
--		return ERR_PTR(-E2BIG);
-+	if (*size >> PAGE_SHIFT > INT_MAX)
-+		return -E2BIG;
- 
--	obj = mem->ops->create_object(mem, size, flags);
--	if (!IS_ERR(obj))
--		trace_i915_gem_object_create(obj);
-+	if (overflows_type(*size, size_t))
-+		return -E2BIG;
- 
--	return obj;
-+	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.h b/drivers/gpu/drm/i915/gem/i915_gem_region.h
-index f2ff6f8bff74..584f3e91060c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_region.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_region.h
-@@ -21,9 +21,7 @@ void i915_gem_object_init_memory_region(struct drm_i915_gem_object *obj,
- 					unsigned long flags);
- void i915_gem_object_release_memory_region(struct drm_i915_gem_object *obj);
- 
--struct drm_i915_gem_object *
--i915_gem_object_create_region(struct intel_memory_region *mem,
--			      resource_size_t size,
-+int i915_gem_object_pre_check(struct intel_memory_region *mem,
-+			      resource_size_t *size,
- 			      unsigned int flags);
--
- #endif
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index 38113d3c0138..a190933399d4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -464,19 +464,22 @@ static int __create_shmem(struct drm_i915_private *i915,
- 	return 0;
- }
- 
--static struct drm_i915_gem_object *
--create_shmem(struct intel_memory_region *mem,
--	     resource_size_t size,
--	     unsigned int flags)
-+struct drm_i915_gem_object *
-+i915_gem_object_create_shmem(struct drm_i915_private *i915,
-+			     resource_size_t size)
- {
-+	struct intel_memory_region *mem = i915->mm.regions[INTEL_REGION_SMEM];	
- 	static struct lock_class_key lock_class;
--	struct drm_i915_private *i915 = mem->i915;
- 	struct drm_i915_gem_object *obj;
- 	struct address_space *mapping;
- 	unsigned int cache_level;
- 	gfp_t mask;
- 	int ret;
-+	int flags = 0;
- 
-+	ret = i915_gem_object_pre_check(mem, &size, flags);
-+	if (ret)
-+		return ERR_PTR(ret);
- 	obj = i915_gem_object_alloc();
- 	if (!obj)
- 		return ERR_PTR(-ENOMEM);
-@@ -529,14 +532,6 @@ create_shmem(struct intel_memory_region *mem,
- 	return ERR_PTR(ret);
- }
- 
--struct drm_i915_gem_object *
--i915_gem_object_create_shmem(struct drm_i915_private *i915,
--			     resource_size_t size)
--{
--	return i915_gem_object_create_region(i915->mm.regions[INTEL_REGION_SMEM],
--					     size, 0);
--}
--
- /* Allocate a new GEM object and fill it with the supplied data */
- struct drm_i915_gem_object *
- i915_gem_object_create_shmem_from_data(struct drm_i915_private *dev_priv,
-@@ -611,7 +606,6 @@ static void release_shmem(struct intel_memory_region *mem)
- static const struct intel_memory_region_ops shmem_region_ops = {
- 	.init = init_shmem,
- 	.release = release_shmem,
--	.create_object = create_shmem,
- };
- 
- struct intel_memory_region *i915_gem_shmem_setup(struct drm_i915_private *i915)
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index e0f21f12d3ce..1dd4ccd020b1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -607,21 +607,22 @@ __i915_gem_object_create_stolen(struct intel_memory_region *mem,
- 	return ERR_PTR(err);
- }
- 
--static struct drm_i915_gem_object *
--_i915_gem_object_create_stolen(struct intel_memory_region *mem,
--			       resource_size_t size,
--			       unsigned int flags)
-+struct drm_i915_gem_object *
-+i915_gem_object_create_stolen(struct drm_i915_private *i915,
-+			      resource_size_t size)
- {
--	struct drm_i915_private *i915 = mem->i915;
-+	struct intel_memory_region *mem = i915->mm.regions[INTEL_REGION_STOLEN];
- 	struct drm_i915_gem_object *obj;
- 	struct drm_mm_node *stolen;
- 	int ret;
-+	int flags = I915_BO_ALLOC_CONTIGUOUS;
- 
- 	if (!drm_mm_initialized(&i915->mm.stolen))
- 		return ERR_PTR(-ENODEV);
- 
--	if (size == 0)
--		return ERR_PTR(-EINVAL);
-+	ret = i915_gem_object_pre_check(mem, &size, flags);
-+	if (ret)
-+		return ERR_PTR(ret);
- 
- 	stolen = kzalloc(sizeof(*stolen), GFP_KERNEL);
- 	if (!stolen)
-@@ -646,14 +647,6 @@ _i915_gem_object_create_stolen(struct intel_memory_region *mem,
- 	return obj;
- }
- 
--struct drm_i915_gem_object *
--i915_gem_object_create_stolen(struct drm_i915_private *i915,
--			      resource_size_t size)
--{
--	return i915_gem_object_create_region(i915->mm.regions[INTEL_REGION_STOLEN],
--					     size, I915_BO_ALLOC_CONTIGUOUS);
--}
--
- static int init_stolen(struct intel_memory_region *mem)
- {
- 	intel_memory_region_set_name(mem, "stolen");
-@@ -673,7 +666,6 @@ static void release_stolen(struct intel_memory_region *mem)
- static const struct intel_memory_region_ops i915_region_stolen_ops = {
- 	.init = init_stolen,
- 	.release = release_stolen,
--	.create_object = _i915_gem_object_create_stolen,
- };
- 
- struct intel_memory_region *i915_gem_stolen_setup(struct drm_i915_private *i915)
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 9aa3066cb75d..1096c1818a66 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -45,6 +45,7 @@
- #include "gem/i915_gem_ioctls.h"
- #include "gem/i915_gem_mman.h"
- #include "gem/i915_gem_region.h"
-+#include "gem/i915_gem_lmem.h"
- #include "gt/intel_engine_user.h"
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_pm.h"
-@@ -205,7 +206,8 @@ i915_gem_phys_pwrite(struct drm_i915_gem_object *obj,
- 
- static int
- i915_gem_create(struct drm_file *file,
--		struct intel_memory_region *mr,
-+		struct drm_i915_private *i915,
-+		enum intel_memory_type mem_type,
- 		u64 *size_p,
- 		u32 *handle_p)
- {
-@@ -214,16 +216,12 @@ i915_gem_create(struct drm_file *file,
- 	u64 size;
- 	int ret;
- 
--	GEM_BUG_ON(!is_power_of_2(mr->min_page_size));
--	size = round_up(*size_p, mr->min_page_size);
--	if (size == 0)
--		return -EINVAL;
--
--	/* For most of the ABI (e.g. mmap) we think in system pages */
--	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
--
--	/* Allocate the new object */
--	obj = i915_gem_object_create_region(mr, size, 0);
-+	if (mem_type == INTEL_MEMORY_LOCAL)
-+		obj = i915_gem_object_create_lmem(i915, size, 0);
-+	else if (mem_type == INTEL_MEMORY_SYSTEM)
-+		obj = i915_gem_object_create_shmem(i915, size);
-+	else
-+		obj = ERR_PTR(-ENODEV);
- 	if (IS_ERR(obj))
- 		return PTR_ERR(obj);
- 
-@@ -278,9 +276,8 @@ i915_gem_dumb_create(struct drm_file *file,
- 	if (HAS_LMEM(to_i915(dev)))
- 		mem_type = INTEL_MEMORY_LOCAL;
- 
--	return i915_gem_create(file,
--			       intel_memory_region_by_type(to_i915(dev),
--							   mem_type),
-+	return i915_gem_create(file, to_i915(dev),
-+			       mem_type,
- 			       &args->size, &args->handle);
- }
- 
-@@ -299,9 +296,7 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
- 
- 	i915_gem_flush_free_objects(i915);
- 
--	return i915_gem_create(file,
--			       intel_memory_region_by_type(i915,
--							   INTEL_MEMORY_SYSTEM),
-+	return i915_gem_create(file, i915, INTEL_MEMORY_SYSTEM,
- 			       &args->size, &args->handle);
- }
- 
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
-index 232490d89a83..b2db98a89795 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.h
-+++ b/drivers/gpu/drm/i915/intel_memory_region.h
-@@ -61,11 +61,6 @@ struct intel_memory_region_ops {
- 
- 	int (*init)(struct intel_memory_region *mem);
- 	void (*release)(struct intel_memory_region *mem);
--
--	struct drm_i915_gem_object *
--	(*create_object)(struct intel_memory_region *mem,
--			 resource_size_t size,
--			 unsigned int flags);
- };
- 
- struct intel_memory_region {
-diff --git a/drivers/gpu/drm/i915/intel_region_lmem.c b/drivers/gpu/drm/i915/intel_region_lmem.c
-index 40d8f1a95df6..e1b14add006b 100644
---- a/drivers/gpu/drm/i915/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/intel_region_lmem.c
-@@ -98,7 +98,6 @@ region_lmem_init(struct intel_memory_region *mem)
- const struct intel_memory_region_ops intel_region_lmem_ops = {
- 	.init = region_lmem_init,
- 	.release = region_lmem_release,
--	.create_object = __i915_gem_lmem_object_create,
- };
- 
- struct intel_memory_region *
--- 
-2.27.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IG1ha2Ugb2JqZWN0IGNyZWF0
+aW9uIGF2b2lkIHJlZ2lvbnMgbGF5ZXJpbmcuClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJl
+ZWRlc2t0b3Aub3JnL3Nlcmllcy84MTE5Ny8KU3RhdGUgOiBmYWlsdXJlCgo9PSBTdW1tYXJ5ID09
+CgpDQUxMICAgIHNjcmlwdHMvY2hlY2tzeXNjYWxscy5zaAogIENBTEwgICAgc2NyaXB0cy9hdG9t
+aWMvY2hlY2stYXRvbWljcy5zaAogIERFU0NFTkQgIG9ianRvb2wKICBDSEsgICAgIGluY2x1ZGUv
+Z2VuZXJhdGVkL2NvbXBpbGUuaAogIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
+bWVtb3J5X3JlZ2lvbi5vCkluIGZpbGUgaW5jbHVkZWQgZnJvbSBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pbnRlbF9tZW1vcnlfcmVnaW9uLmM6MzAyOjA6CmRyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0
+ZXN0cy9pbnRlbF9tZW1vcnlfcmVnaW9uLmM6IEluIGZ1bmN0aW9uIOKAmGlndF9tb2NrX2ZpbGzi
+gJk6CmRyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pbnRlbF9tZW1vcnlfcmVnaW9uLmM6
+NjY6OTogZXJyb3I6IGltcGxpY2l0IGRlY2xhcmF0aW9uIG9mIGZ1bmN0aW9uIOKAmGk5MTVfZ2Vt
+X29iamVjdF9jcmVhdGVfcmVnaW9u4oCZOyBkaWQgeW91IG1lYW4g4oCYaTkxNV9nZW1fb2JqZWN0
+X2NyZWF0ZV9zdG9sZW7igJk/IFstV2Vycm9yPWltcGxpY2l0LWZ1bmN0aW9uLWRlY2xhcmF0aW9u
+XQogICBvYmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3JlZ2lvbihtZW0sIHNpemUsIDApOwog
+ICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fgogICAgICAgICBpOTE1X2dlbV9v
+YmplY3RfY3JlYXRlX3N0b2xlbgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaW50ZWxf
+bWVtb3J5X3JlZ2lvbi5jOjY2Ojc6IGVycm9yOiBhc3NpZ25tZW50IG1ha2VzIHBvaW50ZXIgZnJv
+bSBpbnRlZ2VyIHdpdGhvdXQgYSBjYXN0IFstV2Vycm9yPWludC1jb252ZXJzaW9uXQogICBvYmog
+PSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3JlZ2lvbihtZW0sIHNpemUsIDApOwogICAgICAgXgpk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaW50ZWxfbWVtb3J5X3JlZ2lvbi5jOiBJbiBm
+dW5jdGlvbiDigJhpZ3Rfb2JqZWN0X2NyZWF0ZeKAmToKZHJpdmVycy9ncHUvZHJtL2k5MTUvc2Vs
+ZnRlc3RzL2ludGVsX21lbW9yeV9yZWdpb24uYzoxMDg6NjogZXJyb3I6IGFzc2lnbm1lbnQgbWFr
+ZXMgcG9pbnRlciBmcm9tIGludGVnZXIgd2l0aG91dCBhIGNhc3QgWy1XZXJyb3I9aW50LWNvbnZl
+cnNpb25dCiAgb2JqID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9yZWdpb24obWVtLCBzaXplLCBm
+bGFncyk7CiAgICAgIF4KZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2ludGVsX21lbW9y
+eV9yZWdpb24uYzogSW4gZnVuY3Rpb24g4oCYY3JlYXRlX3JlZ2lvbl9mb3JfbWFwcGluZ+KAmToK
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2ludGVsX21lbW9yeV9yZWdpb24uYzo1OTY6
+NjogZXJyb3I6IGFzc2lnbm1lbnQgbWFrZXMgcG9pbnRlciBmcm9tIGludGVnZXIgd2l0aG91dCBh
+IGNhc3QgWy1XZXJyb3I9aW50LWNvbnZlcnNpb25dCiAgb2JqID0gaTkxNV9nZW1fb2JqZWN0X2Ny
+ZWF0ZV9yZWdpb24obXIsIHNpemUsIDApOwogICAgICBeCkluIGZpbGUgaW5jbHVkZWQgZnJvbSBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmM6MzAzOjA6CmRyaXZlcnMv
+Z3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9tb2NrX3JlZ2lvbi5jOiBBdCB0b3AgbGV2ZWw6CmRyaXZl
+cnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9tb2NrX3JlZ2lvbi5jOjQ5OjM6IGVycm9yOiDigJhj
+b25zdCBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbl9vcHPigJkgaGFzIG5vIG1lbWJlciBuYW1l
+ZCDigJhjcmVhdGVfb2JqZWN04oCZCiAgLmNyZWF0ZV9vYmplY3QgPSBtb2NrX29iamVjdF9jcmVh
+dGUsCiAgIF5+fn5+fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL21vY2tf
+cmVnaW9uLmM6NDk6MTk6IGVycm9yOiBleGNlc3MgZWxlbWVudHMgaW4gc3RydWN0IGluaXRpYWxp
+emVyIFstV2Vycm9yXQogIC5jcmVhdGVfb2JqZWN0ID0gbW9ja19vYmplY3RfY3JlYXRlLAogICAg
+ICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+CmRyaXZlcnMvZ3B1L2RybS9pOTE1L3Nl
+bGZ0ZXN0cy9tb2NrX3JlZ2lvbi5jOjQ5OjE5OiBub3RlOiAobmVhciBpbml0aWFsaXphdGlvbiBm
+b3Ig4oCYbW9ja19yZWdpb25fb3Bz4oCZKQpjYzE6IGFsbCB3YXJuaW5ncyBiZWluZyB0cmVhdGVk
+IGFzIGVycm9ycwpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjI4MzogcmVjaXBlIGZvciB0YXJnZXQg
+J2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21lbW9yeV9yZWdpb24ubycgZmFpbGVkCm1ha2Vb
+NF06ICoqKiBbZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbWVtb3J5X3JlZ2lvbi5vXSBFcnJv
+ciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTAwOiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVy
+cy9ncHUvZHJtL2k5MTUnIGZhaWxlZAptYWtlWzNdOiAqKiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1
+XSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTAwOiByZWNpcGUgZm9yIHRhcmdldCAn
+ZHJpdmVycy9ncHUvZHJtJyBmYWlsZWQKbWFrZVsyXTogKioqIFtkcml2ZXJzL2dwdS9kcm1dIEVy
+cm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MDA6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2
+ZXJzL2dwdScgZmFpbGVkCm1ha2VbMV06ICoqKiBbZHJpdmVycy9ncHVdIEVycm9yIDIKTWFrZWZp
+bGU6MTc4ODogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMnIGZhaWxlZAptYWtlOiAqKiogW2Ry
+aXZlcnNdIEVycm9yIDIKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
+bC1nZngK
