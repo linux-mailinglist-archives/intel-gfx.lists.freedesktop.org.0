@@ -1,57 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CAEC25880D
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Sep 2020 08:23:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F3C82588F2
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Sep 2020 09:24:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C86C6E186;
-	Tue,  1 Sep 2020 06:23:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E93B6E5B9;
+	Tue,  1 Sep 2020 07:24:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
- [IPv6:2607:f8b0:4864:20::542])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41AD66E186
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Sep 2020 06:23:23 +0000 (UTC)
-Received: by mail-pg1-x542.google.com with SMTP id g29so154265pgl.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Aug 2020 23:23:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=VISh9+UX16Kxomq7MvNQPeqw53Cit+NbcKfa5TeuC+c=;
- b=JgWRyGDuju2lJa6EhPUya9PhsI+iDwgHD/YJaTrxa3MrijyvOsLmc/VCRAUvS07uXe
- 4GSw5Sa8QZkHCAOxQA83aw1RaizicMSf5jyqq6HstcEXFIg9d6xePUCtbH+KrjJUC7YL
- uzM+2QKnKNxuHZWn8OTQx0PHDN/s3QOsiqQww=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=VISh9+UX16Kxomq7MvNQPeqw53Cit+NbcKfa5TeuC+c=;
- b=P+pu0SzCWMVfeYr1zBuCYBV73LycWEBBdjZf5trUZVvJJmrvFEne+4c/NeV/oFppJT
- q1OO7iHHs7l3fNS40NFeie2rbN0Hku2KWCxQ/RBr8GXBEL+TjG90wDkLEG31PnWXBqZT
- DT9/ePagL9gapYM3MT9r4Z7y0voyrb+2V5FMrkBkiGcnYmMZFEPXBxHPRH+V1NXa836u
- xmRP/pqS4VWrTWtSHOGeCwPc9FaEfhRD7ajLUAfN+rb7wQQItyDRECxK5vjj9+hP8dcu
- L1DRpYlZDLmQmBHu9D1TWYmxRZtSRferpIakiqeSWEvjJfRltCvnYQz4kROHA5mbVvLZ
- eElQ==
-X-Gm-Message-State: AOAM530QMLij8U+uZAMeZXCEE6YXYaf3ddib2MvW/lP6nqo10dxH9lTQ
- rw6FVPppp69zdklORZyhljfQLQ==
-X-Google-Smtp-Source: ABdhPJzBsGh6rqlyfq2U0mHIrlmG0brZn6FHdYjOIhyHsLFqK/eR46xR+BGy5SV1mrg0bbCJwCAfwQ==
-X-Received: by 2002:a63:cd0b:: with SMTP id i11mr227551pgg.306.1598941402803; 
- Mon, 31 Aug 2020 23:23:22 -0700 (PDT)
-Received: from localhost ([2401:fa00:9:15:7220:84ff:fe09:cabc])
- by smtp.gmail.com with ESMTPSA id lh6sm249339pjb.15.2020.08.31.23.23.13
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 31 Aug 2020 23:23:22 -0700 (PDT)
-From: Sam McNally <sammc@chromium.org>
-To: LKML <linux-kernel@vger.kernel.org>
-Date: Tue,  1 Sep 2020 16:22:18 +1000
-Message-Id: <20200901162133.4.I900b1b80709b7632a47d0ddb4cd375b4a3616c9e@changeid>
-X-Mailer: git-send-email 2.28.0.402.g5ffc5be6b7-goog
-In-Reply-To: <20200901162133.1.I8693156f555875e5c8342e86ab37ce968dfdd277@changeid>
-References: <20200901162133.1.I8693156f555875e5c8342e86ab37ce968dfdd277@changeid>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E03D96E5A1;
+ Tue,  1 Sep 2020 07:24:04 +0000 (UTC)
+IronPort-SDR: 1aUhd0/pAnICW74Z22V/LW+aB3XtBT1Ogge5bTbZ3t4c72gzvgWDOC/LOKgBwepIizmEnPcUtD
+ D30xtjc0TSfg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9730"; a="241933104"
+X-IronPort-AV: E=Sophos;i="5.76,378,1592895600"; d="scan'208";a="241933104"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2020 00:24:04 -0700
+IronPort-SDR: aWhZmg6OP5DahhOjE2IomRafNii35pBqe3o8jA0d8hk9kWmGYJ1jcQfwU/H5xBKIcIIKI1edS8
+ GEc6C2hw998Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,378,1592895600"; d="scan'208";a="325242108"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga004.fm.intel.com with ESMTP; 01 Sep 2020 00:24:04 -0700
+Received: from bgsmsx601.gar.corp.intel.com (10.109.78.80) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 1 Sep 2020 00:23:21 -0700
+Received: from kmsmsx601.gar.corp.intel.com (172.21.219.141) by
+ BGSMSX601.gar.corp.intel.com (10.109.78.80) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 1 Sep 2020 12:53:18 +0530
+Received: from kmsmsx601.gar.corp.intel.com ([172.21.219.141]) by
+ kmsmsx601.gar.corp.intel.com ([172.21.219.141]) with mapi id 15.01.1713.004;
+ Tue, 1 Sep 2020 15:23:18 +0800
+From: "B, Jeevan" <jeevan.b@intel.com>
+To: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Thread-Topic: [v3] drm/nouveau: utilize subconnector property for DP
+Thread-Index: AQHWc5m07vIwWA6ZzUWq9Zq07STQmalTc/1Q
+Date: Tue, 1 Sep 2020 07:23:18 +0000
+Message-ID: <9054960bbd2e45129204acf5f55ed79c@intel.com>
+References: <1587732655-17544-3-git-send-email-jeevan.b@intel.com>
+ <1597560705-13897-1-git-send-email-jeevan.b@intel.com>
+In-Reply-To: <1597560705-13897-1-git-send-email-jeevan.b@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/5] drm_dp_cec: add plumbing in preparation for
- MST support
+Subject: Re: [Intel-gfx] [v3] drm/nouveau: utilize subconnector property for
+ DP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,187 +72,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- David Francis <David.Francis@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
- Hans Verkuil <hans.verkuil@cisco.com>, Ben Skeggs <bskeggs@redhat.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Wambui Karuga <wambui.karugax@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Leo Li <sunpeng.li@amd.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
- Sam McNally <sammc@chromium.org>, Maxime Ripard <mripard@kernel.org>,
- Mikita Lipski <mikita.lipski@amd.com>, dri-devel@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ Oleg Vasilev <oleg.vasilev@intel.com>,
+ "bskeggs@redhat.com" <bskeggs@redhat.com>,
+ "airlied@redhat.com" <airlied@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Hans Verkuil <hans.verkuil@cisco.com>
+Hi Ben Skeggs,
 
-Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
-[sammc@chromium.org:
- - rebased
- - removed polling-related changes
- - moved the calls to drm_dp_cec_(un)set_edid() into the next patch
-]
-Signed-off-by: Sam McNally <sammc@chromium.org>
----
+Gentle Reminder, Can you please take a look at the patch and provide your ack.  
 
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
- drivers/gpu/drm/drm_dp_cec.c                  | 22 ++++++++++---------
- drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
- drivers/gpu/drm/nouveau/nouveau_connector.c   |  2 +-
- include/drm/drm_dp_helper.h                   |  6 +++--
- 5 files changed, 19 insertions(+), 15 deletions(-)
+Thanks 
+Jeevan B 
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 461fa4da0a34..6e7075893ec9 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -419,7 +419,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
- 
- 	drm_dp_aux_init(&aconnector->dm_dp_aux.aux);
- 	drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
--				      &aconnector->base);
-+				      &aconnector->base, false);
- 
- 	if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP)
- 		return;
-diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/drm_dp_cec.c
-index 3ab2609f9ec7..04ab7b88055c 100644
---- a/drivers/gpu/drm/drm_dp_cec.c
-+++ b/drivers/gpu/drm/drm_dp_cec.c
-@@ -14,6 +14,7 @@
- #include <drm/drm_connector.h>
- #include <drm/drm_device.h>
- #include <drm/drm_dp_helper.h>
-+#include <drm/drm_dp_mst_helper.h>
- 
- /*
-  * Unfortunately it turns out that we have a chicken-and-egg situation
-@@ -338,8 +339,6 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
- 	if (aux->cec.adap) {
- 		if (aux->cec.adap->capabilities == cec_caps &&
- 		    aux->cec.adap->available_log_addrs == num_las) {
--			/* Unchanged, so just set the phys addr */
--			cec_s_phys_addr_from_edid(aux->cec.adap, edid);
- 			goto unlock;
- 		}
- 		/*
-@@ -364,15 +363,16 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
- 	if (cec_register_adapter(aux->cec.adap, connector->dev->dev)) {
- 		cec_delete_adapter(aux->cec.adap);
- 		aux->cec.adap = NULL;
--	} else {
--		/*
--		 * Update the phys addr for the new CEC adapter. When called
--		 * from drm_dp_cec_register_connector() edid == NULL, so in
--		 * that case the phys addr is just invalidated.
--		 */
--		cec_s_phys_addr_from_edid(aux->cec.adap, edid);
- 	}
- unlock:
-+	/*
-+	 * Update the phys addr for the new CEC adapter. When called
-+	 * from drm_dp_cec_register_connector() edid == NULL, so in
-+	 * that case the phys addr is just invalidated.
-+	 */
-+	if (aux->cec.adap && edid) {
-+		cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-+	}
- 	mutex_unlock(&aux->cec.lock);
- }
- EXPORT_SYMBOL(drm_dp_cec_set_edid);
-@@ -418,6 +418,7 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
-  * drm_dp_cec_register_connector() - register a new connector
-  * @aux: DisplayPort AUX channel
-  * @connector: drm connector
-+ * @is_mst: set to true if this is an MST branch
-  *
-  * A new connector was registered with associated CEC adapter name and
-  * CEC adapter parent device. After registering the name and parent
-@@ -425,12 +426,13 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
-  * CEC and to register a CEC adapter if that is the case.
-  */
- void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
--				   struct drm_connector *connector)
-+				   struct drm_connector *connector, bool is_mst)
- {
- 	WARN_ON(aux->cec.adap);
- 	if (WARN_ON(!aux->transfer))
- 		return;
- 	aux->cec.connector = connector;
-+	aux->cec.is_mst = is_mst;
- 	INIT_DELAYED_WORK(&aux->cec.unregister_work,
- 			  drm_dp_cec_unregister_work);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 82b9de274f65..744cb55572f9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6261,7 +6261,7 @@ intel_dp_connector_register(struct drm_connector *connector)
- 	intel_dp->aux.dev = connector->kdev;
- 	ret = drm_dp_aux_register(&intel_dp->aux);
- 	if (!ret)
--		drm_dp_cec_register_connector(&intel_dp->aux, connector);
-+		drm_dp_cec_register_connector(&intel_dp->aux, connector, false);
- 	return ret;
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 49dd0cbc332f..671a70e95cd1 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1414,7 +1414,7 @@ nouveau_connector_create(struct drm_device *dev,
- 	switch (type) {
- 	case DRM_MODE_CONNECTOR_DisplayPort:
- 	case DRM_MODE_CONNECTOR_eDP:
--		drm_dp_cec_register_connector(&nv_connector->aux, connector);
-+		drm_dp_cec_register_connector(&nv_connector->aux, connector, false);
- 		break;
- 	}
- 
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index 85513eeb2196..12bca1b9512b 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -1495,12 +1495,14 @@ struct drm_connector;
-  * @lock: mutex protecting this struct
-  * @adap: the CEC adapter for CEC-Tunneling-over-AUX support.
-  * @connector: the connector this CEC adapter is associated with
-+ * @is_mst: this is an MST branch
-  * @unregister_work: unregister the CEC adapter
-  */
- struct drm_dp_aux_cec {
- 	struct mutex lock;
- 	struct cec_adapter *adap;
- 	struct drm_connector *connector;
-+	bool is_mst;
- 	struct delayed_work unregister_work;
- };
- 
-@@ -1746,7 +1748,7 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, u32 edid_quirks,
- #ifdef CONFIG_DRM_DP_CEC
- void drm_dp_cec_irq(struct drm_dp_aux *aux);
- void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
--				   struct drm_connector *connector);
-+				   struct drm_connector *connector, bool is_mst);
- void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
- void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid);
- void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
-@@ -1757,7 +1759,7 @@ static inline void drm_dp_cec_irq(struct drm_dp_aux *aux)
- 
- static inline void
- drm_dp_cec_register_connector(struct drm_dp_aux *aux,
--			      struct drm_connector *connector)
-+			      struct drm_connector *connector, bool is_mst)
- {
- }
- 
--- 
-2.28.0.402.g5ffc5be6b7-goog
+>-----Original Message-----
+>From: B, Jeevan <jeevan.b@intel.com>
+>Sent: Sunday, August 16, 2020 12:22 PM
+>To: nouveau@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; dri-
+>devel@lists.freedesktop.org
+>Cc: bskeggs@redhat.com; airlied@redhat.com;
+>maarten.lankhorst@linux.intel.com; Nikula, Jani <jani.nikula@intel.com>;
+>Shankar, Uma <uma.shankar@intel.com>; Oleg Vasilev
+><oleg.vasilev@intel.com>; B, Jeevan <jeevan.b@intel.com>
+>Subject: [v3] drm/nouveau: utilize subconnector property for DP
+>
+>From: Oleg Vasilev <oleg.vasilev@intel.com>
+>
+>Since DP-specific information is stored in driver's structures, every driver
+>needs to implement subconnector property by itself.
+>
+>v2: rebase
+>
+>v3: renamed a function call
+>
+>Cc: Ben Skeggs <bskeggs@redhat.com>
+>Cc: nouveau@lists.freedesktop.org
+>Signed-off-by: Jeevan B <jeevan.b@intel.com>
+>Signed-off-by: Oleg Vasilev <oleg.vasilev@intel.com>
+>Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
+>---
+> drivers/gpu/drm/nouveau/nouveau_connector.c | 13 +++++++++++++
+> drivers/gpu/drm/nouveau/nouveau_dp.c        |  9 +++++++++
+> drivers/gpu/drm/nouveau/nouveau_encoder.h   |  1 +
+> 3 files changed, 23 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c
+>b/drivers/gpu/drm/nouveau/nouveau_connector.c
+>index 7674025..955afed 100644
+>--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
+>+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+>@@ -654,6 +654,17 @@ nouveau_connector_detect(struct drm_connector
+>*connector, bool force)
+> 	pm_runtime_mark_last_busy(dev->dev);
+> 	pm_runtime_put_autosuspend(dev->dev);
+>
+>+	if (connector->connector_type ==
+>DRM_MODE_CONNECTOR_DisplayPort ||
+>+	    connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
+>+		enum drm_mode_subconnector subconnector =
+>+DRM_MODE_SUBCONNECTOR_Unknown;
+>+
+>+		if (conn_status == connector_status_connected &&
+>nv_encoder)
+>+			subconnector = nv_encoder->dp.subconnector;
+>+		drm_object_property_set_value(&connector->base,
+>+			connector->dev-
+>>mode_config.dp_subconnector_property,
+>+			subconnector);
+>+	}
+>+
+> 	return conn_status;
+> }
+>
+>@@ -1390,6 +1401,8 @@ nouveau_connector_create(struct drm_device *dev,
+> 			kfree(nv_connector);
+> 			return ERR_PTR(ret);
+> 		}
+>+
+>+
+>	drm_connector_attach_dp_subconnector_property(connector);
+> 		funcs = &nouveau_connector_funcs;
+> 		break;
+> 	default:
+>diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c
+>b/drivers/gpu/drm/nouveau/nouveau_dp.c
+>index 8a0f799..3eff884 100644
+>--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
+>+++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+>@@ -62,6 +62,7 @@ nouveau_dp_detect(struct nouveau_encoder
+>*nv_encoder)
+> 	struct nouveau_drm *drm = nouveau_drm(dev);
+> 	struct nvkm_i2c_aux *aux;
+> 	u8 dpcd[8];
+>+	u8 port_cap[DP_MAX_DOWNSTREAM_PORTS] = {};
+> 	int ret;
+>
+> 	aux = nv_encoder->aux;
+>@@ -72,6 +73,14 @@ nouveau_dp_detect(struct nouveau_encoder
+>*nv_encoder)
+> 	if (ret)
+> 		return ret;
+>
+>+	if (dpcd[DP_DPCD_REV] > 0x10) {
+>+		ret = nvkm_rdaux(aux, DP_DOWNSTREAM_PORT_0,
+>+				 port_cap, DP_MAX_DOWNSTREAM_PORTS);
+>+		if (ret)
+>+			memset(port_cap, 0,
+>DP_MAX_DOWNSTREAM_PORTS);
+>+	}
+>+	nv_encoder->dp.subconnector = drm_dp_subconnector_type(dpcd,
+>+port_cap);
+>+
+> 	nv_encoder->dp.link_bw = 27000 * dpcd[1];
+> 	nv_encoder->dp.link_nr = dpcd[2] & DP_MAX_LANE_COUNT_MASK;
+>
+>diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h
+>b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+>index a72c412..49b5c10 100644
+>--- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
+>+++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+>@@ -64,6 +64,7 @@ struct nouveau_encoder {
+> 			struct nv50_mstm *mstm;
+> 			int link_nr;
+> 			int link_bw;
+>+			enum drm_mode_subconnector subconnector;
+> 		} dp;
+> 	};
+>
+>--
+>2.7.4
 
 _______________________________________________
 Intel-gfx mailing list
