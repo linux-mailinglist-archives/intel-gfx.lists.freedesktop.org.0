@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9F45259E46
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Sep 2020 20:42:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89510259E4F
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Sep 2020 20:44:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AE1D6E8E1;
-	Tue,  1 Sep 2020 18:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E43AA6E8C9;
+	Tue,  1 Sep 2020 18:44:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 244A86E8E1
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Sep 2020 18:42:34 +0000 (UTC)
-IronPort-SDR: 8nQYygJO98ygsEFxZPVdLtYvItTHEjZeVS5A/BY6O+cMJdnzrw3zO3peim7w+ol7EYvdRpUovK
- upmdyhqPbO0w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9731"; a="144988491"
-X-IronPort-AV: E=Sophos;i="5.76,380,1592895600"; d="scan'208";a="144988491"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2020 11:42:33 -0700
-IronPort-SDR: FyG8BZfycfJLdmwaTbxEqlkE1H/jtgSLg3eKActrzgFiuc3nK7fw1c53OmJsKL0yLQKHjRrJ8C
- LAZXYc9QMvtQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,380,1592895600"; d="scan'208";a="333820386"
-Received: from anusha.jf.intel.com ([10.165.21.155])
- by fmsmga002.fm.intel.com with ESMTP; 01 Sep 2020 11:42:32 -0700
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Sep 2020 11:27:58 -0700
-Message-Id: <20200901182758.29203-1-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.0
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 190706E8E7;
+ Tue,  1 Sep 2020 18:42:38 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 272A71FB;
+ Tue,  1 Sep 2020 11:42:37 -0700 (PDT)
+Received: from [10.57.40.122] (unknown [10.57.40.122])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C9B773F71F;
+ Tue,  1 Sep 2020 11:42:34 -0700 (PDT)
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+ dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org
+References: <20200826063316.23486-1-m.szyprowski@samsung.com>
+ <CGME20200826063532eucas1p2a9e0215f483104d45af0560d5dbfa8e0@eucas1p2.samsung.com>
+ <20200826063316.23486-9-m.szyprowski@samsung.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Message-ID: <38960f66-aab6-8615-9187-b85cf628a4fd@arm.com>
+Date: Tue, 1 Sep 2020 19:42:32 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/pll: Centralize PLL_ENABLE register
- lookup
+In-Reply-To: <20200826063316.23486-9-m.szyprowski@samsung.com>
+Content-Language: en-GB
+X-Mailman-Approved-At: Tue, 01 Sep 2020 18:43:59 +0000
+Subject: Re: [Intel-gfx] [PATCH v9 08/32] drm: i915: fix common struct
+ sg_table related issues
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,62 +47,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>, linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgY3VycmVudHkgY2hlY2sgZm9yIHBsYXRmb3JtIGF0IG11bHRpcGxlIHBhcnRzIGluIHRoZSBk
-cml2ZXIKdG8gZ3JhYiB0aGUgY29ycmVjdCBQTEwuIExldCB1cyBiZWdpbiB0byBjZW50cmFsaXpl
-IGl0IHRocm91Z2ggYQpoZWxwZXIgZnVuY3Rpb24uCgp2Mjogcy9pbnRlbF9nZXRfcGxsX2VuYWJs
-ZV9yZWcoKS9pbnRlbF9jb21ib19wbGxfZW5hYmxlX3JlZygpIChWaWxsZSkKClN1Z2dlc3RlZC1i
-eTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KQ2M6IFZpbGxlIFN5cmrD
-pGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBNYXR0IFJvcGVyIDxtYXR0
-aGV3LmQucm9wZXJAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBBbnVzaGEgU3JpdmF0c2EgPGFu
-dXNoYS5zcml2YXRzYUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcGxsX21nci5jIHwgMjUgKysrKysrKysrKystLS0tLS0tLQogMSBmaWxlIGNoYW5n
-ZWQsIDE1IGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBsbF9tZ3IuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBsbF9tZ3IuYwppbmRleCBjOTAxM2Y4Zjc2NmYuLjc0NDA4
-MzZjNWU0NCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-cGxsX21nci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBsbF9t
-Z3IuYwpAQCAtMTQ3LDYgKzE0NywxOCBAQCB2b2lkIGFzc2VydF9zaGFyZWRfZHBsbChzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJCQlwbGwtPmluZm8tPm5hbWUsIG9ub2ZmKHN0
-YXRlKSwgb25vZmYoY3VyX3N0YXRlKSk7CiB9CiAKK3N0YXRpYworaTkxNV9yZWdfdCBpbnRlbF9j
-b21ib19wbGxfZW5hYmxlX3JlZyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCisJ
-CQkJICAgIHN0cnVjdCBpbnRlbF9zaGFyZWRfZHBsbCAqcGxsKQoreworCisJaWYgKElTX0VMS0hB
-UlRMQUtFKGRldl9wcml2KSAmJiAocGxsLT5pbmZvLT5pZCA9PSBEUExMX0lEX0VITF9EUExMNCkp
-CisJCQlyZXR1cm4gTUdfUExMX0VOQUJMRSgwKTsKKworCXJldHVybiBDTkxfRFBMTF9FTkFCTEUo
-cGxsLT5pbmZvLT5pZCk7CisKKworfQogLyoqCiAgKiBpbnRlbF9wcmVwYXJlX3NoYXJlZF9kcGxs
-IC0gY2FsbCBhIGRwbGwncyBwcmVwYXJlIGhvb2sKICAqIEBjcnRjX3N0YXRlOiBDUlRDLCBhbmQg
-aXRzIHN0YXRlLCB3aGljaCBoYXMgYSBzaGFyZWQgZHBsbApAQCAtMzg0MiwxMiArMzg1NCw3IEBA
-IHN0YXRpYyBib29sIGNvbWJvX3BsbF9nZXRfaHdfc3RhdGUoc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmRldl9wcml2LAogCQkJCSAgIHN0cnVjdCBpbnRlbF9zaGFyZWRfZHBsbCAqcGxsLAogCQkJ
-CSAgIHN0cnVjdCBpbnRlbF9kcGxsX2h3X3N0YXRlICpod19zdGF0ZSkKIHsKLQlpOTE1X3JlZ190
-IGVuYWJsZV9yZWcgPSBDTkxfRFBMTF9FTkFCTEUocGxsLT5pbmZvLT5pZCk7Ci0KLQlpZiAoSVNf
-RUxLSEFSVExBS0UoZGV2X3ByaXYpICYmCi0JICAgIHBsbC0+aW5mby0+aWQgPT0gRFBMTF9JRF9F
-SExfRFBMTDQpIHsKLQkJZW5hYmxlX3JlZyA9IE1HX1BMTF9FTkFCTEUoMCk7Ci0JfQorCWk5MTVf
-cmVnX3QgZW5hYmxlX3JlZyA9IGludGVsX2NvbWJvX3BsbF9lbmFibGVfcmVnKGRldl9wcml2LCBw
-bGwpOwogCiAJcmV0dXJuIGljbF9wbGxfZ2V0X2h3X3N0YXRlKGRldl9wcml2LCBwbGwsIGh3X3N0
-YXRlLCBlbmFibGVfcmVnKTsKIH0KQEAgLTQwNDUsMTEgKzQwNTIsMTAgQEAgc3RhdGljIHZvaWQg
-aWNsX3BsbF9lbmFibGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAogc3RhdGlj
-IHZvaWQgY29tYm9fcGxsX2VuYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYs
-CiAJCQkgICAgIHN0cnVjdCBpbnRlbF9zaGFyZWRfZHBsbCAqcGxsKQogewotCWk5MTVfcmVnX3Qg
-ZW5hYmxlX3JlZyA9IENOTF9EUExMX0VOQUJMRShwbGwtPmluZm8tPmlkKTsKKwlpOTE1X3JlZ190
-IGVuYWJsZV9yZWcgPSBpbnRlbF9jb21ib19wbGxfZW5hYmxlX3JlZyhkZXZfcHJpdiwgcGxsKTsK
-IAogCWlmIChJU19FTEtIQVJUTEFLRShkZXZfcHJpdikgJiYKIAkgICAgcGxsLT5pbmZvLT5pZCA9
-PSBEUExMX0lEX0VITF9EUExMNCkgewotCQllbmFibGVfcmVnID0gTUdfUExMX0VOQUJMRSgwKTsK
-IAogCQkvKgogCQkgKiBXZSBuZWVkIHRvIGRpc2FibGUgREMgc3RhdGVzIHdoZW4gdGhpcyBEUExM
-IGlzIGVuYWJsZWQuCkBAIC00MTU3LDExICs0MTYzLDEwIEBAIHN0YXRpYyB2b2lkIGljbF9wbGxf
-ZGlzYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiBzdGF0aWMgdm9pZCBj
-b21ib19wbGxfZGlzYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJCQkg
-ICAgICBzdHJ1Y3QgaW50ZWxfc2hhcmVkX2RwbGwgKnBsbCkKIHsKLQlpOTE1X3JlZ190IGVuYWJs
-ZV9yZWcgPSBDTkxfRFBMTF9FTkFCTEUocGxsLT5pbmZvLT5pZCk7CisJaTkxNV9yZWdfdCBlbmFi
-bGVfcmVnID0gaW50ZWxfY29tYm9fcGxsX2VuYWJsZV9yZWcoZGV2X3ByaXYsIHBsbCk7CiAKIAlp
-ZiAoSVNfRUxLSEFSVExBS0UoZGV2X3ByaXYpICYmCiAJICAgIHBsbC0+aW5mby0+aWQgPT0gRFBM
-TF9JRF9FSExfRFBMTDQpIHsKLQkJZW5hYmxlX3JlZyA9IE1HX1BMTF9FTkFCTEUoMCk7CiAJCWlj
-bF9wbGxfZGlzYWJsZShkZXZfcHJpdiwgcGxsLCBlbmFibGVfcmVnKTsKIAogCQlpbnRlbF9kaXNw
-bGF5X3Bvd2VyX3B1dChkZXZfcHJpdiwgUE9XRVJfRE9NQUlOX0RQTExfRENfT0ZGLAotLSAKMi4y
-NS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
-bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On 2020-08-26 07:32, Marek Szyprowski wrote:
+> The Documentation/DMA-API-HOWTO.txt states that the dma_map_sg() function
+> returns the number of the created entries in the DMA address space.
+> However the subsequent calls to the dma_sync_sg_for_{device,cpu}() and
+> dma_unmap_sg must be called with the original number of the entries
+> passed to the dma_map_sg().
+> 
+> struct sg_table is a common structure used for describing a non-contiguous
+> memory buffer, used commonly in the DRM and graphics subsystems. It
+> consists of a scatterlist with memory pages and DMA addresses (sgl entry),
+> as well as the number of scatterlist entries: CPU pages (orig_nents entry)
+> and DMA mapped pages (nents entry).
+> 
+> It turned out that it was a common mistake to misuse nents and orig_nents
+> entries, calling DMA-mapping functions with a wrong number of entries or
+> ignoring the number of mapped entries returned by the dma_map_sg()
+> function.
+> 
+> This driver creatively uses sg_table->orig_nents to store the size of the
+> allocated scatterlist and ignores the number of the entries returned by
+> dma_map_sg function. The sg_table->orig_nents is (mis)used to properly
+> free the (over)allocated scatterlist.
+> 
+> This patch only introduces the common DMA-mapping wrappers operating
+> directly on the struct sg_table objects to the dmabuf related functions,
+> so the other drivers, which might share buffers with i915 could rely on
+> the properly set nents and orig_nents values.
+
+This one looks mechanical enough :)
+
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c       | 11 +++--------
+>   drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c |  7 +++----
+>   2 files changed, 6 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> index 2679380159fc..8a988592715b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> @@ -48,12 +48,9 @@ static struct sg_table *i915_gem_map_dma_buf(struct dma_buf_attachment *attachme
+>   		src = sg_next(src);
+>   	}
+>   
+> -	if (!dma_map_sg_attrs(attachment->dev,
+> -			      st->sgl, st->nents, dir,
+> -			      DMA_ATTR_SKIP_CPU_SYNC)) {
+> -		ret = -ENOMEM;
+> +	ret = dma_map_sgtable(attachment->dev, st, dir, DMA_ATTR_SKIP_CPU_SYNC);
+> +	if (ret)
+>   		goto err_free_sg;
+> -	}
+>   
+>   	return st;
+>   
+> @@ -73,9 +70,7 @@ static void i915_gem_unmap_dma_buf(struct dma_buf_attachment *attachment,
+>   {
+>   	struct drm_i915_gem_object *obj = dma_buf_to_obj(attachment->dmabuf);
+>   
+> -	dma_unmap_sg_attrs(attachment->dev,
+> -			   sg->sgl, sg->nents, dir,
+> -			   DMA_ATTR_SKIP_CPU_SYNC);
+> +	dma_unmap_sgtable(attachment->dev, sg, dir, DMA_ATTR_SKIP_CPU_SYNC);
+>   	sg_free_table(sg);
+>   	kfree(sg);
+>   
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
+> index debaf7b18ab5..be30b27e2926 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
+> @@ -28,10 +28,9 @@ static struct sg_table *mock_map_dma_buf(struct dma_buf_attachment *attachment,
+>   		sg = sg_next(sg);
+>   	}
+>   
+> -	if (!dma_map_sg(attachment->dev, st->sgl, st->nents, dir)) {
+> -		err = -ENOMEM;
+> +	err = dma_map_sgtable(attachment->dev, st, dir, 0);
+> +	if (err)
+>   		goto err_st;
+> -	}
+>   
+>   	return st;
+>   
+> @@ -46,7 +45,7 @@ static void mock_unmap_dma_buf(struct dma_buf_attachment *attachment,
+>   			       struct sg_table *st,
+>   			       enum dma_data_direction dir)
+>   {
+> -	dma_unmap_sg(attachment->dev, st->sgl, st->nents, dir);
+> +	dma_unmap_sgtable(attachment->dev, st, dir, 0);
+>   	sg_free_table(st);
+>   	kfree(st);
+>   }
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
