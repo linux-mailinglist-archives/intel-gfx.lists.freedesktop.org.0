@@ -2,71 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F69625A005
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Sep 2020 22:33:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89F0F25A3C4
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Sep 2020 05:06:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1CC96E8FE;
-	Tue,  1 Sep 2020 20:33:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1D9889CBE;
+	Wed,  2 Sep 2020 03:06:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D81576E2D3;
- Tue,  1 Sep 2020 20:32:58 +0000 (UTC)
-IronPort-SDR: hS5uSv2SOBtAYEafTiRSKfGLibeHC5KJHi6arbyFGiqVh/YHsmheO93GyAvtMGpT8jqhDF8gez
- JWQZKTQZwUFQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9731"; a="157270820"
-X-IronPort-AV: E=Sophos;i="5.76,380,1592895600"; d="scan'208";a="157270820"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2020 13:32:58 -0700
-IronPort-SDR: gFe5hnRXldd7fJbFc44nwSHmVrBpVDQxPgbNR4BG7BgaaJWVkVWIwMg89IkXwFGt5CqnaBottM
- K5BiW+C33tjQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,380,1592895600"; d="scan'208";a="297441679"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by orsmga003.jf.intel.com with ESMTP; 01 Sep 2020 13:32:58 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 1 Sep 2020 13:32:57 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 1 Sep 2020 13:32:43 -0700
-Received: from orsmsx611.amr.corp.intel.com ([10.22.229.24]) by
- ORSMSX611.amr.corp.intel.com ([10.22.229.24]) with mapi id 15.01.1713.004;
- Tue, 1 Sep 2020 13:32:43 -0700
-From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
-To: Robin Murphy <robin.murphy@arm.com>, Marek Szyprowski
- <m.szyprowski@samsung.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "iommu@lists.linux-foundation.org"
- <iommu@lists.linux-foundation.org>, "linaro-mm-sig@lists.linaro.org"
- <linaro-mm-sig@lists.linaro.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>
-Thread-Topic: [Intel-gfx] [PATCH v9 08/32] drm: i915: fix common struct
- sg_table related issues
-Thread-Index: AQHWe3Ml/rRJPBw9lEWMq6REwJ0ovqlUN/gwgAB5zQD//4+ngA==
-Date: Tue, 1 Sep 2020 20:32:43 +0000
-Message-ID: <56ae8ce4ebe6423ea669b85d6dae8318@intel.com>
-References: <20200826063316.23486-1-m.szyprowski@samsung.com>
- <CGME20200826063532eucas1p2a9e0215f483104d45af0560d5dbfa8e0@eucas1p2.samsung.com>
- <20200826063316.23486-9-m.szyprowski@samsung.com>
- <259df561c4bb4ef484799e3776dbb402@intel.com>
- <1825327a-efd5-b836-d57e-d9356e279762@arm.com>
-In-Reply-To: <1825327a-efd5-b836-d57e-d9356e279762@arm.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.22.254.132]
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CD4789CBE;
+ Wed,  2 Sep 2020 03:06:32 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Bh83R5Kh2z9sSJ;
+ Wed,  2 Sep 2020 13:06:27 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1599015990;
+ bh=zim69dfuPpB8Yc/TUTIMWuP0ktKGex5mslQ+gJxzaq0=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=S4NyqMv/TQ3NRUoeVx95Jqy8U4YUbFnZDytjI8fpZrDZYqqvSK6kp82n2SQpnRKjt
+ PkBLDzrcz24MU2xUbXqehJgEXy89v5JM9+ETWwuL5ktGRyf078zXDRRwyJyBZ2A6dA
+ 76QM/XUS8aKK+dRL6YKa9GT5P1HNVoA/wZhg+QIO6qeuLM9M8fZs8WUTSvBxIii2oL
+ ajU/FFlGx3EXM3NYTuSDXDCJMq5NzzPPXUQnZ5/dQ+Mbj1pvzdnpZQacD6gtnf9Wwv
+ V/fUpA5CZLX9KEybaCM44/aHaCl482MG7h4BTbpq49hh/6nSHHZRKECudeEFbUWaui
+ 4+OKMjaKkalzg==
+Date: Wed, 2 Sep 2020 13:06:24 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@linux.ie>
+Message-ID: <20200902130624.18983108@canb.auug.org.au>
+In-Reply-To: <20200826105547.4f6ea26d@canb.auug.org.au>
+References: <20200826105547.4f6ea26d@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v9 08/32] drm: i915: fix common struct
- sg_table related issues
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,179 +49,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Christoph Hellwig <hch@lst.de>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Sidong Yang <realwakka@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1818174677=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
->-----Original Message-----
->From: Robin Murphy <robin.murphy@arm.com>
->Sent: Tuesday, September 1, 2020 3:54 PM
->To: Ruhl, Michael J <michael.j.ruhl@intel.com>; Marek Szyprowski
-><m.szyprowski@samsung.com>; dri-devel@lists.freedesktop.org;
->iommu@lists.linux-foundation.org; linaro-mm-sig@lists.linaro.org; linux-
->kernel@vger.kernel.org
->Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>; David Airlie
-><airlied@linux.ie>; intel-gfx@lists.freedesktop.org; Christoph Hellwig
-><hch@lst.de>; linux-arm-kernel@lists.infradead.org
->Subject: Re: [Intel-gfx] [PATCH v9 08/32] drm: i915: fix common struct
->sg_table related issues
+--===============1818174677==
+Content-Type: multipart/signed; boundary="Sig_/YizQk8yowqeEyhmG.EVW9OP";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/YizQk8yowqeEyhmG.EVW9OP
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+On Wed, 26 Aug 2020 10:55:47 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
 >
->On 2020-09-01 20:38, Ruhl, Michael J wrote:
->>> -----Original Message-----
->>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
->>> Marek Szyprowski
->>> Sent: Wednesday, August 26, 2020 2:33 AM
->>> To: dri-devel@lists.freedesktop.org; iommu@lists.linux-foundation.org;
->>> linaro-mm-sig@lists.linaro.org; linux-kernel@vger.kernel.org
->>> Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>; David Airlie
->>> <airlied@linux.ie>; intel-gfx@lists.freedesktop.org; Robin Murphy
->>> <robin.murphy@arm.com>; Christoph Hellwig <hch@lst.de>; linux-arm-
->>> kernel@lists.infradead.org; Marek Szyprowski
->>> <m.szyprowski@samsung.com>
->>> Subject: [Intel-gfx] [PATCH v9 08/32] drm: i915: fix common struct sg_table
->>> related issues
->>>
->>> The Documentation/DMA-API-HOWTO.txt states that the dma_map_sg()
->>> function
->>> returns the number of the created entries in the DMA address space.
->>> However the subsequent calls to the dma_sync_sg_for_{device,cpu}() and
->>> dma_unmap_sg must be called with the original number of the entries
->>> passed to the dma_map_sg().
->>>
->>> struct sg_table is a common structure used for describing a non-contiguous
->>> memory buffer, used commonly in the DRM and graphics subsystems. It
->>> consists of a scatterlist with memory pages and DMA addresses (sgl entry),
->>> as well as the number of scatterlist entries: CPU pages (orig_nents entry)
->>> and DMA mapped pages (nents entry).
->>>
->>> It turned out that it was a common mistake to misuse nents and orig_nents
->>> entries, calling DMA-mapping functions with a wrong number of entries or
->>> ignoring the number of mapped entries returned by the dma_map_sg()
->>> function.
->>>
->>> This driver creatively uses sg_table->orig_nents to store the size of the
->>> allocated scatterlist and ignores the number of the entries returned by
->>> dma_map_sg function. The sg_table->orig_nents is (mis)used to properly
->>> free the (over)allocated scatterlist.
->>>
->>> This patch only introduces the common DMA-mapping wrappers operating
->>> directly on the struct sg_table objects to the dmabuf related functions,
->>> so the other drivers, which might share buffers with i915 could rely on
->>> the properly set nents and orig_nents values.
->>>
->>> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
->>> ---
->>> drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c       | 11 +++--------
->>> drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c |  7 +++----
->>> 2 files changed, 6 insertions(+), 12 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->>> b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->>> index 2679380159fc..8a988592715b 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->>> @@ -48,12 +48,9 @@ static struct sg_table
->*i915_gem_map_dma_buf(struct
->>> dma_buf_attachment *attachme
->>> 		src = sg_next(src);
->>> 	}
->>>
->>> -	if (!dma_map_sg_attrs(attachment->dev,
->>> -			      st->sgl, st->nents, dir,
->>> -			      DMA_ATTR_SKIP_CPU_SYNC)) {
->>> -		ret = -ENOMEM;
->>
->> You have dropped this error value.
->>
->> Do you now if this is a benign loss?
->
->True, dma_map_sgtable() will return -EINVAL rather than -ENOMEM for
->failure. A quick look through other .map_dma_buf callbacks suggests
->they're returning a motley mix of error values and NULL for failure
->cases, so I'd imagine that importers shouldn't be too sensitive to the
->exact value.
+> After merging the drm-misc tree, today's linux-next build (x86_64
+> allmodconfig) failed like this:
+>=20
+> drivers/gpu/drm/qxl/qxl_display.c: In function 'qxl_display_read_client_m=
+onitors_config':
+> include/drm/drm_modeset_lock.h:167:7: error: implicit declaration of func=
+tion 'drm_drv_uses_atomic_modeset' [-Werror=3Dimplicit-function-declaration]
+>   167 |  if (!drm_drv_uses_atomic_modeset(dev))    \
+>       |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/qxl/qxl_display.c:187:2: note: in expansion of macro 'DRM=
+_MODESET_LOCK_ALL_BEGIN'
+>   187 |  DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, DRM_MODESET_ACQUIRE_INTERRU=
+PTIBLE, ret);
+>       |  ^~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/qxl/qxl_display.c:189:35: error: macro "DRM_MODESET_LOCK_=
+ALL_END" requires 3 arguments, but only 2 given
+>   189 |  DRM_MODESET_LOCK_ALL_END(ctx, ret);
+>       |                                   ^
+> In file included from include/drm/drm_crtc.h:36,
+>                  from include/drm/drm_atomic.h:31,
+>                  from drivers/gpu/drm/qxl/qxl_display.c:29:
+> include/drm/drm_modeset_lock.h:194: note: macro "DRM_MODESET_LOCK_ALL_END=
+" defined here
+>   194 | #define DRM_MODESET_LOCK_ALL_END(dev, ctx, ret)    \
+>       |=20
+> drivers/gpu/drm/qxl/qxl_display.c:189:2: error: 'DRM_MODESET_LOCK_ALL_END=
+' undeclared (first use in this function)
+>   189 |  DRM_MODESET_LOCK_ALL_END(ctx, ret);
+>       |  ^~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/qxl/qxl_display.c:189:2: note: each undeclared identifier=
+ is reported only once for each function it appears in
+> drivers/gpu/drm/qxl/qxl_display.c:187:2: error: label 'modeset_lock_fail'=
+ used but not defined
+>   187 |  DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, DRM_MODESET_ACQUIRE_INTERRU=
+PTIBLE, ret);
+>       |  ^~~~~~~~~~~~~~~~~~~~~~~~~~
+> In file included from include/drm/drm_crtc.h:36,
+>                  from include/drm/drm_atomic.h:31,
+>                  from drivers/gpu/drm/qxl/qxl_display.c:29:
+> include/drm/drm_modeset_lock.h:170:1: warning: label 'modeset_lock_retry'=
+ defined but not used [-Wunused-label]
+>   170 | modeset_lock_retry:       \
+>       | ^~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/qxl/qxl_display.c:187:2: note: in expansion of macro 'DRM=
+_MODESET_LOCK_ALL_BEGIN'
+>   187 |  DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, DRM_MODESET_ACQUIRE_INTERRU=
+PTIBLE, ret);
+>       |  ^~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/qxl/qxl_display.c: In function 'qxl_framebuffer_surface_d=
+irty':
+> drivers/gpu/drm/qxl/qxl_display.c:434:35: error: macro "DRM_MODESET_LOCK_=
+ALL_END" requires 3 arguments, but only 2 given
+>   434 |  DRM_MODESET_LOCK_ALL_END(ctx, ret);
+>       |                                   ^
+> In file included from include/drm/drm_crtc.h:36,
+>                  from include/drm/drm_atomic.h:31,
+>                  from drivers/gpu/drm/qxl/qxl_display.c:29:
+> include/drm/drm_modeset_lock.h:194: note: macro "DRM_MODESET_LOCK_ALL_END=
+" defined here
+>   194 | #define DRM_MODESET_LOCK_ALL_END(dev, ctx, ret)    \
+>       |=20
+> drivers/gpu/drm/qxl/qxl_display.c:434:2: error: 'DRM_MODESET_LOCK_ALL_END=
+' undeclared (first use in this function)
+>   434 |  DRM_MODESET_LOCK_ALL_END(ctx, ret);
+>       |  ^~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/qxl/qxl_display.c:411:2: error: label 'modeset_lock_fail'=
+ used but not defined
+>   411 |  DRM_MODESET_LOCK_ALL_BEGIN(fb->dev, ctx, DRM_MODESET_ACQUIRE_INT=
+ERRUPTIBLE, ret);
+>       |  ^~~~~~~~~~~~~~~~~~~~~~~~~~
+> In file included from include/drm/drm_crtc.h:36,
+>                  from include/drm/drm_atomic.h:31,
+>                  from drivers/gpu/drm/qxl/qxl_display.c:29:
+> include/drm/drm_modeset_lock.h:170:1: warning: label 'modeset_lock_retry'=
+ defined but not used [-Wunused-label]
+>   170 | modeset_lock_retry:       \
+>       | ^~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/qxl/qxl_display.c:411:2: note: in expansion of macro 'DRM=
+_MODESET_LOCK_ALL_BEGIN'
+>   411 |  DRM_MODESET_LOCK_ALL_BEGIN(fb->dev, ctx, DRM_MODESET_ACQUIRE_INT=
+ERRUPTIBLE, ret);
+>       |  ^~~~~~~~~~~~~~~~~~~~~~~~~~
+>=20
+> Caused by commit
+>=20
+>   bbaac1354cc9 ("drm/qxl: Replace deprecated function in qxl_display")
+>=20
+> interacting with commit
+>=20
+>   77ef38574beb ("drm/modeset-lock: Take the modeset BKL for legacy driver=
+s")
+>=20
+> from the drm-misc-fixes tree.
+>=20
+> drivers/gpu/drm/qxl/qxl_display.c manages to include
+> drm/drm_modeset_lock.h by some indirect route, but fails to have
+> drm/drm_drv.h similarly included.  In fact, drm/drm_modeset_lock.h should
+> have included drm/drm_drv.h since it uses things declared there, and
+> drivers/gpu/drm/qxl/qxl_display.c should include drm/drm_modeset_lock.h
+> similarly.
+>=20
+> I have added the following hack patch for today.
+>=20
+> From: Stephen Rothwell <sfr@canb.auug.org.au>
+> Date: Wed, 26 Aug 2020 10:40:18 +1000
+> Subject: [PATCH] fix interaction with drm-misc-fix commit
+>=20
+> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> ---
+>  drivers/gpu/drm/qxl/qxl_display.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_=
+display.c
+> index fa79688013b7..6063f3a15329 100644
+> --- a/drivers/gpu/drm/qxl/qxl_display.c
+> +++ b/drivers/gpu/drm/qxl/qxl_display.c
+> @@ -26,6 +26,7 @@
+>  #include <linux/crc32.h>
+>  #include <linux/delay.h>
+> =20
+> +#include <drm/drm_drv.h>
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_gem_framebuffer_helper.h>
+> @@ -186,7 +187,7 @@ void qxl_display_read_client_monitors_config(struct q=
+xl_device *qdev)
+> =20
+>  	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, DRM_MODESET_ACQUIRE_INTERRUPTIBLE,=
+ ret);
+>  	qxl_update_offset_props(qdev);
+> -	DRM_MODESET_LOCK_ALL_END(ctx, ret);
+> +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+>  	if (!drm_helper_hpd_irq_event(dev)) {
+>  		/* notify that the monitor configuration changed, to
+>  		   adjust at the arbitrary resolution */
+> @@ -431,7 +432,7 @@ static int qxl_framebuffer_surface_dirty(struct drm_f=
+ramebuffer *fb,
+>  			  clips, num_clips, inc, 0);
+> =20
+>  out_lock_end:
+> -	DRM_MODESET_LOCK_ALL_END(ctx, ret);
+> +	DRM_MODESET_LOCK_ALL_END(fb->dev, ctx, ret);
+> =20
+>  	return 0;
+>  }
+> --=20
+> 2.28.0
 
-I followed some of our code through to see if anyone is checking for -ENOMEM...
+This is now a build failure in the drm tree merg.  I have added the
+above hack to the merge of the drm tree today.
 
-I have found in some test paths... However, it is not clear to me if we can get
-to those paths from here.
+--=20
+Cheers,
+Stephen Rothwell
 
-Anyways,
+--Sig_/YizQk8yowqeEyhmG.EVW9OP
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-Reviewed-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+-----BEGIN PGP SIGNATURE-----
 
-Mike
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl9PDDAACgkQAVBC80lX
+0GwWdQgAoEm/nwWRUBzrY04JBxZ/dU6Tyuaalu0tAfgNKW5ve0o+yoPr/wVNxDM5
+hX94A3NBEErFIfrm2DSXLWhGmbO4MTYqxJVxFE9ZffZgiabFuQNpQXTVNYApFsuU
+4Wo+7W02qcSFNP4wUEOpa45kHiBgdfbMhkc6nA7kepgDx6n1BWuwEhuv9gBhrnfu
+hov8SK949yEdeWfkdLFkSv0LTsBVWjTHqMJT/qLBM/JCJooX2wIFcL2TMcKIO3qE
+3lrUnoC0LIQsfLDXnhF8uaZvg3dwTRmc3YARO/iaCJGo0RIFIXVdH8JayAg9Dhk2
+ei7kweWMeYAB9xeho1VqxUQC1vf3NQ==
+=qzdE
+-----END PGP SIGNATURE-----
 
->Robin.
->
->>
->> M
->>
->>> +	ret = dma_map_sgtable(attachment->dev, st, dir,
->>> DMA_ATTR_SKIP_CPU_SYNC);
->>> +	if (ret)
->>> 		goto err_free_sg;
->>> -	}
->>>
->>> 	return st;
->>>
->>> @@ -73,9 +70,7 @@ static void i915_gem_unmap_dma_buf(struct
->>> dma_buf_attachment *attachment,
->>> {
->>> 	struct drm_i915_gem_object *obj = dma_buf_to_obj(attachment-
->>>> dmabuf);
->>>
->>> -	dma_unmap_sg_attrs(attachment->dev,
->>> -			   sg->sgl, sg->nents, dir,
->>> -			   DMA_ATTR_SKIP_CPU_SYNC);
->>> +	dma_unmap_sgtable(attachment->dev, sg, dir,
->>> DMA_ATTR_SKIP_CPU_SYNC);
->>> 	sg_free_table(sg);
->>> 	kfree(sg);
->>>
->>> diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
->>> b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
->>> index debaf7b18ab5..be30b27e2926 100644
->>> --- a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
->>> +++ b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
->>> @@ -28,10 +28,9 @@ static struct sg_table *mock_map_dma_buf(struct
->>> dma_buf_attachment *attachment,
->>> 		sg = sg_next(sg);
->>> 	}
->>>
->>> -	if (!dma_map_sg(attachment->dev, st->sgl, st->nents, dir)) {
->>> -		err = -ENOMEM;
->>> +	err = dma_map_sgtable(attachment->dev, st, dir, 0);
->>> +	if (err)
->>> 		goto err_st;
->>> -	}
->>>
->>> 	return st;
->>>
->>> @@ -46,7 +45,7 @@ static void mock_unmap_dma_buf(struct
->>> dma_buf_attachment *attachment,
->>> 			       struct sg_table *st,
->>> 			       enum dma_data_direction dir)
->>> {
->>> -	dma_unmap_sg(attachment->dev, st->sgl, st->nents, dir);
->>> +	dma_unmap_sgtable(attachment->dev, st, dir, 0);
->>> 	sg_free_table(st);
->>> 	kfree(st);
->>> }
->>> --
->>> 2.17.1
->>>
->>> _______________________________________________
->>> Intel-gfx mailing list
->>> Intel-gfx@lists.freedesktop.org
->>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+--Sig_/YizQk8yowqeEyhmG.EVW9OP--
+
+--===============1818174677==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1818174677==--
