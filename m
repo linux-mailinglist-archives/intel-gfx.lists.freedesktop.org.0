@@ -1,31 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 874A625AE14
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Sep 2020 16:59:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D44F225B162
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Sep 2020 18:19:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1F3D6E922;
-	Wed,  2 Sep 2020 14:59:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 368D56E084;
+	Wed,  2 Sep 2020 16:19:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0C27E6E922;
- Wed,  2 Sep 2020 14:59:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 05040A47E2;
- Wed,  2 Sep 2020 14:59:00 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 02 Sep 2020 14:59:00 -0000
-Message-ID: <159905874001.24288.13274074534241939575@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2D706E084
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Sep 2020 16:19:24 +0000 (UTC)
+IronPort-SDR: 0OPlA5MoudVPoq6Qfv7yvy6+7DNchNxbxvF13V5y3Ufif9K8AfLce0Thfnngw3OOj3JrJ8hjlK
+ 1Ad04xVqd3ag==
+X-IronPort-AV: E=McAfee;i="6000,8403,9732"; a="175473679"
+X-IronPort-AV: E=Sophos;i="5.76,383,1592895600"; d="scan'208";a="175473679"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2020 09:19:24 -0700
+IronPort-SDR: KPbGQKBnnOGuMV/B9xetYEfD23N9sg1MJC0MPghE7NEdh/rxzPIDnaTm3N0BREhUtyg5NixWvU
+ gGyXAQm3R1+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,383,1592895600"; d="scan'208";a="301891690"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 02 Sep 2020 09:19:22 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 02 Sep 2020 19:19:21 +0300
+Date: Wed, 2 Sep 2020 19:19:21 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200902161921.GT6112@intel.com>
 References: <cover.1599056955.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1599056955.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_modeset_probe_cleanup?=
+ <62c32c35683b843ecdc2eca2bd2d3e62cb705e96.1599056955.git.jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <62c32c35683b843ecdc2eca2bd2d3e62cb705e96.1599056955.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: remove the extra modeset init
+ layer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,245 +54,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1479766152=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1479766152==
-Content-Type: multipart/alternative;
- boundary="===============1043235754211256799=="
+On Wed, Sep 02, 2020 at 05:30:23PM +0300, Jani Nikula wrote:
+> Streamline the modeset init by removing the extra init layer.
+> =
 
---===============1043235754211256799==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> No functional changes, which means the cleanup path looks hideous.
+> =
 
-== Series Details ==
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_drv.c | 63 +++++++++++----------------------
+>  1 file changed, 20 insertions(+), 43 deletions(-)
+> =
 
-Series: drm/i915: modeset probe cleanup
-URL   : https://patchwork.freedesktop.org/series/81267/
-State : success
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
+drv.c
+> index e332b6fd701d..4d9b61b1a115 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -215,46 +215,6 @@ intel_teardown_mchbar(struct drm_i915_private *dev_p=
+riv)
+>  		release_resource(&dev_priv->mch_res);
+>  }
+>  =
 
-== Summary ==
+> -/* part #1: call before irq install */
+> -static int i915_driver_modeset_probe_noirq(struct drm_i915_private *i915)
+> -{
+> -	return intel_modeset_init_noirq(i915);
+> -}
+> -
+> -/* part #2: call after irq install */
+> -static int i915_driver_modeset_probe(struct drm_i915_private *i915)
+> -{
+> -	int ret;
+> -
+> -	/* Important: The output setup functions called by modeset_init need
+> -	 * working irqs for e.g. gmbus and dp aux transfers. */
+> -	ret =3D intel_modeset_init_nogem(i915);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret =3D i915_gem_init(i915);
+> -	if (ret)
+> -		goto cleanup_modeset;
+> -
+> -	ret =3D intel_modeset_init(i915);
+> -	if (ret)
+> -		goto cleanup_gem;
+> -
+> -	return 0;
+> -
+> -cleanup_gem:
+> -	i915_gem_suspend(i915);
+> -	i915_gem_driver_remove(i915);
+> -	i915_gem_driver_release(i915);
+> -cleanup_modeset:
+> -	/* FIXME */
+> -	intel_modeset_driver_remove(i915);
+> -	intel_irq_uninstall(i915);
+> -	intel_modeset_driver_remove_noirq(i915);
+> -out:
+> -	return ret;
+> -}
+> -
+>  static void intel_init_dpio(struct drm_i915_private *dev_priv)
+>  {
+>  	/*
+> @@ -923,7 +883,7 @@ int i915_driver_probe(struct pci_dev *pdev, const str=
+uct pci_device_id *ent)
+>  	if (ret < 0)
+>  		goto out_cleanup_mmio;
+>  =
 
-CI Bug Log - changes from CI_DRM_8955 -> Patchwork_18435
-====================================================
+> -	ret =3D i915_driver_modeset_probe_noirq(i915);
+> +	ret =3D intel_modeset_init_noirq(i915);
+>  	if (ret < 0)
+>  		goto out_cleanup_hw;
+>  =
 
-Summary
--------
+> @@ -931,10 +891,18 @@ int i915_driver_probe(struct pci_dev *pdev, const s=
+truct pci_device_id *ent)
+>  	if (ret)
+>  		goto out_cleanup_modeset;
+>  =
 
-  **SUCCESS**
+> -	ret =3D i915_driver_modeset_probe(i915);
+> -	if (ret < 0)
+> +	ret =3D intel_modeset_init_nogem(i915);
+> +	if (ret)
+>  		goto out_cleanup_irq;
+>  =
 
-  No regressions found.
+> +	ret =3D i915_gem_init(i915);
+> +	if (ret)
+> +		goto out_cleanup_modeset2;
+> +
+> +	ret =3D intel_modeset_init(i915);
+> +	if (ret)
+> +		goto out_cleanup_gem;
+> +
+>  	i915_driver_register(i915);
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/index.html
+>  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+> @@ -945,6 +913,15 @@ int i915_driver_probe(struct pci_dev *pdev, const st=
+ruct pci_device_id *ent)
+>  =
 
-Known issues
-------------
+>  	return 0;
+>  =
 
-  Here are the changes found in Patchwork_18435 that come from known issues:
+> +out_cleanup_gem:
+> +	i915_gem_suspend(i915);
+> +	i915_gem_driver_remove(i915);
+> +	i915_gem_driver_release(i915);
+> +out_cleanup_modeset2:
+> +	intel_modeset_driver_remove(i915);
+> +	intel_irq_uninstall(i915);
+> +	intel_modeset_driver_remove_noirq(i915);
+> +	goto out_cleanup_modeset;
 
-### IGT changes ###
+Looks like we used to do the intel_irq_uninstall() twice? We even
+have a FIXME in there stating as much. With this goto we only do
+it the once I guess. So seems like a slight change in behaviour.
+Though the comment says it gets called twice during driver remove
+as well, which does not seem to be true (at least anymore).
 
-#### Issues hit ####
+Anyways, fixing that properly likely requires some axctual thought
+wrt. hpd vs. irq vs. other stuff.
 
-  * igt@gem_exec_parallel@engines@contexts:
-    - fi-cfl-8109u:       [PASS][1] -> [INCOMPLETE][2] ([i915#2398])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-cfl-8109u/igt@gem_exec_parallel@engines@contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-cfl-8109u/igt@gem_exec_parallel@engines@contexts.html
+Series is
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+>  out_cleanup_irq:
+>  	intel_irq_uninstall(i915);
+>  out_cleanup_modeset:
+> -- =
 
-  
-#### Possible fixes ####
+> 2.20.1
 
-  * igt@i915_module_load@reload:
-    - fi-bxt-dsi:         [DMESG-WARN][5] ([i915#1635] / [i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-bxt-dsi/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-bxt-dsi/igt@i915_module_load@reload.html
-    - fi-tgl-u2:          [TIMEOUT][7] ([i915#1418]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-tgl-u2/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-tgl-u2/igt@i915_module_load@reload.html
+-- =
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - fi-bsw-kefka:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-tgl-u2:          [SKIP][13] ([i915#579]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [INCOMPLETE][15] ([i915#2276]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  
-  [i915#1418]: https://gitlab.freedesktop.org/drm/intel/issues/1418
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2276]: https://gitlab.freedesktop.org/drm/intel/issues/2276
-  [i915#2398]: https://gitlab.freedesktop.org/drm/intel/issues/2398
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (38 -> 33)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8955 -> Patchwork_18435
-
-  CI-20190529: 20190529
-  CI_DRM_8955: 744c2c7c60ac2fbe7fae0c25c01a451d41d207b2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5776: 46e4315096bcaa2465c82c547274627365b1a69e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18435: 0ff068b7cefd2ce745f26f578b6a46bfada75358 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0ff068b7cefd drm/i915: remove the extra modeset init layer
-7cd1162fcd5f drm/i915: split out intel_modeset_driver_remove_nogem() and simplify
-c08fc8f7c7ed drm/i915: move more display related probe to intel_modeset_init_noirq()
-af603150eba7 drm/i915: split intel_modeset_init() pre/post gem init
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/index.html
-
---===============1043235754211256799==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: modeset probe cleanup</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81267/">https://patchwork.freedesktop.org/series/81267/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8955 -&gt; Patchwork_18435</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18435 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@contexts:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-cfl-8109u/igt@gem_exec_parallel@engines@contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-cfl-8109u/igt@gem_exec_parallel@engines@contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2398">i915#2398</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>
-<p>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-bxt-dsi/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-bxt-dsi/igt@i915_module_load@reload.html">PASS</a></p>
-</li>
-<li>
-<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-tgl-u2/igt@i915_module_load@reload.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1418">i915#1418</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-tgl-u2/igt@i915_module_load@reload.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>
-<p>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></p>
-</li>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8955/fi-icl-y/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2276">i915#2276</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18435/fi-icl-y/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (38 -&gt; 33)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_8955 -&gt; Patchwork_18435</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8955: 744c2c7c60ac2fbe7fae0c25c01a451d41d207b2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5776: 46e4315096bcaa2465c82c547274627365b1a69e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18435: 0ff068b7cefd2ce745f26f578b6a46bfada75358 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0ff068b7cefd drm/i915: remove the extra modeset init layer<br />
-7cd1162fcd5f drm/i915: split out intel_modeset_driver_remove_nogem() and simplify<br />
-c08fc8f7c7ed drm/i915: move more display related probe to intel_modeset_init_noirq()<br />
-af603150eba7 drm/i915: split intel_modeset_init() pre/post gem init</p>
-
-</body>
-</html>
-
---===============1043235754211256799==--
-
---===============1479766152==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1479766152==--
