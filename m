@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10B8C25AD1C
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Sep 2020 16:30:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A83EB25AD1D
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Sep 2020 16:30:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 605AC6E91D;
-	Wed,  2 Sep 2020 14:30:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04A6A6E326;
+	Wed,  2 Sep 2020 14:30:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBBA16E91D
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Sep 2020 14:30:46 +0000 (UTC)
-IronPort-SDR: a4kxA+uVN8uv5F7BkN/qGwQowsiz/7omlQuLFA48S08omsuIjsmNHfUcE6mzM5a20pJYT7LubF
- Qw0mWH2IiMGQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9731"; a="221608564"
-X-IronPort-AV: E=Sophos;i="5.76,383,1592895600"; d="scan'208";a="221608564"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 957DF89C9D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Sep 2020 14:30:50 +0000 (UTC)
+IronPort-SDR: zNfmzWZN6OWwZJ+R1Wu7+xCxpl1I1WSeCQ4sziDPH54X4lPn3svCJwSoMIdKX809WdL0HWw9rc
+ L70Z/0coAzaw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9731"; a="156652883"
+X-IronPort-AV: E=Sophos;i="5.76,383,1592895600"; d="scan'208";a="156652883"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2020 07:30:45 -0700
-IronPort-SDR: 1cIRXjgO8EfrPRZD44gSPMJq+zCNmLBtQp8olMjdTEDOzkrS14Y2lBhanu6AghU60ofrk4OA6T
- 4LxabKfgUu4A==
-X-IronPort-AV: E=Sophos;i="5.76,383,1592895600"; d="scan'208";a="502693235"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2020 07:30:50 -0700
+IronPort-SDR: XXx8VE/YK7FSf0Id7PedEcwk9LelTGbP6Jw2m9fm0e5QW6vRtM6Y7X4D7Yqgk8untDHYvJ13Ht
+ bAFMZJNXasoA==
+X-IronPort-AV: E=Sophos;i="5.76,383,1592895600"; d="scan'208";a="325802073"
 Received: from klaatz-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.251.95.101])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2020 07:30:42 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2020 07:30:48 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Sep 2020 17:30:21 +0300
-Message-Id: <da229ffbed64983f002605074533c8b2878d17ee.1599056955.git.jani.nikula@intel.com>
+Date: Wed,  2 Sep 2020 17:30:22 +0300
+Message-Id: <197fa7e488b412e147ff0fe9440c48811888f1a6.1599056955.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1599056955.git.jani.nikula@intel.com>
 References: <cover.1599056955.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915: move more display related probe
- to intel_modeset_init_noirq()
+Subject: [Intel-gfx] [PATCH 3/4] drm/i915: split out
+ intel_modeset_driver_remove_nogem() and simplify
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,81 +51,119 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2l0aCB0aGUgaW50ZWxfbW9kZXNldF8qIHByb2JlIGZ1bmN0aW9ucyBjbGFyaWZpZWQsIHdlIGNh
-biBjb250aW51ZSB3aXRoCm1vdmluZyBtb3JlIHJlbGF0ZWQgY2FsbHMgdG8gdGhlIHJpZ2h0IGxh
-eWVyOgoKLSBkcm1fdmJsYW5rX2luaXQoKQotIGludGVsX2Jpb3NfaW5pdCgpCi0gaW50ZWxfdmdh
-X3JlZ2lzdGVyKCkKLSBpbnRlbF9jc3JfdWNvZGVfaW5pdCgpCgpVbmZvcnR1bmF0ZWx5LCBmb3Ig
-dGhlIHRpbWUgYmVpbmcsIHdlIGFsc28gbmVlZCB0byBtb3ZlIGEgY2FsbCB0byB0aGUKKndyb25n
-KiBsYXllcjogdGhlIHBvd2VyIGRvbWFpbiBpbml0LgoKTm8gZnVuY3Rpb25hbCBjaGFuZ2VzLgoK
-djI6IG1vdmUgcHJvYmUgZmFpbHVyZSB3aGlsZSBhdCBpdCwgcG93ZXIgZG9tYWluIGluaXQKCkNj
-OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpTaWduZWQt
-b2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMzcgKysrKysrKysrKysrKysr
-KysrLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgICAgICAgICAgICAgIHwgMzYg
-Ky0tLS0tLS0tLS0tLS0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCAzNSBpbnNlcnRpb25zKCspLCAz
-OCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheS5jCmluZGV4IDEyNzlhNTBhZGUzNS4uNzljNzRiMDcyYTE1IDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtNjcsNiArNjcsNyBAQAogI2lu
-Y2x1ZGUgImludGVsX2J3LmgiCiAjaW5jbHVkZSAiaW50ZWxfY2RjbGsuaCIKICNpbmNsdWRlICJp
-bnRlbF9jb2xvci5oIgorI2luY2x1ZGUgImludGVsX2Nzci5oIgogI2luY2x1ZGUgImludGVsX2Rp
-c3BsYXlfdHlwZXMuaCIKICNpbmNsdWRlICJpbnRlbF9kcF9saW5rX3RyYWluaW5nLmgiCiAjaW5j
-bHVkZSAiaW50ZWxfZmJjLmgiCkBAIC0xNzg4MCw2ICsxNzg4MSwyNyBAQCBpbnQgaW50ZWxfbW9k
-ZXNldF9pbml0X25vaXJxKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQogewogCWludCBy
-ZXQ7CiAKKwlpZiAoaTkxNV9pbmplY3RfcHJvYmVfZmFpbHVyZShpOTE1KSkKKwkJcmV0dXJuIC1F
-Tk9ERVY7CisKKwlpZiAoSEFTX0RJU1BMQVkoaTkxNSkgJiYgSU5URUxfRElTUExBWV9FTkFCTEVE
-KGk5MTUpKSB7CisJCXJldCA9IGRybV92YmxhbmtfaW5pdCgmaTkxNS0+ZHJtLAorCQkJCSAgICAg
-IElOVEVMX05VTV9QSVBFUyhpOTE1KSk7CisJCWlmIChyZXQpCisJCQlyZXR1cm4gcmV0OworCX0K
-KworCWludGVsX2Jpb3NfaW5pdChpOTE1KTsKKworCXJldCA9IGludGVsX3ZnYV9yZWdpc3Rlcihp
-OTE1KTsKKwlpZiAocmV0KQorCQlnb3RvIGNsZWFudXBfYmlvczsKKworCS8qIEZJWE1FOiBjb21w
-bGV0ZWx5IG9uIHRoZSB3cm9uZyBhYnN0cmFjdGlvbiBsYXllciAqLworCWludGVsX3Bvd2VyX2Rv
-bWFpbnNfaW5pdF9odyhpOTE1LCBmYWxzZSk7CisKKwlpbnRlbF9jc3JfdWNvZGVfaW5pdChpOTE1
-KTsKKwogCWk5MTUtPm1vZGVzZXRfd3EgPSBhbGxvY19vcmRlcmVkX3dvcmtxdWV1ZSgiaTkxNV9t
-b2Rlc2V0IiwgMCk7CiAJaTkxNS0+ZmxpcF93cSA9IGFsbG9jX3dvcmtxdWV1ZSgiaTkxNV9mbGlw
-IiwgV1FfSElHSFBSSSB8CiAJCQkJCVdRX1VOQk9VTkQsIFdRX1VOQk9VTkRfTUFYX0FDVElWRSk7
-CkBAIC0xNzg4OCwxNSArMTc5MTAsMTUgQEAgaW50IGludGVsX21vZGVzZXRfaW5pdF9ub2lycShz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKIAogCXJldCA9IGludGVsX2NkY2xrX2luaXQo
-aTkxNSk7CiAJaWYgKHJldCkKLQkJcmV0dXJuIHJldDsKKwkJZ290byBjbGVhbnVwX3ZnYV9jbGll
-bnRfcHdfZG9tYWluX2NzcjsKIAogCXJldCA9IGludGVsX2RidWZfaW5pdChpOTE1KTsKIAlpZiAo
-cmV0KQotCQlyZXR1cm4gcmV0OworCQlnb3RvIGNsZWFudXBfdmdhX2NsaWVudF9wd19kb21haW5f
-Y3NyOwogCiAJcmV0ID0gaW50ZWxfYndfaW5pdChpOTE1KTsKIAlpZiAocmV0KQotCQlyZXR1cm4g
-cmV0OworCQlnb3RvIGNsZWFudXBfdmdhX2NsaWVudF9wd19kb21haW5fY3NyOwogCiAJaW5pdF9s
-bGlzdF9oZWFkKCZpOTE1LT5hdG9taWNfaGVscGVyLmZyZWVfbGlzdCk7CiAJSU5JVF9XT1JLKCZp
-OTE1LT5hdG9taWNfaGVscGVyLmZyZWVfd29yaywKQEAgLTE3OTA3LDYgKzE3OTI5LDE1IEBAIGlu
-dCBpbnRlbF9tb2Rlc2V0X2luaXRfbm9pcnEoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUp
-CiAJaW50ZWxfZmJjX2luaXQoaTkxNSk7CiAKIAlyZXR1cm4gMDsKKworY2xlYW51cF92Z2FfY2xp
-ZW50X3B3X2RvbWFpbl9jc3I6CisJaW50ZWxfY3NyX3Vjb2RlX2ZpbmkoaTkxNSk7CisJaW50ZWxf
-cG93ZXJfZG9tYWluc19kcml2ZXJfcmVtb3ZlKGk5MTUpOworCWludGVsX3ZnYV91bnJlZ2lzdGVy
-KGk5MTUpOworY2xlYW51cF9iaW9zOgorCWludGVsX2Jpb3NfZHJpdmVyX3JlbW92ZShpOTE1KTsK
-KworCXJldHVybiByZXQ7CiB9CiAKIC8qIHBhcnQgIzI6IGNhbGwgYWZ0ZXIgaXJxIGluc3RhbGws
-IGJ1dCBiZWZvcmUgZ2VtIGluaXQgKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCmluZGV4IDcwNjMy
-MTE5YzhhNi4uNmNmMTMzMGQzYjhlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X2Rydi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKQEAgLTIxOCw0
-MSArMjE4LDcgQEAgaW50ZWxfdGVhcmRvd25fbWNoYmFyKHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICpkZXZfcHJpdikKIC8qIHBhcnQgIzE6IGNhbGwgYmVmb3JlIGlycSBpbnN0YWxsICovCiBzdGF0
-aWMgaW50IGk5MTVfZHJpdmVyX21vZGVzZXRfcHJvYmVfbm9pcnEoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmk5MTUpCiB7Ci0JaW50IHJldDsKLQotCWlmIChpOTE1X2luamVjdF9wcm9iZV9mYWls
-dXJlKGk5MTUpKQotCQlyZXR1cm4gLUVOT0RFVjsKLQotCWlmIChIQVNfRElTUExBWShpOTE1KSAm
-JiBJTlRFTF9ESVNQTEFZX0VOQUJMRUQoaTkxNSkpIHsKLQkJcmV0ID0gZHJtX3ZibGFua19pbml0
-KCZpOTE1LT5kcm0sCi0JCQkJICAgICAgSU5URUxfTlVNX1BJUEVTKGk5MTUpKTsKLQkJaWYgKHJl
-dCkKLQkJCXJldHVybiByZXQ7Ci0JfQotCi0JaW50ZWxfYmlvc19pbml0KGk5MTUpOwotCi0JcmV0
-ID0gaW50ZWxfdmdhX3JlZ2lzdGVyKGk5MTUpOwotCWlmIChyZXQpCi0JCWdvdG8gY2xlYW51cF9i
-aW9zOwotCi0JaW50ZWxfcG93ZXJfZG9tYWluc19pbml0X2h3KGk5MTUsIGZhbHNlKTsKLQotCWlu
-dGVsX2Nzcl91Y29kZV9pbml0KGk5MTUpOwotCi0JcmV0ID0gaW50ZWxfbW9kZXNldF9pbml0X25v
-aXJxKGk5MTUpOwotCWlmIChyZXQpCi0JCWdvdG8gY2xlYW51cF92Z2FfY2xpZW50X3B3X2RvbWFp
-bl9jc3I7Ci0KLQlyZXR1cm4gMDsKLQotY2xlYW51cF92Z2FfY2xpZW50X3B3X2RvbWFpbl9jc3I6
-Ci0JaW50ZWxfY3NyX3Vjb2RlX2ZpbmkoaTkxNSk7Ci0JaW50ZWxfcG93ZXJfZG9tYWluc19kcml2
-ZXJfcmVtb3ZlKGk5MTUpOwotCWludGVsX3ZnYV91bnJlZ2lzdGVyKGk5MTUpOwotY2xlYW51cF9i
-aW9zOgotCWludGVsX2Jpb3NfZHJpdmVyX3JlbW92ZShpOTE1KTsKLQlyZXR1cm4gcmV0OworCXJl
-dHVybiBpbnRlbF9tb2Rlc2V0X2luaXRfbm9pcnEoaTkxNSk7CiB9CiAKIC8qIHBhcnQgIzI6IGNh
-bGwgYWZ0ZXIgaXJxIGluc3RhbGwgKi8KLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Split out a separate display function for driver remove after gem
+deinitialization. Note that the sequence is not symmetric with
+init. However use similar naming as that reflects the deinit sequence.
+
+No functional changes.
+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++
+ drivers/gpu/drm/i915/display/intel_display.h |  1 +
+ drivers/gpu/drm/i915/i915_drv.c              | 24 +++-----------------
+ 3 files changed, 16 insertions(+), 21 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 79c74b072a15..81ea609a5fa0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -18948,6 +18948,18 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
+ 	intel_fbc_cleanup_cfb(i915);
+ }
+ 
++/* part #3: call after gem init */
++void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915)
++{
++	intel_csr_ucode_fini(i915);
++
++	intel_power_domains_driver_remove(i915);
++
++	intel_vga_unregister(i915);
++
++	intel_bios_driver_remove(i915);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
+ 
+ struct intel_display_error_state {
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 63130e1a9eff..3670cabeb3cd 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -633,6 +633,7 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915);
+ int intel_modeset_init(struct drm_i915_private *i915);
+ void intel_modeset_driver_remove(struct drm_i915_private *i915);
+ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915);
++void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915);
+ void intel_display_resume(struct drm_device *dev);
+ void intel_init_pch_refclk(struct drm_i915_private *dev_priv);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 6cf1330d3b8e..e332b6fd701d 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -255,24 +255,6 @@ static int i915_driver_modeset_probe(struct drm_i915_private *i915)
+ 	return ret;
+ }
+ 
+-/* part #1: call before irq uninstall */
+-static void i915_driver_modeset_remove(struct drm_i915_private *i915)
+-{
+-	intel_modeset_driver_remove(i915);
+-}
+-
+-/* part #2: call after irq uninstall */
+-static void i915_driver_modeset_remove_noirq(struct drm_i915_private *i915)
+-{
+-	intel_csr_ucode_fini(i915);
+-
+-	intel_power_domains_driver_remove(i915);
+-
+-	intel_vga_unregister(i915);
+-
+-	intel_bios_driver_remove(i915);
+-}
+-
+ static void intel_init_dpio(struct drm_i915_private *dev_priv)
+ {
+ 	/*
+@@ -966,7 +948,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ out_cleanup_irq:
+ 	intel_irq_uninstall(i915);
+ out_cleanup_modeset:
+-	i915_driver_modeset_remove_noirq(i915);
++	intel_modeset_driver_remove_nogem(i915);
+ out_cleanup_hw:
+ 	i915_driver_hw_remove(i915);
+ 	intel_memory_regions_driver_release(i915);
+@@ -998,7 +980,7 @@ void i915_driver_remove(struct drm_i915_private *i915)
+ 
+ 	intel_gvt_driver_remove(i915);
+ 
+-	i915_driver_modeset_remove(i915);
++	intel_modeset_driver_remove(i915);
+ 
+ 	intel_irq_uninstall(i915);
+ 
+@@ -1007,7 +989,7 @@ void i915_driver_remove(struct drm_i915_private *i915)
+ 	i915_reset_error_state(i915);
+ 	i915_gem_driver_remove(i915);
+ 
+-	i915_driver_modeset_remove_noirq(i915);
++	intel_modeset_driver_remove_nogem(i915);
+ 
+ 	i915_driver_hw_remove(i915);
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
