@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6861925A82D
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Sep 2020 11:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 773D125A908
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Sep 2020 12:01:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1FE16E13C;
-	Wed,  2 Sep 2020 09:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 519B76E181;
+	Wed,  2 Sep 2020 10:01:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5371D6E13C
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Sep 2020 09:01:46 +0000 (UTC)
-IronPort-SDR: SUg2BVYM7hirjqJt7pvbIUOG+3ba5vQ3r9Ilc0k+HKkfO8AS5l5YSxSrIZ59CBimcc40p5ztyA
- qhrVw/vX7MMw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9731"; a="157354860"
-X-IronPort-AV: E=Sophos;i="5.76,381,1592895600"; d="scan'208";a="157354860"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2020 02:01:41 -0700
-IronPort-SDR: CQm1qar+E93CXH7XfBUMeiYP/nX2vX2afYxFcpOu/ZUt4IXwv2DU6MviOjcCspCZPplq3LEDuz
- urdLbdmB+ODA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,381,1592895600"; d="scan'208";a="283668568"
-Received: from khajapasha-nuc7i7bnh.iind.intel.com ([10.145.162.107])
- by fmsmga008.fm.intel.com with ESMTP; 02 Sep 2020 02:01:39 -0700
-From: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	kishore.kunche@intel.com
-Date: Wed,  2 Sep 2020 14:30:52 +0530
-Message-Id: <20200902090052.7649-1-mohammed.khajapasha@intel.com>
-X-Mailer: git-send-email 2.24.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 65DA46E181;
+ Wed,  2 Sep 2020 10:01:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 62545A47DB;
+ Wed,  2 Sep 2020 10:01:53 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] [RFC] drm/kms: Add separate hotplug event call
- for drm connector
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mohammed Khajapasha" <mohammed.khajapasha@intel.com>
+Date: Wed, 02 Sep 2020 10:01:53 -0000
+Message-ID: <159904091339.24288.16723518934136768803@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200902090052.7649-1-mohammed.khajapasha@intel.com>
+In-Reply-To: <20200902090052.7649-1-mohammed.khajapasha@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/kms=3A_Add_separate_hotplug_event_call_for_drm_connector?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,104 +38,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add separate hotplug event call for drm connector.
-Currently from uevent, user space doesn't know
-which connector got disconnected when multiple
-connectors are connected to DRM.
-
-Signed-off-by: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
----
- drivers/gpu/drm/drm_probe_helper.c | 30 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/drm_sysfs.c        | 26 ++++++++++++++++++++++++++
- 2 files changed, 56 insertions(+)
-
-diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
-index d6017726cc2a..d9a38569cfe1 100644
---- a/drivers/gpu/drm/drm_probe_helper.c
-+++ b/drivers/gpu/drm/drm_probe_helper.c
-@@ -588,6 +588,36 @@ int drm_helper_probe_single_connector_modes(struct drm_connector *connector,
- }
- EXPORT_SYMBOL(drm_helper_probe_single_connector_modes);
- 
-+/**
-+ * drm_kms_connector_hotplug_helper - fire off KMS connector hotplug event
-+ * @dev: drm_device whose connector state changed
-+ * @connector: drm_connector which connected/disconnected
-+ *
-+ * This function fires off the uevent for userspace and also calls the
-+ * output_poll_changed function, which is most commonly used to inform the fbdev
-+ * emulation code and allow it to update the fbcon output configuration.
-+ *
-+ * Drivers should call this from their hotplug handling code when a change is
-+ * detected. Note that this function does not do any output detection of its
-+ * own, like drm_helper_hpd_irq_event() does - this is assumed to be done by the
-+ * driver already.
-+ *
-+ * This function must be called from process context with no mode
-+ * setting locks held.
-+ *
-+ */
-+void drm_kms_connector_hotplug_helper(struct drm_device *dev,
-+		struct drm_connector *connector)
-+{
-+	drm_sysfs_connector_hotplug_event(dev, connector);
-+
-+	if (dev->mode_config.funcs->output_poll_changed)
-+		dev->mode_config.funcs->output_poll_changed(dev);
-+
-+	drm_client_dev_hotplug(dev);
-+}
-+EXPORT_SYMBOL(drm_kms_connector_hotplug_helper);
-+
- /**
-  * drm_kms_helper_hotplug_event - fire off KMS hotplug events
-  * @dev: drm_device whose connector state changed
-diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
-index f0336c804639..31bd08e1f77d 100644
---- a/drivers/gpu/drm/drm_sysfs.c
-+++ b/drivers/gpu/drm/drm_sysfs.c
-@@ -344,6 +344,32 @@ void drm_sysfs_hotplug_event(struct drm_device *dev)
- }
- EXPORT_SYMBOL(drm_sysfs_hotplug_event);
- 
-+/**
-+ * drm_sysfs_connector_hotplug_event - generate a connector hotplug uevent
-+ * @dev: DRM device
-+ *
-+ * Send a uevent for the DRM device specified by @dev. Currently we only
-+ * set HOTPLUG=1 and connector id in the uevent environment, but this could be
-+ * expanded to deal with other types of events.
-+ *
-+ * Any new uapi should be using the drm_sysfs_connector_status_event()
-+ * for uevents on connector status change.
-+ */
-+void drm_sysfs_connector_hotplug_event(struct drm_device *dev,
-+		struct drm_connector *connector)
-+{
-+	char hotplug_str[] = "HOTPLUG=1", conn_id[21];
-+	char *envp[] = { hotplug_str, conn_id, NULL };
-+
-+	snprintf(conn_id, ARRAY_SIZE(conn_id),
-+			"CONNECTOR=%u", connector->base.id);
-+
-+	DRM_DEBUG("generating connector hotplug event\n");
-+
-+	kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
-+}
-+EXPORT_SYMBOL(drm_sysfs_connector_hotplug_event);
-+
- /**
-  * drm_sysfs_connector_status_event - generate a DRM uevent for connector
-  * property status change
--- 
-2.24.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2ttczogQWRkIHNlcGFyYXRlIGhvdHBs
+dWcgZXZlbnQgY2FsbCBmb3IgZHJtIGNvbm5lY3RvcgpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3Jr
+LmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvODEyNTcvClN0YXRlIDogZmFpbHVyZQoKPT0gU3VtbWFy
+eSA9PQoKQ0FMTCAgICBzY3JpcHRzL2NoZWNrc3lzY2FsbHMuc2gKICBDQUxMICAgIHNjcmlwdHMv
+YXRvbWljL2NoZWNrLWF0b21pY3Muc2gKICBERVNDRU5EICBvYmp0b29sCiAgQ0hLICAgICBpbmNs
+dWRlL2dlbmVyYXRlZC9jb21waWxlLmgKICBDQyAgICAgIGRyaXZlcnMvZ3B1L2RybS9kcm1fcHJv
+YmVfaGVscGVyLm8KZHJpdmVycy9ncHUvZHJtL2RybV9wcm9iZV9oZWxwZXIuYzogSW4gZnVuY3Rp
+b24g4oCYZHJtX2ttc19jb25uZWN0b3JfaG90cGx1Z19oZWxwZXLigJk6CmRyaXZlcnMvZ3B1L2Ry
+bS9kcm1fcHJvYmVfaGVscGVyLmM6NjEyOjI6IGVycm9yOiBpbXBsaWNpdCBkZWNsYXJhdGlvbiBv
+ZiBmdW5jdGlvbiDigJhkcm1fc3lzZnNfY29ubmVjdG9yX2hvdHBsdWdfZXZlbnTigJk7IGRpZCB5
+b3UgbWVhbiDigJhkcm1fc3lzZnNfY29ubmVjdG9yX3N0YXR1c19ldmVudOKAmT8gWy1XZXJyb3I9
+aW1wbGljaXQtZnVuY3Rpb24tZGVjbGFyYXRpb25dCiAgZHJtX3N5c2ZzX2Nvbm5lY3Rvcl9ob3Rw
+bHVnX2V2ZW50KGRldiwgY29ubmVjdG9yKTsKICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fn4KICBkcm1fc3lzZnNfY29ubmVjdG9yX3N0YXR1c19ldmVudApjYzE6IHNvbWUgd2Fybmlu
+Z3MgYmVpbmcgdHJlYXRlZCBhcyBlcnJvcnMKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyODM6IHJl
+Y2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0vZHJtX3Byb2JlX2hlbHBlci5vJyBmYWls
+ZWQKbWFrZVszXTogKioqIFtkcml2ZXJzL2dwdS9kcm0vZHJtX3Byb2JlX2hlbHBlci5vXSBFcnJv
+ciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTAwOiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVy
+cy9ncHUvZHJtJyBmYWlsZWQKbWFrZVsyXTogKioqIFtkcml2ZXJzL2dwdS9kcm1dIEVycm9yIDIK
+c2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MDA6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dw
+dScgZmFpbGVkCm1ha2VbMV06ICoqKiBbZHJpdmVycy9ncHVdIEVycm9yIDIKTWFrZWZpbGU6MTc4
+ODogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMnIGZhaWxlZAptYWtlOiAqKiogW2RyaXZlcnNd
+IEVycm9yIDIKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
