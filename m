@@ -2,79 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598ED25C680
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Sep 2020 18:16:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4E9C25C70B
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Sep 2020 18:38:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28E676E1F2;
-	Thu,  3 Sep 2020 16:16:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CC096E14B;
+	Thu,  3 Sep 2020 16:38:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43BE06E1EE
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Sep 2020 16:16:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1599149782;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type: content-transfer-encoding:content-transfer-encoding;
- bh=u3UKX1foVctwA0pjlmKCaupVmNxBUnqY8/QtNhjTAM4=;
- b=RLRZtHgOUz+Ut3LpDmvYn/V7Hn6GgeuY8bt5gxWC+C+xkRn9Ag+VQ0YvR3eekdmxJS4Icv
- M3uxFGsjeW4TSmwwgi31YrP6V17aIB696gUyPay8yEYhJTgEjEmxwOoti3jKq0usj3yiY8
- e6tpW7AgKdAaihnEitJvhKwYIjsepr8=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-258-rLQQ1O6RNi6a000FckKUmQ-1; Thu, 03 Sep 2020 12:16:14 -0400
-X-MC-Unique: rLQQ1O6RNi6a000FckKUmQ-1
-Received: by mail-qk1-f197.google.com with SMTP id n189so1864965qkf.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 03 Sep 2020 09:16:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:date
- :organization:user-agent:mime-version:content-transfer-encoding;
- bh=u3UKX1foVctwA0pjlmKCaupVmNxBUnqY8/QtNhjTAM4=;
- b=sXsttrq0NemXPng19BR0mOqxfzUaaJK66gk62q3LXShxp3hNTXTcz9FbEhgn6hrutW
- zcbIcqfB2mgrggYKKDA7XslZ/vafz/kRaT5b67SmzIgop3Uzs7P4okp4zLxYmqPgcOd8
- 84lj5R52Q48xAHjua9SJzxhwWtrhzUcU/bMo/OO8IHiFP8hrA5jk5ae91pDMmoi9qvqe
- QF1PZdXSF8vrh6+tOfdxWImzg4t+jCvjUXTUwGXyo83WuJO5FZ1pzSCyhD/KL34L+Xiu
- KUyllBVf8qVBEYSImPGIiRa37COB8tFRhSN+m6/hqFXE1Iel5KL5sqVBhevpYzQ/jrYm
- uz0w==
-X-Gm-Message-State: AOAM532INHqYOVJ+FsubmRmg+Ls4UGwX+Kxd01Q+1w3HF806PeMH8qDH
- NxNSa17PB5E1cG81BaQx4KOe0hHxEKn6yn3/wQNHiQOU+D9/acjWFVS5zN3BYivngbKa2BbmlGr
- lzt7N8hr4JPYyQPm4yqtUwr307Am5
-X-Received: by 2002:a37:4856:: with SMTP id v83mr3858196qka.213.1599149773620; 
- Thu, 03 Sep 2020 09:16:13 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwnfAdAK5CNCb5UmSVJq15cU0SizGC7Yx7dV8yC6nzLLK6R0zfayileCjx+GmqCX6TZawwcfg==
-X-Received: by 2002:a37:4856:: with SMTP id v83mr3858162qka.213.1599149773275; 
- Thu, 03 Sep 2020 09:16:13 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id v14sm2295211qto.81.2020.09.03.09.16.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Sep 2020 09:16:12 -0700 (PDT)
-Message-ID: <a171fea35e5dab03873876e221ab15b74ab24d62.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: "events@lists.x.org" <events@lists.x.org>, 
- "xorg-devel@lists.freedesktop.org"
- <xorg-devel@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org"
- <wayland-devel@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org"
- <mesa-dev@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org"
- <etnaviv@lists.freedesktop.org>, "freedreno@lists.freedesktop.org"
- <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
- <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Date: Thu, 03 Sep 2020 12:16:11 -0400
-Organization: Red Hat
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4A1616E14B;
+ Thu,  3 Sep 2020 16:38:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4140FA73C7;
+ Thu,  3 Sep 2020 16:38:30 +0000 (UTC)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0.001
-X-Mimecast-Originator: redhat.com
-Subject: [Intel-gfx] [RESEND] Requests For Proposals for hosting XDC2021 are
- now open
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Date: Thu, 03 Sep 2020 16:38:30 -0000
+Message-ID: <159915111023.15506.14231984800494527821@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200903160417.12321-1-thomas_os@shipmail.org>
+In-Reply-To: <20200903160417.12321-1-thomas_os@shipmail.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Unlock_the_shared_hwsp=5Fgtt_object_after_pinning_=28r?=
+ =?utf-8?q?ev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,52 +39,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1445350003=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-(Including a bunch more emails in the To: that got missed the first time)
+--===============1445350003==
+Content-Type: multipart/alternative;
+ boundary="===============4759064537605711627=="
 
-Hello everyone!
+--===============4759064537605711627==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The X.org board is soliciting proposals to host XDC in 2021. Since
-XDC2020 is being held virtually this year, we've decided to host in
-either North America or Europe. However, the board is open to other
-locations, especially if there's an interesting co-location with another
-conference.
+== Series Details ==
 
-Of course though, due to the ongoing COVID-19 pandemic it's not yet
-clear whether or not it will be possible to host XDC2021 in person.
-Because of this, we would like to make it clear that sponsors should
-prepare for both the possibility of an in person conference, and the
-possibility of a virtual conference. We will work with organizers on
-coming up with a deadline for deciding whether or not we'll be going
-virtual, likely sometime around July.
+Series: drm/i915: Unlock the shared hwsp_gtt object after pinning (rev2)
+URL   : https://patchwork.freedesktop.org/series/81290/
+State : failure
 
-If you're considering hosting XDC, we've assembled a wiki page with
-what's generally expected and needed:
+== Summary ==
 
-https://www.x.org/wiki/Events/RFP/
+Applying: drm/i915: Unlock the shared hwsp_gtt object after pinning
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gt/intel_context.c
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
 
-When submitting your proposal, please make sure to include at least the
-key information about the potential location in question, possible dates
-along with estimated costs. Proposals can be submitted to board at
-foundation.x.org until the deadline of November 1st. Additionally, an
-quirk early heads-up to the board if you're considering hosting would be
-appreciated, in case we need to adjust the schedule a bit. Also, earlier
-is better since there generally will be a bit of Q&A with organizers.
 
-And if you just have some questions about what organizing XDC entails,
-please feel free to chat with previous organizers, or someone from the
-board.
--- 
-Sincerely,
-      Lyude Paul (she/her)
-      Software Engineer at Red Hat
+
+--===============4759064537605711627==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Unlock the shared hwsp_gtt object after pinning (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81290/">https://patchwork.freedesktop.org/series/81290/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>Applying: drm/i915: Unlock the shared hwsp_gtt object after pinning<br />
+Using index info to reconstruct a base tree...<br />
+M   drivers/gpu/drm/i915/gt/intel_context.c<br />
+Falling back to patching base and 3-way merge...<br />
+No changes -- Patch already applied.</p>
+
+</body>
+</html>
+
+--===============4759064537605711627==--
+
+--===============1445350003==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1445350003==--
