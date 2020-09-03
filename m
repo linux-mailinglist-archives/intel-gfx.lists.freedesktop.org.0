@@ -2,77 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CA002611F1
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Sep 2020 15:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B73D261293
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Sep 2020 16:23:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FD486E029;
-	Tue,  8 Sep 2020 13:20:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 497416E83C;
+	Tue,  8 Sep 2020 14:23:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 599E16E029
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Sep 2020 13:20:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1599571228;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=kk/MzQpl2YW+BRjUs+jKB6CtH3juIQy3EW0uS3+0BVs=;
- b=VVhCXbtogALha8HgF/EJvCIEP9bsyIT6TZjXycVfa64aMJAzcohRF5XT2gdXC6QxQGJRTP
- Sqh//fLGBt8dRs1jPvLaxzgrlC51nSszh0N2bjzZ/3Z6STs40UfW6+m2CfqEkz38hBApUo
- GXS2NuuqfbGSARk4yyZzK6K0PZOueqw=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-545-mJPFcnypMOCxj1rW7UJYxg-1; Tue, 08 Sep 2020 09:20:26 -0400
-X-MC-Unique: mJPFcnypMOCxj1rW7UJYxg-1
-Received: by mail-ed1-f69.google.com with SMTP id b12so6194954edw.15
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Sep 2020 06:20:26 -0700 (PDT)
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com
+ [IPv6:2607:f8b0:4864:20::d42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4E686E8B8
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Sep 2020 20:27:09 +0000 (UTC)
+Received: by mail-io1-xd42.google.com with SMTP id j2so4798504ioj.7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 03 Sep 2020 13:27:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=tcd-ie.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=XHoryAxbdooXqCdzEiDfBNHDRDqVJTRBeWqND7AhQWw=;
+ b=RCNqeDrberJQa8iEXoKdFFmsXmVgm0OJW7eIchkOEab4PeUqCYPXFDpEN7VrPE2Q2r
+ GUQQuiaAGbKydhEJAnnDCPiK90LXur6kCJr5L5sQ2r/ne46TMpiIdcTaCv2fHYoM6yNb
+ n/CznyFIPF9GJUXXveE7AfWdl33o/8t6SBeJ8YB3I8NVC2PqmD4/iWDqPdEI5wN78LVf
+ ncTI5ftXwXoF9V4Ax5mdMwpMg3xer78eQreGPZO8czXhtl772MKmX11X+ribr9UqcF1C
+ urDp6n8FeZvPlJlmjz8S3oOgFUFG1EujxtEbZKlxpUccJF2SFlBjkXHX8U39zQ/QDpq6
+ IUOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=kk/MzQpl2YW+BRjUs+jKB6CtH3juIQy3EW0uS3+0BVs=;
- b=A4yNgeXZNslu2c0qpC3os+1PWy7t173N6iilX3kP/IieDw0IEnngpdjisOL2Wg4Ktg
- VjF/GxbzN4Kd/rmKDt+ll4ff7qvoroMDfbMlPeCiWeGghFzkk8OpTRVPQ3rGtHzkQ7P3
- 3NoK1+5nEarG9TKkHT651L5zZ46Kep82/mqFNpqDTvTdZqn4X/YkNK1Rd4sgA8UKgLNq
- JbwBRupb5MW7O+ZvhBKaoS+A26/OORBUXvFcrDqKC8ZeOmYDh7GTFTxRMc2lkdGJEr6e
- WREj18MerOMlAb1Y/zmeRfljdffAF2lKGJ32kjRHTxzIY+vNDl6Mskmsm9F2zSNkRH6R
- Pxpg==
-X-Gm-Message-State: AOAM532TDGaqHIWFYfy8ovNVzH2Mi0kLzCIgNlOrl/JTh2sSNoWEOphk
- TmWSBFsRG74DMeUDd+w1IwgC1KhYPIATXol0RTfxnONEuiAi53weEzKRFVyvpGAAMS6fV6LkiRM
- exe9trq7Z9O8Xw+OJqpa7RejtxNMp
-X-Received: by 2002:aa7:d697:: with SMTP id d23mr27729574edr.13.1599571225752; 
- Tue, 08 Sep 2020 06:20:25 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyJSCXKpUVVYMUY6y6pGIlWBQF6oylam73BShkdtH0Ngf5e1fkNihiTDrhP7Zi2Gs3qSlHKgQ==
-X-Received: by 2002:aa7:d697:: with SMTP id d23mr27729530edr.13.1599571225337; 
- Tue, 08 Sep 2020 06:20:25 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
- by smtp.gmail.com with ESMTPSA id n11sm14190638ejs.38.2020.09.08.06.20.24
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 08 Sep 2020 06:20:24 -0700 (PDT)
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-References: <20200908140022.67dd3801@canb.auug.org.au>
- <db369f50-a3a0-2504-0628-ce5e6780d31b@redhat.com>
- <20200908210449.1a4f8e52@canb.auug.org.au>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <d5c2cb83-8fc0-069e-7d4b-64a8ecf9a6b4@redhat.com>
-Date: Tue, 8 Sep 2020 15:20:23 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=XHoryAxbdooXqCdzEiDfBNHDRDqVJTRBeWqND7AhQWw=;
+ b=r2Ymgk/2aMKdyoWol9iZ3+VVfB40fSLlSG6Exof8tAP61eeVQkoVSUD5wW0XmpEw/U
+ guYAoC4ik41BFmNmz+/8LBwfAhuTKilSjGnbF0Af2f8ZOAEqEDt7GF221VdrO/ojEmZm
+ 09VlanBh5kDptL777+rWH7UbUHR991P4XB8pMpAlcKlAbiwlmqgqQzmE9PSlJbA9op0k
+ ep64+0pfVzD/Wpws35kGNI1yLxvQtvQzXU9zkTy7eqXseAGYK2pBXr2xsFt62z7dRlqH
+ RpCCh36qz6yeJ141e0+E6NOeAOgvjpV3CqiHlcRzNyNJfFevoWwz+JOgPw3fCI8W5jlW
+ 7XKg==
+X-Gm-Message-State: AOAM5307QgnCLb3EN3zZZL14yI22Gvtc+c+YH3AqXKc+4an5p7HT8TkE
+ ijGshF+TCsfSqJeZq15+3unGVjKKs0b9t4VGNpycOQ==
+X-Google-Smtp-Source: ABdhPJwmTrpk85LWcnftpfNTJtQ24c/2yXv/TkIoKUAohLkMn+MLB1sF1W3BqKfqx9SeVWLrNTgZBBPqyFF6pQr5QKA=
+X-Received: by 2002:a02:834a:: with SMTP id w10mr5122585jag.63.1599164828964; 
+ Thu, 03 Sep 2020 13:27:08 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200908210449.1a4f8e52@canb.auug.org.au>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0.001
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-intel tree with
- Linus' tree
+References: <20191221150402.13868-1-murphyt7@tcd.ie>
+ <465815ae-9292-f37a-59b9-03949cb68460@deltatee.com>
+ <20200529124523.GA11817@infradead.org>
+ <CGME20200529190523eucas1p2c086133e707257c0cdc002f502d4f51d@eucas1p2.samsung.com>
+ <33137cfb-603c-86e8-1091-f36117ecfaf3@deltatee.com>
+ <ef2150d5-7b6a-df25-c10d-e43316fe7812@samsung.com>
+ <b9140772-0370-a858-578c-af503a06d8e9@deltatee.com>
+ <CALQxJuutRaeX89k2o4ffTKYRMizmMu0XbRnzpFuSSrkQR02jKg@mail.gmail.com>
+ <766525c3-4da9-6db7-cd90-fb4b82cd8083@deltatee.com>
+ <CALQxJuuS8KKUX_eWWSE81gsq5ePAETB-FoqRUSWFfqgr+B13gg@mail.gmail.com>
+In-Reply-To: <CALQxJuuS8KKUX_eWWSE81gsq5ePAETB-FoqRUSWFfqgr+B13gg@mail.gmail.com>
+From: Tom Murphy <murphyt7@tcd.ie>
+Date: Thu, 3 Sep 2020 21:26:57 +0100
+Message-ID: <CALQxJuuk0YR9dZWkqSmLU-kUKoOuuNj-kSikvQGq0wekijycLA@mail.gmail.com>
+To: Logan Gunthorpe <logang@deltatee.com>
+X-Mailman-Approved-At: Tue, 08 Sep 2020 14:23:54 +0000
+Subject: Re: [Intel-gfx] [PATCH 0/8] Convert the intel iommu driver to the
+ dma-iommu api
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,69 +72,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Guru Das Srinagesh <gurus@codeaurora.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
+Cc: kvm@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
+ linux-tegra@vger.kernel.org, Julien Grall <julien.grall@arm.com>,
+ Will Deacon <will@kernel.org>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Jean-Philippe Brucker <jean-philippe@linaro.org>,
+ linux-samsung-soc@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Christoph Hellwig <hch@infradead.org>, linux-rockchip@lists.infradead.org,
+ Andy Gross <agross@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-s390@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ virtualization@lists.linux-foundation.org,
+ Gerald Schaefer <gerald.schaefer@de.ibm.com>,
+ David Woodhouse <dwmw2@infradead.org>, Cornelia Huck <cohuck@redhat.com>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
+ iommu@lists.linux-foundation.org, Kukjin Kim <kgene@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Fri, 28 Aug 2020 at 00:34, Tom Murphy <murphyt7@tcd.ie> wrote:
+>
+> On Thu, 27 Aug 2020 at 22:36, Logan Gunthorpe <logang@deltatee.com> wrote:
+> >
+> >
+> >
+> > On 2020-08-23 6:04 p.m., Tom Murphy wrote:
+> > > I have added a check for the sg_dma_len == 0 :
+> > > """
+> > >  } __sgt_iter(struct scatterlist *sgl, bool dma) {
+> > >         struct sgt_iter s = { .sgp = sgl };
+> > >
+> > > +       if (sgl && sg_dma_len(sgl) == 0)
+> > > +           s.sgp = NULL;
+> > >
+> > >         if (s.sgp) {
+> > >             .....
+> > > """
+> > > at location [1].
+> > > but it doens't fix the problem.
+> >
+> > Based on my read of the code, it looks like we also need to change usage
+> > of sgl->length... Something like the rough patch below, maybe?
+> >
+> > Also, Tom, do you have an updated version of the patchset to convert the
+> > Intel IOMMU to dma-iommu available? The last one I've found doesn't
+> > apply cleanly (I'm assuming parts of it have been merged in slightly
+> > modified forms).
+> >
+>
+> I'll try and post one in the next 24hours
 
-On 9/8/20 1:04 PM, Stephen Rothwell wrote:
-> Hi Hans,
-> 
-> On Tue, 8 Sep 2020 10:22:06 +0200 Hans de Goede <hdegoede@redhat.com> wrote:
->>
->> On 9/8/20 6:00 AM, Stephen Rothwell wrote:
->>>
->>> Today's linux-next merge of the drm-intel tree got a conflict in:
->>>
->>>     drivers/gpu/drm/i915/display/intel_panel.c
->>>
->>> between commit:
->>>
->>>     f8bd54d21904 ("drm/i915: panel: Use atomic PWM API for devs with an external PWM controller")
-> 
-> This should have been
-> 
->    899c537c25f9 ("drm/i915: Use 64-bit division macro")
+I have just posted this now:
+The subject of the cover letter is:
+"[PATCH V2 0/5] Convert the intel iommu driver to the dma-iommu api"
 
-Yes that makes more sense.
-
->>> from Linus' tree and commit:
->>>
->>>     6b51e7d23aa8 ("drm/i915: panel: Honor the VBT PWM frequency for devs with an external PWM controller")
->>
->> That doesn't sound correct, those are both commits from the drm-intel tree.
->>
->>> from the drm-intel tree.
->>>
->>> I fixed it up (I just used the latter)
->>
->> Just taking the drivers/gpu/drm/i915/display/intel_panel.c contents of:
->>
->> f8bd54d21904 ("drm/i915: panel: Use atomic PWM API for devs with an external PWM controller")
->>
->> Is the right thing to do, the problem is a difference in a line which gets
->> removed in that commit.
-> 
-> Which is what I actually did, I guess :-)
-
-Yes, looks good.
-
-> Sorry about that.
-
-No problem and thank you for all the work you do on -next.
-
-Regards,
-
-Hans
-
+>
+> > Thanks,
+> >
+> > Logan
+> >
+> > --
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h
+> > b/drivers/gpu/drm/i915/i915
+> > index b7b59328cb76..9367ac801f0c 100644
+> > --- a/drivers/gpu/drm/i915/i915_scatterlist.h
+> > +++ b/drivers/gpu/drm/i915/i915_scatterlist.h
+> > @@ -27,13 +27,19 @@ static __always_inline struct sgt_iter {
+> >  } __sgt_iter(struct scatterlist *sgl, bool dma) {
+> >         struct sgt_iter s = { .sgp = sgl };
+> >
+> > +       if (sgl && !sg_dma_len(s.sgp))
+> > +               s.sgp = NULL;
+> > +
+> >         if (s.sgp) {
+> >                 s.max = s.curr = s.sgp->offset;
+> > -               s.max += s.sgp->length;
+> > -               if (dma)
+> > +
+> > +               if (dma) {
+> > +                       s.max += sg_dma_len(s.sgp);
+> >                         s.dma = sg_dma_address(s.sgp);
+> > -               else
+> > +               } else {
+> > +                       s.max += s.sgp->length;
+> >                         s.pfn = page_to_pfn(sg_page(s.sgp));
+> > +               }
+> >         }
+> >
+> >         return s;
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
