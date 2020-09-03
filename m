@@ -2,31 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D908825C0A0
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Sep 2020 13:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C57E225C0C1
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Sep 2020 14:08:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D909D6E9DA;
-	Thu,  3 Sep 2020 11:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B03246E9DD;
+	Thu,  3 Sep 2020 12:08:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5B6F36E9D9;
- Thu,  3 Sep 2020 11:54:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5383AA0BCB;
- Thu,  3 Sep 2020 11:54:07 +0000 (UTC)
+Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
+ [213.80.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2CD16E9DD
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Sep 2020 12:08:51 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 1390441B31;
+ Thu,  3 Sep 2020 14:08:50 +0200 (CEST)
+Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=ZBTIEnQT; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -4.502
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.502 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-2.403,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id AYMBUHyVH2i7; Thu,  3 Sep 2020 14:08:49 +0200 (CEST)
+Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35]) (Authenticated sender: mb878879)
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 6B8DF41AB2;
+ Thu,  3 Sep 2020 14:08:46 +0200 (CEST)
+Received: from Win10-1tb-87.SSPE.ch.intel.com (jfdmzpr03-ext.jf.intel.com
+ [134.134.139.72])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 1186D36035C;
+ Thu,  3 Sep 2020 14:08:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1599134926; bh=NjEUrJFx+5KOTrOx0UiRIFIL7mJGnBE8KnyRfcMxLNM=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=ZBTIEnQTrRas5sTrMU+/ZxYTP7R/GucsirY5FV75C+v1XVlew4EZ5mr3YNzbMtVyR
+ tMYVAR5Rn7QPmTCd1kaAQ/bIAIQBKScP0yEtZ+oOVlK5vp9ACruHJZegSZyUCwKc2E
+ pdlmWyU3GO+N1RpwYKmbcEA8cYtjS16rTI/b32HY=
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200826132811.17577-1-chris@chris-wilson.co.uk>
+ <20200826132811.17577-35-chris@chris-wilson.co.uk>
+ <b2ebd7c1-733f-04aa-78cd-f05e5ff5438a@shipmail.org>
+ <ca140ae5-96be-e72c-662d-64a0d8ad9689@shipmail.org>
+ <159913276436.16735.6772809621876628533@build.alporthouse.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <e174a861-c531-f9e3-0b97-6002767af331@shipmail.org>
+Date: Thu, 3 Sep 2020 14:08:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hans de Goede" <hdegoede@redhat.com>
-Date: Thu, 03 Sep 2020 11:54:07 -0000
-Message-ID: <159913404731.15506.15033191157576493313@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200903112337.4113-1-hdegoede@redhat.com>
-In-Reply-To: <20200903112337.4113-1-hdegoede@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_acpi/pwm/i915=3A_Convert_pwm-crc_and_i915_driver=27s_PWM_co?=
- =?utf-8?q?de_to_use_the_atomic_PWM_API?=
+In-Reply-To: <159913276436.16735.6772809621876628533@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 35/39] drm/i915: Encode fence specific
+ waitqueue behaviour into the wait.flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,60 +72,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: acpi/pwm/i915: Convert pwm-crc and i915 driver's PWM code to use the atomic PWM API
-URL   : https://patchwork.freedesktop.org/series/81287/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-1168abd5ce8d ACPI / LPSS: Resume Cherry Trail PWM controller in no-irq phase
-49747f4e3a9e ACPI / LPSS: Save Cherry Trail PWM ctx registers only once (at activation)
-97b4a9aebcb4 pwm: lpss: Fix off by one error in base_unit math in pwm_lpss_prepare()
-2e7faec371d2 pwm: lpss: Add range limit check for the base_unit register value
-94a41c16c5ba pwm: lpss: Add pwm_lpss_prepare_enable() helper
--:46: CHECK:BOOL_COMPARISON: Using comparison to false is error prone
-#46: FILE: drivers/pwm/pwm-lpss.c:137:
-+	pwm_lpss_cond_enable(pwm, enable && lpwm->info->bypass == false);
-
--:51: CHECK:BOOL_COMPARISON: Using comparison to true is error prone
-#51: FILE: drivers/pwm/pwm-lpss.c:142:
-+	pwm_lpss_cond_enable(pwm, enable && lpwm->info->bypass == true);
-
-total: 0 errors, 0 warnings, 2 checks, 67 lines checked
-b6ce0150e736 pwm: lpss: Make pwm_lpss_apply() not rely on existing hardware state
--:93: CHECK:BOOL_COMPARISON: Using comparison to false is error prone
-#93: FILE: drivers/pwm/pwm-lpss.c:134:
-+	pwm_lpss_cond_enable(pwm, lpwm->info->bypass == false);
-
--:99: CHECK:BOOL_COMPARISON: Using comparison to true is error prone
-#99: FILE: drivers/pwm/pwm-lpss.c:139:
-+	pwm_lpss_cond_enable(pwm, lpwm->info->bypass == true);
-
-total: 0 errors, 0 warnings, 2 checks, 63 lines checked
-48f37ff234b3 pwm: lpss: Remove suspend/resume handlers
-247ad837e2cd pwm: crc: Fix period / duty_cycle times being off by a factor of 256
-0b9d965a728a pwm: crc: Fix off-by-one error in the clock-divider calculations
-666a424bb1a8 pwm: crc: Fix period changes not having any effect
-f29b5d035a49 pwm: crc: Enable/disable PWM output on enable/disable
-88ea19297024 pwm: crc: Implement apply() method to support the new atomic PWM API
-ad30d11970a4 pwm: crc: Implement get_state() method
-240678c00b3d drm/i915: panel: Add get_vbt_pwm_freq() helper
-d1aacec4e432 drm/i915: panel: Honor the VBT PWM frequency for devs with an external PWM controller
-7e1d6106ba3a drm/i915: panel: Honor the VBT PWM min setting for devs with an external PWM controller
-5f2ad76ad27d drm/i915: panel: Use atomic PWM API for devs with an external PWM controller
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDkvMy8yMCAxOjMyIFBNLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4gUXVvdGluZyBUaG9tYXMg
+SGVsbHN0csO2bSAoSW50ZWwpICgyMDIwLTA5LTAzIDEwOjUwOjQ1KQo+PiBPbiA5LzIvMjAgNDow
+MiBQTSwgVGhvbWFzIEhlbGxzdHLDtm0gKEludGVsKSB3cm90ZToKPj4+IEhpLCBDaHJpcywKPj4+
+Cj4+PiBPbiA4LzI2LzIwIDM6MjggUE0sIENocmlzIFdpbHNvbiB3cm90ZToKPj4+PiBVc2UgdGhl
+IHdhaXRfcXVldWVfZW50cnkuZmxhZ3MgdG8gZGVub3RlIHRoZSBzcGVjaWFsIGZlbmNlIGJlaGF2
+aW91cgo+Pj4+IChmbGF0dGVuaW5nIGNvbnRpbnVhdGlvbnMgYWxvbmcgZmVuY2UgY2hhaW5zLCBh
+bmQgZm9yIHByb3BhZ2F0aW5nCj4+Pj4gZXJyb3JzKSByYXRoZXIgdGhhbiB0cnlpbmcgdG8gZGV0
+ZWN0IG9yZGluYXJ5IHdhaXRlcnMgYnkgdGhlaXIKPj4+PiBmdW5jdGlvbnMuCj4+Pj4KPj4+PiBT
+aWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPj4+
+PiAtLS0KPj4+PiAgwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9zd19mZW5jZS5jIHwgMjUg
+KysrKysrKysrKysrKysrLS0tLS0tLS0tLQo+Pj4+ICDCoCAxIGZpbGUgY2hhbmdlZCwgMTUgaW5z
+ZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pCj4+Pj4KPj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9zd19mZW5jZS5jCj4+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X3N3X2ZlbmNlLmMKPj4+PiBpbmRleCA0Y2QyMDM4Y2JlMzUuLjRlNTU3ZDFjNDY0NCAx
+MDA2NDQKPj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3N3X2ZlbmNlLmMKPj4+
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3N3X2ZlbmNlLmMKPj4+PiBAQCAtMTgs
+MTAgKzE4LDE1IEBACj4+Pj4gIMKgICNkZWZpbmUgSTkxNV9TV19GRU5DRV9CVUdfT04oZXhwcikg
+QlVJTERfQlVHX09OX0lOVkFMSUQoZXhwcikKPj4+PiAgwqAgI2VuZGlmCj4+Pj4gIMKgIC0jZGVm
+aW5lIEk5MTVfU1dfRkVOQ0VfRkxBR19BTExPQyBCSVQoMykgLyogYWZ0ZXIgV1FfRkxBR18qIGZv
+cgo+Pj4+IHNhZmV0eSAqLwo+Pj4+IC0KPj4+PiAgwqAgc3RhdGljIERFRklORV9TUElOTE9DSyhp
+OTE1X3N3X2ZlbmNlX2xvY2spOwo+Pj4+ICDCoCArI2RlZmluZSBXUV9GTEFHX0JJVFMgXAo+Pj4+
+ICvCoMKgwqAgQklUU19QRVJfVFlQRSh0eXBlb2ZfbWVtYmVyKHN0cnVjdCB3YWl0X3F1ZXVlX2Vu
+dHJ5LCBmbGFncykpCj4+Pj4gKwo+Pj4+ICsvKiBhZnRlciBXUV9GTEFHXyogZm9yIHNhZmV0eSAq
+Lwo+Pj4+ICsjZGVmaW5lIEk5MTVfU1dfRkVOQ0VfRkxBR19GRU5DRSBCSVQoV1FfRkxBR19CSVRT
+IC0gMSkKPj4+PiArI2RlZmluZSBJOTE1X1NXX0ZFTkNFX0ZMQUdfQUxMT0MgQklUKFdRX0ZMQUdf
+QklUUyAtIDIpCj4+PiBOb3Qgc3VyZSBpZiBzaGFyaW5nIHRoZSBmbGFncyBmaWVsZCB3aXRoIHRo
+ZSB3YWl0LmMgaW1wbGVtZW50YXRpb24gaXMKPj4+IGZ1bGx5IE9LIGVpdGhlci4gSXMgdGhlIEBr
+ZXkgcGFyYW1ldGVyIHRvIHRoZSB3YWtlIGZ1bmN0aW9uIHVzZWFibGU/IEkKPj4+IG1lYW4gcmF0
+aGVyIHRoYW4gcGFzc2luZyBqdXN0IGEgbGlzdCBoZWFkIGNvdWxkIHdlIHBhc3Mgc29tZXRoaW5n
+IGxpa2UKPj4+Cj4+PiBzdHJ1Y3QgaTkxNV9zd19mZW5jZV9rZXkgewo+Pj4gIMKgwqDCoCBib29s
+IG5vX3JlY3Vyc2lvbjsgLyogTWFrZXMgdGhlIHdhaXQgZnVuY3Rpb24ganVzdCBwdXQgaXRzIGVu
+dHJ5Cj4+PiBvbiBAY29udGludWF0aW9uIGFuZCByZXR1cm4gKi8KPj4+ICDCoMKgwqAgaW50IGVy
+cm9yOwo+Pj4gIMKgwqDCoCBzdHJ1Y3QgbGlzdF9oZWFkIGNvbnRpbnVhdGlvbjsKPj4+IH0KPiBU
+aGF0IHdvdWxkIG1lYW4gd2FpdF9ldmVudC1lc3F1ZSByb3V0aW5lcyBkbyBub3Qgd29yayBvbiBh
+IGZlbmNlLgoKT0ssIHRoYXQgaXMgYSBuby1nbyB0aGVuLgoKPgo+PiBpbnRlcm5hbCB3YWtlIGZ1
+bmN0aW9uIGluc3RlYWQgb2YgdGhlIGF1dG9yZW1vdmVfd2FrZV9mdW5jdGlvbiByZW1vdmUKPj4g
+dGhlIGZyYWdpbGl0eS4gV291bGQgdGhhdCBiZSBwb3NzaWJsZT8KPiBhdXRvcmVtb3ZlIGlzIHRo
+ZSBmdW5jdGlvbiB1c2VkIGJ5IGRpc3BsYXkgZm9yIGl0cyB3YWl0X2V2ZW50IGxvb3Agb3Zlcgo+
+IG11bHRpcGxlIHNvdXJjZXMuCgpIbW0uIEkgZG9uJ3QgdGhpbmsgSSBmb2xsb3cuIEkgbWVhbnQg
+aW5zdGVhZCBvZgoKaWYgKHBvcy0+ZnVuYyA9PSBhdXRvcmVtb3ZlX3dha2VfZnVuY3Rpb24pCiDC
+oMKgIC4uLgplbHNlCiDCoMKgIGRvX2k5MTVfc3BlY2lmaWNfc3R1ZmY7Cgp3ZSB1c2UKCmlmIChw
+b3MtPmZ1bmMgIT0gaTkxNV9zd19mZW5jZV93YWtlKQogwqDCoMKgIC4uLgplbHNlCiDCoMKgIGRv
+X2k5MTVfc3BlY2lmaWNfc3R1ZmY7CgovVGhvbWFzCgoKCgo+IC1DaHJpcwpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
