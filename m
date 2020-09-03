@@ -1,52 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A927525C26F
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Sep 2020 16:25:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C686525C27F
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Sep 2020 16:26:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CCBD6E9FF;
-	Thu,  3 Sep 2020 14:25:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE07E6EA0D;
+	Thu,  3 Sep 2020 14:26:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D09B6E9FF
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Sep 2020 14:25:10 +0000 (UTC)
-IronPort-SDR: oF78cBpS/BH3j2lW2fKB6MyMWYemOleaJfFjGaVT/GVeoMhO1Sa5IMLp/clDTY2ws4hEWOuN1z
- n0Nd5CUusR3g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9733"; a="154980284"
-X-IronPort-AV: E=Sophos;i="5.76,387,1592895600"; d="scan'208";a="154980284"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2020 07:25:09 -0700
-IronPort-SDR: r0oShWtXFPbcxXxW+dpR5fEN+NTE+Zt/tLO1KQig7Aa+L6zHL0ArJmYf9kvXU5ee/M9PJJZAJC
- FClk0K+LxUyQ==
-X-IronPort-AV: E=Sophos;i="5.76,387,1592895600"; d="scan'208";a="478067528"
-Received: from possola-mobl.ger.corp.intel.com (HELO [10.252.38.17])
- ([10.252.38.17])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2020 07:25:07 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
- intel-gfx@lists.freedesktop.org
-References: <20200805122231.23313-1-chris@chris-wilson.co.uk>
- <8be11356-9899-cb6d-7ec5-e1388eb4c721@shipmail.org>
- <dd962d57-2446-660f-1c87-a04e5235536e@linux.intel.com>
- <159705310833.28521.10340512205153631314@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <53497a0a-0287-3a23-7a7b-e11a2d0c1c93@linux.intel.com>
-Date: Thu, 3 Sep 2020 15:25:05 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 428B86EA14
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Sep 2020 14:26:46 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id a9so3104396wmm.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 03 Sep 2020 07:26:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=WPGkIiYKzcgeZQHQnOsCQNykJDQ0LcIwyOzw3jP31iw=;
+ b=U301XTzYB4iZKTuiJEmNQa6LjlPoAgog/xJoj2wXvl+EI/gGl4kWAUeLkLbROf10CM
+ 12rXgyOY/z6vjHv0JLB7K9Jbh5iTKLxDuFMfUQin7FIUR20sK3PUvcY3qbKpbGGT1p5c
+ wW2cc2EqnzOcUZz45pxPARRleTG2/83YxeQSk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=WPGkIiYKzcgeZQHQnOsCQNykJDQ0LcIwyOzw3jP31iw=;
+ b=IUXTDMcT+s/5OeDfv0dhQ6SqZsdcIGNOWMLF3ZyXVJTANng6bU8VBf3p+rDL3Pt2gp
+ bgqFAxFp43V/lR43asBh4dwHIwecai7VgGY4ecn/z8WYu9c3ZZ6dIwHcSAJT2AK6qC5n
+ uzyOpooPwm3z7uCqfJtYKzTG/vQv92BoTylOyzZoWLHg8Kr2E+KAV2bQD84wnaCWqmyR
+ oQxdzfH0HvaRsQ0SyJYmooUhblE/L/Gxm2cbtDWvYoNtNJ1NmRJ6hVPiOor0BiZhLWRM
+ VuYvWbMwhVBxVY4hXbpNqEDhGtn681mJGKQSUOBZiwzK72aszWkYhLUsCM455R8CsJ0Q
+ PN8g==
+X-Gm-Message-State: AOAM533GIcadKQFidNc7KXlu2nlFUSbiSM5sdIya9UOuMC1Th2I2Mmkt
+ 30LpVfY+zgHXU9To7rmpz2zYOg==
+X-Google-Smtp-Source: ABdhPJy+7miLidr8+Q7a35jxDlUiV0t4pfimyyJefQnknzDQJHXA9I2kP+JojMTk8ShJea3BVBMVhA==
+X-Received: by 2002:a1c:4b04:: with SMTP id y4mr2747038wma.111.1599143204660; 
+ Thu, 03 Sep 2020 07:26:44 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id q6sm4392609wmq.19.2020.09.03.07.26.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 03 Sep 2020 07:26:43 -0700 (PDT)
+Date: Thu, 3 Sep 2020 16:26:41 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Message-ID: <20200903142641.GL2352366@phenom.ffwll.local>
+References: <20200902072627.3617301-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-In-Reply-To: <159705310833.28521.10340512205153631314@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 00/37] Replace obj->mm.lock with
- reservation_ww_class
+Content-Disposition: inline
+In-Reply-To: <20200902072627.3617301-1-daniel.vetter@ffwll.ch>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/managed: Cleanup of unused functions
+ and polishing docs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,97 +66,329 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Luben Tuikov <luben.tuikov@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ amd-gfx@lists.freedesktop.org,
+ Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDEwLzA4LzIwMjAgMTA6NTEsIENocmlzIFdpbHNvbiB3cm90ZToKPiBRdW90aW5nIFR2cnRr
-byBVcnN1bGluICgyMDIwLTA4LTA2IDEwOjIxOjM4KQo+Pgo+PiBPbiAwNS8wOC8yMDIwIDE3OjIy
-LCBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwpIHdyb3RlOgo+Pj4gSGksIENocmlzLAo+Pj4KPj4+
-Cj4+PiBPbiA4LzUvMjAgMjoyMSBQTSwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+Pj4+IExvbmcgc3Rv
-cnkgc2hvcnQsIHdlIG5lZWQgdG8gbWFuYWdlIGV2aWN0aW9ucyB1c2luZyBkbWFfcmVzdiAmIGRt
-YV9mZW5jZQo+Pj4+IHRyYWNraW5nLiBUaGUgYmFja2luZyBzdG9yYWdlIHdpbGwgdGhlbiBiZSBt
-YW5hZ2VkIHVzaW5nIHRoZSB3d19tdXRleAo+Pj4+IGJvcnJvd2VkIGZyb20gKGFuZCBzaGFyZWQg
-dmlhKSBvYmotPmJhc2UucmVzdiwgcmF0aGVyIHRoYW4gdGhlIGN1cnJlbnQKPj4+PiBvYmotPm1t
-LmxvY2suCj4+Pj4KPj4+PiBTa2lwcGluZyBvdmVyIHRoZSBicmVhZGNydW1icywKPj4+Cj4+PiBX
-aGlsZSBwZXJoYXBzIG5lZWRlZCBmaXhlcywgY291bGQgd2Ugc3VibWl0IHRoZW0gYXMgYSBzZXBh
-cmF0ZSBzZXJpZXMsCj4+PiBzaW5jZSB0aGV5LCBmcm9tIHdoYXQgSSBjYW4gdGVsbCwgYXJlIG5v
-dCBhIGRpcmVjdCBwYXJ0IG9mIHRoZSBsb2NraW5nCj4+PiByZXdvcmssIGFuZCBzb21lIG9mIHRo
-ZW0gd2VyZSBhY3R1YWxseSBwYXJ0IG9mIGEgc2VyaWVzIHRoYXQgRGF2ZSBOYUsnZWQKPj4+IGFu
-ZCBtYXkgcmVxdWlyZSBhZGRpdGlvbmFsIGp1c3RpZmljYXRpb24/Cj4+Pgo+Pj4KPj4+PiAgwqAg
-dGhlIGZpcnN0IHN0ZXAgaXMgdG8gcmVtb3ZlIHRoZSBmaW5hbAo+Pj4+IGNydXRjaGVzIG9mIHN0
-cnVjdF9tdXRleCBmcm9tIGV4ZWNidWYgYW5kIHRvIGJyb2FkZW4gdGhlIGhvbGQgZm9yIHRoZQo+
-Pj4+IGRtYS1yZXN2IHRvIGd1YXJkIG5vdCBqdXN0IHB1Ymxpc2hpbmcgdGhlIGRtYS1mZW5jZXMs
-IGJ1dCBmb3IgdGhlCj4+Pj4gZHVyYXRpb24gb2YgdGhlIGV4ZWNidWYgc3VibWlzc2lvbiAoaG9s
-ZGluZyBhbGwgb2JqZWN0cyBhbmQgdGhlaXIKPj4+PiBiYWNraW5nIHN0b3JlIGZyb20gdGhlIHBv
-aW50IG9mIGFjcXVpc2l0aW9uIHRvIHB1Ymxpc2hpbmcgb2YgdGhlIGZpbmFsCj4+Pj4gR1BVIHdv
-cmssIGFmdGVyIHdoaWNoIHRoZSBndWFyZCBpcyBkZWxlZ2F0ZWQgdG8gdGhlIGRtYS1mZW5jZXMp
-Lgo+Pj4+Cj4+Pj4gVGhpcyBpcyBvZiBjb3Vyc2UgbWFkZSBjb21wbGljYXRlZCBieSBvdXIgaGlz
-dG9yeS4gT24gdG9wIG9mIHRoZSB1c2VyJ3MKPj4+PiBvYmplY3RzLCB3ZSBhbHNvIGhhdmUgdGhl
-IEhXL2tlcm5lbCBvYmplY3RzIHdpdGggdGhlaXIgb3duIGxpZmV0aW1lcywKPj4+PiBhbmQgYSBi
-dW5jaCBvZiBhdXhpbGlhcnkgb2JqZWN0cyB1c2VkIGZvciB3b3JraW5nIGFyb3VuZCB1bmhhcHB5
-IEhXIGFuZAo+Pj4+IGZvciBwcm92aWRpbmcgdGhlIGxlZ2FjeSByZWxvY2F0aW9uIG1lY2hhbmlz
-bS4gV2UgYWRkIGV2ZXJ5IGF1eGlsaWFyeQo+Pj4+IG9iamVjdCB0byB0aGUgbGlzdCBvZiB1c2Vy
-IG9iamVjdHMgcmVxdWlyZWQsIGFuZCBhdHRlbXB0IHRvIGFjcXVpcmUgdGhlbQo+Pj4+IGVuIG1h
-c3NlLiBTaW5jZSBhbGwgdGhlIG9iamVjdHMgY2FuIGJlIGtub3duIGEgcHJpb3JpLCB3ZSBjYW4g
-YnVpbGQgYQo+Pj4+IGxpc3Qgb2YgdGhvc2Ugb2JqZWN0cyBhbmQgcGFzcyB0aGF0IHRvIGEgcm91
-dGluZSB0aGF0IGNhbiByZXNvbHZlIHRoZQo+Pj4+IC1FREVBRExLIChhbmQgZXZpY3Rpb25zKS4g
-W1RvIGF2b2lkIHJlbG9jYXRpb25zIGltcG9zaW5nIGEgcGVuYWx0eSBvbgo+Pj4+IHNhbmUgdXNl
-cnNwYWNlIHRoYXQgYXZvaWRzIHRoZW0sIHdlIGRvIG5vdCB0b3VjaCBhbnkgcmVsb2NhdGlvbnMg
-dW50aWwKPj4+PiBuZWNlc3NhcnksIGF0IHdpbGwgcG9pbnQgd2UgaGF2ZSB0byB1bnJvbGwgdGhl
-IHN0YXRlLCBhbmQgcmVidWlsZCBhIG5ldwo+Pj4+IGxpc3Qgd2l0aCBtb3JlIGF1eGlsaWFyeSBi
-dWZmZXJzIHRvIGFjY29tbW9kYXRlIHRoZSBleHRyYQo+Pj4+IGNvcHlfZnJvbV91c2VyXS4KPj4+
-PiBNb3JlIGV4YW1wbGVzIGFyZSBpbmNsdWRlZCBhcyB0byBob3cgd2UgY2FuIGJyZWFrIGRvd24g
-b3BlcmF0aW9ucwo+Pj4+IGludm9sdmluZyBtdWx0aXBsZSBvYmplY3RzIGludG8gYW4gYWNxdWly
-ZSBwaGFzZSBwcmlvciB0byB0aG9zZQo+Pj4+IG9wZXJhdGlvbnMsIGtlZXBpbmcgdGhlIC1FREVB
-RExLIGhhbmRsaW5nIHVuZGVyIGNvbnRyb2wuCj4+Pj4KPj4+PiBleGVjYnVmIGlzIHRoZSB1bmlx
-dWUgaW50ZXJmYWNlIGluIHRoYXQgaXQgZGVhbHMgd2l0aCBtdWx0aXBsZSB1c2VyCj4+Pj4gYW5k
-IGtlcm5lbCBidWZmZXJzLiBBZnRlciB0aGF0LCB3ZSBoYXZlIGNhbGxlcnMgdGhhdCBpbiBwcmlu
-Y2lwbGUgY2FyZQo+Pj4+IGFib3V0IGFjY2Vzc2luZyBhIHNpbmdsZSBidWZmZXIsIGFuZCBzbyBj
-YW4gYmUgbWlncmF0ZWQgb3ZlciB0byBhIGhlbHBlcgo+Pj4+IHRoYXQgcGVybWl0cyBvbmx5IGhv
-bGRpbmcgb25lIHN1Y2ggYnVmZmVyIGF0IGEgdGltZS4gVGhhdCBlbmFibGVzIHVzIHRvCj4+Pj4g
-c3dhcCBvdXQgb2JqLT5tbS5sb2NrIGZvciBvYmotPmJhc2UucmVzdi0+bG9jaywgYW5kIHVzZSBs
-b2NrZGVwIHRvIHNwb3QKPj4+PiBpbGxlZ2FsIG5lc3RpbmcsIGFuZCB0byB0aHJvdyBhd2F5IHRo
-ZSB0ZW1wb3JhcnkgcGlucyBieSByZXBsYWNpbmcgdGhlbQo+Pj4+IHdpdGggaG9sZGluZyB0aGUg
-d3dfbXV0ZXggZm9yIHRoZSBkdXJhdGlvbiBpbnN0ZWFkLgo+Pj4+Cj4+Pj4gV2hhdCdzIGNoYW5n
-ZWQ/IFNvbWUgcGF0Y2ggc3BsaXR0aW5nIGFuZCB3ZSBuZWVkIHRvIHB1bGwgaW4gTWF0dGhldydz
-Cj4+Pj4gcGF0Y2ggdG8gbWFwIHRoZSBwYWdlIGRpcmVjdG9yaWVzIHVuZGVyIHRoZSB3d19tdXRl
-eC4KPj4+Cj4+PiBJIHdvdWxkIHN0aWxsIGxpa2UgdG8gc2VlIGEganVzdGlmaWNhdGlvbiBmb3Ig
-dGhlIG5ld2x5IGludHJvZHVjZWQgYXN5bmMKPj4+IHdvcmssIGFzIG9wcG9zZWQgdG8gYWRkIGl0
-IGFzIGFuIG9wdGltaXppbmcgLyByZWdyZXNzaW9uIGZpeGluZyBzZXJpZXMKPj4+IGZvbGxvdyB0
-aGUgbG9ja2luZyByZXdvcmsuIFRoYXQgYXN5bmMgd29yayBpbnRyb2R1Y2VzIGEgYnVuY2ggb2Yg
-Y29kZQo+Pj4gY29tcGxleGl0eSBhbmQgaXQgd291bGQgYmUgYmVuZWZpY2lhbCB0byBzZWUgYSBk
-aXNjdXNzaW9uIG9mIHRoZQo+Pj4gdHJhZGVvZmZzIGFuZCBob3cgaXQgYWxpZ25lcyB3aXRoIHRo
-ZSB1cHN0cmVhbSBwcm9wb3NlZCBkbWEtZmVuY2UKPj4+IGFubm90YXRpb25zCj4+Cj4+IE9uIHRo
-ZSB0b3BpYyBvZiBhbm5vdGF0aW9ucywgbWF5YmUgZG8gYSB0cnlib3QgcnVuIHdpdGggdGhlbSBl
-bmFibGVkCj4+IHdpdGggdGhlIGxhdGVzdCBzZXJpZXMgYW5kIHRoZW4gc2VlIHdoYXQgcG9wcyB1
-cC4KPiAKPiBJdCBkaWRuJ3QgY2hhbmdlIHNpbmNlIHRoZSBydW4gRGFuaWVsIGRpZC4gSW4gdGhh
-dCBydW4gdGhlcmUgd2VyZSB0d28KPiBzcGxhdHMgSSBmb3VuZCwKPiAKPiB2bS0+bXV0ZXggLT4g
-ZG1hX2ZlbmNlX2lzX3NpZ25hbGVkL2RtYV9mZW5jZV9zaWduYWwgLT4gYXN5bmMgd29yayArIHZt
-LT5tdXRleAoKQ29taW5nIGJhY2sgdG8gdGhpcyBhZnRlciBhIGZldyB3ZWVrcyAtIHdhcyB0aGVy
-ZSBhbnkgZnVydGhlciBkaXNjdXNzaW9uIApvbiB0aGUgZG1hX2ZlbmNlX2lzX3NpZ25hbGVkIHBy
-b2JsZW0/IEkgZG9uJ3QgdGhpbmsgRGFuaWVsIHlvdSBldmVyIApyZXBsaWVkLCBvciBhdCBsZWFz
-dCBJIGRpZCBub3Qgc2VlIGl0LiBDYW4gdGhlIHNpZ25hbGluZyBzZWN0aW9uIGluIAp0aGVyZSBw
-b3NzaWJseSByZW1haW4gYW5kIG5vdCBiZSBvYnZpb3VzbHkgaW5jb3JyZWN0PwoKUmVnYXJkcywK
-ClR2cnRrbwoKPiAKPiBUaGlzIGlzIHRoZSBvdmVyY29uc3RyYWludCBEYW5pZWwgbWVudGlvbmVk
-LCBpdCdzIGFuIGVudGlyZWx5IGZhbHNlCj4gY291cGxpbmcgZnJvbSB0aGUgYXNzdW1wdGlvbiB0
-aGF0IHRoZSBhc3luYyB3b3JrIHJ1bnMgaW5zaWRlIHRoZQo+IHBhcmVudCdzIHNpZ25hbGluZyBj
-b250ZXh0LiBHdXQgZmVlbGluZyBzYXlzIHRoYXQgc2hvdWxkIGJlIHJlc29sdmFibGUKPiBieSB1
-c2luZyBsb2NrZGVwJ3MgZGVwZW5kZW5jeSBhbmFseXNpcyBiZXR3ZWVuIGxvY2FsIGV4ZWN1dGlv
-bi9zaWduYWwKPiBjb250ZXh0cy4KPiAKPiBUaGUgb3RoZXIgd2FzCj4gCj4gdXNlcnB0ciBtbXVf
-bm90aWZpZXIgLT4gaTkxNV92bWFfdW5iaW5kICsgaTkxNV92bWFfcmV2b2tlIC0+IG1tdV9ub3Rp
-Zmllcgo+IFt3aXRoIHRoZSBpbnRlcnBsYXkgYmV0d2VlbiB0aGUgdHdvIGdsb2JhbCBsb2NrbWFw
-J3MsIHR3byBzdHJpa2VzP10KPiAKPiBBbmQgdGhhdCBpcyB0aGUgd2VsbCBrbm93biBmYWxzZSBw
-b3NpdGl2ZSBmb3IgdXNlcnB0ciB0aGF0IHdlIGJyZWFrIGJ5Cj4gbmV2ZXIgYWxsb3dpbmcgdGhl
-IHVzZXJwdHIgdG8gaW4gYmUgdGhlIGRldi0+bWFwcGluZy4KPiAKPiBBIHBhdGggbm90IGV4ZXJj
-aXNlZCBidXQgaXQgc2hvdWxkIGZpbmQgaXMgc3luY2hyb25vdXMgZmVuY2UgZXZpY3Rpb24uCj4g
-V2hpbGUgYmluZGluZyBhIGZyZXNoIGZlbmNlIGVuc3VyZXMgdGhlIHZtYSBpcyBpZGxlIGJlZm9y
-ZSBzdGFydGluZywgd2UKPiBkbyBub3QgZG8gdGhlIHNhbWUgZm9yIHRoZSBmZW5jZSB3ZSBzdGVh
-bC4gVGhhdCdzIHdoeSBjYXJlIHdhcyB0YWtlbiBmb3IKPiBleGVjYnVmLCBhbmQgaXQganVzdCBt
-ZWFucyB0ZWFjaGluZyB0aGUgc3luY2hyb25vdXMgcGF0aCB0byBzaW1pbGFybHkKPiBtb3ZlIHRo
-ZSB3YWl0IG91dHNpZGUgb2YgdGhlIG11dGV4ICh0aGUgc2ltcGxlc3Qgd2lsbCBiZSB0byB3cmFw
-IHRoZQo+IGFzeW5jIGhhbmRsaW5nKS4KPiAtQ2hyaXMKPiAKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Sep 02, 2020 at 09:26:27AM +0200, Daniel Vetter wrote:
+> Following functions are only used internally, not by drivers:
+> - devm_drm_dev_init
+> =
+
+> Also, now that we have a very slick and polished way to allocate a
+> drm_device with devm_drm_dev_alloc, update all the docs to reflect the
+> new reality. Mostly this consists of deleting old and misleading
+> hints. Two main ones:
+> =
+
+> - it is no longer required that the drm_device base class is first in
+>   the structure. devm_drm_dev_alloc can cope with it being anywhere
+> =
+
+> - obviously embedded now strongly recommends using devm_drm_dev_alloc
+> =
+
+> v2: Fix typos (Noralf)
+> =
+
+> v3: Split out the removal of drm_dev_init, that's blocked on some
+> discussions on how to convert vgem/vkms/i915-selftests. Adjust commit
+> message to reflect that.
+> =
+
+> Cc: Noralf Tr=F8nnes <noralf@tronnes.org>
+> Acked-by: Noralf Tr=F8nnes <noralf@tronnes.org> (v2)
+> Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Luben Tuikov <luben.tuikov@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+
+Ok pushed that now to drm-misc-next. I'm also working on getting the
+remaining bits of the basic drm managed conversion resubmitted. That was
+unfortunately massively sidelined for the dma-fence discussions.
+
+Quick heads-up:
+drmm_add_final_kfree and drm_dev_init will both disappear, please use
+devm_drm_dev_alloc.
+
+Cheers, Daniel
+
+> ---
+>  .../driver-api/driver-model/devres.rst        |  2 +-
+>  drivers/gpu/drm/drm_drv.c                     | 78 +++++--------------
+>  drivers/gpu/drm/drm_managed.c                 |  2 +-
+>  include/drm/drm_device.h                      |  2 +-
+>  include/drm/drm_drv.h                         | 16 ++--
+>  5 files changed, 30 insertions(+), 70 deletions(-)
+> =
+
+> diff --git a/Documentation/driver-api/driver-model/devres.rst b/Documenta=
+tion/driver-api/driver-model/devres.rst
+> index eaaaafc21134..aa4d2420f79e 100644
+> --- a/Documentation/driver-api/driver-model/devres.rst
+> +++ b/Documentation/driver-api/driver-model/devres.rst
+> @@ -263,7 +263,7 @@ DMA
+>    dmam_pool_destroy()
+>  =
+
+>  DRM
+> -  devm_drm_dev_init()
+> +  devm_drm_dev_alloc()
+>  =
+
+>  GPIO
+>    devm_gpiod_get()
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index d4506f7a234e..7c1689842ec0 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -240,13 +240,13 @@ void drm_minor_release(struct drm_minor *minor)
+>   * DOC: driver instance overview
+>   *
+>   * A device instance for a drm driver is represented by &struct drm_devi=
+ce. This
+> - * is initialized with drm_dev_init(), usually from bus-specific ->probe=
+()
+> - * callbacks implemented by the driver. The driver then needs to initial=
+ize all
+> - * the various subsystems for the drm device like memory management, vbl=
+ank
+> - * handling, modesetting support and intial output configuration plus ob=
+viously
+> - * initialize all the corresponding hardware bits. Finally when everythi=
+ng is up
+> - * and running and ready for userspace the device instance can be publis=
+hed
+> - * using drm_dev_register().
+> + * is allocated and initialized with devm_drm_dev_alloc(), usually from
+> + * bus-specific ->probe() callbacks implemented by the driver. The drive=
+r then
+> + * needs to initialize all the various subsystems for the drm device lik=
+e memory
+> + * management, vblank handling, modesetting support and initial output
+> + * configuration plus obviously initialize all the corresponding hardwar=
+e bits.
+> + * Finally when everything is up and running and ready for userspace the=
+ device
+> + * instance can be published using drm_dev_register().
+>   *
+>   * There is also deprecated support for initalizing device instances usi=
+ng
+>   * bus-specific helpers and the &drm_driver.load callback. But due to
+> @@ -274,7 +274,7 @@ void drm_minor_release(struct drm_minor *minor)
+>   *
+>   * The following example shows a typical structure of a DRM display driv=
+er.
+>   * The example focus on the probe() function and the other functions tha=
+t is
+> - * almost always present and serves as a demonstration of devm_drm_dev_i=
+nit().
+> + * almost always present and serves as a demonstration of devm_drm_dev_a=
+lloc().
+>   *
+>   * .. code-block:: c
+>   *
+> @@ -294,22 +294,12 @@ void drm_minor_release(struct drm_minor *minor)
+>   *		struct drm_device *drm;
+>   *		int ret;
+>   *
+> - *		// devm_kzalloc() can't be used here because the drm_device '
+> - *		// lifetime can exceed the device lifetime if driver unbind
+> - *		// happens when userspace still has open file descriptors.
+> - *		priv =3D kzalloc(sizeof(*priv), GFP_KERNEL);
+> - *		if (!priv)
+> - *			return -ENOMEM;
+> - *
+> + *		priv =3D devm_drm_dev_alloc(&pdev->dev, &driver_drm_driver,
+> + *					  struct driver_device, drm);
+> + *		if (IS_ERR(priv))
+> + *			return PTR_ERR(priv);
+>   *		drm =3D &priv->drm;
+>   *
+> - *		ret =3D devm_drm_dev_init(&pdev->dev, drm, &driver_drm_driver);
+> - *		if (ret) {
+> - *			kfree(priv);
+> - *			return ret;
+> - *		}
+> - *		drmm_add_final_kfree(drm, priv);
+> - *
+>   *		ret =3D drmm_mode_config_init(drm);
+>   *		if (ret)
+>   *			return ret;
+> @@ -550,9 +540,9 @@ static void drm_fs_inode_free(struct inode *inode)
+>   * following guidelines apply:
+>   *
+>   *  - The entire device initialization procedure should be run from the
+> - *    &component_master_ops.master_bind callback, starting with drm_dev_=
+init(),
+> - *    then binding all components with component_bind_all() and finishin=
+g with
+> - *    drm_dev_register().
+> + *    &component_master_ops.master_bind callback, starting with
+> + *    devm_drm_dev_alloc(), then binding all components with
+> + *    component_bind_all() and finishing with drm_dev_register().
+>   *
+>   *  - The opaque pointer passed to all components through component_bind=
+_all()
+>   *    should point at &struct drm_device of the device instance, not som=
+e driver
+> @@ -706,24 +696,9 @@ static void devm_drm_dev_init_release(void *data)
+>  	drm_dev_put(data);
+>  }
+>  =
+
+> -/**
+> - * devm_drm_dev_init - Resource managed drm_dev_init()
+> - * @parent: Parent device object
+> - * @dev: DRM device
+> - * @driver: DRM driver
+> - *
+> - * Managed drm_dev_init(). The DRM device initialized with this function=
+ is
+> - * automatically put on driver detach using drm_dev_put().
+> - *
+> - * Note that drivers must call drmm_add_final_kfree() after this functio=
+n has
+> - * completed successfully.
+> - *
+> - * RETURNS:
+> - * 0 on success, or error code on failure.
+> - */
+> -int devm_drm_dev_init(struct device *parent,
+> -		      struct drm_device *dev,
+> -		      struct drm_driver *driver)
+> +static int devm_drm_dev_init(struct device *parent,
+> +			     struct drm_device *dev,
+> +			     struct drm_driver *driver)
+>  {
+>  	int ret;
+>  =
+
+> @@ -737,7 +712,6 @@ int devm_drm_dev_init(struct device *parent,
+>  =
+
+>  	return ret;
+>  }
+> -EXPORT_SYMBOL(devm_drm_dev_init);
+>  =
+
+>  void *__devm_drm_dev_alloc(struct device *parent, struct drm_driver *dri=
+ver,
+>  			   size_t size, size_t offset)
+> @@ -767,19 +741,9 @@ EXPORT_SYMBOL(__devm_drm_dev_alloc);
+>   * @driver: DRM driver to allocate device for
+>   * @parent: Parent device object
+>   *
+> - * Allocate and initialize a new DRM device. No device registration is d=
+one.
+> - * Call drm_dev_register() to advertice the device to user space and reg=
+ister it
+> - * with other core subsystems. This should be done last in the device
+> - * initialization sequence to make sure userspace can't access an incons=
+istent
+> - * state.
+> - *
+> - * The initial ref-count of the object is 1. Use drm_dev_get() and
+> - * drm_dev_put() to take and drop further ref-counts.
+> - *
+> - * Note that for purely virtual devices @parent can be NULL.
+> - *
+> - * Drivers that wish to subclass or embed &struct drm_device into their
+> - * own struct should look at using drm_dev_init() instead.
+> + * This is the deprecated version of devm_drm_dev_alloc(), which does no=
+t support
+> + * subclassing through embedding the struct &drm_device in a driver priv=
+ate
+> + * structure, and which does not support automatic cleanup through devre=
+s.
+>   *
+>   * RETURNS:
+>   * Pointer to new DRM device, or ERR_PTR on failure.
+> diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
+> index 1e1356560c2e..c36e3d98fd71 100644
+> --- a/drivers/gpu/drm/drm_managed.c
+> +++ b/drivers/gpu/drm/drm_managed.c
+> @@ -27,7 +27,7 @@
+>   * be done directly with drmm_kmalloc() and the related functions. Every=
+thing
+>   * will be released on the final drm_dev_put() in reverse order of how t=
+he
+>   * release actions have been added and memory has been allocated since d=
+river
+> - * loading started with drm_dev_init().
+> + * loading started with devm_drm_dev_alloc().
+>   *
+>   * Note that release actions and managed memory can also be added and re=
+moved
+>   * during the lifetime of the driver, all the functions are fully concur=
+rent
+> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+> index 0988351d743c..f4f68e7a9149 100644
+> --- a/include/drm/drm_device.h
+> +++ b/include/drm/drm_device.h
+> @@ -92,7 +92,7 @@ struct drm_device {
+>  	 * NULL.
+>  	 *
+>  	 * Instead of using this pointer it is recommended that drivers use
+> -	 * drm_dev_init() and embed struct &drm_device in their larger
+> +	 * devm_drm_dev_alloc() and embed struct &drm_device in their larger
+>  	 * per-device structure.
+>  	 */
+>  	void *dev_private;
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index 6ba7dd11384d..533c6e1a5a95 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -163,13 +163,12 @@ struct drm_driver {
+>  	/**
+>  	 * @load:
+>  	 *
+> -	 * Backward-compatible driver callback to complete
+> -	 * initialization steps after the driver is registered.  For
+> -	 * this reason, may suffer from race conditions and its use is
+> -	 * deprecated for new drivers.  It is therefore only supported
+> -	 * for existing drivers not yet converted to the new scheme.
+> -	 * See drm_dev_init() and drm_dev_register() for proper and
+> -	 * race-free way to set up a &struct drm_device.
+> +	 * Backward-compatible driver callback to complete initialization steps
+> +	 * after the driver is registered.  For this reason, may suffer from
+> +	 * race conditions and its use is deprecated for new drivers.  It is
+> +	 * therefore only supported for existing drivers not yet converted to
+> +	 * the new scheme.  See devm_drm_dev_alloc() and drm_dev_register() for
+> +	 * proper and race-free way to set up a &struct drm_device.
+>  	 *
+>  	 * This is deprecated, do not use!
+>  	 *
+> @@ -595,9 +594,6 @@ struct drm_driver {
+>  int drm_dev_init(struct drm_device *dev,
+>  		 struct drm_driver *driver,
+>  		 struct device *parent);
+> -int devm_drm_dev_init(struct device *parent,
+> -		      struct drm_device *dev,
+> -		      struct drm_driver *driver);
+>  =
+
+>  void *__devm_drm_dev_alloc(struct device *parent, struct drm_driver *dri=
+ver,
+>  			   size_t size, size_t offset);
+> -- =
+
+> 2.28.0
+> =
+
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
