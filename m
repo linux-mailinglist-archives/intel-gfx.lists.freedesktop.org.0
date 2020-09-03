@@ -2,69 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96CF625BB02
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Sep 2020 08:26:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D84F425BB5A
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Sep 2020 09:06:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1FDD6E179;
-	Thu,  3 Sep 2020 06:26:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA1606E191;
+	Thu,  3 Sep 2020 07:06:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D60486E179
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Sep 2020 06:26:23 +0000 (UTC)
-Received: from mail-pj1-f71.google.com ([209.85.216.71])
- by youngberry.canonical.com with esmtps
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <kai.heng.feng@canonical.com>) id 1kDihS-0003Ea-8t
- for intel-gfx@lists.freedesktop.org; Thu, 03 Sep 2020 06:26:22 +0000
-Received: by mail-pj1-f71.google.com with SMTP id r15so1044291pjo.9
- for <intel-gfx@lists.freedesktop.org>; Wed, 02 Sep 2020 23:26:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=H3E9iDZYJ2Ewy7NWkt2F53znB4PKm6gowZe9v2L4X1w=;
- b=amBcPG7bpkS04Jc11u93ptW3kilBqqXCXU/wFewcSxLhO9FS2XNuUo3AmoCCspyGGC
- SjgknC6RE4gCZZiSccJT3PmuFmHJx0tOECCWti8WMcHriGKzidFpnc+HknZw3+vAM9o2
- AGNxB15RyUFnHJlTYwH5fcZ28ZhmP9Ic+4GfacTLOAzDmDDzg4Z3Zv7CkrH23hDBFa4k
- xqLaDpOkwfX3C1c4dPN9MvdY7obAxp2iXK66VdlZFmm8a+KPMh+L2Uh7lY4zph5yyIF2
- nLtZuUndT+CExPXn11CzgWtkuQT+S/xRq8KOakNmIawrA+35j1+sxUz9VVxkSNfunTa/
- NUlg==
-X-Gm-Message-State: AOAM532o8GSMBZ0vObk69kcT/XfEra+dg6ZgrktxY47X7o5gQLhou/H/
- OdtmCYshOzgw9ZDg3R+b+NOrltfB6fPOB6p+5TPhOi1M2qwYrdJ0Mvlh//le6rs4T7O6KeNdVT0
- TSAOrHP8+DY1NtcnIkeRAmRXLqXldlKClYhiyauIG9LsHUw==
-X-Received: by 2002:a17:90a:e80f:: with SMTP id
- i15mr1664876pjy.62.1599114380402; 
- Wed, 02 Sep 2020 23:26:20 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzIvvFJRBN0zySkdy/5rk9n4CgOiWRfLeG810F7vUo1dFHsgtJgrBMKSLCzBzb/uJhCm4ERCw==
-X-Received: by 2002:a17:90a:e80f:: with SMTP id
- i15mr1664850pjy.62.1599114380023; 
- Wed, 02 Sep 2020 23:26:20 -0700 (PDT)
-Received: from [192.168.1.208] (220-133-187-190.HINET-IP.hinet.net.
- [220.133.187.190])
- by smtp.gmail.com with ESMTPSA id ev10sm1276590pjb.35.2020.09.02.23.26.18
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 02 Sep 2020 23:26:19 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.1\))
-From: Kai-Heng Feng <kai.heng.feng@canonical.com>
-In-Reply-To: <20200826130511.GN6112@intel.com>
-Date: Thu, 3 Sep 2020 14:26:16 +0800
-Message-Id: <432E1B70-7F52-4DF7-8887-0769F17DAD30@canonical.com>
-References: <844BC1FA-9C2F-4AAF-A0D9-B9A1EA40F51D@canonical.com>
- <32B7CFB3-045A-463D-8556-A63BACEB89D1@intel.com>
- <BYAPR11MB31902A8155BE70687A93FAFAB2430@BYAPR11MB3190.namprd11.prod.outlook.com>
- <DF870FF7-4EAD-48B3-8159-27359BD7B02B@canonical.com>
- <BYAPR11MB3190EA6507BFF7C7D8294C02B25E0@BYAPR11MB3190.namprd11.prod.outlook.com>
- <30685BA7-1D02-48A0-9B7A-4933ED2B8F0D@canonical.com>
- <20200824180438.GI6112@intel.com>
- <BYAPR11MB31903D08E7BF1B2084309E80B2560@BYAPR11MB3190.namprd11.prod.outlook.com>
- <010FB10D-B1EF-4C2E-A8AD-B7409E771BD0@canonical.com>
- <20200826130511.GN6112@intel.com>
-To: =?utf-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-X-Mailer: Apple Mail (2.3608.120.23.2.1)
-Subject: Re: [Intel-gfx] [Regression] "drm/i915: Implement display w/a
- #1143" breaks HDMI on ASUS GL552VW
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9DC76E185;
+ Thu,  3 Sep 2020 07:06:26 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4BhsKp4XNcz9sSJ;
+ Thu,  3 Sep 2020 17:06:21 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1599116784;
+ bh=IpzpAM9WNEVFUfzErfbK1CgGgH76/AtGBgk1CL3HD30=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=YcEElZT3EpzTyWvEOgx+Pvo91s/nJU5tdVC+qkfY6SnZZ6/rPL3Fp1TpEHEpU8oE7
+ qgnuhbikeVk9cV/uFFSWouhk7fuSYiDR1cgNrpkEHBqI1dIcbozm81EgRsb2oggL8Q
+ rXz12ElQbSOszWy0rkq40jSvatsrHTpjMx31v61OHKFKLZWzCz8LxcWG4PdB7c8/Jp
+ M1Jl6r5qH0Fj4MAszOqv7w7CuyygeXWa/2oNbNBium+K/CUdqCm+ZuW5/5kTn+qZTF
+ VJSxPVpf4WLVgQa75CHqo8lOpiwhy5dIvCcd6uxr68D9IYt2qCUdaJlnbyk+stRzXh
+ XMAp6jc4P6Peg==
+Date: Thu, 3 Sep 2020 17:06:12 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: DRI <dri-devel@lists.freedesktop.org>, Alex Deucher
+ <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>
+Message-ID: <20200903170612.18cebfad@canb.auug.org.au>
+In-Reply-To: <20200826101853.59136e16@canb.auug.org.au>
+References: <20200826101853.59136e16@canb.auug.org.au>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
+ the amdgpu tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,126 +50,212 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, "Runyan,
- Arthur J" <arthur.j.runyan@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Luben Tuikov <luben.tuikov@amd.com>
+Content-Type: multipart/mixed; boundary="===============1718461997=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Cgo+IE9uIEF1ZyAyNiwgMjAyMCwgYXQgMjE6MDUsIFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3ly
-amFsYUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+IAo+IE9uIFdlZCwgQXVnIDI2LCAyMDIwIGF0
-IDEyOjQwOjE1UE0gKzA4MDAsIEthaS1IZW5nIEZlbmcgd3JvdGU6Cj4+IEhpLAo+PiAKPj4+IE9u
-IEF1ZyAyNSwgMjAyMCwgYXQgMDI6NDYsIFJ1bnlhbiwgQXJ0aHVyIEogPGFydGh1ci5qLnJ1bnlh
-bkBpbnRlbC5jb20+IHdyb3RlOgo+Pj4gCj4+PiBJIHJlbWVtYmVyIHNvbWUgc3RyYW5nZW5lc3Mg
-YWJvdXQgdGhlIGJsbmNsZWdkaXNibC4gIEknbGwgc2VlIGlmIEkgY2FuIGRpZyB1cCBzb21lIG1v
-cmUuCj4+IAo+PiAKPj4gVGhlIHJlZ2lzdGVyIHJlYWQgY2FuIGJlIGZvdW5kIGF0IFsxXSBhbmQg
-WzJdLgo+PiAKPj4gWzFdIGh0dHBzOi8vYnVncy5sYXVuY2hwYWQubmV0L3VidW50dS8rc291cmNl
-L2xpbnV4LytidWcvMTg3MTcyMS9jb21tZW50cy8xMTkKPj4gWzJdIGh0dHBzOi8vYnVncy5sYXVu
-Y2hwYWQubmV0L3VidW50dS8rc291cmNlL2xpbnV4LytidWcvMTg3MTcyMS9jb21tZW50cy8xMjAK
-PiAKPiBMb29rcyBsaWtlIGl0J3MgdXNpbmcgdGhlIDQwMG1WLzBkQiBzZXR0aW5nLiBDYW4gd2Ug
-Z2V0IHRoZSBzYW1lIGR1bXBzCj4gd2l0aCB0aGUgZHJpdmVyIGxvYWRlZCBqdXN0IHRvIGNvbmZp
-cm0gd2hldGhlciB3ZSdyZSB1c2luZyBkaWZmZXJlbnQKPiBzZXR0aW5ncz8gCj4gCj4gQWxzbyBh
-IGR1bXAgb2YgL3N5cy9rZXJuZWwvZGVidWcvZHJpLzAvaTkxNV92YnQgd291bGQgYmUgZ29vZAo+
-IHRvIGhhdmUuCgpodHRwczovL2J1Z3MubGF1bmNocGFkLm5ldC91YnVudHUvK3NvdXJjZS9saW51
-eC8rYnVnLzE4NzE3MjEvY29tbWVudHMvMTI0Cmh0dHBzOi8vYnVncy5sYXVuY2hwYWQubmV0L3Vi
-dW50dS8rc291cmNlL2xpbnV4LytidWcvMTg3MTcyMS9jb21tZW50cy8xMjUKaHR0cHM6Ly9idWdz
-LmxhdW5jaHBhZC5uZXQvdWJ1bnR1Lytzb3VyY2UvbGludXgvK2J1Zy8xODcxNzIxL2NvbW1lbnRz
-LzEyNgoKS2FpLUhlbmcKCj4gCj4+IAo+PiBLYWktSGVuZwo+PiAKPj4+IAo+Pj4gLS0tLS1Pcmln
-aW5hbCBNZXNzYWdlLS0tLS0KPj4+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
-YUBsaW51eC5pbnRlbC5jb20+IAo+Pj4gU2VudDogTW9uZGF5LCBBdWd1c3QgMjQsIDIwMjAgMTE6
-MDUgQU0KPj4+IFRvOiBLYWktSGVuZyBGZW5nIDxrYWkuaGVuZy5mZW5nQGNhbm9uaWNhbC5jb20+
-Cj4+PiBDYzogUnVueWFuLCBBcnRodXIgSiA8YXJ0aHVyLmoucnVueWFuQGludGVsLmNvbT47IFZp
-dmksIFJvZHJpZ28gPHJvZHJpZ28udml2aUBpbnRlbC5jb20+OyBpbnRlbC1nZnggPGludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+Cj4+PiBTdWJqZWN0OiBSZTogW1JlZ3Jlc3Npb25dICJk
-cm0vaTkxNTogSW1wbGVtZW50IGRpc3BsYXkgdy9hICMxMTQzIiBicmVha3MgSERNSSBvbiBBU1VT
-IEdMNTUyVlcKPj4+IAo+Pj4gT24gTW9uLCBBdWcgMTcsIDIwMjAgYXQgMDI6MTc6NDlQTSArMDgw
-MCwgS2FpLUhlbmcgRmVuZyB3cm90ZToKPj4+PiAKPj4+PiAKPj4+Pj4gT24gQXVnIDE3LCAyMDIw
-LCBhdCAwMDoyMiwgUnVueWFuLCBBcnRodXIgSiA8YXJ0aHVyLmoucnVueWFuQGludGVsLmNvbT4g
-d3JvdGU6Cj4+Pj4+IAo+Pj4+PiBZb3UnbGwgbmVlZCB0byByZWFkIG91dCB0aGUgRERJX0JVRl9U
-UkFOU18qIGFuZCBESVNQSU9fQ1JfVFhfQk1VX0NSMCByZWdpc3RlcnMgYXQgYm9vdCBiZWZvcmUg
-aTkxNSBwcm9ncmFtcyB0aGVtIGFuZCBjb21wYXJlIHdpdGggd2hhdCBkcml2ZXIgcHJvZ3JhbXMu
-ICAKPj4+Pj4gUm9kcmlnbyBjYW4gcHJvYmFibHkgc2hvdyB5b3UgaG93LiAKPj4+PiAKPj4+PiBS
-aWdodCwgSSdsbCB3YWl0IGZvciBhIHBhdGNoIHRoZW4gOikKPj4+IAo+Pj4gVG8gZ3JhYiB0aGUg
-QklPUyByZWcgdmFsdWVzIHdlIGp1c3QgaGF2ZSB0byBtYWtlIHN1cmUgdGhlIGRyaXZlciBkb2Vz
-bid0IGxvYWQuIEVnLiBwYXNzIHNvbWV0aGluZyBsaWtlICJtb2Rwcm9iZS5ibGFja2xpc3Q9aTkx
-NSxzbmRfaGRhX2ludGVsIDMiIHRvIHRoZSBrZXJuZWwgY21kbGluZSAoKyB3aGF0ZXZlciBvdGhl
-ciBtYWdpYyB1YnVudHUgbWlnaHQgcmVxdWlyZSkuIENvbmZpcm0gd2l0aCBzb21ldGhpbmcgbGlr
-ZSAibHNtb2QgfCBncmVwIGk5MTUiIHRvIG1ha2Ugc3VyZSB0aGUgZHJpdmVyIGRpZG4ndCBzbmVh
-ayBpbiBkZXNwaXRlIG91ciBiZXN0IGVmZm9ydHMuCj4+PiAKPj4+IFRoZW4gd2UgY2FuIGR1bXAg
-dGhlIHJlZ2lzdGVycyB3aXRoIGludGVsX3JlZyBmcm9tIGlndC1ncHUtdG9vbHM6Cj4+PiBpbnRl
-bF9yZWcgcmVhZCAtLWNvdW50IDIwIDB4NjRFMDAgMHg2NEU2MCAweDY0RUMwIDB4NjRGMjAgMHg2
-NEY4MCBpbnRlbF9yZWcgcmVhZCAweDY0MDAwIDB4NjQxMDAgMHg2NDIwMCAweDY0MzAwIDB4NjQ0
-MDAgMHg2QzAwQwo+Pj4gCj4+PiBUaGUgb25seSBzb21ld2hhdCBzdXNwaWNpb3VzIHRoaW5nIEkg
-bm90aWNlZCBpcyB0aGF0IHdlIHRyZWF0IERJU1BJT19DUl9UWF9CTVVfQ1IwOnR4X2JsbmNsZWdk
-aXNibCBhcyBhIGJpdG1hc2sgKGJpdCAyMyAtPiBEREkgQSwgYml0IDI0IC0+IERESSBCLCBldGMu
-KSB3aGVyZWFzIHRoZSBzcGVjIHNlZW1zIHRvIGJlIHNheWluZyB0aGF0IHdlIHNob3VsZCBqdXN0
-IHplcm8gb3V0IGFsbCB0aGUgYml0cyBvZiB0eF9ibG5jbGVnZGlzYmwgd2hlbiBhbnkgRERJIG5l
-ZWRzIGlib29zdC4gQXJ0LCBpcyBvdXIgaW50ZXJwcmV0YXRpb24gb2YgdGhlIGJpdHMgY29ycmVj
-dCBvciBqdXN0IGEgZmFpcnkgdGFsZT8KPj4+IAo+Pj4+IAo+Pj4+IEthaS1IZW5nCj4+Pj4gCj4+
-Pj4+IAo+Pj4+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+Pj4+PiBGcm9tOiBLYWktSGVu
-ZyBGZW5nIDxrYWkuaGVuZy5mZW5nQGNhbm9uaWNhbC5jb20+Cj4+Pj4+IFNlbnQ6IFRodXJzZGF5
-LCBBdWd1c3QgMTMsIDIwMjAgMTA6MTQgUE0KPj4+Pj4gVG86IFJ1bnlhbiwgQXJ0aHVyIEogPGFy
-dGh1ci5qLnJ1bnlhbkBpbnRlbC5jb20+Cj4+Pj4+IENjOiBWaXZpLCBSb2RyaWdvIDxyb2RyaWdv
-LnZpdmlAaW50ZWwuY29tPjsgVmlsbGUgU3lyasOkbMOkIAo+Pj4+PiA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+OyBpbnRlbC1nZnggCj4+Pj4+IDxpbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnPgo+Pj4+PiBTdWJqZWN0OiBSZTogW1JlZ3Jlc3Npb25dICJkcm0vaTkxNTogSW1w
-bGVtZW50IGRpc3BsYXkgdy9hICMxMTQzIiAKPj4+Pj4gYnJlYWtzIEhETUkgb24gQVNVUyBHTDU1
-MlZXCj4+Pj4+IAo+Pj4+PiBIaSwKPj4+Pj4gCj4+Pj4+PiBPbiBBdWcgMTQsIDIwMjAsIGF0IDAx
-OjU2LCBSdW55YW4sIEFydGh1ciBKIDxhcnRodXIuai5ydW55YW5AaW50ZWwuY29tPiB3cm90ZToK
-Pj4+Pj4+IAo+Pj4+Pj4gVGhlIHdvcmthcm91bmQgaXMgZnJlZWluZyB1cCBzdHVjayB2c3dpbmcg
-dmFsdWVzIHRvIGxldCBuZXcgdnN3aW5nIHByb2dyYW1taW5nIGtpY2sgaW4uICBNYXliZSB0aGUg
-bmV3IHZzd2luZyB2YWx1ZXMgYXJlIHdyb25nLgo+Pj4+Pj4gVHJ5IGNoZWNraW5nIHRoZSB2c3dp
-bmcgdGhhdCBkcml2ZXIgcHJvZ3JhbXMgYWdhaW5zdCB3aGF0IEJJT1MvR09QIHByb2dyYW1zLgo+
-Pj4+PiAKPj4+Pj4gRG8geW91IG1lYW4gdG8gcHJpbnQgb3V0IHZhbHVlIG9mIEk5MTVfUkVBRCgp
-Pwo+Pj4+PiB2YWwgPSBJOTE1X1JFQUQoQ0hJQ0tFTl9UUkFOUyh0cmFuc2NvZGVyKSk7Cj4+Pj4+
-IAo+Pj4+PiBLYWktSGVuZwo+Pj4+PiAKPj4+Pj4+IAo+Pj4+Pj4gLS0tLS1PcmlnaW5hbCBNZXNz
-YWdlLS0tLS0KPj4+Pj4+IEZyb206IFZpdmksIFJvZHJpZ28gPHJvZHJpZ28udml2aUBpbnRlbC5j
-b20+Cj4+Pj4+PiBTZW50OiBUaHVyc2RheSwgQXVndXN0IDEzLCAyMDIwIDk6NTAgQU0KPj4+Pj4+
-IFRvOiBLYWktSGVuZyBGZW5nIDxrYWkuaGVuZy5mZW5nQGNhbm9uaWNhbC5jb20+OyBSdW55YW4s
-IEFydGh1ciBKIAo+Pj4+Pj4gPGFydGh1ci5qLnJ1bnlhbkBpbnRlbC5jb20+Cj4+Pj4+PiBDYzog
-VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT47IGludGVsLWdm
-eCAKPj4+Pj4+IDxpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPgo+Pj4+Pj4gU3ViamVj
-dDogUmU6IFtSZWdyZXNzaW9uXSAiZHJtL2k5MTU6IEltcGxlbWVudCBkaXNwbGF5IHcvYSAjMTE0
-MyIgCj4+Pj4+PiBicmVha3MgSERNSSBvbiBBU1VTIEdMNTUyVlcKPj4+Pj4+IAo+Pj4+Pj4gQXJ0
-LCBhbnkgY29tbWVudCBoZXJlPwo+Pj4+Pj4gCj4+Pj4+PiBJIGp1c3QgY2hlY2tlZCBhbmQgdGhl
-ICBXL2EgMTE0MyBpcyBpbXBsZW1lbnRlZCBhcyBkZXNjcmliZWQsIGJ1dCBpdCBpcyBmYWlsaW5n
-IEhETUkgb24gdGhpcyBoeWJyaWQgc3lzdGVtLgo+Pj4+Pj4gCj4+Pj4+Pj4gT24gQXVnIDEyLCAy
-MDIwLCBhdCA5OjA3IFBNLCBLYWktSGVuZyBGZW5nIDxrYWkuaGVuZy5mZW5nQGNhbm9uaWNhbC5j
-b20+IHdyb3RlOgo+Pj4+Pj4+IAo+Pj4+Pj4+IEhpLAo+Pj4+Pj4+IAo+Pj4+Pj4+IFRoZXJlJ3Mg
-YSByZWdyZXNzaW9uIHJlcG9ydGVkIHRoYXQgSERNSSBvdXRwdXQgc3RvcHMgd29ya2luZyBhZnRl
-ciBvcyB1cGdyYWRlOgo+Pj4+Pj4+IGh0dHBzOi8vYnVncy5sYXVuY2hwYWQubmV0L2J1Z3MvMTg3
-MTcyMQo+Pj4+Pj4+IAo+Pj4+Pj4+IEhlcmUncyB0aGUgYmlzZWN0IHJlc3VsdDoKPj4+Pj4+PiAw
-NTE5YzEwMmY1Mjg1NDc2ZDc4NjhhMzg3YmRiNmM1ODM4NWU0MDc0IGlzIHRoZSBmaXJzdCBiYWQg
-Y29tbWl0IAo+Pj4+Pj4+IGNvbW1pdCAwNTE5YzEwMmY1Mjg1NDc2ZDc4NjhhMzg3YmRiNmM1ODM4
-NWU0MDc0Cj4+Pj4+Pj4gQXV0aG9yOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGlu
-dXguaW50ZWwuY29tPgo+Pj4+Pj4+IERhdGU6ICAgTW9uIEphbiAyMiAxOTo0MTozMSAyMDE4ICsw
-MjAwCj4+Pj4+Pj4gCj4+Pj4+Pj4gZHJtL2k5MTU6IEltcGxlbWVudCBkaXNwbGF5IHcvYSAjMTE0
-Mwo+Pj4+Pj4+IAo+Pj4+Pj4+IEFwcGFyZW50bHkgU0tML0tCTC9DRkwgbmVlZCBzb21lIG1hbnVh
-bCBoZWxwIHRvIGdldCB0aGUgIAo+Pj4+Pj4+IHByb2dyYW1tZWQgSERNSSB2c3dpbmcgdG8gc3Rp
-Y2suIEltcGxlbWVudCB0aGUgcmVsZXZhbnQgIAo+Pj4+Pj4+IHdvcmthcm91bmQgKGRpc3BsYXkg
-dy9hICMxMTQzKS4KPj4+Pj4+PiAKPj4+Pj4+PiBOb3RlIHRoYXQgdGhlIHJlbGV2YW50IGNoaWNr
-ZW4gYml0cyBsaXZlIGluIGEgdHJhbnNjb2RlciByZWdpc3RlciAgCj4+Pj4+Pj4gZXZlbiB0aG91
-Z2ggdGhlIGJpdHMgYWZmZWN0IGEgc3BlY2lmaWMgRERJIHBvcnQgcmF0aGVyIHRoYW4gYSAgCj4+
-Pj4+Pj4gc3BlY2lmaWMgdHJhbnNjb2Rlci4gSGVuY2Ugd2UgbXVzdCBwaWNrIHRoZSBjb3JyZWN0
-IHRyYW5zY29kZXIgIAo+Pj4+Pj4+IHJlZ2lzdGVyIGluc3RhbmNlIGJhc2VkIG9uIHRoZSBwb3J0
-IHJhdGhlciB0aGFuIGJhc2VkIG9uIHRoZSAgCj4+Pj4+Pj4gY3B1X3RyYW5zY29kZXIuCj4+Pj4+
-Pj4gCj4+Pj4+Pj4gQWxzbyBub3RlIHRoYXQgZm9yIGNvbXBsZXRlbmVzcyBJIGluY2x1ZGVkIHN1
-cHBvcnQgZm9yIERESSBBL0UgIAo+Pj4+Pj4+IGluIHRoZSBjb2RlIGV2ZW4gdGhvdWdoIHdlIG5l
-dmVyIGhhdmUgSERNSSBvbiB0aG9zZSBwb3J0cy4KPj4+Pj4+PiAKPj4+Pj4+PiB2MjogQ0ZMIG5l
-ZWRzIHRoZSB3L2EgYXMgd2VsbCAoUm9kcmlnbyBhbmQgQXJ0KQo+Pj4+Pj4+IAo+Pj4+Pj4+IENj
-OiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+Cj4+Pj4+Pj4gQ2M6IEFydCBS
-dW55YW4gPGFydGh1ci5qLnJ1bnlhbkBpbnRlbC5jb20+Cj4+Pj4+Pj4gU2lnbmVkLW9mZi1ieTog
-VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4+Pj4+PiBM
-aW5rOiAKPj4+Pj4+PiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvbXNn
-aWQvMjAxODAxMjIxNzQxMzEuMjgwNDYKPj4+Pj4+PiAtMS12aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbQo+Pj4+Pj4+IFJldmlld2VkLWJ5OiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBp
-bnRlbC5jb20+Cj4+Pj4+Pj4gCj4+Pj4+Pj4gCj4+Pj4+Pj4gZG1lc2cgZnJvbSBkcm0tdGlwIHdp
-dGggZHJtLmRlYnVnPTB4ZSBjYW4gYmUgZm91bmQgaGVyZToKPj4+Pj4+PiBodHRwczovL2J1Z3Mu
-bGF1bmNocGFkLm5ldC91YnVudHUvK3NvdXJjZS9saW51eC8rYnVnLzE4NzE3MjEvY29tbWUKPj4+
-Pj4+PiBudHMKPj4+Pj4+PiAvCj4+Pj4+Pj4gNjQKPj4+Pj4+PiAKPj4+Pj4+PiBLYWktSGVuZwo+
-Pj4+Pj4gCj4+Pj4+PiAKPj4+Pj4gCj4+PiAKPj4+IC0tCj4+PiBWaWxsZSBTeXJqw6Rsw6QKPj4+
-IEludGVsCj4gCj4gLS0gCj4gVmlsbGUgU3lyasOkbMOkCj4gSW50ZWwKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+--===============1718461997==
+Content-Type: multipart/signed; boundary="Sig_/jPlAyIIqK4Ku98ifdEmDyUZ";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/jPlAyIIqK4Ku98ifdEmDyUZ
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+On Wed, 26 Aug 2020 10:18:53 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>
+> Hi all,
+>=20
+> Today's linux-next merge of the drm-misc tree got conflicts in:
+>=20
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>=20
+> between commits:
+>=20
+>   cacbbe7c0065 ("drm/amdgpu: move stolen memory from gmc to mman")
+>   72de33f8f7ba ("drm/amdgpu: move IP discovery data to mman")
+>   87ded5caeec3 ("drm/amdgpu: move vram usage by vbios to mman (v2)")
+>   1348969ab68c ("drm/amdgpu: drm_device to amdgpu_device by inline-f (v2)=
+")
+>=20
+> from the amdgpu tree and commits:
+>=20
+>   6c28aed6e5b7 ("drm/amdgfx/ttm: use wrapper to get ttm memory managers")
+>   9de59bc20149 ("drm/ttm: rename ttm_mem_type_manager -> ttm_resource_man=
+ager.")
+>   4f297b9c82e1 ("drm/amdgpu/ttm: move vram/gtt mgr allocations to mman.")
+>=20
+> from the drm-misc tree.
+>=20
+> I fixed it up (see below) and can carry the fix as necessary. This
+> is now fixed as far as linux-next is concerned, but any non trivial
+> conflicts should be mentioned to your upstream maintainer when your tree
+> is submitted for merging.  You may also want to consider cooperating
+> with the maintainer of the conflicting tree to minimise any particularly
+> complex conflicts.
+>=20
+> --=20
+> Cheers,
+> Stephen Rothwell
+>=20
+> diff --cc drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> index e1b66898cb76,697bc2c6fdb2..000000000000
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> @@@ -47,10 -46,10 +46,10 @@@ static ssize_t amdgpu_mem_info_gtt_tota
+>   		struct device_attribute *attr, char *buf)
+>   {
+>   	struct drm_device *ddev =3D dev_get_drvdata(dev);
+>  -	struct amdgpu_device *adev =3D ddev->dev_private;
+>  +	struct amdgpu_device *adev =3D drm_to_adev(ddev);
+> -=20
+> + 	struct ttm_resource_manager *man =3D ttm_manager_type(&adev->mman.bdev=
+, TTM_PL_TT);
+>   	return snprintf(buf, PAGE_SIZE, "%llu\n",
+> - 			(adev->mman.bdev.man[TTM_PL_TT].size) * PAGE_SIZE);
+> + 			man->size * PAGE_SIZE);
+>   }
+>  =20
+>   /**
+> @@@ -65,10 -64,10 +64,10 @@@ static ssize_t amdgpu_mem_info_gtt_used
+>   		struct device_attribute *attr, char *buf)
+>   {
+>   	struct drm_device *ddev =3D dev_get_drvdata(dev);
+>  -	struct amdgpu_device *adev =3D ddev->dev_private;
+>  +	struct amdgpu_device *adev =3D drm_to_adev(ddev);
+> -=20
+> + 	struct ttm_resource_manager *man =3D ttm_manager_type(&adev->mman.bdev=
+, TTM_PL_TT);
+>   	return snprintf(buf, PAGE_SIZE, "%llu\n",
+> - 			amdgpu_gtt_mgr_usage(&adev->mman.bdev.man[TTM_PL_TT]));
+> + 			amdgpu_gtt_mgr_usage(man));
+>   }
+>  =20
+>   static DEVICE_ATTR(mem_info_gtt_total, S_IRUGO,
+> diff --cc drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> index 63e541409549,fc5f7ac53d0a..000000000000
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@@ -2316,8 -2251,8 +2261,8 @@@ static int amdgpu_mm_dump_table(struct=20
+>   	struct drm_info_node *node =3D (struct drm_info_node *)m->private;
+>   	unsigned ttm_pl =3D (uintptr_t)node->info_ent->data;
+>   	struct drm_device *dev =3D node->minor->dev;
+>  -	struct amdgpu_device *adev =3D dev->dev_private;
+>  +	struct amdgpu_device *adev =3D drm_to_adev(dev);
+> - 	struct ttm_mem_type_manager *man =3D &adev->mman.bdev.man[ttm_pl];
+> + 	struct ttm_resource_manager *man =3D ttm_manager_type(&adev->mman.bdev=
+, ttm_pl);
+>   	struct drm_printer p =3D drm_seq_file_printer(m);
+>  =20
+>   	man->func->debug(man, &p);
+> diff --cc drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> index de37ceff0e56,7ba2be37e6ba..000000000000
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> @@@ -60,22 -75,8 +75,24 @@@ struct amdgpu_mman=20
+>   	/* Scheduler entity for buffer moves */
+>   	struct drm_sched_entity			entity;
+>  =20
+>  +	uint64_t		stolen_vga_size;
+>  +	struct amdgpu_bo	*stolen_vga_memory;
+>  +	uint64_t		stolen_extended_size;
+>  +	struct amdgpu_bo	*stolen_extended_memory;
+>  +	bool			keep_stolen_vga_memory;
+>  +
+>  +	/* discovery */
+>  +	uint8_t				*discovery_bin;
+>  +	uint32_t			discovery_tmr_size;
+>  +	struct amdgpu_bo		*discovery_memory;
+>  +
+>  +	/* firmware VRAM reservation */
+>  +	u64		fw_vram_usage_start_offset;
+>  +	u64		fw_vram_usage_size;
+>  +	struct amdgpu_bo	*fw_vram_usage_reserved_bo;
+>  +	void		*fw_vram_usage_va;
+> + 	struct amdgpu_vram_mgr vram_mgr;
+> + 	struct amdgpu_gtt_mgr gtt_mgr;
+>   };
+>  =20
+>   struct amdgpu_copy_mem {
+> diff --cc drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> index 91098a385ed6,7574be6cd7a0..000000000000
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> @@@ -81,10 -84,10 +84,10 @@@ static ssize_t amdgpu_mem_info_vram_use
+>   		struct device_attribute *attr, char *buf)
+>   {
+>   	struct drm_device *ddev =3D dev_get_drvdata(dev);
+>  -	struct amdgpu_device *adev =3D ddev->dev_private;
+>  +	struct amdgpu_device *adev =3D drm_to_adev(ddev);
+> -=20
+> + 	struct ttm_resource_manager *man =3D ttm_manager_type(&adev->mman.bdev=
+, TTM_PL_VRAM);
+>   	return snprintf(buf, PAGE_SIZE, "%llu\n",
+> - 		amdgpu_vram_mgr_usage(&adev->mman.bdev.man[TTM_PL_VRAM]));
+> + 			amdgpu_vram_mgr_usage(man));
+>   }
+>  =20
+>   /**
+> @@@ -99,10 -102,10 +102,10 @@@ static ssize_t amdgpu_mem_info_vis_vram
+>   		struct device_attribute *attr, char *buf)
+>   {
+>   	struct drm_device *ddev =3D dev_get_drvdata(dev);
+>  -	struct amdgpu_device *adev =3D ddev->dev_private;
+>  +	struct amdgpu_device *adev =3D drm_to_adev(ddev);
+> -=20
+> + 	struct ttm_resource_manager *man =3D ttm_manager_type(&adev->mman.bdev=
+, TTM_PL_VRAM);
+>   	return snprintf(buf, PAGE_SIZE, "%llu\n",
+> - 		amdgpu_vram_mgr_vis_usage(&adev->mman.bdev.man[TTM_PL_VRAM]));
+> + 			amdgpu_vram_mgr_vis_usage(man));
+>   }
+>  =20
+>   static ssize_t amdgpu_mem_info_vram_vendor(struct device *dev,
+
+These are now conflict between the amdgpu tree and the drm tree.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/jPlAyIIqK4Ku98ifdEmDyUZ
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl9QleQACgkQAVBC80lX
+0Gz1xAf9HaaqqN/QtxnpZUyIWrOtFLuDbo8Oc1rMUl8KwsSVUQTT6tF8JWcfI5O4
+wUFh0YWob1Q8luHMqF/CP5PtTvBf/fikwe3Y9uETwLBZxrmdJyZryOVcoGUtDIY2
+EVDyRLnOfBtuv04fJkvk97/Ks5zA0IpcO2+pstj/B3Ldd+4RH2ddFTN3D2Tmpbsy
+quxauMJDqOGpzFYbuUul7TlGMXq8hRGlz8tgZrk/mGAGsX4h7XKkj6babo9wcbvb
+7dnP+5bMzbbyJ27p5CzwOPmjtERdGXmvtHOonTSF6yPBt5VooJZBo+xLqGCf2pj+
+dY9oQgt5O7Hy8dzDqLcJ0LS0Ok8IUw==
+=wUyx
+-----END PGP SIGNATURE-----
+
+--Sig_/jPlAyIIqK4Ku98ifdEmDyUZ--
+
+--===============1718461997==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1718461997==--
