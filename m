@@ -1,42 +1,99 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7D4025D992
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Sep 2020 15:23:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D0025D9D0
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Sep 2020 15:35:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A3E06E14D;
-	Fri,  4 Sep 2020 13:23:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F8B86E2EF;
+	Fri,  4 Sep 2020 13:35:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 123896E11F;
- Fri,  4 Sep 2020 13:23:27 +0000 (UTC)
-IronPort-SDR: cEFil7QJmpiY3vteO85TWPQJ5WNMOvmaq6fhSzQZErD+/lYrY/YBBsDNKPQKL2ffI6L5718nnB
- 7uPHU4oWJVLQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9733"; a="221948883"
-X-IronPort-AV: E=Sophos;i="5.76,389,1592895600"; d="scan'208";a="221948883"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2020 06:23:26 -0700
-IronPort-SDR: qQheL7zfJYrOyLT4fdkDSR4R1NIzlOzf30Mg4ODmUT8PMPkE/Kob8WNKskmuDTkCf4gB1Oo7Tk
- 35MGGaRFq0EA==
-X-IronPort-AV: E=Sophos;i="5.76,389,1592895600"; d="scan'208";a="502921427"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.201])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2020 06:23:25 -0700
-Date: Fri, 4 Sep 2020 09:24:34 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <20200904132434.GA586737@intel.com>
-References: <11e59ebdea7ee4f46803a21fe9b21443d2b9c401.camel@redhat.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <11e59ebdea7ee4f46803a21fe9b21443d2b9c401.camel@redhat.com>
-Subject: Re: [Intel-gfx] [PULL] topic/nouveau-i915-dp-helpers-and-cleanup
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
+ [210.118.77.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 937C16E2BE
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Sep 2020 13:35:00 +0000 (UTC)
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+ by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20200904133459euoutp02d82cdceb406e51f6fde9be9f22c01442~xmAclb8J02766327663euoutp02i
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Sep 2020 13:34:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
+ 20200904133459euoutp02d82cdceb406e51f6fde9be9f22c01442~xmAclb8J02766327663euoutp02i
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1599226499;
+ bh=AcRKJe24m0Gk33OJEZM4FNrE7pej7lBb34uGE2+zBsE=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=Cfx4Oi3K1ffkpa8B3JTFxh9e2DJWOpo0PoO+iC5Jwr/r5qYK4zbn2xMmsAyLb3Y1l
+ WO+GRy3zNJxS73eyLD06ghzsh0vWa8w1ZnMNCTCS+seGyERT8tTFDBP7SgiUEI497S
+ a/TNCh36j8Of4V2BJWZ/jsOfyqatFMuOz0huK6wg=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20200904133458eucas1p1637fbed78aec3e28849fe7a9fe21176f~xmAcSNplP0118801188eucas1p1v;
+ Fri,  4 Sep 2020 13:34:58 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+ eusmges2new.samsung.com (EUCPMTA) with SMTP id E4.66.05997.282425F5; Fri,  4
+ Sep 2020 14:34:58 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20200904133458eucas1p214dd6899a77591ed50834e9fc85ae157~xmAb9QM4T1446814468eucas1p2c;
+ Fri,  4 Sep 2020 13:34:58 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+ eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+ 20200904133458eusmtrp2029fa82bf569a174404c6e52d258ef62~xmAb8lXQ60905709057eusmtrp2f;
+ Fri,  4 Sep 2020 13:34:58 +0000 (GMT)
+X-AuditID: cbfec7f4-65dff7000000176d-53-5f52428214c7
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+ eusmgms2.samsung.com (EUCPMTA) with SMTP id 31.A0.06017.282425F5; Fri,  4
+ Sep 2020 14:34:58 +0100 (BST)
+Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
+ eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+ 20200904133457eusmtip1adff83376c3fd1d1a6ba5c5bd665abaf~xmAbWYRsj1944019440eusmtip1h;
+ Fri,  4 Sep 2020 13:34:57 +0000 (GMT)
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+To: dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org
+Date: Fri,  4 Sep 2020 15:16:49 +0200
+Message-Id: <20200904131711.12950-9-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200904131711.12950-1-m.szyprowski@samsung.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA0WSfSxVcRjH+51z7rnHzdXpMp5uL7bbtNVCXv44TYilndU/sWrNlG6cYXnb
+ PYhWy0useSmUMhpKy/tLXCryOoUZ2WWXikrYUFTeohrd66D/vs/3+Ty/7/P77UfhsjaRnAoI
+ DuNUwcpABSkhat8s91jGunp4H5ruPcik9HRizLPMChGzWpuGM/0L30mmqOQ1xmSnVmNMXpMD
+ U9BXgZiGRxgz3z+CMVWjWhHTV/eQZMrahsVMy48xEdOUpRUf3caW5pQitmExj2DzX01i7PPF
+ zyI2p9Od/ZTUjrHVT26wH1ZGcfbuYAFi699Fk+xtdTFi56r2nDL0lBzx5QIDIjiVtdNFiX9G
+ 4ZI4NGl35NPkRSwaFUAiMqCAtoeZliKUiCSUjC5EkN6SiwnFPILx1j+4npLRcwjGPvIbE/k5
+ MYQAFeigIjWxOZH2tlisp0jaBhKnE0m9NqHjEXSkGOohnG7DQZOnRfqGMe0OhRNpaxBBW0BN
+ mWZtWEo7ws+mLlKIM4eSyua1NQxoJ6jJHBPpDwJaKwZN9zghQMdgeOQeLmhjmGpXiwW9C1Zf
+ ChcCOg7BSE+ZWCiSEfTFZiKBcoChnt+6OEq3336oqLMWbBdo/KrG9TbQRjA4vV1v4zqZXvtg
+ 3ZbCrQSZQO+DrPbyzdiWXs36OizkZwyQwgulIbjf10ymIvOs/2F5CBUjMy6cD/LjeNtg7ooV
+ rwziw4P9rHxCgqqQ7m91rbTPv0B1fy+1IppCCkPpFmcPb5lIGcFHBbUioHCFidS1u+uCTOqr
+ jLrKqUK8VeGBHN+KdlKEwkxq93jyvIz2U4ZxlzkulFNtdDHKQB6NkqXO5A6Gs/tl0pjN8tSS
+ 9MuZuAqYsZufOeno6VbOlTQk+bsd59o6Gu5cd27MHvwWmTuBZleSDe3J8EAX+ekF07GEqgFb
+ YmucqnTQtNaLs/F7f/iEla2PzCISzZ5z9Zyy3lupkWu746+FRsgtYzr7U9U3i8OWrYdG6428
+ zkoUBO+vtDmAq3jlPxF+QY9XAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCIsWRmVeSWpSXmKPExsVy+t/xu7pNTkHxBtPXS1v0njvJZLFxxnpW
+ i//bJjJbXPn6ns1i5eqjTBazJ2xmsliw39pi+eX1jBZ7FzJZfLnykMli0+NrrBaXd81hs1h7
+ 5C67xcEPT1gt9s+6xu7A77Fm3hpGj73fFrB4LN7zkslj+7cHrB7zTgZ63O8+zuSxeUm9x+1/
+ j5k9Jt9Yzuix+2YDm0ffllWMHp83yQXwROnZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hka
+ m8daGZkq6dvZpKTmZJalFunbJehlTF3xg72gW7ZiWc83pgbG5RJdjJwcEgImEovnNbKA2EIC
+ SxklNiw1gIjLSJyc1sAKYQtL/LnWxdbFyAVU84lR4tXsv2AJNgFDia63EAkRgU5GiWndH9lB
+ EswCZ5glfm/wBrGFBfwlrjxYwQxiswioSmxdewmshlfAVuLj/tNsEBvkJVZvOABWwylgJ7F1
+ xhNWiItsJT7MWcwygZFvASPDKkaR1NLi3PTcYiO94sTc4tK8dL3k/NxNjMAY2nbs55YdjF3v
+ gg8xCnAwKvHwMtgHxQuxJpYVV+YeYpTgYFYS4XU6ezpOiDclsbIqtSg/vqg0J7X4EKMp0FET
+ maVEk/OB8Z1XEm9oamhuYWlobmxubGahJM7bIXAwRkggPbEkNTs1tSC1CKaPiYNTqoHxasPS
+ rbHJ7lmXpllnu91q2yfq9/QDI2PRurDt4YnV+2abqb73OPj0ZrfygUWusdO2Ge98+9tpi3JV
+ 2f7sGUvXOVVliDybxvT37Ssf94YHs1a22YRFpMw+nchUFjcl9NUzAbE5aTuvuOxw/n9o89oJ
+ D/c5eCW82LYpTH7XwtvMD3P+u2xilrjmrsRSnJFoqMVcVJwIAA4dYVq3AgAA
+X-CMS-MailID: 20200904133458eucas1p214dd6899a77591ed50834e9fc85ae157
+X-Msg-Generator: CA
+X-RootMTR: 20200904133458eucas1p214dd6899a77591ed50834e9fc85ae157
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200904133458eucas1p214dd6899a77591ed50834e9fc85ae157
+References: <20200904131711.12950-1-m.szyprowski@samsung.com>
+ <CGME20200904133458eucas1p214dd6899a77591ed50834e9fc85ae157@eucas1p2.samsung.com>
+Subject: [Intel-gfx] [PATCH v10 08/30] drm: i915: fix common struct sg_table
+ related issues
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,122 +106,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>
+Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Robin Murphy <robin.murphy@arm.com>, Christoph Hellwig <hch@lst.de>,
+ linux-arm-kernel@lists.infradead.org,
+ Marek Szyprowski <m.szyprowski@samsung.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 31, 2020 at 07:38:57PM -0400, Lyude Paul wrote:
-> topic/nouveau-i915-dp-helpers-and-cleanup-2020-08-31-1:
-> UAPI Changes:
-> 
-> None
-> 
-> Cross-subsystem Changes:
-> 
-> * Moves a bunch of miscellaneous DP code from the i915 driver into a set
->   of shared DRM DP helpers
-> 
-> Core Changes:
-> 
-> * New DRM DP helpers (see above)
-> 
-> Driver Changes:
-> 
-> * Implements usage of the aforementioned DP helpers in the nouveau
->   driver, along with some other various HPD related cleanup for nouveau
+The Documentation/DMA-API-HOWTO.txt states that the dma_map_sg() function
+returns the number of the created entries in the DMA address space.
+However the subsequent calls to the dma_sync_sg_for_{device,cpu}() and
+dma_unmap_sg must be called with the original number of the entries
+passed to the dma_map_sg().
 
-was this picked-up on the nouveau side already?
-whenever that happens, please ping me so I can pull this to dinq.
+struct sg_table is a common structure used for describing a non-contiguous
+memory buffer, used commonly in the DRM and graphics subsystems. It
+consists of a scatterlist with memory pages and DMA addresses (sgl entry),
+as well as the number of scatterlist entries: CPU pages (orig_nents entry)
+and DMA mapped pages (nents entry).
 
-But a reminder that it has my ack to go to drm-misc or only to nouveau
-directly.
+It turned out that it was a common mistake to misuse nents and orig_nents
+entries, calling DMA-mapping functions with a wrong number of entries or
+ignoring the number of mapped entries returned by the dma_map_sg()
+function.
 
-> The following changes since commit bfacb84993eb173c0ab53ca4dd6180f76f4dc176:
-> 
->   drm: virtio: fix kconfig dependency warning (2020-08-31 08:55:02 +0200)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-misc tags/topic/nouveau-i915-dp-helpers-and-cleanup-2020-08-31-1
-> 
-> for you to fetch changes up to 79416e97dda0118b137302575a70a14259a27d7d:
-> 
->   drm/nouveau/kms: Start using drm_dp_read_dpcd_caps() (2020-08-31 19:10:09 -0400)
-> 
-> ----------------------------------------------------------------
-> UAPI Changes:
-> 
-> None
-> 
-> Cross-subsystem Changes:
-> 
-> * Moves a bunch of miscellaneous DP code from the i915 driver into a set
->   of shared DRM DP helpers
-> 
-> Core Changes:
-> 
-> * New DRM DP helpers (see above)
-> 
-> Driver Changes:
-> 
-> * Implements usage of the aforementioned DP helpers in the nouveau
->   driver, along with some other various HPD related cleanup for nouveau
-> 
-> ----------------------------------------------------------------
-> Lyude Paul (20):
->       drm/nouveau/kms: Fix some indenting in nouveau_dp_detect()
->       drm/nouveau/kms/nv50-: Remove open-coded drm_dp_read_desc()
->       drm/nouveau/kms/nv50-: Just use drm_dp_dpcd_read() in nouveau_dp.c
->       drm/nouveau/kms/nv50-: Use macros for DP registers in nouveau_dp.c
->       drm/nouveau/kms: Don't clear DP_MST_CTRL DPCD in nv50_mstm_new()
->       drm/nouveau/kms: Search for encoders' connectors properly
->       drm/nouveau/kms/nv50-: Use drm_dp_dpcd_(readb|writeb)() in nv50_sor_disable()
->       drm/nouveau/kms/nv50-: Refactor and cleanup DP HPD handling
->       drm/i915/dp: Extract drm_dp_read_mst_cap()
->       drm/nouveau/kms: Use new drm_dp_read_mst_cap() helper for checking MST caps
->       drm/nouveau/kms: Move drm_dp_cec_unset_edid() into nouveau_connector_detect()
->       drm/nouveau/kms: Only use hpd_work for reprobing in HPD paths
->       drm/i915/dp: Extract drm_dp_read_downstream_info()
->       drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode validation
->       drm/i915/dp: Extract drm_dp_read_sink_count_cap()
->       drm/i915/dp: Extract drm_dp_read_sink_count()
->       drm/nouveau/kms/nv50-: Add support for DP_SINK_COUNT
->       drm/nouveau/kms: Don't change EDID when it hasn't actually changed
->       drm/i915/dp: Extract drm_dp_read_dpcd_caps()
->       drm/nouveau/kms: Start using drm_dp_read_dpcd_caps()
-> 
->  drivers/gpu/drm/drm_dp_helper.c             | 187 ++++++++++++++++-
->  drivers/gpu/drm/drm_dp_mst_topology.c       |  22 ++
->  drivers/gpu/drm/i915/display/intel_dp.c     | 124 +++--------
->  drivers/gpu/drm/i915/display/intel_dp.h     |   1 -
->  drivers/gpu/drm/i915/display/intel_lspcon.c |   2 +-
->  drivers/gpu/drm/nouveau/dispnv04/dac.c      |   2 +-
->  drivers/gpu/drm/nouveau/dispnv04/dfp.c      |   7 +-
->  drivers/gpu/drm/nouveau/dispnv04/disp.c     |  24 ++-
->  drivers/gpu/drm/nouveau/dispnv04/disp.h     |   4 +
->  drivers/gpu/drm/nouveau/dispnv04/tvnv04.c   |   2 +-
->  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c   |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/disp.c     | 305 ++++++++++++++++------------
->  drivers/gpu/drm/nouveau/nouveau_connector.c | 132 +++++-------
->  drivers/gpu/drm/nouveau/nouveau_connector.h |   1 +
->  drivers/gpu/drm/nouveau/nouveau_display.c   |  72 ++++++-
->  drivers/gpu/drm/nouveau/nouveau_display.h   |   3 +-
->  drivers/gpu/drm/nouveau/nouveau_dp.c        | 210 +++++++++++++++----
->  drivers/gpu/drm/nouveau/nouveau_drm.c       |   4 +-
->  drivers/gpu/drm/nouveau/nouveau_drv.h       |   2 +
->  drivers/gpu/drm/nouveau/nouveau_encoder.h   |  48 ++++-
->  include/drm/drm_dp_helper.h                 |  15 +-
->  include/drm/drm_dp_mst_helper.h             |   3 +-
->  22 files changed, 779 insertions(+), 393 deletions(-)
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+This driver creatively uses sg_table->orig_nents to store the size of the
+allocated scatterlist and ignores the number of the entries returned by
+dma_map_sg function. The sg_table->orig_nents is (mis)used to properly
+free the (over)allocated scatterlist.
+
+This patch only introduces the common DMA-mapping wrappers operating
+directly on the struct sg_table objects to the dmabuf related functions,
+so the other drivers, which might share buffers with i915 could rely on
+the properly set nents and orig_nents values.
+
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+Reviewed-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c       | 11 +++--------
+ drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c |  7 +++----
+ 2 files changed, 6 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+index 2679380159fc..8a988592715b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+@@ -48,12 +48,9 @@ static struct sg_table *i915_gem_map_dma_buf(struct dma_buf_attachment *attachme
+ 		src = sg_next(src);
+ 	}
+ 
+-	if (!dma_map_sg_attrs(attachment->dev,
+-			      st->sgl, st->nents, dir,
+-			      DMA_ATTR_SKIP_CPU_SYNC)) {
+-		ret = -ENOMEM;
++	ret = dma_map_sgtable(attachment->dev, st, dir, DMA_ATTR_SKIP_CPU_SYNC);
++	if (ret)
+ 		goto err_free_sg;
+-	}
+ 
+ 	return st;
+ 
+@@ -73,9 +70,7 @@ static void i915_gem_unmap_dma_buf(struct dma_buf_attachment *attachment,
+ {
+ 	struct drm_i915_gem_object *obj = dma_buf_to_obj(attachment->dmabuf);
+ 
+-	dma_unmap_sg_attrs(attachment->dev,
+-			   sg->sgl, sg->nents, dir,
+-			   DMA_ATTR_SKIP_CPU_SYNC);
++	dma_unmap_sgtable(attachment->dev, sg, dir, DMA_ATTR_SKIP_CPU_SYNC);
+ 	sg_free_table(sg);
+ 	kfree(sg);
+ 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
+index debaf7b18ab5..be30b27e2926 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
++++ b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
+@@ -28,10 +28,9 @@ static struct sg_table *mock_map_dma_buf(struct dma_buf_attachment *attachment,
+ 		sg = sg_next(sg);
+ 	}
+ 
+-	if (!dma_map_sg(attachment->dev, st->sgl, st->nents, dir)) {
+-		err = -ENOMEM;
++	err = dma_map_sgtable(attachment->dev, st, dir, 0);
++	if (err)
+ 		goto err_st;
+-	}
+ 
+ 	return st;
+ 
+@@ -46,7 +45,7 @@ static void mock_unmap_dma_buf(struct dma_buf_attachment *attachment,
+ 			       struct sg_table *st,
+ 			       enum dma_data_direction dir)
+ {
+-	dma_unmap_sg(attachment->dev, st->sgl, st->nents, dir);
++	dma_unmap_sgtable(attachment->dev, st, dir, 0);
+ 	sg_free_table(st);
+ 	kfree(st);
+ }
+-- 
+2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
