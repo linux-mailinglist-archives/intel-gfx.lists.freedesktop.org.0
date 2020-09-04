@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA4425D986
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Sep 2020 15:21:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7D4025D992
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Sep 2020 15:23:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC1E86E0FD;
-	Fri,  4 Sep 2020 13:21:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A3E06E14D;
+	Fri,  4 Sep 2020 13:23:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 584D96E0FD;
- Fri,  4 Sep 2020 13:21:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 508E2A0BCB;
- Fri,  4 Sep 2020 13:21:15 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 123896E11F;
+ Fri,  4 Sep 2020 13:23:27 +0000 (UTC)
+IronPort-SDR: cEFil7QJmpiY3vteO85TWPQJ5WNMOvmaq6fhSzQZErD+/lYrY/YBBsDNKPQKL2ffI6L5718nnB
+ 7uPHU4oWJVLQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9733"; a="221948883"
+X-IronPort-AV: E=Sophos;i="5.76,389,1592895600"; d="scan'208";a="221948883"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2020 06:23:26 -0700
+IronPort-SDR: qQheL7zfJYrOyLT4fdkDSR4R1NIzlOzf30Mg4ODmUT8PMPkE/Kob8WNKskmuDTkCf4gB1Oo7Tk
+ 35MGGaRFq0EA==
+X-IronPort-AV: E=Sophos;i="5.76,389,1592895600"; d="scan'208";a="502921427"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.201])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2020 06:23:25 -0700
+Date: Fri, 4 Sep 2020 09:24:34 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20200904132434.GA586737@intel.com>
+References: <11e59ebdea7ee4f46803a21fe9b21443d2b9c401.camel@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 04 Sep 2020 13:21:15 -0000
-Message-ID: <159922567529.8516.13103545999976768193@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200904115354.25336-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200904115354.25336-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Pimp_DP_DFP_handling_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <11e59ebdea7ee4f46803a21fe9b21443d2b9c401.camel@redhat.com>
+Subject: Re: [Intel-gfx] [PULL] topic/nouveau-i915-dp-helpers-and-cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,261 +49,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1365299069=="
+Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1365299069==
-Content-Type: multipart/alternative;
- boundary="===============2643640829349609107=="
+On Mon, Aug 31, 2020 at 07:38:57PM -0400, Lyude Paul wrote:
+> topic/nouveau-i915-dp-helpers-and-cleanup-2020-08-31-1:
+> UAPI Changes:
+> 
+> None
+> 
+> Cross-subsystem Changes:
+> 
+> * Moves a bunch of miscellaneous DP code from the i915 driver into a set
+>   of shared DRM DP helpers
+> 
+> Core Changes:
+> 
+> * New DRM DP helpers (see above)
+> 
+> Driver Changes:
+> 
+> * Implements usage of the aforementioned DP helpers in the nouveau
+>   driver, along with some other various HPD related cleanup for nouveau
 
---===============2643640829349609107==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+was this picked-up on the nouveau side already?
+whenever that happens, please ping me so I can pull this to dinq.
 
-== Series Details ==
+But a reminder that it has my ack to go to drm-misc or only to nouveau
+directly.
 
-Series: drm/i915: Pimp DP DFP handling (rev2)
-URL   : https://patchwork.freedesktop.org/series/72928/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8965 -> Patchwork_18442
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18442 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [PASS][3] -> [INCOMPLETE][4] ([i915#2276])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-byt-j1900:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - {fi-kbl-7560u}:     [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [SKIP][11] ([fdo#109271]) -> [DMESG-WARN][12] ([i915#2203])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#2276]: https://gitlab.freedesktop.org/drm/intel/issues/2276
-
-
-Participating hosts (36 -> 33)
-------------------------------
-
-  Missing    (3): fi-byt-clapper fi-byt-squawks fi-bsw-cyan 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_8965 -> Patchwork_18442
-
-  CI-20190529: 20190529
-  CI_DRM_8965: f4cbf17fababf80c1c67c6f1687fb8bf7e00a263 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5778: 9a9db93fd2f2f59eb37b79d4b9a623067a945bac @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18442: 6435daadb7ce482636a1fd2b57c02152f1aca6f1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6435daadb7ce drm/i915: Do YCbCr 444->420 conversion via DP protocol converters
-8b4dc01e472f drm/dp: Add helpers for DFP YCbCr 4:2:0 handling
-c21132de3f0e drm/i915: DP->HDMI TMDS clock limits vs. deep color
-a15752d9a614 drm/i915: Extract intel_hdmi_has_audio()
-a59fad0f91e3 drm/i915: Handle downstream facing ports w/o EDID
-45765ccce410 drm/dp: Add drm_dp_downstream_mode()
-cb1f81c5536d drm/i915: Configure DP 1.3+ protocol converted HDMI mode
-3dde5b00ff39 drm/i915: Deal with TMDS DFP clock limits
-bad373543848 drm/dp: Add drm_dp_downstream_{min, max}_tmds_clock()
-e11f279d7591 drm/i915: Reworkd DP DFP clock handling
-ba465fed59f1 drm/dp: Redo drm_dp_downstream_max_clock() as drm_dp_downstream_max_dotclock()
-ca3eb83d39a4 drm/dp: Pimp drm_dp_downstream_max_bpc()
-f402b8c8847c drm/dp: Add helpers to identify downstream facing port types
-0fd2901f3f3d drm/i915: Reworkd DFP max bpc handling
-f98c09c9cf85 drm/dp: Define more downstream facing port caps
-e495acd8f0f1 drm/dp: Define protocol converter DPCD registers
-6a66200c3b95 drm/i915/lspcon: Do not send infoframes to non-HDMI sinks
-42d7b45dcd52 drm/dp: Dump downstream facing port caps
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/index.html
-
---===============2643640829349609107==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Pimp DP DFP handling (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/72928/">https://patchwork.freedesktop.org/series/72928/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_8965 -&gt; Patchwork_18442</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18442 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-icl-y/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-icl-y/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2276">i915#2276</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>
-<p>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-<li>
-<p>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8965/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18442/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (36 -&gt; 33)</h2>
-<p>Missing    (3): fi-byt-clapper fi-byt-squawks fi-bsw-cyan </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_8965 -&gt; Patchwork_18442</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8965: f4cbf17fababf80c1c67c6f1687fb8bf7e00a263 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5778: 9a9db93fd2f2f59eb37b79d4b9a623067a945bac @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18442: 6435daadb7ce482636a1fd2b57c02152f1aca6f1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>6435daadb7ce drm/i915: Do YCbCr 444-&gt;420 conversion via DP protocol converters<br />
-8b4dc01e472f drm/dp: Add helpers for DFP YCbCr 4:2:0 handling<br />
-c21132de3f0e drm/i915: DP-&gt;HDMI TMDS clock limits vs. deep color<br />
-a15752d9a614 drm/i915: Extract intel_hdmi_has_audio()<br />
-a59fad0f91e3 drm/i915: Handle downstream facing ports w/o EDID<br />
-45765ccce410 drm/dp: Add drm_dp_downstream_mode()<br />
-cb1f81c5536d drm/i915: Configure DP 1.3+ protocol converted HDMI mode<br />
-3dde5b00ff39 drm/i915: Deal with TMDS DFP clock limits<br />
-bad373543848 drm/dp: Add drm_dp_downstream_{min, max}_tmds_clock()<br />
-e11f279d7591 drm/i915: Reworkd DP DFP clock handling<br />
-ba465fed59f1 drm/dp: Redo drm_dp_downstream_max_clock() as drm_dp_downstream_max_dotclock()<br />
-ca3eb83d39a4 drm/dp: Pimp drm_dp_downstream_max_bpc()<br />
-f402b8c8847c drm/dp: Add helpers to identify downstream facing port types<br />
-0fd2901f3f3d drm/i915: Reworkd DFP max bpc handling<br />
-f98c09c9cf85 drm/dp: Define more downstream facing port caps<br />
-e495acd8f0f1 drm/dp: Define protocol converter DPCD registers<br />
-6a66200c3b95 drm/i915/lspcon: Do not send infoframes to non-HDMI sinks<br />
-42d7b45dcd52 drm/dp: Dump downstream facing port caps</p>
-
-</body>
-</html>
-
---===============2643640829349609107==--
-
---===============1365299069==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> The following changes since commit bfacb84993eb173c0ab53ca4dd6180f76f4dc176:
+> 
+>   drm: virtio: fix kconfig dependency warning (2020-08-31 08:55:02 +0200)
+> 
+> are available in the Git repository at:
+> 
+>   git://anongit.freedesktop.org/drm/drm-misc tags/topic/nouveau-i915-dp-helpers-and-cleanup-2020-08-31-1
+> 
+> for you to fetch changes up to 79416e97dda0118b137302575a70a14259a27d7d:
+> 
+>   drm/nouveau/kms: Start using drm_dp_read_dpcd_caps() (2020-08-31 19:10:09 -0400)
+> 
+> ----------------------------------------------------------------
+> UAPI Changes:
+> 
+> None
+> 
+> Cross-subsystem Changes:
+> 
+> * Moves a bunch of miscellaneous DP code from the i915 driver into a set
+>   of shared DRM DP helpers
+> 
+> Core Changes:
+> 
+> * New DRM DP helpers (see above)
+> 
+> Driver Changes:
+> 
+> * Implements usage of the aforementioned DP helpers in the nouveau
+>   driver, along with some other various HPD related cleanup for nouveau
+> 
+> ----------------------------------------------------------------
+> Lyude Paul (20):
+>       drm/nouveau/kms: Fix some indenting in nouveau_dp_detect()
+>       drm/nouveau/kms/nv50-: Remove open-coded drm_dp_read_desc()
+>       drm/nouveau/kms/nv50-: Just use drm_dp_dpcd_read() in nouveau_dp.c
+>       drm/nouveau/kms/nv50-: Use macros for DP registers in nouveau_dp.c
+>       drm/nouveau/kms: Don't clear DP_MST_CTRL DPCD in nv50_mstm_new()
+>       drm/nouveau/kms: Search for encoders' connectors properly
+>       drm/nouveau/kms/nv50-: Use drm_dp_dpcd_(readb|writeb)() in nv50_sor_disable()
+>       drm/nouveau/kms/nv50-: Refactor and cleanup DP HPD handling
+>       drm/i915/dp: Extract drm_dp_read_mst_cap()
+>       drm/nouveau/kms: Use new drm_dp_read_mst_cap() helper for checking MST caps
+>       drm/nouveau/kms: Move drm_dp_cec_unset_edid() into nouveau_connector_detect()
+>       drm/nouveau/kms: Only use hpd_work for reprobing in HPD paths
+>       drm/i915/dp: Extract drm_dp_read_downstream_info()
+>       drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode validation
+>       drm/i915/dp: Extract drm_dp_read_sink_count_cap()
+>       drm/i915/dp: Extract drm_dp_read_sink_count()
+>       drm/nouveau/kms/nv50-: Add support for DP_SINK_COUNT
+>       drm/nouveau/kms: Don't change EDID when it hasn't actually changed
+>       drm/i915/dp: Extract drm_dp_read_dpcd_caps()
+>       drm/nouveau/kms: Start using drm_dp_read_dpcd_caps()
+> 
+>  drivers/gpu/drm/drm_dp_helper.c             | 187 ++++++++++++++++-
+>  drivers/gpu/drm/drm_dp_mst_topology.c       |  22 ++
+>  drivers/gpu/drm/i915/display/intel_dp.c     | 124 +++--------
+>  drivers/gpu/drm/i915/display/intel_dp.h     |   1 -
+>  drivers/gpu/drm/i915/display/intel_lspcon.c |   2 +-
+>  drivers/gpu/drm/nouveau/dispnv04/dac.c      |   2 +-
+>  drivers/gpu/drm/nouveau/dispnv04/dfp.c      |   7 +-
+>  drivers/gpu/drm/nouveau/dispnv04/disp.c     |  24 ++-
+>  drivers/gpu/drm/nouveau/dispnv04/disp.h     |   4 +
+>  drivers/gpu/drm/nouveau/dispnv04/tvnv04.c   |   2 +-
+>  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c   |   2 +-
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c     | 305 ++++++++++++++++------------
+>  drivers/gpu/drm/nouveau/nouveau_connector.c | 132 +++++-------
+>  drivers/gpu/drm/nouveau/nouveau_connector.h |   1 +
+>  drivers/gpu/drm/nouveau/nouveau_display.c   |  72 ++++++-
+>  drivers/gpu/drm/nouveau/nouveau_display.h   |   3 +-
+>  drivers/gpu/drm/nouveau/nouveau_dp.c        | 210 +++++++++++++++----
+>  drivers/gpu/drm/nouveau/nouveau_drm.c       |   4 +-
+>  drivers/gpu/drm/nouveau/nouveau_drv.h       |   2 +
+>  drivers/gpu/drm/nouveau/nouveau_encoder.h   |  48 ++++-
+>  include/drm/drm_dp_helper.h                 |  15 +-
+>  include/drm/drm_dp_mst_helper.h             |   3 +-
+>  22 files changed, 779 insertions(+), 393 deletions(-)
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1365299069==--
