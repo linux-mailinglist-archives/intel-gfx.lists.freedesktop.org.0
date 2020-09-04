@@ -1,75 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB2D425EEBD
-	for <lists+intel-gfx@lfdr.de>; Sun,  6 Sep 2020 17:42:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 513F125F134
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 02:55:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EBBC6E073;
-	Sun,  6 Sep 2020 15:42:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C36266E054;
+	Mon,  7 Sep 2020 00:55:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E382F6E073
- for <intel-gfx@lists.freedesktop.org>; Sun,  6 Sep 2020 15:42:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1599406920;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=eU0282Q1pB8K+NrqL2VNopVO1apVmSDs8ZFFLw4g4ac=;
- b=Bg7hInu53kd8/xVWBTz7a/Ywa6FCHi6aOOID17sF9MMO+Wh5qH8JfnQE7lBxqKYcddg0pF
- w2JfaRDLpdtIhSYOIZJl7N991PtWGCFD7Q9esjDMpAw34M+NDx+DZyk76orBRZxM7shn2h
- AES+VOx3ZupbFYGyXAA9/YsDABQW/To=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-397-oPjpjx6PPtma1gmVO_3TSg-1; Sun, 06 Sep 2020 11:41:52 -0400
-X-MC-Unique: oPjpjx6PPtma1gmVO_3TSg-1
-Received: by mail-ej1-f70.google.com with SMTP id hh10so604184ejb.13
- for <intel-gfx@lists.freedesktop.org>; Sun, 06 Sep 2020 08:41:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:to:from:subject:message-id:date:user-agent
- :mime-version:content-language:content-transfer-encoding;
- bh=eU0282Q1pB8K+NrqL2VNopVO1apVmSDs8ZFFLw4g4ac=;
- b=pYWr2l13s/J0/T5/LliclDhlOmDIKbUFFJ/8rWkKo6HbeqSwLht6COlmU/Vb+JccVF
- zHV+SMSE5yYVxSeeEDQo/23Ul+hQBkYYLe4CPqZRYJV1Kq7+Ir3a+JWeN1NpyrLLxBoH
- pLK17VlPF1B0QvCJInWgHB3B0DK3I+uGFJVPb4fkCcsHvyevkoIsCRMEPErz9sqg0e2w
- OqkY+/gB+/PtAaMTzPHkhpZ2KUnoyT34I7DNxiGjAtMbfSQC5hMi7H+10pqFUamprSw2
- XSc+n+s/WOMqlyDNjvl1Mv6qPixSUSZqsNlMSmJE2zC4OXf/D4b7grdbcjwtwSRfWtk7
- aiDg==
-X-Gm-Message-State: AOAM530xcIwvtHKJ0jCDU0lSew1x/XLL/bl0q9+AFCdi4VzIKDwkrz3a
- hW1xBsrIbDikfLnNCCRlxCWnNM0zdnTZg9ud/oON+tOwk6Hvuh4xXSJRXjMD3Sq9oC37ltl7Q7Q
- 9Tpv4HXx0wFlZyzYgzgj9fgPSFef+
-X-Received: by 2002:a17:906:6ce:: with SMTP id
- v14mr6515616ejb.451.1599406910405; 
- Sun, 06 Sep 2020 08:41:50 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzppQRV0xkI3KXT2kVlGOSqlkxS68pKJ+rkzETdIfq0MduAz56m+LfguxgS84lcD/e0+sWMYw==
-X-Received: by 2002:a17:906:6ce:: with SMTP id
- v14mr6515598ejb.451.1599406910091; 
- Sun, 06 Sep 2020 08:41:50 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
- by smtp.gmail.com with ESMTPSA id h2sm12415475ejk.33.2020.09.06.08.41.49
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 06 Sep 2020 08:41:49 -0700 (PDT)
-To: intel-gfx <intel-gfx@lists.freedesktop.org>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <ec6ff211-62f4-2dee-c586-6937040bdb4c@redhat.com>
-Date: Sun, 6 Sep 2020 17:41:48 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0.002
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: [Intel-gfx] Pushed atomic-pwm changes,
- had to manually resolve a conflict in drm-tip
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9F796E03F;
+ Mon,  7 Sep 2020 00:55:00 +0000 (UTC)
+IronPort-SDR: 8J9eduruy1f0FiLyU4cCykO9Kaq05MfuhRRtSVVdXqqkY/DzShs5g+KIP4CzsKJwT1Xy46hQJn
+ f2rq1mnowTIg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9736"; a="157202184"
+X-IronPort-AV: E=Sophos;i="5.76,400,1592895600"; d="scan'208";a="157202184"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2020 17:54:59 -0700
+IronPort-SDR: BDtqnM3d0in1y1U+CKAnJLTFvXd7M1olhSOI0bMUxvLej/hrz5Yq27smlfRM+UJm1igq+IwuWb
+ EpV4QnennZuw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,400,1592895600"; d="scan'208";a="479443676"
+Received: from xzhan34-mobl2.bj.intel.com ([10.238.154.74])
+ by orsmga005.jf.intel.com with ESMTP; 06 Sep 2020 17:54:57 -0700
+From: Xiaolin Zhang <xiaolin.zhang@intel.com>
+To: intel-gvt-dev@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Sat,  5 Sep 2020 00:21:33 +0800
+Message-Id: <1599236505-9086-1-git-send-email-xiaolin.zhang@intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [Intel-gfx] [PATCH v1 00/12] enhanced i915 vgpu with PV feature
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,57 +47,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: chris@chris-wilson.co.uk, zhiyuan.lv@intel.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi All,
+This is new i915 VGPU PV design based on the last year proposal [1].
 
-Note this is just FYI, in case I did anything wrong...
+This is a new series of patch set and discontiued the old series of
+patch set due to this new design.
 
-Now that it is finally fully acked up and has passed CI
-I have pushed my atomic-pwm support for i915 series to
-dinq.
+To improve vgpu performance, it could implement some PV optimizations
+in different gpu resource domain to reduce the data access overhead
+or complexity modeling.
 
-This let to a conflict in drm-tip. The problem was that
-in dinq prior to my push intel_panel.c had the following
-around line 1942:
+In this patch set, PPGTT and GGTT are identifed as PV optimization from
+VGPU memory resource point of view and workloa submisison is identifed
+as PV optimization from VGPU compute resource point of view. so 3 PV
+features (PV PPGTT, PV GGTT and PV submisison) are designed and implemented
+to support VGPU model better. 
 
-        level = DIV_ROUND_UP(pwm_get_duty_cycle(panel->backlight.pwm) * 100,
-                             CRC_PMIC_PWM_PERIOD_NS);
+To provide the mechanism for PV feature development and implementation,
+A simple PV framework is implemented and consisted of 3 sub items:
+a. PV capability: it indicateds what kind of PV capability provided by both
+guest system and host GVTg subsystem.
+b. PV shared memory: this memory is allocated in guest and shared between
+guest and host for data exchange, PV command & PV data communication.
+c. PV command transport protocol: on top of PV shared memory, it defines
+the communication protocol & channel between guest and host to circulate
+PV command and PV command data. 
 
-Where as Linus' master, and drm-tip also from some fixes
-branch I assume, has:
+for PV PPGTT, to improve efficiency and reduce the complexity of ppgtt
+support, vgpu ppgtt page table operations are implemented in pv fashion
+with pv version of bind/unbind for ppgtt vma ops. The pv version of 
+ppgtt vma ops use the CTB protocol to communicate pv ppgtt command along 
+with data struct pv_vma from guest to GVT and then GVT implement command
+handler of PV_CMD_BIND_PPGTT and PV_CMD_UBIND_PPGTT to achieve GVA->HPA
+address translation.
 
-        level = DIV_ROUND_UP_ULL(pwm_get_duty_cycle(panel->backlight.pwm) * 100,
-                             CRC_PMIC_PWM_PERIOD_NS);
+for PV GGTT, it is similar with PV PPGGT instead to use PV_CMD_BIND_GGTT
+and PV_CMD_UNBIND_GGTT pv command. 
 
-Notice the extra _ULL in Linus' master / some fixes
-branch which is necessary because
-pwm_get_duty_cycle(panel->backlight.pwm) went from
-returning an u32 to an u64 in 5.9.
+for PV workload submisison, a pv version of workload submission backend
+implemented with engine submission data in the shared memory and meanwhile
+eliminating execlists csb process and context switch interrupt in
+submisision routine to improve efficiency and reduce complexity.
 
-My patch-set removes the lines with the
-	DIV_ROUND_UP[_ULL] replacing them with a
-call to pwm_get_relative_duty_cycle() which nicely
-abstracts this away.
+Based on the experiment, small workloads such as glmark2 and Antutu 3D 
+benchmark can get benefit for these PV featuers at least 10% performance
+gain. for large workload such as media and 3D, it get some benefit,
+but not much. 
 
-Resolving this was easy, I followed:
-https://drm.pages.freedesktop.org/maintainer-tools/drm-tip.html#resolving-conflicts-when-rebuilding-drm-tip
+[1]: https://patchwork.kernel.org/cover/11148059/
 
-And I believe I did everything right :)
+Xiaolin Zhang (12):
+  drm/i915: introduced vgpu pv capability
+  drm/i915: vgpu shared memory setup for pv support
+  drm/i915: vgpu pv command buffer transport protocol
+  drm/i915: vgpu ppgtt page table pv support
+  drm/i915: vgpu ggtt page table pv support
+  drm/i915: vgpu workload submisison pv support
+  drm/i915/gvt: GVTg expose pv_caps PVINFO register
+  drm/i915/gvt: GVTg handle guest shared_page setup
+  drm/i915/gvt: GVTg support vgpu pv CTB protocol
+  drm/i915/gvt: GVTg support ppgtt pv operations
+  drm/i915/gvt: GVTg support ggtt pv operations
+  drm/i915/gvt: GVTg support pv workload submssion
 
-Still I'm sending this email for 2 reasons:
+ drivers/gpu/drm/i915/Makefile              |   2 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c       |   4 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c        |   2 +
+ drivers/gpu/drm/i915/gvt/gtt.c             | 255 ++++++++++++++
+ drivers/gpu/drm/i915/gvt/gtt.h             |   4 +
+ drivers/gpu/drm/i915/gvt/gvt.h             |  17 +-
+ drivers/gpu/drm/i915/gvt/handlers.c        | 274 ++++++++++++++-
+ drivers/gpu/drm/i915/gvt/vgpu.c            |  47 +++
+ drivers/gpu/drm/i915/i915_debugfs.c        |   3 +
+ drivers/gpu/drm/i915/i915_drv.c            |   2 +
+ drivers/gpu/drm/i915/i915_drv.h            |   5 +-
+ drivers/gpu/drm/i915/i915_gem.c            |   4 +-
+ drivers/gpu/drm/i915/i915_pvinfo.h         |   9 +-
+ drivers/gpu/drm/i915/i915_vgpu.c           | 533 ++++++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_vgpu.h           | 122 +++++++
+ drivers/gpu/drm/i915/intel_pv_submission.c | 324 ++++++++++++++++++
+ 16 files changed, 1599 insertions(+), 8 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/intel_pv_submission.c
 
-1. In case I did anything wrong.
-2. This will likely also cause a conflict in -next
-    I guess, I hope this email will make resolving
-    that easier.
-
-Regards,
-
-Hans
+-- 
+2.7.4
 
 _______________________________________________
 Intel-gfx mailing list
