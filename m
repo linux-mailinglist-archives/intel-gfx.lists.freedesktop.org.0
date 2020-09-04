@@ -2,37 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D94E25E035
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Sep 2020 18:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 723FC25E163
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Sep 2020 20:12:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AE9D6EC8F;
-	Fri,  4 Sep 2020 16:50:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7596F6ECA0;
+	Fri,  4 Sep 2020 18:12:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id F372D6EC88;
- Fri,  4 Sep 2020 16:50:51 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 438C0106F;
- Fri,  4 Sep 2020 09:50:51 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 23C323F66F;
- Fri,  4 Sep 2020 09:50:51 -0700 (PDT)
-Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
- id D87B468324C; Fri,  4 Sep 2020 17:50:49 +0100 (BST)
-Date: Fri, 4 Sep 2020 17:50:49 +0100
-From: Liviu Dudau <Liviu.Dudau@arm.com>
-To: Petri Latvala <petri.latvala@intel.com>
-Message-ID: <20200904165049.GU159988@e110455-lin.cambridge.arm.com>
-References: <20200830174410.256533-1-rodrigosiqueiramelo@gmail.com>
- <20200904110918.GM159988@e110455-lin.cambridge.arm.com>
- <20200904115605.GW7444@platvala-desk.ger.corp.intel.com>
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
+ [207.211.31.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AEBF6E098
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Sep 2020 18:12:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1599243169;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=S4dO6h5cflx+YUiBH/r7ZgTQhpmjXwvANxcwBU6mxuo=;
+ b=b6mnx04zRq49ZsdxfQ0464sADG8onElbYE0Thmofb4Bsby9bGtyjZI0LO+P1TZa1iIqGIF
+ miZACLMGqM8PLZHxwt5X8Lva2R598Tv6m6qsrgN4snXU+njI/uTNY0z6bgn3T9YJnO9Yoo
+ Ml7GrI3mW95TvAtqmTQlPPYKgR7Ju04=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-565-i6TkyvCaOL2sPmP48zPQ5Q-1; Fri, 04 Sep 2020 14:12:40 -0400
+X-MC-Unique: i6TkyvCaOL2sPmP48zPQ5Q-1
+Received: by mail-qv1-f71.google.com with SMTP id t4so2852775qvr.21
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Sep 2020 11:12:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
+ :in-reply-to:references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=S4dO6h5cflx+YUiBH/r7ZgTQhpmjXwvANxcwBU6mxuo=;
+ b=mqNpOYQcPPWWyAqr/bN6ZiqMdHO3cqtsv3L12C9HME8JNjKsvvpz1vfcSXRqaC7x+F
+ V9Kd0ofOzQR1MpA30IAnT+NbY5spW+2GkQXUz8Rinhjl3r0l3cCs/CPw4Myf1MyUS8B9
+ 18/mZev/X1nRpVUkCE99bGMIiu5Zm6Peq8FIAVu/C4yEt19f7kEuGOpyyG+pqYxueAWq
+ pDABHsv/syV6lTJg8dWKHCMgx9XZbt61Yen/AAmyC0ykWZ7DjsqpPE5+t2QENF6J2CJb
+ Lz7+xN0SbXuTpb5ZzXzMpweL+uRPCivncG6TA8ysrxTA3X5izT62279Ty6QThV4PlOir
+ TSwQ==
+X-Gm-Message-State: AOAM531kBJA6gua/oEsziR1YoHNfp+XwWnQp5CkBkIJmuiAu2kWeWu6m
+ D+Pp62Jqc9Z5ISpthmo8Kcv+jVwB3JufZi0p0Ib+6hzeT6P/bV7Y3bzjHR4ggLmI3wW4pRKWSBy
+ 4E4kY/bomkcqr2W8HkkyV+02+BJwW
+X-Received: by 2002:a37:6108:: with SMTP id v8mr7702063qkb.264.1599243159942; 
+ Fri, 04 Sep 2020 11:12:39 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxd+3AH/ZtQSO85tI5MF/0QyOpYM8EhtlFw1/4XwwxxLmfEEIoT/44Fn0fKlOEb5vU1GxT2VQ==
+X-Received: by 2002:a37:6108:: with SMTP id v8mr7702046qkb.264.1599243159674; 
+ Fri, 04 Sep 2020 11:12:39 -0700 (PDT)
+Received: from Whitewolf.lyude.net
+ (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id s17sm5138417qte.50.2020.09.04.11.12.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 04 Sep 2020 11:12:38 -0700 (PDT)
+Message-ID: <89eef368a9fbf04f3bfb3421c0f9f2ae3183259f.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Fri, 04 Sep 2020 14:12:37 -0400
+In-Reply-To: <20200904132434.GA586737@intel.com>
+References: <11e59ebdea7ee4f46803a21fe9b21443d2b9c401.camel@redhat.com>
+ <20200904132434.GA586737@intel.com>
+Organization: Red Hat
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200904115605.GW7444@platvala-desk.ger.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t v9 0/4] Add support for testing
- writeback connectors
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0.002
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PULL] topic/nouveau-i915-dp-helpers-and-cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,28 +82,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: melissa.srw@gmail.com, Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
- Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- igt-dev@lists.freedesktop.org, Maxime Ripard <maxime@cerno.tech>,
- nd <nd@arm.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: lyude@redhat.com
+Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBTZXAgMDQsIDIwMjAgYXQgMDI6NTY6MDVQTSArMDMwMCwgUGV0cmkgTGF0dmFsYSB3
-cm90ZToKPiBPbiBGcmksIFNlcCAwNCwgMjAyMCBhdCAxMjowOToxOFBNICswMTAwLCBMaXZpdSBE
-dWRhdSB3cm90ZToKPiA+IE9uIFN1biwgQXVnIDMwLCAyMDIwIGF0IDAxOjQ0OjA2UE0gLTA0MDAs
-IFJvZHJpZ28gU2lxdWVpcmEgd3JvdGU6Cj4gPiA+IEhpLAo+ID4gCj4gPiBIaSwKPiA+IAo+ID4g
-Q2FuIHRoaXMgc2VyaWVzIGJlIG1lcmdlZD8KPiAKPiBUaGFua3MgZm9yIHRoZSBwb2tlLiBJdCdz
-IG1lcmdlZCBub3cuCgpDaGVlcnMhCgo+IAo+ID4gTmVpdGhlciBtZSBub3IgQnJpYW4gbWFuYWdl
-ZCB0byBnZXQgYWNjZXB0ZWQKPiA+IGluIHRoZSBpLWctdCBjb21taXR0ZXJzIGxpc3QsIHNvIEkg
-Y2Fubm90IHB1c2ggaXQuCj4gCj4gTGV0J3MgZml4IHRoYXQuIFBsZWFzZSBhcHBseSBpbiBnaXRs
-YWIuCgpJJ3ZlIGRvbmUgdGhhdCBub3cuIFRoYW5rcyEKCkJlc3QgcmVnYXJkcywKTGl2aXUKCj4g
-Cj4gCj4gLS0gCj4gUGV0cmkgTGF0dmFsYQoKLS0gCj09PT09PT09PT09PT09PT09PT09CnwgSSB3
-b3VsZCBsaWtlIHRvIHwKfCBmaXggdGhlIHdvcmxkLCAgfAp8IGJ1dCB0aGV5J3JlIG5vdCB8Cnwg
-Z2l2aW5nIG1lIHRoZSAgIHwKIFwgc291cmNlIGNvZGUhICAvCiAgLS0tLS0tLS0tLS0tLS0tCiAg
-ICDCr1xfKOODhClfL8KvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+On Fri, 2020-09-04 at 09:24 -0400, Rodrigo Vivi wrote:
+> On Mon, Aug 31, 2020 at 07:38:57PM -0400, Lyude Paul wrote:
+> > topic/nouveau-i915-dp-helpers-and-cleanup-2020-08-31-1:
+> > UAPI Changes:
+> > 
+> > None
+> > 
+> > Cross-subsystem Changes:
+> > 
+> > * Moves a bunch of miscellaneous DP code from the i915 driver into a set
+> >   of shared DRM DP helpers
+> > 
+> > Core Changes:
+> > 
+> > * New DRM DP helpers (see above)
+> > 
+> > Driver Changes:
+> > 
+> > * Implements usage of the aforementioned DP helpers in the nouveau
+> >   driver, along with some other various HPD related cleanup for nouveau
+> 
+> was this picked-up on the nouveau side already?
+> whenever that happens, please ping me so I can pull this to dinq.
+
+Everything that's needed is in this topic branch
+> 
+> But a reminder that it has my ack to go to drm-misc or only to nouveau
+> directly.
+> 
+> > The following changes since commit bfacb84993eb173c0ab53ca4dd6180f76f4dc176:
+> > 
+> >   drm: virtio: fix kconfig dependency warning (2020-08-31 08:55:02 +0200)
+> > 
+> > are available in the Git repository at:
+> > 
+> >   git://anongit.freedesktop.org/drm/drm-misc tags/topic/nouveau-i915-dp-
+> > helpers-and-cleanup-2020-08-31-1
+> > 
+> > for you to fetch changes up to 79416e97dda0118b137302575a70a14259a27d7d:
+> > 
+> >   drm/nouveau/kms: Start using drm_dp_read_dpcd_caps() (2020-08-31 19:10:09
+> > -0400)
+> > 
+> > ----------------------------------------------------------------
+> > UAPI Changes:
+> > 
+> > None
+> > 
+> > Cross-subsystem Changes:
+> > 
+> > * Moves a bunch of miscellaneous DP code from the i915 driver into a set
+> >   of shared DRM DP helpers
+> > 
+> > Core Changes:
+> > 
+> > * New DRM DP helpers (see above)
+> > 
+> > Driver Changes:
+> > 
+> > * Implements usage of the aforementioned DP helpers in the nouveau
+> >   driver, along with some other various HPD related cleanup for nouveau
+> > 
+> > ----------------------------------------------------------------
+> > Lyude Paul (20):
+> >       drm/nouveau/kms: Fix some indenting in nouveau_dp_detect()
+> >       drm/nouveau/kms/nv50-: Remove open-coded drm_dp_read_desc()
+> >       drm/nouveau/kms/nv50-: Just use drm_dp_dpcd_read() in nouveau_dp.c
+> >       drm/nouveau/kms/nv50-: Use macros for DP registers in nouveau_dp.c
+> >       drm/nouveau/kms: Don't clear DP_MST_CTRL DPCD in nv50_mstm_new()
+> >       drm/nouveau/kms: Search for encoders' connectors properly
+> >       drm/nouveau/kms/nv50-: Use drm_dp_dpcd_(readb|writeb)() in
+> > nv50_sor_disable()
+> >       drm/nouveau/kms/nv50-: Refactor and cleanup DP HPD handling
+> >       drm/i915/dp: Extract drm_dp_read_mst_cap()
+> >       drm/nouveau/kms: Use new drm_dp_read_mst_cap() helper for checking MST
+> > caps
+> >       drm/nouveau/kms: Move drm_dp_cec_unset_edid() into
+> > nouveau_connector_detect()
+> >       drm/nouveau/kms: Only use hpd_work for reprobing in HPD paths
+> >       drm/i915/dp: Extract drm_dp_read_downstream_info()
+> >       drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode
+> > validation
+> >       drm/i915/dp: Extract drm_dp_read_sink_count_cap()
+> >       drm/i915/dp: Extract drm_dp_read_sink_count()
+> >       drm/nouveau/kms/nv50-: Add support for DP_SINK_COUNT
+> >       drm/nouveau/kms: Don't change EDID when it hasn't actually changed
+> >       drm/i915/dp: Extract drm_dp_read_dpcd_caps()
+> >       drm/nouveau/kms: Start using drm_dp_read_dpcd_caps()
+> > 
+> >  drivers/gpu/drm/drm_dp_helper.c             | 187 ++++++++++++++++-
+> >  drivers/gpu/drm/drm_dp_mst_topology.c       |  22 ++
+> >  drivers/gpu/drm/i915/display/intel_dp.c     | 124 +++--------
+> >  drivers/gpu/drm/i915/display/intel_dp.h     |   1 -
+> >  drivers/gpu/drm/i915/display/intel_lspcon.c |   2 +-
+> >  drivers/gpu/drm/nouveau/dispnv04/dac.c      |   2 +-
+> >  drivers/gpu/drm/nouveau/dispnv04/dfp.c      |   7 +-
+> >  drivers/gpu/drm/nouveau/dispnv04/disp.c     |  24 ++-
+> >  drivers/gpu/drm/nouveau/dispnv04/disp.h     |   4 +
+> >  drivers/gpu/drm/nouveau/dispnv04/tvnv04.c   |   2 +-
+> >  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c   |   2 +-
+> >  drivers/gpu/drm/nouveau/dispnv50/disp.c     | 305 ++++++++++++++++---------
+> > ---
+> >  drivers/gpu/drm/nouveau/nouveau_connector.c | 132 +++++-------
+> >  drivers/gpu/drm/nouveau/nouveau_connector.h |   1 +
+> >  drivers/gpu/drm/nouveau/nouveau_display.c   |  72 ++++++-
+> >  drivers/gpu/drm/nouveau/nouveau_display.h   |   3 +-
+> >  drivers/gpu/drm/nouveau/nouveau_dp.c        | 210 +++++++++++++++----
+> >  drivers/gpu/drm/nouveau/nouveau_drm.c       |   4 +-
+> >  drivers/gpu/drm/nouveau/nouveau_drv.h       |   2 +
+> >  drivers/gpu/drm/nouveau/nouveau_encoder.h   |  48 ++++-
+> >  include/drm/drm_dp_helper.h                 |  15 +-
+> >  include/drm/drm_dp_mst_helper.h             |   3 +-
+> >  22 files changed, 779 insertions(+), 393 deletions(-)
+> > 
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> _______________________________________________
+> dim-tools mailing list
+> dim-tools@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dim-tools
+> 
+-- 
+Sincerely,
+      Lyude Paul (she/her)
+      Software Engineer at Red Hat
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
