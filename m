@@ -2,98 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0D0025D9D0
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Sep 2020 15:35:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C3F125DA19
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Sep 2020 15:39:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F8B86E2EF;
-	Fri,  4 Sep 2020 13:35:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 464C86E329;
+	Fri,  4 Sep 2020 13:39:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
- [210.118.77.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 937C16E2BE
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Sep 2020 13:35:00 +0000 (UTC)
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
- by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
- 20200904133459euoutp02d82cdceb406e51f6fde9be9f22c01442~xmAclb8J02766327663euoutp02i
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Sep 2020 13:34:59 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
- 20200904133459euoutp02d82cdceb406e51f6fde9be9f22c01442~xmAclb8J02766327663euoutp02i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1599226499;
- bh=AcRKJe24m0Gk33OJEZM4FNrE7pej7lBb34uGE2+zBsE=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Cfx4Oi3K1ffkpa8B3JTFxh9e2DJWOpo0PoO+iC5Jwr/r5qYK4zbn2xMmsAyLb3Y1l
- WO+GRy3zNJxS73eyLD06ghzsh0vWa8w1ZnMNCTCS+seGyERT8tTFDBP7SgiUEI497S
- a/TNCh36j8Of4V2BJWZ/jsOfyqatFMuOz0huK6wg=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTP id
- 20200904133458eucas1p1637fbed78aec3e28849fe7a9fe21176f~xmAcSNplP0118801188eucas1p1v;
- Fri,  4 Sep 2020 13:34:58 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
- eusmges2new.samsung.com (EUCPMTA) with SMTP id E4.66.05997.282425F5; Fri,  4
- Sep 2020 14:34:58 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
- 20200904133458eucas1p214dd6899a77591ed50834e9fc85ae157~xmAb9QM4T1446814468eucas1p2c;
- Fri,  4 Sep 2020 13:34:58 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
- eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
- 20200904133458eusmtrp2029fa82bf569a174404c6e52d258ef62~xmAb8lXQ60905709057eusmtrp2f;
- Fri,  4 Sep 2020 13:34:58 +0000 (GMT)
-X-AuditID: cbfec7f4-65dff7000000176d-53-5f52428214c7
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
- eusmgms2.samsung.com (EUCPMTA) with SMTP id 31.A0.06017.282425F5; Fri,  4
- Sep 2020 14:34:58 +0100 (BST)
-Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
- eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
- 20200904133457eusmtip1adff83376c3fd1d1a6ba5c5bd665abaf~xmAbWYRsj1944019440eusmtip1h;
- Fri,  4 Sep 2020 13:34:57 +0000 (GMT)
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-To: dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org
-Date: Fri,  4 Sep 2020 15:16:49 +0200
-Message-Id: <20200904131711.12950-9-m.szyprowski@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200904131711.12950-1-m.szyprowski@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0WSfSxVcRjH+51z7rnHzdXpMp5uL7bbtNVCXv44TYilndU/sWrNlG6cYXnb
- PYhWy0useSmUMhpKy/tLXCryOoUZ2WWXikrYUFTeohrd66D/vs/3+Ty/7/P77UfhsjaRnAoI
- DuNUwcpABSkhat8s91jGunp4H5ruPcik9HRizLPMChGzWpuGM/0L30mmqOQ1xmSnVmNMXpMD
- U9BXgZiGRxgz3z+CMVWjWhHTV/eQZMrahsVMy48xEdOUpRUf3caW5pQitmExj2DzX01i7PPF
- zyI2p9Od/ZTUjrHVT26wH1ZGcfbuYAFi699Fk+xtdTFi56r2nDL0lBzx5QIDIjiVtdNFiX9G
- 4ZI4NGl35NPkRSwaFUAiMqCAtoeZliKUiCSUjC5EkN6SiwnFPILx1j+4npLRcwjGPvIbE/k5
- MYQAFeigIjWxOZH2tlisp0jaBhKnE0m9NqHjEXSkGOohnG7DQZOnRfqGMe0OhRNpaxBBW0BN
- mWZtWEo7ws+mLlKIM4eSyua1NQxoJ6jJHBPpDwJaKwZN9zghQMdgeOQeLmhjmGpXiwW9C1Zf
- ChcCOg7BSE+ZWCiSEfTFZiKBcoChnt+6OEq3336oqLMWbBdo/KrG9TbQRjA4vV1v4zqZXvtg
- 3ZbCrQSZQO+DrPbyzdiWXs36OizkZwyQwgulIbjf10ymIvOs/2F5CBUjMy6cD/LjeNtg7ooV
- rwziw4P9rHxCgqqQ7m91rbTPv0B1fy+1IppCCkPpFmcPb5lIGcFHBbUioHCFidS1u+uCTOqr
- jLrKqUK8VeGBHN+KdlKEwkxq93jyvIz2U4ZxlzkulFNtdDHKQB6NkqXO5A6Gs/tl0pjN8tSS
- 9MuZuAqYsZufOeno6VbOlTQk+bsd59o6Gu5cd27MHvwWmTuBZleSDe3J8EAX+ekF07GEqgFb
- YmucqnTQtNaLs/F7f/iEla2PzCISzZ5z9Zyy3lupkWu746+FRsgtYzr7U9U3i8OWrYdG6428
- zkoUBO+vtDmAq3jlPxF+QY9XAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCIsWRmVeSWpSXmKPExsVy+t/xu7pNTkHxBtPXS1v0njvJZLFxxnpW
- i//bJjJbXPn6ns1i5eqjTBazJ2xmsliw39pi+eX1jBZ7FzJZfLnykMli0+NrrBaXd81hs1h7
- 5C67xcEPT1gt9s+6xu7A77Fm3hpGj73fFrB4LN7zkslj+7cHrB7zTgZ63O8+zuSxeUm9x+1/
- j5k9Jt9Yzuix+2YDm0ffllWMHp83yQXwROnZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hka
- m8daGZkq6dvZpKTmZJalFunbJehlTF3xg72gW7ZiWc83pgbG5RJdjJwcEgImEovnNbKA2EIC
- SxklNiw1gIjLSJyc1sAKYQtL/LnWxdbFyAVU84lR4tXsv2AJNgFDia63EAkRgU5GiWndH9lB
- EswCZ5glfm/wBrGFBfwlrjxYwQxiswioSmxdewmshlfAVuLj/tNsEBvkJVZvOABWwylgJ7F1
- xhNWiItsJT7MWcwygZFvASPDKkaR1NLi3PTcYiO94sTc4tK8dL3k/NxNjMAY2nbs55YdjF3v
- gg8xCnAwKvHwMtgHxQuxJpYVV+YeYpTgYFYS4XU6ezpOiDclsbIqtSg/vqg0J7X4EKMp0FET
- maVEk/OB8Z1XEm9oamhuYWlobmxubGahJM7bIXAwRkggPbEkNTs1tSC1CKaPiYNTqoHxasPS
- rbHJ7lmXpllnu91q2yfq9/QDI2PRurDt4YnV+2abqb73OPj0ZrfygUWusdO2Ge98+9tpi3JV
- 2f7sGUvXOVVliDybxvT37Ssf94YHs1a22YRFpMw+nchUFjcl9NUzAbE5aTuvuOxw/n9o89oJ
- D/c5eCW82LYpTH7XwtvMD3P+u2xilrjmrsRSnJFoqMVcVJwIAA4dYVq3AgAA
-X-CMS-MailID: 20200904133458eucas1p214dd6899a77591ed50834e9fc85ae157
-X-Msg-Generator: CA
-X-RootMTR: 20200904133458eucas1p214dd6899a77591ed50834e9fc85ae157
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200904133458eucas1p214dd6899a77591ed50834e9fc85ae157
-References: <20200904131711.12950-1-m.szyprowski@samsung.com>
- <CGME20200904133458eucas1p214dd6899a77591ed50834e9fc85ae157@eucas1p2.samsung.com>
-Subject: [Intel-gfx] [PATCH v10 08/30] drm: i915: fix common struct sg_table
- related issues
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CDB66E2BE;
+ Fri,  4 Sep 2020 13:39:46 +0000 (UTC)
+IronPort-SDR: 7WeNvKFcJ0Z0jzkijt8zEDug4pOzYfErjm5EtI1CZjqREQJwfuYfORg/FidyV2y9LVYHqf4qqj
+ EU8lQLqiWwMg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9733"; a="137793393"
+X-IronPort-AV: E=Sophos;i="5.76,389,1592895600"; d="scan'208";a="137793393"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2020 06:39:46 -0700
+IronPort-SDR: umS+8YSeLs1PI5iYUt1ZRDymbvCEaye4HPeq1p6nhNzc4oKCabi9Mr3MUm1c9XfmXFx8u2Hoad
+ iVCuHZ0tzN1A==
+X-IronPort-AV: E=Sophos;i="5.76,389,1592895600"; d="scan'208";a="478491476"
+Received: from mpietrix-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.4.5])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2020 06:39:42 -0700
+Date: Fri, 4 Sep 2020 16:39:40 +0300
+From: Joonas Lahtinen <jlahtine@jlahtine-mobl.ger.corp.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200904133940.GA20071@jlahtine-mobl.ger.corp.intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,111 +47,298 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Robin Murphy <robin.murphy@arm.com>, Christoph Hellwig <hch@lst.de>,
- linux-arm-kernel@lists.infradead.org,
- Marek Szyprowski <m.szyprowski@samsung.com>
-MIME-Version: 1.0
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Documentation/DMA-API-HOWTO.txt states that the dma_map_sg() function
-returns the number of the created entries in the DMA address space.
-However the subsequent calls to the dma_sync_sg_for_{device,cpu}() and
-dma_unmap_sg must be called with the original number of the entries
-passed to the dma_map_sg().
+Hi Dave & Daniel,
 
-struct sg_table is a common structure used for describing a non-contiguous
-memory buffer, used commonly in the DRM and graphics subsystems. It
-consists of a scatterlist with memory pages and DMA addresses (sgl entry),
-as well as the number of scatterlist entries: CPU pages (orig_nents entry)
-and DMA mapped pages (nents entry).
+Here goes the GT pull request for v5.10. It's the same patches as
+previously at "topic/drm-intel-gem-next", one dropped and a few
+re-ordered while creating the "drm-intel-gt-next" branch. So the
+patches have been part of drm-tip already for weeks.
 
-It turned out that it was a common mistake to misuse nents and orig_nents
-entries, calling DMA-mapping functions with a wrong number of entries or
-ignoring the number of mapped entries returned by the dma_map_sg()
-function.
+More about the PR itself at the end, but now cutting to content:
 
-This driver creatively uses sg_table->orig_nents to store the size of the
-allocated scatterlist and ignores the number of the entries returned by
-dma_map_sg function. The sg_table->orig_nents is (mis)used to properly
-free the (over)allocated scatterlist.
+As the log indicates, this pull req is all about the requested locking
+refactoring. It ultimately ends up taking the WW locking into use across
+the driver. I don't plan on sending further feature pull request
+for v5.10, but let's focus on the -fixes pulls to stabilize this.
 
-This patch only introduces the common DMA-mapping wrappers operating
-directly on the struct sg_table objects to the dmabuf related functions,
-so the other drivers, which might share buffers with i915 could rely on
-the properly set nents and orig_nents values.
+Apart from that, there's fix for Tigerlake related to syncobjs, a couple
+of fixes to keep CI happy, and a code refactoring to allow for the
+locking paradigm change.
 
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
-Reviewed-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c       | 11 +++--------
- drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c |  7 +++----
- 2 files changed, 6 insertions(+), 12 deletions(-)
+GVT-g scheduler codebase is still missing the reworks. They will be done
+as soon as the i915 ones get merged. But we have validated that the GVT-g
+functionality still works as it's rather independent codebase.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-index 2679380159fc..8a988592715b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-@@ -48,12 +48,9 @@ static struct sg_table *i915_gem_map_dma_buf(struct dma_buf_attachment *attachme
- 		src = sg_next(src);
- 	}
- 
--	if (!dma_map_sg_attrs(attachment->dev,
--			      st->sgl, st->nents, dir,
--			      DMA_ATTR_SKIP_CPU_SYNC)) {
--		ret = -ENOMEM;
-+	ret = dma_map_sgtable(attachment->dev, st, dir, DMA_ATTR_SKIP_CPU_SYNC);
-+	if (ret)
- 		goto err_free_sg;
--	}
- 
- 	return st;
- 
-@@ -73,9 +70,7 @@ static void i915_gem_unmap_dma_buf(struct dma_buf_attachment *attachment,
- {
- 	struct drm_i915_gem_object *obj = dma_buf_to_obj(attachment->dmabuf);
- 
--	dma_unmap_sg_attrs(attachment->dev,
--			   sg->sgl, sg->nents, dir,
--			   DMA_ATTR_SKIP_CPU_SYNC);
-+	dma_unmap_sgtable(attachment->dev, sg, dir, DMA_ATTR_SKIP_CPU_SYNC);
- 	sg_free_table(sg);
- 	kfree(sg);
- 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
-index debaf7b18ab5..be30b27e2926 100644
---- a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
-@@ -28,10 +28,9 @@ static struct sg_table *mock_map_dma_buf(struct dma_buf_attachment *attachment,
- 		sg = sg_next(sg);
- 	}
- 
--	if (!dma_map_sg(attachment->dev, st->sgl, st->nents, dir)) {
--		err = -ENOMEM;
-+	err = dma_map_sgtable(attachment->dev, st, dir, 0);
-+	if (err)
- 		goto err_st;
--	}
- 
- 	return st;
- 
-@@ -46,7 +45,7 @@ static void mock_unmap_dma_buf(struct dma_buf_attachment *attachment,
- 			       struct sg_table *st,
- 			       enum dma_data_direction dir)
- {
--	dma_unmap_sg(attachment->dev, st->sgl, st->nents, dir);
-+	dma_unmap_sgtable(attachment->dev, st, dir, 0);
- 	sg_free_table(st);
- 	kfree(st);
- }
--- 
-2.17.1
+NOTE: Includes reverts for 5 patches to faster introduce WW locking
+refactoring. So those may come with some perf regressions. And major
+locking refactoring probably also introduced some very subtle implicit
+uAPI changes, so we'll have to deal with those as they are noticed.
 
+Will include remaining 3 commits from drm-intel-gt-next in the PR of
+next week (just -fixes stuff), when we have the full fixup for one of
+them in addition to the minimal backportable fix. But feel free to 
+take a look at the improved commit messages already, which you requested
+in the previous -fixes PR.
+
+CI results can be found at:
+
+https://intel-gfx-ci.01.org/tree/drm-intel-gt-next/index.html
+
+About this PR itself: I produced this with local DIM changes to
+be able to tag branches at given commit and send the PR for given tag.
+Took a couple of tries, so you can disregard the extra tags until
+drm-intel-gt-next-2020-09-04-2. I'll post the DIM changes for review
+as RFC.
+
+Plan is for the "drm-intel-gt-next" branch to be a persistent branch,
+where the GT hardware and GEM uAPI related patches would go. I opted to
+drop the -queued concept, so single tree for tagging PRs and merging.
+
+The rebasing onto drm-next while pushing to drm-intel-gt-next also causes
+DIM to complain about the committer S-o-b's. I only added S-o-b to patches
+that were actually modified and noticed DIM complaint only after I had
+already fixed up all the Fixes: references.
+
+I can re-spin with added S-o-bs everywhere if that's necessary.
+
+Regards, Joonas
+
+***
+
+drm-intel-gt-next-2020-09-04-3:
+
+UAPI Changes:
+(- Potential implicit changes from WW locking refactoring)
+
+Cross-subsystem Changes:
+(- WW locking changes should align the i915 locking more with others)
+
+Driver Changes:
+
+- MAJOR: Apply WW locking across the driver (Maarten)
+
+- Reverts for 5 commits to make applying WW locking faster (Maarten)
+- Disable preparser around invalidations on Tigerlake for non-RCS engines (Chris)
+- Add missing dma_fence_put() for error case of syncobj timeline (Chris)
+- Parse command buffer earlier in eb_relocate(slow) to facilitate backoff (Maarten)
+- Pin engine before pinning all objects (Maarten)
+- Rework intel_context pinning to do everything outside of pin_mutex (Maarten)
+
+- Avoid tracking GEM context until registered (Cc: stable, Chris)
+- Provide a fastpath for waiting on vma bindings (Chris)
+- Fixes to preempt-to-busy mechanism (Chris)
+- Distinguish the virtual breadcrumbs from the irq breadcrumbs (Chris)
+- Switch to object allocations for page directories (Chris)
+- Hold context/request reference while breadcrumbs are active (Chris)
+- Make sure execbuffer always passes ww state to i915_vma_pin (Maarten)
+
+- Code refactoring to facilitate use of WW locking (Maarten)
+- Locking refactoring to use more granular locking (Maarten, Chris)
+- Support for multiple pinned timelines per engine (Chris)
+- Move complication of I915_GEM_THROTTLE to the ioctl from general code (Chris)
+- Make active tracking/vma page-directory stash work preallocated (Chris)
+- Avoid flushing submission tasklet too often (Chris)
+- Reduce context termination list iteration guard to RCU (Chris)
+- Reductions to locking contention (Chris)
+- Fixes for issues found by CI (Chris)
+
+The following changes since commit 3393649977f9a8847c659e282ea290d4b703295c:
+
+  Merge tag 'drm-intel-next-2020-08-24-1' of git://anongit.freedesktop.org/drm/drm-intel into drm-next (2020-08-28 14:09:31 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2020-09-04-3
+
+for you to fetch changes up to 509c5c3f0a072962260299aeab106ce27df7bb07:
+
+  drm/i915: Add ww locking to pin_to_display_plane, v2. (2020-09-03 15:35:28 +0300)
+
+----------------------------------------------------------------
+UAPI Changes:
+(- Potential implicit changes from WW locking refactoring)
+
+Cross-subsystem Changes:
+(- WW locking changes should align the i915 locking more with others)
+
+Driver Changes:
+
+- MAJOR: Apply WW locking across the driver (Maarten)
+
+- Reverts for 5 commits to make applying WW locking faster (Maarten)
+- Disable preparser around invalidations on Tigerlake for non-RCS engines (Chris)
+- Add missing dma_fence_put() for error case of syncobj timeline (Chris)
+- Parse command buffer earlier in eb_relocate(slow) to facilitate backoff (Maarten)
+- Pin engine before pinning all objects (Maarten)
+- Rework intel_context pinning to do everything outside of pin_mutex (Maarten)
+
+- Avoid tracking GEM context until registered (Cc: stable, Chris)
+- Provide a fastpath for waiting on vma bindings (Chris)
+- Fixes to preempt-to-busy mechanism (Chris)
+- Distinguish the virtual breadcrumbs from the irq breadcrumbs (Chris)
+- Switch to object allocations for page directories (Chris)
+- Hold context/request reference while breadcrumbs are active (Chris)
+- Make sure execbuffer always passes ww state to i915_vma_pin (Maarten)
+
+- Code refactoring to facilitate use of WW locking (Maarten)
+- Locking refactoring to use more granular locking (Maarten, Chris)
+- Support for multiple pinned timelines per engine (Chris)
+- Move complication of I915_GEM_THROTTLE to the ioctl from general code (Chris)
+- Make active tracking/vma page-directory stash work preallocated (Chris)
+- Avoid flushing submission tasklet too often (Chris)
+- Reduce context termination list iteration guard to RCU (Chris)
+- Reductions to locking contention (Chris)
+- Fixes for issues found by CI (Chris)
+
+----------------------------------------------------------------
+Chris Wilson (30):
+      drm/i915: Reduce i915_request.lock contention for i915_request_wait
+      drm/i915/selftests: Mock the status_page.vma for the kernel_context
+      drm/i915: Soften the tasklet flush frequency before waits
+      drm/i915/gem: Remove disordered per-file request list for throttling
+      drm/i915/gt: Disable preparser around xcs invalidations on tgl
+      drm/i915/gt: Delay taking the spinlock for grabbing from the buffer pool
+      drm/i915/selftests: Flush the active barriers before asserting
+      drm/i915/gt: Fix termination condition for freeing all buffer objects
+      drm/i915/gem: Delay tracking the GEM context until it is registered
+      drm/i915/gt: Support multiple pinned timelines
+      drm/i915/gt: Pull release of node->age under the spinlock
+      drm/i915/selftests: Drop stale timeline constructor assert
+      drm/i915: Skip taking acquire mutex for no ref->active callback
+      drm/i915: Export a preallocate variant of i915_active_acquire()
+      drm/i915: Keep the most recently used active-fence upon discard
+      drm/i915: Make the stale cached active node available for any timeline
+      drm/i915: Reduce locking around i915_active_acquire_preallocate_barrier()
+      drm/i915: Provide a fastpath for waiting on vma bindings
+      drm/i915: Remove requirement for holding i915_request.lock for breadcrumbs
+      drm/i915/gt: Replace intel_engine_transfer_stale_breadcrumbs
+      drm/i915/gt: Only transfer the virtual context to the new engine if active
+      drm/i915/gt: Distinguish the virtual breadcrumbs from the irq breadcrumbs
+      drm/i915: Preallocate stashes for vma page-directories
+      drm/i915/gt: Switch to object allocations for page directories
+      drm/i915/gt: Shrink i915_page_directory's slab bucket
+      drm/i915/gt: Move intel_breadcrumbs_arm_irq earlier
+      drm/i915/gt: Hold context/request reference while breadcrumbs are active
+      drm/i915/selftests: Prevent selecting 0 for our random width/align
+      drm/i915/gem: Reduce context termination list iteration guard to RCU
+      drm/i915/gem: Free the fence after a fence-chain lookup failure
+
+Maarten Lankhorst (23):
+      Revert "drm/i915/gem: Async GPU relocations only"
+      drm/i915: Revert relocation chaining commits.
+      Revert "drm/i915/gem: Drop relocation slowpath".
+      Revert "drm/i915/gem: Split eb_vma into its own allocation"
+      drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+      drm/i915: Remove locking from i915_gem_object_prepare_read/write
+      drm/i915: Parse command buffer earlier in eb_relocate(slow)
+      drm/i915: Use per object locking in execbuf, v12.
+      drm/i915: Use ww locking in intel_renderstate.
+      drm/i915: Add ww context handling to context_barrier_task
+      drm/i915: Nuke arguments to eb_pin_engine
+      drm/i915: Pin engine before pinning all objects, v5.
+      drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
+      drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
+      drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
+      drm/i915: Kill last user of intel_context_create_request outside of selftests
+      drm/i915: Convert i915_perf to ww locking as well
+      drm/i915: Dirty hack to fix selftests locking inversion
+      drm/i915/selftests: Fix locking inversion in lrc selftest.
+      drm/i915: Use ww pinning for intel_context_create_request()
+      drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion, v3.
+      drm/i915: Add ww locking to vm_fault_gtt
+      drm/i915: Add ww locking to pin_to_display_plane, v2.
+
+ drivers/gpu/drm/i915/display/intel_display.c       |    6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_client_blt.c     |   89 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c        |  105 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c         |    4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c         |   80 +-
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 1601 +++++++++++++-------
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c           |   51 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h         |   40 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object_blt.c     |  152 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object_blt.h     |    3 +
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |   10 +
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c             |    2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_throttle.c       |   67 +-
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c         |    2 +-
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |    9 +-
+ .../drm/i915/gem/selftests/i915_gem_client_blt.c   |    2 +-
+ .../drm/i915/gem/selftests/i915_gem_coherency.c    |   50 +-
+ .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |  144 +-
+ .../drm/i915/gem/selftests/i915_gem_execbuffer.c   |   60 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |   45 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c |    2 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c               |  106 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.h               |    5 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |  181 +--
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        |  305 ++--
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.h        |   36 +
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h  |   47 +
+ drivers/gpu/drm/i915/gt/intel_context.c            |  309 ++--
+ drivers/gpu/drm/i915/gt/intel_context.h            |   13 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h      |    5 +-
+ drivers/gpu/drm/i915/gt/intel_engine.h             |   20 -
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   34 +-
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c          |    3 +-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h       |   31 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c               |   97 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c                 |   23 +-
+ drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c     |  103 +-
+ .../gpu/drm/i915/gt/intel_gt_buffer_pool_types.h   |    6 +-
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c             |    1 +
+ drivers/gpu/drm/i915/gt/intel_gtt.c                |  300 +---
+ drivers/gpu/drm/i915/gt/intel_gtt.h                |  142 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c                |  167 +-
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c              |  150 +-
+ drivers/gpu/drm/i915/gt/intel_renderstate.c        |   73 +-
+ drivers/gpu/drm/i915/gt/intel_renderstate.h        |    9 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c              |    1 +
+ drivers/gpu/drm/i915/gt/intel_ring.c               |   10 +-
+ drivers/gpu/drm/i915/gt/intel_ring.h               |    3 +-
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c    |   42 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c                |    1 +
+ drivers/gpu/drm/i915/gt/intel_timeline.c           |   28 +-
+ drivers/gpu/drm/i915/gt/intel_timeline.h           |   24 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        |   43 +-
+ drivers/gpu/drm/i915/gt/mock_engine.c              |   30 +-
+ drivers/gpu/drm/i915/gt/selftest_context.c         |    2 +
+ drivers/gpu/drm/i915/gt/selftest_lrc.c             |   22 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c             |   30 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c        |   10 +-
+ drivers/gpu/drm/i915/gt/selftest_workarounds.c     |    2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c             |    2 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c              |    3 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c               |   17 +-
+ drivers/gpu/drm/i915/i915_active.c                 |  237 ++-
+ drivers/gpu/drm/i915/i915_active.h                 |   31 +-
+ drivers/gpu/drm/i915/i915_drv.c                    |    2 +-
+ drivers/gpu/drm/i915/i915_drv.h                    |   24 +-
+ drivers/gpu/drm/i915/i915_gem.c                    |  107 +-
+ drivers/gpu/drm/i915/i915_gem.h                    |   12 +
+ drivers/gpu/drm/i915/i915_irq.c                    |    1 +
+ drivers/gpu/drm/i915/i915_perf.c                   |   57 +-
+ drivers/gpu/drm/i915/i915_request.c                |  132 +-
+ drivers/gpu/drm/i915/i915_request.h                |    8 -
+ drivers/gpu/drm/i915/i915_vma.c                    |   65 +-
+ drivers/gpu/drm/i915/i915_vma.h                    |   13 +-
+ drivers/gpu/drm/i915/selftests/i915_gem.c          |   41 +
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      |   75 +-
+ drivers/gpu/drm/i915/selftests/i915_perf.c         |    4 +-
+ drivers/gpu/drm/i915/selftests/i915_request.c      |   18 +-
+ drivers/gpu/drm/i915/selftests/i915_vma.c          |    2 +-
+ .../gpu/drm/i915/selftests/intel_memory_region.c   |    8 +-
+ drivers/gpu/drm/i915/selftests/mock_gtt.c          |   26 +-
+ 81 files changed, 3654 insertions(+), 2169 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
