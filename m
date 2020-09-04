@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0617E25DBE9
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Sep 2020 16:39:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B318125DBEC
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Sep 2020 16:40:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 206206EBA6;
-	Fri,  4 Sep 2020 14:39:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0A3A6EBAC;
+	Fri,  4 Sep 2020 14:39:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF9B6EBA3
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Sep 2020 14:39:52 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id t10so7039609wrv.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 04 Sep 2020 07:39:52 -0700 (PDT)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 263BB6EBA8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Sep 2020 14:39:53 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id x14so6956645wrl.12
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Sep 2020 07:39:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Nj1LXr5SmR8mPY+7JqmSg1xTdauPRS5mjVoCd94bZjU=;
- b=hJAPrGZqCSLKyZyTnahX2RMeMHJiHxPhofDaiGz8ZgEPerncqsv5WRUsD58IsjlDXV
- cYW1wpuOALDf5VoL2mUMDwfUObL0C+kXHfLs2hboKSQcBpHJNowd1wtuNtbpUZXY7+jn
- PHBfS9MZUWCeUNGCevqL3/cg9DQXQd4KZHIqw=
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=T6J+FF1a6g6AAA3F12k2zNwVpKzWYkOFXvm1ARoA3KM=;
+ b=aMAKgG3H+QzbNuq2PpgrLSG7jHTmzdnpCFM0dJ4kGj5BHI7rXTalGgiz6PoRRnMopd
+ D2olhgTleyeDEIGhOLrD07c9bW6dB01q8+9Ua/hzFz3PJUz/Mu5c2zwsU7eDXk+wOXhR
+ OTgyk3JedqVc6ueGM3UQrUEupKqTj/pdRRjvU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Nj1LXr5SmR8mPY+7JqmSg1xTdauPRS5mjVoCd94bZjU=;
- b=qtqPCAyMLfM9W+5eZhTnjJ6AsJcWnnoQ/kxe/IsFT/AQzFbF3oBLy4kZMzJkPFrvMb
- hLYQndhyHU+MKrB2oUct4tMcf3UJ1SIKmn6T2BMz2L6JkkmHwq7/fecC9c/cow+4ne39
- wtGTvjLnBrg9y/h8sS1TGwsWYmD68erVxj6IygL4A6Wuq4ShKLmioMskUD90dDPpTOQp
- BWhAEwri1iBa7ESZRt3qLPpWuGJcpnrg4QgLryUHU4rpX3xLoVfpenu7TO7/8J6E+77p
- 1OtDEyUoAjx4jb601dbn1FITOKlJx38219WitR1lHIIwvbNtPMh2+Hh/Vw96OPMcGhZC
- bTVw==
-X-Gm-Message-State: AOAM533tXGn5OOnYgf7kDkG36qjjEx2TKDiXB+GFmN8/PeNMSqAl0HgQ
- 7DHFvm8xz3M1MWP6WLiHETb+dA==
-X-Google-Smtp-Source: ABdhPJwy06z13lLVJqFHnj9qeWAmfyrEPDa4eXi6sWBMhaYi8VpmRhMIORfYphn1FSLZbb+/0om3/Q==
-X-Received: by 2002:adf:e6c8:: with SMTP id y8mr8616615wrm.229.1599230390647; 
- Fri, 04 Sep 2020 07:39:50 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=T6J+FF1a6g6AAA3F12k2zNwVpKzWYkOFXvm1ARoA3KM=;
+ b=jAlmWcwL657sFymvfrE3MyU/a1YsF/K18Lb9KL8/tkvD67GGUe5wq7s0rE4pJtlDxP
+ +JeOxrM1YeVYCxh49D9+lmw/u0FGsVAyk5cOwEbAb9aET1bDMP3PrhAyY54aNxVMJ0Jb
+ P/a0fsTUK1V9Genm1rKmp68kLTg32Z5Iu4QfLeYSRIWDLZDzUZotjZHxge6j3Q8n0rkv
+ ghv9XkhswQlgpbDKwFkI7jWqLgm/gDZfJTHN63v4CLpSy8QkDsk0nd6Ip4UfzPAw9bsc
+ IdrVEpyc5YujXFHVCx4wfn/9UNvmzGTWVkiCvCdOWRDAKe/J5MxNNh5SaZuMm2Ndg91E
+ FaBA==
+X-Gm-Message-State: AOAM533f4x9Z431HADPcV05G+sYe6B2Om6EACEK+uYS9SQ5P1bEYejeC
+ JyXZBgGBcjhoMz4Kn8Vmhd4cqJQwu8WOydG9
+X-Google-Smtp-Source: ABdhPJyH/+4O06qSrN2BoCT7VS7AaL1FeY7VcxtLWjoZCsbcX5K4hLZJ54sT2FXXAmFgH47uNgWP8w==
+X-Received: by 2002:adf:e290:: with SMTP id v16mr7823728wri.259.1599230391722; 
+ Fri, 04 Sep 2020 07:39:51 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z15sm11597949wrv.94.2020.09.04.07.39.49
+ by smtp.gmail.com with ESMTPSA id z15sm11597949wrv.94.2020.09.04.07.39.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Sep 2020 07:39:50 -0700 (PDT)
+ Fri, 04 Sep 2020 07:39:51 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri,  4 Sep 2020 16:39:17 +0200
-Message-Id: <20200904143941.110665-1-daniel.vetter@ffwll.ch>
+Date: Fri,  4 Sep 2020 16:39:18 +0200
+Message-Id: <20200904143941.110665-2-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200904143941.110665-1-daniel.vetter@ffwll.ch>
+References: <20200904143941.110665-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 00/24] drm_managed, leftovers
+Subject: [Intel-gfx] [PATCH 01/24] drm/armada: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,113 +64,79 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Russell King <linux@armlinux.org.uk>, Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi all,
+Also remove the now no longer needed build bug on since that's already
+not needed anymore with drmm_add_final_kfree. Conversion to managed
+drm_device cleanup is easy, the final drm_dev_put() is already the
+last thing in both the bind unbind as in the unbind flow.
 
-After quite a long interruption with looking too much at dma-fence I've
-found some time (and motivation due to questions from people who got
-confused by the intermediate state) to polish this off. Changes:
+Also, this relies on component.c correctly wrapping bind&unbind in
+separate devres groups, which it does.
 
-- arc changes moved to the end, since they're not really critical. Iirc
-  there's still a bug in there, but some are fixed in this version, so
-  needs some testing. Also added some of the Acks from Sam, and applied
-  the minor nits.
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Russell King <linux@armlinux.org.uk>
+---
+ drivers/gpu/drm/armada/armada_drv.c | 26 ++++++--------------------
+ 1 file changed, 6 insertions(+), 20 deletions(-)
 
-- virtual drivers (vkms, vgem & i915 selftests) changed to use
-  devres_open/release_group, so that we don't need a hack in driver core
-  or an entire fake bus.
-
-I'd really like to get "drm/dev: Remove drm_dev_init" so that all the
-confusing intermediate functions are gone from drivers.
-
-Review, testing, comments all very much welcome like usual.
-
-Cheers, Daniel
-
-Daniel Vetter (24):
-  drm/armada: Use devm_drm_dev_alloc
-  drm/armada: Don't use drm_device->dev_private
-  drm/aspeed: Use managed drmm_mode_config_cleanup
-  drm/vgem: Use devm_drm_dev_alloc
-  drm/vkms: Use devm_drm_dev_alloc
-  drm/xlnx: Use devm_drm_dev_alloc
-  drm/i915/selftest: Create mock_destroy_device
-  drm/i915/selftests: align more to real device lifetimes
-  drm/dev: Remove drm_dev_init
-  drm/arc: Switch to devm_drm_dev_alloc
-  drm/arc: Stop using drm_device->dev_private
-  drm/arc: Delete arcpgu_priv->fb
-  drm/arc: Embedded a drm_simple_display_pipe
-  drm/arc: Embedd a drm_connector for sim case
-  drm/arc: Drop surplus connector registration
-  drm/arc: Use drmm_mode_config_cleanup
-  drm/arc: Align with simple pipe helpers
-  drm/arc: Convert to drm_simple_kms_pipe_helper
-  drm/arc: Drop crtc check in arc_pgu_update
-  drm/arc: Inline arcpgu_crtc.c
-  drm/arc: Inline arcpgu_drm_hdmi_init
-  drm/arc: Inline remaining files
-  drm/arc: Initialize sim connector before display pipe
-  drm/arc: Move to drm/tiny
-
- MAINTAINERS                                   |   2 +-
- drivers/gpu/drm/Kconfig                       |   2 -
- drivers/gpu/drm/Makefile                      |   1 -
- drivers/gpu/drm/arc/Kconfig                   |  10 -
- drivers/gpu/drm/arc/Makefile                  |   3 -
- drivers/gpu/drm/arc/arcpgu.h                  |  37 --
- drivers/gpu/drm/arc/arcpgu_crtc.c             | 222 ---------
- drivers/gpu/drm/arc/arcpgu_drv.c              | 224 ---------
- drivers/gpu/drm/arc/arcpgu_hdmi.c             |  48 --
- drivers/gpu/drm/arc/arcpgu_regs.h             |  31 --
- drivers/gpu/drm/arc/arcpgu_sim.c              | 108 -----
- drivers/gpu/drm/armada/armada_crtc.c          |   4 +-
- drivers/gpu/drm/armada/armada_debugfs.c       |   2 +-
- drivers/gpu/drm/armada/armada_drm.h           |   2 +
- drivers/gpu/drm/armada/armada_drv.c           |  30 +-
- drivers/gpu/drm/armada/armada_fbdev.c         |   4 +-
- drivers/gpu/drm/armada/armada_gem.c           |   4 +-
- drivers/gpu/drm/armada/armada_overlay.c       |   8 +-
- drivers/gpu/drm/aspeed/aspeed_gfx_drv.c       |  15 +-
- drivers/gpu/drm/drm_drv.c                     |  41 +-
- drivers/gpu/drm/drm_internal.h                |   1 +
- drivers/gpu/drm/drm_managed.c                 |  13 -
- .../gpu/drm/i915/gem/selftests/huge_pages.c   |   2 +-
- .../drm/i915/gem/selftests/i915_gem_context.c |   2 +-
- .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |   2 +-
- .../drm/i915/gem/selftests/i915_gem_object.c  |   2 +-
- .../drm/i915/gem/selftests/i915_gem_phys.c    |   2 +-
- drivers/gpu/drm/i915/gt/selftest_timeline.c   |   2 +-
- .../gpu/drm/i915/selftests/i915_gem_evict.c   |   2 +-
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |   2 +-
- drivers/gpu/drm/i915/selftests/i915_request.c |   2 +-
- drivers/gpu/drm/i915/selftests/i915_vma.c     |   2 +-
- .../drm/i915/selftests/intel_memory_region.c  |   2 +-
- .../gpu/drm/i915/selftests/mock_gem_device.c  |  47 +-
- .../gpu/drm/i915/selftests/mock_gem_device.h  |   2 +
- drivers/gpu/drm/tiny/Kconfig                  |  10 +
- drivers/gpu/drm/tiny/Makefile                 |   1 +
- drivers/gpu/drm/tiny/arcpgu.c                 | 434 ++++++++++++++++++
- drivers/gpu/drm/vgem/vgem_drv.c               |  55 +--
- drivers/gpu/drm/vkms/vkms_drv.c               |  54 ++-
- drivers/gpu/drm/xlnx/zynqmp_dpsub.c           |  21 +-
- include/drm/drm_drv.h                         |   4 -
- 42 files changed, 578 insertions(+), 884 deletions(-)
- delete mode 100644 drivers/gpu/drm/arc/Kconfig
- delete mode 100644 drivers/gpu/drm/arc/Makefile
- delete mode 100644 drivers/gpu/drm/arc/arcpgu.h
- delete mode 100644 drivers/gpu/drm/arc/arcpgu_crtc.c
- delete mode 100644 drivers/gpu/drm/arc/arcpgu_drv.c
- delete mode 100644 drivers/gpu/drm/arc/arcpgu_hdmi.c
- delete mode 100644 drivers/gpu/drm/arc/arcpgu_regs.h
- delete mode 100644 drivers/gpu/drm/arc/arcpgu_sim.c
- create mode 100644 drivers/gpu/drm/tiny/arcpgu.c
-
+diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
+index 5fc25c3f445c..a8d5908b3922 100644
+--- a/drivers/gpu/drm/armada/armada_drv.c
++++ b/drivers/gpu/drm/armada/armada_drv.c
+@@ -87,24 +87,13 @@ static int armada_drm_bind(struct device *dev)
+ 				     "armada-drm"))
+ 		return -EBUSY;
+ 
+-	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+-	if (!priv)
+-		return -ENOMEM;
+-
+-	/*
+-	 * The drm_device structure must be at the start of
+-	 * armada_private for drm_dev_put() to work correctly.
+-	 */
+-	BUILD_BUG_ON(offsetof(struct armada_private, drm) != 0);
+-
+-	ret = drm_dev_init(&priv->drm, &armada_drm_driver, dev);
+-	if (ret) {
+-		dev_err(dev, "[" DRM_NAME ":%s] drm_dev_init failed: %d\n",
+-			__func__, ret);
+-		kfree(priv);
+-		return ret;
++	priv = devm_drm_dev_alloc(dev, &armada_drm_driver,
++				  struct armada_private, drm);
++	if (IS_ERR(priv)) {
++		dev_err(dev, "[" DRM_NAME ":%s] devm_drm_dev_alloc failed: %li\n",
++			__func__, PTR_ERR(priv));
++		return PTR_ERR(priv);
+ 	}
+-	drmm_add_final_kfree(&priv->drm, priv);
+ 
+ 	/* Remove early framebuffers */
+ 	ret = drm_fb_helper_remove_conflicting_framebuffers(NULL,
+@@ -174,7 +163,6 @@ static int armada_drm_bind(struct device *dev)
+  err_kms:
+ 	drm_mode_config_cleanup(&priv->drm);
+ 	drm_mm_takedown(&priv->linear);
+-	drm_dev_put(&priv->drm);
+ 	return ret;
+ }
+ 
+@@ -194,8 +182,6 @@ static void armada_drm_unbind(struct device *dev)
+ 
+ 	drm_mode_config_cleanup(&priv->drm);
+ 	drm_mm_takedown(&priv->linear);
+-
+-	drm_dev_put(&priv->drm);
+ }
+ 
+ static int compare_of(struct device *dev, void *data)
 -- 
 2.28.0
 
