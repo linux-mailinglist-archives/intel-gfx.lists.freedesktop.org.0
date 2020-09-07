@@ -2,48 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7503025FA8E
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 14:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 079B725FAE5
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 15:00:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA4E189590;
-	Mon,  7 Sep 2020 12:35:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE9D36E452;
+	Mon,  7 Sep 2020 13:00:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1FE489590
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Sep 2020 12:35:26 +0000 (UTC)
-IronPort-SDR: Gz4IRgyr/NGSapUOxHWE37x0G6xpx1L1xPP0N+vRGcy25SHw/CtRSVbHN0XOoFYbKol/AmkPoz
- kyHxIZ3fbybA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9736"; a="242811409"
-X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; d="scan'208";a="242811409"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DB0B6E44E;
+ Mon,  7 Sep 2020 13:00:46 +0000 (UTC)
+IronPort-SDR: U0XwZ+XrCDlOOB2QQjLxRta0ajuFEF/x9v83bIs7SkUOB3pWQbke2LVjA5CS5IQ9X2KSS7mDGK
+ yvTDLlQpSX7w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9736"; a="145707582"
+X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; d="scan'208";a="145707582"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2020 05:35:26 -0700
-IronPort-SDR: xKEJD8aumC3AyucaosOEjLebTmHl8xTS2QTS62NRQOrHqYtt+K9vxve0KAfOLw5b3N+OY+4PJJ
- xS4k72bm7bxg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; d="scan'208";a="303724229"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 07 Sep 2020 05:35:24 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 07 Sep 2020 15:35:23 +0300
-Date: Mon, 7 Sep 2020 15:35:23 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Navare, Manasi" <manasi.d.navare@intel.com>
-Message-ID: <20200907123523.GG6112@intel.com>
-References: <20200715224222.7557-1-manasi.d.navare@intel.com>
- <20200715224222.7557-2-manasi.d.navare@intel.com>
- <20200903174944.GW6112@intel.com>
- <20200903180432.GA22804@labuser-Z97X-UD5H>
- <20200903184044.GZ6112@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2020 06:00:45 -0700
+IronPort-SDR: Fk7Z+/7Q7bfMqSWdcEvH9638S6jp/kZXDh6h+CWgPtooP+mloSphgfktjsn88LYgfPPlkjm03i
+ n/jfjuFmB8qw==
+X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; d="scan'208";a="479634341"
+Received: from jazminsx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.24.158])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2020 06:00:42 -0700
+Date: Mon, 7 Sep 2020 16:00:39 +0300
+From: Joonas Lahtinen <jlahtine@jlahtine-mobl.ger.corp.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200907130039.GA27766@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200903184044.GZ6112@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v6 02/11] drm/i915: Remove hw.mode
+Subject: [Intel-gfx] [PULL] drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,352 +47,286 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 03, 2020 at 09:40:44PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Thu, Sep 03, 2020 at 11:04:33AM -0700, Navare, Manasi wrote:
-> > On Thu, Sep 03, 2020 at 08:49:44PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Wed, Jul 15, 2020 at 03:42:13PM -0700, Manasi Navare wrote:
-> > > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > =
+Hi Dave & Daniel,
 
-> > > > The members in hw.mode can be used from adjusted_mode as well,
-> > > > use that when available.
-> > > > =
+Exactly same content as previous PR:
 
-> > > > Some places that use hw.mode can be converted to use adjusted_mode
-> > > > as well.
-> > > > =
+https://lists.freedesktop.org/archives/intel-gfx/2020-September/247626.html
 
-> > > > v2:
-> > > > * Manual rebase (Manasi)
-> > > > * remove the use of pipe_mode defined in patch 3 (Manasi)
-> > > > =
+Just rebased adding the missing S-o-b:s and updated "Fixes:" tags according=
+ly
+as requested.
 
-> > > > v3:
-> > > > * Rebase on drm-tip (Manasi)
-> > > =
+Regards, Joonas
 
-> > > Previous review was apparently ignored. Or is there a better version
-> > > somewhere? If not, this still looks very wrong.
-> > =
+***
 
-> > This was the latest rev that Maarten had in his local tree which he sai=
-d should address all the review comments.
-> > What in particular looks wrong or what review comments were unaddressed=
- here?
-> =
+drm-intel-gt-next-2020-09-07:
 
-> The dvo/sdvo changes.
+(Same content as drm-intel-gt-next-2020-09-04-3, S-o-b's added)
 
-I recommend just dropping this patch entirely. It doesn't seem to have
-anything to do with the bigjoiner anyway.
+UAPI Changes:
+(- Potential implicit changes from WW locking refactoring)
 
-> =
+Cross-subsystem Changes:
+(- WW locking changes should align the i915 locking more with others)
 
-> > =
+Driver Changes:
 
-> > @Maarten any feedback on Ville's unaddressed comments?
-> > =
+- MAJOR: Apply WW locking across the driver (Maarten)
 
-> > Manasi
-> > =
+- Reverts for 5 commits to make applying WW locking faster (Maarten)
+- Disable preparser around invalidations on Tigerlake for non-RCS engines (=
+Chris)
+- Add missing dma_fence_put() for error case of syncobj timeline (Chris)
+- Parse command buffer earlier in eb_relocate(slow) to facilitate backoff (=
+Maarten)
+- Pin engine before pinning all objects (Maarten)
+- Rework intel_context pinning to do everything outside of pin_mutex (Maart=
+en)
 
-> > > =
+- Avoid tracking GEM context until registered (Cc: stable, Chris)
+- Provide a fastpath for waiting on vma bindings (Chris)
+- Fixes to preempt-to-busy mechanism (Chris)
+- Distinguish the virtual breadcrumbs from the irq breadcrumbs (Chris)
+- Switch to object allocations for page directories (Chris)
+- Hold context/request reference while breadcrumbs are active (Chris)
+- Make sure execbuffer always passes ww state to i915_vma_pin (Maarten)
 
-> > > > =
+- Code refactoring to facilitate use of WW locking (Maarten)
+- Locking refactoring to use more granular locking (Maarten, Chris)
+- Support for multiple pinned timelines per engine (Chris)
+- Move complication of I915_GEM_THROTTLE to the ioctl from general code (Ch=
+ris)
+- Make active tracking/vma page-directory stash work preallocated (Chris)
+- Avoid flushing submission tasklet too often (Chris)
+- Reduce context termination list iteration guard to RCU (Chris)
+- Reductions to locking contention (Chris)
+- Fixes for issues found by CI (Chris)
+The following changes since commit 3393649977f9a8847c659e282ea290d4b703295c:
 
-> > > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_display.c  | 29 ++++++++++-----=
+  Merge tag 'drm-intel-next-2020-08-24-1' of git://anongit.freedesktop.org/=
+drm/drm-intel into drm-next (2020-08-28 14:09:31 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2020-0=
+9-07
+
+for you to fetch changes up to e0ee152fce25dc9269c7ea5280c98aa4b3682759:
+
+  drm/i915: Unlock the shared hwsp_gtt object after pinning (2020-09-07 15:=
+08:11 +0300)
+
+----------------------------------------------------------------
+(Same content as drm-intel-gt-next-2020-09-04-3, S-o-b's added)
+
+UAPI Changes:
+(- Potential implicit changes from WW locking refactoring)
+
+Cross-subsystem Changes:
+(- WW locking changes should align the i915 locking more with others)
+
+Driver Changes:
+
+- MAJOR: Apply WW locking across the driver (Maarten)
+
+- Reverts for 5 commits to make applying WW locking faster (Maarten)
+- Disable preparser around invalidations on Tigerlake for non-RCS engines (=
+Chris)
+- Add missing dma_fence_put() for error case of syncobj timeline (Chris)
+- Parse command buffer earlier in eb_relocate(slow) to facilitate backoff (=
+Maarten)
+- Pin engine before pinning all objects (Maarten)
+- Rework intel_context pinning to do everything outside of pin_mutex (Maart=
+en)
+
+- Avoid tracking GEM context until registered (Cc: stable, Chris)
+- Provide a fastpath for waiting on vma bindings (Chris)
+- Fixes to preempt-to-busy mechanism (Chris)
+- Distinguish the virtual breadcrumbs from the irq breadcrumbs (Chris)
+- Switch to object allocations for page directories (Chris)
+- Hold context/request reference while breadcrumbs are active (Chris)
+- Make sure execbuffer always passes ww state to i915_vma_pin (Maarten)
+
+- Code refactoring to facilitate use of WW locking (Maarten)
+- Locking refactoring to use more granular locking (Maarten, Chris)
+- Support for multiple pinned timelines per engine (Chris)
+- Move complication of I915_GEM_THROTTLE to the ioctl from general code (Ch=
+ris)
+- Make active tracking/vma page-directory stash work preallocated (Chris)
+- Avoid flushing submission tasklet too often (Chris)
+- Reduce context termination list iteration guard to RCU (Chris)
+- Reductions to locking contention (Chris)
+- Fixes for issues found by CI (Chris)
+
+----------------------------------------------------------------
+Chris Wilson (33):
+      drm/i915: Reduce i915_request.lock contention for i915_request_wait
+      drm/i915/selftests: Mock the status_page.vma for the kernel_context
+      drm/i915: Soften the tasklet flush frequency before waits
+      drm/i915/gem: Remove disordered per-file request list for throttling
+      drm/i915/gt: Disable preparser around xcs invalidations on tgl
+      drm/i915/gt: Delay taking the spinlock for grabbing from the buffer p=
+ool
+      drm/i915/selftests: Flush the active barriers before asserting
+      drm/i915/gt: Fix termination condition for freeing all buffer objects
+      drm/i915/gem: Delay tracking the GEM context until it is registered
+      drm/i915/gt: Support multiple pinned timelines
+      drm/i915/gt: Pull release of node->age under the spinlock
+      drm/i915/selftests: Drop stale timeline constructor assert
+      drm/i915: Skip taking acquire mutex for no ref->active callback
+      drm/i915: Export a preallocate variant of i915_active_acquire()
+      drm/i915: Keep the most recently used active-fence upon discard
+      drm/i915: Make the stale cached active node available for any timeline
+      drm/i915: Reduce locking around i915_active_acquire_preallocate_barri=
+er()
+      drm/i915: Provide a fastpath for waiting on vma bindings
+      drm/i915: Remove requirement for holding i915_request.lock for breadc=
+rumbs
+      drm/i915/gt: Replace intel_engine_transfer_stale_breadcrumbs
+      drm/i915/gt: Only transfer the virtual context to the new engine if a=
+ctive
+      drm/i915/gt: Distinguish the virtual breadcrumbs from the irq breadcr=
+umbs
+      drm/i915: Preallocate stashes for vma page-directories
+      drm/i915/gt: Switch to object allocations for page directories
+      drm/i915/gt: Shrink i915_page_directory's slab bucket
+      drm/i915/gt: Move intel_breadcrumbs_arm_irq earlier
+      drm/i915/gt: Hold context/request reference while breadcrumbs are act=
+ive
+      drm/i915/selftests: Prevent selecting 0 for our random width/align
+      drm/i915/gem: Reduce context termination list iteration guard to RCU
+      drm/i915/gem: Free the fence after a fence-chain lookup failure
+      drm/i915: Be wary of data races when reading the active execlists
+      drm/i915: Remove i915_request.lock requirement for execution callbacks
+      drm/i915: Filter wake_flags passed to default_wake_function
+
+Maarten Lankhorst (23):
+      Revert "drm/i915/gem: Async GPU relocations only"
+      drm/i915: Revert relocation chaining commits.
+      Revert "drm/i915/gem: Drop relocation slowpath".
+      Revert "drm/i915/gem: Split eb_vma into its own allocation"
+      drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+      drm/i915: Remove locking from i915_gem_object_prepare_read/write
+      drm/i915: Parse command buffer earlier in eb_relocate(slow)
+      drm/i915: Use per object locking in execbuf, v12.
+      drm/i915: Use ww locking in intel_renderstate.
+      drm/i915: Add ww context handling to context_barrier_task
+      drm/i915: Nuke arguments to eb_pin_engine
+      drm/i915: Pin engine before pinning all objects, v5.
+      drm/i915: Rework intel_context pinning to do everything outside of pi=
+n_mutex
+      drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
+      drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as w=
+ell, v2.
+      drm/i915: Kill last user of intel_context_create_request outside of s=
+elftests
+      drm/i915: Convert i915_perf to ww locking as well
+      drm/i915: Dirty hack to fix selftests locking inversion
+      drm/i915/selftests: Fix locking inversion in lrc selftest.
+      drm/i915: Use ww pinning for intel_context_create_request()
+      drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion=
+, v3.
+      drm/i915: Add ww locking to vm_fault_gtt
+      drm/i915: Add ww locking to pin_to_display_plane, v2.
+
+Thomas Hellstr=F6m (1):
+      drm/i915: Unlock the shared hwsp_gtt object after pinning
+
+ drivers/gpu/drm/i915/display/intel_display.c       |    6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_client_blt.c     |   89 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c        |  105 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c         |    4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c         |   80 +-
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 1601 +++++++++++++---=
 ----
-> > > >  .../drm/i915/display/intel_display_types.h    |  2 +-
-> > > >  drivers/gpu/drm/i915/display/intel_dvo.c      |  2 +-
-> > > >  drivers/gpu/drm/i915/display/intel_sdvo.c     | 16 ++++------
-> > > >  4 files changed, 23 insertions(+), 26 deletions(-)
-> > > > =
-
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
-/gpu/drm/i915/display/intel_display.c
-> > > > index 729ec6e0d43a..8652a7c6bf11 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > @@ -8892,9 +8892,6 @@ static void intel_get_pipe_src_size(struct in=
-tel_crtc *crtc,
-> > > >  	tmp =3D intel_de_read(dev_priv, PIPESRC(crtc->pipe));
-> > > >  	pipe_config->pipe_src_h =3D (tmp & 0xffff) + 1;
-> > > >  	pipe_config->pipe_src_w =3D ((tmp >> 16) & 0xffff) + 1;
-> > > > -
-> > > > -	pipe_config->hw.mode.vdisplay =3D pipe_config->pipe_src_h;
-> > > > -	pipe_config->hw.mode.hdisplay =3D pipe_config->pipe_src_w;
-> > > >  }
-> > > >  =
-
-> > > >  void intel_mode_from_pipe_config(struct drm_display_mode *mode,
-> > > > @@ -13079,7 +13076,7 @@ static void intel_dump_pipe_config(const st=
-ruct intel_crtc_state *pipe_config,
-> > > >  		intel_dump_dp_vsc_sdp(dev_priv, &pipe_config->infoframes.vsc);
-> > > >  =
-
-> > > >  	drm_dbg_kms(&dev_priv->drm, "requested mode:\n");
-> > > > -	drm_mode_debug_printmodeline(&pipe_config->hw.mode);
-> > > > +	drm_mode_debug_printmodeline(&pipe_config->uapi.mode);
-> > > >  	drm_dbg_kms(&dev_priv->drm, "adjusted mode:\n");
-> > > >  	drm_mode_debug_printmodeline(&pipe_config->hw.adjusted_mode);
-> > > >  	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.adjusted_mode);
-> > > > @@ -13221,17 +13218,17 @@ intel_crtc_copy_uapi_to_hw_state(struct i=
-ntel_crtc_state *crtc_state)
-> > > >  {
-> > > >  	crtc_state->hw.enable =3D crtc_state->uapi.enable;
-> > > >  	crtc_state->hw.active =3D crtc_state->uapi.active;
-> > > > -	crtc_state->hw.mode =3D crtc_state->uapi.mode;
-> > > >  	crtc_state->hw.adjusted_mode =3D crtc_state->uapi.adjusted_mode;
-> > > >  	intel_crtc_copy_uapi_to_hw_state_nomodeset(crtc_state);
-> > > >  }
-> > > >  =
-
-> > > > -static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_sta=
-te *crtc_state)
-> > > > +static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_sta=
-te *crtc_state,
-> > > > +					     struct drm_display_mode *user_mode)
-> > > >  {
-> > > >  	crtc_state->uapi.enable =3D crtc_state->hw.enable;
-> > > >  	crtc_state->uapi.active =3D crtc_state->hw.active;
-> > > >  	drm_WARN_ON(crtc_state->uapi.crtc->dev,
-> > > > -		    drm_atomic_set_mode_for_crtc(&crtc_state->uapi, &crtc_state-=
->hw.mode) < 0);
-> > > > +		    drm_atomic_set_mode_for_crtc(&crtc_state->uapi, user_mode) <=
- 0);
-> > > >  =
-
-> > > >  	crtc_state->uapi.adjusted_mode =3D crtc_state->hw.adjusted_mode;
-> > > >  =
-
-> > > > @@ -13277,6 +13274,10 @@ intel_crtc_prepare_cleared_state(struct in=
-tel_crtc_state *crtc_state)
-> > > >  	memcpy(crtc_state, saved_state, sizeof(*crtc_state));
-> > > >  	kfree(saved_state);
-> > > >  =
-
-> > > > +	/* Clear I915_MODE_FLAG_INHERITED */
-> > > > +	crtc_state->uapi.mode.private_flags =3D 0;
-> > > > +	crtc_state->uapi.adjusted_mode.private_flags =3D 0;
-> > > > +
-> > > >  	intel_crtc_copy_uapi_to_hw_state(crtc_state);
-> > > >  =
-
-> > > >  	return 0;
-> > > > @@ -13324,7 +13325,7 @@ intel_modeset_pipe_config(struct intel_crtc=
-_state *pipe_config)
-> > > >  	 * computation to clearly distinguish it from the adjusted mode, =
-which
-> > > >  	 * can be changed by the connectors in the below retry loop.
-> > > >  	 */
-> > > > -	drm_mode_get_hv_timing(&pipe_config->hw.mode,
-> > > > +	drm_mode_get_hv_timing(&pipe_config->hw.adjusted_mode,
-> > > >  			       &pipe_config->pipe_src_w,
-> > > >  			       &pipe_config->pipe_src_h);
-> > > >  =
-
-> > > > @@ -18461,15 +18462,11 @@ static void intel_modeset_readout_hw_stat=
-e(struct drm_device *dev)
-> > > >  		int min_cdclk =3D 0;
-> > > >  =
-
-> > > >  		if (crtc_state->hw.active) {
-> > > > -			struct drm_display_mode *mode =3D &crtc_state->hw.mode;
-> > > > +			struct drm_display_mode mode;
-> > > >  =
-
-> > > >  			intel_mode_from_pipe_config(&crtc_state->hw.adjusted_mode,
-> > > >  						    crtc_state);
-> > > >  =
-
-> > > > -			*mode =3D crtc_state->hw.adjusted_mode;
-> > > > -			mode->hdisplay =3D crtc_state->pipe_src_w;
-> > > > -			mode->vdisplay =3D crtc_state->pipe_src_h;
-> > > > -
-> > > >  			/*
-> > > >  			 * The initial mode needs to be set in order to keep
-> > > >  			 * the atomic core happy. It wants a valid mode if the
-> > > > @@ -18481,11 +18478,15 @@ static void intel_modeset_readout_hw_stat=
-e(struct drm_device *dev)
-> > > >  			 */
-> > > >  			crtc_state->inherited =3D true;
-> > > >  =
-
-> > > > +			mode =3D crtc_state->hw.adjusted_mode;
-> > > > +			mode.hdisplay =3D crtc_state->pipe_src_w;
-> > > > +			mode.vdisplay =3D crtc_state->pipe_src_h;
-> > > > +
-> > > >  			intel_crtc_compute_pixel_rate(crtc_state);
-> > > >  =
-
-> > > >  			intel_crtc_update_active_timings(crtc_state);
-> > > >  =
-
-> > > > -			intel_crtc_copy_hw_to_uapi_state(crtc_state);
-> > > > +			intel_crtc_copy_hw_to_uapi_state(crtc_state, &mode);
-> > > >  		}
-> > > >  =
-
-> > > >  		for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, plane) {
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/d=
-rivers/gpu/drm/i915/display/intel_display_types.h
-> > > > index e8f809161c75..f1e29d9a75d0 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > @@ -807,7 +807,7 @@ struct intel_crtc_state {
-> > > >  	struct {
-> > > >  		bool active, enable;
-> > > >  		struct drm_property_blob *degamma_lut, *gamma_lut, *ctm;
-> > > > -		struct drm_display_mode mode, adjusted_mode;
-> > > > +		struct drm_display_mode adjusted_mode;
-> > > >  	} hw;
-> > > >  =
-
-> > > >  	/**
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu=
-/drm/i915/display/intel_dvo.c
-> > > > index 307ed8ae9a19..0b9bf1fec0f4 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_dvo.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-> > > > @@ -209,7 +209,7 @@ static void intel_enable_dvo(struct intel_atomi=
-c_state *state,
-> > > >  	u32 temp =3D intel_de_read(dev_priv, dvo_reg);
-> > > >  =
-
-> > > >  	intel_dvo->dev.dev_ops->mode_set(&intel_dvo->dev,
-> > > > -					 &pipe_config->hw.mode,
-> > > > +					 &pipe_config->hw.adjusted_mode,
-> > > >  					 &pipe_config->hw.adjusted_mode);
-> > > >  =
-
-> > > >  	intel_de_write(dev_priv, dvo_reg, temp | DVO_ENABLE);
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gp=
-u/drm/i915/display/intel_sdvo.c
-> > > > index 2da4388e1540..8b78ae0c39a0 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > > > @@ -1223,7 +1223,6 @@ intel_sdvo_set_output_timings_from_mode(struc=
-t intel_sdvo *intel_sdvo,
-> > > >  static bool
-> > > >  intel_sdvo_get_preferred_input_mode(struct intel_sdvo *intel_sdvo,
-> > > >  				    struct intel_sdvo_connector *intel_sdvo_connector,
-> > > > -				    const struct drm_display_mode *mode,
-> > > >  				    struct drm_display_mode *adjusted_mode)
-> > > >  {
-> > > >  	struct intel_sdvo_dtd input_dtd;
-> > > > @@ -1234,9 +1233,9 @@ intel_sdvo_get_preferred_input_mode(struct in=
-tel_sdvo *intel_sdvo,
-> > > >  =
-
-> > > >  	if (!intel_sdvo_create_preferred_input_timing(intel_sdvo,
-> > > >  						      intel_sdvo_connector,
-> > > > -						      mode->clock / 10,
-> > > > -						      mode->hdisplay,
-> > > > -						      mode->vdisplay))
-> > > > +						      adjusted_mode->clock / 10,
-> > > > +						      adjusted_mode->hdisplay,
-> > > > +						      adjusted_mode->vdisplay))
-> > > >  		return false;
-> > > >  =
-
-> > > >  	if (!intel_sdvo_get_preferred_input_timing(intel_sdvo,
-> > > > @@ -1308,7 +1307,6 @@ static int intel_sdvo_compute_config(struct i=
-ntel_encoder *encoder,
-> > > >  	struct intel_sdvo_connector *intel_sdvo_connector =3D
-> > > >  		to_intel_sdvo_connector(conn_state->connector);
-> > > >  	struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adjus=
-ted_mode;
-> > > > -	struct drm_display_mode *mode =3D &pipe_config->hw.mode;
-> > > >  =
-
-> > > >  	DRM_DEBUG_KMS("forcing bpc to 8 for SDVO\n");
-> > > >  	pipe_config->pipe_bpp =3D 8*3;
-> > > > @@ -1324,12 +1322,12 @@ static int intel_sdvo_compute_config(struct=
- intel_encoder *encoder,
-> > > >  	 * the sequence to do it. Oh well.
-> > > >  	 */
-> > > >  	if (IS_TV(intel_sdvo_connector)) {
-> > > > -		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo, mode))
-> > > > +		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo,
-> > > > +							     adjusted_mode))
-> > > >  			return -EINVAL;
-> > > >  =
-
-> > > >  		(void) intel_sdvo_get_preferred_input_mode(intel_sdvo,
-> > > >  							   intel_sdvo_connector,
-> > > > -							   mode,
-> > > >  							   adjusted_mode);
-> > > >  		pipe_config->sdvo_tv_clock =3D true;
-> > > >  	} else if (IS_LVDS(intel_sdvo_connector)) {
-> > > > @@ -1339,7 +1337,6 @@ static int intel_sdvo_compute_config(struct i=
-ntel_encoder *encoder,
-> > > >  =
-
-> > > >  		(void) intel_sdvo_get_preferred_input_mode(intel_sdvo,
-> > > >  							   intel_sdvo_connector,
-> > > > -							   mode,
-> > > >  							   adjusted_mode);
-> > > >  	}
-> > > >  =
-
-> > > > @@ -1458,7 +1455,6 @@ static void intel_sdvo_pre_enable(struct inte=
-l_atomic_state *state,
-> > > >  		to_intel_sdvo_connector_state(conn_state);
-> > > >  	const struct intel_sdvo_connector *intel_sdvo_connector =3D
-> > > >  		to_intel_sdvo_connector(conn_state->connector);
-> > > > -	const struct drm_display_mode *mode =3D &crtc_state->hw.mode;
-> > > >  	struct intel_sdvo *intel_sdvo =3D to_sdvo(intel_encoder);
-> > > >  	u32 sdvox;
-> > > >  	struct intel_sdvo_in_out_map in_out;
-> > > > @@ -1491,7 +1487,7 @@ static void intel_sdvo_pre_enable(struct inte=
-l_atomic_state *state,
-> > > >  		intel_sdvo_get_dtd_from_mode(&output_dtd,
-> > > >  					     intel_sdvo_connector->base.panel.fixed_mode);
-> > > >  	else
-> > > > -		intel_sdvo_get_dtd_from_mode(&output_dtd, mode);
-> > > > +		intel_sdvo_get_dtd_from_mode(&output_dtd, adjusted_mode);
-> > > >  	if (!intel_sdvo_set_output_timing(intel_sdvo, &output_dtd))
-> > > >  		drm_info(&dev_priv->drm,
-> > > >  			 "Setting output timings on %s failed\n",
-> > > > -- =
-
-> > > > 2.19.1
-> > > > =
-
-> > > > _______________________________________________
-> > > > Intel-gfx mailing list
-> > > > Intel-gfx@lists.freedesktop.org
-> > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > > =
-
-> > > -- =
-
-> > > Ville Syrj=E4l=E4
-> > > Intel
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c           |   51 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h         |   40 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object_blt.c     |  152 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object_blt.h     |    3 +
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |   10 +
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c             |    2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_throttle.c       |   67 +-
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c         |    2 +-
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |    9 +-
+ .../drm/i915/gem/selftests/i915_gem_client_blt.c   |    2 +-
+ .../drm/i915/gem/selftests/i915_gem_coherency.c    |   50 +-
+ .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |  144 +-
+ .../drm/i915/gem/selftests/i915_gem_execbuffer.c   |   60 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |   45 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c |    2 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c               |  106 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.h               |    5 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |  181 +--
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        |  305 ++--
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.h        |   36 +
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h  |   47 +
+ drivers/gpu/drm/i915/gt/intel_context.c            |  318 ++--
+ drivers/gpu/drm/i915/gt/intel_context.h            |   13 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h      |    5 +-
+ drivers/gpu/drm/i915/gt/intel_engine.h             |   20 -
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   34 +-
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c          |    3 +-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h       |   31 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c               |   97 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c                 |   23 +-
+ drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c     |  103 +-
+ .../gpu/drm/i915/gt/intel_gt_buffer_pool_types.h   |    6 +-
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c             |    1 +
+ drivers/gpu/drm/i915/gt/intel_gtt.c                |  300 +---
+ drivers/gpu/drm/i915/gt/intel_gtt.h                |  142 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c                |  182 ++-
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c              |  150 +-
+ drivers/gpu/drm/i915/gt/intel_renderstate.c        |   73 +-
+ drivers/gpu/drm/i915/gt/intel_renderstate.h        |    9 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c              |    1 +
+ drivers/gpu/drm/i915/gt/intel_ring.c               |   10 +-
+ drivers/gpu/drm/i915/gt/intel_ring.h               |    3 +-
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c    |   42 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c                |    1 +
+ drivers/gpu/drm/i915/gt/intel_timeline.c           |   28 +-
+ drivers/gpu/drm/i915/gt/intel_timeline.h           |   24 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        |   43 +-
+ drivers/gpu/drm/i915/gt/mock_engine.c              |   30 +-
+ drivers/gpu/drm/i915/gt/selftest_context.c         |    2 +
+ drivers/gpu/drm/i915/gt/selftest_lrc.c             |   22 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c             |   30 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c        |   10 +-
+ drivers/gpu/drm/i915/gt/selftest_workarounds.c     |    2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c             |    2 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c              |    3 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c               |   17 +-
+ drivers/gpu/drm/i915/i915_active.c                 |  237 ++-
+ drivers/gpu/drm/i915/i915_active.h                 |   31 +-
+ drivers/gpu/drm/i915/i915_drv.c                    |    2 +-
+ drivers/gpu/drm/i915/i915_drv.h                    |   24 +-
+ drivers/gpu/drm/i915/i915_gem.c                    |  107 +-
+ drivers/gpu/drm/i915/i915_gem.h                    |   12 +
+ drivers/gpu/drm/i915/i915_irq.c                    |    1 +
+ drivers/gpu/drm/i915/i915_perf.c                   |   57 +-
+ drivers/gpu/drm/i915/i915_request.c                |  224 +--
+ drivers/gpu/drm/i915/i915_request.h                |    8 -
+ drivers/gpu/drm/i915/i915_sw_fence.c               |   10 +-
+ drivers/gpu/drm/i915/i915_vma.c                    |   65 +-
+ drivers/gpu/drm/i915/i915_vma.h                    |   13 +-
+ drivers/gpu/drm/i915/selftests/i915_gem.c          |   41 +
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      |   75 +-
+ drivers/gpu/drm/i915/selftests/i915_perf.c         |    4 +-
+ drivers/gpu/drm/i915/selftests/i915_request.c      |   18 +-
+ drivers/gpu/drm/i915/selftests/i915_vma.c          |    2 +-
+ .../gpu/drm/i915/selftests/intel_memory_region.c   |    8 +-
+ drivers/gpu/drm/i915/selftests/mock_gtt.c          |   26 +-
+ 82 files changed, 3743 insertions(+), 2206 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
