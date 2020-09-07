@@ -2,59 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2D64260457
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 20:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D701260556
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 22:02:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE1506E525;
-	Mon,  7 Sep 2020 18:14:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE876E4D0;
+	Mon,  7 Sep 2020 20:02:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48AE76E520
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Sep 2020 18:14:42 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id a17so16624368wrn.6
- for <intel-gfx@lists.freedesktop.org>; Mon, 07 Sep 2020 11:14:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=xMmocTlajCiS0vszEsHyq9NFZY0oFxHiPXZEs5xLhBU=;
- b=Pj9tMGSoWZzK5TXp61WgIWU4eJl3hwo/TwRpU6faHZUORa/L0vauWoHHdZUrqrFvXE
- msk/KtWKET7TYom7rPpX52B+HcViQiXlWZ8GjoqVnvffAob99gKBMlZc2RYh1OcUHCBa
- g6Xb7x3PtaysXtUsFyEDgvwSMO0htRKxnyaj4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=xMmocTlajCiS0vszEsHyq9NFZY0oFxHiPXZEs5xLhBU=;
- b=sn5cMXcDopQLPf5XaeBPvI3opNYuX8fvMdfEfTPoxl33IzPF1jHQDXdUv5sbpfrP5Z
- YKdQaZ0UxToDrOwpB1BKl+eHsN6pC44HQcteA2vTz7aTY5IGS/dFKZaWx7WgSd/rHfec
- Q5go54bIDRtxKgY9IeUM1GP6T2PUysDyPMXtCVBGwC52hJas5FJ+vxPspw/ox0w/wG96
- B9Prcnb2f/J09KN60P7zXWUu1HTUKtJlkF31f22NlKKEi33sWnusRCo+XBqVlyfTntFa
- ixMvmHe23yWpRLpL0qhjHJwk8iNLcvMA30kPsAelUTza/ZIb4YDxSL6tWR5cDVVRB8FY
- dZ+g==
-X-Gm-Message-State: AOAM531ZSGYm7OT8VRazYQWPizVWQBtOacsbMnqqh3rZAB175qTwfGNa
- dORT9cJhNiSalESyd8d8hnGS6w==
-X-Google-Smtp-Source: ABdhPJy2GCGqNz6tDjmDouMiHfcsR1h/0ITf5PxQuKk0CqNUtlRwXIIAfHRn2kRbposrfH2RvOvn3A==
-X-Received: by 2002:adf:828e:: with SMTP id 14mr24611433wrc.217.1599502480955; 
- Mon, 07 Sep 2020 11:14:40 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l8sm30062870wrx.22.2020.09.07.11.14.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Sep 2020 11:14:40 -0700 (PDT)
-Date: Mon, 7 Sep 2020 20:14:38 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200907181438.GC2352366@phenom.ffwll.local>
-References: <20200907120026.6360-1-ville.syrjala@linux.intel.com>
- <20200907120026.6360-3-ville.syrjala@linux.intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB4256E4D0;
+ Mon,  7 Sep 2020 20:02:07 +0000 (UTC)
+IronPort-SDR: XoSUi6XZmgJZs83ijNpiIk8TBOLZ/dvKDcbQK4cbKC0Uw6WSsIrDG/EOrPxIQEeZAvfeLbonRR
+ YdtXs4RAYWPw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9737"; a="242853609"
+X-IronPort-AV: E=Sophos;i="5.76,403,1592895600"; d="scan'208";a="242853609"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2020 13:02:06 -0700
+IronPort-SDR: 8gk++lwj0IICjXsSa8g0KvKUMtQvqLyfLfh4R2ROXSfSIWWWTTYEwJO7AZDEpCN56gOQ5nMGS8
+ NnkYuyEl/dgQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,403,1592895600"; d="scan'208";a="504805395"
+Received: from zhiwang1-mobl5.ger.corp.intel.com ([10.252.3.9])
+ by fmsmga005.fm.intel.com with ESMTP; 07 Sep 2020 13:02:05 -0700
+From: Zhi Wang <zhi.a.wang@intel.com>
+To: intel-gvt-dev@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Mon,  7 Sep 2020 23:02:03 +0300
+Message-Id: <20200907200203.535-1-zhi.a.wang@intel.com>
+X-Mailer: git-send-email 2.26.2.windows.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200907120026.6360-3-ville.syrjala@linux.intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Drop the
- drm_atomic_helper_calc_timestamping_constants() call
+Subject: [Intel-gfx] [PATCH] drm/i915/gvt: Introduce per object locking in
+ GVT scheduler.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,87 +48,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 07, 2020 at 03:00:26PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+To support ww locking and per-object implemented in i915, GVT scheduler needs
+to be refined. Most of the changes are located in shadow batch buffer, shadow
+wa context in GVT-g, where use quite a lot of i915 gem object APIs.
 
-> We update the timestamping constants per-crtc explicitly in
-> intel_crtc_update_active_timings(). Furtermore the helper will
-> use uapi.adjusted_mode whereas we want hw.adjusted_mode. Thus
-> let's drop the helper call an rely on what we already have in
-> intel_crtc_update_active_timings(). We can now also drop the
-> hw.adjusted_mode -> uapi.adjusted_mode copy hack that was added
-> to keep the helper from deriving the timestamping constants from
-> the wrong thing.
-> =
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+Signed-off-by: Zhi Wang <zhi.a.wang@intel.com>
+---
+ drivers/gpu/drm/i915/gvt/scheduler.c | 68 ++++++++++++++++++++++++++++++------
+ 1 file changed, 57 insertions(+), 11 deletions(-)
 
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
+index 1570eb8..fe7ee10 100644
+--- a/drivers/gpu/drm/i915/gvt/scheduler.c
++++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+@@ -396,7 +396,9 @@ static void release_shadow_wa_ctx(struct intel_shadow_wa_ctx *wa_ctx)
+ 	if (!wa_ctx->indirect_ctx.obj)
+ 		return;
+ 
++	i915_gem_object_lock(wa_ctx->indirect_ctx.obj, NULL);
+ 	i915_gem_object_unpin_map(wa_ctx->indirect_ctx.obj);
++	i915_gem_object_unlock(wa_ctx->indirect_ctx.obj);
+ 	i915_gem_object_put(wa_ctx->indirect_ctx.obj);
+ 
+ 	wa_ctx->indirect_ctx.obj = NULL;
+@@ -504,6 +506,7 @@ static int prepare_shadow_batch_buffer(struct intel_vgpu_workload *workload)
+ 	struct intel_gvt *gvt = workload->vgpu->gvt;
+ 	const int gmadr_bytes = gvt->device_info.gmadr_bytes_in_cmd;
+ 	struct intel_vgpu_shadow_bb *bb;
++	struct i915_gem_ww_ctx ww;
+ 	int ret;
+ 
+ 	list_for_each_entry(bb, &workload->shadow_bb, list) {
+@@ -528,10 +531,19 @@ static int prepare_shadow_batch_buffer(struct intel_vgpu_workload *workload)
+ 		 * directly
+ 		 */
+ 		if (!bb->ppgtt) {
+-			bb->vma = i915_gem_object_ggtt_pin(bb->obj,
+-							   NULL, 0, 0, 0);
++			i915_gem_ww_ctx_init(&ww, false);
++retry:
++			i915_gem_object_lock(bb->obj, &ww);
++
++			bb->vma = i915_gem_object_ggtt_pin_ww(bb->obj, &ww,
++							      NULL, 0, 0, 0);
+ 			if (IS_ERR(bb->vma)) {
+ 				ret = PTR_ERR(bb->vma);
++				if (ret == -EDEADLK) {
++					ret = i915_gem_ww_ctx_backoff(&ww);
++					if (!ret)
++						goto retry;
++				}
+ 				goto err;
+ 			}
+ 
+@@ -545,13 +557,18 @@ static int prepare_shadow_batch_buffer(struct intel_vgpu_workload *workload)
+ 						      0);
+ 			if (ret)
+ 				goto err;
++
++			/* No one is going to touch shadow bb from now on. */
++			i915_gem_object_flush_map(bb->obj);
++
++			i915_gem_object_unlock(bb->obj);
++			i915_gem_ww_ctx_fini(&ww);
+ 		}
+ 
+-		/* No one is going to touch shadow bb from now on. */
+-		i915_gem_object_flush_map(bb->obj);
+ 	}
+ 	return 0;
+ err:
++	i915_gem_ww_ctx_fini(&ww);
+ 	release_shadow_batch_buffer(workload);
+ 	return ret;
+ }
+@@ -578,14 +595,30 @@ static int prepare_shadow_wa_ctx(struct intel_shadow_wa_ctx *wa_ctx)
+ 	unsigned char *per_ctx_va =
+ 		(unsigned char *)wa_ctx->indirect_ctx.shadow_va +
+ 		wa_ctx->indirect_ctx.size;
++	struct i915_gem_ww_ctx ww;
++	int ret;
+ 
+ 	if (wa_ctx->indirect_ctx.size == 0)
+ 		return 0;
+ 
+-	vma = i915_gem_object_ggtt_pin(wa_ctx->indirect_ctx.obj, NULL,
+-				       0, CACHELINE_BYTES, 0);
+-	if (IS_ERR(vma))
+-		return PTR_ERR(vma);
++	i915_gem_ww_ctx_init(&ww, false);
++retry:
++	i915_gem_object_lock(wa_ctx->indirect_ctx.obj, &ww);
++
++	vma = i915_gem_object_ggtt_pin_ww(wa_ctx->indirect_ctx.obj, &ww, NULL,
++					  0, CACHELINE_BYTES, 0);
++	if (IS_ERR(vma)) {
++		ret = PTR_ERR(vma);
++		if (ret == -EDEADLK) {
++			ret = i915_gem_ww_ctx_backoff(&ww);
++			if (!ret)
++				goto retry;
++		}
++		return ret;
++	}
++
++	i915_gem_object_unlock(wa_ctx->indirect_ctx.obj);
++	i915_gem_ww_ctx_fini(&ww);
+ 
+ 	/* FIXME: we are not tracking our pinned VMA leaving it
+ 	 * up to the core to fix up the stray pin_count upon
+@@ -619,12 +652,14 @@ static void release_shadow_batch_buffer(struct intel_vgpu_workload *workload)
+ 
+ 	list_for_each_entry_safe(bb, pos, &workload->shadow_bb, list) {
+ 		if (bb->obj) {
++			i915_gem_object_lock(bb->obj, NULL);
+ 			if (bb->va && !IS_ERR(bb->va))
+ 				i915_gem_object_unpin_map(bb->obj);
+ 
+ 			if (bb->vma && !IS_ERR(bb->vma))
+ 				i915_vma_unpin(bb->vma);
+ 
++			i915_gem_object_unlock(bb->obj);
+ 			i915_gem_object_put(bb->obj);
+ 		}
+ 		list_del(&bb->list);
+@@ -1337,6 +1372,7 @@ int intel_vgpu_setup_submission(struct intel_vgpu *vgpu)
+ 	struct intel_vgpu_submission *s = &vgpu->submission;
+ 	struct intel_engine_cs *engine;
+ 	struct i915_ppgtt *ppgtt;
++	struct i915_gem_ww_ctx ww;
+ 	enum intel_engine_id i;
+ 	int ret;
+ 
+@@ -1368,11 +1404,20 @@ int intel_vgpu_setup_submission(struct intel_vgpu *vgpu)
+ 
+ 			ce->ring = __intel_context_ring_size(ring_size);
+ 		}
++		i915_gem_ww_ctx_init(&ww, false);
++retry:
++		ret = intel_context_pin_ww(ce, &ww);
++		if (ret) {
++			if (ret == -EDEADLK) {
++				ret = i915_gem_ww_ctx_backoff(&ww);
++				if (!ret)
++					goto retry;
++			}
++			goto out_shadow_ctx;
++		}
+ 
+-		ret = intel_context_pin(ce);
+ 		intel_context_put(ce);
+-		if (ret)
+-			goto out_shadow_ctx;
++		i915_gem_ww_ctx_fini(&ww);
+ 
+ 		s->shadow[i] = ce;
+ 	}
+@@ -1400,6 +1445,7 @@ int intel_vgpu_setup_submission(struct intel_vgpu *vgpu)
+ 	return 0;
+ 
+ out_shadow_ctx:
++	i915_gem_ww_ctx_fini(&ww);
+ 	i915_context_ppgtt_root_restore(s, ppgtt);
+ 	for_each_engine(engine, vgpu->gvt->gt, i) {
+ 		if (IS_ERR(s->shadow[i]))
+-- 
+2.7.4
 
-Does this fix some CI fail? I'd kinda expect/hope for that ...
-
-Anyway looks like a good idea to not mess with the uapi state like this.
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 7 -------
->  1 file changed, 7 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 035840ce3825..a846f414c759 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -13472,12 +13472,6 @@ intel_modeset_pipe_config(struct intel_crtc_stat=
-e *pipe_config)
->  		    "hw max bpp: %i, pipe bpp: %i, dithering: %i\n",
->  		    base_bpp, pipe_config->pipe_bpp, pipe_config->dither);
->  =
-
-> -	/*
-> -	 * Make drm_calc_timestamping_constants in
-> -	 * drm_atomic_helper_update_legacy_modeset_state() happy
-> -	 */
-> -	pipe_config->uapi.adjusted_mode =3D pipe_config->hw.adjusted_mode;
-> -
->  	return 0;
->  }
->  =
-
-> @@ -15578,7 +15572,6 @@ static void intel_atomic_commit_tail(struct intel=
-_atomic_state *state)
->  =
-
->  	if (state->modeset) {
->  		drm_atomic_helper_update_legacy_modeset_state(dev, &state->base);
-> -		drm_atomic_helper_calc_timestamping_constants(&state->base);
->  =
-
->  		intel_set_cdclk_pre_plane_update(state);
->  =
-
-> -- =
-
-> 2.26.2
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
