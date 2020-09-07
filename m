@@ -1,44 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B345C25FA0D
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 14:00:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E286925FA23
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 14:07:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E857F6E44D;
-	Mon,  7 Sep 2020 12:00:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A8826E2B8;
+	Mon,  7 Sep 2020 12:07:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA1D6E440;
- Mon,  7 Sep 2020 12:00:36 +0000 (UTC)
-IronPort-SDR: 7t9mmFTWRFnueT1cQa1GQL2fGCp9WlGkWHcXviZHtPBqPFJx0iSUdij3txljjxkGpx50m9+vsa
- C1Nh3ZcCFZtg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9736"; a="219549879"
-X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; d="scan'208";a="219549879"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2020 05:00:36 -0700
-IronPort-SDR: Y8z61XIH/ImjDv4MhrXxud8ITVjjVlG9/OOsnRPUsqRdI+mq5/Uyym8AN4glfrfEcxrhB2bboj
- Njx6UcYqtXrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; d="scan'208";a="284156715"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 07 Sep 2020 05:00:33 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 07 Sep 2020 15:00:33 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Mon,  7 Sep 2020 15:00:26 +0300
-Message-Id: <20200907120026.6360-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200907120026.6360-1-ville.syrjala@linux.intel.com>
-References: <20200907120026.6360-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EA38A6E44A;
+ Mon,  7 Sep 2020 12:07:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E1B9BA363D;
+ Mon,  7 Sep 2020 12:07:51 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Drop the
- drm_atomic_helper_calc_timestamping_constants() call
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Mon, 07 Sep 2020 12:07:51 -0000
+Message-ID: <159948047189.31224.10354944418783183028@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200907120026.6360-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200907120026.6360-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/3=5D_drm/atomic-helper=3A_Extract_drm?=
+ =?utf-8?q?=5Fatomic=5Fhelper=5Fcalc=5Ftimestamping=5Fconstants=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,41 +39,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldl
-IHVwZGF0ZSB0aGUgdGltZXN0YW1waW5nIGNvbnN0YW50cyBwZXItY3J0YyBleHBsaWNpdGx5IGlu
-CmludGVsX2NydGNfdXBkYXRlX2FjdGl2ZV90aW1pbmdzKCkuIEZ1cnRlcm1vcmUgdGhlIGhlbHBl
-ciB3aWxsCnVzZSB1YXBpLmFkanVzdGVkX21vZGUgd2hlcmVhcyB3ZSB3YW50IGh3LmFkanVzdGVk
-X21vZGUuIFRodXMKbGV0J3MgZHJvcCB0aGUgaGVscGVyIGNhbGwgYW4gcmVseSBvbiB3aGF0IHdl
-IGFscmVhZHkgaGF2ZSBpbgppbnRlbF9jcnRjX3VwZGF0ZV9hY3RpdmVfdGltaW5ncygpLiBXZSBj
-YW4gbm93IGFsc28gZHJvcCB0aGUKaHcuYWRqdXN0ZWRfbW9kZSAtPiB1YXBpLmFkanVzdGVkX21v
-ZGUgY29weSBoYWNrIHRoYXQgd2FzIGFkZGVkCnRvIGtlZXAgdGhlIGhlbHBlciBmcm9tIGRlcml2
-aW5nIHRoZSB0aW1lc3RhbXBpbmcgY29uc3RhbnRzIGZyb20KdGhlIHdyb25nIHRoaW5nLgoKU2ln
-bmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNv
-bT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDcg
-LS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDcgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwppbmRleCAwMzU4NDBjZTM4MjUuLmE4NDZm
-NDE0Yzc1OSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-LmMKQEAgLTEzNDcyLDEyICsxMzQ3Miw2IEBAIGludGVsX21vZGVzZXRfcGlwZV9jb25maWcoc3Ry
-dWN0IGludGVsX2NydGNfc3RhdGUgKnBpcGVfY29uZmlnKQogCQkgICAgImh3IG1heCBicHA6ICVp
-LCBwaXBlIGJwcDogJWksIGRpdGhlcmluZzogJWlcbiIsCiAJCSAgICBiYXNlX2JwcCwgcGlwZV9j
-b25maWctPnBpcGVfYnBwLCBwaXBlX2NvbmZpZy0+ZGl0aGVyKTsKIAotCS8qCi0JICogTWFrZSBk
-cm1fY2FsY190aW1lc3RhbXBpbmdfY29uc3RhbnRzIGluCi0JICogZHJtX2F0b21pY19oZWxwZXJf
-dXBkYXRlX2xlZ2FjeV9tb2Rlc2V0X3N0YXRlKCkgaGFwcHkKLQkgKi8KLQlwaXBlX2NvbmZpZy0+
-dWFwaS5hZGp1c3RlZF9tb2RlID0gcGlwZV9jb25maWctPmh3LmFkanVzdGVkX21vZGU7Ci0KIAly
-ZXR1cm4gMDsKIH0KIApAQCAtMTU1NzgsNyArMTU1NzIsNiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9h
-dG9taWNfY29tbWl0X3RhaWwoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAKIAlp
-ZiAoc3RhdGUtPm1vZGVzZXQpIHsKIAkJZHJtX2F0b21pY19oZWxwZXJfdXBkYXRlX2xlZ2FjeV9t
-b2Rlc2V0X3N0YXRlKGRldiwgJnN0YXRlLT5iYXNlKTsKLQkJZHJtX2F0b21pY19oZWxwZXJfY2Fs
-Y190aW1lc3RhbXBpbmdfY29uc3RhbnRzKCZzdGF0ZS0+YmFzZSk7CiAKIAkJaW50ZWxfc2V0X2Nk
-Y2xrX3ByZV9wbGFuZV91cGRhdGUoc3RhdGUpOwogCi0tIAoyLjI2LjIKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: series starting with [1/3] drm/atomic-helper: Extract drm_atomic_helper_calc_timestamping_constants()
+URL   : https://patchwork.freedesktop.org/series/81419/
+State : warning
+
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1666:65: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1674:55: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1675:50: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1676:50: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1677:56: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1679:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1680:45: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1681:51: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1682:55: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1683:57: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1685:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1686:53: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1688:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1690:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1691:46: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1695:73: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1697:33: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1699:33: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1710:73: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:264:16: error: incompatible types in comparison expression (different type sizes):
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:264:16:    unsigned long *
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:264:16:    unsigned long long *
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:522:39: warning: cast removes address space '__iomem' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:542:31: warning: cast removes address space '__iomem' of expression
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1176:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1176:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1176:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1176:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1176:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1176:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1181:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1181:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1181:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1183:36: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1260:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1260:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1260:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1266:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1292:41: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1294:39: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1298:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1299:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:1302:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:796:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:800:23: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:801:23: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:804:30: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:807:28: warning: cast to restricted __le32
++drivers/gpu/drm/selftests/test-drm_damage_helper.c:244:25: warning: Using plain integer as NULL pointer
++drivers/gpu/drm/selftests/test-drm_damage_helper.c:268:23: warning: Using plain integer as NULL pointer
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
