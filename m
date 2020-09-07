@@ -1,32 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9222F25FA82
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 14:30:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7503025FA8E
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 14:35:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DD376E448;
-	Mon,  7 Sep 2020 12:30:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA4E189590;
+	Mon,  7 Sep 2020 12:35:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C2F336E445;
- Mon,  7 Sep 2020 12:30:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B12DEA47E2;
- Mon,  7 Sep 2020 12:30:07 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1FE489590
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Sep 2020 12:35:26 +0000 (UTC)
+IronPort-SDR: Gz4IRgyr/NGSapUOxHWE37x0G6xpx1L1xPP0N+vRGcy25SHw/CtRSVbHN0XOoFYbKol/AmkPoz
+ kyHxIZ3fbybA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9736"; a="242811409"
+X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; d="scan'208";a="242811409"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2020 05:35:26 -0700
+IronPort-SDR: xKEJD8aumC3AyucaosOEjLebTmHl8xTS2QTS62NRQOrHqYtt+K9vxve0KAfOLw5b3N+OY+4PJJ
+ xS4k72bm7bxg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; d="scan'208";a="303724229"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 07 Sep 2020 05:35:24 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 07 Sep 2020 15:35:23 +0300
+Date: Mon, 7 Sep 2020 15:35:23 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Message-ID: <20200907123523.GG6112@intel.com>
+References: <20200715224222.7557-1-manasi.d.navare@intel.com>
+ <20200715224222.7557-2-manasi.d.navare@intel.com>
+ <20200903174944.GW6112@intel.com>
+ <20200903180432.GA22804@labuser-Z97X-UD5H>
+ <20200903184044.GZ6112@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Mon, 07 Sep 2020 12:30:07 -0000
-Message-ID: <159948180769.31223.12092745106767072652@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200907120026.6360-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200907120026.6360-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/atomic-helper=3A_Extract_drm=5F?=
- =?utf-8?q?atomic=5Fhelper=5Fcalc=5Ftimestamping=5Fconstants=28=29?=
+Content-Disposition: inline
+In-Reply-To: <20200903184044.GZ6112@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v6 02/11] drm/i915: Remove hw.mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,250 +56,353 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1713187419=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1713187419==
-Content-Type: multipart/alternative;
- boundary="===============0480922614437056449=="
+On Thu, Sep 03, 2020 at 09:40:44PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Thu, Sep 03, 2020 at 11:04:33AM -0700, Navare, Manasi wrote:
+> > On Thu, Sep 03, 2020 at 08:49:44PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > On Wed, Jul 15, 2020 at 03:42:13PM -0700, Manasi Navare wrote:
+> > > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > =
 
---===============0480922614437056449==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> > > > The members in hw.mode can be used from adjusted_mode as well,
+> > > > use that when available.
+> > > > =
 
-== Series Details ==
+> > > > Some places that use hw.mode can be converted to use adjusted_mode
+> > > > as well.
+> > > > =
 
-Series: series starting with [1/3] drm/atomic-helper: Extract drm_atomic_helper_calc_timestamping_constants()
-URL   : https://patchwork.freedesktop.org/series/81419/
-State : success
+> > > > v2:
+> > > > * Manual rebase (Manasi)
+> > > > * remove the use of pipe_mode defined in patch 3 (Manasi)
+> > > > =
 
-== Summary ==
+> > > > v3:
+> > > > * Rebase on drm-tip (Manasi)
+> > > =
 
-CI Bug Log - changes from CI_DRM_8971 -> Patchwork_18448
-====================================================
+> > > Previous review was apparently ignored. Or is there a better version
+> > > somewhere? If not, this still looks very wrong.
+> > =
 
-Summary
--------
+> > This was the latest rev that Maarten had in his local tree which he sai=
+d should address all the review comments.
+> > What in particular looks wrong or what review comments were unaddressed=
+ here?
+> =
 
-  **SUCCESS**
+> The dvo/sdvo changes.
 
-  No regressions found.
+I recommend just dropping this patch entirely. It doesn't seem to have
+anything to do with the bigjoiner anyway.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/index.html
+> =
 
-Known issues
-------------
+> > =
 
-  Here are the changes found in Patchwork_18448 that come from known issues:
+> > @Maarten any feedback on Ville's unaddressed comments?
+> > =
 
-### IGT changes ###
+> > Manasi
+> > =
 
-#### Issues hit ####
+> > > =
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-glk-dsi:         [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
+> > > > =
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+> > > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_display.c  | 29 ++++++++++-----=
+----
+> > > >  .../drm/i915/display/intel_display_types.h    |  2 +-
+> > > >  drivers/gpu/drm/i915/display/intel_dvo.c      |  2 +-
+> > > >  drivers/gpu/drm/i915/display/intel_sdvo.c     | 16 ++++------
+> > > >  4 files changed, 23 insertions(+), 26 deletions(-)
+> > > > =
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([i915#1372])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
+/gpu/drm/i915/display/intel_display.c
+> > > > index 729ec6e0d43a..8652a7c6bf11 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -8892,9 +8892,6 @@ static void intel_get_pipe_src_size(struct in=
+tel_crtc *crtc,
+> > > >  	tmp =3D intel_de_read(dev_priv, PIPESRC(crtc->pipe));
+> > > >  	pipe_config->pipe_src_h =3D (tmp & 0xffff) + 1;
+> > > >  	pipe_config->pipe_src_w =3D ((tmp >> 16) & 0xffff) + 1;
+> > > > -
+> > > > -	pipe_config->hw.mode.vdisplay =3D pipe_config->pipe_src_h;
+> > > > -	pipe_config->hw.mode.hdisplay =3D pipe_config->pipe_src_w;
+> > > >  }
+> > > >  =
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+> > > >  void intel_mode_from_pipe_config(struct drm_display_mode *mode,
+> > > > @@ -13079,7 +13076,7 @@ static void intel_dump_pipe_config(const st=
+ruct intel_crtc_state *pipe_config,
+> > > >  		intel_dump_dp_vsc_sdp(dev_priv, &pipe_config->infoframes.vsc);
+> > > >  =
 
-  
-#### Possible fixes ####
+> > > >  	drm_dbg_kms(&dev_priv->drm, "requested mode:\n");
+> > > > -	drm_mode_debug_printmodeline(&pipe_config->hw.mode);
+> > > > +	drm_mode_debug_printmodeline(&pipe_config->uapi.mode);
+> > > >  	drm_dbg_kms(&dev_priv->drm, "adjusted mode:\n");
+> > > >  	drm_mode_debug_printmodeline(&pipe_config->hw.adjusted_mode);
+> > > >  	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.adjusted_mode);
+> > > > @@ -13221,17 +13218,17 @@ intel_crtc_copy_uapi_to_hw_state(struct i=
+ntel_crtc_state *crtc_state)
+> > > >  {
+> > > >  	crtc_state->hw.enable =3D crtc_state->uapi.enable;
+> > > >  	crtc_state->hw.active =3D crtc_state->uapi.active;
+> > > > -	crtc_state->hw.mode =3D crtc_state->uapi.mode;
+> > > >  	crtc_state->hw.adjusted_mode =3D crtc_state->uapi.adjusted_mode;
+> > > >  	intel_crtc_copy_uapi_to_hw_state_nomodeset(crtc_state);
+> > > >  }
+> > > >  =
 
-  * igt@debugfs_test@read_all_entries:
-    - fi-bsw-nick:        [INCOMPLETE][9] ([i915#1250] / [i915#1436]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-bsw-nick/igt@debugfs_test@read_all_entries.html
+> > > > -static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_sta=
+te *crtc_state)
+> > > > +static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_sta=
+te *crtc_state,
+> > > > +					     struct drm_display_mode *user_mode)
+> > > >  {
+> > > >  	crtc_state->uapi.enable =3D crtc_state->hw.enable;
+> > > >  	crtc_state->uapi.active =3D crtc_state->hw.active;
+> > > >  	drm_WARN_ON(crtc_state->uapi.crtc->dev,
+> > > > -		    drm_atomic_set_mode_for_crtc(&crtc_state->uapi, &crtc_state-=
+>hw.mode) < 0);
+> > > > +		    drm_atomic_set_mode_for_crtc(&crtc_state->uapi, user_mode) <=
+ 0);
+> > > >  =
 
-  
-#### Warnings ####
+> > > >  	crtc_state->uapi.adjusted_mode =3D crtc_state->hw.adjusted_mode;
+> > > >  =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+> > > > @@ -13277,6 +13274,10 @@ intel_crtc_prepare_cleared_state(struct in=
+tel_crtc_state *crtc_state)
+> > > >  	memcpy(crtc_state, saved_state, sizeof(*crtc_state));
+> > > >  	kfree(saved_state);
+> > > >  =
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92]) +3 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+> > > > +	/* Clear I915_MODE_FLAG_INHERITED */
+> > > > +	crtc_state->uapi.mode.private_flags =3D 0;
+> > > > +	crtc_state->uapi.adjusted_mode.private_flags =3D 0;
+> > > > +
+> > > >  	intel_crtc_copy_uapi_to_hw_state(crtc_state);
+> > > >  =
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+> > > >  	return 0;
+> > > > @@ -13324,7 +13325,7 @@ intel_modeset_pipe_config(struct intel_crtc=
+_state *pipe_config)
+> > > >  	 * computation to clearly distinguish it from the adjusted mode, =
+which
+> > > >  	 * can be changed by the connectors in the below retry loop.
+> > > >  	 */
+> > > > -	drm_mode_get_hv_timing(&pipe_config->hw.mode,
+> > > > +	drm_mode_get_hv_timing(&pipe_config->hw.adjusted_mode,
+> > > >  			       &pipe_config->pipe_src_w,
+> > > >  			       &pipe_config->pipe_src_h);
+> > > >  =
 
-  [i915#1250]: https://gitlab.freedesktop.org/drm/intel/issues/1250
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+> > > > @@ -18461,15 +18462,11 @@ static void intel_modeset_readout_hw_stat=
+e(struct drm_device *dev)
+> > > >  		int min_cdclk =3D 0;
+> > > >  =
 
+> > > >  		if (crtc_state->hw.active) {
+> > > > -			struct drm_display_mode *mode =3D &crtc_state->hw.mode;
+> > > > +			struct drm_display_mode mode;
+> > > >  =
 
-Participating hosts (45 -> 39)
-------------------------------
+> > > >  			intel_mode_from_pipe_config(&crtc_state->hw.adjusted_mode,
+> > > >  						    crtc_state);
+> > > >  =
 
-  Additional (2): fi-tgl-y fi-gdg-551 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-icl-dsi fi-bdw-samus 
+> > > > -			*mode =3D crtc_state->hw.adjusted_mode;
+> > > > -			mode->hdisplay =3D crtc_state->pipe_src_w;
+> > > > -			mode->vdisplay =3D crtc_state->pipe_src_h;
+> > > > -
+> > > >  			/*
+> > > >  			 * The initial mode needs to be set in order to keep
+> > > >  			 * the atomic core happy. It wants a valid mode if the
+> > > > @@ -18481,11 +18478,15 @@ static void intel_modeset_readout_hw_stat=
+e(struct drm_device *dev)
+> > > >  			 */
+> > > >  			crtc_state->inherited =3D true;
+> > > >  =
 
+> > > > +			mode =3D crtc_state->hw.adjusted_mode;
+> > > > +			mode.hdisplay =3D crtc_state->pipe_src_w;
+> > > > +			mode.vdisplay =3D crtc_state->pipe_src_h;
+> > > > +
+> > > >  			intel_crtc_compute_pixel_rate(crtc_state);
+> > > >  =
 
-Build changes
--------------
+> > > >  			intel_crtc_update_active_timings(crtc_state);
+> > > >  =
 
-  * Linux: CI_DRM_8971 -> Patchwork_18448
+> > > > -			intel_crtc_copy_hw_to_uapi_state(crtc_state);
+> > > > +			intel_crtc_copy_hw_to_uapi_state(crtc_state, &mode);
+> > > >  		}
+> > > >  =
 
-  CI-20190529: 20190529
-  CI_DRM_8971: f274be2fef06d17db45aa72ab5bc571621de5334 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5779: f52bf19b5f02d52fc3e201c6467ec3f511227fba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18448: 7ae6d1d023175e4cd663ac3976197e718c75a7a2 @ git://anongit.freedesktop.org/gfx-ci/linux
+> > > >  		for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, plane) {
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/d=
+rivers/gpu/drm/i915/display/intel_display_types.h
+> > > > index e8f809161c75..f1e29d9a75d0 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > @@ -807,7 +807,7 @@ struct intel_crtc_state {
+> > > >  	struct {
+> > > >  		bool active, enable;
+> > > >  		struct drm_property_blob *degamma_lut, *gamma_lut, *ctm;
+> > > > -		struct drm_display_mode mode, adjusted_mode;
+> > > > +		struct drm_display_mode adjusted_mode;
+> > > >  	} hw;
+> > > >  =
 
+> > > >  	/**
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu=
+/drm/i915/display/intel_dvo.c
+> > > > index 307ed8ae9a19..0b9bf1fec0f4 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_dvo.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+> > > > @@ -209,7 +209,7 @@ static void intel_enable_dvo(struct intel_atomi=
+c_state *state,
+> > > >  	u32 temp =3D intel_de_read(dev_priv, dvo_reg);
+> > > >  =
 
-== Linux commits ==
+> > > >  	intel_dvo->dev.dev_ops->mode_set(&intel_dvo->dev,
+> > > > -					 &pipe_config->hw.mode,
+> > > > +					 &pipe_config->hw.adjusted_mode,
+> > > >  					 &pipe_config->hw.adjusted_mode);
+> > > >  =
 
-7ae6d1d02317 drm/i915: Drop the drm_atomic_helper_calc_timestamping_constants() call
-c3c73f3b0192 drm/atomic-helper: Remove the timestamping constant update from drm_atomic_helper_update_legacy_modeset_state()
-19866c85f05b drm/atomic-helper: Extract drm_atomic_helper_calc_timestamping_constants()
+> > > >  	intel_de_write(dev_priv, dvo_reg, temp | DVO_ENABLE);
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gp=
+u/drm/i915/display/intel_sdvo.c
+> > > > index 2da4388e1540..8b78ae0c39a0 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > > > @@ -1223,7 +1223,6 @@ intel_sdvo_set_output_timings_from_mode(struc=
+t intel_sdvo *intel_sdvo,
+> > > >  static bool
+> > > >  intel_sdvo_get_preferred_input_mode(struct intel_sdvo *intel_sdvo,
+> > > >  				    struct intel_sdvo_connector *intel_sdvo_connector,
+> > > > -				    const struct drm_display_mode *mode,
+> > > >  				    struct drm_display_mode *adjusted_mode)
+> > > >  {
+> > > >  	struct intel_sdvo_dtd input_dtd;
+> > > > @@ -1234,9 +1233,9 @@ intel_sdvo_get_preferred_input_mode(struct in=
+tel_sdvo *intel_sdvo,
+> > > >  =
 
-== Logs ==
+> > > >  	if (!intel_sdvo_create_preferred_input_timing(intel_sdvo,
+> > > >  						      intel_sdvo_connector,
+> > > > -						      mode->clock / 10,
+> > > > -						      mode->hdisplay,
+> > > > -						      mode->vdisplay))
+> > > > +						      adjusted_mode->clock / 10,
+> > > > +						      adjusted_mode->hdisplay,
+> > > > +						      adjusted_mode->vdisplay))
+> > > >  		return false;
+> > > >  =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/index.html
+> > > >  	if (!intel_sdvo_get_preferred_input_timing(intel_sdvo,
+> > > > @@ -1308,7 +1307,6 @@ static int intel_sdvo_compute_config(struct i=
+ntel_encoder *encoder,
+> > > >  	struct intel_sdvo_connector *intel_sdvo_connector =3D
+> > > >  		to_intel_sdvo_connector(conn_state->connector);
+> > > >  	struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adjus=
+ted_mode;
+> > > > -	struct drm_display_mode *mode =3D &pipe_config->hw.mode;
+> > > >  =
 
---===============0480922614437056449==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> > > >  	DRM_DEBUG_KMS("forcing bpc to 8 for SDVO\n");
+> > > >  	pipe_config->pipe_bpp =3D 8*3;
+> > > > @@ -1324,12 +1322,12 @@ static int intel_sdvo_compute_config(struct=
+ intel_encoder *encoder,
+> > > >  	 * the sequence to do it. Oh well.
+> > > >  	 */
+> > > >  	if (IS_TV(intel_sdvo_connector)) {
+> > > > -		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo, mode))
+> > > > +		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo,
+> > > > +							     adjusted_mode))
+> > > >  			return -EINVAL;
+> > > >  =
 
+> > > >  		(void) intel_sdvo_get_preferred_input_mode(intel_sdvo,
+> > > >  							   intel_sdvo_connector,
+> > > > -							   mode,
+> > > >  							   adjusted_mode);
+> > > >  		pipe_config->sdvo_tv_clock =3D true;
+> > > >  	} else if (IS_LVDS(intel_sdvo_connector)) {
+> > > > @@ -1339,7 +1337,6 @@ static int intel_sdvo_compute_config(struct i=
+ntel_encoder *encoder,
+> > > >  =
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> > > >  		(void) intel_sdvo_get_preferred_input_mode(intel_sdvo,
+> > > >  							   intel_sdvo_connector,
+> > > > -							   mode,
+> > > >  							   adjusted_mode);
+> > > >  	}
+> > > >  =
 
+> > > > @@ -1458,7 +1455,6 @@ static void intel_sdvo_pre_enable(struct inte=
+l_atomic_state *state,
+> > > >  		to_intel_sdvo_connector_state(conn_state);
+> > > >  	const struct intel_sdvo_connector *intel_sdvo_connector =3D
+> > > >  		to_intel_sdvo_connector(conn_state->connector);
+> > > > -	const struct drm_display_mode *mode =3D &crtc_state->hw.mode;
+> > > >  	struct intel_sdvo *intel_sdvo =3D to_sdvo(intel_encoder);
+> > > >  	u32 sdvox;
+> > > >  	struct intel_sdvo_in_out_map in_out;
+> > > > @@ -1491,7 +1487,7 @@ static void intel_sdvo_pre_enable(struct inte=
+l_atomic_state *state,
+> > > >  		intel_sdvo_get_dtd_from_mode(&output_dtd,
+> > > >  					     intel_sdvo_connector->base.panel.fixed_mode);
+> > > >  	else
+> > > > -		intel_sdvo_get_dtd_from_mode(&output_dtd, mode);
+> > > > +		intel_sdvo_get_dtd_from_mode(&output_dtd, adjusted_mode);
+> > > >  	if (!intel_sdvo_set_output_timing(intel_sdvo, &output_dtd))
+> > > >  		drm_info(&dev_priv->drm,
+> > > >  			 "Setting output timings on %s failed\n",
+> > > > -- =
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/atomic-helper: Extract drm_atomic_helper_calc_timestamping_constants()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81419/">https://patchwork.freedesktop.org/series/81419/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+> > > > 2.19.1
+> > > > =
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/index.html</a></td></tr>
+> > > > _______________________________________________
+> > > > Intel-gfx mailing list
+> > > > Intel-gfx@lists.freedesktop.org
+> > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > > =
 
-</table>
+> > > -- =
 
+> > > Ville Syrj=E4l=E4
+> > > Intel
+> =
 
-    <h1>CI Bug Log - changes from CI_DRM_8971 -&gt; Patchwork_18448</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18448 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@debugfs_test@read_all_entries:<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-bsw-nick/igt@debugfs_test@read_all_entries.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1250">i915#1250</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-bsw-nick/igt@debugfs_test@read_all_entries.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8971/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18448/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 39)</h2>
-<p>Additional (2): fi-tgl-y fi-gdg-551 <br />
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-icl-dsi fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_8971 -&gt; Patchwork_18448</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_8971: f274be2fef06d17db45aa72ab5bc571621de5334 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5779: f52bf19b5f02d52fc3e201c6467ec3f511227fba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18448: 7ae6d1d023175e4cd663ac3976197e718c75a7a2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>7ae6d1d02317 drm/i915: Drop the drm_atomic_helper_calc_timestamping_constants() call<br />
-c3c73f3b0192 drm/atomic-helper: Remove the timestamping constant update from drm_atomic_helper_update_legacy_modeset_state()<br />
-19866c85f05b drm/atomic-helper: Extract drm_atomic_helper_calc_timestamping_constants()</p>
+> -- =
 
-</body>
-</html>
+> Ville Syrj=E4l=E4
+> Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0480922614437056449==--
+-- =
 
---===============1713187419==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1713187419==--
