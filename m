@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 079B725FAE5
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 15:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4948125FF13
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Sep 2020 18:27:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE9D36E452;
-	Mon,  7 Sep 2020 13:00:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 964E16E459;
+	Mon,  7 Sep 2020 16:27:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DB0B6E44E;
- Mon,  7 Sep 2020 13:00:46 +0000 (UTC)
-IronPort-SDR: U0XwZ+XrCDlOOB2QQjLxRta0ajuFEF/x9v83bIs7SkUOB3pWQbke2LVjA5CS5IQ9X2KSS7mDGK
- yvTDLlQpSX7w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9736"; a="145707582"
-X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; d="scan'208";a="145707582"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF096E459
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Sep 2020 16:27:12 +0000 (UTC)
+IronPort-SDR: CFJThrKIUqXXe0kAQBVDHKW0+/TrkggNBqI3vdJvxdF+G5b//FUktCCX3qWTEA8/HXzSmlVknX
+ f5cjhSZ45Eew==
+X-IronPort-AV: E=McAfee;i="6000,8403,9737"; a="155421854"
+X-IronPort-AV: E=Sophos;i="5.76,402,1592895600"; d="scan'208";a="155421854"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2020 06:00:45 -0700
-IronPort-SDR: Fk7Z+/7Q7bfMqSWdcEvH9638S6jp/kZXDh6h+CWgPtooP+mloSphgfktjsn88LYgfPPlkjm03i
- n/jfjuFmB8qw==
-X-IronPort-AV: E=Sophos;i="5.76,401,1592895600"; d="scan'208";a="479634341"
-Received: from jazminsx-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.24.158])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2020 06:00:42 -0700
-Date: Mon, 7 Sep 2020 16:00:39 +0300
-From: Joonas Lahtinen <jlahtine@jlahtine-mobl.ger.corp.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200907130039.GA27766@jlahtine-mobl.ger.corp.intel.com>
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2020 09:27:11 -0700
+IronPort-SDR: mkRS2a7Udf2kKobZXFBxtaWvDAsey2aoVm44hGeIniISP0tvXcLUVMTrLi9rO+h+OW0eXrNP9I
+ oj/9UCxWfOuw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,402,1592895600"; d="scan'208";a="284226256"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 07 Sep 2020 09:27:09 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 07 Sep 2020 19:27:09 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  7 Sep 2020 19:27:09 +0300
+Message-Id: <20200907162709.29579-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-gt-next
+Subject: [Intel-gfx] [PATCH] drm/i915: Nuke dpio_phy_iosf_port[]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,287 +48,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Daniel,
-
-Exactly same content as previous PR:
-
-https://lists.freedesktop.org/archives/intel-gfx/2020-September/247626.html
-
-Just rebased adding the missing S-o-b:s and updated "Fixes:" tags according=
-ly
-as requested.
-
-Regards, Joonas
-
-***
-
-drm-intel-gt-next-2020-09-07:
-
-(Same content as drm-intel-gt-next-2020-09-04-3, S-o-b's added)
-
-UAPI Changes:
-(- Potential implicit changes from WW locking refactoring)
-
-Cross-subsystem Changes:
-(- WW locking changes should align the i915 locking more with others)
-
-Driver Changes:
-
-- MAJOR: Apply WW locking across the driver (Maarten)
-
-- Reverts for 5 commits to make applying WW locking faster (Maarten)
-- Disable preparser around invalidations on Tigerlake for non-RCS engines (=
-Chris)
-- Add missing dma_fence_put() for error case of syncobj timeline (Chris)
-- Parse command buffer earlier in eb_relocate(slow) to facilitate backoff (=
-Maarten)
-- Pin engine before pinning all objects (Maarten)
-- Rework intel_context pinning to do everything outside of pin_mutex (Maart=
-en)
-
-- Avoid tracking GEM context until registered (Cc: stable, Chris)
-- Provide a fastpath for waiting on vma bindings (Chris)
-- Fixes to preempt-to-busy mechanism (Chris)
-- Distinguish the virtual breadcrumbs from the irq breadcrumbs (Chris)
-- Switch to object allocations for page directories (Chris)
-- Hold context/request reference while breadcrumbs are active (Chris)
-- Make sure execbuffer always passes ww state to i915_vma_pin (Maarten)
-
-- Code refactoring to facilitate use of WW locking (Maarten)
-- Locking refactoring to use more granular locking (Maarten, Chris)
-- Support for multiple pinned timelines per engine (Chris)
-- Move complication of I915_GEM_THROTTLE to the ioctl from general code (Ch=
-ris)
-- Make active tracking/vma page-directory stash work preallocated (Chris)
-- Avoid flushing submission tasklet too often (Chris)
-- Reduce context termination list iteration guard to RCU (Chris)
-- Reductions to locking contention (Chris)
-- Fixes for issues found by CI (Chris)
-The following changes since commit 3393649977f9a8847c659e282ea290d4b703295c:
-
-  Merge tag 'drm-intel-next-2020-08-24-1' of git://anongit.freedesktop.org/=
-drm/drm-intel into drm-next (2020-08-28 14:09:31 +1000)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2020-0=
-9-07
-
-for you to fetch changes up to e0ee152fce25dc9269c7ea5280c98aa4b3682759:
-
-  drm/i915: Unlock the shared hwsp_gtt object after pinning (2020-09-07 15:=
-08:11 +0300)
-
-----------------------------------------------------------------
-(Same content as drm-intel-gt-next-2020-09-04-3, S-o-b's added)
-
-UAPI Changes:
-(- Potential implicit changes from WW locking refactoring)
-
-Cross-subsystem Changes:
-(- WW locking changes should align the i915 locking more with others)
-
-Driver Changes:
-
-- MAJOR: Apply WW locking across the driver (Maarten)
-
-- Reverts for 5 commits to make applying WW locking faster (Maarten)
-- Disable preparser around invalidations on Tigerlake for non-RCS engines (=
-Chris)
-- Add missing dma_fence_put() for error case of syncobj timeline (Chris)
-- Parse command buffer earlier in eb_relocate(slow) to facilitate backoff (=
-Maarten)
-- Pin engine before pinning all objects (Maarten)
-- Rework intel_context pinning to do everything outside of pin_mutex (Maart=
-en)
-
-- Avoid tracking GEM context until registered (Cc: stable, Chris)
-- Provide a fastpath for waiting on vma bindings (Chris)
-- Fixes to preempt-to-busy mechanism (Chris)
-- Distinguish the virtual breadcrumbs from the irq breadcrumbs (Chris)
-- Switch to object allocations for page directories (Chris)
-- Hold context/request reference while breadcrumbs are active (Chris)
-- Make sure execbuffer always passes ww state to i915_vma_pin (Maarten)
-
-- Code refactoring to facilitate use of WW locking (Maarten)
-- Locking refactoring to use more granular locking (Maarten, Chris)
-- Support for multiple pinned timelines per engine (Chris)
-- Move complication of I915_GEM_THROTTLE to the ioctl from general code (Ch=
-ris)
-- Make active tracking/vma page-directory stash work preallocated (Chris)
-- Avoid flushing submission tasklet too often (Chris)
-- Reduce context termination list iteration guard to RCU (Chris)
-- Reductions to locking contention (Chris)
-- Fixes for issues found by CI (Chris)
-
-----------------------------------------------------------------
-Chris Wilson (33):
-      drm/i915: Reduce i915_request.lock contention for i915_request_wait
-      drm/i915/selftests: Mock the status_page.vma for the kernel_context
-      drm/i915: Soften the tasklet flush frequency before waits
-      drm/i915/gem: Remove disordered per-file request list for throttling
-      drm/i915/gt: Disable preparser around xcs invalidations on tgl
-      drm/i915/gt: Delay taking the spinlock for grabbing from the buffer p=
-ool
-      drm/i915/selftests: Flush the active barriers before asserting
-      drm/i915/gt: Fix termination condition for freeing all buffer objects
-      drm/i915/gem: Delay tracking the GEM context until it is registered
-      drm/i915/gt: Support multiple pinned timelines
-      drm/i915/gt: Pull release of node->age under the spinlock
-      drm/i915/selftests: Drop stale timeline constructor assert
-      drm/i915: Skip taking acquire mutex for no ref->active callback
-      drm/i915: Export a preallocate variant of i915_active_acquire()
-      drm/i915: Keep the most recently used active-fence upon discard
-      drm/i915: Make the stale cached active node available for any timeline
-      drm/i915: Reduce locking around i915_active_acquire_preallocate_barri=
-er()
-      drm/i915: Provide a fastpath for waiting on vma bindings
-      drm/i915: Remove requirement for holding i915_request.lock for breadc=
-rumbs
-      drm/i915/gt: Replace intel_engine_transfer_stale_breadcrumbs
-      drm/i915/gt: Only transfer the virtual context to the new engine if a=
-ctive
-      drm/i915/gt: Distinguish the virtual breadcrumbs from the irq breadcr=
-umbs
-      drm/i915: Preallocate stashes for vma page-directories
-      drm/i915/gt: Switch to object allocations for page directories
-      drm/i915/gt: Shrink i915_page_directory's slab bucket
-      drm/i915/gt: Move intel_breadcrumbs_arm_irq earlier
-      drm/i915/gt: Hold context/request reference while breadcrumbs are act=
-ive
-      drm/i915/selftests: Prevent selecting 0 for our random width/align
-      drm/i915/gem: Reduce context termination list iteration guard to RCU
-      drm/i915/gem: Free the fence after a fence-chain lookup failure
-      drm/i915: Be wary of data races when reading the active execlists
-      drm/i915: Remove i915_request.lock requirement for execution callbacks
-      drm/i915: Filter wake_flags passed to default_wake_function
-
-Maarten Lankhorst (23):
-      Revert "drm/i915/gem: Async GPU relocations only"
-      drm/i915: Revert relocation chaining commits.
-      Revert "drm/i915/gem: Drop relocation slowpath".
-      Revert "drm/i915/gem: Split eb_vma into its own allocation"
-      drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
-      drm/i915: Remove locking from i915_gem_object_prepare_read/write
-      drm/i915: Parse command buffer earlier in eb_relocate(slow)
-      drm/i915: Use per object locking in execbuf, v12.
-      drm/i915: Use ww locking in intel_renderstate.
-      drm/i915: Add ww context handling to context_barrier_task
-      drm/i915: Nuke arguments to eb_pin_engine
-      drm/i915: Pin engine before pinning all objects, v5.
-      drm/i915: Rework intel_context pinning to do everything outside of pi=
-n_mutex
-      drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
-      drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as w=
-ell, v2.
-      drm/i915: Kill last user of intel_context_create_request outside of s=
-elftests
-      drm/i915: Convert i915_perf to ww locking as well
-      drm/i915: Dirty hack to fix selftests locking inversion
-      drm/i915/selftests: Fix locking inversion in lrc selftest.
-      drm/i915: Use ww pinning for intel_context_create_request()
-      drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion=
-, v3.
-      drm/i915: Add ww locking to vm_fault_gtt
-      drm/i915: Add ww locking to pin_to_display_plane, v2.
-
-Thomas Hellstr=F6m (1):
-      drm/i915: Unlock the shared hwsp_gtt object after pinning
-
- drivers/gpu/drm/i915/display/intel_display.c       |    6 +-
- drivers/gpu/drm/i915/gem/i915_gem_client_blt.c     |   89 +-
- drivers/gpu/drm/i915/gem/i915_gem_context.c        |  105 +-
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c         |    4 +-
- drivers/gpu/drm/i915/gem/i915_gem_domain.c         |   80 +-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 1601 +++++++++++++---=
-----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c           |   51 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.h         |   40 +-
- drivers/gpu/drm/i915/gem/i915_gem_object_blt.c     |  152 +-
- drivers/gpu/drm/i915/gem/i915_gem_object_blt.h     |    3 +
- drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |   10 +
- drivers/gpu/drm/i915/gem/i915_gem_pm.c             |    2 +-
- drivers/gpu/drm/i915/gem/i915_gem_throttle.c       |   67 +-
- drivers/gpu/drm/i915/gem/i915_gem_tiling.c         |    2 +-
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |    9 +-
- .../drm/i915/gem/selftests/i915_gem_client_blt.c   |    2 +-
- .../drm/i915/gem/selftests/i915_gem_coherency.c    |   50 +-
- .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |  144 +-
- .../drm/i915/gem/selftests/i915_gem_execbuffer.c   |   60 +-
- drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |   45 +-
- drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c |    2 +-
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c               |  106 +-
- drivers/gpu/drm/i915/gt/gen6_ppgtt.h               |    5 +-
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |  181 +--
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        |  305 ++--
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.h        |   36 +
- drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h  |   47 +
- drivers/gpu/drm/i915/gt/intel_context.c            |  318 ++--
- drivers/gpu/drm/i915/gt/intel_context.h            |   13 +
- drivers/gpu/drm/i915/gt/intel_context_types.h      |    5 +-
- drivers/gpu/drm/i915/gt/intel_engine.h             |   20 -
- drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   34 +-
- drivers/gpu/drm/i915/gt/intel_engine_pm.c          |    3 +-
- drivers/gpu/drm/i915/gt/intel_engine_types.h       |   31 +-
- drivers/gpu/drm/i915/gt/intel_ggtt.c               |   97 +-
- drivers/gpu/drm/i915/gt/intel_gt.c                 |   23 +-
- drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c     |  103 +-
- .../gpu/drm/i915/gt/intel_gt_buffer_pool_types.h   |    6 +-
- drivers/gpu/drm/i915/gt/intel_gt_irq.c             |    1 +
- drivers/gpu/drm/i915/gt/intel_gtt.c                |  300 +---
- drivers/gpu/drm/i915/gt/intel_gtt.h                |  142 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c                |  182 ++-
- drivers/gpu/drm/i915/gt/intel_ppgtt.c              |  150 +-
- drivers/gpu/drm/i915/gt/intel_renderstate.c        |   73 +-
- drivers/gpu/drm/i915/gt/intel_renderstate.h        |    9 +-
- drivers/gpu/drm/i915/gt/intel_reset.c              |    1 +
- drivers/gpu/drm/i915/gt/intel_ring.c               |   10 +-
- drivers/gpu/drm/i915/gt/intel_ring.h               |    3 +-
- drivers/gpu/drm/i915/gt/intel_ring_submission.c    |   42 +-
- drivers/gpu/drm/i915/gt/intel_rps.c                |    1 +
- drivers/gpu/drm/i915/gt/intel_timeline.c           |   28 +-
- drivers/gpu/drm/i915/gt/intel_timeline.h           |   24 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c        |   43 +-
- drivers/gpu/drm/i915/gt/mock_engine.c              |   30 +-
- drivers/gpu/drm/i915/gt/selftest_context.c         |    2 +
- drivers/gpu/drm/i915/gt/selftest_lrc.c             |   22 +-
- drivers/gpu/drm/i915/gt/selftest_rps.c             |   30 +-
- drivers/gpu/drm/i915/gt/selftest_timeline.c        |   10 +-
- drivers/gpu/drm/i915/gt/selftest_workarounds.c     |    2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c             |    2 +-
- drivers/gpu/drm/i915/gvt/cmd_parser.c              |    3 +-
- drivers/gpu/drm/i915/gvt/scheduler.c               |   17 +-
- drivers/gpu/drm/i915/i915_active.c                 |  237 ++-
- drivers/gpu/drm/i915/i915_active.h                 |   31 +-
- drivers/gpu/drm/i915/i915_drv.c                    |    2 +-
- drivers/gpu/drm/i915/i915_drv.h                    |   24 +-
- drivers/gpu/drm/i915/i915_gem.c                    |  107 +-
- drivers/gpu/drm/i915/i915_gem.h                    |   12 +
- drivers/gpu/drm/i915/i915_irq.c                    |    1 +
- drivers/gpu/drm/i915/i915_perf.c                   |   57 +-
- drivers/gpu/drm/i915/i915_request.c                |  224 +--
- drivers/gpu/drm/i915/i915_request.h                |    8 -
- drivers/gpu/drm/i915/i915_sw_fence.c               |   10 +-
- drivers/gpu/drm/i915/i915_vma.c                    |   65 +-
- drivers/gpu/drm/i915/i915_vma.h                    |   13 +-
- drivers/gpu/drm/i915/selftests/i915_gem.c          |   41 +
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      |   75 +-
- drivers/gpu/drm/i915/selftests/i915_perf.c         |    4 +-
- drivers/gpu/drm/i915/selftests/i915_request.c      |   18 +-
- drivers/gpu/drm/i915/selftests/i915_vma.c          |    2 +-
- .../gpu/drm/i915/selftests/intel_memory_region.c   |    8 +-
- drivers/gpu/drm/i915/selftests/mock_gtt.c          |   26 +-
- 82 files changed, 3743 insertions(+), 2206 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
- create mode 100644 drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
+ZXJlJ3Mgbm8gcmVhbCByZWFzb24gdG8gc3Rhc2ggYXdheSB0aGUgRFBJTyBQSFkgSU9TRiBzaWRl
+YmFuZCBwb3J0Cm51bWJlcnMgZm9yIFZMVi9DSFYuIEp1c3QgY29tcHV0ZSB0aGVtIGF0IHJ1bnRp
+bWUgaW4gdGhlIHNpZGViYW5kIGNvZGUuCgpHZXRzIHJpZCBvZiB0aGUgb2RkYmFsbCBpbnRlbF9p
+bml0X2RwaW8oKSBmdW5jdGlvbiBmcm9tIHRoZSBoaWdoIGxldmVsCmluaXQgZmxvdy4KClNpZ25l
+ZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmggfCAgMiAt
+LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYyAgICAgICAgICAgICAgfCAxNiAtLS0t
+LS0tLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgICAg
+ICB8ICAyIC0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgICB8
+ICAxIC0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3NpZGViYW5kLmMgICAgICAgIHwgMTYg
+KysrKysrKysrKysrKystLQogNSBmaWxlcyBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspLCAyMyBk
+ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXkuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eS5oCmluZGV4IDM2NzBjYWJlYjNjZC4uMDAzYjY4ZGRhOTQ0IDEwMDY0NAotLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaAorKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaApAQCAtMjcyLDggKzI3Miw2IEBAIGVudW0g
+ZHBpb19waHkgewogCURQSU9fUEhZMiwKIH07CiAKLSNkZWZpbmUgSTkxNV9OVU1fUEhZU19WTFYg
+MgotCiBlbnVtIGF1eF9jaCB7CiAJQVVYX0NIX0EsCiAJQVVYX0NIX0IsCmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcnYuYwppbmRleCBkNjZmZTA5ZDMzN2UuLjk0ZTAwZTQ1MDY4MyAxMDA2NDQKLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2Rydi5jCkBAIC0yMTUsMjEgKzIxNSw2IEBAIGludGVsX3RlYXJkb3duX21jaGJhcihzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJCXJlbGVhc2VfcmVzb3VyY2UoJmRldl9w
+cml2LT5tY2hfcmVzKTsKIH0KIAotc3RhdGljIHZvaWQgaW50ZWxfaW5pdF9kcGlvKHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKLXsKLQkvKgotCSAqIElPU0ZfUE9SVF9EUElPIGlz
+IHVzZWQgZm9yIFZMViB4MiBQSFkgKERQL0hETUkgQiBhbmQgQyksCi0JICogQ0hWIHgxIFBIWSAo
+RFAvSERNSSBEKQotCSAqIElPU0ZfUE9SVF9EUElPXzIgaXMgdXNlZCBmb3IgQ0hWIHgyIFBIWSAo
+RFAvSERNSSBCIGFuZCBDKQotCSAqLwotCWlmIChJU19DSEVSUllWSUVXKGRldl9wcml2KSkgewot
+CQlEUElPX1BIWV9JT1NGX1BPUlQoRFBJT19QSFkwKSA9IElPU0ZfUE9SVF9EUElPXzI7Ci0JCURQ
+SU9fUEhZX0lPU0ZfUE9SVChEUElPX1BIWTEpID0gSU9TRl9QT1JUX0RQSU87Ci0JfSBlbHNlIGlm
+IChJU19WQUxMRVlWSUVXKGRldl9wcml2KSkgewotCQlEUElPX1BIWV9JT1NGX1BPUlQoRFBJT19Q
+SFkwKSA9IElPU0ZfUE9SVF9EUElPOwotCX0KLX0KLQogc3RhdGljIGludCBpOTE1X3dvcmtxdWV1
+ZXNfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiB7CiAJLyoKQEAgLTM1
+OCw3ICszNDMsNiBAQCBzdGF0aWMgaW50IGk5MTVfZHJpdmVyX2Vhcmx5X3Byb2JlKHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAlpbnRlbF9kZXRlY3RfcGNoKGRldl9wcml2KTsK
+IAogCWludGVsX3BtX3NldHVwKGRldl9wcml2KTsKLQlpbnRlbF9pbml0X2RwaW8oZGV2X3ByaXYp
+OwogCXJldCA9IGludGVsX3Bvd2VyX2RvbWFpbnNfaW5pdChkZXZfcHJpdik7CiAJaWYgKHJldCA8
+IDApCiAJCWdvdG8gZXJyX2dlbTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCmluZGV4IGE0NTU3NTIy
+MjFjYy4uZWY3NWFjZGE5YmZmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2Rydi5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKQEAgLTEwMjAsOCAr
+MTAyMCw2IEBAIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlIHsKIAkgKi8KIAl1OCBhY3RpdmVfcGlw
+ZXM7CiAKLQlpbnQgZHBpb19waHlfaW9zZl9wb3J0W0k5MTVfTlVNX1BIWVNfVkxWXTsKLQogCXN0
+cnVjdCBpOTE1X3dhX2xpc3QgZ3Rfd2FfbGlzdDsKIAogCXN0cnVjdCBpOTE1X2Zyb250YnVmZmVy
+X3RyYWNraW5nIGZiX3RyYWNraW5nOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKaW5kZXggYWI0YjFh
+YmQ0MzY0Li45MGEwNWUzN2JhMmYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfcmVnLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaApAQCAtMTM4Miw3
+ICsxMzgyLDYgQEAgc3RhdGljIGlubGluZSBib29sIGk5MTVfbW1pb19yZWdfdmFsaWQoaTkxNV9y
+ZWdfdCByZWcpCiAjZGVmaW5lICBEUElPX0NNTlJTVAkJCSgxIDw8IDApCiAKICNkZWZpbmUgRFBJ
+T19QSFkocGlwZSkJCQkoKHBpcGUpID4+IDEpCi0jZGVmaW5lIERQSU9fUEhZX0lPU0ZfUE9SVChw
+aHkpCQkoZGV2X3ByaXYtPmRwaW9fcGh5X2lvc2ZfcG9ydFtwaHldKQogCiAvKgogICogUGVyIHBp
+cGUvUExMIERQSU8gcmVncwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
+c2lkZWJhbmQuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3NpZGViYW5kLmMKaW5kZXgg
+OTE2Y2NkMWMwZTk2Li41YjMyNzkyNjIxMjMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2ludGVsX3NpZGViYW5kLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc2lk
+ZWJhbmQuYwpAQCAtMjMxLDkgKzIzMSwyMSBAQCB2b2lkIHZsdl9jY3Vfd3JpdGUoc3RydWN0IGRy
+bV9pOTE1X3ByaXZhdGUgKmk5MTUsIHUzMiByZWcsIHUzMiB2YWwpCiAJCQlTQl9DUldSREFfTlAs
+IHJlZywgJnZhbCk7CiB9CiAKK3N0YXRpYyB1MzIgdmx2X2RwaW9fcGh5X2lvc2ZfcG9ydChzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgZW51bSBkcGlvX3BoeSBwaHkpCit7CisJLyoKKwkg
+KiBJT1NGX1BPUlRfRFBJTzogVkxWIHgyIFBIWSAoRFAvSERNSSBCIGFuZCBDKSwgQ0hWIHgxIFBI
+WSAoRFAvSERNSSBEKQorCSAqIElPU0ZfUE9SVF9EUElPXzI6IENIViB4MiBQSFkgKERQL0hETUkg
+QiBhbmQgQykKKwkgKi8KKwlpZiAoSVNfQ0hFUlJZVklFVyhpOTE1KSkKKwkJcmV0dXJuIHBoeSA9
+PSBEUElPX1BIWTAgPyBJT1NGX1BPUlRfRFBJT18yIDogSU9TRl9QT1JUX0RQSU87CisJZWxzZQor
+CQlyZXR1cm4gSU9TRl9QT1JUX0RQSU87Cit9CisKIHUzMiB2bHZfZHBpb19yZWFkKHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICppOTE1LCBlbnVtIHBpcGUgcGlwZSwgaW50IHJlZykKIHsKLQlpbnQg
+cG9ydCA9IGk5MTUtPmRwaW9fcGh5X2lvc2ZfcG9ydFtEUElPX1BIWShwaXBlKV07CisJdTMyIHBv
+cnQgPSB2bHZfZHBpb19waHlfaW9zZl9wb3J0KGk5MTUsIERQSU9fUEhZKHBpcGUpKTsKIAl1MzIg
+dmFsID0gMDsKIAogCXZsdl9zaWRlYmFuZF9ydyhpOTE1LCBEUElPX0RFVkZOLCBwb3J0LCBTQl9N
+UkRfTlAsIHJlZywgJnZhbCk7CkBAIC0yNTIsNyArMjY0LDcgQEAgdTMyIHZsdl9kcGlvX3JlYWQo
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsIGVudW0gcGlwZSBwaXBlLCBpbnQgcmVnKQog
+dm9pZCB2bHZfZHBpb193cml0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKIAkJICAg
+IGVudW0gcGlwZSBwaXBlLCBpbnQgcmVnLCB1MzIgdmFsKQogewotCWludCBwb3J0ID0gaTkxNS0+
+ZHBpb19waHlfaW9zZl9wb3J0W0RQSU9fUEhZKHBpcGUpXTsKKwl1MzIgcG9ydCA9IHZsdl9kcGlv
+X3BoeV9pb3NmX3BvcnQoaTkxNSwgRFBJT19QSFkocGlwZSkpOwogCiAJdmx2X3NpZGViYW5kX3J3
+KGk5MTUsIERQSU9fREVWRk4sIHBvcnQsIFNCX01XUl9OUCwgcmVnLCAmdmFsKTsKIH0KLS0gCjIu
+MjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
