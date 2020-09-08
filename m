@@ -1,55 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECD82260DF4
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Sep 2020 10:48:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 530E2260E9F
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Sep 2020 11:25:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBFB16E194;
-	Tue,  8 Sep 2020 08:48:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 107776E5D3;
+	Tue,  8 Sep 2020 09:25:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 429 seconds by postgrey-1.36 at gabe;
- Tue, 08 Sep 2020 08:48:40 UTC
-Received: from lb1-smtp-cloud7.xs4all.net (lb1-smtp-cloud7.xs4all.net
- [194.109.24.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5466E194;
- Tue,  8 Sep 2020 08:48:40 +0000 (UTC)
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
- by smtp-cloud7.xs4all.net with ESMTPA
- id FZBvkWMsNMeQuFZBwkfEso; Tue, 08 Sep 2020 10:41:30 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
- t=1599554490; bh=AQvpE90imbtcIDG4V2WxYb2iJCg77f2qjbgyPSUlRuc=;
- h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
- Subject;
- b=wQHmFTHgMsA1Jy62WHxzFpV1f5P1aa6rhXG7umxaWThv8UoIZLvBI/cVyTm2RdjN5
- USYsZoojECcbBPWeRhbjr0GuUNBGQMk44nd0O8CByqLA6pYZBlt+dBKDASBXctzMch
- as57Zp+wsvRvvQFIAQPepjj5jPSfC968TpwvtJFmc/uwnqx+wiABRgIQu+6Kr20JCm
- FwjlQM8SfAnTLpD47rhXDGRGgEWyBkQaKc1NzGWm+rkcEAfZuYpU7Nw/Ba+U4jS8xg
- QhkdkekNaRB/3i9lC4omE6p6QCdoLEaWPYy6Dm8Ea0otyvi8WOXxrpEKyUt7BGJW0c
- lx9o1h9WNwBBA==
-To: Sam McNally <sammc@chromium.org>, LKML <linux-kernel@vger.kernel.org>
-References: <20200901162133.1.I8693156f555875e5c8342e86ab37ce968dfdd277@changeid>
- <20200901162133.4.I900b1b80709b7632a47d0ddb4cd375b4a3616c9e@changeid>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <2f1e64e4-bb37-0cfb-6b3b-3f51fd5faca3@xs4all.nl>
-Date: Tue, 8 Sep 2020 10:41:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F7946E5D3;
+ Tue,  8 Sep 2020 09:25:03 +0000 (UTC)
+IronPort-SDR: bff3409VNWkSvScnzM/Bacxb2bdPxRcpxQY1IKuenACjwZ355RmBAjUPMW5hk6CIT7Wz6BHrFd
+ 81zH2tpwQTgQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9737"; a="145810542"
+X-IronPort-AV: E=Sophos;i="5.76,405,1592895600"; 
+ d="asc'?scan'208";a="145810542"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2020 02:25:02 -0700
+IronPort-SDR: TZZYT36tOIPZoK2OXwx5ENwSMeNK1gBFlFPeEudK3xPqjJF9oOQejPiwKinLgfSliWATTecLKk
+ MdQCobaTApvA==
+X-IronPort-AV: E=Sophos;i="5.76,405,1592895600"; 
+ d="asc'?scan'208";a="479946798"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2020 02:25:00 -0700
+Date: Tue, 8 Sep 2020 17:05:47 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Zhi Wang <zhi.a.wang@intel.com>
+Message-ID: <20200908090547.GA1426@zhen-hp.sh.intel.com>
+References: <20200907200203.535-1-zhi.a.wang@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200901162133.4.I900b1b80709b7632a47d0ddb4cd375b4a3616c9e@changeid>
-Content-Language: en-US
-X-CMAE-Envelope: MS4wfHz6rVM5/ECaUJ5Mt6JfyH8yYyfdOz7LyjzrGRpN5U8iJI039Wq60UxQJCQ82NhNMgJB9bQLpG24tbwI9XbmBkSFKkunPEEJscayJNaAJxeoArKYTOut
- uPlnlCkBz3xHnsmrgSm1EbaB+j2jU1DP6KrF1DJGI8skOO8/xNnSytrGpMKOVVZSqEs59oxNTgRAP71WCFeWLOv4QFqf6jJiDv/E2vMHdJsmwlIIn/vu2Pzv
- ClXAlwwB/bUtrBguK8ghXQ2yWwp5c+bHkaoGkSV1YYlb2BBZp0eL51+MDz2MQj5BIpyglkYhvIYWSelLQ+i5AB36nNOpG3Tt8Lg5O/wvTpFkTDD1TT+hzrNB
- 7WdTNViEGmmJ3AzbTxKTRG5xURNFWTcKLaSJXHdotkvGYOA9x4+EiGCWWwHa1AanUOuN9G0YAJffpBrd6BJZRj1mgjaB09N11xW01TpBthJDCx7SsvsvRVn4
- aY07xj62VhLn2RHLG3YX1rKb3zJ0zjc4aq19wIrYLf8abiZfUTT75hcfRxaVk1kPN63UdDpzKcyoasvjtmNuOIaKyLssWvoi/GPcfVHhmSk/PpPeck69fANr
- HYZtxUVryhbu9vKE4gvYhoPnAk16u9QO9dMtIjnSJtNCBBTTwGV4EW/1AR3f23ti3HQLwiRRpDZhFaO+TFy8iLJy6BmLwthPe6gw+z7c6Mu2Poh5ehj8UuFY
- y8khoQXwdG20S94epeVNtbelVC9D9vzUcO9RCGTZaz6iB6y+EVh5+G+SajyooLMbsfKV6LniY+npUwB+p1OtEqXJ9salkXcX1pqzwvu13N3r27A+2vCp/qon
- wD79o3oHfehxc6cOKBz05xy5wuxdwMVSLBxtx5Dyi6pNV5pr4+METtFiobqobQ/vTboFh8PRRvRlUpUd5ktJrlANDXSNmr2OveNYb2sd1MZ8RrtT3sWxWTFF
- AjneWsnF5xQ/6Ba2iJcZ6Ec8SV7cinwz+N7QtBSNDANeJI4RqSAXrVxRA3tQB6gNOklzXAo6ogbmPBnA7R/cW0F5+oHhDBytM+NyPc5hW71nHfIr
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm_dp_cec: add plumbing in preparation
- for MST support
+In-Reply-To: <20200907200203.535-1-zhi.a.wang@intel.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: Introduce per object locking
+ in GVT scheduler.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,220 +52,244 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Mikita Lipski <mikita.lipski@amd.com>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- David Francis <David.Francis@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
- Leo Li <sunpeng.li@amd.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Wambui Karuga <wambui.karugax@gmail.com>, intel-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2020658825=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 01/09/2020 08:22, Sam McNally wrote:
-> From: Hans Verkuil <hans.verkuil@cisco.com>
-> 
-> Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
-> [sammc@chromium.org:
->  - rebased
->  - removed polling-related changes
->  - moved the calls to drm_dp_cec_(un)set_edid() into the next patch
-> ]
-> Signed-off-by: Sam McNally <sammc@chromium.org>
+
+--===============2020658825==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="Q68bSM7Ycu6FN28Q"
+Content-Disposition: inline
+
+
+--Q68bSM7Ycu6FN28Q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2020.09.07 23:02:03 +0300, Zhi Wang wrote:
+> To support ww locking and per-object implemented in i915, GVT scheduler n=
+eeds
+> to be refined. Most of the changes are located in shadow batch buffer, sh=
+adow
+> wa context in GVT-g, where use quite a lot of i915 gem object APIs.
+>=20
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Signed-off-by: Zhi Wang <zhi.a.wang@intel.com>
 > ---
-> 
->  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
->  drivers/gpu/drm/drm_dp_cec.c                  | 22 ++++++++++---------
->  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_connector.c   |  2 +-
->  include/drm/drm_dp_helper.h                   |  6 +++--
->  5 files changed, 19 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index 461fa4da0a34..6e7075893ec9 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -419,7 +419,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
->  
->  	drm_dp_aux_init(&aconnector->dm_dp_aux.aux);
->  	drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
-> -				      &aconnector->base);
-> +				      &aconnector->base, false);
->  
->  	if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP)
+>  drivers/gpu/drm/i915/gvt/scheduler.c | 68 ++++++++++++++++++++++++++++++=
+------
+>  1 file changed, 57 insertions(+), 11 deletions(-)
+
+Looks ok to me.
+
+Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+Pls verify against latest gvt-staging then create pull against gt-next
+for 5.10.
+
+Thanks
+
+>=20
+> diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/=
+gvt/scheduler.c
+> index 1570eb8..fe7ee10 100644
+> --- a/drivers/gpu/drm/i915/gvt/scheduler.c
+> +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+> @@ -396,7 +396,9 @@ static void release_shadow_wa_ctx(struct intel_shadow=
+_wa_ctx *wa_ctx)
+>  	if (!wa_ctx->indirect_ctx.obj)
 >  		return;
-> diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/drm_dp_cec.c
-> index 3ab2609f9ec7..04ab7b88055c 100644
-> --- a/drivers/gpu/drm/drm_dp_cec.c
-> +++ b/drivers/gpu/drm/drm_dp_cec.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_connector.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_dp_helper.h>
-> +#include <drm/drm_dp_mst_helper.h>
->  
->  /*
->   * Unfortunately it turns out that we have a chicken-and-egg situation
-> @@ -338,8 +339,6 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
->  	if (aux->cec.adap) {
->  		if (aux->cec.adap->capabilities == cec_caps &&
->  		    aux->cec.adap->available_log_addrs == num_las) {
-> -			/* Unchanged, so just set the phys addr */
-> -			cec_s_phys_addr_from_edid(aux->cec.adap, edid);
->  			goto unlock;
+> =20
+> +	i915_gem_object_lock(wa_ctx->indirect_ctx.obj, NULL);
+>  	i915_gem_object_unpin_map(wa_ctx->indirect_ctx.obj);
+> +	i915_gem_object_unlock(wa_ctx->indirect_ctx.obj);
+>  	i915_gem_object_put(wa_ctx->indirect_ctx.obj);
+> =20
+>  	wa_ctx->indirect_ctx.obj =3D NULL;
+> @@ -504,6 +506,7 @@ static int prepare_shadow_batch_buffer(struct intel_v=
+gpu_workload *workload)
+>  	struct intel_gvt *gvt =3D workload->vgpu->gvt;
+>  	const int gmadr_bytes =3D gvt->device_info.gmadr_bytes_in_cmd;
+>  	struct intel_vgpu_shadow_bb *bb;
+> +	struct i915_gem_ww_ctx ww;
+>  	int ret;
+> =20
+>  	list_for_each_entry(bb, &workload->shadow_bb, list) {
+> @@ -528,10 +531,19 @@ static int prepare_shadow_batch_buffer(struct intel=
+_vgpu_workload *workload)
+>  		 * directly
+>  		 */
+>  		if (!bb->ppgtt) {
+> -			bb->vma =3D i915_gem_object_ggtt_pin(bb->obj,
+> -							   NULL, 0, 0, 0);
+> +			i915_gem_ww_ctx_init(&ww, false);
+> +retry:
+> +			i915_gem_object_lock(bb->obj, &ww);
+> +
+> +			bb->vma =3D i915_gem_object_ggtt_pin_ww(bb->obj, &ww,
+> +							      NULL, 0, 0, 0);
+>  			if (IS_ERR(bb->vma)) {
+>  				ret =3D PTR_ERR(bb->vma);
+> +				if (ret =3D=3D -EDEADLK) {
+> +					ret =3D i915_gem_ww_ctx_backoff(&ww);
+> +					if (!ret)
+> +						goto retry;
+> +				}
+>  				goto err;
+>  			}
+> =20
+> @@ -545,13 +557,18 @@ static int prepare_shadow_batch_buffer(struct intel=
+_vgpu_workload *workload)
+>  						      0);
+>  			if (ret)
+>  				goto err;
+> +
+> +			/* No one is going to touch shadow bb from now on. */
+> +			i915_gem_object_flush_map(bb->obj);
+> +
+> +			i915_gem_object_unlock(bb->obj);
+> +			i915_gem_ww_ctx_fini(&ww);
 >  		}
->  		/*
-> @@ -364,15 +363,16 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
->  	if (cec_register_adapter(aux->cec.adap, connector->dev->dev)) {
->  		cec_delete_adapter(aux->cec.adap);
->  		aux->cec.adap = NULL;
-> -	} else {
-> -		/*
-> -		 * Update the phys addr for the new CEC adapter. When called
-> -		 * from drm_dp_cec_register_connector() edid == NULL, so in
-> -		 * that case the phys addr is just invalidated.
-> -		 */
-> -		cec_s_phys_addr_from_edid(aux->cec.adap, edid);
+> =20
+> -		/* No one is going to touch shadow bb from now on. */
+> -		i915_gem_object_flush_map(bb->obj);
 >  	}
->  unlock:
-> +	/*
-> +	 * Update the phys addr for the new CEC adapter. When called
-> +	 * from drm_dp_cec_register_connector() edid == NULL, so in
-> +	 * that case the phys addr is just invalidated.
-> +	 */
-
-The comment is no longer in sync with the code: if EDID == NULL, then
-nothing is done due to the edid check in the 'if' below.
-
-> +	if (aux->cec.adap && edid) {
-
-I think this should just be: if (aux->cec.adap)
-
-Also, the {} aren't necessary here.
-
-> +		cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-> +	}
->  	mutex_unlock(&aux->cec.lock);
->  }
->  EXPORT_SYMBOL(drm_dp_cec_set_edid);
-
-Frankly, the changes to this function should be dropped completely, from
-what I can see they are not necessary. It was done in my original patch
-because of the way I handled mst, but you did it differently (and I think
-better), so these changes are no longer needed.
-
-I know I am actually commenting on my old patch, but that patch was from a
-work-in-progress git branch and was never meant as a 'proper' patch.
-
-However, what complicates matters is that after digging a bit more I discovered
-that commit 732300154980 ("drm: Do not call drm_dp_cec_set_edid() while registering
-DP connectors") changed drm_dp_cec_register_connector() so that it no longer
-calls drm_dp_cec_set_edid(), but the comments there and in this function were
-not updated. It would be nice if you can add a patch fixing these outdated
-comments.
-
-Regardless of that change in commit 732300154980, the edid pointer can still be
-NULL and the existing behavior should be kept (i.e. create a CEC device, but with
-an invalid physical address since there is no EDID for some reason).
-
-Regards,
-
-	Hans
-
-> @@ -418,6 +418,7 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
->   * drm_dp_cec_register_connector() - register a new connector
->   * @aux: DisplayPort AUX channel
->   * @connector: drm connector
-> + * @is_mst: set to true if this is an MST branch
->   *
->   * A new connector was registered with associated CEC adapter name and
->   * CEC adapter parent device. After registering the name and parent
-> @@ -425,12 +426,13 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
->   * CEC and to register a CEC adapter if that is the case.
->   */
->  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> -				   struct drm_connector *connector)
-> +				   struct drm_connector *connector, bool is_mst)
->  {
->  	WARN_ON(aux->cec.adap);
->  	if (WARN_ON(!aux->transfer))
->  		return;
->  	aux->cec.connector = connector;
-> +	aux->cec.is_mst = is_mst;
->  	INIT_DELAYED_WORK(&aux->cec.unregister_work,
->  			  drm_dp_cec_unregister_work);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 82b9de274f65..744cb55572f9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -6261,7 +6261,7 @@ intel_dp_connector_register(struct drm_connector *connector)
->  	intel_dp->aux.dev = connector->kdev;
->  	ret = drm_dp_aux_register(&intel_dp->aux);
->  	if (!ret)
-> -		drm_dp_cec_register_connector(&intel_dp->aux, connector);
-> +		drm_dp_cec_register_connector(&intel_dp->aux, connector, false);
+>  	return 0;
+>  err:
+> +	i915_gem_ww_ctx_fini(&ww);
+>  	release_shadow_batch_buffer(workload);
 >  	return ret;
 >  }
->  
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index 49dd0cbc332f..671a70e95cd1 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -1414,7 +1414,7 @@ nouveau_connector_create(struct drm_device *dev,
->  	switch (type) {
->  	case DRM_MODE_CONNECTOR_DisplayPort:
->  	case DRM_MODE_CONNECTOR_eDP:
-> -		drm_dp_cec_register_connector(&nv_connector->aux, connector);
-> +		drm_dp_cec_register_connector(&nv_connector->aux, connector, false);
->  		break;
+> @@ -578,14 +595,30 @@ static int prepare_shadow_wa_ctx(struct intel_shado=
+w_wa_ctx *wa_ctx)
+>  	unsigned char *per_ctx_va =3D
+>  		(unsigned char *)wa_ctx->indirect_ctx.shadow_va +
+>  		wa_ctx->indirect_ctx.size;
+> +	struct i915_gem_ww_ctx ww;
+> +	int ret;
+> =20
+>  	if (wa_ctx->indirect_ctx.size =3D=3D 0)
+>  		return 0;
+> =20
+> -	vma =3D i915_gem_object_ggtt_pin(wa_ctx->indirect_ctx.obj, NULL,
+> -				       0, CACHELINE_BYTES, 0);
+> -	if (IS_ERR(vma))
+> -		return PTR_ERR(vma);
+> +	i915_gem_ww_ctx_init(&ww, false);
+> +retry:
+> +	i915_gem_object_lock(wa_ctx->indirect_ctx.obj, &ww);
+> +
+> +	vma =3D i915_gem_object_ggtt_pin_ww(wa_ctx->indirect_ctx.obj, &ww, NULL,
+> +					  0, CACHELINE_BYTES, 0);
+> +	if (IS_ERR(vma)) {
+> +		ret =3D PTR_ERR(vma);
+> +		if (ret =3D=3D -EDEADLK) {
+> +			ret =3D i915_gem_ww_ctx_backoff(&ww);
+> +			if (!ret)
+> +				goto retry;
+> +		}
+> +		return ret;
+> +	}
+> +
+> +	i915_gem_object_unlock(wa_ctx->indirect_ctx.obj);
+> +	i915_gem_ww_ctx_fini(&ww);
+> =20
+>  	/* FIXME: we are not tracking our pinned VMA leaving it
+>  	 * up to the core to fix up the stray pin_count upon
+> @@ -619,12 +652,14 @@ static void release_shadow_batch_buffer(struct inte=
+l_vgpu_workload *workload)
+> =20
+>  	list_for_each_entry_safe(bb, pos, &workload->shadow_bb, list) {
+>  		if (bb->obj) {
+> +			i915_gem_object_lock(bb->obj, NULL);
+>  			if (bb->va && !IS_ERR(bb->va))
+>  				i915_gem_object_unpin_map(bb->obj);
+> =20
+>  			if (bb->vma && !IS_ERR(bb->vma))
+>  				i915_vma_unpin(bb->vma);
+> =20
+> +			i915_gem_object_unlock(bb->obj);
+>  			i915_gem_object_put(bb->obj);
+>  		}
+>  		list_del(&bb->list);
+> @@ -1337,6 +1372,7 @@ int intel_vgpu_setup_submission(struct intel_vgpu *=
+vgpu)
+>  	struct intel_vgpu_submission *s =3D &vgpu->submission;
+>  	struct intel_engine_cs *engine;
+>  	struct i915_ppgtt *ppgtt;
+> +	struct i915_gem_ww_ctx ww;
+>  	enum intel_engine_id i;
+>  	int ret;
+> =20
+> @@ -1368,11 +1404,20 @@ int intel_vgpu_setup_submission(struct intel_vgpu=
+ *vgpu)
+> =20
+>  			ce->ring =3D __intel_context_ring_size(ring_size);
+>  		}
+> +		i915_gem_ww_ctx_init(&ww, false);
+> +retry:
+> +		ret =3D intel_context_pin_ww(ce, &ww);
+> +		if (ret) {
+> +			if (ret =3D=3D -EDEADLK) {
+> +				ret =3D i915_gem_ww_ctx_backoff(&ww);
+> +				if (!ret)
+> +					goto retry;
+> +			}
+> +			goto out_shadow_ctx;
+> +		}
+> =20
+> -		ret =3D intel_context_pin(ce);
+>  		intel_context_put(ce);
+> -		if (ret)
+> -			goto out_shadow_ctx;
+> +		i915_gem_ww_ctx_fini(&ww);
+> =20
+>  		s->shadow[i] =3D ce;
 >  	}
->  
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 85513eeb2196..12bca1b9512b 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1495,12 +1495,14 @@ struct drm_connector;
->   * @lock: mutex protecting this struct
->   * @adap: the CEC adapter for CEC-Tunneling-over-AUX support.
->   * @connector: the connector this CEC adapter is associated with
-> + * @is_mst: this is an MST branch
->   * @unregister_work: unregister the CEC adapter
->   */
->  struct drm_dp_aux_cec {
->  	struct mutex lock;
->  	struct cec_adapter *adap;
->  	struct drm_connector *connector;
-> +	bool is_mst;
->  	struct delayed_work unregister_work;
->  };
->  
-> @@ -1746,7 +1748,7 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, u32 edid_quirks,
->  #ifdef CONFIG_DRM_DP_CEC
->  void drm_dp_cec_irq(struct drm_dp_aux *aux);
->  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> -				   struct drm_connector *connector);
-> +				   struct drm_connector *connector, bool is_mst);
->  void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
->  void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid);
->  void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
-> @@ -1757,7 +1759,7 @@ static inline void drm_dp_cec_irq(struct drm_dp_aux *aux)
->  
->  static inline void
->  drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> -			      struct drm_connector *connector)
-> +			      struct drm_connector *connector, bool is_mst)
->  {
->  }
->  
-> 
+> @@ -1400,6 +1445,7 @@ int intel_vgpu_setup_submission(struct intel_vgpu *=
+vgpu)
+>  	return 0;
+> =20
+>  out_shadow_ctx:
+> +	i915_gem_ww_ctx_fini(&ww);
+>  	i915_context_ppgtt_root_restore(s, ppgtt);
+>  	for_each_engine(engine, vgpu->gvt->gt, i) {
+>  		if (IS_ERR(s->shadow[i]))
+> --=20
+> 2.7.4
+>=20
+
+--=20
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--Q68bSM7Ycu6FN28Q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCX1dJawAKCRCxBBozTXgY
+JzddAJ9myE0gx412sFmM3wggVz3mpbBo9wCfQ4Jub6WAJYMoHyZy/8l4+SOydi4=
+=++Tw
+-----END PGP SIGNATURE-----
+
+--Q68bSM7Ycu6FN28Q--
+
+--===============2020658825==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2020658825==--
