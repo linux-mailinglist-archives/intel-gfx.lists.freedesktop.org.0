@@ -2,33 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA13262298
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Sep 2020 00:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BD112623BF
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Sep 2020 01:54:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36A7C6E083;
-	Tue,  8 Sep 2020 22:23:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2D586E174;
+	Tue,  8 Sep 2020 23:54:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 437D06E083
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Sep 2020 22:23:23 +0000 (UTC)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
- id 316341C0B87; Wed,  9 Sep 2020 00:23:19 +0200 (CEST)
-Date: Wed, 9 Sep 2020 00:23:18 +0200
-From: Pavel Machek <pavel@ucw.cz>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200908222318.GD1005@bug>
-References: <20200819103952.19083-1-chris@chris-wilson.co.uk>
- <20200819172331.GA4796@amd>
- <159785861047.667.10730572472834322633@build.alporthouse.com>
- <20200819193326.p62h2dj7jpzfkeyy@duo.ucw.cz>
- <159790897155.667.4491040035549523476@build.alporthouse.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C04186E157
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Sep 2020 23:54:35 +0000 (UTC)
+IronPort-SDR: ck3ITl3UbvQnqyUIuA1x+QaGglBLY1B55V/vywmesweCOxtD1E4SqO1UE6ooPQnaHJzE28z3p2
+ de8+1RFJG/dA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9738"; a="157520092"
+X-IronPort-AV: E=Sophos;i="5.76,407,1592895600"; d="scan'208";a="157520092"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2020 16:54:34 -0700
+IronPort-SDR: MHqqxDlGBSjuIIdafW09FxeDQott/pyLRuzdWuz3cfPP7BHLttIJ9NjaY+qKc5R/9X23uVGKfw
+ e7IMt2islr6g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,407,1592895600"; d="scan'208";a="317364858"
+Received: from anusha.jf.intel.com ([10.165.21.155])
+ by orsmga002.jf.intel.com with ESMTP; 08 Sep 2020 16:54:34 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  8 Sep 2020 16:39:55 -0700
+Message-Id: <20200908233955.11311-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <159790897155.667.4491040035549523476@build.alporthouse.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Replace reloc chain with
- terminator on error unwind
+Subject: [Intel-gfx] [PATCH] drm/i915/pll: Centralize PLL_ENABLE register
+ lookup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,60 +47,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi!
-
-> > > > Thanks for the patches. I assume this should fix problem from
-> > > > "5.9-rc1: graphics regression moved from -next to mainline" thread.
-> > > > 
-> > > > I have applied them over current -next, and my machine seems to be
-> > > > working so far (but uptime is less than 30 minutes).
-> > > > 
-> > > > If the machine still works tommorow, I'll assume problem is solved.
-> > > 
-> > > Aye, best wait until we have to start competing with Chromium for
-> > > memory... The suspicion is that it was the resource allocation failure
-> > > path.
-> > 
-> > Yep, my machines are low on memory.
-> > 
-> > But ... test did not work that well. I have dead X and blinking
-> > screen. Machine still works reasonably well over ssh, so I guess
-> > that's an improvement.
-> 
-> Well my last remaining 32bit gen3 device is currently pushing up the
-> daises, so could you try removing the attempt to use WC? Something like
-> 
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -955,10 +955,7 @@ static u32 *__reloc_gpu_map(struct reloc_cache *cache,
->  {
->         u32 *map;
-> 
-> -       map = i915_gem_object_pin_map(pool->obj,
-> -                                     cache->has_llc ?
-> -                                     I915_MAP_FORCE_WB :
-> -                                     I915_MAP_FORCE_WC);
-> +       map = i915_gem_object_pin_map(pool->obj, I915_MAP_FORCE_WB);
-> 
-> on top of the previous patch. Faultinjection didn't turn up anything in
-> eb_relocate_vma, so we need to dig deeper.
-
-With this on top of other patches, it works.
-
-Tested-by: Pavel Machek <pavel@ucw.cz>
-
-Best regards,
-									Pavel
-
--- 
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgY3VycmVudHkgY2hlY2sgZm9yIHBsYXRmb3JtIGF0IG11bHRpcGxlIHBhcnRzIGluIHRoZSBk
+cml2ZXIKdG8gZ3JhYiB0aGUgY29ycmVjdCBQTEwuIExldCB1cyBiZWdpbiB0byBjZW50cmFsaXpl
+IGl0IHRocm91Z2ggYQpoZWxwZXIgZnVuY3Rpb24uCgp2Mjogcy9pbnRlbF9nZXRfcGxsX2VuYWJs
+ZV9yZWcoKS9pbnRlbF9jb21ib19wbGxfZW5hYmxlX3JlZygpIChWaWxsZSkKCnYzOiBDbGVhbiB1
+cCBjb21ib19wbGxfZGlzYWJsZSgpIChSb2RyaWdvKQoKU3VnZ2VzdGVkLWJ5OiBNYXR0IFJvcGVy
+IDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5z
+eXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBp
+bnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNyaXZhdHNh
+QGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVs
+LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMg
+fCAyOSArKysrKysrKysrKy0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygr
+KSwgMTIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kcGxsX21nci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kcGxsX21nci5jCmluZGV4IGM5MDEzZjhmNzY2Zi4uNDQxYjZmNTJlODA4IDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxsX21nci5jCkBAIC0xNDcsNiArMTQ3
+LDE4IEBAIHZvaWQgYXNzZXJ0X3NoYXJlZF9kcGxsKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpk
+ZXZfcHJpdiwKIAkJCXBsbC0+aW5mby0+bmFtZSwgb25vZmYoc3RhdGUpLCBvbm9mZihjdXJfc3Rh
+dGUpKTsKIH0KIAorc3RhdGljCitpOTE1X3JlZ190IGludGVsX2NvbWJvX3BsbF9lbmFibGVfcmVn
+KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKKwkJCQkgICAgc3RydWN0IGludGVs
+X3NoYXJlZF9kcGxsICpwbGwpCit7CisKKwlpZiAoSVNfRUxLSEFSVExBS0UoZGV2X3ByaXYpICYm
+IChwbGwtPmluZm8tPmlkID09IERQTExfSURfRUhMX0RQTEw0KSkKKwkJCXJldHVybiBNR19QTExf
+RU5BQkxFKDApOworCisJcmV0dXJuIENOTF9EUExMX0VOQUJMRShwbGwtPmluZm8tPmlkKTsKKwor
+Cit9CiAvKioKICAqIGludGVsX3ByZXBhcmVfc2hhcmVkX2RwbGwgLSBjYWxsIGEgZHBsbCdzIHBy
+ZXBhcmUgaG9vawogICogQGNydGNfc3RhdGU6IENSVEMsIGFuZCBpdHMgc3RhdGUsIHdoaWNoIGhh
+cyBhIHNoYXJlZCBkcGxsCkBAIC0zODQyLDEyICszODU0LDcgQEAgc3RhdGljIGJvb2wgY29tYm9f
+cGxsX2dldF9od19zdGF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJCQkJ
+ICAgc3RydWN0IGludGVsX3NoYXJlZF9kcGxsICpwbGwsCiAJCQkJICAgc3RydWN0IGludGVsX2Rw
+bGxfaHdfc3RhdGUgKmh3X3N0YXRlKQogewotCWk5MTVfcmVnX3QgZW5hYmxlX3JlZyA9IENOTF9E
+UExMX0VOQUJMRShwbGwtPmluZm8tPmlkKTsKLQotCWlmIChJU19FTEtIQVJUTEFLRShkZXZfcHJp
+dikgJiYKLQkgICAgcGxsLT5pbmZvLT5pZCA9PSBEUExMX0lEX0VITF9EUExMNCkgewotCQllbmFi
+bGVfcmVnID0gTUdfUExMX0VOQUJMRSgwKTsKLQl9CisJaTkxNV9yZWdfdCBlbmFibGVfcmVnID0g
+aW50ZWxfY29tYm9fcGxsX2VuYWJsZV9yZWcoZGV2X3ByaXYsIHBsbCk7CiAKIAlyZXR1cm4gaWNs
+X3BsbF9nZXRfaHdfc3RhdGUoZGV2X3ByaXYsIHBsbCwgaHdfc3RhdGUsIGVuYWJsZV9yZWcpOwog
+fQpAQCAtNDA0NSwxMSArNDA1MiwxMCBAQCBzdGF0aWMgdm9pZCBpY2xfcGxsX2VuYWJsZShzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiBzdGF0aWMgdm9pZCBjb21ib19wbGxfZW5h
+YmxlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAkJCSAgICAgc3RydWN0IGlu
+dGVsX3NoYXJlZF9kcGxsICpwbGwpCiB7Ci0JaTkxNV9yZWdfdCBlbmFibGVfcmVnID0gQ05MX0RQ
+TExfRU5BQkxFKHBsbC0+aW5mby0+aWQpOworCWk5MTVfcmVnX3QgZW5hYmxlX3JlZyA9IGludGVs
+X2NvbWJvX3BsbF9lbmFibGVfcmVnKGRldl9wcml2LCBwbGwpOwogCiAJaWYgKElTX0VMS0hBUlRM
+QUtFKGRldl9wcml2KSAmJgogCSAgICBwbGwtPmluZm8tPmlkID09IERQTExfSURfRUhMX0RQTEw0
+KSB7Ci0JCWVuYWJsZV9yZWcgPSBNR19QTExfRU5BQkxFKDApOwogCiAJCS8qCiAJCSAqIFdlIG5l
+ZWQgdG8gZGlzYWJsZSBEQyBzdGF0ZXMgd2hlbiB0aGlzIERQTEwgaXMgZW5hYmxlZC4KQEAgLTQx
+NTcsMTkgKzQxNjMsMTggQEAgc3RhdGljIHZvaWQgaWNsX3BsbF9kaXNhYmxlKHN0cnVjdCBkcm1f
+aTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIHN0YXRpYyB2b2lkIGNvbWJvX3BsbF9kaXNhYmxlKHN0
+cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAkJCSAgICAgIHN0cnVjdCBpbnRlbF9z
+aGFyZWRfZHBsbCAqcGxsKQogewotCWk5MTVfcmVnX3QgZW5hYmxlX3JlZyA9IENOTF9EUExMX0VO
+QUJMRShwbGwtPmluZm8tPmlkKTsKKwlpOTE1X3JlZ190IGVuYWJsZV9yZWcgPSBpbnRlbF9jb21i
+b19wbGxfZW5hYmxlX3JlZyhkZXZfcHJpdiwgcGxsKTsKKworCWljbF9wbGxfZGlzYWJsZShkZXZf
+cHJpdiwgcGxsLCBlbmFibGVfcmVnKTsKIAogCWlmIChJU19FTEtIQVJUTEFLRShkZXZfcHJpdikg
+JiYKIAkgICAgcGxsLT5pbmZvLT5pZCA9PSBEUExMX0lEX0VITF9EUExMNCkgewotCQllbmFibGVf
+cmVnID0gTUdfUExMX0VOQUJMRSgwKTsKLQkJaWNsX3BsbF9kaXNhYmxlKGRldl9wcml2LCBwbGws
+IGVuYWJsZV9yZWcpOwogCiAJCWludGVsX2Rpc3BsYXlfcG93ZXJfcHV0KGRldl9wcml2LCBQT1dF
+Ul9ET01BSU5fRFBMTF9EQ19PRkYsCiAJCQkJCXBsbC0+d2FrZXJlZik7CiAJCXJldHVybjsKIAl9
+CiAKLQlpY2xfcGxsX2Rpc2FibGUoZGV2X3ByaXYsIHBsbCwgZW5hYmxlX3JlZyk7CiB9CiAKIHN0
+YXRpYyB2b2lkIHRidF9wbGxfZGlzYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
+aXYsCi0tIAoyLjI1LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeAo=
