@@ -2,40 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42AF526093D
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Sep 2020 06:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C51EB260A37
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Sep 2020 07:40:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B3766E113;
-	Tue,  8 Sep 2020 04:15:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E14086E13A;
+	Tue,  8 Sep 2020 05:40:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0B706E113;
- Tue,  8 Sep 2020 04:15:27 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4BlsJF3Rswz9sSP;
- Tue,  8 Sep 2020 14:15:25 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1599538525;
- bh=Wqtrfj5HlqGrcYAVH1VxP++Iktu5EHpo0Uh5otsB+Yw=;
- h=Date:From:To:Cc:Subject:From;
- b=dxgd6gvHmlZyMPSJGHOi5lJ9f/gSHg/5rhLlmKLYY1ZG71wlH1u1C5sbek4stOjFk
- 4bLPdNKGdlLSQ7KcqgpOOq8exsl8WHv7Id2gKFrVmAGbWGjW6+g9nKZr0UtCs6yAsa
- I/IBcyVPD6RUXvTg+7gn/pH4uLvCt98XxbiJeulcpEcAwWreSeUUCQX/l3zgc+qL4L
- 5qIw0cm6qQOGv2UvRCJO2Gtr1ED58OVKBSBrkmkgbTKUMUHEjVT6p8tgjNFBDrxp9K
- 4X9sc5t8wauUA79vkbIMu+y10qHAjBbCQ/wFhJ5BtuRp3eKfXMAGLTKVaesX8tHL6d
- wbMHvPA3uLp5w==
-Date: Tue, 8 Sep 2020 14:15:24 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20200908141524.7b63519e@canb.auug.org.au>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34B7A6E13A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Sep 2020 05:40:50 +0000 (UTC)
+IronPort-SDR: Oy6PUJFtrlXOyBrjl4dtZgYY7K4QAP3oOaMnEFWrZ5TCoTmVmbd9xlu4FbomiszcYVWfEpZLY9
+ Rn3uSovHyZvw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9737"; a="137592775"
+X-IronPort-AV: E=Sophos;i="5.76,404,1592895600"; d="scan'208";a="137592775"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2020 22:40:50 -0700
+IronPort-SDR: XPpqqlytyyA01qGEr8NIvMM5xjLvbAK3YO3vzXXgUTqPiePg4swAKB6E5IbUHpp2Ea/ndlEu70
+ 8g5zu6KK4Nag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,404,1592895600"; d="scan'208";a="479874336"
+Received: from unknown (HELO amanna.iind.intel.com) ([10.223.74.93])
+ by orsmga005.jf.intel.com with ESMTP; 07 Sep 2020 22:40:49 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  8 Sep 2020 10:55:40 +0530
+Message-Id: <20200908052540.26905-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: build warning after merge of the drm-misc
- tree
+Subject: [Intel-gfx] [PATCH] drm/i915: Disable frontbuffer tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,64 +46,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============1458944275=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1458944275==
-Content-Type: multipart/signed; boundary="Sig_/.XlmKJHoCIUNF/Gn=PQnoFl";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
---Sig_/.XlmKJHoCIUNF/Gn=PQnoFl
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_frontbuffer.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Hi all,
-
-After merging the drm-misc tree, today's linux-next build (x86_64
-allmodconfig) produced this warning:
-
-WARNING: modpost: missing MODULE_LICENSE() in drivers/gpu/drm/panel/panel-s=
-amsung-s6e63m0.o
-
-Introduced by commit
-
-  b7b23e447687 ("drm/panel: s6e63m0: Break out SPI transport")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/.XlmKJHoCIUNF/Gn=PQnoFl
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl9XBVwACgkQAVBC80lX
-0GxB/ggAiHVjxZVmZRH4U48nYAh9BXl3leiuMFSupmtqObfxXFoXcNl+6zuSOun/
-LhE5yVnH+QqXB1J+UYI4Rmy6es14KAoEOl8kheQ/Zv7Jf9y43i+gasFhhxEq9g2d
-ucrUtu93e4rg0eXPjtVkqBw1JvWyPYwM5ukicisII2pUNpzjzLQBZf35VaZiNUM7
-cjiyLG8seiflM/aFDKjrHEmoI2C/u8UYHOk91jbox97r56d4zH1ry6yjXoSG7Shs
-njgKoefGvGXrgaAmRmKJbFKo7lMwCyPkRm5/w2Bgu4cFVDuKF+uD0V7F+CnymjOE
-tI6J9EQPV+BdufHHVdKOrrpzNE0rMw==
-=AR27
------END PGP SIGNATURE-----
-
---Sig_/.XlmKJHoCIUNF/Gn=PQnoFl--
-
---===============1458944275==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+index d898b370d7a4..0f1d7a34dcf7 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+@@ -166,6 +166,9 @@ void __intel_fb_invalidate(struct intel_frontbuffer *front,
+ {
+ 	struct drm_i915_private *i915 = to_i915(front->obj->base.dev);
+ 
++	if (origin != ORIGIN_FLIP)
++		return;
++
+ 	if (origin == ORIGIN_CS) {
+ 		spin_lock(&i915->fb_tracking.lock);
+ 		i915->fb_tracking.busy_bits |= frontbuffer_bits;
+@@ -185,6 +188,9 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
+ {
+ 	struct drm_i915_private *i915 = to_i915(front->obj->base.dev);
+ 
++	if (origin != ORIGIN_FLIP)
++		return;
++
+ 	if (origin == ORIGIN_CS) {
+ 		spin_lock(&i915->fb_tracking.lock);
+ 		/* Filter out new bits since rendering started. */
+-- 
+2.26.0
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1458944275==--
