@@ -1,62 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DB3E261941
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Sep 2020 20:11:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C11DD261942
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Sep 2020 20:11:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7C106E890;
-	Tue,  8 Sep 2020 18:11:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E14846E892;
+	Tue,  8 Sep 2020 18:11:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com
- [IPv6:2a00:1450:4864:20::641])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE0576E890
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Sep 2020 18:11:38 +0000 (UTC)
-Received: by mail-ej1-x641.google.com with SMTP id nw23so23888304ejb.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Sep 2020 11:11:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sior-be.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=2jeAKbPcMYL3zKYHWUAD80qBl6LQnPeUqzL2ybjhdJg=;
- b=GRWuV3D+NPs+O8PhfljngvbH+/zdl1IG8s+i5wlKJNll0vYKQc3oEZmRBq2GPksBfB
- KZqDXGLyapYUntSwXu7zK1WBhKrrjsmYheZ21l9UPvc2kysM5F4IbTnkh/il6rSNqwoL
- EdCab1UyiUXvyGG2hYYrI867vxh2q3cIXvimK6XSZJgxiaFUvNOV4Mln6uGZ2yinOj01
- OpRJg968cPDL9fxOL2uFJCforjAmLjmTrsy4/frYWGR4IaBF8bCZ7fGBT6ABNkJ4qWa/
- 8rXZp3U0TvvLv7/t94dXEBoHvAfxre9JV3R14nppWYwCg8WRqahVi/+t1FDgtIafF0Al
- PATg==
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 276566E890
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Sep 2020 18:11:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1599588699;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=d4I0enXMcd6wiP9Hxkijutl60TLTvxaaQ/7Ij7Q0jjA=;
+ b=BjYPqmFZCuu1mCdyJaxnPiLwNxXpbtSc0qR0sb7Yoa0a1SKPfg1V7Q02BHRSOYYOGXMZ3U
+ 73yIvkW8p3PD814qvcuCFEx5nqS0Uw2Mfb25B1oakP4EbiNnkxRpuB4++FwviuRUze3NJT
+ oRMlAsZJGuZZxP1u0jCVJ3P3cnQT40c=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-212-gTBBUMrlOQyD8_D4Fb9oKQ-1; Tue, 08 Sep 2020 14:11:37 -0400
+X-MC-Unique: gTBBUMrlOQyD8_D4Fb9oKQ-1
+Received: by mail-qt1-f198.google.com with SMTP id o14so97976qtq.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 08 Sep 2020 11:11:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=2jeAKbPcMYL3zKYHWUAD80qBl6LQnPeUqzL2ybjhdJg=;
- b=Pm7oc9w7gwUU4xXHSCda6HNNv0Y7NPqXcn8Mz24IJpr8ByUZP9vZk18rY1PvCdx28i
- QnRx1oiz8xRr9zagXZIOFMWUFa39+DSgQhDGiUEzddFlwzAGd+wwnb7KD/iXQu8cxiG5
- /mANvyWOxMq3WaiuR0A/PoJHIFuIQiV3GEjVGV8WZ4HjF+5WmDnxb2lRqMHGM9qWtgPM
- lqm80POjk8f3gjupq0UO1Xc5+e2ZxmtueShSRPhnhoAI5m4GnI3KivV18WJnGgU+cCh9
- i7EUPT0vUaZw4jeX/YR0t8LDMirfGBAoEyQPxV4QRDyvIaeoRKYuUc94TCX+wI0PyDqo
- YGPQ==
-X-Gm-Message-State: AOAM532+BxTA13AKhis7z7WdNHS8A8WNHkZj0pUr/kmpdBHPCfLayzfx
- Y4oazISBW9zGpehGAKWIpAusMw==
-X-Google-Smtp-Source: ABdhPJzXcxEi0aj0yBJLuuB4LmRVp2OUfbxb1m0J1V/0WroShEQJp8UGXqXJyJVSx6nGyPsh9AglWA==
-X-Received: by 2002:a17:906:3552:: with SMTP id
- s18mr26864500eja.23.1599588697308; 
- Tue, 08 Sep 2020 11:11:37 -0700 (PDT)
-Received: from aws.localdomain ([94.107.139.190])
- by smtp.gmail.com with ESMTPSA id g20sm16127ejx.12.2020.09.08.11.11.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=d4I0enXMcd6wiP9Hxkijutl60TLTvxaaQ/7Ij7Q0jjA=;
+ b=M6qwVEf4blb4Z9UOp5OZ5QTce4odPHJuSxaNVQTSmAmSX4RWSnNngVu+Ei4ApTtnKU
+ V99dr80mp7ztELZ0Iz0xLfxLOAWwIgBFYdkV07l3EmzorHMg4AuY5o/UGMxuSE3wpzUF
+ X0Q8D7HKdTvwBf504Zx+K6saAOVrYjSPa1QSLv6jjS52U1wwwLTUR2xSNdPQqwtbmKAU
+ G1FZ4yUPOqqhtr/Qtd9184973Sio/x435cP0giq6urPuGawBIV6t4ARbHywgNQ6bcHau
+ 5aXUy4TuNY46FSqogJikSg9I3LUGhxyMHWP+34Gm1iYd5l863kz8bx2h5NkiB4nPHs6L
+ kznQ==
+X-Gm-Message-State: AOAM532FSzW6B5iTJnzRfRsf9OgHo1wvauGWmzNZlXwf92ntoJVgjjmE
+ 4Hn2LwgVu8wV5zzVYOYr1OWSwE3X7Sh465EqYjwpNxRnbX7sJNyBF8zDBGluX6So+J+OdDYaSBt
+ 4A3LpVvn3GzmnnD1I+IeOF74OBITE
+X-Received: by 2002:ac8:501:: with SMTP id u1mr1355303qtg.261.1599588696629;
  Tue, 08 Sep 2020 11:11:36 -0700 (PDT)
-From: Alejandro Sior <aho@sior.be>
-To: 
-Date: Tue,  8 Sep 2020 20:11:21 +0200
-Message-Id: <20200908181122.9100-1-aho@sior.be>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <743818af-fa38-e31a-1780-84a6a7e72e25@web.de>
-References: <743818af-fa38-e31a-1780-84a6a7e72e25@web.de>
+X-Google-Smtp-Source: ABdhPJwzWeklYCRiRRJLyIFdFTqfABzvpe7K/WaXC+qZ7RsVaEoKCPBqCfy3GW6jcKixfwNMUz7Bkg==
+X-Received: by 2002:ac8:501:: with SMTP id u1mr1355283qtg.261.1599588696389;
+ Tue, 08 Sep 2020 11:11:36 -0700 (PDT)
+Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net.
+ [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id w6sm200622qti.63.2020.09.08.11.11.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 08 Sep 2020 11:11:35 -0700 (PDT)
+Message-ID: <0563aa84f2bfaf95d16a34c539ab9d7c4b6a73b9.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org
+Date: Tue, 08 Sep 2020 14:11:34 -0400
+In-Reply-To: <20200904115354.25336-13-ville.syrjala@linux.intel.com>
+References: <20200904115354.25336-1-ville.syrjala@linux.intel.com>
+ <20200904115354.25336-13-ville.syrjala@linux.intel.com>
+Organization: Red Hat
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gvt: Prevent NULL pointer
- dereference in intel_vgpu_reg_rw_edid()
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0.003
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PATCH v2 12/18] drm/i915: Configure DP 1.3+
+ protocol converted HDMI mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,66 +83,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gvt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In the function intel_vgpu_reg_rw_edid of kvmgt.c, pos can be equal
-to NULL for GPUs that do not properly support EDID. In those cases, when
-pos gets passed to the handle_edid functions, it gets added a short offset
-then it's dereferenced in memcpy's, leading to NULL pointer
-dereference kernel oops.
-
-More concretely, that kernel oops renders some Broadwell GPUs users
-unable to set up virtual machines with virtual GPU passthrough (virtual
-machines hang indefinitely when trying to make use of the virtual GPU),
-and make them unable to remove the virtual GPUs once the kernel oops has
-happened (it hangs indefinitely, and notably too when the kernel tries to
-shutdown). The issues that this causes and steps to reproduce are
-discussed in more details in this github issue post:
-https://github.com/intel/gvt-linux/issues/170#issuecomment-685806160
-
-Check if pos is equal to NULL, and if it is, set ret to a negative
-value, making the module simply indicate that the access to EDID region
-has failed, without any fatal repercussion.
-
-Signed-off-by: Alejandro Sior <aho@sior.be>
-
----
-Changes in v2:
-- removed middle name of author to comply with git name
-- rephrased the patch description with imperative phrasing
-- removed useless paragraph
-- made a paragraph more concise
-- fixed typos
-- made individual lines shorter than 75 chars
-
- drivers/gpu/drm/i915/gvt/kvmgt.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index ad8a9df49f29..49163363ba4a 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -557,7 +557,9 @@ static size_t intel_vgpu_reg_rw_edid(struct intel_vgpu *vgpu, char *buf,
- 		(struct vfio_edid_region *)kvmgt_vdev(vgpu)->region[i].data;
- 	loff_t pos = *ppos & VFIO_PCI_OFFSET_MASK;
- 
--	if (pos < region->vfio_edid_regs.edid_offset) {
-+	if (pos == NULL) {
-+		ret = -EINVAL;
-+	} else if (pos < region->vfio_edid_regs.edid_offset) {
- 		ret = handle_edid_regs(vgpu, region, buf, count, pos, iswrite);
- 	} else {
- 		pos -= EDID_BLOB_OFFSET;
--- 
-2.28.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyMDIwLTA5LTA0IGF0IDE0OjUzICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOgo+
+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4g
+Cj4gRFAgMS4zIGFkZHMgc29tZSBleHRyYSBjb250cm9sIGtub2JzIGZvciBEUC0+SERNSSBwcm90
+b2NvbCBjb252ZXJzaW9uLgo+IExldCdzIHVzZSB0aGF0IHRvIGNvbmZpZ3VyZSB0aGUgIkhETUkg
+bW9kZSIgKGllLiBpbmZvZnJhbWVzIHZzLiBub3QpCj4gYmFzZWQgb24gdGhlIGNhcGFiaWxpdGll
+cyBvZiB0aGUgc2luay4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
+LnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2RkaS5jIHwgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2RwLmMgIHwgMjMgKysrKysrKysrKysrKysrKysrKysrKysKPiAgZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oICB8ICAxICsKPiAgMyBmaWxlcyBjaGFuZ2VkLCAy
+NSBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGRpLmMKPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGRpLmMKPiBpbmRleCAyOGZmODU0OTNmMjUuLjlhZGJhMGQwYjRhYSAxMDA2NDQKPiAtLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwo+IEBAIC0zNDcwLDYgKzM0NzAsNyBAQCBz
+dGF0aWMgdm9pZCBoc3dfZGRpX3ByZV9lbmFibGVfZHAoc3RydWN0Cj4gaW50ZWxfYXRvbWljX3N0
+YXRlICpzdGF0ZSwKPiAgCWludGVsX2RkaV9pbml0X2RwX2J1Zl9yZWcoZW5jb2Rlcik7Cj4gIAlp
+ZiAoIWlzX21zdCkKPiAgCQlpbnRlbF9kcF9zaW5rX2RwbXMoaW50ZWxfZHAsIERSTV9NT0RFX0RQ
+TVNfT04pOwo+ICsJaW50ZWxfZHBfY29uZmlndXJlX3Byb3RvY29sX2NvbnZlcnRlcihpbnRlbF9k
+cCk7Cj4gIAlpbnRlbF9kcF9zaW5rX3NldF9kZWNvbXByZXNzaW9uX3N0YXRlKGludGVsX2RwLCBj
+cnRjX3N0YXRlLAo+ICAJCQkJCSAgICAgIHRydWUpOwo+ICAJaW50ZWxfZHBfc2lua19zZXRfZmVj
+X3JlYWR5KGludGVsX2RwLCBjcnRjX3N0YXRlKTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RwLmMKPiBpbmRleCBhNzAzZTQ2NTllNDcuLjA0NzQ0OTI1M2E1NCAxMDA2NDQK
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKPiBAQCAtMzc5Miw2ICszNzky
+LDI4IEBAIHN0YXRpYyB2b2lkIGludGVsX2RwX2VuYWJsZV9wb3J0KHN0cnVjdCBpbnRlbF9kcAo+
+ICppbnRlbF9kcCwKPiAgCWludGVsX2RlX3Bvc3RpbmdfcmVhZChkZXZfcHJpdiwgaW50ZWxfZHAt
+Pm91dHB1dF9yZWcpOwo+ICB9Cj4gIAo+ICt2b2lkIGludGVsX2RwX2NvbmZpZ3VyZV9wcm90b2Nv
+bF9jb252ZXJ0ZXIoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKPiArewo+ICsJc3RydWN0IGRy
+bV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBkcF90b19pOTE1KGludGVsX2RwKTsKPiArCXU4IHRtcDsK
+PiArCj4gKwlpZiAoaW50ZWxfZHAtPmRwY2RbRFBfRFBDRF9SRVZdIDwgMHgxMykKPiArCQlyZXR1
+cm47Cj4gKwo+ICsJaWYgKCFkcm1fZHBfaXNfYnJhbmNoKGludGVsX2RwLT5kcGNkKSkKPiArCQly
+ZXR1cm47Cj4gKwo+ICsJdG1wID0gaW50ZWxfZHAtPmhhc19oZG1pX3NpbmsgPwo+ICsJCURQX0hE
+TUlfRFZJX09VVFBVVF9DT05GSUcgOiAwOwo+ICsKPiArCWlmIChkcm1fZHBfZHBjZF93cml0ZWIo
+JmludGVsX2RwLT5hdXgsCj4gKwkJCSAgICAgICBEUF9QUk9UT0NPTF9DT05WRVJURVJfQ09OVFJP
+TF8wLCB0bXApIDw9IDApCj4gKwkJZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwgIkZhaWxlZCB0byBz
+ZXQgcHJvdG9jb2wgY29udmVydGVyIEhETUkKPiBtb2RlIHRvICVzXG4iLAo+ICsJCQkgICAgZW5h
+YmxlZGRpc2FibGVkKGludGVsX2RwLT5oYXNfaGRtaV9zaW5rKSk7Cj4gKwo+ICsJLyogVE9ETzog
+Y29uZmlndXJlIFlDYkNyIDQ6MjoyLzQ6MjowIGNvbnZlcnNpb24gKi8KPiArfQoKTWF5YmUgYWRk
+IGEgRFAgaGVscGVyIGZvciB0aGlzIHdoaWxlIHdlJ3JlIGF0IGl0PyBVcCB0byB5b3UKCj4gKwo+
+ICBzdGF0aWMgdm9pZCBpbnRlbF9lbmFibGVfZHAoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAq
+c3RhdGUsCj4gIAkJCSAgICBzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKPiAgCQkJICAg
+IGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpwaXBlX2NvbmZpZywKPiBAQCAtMzgyOSw2
+ICszODUxLDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfZW5hYmxlX2RwKHN0cnVjdCBpbnRlbF9hdG9t
+aWNfc3RhdGUKPiAqc3RhdGUsCj4gIAl9Cj4gIAo+ICAJaW50ZWxfZHBfc2lua19kcG1zKGludGVs
+X2RwLCBEUk1fTU9ERV9EUE1TX09OKTsKPiArCWludGVsX2RwX2NvbmZpZ3VyZV9wcm90b2NvbF9j
+b252ZXJ0ZXIoaW50ZWxfZHApOwo+ICAJaW50ZWxfZHBfc3RhcnRfbGlua190cmFpbihpbnRlbF9k
+cCk7Cj4gIAlpbnRlbF9kcF9zdG9wX2xpbmtfdHJhaW4oaW50ZWxfZHApOwo+ICAKPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oCj4gYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmgKPiBpbmRleCBlYzU2ODhhMjFmNjYuLjA4
+YTFjMGFhOGI5NCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2RwLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmgK
+PiBAQCAtNTEsNiArNTEsNyBAQCBpbnQgaW50ZWxfZHBfZ2V0X2xpbmtfdHJhaW5fZmFsbGJhY2tf
+dmFsdWVzKHN0cnVjdAo+IGludGVsX2RwICppbnRlbF9kcCwKPiAgaW50IGludGVsX2RwX3JldHJh
+aW5fbGluayhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKPiAgCQkJICBzdHJ1Y3QgZHJt
+X21vZGVzZXRfYWNxdWlyZV9jdHggKmN0eCk7Cj4gIHZvaWQgaW50ZWxfZHBfc2lua19kcG1zKHN0
+cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsIGludCBtb2RlKTsKPiArdm9pZCBpbnRlbF9kcF9jb25m
+aWd1cmVfcHJvdG9jb2xfY29udmVydGVyKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApOwo+ICB2
+b2lkIGludGVsX2RwX3Npbmtfc2V0X2RlY29tcHJlc3Npb25fc3RhdGUoc3RydWN0IGludGVsX2Rw
+ICppbnRlbF9kcCwKPiAgCQkJCQkgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQo+ICpj
+cnRjX3N0YXRlLAo+ICAJCQkJCSAgIGJvb2wgZW5hYmxlKTsKLS0gCkNoZWVycywKCUx5dWRlIFBh
+dWwgKHNoZS9oZXIpCglTb2Z0d2FyZSBFbmdpbmVlciBhdCBSZWQgSGF0CgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
