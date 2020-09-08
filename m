@@ -2,40 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 293E2260BE0
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Sep 2020 09:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D32B260D77
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Sep 2020 10:22:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87A846E5A1;
-	Tue,  8 Sep 2020 07:22:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2936E193;
+	Tue,  8 Sep 2020 08:22:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F19A6E542;
- Tue,  8 Sep 2020 07:22:01 +0000 (UTC)
-IronPort-SDR: DMCmvGoq8CFdsIzdUphGPppgqu1drESyaekOi11BhekIXzGr/qJ9exqp5QadoqTpka45mOuZ66
- osG5Ij14EBBQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9737"; a="157353184"
-X-IronPort-AV: E=Sophos;i="5.76,404,1592895600"; d="scan'208";a="157353184"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2020 00:22:01 -0700
-IronPort-SDR: kAzjYOAT2LWdyPiT3bkGxWEBWWHBlwoGlL4YJTvQ6Z4P1JB2giS8U6OVsPMHxoyiM93kTnoWB9
- hzbKH/tjlUkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,404,1592895600"; d="scan'208";a="336312349"
-Received: from unknown (HELO coxu-arch-shz.sh.intel.com) ([10.239.160.21])
- by fmsmga002.fm.intel.com with ESMTP; 08 Sep 2020 00:22:00 -0700
-From: Colin Xu <colin.xu@intel.com>
-To: zhenyuw@linux.intel.com, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Tue,  8 Sep 2020 15:21:57 +0800
-Message-Id: <20200908072157.774111-1-colin.xu@intel.com>
-X-Mailer: git-send-email 2.28.0
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 068EB6E198
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Sep 2020 08:22:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1599553330;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=wpXz+q9ud+AOPvV34hwZq6iLp3ZbJEEfJ7EHtLY6RqI=;
+ b=QULxbftDwKoMNUOtm5ATCAJATAg/ZccdSaQ/2BrM8G99UfRmEPGi5h6RiqVE1P5baCK55u
+ CczbMdr7tayIfkXF7Le3XZjtgPDYzjEfqGVjZLLUPezUcGOJk8uk9NRLsZQfC03ojRrAs7
+ 3xuAs8qfnZaeDsX3Fn7hZ7NBSK5pUKc=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-150-8CSqyJtEN-CyPTFx6f2raw-1; Tue, 08 Sep 2020 04:22:09 -0400
+X-MC-Unique: 8CSqyJtEN-CyPTFx6f2raw-1
+Received: by mail-ed1-f70.google.com with SMTP id x23so5903898eds.5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 08 Sep 2020 01:22:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=wpXz+q9ud+AOPvV34hwZq6iLp3ZbJEEfJ7EHtLY6RqI=;
+ b=Bk6TZj5t0nC9Hyjvz6yXtdXlN4mdmLPVLM4vR6QGi7GqjCzP0xHO+ene+Yeqjwcb70
+ ngtILz7qDEQaVP47vlZxFymUIV7aRcf8zn9LWMe/6G94gHb55sTVkADgHot2E3m/Oxh3
+ vtkS3BzaQjY2ar2EDKMgP6gSBmyqi+KCj+h+a0lsOwwTTlayGgnD+W7HvTRU1TAQrho1
+ VkQ+5AeYR/PFIe2k3QV9dTDiKe+o2eisK8SgZHEvV8co0fadLfgKB9SbCF3L0tj3AdpZ
+ 5w1RXl7HrR8Kv5m3XElIJxT4n8JXT0ANPuD26QcDKJz+kxjG1Z4N6KIroeI4xRx5r0YZ
+ chyg==
+X-Gm-Message-State: AOAM532B0SSEXRprSor1UsmVscX6sfw1GMHKDRyQ3ljxgZ3kK9c2y+iO
+ +E34PwCdX7fN976sdDJWPrpeded7Ke/l/Hc+JhwFM0Dv/QIpSq3F6aPhrmDLqSvCFl/1YGU5Ixb
+ 4jTGN0WLYWA61uB7yajVDSiLzxNzd
+X-Received: by 2002:a17:906:6a50:: with SMTP id
+ n16mr437644ejs.107.1599553328108; 
+ Tue, 08 Sep 2020 01:22:08 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzSpUnMjZKtgUsJ+BcSD0zVfJfVDHsM/AFxTEzrhyw0d1WYhP2BgF9hcfPBn3/2GC9nlSOMMQ==
+X-Received: by 2002:a17:906:6a50:: with SMTP id
+ n16mr437624ejs.107.1599553327903; 
+ Tue, 08 Sep 2020 01:22:07 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+ by smtp.gmail.com with ESMTPSA id i7sm7632087ejo.22.2020.09.08.01.22.06
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 08 Sep 2020 01:22:07 -0700 (PDT)
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+References: <20200908140022.67dd3801@canb.auug.org.au>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <db369f50-a3a0-2504-0628-ce5e6780d31b@redhat.com>
+Date: Tue, 8 Sep 2020 10:22:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915/gvt: Add GVT suspend/resume
- routine to i915
+In-Reply-To: <20200908140022.67dd3801@canb.auug.org.au>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0.001
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-intel tree with
+ Linus' tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,52 +91,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Guru Das Srinagesh <gurus@codeaurora.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch add gvt suspend/resume wrapper into i915: i915_drm_suspend()
-and i915_drm_resume(). GVT relies on i915 so suspend gvt ahead of other
-i915 sub-routine and resume gvt at last.
+Hi Stephen,
 
-V2:
-- Direct call into gvt suspend/resume wrapper in intel_gvt.h/intel_gvt.c.
-The wrapper and implementation will check and call gvt routine. (zhenyu)
+On 9/8/20 6:00 AM, Stephen Rothwell wrote:
+> Hi all,
+> 
+> Today's linux-next merge of the drm-intel tree got a conflict in:
+> 
+>    drivers/gpu/drm/i915/display/intel_panel.c
+> 
+> between commit:
+> 
+>    f8bd54d21904 ("drm/i915: panel: Use atomic PWM API for devs with an external PWM controller")
+> 
+> from Linus' tree and commit:
+> 
+>    6b51e7d23aa8 ("drm/i915: panel: Honor the VBT PWM frequency for devs with an external PWM controller")
 
-V3:
-Refresh.
+That doesn't sound correct, those are both commits from the drm-intel tree.
 
-Signed-off-by: Hang Yuan <hang.yuan@linux.intel.com>
-Signed-off-by: Colin Xu <colin.xu@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.c | 4 ++++
- 1 file changed, 4 insertions(+)
+> from the drm-intel tree.
+> 
+> I fixed it up (I just used the latter)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index d66fe09d337e..28055dc65ecd 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -1090,6 +1090,8 @@ static int i915_drm_suspend(struct drm_device *dev)
- 
- 	drm_kms_helper_poll_disable(dev);
- 
-+	intel_gvt_suspend(dev_priv);
-+
- 	pci_save_state(pdev);
- 
- 	intel_display_suspend(dev);
-@@ -1267,6 +1269,8 @@ static int i915_drm_resume(struct drm_device *dev)
- 
- 	intel_power_domains_enable(dev_priv);
- 
-+	intel_gvt_resume(dev_priv);
-+
- 	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
- 	return 0;
--- 
-2.28.0
+Just taking the drivers/gpu/drm/i915/display/intel_panel.c contents of:
+
+f8bd54d21904 ("drm/i915: panel: Use atomic PWM API for devs with an external PWM controller")
+
+Is the right thing to do, the problem is a difference in a line which gets
+removed in that commit.
+
+Regards,
+
+Hans
 
 _______________________________________________
 Intel-gfx mailing list
