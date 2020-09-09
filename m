@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37E66262799
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Sep 2020 09:00:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A4BD262954
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Sep 2020 09:54:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 204546E9B3;
-	Wed,  9 Sep 2020 07:00:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0599C6EA77;
+	Wed,  9 Sep 2020 07:54:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12BB06E9B4
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Sep 2020 07:00:08 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id z9so1209031wmk.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 09 Sep 2020 00:00:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=C0T1xsgL8KLicvdVgVXLl7s0tEv0E1jWAmUmJuZvE6M=;
- b=FB387YjF0O6z0PHyDFeCCLcy3kWqNJt7oO3U0OstfwqkQ+XYxn9kG2V06bZcnD+89I
- U94+cHwlpttdMWHUaX2aou0JDOPG1WrblqY9S5Qv1sR9dLlfPmNacb83UByeOv5age4o
- 4XIiU8aSpcOZSzga3NNYCiEptWUcr7L8htrO0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=C0T1xsgL8KLicvdVgVXLl7s0tEv0E1jWAmUmJuZvE6M=;
- b=aYiWHaKMWWeWHYrnrBynrJAwHEQ43LqvIVTvQmWFBS9m0pEwFQJVQplSzDaSdIdaF8
- duP+TpCPFy3xojH3wbN3oCbw6sLcMyhO9O6f14GRWvEYU5Av6heUxBFccPPK2ittiJwf
- NAm3HL3FY//H56eI4yEzoqYbOrW93Unrjn7XgOwsmF66PHk+p1qKY0XIufLJz3A1rhuJ
- BmX0/vUXXwBrEVp1xjDG3yYDVEZ+QfkECJGg3L2PKzFe+zZhTkcUvoYGjgOxL620qPLu
- jkMBTY/LVOgRVJyOmtZaY7o+X9BUt9GLD1qnO5rMCEKaBF1bIz3qfQ/Vc+OCgBDGS3vs
- j1YQ==
-X-Gm-Message-State: AOAM5322ypXn15KxFge9WR8LfibfHcZNnSBBYEpXHCBvTa9TPLPFMDsG
- qIKajTQng6IpfnQLFIayvNAy56+qlthplXiLN5JG9Q==
-X-Google-Smtp-Source: ABdhPJwinfaFAdsCsDojdsyX6Fk+9P/lQi6aByGWz4YFFegaUm9jLw/oMWdy1Oa5TFgKOyNI7g30Nt2iV7pNUjidmsA=
-X-Received: by 2002:a1c:99c7:: with SMTP id b190mr1997587wme.44.1599634806373; 
- Wed, 09 Sep 2020 00:00:06 -0700 (PDT)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B86B66EA76;
+ Wed,  9 Sep 2020 07:54:15 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 012EBAB8B;
+ Wed,  9 Sep 2020 07:54:15 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20200904143941.110665-1-daniel.vetter@ffwll.ch>
+ <20200904143941.110665-25-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <4ccaebf3-e1b5-8ca4-1f69-ac4b9d93277d@suse.de>
+Date: Wed, 9 Sep 2020 09:54:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <20200901162133.1.I8693156f555875e5c8342e86ab37ce968dfdd277@changeid>
- <20200901162133.4.I900b1b80709b7632a47d0ddb4cd375b4a3616c9e@changeid>
- <2f1e64e4-bb37-0cfb-6b3b-3f51fd5faca3@xs4all.nl>
-In-Reply-To: <2f1e64e4-bb37-0cfb-6b3b-3f51fd5faca3@xs4all.nl>
-From: Sam McNally <sammc@chromium.org>
-Date: Wed, 9 Sep 2020 16:59:29 +1000
-Message-ID: <CAJqEsoB6V6LWoY-whLGV74tamxppObPtNqWYMUyqtwAgnjrhPQ@mail.gmail.com>
-To: Hans Verkuil <hverkuil@xs4all.nl>
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm_dp_cec: add plumbing in preparation
- for MST support
+In-Reply-To: <20200904143941.110665-25-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 24/24] drm/arc: Move to drm/tiny
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,228 +40,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Mikita Lipski <mikita.lipski@amd.com>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- David Francis <David.Francis@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- LKML <linux-kernel@vger.kernel.org>, Leo Li <sunpeng.li@amd.com>,
- amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Wambui Karuga <wambui.karugax@gmail.com>, intel-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Alexey Brodkin <abrodkin@synopsys.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============0890061572=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 8 Sep 2020 at 18:41, Hans Verkuil <hverkuil@xs4all.nl> wrote:
->
-> On 01/09/2020 08:22, Sam McNally wrote:
-> > From: Hans Verkuil <hans.verkuil@cisco.com>
-> >
-> > Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
-> > [sammc@chromium.org:
-> >  - rebased
-> >  - removed polling-related changes
-> >  - moved the calls to drm_dp_cec_(un)set_edid() into the next patch
-> > ]
-> > Signed-off-by: Sam McNally <sammc@chromium.org>
-> > ---
-> >
-> >  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
-> >  drivers/gpu/drm/drm_dp_cec.c                  | 22 ++++++++++---------
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
-> >  drivers/gpu/drm/nouveau/nouveau_connector.c   |  2 +-
-> >  include/drm/drm_dp_helper.h                   |  6 +++--
-> >  5 files changed, 19 insertions(+), 15 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > index 461fa4da0a34..6e7075893ec9 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > @@ -419,7 +419,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
-> >
-> >       drm_dp_aux_init(&aconnector->dm_dp_aux.aux);
-> >       drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
-> > -                                   &aconnector->base);
-> > +                                   &aconnector->base, false);
-> >
-> >       if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP)
-> >               return;
-> > diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/drm_dp_cec.c
-> > index 3ab2609f9ec7..04ab7b88055c 100644
-> > --- a/drivers/gpu/drm/drm_dp_cec.c
-> > +++ b/drivers/gpu/drm/drm_dp_cec.c
-> > @@ -14,6 +14,7 @@
-> >  #include <drm/drm_connector.h>
-> >  #include <drm/drm_device.h>
-> >  #include <drm/drm_dp_helper.h>
-> > +#include <drm/drm_dp_mst_helper.h>
-> >
-> >  /*
-> >   * Unfortunately it turns out that we have a chicken-and-egg situation
-> > @@ -338,8 +339,6 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
-> >       if (aux->cec.adap) {
-> >               if (aux->cec.adap->capabilities == cec_caps &&
-> >                   aux->cec.adap->available_log_addrs == num_las) {
-> > -                     /* Unchanged, so just set the phys addr */
-> > -                     cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-> >                       goto unlock;
-> >               }
-> >               /*
-> > @@ -364,15 +363,16 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
-> >       if (cec_register_adapter(aux->cec.adap, connector->dev->dev)) {
-> >               cec_delete_adapter(aux->cec.adap);
-> >               aux->cec.adap = NULL;
-> > -     } else {
-> > -             /*
-> > -              * Update the phys addr for the new CEC adapter. When called
-> > -              * from drm_dp_cec_register_connector() edid == NULL, so in
-> > -              * that case the phys addr is just invalidated.
-> > -              */
-> > -             cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-> >       }
-> >  unlock:
-> > +     /*
-> > +      * Update the phys addr for the new CEC adapter. When called
-> > +      * from drm_dp_cec_register_connector() edid == NULL, so in
-> > +      * that case the phys addr is just invalidated.
-> > +      */
->
-> The comment is no longer in sync with the code: if EDID == NULL, then
-> nothing is done due to the edid check in the 'if' below.
->
-> > +     if (aux->cec.adap && edid) {
->
-> I think this should just be: if (aux->cec.adap)
->
-> Also, the {} aren't necessary here.
->
-> > +             cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-> > +     }
-> >       mutex_unlock(&aux->cec.lock);
-> >  }
-> >  EXPORT_SYMBOL(drm_dp_cec_set_edid);
->
-> Frankly, the changes to this function should be dropped completely, from
-> what I can see they are not necessary. It was done in my original patch
-> because of the way I handled mst, but you did it differently (and I think
-> better), so these changes are no longer needed.
->
-> I know I am actually commenting on my old patch, but that patch was from a
-> work-in-progress git branch and was never meant as a 'proper' patch.
->
-> However, what complicates matters is that after digging a bit more I discovered
-> that commit 732300154980 ("drm: Do not call drm_dp_cec_set_edid() while registering
-> DP connectors") changed drm_dp_cec_register_connector() so that it no longer
-> calls drm_dp_cec_set_edid(), but the comments there and in this function were
-> not updated. It would be nice if you can add a patch fixing these outdated
-> comments.
->
-> Regardless of that change in commit 732300154980, the edid pointer can still be
-> NULL and the existing behavior should be kept (i.e. create a CEC device, but with
-> an invalid physical address since there is no EDID for some reason).
->
-> Regards,
->
->         Hans
->
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0890061572==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="xLRTUUIAJQml5CknFcJyCMjRvNoamIqSD"
 
-Thanks. Leaving drm_dp_cec_set_edid() unchanged combined with Lyude's
-suggestion to use aux->is_remote removes the need for this patch
-entirely.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--xLRTUUIAJQml5CknFcJyCMjRvNoamIqSD
+Content-Type: multipart/mixed; boundary="JyRDEOAlaRFUcRuF4dv2BpeEqBJsDZXh7";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Alexey Brodkin <abrodkin@synopsys.com>,
+ Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Message-ID: <4ccaebf3-e1b5-8ca4-1f69-ac4b9d93277d@suse.de>
+Subject: Re: [PATCH 24/24] drm/arc: Move to drm/tiny
+References: <20200904143941.110665-1-daniel.vetter@ffwll.ch>
+ <20200904143941.110665-25-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200904143941.110665-25-daniel.vetter@ffwll.ch>
 
-> > @@ -418,6 +418,7 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
-> >   * drm_dp_cec_register_connector() - register a new connector
-> >   * @aux: DisplayPort AUX channel
-> >   * @connector: drm connector
-> > + * @is_mst: set to true if this is an MST branch
-> >   *
-> >   * A new connector was registered with associated CEC adapter name and
-> >   * CEC adapter parent device. After registering the name and parent
-> > @@ -425,12 +426,13 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
-> >   * CEC and to register a CEC adapter if that is the case.
-> >   */
-> >  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> > -                                struct drm_connector *connector)
-> > +                                struct drm_connector *connector, bool is_mst)
-> >  {
-> >       WARN_ON(aux->cec.adap);
-> >       if (WARN_ON(!aux->transfer))
-> >               return;
-> >       aux->cec.connector = connector;
-> > +     aux->cec.is_mst = is_mst;
-> >       INIT_DELAYED_WORK(&aux->cec.unregister_work,
-> >                         drm_dp_cec_unregister_work);
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 82b9de274f65..744cb55572f9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -6261,7 +6261,7 @@ intel_dp_connector_register(struct drm_connector *connector)
-> >       intel_dp->aux.dev = connector->kdev;
-> >       ret = drm_dp_aux_register(&intel_dp->aux);
-> >       if (!ret)
-> > -             drm_dp_cec_register_connector(&intel_dp->aux, connector);
-> > +             drm_dp_cec_register_connector(&intel_dp->aux, connector, false);
-> >       return ret;
-> >  }
-> >
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> > index 49dd0cbc332f..671a70e95cd1 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> > @@ -1414,7 +1414,7 @@ nouveau_connector_create(struct drm_device *dev,
-> >       switch (type) {
-> >       case DRM_MODE_CONNECTOR_DisplayPort:
-> >       case DRM_MODE_CONNECTOR_eDP:
-> > -             drm_dp_cec_register_connector(&nv_connector->aux, connector);
-> > +             drm_dp_cec_register_connector(&nv_connector->aux, connector, false);
-> >               break;
-> >       }
-> >
-> > diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> > index 85513eeb2196..12bca1b9512b 100644
-> > --- a/include/drm/drm_dp_helper.h
-> > +++ b/include/drm/drm_dp_helper.h
-> > @@ -1495,12 +1495,14 @@ struct drm_connector;
-> >   * @lock: mutex protecting this struct
-> >   * @adap: the CEC adapter for CEC-Tunneling-over-AUX support.
-> >   * @connector: the connector this CEC adapter is associated with
-> > + * @is_mst: this is an MST branch
-> >   * @unregister_work: unregister the CEC adapter
-> >   */
-> >  struct drm_dp_aux_cec {
-> >       struct mutex lock;
-> >       struct cec_adapter *adap;
-> >       struct drm_connector *connector;
-> > +     bool is_mst;
-> >       struct delayed_work unregister_work;
-> >  };
-> >
-> > @@ -1746,7 +1748,7 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, u32 edid_quirks,
-> >  #ifdef CONFIG_DRM_DP_CEC
-> >  void drm_dp_cec_irq(struct drm_dp_aux *aux);
-> >  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> > -                                struct drm_connector *connector);
-> > +                                struct drm_connector *connector, bool is_mst);
-> >  void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
-> >  void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid);
-> >  void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
-> > @@ -1757,7 +1759,7 @@ static inline void drm_dp_cec_irq(struct drm_dp_aux *aux)
-> >
-> >  static inline void
-> >  drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> > -                           struct drm_connector *connector)
-> > +                           struct drm_connector *connector, bool is_mst)
-> >  {
-> >  }
-> >
-> >
->
+--JyRDEOAlaRFUcRuF4dv2BpeEqBJsDZXh7
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+
+
+Am 04.09.20 um 16:39 schrieb Daniel Vetter:
+> Because it is.
+
+Absolutely.
+
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+>=20
+> v2: Delete now unused crtc funcs (0day)
+>=20
+> Cc: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Alexey Brodkin <abrodkin@synopsys.com>
+> ---
+>  MAINTAINERS                                         |  2 +-
+>  drivers/gpu/drm/Kconfig                             |  2 --
+>  drivers/gpu/drm/Makefile                            |  1 -
+>  drivers/gpu/drm/arc/Kconfig                         | 10 ----------
+>  drivers/gpu/drm/arc/Makefile                        |  3 ---
+>  drivers/gpu/drm/tiny/Kconfig                        | 10 ++++++++++
+>  drivers/gpu/drm/tiny/Makefile                       |  1 +
+>  drivers/gpu/drm/{arc/arcpgu_drv.c =3D> tiny/arcpgu.c} |  0
+>  8 files changed, 12 insertions(+), 17 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/arc/Kconfig
+>  delete mode 100644 drivers/gpu/drm/arc/Makefile
+>  rename drivers/gpu/drm/{arc/arcpgu_drv.c =3D> tiny/arcpgu.c} (100%)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f92035bfbbcd..b16e80c4d669 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1334,7 +1334,7 @@ ARC PGU DRM DRIVER
+>  M:	Alexey Brodkin <abrodkin@synopsys.com>
+>  S:	Supported
+>  F:	Documentation/devicetree/bindings/display/snps,arcpgu.txt
+> -F:	drivers/gpu/drm/arc/
+> +F:	drivers/gpu/drm/tiny/arcpgu.c
+> =20
+>  ARCNET NETWORK LAYER
+>  M:	Michael Grzeschik <m.grzeschik@pengutronix.de>
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 147d61b9674e..9efb82caaa87 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -354,8 +354,6 @@ source "drivers/gpu/drm/vc4/Kconfig"
+> =20
+>  source "drivers/gpu/drm/etnaviv/Kconfig"
+> =20
+> -source "drivers/gpu/drm/arc/Kconfig"
+> -
+>  source "drivers/gpu/drm/hisilicon/Kconfig"
+> =20
+>  source "drivers/gpu/drm/mediatek/Kconfig"
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index 2f31579f91d4..6c15ef9b04d6 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -109,7 +109,6 @@ obj-y			+=3D panel/
+>  obj-y			+=3D bridge/
+>  obj-$(CONFIG_DRM_FSL_DCU) +=3D fsl-dcu/
+>  obj-$(CONFIG_DRM_ETNAVIV) +=3D etnaviv/
+> -obj-$(CONFIG_DRM_ARCPGU)+=3D arc/
+>  obj-y			+=3D hisilicon/
+>  obj-$(CONFIG_DRM_ZTE)	+=3D zte/
+>  obj-$(CONFIG_DRM_MXSFB)	+=3D mxsfb/
+> diff --git a/drivers/gpu/drm/arc/Kconfig b/drivers/gpu/drm/arc/Kconfig
+> deleted file mode 100644
+> index e8f3d63e0b91..000000000000
+> --- a/drivers/gpu/drm/arc/Kconfig
+> +++ /dev/null
+> @@ -1,10 +0,0 @@
+> -# SPDX-License-Identifier: GPL-2.0-only
+> -config DRM_ARCPGU
+> -	tristate "ARC PGU"
+> -	depends on DRM && OF
+> -	select DRM_KMS_CMA_HELPER
+> -	select DRM_KMS_HELPER
+> -	help
+> -	  Choose this option if you have an ARC PGU controller.
+> -
+> -	  If M is selected the module will be called arcpgu.
+> diff --git a/drivers/gpu/drm/arc/Makefile b/drivers/gpu/drm/arc/Makefil=
+e
+> deleted file mode 100644
+> index b26f2495c532..000000000000
+> --- a/drivers/gpu/drm/arc/Makefile
+> +++ /dev/null
+> @@ -1,3 +0,0 @@
+> -# SPDX-License-Identifier: GPL-2.0-only
+> -arcpgu-y :=3D arcpgu_drv.o
+> -obj-$(CONFIG_DRM_ARCPGU) +=3D arcpgu.o
+> diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfi=
+g
+> index 2b6414f0fa75..9bbaa1a69050 100644
+> --- a/drivers/gpu/drm/tiny/Kconfig
+> +++ b/drivers/gpu/drm/tiny/Kconfig
+> @@ -1,5 +1,15 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> =20
+> +config DRM_ARCPGU
+> +	tristate "ARC PGU"
+> +	depends on DRM && OF
+> +	select DRM_KMS_CMA_HELPER
+> +	select DRM_KMS_HELPER
+> +	help
+> +	  Choose this option if you have an ARC PGU controller.
+> +
+> +	  If M is selected the module will be called arcpgu.
+> +
+>  config DRM_CIRRUS_QEMU
+>  	tristate "Cirrus driver for QEMU emulated device"
+>  	depends on DRM && PCI && MMU
+> diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makef=
+ile
+> index 6ae4e9e5a35f..bef6780bdd6f 100644
+> --- a/drivers/gpu/drm/tiny/Makefile
+> +++ b/drivers/gpu/drm/tiny/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> =20
+> +obj-$(CONFIG_DRM_ARCPGU)		+=3D arcpgu.o
+>  obj-$(CONFIG_DRM_CIRRUS_QEMU)		+=3D cirrus.o
+>  obj-$(CONFIG_DRM_GM12U320)		+=3D gm12u320.o
+>  obj-$(CONFIG_TINYDRM_HX8357D)		+=3D hx8357d.o
+> diff --git a/drivers/gpu/drm/arc/arcpgu_drv.c b/drivers/gpu/drm/tiny/ar=
+cpgu.c
+> similarity index 100%
+> rename from drivers/gpu/drm/arc/arcpgu_drv.c
+> rename to drivers/gpu/drm/tiny/arcpgu.c
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--JyRDEOAlaRFUcRuF4dv2BpeEqBJsDZXh7--
+
+--xLRTUUIAJQml5CknFcJyCMjRvNoamIqSD
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFIBAEBCAAyFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl9YiiUUHHR6aW1tZXJt
+YW5uQHN1c2UuZGUACgkQaA3BHVMLeiNZkQgAmNi0dpzQzmNZONyCca6jtEfsdVrP
+ATf65Plh/Zx0pieulYUik1er7Kt/BGJY7YvJmy5js8q0asCsOHkQeFYsTkliY5bl
+L0sSZBIGXiwgWRuv7qNXQVidcVxxxQDbtE/afJRBdBqorGNaqv/eHu/UcVSTL0nP
+wOqLwRj6DpbWomueEzTfMquXK3gz8trVkn3wYfq7mItmNVoePJp8nDCwo5IDyczo
+ftAaZzCXSuJJMyS2fXQrHpsFEWgO3KHDpnFSW6N6n3iueHJ3gonq/ELTYoWopUfG
+hviyrP4GVoPogYFSQUOGN+4WwhLc5cuVrG+tHG24R6z7pgeT9neIDIMo+w==
+=r2O8
+-----END PGP SIGNATURE-----
+
+--xLRTUUIAJQml5CknFcJyCMjRvNoamIqSD--
+
+--===============0890061572==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0890061572==--
