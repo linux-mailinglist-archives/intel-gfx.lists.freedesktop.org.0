@@ -1,120 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5CB6263809
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Sep 2020 22:56:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCA502637C0
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Sep 2020 22:46:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C0C26F50B;
-	Wed,  9 Sep 2020 20:56:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 402E96F500;
+	Wed,  9 Sep 2020 20:46:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1446 seconds by postgrey-1.36 at gabe;
- Wed, 09 Sep 2020 20:56:28 UTC
-Received: from gateway24.websitewelcome.com (gateway24.websitewelcome.com
- [192.185.51.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C35B26F50B
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Sep 2020 20:56:28 +0000 (UTC)
-Received: from cm13.websitewelcome.com (cm13.websitewelcome.com [100.42.49.6])
- by gateway24.websitewelcome.com (Postfix) with ESMTP id 1EECA200F
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Sep 2020 15:32:20 -0500 (CDT)
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
- id G6lPktbzaXp2AG6lPk1aqc; Wed, 09 Sep 2020 15:32:20 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=OWBVxVN8PNWKTJ6sFxUoxSbtmwkaBKyhDMI9KKwc5r4=; b=pqmUHlIIbRRb3V5dUylcVeQyII
- v7wbzvvkynjiPr8rygHLO6ctHHZbUCHp5t7Tt2G2TV08j6DrkbUps1WXZxa16v8vq5paD9n/v2u8Y
- CsVwBfbfROl37PpfO62aGZJGBAsXBj/4TTJA+VsJWs6xV8KQntK60H4ksuaEGiUBK7gnXmE9Ufkru
- h5cH7gkEyLdSjAPsXys3+RMQ2rk/0oskl25lGo94BJ4wQ3GmWV76NiIrPgJ+ZUAmitt6VWWzfFL2/
- xl/Ut/qNAXq1gVgf3jsU4RawPnn2qF9AzJGp01np+cRAH4UxXF1zqXHRN8nIvaaiEQnA6mfmSal1j
- +xtMGKzw==;
-Received: from 187-162-31-110.static.axtel.net ([187.162.31.110]:46456
- helo=[192.168.15.8])
- by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <gustavo@embeddedor.com>)
- id 1kG6lN-000IpK-9p; Wed, 09 Sep 2020 15:32:17 -0500
-To: Joe Perches <joe@perches.com>, LKML <linux-kernel@vger.kernel.org>,
- Jiri Kosina <trivial@kernel.org>
-References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Autocrypt: addr=gustavo@embeddedor.com; keydata=
- xsFNBFssHAwBEADIy3ZoPq3z5UpsUknd2v+IQud4TMJnJLTeXgTf4biSDSrXn73JQgsISBwG
- 2Pm4wnOyEgYUyJd5tRWcIbsURAgei918mck3tugT7AQiTUN3/5aAzqe/4ApDUC+uWNkpNnSV
- tjOx1hBpla0ifywy4bvFobwSh5/I3qohxDx+c1obd8Bp/B/iaOtnq0inli/8rlvKO9hp6Z4e
- DXL3PlD0QsLSc27AkwzLEc/D3ZaqBq7ItvT9Pyg0z3Q+2dtLF00f9+663HVC2EUgP25J3xDd
- 496SIeYDTkEgbJ7WYR0HYm9uirSET3lDqOVh1xPqoy+U9zTtuA9NQHVGk+hPcoazSqEtLGBk
- YE2mm2wzX5q2uoyptseSNceJ+HE9L+z1KlWW63HhddgtRGhbP8pj42bKaUSrrfDUsicfeJf6
- m1iJRu0SXYVlMruGUB1PvZQ3O7TsVfAGCv85pFipdgk8KQnlRFkYhUjLft0u7CL1rDGZWDDr
- NaNj54q2CX9zuSxBn9XDXvGKyzKEZ4NY1Jfw+TAMPCp4buawuOsjONi2X0DfivFY+ZsjAIcx
- qQMglPtKk/wBs7q2lvJ+pHpgvLhLZyGqzAvKM1sVtRJ5j+ARKA0w4pYs5a5ufqcfT7dN6TBk
- LXZeD9xlVic93Ju08JSUx2ozlcfxq+BVNyA+dtv7elXUZ2DrYwARAQABzStHdXN0YXZvIEEu
- IFIuIFNpbHZhIDxndXN0YXZvYXJzQGtlcm5lbC5vcmc+wsGrBBMBCAA+FiEEkmRahXBSurMI
- g1YvRwW0y0cG2zEFAl6zFvQCGyMFCQlmAYAFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AAIQkQ
- RwW0y0cG2zEWIQSSZFqFcFK6swiDVi9HBbTLRwbbMZsEEACWjJyXLjtTAF21Vuf1VDoGzitP
- oE69rq9UhXIGR+e0KACyIFoB9ibG/1j/ESMa0RPSwLpJDLgfvi/I18H/9cKtdo2uz0XNbDT8
- i3llIu0b43nzGIDzRudINBXC8Coeob+hrp/MMZueyzt0CUoAnY4XqpHQbQsTfTrpFeHT02Qz
- ITw6kTSmK7dNbJj2naH2vSrU11qGdU7aFzI7jnVvGgv4NVQLPxm/t4jTG1o+P1Xk4N6vKafP
- zqzkxj99JrUAPt+LyPS2VpNvmbSNq85PkQ9gpeTHpkio/D9SKsMW62njITPgy6M8TFAmx8JF
- ZAI6k8l1eU29F274WnlQ6ZokkJoNctwHa+88euWKHWUDolCmQpegJJ8932www83GLn1mdUZn
- NsymjFSdMWE+y8apWaV9QsDOKWf7pY2uBuE6GMPRhX7e7h5oQwa1lYeO2L9LTDeXkEOJe+hE
- qQdEEvkC/nok0eoRlBlZh433DQlv4+IvSsfN/uWld2TuQFyjDCLIm1CPRfe7z0TwiCM27F+O
- lHnUspCFSgpnrxqNH6CM4aj1EF4fEX+ZyknTSrKL9BGZ/qRz7Xe9ikU2/7M1ov6rOXCI4NR9
- THsNax6etxCBMzZs2bdMHMcajP5XdRsOIARuN08ytRjDolR2r8SkTN2YMwxodxNWWDC3V8X2
- RHZ4UwQw487BTQRbLBwMARAAsHCE31Ffrm6uig1BQplxMV8WnRBiZqbbsVJBH1AAh8tq2ULl
- 7udfQo1bsPLGGQboJSVN9rckQQNahvHAIK8ZGfU4Qj8+CER+fYPp/MDZj+t0DbnWSOrG7z9H
- IZo6PR9z4JZza3Hn/35jFggaqBtuydHwwBANZ7A6DVY+W0COEU4of7CAahQo5NwYiwS0lGis
- LTqks5R0Vh+QpvDVfuaF6I8LUgQR/cSgLkR//V1uCEQYzhsoiJ3zc1HSRyOPotJTApqGBq80
- X0aCVj1LOiOF4rrdvQnj6iIlXQssdb+WhSYHeuJj1wD0ZlC7ds5zovXh+FfFl5qH5RFY/qVn
- 3mNIVxeO987WSF0jh+T5ZlvUNdhedGndRmwFTxq2Li6GNMaolgnpO/CPcFpDjKxY/HBUSmaE
- 9rNdAa1fCd4RsKLlhXda+IWpJZMHlmIKY8dlUybP+2qDzP2lY7kdFgPZRU+ezS/pzC/YTzAv
- CWM3tDgwoSl17vnZCr8wn2/1rKkcLvTDgiJLPCevqpTb6KFtZosQ02EGMuHQI6Zk91jbx96n
- rdsSdBLGH3hbvLvjZm3C+fNlVb9uvWbdznObqcJxSH3SGOZ7kCHuVmXUcqozol6ioMHMb+In
- rHPP16aVDTBTPEGwgxXI38f7SUEn+NpbizWdLNz2hc907DvoPm6HEGCanpcAEQEAAcLBZQQY
- AQgADwUCWywcDAIbDAUJCWYBgAAKCRBHBbTLRwbbMdsZEACUjmsJx2CAY+QSUMebQRFjKavw
- XB/xE7fTt2ahuhHT8qQ/lWuRQedg4baInw9nhoPE+VenOzhGeGlsJ0Ys52sdXvUjUocKgUQq
- 6ekOHbcw919nO5L9J2ejMf/VC/quN3r3xijgRtmuuwZjmmi8ct24TpGeoBK4WrZGh/1hAYw4
- ieARvKvgjXRstcEqM5thUNkOOIheud/VpY+48QcccPKbngy//zNJWKbRbeVnimua0OpqRXhC
- rEVm/xomeOvl1WK1BVO7z8DjSdEBGzbV76sPDJb/fw+y+VWrkEiddD/9CSfgfBNOb1p1jVnT
- 2mFgGneIWbU0zdDGhleI9UoQTr0e0b/7TU+Jo6TqwosP9nbk5hXw6uR5k5PF8ieyHVq3qatJ
- 9K1jPkBr8YWtI5uNwJJjTKIA1jHlj8McROroxMdI6qZ/wZ1ImuylpJuJwCDCORYf5kW61fcr
- HEDlIvGc371OOvw6ejF8ksX5+L2zwh43l/pKkSVGFpxtMV6d6J3eqwTafL86YJWH93PN+ZUh
- 6i6Rd2U/i8jH5WvzR57UeWxE4P8bQc0hNGrUsHQH6bpHV2lbuhDdqo+cM9ehGZEO3+gCDFmK
- rjspZjkJbB5Gadzvts5fcWGOXEvuT8uQSvl+vEL0g6vczsyPBtqoBLa9SNrSVtSixD1uOgyt
- AP7RWS474w==
-Message-ID: <645bbaaf-984f-315f-1257-446651393925@embeddedor.com>
-Date: Wed, 9 Sep 2020 15:38:45 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CCED26F500;
+ Wed,  9 Sep 2020 20:46:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C51BCA363D;
+ Wed,  9 Sep 2020 20:46:14 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
-Content-Language: en-US
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 187.162.31.110
-X-Source-L: No
-X-Exim-ID: 1kG6lN-000IpK-9p
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 187-162-31-110.static.axtel.net ([192.168.15.8])
- [187.162.31.110]:46456
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 15
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-Subject: Re: [Intel-gfx] [trivial PATCH] treewide: Convert switch/case
- fallthrough; to break; 
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Swathi Dhanavanthri" <swathi.dhanavanthri@intel.com>
+Date: Wed, 09 Sep 2020 20:46:14 -0000
+Message-ID: <159968437477.8835.11681026135481052464@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200909191410.21051-1-swathi.dhanavanthri@intel.com>
+In-Reply-To: <20200909191410.21051-1-swathi.dhanavanthri@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/tgl=3A_Make_Wa=5F1606700617/22010271021_permanent?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,1444 +38,983 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
- oss-drivers@netronome.com, nouveau@lists.freedesktop.org,
- alsa-devel <alsa-devel@alsa-project.org>, dri-devel@lists.freedesktop.org,
- linux-ide@vger.kernel.org, dm-devel@redhat.com, linux-mtd@lists.infradead.org,
- linux-i2c@vger.kernel.org, sparclinux@vger.kernel.org,
- kvmarm@lists.cs.columbia.edu, linux-rtc@vger.kernel.org,
- linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org, dccp@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-atm-general@lists.sourceforge.net,
- linux-afs@lists.infradead.org, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-serial@vger.kernel.org,
- linux-input@vger.kernel.org, linux-mmc@vger.kernel.org,
- Kees Cook <kees.cook@canonical.com>, linux-media@vger.kernel.org,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-sctp@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-nvme@lists.infradead.org, storagedev@microchip.com,
- ceph-devel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-nfs@vger.kernel.org, linux-parisc@vger.kernel.org,
- netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- Nick Desaulniers <ndesaulniers@google.com>, linux-mips@vger.kernel.org,
- iommu@lists.linux-foundation.org, netfilter-devel@vger.kernel.org,
- linux-crypto@vger.kernel.org, bpf@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1369001574=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1369001574==
+Content-Type: multipart/alternative;
+ boundary="===============5654692730857298526=="
+
+--===============5654692730857298526==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/tgl: Make Wa_1606700617/22010271021 permanent
+URL   : https://patchwork.freedesktop.org/series/81502/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8992_full -> Patchwork_18461_full
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_18461_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_18461_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_18461_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_reloc@basic-spin@vcs1:
+    - shard-iclb:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb4/igt@gem_exec_reloc@basic-spin@vcs1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb2/igt@gem_exec_reloc@basic-spin@vcs1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18461_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_persistence@legacy-engines-mixed-process@blt:
+    - shard-skl:          [PASS][3] -> [FAIL][4] ([i915#2374])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl9/igt@gem_ctx_persistence@legacy-engines-mixed-process@blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl1/igt@gem_ctx_persistence@legacy-engines-mixed-process@blt.html
+
+  * igt@gem_exec_reloc@basic-cpu-wc-active:
+    - shard-tglb:         [PASS][5] -> [INCOMPLETE][6] ([i915#2439]) +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-tglb5/igt@gem_exec_reloc@basic-cpu-wc-active.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-tglb5/igt@gem_exec_reloc@basic-cpu-wc-active.html
+
+  * igt@gem_exec_reloc@basic-gtt-cpu-active:
+    - shard-glk:          [PASS][7] -> [INCOMPLETE][8] ([i915#2439])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-glk9/igt@gem_exec_reloc@basic-gtt-cpu-active.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-glk6/igt@gem_exec_reloc@basic-gtt-cpu-active.html
+
+  * igt@gem_exec_reloc@basic-gtt-read-active:
+    - shard-apl:          [PASS][9] -> [INCOMPLETE][10] ([i915#1635] / [i915#2439]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-apl7/igt@gem_exec_reloc@basic-gtt-read-active.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-apl6/igt@gem_exec_reloc@basic-gtt-read-active.html
+
+  * igt@gem_exec_reloc@basic-spin@vcs0:
+    - shard-snb:          [PASS][11] -> [INCOMPLETE][12] ([i915#2439] / [i915#82]) +3 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-snb6/igt@gem_exec_reloc@basic-spin@vcs0.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-snb6/igt@gem_exec_reloc@basic-spin@vcs0.html
+    - shard-iclb:         [PASS][13] -> [DMESG-FAIL][14] ([i915#2439])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb4/igt@gem_exec_reloc@basic-spin@vcs0.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb2/igt@gem_exec_reloc@basic-spin@vcs0.html
+
+  * igt@gem_exec_reloc@basic-wc-read-active:
+    - shard-kbl:          [PASS][15] -> [INCOMPLETE][16] ([i915#2439]) +2 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-kbl7/igt@gem_exec_reloc@basic-wc-read-active.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-kbl3/igt@gem_exec_reloc@basic-wc-read-active.html
+
+  * igt@gem_exec_reloc@basic-write-gtt-active:
+    - shard-iclb:         [PASS][17] -> [INCOMPLETE][18] ([i915#2439]) +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb3/igt@gem_exec_reloc@basic-write-gtt-active.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb2/igt@gem_exec_reloc@basic-write-gtt-active.html
+
+  * igt@gem_exec_whisper@basic-contexts-forked-all:
+    - shard-skl:          [PASS][19] -> [INCOMPLETE][20] ([i915#2439]) +2 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl4/igt@gem_exec_whisper@basic-contexts-forked-all.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl3/igt@gem_exec_whisper@basic-contexts-forked-all.html
+
+  * igt@i915_selftest@mock@requests:
+    - shard-apl:          [PASS][21] -> [INCOMPLETE][22] ([i915#1635] / [i915#2278])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-apl6/igt@i915_selftest@mock@requests.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-apl4/igt@i915_selftest@mock@requests.html
+
+  * igt@kms_big_fb@x-tiled-64bpp-rotate-180:
+    - shard-skl:          [PASS][23] -> [DMESG-WARN][24] ([i915#1982]) +3 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl8/igt@kms_big_fb@x-tiled-64bpp-rotate-180.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl5/igt@kms_big_fb@x-tiled-64bpp-rotate-180.html
+
+  * igt@kms_cursor_crc@pipe-b-cursor-256x256-random:
+    - shard-glk:          [PASS][25] -> [FAIL][26] ([i915#54])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-glk3/igt@kms_cursor_crc@pipe-b-cursor-256x256-random.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-glk6/igt@kms_cursor_crc@pipe-b-cursor-256x256-random.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic:
+    - shard-skl:          [PASS][27] -> [FAIL][28] ([i915#2346])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl8/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl10/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@short-flip-before-cursor-atomic-transitions:
+    - shard-glk:          [PASS][29] -> [DMESG-WARN][30] ([i915#1982])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-glk8/igt@kms_cursor_legacy@short-flip-before-cursor-atomic-transitions.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-glk2/igt@kms_cursor_legacy@short-flip-before-cursor-atomic-transitions.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a1:
+    - shard-glk:          [PASS][31] -> [FAIL][32] ([i915#79])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-glk5/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a1.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-glk7/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a1.html
+
+  * igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a1:
+    - shard-glk:          [PASS][33] -> [FAIL][34] ([i915#2122])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-glk9/igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a1.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-glk6/igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a1.html
+
+  * igt@kms_flip_tiling@flip-to-x-tiled:
+    - shard-skl:          [PASS][35] -> [FAIL][36] ([i915#167])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl7/igt@kms_flip_tiling@flip-to-x-tiled.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl6/igt@kms_flip_tiling@flip-to-x-tiled.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-indfb-draw-mmap-wc:
+    - shard-tglb:         [PASS][37] -> [DMESG-WARN][38] ([i915#1982]) +1 similar issue
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-tglb1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-indfb-draw-mmap-wc.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-tglb6/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-indfb-draw-mmap-wc.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - shard-kbl:          [PASS][39] -> [DMESG-WARN][40] ([i915#180])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-kbl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
+    - shard-skl:          [PASS][41] -> [FAIL][42] ([fdo#108145] / [i915#265])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl4/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
+
+  * igt@kms_psr@psr2_sprite_mmap_cpu:
+    - shard-iclb:         [PASS][43] -> [SKIP][44] ([fdo#109441])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_cpu.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb8/igt@kms_psr@psr2_sprite_mmap_cpu.html
+
+  * igt@kms_vblank@pipe-c-query-busy:
+    - shard-apl:          [PASS][45] -> [DMESG-WARN][46] ([i915#1635] / [i915#1982]) +1 similar issue
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-apl1/igt@kms_vblank@pipe-c-query-busy.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-apl1/igt@kms_vblank@pipe-c-query-busy.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_reloc@basic-cpu-gtt-active:
+    - shard-snb:          [INCOMPLETE][47] ([i915#2439] / [i915#82]) -> [PASS][48] +2 similar issues
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-snb2/igt@gem_exec_reloc@basic-cpu-gtt-active.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-snb4/igt@gem_exec_reloc@basic-cpu-gtt-active.html
+
+  * igt@gem_exec_reloc@basic-gtt-cpu-active:
+    - shard-iclb:         [INCOMPLETE][49] ([i915#2439]) -> [PASS][50] +2 similar issues
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb1/igt@gem_exec_reloc@basic-gtt-cpu-active.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb3/igt@gem_exec_reloc@basic-gtt-cpu-active.html
+
+  * igt@gem_exec_reloc@basic-write-gtt-active:
+    - shard-kbl:          [INCOMPLETE][51] ([i915#2439]) -> [PASS][52] +2 similar issues
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-kbl1/igt@gem_exec_reloc@basic-write-gtt-active.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-kbl7/igt@gem_exec_reloc@basic-write-gtt-active.html
+
+  * igt@gem_exec_reloc@basic-write-read-active:
+    - shard-apl:          [INCOMPLETE][53] ([i915#1635] / [i915#2439]) -> [PASS][54] +2 similar issues
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-apl3/igt@gem_exec_reloc@basic-write-read-active.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-apl1/igt@gem_exec_reloc@basic-write-read-active.html
+
+  * igt@gem_exec_whisper@basic-forked-all:
+    - shard-skl:          [INCOMPLETE][55] ([i915#2439]) -> [PASS][56] +2 similar issues
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl8/igt@gem_exec_whisper@basic-forked-all.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl10/igt@gem_exec_whisper@basic-forked-all.html
+
+  * igt@gem_exec_whisper@basic-normal:
+    - shard-tglb:         [INCOMPLETE][57] ([i915#2439]) -> [PASS][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-tglb8/igt@gem_exec_whisper@basic-normal.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-tglb8/igt@gem_exec_whisper@basic-normal.html
+
+  * igt@gem_exec_whisper@basic-queues-forked-all:
+    - shard-glk:          [INCOMPLETE][59] ([i915#2439]) -> [PASS][60] +2 similar issues
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-glk4/igt@gem_exec_whisper@basic-queues-forked-all.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-glk9/igt@gem_exec_whisper@basic-queues-forked-all.html
+
+  * igt@gem_exec_whisper@basic-queues-priority:
+    - shard-glk:          [DMESG-WARN][61] ([i915#118] / [i915#95]) -> [PASS][62]
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-glk6/igt@gem_exec_whisper@basic-queues-priority.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-glk5/igt@gem_exec_whisper@basic-queues-priority.html
+
+  * igt@kms_big_fb@yf-tiled-32bpp-rotate-180:
+    - shard-skl:          [DMESG-WARN][63] ([i915#1982]) -> [PASS][64] +1 similar issue
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl2/igt@kms_big_fb@yf-tiled-32bpp-rotate-180.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl5/igt@kms_big_fb@yf-tiled-32bpp-rotate-180.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
+    - shard-kbl:          [DMESG-WARN][65] ([i915#180]) -> [PASS][66] +2 similar issues
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-kbl6/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-kbl1/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+
+  * igt@kms_cursor_edge_walk@pipe-b-128x128-left-edge:
+    - shard-glk:          [DMESG-WARN][67] ([i915#1982]) -> [PASS][68]
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-glk6/igt@kms_cursor_edge_walk@pipe-b-128x128-left-edge.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-glk5/igt@kms_cursor_edge_walk@pipe-b-128x128-left-edge.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-legacy:
+    - shard-skl:          [FAIL][69] ([i915#2346]) -> [PASS][70]
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl7/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl6/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
+
+  * igt@kms_flip@plain-flip-fb-recreate@c-edp1:
+    - shard-skl:          [FAIL][71] ([i915#2122]) -> [PASS][72]
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl6/igt@kms_flip@plain-flip-fb-recreate@c-edp1.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl9/igt@kms_flip@plain-flip-fb-recreate@c-edp1.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-msflip-blt:
+    - shard-tglb:         [DMESG-WARN][73] ([i915#1982]) -> [PASS][74] +1 similar issue
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-tglb5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-msflip-blt.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-tglb5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-msflip-blt.html
+
+  * igt@kms_hdr@bpc-switch-suspend:
+    - shard-skl:          [FAIL][75] ([i915#1188]) -> [PASS][76]
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl8/igt@kms_hdr@bpc-switch-suspend.html
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl5/igt@kms_hdr@bpc-switch-suspend.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [FAIL][77] ([fdo#108145] / [i915#265]) -> [PASS][78]
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl8/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  
+#### Warnings ####
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1:
+    - shard-skl:          [DMESG-WARN][79] ([i915#1982]) -> [DMESG-FAIL][80] ([i915#1982])
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-skl10/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-skl4/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
+
+  * igt@runner@aborted:
+    - shard-iclb:         ([FAIL][81], [FAIL][82], [FAIL][83], [FAIL][84], [FAIL][85], [FAIL][86], [FAIL][87], [FAIL][88], [FAIL][89], [FAIL][90], [FAIL][91], [FAIL][92], [FAIL][93], [FAIL][94], [FAIL][95], [FAIL][96], [FAIL][97], [FAIL][98], [FAIL][99], [FAIL][100], [FAIL][101], [FAIL][102], [FAIL][103]) ([i915#1684] / [i915#2439]) -> ([FAIL][104], [FAIL][105], [FAIL][106], [FAIL][107], [FAIL][108], [FAIL][109], [FAIL][110], [FAIL][111], [FAIL][112], [FAIL][113], [FAIL][114], [FAIL][115], [FAIL][116], [FAIL][117], [FAIL][118], [FAIL][119], [FAIL][120], [FAIL][121], [FAIL][122], [FAIL][123], [FAIL][124], [FAIL][125], [FAIL][126]) ([i915#2439])
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb1/igt@runner@aborted.html
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb6/igt@runner@aborted.html
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb4/igt@runner@aborted.html
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb4/igt@runner@aborted.html
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb1/igt@runner@aborted.html
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb3/igt@runner@aborted.html
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb3/igt@runner@aborted.html
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb4/igt@runner@aborted.html
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb5/igt@runner@aborted.html
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb6/igt@runner@aborted.html
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb5/igt@runner@aborted.html
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb6/igt@runner@aborted.html
+   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb4/igt@runner@aborted.html
+   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb1/igt@runner@aborted.html
+   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb3/igt@runner@aborted.html
+   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb2/igt@runner@aborted.html
+   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb7/igt@runner@aborted.html
+   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb2/igt@runner@aborted.html
+   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb2/igt@runner@aborted.html
+   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb5/igt@runner@aborted.html
+   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb6/igt@runner@aborted.html
+   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb8/igt@runner@aborted.html
+   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb5/igt@runner@aborted.html
+   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb8/igt@runner@aborted.html
+   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb7/igt@runner@aborted.html
+   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb8/igt@runner@aborted.html
+   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb7/igt@runner@aborted.html
+   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb8/igt@runner@aborted.html
+   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb7/igt@runner@aborted.html
+   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb7/igt@runner@aborted.html
+   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb7/igt@runner@aborted.html
+   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb5/igt@runner@aborted.html
+   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb5/igt@runner@aborted.html
+   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb5/igt@runner@aborted.html
+   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb5/igt@runner@aborted.html
+   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb4/igt@runner@aborted.html
+   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb4/igt@runner@aborted.html
+   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb3/igt@runner@aborted.html
+   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb3/igt@runner@aborted.html
+   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb3/igt@runner@aborted.html
+   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb2/igt@runner@aborted.html
+   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb2/igt@runner@aborted.html
+   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb2/igt@runner@aborted.html
+   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb1/igt@runner@aborted.html
+   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb1/igt@runner@aborted.html
+   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb1/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
+  [i915#167]: https://gitlab.freedesktop.org/drm/intel/issues/167
+  [i915#1684]: https://gitlab.freedesktop.org/drm/intel/issues/1684
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
+  [i915#2278]: https://gitlab.freedesktop.org/drm/intel/issues/2278
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2374]: https://gitlab.freedesktop.org/drm/intel/issues/2374
+  [i915#2439]: https://gitlab.freedesktop.org/drm/intel/issues/2439
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-On 9/9/20 15:06, Joe Perches wrote:
-> fallthrough to a separate case/default label break; isn't very readable.
-> 
-> Convert pseudo-keyword fallthrough; statements to a simple break; when
-> the next label is case or default and the only statement in the next
-> label block is break;
-> 
-> Found using:
-> 
-> $ grep-2.5.4 -rP --include=*.[ch] -n "fallthrough;(\s*(case\s+\w+|default)\s*:\s*){1,7}break;" *
-> 
-> Miscellanea:
-> 
-> o Move or coalesce a couple label blocks above a default: block.
-> 
-> Signed-off-by: Joe Perches <joe@perches.com>
+Participating hosts (10 -> 10)
+------------------------------
 
-Acked-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+  No changes in participating hosts
 
-Thanks
---
-Gustavo
 
-> ---
-> 
-> Compiled allyesconfig x86-64 only.
-> A few files for other arches were not compiled.
-> 
->  arch/arm/mach-mmp/pm-pxa910.c                             |  2 +-
->  arch/arm64/kvm/handle_exit.c                              |  2 +-
->  arch/mips/kernel/cpu-probe.c                              |  2 +-
->  arch/mips/math-emu/cp1emu.c                               |  2 +-
->  arch/s390/pci/pci.c                                       |  2 +-
->  crypto/tcrypt.c                                           |  4 ++--
->  drivers/ata/sata_mv.c                                     |  2 +-
->  drivers/atm/lanai.c                                       |  2 +-
->  drivers/gpu/drm/i915/display/intel_sprite.c               |  2 +-
->  drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c           |  2 +-
->  drivers/hid/wacom_wac.c                                   |  2 +-
->  drivers/i2c/busses/i2c-i801.c                             |  2 +-
->  drivers/infiniband/ulp/rtrs/rtrs-clt.c                    | 14 +++++++-------
->  drivers/infiniband/ulp/rtrs/rtrs-srv.c                    |  6 +++---
->  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c               |  2 +-
->  drivers/irqchip/irq-vic.c                                 |  4 ++--
->  drivers/md/dm.c                                           |  2 +-
->  drivers/media/dvb-frontends/drxd_hard.c                   |  2 +-
->  drivers/media/i2c/ov5640.c                                |  2 +-
->  drivers/media/i2c/ov6650.c                                |  5 ++---
->  drivers/media/i2c/smiapp/smiapp-core.c                    |  2 +-
->  drivers/media/i2c/tvp5150.c                               |  2 +-
->  drivers/media/pci/ddbridge/ddbridge-core.c                |  2 +-
->  drivers/media/usb/cpia2/cpia2_core.c                      |  2 +-
->  drivers/mfd/iqs62x.c                                      |  3 +--
->  drivers/mmc/host/atmel-mci.c                              |  2 +-
->  drivers/mtd/nand/raw/nandsim.c                            |  2 +-
->  drivers/net/ethernet/intel/e1000e/phy.c                   |  2 +-
->  drivers/net/ethernet/intel/fm10k/fm10k_pf.c               |  2 +-
->  drivers/net/ethernet/intel/i40e/i40e_adminq.c             |  2 +-
->  drivers/net/ethernet/intel/i40e/i40e_txrx.c               |  2 +-
->  drivers/net/ethernet/intel/iavf/iavf_txrx.c               |  2 +-
->  drivers/net/ethernet/intel/igb/e1000_phy.c                |  2 +-
->  drivers/net/ethernet/intel/ixgbe/ixgbe_82599.c            |  2 +-
->  drivers/net/ethernet/intel/ixgbe/ixgbe_main.c             |  2 +-
->  drivers/net/ethernet/intel/ixgbe/ixgbe_sriov.c            |  2 +-
->  drivers/net/ethernet/intel/ixgbevf/vf.c                   |  2 +-
->  drivers/net/ethernet/netronome/nfp/nfpcore/nfp6000_pcie.c |  2 +-
->  drivers/net/ethernet/qlogic/qed/qed_mcp.c                 |  2 +-
->  drivers/net/ethernet/sfc/falcon/farch.c                   |  2 +-
->  drivers/net/ethernet/sfc/farch.c                          |  2 +-
->  drivers/net/phy/adin.c                                    |  3 +--
->  drivers/net/usb/pegasus.c                                 |  4 ++--
->  drivers/net/usb/usbnet.c                                  |  2 +-
->  drivers/net/wireless/ath/ath5k/eeprom.c                   |  2 +-
->  drivers/net/wireless/mediatek/mt7601u/dma.c               |  8 ++++----
->  drivers/nvme/host/core.c                                  | 12 ++++++------
->  drivers/pcmcia/db1xxx_ss.c                                |  4 ++--
->  drivers/power/supply/abx500_chargalg.c                    |  2 +-
->  drivers/power/supply/charger-manager.c                    |  2 +-
->  drivers/rtc/rtc-pcf85063.c                                |  2 +-
->  drivers/s390/scsi/zfcp_fsf.c                              |  2 +-
->  drivers/scsi/aic7xxx/aic79xx_core.c                       |  4 ++--
->  drivers/scsi/aic94xx/aic94xx_tmf.c                        |  2 +-
->  drivers/scsi/lpfc/lpfc_sli.c                              |  2 +-
->  drivers/scsi/smartpqi/smartpqi_init.c                     |  2 +-
->  drivers/scsi/sr.c                                         |  2 +-
->  drivers/tty/serial/sunsu.c                                |  2 +-
->  drivers/tty/serial/sunzilog.c                             |  2 +-
->  drivers/tty/vt/vt_ioctl.c                                 |  2 +-
->  drivers/usb/dwc3/core.c                                   |  2 +-
->  drivers/usb/gadget/legacy/inode.c                         |  2 +-
->  drivers/usb/gadget/udc/pxa25x_udc.c                       |  4 ++--
->  drivers/usb/host/ohci-hcd.c                               |  2 +-
->  drivers/usb/isp1760/isp1760-hcd.c                         |  2 +-
->  drivers/usb/musb/cppi_dma.c                               |  2 +-
->  drivers/usb/phy/phy-fsl-usb.c                             |  2 +-
->  drivers/video/fbdev/stifb.c                               |  2 +-
->  fs/afs/yfsclient.c                                        |  8 ++++----
->  fs/ceph/dir.c                                             |  2 +-
->  fs/nfs/nfs4proc.c                                         |  2 +-
->  fs/nfs_common/nfsacl.c                                    |  2 +-
->  kernel/bpf/verifier.c                                     |  2 +-
->  kernel/sched/topology.c                                   |  2 +-
->  kernel/trace/trace_events_filter.c                        |  2 +-
->  net/dccp/output.c                                         |  2 +-
->  net/ipv4/ip_output.c                                      |  2 +-
->  net/netfilter/nf_tables_api.c                             |  2 +-
->  net/rxrpc/input.c                                         |  4 ++--
->  net/sctp/outqueue.c                                       |  2 +-
->  sound/soc/codecs/ak4613.c                                 |  2 +-
->  sound/soc/codecs/jz4770.c                                 |  2 +-
->  82 files changed, 109 insertions(+), 112 deletions(-)
-> 
-> diff --git a/arch/arm/mach-mmp/pm-pxa910.c b/arch/arm/mach-mmp/pm-pxa910.c
-> index 1d71d73c1862..dcf2482a9e6c 100644
-> --- a/arch/arm/mach-mmp/pm-pxa910.c
-> +++ b/arch/arm/mach-mmp/pm-pxa910.c
-> @@ -161,7 +161,7 @@ void pxa910_pm_enter_lowpower_mode(int state)
->  		idle_cfg |= APMU_MOH_IDLE_CFG_MOH_PWRDWN;
->  		idle_cfg |= APMU_MOH_IDLE_CFG_MOH_PWR_SW(3)
->  			| APMU_MOH_IDLE_CFG_MOH_L2_PWR_SW(3);
-> -		fallthrough;
-> +		break;
->  	case POWER_MODE_CORE_INTIDLE:
->  		break;
->  	}
-> diff --git a/arch/arm64/kvm/handle_exit.c b/arch/arm64/kvm/handle_exit.c
-> index 5d690d60ccad..bf3d54b0a233 100644
-> --- a/arch/arm64/kvm/handle_exit.c
-> +++ b/arch/arm64/kvm/handle_exit.c
-> @@ -128,7 +128,7 @@ static int kvm_handle_guest_debug(struct kvm_vcpu *vcpu)
->  	switch (ESR_ELx_EC(esr)) {
->  	case ESR_ELx_EC_WATCHPT_LOW:
->  		run->debug.arch.far = vcpu->arch.fault.far_el2;
-> -		fallthrough;
-> +		break;
->  	case ESR_ELx_EC_SOFTSTP_LOW:
->  	case ESR_ELx_EC_BREAKPT_LOW:
->  	case ESR_ELx_EC_BKPT32:
-> diff --git a/arch/mips/kernel/cpu-probe.c b/arch/mips/kernel/cpu-probe.c
-> index e2955f1f6316..6ddc70211a0f 100644
-> --- a/arch/mips/kernel/cpu-probe.c
-> +++ b/arch/mips/kernel/cpu-probe.c
-> @@ -1823,7 +1823,7 @@ static inline void cpu_probe_mips(struct cpuinfo_mips *c, unsigned int cpu)
->  		fallthrough;
->  	case CPU_I6400:
->  		c->options |= MIPS_CPU_SHARED_FTLB_RAM;
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/arch/mips/math-emu/cp1emu.c b/arch/mips/math-emu/cp1emu.c
-> index 587cf1d115e8..9c8f8539ec5d 100644
-> --- a/arch/mips/math-emu/cp1emu.c
-> +++ b/arch/mips/math-emu/cp1emu.c
-> @@ -1224,7 +1224,7 @@ static int cop1Emulate(struct pt_regs *xcp, struct mips_fpu_struct *ctx,
->  			case bctl_op:
->  				if (cpu_has_mips_2_3_4_5_r)
->  					likely = 1;
-> -				fallthrough;
-> +				break;
->  			case bct_op:
->  				break;
->  			}
-> diff --git a/arch/s390/pci/pci.c b/arch/s390/pci/pci.c
-> index 4b62d6b55024..5b1e412bbd32 100644
-> --- a/arch/s390/pci/pci.c
-> +++ b/arch/s390/pci/pci.c
-> @@ -743,7 +743,7 @@ void zpci_release_device(struct kref *kref)
->  		zpci_cleanup_bus_resources(zdev);
->  		zpci_bus_device_unregister(zdev);
->  		zpci_destroy_iommu(zdev);
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/crypto/tcrypt.c b/crypto/tcrypt.c
-> index eea0f453cfb6..8aac5bc60f4c 100644
-> --- a/crypto/tcrypt.c
-> +++ b/crypto/tcrypt.c
-> @@ -2464,7 +2464,7 @@ static int do_test(const char *alg, u32 type, u32 mask, int m, u32 num_mb)
->  		test_hash_speed("streebog512", sec,
->  				generic_hash_speed_template);
->  		if (mode > 300 && mode < 400) break;
-> -		fallthrough;
-> +		break;
->  	case 399:
->  		break;
->  
-> @@ -2587,7 +2587,7 @@ static int do_test(const char *alg, u32 type, u32 mask, int m, u32 num_mb)
->  		test_mb_ahash_speed("streebog512", sec,
->  				    generic_hash_speed_template, num_mb);
->  		if (mode > 400 && mode < 500) break;
-> -		fallthrough;
-> +		break;
->  	case 499:
->  		break;
->  
-> diff --git a/drivers/ata/sata_mv.c b/drivers/ata/sata_mv.c
-> index 664ef658a955..4d6cce2352bd 100644
-> --- a/drivers/ata/sata_mv.c
-> +++ b/drivers/ata/sata_mv.c
-> @@ -2044,7 +2044,7 @@ static enum ata_completion_errors mv_qc_prep(struct ata_queued_cmd *qc)
->  	case ATA_PROT_DMA:
->  		if (tf->command == ATA_CMD_DSM)
->  			return AC_ERR_OK;
-> -		fallthrough;
-> +		break;
->  	case ATA_PROT_NCQ:
->  		break;	/* continue below */
->  	case ATA_PROT_PIO:
-> diff --git a/drivers/atm/lanai.c b/drivers/atm/lanai.c
-> index ac811cfa6843..972a6837a20e 100644
-> --- a/drivers/atm/lanai.c
-> +++ b/drivers/atm/lanai.c
-> @@ -2019,7 +2019,7 @@ static int lanai_normalize_ci(struct lanai_dev *lanai,
->  	switch (*vpip) {
->  		case ATM_VPI_ANY:
->  			*vpip = 0;
-> -			fallthrough;
-> +			break;
->  		case 0:
->  			break;
->  		default:
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> index 5ac0dbf0e03d..35ac539cc2b1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -2861,7 +2861,7 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
->  	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
->  		if (!gen12_plane_supports_mc_ccs(dev_priv, plane->id))
->  			return false;
-> -		fallthrough;
-> +		break;
->  	case DRM_FORMAT_MOD_LINEAR:
->  	case I915_FORMAT_MOD_X_TILED:
->  	case I915_FORMAT_MOD_Y_TILED:
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c
-> index 1ccfc8314812..bc83cf098e25 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c
-> @@ -71,7 +71,7 @@ void pack_hdmi_infoframe(struct packed_hdmi_infoframe *packed_frame,
->  		fallthrough;
->  	case 1:
->  		header |= raw_frame[0];
-> -		fallthrough;
-> +		break;
->  	case 0:
->  		break;
->  	}
-> diff --git a/drivers/hid/wacom_wac.c b/drivers/hid/wacom_wac.c
-> index 83dfec327c42..822dc15b59b6 100644
-> --- a/drivers/hid/wacom_wac.c
-> +++ b/drivers/hid/wacom_wac.c
-> @@ -3833,7 +3833,7 @@ int wacom_setup_touch_input_capabilities(struct input_dev *input_dev,
->  	case MTTPC_B:
->  	case TABLETPC2FG:
->  		input_mt_init_slots(input_dev, features->touch_max, INPUT_MT_DIRECT);
-> -		fallthrough;
-> +		break;
->  
->  	case TABLETPC:
->  	case TABLETPCE:
-> diff --git a/drivers/i2c/busses/i2c-i801.c b/drivers/i2c/busses/i2c-i801.c
-> index e32ef3f01fe8..b13b1cbcac29 100644
-> --- a/drivers/i2c/busses/i2c-i801.c
-> +++ b/drivers/i2c/busses/i2c-i801.c
-> @@ -1785,7 +1785,7 @@ static int i801_probe(struct pci_dev *dev, const struct pci_device_id *id)
->  		fallthrough;
->  	case PCI_DEVICE_ID_INTEL_82801CA_3:
->  		priv->features |= FEATURE_HOST_NOTIFY;
-> -		fallthrough;
-> +		break;
->  	case PCI_DEVICE_ID_INTEL_82801BA_2:
->  	case PCI_DEVICE_ID_INTEL_82801AB_3:
->  	case PCI_DEVICE_ID_INTEL_82801AA_3:
-> diff --git a/drivers/infiniband/ulp/rtrs/rtrs-clt.c b/drivers/infiniband/ulp/rtrs/rtrs-clt.c
-> index 776e89231c52..55339cad408a 100644
-> --- a/drivers/infiniband/ulp/rtrs/rtrs-clt.c
-> +++ b/drivers/infiniband/ulp/rtrs/rtrs-clt.c
-> @@ -209,7 +209,7 @@ static bool __rtrs_clt_change_state(struct rtrs_clt_sess *sess,
->  		switch (old_state) {
->  		case RTRS_CLT_RECONNECTING:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -220,7 +220,7 @@ static bool __rtrs_clt_change_state(struct rtrs_clt_sess *sess,
->  		case RTRS_CLT_CONNECTING_ERR:
->  		case RTRS_CLT_CLOSED:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -229,7 +229,7 @@ static bool __rtrs_clt_change_state(struct rtrs_clt_sess *sess,
->  		switch (old_state) {
->  		case RTRS_CLT_CONNECTING:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -238,7 +238,7 @@ static bool __rtrs_clt_change_state(struct rtrs_clt_sess *sess,
->  		switch (old_state) {
->  		case RTRS_CLT_CONNECTING:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -250,7 +250,7 @@ static bool __rtrs_clt_change_state(struct rtrs_clt_sess *sess,
->  		case RTRS_CLT_RECONNECTING:
->  		case RTRS_CLT_CONNECTED:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -259,7 +259,7 @@ static bool __rtrs_clt_change_state(struct rtrs_clt_sess *sess,
->  		switch (old_state) {
->  		case RTRS_CLT_CLOSING:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -268,7 +268,7 @@ static bool __rtrs_clt_change_state(struct rtrs_clt_sess *sess,
->  		switch (old_state) {
->  		case RTRS_CLT_CLOSED:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> diff --git a/drivers/infiniband/ulp/rtrs/rtrs-srv.c b/drivers/infiniband/ulp/rtrs/rtrs-srv.c
-> index b61a18e57aeb..24e53b39a79c 100644
-> --- a/drivers/infiniband/ulp/rtrs/rtrs-srv.c
-> +++ b/drivers/infiniband/ulp/rtrs/rtrs-srv.c
-> @@ -78,7 +78,7 @@ static bool __rtrs_srv_change_state(struct rtrs_srv_sess *sess,
->  		switch (old_state) {
->  		case RTRS_SRV_CONNECTING:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -88,7 +88,7 @@ static bool __rtrs_srv_change_state(struct rtrs_srv_sess *sess,
->  		case RTRS_SRV_CONNECTING:
->  		case RTRS_SRV_CONNECTED:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -97,7 +97,7 @@ static bool __rtrs_srv_change_state(struct rtrs_srv_sess *sess,
->  		switch (old_state) {
->  		case RTRS_SRV_CLOSING:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> index c192544e874b..743db1abec40 100644
-> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> @@ -3777,7 +3777,7 @@ static int arm_smmu_device_hw_probe(struct arm_smmu_device *smmu)
->  	switch (FIELD_GET(IDR0_TTF, reg)) {
->  	case IDR0_TTF_AARCH32_64:
->  		smmu->ias = 40;
-> -		fallthrough;
-> +		break;
->  	case IDR0_TTF_AARCH64:
->  		break;
->  	default:
-> diff --git a/drivers/irqchip/irq-vic.c b/drivers/irqchip/irq-vic.c
-> index e46036374227..10ff0a5c225a 100644
-> --- a/drivers/irqchip/irq-vic.c
-> +++ b/drivers/irqchip/irq-vic.c
-> @@ -453,10 +453,10 @@ static void __init __vic_init(void __iomem *base, int parent_irq, int irq_start,
->  	case AMBA_VENDOR_ST:
->  		vic_init_st(base, irq_start, vic_sources, node);
->  		return;
-> +	case AMBA_VENDOR_ARM:
-> +		break;
->  	default:
->  		printk(KERN_WARNING "VIC: unknown vendor, continuing anyways\n");
-> -		fallthrough;
-> -	case AMBA_VENDOR_ARM:
->  		break;
->  	}
->  
-> diff --git a/drivers/md/dm.c b/drivers/md/dm.c
-> index 3dedd9cc4fb6..dc71573d5b09 100644
-> --- a/drivers/md/dm.c
-> +++ b/drivers/md/dm.c
-> @@ -1021,7 +1021,7 @@ static void clone_endio(struct bio *bio)
->  		switch (r) {
->  		case DM_ENDIO_REQUEUE:
->  			error = BLK_STS_DM_REQUEUE;
-> -			fallthrough;
-> +			break;
->  		case DM_ENDIO_DONE:
->  			break;
->  		case DM_ENDIO_INCOMPLETE:
-> diff --git a/drivers/media/dvb-frontends/drxd_hard.c b/drivers/media/dvb-frontends/drxd_hard.c
-> index 45f982863904..d6592e764a92 100644
-> --- a/drivers/media/dvb-frontends/drxd_hard.c
-> +++ b/drivers/media/dvb-frontends/drxd_hard.c
-> @@ -1519,7 +1519,7 @@ static int SetDeviceTypeId(struct drxd_state *state)
->  				break;
->  			case 6:
->  				state->diversity = 1;
-> -				fallthrough;
-> +				break;
->  			case 5:
->  			case 8:
->  				break;
-> diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
-> index 637687d761f2..855d3aba711a 100644
-> --- a/drivers/media/i2c/ov5640.c
-> +++ b/drivers/media/i2c/ov5640.c
-> @@ -3010,7 +3010,7 @@ static int ov5640_probe(struct i2c_client *client)
->  		switch (rotation) {
->  		case 180:
->  			sensor->upside_down = true;
-> -			fallthrough;
-> +			break;
->  		case 0:
->  			break;
->  		default:
-> diff --git a/drivers/media/i2c/ov6650.c b/drivers/media/i2c/ov6650.c
-> index d73f9f540932..fde56572dce8 100644
-> --- a/drivers/media/i2c/ov6650.c
-> +++ b/drivers/media/i2c/ov6650.c
-> @@ -685,17 +685,16 @@ static int ov6650_set_fmt(struct v4l2_subdev *sd,
->  	switch (mf->code) {
->  	case MEDIA_BUS_FMT_Y10_1X10:
->  		mf->code = MEDIA_BUS_FMT_Y8_1X8;
-> -		fallthrough;
-> +		break;
->  	case MEDIA_BUS_FMT_Y8_1X8:
->  	case MEDIA_BUS_FMT_YVYU8_2X8:
->  	case MEDIA_BUS_FMT_YUYV8_2X8:
->  	case MEDIA_BUS_FMT_VYUY8_2X8:
->  	case MEDIA_BUS_FMT_UYVY8_2X8:
-> +	case MEDIA_BUS_FMT_SBGGR8_1X8:
->  		break;
->  	default:
->  		mf->code = MEDIA_BUS_FMT_SBGGR8_1X8;
-> -		fallthrough;
-> -	case MEDIA_BUS_FMT_SBGGR8_1X8:
->  		break;
->  	}
->  
-> diff --git a/drivers/media/i2c/smiapp/smiapp-core.c b/drivers/media/i2c/smiapp/smiapp-core.c
-> index 6fc0680a93d0..8bfba407b8f1 100644
-> --- a/drivers/media/i2c/smiapp/smiapp-core.c
-> +++ b/drivers/media/i2c/smiapp/smiapp-core.c
-> @@ -2795,7 +2795,7 @@ static struct smiapp_hwconfig *smiapp_get_hwconfig(struct device *dev)
->  		case 180:
->  			hwcfg->module_board_orient =
->  				SMIAPP_MODULE_BOARD_ORIENT_180;
-> -			fallthrough;
-> +			break;
->  		case 0:
->  			break;
->  		default:
-> diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-> index 7d9401219a3a..df174089e74d 100644
-> --- a/drivers/media/i2c/tvp5150.c
-> +++ b/drivers/media/i2c/tvp5150.c
-> @@ -293,7 +293,7 @@ static void tvp5150_selmux(struct v4l2_subdev *sd)
->  	switch (decoder->input) {
->  	case TVP5150_COMPOSITE1:
->  		input |= 2;
-> -		fallthrough;
-> +		break;
->  	case TVP5150_COMPOSITE0:
->  		break;
->  	case TVP5150_SVIDEO:
-> diff --git a/drivers/media/pci/ddbridge/ddbridge-core.c b/drivers/media/pci/ddbridge/ddbridge-core.c
-> index 92fe051c672f..426c9e0152d8 100644
-> --- a/drivers/media/pci/ddbridge/ddbridge-core.c
-> +++ b/drivers/media/pci/ddbridge/ddbridge-core.c
-> @@ -1336,7 +1336,7 @@ static void dvb_input_detach(struct ddb_input *input)
->  		fallthrough;
->  	case 0x10:
->  		dvb_dmx_release(&dvb->demux);
-> -		fallthrough;
-> +		break;
->  	case 0x01:
->  		break;
->  	}
-> diff --git a/drivers/media/usb/cpia2/cpia2_core.c b/drivers/media/usb/cpia2/cpia2_core.c
-> index e747548ab286..cbef274d4f95 100644
-> --- a/drivers/media/usb/cpia2/cpia2_core.c
-> +++ b/drivers/media/usb/cpia2/cpia2_core.c
-> @@ -1751,7 +1751,7 @@ int cpia2_set_fps(struct camera_data *cam, int framerate)
->  						    CPIA2_VP_SENSOR_FLAGS_500) {
->  				return -EINVAL;
->  			}
-> -			fallthrough;
-> +			break;
->  		case CPIA2_VP_FRAMERATE_15:
->  		case CPIA2_VP_FRAMERATE_12_5:
->  		case CPIA2_VP_FRAMERATE_7_5:
-> diff --git a/drivers/mfd/iqs62x.c b/drivers/mfd/iqs62x.c
-> index 761b4ef3a381..5671482ec8fe 100644
-> --- a/drivers/mfd/iqs62x.c
-> +++ b/drivers/mfd/iqs62x.c
-> @@ -490,8 +490,7 @@ static irqreturn_t iqs62x_irq(int irq, void *context)
->  
->  		case IQS62X_EVENT_HYST:
->  			event_map[i] <<= iqs62x->dev_desc->hyst_shift;
-> -
-> -			fallthrough;
-> +			break;
->  
->  		case IQS62X_EVENT_WHEEL:
->  		case IQS62X_EVENT_HALL:
-> diff --git a/drivers/mmc/host/atmel-mci.c b/drivers/mmc/host/atmel-mci.c
-> index 444bd3a0a922..8324312e4f42 100644
-> --- a/drivers/mmc/host/atmel-mci.c
-> +++ b/drivers/mmc/host/atmel-mci.c
-> @@ -2435,7 +2435,7 @@ static void atmci_get_cap(struct atmel_mci *host)
->  	case 0x100:
->  		host->caps.has_bad_data_ordering = 0;
->  		host->caps.need_reset_after_xfer = 0;
-> -		fallthrough;
-> +		break;
->  	case 0x0:
->  		break;
->  	default:
-> diff --git a/drivers/mtd/nand/raw/nandsim.c b/drivers/mtd/nand/raw/nandsim.c
-> index f5a53aac3c5f..b07934247297 100644
-> --- a/drivers/mtd/nand/raw/nandsim.c
-> +++ b/drivers/mtd/nand/raw/nandsim.c
-> @@ -2286,7 +2286,7 @@ static int __init ns_init_module(void)
->  		fallthrough;
->  	case 1:
->  		chip->bbt_options |= NAND_BBT_USE_FLASH;
-> -		fallthrough;
-> +		break;
->  	case 0:
->  		break;
->  	default:
-> diff --git a/drivers/net/ethernet/intel/e1000e/phy.c b/drivers/net/ethernet/intel/e1000e/phy.c
-> index e11c877595fb..9fec7cc52710 100644
-> --- a/drivers/net/ethernet/intel/e1000e/phy.c
-> +++ b/drivers/net/ethernet/intel/e1000e/phy.c
-> @@ -607,7 +607,7 @@ static s32 e1000_set_master_slave_mode(struct e1000_hw *hw)
->  		break;
->  	case e1000_ms_auto:
->  		phy_data &= ~CTL1000_ENABLE_MASTER;
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/net/ethernet/intel/fm10k/fm10k_pf.c b/drivers/net/ethernet/intel/fm10k/fm10k_pf.c
-> index c0780c3624c8..1c601d7464dd 100644
-> --- a/drivers/net/ethernet/intel/fm10k/fm10k_pf.c
-> +++ b/drivers/net/ethernet/intel/fm10k/fm10k_pf.c
-> @@ -1329,7 +1329,7 @@ static u8 fm10k_iov_supported_xcast_mode_pf(struct fm10k_vf_info *vf_info,
->  	case FM10K_XCAST_MODE_NONE:
->  		if (vf_flags & FM10K_VF_FLAG_NONE_CAPABLE)
->  			return FM10K_XCAST_MODE_NONE;
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/net/ethernet/intel/i40e/i40e_adminq.c b/drivers/net/ethernet/intel/i40e/i40e_adminq.c
-> index c897a2863e4f..857b699f02c9 100644
-> --- a/drivers/net/ethernet/intel/i40e/i40e_adminq.c
-> +++ b/drivers/net/ethernet/intel/i40e/i40e_adminq.c
-> @@ -541,7 +541,7 @@ static void i40e_set_hw_flags(struct i40e_hw *hw)
->  		    (aq->api_maj_ver == 1 &&
->  		     aq->api_min_ver >= I40E_MINOR_VER_GET_LINK_INFO_X722))
->  			hw->flags |= I40E_HW_FLAG_AQ_PHY_ACCESS_CAPABLE;
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/net/ethernet/intel/i40e/i40e_txrx.c b/drivers/net/ethernet/intel/i40e/i40e_txrx.c
-> index 91ab824926b9..ef4f3dbc7b7e 100644
-> --- a/drivers/net/ethernet/intel/i40e/i40e_txrx.c
-> +++ b/drivers/net/ethernet/intel/i40e/i40e_txrx.c
-> @@ -1690,7 +1690,7 @@ static inline void i40e_rx_checksum(struct i40e_vsi *vsi,
->  	case I40E_RX_PTYPE_INNER_PROT_UDP:
->  	case I40E_RX_PTYPE_INNER_PROT_SCTP:
->  		skb->ip_summed = CHECKSUM_UNNECESSARY;
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/net/ethernet/intel/iavf/iavf_txrx.c b/drivers/net/ethernet/intel/iavf/iavf_txrx.c
-> index 256fa07d54d5..c2c1ef255008 100644
-> --- a/drivers/net/ethernet/intel/iavf/iavf_txrx.c
-> +++ b/drivers/net/ethernet/intel/iavf/iavf_txrx.c
-> @@ -1007,7 +1007,7 @@ static inline void iavf_rx_checksum(struct iavf_vsi *vsi,
->  	case IAVF_RX_PTYPE_INNER_PROT_UDP:
->  	case IAVF_RX_PTYPE_INNER_PROT_SCTP:
->  		skb->ip_summed = CHECKSUM_UNNECESSARY;
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/net/ethernet/intel/igb/e1000_phy.c b/drivers/net/ethernet/intel/igb/e1000_phy.c
-> index 8c8eb82e6272..f8f7ffbc45f0 100644
-> --- a/drivers/net/ethernet/intel/igb/e1000_phy.c
-> +++ b/drivers/net/ethernet/intel/igb/e1000_phy.c
-> @@ -2621,7 +2621,7 @@ static s32 igb_set_master_slave_mode(struct e1000_hw *hw)
->  		break;
->  	case e1000_ms_auto:
->  		phy_data &= ~CR_1000T_MS_ENABLE;
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/net/ethernet/intel/ixgbe/ixgbe_82599.c b/drivers/net/ethernet/intel/ixgbe/ixgbe_82599.c
-> index 8d3798a32f0e..1549f0342384 100644
-> --- a/drivers/net/ethernet/intel/ixgbe/ixgbe_82599.c
-> +++ b/drivers/net/ethernet/intel/ixgbe/ixgbe_82599.c
-> @@ -1589,7 +1589,7 @@ s32 ixgbe_fdir_set_input_mask_82599(struct ixgbe_hw *hw,
->  	case 0x0000:
->  		/* Mask Flex Bytes */
->  		fdirm |= IXGBE_FDIRM_FLEX;
-> -		fallthrough;
-> +		break;
->  	case 0xFFFF:
->  		break;
->  	default:
-> diff --git a/drivers/net/ethernet/intel/ixgbe/ixgbe_main.c b/drivers/net/ethernet/intel/ixgbe/ixgbe_main.c
-> index 0b675c34ce49..17e0fe4d380e 100644
-> --- a/drivers/net/ethernet/intel/ixgbe/ixgbe_main.c
-> +++ b/drivers/net/ethernet/intel/ixgbe/ixgbe_main.c
-> @@ -5901,7 +5901,7 @@ void ixgbe_disable_tx(struct ixgbe_adapter *adapter)
->  		IXGBE_WRITE_REG(hw, IXGBE_DMATXCTL,
->  				(IXGBE_READ_REG(hw, IXGBE_DMATXCTL) &
->  				 ~IXGBE_DMATXCTL_TE));
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/net/ethernet/intel/ixgbe/ixgbe_sriov.c b/drivers/net/ethernet/intel/ixgbe/ixgbe_sriov.c
-> index 988db46bff0e..45b18708f5ed 100644
-> --- a/drivers/net/ethernet/intel/ixgbe/ixgbe_sriov.c
-> +++ b/drivers/net/ethernet/intel/ixgbe/ixgbe_sriov.c
-> @@ -1141,7 +1141,7 @@ static int ixgbe_update_vf_xcast_mode(struct ixgbe_adapter *adapter,
->  		/* promisc introduced in 1.3 version */
->  		if (xcast_mode == IXGBEVF_XCAST_MODE_PROMISC)
->  			return -EOPNOTSUPP;
-> -		fallthrough;
-> +		break;
->  	case ixgbe_mbox_api_13:
->  	case ixgbe_mbox_api_14:
->  		break;
-> diff --git a/drivers/net/ethernet/intel/ixgbevf/vf.c b/drivers/net/ethernet/intel/ixgbevf/vf.c
-> index bfe6dfcec4ab..7f14665b6bdf 100644
-> --- a/drivers/net/ethernet/intel/ixgbevf/vf.c
-> +++ b/drivers/net/ethernet/intel/ixgbevf/vf.c
-> @@ -540,7 +540,7 @@ static s32 ixgbevf_update_xcast_mode(struct ixgbe_hw *hw, int xcast_mode)
->  		/* promisc introduced in 1.3 version */
->  		if (xcast_mode == IXGBEVF_XCAST_MODE_PROMISC)
->  			return -EOPNOTSUPP;
-> -		fallthrough;
-> +		break;
->  	case ixgbe_mbox_api_14:
->  	case ixgbe_mbox_api_13:
->  		break;
-> diff --git a/drivers/net/ethernet/netronome/nfp/nfpcore/nfp6000_pcie.c b/drivers/net/ethernet/netronome/nfp/nfpcore/nfp6000_pcie.c
-> index 252fe06f58aa..1d5b87079104 100644
-> --- a/drivers/net/ethernet/netronome/nfp/nfpcore/nfp6000_pcie.c
-> +++ b/drivers/net/ethernet/netronome/nfp/nfpcore/nfp6000_pcie.c
-> @@ -345,7 +345,7 @@ static int matching_bar(struct nfp_bar *bar, u32 tgt, u32 act, u32 tok,
->  		baract = NFP_CPP_ACTION_RW;
->  		if (act == 0)
->  			act = NFP_CPP_ACTION_RW;
-> -		fallthrough;
-> +		break;
->  	case NFP_PCIE_BAR_PCIE2CPP_MapType_FIXED:
->  		break;
->  	default:
-> diff --git a/drivers/net/ethernet/qlogic/qed/qed_mcp.c b/drivers/net/ethernet/qlogic/qed/qed_mcp.c
-> index cd882c453394..1bffe5cb88f4 100644
-> --- a/drivers/net/ethernet/qlogic/qed/qed_mcp.c
-> +++ b/drivers/net/ethernet/qlogic/qed/qed_mcp.c
-> @@ -3546,7 +3546,7 @@ qed_mcp_resc_allocation_msg(struct qed_hwfn *p_hwfn,
->  	switch (p_in_params->cmd) {
->  	case DRV_MSG_SET_RESOURCE_VALUE_MSG:
->  		mfw_resc_info.size = p_in_params->resc_max_val;
-> -		fallthrough;
-> +		break;
->  	case DRV_MSG_GET_RESOURCE_ALLOC_MSG:
->  		break;
->  	default:
-> diff --git a/drivers/net/ethernet/sfc/falcon/farch.c b/drivers/net/ethernet/sfc/falcon/farch.c
-> index fa1ade856b10..14f42c94809d 100644
-> --- a/drivers/net/ethernet/sfc/falcon/farch.c
-> +++ b/drivers/net/ethernet/sfc/falcon/farch.c
-> @@ -1052,7 +1052,7 @@ ef4_farch_handle_rx_event(struct ef4_channel *channel, const ef4_qword_t *event)
->  			fallthrough;
->  		case FSE_CZ_RX_EV_HDR_TYPE_IPV4V6_UDP:
->  			flags |= EF4_RX_PKT_CSUMMED;
-> -			fallthrough;
-> +			break;
->  		case FSE_CZ_RX_EV_HDR_TYPE_IPV4V6_OTHER:
->  		case FSE_AZ_RX_EV_HDR_TYPE_OTHER:
->  			break;
-> diff --git a/drivers/net/ethernet/sfc/farch.c b/drivers/net/ethernet/sfc/farch.c
-> index e004524e14a8..cea0eb822473 100644
-> --- a/drivers/net/ethernet/sfc/farch.c
-> +++ b/drivers/net/ethernet/sfc/farch.c
-> @@ -1038,7 +1038,7 @@ efx_farch_handle_rx_event(struct efx_channel *channel, const efx_qword_t *event)
->  			fallthrough;
->  		case FSE_CZ_RX_EV_HDR_TYPE_IPV4V6_UDP:
->  			flags |= EFX_RX_PKT_CSUMMED;
-> -			fallthrough;
-> +			break;
->  		case FSE_CZ_RX_EV_HDR_TYPE_IPV4V6_OTHER:
->  		case FSE_AZ_RX_EV_HDR_TYPE_OTHER:
->  			break;
-> diff --git a/drivers/net/phy/adin.c b/drivers/net/phy/adin.c
-> index 307f0ac1287b..95aeffe7482b 100644
-> --- a/drivers/net/phy/adin.c
-> +++ b/drivers/net/phy/adin.c
-> @@ -366,10 +366,9 @@ static int adin_set_edpd(struct phy_device *phydev, u16 tx_interval)
->  
->  	switch (tx_interval) {
->  	case 1000: /* 1 second */
-> -		fallthrough;
->  	case ETHTOOL_PHY_EDPD_DFLT_TX_MSECS:
->  		val |= ADIN1300_NRG_PD_TX_EN;
-> -		fallthrough;
-> +		break;
->  	case ETHTOOL_PHY_EDPD_NO_TX:
->  		break;
->  	default:
-> diff --git a/drivers/net/usb/pegasus.c b/drivers/net/usb/pegasus.c
-> index e92cb51a2c77..9adb26ee4a86 100644
-> --- a/drivers/net/usb/pegasus.c
-> +++ b/drivers/net/usb/pegasus.c
-> @@ -627,10 +627,10 @@ static void write_bulk_callback(struct urb *urb)
->  	case -ESHUTDOWN:
->  		netif_dbg(pegasus, ifdown, net, "tx unlink, %d\n", status);
->  		return;
-> +	case 0:
-> +		break;
->  	default:
->  		netif_info(pegasus, tx_err, net, "TX status %d\n", status);
-> -		fallthrough;
-> -	case 0:
->  		break;
->  	}
->  
-> diff --git a/drivers/net/usb/usbnet.c b/drivers/net/usb/usbnet.c
-> index 2b2a841cd938..56edd8c9819e 100644
-> --- a/drivers/net/usb/usbnet.c
-> +++ b/drivers/net/usb/usbnet.c
-> @@ -110,7 +110,7 @@ int usbnet_get_endpoints(struct usbnet *dev, struct usb_interface *intf)
->  				if (!usb_endpoint_dir_in(&e->desc))
->  					continue;
->  				intr = 1;
-> -				fallthrough;
-> +				break;
->  			case USB_ENDPOINT_XFER_BULK:
->  				break;
->  			default:
-> diff --git a/drivers/net/wireless/ath/ath5k/eeprom.c b/drivers/net/wireless/ath/ath5k/eeprom.c
-> index 1fbc2c19848f..f5ea317f2a67 100644
-> --- a/drivers/net/wireless/ath/ath5k/eeprom.c
-> +++ b/drivers/net/wireless/ath/ath5k/eeprom.c
-> @@ -1178,7 +1178,7 @@ ath5k_cal_data_offset_2413(struct ath5k_eeprom_info *ee, int mode)
->  			offset += ath5k_pdgains_size_2413(ee,
->  					AR5K_EEPROM_MODE_11A) +
->  					AR5K_EEPROM_N_5GHZ_CHAN / 2;
-> -		fallthrough;
-> +		break;
->  	case AR5K_EEPROM_MODE_11A:
->  		break;
->  	default:
-> diff --git a/drivers/net/wireless/mediatek/mt7601u/dma.c b/drivers/net/wireless/mediatek/mt7601u/dma.c
-> index 09f931d4598c..778be26d329f 100644
-> --- a/drivers/net/wireless/mediatek/mt7601u/dma.c
-> +++ b/drivers/net/wireless/mediatek/mt7601u/dma.c
-> @@ -193,11 +193,11 @@ static void mt7601u_complete_rx(struct urb *urb)
->  	case -ESHUTDOWN:
->  	case -ENOENT:
->  		return;
-> +	case 0:
-> +		break;
->  	default:
->  		dev_err_ratelimited(dev->dev, "rx urb failed: %d\n",
->  				    urb->status);
-> -		fallthrough;
-> -	case 0:
->  		break;
->  	}
->  
-> @@ -238,11 +238,11 @@ static void mt7601u_complete_tx(struct urb *urb)
->  	case -ESHUTDOWN:
->  	case -ENOENT:
->  		return;
-> +	case 0:
-> +		break;
->  	default:
->  		dev_err_ratelimited(dev->dev, "tx urb failed: %d\n",
->  				    urb->status);
-> -		fallthrough;
-> -	case 0:
->  		break;
->  	}
->  
-> diff --git a/drivers/nvme/host/core.c b/drivers/nvme/host/core.c
-> index ea1fa41fbba8..aea9f978861e 100644
-> --- a/drivers/nvme/host/core.c
-> +++ b/drivers/nvme/host/core.c
-> @@ -365,7 +365,7 @@ bool nvme_change_ctrl_state(struct nvme_ctrl *ctrl,
->  		case NVME_CTRL_RESETTING:
->  		case NVME_CTRL_CONNECTING:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -375,7 +375,7 @@ bool nvme_change_ctrl_state(struct nvme_ctrl *ctrl,
->  		case NVME_CTRL_NEW:
->  		case NVME_CTRL_LIVE:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -385,7 +385,7 @@ bool nvme_change_ctrl_state(struct nvme_ctrl *ctrl,
->  		case NVME_CTRL_NEW:
->  		case NVME_CTRL_RESETTING:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -396,7 +396,7 @@ bool nvme_change_ctrl_state(struct nvme_ctrl *ctrl,
->  		case NVME_CTRL_RESETTING:
->  		case NVME_CTRL_CONNECTING:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -406,7 +406,7 @@ bool nvme_change_ctrl_state(struct nvme_ctrl *ctrl,
->  		case NVME_CTRL_DELETING:
->  		case NVME_CTRL_DEAD:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> @@ -415,7 +415,7 @@ bool nvme_change_ctrl_state(struct nvme_ctrl *ctrl,
->  		switch (old_state) {
->  		case NVME_CTRL_DELETING:
->  			changed = true;
-> -			fallthrough;
-> +			break;
->  		default:
->  			break;
->  		}
-> diff --git a/drivers/pcmcia/db1xxx_ss.c b/drivers/pcmcia/db1xxx_ss.c
-> index a7c7c7cd2326..d5eec00aaf97 100644
-> --- a/drivers/pcmcia/db1xxx_ss.c
-> +++ b/drivers/pcmcia/db1xxx_ss.c
-> @@ -258,7 +258,7 @@ static int db1x_pcmcia_configure(struct pcmcia_socket *skt,
->  		fallthrough;
->  	case 33:
->  		++v;
-> -		fallthrough;
-> +		break;
->  	case 0:
->  		break;
->  	default:
-> @@ -273,7 +273,7 @@ static int db1x_pcmcia_configure(struct pcmcia_socket *skt,
->  	case 33:
->  	case 50:
->  		++p;
-> -		fallthrough;
-> +		break;
->  	case 0:
->  		break;
->  	default:
-> diff --git a/drivers/power/supply/abx500_chargalg.c b/drivers/power/supply/abx500_chargalg.c
-> index 175c4f3d7955..b847a1570ab0 100644
-> --- a/drivers/power/supply/abx500_chargalg.c
-> +++ b/drivers/power/supply/abx500_chargalg.c
-> @@ -1419,7 +1419,7 @@ static void abx500_chargalg_algorithm(struct abx500_chargalg *di)
->  		abx500_chargalg_stop_charging(di);
->  		di->charge_status = POWER_SUPPLY_STATUS_DISCHARGING;
->  		abx500_chargalg_state_to(di, STATE_HANDHELD);
-> -		fallthrough;
-> +		break;
->  
->  	case STATE_HANDHELD:
->  		break;
-> diff --git a/drivers/power/supply/charger-manager.c b/drivers/power/supply/charger-manager.c
-> index 07992821e252..ac7871a7684b 100644
-> --- a/drivers/power/supply/charger-manager.c
-> +++ b/drivers/power/supply/charger-manager.c
-> @@ -585,7 +585,7 @@ static int cm_get_target_status(struct charger_manager *cm)
->  	case POWER_SUPPLY_STATUS_FULL:
->  		if (is_full_charged(cm))
->  			return POWER_SUPPLY_STATUS_FULL;
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/rtc/rtc-pcf85063.c b/drivers/rtc/rtc-pcf85063.c
-> index f8b99cb72959..65bb87cc8380 100644
-> --- a/drivers/rtc/rtc-pcf85063.c
-> +++ b/drivers/rtc/rtc-pcf85063.c
-> @@ -353,7 +353,7 @@ static int pcf85063_load_capacitance(struct pcf85063 *pcf85063,
->  	default:
->  		dev_warn(&pcf85063->rtc->dev, "Unknown quartz-load-femtofarads value: %d. Assuming 7000",
->  			 load);
-> -		fallthrough;
-> +		break;
->  	case 7000:
->  		break;
->  	case 12500:
-> diff --git a/drivers/s390/scsi/zfcp_fsf.c b/drivers/s390/scsi/zfcp_fsf.c
-> index 140186fe1d1e..2741a07df692 100644
-> --- a/drivers/s390/scsi/zfcp_fsf.c
-> +++ b/drivers/s390/scsi/zfcp_fsf.c
-> @@ -2105,7 +2105,7 @@ static void zfcp_fsf_open_lun_handler(struct zfcp_fsf_req *req)
->  
->  	case FSF_PORT_HANDLE_NOT_VALID:
->  		zfcp_erp_adapter_reopen(adapter, 0, "fsouh_1");
-> -		fallthrough;
-> +		break;
->  	case FSF_LUN_ALREADY_OPEN:
->  		break;
->  	case FSF_PORT_BOXED:
-> diff --git a/drivers/scsi/aic7xxx/aic79xx_core.c b/drivers/scsi/aic7xxx/aic79xx_core.c
-> index 1c617c0d5899..e8fa68d96cde 100644
-> --- a/drivers/scsi/aic7xxx/aic79xx_core.c
-> +++ b/drivers/scsi/aic7xxx/aic79xx_core.c
-> @@ -8175,7 +8175,7 @@ ahd_search_qinfifo(struct ahd_softc *ahd, int target, char channel,
->  				if ((scb->flags & SCB_ACTIVE) == 0)
->  					printk("Inactive SCB in qinfifo\n");
->  				ahd_done_with_status(ahd, scb, status);
-> -				fallthrough;
-> +				break;
->  			case SEARCH_REMOVE:
->  				break;
->  			case SEARCH_PRINT:
-> @@ -8295,7 +8295,7 @@ ahd_search_qinfifo(struct ahd_softc *ahd, int target, char channel,
->  			}
->  			case SEARCH_PRINT:
->  				printk(" 0x%x", SCB_GET_TAG(scb));
-> -				fallthrough;
-> +				break;
->  			case SEARCH_COUNT:
->  				break;
->  			}
-> diff --git a/drivers/scsi/aic94xx/aic94xx_tmf.c b/drivers/scsi/aic94xx/aic94xx_tmf.c
-> index 0eb6e206a2b4..fdd0f34fcb17 100644
-> --- a/drivers/scsi/aic94xx/aic94xx_tmf.c
-> +++ b/drivers/scsi/aic94xx/aic94xx_tmf.c
-> @@ -490,7 +490,7 @@ int asd_abort_task(struct sas_task *task)
->  		switch (tcs.dl_opcode) {
->  		default:
->  			res = asd_clear_nexus(task);
-> -			fallthrough;
-> +			break;
->  		case TC_NO_ERROR:
->  			break;
->  			/* The task hasn't been sent to the device xor
-> diff --git a/drivers/scsi/lpfc/lpfc_sli.c b/drivers/scsi/lpfc/lpfc_sli.c
-> index e158cd77d387..253a4a41ebc9 100644
-> --- a/drivers/scsi/lpfc/lpfc_sli.c
-> +++ b/drivers/scsi/lpfc/lpfc_sli.c
-> @@ -9339,7 +9339,7 @@ __lpfc_sli_issue_iocb_s3(struct lpfc_hba *phba, uint32_t ring_number,
->  			 */
->  			if (piocb->iocb_cmpl)
->  				piocb->iocb_cmpl = NULL;
-> -			fallthrough;
-> +			break;
->  		case CMD_CREATE_XRI_CR:
->  		case CMD_CLOSE_XRI_CN:
->  		case CMD_CLOSE_XRI_CX:
-> diff --git a/drivers/scsi/smartpqi/smartpqi_init.c b/drivers/scsi/smartpqi/smartpqi_init.c
-> index 9d0229656681..f2be6feea226 100644
-> --- a/drivers/scsi/smartpqi/smartpqi_init.c
-> +++ b/drivers/scsi/smartpqi/smartpqi_init.c
-> @@ -2937,7 +2937,7 @@ static int pqi_process_io_intr(struct pqi_ctrl_info *ctrl_info, struct pqi_queue
->  		case PQI_RESPONSE_IU_AIO_PATH_IO_SUCCESS:
->  			if (io_request->scmd)
->  				io_request->scmd->result = 0;
-> -			fallthrough;
-> +			break;
->  		case PQI_RESPONSE_IU_GENERAL_MANAGEMENT:
->  			break;
->  		case PQI_RESPONSE_IU_VENDOR_GENERAL:
-> diff --git a/drivers/scsi/sr.c b/drivers/scsi/sr.c
-> index 3b3a53c6a0de..1216396284f9 100644
-> --- a/drivers/scsi/sr.c
-> +++ b/drivers/scsi/sr.c
-> @@ -880,7 +880,7 @@ static void get_sectorsize(struct scsi_cd *cd)
->  			fallthrough;
->  		case 2048:
->  			cd->capacity *= 4;
-> -			fallthrough;
-> +			break;
->  		case 512:
->  			break;
->  		default:
-> diff --git a/drivers/tty/serial/sunsu.c b/drivers/tty/serial/sunsu.c
-> index 319e5ceb6130..de3fbdcfa7f8 100644
-> --- a/drivers/tty/serial/sunsu.c
-> +++ b/drivers/tty/serial/sunsu.c
-> @@ -514,7 +514,7 @@ static void receive_kbd_ms_chars(struct uart_sunsu_port *up, int is_break)
->  			switch (ret) {
->  			case 2:
->  				sunsu_change_mouse_baud(up);
-> -				fallthrough;
-> +				break;
->  			case 1:
->  				break;
->  
-> diff --git a/drivers/tty/serial/sunzilog.c b/drivers/tty/serial/sunzilog.c
-> index 001e19d7c17d..a1f5c73be291 100644
-> --- a/drivers/tty/serial/sunzilog.c
-> +++ b/drivers/tty/serial/sunzilog.c
-> @@ -306,7 +306,7 @@ static void sunzilog_kbdms_receive_chars(struct uart_sunzilog_port *up,
->  		switch (ret) {
->  		case 2:
->  			sunzilog_change_mouse_baud(up);
-> -			fallthrough;
-> +			break;
->  		case 1:
->  			break;
->  
-> diff --git a/drivers/tty/vt/vt_ioctl.c b/drivers/tty/vt/vt_ioctl.c
-> index 2ea76a09e07f..c7ca691f1d2b 100644
-> --- a/drivers/tty/vt/vt_ioctl.c
-> +++ b/drivers/tty/vt/vt_ioctl.c
-> @@ -255,7 +255,7 @@ static int vt_kdsetmode(struct vc_data *vc, unsigned long mode)
->  	case KD_TEXT0:
->  	case KD_TEXT1:
->  		mode = KD_TEXT;
-> -		fallthrough;
-> +		break;
->  	case KD_TEXT:
->  		break;
->  	default:
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index 2eb34c8b4065..85f04dca7ae9 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -646,7 +646,7 @@ static int dwc3_phy_setup(struct dwc3 *dwc)
->  			if (!(reg & DWC3_GUSB2PHYCFG_ULPI_UTMI))
->  				break;
->  		}
-> -		fallthrough;
-> +		break;
->  	case DWC3_GHWPARAMS3_HSPHY_IFC_ULPI:
->  	default:
->  		break;
-> diff --git a/drivers/usb/gadget/legacy/inode.c b/drivers/usb/gadget/legacy/inode.c
-> index 1b430b36d0a6..261ec2dd52c6 100644
-> --- a/drivers/usb/gadget/legacy/inode.c
-> +++ b/drivers/usb/gadget/legacy/inode.c
-> @@ -1717,7 +1717,7 @@ gadgetfs_suspend (struct usb_gadget *gadget)
->  	case STATE_DEV_UNCONNECTED:
->  		next_event (dev, GADGETFS_SUSPEND);
->  		ep0_readable (dev);
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/usb/gadget/udc/pxa25x_udc.c b/drivers/usb/gadget/udc/pxa25x_udc.c
-> index 10324a7334fe..a5a754ba6bc9 100644
-> --- a/drivers/usb/gadget/udc/pxa25x_udc.c
-> +++ b/drivers/usb/gadget/udc/pxa25x_udc.c
-> @@ -2340,12 +2340,12 @@ static int pxa25x_udc_probe(struct platform_device *pdev)
->  	case PXA250_A0:
->  	case PXA250_A1:
->  		/* A0/A1 "not released"; ep 13, 15 unusable */
-> -		fallthrough;
-> +		break;
->  	case PXA250_B2: case PXA210_B2:
->  	case PXA250_B1: case PXA210_B1:
->  	case PXA250_B0: case PXA210_B0:
->  		/* OUT-DMA is broken ... */
-> -		fallthrough;
-> +		break;
->  	case PXA250_C0: case PXA210_C0:
->  		break;
->  #elif	defined(CONFIG_ARCH_IXP4XX)
-> diff --git a/drivers/usb/host/ohci-hcd.c b/drivers/usb/host/ohci-hcd.c
-> index dd37e77dae00..9ea59b99535e 100644
-> --- a/drivers/usb/host/ohci-hcd.c
-> +++ b/drivers/usb/host/ohci-hcd.c
-> @@ -1051,7 +1051,7 @@ int ohci_restart(struct ohci_hcd *ohci)
->  			ed->ed_next = ohci->ed_rm_list;
->  			ed->ed_prev = NULL;
->  			ohci->ed_rm_list = ed;
-> -			fallthrough;
-> +			break;
->  		case ED_UNLINK:
->  			break;
->  		default:
-> diff --git a/drivers/usb/isp1760/isp1760-hcd.c b/drivers/usb/isp1760/isp1760-hcd.c
-> index dd74ab7a2f9c..30c168bccf70 100644
-> --- a/drivers/usb/isp1760/isp1760-hcd.c
-> +++ b/drivers/usb/isp1760/isp1760-hcd.c
-> @@ -792,7 +792,7 @@ static void collect_qtds(struct usb_hcd *hcd, struct isp1760_qh *qh,
->  				case OUT_PID:
->  					qtd->urb->actual_length +=
->  							qtd->actual_length;
-> -					fallthrough;
-> +					break;
->  				case SETUP_PID:
->  					break;
->  				}
-> diff --git a/drivers/usb/musb/cppi_dma.c b/drivers/usb/musb/cppi_dma.c
-> index edb5b63d7063..a066aec2b4c1 100644
-> --- a/drivers/usb/musb/cppi_dma.c
-> +++ b/drivers/usb/musb/cppi_dma.c
-> @@ -975,7 +975,7 @@ static int cppi_channel_program(struct dma_channel *ch,
->  		musb_dbg(musb, "%cX DMA%d not allocated!",
->  				cppi_ch->transmit ? 'T' : 'R',
->  				cppi_ch->index);
-> -		fallthrough;
-> +		break;
->  	case MUSB_DMA_STATUS_FREE:
->  		break;
->  	}
-> diff --git a/drivers/usb/phy/phy-fsl-usb.c b/drivers/usb/phy/phy-fsl-usb.c
-> index f34c9437a182..d5c3b548aa51 100644
-> --- a/drivers/usb/phy/phy-fsl-usb.c
-> +++ b/drivers/usb/phy/phy-fsl-usb.c
-> @@ -914,7 +914,7 @@ int usb_otg_start(struct platform_device *pdev)
->  		fallthrough;
->  	case FSL_USB2_PHY_UTMI:
->  		temp |= PORTSC_PTS_UTMI;
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/video/fbdev/stifb.c b/drivers/video/fbdev/stifb.c
-> index 265865610edc..aae5ca0b89c9 100644
-> --- a/drivers/video/fbdev/stifb.c
-> +++ b/drivers/video/fbdev/stifb.c
-> @@ -1157,7 +1157,7 @@ static int __init stifb_init_fb(struct sti_struct *sti, int bpp_pref)
->  			dev_name);
->  		   goto out_err0;
->  		}
-> -		fallthrough;
-> +		break;
->  	case S9000_ID_ARTIST:
->  	case S9000_ID_HCRX:
->  	case S9000_ID_TIMBER:
-> diff --git a/fs/afs/yfsclient.c b/fs/afs/yfsclient.c
-> index 3b1239b7e90d..6be481a98097 100644
-> --- a/fs/afs/yfsclient.c
-> +++ b/fs/afs/yfsclient.c
-> @@ -461,7 +461,7 @@ static int yfs_deliver_fs_fetch_data64(struct afs_call *call)
->  		req->file_size = vp->scb.status.size;
->  
->  		call->unmarshall++;
-> -		fallthrough;
-> +		break;
->  
->  	case 5:
->  		break;
-> @@ -1363,7 +1363,7 @@ static int yfs_deliver_fs_get_volume_status(struct afs_call *call)
->  		_debug("motd '%s'", p);
->  
->  		call->unmarshall++;
-> -		fallthrough;
-> +		break;
->  
->  	case 8:
->  		break;
-> @@ -1727,7 +1727,7 @@ static int yfs_deliver_fs_inline_bulk_status(struct afs_call *call)
->  		xdr_decode_YFSVolSync(&bp, &op->volsync);
->  
->  		call->unmarshall++;
-> -		fallthrough;
-> +		break;
->  
->  	case 6:
->  		break;
-> @@ -1886,7 +1886,7 @@ static int yfs_deliver_fs_fetch_opaque_acl(struct afs_call *call)
->  		xdr_decode_YFSVolSync(&bp, &op->volsync);
->  
->  		call->unmarshall++;
-> -		fallthrough;
-> +		break;
->  
->  	case 6:
->  		break;
-> diff --git a/fs/ceph/dir.c b/fs/ceph/dir.c
-> index d72e4a12bb69..67c3005fb88d 100644
-> --- a/fs/ceph/dir.c
-> +++ b/fs/ceph/dir.c
-> @@ -1740,7 +1740,7 @@ static int ceph_d_revalidate(struct dentry *dentry, unsigned int flags)
->  			case -ENOENT:
->  				if (d_really_is_negative(dentry))
->  					valid = 1;
-> -				fallthrough;
-> +				break;
->  			default:
->  				break;
->  			}
-> diff --git a/fs/nfs/nfs4proc.c b/fs/nfs/nfs4proc.c
-> index 6e95c85fe395..4bf60dcf13e1 100644
-> --- a/fs/nfs/nfs4proc.c
-> +++ b/fs/nfs/nfs4proc.c
-> @@ -9444,7 +9444,7 @@ static void nfs4_layoutreturn_done(struct rpc_task *task, void *calldata)
->  		fallthrough;
->  	default:
->  		task->tk_status = 0;
-> -		fallthrough;
-> +		break;
->  	case 0:
->  		break;
->  	case -NFS4ERR_DELAY:
-> diff --git a/fs/nfs_common/nfsacl.c b/fs/nfs_common/nfsacl.c
-> index d056ad2fdefd..009c1e434aa5 100644
-> --- a/fs/nfs_common/nfsacl.c
-> +++ b/fs/nfs_common/nfsacl.c
-> @@ -237,7 +237,7 @@ posix_acl_from_nfsacl(struct posix_acl *acl)
->  				break;
->  			case ACL_MASK:
->  				mask = pa;
-> -				fallthrough;
-> +				break;
->  			case ACL_OTHER:
->  				break;
->  		}
-> diff --git a/kernel/bpf/verifier.c b/kernel/bpf/verifier.c
-> index 86fdebb5ffd8..c88c7a7d77fb 100644
-> --- a/kernel/bpf/verifier.c
-> +++ b/kernel/bpf/verifier.c
-> @@ -5334,7 +5334,7 @@ static int adjust_ptr_min_max_vals(struct bpf_verifier_env *env,
->  				off_reg == dst_reg ? dst : src);
->  			return -EACCES;
->  		}
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/kernel/sched/topology.c b/kernel/sched/topology.c
-> index da3cd60e4b78..c6c8699f466c 100644
-> --- a/kernel/sched/topology.c
-> +++ b/kernel/sched/topology.c
-> @@ -1233,7 +1233,7 @@ static void __free_domain_allocs(struct s_data *d, enum s_alloc what,
->  		fallthrough;
->  	case sa_sd_storage:
->  		__sdt_free(cpu_map);
-> -		fallthrough;
-> +		break;
->  	case sa_none:
->  		break;
->  	}
-> diff --git a/kernel/trace/trace_events_filter.c b/kernel/trace/trace_events_filter.c
-> index 78a678eeb140..52df27e45843 100644
-> --- a/kernel/trace/trace_events_filter.c
-> +++ b/kernel/trace/trace_events_filter.c
-> @@ -1273,7 +1273,7 @@ static int parse_pred(const char *str, void *data,
->  		switch (op) {
->  		case OP_NE:
->  			pred->not = 1;
-> -			fallthrough;
-> +			break;
->  		case OP_GLOB:
->  		case OP_EQ:
->  			break;
-> diff --git a/net/dccp/output.c b/net/dccp/output.c
-> index 50e6d5699bb2..5a4dbd7cee32 100644
-> --- a/net/dccp/output.c
-> +++ b/net/dccp/output.c
-> @@ -62,7 +62,7 @@ static int dccp_transmit_skb(struct sock *sk, struct sk_buff *skb)
->  		switch (dcb->dccpd_type) {
->  		case DCCP_PKT_DATA:
->  			set_ack = 0;
-> -			fallthrough;
-> +			break;
->  		case DCCP_PKT_DATAACK:
->  		case DCCP_PKT_RESET:
->  			break;
-> diff --git a/net/ipv4/ip_output.c b/net/ipv4/ip_output.c
-> index 825e381e9909..3cf38c0bedf3 100644
-> --- a/net/ipv4/ip_output.c
-> +++ b/net/ipv4/ip_output.c
-> @@ -333,7 +333,7 @@ static int ip_mc_finish_output(struct net *net, struct sock *sk,
->  	switch (ret) {
->  	case NET_XMIT_CN:
->  		do_cn = true;
-> -		fallthrough;
-> +		break;
->  	case NET_XMIT_SUCCESS:
->  		break;
->  	default:
-> diff --git a/net/netfilter/nf_tables_api.c b/net/netfilter/nf_tables_api.c
-> index 97fb6f776114..4844781699d5 100644
-> --- a/net/netfilter/nf_tables_api.c
-> +++ b/net/netfilter/nf_tables_api.c
-> @@ -8525,7 +8525,7 @@ static int nft_verdict_init(const struct nft_ctx *ctx, struct nft_data *data,
->  		default:
->  			return -EINVAL;
->  		}
-> -		fallthrough;
-> +		break;
->  	case NFT_CONTINUE:
->  	case NFT_BREAK:
->  	case NFT_RETURN:
-> diff --git a/net/rxrpc/input.c b/net/rxrpc/input.c
-> index 667c44aa5a63..b654b8c65d10 100644
-> --- a/net/rxrpc/input.c
-> +++ b/net/rxrpc/input.c
-> @@ -1101,7 +1101,7 @@ static void rxrpc_input_implicit_end_call(struct rxrpc_sock *rx,
->  	switch (READ_ONCE(call->state)) {
->  	case RXRPC_CALL_SERVER_AWAIT_ACK:
->  		rxrpc_call_completed(call);
-> -		fallthrough;
-> +		break;
->  	case RXRPC_CALL_COMPLETE:
->  		break;
->  	default:
-> @@ -1265,7 +1265,7 @@ int rxrpc_input_packet(struct sock *udp_sk, struct sk_buff *skb)
->  	case RXRPC_PACKET_TYPE_ACKALL:
->  		if (sp->hdr.callNumber == 0)
->  			goto bad_message;
-> -		fallthrough;
-> +		break;
->  	case RXRPC_PACKET_TYPE_ABORT:
->  		break;
->  
-> diff --git a/net/sctp/outqueue.c b/net/sctp/outqueue.c
-> index 3fd06a27105d..f8ce1b3925a9 100644
-> --- a/net/sctp/outqueue.c
-> +++ b/net/sctp/outqueue.c
-> @@ -1030,7 +1030,7 @@ static void sctp_outq_flush_data(struct sctp_flush_ctx *ctx,
->  		if (!ctx->packet || !ctx->packet->has_cookie_echo)
->  			return;
->  
-> -		fallthrough;
-> +		break;
->  	case SCTP_STATE_ESTABLISHED:
->  	case SCTP_STATE_SHUTDOWN_PENDING:
->  	case SCTP_STATE_SHUTDOWN_RECEIVED:
-> diff --git a/sound/soc/codecs/ak4613.c b/sound/soc/codecs/ak4613.c
-> index 8d663e8d64c4..b35193eb9057 100644
-> --- a/sound/soc/codecs/ak4613.c
-> +++ b/sound/soc/codecs/ak4613.c
-> @@ -457,7 +457,7 @@ static int ak4613_set_bias_level(struct snd_soc_component *component,
->  		fallthrough;
->  	case SND_SOC_BIAS_STANDBY:
->  		mgmt1 |= PMVR;
-> -		fallthrough;
-> +		break;
->  	case SND_SOC_BIAS_OFF:
->  	default:
->  		break;
-> diff --git a/sound/soc/codecs/jz4770.c b/sound/soc/codecs/jz4770.c
-> index 298689a07168..734cf7809b7e 100644
-> --- a/sound/soc/codecs/jz4770.c
-> +++ b/sound/soc/codecs/jz4770.c
-> @@ -202,7 +202,7 @@ static int jz4770_codec_set_bias_level(struct snd_soc_component *codec,
->  				   REG_CR_VIC_SB_SLEEP, REG_CR_VIC_SB_SLEEP);
->  		regmap_update_bits(regmap, JZ4770_CODEC_REG_CR_VIC,
->  				   REG_CR_VIC_SB, REG_CR_VIC_SB);
-> -		fallthrough;
-> +		break;
->  	default:
->  		break;
->  	}
-> 
-> 
+Build changes
+-------------
+
+  * Linux: CI_DRM_8992 -> Patchwork_18461
+
+  CI-20190529: 20190529
+  CI_DRM_8992: 112fd8dcacfde4bb22054010843e9257bad73ec4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5780: 9c5dfeb0338d7f98ad998663a595eab71ea887f3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18461: 3cb75f66028fe82300a9bb80b560a019d6197530 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/index.html
+
+--===============5654692730857298526==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id=3D"css-table-select" type=3D"text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/tgl: Make Wa_1606700617/22010271021=
+ permanent</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/81502/">https://patchwork.freedesktop.org/series/81502/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_18461/index.html">https://intel-gfx-ci.01.org/tree/d=
+rm-tip/Patchwork_18461/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_8992_full -&gt; Patchwork_18461_fu=
+ll</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_18461_full absolutely need=
+ to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br=
+ />
+  introduced in Patchwork_18461_full, please notify your bug team to allow =
+them<br />
+  to document this new failure mode, which will reduce false positives in C=
+I.</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_=
+18461_full:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_exec_reloc@basic-spin@vcs1:<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-iclb4/igt@gem_exec_reloc@basic-spin@vcs1.html">PASS</a> =
+-&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/s=
+hard-iclb2/igt@gem_exec_reloc@basic-spin@vcs1.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18461_full that come from known =
+issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_ctx_persistence@legacy-engines-mixed-process@blt:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl9/igt@gem_ctx_persistence@legacy-engines-mixed-proces=
+s@blt.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
+tip/Patchwork_18461/shard-skl1/igt@gem_ctx_persistence@legacy-engines-mixed=
+-process@blt.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/=
+intel/issues/2374">i915#2374</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-cpu-wc-active:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-tglb5/igt@gem_exec_reloc@basic-cpu-wc-active.html">PASS<=
+/a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_184=
+61/shard-tglb5/igt@gem_exec_reloc@basic-cpu-wc-active.html">INCOMPLETE</a> =
+(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i915#2439=
+</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-gtt-cpu-active:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-glk9/igt@gem_exec_reloc@basic-gtt-cpu-active.html">PASS<=
+/a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_184=
+61/shard-glk6/igt@gem_exec_reloc@basic-gtt-cpu-active.html">INCOMPLETE</a> =
+(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i915#2439=
+</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-gtt-read-active:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-apl7/igt@gem_exec_reloc@basic-gtt-read-active.html">PASS=
+</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18=
+461/shard-apl6/igt@gem_exec_reloc@basic-gtt-read-active.html">INCOMPLETE</a=
+> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#16=
+35</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i=
+915#2439</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-spin@vcs0:</p>
+<ul>
+<li>
+<p>shard-snb:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+CI_DRM_8992/shard-snb6/igt@gem_exec_reloc@basic-spin@vcs0.html">PASS</a> -&=
+gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/sha=
+rd-snb6/igt@gem_exec_reloc@basic-spin@vcs0.html">INCOMPLETE</a> (<a href=3D=
+"https://gitlab.freedesktop.org/drm/intel/issues/2439">i915#2439</a> / <a h=
+ref=3D"https://gitlab.freedesktop.org/drm/intel/issues/82">i915#82</a>) +3 =
+similar issues</p>
+</li>
+<li>
+<p>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+CI_DRM_8992/shard-iclb4/igt@gem_exec_reloc@basic-spin@vcs0.html">PASS</a> -=
+&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/sh=
+ard-iclb2/igt@gem_exec_reloc@basic-spin@vcs0.html">DMESG-FAIL</a> (<a href=
+=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i915#2439</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-wc-read-active:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-kbl7/igt@gem_exec_reloc@basic-wc-read-active.html">PASS<=
+/a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_184=
+61/shard-kbl3/igt@gem_exec_reloc@basic-wc-read-active.html">INCOMPLETE</a> =
+(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i915#2439=
+</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-write-gtt-active:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-iclb3/igt@gem_exec_reloc@basic-write-gtt-active.html">PA=
+SS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
+18461/shard-iclb2/igt@gem_exec_reloc@basic-write-gtt-active.html">INCOMPLET=
+E</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i91=
+5#2439</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_whisper@basic-contexts-forked-all:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl4/igt@gem_exec_whisper@basic-contexts-forked-all.html=
+">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
+ork_18461/shard-skl3/igt@gem_exec_whisper@basic-contexts-forked-all.html">I=
+NCOMPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2=
+439">i915#2439</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@mock@requests:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-apl6/igt@i915_selftest@mock@requests.html">PASS</a> -&gt=
+; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard=
+-apl4/igt@i915_selftest@mock@requests.html">INCOMPLETE</a> (<a href=3D"http=
+s://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href=
+=3D"https://gitlab.freedesktop.org/drm/intel/issues/2278">i915#2278</a>)</l=
+i>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@x-tiled-64bpp-rotate-180:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl8/igt@kms_big_fb@x-tiled-64bpp-rotate-180.html">PASS<=
+/a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_184=
+61/shard-skl5/igt@kms_big_fb@x-tiled-64bpp-rotate-180.html">DMESG-WARN</a> =
+(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982=
+</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-b-cursor-256x256-random:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-glk3/igt@kms_cursor_crc@pipe-b-cursor-256x256-random.htm=
+l">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patch=
+work_18461/shard-glk6/igt@kms_cursor_crc@pipe-b-cursor-256x256-random.html"=
+>FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/54">i=
+915#54</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl8/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html">P=
+ASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
+_18461/shard-skl10/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html">FAIL</=
+a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2=
+346</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@short-flip-before-cursor-atomic-transitions:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-glk8/igt@kms_cursor_legacy@short-flip-before-cursor-atom=
+ic-transitions.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_18461/shard-glk2/igt@kms_cursor_legacy@short-flip-be=
+fore-cursor-atomic-transitions.html">DMESG-WARN</a> (<a href=3D"https://git=
+lab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a1:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-glk5/igt@kms_flip@flip-vs-expired-vblank-interruptible@c=
+-hdmi-a1.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/d=
+rm-tip/Patchwork_18461/shard-glk7/igt@kms_flip@flip-vs-expired-vblank-inter=
+ruptible@c-hdmi-a1.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.or=
+g/drm/intel/issues/79">i915#79</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a1:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-glk9/igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a1.html"=
+>PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
+rk_18461/shard-glk6/igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a1.html">FAI=
+L</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2122">i91=
+5#2122</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip_tiling@flip-to-x-tiled:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl7/igt@kms_flip_tiling@flip-to-x-tiled.html">PASS</a> =
+-&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/s=
+hard-skl6/igt@kms_flip_tiling@flip-to-x-tiled.html">FAIL</a> (<a href=3D"ht=
+tps://gitlab.freedesktop.org/drm/intel/issues/167">i915#167</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-indfb-draw-mmap-wc:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-tglb1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-i=
+ndfb-draw-mmap-wc.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.o=
+rg/tree/drm-tip/Patchwork_18461/shard-tglb6/igt@kms_frontbuffer_tracking@fb=
+c-1p-primscrn-pri-indfb-draw-mmap-wc.html">DMESG-WARN</a> (<a href=3D"https=
+://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar =
+issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-kbl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html=
+">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
+ork_18461/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">D=
+MESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1=
+80">i915#180</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-mi=
+n.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+Patchwork_18461/shard-skl4/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-=
+min.html">FAIL</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=
+=3D108145">fdo#108145</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i=
+ntel/issues/265">i915#265</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr2_sprite_mmap_cpu:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_cpu.html">PASS</a> -&=
+gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/sha=
+rd-iclb8/igt@kms_psr@psr2_sprite_mmap_cpu.html">SKIP</a> (<a href=3D"https:=
+//bugs.freedesktop.org/show_bug.cgi?id=3D109441">fdo#109441</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-c-query-busy:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-apl1/igt@kms_vblank@pipe-c-query-busy.html">PASS</a> -&g=
+t; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shar=
+d-apl1/igt@kms_vblank@pipe-c-query-busy.html">DMESG-WARN</a> (<a href=3D"ht=
+tps://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href=
+=3D"https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1=
+ similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_reloc@basic-cpu-gtt-active:</p>
+<ul>
+<li>shard-snb:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-snb2/igt@gem_exec_reloc@basic-cpu-gtt-active.html">INCOM=
+PLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439"=
+>i915#2439</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues=
+/82">i915#82</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/Patchwork_18461/shard-snb4/igt@gem_exec_reloc@basic-cpu-gtt-active.html">P=
+ASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-gtt-cpu-active:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-iclb1/igt@gem_exec_reloc@basic-gtt-cpu-active.html">INCO=
+MPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439=
+">i915#2439</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+Patchwork_18461/shard-iclb3/igt@gem_exec_reloc@basic-gtt-cpu-active.html">P=
+ASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-write-gtt-active:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-kbl1/igt@gem_exec_reloc@basic-write-gtt-active.html">INC=
+OMPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/243=
+9">i915#2439</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/Patchwork_18461/shard-kbl7/igt@gem_exec_reloc@basic-write-gtt-active.html"=
+>PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-write-read-active:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-apl3/igt@gem_exec_reloc@basic-write-read-active.html">IN=
+COMPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/16=
+35">i915#1635</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/iss=
+ues/2439">i915#2439</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/=
+drm-tip/Patchwork_18461/shard-apl1/igt@gem_exec_reloc@basic-write-read-acti=
+ve.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_whisper@basic-forked-all:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl8/igt@gem_exec_whisper@basic-forked-all.html">INCOMPL=
+ETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i=
+915#2439</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
+chwork_18461/shard-skl10/igt@gem_exec_whisper@basic-forked-all.html">PASS</=
+a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_whisper@basic-normal:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-tglb8/igt@gem_exec_whisper@basic-normal.html">INCOMPLETE=
+</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i915=
+#2439</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
+ork_18461/shard-tglb8/igt@gem_exec_whisper@basic-normal.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_whisper@basic-queues-forked-all:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-glk4/igt@gem_exec_whisper@basic-queues-forked-all.html">=
+INCOMPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/=
+2439">i915#2439</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
+tip/Patchwork_18461/shard-glk9/igt@gem_exec_whisper@basic-queues-forked-all=
+.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_whisper@basic-queues-priority:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-glk6/igt@gem_exec_whisper@basic-queues-priority.html">DM=
+ESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/11=
+8">i915#118</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issue=
+s/95">i915#95</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
+p/Patchwork_18461/shard-glk5/igt@gem_exec_whisper@basic-queues-priority.htm=
+l">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@yf-tiled-32bpp-rotate-180:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl2/igt@kms_big_fb@yf-tiled-32bpp-rotate-180.html">DMES=
+G-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1982=
+">i915#1982</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+Patchwork_18461/shard-skl5/igt@kms_big_fb@yf-tiled-32bpp-rotate-180.html">P=
+ASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-c-cursor-suspend:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-kbl6/igt@kms_cursor_crc@pipe-c-cursor-suspend.html">DMES=
+G-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/180"=
+>i915#180</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_18461/shard-kbl1/igt@kms_cursor_crc@pipe-c-cursor-suspend.html">PAS=
+S</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_edge_walk@pipe-b-128x128-left-edge:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-glk6/igt@kms_cursor_edge_walk@pipe-b-128x128-left-edge.h=
+tml">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/is=
+sues/1982">i915#1982</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree=
+/drm-tip/Patchwork_18461/shard-glk5/igt@kms_cursor_edge_walk@pipe-b-128x128=
+-left-edge.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-legacy:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl7/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html">F=
+AIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2346">i=
+915#2346</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
+chwork_18461/shard-skl6/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html">P=
+ASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@plain-flip-fb-recreate@c-edp1:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl6/igt@kms_flip@plain-flip-fb-recreate@c-edp1.html">FA=
+IL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2122">i9=
+15#2122</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
+hwork_18461/shard-skl9/igt@kms_flip@plain-flip-fb-recreate@c-edp1.html">PAS=
+S</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-msflip-blt:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-tglb5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb=
+-msflip-blt.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org=
+/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href=3D"https://intel-gfx-c=
+i.01.org/tree/drm-tip/Patchwork_18461/shard-tglb5/igt@kms_frontbuffer_track=
+ing@fbc-1p-primscrn-indfb-msflip-blt.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@bpc-switch-suspend:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl8/igt@kms_hdr@bpc-switch-suspend.html">FAIL</a> (<a h=
+ref=3D"https://gitlab.freedesktop.org/drm/intel/issues/1188">i915#1188</a>)=
+ -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/=
+shard-skl5/igt@kms_hdr@bpc-switch-suspend.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl8/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html=
+">FAIL</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D10814=
+5">fdo#108145</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/iss=
+ues/265">i915#265</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
+m-tip/Patchwork_18461/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-coverage-=
+7efc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_8992/shard-skl10/igt@kms_flip@flip-vs-expired-vblank-interruptible@=
+a-edp1.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/=
+intel/issues/1982">i915#1982</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.=
+org/tree/drm-tip/Patchwork_18461/shard-skl4/igt@kms_flip@flip-vs-expired-vb=
+lank-interruptible@a-edp1.html">DMESG-FAIL</a> (<a href=3D"https://gitlab.f=
+reedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>shard-iclb:         (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
+p/CI_DRM_8992/shard-iclb1/igt@runner@aborted.html">FAIL</a>, <a href=3D"htt=
+ps://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb6/igt@runner@ab=
+orted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/C=
+I_DRM_8992/shard-iclb4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
+//intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb4/igt@runner@abort=
+ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_D=
+RM_8992/shard-iclb1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://i=
+ntel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb3/igt@runner@aborted.=
+html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_=
+8992/shard-iclb3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://inte=
+l-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb4/igt@runner@aborted.htm=
+l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_899=
+2/shard-iclb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-g=
+fx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb6/igt@runner@aborted.html">=
+FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/s=
+hard-iclb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb6/igt@runner@aborted.html">FAI=
+L</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shar=
+d-iclb4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
+01.org/tree/drm-tip/CI_DRM_8992/shard-iclb1/igt@runner@aborted.html">FAIL</=
+a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-i=
+clb3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.=
+org/tree/drm-tip/CI_DRM_8992/shard-iclb2/igt@runner@aborted.html">FAIL</a>,=
+ <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb=
+7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/CI_DRM_8992/shard-iclb2/igt@runner@aborted.html">FAIL</a>, <a=
+ href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb2/i=
+gt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tr=
+ee/drm-tip/CI_DRM_8992/shard-iclb5/igt@runner@aborted.html">FAIL</a>, <a hr=
+ef=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb6/igt@=
+runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/=
+drm-tip/CI_DRM_8992/shard-iclb8/igt@runner@aborted.html">FAIL</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8992/shard-iclb5/igt@ru=
+nner@aborted.html">FAIL</a>) (<a href=3D"https://gitlab.freedesktop.org/drm=
+/intel/issues/1684">i915#1684</a> / <a href=3D"https://gitlab.freedesktop.o=
+rg/drm/intel/issues/2439">i915#2439</a>) -&gt; (<a href=3D"https://intel-gf=
+x-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb8/igt@runner@aborted.htm=
+l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
+18461/shard-iclb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
+el-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb8/igt@runner@aborte=
+d.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patch=
+work_18461/shard-iclb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
+//intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb8/igt@runner@a=
+borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+Patchwork_18461/shard-iclb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
+ttps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb7/igt@run=
+ner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
+-tip/Patchwork_18461/shard-iclb7/igt@runner@aborted.html">FAIL</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb5/ig=
+t@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/drm-tip/Patchwork_18461/shard-iclb5/igt@runner@aborted.html">FAIL</a>, <a=
+ href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-icl=
+b5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.or=
+g/tree/drm-tip/Patchwork_18461/shard-iclb5/igt@runner@aborted.html">FAIL</a=
+>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shar=
+d-iclb4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
+01.org/tree/drm-tip/Patchwork_18461/shard-iclb4/igt@runner@aborted.html">FA=
+IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461=
+/shard-iclb3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gf=
+x-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb3/igt@runner@aborted.htm=
+l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
+18461/shard-iclb3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
+el-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb2/igt@runner@aborte=
+d.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patch=
+work_18461/shard-iclb2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
+//intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb2/igt@runner@a=
+borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+Patchwork_18461/shard-iclb1/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
+ttps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18461/shard-iclb1/igt@run=
+ner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
+-tip/Patchwork_18461/shard-iclb1/igt@runner@aborted.html">FAIL</a>) (<a hre=
+f=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i915#2439</a>)</=
+li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when comput=
+ing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (10 -&gt; 10)</h2>
+<p>No changes in participating hosts</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_8992 -&gt; Patchwork_18461</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_8992: 112fd8dcacfde4bb22054010843e9257bad73ec4 @ git://anongit.fre=
+edesktop.org/gfx-ci/linux<br />
+  IGT_5780: 9c5dfeb0338d7f98ad998663a595eab71ea887f3 @ git://anongit.freede=
+sktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18461: 3cb75f66028fe82300a9bb80b560a019d6197530 @ git://anongit=
+.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.fre=
+edesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============5654692730857298526==--
+
+--===============1369001574==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1369001574==--
