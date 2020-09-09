@@ -2,40 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A565262B0E
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Sep 2020 10:57:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B39262B88
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Sep 2020 11:15:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 999EE6EB3A;
-	Wed,  9 Sep 2020 08:57:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 929DB6ED80;
+	Wed,  9 Sep 2020 09:15:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F3BB6EB1E
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Sep 2020 08:57:14 +0000 (UTC)
-IronPort-SDR: Xg6yxUveIzB2dF5dHjBRRoyGes9+Sl/4EVIioiVA1ZByrrSk2KmtIcEQDXqfQ+Hv/lyLVCTCXo
- qTcEzkLB+pMg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9738"; a="159257122"
-X-IronPort-AV: E=Sophos;i="5.76,409,1592895600"; d="scan'208";a="159257122"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2020 01:57:09 -0700
-IronPort-SDR: rpmUfj8ivLhh8dDcKts6guYi+l3KKm8HwsF45xtuCot48YXoJ53QJ7P2nvJh1Tr/qO4KGLP9OY
- VgugfTD0q7Ig==
-X-IronPort-AV: E=Sophos;i="5.76,409,1592895600"; d="scan'208";a="480384792"
-Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 09 Sep 2020 01:57:07 -0700
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  9 Sep 2020 14:20:47 +0530
-Message-Id: <20200909085047.31004-5-vandita.kulkarni@intel.com>
-X-Mailer: git-send-email 2.21.0.5.gaeb582a
-In-Reply-To: <20200909085047.31004-1-vandita.kulkarni@intel.com>
-References: <20200909085047.31004-1-vandita.kulkarni@intel.com>
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E22A6ED80
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Sep 2020 09:15:18 +0000 (UTC)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+ id 173081C0B87; Wed,  9 Sep 2020 11:15:14 +0200 (CEST)
+Date: Wed, 9 Sep 2020 11:15:13 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: Harald Arnesen <harald@skogtun.org>
+Message-ID: <20200909091513.GG10891@amd>
+References: <7efa547d-b7a4-b873-f1aa-4f19eb849fa3@skogtun.org>
+ <CAHk-=wj3WskPCtHncCWLdaP6xVecLp8bDBTT57vyiU-0=Ld6QQ@mail.gmail.com>
+ <d4db4a52-3001-cb02-4888-a9dfd55cdd7c@skogtun.org>
+ <656b8f9f-d696-c75d-aef6-2b8b5170f2f6@skogtun.org>
+ <CAHk-=wiAK=AiqTD47o-BFFZciQXpEC0SiiDnXLWJUcQtCo-Pig@mail.gmail.com>
+ <101bff45-0ebd-8fb6-7c99-963aa4fcc588@skogtun.org>
+ <CAPM=9twLvHu_XLJ89GVXpNo=PHPZLJuRpHggkfzvvuVf+xrwoA@mail.gmail.com>
+ <0f06d704-c14e-0d86-c8bb-8c7b3a34758a@skogtun.org>
+ <CAHk-=wh=MjX6+Bn-ooHT_wf4VTpe7y-5czbAUT=vaAn2VCBNBQ@mail.gmail.com>
+ <71064aa0-1b62-5437-8fa6-7e7af0e3d4c2@skogtun.org>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [V9 4/4] drm/i915/dsi: Initiate fame request in cmd mode
+In-Reply-To: <71064aa0-1b62-5437-8fa6-7e7af0e3d4c2@skogtun.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Subject: Re: [Intel-gfx] 5.9-rc1: graphics regression moved from -next to
+ mainline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,118 +45,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ kernel list <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: multipart/mixed; boundary="===============1456895312=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In TE Gate mode or TE NO_GATE mode on every flip
-we need to set the frame update request bit.
-After this  bit is set transcoder hardware will
-automatically send the frame data to the panel
-in case of TE NO_GATE mode, where it sends after
-it receives the TE event in case of TE_GATE mode.
-Once the frame data is sent to the panel, we see
-the frame counter updating.
 
-v2: Use intel_de_read/write
+--===============1456895312==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="z9ECzHErBrwFF8sy"
+Content-Disposition: inline
 
-v3: remove the usage of private_flags
 
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c       | 26 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_display.c | 13 ++++++++++
- drivers/gpu/drm/i915/display/intel_dsi.h     |  3 +++
- 3 files changed, 42 insertions(+)
+--z9ECzHErBrwFF8sy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index ee3c5c085cd3..cdc9d8874945 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -205,6 +205,32 @@ static int dsi_send_pkt_payld(struct intel_dsi_host *host,
- 	return 0;
- }
- 
-+void gen11_dsi_frame_update(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	u32 tmp, flags;
-+	enum port port;
-+
-+	flags = crtc->mode_flags;
-+
-+	/*
-+	 * case 1 also covers dual link
-+	 * In case of dual link, frame update should be set on
-+	 * DSI_0
-+	 */
-+	if (flags & I915_MODE_FLAG_DSI_USE_TE0)
-+		port = PORT_A;
-+	else if (flags & I915_MODE_FLAG_DSI_USE_TE1)
-+		port = PORT_B;
-+	else
-+		return;
-+
-+	tmp = intel_de_read(dev_priv, DSI_CMD_FRMCTL(port));
-+	tmp |= DSI_FRAME_UPDATE_REQUEST;
-+	intel_de_write(dev_priv, DSI_CMD_FRMCTL(port), tmp);
-+}
-+
- static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ec148a8da2c2..cd852c24d3bc 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -15615,6 +15615,18 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		intel_set_cdclk_post_plane_update(state);
- 	}
- 
-+	/*
-+	 * Incase of mipi dsi command mode, we need to set frame update
-+	 * for every commit
-+	 */
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		if ((INTEL_GEN(dev_priv) >= 11) &&
-+		    (intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))) {
-+			if (new_crtc_state->hw.active)
-+				gen11_dsi_frame_update(new_crtc_state);
-+		}
-+	}
-+
- 	/* FIXME: We should call drm_atomic_helper_commit_hw_done() here
- 	 * already, but still need the state for the delayed optimization. To
- 	 * fix this:
-@@ -15626,6 +15638,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	 */
- 	drm_atomic_helper_wait_for_flip_done(dev, &state->base);
- 
-+
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		if (new_crtc_state->hw.active &&
- 		    !needs_modeset(new_crtc_state) &&
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i915/display/intel_dsi.h
-index 19f78a4022d3..08f1f586eefb 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsi.h
-@@ -205,6 +205,9 @@ u32 bxt_dsi_get_pclk(struct intel_encoder *encoder,
- 		     struct intel_crtc_state *config);
- void bxt_dsi_reset_clocks(struct intel_encoder *encoder, enum port port);
- 
-+/* icl_dsi.c */
-+void gen11_dsi_frame_update(struct intel_crtc_state *crtc_state);
-+
- /* intel_dsi_vbt.c */
- bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id);
- void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on);
--- 
-2.21.0.5.gaeb582a
+On Tue 2020-09-01 13:57:55, Harald Arnesen wrote:
+> Still (rc3) doesn't work without the three reverts.
+>=20
+> I'm not sure how to proceed, I cannot capture any oops, and see nothing
+> obvious in any logs.
+
+I believe this is the place when you ask Linus for reverts...
+
+Best regards,
+
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--z9ECzHErBrwFF8sy
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl9YnSEACgkQMOfwapXb+vLL4gCeMCucyulZXxfhftemFuhj7Zud
+KX0AnidRO+JQtFCfPVRM95Zdgx++n/OP
+=GtV1
+-----END PGP SIGNATURE-----
+
+--z9ECzHErBrwFF8sy--
+
+--===============1456895312==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1456895312==--
