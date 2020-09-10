@@ -1,43 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F3462646E3
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 15:25:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA6BB2646EB
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 15:26:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA7626E923;
-	Thu, 10 Sep 2020 13:25:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EDEB6E927;
+	Thu, 10 Sep 2020 13:26:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43E356E927
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:25:17 +0000 (UTC)
-IronPort-SDR: 9PU1rL7LptaG245DxiqiefZGSx3qZaBXm3QrbBVNed+CP27QRzana+nR6bbbHYPGc8uWss4THk
- pG1Yk/c/csJA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="243345187"
-X-IronPort-AV: E=Sophos;i="5.76,413,1592895600"; d="scan'208";a="243345187"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7E4D6E927
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:26:46 +0000 (UTC)
+IronPort-SDR: N/uxgwRONMRbb2wiQ8xxQwpnyC2I/0R7obQ0km2vKHL+Zce8y47YgZzz83JoYMVQzUounIRoEZ
+ Dr2SRj2cB9Pg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="157809091"
+X-IronPort-AV: E=Sophos;i="5.76,413,1592895600"; d="scan'208";a="157809091"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2020 06:25:16 -0700
-IronPort-SDR: bN46qaBQjf5tf8gBREC+HT6djXirpJZb3o4GVqikfA0/59/PhiVA8a1ErjECFtXYQ797c2gByc
- poiAtbg1ILHA==
-X-IronPort-AV: E=Sophos;i="5.76,413,1592895600"; d="scan'208";a="480888356"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2020 06:26:46 -0700
+IronPort-SDR: VhjaeVw03oKckxC0hXEtDq+C0sJmQC7qs8IS2fFsZX9fLQvY75tXxDab5M0HIgHfu76cG3MVLn
+ C5PipIKLlLNQ==
+X-IronPort-AV: E=Sophos;i="5.76,413,1592895600"; d="scan'208";a="449597480"
 Received: from nfhickey-mobl.ger.corp.intel.com (HELO localhost)
  ([10.251.81.64])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2020 06:25:12 -0700
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2020 06:26:44 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200907162709.29579-1-ville.syrjala@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200908052540.26905-1-animesh.manna@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200907162709.29579-1-ville.syrjala@linux.intel.com>
-Date: Thu, 10 Sep 2020 16:25:13 +0300
-Message-ID: <87h7s52286.fsf@intel.com>
+References: <20200908052540.26905-1-animesh.manna@intel.com>
+Date: Thu, 10 Sep 2020 16:26:46 +0300
+Message-ID: <87een9225l.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Nuke dpio_phy_iosf_port[]
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disable frontbuffer tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,96 +49,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAwNyBTZXAgMjAyMCwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
-bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+Cj4KPiBUaGVyZSdzIG5vIHJlYWwgcmVhc29uIHRvIHN0YXNoIGF3YXkg
-dGhlIERQSU8gUEhZIElPU0Ygc2lkZWJhbmQgcG9ydAo+IG51bWJlcnMgZm9yIFZMVi9DSFYuIEp1
-c3QgY29tcHV0ZSB0aGVtIGF0IHJ1bnRpbWUgaW4gdGhlIHNpZGViYW5kIGNvZGUuCj4KPiBHZXRz
-IHJpZCBvZiB0aGUgb2RkYmFsbCBpbnRlbF9pbml0X2RwaW8oKSBmdW5jdGlvbiBmcm9tIHRoZSBo
-aWdoIGxldmVsCj4gaW5pdCBmbG93Lgo+Cj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOk
-IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClllcywgcGxlYXNlIQoKUmV2aWV3ZWQt
-Ynk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cgo+IC0tLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaCB8ICAyIC0tCj4gIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgICAgICAgICAgICAgIHwgMTYgLS0tLS0tLS0tLS0tLS0t
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgICAgICB8ICAyIC0t
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgIHwgIDEgLQo+
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zaWRlYmFuZC5jICAgICAgICB8IDE2ICsrKysr
-KysrKysrKysrLS0KPiAgNSBmaWxlcyBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspLCAyMyBkZWxl
-dGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2Rpc3BsYXkuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eS5oCj4gaW5kZXggMzY3MGNhYmViM2NkLi4wMDNiNjhkZGE5NDQgMTAwNjQ0Cj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmgKPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaAo+IEBAIC0yNzIsOCArMjcyLDYg
-QEAgZW51bSBkcGlvX3BoeSB7Cj4gIAlEUElPX1BIWTIsCj4gIH07Cj4gIAo+IC0jZGVmaW5lIEk5
-MTVfTlVNX1BIWVNfVkxWIDIKPiAtCj4gIGVudW0gYXV4X2NoIHsKPiAgCUFVWF9DSF9BLAo+ICAJ
-QVVYX0NIX0IsCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCj4gaW5kZXggZDY2ZmUwOWQzMzdlLi45
-NGUwMGU0NTA2ODMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYu
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKPiBAQCAtMjE1LDIxICsy
-MTUsNiBAQCBpbnRlbF90ZWFyZG93bl9tY2hiYXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
-dl9wcml2KQo+ICAJCXJlbGVhc2VfcmVzb3VyY2UoJmRldl9wcml2LT5tY2hfcmVzKTsKPiAgfQo+
-ICAKPiAtc3RhdGljIHZvaWQgaW50ZWxfaW5pdF9kcGlvKHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICpkZXZfcHJpdikKPiAtewo+IC0JLyoKPiAtCSAqIElPU0ZfUE9SVF9EUElPIGlzIHVzZWQgZm9y
-IFZMViB4MiBQSFkgKERQL0hETUkgQiBhbmQgQyksCj4gLQkgKiBDSFYgeDEgUEhZIChEUC9IRE1J
-IEQpCj4gLQkgKiBJT1NGX1BPUlRfRFBJT18yIGlzIHVzZWQgZm9yIENIViB4MiBQSFkgKERQL0hE
-TUkgQiBhbmQgQykKPiAtCSAqLwo+IC0JaWYgKElTX0NIRVJSWVZJRVcoZGV2X3ByaXYpKSB7Cj4g
-LQkJRFBJT19QSFlfSU9TRl9QT1JUKERQSU9fUEhZMCkgPSBJT1NGX1BPUlRfRFBJT18yOwo+IC0J
-CURQSU9fUEhZX0lPU0ZfUE9SVChEUElPX1BIWTEpID0gSU9TRl9QT1JUX0RQSU87Cj4gLQl9IGVs
-c2UgaWYgKElTX1ZBTExFWVZJRVcoZGV2X3ByaXYpKSB7Cj4gLQkJRFBJT19QSFlfSU9TRl9QT1JU
-KERQSU9fUEhZMCkgPSBJT1NGX1BPUlRfRFBJTzsKPiAtCX0KPiAtfQo+IC0KPiAgc3RhdGljIGlu
-dCBpOTE1X3dvcmtxdWV1ZXNfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYp
-Cj4gIHsKPiAgCS8qCj4gQEAgLTM1OCw3ICszNDMsNiBAQCBzdGF0aWMgaW50IGk5MTVfZHJpdmVy
-X2Vhcmx5X3Byb2JlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiAgCWludGVs
-X2RldGVjdF9wY2goZGV2X3ByaXYpOwo+ICAKPiAgCWludGVsX3BtX3NldHVwKGRldl9wcml2KTsK
-PiAtCWludGVsX2luaXRfZHBpbyhkZXZfcHJpdik7Cj4gIAlyZXQgPSBpbnRlbF9wb3dlcl9kb21h
-aW5zX2luaXQoZGV2X3ByaXYpOwo+ICAJaWYgKHJldCA8IDApCj4gIAkJZ290byBlcnJfZ2VtOwo+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9kcnYuaAo+IGluZGV4IGE0NTU3NTIyMjFjYy4uZWY3NWFjZGE5YmZm
-IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCj4gQEAgLTEwMjAsOCArMTAyMCw2IEBAIHN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlIHsKPiAgCSAqLwo+ICAJdTggYWN0aXZlX3BpcGVzOwo+ICAK
-PiAtCWludCBkcGlvX3BoeV9pb3NmX3BvcnRbSTkxNV9OVU1fUEhZU19WTFZdOwo+IC0KPiAgCXN0
-cnVjdCBpOTE1X3dhX2xpc3QgZ3Rfd2FfbGlzdDsKPiAgCj4gIAlzdHJ1Y3QgaTkxNV9mcm9udGJ1
-ZmZlcl90cmFja2luZyBmYl90cmFja2luZzsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKPiBpbmRl
-eCBhYjRiMWFiZDQzNjQuLjkwYTA1ZTM3YmEyZiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X3JlZy5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcu
-aAo+IEBAIC0xMzgyLDcgKzEzODIsNiBAQCBzdGF0aWMgaW5saW5lIGJvb2wgaTkxNV9tbWlvX3Jl
-Z192YWxpZChpOTE1X3JlZ190IHJlZykKPiAgI2RlZmluZSAgRFBJT19DTU5SU1QJCQkoMSA8PCAw
-KQo+ICAKPiAgI2RlZmluZSBEUElPX1BIWShwaXBlKQkJCSgocGlwZSkgPj4gMSkKPiAtI2RlZmlu
-ZSBEUElPX1BIWV9JT1NGX1BPUlQocGh5KQkJKGRldl9wcml2LT5kcGlvX3BoeV9pb3NmX3BvcnRb
-cGh5XSkKPiAgCj4gIC8qCj4gICAqIFBlciBwaXBlL1BMTCBEUElPIHJlZ3MKPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc2lkZWJhbmQuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2ludGVsX3NpZGViYW5kLmMKPiBpbmRleCA5MTZjY2QxYzBlOTYuLjViMzI3OTI2MjEy
-MyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zaWRlYmFuZC5jCj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc2lkZWJhbmQuYwo+IEBAIC0yMzEsOSAr
-MjMxLDIxIEBAIHZvaWQgdmx2X2NjdV93cml0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkx
-NSwgdTMyIHJlZywgdTMyIHZhbCkKPiAgCQkJU0JfQ1JXUkRBX05QLCByZWcsICZ2YWwpOwo+ICB9
-Cj4gIAo+ICtzdGF0aWMgdTMyIHZsdl9kcGlvX3BoeV9pb3NmX3BvcnQoc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmk5MTUsIGVudW0gZHBpb19waHkgcGh5KQo+ICt7Cj4gKwkvKgo+ICsJICogSU9T
-Rl9QT1JUX0RQSU86IFZMViB4MiBQSFkgKERQL0hETUkgQiBhbmQgQyksIENIViB4MSBQSFkgKERQ
-L0hETUkgRCkKPiArCSAqIElPU0ZfUE9SVF9EUElPXzI6IENIViB4MiBQSFkgKERQL0hETUkgQiBh
-bmQgQykKPiArCSAqLwo+ICsJaWYgKElTX0NIRVJSWVZJRVcoaTkxNSkpCj4gKwkJcmV0dXJuIHBo
-eSA9PSBEUElPX1BIWTAgPyBJT1NGX1BPUlRfRFBJT18yIDogSU9TRl9QT1JUX0RQSU87Cj4gKwll
-bHNlCj4gKwkJcmV0dXJuIElPU0ZfUE9SVF9EUElPOwo+ICt9Cj4gKwo+ICB1MzIgdmx2X2RwaW9f
-cmVhZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgZW51bSBwaXBlIHBpcGUsIGludCBy
-ZWcpCj4gIHsKPiAtCWludCBwb3J0ID0gaTkxNS0+ZHBpb19waHlfaW9zZl9wb3J0W0RQSU9fUEhZ
-KHBpcGUpXTsKPiArCXUzMiBwb3J0ID0gdmx2X2RwaW9fcGh5X2lvc2ZfcG9ydChpOTE1LCBEUElP
-X1BIWShwaXBlKSk7Cj4gIAl1MzIgdmFsID0gMDsKPiAgCj4gIAl2bHZfc2lkZWJhbmRfcncoaTkx
-NSwgRFBJT19ERVZGTiwgcG9ydCwgU0JfTVJEX05QLCByZWcsICZ2YWwpOwo+IEBAIC0yNTIsNyAr
-MjY0LDcgQEAgdTMyIHZsdl9kcGlvX3JlYWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUs
-IGVudW0gcGlwZSBwaXBlLCBpbnQgcmVnKQo+ICB2b2lkIHZsdl9kcGlvX3dyaXRlKHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICppOTE1LAo+ICAJCSAgICBlbnVtIHBpcGUgcGlwZSwgaW50IHJlZywg
-dTMyIHZhbCkKPiAgewo+IC0JaW50IHBvcnQgPSBpOTE1LT5kcGlvX3BoeV9pb3NmX3BvcnRbRFBJ
-T19QSFkocGlwZSldOwo+ICsJdTMyIHBvcnQgPSB2bHZfZHBpb19waHlfaW9zZl9wb3J0KGk5MTUs
-IERQSU9fUEhZKHBpcGUpKTsKPiAgCj4gIAl2bHZfc2lkZWJhbmRfcncoaTkxNSwgRFBJT19ERVZG
-TiwgcG9ydCwgU0JfTVdSX05QLCByZWcsICZ2YWwpOwo+ICB9CgotLSAKSmFuaSBOaWt1bGEsIElu
-dGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, 08 Sep 2020, Animesh Manna <animesh.manna@intel.com> wrote:
+> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>
+
+The "why" would go here.
+
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+Please add your own Signed-off-by when you send someone else's patches.
+
+BR,
+Jani.
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_frontbuffer.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> index d898b370d7a4..0f1d7a34dcf7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> @@ -166,6 +166,9 @@ void __intel_fb_invalidate(struct intel_frontbuffer *front,
+>  {
+>  	struct drm_i915_private *i915 = to_i915(front->obj->base.dev);
+>  
+> +	if (origin != ORIGIN_FLIP)
+> +		return;
+> +
+>  	if (origin == ORIGIN_CS) {
+>  		spin_lock(&i915->fb_tracking.lock);
+>  		i915->fb_tracking.busy_bits |= frontbuffer_bits;
+> @@ -185,6 +188,9 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
+>  {
+>  	struct drm_i915_private *i915 = to_i915(front->obj->base.dev);
+>  
+> +	if (origin != ORIGIN_FLIP)
+> +		return;
+> +
+>  	if (origin == ORIGIN_CS) {
+>  		spin_lock(&i915->fb_tracking.lock);
+>  		/* Filter out new bits since rendering started. */
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
