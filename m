@@ -1,55 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80ADB264770
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 15:49:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CF80264769
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 15:49:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBF636E95F;
-	Thu, 10 Sep 2020 13:49:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58F9F6E939;
+	Thu, 10 Sep 2020 13:49:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com
- [IPv6:2607:f8b0:4864:20::d43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 884526E8D6;
- Thu, 10 Sep 2020 09:24:37 +0000 (UTC)
-Received: by mail-io1-xd43.google.com with SMTP id h4so6317933ioe.5;
- Thu, 10 Sep 2020 02:24:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=UyqGiyvWtrvEPIbfLtgakvWHIPcO7f2wwjJnMPORWG0=;
- b=BoSxMiljYiAjMP/XBn/hYGNVKL/oHxnqnEUJ7qSdwoJLG0pxR2qK3V4/fkUTSaV51s
- 3pvr292/IyS8ps68VC6dxn72XHdiWpnrMVrw8xogJTOMYamirEZ059PvshX7H4Z5GWuh
- Vr7j8283bIhfaNsK7sxUGLf6s0Z2Efi6Yl4vefoBSqVlIDK265aYxjjSjS69bDYpqbGV
- /GSb5UhzJJFq63scKHt5GhqSRkybY6g2zuA571aN2zohyHumpin0aZgpFfaeOPy0WbSg
- Mpw6iHtgik0cTA/OjEeiGwKuBqjHR2p7i1mxyZ7WrSW4CGvjjQTt8jjc//sWyeGDOFMK
- 9KBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=UyqGiyvWtrvEPIbfLtgakvWHIPcO7f2wwjJnMPORWG0=;
- b=AvLVtUisp974CWg1Cwj6WiUGr086it0KE3sAbsb0hkA5SlKmeXcvUqbryo/+hmcXoj
- U+95saX036TIUYz6LzfB4BDpYiTXSYb557PA4X7+YmKgpELdRugAFdRFA+yT0tsaoo78
- Zpb+rgqWOEcOEF6BRcSt6F+UFR4xQSTig3SrfmLmRZE4q98RgMFym1htvZ5wjr8I7Ucx
- wSQxoloxUUgoA75PjSbZnABeL2S4nZD57U1rip5IJkaQSMKdS9/mFUyHixlmEhs4q3rD
- wRZDHzsAHmEpknZPkw5UfnCIq/T1zXY2boaxJ2RfL0TquSaAjxyCkNB69rvz8hWBeIFF
- KxYQ==
-X-Gm-Message-State: AOAM530Q7ZJ+Cu2teFoG+Qzi8fQogNTRUpq0L6zVsmjvv2dJJnyRlCzr
- RS1Lib4iXjBHrsOLUr1TT9T+Gu3spwdBWmWG7jw=
-X-Google-Smtp-Source: ABdhPJzJ/LFpexv9kLm1kjwc0/B+7GHCOB8WQagf03Hz+gzhVFwgLWrpkGefOcCCEeSFlcKtCwndocR5oDNlZlvNymM=
-X-Received: by 2002:a5d:8846:: with SMTP id t6mr7056972ios.123.1599729876856; 
- Thu, 10 Sep 2020 02:24:36 -0700 (PDT)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27AB46E8EC;
+ Thu, 10 Sep 2020 10:14:52 +0000 (UTC)
+Received: from embeddedor (187-162-31-110.static.axtel.net [187.162.31.110])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id AD94321556;
+ Thu, 10 Sep 2020 10:14:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1599732891;
+ bh=AcUbWjUNABtsxL784pj65r84bPoExG1gWe7wAJecyfQ=;
+ h=Date:From:To:Cc:Subject:From;
+ b=qVf8Rc8AqGxyxVKw4/gDV9LstyBxSyBmcuGudVr7FlLI/lyuwQOLYen1OarGXTy6O
+ S2J5ptH/XTuXwqPaNYGmTjAhonpEwLAHD0Xok6FNUA+cqRtCTTGHF9jMdvMr9NYRBy
+ 9XqcLvm2eqp5zVZqKKlIT0MKhMUc20/LehslBQGc=
+Date: Thu, 10 Sep 2020 05:21:20 -0500
+From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@intel.com>
+Message-ID: <20200910102120.GA9481@embeddedor>
 MIME-Version: 1.0
-References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
-In-Reply-To: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
-From: Ilya Dryomov <idryomov@gmail.com>
-Date: Thu, 10 Sep 2020 11:24:26 +0200
-Message-ID: <CAOi1vP-v77pj3G5Ez94CDYVs2jSO828c4uV_wzNi6sRKp=Yvyg@mail.gmail.com>
-To: Joe Perches <joe@perches.com>
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Mailman-Approved-At: Thu, 10 Sep 2020 13:49:08 +0000
-Subject: Re: [Intel-gfx] [trivial PATCH] treewide: Convert switch/case
- fallthrough; to break; 
+Subject: [Intel-gfx] [PATCH][next] drm/i915: Fix inconsistent IS_ERR and
+ PTR_ERR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,135 +51,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
- oss-drivers@netronome.com, nouveau@lists.freedesktop.org,
- alsa-devel <alsa-devel@alsa-project.org>, dri-devel@lists.freedesktop.org,
- linux-mips@vger.kernel.org, linux-ide@vger.kernel.org, dm-devel@redhat.com,
- linux-mtd@lists.infradead.org, linux-i2c@vger.kernel.org,
- sparclinux@vger.kernel.org, kvmarm@lists.cs.columbia.edu,
- linux-rtc@vger.kernel.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, dccp@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-atm-general@lists.sourceforge.net, linux-afs@lists.infradead.org,
- coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
- linux-serial@vger.kernel.org, linux-input@vger.kernel.org,
- linux-mmc@vger.kernel.org, Kees Cook <kees.cook@canonical.com>,
- linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-sctp@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-nvme@lists.infradead.org,
- storagedev@microchip.com, Ceph Development <ceph-devel@vger.kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-nfs@vger.kernel.org,
- Jiri Kosina <trivial@kernel.org>, linux-parisc@vger.kernel.org,
- netdev <netdev@vger.kernel.org>, linux-usb@vger.kernel.org,
- Nick Desaulniers <ndesaulniers@google.com>,
- LKML <linux-kernel@vger.kernel.org>, iommu@lists.linux-foundation.org,
- netfilter-devel@vger.kernel.org,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>, bpf@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 9, 2020 at 10:10 PM Joe Perches <joe@perches.com> wrote:
->
-> fallthrough to a separate case/default label break; isn't very readable.
->
-> Convert pseudo-keyword fallthrough; statements to a simple break; when
-> the next label is case or default and the only statement in the next
-> label block is break;
->
-> Found using:
->
-> $ grep-2.5.4 -rP --include=*.[ch] -n "fallthrough;(\s*(case\s+\w+|default)\s*:\s*){1,7}break;" *
->
-> Miscellanea:
->
-> o Move or coalesce a couple label blocks above a default: block.
->
-> Signed-off-by: Joe Perches <joe@perches.com>
-> ---
->
-> Compiled allyesconfig x86-64 only.
-> A few files for other arches were not compiled.
->
->  arch/arm/mach-mmp/pm-pxa910.c                             |  2 +-
->  arch/arm64/kvm/handle_exit.c                              |  2 +-
->  arch/mips/kernel/cpu-probe.c                              |  2 +-
->  arch/mips/math-emu/cp1emu.c                               |  2 +-
->  arch/s390/pci/pci.c                                       |  2 +-
->  crypto/tcrypt.c                                           |  4 ++--
->  drivers/ata/sata_mv.c                                     |  2 +-
->  drivers/atm/lanai.c                                       |  2 +-
->  drivers/gpu/drm/i915/display/intel_sprite.c               |  2 +-
->  drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c           |  2 +-
->  drivers/hid/wacom_wac.c                                   |  2 +-
->  drivers/i2c/busses/i2c-i801.c                             |  2 +-
->  drivers/infiniband/ulp/rtrs/rtrs-clt.c                    | 14 +++++++-------
->  drivers/infiniband/ulp/rtrs/rtrs-srv.c                    |  6 +++---
->  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c               |  2 +-
->  drivers/irqchip/irq-vic.c                                 |  4 ++--
->  drivers/md/dm.c                                           |  2 +-
->  drivers/media/dvb-frontends/drxd_hard.c                   |  2 +-
->  drivers/media/i2c/ov5640.c                                |  2 +-
->  drivers/media/i2c/ov6650.c                                |  5 ++---
->  drivers/media/i2c/smiapp/smiapp-core.c                    |  2 +-
->  drivers/media/i2c/tvp5150.c                               |  2 +-
->  drivers/media/pci/ddbridge/ddbridge-core.c                |  2 +-
->  drivers/media/usb/cpia2/cpia2_core.c                      |  2 +-
->  drivers/mfd/iqs62x.c                                      |  3 +--
->  drivers/mmc/host/atmel-mci.c                              |  2 +-
->  drivers/mtd/nand/raw/nandsim.c                            |  2 +-
->  drivers/net/ethernet/intel/e1000e/phy.c                   |  2 +-
->  drivers/net/ethernet/intel/fm10k/fm10k_pf.c               |  2 +-
->  drivers/net/ethernet/intel/i40e/i40e_adminq.c             |  2 +-
->  drivers/net/ethernet/intel/i40e/i40e_txrx.c               |  2 +-
->  drivers/net/ethernet/intel/iavf/iavf_txrx.c               |  2 +-
->  drivers/net/ethernet/intel/igb/e1000_phy.c                |  2 +-
->  drivers/net/ethernet/intel/ixgbe/ixgbe_82599.c            |  2 +-
->  drivers/net/ethernet/intel/ixgbe/ixgbe_main.c             |  2 +-
->  drivers/net/ethernet/intel/ixgbe/ixgbe_sriov.c            |  2 +-
->  drivers/net/ethernet/intel/ixgbevf/vf.c                   |  2 +-
->  drivers/net/ethernet/netronome/nfp/nfpcore/nfp6000_pcie.c |  2 +-
->  drivers/net/ethernet/qlogic/qed/qed_mcp.c                 |  2 +-
->  drivers/net/ethernet/sfc/falcon/farch.c                   |  2 +-
->  drivers/net/ethernet/sfc/farch.c                          |  2 +-
->  drivers/net/phy/adin.c                                    |  3 +--
->  drivers/net/usb/pegasus.c                                 |  4 ++--
->  drivers/net/usb/usbnet.c                                  |  2 +-
->  drivers/net/wireless/ath/ath5k/eeprom.c                   |  2 +-
->  drivers/net/wireless/mediatek/mt7601u/dma.c               |  8 ++++----
->  drivers/nvme/host/core.c                                  | 12 ++++++------
->  drivers/pcmcia/db1xxx_ss.c                                |  4 ++--
->  drivers/power/supply/abx500_chargalg.c                    |  2 +-
->  drivers/power/supply/charger-manager.c                    |  2 +-
->  drivers/rtc/rtc-pcf85063.c                                |  2 +-
->  drivers/s390/scsi/zfcp_fsf.c                              |  2 +-
->  drivers/scsi/aic7xxx/aic79xx_core.c                       |  4 ++--
->  drivers/scsi/aic94xx/aic94xx_tmf.c                        |  2 +-
->  drivers/scsi/lpfc/lpfc_sli.c                              |  2 +-
->  drivers/scsi/smartpqi/smartpqi_init.c                     |  2 +-
->  drivers/scsi/sr.c                                         |  2 +-
->  drivers/tty/serial/sunsu.c                                |  2 +-
->  drivers/tty/serial/sunzilog.c                             |  2 +-
->  drivers/tty/vt/vt_ioctl.c                                 |  2 +-
->  drivers/usb/dwc3/core.c                                   |  2 +-
->  drivers/usb/gadget/legacy/inode.c                         |  2 +-
->  drivers/usb/gadget/udc/pxa25x_udc.c                       |  4 ++--
->  drivers/usb/host/ohci-hcd.c                               |  2 +-
->  drivers/usb/isp1760/isp1760-hcd.c                         |  2 +-
->  drivers/usb/musb/cppi_dma.c                               |  2 +-
->  drivers/usb/phy/phy-fsl-usb.c                             |  2 +-
->  drivers/video/fbdev/stifb.c                               |  2 +-
->  fs/afs/yfsclient.c                                        |  8 ++++----
->  fs/ceph/dir.c                                             |  2 +-
+Fix inconsistent IS_ERR and PTR_ERR in i915_gem_object_copy_blt().
 
-For ceph:
+The proper pointer to be passed as argument to PTR_ERR() is vma[1].
 
-Acked-by: Ilya Dryomov <idryomov@gmail.com>
+This bug was detected with the help of Coccinelle.
 
-Thanks,
+Fixes: 6b05030496f7 ("drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.")
+Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object_blt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-                Ilya
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+index d93eb36160c9..aee7ad3cc3c6 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+@@ -364,7 +364,7 @@ int i915_gem_object_copy_blt(struct drm_i915_gem_object *src,
+ 
+ 	vma[1] = i915_vma_instance(dst, vm, NULL);
+ 	if (IS_ERR(vma[1]))
+-		return PTR_ERR(vma);
++		return PTR_ERR(vma[1]);
+ 
+ 	i915_gem_ww_ctx_init(&ww, true);
+ 	intel_engine_pm_get(ce->engine);
+-- 
+2.27.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
