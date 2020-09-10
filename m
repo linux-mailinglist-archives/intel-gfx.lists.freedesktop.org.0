@@ -2,45 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4EC326446F
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 12:44:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1D3264478
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 12:46:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 037716E902;
-	Thu, 10 Sep 2020 10:44:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23AA289226;
+	Thu, 10 Sep 2020 10:46:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACE696E902
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 10:44:24 +0000 (UTC)
-IronPort-SDR: qS6BfgGBXR0YERkWda2JOnGMDg4EfZQ4tT2q2owQrzBa3OGiXbDkSiwjfT1FndgHKKsgTOEOXz
- cXOUygR6xg9w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="157787154"
-X-IronPort-AV: E=Sophos;i="5.76,412,1592895600"; d="scan'208";a="157787154"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 074BE89226
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 10:46:06 +0000 (UTC)
+IronPort-SDR: JDp/8lFCbAIB3AGcjxZHEfcwdgayx5qWyNVkvtNO6GW+VCIT4YH3r1cfI6vRQvSU1g9RwTfO9l
+ FRpd+wUDm+8g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="176568582"
+X-IronPort-AV: E=Sophos;i="5.76,412,1592895600"; d="scan'208";a="176568582"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2020 03:44:24 -0700
-IronPort-SDR: Edc5LhX5Km9TIAcyGArIezxHdIin8HlEdVpT4s//1oYEjty1WOa/bFlo2Qls21GB7JgGZkSEAW
- rn0SiuN8856g==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2020 03:46:06 -0700
+IronPort-SDR: QyFr6ylQi5zGXKE5S5zHmmy/MYW0Sby+vz557f/Ba/RbWpSlc8EVg7EORfmKhPiaHq6DJnD17w
+ wY1R+bFYFCBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,412,1592895600"; d="scan'208";a="304841763"
+X-IronPort-AV: E=Sophos;i="5.76,412,1592895600"; d="scan'208";a="341885522"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 10 Sep 2020 03:44:21 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 10 Sep 2020 03:46:04 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Sep 2020 13:44:21 +0300
-Date: Thu, 10 Sep 2020 13:44:21 +0300
+ Thu, 10 Sep 2020 13:46:03 +0300
+Date: Thu, 10 Sep 2020 13:46:03 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200910104421.GT6112@intel.com>
+Message-ID: <20200910104603.GU6112@intel.com>
 References: <20200910095227.9466-1-jani.nikula@intel.com>
+ <20200910095227.9466-2-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200910095227.9466-1-jani.nikula@intel.com>
+In-Reply-To: <20200910095227.9466-2-jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: disable all display features
- when no display
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: move gen4 GCDGMBUS
+ save/restore to display save/restore
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,60 +60,109 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 10, 2020 at 12:52:25PM +0300, Jani Nikula wrote:
-> Disable all display feature flags when there are no pipes i.e. there is
-> no display. This should help with not having to additionally check for
-> HAS_DISPLAY() when a feature flag check would suffice.
+On Thu, Sep 10, 2020 at 12:52:26PM +0300, Jani Nikula wrote:
+> Logically part of the display save/restore. No functional changes.
 > =
 
-> Also disable modeset and atomic driver features.
 
-While bspec is rather vague whether this is actually entirely consistent
-with how th hw works, it seems rather silly if any display hw blocks
-would get initialized by the BIOS/whatever when there are no usable
-pipes.
+Somewhat tempted to move this into the gmbus code proper.
+But we don't have a gmbus resume hook atm so would need to
+add one.
 
+In the meantime:
 Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/intel_device_info.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  drivers/gpu/drm/i915/i915_suspend.c | 21 ++++++++++++---------
+>  1 file changed, 12 insertions(+), 9 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
-915/intel_device_info.c
-> index e2aa5bc3a6e0..adc836f15fde 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -516,6 +516,14 @@ void intel_device_info_runtime_init(struct drm_i915_=
-private *dev_priv)
->  					    S32_MAX),
->  				USEC_PER_SEC));
->  	}
+> diff --git a/drivers/gpu/drm/i915/i915_suspend.c b/drivers/gpu/drm/i915/i=
+915_suspend.c
+> index ed2be3489f8e..4a93247942b7 100644
+> --- a/drivers/gpu/drm/i915/i915_suspend.c
+> +++ b/drivers/gpu/drm/i915/i915_suspend.c
+> @@ -34,6 +34,8 @@
+>  =
+
+>  static void i915_save_display(struct drm_i915_private *dev_priv)
+>  {
+> +	struct pci_dev *pdev =3D dev_priv->drm.pdev;
 > +
-> +	if (!HAS_DISPLAY(dev_priv)) {
-> +		dev_priv->drm.driver_features &=3D ~(DRIVER_MODESET |
-> +						   DRIVER_ATOMIC);
-> +		memset(&info->display, 0, sizeof(info->display));
-> +		memset(runtime->num_sprites, 0, sizeof(runtime->num_sprites));
-> +		memset(runtime->num_scalers, 0, sizeof(runtime->num_scalers));
-
-Side note: No idea why the num_scalers/sprites is stored under the
-runtime info. I think those could just live in the normal PCI ID
-based device info.
-
-> +	}
+>  	/* Display arbitration control */
+>  	if (INTEL_GEN(dev_priv) <=3D 4)
+>  		dev_priv->regfile.saveDSPARB =3D I915_READ(DSPARB);
+> @@ -41,10 +43,20 @@ static void i915_save_display(struct drm_i915_private=
+ *dev_priv)
+>  	/* save FBC interval */
+>  	if (HAS_FBC(dev_priv) && INTEL_GEN(dev_priv) <=3D 4 && !IS_G4X(dev_priv=
+))
+>  		dev_priv->regfile.saveFBC_CONTROL =3D I915_READ(FBC_CONTROL);
+> +
+> +	if (IS_GEN(dev_priv, 4))
+> +		pci_read_config_word(pdev, GCDGMBUS,
+> +				     &dev_priv->regfile.saveGCDGMBUS);
 >  }
 >  =
 
->  void intel_driver_caps_print(const struct intel_driver_caps *caps,
+>  static void i915_restore_display(struct drm_i915_private *dev_priv)
+>  {
+> +	struct pci_dev *pdev =3D dev_priv->drm.pdev;
+> +
+> +	if (IS_GEN(dev_priv, 4))
+> +		pci_write_config_word(pdev, GCDGMBUS,
+> +				      dev_priv->regfile.saveGCDGMBUS);
+> +
+>  	/* Display arbitration */
+>  	if (INTEL_GEN(dev_priv) <=3D 4)
+>  		I915_WRITE(DSPARB, dev_priv->regfile.saveDSPARB);
+> @@ -61,15 +73,10 @@ static void i915_restore_display(struct drm_i915_priv=
+ate *dev_priv)
+>  =
+
+>  int i915_save_state(struct drm_i915_private *dev_priv)
+>  {
+> -	struct pci_dev *pdev =3D dev_priv->drm.pdev;
+>  	int i;
+>  =
+
+>  	i915_save_display(dev_priv);
+>  =
+
+> -	if (IS_GEN(dev_priv, 4))
+> -		pci_read_config_word(pdev, GCDGMBUS,
+> -				     &dev_priv->regfile.saveGCDGMBUS);
+> -
+>  	/* Cache mode state */
+>  	if (INTEL_GEN(dev_priv) < 7)
+>  		dev_priv->regfile.saveCACHE_MODE_0 =3D I915_READ(CACHE_MODE_0);
+> @@ -102,12 +109,8 @@ int i915_save_state(struct drm_i915_private *dev_pri=
+v)
+>  =
+
+>  int i915_restore_state(struct drm_i915_private *dev_priv)
+>  {
+> -	struct pci_dev *pdev =3D dev_priv->drm.pdev;
+>  	int i;
+>  =
+
+> -	if (IS_GEN(dev_priv, 4))
+> -		pci_write_config_word(pdev, GCDGMBUS,
+> -				      dev_priv->regfile.saveGCDGMBUS);
+>  	i915_restore_display(dev_priv);
+>  =
+
+>  	/* Cache mode state */
 > -- =
 
 > 2.20.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- =
 
