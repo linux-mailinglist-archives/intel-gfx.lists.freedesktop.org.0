@@ -1,58 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3990C263969
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 02:11:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3F9A26397E
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 03:20:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73B8F6E090;
-	Thu, 10 Sep 2020 00:11:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA3E89C83;
+	Thu, 10 Sep 2020 01:20:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 540236E090
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 00:11:03 +0000 (UTC)
-IronPort-SDR: kEJRt39nR8blfr6N/cqvYh6yTc9QqeW3TxuIKekhzRQjnBnhnPapnAajDWHmRFoU/RFjoSXc0n
- pO84CTzgAArg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="159395147"
-X-IronPort-AV: E=Sophos;i="5.76,411,1592895600"; d="scan'208";a="159395147"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2020 17:11:02 -0700
-IronPort-SDR: slu/sfSW6ruSARGMBtXolRW8aqP8Cxf9Y1KGYTR+T/EfunZ+hsvtgLuiSlIzhiJEgRaP65VtZm
- 2/PIeheSopsw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,411,1592895600"; d="scan'208";a="300325429"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga003.jf.intel.com with ESMTP; 09 Sep 2020 17:11:02 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 9 Sep 2020 17:11:01 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
- Wed, 9 Sep 2020 17:11:01 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/tgl: Make Wa_1606700617/22010271021
- permanent
-Thread-Index: AQHWht8QeNnp6UIi6ESkl6PMfsI81alhdieA
-Date: Thu, 10 Sep 2020 00:11:01 +0000
-Message-ID: <b1a66c3403082c5b3386b4829638df3eae1fd6b3.camel@intel.com>
-References: <20200909191410.21051-1-swathi.dhanavanthri@intel.com>
-In-Reply-To: <20200909191410.21051-1-swathi.dhanavanthri@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-ID: <84336C053A94FF489BEEC5DB689002E9@intel.com>
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
+ [IPv6:2a00:1450:4864:20::544])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6EF389823;
+ Thu, 10 Sep 2020 01:20:54 +0000 (UTC)
+Received: by mail-ed1-x544.google.com with SMTP id c8so4602226edv.5;
+ Wed, 09 Sep 2020 18:20:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3wo5Yjx1lQEjY7epFrCqThFC2PcTK5CRikb0clhHXKk=;
+ b=QMFXPPGMl8QHVTh2ApEhSZ3Tt8VEhnHxuEO4uINaauJJ9FhZL6Un4/0TGdvyZ160v9
+ 9M7XWBUv1mNEkPAyoNrR7pRR6A+sw0RGjjcnWcUcJlOhaCow8fH473GP7Gy+9F0jWZfC
+ FWPt3McCLvFKqGIR8csTB7Q6Pp++S+U6wmwYlS4HCkHwNV1zL2sd2JCWHTxWZKkepTe2
+ AxK5HjK9kysTq8K5NmKf+buv00NKqWqiMblXTnXDsyrDKfFDzIamm/ALPfBdFVJ54qcF
+ QfglbjTgKwcXA2olqyv8MKRUfN1/heAee39AwsBgw2sLOfkBE3XNcmHMv6KgSwElLtZt
+ OwpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3wo5Yjx1lQEjY7epFrCqThFC2PcTK5CRikb0clhHXKk=;
+ b=g7/UGeqd/5gtED72m/mdQPi/lDi7lc8TmRXlAzNBlGdQZxVmtew8eqkTluOJuWeI0S
+ eNTWgVOqdYh1yZ1SBl7tloc/ioSmF2nn4f6c0qjvJiK9HBWlbp05LtxhCoEEctN5/DG1
+ IRHrtijbcUpTR5EFfE5cQRuJHwtIVtaZniL3SZ6ZorQBu/km2f8WG2e8U6EYNQj7SBqH
+ qC/mjMcj7leYry5p8Y+QLhLVxO2EOuLHpeGFNBEAexaQgdluOzcPH8hSKFoHqBj9b3vC
+ 5i54GfKjCOQmW619TvItZF3KtNaWjE97fo8FP+W2MBleKzXlLj7czsARuQK+3xLdrMSu
+ C1hw==
+X-Gm-Message-State: AOAM531WUjDP9Cz8TFa0oM0lIO/zeTBWUEA5u+4wRejhjKei+M0lxDux
+ t+xu859KNDQNJOUOeqC7XqsxZ07I/k1fVZ1upfjFcfMu
+X-Google-Smtp-Source: ABdhPJxuR1PoFpW/PHJZ2wDyACj/8Dwk9fs7XPkbu+vjLOtNJ/jscovOE+Dayr5DadVVNk8c0H58zKLfiD3KaUhPyj4=
+X-Received: by 2002:a05:6402:1219:: with SMTP id
+ c25mr7137254edw.220.1599700853417; 
+ Wed, 09 Sep 2020 18:20:53 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Make
- Wa_1606700617/22010271021 permanent
+References: <20200904143941.110665-1-daniel.vetter@ffwll.ch>
+ <20200904143941.110665-2-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200904143941.110665-2-daniel.vetter@ffwll.ch>
+From: Dave Airlie <airlied@gmail.com>
+Date: Thu, 10 Sep 2020 11:20:41 +1000
+Message-ID: <CAPM=9twn+NOZL=QJCH2-Uat4Srk6MQ3iirb0aHWwC_pXWaLOOw@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 01/24] drm/armada: Use devm_drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,44 +62,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Russell King <linux@armlinux.org.uk>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2020-09-09 at 12:14 -0700, Swathi Dhanavanthri wrote:
-> This workaround now applies to all TGL steppings.
-> 
-> Signed-off-by: Swathi Dhanavanthri <
-> swathi.dhanavanthri@intel.com
-> >
+For the two armada patches.
+
+Reviewed-by: Dave Airlie <airlied@redhat.com>
+
+On Sat, 5 Sep 2020 at 00:40, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+> Also remove the now no longer needed build bug on since that's already
+> not needed anymore with drmm_add_final_kfree. Conversion to managed
+> drm_device cleanup is easy, the final drm_dev_put() is already the
+> last thing in both the bind unbind as in the unbind flow.
+>
+> Also, this relies on component.c correctly wrapping bind&unbind in
+> separate devres groups, which it does.
+>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Russell King <linux@armlinux.org.uk>
 > ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 39817c5a7058..f2225f065799 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -1729,10 +1729,11 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
->  			     GEN6_RC_SLEEP_PSMI_CONTROL,
->  			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
->  			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
-> -	}
->  
-> -	if (IS_TGL_U(i915) || IS_TGL_Y(i915)) {
-> -		/* Wa_1606700617:tgl */
-> +		/*
-> +		 * Wa_1606700617:tgl
-> +		 * Wa_22010271021:tgl
-> +		 */
-
-this is extending the wa to RKL too.
-
->  		wa_masked_en(wal,
->  			     GEN9_CS_DEBUG_MODE1,
->  			     FF_DOP_CLOCK_GATE_DISABLE);
-> 
+>  drivers/gpu/drm/armada/armada_drv.c | 26 ++++++--------------------
+>  1 file changed, 6 insertions(+), 20 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
+> index 5fc25c3f445c..a8d5908b3922 100644
+> --- a/drivers/gpu/drm/armada/armada_drv.c
+> +++ b/drivers/gpu/drm/armada/armada_drv.c
+> @@ -87,24 +87,13 @@ static int armada_drm_bind(struct device *dev)
+>                                      "armada-drm"))
+>                 return -EBUSY;
+>
+> -       priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+> -       if (!priv)
+> -               return -ENOMEM;
+> -
+> -       /*
+> -        * The drm_device structure must be at the start of
+> -        * armada_private for drm_dev_put() to work correctly.
+> -        */
+> -       BUILD_BUG_ON(offsetof(struct armada_private, drm) != 0);
+> -
+> -       ret = drm_dev_init(&priv->drm, &armada_drm_driver, dev);
+> -       if (ret) {
+> -               dev_err(dev, "[" DRM_NAME ":%s] drm_dev_init failed: %d\n",
+> -                       __func__, ret);
+> -               kfree(priv);
+> -               return ret;
+> +       priv = devm_drm_dev_alloc(dev, &armada_drm_driver,
+> +                                 struct armada_private, drm);
+> +       if (IS_ERR(priv)) {
+> +               dev_err(dev, "[" DRM_NAME ":%s] devm_drm_dev_alloc failed: %li\n",
+> +                       __func__, PTR_ERR(priv));
+> +               return PTR_ERR(priv);
+>         }
+> -       drmm_add_final_kfree(&priv->drm, priv);
+>
+>         /* Remove early framebuffers */
+>         ret = drm_fb_helper_remove_conflicting_framebuffers(NULL,
+> @@ -174,7 +163,6 @@ static int armada_drm_bind(struct device *dev)
+>   err_kms:
+>         drm_mode_config_cleanup(&priv->drm);
+>         drm_mm_takedown(&priv->linear);
+> -       drm_dev_put(&priv->drm);
+>         return ret;
+>  }
+>
+> @@ -194,8 +182,6 @@ static void armada_drm_unbind(struct device *dev)
+>
+>         drm_mode_config_cleanup(&priv->drm);
+>         drm_mm_takedown(&priv->linear);
+> -
+> -       drm_dev_put(&priv->drm);
+>  }
+>
+>  static int compare_of(struct device *dev, void *data)
+> --
+> 2.28.0
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
