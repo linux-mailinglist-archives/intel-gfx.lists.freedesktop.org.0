@@ -2,69 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5391626476F
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 15:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56D7926470A
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 15:33:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17A826E963;
-	Thu, 10 Sep 2020 13:49:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D1EF6E0D3;
+	Thu, 10 Sep 2020 13:33:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com
- [IPv6:2607:f8b0:4864:20::d44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16E106E92B
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:33:55 +0000 (UTC)
-Received: by mail-io1-xd44.google.com with SMTP id u126so7024394iod.12
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 06:33:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=tcd-ie.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=NA4xq/RvWtw1DoG4R42VuDAYvxbq5gOs0uGkp97do30=;
- b=fcQ8pRBPaEWiThwI4IpJI/6RvrpktlhqIcuTs8ion57IfAcoLZwMinlg018HPs4g0P
- PfERQLGzgxTimYY/S16DcluJPa3UrMAv2VeDrvrD2khzMlgcNU3uG+U66xQTcGI4k/PB
- tyd6Y57erW7Jw7CdoQkzGYnD3z09a+1xAJWCw3ZTA9vq0DdHjCGpzxmBZebxDdyQNZ5o
- a8n4/aQGMi16zmzKxYbuyXtVYNEIktp6No97ibi4qLI+zDV4g/TXIXD87q5g2S3KNUFg
- wjgBbIjqjQrEef6DxEeF173z4nhe4RTeiKBDtbYrCu4PSy+IwGvrlXsJFLKINZmU1V2I
- yoXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=NA4xq/RvWtw1DoG4R42VuDAYvxbq5gOs0uGkp97do30=;
- b=mNjiDmJrIZinD0a1cxXDbpS6KCGcLat31TBIZ29HDad+fxSje9XnBTw0Rrpk0Neho+
- fc1HffRJbPo+wOfvdeLifh8deUZOFSUpvfAtpFzihKak7ANTxCO+HDRtbxZHwbbRhScJ
- a5ns+Uyeo2lvIpuAvngUoOb8dKHn8n4Lx1ACYCszaFuABtoruB5n6m/zw3uvcRAOELXR
- dW8ARqwsNrREV9ATd2sa3dFKDntScFXfE7jL5a9XNPrE3rzBPpGDcNXCYb5Q3ng+sf+q
- UWXM2YjbCw1utL3cc3x3dISM/im83BPdsUInf4hqU1Jnl7NM0n/nh357kvwEwvEDay16
- Dz/Q==
-X-Gm-Message-State: AOAM531m1uEEHyEUoMNnOlElEQKVVp5mKZNZz6NpwcnDDbicoTPURN/r
- xH02RLkRi33i0HQFOe5KB+YSW3B76l2RC3OWPoXe/Q==
-X-Google-Smtp-Source: ABdhPJzlID7Qr9FJiMTGq9orpwBT55dMvomyRpqx73nK5lHz5vZjsdxpDDRxLur0/nChDVSeWcISfULGX7CKyavrOhU=
-X-Received: by 2002:a02:834a:: with SMTP id w10mr8873252jag.63.1599744834395; 
- Thu, 10 Sep 2020 06:33:54 -0700 (PDT)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D15446E0D3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:33:53 +0000 (UTC)
+IronPort-SDR: 5VVdRmwflKY0JbCj+/3Tox95Tpv9aDts2nZdo7r6y4R86emWQ/yPrCML9mECkqXjtuYgFsR02Q
+ crVMy4h5e/Dw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="138563244"
+X-IronPort-AV: E=Sophos;i="5.76,413,1592895600"; d="scan'208";a="138563244"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2020 06:33:53 -0700
+IronPort-SDR: cQvBgO3WYSnb7TgZAHyKH+l5oTkO0rLJ8LxL6suKqLA0ld5VuD4fhLKpsN9T8H8GS4lxMeUa8N
+ ZFkKiEBVsEfw==
+X-IronPort-AV: E=Sophos;i="5.76,413,1592895600"; d="scan'208";a="480890694"
+Received: from nfhickey-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.81.64])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2020 06:33:52 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200910121153.6749-1-uma.shankar@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200910121153.6749-1-uma.shankar@intel.com>
+Date: Thu, 10 Sep 2020 16:33:53 +0300
+Message-ID: <878sdh21tq.fsf@intel.com>
 MIME-Version: 1.0
-References: <20191221150402.13868-1-murphyt7@tcd.ie>
- <465815ae-9292-f37a-59b9-03949cb68460@deltatee.com>
- <20200529124523.GA11817@infradead.org>
- <CGME20200529190523eucas1p2c086133e707257c0cdc002f502d4f51d@eucas1p2.samsung.com>
- <33137cfb-603c-86e8-1091-f36117ecfaf3@deltatee.com>
- <ef2150d5-7b6a-df25-c10d-e43316fe7812@samsung.com>
- <b9140772-0370-a858-578c-af503a06d8e9@deltatee.com>
- <CALQxJuutRaeX89k2o4ffTKYRMizmMu0XbRnzpFuSSrkQR02jKg@mail.gmail.com>
- <766525c3-4da9-6db7-cd90-fb4b82cd8083@deltatee.com>
- <60a82319-cbee-4cd1-0d5e-3c407cc51330@linux.intel.com>
- <e598fb31-ef7a-c2ee-8a54-bf62d50c480c@deltatee.com>
- <b27cae1f-07ff-bef2-f125-a5f0d968016d@linux.intel.com>
- <CALQxJut5c=cWdi+SVkN3JnbkhPSYmLkOyRUhduL-UJ9gyKn9Ow@mail.gmail.com>
- <7106602a-9964-851e-9c4e-d8acf4033b89@linux.intel.com>
- <ea24e077-5aa6-dd8e-69a7-d186b606703f@linux.intel.com>
-In-Reply-To: <ea24e077-5aa6-dd8e-69a7-d186b606703f@linux.intel.com>
-From: Tom Murphy <murphyt7@tcd.ie>
-Date: Thu, 10 Sep 2020 14:33:43 +0100
-Message-ID: <CALQxJus4prs0T6G9Z4bw5BDgwmkaiynBcoknLsYEY45SNZ6Ukg@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-X-Mailman-Approved-At: Thu, 10 Sep 2020 13:49:08 +0000
-Subject: Re: [Intel-gfx] [PATCH 0/8] Convert the intel iommu driver to the
- dma-iommu api
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add a vblank wait for FBC
+ activation within same frame
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,144 +50,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
- linux-tegra@vger.kernel.org, Julien Grall <julien.grall@arm.com>,
- Will Deacon <will@kernel.org>, Marek Szyprowski <m.szyprowski@samsung.com>,
- Jean-Philippe Brucker <jean-philippe@linaro.org>,
- linux-samsung-soc@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- Christoph Hellwig <hch@infradead.org>, linux-rockchip@lists.infradead.org,
- Andy Gross <agross@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- virtualization@lists.linux-foundation.org,
- Gerald Schaefer <gerald.schaefer@de.ibm.com>,
- Logan Gunthorpe <logang@deltatee.com>, David Woodhouse <dwmw2@infradead.org>,
- Cornelia Huck <cohuck@redhat.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- iommu@lists.linux-foundation.org, Kukjin Kim <kgene@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 9 Sep 2020 at 13:56, Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
+On Thu, 10 Sep 2020, Uma Shankar <uma.shankar@intel.com> wrote:
+> Add a vblank wait when fbc activation request comes for the
+> same frame on TGL. This helps fix underrun related to fbc.
 >
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
 >
-> On 09/09/2020 10:16, Tvrtko Ursulin wrote:
-> > On 08/09/2020 23:43, Tom Murphy wrote:
-> >> On Tue, 8 Sep 2020 at 16:56, Tvrtko Ursulin
-> >> <tvrtko.ursulin@linux.intel.com> wrote:
-> >>> On 08/09/2020 16:44, Logan Gunthorpe wrote:
-> >>>> On 2020-09-08 9:28 a.m., Tvrtko Ursulin wrote:
-> >>>>>>
-> >>>>>> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h
-> >>>>>> b/drivers/gpu/drm/i915/i915
-> >>>>>> index b7b59328cb76..9367ac801f0c 100644
-> >>>>>> --- a/drivers/gpu/drm/i915/i915_scatterlist.h
-> >>>>>> +++ b/drivers/gpu/drm/i915/i915_scatterlist.h
-> >>>>>> @@ -27,13 +27,19 @@ static __always_inline struct sgt_iter {
-> >>>>>>     } __sgt_iter(struct scatterlist *sgl, bool dma) {
-> >>>>>>            struct sgt_iter s = { .sgp = sgl };
-> >>>>>>
-> >>>>>> +       if (sgl && !sg_dma_len(s.sgp))
-> >>>>>
-> >>>>> I'd extend the condition to be, just to be safe:
-> >>>>>       if (dma && sgl && !sg_dma_len(s.sgp))
-> >>>>>
-> >>>>
-> >>>> Right, good catch, that's definitely necessary.
-> >>>>
-> >>>>>> +               s.sgp = NULL;
-> >>>>>> +
-> >>>>>>            if (s.sgp) {
-> >>>>>>                    s.max = s.curr = s.sgp->offset;
-> >>>>>> -               s.max += s.sgp->length;
-> >>>>>> -               if (dma)
-> >>>>>> +
-> >>>>>> +               if (dma) {
-> >>>>>> +                       s.max += sg_dma_len(s.sgp);
-> >>>>>>                            s.dma = sg_dma_address(s.sgp);
-> >>>>>> -               else
-> >>>>>> +               } else {
-> >>>>>> +                       s.max += s.sgp->length;
-> >>>>>>                            s.pfn = page_to_pfn(sg_page(s.sgp));
-> >>>>>> +               }
-> >>>>>
-> >>>>> Otherwise has this been tested or alternatively how to test it?
-> >>>>> (How to
-> >>>>> repro the issue.)
-> >>>>
-> >>>> It has not been tested. To test it, you need Tom's patch set without
-> >>>> the
-> >>>> last "DO NOT MERGE" patch:
-> >>>>
-> >>>> https://lkml.kernel.org/lkml/20200907070035.GA25114@infradead.org/T/
-> >>>
-> >>> Tom, do you have a branch somewhere I could pull from? (Just being lazy
-> >>> about downloading a bunch of messages from the archives.)
-> >>
-> >> I don't unfortunately. I'm working locally with poor internet.
-> >>
-> >>>
-> >>> What GPU is in your Lenovo x1 carbon 5th generation and what
-> >>> graphical/desktop setup I need to repro?
-> >>
-> >>
-> >> Is this enough info?:
-> >>
-> >> $ lspci -vnn | grep VGA -A 12
-> >> 00:02.0 VGA compatible controller [0300]: Intel Corporation HD
-> >> Graphics 620 [8086:5916] (rev 02) (prog-if 00 [VGA controller])
-> >>      Subsystem: Lenovo ThinkPad X1 Carbon 5th Gen [17aa:224f]
-> >>      Flags: bus master, fast devsel, latency 0, IRQ 148
-> >>      Memory at eb000000 (64-bit, non-prefetchable) [size=16M]
-> >>      Memory at 60000000 (64-bit, prefetchable) [size=256M]
-> >>      I/O ports at e000 [size=64]
-> >>      [virtual] Expansion ROM at 000c0000 [disabled] [size=128K]
-> >>      Capabilities: [40] Vendor Specific Information: Len=0c <?>
-> >>      Capabilities: [70] Express Root Complex Integrated Endpoint, MSI 00
-> >>      Capabilities: [ac] MSI: Enable+ Count=1/1 Maskable- 64bit-
-> >>      Capabilities: [d0] Power Management version 2
-> >>      Capabilities: [100] Process Address Space ID (PASID)
-> >>      Capabilities: [200] Address Translation Service (ATS)
-> >
-> > Works for a start. What about the steps to repro? Any desktop
-> > environment and it is just visual corruption, no hangs/stalls or such?
-> >
-> > I've submitted a series consisting of what I understood are the patches
-> > needed to repro the issue to our automated CI here:
-> >
-> > https://patchwork.freedesktop.org/series/81489/
-> >
-> > So will see if it will catch something, or more targeted testing will be
-> > required. Hopefully it does trip over in which case I can add the patch
-> > suggested by Logan on top and see if that fixes it. Or I'll need to
-> > write a new test case.
-> >
-> > If you could glance over my series to check I identified the patches
-> > correctly it would be appreciated.
->
-> Our CI was more than capable at catching the breakage so I've copied you
-> on a patch (https://patchwork.freedesktop.org/series/81497/) which has a
-> good potential to fix this. (Or improve the robustness of our sg walks,
-> depends how you look at it.)
->
-> Would you be able to test it in your environment by any chance? If it
-> works I understand it unblocks your IOMMU work, right?
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index 135f5e8a4d70..3e1d715e4a4e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -1055,6 +1055,7 @@ static void __intel_fbc_post_update(struct intel_crtc *crtc)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	struct intel_fbc *fbc = &dev_priv->fbc;
+> +	static u32 old_frame_cnt, new_frame_cnt;
 
-I tested your latest patch set ([PATCH 1/2] drm/i915: Fix DMA mapped
-scatterlist walks) and it fixes the issue. great work!
+In the strongest terms, do not add static data. These would be shared
+across devices, which is certainly a bug.
 
->
-> Regards,
->
-> Tvrtko
+BR,
+Jani.
+
+>  
+>  	drm_WARN_ON(&dev_priv->drm, !mutex_is_locked(&fbc->lock));
+>  
+> @@ -1075,10 +1076,18 @@ static void __intel_fbc_post_update(struct intel_crtc *crtc)
+>  	if (!intel_fbc_can_activate(crtc))
+>  		return;
+>  
+> -	if (!fbc->busy_bits)
+> +	old_frame_cnt = new_frame_cnt;
+> +	new_frame_cnt = intel_crtc_get_vblank_counter(crtc);
+> +	if (!fbc->busy_bits) {
+> +		if (IS_TIGERLAKE(dev_priv) &&
+> +		    old_frame_cnt == new_frame_cnt) {
+> +			drm_dbg_kms(&dev_priv->drm, "Wait for vblank before Activating FBC");
+> +			intel_wait_for_vblank_if_active(dev_priv, crtc->pipe);
+> +		}
+>  		intel_fbc_hw_activate(dev_priv);
+> -	else
+> +	} else {
+>  		intel_fbc_deactivate(dev_priv, "frontbuffer write");
+> +	}
+>  }
+>  
+>  void intel_fbc_post_update(struct intel_atomic_state *state,
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
