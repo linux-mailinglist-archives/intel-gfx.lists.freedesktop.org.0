@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E596A263BBD
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 06:10:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4D82263BD2
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 06:19:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDD7889FC9;
-	Thu, 10 Sep 2020 04:10:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B791A89FCE;
+	Thu, 10 Sep 2020 04:19:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C764089FA9;
- Thu, 10 Sep 2020 04:10:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BFE01A8832;
- Thu, 10 Sep 2020 04:10:33 +0000 (UTC)
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAFDF89FCE;
+ Thu, 10 Sep 2020 04:19:00 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Bn5HM5Ncqz9sTd;
+ Thu, 10 Sep 2020 14:18:55 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1599711538;
+ bh=EhVZZhtTZCGxIkbgzYqVicFIUPzGTN9DxCVVPOY1Xss=;
+ h=Date:From:To:Cc:Subject:From;
+ b=evbTMrD34oqRHtx7o9AHio+LEMg/rNnKdizpFr2dEn4JHdhyKJtxaSjpX/uWXfroX
+ jU9wefkUcSN/FZ74YN8rn0SkzBGNSzSeDxsSsC5YKO9vqghY9gQYSWQ15WXQ6NnK23
+ Rk+KsUXLBHvx+OzLwGS8DDf3pjVXFJRcgKOnztZDZSiyP9vcZuRy+6RIVL03uiF3Eg
+ mNmLWDLrIksfVgRydeCGU1X6K7Gpx26Ff0cockawtd5Oy5qOKf6bigR+rHOdcEPMA+
+ Dokh4zzBffQYiKnRLhWZM1a8yeWdr33iPqDXO1epCGdfP7PNrQhvSEyeffyN4NKV7y
+ YcdzOVLfdgJ1A==
+Date: Thu, 10 Sep 2020 14:18:54 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Chanwoo Choi <cw00.choi@samsung.com>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>, Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20200910141854.1d4b1b10@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vidya Srinivas" <vidya.srinivas@intel.com>
-Date: Thu, 10 Sep 2020 04:10:33 -0000
-Message-ID: <159971103375.26635.397435582819410121@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <1591247028-5868-1-git-send-email-vidya.srinivas@intel.com>
-In-Reply-To: <1591247028-5868-1-git-send-email-vidya.srinivas@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/dp=3A_DP_PHY_compliance_for_JSL_=28rev11=29?=
+Subject: [Intel-gfx] linux-next: manual merge of the extcon tree with the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,32 +49,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
+Content-Type: multipart/mixed; boundary="===============1889793458=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============1889793458==
+Content-Type: multipart/signed; boundary="Sig_/e=KaLfUS5Ij0WJmpNj.Op=0";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-Series: drm/i915/dp: DP PHY compliance for JSL (rev11)
-URL   : https://patchwork.freedesktop.org/series/77977/
-State : failure
+--Sig_/e=KaLfUS5Ij0WJmpNj.Op=0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+Hi all,
 
-Applying: drm/i915/dp: DP PHY compliance for EHL/JSL
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_dp.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/dp: DP PHY compliance for EHL/JSL
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Today's linux-next merge of the extcon tree got a conflict in:
 
+  MAINTAINERS
+
+between commit:
+
+  f61249dddecc ("MAINTAINERS: Add entry for i.MX 8MQ DCSS driver")
+
+from the drm-misc tree and commit:
+
+  d0e3c25150dd ("MAINTAINERS: Add entry for NXP PTN5150A CC driver")
+
+from the extcon tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc MAINTAINERS
+index 623c53ab5bd5,da94c9b12f1b..000000000000
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@@ -12496,14 -12430,13 +12496,21 @@@ F:	drivers/iio/gyro/fxas21002c_core.
+  F:	drivers/iio/gyro/fxas21002c_i2c.c
+  F:	drivers/iio/gyro/fxas21002c_spi.c
+ =20
+ +NXP i.MX 8MQ DCSS DRIVER
+ +M:	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+ +R:	Lucas Stach <l.stach@pengutronix.de>
+ +L:	dri-devel@lists.freedesktop.org
+ +S:	Maintained
+ +F:	Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
+ +F:	drivers/gpu/drm/imx/dcss/
+ +
++ NXP PTN5150A CC LOGIC AND EXTCON DRIVER
++ M:	Krzysztof Kozlowski <krzk@kernel.org>
++ L:	linux-kernel@vger.kernel.org
++ S:	Maintained
++ F:	Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
++ F:	drivers/extcon/extcon-ptn5150.c
++=20
+  NXP SGTL5000 DRIVER
+  M:	Fabio Estevam <festevam@gmail.com>
+  L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
+
+--Sig_/e=KaLfUS5Ij0WJmpNj.Op=0
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl9ZqS4ACgkQAVBC80lX
+0GzmZQgAhm9Au7ork/yyZ3MKOW+hLWU+QSZsorx+EpWJ0cp7nYN/YDijwMydfpXk
+DFf53BByT7rglwvwis8zhMwjoodlGOY6ImkMIIlOZEMZMhaLlZunhTWdeuYCuKvM
+xDyjPwQbXK/QCaoYGcTUrvG58IBqOIaeIIgGYc/bgw5aU/KER4syr8XS6KYGWsrX
+DQGlzedAMcfsoclBIRMjpuuSIuDHtMwVMa4Pnfz2PNcGnFZ7r5V24Pi4NY5+2zTW
+tdrmfs58w3Ilq30feyn5BYae64qwV5Z2jSVJOLYvgl5OS4YP79Q4ivf3738l04eK
+SEdOJSIYKI7pZkhmdJNu4fKLkxbENw==
+=zfDk
+-----END PGP SIGNATURE-----
+
+--Sig_/e=KaLfUS5Ij0WJmpNj.Op=0--
+
+--===============1889793458==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1889793458==--
