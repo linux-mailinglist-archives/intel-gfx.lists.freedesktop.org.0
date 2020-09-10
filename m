@@ -2,44 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA49263949
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 00:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3990C263969
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 02:11:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65B006F56E;
-	Wed,  9 Sep 2020 22:47:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B8F6E090;
+	Thu, 10 Sep 2020 00:11:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtprelay.hostedemail.com (smtprelay0239.hostedemail.com
- [216.40.44.239])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 484616F56E;
- Wed,  9 Sep 2020 22:47:35 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay07.hostedemail.com (Postfix) with ESMTP id A42B7181D337B;
- Wed,  9 Sep 2020 22:47:32 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
- RULES_HIT:41:355:379:599:800:960:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2393:2553:2559:2562:2828:2898:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3870:3871:3872:3873:4321:5007:6742:6743:8700:10004:10400:10848:11232:11658:11914:12043:12297:12740:12760:12895:13069:13311:13357:13439:14181:14659:14721:21080:21433:21627:21939:30054:30070:30090:30091,
- 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
- DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
- LFtime:1, LUA_SUMMARY:none
-X-HE-Tag: sort28_6003546270e1
-X-Filterd-Recvd-Size: 3292
-Received: from XPS-9350.home (unknown [47.151.133.149])
- (Authenticated sender: joe@perches.com)
- by omf20.hostedemail.com (Postfix) with ESMTPA;
- Wed,  9 Sep 2020 22:47:25 +0000 (UTC)
-Message-ID: <b3d6f71aea87f4bb88554f1a3fdaee0b2feb158c.camel@perches.com>
-From: Joe Perches <joe@perches.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Date: Wed, 09 Sep 2020 15:47:24 -0700
-In-Reply-To: <20200909223602.GJ87483@ziepe.ca>
-References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
- <20200909223602.GJ87483@ziepe.ca>
-User-Agent: Evolution 3.36.4-0ubuntu1 
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 540236E090
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 00:11:03 +0000 (UTC)
+IronPort-SDR: kEJRt39nR8blfr6N/cqvYh6yTc9QqeW3TxuIKekhzRQjnBnhnPapnAajDWHmRFoU/RFjoSXc0n
+ pO84CTzgAArg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="159395147"
+X-IronPort-AV: E=Sophos;i="5.76,411,1592895600"; d="scan'208";a="159395147"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2020 17:11:02 -0700
+IronPort-SDR: slu/sfSW6ruSARGMBtXolRW8aqP8Cxf9Y1KGYTR+T/EfunZ+hsvtgLuiSlIzhiJEgRaP65VtZm
+ 2/PIeheSopsw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,411,1592895600"; d="scan'208";a="300325429"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga003.jf.intel.com with ESMTP; 09 Sep 2020 17:11:02 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 9 Sep 2020 17:11:01 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
+ Wed, 9 Sep 2020 17:11:01 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/tgl: Make Wa_1606700617/22010271021
+ permanent
+Thread-Index: AQHWht8QeNnp6UIi6ESkl6PMfsI81alhdieA
+Date: Thu, 10 Sep 2020 00:11:01 +0000
+Message-ID: <b1a66c3403082c5b3386b4829638df3eae1fd6b3.camel@intel.com>
+References: <20200909191410.21051-1-swathi.dhanavanthri@intel.com>
+In-Reply-To: <20200909191410.21051-1-swathi.dhanavanthri@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-ID: <84336C053A94FF489BEEC5DB689002E9@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [trivial PATCH] treewide: Convert switch/case
- fallthrough; to break; 
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Make
+ Wa_1606700617/22010271021 permanent
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,65 +65,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
- oss-drivers@netronome.com, nouveau@lists.freedesktop.org,
- alsa-devel <alsa-devel@alsa-project.org>, dri-devel@lists.freedesktop.org,
- linux-mips@vger.kernel.org, linux-ide@vger.kernel.org, dm-devel@redhat.com,
- linux-mtd@lists.infradead.org, linux-i2c@vger.kernel.org,
- sparclinux@vger.kernel.org, kvmarm@lists.cs.columbia.edu,
- linux-rtc@vger.kernel.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, dccp@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-atm-general@lists.sourceforge.net, linux-afs@lists.infradead.org,
- coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
- linux-serial@vger.kernel.org, linux-input@vger.kernel.org,
- linux-mmc@vger.kernel.org, Kees Cook <kees.cook@canonical.com>,
- linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-sctp@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-nvme@lists.infradead.org,
- storagedev@microchip.com, ceph-devel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-nfs@vger.kernel.org,
- Jiri Kosina <trivial@kernel.org>, linux-parisc@vger.kernel.org,
- netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- Nick Desaulniers <ndesaulniers@google.com>,
- LKML <linux-kernel@vger.kernel.org>, iommu@lists.linux-foundation.org,
- netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
- bpf@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2020-09-09 at 19:36 -0300, Jason Gunthorpe wrote:
-> On Wed, Sep 09, 2020 at 01:06:39PM -0700, Joe Perches wrote:
-> > fallthrough to a separate case/default label break; isn't very readable.
-> > 
-> > Convert pseudo-keyword fallthrough; statements to a simple break; when
-> > the next label is case or default and the only statement in the next
-> > label block is break;
-> > 
-> > Found using:
-> > 
-> > $ grep-2.5.4 -rP --include=*.[ch] -n "fallthrough;(\s*(case\s+\w+|default)\s*:\s*){1,7}break;" *
-> > 
-> > Miscellanea:
-> > 
-> > o Move or coalesce a couple label blocks above a default: block.
-> > 
-> > Signed-off-by: Joe Perches <joe@perches.com>
-> > ---
-> > 
-> > Compiled allyesconfig x86-64 only.
-> > A few files for other arches were not compiled.
+On Wed, 2020-09-09 at 12:14 -0700, Swathi Dhanavanthri wrote:
+> This workaround now applies to all TGL steppings.
 > 
-> IB part looks OK, I prefer it like this
+> Signed-off-by: Swathi Dhanavanthri <
+> swathi.dhanavanthri@intel.com
+> >
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 > 
-> You could do the same for continue as well, I saw a few of those..
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 39817c5a7058..f2225f065799 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1729,10 +1729,11 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>  			     GEN6_RC_SLEEP_PSMI_CONTROL,
+>  			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
+>  			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
+> -	}
+>  
+> -	if (IS_TGL_U(i915) || IS_TGL_Y(i915)) {
+> -		/* Wa_1606700617:tgl */
+> +		/*
+> +		 * Wa_1606700617:tgl
+> +		 * Wa_22010271021:tgl
+> +		 */
 
-I saw some continue uses as well but wasn't sure
-and didn't look to see if the switch/case with
-continue was in a for/while loop.
+this is extending the wa to RKL too.
 
-
+>  		wa_masked_en(wal,
+>  			     GEN9_CS_DEBUG_MODE1,
+>  			     FF_DOP_CLOCK_GATE_DISABLE);
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
