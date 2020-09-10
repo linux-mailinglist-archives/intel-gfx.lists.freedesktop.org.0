@@ -1,42 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D82263BD2
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 06:19:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57734263CD6
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 07:56:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B791A89FCE;
-	Thu, 10 Sep 2020 04:19:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA966E092;
+	Thu, 10 Sep 2020 05:56:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAFDF89FCE;
- Thu, 10 Sep 2020 04:19:00 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4Bn5HM5Ncqz9sTd;
- Thu, 10 Sep 2020 14:18:55 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1599711538;
- bh=EhVZZhtTZCGxIkbgzYqVicFIUPzGTN9DxCVVPOY1Xss=;
- h=Date:From:To:Cc:Subject:From;
- b=evbTMrD34oqRHtx7o9AHio+LEMg/rNnKdizpFr2dEn4JHdhyKJtxaSjpX/uWXfroX
- jU9wefkUcSN/FZ74YN8rn0SkzBGNSzSeDxsSsC5YKO9vqghY9gQYSWQ15WXQ6NnK23
- Rk+KsUXLBHvx+OzLwGS8DDf3pjVXFJRcgKOnztZDZSiyP9vcZuRy+6RIVL03uiF3Eg
- mNmLWDLrIksfVgRydeCGU1X6K7Gpx26Ff0cockawtd5Oy5qOKf6bigR+rHOdcEPMA+
- Dokh4zzBffQYiKnRLhWZM1a8yeWdr33iPqDXO1epCGdfP7PNrQhvSEyeffyN4NKV7y
- YcdzOVLfdgJ1A==
-Date: Thu, 10 Sep 2020 14:18:54 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Chanwoo Choi <cw00.choi@samsung.com>, Daniel Vetter
- <daniel.vetter@ffwll.ch>, Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20200910141854.1d4b1b10@canb.auug.org.au>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1596D6E039;
+ Thu, 10 Sep 2020 05:56:42 +0000 (UTC)
+IronPort-SDR: gDbrDk+9QPMcR9cWjw+MH5/4mMSx9JoQe9JyAi5USDP4fdOrkjC58hhs7OJ2424NvMMGea6byQ
+ p/eQVp6yW/5g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="176535669"
+X-IronPort-AV: E=Sophos;i="5.76,411,1592895600"; 
+ d="asc'?scan'208";a="176535669"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2020 22:56:41 -0700
+IronPort-SDR: 03MH4+b0cOOxl22PF6bsiSufpU0uc05f5y/1DDdHDgIaoMFzv8+aaduDqskyJ82jluUitBkFyy
+ oeV3f0sA2jQg==
+X-IronPort-AV: E=Sophos;i="5.76,411,1592895600"; 
+ d="asc'?scan'208";a="505718959"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2020 22:56:39 -0700
+Date: Thu, 10 Sep 2020 13:37:20 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200910053720.GK28614@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: manual merge of the extcon tree with the
- drm-misc tree
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: [Intel-gfx] [PULL] gvt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,95 +51,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Laurentiu Palcu <laurentiu.palcu@nxp.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
-Content-Type: multipart/mixed; boundary="===============1889793458=="
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============2029396937=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1889793458==
-Content-Type: multipart/signed; boundary="Sig_/e=KaLfUS5Ij0WJmpNj.Op=0";
- protocol="application/pgp-signature"; micalg=pgp-sha256
 
---Sig_/e=KaLfUS5Ij0WJmpNj.Op=0
-Content-Type: text/plain; charset=US-ASCII
+--===============2029396937==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="Km1U/tdNT/EmXiR1"
+Content-Disposition: inline
+
+
+--Km1U/tdNT/EmXiR1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
 
-Today's linux-next merge of the extcon tree got a conflict in:
+Hi,
 
-  MAINTAINERS
+As we split pull request for 5.10 this time, here's gvt-next pull
+for 5.10. For gvt ww lock fix, Zhi would send another pull based
+on gem-next.
 
-between commit:
+This includes current command access flag cleanup for
+handlers which would be used for next refined cmd scan. And also
+two more recent fixes on workaround cmd access and MIA reset state.
 
-  f61249dddecc ("MAINTAINERS: Add entry for i.MX 8MQ DCSS driver")
+Thanks
+--
+The following changes since commit ced026e959bec5046afa310d6474e147b6294da2:
 
-from the drm-misc tree and commit:
+  drm/i915: Update DRIVER_DATE to 20200824 (2020-08-24 14:26:38 -0400)
 
-  d0e3c25150dd ("MAINTAINERS: Add entry for NXP PTN5150A CC driver")
+are available in the Git repository at:
 
-from the extcon tree.
+  https://github.com/intel/gvt-linux tags/gvt-next-2020-09-10
 
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
+for you to fetch changes up to df398e33b8fd3ac28b3c7166de555e38d26e7391:
+
+  drm/i915/gvt: Init vreg GUC_STATUS to GS_MIA_IN_RESET (2020-09-10 13:49:0=
+5 +0800)
+
+----------------------------------------------------------------
+gvt-next-2020-09-10
+
+- Cleanup command access flag (Yan)
+- New workaround cmd access fix (Colin)
+- MIA reset state fix (Colin)
+
+----------------------------------------------------------------
+Colin Xu (2):
+      drm/i915/gvt: Add F_CMD_ACCESS for some GEN9 SKU WA MMIO access
+      drm/i915/gvt: Init vreg GUC_STATUS to GS_MIA_IN_RESET
+
+Yan Zhao (4):
+      drm/i915/gvt: rename F_IN_CTX flag to F_SR_IN_CTX
+      drm/i915/gvt: remove flag F_CMD_ACCESSED
+      drm/i915/gvt: add/modify interfaces for flag F_CMD_ACCESS
+      drm/i915/gvt: remove F_CMD_ACCESS flag for some registers
+
+ drivers/gpu/drm/i915/gvt/cmd_parser.c   |  6 ++---
+ drivers/gpu/drm/i915/gvt/gvt.h          | 44 +++++++++++++++++++----------=
+----
+ drivers/gpu/drm/i915/gvt/handlers.c     | 32 +++++++++++++-----------
+ drivers/gpu/drm/i915/gvt/mmio.c         |  3 +++
+ drivers/gpu/drm/i915/gvt/mmio_context.c |  2 +-
+ 5 files changed, 49 insertions(+), 38 deletions(-)
 
 --=20
-Cheers,
-Stephen Rothwell
 
-diff --cc MAINTAINERS
-index 623c53ab5bd5,da94c9b12f1b..000000000000
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@@ -12496,14 -12430,13 +12496,21 @@@ F:	drivers/iio/gyro/fxas21002c_core.
-  F:	drivers/iio/gyro/fxas21002c_i2c.c
-  F:	drivers/iio/gyro/fxas21002c_spi.c
- =20
- +NXP i.MX 8MQ DCSS DRIVER
- +M:	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
- +R:	Lucas Stach <l.stach@pengutronix.de>
- +L:	dri-devel@lists.freedesktop.org
- +S:	Maintained
- +F:	Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
- +F:	drivers/gpu/drm/imx/dcss/
- +
-+ NXP PTN5150A CC LOGIC AND EXTCON DRIVER
-+ M:	Krzysztof Kozlowski <krzk@kernel.org>
-+ L:	linux-kernel@vger.kernel.org
-+ S:	Maintained
-+ F:	Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-+ F:	drivers/extcon/extcon-ptn5150.c
-+=20
-  NXP SGTL5000 DRIVER
-  M:	Fabio Estevam <festevam@gmail.com>
-  L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
 
---Sig_/e=KaLfUS5Ij0WJmpNj.Op=0
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+--Km1U/tdNT/EmXiR1
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl9ZqS4ACgkQAVBC80lX
-0GzmZQgAhm9Au7ork/yyZ3MKOW+hLWU+QSZsorx+EpWJ0cp7nYN/YDijwMydfpXk
-DFf53BByT7rglwvwis8zhMwjoodlGOY6ImkMIIlOZEMZMhaLlZunhTWdeuYCuKvM
-xDyjPwQbXK/QCaoYGcTUrvG58IBqOIaeIIgGYc/bgw5aU/KER4syr8XS6KYGWsrX
-DQGlzedAMcfsoclBIRMjpuuSIuDHtMwVMa4Pnfz2PNcGnFZ7r5V24Pi4NY5+2zTW
-tdrmfs58w3Ilq30feyn5BYae64qwV5Z2jSVJOLYvgl5OS4YP79Q4ivf3738l04eK
-SEdOJSIYKI7pZkhmdJNu4fKLkxbENw==
-=zfDk
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCX1m7kAAKCRCxBBozTXgY
+J16JAJ4+PoifD67jpATufUGiRJbwj7xihgCfZmWDfhoki+sWocO46Js65vGiC4U=
+=aKHu
 -----END PGP SIGNATURE-----
 
---Sig_/e=KaLfUS5Ij0WJmpNj.Op=0--
+--Km1U/tdNT/EmXiR1--
 
---===============1889793458==
+--===============2029396937==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +150,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1889793458==--
+--===============2029396937==--
