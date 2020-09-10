@@ -1,68 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3BC726404F
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 10:46:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E8026405A
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 10:47:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F26F898B6;
-	Thu, 10 Sep 2020 08:46:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 402DC6E46C;
+	Thu, 10 Sep 2020 08:47:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 131DD898B6
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 08:46:08 +0000 (UTC)
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
- by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08A8i11D174162;
- Thu, 10 Sep 2020 08:46:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
- bh=3iSHbVtEZ4M05aGNrcQ0LSSu2VuUiZtQawNJrSnrd3A=;
- b=j6KeY0mgoXFOsg/0yJGVdF0g9iVIUy0ARxXXDTsDh9PljOXFeTzhuPr1yIuzDufrILYN
- 1bpUKMHh1iVTrTjrUx14TsCGvBqavqHJY6ritnV9GYP8+UgxOcF8tkjGM/DXto5h5SjQ
- 4U1mvZTp3iKe132GsYZIMOKOxspgvXze8PjL0NBdo4BA+rZvjjRWTRutd6czKaOUmFby
- krKYUTeIFaIdhAZfIslgP3BcJc50hce1yzc4L2c+YGKoqV8FoyGXMKiSgkZR6/QMZdnn
- hKRKcjg1SqH9P14N26eDBaY0LVSZpsjDBEjBoBjatJgAbNrvZ4gl+HC9/Ud99Cd2BZB2 Kg== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
- by userp2120.oracle.com with ESMTP id 33c3an6jce-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
- Thu, 10 Sep 2020 08:46:07 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
- by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08A8f72l138313;
- Thu, 10 Sep 2020 08:44:07 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
- by aserp3020.oracle.com with ESMTP id 33cmk93x6a-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 10 Sep 2020 08:44:06 +0000
-Received: from abhmp0010.oracle.com (abhmp0010.oracle.com [141.146.116.16])
- by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 08A8i5Sk005439;
- Thu, 10 Sep 2020 08:44:05 GMT
-Received: from mwanda (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Thu, 10 Sep 2020 01:44:04 -0700
-Date: Thu, 10 Sep 2020 11:43:59 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: maarten.lankhorst@linux.intel.com
-Message-ID: <20200910084359.GA65053@mwanda>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BD446E45F;
+ Thu, 10 Sep 2020 08:47:49 +0000 (UTC)
+Received: from saruman (91-155-214-58.elisa-laajakaista.fi [91.155.214.58])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 0C4F920770;
+ Thu, 10 Sep 2020 08:47:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1599727668;
+ bh=RPokpgxyglYjppmxdwE4ETpgoWb+FLMn8txdhEbALdk=;
+ h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+ b=caMPoUSKexLI6/Cqhtg8fT99cl3GRCJBgwM+b8CDUH4fpndiULhN2ZxxlePCqMtm8
+ o+PPIhKL0Yab4dKBUBJb9PAX9HTFJdHyhq4ZrB98n0hws/gO34J2oo99WhyXQG8LAo
+ ih4L+nIDe5nvGNhsdtsxYZAUrexQb+0pD4TKBRdk=
+From: Felipe Balbi <balbi@kernel.org>
+To: Joe Perches <joe@perches.com>, LKML <linux-kernel@vger.kernel.org>, Jiri
+ Kosina <trivial@kernel.org>
+In-Reply-To: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
+References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
+Date: Thu, 10 Sep 2020 11:47:27 +0300
+Message-ID: <878sdikogw.fsf@kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9739
- signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
- malwarescore=0 phishscore=0
- mlxlogscore=999 bulkscore=0 adultscore=0 mlxscore=0 suspectscore=3
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2009100081
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9739
- signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
- priorityscore=1501
- clxscore=1015 bulkscore=0 malwarescore=0 lowpriorityscore=0
- mlxlogscore=999 suspectscore=3 adultscore=0 mlxscore=0 impostorscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009100081
-Subject: [Intel-gfx] [bug report] drm/i915: Use ww pinning for
- intel_context_create_request()
+Subject: Re: [Intel-gfx] [trivial PATCH] treewide: Convert switch/case
+ fallthrough; to break; 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,56 +46,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ oss-drivers@netronome.com, nouveau@lists.freedesktop.org,
+ alsa-devel <alsa-devel@alsa-project.org>, dri-devel@lists.freedesktop.org,
+ linux-ide@vger.kernel.org, dm-devel@redhat.com, linux-mtd@lists.infradead.org,
+ linux-i2c@vger.kernel.org, sparclinux@vger.kernel.org,
+ kvmarm@lists.cs.columbia.edu, linux-rtc@vger.kernel.org,
+ linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org, dccp@vger.kernel.org,
+ linux-rdma@vger.kernel.org, linux-atm-general@lists.sourceforge.net,
+ linux-afs@lists.infradead.org, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-serial@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-mmc@vger.kernel.org,
+ Kees Cook <kees.cook@canonical.com>, linux-media@vger.kernel.org,
+ linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-sctp@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-nvme@lists.infradead.org, storagedev@microchip.com,
+ ceph-devel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-nfs@vger.kernel.org, linux-parisc@vger.kernel.org,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-mips@vger.kernel.org,
+ iommu@lists.linux-foundation.org, netfilter-devel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, bpf@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org
+Content-Type: multipart/mixed; boundary="===============1559579237=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Maarten Lankhorst,
+--===============1559579237==
+Content-Type: multipart/signed; boundary="=-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
-The patch 8a929c9eb1c2: "drm/i915: Use ww pinning for
-intel_context_create_request()" from Aug 19, 2020, leads to the
-following static checker warning:
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-	drivers/gpu/drm/i915/gt/intel_context.c:481 intel_context_create_request()
-	error: uninitialized symbol 'rq'.
+Hi,
 
-drivers/gpu/drm/i915/gt/intel_context.c
-   459  struct i915_request *intel_context_create_request(struct intel_context *ce)
-   460  {
-   461          struct i915_gem_ww_ctx ww;
-   462          struct i915_request *rq;
-   463          int err;
-   464  
-   465          i915_gem_ww_ctx_init(&ww, true);
-   466  retry:
-   467          err = intel_context_pin_ww(ce, &ww);
-   468          if (!err) {
-   469                  rq = i915_request_create(ce);
-   470                  intel_context_unpin(ce);
-   471          } else if (err == -EDEADLK) {
-   472                  err = i915_gem_ww_ctx_backoff(&ww);
-   473                  if (!err)
-   474                          goto retry;
+Joe Perches <joe@perches.com> writes:
+>  drivers/usb/dwc3/core.c                                   |  2 +-
+>  drivers/usb/gadget/legacy/inode.c                         |  2 +-
+>  drivers/usb/gadget/udc/pxa25x_udc.c                       |  4 ++--
+>  drivers/usb/phy/phy-fsl-usb.c                             |  2 +-
 
-"rq" not initialized on the -EDEADLK path.
+for the drivers above:
 
-   475          } else {
-   476                  rq = ERR_PTR(err);
-   477          }
-   478  
-   479          i915_gem_ww_ctx_fini(&ww);
-   480  
-   481          if (IS_ERR(rq))
-                           ^^
+Acked-by: Felipe Balbi <balbi@kernel.org>
 
-   482                  return rq;
-   483  
+=2D-=20
+balbi
 
-regards,
-dan carpenter
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl9Z6B8RHGJhbGJpQGtl
+cm5lbC5vcmcACgkQzL64meEamQZSCRAAuTv1hrqhd9iVfnwXFrfx8dYquoCMc3VI
+y1IiULV6avnZvLQTqKviHDvZw05WY6dna714mpLFW1laW3WuhLSD4elIu6cqHaiz
+ZgtvtA4bZ/s7ipV+jlZ86S9oIz4MMBbZYhqSN1ZVk50NsUA/1thpcjS0aLI5SAgX
+j2dV6BEEHBSgMDwcWLPNwr6f5R/ycEBx3i6HYSSdNtBr1SK+UhbSkwNxdCA9IzH8
+1WCugmJdohP26DIYNzFZcssjcSFb5wu2iuHXQXuvOmmAfQmro+gRcnq1SOElae7v
+cas67L69RQ5fxskM/XpIYH2AURFnRUNondcJWViUQXHwXF1U0r+FdwXUr8OeFi19
+sVEI4FNu7ZqgvhfUlKMpldyUZRIrWb+WZZ5toBQAKFee/3tqTs4Tqh9cwfLL9IU4
+ho4tG7J/bd6hASfr0x2dH5Pm7oXKskxmtUpmmSVlNaTpXytiD30+pUvOl9Qg7A+X
+tc9h6N3Z6kdVxkJlm1KpUUccPeUtHox549ukAtzKQL4x6PDCdNqBkNDVSIx04FA4
+dgyt4O7w4HaWT1GPHH322pG5nNT1dsGT0CC9QA/2AJkoXTY03YGR3dgDw89GNUrP
+WPj73gtBbWTwRFuwHQQs8F/E8x2UjBC005aawoKcK2bxBR1fzqz1y8daUaiCftnV
+ocu1QwRIgL8=
+=BFTp
+-----END PGP SIGNATURE-----
+--=-=-=--
+
+--===============1559579237==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1559579237==--
