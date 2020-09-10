@@ -1,46 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E796264552
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 13:28:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD254264597
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 13:59:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84DCE6E909;
-	Thu, 10 Sep 2020 11:28:04 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB0CF6E90D
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 11:28:02 +0000 (UTC)
-IronPort-SDR: 49w0KORUjbVjtt3x2rsjt5nJSGqvlH8mEEZOIeojuAErbPk+J/6uge4Z5nZZ9FYtFoVRTIf01d
- ZE4Nc2p1AuKQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="138545269"
-X-IronPort-AV: E=Sophos;i="5.76,412,1592895600"; d="scan'208";a="138545269"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C52056E914;
+	Thu, 10 Sep 2020 11:59:12 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A2F6E914
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 11:59:11 +0000 (UTC)
+IronPort-SDR: +JS1tCArWjzlmJop1kWjfUlGERUNhuJZc2kIv+v+wgXNTL0jAR76q8juhjVfuRVYNjW5TkUUMK
+ NAwSBzhsyQaA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="146219265"
+X-IronPort-AV: E=Sophos;i="5.76,413,1592895600"; d="scan'208";a="146219265"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2020 04:28:01 -0700
-IronPort-SDR: mNSxvJwREeSHXFoDWCH/3S0eBseJXLo9GOIcUti9VtkEDyd5LS60gNEE5KmSnv9V8zj6+WJuhM
- 4suqZ1XqRDFw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,412,1592895600"; d="scan'208";a="304851462"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 10 Sep 2020 04:27:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Sep 2020 14:27:58 +0300
-Date: Thu, 10 Sep 2020 14:27:58 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <20200910112758.GW6112@intel.com>
-References: <20200910111225.2184193-1-maarten.lankhorst@linux.intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2020 04:59:10 -0700
+IronPort-SDR: QRWcKedXMXJnOS5/TV1nNIxbHR+kOzEY7ydwVoMglGbSAAmUcV0dH5g9y8WjhURaU62mzmUsek
+ ueALyf047pKA==
+X-IronPort-AV: E=Sophos;i="5.76,413,1592895600"; d="scan'208";a="449573069"
+Received: from rstossel-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.254.148.251])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2020 04:59:09 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Sep 2020 12:58:58 +0100
+Message-Id: <20200910115900.407686-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200910111225.2184193-1-maarten.lankhorst@linux.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix slightly botched merge in
- __reloc_entry_gpu
+Subject: [Intel-gfx] [PATCH 0/2] Fixes for incoming smarter IOMMU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,80 +47,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
- Dan Carpenter <dan.carpenter@oracle.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 10, 2020 at 01:12:25PM +0200, Maarten Lankhorst wrote:
-> This function should be an int, not a bool.
-> =
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-> Presumably because we had the same 2 reverts in a slightly different
-> way, git got confused.
-> =
+There are incoming improvements to Intel IOMMU code to allow sg table
+coalescing on map operations. We do not handle that well (we assume 1:1 between
+backing store and DMA mapped entries) so this series is an attempt to improve
+this area and get ready for those changes.
 
-> Thanks to Dan for reporting. :)
-> =
+Tvrtko Ursulin (2):
+  drm/i915: Fix DMA mapped scatterlist walks
+  drm/i915: Fix DMA mapped scatterlist lookup
 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> Cc: Dave Airlie <airlied@redhat.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> =
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |  2 ++
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    | 20 +++++++++++++++++-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  | 17 ++++++++-------
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 21 ++++++++++++-------
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  6 +++---
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 17 ++++++++-------
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  4 ++--
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |  2 +-
+ drivers/gpu/drm/i915/i915_scatterlist.h       | 17 +++++++++++----
+ 9 files changed, 73 insertions(+), 33 deletions(-)
 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu=
-/drm/i915/gem/i915_gem_execbuffer.c
-> index 804339255df1..5509946f1a1d 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1437,7 +1437,7 @@ static unsigned long vma_phys_addr(struct i915_vma =
-*vma, u32 offset)
->  	return addr + offset_in_page(offset);
->  }
->  =
+-- 
+2.25.1
 
-> -static bool __reloc_entry_gpu(struct i915_execbuffer *eb,
-> +static int __reloc_entry_gpu(struct i915_execbuffer *eb,
->  			      struct i915_vma *vma,
->  			      u64 offset,
->  			      u64 target_addr)
-> @@ -1456,7 +1456,7 @@ static bool __reloc_entry_gpu(struct i915_execbuffe=
-r *eb,
->  =
-
->  	batch =3D reloc_gpu(eb, vma, len);
->  	if (batch =3D=3D ERR_PTR(-EDEADLK))
-> -		return (s64)-EDEADLK;
-> +		return -EDEADLK;
->  	else if (IS_ERR(batch))
->  		return false;
-
-If it's an int now why is there a 'false' still here?
-
->  =
-
-> =
-
-> base-commit: 877d8c074302c20ac0759d1a4f689c14aada420d
-> -- =
-
-> 2.28.0
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
