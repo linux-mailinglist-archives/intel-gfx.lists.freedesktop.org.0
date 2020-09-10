@@ -1,26 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F1D263CBD
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 07:51:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66128263EF2
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 09:49:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B413C89DE5;
-	Thu, 10 Sep 2020 05:51:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F14F36E2CC;
+	Thu, 10 Sep 2020 07:48:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F3ED89DE5
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 05:51:14 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <478b49d1-b1b3-c983-7056-8a89249be435@mblankhorst.nl>
-Date: Thu, 10 Sep 2020 07:51:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 912D36E2AF;
+ Thu, 10 Sep 2020 07:48:55 +0000 (UTC)
+IronPort-SDR: kXeJYkgbkFBaYiTzKDeB1VivIJBB3nK8vepMMsO6VF6y7qMHa9z3DutONswVvqd3u4FcHV67Un
+ 7oiDI3YiJiOQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="159439185"
+X-IronPort-AV: E=Sophos;i="5.76,412,1592895600"; d="scan'208";a="159439185"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2020 00:48:54 -0700
+IronPort-SDR: 95UwI1dZ4/4wD1haq7DCFQmXQoukHAi8ipiWX/u31da6bdQ1E04T1kM79e/XRy50TB3rs457LF
+ S2t4YJTGVc1w==
+X-IronPort-AV: E=Sophos;i="5.76,412,1592895600"; d="scan'208";a="505750819"
+Received: from nfhickey-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.81.64])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2020 00:48:49 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 10 Sep 2020 10:48:51 +0300
+Message-ID: <875z8m2hss.fsf@intel.com>
 MIME-Version: 1.0
-Content-Language: en-US
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,95 +47,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm-misc-fixes-2020-09-09:
-drm-misc-fixes for v5.9-rc5:
-- Fix double free in virtio.
-- Add missing put_device in sun4i, and other fixes.
-- Small ingenic fixes.
-- Handle sun4i alpha on lowest plane correctly.
-- Remove output->enabled from virtio, as it should use crtc_state.
-- Fix tve200 enable/disable.
-- Documentation fix.
-- Fix virtio unblank.
-The following changes since commit 7fd5b25499bcec157dd4de9a713425efcf4571cd:
 
-  drm/omap: fix incorrect lock state (2020-08-25 12:05:15 +0300)
+Hi Dave & Daniel -
+
+drm-intel-fixes-2020-09-10:
+drm/i915 fixes for v5.9-rc5:
+- Fix regression leading to audio probe failure
+
+BR,
+Jani.
+
+The following changes since commit f4d51dffc6c01a9e94650d95ce0104964f8ae822:
+
+  Linux 5.9-rc4 (2020-09-06 17:11:40 -0700)
 
 are available in the Git repository at:
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2020-09-09
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-09-10
 
-for you to fetch changes up to fc7f148feb8975784bd40e41fff875d33f698be8:
+for you to fetch changes up to 0c4c801b31f89cfc1b97207abbab687f43d8e258:
 
-  drm/virtio: drop virtio_gpu_output->enabled (2020-09-04 13:11:32 +0200)
-
-----------------------------------------------------------------
-drm-misc-fixes for v5.9-rc5:
-- Fix double free in virtio.
-- Add missing put_device in sun4i, and other fixes.
-- Small ingenic fixes.
-- Handle sun4i alpha on lowest plane correctly.
-- Remove output->enabled from virtio, as it should use crtc_state.
-- Fix tve200 enable/disable.
-- Documentation fix.
-- Fix virtio unblank.
+  drm/i915: fix regression leading to display audio probe failure on GLK (2020-09-08 14:38:46 +0300)
 
 ----------------------------------------------------------------
-Gerd Hoffmann (2):
-      drm/virtio: fix unblank
-      drm/virtio: drop virtio_gpu_output->enabled
+drm/i915 fixes for v5.9-rc5:
+- Fix regression leading to audio probe failure
 
-Gurchetan Singh (1):
-      drm/virtio: Revert "drm/virtio: Call the right shmem helpers"
+----------------------------------------------------------------
+Kai Vehmanen (1):
+      drm/i915: fix regression leading to display audio probe failure on GLK
 
-Jernej Skrabec (1):
-      drm/sun4i: Fix DE2 YVU handling
+ drivers/gpu/drm/i915/display/intel_display.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
-Krzysztof Kozlowski (2):
-      dma-buf: Fix kerneldoc of dma_buf_set_name()
-      dma-buf: fence-chain: Document missing dma_fence_chain_init() parameter in kerneldoc
-
-Linus Walleij (1):
-      drm/tve200: Stabilize enable/disable
-
-Maxime Ripard (2):
-      drm/sun4i: backend: Support alpha property on lowest plane
-      drm/sun4i: backend: Disable alpha on the lowest plane on the A20
-
-Ondrej Jirman (1):
-      drm/sun4i: Fix dsi dcs long write function
-
-Paul Cercueil (2):
-      drm/ingenic: Fix leak of device_node pointer
-      drm/ingenic: Fix driver not probing when IPU port is missing
-
-Randy Dunlap (1):
-      Documentation: fix dma-buf.rst underline length warning
-
-Yu Kuai (1):
-      drm/sun4i: add missing put_device() call in sun8i_r40_tcon_tv_set_mux()
-
- Documentation/driver-api/dma-buf.rst      |  2 +-
- drivers/dma-buf/dma-buf.c                 |  6 +++---
- drivers/dma-buf/dma-fence-chain.c         |  1 +
- drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 20 ++++++++++++--------
- drivers/gpu/drm/sun4i/sun4i_backend.c     |  4 +---
- drivers/gpu/drm/sun4i/sun4i_tcon.c        |  8 ++++++--
- drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c    |  4 ++--
- drivers/gpu/drm/sun4i/sun8i_vi_layer.c    |  2 +-
- drivers/gpu/drm/tve200/tve200_display.c   | 22 +++++++++++++++++++++-
- drivers/gpu/drm/virtio/virtgpu_display.c  | 15 +++++++++++----
- drivers/gpu/drm/virtio/virtgpu_drv.h      |  2 +-
- drivers/gpu/drm/virtio/virtgpu_object.c   |  8 +++++++-
- drivers/gpu/drm/virtio/virtgpu_plane.c    |  6 ++++--
- 13 files changed, 71 insertions(+), 29 deletions(-)
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
