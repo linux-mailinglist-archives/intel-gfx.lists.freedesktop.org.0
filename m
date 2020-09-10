@@ -2,36 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 123B826476E
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 15:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECA4726476A
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Sep 2020 15:49:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0B366E960;
-	Thu, 10 Sep 2020 13:49:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B30836E942;
+	Thu, 10 Sep 2020 13:49:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D022E6F50A;
- Wed,  9 Sep 2020 20:56:03 +0000 (UTC)
-Received: from dhcp-10-100-145-180.wdl.wdc.com (unknown [199.255.45.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9C5789B29;
+ Thu, 10 Sep 2020 06:28:26 +0000 (UTC)
+Received: from coco.lan (ip5f5ad5ac.dynamic.kabel-deutschland.de
+ [95.90.213.172])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id A2AC920BED;
- Wed,  9 Sep 2020 20:56:00 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 79CF6206A1;
+ Thu, 10 Sep 2020 06:28:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599684963;
- bh=HOi/gRnNWCADuH3C2tuPouagH6ACKRSW8Me9mQGESc8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=MIR0n2v6jYMLvL9ylCeswSmSkNjM38pD+hUWnq3QNBxdxavUAFW1nFlTLHe2pybfD
- odrRmpSK6VaBtY4y/JW5mI6voxGDP7xP7wyaKsNWcxcK7TIQVymwmw1HPj8MEaIJrr
- wYpwdfF4aTXncxhcjdHkCnRIxxiQ6/mo+8A6FHH4=
-Date: Wed, 9 Sep 2020 13:55:58 -0700
-From: Keith Busch <kbusch@kernel.org>
+ s=default; t=1599719306;
+ bh=DjrBPnz1BgCnBYG/64IiUxKEJrMJGKb1A3mRWVpncJk=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=KppkCOGGex5Td4qsjLzCFk1NCf4XHbXpibLJsQYMVVaT0bkaAFQjn+ZuEeXf2o77m
+ UyE3jBNOXTpotfoeco2l+h7jkiCeDQm7I+A6v3H6sCfl0zDTboY8/bNQu+oaB5Un+6
+ r8LmWMYkPZepovOPOzqdHyn81ea3fXGQ2O9gVUL8=
+Date: Thu, 10 Sep 2020 08:28:12 +0200
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 To: Joe Perches <joe@perches.com>
-Message-ID: <20200909205558.GA3384631@dhcp-10-100-145-180.wdl.wdc.com>
-References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
-MIME-Version: 1.0
-Content-Disposition: inline
+Message-ID: <20200910082812.057a04e6@coco.lan>
 In-Reply-To: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
+References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
 X-Mailman-Approved-At: Thu, 10 Sep 2020 13:49:08 +0000
 Subject: Re: [Intel-gfx] [trivial PATCH] treewide: Convert switch/case
  fallthrough; to break; 
@@ -75,24 +76,46 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 09, 2020 at 01:06:39PM -0700, Joe Perches wrote:
-> diff --git a/crypto/tcrypt.c b/crypto/tcrypt.c
-> index eea0f453cfb6..8aac5bc60f4c 100644
-> --- a/crypto/tcrypt.c
-> +++ b/crypto/tcrypt.c
-> @@ -2464,7 +2464,7 @@ static int do_test(const char *alg, u32 type, u32 mask, int m, u32 num_mb)
->  		test_hash_speed("streebog512", sec,
->  				generic_hash_speed_template);
->  		if (mode > 300 && mode < 400) break;
-> -		fallthrough;
-> +		break;
->  	case 399:
->  		break;
+Em Wed, 09 Sep 2020 13:06:39 -0700
+Joe Perches <joe@perches.com> escreveu:
 
-Just imho, this change makes the preceding 'if' look even more
-pointless. Maybe the fallthrough was a deliberate choice? Not that my
-opinion matters here as I don't know this module, but it looked a bit
-odd to me.
+> fallthrough to a separate case/default label break; isn't very readable.
+> 
+> Convert pseudo-keyword fallthrough; statements to a simple break; when
+> the next label is case or default and the only statement in the next
+> label block is break;
+> 
+> Found using:
+> 
+> $ grep-2.5.4 -rP --include=*.[ch] -n "fallthrough;(\s*(case\s+\w+|default)\s*:\s*){1,7}break;" *
+> 
+> Miscellanea:
+> 
+> o Move or coalesce a couple label blocks above a default: block.
+> 
+> Signed-off-by: Joe Perches <joe@perches.com>
+> ---
+> 
+> Compiled allyesconfig x86-64 only.
+> A few files for other arches were not compiled.
+> 
+
+
+>  drivers/media/dvb-frontends/drxd_hard.c                   |  2 +-
+>  drivers/media/i2c/ov5640.c                                |  2 +-
+>  drivers/media/i2c/ov6650.c                                |  5 ++---
+>  drivers/media/i2c/smiapp/smiapp-core.c                    |  2 +-
+>  drivers/media/i2c/tvp5150.c                               |  2 +-
+>  drivers/media/pci/ddbridge/ddbridge-core.c                |  2 +-
+>  drivers/media/usb/cpia2/cpia2_core.c                      |  2 +-
+
+For media drivers:
+
+Reviewed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+
+
+Thanks,
+Mauro
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
