@@ -2,54 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 909AC265C2E
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Sep 2020 11:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 555DE265DD9
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Sep 2020 12:30:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95D596E3A8;
-	Fri, 11 Sep 2020 09:08:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0902488549;
+	Fri, 11 Sep 2020 10:30:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
- [IPv6:2607:f8b0:4864:20::e42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D32C6E3A8;
- Fri, 11 Sep 2020 09:08:55 +0000 (UTC)
-Received: by mail-vs1-xe42.google.com with SMTP id j185so5010521vsc.3;
- Fri, 11 Sep 2020 02:08:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ekCnXKKIp0mXUS3WlLUKLLpN9dA9fjVb2vpUKKIdlfM=;
- b=tiBUogJHaA7qBv4glkvKTbaV+Up8nq5gquWp8vpzOXfE2U1CMa9v+k5XyZKctPF83Q
- lHMASantC4EdzocM4EtSu1nWRjTLbsbV132yQ5fT8rY97hJO4Ss4UihqdB0gmMXr4jUr
- 8rg7SKzFv9ItF90qatvsec5xTPDzCZsdsYnXGbNIH3VA4woTg/2XL9rZlAPefbZ0kLBS
- JdRXODSkPIHBglFD7phYA4km8SS/QA0QIiXK8MTqKCz56hNz9RUIVg5KVum1Vm40fMBC
- QzBvxroRTRz8eRT6thRVcdyH/qIS6lpEISeQGMYWsRCVoTQDF+CQRidE3roBUoICNI2T
- 961g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ekCnXKKIp0mXUS3WlLUKLLpN9dA9fjVb2vpUKKIdlfM=;
- b=PNE2Tx3evs34H2Z5MMJfyYzAvvkIO/gIvHEJDsky5Ow0a0XSbbakGV0DZEKArnSchh
- 6nJL2b9eLFcPT+DctDf6SqTJ/f1pAEhp+2o3VAiojz+oPcfRMucS4PA+9duu2AW6DvNg
- rQU87IuiqKtmCZGhKfyQPYh9ZuToP9M6FGmPGKIMwyOoxyD+ogrsKsnT4paggjnPbSCO
- ouuxWUhJ8SyMNMP46nX97Y8rMKvuboCl4Gjv/zJEC2mALTth6j6pBDTk6BW6w7N/5BcG
- gXgZF7eMDdgh297rnjBtJyJXHSuWpr7oMU+pVnzuwv4e9tmS1pdbvNU9P7dreglE5t+d
- LpXQ==
-X-Gm-Message-State: AOAM532DxM8zaKxYUoEA7Gx2riCPjUKVb0BuVpzzupw4pTFy3A1r8W5a
- b+b8QJAPXusjTy2rqTyQSj3bQY0tLC7DKca6OV8=
-X-Google-Smtp-Source: ABdhPJxoYIV3CX9f7cy2IOE6VDrv8a2GSVNKJIua9gBLXhdDvXc3q4fk17FkIjbbTepKuzSpTXuNam23v4KSdjFeiZo=
-X-Received: by 2002:a67:e3a2:: with SMTP id j2mr510932vsm.104.1599815334543;
- Fri, 11 Sep 2020 02:08:54 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACF516E9FC;
+ Fri, 11 Sep 2020 10:30:52 +0000 (UTC)
+IronPort-SDR: vQl/02IP/YAMt4/ANvhunk7Uz00m0nrRMjuhcOdVQHlAzudQtsPwKFNBtA+tn3nbviJMoxoa/+
+ Fdk6NFmBik8g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9740"; a="146463183"
+X-IronPort-AV: E=Sophos;i="5.76,414,1592895600"; d="scan'208";a="146463183"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2020 03:30:51 -0700
+IronPort-SDR: gcl9u0XBH5kTxWsPaTfvBxA1ViAHtf86vVm0EHctfhxgXWmH43AMTcKz+e+5gMr74qW6P4Vo0g
+ K+ITAOgEy6uw==
+X-IronPort-AV: E=Sophos;i="5.76,414,1592895600"; d="scan'208";a="334474673"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2020 03:30:49 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Fri, 11 Sep 2020 12:30:15 +0200
+Message-Id: <20200911103039.4574-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-References: <20200904143941.110665-1-daniel.vetter@ffwll.ch>
- <20200904143941.110665-9-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200904143941.110665-9-daniel.vetter@ffwll.ch>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 11 Sep 2020 10:08:28 +0100
-Message-ID: <CAM0jSHNpNfb3soFXWa6JCWUT5ayEOpJO-tp3sLp3PnQ8Oh5bTw@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 08/24] drm/i915/selftests: align more to
- real device lifetimes
+Subject: [Intel-gfx] [PATCH i-g-t v6 00/24] tests/core_hotunplug: Fixes and
+ enhancements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,119 +47,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 4 Sep 2020 at 15:40, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
->
-> The big change is device_add so that device_del can auto-cleanup
-> devres resources. This allows us to use devm_drm_dev_alloc, which
-> removes the last user of drm_dev_init.
->
-> v2: Rebased
->
-> v3: use devres_open/release_group so we can use devm without real
-> hacks in the driver core or having to create an entire fake bus for
-> testing drivers. Might want to extract this into helpers eventually,
-> maybe as a mock_drm_dev_alloc or test_drm_dev_alloc.
->
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->  .../gpu/drm/i915/selftests/mock_gem_device.c  | 42 +++++++++++--------
->  1 file changed, 25 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> index fbb403edb7a0..164ad1746da9 100644
-> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> @@ -128,12 +128,6 @@ struct drm_i915_private *mock_gem_device(void)
->         pdev = kzalloc(sizeof(*pdev), GFP_KERNEL);
->         if (!pdev)
->                 return NULL;
-> -       i915 = kzalloc(sizeof(*i915), GFP_KERNEL);
-> -       if (!i915) {
-> -               kfree(pdev);
-> -               return NULL;
-> -       }
-> -
->         device_initialize(&pdev->dev);
->         pdev->class = PCI_BASE_CLASS_DISPLAY << 16;
->         pdev->dev.release = release_dev;
-> @@ -146,8 +140,29 @@ struct drm_i915_private *mock_gem_device(void)
->         iommu.priv = (void *)-1;
->         pdev->dev.iommu = &iommu;
->  #endif
-> +       err = device_add(&pdev->dev);
-> +       if (err) {
-> +               kfree(pdev);
-> +               return NULL;
-> +       }
-> +
-> +       if (!devres_open_group(&pdev->dev, NULL, GFP_KERNEL)) {
-> +               device_del(&pdev->dev);
-> +               return NULL;
-> +       }
-> +
-> +       i915 = devm_drm_dev_alloc(&pdev->dev, &mock_driver,
-> +                                 struct drm_i915_private, drm);
-> +       if (err) {
-
-if (IS_ERR(i915))
-
-?
-
-> +               pr_err("Failed to allocate mock GEM device: err=%d\n", err);
-> +               devres_release_group(&pdev->dev, NULL);
-> +               device_del(&pdev->dev);
-> +
-> +               return NULL;
-> +       }
->
->         pci_set_drvdata(pdev, i915);
-> +       i915->drm.pdev = pdev;
->
->         dev_pm_domain_set(&pdev->dev, &pm_domain);
->         pm_runtime_enable(&pdev->dev);
-> @@ -155,16 +170,6 @@ struct drm_i915_private *mock_gem_device(void)
->         if (pm_runtime_enabled(&pdev->dev))
->                 WARN_ON(pm_runtime_get_sync(&pdev->dev));
->
-> -       err = drm_dev_init(&i915->drm, &mock_driver, &pdev->dev);
-> -       if (err) {
-> -               pr_err("Failed to initialise mock GEM device: err=%d\n", err);
-> -               put_device(&pdev->dev);
-> -               kfree(i915);
-> -
-> -               return NULL;
-> -       }
-> -       i915->drm.pdev = pdev;
-> -       drmm_add_final_kfree(&i915->drm, i915);
->
->         i915_params_copy(&i915->params, &i915_modparams);
->
-> @@ -231,5 +236,8 @@ struct drm_i915_private *mock_gem_device(void)
->
->  void mock_destroy_device(struct drm_i915_private *i915)
->  {
-> -       drm_dev_put(&i915->drm);
-> +       struct device *dev = i915->drm.dev;
-> +
-> +       devres_release_group(dev, NULL);
-> +       device_del(dev);
->  }
-> --
-> 2.28.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q2xlYW4gdXAgdGhlIHRlc3QgY29kZSwgYWRkIHNvbWUgbmV3IGJhc2ljIHN1YnRlc3RzLCB0aGVu
+IHVuYmxvY2sKdW5iaW5kIHRlc3QgdmFyaWFudHMuCgpObyBpbmNvbXBsZXRlcyAvIGFib3J0cyBu
+b3Igc3Vic2VxdWVudGx5IHJ1biB0ZXN0IGlzc3VlcyBoYXZlIGJlZW4KcmVwb3J0ZWQgYnkgVHJ5
+Ym90LiAgVGhlIGhvdHJlYmluZC1sYXRlY2xvc2Ugc3VidGVzdCBmYWlscyBvbiBhIHNvIGZhcgp1
+bmlkZW50aWZpZWQgZHJpdmVyIHN5c2ZzIGlzc3VlIGJ1dCB0aGUgZGV2aWNlIGlzIGZ1bGx5IHJl
+Y292ZXJlZCBhbmQKbGVmdCBpbiBhIHVzYWJsZSBzdGF0ZS4gIFBlcmNlaXZlZCBIYXN3ZWxsL0Jy
+b2Fkd2VsbCBpc3N1ZSB3aXRoIGF1ZGlvCnBvd2VyIG1hbmFnZW1lbnQgaGFzIGJlZW4gd29ya2Vk
+IGFyb3VuZCBhbmQgaXRzIHBvdGVudGlhbCBvY2N1cnJlbmNlCmlzIHJlcG9ydGVkIGFzIGFuIElH
+VCB3YXJuaW5nLgoKU2VyaWVzIGNoYW5nZWxvZzoKdjI6IE5ldyBwYXRjaCAiVW4tYmxvY2tsaXN0
+ICpiaW5kKiBzdWJ0ZXN0cyBhZGRlZC4KdjM6IFBhdGNoICJGb2xsb3cgZmFpbGVkIHN1YnRlc3Rz
+IHdpdGggaGVhbHRoY2hlY2siIHJlbmFtZWQgdG8gIlJlY292ZXIKICAgIGZyb20gc3VidGVzdCBm
+YWlsdXJlcyIuCiAgLSBhIG5ldyBwYXRjaGUgIkNsZWFuIHVwIGRldmljZSBvcGVuIGVycm9yIGhh
+bmRsaW5nIiBhZGRlZCwgYW4gb2xkCiAgICBwYXRjaCAiRml4IG1pc3NpbmcgbmV3bGluZSIgb2Jz
+b2xldGVkIGJ5IHRoZSBuZXcgb25lIGRyb3BwZWQsCiAgLSBvdGhlciBuZXcgcGF0Y2hlcyBhZGRl
+ZDoKICAgIC0gIkxldCB0aGUgZHJpdmVyIHRpbWUgb3V0IGVzc2VudGlhbCBzeXNmcyBvcGVyYXRp
+b25zIiwKICAgIC0gIk1vcmUgdGhvcm91Z2ggaTkxNSBoZWFsdGhjaGVjayBhbmQgcmVjb3Zlcnki
+LAogIC0gYSBwYXRjaCAiQWRkICdsYXRlY2xvc2UgYmVmb3JlIHJlc3RvcmUnIHZhcmlhbnRzIiBm
+cm9tIGFub3RoZXIKICAgIHNlcmllcyBpbmNsdWRlZC4KdjQ6IE9wdGlvbmFsIHBhdGNoICJEdXBs
+aWNhdGUgZGVidWcgbWVzc2FnZXMgaW4gZG1lc2ciIGZyb20gYW5vdGhlcgogICAgc2VyaWVzIGlu
+Y2x1ZGVkLgp2NTogTmV3IHBhdGNoIGFkZGVkIHdpdGggSGFzd2VsbCBhdWRpbyByZWxhdGVkIGtl
+cm5lbCB3YXJuaW5nIHdvcmtlZAogICAgYXJvdW5kIGFuZCByZXBsYWNlZCB3aXRoIGFuIElHVCB3
+YXJuaW5nIHRvIHByZXNlcnZlIHZpc2liaWxpdHkgb2YKICAgIHRoZSBpc3N1ZS4KdjY6IE5ldyBw
+YXRjaCBhZGRlZCBmb3IgYWxzbyBjaGVja2luZyBoZWFsdGggb2YgcmVuZGVyIGRldmljZSBub2Rl
+cywKICAtIG5ldyBwYXRjaCBhZGRlZCB3aXRoIHByb3BlciBoYW5kbGluZyBvZiBoZWFsdGggY2hl
+Y2sgYmVmb3JlIGxhdGUKICAgIGNsb3NlLAogIC0gaW5jbHVzaW9uIG9mIHVuYmluZC1yZWJpbmQg
+c2NlbmFyaW8gdG8gQkFUIHNjb3BlIHByb3Bvc2VkLgoKQE1pY2hhxYI6IFNpbmNlIHNvbWUgcGF0
+Y2ggdXBkYXRlcyBhcmUgdHJpdmlhbCwgSSd2ZSBwcmVzZXJ2ZWQgeW91cgp2MS92MiBSZXZpZXdk
+LWJ5OiBleGNlcHQgZm9yIHBhdGNoZXMgd2l0aCBub24tdHJpdmlhbCBjaGFuZ2VzLCB3aGVyZSBJ
+Cm1hcmtlZCB5b3VyIFItYiBhcyB2MS92MiBhcHBsaWNhYmxlLiAgUGxlYXNlIGhhdmUgYSBsb29r
+IGFuZCBjb25maXJtIGlmCnlvdSBhcmUgc3RpbGwgT0sgd2l0aCB0aGVtLgoKQFR2cnRrbzogQXMg
+SSBhbHJlYWR5IGFza2VkIGJlZm9yZSwgcGxlYXNlIHN1cHBvcnQgbXkgYXR0ZW1wdCB0byByZW1v
+dmUKdGhlIHVuYmluZCB0ZXN0IHZhcmlhbnRzIGZyb20gdGhlIGJsb2NrbGlzdC4KCkBQZXRyaSwg
+QE1hcnRpbjogQXNzdW1pbmcgQ0kgcmVzdWx0cyB3aWxsIGJlIGFzIGdvb2QgYXMgdGhvc2Ugb2J0
+YWluZWQKb24gVHJ5Ym90LCBwbGVhc2UgZ2l2ZSBtZSB5b3VyIGdyZWVuIGxpZ2h0IGZvciBtZXJn
+aW5nIHRoaXMgc2VyaWVzIGlmCnlvdSBoYXZlIG5vIG9iamVjdGlvbnMuCgpUaGFua3MsCkphbnVz
+egoKSmFudXN6IEtyenlzenRvZmlrICgyNCk6CiAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFVzZSBp
+Z3RfYXNzZXJ0X2ZkKCkKICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogQ29uc3RpZnkgZGV2X2J1c19h
+ZGRyIHN0cmluZwogIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBDbGVhbiB1cCBkZXZpY2Ugb3BlbiBl
+cnJvciBoYW5kbGluZwogIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBDb25zb2xpZGF0ZSBkdXBsaWNh
+dGVkIGRlYnVnIG1lc3NhZ2VzCiAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEFzc2VydCBzdWNjZXNz
+ZnVsIGRldmljZSBmaWx0ZXIgYXBwbGljYXRpb24KICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogTWFp
+bnRhaW4gYSBzaW5nbGUgZGF0YSBzdHJ1Y3R1cmUgaW5zdGFuY2UKICB0ZXN0cy9jb3JlX2hvdHVu
+cGx1ZzogUGFzcyBlcnJvcnMgdmlhIGEgZGF0YSBzdHJ1Y3R1cmUgZmllbGQKICB0ZXN0cy9jb3Jl
+X2hvdHVucGx1ZzogSGFuZGxlIGRldmljZSBjbG9zZSBlcnJvcnMKICB0ZXN0cy9jb3JlX2hvdHVu
+cGx1ZzogUHJlcGFyZSBpbnZhcmlhbnQgZGF0YSBvbmNlIHBlciB0ZXN0IHJ1bgogIHRlc3RzL2Nv
+cmVfaG90dW5wbHVnOiBTa2lwIHNlbGVjdGl2ZWx5IG9uIHN5c2ZzIGNsb3NlIGVycm9ycwogIHRl
+c3RzL2NvcmVfaG90dW5wbHVnOiBSZWNvdmVyIGZyb20gc3VidGVzdCBmYWlsdXJlcwogIHRlc3Rz
+L2NvcmVfaG90dW5wbHVnOiBGYWlsIHN1YnRlc3RzIG9uIGRldmljZSBjbG9zZSBlcnJvcnMKICB0
+ZXN0cy9jb3JlX2hvdHVucGx1ZzogTGV0IHRoZSBkcml2ZXIgdGltZSBvdXQgZXNzZW50aWFsIHN5
+c2ZzCiAgICBvcGVyYXRpb25zCiAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFByb2Nlc3MgcmV0dXJu
+IHZhbHVlcyBvZiBzeXNmcyBvcGVyYXRpb25zCiAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEFzc2Vy
+dCBleHBlY3RlZCBkZXZpY2UgcHJlc2VuY2UvYWJzZW5jZQogIHRlc3RzL2NvcmVfaG90dW5wbHVn
+OiBFeHBsaWNpdGx5IGlnbm9yZSB1bnVzZWQgcmV0dXJuIHZhbHVlcwogIHRlc3RzL2NvcmVfaG90
+dW5wbHVnOiBBbHNvIGNoZWNrIGhlYWx0aCBvZiByZW5kZXIgZGV2aWNlIG5vZGUKICB0ZXN0cy9j
+b3JlX2hvdHVucGx1ZzogTW9yZSB0aG9yb3VnaCBpOTE1IGhlYWx0aGNoZWNrIGFuZCByZWNvdmVy
+eQogIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBBZGQgJ2xhdGVjbG9zZSBiZWZvcmUgcmVzdG9yZScg
+dmFyaWFudHMKICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogQ2hlY2sgaGVhbHRoIGJvdGggYmVmb3Jl
+IGFuZCBhZnRlciBsYXRlIGNsb3NlCiAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEhTVy9CRFcgYXVk
+aW8gaXNzdWUgd29ya2Fyb3VuZAogIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBEdXBsaWNhdGUgZGVi
+dWcgbWVzc2FnZXMgaW4gZG1lc2cKICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogVW4tYmxvY2tsaXN0
+ICpiaW5kKiBzdWJ0ZXN0cwogIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBBZGQgdW5iaW5kLXJlYmlu
+ZCBzdWJ0ZXN0IHRvIEJBVCBzY29wZQoKIHRlc3RzL2NvcmVfaG90dW5wbHVnLmMgICAgICAgICAg
+ICAgICAgfCA1NjAgKysrKysrKysrKysrKysrKysrKystLS0tLS0KIHRlc3RzL2ludGVsLWNpL2Js
+YWNrbGlzdC50eHQgICAgICAgICAgfCAgIDIgKy0KIHRlc3RzL2ludGVsLWNpL2Zhc3QtZmVlZGJh
+Y2sudGVzdGxpc3QgfCAgIDEgKwogMyBmaWxlcyBjaGFuZ2VkLCA0MzEgaW5zZXJ0aW9ucygrKSwg
+MTMyIGRlbGV0aW9ucygtKQoKLS0gCjIuMjEuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
