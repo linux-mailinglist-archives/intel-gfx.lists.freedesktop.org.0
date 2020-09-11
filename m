@@ -1,41 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BE10266098
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Sep 2020 15:48:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B227526610F
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Sep 2020 16:17:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F8546EA54;
-	Fri, 11 Sep 2020 13:48:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 141476E94A;
+	Fri, 11 Sep 2020 14:17:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E4D56EA54
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Sep 2020 13:48:43 +0000 (UTC)
-IronPort-SDR: aw5tt4PqZuhxCk6e6PBFrL5rX+GPgJxWZpZa604uflGmZlWn7SefTdhVk2J5agtwowrc+7/FqN
- Kiqw8195nlLQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9740"; a="156209150"
-X-IronPort-AV: E=Sophos;i="5.76,415,1592895600"; d="scan'208";a="156209150"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 467D26E94A;
+ Fri, 11 Sep 2020 14:17:30 +0000 (UTC)
+IronPort-SDR: vz/ZeN5HKAwhHtQXjC2YfWsdz1IgsdaYRrPr/aHJ+7+eMKucwVzvYCcadMmVoP4BFc4+9JOjSY
+ HsLUHltxxXog==
+X-IronPort-AV: E=McAfee;i="6000,8403,9740"; a="176822542"
+X-IronPort-AV: E=Sophos;i="5.76,415,1592895600"; d="scan'208";a="176822542"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2020 06:48:41 -0700
-IronPort-SDR: Kg7UcH83KObDeBQ02A6vF8OBVcrnP+reFvJ/eG7juPWIp8B8yTGzMxL+x+vYbrmtA6KGiS1/7f
- Nc5wSytS/FaA==
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2020 07:17:29 -0700
+IronPort-SDR: R5hpqzOalaMDmgRLKJaU0+92+ys9iurELA1gNH+OtcNM9CtIQHU8ZiZtuNJufeB10IxAWNCgiq
+ 60AkToU4L3rw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,415,1592895600"; d="scan'208";a="449990953"
-Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.9])
- by orsmga004.jf.intel.com with ESMTP; 11 Sep 2020 06:48:37 -0700
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Sep 2020 21:48:27 +0800
-Message-Id: <20200911134827.5542-1-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200827055129.26566-1-shawn.c.lee@intel.com>
-References: <20200827055129.26566-1-shawn.c.lee@intel.com>
+X-IronPort-AV: E=Sophos;i="5.76,415,1592895600"; d="scan'208";a="334524694"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by orsmga008.jf.intel.com with ESMTP; 11 Sep 2020 07:17:26 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.92)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1kGjrh-0001it-VU; Fri, 11 Sep 2020 17:17:25 +0300
+Date: Fri, 11 Sep 2020 17:17:25 +0300
+From: Petri Latvala <petri.latvala@intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Message-ID: <20200911141725.GP7444@platvala-desk.ger.corp.intel.com>
+References: <20200911103039.4574-1-janusz.krzysztofik@linux.intel.com>
+ <20200911103039.4574-22-janusz.krzysztofik@linux.intel.com>
+ <20200911122235.GO7444@platvala-desk.ger.corp.intel.com>
+ <162f01fdd164618423a4786b6a7d23bac852bfc0.camel@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/fbc: disable FBC on Nightfury board
+Content-Disposition: inline
+In-Reply-To: <162f01fdd164618423a4786b6a7d23bac852bfc0.camel@linux.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH i-g-t v6 21/24] tests/core_hotunplug:
+ HSW/BDW audio issue workaround
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,48 +57,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>,
- William Tseng <william.tseng@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q3VzdG9tZXIgcmVwb3J0IHJhbmRvbSBkaXNwbGF5IGZsaWNrZXIgaXNzdWUgb24gTmlnaHRmdXJ5
-IGJvYXJkLgpBbmQgd2UgZm91bmQgdGhpcyBwcm9ibGVtIG1pZ2h0IGJlIGNhdXNlZCBieSBWVC1k
-IGFuZCBGQkMgYXJlCmJvdGggZW5hYmxlZC4gQWNjb3JkaW5nIHRvIHNpZ2h0aW5nIHJlcG9ydCwg
-aXQgcmVjb21tZW5kIHRvIHR1cm4KRkJDIG9mZiB0byB3b3JrYXJvdW5kIHRoaXMga2luZCBvZiBp
-c3N1ZS4KClRoaXMgY2hhbmdlIHJlZmVyIHRvIERNSSBCT0FSRF9WRU5ET1IgYW5kIEJPQVJEX05B
-TUUgaW5mb3JtYXRpb24KdG8gZGlzYWJsZSBGQkMuCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxs
-ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZp
-QGludGVsLmNvbT4KQ2M6IE1pa2EgS3VvcHBhbGEgPG1pa2Eua3VvcHBhbGFAbGludXguaW50ZWwu
-Y29tPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KQ2M6IFdpbGxpYW0g
-VHNlbmcgPHdpbGxpYW0udHNlbmdAaW50ZWwuY29tPgpDYzogQ29vcGVyIENoaW91IDxjb29wZXIu
-Y2hpb3VAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBMZWUgU2hhd24gQyA8c2hhd24uYy5sZWVA
-aW50ZWwuY29tPgoKdjI6IGZpeCB0eXBvLgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZmJjLmMgfCAyMiArKysrKysrKysrKysrKysrKysrKysrCiAxIGZpbGUgY2hhbmdl
-ZCwgMjIgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZmJjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Zi
-Yy5jCmluZGV4IDMyN2FmNDI4ZDczZi4uMjA2NjBmZGJhYjM2IDEwMDY0NAotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMKQEAgLTM5LDYgKzM5LDcgQEAKICAqLwogCiAjaW5jbHVk
-ZSA8ZHJtL2RybV9mb3VyY2MuaD4KKyNpbmNsdWRlIDxsaW51eC9kbWkuaD4KIAogI2luY2x1ZGUg
-Imk5MTVfZHJ2LmgiCiAjaW5jbHVkZSAiaTkxNV90cmFjZS5oIgpAQCAtMTQzOSw2ICsxNDQwLDI0
-IEBAIHN0YXRpYyBpbnQgaW50ZWxfc2FuaXRpemVfZmJjX29wdGlvbihzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqZGV2X3ByaXYpCiAJcmV0dXJuIDA7CiB9CiAKK3N0YXRpYyBpbnQgaW50ZWxfZmJj
-X3Z0ZF9jYWxsYmFjayhjb25zdCBzdHJ1Y3QgZG1pX3N5c3RlbV9pZCAqaWQpCit7CisJRFJNX0RF
-QlVHX0tNUygiRGlzYWJsaW5nIEZCQyB0byBwcmV2ZW50IHNjcmVlbiBmbGlja2VyIG9uICVzIGRl
-dmljZVxuIiwgaWQtPmlkZW50KTsKKwlyZXR1cm4gMTsKK30KKworc3RhdGljIGNvbnN0IHN0cnVj
-dCBkbWlfc3lzdGVtX2lkIGludGVsX2ZiY192dGRfZGV0ZWN0W10gPSB7CisJeworCQkuY2FsbGJh
-Y2sgPSBpbnRlbF9mYmNfdnRkX2NhbGxiYWNrLAorCQkuaWRlbnQgPSAiR29vZ2xlIE5pZ2h0ZnVy
-eSIsCisJCS5tYXRjaGVzID0geworCQkJRE1JX01BVENIKERNSV9CT0FSRF9WRU5ET1IsICJHb29n
-bGUiKSwKKwkJCURNSV9NQVRDSChETUlfQk9BUkRfTkFNRSwgIk5pZ2h0ZnVyeSIpLAorCQl9LAor
-CX0sCisJeyB9Cit9OworCiBzdGF0aWMgYm9vbCBuZWVkX2ZiY192dGRfd2Eoc3RydWN0IGRybV9p
-OTE1X3ByaXZhdGUgKmRldl9wcml2KQogewogCS8qIFdhRmJjVHVybk9mZkZiY1doZW5IeXBlclZp
-c29ySXNVc2VkOnNrbCxieHQgKi8KQEAgLTE0NTAsNiArMTQ2OSw5IEBAIHN0YXRpYyBib29sIG5l
-ZWRfZmJjX3Z0ZF93YShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJCXJldHVy
-biB0cnVlOwogCX0KIAorCWlmIChkbWlfY2hlY2tfc3lzdGVtKGludGVsX2ZiY192dGRfZGV0ZWN0
-KSkKKwkJcmV0dXJuIHRydWU7CisKIAlyZXR1cm4gZmFsc2U7CiB9CiAKLS0gCjIuMTcuMQoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Fri, Sep 11, 2020 at 03:15:43PM +0200, Janusz Krzysztofik wrote:
+> Hi Petri,
+> 
+> On Fri, 2020-09-11 at 15:22 +0300, Petri Latvala wrote:
+> > On Fri, Sep 11, 2020 at 12:30:36PM +0200, Janusz Krzysztofik wrote:
+> > > Unbinding the i915 driver on some Haswell and Broadwell platforms with
+> > > Azalia audio results in a kernel WARNING on "i915 raw-wakerefs=1
+> > > wakelocks=1 on cleanup".  The issue can be worked around by manually
+> > > enabling runtime power management for the conflicting audio adapter.
+> > > Use that method but also display a warning to preserve visibility of
+> > > the issue.  Also tag the workaround with a FIXME comment.
+> > > 
+> > > v2: Extend the scope of the workaround over Broadwell
+> > > 
+> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > > ---
+> > >  tests/core_hotunplug.c | 15 +++++++++++++++
+> > >  1 file changed, 15 insertions(+)
+> > > 
+> > > diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
+> > > index ac106d964..3e2a76ddb 100644
+> > > --- a/tests/core_hotunplug.c
+> > > +++ b/tests/core_hotunplug.c
+> > > @@ -484,8 +484,23 @@ igt_main
+> > >  		igt_skip_on_f(fd_drm < 0, "No known DRM device found\n");
+> > >  
+> > >  		if (is_i915_device(fd_drm)) {
+> > > +			uint32_t devid = intel_get_drm_devid(fd_drm);
+> > > +
+> > >  			gem_quiescent_gpu(fd_drm);
+> > >  			igt_require_gem(fd_drm);
+> > > +
+> > > +			/**
+> > > +			 * FIXME: Unbinding the i915 driver on some Haswell
+> > > +			 * platforms with Azalia audio results in a kernel WARN
+> > > +			 * on "i915 raw-wakerefs=1 wakelocks=1 on cleanup".  The
+> > > +			 * below CI friendly user level workaround prevents the
+> > > +			 * warning from appearing.  Drop this hack as soon as
+> > > +			 * this is fixed in the kernel.
+> > > +			 */
+> > > +			if (igt_warn_on_f(IS_HASWELL(devid) ||
+> > > +					  IS_BROADWELL(devid),
+> > > +			    "Manually enabling audio PM to work around a kernel WARN\n"))
+> > > +				igt_pm_enable_audio_runtime_pm();
+> > 
+> > What happens without this? Is it just a kernel warning, or does the
+> > operation also fail?
+> 
+> runner: This test was killed due to a kernel taint (0x200).
+> (https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_4901/shard-hsw4/igt@core_hotunplug@unbind-rebind.html)
+> 
+> That happens before the test completes so no results of the operation
+> are reported. 
+
+Ah, right. I had a brainfart. Indeed this igt_warn is better.
+
+
+Reviewed-by: Petri Latvala <petri.latvala@intel.com>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
