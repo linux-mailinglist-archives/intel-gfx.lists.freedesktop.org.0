@@ -2,70 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B5B2265ADE
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Sep 2020 09:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC0D265B7D
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Sep 2020 10:25:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A82F6E365;
-	Fri, 11 Sep 2020 07:53:42 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E26B6E365
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Sep 2020 07:53:41 +0000 (UTC)
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
- by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08B7oovh164070;
- Fri, 11 Sep 2020 07:53:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : mime-version : content-type : in-reply-to;
- s=corp-2020-01-29; bh=RrdllSuYGg8oQQPMzcmKheg4XgUkN+1ZgMYFHKi5x30=;
- b=cIcoV63Dj3a2+a1m4XNfbw7cjylJlywYOM/hbvtWaU8zcJ6tULje3VvEj1cqpeuVv4KN
- iwiPB1bkSuhWuBu1R4VzcLDcero6y1Tym4L1HMCXQwMtQgAje+A1fNBs8GRmCJQW2s4M
- u3recpxXCUoldgXI8HvixM9Je91LhYrdySs/KK2P4HJJ9oJUX4WB6Kx/9S1JBJ763eIy
- epIMXbvYnBtkrpoLKQOuehhZ+eJR9i3mFG63U5vaGCEsDsJbh8BzLdqE4QVSydITg43O
- YTJJSktUOALH8rDcnmG6WpcPmugL85WI4eds3CqbI8Yu94CUdftny+Y39hKN6fu0nEDN jg== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
- by aserp2120.oracle.com with ESMTP id 33c2mmchpr-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
- Fri, 11 Sep 2020 07:53:28 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
- by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08B7nhp2076164;
- Fri, 11 Sep 2020 07:53:28 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
- by aserp3030.oracle.com with ESMTP id 33dacpgnbh-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 11 Sep 2020 07:53:28 +0000
-Received: from abhmp0010.oracle.com (abhmp0010.oracle.com [141.146.116.16])
- by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 08B7rPZ4025368;
- Fri, 11 Sep 2020 07:53:25 GMT
-Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Fri, 11 Sep 2020 00:53:23 -0700
-Date: Fri, 11 Sep 2020 10:52:43 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <20200911075243.GG12635@kadam>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DD1D6E048;
+	Fri, 11 Sep 2020 08:24:57 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB17F6E048
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 11 Sep 2020 08:24:56 +0000 (UTC)
+IronPort-SDR: axk1hn25fr3ujmluqTqIT8WE/Zkk7XrCu/XBp7vRCDNblHGeh9gPRJM92a02tX6x3zyh4OT9Tc
+ 5I8nOM3AZvzg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9740"; a="158752194"
+X-IronPort-AV: E=Sophos;i="5.76,414,1592895600"; d="scan'208";a="158752194"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2020 01:24:56 -0700
+IronPort-SDR: SH0vY0lrXPsNYfIMrUgJ2a3eQngqY3JCBab47eTmyi4DBhEcldJZz7t+QDNhwB2sFXP/BKKjHK
+ 7MXHDfx1pFmg==
+X-IronPort-AV: E=Sophos;i="5.76,414,1592895600"; d="scan'208";a="378492372"
+Received: from hott-mobl2.ger.corp.intel.com (HELO [10.249.41.213])
+ ([10.249.41.213])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2020 01:24:50 -0700
+To: Tom Murphy <murphyt7@tcd.ie>
+References: <20200910115900.407686-1-tvrtko.ursulin@linux.intel.com>
+ <20200910115900.407686-3-tvrtko.ursulin@linux.intel.com>
+ <CALQxJuuF0i4NWvVfh1G0TZWS0oYiwSRLycMte6LZ5n6Oif3aFQ@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <50a04eb6-a820-0426-0a84-f0a37c0ae961@linux.intel.com>
+Date: Fri, 11 Sep 2020 09:24:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87363p4cf8.fsf@gaia.fi.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9740
- signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
- malwarescore=0
- bulkscore=0 phishscore=0 adultscore=0 suspectscore=0 spamscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009110060
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9740
- signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
- priorityscore=1501
- phishscore=0 adultscore=0 bulkscore=0 clxscore=1015 mlxlogscore=999
- malwarescore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009110060
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix an error code
- i915_gem_object_copy_blt()
+In-Reply-To: <CALQxJuuF0i4NWvVfh1G0TZWS0oYiwSRLycMte6LZ5n6Oif3aFQ@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Fix DMA mapped scatterlist
+ lookup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,41 +55,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: Intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>, Logan Gunthorpe <logang@deltatee.com>,
+ Lu Baolu <baolu.lu@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This code should use "vma[1]" instead of "vma".  The "vma" variable is a
-valid pointer.
 
-Fixes: 6b05030496f7 ("drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
-v2: Fix confusing typo in the commit message
+On 10/09/2020 14:31, Tom Murphy wrote:
+> This patch series fixes the issue I was having. I tested it with my
+> patch set ("[PATCH V2 0/5] Convert the intel iommu driver to the
+> dma-iommu api") applied, excluding the last patch in that series which
+> disables the coalescing.
+> 
+> So once your patch set is merged we should be good to convert the
+> intel iommu driver to the dma-iommu api
 
- drivers/gpu/drm/i915/gem/i915_gem_object_blt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+There appears to be an issue on Ivybridge, which is an older platforms, which manifests like this:
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-index d93eb36160c9..aee7ad3cc3c6 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-@@ -364,7 +364,7 @@ int i915_gem_object_copy_blt(struct drm_i915_gem_object *src,
- 
- 	vma[1] = i915_vma_instance(dst, vm, NULL);
- 	if (IS_ERR(vma[1]))
--		return PTR_ERR(vma);
-+		return PTR_ERR(vma[1]);
- 
- 	i915_gem_ww_ctx_init(&ww, true);
- 	intel_engine_pm_get(ce->engine);
--- 
-2.28.0
+<3> [209.526605] DMAR: intel_iommu_map: iommu width (39) is not sufficient for the mapped address (ffff008000)
+
+Relevant iommu boot related messages are:
+
+<6>[    0.184234] DMAR: Host address width 36
+<6>[    0.184245] DMAR: DRHD base: 0x000000fed90000 flags: 0x0
+<6>[    0.184288] DMAR: dmar0: reg_base_addr fed90000 ver 1:0 cap c0000020e60262 ecap f0101a
+<6>[    0.184308] DMAR: DRHD base: 0x000000fed91000 flags: 0x1
+<6>[    0.184337] DMAR: dmar1: reg_base_addr fed91000 ver 1:0 cap c9008020660262 ecap f0105a
+<6>[    0.184357] DMAR: RMRR base: 0x000000d8d28000 end: 0x000000d8d46fff
+<6>[    0.184377] DMAR: RMRR base: 0x000000db000000 end: 0x000000df1fffff
+<6>[    0.184398] DMAR-IR: IOAPIC id 2 under DRHD base  0xfed91000 IOMMU 1
+<6>[    0.184414] DMAR-IR: HPET id 0 under DRHD base 0xfed91000
+<6>[    0.184428] DMAR-IR: Queued invalidation will be enabled to support x2apic and Intr-remapping.
+<6>[    0.185173] DMAR-IR: Enabled IRQ remapping in x2apic mode
+
+<6>[    0.878934] DMAR: No ATSR found
+<6>[    0.878966] DMAR: dmar0: Using Queued invalidation
+<6>[    0.879007] DMAR: dmar1: Using Queued invalidation
+
+<6>[    0.915032] DMAR: Intel(R) Virtualization Technology for Directed I/O
+<6>[    0.915060] PCI-DMA: Using software bounce buffering for IO (SWIOTLB)
+<6>[    0.915084] software IO TLB: mapped [mem 0xc80d4000-0xcc0d4000] (64MB)
+
+Full boot log at https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_7054/fi-ivb-3770/boot0.txt, failures at https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_7054/fi-ivb-3770/igt@i915_selftest@live@blt.html.
+
+I suspect this has to be about the dma-iommu conversion itself and not anything i915 is doing incorrectly? Something in the new mapping code not respecting the iommu width limitation? (To be clear these results are with the "[PATCH V2 0/5] Convert the intel iommu driver to the dma-iommu api" series applied, minus the not coalescing patch.)
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
