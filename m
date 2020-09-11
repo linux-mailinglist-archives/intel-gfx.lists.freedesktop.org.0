@@ -1,59 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D00F265BE2
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Sep 2020 10:47:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE49B265BFB
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Sep 2020 10:52:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51D9C89E7C;
-	Fri, 11 Sep 2020 08:47:18 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F02C789E86
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Sep 2020 08:47:16 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id s13so3652191wmh.4
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Sep 2020 01:47:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=DvMPyj8qt4jHW/51wnfAjWdKajgYfQPiWAmb6Xy5N8U=;
- b=Ov5mAc6CKxy1ruYfZtdKD2aJn0yVjOs8IJqLy43pn+ZB0avc5vlU8MX19KYF1F5abf
- fKCNErmB99WLs5aZP85a90fNn9hXLMtPScllxEvtd0zvrxBpWd8tBGlNlz6skNnUZTUJ
- EKTGPxBfF24p43dIXjzz8H1O+D4LngZdcbl+w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=DvMPyj8qt4jHW/51wnfAjWdKajgYfQPiWAmb6Xy5N8U=;
- b=fTdESRH7DIl6OALOPPXg757aSjQRDC1ZHtGbftI9xPmY6fjNjzYO6ur15JjJGmtRL/
- Bgk5PyxYuAY8TZFNJJMMXNupXnQUk4XQk/XxA5fJagZfe1f8OCukH0avxrhohpyhBKNT
- 0TPeM+3aI7bO6i6vnlcn/2sqe3Cg1tU5NILeDcWgbbWyRbHZpkOSwQofJu+BPWFR21hd
- ipQlXnoyMtsKcWXJdR5Pp5bgr6Qe5r6tsviIDqZjAfw1XmyfUxfvuTCEnPQTyZmaTT98
- jqbgwMTn/bXJHfxycwYZa5KpBdz8DHglc4oGSVWU4/k5/yXi1+s5BhLyWn4kyuJxNYfm
- d9fQ==
-X-Gm-Message-State: AOAM531IpuSxDhwab5Kt/gY/Rkz3TDFwAFcLeqNXyBN9sbuH8EARSVqJ
- GHqniwIAF3oWlbaiN+dQ1DIR06CdGjAcThnD
-X-Google-Smtp-Source: ABdhPJyipNgbxSeMoX6NrRZx1OE3w2u3cJEppw47qQwDAyRcTPzaAITWyd+RoOQ6Ns6oHwlefjzrmA==
-X-Received: by 2002:a1c:2742:: with SMTP id n63mr1105455wmn.24.1599814035385; 
- Fri, 11 Sep 2020 01:47:15 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id p11sm2935553wma.11.2020.09.11.01.47.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Sep 2020 01:47:14 -0700 (PDT)
-Date: Fri, 11 Sep 2020 10:47:12 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Hyun Kwon <hyun.kwon@xilinx.com>
-Message-ID: <20200911084712.GN438822@phenom.ffwll.local>
-References: <20200904143941.110665-7-daniel.vetter@ffwll.ch>
- <20200907082225.150837-1-daniel.vetter@ffwll.ch>
- <20200908191600.GA1569998@xilinx.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01E4189EAC;
+	Fri, 11 Sep 2020 08:52:24 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB7396E36F
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 11 Sep 2020 08:52:22 +0000 (UTC)
+IronPort-SDR: gAGCpFEPqlNLSqwOi4XMaiTaztJkZRicB+mtTKUBYgA6ruVy+qooJZ+ofzHcrFi/J9lWD10Ytj
+ 7cte2/d+C6Lw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9740"; a="146410107"
+X-IronPort-AV: E=Sophos;i="5.76,414,1592895600"; d="scan'208";a="146410107"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2020 01:52:21 -0700
+IronPort-SDR: giMQAwUy5AZNkO+UccSRgzJoS+GEysmvQjsgCkCMuinj4FfTr2gmVMr7BvtJINcnRacP3A+Dby
+ BtuyeAlyOyiA==
+X-IronPort-AV: E=Sophos;i="5.76,414,1592895600"; d="scan'208";a="378504484"
+Received: from hott-mobl2.ger.corp.intel.com (HELO [10.249.41.213])
+ ([10.249.41.213])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2020 01:52:16 -0700
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20200904125934.133475-1-tvrtko.ursulin@linux.intel.com>
+ <20200904125934.133475-4-tvrtko.ursulin@linux.intel.com>
+ <20200911064406.zkzlupalayyd3wp5@ldmartin-desk1>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <87f8514f-1cae-51a3-e6ad-caf87fb3ebf1@linux.intel.com>
+Date: Fri, 11 Sep 2020 09:52:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200908191600.GA1569998@xilinx.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm/xlnx: Use devm_drm_dev_alloc
+In-Reply-To: <20200911064406.zkzlupalayyd3wp5@ldmartin-desk1>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915: Make GEM contexts track DRM
+ clients
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,137 +55,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Michal Simek <michals@xilinx.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 08, 2020 at 12:16:00PM -0700, Hyun Kwon wrote:
-> Hi Daniel,
-> 
-> On Mon, Sep 07, 2020 at 01:22:25AM -0700, Daniel Vetter wrote:
-> > Gets rid of drmm_add_final_kfree, which I want to unexport so that it
-> > stops confusion people about this transitional state of rolling drm
-> > managed memory out.
-> > 
-> > This also fixes the missing drm_dev_put in the error path of the probe
-> > code.
-> > 
-> > v2: Drop the misplaced drm_dev_put from zynqmp_dpsub_drm_init (all
-> > other paths leaked on error, this should have been in
-> > zynqmp_dpsub_probe), now that subsumed by the auto-cleanup of
-> > devm_drm_dev_alloc.
-> > 
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Hyun Kwon <hyun.kwon@xilinx.com>
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Cc: Michal Simek <michal.simek@xilinx.com>
-> > Cc: linux-arm-kernel@lists.infradead.org
-> 
-> Looks correct to me.
-> 
-> Reviewed-by: Hyun Kwon <hyun.kwon@xilinx.com>
-
-Merged all patches up to this one here to drm-misc-next.
--Daniel
-
-> 
-> Thanks!
-> 
-> -hyun
-> 
-> > ---
-> >  drivers/gpu/drm/xlnx/zynqmp_dpsub.c | 27 ++++++---------------------
-> >  1 file changed, 6 insertions(+), 21 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
-> > index 26328c76305b..8e69303aad3f 100644
-> > --- a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
-> > +++ b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
-> > @@ -111,7 +111,7 @@ static int zynqmp_dpsub_drm_init(struct zynqmp_dpsub *dpsub)
-> >  	/* Initialize mode config, vblank and the KMS poll helper. */
-> >  	ret = drmm_mode_config_init(drm);
-> >  	if (ret < 0)
-> > -		goto err_dev_put;
-> > +		return ret;
-> >  
-> >  	drm->mode_config.funcs = &zynqmp_dpsub_mode_config_funcs;
-> >  	drm->mode_config.min_width = 0;
-> > @@ -121,7 +121,7 @@ static int zynqmp_dpsub_drm_init(struct zynqmp_dpsub *dpsub)
-> >  
-> >  	ret = drm_vblank_init(drm, 1);
-> >  	if (ret)
-> > -		goto err_dev_put;
-> > +		return ret;
-> >  
-> >  	drm->irq_enabled = 1;
-> >  
-> > @@ -154,8 +154,6 @@ static int zynqmp_dpsub_drm_init(struct zynqmp_dpsub *dpsub)
-> >  
-> >  err_poll_fini:
-> >  	drm_kms_helper_poll_fini(drm);
-> > -err_dev_put:
-> > -	drm_dev_put(drm);
-> >  	return ret;
-> >  }
-> >  
-> > @@ -208,27 +206,16 @@ static int zynqmp_dpsub_probe(struct platform_device *pdev)
-> >  	int ret;
-> >  
-> >  	/* Allocate private data. */
-> > -	dpsub = kzalloc(sizeof(*dpsub), GFP_KERNEL);
-> > -	if (!dpsub)
-> > -		return -ENOMEM;
-> > +	dpsub = devm_drm_dev_alloc(&pdev->dev, &zynqmp_dpsub_drm_driver,
-> > +				   struct zynqmp_dpsub, drm);
-> > +	if (IS_ERR(dpsub))
-> > +		return PTR_ERR(dpsub);
-> >  
-> >  	dpsub->dev = &pdev->dev;
-> >  	platform_set_drvdata(pdev, dpsub);
-> >  
-> >  	dma_set_mask(dpsub->dev, DMA_BIT_MASK(ZYNQMP_DISP_MAX_DMA_BIT));
-> >  
-> > -	/*
-> > -	 * Initialize the DRM device early, as the DRM core mandates usage of
-> > -	 * the managed memory helpers tied to the DRM device.
-> > -	 */
-> > -	ret = drm_dev_init(&dpsub->drm, &zynqmp_dpsub_drm_driver, &pdev->dev);
-> > -	if (ret < 0) {
-> > -		kfree(dpsub);
-> > -		return ret;
-> > -	}
-> > -
-> > -	drmm_add_final_kfree(&dpsub->drm, dpsub);
-> > -
-> >  	/* Try the reserved memory. Proceed if there's none. */
-> >  	of_reserved_mem_device_init(&pdev->dev);
-> >  
-> > @@ -286,8 +273,6 @@ static int zynqmp_dpsub_remove(struct platform_device *pdev)
-> >  	clk_disable_unprepare(dpsub->apb_clk);
-> >  	of_reserved_mem_device_release(&pdev->dev);
-> >  
-> > -	drm_dev_put(drm);
-> > -
-> >  	return 0;
-> >  }
-> >  
-> > -- 
-> > 2.28.0
-> > 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDExLzA5LzIwMjAgMDc6NDQsIEx1Y2FzIERlIE1hcmNoaSB3cm90ZToKPiBPbiBGcmksIFNl
+cCAwNCwgMjAyMCBhdCAwMTo1OToyOFBNICswMTAwLCBUdnJ0a28gVXJzdWxpbiB3cm90ZToKPj4g
+RnJvbTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KPj4KPj4gSWYg
+d2UgbWFrZSBHRU0gY29udGV4dHMga2VlcCBhIHJlZmVyZW5jZSB0byBpOTE1X2RybV9jbGllbnQg
+Zm9yIHRoZSB3aG9sZQo+PiBvZiB0aGVpciBsaWZldGltZSwgd2UgY2FuIGNvbnNvbGlkYXRlIHRo
+ZSBjdXJyZW50IHRhc2sgcGlkIGFuZCBuYW1lIHVzYWdlCj4+IGJ5IGdldHRpbmcgaXQgZnJvbSB0
+aGUgY2xpZW50Lgo+Pgo+PiB2MjoKPj4gKiBEb24ndCBib3RoZXIgc3VwcG9ydGluZyBzZWxmdGVz
+dHMgY29udGV4dHMgZnJvbSBkZWJ1Z2ZzLiAoQ2hyaXMpCj4+Cj4+IHYzOgo+PiAqIFRyaXZpYWwg
+cmViYXNlLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBUdnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3Vs
+aW5AaW50ZWwuY29tPgo+PiBSZXZpZXdlZC1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13
+aWxzb24uY28udWs+Cj4+IC0tLQo+PiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
+Y29udGV4dC5jwqDCoCB8IDE5ICsrKysrKysrKy0tLQo+PiAuLi4vZ3B1L2RybS9pOTE1L2dlbS9p
+OTE1X2dlbV9jb250ZXh0X3R5cGVzLmggfCAxMyArKy0tLS0tLS0KPj4gZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9kZWJ1Z2ZzLmPCoMKgwqDCoMKgwqDCoMKgwqDCoCB8IDI5ICsrKysrKystLS0t
+LS0tLS0tLS0KPj4gZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9ncHVfZXJyb3IuY8KgwqDCoMKg
+wqDCoMKgwqAgfCAyMiArKysrKysrKy0tLS0tLQo+PiA0IGZpbGVzIGNoYW5nZWQsIDQxIGluc2Vy
+dGlvbnMoKyksIDQyIGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYyAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9nZW0vaTkxNV9nZW1fY29udGV4dC5jCj4+IGluZGV4IDU5MTljYzVmODM0OC4uYWI4ZDI1ZWRh
+MjA0IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29u
+dGV4dC5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0
+LmMKPj4gQEAgLTMzNiw4ICszMzYsMTMgQEAgc3RhdGljIHN0cnVjdCBpOTE1X2dlbV9lbmdpbmVz
+IAo+PiAqZGVmYXVsdF9lbmdpbmVzKHN0cnVjdCBpOTE1X2dlbV9jb250ZXh0ICpjdHgpCj4+Cj4+
+IHN0YXRpYyB2b2lkIGk5MTVfZ2VtX2NvbnRleHRfZnJlZShzdHJ1Y3QgaTkxNV9nZW1fY29udGV4
+dCAqY3R4KQo+PiB7Cj4+ICvCoMKgwqAgc3RydWN0IGk5MTVfZHJtX2NsaWVudCAqY2xpZW50ID0g
+Y3R4LT5jbGllbnQ7Cj4+ICsKPj4gwqDCoMKgwqBHRU1fQlVHX09OKCFpOTE1X2dlbV9jb250ZXh0
+X2lzX2Nsb3NlZChjdHgpKTsKPj4KPj4gK8KgwqDCoCBpZiAoY2xpZW50KQo+PiArwqDCoMKgwqDC
+oMKgwqAgaTkxNV9kcm1fY2xpZW50X3B1dChjbGllbnQpOwo+PiArCj4+IMKgwqDCoMKgc3Bpbl9s
+b2NrKCZjdHgtPmk5MTUtPmdlbS5jb250ZXh0cy5sb2NrKTsKPj4gwqDCoMKgwqBsaXN0X2RlbCgm
+Y3R4LT5saW5rKTsKPj4gwqDCoMKgwqBzcGluX3VubG9jaygmY3R4LT5pOTE1LT5nZW0uY29udGV4
+dHMubG9jayk7Cj4+IEBAIC0zNDgsNyArMzUzLDYgQEAgc3RhdGljIHZvaWQgaTkxNV9nZW1fY29u
+dGV4dF9mcmVlKHN0cnVjdCAKPj4gaTkxNV9nZW1fY29udGV4dCAqY3R4KQo+PiDCoMKgwqDCoGlm
+IChjdHgtPnRpbWVsaW5lKQo+PiDCoMKgwqDCoMKgwqDCoCBpbnRlbF90aW1lbGluZV9wdXQoY3R4
+LT50aW1lbGluZSk7Cj4+Cj4+IC3CoMKgwqAgcHV0X3BpZChjdHgtPnBpZCk7Cj4+IMKgwqDCoMKg
+bXV0ZXhfZGVzdHJveSgmY3R4LT5tdXRleCk7Cj4+Cj4+IMKgwqDCoMKga2ZyZWVfcmN1KGN0eCwg
+cmN1KTsKPj4gQEAgLTkzNiw2ICs5NDAsNyBAQCBzdGF0aWMgaW50IGdlbV9jb250ZXh0X3JlZ2lz
+dGVyKHN0cnVjdCAKPj4gaTkxNV9nZW1fY29udGV4dCAqY3R4LAo+PiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgdTMyICppZCkKPj4gewo+PiDCoMKgwqDCoHN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICppOTE1ID0gY3R4LT5pOTE1Owo+PiArwqDCoMKgIHN0cnVjdCBpOTE1X2RybV9jbGll
+bnQgKmNsaWVudDsKPj4gwqDCoMKgwqBzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlICp2bTsKPj4g
+wqDCoMKgwqBpbnQgcmV0Owo+Pgo+PiBAQCAtOTQ3LDkgKzk1MiwxMyBAQCBzdGF0aWMgaW50IGdl
+bV9jb250ZXh0X3JlZ2lzdGVyKHN0cnVjdCAKPj4gaTkxNV9nZW1fY29udGV4dCAqY3R4LAo+PiDC
+oMKgwqDCoMKgwqDCoCBXUklURV9PTkNFKHZtLT5maWxlLCBmcHJpdik7IC8qIFhYWCAqLwo+PiDC
+oMKgwqDCoG11dGV4X3VubG9jaygmY3R4LT5tdXRleCk7Cj4+Cj4+IC3CoMKgwqAgY3R4LT5waWQg
+PSBnZXRfdGFza19waWQoY3VycmVudCwgUElEVFlQRV9QSUQpOwo+PiArwqDCoMKgIGNsaWVudCA9
+IGk5MTVfZHJtX2NsaWVudF9nZXQoZnByaXYtPmNsaWVudCk7Cj4+ICsKPj4gK8KgwqDCoCByY3Vf
+cmVhZF9sb2NrKCk7Cj4+IMKgwqDCoMKgc25wcmludGYoY3R4LT5uYW1lLCBzaXplb2YoY3R4LT5u
+YW1lKSwgIiVzWyVkXSIsCj4+IC3CoMKgwqDCoMKgwqDCoMKgIGN1cnJlbnQtPmNvbW0sIHBpZF9u
+cihjdHgtPnBpZCkpOwo+PiArwqDCoMKgwqDCoMKgwqDCoCByY3VfZGVyZWZlcmVuY2UoY2xpZW50
+LT5uYW1lKSwKPj4gK8KgwqDCoMKgwqDCoMKgwqAgcGlkX25yKHJjdV9kZXJlZmVyZW5jZShjbGll
+bnQtPnBpZCkpKTsKPj4gK8KgwqDCoCByY3VfcmVhZF91bmxvY2soKTsKPj4KPj4gwqDCoMKgwqAv
+KiBBbmQgZmluYWxseSBleHBvc2Ugb3Vyc2VsdmVzIHRvIHVzZXJzcGFjZSB2aWEgdGhlIGlkciAq
+Lwo+PiDCoMKgwqDCoHJldCA9IHhhX2FsbG9jKCZmcHJpdi0+Y29udGV4dF94YSwgaWQsIGN0eCwg
+eGFfbGltaXRfMzJiLCAKPj4gR0ZQX0tFUk5FTCk7Cj4+IEBAIC05NjAsMTAgKzk2OSwxMiBAQCBz
+dGF0aWMgaW50IGdlbV9jb250ZXh0X3JlZ2lzdGVyKHN0cnVjdCAKPj4gaTkxNV9nZW1fY29udGV4
+dCAqY3R4LAo+PiDCoMKgwqDCoGxpc3RfYWRkX3RhaWwoJmN0eC0+bGluaywgJmk5MTUtPmdlbS5j
+b250ZXh0cy5saXN0KTsKPj4gwqDCoMKgwqBzcGluX3VubG9jaygmaTkxNS0+Z2VtLmNvbnRleHRz
+LmxvY2spOwo+Pgo+PiArwqDCoMKgIGN0eC0+Y2xpZW50ID0gY2xpZW50Owo+IAo+IGFzIHBlciA1
+ZjdjY2VhYmYxMDQgKCJkcm0vaTkxNS9nZW06IERlbGF5IHRyYWNraW5nIHRoZSBHRU0gY29udGV4
+dCB1bnRpbCAKPiBpdCBpcyByZWdpc3RlcmVkIikKPiBzaG91bGRuJ3QgeW91IGZpbmlzaCBjb25z
+dHJ1Y3QgY3R4IGJlZm9yZSBhZGRpbmcgaXQgdG8gdGhlIGxpc3Q/CgpMb29rcyBsaWtlIGl0LCB3
+ZWxsIHNwb3R0ZWQsIHRoYW5rcyEKClJlZ2FyZHMsCgpUdnJ0a28KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
