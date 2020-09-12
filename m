@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D3E26779B
-	for <lists+intel-gfx@lfdr.de>; Sat, 12 Sep 2020 05:55:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8365926779C
+	for <lists+intel-gfx@lfdr.de>; Sat, 12 Sep 2020 05:56:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A8636E12F;
-	Sat, 12 Sep 2020 03:55:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 757D16EB17;
+	Sat, 12 Sep 2020 03:56:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B1B186E0F8;
- Sat, 12 Sep 2020 03:55:11 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2FF1F6EB16;
+ Sat, 12 Sep 2020 03:56:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A1745A3C0D;
- Sat, 12 Sep 2020 03:55:11 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 28C44A3C0D;
+ Sat, 12 Sep 2020 03:56:18 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Logan Gunthorpe" <logang@deltatee.com>
-Date: Sat, 12 Sep 2020 03:55:11 -0000
-Message-ID: <159988291163.6916.1942728925165059705@emeril.freedesktop.org>
+Date: Sat, 12 Sep 2020 03:56:18 -0000
+Message-ID: <159988297816.6917.16652454389524802392@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200912032200.11489-1-baolu.lu@linux.intel.com>
 In-Reply-To: <20200912032200.11489-1-baolu.lu@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Convert_the_intel_iommu_driver_to_the_dma-iommu_api_=28rev2?=
- =?utf-8?q?=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Convert_the_intel_iommu_driver_to_the_dma-iommu_api_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,90 +53,59 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-fd87dbc34e1f iommu: Handle freelists when using deferred flushing in iommu drivers
-97922dbedb56 iommu: Add iommu_dma_free_cpu_cached_iovas()
--:21: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#21: FILE: drivers/iommu/dma-iommu.c:54:
-+void iommu_dma_free_cpu_cached_iovas(unsigned int cpu,
-+		struct iommu_domain *domain)
-
--:41: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#41: FILE: include/linux/dma-iommu.h:41:
-+void iommu_dma_free_cpu_cached_iovas(unsigned int cpu,
-+		struct iommu_domain *domain);
-
--:51: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#51: FILE: include/linux/dma-iommu.h:85:
-+static inline void iommu_dma_free_cpu_cached_iovas(unsigned int cpu,
-+		struct iommu_domain *domain)
-
-total: 0 errors, 0 warnings, 3 checks, 34 lines checked
-ad5dd468bfc2 iommu: Allow the dma-iommu api to use bounce buffers
--:34: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#34: FILE: drivers/iommu/dma-iommu.c:504:
-+static void __iommu_dma_unmap_swiotlb(struct device *dev, dma_addr_t dma_addr,
-+		size_t size, enum dma_data_direction dir,
-
--:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#50: FILE: drivers/iommu/dma-iommu.c:520:
-+		swiotlb_tbl_unmap_single(dev, phys, size,
-+				iova_align(iovad, size), dir, attrs);
-
--:66: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#66: FILE: drivers/iommu/dma-iommu.c:554:
-+static dma_addr_t __iommu_dma_map_swiotlb(struct device *dev, phys_addr_t phys,
-+		size_t org_size, dma_addr_t dma_mask, bool coherent,
-
--:86: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#86: FILE: drivers/iommu/dma-iommu.c:574:
-+		phys = swiotlb_tbl_map_single(dev,
-+				__phys_to_dma(dev, io_tlb_start),
-
--:107: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'iova == DMA_MAPPING_ERROR'
-#107: FILE: drivers/iommu/dma-iommu.c:595:
-+	if ((iova == DMA_MAPPING_ERROR) && is_swiotlb_buffer(phys))
-
--:109: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#109: FILE: drivers/iommu/dma-iommu.c:597:
-+		swiotlb_tbl_unmap_single(dev, phys, org_size,
-+				aligned_size, dir, attrs);
-
--:204: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#204: FILE: drivers/iommu/dma-iommu.c:853:
-+	dma_handle = __iommu_dma_map_swiotlb(dev, phys, size, dma_get_mask(dev),
-+			coherent, dir, attrs);
-
--:222: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#222: FILE: drivers/iommu/dma-iommu.c:944:
-+static void iommu_dma_unmap_sg_swiotlb(struct device *dev, struct scatterlist *sg,
-+		int nents, enum dma_data_direction dir, unsigned long attrs)
-
--:229: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#229: FILE: drivers/iommu/dma-iommu.c:951:
-+		__iommu_dma_unmap_swiotlb(dev, sg_dma_address(s),
-+				sg_dma_len(s), dir, attrs);
-
--:233: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#233: FILE: drivers/iommu/dma-iommu.c:955:
-+static int iommu_dma_map_sg_swiotlb(struct device *dev, struct scatterlist *sg,
-+		int nents, enum dma_data_direction dir, unsigned long attrs)
-
--:240: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#240: FILE: drivers/iommu/dma-iommu.c:962:
-+		sg_dma_address(s) = __iommu_dma_map_swiotlb(dev, sg_phys(s),
-+				s->length, dma_get_mask(dev),
-
-total: 0 errors, 0 warnings, 11 checks, 250 lines checked
-0401236a9134 iommu: Add quirk for Intel graphic devices in map_sg
-ee870127e9f4 iommu/vt-d: Convert intel iommu driver to the iommu ops
-618c6431795e iommu/vt-d: Cleanup after converting to dma-iommu ops
--:96: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#96: FILE: drivers/iommu/intel/iommu.c:2253:
-+			largepage_lvl = hardware_largepage_caps(domain, iov_pfn,
-+					phys_pfn, nr_pages);
-
-total: 0 errors, 0 warnings, 1 checks, 186 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:2332:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:758:42: warning: cast removes address space '__iomem' of expression
++drivers/gpu/drm/i915/gt/intel_reset.c:1311:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gvt/mmio.c:287:23: warning: memcpy with byte count of 279040
++drivers/gpu/drm/i915/i915_perf.c:1440:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1494:15: warning: memset with byte count of 16777216
++./include/linux/seqlock.h:752:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:778:16: warning: trying to copy expression type 31
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
 
 
 _______________________________________________
