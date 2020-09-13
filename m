@@ -2,49 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85E572680B8
-	for <lists+intel-gfx@lfdr.de>; Sun, 13 Sep 2020 20:21:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D818268192
+	for <lists+intel-gfx@lfdr.de>; Sun, 13 Sep 2020 23:53:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA2D89B62;
-	Sun, 13 Sep 2020 18:21:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53C406E082;
+	Sun, 13 Sep 2020 21:53:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com
- [IPv6:2607:f8b0:4864:20::e35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14EF589B12
- for <intel-gfx@lists.freedesktop.org>; Sun, 13 Sep 2020 18:21:13 +0000 (UTC)
-Received: by mail-vs1-xe35.google.com with SMTP id c127so8350408vsc.1
- for <intel-gfx@lists.freedesktop.org>; Sun, 13 Sep 2020 11:21:12 -0700 (PDT)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
+ [IPv6:2a00:1450:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6958B6E082
+ for <intel-gfx@lists.freedesktop.org>; Sun, 13 Sep 2020 21:53:36 +0000 (UTC)
+Received: by mail-ej1-x62a.google.com with SMTP id nw23so20452962ejb.4
+ for <intel-gfx@lists.freedesktop.org>; Sun, 13 Sep 2020 14:53:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=cNT1WcPLh/Au+61jXj4Qkjl733mF87w21+VrJWHvUCY=;
- b=C/BRaNgFCHiv9+eck+32L4M9Yh9Ek5jEmpUFpqwjOMMMFDGQNpDekqnhD8sKYHWoWf
- R9INJFPIL4U2G+MG+pJz/nVsSq/DfPKY8p+vTZDXl5YZnI48patkh7pTjIb5uQZF/ZE7
- Geio/m1A1XEExzG5rGT8zWhwaWf8wrJ5/tvFpVKgbrsA/L1nBLJRFw5sdB39DKZru9fk
- 114dEm70/PVdvjusnuMq+o01zSmn059O3I97zKtPayEnycjb+5VbSlAGCRt7QAyxOPeG
- r7UipCDcuu9uV+G5UF0FoifA+2eYNNO4CG729pBv095p9N99BVnQQjl5rnI9VYzActVs
- FXjg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=NTwM+fq4bTkH52i9nA29Ltn95fkXewMardeNr6t/WpM=;
+ b=TUZZxykNm3VsT+CTLYEkEGEh5k8u3QVMxiyTJrBWns0NaK5oWixqqaABhKUlAJ3ABx
+ sqe7f6kTyHXvM8xK1r08Il/XwuKrh2p7CfGcza44bN7/OyWJOSmK3zSjS7BBfLC9TMKg
+ 6evIpUweIOn9pG0AV1Bxts3c11MdobM6o7nv9YUR4mOmEv4s/5HT9gQJkQZjpRW/H1hT
+ jo59YbCcduGlDecY/W5fXu5K+oVPmsBTWjvyUalfeI4+tDoWDAc5bssz84iAVNXDHTzC
+ UFIHcjVyhg34O2r3eMD64Xdq6I4tfuyzOJXRjTQJL4DzOy4+CFvSgi47aoDSGjNwJZUd
+ rpvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=cNT1WcPLh/Au+61jXj4Qkjl733mF87w21+VrJWHvUCY=;
- b=W9Lf6bfEcyLIGmHQ+qex/uDO1Mvp2Yxb/+W6sK6+WIl3kUOlebRubf5pI1+HcJYOvl
- +FlA3pmIlyAwG78UpWywU7+dm7xD324wCG2OA1BPvLqIx4el/AnBYqFmi5TFtGVJo+PL
- OpEdfZ4TAAMqPqEdd+Wx8nZPJY2+KjPhTjn8ZY0KPuJwciNo/IILO5ZHagEhL2GGU3FM
- s2SoiIkv8/3WqD7td2bmfzOzsM9DF6FQyiGWN9Fsk5G5dNVajbn2h/arCouBJa9hQU2M
- gpBUkuHXuO+BwR5n213Vzfmb+IBz0PzZxIvJTHSXwC32rSAaN8V15jVIqaLWmtC12HGx
- D3ow==
-X-Gm-Message-State: AOAM533Thl9TyYYVX7p/pQgzUA/U0aj8bfQxnJ9Jaav/U1hkxeqvzdWU
- dh+Lo0HaTtN0/RVya+tAPTSf9XfzIgPsOYvL46sf3DiOshM=
-X-Google-Smtp-Source: ABdhPJzIZ2I16uXqnKNBTd/DzIop22SF0gt1ddIxx7f+cGzrUeJ7JtLPaHbnHLHgNGwFgm1xgE2CEiR6Rblhz+vknLQ=
-X-Received: by 2002:a67:bc0d:: with SMTP id t13mr5969193vsn.5.1600021271911;
- Sun, 13 Sep 2020 11:21:11 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=NTwM+fq4bTkH52i9nA29Ltn95fkXewMardeNr6t/WpM=;
+ b=PMle4Az88ZgHVAmcJuoIiIdbvipLHZJIpwPSkL9lSEDaGj3hC+EikYxjFuNaGgaUOw
+ LVC3wJ6I0Te9Fz6JUWvoaR6Da+86HL+Ll3cJZH/CI0/8+8hQfABk4UQnBP0GENXbh3Zu
+ /MLdxFonsZ5lUOqVEMpUyvDteaWBTXamEg27SudekxcNsAdIkjqDtk+wc4+yDh+lXeFJ
+ GlTpRviE7JuUcQPMg2SlUe9TfMTe6wTfPRpEf08Zu1WAlWltd2gCs4PulBCphMCNfvCQ
+ sHYR8/PXGUYYUEtrQzrUGvmJzV1k/2ipXLatUNg0NoTmdX8b1s1p0Uy/VchLoH8kVUS2
+ uyeg==
+X-Gm-Message-State: AOAM530sgROV9HTZZavPWvtsaRQ9hwPCWyvFIUXfC1N6xtKBCfaPto8d
+ Kr9pZcXD/8IKDqIyKjZ+RiPZiBDnQ0WDapVQ1mk=
+X-Google-Smtp-Source: ABdhPJyEceaiAodnRN4128qeO1GfOUBlBzVVdO0zoleGfF4pDx2YUiNgNJBGY8vKZRh0gn8oShZfHaPKu1/Q0oJUFUM=
+X-Received: by 2002:a17:906:813:: with SMTP id
+ e19mr11525766ejd.101.1600034014980; 
+ Sun, 13 Sep 2020 14:53:34 -0700 (PDT)
 MIME-Version: 1.0
-From: =?UTF-8?Q?Tomasz_K=C5=82oczko?= <kloczko.tomasz@gmail.com>
-Date: Sun, 13 Sep 2020 19:20:46 +0100
-Message-ID: <CABB28CyjMp2P1Nb9eE+-22_k7SO+VjTWemaG6GfJ3sM7=juAcw@mail.gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [Intel-gfx] Current status of the intel driver
+References: <CAPM=9twVqXMW17Pw11W09D9+tn+r676yb7R3FxwpkMYrTEtS1A@mail.gmail.com>
+ <f42a12f4-9c43-bfe1-20b6-f42b729d633f@intel.com>
+ <159982722697.15554.10447903613389770525@jlahtine-mobl.ger.corp.intel.com>
+In-Reply-To: <159982722697.15554.10447903613389770525@jlahtine-mobl.ger.corp.intel.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Mon, 14 Sep 2020 07:53:23 +1000
+Message-ID: <CAPM=9twCckk5-YfY0prtCoNi+Nz3BwEiwQPiVh-egKfNubE3Mg@mail.gmail.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Subject: Re: [Intel-gfx] dg1 flag for userspace to allocate contig resources
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,74 +63,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1016479004=="
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1016479004==
-Content-Type: multipart/alternative; boundary="0000000000008ba24b05af35fb00"
+On Fri, 11 Sep 2020 at 22:27, Joonas Lahtinen
+<joonas.lahtinen@linux.intel.com> wrote:
+>
+> + Jani and Ville
+>
+> Quoting Matthew Auld (2020-09-11 11:56:56)
+> > On 11/09/2020 06:42, Dave Airlie wrote:
+> > > I've just been looking at the current DG1 uapi, and I can't see any
+> > > flag to allow userspace to upfront say it was a contiguous vram BO.
+> > >
+> > > I think you'd really want this for scanout, since otherwise you'll
+> > > have to migrate any non-contig to contig when it transitions to
+> > > scanout, and cause an extra set of copies.
+> >
+> > Hmm, why do we need physically contiguous memory for scanout? From hw
+> > pov it's seen through the GTT.
+>
+> That's correct. On both discrete (and integrated) platforms the scan-out
+> addresses on Intel GPUs are programmed to targer Global GTT managed by
+> kernel. So no need to have the backing storage contiguous.
+>
+> Only extra action required for a scan-out BO is to bind it to the GGTT in
+> addition to the ppGTT that renders to it.
+>
+> GGTT is relatively expensive to write to these days and limited in size,
+> but that can't really be helped with an upfront flag.
+>
 
---0000000000008ba24b05af35fb00
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Oops thanks for enlightenment! Indeed binding things to the GTT
+properly helps, sg iterator I had produced wrong pte entries, now I
+can at least see an X stipple.
 
-Hi,
-
-Looking on
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-intel/-/tags it is
-possible to see that laste tagged version was +5 years ago and since then
-to the git repo have been added +900 commits.
-I think that it would be good to make a new release ..
-
-Can someone tell what is the current status of that code?
-Intel driver is quite often used so the situation is a bit odd.
-
-kloczek
---=20
-Tomasz K=C5=82oczko | nkedIn: *http://lnkd.in/FXPWxH <http://lnkd.in/FXPWxH=
->*
-
---0000000000008ba24b05af35fb00
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:monospac=
-e,monospace">Hi,</div><div class=3D"gmail_default" style=3D"font-family:mon=
-ospace,monospace"><br></div><div class=3D"gmail_default" style=3D"font-fami=
-ly:monospace,monospace">Looking on=C2=A0<a href=3D"https://gitlab.freedeskt=
-op.org/xorg/driver/xf86-video-intel/-/tags">https://gitlab.freedesktop.org/=
-xorg/driver/xf86-video-intel/-/tags</a> it is possible to see that laste ta=
-gged version was=C2=A0+5 years ago and since then to the git repo have been=
- added +900 commits.</div><div class=3D"gmail_default" style=3D"font-family=
-:monospace,monospace">I think that it would be good to make a new release .=
-.</div><div class=3D"gmail_default" style=3D"font-family:monospace,monospac=
-e"><br></div><div class=3D"gmail_default" style=3D"font-family:monospace,mo=
-nospace">Can someone tell what is the current status of that code?</div><di=
-v class=3D"gmail_default" style=3D"font-family:monospace,monospace">Intel d=
-river is quite often used so the situation is a bit odd.</div><div class=3D=
-"gmail_default" style=3D"font-family:monospace,monospace"><br></div><div cl=
-ass=3D"gmail_default" style=3D"font-family:monospace,monospace">kloczek</di=
-v><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_s=
-ignature"><div dir=3D"ltr"><div><div dir=3D"ltr"><font face=3D"monospace, m=
-onospace">--=C2=A0</font></div><div dir=3D"ltr"><font face=3D"monospace, mo=
-nospace">Tomasz K=C5=82oczko | nkedIn:=C2=A0<b style=3D"font-weight:normal"=
-><a href=3D"http://lnkd.in/FXPWxH" style=3D"text-decoration:none" target=3D=
-"_blank"><span style=3D"font-size:13px;color:rgb(17,85,204);background-colo=
-r:transparent;text-decoration:underline;vertical-align:baseline;white-space=
-:pre-wrap">http://lnkd.in/FXPWxH</span></a></b></font></div></div></div></d=
-iv></div></div>
-
---0000000000008ba24b05af35fb00--
-
---===============1016479004==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Dave.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1016479004==--
