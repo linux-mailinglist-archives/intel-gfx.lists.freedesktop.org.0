@@ -1,62 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A32A2694A4
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 20:18:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 772F32694E8
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 20:32:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B0656E530;
-	Mon, 14 Sep 2020 18:18:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D02AD89D8E;
+	Mon, 14 Sep 2020 18:32:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
- [IPv6:2a00:1450:4864:20::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51F7C6E526
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 18:18:10 +0000 (UTC)
-Received: by mail-lj1-x242.google.com with SMTP id u4so475711ljd.10
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 11:18:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=hardline-pl.20150623.gappssmtp.com; s=20150623;
- h=mime-version:content-transfer-encoding:cc:in-reply-to:references
- :from:to:subject:date:message-id:user-agent;
- bh=fi4KfIJMsGjKLbFONFDG6+55K3VwuxABX//UHu7if1A=;
- b=lOsc+31wOHE6W/dF+wEiVBqBtp+8ZEFmLATvhl3rWsdOhNE5K+H8FqmbQM1BxinvZ4
- YNMiApr96Wzzzx0PrnfI3x+C3pbr00RkMoom0QBgkVM/mWR1YhgG7dVi4SnDdgUeMN9s
- WWwcTVGgeTENsCyjVnOHbrYmQE/ai3xATZNUe9J/qmL5C2qIW/p7g13v0qK3mpdEutyM
- ZJu8UEOGNQjtmuCx0ikHsVCfQcjVu2FLG7qmrLnr1GrfEeRobxmfm9USu1HLUEjHOvqB
- 2362mP8VX2mXj6M+C89M1y7gvhKTk5G//DIqbdGccc30REl9wgayxFIlakS9cahWSYQR
- cEnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:content-transfer-encoding:cc
- :in-reply-to:references:from:to:subject:date:message-id:user-agent;
- bh=fi4KfIJMsGjKLbFONFDG6+55K3VwuxABX//UHu7if1A=;
- b=YX5+1DvpmqDWzMfb21kiOYYqg7su67NGf/DKVChxGkv3EgnzbK04CY7QRnc0re33ke
- suQ+zlCLw/CgGo2Fkb/u7jGfM3EqsDH4J+VkeEe57lmNy3tF0ILUvT9Aj36PqOKFTrWf
- 8u+8CZ+KENm4SJMPRyorGyb27nzjiTH4y4cMGU2qTg+Faj6PzIb/s38resDzHzNogQL8
- AtPDKzXRsZVsXpM8vukl4eKSktaIzNqxkKo7KGrlZXCr7swy4kszzt1Mws4+eiIbmpI1
- dDPKPOUQn2X/YN0UtcJlujkcH9app5nN0x8CtB10bn/Nt32rdq3LIZHI7XvFyQUmMJqM
- jvlQ==
-X-Gm-Message-State: AOAM533dWuGUA0UeuhoK3xESvRLD46uBDqWmkxOrAjXdZL2tYA4E6Fw0
- Jic082OpAN+2k/4wjXNR9F1yFw==
-X-Google-Smtp-Source: ABdhPJweQIOE8jHAjofuIXtFByt3NmwLKO9Ko8dzvSY5Ebbs2GcZ/FS9nLHlWv+A9/pESEjZfIb3jA==
-X-Received: by 2002:a2e:6a09:: with SMTP id f9mr5128750ljc.432.1600107488670; 
- Mon, 14 Sep 2020 11:18:08 -0700 (PDT)
-Received: from localhost (109241244009.gdansk.vectranet.pl. [109.241.244.9])
- by smtp.gmail.com with ESMTPSA id 5sm3508755lfr.289.2020.09.14.11.18.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 14 Sep 2020 11:18:08 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6605289D8E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 18:32:13 +0000 (UTC)
+IronPort-SDR: PgbXEvVUqkoK73KPcbonHTcsnqg5NG/LKY9SduZ9mMAbf4aqkkDPz6gC93uxO6BbtqsXst0EuR
+ R8nGWW2j2sdA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="159185394"
+X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="159185394"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2020 11:32:09 -0700
+IronPort-SDR: +i30QunRdu0BHI6Kdo+bvXBkRZiehEl187x40c9VTOadyMS9oncN4BoCh+cxEgLA4R2EOjumWK
+ qHp6ERd9udIw==
+X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="482456512"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2020 11:32:09 -0700
+Date: Mon, 14 Sep 2020 11:32:48 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200914183242.GA28634@labuser-Z97X-UD5H>
+References: <20200715224222.7557-1-manasi.d.navare@intel.com>
+ <20200715224222.7557-2-manasi.d.navare@intel.com>
+ <20200903174944.GW6112@intel.com>
+ <20200903180432.GA22804@labuser-Z97X-UD5H>
+ <20200903184044.GZ6112@intel.com> <20200907123523.GG6112@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200911103039.4574-1-janusz.krzysztofik@linux.intel.com>
-References: <20200911103039.4574-1-janusz.krzysztofik@linux.intel.com>
-From: =?utf-8?q?Micha=C5=82?= Winiarski <michal@hardline.pl>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-Date: Mon, 14 Sep 2020 20:18:07 +0200
-Message-ID: <160010748706.10255.10406123224788516828@macragge.hardline.pl>
-User-Agent: alot/0.9.1
-Subject: Re: [Intel-gfx] [PATCH i-g-t v6 00/24] tests/core_hotunplug: Fixes
- and enhancements
+Content-Disposition: inline
+In-Reply-To: <20200907123523.GG6112@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v6 02/11] drm/i915: Remove hw.mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,88 +54,372 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- =?utf-8?q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBKYW51c3ogS3J6eXN6dG9maWsgKDIwMjAtMDktMTEgMTI6MzA6MTUpCj4gQ2xlYW4g
-dXAgdGhlIHRlc3QgY29kZSwgYWRkIHNvbWUgbmV3IGJhc2ljIHN1YnRlc3RzLCB0aGVuIHVuYmxv
-Y2sKPiB1bmJpbmQgdGVzdCB2YXJpYW50cy4KPiAKPiBObyBpbmNvbXBsZXRlcyAvIGFib3J0cyBu
-b3Igc3Vic2VxdWVudGx5IHJ1biB0ZXN0IGlzc3VlcyBoYXZlIGJlZW4KPiByZXBvcnRlZCBieSBU
-cnlib3QuICBUaGUgaG90cmViaW5kLWxhdGVjbG9zZSBzdWJ0ZXN0IGZhaWxzIG9uIGEgc28gZmFy
-Cj4gdW5pZGVudGlmaWVkIGRyaXZlciBzeXNmcyBpc3N1ZSBidXQgdGhlIGRldmljZSBpcyBmdWxs
-eSByZWNvdmVyZWQgYW5kCj4gbGVmdCBpbiBhIHVzYWJsZSBzdGF0ZS4gIFBlcmNlaXZlZCBIYXN3
-ZWxsL0Jyb2Fkd2VsbCBpc3N1ZSB3aXRoIGF1ZGlvCj4gcG93ZXIgbWFuYWdlbWVudCBoYXMgYmVl
-biB3b3JrZWQgYXJvdW5kIGFuZCBpdHMgcG90ZW50aWFsIG9jY3VycmVuY2UKPiBpcyByZXBvcnRl
-ZCBhcyBhbiBJR1Qgd2FybmluZy4KPiAKPiBTZXJpZXMgY2hhbmdlbG9nOgo+IHYyOiBOZXcgcGF0
-Y2ggIlVuLWJsb2NrbGlzdCAqYmluZCogc3VidGVzdHMgYWRkZWQuCj4gdjM6IFBhdGNoICJGb2xs
-b3cgZmFpbGVkIHN1YnRlc3RzIHdpdGggaGVhbHRoY2hlY2siIHJlbmFtZWQgdG8gIlJlY292ZXIK
-PiAgICAgZnJvbSBzdWJ0ZXN0IGZhaWx1cmVzIi4KPiAgIC0gYSBuZXcgcGF0Y2hlICJDbGVhbiB1
-cCBkZXZpY2Ugb3BlbiBlcnJvciBoYW5kbGluZyIgYWRkZWQsIGFuIG9sZAo+ICAgICBwYXRjaCAi
-Rml4IG1pc3NpbmcgbmV3bGluZSIgb2Jzb2xldGVkIGJ5IHRoZSBuZXcgb25lIGRyb3BwZWQsCj4g
-ICAtIG90aGVyIG5ldyBwYXRjaGVzIGFkZGVkOgo+ICAgICAtICJMZXQgdGhlIGRyaXZlciB0aW1l
-IG91dCBlc3NlbnRpYWwgc3lzZnMgb3BlcmF0aW9ucyIsCj4gICAgIC0gIk1vcmUgdGhvcm91Z2gg
-aTkxNSBoZWFsdGhjaGVjayBhbmQgcmVjb3ZlcnkiLAo+ICAgLSBhIHBhdGNoICJBZGQgJ2xhdGVj
-bG9zZSBiZWZvcmUgcmVzdG9yZScgdmFyaWFudHMiIGZyb20gYW5vdGhlcgo+ICAgICBzZXJpZXMg
-aW5jbHVkZWQuCj4gdjQ6IE9wdGlvbmFsIHBhdGNoICJEdXBsaWNhdGUgZGVidWcgbWVzc2FnZXMg
-aW4gZG1lc2ciIGZyb20gYW5vdGhlcgo+ICAgICBzZXJpZXMgaW5jbHVkZWQuCj4gdjU6IE5ldyBw
-YXRjaCBhZGRlZCB3aXRoIEhhc3dlbGwgYXVkaW8gcmVsYXRlZCBrZXJuZWwgd2FybmluZyB3b3Jr
-ZWQKPiAgICAgYXJvdW5kIGFuZCByZXBsYWNlZCB3aXRoIGFuIElHVCB3YXJuaW5nIHRvIHByZXNl
-cnZlIHZpc2liaWxpdHkgb2YKPiAgICAgdGhlIGlzc3VlLgo+IHY2OiBOZXcgcGF0Y2ggYWRkZWQg
-Zm9yIGFsc28gY2hlY2tpbmcgaGVhbHRoIG9mIHJlbmRlciBkZXZpY2Ugbm9kZXMsCj4gICAtIG5l
-dyBwYXRjaCBhZGRlZCB3aXRoIHByb3BlciBoYW5kbGluZyBvZiBoZWFsdGggY2hlY2sgYmVmb3Jl
-IGxhdGUKPiAgICAgY2xvc2UsCj4gICAtIGluY2x1c2lvbiBvZiB1bmJpbmQtcmViaW5kIHNjZW5h
-cmlvIHRvIEJBVCBzY29wZSBwcm9wb3NlZC4KPiAKPiBATWljaGHFgjogU2luY2Ugc29tZSBwYXRj
-aCB1cGRhdGVzIGFyZSB0cml2aWFsLCBJJ3ZlIHByZXNlcnZlZCB5b3VyCj4gdjEvdjIgUmV2aWV3
-ZC1ieTogZXhjZXB0IGZvciBwYXRjaGVzIHdpdGggbm9uLXRyaXZpYWwgY2hhbmdlcywgd2hlcmUg
-SQo+IG1hcmtlZCB5b3VyIFItYiBhcyB2MS92MiBhcHBsaWNhYmxlLiAgUGxlYXNlIGhhdmUgYSBs
-b29rIGFuZCBjb25maXJtIGlmCj4geW91IGFyZSBzdGlsbCBPSyB3aXRoIHRoZW0uCgpGZWVsIGZy
-ZWUgdG8gYWRkOgpSZXZpZXdlZC1ieTogTWljaGHFgiBXaW5pYXJza2kgPG1pY2hhbC53aW5pYXJz
-a2lAaW50ZWwuY29tPgoKRm9yIHRoZSB3aG9sZSBzZXJpZXMgKHdpdGggdGhlIGV4Y2VwdGlvbiBv
-ZiBpbnRlbC1jaSBwYXJ0KS4KCi1NaWNoYcWCCgo+IAo+IEBUdnJ0a286IEFzIEkgYWxyZWFkeSBh
-c2tlZCBiZWZvcmUsIHBsZWFzZSBzdXBwb3J0IG15IGF0dGVtcHQgdG8gcmVtb3ZlCj4gdGhlIHVu
-YmluZCB0ZXN0IHZhcmlhbnRzIGZyb20gdGhlIGJsb2NrbGlzdC4KPiAKPiBAUGV0cmksIEBNYXJ0
-aW46IEFzc3VtaW5nIENJIHJlc3VsdHMgd2lsbCBiZSBhcyBnb29kIGFzIHRob3NlIG9idGFpbmVk
-Cj4gb24gVHJ5Ym90LCBwbGVhc2UgZ2l2ZSBtZSB5b3VyIGdyZWVuIGxpZ2h0IGZvciBtZXJnaW5n
-IHRoaXMgc2VyaWVzIGlmCj4geW91IGhhdmUgbm8gb2JqZWN0aW9ucy4KPiAKPiBUaGFua3MsCj4g
-SmFudXN6Cj4gCj4gSmFudXN6IEtyenlzenRvZmlrICgyNCk6Cj4gICB0ZXN0cy9jb3JlX2hvdHVu
-cGx1ZzogVXNlIGlndF9hc3NlcnRfZmQoKQo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IENvbnN0
-aWZ5IGRldl9idXNfYWRkciBzdHJpbmcKPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBDbGVhbiB1
-cCBkZXZpY2Ugb3BlbiBlcnJvciBoYW5kbGluZwo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IENv
-bnNvbGlkYXRlIGR1cGxpY2F0ZWQgZGVidWcgbWVzc2FnZXMKPiAgIHRlc3RzL2NvcmVfaG90dW5w
-bHVnOiBBc3NlcnQgc3VjY2Vzc2Z1bCBkZXZpY2UgZmlsdGVyIGFwcGxpY2F0aW9uCj4gICB0ZXN0
-cy9jb3JlX2hvdHVucGx1ZzogTWFpbnRhaW4gYSBzaW5nbGUgZGF0YSBzdHJ1Y3R1cmUgaW5zdGFu
-Y2UKPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBQYXNzIGVycm9ycyB2aWEgYSBkYXRhIHN0cnVj
-dHVyZSBmaWVsZAo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEhhbmRsZSBkZXZpY2UgY2xvc2Ug
-ZXJyb3JzCj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogUHJlcGFyZSBpbnZhcmlhbnQgZGF0YSBv
-bmNlIHBlciB0ZXN0IHJ1bgo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFNraXAgc2VsZWN0aXZl
-bHkgb24gc3lzZnMgY2xvc2UgZXJyb3JzCj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogUmVjb3Zl
-ciBmcm9tIHN1YnRlc3QgZmFpbHVyZXMKPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBGYWlsIHN1
-YnRlc3RzIG9uIGRldmljZSBjbG9zZSBlcnJvcnMKPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBM
-ZXQgdGhlIGRyaXZlciB0aW1lIG91dCBlc3NlbnRpYWwgc3lzZnMKPiAgICAgb3BlcmF0aW9ucwo+
-ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFByb2Nlc3MgcmV0dXJuIHZhbHVlcyBvZiBzeXNmcyBv
-cGVyYXRpb25zCj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogQXNzZXJ0IGV4cGVjdGVkIGRldmlj
-ZSBwcmVzZW5jZS9hYnNlbmNlCj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogRXhwbGljaXRseSBp
-Z25vcmUgdW51c2VkIHJldHVybiB2YWx1ZXMKPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBBbHNv
-IGNoZWNrIGhlYWx0aCBvZiByZW5kZXIgZGV2aWNlIG5vZGUKPiAgIHRlc3RzL2NvcmVfaG90dW5w
-bHVnOiBNb3JlIHRob3JvdWdoIGk5MTUgaGVhbHRoY2hlY2sgYW5kIHJlY292ZXJ5Cj4gICB0ZXN0
-cy9jb3JlX2hvdHVucGx1ZzogQWRkICdsYXRlY2xvc2UgYmVmb3JlIHJlc3RvcmUnIHZhcmlhbnRz
-Cj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogQ2hlY2sgaGVhbHRoIGJvdGggYmVmb3JlIGFuZCBh
-ZnRlciBsYXRlIGNsb3NlCj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogSFNXL0JEVyBhdWRpbyBp
-c3N1ZSB3b3JrYXJvdW5kCj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogRHVwbGljYXRlIGRlYnVn
-IG1lc3NhZ2VzIGluIGRtZXNnCj4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogVW4tYmxvY2tsaXN0
-ICpiaW5kKiBzdWJ0ZXN0cwo+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEFkZCB1bmJpbmQtcmVi
-aW5kIHN1YnRlc3QgdG8gQkFUIHNjb3BlCj4gCj4gIHRlc3RzL2NvcmVfaG90dW5wbHVnLmMgICAg
-ICAgICAgICAgICAgfCA1NjAgKysrKysrKysrKysrKysrKysrKystLS0tLS0KPiAgdGVzdHMvaW50
-ZWwtY2kvYmxhY2tsaXN0LnR4dCAgICAgICAgICB8ICAgMiArLQo+ICB0ZXN0cy9pbnRlbC1jaS9m
-YXN0LWZlZWRiYWNrLnRlc3RsaXN0IHwgICAxICsKPiAgMyBmaWxlcyBjaGFuZ2VkLCA0MzEgaW5z
-ZXJ0aW9ucygrKSwgMTMyIGRlbGV0aW9ucygtKQo+IAo+IC0tIAo+IDIuMjEuMQo+IAo+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
-aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Mon, Sep 07, 2020 at 03:35:23PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Thu, Sep 03, 2020 at 09:40:44PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Thu, Sep 03, 2020 at 11:04:33AM -0700, Navare, Manasi wrote:
+> > > On Thu, Sep 03, 2020 at 08:49:44PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > > On Wed, Jul 15, 2020 at 03:42:13PM -0700, Manasi Navare wrote:
+> > > > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > > =
+
+> > > > > The members in hw.mode can be used from adjusted_mode as well,
+> > > > > use that when available.
+> > > > > =
+
+> > > > > Some places that use hw.mode can be converted to use adjusted_mode
+> > > > > as well.
+> > > > > =
+
+> > > > > v2:
+> > > > > * Manual rebase (Manasi)
+> > > > > * remove the use of pipe_mode defined in patch 3 (Manasi)
+> > > > > =
+
+> > > > > v3:
+> > > > > * Rebase on drm-tip (Manasi)
+> > > > =
+
+> > > > Previous review was apparently ignored. Or is there a better version
+> > > > somewhere? If not, this still looks very wrong.
+> > > =
+
+> > > This was the latest rev that Maarten had in his local tree which he s=
+aid should address all the review comments.
+> > > What in particular looks wrong or what review comments were unaddress=
+ed here?
+> > =
+
+> > The dvo/sdvo changes.
+> =
+
+> I recommend just dropping this patch entirely. It doesn't seem to have
+> anything to do with the bigjoiner anyway.
+
+So for the dvo/svdo changes, no need to use the adjusted_mode instead keep =
+using hw.mode?
+How about other cleanups like: intel_crtc_copy_hw_to_uapi_state(crtc_state,=
+ &mode); and
+static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_state *crtc_=
+state,
++					     struct drm_display_mode *user_mode)
+
+You think we dont need mode as an argument there either?
+
+Manasi
+> =
+
+> > =
+
+> > > =
+
+> > > @Maarten any feedback on Ville's unaddressed comments?
+> > > =
+
+> > > Manasi
+> > > =
+
+> > > > =
+
+> > > > > =
+
+> > > > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.c=
+om>
+> > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_display.c  | 29 ++++++++++---=
+------
+> > > > >  .../drm/i915/display/intel_display_types.h    |  2 +-
+> > > > >  drivers/gpu/drm/i915/display/intel_dvo.c      |  2 +-
+> > > > >  drivers/gpu/drm/i915/display/intel_sdvo.c     | 16 ++++------
+> > > > >  4 files changed, 23 insertions(+), 26 deletions(-)
+> > > > > =
+
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drive=
+rs/gpu/drm/i915/display/intel_display.c
+> > > > > index 729ec6e0d43a..8652a7c6bf11 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > @@ -8892,9 +8892,6 @@ static void intel_get_pipe_src_size(struct =
+intel_crtc *crtc,
+> > > > >  	tmp =3D intel_de_read(dev_priv, PIPESRC(crtc->pipe));
+> > > > >  	pipe_config->pipe_src_h =3D (tmp & 0xffff) + 1;
+> > > > >  	pipe_config->pipe_src_w =3D ((tmp >> 16) & 0xffff) + 1;
+> > > > > -
+> > > > > -	pipe_config->hw.mode.vdisplay =3D pipe_config->pipe_src_h;
+> > > > > -	pipe_config->hw.mode.hdisplay =3D pipe_config->pipe_src_w;
+> > > > >  }
+> > > > >  =
+
+> > > > >  void intel_mode_from_pipe_config(struct drm_display_mode *mode,
+> > > > > @@ -13079,7 +13076,7 @@ static void intel_dump_pipe_config(const =
+struct intel_crtc_state *pipe_config,
+> > > > >  		intel_dump_dp_vsc_sdp(dev_priv, &pipe_config->infoframes.vsc);
+> > > > >  =
+
+> > > > >  	drm_dbg_kms(&dev_priv->drm, "requested mode:\n");
+> > > > > -	drm_mode_debug_printmodeline(&pipe_config->hw.mode);
+> > > > > +	drm_mode_debug_printmodeline(&pipe_config->uapi.mode);
+> > > > >  	drm_dbg_kms(&dev_priv->drm, "adjusted mode:\n");
+> > > > >  	drm_mode_debug_printmodeline(&pipe_config->hw.adjusted_mode);
+> > > > >  	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.adjusted_mod=
+e);
+> > > > > @@ -13221,17 +13218,17 @@ intel_crtc_copy_uapi_to_hw_state(struct=
+ intel_crtc_state *crtc_state)
+> > > > >  {
+> > > > >  	crtc_state->hw.enable =3D crtc_state->uapi.enable;
+> > > > >  	crtc_state->hw.active =3D crtc_state->uapi.active;
+> > > > > -	crtc_state->hw.mode =3D crtc_state->uapi.mode;
+> > > > >  	crtc_state->hw.adjusted_mode =3D crtc_state->uapi.adjusted_mode;
+> > > > >  	intel_crtc_copy_uapi_to_hw_state_nomodeset(crtc_state);
+> > > > >  }
+> > > > >  =
+
+> > > > > -static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_s=
+tate *crtc_state)
+> > > > > +static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_s=
+tate *crtc_state,
+> > > > > +					     struct drm_display_mode *user_mode)
+> > > > >  {
+> > > > >  	crtc_state->uapi.enable =3D crtc_state->hw.enable;
+> > > > >  	crtc_state->uapi.active =3D crtc_state->hw.active;
+> > > > >  	drm_WARN_ON(crtc_state->uapi.crtc->dev,
+> > > > > -		    drm_atomic_set_mode_for_crtc(&crtc_state->uapi, &crtc_stat=
+e->hw.mode) < 0);
+> > > > > +		    drm_atomic_set_mode_for_crtc(&crtc_state->uapi, user_mode)=
+ < 0);
+> > > > >  =
+
+> > > > >  	crtc_state->uapi.adjusted_mode =3D crtc_state->hw.adjusted_mode;
+> > > > >  =
+
+> > > > > @@ -13277,6 +13274,10 @@ intel_crtc_prepare_cleared_state(struct =
+intel_crtc_state *crtc_state)
+> > > > >  	memcpy(crtc_state, saved_state, sizeof(*crtc_state));
+> > > > >  	kfree(saved_state);
+> > > > >  =
+
+> > > > > +	/* Clear I915_MODE_FLAG_INHERITED */
+> > > > > +	crtc_state->uapi.mode.private_flags =3D 0;
+> > > > > +	crtc_state->uapi.adjusted_mode.private_flags =3D 0;
+> > > > > +
+> > > > >  	intel_crtc_copy_uapi_to_hw_state(crtc_state);
+> > > > >  =
+
+> > > > >  	return 0;
+> > > > > @@ -13324,7 +13325,7 @@ intel_modeset_pipe_config(struct intel_cr=
+tc_state *pipe_config)
+> > > > >  	 * computation to clearly distinguish it from the adjusted mode=
+, which
+> > > > >  	 * can be changed by the connectors in the below retry loop.
+> > > > >  	 */
+> > > > > -	drm_mode_get_hv_timing(&pipe_config->hw.mode,
+> > > > > +	drm_mode_get_hv_timing(&pipe_config->hw.adjusted_mode,
+> > > > >  			       &pipe_config->pipe_src_w,
+> > > > >  			       &pipe_config->pipe_src_h);
+> > > > >  =
+
+> > > > > @@ -18461,15 +18462,11 @@ static void intel_modeset_readout_hw_st=
+ate(struct drm_device *dev)
+> > > > >  		int min_cdclk =3D 0;
+> > > > >  =
+
+> > > > >  		if (crtc_state->hw.active) {
+> > > > > -			struct drm_display_mode *mode =3D &crtc_state->hw.mode;
+> > > > > +			struct drm_display_mode mode;
+> > > > >  =
+
+> > > > >  			intel_mode_from_pipe_config(&crtc_state->hw.adjusted_mode,
+> > > > >  						    crtc_state);
+> > > > >  =
+
+> > > > > -			*mode =3D crtc_state->hw.adjusted_mode;
+> > > > > -			mode->hdisplay =3D crtc_state->pipe_src_w;
+> > > > > -			mode->vdisplay =3D crtc_state->pipe_src_h;
+> > > > > -
+> > > > >  			/*
+> > > > >  			 * The initial mode needs to be set in order to keep
+> > > > >  			 * the atomic core happy. It wants a valid mode if the
+> > > > > @@ -18481,11 +18478,15 @@ static void intel_modeset_readout_hw_st=
+ate(struct drm_device *dev)
+> > > > >  			 */
+> > > > >  			crtc_state->inherited =3D true;
+> > > > >  =
+
+> > > > > +			mode =3D crtc_state->hw.adjusted_mode;
+> > > > > +			mode.hdisplay =3D crtc_state->pipe_src_w;
+> > > > > +			mode.vdisplay =3D crtc_state->pipe_src_h;
+> > > > > +
+> > > > >  			intel_crtc_compute_pixel_rate(crtc_state);
+> > > > >  =
+
+> > > > >  			intel_crtc_update_active_timings(crtc_state);
+> > > > >  =
+
+> > > > > -			intel_crtc_copy_hw_to_uapi_state(crtc_state);
+> > > > > +			intel_crtc_copy_hw_to_uapi_state(crtc_state, &mode);
+> > > > >  		}
+> > > > >  =
+
+> > > > >  		for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, plane) {
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b=
+/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > index e8f809161c75..f1e29d9a75d0 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > @@ -807,7 +807,7 @@ struct intel_crtc_state {
+> > > > >  	struct {
+> > > > >  		bool active, enable;
+> > > > >  		struct drm_property_blob *degamma_lut, *gamma_lut, *ctm;
+> > > > > -		struct drm_display_mode mode, adjusted_mode;
+> > > > > +		struct drm_display_mode adjusted_mode;
+> > > > >  	} hw;
+> > > > >  =
+
+> > > > >  	/**
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/g=
+pu/drm/i915/display/intel_dvo.c
+> > > > > index 307ed8ae9a19..0b9bf1fec0f4 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_dvo.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+> > > > > @@ -209,7 +209,7 @@ static void intel_enable_dvo(struct intel_ato=
+mic_state *state,
+> > > > >  	u32 temp =3D intel_de_read(dev_priv, dvo_reg);
+> > > > >  =
+
+> > > > >  	intel_dvo->dev.dev_ops->mode_set(&intel_dvo->dev,
+> > > > > -					 &pipe_config->hw.mode,
+> > > > > +					 &pipe_config->hw.adjusted_mode,
+> > > > >  					 &pipe_config->hw.adjusted_mode);
+> > > > >  =
+
+> > > > >  	intel_de_write(dev_priv, dvo_reg, temp | DVO_ENABLE);
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/=
+gpu/drm/i915/display/intel_sdvo.c
+> > > > > index 2da4388e1540..8b78ae0c39a0 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > > > > @@ -1223,7 +1223,6 @@ intel_sdvo_set_output_timings_from_mode(str=
+uct intel_sdvo *intel_sdvo,
+> > > > >  static bool
+> > > > >  intel_sdvo_get_preferred_input_mode(struct intel_sdvo *intel_sdv=
+o,
+> > > > >  				    struct intel_sdvo_connector *intel_sdvo_connector,
+> > > > > -				    const struct drm_display_mode *mode,
+> > > > >  				    struct drm_display_mode *adjusted_mode)
+> > > > >  {
+> > > > >  	struct intel_sdvo_dtd input_dtd;
+> > > > > @@ -1234,9 +1233,9 @@ intel_sdvo_get_preferred_input_mode(struct =
+intel_sdvo *intel_sdvo,
+> > > > >  =
+
+> > > > >  	if (!intel_sdvo_create_preferred_input_timing(intel_sdvo,
+> > > > >  						      intel_sdvo_connector,
+> > > > > -						      mode->clock / 10,
+> > > > > -						      mode->hdisplay,
+> > > > > -						      mode->vdisplay))
+> > > > > +						      adjusted_mode->clock / 10,
+> > > > > +						      adjusted_mode->hdisplay,
+> > > > > +						      adjusted_mode->vdisplay))
+> > > > >  		return false;
+> > > > >  =
+
+> > > > >  	if (!intel_sdvo_get_preferred_input_timing(intel_sdvo,
+> > > > > @@ -1308,7 +1307,6 @@ static int intel_sdvo_compute_config(struct=
+ intel_encoder *encoder,
+> > > > >  	struct intel_sdvo_connector *intel_sdvo_connector =3D
+> > > > >  		to_intel_sdvo_connector(conn_state->connector);
+> > > > >  	struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adj=
+usted_mode;
+> > > > > -	struct drm_display_mode *mode =3D &pipe_config->hw.mode;
+> > > > >  =
+
+> > > > >  	DRM_DEBUG_KMS("forcing bpc to 8 for SDVO\n");
+> > > > >  	pipe_config->pipe_bpp =3D 8*3;
+> > > > > @@ -1324,12 +1322,12 @@ static int intel_sdvo_compute_config(stru=
+ct intel_encoder *encoder,
+> > > > >  	 * the sequence to do it. Oh well.
+> > > > >  	 */
+> > > > >  	if (IS_TV(intel_sdvo_connector)) {
+> > > > > -		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo, mode))
+> > > > > +		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo,
+> > > > > +							     adjusted_mode))
+> > > > >  			return -EINVAL;
+> > > > >  =
+
+> > > > >  		(void) intel_sdvo_get_preferred_input_mode(intel_sdvo,
+> > > > >  							   intel_sdvo_connector,
+> > > > > -							   mode,
+> > > > >  							   adjusted_mode);
+> > > > >  		pipe_config->sdvo_tv_clock =3D true;
+> > > > >  	} else if (IS_LVDS(intel_sdvo_connector)) {
+> > > > > @@ -1339,7 +1337,6 @@ static int intel_sdvo_compute_config(struct=
+ intel_encoder *encoder,
+> > > > >  =
+
+> > > > >  		(void) intel_sdvo_get_preferred_input_mode(intel_sdvo,
+> > > > >  							   intel_sdvo_connector,
+> > > > > -							   mode,
+> > > > >  							   adjusted_mode);
+> > > > >  	}
+> > > > >  =
+
+> > > > > @@ -1458,7 +1455,6 @@ static void intel_sdvo_pre_enable(struct in=
+tel_atomic_state *state,
+> > > > >  		to_intel_sdvo_connector_state(conn_state);
+> > > > >  	const struct intel_sdvo_connector *intel_sdvo_connector =3D
+> > > > >  		to_intel_sdvo_connector(conn_state->connector);
+> > > > > -	const struct drm_display_mode *mode =3D &crtc_state->hw.mode;
+> > > > >  	struct intel_sdvo *intel_sdvo =3D to_sdvo(intel_encoder);
+> > > > >  	u32 sdvox;
+> > > > >  	struct intel_sdvo_in_out_map in_out;
+> > > > > @@ -1491,7 +1487,7 @@ static void intel_sdvo_pre_enable(struct in=
+tel_atomic_state *state,
+> > > > >  		intel_sdvo_get_dtd_from_mode(&output_dtd,
+> > > > >  					     intel_sdvo_connector->base.panel.fixed_mode);
+> > > > >  	else
+> > > > > -		intel_sdvo_get_dtd_from_mode(&output_dtd, mode);
+> > > > > +		intel_sdvo_get_dtd_from_mode(&output_dtd, adjusted_mode);
+> > > > >  	if (!intel_sdvo_set_output_timing(intel_sdvo, &output_dtd))
+> > > > >  		drm_info(&dev_priv->drm,
+> > > > >  			 "Setting output timings on %s failed\n",
+> > > > > -- =
+
+> > > > > 2.19.1
+> > > > > =
+
+> > > > > _______________________________________________
+> > > > > Intel-gfx mailing list
+> > > > > Intel-gfx@lists.freedesktop.org
+> > > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > > > =
+
+> > > > -- =
+
+> > > > Ville Syrj=E4l=E4
+> > > > Intel
+> > =
+
+> > -- =
+
+> > Ville Syrj=E4l=E4
+> > Intel
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
