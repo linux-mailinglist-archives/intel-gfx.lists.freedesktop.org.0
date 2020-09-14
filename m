@@ -1,90 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20122695AC
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 21:33:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD562695A8
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 21:31:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB9B26E55E;
-	Mon, 14 Sep 2020 19:33:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 713BE6E560;
+	Mon, 14 Sep 2020 19:31:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com
- [IPv6:2a00:1450:4864:20::541])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B488F6E4E8;
- Mon, 14 Sep 2020 17:51:12 +0000 (UTC)
-Received: by mail-ed1-x541.google.com with SMTP id l17so399655edq.12;
- Mon, 14 Sep 2020 10:51:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language;
- bh=cinD4tchkxocHKviw5M6liz7E8UU7FD4XovFhsNsjyI=;
- b=tqZKHKN1V6C6oQElOwFS4+jyvbLS9BzylBSbwUbd02rQ76/lT49lrc+1lA+C8DN8Dd
- Nc0GbsJCPaCOHclSGk4/rG8fGqamsaUD5D+cmba9mrjnCmyMQa6mZgYbC5c/w9kZwhfb
- aJRkSAXMinRH/3gtwBaIiUmXBpTvWVTG5r/fSBBRDxoLah5xFDDjscX2kvgZr8AfeAC0
- gMFA6X+UeLkG9NLYtld2tfKKPMYvQC8wFwsgo6QeCj/1SP2gpRaBO+qK+7RqV2MPi/tn
- AYDtIiDOG7XJrasBS+cYJnkZhddVCOd5+jF87VvJuyV9OeppL+UABQ8WQSDYD79g3mPs
- ytfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language;
- bh=cinD4tchkxocHKviw5M6liz7E8UU7FD4XovFhsNsjyI=;
- b=XzUNwjExRpWcHkXwHWNfAsvRcXiuP4E7y4VV9owD+CyqdYI+pUkjNfgjiGv8u62Her
- HHXS8d4H8wB8rWXrApK8xB3yS2gw5f0dlU87YtCDK4Co5vevxYGPVOePdDuXwX/PDPd4
- gfYsGRcwBWDJS28ezMn4okCp3LEIb912iibK68v2Cmtz3JsbLAyMUcGZDNsMFqi7zjtw
- +UfZtIf3O5AdjnTftTCan4wn+1mgWjoV4wkZuej7KOxlt6HVgfFRZrw2v1nwO3O5K/YG
- B1NQT2Uj2T8Y/TRcSzOZidMNHboGfghlInya6/+RNmal7BRep2UVtidq95VVwIVf7Nio
- RG5Q==
-X-Gm-Message-State: AOAM530GN4ze5YiijLF6SwdudN+PT6Iz+0syxbB0ys7l7qhOGW5nCTHp
- KcALNXAVnIXXZG5Zrb1cE4M=
-X-Google-Smtp-Source: ABdhPJyHIadEQ0w95cMm+XKXdD2wy6DDt/xaqpuYqbeZucK6WVOqY6RobxWEhAYoVlCs20sURxiHJg==
-X-Received: by 2002:a50:b046:: with SMTP id i64mr19248036edd.9.1600105871323; 
- Mon, 14 Sep 2020 10:51:11 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id c22sm9791887edr.70.2020.09.14.10.51.08
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 14 Sep 2020 10:51:10 -0700 (PDT)
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, airlied@linux.ie, daniel@ffwll.ch,
- linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com,
- inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
- kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org,
- patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com,
- robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com,
- tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de,
- thierry.reding@gmail.com, jonathanh@nvidia.com,
- rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com,
- oleksandr_andrushchenko@epam.com, hyun.kwon@xilinx.com,
- laurent.pinchart@ideasonboard.com, michal.simek@xilinx.com,
- sumit.semwal@linaro.org, evan.quan@amd.com, Hawking.Zhang@amd.com,
- tianci.yin@amd.com, marek.olsak@amd.com, hdegoede@redhat.com,
- andrey.grodzovsky@amd.com, Felix.Kuehling@amd.com, xinhui.pan@amd.com,
- aaron.liu@amd.com, nirmoy.das@amd.com, chris@chris-wilson.co.uk,
- matthew.auld@intel.com, abdiel.janulgue@linux.intel.com,
- tvrtko.ursulin@linux.intel.com, andi.shyti@intel.com, sam@ravnborg.org,
- miaoqinglang@huawei.com, emil.velikov@collabora.com
-References: <20200813083644.31711-1-tzimmermann@suse.de>
- <20200813083644.31711-2-tzimmermann@suse.de>
- <5c1b3cab-1898-46df-2c5c-23ab6cbfbb7a@amd.com>
- <c445493b-9914-63f2-1cf2-c3c1de14e3e5@suse.de>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <ee7528ba-6775-53be-97fe-c8425178b491@gmail.com>
-Date: Mon, 14 Sep 2020 19:51:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D66A96E55C;
+ Mon, 14 Sep 2020 19:31:02 +0000 (UTC)
+IronPort-SDR: kL1rdd4vjOWrrlGux4eZiNTuD4mSkgokgiy0RNZEPNfajmI8BIeweyLO0dAeFkt69im/G0w4Vn
+ Z2rLyGis96IQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="146889723"
+X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="146889723"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2020 12:31:02 -0700
+IronPort-SDR: Ca+7kB9IFyQ40tXCSHEfn8ELm+ToPDndDNYMAxjob+N8LgcJw3D8UmdfLE9hPUF1Hf7ByTvVe9
+ tXc/mbAr3gHA==
+X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="482471018"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2020 12:31:00 -0700
+Message-ID: <956a80e7fc5da572b7bffd2bec3c7b542516e7a3.camel@linux.intel.com>
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: =?UTF-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>, 
+ igt-dev@lists.freedesktop.org
+Date: Mon, 14 Sep 2020 21:30:58 +0200
+In-Reply-To: <160010748706.10255.10406123224788516828@macragge.hardline.pl>
+References: <20200911103039.4574-1-janusz.krzysztofik@linux.intel.com>
+ <160010748706.10255.10406123224788516828@macragge.hardline.pl>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-In-Reply-To: <c445493b-9914-63f2-1cf2-c3c1de14e3e5@suse.de>
-Content-Language: en-US
-X-Mailman-Approved-At: Mon, 14 Sep 2020 19:33:26 +0000
-Subject: Re: [Intel-gfx] [PATCH 01/20] drm/amdgpu: Introduce GEM object
- functions
+Subject: Re: [Intel-gfx] [PATCH i-g-t v6 00/24] tests/core_hotunplug: Fixes
+ and enhancements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,299 +53,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- xen-devel@lists.xenproject.org, freedreno@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
-Content-Type: multipart/mixed; boundary="===============0090760880=="
+Cc: intel-gfx@lists.freedesktop.org,
+ Lakshminarayana Vudum <lakshminarayana.vudum@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============0090760880==
-Content-Type: multipart/alternative;
- boundary="------------29780EC5D45E17F55361B946"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------29780EC5D45E17F55361B946
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Am 14.09.20 um 17:05 schrieb Thomas Zimmermann:
-> Hi
->
-> Am 13.08.20 um 12:22 schrieb Christian König:
->> Am 13.08.20 um 10:36 schrieb Thomas Zimmermann:
->>> GEM object functions deprecate several similar callback interfaces in
->>> struct drm_driver. This patch replaces the per-driver callbacks with
->>> per-instance callbacks in amdgpu. The only exception is gem_prime_mmap,
->>> which is non-trivial to convert.
->>>
->>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>> ---
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  6 ------
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 12 ++++++++++++
->>>    2 files changed, 12 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->>> index 81a79760ca61..51525b8774c9 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->>> @@ -1468,19 +1468,13 @@ static struct drm_driver kms_driver = {
->>>        .lastclose = amdgpu_driver_lastclose_kms,
->>>        .irq_handler = amdgpu_irq_handler,
->>>        .ioctls = amdgpu_ioctls_kms,
->>> -    .gem_free_object_unlocked = amdgpu_gem_object_free,
->>> -    .gem_open_object = amdgpu_gem_object_open,
->>> -    .gem_close_object = amdgpu_gem_object_close,
->>>        .dumb_create = amdgpu_mode_dumb_create,
->>>        .dumb_map_offset = amdgpu_mode_dumb_mmap,
->>>        .fops = &amdgpu_driver_kms_fops,
->>>          .prime_handle_to_fd = drm_gem_prime_handle_to_fd,
->>>        .prime_fd_to_handle = drm_gem_prime_fd_to_handle,
->>> -    .gem_prime_export = amdgpu_gem_prime_export,
->>>        .gem_prime_import = amdgpu_gem_prime_import,
->>> -    .gem_prime_vmap = amdgpu_gem_prime_vmap,
->>> -    .gem_prime_vunmap = amdgpu_gem_prime_vunmap,
->>>        .gem_prime_mmap = amdgpu_gem_prime_mmap,
->>>          .name = DRIVER_NAME,
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->>> index 43f4966331dd..ca2b79f94e99 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->>> @@ -36,6 +36,7 @@
->>>    #include <drm/amdgpu_drm.h>
->>>    #include <drm/drm_cache.h>
->>>    #include "amdgpu.h"
->>> +#include "amdgpu_dma_buf.h"
->>>    #include "amdgpu_trace.h"
->>>    #include "amdgpu_amdkfd.h"
->>>    @@ -510,6 +511,15 @@ bool amdgpu_bo_support_uswc(u64 bo_flags)
->>>    #endif
->>>    }
->>>    +static const struct drm_gem_object_funcs amdgpu_gem_object_funcs = {
->>> +    .free = amdgpu_gem_object_free,
->>> +    .open = amdgpu_gem_object_open,
->>> +    .close = amdgpu_gem_object_close,
->>> +    .export = amdgpu_gem_prime_export,
->>> +    .vmap = amdgpu_gem_prime_vmap,
->>> +    .vunmap = amdgpu_gem_prime_vunmap,
->>> +};
->>> +
->> Wrong file, this belongs into amdgpu_gem.c
->>
->>>    static int amdgpu_bo_do_create(struct amdgpu_device *adev,
->>>                       struct amdgpu_bo_param *bp,
->>>                       struct amdgpu_bo **bo_ptr)
->>> @@ -552,6 +562,8 @@ static int amdgpu_bo_do_create(struct
->>> amdgpu_device *adev,
->>>        bo = kzalloc(sizeof(struct amdgpu_bo), GFP_KERNEL);
->>>        if (bo == NULL)
->>>            return -ENOMEM;
->>> +
->>> +    bo->tbo.base.funcs = &amdgpu_gem_object_funcs;
->> And this should probably go into amdgpu_gem_object_create().
-> I'm trying to understand what amdgpu does.  What about all the places
-> where amdgpu calls amdgpu_bo_create() internally? Wouldn't these miss
-> the free callback for the GEM object?
-
-Those shouldn't have a GEM object in the first place.
-
-Or otherwise we would have a reference counting issue.
-
-Regards,
-Christian.
-
->
-> Best regards
-> Thomas
->
->> Apart from that looks like a good idea to me.
->>
->> Christian.
->>
->>>        drm_gem_private_object_init(adev->ddev, &bo->tbo.base, size);
->>>        INIT_LIST_HEAD(&bo->shadow_list);
->>>        bo->vm_bo = NULL;
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
-
---------------29780EC5D45E17F55361B946
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">Am 14.09.20 um 17:05 schrieb Thomas
-      Zimmermann:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:c445493b-9914-63f2-1cf2-c3c1de14e3e5@suse.de">
-      <pre class="moz-quote-pre" wrap="">Hi
-
-Am 13.08.20 um 12:22 schrieb Christian König:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">Am 13.08.20 um 10:36 schrieb Thomas Zimmermann:
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">GEM object functions deprecate several similar callback interfaces in
-struct drm_driver. This patch replaces the per-driver callbacks with
-per-instance callbacks in amdgpu. The only exception is gem_prime_mmap,
-which is non-trivial to convert.
-
-Signed-off-by: Thomas Zimmermann <a class="moz-txt-link-rfc2396E" href="mailto:tzimmermann@suse.de">&lt;tzimmermann@suse.de&gt;</a>
----
-  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  6 ------
-  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 12 ++++++++++++
-  2 files changed, 12 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 81a79760ca61..51525b8774c9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1468,19 +1468,13 @@ static struct drm_driver kms_driver = {
-      .lastclose = amdgpu_driver_lastclose_kms,
-      .irq_handler = amdgpu_irq_handler,
-      .ioctls = amdgpu_ioctls_kms,
--    .gem_free_object_unlocked = amdgpu_gem_object_free,
--    .gem_open_object = amdgpu_gem_object_open,
--    .gem_close_object = amdgpu_gem_object_close,
-      .dumb_create = amdgpu_mode_dumb_create,
-      .dumb_map_offset = amdgpu_mode_dumb_mmap,
-      .fops = &amp;amdgpu_driver_kms_fops,
-        .prime_handle_to_fd = drm_gem_prime_handle_to_fd,
-      .prime_fd_to_handle = drm_gem_prime_fd_to_handle,
--    .gem_prime_export = amdgpu_gem_prime_export,
-      .gem_prime_import = amdgpu_gem_prime_import,
--    .gem_prime_vmap = amdgpu_gem_prime_vmap,
--    .gem_prime_vunmap = amdgpu_gem_prime_vunmap,
-      .gem_prime_mmap = amdgpu_gem_prime_mmap,
-        .name = DRIVER_NAME,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 43f4966331dd..ca2b79f94e99 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -36,6 +36,7 @@
-  #include &lt;drm/amdgpu_drm.h&gt;
-  #include &lt;drm/drm_cache.h&gt;
-  #include "amdgpu.h"
-+#include "amdgpu_dma_buf.h"
-  #include "amdgpu_trace.h"
-  #include "amdgpu_amdkfd.h"
-  @@ -510,6 +511,15 @@ bool amdgpu_bo_support_uswc(u64 bo_flags)
-  #endif
-  }
-  +static const struct drm_gem_object_funcs amdgpu_gem_object_funcs = {
-+    .free = amdgpu_gem_object_free,
-+    .open = amdgpu_gem_object_open,
-+    .close = amdgpu_gem_object_close,
-+    .export = amdgpu_gem_prime_export,
-+    .vmap = amdgpu_gem_prime_vmap,
-+    .vunmap = amdgpu_gem_prime_vunmap,
-+};
-+
-</pre>
-        </blockquote>
-        <pre class="moz-quote-pre" wrap="">
-Wrong file, this belongs into amdgpu_gem.c
-
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">  static int amdgpu_bo_do_create(struct amdgpu_device *adev,
-                     struct amdgpu_bo_param *bp,
-                     struct amdgpu_bo **bo_ptr)
-@@ -552,6 +562,8 @@ static int amdgpu_bo_do_create(struct
-amdgpu_device *adev,
-      bo = kzalloc(sizeof(struct amdgpu_bo), GFP_KERNEL);
-      if (bo == NULL)
-          return -ENOMEM;
-+
-+    bo-&gt;tbo.base.funcs = &amp;amdgpu_gem_object_funcs;
-</pre>
-        </blockquote>
-        <pre class="moz-quote-pre" wrap="">
-And this should probably go into amdgpu_gem_object_create().
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-I'm trying to understand what amdgpu does.  What about all the places
-where amdgpu calls amdgpu_bo_create() internally? Wouldn't these miss
-the free callback for the GEM object?</pre>
-    </blockquote>
-    <br>
-    Those shouldn't have a GEM object in the first place.<br>
-    <br>
-    Or otherwise we would have a reference counting issue.<br>
-    <br>
-    Regards,<br>
-    Christian.<br>
-    <br>
-    <blockquote type="cite"
-      cite="mid:c445493b-9914-63f2-1cf2-c3c1de14e3e5@suse.de">
-      <pre class="moz-quote-pre" wrap="">
-
-Best regards
-Thomas
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">
-Apart from that looks like a good idea to me.
-
-Christian.
-
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">      drm_gem_private_object_init(adev-&gt;ddev, &amp;bo-&gt;tbo.base, size);
-      INIT_LIST_HEAD(&amp;bo-&gt;shadow_list);
-      bo-&gt;vm_bo = NULL;
-</pre>
-        </blockquote>
-        <pre class="moz-quote-pre" wrap="">
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-amd-gfx mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------29780EC5D45E17F55361B946--
-
---===============0090760880==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0090760880==--
+T24gTW9uLCAyMDIwLTA5LTE0IGF0IDIwOjE4ICswMjAwLCBNaWNoYcWCIFdpbmlhcnNraSB3cm90
+ZToKPiBRdW90aW5nIEphbnVzeiBLcnp5c3p0b2ZpayAoMjAyMC0wOS0xMSAxMjozMDoxNSkKPiA+
+IENsZWFuIHVwIHRoZSB0ZXN0IGNvZGUsIGFkZCBzb21lIG5ldyBiYXNpYyBzdWJ0ZXN0cywgdGhl
+biB1bmJsb2NrCj4gPiB1bmJpbmQgdGVzdCB2YXJpYW50cy4KPiA+IAo+ID4gTm8gaW5jb21wbGV0
+ZXMgLyBhYm9ydHMgbm9yIHN1YnNlcXVlbnRseSBydW4gdGVzdCBpc3N1ZXMgaGF2ZSBiZWVuCj4g
+PiByZXBvcnRlZCBieSBUcnlib3QuICBUaGUgaG90cmViaW5kLWxhdGVjbG9zZSBzdWJ0ZXN0IGZh
+aWxzIG9uIGEgc28gZmFyCj4gPiB1bmlkZW50aWZpZWQgZHJpdmVyIHN5c2ZzIGlzc3VlIGJ1dCB0
+aGUgZGV2aWNlIGlzIGZ1bGx5IHJlY292ZXJlZCBhbmQKPiA+IGxlZnQgaW4gYSB1c2FibGUgc3Rh
+dGUuICBQZXJjZWl2ZWQgSGFzd2VsbC9Ccm9hZHdlbGwgaXNzdWUgd2l0aCBhdWRpbwo+ID4gcG93
+ZXIgbWFuYWdlbWVudCBoYXMgYmVlbiB3b3JrZWQgYXJvdW5kIGFuZCBpdHMgcG90ZW50aWFsIG9j
+Y3VycmVuY2UKPiA+IGlzIHJlcG9ydGVkIGFzIGFuIElHVCB3YXJuaW5nLgo+ID4gCj4gPiBTZXJp
+ZXMgY2hhbmdlbG9nOgo+ID4gdjI6IE5ldyBwYXRjaCAiVW4tYmxvY2tsaXN0ICpiaW5kKiBzdWJ0
+ZXN0cyBhZGRlZC4KPiA+IHYzOiBQYXRjaCAiRm9sbG93IGZhaWxlZCBzdWJ0ZXN0cyB3aXRoIGhl
+YWx0aGNoZWNrIiByZW5hbWVkIHRvICJSZWNvdmVyCj4gPiAgICAgZnJvbSBzdWJ0ZXN0IGZhaWx1
+cmVzIi4KPiA+ICAgLSBhIG5ldyBwYXRjaGUgIkNsZWFuIHVwIGRldmljZSBvcGVuIGVycm9yIGhh
+bmRsaW5nIiBhZGRlZCwgYW4gb2xkCj4gPiAgICAgcGF0Y2ggIkZpeCBtaXNzaW5nIG5ld2xpbmUi
+IG9ic29sZXRlZCBieSB0aGUgbmV3IG9uZSBkcm9wcGVkLAo+ID4gICAtIG90aGVyIG5ldyBwYXRj
+aGVzIGFkZGVkOgo+ID4gICAgIC0gIkxldCB0aGUgZHJpdmVyIHRpbWUgb3V0IGVzc2VudGlhbCBz
+eXNmcyBvcGVyYXRpb25zIiwKPiA+ICAgICAtICJNb3JlIHRob3JvdWdoIGk5MTUgaGVhbHRoY2hl
+Y2sgYW5kIHJlY292ZXJ5IiwKPiA+ICAgLSBhIHBhdGNoICJBZGQgJ2xhdGVjbG9zZSBiZWZvcmUg
+cmVzdG9yZScgdmFyaWFudHMiIGZyb20gYW5vdGhlcgo+ID4gICAgIHNlcmllcyBpbmNsdWRlZC4K
+PiA+IHY0OiBPcHRpb25hbCBwYXRjaCAiRHVwbGljYXRlIGRlYnVnIG1lc3NhZ2VzIGluIGRtZXNn
+IiBmcm9tIGFub3RoZXIKPiA+ICAgICBzZXJpZXMgaW5jbHVkZWQuCj4gPiB2NTogTmV3IHBhdGNo
+IGFkZGVkIHdpdGggSGFzd2VsbCBhdWRpbyByZWxhdGVkIGtlcm5lbCB3YXJuaW5nIHdvcmtlZAo+
+ID4gICAgIGFyb3VuZCBhbmQgcmVwbGFjZWQgd2l0aCBhbiBJR1Qgd2FybmluZyB0byBwcmVzZXJ2
+ZSB2aXNpYmlsaXR5IG9mCj4gPiAgICAgdGhlIGlzc3VlLgo+ID4gdjY6IE5ldyBwYXRjaCBhZGRl
+ZCBmb3IgYWxzbyBjaGVja2luZyBoZWFsdGggb2YgcmVuZGVyIGRldmljZSBub2RlcywKPiA+ICAg
+LSBuZXcgcGF0Y2ggYWRkZWQgd2l0aCBwcm9wZXIgaGFuZGxpbmcgb2YgaGVhbHRoIGNoZWNrIGJl
+Zm9yZSBsYXRlCj4gPiAgICAgY2xvc2UsCj4gPiAgIC0gaW5jbHVzaW9uIG9mIHVuYmluZC1yZWJp
+bmQgc2NlbmFyaW8gdG8gQkFUIHNjb3BlIHByb3Bvc2VkLgo+ID4gCj4gPiBATWljaGHFgjogU2lu
+Y2Ugc29tZSBwYXRjaCB1cGRhdGVzIGFyZSB0cml2aWFsLCBJJ3ZlIHByZXNlcnZlZCB5b3VyCj4g
+PiB2MS92MiBSZXZpZXdkLWJ5OiBleGNlcHQgZm9yIHBhdGNoZXMgd2l0aCBub24tdHJpdmlhbCBj
+aGFuZ2VzLCB3aGVyZSBJCj4gPiBtYXJrZWQgeW91ciBSLWIgYXMgdjEvdjIgYXBwbGljYWJsZS4g
+IFBsZWFzZSBoYXZlIGEgbG9vayBhbmQgY29uZmlybSBpZgo+ID4geW91IGFyZSBzdGlsbCBPSyB3
+aXRoIHRoZW0uCj4gCj4gRmVlbCBmcmVlIHRvIGFkZDoKPiBSZXZpZXdlZC1ieTogTWljaGHFgiBX
+aW5pYXJza2kgPG1pY2hhbC53aW5pYXJza2lAaW50ZWwuY29tPgo+IAo+IEZvciB0aGUgd2hvbGUg
+c2VyaWVzICh3aXRoIHRoZSBleGNlcHRpb24gb2YgaW50ZWwtY2kgcGFydCkuCgpQdXNoZWQuCgpA
+UGV0cmksIEBNaWNoYcWCIC0gdGhhbmsgeW91IGZvciByZXZpZXcuCgpATGFrc2htaToKLSBwbGVh
+c2Ugb3BlbiBhIG5ldyBidWcgZm9yIHRoZSBpc3N1ZSByZXBvcnRlZCBieSB0aGUgaWd0QGNvcmUK
+X2hvdHVucGx1Z0Bob3RyZWJpbmQtbGF0ZWNsb3NlIHN1YnRlc3QgZmFpbGluZyBvbiBhbGwgcGxh
+dGZvcm1zLAotIElHVCB3YXJuaW5nIHJlcG9ydGVkIGJ5IGlndEBjb3JlX2hvdHVucGx1Z0AqYmlu
+ZCogb24gSGFzd2VsbCBhbmQKQnJvYWR3ZWxsIHBsYXRvZnJtcyBpcyBjYXVzZWQgYnkgdGhlIHNh
+bWUgaXNzdWUgYXMgdGhlIG9uZSByZXBvcnRlZCBub3cKaW4gYSBzaW1pbGFyIHdheSBvbiBIYXN3
+ZWxsIGJ5IGlndEBkZXZpY2VfcmVzZXRAdW5iaW5kLXJlc2V0LXJlYmluZCAtCnBsZWFzZSB1cGRh
+dGUgdGhlIGFzc29jaWF0ZWQgZmlsdGVyIHNvIGl0IGNvdmVycyBhbGwgdGhvc2UgdGVzdHMuCgpU
+aGFua3MsCkphbnVzegoKCj4gCj4gLU1pY2hhxYIKPiAKPiA+IEBUdnJ0a286IEFzIEkgYWxyZWFk
+eSBhc2tlZCBiZWZvcmUsIHBsZWFzZSBzdXBwb3J0IG15IGF0dGVtcHQgdG8gcmVtb3ZlCj4gPiB0
+aGUgdW5iaW5kIHRlc3QgdmFyaWFudHMgZnJvbSB0aGUgYmxvY2tsaXN0Lgo+ID4gCj4gPiBAUGV0
+cmksIEBNYXJ0aW46IEFzc3VtaW5nIENJIHJlc3VsdHMgd2lsbCBiZSBhcyBnb29kIGFzIHRob3Nl
+IG9idGFpbmVkCj4gPiBvbiBUcnlib3QsIHBsZWFzZSBnaXZlIG1lIHlvdXIgZ3JlZW4gbGlnaHQg
+Zm9yIG1lcmdpbmcgdGhpcyBzZXJpZXMgaWYKPiA+IHlvdSBoYXZlIG5vIG9iamVjdGlvbnMuCj4g
+PiAKPiA+IFRoYW5rcywKPiA+IEphbnVzego+ID4gCj4gPiBKYW51c3ogS3J6eXN6dG9maWsgKDI0
+KToKPiA+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFVzZSBpZ3RfYXNzZXJ0X2ZkKCkKPiA+ICAg
+dGVzdHMvY29yZV9ob3R1bnBsdWc6IENvbnN0aWZ5IGRldl9idXNfYWRkciBzdHJpbmcKPiA+ICAg
+dGVzdHMvY29yZV9ob3R1bnBsdWc6IENsZWFuIHVwIGRldmljZSBvcGVuIGVycm9yIGhhbmRsaW5n
+Cj4gPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBDb25zb2xpZGF0ZSBkdXBsaWNhdGVkIGRlYnVn
+IG1lc3NhZ2VzCj4gPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBBc3NlcnQgc3VjY2Vzc2Z1bCBk
+ZXZpY2UgZmlsdGVyIGFwcGxpY2F0aW9uCj4gPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBNYWlu
+dGFpbiBhIHNpbmdsZSBkYXRhIHN0cnVjdHVyZSBpbnN0YW5jZQo+ID4gICB0ZXN0cy9jb3JlX2hv
+dHVucGx1ZzogUGFzcyBlcnJvcnMgdmlhIGEgZGF0YSBzdHJ1Y3R1cmUgZmllbGQKPiA+ICAgdGVz
+dHMvY29yZV9ob3R1bnBsdWc6IEhhbmRsZSBkZXZpY2UgY2xvc2UgZXJyb3JzCj4gPiAgIHRlc3Rz
+L2NvcmVfaG90dW5wbHVnOiBQcmVwYXJlIGludmFyaWFudCBkYXRhIG9uY2UgcGVyIHRlc3QgcnVu
+Cj4gPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBTa2lwIHNlbGVjdGl2ZWx5IG9uIHN5c2ZzIGNs
+b3NlIGVycm9ycwo+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogUmVjb3ZlciBmcm9tIHN1YnRl
+c3QgZmFpbHVyZXMKPiA+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEZhaWwgc3VidGVzdHMgb24g
+ZGV2aWNlIGNsb3NlIGVycm9ycwo+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogTGV0IHRoZSBk
+cml2ZXIgdGltZSBvdXQgZXNzZW50aWFsIHN5c2ZzCj4gPiAgICAgb3BlcmF0aW9ucwo+ID4gICB0
+ZXN0cy9jb3JlX2hvdHVucGx1ZzogUHJvY2VzcyByZXR1cm4gdmFsdWVzIG9mIHN5c2ZzIG9wZXJh
+dGlvbnMKPiA+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEFzc2VydCBleHBlY3RlZCBkZXZpY2Ug
+cHJlc2VuY2UvYWJzZW5jZQo+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogRXhwbGljaXRseSBp
+Z25vcmUgdW51c2VkIHJldHVybiB2YWx1ZXMKPiA+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEFs
+c28gY2hlY2sgaGVhbHRoIG9mIHJlbmRlciBkZXZpY2Ugbm9kZQo+ID4gICB0ZXN0cy9jb3JlX2hv
+dHVucGx1ZzogTW9yZSB0aG9yb3VnaCBpOTE1IGhlYWx0aGNoZWNrIGFuZCByZWNvdmVyeQo+ID4g
+ICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogQWRkICdsYXRlY2xvc2UgYmVmb3JlIHJlc3RvcmUnIHZh
+cmlhbnRzCj4gPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBDaGVjayBoZWFsdGggYm90aCBiZWZv
+cmUgYW5kIGFmdGVyIGxhdGUgY2xvc2UKPiA+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEhTVy9C
+RFcgYXVkaW8gaXNzdWUgd29ya2Fyb3VuZAo+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogRHVw
+bGljYXRlIGRlYnVnIG1lc3NhZ2VzIGluIGRtZXNnCj4gPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVn
+OiBVbi1ibG9ja2xpc3QgKmJpbmQqIHN1YnRlc3RzCj4gPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVn
+OiBBZGQgdW5iaW5kLXJlYmluZCBzdWJ0ZXN0IHRvIEJBVCBzY29wZQo+ID4gCj4gPiAgdGVzdHMv
+Y29yZV9ob3R1bnBsdWcuYyAgICAgICAgICAgICAgICB8IDU2MCArKysrKysrKysrKysrKysrKysr
+Ky0tLS0tLQo+ID4gIHRlc3RzL2ludGVsLWNpL2JsYWNrbGlzdC50eHQgICAgICAgICAgfCAgIDIg
+Ky0KPiA+ICB0ZXN0cy9pbnRlbC1jaS9mYXN0LWZlZWRiYWNrLnRlc3RsaXN0IHwgICAxICsKPiA+
+ICAzIGZpbGVzIGNoYW5nZWQsIDQzMSBpbnNlcnRpb25zKCspLCAxMzIgZGVsZXRpb25zKC0pCj4g
+PiAKPiA+IC0tIAo+ID4gMi4yMS4xCj4gPiAKPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCj4gPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gPiBJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
