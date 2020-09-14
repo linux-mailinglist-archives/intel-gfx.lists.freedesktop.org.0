@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20FCC2689B5
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 13:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B4452689E0
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 13:22:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 296BD6E43F;
-	Mon, 14 Sep 2020 11:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7A3589E2A;
+	Mon, 14 Sep 2020 11:22:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 315526E428;
- Mon, 14 Sep 2020 11:02:37 +0000 (UTC)
-IronPort-SDR: ZjqAEiipFNA+06v0XBFeR4HVVvGotQg3SCmj9Oeuz8r/BL/5s3eN1yatwyCOqj4n/1ysSb74gm
- R0O1nattIRWA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9743"; a="159991531"
-X-IronPort-AV: E=Sophos;i="5.76,425,1592895600"; d="scan'208";a="159991531"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2020 04:02:36 -0700
-IronPort-SDR: /iK8HJSqSkiYu26QpgO2Bsa6RFRSPseDdqZgVCXQ8UFbhmxP5IIRHEi2arIyIDptiMnwVy2ydr
- me/9ChXlQqsA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,425,1592895600"; d="scan'208";a="408825940"
-Received: from unknown (HELO ndadhani-NUC7i5BNKP.iind.intel.com)
- ([10.223.165.84])
- by fmsmga001.fm.intel.com with ESMTP; 14 Sep 2020 04:02:33 -0700
-From: "Nikunj A. Dadhania" <nikunj.dadhania@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-Date: Mon, 14 Sep 2020 16:30:19 +0530
-Message-Id: <20200914110019.18613-1-nikunj.dadhania@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix the race between the GEM close
- and debugfs
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8C77289E0C;
+ Mon, 14 Sep 2020 11:22:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7A045A0009;
+ Mon, 14 Sep 2020 11:22:05 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthik B S" <karthik.b.s@intel.com>
+Date: Mon, 14 Sep 2020 11:22:05 -0000
+Message-ID: <160008252546.5912.17425263509305523857@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200914055633.21109-1-karthik.b.s@intel.com>
+In-Reply-To: <20200914055633.21109-1-karthik.b.s@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Asynchronous_flip_implementation_for_i915_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,69 +38,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nikunj.dadhania@linux.intel.com
-MIME-Version: 1.0
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we close GEM object and set file_priv to -EBADF which is protected
-by ctx->mutex, populating the GEM debugfs info is not protected
-and results in the crash shown below.
+== Series Details ==
 
-Make sure to protect the access to file_priv using ctx->mutex to avoid
-race.
+Series: Asynchronous flip implementation for i915 (rev8)
+URL   : https://patchwork.freedesktop.org/series/74386/
+State : warning
 
-BUG: unable to handle page fault for address: ffffffffffffffff
-RIP: 0010:i915_gem_object_info+0x26b/0x3eb
-Code: 89 44 24 48 48 89 44 24 40 48 89 44 24 38 48 89 44 24 30 48 89 44 24 28 48 89 44 24 20 49 8b 46 f0 48 89 44 24 20 49 8b 46 a0 <48> 8b 58 08 b9 0a 00 00 00 48 b8 aa aa aa aa aa aa aa aa 48 8d bc
-RSP: 0018:ffffac81c14cfc30 EFLAGS: 00010246
-RAX: fffffffffffffff7 RBX: ffff95094429c218 RCX: ffff95096756c740
-RDX: 0000000000000000 RSI: ffffffff919b93ee RDI: ffff95094429c218
-RBP: ffffac81c14cfd58 R08: ffff9509746fab80 R09: 0000000000000000
-R10: 0000000000000001 R11: 0000000000000000 R12: ffff9509753f8e80
-R13: ffffac81c14cfc98 R14: ffff95094429c268 R15: ffffac81c14cfc88
-FS:  00007a1bdcd52900(0000) GS:ffff950977e00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: ffffffffffffffff CR3: 000000026b4e0000 CR4: 0000000000340ef0
-Call Trace:
- seq_read+0x162/0x3ca
- full_proxy_read+0x5b/0x8d
- __vfs_read+0x45/0x1b9
- vfs_read+0xc9/0x15e
- ksys_read+0x7e/0xde
- do_syscall_64+0x54/0x7e
- entry_SYSCALL_64_after_hwframe+0x44/0xa9
-RIP: 0033:0x7a1bdd34cf03
+== Summary ==
 
-Signed-off-by: Nikunj A. Dadhania <nikunj.dadhania@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_debugfs.c | 2 ++
- 1 file changed, 2 insertions(+)
+$ dim checkpatch origin/drm-tip
+41e215a678e3 drm/i915: Add enable/disable flip done and flip done handler
+6cbc7da6e9d7 drm/i915: Add support for async flips in I915
+dd3af66e26c3 drm/i915: Add checks specific to async flips
+42a5bdc0f23e drm/i915: Do not call drm_crtc_arm_vblank_event in async flips
+bd90b9b59356 drm/i915: Add dedicated plane hook for async flip case
+f034c8bbe82e drm/i915: WA for platforms with double buffered adress update enable bit
+-:4: WARNING:TYPO_SPELLING: 'adress' may be misspelled - perhaps 'address'?
+#4: 
+Subject: [PATCH] drm/i915: WA for platforms with double buffered adress update
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 784219962193..ea469168cd44 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -326,6 +326,7 @@ static void print_context_stats(struct seq_file *m,
- 		}
- 		i915_gem_context_unlock_engines(ctx);
- 
-+		mutex_lock(&ctx->mutex);
- 		if (!IS_ERR_OR_NULL(ctx->file_priv)) {
- 			struct file_stats stats = {
- 				.vm = rcu_access_pointer(ctx->vm),
-@@ -346,6 +347,7 @@ static void print_context_stats(struct seq_file *m,
- 
- 			print_file_stats(m, name, stats);
- 		}
-+		mutex_unlock(&ctx->mutex);
- 
- 		spin_lock(&i915->gem.contexts.lock);
- 		list_safe_reset_next(ctx, cn, link);
--- 
-2.17.1
+total: 0 errors, 1 warnings, 0 checks, 56 lines checked
+91a266c111fe Documentation/gpu: Add asynchronous flip documentation for i915
+7e2163c101ad drm/i915: Enable async flips in i915
+
 
 _______________________________________________
 Intel-gfx mailing list
