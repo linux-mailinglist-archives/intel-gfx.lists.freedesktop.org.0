@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECD20269671
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 22:25:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7348B269672
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 22:25:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CBDC6E591;
-	Mon, 14 Sep 2020 20:25:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0E5F6E598;
+	Mon, 14 Sep 2020 20:25:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34D206E58B
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 20:25:11 +0000 (UTC)
-IronPort-SDR: b5AUq56UQ1W5bAlLphGKwTZlCQzYrGeMMYt99OORah2H0lRgfwSvV6Noo1+k7l0BclDDnITU4E
- 1QaaZHUrFirA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="223340803"
-X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="223340803"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2074E6E58B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 20:25:13 +0000 (UTC)
+IronPort-SDR: XQ9JF6EyerDX3yjoiJqsPgAiMJOV5adRXolAfPbdpvFFqG51sDeQn0lrtfyiWC0OhP9LYfzodC
+ WQepjkSFi+jA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="223340809"
+X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="223340809"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2020 13:25:11 -0700
-IronPort-SDR: rsLxfOalqpMnI0s5+gNanZ6WkNOeOdOr5dFV6IhUgNcgeKDMs1v2T11ELzHJ63mWyqD1L1IdLI
- x9yS0U6F2TAQ==
-X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="306307156"
+ 14 Sep 2020 13:25:12 -0700
+IronPort-SDR: wGkrF8my7AMy1U5TvEiT7biaqEREjOfUHzxhPiwPhvEXwc9rC9kKoTYt4+0vwb9IurQJsHzNqk
+ w4l7wreAamyA==
+X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="306307177"
 Received: from unknown (HELO linux-desktop.iind.intel.com) ([10.223.34.173])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2020 13:25:09 -0700
+ 14 Sep 2020 13:25:11 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Sep 2020 02:30:43 +0530
-Message-Id: <20200914210047.11972-8-uma.shankar@intel.com>
+Date: Tue, 15 Sep 2020 02:30:44 +0530
+Message-Id: <20200914210047.11972-9-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200914210047.11972-1-uma.shankar@intel.com>
 References: <20200914210047.11972-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v6 07/11] drm/i915/display: Implement DRM infoframe
- read for LSPCON
+Subject: [Intel-gfx] [v6 08/11] drm/i915/lspcon: Create separate
+ infoframe_enabled helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,79 +49,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Implement Read back of HDR metadata infoframes i.e Dynamic Range
-and Mastering Infoframe for LSPCON devices.
-
-v2: Added proper bitmask of enabled infoframes as per Ville's
-recommendation.
-
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdmi.c   | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_lspcon.c |  6 +++++-
- drivers/gpu/drm/i915/display/intel_lspcon.h |  4 ++++
- 3 files changed, 19 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 1e40ed473fb9..02b0b5921bed 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -600,6 +600,16 @@ void lspcon_drm_write_infoframe(struct intel_encoder *encoder,
- 	hsw_write_infoframe(encoder, crtc_state, type, frame, len);
- }
- 
-+void lspcon_drm_read_infoframe(struct intel_encoder *encoder,
-+			       const struct intel_crtc_state *crtc_state,
-+			       unsigned int type,
-+			       void *frame, ssize_t len)
-+{
-+	drm_dbg_kms(encoder->base.dev, "Read HDR metadata for lspcon\n");
-+	/* It uses the legacy hsw implementation for the same */
-+	hsw_read_infoframe(encoder, crtc_state, type, frame, len);
-+}
-+
- static const u8 infoframe_type_to_idx[] = {
- 	HDMI_PACKET_TYPE_GENERAL_CONTROL,
- 	HDMI_PACKET_TYPE_GAMUT_METADATA,
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index 565913b8e656..ee77a5381cb5 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -501,7 +501,11 @@ void lspcon_read_infoframe(struct intel_encoder *encoder,
- 			   unsigned int type,
- 			   void *frame, ssize_t len)
- {
--	/* FIXME implement this */
-+	/* FIXME implement for AVI Infoframe as well */
-+	if (type == HDMI_PACKET_TYPE_GAMUT_METADATA)
-+		lspcon_drm_read_infoframe(encoder, crtc_state,
-+					  HDMI_PACKET_TYPE_GAMUT_METADATA,
-+					  frame, VIDEO_DIP_DATA_SIZE);
- }
- 
- /* HDMI HDR Colorspace Spec Definitions */
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
-index 3fac05535731..1b9fb531128e 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.h
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-@@ -38,4 +38,8 @@ void lspcon_drm_write_infoframe(struct intel_encoder *encoder,
- 				const struct intel_crtc_state *crtc_state,
- 				unsigned int type,
- 				const void *frame, ssize_t len);
-+void lspcon_drm_read_infoframe(struct intel_encoder *encoder,
-+			       const struct intel_crtc_state *crtc_state,
-+			       unsigned int type,
-+			       void *frame, ssize_t len);
- #endif /* __INTEL_LSPCON_H__ */
--- 
-2.26.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+THNwY29uIGhhcyBJbmZvZnJhbWVzIGFzIHdlbGwgYXMgRElQIGZvciBIRFIgbWV0YWRhdGEoRFJN
+IEluZm9mcmFtZSkuCkNyZWF0ZSBhIHNlcGFyYXRlIG1lY2hhbmlzbSBmb3IgbHNwY29uIGNvbXBh
+cmVkIHRvIEhETUkgaW4gb3JkZXIgdG8KYWRkcmVzcyB0aGUgc2FtZSBhbmQgZW5zdXJlIGZ1dHVy
+ZSBzY2FsYWJpbGl0eS4KClN1Z2dlc3RlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogVW1hIFNoYW5rYXIgPHVtYS5zaGFu
+a2FyQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rk
+aS5jICAgIHwgMTAgKysrKysrKy0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9sc3Bjb24uYyB8IDE4ICsrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9sc3Bjb24uaCB8ICAyICsrCiAzIGZpbGVzIGNoYW5nZWQsIDI3IGluc2Vy
+dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGRpLmMKaW5kZXggNmFmMDgwNTQyYzk2Li4xYjYwMWIwNGY2MmYgMTAwNjQ0Ci0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwpAQCAtNDMwNyw2ICs0MzA3LDcgQEAgdm9pZCBp
+bnRlbF9kZGlfZ2V0X2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAlzdHJ1
+Y3QgaW50ZWxfY3J0YyAqaW50ZWxfY3J0YyA9IHRvX2ludGVsX2NydGMocGlwZV9jb25maWctPnVh
+cGkuY3J0Yyk7CiAJZW51bSB0cmFuc2NvZGVyIGNwdV90cmFuc2NvZGVyID0gcGlwZV9jb25maWct
+PmNwdV90cmFuc2NvZGVyOwogCXN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAgPSBlbmNfdG9faW50
+ZWxfZHAoZW5jb2Rlcik7CisJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQgPSBl
+bmNfdG9fZGlnX3BvcnQoZW5jb2Rlcik7CiAJdTMyIHRlbXAsIGZsYWdzID0gMDsKIAogCS8qIFhY
+WDogRFNJIHRyYW5zY29kZXIgcGFyYW5vaWEgKi8KQEAgLTQzOTIsOSArNDM5MywxMiBAQCB2b2lk
+IGludGVsX2RkaV9nZXRfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCQkJ
+CSAgICBwaXBlX2NvbmZpZy0+ZmVjX2VuYWJsZSk7CiAJCX0KIAotCQlwaXBlX2NvbmZpZy0+aW5m
+b2ZyYW1lcy5lbmFibGUgfD0KLQkJCWludGVsX2hkbWlfaW5mb2ZyYW1lc19lbmFibGVkKGVuY29k
+ZXIsIHBpcGVfY29uZmlnKTsKLQorCQlpZiAoZGlnX3BvcnQtPmxzcGNvbi5hY3RpdmUgJiYgZGln
+X3BvcnQtPmRwLmhhc19oZG1pX3NpbmspCisJCQlwaXBlX2NvbmZpZy0+aW5mb2ZyYW1lcy5lbmFi
+bGUgfD0KKwkJCQlpbnRlbF9sc3Bjb25faW5mb2ZyYW1lc19lbmFibGVkKGVuY29kZXIsIHBpcGVf
+Y29uZmlnKTsKKwkJZWxzZQorCQkJcGlwZV9jb25maWctPmluZm9mcmFtZXMuZW5hYmxlIHw9CisJ
+CQkJaW50ZWxfaGRtaV9pbmZvZnJhbWVzX2VuYWJsZWQoZW5jb2RlciwgcGlwZV9jb25maWcpOwog
+CQlicmVhazsKIAljYXNlIFRSQU5TX0RESV9NT0RFX1NFTEVDVF9EUF9NU1Q6CiAJCXBpcGVfY29u
+ZmlnLT5vdXRwdXRfdHlwZXMgfD0gQklUKElOVEVMX09VVFBVVF9EUF9NU1QpOwpkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uYyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfbHNwY29uLmMKaW5kZXggZWU3N2E1MzgxY2I1Li41
+YjJkOTZhODBiNDkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfbHNwY29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bj
+b24uYwpAQCAtMzAsNiArMzAsNyBAQAogI2luY2x1ZGUgImludGVsX2Rpc3BsYXlfdHlwZXMuaCIK
+ICNpbmNsdWRlICJpbnRlbF9kcC5oIgogI2luY2x1ZGUgImludGVsX2xzcGNvbi5oIgorI2luY2x1
+ZGUgImludGVsX2hkbWkuaCIKIAogLyogTFNQQ09OIE9VSSBWZW5kb3IgSUQoc2lnbmF0dXJlcykg
+Ki8KICNkZWZpbmUgTFNQQ09OX1ZFTkRPUl9QQVJBREVfT1VJIDB4MDAxQ0Y4CkBAIC02NDAsNiAr
+NjQxLDIzIEBAIHUzMiBsc3Bjb25faW5mb2ZyYW1lc19lbmFibGVkKHN0cnVjdCBpbnRlbF9lbmNv
+ZGVyICplbmNvZGVyLAogCXJldHVybiB2YWw7CiB9CiAKK3UzMiBpbnRlbF9sc3Bjb25faW5mb2Zy
+YW1lc19lbmFibGVkKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAorCQkJCSAgICBjb25z
+dCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9jb25maWcpCit7CisJc3RydWN0IGludGVs
+X2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQgPSBlbmNfdG9fZGlnX3BvcnQoZW5jb2Rlcik7CisJdTMy
+IHZhbCwgZW5hYmxlZCA9IDA7CisKKwl2YWwgPSBkaWdfcG9ydC0+aW5mb2ZyYW1lc19lbmFibGVk
+KGVuY29kZXIsIHBpcGVfY29uZmlnKTsKKworCWlmICh2YWwgJiBWSURFT19ESVBfRU5BQkxFX0FW
+SV9IU1cpCisJCWVuYWJsZWQgfD0gaW50ZWxfaGRtaV9pbmZvZnJhbWVfZW5hYmxlKEhETUlfSU5G
+T0ZSQU1FX1RZUEVfQVZJKTsKKworCWlmICh2YWwgJiBWSURFT19ESVBfRU5BQkxFX0dNUF9IU1cp
+CisJCWVuYWJsZWQgfD0gaW50ZWxfaGRtaV9pbmZvZnJhbWVfZW5hYmxlKEhETUlfUEFDS0VUX1RZ
+UEVfR0FNVVRfTUVUQURBVEEpOworCisJcmV0dXJuIGVuYWJsZWQ7Cit9CisKIHZvaWQgbHNwY29u
+X3Jlc3VtZShzdHJ1Y3QgaW50ZWxfbHNwY29uICpsc3Bjb24pCiB7CiAJZW51bSBkcm1fbHNwY29u
+X21vZGUgZXhwZWN0ZWRfbW9kZTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfbHNwY29uLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2xzcGNvbi5oCmluZGV4IDFiOWZiNTMxMTI4ZS4uODYzMDVjYzNhMmQ4IDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5oCisrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfbHNwY29uLmgKQEAgLTQyLDQgKzQyLDYgQEAgdm9p
+ZCBsc3Bjb25fZHJtX3JlYWRfaW5mb2ZyYW1lKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVy
+LAogCQkJICAgICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAog
+CQkJICAgICAgIHVuc2lnbmVkIGludCB0eXBlLAogCQkJICAgICAgIHZvaWQgKmZyYW1lLCBzc2l6
+ZV90IGxlbik7Cit1MzIgaW50ZWxfbHNwY29uX2luZm9mcmFtZXNfZW5hYmxlZChzdHJ1Y3QgaW50
+ZWxfZW5jb2RlciAqZW5jb2RlciwKKwkJCQkgICAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3Rh
+dGUgKnBpcGVfY29uZmlnKTsKICNlbmRpZiAvKiBfX0lOVEVMX0xTUENPTl9IX18gKi8KLS0gCjIu
+MjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
