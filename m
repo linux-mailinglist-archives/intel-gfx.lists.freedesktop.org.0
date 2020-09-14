@@ -1,68 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2024F269929
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 00:44:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4DE92699F4
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 01:56:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 711B76E804;
-	Mon, 14 Sep 2020 22:44:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8C9A89DED;
+	Mon, 14 Sep 2020 23:56:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com
- [IPv6:2a00:1450:4864:20::641])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A31FC6E804
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 22:44:52 +0000 (UTC)
-Received: by mail-ej1-x641.google.com with SMTP id u21so2272074eja.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 15:44:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=HByVscULZ1aCzKEsNJOaDk74v0AyftSy1pTwuoj93qw=;
- b=Cd9Si1L6gfURzpvvo99txBSmG4fycZzpI1K602Rqdgokf4YjHKM5bshv0gBeRPoKoq
- S07+pMee3ja0pLLEif7+5dTcJ55cbbmX1a0rjsvg02GjZzwr0ekBVDISdAQ1ceTpPczJ
- 7r3vx/CHsgdJU8GacJiTsbr8oX1ECzkK1quPE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=HByVscULZ1aCzKEsNJOaDk74v0AyftSy1pTwuoj93qw=;
- b=We925tp+w1KgQLGL+WnlzW4Qp75+OoxkVb9de+ZDaJbdvPV2YTfqT9oTXyFpaMaeHz
- tml4bOnz2Nheo52U/tdO3PwrlmK+asuSyDOtOzfLFCyaHe/dLrAtup+hjfY+E9puaM99
- qZkLeWbyk9CJIUHeBRBNnfLK2N1IKGVfSlP/38pUgrwdOqDRpXTG0qgwjGfIW063/kE7
- e5JvJipoTg2h4wDvCIwbCn6veqlvmWlNHM6XmWD6eCfD6zWlwmjGoclwY8UtDea2QAwC
- 6GBnSQ/EbRY9CqjWuYJKBzI4kX642c7vs4qhXWCjx6kFu9jyDVh+HhW7eYjVTz3XCbRY
- 5FQw==
-X-Gm-Message-State: AOAM532qOEHCm62wIIHPyPJXmmqz1Ohh5sSuqlqWXzgFyzm8O+ll7wao
- 2imTzpiQ2kwLMblabksqj6T4B9xIA6D60A==
-X-Google-Smtp-Source: ABdhPJxmlFkqMFZ4E8DCiLaSJkR+QB0Fy3Mii7C1IQBegnUsXeA1PUaOv1TiHgN3m+kW6bWiihtP/A==
-X-Received: by 2002:a17:906:d7a2:: with SMTP id
- pk2mr16764057ejb.149.1600123491050; 
- Mon, 14 Sep 2020 15:44:51 -0700 (PDT)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com.
- [209.85.221.48])
- by smtp.gmail.com with ESMTPSA id cf7sm10152974edb.78.2020.09.14.15.44.50
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 14 Sep 2020 15:44:50 -0700 (PDT)
-Received: by mail-wr1-f48.google.com with SMTP id k15so1234758wrn.10
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 15:44:50 -0700 (PDT)
-X-Received: by 2002:ac2:5594:: with SMTP id v20mr5351814lfg.344.1600123085147; 
- Mon, 14 Sep 2020 15:38:05 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C74D89DED
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 23:56:09 +0000 (UTC)
+IronPort-SDR: ymlHscQsDoXRxVqS+lclFBTgc/ArRe6mD5rNrbbiQsWRzcaxPYaBvLcrpXUcei5pxiZ83Qzmq3
+ oLPdAD+s9Tdg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="158461382"
+X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="158461382"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2020 16:56:08 -0700
+IronPort-SDR: sQn3scowZfkpLxdElIw9dmnpPKMEQIyqFowT/mMGWrGTY5IAJmjd5363mFlNPdDywz0HfQ7GvB
+ QfG+noBILW5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="409009812"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga001.fm.intel.com with ESMTP; 14 Sep 2020 16:56:08 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 14 Sep 2020 16:56:08 -0700
+Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
+ fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.1713.004;
+ Mon, 14 Sep 2020 16:56:08 -0700
+From: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+To: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/tgl, rkl: Make
+ Wa_1606700617/22010271021 permanent
+Thread-Index: AQHWiIpf5oXdXsQK+E63zLY2tjt1palkp0IAgAAvm4CABDJFgIAAQFuA
+Date: Mon, 14 Sep 2020 23:56:08 +0000
+Message-ID: <8A87916E-7121-4815-99B5-A5BEA491911D@intel.com>
+References: <20200911221158.4700-1-swathi.dhanavanthri@intel.com>
+ <20200912011026.GA265632@intel.com>
+ <ab65ffc77785459588e22ea0f76d6e28@intel.com>
+ <5FA1A35B-80D5-452C-AA52-2D371CC78A83@intel.com>
+In-Reply-To: <5FA1A35B-80D5-452C-AA52-2D371CC78A83@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-ID: <67F67126D866D84B8C1442541E42CC01@intel.com>
 MIME-Version: 1.0
-References: <20200914204209.256266093@linutronix.de>
- <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
- <871rj4owfn.fsf@nanos.tec.linutronix.de>
- <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
-In-Reply-To: <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 14 Sep 2020 15:37:49 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wjOV6f_ddg+QVCF6RUe+pXPhSR2WevnNyOs9oT+q2ihEA@mail.gmail.com>
-Message-ID: <CAHk-=wjOV6f_ddg+QVCF6RUe+pXPhSR2WevnNyOs9oT+q2ihEA@mail.gmail.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Ard Biesheuvel <ardb@kernel.org>, 
- Herbert Xu <herbert@gondor.apana.org.au>
-Subject: Re: [Intel-gfx] [patch 00/13] preempt: Make preempt count
- unconditional
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl,
+ rkl: Make Wa_1606700617/22010271021 permanent
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,84 +67,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Lai Jiangshan <jiangshanlai@gmail.com>,
- dri-devel <dri-devel@lists.freedesktop.org>, Ben Segall <bsegall@google.com>,
- Linux-MM <linux-mm@kvack.org>,
- "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
- linux-hexagon@vger.kernel.org, Will Deacon <will@kernel.org>,
- Ingo Molnar <mingo@kernel.org>, Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- linux-arch <linux-arch@vger.kernel.org>, Brian Cain <bcain@codeaurora.org>,
- Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
- David Airlie <airlied@linux.ie>, Ingo Molnar <mingo@redhat.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Mel Gorman <mgorman@suse.de>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Matt Turner <mattst88@gmail.com>,
- Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
- Shuah Khan <shuah@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
- Jeff Dike <jdike@addtoit.com>, linux-um <linux-um@lists.infradead.org>,
- Josh Triplett <josh@joshtriplett.org>, Steven Rostedt <rostedt@goodmis.org>,
- rcu@vger.kernel.org, linux-m68k <linux-m68k@lists.linux-m68k.org>,
- Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
- Max Filippov <jcmvbkbc@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
- alpha <linux-alpha@vger.kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 14, 2020 at 3:24 PM Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
->
-> Ard and Herbert added to participants: see
-> chacha20poly1305_crypt_sg_inplace(), which does
->
->         flags = SG_MITER_TO_SG;
->         if (!preemptible())
->                 flags |= SG_MITER_ATOMIC;
->
-> introduced in commit d95312a3ccc0 ("crypto: lib/chacha20poly1305 -
-> reimplement crypt_from_sg() routine").
 
-As far as I can tell, the only reason for this all is to try to use
-"kmap()" rather than "kmap_atomic()".
 
-And kmap() actually has the much more complex "might_sleep()" tests,
-and apparently the "preemptible()" check wasn't even the proper full
-debug check, it was just a complete hack to catch the one that
-triggered.
+> On Sep 14, 2020, at 1:05 PM, Vivi, Rodrigo <rodrigo.vivi@intel.com> wrote:
+> 
+> 
+> 
+>> On Sep 11, 2020, at 9:00 PM, Dhanavanthri, Swathi <swathi.dhanavanthri@intel.com> wrote:
+>> 
+>> It is in the if statement: if (IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+> 
+> duh! sorry...
+> 
+> more below:
+> 
+>> 
+>> -----Original Message-----
+>> From: Rodrigo Vivi <rodrigo.vivi@intel.com> 
+>> Sent: Friday, September 11, 2020 6:10 PM
+>> To: Dhanavanthri, Swathi <swathi.dhanavanthri@intel.com>
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl, rkl: Make Wa_1606700617/22010271021 permanent
+>> 
+>> On Fri, Sep 11, 2020 at 03:11:58PM -0700, Swathi Dhanavanthri wrote:
+>>> This workaround applies to all TGL and RKL steppings.
+>>> 
+>>> Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+>>> ---
+>>> drivers/gpu/drm/i915/gt/intel_workarounds.c | 7 ++++---
+>>> 1 file changed, 4 insertions(+), 3 deletions(-)
+>>> 
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c 
+>>> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>> index 39817c5a7058..6c580d0d9ea8 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>> @@ -1729,10 +1729,11 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>>> 			     GEN6_RC_SLEEP_PSMI_CONTROL,
+>>> 			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
+>>> 			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
+>>> -	}
+> 
+> now I noticed this ^ :)
+> 
+>>> 
+>>> -	if (IS_TGL_U(i915) || IS_TGL_Y(i915)) {
+>> 
+>> please notice this function is called for other gens.
+>> In case you need to extend this to other platforms, please add them to the if instead of removing the if.
+>> 
+>>> -		/* Wa_1606700617:tgl */
+>>> +		/*
+>>> +		 * Wa_1606700617:tgl
+>>> +		 * Wa_22010271021:tgl,rkl
+> 
+> 1. This HSD only mentions TGL-U. No mention to RKL.
+> 2. No mention to anything related to this clock gate.
+> 3. Actually no W/a description at all and no sw_impact at all. But It links to another entry 22010288313,
+> which describes the w/a as a 3dstate ff one...
+> 
+> What am I missing here?
 
-From a quick look, that code should probably just get rid of
-SG_MITER_ATOMIC entirely, and alwayse use kmap_atomic().
+missing that old bspec page of course. Thanks for pointing it out...
 
-kmap_atomic() is actually the faster and proper interface to use
-anyway (never mind that any of this matters on any sane hardware). The
-old kmap() and kunmap() interfaces should generally be avoided like
-the plague - yes, they allow sleeping in the middle and that is
-sometimes required, but if you don't need that, you should never ever
-use them.
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-We used to have a very nasty kmap_atomic() that required people to be
-very careful and know exactly which atomic entry to use, and that was
-admitedly quite nasty.
+> 
+> Thanks,
+> Rodrigo.
+> 
+>>> +		 */
+>>> 		wa_masked_en(wal,
+>>> 			     GEN9_CS_DEBUG_MODE1,
+>>> 			     FF_DOP_CLOCK_GATE_DISABLE);
+>>> --
+>>> 2.20.1
+>>> 
+>>> _______________________________________________
+>>> Intel-gfx mailing list
+>>> Intel-gfx@lists.freedesktop.org
+>>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-So it _looks_ like this code started using kmap() - probably back when
-kmap_atomic() was so cumbersome to use - and was then converted
-(conditionally) to kmap_atomic() rather than just changed whole-sale.
-Is there actually something that wants to use those sg_miter functions
-and sleep?
-
-Because if there is, that choice should come from the outside, not
-from inside lib/scatterlist.c trying to make some bad guess based on
-the wrong thing entirely.
-
-                 Linus
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
