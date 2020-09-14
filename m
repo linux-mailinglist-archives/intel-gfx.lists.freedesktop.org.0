@@ -2,45 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 886A5269539
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 20:59:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ECC6269544
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 21:07:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE2DF89F07;
-	Mon, 14 Sep 2020 18:59:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAA326E544;
+	Mon, 14 Sep 2020 19:07:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5BA89F07
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 18:59:55 +0000 (UTC)
-IronPort-SDR: iRnWbblH2hGp8CTki3mYoWxhhikPGS6ljRt+SRwx4dugXGeInNgYygAxC0+CwsLXkTRjKiK9Ub
- P6w6Bgj+Rrig==
-X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="223329681"
-X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="223329681"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2020 11:59:54 -0700
-IronPort-SDR: OpAkBdlGivEAZFglJbJ2yZDiX4f3nozmU5RXtbB9fHFRGx3QqvGhuvE/ddmFVbs4qr2PqwZO/H
- UvHjZSLm3wXg==
-X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="301854290"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2020 11:59:54 -0700
-Date: Mon, 14 Sep 2020 12:00:33 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200914190026.GB28760@labuser-Z97X-UD5H>
-References: <20200715224222.7557-1-manasi.d.navare@intel.com>
- <20200715224222.7557-4-manasi.d.navare@intel.com>
- <20200907112056.GF6112@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 281816E53E;
+ Mon, 14 Sep 2020 19:07:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 178AEA0118;
+ Mon, 14 Sep 2020 19:07:22 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200907112056.GF6112@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v6 04/11] drm/i915/dp: Allow big joiner
- modes in intel_dp_mode_valid(), v3.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
+Date: Mon, 14 Sep 2020 19:07:22 -0000
+Message-ID: <160011044206.5913.1788236122691189444@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200914175703.15024-1-anusha.srivatsa@intel.com>
+In-Reply-To: <20200914175703.15024-1-anusha.srivatsa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/pll=3A_Centralize_PLL=5FENABLE_register_lookup_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,356 +38,302 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============0312348934=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 07, 2020 at 02:20:56PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Wed, Jul 15, 2020 at 03:42:15PM -0700, Manasi Navare wrote:
-> > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > =
+--===============0312348934==
+Content-Type: multipart/alternative;
+ boundary="===============3688549745546201966=="
 
-> > Small changes to intel_dp_mode_valid(), allow listing modes that
-> > can only be supported in the bigjoiner configuration, which is
-> > not supported yet.
-> > =
+--===============3688549745546201966==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > eDP does not support bigjoiner, so do not expose bigjoiner only
-> > modes on the eDP port.
-> > =
+== Series Details ==
 
-> > v5:
-> > * Increase max plane width to support 8K with bigjoiner (Maarten)
-> > v4:
-> > * Rebase (Manasi)
-> > =
+Series: drm/i915/pll: Centralize PLL_ENABLE register lookup (rev5)
+URL   : https://patchwork.freedesktop.org/series/81150/
+State : success
 
-> > Changes since v1:
-> > - Disallow bigjoiner on eDP.
-> > Changes since v2:
-> > - Rename intel_dp_downstream_max_dotclock to intel_dp_max_dotclock,
-> >   and split off the downstream and source checking to its own function.
-> >   (Ville)
-> > v3:
-> > * Rebase (Manasi)
-> > =
+== Summary ==
 
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c |   2 +-
-> >  drivers/gpu/drm/i915/display/intel_dp.c      | 119 ++++++++++++++-----
-> >  2 files changed, 91 insertions(+), 30 deletions(-)
-> > =
+CI Bug Log - changes from CI_DRM_9007 -> Patchwork_18494
+====================================================
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 78cbfefbfa62..3ecb642805a6 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -17400,7 +17400,7 @@ intel_mode_valid_max_plane_size(struct drm_i915=
-_private *dev_priv,
-> >  	 * too big for that.
-> >  	 */
-> >  	if (INTEL_GEN(dev_priv) >=3D 11) {
-> > -		plane_width_max =3D 5120;
-> > +		plane_width_max =3D 7680;
-> =
+Summary
+-------
 
-> This looks misplaced. Planes do no know whether bigjoiner can be used or
-> not. They should not care in fact. The caller should have that knowledge
-> and can deal with it properly.
+  **SUCCESS**
 
-Hmm, so the caller of intel_mode_valid_max_plane_size() should check on the=
- bigjoiner
-flag and perhaps if bigjoiner is true then increase the plane_width_max to =
-7680?
+  No regressions found.
 
-Am still not sure where this should happen? We need to have the plane max w=
-idth to be 7680
-before we prune the 8K mode in intel_mode_valid
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/index.html
 
-Where should this be added according to you?
+Known issues
+------------
 
-Manasi
-> =
+  Here are the changes found in Patchwork_18494 that come from known issues:
 
-> >  		plane_height_max =3D 4320;
-> >  	} else {
-> >  		plane_width_max =3D 5120;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
-i915/display/intel_dp.c
-> > index d6295eb20b63..fbfea99fd804 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -248,25 +248,37 @@ intel_dp_max_data_rate(int max_link_clock, int ma=
-x_lanes)
-> >  	return max_link_clock * max_lanes;
-> >  }
-> >  =
+### IGT changes ###
 
-> > -static int
-> > -intel_dp_downstream_max_dotclock(struct intel_dp *intel_dp)
-> > +static int source_max_dotclock(struct intel_dp *intel_dp, bool allow_b=
-igjoiner)
-> >  {
-> > -	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
-> > -	struct intel_encoder *encoder =3D &dig_port->base;
-> > +	struct intel_digital_port *intel_dig_port =3D dp_to_dig_port(intel_dp=
-);
-> > +	struct intel_encoder *encoder =3D &intel_dig_port->base;
-> >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> > -	int max_dotclk =3D dev_priv->max_dotclk_freq;
-> > -	int ds_max_dotclk;
-> >  =
+#### Issues hit ####
 
-> > +	if (allow_bigjoiner && INTEL_GEN(dev_priv) >=3D 11 && !intel_dp_is_ed=
-p(intel_dp))
-> > +		return 2 * dev_priv->max_dotclk_freq;
-> > +
-> > +	return dev_priv->max_dotclk_freq;
-> > +}
-> > +
-> > +static int downstream_max_dotclock(struct intel_dp *intel_dp)
-> > +{
-> >  	int type =3D intel_dp->downstream_ports[0] & DP_DS_PORT_TYPE_MASK;
-> >  =
+  * igt@gem_flink_basic@basic:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-tgl-y/igt@gem_flink_basic@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-tgl-y/igt@gem_flink_basic@basic.html
 
-> >  	if (type !=3D DP_DS_PORT_TYPE_VGA)
-> > -		return max_dotclk;
-> > +		return 0;
-> >  =
+  * igt@i915_module_load@reload:
+    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-byt-j1900/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-byt-j1900/igt@i915_module_load@reload.html
 
-> > -	ds_max_dotclk =3D drm_dp_downstream_max_clock(intel_dp->dpcd,
-> > -						    intel_dp->downstream_ports);
-> > +	return drm_dp_downstream_max_clock(intel_dp->dpcd,
-> > +					   intel_dp->downstream_ports);
-> > +}
-> > +
-> > +static int
-> > +intel_dp_max_dotclock(struct intel_dp *intel_dp, bool allow_bigjoiner)
-> > +{
-> > +	int max_dotclk =3D source_max_dotclock(intel_dp, allow_bigjoiner);
-> > +	int ds_max_dotclk =3D downstream_max_dotclock(intel_dp);
-> >  =
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
+    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
 
-> >  	if (ds_max_dotclk !=3D 0)
-> > -		max_dotclk =3D min(max_dotclk, ds_max_dotclk);
-> > +		return min(max_dotclk, ds_max_dotclk);
-> >  =
+  
+#### Possible fixes ####
 
-> >  	return max_dotclk;
-> >  }
-> > @@ -527,7 +539,8 @@ small_joiner_ram_size_bits(struct drm_i915_private =
-*i915)
-> >  =
+  * igt@gem_flink_basic@bad-flink:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
 
-> >  static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
-> >  				       u32 link_clock, u32 lane_count,
-> > -				       u32 mode_clock, u32 mode_hdisplay)
-> > +				       u32 mode_clock, u32 mode_hdisplay,
-> > +				       bool bigjoiner)
-> >  {
-> >  	u32 bits_per_pixel, max_bpp_small_joiner_ram;
-> >  	int i;
-> > @@ -545,6 +558,10 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_=
-i915_private *i915,
-> >  	/* Small Joiner Check: output bpp <=3D joiner RAM (bits) / Horiz. wid=
-th */
-> >  	max_bpp_small_joiner_ram =3D small_joiner_ram_size_bits(i915) /
-> >  		mode_hdisplay;
-> > +
-> > +	if (bigjoiner)
-> > +		max_bpp_small_joiner_ram *=3D 2;
-> > +
-> >  	drm_dbg_kms(&i915->drm, "Max small joiner bpp: %u\n",
-> >  		    max_bpp_small_joiner_ram);
-> >  =
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
 
-> > @@ -554,6 +571,15 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_=
-i915_private *i915,
-> >  	 */
-> >  	bits_per_pixel =3D min(bits_per_pixel, max_bpp_small_joiner_ram);
-> >  =
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [INCOMPLETE][11] ([i915#2276]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-icl-y/igt@i915_selftest@live@execlists.html
 
-> > +	if (bigjoiner) {
-> > +		u32 max_bpp_bigjoiner =3D
-> > +			i915->max_cdclk_freq * 48 /
-> > +			intel_dp_mode_to_fec_clock(mode_clock);
-> > +
-> > +		DRM_DEBUG_KMS("Max big joiner bpp: %u\n", max_bpp_bigjoiner);
-> > +		bits_per_pixel =3D min(bits_per_pixel, max_bpp_bigjoiner);
-> > +	}
-> > +
-> >  	/* Error out if the max bpp is less than smallest allowed valid bpp */
-> >  	if (bits_per_pixel < valid_dsc_bpp[0]) {
-> >  		drm_dbg_kms(&i915->drm, "Unsupported BPP %u, min %u\n",
-> > @@ -576,7 +602,8 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_i=
-915_private *i915,
-> >  }
-> >  =
+  * igt@kms_busy@basic@flip:
+    - fi-tgl-y:           [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-tgl-y/igt@kms_busy@basic@flip.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-tgl-y/igt@kms_busy@basic@flip.html
 
-> >  static u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
-> > -				       int mode_clock, int mode_hdisplay)
-> > +				       int mode_clock, int mode_hdisplay,
-> > +				       bool bigjoiner)
-> >  {
-> >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> >  	u8 min_slice_count, i;
-> > @@ -603,12 +630,20 @@ static u8 intel_dp_dsc_get_slice_count(struct int=
-el_dp *intel_dp,
-> >  =
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-7500u:       [DMESG-WARN][15] ([i915#2203]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
 
-> >  	/* Find the closest match to the valid slice count values */
-> >  	for (i =3D 0; i < ARRAY_SIZE(valid_dsc_slicecount); i++) {
-> > -		if (valid_dsc_slicecount[i] >
-> > -		    drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd,
-> > -						    false))
-> > +		u8 test_slice_count =3D bigjoiner ?
-> > +			2 * valid_dsc_slicecount[i] :
-> > +			valid_dsc_slicecount[i];
-> > +
-> > +		if (test_slice_count >
-> > +		    drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd, false))
-> >  			break;
-> > -		if (min_slice_count  <=3D valid_dsc_slicecount[i])
-> > -			return valid_dsc_slicecount[i];
-> > +
-> > +		/* big joiner needs small joiner to be enabled */
-> > +		if (bigjoiner && test_slice_count < 4)
-> > +			continue;
-> > +
-> > +		if (min_slice_count <=3D test_slice_count)
-> > +			return test_slice_count;
-> >  	}
-> >  =
+  
+#### Warnings ####
 
-> >  	drm_dbg_kms(&i915->drm, "Unsupported Slice Count %d\n",
-> > @@ -648,11 +683,15 @@ intel_dp_mode_valid(struct drm_connector *connect=
-or,
-> >  	int max_dotclk;
-> >  	u16 dsc_max_output_bpp =3D 0;
-> >  	u8 dsc_slice_count =3D 0;
-> > +	bool dsc =3D false, bigjoiner =3D false;
-> >  =
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-tgl-y:           [DMESG-WARN][17] ([i915#1982] / [i915#2411]) -> [DMESG-WARN][18] ([i915#2411])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html
 
-> >  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
-> >  		return MODE_NO_DBLESCAN;
-> >  =
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [DMESG-FAIL][19] ([i915#62]) -> [DMESG-FAIL][20] ([i915#62] / [i915#95])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
 
-> > -	max_dotclk =3D intel_dp_downstream_max_dotclock(intel_dp);
-> > +	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
-> > +		return MODE_H_ILLEGAL;
-> > +
-> > +	max_dotclk =3D intel_dp_max_dotclock(intel_dp, false);
-> >  =
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
 
-> >  	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
-> >  		if (mode->hdisplay > fixed_mode->hdisplay)
-> > @@ -664,6 +703,21 @@ intel_dp_mode_valid(struct drm_connector *connecto=
-r,
-> >  		target_clock =3D fixed_mode->clock;
-> >  	}
-> >  =
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([i915#62] / [i915#92]) +5 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
 
-> > +	if (mode->clock < 10000)
-> > +		return MODE_CLOCK_LOW;
-> > +
-> > +	if (target_clock > max_dotclk) {
-> > +		if (intel_dp_is_edp(intel_dp))
-> > +			return MODE_CLOCK_HIGH;
-> > +
-> > +		max_dotclk =3D intel_dp_max_dotclock(intel_dp, true);
-> > +
-> > +		if (target_clock > max_dotclk)
-> > +			return MODE_CLOCK_HIGH;
-> > +
-> > +		bigjoiner =3D true;
-> > +	}
-> > +
-> >  	max_link_clock =3D intel_dp_max_link_rate(intel_dp);
-> >  	max_lanes =3D intel_dp_max_lane_count(intel_dp);
-> >  =
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-> > @@ -691,23 +745,28 @@ intel_dp_mode_valid(struct drm_connector *connect=
-or,
-> >  							    max_link_clock,
-> >  							    max_lanes,
-> >  							    target_clock,
-> > -							    mode->hdisplay) >> 4;
-> > +							    mode->hdisplay,
-> > +							    bigjoiner) >> 4;
-> >  			dsc_slice_count =3D
-> >  				intel_dp_dsc_get_slice_count(intel_dp,
-> >  							     target_clock,
-> > -							     mode->hdisplay);
-> > +							     mode->hdisplay,
-> > +							     bigjoiner);
-> >  		}
-> > +
-> > +		dsc =3D dsc_max_output_bpp && dsc_slice_count;
-> >  	}
-> >  =
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
+  [i915#2276]: https://gitlab.freedesktop.org/drm/intel/issues/2276
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
-> > -	if ((mode_rate > max_rate && !(dsc_max_output_bpp && dsc_slice_count)=
-) ||
-> > -	    target_clock > max_dotclk)
-> > +	/* big joiner configuration needs DSC */
-> > +	if (bigjoiner && !dsc) {
-> > +		DRM_DEBUG_KMS("Link clock needs bigjoiner, but DSC or FEC not availa=
-ble\n");
-> >  		return MODE_CLOCK_HIGH;
-> > +	}
-> >  =
 
-> > -	if (mode->clock < 10000)
-> > -		return MODE_CLOCK_LOW;
-> > -
-> > -	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
-> > -		return MODE_H_ILLEGAL;
-> > +	if (mode_rate > max_rate && !dsc) {
-> > +		DRM_DEBUG_KMS("Cannot drive without DSC\n");
-> > +		return MODE_CLOCK_HIGH;
-> > +	}
-> >  =
+Participating hosts (45 -> 39)
+------------------------------
 
-> >  	return intel_mode_valid_max_plane_size(dev_priv, mode);
-> >  }
-> > @@ -2204,11 +2263,13 @@ static int intel_dp_dsc_compute_config(struct i=
-ntel_dp *intel_dp,
-> >  						    pipe_config->port_clock,
-> >  						    pipe_config->lane_count,
-> >  						    adjusted_mode->crtc_clock,
-> > -						    adjusted_mode->crtc_hdisplay);
-> > +						    adjusted_mode->crtc_hdisplay,
-> > +						    false);
-> >  		dsc_dp_slice_count =3D
-> >  			intel_dp_dsc_get_slice_count(intel_dp,
-> >  						     adjusted_mode->crtc_clock,
-> > -						     adjusted_mode->crtc_hdisplay);
-> > +						     adjusted_mode->crtc_hdisplay,
-> > +						     false);
-> >  		if (!dsc_max_output_bpp || !dsc_dp_slice_count) {
-> >  			drm_dbg_kms(&dev_priv->drm,
-> >  				    "Compressed BPP/Slice Count not supported\n");
-> > -- =
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
 
-> > 2.19.1
-> > =
 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
+Build changes
+-------------
 
-> -- =
+  * Linux: CI_DRM_9007 -> Patchwork_18494
 
-> Ville Syrj=E4l=E4
-> Intel
+  CI-20190529: 20190529
+  CI_DRM_9007: 30b3e38bd6d569451279af2767b620d0ef88665d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5782: ccfb27dab0f06c009d332053548920cb740e4258 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18494: f5ec8439a17d4de83b182b92dc0e28ab7749de25 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f5ec8439a17d drm/i915/pll: Centralize PLL_ENABLE register lookup
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/index.html
+
+--===============3688549745546201966==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pll: Centralize PLL_ENABLE register lookup (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81150/">https://patchwork.freedesktop.org/series/81150/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9007 -&gt; Patchwork_18494</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18494 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_flink_basic@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-tgl-y/igt@gem_flink_basic@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-tgl-y/igt@gem_flink_basic@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-icl-y/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2276">i915#2276</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-icl-y/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-tgl-y/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-tgl-y/igt@kms_busy@basic@flip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +6 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-edid:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9007/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18494/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +5 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 39)</h2>
+<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9007 -&gt; Patchwork_18494</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9007: 30b3e38bd6d569451279af2767b620d0ef88665d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5782: ccfb27dab0f06c009d332053548920cb740e4258 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18494: f5ec8439a17d4de83b182b92dc0e28ab7749de25 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f5ec8439a17d drm/i915/pll: Centralize PLL_ENABLE register lookup</p>
+
+</body>
+</html>
+
+--===============3688549745546201966==--
+
+--===============0312348934==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0312348934==--
