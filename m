@@ -1,55 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32112268EFC
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 17:06:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E54268F84
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 17:20:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 372F06E303;
-	Mon, 14 Sep 2020 15:05:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBCBC6E4CA;
+	Mon, 14 Sep 2020 15:20:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 960FB89F2A;
- Mon, 14 Sep 2020 15:05:56 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 8FFDAB1DD;
- Mon, 14 Sep 2020 15:06:10 +0000 (UTC)
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, airlied@linux.ie, daniel@ffwll.ch,
- linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com,
- inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
- kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org,
- patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com,
- robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com,
- tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de,
- thierry.reding@gmail.com, jonathanh@nvidia.com,
- rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com,
- oleksandr_andrushchenko@epam.com, hyun.kwon@xilinx.com,
- laurent.pinchart@ideasonboard.com, michal.simek@xilinx.com,
- sumit.semwal@linaro.org, evan.quan@amd.com, Hawking.Zhang@amd.com,
- tianci.yin@amd.com, marek.olsak@amd.com, hdegoede@redhat.com,
- andrey.grodzovsky@amd.com, Felix.Kuehling@amd.com, xinhui.pan@amd.com,
- aaron.liu@amd.com, nirmoy.das@amd.com, chris@chris-wilson.co.uk,
- matthew.auld@intel.com, abdiel.janulgue@linux.intel.com,
- tvrtko.ursulin@linux.intel.com, andi.shyti@intel.com, sam@ravnborg.org,
- miaoqinglang@huawei.com, emil.velikov@collabora.com
-References: <20200813083644.31711-1-tzimmermann@suse.de>
- <20200813083644.31711-2-tzimmermann@suse.de>
- <5c1b3cab-1898-46df-2c5c-23ab6cbfbb7a@amd.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <c445493b-9914-63f2-1cf2-c3c1de14e3e5@suse.de>
-Date: Mon, 14 Sep 2020 17:05:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F8C06E4CA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 15:20:17 +0000 (UTC)
+IronPort-SDR: s5g2dwhqmy3AWwL9CsMGTwHfi19jtUxrwMkIK3suylUI2QY0Ba6GsPMk4O3jY4BlDQFU90kYWJ
+ wq6Gxgbqcvxg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="158376759"
+X-IronPort-AV: E=Sophos;i="5.76,426,1592895600"; d="scan'208";a="158376759"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2020 08:20:14 -0700
+IronPort-SDR: c8wI/0qb+AhHm+dPYqWmueLJj3gPFjd0jS7hGdABkFy4XJSkliOBPL0uFcBhnZL8JpA7FbUAr2
+ u9TPQVuUI1+w==
+X-IronPort-AV: E=Sophos;i="5.76,426,1592895600"; d="scan'208";a="482376849"
+Received: from akeogh1-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.27.129])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2020 08:20:13 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <20200914134413.GL6112@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200206201204.31704-1-ville.syrjala@linux.intel.com>
+ <20200206201204.31704-2-ville.syrjala@linux.intel.com>
+ <87d02syyf5.fsf@intel.com> <20200914134413.GL6112@intel.com>
+Date: Mon, 14 Sep 2020 18:20:17 +0300
+Message-ID: <87sgbkxu4u.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <5c1b3cab-1898-46df-2c5c-23ab6cbfbb7a@amd.com>
-Subject: Re: [Intel-gfx] [PATCH 01/20] drm/amdgpu: Introduce GEM object
- functions
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Use fb->format->is_yuv for
+ the g4x+ sprite RGB vs. YUV check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,221 +52,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- xen-devel@lists.xenproject.org, freedreno@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
-Content-Type: multipart/mixed; boundary="===============1324473829=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1324473829==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="MeVdSsKebthdc7DC8hvgqWlLwpjnz0H9f"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---MeVdSsKebthdc7DC8hvgqWlLwpjnz0H9f
-Content-Type: multipart/mixed; boundary="zniUnHMaoWytGRm2jwIkKjV0oPt2fa9bx";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, airlied@linux.ie, daniel@ffwll.ch,
- linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com,
- inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
- kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org,
- patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com,
- robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com,
- tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de,
- thierry.reding@gmail.com, jonathanh@nvidia.com,
- rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com,
- oleksandr_andrushchenko@epam.com, hyun.kwon@xilinx.com,
- laurent.pinchart@ideasonboard.com, michal.simek@xilinx.com,
- sumit.semwal@linaro.org, evan.quan@amd.com, Hawking.Zhang@amd.com,
- tianci.yin@amd.com, marek.olsak@amd.com, hdegoede@redhat.com,
- andrey.grodzovsky@amd.com, Felix.Kuehling@amd.com, xinhui.pan@amd.com,
- aaron.liu@amd.com, nirmoy.das@amd.com, chris@chris-wilson.co.uk,
- matthew.auld@intel.com, abdiel.janulgue@linux.intel.com,
- tvrtko.ursulin@linux.intel.com, andi.shyti@intel.com, sam@ravnborg.org,
- miaoqinglang@huawei.com, emil.velikov@collabora.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- xen-devel@lists.xenproject.org
-Message-ID: <c445493b-9914-63f2-1cf2-c3c1de14e3e5@suse.de>
-Subject: Re: [PATCH 01/20] drm/amdgpu: Introduce GEM object functions
-References: <20200813083644.31711-1-tzimmermann@suse.de>
- <20200813083644.31711-2-tzimmermann@suse.de>
- <5c1b3cab-1898-46df-2c5c-23ab6cbfbb7a@amd.com>
-In-Reply-To: <5c1b3cab-1898-46df-2c5c-23ab6cbfbb7a@amd.com>
-
---zniUnHMaoWytGRm2jwIkKjV0oPt2fa9bx
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 13.08.20 um 12:22 schrieb Christian K=C3=B6nig:
-> Am 13.08.20 um 10:36 schrieb Thomas Zimmermann:
->> GEM object functions deprecate several similar callback interfaces in
->> struct drm_driver. This patch replaces the per-driver callbacks with
->> per-instance callbacks in amdgpu. The only exception is gem_prime_mmap=
-,
->> which is non-trivial to convert.
->>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->> ---
->> =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c=C2=A0=C2=A0=C2=A0 |=C2=A0=
- 6 ------
->> =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 12 ++++++++++++
->> =C2=A0 2 files changed, 12 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->> index 81a79760ca61..51525b8774c9 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->> @@ -1468,19 +1468,13 @@ static struct drm_driver kms_driver =3D {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .lastclose =3D amdgpu_driver_lastclose_=
-kms,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .irq_handler =3D amdgpu_irq_handler,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .ioctls =3D amdgpu_ioctls_kms,
->> -=C2=A0=C2=A0=C2=A0 .gem_free_object_unlocked =3D amdgpu_gem_object_fr=
-ee,
->> -=C2=A0=C2=A0=C2=A0 .gem_open_object =3D amdgpu_gem_object_open,
->> -=C2=A0=C2=A0=C2=A0 .gem_close_object =3D amdgpu_gem_object_close,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .dumb_create =3D amdgpu_mode_dumb_creat=
-e,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .dumb_map_offset =3D amdgpu_mode_dumb_m=
-map,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .fops =3D &amdgpu_driver_kms_fops,
->> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .prime_handle_to_fd =3D drm_gem_=
-prime_handle_to_fd,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .prime_fd_to_handle =3D drm_gem_prime_f=
-d_to_handle,
->> -=C2=A0=C2=A0=C2=A0 .gem_prime_export =3D amdgpu_gem_prime_export,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .gem_prime_import =3D amdgpu_gem_prime_=
-import,
->> -=C2=A0=C2=A0=C2=A0 .gem_prime_vmap =3D amdgpu_gem_prime_vmap,
->> -=C2=A0=C2=A0=C2=A0 .gem_prime_vunmap =3D amdgpu_gem_prime_vunmap,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .gem_prime_mmap =3D amdgpu_gem_prime_mm=
-ap,
->> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .name =3D DRIVER_NAME,
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> index 43f4966331dd..ca2b79f94e99 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> @@ -36,6 +36,7 @@
->> =C2=A0 #include <drm/amdgpu_drm.h>
->> =C2=A0 #include <drm/drm_cache.h>
->> =C2=A0 #include "amdgpu.h"
->> +#include "amdgpu_dma_buf.h"
->> =C2=A0 #include "amdgpu_trace.h"
->> =C2=A0 #include "amdgpu_amdkfd.h"
->> =C2=A0 @@ -510,6 +511,15 @@ bool amdgpu_bo_support_uswc(u64 bo_flags)
->> =C2=A0 #endif
->> =C2=A0 }
->> =C2=A0 +static const struct drm_gem_object_funcs amdgpu_gem_object_fun=
-cs =3D {
->> +=C2=A0=C2=A0=C2=A0 .free =3D amdgpu_gem_object_free,
->> +=C2=A0=C2=A0=C2=A0 .open =3D amdgpu_gem_object_open,
->> +=C2=A0=C2=A0=C2=A0 .close =3D amdgpu_gem_object_close,
->> +=C2=A0=C2=A0=C2=A0 .export =3D amdgpu_gem_prime_export,
->> +=C2=A0=C2=A0=C2=A0 .vmap =3D amdgpu_gem_prime_vmap,
->> +=C2=A0=C2=A0=C2=A0 .vunmap =3D amdgpu_gem_prime_vunmap,
->> +};
->> +
->=20
-> Wrong file, this belongs into amdgpu_gem.c
->=20
->> =C2=A0 static int amdgpu_bo_do_create(struct amdgpu_device *adev,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct amdgpu_bo_param *=
-bp,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct amdgpu_bo **bo_pt=
-r)
->> @@ -552,6 +562,8 @@ static int amdgpu_bo_do_create(struct
->> amdgpu_device *adev,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bo =3D kzalloc(sizeof(struct amdgpu_bo)=
-, GFP_KERNEL);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (bo =3D=3D NULL)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -ENOMEM;=
-
->> +
->> +=C2=A0=C2=A0=C2=A0 bo->tbo.base.funcs =3D &amdgpu_gem_object_funcs;
->=20
-> And this should probably go into amdgpu_gem_object_create().
-
-I'm trying to understand what amdgpu does.  What about all the places
-where amdgpu calls amdgpu_bo_create() internally? Wouldn't these miss
-the free callback for the GEM object?
-
-Best regards
-Thomas
-
->=20
-> Apart from that looks like a good idea to me.
->=20
-> Christian.
->=20
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_gem_private_object_init(adev->ddev,=
- &bo->tbo.base, size);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 INIT_LIST_HEAD(&bo->shadow_list);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bo->vm_bo =3D NULL;
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---zniUnHMaoWytGRm2jwIkKjV0oPt2fa9bx--
-
---MeVdSsKebthdc7DC8hvgqWlLwpjnz0H9f
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQFIBAEBCAAyFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl9fhs0UHHR6aW1tZXJt
-YW5uQHN1c2UuZGUACgkQaA3BHVMLeiPJNAgAlfJhPTx8SHwyCGcF7SoXCxqFUag5
-/hXG2aWBOQj0PGNIWjEqH/FwrQApUbBmpbBWXncgOJjyevY1bY3RXSi+ibAW263g
-1lb0Cf5fR55oudCzfJIiQhM5nXHpnbDTdEq1kVtVf4mD3cn1eyPWtOgpXIklFs+w
-YSnklFEtZsXQnHs9whrVXf1UPUoecKtVRfIflZBfGttuRdODIknW+9iFA/+QYggh
-4WsKIHEpME3IpnfYOqS6yZ3oqcKeROalr2HZ6EUy/NaixshxCZxnLQVMNWx7saKP
-aygn2TEK3CwcBwiYGlPcx3/VFCRdviSNuxDmkZ5CV3ceT5gUjE0suBVVaA==
-=QxSN
------END PGP SIGNATURE-----
-
---MeVdSsKebthdc7DC8hvgqWlLwpjnz0H9f--
-
---===============1324473829==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1324473829==--
+T24gTW9uLCAxNCBTZXAgMjAyMCwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gRnJpLCBTZXAgMTEsIDIwMjAgYXQgMDk6MTM6MThQTSAr
+MDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IE9uIFRodSwgMDYgRmViIDIwMjAsIFZpbGxlIFN5
+cmphbGEgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPj4gPiBGcm9tOiBW
+aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+PiA+Cj4+ID4g
+ZzR4KyBzcHJpdGVzIGhhdmUgYW4gZXh0cmEgY2RjbGsgbGltaXRhdGlvbiBsaXN0ZWQgZm9yIFJH
+QiBmb3JtYXRzLgo+PiA+IEZvciBzb21lIHJhbmRvbSByZWFzb24gSSBjaG9zZSB0byB1c2UgY3Bw
+Pj00IGFzIHRoZSBjaGVjayBmb3IgdGhhdC4KPj4gPiBXaGlsZSB0aGF0IGRvZXMgYWN0dWFsbHkg
+d29yayBsZXQncyBkZW9iZnVzY2F0ZSBpdCBieSBjaGVja2luZwo+PiA+IGZvciAhaXNfeXV2IGlu
+c3RlYWQuIEkgc3VzcGVjdCBpc195dXYgZGlkbid0IGV4aXN0IHdheSBiYWNrIHdoZW4KPj4gPiBJ
+IG9yaWdpbmFsbHkgd3JpdGUgdGhlIGNvZGUuCj4+IAo+PiBNbWgsIHRoZXJlIGFyZSBmb3JtYXRz
+IHdpdGggY3BwID49IDQgJiYgaXNfeXV2ID09IHRydWUgbWFraW5nIHRoaXMgbG9vawo+PiBsaWtl
+IGEgZnVuY3Rpb25hbCBjaGFuZ2UuLi4gYnV0IEkgcHJlc3VtZSB0aG9zZSBhcmUgbm90IHJlbGV2
+YW50IGFuZC9vcgo+PiB0aGlzIGNoYW5nZSBpcyB0aGUgcmlnaHQgdGhpbmcgdG8gZG8gYW55d2F5
+Lgo+Cj4gVGhpcyBvbmx5IGFwcGxpZXMgdG8gZzR4L2lsay9zbmIgd2hpY2ggb25seSBzdXBwb3J0
+Cj4gWVVZVi9ldGMuIChjcHA9PTIpLCBhbmQgMzIvNjRicHAgUkdCIChjcHA9PTQvOCkuCgpBY2su
+Cgo+Cj4+IAo+PiBBY2tlZC1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4K
+Pj4gCj4+ID4KPj4gPiBBbHNvIGRyb3AgdGhlIGR1cGxpY2F0ZSBjb21tZW50Lgo+PiA+Cj4+ID4g
+U2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
+LmNvbT4KPj4gPiAtLS0KPj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9z
+cHJpdGUuYyB8IDQgKystLQo+PiA+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAy
+IGRlbGV0aW9ucygtKQo+PiA+Cj4+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX3Nwcml0ZS5jCj4+ID4gaW5kZXggNmUyZTIyZDliYmFhLi5mOTVmZTJjOTk0NjggMTAwNjQ0
+Cj4+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYwo+
+PiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMKPj4g
+PiBAQCAtMTYyNCw4ICsxNjI0LDggQEAgc3RhdGljIGludCBnNHhfc3ByaXRlX21pbl9jZGNsayhj
+b25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKPj4gPiAgCWxpbWl0IC09
+IGRlY2ltYXRlOwo+PiA+ICAKPj4gPiAgCS8qIC0xMCUgZm9yIFJHQiAqLwo+PiA+IC0JaWYgKGZi
+LT5mb3JtYXQtPmNwcFswXSA+PSA0KQo+PiA+IC0JCWxpbWl0LS07IC8qIC0xMCUgZm9yIFJHQiAq
+Lwo+PiA+ICsJaWYgKCFmYi0+Zm9ybWF0LT5pc195dXYpCj4+ID4gKwkJbGltaXQtLTsKPj4gPiAg
+Cj4+ID4gIAkvKgo+PiA+ICAJICogV2Ugc2hvdWxkIGFsc28gZG8gLTEwJSBpZiBzcHJpdGUgc2Nh
+bGluZyBpcyBlbmFibGVkCj4+IAo+PiAtLSAKPj4gSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291
+cmNlIEdyYXBoaWNzIENlbnRlcgoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBH
+cmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
