@@ -2,50 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5A2C269209
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 18:47:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D3C269216
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 18:50:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 285EA6E50D;
-	Mon, 14 Sep 2020 16:47:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E8956E2F2;
+	Mon, 14 Sep 2020 16:50:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B6D56E50D;
- Mon, 14 Sep 2020 16:47:46 +0000 (UTC)
-IronPort-SDR: eTNEjhl3clJhcpKHhLj+YF5elokOG3V4Iz/eHp3LYKZdn9EPleUiJZRV1oye9Oaa0h1/IsZizE
- 0z9LKf1qtmQg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="146851101"
-X-IronPort-AV: E=Sophos;i="5.76,426,1592895600"; d="scan'208";a="146851101"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2020 09:47:44 -0700
-IronPort-SDR: myz5Y7mrXCHjH740bFh0aCX37M4dg16nxkZ62z6HGs+HH8I4a2H6vaC67R4GIjje/0Fy1Dd4e4
- ng2OaE6GQdOg==
-X-IronPort-AV: E=Sophos;i="5.76,426,1592895600"; d="scan'208";a="306241329"
-Received: from matancoh-mobl2.ger.corp.intel.com (HELO [10.255.198.45])
- ([10.255.198.45])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2020 09:47:41 -0700
-To: "Nikunj A. Dadhania" <nikunj.dadhania@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-References: <20200914110019.18613-1-nikunj.dadhania@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <66c99a4d-ab35-55e8-44a2-18f5c39b8b1f@linux.intel.com>
-Date: Mon, 14 Sep 2020 17:47:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B0596E2F2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 16:50:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=ONEBRln/W01sImpX9+NYKevjldL0jmS6ROdAPg7RGBo=; b=d20rYKoM3MFFGhKV+vJP3AYgTj
+ mwiFsplmERWLiFhdGa/edRGM+Qj9ahLzBKxByDwrrNrodrlLBFd+1uxwJNSncFSR/DD/F8eYJ5rpd
+ EWsrP4oBnQqVW69V09WhLgJDPlKrXa8ft32xDOYXKu7Bgk67FVD/8Jbrd6iHTXw2MTrw/1EsWJ3ne
+ U0zv3kyDd+IGx1DtSu4NHxadm7YDbRJCUD6CifAvTitUWGFAaXv+75kmqz8whwirQbRHFU2JP0SQa
+ 20qFkwfkN4dRDAt7KOAwTrSVq9FT/o5iGlEJyqm8QeKBfLHUzYc5Q4s1ILBQr52OTeC3zWItAqCYw
+ TLiYM1yg==;
+Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1kHrgX-0001cn-28; Mon, 14 Sep 2020 16:50:33 +0000
+Date: Mon, 14 Sep 2020 17:50:32 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Qian Cai <cai@redhat.com>
+Message-ID: <20200914165032.GS6583@casper.infradead.org>
+References: <20200910183318.20139-1-willy@infradead.org>
+ <20200910183318.20139-4-willy@infradead.org>
+ <c48c5eaa09d1ea5b78b12b545c034d1e937c49ba.camel@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20200914110019.18613-1-nikunj.dadhania@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix the race between the GEM
- close and debugfs
+Content-Disposition: inline
+In-Reply-To: <c48c5eaa09d1ea5b78b12b545c034d1e937c49ba.camel@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH v2 3/8] mm: Optimise madvise WILLNEED
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,78 +48,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: William Kucharski <william.kucharski@oracle.com>,
+ intel-gfx@lists.freedesktop.org, Johannes Weiner <hannes@cmpxchg.org>,
+ Hugh Dickins <hughd@google.com>, linux-kernel@vger.kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ Matthew Auld <matthew.auld@intel.com>, Huang Ying <ying.huang@intel.com>,
+ cgroups@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ Alexey Dobriyan <adobriyan@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Sep 14, 2020 at 12:17:07PM -0400, Qian Cai wrote:
+> Reverting the "Return head pages from find_*_entry" patchset [1] up to this
+> patch fixed the issue that LTP madvise06 test [2] would trigger endless soft-
+> lockups below. It does not help after applied patches fixed other separate
+> issues in the patchset [3][4].
 
-On 14/09/2020 12:00, Nikunj A. Dadhania wrote:
-> As we close GEM object and set file_priv to -EBADF which is protected
-> by ctx->mutex, populating the GEM debugfs info is not protected
-> and results in the crash shown below.
-> 
-> Make sure to protect the access to file_priv using ctx->mutex to avoid
-> race.
-> 
-> BUG: unable to handle page fault for address: ffffffffffffffff
-> RIP: 0010:i915_gem_object_info+0x26b/0x3eb
-> Code: 89 44 24 48 48 89 44 24 40 48 89 44 24 38 48 89 44 24 30 48 89 44 24 28 48 89 44 24 20 49 8b 46 f0 48 89 44 24 20 49 8b 46 a0 <48> 8b 58 08 b9 0a 00 00 00 48 b8 aa aa aa aa aa aa aa aa 48 8d bc
-> RSP: 0018:ffffac81c14cfc30 EFLAGS: 00010246
-> RAX: fffffffffffffff7 RBX: ffff95094429c218 RCX: ffff95096756c740
-> RDX: 0000000000000000 RSI: ffffffff919b93ee RDI: ffff95094429c218
-> RBP: ffffac81c14cfd58 R08: ffff9509746fab80 R09: 0000000000000000
-> R10: 0000000000000001 R11: 0000000000000000 R12: ffff9509753f8e80
-> R13: ffffac81c14cfc98 R14: ffff95094429c268 R15: ffffac81c14cfc88
-> FS:  00007a1bdcd52900(0000) GS:ffff950977e00000(0000) knlGS:0000000000000000
-> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> CR2: ffffffffffffffff CR3: 000000026b4e0000 CR4: 0000000000340ef0
-> Call Trace:
->   seq_read+0x162/0x3ca
->   full_proxy_read+0x5b/0x8d
->   __vfs_read+0x45/0x1b9
->   vfs_read+0xc9/0x15e
->   ksys_read+0x7e/0xde
->   do_syscall_64+0x54/0x7e
->   entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> RIP: 0033:0x7a1bdd34cf03
-> 
-> Signed-off-by: Nikunj A. Dadhania <nikunj.dadhania@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_debugfs.c | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index 784219962193..ea469168cd44 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -326,6 +326,7 @@ static void print_context_stats(struct seq_file *m,
->   		}
->   		i915_gem_context_unlock_engines(ctx);
->   
-> +		mutex_lock(&ctx->mutex);
->   		if (!IS_ERR_OR_NULL(ctx->file_priv)) {
->   			struct file_stats stats = {
->   				.vm = rcu_access_pointer(ctx->vm),
-> @@ -346,6 +347,7 @@ static void print_context_stats(struct seq_file *m,
->   
->   			print_file_stats(m, name, stats);
->   		}
-> +		mutex_unlock(&ctx->mutex);
->   
->   		spin_lock(&i915->gem.contexts.lock);
->   		list_safe_reset_next(ctx, cn, link);
-> 
+Thanks for the report.  Could you try this?
 
-Fix is correct, but it looked familiar and indeed I found a fix for the 
-same issues back from July. Copied you on that one which now has an r-b. 
-This one can have it as well but please also copy stable.
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
+diff --git a/mm/madvise.c b/mm/madvise.c
+index 96189acd6969..2d9ceccb338d 100644
+--- a/mm/madvise.c
++++ b/mm/madvise.c
+@@ -234,6 +234,7 @@ static void force_shm_swapin_readahead(struct vm_area_struct *vma,
+ 
+ 		if (!xa_is_value(page))
+ 			continue;
++		xas_pause(&xas);
+ 		rcu_read_unlock();
+ 
+ 		swap = radix_to_swp_entry(page);
+@@ -243,7 +244,6 @@ static void force_shm_swapin_readahead(struct vm_area_struct *vma,
+ 			put_page(page);
+ 
+ 		rcu_read_lock();
+-		xas_reset(&xas);
+ 	}
+ 	rcu_read_unlock();
+ 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
