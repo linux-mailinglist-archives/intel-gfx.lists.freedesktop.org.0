@@ -1,48 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F4F226986B
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 23:55:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 191CC26987A
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 00:01:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1915B6E5D4;
-	Mon, 14 Sep 2020 21:55:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2451C6E7D0;
+	Mon, 14 Sep 2020 22:01:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 4221 seconds by postgrey-1.36 at gabe;
- Mon, 14 Sep 2020 21:55:28 UTC
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B01886E5D4;
- Mon, 14 Sep 2020 21:55:28 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1600120524;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=P98RI5+x85ZIOTD3Swat6HzJBudR4USSg0DSBuPQYlw=;
- b=hH9FYfj9DQJgslBAq+lFx+a3bfT/lIVYWHizRDv1sHkem67GYxpW96SdzpQkucjGarnE+M
- fld5Lw29xJarEYiaUD4vuyzGvHaSSKqXk6qxyQup6A6bzrwHnnmSmCxo6yE/vPqfiXt0dD
- R3pV6vuirJkXQ/z5VHHP3RKtA3FyXadYEGVpatQGuSs+ToljOeUzNBQNQ6fUtHgMCvxdJA
- HGeFbenx9Fch23dD9CVHcFHCh2ZUgCX2NA5eXP/LYI0hb9YFgVRkOq3lQYpvKQmLDTr2hy
- B9Jnvxymnsb7eDLHVb5DKLd1ZQ+CotthRBFCF28eXaCTJZZtyMZBvSDp8Ip8jw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1600120524;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=P98RI5+x85ZIOTD3Swat6HzJBudR4USSg0DSBuPQYlw=;
- b=YEE8eG0C2SZUbvfqTo7e2bqeeV6BT6id2YPrIOx3R8QOC3vypPq4XP5Xw+lbm3gssIjlYI
- Hvox4aqD3LDjRKDg==
-To: Linus Torvalds <torvalds@linux-foundation.org>
-In-Reply-To: <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
-References: <20200914204209.256266093@linutronix.de>
- <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
-Date: Mon, 14 Sep 2020 23:55:24 +0200
-Message-ID: <871rj4owfn.fsf@nanos.tec.linutronix.de>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8DAA26E5D5;
+ Mon, 14 Sep 2020 22:01:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 864E8A66C9;
+ Mon, 14 Sep 2020 22:01:19 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [patch 00/13] preempt: Make preempt count
- unconditional
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Gleixner" <tglx@linutronix.de>
+Date: Mon, 14 Sep 2020 22:01:19 -0000
+Message-ID: <160012087951.5912.8419266271155927746@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200914204209.256266093@linutronix.de>
+In-Reply-To: <20200914204209.256266093@linutronix.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBw?=
+ =?utf-8?q?reempt=3A_Make_preempt_count_unconditional?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,120 +38,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Lai Jiangshan <jiangshanlai@gmail.com>,
- dri-devel <dri-devel@lists.freedesktop.org>, Ben Segall <bsegall@google.com>,
- Linux-MM <linux-mm@kvack.org>,
- "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
- linux-hexagon@vger.kernel.org, Will Deacon <will@kernel.org>,
- Ingo Molnar <mingo@kernel.org>, Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- linux-arch <linux-arch@vger.kernel.org>, Brian Cain <bcain@codeaurora.org>,
- Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
- David Airlie <airlied@linux.ie>, Ingo Molnar <mingo@redhat.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Mel Gorman <mgorman@suse.de>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Matt Turner <mattst88@gmail.com>,
- Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
- Shuah Khan <shuah@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
- Jeff Dike <jdike@addtoit.com>, linux-um <linux-um@lists.infradead.org>,
- Josh Triplett <josh@joshtriplett.org>, Steven Rostedt <rostedt@goodmis.org>,
- rcu@vger.kernel.org, linux-m68k <linux-m68k@lists.linux-m68k.org>,
- Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
- Max Filippov <jcmvbkbc@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
- alpha <linux-alpha@vger.kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 14 2020 at 13:59, Linus Torvalds wrote:
-> On Mon, Sep 14, 2020 at 1:45 PM Thomas Gleixner <tglx@linutronix.de> wrote:
->>
->> Recently merged code does:
->>
->>          gfp = preemptible() ? GFP_KERNEL : GFP_ATOMIC;
->>
->> Looks obviously correct, except for the fact that preemptible() is
->> unconditionally false for CONFIF_PREEMPT_COUNT=n, i.e. all allocations in
->> that code use GFP_ATOMIC on such kernels.
->
-> I don't think this is a good reason to entirely get rid of the
-> no-preempt thing.
+== Series Details ==
 
-I did not say that this is a good reason. It just illustrates the
-problem.
+Series: preempt: Make preempt count unconditional
+URL   : https://patchwork.freedesktop.org/series/81661/
+State : failure
 
-> The above is just garbage. It's bogus. You can't do it.
->
-> Blaming the no-preempt code for this bug is extremely unfair, imho.
+== Summary ==
 
-I'm not blaming the no-preempt code. I'm blaming inconsistency and there
-is no real good argument for inconsistent behaviour, TBH.
+Applying: lib/debug: Remove pointless ARCH_NO_PREEMPT dependencies
+Applying: preempt: Make preempt count unconditional
+Applying: preempt: Clenaup PREEMPT_COUNT leftovers
+Applying: lockdep: Clenaup PREEMPT_COUNT leftovers
+Applying: mm/pagemap: Clenaup PREEMPT_COUNT leftovers
+Applying: locking/bitspinlock: Clenaup PREEMPT_COUNT leftovers
+Applying: uaccess: Clenaup PREEMPT_COUNT leftovers
+Applying: sched: Clenaup PREEMPT_COUNT leftovers
+Applying: ARM: Clenaup PREEMPT_COUNT leftovers
+Applying: xtensa: Clenaup PREEMPT_COUNT leftovers
+Applying: drm/i915: Clenaup PREEMPT_COUNT leftovers
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/Kconfig.debug).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0011 drm/i915: Clenaup PREEMPT_COUNT leftovers
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-> And the no-preempt code does help make for much better code generation
-> for simple spinlocks.
 
-Yes it does generate better code, but I tried hard to spot a difference
-in various metrics exposed by perf. It's all in the noise and I only
-can spot a difference when the actual preemption check after the
-decrement which still depends on CONFIG_PREEMPT is in place, but that's
-not the case for PREEMPT_NONE or PREEMPT_VOLUNTARY kernels where the
-decrement is just a decrement w/o any conditional behind it.
-
-> Where is that horribly buggy recent code? It's not in that exact
-> format, certainly, since 'grep' doesn't find it.
-
-Bah, that was stuff in next which got dropped again.
-
-But just look at any check which uses preemptible(), especially those
-which check !preemptible():
-
-In the X86 #GP handler we have:
-
-	/*
-	 * To be potentially processing a kprobe fault and to trust the result
-	 * from kprobe_running(), we have to be non-preemptible.
-	 */
-	if (!preemptible() &&
-	    kprobe_running() &&
-	    kprobe_fault_handler(regs, X86_TRAP_GP))
-		goto exit;
-
-and a similar check in the S390 code in kprobe_exceptions_notify(). That
-all magically 'works' because that code might have been actually tested
-with lockdep enabled which enforces PREEMPT_COUNT...
-
-The SG code has some interesting usage as well:
-
-		if (miter->__flags & SG_MITER_ATOMIC) {
-			WARN_ON_ONCE(preemptible());
-			kunmap_atomic(miter->addr);
-
-How is that WARN_ON_ONCE() supposed to catch anything? Especially as
-calling code does:
-
-	flags = SG_MITER_TO_SG;
-	if (!preemptible())
-		flags |= SG_MITER_ATOMIC;
-
-which is equally useless on kernels which have PREEMPT_COUNT=n.
-
-There are bugs which are related to in_atomic() or other in_***() usage
-all over the place as well.
-
-Inconsistency at the core level is a clear recipe for disaster and at
-some point we have to bite the bullet and accept that consistency is
-more important than the non measurable 3 cycles?
-
-Thanks,
-
-        tglx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
