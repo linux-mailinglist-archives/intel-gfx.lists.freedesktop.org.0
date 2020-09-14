@@ -1,48 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CF6F26927C
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 19:06:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D91782693B8
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 19:41:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 674B36E4B3;
-	Mon, 14 Sep 2020 17:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5F0B89F77;
+	Mon, 14 Sep 2020 17:41:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF53189C55
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 17:06:23 +0000 (UTC)
-IronPort-SDR: /WQFW1Xou2HCsxQwAghNtucTNPFRIMiGOVmFDriGO76SYpEbRgN6f25aqdbeSlltgS+eX5gdkC
- rDf+fULLGPkg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="156555292"
-X-IronPort-AV: E=Sophos;i="5.76,426,1592895600"; d="scan'208";a="156555292"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2020 10:06:22 -0700
-IronPort-SDR: J9f/fuaseiwj0igLqawW77G8KX8EDyrlVGU0HX5Mvdo7QwTHdRIloZMkqhyeS7RRJ3ESpFVu7z
- PsSBsZ9N+YLg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,426,1592895600"; d="scan'208";a="345505081"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 14 Sep 2020 10:06:18 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 14 Sep 2020 20:06:18 +0300
-Date: Mon, 14 Sep 2020 20:06:18 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200914170618.GT6112@intel.com>
-References: <20200630215601.28557-11-ville.syrjala@linux.intel.com>
- <339a1180e5fb4d762b15aa7bce90da9db6cd8cdb.camel@intel.com>
- <20200914144841.GP6112@intel.com>
- <eb854ce65015611df9c9edabfd9a17a15651ba07.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 46C6C89F69;
+ Mon, 14 Sep 2020 17:41:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 41E72A0118;
+ Mon, 14 Sep 2020 17:41:01 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <eb854ce65015611df9c9edabfd9a17a15651ba07.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [10/12] drm/i915: Introduce HPD_PORT_TC<n>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Date: Mon, 14 Sep 2020 17:41:01 -0000
+Message-ID: <160010526126.5913.11298151789356120445@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200914112521.1327-1-tzimmermann@suse.de>
+In-Reply-To: <20200914112521.1327-1-tzimmermann@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?ma-buf=3A_Flag_vmap=27ed_memory_as_system_or_I/O_memory?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,159 +38,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 14, 2020 at 04:58:33PM +0000, Souza, Jose wrote:
-> On Mon, 2020-09-14 at 17:48 +0300, Ville Syrj=E4l=E4 wrote:
-> > On Sat, Sep 12, 2020 at 01:30:23AM +0000, Souza, Jose wrote:
-> > > On Wed, 2020-07-01 at 00:55 +0300, Ville Syrjala wrote:
-> > > > From: Ville Syrj=E4l=E4 <
-> > > > ville.syrjala@linux.intel.com
-> > > > =
-
-> > > > =
-
-> > > > Make a clean split between hpd pins for DDI vs. TC. This matches
-> > > > how the actual hardware is split.
-> > > > =
-
-> > > > And with this we move the DDI/PHY->HPD pin mapping into the encoder
-> > > > init instead of having to remap yet again in the interrupt code.
-> > > > =
-
-> > > > Signed-off-by: Ville Syrj=E4l=E4 <
-> > > > ville.syrjala@linux.intel.com
-> > > > =
-
-> > > > =
-
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_ddi.c     |  65 +++++++++-
-> > > >  drivers/gpu/drm/i915/display/intel_hotplug.c |  25 +---
-> > > >  drivers/gpu/drm/i915/i915_drv.h              |  17 +--
-> > > >  drivers/gpu/drm/i915/i915_irq.c              | 121 +++++----------=
-----
-> > > >  4 files changed, 102 insertions(+), 126 deletions(-)
-> > > > =
-
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu=
-/drm/i915/display/intel_ddi.c
-> > > > index d024491738b3..a2c9815c5abc 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > @@ -4847,6 +4847,57 @@ intel_ddi_max_lanes(struct intel_digital_por=
-t *intel_dport)
-> > > >  	return max_lanes;
-> > > >  }
-> > > >  =
-
-> > > > +static enum hpd_pin tgl_hpd_pin(struct drm_i915_private *dev_priv,
-> > > > +				enum port port)
-> > > > +{
-> > > > +	if (port >=3D PORT_D)
-> > > > +		return HPD_PORT_TC1 + port - PORT_D;
-> > > > +	else
-> > > > +		return HPD_PORT_A + port - PORT_A;
-> > > > +}
-> > > > +
-> > > > +static enum hpd_pin rkl_hpd_pin(struct drm_i915_private *dev_priv,
-> > > > +				enum port port)
-> > > > +{
-> > > > +	if (HAS_PCH_TGP(dev_priv))
-> > > > +		return tgl_hpd_pin(dev_priv, port);
-> > > > +
-> > > > +	if (port >=3D PORT_D)
-> > > > +		return HPD_PORT_C + port - PORT_D;
-> > > =
-
-> > > The above looks wrong, for it would match with only the return bellow.
-> > =
-
-> > On rkl+tgp we want:
-> > PORT_A (DDI A)   -> HPD_PORT_A
-> > PORT_B (DDI B)   -> HPD_PORT_B
-> > PORT_D (DDI TC1) -> HPD_PORT_TC1
-> > PORT_E (DDI TC2) -> HPD_PORT_TC2
-> > =
-
-> > On rkl+cmp we want:
-> > PORT_A (DDI A)   -> HPD_PORT_A
-> > PORT_B (DDI B)   -> HPD_PORT_B
-> > PORT_D (DDI TC1) -> HPD_PORT_C
-> > PORT_E (DDI TC2) -> HPD_PORT_D
-> =
-
-> oohh okay, missed this.
-> =
-
-> > =
-
-> > > > +	else
-> > > > +		return HPD_PORT_A + port - PORT_A;
-> > > > +}
-> > > > +
-> > > > +static enum hpd_pin icl_hpd_pin(struct drm_i915_private *dev_priv,
-> > > > +				enum port port)
-> > > > +{
-> > > > +	if (port >=3D PORT_C)
-> > > > +		return HPD_PORT_TC1 + port - PORT_C;
-> > > > +	else
-> > > > +		return HPD_PORT_A + port - PORT_A;
-> > > > +}
-> > > > +
-> > > > +static enum hpd_pin ehl_hpd_pin(struct drm_i915_private *dev_priv,
-> > > > +				enum port port)
-> > > > +{
-> > > > +	if (port =3D=3D PORT_D)
-> > > > +		return HPD_PORT_A;
-> > > > +
-> > > > +	if (HAS_PCH_MCC(dev_priv))
-> > > > +		return icl_hpd_pin(dev_priv, port);
-> > > =
-
-> > > Maybe call tgl_hpd_pin() for HAS_PCH_MCC()? The code bellow will matc=
-h but just for consistency.
-> > =
-
-> > On jsl+mcc we want:
-> > PORT_A/D (DDI A/D) -> HPD_PORT_A
-> > PORT_B   (DDI B)   -> HPD_PORT_B
-> > PORT_C   (DDI C)   -> HPD_PORT_TC1
-> > =
-
-> > on jsl+icp we want:
-> > PORT_A/D (DDI A/D) -> HPD_PORT_A
-> > PORT_B   (DDI B)   -> HPD_PORT_B
-> > PORT_C   (DDI C)   -> HPD_PORT_C
-> > =
-
-> > =
-
-> =
-
-> The above would be the output of tgl_hpd_pin() but okay as it can be asso=
-ciate with SPT, LPT, ICP and TGP better keep the current code.
-
-I suspect we probably want to change this to the already discussed
-more declarative approach at some point, so it'll be easier to see
-what maps to what. But in the meantime this at least gets this
-hpd pin mapping stuff out from the guts of the irq code.
-
-> =
-
-> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-
-Ta.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZG1hLWJ1ZjogRmxhZyB2bWFwJ2VkIG1lbW9y
+eSBhcyBzeXN0ZW0gb3IgSS9PIG1lbW9yeQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVk
+ZXNrdG9wLm9yZy9zZXJpZXMvODE2NDcvClN0YXRlIDogZmFpbHVyZQoKPT0gU3VtbWFyeSA9PQoK
+Q0FMTCAgICBzY3JpcHRzL2NoZWNrc3lzY2FsbHMuc2gKICBDQUxMICAgIHNjcmlwdHMvYXRvbWlj
+L2NoZWNrLWF0b21pY3Muc2gKICBERVNDRU5EICBvYmp0b29sCiAgQ0hLICAgICBpbmNsdWRlL2dl
+bmVyYXRlZC9jb21waWxlLmgKICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
+X2dlbV9kbWFidWYubwpJbiBmaWxlIGluY2x1ZGVkIGZyb20gZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jOjI5MTowOgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2Vs
+ZnRlc3RzL21vY2tfZG1hYnVmLmM6ODk6MTA6IGVycm9yOiBpbml0aWFsaXphdGlvbiBmcm9tIGlu
+Y29tcGF0aWJsZSBwb2ludGVyIHR5cGUgWy1XZXJyb3I9aW5jb21wYXRpYmxlLXBvaW50ZXItdHlw
+ZXNdCiAgLnZtYXAgPSBtb2NrX2RtYWJ1Zl92bWFwLAogICAgICAgICAgXn5+fn5+fn5+fn5+fn5+
+fgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL21vY2tfZG1hYnVmLmM6ODk6MTA6
+IG5vdGU6IChuZWFyIGluaXRpYWxpemF0aW9uIGZvciDigJhtb2NrX2RtYWJ1Zl9vcHMudm1hcOKA
+mSkKZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9tb2NrX2RtYWJ1Zi5jOjkwOjEy
+OiBlcnJvcjogaW5pdGlhbGl6YXRpb24gZnJvbSBpbmNvbXBhdGlibGUgcG9pbnRlciB0eXBlIFst
+V2Vycm9yPWluY29tcGF0aWJsZS1wb2ludGVyLXR5cGVzXQogIC52dW5tYXAgPSBtb2NrX2RtYWJ1
+Zl92dW5tYXAsCiAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9nZW0vc2VsZnRlc3RzL21vY2tfZG1hYnVmLmM6OTA6MTI6IG5vdGU6IChuZWFyIGluaXRp
+YWxpemF0aW9uIGZvciDigJhtb2NrX2RtYWJ1Zl9vcHMudnVubWFw4oCZKQpjYzE6IGFsbCB3YXJu
+aW5ncyBiZWluZyB0cmVhdGVkIGFzIGVycm9ycwpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjI4Mzog
+cmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFi
+dWYubycgZmFpbGVkCm1ha2VbNF06ICoqKiBbZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVf
+Z2VtX2RtYWJ1Zi5vXSBFcnJvciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTAwOiByZWNpcGUg
+Zm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtL2k5MTUnIGZhaWxlZAptYWtlWzNdOiAqKiogW2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1XSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTAwOiBy
+ZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtJyBmYWlsZWQKbWFrZVsyXTogKioqIFtk
+cml2ZXJzL2dwdS9kcm1dIEVycm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MDA6IHJlY2lw
+ZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdScgZmFpbGVkCm1ha2VbMV06ICoqKiBbZHJpdmVycy9n
+cHVdIEVycm9yIDIKTWFrZWZpbGU6MTc4NDogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMnIGZh
+aWxlZAptYWtlOiAqKiogW2RyaXZlcnNdIEVycm9yIDIKCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
