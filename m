@@ -2,43 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8405269729
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 22:55:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D67E0269727
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 22:55:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7F706E5AE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 492286E5AB;
 	Mon, 14 Sep 2020 20:54:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D4DA6E5B2
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 20:54:57 +0000 (UTC)
-Message-Id: <20200914204441.375753691@linutronix.de>
+X-Greylist: delayed 588 seconds by postgrey-1.36 at gabe;
+ Mon, 14 Sep 2020 20:54:55 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F37D06E5AE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 20:54:55 +0000 (UTC)
+Message-Id: <20200914204441.486057928@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1600116308;
+ s=2020; t=1600116310;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=rLyqvXX8ykRDikewrjB+k5sQeB3vmoPh6IJL9FYNd5E=;
- b=0l+YgFUMwvopub406qnKsr3dUzMW5NPZcFv6G4XvOZEQ88/olItKzVOA4C3bYkFUtxUTsb
- d6v+xvHY0Cf0pFi1XJzwPekHutxMnxoSPZyRNSusdIzlgBLEkcIcT5ez6oqXXsfXE4RpVG
- z8jA+tpUmSkmgzrIuoELC0Qs0HIQUSZ+ThJunQNfgd64d5ALlWCN7spWOTKewPGG//X5uW
- SDnsdlTigGEpi0Yk5N8j2gX8QGJXem5Feo6hcxV45cAdC1ZglVX7WyKso58nhlsjDukKbG
- 5B5Dq7tjsGgdcRn9YcRdYTN6CFERdRtNhn2Rq0CHP4BBToJrIEpQLMh/myq27w==
+ bh=JgtXFDXxZGfThbRDf0kz64PxO4briiyz9f7Eq57ONcE=;
+ b=4P8s5xX/bAi2a+N+CIbhQrzcX7HvFJ7S6CNHYdIstAaonGR/+Dnp1rRjEv7pyPlLgNCFYx
+ sFTsKc2IsAVS7kbywI0LEVkCa6iWPXHUhikvoBItTFVO86zjlB5Fn+D/mFFgSAQbIZQS53
+ 00ZNDy4dfDU32t9qHFMauWVHXQtP0Qojy3xvBYG6atY0csq7zU4WIhUdO5c7N/c6aLPgTC
+ Z464/mn2KP5p1MToHKTSzU6V5E1wKd/QmhgJgb7HxMSTZ+HFYru8UIB2rZH4RJycqwOVJD
+ uGhpci7usAWJWI1a0nfucwZNnQUjJHBVkOYdQoqQaJQUx9zkmrQU6A8iuIY1nA==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1600116309;
+ s=2020e; t=1600116310;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=rLyqvXX8ykRDikewrjB+k5sQeB3vmoPh6IJL9FYNd5E=;
- b=279035DbbzR5rrA/oYFZOR6A7RqYHpogOyqAAY71fcsTyj3GPke7oTdjeG6zebT9b9iXf2
- aR4ImfvLkgSxNvBg==
-Date: Mon, 14 Sep 2020 22:42:13 +0200
+ bh=JgtXFDXxZGfThbRDf0kz64PxO4briiyz9f7Eq57ONcE=;
+ b=iux8epOCVyhcOltC05jMckhTC3+4PPkpXc+cvBTMuwrFHucsc14BLoy7aSSCwXQ7rqsNPn
+ xvgdzAI0oBjN5YAA==
+Date: Mon, 14 Sep 2020 22:42:14 +0200
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 References: <20200914204209.256266093@linutronix.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [patch 04/13] lockdep: Clenaup PREEMPT_COUNT leftovers
+Subject: [Intel-gfx] [patch 05/13] mm/pagemap: Clenaup PREEMPT_COUNT
+ leftovers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,45 +87,25 @@ CONFIG_PREEMPT_COUNT is now unconditionally enabled and will be
 removed. Cleanup the leftovers before doing so.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-Cc: Peter Zijlstra <peterz@infradead.org>
-Cc: Ingo Molnar <mingo@kernel.org>
-Cc: Will Deacon <will@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-mm@kvack.org
 ---
- include/linux/lockdep.h |    6 ++----
- lib/Kconfig.debug       |    1 -
- 2 files changed, 2 insertions(+), 5 deletions(-)
+ include/linux/pagemap.h |    4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
---- a/include/linux/lockdep.h
-+++ b/include/linux/lockdep.h
-@@ -585,16 +585,14 @@ do {									\
- 
- #define lockdep_assert_preemption_enabled()				\
- do {									\
--	WARN_ON_ONCE(IS_ENABLED(CONFIG_PREEMPT_COUNT)	&&		\
--		     debug_locks			&&		\
-+	WARN_ON_ONCE(debug_locks			&&		\
- 		     (preempt_count() != 0		||		\
- 		      !raw_cpu_read(hardirqs_enabled)));		\
- } while (0)
- 
- #define lockdep_assert_preemption_disabled()				\
- do {									\
--	WARN_ON_ONCE(IS_ENABLED(CONFIG_PREEMPT_COUNT)	&&		\
--		     debug_locks			&&		\
-+	WARN_ON_ONCE(debug_locks			&&		\
- 		     (preempt_count() == 0		&&		\
- 		      raw_cpu_read(hardirqs_enabled)));			\
- } while (0)
---- a/lib/Kconfig.debug
-+++ b/lib/Kconfig.debug
-@@ -1161,7 +1161,6 @@ config PROVE_LOCKING
- 	select DEBUG_RWSEMS
- 	select DEBUG_WW_MUTEX_SLOWPATH
- 	select DEBUG_LOCK_ALLOC
--	select PREEMPT_COUNT
- 	select TRACE_IRQFLAGS
- 	default n
- 	help
+--- a/include/linux/pagemap.h
++++ b/include/linux/pagemap.h
+@@ -168,9 +168,7 @@ void release_pages(struct page **pages,
+ static inline int __page_cache_add_speculative(struct page *page, int count)
+ {
+ #ifdef CONFIG_TINY_RCU
+-# ifdef CONFIG_PREEMPT_COUNT
+-	VM_BUG_ON(!in_atomic() && !irqs_disabled());
+-# endif
++	VM_BUG_ON(preemptible())
+ 	/*
+ 	 * Preempt must be disabled here - we rely on rcu_read_lock doing
+ 	 * this for us.
 
 _______________________________________________
 Intel-gfx mailing list
