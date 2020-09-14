@@ -1,49 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 741122696A5
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 22:30:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4591F269728
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 22:55:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 293046E59B;
-	Mon, 14 Sep 2020 20:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A6DC6E5A9;
+	Mon, 14 Sep 2020 20:54:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A71F6E59B
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 20:30:44 +0000 (UTC)
-IronPort-SDR: 2DLMCft5CKWmADHKOFh6AX+pqIZktnVVHB++FzEnTyGDmTzdIU2jgfB2lIsAKRTzsNPizmShLW
- cLkDtdVwc+8g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="159203359"
-X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="159203359"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2020 13:30:43 -0700
-IronPort-SDR: w5YgAN07i9VO7VTER5cbQsefFLU0Ta2CNZyC12/9rdU6WlPefOh90+aA8Gisgw205oOJkUuxH/
- 4yx+bUjGT1hg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="408961364"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 14 Sep 2020 13:30:40 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 14 Sep 2020 23:30:40 +0300
-Date: Mon, 14 Sep 2020 23:30:40 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200914203040.GD6112@intel.com>
-References: <20200901010924.235808-1-jose.souza@intel.com>
- <20200901010924.235808-2-jose.souza@intel.com>
- <20200914142406.GN6112@intel.com>
- <f0b80d8f63f2b69ff6694b5a6bf55b7f7fd032b2.camel@intel.com>
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA64E6E5AB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 20:54:55 +0000 (UTC)
+Message-Id: <20200914204209.256266093@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1600116304;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=9WPslsayaKn9l4KRCy6vC0tA0OD05xl/cJA1zjQzh9Q=;
+ b=JAPA/qzJzqHcag6qcakOZ9GWUXDKy6NtfE7r1NQIWc0gTSVI1iY9yrfWEOEFzix8pmbAuS
+ MuaADNs3pSiCLAI4n+a3p1Yf/IWnvCFznqLXHdFbrDe3FVowlmnsdQrS2jaIRBADVVI35z
+ w4z5EtbZ4BM+lDYkm4gbkp+SUGbQKvIrUNGyKtK0Iy+a2fNL9PfeIjhLDWq/Rh541SefY6
+ UEZRJAC+1zAPbDuYa0LqAwZ3otlmljq7saTqU/AENBQStLBF6lG25DUU28wlzUFRs8NAHx
+ Sc5WJ3V+SMr9bgVMgPIVxmsQXr7EAdha5VH1MxCb2AQt5zljIPUjkUY/FDZVaw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1600116304;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=9WPslsayaKn9l4KRCy6vC0tA0OD05xl/cJA1zjQzh9Q=;
+ b=JVGAZSnCuZ9YvnhwM1nsyY3Yl860vCMg1V49xOerJHh7jF1cfp3RkRkcmNc+b0cld1O3y+
+ vBmqvqKHtYT11hAw==
+Date: Mon, 14 Sep 2020 22:42:09 +0200
+From: Thomas Gleixner <tglx@linutronix.de>
+To: LKML <linux-kernel@vger.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <f0b80d8f63f2b69ff6694b5a6bf55b7f7fd032b2.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/display: Fix state of PSR2 sub
- features
+Subject: [Intel-gfx] [patch 00/13] preempt: Make preempt count unconditional
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,120 +50,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Lai Jiangshan <jiangshanlai@gmail.com>, dri-devel@lists.freedesktop.org,
+ Ben Segall <bsegall@google.com>, linux-mm@kvack.org,
+ linux-kselftest@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>, linux-arch@vger.kernel.org,
+ Brian Cain <bcain@codeaurora.org>, Richard Weinberger <richard@nod.at>,
+ Russell King <linux@armlinux.org.uk>, David Airlie <airlied@linux.ie>,
+ Ingo Molnar <mingo@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Mel Gorman <mgorman@suse.de>, intel-gfx@lists.freedesktop.org,
+ Matt Turner <mattst88@gmail.com>,
+ Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
+ Shuah Khan <shuah@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
+ Jeff Dike <jdike@addtoit.com>, linux-um@lists.infradead.org,
+ Josh Triplett <josh@joshtriplett.org>, Steven Rostedt <rostedt@goodmis.org>,
+ rcu@vger.kernel.org, linux-m68k@lists.linux-m68k.org,
+ Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ linux-arm-kernel@lists.infradead.org, Richard Henderson <rth@twiddle.net>,
+ Chris Zankel <chris@zankel.net>, Max Filippov <jcmvbkbc@gmail.com>,
+ Linus Torvalds <torvalds@linuxfoundation.org>, linux-alpha@vger.kernel.org,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 14, 2020 at 07:57:34PM +0000, Souza, Jose wrote:
-> On Mon, 2020-09-14 at 17:24 +0300, Ville Syrj=E4l=E4 wrote:
-> > On Mon, Aug 31, 2020 at 06:09:22PM -0700, Jos=E9 Roberto de Souza wrote:
-> > > In case PSR2 is disabled by debugfs dc3co_enabled and
-> > > psr2_sel_fetch_enabled were still being set causing some code paths
-> > > to be executed were it should not.
-> > > We have tests for PSR1 and PSR2 so keep those features disabled when
-> > > PSR1 is active but PSR2 is supported is important.
-> > > =
+Folks!
 
-> > > Cc: Gwan-gyeong Mun <
-> > > gwan-gyeong.mun@intel.com
-> > > >
-> > > Cc: Ville Syrj=E4l=E4 <
-> > > ville.syrjala@linux.intel.com
-> > > >
-> > > Signed-off-by: Jos=E9 Roberto de Souza <
-> > > jose.souza@intel.com
-> > > >
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_psr.c | 11 +++++++----
-> > >  1 file changed, 7 insertions(+), 4 deletions(-)
-> > > =
+While working on various preempt count related things, I stumbled (again)
+over the inconsistency of our preempt count handling.
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/d=
-rm/i915/display/intel_psr.c
-> > > index 4e09ae61d4aa..6698d0209879 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > @@ -962,12 +962,14 @@ static void intel_psr_enable_locked(struct drm_=
-i915_private *dev_priv,
-> > >  	dev_priv->psr.psr2_enabled =3D intel_psr2_enabled(dev_priv, crtc_st=
-ate);
-> > >  	dev_priv->psr.busy_frontbuffer_bits =3D 0;
-> > >  	dev_priv->psr.pipe =3D to_intel_crtc(crtc_state->uapi.crtc)->pipe;
-> > > -	dev_priv->psr.dc3co_enabled =3D !!crtc_state->dc3co_exitline;
-> > > +	dev_priv->psr.dc3co_enabled =3D !!crtc_state->dc3co_exitline &&
-> > > +				      dev_priv->psr.psr2_enabled;
-> > >  	dev_priv->psr.transcoder =3D crtc_state->cpu_transcoder;
-> > >  	/* DC5/DC6 requires at least 6 idle frames */
-> > >  	val =3D usecs_to_jiffies(intel_get_frame_time_us(crtc_state) * 6);
-> > >  	dev_priv->psr.dc3co_exit_delay =3D val;
-> > > -	dev_priv->psr.psr2_sel_fetch_enabled =3D crtc_state->enable_psr2_se=
-l_fetch;
-> > > +	dev_priv->psr.psr2_sel_fetch_enabled =3D crtc_state->enable_psr2_se=
-l_fetch &&
-> > > +					       dev_priv->psr.psr2_enabled;
-> > >  =
+The handling of preempt_count() is inconsistent accross kernel
+configurations. On kernels which have PREEMPT_COUNT=n
+preempt_disable/enable() and the lock/unlock functions are not affecting
+the preempt count, only local_bh_disable/enable() and _bh variants of
+locking, soft interrupt delivery, hard interrupt and NMI context affect it.
 
-> > >  	/*
-> > >  	 * If a PSR error happened and the driver is reloaded, the EDP_PSR_=
-IIR
-> > > @@ -1178,7 +1180,7 @@ void intel_psr2_program_trans_man_trk_ctl(const=
- struct intel_crtc_state *crtc_st
-> > >  	struct i915_psr *psr =3D &dev_priv->psr;
-> > >  =
+It's therefore impossible to have a consistent set of checks which provide
+information about the context in which a function is called. In many cases
+it makes sense to have seperate functions for seperate contexts, but there
+are valid reasons to avoid that and handle different calling contexts
+conditionally.
 
-> > >  	if (!HAS_PSR2_SEL_FETCH(dev_priv) ||
-> > > -	    !crtc_state->enable_psr2_sel_fetch)
-> > > +	    !dev_priv->psr.psr2_sel_fetch_enabled)
-> > >  		return;
-> > >  =
+The lack of such indicators which work on all kernel configuratios is a
+constant source of trouble because developers either do not understand the
+implications or try to work around this inconsistency in weird
+ways. Neither seem these issues be catched by reviewers and testing.
 
-> > >  	intel_de_write(dev_priv, PSR2_MAN_TRK_CTL(psr->transcoder),
-> > > @@ -1189,8 +1191,9 @@ void intel_psr2_sel_fetch_update(struct intel_a=
-tomic_state *state,
-> > >  				 struct intel_crtc *crtc)
-> > >  {
-> > >  	struct intel_crtc_state *crtc_state =3D intel_atomic_get_new_crtc_s=
-tate(state, crtc);
-> > > +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > >  =
+Recently merged code does:
 
-> > > -	if (!crtc_state->enable_psr2_sel_fetch)
-> > > +	if (!dev_priv->psr.psr2_sel_fetch_enabled)
-> > =
+	 gfp = preemptible() ? GFP_KERNEL : GFP_ATOMIC;
 
-> > This looks rather sketchy. AFAICS this gets called during atomic_check()
-> > so looking at stuff outside the crtc state is very suspicious.
-> =
+Looks obviously correct, except for the fact that preemptible() is
+unconditionally false for CONFIF_PREEMPT_COUNT=n, i.e. all allocations in
+that code use GFP_ATOMIC on such kernels.
 
-> This is called after the functions that change the PSR state so no issues=
-, also we can't really on information in CRTC state, as PSR is only enabled
-> if supported by state, i915 PSR parameter and PSR debug fs value.
+Attempts to make preempt count unconditional and consistent have been
+rejected in the past with handwaving performance arguments.
 
-I see it getting called from intel_crtc_atomic_check(). Confused.
-Am I missing some other patches?
+Freshly conducted benchmarks did not reveal any measurable impact from
+enabling preempt count unconditionally. On kernels with CONFIG_PREEMPT_NONE
+or CONFIG_PREEMPT_VOLUNTARY the preempt count is only incremented and
+decremented but the result of the decrement is not tested. Contrary to that
+enabling CONFIG_PREEMPT which tests the result has a small but measurable
+impact due to the conditional branch/call.
 
-> =
+It's about time to make essential functionality of the kernel consistent
+accross the various preemption models.
 
-> > =
+The series is also available from git:
 
-> > >  		return;
-> > >  =
+   git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git preempt
 
-> > >  	crtc_state->psr2_man_track_ctl =3D PSR2_MAN_TRK_CTL_ENABLE |
-> > > -- =
+That's the first part of a larger effort related to preempt count:
 
-> > > 2.28.0
-> > =
+ 1) The analysis of the usage sites of in_interrupt(), in_atomic(),
+    in_softirq() is still ongoing, but so far the number of buggy users is
+    clearly the vast majority. There will be seperate patch series
+    (currently 46 and counting) to address these issues once the analysis
+    is complete in the next days.
 
-> > =
+ 2) The long discussed state tracking of local irq disable in preempt count
+    which accounts interrupt disabled sections as atomic and avoids issuing
+    costly instructions (sti, cli, popf or their non X86 counterparts) when
+    the state does not change, i.e. nested irq_save() or irq_restore(). I
+    have this working on X86 already and contrary to my earlier attempts
+    this was reasonably straight forward due to the recent entry/exit code
+    consolidation.
+
+    What I've not done yet is to optimize the preempt count handling
+    of the [un]lock_irq* operations so they handle the interrupt disabled
+    state and the preempt count modification in one go. That's an obvious
+    add on, but correctness first ...
+
+ 3) Lazy interrupt disabling as a straight forward extension to #2. This
+    avoids the actual disabling at the CPU level completely and catches an
+    incoming interrupt in the low level entry code, modifies the interrupt
+    disabled state on the return stack, notes the interrupt as pending in
+    software and raises it again when interrupts are reenabled. This has
+    still a few issues which I'm hunting down (cpuidle is unhappy ...)
+
+Thanks,
+
+	tglx
+---
+ arch/arm/include/asm/assembler.h                                 |   11 --
+ arch/arm/kernel/iwmmxt.S                                         |    2 
+ arch/arm/mach-ep93xx/crunch-bits.S                               |    2 
+ arch/xtensa/kernel/entry.S                                       |    2 
+ drivers/gpu/drm/i915/Kconfig.debug                               |    1 
+ drivers/gpu/drm/i915/i915_utils.h                                |    3 
+ include/linux/bit_spinlock.h                                     |    4 -
+ include/linux/lockdep.h                                          |    6 -
+ include/linux/pagemap.h                                          |    4 -
+ include/linux/preempt.h                                          |   37 +---------
+ include/linux/uaccess.h                                          |    6 -
+ kernel/Kconfig.preempt                                           |    4 -
+ kernel/sched/core.c                                              |    6 -
+ lib/Kconfig.debug                                                |    3 
+ lib/Kconfig.debug.rej                                            |   14 +--
+ tools/testing/selftests/rcutorture/configs/rcu/SRCU-t            |    1 
+ tools/testing/selftests/rcutorture/configs/rcu/SRCU-u            |    1 
+ tools/testing/selftests/rcutorture/configs/rcu/TINY01            |    1 
+ tools/testing/selftests/rcutorture/doc/TINY_RCU.txt              |    5 -
+ tools/testing/selftests/rcutorture/doc/TREE_RCU-kconfig.txt      |    1 
+ tools/testing/selftests/rcutorture/formal/srcu-cbmc/src/config.h |    1 
+ 21 files changed, 23 insertions(+), 92 deletions(-)
 
 
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
