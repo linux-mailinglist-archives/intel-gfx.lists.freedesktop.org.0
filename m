@@ -1,44 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3058F26972A
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 22:55:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8A6269726
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 22:55:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4FDA6E5B2;
-	Mon, 14 Sep 2020 20:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7EB16E5A4;
+	Mon, 14 Sep 2020 20:54:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75DDF6E5B9
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 20:54:57 +0000 (UTC)
-Message-Id: <20200914204441.579902354@linutronix.de>
+X-Greylist: delayed 586 seconds by postgrey-1.36 at gabe;
+ Mon, 14 Sep 2020 20:54:55 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEA596E5A4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 20:54:55 +0000 (UTC)
+Message-Id: <20200914204441.686695987@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1600116311;
+ s=2020; t=1600116312;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=jSFTo2fNR1Fdj7RHwVSUWdICcz7BXx9GuxCsTljfBDc=;
- b=RL+GkltuYzZCWy8Cl1LjhwVE2UJSR7gGP8TiZHbtSgQnmRdyXbIOVVanHwJJVoDlIcYY5Q
- LT96l5PoSA374gjRYkYij/UgBBRwAsUNJA27/lNUFgAab0YxBGxg+IQGVFDp6i0sbydVRc
- IgZYFrlBf+xwTJJ8aV7qkci3qtWFLu9LbGCA31a69ZP2uifgnP2luS1nAIav4nxaYCJEkQ
- BaAeIICjaUsuG+G/c/xCj5ieBqIiGoaPVVF7QnE/PLcdRXu4uEgJ+t+EnJKscI1HXpkBnh
- uVgfLl8V0mb6gBn4Ey5eVzZRinNAX/sDY29X2dWyf7b2WPCGws3FVkfELbK5XA==
+ bh=RfxMqlPiepbkielPdHvAzLuC/W7nRAVZVsmDVELAHII=;
+ b=pjt4ipoHz2SR+76u/tosh7gyPxQsg2oL/bqNd6MRCV4oI1z48eqv1u70tHD6lv8me21lrp
+ r0nf9q7gfeNk/g6/mQbWoxxc6sgattZculBG7/CAEhhAosn3HO+ELh/5ZMKS01PZDGGPiV
+ 5UPGaI9uTL9WPM9r49P7uaq5wk95tawOQtkcIzkOz6iSKD5SsqVW8RpHISt5xAmsNGRf/s
+ PwQDlz+dCOVfrDUrCEkzB0vPklJs8f3/2QV6ZG5w6yyAxtpbaqFGEafdnTlhe/mPuQGW/2
+ aaWaJRqL/bLlqEm3DE9P4rm0Ldlt8ELtOtjbcIXqqOCzZO06YL/N5kw2xvNEHQ==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1600116311;
+ s=2020e; t=1600116312;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=jSFTo2fNR1Fdj7RHwVSUWdICcz7BXx9GuxCsTljfBDc=;
- b=iut+FC9xX/+WwHylk5Bo+ib2vZPOOOfiQ/k306Td/lwmjp/fN6Nz77KXB6ZCuxjuePB6sn
- U5e1M/wY5OUVmsAw==
-Date: Mon, 14 Sep 2020 22:42:15 +0200
+ bh=RfxMqlPiepbkielPdHvAzLuC/W7nRAVZVsmDVELAHII=;
+ b=KKlXvjmRL6XVp/lLKfPN8jJGOYdGr+dBLEzJxa2pQ6HTfXoVmCn9f/zEn0x26bRx145urU
+ PFTkWVcFpRpLnPDg==
+Date: Mon, 14 Sep 2020 22:42:16 +0200
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 References: <20200914204209.256266093@linutronix.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [patch 06/13] locking/bitspinlock: Clenaup
- PREEMPT_COUNT leftovers
+Subject: [Intel-gfx] [patch 07/13] uaccess: Clenaup PREEMPT_COUNT leftovers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,22 +88,23 @@ removed. Cleanup the leftovers before doing so.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 ---
- include/linux/bit_spinlock.h |    4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ include/linux/uaccess.h |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
---- a/include/linux/bit_spinlock.h
-+++ b/include/linux/bit_spinlock.h
-@@ -90,10 +90,8 @@ static inline int bit_spin_is_locked(int
- {
- #if defined(CONFIG_SMP) || defined(CONFIG_DEBUG_SPINLOCK)
- 	return test_bit(bitnum, addr);
--#elif defined CONFIG_PREEMPT_COUNT
--	return preempt_count();
- #else
--	return 1;
-+	return preempt_count();
- #endif
- }
+--- a/include/linux/uaccess.h
++++ b/include/linux/uaccess.h
+@@ -230,9 +230,9 @@ static inline bool pagefault_disabled(vo
+  *
+  * This function should only be used by the fault handlers. Other users should
+  * stick to pagefault_disabled().
+- * Please NEVER use preempt_disable() to disable the fault handler. With
+- * !CONFIG_PREEMPT_COUNT, this is like a NOP. So the handler won't be disabled.
+- * in_atomic() will report different values based on !CONFIG_PREEMPT_COUNT.
++ *
++ * Please NEVER use preempt_disable() or local_irq_disable() to disable the
++ * fault handler.
+  */
+ #define faulthandler_disabled() (pagefault_disabled() || in_atomic())
  
 
 _______________________________________________
