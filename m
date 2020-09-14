@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 693C22695D0
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 21:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B1532695D2
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Sep 2020 21:45:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69F0F6E566;
-	Mon, 14 Sep 2020 19:44:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AFFB6E56A;
+	Mon, 14 Sep 2020 19:45:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [205.139.110.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73B076E566
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 19:44:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1600112688;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=A/DjrjveF5/2wA8RTl0T9a0Cox1J1OLY+rMuhaYpfao=;
- b=a0GZ9W9D3oFXeXyHPUCNVgXrvPu/YxXS0Ear2g1PWJjTKmdrVhVhauntWelzWi8Wj4I3R5
- oUyl03UlbEE2giyk67lqGTqflxPUfWjIOnDJ6D4JxHUbc9DYu2uTWU2LYPYOuJRW+EzmOF
- KgYgFgoZfInJFQ1BbN3Nb/kAUD09DQc=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-210-JgGmMpLmOG2xlwIrBHTevw-1; Mon, 14 Sep 2020 15:44:43 -0400
-X-MC-Unique: JgGmMpLmOG2xlwIrBHTevw-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 773238015AA;
- Mon, 14 Sep 2020 19:44:41 +0000 (UTC)
-Received: from ovpn-113-249.rdu2.redhat.com (ovpn-113-249.rdu2.redhat.com
- [10.10.113.249])
- by smtp.corp.redhat.com (Postfix) with ESMTP id ACF737513E;
- Mon, 14 Sep 2020 19:44:39 +0000 (UTC)
-Message-ID: <05803c18b64db8a811c692bcbdc03172935ea483.camel@redhat.com>
-From: Qian Cai <cai@redhat.com>
-To: Matthew Wilcox <willy@infradead.org>
-Date: Mon, 14 Sep 2020 15:44:39 -0400
-In-Reply-To: <20200914165032.GS6583@casper.infradead.org>
-References: <20200910183318.20139-1-willy@infradead.org>
- <20200910183318.20139-4-willy@infradead.org>
- <c48c5eaa09d1ea5b78b12b545c034d1e937c49ba.camel@redhat.com>
- <20200914165032.GS6583@casper.infradead.org>
-Mime-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
-Subject: Re: [Intel-gfx] [PATCH v2 3/8] mm: Optimise madvise WILLNEED
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80DDF6E56A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 19:45:21 +0000 (UTC)
+IronPort-SDR: L7RKlgFCvdu1WaTbRJlBA/YUlO4tnSyYxSRVCJEo7XQKHMgl6oxVXx9QQ2Fw0PMZaSRtrMHjVP
+ YO9bLj4ycXcw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="220707610"
+X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="220707610"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2020 12:45:20 -0700
+IronPort-SDR: 6O6ZhvOn/1dHW/DCquyWqpTKXuV7O7T/SEzlr4vi5Xl4VCAr2AgmmNQTrULlVVJKAidEWZixdp
+ cdPUzGia5fKA==
+X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="507263139"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2020 12:45:20 -0700
+Date: Mon, 14 Sep 2020 12:45:59 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200914194552.GC29235@labuser-Z97X-UD5H>
+References: <20200715224222.7557-1-manasi.d.navare@intel.com>
+ <20200715224222.7557-8-manasi.d.navare@intel.com>
+ <20200903191945.GA6112@intel.com>
+ <20200914191358.GA28833@labuser-Z97X-UD5H>
+ <20200914192041.GY6112@intel.com>
+ <20200914192758.GA29235@labuser-Z97X-UD5H>
+ <20200914193412.GZ6112@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200914193412.GZ6112@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v6 08/11] drm/i915: Link planes in a
+ bigjoiner configuration, v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,55 +57,860 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: William Kucharski <william.kucharski@oracle.com>,
- intel-gfx@lists.freedesktop.org, Johannes Weiner <hannes@cmpxchg.org>,
- Hugh Dickins <hughd@google.com>, linux-kernel@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
- Matthew Auld <matthew.auld@intel.com>, Huang Ying <ying.huang@intel.com>,
- cgroups@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Alexey Dobriyan <adobriyan@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2020-09-14 at 17:50 +0100, Matthew Wilcox wrote:
-> On Mon, Sep 14, 2020 at 12:17:07PM -0400, Qian Cai wrote:
-> > Reverting the "Return head pages from find_*_entry" patchset [1] up to this
-> > patch fixed the issue that LTP madvise06 test [2] would trigger endless
-> > soft-
-> > lockups below. It does not help after applied patches fixed other separate
-> > issues in the patchset [3][4].
-> 
-> Thanks for the report.  Could you try this?
+On Mon, Sep 14, 2020 at 10:34:12PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Mon, Sep 14, 2020 at 12:27:58PM -0700, Navare, Manasi wrote:
+> > On Mon, Sep 14, 2020 at 10:20:41PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > On Mon, Sep 14, 2020 at 12:14:10PM -0700, Navare, Manasi wrote:
+> > > > On Thu, Sep 03, 2020 at 10:19:45PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > > > On Wed, Jul 15, 2020 at 03:42:19PM -0700, Manasi Navare wrote:
+> > > > > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > > > =
 
-It works fine.
+> > > > > >  Make sure that when a plane is set in a bigjoiner mode, we wil=
+l add
+> > > > > >  their counterpart to the atomic state as well. This will allow=
+ us to
+> > > > > >  make sure all state is available when planes are checked.
+> > > > > > =
 
-> 
-> diff --git a/mm/madvise.c b/mm/madvise.c
-> index 96189acd6969..2d9ceccb338d 100644
-> --- a/mm/madvise.c
-> +++ b/mm/madvise.c
-> @@ -234,6 +234,7 @@ static void force_shm_swapin_readahead(struct
-> vm_area_struct *vma,
->  
->  		if (!xa_is_value(page))
->  			continue;
-> +		xas_pause(&xas);
->  		rcu_read_unlock();
->  
->  		swap = radix_to_swp_entry(page);
-> @@ -243,7 +244,6 @@ static void force_shm_swapin_readahead(struct
-> vm_area_struct *vma,
->  			put_page(page);
->  
->  		rcu_read_lock();
-> -		xas_reset(&xas);
->  	}
->  	rcu_read_unlock();
->  
-> 
+> > > > > > Because of the funny interactions with bigjoiner and planar YUV
+> > > > > > formats, we may end up adding a lot of planes, so we have to ke=
+ep
+> > > > > > iterating until we no longer add any planes.
+> > > > > > =
 
+> > > > > > Also fix the atomic intel plane iterator, so things watermarks =
+start
+> > > > > > working automagically.
+> > > > > > =
+
+> > > > > > v5:
+> > > > > > * Rebase after adding sagv support (Manasi)
+> > > > > > v4:
+> > > > > > * Manual rebase (Manasi)
+> > > > > > Changes since v1:
+> > > > > > - Rebase on top of plane_state split, cleaning up the code a lo=
+t.
+> > > > > > - Make intel_atomic_crtc_state_for_each_plane_state() bigjoiner=
+ capable.
+> > > > > > - Add iter macro to intel_atomic_crtc_state_for_each_plane_stat=
+e() to
+> > > > > >   keep iteration working.
+> > > > > > Changes since v2:
+> > > > > > - Add icl_(un)set_bigjoiner_plane_links, to make it more clear =
+where
+> > > > > >   links are made and broken.
+> > > > > > =
+
+> > > > > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel=
+.com>
+> > > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > > > ---
+> > > > > >  .../gpu/drm/i915/display/intel_atomic_plane.c |  52 ++++-
+> > > > > >  .../gpu/drm/i915/display/intel_atomic_plane.h |   3 +-
+> > > > > >  drivers/gpu/drm/i915/display/intel_display.c  | 207 ++++++++++=
+++++++--
+> > > > > >  drivers/gpu/drm/i915/display/intel_display.h  |  20 +-
+> > > > > >  .../drm/i915/display/intel_display_types.h    |  11 +
+> > > > > >  drivers/gpu/drm/i915/intel_pm.c               |  20 +-
+> > > > > >  6 files changed, 274 insertions(+), 39 deletions(-)
+> > > > > > =
+
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c =
+b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > > > > index 79032701873a..5c6e72063fac 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > > > > @@ -246,11 +246,17 @@ static void intel_plane_clear_hw_state(st=
+ruct intel_plane_state *plane_state)
+> > > > > >  	memset(&plane_state->hw, 0, sizeof(plane_state->hw));
+> > > > > >  }
+> > > > > >  =
+
+> > > > > > -void intel_plane_copy_uapi_to_hw_state(struct intel_plane_stat=
+e *plane_state,
+> > > > > > +void intel_plane_copy_uapi_to_hw_state(const struct intel_crtc=
+_state *crtc_state,
+> > > > > > +				       struct intel_plane_state *plane_state,
+> > > > > >  				       const struct intel_plane_state *from_plane_state)
+> > > > > >  {
+> > > > > >  	intel_plane_clear_hw_state(plane_state);
+> > > > > >  =
+
+> > > > > > +	if (from_plane_state->uapi.crtc)
+> > > > > > +		plane_state->hw.crtc =3D crtc_state->uapi.crtc;
+> > > > > > +	else
+> > > > > > +		plane_state->hw.crtc =3D NULL;
+> > > > > > +
+> > > > > >  	plane_state->hw.crtc =3D from_plane_state->uapi.crtc;
+> > > > > =
+
+> > > > > eh?
+> > > > =
+
+> > > > Hmm good catch here, this one definitely looks fishy probably got m=
+essed up in the rebase
+> > > > so this should just be:
+> > > > =
+
+> > > >  if (from_plane_state->uapi.crtc)
+> > > > 	plane_state->hw.crtc =3D crtc_state->uapi.crtc;
+> > > > else
+> > > > 	 plane_state->hw.crtc =3D NULL;
+> > > > =
+
+> > > > And the reassignmnet of plane_state->hw.crtc should be removed.
+> > > > =
+
+> > > > Good?
+> > > =
+
+> > > The if-else seems totally pointless.
+> > >
+> > =
+
+> > Hmm yes so we assume that if from_plane_state->uapi.crtc is NULL then c=
+rtc_state->uapi.crtc is NULL?
+> > Then just have  plane_state->hw.crtc =3D crtc_state->uapi.crtc; without=
+ if-else?
+> =
+
+> Actually, re-reading this I don't even understand what this code is doing.
+>
+
+My understanding was that here this gets called by: intel_plane_atomic_chec=
+k() where from_plane_state
+comes from the master_plane_state and then we copy this uapi state to hw st=
+ate for both master and slave planes.
+
+so now if it has a crtc meaning it is the master crtc then we assign =
+
+plane_state->hw.crtc =3D crtc_state->uapi.crtc; else it means it is a slave=
+ crtc and hence hw.crtc would be NULL?
+
+I donno, may be Maarten needs to clarify this.
+
+@Maarten??
+
+Manasi
+ =
+
+> > =
+
+> > Manasi
+> >  =
+
+> > > > =
+
+> > > > > =
+
+> > > > > >  	plane_state->hw.fb =3D from_plane_state->uapi.fb;
+> > > > > >  	if (plane_state->hw.fb)
+> > > > > > @@ -319,15 +325,36 @@ int intel_plane_atomic_check_with_state(c=
+onst struct intel_crtc_state *old_crtc_
+> > > > > >  }
+> > > > > >  =
+
+> > > > > >  static struct intel_crtc *
+> > > > > > -get_crtc_from_states(const struct intel_plane_state *old_plane=
+_state,
+> > > > > > +get_crtc_from_states(struct intel_atomic_state *state,
+> > > > > > +		     const struct intel_plane_state *old_plane_state,
+> > > > > >  		     const struct intel_plane_state *new_plane_state)
+> > > > > >  {
+> > > > > > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev=
+);
+> > > > > > +	struct intel_plane *plane =3D to_intel_plane(new_plane_state-=
+>uapi.plane);
+> > > > > > +
+> > > > > >  	if (new_plane_state->uapi.crtc)
+> > > > > >  		return to_intel_crtc(new_plane_state->uapi.crtc);
+> > > > > >  =
+
+> > > > > >  	if (old_plane_state->uapi.crtc)
+> > > > > >  		return to_intel_crtc(old_plane_state->uapi.crtc);
+> > > > > >  =
+
+> > > > > > +	if (new_plane_state->bigjoiner_slave) {
+> > > > > > +		const struct intel_plane_state *new_master_plane_state =3D
+> > > > > > +			intel_atomic_get_new_plane_state(state, new_plane_state->bi=
+gjoiner_plane);
+> > > > > > +
+> > > > > > +		/* need to use uapi here, new_master_plane_state might not b=
+e copied to hw yet */
+> > > > > > +		if (new_master_plane_state->uapi.crtc)
+> > > > > > +			return intel_get_crtc_for_pipe(dev_priv, plane->pipe);
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	if (old_plane_state->bigjoiner_slave) {
+> > > > > > +		const struct intel_plane_state *old_master_plane_state =3D
+> > > > > > +			intel_atomic_get_old_plane_state(state, old_plane_state->bi=
+gjoiner_plane);
+> > > > > > +
+> > > > > > +		if (old_master_plane_state->uapi.crtc)
+> > > > > > +			return intel_get_crtc_for_pipe(dev_priv, plane->pipe);
+> > > > > > +	}
+> > > > > > +
+> > > > > >  	return NULL;
+> > > > > >  }
+> > > > > >  =
+
+> > > > > > @@ -338,18 +365,33 @@ int intel_plane_atomic_check(struct intel=
+_atomic_state *state,
+> > > > > >  		intel_atomic_get_new_plane_state(state, plane);
+> > > > > >  	const struct intel_plane_state *old_plane_state =3D
+> > > > > >  		intel_atomic_get_old_plane_state(state, plane);
+> > > > > > +	const struct intel_plane_state *new_master_plane_state;
+> > > > > >  	struct intel_crtc *crtc =3D
+> > > > > > -		get_crtc_from_states(old_plane_state, new_plane_state);
+> > > > > > +		get_crtc_from_states(state, old_plane_state,
+> > > > > > +				     new_plane_state);
+> > > > > >  	const struct intel_crtc_state *old_crtc_state;
+> > > > > >  	struct intel_crtc_state *new_crtc_state;
+> > > > > >  =
+
+> > > > > > -	intel_plane_copy_uapi_to_hw_state(new_plane_state, new_plane_=
+state);
+> > > > > > +	if (crtc)
+> > > > > > +		new_crtc_state =3D intel_atomic_get_new_crtc_state(state, cr=
+tc);
+> > > > > > +	else
+> > > > > > +		new_crtc_state =3D NULL;
+> > > > > > +
+> > > > > > +	new_master_plane_state =3D new_plane_state;
+> > > > > > +	if (new_plane_state->bigjoiner_slave)
+> > > > > > +		new_master_plane_state =3D
+> > > > > > +			intel_atomic_get_new_plane_state(state,
+> > > > > > +							 new_plane_state->bigjoiner_plane);
+> > > > > > +
+> > > > > > +	intel_plane_copy_uapi_to_hw_state(new_crtc_state,
+> > > > > > +					  new_plane_state,
+> > > > > > +					  new_master_plane_state);
+> > > > > > +
+> > > > > >  	new_plane_state->uapi.visible =3D false;
+> > > > > >  	if (!crtc)
+> > > > > >  		return 0;
+> > > > > >  =
+
+> > > > > >  	old_crtc_state =3D intel_atomic_get_old_crtc_state(state, crt=
+c);
+> > > > > > -	new_crtc_state =3D intel_atomic_get_new_crtc_state(state, crt=
+c);
+> > > > > >  =
+
+> > > > > >  	return intel_plane_atomic_check_with_state(old_crtc_state,
+> > > > > >  						   new_crtc_state,
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h =
+b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> > > > > > index 59dd1fbb02ea..c2a1e7c86e6c 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> > > > > > @@ -23,7 +23,8 @@ unsigned int intel_plane_pixel_rate(const str=
+uct intel_crtc_state *crtc_state,
+> > > > > >  =
+
+> > > > > >  unsigned int intel_plane_data_rate(const struct intel_crtc_sta=
+te *crtc_state,
+> > > > > >  				   const struct intel_plane_state *plane_state);
+> > > > > > -void intel_plane_copy_uapi_to_hw_state(struct intel_plane_stat=
+e *plane_state,
+> > > > > > +void intel_plane_copy_uapi_to_hw_state(const struct intel_crtc=
+_state *crtc_state,
+> > > > > > +				       struct intel_plane_state *plane_state,
+> > > > > >  				       const struct intel_plane_state *from_plane_state);
+> > > > > >  void intel_update_plane(struct intel_plane *plane,
+> > > > > >  			const struct intel_crtc_state *crtc_state,
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/dri=
+vers/gpu/drm/i915/display/intel_display.c
+> > > > > > index bfc5c890ab4e..6f4a2845674d 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > @@ -3693,7 +3693,7 @@ intel_find_initial_plane_obj(struct intel=
+_crtc *intel_crtc,
+> > > > > >  	drm_framebuffer_get(fb);
+> > > > > >  =
+
+> > > > > >  	plane_state->crtc =3D &intel_crtc->base;
+> > > > > > -	intel_plane_copy_uapi_to_hw_state(intel_state, intel_state);
+> > > > > > +	intel_plane_copy_uapi_to_hw_state(crtc_state, intel_state, in=
+tel_state);
+> > > > > >  =
+
+> > > > > >  	intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRT=
+YFB);
+> > > > > >  =
+
+> > > > > > @@ -12582,26 +12582,180 @@ static bool check_single_encoder_clo=
+ning(struct intel_atomic_state *state,
+> > > > > >  	return true;
+> > > > > >  }
+> > > > > >  =
+
+> > > > > > +static int icl_unset_bigjoiner_plane_links(struct intel_atomic=
+_state *state,
+> > > > > > +					   struct intel_crtc_state *new_crtc_state)
+> > > > > > +{
+> > > > > > +	struct intel_crtc *crtc =3D to_intel_crtc(new_crtc_state->uap=
+i.crtc);
+> > > > > > +	struct intel_plane *plane;
+> > > > > > +
+> > > > > > +	/*
+> > > > > > +	 * Teardown the old bigjoiner plane mappings.
+> > > > > > +	 */
+> > > > > > +	for_each_intel_plane_on_crtc(crtc->base.dev, crtc, plane) {
+> > > > > > +		struct intel_plane_state *plane_state, *other_plane_state;
+> > > > > > +		struct intel_plane *other_plane;
+> > > > > > +
+> > > > > > +		plane_state =3D intel_atomic_get_plane_state(state, plane);
+> > > > > > +		if (IS_ERR(plane_state))
+> > > > > > +			return PTR_ERR(plane_state);
+> > > > > > +
+> > > > > > +		other_plane =3D plane_state->bigjoiner_plane;
+> > > > > > +		if (!other_plane)
+> > > > > > +			continue;
+> > > > > > +
+> > > > > > +		plane_state->bigjoiner_plane =3D NULL;
+> > > > > > +		plane_state->bigjoiner_slave =3D false;
+> > > > > > +
+> > > > > > +		other_plane_state =3D intel_atomic_get_plane_state(state, ot=
+her_plane);
+> > > > > > +		if (IS_ERR(other_plane_state))
+> > > > > > +			return PTR_ERR(other_plane_state);
+> > > > > > +		other_plane_state->bigjoiner_plane =3D NULL;
+> > > > > > +		other_plane_state->bigjoiner_slave =3D false;
+> > > > > > +	}
+> > > > > > +	return 0;
+> > > > > > +}
+> > > > > > +
+> > > > > > +static int icl_set_bigjoiner_plane_links(struct intel_atomic_s=
+tate *state,
+> > > > > > +					 struct intel_crtc_state *new_crtc_state)
+> > > > > > +{
+> > > > > > +	struct intel_plane *plane;
+> > > > > > +	struct intel_crtc *crtc =3D to_intel_crtc(new_crtc_state->uap=
+i.crtc);
+> > > > > > +	struct intel_crtc *other_crtc =3D new_crtc_state->bigjoiner_l=
+inked_crtc;
+> > > > > > +
+> > > > > > +	/*
+> > > > > > +         * Setup and teardown the new bigjoiner plane mappings.
+> > > > > > +         */
+> > > > > > +	for_each_intel_plane_on_crtc(crtc->base.dev, crtc, plane) {
+> > > > > > +		struct intel_plane_state *plane_state;
+> > > > > > +		struct intel_plane *other_plane =3D NULL;
+> > > > > > +		bool found_plane =3D false;
+> > > > > > +
+> > > > > > +		plane_state =3D intel_atomic_get_plane_state(state, plane);
+> > > > > > +		if (IS_ERR(plane_state))
+> > > > > > +			return PTR_ERR(plane_state);
+> > > > > > +
+> > > > > > +		for_each_intel_plane_on_crtc(crtc->base.dev, other_crtc, oth=
+er_plane) {
+> > > > > > +			if (other_plane->id !=3D plane->id)
+> > > > > > +				continue;
+> > > > > > +
+> > > > > > +			plane_state->bigjoiner_plane =3D other_plane;
+> > > > > > +			plane_state->bigjoiner_slave =3D new_crtc_state->bigjoiner_=
+slave;
+> > > > > > +
+> > > > > > +			plane_state =3D intel_atomic_get_plane_state(state, other_p=
+lane);
+> > > > > > +			if (IS_ERR(plane_state))
+> > > > > > +				return PTR_ERR(plane_state);
+> > > > > > +
+> > > > > > +			plane_state->bigjoiner_plane =3D plane;
+> > > > > > +			plane_state->bigjoiner_slave =3D !new_crtc_state->bigjoiner=
+_slave;
+> > > > > > +
+> > > > > > +			found_plane =3D true;
+> > > > > > +			break;
+> > > > > > +		}
+> > > > > > +
+> > > > > > +		if (!found_plane) {
+> > > > > > +			/* All pipes should have identical planes. */
+> > > > > > +			WARN_ON(!found_plane);
+> > > > > > +			return -EINVAL;
+> > > > > > +		}
+> > > > > > +	}
+> > > > > > +	return 0;
+> > > > > > +}
+> > > > > > +
+> > > > > > +static int icl_add_dependent_planes(struct intel_atomic_state =
+*state,
+> > > > > > +				    struct intel_plane_state *plane_state)
+> > > > > > +{
+> > > > > > +	struct intel_plane_state *new_plane_state;
+> > > > > > +	struct intel_plane *plane;
+> > > > > > +	int ret =3D 0;
+> > > > > > +
+> > > > > > +	plane =3D plane_state->bigjoiner_plane;
+> > > > > > +	if (plane && !intel_atomic_get_new_plane_state(state, plane))=
+ {
+> > > > > > +		new_plane_state =3D intel_atomic_get_plane_state(state, plan=
+e);
+> > > > > > +		if (IS_ERR(new_plane_state))
+> > > > > > +			return PTR_ERR(new_plane_state);
+> > > > > > +
+> > > > > > +		ret =3D 1;
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	plane =3D plane_state->planar_linked_plane;
+> > > > > > +	if (plane && !intel_atomic_get_new_plane_state(state, plane))=
+ {
+> > > > > > +		new_plane_state =3D intel_atomic_get_plane_state(state, plan=
+e);
+> > > > > > +		if (IS_ERR(new_plane_state))
+> > > > > > +			return PTR_ERR(new_plane_state);
+> > > > > > +
+> > > > > > +		ret =3D 1;
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	return ret;
+> > > > > > +}
+> > > > > > +
+> > > > > >  static int icl_add_linked_planes(struct intel_atomic_state *st=
+ate)
+> > > > > >  {
+> > > > > > -	struct intel_plane *plane, *linked;
+> > > > > > -	struct intel_plane_state *plane_state, *linked_plane_state;
+> > > > > > +	struct intel_plane *plane;
+> > > > > > +	struct intel_plane_state *old_plane_state, *new_plane_state;
+> > > > > > +	struct intel_crtc *crtc, *linked_crtc;
+> > > > > > +	struct intel_crtc_state *old_crtc_state, *new_crtc_state, *li=
+nked_crtc_state;
+> > > > > > +	bool added;
+> > > > > >  	int i;
+> > > > > >  =
+
+> > > > > > -	for_each_new_intel_plane_in_state(state, plane, plane_state, =
+i) {
+> > > > > > -		linked =3D plane_state->planar_linked_plane;
+> > > > > > +	/*
+> > > > > > +	 * Iteratively add plane_state->linked_plane and plane_state-=
+>bigjoiner_plane
+> > > > > > +	 *
+> > > > > > +	 * This needs to be done repeatedly, because of is a funny in=
+teraction;
+> > > > > > +	 * the Y-plane may be assigned differently on the other bigjo=
+iner crtc,
+> > > > > > +	 * and we could end up with the following evil recursion, whe=
+n only adding a
+> > > > > > +	 * single plane to state:
+> > > > > > +         *
+> > > > > > +	 * XRGB8888 master plane 6 adds NV12 slave Y-plane 6, which a=
+dds slave UV plane 0,
+> > > > > > +	 * which adds master UV plane 0, which adds master Y-plane 7,=
+ which adds XRGB8888
+> > > > > > +	 *slave plane 7.
+> > > > > =
+
+> > > > > Feels like this has become super complicated by mixing up the big=
+joiner
+> > > > > and Y plane cases. Can't we just handle them separately. First de=
+al with
+> > > > > bigjoiner planes, then let each crtc handle its Y-planes independ=
+ently?
+> > > > >
+> > > > =
+
+> > > > Yea this is a complex algorithm here. But if functionally it looks =
+right
+> > > > I dont feel comfortable detangling it since originally written by M=
+aarten.
+> > > > =
+
+> > > > Manasi
+> > > >  =
+
+> > > > > > +	 *
+> > > > > > +	 * We could pull in even more because of old_plane_state vs n=
+ew_plane_state.
+> > > > > > +	 *
+> > > > > > +	 * Max depth =3D 5 (or 7 for evil case) in this case.
+> > > > > > +	 * Number of passes will be less, because newly added planes =
+show up in the
+> > > > > > +	 * same iteration round when added_plane->index > plane->inde=
+x.
+> > > > > > +	 */
+> > > > > > +	do {
+> > > > > > +		added =3D false;
+> > > > > >  =
+
+> > > > > > -		if (!linked)
+> > > > > > -			continue;
+> > > > > > +		for_each_oldnew_intel_plane_in_state(state, plane, old_plane=
+_state, new_plane_state, i) {
+> > > > > > +			int ret, ret2;
+> > > > > > +
+> > > > > > +			ret =3D icl_add_dependent_planes(state, old_plane_state);
+> > > > > > +			if (ret < 0)
+> > > > > > +				return ret;
+> > > > > > +
+> > > > > > +			ret2 =3D icl_add_dependent_planes(state, new_plane_state);
+> > > > > > +			if (ret2 < 0)
+> > > > > > +				return ret2;
+> > > > > > +
+> > > > > > +			added |=3D ret || ret2;
+> > > > > > +		}
+> > > > > > +	} while (added);
+> > > > > > +
+> > > > > > +	/*
+> > > > > > +         * Make sure bigjoiner slave crtc's are also pulled in=
+. This is not done automatically
+> > > > > > +         * when adding slave planes, because plane_state->crtc=
+ is null.
+> > > > > > +         */
+> > > > > > +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_sta=
+te, new_crtc_state, i) {
+> > > > > > +		linked_crtc =3D old_crtc_state->bigjoiner_linked_crtc;
+> > > > > > +		if (linked_crtc) {
+> > > > > > +			linked_crtc_state =3D
+> > > > > > +				intel_atomic_get_crtc_state(&state->base, linked_crtc);
+> > > > > > +
+> > > > > > +			if (IS_ERR(linked_crtc_state))
+> > > > > > +				return PTR_ERR(linked_crtc_state);
+> > > > > > +		}
+> > > > > >  =
+
+> > > > > > -		linked_plane_state =3D intel_atomic_get_plane_state(state, l=
+inked);
+> > > > > > -		if (IS_ERR(linked_plane_state))
+> > > > > > -			return PTR_ERR(linked_plane_state);
+> > > > > > +		linked_crtc =3D new_crtc_state->bigjoiner_linked_crtc;
+> > > > > > +		if (linked_crtc && linked_crtc !=3D old_crtc_state->bigjoine=
+r_linked_crtc) {
+> > > > > > +			linked_crtc_state =3D
+> > > > > > +				intel_atomic_get_crtc_state(&state->base, linked_crtc);
+> > > > > >  =
+
+> > > > > > -		drm_WARN_ON(state->base.dev,
+> > > > > > -			    linked_plane_state->planar_linked_plane !=3D plane);
+> > > > > > -		drm_WARN_ON(state->base.dev,
+> > > > > > -			    linked_plane_state->planar_slave =3D=3D plane_state->pl=
+anar_slave);
+> > > > > > +			if (IS_ERR(linked_crtc_state))
+> > > > > > +				return PTR_ERR(linked_crtc_state);
+> > > > > > +		}
+> > > > > >  	}
+> > > > > >  =
+
+> > > > > >  	return 0;
+> > > > > > @@ -12641,6 +12795,7 @@ static int icl_check_nv12_planes(struct=
+ intel_crtc_state *crtc_state)
+> > > > > >  =
+
+> > > > > >  	for_each_new_intel_plane_in_state(state, plane, plane_state, =
+i) {
+> > > > > >  		struct intel_plane_state *linked_state =3D NULL;
+> > > > > > +		struct intel_plane_state *master_plane_state;
+> > > > > >  =
+
+> > > > > >  		if (plane->pipe !=3D crtc->pipe ||
+> > > > > >  		    !(crtc_state->nv12_planes & BIT(plane->id)))
+> > > > > > @@ -12684,7 +12839,14 @@ static int icl_check_nv12_planes(struc=
+t intel_crtc_state *crtc_state)
+> > > > > >  		memcpy(linked_state->color_plane, plane_state->color_plane,
+> > > > > >  		       sizeof(linked_state->color_plane));
+> > > > > >  =
+
+> > > > > > -		intel_plane_copy_uapi_to_hw_state(linked_state, plane_state);
+> > > > > > +		master_plane_state =3D plane_state;
+> > > > > > +		if (plane_state->bigjoiner_slave)
+> > > > > > +			master_plane_state =3D
+> > > > > > +				intel_atomic_get_new_plane_state(state,
+> > > > > > +								 plane_state->bigjoiner_plane);
+> > > > > > +
+> > > > > > +		intel_plane_copy_uapi_to_hw_state(crtc_state, linked_state,
+> > > > > > +						  master_plane_state);
+> > > > > >  		linked_state->uapi.src =3D plane_state->uapi.src;
+> > > > > >  		linked_state->uapi.dst =3D plane_state->uapi.dst;
+> > > > > >  =
+
+> > > > > > @@ -15028,6 +15190,7 @@ static int intel_atomic_check_bigjoiner=
+(struct intel_atomic_state *state,
+> > > > > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev=
+);
+> > > > > >  	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
+> > > > > >  	struct intel_crtc *slave, *master;
+> > > > > > +	int ret;
+> > > > > >  =
+
+> > > > > >  	/* slave being enabled, is master is still claiming this crtc=
+? */
+> > > > > >  	if (old_crtc_state->bigjoiner_slave) {
+> > > > > > @@ -15038,6 +15201,12 @@ static int intel_atomic_check_bigjoine=
+r(struct intel_atomic_state *state,
+> > > > > >  			goto claimed;
+> > > > > >  	}
+> > > > > >  =
+
+> > > > > > +	if (old_crtc_state->bigjoiner) {
+> > > > > > +		ret =3D icl_unset_bigjoiner_plane_links(state, new_crtc_stat=
+e);
+> > > > > > +		if (ret)
+> > > > > > +			return ret;
+> > > > > > +	}
+> > > > > > +
+> > > > > >  	if (!new_crtc_state->bigjoiner)
+> > > > > >  		return 0;
+> > > > > >  =
+
+> > > > > > @@ -15062,7 +15231,11 @@ static int intel_atomic_check_bigjoine=
+r(struct intel_atomic_state *state,
+> > > > > >  	DRM_DEBUG_KMS("[CRTC:%d:%s] Used as slave for big joiner\n",
+> > > > > >  		      slave->base.base.id, slave->base.name);
+> > > > > >  =
+
+> > > > > > -	return copy_bigjoiner_crtc_state(slave_crtc_state, new_crtc_s=
+tate);
+> > > > > > +	ret =3D copy_bigjoiner_crtc_state(slave_crtc_state, new_crtc_=
+state);
+> > > > > > +	if (ret)
+> > > > > > +		return ret;
+> > > > > > +
+> > > > > > +	return icl_set_bigjoiner_plane_links(state, new_crtc_state);
+> > > > > >  =
+
+> > > > > >  claimed:
+> > > > > >  	DRM_DEBUG_KMS("[CRTC:%d:%s] Slave is enabled as normal CRTC, =
+but "
+> > > > > > @@ -16531,7 +16704,7 @@ intel_legacy_cursor_update(struct drm_p=
+lane *_plane,
+> > > > > >  	new_plane_state->uapi.crtc_w =3D crtc_w;
+> > > > > >  	new_plane_state->uapi.crtc_h =3D crtc_h;
+> > > > > >  =
+
+> > > > > > -	intel_plane_copy_uapi_to_hw_state(new_plane_state, new_plane_=
+state);
+> > > > > > +	intel_plane_copy_uapi_to_hw_state(new_crtc_state, new_plane_s=
+tate, new_plane_state);
+> > > > > >  =
+
+> > > > > >  	ret =3D intel_plane_atomic_check_with_state(crtc_state, new_c=
+rtc_state,
+> > > > > >  						  old_plane_state, new_plane_state);
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/dri=
+vers/gpu/drm/i915/display/intel_display.h
+> > > > > > index e890c8fb779b..78010ee364f3 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > > > > > @@ -467,12 +467,20 @@ enum phy_fia {
+> > > > > >  		for_each_if(crtc)
+> > > > > >  =
+
+> > > > > >  #define intel_atomic_crtc_state_for_each_plane_state( \
+> > > > > > -		  plane, plane_state, \
+> > > > > > -		  crtc_state) \
+> > > > > > -	for_each_intel_plane_mask(((crtc_state)->uapi.state->dev), (p=
+lane), \
+> > > > > > -				((crtc_state)->uapi.plane_mask)) \
+> > > > > > -		for_each_if ((plane_state =3D \
+> > > > > > -			      to_intel_plane_state(__drm_atomic_get_current_plane_s=
+tate((crtc_state)->uapi.state, &plane->base))))
+> > > > > > +	plane, iter, plane_state, \
+> > > > > > +	crtc_state) \
+> > > > > > +	for_each_intel_plane_mask(((crtc_state)->uapi.state->dev), (i=
+ter), \
+> > > > > > +				  (((crtc_state)->bigjoiner_slave ?	\
+> > > > > > +				    intel_atomic_get_new_crtc_state(	\
+> > > > > > +					    to_intel_atomic_state((crtc_state)->uapi.state), \
+> > > > > > +					    (crtc_state)->bigjoiner_linked_crtc) : \
+> > > > > > +				    (crtc_state))->uapi.plane_mask))	\
+> > > > > > +	for_each_if ((((plane_state) =3D \
+> > > > > > +		       to_intel_plane_state(__drm_atomic_get_current_plane_s=
+tate((crtc_state)->uapi.state, &iter->base))), \
+> > > > > > +		      ((plane) =3D (plane_state)->bigjoiner_slave ? (plane_s=
+tate)->bigjoiner_plane : (iter)), \
+> > > > > > +		      ((plane_state) =3D (plane_state)->bigjoiner_slave ? \
+> > > > > > +		       to_intel_plane_state(__drm_atomic_get_current_plane_s=
+tate((crtc_state)->uapi.state, &plane->base)) : \
+> > > > > > +		       (plane_state))))
+> > > > > >  =
+
+> > > > > >  #define for_each_new_intel_connector_in_state(__state, connect=
+or, new_connector_state, __i) \
+> > > > > >  	for ((__i) =3D 0; \
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h=
+ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > index 943709f192f7..6957eac140cd 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > @@ -575,6 +575,17 @@ struct intel_plane_state {
+> > > > > >  	 */
+> > > > > >  	struct intel_plane *planar_linked_plane;
+> > > > > >  =
+
+> > > > > > +	/*
+> > > > > > +	 * bigjoiner_plane:
+> > > > > > +	 *
+> > > > > > +	 * When 2 pipes are joined in a bigjoiner configuration,
+> > > > > > +	 * points to the same plane on the other pipe.
+> > > > > > +	 *
+> > > > > > +	 * bigjoiner_slave is set on the slave pipe.
+> > > > > > +	 */
+> > > > > > +	struct intel_plane *bigjoiner_plane;
+> > > > > > +	u32 bigjoiner_slave;
+> > > > > > +
+> > > > > >  	/*
+> > > > > >  	 * planar_slave:
+> > > > > >  	 * If set don't update use the linked plane's state for updat=
+ing
+> > > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/=
+i915/intel_pm.c
+> > > > > > index d1263ebd3811..a3e3ac429fd4 100644
+> > > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > > > > > @@ -3150,7 +3150,7 @@ static int ilk_compute_pipe_wm(struct int=
+el_crtc_state *crtc_state)
+> > > > > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uap=
+i.crtc->dev);
+> > > > > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.cr=
+tc);
+> > > > > >  	struct intel_pipe_wm *pipe_wm;
+> > > > > > -	struct intel_plane *plane;
+> > > > > > +	struct intel_plane *plane, *iter;
+> > > > > >  	const struct intel_plane_state *plane_state;
+> > > > > >  	const struct intel_plane_state *pristate =3D NULL;
+> > > > > >  	const struct intel_plane_state *sprstate =3D NULL;
+> > > > > > @@ -3160,7 +3160,7 @@ static int ilk_compute_pipe_wm(struct int=
+el_crtc_state *crtc_state)
+> > > > > >  =
+
+> > > > > >  	pipe_wm =3D &crtc_state->wm.ilk.optimal;
+> > > > > >  =
+
+> > > > > > -	intel_atomic_crtc_state_for_each_plane_state(plane, plane_sta=
+te, crtc_state) {
+> > > > > > +	intel_atomic_crtc_state_for_each_plane_state(plane, iter, pla=
+ne_state, crtc_state) {
+> > > > > >  		if (plane->base.type =3D=3D DRM_PLANE_TYPE_PRIMARY)
+> > > > > >  			pristate =3D plane_state;
+> > > > > >  		else if (plane->base.type =3D=3D DRM_PLANE_TYPE_OVERLAY)
+> > > > > > @@ -3879,7 +3879,7 @@ static bool skl_crtc_can_enable_sagv(cons=
+t struct intel_crtc_state *crtc_state)
+> > > > > >  {
+> > > > > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.cr=
+tc);
+> > > > > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> > > > > > -	struct intel_plane *plane;
+> > > > > > +	struct intel_plane *plane, *iter;
+> > > > > >  	const struct intel_plane_state *plane_state;
+> > > > > >  	int level, latency;
+> > > > > >  =
+
+> > > > > > @@ -3892,7 +3892,7 @@ static bool skl_crtc_can_enable_sagv(cons=
+t struct intel_crtc_state *crtc_state)
+> > > > > >  	if (crtc_state->hw.pipe_mode.flags & DRM_MODE_FLAG_INTERLACE)
+> > > > > >  		return false;
+> > > > > >  =
+
+> > > > > > -	intel_atomic_crtc_state_for_each_plane_state(plane, plane_sta=
+te, crtc_state) {
+> > > > > > +	intel_atomic_crtc_state_for_each_plane_state(plane, iter, pla=
+ne_state, crtc_state) {
+> > > > > >  		const struct skl_plane_wm *wm =3D
+> > > > > >  			&crtc_state->wm.skl.optimal.planes[plane->id];
+> > > > > >  =
+
+> > > > > > @@ -4714,12 +4714,12 @@ skl_get_total_relative_data_rate(struct=
+ intel_crtc_state *crtc_state,
+> > > > > >  				 u64 *plane_data_rate,
+> > > > > >  				 u64 *uv_plane_data_rate)
+> > > > > >  {
+> > > > > > -	struct intel_plane *plane;
+> > > > > > +	struct intel_plane *plane, *iter;
+> > > > > >  	const struct intel_plane_state *plane_state;
+> > > > > >  	u64 total_data_rate =3D 0;
+> > > > > >  =
+
+> > > > > >  	/* Calculate and cache data rate for each plane */
+> > > > > > -	intel_atomic_crtc_state_for_each_plane_state(plane, plane_sta=
+te, crtc_state) {
+> > > > > > +	intel_atomic_crtc_state_for_each_plane_state(plane, iter, pla=
+ne_state, crtc_state) {
+> > > > > >  		enum plane_id plane_id =3D plane->id;
+> > > > > >  		u64 rate;
+> > > > > >  =
+
+> > > > > > @@ -4741,12 +4741,12 @@ static u64
+> > > > > >  icl_get_total_relative_data_rate(struct intel_crtc_state *crtc=
+_state,
+> > > > > >  				 u64 *plane_data_rate)
+> > > > > >  {
+> > > > > > -	struct intel_plane *plane;
+> > > > > > +	struct intel_plane *plane, *iter;
+> > > > > >  	const struct intel_plane_state *plane_state;
+> > > > > >  	u64 total_data_rate =3D 0;
+> > > > > >  =
+
+> > > > > >  	/* Calculate and cache data rate for each plane */
+> > > > > > -	intel_atomic_crtc_state_for_each_plane_state(plane, plane_sta=
+te, crtc_state) {
+> > > > > > +	intel_atomic_crtc_state_for_each_plane_state(plane, iter, pla=
+ne_state, crtc_state) {
+> > > > > >  		enum plane_id plane_id =3D plane->id;
+> > > > > >  		u64 rate;
+> > > > > >  =
+
+> > > > > > @@ -5593,7 +5593,7 @@ static int skl_build_pipe_wm(struct intel=
+_crtc_state *crtc_state)
+> > > > > >  {
+> > > > > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uap=
+i.crtc->dev);
+> > > > > >  	struct skl_pipe_wm *pipe_wm =3D &crtc_state->wm.skl.optimal;
+> > > > > > -	struct intel_plane *plane;
+> > > > > > +	struct intel_plane *plane, *iter;
+> > > > > >  	const struct intel_plane_state *plane_state;
+> > > > > >  	int ret;
+> > > > > >  =
+
+> > > > > > @@ -5603,7 +5603,7 @@ static int skl_build_pipe_wm(struct intel=
+_crtc_state *crtc_state)
+> > > > > >  	 */
+> > > > > >  	memset(pipe_wm->planes, 0, sizeof(pipe_wm->planes));
+> > > > > >  =
+
+> > > > > > -	intel_atomic_crtc_state_for_each_plane_state(plane, plane_sta=
+te,
+> > > > > > +	intel_atomic_crtc_state_for_each_plane_state(plane, iter, pla=
+ne_state,
+> > > > > >  						     crtc_state) {
+> > > > > >  =
+
+> > > > > >  		if (INTEL_GEN(dev_priv) >=3D 11)
+> > > > > > -- =
+
+> > > > > > 2.19.1
+> > > > > > =
+
+> > > > > > _______________________________________________
+> > > > > > Intel-gfx mailing list
+> > > > > > Intel-gfx@lists.freedesktop.org
+> > > > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > > > > =
+
+> > > > > -- =
+
+> > > > > Ville Syrj=E4l=E4
+> > > > > Intel
+> > > =
+
+> > > -- =
+
+> > > Ville Syrj=E4l=E4
+> > > Intel
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
