@@ -2,54 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D5C926A8E3
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 17:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0661526A8F3
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 17:39:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FFB46E868;
-	Tue, 15 Sep 2020 15:34:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7876F6E86F;
+	Tue, 15 Sep 2020 15:39:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com
- [IPv6:2607:f8b0:4864:20::e44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 834B06E239
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 12:53:40 +0000 (UTC)
-Received: by mail-vs1-xe44.google.com with SMTP id x203so1805958vsc.11
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 05:53:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=hVw5oFpZQxlIPS34GtsTwPTcUKJcK/naikR5mIzdcG8=;
- b=sFZVpzKN7psJXeyvNzH7SERnOdmFLVumI6DSTp1n6xTZkbd/Kht4080XC/pRPiLL8O
- gUhEWCubO4RKD+wW5AQjsQXrYWQY1gUyFV1iQODHKHacoTMrDuBDe4kwOec6lHtgyQLm
- tD3rslYWhrhad5BxVom4T0iNJTqOH3IhBNndBs+d203IAq/BFYM5wsn31GyWcH1dc1xe
- OoHl9/uzg0oG63l5mJ7WEOwILpERqZ8GR2yMKxf92KZdAS31/I3R0lH9y5i/qpoChG5A
- 6loAfmQfZUrFFX2tKkEd0ODdi8FaVIIAqEPGykkq0bCwKPkuJKXO7JUZjcz5sTcB/RHI
- 6u5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=hVw5oFpZQxlIPS34GtsTwPTcUKJcK/naikR5mIzdcG8=;
- b=XH3Z3Hyi3fzO97ik5L0LuiBDKmr82yMgoX51NrP7fDHGWCLzLTQeqpK1VAQF5vps8h
- GYOEV15DAQfZ/X5pEi50mo64I8yRd4i8FOCpDRA0jqKPEdi4o3cjrxKJ9OjLhn9t9TAY
- c1H35Uw61QxbIexiqp3RbUCzbfE1npBNkvMrY98LgeAJV90JeQkAP5ozb9xSDqGABALn
- vfrP9LDgY41rti6x0z3OP63/ZENRFpdhAbszAbMkcSm8UINZxHR7V/iC9E5ebxwPn1FP
- SrXqzPYZXEOO6/eHsvEXDcPDsLXNLgGFGqvBy7DeW7iirXQQr3uGI32D9CoRy0ToVe1S
- MmMg==
-X-Gm-Message-State: AOAM531PvBJ4FS72XD36d1D/atQE9mJxR93iCvgUyYjsLItNmLAyOY/B
- jDsARSvOv1QsIK96VX2571OhlA9Lf5bbeW0MToZ7pg==
-X-Google-Smtp-Source: ABdhPJxjmcbfNwvT9QQ2mNrQCHtqVf/08lf9rc87+6FSs4ZSQ/7xgWjyWXM74vSzJsqHNxK/sUvLTnWPGgnD/Y3TFcY=
-X-Received: by 2002:a67:80d2:: with SMTP id b201mr10001565vsd.12.1600174419320; 
- Tue, 15 Sep 2020 05:53:39 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D2576E2EA;
+ Tue, 15 Sep 2020 15:39:46 +0000 (UTC)
+IronPort-SDR: j2w8gwsLknJjThueWeN+CycD8eDHWZ7zsYiGqgpDbw2BfaFPD2rz9fXtcrNCs0iVbL+q6BP8AY
+ 2Bk7C4CuW3jg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9745"; a="156672537"
+X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="156672537"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2020 08:39:44 -0700
+IronPort-SDR: b8UVpXPgX6SKn1lVolwbCLPonX7z0EpuDyNwqW2YaCGp6jCl4QX49MgpJHjCQqmphEEYZFlr9z
+ vN0sJ0QsCv7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="507615646"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by fmsmga005.fm.intel.com with ESMTP; 15 Sep 2020 08:39:43 -0700
+Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 15 Sep 2020 16:39:41 +0100
+Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
+ pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.1713.004;
+ Tue, 15 Sep 2020 23:39:39 +0800
+From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>, "Winiarski,
+ Michal" <michal.winiarski@intel.com>, "igt-dev@lists.freedesktop.org"
+ <igt-dev@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH i-g-t v6 00/24] tests/core_hotunplug: Fixes
+ and enhancements
+Thread-Index: AQHWis2XBQIOfhh3CEyHd3TuxdRkmqlomVdQgAAz0ACAAQnU4A==
+Date: Tue, 15 Sep 2020 15:39:39 +0000
+Message-ID: <ce0d021cbe9947ef87338edf220a11d5@intel.com>
+References: <20200911103039.4574-1-janusz.krzysztofik@linux.intel.com>
+ <160010748706.10255.10406123224788516828@macragge.hardline.pl>
+ <956a80e7fc5da572b7bffd2bec3c7b542516e7a3.camel@linux.intel.com>
+ <e5d435d1df9d4b5bbb72bc83413a5b6b@intel.com>
+ <8e2d599c4e144327141ec90d793932d7dcc894e0.camel@linux.intel.com>
+In-Reply-To: <8e2d599c4e144327141ec90d793932d7dcc894e0.camel@linux.intel.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-References: <20200910183318.20139-1-willy@infradead.org>
- <alpine.LSU.2.11.2009150059310.1550@eggly.anvils>
-In-Reply-To: <alpine.LSU.2.11.2009150059310.1550@eggly.anvils>
-From: Naresh Kamboju <naresh.kamboju@linaro.org>
-Date: Tue, 15 Sep 2020 18:23:27 +0530
-Message-ID: <CA+G9fYvqbKPHoYbU7w2bPkOF_vgbYgEHavLDxXQ4O5xUFHGCuw@mail.gmail.com>
-To: Hugh Dickins <hughd@google.com>, Matthew Wilcox <willy@infradead.org>
-X-Mailman-Approved-At: Tue, 15 Sep 2020 15:34:53 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 0/8] Return head pages from find_*_entry
+Subject: Re: [Intel-gfx] [PATCH i-g-t v6 00/24] tests/core_hotunplug: Fixes
+ and enhancements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,292 +72,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
- William Kucharski <william.kucharski@oracle.com>,
- intel-gfx@lists.freedesktop.org, Huang Ying <ying.huang@intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm <linux-mm@kvack.org>,
- Linux-Next Mailing List <linux-next@vger.kernel.org>,
- Matthew Auld <matthew.auld@intel.com>, lkft-triage@lists.linaro.org,
- Johannes Weiner <hannes@cmpxchg.org>, Cgroups <cgroups@vger.kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, ricardo.canuelo@collabora.com,
- Alexey Dobriyan <adobriyan@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 15 Sep 2020 at 13:56, Hugh Dickins <hughd@google.com> wrote:
->
-> On Thu, 10 Sep 2020, Matthew Wilcox (Oracle) wrote:
->
-> > This patch series started out as part of the THP patch set, but it has
-> > some nice effects along the way and it seems worth splitting it out and
-> > submitting separately.
-> >
-> > Currently find_get_entry() and find_lock_entry() return the page
-> > corresponding to the requested index, but the first thing most callers do
-> > is find the head page, which we just threw away.  As part of auditing
-> > all the callers, I found some misuses of the APIs and some plain
-> > inefficiencies that I've fixed.
-> >
-> > The diffstat is unflattering, but I added more kernel-doc and a new wrapper.
-> >
-> > v2:
-> >  - Rework how shmem_getpage_gfp() handles getting a head page back from
-> >    find_lock_entry()
-> >  - Renamed find_get_swap_page() to find_get_incore_page()
-> >  - Make sure find_get_incore_page() doesn't return a head page
-> >  - Fix the missing include of linux/shmem_fs.h
-> >  - Move find_get_entry and find_lock_entry prototypes to mm/internal.h
-> >  - Rename thp_valid_index() to thp_contains()
-> >  - Fix thp_contains() for hugetlbfs and swapcache
-> >  - Add find_lock_head() wrapper around pagecache_get_page()
-> >
-> > Matthew Wilcox (Oracle) (8):
-> >   mm: Factor find_get_incore_page out of mincore_page
-> >   mm: Use find_get_incore_page in memcontrol
-> >   mm: Optimise madvise WILLNEED
-> >   proc: Optimise smaps for shmem entries
-> >   i915: Use find_lock_page instead of find_lock_entry
-> >   mm: Convert find_get_entry to return the head page
-> >   mm/shmem: Return head page from find_lock_entry
-> >   mm: Add find_lock_head
-
-While running kselftest mincore tests the following kernel BUG reported on the
-linux next-20200915 tag on x86_64, i386 and arm64.
-
-metadata:
-  git branch: master
-  git repo: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-  git commit: 6b02addb1d1748d21dd1261e46029b264be4e5a0
-  git describe: next-20200915
-  make_kernelversion: 5.9.0-rc5
-  kernel-config:
-http://snapshots.linaro.org/openembedded/lkft/lkft/sumo/intel-corei7-64/lkft/linux-next/860/config
-
-Test case:
----------------
-
- * Tests the user interface. This test triggers most of the documented
- * error conditions in mincore().
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/plain/tools/testing/selftests/mincore/mincore_selftest.c
-
-kernel BUG:
------------------
-[  710.472860] kselftest: Running tests in mincore
-[  710.554790] BUG: kernel NULL pointer dereference, address: 0000000000000000
-[  710.561765] #PF: supervisor read access in kernel mode
-[  710.566920] #PF: error_code(0x0000) - not-present page
-[  710.572065] PGD 80000003fd5b9067 P4D 80000003fd5b9067 PUD 45903f067 PMD 0
-[  710.578957] Oops: 0000 [#1] SMP PTI
-[  710.582450] CPU: 0 PID: 19025 Comm: mincore_selftes Tainted: G
-  W     K   5.9.0-rc5-next-20200915 #1
-[  710.592094] Hardware name: Supermicro SYS-5019S-ML/X11SSH-F, BIOS
-2.0b 07/27/2017
-[  710.599574] RIP: 0010:PageHuge+0x6/0x40
-[  710.603411] Code: c3 0f 1f 00 0f 1f 44 00 00 55 48 89 d6 48 89 e5
-e8 ef fe ff ff 5d c3 0f 1f 00 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44
-00 00 55 <48> 8b 07 48 89 e5 a9 00 00 01 00 75 09 48 8b 47 08 83 e0 01
-74 17
-[  710.622149] RSP: 0018:ffffb0e2002bfcc0 EFLAGS: 00010246
-[  710.627373] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
-[  710.634498] RDX: ffff9f231b2518c0 RSI: ffffffffa272b340 RDI: 0000000000000000
-[  710.641620] RBP: ffffb0e2002bfce8 R08: 0000000000000002 R09: 0000000000000000
-[  710.648747] R10: ffffb0e2002bfb20 R11: ffffffffa272b340 R12: ffff9f23193c5e68
-[  710.655876] R13: 0000000000000000 R14: 0000000000000001 R15: 0000000000000001
-[  710.663003] FS:  00007fa4c9ea24c0(0000) GS:ffff9f231fc00000(0000)
-knlGS:0000000000000000
-[  710.671088] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  710.676824] CR2: 0000000000000000 CR3: 00000004044d0004 CR4: 00000000003706f0
-[  710.683949] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[  710.691073] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[  710.698196] Call Trace:
-[  710.700644]  ? find_get_incore_page+0xc6/0x120
-[  710.705089]  mincore_page+0x12/0x60
-[  710.708580]  __mincore_unmapped_range+0x78/0xc0
-[  710.713105]  mincore_pte_range+0x269/0x300
-[  710.717206]  __walk_page_range+0x5ab/0xb60
-[  710.721308]  walk_page_range+0xab/0x150
-[  710.725152]  __x64_sys_mincore+0x13c/0x330
-[  710.729251]  do_syscall_64+0x37/0x50
-[  710.732831]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-[  710.737882] RIP: 0033:0x7fa4c99be2d7
-[  710.741462] Code: 73 01 c3 48 8b 0d c1 fb 2b 00 f7 d8 64 89 01 48
-83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 b8 1b 00 00
-00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 91 fb 2b 00 f7 d8 64 89
-01 48
-[  710.760206] RSP: 002b:00007ffcb103baf8 EFLAGS: 00000203 ORIG_RAX:
-000000000000001b
-[  710.767770] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fa4c99be2d7
-[  710.774897] RDX: 0000000000000000 RSI: 0000000000001000 RDI: 00007fa4c9ea6000
-[  710.782020] RBP: 00007ffcb103bc40 R08: 00000000ffffffff R09: 0000000000000000
-[  710.789144] R10: 0000000000000021 R11: 0000000000000203 R12: 0000000000400d00
-[  710.796268] R13: 00007ffcb103be10 R14: 0000000000000000 R15: 0000000000000000
-[  710.803395] Modules linked in: sch_fq 8021q iptable_filter xt_mark
-ip_tables cls_bpf sch_ingress veth algif_hash x86_pkg_temp_thermal
-fuse [last unloaded: memory_notifier_error_inject]
-[  710.819814] CR2: 0000000000000000
-[  710.823128] ---[ end trace 67d1a6d0ea1b24e3 ]---
-[  710.827746] RIP: 0010:PageHuge+0x6/0x40
-[  710.831584] Code: c3 0f 1f 00 0f 1f 44 00 00 55 48 89 d6 48 89 e5
-e8 ef fe ff ff 5d c3 0f 1f 00 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44
-00 00 55 <48> 8b 07 48 89 e5 a9 00 00 01 00 75 09 48 8b 47 08 83 e0 01
-74 17
-[  710.850322] RSP: 0018:ffffb0e2002bfcc0 EFLAGS: 00010246
-[  710.855546] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
-[  710.862672] RDX: ffff9f231b2518c0 RSI: ffffffffa272b340 RDI: 0000000000000000
-[  710.869803] RBP: ffffb0e2002bfce8 R08: 0000000000000002 R09: 0000000000000000
-[  710.876928] R10: ffffb0e2002bfb20 R11: ffffffffa272b340 R12: ffff9f23193c5e68
-[  710.884050] R13: 0000000000000000 R14: 0000000000000001 R15: 0000000000000001
-[  710.891175] FS:  00007fa4c9ea24c0(0000) GS:ffff9f231fc00000(0000)
-knlGS:0000000000000000
-[  710.899253] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  710.904990] CR2: 0000000000000000 CR3: 00000004044d0004 CR4: 00000000003706f0
-[  710.912113] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[  710.919236] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[  710.926360] note: mincore_selftes[19025] exited with preempt_count 1
-[  710.932704] BUG: sleeping function called from invalid context at
-/usr/src/kernel/include/linux/percpu-rwsem.h:49
-[  710.942950] in_atomic(): 0, irqs_disabled(): 1, non_block: 0, pid:
-19025, name: mincore_selftes
-[  710.951631] INFO: lockdep is turned off.
-[  710.955551] irq event stamp: 190
-[  710.958785] hardirqs last  enabled at (189): [<ffffffffa0bda53c>]
-get_page_from_freelist+0x24c/0x14b0
-[  710.967995] hardirqs last disabled at (190): [<ffffffffa18c7921>]
-irqentry_enter+0x21/0x50
-[  710.976247] softirqs last  enabled at (36): [<ffffffffa1c00308>]
-__do_softirq+0x308/0x42a
-[  710.984419] softirqs last disabled at (11): [<ffffffffa1a00f82>]
-asm_call_on_stack+0x12/0x20
-[  710.992852] CPU: 0 PID: 19025 Comm: mincore_selftes Tainted: G
-D W     K   5.9.0-rc5-next-20200915 #1
-[  711.002496] Hardware name: Supermicro SYS-5019S-ML/X11SSH-F, BIOS
-2.0b 07/27/2017
-[  711.009967] Call Trace:
-[  711.012412]  dump_stack+0x7d/0x9f
-[  711.015724]  ___might_sleep+0x163/0x250
-[  711.019562]  __might_sleep+0x4a/0x80
-[  711.023141]  exit_signals+0x33/0x2f0
-[  711.026713]  do_exit+0xa9/0xcb0
-[  711.029858]  ? __x64_sys_mincore+0x13c/0x330
-[  711.034125]  rewind_stack_do_exit+0x17/0x20
-[  711.038308] RIP: 0033:0x7fa4c99be2d7
-[  711.041888] Code: 73 01 c3 48 8b 0d c1 fb 2b 00 f7 d8 64 89 01 48
-83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 b8 1b 00 00
-00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 91 fb 2b 00 f7 d8 64 89
-01 48
-[  711.060633] RSP: 002b:00007ffcb103baf8 EFLAGS: 00000203 ORIG_RAX:
-000000000000001b
-[  711.068197] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fa4c99be2d7
-[  711.075321] RDX: 0000000000000000 RSI: 0000000000001000 RDI: 00007fa4c9ea6000
-[  711.082445] RBP: 00007ffcb103bc40 R08: 00000000ffffffff R09: 0000000000000000
-[  711.089570] R10: 0000000000000021 R11: 0000000000000203 R12: 0000000000400d00
-[  711.096693] R13: 00007ffcb103be10 R14: 0000000000000000 R15: 0000000000000000
-[  737.104310] rcu: INFO: rcu_sched self-detected stall on CPU
-[  737.109887] rcu: 0-....: (26000 ticks this GP)
-idle=1a2/1/0x4000000000000000 softirq=102446/102446 fqs=6463
-[  737.119792] (t=26016 jiffies g=173197 q=1522)
-[  737.124238] NMI backtrace for cpu 0
-[  737.127731] CPU: 0 PID: 19025 Comm: mincore_selftes Tainted: G
-D W     K   5.9.0-rc5-next-20200915 #1
-[  737.137376] Hardware name: Supermicro SYS-5019S-ML/X11SSH-F, BIOS
-2.0b 07/27/2017
-[  737.144856] Call Trace:
-[  737.147309]  <IRQ>
-[  737.149330]  dump_stack+0x7d/0x9f
-[  737.152649]  nmi_cpu_backtrace+0xa4/0xc0
-[  737.156574]  ? lapic_can_unplug_cpu+0xa0/0xa0
-[  737.160931]  nmi_trigger_cpumask_backtrace+0x97/0xd0
-[  737.165889]  arch_trigger_cpumask_backtrace+0x19/0x20
-[  737.170933]  rcu_dump_cpu_stacks+0xbc/0xec
-[  737.175025]  rcu_sched_clock_irq+0x729/0x9c0
-[  737.179296]  ? account_system_index_time+0x112/0x1f0
-[  737.184256]  ? tick_sched_do_timer+0x60/0x60
-[  737.188528]  update_process_times+0x28/0x60
-[  737.192711]  tick_sched_handle.isra.21+0x34/0x50
-[  737.197322]  tick_sched_timer+0x6d/0x80
-[  737.201154]  __hrtimer_run_queues+0x1d0/0x450
-[  737.205514]  hrtimer_interrupt+0xe7/0x240
-[  737.209527]  __sysvec_apic_timer_interrupt+0x79/0x1f0
-[  737.214578]  asm_call_on_stack+0x12/0x20
-[  737.218504]  </IRQ>
-[  737.220611]  sysvec_apic_timer_interrupt+0x75/0xa0
-[  737.225402]  asm_sysvec_apic_timer_interrupt+0x12/0x20
-[  737.230541] RIP: 0010:queued_spin_lock_slowpath+0x41/0x1a0
-[  737.236017] Code: f6 85 f6 75 3e f0 0f ba 2f 08 0f 92 c0 0f b6 c0
-c1 e0 08 89 c2 8b 07 30 e4 09 d0 a9 00 01 ff ff 75 18 85 c0 75 04 eb
-08 f3 90 <8b> 07 84 c0 75 f8 b8 01 00 00 00 66 89 07 5d c3 f6 c4 01 75
-04 c6
-[  737.254755] RSP: 0018:ffffb0e2002bfc48 EFLAGS: 00000202
-[  737.259980] RAX: 0000000000000101 RBX: ffff9f23167158c0 RCX: 0000000000000000
-[  737.267103] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff9f23167158c0
-[  737.274230] RBP: ffffb0e2002bfc48 R08: 0000000000000001 R09: 0000000000000000
-[  737.281353] R10: 0000000000000000 R11: 0000000000000000 R12: 00007fa4c9ea1000
-[  737.288478] R13: 00007fa4c9ea1000 R14: ffffb0e2002bfe20 R15: 00007fa4c9ea1000
-[  737.295605]  do_raw_spin_lock+0xb6/0xc0
-[  737.299440]  _raw_spin_lock+0x37/0x40
-[  737.303098]  ? unmap_page_range+0x4a6/0xd00
-[  737.307275]  unmap_page_range+0x4a6/0xd00
-[  737.311294]  unmap_single_vma+0x7d/0xf0
-[  737.315138]  unmap_vmas+0xd4/0x160
-[  737.318544]  exit_mmap+0xb1/0x1c0
-[  737.321866]  mmput+0x6a/0x130
-[  737.324843]  do_exit+0x359/0xcb0
-[  737.328076]  rewind_stack_do_exit+0x17/0x20
-[  737.332260] RIP: 0033:0x7fa4c99be2d7
-[  737.335831] Code: Bad RIP value.
-[  737.339054] RSP: 002b:00007ffcb103baf8 EFLAGS: 00000203 ORIG_RAX:
-000000000000001b
-[  737.346613] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fa4c99be2d7
-[  737.353743] RDX: 0000000000000000 RSI: 0000000000001000 RDI: 00007fa4c9ea6000
-[  737.360867] RBP: 00007ffcb103bc40 R08: 00000000ffffffff R09: 0000000000000000
-[  737.367992] R10: 0000000000000021 R11: 0000000000000203 R12: 0000000000400d00
-[  737.375116] R13: 00007ffcb103be10 R14: 0000000000000000 R15: 0000000000000000
-[  815.107312] rcu: INFO: rcu_sched self-detected stall on CPU
-[  815.112890] rcu: 0-....: (103727 ticks this GP)
-idle=1a2/1/0x4000000000000000 softirq=102446/102446 fqs=25897
-[  815.122966] (t=104019 jiffies g=173197 q=1545)
-[  815.127492] NMI backtrace for cpu 0
-[  815.130985] CPU: 0 PID: 19025 Comm: mincore_selftes Tainted: G
-D W     K   5.9.0-rc5-next-20200915 #1
-[  815.140628] Hardware name: Supermicro SYS-5019S-ML/X11SSH-F, BIOS
-2.0b 07/27/2017
-[  815.148099] Call Trace:
-[  815.150542]  <IRQ>
-[  815.152556]  dump_stack+0x7d/0x9f
-[  815.155876]  nmi_cpu_backtrace+0xa4/0xc0
-[  815.159799]  ? lapic_can_unplug_cpu+0xa0/0xa0
-[  815.164150]  nmi_trigger_cpumask_backtrace+0x97/0xd0
-[  815.169108]  arch_trigger_cpumask_backtrace+0x19/0x20
-[  815.174151]  rcu_dump_cpu_stacks+0xbc/0xec
-[  815.178245]  rcu_sched_clock_irq+0x729/0x9c0
-[  815.182515]  ? account_system_index_time+0x112/0x1f0
-[  815.187473]  ? tick_sched_do_timer+0x60/0x60
-[  815.191744]  update_process_times+0x28/0x60
-[  815.195922]  tick_sched_handle.isra.21+0x34/0x50
-[  815.200533]  tick_sched_timer+0x6d/0x80
-[  815.204365]  __hrtimer_run_queues+0x1d0/0x450
-[  815.208725]  hrtimer_interrupt+0xe7/0x240
-[  815.212738]  __sysvec_apic_timer_interrupt+0x79/0x1f0
-[  815.217789]  asm_call_on_stack+0x12/0x20
-[  815.221713]  </IRQ>
-[  815.223811]  sysvec_apic_timer_interrupt+0x75/0xa0
-[  815.228597]  asm_sysvec_apic_timer_interrupt+0x12/0x20
-[  815.233734] RIP: 0010:queued_spin_lock_slowpath+0x41/0x1a0
-
-full test log link,
-https://lkft.validation.linaro.org/scheduler/job/1765602#L12129
-https://qa-reports.linaro.org/lkft/linux-next-master/build/next-20200915/testrun/3198585/suite/linux-log-parser/test/check-kernel-warning-1765604/log
-https://qa-reports.linaro.org/lkft/linux-next-master/build/next-20200915/testrun/3198610/suite/linux-log-parser/test/check-kernel-oops-1765633/log
-
-Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
-
--- 
-Linaro LKFT
-https://lkft.linaro.org
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGkgSmFudXN6LA0KDQpJIGhhdmUgZmlsZWQgaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3Jn
+L2RybS9pbnRlbC8tL2lzc3Vlcy8yNDY5IGZvciBpZ3RAY29yZV9ob3R1bnBsdWdAaG90cmViaW5k
+LWxhdGVjbG9zZSBmYWlsdXJlLiANCklzIGl0IEdVQyBpc3N1ZT8NCg0KVGhhbmtzLA0KTGFrc2ht
+aQ0KDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBKYW51c3ogS3J6eXN6dG9m
+aWsgPGphbnVzei5rcnp5c3p0b2Zpa0BsaW51eC5pbnRlbC5jb20+IA0KU2VudDogVHVlc2RheSwg
+U2VwdGVtYmVyIDE1LCAyMDIwIDEyOjQ3IEFNDQpUbzogVnVkdW0sIExha3NobWluYXJheWFuYSA8
+bGFrc2htaW5hcmF5YW5hLnZ1ZHVtQGludGVsLmNvbT47IFdpbmlhcnNraSwgTWljaGFsIDxtaWNo
+YWwud2luaWFyc2tpQGludGVsLmNvbT47IGlndC1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQpD
+YzogTWljaGHFgiBXaW5pYXJza2kgPG1pY2hhbEBoYXJkbGluZS5wbD47IGludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmc7IExhdHZhbGEsIFBldHJpIDxwZXRyaS5sYXR2YWxhQGludGVsLmNv
+bT4NClN1YmplY3Q6IFJlOiBbSW50ZWwtZ2Z4XSBbUEFUQ0ggaS1nLXQgdjYgMDAvMjRdIHRlc3Rz
+L2NvcmVfaG90dW5wbHVnOiBGaXhlcyBhbmQgZW5oYW5jZW1lbnRzDQoNCkhpIExha3NobWksDQoN
+Ck9uIE1vbiwgMjAyMC0wOS0xNCBhdCAyMDo0MyArMDAwMCwgVnVkdW0sIExha3NobWluYXJheWFu
+YSB3cm90ZToNCj4gaWd0QGNvcmVfaG90dW5wbHVnQGhvdHJlYmluZC1sYXRlY2xvc2UgdGVzdCBp
+cyBub3QgeWV0IGluIENJIGJ1ZyBsb2cuDQoNCkhlcmUgaXMgYSBmcmVzaCBldmlkZW5jZToNCmh0
+dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzkwMDgvc2hhcmQt
+dGdsYjUvaWd0QGNvcmVfaG90dW5wbHVnQGhvdHJlYmluZC1sYXRlY2xvc2UuaHRtbA0KDQpUaGFu
+a3MsDQpKYW51c3oNCg0KPiAgT3RoZXJ3aXNlIEkgZmlsZWQgdGhlIGlzc3VlIA0KPiBodHRwczov
+L2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzI0NjQNCj4gDQo+IFRo
+YW5rcywNCj4gTGFrc2htaS4NCj4gDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZy
+b206IEphbnVzeiBLcnp5c3p0b2ZpayA8amFudXN6LmtyenlzenRvZmlrQGxpbnV4LmludGVsLmNv
+bT4NCj4gU2VudDogTW9uZGF5LCBTZXB0ZW1iZXIgMTQsIDIwMjAgMTI6MzEgUE0NCj4gVG86IFdp
+bmlhcnNraSwgTWljaGFsIDxtaWNoYWwud2luaWFyc2tpQGludGVsLmNvbT47IA0KPiBpZ3QtZGV2
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogTWljaGHFgiBXaW5pYXJza2kgPG1pY2hhbEBo
+YXJkbGluZS5wbD47IA0KPiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBMYXR2YWxh
+LCBQZXRyaSANCj4gPHBldHJpLmxhdHZhbGFAaW50ZWwuY29tPjsgVnVkdW0sIExha3NobWluYXJh
+eWFuYSANCj4gPGxha3NobWluYXJheWFuYS52dWR1bUBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFJl
+OiBbSW50ZWwtZ2Z4XSBbUEFUQ0ggaS1nLXQgdjYgMDAvMjRdIHRlc3RzL2NvcmVfaG90dW5wbHVn
+OiANCj4gRml4ZXMgYW5kIGVuaGFuY2VtZW50cw0KPiANCj4gT24gTW9uLCAyMDIwLTA5LTE0IGF0
+IDIwOjE4ICswMjAwLCBNaWNoYcWCIFdpbmlhcnNraSB3cm90ZToNCj4gPiBRdW90aW5nIEphbnVz
+eiBLcnp5c3p0b2ZpayAoMjAyMC0wOS0xMSAxMjozMDoxNSkNCj4gPiA+IENsZWFuIHVwIHRoZSB0
+ZXN0IGNvZGUsIGFkZCBzb21lIG5ldyBiYXNpYyBzdWJ0ZXN0cywgdGhlbiB1bmJsb2NrIA0KPiA+
+ID4gdW5iaW5kIHRlc3QgdmFyaWFudHMuDQo+ID4gPiANCj4gPiA+IE5vIGluY29tcGxldGVzIC8g
+YWJvcnRzIG5vciBzdWJzZXF1ZW50bHkgcnVuIHRlc3QgaXNzdWVzIGhhdmUgYmVlbiANCj4gPiA+
+IHJlcG9ydGVkIGJ5IFRyeWJvdC4gIFRoZSBob3RyZWJpbmQtbGF0ZWNsb3NlIHN1YnRlc3QgZmFp
+bHMgb24gYSBzbyANCj4gPiA+IGZhciB1bmlkZW50aWZpZWQgZHJpdmVyIHN5c2ZzIGlzc3VlIGJ1
+dCB0aGUgZGV2aWNlIGlzIGZ1bGx5IA0KPiA+ID4gcmVjb3ZlcmVkIGFuZCBsZWZ0IGluIGEgdXNh
+YmxlIHN0YXRlLiAgUGVyY2VpdmVkIEhhc3dlbGwvQnJvYWR3ZWxsIA0KPiA+ID4gaXNzdWUgd2l0
+aCBhdWRpbyBwb3dlciBtYW5hZ2VtZW50IGhhcyBiZWVuIHdvcmtlZCBhcm91bmQgYW5kIGl0cyAN
+Cj4gPiA+IHBvdGVudGlhbCBvY2N1cnJlbmNlIGlzIHJlcG9ydGVkIGFzIGFuIElHVCB3YXJuaW5n
+Lg0KPiA+ID4gDQo+ID4gPiBTZXJpZXMgY2hhbmdlbG9nOg0KPiA+ID4gdjI6IE5ldyBwYXRjaCAi
+VW4tYmxvY2tsaXN0ICpiaW5kKiBzdWJ0ZXN0cyBhZGRlZC4NCj4gPiA+IHYzOiBQYXRjaCAiRm9s
+bG93IGZhaWxlZCBzdWJ0ZXN0cyB3aXRoIGhlYWx0aGNoZWNrIiByZW5hbWVkIHRvICJSZWNvdmVy
+DQo+ID4gPiAgICAgZnJvbSBzdWJ0ZXN0IGZhaWx1cmVzIi4NCj4gPiA+ICAgLSBhIG5ldyBwYXRj
+aGUgIkNsZWFuIHVwIGRldmljZSBvcGVuIGVycm9yIGhhbmRsaW5nIiBhZGRlZCwgYW4gb2xkDQo+
+ID4gPiAgICAgcGF0Y2ggIkZpeCBtaXNzaW5nIG5ld2xpbmUiIG9ic29sZXRlZCBieSB0aGUgbmV3
+IG9uZSBkcm9wcGVkLA0KPiA+ID4gICAtIG90aGVyIG5ldyBwYXRjaGVzIGFkZGVkOg0KPiA+ID4g
+ICAgIC0gIkxldCB0aGUgZHJpdmVyIHRpbWUgb3V0IGVzc2VudGlhbCBzeXNmcyBvcGVyYXRpb25z
+IiwNCj4gPiA+ICAgICAtICJNb3JlIHRob3JvdWdoIGk5MTUgaGVhbHRoY2hlY2sgYW5kIHJlY292
+ZXJ5IiwNCj4gPiA+ICAgLSBhIHBhdGNoICJBZGQgJ2xhdGVjbG9zZSBiZWZvcmUgcmVzdG9yZScg
+dmFyaWFudHMiIGZyb20gYW5vdGhlcg0KPiA+ID4gICAgIHNlcmllcyBpbmNsdWRlZC4NCj4gPiA+
+IHY0OiBPcHRpb25hbCBwYXRjaCAiRHVwbGljYXRlIGRlYnVnIG1lc3NhZ2VzIGluIGRtZXNnIiBm
+cm9tIGFub3RoZXINCj4gPiA+ICAgICBzZXJpZXMgaW5jbHVkZWQuDQo+ID4gPiB2NTogTmV3IHBh
+dGNoIGFkZGVkIHdpdGggSGFzd2VsbCBhdWRpbyByZWxhdGVkIGtlcm5lbCB3YXJuaW5nIHdvcmtl
+ZA0KPiA+ID4gICAgIGFyb3VuZCBhbmQgcmVwbGFjZWQgd2l0aCBhbiBJR1Qgd2FybmluZyB0byBw
+cmVzZXJ2ZSB2aXNpYmlsaXR5IG9mDQo+ID4gPiAgICAgdGhlIGlzc3VlLg0KPiA+ID4gdjY6IE5l
+dyBwYXRjaCBhZGRlZCBmb3IgYWxzbyBjaGVja2luZyBoZWFsdGggb2YgcmVuZGVyIGRldmljZSBu
+b2RlcywNCj4gPiA+ICAgLSBuZXcgcGF0Y2ggYWRkZWQgd2l0aCBwcm9wZXIgaGFuZGxpbmcgb2Yg
+aGVhbHRoIGNoZWNrIGJlZm9yZSBsYXRlDQo+ID4gPiAgICAgY2xvc2UsDQo+ID4gPiAgIC0gaW5j
+bHVzaW9uIG9mIHVuYmluZC1yZWJpbmQgc2NlbmFyaW8gdG8gQkFUIHNjb3BlIHByb3Bvc2VkLg0K
+PiA+ID4gDQo+ID4gPiBATWljaGHFgjogU2luY2Ugc29tZSBwYXRjaCB1cGRhdGVzIGFyZSB0cml2
+aWFsLCBJJ3ZlIHByZXNlcnZlZCB5b3VyDQo+ID4gPiB2MS92MiBSZXZpZXdkLWJ5OiBleGNlcHQg
+Zm9yIHBhdGNoZXMgd2l0aCBub24tdHJpdmlhbCBjaGFuZ2VzLCANCj4gPiA+IHdoZXJlIEkgbWFy
+a2VkIHlvdXIgUi1iIGFzIHYxL3YyIGFwcGxpY2FibGUuICBQbGVhc2UgaGF2ZSBhIGxvb2sgDQo+
+ID4gPiBhbmQgY29uZmlybSBpZiB5b3UgYXJlIHN0aWxsIE9LIHdpdGggdGhlbS4NCj4gPiANCj4g
+PiBGZWVsIGZyZWUgdG8gYWRkOg0KPiA+IFJldmlld2VkLWJ5OiBNaWNoYcWCIFdpbmlhcnNraSA8
+bWljaGFsLndpbmlhcnNraUBpbnRlbC5jb20+DQo+ID4gDQo+ID4gRm9yIHRoZSB3aG9sZSBzZXJp
+ZXMgKHdpdGggdGhlIGV4Y2VwdGlvbiBvZiBpbnRlbC1jaSBwYXJ0KS4NCj4gDQo+IFB1c2hlZC4N
+Cj4gDQo+IEBQZXRyaSwgQE1pY2hhxYIgLSB0aGFuayB5b3UgZm9yIHJldmlldy4NCj4gDQo+IEBM
+YWtzaG1pOg0KPiAtIHBsZWFzZSBvcGVuIGEgbmV3IGJ1ZyBmb3IgdGhlIGlzc3VlIHJlcG9ydGVk
+IGJ5IHRoZSBpZ3RAY29yZSANCj4gX2hvdHVucGx1Z0Bob3RyZWJpbmQtbGF0ZWNsb3NlIHN1YnRl
+c3QgZmFpbGluZyBvbiBhbGwgcGxhdGZvcm1zLA0KPiAtIElHVCB3YXJuaW5nIHJlcG9ydGVkIGJ5
+IGlndEBjb3JlX2hvdHVucGx1Z0AqYmluZCogb24gSGFzd2VsbCBhbmQgQnJvYWR3ZWxsIHBsYXRv
+ZnJtcyBpcyBjYXVzZWQgYnkgdGhlIHNhbWUgaXNzdWUgYXMgdGhlIG9uZSByZXBvcnRlZCBub3cg
+aW4gYSBzaW1pbGFyIHdheSBvbiBIYXN3ZWxsIGJ5IGlndEBkZXZpY2VfcmVzZXRAdW5iaW5kLXJl
+c2V0LXJlYmluZCAtIHBsZWFzZSB1cGRhdGUgdGhlIGFzc29jaWF0ZWQgZmlsdGVyIHNvIGl0IGNv
+dmVycyBhbGwgdGhvc2UgdGVzdHMuDQo+IA0KPiBUaGFua3MsDQo+IEphbnVzeg0KPiANCj4gDQo+
+ID4gLU1pY2hhxYINCj4gPiANCj4gPiA+IEBUdnJ0a286IEFzIEkgYWxyZWFkeSBhc2tlZCBiZWZv
+cmUsIHBsZWFzZSBzdXBwb3J0IG15IGF0dGVtcHQgdG8gDQo+ID4gPiByZW1vdmUgdGhlIHVuYmlu
+ZCB0ZXN0IHZhcmlhbnRzIGZyb20gdGhlIGJsb2NrbGlzdC4NCj4gPiA+IA0KPiA+ID4gQFBldHJp
+LCBATWFydGluOiBBc3N1bWluZyBDSSByZXN1bHRzIHdpbGwgYmUgYXMgZ29vZCBhcyB0aG9zZSAN
+Cj4gPiA+IG9idGFpbmVkIG9uIFRyeWJvdCwgcGxlYXNlIGdpdmUgbWUgeW91ciBncmVlbiBsaWdo
+dCBmb3IgbWVyZ2luZyANCj4gPiA+IHRoaXMgc2VyaWVzIGlmIHlvdSBoYXZlIG5vIG9iamVjdGlv
+bnMuDQo+ID4gPiANCj4gPiA+IFRoYW5rcywNCj4gPiA+IEphbnVzeg0KPiA+ID4gDQo+ID4gPiBK
+YW51c3ogS3J6eXN6dG9maWsgKDI0KToNCj4gPiA+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IFVz
+ZSBpZ3RfYXNzZXJ0X2ZkKCkNCj4gPiA+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IENvbnN0aWZ5
+IGRldl9idXNfYWRkciBzdHJpbmcNCj4gPiA+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IENsZWFu
+IHVwIGRldmljZSBvcGVuIGVycm9yIGhhbmRsaW5nDQo+ID4gPiAgIHRlc3RzL2NvcmVfaG90dW5w
+bHVnOiBDb25zb2xpZGF0ZSBkdXBsaWNhdGVkIGRlYnVnIG1lc3NhZ2VzDQo+ID4gPiAgIHRlc3Rz
+L2NvcmVfaG90dW5wbHVnOiBBc3NlcnQgc3VjY2Vzc2Z1bCBkZXZpY2UgZmlsdGVyIGFwcGxpY2F0
+aW9uDQo+ID4gPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBNYWludGFpbiBhIHNpbmdsZSBkYXRh
+IHN0cnVjdHVyZSBpbnN0YW5jZQ0KPiA+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogUGFzcyBl
+cnJvcnMgdmlhIGEgZGF0YSBzdHJ1Y3R1cmUgZmllbGQNCj4gPiA+ICAgdGVzdHMvY29yZV9ob3R1
+bnBsdWc6IEhhbmRsZSBkZXZpY2UgY2xvc2UgZXJyb3JzDQo+ID4gPiAgIHRlc3RzL2NvcmVfaG90
+dW5wbHVnOiBQcmVwYXJlIGludmFyaWFudCBkYXRhIG9uY2UgcGVyIHRlc3QgcnVuDQo+ID4gPiAg
+IHRlc3RzL2NvcmVfaG90dW5wbHVnOiBTa2lwIHNlbGVjdGl2ZWx5IG9uIHN5c2ZzIGNsb3NlIGVy
+cm9ycw0KPiA+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogUmVjb3ZlciBmcm9tIHN1YnRlc3Qg
+ZmFpbHVyZXMNCj4gPiA+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEZhaWwgc3VidGVzdHMgb24g
+ZGV2aWNlIGNsb3NlIGVycm9ycw0KPiA+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogTGV0IHRo
+ZSBkcml2ZXIgdGltZSBvdXQgZXNzZW50aWFsIHN5c2ZzDQo+ID4gPiAgICAgb3BlcmF0aW9ucw0K
+PiA+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogUHJvY2VzcyByZXR1cm4gdmFsdWVzIG9mIHN5
+c2ZzIG9wZXJhdGlvbnMNCj4gPiA+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEFzc2VydCBleHBl
+Y3RlZCBkZXZpY2UgcHJlc2VuY2UvYWJzZW5jZQ0KPiA+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1
+ZzogRXhwbGljaXRseSBpZ25vcmUgdW51c2VkIHJldHVybiB2YWx1ZXMNCj4gPiA+ICAgdGVzdHMv
+Y29yZV9ob3R1bnBsdWc6IEFsc28gY2hlY2sgaGVhbHRoIG9mIHJlbmRlciBkZXZpY2Ugbm9kZQ0K
+PiA+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogTW9yZSB0aG9yb3VnaCBpOTE1IGhlYWx0aGNo
+ZWNrIGFuZCByZWNvdmVyeQ0KPiA+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogQWRkICdsYXRl
+Y2xvc2UgYmVmb3JlIHJlc3RvcmUnIHZhcmlhbnRzDQo+ID4gPiAgIHRlc3RzL2NvcmVfaG90dW5w
+bHVnOiBDaGVjayBoZWFsdGggYm90aCBiZWZvcmUgYW5kIGFmdGVyIGxhdGUgY2xvc2UNCj4gPiA+
+ICAgdGVzdHMvY29yZV9ob3R1bnBsdWc6IEhTVy9CRFcgYXVkaW8gaXNzdWUgd29ya2Fyb3VuZA0K
+PiA+ID4gICB0ZXN0cy9jb3JlX2hvdHVucGx1ZzogRHVwbGljYXRlIGRlYnVnIG1lc3NhZ2VzIGlu
+IGRtZXNnDQo+ID4gPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBVbi1ibG9ja2xpc3QgKmJpbmQq
+IHN1YnRlc3RzDQo+ID4gPiAgIHRlc3RzL2NvcmVfaG90dW5wbHVnOiBBZGQgdW5iaW5kLXJlYmlu
+ZCBzdWJ0ZXN0IHRvIEJBVCBzY29wZQ0KPiA+ID4gDQo+ID4gPiAgdGVzdHMvY29yZV9ob3R1bnBs
+dWcuYyAgICAgICAgICAgICAgICB8IDU2MCArKysrKysrKysrKysrKysrKysrKy0tLS0tLQ0KPiA+
+ID4gIHRlc3RzL2ludGVsLWNpL2JsYWNrbGlzdC50eHQgICAgICAgICAgfCAgIDIgKy0NCj4gPiA+
+ICB0ZXN0cy9pbnRlbC1jaS9mYXN0LWZlZWRiYWNrLnRlc3RsaXN0IHwgICAxICsNCj4gPiA+ICAz
+IGZpbGVzIGNoYW5nZWQsIDQzMSBpbnNlcnRpb25zKCspLCAxMzIgZGVsZXRpb25zKC0pDQo+ID4g
+PiANCj4gPiA+IC0tDQo+ID4gPiAyLjIxLjENCj4gPiA+IA0KPiA+ID4gX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiA+IEludGVsLWdmeCBtYWlsaW5n
+IGxpc3QNCj4gPiA+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gPiA+IGh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4DQoNCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
