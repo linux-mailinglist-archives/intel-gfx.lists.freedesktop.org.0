@@ -2,33 +2,84 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDFF526A147
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 10:50:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ABAA26A159
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 10:57:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAC7B6E0AB;
-	Tue, 15 Sep 2020 08:49:58 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0161F6E0EC
- for <Intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 08:49:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22431136-1500050 for multiple; Tue, 15 Sep 2020 09:49:48 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EEA96E203;
+	Tue, 15 Sep 2020 08:56:55 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94E9B89FCA;
+ Tue, 15 Sep 2020 08:56:53 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 87BA2AFA9;
+ Tue, 15 Sep 2020 08:57:07 +0000 (UTC)
+To: Oleksandr Andrushchenko <Oleksandr_Andrushchenko@epam.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "airlied@linux.ie" <airlied@linux.ie>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+ "christian.gmeiner@gmail.com" <christian.gmeiner@gmail.com>,
+ "inki.dae@samsung.com" <inki.dae@samsung.com>,
+ "jy0922.shim@samsung.com" <jy0922.shim@samsung.com>,
+ "sw0312.kim@samsung.com" <sw0312.kim@samsung.com>,
+ "kyungmin.park@samsung.com" <kyungmin.park@samsung.com>,
+ "kgene@kernel.org" <kgene@kernel.org>, "krzk@kernel.org" <krzk@kernel.org>,
+ "patrik.r.jakobsson@gmail.com" <patrik.r.jakobsson@gmail.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "robdclark@gmail.com" <robdclark@gmail.com>,
+ "sean@poorly.run" <sean@poorly.run>, "bskeggs@redhat.com"
+ <bskeggs@redhat.com>, "tomi.valkeinen@ti.com" <tomi.valkeinen@ti.com>,
+ "eric@anholt.net" <eric@anholt.net>, "hjc@rock-chips.com"
+ <hjc@rock-chips.com>, "heiko@sntech.de" <heiko@sntech.de>,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ "jonathanh@nvidia.com" <jonathanh@nvidia.com>,
+ "rodrigosiqueiramelo@gmail.com" <rodrigosiqueiramelo@gmail.com>,
+ "hamohammed.sa@gmail.com" <hamohammed.sa@gmail.com>,
+ "hyun.kwon@xilinx.com" <hyun.kwon@xilinx.com>,
+ "laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
+ "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+ "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
+ "evan.quan@amd.com" <evan.quan@amd.com>,
+ "Hawking.Zhang@amd.com" <Hawking.Zhang@amd.com>,
+ "tianci.yin@amd.com" <tianci.yin@amd.com>,
+ "marek.olsak@amd.com" <marek.olsak@amd.com>,
+ "hdegoede@redhat.com" <hdegoede@redhat.com>,
+ "andrey.grodzovsky@amd.com" <andrey.grodzovsky@amd.com>,
+ "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+ "xinhui.pan@amd.com" <xinhui.pan@amd.com>,
+ "aaron.liu@amd.com" <aaron.liu@amd.com>,
+ "nirmoy.das@amd.com" <nirmoy.das@amd.com>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>,
+ "matthew.auld@intel.com" <matthew.auld@intel.com>,
+ "abdiel.janulgue@linux.intel.com" <abdiel.janulgue@linux.intel.com>,
+ "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
+ "andi.shyti@intel.com" <andi.shyti@intel.com>,
+ "sam@ravnborg.org" <sam@ravnborg.org>,
+ "miaoqinglang@huawei.com" <miaoqinglang@huawei.com>,
+ "emil.velikov@collabora.com" <emil.velikov@collabora.com>
+References: <20200813083644.31711-1-tzimmermann@suse.de>
+ <20200813083644.31711-19-tzimmermann@suse.de>
+ <1fe5f918-2445-d2e6-a501-881e70929404@epam.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <ea91877b-6398-a398-4972-9794f7965662@suse.de>
+Date: Tue, 15 Sep 2020 10:56:46 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <20200910145018.408983-1-tvrtko.ursulin@linux.intel.com>
-References: <20200910115900.407686-3-tvrtko.ursulin@linux.intel.com>
- <20200910145018.408983-1-tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Tue, 15 Sep 2020 09:49:48 +0100
-Message-ID: <160015978860.3890.1211829559641660544@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix DMA mapped scatterlist
- lookup
+In-Reply-To: <1fe5f918-2445-d2e6-a501-881e70929404@epam.com>
+Subject: Re: [Intel-gfx] [PATCH 18/20] drm/xen: Introduce GEM object
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,265 +92,287 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+ "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Content-Type: multipart/mixed; boundary="===============1478978354=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-09-10 15:50:18)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> As the previous patch fixed the places where we walk the whole scatterlist
-> for DMA addresses, this patch fixes the random lookup functionality.
-> 
-> To achieve this we have to add a second lookup iterator and add a
-> i915_gem_object_get_sg_dma helper, to be used analoguous to existing
-> i915_gem_object_get_sg_dma. Therefore two lookup caches are maintained per
-> object and they are flushed at the same point for simplicity. (Strictly
-> speaking the DMA cache should be flushed from i915_gem_gtt_finish_pages,
-> but today this conincides with unsetting of the pages in general.)
-> 
-> Partial VMA view is then fixed to use the new DMA lookup and properly
-> query sg length.
-> 
-> v2:
->  * Checkpatch.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Lu Baolu <baolu.lu@linux.intel.com>
-> Cc: Tom Murphy <murphyt7@tcd.ie>
-> Cc: Logan Gunthorpe <logang@deltatee.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_object.c    |  2 ++
->  drivers/gpu/drm/i915/gem/i915_gem_object.h    | 20 +++++++++++++++++-
->  .../gpu/drm/i915/gem/i915_gem_object_types.h  | 17 ++++++++-------
->  drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 21 ++++++++++++-------
->  drivers/gpu/drm/i915/gt/intel_ggtt.c          |  4 ++--
->  drivers/gpu/drm/i915/i915_scatterlist.h       |  5 +++++
->  6 files changed, 51 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> index c8421fd9d2dc..ffeaf1b9b1bb 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -73,6 +73,8 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
->         obj->mm.madv = I915_MADV_WILLNEED;
->         INIT_RADIX_TREE(&obj->mm.get_page.radix, GFP_KERNEL | __GFP_NOWARN);
->         mutex_init(&obj->mm.get_page.lock);
-> +       INIT_RADIX_TREE(&obj->mm.get_dma_page.radix, GFP_KERNEL | __GFP_NOWARN);
-> +       mutex_init(&obj->mm.get_dma_page.lock);
->  
->         if (IS_ENABLED(CONFIG_LOCKDEP) && i915_gem_object_is_shrinkable(obj))
->                 i915_gem_shrinker_taints_mutex(to_i915(obj->base.dev),
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> index d46db8d8f38e..44c6910e2669 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> @@ -275,8 +275,26 @@ int i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
->                                unsigned int tiling, unsigned int stride);
->  
->  struct scatterlist *
-> +__i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
-> +                        struct i915_gem_object_page_iter *iter,
-> +                        unsigned int n,
-> +                        unsigned int *offset);
-> +
-> +static inline struct scatterlist *
->  i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
-> -                      unsigned int n, unsigned int *offset);
-> +                      unsigned int n,
-> +                      unsigned int *offset)
-> +{
-> +       return __i915_gem_object_get_sg(obj, &obj->mm.get_page, n, offset);
-> +}
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1478978354==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="PEKUmr8ZTfzNvLYko4DS4LvqUwNvZCpsP"
 
-I wonder if get_sg_phys() is worth it to make it completely clear the
-difference between it and get_sg_dma() (and .get_phys_page?) ?
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--PEKUmr8ZTfzNvLYko4DS4LvqUwNvZCpsP
+Content-Type: multipart/mixed; boundary="kA0kz2rRnYLjEYgqBQNbqkILRFPajOphI";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Oleksandr Andrushchenko <Oleksandr_Andrushchenko@epam.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "airlied@linux.ie" <airlied@linux.ie>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+ "christian.gmeiner@gmail.com" <christian.gmeiner@gmail.com>,
+ "inki.dae@samsung.com" <inki.dae@samsung.com>,
+ "jy0922.shim@samsung.com" <jy0922.shim@samsung.com>,
+ "sw0312.kim@samsung.com" <sw0312.kim@samsung.com>,
+ "kyungmin.park@samsung.com" <kyungmin.park@samsung.com>,
+ "kgene@kernel.org" <kgene@kernel.org>, "krzk@kernel.org" <krzk@kernel.org>,
+ "patrik.r.jakobsson@gmail.com" <patrik.r.jakobsson@gmail.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "robdclark@gmail.com" <robdclark@gmail.com>,
+ "sean@poorly.run" <sean@poorly.run>, "bskeggs@redhat.com"
+ <bskeggs@redhat.com>, "tomi.valkeinen@ti.com" <tomi.valkeinen@ti.com>,
+ "eric@anholt.net" <eric@anholt.net>, "hjc@rock-chips.com"
+ <hjc@rock-chips.com>, "heiko@sntech.de" <heiko@sntech.de>,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ "jonathanh@nvidia.com" <jonathanh@nvidia.com>,
+ "rodrigosiqueiramelo@gmail.com" <rodrigosiqueiramelo@gmail.com>,
+ "hamohammed.sa@gmail.com" <hamohammed.sa@gmail.com>,
+ "hyun.kwon@xilinx.com" <hyun.kwon@xilinx.com>,
+ "laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
+ "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+ "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
+ "evan.quan@amd.com" <evan.quan@amd.com>,
+ "Hawking.Zhang@amd.com" <Hawking.Zhang@amd.com>,
+ "tianci.yin@amd.com" <tianci.yin@amd.com>,
+ "marek.olsak@amd.com" <marek.olsak@amd.com>,
+ "hdegoede@redhat.com" <hdegoede@redhat.com>,
+ "andrey.grodzovsky@amd.com" <andrey.grodzovsky@amd.com>,
+ "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+ "xinhui.pan@amd.com" <xinhui.pan@amd.com>,
+ "aaron.liu@amd.com" <aaron.liu@amd.com>,
+ "nirmoy.das@amd.com" <nirmoy.das@amd.com>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>,
+ "matthew.auld@intel.com" <matthew.auld@intel.com>,
+ "abdiel.janulgue@linux.intel.com" <abdiel.janulgue@linux.intel.com>,
+ "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
+ "andi.shyti@intel.com" <andi.shyti@intel.com>,
+ "sam@ravnborg.org" <sam@ravnborg.org>,
+ "miaoqinglang@huawei.com" <miaoqinglang@huawei.com>,
+ "emil.velikov@collabora.com" <emil.velikov@collabora.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+ "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>
+Message-ID: <ea91877b-6398-a398-4972-9794f7965662@suse.de>
+Subject: Re: [PATCH 18/20] drm/xen: Introduce GEM object functions
+References: <20200813083644.31711-1-tzimmermann@suse.de>
+ <20200813083644.31711-19-tzimmermann@suse.de>
+ <1fe5f918-2445-d2e6-a501-881e70929404@epam.com>
+In-Reply-To: <1fe5f918-2445-d2e6-a501-881e70929404@epam.com>
 
-> +
-> +static inline struct scatterlist *
-> +i915_gem_object_get_sg_dma(struct drm_i915_gem_object *obj,
-> +                          unsigned int n,
-> +                          unsigned int *offset)
-> +{
-> +       return __i915_gem_object_get_sg(obj, &obj->mm.get_dma_page, n, offset);
-> +}
->  
->  struct page *
->  i915_gem_object_get_page(struct drm_i915_gem_object *obj,
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> index b5c15557cc87..fedfebf13344 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> @@ -80,6 +80,14 @@ struct i915_mmap_offset {
->         struct rb_node offset;
->  };
->  
-> +struct i915_gem_object_page_iter {
-> +       struct scatterlist *sg_pos;
-> +       unsigned int sg_idx; /* in pages, but 32bit eek! */
-> +
-> +       struct radix_tree_root radix;
-> +       struct mutex lock; /* protects this cache */
-> +};
+--kA0kz2rRnYLjEYgqBQNbqkILRFPajOphI
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-All alternatives to trying to avoid a second random lookup were
-squashed, it really is two lists within one scatterlist and we do use
-both page/dma lookups in non-trivial ways.
+Hi
 
-> +
->  struct drm_i915_gem_object {
->         struct drm_gem_object base;
->  
-> @@ -246,13 +254,8 @@ struct drm_i915_gem_object {
->  
->                 I915_SELFTEST_DECLARE(unsigned int page_mask);
->  
-> -               struct i915_gem_object_page_iter {
-> -                       struct scatterlist *sg_pos;
-> -                       unsigned int sg_idx; /* in pages, but 32bit eek! */
-> -
-> -                       struct radix_tree_root radix;
-> -                       struct mutex lock; /* protects this cache */
-> -               } get_page;
-> +               struct i915_gem_object_page_iter get_page;
-> +               struct i915_gem_object_page_iter get_dma_page;
->  
->                 /**
->                  * Element within i915->mm.unbound_list or i915->mm.bound_list,
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> index e8a083743e09..04a3c1233f80 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> @@ -33,6 +33,8 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
->  
->         obj->mm.get_page.sg_pos = pages->sgl;
->         obj->mm.get_page.sg_idx = 0;
-> +       obj->mm.get_dma_page.sg_pos = pages->sgl;
-> +       obj->mm.get_dma_page.sg_idx = 0;
->  
->         obj->mm.pages = pages;
->  
-> @@ -155,6 +157,8 @@ static void __i915_gem_object_reset_page_iter(struct drm_i915_gem_object *obj)
->         rcu_read_lock();
->         radix_tree_for_each_slot(slot, &obj->mm.get_page.radix, &iter, 0)
->                 radix_tree_delete(&obj->mm.get_page.radix, iter.index);
-> +       radix_tree_for_each_slot(slot, &obj->mm.get_dma_page.radix, &iter, 0)
-> +               radix_tree_delete(&obj->mm.get_dma_page.radix, iter.index);
->         rcu_read_unlock();
->  }
->  
-> @@ -424,11 +428,12 @@ void __i915_gem_object_release_map(struct drm_i915_gem_object *obj)
->  }
->  
->  struct scatterlist *
-> -i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
-> -                      unsigned int n,
-> -                      unsigned int *offset)
-> +__i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
-> +                        struct i915_gem_object_page_iter *iter,
-> +                        unsigned int n,
-> +                        unsigned int *offset)
->  {
-> -       struct i915_gem_object_page_iter *iter = &obj->mm.get_page;
-> +       const bool dma = iter == &obj->mm.get_dma_page;
->         struct scatterlist *sg;
->         unsigned int idx, count;
->  
-> @@ -457,7 +462,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
->  
->         sg = iter->sg_pos;
->         idx = iter->sg_idx;
-> -       count = __sg_page_count(sg);
-> +       count = dma ? __sg_dma_page_count(sg) : __sg_page_count(sg);
->  
->         while (idx + count <= n) {
->                 void *entry;
-> @@ -485,7 +490,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
->  
->                 idx += count;
->                 sg = ____sg_next(sg);
-> -               count = __sg_page_count(sg);
-> +               count = dma ? __sg_dma_page_count(sg) : __sg_page_count(sg);
->         }
->  
->  scan:
-> @@ -503,7 +508,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
->         while (idx + count <= n) {
->                 idx += count;
->                 sg = ____sg_next(sg);
-> -               count = __sg_page_count(sg);
-> +               count = dma ? __sg_dma_page_count(sg) : __sg_page_count(sg);
+Am 13.08.20 um 13:19 schrieb Oleksandr Andrushchenko:
+> Hi,
+>=20
+> On 8/13/20 11:36 AM, Thomas Zimmermann wrote:
+>> GEM object functions deprecate several similar callback interfaces in
+>> struct drm_driver. This patch replaces the per-driver callbacks with
+>> per-instance callbacks in xen. The only exception is gem_prime_mmap,
+>> which is non-trivial to convert.
+>>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> ---
+>>   drivers/gpu/drm/xen/xen_drm_front.c     | 12 +-----------
+>>   drivers/gpu/drm/xen/xen_drm_front.h     |  2 ++
+>>   drivers/gpu/drm/xen/xen_drm_front_gem.c | 15 +++++++++++++++
+>>   3 files changed, 18 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xen/xen_drm_front.c b/drivers/gpu/drm/xen=
+/xen_drm_front.c
+>> index 3e660fb111b3..bd9af1875af1 100644
+>> --- a/drivers/gpu/drm/xen/xen_drm_front.c
+>> +++ b/drivers/gpu/drm/xen/xen_drm_front.c
+>> @@ -433,7 +433,7 @@ static int xen_drm_drv_dumb_create(struct drm_file=
+ *filp,
+>>   	return ret;
+>>   }
+>>  =20
+>> -static void xen_drm_drv_free_object_unlocked(struct drm_gem_object *o=
+bj)
+>> +void xen_drm_drv_free_object_unlocked(struct drm_gem_object *obj)
+>=20
+> Can we please have naming consistent and name it as
+>=20
+> xen_drm_front_drv_free_object_unlocked or any other name if this seems =
+to be too long,
+>=20
+> but starting with xen_drm_front_ as the rest of exported functions?
 
-Hmm. So for a coalesced dma entry, we must therefore end up with some
-entries where the sg_dma_length is 0.
+There already is a function with that name in drm_xen_front_gem.c. I'll
+move the callback function next to the object-function structure and
+rename it slightly.
 
-We then insert multiple sg for the same idx into the radix tree, causing
-it to return an error, -EEXIST. We eat such errors and so overwrite the
-empty entry with the final sg that actually has a valid length.
+Best regards
+Thomas
 
-Ok. Looks like get_sg already handles zero length elements and you
-caught all 3 __sg_page_count().
+>=20
+> With this,
+>=20
+> Acked-by: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+>=20
+> Thank you,
+>=20
+> Oleksandr
+>=20
+>>   {
+>>   	struct xen_drm_front_drm_info *drm_info =3D obj->dev->dev_private;
+>>   	int idx;
+>> @@ -481,22 +481,12 @@ static const struct file_operations xen_drm_dev_=
+fops =3D {
+>>   	.mmap           =3D xen_drm_front_gem_mmap,
+>>   };
+>>  =20
+>> -static const struct vm_operations_struct xen_drm_drv_vm_ops =3D {
+>> -	.open           =3D drm_gem_vm_open,
+>> -	.close          =3D drm_gem_vm_close,
+>> -};
+>> -
+>>   static struct drm_driver xen_drm_driver =3D {
+>>   	.driver_features           =3D DRIVER_GEM | DRIVER_MODESET | DRIVER=
+_ATOMIC,
+>>   	.release                   =3D xen_drm_drv_release,
+>> -	.gem_vm_ops                =3D &xen_drm_drv_vm_ops,
+>> -	.gem_free_object_unlocked  =3D xen_drm_drv_free_object_unlocked,
+>>   	.prime_handle_to_fd        =3D drm_gem_prime_handle_to_fd,
+>>   	.prime_fd_to_handle        =3D drm_gem_prime_fd_to_handle,
+>>   	.gem_prime_import_sg_table =3D xen_drm_front_gem_import_sg_table,
+>> -	.gem_prime_get_sg_table    =3D xen_drm_front_gem_get_sg_table,
+>> -	.gem_prime_vmap            =3D xen_drm_front_gem_prime_vmap,
+>> -	.gem_prime_vunmap          =3D xen_drm_front_gem_prime_vunmap,
+>>   	.gem_prime_mmap            =3D xen_drm_front_gem_prime_mmap,
+>>   	.dumb_create               =3D xen_drm_drv_dumb_create,
+>>   	.fops                      =3D &xen_drm_dev_fops,
+>> diff --git a/drivers/gpu/drm/xen/xen_drm_front.h b/drivers/gpu/drm/xen=
+/xen_drm_front.h
+>> index f92c258350ca..93e60c1db550 100644
+>> --- a/drivers/gpu/drm/xen/xen_drm_front.h
+>> +++ b/drivers/gpu/drm/xen/xen_drm_front.h
+>> @@ -160,4 +160,6 @@ int xen_drm_front_page_flip(struct xen_drm_front_i=
+nfo *front_info,
+>>   void xen_drm_front_on_frame_done(struct xen_drm_front_info *front_in=
+fo,
+>>   				 int conn_idx, u64 fb_cookie);
+>>  =20
+>> +void xen_drm_drv_free_object_unlocked(struct drm_gem_object *obj);
+>> +
+>>   #endif /* __XEN_DRM_FRONT_H_ */
+>> diff --git a/drivers/gpu/drm/xen/xen_drm_front_gem.c b/drivers/gpu/drm=
+/xen/xen_drm_front_gem.c
+>> index f0b85e094111..7b315c08bcfc 100644
+>> --- a/drivers/gpu/drm/xen/xen_drm_front_gem.c
+>> +++ b/drivers/gpu/drm/xen/xen_drm_front_gem.c
+>> @@ -56,6 +56,19 @@ static void gem_free_pages_array(struct xen_gem_obj=
+ect *xen_obj)
+>>   	xen_obj->pages =3D NULL;
+>>   }
+>>  =20
+>> +static const struct vm_operations_struct xen_drm_drv_vm_ops =3D {
+>> +	.open           =3D drm_gem_vm_open,
+>> +	.close          =3D drm_gem_vm_close,
+>> +};
+>> +
+>> +static const struct drm_gem_object_funcs xen_drm_front_gem_object_fun=
+cs =3D {
+>> +	.free =3D xen_drm_drv_free_object_unlocked,
+>> +	.get_sg_table =3D xen_drm_front_gem_get_sg_table,
+>> +	.vmap =3D xen_drm_front_gem_prime_vmap,
+>> +	.vunmap =3D xen_drm_front_gem_prime_vunmap,
+>> +	.vm_ops =3D &xen_drm_drv_vm_ops,
+>> +};
+>> +
+>>   static struct xen_gem_object *gem_create_obj(struct drm_device *dev,=
 
->         }
->  
->         *offset = n - idx;
-> @@ -570,7 +575,7 @@ i915_gem_object_get_dma_address_len(struct drm_i915_gem_object *obj,
->         struct scatterlist *sg;
->         unsigned int offset;
->  
-> -       sg = i915_gem_object_get_sg(obj, n, &offset);
-> +       sg = i915_gem_object_get_sg_dma(obj, n, &offset);
->  
->         if (len)
->                 *len = sg_dma_len(sg) - (offset << PAGE_SHIFT);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> index 81c05f551b9c..95e77d56c1ce 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> @@ -1383,7 +1383,7 @@ intel_partial_pages(const struct i915_ggtt_view *view,
->         if (ret)
->                 goto err_sg_alloc;
->  
-> -       iter = i915_gem_object_get_sg(obj, view->partial.offset, &offset);
-> +       iter = i915_gem_object_get_sg_dma(obj, view->partial.offset, &offset);
->         GEM_BUG_ON(!iter);
->  
->         sg = st->sgl;
-> @@ -1391,7 +1391,7 @@ intel_partial_pages(const struct i915_ggtt_view *view,
->         do {
->                 unsigned int len;
->  
-> -               len = min(iter->length - (offset << PAGE_SHIFT),
-> +               len = min(sg_dma_len(iter) - (offset << PAGE_SHIFT),
->                           count << PAGE_SHIFT);
->                 sg_set_page(sg, NULL, len, 0);
->                 sg_dma_address(sg) =
+>>   					     size_t size)
+>>   {
+>> @@ -66,6 +79,8 @@ static struct xen_gem_object *gem_create_obj(struct =
+drm_device *dev,
+>>   	if (!xen_obj)
+>>   		return ERR_PTR(-ENOMEM);
+>>  =20
+>> +	xen_obj->base.funcs =3D &xen_drm_front_gem_object_funcs;
+>> +
+>>   	ret =3D drm_gem_object_init(dev, &xen_obj->base, size);
+>>   	if (ret < 0) {
+>>   		kfree(xen_obj);
 
-I didn't find any other users for get_sg() and this looks to catch all
-the fixes required for using sg_dma.
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
-> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h b/drivers/gpu/drm/i915/i915_scatterlist.h
-> index 510856887628..102d8d7007b6 100644
-> --- a/drivers/gpu/drm/i915/i915_scatterlist.h
-> +++ b/drivers/gpu/drm/i915/i915_scatterlist.h
-> @@ -48,6 +48,11 @@ static inline int __sg_page_count(const struct scatterlist *sg)
->         return sg->length >> PAGE_SHIFT;
->  }
->  
-> +static inline int __sg_dma_page_count(const struct scatterlist *sg)
-> +{
-> +       return sg_dma_len(sg) >> PAGE_SHIFT;
-> +}
 
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+--kA0kz2rRnYLjEYgqBQNbqkILRFPajOphI--
 
-Do we need cc:stable?
--Chris
+--PEKUmr8ZTfzNvLYko4DS4LvqUwNvZCpsP
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFIBAEBCAAyFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl9ggdEUHHR6aW1tZXJt
+YW5uQHN1c2UuZGUACgkQaA3BHVMLeiPDBwf/f2Q/YJ8WXCfC3ehLZzwlJXNPSLdV
+RBu8TYn7lfxxUA4dxKgUAU8gtA/RhGAj6nStvS9xB/lBn3Pzea0Zgxyi9muLzrVj
+AAtdCLdz4ykNSJKXeHJFa2/gNzRETQYNok4p3aC2o7qLw1vUdb3U2GY3PzrEX+CR
+cF1iwAbanJ+/6sT1OATWLOSzjyZ4EkRCP6xclKm6wzrrATaBUeneBeDT0TW4OY1i
+0W8WRT7epjcXidinkJnDOtSXDzLRgl5eV5BnsTioD1vJ12ArZwkW0xG/wTTpNgMq
+Rs06mSE5osC1vjmNLl5TUYmtRzgLkOztpo+HyNQH5SwuMdM1wMCL8OkOVA==
+=swh3
+-----END PGP SIGNATURE-----
+
+--PEKUmr8ZTfzNvLYko4DS4LvqUwNvZCpsP--
+
+--===============1478978354==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1478978354==--
