@@ -2,60 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15EE726A06A
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 10:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AAA726A0EC
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 10:31:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF4689359;
-	Tue, 15 Sep 2020 08:10:14 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
- [IPv6:2607:f8b0:4864:20::741])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B42FD89359
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 08:10:12 +0000 (UTC)
-Received: by mail-qk1-x741.google.com with SMTP id o16so3347064qkj.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 01:10:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=date:from:to:cc:subject:in-reply-to:message-id:references
- :user-agent:mime-version;
- bh=+JVatOz5/Dh/xyAg85UUTlc2Kova9GVo8Ydw6vbee8g=;
- b=nIyTzeIBrWUervNx+ZYSIQs3H/l6i7vwus2Ha3I8FVsJWME+6Q6zBuLHukcO1Xcij/
- j5R4e/ZCmOxtNw9oAWHeZq7ZmEeuOE1wVGnjbF/JEFb/h3Gpyr0zY82TI5IU8HJa3iwt
- wI+5RRixk+oQKYUF3g9xUmcY8v+Lbh/cTzjxMNENwyG+h/fSBMLQK4/VS47P+Igi7oZ1
- 9UckvC1TShzWV6/MknJfpHzSm2rh16Zq6E3B4Oi9mvYBkd/oM5Ats+6fyFmiLQab2Du2
- 7pn/Dd1cLCSugZFKNESH19JPHq/CXBJqNAhX10PcHYs8QaZCnL/QDibmKOhKsKMRnISA
- U9IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
- :references:user-agent:mime-version;
- bh=+JVatOz5/Dh/xyAg85UUTlc2Kova9GVo8Ydw6vbee8g=;
- b=ekp1RGxzwiTajBS5qdGpNJg/pO1Ds6aFI4hGX8UFrXfkCwBRQJRZjhLeRmdAicqtsQ
- 6xm6HvNGEdsiASodTKl21j8nv2LlU8zC/N1j2H3tthPR04UF+bm6n6N82CDosGpSflrn
- uwhIpjmnNXmtHgVA0ESFEf3qd0if6LKebEheyPjY1j4GsZQqeyDwbTPl3zqff3aivXgl
- nojT47H7gxyquCpr6rOTWeAt7t/jMMvs5XNjBwo4GH9JsGSbnoPvNq9kXbdRtJtsothT
- vfPQEK6d02Q9jEVIVeQ64JthfL5JJao0BqPoc4KfrT5XIGIRsfzvcX45nVE+f4QSf0Fb
- csng==
-X-Gm-Message-State: AOAM532MMN0O+h+AsQG+9/RFdfZdN7WQ6AwoOi+K+FGWllb8YSAk5Cqm
- VNLSN76GI1DGOPl0S9pUFHE8WQ==
-X-Google-Smtp-Source: ABdhPJyS7xJTZfyWz8c4kNJtOicW4XfjWeOIR89eyPboMltYWj+TUMAFVzJOuE70LfMxUb5VQs5eUg==
-X-Received: by 2002:a37:a602:: with SMTP id p2mr16652323qke.254.1600157410569; 
- Tue, 15 Sep 2020 01:10:10 -0700 (PDT)
-Received: from eggly.attlocal.net
- (172-10-233-147.lightspeed.sntcca.sbcglobal.net. [172.10.233.147])
- by smtp.gmail.com with ESMTPSA id u4sm15673927qkk.68.2020.09.15.01.10.06
- (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
- Tue, 15 Sep 2020 01:10:08 -0700 (PDT)
-Date: Tue, 15 Sep 2020 01:10:05 -0700 (PDT)
-From: Hugh Dickins <hughd@google.com>
-X-X-Sender: hugh@eggly.anvils
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-In-Reply-To: <20200910183318.20139-1-willy@infradead.org>
-Message-ID: <alpine.LSU.2.11.2009150059310.1550@eggly.anvils>
-References: <20200910183318.20139-1-willy@infradead.org>
-User-Agent: Alpine 2.11 (LSU 23 2013-08-11)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7925889D43;
+	Tue, 15 Sep 2020 08:31:17 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A2F089D43
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 08:31:15 +0000 (UTC)
+IronPort-SDR: Mo99YwPsoONkHs03XxV9ntBgqqCuzKLMpm184MfZlSstfmAc6E5PGKeyZxPIs6uEoE8ewEcFhl
+ sIEC84tNUWGg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="156612310"
+X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; d="scan'208";a="156612310"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2020 01:31:15 -0700
+IronPort-SDR: m5uwOcxg8dXM6sMIv3fW5OesaSteOppplX2z1PJHIZDM8f32NOiTqtCWNcxVEh/3kYKJQ63zEi
+ WssfTGDEryyg==
+X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; d="scan'208";a="482680545"
+Received: from oshaham-mobl.ger.corp.intel.com (HELO [10.214.241.3])
+ ([10.214.241.3])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2020 01:31:11 -0700
+To: Lu Baolu <baolu.lu@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
+ Tom Murphy <murphyt7@tcd.ie>, David Woodhouse <dwmw2@infradead.org>,
+ Christoph Hellwig <hch@infradead.org>
+References: <20200912032200.11489-1-baolu.lu@linux.intel.com>
+ <51a1baec-48d1-c0ac-181b-1fba92aa428d@linux.intel.com>
+ <001f4446-7c43-9832-42d8-55dc4a13c2ae@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <9173fed9-e60f-5189-e17d-b23bfabdaa38@linux.intel.com>
+Date: Tue, 15 Sep 2020 09:31:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 0/8] Return head pages from find_*_entry
+In-Reply-To: <001f4446-7c43-9832-42d8-55dc4a13c2ae@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3 0/6] Convert the intel iommu driver to
+ the dma-iommu api
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,78 +57,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: William Kucharski <william.kucharski@oracle.com>,
- intel-gfx@lists.freedesktop.org, Huang Ying <ying.huang@intel.com>,
- Hugh Dickins <hughd@google.com>, linux-kernel@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
- Matthew Auld <matthew.auld@intel.com>, Johannes Weiner <hannes@cmpxchg.org>,
- cgroups@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Alexey Dobriyan <adobriyan@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel-gfx@lists.freedesktop.org, Ashok Raj <ashok.raj@intel.com>,
+ iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 10 Sep 2020, Matthew Wilcox (Oracle) wrote:
-
-> This patch series started out as part of the THP patch set, but it has
-> some nice effects along the way and it seems worth splitting it out and
-> submitting separately.
-> 
-> Currently find_get_entry() and find_lock_entry() return the page
-> corresponding to the requested index, but the first thing most callers do
-> is find the head page, which we just threw away.  As part of auditing
-> all the callers, I found some misuses of the APIs and some plain
-> inefficiencies that I've fixed.
-> 
-> The diffstat is unflattering, but I added more kernel-doc and a new wrapper.
-> 
-> v2:
->  - Rework how shmem_getpage_gfp() handles getting a head page back from
->    find_lock_entry()
->  - Renamed find_get_swap_page() to find_get_incore_page()
->  - Make sure find_get_incore_page() doesn't return a head page
->  - Fix the missing include of linux/shmem_fs.h
->  - Move find_get_entry and find_lock_entry prototypes to mm/internal.h
->  - Rename thp_valid_index() to thp_contains()
->  - Fix thp_contains() for hugetlbfs and swapcache
->  - Add find_lock_head() wrapper around pagecache_get_page()
-> 
-> Matthew Wilcox (Oracle) (8):
->   mm: Factor find_get_incore_page out of mincore_page
->   mm: Use find_get_incore_page in memcontrol
->   mm: Optimise madvise WILLNEED
->   proc: Optimise smaps for shmem entries
->   i915: Use find_lock_page instead of find_lock_entry
->   mm: Convert find_get_entry to return the head page
->   mm/shmem: Return head page from find_lock_entry
->   mm: Add find_lock_head
-> 
->  drivers/gpu/drm/i915/gem/i915_gem_shmem.c |  4 +--
->  fs/proc/task_mmu.c                        |  8 +----
->  include/linux/pagemap.h                   | 43 +++++++++++++++++-----
->  include/linux/swap.h                      |  7 ++++
->  mm/filemap.c                              | 44 +++++++++++------------
->  mm/internal.h                             |  3 ++
->  mm/madvise.c                              | 21 ++++++-----
->  mm/memcontrol.c                           | 24 ++-----------
->  mm/mincore.c                              | 28 ++-------------
->  mm/shmem.c                                | 20 +++++------
->  mm/swap_state.c                           | 32 +++++++++++++++++
->  11 files changed, 127 insertions(+), 107 deletions(-)
-> 
-> -- 
-> 2.28.0
-
-I was testing mmotm today (plus the shmem.c and swap_state.c
-fixes that you posted, but I did not try the madvise.c one) -
-my usual tmpfs swapping loads (plus hyperactive khugepaged to
-maximize the THPs).  It behaved well, no problems found.
-
-But I probably won't get to try your series of 12 for a few days.
-
-Hugh
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDE1LzA5LzIwMjAgMDI6NDcsIEx1IEJhb2x1IHdyb3RlOgo+IEhpIFR2cnRrbywKPiAKPiBP
+biA5LzE0LzIwIDQ6MDQgUE0sIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+Pgo+PiBIaSwKPj4KPj4g
+T24gMTIvMDkvMjAyMCAwNDoyMSwgTHUgQmFvbHUgd3JvdGU6Cj4+PiBUb20gTXVycGh5IGhhcyBh
+bG1vc3QgZG9uZSBhbGwgdGhlIHdvcmsuIEhpcyBsYXRlc3QgcGF0Y2ggc2VyaWVzIHdhcwo+Pj4g
+cG9zdGVkIGhlcmUuCj4+Pgo+Pj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtaW9tbXUv
+MjAyMDA5MDMyMDE4MzkuNzMyNy0xLW11cnBoeXQ3QHRjZC5pZS8gCj4+Pgo+Pj4KPj4+IFRoYW5r
+cyBhIGxvdCEKPj4+Cj4+PiBUaGlzIHNlcmllcyBpcyBhIGZvbGxvdy11cCB3aXRoIGJlbG93IGNo
+YW5nZXM6Cj4+Pgo+Pj4gMS4gQWRkIGEgcXVpcmsgZm9yIHRoZSBpOTE1IGRyaXZlciBpc3N1ZSBk
+ZXNjcmliZWQgaW4gVG9tJ3MgY292ZXIKPj4+IGxldHRlci4KPj4KPj4gTGFzdCB3ZWVrIEkgaGF2
+ZSBjb3BpZWQgeW91IG9uIGFuIGk5MTUgc2VyaWVzIHdoaWNoIGFwcGVhcnMgdG8gcmVtb3ZlIAo+
+PiB0aGUgbmVlZCBmb3IgdGhpcyBxdWlyay4gc28gaWYgd2UgZ2V0IHRob3NlIGk5MTUgcGF0Y2hl
+cyByZXZpZXdlZCBhbmQgCj4+IG1lcmdlZCwgZG8geW91IHN0aWxsIHdhbnQgdG8gcHVyc3VlIHRo
+aXMgcXVpcms/Cj4gCj4gSXQncyB1cCB0byB0aGUgZ3JhcGhpYyBndXlzLiBJIGRvbid0IGtub3cg
+dGhlIGRldGFpbHMgaW4gaTkxNSBkcml2ZXIuCj4gSSBkb24ndCB0aGluayBteSB0ZXN0cyBjb3Vs
+ZCBjb3ZlciBhbGwgY2FzZXMuCgpJIGFtIHRoZSBncmFwaGljIGd1eS4gOikgSSBqdXN0IG5lZWQg
+c29tZSByZXZpZXdzIChpbnRlcm5hbGx5KSBmb3IgbXkgCnNlcmllcyBhbmQgdGhlbiB3ZSBjYW4g
+bWVyZ2UgaXQsIGF0IHdoaWNoIHBvaW50IHlvdSBkb24ndCBuZWVkIHRoZSBxdWlyayAKcGF0Y2gg
+YW55IG1vcmUuIEknbGwgdHJ5IHRvIGFjY2VsZXJhdGUgdGhpcy4KCldpdGggcmVnYXJkcyB0byB0
+ZXN0aW5nLCB5b3UgY291bGQgc2VuZCB5b3VyIHNlcmllcyB3aXRoIG15IHBhdGNoZXMgb24gCnRv
+cCB0byBvdXIgdHJ5Ym90IG1haWxpbmcgbGlzdCAoaW50ZWwtZ2Z4LXRyeWJvdEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcgLyAKaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Byb2plY3Qv
+aW50ZWwtZ2Z4LXRyeWJvdC9zZXJpZXMvP29yZGVyaW5nPS1sYXN0X3VwZGF0ZWQpIAp3aGljaCB3
+b3VsZCBzaG93IHlvdSBpZiBpdCBpcyBzdGlsbCBoaXR0aW5nIHRoZSBETUFSIGlzc3VlcyBpbiBp
+OTE1LgoKPj4KPj4+IDIuIEZpeCBzZXZlcmFsIGJ1Z3MgaW4gcGF0Y2ggImlvbW11OiBBbGxvdyB0
+aGUgZG1hLWlvbW11IGFwaSB0byB1c2UKPj4+IGJvdW5jZSBidWZmZXJzIiB0byBtYWtlIHRoZSBi
+b3VuY2UgYnVmZmVyIHdvcmsgZm9yIHVudHJ1c3RlZCBkZXZpY2VzLgo+Pj4gMy4gU2V2ZXJhbCBj
+bGVhbnVwcyBpbiBpb21tdS92dC1kIGRyaXZlciBhZnRlciB0aGUgY29udmVyc2lvbi4KPj4KPj4g
+V2l0aCB0aGUgcHJldmlvdXMgdmVyc2lvbiBvZiB0aGUgc2VyaWVzIEkgaGl0IGEgcHJvYmxlbSBv
+biBJdnlicmlkZ2UgCj4+IHdoZXJlIGFwcGFyZW50bHkgdGhlIGRtYSBlbmdpbmUgd2lkdGggaXMg
+bm90IHJlc3BlY3RlZC4gQXQgbGVhc3QgdGhhdCAKPj4gaXMgbXkgbGF5bWFuIGludGVycHJldGF0
+aW9uIG9mIHRoZSBlcnJvcnMuIEZyb20gdGhlIG9sZGVyIHRocmVhZDoKPj4KPj4gPDM+IFsyMDku
+NTI2NjA1XSBETUFSOiBpbnRlbF9pb21tdV9tYXA6IGlvbW11IHdpZHRoICgzOSkgaXMgbm90IAo+
+PiBzdWZmaWNpZW50IGZvciB0aGUgbWFwcGVkIGFkZHJlc3MgKGZmZmYwMDgwMDApCj4+Cj4+IFJl
+bGV2YW50IGlvbW11IGJvb3QgcmVsYXRlZCBtZXNzYWdlcyBhcmU6Cj4+Cj4+IDw2PlvCoMKgwqAg
+MC4xODQyMzRdIERNQVI6IEhvc3QgYWRkcmVzcyB3aWR0aCAzNgo+PiA8Nj5bwqDCoMKgIDAuMTg0
+MjQ1XSBETUFSOiBEUkhEIGJhc2U6IDB4MDAwMDAwZmVkOTAwMDAgZmxhZ3M6IDB4MAo+PiA8Nj5b
+wqDCoMKgIDAuMTg0Mjg4XSBETUFSOiBkbWFyMDogcmVnX2Jhc2VfYWRkciBmZWQ5MDAwMCB2ZXIg
+MTowIGNhcCAKPj4gYzAwMDAwMjBlNjAyNjIgZWNhcCBmMDEwMWEKPj4gPDY+W8KgwqDCoCAwLjE4
+NDMwOF0gRE1BUjogRFJIRCBiYXNlOiAweDAwMDAwMGZlZDkxMDAwIGZsYWdzOiAweDEKPj4gPDY+
+W8KgwqDCoCAwLjE4NDMzN10gRE1BUjogZG1hcjE6IHJlZ19iYXNlX2FkZHIgZmVkOTEwMDAgdmVy
+IDE6MCBjYXAgCj4+IGM5MDA4MDIwNjYwMjYyIGVjYXAgZjAxMDVhCj4+IDw2PlvCoMKgwqAgMC4x
+ODQzNTddIERNQVI6IFJNUlIgYmFzZTogMHgwMDAwMDBkOGQyODAwMCBlbmQ6IDB4MDAwMDAwZDhk
+NDZmZmYKPj4gPDY+W8KgwqDCoCAwLjE4NDM3N10gRE1BUjogUk1SUiBiYXNlOiAweDAwMDAwMGRi
+MDAwMDAwIGVuZDogMHgwMDAwMDBkZjFmZmZmZgo+PiA8Nj5bwqDCoMKgIDAuMTg0Mzk4XSBETUFS
+LUlSOiBJT0FQSUMgaWQgMiB1bmRlciBEUkhEIGJhc2XCoCAweGZlZDkxMDAwIAo+PiBJT01NVSAx
+Cj4+IDw2PlvCoMKgwqAgMC4xODQ0MTRdIERNQVItSVI6IEhQRVQgaWQgMCB1bmRlciBEUkhEIGJh
+c2UgMHhmZWQ5MTAwMAo+PiA8Nj5bwqDCoMKgIDAuMTg0NDI4XSBETUFSLUlSOiBRdWV1ZWQgaW52
+YWxpZGF0aW9uIHdpbGwgYmUgZW5hYmxlZCB0byAKPj4gc3VwcG9ydCB4MmFwaWMgYW5kIEludHIt
+cmVtYXBwaW5nLgo+PiA8Nj5bwqDCoMKgIDAuMTg1MTczXSBETUFSLUlSOiBFbmFibGVkIElSUSBy
+ZW1hcHBpbmcgaW4geDJhcGljIG1vZGUKPj4KPj4gPDY+W8KgwqDCoCAwLjg3ODkzNF0gRE1BUjog
+Tm8gQVRTUiBmb3VuZAo+PiA8Nj5bwqDCoMKgIDAuODc4OTY2XSBETUFSOiBkbWFyMDogVXNpbmcg
+UXVldWVkIGludmFsaWRhdGlvbgo+PiA8Nj5bwqDCoMKgIDAuODc5MDA3XSBETUFSOiBkbWFyMTog
+VXNpbmcgUXVldWVkIGludmFsaWRhdGlvbgo+Pgo+PiA8Nj5bwqDCoMKgIDAuOTE1MDMyXSBETUFS
+OiBJbnRlbChSKSBWaXJ0dWFsaXphdGlvbiBUZWNobm9sb2d5IGZvciAKPj4gRGlyZWN0ZWQgSS9P
+Cj4+IDw2PlvCoMKgwqAgMC45MTUwNjBdIFBDSS1ETUE6IFVzaW5nIHNvZnR3YXJlIGJvdW5jZSBi
+dWZmZXJpbmcgZm9yIElPIAo+PiAoU1dJT1RMQikKPj4gPDY+W8KgwqDCoCAwLjkxNTA4NF0gc29m
+dHdhcmUgSU8gVExCOiBtYXBwZWQgW21lbSAweGM4MGQ0MDAwLTB4Y2MwZDQwMDBdIAo+PiAoNjRN
+QikKPj4KPj4gKEZ1bGwgYm9vdCBsb2cgYXQgCj4+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
+Zy90cmVlL2RybS10aXAvVHJ5Ym90XzcwNTQvZmktaXZiLTM3NzAvYm9vdDAudHh0LCAKPj4gZmFp
+bHVyZXMgYXQgCj4+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvVHJ5
+Ym90XzcwNTQvZmktaXZiLTM3NzAvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUBibHQuaHRtbC4pIAo+
+Pgo+Pgo+PiBEb2VzIHRoaXMgbG9vayBmYW1pbGlhciBvciBhdCBsZWFzdCBwbGF1c2libGUgdG8g
+eW91PyBJcyB0aGlzIAo+PiBzb21ldGhpbmcgeW91ciBuZXcgc2VyaWVzIGhhcyBmaXhlZD8KPiAK
+PiBUaGlzIGhhcHBlbnMgZHVyaW5nIGF0dGFjaGluZyBhIGRvbWFpbiB0byBkZXZpY2UuIEl0IGhh
+cyBub3RoaW5nIHRvIGRvCj4gd2l0aCB0aGlzIHBhdGNoIHNlcmllcy4gSSB3aWxsIGxvb2sgaW50
+byB0aGlzIGlzc3VlLCBidXQgbm90IGluIHRoaXMKPiBlbWFpbCB0aHJlYWQgY29udGV4dC4KCkkg
+YW0gbm90IHN1cmUgd2hhdCBzdGVwIGlzIGF0dGFjaGluZyBkb21haW4gdG8gZGV2aWNlLCBidXQg
+dGhlc2UgdHlwZSAKbWVzc2FnZXM6Cgo8Mz4gWzIwOS41MjY2MDVdIERNQVI6IGludGVsX2lvbW11
+X21hcDogaW9tbXUgd2lkdGggKDM5KSBpcyBub3QKID4+IHN1ZmZpY2llbnQgZm9yIHRoZSBtYXBw
+ZWQgYWRkcmVzcyAoZmZmZjAwODAwMCkKClRoZXkgZGVmaW5pdGVseSBhcHBlYXIgdG8gaGFwcGVu
+IGF0IHJ1bnRpbWUsIGFzIGk5MTUgaXMgZ2V0dGluZyAKZXhlcmNpc2VkIGJ5IHVzZXJzcGFjZS4K
+ClJlZ2FyZHMsCgpUdnJ0a28KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4Cg==
