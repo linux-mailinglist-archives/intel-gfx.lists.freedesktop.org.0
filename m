@@ -1,44 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B58826AD57
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 21:19:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30D6026AD95
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 21:29:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D32136E8F8;
-	Tue, 15 Sep 2020 19:18:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A513A88A72;
+	Tue, 15 Sep 2020 19:29:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 704B96E8F8;
- Tue, 15 Sep 2020 19:18:58 +0000 (UTC)
-IronPort-SDR: AOL5K68qtA6f4qcEdctjU9jU31z9tiRI//t1BngGtLxNBhYl6SZ/HkFFQoWX2pCLA7t/Ako+WX
- k6L9OTjCWnmg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9745"; a="156720733"
-X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="156720733"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33A6088A72
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 19:29:04 +0000 (UTC)
+IronPort-SDR: Ss5QtYStcgj2cHrWsWzw2C80utY8KwkbvcBGdgjUkYvcaZ+VgWumRMujMop9NkYktaegmZyKbl
+ HO2qAd7COAag==
+X-IronPort-AV: E=McAfee;i="6000,8403,9745"; a="177401544"
+X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="177401544"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2020 12:18:56 -0700
-IronPort-SDR: 9JU1lnlYRSVBnb9JqOXUkkZd+LDdncoH6kBk0zAz+yF6WQ+l9IrpylADoeAlvAxE/dciRfAZHr
- h2/MeJ3kO1CQ==
-X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="302277861"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.201])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2020 12:18:56 -0700
-Date: Tue, 15 Sep 2020 15:21:15 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <20200915192115.GE503362@intel.com>
-References: <20200915172939.2810538-1-lyude@redhat.com>
- <20200915172939.2810538-5-lyude@redhat.com>
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2020 12:29:00 -0700
+IronPort-SDR: 7oK8Ayf6ulTpkmRoD+YPZOP303AlyhDZSHJNDHxQsAnC5guA1bGQMjVXRqj8LBhbTwa6eua6xa
+ 7s4Y3feAxEkw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="506873563"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+ by fmsmga006.fm.intel.com with ESMTP; 15 Sep 2020 12:29:00 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 15 Sep 2020 12:29:00 -0700
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 15 Sep 2020 12:28:59 -0700
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.1713.004;
+ Tue, 15 Sep 2020 20:28:58 +0100
+From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Souza,
+ Jose" <jose.souza@intel.com>
+Thread-Topic: [PATCH 3/4] drm/i915/display: Program PSR2 selective fetch
+ registers
+Thread-Index: AQHWf/wou+ViHV3eN0iA9gLtveIezaloNeWAgABg8gCAAYVgAA==
+Date: Tue, 15 Sep 2020 19:28:57 +0000
+Message-ID: <3ec11a2bb3fa0a4ce7ab9c7e7bfa585759963040.camel@intel.com>
+References: <20200901010924.235808-1-jose.souza@intel.com>
+ <20200901010924.235808-3-jose.souza@intel.com>
+ <20200914142829.GO6112@intel.com>
+ <0e70ac0cdf94c645184fc4f7e724a1d554cd4163.camel@intel.com>
+In-Reply-To: <0e70ac0cdf94c645184fc4f7e724a1d554cd4163.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.253.164]
+Content-ID: <753B96803044244CA80E4C2B1889BD88@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200915172939.2810538-5-lyude@redhat.com>
-Subject: Re: [Intel-gfx] [RFC 4/5] drm/i915: Enable Intel's HDR backlight
- interface (only SDR for now)
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/display: Program PSR2
+ selective fetch registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,702 +72,250 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Vasily Khoruzhick <anarsoul@gmail.com>, Sean Paul <seanpaul@chromium.org>,
- Wambui Karuga <wambui.karugax@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 15, 2020 at 01:29:38PM -0400, Lyude Paul wrote:
-> So-recently a bunch of laptops on the market have started using DPCD
-> backlight controls instead of the traditional DDI backlight controls.
-> Originally we thought we had this handled by adding VESA backlight
-> control support to i915, but the story ended up being a lot more
-> complicated then that.
-> 
-> Simply put-there's two main backlight interfaces Intel can see in the
-> wild. Intel's proprietary HDR backlight interface, and the standard VESA
-> backlight interface. Note that many panels have been observed to report
-> support for both backlight interfaces, but testing has shown far more
-> panels work with the Intel HDR backlight interface at the moment.
-> Additionally, the VBT appears to be capable of reporting support for the
-> VESA backlight interface but not the Intel HDR interface which needs to
-> be probed by setting the right magic OUI.
-> 
-> On top of that however, there's also actually two different variants of
-> the Intel HDR backlight interface. The first uses the AUX channel for
-> controlling the brightness of the screen in both SDR and HDR mode, and
-> the second only uses the AUX channel for setting the brightness level in
-> HDR mode - relying on PWM for setting the brightness level in SDR mode.
-> 
-> For the time being we've been using EDIDs to maintain a list of quirks
-> for panels that safely do support the VESA backlight interface. Adding
-> support for Intel's HDR backlight interface in addition however, should
-> finally allow us to auto-detect eDP backlight controls properly so long
-> as we probe like so:
-> 
-> * If the panel's VBT reports VESA backlight support, assume it really
->   does support it
-> * If the panel's VBT reports DDI backlight controls:
->   * First probe for Intel's HDR backlight interface
->   * If that fails, probe for VESA's backlight interface
->   * If that fails, assume no DPCD backlight control
-> * If the panel's VBT reports any other backlight type: just assume it
->   doesn't have DPCD backlight controls
-> 
-> Note as well that in order for us to make Intel's HDR backlight
-> interface appear, we need to start programming the appropriate source
-> OUI on the eDP panel as early as possible in the probing process. Note
-> that this technically could be done at any time before setting up
-> backlight controls, but this way allows us to avoid re-writing it
-> multiple times in case we need to use other source-OUI enabled features
-> in the future.
-> 
-> Finally, we also make sure to document the registers for this backlight
-> interface since eventually, we want to actually implement the full
-> interface instead of keeping it in SDR mode.
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: thaytan@noraisin.net
-> Cc: Vasily Khoruzhick <anarsoul@gmail.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |   9 +-
->  .../drm/i915/display/intel_dp_aux_backlight.c | 384 +++++++++++++++---
->  drivers/gpu/drm/i915/display/intel_panel.c    |  34 +-
->  drivers/gpu/drm/i915/display/intel_panel.h    |   4 +
->  drivers/gpu/drm/i915/i915_params.c            |   2 +-
->  5 files changed, 381 insertions(+), 52 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 52a6543df842a..9d540368bac89 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -230,7 +230,14 @@ struct intel_panel {
->  		struct pwm_state pwm_state;
->  
->  		/* DPCD backlight */
-> -		u8 pwmgen_bit_count;
-> +		union {
-> +			struct {
-> +				u8 pwmgen_bit_count;
-> +			} vesa;
-> +			struct {
-> +				bool sdr_uses_aux;
-> +			} intel;
-> +		} edp;
->  
->  		struct {
->  			int (*setup)(struct intel_connector *connector, enum pipe pipe);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index acbd7eb66cbe3..aa1429302db70 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -22,10 +22,251 @@
->   *
->   */
->  
-> +/*
-> + * Laptops with Intel GPUs which have panels that support controlling the
-> + * backlight through DP AUX can actually use two different interfaces: Intel's
-> + * proprietary DP AUX backlight interface, and the standard VESA backlight
-> + * interface. Unfortunately, at the time of writing this a lot of laptops will
-> + * advertise support for the standard VESA backlight interface when they
-> + * don't properly support it. However, on these systems the Intel backlight
-> + * interface generally does work properly. Additionally, these systems will
-> + * usually just indicate that they use PWM backlight controls in their VBIOS
-> + * for some reason.
-> + */
-> +
->  #include "intel_display_types.h"
->  #include "intel_dp_aux_backlight.h"
-> +#include "intel_panel.h"
-> +
-> +/* TODO:
-> + * Implement HDR, right now we just implement the bare minimum to bring us back into SDR mode so we
-> + * can make people's backlights work in the mean time
-> + */
-> +
-> +/*
-> + * DP AUX registers for Intel's proprietary HDR backlight interface. We define
-> + * them here since we'll likely be the only driver to ever use these.
-> + */
-> +#define INTEL_EDP_HDR_TCON_CAP0                                        0x340
-> +
-> +#define INTEL_EDP_HDR_TCON_CAP1                                        0x341
-> +# define INTEL_EDP_HDR_TCON_2084_DECODE_CAP                           BIT(0)
-> +# define INTEL_EDP_HDR_TCON_2020_GAMUT_CAP                            BIT(1)
-> +# define INTEL_EDP_HDR_TCON_TONE_MAPPING_CAP                          BIT(2)
-> +# define INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_CAP                   BIT(3)
-> +# define INTEL_EDP_HDR_TCON_BRIGHTNESS_NITS_CAP                       BIT(4)
-> +# define INTEL_EDP_HDR_TCON_OPTIMIZATION_CAP                          BIT(5)
-> +# define INTEL_EDP_HDR_TCON_SDP_COLORIMETRY_CAP                       BIT(6)
-> +# define INTEL_EDP_HDR_TCON_SRGB_TO_PANEL_GAMUT_CONVERSION_CAP        BIT(7)
-> +
-> +#define INTEL_EDP_HDR_TCON_CAP2                                        0x342
-> +# define INTEL_EDP_SDR_TCON_BRIGHTNESS_AUX_CAP                        BIT(0)
-> +
-> +#define INTEL_EDP_HDR_TCON_CAP3                                        0x343
-> +
-> +#define INTEL_EDP_HDR_GETSET_CTRL_PARAMS                               0x344
-> +# define INTEL_EDP_HDR_TCON_2084_DECODE_ENABLE                        BIT(0)
-> +# define INTEL_EDP_HDR_TCON_2020_GAMUT_ENABLE                         BIT(1)
-> +# define INTEL_EDP_HDR_TCON_TONE_MAPPING_ENABLE                       BIT(2) /* Pre-TGL+ */
-> +# define INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_ENABLE                BIT(3)
-> +# define INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE                     BIT(4)
-> +# define INTEL_EDP_HDR_TCON_SRGB_TO_PANEL_GAMUT_ENABLE                BIT(5)
-> +/* Bit 6 is reserved */
-> +# define INTEL_EDP_HDR_TCON_SDP_COLORIMETRY_ENABLE                    BIT(7)
-> +
-> +#define INTEL_EDP_HDR_CONTENT_LUMINANCE                                0x346 /* Pre-TGL+ */
-> +#define INTEL_EDP_HDR_PANEL_LUMINANCE_OVERRIDE                         0x34A
-> +#define INTEL_EDP_SDR_LUMINANCE_LEVEL                                  0x352
-> +#define INTEL_EDP_BRIGHTNESS_NITS_LSB                                  0x354
-> +#define INTEL_EDP_BRIGHTNESS_NITS_MSB                                  0x355
-> +#define INTEL_EDP_BRIGHTNESS_DELAY_FRAMES                              0x356
-> +#define INTEL_EDP_BRIGHTNESS_PER_FRAME_STEPS                           0x357
-> +
-> +#define INTEL_EDP_BRIGHTNESS_OPTIMIZATION_0                            0x358
-> +# define INTEL_EDP_TCON_USAGE_MASK                             GENMASK(0, 3)
-> +# define INTEL_EDP_TCON_USAGE_UNKNOWN                                    0x0
-> +# define INTEL_EDP_TCON_USAGE_DESKTOP                                    0x1
-> +# define INTEL_EDP_TCON_USAGE_FULL_SCREEN_MEDIA                          0x2
-> +# define INTEL_EDP_TCON_USAGE_FULL_SCREEN_GAMING                         0x3
-> +# define INTEL_EDP_TCON_POWER_MASK                                    BIT(4)
-> +# define INTEL_EDP_TCON_POWER_DC                                    (0 << 4)
-> +# define INTEL_EDP_TCON_POWER_AC                                    (1 << 4)
-> +# define INTEL_EDP_TCON_OPTIMIZATION_STRENGTH_MASK             GENMASK(5, 7)
-> +
-> +#define INTEL_EDP_BRIGHTNESS_OPTIMIZATION_1                            0x359
-
-it would be good if we could split this patch into multiple patches to ease the
-review. adding registers, renaming the vesa mode, adding intel mode, adding
-the parameter....
-
-if you at least split the definitions above fell free to send with my reviewed-by...
-I had already reviewed against the spec I have here and it is accurate.
-
-> +
-> +/* Intel EDP backlight callbacks */
-> +static bool
-> +intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
-> +{
-> +	struct drm_device *dev = connector->base.dev;
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
-> +	struct drm_dp_aux *aux = &intel_dp->aux;
-> +	struct intel_panel *panel = &connector->panel;
-> +	int ret;
-> +	u8 tcon_cap[4];
-> +
-> +	ret = drm_dp_dpcd_read(aux, INTEL_EDP_HDR_TCON_CAP0, tcon_cap, sizeof(tcon_cap));
-> +	if (ret < 0)
-> +		return false;
-> +
-> +	if (!(tcon_cap[1] & INTEL_EDP_HDR_TCON_BRIGHTNESS_NITS_CAP))
-> +		return false;
-> +
-> +	if (tcon_cap[0] >= 1) {
-> +		drm_dbg_kms(dev, "Detected Intel HDR backlight interface version %d\n",
-> +			    tcon_cap[0]);
-> +	} else {
-> +		drm_dbg_kms(dev, "Detected unsupported HDR backlight interface version %d\n",
-> +			    tcon_cap[0]);
-> +		return false;
-> +	}
-> +
-> +	panel->backlight.edp.intel.sdr_uses_aux =
-> +		tcon_cap[2] & INTEL_EDP_SDR_TCON_BRIGHTNESS_AUX_CAP;
-> +
-> +	return true;
-> +}
-> +
-> +static u32
-> +intel_dp_aux_hdr_get_backlight(struct intel_connector *connector)
-> +{
-> +	struct drm_device *dev = connector->base.dev;
-> +	struct intel_panel *panel = &connector->panel;
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
-> +	u8 tmp;
-> +	u8 buf[2] = { 0 };
-> +
-> +	if (drm_dp_dpcd_readb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PARAMS, &tmp) < 0)
-> +		drm_err(dev, "Failed to read current backlight mode from DPCD\n");
->  
-> -static void set_aux_backlight_enable(struct intel_dp *intel_dp, bool enable)
-> +	if (!(tmp & INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE)) {
-> +		if (panel->backlight.edp.intel.sdr_uses_aux) {
-> +			/* Assume 100% brightness if backlight controls aren't enabled yet */
-> +			return panel->backlight.max;
-> +		} else {
-> +			u32 pwm_level = panel->backlight.pwm_funcs.get(connector);
-> +
-> +			return intel_panel_backlight_level_from_pwm(connector, pwm_level);
-> +		}
-> +	}
-> +
-> +	if (drm_dp_dpcd_read(&intel_dp->aux, INTEL_EDP_BRIGHTNESS_NITS_LSB, buf, sizeof(buf)) < 0) {
-> +		drm_err(dev, "Failed to read brightness from DPCD\n");
-> +		return 0;
-> +	}
-> +
-> +	return (buf[1] << 8 | buf[0]);
-> +}
-> +
-> +static void
-> +intel_dp_aux_hdr_set_aux_backlight(const struct drm_connector_state *conn_state, u32 level)
-> +{
-> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-> +	struct drm_device *dev = connector->base.dev;
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
-> +	uint8_t buf[4] = { 0 };
-> +
-> +	buf[0] = level & 0xFF;
-> +	buf[1] = (level & 0xFF00) >> 8;
-> +
-> +	if (drm_dp_dpcd_write(&intel_dp->aux, INTEL_EDP_BRIGHTNESS_NITS_LSB, buf, 4) < 0)
-> +		drm_err(dev, "Failed to write brightness level to DPCD\n");
-> +}
-> +
-> +static void
-> +intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32 level)
-> +{
-> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-> +	struct intel_panel *panel = &connector->panel;
-> +
-> +	if (panel->backlight.edp.intel.sdr_uses_aux) {
-> +		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
-> +	} else {
-> +		const u32 pwm_level = intel_panel_backlight_level_to_pwm(connector, level);
-> +		intel_panel_set_pwm_level(conn_state, pwm_level);
-> +	}
-> +}
-> +
-> +static void
-> +intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
-> +				  const struct drm_connector_state *conn_state)
-> +{
-> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-> +	struct intel_panel *panel = &connector->panel;
-> +	struct drm_device *dev = connector->base.dev;
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
-> +	int ret;
-> +	u8 old_ctrl, ctrl;
-> +
-> +	ret = drm_dp_dpcd_readb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PARAMS, &old_ctrl);
-> +	if (ret < 0) {
-> +		drm_err(dev, "Failed to read current backlight control mode: %d\n", ret);
-> +		return;
-> +	}
-> +
-> +	ctrl = old_ctrl;
-> +	if (panel->backlight.edp.intel.sdr_uses_aux) {
-> +		ctrl |= INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
-> +		intel_dp_aux_hdr_set_aux_backlight(conn_state, panel->backlight.level);
-> +	} else {
-> +		u32 pwm_level = intel_panel_backlight_level_to_pwm(connector,
-> +								   panel->backlight.level);
-> +		panel->backlight.pwm_funcs.enable(crtc_state, conn_state, pwm_level);
-> +
-> +		ctrl &= ~(INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE);
-> +	}
-> +
-> +	if (ctrl != old_ctrl)
-> +		if (drm_dp_dpcd_writeb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PARAMS, ctrl) < 0)
-> +			drm_err(dev, "Failed to configure DPCD brightness controls\n");
-> +}
-> +
-> +static void
-> +intel_dp_aux_hdr_disable_backlight(const struct drm_connector_state *conn_state)
-> +{
-> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-> +	struct intel_panel *panel = &connector->panel;
-> +
-> +	/* Nothing to do for AUX based backlight controls */
-> +	if (panel->backlight.edp.intel.sdr_uses_aux)
-> +		return;
-> +
-> +	/* Note we want the actual pwm_level to be 0, regardless of pwm_min */
-> +	panel->backlight.pwm_funcs.disable(conn_state,
-> +					   intel_panel_sanitize_pwm_level(connector, 0));
-> +}
-> +
-> +static int
-> +intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pipe)
-> +{
-> +	struct drm_device *dev = connector->base.dev;
-> +	struct intel_panel *panel = &connector->panel;
-> +	int ret;
-> +
-> +	if (panel->backlight.edp.intel.sdr_uses_aux) {
-> +		drm_dbg_kms(dev, "SDR backlight is controlled through DPCD\n");
-> +	} else {
-> +		drm_dbg_kms(dev, "SDR backlight is controlled through PWM\n");
-> +
-> +		ret = panel->backlight.pwm_funcs.setup(connector, pipe);
-> +		if (ret < 0) {
-> +			drm_err(dev, "Failed to setup SDR backlight controls through PWM: %d\n",
-> +				ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	panel->backlight.max = 512;
-> +	panel->backlight.min = 0;
-> +	panel->backlight.level = intel_dp_aux_hdr_get_backlight(connector);
-> +	panel->backlight.enabled = panel->backlight.level != 0;
-> +
-> +	return 0;
-> +}
-> +
-> +/* VESA backlight callbacks */
-> +static void set_vesa_backlight_enable(struct intel_dp *intel_dp, bool enable)
->  {
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	u8 reg_val = 0;
-> @@ -56,7 +297,7 @@ static void set_aux_backlight_enable(struct intel_dp *intel_dp, bool enable)
->   * Read the current backlight value from DPCD register(s) based
->   * on if 8-bit(MSB) or 16-bit(MSB and LSB) values are supported
->   */
-> -static u32 intel_dp_aux_get_backlight(struct intel_connector *connector)
-> +static u32 intel_dp_aux_vesa_get_backlight(struct intel_connector *connector)
->  {
->  	struct intel_dp *intel_dp = intel_attached_dp(connector);
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> @@ -99,7 +340,8 @@ static u32 intel_dp_aux_get_backlight(struct intel_connector *connector)
->   * 8-bit or 16 bit value (MSB and LSB)
->   */
->  static void
-> -intel_dp_aux_set_backlight(const struct drm_connector_state *conn_state, u32 level)
-> +intel_dp_aux_vesa_set_backlight(const struct drm_connector_state *conn_state,
-> +				u32 level)
->  {
->  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
->  	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> @@ -129,11 +371,11 @@ intel_dp_aux_set_backlight(const struct drm_connector_state *conn_state, u32 lev
->   * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
->   *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
->   */
-> -static bool intel_dp_aux_set_pwm_freq(struct intel_connector *connector)
-> +static bool intel_dp_aux_vesa_set_pwm_freq(struct intel_connector *connector)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> -	const u8 pn = connector->panel.backlight.pwmgen_bit_count;
-> +	const u8 pn = connector->panel.backlight.edp.vesa.pwmgen_bit_count;
->  	int freq, fxp, f, fxp_actual, fxp_min, fxp_max;
->  
->  	freq = dev_priv->vbt.backlight.pwm_freq_hz;
-> @@ -165,14 +407,15 @@ static bool intel_dp_aux_set_pwm_freq(struct intel_connector *connector)
->  	return true;
->  }
->  
-> -static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_state,
-> -					  const struct drm_connector_state *conn_state)
-> +static void intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
-> +					       const struct drm_connector_state *conn_state)
->  {
->  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
->  	struct intel_dp *intel_dp = intel_attached_dp(connector);
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	struct intel_panel *panel = &connector->panel;
->  	u8 dpcd_buf, new_dpcd_buf, edp_backlight_mode;
-> +	u8 pwmgen_bit_count = panel->backlight.edp.vesa.pwmgen_bit_count;
->  
->  	if (drm_dp_dpcd_readb(&intel_dp->aux,
->  			DP_EDP_BACKLIGHT_MODE_SET_REGISTER, &dpcd_buf) != 1) {
-> @@ -193,7 +436,7 @@ static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_st
->  
->  		if (drm_dp_dpcd_writeb(&intel_dp->aux,
->  				       DP_EDP_PWMGEN_BIT_COUNT,
-> -				       panel->backlight.pwmgen_bit_count) < 0)
-> +				       pwmgen_bit_count) < 0)
->  			drm_dbg_kms(&i915->drm,
->  				    "Failed to write aux pwmgen bit count\n");
->  
-> @@ -206,7 +449,7 @@ static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_st
->  	}
->  
->  	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
-> -		if (intel_dp_aux_set_pwm_freq(connector))
-> +		if (intel_dp_aux_vesa_set_pwm_freq(connector))
->  			new_dpcd_buf |= DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
->  
->  	if (new_dpcd_buf != dpcd_buf) {
-> @@ -217,18 +460,18 @@ static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_st
->  		}
->  	}
->  
-> -	intel_dp_aux_set_backlight(conn_state,
-> -				   connector->panel.backlight.level);
-> -	set_aux_backlight_enable(intel_dp, true);
-> +	intel_dp_aux_vesa_set_backlight(conn_state,
-> +					connector->panel.backlight.level);
-> +	set_vesa_backlight_enable(intel_dp, true);
->  }
->  
-> -static void intel_dp_aux_disable_backlight(const struct drm_connector_state *old_conn_state)
-> +static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state *old_conn_state)
->  {
-> -	set_aux_backlight_enable(enc_to_intel_dp(to_intel_encoder(old_conn_state->best_encoder)),
-> -				 false);
-> +	set_vesa_backlight_enable(enc_to_intel_dp(to_intel_encoder(old_conn_state->best_encoder)),
-> +				  false);
->  }
->  
-> -static u32 intel_dp_aux_calc_max_backlight(struct intel_connector *connector)
-> +static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connector)
->  {
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> @@ -301,31 +544,31 @@ static u32 intel_dp_aux_calc_max_backlight(struct intel_connector *connector)
->  			    "Failed to write aux pwmgen bit count\n");
->  		return max_backlight;
->  	}
-> -	panel->backlight.pwmgen_bit_count = pn;
-> +	panel->backlight.edp.vesa.pwmgen_bit_count = pn;
->  
->  	max_backlight = (1 << pn) - 1;
->  
->  	return max_backlight;
->  }
->  
-> -static int intel_dp_aux_setup_backlight(struct intel_connector *connector,
-> -					enum pipe pipe)
-> +static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
-> +					     enum pipe pipe)
->  {
->  	struct intel_panel *panel = &connector->panel;
->  
-> -	panel->backlight.max = intel_dp_aux_calc_max_backlight(connector);
-> +	panel->backlight.max = intel_dp_aux_vesa_calc_max_backlight(connector);
->  	if (!panel->backlight.max)
->  		return -ENODEV;
->  
->  	panel->backlight.min = 0;
-> -	panel->backlight.level = intel_dp_aux_get_backlight(connector);
-> +	panel->backlight.level = intel_dp_aux_vesa_get_backlight(connector);
->  	panel->backlight.enabled = panel->backlight.level != 0;
->  
->  	return 0;
->  }
->  
->  static bool
-> -intel_dp_aux_display_control_capable(struct intel_connector *connector)
-> +intel_dp_aux_supports_vesa_backlight(struct intel_connector *connector)
->  {
->  	struct intel_dp *intel_dp = intel_attached_dp(connector);
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> @@ -342,40 +585,85 @@ intel_dp_aux_display_control_capable(struct intel_connector *connector)
->  	return false;
->  }
->  
-> -int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
-> +enum intel_dp_aux_backlight_modparam {
-> +	INTEL_DP_AUX_BACKLIGHT_AUTO = -1,
-> +	INTEL_DP_AUX_BACKLIGHT_OFF = 0,
-> +	INTEL_DP_AUX_BACKLIGHT_ON = 1,
-> +	INTEL_DP_AUX_BACKLIGHT_FORCE_VESA = 2,
-> +	INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL = 3,
-> +};
-> +
-> +int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->  {
-> -	struct intel_panel *panel = &intel_connector->panel;
-> -	struct intel_dp *intel_dp = enc_to_intel_dp(intel_connector->encoder);
-> +	struct drm_device *dev = connector->base.dev;
-> +	struct intel_panel *panel = &connector->panel;
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +	bool try_intel_interface = false, try_vesa_interface = false;
->  
-> -	if (i915->params.enable_dpcd_backlight == 0 ||
-> -	    !intel_dp_aux_display_control_capable(intel_connector))
-> +	/* Check the VBT and user's module parameters to figure out which
-> +	 * interfaces to probe
-> +	 */
-> +	switch (i915->params.enable_dpcd_backlight) {
-> +	case INTEL_DP_AUX_BACKLIGHT_OFF:
->  		return -ENODEV;
-> +	case INTEL_DP_AUX_BACKLIGHT_AUTO:
-> +		switch (i915->vbt.backlight.type) {
-> +		case INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE:
-> +			try_vesa_interface = true;
-> +			break;
-> +		case INTEL_BACKLIGHT_DISPLAY_DDI:
-> +			try_intel_interface = true;
-> +			try_vesa_interface = true;
-> +			break;
-> +		default:
-> +			return -ENODEV;
-> +		}
-> +		break;
-> +	case INTEL_DP_AUX_BACKLIGHT_ON:
-> +		if (i915->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
-> +			try_intel_interface = true;
-> +
-> +		try_vesa_interface = true;
-> +		break;
-> +	case INTEL_DP_AUX_BACKLIGHT_FORCE_VESA:
-> +		try_vesa_interface = true;
-> +		break;
-> +	case INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL:
-> +		try_intel_interface = true;
-> +		break;
-> +	}
->  
->  	/*
-> -	 * There are a lot of machines that don't advertise the backlight
-> -	 * control interface to use properly in their VBIOS, :\
-> +	 * A lot of eDP panels in the wild will report supporting both the
-> +	 * Intel proprietary backlight control interface, and the VESA
-> +	 * backlight control interface. Many of these panels are liars though,
-> +	 * and will only work with the Intel interface. So, always probe for
-> +	 * that first.
->  	 */
-> -	if (i915->vbt.backlight.type !=
-> -	    INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE &&
-> -	    i915->params.enable_dpcd_backlight != 1 &&
-> -	    !drm_dp_has_quirk(&intel_dp->desc, intel_dp->edid_quirks,
-> -			      DP_QUIRK_FORCE_DPCD_BACKLIGHT)) {
-> -		drm_info(&i915->drm,
-> -			 "Panel advertises DPCD backlight support, but "
-> -			 "VBT disagrees. If your backlight controls "
-> -			 "don't work try booting with "
-> -			 "i915.enable_dpcd_backlight=1. If your machine "
-> -			 "needs this, please file a _new_ bug report on "
-> -			 "drm/i915, see " FDO_BUG_URL " for details.\n");
-> -		return -ENODEV;
-> +	if (try_intel_interface && intel_dp_aux_supports_hdr_backlight(connector)) {
-> +		drm_dbg(dev, "Using Intel proprietary eDP backlight controls\n");
-> +
-> +		panel->backlight.setup = intel_dp_aux_hdr_setup_backlight;
-> +		panel->backlight.enable = intel_dp_aux_hdr_enable_backlight;
-> +		panel->backlight.disable = intel_dp_aux_hdr_disable_backlight;
-> +		panel->backlight.set = intel_dp_aux_hdr_set_backlight;
-> +		panel->backlight.get = intel_dp_aux_hdr_get_backlight;
-> +
-> +		return 0;
->  	}
->  
-> -	panel->backlight.setup = intel_dp_aux_setup_backlight;
-> -	panel->backlight.enable = intel_dp_aux_enable_backlight;
-> -	panel->backlight.disable = intel_dp_aux_disable_backlight;
-> -	panel->backlight.set = intel_dp_aux_set_backlight;
-> -	panel->backlight.get = intel_dp_aux_get_backlight;
-> +	if (try_vesa_interface && intel_dp_aux_supports_vesa_backlight(connector)) {
-> +		drm_dbg(dev, "Using VESA eDP backlight controls\n");
->  
-> -	return 0;
-> +		panel->backlight.setup = intel_dp_aux_vesa_setup_backlight;
-> +		panel->backlight.enable = intel_dp_aux_vesa_enable_backlight;
-> +		panel->backlight.disable = intel_dp_aux_vesa_disable_backlight;
-> +		panel->backlight.set = intel_dp_aux_vesa_set_backlight;
-> +		panel->backlight.get = intel_dp_aux_vesa_get_backlight;
-> +
-> +		return 0;
-> +	}
-> +
-> +	return -ENODEV;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-> index 6d3e9d51d069c..75aca9f2ffeb2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.c
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> @@ -511,7 +511,7 @@ static u32 scale_hw_to_user(struct intel_connector *connector,
->  		     0, user_max);
->  }
->  
-> -static u32 intel_panel_sanitize_pwm_level(struct intel_connector *connector, u32 val)
-> +u32 intel_panel_sanitize_pwm_level(struct intel_connector *connector, u32 val)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_panel *panel = &connector->panel;
-> @@ -529,7 +529,7 @@ static u32 intel_panel_sanitize_pwm_level(struct intel_connector *connector, u32
->  	return val;
->  }
->  
-> -static void intel_panel_set_pwm_level(const struct drm_connector_state *conn_state, u32 val)
-> +void intel_panel_set_pwm_level(const struct drm_connector_state *conn_state, u32 val)
->  {
->  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> @@ -539,6 +539,36 @@ static void intel_panel_set_pwm_level(const struct drm_connector_state *conn_sta
->  	panel->backlight.pwm_funcs.set(conn_state, val);
->  }
->  
-> +u32 intel_panel_backlight_level_to_pwm(struct intel_connector *connector, u32 val)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> +	struct intel_panel *panel = &connector->panel;
-> +
-> +	drm_WARN_ON_ONCE(&dev_priv->drm,
-> +			 panel->backlight.max == 0 || panel->backlight.pwm_max == 0);
-> +
-> +	val = scale(val, panel->backlight.min, panel->backlight.max,
-> +		    panel->backlight.pwm_min, panel->backlight.pwm_max);
-> +
-> +	return intel_panel_sanitize_pwm_level(connector, val);
-> +}
-> +
-> +u32 intel_panel_backlight_level_from_pwm(struct intel_connector *connector, u32 val)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> +	struct intel_panel *panel = &connector->panel;
-> +
-> +	drm_WARN_ON_ONCE(&dev_priv->drm,
-> +			 panel->backlight.max == 0 || panel->backlight.pwm_max == 0);
-> +
-> +	if (dev_priv->params.invert_brightness > 0 ||
-> +	    (dev_priv->params.invert_brightness == 0 && dev_priv->quirks & QUIRK_INVERT_BRIGHTNESS))
-> +		val = panel->backlight.pwm_max - (val - panel->backlight.pwm_min);
-> +
-> +	return scale(val, panel->backlight.pwm_min, panel->backlight.pwm_max,
-> +		     panel->backlight.min, panel->backlight.max);
-> +}
-> +
->  static u32 lpt_get_backlight(struct intel_connector *connector)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
-> index 5b813fe90557c..a548347a975f5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.h
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.h
-> @@ -49,6 +49,10 @@ struct drm_display_mode *
->  intel_panel_edid_fixed_mode(struct intel_connector *connector);
->  struct drm_display_mode *
->  intel_panel_vbt_fixed_mode(struct intel_connector *connector);
-> +void intel_panel_set_pwm_level(const struct drm_connector_state *conn_state, u32 level);
-> +u32 intel_panel_sanitize_pwm_level(struct intel_connector *connector, u32 level);
-> +u32 intel_panel_backlight_level_to_pwm(struct intel_connector *connector, u32 level);
-> +u32 intel_panel_backlight_level_from_pwm(struct intel_connector *connector, u32 val);
->  
->  #if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE)
->  int intel_backlight_device_register(struct intel_connector *connector);
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> index 7f139ea4a90b2..6939634e56ed6 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -185,7 +185,7 @@ i915_param_named_unsafe(inject_probe_failure, uint, 0400,
->  
->  i915_param_named(enable_dpcd_backlight, int, 0400,
->  	"Enable support for DPCD backlight control"
-> -	"(-1=use per-VBT LFP backlight type setting [default], 0=disabled, 1=enabled)");
-> +	"(-1=use per-VBT LFP backlight type setting [default], 0=disabled, 1=enable, 2=force VESA interface, 3=force Intel interface)");
->  
->  #if IS_ENABLED(CONFIG_DRM_I915_GVT)
->  i915_param_named(enable_gvt, bool, 0400,
-> -- 
-> 2.26.2
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAyMDIwLTA5LTE0IGF0IDEzOjE1IC0wNzAwLCBTb3V6YSwgSm9zZSB3cm90ZToNCj4g
+T24gTW9uLCAyMDIwLTA5LTE0IGF0IDE3OjI4ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+ID4gT24gTW9uLCBBdWcgMzEsIDIwMjAgYXQgMDY6MDk6MjNQTSAtMDcwMCwgSm9zw6kgUm9i
+ZXJ0byBkZSBTb3V6YQ0KPiA+IHdyb3RlOg0KPiA+ID4gQW5vdGhlciBzdGVwIHRvd2FyZHMgUFNS
+MiBzZWxlY3RpdmUgZmV0Y2gsIGhlcmUgcHJvZ3JhbW1pbmcgcGxhbmUNCj4gPiA+IHNlbGVjdGl2
+ZSBmZXRjaCByZWdpc3RlcnMgYW5kIE1BTl9UUktfQ1RMIGVuYWJsaW5nIHNlbGVjdGl2ZQ0KPiA+
+ID4gZmV0Y2ggYnV0DQo+ID4gPiBmb3Igbm93IGl0IGlzIGZldGNoaW5nIHRoZSB3aG9sZSBhcmVh
+IG9mIHRoZSBwbGFuZXMuDQo+ID4gPiBUaGUgZGFtYWdlZCBhcmVhIGNhbGN1bGF0aW9uIHdpbGwg
+Y29tZSBhcyBuZXh0IGFuZCBmaW5hbCBzdGVwLg0KPiA+ID4gDQo+ID4gPiBCU3BlYzogNTUyMjkN
+Cj4gPiA+IENjOiBHd2FuLWd5ZW9uZyBNdW4gPA0KPiA+ID4gZ3dhbi1neWVvbmcubXVuQGludGVs
+LmNvbQ0KPiA+ID4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8DQo+ID4gPiB2aWxsZS5zeXJqYWxhQGxp
+bnV4LmludGVsLmNvbQ0KPiA+ID4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6
+YSA8DQo+ID4gPiBqb3NlLnNvdXphQGludGVsLmNvbQ0KPiA+ID4gLS0tDQo+ID4gPiAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgIHwgIDEwICstDQo+ID4gPiAg
+Li4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oICAgIHwgICAyICsNCj4g
+PiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jICAgICAgfCAxMjkN
+Cj4gPiA+ICsrKysrKysrKysrKysrKysrLQ0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfcHNyLmggICAgICB8ICAxMCArLQ0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgICB8ICAgMyArDQo+ID4gPiAgNSBmaWxlcyBjaGFu
+Z2VkLCAxNDUgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkNCj4gPiA+IA0KPiA+ID4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+
+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4g
+PiBpbmRleCBjOGIxZGQxYTllNDYuLjg2NTQ4NmU4OTkxNSAxMDA2NDQNCj4gPiA+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+ID4gQEAgLTEx
+Nzk5LDYgKzExNzk5LDkgQEAgc3RhdGljIHZvaWQgaTl4eF91cGRhdGVfY3Vyc29yKHN0cnVjdA0K
+PiA+ID4gaW50ZWxfcGxhbmUgKnBsYW5lLA0KPiA+ID4gIAlpZiAoSU5URUxfR0VOKGRldl9wcml2
+KSA+PSA5KQ0KPiA+ID4gIAkJc2tsX3dyaXRlX2N1cnNvcl93bShwbGFuZSwgY3J0Y19zdGF0ZSk7
+DQo+ID4gPiAgDQo+ID4gPiArCWlmICghbmVlZHNfbW9kZXNldChjcnRjX3N0YXRlKSkNCj4gPiA+
+ICsJCWludGVsX3BzcjJfcHJvZ3JhbV9wbGFuZV9zZWxfZmV0Y2gocGxhbmUsIGNydGNfc3RhdGUs
+DQo+ID4gPiBwbGFuZV9zdGF0ZSwgMCk7DQo+ID4gPiArDQo+ID4gPiAgCWlmIChwbGFuZS0+Y3Vy
+c29yLmJhc2UgIT0gYmFzZSB8fA0KPiA+ID4gIAkgICAgcGxhbmUtPmN1cnNvci5zaXplICE9IGZi
+Y19jdGwgfHwNCj4gPiA+ICAJICAgIHBsYW5lLT5jdXJzb3IuY250bCAhPSBjbnRsKSB7DQo+ID4g
+PiBAQCAtMTI4MTAsOCArMTI4MTMsMTEgQEAgc3RhdGljIGludA0KPiA+ID4gaW50ZWxfY3J0Y19h
+dG9taWNfY2hlY2soc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gPiAgDQo+
+ID4gPiAgCX0NCj4gPiA+ICANCj4gPiA+IC0JaWYgKCFtb2RlX2NoYW5nZWQpDQo+ID4gPiAtCQlp
+bnRlbF9wc3IyX3NlbF9mZXRjaF91cGRhdGUoc3RhdGUsIGNydGMpOw0KPiA+ID4gKwlpZiAoIW1v
+ZGVfY2hhbmdlZCkgew0KPiA+ID4gKwkJcmV0ID0gaW50ZWxfcHNyMl9zZWxfZmV0Y2hfdXBkYXRl
+KHN0YXRlLCBjcnRjKTsNCj4gPiA+ICsJCWlmIChyZXQpDQo+ID4gPiArCQkJcmV0dXJuIHJldDsN
+Cj4gPiA+ICsJfQ0KPiA+ID4gIA0KPiA+ID4gIAlyZXR1cm4gMDsNCj4gPiA+ICB9DQo+ID4gPiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5
+cGVzLmgNCj4gPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+X3R5cGVzLmgNCj4gPiA+IGluZGV4IDkzNDliMTVhZmZmNi4uMjEzOGJiMGYxNTg3IDEwMDY0NA0K
+PiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5
+cGVzLmgNCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
+cGxheV90eXBlcy5oDQo+ID4gPiBAQCAtNTg2LDYgKzU4Niw4IEBAIHN0cnVjdCBpbnRlbF9wbGFu
+ZV9zdGF0ZSB7DQo+ID4gPiAgCXUzMiBwbGFuYXJfc2xhdmU7DQo+ID4gPiAgDQo+ID4gPiAgCXN0
+cnVjdCBkcm1faW50ZWxfc3ByaXRlX2NvbG9ya2V5IGNrZXk7DQo+ID4gPiArDQo+ID4gPiArCXN0
+cnVjdCBkcm1fcmVjdCBwc3IyX3NlbF9mZXRjaF9hcmVhOw0KPiA+ID4gIH07DQo+ID4gPiAgDQo+
+ID4gPiAgc3RydWN0IGludGVsX2luaXRpYWxfcGxhbmVfY29uZmlnIHsNCj4gPiA+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gPiBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gPiA+IGluZGV4IDY2OThk
+MDIwOTg3OS4uYjYwZWExMzNhNTI3IDEwMDY0NA0KPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiA+ID4gQEAgLTExNzMsNiArMTE3Myw0NiBAQCBzdGF0
+aWMgdm9pZA0KPiA+ID4gcHNyX2ZvcmNlX2h3X3RyYWNraW5nX2V4aXQoc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmRldl9wcml2KQ0KPiA+ID4gIAkJaW50ZWxfcHNyX2V4aXQoZGV2X3ByaXYpOw0K
+PiA+ID4gIH0NCj4gPiA+ICANCj4gPiA+ICt2b2lkIGludGVsX3BzcjJfcHJvZ3JhbV9wbGFuZV9z
+ZWxfZmV0Y2goc3RydWN0IGludGVsX3BsYW5lDQo+ID4gPiAqcGxhbmUsDQo+ID4gPiArCQkJCQlj
+b25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0KPiA+ID4gKmNydGNfc3RhdGUsDQo+ID4gPiAr
+CQkJCQljb25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUNCj4gPiA+ICpwbGFuZV9zdGF0ZSwN
+Cj4gPiA+ICsJCQkJCWludCBjb2xvcl9wbGFuZSkNCj4gPiA+ICt7DQo+ID4gPiArCXN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUocGxhbmUtPmJhc2UuZGV2KTsNCj4g
+PiA+ICsJY29uc3Qgc3RydWN0IGRybV9yZWN0ICpjbGlwOw0KPiA+ID4gKwllbnVtIHBpcGUgcGlw
+ZSA9IHBsYW5lLT5waXBlOw0KPiA+ID4gKwl1MzIgdmFsOw0KPiA+ID4gKw0KPiA+ID4gKwlpZiAo
+IXBsYW5lX3N0YXRlIHx8ICFkZXZfcHJpdi0+cHNyLnBzcjJfc2VsX2ZldGNoX2VuYWJsZWQpDQo+
+ID4gPiArCQlyZXR1cm47DQo+ID4gPiArDQo+ID4gPiArCS8qDQo+ID4gPiArCSAqIHNrbF9wbGFu
+ZV9jdGxfY3J0YygpL2k5eHhfY3Vyc29yX2N0bF9jcnRjKCkgcmV0dXJuIDAgZm9yDQo+ID4gPiBn
+ZW4xMSssIHNvDQo+ID4gPiArCSAqIHBsYW5lX3N0YXRlLT5jdGwgaXMgdGhlIHJpZ2h0IHZhbHVl
+DQo+ID4gPiArCSAqLw0KQXMgcGVyIEJzcGVjIDUwNDIwLCAgIlNFTF9GRVRDSF9QTEFORV9DVExb
+MzFdOiBTZWxlY3RpdmUgRmV0Y2ggUGxhbmUNCkVuYWJsZSBiaXQiIHNob3VsZCBiZSBzZXQuDQpB
+bmQgd2hlbiAiUFNSMl9NQU5fVFJLX0NUTFsxXSA6IFNGIFBhcnRpYWwgRnJhbWUgRW5hYmxlIGJp
+dCIgaXMgZW5hYmxlZA0Kc2VsZWN0aXZlIGZldGNoIHdpbGwgYmUgYXBwbGllZC4NCg0KPiA+ID4g
+KwlpbnRlbF9kZV93cml0ZV9mdyhkZXZfcHJpdiwgUExBTkVfU0VMX0ZFVENIX0NUTChwaXBlLCBw
+bGFuZS0NCj4gPiA+ID5pZCksIHBsYW5lX3N0YXRlLT5jdGwpOw0KQXMgcGVyIA0KPiA+ID4gKwlp
+ZiAoIXBsYW5lX3N0YXRlLT5jdGwgfHwgcGxhbmUtPmlkID09IFBMQU5FX0NVUlNPUikNCj4gPiA+
+ICsJCXJldHVybjsNCj4gPiA+ICsNCj4gPiA+ICsJY2xpcCA9ICZwbGFuZV9zdGF0ZS0+cHNyMl9z
+ZWxfZmV0Y2hfYXJlYTsNCj4gPiA+ICsNCj4gPiA+ICsJdmFsID0gKGNsaXAtPnkxICsgcGxhbmVf
+c3RhdGUtPnVhcGkuY3J0Y195KSA8PCAxNjsNCj4gPiANCj4gPiBjcnRjX3gveSBhcmUgdGhlIHJh
+dyB2YWx1ZXMgdXNyc3BhY2UgZ2F2ZSB1cy4gVGhhdCBpcyBkZWZpbml0ZWx5DQo+ID4gbm90DQo+
+ID4gd2hhdCB3ZSBzaG91bGQgYmUgbG9va2luZyBhdC4NCj4gDQo+IHBsYW5lX3N0YXRlLT51YXBp
+LmRzdCB0aGVuPyBidXQgZm9yIHdoYXQgSSBmb3VuZCBjcnRjX3gveSBpcyBzZXQgZnJvbQ0KPiBk
+c3QuDQo+IA0KPiBwbGFuZV9zdGF0ZS0+dWFwaS5kc3QgaXMgdXNlZCBpbiBza2xfcHJvZ3JhbV9w
+bGFuZSgpDQo+IA0KPiBza2xfcHJvZ3JhbV9wbGFuZSgpDQo+IAlpbnQgY3J0Y194ID0gcGxhbmVf
+c3RhdGUtPnVhcGkuZHN0LngxOw0KPiAJaW50IGNydGNfeSA9IHBsYW5lX3N0YXRlLT51YXBpLmRz
+dC55MTsNCj4gCS4uLg0KPiAJaW50ZWxfZGVfd3JpdGVfZncoZGV2X3ByaXYsIFBMQU5FX1BPUyhw
+aXBlLCBwbGFuZV9pZCksIChjcnRjX3kNCj4gPDwgMTYpIHwgY3J0Y194KTsNCj4gDQo+IA0KPiA+
+IEFzIHRoZSBmaXJzdCBzdGVwIEkgdGhpbmsgdGhlc2UgZnVuY3Rpb25zIHNob3VsZCBqdXN0IHBy
+b2dyYW0gdGhlDQo+ID4gcmVnaXN0ZXJzIHdpdGggKmV4YWN0bHkqIHRoZSBzYW1lIHZhbHVlcyBh
+cyB3ZSBwcm9ncmFtIGludG8gdGhlDQo+ID4gbm9ybWFsIHBsYW5lIHJlZ2lzdGVyLiBUaGF0IGdl
+dHMgdXMgdG8gdGhlIHBvaW50IHdoZXJlIHdlJ3JlDQo+ID4gYWN0dWFsbHkgcHJvZ3JhbW1pbmcg
+c29tZXRoaW5nIGludG8gdGhlIHJlZ2lzdGVyIHdpdGhvdXQgaGF2aW5nIHRvDQo+ID4gY29tcGxp
+Y2F0ZSB0aGluZ3Mgd2l0aCBjYWxjdWxhdGluZyB0aGUgc2VsZWN0aXZlIGZldGNoIGFyZWEuDQo+
+IA0KPiBPa2F5LCBJIGNhbiBtb3ZlIHRoaXMgdG8gb3RoZXIgcGF0Y2ggYnV0IHBsZWFzZSBjaGVj
+ayB0aGUgY29tbWVudA0KPiBhYm92ZSBzbyB3ZSBoYXZlIHRoaXMgYWdyZWVkIGZvciBmaXJzdCB2
+ZXJzaW9uIG9mIHRoZSBmdXR1cmUgcGF0Y2guDQo+IA0KPiA+ID4gKwl2YWwgfD0gcGxhbmVfc3Rh
+dGUtPnVhcGkuY3J0Y194Ow0KPiA+ID4gKwlpbnRlbF9kZV93cml0ZV9mdyhkZXZfcHJpdiwgUExB
+TkVfU0VMX0ZFVENIX1BPUyhwaXBlLCBwbGFuZS0NCj4gPiA+ID5pZCksDQo+ID4gPiArCQkJICB2
+YWwpOw0KPiA+ID4gKw0KPiA+ID4gKwl2YWwgPSAoY2xpcC0+eTEgKyBwbGFuZV9zdGF0ZS0+Y29s
+b3JfcGxhbmVbY29sb3JfcGxhbmVdLnkpIDw8DQo+ID4gPiAxNjsNCj4gPiA+ICsJdmFsIHw9IHBs
+YW5lX3N0YXRlLT5jb2xvcl9wbGFuZVtjb2xvcl9wbGFuZV0ueDsNCj4gPiA+ICsJaW50ZWxfZGVf
+d3JpdGVfZncoZGV2X3ByaXYsIFBMQU5FX1NFTF9GRVRDSF9PRkZTRVQocGlwZSwgcGxhbmUtDQo+
+ID4gPiA+aWQpLA0KPiA+ID4gKwkJCSAgdmFsKTsNCj4gPiA+ICsNClBMQU5FX1NFTF9GRVRDSF9P
+RkZTRVQgdmFsdWVzIHNob3VsZCBiZSBjb25zaWRlcmVkIHRpbGluZyBpbmZvcm1hdGlvbi4NCnRo
+aXMgY29kZSBkb2VzIG5vdCBjb25zaWRlciBhdXggc3VyZmFjZXMgYW5kIGZiIG9mZnNldHMuDQo+
+ID4gPiArCS8qIFNpemVzIGFyZSAwIGJhc2VkICovDQo+ID4gPiArCXZhbCA9IChkcm1fcmVjdF9o
+ZWlnaHQoY2xpcCkgLSAxKSA8PCAxNjsNCj4gPiA+ICsJdmFsIHw9IChkcm1fcmVjdF93aWR0aCgm
+cGxhbmVfc3RhdGUtPnVhcGkuc3JjKSA+PiAxNikgLSAxOw0KPiA+ID4gKwlpbnRlbF9kZV93cml0
+ZV9mdyhkZXZfcHJpdiwgUExBTkVfU0VMX0ZFVENIX1NJWkUocGlwZSwgcGxhbmUtDQo+ID4gPiA+
+aWQpLA0KPiA+ID4gKwkJCSAgdmFsKTsNCj4gPiA+ICt9DQo+ID4gPiArDQo+ID4gPiAgdm9pZCBp
+bnRlbF9wc3IyX3Byb2dyYW1fdHJhbnNfbWFuX3Rya19jdGwoY29uc3Qgc3RydWN0DQo+ID4gPiBp
+bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQ0KPiA+ID4gIHsNCj4gPiA+ICAJc3RydWN0IGlu
+dGVsX2NydGMgKmNydGMgPSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0Yyk7DQo+
+ID4gPiBAQCAtMTE4NywxNyArMTIyNyw5NiBAQCB2b2lkDQo+ID4gPiBpbnRlbF9wc3IyX3Byb2dy
+YW1fdHJhbnNfbWFuX3Rya19jdGwoY29uc3Qgc3RydWN0DQo+ID4gPiBpbnRlbF9jcnRjX3N0YXRl
+ICpjcnRjX3N0DQo+ID4gPiAgCQkgICAgICAgY3J0Y19zdGF0ZS0+cHNyMl9tYW5fdHJhY2tfY3Rs
+KTsNCj4gPiA+ICB9DQo+ID4gPiAgDQo+ID4gPiAtdm9pZCBpbnRlbF9wc3IyX3NlbF9mZXRjaF91
+cGRhdGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZQ0KPiA+ID4gKnN0YXRlLA0KPiA+ID4gLQkJ
+CQkgc3RydWN0IGludGVsX2NydGMgKmNydGMpDQo+ID4gPiArc3RhdGljIHZvaWQgcHNyMl9tYW5f
+dHJrX2N0bF9jYWxjKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlDQo+ID4gPiAqY3J0Y19zdGF0ZSwN
+Cj4gPiA+ICsJCQkJICBzdHJ1Y3QgZHJtX3JlY3QgKmNsaXAsIGJvb2wNCj4gPiA+IGZ1bGxfdXBk
+YXRlKQ0KPiA+ID4gK3sNCj4gPiA+ICsJdTMyIHZhbCA9IFBTUjJfTUFOX1RSS19DVExfRU5BQkxF
+Ow0KPiA+ID4gKw0KPiA+ID4gKwlpZiAoZnVsbF91cGRhdGUpIHsNCj4gPiA+ICsJCXZhbCB8PSBQ
+U1IyX01BTl9UUktfQ1RMX1NGX1NJTkdMRV9GVUxMX0ZSQU1FOw0KPiA+ID4gKwkJZ290byBleGl0
+Ow0KPiA+ID4gKwl9DQo+ID4gPiArDQo+ID4gPiArCWRybV9XQVJOX09OX09OQ0UoY3J0Y19zdGF0
+ZS0+dWFwaS5jcnRjLT5kZXYsIGNsaXAtPnkxID09IC0xKTsNCj4gPiA+ICsNCj4gPiA+ICsJdmFs
+IHw9IFBTUjJfTUFOX1RSS19DVExfU0ZfUEFSVElBTF9GUkFNRV9VUERBVEU7DQo+ID4gPiArCXZh
+bCB8PSBQU1IyX01BTl9UUktfQ1RMX1NVX1JFR0lPTl9TVEFSVF9BRERSKGNsaXAtPnkxIC8gNCAr
+IDEpOw0KPiA+ID4gKwl2YWwgfD0gUFNSMl9NQU5fVFJLX0NUTF9TVV9SRUdJT05fRU5EX0FERFIo
+RElWX1JPVU5EX1VQKGNsaXAtDQo+ID4gPiA+eTIsIDQpICsgMSk7DQpBcyBwZXIgQnNwZWMgNTA0
+MjQsICIgVGhlIGZyYW1lIGlzIGRpdmlkZWQgaW50byBibG9ja3Mgb2YgZm91ciBzY2FuDQpsaW5l
+cyBlYWNoLiBUaGUgYmxvY2tzIGFyZSBhZGRyZXNzZWQgc3RhcnRpbmcgZnJvbSAxIGZvciB0aGUg
+Zmlyc3QNCmJsb2NrIG9mIHRoZSBmcmFtZSBhbmQgZW5kaW5nIHdpdGggUk9VTkRVUFsoVFJBTlNf
+VlRPVEFMIFZlcnRpY2FsDQpBY3RpdmUgKyAxKSAvIDRdZm9yIHRoZSBsYXN0IGJsb2NrIG9mIHRo
+ZSBmcmFtZS4gU29mdHdhcmUgbXVzdCBwcm92aWRlDQp0aGUgc3RhcnRpbmcgYW5kIGVuZGluZyBi
+bG9jayBhZGRyZXNzIG9mIHRoZSBzZWxlY3RpdmUgdXBkYXRlIHJlZ2lvbi4NClRoZSBTVSBSZWdp
+b24gU3RhcnQgQWRkcmVzcyBpcyBwcm9ncmFtbWVkIHRvIHRoZSBmaXJzdCBibG9jayBvZiB0aGUN
+CnNlbGVjdGl2ZSB1cGRhdGUgcmVnaW9uLiBUaGUgU1UgUmVnaW9uIEVuZCBBZGRyZXNzIGlzIHBy
+b2dyYW1tZWQgdG8gdGhlDQpmaW5hbCBibG9jayBvZiB0aGUgc2VsZWN0aXZlIHVwZGF0ZSByZWdp
+b24gKyAxLiINCkkgdGhpbmsgaXQgc2hvdWxkIGJlIGxpa2UsIHZhbCB8PQ0KUFNSMl9NQU5fVFJL
+X0NUTF9TVV9SRUdJT05fRU5EX0FERFIoRElWX1JPVU5EX1VQKGNsaXAtPnkyICsxLCA0KSArIDEp
+Ow0KDQo+ID4gPiArZXhpdDoNCj4gPiA+ICsJY3J0Y19zdGF0ZS0+cHNyMl9tYW5fdHJhY2tfY3Rs
+ID0gdmFsOw0KPiA+ID4gK30NCj4gPiA+ICsNCj4gPiA+ICtzdGF0aWMgdm9pZCBjbGlwX2FyZWFf
+dXBkYXRlKHN0cnVjdCBkcm1fcmVjdA0KPiA+ID4gKm92ZXJsYXBfZGFtYWdlX2FyZWEsDQo+ID4g
+PiArCQkJICAgICBzdHJ1Y3QgZHJtX3JlY3QgKmRhbWFnZV9hcmVhKQ0KPiA+ID4gK3sNCj4gPiA+
+ICsJaWYgKG92ZXJsYXBfZGFtYWdlX2FyZWEtPnkxID09IC0xKSB7DQo+ID4gPiArCQlvdmVybGFw
+X2RhbWFnZV9hcmVhLT55MSA9IGRhbWFnZV9hcmVhLT55MTsNCj4gPiA+ICsJCW92ZXJsYXBfZGFt
+YWdlX2FyZWEtPnkyID0gZGFtYWdlX2FyZWEtPnkyOw0KPiA+ID4gKwkJcmV0dXJuOw0KPiA+ID4g
+Kwl9DQo+ID4gPiArDQo+ID4gPiArCWlmIChkYW1hZ2VfYXJlYS0+eTEgPCBvdmVybGFwX2RhbWFn
+ZV9hcmVhLT55MSkNCj4gPiA+ICsJCW92ZXJsYXBfZGFtYWdlX2FyZWEtPnkxID0gZGFtYWdlX2Fy
+ZWEtPnkxOw0KPiA+ID4gKw0KPiA+ID4gKwlpZiAoZGFtYWdlX2FyZWEtPnkyID4gb3ZlcmxhcF9k
+YW1hZ2VfYXJlYS0+eTIpDQo+ID4gPiArCQlvdmVybGFwX2RhbWFnZV9hcmVhLT55MiA9IGRhbWFn
+ZV9hcmVhLT55MjsNCj4gPiA+ICt9DQo+ID4gPiArDQo+ID4gPiAraW50IGludGVsX3BzcjJfc2Vs
+X2ZldGNoX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlDQo+ID4gPiAqc3RhdGUsDQo+
+ID4gPiArCQkJCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQ0KPiA+ID4gIHsNCj4gPiA+ICAJc3Ry
+dWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUgPQ0KPiA+ID4gaW50ZWxfYXRvbWljX2dl
+dF9uZXdfY3J0Y19zdGF0ZShzdGF0ZSwgY3J0Yyk7DQo+ID4gPiAgCXN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoY3J0Yy0+YmFzZS5kZXYpOw0KPiA+ID4gKwlzdHJ1
+Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKm5ld19wbGFuZV9zdGF0ZSwgKm9sZF9wbGFuZV9zdGF0ZTsN
+Cj4gPiA+ICsJc3RydWN0IGRybV9yZWN0IHBpcGVfY2xpcCA9IHsgLnkxID0gLTEgfTsNCj4gPiA+
+ICsJc3RydWN0IGludGVsX3BsYW5lICpwbGFuZTsNCj4gPiA+ICsJYm9vbCBmdWxsX3VwZGF0ZSA9
+IGZhbHNlOw0KPiA+ID4gKwlpbnQgaSwgcmV0Ow0KPiA+ID4gIA0KPiA+ID4gIAlpZiAoIWRldl9w
+cml2LT5wc3IucHNyMl9zZWxfZmV0Y2hfZW5hYmxlZCkNCj4gPiA+IC0JCXJldHVybjsNCj4gPiA+
+ICsJCXJldHVybiAwOw0KPiA+ID4gKw0KPiA+ID4gKwlyZXQgPSBkcm1fYXRvbWljX2FkZF9hZmZl
+Y3RlZF9wbGFuZXMoJnN0YXRlLT5iYXNlLCAmY3J0Yy0NCj4gPiA+ID5iYXNlKTsNCj4gPiA+ICsJ
+aWYgKHJldCkNCj4gPiA+ICsJCXJldHVybiByZXQ7DQo+ID4gPiArDQo+ID4gPiArCWZvcl9lYWNo
+X29sZG5ld19pbnRlbF9wbGFuZV9pbl9zdGF0ZShzdGF0ZSwgcGxhbmUsDQo+ID4gPiBvbGRfcGxh
+bmVfc3RhdGUsDQo+ID4gPiArCQkJCQkgICAgIG5ld19wbGFuZV9zdGF0ZSwgaSkgew0KPiA+ID4g
+KwkJc3RydWN0IGRybV9yZWN0ICpwbGFuZV9zZWxfZmV0Y2hfYXJlYSwgdGVtcDsNCj4gPiA+ICAN
+Cj4gPiA+IC0JY3J0Y19zdGF0ZS0+cHNyMl9tYW5fdHJhY2tfY3RsID0gUFNSMl9NQU5fVFJLX0NU
+TF9FTkFCTEUgfA0KPiA+ID4gLQkJCQkJIFBTUjJfTUFOX1RSS19DVExfU0ZfU0lOR0xFX0ZVTA0K
+PiA+ID4gTF9GUkFNRTsNCj4gPiA+ICsJCWlmIChuZXdfcGxhbmVfc3RhdGUtPnVhcGkuY3J0YyAh
+PSBjcnRjX3N0YXRlLQ0KPiA+ID4gPnVhcGkuY3J0YykNCj4gPiA+ICsJCQljb250aW51ZTsNCj4g
+PiA+ICsNCj4gPiA+ICsJCS8qDQo+ID4gPiArCQkgKiBUT0RPOiBOb3QgY2xlYXIgaG93IHRvIGhh
+bmRsZSBwbGFuZXMgd2l0aCBuZWdhdGl2ZQ0KPiA+ID4gcG9zaXRpb24sDQo+ID4gPiArCQkgKiBh
+bHNvIHBsYW5lcyBhcmUgbm90IHVwZGF0ZWQgaWYgdGhleSBoYXZlIGEgbmVnYXRpdmUNCj4gPiA+
+IFgNCj4gPiA+ICsJCSAqIHBvc2l0aW9uIHNvIGZvciBub3cgZG9pbmcgYSBmdWxsIHVwZGF0ZSBp
+biB0aGlzDQo+ID4gPiBjYXNlcw0KPiA+ID4gKwkJICovDQo+ID4gPiArCQlpZiAobmV3X3BsYW5l
+X3N0YXRlLT51YXBpLmNydGNfeSA8IDAgfHwNCj4gPiA+ICsJCSAgICBuZXdfcGxhbmVfc3RhdGUt
+PnVhcGkuY3J0Y194IDwgMCkgew0KPiA+ID4gKwkJCWZ1bGxfdXBkYXRlID0gdHJ1ZTsNCj4gPiA+
+ICsJCQlicmVhazsNCj4gPiA+ICsJCX0NCj4gPiA+ICsNCj4gPiA+ICsJCWlmICghbmV3X3BsYW5l
+X3N0YXRlLT51YXBpLnZpc2libGUpDQo+ID4gPiArCQkJY29udGludWU7DQo+ID4gPiArDQo+ID4g
+PiArCQkvKg0KPiA+ID4gKwkJICogRm9yIG5vdyBkb2luZyBhIHNlbGVjdGl2ZSBmZXRjaCBpbiB0
+aGUgd2hvbGUgcGxhbmUNCj4gPiA+IGFyZWEsDQo+ID4gPiArCQkgKiBvcHRpbWl6YXRpb25zIHdp
+bGwgY29tZSBpbiB0aGUgZnV0dXJlLg0KPiA+ID4gKwkJICovDQo+ID4gPiArCQlwbGFuZV9zZWxf
+ZmV0Y2hfYXJlYSA9ICZuZXdfcGxhbmVfc3RhdGUtDQo+ID4gPiA+cHNyMl9zZWxfZmV0Y2hfYXJl
+YTsNCj4gPiA+ICsJCXBsYW5lX3NlbF9mZXRjaF9hcmVhLT55MSA9IG5ld19wbGFuZV9zdGF0ZS0+
+dWFwaS5zcmMueTEgDQo+ID4gPiA+PiAxNjsNCj4gPiA+ICsJCXBsYW5lX3NlbF9mZXRjaF9hcmVh
+LT55MiA9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5zcmMueTIgDQo+ID4gPiA+PiAxNjsNCj4gPiA+
+ICsNCj4gPiA+ICsJCXRlbXAgPSAqcGxhbmVfc2VsX2ZldGNoX2FyZWE7DQo+ID4gPiArCQl0ZW1w
+LnkxICs9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5jcnRjX3k7DQo+ID4gPiArCQl0ZW1wLnkyICs9
+IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5jcnRjX3k7DQo+ID4gPiArCQljbGlwX2FyZWFfdXBkYXRl
+KCZwaXBlX2NsaXAsICZ0ZW1wKTsNCj4gPiA+ICsJfQ0KPiA+ID4gKw0KPiA+ID4gKwlwc3IyX21h
+bl90cmtfY3RsX2NhbGMoY3J0Y19zdGF0ZSwgJnBpcGVfY2xpcCwgZnVsbF91cGRhdGUpOw0KPiA+
+ID4gKwlyZXR1cm4gMDsNCj4gPiA+ICB9DQo+ID4gPiAgDQo+ID4gPiAgLyoqDQo+ID4gPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuaA0KPiA+ID4g
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5oDQo+ID4gPiBpbmRleCA2
+YTgzYzhlNjgyZTYuLjNlY2E5ZGNlYzNjMCAxMDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmgNCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmgNCj4gPiA+IEBAIC0xNSw2ICsxNSw4IEBAIHN0cnVj
+dCBpbnRlbF9jcnRjX3N0YXRlOw0KPiA+ID4gIHN0cnVjdCBpbnRlbF9kcDsNCj4gPiA+ICBzdHJ1
+Y3QgaW50ZWxfY3J0YzsNCj4gPiA+ICBzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlOw0KPiA+ID4g
+K3N0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZTsNCj4gPiA+ICtzdHJ1Y3QgaW50ZWxfcGxhbmU7DQo+
+ID4gPiAgDQo+ID4gPiAgI2RlZmluZSBDQU5fUFNSKGRldl9wcml2KSAoSEFTX1BTUihkZXZfcHJp
+dikgJiYgZGV2X3ByaXYtDQo+ID4gPiA+cHNyLnNpbmtfc3VwcG9ydCkNCj4gPiA+ICB2b2lkIGlu
+dGVsX3Bzcl9pbml0X2RwY2Qoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCk7DQo+ID4gPiBAQCAt
+NDUsOCArNDcsMTIgQEAgdm9pZCBpbnRlbF9wc3JfYXRvbWljX2NoZWNrKHN0cnVjdA0KPiA+ID4g
+ZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLA0KPiA+ID4gIAkJCSAgICBzdHJ1Y3QgZHJtX2Nvbm5l
+Y3Rvcl9zdGF0ZSAqb2xkX3N0YXRlLA0KPiA+ID4gIAkJCSAgICBzdHJ1Y3QgZHJtX2Nvbm5lY3Rv
+cl9zdGF0ZSAqbmV3X3N0YXRlKTsNCj4gPiA+ICB2b2lkIGludGVsX3Bzcl9zZXRfZm9yY2VfbW9k
+ZV9jaGFuZ2VkKHN0cnVjdCBpbnRlbF9kcA0KPiA+ID4gKmludGVsX2RwKTsNCj4gPiA+IC12b2lk
+IGludGVsX3BzcjJfc2VsX2ZldGNoX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlDQo+
+ID4gPiAqc3RhdGUsDQo+ID4gPiAtCQkJCSBzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0Yyk7DQo+ID4g
+PiAraW50IGludGVsX3BzcjJfc2VsX2ZldGNoX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0
+YXRlDQo+ID4gPiAqc3RhdGUsDQo+ID4gPiArCQkJCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKTsN
+Cj4gPiA+ICB2b2lkIGludGVsX3BzcjJfcHJvZ3JhbV90cmFuc19tYW5fdHJrX2N0bChjb25zdCBz
+dHJ1Y3QNCj4gPiA+IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpOw0KPiA+ID4gK3ZvaWQg
+aW50ZWxfcHNyMl9wcm9ncmFtX3BsYW5lX3NlbF9mZXRjaChzdHJ1Y3QgaW50ZWxfcGxhbmUNCj4g
+PiA+ICpwbGFuZSwNCj4gPiA+ICsJCQkJCWNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlDQo+
+ID4gPiAqY3J0Y19zdGF0ZSwNCj4gPiA+ICsJCQkJCWNvbnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9z
+dGF0ZQ0KPiA+ID4gKnBsYW5lX3N0YXRlLA0KPiA+ID4gKwkJCQkJaW50IGNvbG9yX3BsYW5lKTsN
+Cj4gPiA+ICANCj4gPiA+ICAjZW5kaWYgLyogX19JTlRFTF9QU1JfSF9fICovDQo+ID4gPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYw0KPiA+
+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jDQo+ID4gPiBp
+bmRleCAxNzk3YTA2Y2ZkNjAuLjI0ZWU5YjA4ZWM0YSAxMDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMNCj4gPiA+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMNCj4gPiA+IEBAIC02OTAsNiAr
+NjkwLDkgQEAgc2tsX3Byb2dyYW1fcGxhbmUoc3RydWN0IGludGVsX3BsYW5lICpwbGFuZSwNCj4g
+PiA+ICAJCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBQTEFORV9BVVhfT0ZGU0VUKHBpcGUs
+DQo+ID4gPiBwbGFuZV9pZCksDQo+ID4gPiAgCQkJCSAgKHBsYW5lX3N0YXRlLT5jb2xvcl9wbGFu
+ZVsxXS55IDw8IDE2KQ0KPiA+ID4gfCBwbGFuZV9zdGF0ZS0+Y29sb3JfcGxhbmVbMV0ueCk7DQo+
+ID4gPiAgDQo+ID4gPiArCWlmICghZHJtX2F0b21pY19jcnRjX25lZWRzX21vZGVzZXQoJmNydGNf
+c3RhdGUtPnVhcGkpKQ0KPiA+ID4gKwkJaW50ZWxfcHNyMl9wcm9ncmFtX3BsYW5lX3NlbF9mZXRj
+aChwbGFuZSwgY3J0Y19zdGF0ZSwNCj4gPiA+IHBsYW5lX3N0YXRlLCBjb2xvcl9wbGFuZSk7DQo+
+ID4gPiArDQo+ID4gPiAgCS8qDQo+ID4gPiAgCSAqIFRoZSBjb250cm9sIHJlZ2lzdGVyIHNlbGYt
+YXJtcyBpZiB0aGUgcGxhbmUgd2FzIHByZXZpb3VzbHkNCj4gPiA+ICAJICogZGlzYWJsZWQuIFRy
+eSB0byBtYWtlIHRoZSBwbGFuZSBlbmFibGUgYXRvbWljIGJ5IHdyaXRpbmcNCj4gPiA+IC0tIA0K
+PiA+ID4gMi4yOC4wDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
