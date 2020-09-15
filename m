@@ -1,49 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41E8D26A10B
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 10:39:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDFF526A147
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 10:50:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C31FE6E098;
-	Tue, 15 Sep 2020 08:39:52 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75DA86E098;
- Tue, 15 Sep 2020 08:39:51 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1600159189;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=a15vj77Xa9KXo3Ek21dMycAwDWIIiMUe5bjhvVzzjCs=;
- b=4ZO6BoNleN8HQgP0z8q+4JbOh4PFsXqPl2O1VMMFsqMl6Je+Vd4svU6GjBOnz4JBLm59ef
- n28q3APVdlSA6QtUBbVtHjAsCDNA9DMNxmpB3Xs8JDO2mhj9om6HKXu9jHt5uTY4drNVe+
- Xi88yb65/jAIcWHRrtrHzz6pJv5CkGBo0rMdCdV0m6UGwcjwsaPqQyFAYyPj9eb+iOpbLb
- OyGnJVFkDuM2Xw/Zd91HZnJtSCpZf4n90+HYVnsyWEI2CIiSdIZikeb1E30oqvvQPgJtwy
- 7GKY8eCHlWViBl9/zu9LXs5HqsgBdJJ10OMSGETAETJYeANond9fGhpnX7IhVQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1600159189;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=a15vj77Xa9KXo3Ek21dMycAwDWIIiMUe5bjhvVzzjCs=;
- b=8ik3d8quF/oYipmw+L5R6EnAKiYsBpkerr1Z3ToGRa9dHoJtFKl9KfoiSlZU5EwJHOK7Qp
- VqVAEKjJfZ9P9ICw==
-To: Linus Torvalds <torvalds@linux-foundation.org>,
- Ard Biesheuvel <ardb@kernel.org>, Herbert Xu <herbert@gondor.apana.org.au>
-In-Reply-To: <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
-References: <20200914204209.256266093@linutronix.de>
- <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
- <871rj4owfn.fsf@nanos.tec.linutronix.de>
- <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
-Date: Tue, 15 Sep 2020 10:39:48 +0200
-Message-ID: <87bli75t7v.fsf@nanos.tec.linutronix.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAC7B6E0AB;
+	Tue, 15 Sep 2020 08:49:58 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0161F6E0EC
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 08:49:56 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 22431136-1500050 for multiple; Tue, 15 Sep 2020 09:49:48 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [patch 00/13] preempt: Make preempt count
- unconditional
+In-Reply-To: <20200910145018.408983-1-tvrtko.ursulin@linux.intel.com>
+References: <20200910115900.407686-3-tvrtko.ursulin@linux.intel.com>
+ <20200910145018.408983-1-tvrtko.ursulin@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Date: Tue, 15 Sep 2020 09:49:48 +0100
+Message-ID: <160015978860.3890.1211829559641660544@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix DMA mapped scatterlist
+ lookup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,86 +41,264 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Lai Jiangshan <jiangshanlai@gmail.com>,
- dri-devel <dri-devel@lists.freedesktop.org>, Ben Segall <bsegall@google.com>,
- Linux-MM <linux-mm@kvack.org>,
- "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
- linux-hexagon@vger.kernel.org, Will Deacon <will@kernel.org>,
- Ingo Molnar <mingo@kernel.org>, Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- linux-arch <linux-arch@vger.kernel.org>, Brian Cain <bcain@codeaurora.org>,
- Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
- David Airlie <airlied@linux.ie>, Ingo Molnar <mingo@redhat.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Mel Gorman <mgorman@suse.de>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Matt Turner <mattst88@gmail.com>,
- Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
- Shuah Khan <shuah@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
- Jeff Dike <jdike@addtoit.com>, linux-um <linux-um@lists.infradead.org>,
- Josh Triplett <josh@joshtriplett.org>, Steven Rostedt <rostedt@goodmis.org>,
- rcu@vger.kernel.org, linux-m68k <linux-m68k@lists.linux-m68k.org>,
- Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
- Max Filippov <jcmvbkbc@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
- alpha <linux-alpha@vger.kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 14 2020 at 15:24, Linus Torvalds wrote:
-> On Mon, Sep 14, 2020 at 2:55 PM Thomas Gleixner <tglx@linutronix.de> wrote:
->>
->> Yes it does generate better code, but I tried hard to spot a difference
->> in various metrics exposed by perf. It's all in the noise and I only
->> can spot a difference when the actual preemption check after the
->> decrement
->
-> I'm somewhat more worried about the small-device case.
+Quoting Tvrtko Ursulin (2020-09-10 15:50:18)
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> As the previous patch fixed the places where we walk the whole scatterlist
+> for DMA addresses, this patch fixes the random lookup functionality.
+> 
+> To achieve this we have to add a second lookup iterator and add a
+> i915_gem_object_get_sg_dma helper, to be used analoguous to existing
+> i915_gem_object_get_sg_dma. Therefore two lookup caches are maintained per
+> object and they are flushed at the same point for simplicity. (Strictly
+> speaking the DMA cache should be flushed from i915_gem_gtt_finish_pages,
+> but today this conincides with unsetting of the pages in general.)
+> 
+> Partial VMA view is then fixed to use the new DMA lookup and properly
+> query sg length.
+> 
+> v2:
+>  * Checkpatch.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Lu Baolu <baolu.lu@linux.intel.com>
+> Cc: Tom Murphy <murphyt7@tcd.ie>
+> Cc: Logan Gunthorpe <logang@deltatee.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c    |  2 ++
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h    | 20 +++++++++++++++++-
+>  .../gpu/drm/i915/gem/i915_gem_object_types.h  | 17 ++++++++-------
+>  drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 21 ++++++++++++-------
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c          |  4 ++--
+>  drivers/gpu/drm/i915/i915_scatterlist.h       |  5 +++++
+>  6 files changed, 51 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index c8421fd9d2dc..ffeaf1b9b1bb 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -73,6 +73,8 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+>         obj->mm.madv = I915_MADV_WILLNEED;
+>         INIT_RADIX_TREE(&obj->mm.get_page.radix, GFP_KERNEL | __GFP_NOWARN);
+>         mutex_init(&obj->mm.get_page.lock);
+> +       INIT_RADIX_TREE(&obj->mm.get_dma_page.radix, GFP_KERNEL | __GFP_NOWARN);
+> +       mutex_init(&obj->mm.get_dma_page.lock);
+>  
+>         if (IS_ENABLED(CONFIG_LOCKDEP) && i915_gem_object_is_shrinkable(obj))
+>                 i915_gem_shrinker_taints_mutex(to_i915(obj->base.dev),
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> index d46db8d8f38e..44c6910e2669 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -275,8 +275,26 @@ int i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
+>                                unsigned int tiling, unsigned int stride);
+>  
+>  struct scatterlist *
+> +__i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+> +                        struct i915_gem_object_page_iter *iter,
+> +                        unsigned int n,
+> +                        unsigned int *offset);
+> +
+> +static inline struct scatterlist *
+>  i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+> -                      unsigned int n, unsigned int *offset);
+> +                      unsigned int n,
+> +                      unsigned int *offset)
+> +{
+> +       return __i915_gem_object_get_sg(obj, &obj->mm.get_page, n, offset);
+> +}
 
-I just checked on one of my old UP ARM toys which I run at home. The .text
-increase is about 2% (75k) and none of the tests I ran showed any
-significant difference. Couldn't verify with perf though as the PMU on
-that piece of art is unusable.
+I wonder if get_sg_phys() is worth it to make it completely clear the
+difference between it and get_sg_dma() (and .get_phys_page?) ?
 
-> That said, the diffstat certainly has its very clear charm, and I do
-> agree that it makes things simpler.
->
-> I'm just not convinced people should ever EVER do things like that "if
-> (preemptible())" garbage. It sounds like somebody is doing seriously
-> bad things.
+> +
+> +static inline struct scatterlist *
+> +i915_gem_object_get_sg_dma(struct drm_i915_gem_object *obj,
+> +                          unsigned int n,
+> +                          unsigned int *offset)
+> +{
+> +       return __i915_gem_object_get_sg(obj, &obj->mm.get_dma_page, n, offset);
+> +}
+>  
+>  struct page *
+>  i915_gem_object_get_page(struct drm_i915_gem_object *obj,
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> index b5c15557cc87..fedfebf13344 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> @@ -80,6 +80,14 @@ struct i915_mmap_offset {
+>         struct rb_node offset;
+>  };
+>  
+> +struct i915_gem_object_page_iter {
+> +       struct scatterlist *sg_pos;
+> +       unsigned int sg_idx; /* in pages, but 32bit eek! */
+> +
+> +       struct radix_tree_root radix;
+> +       struct mutex lock; /* protects this cache */
+> +};
 
-OTOH, having a working 'preemptible()' or maybe better named
-'can_schedule()' check makes tons of sense to make decisions about
-allocation modes or other things.
+All alternatives to trying to avoid a second random lookup were
+squashed, it really is two lists within one scatterlist and we do use
+both page/dma lookups in non-trivial ways.
 
-We're currently looking through all of in_atomic(), in_interrupt()
-etc. usage sites and quite some of them are historic and have the clear
-intent of checking whether the code is called from task context or
-hard/softirq context. Lots of them are completely broken or just work by
-chance.
+> +
+>  struct drm_i915_gem_object {
+>         struct drm_gem_object base;
+>  
+> @@ -246,13 +254,8 @@ struct drm_i915_gem_object {
+>  
+>                 I915_SELFTEST_DECLARE(unsigned int page_mask);
+>  
+> -               struct i915_gem_object_page_iter {
+> -                       struct scatterlist *sg_pos;
+> -                       unsigned int sg_idx; /* in pages, but 32bit eek! */
+> -
+> -                       struct radix_tree_root radix;
+> -                       struct mutex lock; /* protects this cache */
+> -               } get_page;
+> +               struct i915_gem_object_page_iter get_page;
+> +               struct i915_gem_object_page_iter get_dma_page;
+>  
+>                 /**
+>                  * Element within i915->mm.unbound_list or i915->mm.bound_list,
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> index e8a083743e09..04a3c1233f80 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> @@ -33,6 +33,8 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
+>  
+>         obj->mm.get_page.sg_pos = pages->sgl;
+>         obj->mm.get_page.sg_idx = 0;
+> +       obj->mm.get_dma_page.sg_pos = pages->sgl;
+> +       obj->mm.get_dma_page.sg_idx = 0;
+>  
+>         obj->mm.pages = pages;
+>  
+> @@ -155,6 +157,8 @@ static void __i915_gem_object_reset_page_iter(struct drm_i915_gem_object *obj)
+>         rcu_read_lock();
+>         radix_tree_for_each_slot(slot, &obj->mm.get_page.radix, &iter, 0)
+>                 radix_tree_delete(&obj->mm.get_page.radix, iter.index);
+> +       radix_tree_for_each_slot(slot, &obj->mm.get_dma_page.radix, &iter, 0)
+> +               radix_tree_delete(&obj->mm.get_dma_page.radix, iter.index);
+>         rcu_read_unlock();
+>  }
+>  
+> @@ -424,11 +428,12 @@ void __i915_gem_object_release_map(struct drm_i915_gem_object *obj)
+>  }
+>  
+>  struct scatterlist *
+> -i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+> -                      unsigned int n,
+> -                      unsigned int *offset)
+> +__i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+> +                        struct i915_gem_object_page_iter *iter,
+> +                        unsigned int n,
+> +                        unsigned int *offset)
+>  {
+> -       struct i915_gem_object_page_iter *iter = &obj->mm.get_page;
+> +       const bool dma = iter == &obj->mm.get_dma_page;
+>         struct scatterlist *sg;
+>         unsigned int idx, count;
+>  
+> @@ -457,7 +462,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+>  
+>         sg = iter->sg_pos;
+>         idx = iter->sg_idx;
+> -       count = __sg_page_count(sg);
+> +       count = dma ? __sg_dma_page_count(sg) : __sg_page_count(sg);
+>  
+>         while (idx + count <= n) {
+>                 void *entry;
+> @@ -485,7 +490,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+>  
+>                 idx += count;
+>                 sg = ____sg_next(sg);
+> -               count = __sg_page_count(sg);
+> +               count = dma ? __sg_dma_page_count(sg) : __sg_page_count(sg);
+>         }
+>  
+>  scan:
+> @@ -503,7 +508,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+>         while (idx + count <= n) {
+>                 idx += count;
+>                 sg = ____sg_next(sg);
+> -               count = __sg_page_count(sg);
+> +               count = dma ? __sg_dma_page_count(sg) : __sg_page_count(sg);
 
-But there is clearly historic precendence that context checks are
-useful, but they only can be useful if we have a consistent mechanism
-which works everywhere.
+Hmm. So for a coalesced dma entry, we must therefore end up with some
+entries where the sg_dma_length is 0.
 
-Of course we could mandate that every interface which might be called
-from one or the other context has a context argument or provides two
-variants of the same thing. But I'm not really convinced whether that's
-a win over having a consistent and reliable set of checks.
+We then insert multiple sg for the same idx into the radix tree, causing
+it to return an error, -EEXIST. We eat such errors and so overwrite the
+empty entry with the final sg that actually has a valid length.
 
-Thanks,
+Ok. Looks like get_sg already handles zero length elements and you
+caught all 3 __sg_page_count().
 
-        tglx
+>         }
+>  
+>         *offset = n - idx;
+> @@ -570,7 +575,7 @@ i915_gem_object_get_dma_address_len(struct drm_i915_gem_object *obj,
+>         struct scatterlist *sg;
+>         unsigned int offset;
+>  
+> -       sg = i915_gem_object_get_sg(obj, n, &offset);
+> +       sg = i915_gem_object_get_sg_dma(obj, n, &offset);
+>  
+>         if (len)
+>                 *len = sg_dma_len(sg) - (offset << PAGE_SHIFT);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index 81c05f551b9c..95e77d56c1ce 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -1383,7 +1383,7 @@ intel_partial_pages(const struct i915_ggtt_view *view,
+>         if (ret)
+>                 goto err_sg_alloc;
+>  
+> -       iter = i915_gem_object_get_sg(obj, view->partial.offset, &offset);
+> +       iter = i915_gem_object_get_sg_dma(obj, view->partial.offset, &offset);
+>         GEM_BUG_ON(!iter);
+>  
+>         sg = st->sgl;
+> @@ -1391,7 +1391,7 @@ intel_partial_pages(const struct i915_ggtt_view *view,
+>         do {
+>                 unsigned int len;
+>  
+> -               len = min(iter->length - (offset << PAGE_SHIFT),
+> +               len = min(sg_dma_len(iter) - (offset << PAGE_SHIFT),
+>                           count << PAGE_SHIFT);
+>                 sg_set_page(sg, NULL, len, 0);
+>                 sg_dma_address(sg) =
 
+I didn't find any other users for get_sg() and this looks to catch all
+the fixes required for using sg_dma.
 
+> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h b/drivers/gpu/drm/i915/i915_scatterlist.h
+> index 510856887628..102d8d7007b6 100644
+> --- a/drivers/gpu/drm/i915/i915_scatterlist.h
+> +++ b/drivers/gpu/drm/i915/i915_scatterlist.h
+> @@ -48,6 +48,11 @@ static inline int __sg_page_count(const struct scatterlist *sg)
+>         return sg->length >> PAGE_SHIFT;
+>  }
+>  
+> +static inline int __sg_dma_page_count(const struct scatterlist *sg)
+> +{
+> +       return sg_dma_len(sg) >> PAGE_SHIFT;
+> +}
 
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
 
+Do we need cc:stable?
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
