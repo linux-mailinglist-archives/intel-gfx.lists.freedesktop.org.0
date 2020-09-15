@@ -2,51 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598C026A8E2
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 17:34:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB4C526A8E5
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 17:34:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B657489E5B;
-	Tue, 15 Sep 2020 15:34:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A3816E869;
+	Tue, 15 Sep 2020 15:34:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 125056E02E;
- Tue, 15 Sep 2020 06:21:12 +0000 (UTC)
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com
- [209.85.167.180])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 7149B221EB;
- Tue, 15 Sep 2020 06:21:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1600150871;
- bh=yHPOwHAJMf2CyGYn5iaGApE31+NbMN1jtYRrQr3OqtY=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=TmmxknEGZyvx8vlGW5CGW73+O4uXGgraFnOf4HjrP8W3fP+hO00OxomgQPDZMrWul
- TTPtnmKpuFwwNrUFpHPuMsrGwVxISsxidGAMi4sBmKygdDvEVG1y6hO3MT19lxjr8u
- N8b5Mw4ZsilvmmxhDCjXlk2EUymtxsG5fkzIFbZw=
-Received: by mail-oi1-f180.google.com with SMTP id y6so2617581oie.5;
- Mon, 14 Sep 2020 23:21:11 -0700 (PDT)
-X-Gm-Message-State: AOAM532+rleuT+q+sjDJL5MpNpNpvHzn9N3e68jc9I6gBWI6HZKwLIE7
- OC0rNEd/D54s4SlVBAl9TOOWcqTPI6QlQ+OrDGo=
-X-Google-Smtp-Source: ABdhPJyUSykKZBGXRh2yEfSyDpEqCADm2R5enp/Wn0v7qrNEGX7YgMeVQQUInE2Y4YU+sX9Jw9CdsuzBUOw9ncgQn/s=
-X-Received: by 2002:aca:d845:: with SMTP id p66mr2094330oig.47.1600150870261; 
- Mon, 14 Sep 2020 23:21:10 -0700 (PDT)
+Received: from mslow2.mail.gandi.net (mslow2.mail.gandi.net [217.70.178.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 235F289D40;
+ Tue, 15 Sep 2020 09:44:00 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (unknown [217.70.183.195])
+ by mslow2.mail.gandi.net (Postfix) with ESMTP id EEE033A2BC4;
+ Tue, 15 Sep 2020 09:20:01 +0000 (UTC)
+X-Originating-IP: 91.224.148.103
+Received: from xps13 (unknown [91.224.148.103])
+ (Authenticated sender: miquel.raynal@bootlin.com)
+ by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id A7B9F60004;
+ Tue, 15 Sep 2020 09:19:26 +0000 (UTC)
+Date: Tue, 15 Sep 2020 11:19:25 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Joe Perches <joe@perches.com>
+Message-ID: <20200915111925.475dd3f1@xps13>
+In-Reply-To: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
+References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20200914204209.256266093@linutronix.de>
- <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
- <871rj4owfn.fsf@nanos.tec.linutronix.de>
- <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
- <CAHk-=wjOV6f_ddg+QVCF6RUe+pXPhSR2WevnNyOs9oT+q2ihEA@mail.gmail.com>
-In-Reply-To: <CAHk-=wjOV6f_ddg+QVCF6RUe+pXPhSR2WevnNyOs9oT+q2ihEA@mail.gmail.com>
-From: Ard Biesheuvel <ardb@kernel.org>
-Date: Tue, 15 Sep 2020 09:20:59 +0300
-X-Gmail-Original-Message-ID: <CAMj1kXHrDU50D08TwLfzz2hCK+8+C7KGPF99PphXtsOYZ-ff1g@mail.gmail.com>
-Message-ID: <CAMj1kXHrDU50D08TwLfzz2hCK+8+C7KGPF99PphXtsOYZ-ff1g@mail.gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
 X-Mailman-Approved-At: Tue, 15 Sep 2020 15:34:53 +0000
-Subject: Re: [Intel-gfx] [patch 00/13] preempt: Make preempt count
- unconditional
+Subject: Re: [Intel-gfx] [trivial PATCH] treewide: Convert switch/case
+ fallthrough; to break; 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,109 +44,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Lai Jiangshan <jiangshanlai@gmail.com>,
- dri-devel <dri-devel@lists.freedesktop.org>, Ben Segall <bsegall@google.com>,
- Linux-MM <linux-mm@kvack.org>,
- "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
- linux-hexagon@vger.kernel.org, Will Deacon <will@kernel.org>,
- Ingo Molnar <mingo@kernel.org>, Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- linux-arch <linux-arch@vger.kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>, Brian Cain <bcain@codeaurora.org>,
- Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
- David Airlie <airlied@linux.ie>, Ingo Molnar <mingo@redhat.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Mel Gorman <mgorman@suse.de>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Matt Turner <mattst88@gmail.com>,
- Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
- Shuah Khan <shuah@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
- Jeff Dike <jdike@addtoit.com>, linux-um <linux-um@lists.infradead.org>,
- Josh Triplett <josh@joshtriplett.org>, Steven Rostedt <rostedt@goodmis.org>,
- rcu@vger.kernel.org, linux-m68k <linux-m68k@lists.linux-m68k.org>,
- Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
- Thomas Gleixner <tglx@linutronix.de>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
- Max Filippov <jcmvbkbc@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
- alpha <linux-alpha@vger.kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-fbdev@vger.kernel.org, oss-drivers@netronome.com,
+ nouveau@lists.freedesktop.org, alsa-devel <alsa-devel@alsa-project.org>,
+ dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
+ linux-ide@vger.kernel.org, dm-devel@redhat.com, linux-mtd@lists.infradead.org,
+ linux-i2c@vger.kernel.org, sparclinux@vger.kernel.org,
+ linux-afs@lists.infradead.org, linux-rtc@vger.kernel.org,
+ linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org, dccp@vger.kernel.org,
+ linux-rdma@vger.kernel.org, linux-atm-general@lists.sourceforge.net,
+ iommu@lists.linux-foundation.org, kvmarm@lists.cs.columbia.edu,
+ coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
+ linux-serial@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-mmc@vger.kernel.org, Kees Cook <kees.cook@canonical.com>,
+ linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-nvme@lists.infradead.org, storagedev@microchip.com,
+ ceph-devel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-nfs@vger.kernel.org,
+ Jiri Kosina <trivial@kernel.org>, linux-parisc@vger.kernel.org,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ linux-sctp@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, bpf@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 15 Sep 2020 at 01:43, Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
->
-> On Mon, Sep 14, 2020 at 3:24 PM Linus Torvalds
-> <torvalds@linux-foundation.org> wrote:
-> >
-> > Ard and Herbert added to participants: see
-> > chacha20poly1305_crypt_sg_inplace(), which does
-> >
-> >         flags = SG_MITER_TO_SG;
-> >         if (!preemptible())
-> >                 flags |= SG_MITER_ATOMIC;
-> >
-> > introduced in commit d95312a3ccc0 ("crypto: lib/chacha20poly1305 -
-> > reimplement crypt_from_sg() routine").
->
-> As far as I can tell, the only reason for this all is to try to use
-> "kmap()" rather than "kmap_atomic()".
->
-> And kmap() actually has the much more complex "might_sleep()" tests,
-> and apparently the "preemptible()" check wasn't even the proper full
-> debug check, it was just a complete hack to catch the one that
-> triggered.
->
-
-This was not driven by a failing check.
-
-The documentation of kmap_atomic() states the following:
-
- * The use of kmap_atomic/kunmap_atomic is discouraged - kmap/kunmap
- * gives a more generic (and caching) interface. But kmap_atomic can
- * be used in IRQ contexts, so in some (very limited) cases we need
- * it.
-
-so if this is no longer accurate, perhaps we should fix it?
-
-But another reason I tried to avoid kmap_atomic() is that it disables
-preemption unconditionally, even on 64-bit architectures where HIGHMEM
-is irrelevant. So using kmap_atomic() here means that the bulk of
-WireGuard packet encryption runs with preemption disabled, essentially
-for legacy reasons.
-
-
-> From a quick look, that code should probably just get rid of
-> SG_MITER_ATOMIC entirely, and alwayse use kmap_atomic().
->
-> kmap_atomic() is actually the faster and proper interface to use
-> anyway (never mind that any of this matters on any sane hardware). The
-> old kmap() and kunmap() interfaces should generally be avoided like
-> the plague - yes, they allow sleeping in the middle and that is
-> sometimes required, but if you don't need that, you should never ever
-> use them.
->
-> We used to have a very nasty kmap_atomic() that required people to be
-> very careful and know exactly which atomic entry to use, and that was
-> admitedly quite nasty.
->
-> So it _looks_ like this code started using kmap() - probably back when
-> kmap_atomic() was so cumbersome to use - and was then converted
-> (conditionally) to kmap_atomic() rather than just changed whole-sale.
-> Is there actually something that wants to use those sg_miter functions
-> and sleep?
->
-> Because if there is, that choice should come from the outside, not
-> from inside lib/scatterlist.c trying to make some bad guess based on
-> the wrong thing entirely.
->
->                  Linus
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGkgSm9lLAoKRm9yIE1URDoKCj4gIGRyaXZlcnMvbXRkL25hbmQvcmF3L25hbmRzaW0uYyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICB8ICAyICstCgpSZXZpZXdlZC1ieTogTWlxdWVsIFJheW5h
+bCA8bWlxdWVsLnJheW5hbEBib290bGluLmNvbT4KCgpUaGFua3MsCk1pcXXDqGwKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
