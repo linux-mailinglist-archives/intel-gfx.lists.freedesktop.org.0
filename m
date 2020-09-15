@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA72826A624
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 15:20:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCEBC26A64E
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 15:30:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A437D6E2B1;
-	Tue, 15 Sep 2020 13:20:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5301A89F5B;
+	Tue, 15 Sep 2020 13:30:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA5556E2B1
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 13:20:44 +0000 (UTC)
-IronPort-SDR: VNx7RO19i2IhFYnIwn2fZb7PsNl8+c5wZKy0bgFn5hsieUEbZTeJc1hItdNlIGcrIvsf+x+Lnu
- scmByZPM3AIQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="223436863"
-X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="223436863"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA05889F5B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 13:30:18 +0000 (UTC)
+IronPort-SDR: VuU/UAWM1r/gxYOSOIq4w815/VrfuB7NpGAgQd9tntp9Gm1Gdv2P61bp8xnPQZ9y/LNhqjqSqe
+ Tu5ZcEVC+Pkg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="146941403"
+X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="146941403"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2020 06:20:43 -0700
-IronPort-SDR: YdnvTmNlCzeB4fU/2OQxBcEUoof3zIo0geH0Ok5QswHzJla+tibCfIhzQzH2wI8HfTeyvz6woB
- 9saqMOR5aq5Q==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2020 06:30:17 -0700
+IronPort-SDR: LhIQS9QMS/L1kvPsSdNZfOqumZqndmEwfiwh8qgBZoSd2vmfH4hfzv6rJnqN+yPzZk2BXIkdb1
+ lYOiiRzm8tYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="345825143"
+X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="338663017"
 Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga007.jf.intel.com with ESMTP; 15 Sep 2020 06:20:41 -0700
+ by fmsmga002.fm.intel.com with ESMTP; 15 Sep 2020 06:30:15 -0700
 Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 2DA865C204E; Tue, 15 Sep 2020 16:19:31 +0300 (EEST)
+ id 499EF5C204E; Tue, 15 Sep 2020 16:29:05 +0300 (EEST)
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200915124150.12045-2-chris@chris-wilson.co.uk>
+In-Reply-To: <20200915124150.12045-3-chris@chris-wilson.co.uk>
 References: <20200915124150.12045-1-chris@chris-wilson.co.uk>
- <20200915124150.12045-2-chris@chris-wilson.co.uk>
-Date: Tue, 15 Sep 2020 16:19:31 +0300
-Message-ID: <87lfhbyy70.fsf@gaia.fi.intel.com>
+ <20200915124150.12045-3-chris@chris-wilson.co.uk>
+Date: Tue, 15 Sep 2020 16:29:05 +0300
+Message-ID: <87imcfyxr2.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/gt: Wait for CSB entries on
- Tigerlake
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/gt: Apply the CSB w/a for all
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,7 +50,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -59,82 +58,154 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> On Tigerlake, we are seeing a repeat of commit d8f505311717 ("drm/i915/icl:
-> Forcibly evict stale csb entries") where, presumably, due to a missing
-> Global Observation Point synchronisation, the write pointer of the CSB
-> ringbuffer is updated _prior_ to the contents of the ringbuffer. That is
-> we see the GPU report more context-switch entries for us to parse, but
-> those entries have not been written, leading us to process stale events,
-> and eventually report a hung GPU.
+> Since we expect to inline the csb_parse() routines, the w/a for the
+> stale CSB data on Tigerlake will be pulled into process_csb(), and so we
+> might as well simply reuse the logic for all, and so will hopefully
+> avoid any strange behaviour on Icelake that was not covered by our
+> previous w/a.
 >
-> However, this effect appears to be much more severe than we previously
-> saw on Icelake (though it might be best if we try the same approach
-> there as well and measure), and Bruce suggested the good idea of resetting
-> the CSB entry after use so that we can detect when it has been updated by
-> the GPU. By instrumenting how long that may be, we can set a reliable
-> upper bound for how long we should wait for:
->
->     513 late, avg of 61 retries (590 ns), max of 1061 retries (10099 ns)
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2045
 > References: d8f505311717 ("drm/i915/icl: Forcibly evict stale csb entries")
-
-References: HSDES#22011327657, HSDES#1508287568
-
-> Suggested-by: Bruce Chang <yu.bruce.chang@intel.com>
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Bruce Chang <yu.bruce.chang@intel.com>
 > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: stable@vger.kernel.org # v5.4
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c | 21 ++++++++++++++++++---
->  1 file changed, 18 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index d6e0f62337b4..d75712a503b7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2498,9 +2498,22 @@ invalidate_csb_entries(const u64 *first, const u64 *last)
->   */
->  static inline bool gen12_csb_parse(const u64 *csb)
->  {
-> -	u64 entry = READ_ONCE(*csb);
-> -	bool ctx_away_valid = GEN12_CSB_CTX_VALID(upper_32_bits(entry));
-> -	bool new_queue =
-> +	bool ctx_away_valid;
-> +	bool new_queue;
-> +	u64 entry;
-> +
-> +	/* HSD#22011248461 */
-> +	entry = READ_ONCE(*csb);
-> +	if (unlikely(entry == -1)) {
-> +		preempt_disable();
-> +		if (wait_for_atomic_us((entry = READ_ONCE(*csb)) != -1, 50))
-> +			GEM_WARN_ON("50us CSB timeout");
-
-hsdes is for 30us. But this will be the threshold to fallback further
-into mmio. Intuition and data of rarity of this will help find the
-good enough value.
+> Cc: Bruce Chang <yu.bruce.chang@intel.com>
 
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-> +		preempt_enable();
-> +	}
-> +	WRITE_ONCE(*(u64 *)csb, -1);
-> +
-> +	ctx_away_valid = GEN12_CSB_CTX_VALID(upper_32_bits(entry));
-> +	new_queue =
->  		lower_32_bits(entry) & GEN12_CTX_STATUS_SWITCHED_TO_NEW_QUEUE;
+> ---
+>  drivers/gpu/drm/i915/gt/intel_lrc.c | 79 +++++++++++++++++++----------
+>  1 file changed, 51 insertions(+), 28 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index d75712a503b7..fcb6ec3d55f4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -2496,25 +2496,11 @@ invalidate_csb_entries(const u64 *first, const u64 *last)
+>   *     bits 47-57: sw context id of the lrc the GT switched away from
+>   *     bits 58-63: sw counter of the lrc the GT switched away from
+>   */
+> -static inline bool gen12_csb_parse(const u64 *csb)
+> +static inline bool gen12_csb_parse(const u64 csb)
+>  {
+> -	bool ctx_away_valid;
+> -	bool new_queue;
+> -	u64 entry;
+> -
+> -	/* HSD#22011248461 */
+> -	entry = READ_ONCE(*csb);
+> -	if (unlikely(entry == -1)) {
+> -		preempt_disable();
+> -		if (wait_for_atomic_us((entry = READ_ONCE(*csb)) != -1, 50))
+> -			GEM_WARN_ON("50us CSB timeout");
+> -		preempt_enable();
+> -	}
+> -	WRITE_ONCE(*(u64 *)csb, -1);
+> -
+> -	ctx_away_valid = GEN12_CSB_CTX_VALID(upper_32_bits(entry));
+> -	new_queue =
+> -		lower_32_bits(entry) & GEN12_CTX_STATUS_SWITCHED_TO_NEW_QUEUE;
+> +	bool ctx_away_valid = GEN12_CSB_CTX_VALID(upper_32_bits(csb));
+> +	bool new_queue =
+> +		lower_32_bits(csb) & GEN12_CTX_STATUS_SWITCHED_TO_NEW_QUEUE;
 >  
 >  	/*
-> @@ -4004,6 +4017,8 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
->  	WRITE_ONCE(*execlists->csb_write, reset_value);
->  	wmb(); /* Make sure this is visible to HW (paranoia?) */
+>  	 * The context switch detail is not guaranteed to be 5 when a preemption
+> @@ -2524,7 +2510,7 @@ static inline bool gen12_csb_parse(const u64 *csb)
+>  	 * would require some extra handling, but we don't support that.
+>  	 */
+>  	if (!ctx_away_valid || new_queue) {
+> -		GEM_BUG_ON(!GEN12_CSB_CTX_VALID(lower_32_bits(entry)));
+> +		GEM_BUG_ON(!GEN12_CSB_CTX_VALID(lower_32_bits(csb)));
+>  		return true;
+>  	}
 >  
-> +	/* Check that the GPU does indeed update the CSB entries! */
-> +	memset(execlists->csb_status, -1, (reset_value + 1) * sizeof(u64));
->  	invalidate_csb_entries(&execlists->csb_status[0],
->  			       &execlists->csb_status[reset_value]);
+> @@ -2533,19 +2519,56 @@ static inline bool gen12_csb_parse(const u64 *csb)
+>  	 * context switch on an unsuccessful wait instruction since we always
+>  	 * use polling mode.
+>  	 */
+> -	GEM_BUG_ON(GEN12_CTX_SWITCH_DETAIL(upper_32_bits(entry)));
+> +	GEM_BUG_ON(GEN12_CTX_SWITCH_DETAIL(upper_32_bits(csb)));
+>  	return false;
+>  }
+>  
+> -static inline bool gen8_csb_parse(const u64 *csb)
+> +static inline bool gen8_csb_parse(const u64 csb)
+> +{
+> +	return csb & (GEN8_CTX_STATUS_IDLE_ACTIVE | GEN8_CTX_STATUS_PREEMPTED);
+> +}
+> +
+> +static noinline u64 wa_csb_read(u64 * const csb)
+>  {
+> -	return *csb & (GEN8_CTX_STATUS_IDLE_ACTIVE | GEN8_CTX_STATUS_PREEMPTED);
+> +	u64 entry;
+> +
+> +	preempt_disable();
+> +	if (wait_for_atomic_us((entry = READ_ONCE(*csb)) != -1, 50))
+> +		GEM_WARN_ON("50us CSB timeout");
+> +	preempt_enable();
+> +
+> +	return entry;
+> +}
+> +
+> +static inline u64 csb_read(u64 * const csb)
+> +{
+> +	u64 entry = READ_ONCE(*csb);
+> +
+> +	/*
+> +	 * Unfortunately, the GPU does not always serialise its write
+> +	 * of the CSB entries before its write of the CSB pointer, at least
+> +	 * from the perspective of the CPU, using what is known as a Global
+> +	 * Observation Point. We may read a new CSB tail pointer, but then
+> +	 * read the stale CSB entries, causing us to misinterpret the
+> +	 * context-switch events, and eventually declare the GPU hung.
+> +	 *
+> +	 * icl:HSDES#1806554093
+> +	 * tgl:HSDES#22011248461
+> +	 */
+> +	if (unlikely(entry == -1))
+> +		entry = wa_csb_read(csb);
+> +
+> +	/* Consume this entry so that we can spot its future reuse. */
+> +	WRITE_ONCE(*csb, -1);
+> +
+> +	/* ELSP is an implicit wmb() before the GPU wraps and overwrites csb */
+> +	return entry;
+>  }
+>  
+>  static void process_csb(struct intel_engine_cs *engine)
+>  {
+>  	struct intel_engine_execlists * const execlists = &engine->execlists;
+> -	const u64 * const buf = execlists->csb_status;
+> +	u64 * const buf = execlists->csb_status;
+>  	const u8 num_entries = execlists->csb_size;
+>  	u8 head, tail;
+>  
+> @@ -2603,6 +2626,7 @@ static void process_csb(struct intel_engine_cs *engine)
+>  	rmb();
+>  	do {
+>  		bool promote;
+> +		u64 csb;
+>  
+>  		if (++head == num_entries)
+>  			head = 0;
+> @@ -2625,15 +2649,14 @@ static void process_csb(struct intel_engine_cs *engine)
+>  		 * status notifier.
+>  		 */
+>  
+> +		csb = csb_read(buf + head);
+>  		ENGINE_TRACE(engine, "csb[%d]: status=0x%08x:0x%08x\n",
+> -			     head,
+> -			     upper_32_bits(buf[head]),
+> -			     lower_32_bits(buf[head]));
+> +			     head, upper_32_bits(csb), lower_32_bits(csb));
+>  
+>  		if (INTEL_GEN(engine->i915) >= 12)
+> -			promote = gen12_csb_parse(buf + head);
+> +			promote = gen12_csb_parse(csb);
+>  		else
+> -			promote = gen8_csb_parse(buf + head);
+> +			promote = gen8_csb_parse(csb);
+>  		if (promote) {
+>  			struct i915_request * const *old = execlists->active;
 >  
 > -- 
 > 2.20.1
