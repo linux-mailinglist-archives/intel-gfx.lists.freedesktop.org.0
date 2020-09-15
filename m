@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D850E26A22C
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 11:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C38F426A254
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 11:34:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE1ED89D02;
-	Tue, 15 Sep 2020 09:30:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7412589DA7;
+	Tue, 15 Sep 2020 09:34:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55A7489D02
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 09:30:26 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22431718-1500050 
- for multiple; Tue, 15 Sep 2020 10:30:11 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Sep 2020 10:30:10 +0100
-Message-Id: <20200915093010.30573-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EFEB189D44;
+ Tue, 15 Sep 2020 09:34:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E70DEA7DFB;
+ Tue, 15 Sep 2020 09:34:21 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Redo "Remove i915_request.lock
- requirement for execution callbacks"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 15 Sep 2020 09:34:21 -0000
+Message-ID: <160016246191.30600.11808593316647926575@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200915091417.4086-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200915091417.4086-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/3=5D_drm/i915/gem=3A_Avoid_i?=
+ =?utf-8?q?mplicit_vmap_for_highmem_on_x86-32?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,52 +39,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The reordering and rebasing of commit 2e4c6c1a9db5 ("drm/i915: Remove
-i915_request.lock requirement for execution callbacks") caused it to
-revert an earlier correction. Let us restore commit 99f0a640d464
-("drm/i915: Remove requirement for holding i915_request.lock for
-breadcrumbs")
+== Series Details ==
 
-Fixes: 2e4c6c1a9db5 ("drm/i915: Remove i915_request.lock requirement for execution callbacks")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_request.c | 12 ++----------
- 1 file changed, 2 insertions(+), 10 deletions(-)
+Series: series starting with [CI,1/3] drm/i915/gem: Avoid implicit vmap for highmem on x86-32
+URL   : https://patchwork.freedesktop.org/series/81682/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 11e272422fb7..436ce368ddaa 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -593,16 +593,8 @@ bool __i915_request_submit(struct i915_request *request)
- 	__notify_execute_cb_irq(request);
- 
- 	/* We may be recursing from the signal callback of another i915 fence */
--	if (!i915_request_signaled(request)) {
--		spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
--
--		if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
--			     &request->fence.flags) &&
--		    !i915_request_enable_breadcrumb(request))
--			intel_engine_signal_breadcrumbs(engine);
--
--		spin_unlock(&request->lock);
--	}
-+	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags))
-+		i915_request_enable_breadcrumb(request);
- 
- 	return result;
- }
--- 
-2.20.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+19c64629256b drm/i915/gem: Avoid implicit vmap for highmem on x86-32
+-:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#18: 
+References: e87666b52f00 ("drm/i915/shrinker: Hook up vmap allocation failure notifier")
+
+-:18: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit e87666b52f00 ("drm/i915/shrinker: Hook up vmap allocation failure notifier")'
+#18: 
+References: e87666b52f00 ("drm/i915/shrinker: Hook up vmap allocation failure notifier")
+
+total: 1 errors, 1 warnings, 0 checks, 32 lines checked
+957070151f2f drm/i915/gem: Prevent using pgprot_writecombine() if PAT is not supported
+b1bfb2b6d79a drm/i915/gt: Clear the buffer pool age before use
+
 
 _______________________________________________
 Intel-gfx mailing list
