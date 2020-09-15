@@ -2,42 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCEBC26A64E
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 15:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5709026A657
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 15:35:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5301A89F5B;
-	Tue, 15 Sep 2020 13:30:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD996E2BE;
+	Tue, 15 Sep 2020 13:35:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA05889F5B
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 13:30:18 +0000 (UTC)
-IronPort-SDR: VuU/UAWM1r/gxYOSOIq4w815/VrfuB7NpGAgQd9tntp9Gm1Gdv2P61bp8xnPQZ9y/LNhqjqSqe
- Tu5ZcEVC+Pkg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="146941403"
-X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="146941403"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BD0D6E2BE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 13:35:31 +0000 (UTC)
+IronPort-SDR: lnalkE0myRRKigoPXFsaM4gMZlyr37Eb8Hb2520cwRYnBGPsYuW8aeLGPULiRdWGQNEneBiVtx
+ r2E9WMgxteAw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="138760928"
+X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="138760928"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2020 06:30:17 -0700
-IronPort-SDR: LhIQS9QMS/L1kvPsSdNZfOqumZqndmEwfiwh8qgBZoSd2vmfH4hfzv6rJnqN+yPzZk2BXIkdb1
- lYOiiRzm8tYA==
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2020 06:35:29 -0700
+IronPort-SDR: 7h9biis18Lz76TWy2hyPCQkMC8nurkpcmHeDpicU4mL0314d09MLbEP2jXRcF59KB3oA4D6/oO
+ FfNrH1Koe6wQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="338663017"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga002.fm.intel.com with ESMTP; 15 Sep 2020 06:30:15 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 499EF5C204E; Tue, 15 Sep 2020 16:29:05 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200915124150.12045-3-chris@chris-wilson.co.uk>
-References: <20200915124150.12045-1-chris@chris-wilson.co.uk>
- <20200915124150.12045-3-chris@chris-wilson.co.uk>
-Date: Tue, 15 Sep 2020 16:29:05 +0300
-Message-ID: <87imcfyxr2.fsf@gaia.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="345828594"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 15 Sep 2020 06:35:26 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 15 Sep 2020 16:35:25 +0300
+Date: Tue, 15 Sep 2020 16:35:25 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "20200827055129.26566-1-shawn.c.lee@intel.com"
+ <20200827055129.26566-1-shawn.c.lee@intel.com>
+Message-ID: <20200915133525.GG6112@intel.com>
+References: <20200827055129.26566-1-shawn.c.lee@intel.com>
+ <20200911142113.GJ6112@intel.com>
+ <BY5PR11MB43073FAD5FBBD0A47986E296A3200@BY5PR11MB4307.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/gt: Apply the CSB w/a for all
+Content-Disposition: inline
+In-Reply-To: <BY5PR11MB43073FAD5FBBD0A47986E296A3200@BY5PR11MB4307.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/fbc: disable FBC on Nightfury board
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,165 +55,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Chiou, Cooper" <cooper.chiou@intel.com>, "Tseng,
+ William" <william.tseng@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+On Tue, Sep 15, 2020 at 01:18:13PM +0000, Lee, Shawn C wrote:
+> On Fri, Sept. 11, 2020, 2:21 p.m. Ville Syrj=E4l=E4 wrote:
+> >On Thu, Aug 27, 2020 at 01:51:29PM +0800, Lee Shawn C wrote:
+> >> Customer report random display flicker issue on Nightfury board.
+> >> And we found this problem might be caused by VT-d and FBC are both =
 
-> Since we expect to inline the csb_parse() routines, the w/a for the
-> stale CSB data on Tigerlake will be pulled into process_csb(), and so we
-> might as well simply reuse the logic for all, and so will hopefully
-> avoid any strange behaviour on Icelake that was not covered by our
-> previous w/a.
->
-> References: d8f505311717 ("drm/i915/icl: Forcibly evict stale csb entries")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: Bruce Chang <yu.bruce.chang@intel.com>
+> >> enabled. According to sighting report, it recommend to turn
+> >> drm/i915/fbc: disable FBC on Nightfury board
+> >> =
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> >> Customer report random display flicker issue on Nightfury board.
+> >> And we found this problem might be caused by VT-d and FBC are both =
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c | 79 +++++++++++++++++++----------
->  1 file changed, 51 insertions(+), 28 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index d75712a503b7..fcb6ec3d55f4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2496,25 +2496,11 @@ invalidate_csb_entries(const u64 *first, const u64 *last)
->   *     bits 47-57: sw context id of the lrc the GT switched away from
->   *     bits 58-63: sw counter of the lrc the GT switched away from
->   */
-> -static inline bool gen12_csb_parse(const u64 *csb)
-> +static inline bool gen12_csb_parse(const u64 csb)
->  {
-> -	bool ctx_away_valid;
-> -	bool new_queue;
-> -	u64 entry;
-> -
-> -	/* HSD#22011248461 */
-> -	entry = READ_ONCE(*csb);
-> -	if (unlikely(entry == -1)) {
-> -		preempt_disable();
-> -		if (wait_for_atomic_us((entry = READ_ONCE(*csb)) != -1, 50))
-> -			GEM_WARN_ON("50us CSB timeout");
-> -		preempt_enable();
-> -	}
-> -	WRITE_ONCE(*(u64 *)csb, -1);
-> -
-> -	ctx_away_valid = GEN12_CSB_CTX_VALID(upper_32_bits(entry));
-> -	new_queue =
-> -		lower_32_bits(entry) & GEN12_CTX_STATUS_SWITCHED_TO_NEW_QUEUE;
-> +	bool ctx_away_valid = GEN12_CSB_CTX_VALID(upper_32_bits(csb));
-> +	bool new_queue =
-> +		lower_32_bits(csb) & GEN12_CTX_STATUS_SWITCHED_TO_NEW_QUEUE;
->  
->  	/*
->  	 * The context switch detail is not guaranteed to be 5 when a preemption
-> @@ -2524,7 +2510,7 @@ static inline bool gen12_csb_parse(const u64 *csb)
->  	 * would require some extra handling, but we don't support that.
->  	 */
->  	if (!ctx_away_valid || new_queue) {
-> -		GEM_BUG_ON(!GEN12_CSB_CTX_VALID(lower_32_bits(entry)));
-> +		GEM_BUG_ON(!GEN12_CSB_CTX_VALID(lower_32_bits(csb)));
->  		return true;
->  	}
->  
-> @@ -2533,19 +2519,56 @@ static inline bool gen12_csb_parse(const u64 *csb)
->  	 * context switch on an unsuccessful wait instruction since we always
->  	 * use polling mode.
->  	 */
-> -	GEM_BUG_ON(GEN12_CTX_SWITCH_DETAIL(upper_32_bits(entry)));
-> +	GEM_BUG_ON(GEN12_CTX_SWITCH_DETAIL(upper_32_bits(csb)));
->  	return false;
->  }
->  
-> -static inline bool gen8_csb_parse(const u64 *csb)
-> +static inline bool gen8_csb_parse(const u64 csb)
-> +{
-> +	return csb & (GEN8_CTX_STATUS_IDLE_ACTIVE | GEN8_CTX_STATUS_PREEMPTED);
-> +}
-> +
-> +static noinline u64 wa_csb_read(u64 * const csb)
->  {
-> -	return *csb & (GEN8_CTX_STATUS_IDLE_ACTIVE | GEN8_CTX_STATUS_PREEMPTED);
-> +	u64 entry;
-> +
-> +	preempt_disable();
-> +	if (wait_for_atomic_us((entry = READ_ONCE(*csb)) != -1, 50))
-> +		GEM_WARN_ON("50us CSB timeout");
-> +	preempt_enable();
-> +
-> +	return entry;
-> +}
-> +
-> +static inline u64 csb_read(u64 * const csb)
-> +{
-> +	u64 entry = READ_ONCE(*csb);
-> +
-> +	/*
-> +	 * Unfortunately, the GPU does not always serialise its write
-> +	 * of the CSB entries before its write of the CSB pointer, at least
-> +	 * from the perspective of the CPU, using what is known as a Global
-> +	 * Observation Point. We may read a new CSB tail pointer, but then
-> +	 * read the stale CSB entries, causing us to misinterpret the
-> +	 * context-switch events, and eventually declare the GPU hung.
-> +	 *
-> +	 * icl:HSDES#1806554093
-> +	 * tgl:HSDES#22011248461
-> +	 */
-> +	if (unlikely(entry == -1))
-> +		entry = wa_csb_read(csb);
-> +
-> +	/* Consume this entry so that we can spot its future reuse. */
-> +	WRITE_ONCE(*csb, -1);
-> +
-> +	/* ELSP is an implicit wmb() before the GPU wraps and overwrites csb */
-> +	return entry;
->  }
->  
->  static void process_csb(struct intel_engine_cs *engine)
->  {
->  	struct intel_engine_execlists * const execlists = &engine->execlists;
-> -	const u64 * const buf = execlists->csb_status;
-> +	u64 * const buf = execlists->csb_status;
->  	const u8 num_entries = execlists->csb_size;
->  	u8 head, tail;
->  
-> @@ -2603,6 +2626,7 @@ static void process_csb(struct intel_engine_cs *engine)
->  	rmb();
->  	do {
->  		bool promote;
-> +		u64 csb;
->  
->  		if (++head == num_entries)
->  			head = 0;
-> @@ -2625,15 +2649,14 @@ static void process_csb(struct intel_engine_cs *engine)
->  		 * status notifier.
->  		 */
->  
-> +		csb = csb_read(buf + head);
->  		ENGINE_TRACE(engine, "csb[%d]: status=0x%08x:0x%08x\n",
-> -			     head,
-> -			     upper_32_bits(buf[head]),
-> -			     lower_32_bits(buf[head]));
-> +			     head, upper_32_bits(csb), lower_32_bits(csb));
->  
->  		if (INTEL_GEN(engine->i915) >= 12)
-> -			promote = gen12_csb_parse(buf + head);
-> +			promote = gen12_csb_parse(csb);
->  		else
-> -			promote = gen8_csb_parse(buf + head);
-> +			promote = gen8_csb_parse(csb);
->  		if (promote) {
->  			struct i915_request * const *old = execlists->active;
->  
-> -- 
-> 2.20.1
+> >> enabled. According to sighting report, it recommend to turn FBC off to =
+
+> >> workaround this kind of issue.
+> >> =
+
+> >> This change refer to DMI BOARD_VENDOR and BOARD_NAME information to =
+
+> >> disable FBC.
+> >
+> >What is this "nightfury board" exactly?
+> =
+
+> It is chrome os project on CML platform. The board name is "nightfury".
+
+OK, then someone should definitely test if that missing w/a
+fixes the underruns.
+
+> =
+
+> >
+> >I think we're missing at least one fbc vs. vt-d w/a on some kbl/cfl/etc.=
+ era platforms:
+> >git://github.com/vsyrjala/linux.git  vtd_wa_1142
+> >
+> >> =
+
+> >> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> >> Cc: Jani Nikula <jani.nikula@intel.com>
+> >> Cc: William Tseng <william.tseng@intel.com>
+> >> Cc: Cooper Chiou <cooper.chiou@intel.com>
+> >> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/display/intel_fbc.c | 22 ++++++++++++++++++++++
+> >>  1 file changed, 22 insertions(+)
+> >> =
+
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c =
+
+> >> b/drivers/gpu/drm/i915/display/intel_fbc.c
+> >> index 327af428d73f..20660fdbab36 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> >> @@ -39,6 +39,7 @@
+> >>   */
+> >>  =
+
+> >>  #include <drm/drm_fourcc.h>
+> >> +#include <linux/dmi.h>
+> >>  =
+
+> >>  #include "i915_drv.h"
+> >>  #include "i915_trace.h"
+> >> @@ -1439,6 +1440,24 @@ static int intel_sanitize_fbc_option(struct drm=
+_i915_private *dev_priv)
+> >>  	return 0;
+> >>  }
+> >>  =
+
+> >> +static int intel_fbc_vtd_callback(const struct dmi_system_id *id) {
+> >> +	DRM_DEBUG_KMS("Disabling FBC to prevent screen flicker on %s device\=
+n", id->ident);
+> >> +	return 1;
+> >> +}
+> >> +
+> >> +static const struct dmi_system_id intel_fbc_vtd_detect[] =3D {
+> >> +	{
+> >> +		.callback =3D intel_fbc_vtd_callback,
+> >> +		.ident =3D "Google Nightfury",
+> >> +		.matches =3D {
+> >> +			DMI_MATCH(DMI_BOARD_VENDOR, "Google"),
+> >> +			DMI_MATCH(DMI_BOARD_NAME, "Nightfury"),
+> >> +		},
+> >> +	},
+> >> +	{ }
+> >> +};
+> >> +
+> >>  static bool need_fbc_vtd_wa(struct drm_i915_private *dev_priv)  {
+> >>  	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */ @@ -1450,6 +1469,9 =
+
+> >> @@ static bool need_fbc_vtd_wa(struct drm_i915_private *dev_priv)
+> >>  		return true;
+> >>  	}
+> >>  =
+
+> >> +	if (dmi_check_system(intel_fbc_vtd_detect))
+> >> +		return true;
+> >> +
+> >>  	return false;
+> >>  }
+> >>  =
+
+> >> --
+> >> 2.17.1
+> >
+> >--
+> >Ville Syrj=E4l=E4
+> >Intel
+> =
+
+> Best regards,
+> Shawn
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
