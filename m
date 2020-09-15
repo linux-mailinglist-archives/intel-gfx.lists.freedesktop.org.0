@@ -2,44 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 899B726A441
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 13:38:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7518326A46D
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 13:53:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BC5C89FF7;
-	Tue, 15 Sep 2020 11:38:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 156A289CF8;
+	Tue, 15 Sep 2020 11:52:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEC7389FF7
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 11:38:34 +0000 (UTC)
-IronPort-SDR: QAI1fyWFQl7V1n1ACJSiAx44C6k6xGYrOadawXZy8O86GLBbG770SQ0dWnJ/1Po9eFlpV4e7FG
- KjVaVasqerAg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="156667996"
-X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; d="scan'208";a="156667996"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F404E89CF8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 11:52:57 +0000 (UTC)
+IronPort-SDR: yNlSVaO0DmEWXwT4M3PhhEL7giSnFsD/cfQcKMPlpME0A27L1Mhdkk7VjDuUTSKZnCqavooZut
+ x80ue4rXvcyA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="220796596"
+X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; d="scan'208";a="220796596"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2020 04:38:34 -0700
-IronPort-SDR: tmJ1b2/MlqQsyY3ZS3a1ij7MpOFBv1bIOkKQI+p+l5K/84a3ohIEWhGZyEmUQb9piEnnmVzVt2
- zmXrJGV76/nA==
-X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; d="scan'208";a="482738559"
-Received: from emoriart-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.7.208])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2020 04:38:31 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200909085047.31004-2-vandita.kulkarni@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200909085047.31004-1-vandita.kulkarni@intel.com>
- <20200909085047.31004-2-vandita.kulkarni@intel.com>
-Date: Tue, 15 Sep 2020 14:38:36 +0300
-Message-ID: <877dsvxoar.fsf@intel.com>
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2020 04:50:55 -0700
+IronPort-SDR: E+nguj5kDk7OL+ZHGazJJw2IOapkojLpOWc1vXyR7o9Dvy7rk4N3uFcImKLMzyyDRNqGvqbxN4
+ BS0W+1h8JaPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; d="scan'208";a="286792111"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 15 Sep 2020 04:50:53 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 15 Sep 2020 14:50:52 +0300
+Date: Tue, 15 Sep 2020 14:50:52 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200915115052.GF6112@intel.com>
+References: <20200901010924.235808-1-jose.souza@intel.com>
+ <20200901010924.235808-2-jose.souza@intel.com>
+ <20200914142406.GN6112@intel.com>
+ <f0b80d8f63f2b69ff6694b5a6bf55b7f7fd032b2.camel@intel.com>
+ <20200914203040.GD6112@intel.com>
+ <60200aa55b5abfae8a12c32fa3377d6782d2bc44.camel@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [V9 1/4] drm/i915/dsi: Add details about TE in
- get_config
+Content-Disposition: inline
+In-Reply-To: <60200aa55b5abfae8a12c32fa3377d6782d2bc44.camel@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/display: Fix state of PSR2 sub
+ features
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,84 +58,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 09 Sep 2020, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> We need details about enabling TE on which port
-> before we enable TE through vblank enable path.
-> This is based on the configuration that we receive
-> from the VBT wrt ports, dual_link.
->
+On Mon, Sep 14, 2020 at 08:56:12PM +0000, Souza, Jose wrote:
+> On Mon, 2020-09-14 at 23:30 +0300, Ville Syrj=E4l=E4 wrote:
+> > On Mon, Sep 14, 2020 at 07:57:34PM +0000, Souza, Jose wrote:
+> > > On Mon, 2020-09-14 at 17:24 +0300, Ville Syrj=E4l=E4 wrote:
+> > > > On Mon, Aug 31, 2020 at 06:09:22PM -0700, Jos=E9 Roberto de Souza w=
+rote:
+> > > > > In case PSR2 is disabled by debugfs dc3co_enabled and
+> > > > > psr2_sel_fetch_enabled were still being set causing some code pat=
+hs
+> > > > > to be executed were it should not.
+> > > > > We have tests for PSR1 and PSR2 so keep those features disabled w=
+hen
+> > > > > PSR1 is active but PSR2 is supported is important.
+> > > > > =
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> > > > > Cc: Gwan-gyeong Mun <
+> > > > > gwan-gyeong.mun@intel.com
+> > > > > =
+
+> > > > > =
+
+> > > > > Cc: Ville Syrj=E4l=E4 <
+> > > > > ville.syrjala@linux.intel.com
+> > > > > =
+
+> > > > > =
+
+> > > > > Signed-off-by: Jos=E9 Roberto de Souza <
+> > > > > jose.souza@intel.com
+> > > > > =
+
+> > > > > =
+
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_psr.c | 11 +++++++----
+> > > > >  1 file changed, 7 insertions(+), 4 deletions(-)
+> > > > > =
+
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/g=
+pu/drm/i915/display/intel_psr.c
+> > > > > index 4e09ae61d4aa..6698d0209879 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > > > > @@ -962,12 +962,14 @@ static void intel_psr_enable_locked(struct =
+drm_i915_private *dev_priv,
+> > > > >  	dev_priv->psr.psr2_enabled =3D intel_psr2_enabled(dev_priv, crt=
+c_state);
+> > > > >  	dev_priv->psr.busy_frontbuffer_bits =3D 0;
+> > > > >  	dev_priv->psr.pipe =3D to_intel_crtc(crtc_state->uapi.crtc)->pi=
+pe;
+> > > > > -	dev_priv->psr.dc3co_enabled =3D !!crtc_state->dc3co_exitline;
+> > > > > +	dev_priv->psr.dc3co_enabled =3D !!crtc_state->dc3co_exitline &&
+> > > > > +				      dev_priv->psr.psr2_enabled;
+> > > > >  	dev_priv->psr.transcoder =3D crtc_state->cpu_transcoder;
+> > > > >  	/* DC5/DC6 requires at least 6 idle frames */
+> > > > >  	val =3D usecs_to_jiffies(intel_get_frame_time_us(crtc_state) * =
+6);
+> > > > >  	dev_priv->psr.dc3co_exit_delay =3D val;
+> > > > > -	dev_priv->psr.psr2_sel_fetch_enabled =3D crtc_state->enable_psr=
+2_sel_fetch;
+> > > > > +	dev_priv->psr.psr2_sel_fetch_enabled =3D crtc_state->enable_psr=
+2_sel_fetch &&
+> > > > > +					       dev_priv->psr.psr2_enabled;
+> > > > >  =
+
+> > > > >  	/*
+> > > > >  	 * If a PSR error happened and the driver is reloaded, the EDP_=
+PSR_IIR
+> > > > > @@ -1178,7 +1180,7 @@ void intel_psr2_program_trans_man_trk_ctl(c=
+onst struct intel_crtc_state *crtc_st
+> > > > >  	struct i915_psr *psr =3D &dev_priv->psr;
+> > > > >  =
+
+> > > > >  	if (!HAS_PSR2_SEL_FETCH(dev_priv) ||
+> > > > > -	    !crtc_state->enable_psr2_sel_fetch)
+> > > > > +	    !dev_priv->psr.psr2_sel_fetch_enabled)
+> > > > >  		return;
+> > > > >  =
+
+> > > > >  	intel_de_write(dev_priv, PSR2_MAN_TRK_CTL(psr->transcoder),
+> > > > > @@ -1189,8 +1191,9 @@ void intel_psr2_sel_fetch_update(struct int=
+el_atomic_state *state,
+> > > > >  				 struct intel_crtc *crtc)
+> > > > >  {
+> > > > >  	struct intel_crtc_state *crtc_state =3D intel_atomic_get_new_cr=
+tc_state(state, crtc);
+> > > > > +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> > > > >  =
+
+> > > > > -	if (!crtc_state->enable_psr2_sel_fetch)
+> > > > > +	if (!dev_priv->psr.psr2_sel_fetch_enabled)
+> > > > =
+
+> > > > This looks rather sketchy. AFAICS this gets called during atomic_ch=
+eck()
+> > > > so looking at stuff outside the crtc state is very suspicious.
+> > > =
+
+> > > This is called after the functions that change the PSR state so no is=
+sues, also we can't really on information in CRTC state, as PSR is only ena=
+bled
+> > > if supported by state, i915 PSR parameter and PSR debug fs value.
+> > =
+
+> > I see it getting called from intel_crtc_atomic_check(). Confused.
+> > Am I missing some other patches?
+> =
+
+> It is set from intel_psr_disable(), intel_psr_enable() and intel_psr_upda=
+te() all executed before intel_psr2_sel_fetch_update()
+> =
+
+> intel_enable_ddi()
+> 	intel_enable_ddi_dp()
+> 		intel_psr_enable()
+> =
+
+> intel_update_crtc() {
+> 	if (!modeset) {
+> 		intel_encoders_update_pipe()
+> 			encoder->update_pipe() / intel_ddi_update_pipe()
+> 				intel_ddi_update_pipe_dp()
+> 					intel_psr_update()
+> 	}
+> =
+
+> 	...
+> 		=
+
+> 	skl_update_planes_on_crtc(state, crtc);
+> 		intel_update_plane()
+> 			plane->update_plane() / skl_update_plane()
+> 				skl_program_plane()
+> 					intel_psr2_sel_fetch_update()
+
+That's not what I see at all. The only caller I see is
+intel_crtc_atomic_check().
 
 
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 30 +++++++++++++++-----------
->  1 file changed, 18 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index f4053dd6bde9..ee3c5c085cd3 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1447,6 +1447,18 @@ static bool gen11_dsi_is_periodic_cmd_mode(struct intel_dsi *intel_dsi)
->  	return (val & DSI_PERIODIC_FRAME_UPDATE_ENABLE);
->  }
->  
-> +static void gen11_dsi_get_cmd_mode_config(struct intel_dsi *intel_dsi,
-> +					  struct intel_crtc_state *pipe_config)
-> +{
-> +	if (intel_dsi->ports == (BIT(PORT_B) | BIT(PORT_A)))
-> +		pipe_config->mode_flags |= I915_MODE_FLAG_DSI_USE_TE1 |
-> +					    I915_MODE_FLAG_DSI_USE_TE0;
-> +	else if (intel_dsi->ports == BIT(PORT_B))
-> +		pipe_config->mode_flags |= I915_MODE_FLAG_DSI_USE_TE1;
-> +	else
-> +		pipe_config->mode_flags |= I915_MODE_FLAG_DSI_USE_TE0;
-> +}
-> +
->  static void gen11_dsi_get_config(struct intel_encoder *encoder,
->  				 struct intel_crtc_state *pipe_config)
->  {
-> @@ -1468,6 +1480,10 @@ static void gen11_dsi_get_config(struct intel_encoder *encoder,
->  	pipe_config->output_types |= BIT(INTEL_OUTPUT_DSI);
->  	pipe_config->pipe_bpp = bdw_get_pipemisc_bpp(crtc);
->  
-> +	/* Get the details on which TE should be enabled */
-> +	if (is_cmd_mode(intel_dsi))
-> +		gen11_dsi_get_cmd_mode_config(intel_dsi, pipe_config);
-> +
->  	if (gen11_dsi_is_periodic_cmd_mode(intel_dsi))
->  		pipe_config->mode_flags |= I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE;
->  }
-> @@ -1562,18 +1578,8 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
->  	 * receive TE from the slave if
->  	 * dual link is enabled
->  	 */
-> -	if (is_cmd_mode(intel_dsi)) {
-> -		if (intel_dsi->ports == (BIT(PORT_B) | BIT(PORT_A)))
-> -			pipe_config->mode_flags |=
-> -						I915_MODE_FLAG_DSI_USE_TE1 |
-> -						I915_MODE_FLAG_DSI_USE_TE0;
-> -		else if (intel_dsi->ports == BIT(PORT_B))
-> -			pipe_config->mode_flags |=
-> -						I915_MODE_FLAG_DSI_USE_TE1;
-> -		else
-> -			pipe_config->mode_flags |=
-> -						I915_MODE_FLAG_DSI_USE_TE0;
-> -	}
-> +	if (is_cmd_mode(intel_dsi))
-> +		gen11_dsi_get_cmd_mode_config(intel_dsi, pipe_config);
->  
->  	return 0;
->  }
+> }
+> =
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> =
+
+> > =
+
+> > > > >  		return;
+> > > > >  =
+
+> > > > >  	crtc_state->psr2_man_track_ctl =3D PSR2_MAN_TRK_CTL_ENABLE |
+
+And if it would be called from there then this part would be
+kinda bad. We should not mutate the state during the commit phase.
+
+> > > > > -- =
+
+> > > > > 2.28.0
+> > > > =
+
+> > > > =
+
+> > =
+
+> > =
+
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
