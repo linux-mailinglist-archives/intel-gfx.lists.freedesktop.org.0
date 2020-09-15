@@ -1,48 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32F29269BA2
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 03:53:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F44E269CA6
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 05:41:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C24C6E82B;
-	Tue, 15 Sep 2020 01:53:23 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44E936E82B
- for <Intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 01:53:22 +0000 (UTC)
-IronPort-SDR: yicrV2fW3O1a5dfXqPz1+hMc9auPk513W3gno1Pg0oinPRyxm3BMjIxyrPnssE/foM3UGrzTim
- CIoOXTiJKmLg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="158471728"
-X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="158471728"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2020 18:53:21 -0700
-IronPort-SDR: Xe0R/W9hHMIDWOmhCaQaggHuGJaKABRv0g/U3QAz43IDpHV8Dap6nBazZBZzy2R8+IlK5B+uk3
- B9igPB/DEzhQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,427,1592895600"; d="scan'208";a="409037267"
-Received: from allen-box.sh.intel.com (HELO [10.239.159.139])
- ([10.239.159.139])
- by fmsmga001.fm.intel.com with ESMTP; 14 Sep 2020 18:53:17 -0700
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joerg Roedel <joro@8bytes.org>, Tom Murphy <murphyt7@tcd.ie>,
- David Woodhouse <dwmw2@infradead.org>, Christoph Hellwig <hch@infradead.org>
-References: <20200912032200.11489-1-baolu.lu@linux.intel.com>
- <51a1baec-48d1-c0ac-181b-1fba92aa428d@linux.intel.com>
-From: Lu Baolu <baolu.lu@linux.intel.com>
-Message-ID: <001f4446-7c43-9832-42d8-55dc4a13c2ae@linux.intel.com>
-Date: Tue, 15 Sep 2020 09:47:24 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id A49856E836;
+	Tue, 15 Sep 2020 03:40:59 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+X-Greylist: delayed 1035 seconds by postgrey-1.36 at gabe;
+ Tue, 15 Sep 2020 03:40:58 UTC
+Received: from fornost.hmeau.com (helcar.hmeau.com [216.24.177.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 806436E836;
+ Tue, 15 Sep 2020 03:40:58 +0000 (UTC)
+Received: from gwarestrin.arnor.me.apana.org.au ([192.168.0.7])
+ by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
+ id 1kI1XG-0005IE-1y; Tue, 15 Sep 2020 13:21:39 +1000
+Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation);
+ Tue, 15 Sep 2020 13:21:37 +1000
+Date: Tue, 15 Sep 2020 13:21:37 +1000
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <20200915032137.GA25655@gondor.apana.org.au>
+References: <20200914204209.256266093@linutronix.de>
+ <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
+ <871rj4owfn.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
+ <CAHk-=wjOV6f_ddg+QVCF6RUe+pXPhSR2WevnNyOs9oT+q2ihEA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <51a1baec-48d1-c0ac-181b-1fba92aa428d@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3 0/6] Convert the intel iommu driver to
- the dma-iommu api
+Content-Disposition: inline
+In-Reply-To: <CAHk-=wjOV6f_ddg+QVCF6RUe+pXPhSR2WevnNyOs9oT+q2ihEA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: [Intel-gfx] [PATCH] crypto: lib/chacha20poly1305 - Set
+ SG_MITER_ATOMIC unconditionally
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,109 +46,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Intel-gfx@lists.freedesktop.org,
- Ashok Raj <ashok.raj@intel.com>, iommu@lists.linux-foundation.org,
- baolu.lu@linux.intel.com
+Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Lai Jiangshan <jiangshanlai@gmail.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Ben Segall <bsegall@google.com>,
+ Linux-MM <linux-mm@kvack.org>, linux-hexagon@vger.kernel.org,
+ Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+ linux-arch <linux-arch@vger.kernel.org>, Brian Cain <bcain@codeaurora.org>,
+ Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
+ Ard Biesheuvel <ardb@kernel.org>, David Airlie <airlied@linux.ie>,
+ Ingo Molnar <mingo@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Mel Gorman <mgorman@suse.de>, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Matt Turner <mattst88@gmail.com>,
+ Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
+ Shuah Khan <shuah@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
+ "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.k>,
+ Jeff Dike <jdike@addtoit.com>, linux-um <linux-um@lists.infradead.org>,
+ Josh Triplett <josh@joshtriplett.org>, Steven Rostedt <rostedt@goodmis.org>,
+ rcu@vger.kernel.org, linux-m68k <linux-m68k@lists.linux-m68k.org>,
+ Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
+ Max Filippov <jcmvbkbc@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
+ alpha <linux-alpha@vger.kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+On Mon, Sep 14, 2020 at 03:37:49PM -0700, Linus Torvalds wrote:
+>
+> So it _looks_ like this code started using kmap() - probably back when
+> kmap_atomic() was so cumbersome to use - and was then converted
+> (conditionally) to kmap_atomic() rather than just changed whole-sale.
+> Is there actually something that wants to use those sg_miter functions
+> and sleep?
 
-On 9/14/20 4:04 PM, Tvrtko Ursulin wrote:
-> 
-> Hi,
-> 
-> On 12/09/2020 04:21, Lu Baolu wrote:
->> Tom Murphy has almost done all the work. His latest patch series was
->> posted here.
->>
->> https://lore.kernel.org/linux-iommu/20200903201839.7327-1-murphyt7@tcd.ie/
->>
->> Thanks a lot!
->>
->> This series is a follow-up with below changes:
->>
->> 1. Add a quirk for the i915 driver issue described in Tom's cover
->> letter.
-> 
-> Last week I have copied you on an i915 series which appears to remove the need for this quirk. so if we get those i915 patches reviewed and merged, do you still want to pursue this quirk?
+I dug up the old zinc patch submissions and this wasn't present at
+all in the original.  The original zinc code used blkcipher_walk
+which unconditinoally does kmap_atomic.
 
-It's up to the graphic guys. I don't know the details in i915 driver.
-I don't think my tests could cover all cases.
+So it's only the SG miter conversion that introduced this change,
+which appears to be a simple oversight (I think Ard was working on
+latency issues at that time, perhaps he was worried about keeping
+preemption off unnecessarily).
 
-> 
->> 2. Fix several bugs in patch "iommu: Allow the dma-iommu api to use
->> bounce buffers" to make the bounce buffer work for untrusted devices.
->> 3. Several cleanups in iommu/vt-d driver after the conversion.
-> 
-> With the previous version of the series I hit a problem on Ivybridge where apparently the dma engine width is not respected. At least that is my layman interpretation of the errors. From the older thread:
-> 
-> <3> [209.526605] DMAR: intel_iommu_map: iommu width (39) is not sufficient for the mapped address (ffff008000)
-> 
-> Relevant iommu boot related messages are:
-> 
-> <6>[    0.184234] DMAR: Host address width 36
-> <6>[    0.184245] DMAR: DRHD base: 0x000000fed90000 flags: 0x0
-> <6>[    0.184288] DMAR: dmar0: reg_base_addr fed90000 ver 1:0 cap c0000020e60262 ecap f0101a
-> <6>[    0.184308] DMAR: DRHD base: 0x000000fed91000 flags: 0x1
-> <6>[    0.184337] DMAR: dmar1: reg_base_addr fed91000 ver 1:0 cap c9008020660262 ecap f0105a
-> <6>[    0.184357] DMAR: RMRR base: 0x000000d8d28000 end: 0x000000d8d46fff
-> <6>[    0.184377] DMAR: RMRR base: 0x000000db000000 end: 0x000000df1fffff
-> <6>[    0.184398] DMAR-IR: IOAPIC id 2 under DRHD base  0xfed91000 IOMMU 1
-> <6>[    0.184414] DMAR-IR: HPET id 0 under DRHD base 0xfed91000
-> <6>[    0.184428] DMAR-IR: Queued invalidation will be enabled to support x2apic and Intr-remapping.
-> <6>[    0.185173] DMAR-IR: Enabled IRQ remapping in x2apic mode
-> 
-> <6>[    0.878934] DMAR: No ATSR found
-> <6>[    0.878966] DMAR: dmar0: Using Queued invalidation
-> <6>[    0.879007] DMAR: dmar1: Using Queued invalidation
-> 
-> <6>[    0.915032] DMAR: Intel(R) Virtualization Technology for Directed I/O
-> <6>[    0.915060] PCI-DMA: Using software bounce buffering for IO (SWIOTLB)
-> <6>[    0.915084] software IO TLB: mapped [mem 0xc80d4000-0xcc0d4000] (64MB)
-> 
-> (Full boot log at https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_7054/fi-ivb-3770/boot0.txt, failures at https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_7054/fi-ivb-3770/igt@i915_selftest@live@blt.html.)
-> 
-> Does this look familiar or at least plausible to you? Is this something your new series has fixed?
+---8<---
+There is no reason for the chacha20poly1305 SG miter code to use
+kmap instead of kmap_atomic as the critical section doesn't sleep
+anyway.  So we can simply get rid of the preemptible check and
+set SG_MITER_ATOMIC unconditionally.
 
-This happens during attaching a domain to device. It has nothing to do
-with this patch series. I will look into this issue, but not in this
-email thread context.
+Even if we need to reenable preemption to lower latency we should
+be doing that by interrupting the SG miter walk rather than using
+kmap.
 
-Best regards,
-baolu
+Reported-by: Linus Torvalds <torvalds@linux-foundation.org>
+Signed-off-by: Herbert Xu <herbert@gondor.apana.org.au>
 
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->>
->> Please review and test.
->>
->> Best regards,
->> baolu
->>
->> Lu Baolu (2):
->>     iommu: Add quirk for Intel graphic devices in map_sg
->>     iommu/vt-d: Cleanup after converting to dma-iommu ops
->>
->> Tom Murphy (4):
->>     iommu: Handle freelists when using deferred flushing in iommu drivers
->>     iommu: Add iommu_dma_free_cpu_cached_iovas()
->>     iommu: Allow the dma-iommu api to use bounce buffers
->>     iommu/vt-d: Convert intel iommu driver to the iommu ops
->>
->>    .../admin-guide/kernel-parameters.txt         |   5 -
->>    drivers/iommu/dma-iommu.c                     | 229 ++++-
->>    drivers/iommu/intel/Kconfig                   |   1 +
->>    drivers/iommu/intel/iommu.c                   | 885 +++---------------
->>    include/linux/dma-iommu.h                     |   8 +
->>    include/linux/iommu.h                         |   1 +
->>    6 files changed, 323 insertions(+), 806 deletions(-)
->>
+diff --git a/lib/crypto/chacha20poly1305.c b/lib/crypto/chacha20poly1305.c
+index 431e04280332..5850f3b87359 100644
+--- a/lib/crypto/chacha20poly1305.c
++++ b/lib/crypto/chacha20poly1305.c
+@@ -251,9 +251,7 @@ bool chacha20poly1305_crypt_sg_inplace(struct scatterlist *src,
+ 			poly1305_update(&poly1305_state, pad0, 0x10 - (ad_len & 0xf));
+ 	}
+ 
+-	flags = SG_MITER_TO_SG;
+-	if (!preemptible())
+-		flags |= SG_MITER_ATOMIC;
++	flags = SG_MITER_TO_SG | SG_MITER_ATOMIC;
+ 
+ 	sg_miter_start(&miter, src, sg_nents(src), flags);
+ 
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
