@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFDD226A1D8
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 11:14:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D850E26A22C
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 11:30:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43A046E216;
-	Tue, 15 Sep 2020 09:14:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE1ED89D02;
+	Tue, 15 Sep 2020 09:30:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A7936E212
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 09:14:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A7489D02
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 09:30:26 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22431500-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 10:14:17 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22431718-1500050 
+ for multiple; Tue, 15 Sep 2020 10:30:11 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Sep 2020 10:14:17 +0100
-Message-Id: <20200915091417.4086-3-chris@chris-wilson.co.uk>
+Date: Tue, 15 Sep 2020 10:30:10 +0100
+Message-Id: <20200915093010.30573-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200915091417.4086-1-chris@chris-wilson.co.uk>
-References: <20200915091417.4086-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 3/3] drm/i915/gt: Clear the buffer pool age before
- use
+Subject: [Intel-gfx] [PATCH] drm/i915: Redo "Remove i915_request.lock
+ requirement for execution callbacks"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,45 +37,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we create a new node, it is possible for the slab allocator to return
-us a recently freed node. If that node was just retired, it will retain
-the current jiffy as its node->age. There is then a miniscule window,
-where as that node is retired, it will appear on the free list with an
-incorrect age and be eligible for reuse by one thread, and then by a
-second thread as the correct node->age is written.
+The reordering and rebasing of commit 2e4c6c1a9db5 ("drm/i915: Remove
+i915_request.lock requirement for execution callbacks") caused it to
+revert an earlier correction. Let us restore commit 99f0a640d464
+("drm/i915: Remove requirement for holding i915_request.lock for
+breadcrumbs")
 
-Fixes: 8080ffd81600 ("drm/i915/gt: Delay taking the spinlock for grabbing from the buffer pool")
+Fixes: 2e4c6c1a9db5 ("drm/i915: Remove i915_request.lock requirement for execution callbacks")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/i915_request.c | 12 ++----------
+ 1 file changed, 2 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-index 4b7671ac5dca..104cb30e8c13 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-@@ -134,6 +134,7 @@ static void pool_retire(struct i915_active *ref)
- 	/* Return this object to the shrinker pool */
- 	i915_gem_object_make_purgeable(node->obj);
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 11e272422fb7..436ce368ddaa 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -593,16 +593,8 @@ bool __i915_request_submit(struct i915_request *request)
+ 	__notify_execute_cb_irq(request);
  
-+	GEM_BUG_ON(node->age);
- 	spin_lock_irqsave(&pool->lock, flags);
- 	list_add_rcu(&node->link, list);
- 	WRITE_ONCE(node->age, jiffies ?: 1); /* 0 reserved for active nodes */
-@@ -155,6 +156,7 @@ node_create(struct intel_gt_buffer_pool *pool, size_t sz)
- 	if (!node)
- 		return ERR_PTR(-ENOMEM);
+ 	/* We may be recursing from the signal callback of another i915 fence */
+-	if (!i915_request_signaled(request)) {
+-		spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+-
+-		if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+-			     &request->fence.flags) &&
+-		    !i915_request_enable_breadcrumb(request))
+-			intel_engine_signal_breadcrumbs(engine);
+-
+-		spin_unlock(&request->lock);
+-	}
++	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags))
++		i915_request_enable_breadcrumb(request);
  
-+	node->age = 0;
- 	node->pool = pool;
- 	i915_active_init(&node->active, pool_active, pool_retire);
- 
+ 	return result;
+ }
 -- 
 2.20.1
 
