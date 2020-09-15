@@ -1,44 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62D9626A186
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 11:06:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6871A26A1D6
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 11:14:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 291026E213;
-	Tue, 15 Sep 2020 09:06:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 001696E212;
+	Tue, 15 Sep 2020 09:14:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E81046E0EC;
- Tue, 15 Sep 2020 09:06:31 +0000 (UTC)
-IronPort-SDR: 6n+uNJxi/SJ/t4+NQBSYNwmnXdIHGpzdp6rl+s0LVJ9CFTmGmx0FfnhItnJB8SJbeQER++LRmE
- 3eYgsOQ7v80w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="156653621"
-X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; d="scan'208";a="156653621"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2020 02:06:31 -0700
-IronPort-SDR: JN6muYTQqB3wm3kCXqk1xsORqKL94poqyPOQLwwV9SSOFBG1M/RLedvNq9ruyR1KSefDfAWvPJ
- brvH/uTc728w==
-X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; d="scan'208";a="482690707"
-Received: from emoriart-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.7.208])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2020 02:06:16 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Joe Perches <joe@perches.com>, LKML <linux-kernel@vger.kernel.org>,
- Jiri Kosina <trivial@kernel.org>
-In-Reply-To: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
-Date: Tue, 15 Sep 2020 12:06:21 +0300
-Message-ID: <87d02nxvci.fsf@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A2376E212
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 09:14:20 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22431498-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 10:14:16 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 15 Sep 2020 10:14:15 +0100
+Message-Id: <20200915091417.4086-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [trivial PATCH] treewide: Convert switch/case
- fallthrough; to break; 
+Subject: [Intel-gfx] [CI 1/3] drm/i915/gem: Avoid implicit vmap for highmem
+ on x86-32
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,58 +37,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, oss-drivers@netronome.com,
- nouveau@lists.freedesktop.org, alsa-devel <alsa-devel@alsa-project.org>,
- dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
- linux-ide@vger.kernel.org, dm-devel@redhat.com, linux-mtd@lists.infradead.org,
- linux-i2c@vger.kernel.org, sparclinux@vger.kernel.org,
- linux-afs@lists.infradead.org, linux-rtc@vger.kernel.org,
- linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org, dccp@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-atm-general@lists.sourceforge.net,
- kvmarm@lists.cs.columbia.edu, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-serial@vger.kernel.org,
- linux-input@vger.kernel.org, linux-mmc@vger.kernel.org,
- Kees Cook <kees.cook@canonical.com>, linux-media@vger.kernel.org,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-nvme@lists.infradead.org,
- storagedev@microchip.com, ceph-devel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Nick Desaulniers <ndesaulniers@google.com>, linux-nfs@vger.kernel.org,
- linux-parisc@vger.kernel.org, netdev@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-sctp@vger.kernel.org, iommu@lists.linux-foundation.org,
- netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
- bpf@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 09 Sep 2020, Joe Perches <joe@perches.com> wrote:
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> index 5ac0dbf0e03d..35ac539cc2b1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -2861,7 +2861,7 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
->  	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
->  		if (!gen12_plane_supports_mc_ccs(dev_priv, plane->id))
->  			return false;
-> -		fallthrough;
-> +		break;
->  	case DRM_FORMAT_MOD_LINEAR:
->  	case I915_FORMAT_MOD_X_TILED:
->  	case I915_FORMAT_MOD_Y_TILED:
+On 32b, highmem using a finite set of indirect PTE (i.e. vmap) to provide
+virtual mappings of the high pages.  As these are finite, map_new_virtual()
+must wait for some other kmap() to finish when it runs out. If we map a
+large number of objects, there is no method for it to tell us to release
+the mappings, and we deadlock.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+However, if we make an explicit vmap of the page, that uses a larger
+vmalloc arena, and also has the ability to tell us to release unwanted
+mappings. Most importantly, it will fail and propagate an error instead
+of waiting forever.
 
-for merging via whichever tree seems best.
+Fixes: fb8621d3bee8 ("drm/i915: Avoid allocating a vmap arena for a single page") #x86-32
+References: e87666b52f00 ("drm/i915/shrinker: Hook up vmap allocation failure notifier")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Cc: <stable@vger.kernel.org> # v4.7+
+---
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c | 26 +++++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
-BR,
-Jani.
-
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index e8a083743e09..49ce5777c511 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -255,8 +255,30 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
+ 		return NULL;
+ 
+ 	/* A single page can always be kmapped */
+-	if (n_pte == 1 && type == I915_MAP_WB)
+-		return kmap(sg_page(sgt->sgl));
++	if (n_pte == 1 && type == I915_MAP_WB) {
++		struct page *page = sg_page(sgt->sgl);
++
++		/*
++		 * On 32b, highmem using a finite set of indirect PTE (i.e.
++		 * vmap) to provide virtual mappings of the high pages.
++		 * As these are finite, map_new_virtual() must wait for some
++		 * other kmap() to finish when it runs out. If we map a large
++		 * number of objects, there is no method for it to tell us
++		 * to release the mappings, and we deadlock.
++		 *
++		 * However, if we make an explicit vmap of the page, that
++		 * uses a larger vmalloc arena, and also has the ability
++		 * to tell us to release unwanted mappings. Most importantly,
++		 * it will fail and propagate an error instead of waiting
++		 * forever.
++		 *
++		 * So if the page is beyond the 32b boundary, make an explicit
++		 * vmap. On 64b, this check will be optimised away as we can
++		 * directly kmap any page on the system.
++		 */
++		if (!PageHighMem(page))
++			return kmap(page);
++	}
+ 
+ 	mem = stack;
+ 	if (n_pte > ARRAY_SIZE(stack)) {
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
