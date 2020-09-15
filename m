@@ -1,39 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F44E269CA6
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 05:41:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEAB5269CAC
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Sep 2020 05:43:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A49856E836;
-	Tue, 15 Sep 2020 03:40:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF836E837;
+	Tue, 15 Sep 2020 03:43:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1035 seconds by postgrey-1.36 at gabe;
- Tue, 15 Sep 2020 03:40:58 UTC
-Received: from fornost.hmeau.com (helcar.hmeau.com [216.24.177.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 806436E836;
- Tue, 15 Sep 2020 03:40:58 +0000 (UTC)
-Received: from gwarestrin.arnor.me.apana.org.au ([192.168.0.7])
- by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
- id 1kI1XG-0005IE-1y; Tue, 15 Sep 2020 13:21:39 +1000
-Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation);
- Tue, 15 Sep 2020 13:21:37 +1000
-Date: Tue, 15 Sep 2020 13:21:37 +1000
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Message-ID: <20200915032137.GA25655@gondor.apana.org.au>
-References: <20200914204209.256266093@linutronix.de>
- <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
- <871rj4owfn.fsf@nanos.tec.linutronix.de>
- <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
- <CAHk-=wjOV6f_ddg+QVCF6RUe+pXPhSR2WevnNyOs9oT+q2ihEA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAHk-=wjOV6f_ddg+QVCF6RUe+pXPhSR2WevnNyOs9oT+q2ihEA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: [Intel-gfx] [PATCH] crypto: lib/chacha20poly1305 - Set
- SG_MITER_ATOMIC unconditionally
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BA416E837;
+ Tue, 15 Sep 2020 03:43:37 +0000 (UTC)
+IronPort-SDR: 5fle/n6LhOEemnQfLDHxmbP5g44bWseRbTram2wKqHKK4sOr30t47qg2w38tF/UQkkloZrIK9N
+ mmHxv4BAhKXA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="177261733"
+X-IronPort-AV: E=Sophos;i="5.76,428,1592895600"; d="scan'208";a="177261733"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2020 20:43:36 -0700
+IronPort-SDR: tbHh1+mQ6HN95vTUK7Ea87D1JDw6r8GgQB9IwOI57BEOgLbPkft3yKO+Jz13vBAYzxFa/4TouK
+ cCyPRIZGAb+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,428,1592895600"; d="scan'208";a="331008010"
+Received: from unknown (HELO ndadhani-NUC7i5BNKP.iind.intel.com)
+ ([10.223.165.84])
+ by fmsmga004.fm.intel.com with ESMTP; 14 Sep 2020 20:43:33 -0700
+From: "Nikunj A. Dadhania" <nikunj.dadhania@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 15 Sep 2020 09:11:18 +0530
+Message-Id: <20200915034118.32256-1-nikunj.dadhania@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix the race between the GEM close
+ and debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,89 +51,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Lai Jiangshan <jiangshanlai@gmail.com>,
- dri-devel <dri-devel@lists.freedesktop.org>, Ben Segall <bsegall@google.com>,
- Linux-MM <linux-mm@kvack.org>, linux-hexagon@vger.kernel.org,
- Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
- Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- linux-arch <linux-arch@vger.kernel.org>, Brian Cain <bcain@codeaurora.org>,
- Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
- Ard Biesheuvel <ardb@kernel.org>, David Airlie <airlied@linux.ie>,
- Ingo Molnar <mingo@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Mel Gorman <mgorman@suse.de>, intel-gfx <intel-gfx@lists.freedesktop.org>,
- Matt Turner <mattst88@gmail.com>,
- Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
- Shuah Khan <shuah@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
- "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.k>,
- Jeff Dike <jdike@addtoit.com>, linux-um <linux-um@lists.infradead.org>,
- Josh Triplett <josh@joshtriplett.org>, Steven Rostedt <rostedt@goodmis.org>,
- rcu@vger.kernel.org, linux-m68k <linux-m68k@lists.linux-m68k.org>,
- Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
- Thomas Gleixner <tglx@linutronix.de>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
- Max Filippov <jcmvbkbc@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
- alpha <linux-alpha@vger.kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>
+Cc: stable@vger.kernel.org, nikunj.dadhania@linux.intel.com
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 14, 2020 at 03:37:49PM -0700, Linus Torvalds wrote:
->
-> So it _looks_ like this code started using kmap() - probably back when
-> kmap_atomic() was so cumbersome to use - and was then converted
-> (conditionally) to kmap_atomic() rather than just changed whole-sale.
-> Is there actually something that wants to use those sg_miter functions
-> and sleep?
+As we close GEM object and set file_priv to -EBADF which is protected
+by ctx->mutex, populating the GEM debugfs info is not protected
+and results in the crash shown below.
 
-I dug up the old zinc patch submissions and this wasn't present at
-all in the original.  The original zinc code used blkcipher_walk
-which unconditinoally does kmap_atomic.
+Make sure to protect the access to file_priv using ctx->mutex to avoid
+race.
 
-So it's only the SG miter conversion that introduced this change,
-which appears to be a simple oversight (I think Ard was working on
-latency issues at that time, perhaps he was worried about keeping
-preemption off unnecessarily).
+BUG: unable to handle page fault for address: ffffffffffffffff
+RIP: 0010:i915_gem_object_info+0x26b/0x3eb
+Code: 89 44 24 48 48 89 44 24 40 48 89 44 24 38 48 89 44 24 30 48 89 44 24 28 48 89 44 24 20 49 8b 46 f0 48 89 44 24 20 49 8b 46 a0 <48> 8b 58 08 b9 0a 00 00 00 48 b8 aa aa aa aa aa aa aa aa 48 8d bc
+RSP: 0018:ffffac81c14cfc30 EFLAGS: 00010246
+RAX: fffffffffffffff7 RBX: ffff95094429c218 RCX: ffff95096756c740
+RDX: 0000000000000000 RSI: ffffffff919b93ee RDI: ffff95094429c218
+RBP: ffffac81c14cfd58 R08: ffff9509746fab80 R09: 0000000000000000
+R10: 0000000000000001 R11: 0000000000000000 R12: ffff9509753f8e80
+R13: ffffac81c14cfc98 R14: ffff95094429c268 R15: ffffac81c14cfc88
+FS:  00007a1bdcd52900(0000) GS:ffff950977e00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffffffffffff CR3: 000000026b4e0000 CR4: 0000000000340ef0
+Call Trace:
+ seq_read+0x162/0x3ca
+ full_proxy_read+0x5b/0x8d
+ __vfs_read+0x45/0x1b9
+ vfs_read+0xc9/0x15e
+ ksys_read+0x7e/0xde
+ do_syscall_64+0x54/0x7e
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x7a1bdd34cf03
 
----8<---
-There is no reason for the chacha20poly1305 SG miter code to use
-kmap instead of kmap_atomic as the critical section doesn't sleep
-anyway.  So we can simply get rid of the preemptible check and
-set SG_MITER_ATOMIC unconditionally.
+Signed-off-by: Nikunj A. Dadhania <nikunj.dadhania@linux.intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/i915/i915_debugfs.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Even if we need to reenable preemption to lower latency we should
-be doing that by interrupting the SG miter walk rather than using
-kmap.
-
-Reported-by: Linus Torvalds <torvalds@linux-foundation.org>
-Signed-off-by: Herbert Xu <herbert@gondor.apana.org.au>
-
-diff --git a/lib/crypto/chacha20poly1305.c b/lib/crypto/chacha20poly1305.c
-index 431e04280332..5850f3b87359 100644
---- a/lib/crypto/chacha20poly1305.c
-+++ b/lib/crypto/chacha20poly1305.c
-@@ -251,9 +251,7 @@ bool chacha20poly1305_crypt_sg_inplace(struct scatterlist *src,
- 			poly1305_update(&poly1305_state, pad0, 0x10 - (ad_len & 0xf));
- 	}
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 784219962193..ea469168cd44 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -326,6 +326,7 @@ static void print_context_stats(struct seq_file *m,
+ 		}
+ 		i915_gem_context_unlock_engines(ctx);
  
--	flags = SG_MITER_TO_SG;
--	if (!preemptible())
--		flags |= SG_MITER_ATOMIC;
-+	flags = SG_MITER_TO_SG | SG_MITER_ATOMIC;
++		mutex_lock(&ctx->mutex);
+ 		if (!IS_ERR_OR_NULL(ctx->file_priv)) {
+ 			struct file_stats stats = {
+ 				.vm = rcu_access_pointer(ctx->vm),
+@@ -346,6 +347,7 @@ static void print_context_stats(struct seq_file *m,
  
- 	sg_miter_start(&miter, src, sg_nents(src), flags);
+ 			print_file_stats(m, name, stats);
+ 		}
++		mutex_unlock(&ctx->mutex);
  
+ 		spin_lock(&i915->gem.contexts.lock);
+ 		list_safe_reset_next(ctx, cn, link);
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
