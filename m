@@ -2,44 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E8F26BD94
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 09:00:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CEAD26BE16
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 09:35:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C3F16E9C1;
-	Wed, 16 Sep 2020 07:00:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC9956E348;
+	Wed, 16 Sep 2020 07:35:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67A796E9B3;
- Wed, 16 Sep 2020 07:00:43 +0000 (UTC)
-IronPort-SDR: vA8DARnu4PUqG9mdxvCiG3QCXTOHncRLe3+7UI1NEE3l7jI1X2mgFR1bpwlA8Xq9RxlcYVDeIt
- 7M7aTlVJMUyg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9745"; a="158694797"
-X-IronPort-AV: E=Sophos;i="5.76,431,1592895600"; d="scan'208";a="158694797"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AF5B6E348
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 07:35:28 +0000 (UTC)
+IronPort-SDR: qBczJaiCRNjF0O9EeKicGvWPAAmFrV95wGnXGKuva2eQgumHWln4bT3fRiwaTMxuqF/JFflTqm
+ 73b3PAXiFJcQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9745"; a="156828214"
+X-IronPort-AV: E=Sophos;i="5.76,432,1592895600"; d="scan'208";a="156828214"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2020 00:00:41 -0700
-IronPort-SDR: FH3vU/dGrvShzkJbmyfHx6B6lAc8Zd0Tr+BbQo6pH1Xq8f4qsltDIYQZEXuBBru/8MKFMLuQC0
- oTvWoHD0Snfg==
-X-IronPort-AV: E=Sophos;i="5.76,431,1592895600"; d="scan'208";a="483179363"
-Received: from garyke4x-mobl.ger.corp.intel.com (HELO localhost)
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2020 00:35:27 -0700
+IronPort-SDR: 9Vmxrd+wZVsREgzKufMa6YiXUQGQzf+NUevPwi2WZFP6XzRcJgm7iJAVpD963TDWnGF8nG9eHq
+ tm6BHUI7ZPbg==
+X-IronPort-AV: E=Sophos;i="5.76,432,1592895600"; d="scan'208";a="483193231"
+Received: from djgriffi-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.8.217])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2020 00:00:33 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20200915172939.2810538-6-lyude@redhat.com>
+ 16 Sep 2020 00:35:26 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Aditya Swarup <aditya.swarup@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200916021541.500501-1-aditya.swarup@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200915172939.2810538-1-lyude@redhat.com>
- <20200915172939.2810538-6-lyude@redhat.com>
-Date: Wed, 16 Sep 2020 10:00:38 +0300
-Message-ID: <87sgbiw6i1.fsf@intel.com>
+References: <20200916021541.500501-1-aditya.swarup@intel.com>
+Date: Wed, 16 Sep 2020 10:35:31 +0300
+Message-ID: <87pn6mw4vw.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC 5/5] drm/dp: Revert "drm/dp: Introduce
- EDID-based quirks"
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Add max plane width
+ for NV12 AUX plane for Gen10+ platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,322 +50,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Vasily Khoruzhick <anarsoul@gmail.com>,
- Wambui Karuga <wambui.karugax@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Sean Paul <seanpaul@chromium.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 15 Sep 2020, Lyude Paul <lyude@redhat.com> wrote:
-> This reverts commit 0883ce8146ed6074c76399f4e70dbed788582e12. Originally
-> these quirks were added because of the issues with using the eDP
-> backlight interfaces on certain laptop panels, which made it impossible
-> to properly probe for DPCD backlight support without having a whitelist
-> for panels that we know have working VESA backlight control interfaces
-> over DPCD. As well, it should be noted it was impossible to use the
-> normal sink OUI for recognizing these panels as none of them actually
-> filled out their OUIs, hence needing to resort to checking EDIDs.
->
-> At the time we weren't really sure why certain panels had issues with
-> DPCD backlight controls, but we eventually figured out that there was a
-> second interface that these problematic laptop panels actually did work
-> with and advertise properly: Intel's proprietary backlight interface for
-> HDR panels. So far the testing we've done hasn't brought any panels to
-> light that advertise this interface and don't support it properly, which
-> means we finally have a real solution to this problem.
->
-> As a result, we now have no need for the force DPCD backlight quirk, and
-> furthermore this also removes the need for any kind of EDID quirk
-> checking in DRM. So, let's just revert it for now since we were the only
-> driver using this.
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: thaytan@noraisin.net
-> Cc: Vasily Khoruzhick <anarsoul@gmail.com>
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-
-> ---
->  drivers/gpu/drm/drm_dp_helper.c               | 82 +------------------
->  drivers/gpu/drm/drm_dp_mst_topology.c         |  3 +-
->  .../drm/i915/display/intel_display_types.h    |  1 -
->  drivers/gpu/drm/i915/display/intel_dp.c       | 12 +--
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  3 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      |  2 +-
->  include/drm/drm_dp_helper.h                   | 21 +----
->  7 files changed, 11 insertions(+), 113 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-> index 1e7c638873c82..7138655bfc9d0 100644
-> --- a/drivers/gpu/drm/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -823,7 +823,7 @@ bool drm_dp_read_sink_count_cap(struct drm_connector *connector,
->  	return connector->connector_type != DRM_MODE_CONNECTOR_eDP &&
->  		dpcd[DP_DPCD_REV] >= DP_DPCD_REV_11 &&
->  		dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT &&
-> -		!drm_dp_has_quirk(desc, 0, DP_DPCD_QUIRK_NO_SINK_COUNT);
-> +		!drm_dp_has_quirk(desc, DP_DPCD_QUIRK_NO_SINK_COUNT);
->  }
->  EXPORT_SYMBOL(drm_dp_read_sink_count_cap);
->  
-> @@ -1544,86 +1544,6 @@ drm_dp_get_quirks(const struct drm_dp_dpcd_ident *ident, bool is_branch)
->  #undef DEVICE_ID_ANY
->  #undef DEVICE_ID
->  
-> -struct edid_quirk {
-> -	u8 mfg_id[2];
-> -	u8 prod_id[2];
-> -	u32 quirks;
-> -};
-> -
-> -#define MFG(first, second) { (first), (second) }
-> -#define PROD_ID(first, second) { (first), (second) }
-> -
-> -/*
-> - * Some devices have unreliable OUIDs where they don't set the device ID
-> - * correctly, and as a result we need to use the EDID for finding additional
-> - * DP quirks in such cases.
-> - */
-> -static const struct edid_quirk edid_quirk_list[] = {
-> -	/* Optional 4K AMOLED panel in the ThinkPad X1 Extreme 2nd Generation
-> -	 * only supports DPCD backlight controls
-> -	 */
-> -	{ MFG(0x4c, 0x83), PROD_ID(0x41, 0x41), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-> -	/*
-> -	 * Some Dell CML 2020 systems have panels support both AUX and PWM
-> -	 * backlight control, and some only support AUX backlight control. All
-> -	 * said panels start up in AUX mode by default, and we don't have any
-> -	 * support for disabling HDR mode on these panels which would be
-> -	 * required to switch to PWM backlight control mode (plus, I'm not
-> -	 * even sure we want PWM backlight controls over DPCD backlight
-> -	 * controls anyway...). Until we have a better way of detecting these,
-> -	 * force DPCD backlight mode on all of them.
-> -	 */
-> -	{ MFG(0x06, 0xaf), PROD_ID(0x9b, 0x32), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-> -	{ MFG(0x06, 0xaf), PROD_ID(0xeb, 0x41), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-> -	{ MFG(0x4d, 0x10), PROD_ID(0xc7, 0x14), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-> -	{ MFG(0x4d, 0x10), PROD_ID(0xe6, 0x14), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-> -	{ MFG(0x4c, 0x83), PROD_ID(0x47, 0x41), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-> -};
-> -
-> -#undef MFG
-> -#undef PROD_ID
-> -
-> -/**
-> - * drm_dp_get_edid_quirks() - Check the EDID of a DP device to find additional
-> - * DP-specific quirks
-> - * @edid: The EDID to check
-> - *
-> - * While OUIDs are meant to be used to recognize a DisplayPort device, a lot
-> - * of manufacturers don't seem to like following standards and neglect to fill
-> - * the dev-ID in, making it impossible to only use OUIDs for determining
-> - * quirks in some cases. This function can be used to check the EDID and look
-> - * up any additional DP quirks. The bits returned by this function correspond
-> - * to the quirk bits in &drm_dp_quirk.
-> - *
-> - * Returns: a bitmask of quirks, if any. The driver can check this using
-> - * drm_dp_has_quirk().
-> - */
-> -u32 drm_dp_get_edid_quirks(const struct edid *edid)
-> -{
-> -	const struct edid_quirk *quirk;
-> -	u32 quirks = 0;
-> -	int i;
-> -
-> -	if (!edid)
-> -		return 0;
-> -
-> -	for (i = 0; i < ARRAY_SIZE(edid_quirk_list); i++) {
-> -		quirk = &edid_quirk_list[i];
-> -		if (memcmp(quirk->mfg_id, edid->mfg_id,
-> -			   sizeof(edid->mfg_id)) == 0 &&
-> -		    memcmp(quirk->prod_id, edid->prod_code,
-> -			   sizeof(edid->prod_code)) == 0)
-> -			quirks |= quirk->quirks;
-> -	}
-> -
-> -	DRM_DEBUG_KMS("DP sink: EDID mfg %*phD prod-ID %*phD quirks: 0x%04x\n",
-> -		      (int)sizeof(edid->mfg_id), edid->mfg_id,
-> -		      (int)sizeof(edid->prod_code), edid->prod_code, quirks);
-> -
-> -	return quirks;
-> -}
-> -EXPORT_SYMBOL(drm_dp_get_edid_quirks);
-> -
->  /**
->   * drm_dp_read_desc - read sink/branch descriptor from DPCD
->   * @aux: DisplayPort AUX channel
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-> index e875425336406..f21516142dd50 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -5824,8 +5824,7 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
->  	if (drm_dp_read_desc(port->mgr->aux, &desc, true))
->  		return NULL;
->  
-> -	if (drm_dp_has_quirk(&desc, 0,
-> -			     DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) &&
-> +	if (drm_dp_has_quirk(&desc, DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) &&
->  	    port->mgr->dpcd[DP_DPCD_REV] >= DP_DPCD_REV_14 &&
->  	    port->parent == port->mgr->mst_primary) {
->  		u8 downstreamport;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 9d540368bac89..0bf378903644c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1322,7 +1322,6 @@ struct intel_dp {
->  	int max_link_rate;
->  	/* sink or branch descriptor */
->  	struct drm_dp_desc desc;
-> -	u32 edid_quirks;
->  	struct drm_dp_aux aux;
->  	u32 aux_busy_last_status;
->  	u8 train_set[4];
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index b591672ec4eab..27436a60bc328 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -162,8 +162,7 @@ static void intel_dp_set_sink_rates(struct intel_dp *intel_dp)
->  	};
->  	int i, max_rate;
->  
-> -	if (drm_dp_has_quirk(&intel_dp->desc, 0,
-> -			     DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS)) {
-> +	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS)) {
->  		/* Needed, e.g., for Apple MBP 2017, 15 inch eDP Retina panel */
->  		static const int quirk_rates[] = { 162000, 270000, 324000 };
->  
-> @@ -2630,8 +2629,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->  	struct intel_connector *intel_connector = intel_dp->attached_connector;
->  	struct intel_digital_connector_state *intel_conn_state =
->  		to_intel_digital_connector_state(conn_state);
-> -	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, 0,
-> -					   DP_DPCD_QUIRK_CONSTANT_N);
-> +	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_CONSTANT_N);
->  	int ret = 0, output_bpp;
->  
->  	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && port != PORT_A)
-> @@ -6103,7 +6101,6 @@ intel_dp_set_edid(struct intel_dp *intel_dp)
->  
->  	intel_dp->has_audio = drm_detect_monitor_audio(edid);
->  	drm_dp_cec_set_edid(&intel_dp->aux, edid);
-> -	intel_dp->edid_quirks = drm_dp_get_edid_quirks(edid);
->  }
->  
->  static void
-> @@ -6116,7 +6113,6 @@ intel_dp_unset_edid(struct intel_dp *intel_dp)
->  	intel_connector->detect_edid = NULL;
->  
->  	intel_dp->has_audio = false;
-> -	intel_dp->edid_quirks = 0;
->  }
->  
->  static int
-> @@ -7467,8 +7463,8 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
->  	edid = drm_get_edid(connector, &intel_dp->aux.ddc);
->  	if (edid) {
->  		if (drm_add_edid_modes(connector, edid)) {
-> -			drm_connector_update_edid_property(connector, edid);
-> -			intel_dp->edid_quirks = drm_dp_get_edid_quirks(edid);
-> +			drm_connector_update_edid_property(connector,
-> +								edid);
->  		} else {
->  			kfree(edid);
->  			edid = ERR_PTR(-EINVAL);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 64d885539e94a..c8b9ffa388cf5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -52,8 +52,7 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	const struct drm_display_mode *adjusted_mode =
->  		&crtc_state->hw.adjusted_mode;
-> -	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, 0,
-> -					   DP_DPCD_QUIRK_CONSTANT_N);
-> +	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_CONSTANT_N);
->  	int bpp, slots = -EINVAL;
->  
->  	crtc_state->lane_count = limits->max_lane_count;
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 8a9d0bdde1bfb..c7403406e2783 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -310,7 +310,7 @@ void intel_psr_init_dpcd(struct intel_dp *intel_dp)
->  	drm_dbg_kms(&dev_priv->drm, "eDP panel supports PSR version %x\n",
->  		    intel_dp->psr_dpcd[0]);
->  
-> -	if (drm_dp_has_quirk(&intel_dp->desc, 0, DP_DPCD_QUIRK_NO_PSR)) {
-> +	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR)) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "PSR support not currently available for this panel\n");
->  		return;
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 5c45195ced321..09dd81007dba4 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1671,16 +1671,13 @@ struct drm_dp_desc {
->  
->  int drm_dp_read_desc(struct drm_dp_aux *aux, struct drm_dp_desc *desc,
->  		     bool is_branch);
-> -u32 drm_dp_get_edid_quirks(const struct edid *edid);
->  
->  /**
->   * enum drm_dp_quirk - Display Port sink/branch device specific quirks
->   *
->   * Display Port sink and branch devices in the wild have a variety of bugs, try
->   * to collect them here. The quirks are shared, but it's up to the drivers to
-> - * implement workarounds for them. Note that because some devices have
-> - * unreliable OUIDs, the EDID of sinks should also be checked for quirks using
-> - * drm_dp_get_edid_quirks().
-> + * implement workarounds for them.
->   */
->  enum drm_dp_quirk {
->  	/**
-> @@ -1712,16 +1709,6 @@ enum drm_dp_quirk {
->  	 * The DSC caps can be read from the physical aux instead.
->  	 */
->  	DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD,
-> -	/**
-> -	 * @DP_QUIRK_FORCE_DPCD_BACKLIGHT:
-> -	 *
-> -	 * The device is telling the truth when it says that it uses DPCD
-> -	 * backlight controls, even if the system's firmware disagrees. This
-> -	 * quirk should be checked against both the ident and panel EDID.
-> -	 * When present, the driver should honor the DPCD backlight
-> -	 * capabilities advertised.
-> -	 */
-> -	DP_QUIRK_FORCE_DPCD_BACKLIGHT,
->  	/**
->  	 * @DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS:
->  	 *
-> @@ -1734,16 +1721,14 @@ enum drm_dp_quirk {
->  /**
->   * drm_dp_has_quirk() - does the DP device have a specific quirk
->   * @desc: Device descriptor filled by drm_dp_read_desc()
-> - * @edid_quirks: Optional quirk bitmask filled by drm_dp_get_edid_quirks()
->   * @quirk: Quirk to query for
->   *
->   * Return true if DP device identified by @desc has @quirk.
->   */
->  static inline bool
-> -drm_dp_has_quirk(const struct drm_dp_desc *desc, u32 edid_quirks,
-> -		 enum drm_dp_quirk quirk)
-> +drm_dp_has_quirk(const struct drm_dp_desc *desc, enum drm_dp_quirk quirk)
->  {
-> -	return (desc->quirks | edid_quirks) & BIT(quirk);
-> +	return desc->quirks & BIT(quirk);
->  }
->  
->  #ifdef CONFIG_DRM_DP_CEC
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAxNSBTZXAgMjAyMCwgQWRpdHlhIFN3YXJ1cCA8YWRpdHlhLnN3YXJ1cEBpbnRlbC5j
+b20+IHdyb3RlOgo+IEdlbiAxMCsgYW5kIEdlbjExKyBwbGF0Zm9ybXMgc3BlY2lmeSBkaWZmZXJl
+bnQgbWF4IHBsYW5lIHdpZHRoIGZvcgo+IHBsYW5hciBmb3JtYXRzLiBBZGQgbWF4IHBsYW5lIHdp
+ZHRoIGZvciBHTEsgYW5kIElDTCBiYXNlZCBvbgo+IEJTcGVjOiA3NjY2Cj4KPiBGaXhlczogMzcy
+YjlmZmI1Nzk5ICgiZHJtL2k5MTU6IEZpeCBza2wrIG1heCBwbGFuZSB3aWR0aCIpCj4KCkZpeGVz
+IGlzIHBhcnQgb2YgdGhlIHRhZ3M7IG5vIGJsYW5rIGxpbmVzIGhlcmUgcGxlYXNlLgoKPiBDYzog
+SmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPiBDYzogTWF0dCBSb3BlciA8bWF0
+dGhldy5kLnJvcGVyQGludGVsLmNvbT4KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4KPiBDYzogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29t
+Pgo+IFNpZ25lZC1vZmYtYnk6IEFkaXR5YSBTd2FydXAgPGFkaXR5YS5zd2FydXBAaW50ZWwuY29t
+Pgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8
+IDkgKysrKysrKystCj4gIDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDEgZGVsZXRp
+b24oLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5j
+Cj4gaW5kZXggZjg2MjQwMzM4OGY2Li4xMTZmZWQxYjczMDYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+IEBAIC0zOTg5LDcgKzM5ODksNyBA
+QCBzdGF0aWMgaW50IHNrbF9jaGVja19udjEyX2F1eF9zdXJmYWNlKHN0cnVjdCBpbnRlbF9wbGFu
+ZV9zdGF0ZSAqcGxhbmVfc3RhdGUpCj4gIAljb25zdCBzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpm
+YiA9IHBsYW5lX3N0YXRlLT5ody5mYjsKPiAgCXVuc2lnbmVkIGludCByb3RhdGlvbiA9IHBsYW5l
+X3N0YXRlLT5ody5yb3RhdGlvbjsKPiAgCWludCB1dl9wbGFuZSA9IDE7Cj4gLQlpbnQgbWF4X3dp
+ZHRoID0gc2tsX21heF9wbGFuZV93aWR0aChmYiwgdXZfcGxhbmUsIHJvdGF0aW9uKTsKPiArCWlu
+dCBtYXhfd2lkdGggPSAwOwoKV2UgZG9uJ3QgdXN1YWxseSBpbml0aWFsaXplIHRvIHplcm8gd2hl
+biBhbGwgY29kZSBwYXRocyBiZWxvdyBpbml0aWFsaXplCnRoZSB2YXJpYWJsZSBiZWZvcmUgZmly
+c3QgdXNlLgoKPiAgCWludCBtYXhfaGVpZ2h0ID0gNDA5NjsKPiAgCWludCB4ID0gcGxhbmVfc3Rh
+dGUtPnVhcGkuc3JjLngxID4+IDE3Owo+ICAJaW50IHkgPSBwbGFuZV9zdGF0ZS0+dWFwaS5zcmMu
+eTEgPj4gMTc7Cj4gQEAgLTM5OTcsNiArMzk5NywxMyBAQCBzdGF0aWMgaW50IHNrbF9jaGVja19u
+djEyX2F1eF9zdXJmYWNlKHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGUpCj4g
+IAlpbnQgaCA9IGRybV9yZWN0X2hlaWdodCgmcGxhbmVfc3RhdGUtPnVhcGkuc3JjKSA+PiAxNzsK
+PiAgCXUzMiBvZmZzZXQ7Cj4gIAo+ICsJaWYgKElOVEVMX0dFTihpOTE1KSA+PSAxMSkKPiArCQlt
+YXhfd2lkdGggPSBpY2xfbWF4X3BsYW5lX3dpZHRoKGZiLCB1dl9wbGFuZSwgcm90YXRpb24pOwo+
+ICsJZWxzZSBpZiAoSU5URUxfR0VOKGk5MTUpID49IDEwIHx8IElTX0dFTUlOSUxBS0UoaTkxNSkp
+Cj4gKwkJbWF4X3dpZHRoID0gZ2xrX21heF9wbGFuZV93aWR0aChmYiwgdXZfcGxhbmUsIHJvdGF0
+aW9uKTsKPiArCWVsc2UKPiArCQltYXhfd2lkdGggPSBza2xfbWF4X3BsYW5lX3dpZHRoKGZiLCB1
+dl9wbGFuZSwgcm90YXRpb24pOwo+ICsKPiAgCWludGVsX2FkZF9mYl9vZmZzZXRzKCZ4LCAmeSwg
+cGxhbmVfc3RhdGUsIHV2X3BsYW5lKTsKPiAgCW9mZnNldCA9IGludGVsX3BsYW5lX2NvbXB1dGVf
+YWxpZ25lZF9vZmZzZXQoJngsICZ5LAo+ICAJCQkJCQkgICAgcGxhbmVfc3RhdGUsIHV2X3BsYW5l
+KTsKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
