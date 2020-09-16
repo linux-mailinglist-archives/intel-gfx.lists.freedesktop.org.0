@@ -2,46 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00F0A26CE27
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 23:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5702826CE25
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 23:10:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3D326EB39;
-	Wed, 16 Sep 2020 21:10:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 017526EB37;
+	Wed, 16 Sep 2020 21:10:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD9E36EB2A;
- Wed, 16 Sep 2020 20:43:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A6546EB2D;
+ Wed, 16 Sep 2020 20:48:42 +0000 (UTC)
 Received: from paulmck-ThinkPad-P72.home (unknown [50.45.173.55])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 5FF7621D7D;
- Wed, 16 Sep 2020 20:43:59 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id C4AE9206BE;
+ Wed, 16 Sep 2020 20:48:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1600289039;
- bh=MM/OYkhIqW+q1jlzGplM7TRGk23CKIsPg/gtHCbpw/s=;
+ s=default; t=1600289321;
+ bh=QF1zQJP79WVPgC7BQeqDP3DZhHjaF5z1yd8g5M2I7fo=;
  h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
- b=ePzv3fwWqslNC9hLhuqpPOyt/s8elqT4skklSXCKPyGt5+DSX45Mij1jR0UQAfYSu
- rlP0OmdNpXpvof5fQPOx2SpQZrxcPIGOMObx61mSVBfXvuGrzip0wCyXdOZekUurt/
- goh6RQLFx9+QF+bnlf7qV2Wg9jJz35j9g42ob9HA=
+ b=akB9Q04wZh3xRPtHQo3QuvPylihDbICVfThimNTeh+6Dq0zpizzibT3VdQC852Awd
+ fuMHbK20SAzoAhLwH6t+euR5PcSNWcJa0SR4ujAxGLaUq8AJQAgfX4YxZ7alYezUvX
+ j37+068f8IMjVrTrNXFe4dEm94w3+K/HU0qZ4xJY=
 Received: by paulmck-ThinkPad-P72.home (Postfix, from userid 1000)
- id 14CC43522BA0; Wed, 16 Sep 2020 13:43:59 -0700 (PDT)
-Date: Wed, 16 Sep 2020 13:43:59 -0700
+ id 6BBF33522BA0; Wed, 16 Sep 2020 13:48:41 -0700 (PDT)
+Date: Wed, 16 Sep 2020 13:48:41 -0700
 From: "Paul E. McKenney" <paulmck@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Message-ID: <20200916204359.GB29330@paulmck-ThinkPad-P72>
+To: Matthew Wilcox <willy@infradead.org>
+Message-ID: <20200916204841.GC29330@paulmck-ThinkPad-P72>
 References: <20200914204209.256266093@linutronix.de>
  <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
  <871rj4owfn.fsf@nanos.tec.linutronix.de>
- <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
- <87bli75t7v.fsf@nanos.tec.linutronix.de>
- <CAHk-=wht7kAeyR5xEW2ORj7m0hibVxZ3t+2ie8vNHLQfdbN2_g@mail.gmail.com>
- <CAKMK7uHAk9-Vy2cof0ws=DrcD52GHiCDiyHbjLd19CgpBU2rKQ@mail.gmail.com>
- <20200916152956.GV29330@paulmck-ThinkPad-P72>
- <CAHk-=wjsMycgMHJrCmeetR3r+K5bpSRtmVWfd8iaoQCYd_VYAg@mail.gmail.com>
+ <20200916192352.GO5449@casper.infradead.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <CAHk-=wjsMycgMHJrCmeetR3r+K5bpSRtmVWfd8iaoQCYd_VYAg@mail.gmail.com>
+In-Reply-To: <20200916192352.GO5449@casper.infradead.org>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Mailman-Approved-At: Wed, 16 Sep 2020 21:10:25 +0000
 Subject: Re: [Intel-gfx] [patch 00/13] preempt: Make preempt count
@@ -67,13 +62,11 @@ Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
  "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
  linux-hexagon@vger.kernel.org, Will Deacon <will@kernel.org>,
  Ingo Molnar <mingo@kernel.org>, Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- linux-arch <linux-arch@vger.kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>, Brian Cain <bcain@codeaurora.org>,
+ linux-arch <linux-arch@vger.kernel.org>, Brian Cain <bcain@codeaurora.org>,
  Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
- Ard Biesheuvel <ardb@kernel.org>, David Airlie <airlied@linux.ie>,
- Ingo Molnar <mingo@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Mel Gorman <mgorman@suse.de>, intel-gfx <intel-gfx@lists.freedesktop.org>,
- Matt Turner <mattst88@gmail.com>,
+ David Airlie <airlied@linux.ie>, Ingo Molnar <mingo@redhat.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Mel Gorman <mgorman@suse.de>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, Matt Turner <mattst88@gmail.com>,
  Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
  Shuah Khan <shuah@kernel.org>, Jeff Dike <jdike@addtoit.com>,
  linux-um <linux-um@lists.infradead.org>, Josh Triplett <josh@joshtriplett.org>,
@@ -84,49 +77,61 @@ Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
  Dietmar Eggemann <dietmar.eggemann@arm.com>,
  Linux ARM <linux-arm-kernel@lists.infradead.org>,
  Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
- Max Filippov <jcmvbkbc@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
- alpha <linux-alpha@vger.kernel.org>,
+ Max Filippov <jcmvbkbc@gmail.com>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ LKML <linux-kernel@vger.kernel.org>, alpha <linux-alpha@vger.kernel.org>,
  Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>
+ Linus Torvalds <torvalds@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 16, 2020 at 11:32:00AM -0700, Linus Torvalds wrote:
-> On Wed, Sep 16, 2020 at 8:29 AM Paul E. McKenney <paulmck@kernel.org> wrote:
-> >
-> > All fair, but some of us need to write code that must handle being
-> > invoked from a wide variety of contexts.
+On Wed, Sep 16, 2020 at 08:23:52PM +0100, Matthew Wilcox wrote:
+> On Mon, Sep 14, 2020 at 11:55:24PM +0200, Thomas Gleixner wrote:
+> > But just look at any check which uses preemptible(), especially those
+> > which check !preemptible():
 > 
-> Note that I think that core functionality is different from random drivers.
+> hmm.
 > 
-> Of course core code can (and will) look at things like
+> +++ b/include/linux/preempt.h
+> @@ -180,7 +180,9 @@ do { \
+>  
+>  #define preempt_enable_no_resched() sched_preempt_enable_no_resched()
+>  
+> +#ifndef MODULE
+>  #define preemptible()  (preempt_count() == 0 && !irqs_disabled())
+> +#endif
+>  
+>  #ifdef CONFIG_PREEMPTION
+>  #define preempt_enable() \
 > 
->         if (in_interrupt())
->             .. schedule work asynchronously ..
 > 
-> because core code ends up being called from odd places, and code like
-> that is expected to have understanding of the rules it plays with.
+> $ git grep -w preemptible drivers
+> (slightly trimmed by hand to remove, eg, comments)
+> drivers/firmware/arm_sdei.c:    WARN_ON_ONCE(preemptible());
+> drivers/firmware/arm_sdei.c:    WARN_ON_ONCE(preemptible());
+> drivers/firmware/arm_sdei.c:    WARN_ON_ONCE(preemptible());
+> drivers/firmware/arm_sdei.c:    WARN_ON_ONCE(preemptible());
+> drivers/firmware/arm_sdei.c:    WARN_ON(preemptible());
+> drivers/firmware/efi/efi-pstore.c:                            preemptible(), record->size, record->psi->buf);
+> drivers/irqchip/irq-gic-v4.c:   WARN_ON(preemptible());
+> drivers/irqchip/irq-gic-v4.c:   WARN_ON(preemptible());
+> drivers/scsi/hisi_sas/hisi_sas_main.c:          if (!preemptible())
+> drivers/xen/time.c:     BUG_ON(preemptible());
 > 
-> But something like RCU is a very different beast from some "walk the
-> scatter-gather list" code.
-> 
-> RCU does its work in the background, and works with lots of different
-> things. And it's so core and used everywhere that it knows about these
-> things. I mean, we literally have special code explicitly to let RCU
-> know "we entered kernel context now".
-> 
-> But something like a driver list walking thing should not be doing
-> different things behind peoples back depending on whether they hold
-> spinlocks or not. It should either just work regardless, or there
-> should be a flag (or special interface) for the "you're being called
-> in a crtitical region".
-> 
-> Because dynamically changing behavior really is very confusing.
+> That only looks like two drivers that need more than WARNectomies.
 
-Whew!  I feel much better now.  ;-)
+I could easily imagine someone thinking that these did something in
+CONFIG_PREEMPT_NONE=y kernels.  In fact, I could easily imagine myself
+making that mistake.  :-/
+
+> Although maybe rcu_read_load_sched_held() or rcu_read_lock_any_held()
+> might get called from a module ...
+
+But yes, from the rcutorture module for certain and also from any other
+RCU-using module that includes the usual RCU debug checks.
 
 							Thanx, Paul
 _______________________________________________
