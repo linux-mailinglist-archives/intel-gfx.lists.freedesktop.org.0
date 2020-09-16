@@ -1,45 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A901126BE60
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 09:43:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7895626BE66
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 09:44:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F9CB6E9CF;
-	Wed, 16 Sep 2020 07:43:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0CFF6E9D0;
+	Wed, 16 Sep 2020 07:44:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A22FB6E9CB;
- Wed, 16 Sep 2020 07:43:37 +0000 (UTC)
-IronPort-SDR: +MTtykf2saFNZ2Fd+pfIVkzWfudYHvqawwjXDwYokjtLEDFw3C3OobFXnqIbm+tz7kpvySx0nd
- a04SmcCvA2FA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9745"; a="139430565"
-X-IronPort-AV: E=Sophos;i="5.76,432,1592895600"; d="scan'208";a="139430565"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2B2C6E9D0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 07:44:16 +0000 (UTC)
+IronPort-SDR: rEEz6o/CADnMlQ+FwfeOAhzS5xDLPfeLQUQd6Gaa0ERcpF2jnR7g43KJp/fYaSyGNM+nBFmHO0
+ 9u2RV9q8elsA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9745"; a="147108264"
+X-IronPort-AV: E=Sophos;i="5.76,432,1592895600"; d="scan'208";a="147108264"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2020 00:43:36 -0700
-IronPort-SDR: OZ7tMty0VP/hRXfVXL0x4qgPXpQXMNVgdmQghv9OU0GOtBg6LdI4ZajhNrKK03UbRAXfRCzuQ8
- uyjHu6wOhSvw==
-X-IronPort-AV: E=Sophos;i="5.76,432,1592895600"; d="scan'208";a="483196147"
-Received: from djgriffi-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.8.217])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2020 00:44:16 -0700
+IronPort-SDR: mdrDKlgDvoCwuUX2YrF3pueV6cN5+uLY4gAaRADVpQAk6tJmWT0fvEz4PY566L4Rfnt/xgxSCk
+ 7ylZQgFSctmQ==
+X-IronPort-AV: E=Sophos;i="5.76,432,1592895600"; d="scan'208";a="483196239"
+Received: from unknown (HELO intel.com) ([10.237.72.91])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2020 00:43:30 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Lyude Paul <lyude@redhat.com>
-In-Reply-To: <20200915190639.GC503362@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200915172939.2810538-1-lyude@redhat.com>
- <20200915172939.2810538-2-lyude@redhat.com>
- <20200915190639.GC503362@intel.com>
-Date: Wed, 16 Sep 2020 10:43:35 +0300
-Message-ID: <87mu1qw4ig.fsf@intel.com>
+ 16 Sep 2020 00:44:13 -0700
+Date: Wed, 16 Sep 2020 10:44:14 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200916074414.GA1219@intel.com>
+References: <20200902122141.15181-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC 1/5] drm/i915/dp: Program source OUI on eDP
- panels
+Content-Disposition: inline
+In-Reply-To: <20200902122141.15181-1-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove the old global state stuff
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,133 +49,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Vasily Khoruzhick <anarsoul@gmail.com>, Sean Paul <seanpaul@chromium.org>,
- Wambui Karuga <wambui.karugax@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 15 Sep 2020, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, Sep 15, 2020 at 01:29:35PM -0400, Lyude Paul wrote:
->> Since we're about to start adding support for Intel's magic HDR
->> backlight interface over DPCD, we need to ensure we're properly
->> programming this field so that Intel specific sink services are exposed.
->> Otherwise, 0x300-0x3ff will just read zeroes.
->> 
->> We also take care not to reprogram the source OUI if it already matches
->> what we expect. This is just to be careful so that we don't accidentally
->> take the panel out of any backlight control modes we found it in.
+On Wed, Sep 02, 2020 at 03:21:41PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-(For whatever reason I didn't receive the original message.)
+> With the dbuf code mostly converted over to the new global state
+> handling we can remove the leftovers of the old global state
+> stuff.
+> =
 
->> 
->> Signed-off-by: Lyude Paul <lyude@redhat.com>
->> Cc: thaytan@noraisin.net
->> Cc: Vasily Khoruzhick <anarsoul@gmail.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp.c | 32 +++++++++++++++++++++++++
->>  1 file changed, 32 insertions(+)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 4bd10456ad188..b591672ec4eab 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -3428,6 +3428,7 @@ void intel_dp_sink_set_decompression_state(struct intel_dp *intel_dp,
->>  void intel_dp_sink_dpms(struct intel_dp *intel_dp, int mode)
->>  {
->>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->> +	u8 edp_oui[] = { 0x00, 0xaa, 0x01 };
->
-> what are these values?
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_atomic.c   | 39 -------------------
+>  drivers/gpu/drm/i915/display/intel_atomic.h   |  4 --
+>  drivers/gpu/drm/i915/display/intel_display.c  | 22 -----------
+>  .../drm/i915/display/intel_display_types.h    |  7 ----
+>  4 files changed, 72 deletions(-)
 
-An OUI lookup confirms these are Intel OUI.
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
->
->>  	int ret, i;
->>  
->>  	/* Should have a valid DPCD by this point */
->> @@ -3443,6 +3444,14 @@ void intel_dp_sink_dpms(struct intel_dp *intel_dp, int mode)
->>  	} else {
->>  		struct intel_lspcon *lspcon = dp_to_lspcon(intel_dp);
->>  
->> +		/* Write the source OUI as early as possible */
->> +		if (intel_dp_is_edp(intel_dp)) {
->> +			ret = drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, edp_oui,
->> +						sizeof(edp_oui));
->> +			if (ret < 0)
->> +				drm_err(&i915->drm, "Failed to write eDP source OUI\n");
->> +		}
->> +
->>  		/*
->>  		 * When turning on, we need to retry for 1ms to give the sink
->>  		 * time to wake up.
->> @@ -4530,6 +4539,23 @@ static void intel_dp_get_dsc_sink_cap(struct intel_dp *intel_dp)
->>  	}
->>  }
->>  
->> +static void
->> +intel_edp_init_source_oui(struct intel_dp *intel_dp)
->> +{
->> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->> +	u8 oui[] = { 0x00, 0xaa, 0x01 };
->> +	u8 buf[3] = { 0 };
->> +
->> +	if (drm_dp_dpcd_read(&intel_dp->aux, DP_SOURCE_OUI, buf, sizeof(buf)) < 0)
->> +		drm_err(&i915->drm, "Failed to read source OUI\n");
->> +
->> +	if (memcmp(oui, buf, sizeof(oui)) == 0)
->> +		return;
->> +
->> +	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(oui)) < 0)
->> +		drm_err(&i915->drm, "Failed to write source OUI\n");
->> +}
+> =
 
-Maybe add this function with a parameter to force write or write only if
-necessary, and call from both places that set source OUI?
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/dr=
+m/i915/display/intel_atomic.c
+> index 630f49b7aa01..86be032bcf96 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -527,8 +527,6 @@ void intel_atomic_state_clear(struct drm_atomic_state=
+ *s)
+>  	intel_atomic_clear_global_state(state);
+>  =
 
->> +
->>  static bool
->>  intel_edp_init_dpcd(struct intel_dp *intel_dp)
->>  {
->> @@ -4607,6 +4633,12 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
->>  	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
->>  		intel_dp_get_dsc_sink_cap(intel_dp);
->>  
->> +	/*
->> +	 * Program our source OUI so we can make various Intel-specific AUX
->> +	 * services available (such as HDR backlight controls)
->> +	 */
->> +	intel_edp_init_source_oui(intel_dp);
->
-> I believe we should restrict this to the supported platforms: cfl, whl, cml, icl, tgl
-> no?
+>  	state->dpll_set =3D state->modeset =3D false;
+> -	state->global_state_changed =3D false;
+> -	state->active_pipes =3D 0;
+>  }
+>  =
 
-Mmh, this just exposes sink behaviour that I think can be supported by
-any platform. I don't understand the notion of "supported platforms"
-here.
+>  struct intel_crtc_state *
+> @@ -542,40 +540,3 @@ intel_atomic_get_crtc_state(struct drm_atomic_state =
+*state,
+>  =
 
->
->> +
->>  	return true;
->>  }
->>  
->> -- 
->> 2.26.2
->> 
->> _______________________________________________
->> dri-devel mailing list
->> dri-devel@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>  	return to_intel_crtc_state(crtc_state);
+>  }
+> -
+> -int _intel_atomic_lock_global_state(struct intel_atomic_state *state)
+> -{
+> -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> -	struct intel_crtc *crtc;
+> -
+> -	state->global_state_changed =3D true;
+> -
+> -	for_each_intel_crtc(&dev_priv->drm, crtc) {
+> -		int ret;
+> -
+> -		ret =3D drm_modeset_lock(&crtc->base.mutex,
+> -				       state->base.acquire_ctx);
+> -		if (ret)
+> -			return ret;
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+> -int _intel_atomic_serialize_global_state(struct intel_atomic_state *stat=
+e)
+> -{
+> -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> -	struct intel_crtc *crtc;
+> -
+> -	state->global_state_changed =3D true;
+> -
+> -	for_each_intel_crtc(&dev_priv->drm, crtc) {
+> -		struct intel_crtc_state *crtc_state;
+> -
+> -		crtc_state =3D intel_atomic_get_crtc_state(&state->base, crtc);
+> -		if (IS_ERR(crtc_state))
+> -			return PTR_ERR(crtc_state);
+> -	}
+> -
+> -	return 0;
+> -}
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.h b/drivers/gpu/dr=
+m/i915/display/intel_atomic.h
+> index 11146292b06f..285de07011dc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.h
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.h
+> @@ -56,8 +56,4 @@ int intel_atomic_setup_scalers(struct drm_i915_private =
+*dev_priv,
+>  			       struct intel_crtc *intel_crtc,
+>  			       struct intel_crtc_state *crtc_state);
+>  =
+
+> -int _intel_atomic_lock_global_state(struct intel_atomic_state *state);
+> -
+> -int _intel_atomic_serialize_global_state(struct intel_atomic_state *stat=
+e);
+> -
+>  #endif /* __INTEL_ATOMIC_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index dc622af8695c..553e4440442a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -14636,16 +14636,8 @@ u8 intel_calc_active_pipes(struct intel_atomic_s=
+tate *state,
+>  static int intel_modeset_checks(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> -	int ret;
+>  =
+
+>  	state->modeset =3D true;
+> -	state->active_pipes =3D intel_calc_active_pipes(state, dev_priv->active=
+_pipes);
+> -
+> -	if (state->active_pipes !=3D dev_priv->active_pipes) {
+> -		ret =3D _intel_atomic_lock_global_state(state);
+> -		if (ret)
+> -			return ret;
+> -	}
+>  =
+
+>  	if (IS_HASWELL(dev_priv))
+>  		return hsw_mode_set_planes_workaround(state);
+> @@ -15759,14 +15751,6 @@ static void intel_atomic_track_fbs(struct intel_=
+atomic_state *state)
+>  					plane->frontbuffer_bit);
+>  }
+>  =
+
+> -static void assert_global_state_locked(struct drm_i915_private *dev_priv)
+> -{
+> -	struct intel_crtc *crtc;
+> -
+> -	for_each_intel_crtc(&dev_priv->drm, crtc)
+> -		drm_modeset_lock_assert_held(&crtc->base.mutex);
+> -}
+> -
+>  static int intel_atomic_commit(struct drm_device *dev,
+>  			       struct drm_atomic_state *_state,
+>  			       bool nonblock)
+> @@ -15842,12 +15826,6 @@ static int intel_atomic_commit(struct drm_device=
+ *dev,
+>  	intel_shared_dpll_swap_state(state);
+>  	intel_atomic_track_fbs(state);
+>  =
+
+> -	if (state->global_state_changed) {
+> -		assert_global_state_locked(dev_priv);
+> -
+> -		dev_priv->active_pipes =3D state->active_pipes;
+> -	}
+> -
+>  	drm_atomic_state_get(&state->base);
+>  	INIT_WORK(&state->base.commit_work, intel_atomic_commit_work);
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 413b60337a0b..60f66013e513 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -481,8 +481,6 @@ struct intel_atomic_state {
+>  =
+
+>  	bool dpll_set, modeset;
+>  =
+
+> -	u8 active_pipes;
+> -
+>  	struct intel_shared_dpll_state shared_dpll[I915_NUM_PLLS];
+>  =
+
+>  	/*
+> @@ -493,11 +491,6 @@ struct intel_atomic_state {
+>  =
+
+>  	bool rps_interactive;
+>  =
+
+> -	/*
+> -	 * active_pipes
+> -	 */
+> -	bool global_state_changed;
+> -
+>  	struct i915_sw_fence commit_ready;
+>  =
+
+>  	struct llist_node freed;
+> -- =
+
+> 2.26.2
+> =
+
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
