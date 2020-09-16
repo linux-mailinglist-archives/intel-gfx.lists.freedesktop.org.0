@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 451DA26C508
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 18:22:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEBC926C50A
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 18:22:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67C356EA6B;
-	Wed, 16 Sep 2020 16:22:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7EEE6EA66;
+	Wed, 16 Sep 2020 16:22:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C4216EA6B
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 16:22:01 +0000 (UTC)
-IronPort-SDR: FStUG4WmSn5sOarxCC9sGH5NZfug9xHuz+NR7BP2cHswQbAmpr4u0IvYR6rj5PNe+XuQURPKGf
- TSOGU96Zj8Ag==
-X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="147195506"
-X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="147195506"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9868B6EA6C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 16:22:03 +0000 (UTC)
+IronPort-SDR: iW/oCVh7PsjmiCkfDaA7g3RFLzbbxOm380QxidLhpo3V1eis6W/eFNYyTXij8vnSelwN5rZkSW
+ r11K/25lz6kQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="147195517"
+X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="147195517"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2020 09:22:00 -0700
-IronPort-SDR: XypIJIjHJmKrmHFHOhYxWubT4kJ7frVPEWHqbJok/GVVBGpH4uRby6lFSiInk6Vkzfb9t8zT3E
- YN9HiFOhj5SA==
-X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="483371246"
+ 16 Sep 2020 09:22:03 -0700
+IronPort-SDR: SVTp1dHwTswXRfF3tvZfhV11XJyNXGVQ/BltWuv5QNRfTzA0NjSh74gjWEPQ9q5/rVNixm376G
+ 22LonRdA75Ig==
+X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="483371262"
 Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 16 Sep 2020 09:21:58 -0700
+ 16 Sep 2020 09:22:01 -0700
 From: Vandita Kulkarni <vandita.kulkarni@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Sep 2020 21:45:25 +0530
-Message-Id: <20200916161528.2659-2-vandita.kulkarni@intel.com>
+Date: Wed, 16 Sep 2020 21:45:26 +0530
+Message-Id: <20200916161528.2659-3-vandita.kulkarni@intel.com>
 X-Mailer: git-send-email 2.21.0.5.gaeb582a
 In-Reply-To: <20200916161528.2659-1-vandita.kulkarni@intel.com>
 References: <20200916161528.2659-1-vandita.kulkarni@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [V12 1/4] drm/i915/dsi: Add details about TE in
- get_config
+Subject: [Intel-gfx] [V12 2/4] i915/dsi: Configure TE interrupt for cmd mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,72 +54,106 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need details about enabling TE on which port
-before we enable TE through vblank enable path.
-This is based on the configuration that we receive
-from the VBT wrt ports, dual_link.
+Configure TE interrupt as part of the vblank
+enable call flow.
+
+v2: Hide the private flags check inside configure_te (Jani)
+
+v3: Fix the position of masking de_port_masked for DSI_TE.
+
+v4: Simplify the caller of configure_te (Jani)
+
+v5: Clear IIR, remove the usage of private_flags
+
+v6: including icl_dsi header is not needed
 
 Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c | 30 +++++++++++++++-----------
- 1 file changed, 18 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/i915_irq.c | 50 +++++++++++++++++++++++++++++++--
+ 1 file changed, 48 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 520715b7d5b5..2789020e20db 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1447,6 +1447,18 @@ static bool gen11_dsi_is_periodic_cmd_mode(struct intel_dsi *intel_dsi)
- 	return (val & DSI_PERIODIC_FRAME_UPDATE_ENABLE);
- }
- 
-+static void gen11_dsi_get_cmd_mode_config(struct intel_dsi *intel_dsi,
-+					  struct intel_crtc_state *pipe_config)
-+{
-+	if (intel_dsi->ports == (BIT(PORT_B) | BIT(PORT_A)))
-+		pipe_config->mode_flags |= I915_MODE_FLAG_DSI_USE_TE1 |
-+					    I915_MODE_FLAG_DSI_USE_TE0;
-+	else if (intel_dsi->ports == BIT(PORT_B))
-+		pipe_config->mode_flags |= I915_MODE_FLAG_DSI_USE_TE1;
-+	else
-+		pipe_config->mode_flags |= I915_MODE_FLAG_DSI_USE_TE0;
-+}
-+
- static void gen11_dsi_get_config(struct intel_encoder *encoder,
- 				 struct intel_crtc_state *pipe_config)
- {
-@@ -1468,6 +1480,10 @@ static void gen11_dsi_get_config(struct intel_encoder *encoder,
- 	pipe_config->output_types |= BIT(INTEL_OUTPUT_DSI);
- 	pipe_config->pipe_bpp = bdw_get_pipemisc_bpp(crtc);
- 
-+	/* Get the details on which TE should be enabled */
-+	if (is_cmd_mode(intel_dsi))
-+		gen11_dsi_get_cmd_mode_config(intel_dsi, pipe_config);
-+
- 	if (gen11_dsi_is_periodic_cmd_mode(intel_dsi))
- 		pipe_config->mode_flags |= I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE;
- }
-@@ -1562,18 +1578,8 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
- 	 * receive TE from the slave if
- 	 * dual link is enabled
- 	 */
--	if (is_cmd_mode(intel_dsi)) {
--		if (intel_dsi->ports == (BIT(PORT_B) | BIT(PORT_A)))
--			pipe_config->mode_flags |=
--						I915_MODE_FLAG_DSI_USE_TE1 |
--						I915_MODE_FLAG_DSI_USE_TE0;
--		else if (intel_dsi->ports == BIT(PORT_B))
--			pipe_config->mode_flags |=
--						I915_MODE_FLAG_DSI_USE_TE1;
--		else
--			pipe_config->mode_flags |=
--						I915_MODE_FLAG_DSI_USE_TE0;
--	}
-+	if (is_cmd_mode(intel_dsi))
-+		gen11_dsi_get_cmd_mode_config(intel_dsi, pipe_config);
- 
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 759f523c6a6b..913548addfba 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -2631,12 +2631,47 @@ int ilk_enable_vblank(struct drm_crtc *crtc)
  	return 0;
  }
+ 
++static bool gen11_dsi_configure_te(struct intel_crtc *intel_crtc,
++				   bool enable)
++{
++	struct drm_i915_private *dev_priv = to_i915(intel_crtc->base.dev);
++	enum port port;
++	u32 tmp;
++
++	if (!(intel_crtc->mode_flags &
++	    (I915_MODE_FLAG_DSI_USE_TE1 | I915_MODE_FLAG_DSI_USE_TE0)))
++		return false;
++
++	/* for dual link cases we consider TE from slave */
++	if (intel_crtc->mode_flags & I915_MODE_FLAG_DSI_USE_TE1)
++		port = PORT_B;
++	else
++		port = PORT_A;
++
++	tmp =  I915_READ(DSI_INTR_MASK_REG(port));
++	if (enable)
++		tmp &= ~DSI_TE_EVENT;
++	else
++		tmp |= DSI_TE_EVENT;
++
++	I915_WRITE(DSI_INTR_MASK_REG(port), tmp);
++
++	tmp = I915_READ(DSI_INTR_IDENT_REG(port));
++	I915_WRITE(DSI_INTR_IDENT_REG(port), tmp);
++
++	return true;
++}
++
+ int bdw_enable_vblank(struct drm_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->dev);
+-	enum pipe pipe = to_intel_crtc(crtc)->pipe;
++	struct intel_crtc *intel_crtc = to_intel_crtc(crtc);
++	enum pipe pipe = intel_crtc->pipe;
+ 	unsigned long irqflags;
+ 
++	if (gen11_dsi_configure_te(intel_crtc, true))
++		return 0;
++
+ 	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
+ 	bdw_enable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
+ 	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
+@@ -2702,9 +2737,13 @@ void ilk_disable_vblank(struct drm_crtc *crtc)
+ void bdw_disable_vblank(struct drm_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->dev);
+-	enum pipe pipe = to_intel_crtc(crtc)->pipe;
++	struct intel_crtc *intel_crtc = to_intel_crtc(crtc);
++	enum pipe pipe = intel_crtc->pipe;
+ 	unsigned long irqflags;
+ 
++	if (gen11_dsi_configure_te(intel_crtc, false))
++		return;
++
+ 	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
+ 	bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
+ 	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
+@@ -3400,6 +3439,13 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+ 	if (IS_GEN9_LP(dev_priv))
+ 		de_port_masked |= BXT_DE_PORT_GMBUS;
+ 
++	if (INTEL_GEN(dev_priv) >= 11) {
++		enum port port;
++
++		if (intel_bios_is_dsi_present(dev_priv, &port))
++			de_port_masked |= DSI0_TE | DSI1_TE;
++	}
++
+ 	de_pipe_enables = de_pipe_masked | GEN8_PIPE_VBLANK |
+ 					   GEN8_PIPE_FIFO_UNDERRUN;
+ 
 -- 
 2.21.0.5.gaeb582a
 
