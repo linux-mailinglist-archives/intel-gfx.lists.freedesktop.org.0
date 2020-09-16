@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE1CA26C0C4
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 11:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB82226C0E0
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 11:42:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8507A6E39C;
-	Wed, 16 Sep 2020 09:38:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 228996E395;
+	Wed, 16 Sep 2020 09:42:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF506E3B8
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 09:38:01 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id z1so6184575wrt.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 02:38:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=BAzRRIK8v7JChf1JsBCe57FCd6YM507dSSUg9G+yDXQ=;
- b=T6LbbPjB6GDxDA+6v39RkYYRs/xN0kVLglJ+50Ffd73lPfUO0KgjveykyAoXazlHY8
- BTKyiMtBFl3BCfhTe0N0v4CVqxWhCfLBw7JWtX75c/f6GEHT+gRZlvl3YCGCl3Zr6bpx
- CsWogiwEWIw2ApnI09fpCtv4JUFPP/7YyAXZc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=BAzRRIK8v7JChf1JsBCe57FCd6YM507dSSUg9G+yDXQ=;
- b=VdPoJ7GcwYUqbanRPRorwGxIoc1fgikLmASeanvCALurQSoxHdU6zO1BLwgBu8kDoo
- NcudyLhfXrpRCf64r2PCD6lSHqPnpynos/ZMLmSeWXRyX03mMJ+MFuGxgpfkKAunQjNO
- aOexBRf4lMOy9U9sPehYDanwCVVdvAe6GbxetRCOgouPYXiU/rEb0XlT0PZmv8o9t4DR
- 1+XhJEnN/1xIrgZAD4K9kS6Y9ouVIMzh7L8UM/AJ/Okjkt+kirLV5nLNP1Ff5527Zvq8
- 9rTc904qJf0qiRIHHKz/GDh4q4R5yZcpmerSJ/GwfvBLjlkMGFpcO0CWd+KeNHF7l/oU
- HtHQ==
-X-Gm-Message-State: AOAM531EyK73MysC07TcIRfmLvVr3rquYkZAu623M3S3WEWQ2z4Qgd91
- aPiuadsnYBtAJ1dRqxkqjbSBvg==
-X-Google-Smtp-Source: ABdhPJw3Y7czwYvM941LlyOYnNW/rTDHKpG+JUXszB6P9qd/Lqa6QqYntED9lIWpEw+GbimKaOiZIw==
-X-Received: by 2002:a5d:61c7:: with SMTP id q7mr26159918wrv.343.1600249079953; 
- Wed, 16 Sep 2020 02:37:59 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id k84sm4227735wmf.6.2020.09.16.02.37.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 16 Sep 2020 02:37:59 -0700 (PDT)
-Date: Wed, 16 Sep 2020 11:37:56 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20200916093756.GC438822@phenom.ffwll.local>
-References: <20200914112521.1327-1-tzimmermann@suse.de>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EA4A6E395
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 09:42:28 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22443432-1500050 
+ for multiple; Wed, 16 Sep 2020 10:42:19 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 16 Sep 2020 10:42:16 +0100
+Message-Id: <20200916094219.3878-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200914112521.1327-1-tzimmermann@suse.de>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 0/3] dma-buf: Flag vmap'ed memory as system
- or I/O memory
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/gem: Hold request reference for
+ canceling an active context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,100 +37,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: christian.koenig@amd.com, airlied@linux.ie, mark.cave-ayland@ilande.co.uk,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk, kraxel@redhat.com,
- sparclinux@vger.kernel.org, sam@ravnborg.org, sumit.semwal@linaro.org,
- m.szyprowski@samsung.com, jonathanh@nvidia.com, matthew.auld@intel.com,
- linux+etnaviv@armlinux.org.uk, linux-media@vger.kernel.org, pawel@osciak.com,
- intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, christian.gmeiner@gmail.com,
- thomas.hellstrom@intel.com, mripard@kernel.org, linux-tegra@vger.kernel.org,
- mchehab@kernel.org, tfiga@chromium.org, kyungmin.park@samsung.com,
- davem@davemloft.net, l.stach@pengutronix.de
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 14, 2020 at 01:25:18PM +0200, Thomas Zimmermann wrote:
-> Dma-buf provides vmap() and vunmap() for retrieving and releasing mappings
-> of dma-buf memory in kernel address space. The functions operate with plain
-> addresses and the assumption is that the memory can be accessed with load
-> and store operations. This is not the case on some architectures (e.g.,
-> sparc64) where I/O memory can only be accessed with dedicated instructions.
-> 
-> This patchset introduces struct dma_buf_map, which contains the address of
-> a buffer and a flag that tells whether system- or I/O-memory instructions
-> are required.
-> 
-> Some background: updating the DRM framebuffer console on sparc64 makes the
-> kernel panic. This is because the framebuffer memory cannot be accessed with
-> system-memory instructions. We currently employ a workaround in DRM to
-> address this specific problem. [1]
-> 
-> To resolve the problem, we'd like to address it at the most common point,
-> which is the dma-buf framework. The dma-buf mapping ideally knows if I/O
-> instructions are required and exports this information to it's users. The
-> new structure struct dma_buf_map stores the buffer address and a flag that
-> signals I/O memory. Affected users of the buffer (e.g., drivers, frameworks)
-> can then access the memory accordingly.
-> 
-> This patchset only introduces struct dma_buf_map, and updates struct dma_buf
-> and it's interfaces. Further patches can update dma-buf users. For example,
-> there's a prototype patchset for DRM that fixes the framebuffer problem. [2]
-> 
-> Further work: TTM, one of DRM's memory managers, already exports an
-> is_iomem flag of its own. It could later be switched over to exporting struct
-> dma_buf_map, thus simplifying some code. Several DRM drivers expect their
-> fbdev console to operate on I/O memory. These could possibly be switched over
-> to the generic fbdev emulation, as soon as the generic code uses struct
-> dma_buf_map.
-> 
-> [1] https://lore.kernel.org/dri-devel/20200725191012.GA434957@ravnborg.org/
-> [2] https://lore.kernel.org/dri-devel/20200806085239.4606-1-tzimmermann@suse.de/
+We have to be very careful while walking the timeline->requests list
+under the RCU guard, as the requests (and so rq->link) use
+SLAB_TYPESAFE_BY_RCU and so the requests may be reallocated within an
+rcu grace period. As the requests are reallocated, they are removed from
+one list and placed on another, and if we are iterating over that
+request at that moment, the list iteration jumps from one list to the
+next and promptly gets confused. Verify we hold the request reference
+to ensure that the request is not added to a new list behind our backs.
 
-lgtm, imo ready to convert the follow-up patches over to this. But I think
-would be good to get at least some ack from the ttm side for the overall
-plan.
+<4> [582.745252] general protection fault, probably for non-canonical address 0xcccccccccccccd5c: 0000 [#1] PREEMPT SMP PTI
+<4> [582.745297] CPU: 0 PID: 1475 Comm: gem_ctx_persist Not tainted 5.9.0-rc1-CI-CI_DRM_8908+ #1
+<4> [582.745304] Hardware name: Intel Corporation NUC7CJYH/NUC7JYB, BIOS JYGLKCPX.86A.0027.2018.0125.1347 01/25/2018
+<4> [582.745317] RIP: 0010:__lock_acquire+0x2c3/0x1f40
+<4> [582.745323] Code: 00 65 8b 05 c7 8a ef 7e 85 c0 0f 85 b4 07 00 00 44 8b 9d c4 08 00 00 45 85 db 0f 84 0f 01 00 00 ba 05 00 00 00 e9 c8 06 00 00 <48> 81 3f c0 89 c7 82 b8 00 00 00 00 41 0f 45 c0 83 fe 01 41 89 c3
+<4> [582.745334] RSP: 0018:ffffc9000461bc40 EFLAGS: 00010002
+<4> [582.745340] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+<4> [582.745345] RDX: 0000000000000000 RSI: 0000000000000000 RDI: cccccccccccccd5c
+<4> [582.745350] RBP: ffff8881ec4a2880 R08: 0000000000000001 R09: 0000000000000001
+<4> [582.745356] R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
+<4> [582.745361] R13: 0000000000000000 R14: 0000000000000000 R15: cccccccccccccd5c
+<4> [582.745367] FS:  00007fb44da78e40(0000) GS:ffff888278000000(0000) knlGS:0000000000000000
+<4> [582.745373] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [582.745378] CR2: 00007fb44daad040 CR3: 0000000268428000 CR4: 0000000000350ef0
+<4> [582.745383] Call Trace:
+<4> [582.745390]  ? __lock_acquire+0x913/0x1f40
+<4> [582.745397]  lock_acquire+0xb5/0x3c0
+<4> [582.745526]  ? kill_engines+0x19a/0x4b0 [i915]
+<4> [582.745533]  ? find_held_lock+0x2d/0x90
+<4> [582.745541]  _raw_spin_lock_irq+0x30/0x40
+<4> [582.745635]  ? kill_engines+0x19a/0x4b0 [i915]
+<4> [582.745727]  kill_engines+0x19a/0x4b0 [i915]
+<4> [582.745820]  context_close+0x195/0x410 [i915]
+<4> [582.745912]  i915_gem_context_close+0x5b/0x160 [i915]
+<4> [582.745994]  i915_driver_postclose+0x14/0x40 [i915]
+<4> [582.746003]  drm_file_free.part.13+0x240/0x290
+<4> [582.746009]  drm_release_noglobal+0x16/0x50
+<4> [582.746016]  __fput+0xa5/0x250
+<4> [582.746021]  task_work_run+0x6e/0xb0
+<4> [582.746028]  exit_to_user_mode_prepare+0x178/0x180
+<4> [582.746034]  syscall_exit_to_user_mode+0x36/0x220
+<4> [582.746040]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+<4> [582.746045] RIP: 0033:0x7fb44d1dc421
+<4> [582.746050] Code: f7 d8 64 89 02 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 66 90 8b 05 ea cf 20 00 85 c0 75 16 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 3f f3 c3 0f 1f 44 00 00 53 89 fb 48 83 ec 10
+<4> [582.746062] RSP: 002b:00007ffed2e83818 EFLAGS: 00000246 ORIG_RAX: 0000000000000003
+<4> [582.746069] RAX: 0000000000000000 RBX: 0000556410bfe840 RCX: 00007fb44d1dc421
+<4> [582.746075] RDX: 000000000000000a RSI: 00000000c0406469 RDI: 0000000000000008
+<4> [582.746080] RBP: 0000000000000008 R08: 00007fb44d1c51cc R09: 00007fb44d1c5240
+<4> [582.746086] R10: 0000000000000001 R11: 0000000000000246 R12: 00000000fffffffb
+<4> [582.746091] R13: 0000000000000006 R14: 0000000000000000 R15: 000000000000000a
+<4> [582.746099] Modules linked in: vgem mei_hdcp snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio btusb btrtl btbcm btintel x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul bluetooth ghash_clmulni_intel ecdh_generic ecc i915 r8169 realtek mei_me mei snd_hda_intel i2c_hid snd_intel_dspcfg snd_hda_codec snd_hwdep snd_hda_core snd_pcm pinctrl_geminilake pinctrl_intel prime_numbers [last unloaded: test_drm_mm]
 
-Also, I think we should put all the various helpers (writel/readl, memset,
-memcpy, whatever else) into the dma-buf-map.h helper, so that most code
-using this can just treat it as an abstract pointer type and never look
-underneath it.
--Daniel
+Fixes: 09a3054f38db ("drm/i915/gem: Reduce context termination list iteration guard to RCU")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 25 ++++++++++++++++-----
+ 1 file changed, 19 insertions(+), 6 deletions(-)
 
-> 
-> Thomas Zimmermann (3):
->   dma-buf: Add struct dma-buf-map for storing struct dma_buf.vaddr_ptr
->   dma-buf: Use struct dma_buf_map in dma_buf_vmap() interfaces
->   dma-buf: Use struct dma_buf_map in dma_buf_vunmap() interfaces
-> 
->  Documentation/driver-api/dma-buf.rst          |   3 +
->  drivers/dma-buf/dma-buf.c                     |  40 +++---
->  drivers/gpu/drm/drm_gem_cma_helper.c          |  16 ++-
->  drivers/gpu/drm/drm_gem_shmem_helper.c        |  17 ++-
->  drivers/gpu/drm/drm_prime.c                   |  14 +-
->  drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |  13 +-
->  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  13 +-
->  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  18 ++-
->  drivers/gpu/drm/tegra/gem.c                   |  23 ++--
->  .../common/videobuf2/videobuf2-dma-contig.c   |  17 ++-
->  .../media/common/videobuf2/videobuf2-dma-sg.c |  19 ++-
->  .../common/videobuf2/videobuf2-vmalloc.c      |  21 ++-
->  include/drm/drm_prime.h                       |   5 +-
->  include/linux/dma-buf-map.h                   | 126 ++++++++++++++++++
->  include/linux/dma-buf.h                       |  11 +-
->  15 files changed, 274 insertions(+), 82 deletions(-)
->  create mode 100644 include/linux/dma-buf-map.h
-> 
-> --
-> 2.28.0
-> 
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index cf5ecbde9e06..a548626fa8bc 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -460,8 +460,8 @@ __active_engine(struct i915_request *rq, struct intel_engine_cs **active)
+ 		spin_lock(&locked->active.lock);
+ 	}
+ 
+-	if (!i915_request_completed(rq)) {
+-		if (i915_request_is_active(rq) && rq->fence.error != -EIO)
++	if (i915_request_is_active(rq)) {
++		if (!i915_request_completed(rq))
+ 			*active = locked;
+ 		ret = true;
+ 	}
+@@ -479,13 +479,26 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+ 	if (!ce->timeline)
+ 		return NULL;
+ 
++	/*
++	 * rq->link is only SLAB_TYPESAFE_BY_RCU, we need to hold a reference
++	 * to the request to prevent it being transferred to a new timeline
++	 * (and onto a new timeline->requests list).
++	 */
+ 	rcu_read_lock();
+-	list_for_each_entry_rcu(rq, &ce->timeline->requests, link) {
+-		if (i915_request_is_active(rq) && i915_request_completed(rq))
+-			continue;
++	list_for_each_entry_reverse(rq, &ce->timeline->requests, link) {
++		bool found;
++
++		/* timeline is already completed upto this point? */
++		if (!i915_request_get_rcu(rq))
++			break;
+ 
+ 		/* Check with the backend if the request is inflight */
+-		if (__active_engine(rq, &engine))
++		found = true;
++		if (likely(rcu_access_pointer(rq->timeline) == ce->timeline))
++			found = __active_engine(rq, &engine);
++
++		i915_request_put(rq);
++		if (found)
+ 			break;
+ 	}
+ 	rcu_read_unlock();
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
