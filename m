@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B5626C617
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 19:33:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FE026C640
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 19:41:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 045E16EAAA;
-	Wed, 16 Sep 2020 17:33:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 250AC6EAB1;
+	Wed, 16 Sep 2020 17:41:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com
- [IPv6:2607:f8b0:4864:20::a42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B7E46EAAA
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 17:33:53 +0000 (UTC)
-Received: by mail-vk1-xa42.google.com with SMTP id d2so1945893vkd.13
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 10:33:53 -0700 (PDT)
+Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com
+ [IPv6:2607:f8b0:4864:20::e44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EFC16EA74
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 17:41:12 +0000 (UTC)
+Received: by mail-vs1-xe44.google.com with SMTP id 7so4537290vsp.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 10:41:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+tjT2C0B7PYUpeU+QplrrDbVq9vCks49RQVP/ATZ87k=;
- b=Efh52ww4gi0vq1sCYdFHNIvAe5TmRzYuQBPLu53LBAonpRCSCjnAlCqAvg8Cx/sv+g
- WUTQS1nFBpKQr4hkQqNmyMbuvDwAZciI5g2D3zpMusrF+HPB9a6gGClHyf6zcuHonNz7
- GoruhS/JEXtS/3ujPwGaLY8aIWw999zeYAlnR1nRpOQ3/RC78wQmqVYMaOSI680/2jsP
- VWhON045TR10bHX27UEYjNfzjbVcuFxo1lPn66CSNLck56KT/MuJsWj+L8ZXCpZ6UcMa
- Wjq5omljxkWQp5+bexNS/myv8eEeIW/H75RqdohbeK0GuWjWHxEbgxXO/G/XztUuItnT
- z+cw==
+ :cc; bh=IcIt6h02qzApmrr/8N1I1DMxWP6A9FljKeLWzTiB+Z0=;
+ b=XPvSHpRXpoPp2GhE2MXqtYoc8csc50c3LhnququRL8oM4z4N4fPlRH37mYcV3wRrcz
+ zVTPy53HdH/3qQn4CYBOxK7egML6lywwyMFloacBbRA5kdVpmxFDpWZ1ZBWiAEOWlZ72
+ oDIA88A96qPHBLdpJMNNbby7jfUPE7uX47ClUY26Zd/EFwHNmuqh5tPeOchl3yf9BuCV
+ xBJpwHaxU3mF/Qf8818FF9mHDFB5/T7VYkXWu5039CqVvrI/2TEaHnQvcNqQ+faPnJFj
+ ircC5R5n+p16gGsgJr3xjxe6Vv0i2jQHouDMxYwhWu2Vc2gwSFaK+R5UURY4CrgBF2dz
+ BtzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=+tjT2C0B7PYUpeU+QplrrDbVq9vCks49RQVP/ATZ87k=;
- b=DIBICvLpct34pApWMbXTqryaGxmI99eb+iANmdM5mMv8XLA5paP3U+pPH4dT7+3oTx
- ijhRMBVvQV1Tg1G0cGIYcYFiB9crESIlFfNDenXUVqX/xO5sAfOrrSiXungVUXCY8E6h
- fCcRJ58hr3dKyYcd7LfxSIAtpCJdi84xRmX7CcmWXleUX+/BGDTC68NmdT0R8xvZhmff
- tn1FRaovfL6x2U5pVbzBA6mYGZrtAWXL+hCTI7Y0eAjtdXtbhyNgFgJ80tN90d8Ev/pA
- 4E7cSzKl3V43NYDMFGqJdLPBIt7AxXa0ZUpTKjpNjw1OHfYfThKTzqHVT74UcCKXnQrD
- 8brg==
-X-Gm-Message-State: AOAM530b5vJ6IUhbHIA33a2a6nv8ZKkY2rlXiJdABACW83tdA4Sqzxqx
- /oHuRsGGo2AKwRz6cz4S3qq5ePCGQa5+SPA0v0gEMDb4SCjiFA==
-X-Google-Smtp-Source: ABdhPJyE+VDzINhH+OHGIlhlVsZXayMOjH2h0r35bdq+8u1JjiGZ2lW/vKZm7mHFkLI/9MdM67v1fk2iaj8TTFsLTJI=
-X-Received: by 2002:a1f:6ec4:: with SMTP id j187mr5865219vkc.15.1600277633123; 
- Wed, 16 Sep 2020 10:33:53 -0700 (PDT)
+ bh=IcIt6h02qzApmrr/8N1I1DMxWP6A9FljKeLWzTiB+Z0=;
+ b=k77u/gaQcFgxEipllIZjwD6G86xIhyGZXNhh1z8eBNEXSY4gE0B200aGqACxqe8vlt
+ 38XKD8P8UBprEEW3CN18/y+yvV34z7up13wAq8P39PWtQMpCgA3MOdfSu7Tq+4S7nfRO
+ jKBJurMUbOkFJrljVjiWWPVExN3AF+E3R8q3Z8JueWi+NuS8NzDOE8eOt5/i2K7X+dDn
+ NaM128AQfYofSnkSKy/0Hl3etQqqUSiPRd7dy3A6RK+1Dy5znZosJVrUAn1KuKFKPh7a
+ baw/J8EJR82jUhARYAbFD+NonNImfFUwkji36O78DPZoxZ2s1it3FwB9M3RScwhGP0fR
+ ut3g==
+X-Gm-Message-State: AOAM533P3lJZw87bOkvzbxqkDWSOsNbnJTrDCgoysvgFqrOFvu1GQZAb
+ gps4AdLFB++SqKZOpTheaVcWLqXDj2Jo3M+GPjq0dbKXIcpVGA==
+X-Google-Smtp-Source: ABdhPJzzjIiueXJEXxNvU5gge+CVnqDfE9PWbHUskA6iuMo2dYzXM64S2JeB7SDrZsDEKxD2b0ACVhCIN0Kos/wWHGY=
+X-Received: by 2002:a67:e3d4:: with SMTP id k20mr5740607vsm.60.1600278071791; 
+ Wed, 16 Sep 2020 10:41:11 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200916094607.409-1-chris@chris-wilson.co.uk>
- <20200916094607.409-2-chris@chris-wilson.co.uk>
-In-Reply-To: <20200916094607.409-2-chris@chris-wilson.co.uk>
+ <20200916094607.409-3-chris@chris-wilson.co.uk>
+In-Reply-To: <20200916094607.409-3-chris@chris-wilson.co.uk>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 16 Sep 2020 18:33:27 +0100
-Message-ID: <CAM0jSHMb4b3-maNZO5aKAc8ORXHebScK-9fwHemnKzhkyPryGg@mail.gmail.com>
+Date: Wed, 16 Sep 2020 18:40:45 +0100
+Message-ID: <CAM0jSHMdcGgtTD1DWVxoi2zG8_rLEmn51MvvMmcO8-OGKV9Sfg@mail.gmail.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/selftests: Finish pending mock
- requests on cancellation.
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Retire cancelled requests
+ on unload
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,8 +70,11 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 16 Sep 2020 at 10:46, Chris Wilson <chris@chris-wilson.co.uk> wrote:
 >
-> Flush all the pending requests from the mock engine when they are
-> cancelled.
+> If we manage to hit the intel_gt_set_wedged_on_fini() while active, i.e.
+> module unload during a stress test, we may cancel the requests but not
+> clean up. This leads to a slow module unload as we wait for something or
+> other to trigger the retirement flushing. Instead if we explicitly
+> cancel then cleanup on an active unload, it should be instant.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
