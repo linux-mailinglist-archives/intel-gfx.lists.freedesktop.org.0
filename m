@@ -2,36 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E5426C328
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 15:13:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C98426C33E
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 15:28:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD1E56E9F5;
-	Wed, 16 Sep 2020 13:13:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED156EA27;
+	Wed, 16 Sep 2020 13:28:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA5A66E9F5;
- Wed, 16 Sep 2020 13:12:59 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id AB2DDAC85;
- Wed, 16 Sep 2020 13:13:13 +0000 (UTC)
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>
-References: <20200914112521.1327-1-tzimmermann@suse.de>
- <20200916093756.GC438822@phenom.ffwll.local>
- <0378c326-28c6-371e-45d2-8b81ccbda84f@suse.de>
- <20200916122405.GQ438822@phenom.ffwll.local>
- <53743f37-4142-c076-296f-bfcba0840121@amd.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <e5bc20e5-b2ce-27f1-58eb-67512354db7b@suse.de>
-Date: Wed, 16 Sep 2020 15:12:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D85486EA19;
+ Wed, 16 Sep 2020 13:28:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C429EA008A;
+ Wed, 16 Sep 2020 13:28:09 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <53743f37-4142-c076-296f-bfcba0840121@amd.com>
-Subject: Re: [Intel-gfx] [PATCH 0/3] dma-buf: Flag vmap'ed memory as system
- or I/O memory
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 16 Sep 2020 13:28:09 -0000
+Message-ID: <160026288974.19374.2184743027282735546@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200916094219.3878-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200916094219.3878-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915/gem=3A_Hold_request_refere?=
+ =?utf-8?q?nce_for_canceling_an_active_context?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,298 +39,299 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, mark.cave-ayland@ilande.co.uk,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk, kraxel@redhat.com,
- sparclinux@vger.kernel.org, sam@ravnborg.org, m.szyprowski@samsung.com,
- jonathanh@nvidia.com, matthew.auld@intel.com, linux+etnaviv@armlinux.org.uk,
- linux-media@vger.kernel.org, pawel@osciak.com, intel-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- thomas.hellstrom@intel.com, linux-tegra@vger.kernel.org, mchehab@kernel.org,
- tfiga@chromium.org, kyungmin.park@samsung.com, davem@davemloft.net
-Content-Type: multipart/mixed; boundary="===============1861156585=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0894355257=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1861156585==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="0g7aTSPvgSEtomdsbihQVgsVseU9ErIOA"
+--===============0894355257==
+Content-Type: multipart/alternative;
+ boundary="===============7103497681582476010=="
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---0g7aTSPvgSEtomdsbihQVgsVseU9ErIOA
-Content-Type: multipart/mixed; boundary="4dKgBnEqtU7ClYPh4sxp2EbLPUNEl4i1i";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Cc: airlied@linux.ie, mark.cave-ayland@ilande.co.uk,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- thierry.reding@gmail.com, kraxel@redhat.com, sparclinux@vger.kernel.org,
- sam@ravnborg.org, m.szyprowski@samsung.com, jonathanh@nvidia.com,
- matthew.auld@intel.com, linux+etnaviv@armlinux.org.uk,
- linux-media@vger.kernel.org, pawel@osciak.com,
- intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, thomas.hellstrom@intel.com,
- rodrigo.vivi@intel.com, linux-tegra@vger.kernel.org, mchehab@kernel.org,
- tfiga@chromium.org, kyungmin.park@samsung.com, davem@davemloft.net
-Message-ID: <e5bc20e5-b2ce-27f1-58eb-67512354db7b@suse.de>
-Subject: Re: [PATCH 0/3] dma-buf: Flag vmap'ed memory as system or I/O memory
-References: <20200914112521.1327-1-tzimmermann@suse.de>
- <20200916093756.GC438822@phenom.ffwll.local>
- <0378c326-28c6-371e-45d2-8b81ccbda84f@suse.de>
- <20200916122405.GQ438822@phenom.ffwll.local>
- <53743f37-4142-c076-296f-bfcba0840121@amd.com>
-In-Reply-To: <53743f37-4142-c076-296f-bfcba0840121@amd.com>
+--===============7103497681582476010==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---4dKgBnEqtU7ClYPh4sxp2EbLPUNEl4i1i
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi
+Series: series starting with [1/4] drm/i915/gem: Hold request reference for canceling an active context
+URL   : https://patchwork.freedesktop.org/series/81728/
+State : success
 
-Am 16.09.20 um 14:59 schrieb Christian K=C3=B6nig:
-> Am 16.09.20 um 14:24 schrieb Daniel Vetter:
->> On Wed, Sep 16, 2020 at 12:48:20PM +0200, Thomas Zimmermann wrote:
->>> Hi
->>>
->>> Am 16.09.20 um 11:37 schrieb Daniel Vetter:
->>>> On Mon, Sep 14, 2020 at 01:25:18PM +0200, Thomas Zimmermann wrote:
->>>>> Dma-buf provides vmap() and vunmap() for retrieving and releasing
->>>>> mappings
->>>>> of dma-buf memory in kernel address space. The functions operate
->>>>> with plain
->>>>> addresses and the assumption is that the memory can be accessed
->>>>> with load
->>>>> and store operations. This is not the case on some architectures
->>>>> (e.g.,
->>>>> sparc64) where I/O memory can only be accessed with dedicated
->>>>> instructions.
->>>>>
->>>>> This patchset introduces struct dma_buf_map, which contains the
->>>>> address of
->>>>> a buffer and a flag that tells whether system- or I/O-memory
->>>>> instructions
->>>>> are required.
->>>>>
->>>>> Some background: updating the DRM framebuffer console on sparc64
->>>>> makes the
->>>>> kernel panic. This is because the framebuffer memory cannot be
->>>>> accessed with
->>>>> system-memory instructions. We currently employ a workaround in DRM=
- to
->>>>> address this specific problem. [1]
->>>>>
->>>>> To resolve the problem, we'd like to address it at the most common
->>>>> point,
->>>>> which is the dma-buf framework. The dma-buf mapping ideally knows
->>>>> if I/O
->>>>> instructions are required and exports this information to it's
->>>>> users. The
->>>>> new structure struct dma_buf_map stores the buffer address and a
->>>>> flag that
->>>>> signals I/O memory. Affected users of the buffer (e.g., drivers,
->>>>> frameworks)
->>>>> can then access the memory accordingly.
->>>>>
->>>>> This patchset only introduces struct dma_buf_map, and updates
->>>>> struct dma_buf
->>>>> and it's interfaces. Further patches can update dma-buf users. For
->>>>> example,
->>>>> there's a prototype patchset for DRM that fixes the framebuffer
->>>>> problem. [2]
->>>>>
->>>>> Further work: TTM, one of DRM's memory managers, already exports an=
+== Summary ==
 
->>>>> is_iomem flag of its own. It could later be switched over to
->>>>> exporting struct
->>>>> dma_buf_map, thus simplifying some code. Several DRM drivers expect=
+CI Bug Log - changes from CI_DRM_9019 -> Patchwork_18510
+====================================================
 
->>>>> their
->>>>> fbdev console to operate on I/O memory. These could possibly be
->>>>> switched over
->>>>> to the generic fbdev emulation, as soon as the generic code uses
->>>>> struct
->>>>> dma_buf_map.
->>>>>
->>>>> [1]
->>>>> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
-Flore.kernel.org%2Fdri-devel%2F20200725191012.GA434957%40ravnborg.org%2F&=
-amp;data=3D02%7C01%7Cchristian.koenig%40amd.com%7C04e3cc3e03ae40f1fa0f08d=
-85a3b6a68%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637358558524732385=
-&amp;sdata=3DwTmFuB95GhKUU%2F2Q91V0%2BtzAu4%2BEe3VBUcriBy3jx2g%3D&amp;res=
-erved=3D0
->>>>>
->>>>> [2]
->>>>> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
-Flore.kernel.org%2Fdri-devel%2F20200806085239.4606-1-tzimmermann%40suse.d=
-e%2F&amp;data=3D02%7C01%7Cchristian.koenig%40amd.com%7C04e3cc3e03ae40f1fa=
-0f08d85a3b6a68%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6373585585247=
-32385&amp;sdata=3DL4rBHmegO63b%2FiTQdTyH158KNxAZwSuJCQOaFszo5L0%3D&amp;re=
-served=3D0
->>>>>
->>>> lgtm, imo ready to convert the follow-up patches over to this. But I=
+Summary
+-------
 
->>>> think
->>>> would be good to get at least some ack from the ttm side for the
->>>> overall
->>>> plan.
->>> Yup, it would be nice if TTM could had out these types automatically.=
+  **SUCCESS**
 
->>> Then all TTM-based drivers would automatically support it.
->>>
->>>> Also, I think we should put all the various helpers (writel/readl,
->>>> memset,
->>>> memcpy, whatever else) into the dma-buf-map.h helper, so that most c=
-ode
->>>> using this can just treat it as an abstract pointer type and never l=
-ook
->>>> underneath it.
->>> We have some framebuffer helpers that rely on pointer arithmetic, so
->>> we'd need that too. No big deal wrt code, but I was worried about the=
+  No regressions found.
 
->>> overhead. If a loop goes over framebuffer memory, there's an if/else
->>> branch for each access to the memory buffer.
->> If we make all the helpers static inline, then the compiler should be
->> able
->> to see that dma_buf_map.is_iomem is always the same, and produced real=
-ly
->> optimized code for it by pulling that check out from all the loops.
->>
->> So should only result in somewhat verbose code of having to call
->> dma_buf_map pointer arthimetic helpers, but not in bad generated code.=
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/index.html
 
->> Still worth double-checking I think, since e.g. on x86 the generated c=
-ode
->> should be the same for both cases (but maybe the compiler doesn't see
->> through the inline asm to realize that, so we might end up with 2
->> copies).
->=20
-> Can we have that even independent of DMA-buf? We have essentially the
-> same problem in TTM and the code around that is a complete mess if you
-> ask me.
+Known issues
+------------
 
-I already put this into dma-buf because it's at the intersection of all
-the affected modules. For non-dma-buf pointers (say in framebuffer
-damage handling), the idea is to initialize struct dma_buf_map by hand
-and use this.
+  Here are the changes found in Patchwork_18510 that come from known issues:
 
-Where would you want to put it?
+### IGT changes ###
 
-Best regards
-Thomas
+#### Issues hit ####
 
->=20
-> Christian.
->=20
->> -Daniel
->>
->>
->>> Best regards
->>> Thomas
->>>
->>>> -Daniel
->>>>
->>>>> Thomas Zimmermann (3):
->>>>> =C2=A0=C2=A0 dma-buf: Add struct dma-buf-map for storing struct
->>>>> dma_buf.vaddr_ptr
->>>>> =C2=A0=C2=A0 dma-buf: Use struct dma_buf_map in dma_buf_vmap() inte=
-rfaces
->>>>> =C2=A0=C2=A0 dma-buf: Use struct dma_buf_map in dma_buf_vunmap() in=
-terfaces
->>>>>
->>>>> =C2=A0 Documentation/driver-api/dma-buf.rst=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +
->>>>> =C2=A0 drivers/dma-buf/dma-buf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 40 +++---
->>>>> =C2=A0 drivers/gpu/drm/drm_gem_cma_helper.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 16 ++-
->>>>> =C2=A0 drivers/gpu/drm/drm_gem_shmem_helper.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 17 ++-
->>>>> =C2=A0 drivers/gpu/drm/drm_prime.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 14 +-
->>>>> =C2=A0 drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c=C2=A0=C2=A0 |=C2=
-=A0 13 +-
->>>>> =C2=A0 drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c=C2=A0=C2=A0=C2=A0=
- |=C2=A0 13 +-
->>>>> =C2=A0 .../drm/i915/gem/selftests/i915_gem_dmabuf.c=C2=A0 |=C2=A0 1=
-8 ++-
->>>>> =C2=A0 drivers/gpu/drm/tegra/gem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 23 ++--
->>>>> =C2=A0 .../common/videobuf2/videobuf2-dma-contig.c=C2=A0=C2=A0 |=C2=
-=A0 17 ++-
->>>>> =C2=A0 .../media/common/videobuf2/videobuf2-dma-sg.c |=C2=A0 19 ++-=
+  * igt@gem_render_tiled_blits@basic:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
 
->>>>> =C2=A0 .../common/videobuf2/videobuf2-vmalloc.c=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 21 ++-
->>>>> =C2=A0 include/drm/drm_prime.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +-
->>>>> =C2=A0 include/linux/dma-buf-map.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- | 126
->>>>> ++++++++++++++++++
->>>>> =C2=A0 include/linux/dma-buf.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 11 +-
->>>>> =C2=A0 15 files changed, 274 insertions(+), 82 deletions(-)
->>>>> =C2=A0 create mode 100644 include/linux/dma-buf-map.h
->>>>>
->>>>> --=20
->>>>> 2.28.0
->>>>>
->>> --=C2=A0
->>> Thomas Zimmermann
->>> Graphics Driver Developer
->>> SUSE Software Solutions Germany GmbH
->>> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
->>> (HRB 36809, AG N=C3=BCrnberg)
->>> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
->>>
->>
->>
->>
->=20
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-n3050:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+  * igt@vgem_basic@unload:
+    - fi-kbl-x1275:       [PASS][5] -> [DMESG-WARN][6] ([i915#62] / [i915#92] / [i915#95])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-kbl-x1275/igt@vgem_basic@unload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-kbl-x1275/igt@vgem_basic@unload.html
+
+  
+#### Possible fixes ####
+
+  * {igt@core_hotunplug@unbind-rebind}:
+    - fi-kbl-x1275:       [DMESG-WARN][7] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-kbl-x1275/igt@core_hotunplug@unbind-rebind.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-kbl-x1275/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_module_load@reload:
+    - fi-byt-j1900:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-byt-j1900/igt@i915_module_load@reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-byt-j1900/igt@i915_module_load@reload.html
+    - fi-apl-guc:         [DMESG-WARN][11] ([i915#1635] / [i915#1982]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-apl-guc/igt@i915_module_load@reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-apl-guc/igt@i915_module_load@reload.html
+
+  * igt@kms_busy@basic@modeset:
+    - fi-tgl-y:           [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +2 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-tgl-y/igt@kms_busy@basic@modeset.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-tgl-y/igt@kms_busy@basic@modeset.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  * igt@vgem_basic@setversion:
+    - fi-tgl-y:           [DMESG-WARN][17] ([i915#402]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-tgl-y/igt@vgem_basic@setversion.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-tgl-y/igt@vgem_basic@setversion.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [DMESG-WARN][19] ([i915#2411]) -> [DMESG-WARN][20] ([i915#2411] / [i915#402])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +4 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92]) -> [DMESG-WARN][24] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
---4dKgBnEqtU7ClYPh4sxp2EbLPUNEl4i1i--
+Participating hosts (45 -> 39)
+------------------------------
 
---0g7aTSPvgSEtomdsbihQVgsVseU9ErIOA
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+  Additional (1): fi-skl-6700k2 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
------BEGIN PGP SIGNATURE-----
 
-iQFIBAEBCAAyFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl9iD1YUHHR6aW1tZXJt
-YW5uQHN1c2UuZGUACgkQaA3BHVMLeiPqdAf/SAg5vR+VFpziVn7zNPHLhG1cH/8g
-0fJB6+sQmlXaZ0yOCGkAhFTiau5wI1x4qwUzU1FTvmWXbYfEjj+i9D02OK4PV0rI
-mKYUY+HDsTwugi1rnu3aBIfTyLd4YaWJfruXiZQ5GWn38rOQ17a2xb4xr7+ZCBqd
-cs+jX+Vy2s3H163IH3b3fBgSbo9PCQXEZZTgD1QH2sbzmJpiH7MBMvqM0gJXS/wQ
-a1b8bGftkjhX1OE0I664OJplM2VOFn8UCZ9Tw0oeXk8pUWWtZN7T6U6pKe4esAo9
-yZ6/ezT5ex0FsFFonJJ2afOXQIJk7NiaXzeOg8HKj53cO4Df6G2fZVcWoQ==
-=Q1x6
------END PGP SIGNATURE-----
+Build changes
+-------------
 
---0g7aTSPvgSEtomdsbihQVgsVseU9ErIOA--
+  * Linux: CI_DRM_9019 -> Patchwork_18510
 
---===============1861156585==
+  CI-20190529: 20190529
+  CI_DRM_9019: 038c228475ce10a6f9cc4052250a1315f3c7c627 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5786: 222051026b978ebbc0dc58db62d7a1f29728f95f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18510: 5d8ace4dbe64e8d24bb034c6801f5efed78b3994 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5d8ace4dbe64 drm/i915/gem: Always test execution status on closing the context
+532d48821928 drm/i915/gt: Always send a pulse down the engine after disabling heartbeat
+8066b7124e28 drm/i915: Cancel outstanding work after disabling heartbeats on an engine
+8e90943e9601 drm/i915/gem: Hold request reference for canceling an active context
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/index.html
+
+--===============7103497681582476010==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915/gem: Hold request reference for canceling an active context</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81728/">https://patchwork.freedesktop.org/series/81728/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9019 -&gt; Patchwork_18510</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18510 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@unload:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-kbl-x1275/igt@vgem_basic@unload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-kbl-x1275/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>{igt@core_hotunplug@unbind-rebind}:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-kbl-x1275/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-kbl-x1275/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>
+<p>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a> +1 similar issue</p>
+</li>
+<li>
+<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-apl-guc/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-apl-guc/igt@i915_module_load@reload.html">PASS</a> +1 similar issue</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-tgl-y/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-tgl-y/igt@kms_busy@basic@modeset.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@setversion:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-tgl-y/igt@vgem_basic@setversion.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-tgl-y/igt@vgem_basic@setversion.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9019/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18510/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 39)</h2>
+<p>Additional (1): fi-skl-6700k2 <br />
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9019 -&gt; Patchwork_18510</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9019: 038c228475ce10a6f9cc4052250a1315f3c7c627 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5786: 222051026b978ebbc0dc58db62d7a1f29728f95f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18510: 5d8ace4dbe64e8d24bb034c6801f5efed78b3994 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>5d8ace4dbe64 drm/i915/gem: Always test execution status on closing the context<br />
+532d48821928 drm/i915/gt: Always send a pulse down the engine after disabling heartbeat<br />
+8066b7124e28 drm/i915: Cancel outstanding work after disabling heartbeats on an engine<br />
+8e90943e9601 drm/i915/gem: Hold request reference for canceling an active context</p>
+
+</body>
+</html>
+
+--===============7103497681582476010==--
+
+--===============0894355257==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -346,4 +342,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1861156585==--
+--===============0894355257==--
