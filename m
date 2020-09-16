@@ -2,43 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AF7927029A
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 18:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBCDF27031A
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 19:19:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A6B6ED34;
-	Fri, 18 Sep 2020 16:52:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29B146ED41;
+	Fri, 18 Sep 2020 17:19:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 930C46ED34;
- Fri, 18 Sep 2020 16:52:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-Type:Content-ID:Content-Description;
- bh=ati4cCc/sV8xA1rhaL7mobTLBs/yjowuEdT0zBqxhTM=; b=N422nbjUcx9LGd8lzVreplkrBq
- 1Uy7468JP0ytoKBh7hc+yPChNtWQkchJLqb4L5OpgpCQB88XUwPY8EZfTPigAesPs31hlZnYVBsUL
- PVJdMtuBjcffggpdineuTIamCIF0kFTWP2qOKy7XCs4g9b6foomU+ImqepY5UtTdPAOifHC88X59A
- hVsin8yOZMZC2ypKQIGBQ4uRWA6hw3r3yAXXHcmraS1HmLKByxzRvkAtSZ4IuKcZsirupocCKOSZm
- rX8EsrodBwAlmZRcfCmXFiYyYXiUR1rU+zRodZTMHlDaWSgdyUh15Dkg8tzu4SqKJepWKv1pTNIMF
- ohefLMcA==;
-Received: from 089144214092.atnat0023.highway.a1.net ([89.144.214.92]
- helo=localhost)
- by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kJJcn-0007vr-Hg; Fri, 18 Sep 2020 16:52:41 +0000
-From: Christoph Hellwig <hch@lst.de>
-To: Andrew Morton <akpm@linux-foundation.org>
-Date: Fri, 18 Sep 2020 18:37:24 +0200
-Message-Id: <20200918163724.2511-7-hch@lst.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200918163724.2511-1-hch@lst.de>
-References: <20200918163724.2511-1-hch@lst.de>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 113906E0D6;
+ Wed, 16 Sep 2020 22:39:52 +0000 (UTC)
+Received: from paulmck-ThinkPad-P72.home (unknown [50.45.173.55])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9997D2080C;
+ Wed, 16 Sep 2020 22:39:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1600295991;
+ bh=RCUp2GsaUjP3KjD3p3qyvmzKntp/WbVM0ouPcgzRRDU=;
+ h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
+ b=fKFN6BcMv+15//IDmLi2f2NV7C8b6ABIsMYin7ITdJ80ZX8PLb7gIP4LBXom3WNzq
+ szBDRTf0ftJFsk5mVlvgZQXvg2eXlz+UKDOGlM2y0ArIF5ljHuARigv2cYf8VCFi3E
+ 2UWWYXuOPaiwDqHd9OF74mk5aMOanoaxnWNoKiHg=
+Received: by paulmck-ThinkPad-P72.home (Postfix, from userid 1000)
+ id 5954A3522BA0; Wed, 16 Sep 2020 15:39:51 -0700 (PDT)
+Date: Wed, 16 Sep 2020 15:39:51 -0700
+From: "Paul E. McKenney" <paulmck@kernel.org>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20200916223951.GG29330@paulmck-ThinkPad-P72>
+References: <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
+ <871rj4owfn.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
+ <87bli75t7v.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wht7kAeyR5xEW2ORj7m0hibVxZ3t+2ie8vNHLQfdbN2_g@mail.gmail.com>
+ <CAKMK7uHAk9-Vy2cof0ws=DrcD52GHiCDiyHbjLd19CgpBU2rKQ@mail.gmail.com>
+ <20200916152956.GV29330@paulmck-ThinkPad-P72>
+ <CAKMK7uGFyfhEyt=jmdk2jDO-hq0_Pf0ck+cKSELHjr2U3rPuYQ@mail.gmail.com>
+ <20200916205840.GD29330@paulmck-ThinkPad-P72>
+ <CAKMK7uHL2dMv80b8uBXr=BqHD2TQeODQQM1MGYhAfCYbX7sLrA@mail.gmail.com>
 MIME-Version: 1.0
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
-Subject: [Intel-gfx] [PATCH 6/6] x86/xen: open code alloc_vm_area in
- arch_gnttab_valloc
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uHL2dMv80b8uBXr=BqHD2TQeODQQM1MGYhAfCYbX7sLrA@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Mailman-Approved-At: Fri, 18 Sep 2020 17:19:24 +0000
+Subject: Re: [Intel-gfx] [patch 00/13] preempt: Make preempt count
+ unconditional
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,174 +59,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>, linux-mm@kvack.org,
- Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- x86@kernel.org, linux-kernel@vger.kernel.org, Minchan Kim <minchan@kernel.org>,
- dri-devel@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>
+Reply-To: paulmck@kernel.org
+Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Lai Jiangshan <jiangshanlai@gmail.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Ben Segall <bsegall@google.com>,
+ Linux-MM <linux-mm@kvack.org>,
+ "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
+ linux-hexagon@vger.kernel.org, Will Deacon <will@kernel.org>,
+ Ingo Molnar <mingo@kernel.org>, Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+ linux-arch <linux-arch@vger.kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>, Brian Cain <bcain@codeaurora.org>,
+ Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
+ Ard Biesheuvel <ardb@kernel.org>, David Airlie <airlied@linux.ie>,
+ Ingo Molnar <mingo@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Mel Gorman <mgorman@suse.de>, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Matt Turner <mattst88@gmail.com>,
+ Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
+ Shuah Khan <shuah@kernel.org>, Jeff Dike <jdike@addtoit.com>,
+ linux-um <linux-um@lists.infradead.org>, Josh Triplett <josh@joshtriplett.org>,
+ Steven Rostedt <rostedt@goodmis.org>, rcu@vger.kernel.org,
+ linux-m68k <linux-m68k@lists.linux-m68k.org>,
+ Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
+ Max Filippov <jcmvbkbc@gmail.com>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ LKML <linux-kernel@vger.kernel.org>, alpha <linux-alpha@vger.kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Open code alloc_vm_area in the last remaining caller.
+On Wed, Sep 16, 2020 at 11:43:02PM +0200, Daniel Vetter wrote:
+> On Wed, Sep 16, 2020 at 10:58 PM Paul E. McKenney <paulmck@kernel.org> wrote:
+> >
+> > On Wed, Sep 16, 2020 at 10:29:06PM +0200, Daniel Vetter wrote:
+> > > On Wed, Sep 16, 2020 at 5:29 PM Paul E. McKenney <paulmck@kernel.org> wrote:
+> > > >
+> > > > On Wed, Sep 16, 2020 at 09:37:17AM +0200, Daniel Vetter wrote:
+> > > > > On Tue, Sep 15, 2020 at 7:35 PM Linus Torvalds
+> > > > > <torvalds@linux-foundation.org> wrote:
+> > > > > >
+> > > > > > On Tue, Sep 15, 2020 at 1:39 AM Thomas Gleixner <tglx@linutronix.de> wrote:
+> > > > > > >
+> > > > > > > OTOH, having a working 'preemptible()' or maybe better named
+> > > > > > > 'can_schedule()' check makes tons of sense to make decisions about
+> > > > > > > allocation modes or other things.
+> > > > > >
+> > > > > > No. I think that those kinds of decisions about actual behavior are
+> > > > > > always simply fundamentally wrong.
+> > > > > >
+> > > > > > Note that this is very different from having warnings about invalid
+> > > > > > use. THAT is correct. It may not warn in all configurations, but that
+> > > > > > doesn't matter: what matters is that it warns in common enough
+> > > > > > configurations that developers will catch it.
+> > > > > >
+> > > > > > So having a warning in "might_sleep()" that doesn't always trigger,
+> > > > > > because you have a limited configuration that can't even detect the
+> > > > > > situation, that's fine and dandy and intentional.
+> > > > > >
+> > > > > > But having code like
+> > > > > >
+> > > > > >        if (can_schedule())
+> > > > > >            .. do something different ..
+> > > > > >
+> > > > > > is fundamentally complete and utter garbage.
+> > > > > >
+> > > > > > It's one thing if you test for "am I in hardware interrupt context".
+> > > > > > Those tests aren't great either, but at least they make sense.
+> > > > > >
+> > > > > > But a driver - or some library routine - making a difference based on
+> > > > > > some nebulous "can I schedule" is fundamentally and basically WRONG.
+> > > > > >
+> > > > > > If some code changes behavior, it needs to be explicit to the *caller*
+> > > > > > of that code.
+> > > > > >
+> > > > > > So this is why GFP_ATOMIC is fine, but "if (!can_schedule())
+> > > > > > do_something_atomic()" is pure shite.
+> > > > > >
+> > > > > > And I am not IN THE LEAST interested in trying to help people doing
+> > > > > > pure shite. We need to fix them. Like the crypto code is getting
+> > > > > > fixed.
+> > > > >
+> > > > > Just figured I'll throw my +1 in from reading too many (gpu) drivers.
+> > > > > Code that tries to cleverly adjust its behaviour depending upon the
+> > > > > context it's running in is harder to understand and blows up in more
+> > > > > interesting ways. We still have drm_can_sleep() and it's mostly just
+> > > > > used for debug code, and I've largely ended up just deleting
+> > > > > everything that used it because when you're driver is blowing up the
+> > > > > last thing you want is to realize your debug code and output can't be
+> > > > > relied upon. Or worse, that the only Oops you have is the one in the
+> > > > > debug code, because the real one scrolled away - the original idea
+> > > > > behind drm_can_sleep was to make all the modeset code work
+> > > > > automagically both in normal ioctl/kworker context and in the panic
+> > > > > handlers or kgdb callbacks. Wishful thinking at best.
+> > > > >
+> > > > > Also at least for me that extends to everything, e.g. I much prefer
+> > > > > explicit spin_lock and spin_lock_irq vs magic spin_lock_irqsave for
+> > > > > locks shared with interrupt handlers, since the former two gives me
+> > > > > clear information from which contexts such function can be called.
+> > > > > Other end is the memalloc_no*_save/restore functions, where I recently
+> > > > > made a real big fool of myself because I didn't realize how much that
+> > > > > impacts everything that's run within - suddenly "GFP_KERNEL for small
+> > > > > stuff never fails" is wrong everywhere.
+> > > > >
+> > > > > It's all great for debugging and sanity checks (and we run with all
+> > > > > that stuff enabled in our CI), but really semantic changes depending
+> > > > > upon magic context checks freak my out :-)
+> > > >
+> > > > All fair, but some of us need to write code that must handle being
+> > > > invoked from a wide variety of contexts.  Now perhaps you like the idea of
+> > > > call_rcu() for schedulable contexts, call_rcu_nosched() when preemption
+> > > > is disabled, call_rcu_irqs_are_disabled() when interrupts are disabled,
+> > > > call_rcu_raw_atomic() from contexts where (for example) raw spinlocks
+> > > > are held, and so on.  However, from what I can see, most people instead
+> > > > consistently prefer that the RCU API instead be consolidated.
+> > > >
+> > > > Some in-flight cache-efficiency work for kvfree_rcu() and call_rcu()
+> > > > needs to be able to allocate memory occasionally.  It can do that when
+> > > > invoked from some contexts, but not when invoked from others.  Right now,
+> > > > in !PREEMPT kernels, it cannot tell, and must either do things to the
+> > > > memory allocators that some of the MM hate or must unnecessarily invoke
+> > > > workqueues.  Thomas's patches would allow the code to just allocate in
+> > > > the common case when these primitives are invoked from contexts where
+> > > > allocation is permitted.
+> > > >
+> > > > If we want to restrict access to the can_schedule() or whatever primitive,
+> > > > fine and good.  We can add a check to checkpatch.pl, for example.  Maybe
+> > > > we can go back to the old brlock approach of requiring certain people's
+> > > > review for each addition to the kernel.
+> > > >
+> > > > But there really are use cases that it would greatly help.
+> > >
+> > > We can deadlock in random fun places if random stuff we're calling
+> > > suddenly starts allocating. Sometimes. Maybe once in a blue moon, to
+> > > make it extra fun to reproduce. Maybe most driver subsystems are less
+> > > brittle, but gpu drivers definitely need to know about the details for
+> > > exactly this example. And yes gpu drivers use rcu for freeing
+> > > dma_fence structures, and that tends to happen in code that we only
+> > > recently figured out should really not allocate memory.
+> > >
+> > > I think minimally you need to throw in an unconditional
+> > > fs_reclaim_acquire();fs_reclaim_release(); so that everyone who runs
+> > > with full debugging knows what might happen. It's kinda like
+> > > might_sleep, but a lot more specific. might_sleep() alone is not
+> > > enough, because in the specific code paths I'm thinking of (and
+> > > created special lockdep annotations for just recently) sleeping is
+> > > allowed, but any memory allocations with GFP_RECLAIM set are no-go.
+> >
+> > Completely agreed!  Any allocation on any free path must be handled
+> > -extremely- carefully.  To that end...
+> >
+> > First, there is always a fallback in case the allocation fails.  Which
+> > might have performance or corner-case robustness issues, but which will
+> > at least allow forward progress.  Second, we consulted with a number of
+> > MM experts to arrive at appropriate GFP_* flags (and their patience is
+> > greatly appreciated).  Third, the paths that can allocate will do so about
+> > one time of 500, so any issues should be spotted sooner rather than later.
+> >
+> > So you are quite right to be concerned, but I believe we will be doing the
+> > right things.  And based on his previous track record, I am also quite
+> > certain that Mr. Murphy will be on hand to provide me any additional
+> > education that I might require.
+> >
+> > Finally, I have noted down your point about fs_reclaim_acquire() and
+> > fs_reclaim_release().  Whether or not they prove to be needed, I do
+> > appreciate your calling them to my attention.
+> 
+> I just realized that since these dma_fence structs are refcounted and
+> userspace can hold references (directly, it can pass them around
+> behind file descriptors) we might never hit such a path until slightly
+> unusual or evil userspace does something interesting. Do you have
+> links to those patches? Some googling didn't turn up anything. I can
+> then figure out whether it's better to risk not spotting issues with
+> call_rcu vs slapping a memalloc_noio_save/restore around all these
+> critical section which force-degrades any allocation to GFP_ATOMIC at
+> most, but has the risk that we run into code that assumes "GFP_KERNEL
+> never fails for small stuff" and has a decidedly less tested fallback
+> path than rcu code.
 
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- arch/x86/xen/grant-table.c | 27 +++++++++++++++------
- include/linux/vmalloc.h    |  5 +---
- mm/nommu.c                 |  7 ------
- mm/vmalloc.c               | 48 --------------------------------------
- 4 files changed, 21 insertions(+), 66 deletions(-)
+Here is the previous early draft version, which will change considerably
+for the next version:
 
-diff --git a/arch/x86/xen/grant-table.c b/arch/x86/xen/grant-table.c
-index 4988e19598c8a5..ccb377c07c651f 100644
---- a/arch/x86/xen/grant-table.c
-+++ b/arch/x86/xen/grant-table.c
-@@ -90,19 +90,32 @@ void arch_gnttab_unmap(void *shared, unsigned long nr_gframes)
- 	}
- }
- 
-+static int gnttab_apply(pte_t *pte, unsigned long addr, void *data)
-+{
-+	pte_t ***p = data;
-+
-+	**p = pte;
-+	(*p)++;
-+	return 0;
-+}
-+
- static int arch_gnttab_valloc(struct gnttab_vm_area *area, unsigned nr_frames)
- {
- 	area->ptes = kmalloc_array(nr_frames, sizeof(*area->ptes), GFP_KERNEL);
- 	if (area->ptes == NULL)
- 		return -ENOMEM;
--
--	area->area = alloc_vm_area(PAGE_SIZE * nr_frames, area->ptes);
--	if (area->area == NULL) {
--		kfree(area->ptes);
--		return -ENOMEM;
--	}
--
-+	area->area = get_vm_area(PAGE_SIZE * nr_frames, VM_IOREMAP);
-+	if (!area->area)
-+		goto out_free_ptes;
-+	if (apply_to_page_range(&init_mm, (unsigned long)area->area->addr,
-+			PAGE_SIZE * nr_frames, gnttab_apply, &area->ptes))
-+		goto out_free_vm_area;
- 	return 0;
-+out_free_vm_area:
-+	free_vm_area(area->area);
-+out_free_ptes:
-+	kfree(area->ptes);
-+	return -ENOMEM;
- }
- 
- static void arch_gnttab_vfree(struct gnttab_vm_area *area)
-diff --git a/include/linux/vmalloc.h b/include/linux/vmalloc.h
-index 8ecd92a947ee0c..a1a4e2f8163504 100644
---- a/include/linux/vmalloc.h
-+++ b/include/linux/vmalloc.h
-@@ -168,6 +168,7 @@ extern struct vm_struct *__get_vm_area_caller(unsigned long size,
- 					unsigned long flags,
- 					unsigned long start, unsigned long end,
- 					const void *caller);
-+void free_vm_area(struct vm_struct *area);
- extern struct vm_struct *remove_vm_area(const void *addr);
- extern struct vm_struct *find_vm_area(const void *addr);
- 
-@@ -203,10 +204,6 @@ static inline void set_vm_flush_reset_perms(void *addr)
- }
- #endif
- 
--/* Allocate/destroy a 'vmalloc' VM area. */
--extern struct vm_struct *alloc_vm_area(size_t size, pte_t **ptes);
--extern void free_vm_area(struct vm_struct *area);
--
- /* for /dev/kmem */
- extern long vread(char *buf, char *addr, unsigned long count);
- extern long vwrite(char *buf, char *addr, unsigned long count);
-diff --git a/mm/nommu.c b/mm/nommu.c
-index 75a327149af127..9272f30e4c4726 100644
---- a/mm/nommu.c
-+++ b/mm/nommu.c
-@@ -354,13 +354,6 @@ void vm_unmap_aliases(void)
- }
- EXPORT_SYMBOL_GPL(vm_unmap_aliases);
- 
--struct vm_struct *alloc_vm_area(size_t size, pte_t **ptes)
--{
--	BUG();
--	return NULL;
--}
--EXPORT_SYMBOL_GPL(alloc_vm_area);
--
- void free_vm_area(struct vm_struct *area)
- {
- 	BUG();
-diff --git a/mm/vmalloc.c b/mm/vmalloc.c
-index 59f2afcf26c312..9f29147deca580 100644
---- a/mm/vmalloc.c
-+++ b/mm/vmalloc.c
-@@ -3077,54 +3077,6 @@ int remap_vmalloc_range(struct vm_area_struct *vma, void *addr,
- }
- EXPORT_SYMBOL(remap_vmalloc_range);
- 
--static int f(pte_t *pte, unsigned long addr, void *data)
--{
--	pte_t ***p = data;
--
--	if (p) {
--		*(*p) = pte;
--		(*p)++;
--	}
--	return 0;
--}
--
--/**
-- * alloc_vm_area - allocate a range of kernel address space
-- * @size:	   size of the area
-- * @ptes:	   returns the PTEs for the address space
-- *
-- * Returns:	NULL on failure, vm_struct on success
-- *
-- * This function reserves a range of kernel address space, and
-- * allocates pagetables to map that range.  No actual mappings
-- * are created.
-- *
-- * If @ptes is non-NULL, pointers to the PTEs (in init_mm)
-- * allocated for the VM area are returned.
-- */
--struct vm_struct *alloc_vm_area(size_t size, pte_t **ptes)
--{
--	struct vm_struct *area;
--
--	area = get_vm_area_caller(size, VM_IOREMAP,
--				__builtin_return_address(0));
--	if (area == NULL)
--		return NULL;
--
--	/*
--	 * This ensures that page tables are constructed for this region
--	 * of kernel virtual address space and mapped into init_mm.
--	 */
--	if (apply_to_page_range(&init_mm, (unsigned long)area->addr,
--				size, f, ptes ? &ptes : NULL)) {
--		free_vm_area(area);
--		return NULL;
--	}
--
--	return area;
--}
--EXPORT_SYMBOL_GPL(alloc_vm_area);
--
- void free_vm_area(struct vm_struct *area)
- {
- 	struct vm_struct *ret;
--- 
-2.28.0
+	lore.kernel.org/lkml/20200809204354.20137-1-urezki@gmail.com
 
+This does kvfree_rcu(), but we expect to handle call_rcu() similarly.
+
+The version in preparation will use workqueues to do the allocation in a
+known-safe environment and also use lockless access to certain portions
+of the allocator caches (as noted earlier, this last is not much loved
+by some of the MM guys).  Given Thomas's patch, we could with high
+probability allocate directly, perhaps even not needing memory-allocator
+modifications.
+
+Either way, kvfree_rcu(), and later call_rcu(), will avoid asking the
+allocator to do anything that the calling context prohibits.  So what
+types of bugs are you looking for?  Where reclaim calls back into the
+driver or some such?
+
+							Thanx, Paul
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
