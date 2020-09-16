@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB5B26C5A7
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 19:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5777B26C5B0
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 19:17:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 929FB6EA86;
-	Wed, 16 Sep 2020 17:16:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBAF66EA84;
+	Wed, 16 Sep 2020 17:17:02 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8FA86EA85
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE65F6EA83
  for <Intel-GFX@lists.freedesktop.org>; Wed, 16 Sep 2020 17:16:54 +0000 (UTC)
-IronPort-SDR: I/dU6wTj9DNR1mXSimqYRogx+fCTatmkfNZACXVctDty43Ro1WeSWu7tXJrvXAiBhcu1KaNMFx
- WBCKq62wZoYw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="139534260"
-X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="139534260"
+IronPort-SDR: 2u0nmhTNbI1Cs3AdCLcdakv6aJvhKhLg+CrI+NOKij4pYXToUsjg+cOaWOHZkWxtYThxtsjZ0+
+ 98Am+oE7xmVg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="139534262"
+X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="139534262"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Sep 2020 10:16:54 -0700
-IronPort-SDR: MiKpdHTb3OtrZKK/XBfKlACmVwX9ySYiqELHbNpU3q5KI2RUtxrxxV1khjb2wDRdTIsDYzWwcN
- 5vgzd0U0fFuQ==
+IronPort-SDR: XGoS+g0U2Yg15kqrT2KFrdNTeNjPLSogqClg4RJdXZeY3DBlobuOjQmHP5JYalZBhQdNNVCWGI
+ JKUgCDGBpQ3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="287259431"
+X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="287259436"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga007.fm.intel.com with ESMTP; 16 Sep 2020 10:16:53 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 16 Sep 2020 10:16:54 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Wed, 16 Sep 2020 10:16:42 -0700
-Message-Id: <20200916171653.2021483-2-John.C.Harrison@Intel.com>
+Date: Wed, 16 Sep 2020 10:16:43 -0700
+Message-Id: <20200916171653.2021483-3-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200916171653.2021483-1-John.C.Harrison@Intel.com>
 References: <20200916171653.2021483-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
-Subject: [Intel-gfx] [PATCH 01/12] drm/i915/guc: New GuC IDs based on engine
- class and instance
+Subject: [Intel-gfx] [PATCH 02/12] drm/i915/guc: Support logical engine
+ mapping table in ADS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,84 +51,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Oscar Mateo <oscar.mateo@intel.com>,
- Michal Winiarski <michal.winiarski@intel.com>,
- Michel Thierry <michel.thierry@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+From: Matthew Brost <matthew.brost@intel.com>
 
-Starting from Gen11, the ID to be provided to GuC needs to contain
-the engine class in bits [0..2] and the instance in bits [3..6].
+The new GuC FW introduces a physical to logical engine mapping table in
+the GuC additional data structures which needs to be configured in order
+for the firmware to load. This patch initializes the table with a 1 to 1
+mapping.
 
-NOTE: this patch breaks pointer dereferences in some existing GuC
-functions that use the guc_id to dereference arrays but these functions
-are not used for now as we have GuC submission disabled and we will
-update these functions in follow up patch which requires new IDs.
-
-Bspec: 20944
-
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Oscar Mateo <oscar.mateo@intel.com>
-Signed-off-by: Michel Thierry <michel.thierry@intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Michal Winiarski <michal.winiarski@intel.com>
-Cc: Tomasz Lis <tomasz.lis@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+CC: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c   |  3 ++-
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 19 +++++++++++++++++++
- 2 files changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c  | 23 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h |  4 +++-
+ 2 files changed, 26 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 5bfb5f7ed02c..1f1c9032ed71 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -305,8 +305,9 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
- 	engine->i915 = i915;
- 	engine->gt = gt;
- 	engine->uncore = gt->uncore;
--	engine->hw_id = engine->guc_id = info->hw_id;
- 	engine->mmio_base = __engine_mmio_base(i915, info->mmio_bases);
-+	engine->hw_id = info->hw_id;
-+	engine->guc_id = MAKE_GUC_ID(info->class, info->instance);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+index d44061033f23..57954c6360e0 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+@@ -48,6 +48,27 @@ static void guc_ct_pool_entries_init(struct guc_ct_pool_entry *pool, u32 num)
+ 	memset(pool, 0, num * sizeof(*pool));
+ }
  
- 	engine->class = info->class;
- 	engine->instance = info->instance;
++static void guc_mapping_table_init(struct intel_gt *gt,
++				   struct guc_gt_system_info *system_info)
++{
++	unsigned int i, j;
++	struct intel_engine_cs *engine;
++	enum intel_engine_id id;
++
++	/* Table must be set to invalid values for entries not used */
++	for (i = 0; i < GUC_MAX_ENGINE_CLASSES; ++i)
++		for (j = 0; j < GUC_MAX_INSTANCES_PER_CLASS; ++j)
++			system_info->mapping_table[i][j] =
++				GUC_MAX_INSTANCES_PER_CLASS;
++
++	for_each_engine(engine, gt, id) {
++		u8 guc_class = engine->class;
++
++		system_info->mapping_table[guc_class][engine->instance] =
++			engine->instance;
++	}
++}
++
+ /*
+  * The first 80 dwords of the register state context, containing the
+  * execlists and ppgtt registers.
+@@ -107,6 +128,8 @@ static void __guc_ads_init(struct intel_guc *guc)
+ 	blob->system_info.vebox_enable_mask = VEBOX_MASK(gt);
+ 	blob->system_info.vdbox_sfc_support_mask = gt->info.vdbox_sfc_access;
+ 
++	guc_mapping_table_init(guc_to_gt(guc), &blob->system_info);
++
+ 	base = intel_guc_ggtt_offset(guc, guc->ads_vma);
+ 
+ 	/* Clients info  */
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-index a6b733c146c9..8b3684c6a9a1 100644
+index 8b3684c6a9a1..e283156624b5 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-@@ -103,6 +103,25 @@
+@@ -388,7 +388,9 @@ struct guc_gt_system_info {
+ 	u32 vdbox_enable_mask;
+ 	u32 vdbox_sfc_support_mask;
+ 	u32 vebox_enable_mask;
+-	u32 reserved[9];
++	u32 reserved1;
++	u8 mapping_table[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
++	u32 reserved2[8];
+ } __packed;
  
- #define GUC_CTL_MAX_DWORDS		(SOFT_SCRATCH_COUNT - 2) /* [1..14] */
- 
-+/*
-+ * The class goes in bits [0..2] of the GuC ID, the instance in bits [3..6].
-+ * Bit 7 can be used for operations that apply to all engine classes&instances.
-+ */
-+#define GUC_ENGINE_CLASS_SHIFT		0
-+#define GUC_ENGINE_CLASS_MASK		(0x7 << GUC_ENGINE_CLASS_SHIFT)
-+#define GUC_ENGINE_INSTANCE_SHIFT	3
-+#define GUC_ENGINE_INSTANCE_MASK	(0xf << GUC_ENGINE_INSTANCE_SHIFT)
-+#define GUC_ENGINE_ALL_INSTANCES	BIT(7)
-+
-+#define MAKE_GUC_ID(class, instance) \
-+	(((class) << GUC_ENGINE_CLASS_SHIFT) | \
-+	 ((instance) << GUC_ENGINE_INSTANCE_SHIFT))
-+
-+#define GUC_ID_TO_ENGINE_CLASS(guc_id) \
-+	(((guc_id) & GUC_ENGINE_CLASS_MASK) >> GUC_ENGINE_CLASS_SHIFT)
-+#define GUC_ID_TO_ENGINE_INSTANCE(guc_id) \
-+	(((guc_id) & GUC_ENGINE_INSTANCE_MASK) >> GUC_ENGINE_INSTANCE_SHIFT)
-+
- /* Work item for submitting workloads into work queue of GuC. */
- struct guc_wq_item {
- 	u32 header;
+ /* Clients info */
 -- 
 2.25.1
 
