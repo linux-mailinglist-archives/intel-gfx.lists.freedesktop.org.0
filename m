@@ -1,50 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8FAD26B373
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 01:03:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FA1D26B672
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 02:05:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4586A89B0D;
-	Tue, 15 Sep 2020 23:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 560DB6E92D;
+	Wed, 16 Sep 2020 00:05:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E921E89B0D
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 23:03:05 +0000 (UTC)
-IronPort-SDR: Szwfo1kqnA0TRbwAxOx0AXTBVvvSlQSvo77doyUO6aZd20RicGqCoFoHVAxXeGMNZL8Kw1Fpuh
- KX/aPoeOWmKQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9745"; a="139376429"
-X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="139376429"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2020 16:03:05 -0700
-IronPort-SDR: P5E2s6Q35O2lX1WMqiiTkIUv0zPCx6MrSRf5ILa67Y+KzYS00SX7toOd0qbvjHGjeoavDDuOsq
- iYb6M25IpFpg==
-X-IronPort-AV: E=Sophos;i="5.76,430,1592895600"; d="scan'208";a="409357472"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2020 16:03:05 -0700
-Date: Tue, 15 Sep 2020 16:03:45 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200915230345.GA14516@labuser-Z97X-UD5H>
-References: <20200715224222.7557-1-manasi.d.navare@intel.com>
- <20200715224222.7557-4-manasi.d.navare@intel.com>
- <20200907112056.GF6112@intel.com>
- <20200914190026.GB28760@labuser-Z97X-UD5H>
- <20200914191757.GX6112@intel.com>
- <20200914193857.GB29235@labuser-Z97X-UD5H>
- <20200914194756.GA6112@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [63.128.21.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6048B6E92B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 00:05:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1600214709;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=VjZa40MjlMQHEg6VysBK1I3Rn/FQZQF1fQa44n3WO6k=;
+ b=QIuu9BtkHAAcUiNG3hq46pVcKb3H0u9VZdbxOxLvyGeOaGUqCAFBpN9tesfyB/J1lR3qtY
+ JgXOs/w2Xl4WxIu6eFW3cpguQjhX8TidpPquxtcTC4NYPbcuGWZDrDMCPcgwpTFj2PZ0GO
+ 1JjY5r0q6HccnXnVgOjCMoQUoyR6uzg=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-220-TmY1EdWyMVOnSpt_Sh1c1Q-1; Tue, 15 Sep 2020 20:05:04 -0400
+X-MC-Unique: TmY1EdWyMVOnSpt_Sh1c1Q-1
+Received: by mail-qk1-f197.google.com with SMTP id y17so4517921qkf.15
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Sep 2020 17:05:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=VjZa40MjlMQHEg6VysBK1I3Rn/FQZQF1fQa44n3WO6k=;
+ b=qMuyzB++yo0/9Uqb7dm3L4+FGjSnBW1V7+e26IPMIbOBIobzWh3g1nA+390U+l2PwM
+ iVPC1ujfSfioeAugf94GadjhP9z5NoR1o8aOsgM8QbhD+gKkm5U43RmnO3mLgwJeES9i
+ Ab/+FUQS39k0hbn/sykGN+AEeR7UNQDQsmKLnbpGAphy9q+3wRSBCeQW9w3hOFRM9bXu
+ FLCwhAmISXs0qattGBuPWIBEGQaJGXtrAr1XOaaYLpxhYrX/IvaGAI+HXu3JBPvylY99
+ BJNGmb0iZNHaqtUX23Atkf/BWVuSWHvLaTxirtjU3+B2jtoR1dmv4US6bl1wpqrq7I/H
+ Empg==
+X-Gm-Message-State: AOAM5333QaDLypxo+UZOAt1RRlOG0Y30v5A++rW+VEmLgnw+Jy0cwHym
+ Y+KhLc2hqYc291ylEwrSGPzKApyTT1h9MyUtp4hC+QRYM0HNItaDx84z/WzufcN2PiRB6K4UXVo
+ dbv3WsIsv4EtoIxYMDimKm8gXT0CV
+X-Received: by 2002:ac8:4e81:: with SMTP id 1mr21705685qtp.62.1600214704348;
+ Tue, 15 Sep 2020 17:05:04 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyODPABpreP655peyCUe7notNMLlNOaVBru1ukZ/HwVrAukGlTgX9PPDDwkE5P37N1uXnJlew==
+X-Received: by 2002:ac8:4e81:: with SMTP id 1mr21705661qtp.62.1600214704041;
+ Tue, 15 Sep 2020 17:05:04 -0700 (PDT)
+Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net.
+ [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id o35sm6208974qte.23.2020.09.15.17.05.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 15 Sep 2020 17:05:03 -0700 (PDT)
+Message-ID: <7a86180ed7013a0a52d71cf38a4bc371c7ffd4ab.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Date: Tue, 15 Sep 2020 20:05:04 -0400
+In-Reply-To: <20200915223841.GA14183@labuser-Z97X-UD5H>
+References: <20200915172939.2810538-1-lyude@redhat.com>
+ <20200915172939.2810538-2-lyude@redhat.com>
+ <20200915190639.GC503362@intel.com>
+ <b1b77b7022f9e388808bc3835f8fc88cda0718bc.camel@redhat.com>
+ <20200915223841.GA14183@labuser-Z97X-UD5H>
+Organization: Red Hat
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200914194756.GA6112@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v6 04/11] drm/i915/dp: Allow big joiner
- modes in intel_dp_mode_valid(), v3.
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0.002
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [RFC 1/5] drm/i915/dp: Program source OUI on eDP
+ panels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,452 +85,186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ Vasily Khoruzhick <anarsoul@gmail.com>, Sean Paul <seanpaul@chromium.org>,
+ Wambui Karuga <wambui.karugax@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 14, 2020 at 10:47:56PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Mon, Sep 14, 2020 at 12:38:57PM -0700, Navare, Manasi wrote:
-> > On Mon, Sep 14, 2020 at 10:17:57PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Mon, Sep 14, 2020 at 12:00:33PM -0700, Navare, Manasi wrote:
-> > > > On Mon, Sep 07, 2020 at 02:20:56PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > > > On Wed, Jul 15, 2020 at 03:42:15PM -0700, Manasi Navare wrote:
-> > > > > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > > > =
+On Tue, 2020-09-15 at 15:38 -0700, Navare, Manasi wrote:
+> On Tue, Sep 15, 2020 at 03:47:01PM -0400, Lyude Paul wrote:
+> > On Tue, 2020-09-15 at 15:06 -0400, Rodrigo Vivi wrote:
+> > > On Tue, Sep 15, 2020 at 01:29:35PM -0400, Lyude Paul wrote:
+> > > > Since we're about to start adding support for Intel's magic HDR
+> > > > backlight interface over DPCD, we need to ensure we're properly
+> > > > programming this field so that Intel specific sink services are
+> > > > exposed.
+> > > > Otherwise, 0x300-0x3ff will just read zeroes.
+> > > > 
+> > > > We also take care not to reprogram the source OUI if it already
+> > > > matches
+> > > > what we expect. This is just to be careful so that we don't
+> > > > accidentally
+> > > > take the panel out of any backlight control modes we found it in.
+> > > > 
+> > > > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > > > Cc: thaytan@noraisin.net
+> > > > Cc: Vasily Khoruzhick <anarsoul@gmail.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_dp.c | 32
+> > > > +++++++++++++++++++++++++
+> > > >  1 file changed, 32 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > index 4bd10456ad188..b591672ec4eab 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > @@ -3428,6 +3428,7 @@ void
+> > > > intel_dp_sink_set_decompression_state(struct
+> > > > intel_dp *intel_dp,
+> > > >  void intel_dp_sink_dpms(struct intel_dp *intel_dp, int mode)
+> > > >  {
+> > > >  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> > > > +	u8 edp_oui[] = { 0x00, 0xaa, 0x01 };
+> > > 
+> > > what are these values?
+> 
+> We in i915 typically use the OUI number for adding any eDP specific
+> quirks. I have seen these getting spit out in the dmesg log at thebeginning.
+> AFAIK It is some kind of OEM identification number for a display panel.
 
-> > > > > > Small changes to intel_dp_mode_valid(), allow listing modes that
-> > > > > > can only be supported in the bigjoiner configuration, which is
-> > > > > > not supported yet.
-> > > > > > =
+Are you sure you're not confusing this with the sink OUI btw? We're setting
+the source OUI (so, identifying ourselves to the display panel instead of the
+other way around) here to tell the panel to expose the Intel specific
+backlight controls. My assumption is the { 0x00, 0xaa, 0x01 } is some Intel
+driver OUI, it's just I'm not really sure where it comes from other then the
+patch I linked to down below
 
-> > > > > > eDP does not support bigjoiner, so do not expose bigjoiner only
-> > > > > > modes on the eDP port.
-> > > > > > =
+> 
+> Manasi
+> > I wish I knew, my assumption is this is the OUI that Intel's GPU driver
+> > uses on
+> > other platforms, but I don't have any documentation mentioning this (in
+> > fact,
+> > the few documents I do have on this backlight interface don't seem to make
+> > any
+> > mention of it). I only managed to find this when looking through the last
+> > attempt someone did at adding support for this backlight interface:
+> > 
+> > https://patchwork.freedesktop.org/patch/334989/
+> > 
+> > I think it should be fairly safe to write, as I know nouveau always
+> > programs a
+> > source OUI (we don't do it from our driver, but nvidia hardware seems to
+> > do it
+> > automatically) and I don't believe I've seen it ever change any behavior
+> > besides
+> > making things appear in the 0x300-0x3ff register range.
+> > 
+> > AFAICT though, the backlight interface won't advertise itself without this
+> > being
+> > set early on. If you could find anyone from Intel who knows more about it
+> > though
+> > I'd definitely appreciate it (and just in general for the rest of the
+> > patch
+> > series as well)
+> > 
+> > > >  	int ret, i;
+> > > >  
+> > > >  	/* Should have a valid DPCD by this point */
+> > > > @@ -3443,6 +3444,14 @@ void intel_dp_sink_dpms(struct intel_dp
+> > > > *intel_dp,
+> > > > int mode)
+> > > >  	} else {
+> > > >  		struct intel_lspcon *lspcon = dp_to_lspcon(intel_dp);
+> > > >  
+> > > > +		/* Write the source OUI as early as possible */
+> > > > +		if (intel_dp_is_edp(intel_dp)) {
+> > > > +			ret = drm_dp_dpcd_write(&intel_dp->aux,
+> > > > DP_SOURCE_OUI,
+> > > > edp_oui,
+> > > > +						sizeof(edp_oui));
+> > > > +			if (ret < 0)
+> > > > +				drm_err(&i915->drm, "Failed to write
+> > > > eDP source
+> > > > OUI\n");
+> > > > +		}
+> > > > +
+> > > >  		/*
+> > > >  		 * When turning on, we need to retry for 1ms to give
+> > > > the sink
+> > > >  		 * time to wake up.
+> > > > @@ -4530,6 +4539,23 @@ static void intel_dp_get_dsc_sink_cap(struct
+> > > > intel_dp
+> > > > *intel_dp)
+> > > >  	}
+> > > >  }
+> > > >  
+> > > > +static void
+> > > > +intel_edp_init_source_oui(struct intel_dp *intel_dp)
+> > > > +{
+> > > > +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> > > > +	u8 oui[] = { 0x00, 0xaa, 0x01 };
+> > > > +	u8 buf[3] = { 0 };
+> > > > +
+> > > > +	if (drm_dp_dpcd_read(&intel_dp->aux, DP_SOURCE_OUI, buf,
+> > > > sizeof(buf)) <
+> > > > 0)
+> > > > +		drm_err(&i915->drm, "Failed to read source OUI\n");
+> > > > +
+> > > > +	if (memcmp(oui, buf, sizeof(oui)) == 0)
+> > > > +		return;
+> > > > +
+> > > > +	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui,
+> > > > sizeof(oui)) <
+> > > > 0)
+> > > > +		drm_err(&i915->drm, "Failed to write source OUI\n");
+> > > > +}
+> > > > +
+> > > >  static bool
+> > > >  intel_edp_init_dpcd(struct intel_dp *intel_dp)
+> > > >  {
+> > > > @@ -4607,6 +4633,12 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
+> > > >  	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> > > >  		intel_dp_get_dsc_sink_cap(intel_dp);
+> > > >  
+> > > > +	/*
+> > > > +	 * Program our source OUI so we can make various Intel-
+> > > > specific AUX
+> > > > +	 * services available (such as HDR backlight controls)
+> > > > +	 */
+> > > > +	intel_edp_init_source_oui(intel_dp);
+> > > 
+> > > I believe we should restrict this to the supported platforms: cfl, whl,
+> > > cml,
+> > > icl, tgl
+> > > no?
+> > > 
+> > > > +
+> > > >  	return true;
+> > > >  }
+> > > >  
+> > > > -- 
+> > > > 2.26.2
+> > > > 
+> > > > _______________________________________________
+> > > > dri-devel mailing list
+> > > > dri-devel@lists.freedesktop.org
+> > > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> > -- 
+> > Sincerely,
+> >       Lyude Paul (she/her)
+> >       Software Engineer at Red Hat
+> > 
+-- 
+Cheers,
+	Lyude Paul (she/her)
+	Software Engineer at Red Hat
 
-> > > > > > v5:
-> > > > > > * Increase max plane width to support 8K with bigjoiner (Maarte=
-n)
-> > > > > > v4:
-> > > > > > * Rebase (Manasi)
-> > > > > > =
-
-> > > > > > Changes since v1:
-> > > > > > - Disallow bigjoiner on eDP.
-> > > > > > Changes since v2:
-> > > > > > - Rename intel_dp_downstream_max_dotclock to intel_dp_max_dotcl=
-ock,
-> > > > > >   and split off the downstream and source checking to its own f=
-unction.
-> > > > > >   (Ville)
-> > > > > > v3:
-> > > > > > * Rebase (Manasi)
-> > > > > > =
-
-> > > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > > > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel=
-.com>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/display/intel_display.c |   2 +-
-> > > > > >  drivers/gpu/drm/i915/display/intel_dp.c      | 119 +++++++++++=
-+++-----
-> > > > > >  2 files changed, 91 insertions(+), 30 deletions(-)
-> > > > > > =
-
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/dri=
-vers/gpu/drm/i915/display/intel_display.c
-> > > > > > index 78cbfefbfa62..3ecb642805a6 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > @@ -17400,7 +17400,7 @@ intel_mode_valid_max_plane_size(struct =
-drm_i915_private *dev_priv,
-> > > > > >  	 * too big for that.
-> > > > > >  	 */
-> > > > > >  	if (INTEL_GEN(dev_priv) >=3D 11) {
-> > > > > > -		plane_width_max =3D 5120;
-> > > > > > +		plane_width_max =3D 7680;
-> > > > > =
-
-> > > > > This looks misplaced. Planes do no know whether bigjoiner can be =
-used or
-> > > > > not. They should not care in fact. The caller should have that kn=
-owledge
-> > > > > and can deal with it properly.
-> > > > =
-
-> > > > Hmm, so the caller of intel_mode_valid_max_plane_size() should chec=
-k on the bigjoiner
-> > > > flag and perhaps if bigjoiner is true then increase the plane_width=
-_max to 7680?
-> > > > =
-
-> > > > Am still not sure where this should happen? We need to have the pla=
-ne max width to be 7680
-> > > > before we prune the 8K mode in intel_mode_valid
-> > > > =
-
-> > > > Where should this be added according to you?
-> > > =
-
-> > > Hmm. I guess we do need to put it into this function given the way th=
-is
-> > > is structured. However we still can't assume bigjoiner can be used si=
-nce
-> > > it can't be used on DDI A on icl. So we should probably just pass in a
-> > > bool here to indicate whether bigjoiner can be used or not.
-> > >
-> > =
-
-> > So in intel_dp_mode_valid() we set bigjoiner =3D true if not edp and hi=
-gher clock.
-> > I think here we need to do the platform check also, 1. because now we a=
-re enabling this for TGL+
-> > where big joiner on all pipes. But we should still I think add GEN >=3D=
-12 check before setting bigjoiner
-> > to true in intel_dp_mode_valid() and then pass that to intel_mode_valid=
-_max_plane_size(..., book bigjoiner)
-> =
-
-> can_bigjoiner() {
-> 	return gen >=3D 12 || (gen=3D=3D11 && port!=3DA);
-> }
-
-Hmm, gen check can be done but can the port check be done in intel_dp_mode_=
-valid() since we dont have
-an encoder yet?
-Else we set the bigjoiner to true here based on gen check but add the port =
-check later in compute_config at
-what point if not supported then encoder config will fail.
-
-or can this be sufficient check:
-
-can_bigjoiner() {
-	return gen >=3D 12 || (gen =3D=3D 11 && !intel_dp_is_edp())
-}
-
-Manasi
-
-> =
-
-> or something.
-> =
-
-> > =
-
-> > Sounds good?
-> > =
-
-> > > Personally I'd just write the thing as something like:
-> > > intel_mode_valid_max_plane_size(..., bool bigjoiner)
-> > > {
-> > > 	...
-> > > 	plane_width_max =3D 5120 << bigjoiner;
-> > > 	...
-> > > }
-> > > =
-
-> > > > =
-
-> > > > Manasi
-> > > > > =
-
-> > > > > >  		plane_height_max =3D 4320;
-> > > > > >  	} else {
-> > > > > >  		plane_width_max =3D 5120;
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/=
-gpu/drm/i915/display/intel_dp.c
-> > > > > > index d6295eb20b63..fbfea99fd804 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > > > @@ -248,25 +248,37 @@ intel_dp_max_data_rate(int max_link_clock=
-, int max_lanes)
-> > > > > >  	return max_link_clock * max_lanes;
-> > > > > >  }
-> > > > > >  =
-
-> > > > > > -static int
-> > > > > > -intel_dp_downstream_max_dotclock(struct intel_dp *intel_dp)
-> > > > > > +static int source_max_dotclock(struct intel_dp *intel_dp, bool=
- allow_bigjoiner)
-> > > > > >  {
-> > > > > > -	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_=
-dp);
-> > > > > > -	struct intel_encoder *encoder =3D &dig_port->base;
-> > > > > > +	struct intel_digital_port *intel_dig_port =3D dp_to_dig_port(=
-intel_dp);
-> > > > > > +	struct intel_encoder *encoder =3D &intel_dig_port->base;
-> > > > > >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.d=
-ev);
-> > > > > > -	int max_dotclk =3D dev_priv->max_dotclk_freq;
-> > > > > > -	int ds_max_dotclk;
-> > > > > >  =
-
-> > > > > > +	if (allow_bigjoiner && INTEL_GEN(dev_priv) >=3D 11 && !intel_=
-dp_is_edp(intel_dp))
-> > > > > > +		return 2 * dev_priv->max_dotclk_freq;
-> > > > > > +
-> > > > > > +	return dev_priv->max_dotclk_freq;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int downstream_max_dotclock(struct intel_dp *intel_dp)
-> > > > > > +{
-> > > > > >  	int type =3D intel_dp->downstream_ports[0] & DP_DS_PORT_TYPE_=
-MASK;
-> > > > > >  =
-
-> > > > > >  	if (type !=3D DP_DS_PORT_TYPE_VGA)
-> > > > > > -		return max_dotclk;
-> > > > > > +		return 0;
-> > > > > >  =
-
-> > > > > > -	ds_max_dotclk =3D drm_dp_downstream_max_clock(intel_dp->dpcd,
-> > > > > > -						    intel_dp->downstream_ports);
-> > > > > > +	return drm_dp_downstream_max_clock(intel_dp->dpcd,
-> > > > > > +					   intel_dp->downstream_ports);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int
-> > > > > > +intel_dp_max_dotclock(struct intel_dp *intel_dp, bool allow_bi=
-gjoiner)
-> > > > > > +{
-> > > > > > +	int max_dotclk =3D source_max_dotclock(intel_dp, allow_bigjoi=
-ner);
-> > > > > > +	int ds_max_dotclk =3D downstream_max_dotclock(intel_dp);
-> > > > > >  =
-
-> > > > > >  	if (ds_max_dotclk !=3D 0)
-> > > > > > -		max_dotclk =3D min(max_dotclk, ds_max_dotclk);
-> > > > > > +		return min(max_dotclk, ds_max_dotclk);
-> > > > > >  =
-
-> > > > > >  	return max_dotclk;
-> > > > > >  }
-> > > > > > @@ -527,7 +539,8 @@ small_joiner_ram_size_bits(struct drm_i915_=
-private *i915)
-> > > > > >  =
-
-> > > > > >  static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private=
- *i915,
-> > > > > >  				       u32 link_clock, u32 lane_count,
-> > > > > > -				       u32 mode_clock, u32 mode_hdisplay)
-> > > > > > +				       u32 mode_clock, u32 mode_hdisplay,
-> > > > > > +				       bool bigjoiner)
-> > > > > >  {
-> > > > > >  	u32 bits_per_pixel, max_bpp_small_joiner_ram;
-> > > > > >  	int i;
-> > > > > > @@ -545,6 +558,10 @@ static u16 intel_dp_dsc_get_output_bpp(str=
-uct drm_i915_private *i915,
-> > > > > >  	/* Small Joiner Check: output bpp <=3D joiner RAM (bits) / Ho=
-riz. width */
-> > > > > >  	max_bpp_small_joiner_ram =3D small_joiner_ram_size_bits(i915)=
- /
-> > > > > >  		mode_hdisplay;
-> > > > > > +
-> > > > > > +	if (bigjoiner)
-> > > > > > +		max_bpp_small_joiner_ram *=3D 2;
-> > > > > > +
-> > > > > >  	drm_dbg_kms(&i915->drm, "Max small joiner bpp: %u\n",
-> > > > > >  		    max_bpp_small_joiner_ram);
-> > > > > >  =
-
-> > > > > > @@ -554,6 +571,15 @@ static u16 intel_dp_dsc_get_output_bpp(str=
-uct drm_i915_private *i915,
-> > > > > >  	 */
-> > > > > >  	bits_per_pixel =3D min(bits_per_pixel, max_bpp_small_joiner_r=
-am);
-> > > > > >  =
-
-> > > > > > +	if (bigjoiner) {
-> > > > > > +		u32 max_bpp_bigjoiner =3D
-> > > > > > +			i915->max_cdclk_freq * 48 /
-> > > > > > +			intel_dp_mode_to_fec_clock(mode_clock);
-> > > > > > +
-> > > > > > +		DRM_DEBUG_KMS("Max big joiner bpp: %u\n", max_bpp_bigjoiner);
-> > > > > > +		bits_per_pixel =3D min(bits_per_pixel, max_bpp_bigjoiner);
-> > > > > > +	}
-> > > > > > +
-> > > > > >  	/* Error out if the max bpp is less than smallest allowed val=
-id bpp */
-> > > > > >  	if (bits_per_pixel < valid_dsc_bpp[0]) {
-> > > > > >  		drm_dbg_kms(&i915->drm, "Unsupported BPP %u, min %u\n",
-> > > > > > @@ -576,7 +602,8 @@ static u16 intel_dp_dsc_get_output_bpp(stru=
-ct drm_i915_private *i915,
-> > > > > >  }
-> > > > > >  =
-
-> > > > > >  static u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_=
-dp,
-> > > > > > -				       int mode_clock, int mode_hdisplay)
-> > > > > > +				       int mode_clock, int mode_hdisplay,
-> > > > > > +				       bool bigjoiner)
-> > > > > >  {
-> > > > > >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> > > > > >  	u8 min_slice_count, i;
-> > > > > > @@ -603,12 +630,20 @@ static u8 intel_dp_dsc_get_slice_count(st=
-ruct intel_dp *intel_dp,
-> > > > > >  =
-
-> > > > > >  	/* Find the closest match to the valid slice count values */
-> > > > > >  	for (i =3D 0; i < ARRAY_SIZE(valid_dsc_slicecount); i++) {
-> > > > > > -		if (valid_dsc_slicecount[i] >
-> > > > > > -		    drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd,
-> > > > > > -						    false))
-> > > > > > +		u8 test_slice_count =3D bigjoiner ?
-> > > > > > +			2 * valid_dsc_slicecount[i] :
-> > > > > > +			valid_dsc_slicecount[i];
-> > > > > > +
-> > > > > > +		if (test_slice_count >
-> > > > > > +		    drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd, fals=
-e))
-> > > > > >  			break;
-> > > > > > -		if (min_slice_count  <=3D valid_dsc_slicecount[i])
-> > > > > > -			return valid_dsc_slicecount[i];
-> > > > > > +
-> > > > > > +		/* big joiner needs small joiner to be enabled */
-> > > > > > +		if (bigjoiner && test_slice_count < 4)
-> > > > > > +			continue;
-> > > > > > +
-> > > > > > +		if (min_slice_count <=3D test_slice_count)
-> > > > > > +			return test_slice_count;
-> > > > > >  	}
-> > > > > >  =
-
-> > > > > >  	drm_dbg_kms(&i915->drm, "Unsupported Slice Count %d\n",
-> > > > > > @@ -648,11 +683,15 @@ intel_dp_mode_valid(struct drm_connector =
-*connector,
-> > > > > >  	int max_dotclk;
-> > > > > >  	u16 dsc_max_output_bpp =3D 0;
-> > > > > >  	u8 dsc_slice_count =3D 0;
-> > > > > > +	bool dsc =3D false, bigjoiner =3D false;
-> > > > > >  =
-
-> > > > > >  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
-> > > > > >  		return MODE_NO_DBLESCAN;
-> > > > > >  =
-
-> > > > > > -	max_dotclk =3D intel_dp_downstream_max_dotclock(intel_dp);
-> > > > > > +	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
-> > > > > > +		return MODE_H_ILLEGAL;
-> > > > > > +
-> > > > > > +	max_dotclk =3D intel_dp_max_dotclock(intel_dp, false);
-> > > > > >  =
-
-> > > > > >  	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
-> > > > > >  		if (mode->hdisplay > fixed_mode->hdisplay)
-> > > > > > @@ -664,6 +703,21 @@ intel_dp_mode_valid(struct drm_connector *=
-connector,
-> > > > > >  		target_clock =3D fixed_mode->clock;
-> > > > > >  	}
-> > > > > >  =
-
-> > > > > > +	if (mode->clock < 10000)
-> > > > > > +		return MODE_CLOCK_LOW;
-> > > > > > +
-> > > > > > +	if (target_clock > max_dotclk) {
-> > > > > > +		if (intel_dp_is_edp(intel_dp))
-> > > > > > +			return MODE_CLOCK_HIGH;
-> > > > > > +
-> > > > > > +		max_dotclk =3D intel_dp_max_dotclock(intel_dp, true);
-> > > > > > +
-> > > > > > +		if (target_clock > max_dotclk)
-> > > > > > +			return MODE_CLOCK_HIGH;
-> > > > > > +
-> > > > > > +		bigjoiner =3D true;
-> > > > > > +	}
-> > > > > > +
-> > > > > >  	max_link_clock =3D intel_dp_max_link_rate(intel_dp);
-> > > > > >  	max_lanes =3D intel_dp_max_lane_count(intel_dp);
-> > > > > >  =
-
-> > > > > > @@ -691,23 +745,28 @@ intel_dp_mode_valid(struct drm_connector =
-*connector,
-> > > > > >  							    max_link_clock,
-> > > > > >  							    max_lanes,
-> > > > > >  							    target_clock,
-> > > > > > -							    mode->hdisplay) >> 4;
-> > > > > > +							    mode->hdisplay,
-> > > > > > +							    bigjoiner) >> 4;
-> > > > > >  			dsc_slice_count =3D
-> > > > > >  				intel_dp_dsc_get_slice_count(intel_dp,
-> > > > > >  							     target_clock,
-> > > > > > -							     mode->hdisplay);
-> > > > > > +							     mode->hdisplay,
-> > > > > > +							     bigjoiner);
-> > > > > >  		}
-> > > > > > +
-> > > > > > +		dsc =3D dsc_max_output_bpp && dsc_slice_count;
-> > > > > >  	}
-> > > > > >  =
-
-> > > > > > -	if ((mode_rate > max_rate && !(dsc_max_output_bpp && dsc_slic=
-e_count)) ||
-> > > > > > -	    target_clock > max_dotclk)
-> > > > > > +	/* big joiner configuration needs DSC */
-> > > > > > +	if (bigjoiner && !dsc) {
-> > > > > > +		DRM_DEBUG_KMS("Link clock needs bigjoiner, but DSC or FEC no=
-t available\n");
-> > > > > >  		return MODE_CLOCK_HIGH;
-> > > > > > +	}
-> > > > > >  =
-
-> > > > > > -	if (mode->clock < 10000)
-> > > > > > -		return MODE_CLOCK_LOW;
-> > > > > > -
-> > > > > > -	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
-> > > > > > -		return MODE_H_ILLEGAL;
-> > > > > > +	if (mode_rate > max_rate && !dsc) {
-> > > > > > +		DRM_DEBUG_KMS("Cannot drive without DSC\n");
-> > > > > > +		return MODE_CLOCK_HIGH;
-> > > > > > +	}
-> > > > > >  =
-
-> > > > > >  	return intel_mode_valid_max_plane_size(dev_priv, mode);
-> > > > > >  }
-> > > > > > @@ -2204,11 +2263,13 @@ static int intel_dp_dsc_compute_config(=
-struct intel_dp *intel_dp,
-> > > > > >  						    pipe_config->port_clock,
-> > > > > >  						    pipe_config->lane_count,
-> > > > > >  						    adjusted_mode->crtc_clock,
-> > > > > > -						    adjusted_mode->crtc_hdisplay);
-> > > > > > +						    adjusted_mode->crtc_hdisplay,
-> > > > > > +						    false);
-> > > > > >  		dsc_dp_slice_count =3D
-> > > > > >  			intel_dp_dsc_get_slice_count(intel_dp,
-> > > > > >  						     adjusted_mode->crtc_clock,
-> > > > > > -						     adjusted_mode->crtc_hdisplay);
-> > > > > > +						     adjusted_mode->crtc_hdisplay,
-> > > > > > +						     false);
-> > > > > >  		if (!dsc_max_output_bpp || !dsc_dp_slice_count) {
-> > > > > >  			drm_dbg_kms(&dev_priv->drm,
-> > > > > >  				    "Compressed BPP/Slice Count not supported\n");
-> > > > > > -- =
-
-> > > > > > 2.19.1
-> > > > > > =
-
-> > > > > > _______________________________________________
-> > > > > > Intel-gfx mailing list
-> > > > > > Intel-gfx@lists.freedesktop.org
-> > > > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > > > > =
-
-> > > > > -- =
-
-> > > > > Ville Syrj=E4l=E4
-> > > > > Intel
-> > > =
-
-> > > -- =
-
-> > > Ville Syrj=E4l=E4
-> > > Intel
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
