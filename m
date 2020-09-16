@@ -2,43 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18F5226C5AC
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 19:17:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A347026C5BB
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 19:19:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADB2F6EA89;
-	Wed, 16 Sep 2020 17:16:58 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 032036EA8C
- for <Intel-GFX@lists.freedesktop.org>; Wed, 16 Sep 2020 17:16:55 +0000 (UTC)
-IronPort-SDR: Kadkqp6p6dKXFggyDSaCCQhwa1MWdMPT3P1cqMmsZQWvs0o+W2fm1q9TiQEWkpE88oGFPKwpSU
- qFaNaiDEr7BQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="139534286"
-X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="139534286"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2020 10:16:55 -0700
-IronPort-SDR: le9KMg8avN9RgpJ/eu7SwDuWYZiO/CSgTdZ4nVeUVOEK83bVw2z9h99R8zWybDZjtE635uUug9
- QvYWuTftXApg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="287259468"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga007.fm.intel.com with ESMTP; 16 Sep 2020 10:16:55 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Wed, 16 Sep 2020 10:16:53 -0700
-Message-Id: <20200916171653.2021483-13-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200916171653.2021483-1-John.C.Harrison@Intel.com>
-References: <20200916171653.2021483-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 132436EA96;
+	Wed, 16 Sep 2020 17:19:31 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [63.128.21.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 881B96EA97
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 17:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1600276768;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ZHIAKv41v2ts7c31e27PFjI9bq/bQuazeIBjpDLbtCY=;
+ b=fa7FbXoPyJLTU9TwrUzqOzLRhTLsmIsGbnbUu40NZfof36Pui8YeJw2Lu6O7iphMS1+BCn
+ Di910tf+0kAzXQguC05DBXqmRX/YrOdeK//l96gDvvYCnX+85x2S01xdIu/ec2jjnWRwN/
+ RStVmiR/aImnk14MqKm+XOqCc+sijzo=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-120-DVgxM7fNMNqiZ8xSRHzmoA-1; Wed, 16 Sep 2020 13:19:26 -0400
+X-MC-Unique: DVgxM7fNMNqiZ8xSRHzmoA-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9EA46100746D;
+ Wed, 16 Sep 2020 17:19:25 +0000 (UTC)
+Received: from Whitewolf.redhat.com (ovpn-120-66.rdu2.redhat.com
+ [10.10.120.66])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 1C7CF7E46E;
+ Wed, 16 Sep 2020 17:19:25 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 16 Sep 2020 13:18:47 -0400
+Message-Id: <20200916171855.129511-1-lyude@redhat.com>
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Subject: [Intel-gfx] [PATCH 12/12] drm/i915/uc: turn on GuC/HuC auto mode by
- default
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Intel-gfx] [RFC v2 0/8] drm/i915: Add support for Intel's eDP
+ backlight controls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,38 +60,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+A while ago we ran into issues while trying to enable the eDP backlight
+control interface as defined by VESA, in order to make the DPCD
+backlight controls on newer laptop panels work. The issue ended up being
+much more complicated however, as we also apparently needed to add
+support for an Intel-specific DPCD backlight control interface as the
+VESA interface is broken on many laptop panels. For lack of a better
+name, we just call this the Intel HDR backlight interface.
 
-This will enable HuC loading for Gen11+ by default if the binaries
-are available on the system. GuC submission still requires explicit
-enabling by the user.
+While this only adds support for the SDR backlight mode (I think), this
+will fix a lot of user's laptop panels that we weren't able to properly
+automatically detect DPCD backlight controls on previously.
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/i915/i915_params.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Lyude Paul (8):
+  drm/i915/dp: Program source OUI on eDP panels
+  drm/i915: Rename pwm_* backlight callbacks to ext_pwm_*
+  drm/i915: Keep track of pwm-related backlight hooks separately
+  drm/i915/dp: Rename eDP VESA backlight interface functions
+  drm/i915/dp: Add register definitions for Intel HDR backlight
+    interface
+  drm/i915/dp: Enable Intel's HDR backlight interface (only SDR for now)
+  drm/i915/dp: Allow forcing specific interfaces through
+    enable_dpcd_backlight
+  drm/dp: Revert "drm/dp: Introduce EDID-based quirks"
 
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 330c03e2b4f7..7bdbd8f6ed30 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -58,7 +58,7 @@ struct drm_printer;
- 	param(int, disable_power_well, -1, 0400) \
- 	param(int, enable_ips, 1, 0600) \
- 	param(int, invert_brightness, 0, 0600) \
--	param(int, enable_guc, 0, 0400) \
-+	param(int, enable_guc, -1, 0400) \
- 	param(int, guc_log_level, -1, 0400) \
- 	param(char *, guc_firmware_path, NULL, 0400) \
- 	param(char *, huc_firmware_path, NULL, 0400) \
+ drivers/gpu/drm/drm_dp_helper.c               |  82 +--
+ drivers/gpu/drm/drm_dp_mst_topology.c         |   3 +-
+ .../drm/i915/display/intel_display_types.h    |  24 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  42 +-
+ .../drm/i915/display/intel_dp_aux_backlight.c | 384 ++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    | 476 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_panel.h    |   4 +
+ drivers/gpu/drm/i915/display/intel_psr.c      |   2 +-
+ drivers/gpu/drm/i915/i915_params.c            |   2 +-
+ include/drm/drm_dp_helper.h                   |  21 +-
+ 11 files changed, 672 insertions(+), 371 deletions(-)
+
 -- 
-2.25.1
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
