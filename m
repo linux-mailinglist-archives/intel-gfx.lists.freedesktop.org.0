@@ -2,42 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E35AD26C5B2
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 19:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0958426C5AB
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 19:17:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CEF56EA8E;
-	Wed, 16 Sep 2020 17:17:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56A756EA85;
+	Wed, 16 Sep 2020 17:16:58 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94D536EA88
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F5566EA85
  for <Intel-GFX@lists.freedesktop.org>; Wed, 16 Sep 2020 17:16:55 +0000 (UTC)
-IronPort-SDR: 9yJCkg1FNR5i4kt01lfGvoFsjjGAseoWqWoCJze/DSQAjYL05+5tw32Aqt828uB3dwKj11WwK6
- NYD2pMRm9/og==
-X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="139534274"
-X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="139534274"
+IronPort-SDR: DZ7G8zrWhhUiR0A9LIfZ7j4rMrRwiH+4Qtmk7n8iv5+NPHqDPt7PNBeK0mQzWT7DHPGImJW0WG
+ oUHcJcsKkVLA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="139534276"
+X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="139534276"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Sep 2020 10:16:55 -0700
-IronPort-SDR: sCRkERLkYeq/P/l8xE/APeiYc+AM8PiPVCdqfqH4R9mtvb+Yl8gm3SL4Of5j6GbMmnhVZUr6K8
- p6rdQe/pWgxg==
+IronPort-SDR: UnZwnq77LlaPLCnu6wCVFwtekknRGUPWsDR/tSXu+TAu7unyNK3OhwTSyeQUlIwKB0Xnt/XW02
+ 8c8KzGy5zd0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="287259453"
+X-IronPort-AV: E=Sophos;i="5.76,433,1592895600"; d="scan'208";a="287259455"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga007.fm.intel.com with ESMTP; 16 Sep 2020 10:16:54 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 16 Sep 2020 10:16:55 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Wed, 16 Sep 2020 10:16:48 -0700
-Message-Id: <20200916171653.2021483-8-John.C.Harrison@Intel.com>
+Date: Wed, 16 Sep 2020 10:16:49 -0700
+Message-Id: <20200916171653.2021483-9-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200916171653.2021483-1-John.C.Harrison@Intel.com>
 References: <20200916171653.2021483-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
-Subject: [Intel-gfx] [PATCH 07/12] drm/i915/guc: Setup doorbells data in ADS
+Subject: [Intel-gfx] [PATCH 08/12] drm/i915/guc: Increased engine classes in
+ ADS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,75 +56,95 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+From: John Harrison <John.C.Harrison@Intel.com>
 
-While i915 does not use GuC doorbells, the firmware requires that some
-initialisation is done.
+GuC v46 partially increased the number of engine classes supported in
+the ADS. GuC v48 then finished the change off by cleaning up the
+per class engine mask fields.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c  | 9 +++++++++
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h  | 5 +++++
- 3 files changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c  | 16 +++++++++-------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 19 +++++++++----------
+ 2 files changed, 18 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-index b2f05139de05..75fcce64fc57 100644
+index 75fcce64fc57..7950d28beb8c 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-@@ -119,6 +119,7 @@ static void guc_mapping_table_init(struct intel_gt *gt,
- static void __guc_ads_init(struct intel_guc *guc)
- {
- 	struct intel_gt *gt = guc_to_gt(guc);
-+	struct drm_i915_private *i915 = gt->i915;
- 	struct __guc_ads_blob *blob = guc->ads_blob;
- 	const u32 skipped_size = LRC_PPHWSP_SZ * PAGE_SIZE + LR_HW_CONTEXT_SIZE;
- 	u32 base;
-@@ -158,6 +159,14 @@ static void __guc_ads_init(struct intel_guc *guc)
- 	blob->system_info.vebox_enable_mask = VEBOX_MASK(gt);
- 	blob->system_info.vdbox_sfc_support_mask = gt->info.vdbox_sfc_access;
+@@ -151,18 +151,20 @@ static void __guc_ads_init(struct intel_guc *guc)
+ 	}
  
-+	if (INTEL_GEN(i915) >= 12 && !IS_DGFX(i915)) {
-+		u32 distdbreg = intel_uncore_read(gt->uncore,
-+						  GEN12_DIST_DBS_POPULATED);
-+		blob->system_info.num_of_doorbells_per_sqidi =
-+			((distdbreg >> GEN12_DOORBELLS_PER_SQIDI_SHIFT) &
-+			 GEN12_DOORBELLS_PER_SQIDI) + 1;
-+	}
-+
- 	guc_mapping_table_init(guc_to_gt(guc), &blob->system_info);
+ 	/* System info */
+-	blob->system_info.slice_enabled = hweight8(gt->info.sseu.slice_mask);
+-	blob->system_info.rcs_enabled = 1;
+-	blob->system_info.bcs_enabled = 1;
++	blob->system_info.engine_enabled_masks[RENDER_CLASS] = 1;
++	blob->system_info.engine_enabled_masks[COPY_ENGINE_CLASS] = 1;
++	blob->system_info.engine_enabled_masks[VIDEO_DECODE_CLASS] = VDBOX_MASK(gt);
++	blob->system_info.engine_enabled_masks[VIDEO_ENHANCEMENT_CLASS] = VEBOX_MASK(gt);
  
- 	base = intel_guc_ggtt_offset(guc, guc->ads_vma);
+-	blob->system_info.vdbox_enable_mask = VDBOX_MASK(gt);
+-	blob->system_info.vebox_enable_mask = VEBOX_MASK(gt);
+-	blob->system_info.vdbox_sfc_support_mask = gt->info.vdbox_sfc_access;
++	blob->system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_SLICE_ENABLED] =
++		hweight8(gt->info.sseu.slice_mask);
++	blob->system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_VDBOX_SFC_SUPPORT_MASK] =
++		gt->info.vdbox_sfc_access;
+ 
+ 	if (INTEL_GEN(i915) >= 12 && !IS_DGFX(i915)) {
+ 		u32 distdbreg = intel_uncore_read(gt->uncore,
+ 						  GEN12_DIST_DBS_POPULATED);
+-		blob->system_info.num_of_doorbells_per_sqidi =
++		blob->system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_DOORBELL_COUNT_PER_SQIDI] =
+ 			((distdbreg >> GEN12_DOORBELLS_PER_SQIDI_SHIFT) &
+ 			 GEN12_DOORBELLS_PER_SQIDI) + 1;
+ 	}
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-index 0cd4a7f7f4cb..3492fb0d5dec 100644
+index 3492fb0d5dec..391053118869 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-@@ -383,7 +383,7 @@ struct guc_gt_system_info {
- 	u32 vdbox_enable_mask;
- 	u32 vdbox_sfc_support_mask;
- 	u32 vebox_enable_mask;
--	u32 reserved1;
-+	u32 num_of_doorbells_per_sqidi;
- 	u8 mapping_table[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
- 	u32 reserved2[8];
- } __packed;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-index 1949346e714e..b37fc2ffaef2 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-@@ -118,6 +118,11 @@ struct guc_doorbell_info {
- #define   GEN8_DRB_VALID		  (1<<0)
- #define GEN8_DRBREGU(x)			_MMIO(0x1000 + (x) * 8 + 4)
+@@ -26,7 +26,7 @@
+ #define GUC_VIDEO_ENGINE2		4
+ #define GUC_MAX_ENGINES_NUM		(GUC_VIDEO_ENGINE2 + 1)
  
-+#define GEN12_DIST_DBS_POPULATED		_MMIO(0xd08)
-+#define   GEN12_DOORBELLS_PER_SQIDI_SHIFT	16
-+#define   GEN12_DOORBELLS_PER_SQIDI		(0xff)
-+#define   GEN12_SQIDIS_DOORBELL_EXIST		(0xffff)
+-#define GUC_MAX_ENGINE_CLASSES		5
++#define GUC_MAX_ENGINE_CLASSES		16
+ #define GUC_MAX_INSTANCES_PER_CLASS	32
+ 
+ #define GUC_DOORBELL_INVALID		256
+@@ -98,6 +98,12 @@
+ 
+ #define GUC_CTL_MAX_DWORDS		(SOFT_SCRATCH_COUNT - 2) /* [1..14] */
+ 
++/* Generic GT SysInfo data types */
++#define GUC_GENERIC_GT_SYSINFO_SLICE_ENABLED		0
++#define GUC_GENERIC_GT_SYSINFO_VDBOX_SFC_SUPPORT_MASK	1
++#define GUC_GENERIC_GT_SYSINFO_DOORBELL_COUNT_PER_SQIDI	2
++#define GUC_GENERIC_GT_SYSINFO_MAX			16
 +
- #define DE_GUCRMR			_MMIO(0x44054)
+ /*
+  * The class goes in bits [0..2] of the GuC ID, the instance in bits [3..6].
+  * Bit 7 can be used for operations that apply to all engine classes&instances.
+@@ -376,16 +382,9 @@ struct guc_mmio_reg_set {
  
- #define GUC_BCS_RCS_IER			_MMIO(0xC550)
+ /* HW info */
+ struct guc_gt_system_info {
+-	u32 slice_enabled;
+-	u32 rcs_enabled;
+-	u32 reserved0;
+-	u32 bcs_enabled;
+-	u32 vdbox_enable_mask;
+-	u32 vdbox_sfc_support_mask;
+-	u32 vebox_enable_mask;
+-	u32 num_of_doorbells_per_sqidi;
+ 	u8 mapping_table[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
+-	u32 reserved2[8];
++	u32 engine_enabled_masks[GUC_MAX_ENGINE_CLASSES];
++	u32 generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_MAX];
+ } __packed;
+ 
+ /* Clients info */
 -- 
 2.25.1
 
