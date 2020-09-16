@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12EF026C80D
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 20:40:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6AA26C825
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Sep 2020 20:42:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91EA56EABA;
-	Wed, 16 Sep 2020 18:40:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 135E16EABC;
+	Wed, 16 Sep 2020 18:42:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
- [IPv6:2a00:1450:4864:20::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16B8B6EABA
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 18:39:59 +0000 (UTC)
-Received: by mail-lj1-x242.google.com with SMTP id b19so6782523lji.11
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 11:39:58 -0700 (PDT)
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
+ [IPv6:2a00:1450:4864:20::543])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BE356EABC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 18:42:13 +0000 (UTC)
+Received: by mail-ed1-x543.google.com with SMTP id k14so7511224edo.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 11:42:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux-foundation.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=oa2KOKBruJIa8JzwEuXDvn8lq/AyW8Gh05WzKpjKQjk=;
- b=UEueMUHZ3w1bML4TffC03SPtwmMbG26ZS04QoHTBFtkbazq0zj1LMx+FyboyvzzASg
- nydFo8G58LEHhfHuiZfy7mbpmIDsIlzAJfeeTzYG6VJXbIqW/NS9VqvGKvKAt1o7QE3H
- aEBuUY03yHBMaYNPFFjhHL22z9bGvgl38mViw=
+ :cc; bh=AxuwlCpSO8TsaLIcauC4aS5tgqsK9SeD3UYfP7DN7g0=;
+ b=ZKGyeh6DjOj0P0poUJri2yvAXd4omTbSKkycPwhZ3i+69eOgCicq7HjntIxGCUS9d/
+ zNZFDIECDK4GwkaKDrKuGgCWjAAnhqqHdcPPPF/38HaA25t0OpynH7kdnV1WYZaxFMxz
+ W50ov+r+RFsylVih7TsRScGj6r7RgJSz63qJs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=oa2KOKBruJIa8JzwEuXDvn8lq/AyW8Gh05WzKpjKQjk=;
- b=lEPX+MduiXmXl2CLV/JYrDvqDHK5zOBMoqzNj9B9URsVFY2SgIQCa52LAdNGP9/dTU
- HjYAz1QxEnR4lf558q6evNAEE7mzv9o8CLe6gE9yGUuzR3L2UbkSr7VB5I9Bu+t1btfP
- xsY/Wc8kQCNBUMfO1mNOFqforhD1n1mqRdj7z3zX4QgMHXlN63fHuVZwyDUH8v2Rouxd
- HgINV06e/zJ+CkN+PU1jGqCxcsa1wEJeq6k+fin0+dWKHI8ToZnV5CQvAA+a5oVRHkOy
- xcmwf2Sz2YnbDgpXEtC4FUjyipb6tWdNEZLlH9m2T+B4RXLFfBYTlvYEsNIRJQaAo04M
- bEkg==
-X-Gm-Message-State: AOAM532LGH1X979AvVSOvyvQ/aOTsFPtBn8dUUgdSKjwm+MeOqyPSjTb
- 0GH6iZVwc0zmNKvpj2LcOzyaDh2uioSEVQ==
-X-Google-Smtp-Source: ABdhPJzeVquBJp9w5hiX4YDUMsQks9u5FB/+DxFeETdm+oKl68LP6Kk8BR0C5Q16MMOLxpK0zWKitA==
-X-Received: by 2002:a2e:9410:: with SMTP id i16mr9536702ljh.443.1600281596241; 
- Wed, 16 Sep 2020 11:39:56 -0700 (PDT)
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com.
- [209.85.167.54])
- by smtp.gmail.com with ESMTPSA id m203sm4707838lfd.195.2020.09.16.11.39.55
+ bh=AxuwlCpSO8TsaLIcauC4aS5tgqsK9SeD3UYfP7DN7g0=;
+ b=sTRmuShDrjGVPgKtvvBqNWinVtGH3bBSLAgLUn5A4KQsc1M7FjYwXYQbkudxNiRaZU
+ lk/xv7zXnmpsdr4U7l69qoX4JubUdUv5K6t8ia/P9v64UZApiY1pItjfKbPvFOul+HeD
+ qwjy+lA753htVQAY0opJsUqa2toRBiBwCvvtR5A3nSRDF543DBY+gkTpFaDDfXBvBFhl
+ WAKrZVtTlbQTNa71GzXC1v8+Jx5VTSLSbu7ltPtKu1XviNkbQHDYM9chEfHZkqkM7s17
+ lbLWe2K+qk/VdtyG73urzqrWYY0nfHaJp5ey1rJggUVsCM/aUdYLR6qEz3yToekAw9C+
+ qJAw==
+X-Gm-Message-State: AOAM530/aItlw0ivDtbeKp3R/8WLPQ86/dgomvhjgq3oZpeqTDP2OUBt
+ eTbyCBuSshy8aeJQglqgEiDo1bC8km/YjQ==
+X-Google-Smtp-Source: ABdhPJwsPAmXq/L7ux/WuBT35it/hH9ylc+RD8MhahYvOEQbBegelfsfDsjdsHShJxW09Rb1qIG3iA==
+X-Received: by 2002:aa7:c693:: with SMTP id n19mr30055880edq.101.1600281731596; 
+ Wed, 16 Sep 2020 11:42:11 -0700 (PDT)
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com.
+ [209.85.218.45])
+ by smtp.gmail.com with ESMTPSA id h18sm10998707edt.75.2020.09.16.11.42.11
  for <intel-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 16 Sep 2020 11:39:56 -0700 (PDT)
-Received: by mail-lf1-f54.google.com with SMTP id m5so8063476lfp.7
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 11:39:55 -0700 (PDT)
-X-Received: by 2002:a19:e00a:: with SMTP id x10mr9071213lfg.603.1600281136741; 
- Wed, 16 Sep 2020 11:32:16 -0700 (PDT)
+ Wed, 16 Sep 2020 11:42:11 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id e23so12051896eja.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 11:42:11 -0700 (PDT)
+X-Received: by 2002:a19:521a:: with SMTP id m26mr9002648lfb.133.1600281306776; 
+ Wed, 16 Sep 2020 11:35:06 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200914204209.256266093@linutronix.de>
  <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
@@ -55,14 +55,13 @@ References: <20200914204209.256266093@linutronix.de>
  <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
  <87bli75t7v.fsf@nanos.tec.linutronix.de>
  <CAHk-=wht7kAeyR5xEW2ORj7m0hibVxZ3t+2ie8vNHLQfdbN2_g@mail.gmail.com>
- <CAKMK7uHAk9-Vy2cof0ws=DrcD52GHiCDiyHbjLd19CgpBU2rKQ@mail.gmail.com>
- <20200916152956.GV29330@paulmck-ThinkPad-P72>
-In-Reply-To: <20200916152956.GV29330@paulmck-ThinkPad-P72>
+ <87y2la4xu6.fsf@nanos.tec.linutronix.de>
+In-Reply-To: <87y2la4xu6.fsf@nanos.tec.linutronix.de>
 From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 16 Sep 2020 11:32:00 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wjsMycgMHJrCmeetR3r+K5bpSRtmVWfd8iaoQCYd_VYAg@mail.gmail.com>
-Message-ID: <CAHk-=wjsMycgMHJrCmeetR3r+K5bpSRtmVWfd8iaoQCYd_VYAg@mail.gmail.com>
-To: "Paul E. McKenney" <paulmck@kernel.org>
+Date: Wed, 16 Sep 2020 11:34:50 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whvULv3M2dQzPra1W-uGiX=_6Z_YeGnRDodbtXgJpihWA@mail.gmail.com>
+Message-ID: <CAHk-=whvULv3M2dQzPra1W-uGiX=_6Z_YeGnRDodbtXgJpihWA@mail.gmail.com>
+To: Thomas Gleixner <tglx@linutronix.de>
 Subject: Re: [Intel-gfx] [patch 00/13] preempt: Make preempt count
  unconditional
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -93,12 +92,11 @@ Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
  Mel Gorman <mgorman@suse.de>, intel-gfx <intel-gfx@lists.freedesktop.org>,
  Matt Turner <mattst88@gmail.com>,
  Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
- Shuah Khan <shuah@kernel.org>, Jeff Dike <jdike@addtoit.com>,
- linux-um <linux-um@lists.infradead.org>, Josh Triplett <josh@joshtriplett.org>,
- Steven Rostedt <rostedt@goodmis.org>, rcu@vger.kernel.org,
- linux-m68k <linux-m68k@lists.linux-m68k.org>,
+ Shuah Khan <shuah@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
+ Jeff Dike <jdike@addtoit.com>, linux-um <linux-um@lists.infradead.org>,
+ Josh Triplett <josh@joshtriplett.org>, Steven Rostedt <rostedt@goodmis.org>,
+ rcu@vger.kernel.org, linux-m68k <linux-m68k@lists.linux-m68k.org>,
  Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
- Thomas Gleixner <tglx@linutronix.de>,
  Dietmar Eggemann <dietmar.eggemann@arm.com>,
  Linux ARM <linux-arm-kernel@lists.infradead.org>,
  Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
@@ -112,38 +110,26 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 16, 2020 at 8:29 AM Paul E. McKenney <paulmck@kernel.org> wrote:
+On Tue, Sep 15, 2020 at 12:57 PM Thomas Gleixner <tglx@linutronix.de> wrote:
 >
-> All fair, but some of us need to write code that must handle being
-> invoked from a wide variety of contexts.
+> You wish. I just found a 7 year old bug in a 10G network driver which
+> surely would have been found if people would enable debug configs and
+> not just run the crap on their PREEMPT_NONE, all debug off kernel. And
+> that driver is not subject to bitrot, it gets regular bug fixes from
+> people who seem to care (distro folks).
 
-Note that I think that core functionality is different from random drivers.
+That driver clearly cannot be very well maintained. All the distro
+kernels have the basic debug checks in place, afaik.
 
-Of course core code can (and will) look at things like
+Is it some wonderful "enterprise hardware" garbage again that only
+gets used in special data centers?
 
-        if (in_interrupt())
-            .. schedule work asynchronously ..
+Becasue the "enterprise" people really are special. Very much in the
+"short bus" special kind of way. The fact that they have fooled so
+much of the industry into thinking that they are the competent and
+serious people is a disgrace.
 
-because core code ends up being called from odd places, and code like
-that is expected to have understanding of the rules it plays with.
-
-But something like RCU is a very different beast from some "walk the
-scatter-gather list" code.
-
-RCU does its work in the background, and works with lots of different
-things. And it's so core and used everywhere that it knows about these
-things. I mean, we literally have special code explicitly to let RCU
-know "we entered kernel context now".
-
-But something like a driver list walking thing should not be doing
-different things behind peoples back depending on whether they hold
-spinlocks or not. It should either just work regardless, or there
-should be a flag (or special interface) for the "you're being called
-in a crtitical region".
-
-Because dynamically changing behavior really is very confusing.
-
-               Linus
+              Linus
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
