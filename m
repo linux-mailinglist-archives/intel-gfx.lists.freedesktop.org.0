@@ -2,49 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93CC26D3EB
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 08:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9141B26D413
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 09:01:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E2936E11D;
-	Thu, 17 Sep 2020 06:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62F296E16B;
+	Thu, 17 Sep 2020 07:01:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 299D16E11D
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 06:48:18 +0000 (UTC)
-IronPort-SDR: r1+9ej6aLAFBrNeYZnR/lrHI3owApU2XrGQIoGI+koqtkFIgOg41gq/u/DTGx20wNDOb0n1fwN
- 7TCA3o4dgw2A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="158941256"
-X-IronPort-AV: E=Sophos;i="5.76,435,1592895600"; d="scan'208";a="158941256"
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BED96E12F;
+ Thu, 17 Sep 2020 07:01:45 +0000 (UTC)
+IronPort-SDR: CV1f4RH0eiDvQqvi/2NJQVkySgVGZ3pN58G4KwQsQYfiImtwdFW2gTd76qI9JqzMgQ2ehr9K60
+ UiOWZS2xRI7Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="139149142"
+X-IronPort-AV: E=Sophos;i="5.76,435,1592895600"; 
+ d="asc'?scan'208";a="139149142"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2020 23:48:17 -0700
-IronPort-SDR: LukEWjqgy8A1AAWM0KgPGeE9WlEpcZafVfOn/7zfnTzQa9y08vzHl6zk9qtSFF5psjBgXbqZWh
- 2dPShMAU4PUQ==
-X-IronPort-AV: E=Sophos;i="5.76,435,1592895600"; d="scan'208";a="508287640"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2020 23:48:16 -0700
-Received: from platvala by thrakatuluk with local (Exim 4.92)
- (envelope-from <petri.latvala@intel.com>)
- id 1kIniI-0002Kn-8Y; Thu, 17 Sep 2020 09:48:14 +0300
-Date: Thu, 17 Sep 2020 09:48:14 +0300
-From: Petri Latvala <petri.latvala@intel.com>
-To: John Harrison <John.C.Harrison@Intel.com>
-Message-ID: <20200917064814.GB7444@platvala-desk.ger.corp.intel.com>
-References: <20200916171653.2021483-1-John.C.Harrison@Intel.com>
- <160028134210.19374.12969903715505955797@emeril.freedesktop.org>
- <b2366829-8040-075e-59f8-9a92e749ed99@Intel.com>
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2020 00:01:44 -0700
+IronPort-SDR: ukBI2iGpF0qLQV+XK9eI0NxmvQpK6H+RmSGEMAkMlZXNUIW4ONM0HveK7AsjFDWMa+RQJGOf3F
+ PBcs9p36BZ1g==
+X-IronPort-AV: E=Sophos;i="5.76,435,1592895600"; 
+ d="asc'?scan'208";a="344180526"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2020 00:01:42 -0700
+Date: Thu, 17 Sep 2020 14:42:08 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Message-ID: <20200917064208.GF11592@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <b2366829-8040-075e-59f8-9a92e749ed99@Intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_Update_to_GuC_v49?=
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,31 +51,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============0838638312=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 16, 2020 at 06:22:45PM -0700, John Harrison wrote:
-> Hello,
-> 
-> The failures below all appear to be because the new GuC firmware was not
-> found on the test system.
-> 
-> My understanding is that all we need to do to get the CI system to update
-> with new firmwares is to push the firmware to a branch on the FDO
-> drm-firmware repo and then send a pull request to this mailing list. That
-> was done yesterday.
 
-That pull request used an ssh:// url though. Can you send it again
-with a git:// url? I suppose that's a plausible reason why I don't see
-the binaries in CI's deploy dir.
+--===============0838638312==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="t0UkRYy7tHLRMCai"
+Content-Disposition: inline
 
 
--- 
-Petri Latvala
+--t0UkRYy7tHLRMCai
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+Hi,
+
+Here's one left GVT fix against 5.9 is for kernel oops with VFIO edid
+on BDW.
+
+Thanks
+--
+The following changes since commit a291e4fba259a56a6a274c1989997acb6f0bb03a:
+
+  drm/i915/gvt: Use GFP_ATOMIC instead of GFP_KERNEL in atomic context (202=
+0-06-17 12:36:19 +0800)
+
+are available in the Git repository at:
+
+  https://github.com/intel/gvt-linux tags/gvt-fixes-2020-09-17
+
+for you to fetch changes up to 28284943ac94014767ecc2f7b3c5747c4a5617a0:
+
+  drm/i915/gvt: Fix port number for BDW on EDID region setup (2020-09-14 16=
+:44:39 +0800)
+
+----------------------------------------------------------------
+gvt-fixes-2020-09-17
+
+- Fix kernel oops for VFIO edid on BDW (Zhenyu)
+
+----------------------------------------------------------------
+Zhenyu Wang (1):
+      drm/i915/gvt: Fix port number for BDW on EDID region setup
+
+ drivers/gpu/drm/i915/gvt/vgpu.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+
+--=20
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--t0UkRYy7tHLRMCai
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCX2MFQAAKCRCxBBozTXgY
+J1weAKCMYFM1ZqlKnkPDGc8e8/8+1ZqR3gCeKEhuomxM22xLX4Fonw6HTAPuSGw=
+=Zs1w
+-----END PGP SIGNATURE-----
+
+--t0UkRYy7tHLRMCai--
+
+--===============0838638312==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0838638312==--
