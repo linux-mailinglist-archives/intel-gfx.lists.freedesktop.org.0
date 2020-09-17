@@ -2,64 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AEC826E558
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 21:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CAB826E559
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 21:40:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12BDC6E125;
-	Thu, 17 Sep 2020 19:39:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84C116EB8F;
+	Thu, 17 Sep 2020 19:40:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BE826E125
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 19:39:29 +0000 (UTC)
-IronPort-SDR: oP77dgxdLesnhlqY8lNC/nQFeINGmDY0ODdcyCqqqLRGUwocb7Hvr7LLPvgeg6BhjfA2DbzPX7
- GkMieX/BPivw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="160704822"
-X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="160704822"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4519A6EB8F;
+ Thu, 17 Sep 2020 19:40:17 +0000 (UTC)
+IronPort-SDR: EmfclliLEhn7sORiwDp6VeINqPsIpKdDQTEzGSQQ6FzkRwFq+6+mjXACQzs1HYF5bV8zSQa2I+
+ oDXYjXtpcugQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="147468420"
+X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="147468420"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2020 12:39:27 -0700
-IronPort-SDR: rz8qo/i1VU99DgOPCdRqKbyhVUw87InjLlkcMYAAL+JI9pKyhXJEy29yMs/xMrjGZ2qTuppHIL
- LWr+Ip51GUXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="336534228"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga008.jf.intel.com with ESMTP; 17 Sep 2020 12:39:27 -0700
-Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 17 Sep 2020 12:39:26 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX606.gar.corp.intel.com (10.67.234.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 18 Sep 2020 01:09:23 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Fri, 18 Sep 2020 01:09:23 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 05/20] drm/i915: Reset glk degamma index
- after programming/readout
-Thread-Index: AQHWXH86GXbqVqth80217CvRKBE+nKltmrOQ
-Date: Thu, 17 Sep 2020 19:39:23 +0000
-Message-ID: <e318e015a4d14e898f1935650ea94ff7@intel.com>
-References: <20200717211345.26851-1-ville.syrjala@linux.intel.com>
- <20200717211345.26851-6-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200717211345.26851-6-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2020 12:40:16 -0700
+IronPort-SDR: OJtaUmUU2VRk9KtKnU2JOdZ0Wx6lNOu+0+CFBjlBeB4odozE5Gxp9wTpGmmaUJi2k6Nfsj2iiR
+ 1ryN5FpIrCvQ==
+X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="483882946"
+Received: from jekeller-mobl1.amr.corp.intel.com (HELO [10.212.151.155])
+ ([10.212.151.155])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2020 12:40:13 -0700
+To: Keith Busch <kbusch@kernel.org>, Joe Perches <joe@perches.com>
+References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
+ <20200909205558.GA3384631@dhcp-10-100-145-180.wdl.wdc.com>
+From: Jacob Keller <jacob.e.keller@intel.com>
+Organization: Intel Corporation
+Message-ID: <321069c8-a4c1-56ff-49fb-4c2bce1e6352@intel.com>
+Date: Thu, 17 Sep 2020 12:40:13 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.2.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 05/20] drm/i915: Reset glk degamma index
- after programming/readout
+In-Reply-To: <20200909205558.GA3384631@dhcp-10-100-145-180.wdl.wdc.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [trivial PATCH] treewide: Convert switch/case
+ fallthrough; to break; 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,50 +54,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ oss-drivers@netronome.com, nouveau@lists.freedesktop.org,
+ alsa-devel <alsa-devel@alsa-project.org>, dri-devel@lists.freedesktop.org,
+ linux-mips@vger.kernel.org, linux-ide@vger.kernel.org, dm-devel@redhat.com,
+ linux-mtd@lists.infradead.org, linux-i2c@vger.kernel.org,
+ sparclinux@vger.kernel.org, kvmarm@lists.cs.columbia.edu,
+ linux-rtc@vger.kernel.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, dccp@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-atm-general@lists.sourceforge.net, linux-afs@lists.infradead.org,
+ coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
+ linux-serial@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-mmc@vger.kernel.org, Kees Cook <kees.cook@canonical.com>,
+ linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-sctp@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-nvme@lists.infradead.org,
+ storagedev@microchip.com, ceph-devel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-nfs@vger.kernel.org,
+ Jiri Kosina <trivial@kernel.org>, linux-parisc@vger.kernel.org,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ LKML <linux-kernel@vger.kernel.org>, iommu@lists.linux-foundation.org,
+ netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
+ bpf@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBWaWxsZQ0K
-PiBTeXJqYWxhDQo+IFNlbnQ6IFNhdHVyZGF5LCBKdWx5IDE4LCAyMDIwIDI6NDQgQU0NCj4gVG86
-IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVjdDogW0ludGVsLWdmeF0g
-W1BBVENIIDA1LzIwXSBkcm0vaTkxNTogUmVzZXQgZ2xrIGRlZ2FtbWEgaW5kZXggYWZ0ZXINCj4g
-cHJvZ3JhbW1pbmcvcmVhZG91dA0KPiANCj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5z
-eXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gDQo+IEp1c3QgZm9yIHNvbWUgZXh0cmEgY29uc2lz
-dGVuY3kgbGV0J3MgcmVzZXQgdGhlIGdsayBkZWdhbW1hIExVVCBpbmRleCBiYWNrIHRvIDANCj4g
-YWZ0ZXIgd2UncmUgZG9uZyB0cmF3bGluZyB0aGUgTFVULg0KDQpXZSBkbyBzZXQgdGhpcyB0byAw
-IGluIHRoZSBiZWdpbm5pbmcsIGJ1dCBJIHRoaW5rIGdvb2QgdG8gbGVhdmUgaW4gYSBjbGVhbiBz
-dGF0ZS4NClJldmlld2VkLWJ5OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPg0K
-DQo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5p
-bnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9j
-b2xvci5jIHwgNiArKysrKy0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDEg
-ZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2NvbG9yLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2NvbG9yLmMNCj4gaW5kZXggNzdjMTAzYTg2YTMwLi4zN2E0ZmVkZTdiYzAgMTAwNjQ0DQo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29sb3IuYw0KPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbG9yLmMNCj4gQEAgLTgxOCwxMiAr
-ODE4LDE0IEBAIHN0YXRpYyB2b2lkIGdsa19sb2FkX2RlZ2FtbWFfbHV0KGNvbnN0IHN0cnVjdA0K
-PiBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQ0KPiAgCQkgKiBhcyBjb21wYXJlZCB0byBq
-dXN0IDE2IHRvIGFjaGlldmUgdGhpcy4NCj4gIAkJICovDQo+ICAJCWludGVsX2RlX3dyaXRlKGRl
-dl9wcml2LCBQUkVfQ1NDX0dBTUNfREFUQShwaXBlKSwNCj4gLQkJICAgICAgICAgICAgICAgbHV0
-W2ldLmdyZWVuKTsNCj4gKwkJCSAgICAgICBsdXRbaV0uZ3JlZW4pOw0KPiAgCX0NCj4gDQo+ICAJ
-LyogQ2xhbXAgdmFsdWVzID4gMS4wLiAqLw0KPiAgCXdoaWxlIChpKysgPCAzNSkNCj4gIAkJaW50
-ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIFBSRV9DU0NfR0FNQ19EQVRBKHBpcGUpLCAxIDw8IDE2KTsN
-Cj4gKw0KPiArCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBQUkVfQ1NDX0dBTUNfSU5ERVgocGlw
-ZSksIDApOw0KPiAgfQ0KPiANCj4gIHN0YXRpYyB2b2lkIGdsa19sb2FkX2RlZ2FtbWFfbHV0X2xp
-bmVhcihjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0KPiAqY3J0Y19zdGF0ZSkgQEAgLTg1
-MSw2ICs4NTMsOCBAQCBzdGF0aWMgdm9pZA0KPiBnbGtfbG9hZF9kZWdhbW1hX2x1dF9saW5lYXIo
-Y29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdA0KPiAgCS8qIENsYW1wIHZh
-bHVlcyA+IDEuMC4gKi8NCj4gIAl3aGlsZSAoaSsrIDwgMzUpDQo+ICAJCWludGVsX2RlX3dyaXRl
-KGRldl9wcml2LCBQUkVfQ1NDX0dBTUNfREFUQShwaXBlKSwgMSA8PCAxNik7DQo+ICsNCj4gKwlp
-bnRlbF9kZV93cml0ZShkZXZfcHJpdiwgUFJFX0NTQ19HQU1DX0lOREVYKHBpcGUpLCAwKTsNCj4g
-IH0NCj4gDQo+ICBzdGF0aWMgdm9pZCBnbGtfbG9hZF9sdXRzKGNvbnN0IHN0cnVjdCBpbnRlbF9j
-cnRjX3N0YXRlICpjcnRjX3N0YXRlKQ0KPiAtLQ0KPiAyLjI2LjINCj4gDQo+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IEludGVsLWdmeCBtYWlsaW5n
-IGxpc3QNCj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+
+On 9/9/2020 1:55 PM, Keith Busch wrote:
+> On Wed, Sep 09, 2020 at 01:06:39PM -0700, Joe Perches wrote:
+>> diff --git a/crypto/tcrypt.c b/crypto/tcrypt.c
+>> index eea0f453cfb6..8aac5bc60f4c 100644
+>> --- a/crypto/tcrypt.c
+>> +++ b/crypto/tcrypt.c
+>> @@ -2464,7 +2464,7 @@ static int do_test(const char *alg, u32 type, u32 mask, int m, u32 num_mb)
+>>  		test_hash_speed("streebog512", sec,
+>>  				generic_hash_speed_template);
+>>  		if (mode > 300 && mode < 400) break;
+>> -		fallthrough;
+>> +		break;
+>>  	case 399:
+>>  		break;
+> 
+> Just imho, this change makes the preceding 'if' look even more
+> pointless. Maybe the fallthrough was a deliberate choice? Not that my
+> opinion matters here as I don't know this module, but it looked a bit
+> odd to me.
+> 
+
+Yea this does look very odd..
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
