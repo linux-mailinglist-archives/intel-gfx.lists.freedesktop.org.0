@@ -1,56 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DFDC27031B
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 19:19:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83EB8270319
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 19:19:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 089F86ED53;
-	Fri, 18 Sep 2020 17:19:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 273A16ED44;
+	Fri, 18 Sep 2020 17:19:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FD806E0DD;
- Thu, 17 Sep 2020 06:39:08 +0000 (UTC)
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com
- [209.85.210.52])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 8342D21D24;
- Thu, 17 Sep 2020 06:39:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1600324747;
- bh=ul//1MPvzGwsu0j/p6Y16UQQiQFQ34KaxNZPDGcZMVQ=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=HDt8uQM0v8B/UcBUZbIv1V0sfKfg2cFRlslsx0aSuVlSNygrWMCPE06Ap0aIBnne9
- jOW9Uv/SlRT9HO7xJczWkND5TP4anIACsyt+gRfv80tTSyzF19Y5+nRJzk0jTTcgKS
- cRwHGrtoYvMmr2fWMoLBFjS+SFN38ppdbKXJOIio=
-Received: by mail-ot1-f52.google.com with SMTP id q21so908257ota.8;
- Wed, 16 Sep 2020 23:39:07 -0700 (PDT)
-X-Gm-Message-State: AOAM531zG9eEvZ4tJHNg1fl64xGeNd80ImwWwp1yKuLambOqaq4i8jGS
- RQ6TOG0TsZpi40NSCEIwu67o3dgRcG2tEUkB+Tc=
-X-Google-Smtp-Source: ABdhPJzDVArhOd+kLFt2rL9MQKKEsWovIySrg3UJwo0Iv+0lzRuvHpB/w00LX+tWqnD2g7LiiG7vR8NQyDodmLekHG0=
-X-Received: by 2002:a9d:6193:: with SMTP id g19mr18298736otk.108.1600324745877; 
- Wed, 16 Sep 2020 23:39:05 -0700 (PDT)
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E88A36EB14
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 08:03:38 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id d4so1015319wmd.5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 01:03:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=netronome-com.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=TUShtxADeMIRUv08jDyFnIdO2h4AVdi1g89uLOtrWXw=;
+ b=Xm9muXpLMfdw+3JTaQ5+6nxJDSneO0K8th2wgQ0VLh2VI2BmK+XWoQ9cDtIn8+KaRJ
+ B45Xbntr5JjNU8mF7nIZd8VP+CTHviEtF1Um5VazOhr6GEQCgh9bbRNIM6C+XWioNjmk
+ ImuOo8Gi8eD0FtSQ7hHZ1yPAo82BLFHJwGGg0UxKCYs0oMSSpMWIe45dJUN+DzUELaKQ
+ JzvvcS8KVPQMZJTfgm/lLBewbBl9UGKGHM3XV6hYGQwunOqgCSfJKO8sQaLl1M6X9BRD
+ K+XM2hJttDJQqNZl5Xftk9yd2fnhmTZR2ol6vfSH0itoQkT2+o/FcX7saxpuLl0f47l5
+ EzpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=TUShtxADeMIRUv08jDyFnIdO2h4AVdi1g89uLOtrWXw=;
+ b=b/DXoHXYsi3A4hbNn9mXaKBsX9n0RozEKLZ0uF4xsFQssCF3ki78j4rFAzHcq+2dBl
+ zRkWsGNUpJ2TQL54uMxnUHdEwqdjbpiDbgWojJy0F8gYO92CPw4fMVsRcso1nWAk4btO
+ 2/MRHW+isOgx3XR4SJrkZJR2zBBULiSqtpOejjJQ89DqWzW8HBoiV9OCMkqeq50Z4G/C
+ 9RA1hoXHt5IeZWz1Hpfhk4ux7Z9k8qSPcFpwI6USEe0Id8ZF7MtIPoJI6WktdHGJLFpv
+ XFBgD152nOKJQsthN7YPznFDbTkuC1OnedwGfDNVqDw5ptvb612XPVYUqZ9To+k7lMV/
+ r5cg==
+X-Gm-Message-State: AOAM5339BITucb9cU8drvcvNtnkAk82hJ1XbKmEQtucCq2STNqxYStoE
+ 2puLfRrkIwiNZMyL1y3EUqd91w==
+X-Google-Smtp-Source: ABdhPJzTwzfeJOnCQh65prZummqH9JR09Yxja+zvv2OTSAZpPcom4k7xuvXSyH3Yv50qn/8+2aIWyQ==
+X-Received: by 2002:a1c:e256:: with SMTP id z83mr8793930wmg.33.1600329817598; 
+ Thu, 17 Sep 2020 01:03:37 -0700 (PDT)
+Received: from netronome.com ([2001:982:756:703:d63d:7eff:fe99:ac9d])
+ by smtp.gmail.com with ESMTPSA id a13sm9836030wme.26.2020.09.17.01.03.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 17 Sep 2020 01:03:36 -0700 (PDT)
+Date: Thu, 17 Sep 2020 10:03:35 +0200
+From: Simon Horman <simon.horman@netronome.com>
+To: Joe Perches <joe@perches.com>
+Message-ID: <20200917080334.GB5769@netronome.com>
+References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
 MIME-Version: 1.0
-References: <20200914204209.256266093@linutronix.de>
- <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
- <871rj4owfn.fsf@nanos.tec.linutronix.de>
- <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
- <87bli75t7v.fsf@nanos.tec.linutronix.de>
- <CAHk-=wht7kAeyR5xEW2ORj7m0hibVxZ3t+2ie8vNHLQfdbN2_g@mail.gmail.com>
- <CAKMK7uHAk9-Vy2cof0ws=DrcD52GHiCDiyHbjLd19CgpBU2rKQ@mail.gmail.com>
- <20200916152956.GV29330@paulmck-ThinkPad-P72>
- <CAHk-=wjsMycgMHJrCmeetR3r+K5bpSRtmVWfd8iaoQCYd_VYAg@mail.gmail.com>
-In-Reply-To: <CAHk-=wjsMycgMHJrCmeetR3r+K5bpSRtmVWfd8iaoQCYd_VYAg@mail.gmail.com>
-From: Ard Biesheuvel <ardb@kernel.org>
-Date: Thu, 17 Sep 2020 09:38:54 +0300
-X-Gmail-Original-Message-ID: <CAMj1kXHbKVY_3s_DX_iv0gDbM+mcnP2Eh9ZkeXMPA9sZQVvapw@mail.gmail.com>
-Message-ID: <CAMj1kXHbKVY_3s_DX_iv0gDbM+mcnP2Eh9ZkeXMPA9sZQVvapw@mail.gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
+Content-Disposition: inline
+In-Reply-To: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Mailman-Approved-At: Fri, 18 Sep 2020 17:19:24 +0000
-Subject: Re: [Intel-gfx] [patch 00/13] preempt: Make preempt count
- unconditional
+Subject: Re: [Intel-gfx] [oss-drivers] [trivial PATCH] treewide: Convert
+ switch/case fallthrough; to break; 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,74 +70,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Lai Jiangshan <jiangshanlai@gmail.com>,
- dri-devel <dri-devel@lists.freedesktop.org>, Ben Segall <bsegall@google.com>,
- Linux-MM <linux-mm@kvack.org>,
- "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
- linux-hexagon@vger.kernel.org, Will Deacon <will@kernel.org>,
- Ingo Molnar <mingo@kernel.org>, Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- linux-arch <linux-arch@vger.kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>, Brian Cain <bcain@codeaurora.org>,
- Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>,
- David Airlie <airlied@linux.ie>, Ingo Molnar <mingo@redhat.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Mel Gorman <mgorman@suse.de>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Matt Turner <mattst88@gmail.com>,
- Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
- Shuah Khan <shuah@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
- Jeff Dike <jdike@addtoit.com>, linux-um <linux-um@lists.infradead.org>,
- Josh Triplett <josh@joshtriplett.org>, Steven Rostedt <rostedt@goodmis.org>,
- rcu@vger.kernel.org, linux-m68k <linux-m68k@lists.linux-m68k.org>,
- Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
- Thomas Gleixner <tglx@linutronix.de>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
- Max Filippov <jcmvbkbc@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
- alpha <linux-alpha@vger.kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>
+Cc: linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ oss-drivers@netronome.com, nouveau@lists.freedesktop.org,
+ alsa-devel <alsa-devel@alsa-project.org>, dri-devel@lists.freedesktop.org,
+ linux-mips@vger.kernel.org, linux-ide@vger.kernel.org, dm-devel@redhat.com,
+ linux-mtd@lists.infradead.org, linux-i2c@vger.kernel.org,
+ sparclinux@vger.kernel.org, kvmarm@lists.cs.columbia.edu,
+ linux-rtc@vger.kernel.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, dccp@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-atm-general@lists.sourceforge.net, linux-afs@lists.infradead.org,
+ coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
+ linux-serial@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-mmc@vger.kernel.org, Kees Cook <kees.cook@canonical.com>,
+ linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-sctp@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-nvme@lists.infradead.org,
+ storagedev@microchip.com, ceph-devel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-nfs@vger.kernel.org,
+ Jiri Kosina <trivial@kernel.org>, linux-parisc@vger.kernel.org,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ LKML <linux-kernel@vger.kernel.org>, iommu@lists.linux-foundation.org,
+ netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
+ bpf@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 16 Sep 2020 at 21:32, Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
->
-> But something like a driver list walking thing should not be doing
-> different things behind peoples back depending on whether they hold
-> spinlocks or not. It should either just work regardless, or there
-> should be a flag (or special interface) for the "you're being called
-> in a crtitical region".
->
-> Because dynamically changing behavior really is very confusing.
->
+On Wed, Sep 09, 2020 at 01:06:39PM -0700, Joe Perches wrote:
+> fallthrough to a separate case/default label break; isn't very readable.
+> 
+> Convert pseudo-keyword fallthrough; statements to a simple break; when
+> the next label is case or default and the only statement in the next
+> label block is break;
+> 
+> Found using:
+> 
+> $ grep-2.5.4 -rP --include=*.[ch] -n "fallthrough;(\s*(case\s+\w+|default)\s*:\s*){1,7}break;" *
+> 
+> Miscellanea:
+> 
+> o Move or coalesce a couple label blocks above a default: block.
+> 
+> Signed-off-by: Joe Perches <joe@perches.com>
 
-By the same reasoning, I don't think a generic crypto library should
-be playing tricks with preemption en/disabling under the hood when
-iterating over some data that is all directly accessible via the
-linear map on the platforms that most people care about. And using
-kmap_atomic() unconditionally achieves exactly that.
+...
 
-As I argued before, the fact that kmap_atomic() can be called from an
-atomic context, and the fact that its implementation on HIGHMEM
-platforms requires preemption to be disabled until the next kunmap()
-are two different things, and I don't agree with your assertion that
-the name kmap_atomic() implies the latter semantics. If we can avoid
-disabling preemption on HIGHMEM, as Thomas suggests, we surely don't
-need it on !HIGHMEM either, and given that kmap_atomic() is preferred
-today anyway, we can just merge the two implementations. Are there any
-existing debug features that could help us spot [ab]use of things like
-raw per-CPU data within kmap_atomic regions?
+> diff --git a/drivers/net/ethernet/netronome/nfp/nfpcore/nfp6000_pcie.c b/drivers/net/ethernet/netronome/nfp/nfpcore/nfp6000_pcie.c
+> index 252fe06f58aa..1d5b87079104 100644
+> --- a/drivers/net/ethernet/netronome/nfp/nfpcore/nfp6000_pcie.c
+> +++ b/drivers/net/ethernet/netronome/nfp/nfpcore/nfp6000_pcie.c
+> @@ -345,7 +345,7 @@ static int matching_bar(struct nfp_bar *bar, u32 tgt, u32 act, u32 tok,
+>  		baract = NFP_CPP_ACTION_RW;
+>  		if (act == 0)
+>  			act = NFP_CPP_ACTION_RW;
+> -		fallthrough;
+> +		break;
+>  	case NFP_PCIE_BAR_PCIE2CPP_MapType_FIXED:
+>  		break;
+>  	default:
 
-Re your point about deprecating HIGHMEM: some work is underway on ARM
-to implement a 3.75/3.75 GB kernel/user split on recent LPAE capable
-hardware (which shouldn't suffer from the performance issues that
-plagued the 4/4 split on i686), and so hopefully, there is a path
-forward for ARM that does not rely on HIGHMEM as it does today.
+This is a cascading fall-through handling all map types.
+I don't think this change improves readability.
+
+...
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
