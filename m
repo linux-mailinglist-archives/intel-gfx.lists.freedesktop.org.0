@@ -1,77 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F9626DCAB
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 15:19:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E83626DD67
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 16:02:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C272C6EC79;
-	Thu, 17 Sep 2020 13:19:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05F916EC1D;
+	Thu, 17 Sep 2020 14:02:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB3056EC68
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 13:19:46 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id k15so2036470wrn.10
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 06:19:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to; bh=OJz3dROXwZ4H9FjplYiHUh7ta1dm2pPiZx++Qm+gMOk=;
- b=Ol8zdtYKra8OqwKcXQZPTIzAIAjrxl7EnGA/qptW05V0voGayUZTJ1UOmlJx84mWcm
- 0r1ALbQGydxydvFM37pyuB+FPcNQJYGFXrs30Uy4uBKXsTI9vDopq0psqSt8WIVbv/3m
- SL42by4B46k89IfXDFWI+V95drUdRSPKiXLkY=
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDAC06E290;
+ Thu, 17 Sep 2020 14:01:59 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id a9so2188261wmm.2;
+ Thu, 17 Sep 2020 07:01:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=lBUrIOfg3+mq8ad85tbb7EImBFZIDC/tVRBXQ4hE1ik=;
+ b=DNZiBZAKqypMSqQJoyD2IPrVpqiI3ikdcnRtqSUtglPbT/8APSdwaP78S9dCceWhaB
+ CUFzh+i3SYFxQjgJQYQXA+eAyv74bC7KPueFL/Gfi5sPNtWoyu6oeH0LQkpIWYJSX21y
+ rV7VkyxfFYten7MOhzm3Bz7i04GYai5m0PJD8/+pat7mIsmnFKD4UKKCCUMZ01zZFTbO
+ PKJYwiwHEuO6KO353OHy/LaLG0eDM48NEvTlWgc4GQY7VXvipXO0S4rEEhbCyvprEr3R
+ BIuNCJjy1NTGULEvR1fAoX12DfpViAnvzecyOpIl9S6AtbE1NSwC4GsSGoUx0L019NSL
+ oeQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :content-transfer-encoding:in-reply-to;
- bh=OJz3dROXwZ4H9FjplYiHUh7ta1dm2pPiZx++Qm+gMOk=;
- b=gNkbPIUP0FBMkUil9YlUsA+B4BHz1LzW+c70aiZCJP4HbkgiY7NO3zNaVZynm1++kc
- bmcPj8dkWhelWTaf1dKhcLFUMuin3L8cEIO6llzP2L7uRRGvqnWIABMpCADErM5FqMxR
- iXN6Rd5NY8AFP9yKo5spMyEe5lWiSab90kzfPKr+0vZiPlZuUlFrLWUtNSKLvZkeFboM
- RS3HP0ICKDkR39HUrGCBuXTXbnmk9HOMUlDHRknwBf/eiatPWMg60gCeNuCQ0OdUfdWu
- MFegb2mREVXkoshNbhr6x7Ap+GiaBcSqKavUOUtVUyj3UDch4LVZkwyBzlPkzdhuM5vK
- obhg==
-X-Gm-Message-State: AOAM532hYvDq21JFmJiJ1F8A63FIoleT9eSNhkAg28R2lu9WAPzupfOW
- FPMFOZW03zJrEB+fsa2KH1pMyA==
-X-Google-Smtp-Source: ABdhPJwWrq6ZejmimL/ybiemi2sN/GPynbFDqZKwAC87Lkhqkhgx8buF3bHZlQuU+GRDRVJVnJpavA==
-X-Received: by 2002:a5d:6b84:: with SMTP id n4mr34531077wrx.55.1600348785370; 
- Thu, 17 Sep 2020 06:19:45 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id d2sm39644798wro.34.2020.09.17.06.19.43
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=lBUrIOfg3+mq8ad85tbb7EImBFZIDC/tVRBXQ4hE1ik=;
+ b=NbZFwZV05Gcfe6hLL6STlm/2ehiyQ6RZ9PVThNJ/uIVUFT46NvEA1aEGWhIJ+TOwpH
+ NmQVlzkJvRCSwcn4J4QDhWL5hXpH1N50c7H9q56wfKvDG99XYFvsRuX290zRteKRVyHd
+ zKfqDpX69CYEJA20V1DyvQgpNDQkBSfayhsmQ/oilPM5E8qxTejwY/+dMmV4U9IVOg4I
+ Ohdp1/KhZYB2SdiY+ejP84C7XP87N+6uBrMKlq6EVvyUu8C9ZdqLac1Sp++9wm2WBp+v
+ /9oujqCU6za1QL/zAruyTvPDJi30BltY3wtwgo19BNh7MTKNt7WVaHjC+6+Ovb8MRqqb
+ Gfeg==
+X-Gm-Message-State: AOAM533AXcNXQW7ApH+6IAjksQgjdtk09Gipq/dgQ8OQ7Ii8X6T29Bbj
+ Sn52e46T7ouiCjlCKAsNMaQ=
+X-Google-Smtp-Source: ABdhPJwVFsi9VyC5N2zDyjQYYSf7iQdzkgcW/plJduCk7Y3eMkitDq4/6m+bqkSKVjF1esIZWne4iA==
+X-Received: by 2002:a1c:ba0b:: with SMTP id k11mr10119624wmf.20.1600351318328; 
+ Thu, 17 Sep 2020 07:01:58 -0700 (PDT)
+Received: from smtp.gmail.com (a95-92-181-29.cpe.netcabo.pt. [95.92.181.29])
+ by smtp.gmail.com with ESMTPSA id z14sm37316830wrh.14.2020.09.17.07.01.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Sep 2020 06:19:44 -0700 (PDT)
-Date: Thu, 17 Sep 2020 15:19:42 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <20200917131942.GX438822@phenom.ffwll.local>
-Mail-Followup-To: Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?=
- <thomas_os@shipmail.org>, 
- DRI Development <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Dave Chinner <david@fromorbit.com>, Qian Cai <cai@lca.pw>,
- linux-xfs@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>,
- Jason Gunthorpe <jgg@mellanox.com>, Linux MM <linux-mm@kvack.org>,
- linux-rdma <linux-rdma@vger.kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <20200728135839.1035515-1-daniel.vetter@ffwll.ch>
- <38cbc4fb-3a88-47c4-2d6c-4d90f9be42e7@shipmail.org>
- <CAKMK7uFe-70DE5qOBJ6FwD8d_A0yZt+h5bCqA=e9QtYE1qwASQ@mail.gmail.com>
- <60f2b14f-8cef-f515-9cf5-bdbc02d9c63c@shipmail.org>
+ Thu, 17 Sep 2020 07:01:57 -0700 (PDT)
+Date: Thu, 17 Sep 2020 11:01:48 -0300
+From: Melissa Wen <melissa.srw@gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20200917140148.orpdihcctrr5upxg@smtp.gmail.com>
+References: <20200915145958.19993-1-tzimmermann@suse.de>
+ <20200915145958.19993-17-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <60f2b14f-8cef-f515-9cf5-bdbc02d9c63c@shipmail.org>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH] dma-resv: lockdep-prime
- address_space->i_mmap_rwsem for dma-resv
+In-Reply-To: <20200915145958.19993-17-tzimmermann@suse.de>
+Subject: Re: [Intel-gfx] [PATCH v2 16/21] drm/vgem: Introduce GEM object
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,216 +68,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-xfs@vger.kernel.org, linux-rdma <linux-rdma@vger.kernel.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Dave Chinner <david@fromorbit.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Linux MM <linux-mm@kvack.org>, Jason Gunthorpe <jgg@mellanox.com>,
- Qian Cai <cai@lca.pw>, linux-fsdevel@vger.kernel.org,
- Daniel Vetter <daniel.vetter@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: hamohammed.sa@gmail.com, heiko@sntech.de, andrey.grodzovsky@amd.com,
+ airlied@linux.ie, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, michal.simek@xilinx.com, eric@anholt.net,
+ krzk@kernel.org, sam@ravnborg.org, sumit.semwal@linaro.org,
+ emil.velikov@collabora.com, linux-samsung-soc@vger.kernel.org,
+ jy0922.shim@samsung.com, oleksandr_andrushchenko@epam.com,
+ tomi.valkeinen@ti.com, linux-tegra@vger.kernel.org, linux@armlinux.org.uk,
+ jonathanh@nvidia.com, linux-rockchip@lists.infradead.org, kgene@kernel.org,
+ bskeggs@redhat.com, xen-devel@lists.xenproject.org, miaoqinglang@huawei.com,
+ intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
+ chunkuang.hu@kernel.org, linux-arm-msm@vger.kernel.org, marek.olsak@amd.com,
+ tianci.yin@amd.com, etnaviv@lists.freedesktop.org, inki.dae@samsung.com,
+ christian.gmeiner@gmail.com, linux-mediatek@lists.infradead.org,
+ mripard@kernel.org, matthias.bgg@gmail.com, evan.quan@amd.com,
+ linux-arm-kernel@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ laurent.pinchart@ideasonboard.com, hyun.kwon@xilinx.com,
+ rodrigosiqueiramelo@gmail.com, aaron.liu@amd.com, Felix.Kuehling@amd.com,
+ xinhui.pan@amd.com, sw0312.kim@samsung.com, hjc@rock-chips.com,
+ chris@chris-wilson.co.uk, kyungmin.park@samsung.com, nirmoy.das@amd.com,
+ p.zabel@pengutronix.de, alexander.deucher@amd.com, Hawking.Zhang@amd.com,
+ freedreno@lists.freedesktop.org, christian.koenig@amd.com,
+ l.stach@pengutronix.de
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 30, 2020 at 06:45:14PM +0200, Thomas Hellstr=F6m (Intel) wrote:
-> =
+Hi Thomas,
 
-> On 7/30/20 3:17 PM, Daniel Vetter wrote:
-> > On Thu, Jul 30, 2020 at 2:17 PM Thomas Hellstr=F6m (Intel)
-> > <thomas_os@shipmail.org> wrote:
-> > > =
+On 09/15, Thomas Zimmermann wrote:
+> GEM object functions deprecate several similar callback interfaces in
+> struct drm_driver. This patch replaces the per-driver callbacks with
+> per-instance callbacks in vgem. The only exception is gem_prime_mmap,
+> which is non-trivial to convert.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-> > > On 7/28/20 3:58 PM, Daniel Vetter wrote:
-> > > > GPU drivers need this in their shrinkers, to be able to throw out
-> > > > mmap'ed buffers. Note that we also need dma_resv_lock in shrinkers,
-> > > > but that loop is resolved by trylocking in shrinkers.
-> > > > =
+Thanks here again.
 
-> > > > So full hierarchy is now (ignore some of the other branches we alre=
-ady
-> > > > have primed):
-> > > > =
+This drv file is little tumultuous to me.
+I mean, I took a while to sort functions in my head.
 
-> > > > mmap_read_lock -> dma_resv -> shrinkers -> i_mmap_lock_write
-> > > > =
+However, finally, I got it, and the change looks good.
 
-> > > > I hope that's not inconsistent with anything mm or fs does, adding
-> > > > relevant people.
-> > > > =
+Reviewed-by: Melissa Wen <melissa.srw@gmail.com>
 
-> > > Looks OK to me. The mapping_dirty_helpers run under the i_mmap_lock, =
-but
-> > > don't allocate any memory AFAICT.
-> > > =
-
-> > > Since huge page-table-entry splitting may happen under the i_mmap_lock
-> > > from unmap_mapping_range() it might be worth figuring out how new page
-> > > directory pages are allocated, though.
-> > ofc I'm not an mm expert at all, but I did try to scroll through all
-> > i_mmap_lock_write/read callers. Found the following:
-> > =
-
-> > - kernel/events/uprobes.c in build_map_info:
-> > =
-
-> >              /*
-> >               * Needs GFP_NOWAIT to avoid i_mmap_rwsem recursion through
-> >               * reclaim. This is optimistic, no harm done if it fails.
-> >               */
-> > =
-
-> > - I got lost in the hugetlb.c code and couldn't convince myself it's
-> > not allocating page directories at various levels with something else
-> > than GFP_KERNEL.
-> > =
-
-> > So looks like the recursion is clearly there and known, but the
-> > hugepage code is too complex and flying over my head.
-> > -Daniel
-> =
-
-> OK, so I inverted your annotation and ran a memory hog, and got the below
-> splat. So clearly your proposed reclaim->i_mmap_lock locking order is an
-> already established one.
-> =
-
-> So
-> =
-
-> Reviewed-by: Thomas Hellstr=F6m <thomas.hellstrom@intel.com>
-
-No one complaining that this is a terrible idea and two reviews from
-people who know stuff, so I went ahead and pushed this to drm-misc-next.
-
-Thanks for taking a look at this.
--Daniel
-
-> =
-
-> 8<-----------------------------------------------------------------------=
-----------------------
-> =
-
-> [=A0 308.324654] WARNING: possible circular locking dependency detected
-> [=A0 308.324655] 5.8.0-rc2+ #16 Not tainted
-> [=A0 308.324656] ------------------------------------------------------
-> [=A0 308.324657] kswapd0/98 is trying to acquire lock:
-> [=A0 308.324658] ffff92a16f758428 (&mapping->i_mmap_rwsem){++++}-{3:3}, a=
-t:
-> rmap_walk_file+0x1c0/0x2f0
-> [=A0 308.324663]
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 but task is already holding lo=
-ck:
-> [=A0 308.324664] ffffffffb0960240 (fs_reclaim){+.+.}-{0:0}, at:
-> __fs_reclaim_acquire+0x5/0x30
-> [=A0 308.324666]
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 which lock already depends on =
-the new lock.
-> =
-
-> [=A0 308.324667]
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 the existing dependency chain =
-(in reverse order) is:
-> [=A0 308.324667]
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 -> #1 (fs_reclaim){+.+.}-{0:0}:
-> [=A0 308.324670]=A0=A0=A0=A0=A0=A0=A0 fs_reclaim_acquire+0x34/0x40
-> [=A0 308.324672]=A0=A0=A0=A0=A0=A0=A0 dma_resv_lockdep+0x186/0x224
-> [=A0 308.324675]=A0=A0=A0=A0=A0=A0=A0 do_one_initcall+0x5d/0x2c0
-> [=A0 308.324676]=A0=A0=A0=A0=A0=A0=A0 kernel_init_freeable+0x222/0x288
-> [=A0 308.324678]=A0=A0=A0=A0=A0=A0=A0 kernel_init+0xa/0x107
-> [=A0 308.324679]=A0=A0=A0=A0=A0=A0=A0 ret_from_fork+0x1f/0x30
-> [=A0 308.324680]
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 -> #0 (&mapping->i_mmap_rwsem)=
-{++++}-{3:3}:
-> [=A0 308.324682]=A0=A0=A0=A0=A0=A0=A0 __lock_acquire+0x119f/0x1fc0
-> [=A0 308.324683]=A0=A0=A0=A0=A0=A0=A0 lock_acquire+0xa4/0x3b0
-> [=A0 308.324685]=A0=A0=A0=A0=A0=A0=A0 down_read+0x2d/0x110
-> [=A0 308.324686]=A0=A0=A0=A0=A0=A0=A0 rmap_walk_file+0x1c0/0x2f0
-> [=A0 308.324687]=A0=A0=A0=A0=A0=A0=A0 page_referenced+0x133/0x150
-> [=A0 308.324689]=A0=A0=A0=A0=A0=A0=A0 shrink_active_list+0x142/0x610
-> [=A0 308.324690]=A0=A0=A0=A0=A0=A0=A0 balance_pgdat+0x229/0x620
-> [=A0 308.324691]=A0=A0=A0=A0=A0=A0=A0 kswapd+0x200/0x470
-> [=A0 308.324693]=A0=A0=A0=A0=A0=A0=A0 kthread+0x11f/0x140
-> [=A0 308.324694]=A0=A0=A0=A0=A0=A0=A0 ret_from_fork+0x1f/0x30
-> [=A0 308.324694]
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 other info that might help us =
-debug this:
-> =
-
-> [=A0 308.324695]=A0 Possible unsafe locking scenario:
-> =
-
-> [=A0 308.324695]=A0=A0=A0=A0=A0=A0=A0 CPU0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0 CPU1
-> [=A0 308.324696]=A0=A0=A0=A0=A0=A0=A0 ----=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0 ----
-> [=A0 308.324696]=A0=A0 lock(fs_reclaim);
-> [=A0 308.324697] lock(&mapping->i_mmap_rwsem);
-> [=A0 308.324698]=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 lock(fs_reclaim);
-> [=A0 308.324699]=A0=A0 lock(&mapping->i_mmap_rwsem);
-> [=A0 308.324699]
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *** DEADLOCK ***
-> =
-
-> [=A0 308.324700] 1 lock held by kswapd0/98:
-> [=A0 308.324701]=A0 #0: ffffffffb0960240 (fs_reclaim){+.+.}-{0:0}, at:
-> __fs_reclaim_acquire+0x5/0x30
-> [=A0 308.324702]
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 stack backtrace:
-> [=A0 308.324704] CPU: 1 PID: 98 Comm: kswapd0 Not tainted 5.8.0-rc2+ #16
-> [=A0 308.324705] Hardware name: VMware, Inc. VMware Virtual Platform/440BX
-> Desktop Reference Platform, BIOS 6.00 07/29/2019
-> [=A0 308.324706] Call Trace:
-> [=A0 308.324710]=A0 dump_stack+0x92/0xc8
-> [=A0 308.324711]=A0 check_noncircular+0x12d/0x150
-> [=A0 308.324713]=A0 __lock_acquire+0x119f/0x1fc0
-> [=A0 308.324715]=A0 lock_acquire+0xa4/0x3b0
-> [=A0 308.324716]=A0 ? rmap_walk_file+0x1c0/0x2f0
-> [=A0 308.324717]=A0 ? __lock_acquire+0x394/0x1fc0
-> [=A0 308.324719]=A0 down_read+0x2d/0x110
-> [=A0 308.324720]=A0 ? rmap_walk_file+0x1c0/0x2f0
-> [=A0 308.324721]=A0 rmap_walk_file+0x1c0/0x2f0
-> [=A0 308.324722]=A0 page_referenced+0x133/0x150
-> [=A0 308.324724]=A0 ? __page_set_anon_rmap+0x70/0x70
-> [=A0 308.324725]=A0 ? page_get_anon_vma+0x190/0x190
-> [=A0 308.324726]=A0 shrink_active_list+0x142/0x610
-> [=A0 308.324728]=A0 balance_pgdat+0x229/0x620
-> [=A0 308.324730]=A0 kswapd+0x200/0x470
-> [=A0 308.324731]=A0 ? lockdep_hardirqs_on_prepare+0xf5/0x170
-> [=A0 308.324733]=A0 ? finish_wait+0x80/0x80
-> [=A0 308.324734]=A0 ? balance_pgdat+0x620/0x620
-> [=A0 308.324736]=A0 kthread+0x11f/0x140
-> [=A0 308.324737]=A0 ? kthread_create_worker_on_cpu+0x40/0x40
-> [=A0 308.324739]=A0 ret_from_fork+0x1f/0x30
-> =
-
-> =
-
-> =
-
-> > > /Thomas
-> > > =
-
-> > > =
-
-> > > =
-
-> > =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> ---
+>  drivers/gpu/drm/vgem/vgem_drv.c | 21 ++++++++++++++-------
+>  1 file changed, 14 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_drv.c
+> index cb884c890065..fa54a6d1403d 100644
+> --- a/drivers/gpu/drm/vgem/vgem_drv.c
+> +++ b/drivers/gpu/drm/vgem/vgem_drv.c
+> @@ -50,6 +50,8 @@
+>  #define DRIVER_MAJOR	1
+>  #define DRIVER_MINOR	0
+>  
+> +static const struct drm_gem_object_funcs vgem_gem_object_funcs;
+> +
+>  static struct vgem_device {
+>  	struct drm_device drm;
+>  	struct platform_device *platform;
+> @@ -167,6 +169,8 @@ static struct drm_vgem_gem_object *__vgem_gem_create(struct drm_device *dev,
+>  	if (!obj)
+>  		return ERR_PTR(-ENOMEM);
+>  
+> +	obj->base.funcs = &vgem_gem_object_funcs;
+> +
+>  	ret = drm_gem_object_init(dev, &obj->base, roundup(size, PAGE_SIZE));
+>  	if (ret) {
+>  		kfree(obj);
+> @@ -401,12 +405,20 @@ static int vgem_prime_mmap(struct drm_gem_object *obj,
+>  	return 0;
+>  }
+>  
+> +static const struct drm_gem_object_funcs vgem_gem_object_funcs = {
+> +	.free = vgem_gem_free_object,
+> +	.pin = vgem_prime_pin,
+> +	.unpin = vgem_prime_unpin,
+> +	.get_sg_table = vgem_prime_get_sg_table,
+> +	.vmap = vgem_prime_vmap,
+> +	.vunmap = vgem_prime_vunmap,
+> +	.vm_ops = &vgem_gem_vm_ops,
+> +};
+> +
+>  static struct drm_driver vgem_driver = {
+>  	.driver_features		= DRIVER_GEM | DRIVER_RENDER,
+>  	.open				= vgem_open,
+>  	.postclose			= vgem_postclose,
+> -	.gem_free_object_unlocked	= vgem_gem_free_object,
+> -	.gem_vm_ops			= &vgem_gem_vm_ops,
+>  	.ioctls				= vgem_ioctls,
+>  	.num_ioctls 			= ARRAY_SIZE(vgem_ioctls),
+>  	.fops				= &vgem_driver_fops,
+> @@ -415,13 +427,8 @@ static struct drm_driver vgem_driver = {
+>  
+>  	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
+>  	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
+> -	.gem_prime_pin = vgem_prime_pin,
+> -	.gem_prime_unpin = vgem_prime_unpin,
+>  	.gem_prime_import = vgem_prime_import,
+>  	.gem_prime_import_sg_table = vgem_prime_import_sg_table,
+> -	.gem_prime_get_sg_table = vgem_prime_get_sg_table,
+> -	.gem_prime_vmap = vgem_prime_vmap,
+> -	.gem_prime_vunmap = vgem_prime_vunmap,
+>  	.gem_prime_mmap = vgem_prime_mmap,
+>  
+>  	.name	= DRIVER_NAME,
+> -- 
+> 2.28.0
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
