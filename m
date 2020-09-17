@@ -1,32 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5926C26E2CC
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 19:47:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D81E26E2FF
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 19:55:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B43D16E2D8;
-	Thu, 17 Sep 2020 17:47:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 780296E2D7;
+	Thu, 17 Sep 2020 17:55:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E14976E2D7;
- Thu, 17 Sep 2020 17:47:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D798AA008A;
- Thu, 17 Sep 2020 17:47:17 +0000 (UTC)
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com
+ [IPv6:2607:f8b0:4864:20::d41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A34A76EBB5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 17:55:49 +0000 (UTC)
+Received: by mail-io1-xd41.google.com with SMTP id y74so3157890iof.12
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 10:55:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=t/5EXQwKcuR5SrZP2SomH6aF6/YnDZtAGYcbLL9m+iQ=;
+ b=Ktaa/kmCUgvZdbQ4fa12dNAnlqlGwtF8SG5ZX4KRlryvaVSotiQcDybFGRydNOWtV3
+ +XSOFemgHM940xvhgR/Ytf/5jy/EprTRzTHtAHZVAYgNNd3QfIToN/Z0oiclaQt15kCA
+ MDPI3JaS/HKZ2NchHxGrBOIzgEKyxylNXV5R8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=t/5EXQwKcuR5SrZP2SomH6aF6/YnDZtAGYcbLL9m+iQ=;
+ b=UZVTcOkYk6kIv2RFpcxi0iXjfVhp60VtilIb0mg3gxd6b3h849px5zVr7YCYkpWql8
+ 3m23zeuaemMGuBfR53zAecehpbr+vZAcw9iW+2fcRJo7JcM8Vgwg03vCkZO/2cdjgGxC
+ F9bBgRQEgD4sZN/3KDz+wa5aEJi8jxWW2ZNKULJhVOczaoSrRUpVeCyk7HjgKAZPZRfc
+ 5LBDJN+ucjQFkoWrLZrrgqLR00cHObbk8dFK0kPuK9/tGwHv3P/RsHRmenJpG60GEm0b
+ ncSW6rSXoLrX8QEF7n5J3JgIFOx08l5XrVLRfkULJsWIxP8u/ycR4BBJqiZFpoSpUSwo
+ GbMA==
+X-Gm-Message-State: AOAM532ySplru7CHpOOCZDWai4zm8mImE2+58MdaVmEYbLmyU3C0XpMr
+ 0U+h9svi4EL/KpUKZQTXFREqSUJrHjpnhPtSI7CAnA==
+X-Google-Smtp-Source: ABdhPJwjHQTt4A/hhPViMhr1t+Lep8t8zV1QMBSLA0IR7w18uzRAFO8wZ1BmtDelzWhb/ba/88tGB18qhtB9xeAInUs=
+X-Received: by 2002:a05:6638:69d:: with SMTP id
+ i29mr27297366jab.138.1600365348823; 
+ Thu, 17 Sep 2020 10:55:48 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 17 Sep 2020 17:47:17 -0000
-Message-ID: <160036483785.14568.1837127210946124880@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200917165056.29766-1-jani.nikula@intel.com>
-In-Reply-To: <20200917165056.29766-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/uc=3A_tune_down_GuC_communication_enabled/disabled_messag?=
- =?utf-8?q?es?=
+References: <20200917110838.1.I63d52f5b96d7e81e1e2dc2a72c4bf5fd84d3d3d0@changeid>
+ <87o8m4uxcn.fsf@intel.com>
+In-Reply-To: <87o8m4uxcn.fsf@intel.com>
+From: Kevin Chowski <chowski@chromium.org>
+Date: Thu, 17 Sep 2020 11:55:38 -0600
+Message-ID: <CANM=9DOn9wvL1RBDhxzawY1rRq0PFUBmKdXUGmG1CygApK1Vyg@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Puthikorn Voravootivat <puthik@chromium.org>
+Subject: Re: [Intel-gfx] [PATCH] i915: Introduce quirk for shifting eDP
+ brightness.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,265 +61,176 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0233766413=="
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ Wambui Karuga <wambui.karugax@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0233766413==
-Content-Type: multipart/alternative;
- boundary="===============2641807236062885772=="
+Apologies for being too vague. To be as precise I can be, here is the
+specific code delta I tested: https://crrev.com/c/2406616 . To answer
+your other question, the code I tested against is indeed including the
+fde7266fb2f6 (despite ostensibly being called 5.4 in my commit
+message): our current top-of-tree for our 5.4 branch includes the
+intel_dp_aux_calc_max_backlight logic. Further, I'll note that change
+is exactly the change which breaks my Pixelbook model: prior to the
+change, the max_brightness was hard-coded to 0xFFFF and the math
+worked out that it didn't matter that the hardware cared about the MSB
+despite the driver code caring about the LSB.
 
---===============2641807236062885772==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+To answer Ville's question: the fde7266fb2f6 change which fixes one
+laptop (I believe Thinkpad X1 extreme Gen 2, from some bug reports I
+dug up) and breaks another (Pixelbook); so unfortunately I believe we
+need a quirk at least for some laptop. Reading through the copy of the
+datasheet I have, it wasn't clear to me which was the correct
+interpretation. I'm cc'ing puthik@, who was leaning toward the current
+kernel code (caring about LSB) being the correct interpretation. I
+believe we have other chromebooks which do rely on LSB functionality,
+so unless we can find more examples of laptops wanting MSB it
+currently looks like Pixelbook is the outlier.
 
-== Series Details ==
-
-Series: drm/i915/uc: tune down GuC communication enabled/disabled messages
-URL   : https://patchwork.freedesktop.org/series/81808/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9022 -> Patchwork_18520
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18520 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@vgem_basic@unload:
-    - fi-skl-guc:         [PASS][7] -> [DMESG-WARN][8] ([i915#2203])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-skl-guc/igt@vgem_basic@unload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-skl-guc/igt@vgem_basic@unload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - {fi-ehl-1}:         [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-ehl-1/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-ehl-1/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#1982] / [i915#62] / [i915#92] / [i915#95])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +5 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (45 -> 40)
-------------------------------
-
-  Additional (2): fi-tgl-y fi-bwr-2160 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9022 -> Patchwork_18520
-
-  CI-20190529: 20190529
-  CI_DRM_9022: 98f98783862873daf2a42c874adfa770f08e6b36 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5787: 0ec962017c8131de14e0cb038f7f76b1f17ed637 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18520: 9b96037fe5f4dd862a256af4e886a39b0e818877 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-9b96037fe5f4 drm/i915/uc: tune down GuC communication enabled/disabled messages
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/index.html
-
---===============2641807236062885772==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/uc: tune down GuC communication enabled/disabled messages</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81808/">https://patchwork.freedesktop.org/series/81808/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9022 -&gt; Patchwork_18520</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18520 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>
-<p>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</p>
-</li>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@unload:</p>
-<ul>
-<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-skl-guc/igt@vgem_basic@unload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-skl-guc/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>{fi-ehl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-ehl-1/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-ehl-1/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9022/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18520/fi-kbl-x1275/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +5 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 40)</h2>
-<p>Additional (2): fi-tgl-y fi-bwr-2160 <br />
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9022 -&gt; Patchwork_18520</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9022: 98f98783862873daf2a42c874adfa770f08e6b36 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5787: 0ec962017c8131de14e0cb038f7f76b1f17ed637 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18520: 9b96037fe5f4dd862a256af4e886a39b0e818877 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>9b96037fe5f4 drm/i915/uc: tune down GuC communication enabled/disabled messages</p>
-
-</body>
-</html>
-
---===============2641807236062885772==--
-
---===============0233766413==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On Thu, Sep 17, 2020 at 11:28 AM Jani Nikula
+<jani.nikula@linux.intel.com> wrote:
+>
+> On Thu, 17 Sep 2020, Kevin Chowski <chowski@chromium.org> wrote:
+> > We have observed that Google Pixelbook's backlight hardware is
+> > interpretting these backlight bits from the most-significant side of the
+> > 16 bit word (if DP_EDP_PWMGEN_BIT_COUNT < 16), whereas the driver code
+> > assumes the peripheral cares about the least-significant bits.
+> >
+> > Testing was done from within Chrome OS's build environment when the
+> > patch is backported to 5.4 (the version we are newly targeting for the
+> > Pixelbook); for the record:
+> >    $ emerge-eve-kernelnext sys-kernel/chromeos-kernel-5_4 && \
+> >       ./update_kernel.sh --remote=$IP
+> >
+> > I used `/sys/kernel/debug/dri/0/eDP-1/i915_dpcd` on my laptop to verify
+> > that the registers were being set according to what the actual hardware
+> > expects; I also observe that the backlight is noticeably brighter with
+> > this patch.
+>
+> It's unclear to me what kernel version this is against, and what you've
+> actually tested.
+>
+> Have you tried v5.7 kernel with Lyude's fde7266fb2f6 ("drm/i915: Fix eDP
+> DPCD aux max backlight calculations")?
+>
+> I just want to make sure you've tested with all the relevant fixes
+> before adding quirks.
+>
+> BR,
+> Jani.
+>
+> >
+> > Signed-off-by: Kevin Chowski <chowski@chromium.org>
+> > ---
+> >
+> >  .../drm/i915/display/intel_dp_aux_backlight.c | 34 +++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_quirks.c   | 13 +++++++
+> >  drivers/gpu/drm/i915/i915_drv.h               |  1 +
+> >  3 files changed, 48 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > index acbd7eb66cbe3..99c98f217356d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > @@ -91,6 +91,23 @@ static u32 intel_dp_aux_get_backlight(struct intel_connector *connector)
+> >       if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_BYTE_COUNT)
+> >               level = (read_val[0] << 8 | read_val[1]);
+> >
+> > +     if (i915->quirks & QUIRK_SHIFT_EDP_BACKLIGHT_BRIGHTNESS) {
+> > +             if (!drm_dp_dpcd_readb(&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT,
+> > +                                             &read_val[0])) {
+> > +                     DRM_DEBUG_KMS("Failed to read DPCD register 0x%x\n",
+> > +                                     DP_EDP_PWMGEN_BIT_COUNT);
+> > +                     return 0;
+> > +             }
+> > +             // Only bits 4:0 are used, 7:5 are reserved.
+> > +             read_val[0] = read_val[0] & 0x1F;
+> > +             if (read_val[0] > 16) {
+> > +                     DRM_DEBUG_KMS("Invalid DP_EDP_PWNGEN_BIT_COUNT 0x%X, expected at most 16\n",
+> > +                                             read_val[0]);
+> > +                     return 0;
+> > +             }
+> > +             level >>= 16 - read_val[0];
+> > +     }
+> > +
+> >       return level;
+> >  }
+> >
+> > @@ -106,6 +123,23 @@ intel_dp_aux_set_backlight(const struct drm_connector_state *conn_state, u32 lev
+> >       struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> >       u8 vals[2] = { 0x0 };
+> >
+> > +     if (i915->quirks & QUIRK_SHIFT_EDP_BACKLIGHT_BRIGHTNESS) {
+> > +             if (!drm_dp_dpcd_readb(&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT,
+> > +                                             &vals[0])) {
+> > +                     DRM_DEBUG_KMS("Failed to write aux backlight level: Failed to read DPCD register 0x%x\n",
+> > +                                       DP_EDP_PWMGEN_BIT_COUNT);
+> > +                     return;
+> > +             }
+> > +             // Only bits 4:0 are used, 7:5 are reserved.
+> > +             vals[0] = vals[0] & 0x1F;
+> > +             if (vals[0] > 16) {
+> > +                     DRM_DEBUG_KMS("Failed to write aux backlight level: Invalid DP_EDP_PWNGEN_BIT_COUNT 0x%X, expected at most 16\n",
+> > +                                             vals[0]);
+> > +                     return;
+> > +             }
+> > +             level <<= (16 - vals[0]) & 0xFFFF;
+> > +     }
+> > +
+> >       vals[0] = level;
+> >
+> >       /* Write the MSB and/or LSB */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+> > index 46beb155d835f..63b27d49b2864 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> > @@ -53,6 +53,16 @@ static void quirk_increase_ddi_disabled_time(struct drm_i915_private *i915)
+> >       drm_info(&i915->drm, "Applying Increase DDI Disabled quirk\n");
+> >  }
+> >
+> > +/*
+> > + * Some eDP backlight hardware uses the most-significant bits of the brightness
+> > + * register, so brightness values must be shifted first.
+> > + */
+> > +static void quirk_shift_edp_backlight_brightness(struct drm_i915_private *i915)
+> > +{
+> > +     i915->quirks |= QUIRK_SHIFT_EDP_BACKLIGHT_BRIGHTNESS;
+> > +     DRM_INFO("Applying shift eDP backlight brightness quirk\n");
+> > +}
+> > +
+> >  struct intel_quirk {
+> >       int device;
+> >       int subsystem_vendor;
+> > @@ -156,6 +166,9 @@ static struct intel_quirk intel_quirks[] = {
+> >       /* ASRock ITX*/
+> >       { 0x3185, 0x1849, 0x2212, quirk_increase_ddi_disabled_time },
+> >       { 0x3184, 0x1849, 0x2212, quirk_increase_ddi_disabled_time },
+> > +
+> > +     /* Google Pixelbook */
+> > +     { 0x591E, 0x8086, 0x2212, quirk_shift_edp_backlight_brightness },
+> >  };
+> >
+> >  void intel_init_quirks(struct drm_i915_private *i915)
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > index e4f7f6518945b..cc93bede4fab8 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -525,6 +525,7 @@ struct i915_psr {
+> >  #define QUIRK_PIN_SWIZZLED_PAGES (1<<5)
+> >  #define QUIRK_INCREASE_T12_DELAY (1<<6)
+> >  #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
+> > +#define QUIRK_SHIFT_EDP_BACKLIGHT_BRIGHTNESS (1<<8)
+> >
+> >  struct intel_fbdev;
+> >  struct intel_fbc_work;
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0233766413==--
