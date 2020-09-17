@@ -1,61 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 947E226DA37
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 13:31:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 491E226DADD
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 13:56:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3F256EBFD;
-	Thu, 17 Sep 2020 11:31:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9E526EA1B;
+	Thu, 17 Sep 2020 11:56:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 921926EA78;
- Thu, 17 Sep 2020 11:31:31 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id x23so1614766wmi.3;
- Thu, 17 Sep 2020 04:31:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=QoGoJWGY9uvsPbK1VFldPakdj/95886EaH4XmF5Nmig=;
- b=WT+tCnqscdjnhBzx4pey4qfrs3TpF1Xktu7jt8T8cQSP0yZJdX3KoYHPdWspzIugsq
- 6HSKY9VJKgsdLw89cCYxqdbs7Vt7/k4/jK9LtTE+4i9XvfXW1Lr/Fm+fEnngxxWPD5dx
- hAgvu8wEl2ImGMZ/Vxi1axcUTWC/C1hcCZmRCP+VMlQrWSEcu/Hqzj+fuVKA2INfBjX3
- /zcARTJCVi7gGPGSYovxguWtsuZzPwF6TsPs2IH9t/Kp5k3R+t/9fCDbL8cqbYXRyKxo
- iHGdqfCt+o61f/ixQfUMrk5tyRoSS69zCZaqGiTmJsGllEHi/xlz25EYavgN+6zZY8AL
- WM8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=QoGoJWGY9uvsPbK1VFldPakdj/95886EaH4XmF5Nmig=;
- b=kRjiOL3I7Vcu8ApmGoondF4fg7fd3dZbHYBb05dB1s2Ld0TSD/JXQXCR5U9MeSgY3x
- W6QOE7RI6XSag6ilt9SAcqZxwzc4T5YpM4iy16UpQoSCaQQnubS4Xlm3tf9k6m2fvupu
- MK4GQ+rlaAJLI5nQUoPiPX7WQ7jc7PDV1lZX18OMW6u/sc+uoyS8MYEhIlw80gzkRVRn
- DydDqMNvfZDD+7VBibsu4eUVlA0BZUZ4uP5wb99R7UmuIqm0m36Wf2YUEhA94pk4wInF
- aUm86eMkQ+jvNg2s9lb12ZprMBF9zqIu48k/QjBa+BhX2bNhR2o56rx2UBZqjWc+nb5F
- vxhw==
-X-Gm-Message-State: AOAM5315u/VmMyTs5TiJflOWOxvSt0es3CZzs0regyZaEtOq0exeSrVc
- x59znwu22GHyY8TyokIkCWU=
-X-Google-Smtp-Source: ABdhPJyuZcp+AqRLPz3yJIfvdwNUATarIMvgIK7I09VrN4WEXhLqSMqZyvaS1A1ZqiWgJrdIoQA/Hg==
-X-Received: by 2002:a1c:96:: with SMTP id 144mr9601334wma.84.1600342290200;
- Thu, 17 Sep 2020 04:31:30 -0700 (PDT)
-Received: from smtp.gmail.com (a95-92-181-29.cpe.netcabo.pt. [95.92.181.29])
- by smtp.gmail.com with ESMTPSA id 11sm10489240wmi.14.2020.09.17.04.31.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Sep 2020 04:31:29 -0700 (PDT)
-Date: Thu, 17 Sep 2020 08:31:20 -0300
-From: Melissa Wen <melissa.srw@gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20200917113120.dtz7yxvdg7xdgbx5@smtp.gmail.com>
-References: <20200915145958.19993-1-tzimmermann@suse.de>
- <20200915145958.19993-19-tzimmermann@suse.de>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 064406EA1B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 11:56:55 +0000 (UTC)
+IronPort-SDR: HpuiVaDGd65Q3ubF/rjCy2aWDObcCLA75GhSIeAjYEHKh/4fx9kvK6dj8e2S0Ti38vn62upJHz
+ Q+mBXh0qrojQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="157082636"
+X-IronPort-AV: E=Sophos;i="5.76,436,1592895600"; d="scan'208";a="157082636"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2020 04:56:47 -0700
+IronPort-SDR: psp2CUIpRQI4xkhEBEY8TFe2oyXn12vTpHGsxS7XoJrCkBTXogJoOSi/lsi6LE5LimeSYU5o+z
+ 1aSkBjOK5+Bg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,436,1592895600"; d="scan'208";a="287533766"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga007.fm.intel.com with ESMTP; 17 Sep 2020 04:56:47 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 17 Sep 2020 04:56:46 -0700
+Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
+ BGSMSX604.gar.corp.intel.com (10.67.234.6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 17 Sep 2020 17:26:44 +0530
+Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
+ BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.1713.004;
+ Thu, 17 Sep 2020 17:26:44 +0530
+From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [V12 4/4] drm/i915/dsi: Initiate fame request in cmd mode
+Thread-Index: AQHWjEWH61nG1RkFrECG7JDN8D4ipqlsV2GAgABg1GA=
+Date: Thu, 17 Sep 2020 11:56:44 +0000
+Message-ID: <262e88c79dea418e82d574d80f85dbcb@intel.com>
+References: <20200916161528.2659-1-vandita.kulkarni@intel.com>
+ <20200916161528.2659-5-vandita.kulkarni@intel.com>
+ <20200917113119.GS6112@intel.com>
+In-Reply-To: <20200917113119.GS6112@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200915145958.19993-19-tzimmermann@suse.de>
-Subject: Re: [Intel-gfx] [PATCH v2 18/21] drm/vkms: Introduce GEM object
- functions
+Subject: Re: [Intel-gfx] [V12 4/4] drm/i915/dsi: Initiate fame request in
+ cmd mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,115 +71,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: hamohammed.sa@gmail.com, heiko@sntech.de, andrey.grodzovsky@amd.com,
- airlied@linux.ie, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, michal.simek@xilinx.com, eric@anholt.net,
- krzk@kernel.org, sam@ravnborg.org, sumit.semwal@linaro.org,
- emil.velikov@collabora.com, linux-samsung-soc@vger.kernel.org,
- jy0922.shim@samsung.com, oleksandr_andrushchenko@epam.com,
- tomi.valkeinen@ti.com, linux-tegra@vger.kernel.org, linux@armlinux.org.uk,
- jonathanh@nvidia.com, linux-rockchip@lists.infradead.org, kgene@kernel.org,
- bskeggs@redhat.com, xen-devel@lists.xenproject.org, miaoqinglang@huawei.com,
- intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
- chunkuang.hu@kernel.org, linux-arm-msm@vger.kernel.org, marek.olsak@amd.com,
- tianci.yin@amd.com, etnaviv@lists.freedesktop.org, inki.dae@samsung.com,
- christian.gmeiner@gmail.com, linux-mediatek@lists.infradead.org,
- mripard@kernel.org, matthias.bgg@gmail.com, evan.quan@amd.com,
- linux-arm-kernel@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- laurent.pinchart@ideasonboard.com, hyun.kwon@xilinx.com,
- rodrigosiqueiramelo@gmail.com, aaron.liu@amd.com, Felix.Kuehling@amd.com,
- xinhui.pan@amd.com, sw0312.kim@samsung.com, hjc@rock-chips.com,
- chris@chris-wilson.co.uk, kyungmin.park@samsung.com, nirmoy.das@amd.com,
- p.zabel@pengutronix.de, alexander.deucher@amd.com, Hawking.Zhang@amd.com,
- freedreno@lists.freedesktop.org, christian.koenig@amd.com,
- l.stach@pengutronix.de
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Thursday, September 17, 2020 5:01 PM
+> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>=
+; B S,
+> Karthik <karthik.b.s@intel.com>
+> Subject: Re: [V12 4/4] drm/i915/dsi: Initiate fame request in cmd mode
+> =
 
-On 09/15, Thomas Zimmermann wrote:
-> GEM object functions deprecate several similar callback interfaces in
-> struct drm_driver. This patch replaces the per-driver callbacks with
-> per-instance callbacks in vkms.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> On Wed, Sep 16, 2020 at 09:45:28PM +0530, Vandita Kulkarni wrote:
+> > In TE Gate mode or TE NO_GATE mode on every flip we need to set the
+> > frame update request bit.
+> > After this  bit is set transcoder hardware will automatically send the
+> > frame data to the panel in case of TE NO_GATE mode, where it sends
+> > after it receives the TE event in case of TE_GATE mode.
+> > Once the frame data is sent to the panel, we see the frame counter
+> > updating.
+> >
+> > v2: Use intel_de_read/write
+> >
+> > v3: remove the usage of private_flags
+> >
+> > v4: Use icl_dsi in func names if non static,
+> >     fix code formatting issues. (Jani)
+> >
+> > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/icl_dsi.c       | 26 ++++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++
+> >  drivers/gpu/drm/i915/display/intel_dsi.h     |  1 +
+> >  3 files changed, 37 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > index 2789020e20db..7d2abc7f6ba3 100644
+> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > @@ -205,6 +205,32 @@ static int dsi_send_pkt_payld(struct intel_dsi_host
+> *host,
+> >  	return 0;
+> >  }
+> >
+> > +void icl_dsi_frame_update(struct intel_crtc_state *crtc_state) {
+> > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> > +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> > +	u32 tmp, flags;
+> > +	enum port port;
+> > +
+> > +	flags =3D crtc->mode_flags;
+> > +
+> > +	/*
+> > +	 * case 1 also covers dual link
+> > +	 * In case of dual link, frame update should be set on
+> > +	 * DSI_0
+> > +	 */
+> > +	if (flags & I915_MODE_FLAG_DSI_USE_TE0)
+> > +		port =3D PORT_A;
+> > +	else if (flags & I915_MODE_FLAG_DSI_USE_TE1)
+> > +		port =3D PORT_B;
+> > +	else
+> > +		return;
+> > +
+> > +	tmp =3D intel_de_read(dev_priv, DSI_CMD_FRMCTL(port));
+> > +	tmp |=3D DSI_FRAME_UPDATE_REQUEST;
+> > +	intel_de_write(dev_priv, DSI_CMD_FRMCTL(port), tmp); }
+> > +
+> >  static void dsi_program_swing_and_deemphasis(struct intel_encoder
+> > *encoder)  {
+> >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> diff
+> > --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index f862403388f6..11a20bf2255f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -15621,6 +15621,16 @@ static void intel_atomic_commit_tail(struct
+> intel_atomic_state *state)
+> >  		intel_set_cdclk_post_plane_update(state);
+> >  	}
+> >
+> > +	/*
+> > +	 * Incase of mipi dsi command mode, we need to set frame update
+> > +	 * for every commit
+> > +	 */
+> > +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+> > +		if (INTEL_GEN(dev_priv) >=3D 11 &&
+> > +		    intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))
+> > +			if (new_crtc_state->hw.active)
+> > +				icl_dsi_frame_update(new_crtc_state);
+> =
 
-Thanks! Looks fine.
+> If this is the thing that triggers the update then it should probably be =
+called at
+> the start of intel_pipe_update_end().
 
-Reviewed-by: Melissa Wen <melissa.srw@gmail.com>
+I could move it to the end of intel_pipe_update_end, as we need TE to be en=
+abled.
+Because if the frame updates are gated then, the dsi controller will not dr=
+ive the vblank/ frame start to the display engine
+until it receives a TE in the presence of the frame update request.
+And if we are in non gated mode then the dsi controller will immediately dr=
+ive the vblank/frame strart as soon as it receives the
+frame update request.
 
-> ---
->  drivers/gpu/drm/vkms/vkms_drv.c |  8 --------
->  drivers/gpu/drm/vkms/vkms_gem.c | 13 +++++++++++++
->  2 files changed, 13 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_drv.c
-> index cb0b6230c22c..726801ab44d4 100644
-> --- a/drivers/gpu/drm/vkms/vkms_drv.c
-> +++ b/drivers/gpu/drm/vkms/vkms_drv.c
-> @@ -51,12 +51,6 @@ static const struct file_operations vkms_driver_fops = {
->  	.release	= drm_release,
->  };
->  
-> -static const struct vm_operations_struct vkms_gem_vm_ops = {
-> -	.fault = vkms_gem_fault,
-> -	.open = drm_gem_vm_open,
-> -	.close = drm_gem_vm_close,
-> -};
-> -
->  static void vkms_release(struct drm_device *dev)
->  {
->  	struct vkms_device *vkms = container_of(dev, struct vkms_device, drm);
-> @@ -98,8 +92,6 @@ static struct drm_driver vkms_driver = {
->  	.release		= vkms_release,
->  	.fops			= &vkms_driver_fops,
->  	.dumb_create		= vkms_dumb_create,
-> -	.gem_vm_ops		= &vkms_gem_vm_ops,
-> -	.gem_free_object_unlocked = vkms_gem_free_object,
->  	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
->  	.gem_prime_import_sg_table = vkms_prime_import_sg_table,
->  
-> diff --git a/drivers/gpu/drm/vkms/vkms_gem.c b/drivers/gpu/drm/vkms/vkms_gem.c
-> index a017fc59905e..19a0e260a4df 100644
-> --- a/drivers/gpu/drm/vkms/vkms_gem.c
-> +++ b/drivers/gpu/drm/vkms/vkms_gem.c
-> @@ -7,6 +7,17 @@
->  
->  #include "vkms_drv.h"
->  
-> +static const struct vm_operations_struct vkms_gem_vm_ops = {
-> +	.fault = vkms_gem_fault,
-> +	.open = drm_gem_vm_open,
-> +	.close = drm_gem_vm_close,
-> +};
-> +
-> +static const struct drm_gem_object_funcs vkms_gem_object_funcs = {
-> +	.free = vkms_gem_free_object,
-> +	.vm_ops = &vkms_gem_vm_ops,
-> +};
-> +
->  static struct vkms_gem_object *__vkms_gem_create(struct drm_device *dev,
->  						 u64 size)
->  {
-> @@ -17,6 +28,8 @@ static struct vkms_gem_object *__vkms_gem_create(struct drm_device *dev,
->  	if (!obj)
->  		return ERR_PTR(-ENOMEM);
->  
-> +	obj->gem.funcs = &vkms_gem_object_funcs;
-> +
->  	size = roundup(size, PAGE_SIZE);
->  	ret = drm_gem_object_init(dev, &obj->gem, size);
->  	if (ret) {
-> -- 
-> 2.28.0
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+So is it ok if I move it to the end of pipe_update_end..
+
+Thanks,
+Vandita
+> =
+
+> > +
+> >  	/* FIXME: We should call drm_atomic_helper_commit_hw_done()
+> here
+> >  	 * already, but still need the state for the delayed optimization. To
+> >  	 * fix this:
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h
+> > b/drivers/gpu/drm/i915/display/intel_dsi.h
+> > index 19f78a4022d3..625f2f1ae061 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dsi.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dsi.h
+> > @@ -167,6 +167,7 @@ static inline u16 intel_dsi_encoder_ports(struct
+> > intel_encoder *encoder)
+> >
+> >  /* icl_dsi.c */
+> >  void icl_dsi_init(struct drm_i915_private *dev_priv);
+> > +void icl_dsi_frame_update(struct intel_crtc_state *crtc_state);
+> >
+> >  /* intel_dsi.c */
+> >  int intel_dsi_bitrate(const struct intel_dsi *intel_dsi);
+> > --
+> > 2.21.0.5.gaeb582a
+> =
+
+> --
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
