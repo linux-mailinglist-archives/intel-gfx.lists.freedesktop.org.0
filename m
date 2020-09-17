@@ -1,47 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC0B426E109
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 18:45:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E9326E121
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 18:50:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4D5F6E271;
-	Thu, 17 Sep 2020 16:45:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ACF76EC5D;
+	Thu, 17 Sep 2020 16:50:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B97B76E271;
- Thu, 17 Sep 2020 16:45:44 +0000 (UTC)
-IronPort-SDR: a3yHeTw3lM+7ZTTt7nswvAs2RrISSj47XUN9XNzsrFA7Xx24FT0m5U2SY/Lnp2fphs0HLhLzou
- SEYaWI6ZSR/g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="159039496"
-X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="159039496"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BAF36EC5B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 16:50:56 +0000 (UTC)
+IronPort-SDR: eWY9EvXmD5hxV0dt8kIovu27JGAk0JdXFuxMgrWIu9T63vcDwqHz/LLIk9KwPjOBIITvg+HPUf
+ XNuQO5ZOUlKw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="159791461"
+X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="159791461"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2020 09:45:30 -0700
-IronPort-SDR: P3uSJqm1rPKtZatSfhnSZ8jQySr32IzUJw2JpKRkZSk+cCr1RrfV7XmKJWIgIdOH4b2ui+sbAL
- CuFA8kfQWSJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="346686176"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 17 Sep 2020 09:45:25 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Sep 2020 19:45:24 +0300
-Date: Thu, 17 Sep 2020 19:45:24 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <20200917164524.GZ6112@intel.com>
-References: <20200826182456.322681-1-lyude@redhat.com>
- <20200826182456.322681-15-lyude@redhat.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2020 09:50:54 -0700
+IronPort-SDR: FwwoLzc07HA1WumQCHTWm+k5EkGnLEbeVvHBUf3qZljEb7t4T40V0rj1yp6fjbUijBHo7UyU3d
+ XbGVK0B/Dkqw==
+X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="452382705"
+Received: from wgitix-mobl.ger.corp.intel.com (HELO localhost) ([10.251.83.57])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2020 09:50:51 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 17 Sep 2020 19:50:56 +0300
+Message-Id: <20200917165056.29766-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200826182456.322681-15-lyude@redhat.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v5 14/20] drm/nouveau/kms/nv50-: Use
- downstream DP clock limits for mode validation
+Subject: [Intel-gfx] [PATCH] drm/i915/uc: tune down GuC communication
+ enabled/disabled messages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,165 +47,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
- dri-devel@lists.freedesktop.org, Takashi Iwai <tiwai@suse.de>,
- Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- James Jones <jajones@nvidia.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: jani.nikula@intel.com, Karol Herbst <kherbst@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 26, 2020 at 02:24:50PM -0400, Lyude Paul wrote:
-> This adds support for querying the maximum clock rate of a downstream
-> port on a DisplayPort connection. Generally, downstream ports refer to
-> active dongles which can have their own pixel clock limits.
-> =
+The GuC communication enabled/disabled messages are too noisy in info
+level. Convert them from info to debug level, and switch to device based
+logging while at it.
 
-> Note as well, we also start marking the connector as disconnected if we
-> can't read the DPCD, since we wouldn't be able to do anything without
-> DPCD access anyway.
-> =
+Reported-by: Karol Herbst <kherbst@redhat.com>
+Cc: Karol Herbst <kherbst@redhat.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/disp.c   |  3 +++
->  drivers/gpu/drm/nouveau/nouveau_dp.c      | 15 +++++++++++----
->  drivers/gpu/drm/nouveau/nouveau_encoder.h |  1 +
->  3 files changed, 15 insertions(+), 4 deletions(-)
-> =
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+index d6f55f70889d..4e6070e95fe9 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+@@ -231,13 +231,15 @@ static int guc_enable_communication(struct intel_guc *guc)
+ 	intel_guc_ct_event_handler(&guc->ct);
+ 	spin_unlock_irq(&i915->irq_lock);
+ 
+-	DRM_INFO("GuC communication enabled\n");
++	drm_dbg(&i915->drm, "GuC communication enabled\n");
+ 
+ 	return 0;
+ }
+ 
+ static void guc_disable_communication(struct intel_guc *guc)
+ {
++	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++
+ 	/*
+ 	 * Events generated during or after CT disable are logged by guc in
+ 	 * via mmio. Make sure the register is clear before disabling CT since
+@@ -257,7 +259,7 @@ static void guc_disable_communication(struct intel_guc *guc)
+ 	 */
+ 	guc_get_mmio_msg(guc);
+ 
+-	DRM_INFO("GuC communication disabled\n");
++	drm_dbg(&i915->drm, "GuC communication disabled\n");
+ }
+ 
+ static void __uc_fetch_firmwares(struct intel_uc *uc)
+-- 
+2.20.1
 
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/no=
-uveau/dispnv50/disp.c
-> index 8e1effb10425d..d2141ca16107b 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -1258,7 +1258,10 @@ nv50_mstc_detect(struct drm_connector *connector,
->  =
-
->  	ret =3D drm_dp_mst_detect_port(connector, ctx, mstc->port->mgr,
->  				     mstc->port);
-> +	if (ret !=3D connector_status_connected)
-> +		goto out;
->  =
-
-> +out:
->  	pm_runtime_mark_last_busy(connector->dev->dev);
->  	pm_runtime_put_autosuspend(connector->dev->dev);
->  	return ret;
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouve=
-au/nouveau_dp.c
-> index 005750aeb6d4f..ad852e572cfec 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-> @@ -61,6 +61,11 @@ nouveau_dp_probe_dpcd(struct nouveau_connector *nv_con=
-nector,
->  			mstm->can_mst =3D drm_dp_read_mst_cap(aux, dpcd);
->  	}
->  =
-
-> +	ret =3D drm_dp_read_downstream_info(aux, dpcd,
-> +					  outp->dp.downstream_ports);
-> +	if (ret < 0)
-> +		return connector_status_disconnected;
-> +
->  	return connector_status_connected;
->  }
->  =
-
-> @@ -176,8 +181,6 @@ void nouveau_dp_irq(struct nouveau_drm *drm,
->  /* TODO:
->   * - Use the minimum possible BPC here, once we add support for the max =
-bpc
->   *   property.
-> - * - Validate the mode against downstream port caps (see
-> - *   drm_dp_downstream_max_clock())
->   * - Validate against the DP caps advertised by the GPU (we don't check =
-these
->   *   yet)
->   */
-> @@ -188,15 +191,19 @@ nv50_dp_mode_valid(struct drm_connector *connector,
->  		   unsigned *out_clock)
->  {
->  	const unsigned min_clock =3D 25000;
-> -	unsigned max_clock, clock;
-> +	unsigned max_clock, ds_clock, clock;
->  	enum drm_mode_status ret;
->  =
-
->  	if (mode->flags & DRM_MODE_FLAG_INTERLACE && !outp->caps.dp_interlace)
->  		return MODE_NO_INTERLACE;
-
-I stumbled on this code when applying my big DFP series (sorry that
-I forgot to read this while it was on the list).
-
-Anyways, this code appears somewhat confused about the different
-clocks.
-
->  =
-
->  	max_clock =3D outp->dp.link_nr * outp->dp.link_bw;
-
-That I presume is the max symbol rate of the link.
-
-> -	clock =3D mode->clock * (connector->display_info.bpc * 3) / 10;
-> +	ds_clock =3D drm_dp_downstream_max_clock(outp->dp.dpcd,
-> +					       outp->dp.downstream_ports);
-
-That is the maximum dotclock (also the max TMDS clock before my DFP
-series landed) the DFP supports.
-
-> +	if (ds_clock)
-> +		max_clock =3D min(max_clock, ds_clock);
-
-max() between the symbol rate and dotclock doesn't really
-make sense. One is the amount of symbols (or data in other
-words), the other is amount of pixels (which depending on
-bpc can result in various amounts of symbols/data).
-
->  =
-
-> +	clock =3D mode->clock * (connector->display_info.bpc * 3) / 10;
-
-I presume this trying to compute the symbol rate we require.
-Due to the 8b/10b encoding each 10bit symbol carries 8 bits of
-actual data, so the /10 should be /8. IIRC we had this same
-bug in i915, but it was fixed years ago.
-
-This is also calculating things based on display_info.bpc which
-IIRC is the max bpc the display supports. Using the max may be
-overly pessimistic in case a) the driver/hw doesn't even support
-bpc that high, b) the driver can dynamically reduce the bpc in
-order to fit the mode onto the link. In i915 we take the opposite
-approach and just use the min bpc (=3D=3D6) in mode_valid(). During
-modeset we start from the max bpc and keep reducing it until
-things fit.
-
-
-So I suspect what you want here is something like:
-
-max_clock =3D outp->dp.link_nr * outp->dp.link_bw;
-clock =3D mode->clock * (connector->display_info.bpc * 3) / 8; // or maybe =
-just use 6 for bpc
-if (clock > max_clock)
-	reurn CLOCK_HIGH;
-
-ds_clock =3D drm_dp_downstream_max_dotclock();
-if (ds_clock && mode->clock > ds_clock)
-	return CLOCK_HIGH;
-
-+ a bit more if you want to also deal with the TMDS
-clock limits sensibly. That also requires some though
-as to which bpc to use. In i915 we assume 8bpc when
-calculating the TMDS clock since that's the minimum
-DVI/HDMI supports.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
