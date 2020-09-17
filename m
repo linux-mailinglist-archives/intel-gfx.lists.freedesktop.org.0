@@ -1,47 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CAB826E559
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 21:40:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4162326E55D
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Sep 2020 21:42:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84C116EB8F;
-	Thu, 17 Sep 2020 19:40:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86E446EC80;
+	Thu, 17 Sep 2020 19:42:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4519A6EB8F;
- Thu, 17 Sep 2020 19:40:17 +0000 (UTC)
-IronPort-SDR: EmfclliLEhn7sORiwDp6VeINqPsIpKdDQTEzGSQQ6FzkRwFq+6+mjXACQzs1HYF5bV8zSQa2I+
- oDXYjXtpcugQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="147468420"
-X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="147468420"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 639046E2ED
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 19:42:05 +0000 (UTC)
+IronPort-SDR: kAvHnQoUbnIS9lrn/k+kwBuRjDmL/H3cu38aUZEUrpMihZm6RPMautYdy4G5YwKj+HxhIpejCi
+ TuKJ/FqzN3+Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="139784455"
+X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="139784455"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2020 12:40:16 -0700
-IronPort-SDR: OJtaUmUU2VRk9KtKnU2JOdZ0Wx6lNOu+0+CFBjlBeB4odozE5Gxp9wTpGmmaUJi2k6Nfsj2iiR
- 1ryN5FpIrCvQ==
-X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="483882946"
-Received: from jekeller-mobl1.amr.corp.intel.com (HELO [10.212.151.155])
- ([10.212.151.155])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2020 12:40:13 -0700
-To: Keith Busch <kbusch@kernel.org>, Joe Perches <joe@perches.com>
-References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
- <20200909205558.GA3384631@dhcp-10-100-145-180.wdl.wdc.com>
-From: Jacob Keller <jacob.e.keller@intel.com>
-Organization: Intel Corporation
-Message-ID: <321069c8-a4c1-56ff-49fb-4c2bce1e6352@intel.com>
-Date: Thu, 17 Sep 2020 12:40:13 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.2
-MIME-Version: 1.0
-In-Reply-To: <20200909205558.GA3384631@dhcp-10-100-145-180.wdl.wdc.com>
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2020 12:42:04 -0700
+IronPort-SDR: wwTbIentUfWBblVC9KFQqTC0D2WoYNwOOW/NFox2Uv3lTWoAeqj2LYlDddV4QXZIAlfXkJaUGE
+ g7soJ4b46PVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,271,1596524400"; d="scan'208";a="289090571"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga008.fm.intel.com with ESMTP; 17 Sep 2020 12:42:04 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 17 Sep 2020 12:42:03 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX604.gar.corp.intel.com (10.67.234.6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 18 Sep 2020 01:12:01 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Fri, 18 Sep 2020 01:12:01 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 06/20] drm/i915: Shuffle chv_cgm_gamma_pack()
+ around a bit
+Thread-Index: AQHWXH8+fokiJSqsFkKmcN84w4LHXqltnA3g
+Date: Thu, 17 Sep 2020 19:42:00 +0000
+Message-ID: <5d96be5b3f914dc49cf9ab9658291511@intel.com>
+References: <20200717211345.26851-1-ville.syrjala@linux.intel.com>
+ <20200717211345.26851-7-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200717211345.26851-7-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [trivial PATCH] treewide: Convert switch/case
- fallthrough; to break; 
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 06/20] drm/i915: Shuffle
+ chv_cgm_gamma_pack() around a bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,59 +72,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
- oss-drivers@netronome.com, nouveau@lists.freedesktop.org,
- alsa-devel <alsa-devel@alsa-project.org>, dri-devel@lists.freedesktop.org,
- linux-mips@vger.kernel.org, linux-ide@vger.kernel.org, dm-devel@redhat.com,
- linux-mtd@lists.infradead.org, linux-i2c@vger.kernel.org,
- sparclinux@vger.kernel.org, kvmarm@lists.cs.columbia.edu,
- linux-rtc@vger.kernel.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, dccp@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-atm-general@lists.sourceforge.net, linux-afs@lists.infradead.org,
- coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
- linux-serial@vger.kernel.org, linux-input@vger.kernel.org,
- linux-mmc@vger.kernel.org, Kees Cook <kees.cook@canonical.com>,
- linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-sctp@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-nvme@lists.infradead.org,
- storagedev@microchip.com, ceph-devel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-nfs@vger.kernel.org,
- Jiri Kosina <trivial@kernel.org>, linux-parisc@vger.kernel.org,
- netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- Nick Desaulniers <ndesaulniers@google.com>,
- LKML <linux-kernel@vger.kernel.org>, iommu@lists.linux-foundation.org,
- netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
- bpf@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 9/9/2020 1:55 PM, Keith Busch wrote:
-> On Wed, Sep 09, 2020 at 01:06:39PM -0700, Joe Perches wrote:
->> diff --git a/crypto/tcrypt.c b/crypto/tcrypt.c
->> index eea0f453cfb6..8aac5bc60f4c 100644
->> --- a/crypto/tcrypt.c
->> +++ b/crypto/tcrypt.c
->> @@ -2464,7 +2464,7 @@ static int do_test(const char *alg, u32 type, u32 mask, int m, u32 num_mb)
->>  		test_hash_speed("streebog512", sec,
->>  				generic_hash_speed_template);
->>  		if (mode > 300 && mode < 400) break;
->> -		fallthrough;
->> +		break;
->>  	case 399:
->>  		break;
-> 
-> Just imho, this change makes the preceding 'if' look even more
-> pointless. Maybe the fallthrough was a deliberate choice? Not that my
-> opinion matters here as I don't know this module, but it looked a bit
-> odd to me.
-> 
-
-Yea this does look very odd..
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBWaWxsZQ0K
+PiBTeXJqYWxhDQo+IFNlbnQ6IFNhdHVyZGF5LCBKdWx5IDE4LCAyMDIwIDI6NDQgQU0NCj4gVG86
+IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVjdDogW0ludGVsLWdmeF0g
+W1BBVENIIDA2LzIwXSBkcm0vaTkxNTogU2h1ZmZsZSBjaHZfY2dtX2dhbW1hX3BhY2soKQ0KPiBh
+cm91bmQgYSBiaXQNCj4gDQo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+DQo+IA0KPiBNb3ZlIGNodl9jZ21fZ2FtbWFfcGFjaygpIG5leHQgdG8g
+dGhlIG90aGVyIENHTSBnYW1tYSBmdW5jdGlvbnMuDQo+IFJpZ2h0IG5vdyBpdCdzIHN0dWNrIGlu
+IHRoZSBtaWRkbGUgb2YgdGhlIENHTSBkZWdhbW1hIGZ1bmN0aW9ucy4NCg0KUmV2aWV3ZWQtYnk6
+IFVtYSBTaGFua2FyIDx1bWEuc2hhbmthckBpbnRlbC5jb20+DQoNCj4gU2lnbmVkLW9mZi1ieTog
+VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gLS0tDQo+
+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbG9yLmMgfCAxNCArKysrKysr
+LS0tLS0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMo
+LSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2NvbG9yLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbG9yLmMN
+Cj4gaW5kZXggMzdhNGZlZGU3YmMwLi4yNjBiYmJkNWJiZjIgMTAwNjQ0DQo+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29sb3IuYw0KPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbG9yLmMNCj4gQEAgLTEwMzAsMTMgKzEwMzAsNiBA
+QCBzdGF0aWMgdTMyIGNodl9jZ21fZGVnYW1tYV91ZHcoY29uc3Qgc3RydWN0DQo+IGRybV9jb2xv
+cl9sdXQgKmNvbG9yKQ0KPiAgCXJldHVybiBkcm1fY29sb3JfbHV0X2V4dHJhY3QoY29sb3ItPnJl
+ZCwgMTQpOyAgfQ0KPiANCj4gLXN0YXRpYyB2b2lkIGNodl9jZ21fZ2FtbWFfcGFjayhzdHJ1Y3Qg
+ZHJtX2NvbG9yX2x1dCAqZW50cnksIHUzMiBsZHcsIHUzMg0KPiB1ZHcpIC17DQo+IC0JZW50cnkt
+PmdyZWVuID0NCj4gaW50ZWxfY29sb3JfbHV0X3BhY2soUkVHX0ZJRUxEX0dFVChDR01fUElQRV9H
+QU1NQV9HUkVFTl9NQVNLLCBsZHcpLA0KPiAxMCk7DQo+IC0JZW50cnktPmJsdWUgPQ0KPiBpbnRl
+bF9jb2xvcl9sdXRfcGFjayhSRUdfRklFTERfR0VUKENHTV9QSVBFX0dBTU1BX0JMVUVfTUFTSywg
+bGR3KSwgMTApOw0KPiAtCWVudHJ5LT5yZWQgPQ0KPiBpbnRlbF9jb2xvcl9sdXRfcGFjayhSRUdf
+RklFTERfR0VUKENHTV9QSVBFX0dBTU1BX1JFRF9NQVNLLCB1ZHcpLCAxMCk7DQo+IC19DQo+IC0N
+Cj4gIHN0YXRpYyB2b2lkIGNodl9sb2FkX2NnbV9kZWdhbW1hKHN0cnVjdCBpbnRlbF9jcnRjICpj
+cnRjLA0KPiAgCQkJCSBjb25zdCBzdHJ1Y3QgZHJtX3Byb3BlcnR5X2Jsb2IgKmJsb2IpICB7IEBA
+IC0NCj4gMTA2NCw2ICsxMDU3LDEzIEBAIHN0YXRpYyB1MzIgY2h2X2NnbV9nYW1tYV91ZHcoY29u
+c3Qgc3RydWN0DQo+IGRybV9jb2xvcl9sdXQgKmNvbG9yKQ0KPiAgCXJldHVybiBkcm1fY29sb3Jf
+bHV0X2V4dHJhY3QoY29sb3ItPnJlZCwgMTApOyAgfQ0KPiANCj4gK3N0YXRpYyB2b2lkIGNodl9j
+Z21fZ2FtbWFfcGFjayhzdHJ1Y3QgZHJtX2NvbG9yX2x1dCAqZW50cnksIHUzMiBsZHcsDQo+ICt1
+MzIgdWR3KSB7DQo+ICsJZW50cnktPmdyZWVuID0NCj4gaW50ZWxfY29sb3JfbHV0X3BhY2soUkVH
+X0ZJRUxEX0dFVChDR01fUElQRV9HQU1NQV9HUkVFTl9NQVNLLCBsZHcpLA0KPiAxMCk7DQo+ICsJ
+ZW50cnktPmJsdWUgPQ0KPiBpbnRlbF9jb2xvcl9sdXRfcGFjayhSRUdfRklFTERfR0VUKENHTV9Q
+SVBFX0dBTU1BX0JMVUVfTUFTSywgbGR3KSwgMTApOw0KPiArCWVudHJ5LT5yZWQgPQ0KPiAraW50
+ZWxfY29sb3JfbHV0X3BhY2soUkVHX0ZJRUxEX0dFVChDR01fUElQRV9HQU1NQV9SRURfTUFTSywg
+dWR3KSwNCj4gMTApOw0KPiArfQ0KPiArDQo+ICBzdGF0aWMgdm9pZCBjaHZfbG9hZF9jZ21fZ2Ft
+bWEoc3RydWN0IGludGVsX2NydGMgKmNydGMsDQo+ICAJCQkgICAgICAgY29uc3Qgc3RydWN0IGRy
+bV9wcm9wZXJ0eV9ibG9iICpibG9iKSAgew0KPiAtLQ0KPiAyLjI2LjINCj4gDQo+IF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IEludGVsLWdmeCBtYWls
+aW5nIGxpc3QNCj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
