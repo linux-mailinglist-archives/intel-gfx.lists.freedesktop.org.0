@@ -2,64 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99EE226F543
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 07:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 052DA26F5BA
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 08:07:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06E126ECA8;
-	Fri, 18 Sep 2020 05:02:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D2E56E0FF;
+	Fri, 18 Sep 2020 06:07:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C996F6ECA8
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Sep 2020 05:02:51 +0000 (UTC)
-IronPort-SDR: CKbAEiz/JUDR/RiVmFzZfEgqrDMqjt61aYxUvxalrjK04TBEE9XqUgIlDoFpXMm1G1FKNjktVE
- f5h0p6iVciNw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="221413501"
-X-IronPort-AV: E=Sophos;i="5.77,273,1596524400"; d="scan'208";a="221413501"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2020 22:02:47 -0700
-IronPort-SDR: NbhVbqDHQsSB4PkIoNQsVIRbQKLJjdcgIjRE2O0UG1Y8hFjzOKFhg8eLfD70kvn2RCefACOzR5
- +8c/Qj1FwBvw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,273,1596524400"; d="scan'208";a="344618141"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by FMSMGA003.fm.intel.com with ESMTP; 17 Sep 2020 22:02:46 -0700
-Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 17 Sep 2020 22:02:45 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- BGSMSX606.gar.corp.intel.com (10.67.234.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 18 Sep 2020 10:32:43 +0530
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.1713.004;
- Fri, 18 Sep 2020 10:32:43 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 3/3] drm/i915: Use the correct bpp when
- validating "4:2:0 only" modes
-Thread-Index: AQHWjTu5wpk9tlTbSEqK46YmqJZXk6lt10bg
-Date: Fri, 18 Sep 2020 05:02:43 +0000
-Message-ID: <a9ddfa68ec7846889322b924f51d8c12@intel.com>
-References: <20200917214335.3569-1-ville.syrjala@linux.intel.com>
- <20200917214335.3569-3-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200917214335.3569-3-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com
+ [IPv6:2a00:1450:4864:20::244])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E06B06E113
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Sep 2020 06:07:02 +0000 (UTC)
+Received: by mail-lj1-x244.google.com with SMTP id r24so4087546ljm.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 23:07:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ILLtYDh87Hnf9dA6vVS4B7psVL7r7MTKfeGqDa+SuKE=;
+ b=xu+0pooH8LiZDIx8k+PJPkqxKyO32tFfHElOtANSYujXsHlpbt9GYPehidVtEWjXNc
+ /xXXU+SiXhhV3tr4L3m+CIptvYV9Y1sWjYBj8WA56yU7s/7WSQGfMxqHUrXiCP+Vkwzc
+ rbTTOwP/FDgWbP0pNGUrmSktbFVvHDWG3Tb39PWpXuO4WsbpvOhX7D0h7hEM9jAkTZkj
+ f08exOXNYS1HY9+Aqc9CZYVTuH+vJ+A0XrHZ1ELPpXxNrAW6ZJuG3d/8KAZK9gBIeH98
+ izVqAFItF/kqSVd5X+drWxPWZiRPQpKhEvFC80MCdY3cJMOzEPLjMLled+pEAcD3ztnl
+ D6uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ILLtYDh87Hnf9dA6vVS4B7psVL7r7MTKfeGqDa+SuKE=;
+ b=IbcUjE8BwcoERN2SsE+1exqF6S938Ah4ZHP8clyl56EDbgXX34hQEWX7K/gZvDt0fc
+ KjROf0Kzm8Iv5Y19hHRlPZcbHGGPrcLNqnI4RTx2vipNiUuCXexpAPqEBA1aE3OL8u4k
+ 1YVdIbF0I13xdJjs8sc0qEYV2ZS1EoQxppZilIEY87rg4v2bJBYh8FJVIIp359YXZmEE
+ MUPQBX5UR2k6tSi5DKM4zhzqMm/y/gVMrPPDnaSmlRjR8CLyP6YISw06oKt9vTVKl0SW
+ cYfO5bI1IG/xaCv7gaTT20yNtNRk8BPACdlDT2EzuIfV3TNmdGHiJTzCM5NoABSCsgoZ
+ NjlQ==
+X-Gm-Message-State: AOAM5327MD5u16cmL+929i5urDXO0UtGAluOoG90hOJy3kgoUMV+NMct
+ PjDm01/OzyK3uH50ruLvjB6+sGLPIUfpce4aS5wktA==
+X-Google-Smtp-Source: ABdhPJyEXZuLz/9VD9TgkWSbpgqwjYtEuhse8iQmZ+kvD+VMvEh/eMgZha0C2GrZshLMMBrho/gEjAYIvq4mDVItvuo=
+X-Received: by 2002:a2e:9496:: with SMTP id c22mr10298851ljh.249.1600409220979; 
+ Thu, 17 Sep 2020 23:07:00 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Use the correct bpp when
- validating "4:2:0 only" modes
+References: <20200914112521.1327-1-tzimmermann@suse.de>
+In-Reply-To: <20200914112521.1327-1-tzimmermann@suse.de>
+From: Sumit Semwal <sumit.semwal@linaro.org>
+Date: Fri, 18 Sep 2020 11:36:49 +0530
+Message-ID: <CAO_48GGUiVbWBWdzDYWAH2N9Lp2AU+-78BcYyi-3+LXHM74JQA@mail.gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [Intel-gfx] [PATCH 0/3] dma-buf: Flag vmap'ed memory as system
+ or I/O memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,87 +61,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Christian Koenig <christian.koenig@amd.com>, Dave Airlie <airlied@linux.ie>,
+ mark.cave-ayland@ilande.co.uk,
+ DRI mailing list <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Gerd Hoffmann <kraxel@redhat.com>,
+ sparclinux@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, jonathanh@nvidia.com,
+ matthew.auld@intel.com, Russell King <linux+etnaviv@armlinux.org.uk>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
+ Pawel Osciak <pawel@osciak.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ etnaviv@lists.freedesktop.org, Linaro MM SIG <linaro-mm-sig@lists.linaro.org>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>, thomas.hellstrom@intel.com,
+ Maxime Ripard <mripard@kernel.org>, linux-tegra@vger.kernel.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Tomasz Figa <tfiga@chromium.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ "David S . Miller" <davem@davemloft.net>, Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFZpbGxlDQo+IFN5
-cmphbGENCj4gU2VudDogRnJpZGF5LCBTZXB0ZW1iZXIgMTgsIDIwMjAgMzoxNCBBTQ0KPiBUbzog
-aW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBbSW50ZWwtZ2Z4XSBb
-UEFUQ0ggMy8zXSBkcm0vaTkxNTogVXNlIHRoZSBjb3JyZWN0IGJwcCB3aGVuDQo+IHZhbGlkYXRp
-bmcgIjQ6MjowIG9ubHkiIG1vZGVzDQo+IA0KPiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
-LnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiANCj4gV2hlbiB2YWxpZGF0aW5nIGEgIllDYkNy
-IDQ6MjowIG9ubHkiIG1vZGUgd2UgbXVzdCB0YWtlIGludG8gYWNjb3VudCB0aGUNCj4gZmFjdCB0
-aGF0IHdlJ3JlIGdvaW5nIHRvIGJlIG91dHB1dHRpbmcgWUNiQ3INCj4gNDoyOjAgb3IgNDo0OjQg
-KHdoZW4gYSBEUC0+SERNSSBwcm90b2NvbCBjb252ZXJ0ZXIgaXMgZG9pbmcgdGhlIDQ6MjowDQo+
-IGRvd25zYW1wbGluZykuIEZvciBZQ2JDciA0OjQ6NCB0aGUgbWluaW11bSBvdXRwdXQgYnBjIGlz
-IDgsIGZvciBZQ2JDciA0OjI6MA0KPiBpdCdsbCBiZSBoYWxmIHRoYXQuIFRoZSBjdXJyZW50bHkg
-aGFyZGNvZGVkIDZicGMgaXMgb25seSBjb3JyZWN0IGZvciBSR0IgNDo0OjQsDQo+IHdoaWNoIHdl
-IHdpbGwgbmV2ZXIgdXNlIHdpdGggdGhlc2Uga2luZHMgb2YgbW9kZXMuIEZpZ3VyZSBvdXQgd2hh
-dCB3ZSdyZQ0KPiBnb2luZyB0byBvdXRwdXQgYW5kIHVzZSB0aGUgY29ycmVjdCBtaW4gYnBwIHZh
-bHVlIHRvIHZhbGlkYXRlIHdoZXRoZXIgdGhlDQo+IGxpbmsgaGFzIHN1ZmZpY2llbnQgYmFuZHdp
-ZHRoLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
-QGxpbnV4LmludGVsLmNvbT4NCkxvb2tzIGdvb2QgdG8gbWUuDQpSZXZpZXdlZC1ieTogVmFuZGl0
-YSBLdWxrYXJuaSA8dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5jb20+DQoNClRoYW5rcywNClZhbmRp
-dGENCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgfCA1
-NSArKysrKysrKysrKysrKystLS0tLS0tLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgMzMgaW5zZXJ0
-aW9ucygrKSwgMjIgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kcC5jDQo+IGluZGV4IGFhNDgwMWE4MTIzZC4uNTRhNGI4MWVhM2ZmIDEwMDY0
-NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+IEBAIC02MDgsNiAr
-NjA4LDM3IEBAIGludGVsX2RwX291dHB1dF9mb3JtYXQoc3RydWN0IGRybV9jb25uZWN0b3INCj4g
-KmNvbm5lY3RvciwNCj4gIAkJcmV0dXJuIElOVEVMX09VVFBVVF9GT1JNQVRfWUNCQ1I0MjA7DQo+
-ICB9DQo+IA0KPiAraW50IGludGVsX2RwX21pbl9icHAoZW51bSBpbnRlbF9vdXRwdXRfZm9ybWF0
-IG91dHB1dF9mb3JtYXQpIHsNCj4gKwlpZiAob3V0cHV0X2Zvcm1hdCA9PSBJTlRFTF9PVVRQVVRf
-Rk9STUFUX1JHQikNCj4gKwkJcmV0dXJuIDYgKiAzOw0KPiArCWVsc2UNCj4gKwkJcmV0dXJuIDgg
-KiAzOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW50IGludGVsX2RwX291dHB1dF9icHAoZW51bSBp
-bnRlbF9vdXRwdXRfZm9ybWF0IG91dHB1dF9mb3JtYXQsDQo+ICtpbnQgYnBwKSB7DQo+ICsJLyoN
-Cj4gKwkgKiBicHAgdmFsdWUgd2FzIGFzc3VtZWQgdG8gUkdCIGZvcm1hdC4gQW5kIFlDYkNyIDQ6
-MjowIG91dHB1dA0KPiArCSAqIGZvcm1hdCBvZiB0aGUgbnVtYmVyIG9mIGJ5dGVzIHBlciBwaXhl
-bCB3aWxsIGJlIGhhbGYgdGhlIG51bWJlcg0KPiArCSAqIG9mIGJ5dGVzIG9mIFJHQiBwaXhlbC4N
-Cj4gKwkgKi8NCj4gKwlpZiAob3V0cHV0X2Zvcm1hdCA9PSBJTlRFTF9PVVRQVVRfRk9STUFUX1lD
-QkNSNDIwKQ0KPiArCQlicHAgLz0gMjsNCj4gKw0KPiArCXJldHVybiBicHA7DQo+ICt9DQo+ICsN
-Cj4gK3N0YXRpYyBpbnQNCj4gK2ludGVsX2RwX21vZGVfbWluX291dHB1dF9icHAoc3RydWN0IGRy
-bV9jb25uZWN0b3IgKmNvbm5lY3RvciwNCj4gKwkJCSAgICAgY29uc3Qgc3RydWN0IGRybV9kaXNw
-bGF5X21vZGUgKm1vZGUpIHsNCj4gKwllbnVtIGludGVsX291dHB1dF9mb3JtYXQgb3V0cHV0X2Zv
-cm1hdCA9DQo+ICsJCWludGVsX2RwX291dHB1dF9mb3JtYXQoY29ubmVjdG9yLCBtb2RlKTsNCj4g
-Kw0KPiArCXJldHVybiBpbnRlbF9kcF9vdXRwdXRfYnBwKG91dHB1dF9mb3JtYXQsDQo+ICtpbnRl
-bF9kcF9taW5fYnBwKG91dHB1dF9mb3JtYXQpKTsgfQ0KPiArDQo+ICBzdGF0aWMgYm9vbCBpbnRl
-bF9kcF9oZGlzcGxheV9iYWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0KPiAg
-CQkJCSAgaW50IGhkaXNwbGF5KQ0KPiAgew0KPiBAQCAtNjg3LDcgKzcxOCw4IEBAIGludGVsX2Rw
-X21vZGVfdmFsaWQoc3RydWN0IGRybV9jb25uZWN0b3INCj4gKmNvbm5lY3RvciwNCj4gIAltYXhf
-bGFuZXMgPSBpbnRlbF9kcF9tYXhfbGFuZV9jb3VudChpbnRlbF9kcCk7DQo+IA0KPiAgCW1heF9y
-YXRlID0gaW50ZWxfZHBfbWF4X2RhdGFfcmF0ZShtYXhfbGlua19jbG9jaywgbWF4X2xhbmVzKTsN
-Cj4gLQltb2RlX3JhdGUgPSBpbnRlbF9kcF9saW5rX3JlcXVpcmVkKHRhcmdldF9jbG9jaywgMTgp
-Ow0KPiArCW1vZGVfcmF0ZSA9IGludGVsX2RwX2xpbmtfcmVxdWlyZWQodGFyZ2V0X2Nsb2NrLA0K
-PiArDQo+IGludGVsX2RwX21vZGVfbWluX291dHB1dF9icHAoY29ubmVjdG9yLCBtb2RlKSk7DQo+
-IA0KPiAgCWlmIChpbnRlbF9kcF9oZGlzcGxheV9iYWQoZGV2X3ByaXYsIG1vZGUtPmhkaXNwbGF5
-KSkNCj4gIAkJcmV0dXJuIE1PREVfSF9JTExFR0FMOw0KPiBAQCAtMjExMSwxOSArMjE0Myw2IEBA
-IGludGVsX2RwX2FkanVzdF9jb21wbGlhbmNlX2NvbmZpZyhzdHJ1Y3QNCj4gaW50ZWxfZHAgKmlu
-dGVsX2RwLA0KPiAgCX0NCj4gIH0NCj4gDQo+IC1zdGF0aWMgaW50IGludGVsX2RwX291dHB1dF9i
-cHAoZW51bSBpbnRlbF9vdXRwdXRfZm9ybWF0IG91dHB1dF9mb3JtYXQsDQo+IGludCBicHApIC17
-DQo+IC0JLyoNCj4gLQkgKiBicHAgdmFsdWUgd2FzIGFzc3VtZWQgdG8gUkdCIGZvcm1hdC4gQW5k
-IFlDYkNyIDQ6MjowIG91dHB1dA0KPiAtCSAqIGZvcm1hdCBvZiB0aGUgbnVtYmVyIG9mIGJ5dGVz
-IHBlciBwaXhlbCB3aWxsIGJlIGhhbGYgdGhlIG51bWJlcg0KPiAtCSAqIG9mIGJ5dGVzIG9mIFJH
-QiBwaXhlbC4NCj4gLQkgKi8NCj4gLQlpZiAob3V0cHV0X2Zvcm1hdCA9PSBJTlRFTF9PVVRQVVRf
-Rk9STUFUX1lDQkNSNDIwKQ0KPiAtCQlicHAgLz0gMjsNCj4gLQ0KPiAtCXJldHVybiBicHA7DQo+
-IC19DQo+IC0NCj4gIC8qIE9wdGltaXplIGxpbmsgY29uZmlnIGluIG9yZGVyOiBtYXggYnBwLCBt
-aW4gY2xvY2ssIG1pbiBsYW5lcyAqLyAgc3RhdGljIGludA0KPiBpbnRlbF9kcF9jb21wdXRlX2xp
-bmtfY29uZmlnX3dpZGUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwgQEAgLTIzNDYsMTQNCj4g
-KzIzNjUsNiBAQCBzdGF0aWMgaW50IGludGVsX2RwX2RzY19jb21wdXRlX2NvbmZpZyhzdHJ1Y3Qg
-aW50ZWxfZHANCj4gKmludGVsX2RwLA0KPiAgCXJldHVybiAwOw0KPiAgfQ0KPiANCj4gLWludCBp
-bnRlbF9kcF9taW5fYnBwKGVudW0gaW50ZWxfb3V0cHV0X2Zvcm1hdCBvdXRwdXRfZm9ybWF0KSAt
-ew0KPiAtCWlmIChvdXRwdXRfZm9ybWF0ID09IElOVEVMX09VVFBVVF9GT1JNQVRfUkdCKQ0KPiAt
-CQlyZXR1cm4gNiAqIDM7DQo+IC0JZWxzZQ0KPiAtCQlyZXR1cm4gOCAqIDM7DQo+IC19DQo+IC0N
-Cj4gIHN0YXRpYyBpbnQNCj4gIGludGVsX2RwX2NvbXB1dGVfbGlua19jb25maWcoc3RydWN0IGlu
-dGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ICAJCQkgICAgIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
-ICpwaXBlX2NvbmZpZywNCj4gLS0NCj4gMi4yNi4yDQo+IA0KPiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0DQo+
-IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngNCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Hello Thomas,
+
+On Mon, 14 Sep 2020 at 16:55, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>
+> Dma-buf provides vmap() and vunmap() for retrieving and releasing mappings
+> of dma-buf memory in kernel address space. The functions operate with plain
+> addresses and the assumption is that the memory can be accessed with load
+> and store operations. This is not the case on some architectures (e.g.,
+> sparc64) where I/O memory can only be accessed with dedicated instructions.
+>
+> This patchset introduces struct dma_buf_map, which contains the address of
+> a buffer and a flag that tells whether system- or I/O-memory instructions
+> are required.
+
+Thank you for the patchset - it is a really nice, clean bit to add!
+>
+> Some background: updating the DRM framebuffer console on sparc64 makes the
+> kernel panic. This is because the framebuffer memory cannot be accessed with
+> system-memory instructions. We currently employ a workaround in DRM to
+> address this specific problem. [1]
+>
+> To resolve the problem, we'd like to address it at the most common point,
+> which is the dma-buf framework. The dma-buf mapping ideally knows if I/O
+> instructions are required and exports this information to it's users. The
+> new structure struct dma_buf_map stores the buffer address and a flag that
+> signals I/O memory. Affected users of the buffer (e.g., drivers, frameworks)
+> can then access the memory accordingly.
+>
+> This patchset only introduces struct dma_buf_map, and updates struct dma_buf
+> and it's interfaces. Further patches can update dma-buf users. For example,
+> there's a prototype patchset for DRM that fixes the framebuffer problem. [2]
+>
+> Further work: TTM, one of DRM's memory managers, already exports an
+> is_iomem flag of its own. It could later be switched over to exporting struct
+> dma_buf_map, thus simplifying some code. Several DRM drivers expect their
+> fbdev console to operate on I/O memory. These could possibly be switched over
+> to the generic fbdev emulation, as soon as the generic code uses struct
+> dma_buf_map.
+>
+> [1] https://lore.kernel.org/dri-devel/20200725191012.GA434957@ravnborg.org/
+> [2] https://lore.kernel.org/dri-devel/20200806085239.4606-1-tzimmermann@suse.de/
+>
+> Thomas Zimmermann (3):
+>   dma-buf: Add struct dma-buf-map for storing struct dma_buf.vaddr_ptr
+>   dma-buf: Use struct dma_buf_map in dma_buf_vmap() interfaces
+>   dma-buf: Use struct dma_buf_map in dma_buf_vunmap() interfaces
+
+FWIW, for the series, please feel free to add my
+Acked-by: Sumit Semwal <sumit.semwal@linaro.org>
+
+>
+>  Documentation/driver-api/dma-buf.rst          |   3 +
+>  drivers/dma-buf/dma-buf.c                     |  40 +++---
+>  drivers/gpu/drm/drm_gem_cma_helper.c          |  16 ++-
+>  drivers/gpu/drm/drm_gem_shmem_helper.c        |  17 ++-
+>  drivers/gpu/drm/drm_prime.c                   |  14 +-
+>  drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |  13 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  13 +-
+>  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  18 ++-
+>  drivers/gpu/drm/tegra/gem.c                   |  23 ++--
+>  .../common/videobuf2/videobuf2-dma-contig.c   |  17 ++-
+>  .../media/common/videobuf2/videobuf2-dma-sg.c |  19 ++-
+>  .../common/videobuf2/videobuf2-vmalloc.c      |  21 ++-
+>  include/drm/drm_prime.h                       |   5 +-
+>  include/linux/dma-buf-map.h                   | 126 ++++++++++++++++++
+>  include/linux/dma-buf.h                       |  11 +-
+>  15 files changed, 274 insertions(+), 82 deletions(-)
+>  create mode 100644 include/linux/dma-buf-map.h
+>
+> --
+> 2.28.0
+>
+
+Best,
+Sumit.
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
