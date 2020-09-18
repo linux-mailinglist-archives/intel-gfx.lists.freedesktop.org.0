@@ -1,46 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B1E27045A
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 20:49:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C688270481
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 21:01:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 535A16ED76;
-	Fri, 18 Sep 2020 18:49:30 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C8C56ED76
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Sep 2020 18:49:29 +0000 (UTC)
-IronPort-SDR: 9E8RCe9k1IJpT9FF9kc8Wj8qluMf7QDoKSGpvpJ8vmXmlzdiiYAAJnlSyGFyjRd5I0csrQuEtv
- 1oTQ26qhAzwA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9748"; a="139505670"
-X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="139505670"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59A906ED7D;
+	Fri, 18 Sep 2020 19:01:47 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B73AF6ED7D
+ for <Intel-GFX@lists.freedesktop.org>; Fri, 18 Sep 2020 19:01:45 +0000 (UTC)
+IronPort-SDR: dhJjDTJUG/rePfNnkyl+0VZ0Wn1sJxSLH6K0sSvpYkhc616hD7XCev0Pe997q9vk2C7STl3Hqm
+ qsNbgcYSSFSg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9748"; a="160932894"
+X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="160932894"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2020 11:49:15 -0700
-IronPort-SDR: 8eX0n91tz2nVHEg48YCjsppGZtSe82YWONzEd0RdqWdjY9b1WNdhNzr8SVGqXk0oqrKAWtEw9V
- 4Q8TVZ5MFm4A==
-X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="288065865"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2020 11:49:14 -0700
-Date: Fri, 18 Sep 2020 11:49:59 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200918184959.GA31748@labuser-Z97X-UD5H>
-References: <20200917214335.3569-1-ville.syrjala@linux.intel.com>
- <20200917235709.GA27525@labuser-Z97X-UD5H>
- <20200918103945.GF6112@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2020 12:01:41 -0700
+IronPort-SDR: CmYuoZlKc7ZhPOXpmIoOgm95b/lzPtDKQ4FHBOsSeXaNA1pckGcvAM2mtSut8ItYNkQg7lHrbX
+ ZOcY7mGo3EMQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="336911891"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by orsmga008.jf.intel.com with ESMTP; 18 Sep 2020 12:01:41 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Fri, 18 Sep 2020 12:01:41 -0700
+Message-Id: <20200918190141.2032751-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200918103945.GF6112@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Extract
- intel_dp_output_format()
+Subject: [Intel-gfx] [CI] PR for new v49.0.1 GuC binaries
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,110 +46,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 18, 2020 at 01:39:45PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Thu, Sep 17, 2020 at 04:57:09PM -0700, Navare, Manasi wrote:
-> > On Fri, Sep 18, 2020 at 12:43:33AM +0300, Ville Syrjala wrote:
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > =
+The following changes since commit d5f9eea5a251d43412b07f5295d03e97b89ac4a5:
 
-> > > Refactor the output_format calculation into a helper so that
-> > > we can reuse it for mode validation as well.
-> > > =
+  wl18xx: update firmware file 8.9.0.0.83 (2020-09-01 08:07:59 -0400)
 
-> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dp.c | 32 +++++++++++++++--------=
---
-> > >  1 file changed, 20 insertions(+), 12 deletions(-)
-> > > =
+are available in the Git repository at:
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
-m/i915/display/intel_dp.c
-> > > index bf1e9cf1c0f3..ad9b8b16fadb 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -592,6 +592,22 @@ static u8 intel_dp_dsc_get_slice_count(struct in=
-tel_dp *intel_dp,
-> > >  	return 0;
-> > >  }
-> > >  =
+  git://anongit.freedesktop.org/drm/drm-firmware guc_v49
 
-> > > +static enum intel_output_format
-> > > +intel_dp_output_format(struct drm_connector *connector,
-> > > +		       const struct drm_display_mode *mode)
-> > > +{
-> > > +	struct intel_dp *intel_dp =3D intel_attached_dp(to_intel_connector(=
-connector));
-> > > +	const struct drm_display_info *info =3D &connector->display_info;
-> > > +
-> > > +	if (!drm_mode_is_420_only(info, mode))
-> > > +		return INTEL_OUTPUT_FORMAT_RGB;
-> > > +
-> > > +	if (intel_dp->dfp.ycbcr_444_to_420)
-> > > +		return INTEL_OUTPUT_FORMAT_YCBCR444;
-> > > +	else
-> > > +		return INTEL_OUTPUT_FORMAT_YCBCR420;
-> > > +}
-> > > +
-> > >  static bool intel_dp_hdisplay_bad(struct drm_i915_private *dev_priv,
-> > >  				  int hdisplay)
-> > >  {
-> > > @@ -2430,27 +2446,20 @@ intel_dp_compute_link_config(struct intel_enc=
-oder *encoder,
-> > >  }
-> > >  =
+for you to fetch changes up to a5beba43fb3a2b91f4b9de244455351cb2625b6c:
 
-> > >  static int
-> > > -intel_dp_ycbcr420_config(struct intel_dp *intel_dp,
-> > > -			 struct intel_crtc_state *crtc_state,
-> > > +intel_dp_ycbcr420_config(struct intel_crtc_state *crtc_state,
-> > >  			 const struct drm_connector_state *conn_state)
-> > >  {
-> > >  	struct drm_connector *connector =3D conn_state->connector;
-> > > -	const struct drm_display_info *info =3D &connector->display_info;
-> > >  	const struct drm_display_mode *adjusted_mode =3D
-> > >  		&crtc_state->hw.adjusted_mode;
-> > >  =
+  i915: Add GuC firmware v49.0.1 for all platforms (2020-09-15 17:51:55 -0700)
 
-> > >  	if (!connector->ycbcr_420_allowed)
-> > >  		return 0;
-> > >  =
+----------------------------------------------------------------
+John Harrison (2):
+      i915: Remove duplicate KBL DMC entry
+      i915: Add GuC firmware v49.0.1 for all platforms
 
-> > > -	if (!drm_mode_is_420_only(info, adjusted_mode))
-> > > -		return 0;
-> > > +	crtc_state->output_format =3D intel_dp_output_format(connector, adj=
-usted_mode);
-> > =
-
-> > So by default if its not 420_only then we set it to RGB?
-> =
-
-> Yes. The code is still a bit messy because we have three places where
-> we set this. Probably will try to unify it a bit more, and try to get
-> the lspcon stuff looking more like any other protocol converter.
-> =
-
-> Actually IIRC I noticed that some lspcon chips seem to have some
-> of the 1.3 protocol converter registers even though they only
-> advertise DPCD 1.2. Not yet sure how to handle that in the
-> cleanest way possible...
-
-But if DPCD says only 1.2 then we shouldnt be reading 1.3 specific registers
-and support it as 1.2 IMO
-
-Manasi
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
+ WHENCE                  |  25 ++++++++++++++++++++++++-
+ i915/bxt_guc_49.0.1.bin | Bin 0 -> 196224 bytes
+ i915/cml_guc_49.0.1.bin | Bin 0 -> 197184 bytes
+ i915/ehl_guc_49.0.1.bin | Bin 0 -> 324160 bytes
+ i915/glk_guc_49.0.1.bin | Bin 0 -> 196672 bytes
+ i915/icl_guc_49.0.1.bin | Bin 0 -> 324160 bytes
+ i915/kbl_guc_49.0.1.bin | Bin 0 -> 197184 bytes
+ i915/skl_guc_49.0.1.bin | Bin 0 -> 196288 bytes
+ i915/tgl_guc_49.0.1.bin | Bin 0 -> 321792 bytes
+ 9 files changed, 24 insertions(+), 1 deletion(-)
+ create mode 100644 i915/bxt_guc_49.0.1.bin
+ create mode 100644 i915/cml_guc_49.0.1.bin
+ create mode 100644 i915/ehl_guc_49.0.1.bin
+ create mode 100644 i915/glk_guc_49.0.1.bin
+ create mode 100644 i915/icl_guc_49.0.1.bin
+ create mode 100644 i915/kbl_guc_49.0.1.bin
+ create mode 100644 i915/skl_guc_49.0.1.bin
+ create mode 100644 i915/tgl_guc_49.0.1.bin
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
