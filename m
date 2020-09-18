@@ -2,41 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2B526F6E2
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 09:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E964226F77C
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 09:55:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0121E6ECBB;
-	Fri, 18 Sep 2020 07:27:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 357C86ECBF;
+	Fri, 18 Sep 2020 07:55:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F67A6ECBB;
- Fri, 18 Sep 2020 07:27:18 +0000 (UTC)
-IronPort-SDR: NjGw3azHbX8fa1ARNwtFUEeUkO5sp9Ok4K/psCsK8FvIMmP2+UbqNZQ+NkmAKzU48CB3GqjOUE
- PfgE3yxxANjw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="160800708"
-X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="160800708"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2020 00:27:13 -0700
-IronPort-SDR: wALC1Vn5oiQ5T7p7JUOqfzIy+Y6fH72INNcpFZ684ZS3HeOVYsGZaC6k4iBuaH9F0nkafnzlbM
- H8W+sAQMJggw==
-X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="508052788"
-Received: from karthik-2012-client-platform.iind.intel.com ([10.223.74.217])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 18 Sep 2020 00:27:09 -0700
-From: Karthik B S <karthik.b.s@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Sep 2020 12:30:45 +0530
-Message-Id: <20200918070045.9703-1-karthik.b.s@intel.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200916150824.15749-6-karthik.b.s@intel.com>
-References: <20200916150824.15749-6-karthik.b.s@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EAE956ECBD;
+ Fri, 18 Sep 2020 07:55:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D9112A008A;
+ Fri, 18 Sep 2020 07:55:03 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v10 5/8] drm/i915: Add dedicated plane hook for
- async flip case
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthik B S" <karthik.b.s@intel.com>
+Date: Fri, 18 Sep 2020 07:55:03 -0000
+Message-ID: <160041570388.6345.12856041737332360067@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200916150824.15749-1-karthik.b.s@intel.com>
+In-Reply-To: <20200916150824.15749-1-karthik.b.s@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Asynchronous_flip_implementation_for_i915_=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,113 +38,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, michel@daenzer.net,
- dri-devel@lists.freedesktop.org, daniel.vetter@intel.com,
- harry.wentland@amd.com, nicholas.kazlauskas@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This hook is added to avoid writing other plane registers in case of
-async flips, so that we do not write the double buffered registers
-during async surface address update.
+== Series Details ==
 
-v7: -Plane ctl needs bits from skl_plane_ctl_crtc as well. (Ville)
-    -Add a vfunc for skl_program_async_surface_address
-     and call it from intel_update_plane. (Ville)
+Series: Asynchronous flip implementation for i915 (rev10)
+URL   : https://patchwork.freedesktop.org/series/74386/
+State : warning
 
-v8: -Rebased.
+== Summary ==
 
-v9: -Use if-else instead of return in intel_update_plane(). (Ville)
-    -Rename 'program_async_surface_address' to 'async_flip'. (Ville)
+$ dim checkpatch origin/drm-tip
+21c85b6b0297 drm/i915: Add enable/disable flip done and flip done handler
+92f53a71af42 drm/i915: Add support for async flips in I915
+84a8a0a06ae3 drm/i915: Add checks specific to async flips
+-:125: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#125: FILE: drivers/gpu/drm/i915/display/intel_display.c:14944:
++		if (!(new_plane_state->hw.fb->modifier != I915_FORMAT_MOD_X_TILED ||
++		    new_plane_state->hw.fb->modifier != I915_FORMAT_MOD_Y_TILED ||
 
-v10: -Check if async_flip hook is present before calling it.
-      Otherwise it will OOPS during legacy cursor updates. (Ville)
+total: 0 errors, 0 warnings, 1 checks, 149 lines checked
+745bff620922 drm/i915: Do not call drm_crtc_arm_vblank_event in async flips
+690d57695f9a drm/i915: Add dedicated plane hook for async flip case
+445a6e3a43b1 drm/i915: WA for platforms with double buffered address update enable bit
+16df51460b04 Documentation/gpu: Add asynchronous flip documentation for i915
+79032b6d461a drm/i915: Enable async flips in i915
 
-Signed-off-by: Karthik B S <karthik.b.s@intel.com>
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
----
- .../gpu/drm/i915/display/intel_atomic_plane.c |  6 ++++-
- .../drm/i915/display/intel_display_types.h    |  3 +++
- drivers/gpu/drm/i915/display/intel_sprite.c   | 24 +++++++++++++++++++
- 3 files changed, 32 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 79032701873a..6bd8e6cdd477 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -408,7 +408,11 @@ void intel_update_plane(struct intel_plane *plane,
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 
- 	trace_intel_update_plane(&plane->base, crtc);
--	plane->update_plane(plane, crtc_state, plane_state);
-+
-+	if (crtc_state->uapi.async_flip && plane->async_flip)
-+		plane->async_flip(plane, crtc_state, plane_state);
-+	else
-+		plane->update_plane(plane, crtc_state, plane_state);
- }
- 
- void intel_disable_plane(struct intel_plane *plane,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 3d4bf9b6a0a2..e3339e41ddf7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1183,6 +1183,9 @@ struct intel_plane {
- 			   struct intel_plane_state *plane_state);
- 	int (*min_cdclk)(const struct intel_crtc_state *crtc_state,
- 			 const struct intel_plane_state *plane_state);
-+	void (*async_flip)(struct intel_plane *plane,
-+			   const struct intel_crtc_state *crtc_state,
-+			   const struct intel_plane_state *plane_state);
- };
- 
- struct intel_watermark_params {
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 76a3d9bfe0de..3634e98b04c1 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -609,6 +609,29 @@ icl_program_input_csc(struct intel_plane *plane,
- 			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 2), 0x0);
- }
- 
-+static void
-+skl_program_async_surface_address(struct intel_plane *plane,
-+				  const struct intel_crtc_state *crtc_state,
-+				  const struct intel_plane_state *plane_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-+	unsigned long irqflags;
-+	enum plane_id plane_id = plane->id;
-+	enum pipe pipe = plane->pipe;
-+	u32 surf_addr = plane_state->color_plane[0].offset;
-+	u32 plane_ctl = plane_state->ctl;
-+
-+	plane_ctl |= skl_plane_ctl_crtc(crtc_state);
-+
-+	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-+
-+	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
-+	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
-+			  intel_plane_ggtt_offset(plane_state) + surf_addr);
-+
-+	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
-+}
-+
- static void
- skl_program_plane(struct intel_plane *plane,
- 		  const struct intel_crtc_state *crtc_state,
-@@ -3095,6 +3118,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 	plane->get_hw_state = skl_plane_get_hw_state;
- 	plane->check_plane = skl_plane_check;
- 	plane->min_cdclk = skl_plane_min_cdclk;
-+	plane->async_flip = skl_program_async_surface_address;
- 
- 	if (INTEL_GEN(dev_priv) >= 11)
- 		formats = icl_get_plane_formats(dev_priv, pipe,
--- 
-2.22.0
 
 _______________________________________________
 Intel-gfx mailing list
