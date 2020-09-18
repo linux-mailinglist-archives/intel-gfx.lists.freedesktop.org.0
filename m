@@ -2,53 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 052DA26F5BA
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 08:07:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D2B526F6E2
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 09:27:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D2E56E0FF;
-	Fri, 18 Sep 2020 06:07:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0121E6ECBB;
+	Fri, 18 Sep 2020 07:27:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com
- [IPv6:2a00:1450:4864:20::244])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E06B06E113
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Sep 2020 06:07:02 +0000 (UTC)
-Received: by mail-lj1-x244.google.com with SMTP id r24so4087546ljm.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 23:07:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ILLtYDh87Hnf9dA6vVS4B7psVL7r7MTKfeGqDa+SuKE=;
- b=xu+0pooH8LiZDIx8k+PJPkqxKyO32tFfHElOtANSYujXsHlpbt9GYPehidVtEWjXNc
- /xXXU+SiXhhV3tr4L3m+CIptvYV9Y1sWjYBj8WA56yU7s/7WSQGfMxqHUrXiCP+Vkwzc
- rbTTOwP/FDgWbP0pNGUrmSktbFVvHDWG3Tb39PWpXuO4WsbpvOhX7D0h7hEM9jAkTZkj
- f08exOXNYS1HY9+Aqc9CZYVTuH+vJ+A0XrHZ1ELPpXxNrAW6ZJuG3d/8KAZK9gBIeH98
- izVqAFItF/kqSVd5X+drWxPWZiRPQpKhEvFC80MCdY3cJMOzEPLjMLled+pEAcD3ztnl
- D6uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ILLtYDh87Hnf9dA6vVS4B7psVL7r7MTKfeGqDa+SuKE=;
- b=IbcUjE8BwcoERN2SsE+1exqF6S938Ah4ZHP8clyl56EDbgXX34hQEWX7K/gZvDt0fc
- KjROf0Kzm8Iv5Y19hHRlPZcbHGGPrcLNqnI4RTx2vipNiUuCXexpAPqEBA1aE3OL8u4k
- 1YVdIbF0I13xdJjs8sc0qEYV2ZS1EoQxppZilIEY87rg4v2bJBYh8FJVIIp359YXZmEE
- MUPQBX5UR2k6tSi5DKM4zhzqMm/y/gVMrPPDnaSmlRjR8CLyP6YISw06oKt9vTVKl0SW
- cYfO5bI1IG/xaCv7gaTT20yNtNRk8BPACdlDT2EzuIfV3TNmdGHiJTzCM5NoABSCsgoZ
- NjlQ==
-X-Gm-Message-State: AOAM5327MD5u16cmL+929i5urDXO0UtGAluOoG90hOJy3kgoUMV+NMct
- PjDm01/OzyK3uH50ruLvjB6+sGLPIUfpce4aS5wktA==
-X-Google-Smtp-Source: ABdhPJyEXZuLz/9VD9TgkWSbpgqwjYtEuhse8iQmZ+kvD+VMvEh/eMgZha0C2GrZshLMMBrho/gEjAYIvq4mDVItvuo=
-X-Received: by 2002:a2e:9496:: with SMTP id c22mr10298851ljh.249.1600409220979; 
- Thu, 17 Sep 2020 23:07:00 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F67A6ECBB;
+ Fri, 18 Sep 2020 07:27:18 +0000 (UTC)
+IronPort-SDR: NjGw3azHbX8fa1ARNwtFUEeUkO5sp9Ok4K/psCsK8FvIMmP2+UbqNZQ+NkmAKzU48CB3GqjOUE
+ PfgE3yxxANjw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="160800708"
+X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="160800708"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2020 00:27:13 -0700
+IronPort-SDR: wALC1Vn5oiQ5T7p7JUOqfzIy+Y6fH72INNcpFZ684ZS3HeOVYsGZaC6k4iBuaH9F0nkafnzlbM
+ H8W+sAQMJggw==
+X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="508052788"
+Received: from karthik-2012-client-platform.iind.intel.com ([10.223.74.217])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 18 Sep 2020 00:27:09 -0700
+From: Karthik B S <karthik.b.s@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 18 Sep 2020 12:30:45 +0530
+Message-Id: <20200918070045.9703-1-karthik.b.s@intel.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200916150824.15749-6-karthik.b.s@intel.com>
+References: <20200916150824.15749-6-karthik.b.s@intel.com>
 MIME-Version: 1.0
-References: <20200914112521.1327-1-tzimmermann@suse.de>
-In-Reply-To: <20200914112521.1327-1-tzimmermann@suse.de>
-From: Sumit Semwal <sumit.semwal@linaro.org>
-Date: Fri, 18 Sep 2020 11:36:49 +0530
-Message-ID: <CAO_48GGUiVbWBWdzDYWAH2N9Lp2AU+-78BcYyi-3+LXHM74JQA@mail.gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [Intel-gfx] [PATCH 0/3] dma-buf: Flag vmap'ed memory as system
- or I/O memory
+Subject: [Intel-gfx] [PATCH v10 5/8] drm/i915: Add dedicated plane hook for
+ async flip case
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,102 +49,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christian Koenig <christian.koenig@amd.com>, Dave Airlie <airlied@linux.ie>,
- mark.cave-ayland@ilande.co.uk,
- DRI mailing list <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Gerd Hoffmann <kraxel@redhat.com>,
- sparclinux@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>, jonathanh@nvidia.com,
- matthew.auld@intel.com, Russell King <linux+etnaviv@armlinux.org.uk>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
- Pawel Osciak <pawel@osciak.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- etnaviv@lists.freedesktop.org, Linaro MM SIG <linaro-mm-sig@lists.linaro.org>,
- Christian Gmeiner <christian.gmeiner@gmail.com>, thomas.hellstrom@intel.com,
- Maxime Ripard <mripard@kernel.org>, linux-tegra@vger.kernel.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Tomasz Figa <tfiga@chromium.org>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- "David S . Miller" <davem@davemloft.net>, Lucas Stach <l.stach@pengutronix.de>
+Cc: paulo.r.zanoni@intel.com, michel@daenzer.net,
+ dri-devel@lists.freedesktop.org, daniel.vetter@intel.com,
+ harry.wentland@amd.com, nicholas.kazlauskas@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Thomas,
+This hook is added to avoid writing other plane registers in case of
+async flips, so that we do not write the double buffered registers
+during async surface address update.
 
-On Mon, 14 Sep 2020 at 16:55, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->
-> Dma-buf provides vmap() and vunmap() for retrieving and releasing mappings
-> of dma-buf memory in kernel address space. The functions operate with plain
-> addresses and the assumption is that the memory can be accessed with load
-> and store operations. This is not the case on some architectures (e.g.,
-> sparc64) where I/O memory can only be accessed with dedicated instructions.
->
-> This patchset introduces struct dma_buf_map, which contains the address of
-> a buffer and a flag that tells whether system- or I/O-memory instructions
-> are required.
+v7: -Plane ctl needs bits from skl_plane_ctl_crtc as well. (Ville)
+    -Add a vfunc for skl_program_async_surface_address
+     and call it from intel_update_plane. (Ville)
 
-Thank you for the patchset - it is a really nice, clean bit to add!
->
-> Some background: updating the DRM framebuffer console on sparc64 makes the
-> kernel panic. This is because the framebuffer memory cannot be accessed with
-> system-memory instructions. We currently employ a workaround in DRM to
-> address this specific problem. [1]
->
-> To resolve the problem, we'd like to address it at the most common point,
-> which is the dma-buf framework. The dma-buf mapping ideally knows if I/O
-> instructions are required and exports this information to it's users. The
-> new structure struct dma_buf_map stores the buffer address and a flag that
-> signals I/O memory. Affected users of the buffer (e.g., drivers, frameworks)
-> can then access the memory accordingly.
->
-> This patchset only introduces struct dma_buf_map, and updates struct dma_buf
-> and it's interfaces. Further patches can update dma-buf users. For example,
-> there's a prototype patchset for DRM that fixes the framebuffer problem. [2]
->
-> Further work: TTM, one of DRM's memory managers, already exports an
-> is_iomem flag of its own. It could later be switched over to exporting struct
-> dma_buf_map, thus simplifying some code. Several DRM drivers expect their
-> fbdev console to operate on I/O memory. These could possibly be switched over
-> to the generic fbdev emulation, as soon as the generic code uses struct
-> dma_buf_map.
->
-> [1] https://lore.kernel.org/dri-devel/20200725191012.GA434957@ravnborg.org/
-> [2] https://lore.kernel.org/dri-devel/20200806085239.4606-1-tzimmermann@suse.de/
->
-> Thomas Zimmermann (3):
->   dma-buf: Add struct dma-buf-map for storing struct dma_buf.vaddr_ptr
->   dma-buf: Use struct dma_buf_map in dma_buf_vmap() interfaces
->   dma-buf: Use struct dma_buf_map in dma_buf_vunmap() interfaces
+v8: -Rebased.
 
-FWIW, for the series, please feel free to add my
-Acked-by: Sumit Semwal <sumit.semwal@linaro.org>
+v9: -Use if-else instead of return in intel_update_plane(). (Ville)
+    -Rename 'program_async_surface_address' to 'async_flip'. (Ville)
 
->
->  Documentation/driver-api/dma-buf.rst          |   3 +
->  drivers/dma-buf/dma-buf.c                     |  40 +++---
->  drivers/gpu/drm/drm_gem_cma_helper.c          |  16 ++-
->  drivers/gpu/drm/drm_gem_shmem_helper.c        |  17 ++-
->  drivers/gpu/drm/drm_prime.c                   |  14 +-
->  drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |  13 +-
->  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  13 +-
->  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  18 ++-
->  drivers/gpu/drm/tegra/gem.c                   |  23 ++--
->  .../common/videobuf2/videobuf2-dma-contig.c   |  17 ++-
->  .../media/common/videobuf2/videobuf2-dma-sg.c |  19 ++-
->  .../common/videobuf2/videobuf2-vmalloc.c      |  21 ++-
->  include/drm/drm_prime.h                       |   5 +-
->  include/linux/dma-buf-map.h                   | 126 ++++++++++++++++++
->  include/linux/dma-buf.h                       |  11 +-
->  15 files changed, 274 insertions(+), 82 deletions(-)
->  create mode 100644 include/linux/dma-buf-map.h
->
-> --
-> 2.28.0
->
+v10: -Check if async_flip hook is present before calling it.
+      Otherwise it will OOPS during legacy cursor updates. (Ville)
 
-Best,
-Sumit.
+Signed-off-by: Karthik B S <karthik.b.s@intel.com>
+Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+---
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  6 ++++-
+ .../drm/i915/display/intel_display_types.h    |  3 +++
+ drivers/gpu/drm/i915/display/intel_sprite.c   | 24 +++++++++++++++++++
+ 3 files changed, 32 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 79032701873a..6bd8e6cdd477 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -408,7 +408,11 @@ void intel_update_plane(struct intel_plane *plane,
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 
+ 	trace_intel_update_plane(&plane->base, crtc);
+-	plane->update_plane(plane, crtc_state, plane_state);
++
++	if (crtc_state->uapi.async_flip && plane->async_flip)
++		plane->async_flip(plane, crtc_state, plane_state);
++	else
++		plane->update_plane(plane, crtc_state, plane_state);
+ }
+ 
+ void intel_disable_plane(struct intel_plane *plane,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 3d4bf9b6a0a2..e3339e41ddf7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1183,6 +1183,9 @@ struct intel_plane {
+ 			   struct intel_plane_state *plane_state);
+ 	int (*min_cdclk)(const struct intel_crtc_state *crtc_state,
+ 			 const struct intel_plane_state *plane_state);
++	void (*async_flip)(struct intel_plane *plane,
++			   const struct intel_crtc_state *crtc_state,
++			   const struct intel_plane_state *plane_state);
+ };
+ 
+ struct intel_watermark_params {
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index 76a3d9bfe0de..3634e98b04c1 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -609,6 +609,29 @@ icl_program_input_csc(struct intel_plane *plane,
+ 			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 2), 0x0);
+ }
+ 
++static void
++skl_program_async_surface_address(struct intel_plane *plane,
++				  const struct intel_crtc_state *crtc_state,
++				  const struct intel_plane_state *plane_state)
++{
++	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
++	unsigned long irqflags;
++	enum plane_id plane_id = plane->id;
++	enum pipe pipe = plane->pipe;
++	u32 surf_addr = plane_state->color_plane[0].offset;
++	u32 plane_ctl = plane_state->ctl;
++
++	plane_ctl |= skl_plane_ctl_crtc(crtc_state);
++
++	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
++
++	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
++	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
++			  intel_plane_ggtt_offset(plane_state) + surf_addr);
++
++	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
++}
++
+ static void
+ skl_program_plane(struct intel_plane *plane,
+ 		  const struct intel_crtc_state *crtc_state,
+@@ -3095,6 +3118,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 	plane->get_hw_state = skl_plane_get_hw_state;
+ 	plane->check_plane = skl_plane_check;
+ 	plane->min_cdclk = skl_plane_min_cdclk;
++	plane->async_flip = skl_program_async_surface_address;
+ 
+ 	if (INTEL_GEN(dev_priv) >= 11)
+ 		formats = icl_get_plane_formats(dev_priv, pipe,
+-- 
+2.22.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
