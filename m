@@ -2,38 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C688270481
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 21:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 892852705E2
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 22:00:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59A906ED7D;
-	Fri, 18 Sep 2020 19:01:47 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B73AF6ED7D
- for <Intel-GFX@lists.freedesktop.org>; Fri, 18 Sep 2020 19:01:45 +0000 (UTC)
-IronPort-SDR: dhJjDTJUG/rePfNnkyl+0VZ0Wn1sJxSLH6K0sSvpYkhc616hD7XCev0Pe997q9vk2C7STl3Hqm
- qsNbgcYSSFSg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9748"; a="160932894"
-X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="160932894"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2020 12:01:41 -0700
-IronPort-SDR: CmYuoZlKc7ZhPOXpmIoOgm95b/lzPtDKQ4FHBOsSeXaNA1pckGcvAM2mtSut8ItYNkQg7lHrbX
- ZOcY7mGo3EMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="336911891"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by orsmga008.jf.intel.com with ESMTP; 18 Sep 2020 12:01:41 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Fri, 18 Sep 2020 12:01:41 -0700
-Message-Id: <20200918190141.2032751-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41DA36ED80;
+	Fri, 18 Sep 2020 20:00:32 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5330F6ED80
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Sep 2020 20:00:31 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id b79so6714125wmb.4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Sep 2020 13:00:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=YQjfx1dlb8AV3hvmklM8AXojRWEWsKETVPO8LS2leI8=;
+ b=SYldkyYd1CBCqWWNOGAgru1KRufRNnCSgvmff391HiV2gNn4mEltKpr7B23Z+WAfpe
+ 3jcaSEkkAWL0kYfmmjtg0tKYRAXuGeJFLQs1l0ynYYsWnWPNcpURAqtVTL5BuXxs6s+H
+ divv0bcIgal0TMAzpcr+a9AMX9QchoZcUfQFc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=YQjfx1dlb8AV3hvmklM8AXojRWEWsKETVPO8LS2leI8=;
+ b=oVv61j7bZ/2LW/1uGu5+tvgVp4cVEr0UiVc0LLfZGDRoS24/OYMk8J0iI0jv01l4+w
+ APRnYi/Dl7bLNlKatBq+fz35/iqbe/G33m1sXqczSJz8CPTOLmJAACqsrHcEM98o8Wg9
+ xKW2m2aJZtMm6zgusFQiu/aX2m/F+Mcc4MxlJnUP7770yPsffAilLUDRItwGapBKij06
+ c4HmGW9dz0UhBNFdcJgvKgA3ch29wpO82RfwFnlMJHGqd7RUetdn9sHwV9UOhVE3H0Sh
+ mby8aiLH1zGIKTg8V1wCloC4HFHv/OUgdeFlL5v1NL1opBo23IAQCFRUpqRm4SMUTqfq
+ kQeg==
+X-Gm-Message-State: AOAM530o7bRD3+VFjnwnbMPtAbh5cD+u8uFxx6PXycubnAYSQFTyqJfD
+ q+VcCMO7srKjXzD1pxODiWiHBg==
+X-Google-Smtp-Source: ABdhPJzSiplAkUIwO3Yl7gtgMxbtAxYnYHNrI3sm7sIjYgyAKSL2NgU6kO9Z44Lc3Sr1AoRryrv1Zw==
+X-Received: by 2002:a1c:7e90:: with SMTP id
+ z138mr16974535wmc.122.1600459229923; 
+ Fri, 18 Sep 2020 13:00:29 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id e18sm7492006wra.36.2020.09.18.13.00.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 18 Sep 2020 13:00:28 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Fri, 18 Sep 2020 22:00:24 +0200
+Message-Id: <20200918200024.2414549-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200918132505.2316382-3-daniel.vetter@ffwll.ch>
+References: <20200918132505.2316382-3-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] PR for new v49.0.1 GuC binaries
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: align more to real device
+ lifetimes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,46 +65,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit d5f9eea5a251d43412b07f5295d03e97b89ac4a5:
+To avoid having to create all the device and driver scaffolding we
+just manually create and destroy a devres_group.
 
-  wl18xx: update firmware file 8.9.0.0.83 (2020-09-01 08:07:59 -0400)
+v2: Rebased
 
-are available in the Git repository at:
+v3: use devres_open/release_group so we can use devm without real
+hacks in the driver core or having to create an entire fake bus for
+testing drivers. Might want to extract this into helpers eventually,
+maybe as a mock_drm_dev_alloc or test_drm_dev_alloc.
 
-  git://anongit.freedesktop.org/drm/drm-firmware guc_v49
+v4:
+- Fix IS_ERR handling (Matt)
+- Delete surplus put_device() in mock_device_release (intel-gfx-ci)
 
-for you to fetch changes up to a5beba43fb3a2b91f4b9de244455351cb2625b6c:
+v5:
+- do not switch to device_add - it breaks runtime pm in the tests and
+  with the devres_group_add/release no longer needed for automatic
+  cleanup (CI). Update commit message to match.
+- print correct error in pr_err (Matt)
 
-  i915: Add GuC firmware v49.0.1 for all platforms (2020-09-15 17:51:55 -0700)
+Cc: Matthew Auld <matthew.william.auld@gmail.com>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com> (v3)
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.william.auld@gmail.com> (v4)
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+---
+ .../gpu/drm/i915/selftests/mock_gem_device.c  | 38 +++++++++----------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
 
-----------------------------------------------------------------
-John Harrison (2):
-      i915: Remove duplicate KBL DMC entry
-      i915: Add GuC firmware v49.0.1 for all platforms
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index ac600d395c8f..3b574597cd7f 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -79,8 +79,6 @@ static void mock_device_release(struct drm_device *dev)
+ 
+ out:
+ 	i915_params_free(&i915->params);
+-	put_device(&i915->drm.pdev->dev);
+-	i915->drm.pdev = NULL;
+ }
+ 
+ static struct drm_driver mock_driver = {
+@@ -128,12 +126,6 @@ struct drm_i915_private *mock_gem_device(void)
+ 	pdev = kzalloc(sizeof(*pdev), GFP_KERNEL);
+ 	if (!pdev)
+ 		return NULL;
+-	i915 = kzalloc(sizeof(*i915), GFP_KERNEL);
+-	if (!i915) {
+-		kfree(pdev);
+-		return NULL;
+-	}
+-
+ 	device_initialize(&pdev->dev);
+ 	pdev->class = PCI_BASE_CLASS_DISPLAY << 16;
+ 	pdev->dev.release = release_dev;
+@@ -144,8 +136,23 @@ struct drm_i915_private *mock_gem_device(void)
+ 	/* HACK to disable iommu for the fake device; force identity mapping */
+ 	pdev->dev.iommu = &fake_iommu;
+ #endif
++	if (!devres_open_group(&pdev->dev, NULL, GFP_KERNEL)) {
++		put_device(&pdev->dev);
++		return NULL;
++	}
++
++	i915 = devm_drm_dev_alloc(&pdev->dev, &mock_driver,
++				  struct drm_i915_private, drm);
++	if (IS_ERR(i915)) {
++		pr_err("Failed to allocate mock GEM device: err=%d\n", PTR_ERR(i915));
++		devres_release_group(&pdev->dev, NULL);
++		put_device(&pdev->dev);
++
++		return NULL;
++	}
+ 
+ 	pci_set_drvdata(pdev, i915);
++	i915->drm.pdev = pdev;
+ 
+ 	dev_pm_domain_set(&pdev->dev, &pm_domain);
+ 	pm_runtime_enable(&pdev->dev);
+@@ -153,16 +160,6 @@ struct drm_i915_private *mock_gem_device(void)
+ 	if (pm_runtime_enabled(&pdev->dev))
+ 		WARN_ON(pm_runtime_get_sync(&pdev->dev));
+ 
+-	err = drm_dev_init(&i915->drm, &mock_driver, &pdev->dev);
+-	if (err) {
+-		pr_err("Failed to initialise mock GEM device: err=%d\n", err);
+-		put_device(&pdev->dev);
+-		kfree(i915);
+-
+-		return NULL;
+-	}
+-	i915->drm.pdev = pdev;
+-	drmm_add_final_kfree(&i915->drm, i915);
+ 
+ 	i915_params_copy(&i915->params, &i915_modparams);
+ 
+@@ -229,5 +226,8 @@ struct drm_i915_private *mock_gem_device(void)
+ 
+ void mock_destroy_device(struct drm_i915_private *i915)
+ {
+-	drm_dev_put(&i915->drm);
++	struct device *dev = i915->drm.dev;
++
++	devres_release_group(dev, NULL);
++	put_device(dev);
+ }
+-- 
+2.28.0
 
- WHENCE                  |  25 ++++++++++++++++++++++++-
- i915/bxt_guc_49.0.1.bin | Bin 0 -> 196224 bytes
- i915/cml_guc_49.0.1.bin | Bin 0 -> 197184 bytes
- i915/ehl_guc_49.0.1.bin | Bin 0 -> 324160 bytes
- i915/glk_guc_49.0.1.bin | Bin 0 -> 196672 bytes
- i915/icl_guc_49.0.1.bin | Bin 0 -> 324160 bytes
- i915/kbl_guc_49.0.1.bin | Bin 0 -> 197184 bytes
- i915/skl_guc_49.0.1.bin | Bin 0 -> 196288 bytes
- i915/tgl_guc_49.0.1.bin | Bin 0 -> 321792 bytes
- 9 files changed, 24 insertions(+), 1 deletion(-)
- create mode 100644 i915/bxt_guc_49.0.1.bin
- create mode 100644 i915/cml_guc_49.0.1.bin
- create mode 100644 i915/ehl_guc_49.0.1.bin
- create mode 100644 i915/glk_guc_49.0.1.bin
- create mode 100644 i915/icl_guc_49.0.1.bin
- create mode 100644 i915/kbl_guc_49.0.1.bin
- create mode 100644 i915/skl_guc_49.0.1.bin
- create mode 100644 i915/tgl_guc_49.0.1.bin
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
