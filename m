@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 241032702CB
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 19:03:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 167562702F4
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 19:10:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DFC46ED35;
-	Fri, 18 Sep 2020 17:03:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 640816ED40;
+	Fri, 18 Sep 2020 17:10:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DF2DA6ED33;
- Fri, 18 Sep 2020 17:03:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C0DB2A47E1;
- Fri, 18 Sep 2020 17:03:23 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6642B6ED3E;
+ Fri, 18 Sep 2020 17:10:08 +0000 (UTC)
+IronPort-SDR: 5cq5OSJ+obZnS7ydEhr24UzxlffEgd6fR3TWs77H/vgNyZloTxk9+7LnwjDVWhRX8bJXcpk0ay
+ vdoOp1bZP2sw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9748"; a="159304759"
+X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="159304759"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2020 10:10:07 -0700
+IronPort-SDR: X4IJnje9UOuVdYFlyQvVeSXhRm8LtSeWqPHBeMArsSthArjyp9URw9o7JnoxpLIO7XIIbYsjqC
+ c9W+Mj6ClBJg==
+X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="508943785"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.201])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2020 10:10:07 -0700
+Date: Fri, 18 Sep 2020 13:12:21 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+Message-ID: <20200918171221.GB716636@intel.com>
+References: <20200918132505.2316382-1-daniel.vetter@ffwll.ch>
+ <CADnq5_NW_k6szxmLxvf+tca4-D7oUfkLg1W-P0Q8AjVPBK_=iQ@mail.gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Christoph Hellwig" <hch@lst.de>
-Date: Fri, 18 Sep 2020 17:03:23 -0000
-Message-ID: <160044860376.6345.2909158861976762209@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200918163724.2511-1-hch@lst.de>
-In-Reply-To: <20200918163724.2511-1-hch@lst.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/6=5D_zsmalloc=3A_switch_from_alloc=5Fv?=
- =?utf-8?q?m=5Farea_to_get=5Fvm=5Farea?=
+Content-Disposition: inline
+In-Reply-To: <CADnq5_NW_k6szxmLxvf+tca4-D7oUfkLg1W-P0Q8AjVPBK_=iQ@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 0/4] managed drm_device,
+ absolute final leftover bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +51,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [1/6] zsmalloc: switch from alloc_vm_area to get_vm_area
-URL   : https://patchwork.freedesktop.org/series/81855/
-State : failure
-
-== Summary ==
-
-Applying: zsmalloc: switch from alloc_vm_area to get_vm_area
-Applying: mm: add a vmap_pfn function
-Applying: drm/i915: use vmap in shmem_pin_map
-Applying: drm/i915: use vmap in i915_gem_object_map
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gem/i915_gem_pages.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/gem/i915_gem_pages.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gem/i915_gem_pages.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0004 drm/i915: use vmap in i915_gem_object_map
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+On Fri, Sep 18, 2020 at 11:03:12AM -0400, Alex Deucher wrote:
+> On Fri, Sep 18, 2020 at 9:25 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> >
+> > Hi all,
+> >
+> > These are the leftovers of the leftovers of my initial drmm series to
+> > manage drm_device.
+> >
+> > Changes:
+> > - bugfixed i915 selftests
+> > - patch from Luben to finalize the admgpu conversion
+> >
+> > Alex & i915 maintainers, pls ack for merging this all through
+> > drm-misc-next since otherwise the final patch (and the resulting confusion
+> > with outdated docs) is held up another round.
+> 
+> Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
 
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+> 
+> >
+> > Cheers, Daniel
+> >
+> > Daniel Vetter (3):
+> >   drm/i915/selftest: Create mock_destroy_device
+> >   drm/i915/selftests: align more to real device lifetimes
+> >   drm/dev: Remove drm_dev_init
+> >
+> > Luben Tuikov (1):
+> >   drm/amdgpu: Convert to using devm_drm_dev_alloc() (v2)
+> >
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       | 16 ++----
+> >  drivers/gpu/drm/drm_drv.c                     | 41 ++--------------
+> >  drivers/gpu/drm/drm_internal.h                |  1 +
+> >  drivers/gpu/drm/drm_managed.c                 | 13 -----
+> >  .../gpu/drm/i915/gem/selftests/huge_pages.c   |  2 +-
+> >  .../drm/i915/gem/selftests/i915_gem_context.c |  2 +-
+> >  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  2 +-
+> >  .../drm/i915/gem/selftests/i915_gem_object.c  |  2 +-
+> >  .../drm/i915/gem/selftests/i915_gem_phys.c    |  2 +-
+> >  drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
+> >  .../gpu/drm/i915/selftests/i915_gem_evict.c   |  2 +-
+> >  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  2 +-
+> >  drivers/gpu/drm/i915/selftests/i915_request.c |  2 +-
+> >  drivers/gpu/drm/i915/selftests/i915_vma.c     |  2 +-
+> >  .../drm/i915/selftests/intel_memory_region.c  |  2 +-
+> >  .../gpu/drm/i915/selftests/mock_gem_device.c  | 49 ++++++++++++-------
+> >  .../gpu/drm/i915/selftests/mock_gem_device.h  |  2 +
+> >  include/drm/drm_drv.h                         |  4 --
+> >  18 files changed, 51 insertions(+), 97 deletions(-)
+> >
+> > --
+> > 2.28.0
+> >
+> > _______________________________________________
+> > amd-gfx mailing list
+> > amd-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
