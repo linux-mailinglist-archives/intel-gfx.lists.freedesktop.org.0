@@ -2,46 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B339326FBE9
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 13:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EB9326FBFD
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 14:03:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B21276ECDF;
-	Fri, 18 Sep 2020 11:58:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DB226ECE0;
+	Fri, 18 Sep 2020 12:03:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 283496ECDC;
- Fri, 18 Sep 2020 11:58:48 +0000 (UTC)
-IronPort-SDR: 4UqgQ9mHOOp3RW0G0Rj33Bn88luMLqurqk2CZkQqVifr9qx2KZL0hIXEENW3QwBYAtpM14bb26
- JDaZIquAYD2w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="147600237"
-X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="147600237"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC7B76EC89;
+ Fri, 18 Sep 2020 12:03:50 +0000 (UTC)
+IronPort-SDR: jn2ihLM4Zqrx3EZeF45Aexs5k3YD1yzJUrVZIKKNyxQ2ctliw/kkL9o5C+gcnkcm5Y/r6EIGMD
+ GP3OU401IpPA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="157307842"
+X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="157307842"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2020 04:58:44 -0700
-IronPort-SDR: WY4k54HzVIXNKadB77dJ6hO7rFoaqefjzF8OUJRW+dpJ7JrvqxgjEjHIQ7yZBQslRUuv+enHFV
- oS56rhoJgZWA==
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2020 05:03:50 -0700
+IronPort-SDR: dmjHVOI8ElHNttPpX1vhbWH6APMuxOYJ/DQlJdr2fy/auWfhP8Ly/l892HvnJmhz+6fvoesAfB
+ 8e/dAUOrirnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="344721374"
+X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; d="scan'208";a="344723037"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 18 Sep 2020 04:58:41 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 18 Sep 2020 05:03:46 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 18 Sep 2020 14:58:40 +0300
-Date: Fri, 18 Sep 2020 14:58:40 +0300
+ Fri, 18 Sep 2020 15:03:45 +0300
+Date: Fri, 18 Sep 2020 15:03:45 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Karthik B S <karthik.b.s@intel.com>
-Message-ID: <20200918115840.GL6112@intel.com>
+Message-ID: <20200918120345.GM6112@intel.com>
 References: <20200916150824.15749-1-karthik.b.s@intel.com>
- <20200916150824.15749-8-karthik.b.s@intel.com>
+ <20200916150824.15749-9-karthik.b.s@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200916150824.15749-8-karthik.b.s@intel.com>
+In-Reply-To: <20200916150824.15749-9-karthik.b.s@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v9 7/8] Documentation/gpu: Add asynchronous
- flip documentation for i915
+Subject: Re: [Intel-gfx] [PATCH v9 8/8] drm/i915: Enable async flips in i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,8 +62,23 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 16, 2020 at 08:38:23PM +0530, Karthik B S wrote:
-> Add the details of the implementation of asynchronous flips for i915.
+On Wed, Sep 16, 2020 at 08:38:24PM +0530, Karthik B S wrote:
+> Enable asynchronous flips in i915 for gen9+ platforms.
+> =
+
+> v2: -Async flip enablement should be a stand alone patch (Paulo)
+> =
+
+> v3: -Move the patch to the end of the series (Paulo)
+> =
+
+> v4: -Rebased.
+> =
+
+> v5: -Rebased.
+> =
+
+> v6: -Rebased.
 > =
 
 > v7: -Rebased.
@@ -79,37 +93,47 @@ On Wed, Sep 16, 2020 at 08:38:23PM +0530, Karthik B S wrote:
 > Signed-off-by: Karthik B S <karthik.b.s@intel.com>
 > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 > ---
->  Documentation/gpu/i915.rst | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_display.c | 3 +++
+>  1 file changed, 3 insertions(+)
 > =
 
-> diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-> index 33cc6ddf8f64..84ead508f7ad 100644
-> --- a/Documentation/gpu/i915.rst
-> +++ b/Documentation/gpu/i915.rst
-> @@ -118,6 +118,12 @@ Atomic Plane Helpers
->  .. kernel-doc:: drivers/gpu/drm/i915/display/intel_atomic_plane.c
->     :internal:
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 6f6edc581e14..e31abf5f1a9d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -18021,6 +18021,9 @@ static void intel_mode_config_init(struct drm_i91=
+5_private *i915)
 >  =
 
-> +Asynchronous Page Flip
-> +----------------------
+>  	mode_config->funcs =3D &intel_mode_funcs;
+>  =
+
+> +	if (INTEL_GEN(i915) >=3D 9)
+> +		mode_config->async_page_flip =3D true;
 > +
-> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_display.c
-> +   :doc: asynchronous flip implementation
 
-A bit weird having this in one patch but the actual docs in the other.
-I guess just squash them together, or extract the docs from the other
-patch into this one?
+Should have all we need for those platforms I think.
 
-Either way
 Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-> +
->  Output Probing
->  --------------
->  =
+The followup to enable it for ilk+ would require a slight change to
+bump X-tiled surface alignment to 256KiB. Apart from the actual regiser
+smashing part that should be all we need really.
 
+Oh, and the double buffer bit w/a will also be needed on bdw.
+I've now tested snb/ivb/hsw/bdw and only bdw needs it. I guess
+that's not entirely unsurpising since bdw did introduce one other
+fail for the flip done interrupt (the interupt fires immediately =
+
+when the plane was disabled, so can't use flip done to determine
+when the plane has actually become visible). Fortunately that
+other fail should have no impact on using it for async flip
+completion.
+
+>  	/*
+>  	 * Maximum framebuffer dimensions, chosen to match
+>  	 * the maximum render engine surface size on gen4+.
 > -- =
 
 > 2.22.0
