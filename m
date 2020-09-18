@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C3C626E9AB
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 01:58:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 268F526E9B3
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Sep 2020 02:00:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA7C96E427;
-	Thu, 17 Sep 2020 23:58:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3C906E42A;
+	Fri, 18 Sep 2020 00:00:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 479FE6E427
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Sep 2020 23:58:41 +0000 (UTC)
-IronPort-SDR: 2yW1Uh73RWYpRrZjHFaJjvTtqEj3Wt6KOrJXVVKWn0iwD2KVIvivyRPgS7/AHzEbMaoKbYONXy
- aFwDcN5+3bKg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="139823960"
-X-IronPort-AV: E=Sophos;i="5.77,272,1596524400"; d="scan'208";a="139823960"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F3126E429
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Sep 2020 00:00:33 +0000 (UTC)
+IronPort-SDR: Exd/tWm8hf30TDXtFBJT+CRNEXp5pLJQ6i15APaEphwwfLmDnBl2lVXNrOD0YN3Fnh0ELzfQKG
+ 8na03UMCyerw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="223988144"
+X-IronPort-AV: E=Sophos;i="5.77,272,1596524400"; d="scan'208";a="223988144"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2020 16:58:36 -0700
-IronPort-SDR: w6lZMZQN6susUgDwoXn3z5roRRRcP+SHVD6dhghJ9HdY1tJyGWPytJT2sOPeQFJYDWofQ3/vsN
- /P7JNQj/JetA==
-X-IronPort-AV: E=Sophos;i="5.77,272,1596524400"; d="scan'208";a="307666383"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2020 17:00:29 -0700
+IronPort-SDR: P4eKIcjcut+H1GUC3tY+OmjvMp6w+yYOx42wcqW8lWJzakvW1eUNISdglEMB4HAdz6wtls34+N
+ XXqc4L7xV0kg==
+X-IronPort-AV: E=Sophos;i="5.77,272,1596524400"; d="scan'208";a="339612270"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
  ([10.165.21.211])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2020 16:58:36 -0700
-Date: Thu, 17 Sep 2020 16:59:19 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2020 17:00:29 -0700
+Date: Thu, 17 Sep 2020 17:01:12 -0700
 From: "Navare, Manasi" <manasi.d.navare@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200917235919.GB27525@labuser-Z97X-UD5H>
+Message-ID: <20200918000112.GC27525@labuser-Z97X-UD5H>
 References: <20200917214335.3569-1-ville.syrjala@linux.intel.com>
- <20200917214335.3569-2-ville.syrjala@linux.intel.com>
+ <20200917214335.3569-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200917214335.3569-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200917214335.3569-3-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Decouple intel_dp_{min,
- output}_bpp() from crtc_state
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Use the correct bpp when
+ validating "4:2:0 only" modes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,152 +58,131 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 18, 2020 at 12:43:34AM +0300, Ville Syrjala wrote:
+On Fri, Sep 18, 2020 at 12:43:35AM +0300, Ville Syrjala wrote:
 > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > =
 
-> Pass the output_format directly to intel_dp_{min,output}_bpp()
-> rather than passing in the crtc_state and digging out the
-> output_format inside the functions. This will allow us to reuse
-> the functions for mode validation purposes.
+> When validating a "YCbCr 4:2:0 only" mode we must take into
+> account the fact that we're going to be outputting YCbCr
+> 4:2:0 or 4:4:4 (when a DP->HDMI protocol converter is doing
+> the 4:2:0 downsampling). For YCbCr 4:4:4 the minimum output
+> bpc is 8, for YCbCr 4:2:0 it'll be half that. The currently
+> hardcoded 6bpc is only correct for RGB 4:4:4, which we will
+> never use with these kinds of modes. Figure out what we're
+> going to output and use the correct min bpp value to validate
+> whether the link has sufficient bandwidth.
 > =
 
 > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-Looks good
 
 Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
 Manasi
 
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c     | 15 ++++++++-------
->  drivers/gpu/drm/i915/display/intel_dp.h     |  3 ++-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 +-
->  3 files changed, 11 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 55 +++++++++++++++----------
+>  1 file changed, 33 insertions(+), 22 deletions(-)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
 15/display/intel_dp.c
-> index ad9b8b16fadb..aa4801a8123d 100644
+> index aa4801a8123d..54a4b81ea3ff 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2111,14 +2111,14 @@ intel_dp_adjust_compliance_config(struct intel_dp=
- *intel_dp,
+> @@ -608,6 +608,37 @@ intel_dp_output_format(struct drm_connector *connect=
+or,
+>  		return INTEL_OUTPUT_FORMAT_YCBCR420;
+>  }
+>  =
+
+> +int intel_dp_min_bpp(enum intel_output_format output_format)
+> +{
+> +	if (output_format =3D=3D INTEL_OUTPUT_FORMAT_RGB)
+> +		return 6 * 3;
+> +	else
+> +		return 8 * 3;
+> +}
+> +
+> +static int intel_dp_output_bpp(enum intel_output_format output_format, i=
+nt bpp)
+> +{
+> +	/*
+> +	 * bpp value was assumed to RGB format. And YCbCr 4:2:0 output
+> +	 * format of the number of bytes per pixel will be half the number
+> +	 * of bytes of RGB pixel.
+> +	 */
+> +	if (output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
+> +		bpp /=3D 2;
+> +
+> +	return bpp;
+> +}
+> +
+> +static int
+> +intel_dp_mode_min_output_bpp(struct drm_connector *connector,
+> +			     const struct drm_display_mode *mode)
+> +{
+> +	enum intel_output_format output_format =3D
+> +		intel_dp_output_format(connector, mode);
+> +
+> +	return intel_dp_output_bpp(output_format, intel_dp_min_bpp(output_forma=
+t));
+> +}
+> +
+>  static bool intel_dp_hdisplay_bad(struct drm_i915_private *dev_priv,
+>  				  int hdisplay)
+>  {
+> @@ -687,7 +718,8 @@ intel_dp_mode_valid(struct drm_connector *connector,
+>  	max_lanes =3D intel_dp_max_lane_count(intel_dp);
+>  =
+
+>  	max_rate =3D intel_dp_max_data_rate(max_link_clock, max_lanes);
+> -	mode_rate =3D intel_dp_link_required(target_clock, 18);
+> +	mode_rate =3D intel_dp_link_required(target_clock,
+> +					   intel_dp_mode_min_output_bpp(connector, mode));
+>  =
+
+>  	if (intel_dp_hdisplay_bad(dev_priv, mode->hdisplay))
+>  		return MODE_H_ILLEGAL;
+> @@ -2111,19 +2143,6 @@ intel_dp_adjust_compliance_config(struct intel_dp =
+*intel_dp,
 >  	}
 >  }
 >  =
 
-> -static int intel_dp_output_bpp(const struct intel_crtc_state *crtc_state=
-, int bpp)
-> +static int intel_dp_output_bpp(enum intel_output_format output_format, i=
+> -static int intel_dp_output_bpp(enum intel_output_format output_format, i=
 nt bpp)
->  {
->  	/*
->  	 * bpp value was assumed to RGB format. And YCbCr 4:2:0 output
->  	 * format of the number of bytes per pixel will be half the number
->  	 * of bytes of RGB pixel.
->  	 */
-> -	if (crtc_state->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
-> +	if (output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
->  		bpp /=3D 2;
->  =
-
->  	return bpp;
-> @@ -2135,7 +2135,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *=
-intel_dp,
->  	int mode_rate, link_clock, link_avail;
->  =
-
->  	for (bpp =3D limits->max_bpp; bpp >=3D limits->min_bpp; bpp -=3D 2 * 3)=
- {
-> -		int output_bpp =3D intel_dp_output_bpp(pipe_config, bpp);
-> +		int output_bpp =3D intel_dp_output_bpp(pipe_config->output_format, bpp=
-);
->  =
-
->  		mode_rate =3D intel_dp_link_required(adjusted_mode->crtc_clock,
->  						   output_bpp);
-> @@ -2346,9 +2346,9 @@ static int intel_dp_dsc_compute_config(struct intel=
-_dp *intel_dp,
+> -{
+> -	/*
+> -	 * bpp value was assumed to RGB format. And YCbCr 4:2:0 output
+> -	 * format of the number of bytes per pixel will be half the number
+> -	 * of bytes of RGB pixel.
+> -	 */
+> -	if (output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
+> -		bpp /=3D 2;
+> -
+> -	return bpp;
+> -}
+> -
+>  /* Optimize link config in order: max bpp, min clock, min lanes */
+>  static int
+>  intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
+> @@ -2346,14 +2365,6 @@ static int intel_dp_dsc_compute_config(struct inte=
+l_dp *intel_dp,
 >  	return 0;
 >  }
 >  =
 
-> -int intel_dp_min_bpp(const struct intel_crtc_state *crtc_state)
-> +int intel_dp_min_bpp(enum intel_output_format output_format)
->  {
-> -	if (crtc_state->output_format =3D=3D INTEL_OUTPUT_FORMAT_RGB)
-> +	if (output_format =3D=3D INTEL_OUTPUT_FORMAT_RGB)
->  		return 6 * 3;
->  	else
->  		return 8 * 3;
-> @@ -2379,7 +2379,7 @@ intel_dp_compute_link_config(struct intel_encoder *=
-encoder,
->  	limits.min_lane_count =3D 1;
->  	limits.max_lane_count =3D intel_dp_max_lane_count(intel_dp);
->  =
-
-> -	limits.min_bpp =3D intel_dp_min_bpp(pipe_config);
-> +	limits.min_bpp =3D intel_dp_min_bpp(pipe_config->output_format);
->  	limits.max_bpp =3D intel_dp_max_bpp(intel_dp, pipe_config);
->  =
-
->  	if (intel_dp_is_edp(intel_dp)) {
-> @@ -2765,7 +2765,8 @@ intel_dp_compute_config(struct intel_encoder *encod=
-er,
->  	if (pipe_config->dsc.compression_enable)
->  		output_bpp =3D pipe_config->dsc.compressed_bpp;
->  	else
-> -		output_bpp =3D intel_dp_output_bpp(pipe_config, pipe_config->pipe_bpp);
-> +		output_bpp =3D intel_dp_output_bpp(pipe_config->output_format,
-> +						 pipe_config->pipe_bpp);
->  =
-
->  	intel_link_compute_m_n(output_bpp,
->  			       pipe_config->lane_count,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
-15/display/intel_dp.h
-> index 08a1c0aa8b94..a9580d1df35b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -10,6 +10,7 @@
->  =
-
->  #include "i915_reg.h"
->  =
-
-> +enum intel_output_format;
->  enum pipe;
->  enum port;
->  struct drm_connector_state;
-> @@ -35,7 +36,7 @@ void intel_dp_adjust_compliance_config(struct intel_dp =
-*intel_dp,
->  				       struct link_config_limits *limits);
->  bool intel_dp_limited_color_range(const struct intel_crtc_state *crtc_st=
-ate,
->  				  const struct drm_connector_state *conn_state);
-> -int intel_dp_min_bpp(const struct intel_crtc_state *crtc_state);
-> +int intel_dp_min_bpp(enum intel_output_format output_format);
->  bool intel_dp_port_enabled(struct drm_i915_private *dev_priv,
->  			   i915_reg_t dp_reg, enum port port,
->  			   enum pipe *pipe);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index 64d885539e94..6a874b779b1f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -130,7 +130,7 @@ static int intel_dp_mst_compute_config(struct intel_e=
-ncoder *encoder,
->  	limits.min_lane_count =3D
->  	limits.max_lane_count =3D intel_dp_max_lane_count(intel_dp);
->  =
-
-> -	limits.min_bpp =3D intel_dp_min_bpp(pipe_config);
-> +	limits.min_bpp =3D intel_dp_min_bpp(pipe_config->output_format);
->  	/*
->  	 * FIXME: If all the streams can't fit into the link with
->  	 * their current pipe_bpp we should reduce pipe_bpp across
+> -int intel_dp_min_bpp(enum intel_output_format output_format)
+> -{
+> -	if (output_format =3D=3D INTEL_OUTPUT_FORMAT_RGB)
+> -		return 6 * 3;
+> -	else
+> -		return 8 * 3;
+> -}
+> -
+>  static int
+>  intel_dp_compute_link_config(struct intel_encoder *encoder,
+>  			     struct intel_crtc_state *pipe_config,
 > -- =
 
 > 2.26.2
