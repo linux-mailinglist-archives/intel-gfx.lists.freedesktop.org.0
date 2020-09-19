@@ -2,42 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0176270C63
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Sep 2020 11:50:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C275270CBD
+	for <lists+intel-gfx@lfdr.de>; Sat, 19 Sep 2020 12:03:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD2C66E201;
-	Sat, 19 Sep 2020 09:50:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 914A86E207;
+	Sat, 19 Sep 2020 10:03:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A14D36E201;
- Sat, 19 Sep 2020 09:50:20 +0000 (UTC)
-Message-Id: <20200919092617.375720378@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1600509019;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=dJhau0LaFILj/IFm3JpK00/lnAjoDukMJ8R0j3dPchU=;
- b=uxskJelrTfz/GKc9edsAEs0gb3DWYfCu7n8APYzVlc7bJQzv04iZOzHcmFq6t5qDrrVBZ/
- 4C4PAFGkzsFp6nGQcpt5niy6S+9ydBCpiObiah/IVCCwDxhhHC5cgkAu/6V3V08Eh1r96m
- xmw3OVtejQT5gDr4T78MAAWwkDh33eqo6q17Wt0/k4vyjdndUorQf1g9379L4qm8930rmO
- GEKPqud78gf29AiUWocLXzxJzWSo2OEEBj/yrvwUOT1wKbOVlZ0FliAB+Yqg7cNrXdk79+
- OO7sMlURN+BROu5//5m0JNoAo/MusM0EcFq1MWiz2xN8WqM4qDKFQ5QTwdF32g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1600509019;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=dJhau0LaFILj/IFm3JpK00/lnAjoDukMJ8R0j3dPchU=;
- b=PrQO9NIUtOX/0/EHlhtg0Juh5C5GtlSLp2/PPAA/aAaFXiFrlKNN8Eayg02fcVDZ14HDVH
- br4tlK6E4ZYXVrAg==
-Date: Sat, 19 Sep 2020 11:18:06 +0200
-From: Thomas Gleixner <tglx@linutronix.de>
-To: LKML <linux-kernel@vger.kernel.org>
-References: <20200919091751.011116649@linutronix.de>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 660316E200;
+ Sat, 19 Sep 2020 10:03:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5C08BA47E1;
+ Sat, 19 Sep 2020 10:03:03 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [patch RFC 15/15] mm/highmem: Provide kmap_temporary*
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Gleixner" <tglx@linutronix.de>
+Date: Sat, 19 Sep 2020 10:03:03 -0000
+Message-ID: <160050978334.25656.1011878624419463411@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200919091751.011116649@linutronix.de>
+In-Reply-To: <20200919091751.011116649@linutronix.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_mm/highmem=3A_Provide_a_preemptible_variant_of_kmap=5Fatomi?=
+ =?utf-8?q?c_=26_friends?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,285 +39,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- dri-devel <dri-devel@lists.freedesktop.org>, Ben Segall <bsegall@google.com>,
- Max Filippov <jcmvbkbc@gmail.com>, Guo Ren <guoren@kernel.org>,
- sparclinux@vger.kernel.org, Vincent Chen <deanbo422@gmail.com>,
- Will Deacon <will@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
- linux-arch@vger.kernel.org, Herbert Xu <herbert@gondor.apana.org.au>,
- Michael Ellerman <mpe@ellerman.id.au>, x86@kernel.org,
- Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Mel Gorman <mgorman@suse.de>,
- linux-snps-arc@lists.infradead.org, linux-xtensa@linux-xtensa.org,
- Paul McKenney <paulmck@kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, linuxppc-dev@lists.ozlabs.org,
- Steven Rostedt <rostedt@goodmis.org>,
- Linus Torvalds <torvalds@linuxfoundation.org>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
- Vineet Gupta <vgupta@synopsys.com>, linux-mips@vger.kernel.org,
- Arnd Bergmann <arnd@arndb.de>, Paul Mackerras <paulus@samba.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>,
- "David S. Miller" <davem@davemloft.net>, Greentime Hu <green.hu@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that the kmap atomic index is stored in task struct provide a
-preemptible variant. On context switch the maps of an outgoing task are
-removed and the map of the incoming task are restored. That's obviously
-slow, but highmem is slow anyway.
+== Series Details ==
 
-The kmap_temporary and iomap_temporary interfaces can be invoked from both
-preemptible and atomic context.
+Series: mm/highmem: Provide a preemptible variant of kmap_atomic & friends
+URL   : https://patchwork.freedesktop.org/series/81869/
+State : warning
 
-A wholesale conversion of kmap_atomic to be fully preemptible is not
-possible because some of the usage sites might rely on the preemption
-disable for serialization or per CPUness. Needs to be done on a case by
-case basis.
+== Summary ==
 
-Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
----
- arch/x86/include/asm/iomap.h |   16 ++++++++-
- arch/x86/mm/iomap_32.c       |    7 +---
- include/linux/highmem.h      |   70 +++++++++++++++++++++++++++++++++----------
- mm/highmem.c                 |   18 +++++------
- 4 files changed, 80 insertions(+), 31 deletions(-)
+$ dim checkpatch origin/drm-tip
+09e63fe3f428 mm/highmem: Un-EXPORT __kmap_atomic_idx()
+255bffcadf05 highmem: Provide generic variant of kmap_atomic*
+-:84: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#84: FILE: include/linux/highmem.h:135:
++
++
 
---- a/arch/x86/include/asm/iomap.h
-+++ b/arch/x86/include/asm/iomap.h
-@@ -13,11 +13,23 @@
- #include <asm/cacheflush.h>
- #include <asm/tlbflush.h>
- 
--void __iomem *iomap_atomic_pfn_prot(unsigned long pfn, pgprot_t prot);
-+void __iomem *iomap_temporary_pfn_prot(unsigned long pfn, pgprot_t prot);
+-:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'addr' - possible side-effects?
+#141: FILE: include/linux/highmem.h:273:
++#define kunmap_atomic(addr)						\
++	do {								\
++		BUILD_BUG_ON(__same_type((addr), struct page *));	\
++		__kunmap_atomic(addr);					\
++		preempt_enable();					\
++	} while (0)
+
+-:236: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#236: FILE: mm/highmem.c:426:
++	BUG_ON(!pte_none(*(kmap_pte - idx)));
+
+-:271: CHECK:SPACING: No space is necessary after a cast
+#271: FILE: mm/highmem.c:461:
++	unsigned long addr = (unsigned long) vaddr & PAGE_MASK;
+
+total: 0 errors, 1 warnings, 3 checks, 267 lines checked
+625148d57afa x86/mm/highmem: Use generic kmap atomic implementation
+1832cad138d0 arc/mm/highmem: Use generic kmap atomic implementation
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'vaddr' - possible side-effects?
+#45: FILE: arch/arc/include/asm/highmem.h:35:
++#define arch_kmap_temp_post_unmap(vaddr)			\
++	local_flush_tlb_kernel_range(vaddr, vaddr + PAGE_SIZE)
+
+total: 0 errors, 0 warnings, 1 checks, 81 lines checked
+65fec7d3aa8d ARM: highmem: Switch to generic kmap atomic
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:33: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#33: FILE: arch/arm/include/asm/highmem.h:51:
++extern void *arch_kmap_temporary_high_get(struct page *page);
+
+-:82: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#82: 
+deleted file mode 100644
+
+total: 0 errors, 2 warnings, 1 checks, 55 lines checked
+5290cbab1bf8 csky/mm/highmem: Switch to generic kmap atomic
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 99 lines checked
+dbf59e6698e3 microblaze/mm/highmem: Switch to generic kmap atomic
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:37: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#37: FILE: arch/microblaze/include/asm/highmem.h:54:
++#define arch_kmap_temp_post_map(vaddr, pteval)	\
++	local_flush_tlb_page(NULL, vaddr);
+
+-:39: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#39: FILE: arch/microblaze/include/asm/highmem.h:56:
++#define arch_kmap_temp_post_unmap(vaddr)	\
++	local_flush_tlb_page(NULL, vaddr);
+
+-:55: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#55: 
+deleted file mode 100644
+
+total: 0 errors, 4 warnings, 0 checks, 45 lines checked
+3e35d9f89ec7 mips/mm/highmem: Switch to generic kmap atomic
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+7e666c270f0c nds32/mm/highmem: Switch to generic kmap atomic
+-:36: WARNING:TYPO_SPELLING: 'interupted' may be misspelled - perhaps 'interrupted'?
+#36: FILE: arch/nds32/include/asm/highmem.h:49:
++ * is interupted and another kmap_atomic() happens in interrupt context.
+
+-:42: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'vaddr' - possible side-effects?
+#42: FILE: arch/nds32/include/asm/highmem.h:52:
++#define arch_kmap_temp_post_map(vaddr, pteval)			\
++	do {							\
++		__nds32__tlbop_inv(vaddr);			\
++		__nds32__mtsr_dsb(vaddr, NDS32_SR_TLB_VPN);	\
++		__nds32__tlbop_rwr(pteval);			\
++		__nds32__isb();					\
++	} while (0)
+
+-:70: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#70: 
+deleted file mode 100644
+
+total: 0 errors, 2 warnings, 1 checks, 41 lines checked
+48674c7f32cf powerpc/mm/highmem: Switch to generic kmap atomic
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:61: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#61: 
+deleted file mode 100644
+
+total: 0 errors, 2 warnings, 0 checks, 51 lines checked
+f2cb65d888e1 sparc/mm/highmem: Switch to generic kmap atomic
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:43: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#43: FILE: arch/sparc/include/asm/highmem.h:58:
 +
-+static inline void __iomem *iomap_atomic_pfn_prot(unsigned long pfn,
-+						  pgprot_t prot)
-+{
-+	preempt_disable();
-+	return iomap_temporary_pfn_prot(pfn, prot);
-+}
 +
-+static inline void iounmap_temporary(void __iomem *vaddr)
-+{
-+	kunmap_temporary_indexed((void __force *)vaddr);
-+}
- 
- static inline void iounmap_atomic(void __iomem *vaddr)
- {
--	kunmap_atomic_indexed((void __force *)vaddr);
-+	iounmap_temporary(vaddr);
- 	preempt_enable();
- }
- 
---- a/arch/x86/mm/iomap_32.c
-+++ b/arch/x86/mm/iomap_32.c
-@@ -44,7 +44,7 @@ void iomap_free(resource_size_t base, un
- }
- EXPORT_SYMBOL_GPL(iomap_free);
- 
--void __iomem *iomap_atomic_pfn_prot(unsigned long pfn, pgprot_t prot)
-+void __iomem *iomap_temporary_pfn_prot(unsigned long pfn, pgprot_t prot)
- {
- 	/*
- 	 * For non-PAT systems, translate non-WB request to UC- just in
-@@ -60,7 +60,6 @@ void __iomem *iomap_atomic_pfn_prot(unsi
- 	/* Filter out unsupported __PAGE_KERNEL* bits: */
- 	pgprot_val(prot) &= __default_kernel_pte_mask;
- 
--	preempt_disable();
--	return (void __force __iomem *)kmap_atomic_pfn_prot(pfn, prot);
-+	return (void __force __iomem *)__kmap_temporary_pfn_prot(pfn, prot);
- }
--EXPORT_SYMBOL_GPL(iomap_atomic_pfn_prot);
-+EXPORT_SYMBOL_GPL(iomap_temporary_pfn_prot);
---- a/include/linux/highmem.h
-+++ b/include/linux/highmem.h
-@@ -35,9 +35,9 @@ static inline void invalidate_kernel_vma
-  * Outside of CONFIG_HIGHMEM to support X86 32bit iomap_atomic() cruft.
-  */
- #ifdef CONFIG_KMAP_ATOMIC_GENERIC
--void *kmap_atomic_pfn_prot(unsigned long pfn, pgprot_t prot);
--void *kmap_atomic_page_prot(struct page *page, pgprot_t prot);
--void kunmap_atomic_indexed(void *vaddr);
-+void *__kmap_temporary_pfn_prot(unsigned long pfn, pgprot_t prot);
-+void *__kmap_temporary_page_prot(struct page *page, pgprot_t prot);
-+void kunmap_temporary_indexed(void *vaddr);
- void kmap_switch_temporary(struct task_struct *prev, struct task_struct *next);
- # ifndef ARCH_NEEDS_KMAP_HIGH_GET
- static inline void *arch_kmap_temporary_high_get(struct page *page)
-@@ -95,16 +95,35 @@ static inline void kunmap(struct page *p
-  * be used in IRQ contexts, so in some (very limited) cases we need
-  * it.
-  */
--static inline void *kmap_atomic_prot(struct page *page, pgprot_t prot)
-+static inline void *kmap_temporary_page_prot(struct page *page, pgprot_t prot)
- {
--	preempt_disable();
--	return kmap_atomic_page_prot(page, prot);
-+	return __kmap_temporary_page_prot(page, prot);
- }
- 
--static inline void *kmap_atomic_pfn(unsigned long pfn)
-+static inline void *kmap_temporary_page(struct page *page)
-+{
-+	return kmap_temporary_page_prot(page, kmap_prot);
-+}
-+
-+static inline void *kmap_temporary_pfn_prot(unsigned long pfn, pgprot_t prot)
-+{
-+	return __kmap_temporary_pfn_prot(pfn, prot);
-+}
-+
-+static inline void *kmap_temporary_pfn(unsigned long pfn)
-+{
-+	return kmap_temporary_pfn_prot(pfn, kmap_prot);
-+}
-+
-+static inline void __kunmap_temporary(void *vaddr)
-+{
-+	kunmap_temporary_indexed(vaddr);
-+}
-+
-+static inline void *kmap_atomic_prot(struct page *page, pgprot_t prot)
- {
- 	preempt_disable();
--	return kmap_atomic_pfn_prot(pfn, kmap_prot);
-+	return kmap_temporary_page_prot(page, prot);
- }
- 
- static inline void *kmap_atomic(struct page *page)
-@@ -112,9 +131,10 @@ static inline void *kmap_atomic(struct p
- 	return kmap_atomic_prot(page, kmap_prot);
- }
- 
--static inline void __kunmap_atomic(void *addr)
-+static inline void *kmap_atomic_pfn(unsigned long pfn)
- {
--	kumap_atomic_indexed(addr);
-+	preempt_disable();
-+	return kmap_temporary_pfn_prot(pfn, kmap_prot);
- }
- 
- /* declarations for linux/mm/highmem.c */
-@@ -177,6 +197,22 @@ static inline void kunmap(struct page *p
- #endif
- }
- 
-+static inline void *kmap_temporary_page(struct page *page)
-+{
-+	pagefault_disable();
-+	return page_address(page);
-+}
-+
-+static inline void *kmap_temporary_page_prot(struct page *page, pgprot_t prot)
-+{
-+	return kmap_temporary_page(page);
-+}
-+
-+static inline void *kmap_temporary_pfn(unsigned long pfn)
-+{
-+	return kmap_temporary_page(pfn_to_page(pfn));
-+}
-+
- static inline void *kmap_atomic(struct page *page)
- {
- 	preempt_disable();
-@@ -194,12 +230,8 @@ static inline void *kmap_atomic_pfn(unsi
- 	return kmap_atomic(pfn_to_page(pfn));
- }
- 
--static inline void __kunmap_atomic(void *addr)
-+static inline void __kunmap_temporary(void *addr)
- {
--	/*
--	 * Mostly nothing to do in the CONFIG_HIGHMEM=n case as kunmap_atomic()
--	 * handles preemption
--	 */
- #ifdef ARCH_HAS_FLUSH_ON_KUNMAP
- 	kunmap_flush_on_unmap(addr);
- #endif
-@@ -217,10 +249,16 @@ static inline void __kunmap_atomic(void
- #define kunmap_atomic(addr)						\
- 	do {								\
- 		BUILD_BUG_ON(__same_type((addr), struct page *));	\
--		__kunmap_atomic(addr);					\
-+		__kunmap_temporary(addr);				\
- 		preempt_enable();					\
- 	} while (0)
- 
+
+-:59: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#59: 
+deleted file mode 100644
+
+total: 0 errors, 2 warnings, 1 checks, 37 lines checked
+e199affb975e xtensa/mm/highmem: Switch to generic kmap atomic
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:37: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'vaddr' - possible side-effects?
+#37: FILE: arch/xtensa/include/asm/highmem.h:77:
++#define arch_kmap_temp_post_unmap(vaddr)	\
++	local_flush_tlb_kernel_range(vaddr, vaddr + PAGE_SIZE)
+
+total: 0 errors, 1 warnings, 1 checks, 89 lines checked
+70e9cf2abd92 mm/highmem: Remove the old kmap_atomic cruft
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:129: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#129: FILE: mm/highmem.c:387:
++	BUG_ON(idx >= KM_TYPE_NR);
+
+-:142: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#142: FILE: mm/highmem.c:400:
++	BUG_ON(idx < 0);
+
+total: 0 errors, 3 warnings, 0 checks, 127 lines checked
+256adfec14ec sched: highmem: Store temporary kmaps in task struct
+-:128: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#128: FILE: mm/highmem.c:398:
++	BUG_ON(current->kmap_ctrl.idx < 0);
+
+total: 0 errors, 1 warnings, 0 checks, 156 lines checked
+c03e21031fb7 mm/highmem: Provide kmap_temporary*
+-:191: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'addr' - possible side-effects?
+#191: FILE: include/linux/highmem.h:256:
 +#define kunmap_temporary(addr)						\
 +	do {								\
 +		BUILD_BUG_ON(__same_type((addr), struct page *));	\
 +		__kunmap_temporary(addr);				\
 +	} while (0)
-+
- /* when CONFIG_HIGHMEM is not set these will be plain clear/copy_page */
- #ifndef clear_user_highpage
- static inline void clear_user_highpage(struct page *page, unsigned long vaddr)
---- a/mm/highmem.c
-+++ b/mm/highmem.c
-@@ -432,7 +432,7 @@ static pte_t *kmap_get_pte(void)
- 	return __kmap_pte;
- }
- 
--static void *__kmap_atomic_pfn_prot(unsigned long pfn, pgprot_t prot)
-+static void *do_kmap_temporary_pfn_prot(unsigned long pfn, pgprot_t prot)
- {
- 	pte_t pteval, *kmap_pte = kmap_get_pte();
- 	unsigned long vaddr;
-@@ -451,14 +451,14 @@ static void *__kmap_atomic_pfn_prot(unsi
- 	return (void *)vaddr;
- }
- 
--void *kmap_atomic_pfn_prot(unsigned long pfn, pgprot_t prot)
-+void *__kmap_temporary_pfn_prot(unsigned long pfn, pgprot_t prot)
- {
- 	pagefault_disable();
--	return __kmap_atomic_pfn_prot(pfn, prot);
-+	return do_kmap_temporary_pfn_prot(pfn, prot);
- }
--EXPORT_SYMBOL(kmap_atomic_pfn_prot);
-+EXPORT_SYMBOL(__kmap_temporary_pfn_prot);
- 
--void *kmap_atomic_page_prot(struct page *page, pgprot_t prot)
-+void *__kmap_temporary_page_prot(struct page *page, pgprot_t prot)
- {
- 	void *kmap;
- 
-@@ -471,11 +471,11 @@ void *kmap_atomic_page_prot(struct page
- 	if (kmap)
- 		return kmap;
- 
--	return __kmap_atomic_pfn_prot(page_to_pfn(page), prot);
-+	return do_kmap_temporary_pfn_prot(page_to_pfn(page), prot);
- }
--EXPORT_SYMBOL(kmap_atomic_page_prot);
-+EXPORT_SYMBOL(__kmap_temporary_page_prot);
- 
--void kunmap_atomic_indexed(void *vaddr)
-+void kunmap_temporary_indexed(void *vaddr)
- {
- 	unsigned long addr = (unsigned long) vaddr & PAGE_MASK;
- 	pte_t *kmap_pte = kmap_get_pte();
-@@ -503,7 +503,7 @@ void kunmap_atomic_indexed(void *vaddr)
- 	preempt_enable();
- 	pagefault_enable();
- }
--EXPORT_SYMBOL(kunmap_atomic_indexed);
-+EXPORT_SYMBOL(kunmap_temporary_indexed);
- 
- void kmap_switch_temporary(struct task_struct *prev, struct task_struct *next)
- {
+
+total: 0 errors, 0 warnings, 1 checks, 206 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
