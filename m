@@ -2,38 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E324270FD9
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Sep 2020 19:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FDBC271026
+	for <lists+intel-gfx@lfdr.de>; Sat, 19 Sep 2020 21:13:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EDCC6E418;
-	Sat, 19 Sep 2020 17:39:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D42F96E04A;
+	Sat, 19 Sep 2020 19:13:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C90C6E418;
- Sat, 19 Sep 2020 17:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=K7cFTcsHe45qv1JJ+UknwUT4mvbkrB+z2Jy5+goIZf0=; b=GA8JmFgANuCgqfeQ26a1OMpRZE
- ZlbdTi1XaGMnZkdmimNhxcmAfB4GoKEHChTyR/daa8IK0MpK+Ph2ryH9b//aJ7p80Ibs7l4BswfKA
- sIzYu18LtoXosTxZAkge/rc7Gjb4PaaE+FfoSKec+IBx6JDUvF50gAZCGBJozVv3Q9TlSsMTvnq4U
- keH99iWU1/g/8GqcgNItUNMFJkFHNg8zhSjOTYLGYkT6E6wJJ/7Hz/Yg8vF2N30AJY+JgAxJpcH7t
- m+E+NNmErAuLXNLlz9CT3fJe5cNWm4y9wNwF8wRjFWgpkB/kQEiLyYiDCjBe1dWILsbbqWV9yJF6I
- kDktgdcw==;
-Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kJgpG-0007zK-4s; Sat, 19 Sep 2020 17:39:06 +0000
-Date: Sat, 19 Sep 2020 18:39:06 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Message-ID: <20200919173906.GQ32101@casper.infradead.org>
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com
+ [IPv6:2a00:1450:4864:20::641])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 192EA6E04A
+ for <intel-gfx@lists.freedesktop.org>; Sat, 19 Sep 2020 19:13:22 +0000 (UTC)
+Received: by mail-ej1-x641.google.com with SMTP id gx22so3419807ejb.5
+ for <intel-gfx@lists.freedesktop.org>; Sat, 19 Sep 2020 12:13:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=10sVGN8u2TwfCpnAq/jp4iLrESxL2PzGGvVZbBHI37U=;
+ b=SNvzyY/D28nrQ/9in1B6Dzi002SQEpeIWQ8e1hzmI9hVRDCDcHjzeJE8AlbYJKjj8B
+ G7NnpY7h0luEeygyoDxqLDk2AWGbQCdyloo3Y9XIxWLvxZdXjZ/NeK2kaD/mL0YWoior
+ T+0jhpZUK76WT2Sz7na41qAPiBNog2OUpnoIA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=10sVGN8u2TwfCpnAq/jp4iLrESxL2PzGGvVZbBHI37U=;
+ b=Tj8ZOlCgGB3Kt8TbKTOt2rh6wwBmljTMQ1KQ+6kmhO3PUSorEuQnfPRxAe8NRhHQZa
+ HZJqb1aErQJ9ok3GoH+pToC3fD/+aiQRjQWKADgye2vaPiZ8zPwM/sWpb/QsiusYgCAb
+ SjMmVSA/VSNc5THvJOoV+Ct8dwqjBK6p0TUtW2v7CwyRguXGRoS0MO2U+Y84UN6lk3+H
+ 3ZAY3qaMNIrk0CxKQ5+cOpbhr6vx6emvwI9sdV+1ZmrOBmdV7dROnq8ACe3OdEGWZ0vo
+ UtYXNeaPSHu0RK3Hth0LnBlABwbfrlLaP3ZuxtCJtA79zSoChI6T+hb9g7nRxcefvQIf
+ Ge9A==
+X-Gm-Message-State: AOAM532Uu9gH4tvJUR6KWCSbhB/HJ3tZFYXrbjjAf/p5Nc+lC+XDJO5y
+ NU3waf3ON38bIALOyRROaFDPBcH20dGoUg==
+X-Google-Smtp-Source: ABdhPJy9m/ABd1NrV+op2OlgtJpCFBVT6XpeKULPj8CHw7n62Jx//0cPPz00DHNpmQJ2MSj6W8O8rw==
+X-Received: by 2002:a17:906:c1d2:: with SMTP id
+ bw18mr43276023ejb.240.1600542800220; 
+ Sat, 19 Sep 2020 12:13:20 -0700 (PDT)
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com.
+ [209.85.218.54])
+ by smtp.gmail.com with ESMTPSA id ef3sm4999519ejb.114.2020.09.19.12.13.18
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 19 Sep 2020 12:13:18 -0700 (PDT)
+Received: by mail-ej1-f54.google.com with SMTP id o8so12434909ejb.10
+ for <intel-gfx@lists.freedesktop.org>; Sat, 19 Sep 2020 12:13:18 -0700 (PDT)
+X-Received: by 2002:a19:8907:: with SMTP id l7mr12464193lfd.105.1600542797553; 
+ Sat, 19 Sep 2020 12:13:17 -0700 (PDT)
+MIME-Version: 1.0
 References: <20200919091751.011116649@linutronix.de>
  <CAHk-=wiYGyrFRbA1cc71D2-nc5U9LM9jUJesXGqpPnB7E4X1YQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAHk-=wiYGyrFRbA1cc71D2-nc5U9LM9jUJesXGqpPnB7E4X1YQ@mail.gmail.com>
+ <20200919173906.GQ32101@casper.infradead.org>
+In-Reply-To: <20200919173906.GQ32101@casper.infradead.org>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Sat, 19 Sep 2020 12:13:01 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgyVxGaYkL71DhHgmyU=tE=4rEHgAkOYRq=1-9+q_adAw@mail.gmail.com>
+Message-ID: <CAHk-=wgyVxGaYkL71DhHgmyU=tE=4rEHgAkOYRq=1-9+q_adAw@mail.gmail.com>
+To: Matthew Wilcox <willy@infradead.org>
 Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
  variant of kmap_atomic & friends
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -81,53 +106,17 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Sep 19, 2020 at 10:18:54AM -0700, Linus Torvalds wrote:
-> On Sat, Sep 19, 2020 at 2:50 AM Thomas Gleixner <tglx@linutronix.de> wrote:
-> >
-> > this provides a preemptible variant of kmap_atomic & related
-> > interfaces. This is achieved by:
-> 
-> Ack. This looks really nice, even apart from the new capability.
-> 
-> The only thing I really reacted to is that the name doesn't make sense
-> to me: "kmap_temporary()" seems a bit odd.
-> 
-> Particularly for an interface that really is basically meant as a
-> better replacement of "kmap_atomic()" (but is perhaps also a better
-> replacement for "kmap()").
-> 
-> I think I understand how the name came about: I think the "temporary"
-> is there as a distinction from the "longterm" regular kmap(). So I
-> think it makes some sense from an internal implementation angle, but I
-> don't think it makes a lot of sense from an interface name.
-> 
-> I don't know what might be a better name, but if we want to emphasize
-> that it's thread-private and a one-off, maybe "local" would be a
-> better naming, and make it distinct from the "global" nature of the
-> old kmap() interface?
-> 
-> However, another solution might be to just use this new preemptible
-> "local" kmap(), and remove the old global one entirely. Yes, the old
-> global one caches the page table mapping and that sounds really
-> efficient and nice. But it's actually horribly horribly bad, because
-> it means that we need to use locking for them. Your new "temporary"
-> implementation seems to be fundamentally better locking-wise, and only
-> need preemption disabling as locking (and is equally fast for the
-> non-highmem case).
-> 
-> So I wonder if the single-page TLB flush isn't a better model, and
-> whether it wouldn't be a lot simpler to just get rid of the old
-> complex kmap() entirely, and replace it with this?
-> 
-> I agree we can't replace the kmap_atomic() version, because maybe
-> people depend on the preemption disabling it also implied. But what
-> about replacing the non-atomic kmap()?
+On Sat, Sep 19, 2020 at 10:39 AM Matthew Wilcox <willy@infradead.org> wrote:
+>
+> My concern with that is people might use kmap() and then pass the address
+> to a different task.  So we need to audit the current users of kmap()
+> and convert any that do that into using vmap() instead.
 
-My concern with that is people might use kmap() and then pass the address
-to a different task.  So we need to audit the current users of kmap()
-and convert any that do that into using vmap() instead.
+Ahh. Yes, I guess they might do that. It sounds strange, but not
+entirely crazy - I could imagine some "PIO thread" that does IO to a
+page that has been set up by somebody else using kmap(). Or similar.
 
-I like kmap_local().  Or kmap_thread().
+                Linus
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
