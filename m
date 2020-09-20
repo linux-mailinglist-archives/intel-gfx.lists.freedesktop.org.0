@@ -2,63 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FDBC271026
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Sep 2020 21:13:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 351F42712A6
+	for <lists+intel-gfx@lfdr.de>; Sun, 20 Sep 2020 08:23:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D42F96E04A;
-	Sat, 19 Sep 2020 19:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACA1F6E185;
+	Sun, 20 Sep 2020 06:23:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com
- [IPv6:2a00:1450:4864:20::641])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 192EA6E04A
- for <intel-gfx@lists.freedesktop.org>; Sat, 19 Sep 2020 19:13:22 +0000 (UTC)
-Received: by mail-ej1-x641.google.com with SMTP id gx22so3419807ejb.5
- for <intel-gfx@lists.freedesktop.org>; Sat, 19 Sep 2020 12:13:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=10sVGN8u2TwfCpnAq/jp4iLrESxL2PzGGvVZbBHI37U=;
- b=SNvzyY/D28nrQ/9in1B6Dzi002SQEpeIWQ8e1hzmI9hVRDCDcHjzeJE8AlbYJKjj8B
- G7NnpY7h0luEeygyoDxqLDk2AWGbQCdyloo3Y9XIxWLvxZdXjZ/NeK2kaD/mL0YWoior
- T+0jhpZUK76WT2Sz7na41qAPiBNog2OUpnoIA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=10sVGN8u2TwfCpnAq/jp4iLrESxL2PzGGvVZbBHI37U=;
- b=Tj8ZOlCgGB3Kt8TbKTOt2rh6wwBmljTMQ1KQ+6kmhO3PUSorEuQnfPRxAe8NRhHQZa
- HZJqb1aErQJ9ok3GoH+pToC3fD/+aiQRjQWKADgye2vaPiZ8zPwM/sWpb/QsiusYgCAb
- SjMmVSA/VSNc5THvJOoV+Ct8dwqjBK6p0TUtW2v7CwyRguXGRoS0MO2U+Y84UN6lk3+H
- 3ZAY3qaMNIrk0CxKQ5+cOpbhr6vx6emvwI9sdV+1ZmrOBmdV7dROnq8ACe3OdEGWZ0vo
- UtYXNeaPSHu0RK3Hth0LnBlABwbfrlLaP3ZuxtCJtA79zSoChI6T+hb9g7nRxcefvQIf
- Ge9A==
-X-Gm-Message-State: AOAM532Uu9gH4tvJUR6KWCSbhB/HJ3tZFYXrbjjAf/p5Nc+lC+XDJO5y
- NU3waf3ON38bIALOyRROaFDPBcH20dGoUg==
-X-Google-Smtp-Source: ABdhPJy9m/ABd1NrV+op2OlgtJpCFBVT6XpeKULPj8CHw7n62Jx//0cPPz00DHNpmQJ2MSj6W8O8rw==
-X-Received: by 2002:a17:906:c1d2:: with SMTP id
- bw18mr43276023ejb.240.1600542800220; 
- Sat, 19 Sep 2020 12:13:20 -0700 (PDT)
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com.
- [209.85.218.54])
- by smtp.gmail.com with ESMTPSA id ef3sm4999519ejb.114.2020.09.19.12.13.18
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 19 Sep 2020 12:13:18 -0700 (PDT)
-Received: by mail-ej1-f54.google.com with SMTP id o8so12434909ejb.10
- for <intel-gfx@lists.freedesktop.org>; Sat, 19 Sep 2020 12:13:18 -0700 (PDT)
-X-Received: by 2002:a19:8907:: with SMTP id l7mr12464193lfd.105.1600542797553; 
- Sat, 19 Sep 2020 12:13:17 -0700 (PDT)
-MIME-Version: 1.0
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32EF16E185;
+ Sun, 20 Sep 2020 06:23:30 +0000 (UTC)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1600583007;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=7fzEIVZ8tkjS2ndcSNVbu7zYvMlAYQ/NWyoKHxP3faw=;
+ b=ZdXKJXZGwHl2KR4hH2q5cUf4dfgyefKiq5FJK4CdaiUzjuDw/zsfzyDwUT0Vb3vxnFMmA2
+ GbGWdXGNam/BxDVayB/9W9lKW9cEGTy4k40j+g76SxOFKgyaP4kz+dJNXxDya0A6vacAHQ
+ etbQkUBwH/pk7aVUdpmHO5hYMDrDQDP5KgAuzWF1TeBFDWPD7hNOa95TYtIkpNlkk7xqPo
+ YZDmeBiMP6cP8bfVBIDyjT3CMK5xsUBeFdgoJYUZ63lHnZ5f4NanBw5QbC7HkoYRGwgBsy
+ Bsz/o+mfvaeq05vAqvejTR9EViDozt0cf4n5wRrzHjQfCFUXuG/KuqeDB61mqg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1600583007;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=7fzEIVZ8tkjS2ndcSNVbu7zYvMlAYQ/NWyoKHxP3faw=;
+ b=yd7i2KhtoQQ4HuYBfV4K2iDNHIVcqLD+eOCjOAMiHylcYwCzvC7AWTYk8VGrY+iNFLAu2j
+ 3+A+8QdYt6q7wFBw==
+To: Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <CAKMK7uENFDANQKebS_H0bhHeQRijrp1aVHQqyZPute3KBZ+fVQ@mail.gmail.com>
 References: <20200919091751.011116649@linutronix.de>
- <CAHk-=wiYGyrFRbA1cc71D2-nc5U9LM9jUJesXGqpPnB7E4X1YQ@mail.gmail.com>
- <20200919173906.GQ32101@casper.infradead.org>
-In-Reply-To: <20200919173906.GQ32101@casper.infradead.org>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Sat, 19 Sep 2020 12:13:01 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wgyVxGaYkL71DhHgmyU=tE=4rEHgAkOYRq=1-9+q_adAw@mail.gmail.com>
-Message-ID: <CAHk-=wgyVxGaYkL71DhHgmyU=tE=4rEHgAkOYRq=1-9+q_adAw@mail.gmail.com>
-To: Matthew Wilcox <willy@infradead.org>
+ <CAKMK7uHTVJL2jGtCg61zG=myiF1BSk+yDdRYikcm-Mq_1TQWMQ@mail.gmail.com>
+ <CAKMK7uENFDANQKebS_H0bhHeQRijrp1aVHQqyZPute3KBZ+fVQ@mail.gmail.com>
+Date: Sun, 20 Sep 2020 08:23:26 +0200
+Message-ID: <87pn6hc6g1.fsf@nanos.tec.linutronix.de>
+MIME-Version: 1.0
 Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
  variant of kmap_atomic & friends
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -78,19 +60,20 @@ Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
  dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
  Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
- Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
+ Guo Ren <guoren@kernel.org>, sparclinux@vger.kernel.org,
  Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
- Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>,
+ "open list:GENERIC INCLUDE/A..." <linux-arch@vger.kernel.org>,
  Herbert Xu <herbert@gondor.apana.org.au>,
- Michael Ellerman <mpe@ellerman.id.au>,
- the arch/x86 maintainers <x86@kernel.org>,
+ Michael Ellerman <mpe@ellerman.id.au>, X86 ML <x86@kernel.org>,
  Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
  David Airlie <airlied@linux.ie>, Mel Gorman <mgorman@suse.de>,
- "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
- linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
+ arcml <linux-snps-arc@lists.infradead.org>, linux-xtensa@linux-xtensa.org,
+ Paul McKenney <paulmck@kernel.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
  linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Steven Rostedt <rostedt@goodmis.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Linus Torvalds <torvalds@linuxfoundation.org>,
  Dietmar Eggemann <dietmar.eggemann@arm.com>,
  Linux ARM <linux-arm-kernel@lists.infradead.org>,
  Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
@@ -99,24 +82,38 @@ Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
  Vineet Gupta <vgupta@synopsys.com>, LKML <linux-kernel@vger.kernel.org>,
  Arnd Bergmann <arnd@arndb.de>, Paul Mackerras <paulus@samba.org>,
  Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>,
- "David S. Miller" <davem@davemloft.net>, Greentime Hu <green.hu@gmail.com>
+ Daniel Bristot de Oliveira <bristot@redhat.com>, "David
+ S. Miller" <davem@davemloft.net>, Greentime Hu <green.hu@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Sep 19, 2020 at 10:39 AM Matthew Wilcox <willy@infradead.org> wrote:
+On Sat, Sep 19 2020 at 12:37, Daniel Vetter wrote:
+> On Sat, Sep 19, 2020 at 12:35 PM Daniel Vetter <daniel@ffwll.ch> wrote:
+>> I think it should be the case, but I want to double check: Will
+>> copy_*_user be allowed within a kmap_temporary section? This would
+>> allow us to ditch an absolute pile of slowpaths.
 >
-> My concern with that is people might use kmap() and then pass the address
-> to a different task.  So we need to audit the current users of kmap()
-> and convert any that do that into using vmap() instead.
+> (coffee just kicked in) copy_*_user is ofc allowed, but if you hit a
+> page fault you get a short read/write. This looks like it would remove
+> the need to handle these in a slowpath, since page faults can now be
+> served in this new kmap_temporary sections. But this sounds too good
+> to be true, so I'm wondering what I'm missing.
 
-Ahh. Yes, I guess they might do that. It sounds strange, but not
-entirely crazy - I could imagine some "PIO thread" that does IO to a
-page that has been set up by somebody else using kmap(). Or similar.
+In principle we could allow pagefaults, but not with the currently
+proposed interface which can be called from any context. Obviously if
+called from atomic context it can't handle user page faults.
 
-                Linus
+In theory we could make a variant which does not disable pagefaults, but
+that's what kmap() already provides.
+
+Thanks,
+
+        tglx
+
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
