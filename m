@@ -1,53 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D355271668
-	for <lists+intel-gfx@lfdr.de>; Sun, 20 Sep 2020 19:43:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14C4271698
+	for <lists+intel-gfx@lfdr.de>; Sun, 20 Sep 2020 20:06:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37757899C4;
-	Sun, 20 Sep 2020 17:43:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F0608997C;
+	Sun, 20 Sep 2020 18:06:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com
- [IPv6:2a00:1450:4864:20::241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52A3F899C4
- for <intel-gfx@lists.freedesktop.org>; Sun, 20 Sep 2020 17:43:17 +0000 (UTC)
-Received: by mail-lj1-x241.google.com with SMTP id u21so9182163ljl.6
- for <intel-gfx@lists.freedesktop.org>; Sun, 20 Sep 2020 10:43:17 -0700 (PDT)
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
+ [IPv6:2a00:1450:4864:20::543])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB50F6E0D3
+ for <intel-gfx@lists.freedesktop.org>; Sun, 20 Sep 2020 18:06:33 +0000 (UTC)
+Received: by mail-ed1-x543.google.com with SMTP id b12so10637008edz.11
+ for <intel-gfx@lists.freedesktop.org>; Sun, 20 Sep 2020 11:06:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux-foundation.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ejz/GOVvBNgiciatH4EjBRwlfy2MnL1tDSObr2BrKeg=;
- b=cBDZkiv4uiqeUChUbmqRPD8tkvllq4angLGjbI6fcWbyt0pYNQ1SGMQdEdmcewXaXT
- IE5S9J/GFuNXr/rpY1dC/0Yf7uyzIPTs0u+8f3gLaQ3BI+ak5trluGhkQvuTa+ZLZ3HS
- UcueGtftJ4Q3p1fqvR6MgwdAfAMUTTFhAr56U=
+ :cc; bh=10vFh59zX+qrXR+btNd9keaZllR85H50W0pZVqW9mvg=;
+ b=aTcZkpnkgiAVVoqRXBCAnYw8B8YS7QD0nmh7mtbe8Dtb85AdAYIiPcbXVjdrb/fbX9
+ 3yTs920flMKnlnbAGz7q1CYoJs0994Dvfor1DakKOqSDUOemiqgeakXoqfK/+swxI5fB
+ 0DUfGVYXrHTR7XO61iz2Eybc+W0Ekg5v+dkh0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=ejz/GOVvBNgiciatH4EjBRwlfy2MnL1tDSObr2BrKeg=;
- b=DhovtSG8Gck7lfcAS41TROsq+EKVON3njN8x6bJVztXhuGFOCb2CzDYSQOTZqBvgNv
- EoBd0wxeSR08iW+aC7QIG/pZMxW1F2CO5MmgVdDsK8DuTe6yaeO8yzAhzuW83yXSzIDE
- HMN4OjVJk/L9uwHi2zW7XdJRr6FLhm9ToxypOhWHvf0OPGTAP+yKvEWxUMsbTm4Wj3Fu
- DBN7bqNbZFkTEbxP7AMJjfzYbytFEoWl3b0eoz7iXvDRP78G9h4FNgczo+jeoN+7yHHY
- fWiMOp05wsr1Do4+EmNhcxvzy9fJSjPwFH1OHPeDS5ajyxjTaCj/oV0MyCbfHDC3KQNI
- 7IRA==
-X-Gm-Message-State: AOAM531Mu6ByFBwt67k9sy+wsGm1rWGrDbLfDaAG/AqTkmqr2VZMFjNv
- unukpqLWkDPD0dg/r2N+fFWeXzUaSv265g==
-X-Google-Smtp-Source: ABdhPJxt8NkJCqaFoxdTGRcIXREk+jUTVitF7iTL5LrfN1vcVA/FNQ1IP8zb2sU62IxHNjFF0hVm0w==
-X-Received: by 2002:a2e:9b15:: with SMTP id u21mr11320934lji.283.1600623795504; 
- Sun, 20 Sep 2020 10:43:15 -0700 (PDT)
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com.
- [209.85.167.42])
- by smtp.gmail.com with ESMTPSA id f12sm1935316lfp.69.2020.09.20.10.43.12
+ bh=10vFh59zX+qrXR+btNd9keaZllR85H50W0pZVqW9mvg=;
+ b=c/+gjsUO4wms5uXFEaGDswm9uqoPNRC26P80rVV6sncJlE5kPpbBnqGeiJcMHDD9ib
+ g673RPPTBqTzHSnQIMH6BaR2j+IdjNFs3+5gm463wjSWQ+0BvcnmknyPfa7IF7T5CHxn
+ /0YPqrdKk0R84/Q2bWo2wkL8VlsNehIm8vmCaycqEnR21uZgg6YVXMPoz4d25gFDUVxO
+ xZ+fCzqWwKYAcFmU324Tcx5EyDxaIE0RD0h1ZEWEEQLc6ak7e32NDg3ybJUpIa45fZNu
+ HzEpu+PU3Ycq0LX4Ekc3iJuDLdT8qYN1Hy9IR+9rvAzG2ehmpzy787UoUGofz9t2K1bc
+ wRcg==
+X-Gm-Message-State: AOAM531drxxbp+qaAJWwDOUbCF/jb2NnMxyviDW4V1+SAu+voTPvmKqv
+ /xjhHmI44sRlRORnaCNLSaFWWnSOTBZ7Ig==
+X-Google-Smtp-Source: ABdhPJxSbkimm87ZJRMGOyYBLkQN+QuJeXruOzFl15iiOV1Y9SrNYO4M1uBZD39bDOr4uS+qBp8mCA==
+X-Received: by 2002:a05:6402:346:: with SMTP id
+ r6mr49943095edw.301.1600625192185; 
+ Sun, 20 Sep 2020 11:06:32 -0700 (PDT)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com.
+ [209.85.221.44])
+ by smtp.gmail.com with ESMTPSA id l7sm7011185edn.32.2020.09.20.11.06.31
  for <intel-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 20 Sep 2020 10:43:15 -0700 (PDT)
-Received: by mail-lf1-f42.google.com with SMTP id y11so11526779lfl.5
- for <intel-gfx@lists.freedesktop.org>; Sun, 20 Sep 2020 10:43:12 -0700 (PDT)
-X-Received: by 2002:a2e:84d6:: with SMTP id q22mr13708479ljh.70.1600623791519; 
- Sun, 20 Sep 2020 10:43:11 -0700 (PDT)
+ Sun, 20 Sep 2020 11:06:31 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id j2so10451563wrx.7
+ for <intel-gfx@lists.freedesktop.org>; Sun, 20 Sep 2020 11:06:31 -0700 (PDT)
+X-Received: by 2002:ac2:4ec7:: with SMTP id p7mr12591149lfr.352.1600624746105; 
+ Sun, 20 Sep 2020 10:59:06 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200919091751.011116649@linutronix.de>
  <CAHk-=wiYGyrFRbA1cc71D2-nc5U9LM9jUJesXGqpPnB7E4X1YQ@mail.gmail.com>
@@ -55,11 +56,12 @@ References: <20200919091751.011116649@linutronix.de>
  <87k0wode9a.fsf@nanos.tec.linutronix.de>
  <CAHk-=wgbmwsTOKs23Z=71EBTrULoeaH2U3TNqT2atHEWvkBKdw@mail.gmail.com>
  <87eemwcpnq.fsf@nanos.tec.linutronix.de>
-In-Reply-To: <87eemwcpnq.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
+In-Reply-To: <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
 From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Sun, 20 Sep 2020 10:42:55 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
-Message-ID: <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
+Date: Sun, 20 Sep 2020 10:58:50 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wh_iVgA3H7CVvAzDoYC1gC1AKbLmv_mCeUnVxg79_9y8A@mail.gmail.com>
+Message-ID: <CAHk-=wh_iVgA3H7CVvAzDoYC1gC1AKbLmv_mCeUnVxg79_9y8A@mail.gmail.com>
 To: Thomas Gleixner <tglx@linutronix.de>
 Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
  variant of kmap_atomic & friends
@@ -108,22 +110,23 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Sep 20, 2020 at 10:40 AM Thomas Gleixner <tglx@linutronix.de> wrote:
+On Sun, Sep 20, 2020 at 10:42 AM Linus Torvalds
+<torvalds@linux-foundation.org> wrote:
 >
-> I think the more obvious solution is to split the whole exercise:
->
->   schedule()
->      prepare_switch()
->         unmap()
->
->     switch_to()
->
->     finish_switch()
->         map()
+> Yeah, that looks much easier to explain. Ack.
 
-Yeah, that looks much easier to explain. Ack.
+Btw, one thing that might be a good idea at least initially is to add
+a check for p->kmap_ctrl.idx being zero at fork, exit and maybe
+syscall return time (but that last one may be too cumbersome to really
+worry about).
 
-               Linus
+The kmap_atomic() interface basically has a lot of coverage for leaked
+as part of all the "might_sleep()" checks sprinkled around,  The new
+kmap_temporary/local/whatever wouldn't have that kind of incidental
+debug checking, and any leaked kmap indexes would be rather hard to
+debug (much) later when they cause index overflows or whatever.
+
+                Linus
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
