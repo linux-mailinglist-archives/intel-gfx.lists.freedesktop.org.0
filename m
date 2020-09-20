@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351F42712A6
-	for <lists+intel-gfx@lfdr.de>; Sun, 20 Sep 2020 08:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8795B2712B1
+	for <lists+intel-gfx@lfdr.de>; Sun, 20 Sep 2020 08:36:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACA1F6E185;
-	Sun, 20 Sep 2020 06:23:31 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32EF16E185;
- Sun, 20 Sep 2020 06:23:30 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1600583007;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=7fzEIVZ8tkjS2ndcSNVbu7zYvMlAYQ/NWyoKHxP3faw=;
- b=ZdXKJXZGwHl2KR4hH2q5cUf4dfgyefKiq5FJK4CdaiUzjuDw/zsfzyDwUT0Vb3vxnFMmA2
- GbGWdXGNam/BxDVayB/9W9lKW9cEGTy4k40j+g76SxOFKgyaP4kz+dJNXxDya0A6vacAHQ
- etbQkUBwH/pk7aVUdpmHO5hYMDrDQDP5KgAuzWF1TeBFDWPD7hNOa95TYtIkpNlkk7xqPo
- YZDmeBiMP6cP8bfVBIDyjT3CMK5xsUBeFdgoJYUZ63lHnZ5f4NanBw5QbC7HkoYRGwgBsy
- Bsz/o+mfvaeq05vAqvejTR9EViDozt0cf4n5wRrzHjQfCFUXuG/KuqeDB61mqg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1600583007;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=7fzEIVZ8tkjS2ndcSNVbu7zYvMlAYQ/NWyoKHxP3faw=;
- b=yd7i2KhtoQQ4HuYBfV4K2iDNHIVcqLD+eOCjOAMiHylcYwCzvC7AWTYk8VGrY+iNFLAu2j
- 3+A+8QdYt6q7wFBw==
-To: Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <CAKMK7uENFDANQKebS_H0bhHeQRijrp1aVHQqyZPute3KBZ+fVQ@mail.gmail.com>
-References: <20200919091751.011116649@linutronix.de>
- <CAKMK7uHTVJL2jGtCg61zG=myiF1BSk+yDdRYikcm-Mq_1TQWMQ@mail.gmail.com>
- <CAKMK7uENFDANQKebS_H0bhHeQRijrp1aVHQqyZPute3KBZ+fVQ@mail.gmail.com>
-Date: Sun, 20 Sep 2020 08:23:26 +0200
-Message-ID: <87pn6hc6g1.fsf@nanos.tec.linutronix.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A73176E188;
+	Sun, 20 Sep 2020 06:36:56 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E69C6E188
+ for <Intel-gfx@lists.freedesktop.org>; Sun, 20 Sep 2020 06:36:53 +0000 (UTC)
+IronPort-SDR: 4r/lgDXGfoZf5BxP9obsImJXDB/aD/luq9fhWQ5cMEme926fG2FxIUwtVy7upcTqzeEjZXT9UB
+ 5JDivt36HumA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9749"; a="178286129"
+X-IronPort-AV: E=Sophos;i="5.77,281,1596524400"; d="scan'208";a="178286129"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2020 23:36:53 -0700
+IronPort-SDR: jabbN3qQsO/QbcFPJwnrAIPouqbK8zIgTL8nP5gVkx2hTZ+WRQO216CTjg+hH0Rcn4dLkQQA4T
+ ixr2XHqNPtSQ==
+X-IronPort-AV: E=Sophos;i="5.77,281,1596524400"; d="scan'208";a="308504530"
+Received: from blu2-mobl3.ccr.corp.intel.com (HELO [10.254.213.187])
+ ([10.254.213.187])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2020 23:36:50 -0700
+To: Logan Gunthorpe <logang@deltatee.com>, Joerg Roedel <joro@8bytes.org>,
+ Tom Murphy <murphyt7@tcd.ie>, David Woodhouse <dwmw2@infradead.org>,
+ Christoph Hellwig <hch@infradead.org>
+References: <20200912032200.11489-1-baolu.lu@linux.intel.com>
+ <776771a2-247a-d1be-d882-bee02d919ae0@deltatee.com>
+From: Lu Baolu <baolu.lu@linux.intel.com>
+Message-ID: <fe94760f-3c10-4222-ec87-291c01325fef@linux.intel.com>
+Date: Sun, 20 Sep 2020 14:36:46 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
- variant of kmap_atomic & friends
+In-Reply-To: <776771a2-247a-d1be-d882-bee02d919ae0@deltatee.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3 0/6] Convert the intel iommu driver to
+ the dma-iommu api
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,65 +55,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
- Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
- Guo Ren <guoren@kernel.org>, sparclinux@vger.kernel.org,
- Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
- Ard Biesheuvel <ardb@kernel.org>,
- "open list:GENERIC INCLUDE/A..." <linux-arch@vger.kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Michael Ellerman <mpe@ellerman.id.au>, X86 ML <x86@kernel.org>,
- Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Mel Gorman <mgorman@suse.de>,
- arcml <linux-snps-arc@lists.infradead.org>, linux-xtensa@linux-xtensa.org,
- Paul McKenney <paulmck@kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Steven Rostedt <rostedt@goodmis.org>,
- Linus Torvalds <torvalds@linuxfoundation.org>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
- Vineet Gupta <vgupta@synopsys.com>, LKML <linux-kernel@vger.kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, Paul Mackerras <paulus@samba.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>, "David
- S. Miller" <davem@davemloft.net>, Greentime Hu <green.hu@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: linux-kernel@vger.kernel.org, Intel-gfx@lists.freedesktop.org,
+ Ashok Raj <ashok.raj@intel.com>, iommu@lists.linux-foundation.org,
+ baolu.lu@linux.intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Sep 19 2020 at 12:37, Daniel Vetter wrote:
-> On Sat, Sep 19, 2020 at 12:35 PM Daniel Vetter <daniel@ffwll.ch> wrote:
->> I think it should be the case, but I want to double check: Will
->> copy_*_user be allowed within a kmap_temporary section? This would
->> allow us to ditch an absolute pile of slowpaths.
->
-> (coffee just kicked in) copy_*_user is ofc allowed, but if you hit a
-> page fault you get a short read/write. This looks like it would remove
-> the need to handle these in a slowpath, since page faults can now be
-> served in this new kmap_temporary sections. But this sounds too good
-> to be true, so I'm wondering what I'm missing.
+Hi Logan,
 
-In principle we could allow pagefaults, but not with the currently
-proposed interface which can be called from any context. Obviously if
-called from atomic context it can't handle user page faults.
+On 2020/9/19 4:47, Logan Gunthorpe wrote:
+> Hi Lu,
+> 
+> On 2020-09-11 9:21 p.m., Lu Baolu wrote:
+>> Tom Murphy has almost done all the work. His latest patch series was
+>> posted here.
+>>
+>> https://lore.kernel.org/linux-iommu/20200903201839.7327-1-murphyt7@tcd.ie/
+>>
+>> Thanks a lot!
+>>
+>> This series is a follow-up with below changes:
+>>
+>> 1. Add a quirk for the i915 driver issue described in Tom's cover
+>> letter.
+>> 2. Fix several bugs in patch "iommu: Allow the dma-iommu api to use
+>> bounce buffers" to make the bounce buffer work for untrusted devices.
+>> 3. Several cleanups in iommu/vt-d driver after the conversion.
+>>
+> 
+> I'm trying to test this on an old Sandy Bridge, but found that I get
+> spammed with warnings on boot. I've put a sample of a few of them below.
+> They all seem to be related to ioat.
+> 
+> I had the same issue with Tom's v2 but never saw this on his v1.
 
-In theory we could make a variant which does not disable pagefaults, but
-that's what kmap() already provides.
+Have you verified whether this could be reproduced with the lasted
+upstream kernel (without this patch series)?
 
-Thanks,
-
-        tglx
-
-
-
+Best regards,
+baolu
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
