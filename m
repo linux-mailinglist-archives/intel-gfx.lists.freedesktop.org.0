@@ -2,30 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8CA2731DC
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 20:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98C8F27320A
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 20:37:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48CA96E524;
-	Mon, 21 Sep 2020 18:24:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DBF06E520;
+	Mon, 21 Sep 2020 18:37:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 045AE6E063;
- Mon, 21 Sep 2020 18:24:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E2F17A8830;
- Mon, 21 Sep 2020 18:24:54 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D4D26E51B;
+ Mon, 21 Sep 2020 18:36:58 +0000 (UTC)
+IronPort-SDR: bP5QqbiV9m+rMyjaiB0op6xK1CQ22kOB0fChymd2Vp2I9B5MoX/N0i5bODgPOlxTEwNPC1SOxi
+ HMPBfCaDBsPg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="178517692"
+X-IronPort-AV: E=Sophos;i="5.77,287,1596524400"; d="scan'208";a="178517692"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2020 11:36:57 -0700
+IronPort-SDR: PZPhsDQwnvhVcFDhIj6wilJWtSKNVSKzzNYy8jsIkjvgIcO5hk0n55ikIai0tXzfEvxA5KYsmx
+ rIBHyWF7FmJA==
+X-IronPort-AV: E=Sophos;i="5.77,287,1596524400"; d="scan'208";a="485606928"
+Received: from pamcglyn-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.84.51])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2020 11:36:55 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <3df7f6ec13348537bec5e0736563616e9ed05c28.camel@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200901123226.4177-1-jani.nikula@intel.com>
+ <c4b9aa428ccfa90cb29845f622eba8923eeb2e38.camel@redhat.com>
+ <87d0354bqi.fsf@intel.com>
+ <3df7f6ec13348537bec5e0736563616e9ed05c28.camel@redhat.com>
+Date: Mon, 21 Sep 2020 21:37:06 +0300
+Message-ID: <87v9g7q8ml.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Date: Mon, 21 Sep 2020 18:24:54 -0000
-Message-ID: <160071269490.8246.14085811452718232713@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200921175428.2914478-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20200921175428.2914478-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/guc=3A_Update_to_GuC_v49?=
+Subject: Re: [Intel-gfx] [PATCH] drm/dp: start using more of the extended
+ receiver caps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,33 +54,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 21 Sep 2020, Lyude Paul <lyude@redhat.com> wrote:
+> On Tue, 2020-09-01 at 21:01 +0300, Jani Nikula wrote:
+>> I guess we can try without the change, and fix later if we hit issues.
+>
+> I'm fine with the change if it doesn't break things btw - just as long as
+> we're making sure that we don't zero things out by accident
 
-Series: drm/i915/guc: Update to GuC v49
-URL   : https://patchwork.freedesktop.org/series/81906/
-State : warning
+My conclusion was to go without, it's a trivial change to add
+afterwards as needed.
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-a2bf36c707f0 drm/i915/guc: Update to use firmware v49.0.1
--:231: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#231: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:167:
-+		blob->system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_DOORBELL_COUNT_PER_SQIDI] =
-
-total: 0 errors, 1 warnings, 0 checks, 447 lines checked
-087e6d613cd2 drm/i915/guc: Improved reporting when GuC fails to load
-d89334936a2a drm/i915/guc: Clear pointers on free
-ea46ad89cb74 drm/i915/uc: turn on GuC/HuC auto mode by default
+BR,
+Jani.
 
 
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
