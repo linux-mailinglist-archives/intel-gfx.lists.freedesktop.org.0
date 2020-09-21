@@ -1,44 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E5F8273138
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 19:54:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B594273139
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 19:54:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C7426E516;
-	Mon, 21 Sep 2020 17:54:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78C5C6E511;
+	Mon, 21 Sep 2020 17:54:31 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E3C26E511
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 635DE6E512
  for <Intel-GFX@lists.freedesktop.org>; Mon, 21 Sep 2020 17:54:29 +0000 (UTC)
-IronPort-SDR: g65uTHsEb91ahVToZdlU39I8waUeYP2fchrVMS3N8hPL7I9g1rbrszbLItBE1qAA+0aFYSbXWr
- He4JezBdleMw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="224596830"
-X-IronPort-AV: E=Sophos;i="5.77,287,1596524400"; d="scan'208";a="224596830"
+IronPort-SDR: +sfsSO/1Z/6C1eo6GPRRP8CJVsAcBHKcEb+2sIyLMEcxkR7uRsHMWU0otrvGuv/yimj88wAECr
+ 0isTVdQkveYg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="224596832"
+X-IronPort-AV: E=Sophos;i="5.77,287,1596524400"; d="scan'208";a="224596832"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Sep 2020 10:54:28 -0700
-IronPort-SDR: EVeRlMQ0biX8lqnwQFM+2krJhyG1BWCObqWSLqyDoetJlDVG5bQnJnlLn/r8djtlTn+306+0Bp
- PjZrIH8zcAbg==
+IronPort-SDR: n3i1OxOdEhg168qxtIl8254L7I05sJp6PN5ed0UbMsEfN5szfW5wrZqV3TfBiFUcfeU+WhoOSH
+ DoOCkY5voVnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,287,1596524400"; d="scan'208";a="321863512"
+X-IronPort-AV: E=Sophos;i="5.77,287,1596524400"; d="scan'208";a="321863514"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
  by orsmga002.jf.intel.com with ESMTP; 21 Sep 2020 10:54:28 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Mon, 21 Sep 2020 10:54:26 -0700
-Message-Id: <20200921175428.2914478-3-John.C.Harrison@Intel.com>
+Date: Mon, 21 Sep 2020 10:54:27 -0700
+Message-Id: <20200921175428.2914478-4-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200921175428.2914478-1-John.C.Harrison@Intel.com>
 References: <20200921175428.2914478-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915/guc: Improved reporting when GuC
- fails to load
+Subject: [Intel-gfx] [PATCH 3/4] drm/i915/guc: Clear pointers on free
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,74 +57,40 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Rather than just saying 'GuC failed to load: -110', actually print out
-the GuC status register and break it down into the individual fields.
+Was hitting null pointers and similar issues when running various
+module load/unload and inject failure type tests. So clear those
+pointers down when the objects have been de-allocated.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c | 27 ++++++++++++++++++-----
- 1 file changed, 22 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c  | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-index d4a87f4c9421..eac84baf34e6 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-@@ -74,8 +74,9 @@ static inline bool guc_ready(struct intel_uncore *uncore, u32 *status)
- 		((val & GS_MIA_CORE_STATE) && (uk_val == GS_UKERNEL_LAPIC_DONE));
- }
- 
--static int guc_wait_ucode(struct intel_uncore *uncore)
-+static int guc_wait_ucode(struct intel_gt *gt)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+index 7950d28beb8c..5212ff844292 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+@@ -220,6 +220,7 @@ int intel_guc_ads_create(struct intel_guc *guc)
+ void intel_guc_ads_destroy(struct intel_guc *guc)
  {
-+	struct intel_uncore *uncore = gt->uncore;
- 	u32 status;
- 	int ret;
- 
-@@ -91,16 +92,32 @@ static int guc_wait_ucode(struct intel_uncore *uncore)
- 	DRM_DEBUG_DRIVER("GuC status %#x\n", status);
- 
- 	if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED) {
--		DRM_ERROR("GuC firmware signature verification failed\n");
-+		drm_err(&gt->i915->drm, "GuC firmware signature verification failed\n");
- 		ret = -ENOEXEC;
-+		goto out;
- 	}
- 
- 	if ((status & GS_UKERNEL_MASK) == GS_UKERNEL_EXCEPTION) {
--		DRM_ERROR("GuC firmware exception. EIP: %#x\n",
--			  intel_uncore_read(uncore, SOFT_SCRATCH(13)));
-+		drm_err(&gt->i915->drm, "GuC firmware exception. EIP: %#x\n",
-+			intel_uncore_read(uncore, SOFT_SCRATCH(13)));
- 		ret = -ENXIO;
-+		goto out;
- 	}
- 
-+	if (ret) {
-+		drm_err(&gt->i915->drm, "GuC load failed: status: Reset = %d, "
-+			"BootROM = 0x%02X, UKernel = 0x%02X, "
-+			"MIA = 0x%02X, Auth = 0x%02X\n",
-+			(status >> GS_RESET_SHIFT) & 1,
-+			(status & GS_BOOTROM_MASK) >> GS_BOOTROM_SHIFT,
-+			(status & GS_UKERNEL_MASK) >> GS_UKERNEL_SHIFT,
-+			(status & GS_MIA_MASK) >> GS_MIA_SHIFT,
-+			(status & GS_AUTH_STATUS_MASK) >> GS_AUTH_STATUS_SHIFT);
-+	}
-+
-+out:
-+	if (ret)
-+		drm_err(&gt->i915->drm, "GuC load failed: status = 0x%08X\n", status);
- 	return ret;
+ 	i915_vma_unpin_and_release(&guc->ads_vma, I915_VMA_RELEASE_MAP);
++	guc->ads_blob = NULL;
  }
  
-@@ -139,7 +156,7 @@ int intel_guc_fw_upload(struct intel_guc *guc)
- 	if (ret)
- 		goto out;
+ static void guc_ads_private_data_reset(struct intel_guc *guc)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+index 11742fca0e9e..fa9e048cc65f 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+@@ -210,6 +210,7 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
+ 	GEM_BUG_ON(ct->enabled);
  
--	ret = guc_wait_ucode(uncore);
-+	ret = guc_wait_ucode(gt);
- 	if (ret)
- 		goto out;
+ 	i915_vma_unpin_and_release(&ct->vma, I915_VMA_RELEASE_MAP);
++	memset(ct, 0, sizeof(*ct));
+ }
  
+ /**
 -- 
 2.25.1
 
