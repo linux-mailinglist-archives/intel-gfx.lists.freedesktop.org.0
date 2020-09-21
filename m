@@ -2,39 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544E2273289
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 21:12:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B15FF2732B4
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 21:22:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9308F8919D;
-	Mon, 21 Sep 2020 19:12:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5EC089E36;
+	Mon, 21 Sep 2020 19:22:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE3B98919D;
- Mon, 21 Sep 2020 19:12:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=8o7GVAomh929Hvy+xaXufBwE8CQqTnicVvJhMbCZ9+k=; b=mehcTMqJtwQu3rPUjsEisC7ECq
- 7+58K3Z4EekBFXZ3wYEUeQuCa/fWdcNhiPeHAeErok/v8ZUYK3e3gg5/B4dsAsGOOcHKMJll0ZrgT
- uIxyCNSUGOAg2UN4gsizGdkbduG7XDlLurQP7j3hPoeoUDi05V5iO3YFhaKjX5x3pQ8mdKFxJmqgA
- L9SsTOYSux1ZLBO0Whate1mY/A8G4ym2vhOpFFpaMiIWVUAzrHfwOrb8cuL3VnUqrmtLSbCIIumHR
- mHpwBBr1xVe0+QICrLKcrhz2TwTDJC2BnukZFO6wyPDyqecyMJcK7af7LQwFO3njp1VzvRCXlr6uE
- ADgc0Q1w==;
-Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kKRED-0003Cg-2P; Mon, 21 Sep 2020 19:11:57 +0000
-Date: Mon, 21 Sep 2020 20:11:57 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: Christoph Hellwig <hch@lst.de>
-Message-ID: <20200921191157.GX32101@casper.infradead.org>
-References: <20200918163724.2511-1-hch@lst.de>
- <20200918163724.2511-4-hch@lst.de>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4409889E36
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Sep 2020 19:22:29 +0000 (UTC)
+IronPort-SDR: nqwVdyxS+ZSRnGcFGbUIwKxTSiFYA5W8f0U65IYR3k4klI72QsOjQkiDcrg7GxInIRPlpeymRW
+ lxXlGBEvauZg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="222058346"
+X-IronPort-AV: E=Sophos;i="5.77,287,1596524400"; d="scan'208";a="222058346"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2020 12:22:28 -0700
+IronPort-SDR: dRHk44vIjbvAMT1SilUbvCQOgZBIZShvoZ2EboPn21X8jiuWFN8RnUpp5z6bugAAAvT2NvyGq3
+ GFD0WUKUmXOA==
+X-IronPort-AV: E=Sophos;i="5.77,287,1596524400"; d="scan'208";a="510844714"
+Received: from johnharr-mobl1.amr.corp.intel.com (HELO [10.212.118.250])
+ ([10.212.118.250])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2020 12:22:27 -0700
+To: Petri Latvala <petri.latvala@intel.com>
+References: <20200916171653.2021483-1-John.C.Harrison@Intel.com>
+ <160028134210.19374.12969903715505955797@emeril.freedesktop.org>
+ <b2366829-8040-075e-59f8-9a92e749ed99@Intel.com>
+ <20200917064814.GB7444@platvala-desk.ger.corp.intel.com>
+From: John Harrison <John.C.Harrison@Intel.com>
+Message-ID: <16a5587c-bf6f-7870-e38c-865aec642024@Intel.com>
+Date: Mon, 21 Sep 2020 12:22:26 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200918163724.2511-4-hch@lst.de>
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: use vmap in shmem_pin_map
+In-Reply-To: <20200917064814.GB7444@platvala-desk.ger.corp.intel.com>
+Content-Language: en-GB
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/guc=3A_Update_to_GuC_v49?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,86 +56,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>, linux-mm@kvack.org,
- Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- x86@kernel.org, linux-kernel@vger.kernel.org, Minchan Kim <minchan@kernel.org>,
- dri-devel@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Andrew Morton <akpm@linux-foundation.org>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>
-Content-Type: text/plain; charset="us-ascii"
+Cc: "Sarvela, Tomi P" <tomi.p.sarvela@intel.com>,
+ intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 18, 2020 at 06:37:21PM +0200, Christoph Hellwig wrote:
->  void shmem_unpin_map(struct file *file, void *ptr)
->  {
-> +	long i = shmem_npages(file);
-> +
->  	mapping_clear_unevictable(file->f_mapping);
-> -	__shmem_unpin_map(file, ptr, shmem_npte(file));
-> +	vunmap(ptr);
-> +
-> +	for (i = 0; i < shmem_npages(file); i++) {
-> +		struct page *page;
-> +
-> +		page = shmem_read_mapping_page_gfp(file->f_mapping, i,
-> +						   GFP_KERNEL);
-> +		if (!WARN_ON(IS_ERR(page))) {
-> +			put_page(page);
-> +			put_page(page);
-> +		}
-> +	}
->  }
+On 9/16/2020 23:48, Petri Latvala wrote:
+> On Wed, Sep 16, 2020 at 06:22:45PM -0700, John Harrison wrote:
+>> Hello,
+>>
+>> The failures below all appear to be because the new GuC firmware was not
+>> found on the test system.
+>>
+>> My understanding is that all we need to do to get the CI system to update
+>> with new firmwares is to push the firmware to a branch on the FDO
+>> drm-firmware repo and then send a pull request to this mailing list. That
+>> was done yesterday.
+> That pull request used an ssh:// url though. Can you send it again
+> with a git:// url? I suppose that's a plausible reason why I don't see
+> the binaries in CI's deploy dir.
+>
 
-This is awkward.  I'd like it if we had a vfree() variant which called
-put_page() instead of __free_pages().  I'd like it even more if we
-used release_pages() instead of our own loop that called put_page().
+Hello,
 
-Perhaps something like this ...
+We reset the pull request with a git:// URL as requested. I even gave it 
+a full weekend to propagate through. However, I am still getting missing 
+firmware failures after posting a new patch set.
 
-+++ b/mm/vmalloc.c
-@@ -2262,7 +2262,7 @@ static void __vunmap(const void *addr, int deallocate_page
-s)
- 
-        vm_remove_mappings(area, deallocate_pages);
- 
--       if (deallocate_pages) {
-+       if (deallocate_pages == 1) {
-                int i;
- 
-                for (i = 0; i < area->nr_pages; i++) {
-@@ -2271,8 +2271,12 @@ static void __vunmap(const void *addr, int deallocate_pages)
-                        BUG_ON(!page);
-                        __free_pages(page, 0);
-                }
--               atomic_long_sub(area->nr_pages, &nr_vmalloc_pages);
-+       } else if (deallocate_pages == 2) {
-+               release_pages(area->pages, area->nr_pages);
-+       }
- 
-+       if (deallocate_pages) {
-+               atomic_long_sub(area->nr_pages, &nr_vmalloc_pages);
-                kvfree(area->pages);
-        }
-@@ -2369,6 +2373,14 @@ void vunmap(const void *addr)
- }
- EXPORT_SYMBOL(vunmap);
- 
-+void vunmap_put_pages(const void *addr)
-+{
-+       BUG_ON(in_interrupt());
-+       might_sleep();
-+       if (addr)
-+               __vunmap(addr, 2);
-+}
-+
- /**
-  * vmap - map an array of pages into virtually contiguous space
-  * @pages: array of page pointers
+John.
 
-only with kernel-doc and so on.  I bet somebody has a better idea for a name.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
