@@ -1,78 +1,85 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06F002724AB
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 15:10:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F0E27252C
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 15:16:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6611A89DD3;
-	Mon, 21 Sep 2020 13:10:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA0B6E15A;
+	Mon, 21 Sep 2020 13:16:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96B5B6E35D
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Sep 2020 13:10:15 +0000 (UTC)
-IronPort-SDR: 3FluA+514DOuhwMA2NIJLfkkguIAh66pLr1heZitcndGOozYVS/hXc0uEHeBYXBVF9tEIINcUx
- ULGQmoyRm6/g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9750"; a="139871242"
-X-IronPort-AV: E=Sophos;i="5.77,286,1596524400"; d="scan'208";a="139871242"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 975316E15A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Sep 2020 13:16:03 +0000 (UTC)
+IronPort-SDR: HiPRnI+/tb9aY+/n6USJ2/z/GyYE+zg9683O4YhL/nQWXcinE5wDAWVxytuThwjKBwCEV2OykV
+ tdLfSOAFtnUQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9750"; a="159671806"
+X-IronPort-AV: E=Sophos;i="5.77,286,1596524400"; d="scan'208";a="159671806"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2020 06:10:09 -0700
-IronPort-SDR: UY3qxqBo4SauHzztcMc+RjQyfYYiNX7p4a5dn7PJO9K3Jx9R1JUxIzTxnJCy7+qjOTPhEmN25c
- QB7J6FzCe5OA==
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2020 06:15:59 -0700
+IronPort-SDR: 9ZXXIYEbv49GcJg23xkJkLWfYvyXPw3Koo3m4LnnWa9oLtFbSS8+SLJzahgHjEil9Ib/ghZho2
+ SmZ1D28jbZuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,286,1596524400"; d="scan'208";a="337894156"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga008.jf.intel.com with ESMTP; 21 Sep 2020 06:10:09 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.77,286,1596524400"; d="scan'208";a="289966067"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga007.fm.intel.com with ESMTP; 21 Sep 2020 06:15:59 -0700
+Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 21 Sep 2020 06:10:08 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ 15.1.1713.5; Mon, 21 Sep 2020 06:15:59 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 21 Sep 2020 06:10:08 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.1713.5; Mon, 21 Sep 2020 06:15:58 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Mon, 21 Sep 2020 06:10:08 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ via Frontend Transport; Mon, 21 Sep 2020 06:15:58 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.108)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Mon, 21 Sep 2020 06:10:04 -0700
+ 15.1.1713.5; Mon, 21 Sep 2020 06:15:58 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=odnX/ZI5dgvr+GwLqVIG7ovxZsn+WLFVpjwghHLvOKVUWsGC54Jb437mywMm/mWbSSdb3CgBoCZLYz6mkCCQKrqBtMCLUWbXzisiiOHFJM5FaUkVWdMEP5UG+He5xaZA0iccZTvE5TxRe5wpCrj1HTJuA/XtcFVlkrLAuhMxK83nLcoP4gjtA/P5SP3UBXW8btNNLaoY17tjY7u7sUP+79OOOOnpuL/iwxilL5WNcWzWCLg4CXcKdcYHCw8MmST0GXAF2Jm6BOvtgnSyMrVofWH5Lhy0ODSUGFTD4t5stmU1QB0u9rOSxBYFPYKlOQ7+5WPI+9CKW12ZwzUGpqBVCA==
+ b=nEFxfSSAkzBcApo+3e+jmVpdf21qFmmBlyWNZuHJOmpQ2wJRlhryd7tkuxaM+ORMjnGmNOyUu0YwLMvuRCLXhqmL1KpcBEEiQu5KZ/14tRo46QWJPguhRAxEAKTGUydwChoBx3xQViY8ORX5qStOvmS88qNDCjRrw9BafzO8DgSUUhprMDbB9vLK7hsEW8XIUKxh16mDWy5rT0TjcQsut0gzGg7alzy4nQXrqGuuBZTbIa/5DtcUggdF1eBgHQA098INcXWPkO+JZQ2CCHoKbm8+zzJT5SYlNXvt780QTcNlxXm155VYe0BBT7naPDbE+uERm1H4Whzn8BoDBNip5A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iLy6VcQikVCHuJAh3vdPKzIQgWJ5Ni8/IbHNfW1+KPo=;
- b=R+XAa6yoZE1tkBAbrqA7DVoMXSVFnDX2VamxzHWAnOPeybQ7hh6DgfXPOE1E9NtVmKJROB69wl3ZYJiVGaoyB12yLHhPOukkT38uAi1NfNmSM6lcV98AMtGvJTUFcMzgCLj5dsaeX+QYvhjv5G9uKjNrC9XQX0zZwtjcNjsd15EZLtff4YgK7HfYQPXF7eTvJn2BtjKCsj59Pq75G1d0RR9TV4frddkcJfJXUuaRs7D5+qB5THngvTb0SdpxJQZzSlKM3BGlbK2bWDG4y5Eg/N9v4XlJ2KNQ1LbkUlRtkovGWjPuWp7H548mEUx/BIKdCuvTSExqUBAmABxy7DSWHw==
+ bh=31hevmHm64nh+lMRZGpOTzEeXEDQcSG+nLceo8gM9NQ=;
+ b=A4gvtCWd3tp1lGqVHkT5opgfOmYljwaVNZEeua+rU1g7uACgQhDAvfNi3LPHCcPllODc8OjEd/jpEPPYP+D8vZ0vmbCiReBGFYXDwjODO95yo2K5n7Irf7nbDKcOZgSpKJNGPGrOzxJA6WDRdjfcfQFq1dIogYTZp9ZDuw+Q676C8l5izHATcw0OjMQdRATTdCr/2H6PNHL7Cy+zTzLJfUvzmTQ6L6rcYaQNuXmfLL5v1Sjg70KQ0Wgr+duvUtI8DOLfv9dyY4QMi5YKFwJlh7XcdHeUUkWoieA0vJK03U7jvkBd7l0o0SRQ/o/pmM0MbR5zB9HLXX1SSj0tndnzGw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
  s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iLy6VcQikVCHuJAh3vdPKzIQgWJ5Ni8/IbHNfW1+KPo=;
- b=kX5aO93IgAIdNPUBOEs2Ovch4gezCLo4TFKDVsI5emXCn+GnsGiYWAeyRtT+dnsTQEZUrvMGmJ4D7JeDZyeSXtSyDwEUh83PEkTsGo2Djxu8cP5UiKXOJev1M0hBmF30FhX8XV4P9pdJ3u2QbkCs0yaEdUg+lEI4g6lk+/bgbDs=
+ bh=31hevmHm64nh+lMRZGpOTzEeXEDQcSG+nLceo8gM9NQ=;
+ b=jeam2XO3BgcsfxT2sdCXUrvYWUDFOlV/8qxGpM3ra8bt04z5ySYbR3rWmQ9/VaX938OrCTETHJZOWj+N2j+ID/vMwmGIFhR3QaLKKbUTtj4+elZHyBYRhrO7fBya70sqxfgetkvalNAvObSUhNow4Yoq0gxVQzFMbAPmJd2qp3c=
 Received: from BY5PR11MB4307.namprd11.prod.outlook.com (2603:10b6:a03:1bd::27)
- by BYAPR11MB3608.namprd11.prod.outlook.com (2603:10b6:a03:b1::24)
+ by BYAPR11MB3560.namprd11.prod.outlook.com (2603:10b6:a03:f8::29)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.19; Mon, 21 Sep
- 2020 13:09:54 +0000
+ 2020 13:15:56 +0000
 Received: from BY5PR11MB4307.namprd11.prod.outlook.com
  ([fe80::98fb:1978:c0aa:80a3]) by BY5PR11MB4307.namprd11.prod.outlook.com
  ([fe80::98fb:1978:c0aa:80a3%5]) with mapi id 15.20.3370.033; Mon, 21 Sep 2020
- 13:09:54 +0000
+ 13:15:56 +0000
 From: "Lee, Shawn C" <shawn.c.lee@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: RE: [PATCH] drm/i915/fbc: disable FBC on Nightfury board
-Thread-Index: AdaQF81EwVtAtRnFRRSDzLeXHMA3Lw==
-Date: Mon, 21 Sep 2020 13:09:54 +0000
-Message-ID: <BY5PR11MB43077FD606FDBB3738A93F63A33A0@BY5PR11MB4307.namprd11.prod.outlook.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ "20200827055129.26566-1-shawn.c.lee@intel.com"
+ <20200827055129.26566-1-shawn.c.lee@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/fbc: disable FBC on Nightfury board
+Thread-Index: AQHWfDZQgR8ZHUVOuk6iIDOxKwjRfqljlS6AgAY1wRCAAAbGgIAJaA2A
+Date: Mon, 21 Sep 2020 13:15:56 +0000
+Message-ID: <BY5PR11MB430771491DD2DDD4B542061FA33A0@BY5PR11MB4307.namprd11.prod.outlook.com>
+References: <20200827055129.26566-1-shawn.c.lee@intel.com>
+ <20200911142113.GJ6112@intel.com>
+ <BY5PR11MB43073FAD5FBBD0A47986E296A3200@BY5PR11MB4307.namprd11.prod.outlook.com>
+ <20200915133525.GG6112@intel.com>
+In-Reply-To: <20200915133525.GG6112@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -84,30 +91,30 @@ authentication-results: linux.intel.com; dkim=none (message not signed)
  header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
 x-originating-ip: [118.167.12.231]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a25fc57e-fc5a-4ece-f123-08d85e2fa1f5
-x-ms-traffictypediagnostic: BYAPR11MB3608:
+x-ms-office365-filtering-correlation-id: 0d6d450c-ea4a-4bc0-f0e5-08d85e3079a9
+x-ms-traffictypediagnostic: BYAPR11MB3560:
 x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR11MB36086E4AE9BF36042410E7ABA33A0@BYAPR11MB3608.namprd11.prod.outlook.com>
+x-microsoft-antispam-prvs: <BYAPR11MB35607FE574DCC7EA7A574774A33A0@BYAPR11MB3560.namprd11.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:8273;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: AZP7AvDiXHv9uePcwjIoghBRHoC9XGMOd/oaihfSavjQrRfKAYU2+9xP4t5hvK2r1AA+EFIAvgsGUkXXlW8b52k95LklM2K7r0s+Y/Un18PwJzHxpg0Mt/BIdbE7EJJyhFepsopWgdYpbyXPyLwnpsd7tMdJIW2ZjsosiKFtUf4amQu7l1MvMcn3zsuyHhxHPDruV6i7uH2GydeD9kqVTMmDkDjwP+xsKApblH9i7Lkt9r6Q2UuLZ3cyT+dDkqhqfxhJkk89GCEt99XVVeMw1MQe3Zau+pFLyhUwSnT6dpwKjrpDhxPtJp7E8i/Osn5N3gKLrvSTruby/eOuTURh0XJVQaXLpX2DiVY4JyuJMXc=
+x-microsoft-antispam-message-info: x8JpOuTMzT/HNtKCZkRMJ744PyXsetXMq0XmwHTqmcHcp3sMG07si2NZmpKlIfVZRTP9iaEV2Un12P9tbfpS/Uvvwb/jebNTpMg4fQzo8iqRrBaWIYB38GPgHcGuKAzLWziS+RQ3tPrHCrzniDRFzxQ9rIFZjHAVBZ8irMIj65RLEsA6IMC/ZRj03iY66NMXi76TF6QOV5KEksTlCJxfWXuCddh3PR74iy4g4rkw9sVefInqMZlrsgUQ3RMXnNK9kf3vl0t37McxVt7V7pgAptZiVAaqoexvH5PNHfYZx88oMVBk3rTMEel0apnb/4DaKZNMlcQZaojSIww3RDQF0UE73ruapLVTZnY9WS7gv0N83G3VfJpRXwOVmHgIZBfOnOaP0JVFfE5vnW78zD4Heg==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BY5PR11MB4307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(39860400002)(346002)(366004)(376002)(396003)(316002)(478600001)(55016002)(2906002)(9686003)(966005)(6916009)(83380400001)(66446008)(71200400001)(64756008)(66946007)(76116006)(66476007)(66556008)(66574015)(5660300002)(52536014)(54906003)(86362001)(7696005)(8796002)(8936002)(4326008)(8676002)(33656002)(55236004)(26005)(186003)(6506007);
+ SFS:(4636009)(396003)(136003)(346002)(376002)(39860400002)(366004)(9686003)(966005)(55016002)(2906002)(7696005)(6506007)(86362001)(66946007)(76116006)(55236004)(66476007)(66556008)(64756008)(54906003)(66446008)(71200400001)(52536014)(4326008)(5660300002)(316002)(33656002)(110136005)(8936002)(8796002)(83380400001)(8676002)(478600001)(6636002)(186003)(26005)(66574015);
  DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: +aWdTIi+7bHJM8aNCJZW7CgIBrky5MuDwgL2WCOdZ98Zc2BMDkb2jsJXo5u6Q+Hmee8DycDYvrlNpxaR+9HbcRGixq9QK5KD1TdDYVwDLvzJxuqTUr+DBvBfrH/UrjvZz9al9vMD8GssYJrv7dBFOBPEskuNxvtrNb0RUi7cmzmbbK4MPSywMm+h2QtRDM4yW/xEoRy84uC8JhWXCPhgZJdVepxESqs8nx/yYkig8nhZrlTh5r5M2L8y8S6VazI+soS3DEN8qNK4yu33HKRhd1p7bE9X19GiX3XKT5b+BtxXHFVEYDfxjiJxWcJ4mrNWUMZePTANKsdbYaUxkKD1i+elC79QHdqFgIFqlNRkOkmrJAmx5Lp69WC9SdrmlBp+C/lWodHC3IndG/lwiJFLF8yDFvV88DjTfUSBHQS54Qkl+JAeXXYBmZJGw9SzV1dP5k7fkpsh7a1dWz6MtOLwVXTsfkeTVbPbzOko5lXVOLNNPwtocor6z8c3HvIwL/sesoxqSJ2v1SX0kiB5VtvpzpuKrl76YOJX6Uxx5cyHI1+Gi8V5cEUxkwD12aZqF1ST3u12AVDurwCVKNxv2D6SNv6v572kX2aNgwO7Iy8vNJ0Q4c8jCBp1IFryzeC+BF4PGwfJ3JX4QzCFkjXL3niU3w==
+x-ms-exchange-antispam-messagedata: QupnN7sAMVm0tDgLkezK2d88130oIdQEyFfgn3Gbun3SnSlD4QiHHxz5OK2xh6qsqymvg4kKxXfkrAKS0Z1EnCwAv2ijwSq8TcRx/K9ltKcDedbBfqp5LeQNvHIFXl1rlS2xSRRu09OXluF1Bhp2lNz+tRaUWbBUXZv2vdfpm15RzOCpUmbjCmtWlb0nlOm6sbQftGQOZP0Iih4C23RLjFWvnjTVaO4v2waffcS9e35vFXoUCNV11dLRtTN2fDJxmKRCAGrI4hbuocyo6N7H8/LBzXBPkkM9gOEcFWRMiExZIHurlCUAPgGsKC+GQRd52d/ffgzzXqp55tW2cKBvXtGru79T21Mm3hJyqj5QaYfUJbcURuW24vxLNMnhCO9Loz4HwwLyiRZ/9N7x+YtiuLR7MEGPPAcTgzupokVCnTvqwrLC/Kn8hJqUPeh56OwgDkORa70aN3eGrYRNMqS6LUhRvpd4xYws+ujFgnBvSvUiSsCS7FtOGQ/qCCuh/2YlfLpIew7k8Gm0HlqVLnL4IRLMxuBeuKk12/FeUzolT4fyr2S2GNgHFisF9tD9MoLMqVu+H3gFKs+1/+mDBNa9U7mgP1d7ulZCqeYh7JsckaLjtojZt/wR1WEvNTl03rL7A2eUi+pxPET1hdWakZbKig==
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a25fc57e-fc5a-4ece-f123-08d85e2fa1f5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2020 13:09:54.4729 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d6d450c-ea4a-4bc0-f0e5-08d85e3079a9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2020 13:15:56.3717 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JqZ6sg9DnRxwXx+VL7dDbuELgr+/nnIkepPvLZZ2kw2BIjEUaJgUka5HAmG4g5IZgDwnrTNjsgBlEW4yhP9zsg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3608
+X-MS-Exchange-CrossTenant-userprincipalname: rAKit3To4529o7EtAnem4AbzSW1ykYMfoRllPtQ158mYs/9qlsXpGASDcdGpKlGtwes8Yi2K78wdtChLMvXC2A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3560
 X-OriginatorOrg: intel.com
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/fbc: disable FBC on Nightfury board
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -124,9 +131,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: "20200827055129.26566-1-shawn.c.lee@intel.com"
  <20200827055129.26566-1-shawn.c.lee@intel.com>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>, "Tseng,
- William" <william.tseng@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>, "Chiou,
+ Cooper" <cooper.chiou@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Tseng,
+ William" <william.tseng@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -146,26 +154,26 @@ On Tue, Sept. 15, 2020, 1:35 p.m. Ville Syrj=E4l=E4 wrote:
 >> >> Customer report random display flicker issue on Nightfury board.
 >> >> And we found this problem might be caused by VT-d and FBC are both =
 
->> >> enabled. According to sighting report, it recommend to turn FBC off t=
-o =
+>> >> enabled. According to sighting report, it recommend to turn FBC =
 
->> >> workaround this kind of issue.
+>> >> off to workaround this kind of issue.
 >> >> =
 
->> >> This change refer to DMI BOARD_VENDOR and BOARD_NAME information to =
+>> >> This change refer to DMI BOARD_VENDOR and BOARD_NAME information =
 
->> >> disable FBC.
+>> >> to disable FBC.
 >> >
 >> >What is this "nightfury board" exactly?
 >> =
 
 >> It is chrome os project on CML platform. The board name is "nightfury".
 >
->OK, then someone should definitely test if that missing w/a
->fixes the underruns.
+>OK, then someone should definitely test if that missing w/a fixes the =
 
-Customer already confirmed display flicker issue disappear after
-applied this w/a.
+>underruns.
+
+Customer already confirmed display flicker issue disappear after applied th=
+is w/a.
 
 BTW, here is the patch v2 to fix some typo in v1.
 https://patchwork.freedesktop.org/series/81087/#rev2
@@ -191,12 +199,13 @@ Shawn
 >> >> Cc: Cooper Chiou <cooper.chiou@intel.com>
 >> >> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
 >> >> ---
->> >>  drivers/gpu/drm/i915/display/intel_fbc.c | 22 ++++++++++++++++++++++
+>> >>  drivers/gpu/drm/i915/display/intel_fbc.c | 22 =
+
+>> >> ++++++++++++++++++++++
 >> >>  1 file changed, 22 insertions(+)
 >> >> =
 
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c =
-
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c
 >> >> b/drivers/gpu/drm/i915/display/intel_fbc.c
 >> >> index 327af428d73f..20660fdbab36 100644
 >> >> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
@@ -236,10 +245,10 @@ m_i915_private *dev_priv)
 >> >> +};
 >> >> +
 >> >>  static bool need_fbc_vtd_wa(struct drm_i915_private *dev_priv)  {
->> >>  	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */ @@ -1450,6 +1469,=
-9 =
+>> >>  	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */ @@ -1450,6 =
 
->> >> @@ static bool need_fbc_vtd_wa(struct drm_i915_private *dev_priv)
+>> >> +1469,9 @@ static bool need_fbc_vtd_wa(struct drm_i915_private *dev_p=
+riv)
 >> >>  		return true;
 >> >>  	}
 >> >>  =
@@ -261,6 +270,7 @@ m_i915_private *dev_priv)
 
 >> Best regards,
 >> Shawn
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
