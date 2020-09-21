@@ -2,48 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B15FF2732B4
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 21:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12FAF2732C9
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 21:28:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5EC089E36;
-	Mon, 21 Sep 2020 19:22:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6B8F6E52A;
+	Mon, 21 Sep 2020 19:28:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4409889E36
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Sep 2020 19:22:29 +0000 (UTC)
-IronPort-SDR: nqwVdyxS+ZSRnGcFGbUIwKxTSiFYA5W8f0U65IYR3k4klI72QsOjQkiDcrg7GxInIRPlpeymRW
- lxXlGBEvauZg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="222058346"
-X-IronPort-AV: E=Sophos;i="5.77,287,1596524400"; d="scan'208";a="222058346"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2020 12:22:28 -0700
-IronPort-SDR: dRHk44vIjbvAMT1SilUbvCQOgZBIZShvoZ2EboPn21X8jiuWFN8RnUpp5z6bugAAAvT2NvyGq3
- GFD0WUKUmXOA==
-X-IronPort-AV: E=Sophos;i="5.77,287,1596524400"; d="scan'208";a="510844714"
-Received: from johnharr-mobl1.amr.corp.intel.com (HELO [10.212.118.250])
- ([10.212.118.250])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2020 12:22:27 -0700
-To: Petri Latvala <petri.latvala@intel.com>
-References: <20200916171653.2021483-1-John.C.Harrison@Intel.com>
- <160028134210.19374.12969903715505955797@emeril.freedesktop.org>
- <b2366829-8040-075e-59f8-9a92e749ed99@Intel.com>
- <20200917064814.GB7444@platvala-desk.ger.corp.intel.com>
-From: John Harrison <John.C.Harrison@Intel.com>
-Message-ID: <16a5587c-bf6f-7870-e38c-865aec642024@Intel.com>
-Date: Mon, 21 Sep 2020 12:22:26 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9269A6E560;
+ Mon, 21 Sep 2020 19:28:00 +0000 (UTC)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1600716477;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=NioanSWzd78GxCsWYULMNfEWngL7gbmu+5wZKJGKPtI=;
+ b=HxqY5bgmLL1k0f3vQQxKwcT5ry3L+n9eWbaa33JpgBbIQhQKyF5a3ij8mv6CpgblAufPcl
+ /NboBbVSLMzTqFGT0TjywuRmfs5bzTYeJmHXAxo0CVpHx+Vc+AcZ01mg2TfMdqQ2YBFUr0
+ T0biE/Xj6CpNppEeI1NN60+4LlXdME7cpu0hU+LkVE2Ap5bde7RRe7hWtZJQkXhhKWa8iV
+ 9G4YL/t1/f3WBUyUCaKsXVKPluf5ho1Tri7IYKrkld4lHHpsIFR2kj//UAVDisud0CvF9E
+ Y+o/6lfteq1OBhGqZU5+eNzFDwvEzWDxVn5dG5jL6fLqKaz4jlZKqLWOR91+lA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1600716477;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=NioanSWzd78GxCsWYULMNfEWngL7gbmu+5wZKJGKPtI=;
+ b=K+USVXwNO19/CLwxF7hr/zQjzSe76M0Cqo3jC86XX3is24rhnFQjsCVAxPA8kns3xbx5QG
+ vlmVOJebsjPrOqAg==
+To: Linus Torvalds <torvalds@linux-foundation.org>
+In-Reply-To: <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
+References: <20200919091751.011116649@linutronix.de>
+ <CAHk-=wiYGyrFRbA1cc71D2-nc5U9LM9jUJesXGqpPnB7E4X1YQ@mail.gmail.com>
+ <87mu1lc5mp.fsf@nanos.tec.linutronix.de>
+ <87k0wode9a.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgbmwsTOKs23Z=71EBTrULoeaH2U3TNqT2atHEWvkBKdw@mail.gmail.com>
+ <87eemwcpnq.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
+ <87a6xjd1dw.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
+Date: Mon, 21 Sep 2020 21:27:57 +0200
+Message-ID: <87sgbbaq0y.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20200917064814.GB7444@platvala-desk.ger.corp.intel.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_Update_to_GuC_v49?=
+Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
+ variant of kmap_atomic & friends
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,37 +60,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Sarvela, Tomi P" <tomi.p.sarvela@intel.com>,
- intel-gfx@lists.freedesktop.org
+Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
+ Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
+ Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
+ Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, Mel Gorman <mgorman@suse.de>,
+ "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
+ linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
+ Vineet Gupta <vgupta@synopsys.com>, LKML <linux-kernel@vger.kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>, Paul Mackerras <paulus@samba.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>, Greentime Hu <green.hu@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 9/16/2020 23:48, Petri Latvala wrote:
-> On Wed, Sep 16, 2020 at 06:22:45PM -0700, John Harrison wrote:
->> Hello,
+On Mon, Sep 21 2020 at 09:24, Linus Torvalds wrote:
+> On Mon, Sep 21, 2020 at 12:39 AM Thomas Gleixner <tglx@linutronix.de> wrote:
 >>
->> The failures below all appear to be because the new GuC firmware was not
->> found on the test system.
->>
->> My understanding is that all we need to do to get the CI system to update
->> with new firmwares is to push the firmware to a branch on the FDO
->> drm-firmware repo and then send a pull request to this mailing list. That
->> was done yesterday.
-> That pull request used an ssh:// url though. Can you send it again
-> with a git:// url? I suppose that's a plausible reason why I don't see
-> the binaries in CI's deploy dir.
+>> If a task is migrated to a different CPU then the mapping address will
+>> change which will explode in colourful ways.
 >
+> Right you are.
+>
+> Maybe we really *could* call this new kmap functionality something
+> like "kmap_percpu()" (or maybe "local" is good enough), and make it
+> act like your RT code does for spinlocks - not disable preemption, but
+> only disabling CPU migration.
 
-Hello,
+I"m all for it, but the scheduler people have opinions :)
 
-We reset the pull request with a git:// URL as requested. I even gave it 
-a full weekend to propagate through. However, I am still getting missing 
-firmware failures after posting a new patch set.
+> That would probably be good enough for a lot of users that don't want
+> to expose excessive latencies, but where it's really not a huge deal
+> to say "stick to this CPU for a short while".
+>
+> The crypto code certainly sounds like one such case.
 
-John.
+I looked at a lot of the kmap_atomic() places and quite some of them
+only require migration to be disabled to keep the temporary map
+stable.
 
+Quite some code could be simplified significantly especially those
+places which need to do copy_from/to_user inside these
+sections. Graphics is the main example here as Daniel pointed out.
+
+Alternatively this could of course be solved with per CPU page tables
+which will come around some day anyway I fear.
+
+Thanks,
+
+        tglx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
