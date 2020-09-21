@@ -2,33 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 412F5274418
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 16:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5683D274412
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 16:21:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BDD96E87C;
-	Tue, 22 Sep 2020 14:22:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02A6B896B5;
+	Tue, 22 Sep 2020 14:21:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 498 seconds by postgrey-1.36 at gabe;
- Mon, 21 Sep 2020 16:39:18 UTC
-Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E1CB6E4F3;
- Mon, 21 Sep 2020 16:39:18 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by comms.puri.sm (Postfix) with ESMTP id 442CBDF6E2;
- Mon, 21 Sep 2020 09:30:29 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
- by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id XnmnsU6MQcby; Mon, 21 Sep 2020 09:30:27 -0700 (PDT)
-Date: Mon, 21 Sep 2020 18:30:21 +0200
-From: DorotaC <xofofu.dcz@porcupinefactory.org>
-To: Samuel Iglesias =?UTF-8?B?R29uc8OhbHZleg==?= <siglesias@igalia.com>
-Message-ID: <20200921183016.670ce6a6.dorota.czaplejewicz@puri.sm>
-In-Reply-To: <4eaa69879014a406424b9702dd6574a305f4c98e.camel@igalia.com>
-References: <4eaa69879014a406424b9702dd6574a305f4c98e.camel@igalia.com>
-Organization: Purism
-X-Mailman-Approved-At: Tue, 22 Sep 2020 14:07:49 +0000
-Subject: Re: [Intel-gfx] XDC 2020 feedback and comments
+Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61CEF89F1B;
+ Mon, 21 Sep 2020 20:44:38 +0000 (UTC)
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+ by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08LKdCRp085819;
+ Mon, 21 Sep 2020 20:44:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2020-01-29;
+ bh=7ujMtTvfd+IOkCnn7iI/GoTDPJ8pxvj1u7VSyDhDIiE=;
+ b=TgUfJcvqhnH4X5TErTOA7ctRXSXQGoVSuGYWQLux1TS6gP/EFUFQnZPW1RbI+0E3cL3B
+ in/KONvWNSkpL0McwdWOCYcEE71inohanA9TuEaBwbVsC+zymxPchZWkmSx8xBtSpz45
+ n4nSBlQUHVmHXIe079bdqGiphbvhJyNT4NA7Zc1AGj/hU0sZ8Gjz7k8rSC1nxwxqxoDc
+ M/3OmSs0Xen7YIDCD5IseKHAjxpvC1Wd93RKD+UTZE2zo/tF5x3Gs3ujB2MuqgPbpVVb
+ G2l9kt0/DZBWdfye+7ecmzj4ylCxjUBE6JtHlfJDOmpinNW39aF0e9JhEBK/pXjcS2Z0 kg== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+ by aserp2120.oracle.com with ESMTP id 33n9xks3vf-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Mon, 21 Sep 2020 20:44:24 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+ by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08LKdmAx065052;
+ Mon, 21 Sep 2020 20:44:24 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+ by aserp3020.oracle.com with ESMTP id 33nuw1usdt-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 21 Sep 2020 20:44:24 +0000
+Received: from abhmp0009.oracle.com (abhmp0009.oracle.com [141.146.116.15])
+ by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 08LKiFvM023808;
+ Mon, 21 Sep 2020 20:44:20 GMT
+Received: from [10.74.86.189] (/10.74.86.189)
+ by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Mon, 21 Sep 2020 13:44:14 -0700
+To: Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>
+References: <20200918163724.2511-1-hch@lst.de>
+ <20200918163724.2511-7-hch@lst.de>
+From: boris.ostrovsky@oracle.com
+Organization: Oracle Corporation
+Message-ID: <0833b9a8-5096-d105-a850-1336150eada1@oracle.com>
+Date: Mon, 21 Sep 2020 16:44:10 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.2.1
+MIME-Version: 1.0
+In-Reply-To: <20200918163724.2511-7-hch@lst.de>
+Content-Language: en-US
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9751
+ signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+ phishscore=0 malwarescore=0
+ mlxscore=0 suspectscore=2 adultscore=0 mlxlogscore=999 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2009210152
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9751
+ signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
+ lowpriorityscore=0 malwarescore=0
+ suspectscore=2 priorityscore=1501 adultscore=0 spamscore=0 clxscore=1011
+ mlxlogscore=999 bulkscore=0 mlxscore=0 phishscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2009210152
+X-Mailman-Approved-At: Tue, 22 Sep 2020 14:08:19 +0000
+Subject: Re: [Intel-gfx] [PATCH 6/6] x86/xen: open code alloc_vm_area in
+ arch_gnttab_valloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,51 +84,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "xorg-devel@lists.freedesktop.org" <xorg-devel@lists.freedesktop.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "wayland-devel@lists.freedesktop.org" <wayland-devel@lists.freedesktop.org>,
- "board@foundation.x.org" <board@foundation.x.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "events@lists.x.org" <events@lists.x.org>,
- "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>
-MIME-Version: 1.0
+Cc: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>, linux-mm@kvack.org,
+ Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ x86@kernel.org, linux-kernel@vger.kernel.org, Minchan Kim <minchan@kernel.org>,
+ dri-devel@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Nitin Gupta <ngupta@vflare.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMSBTZXAgMjAyMCAxMDowMzozMiArMDIwMApTYW11ZWwgSWdsZXNpYXMgR29uc8Oh
-bHZleiA8c2lnbGVzaWFzQGlnYWxpYS5jb20+IHdyb3RlOgoKPiBIaSBhbGwsCj4gCj4gSHVnZSB0
-aGFua3MgYWdhaW4gdG8gdGhlIGVudGlyZSB0ZWFtIGZyb20gSW50ZWwsIGZvciB0aGVpciBncmVh
-dCB3b3JrCj4gb3JnYW5pemluZyBYREMgMjAyMCwgb3VyIGZpcnN0IHZpcnR1YWwgY29uZmVyZW5j
-ZSEKPiAKPiBBcyB1c3VhbCB3ZSdyZSBsb29raW5nIGZvciBmZWVkYmFjayBvbiBib3RoIFhEQyBp
-dHNlbGYsIGFuZCB0aGUgQ0ZQCj4gcHJvY2VzcyBhbmQgcHJvZ3JhbSBzZWxlY3Rpb24uIEJvdGgg
-YWJvdXQgd2hhdCB3YXMgZ3JlYXQgYW5kIHNob3VsZCBiZQo+IGtlcHQgZm9yIG5leHQgeWVhcidz
-IGVkaXRpb24sIGFuZCB3aGVyZSB0aGVyZSdzIHJvb20gZm9yIGltcHJvdmVtZW50Lgo+IAo+IFRo
-ZSBib2FyZCBkb2VzIGtlZXAgc29tZSBub3RlcywgZm9yIHRob3NlIGludGVyZXN0ZWQgaW4gd2hh
-dCB3ZSBoYXZlCj4gYWxyZWFkeToKPiAKPiAtIFhEQyBub3RlcyBmb3IgcHJvc3BlY3RpdmUgb3Jn
-YW5pemVyczogCj4gaHR0cHM6Ly93d3cueC5vcmcvd2lraS9FdmVudHMvUkZQLwo+IAo+IC0gQ0ZQ
-IG5vdGVzOiBodHRwczovL3d3dy54Lm9yZy93aWtpL0V2ZW50cy9QYXBlcnNDb21taXR0ZWUvCj4g
-Cj4gSWYgeW91IHdhbnQgdG8gc2VuZCBpbiB5b3VyIGNvbW1lbnRzIGluIHByaXZhdGUsIHBsZWFz
-ZSBzZW5kIHRoZW0gdG8KPiB0aGUgWC5vcmcgRm91bmRhdGlvbiBib2FyZDogYm9hcmRAZm91bmRh
-dGlvbi54Lm9yZwo+IAo+IENoZWVycywKPiAKPiBTYW0KCkhpIFNhbSwKCkknZCBsaWtlIHRvIG1h
-a2UgYSBub3RlIGFib3V0IHVzaW5nIHNvbWUgbW9yZSBwcml2YWN5LWZyaWVuZGx5IHN0cmVhbWlu
-ZyBwbGF0Zm9ybS4KCldoZW4gSSB0cmllZCB0byB3YXRjaCB0aGUgc3RyZWFtcywgaW5zdGVhZCBv
-ZiBzaG93aW5nIHRoZSB2aWRlbywgeW91dHViZSBwcmVzZW50ZWQgbWUgd2l0aCBhIEdEUFIgZGlh
-bG9nLgoKV2hpbGUgaXQgd2FzIGdsaXRjaGVkIGFuZCB1bnNraXBwYWJsZSBmb3IgbWUsIGp1c3Qg
-dGhlIGZhY3QgdGhhdCBHb29nbGUgbWFkZSBpdCBub24tb3B0aW9uYWwgc2hvd3MgdGhlaXIgZGlz
-cmVnYXJkIGZvciBteSBwcml2YWN5IChhbmQsIElNTywgdGhlIGxldHRlciBvZiBsYXcsIHdoaWNo
-IG1hbmRhdGVzIG9wdC1pbikuIFVuZm9ydHVuYXRlbHksIEkgd2Fzbid0IGFibGUgdG8gZXZhbHVh
-dGUgdGhlIGRpYWxvZydzIGNvbnRlbnRzIGR1ZSB0byB0aGUgZ2xpdGNoLCBidXQgb25saW5lIHJl
-cG9ydHMgc3VnZ2VzdCB0aGV5IGFyZSBzaW1pbGFybHkgaWdub3JhbnQuIEFsbCBpbiBhbGwsIEkg
-b25seSBhY2Nlc3MgeW91dHViZSB2aWEgeW91dHViZS1kbCBhbnkgbW9yZSwgYW5kIHRoYXQgZG9l
-c24ndCBzdXBwb3J0IHN0cmVhbWluZy4KCldoZW4gYXR0ZW5kaW5nIEFrYWRlbXkgMiB3ZWVrcyBh
-Z28sIHRoZXkgaGFkIGEgc2V0dXAgYmFzZWQgb24gQmlnQmx1ZUJ1dHRvbiB0aGF0IHdvcmtlZCB3
-ZWxsIHdpdGhvdXQgdGhhdCBzb3J0IG9mIGlzc3Vlcy4KCkNoZWVycywKRG9yb3RhCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Ck9uIDkvMTgvMjAgMTI6MzcgUE0sIENocmlzdG9waCBIZWxsd2lnIHdyb3RlOgo+ICAKPiArc3Rh
+dGljIGludCBnbnR0YWJfYXBwbHkocHRlX3QgKnB0ZSwgdW5zaWduZWQgbG9uZyBhZGRyLCB2b2lk
+ICpkYXRhKQo+ICt7Cj4gKwlwdGVfdCAqKipwID0gZGF0YTsKPiArCj4gKwkqKnAgPSBwdGU7Cj4g
+KwkoKnApKys7Cj4gKwlyZXR1cm4gMDsKPiArfQo+ICsKPiAgc3RhdGljIGludCBhcmNoX2dudHRh
+Yl92YWxsb2Moc3RydWN0IGdudHRhYl92bV9hcmVhICphcmVhLCB1bnNpZ25lZCBucl9mcmFtZXMp
+Cj4gIHsKPiAgCWFyZWEtPnB0ZXMgPSBrbWFsbG9jX2FycmF5KG5yX2ZyYW1lcywgc2l6ZW9mKCph
+cmVhLT5wdGVzKSwgR0ZQX0tFUk5FTCk7Cj4gIAlpZiAoYXJlYS0+cHRlcyA9PSBOVUxMKQo+ICAJ
+CXJldHVybiAtRU5PTUVNOwo+IC0KPiAtCWFyZWEtPmFyZWEgPSBhbGxvY192bV9hcmVhKFBBR0Vf
+U0laRSAqIG5yX2ZyYW1lcywgYXJlYS0+cHRlcyk7Cj4gLQlpZiAoYXJlYS0+YXJlYSA9PSBOVUxM
+KSB7Cj4gLQkJa2ZyZWUoYXJlYS0+cHRlcyk7Cj4gLQkJcmV0dXJuIC1FTk9NRU07Cj4gLQl9Cj4g
+LQo+ICsJYXJlYS0+YXJlYSA9IGdldF92bV9hcmVhKFBBR0VfU0laRSAqIG5yX2ZyYW1lcywgVk1f
+SU9SRU1BUCk7Cj4gKwlpZiAoIWFyZWEtPmFyZWEpCj4gKwkJZ290byBvdXRfZnJlZV9wdGVzOwo+
+ICsJaWYgKGFwcGx5X3RvX3BhZ2VfcmFuZ2UoJmluaXRfbW0sICh1bnNpZ25lZCBsb25nKWFyZWEt
+PmFyZWEtPmFkZHIsCj4gKwkJCVBBR0VfU0laRSAqIG5yX2ZyYW1lcywgZ250dGFiX2FwcGx5LCAm
+YXJlYS0+cHRlcykpCgoKVGhpcyB3aWxsIGVuZCB1cCBpbmNyZW1lbnRpbmcgYXJlYS0+cHRlcyBw
+b2ludGVyLiBTbyBwZXJoYXBzIHNvbWV0aGluZyBsaWtlCgoKcHRlX3QgKipwdGVzID0gYXJlYS0+
+cHRlczsKCmlmIChhcHBseV90b19wYWdlX3JhbmdlKCZpbml0X21tLCAodW5zaWduZWQgbG9uZylh
+cmVhLT5hcmVhLT5hZGRyLArCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIFBBR0VfU0laRSAqIG5yX2ZyYW1lcywgZ250dGFiX2FwcGx5LCAmcHRlcykpIHsKCsKg
+wqDCoMKgwqDCoCAuLi4KCn0KCgotYm9yaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vaW50ZWwtZ2Z4Cg==
