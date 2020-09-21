@@ -2,40 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E95E274386
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 15:52:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84633274414
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 16:22:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D3D36E882;
-	Tue, 22 Sep 2020 13:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08A108968D;
+	Tue, 22 Sep 2020 14:22:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69E606E881
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 13:51:37 +0000 (UTC)
-IronPort-SDR: WIEmjHfl6SnQHYYagButXy1o9Ds/MfbStgcYB9P0NHMUUyhZsLFkRgtxzDhoov+zyHHLtkWFyG
- 4kORLf2sX7xg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="148267804"
-X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; d="scan'208";a="148267804"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2020 06:51:32 -0700
-IronPort-SDR: EM6di0FLyWfy28rN33yDfCvAjBGdT8NNGqjBcBnKm+5ui0RpjUxVgus6olN0d8WjpKOD1FuQtC
- LO0tPjrN1KYA==
-X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; d="scan'208";a="485966921"
-Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 22 Sep 2020 06:51:30 -0700
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 22 Sep 2020 19:14:26 +0530
-Message-Id: <20200922134426.9840-6-vandita.kulkarni@intel.com>
-X-Mailer: git-send-email 2.21.0.5.gaeb582a
-In-Reply-To: <20200922134426.9840-1-vandita.kulkarni@intel.com>
-References: <20200922134426.9840-1-vandita.kulkarni@intel.com>
+Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D981689D53;
+ Mon, 21 Sep 2020 13:09:59 +0000 (UTC)
+Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.60])
+ by Forcepoint Email with ESMTP id BCFAAA82AE6A42431295;
+ Mon, 21 Sep 2020 21:09:56 +0800 (CST)
+Received: from localhost.localdomain.localdomain (10.175.113.25) by
+ DGGEMS413-HUB.china.huawei.com (10.3.19.213) with Microsoft SMTP Server id
+ 14.3.487.0; Mon, 21 Sep 2020 21:09:50 +0800
+From: Qinglang Miao <miaoqinglang@huawei.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Date: Mon, 21 Sep 2020 21:10:14 +0800
+Message-ID: <20200921131014.91372-1-miaoqinglang@huawei.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [V13 5/5] drm/i915/dsi: Enable software vblank counter
+X-Originating-IP: [10.175.113.25]
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Tue, 22 Sep 2020 14:08:14 +0000
+Subject: [Intel-gfx] [PATCH -next] drm/i915: simplify the return expression
+ of i915_driver_release()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,70 +43,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org, Qinglang Miao <miaoqinglang@huawei.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In case of DSI cmd mode, we get hw vblank counter
-updated after the TE comes in, if we try to read
-the hw vblank counter in te handler we wouldnt have
-the udpated vblank counter yet.
-This will lead to a state where we would send the
-vblank event to the user space in the next te,
-though the frame update would have completed in
-the first TE duration itself.
-Hence switch to using software timestamp based
-vblank counter.
+Simplify the return expression.
 
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Signed-off-by: Qinglang Miao <miaoqinglang@huawei.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 11 +++++++++++
- drivers/gpu/drm/i915/i915_irq.c              |  4 ++++
- 2 files changed, 15 insertions(+)
+ drivers/gpu/drm/i915/i915_drv.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c4f331f2af45..8b9e59e52708 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1808,6 +1808,17 @@ enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc)
- static u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index acc32066c..a594bb4aa 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -985,13 +985,8 @@ static void i915_driver_release(struct drm_device *dev)
+ static int i915_driver_open(struct drm_device *dev, struct drm_file *file)
  {
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	u32 flags = crtc->mode_flags;
-+
-+	/*
-+	 * From Gen 11, In case of dsi cmd mode, frame counter wouldnt
-+	 * have updated at the beginning of TE, if we want to use
-+	 * the hw counter, then we would find it updated in only
-+	 * the next TE, hence switching to sw counter.
-+	 */
-+	if (flags & (I915_MODE_FLAG_DSI_USE_TE0 | I915_MODE_FLAG_DSI_USE_TE1))
-+		return 0;
+ 	struct drm_i915_private *i915 = to_i915(dev);
+-	int ret;
  
- 	/*
- 	 * On i965gm the hardware frame counter reads
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index c2e4b227bdf3..634c60befe7e 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -682,8 +682,12 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
- u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->dev);
-+	struct drm_vblank_crtc *vblank = &dev_priv->drm.vblank[drm_crtc_index(crtc)];
- 	enum pipe pipe = to_intel_crtc(crtc)->pipe;
- 
-+	if (!vblank->max_vblank_count)
-+		return 0;
-+
- 	return I915_READ(PIPE_FRMCOUNT_G4X(pipe));
+-	ret = i915_gem_open(i915, file);
+-	if (ret)
+-		return ret;
+-
+-	return 0;
++	return i915_gem_open(i915, file);
  }
  
+ /**
 -- 
-2.21.0.5.gaeb582a
+2.23.0
 
 _______________________________________________
 Intel-gfx mailing list
