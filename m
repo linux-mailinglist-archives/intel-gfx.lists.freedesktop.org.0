@@ -2,32 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABFD2731DD
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 20:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A8CA2731DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Sep 2020 20:24:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 200386E063;
-	Mon, 21 Sep 2020 18:25:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48CA96E524;
+	Mon, 21 Sep 2020 18:24:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 465 seconds by postgrey-1.36 at gabe;
- Mon, 21 Sep 2020 18:24:58 UTC
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 178016E063
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Sep 2020 18:24:57 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 76B4068AFE; Mon, 21 Sep 2020 20:17:08 +0200 (CEST)
-Date: Mon, 21 Sep 2020 20:17:08 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Minchan Kim <minchan@kernel.org>
-Message-ID: <20200921181708.GA2067@lst.de>
-References: <20200918163724.2511-1-hch@lst.de>
- <20200918163724.2511-2-hch@lst.de> <20200921174256.GA387368@google.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 045AE6E063;
+ Mon, 21 Sep 2020 18:24:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E2F17A8830;
+ Mon, 21 Sep 2020 18:24:54 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200921174256.GA387368@google.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH 1/6] zsmalloc: switch from alloc_vm_area to
- get_vm_area
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Date: Mon, 21 Sep 2020 18:24:54 -0000
+Message-ID: <160071269490.8246.14085811452718232713@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200921175428.2914478-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20200921175428.2914478-1-John.C.Harrison@Intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/guc=3A_Update_to_GuC_v49?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,76 +38,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, x86@kernel.org,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org,
- dri-devel@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Andrew Morton <akpm@linux-foundation.org>, intel-gfx@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>, Nitin Gupta <ngupta@vflare.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 21, 2020 at 10:42:56AM -0700, Minchan Kim wrote:
-> IIRC, the problem was runtime pte popluating needs GFP_KERNEL but
-> zs_map_object API runs under non-preemtible section.
+== Series Details ==
 
-Make sense.
+Series: drm/i915/guc: Update to GuC v49
+URL   : https://patchwork.freedesktop.org/series/81906/
+State : warning
 
-> > -	area->vm = alloc_vm_area(PAGE_SIZE * 2, NULL);
-> > +	area->vm = get_vm_area(PAGE_SIZE * 2, 0);
-> >  	if (!area->vm)
-> >  		return -ENOMEM;
-> >  	return 0;
-> 
-> I think it shoud work.
-> 
-> diff --git a/mm/memory.c b/mm/memory.c
-> index 05789aa4af12..6a1e4d854593 100644
-> --- a/mm/memory.c
-> +++ b/mm/memory.c
-> @@ -2232,7 +2232,7 @@ static int apply_to_pte_range(struct mm_struct *mm, pmd_t *pmd,
->  	arch_enter_lazy_mmu_mode();
->  
->  	do {
-> -		if (create || !pte_none(*pte)) {
-> +		if ((create || !pte_none(*pte)) && fn) {
->  			err = fn(pte++, addr, data);
->  			if (err)
->  				break;
-> diff --git a/mm/zsmalloc.c b/mm/zsmalloc.c
-> index 3e4fe3259612..9ef7daf3d279 100644
-> --- a/mm/zsmalloc.c
-> +++ b/mm/zsmalloc.c
-> @@ -1116,6 +1116,8 @@ static struct zspage *find_get_zspage(struct size_class *class)
->  #ifdef CONFIG_ZSMALLOC_PGTABLE_MAPPING
->  static inline int __zs_cpu_up(struct mapping_area *area)
->  {
-> +	int ret;
-> +
->  	/*
->  	 * Make sure we don't leak memory if a cpu UP notification
->  	 * and zs_init() race and both call zs_cpu_up() on the same cpu
-> @@ -1125,7 +1127,13 @@ static inline int __zs_cpu_up(struct mapping_area *area)
->  	area->vm = get_vm_area(PAGE_SIZE * 2, 0);
->  	if (!area->vm)
->  		return -ENOMEM;
-> -	return 0;
-> +
-> +	/*
-> +	 * Populate ptes in advance to avoid pte allocation with GFP_KERNEL
-> +	 * in non-preemtible context of zs_map_object.
-> +	 */
-> +	ret = apply_to_page_range(&init_mm, NULL, PAGE_SIZE * 2, NULL, NULL);
-> +	return ret;
+== Summary ==
 
-I think this needs the addr from the vm area somewhere..
+$ dim checkpatch origin/drm-tip
+a2bf36c707f0 drm/i915/guc: Update to use firmware v49.0.1
+-:231: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#231: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:167:
++		blob->system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_DOORBELL_COUNT_PER_SQIDI] =
 
-We probaby want to add a trivial helper to prefault an area instead of
-the open coded variant.
+total: 0 errors, 1 warnings, 0 checks, 447 lines checked
+087e6d613cd2 drm/i915/guc: Improved reporting when GuC fails to load
+d89334936a2a drm/i915/guc: Clear pointers on free
+ea46ad89cb74 drm/i915/uc: turn on GuC/HuC auto mode by default
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
