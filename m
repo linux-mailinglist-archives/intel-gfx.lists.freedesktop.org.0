@@ -1,45 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F60927454D
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 17:30:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68AE2274565
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 17:36:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F2286E8B7;
-	Tue, 22 Sep 2020 15:30:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A7F16E88E;
+	Tue, 22 Sep 2020 15:36:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B85146E8B7
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 15:30:47 +0000 (UTC)
-IronPort-SDR: QGceMQGqZw4bI4p/lchw9EIGGKlkQBbY6alr+DM25E1UxBN/tZ2j9VvyT/zE+2Vm5IlafFSSAp
- 6DkxJBWy8wfA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9752"; a="178699691"
-X-IronPort-AV: E=Sophos;i="5.77,291,1596524400"; d="scan'208";a="178699691"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2020 08:30:46 -0700
-IronPort-SDR: dbNl66CHtW/ijeyirt81VzSbi75roPDkc+P78kCQBeRDfxYkTd4ZslQbGp3A2lEuHEuuBjCaJs
- 0pZXeuoZFeUw==
-X-IronPort-AV: E=Sophos;i="5.77,291,1596524400"; d="scan'208";a="335060517"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2020 08:30:45 -0700
-Date: Tue, 22 Sep 2020 18:30:35 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200922153035.GF23028@ideak-desk.fi.intel.com>
-References: <20200922125106.30540-1-imre.deak@intel.com>
- <20200922125106.30540-4-imre.deak@intel.com>
- <20200922132705.GS6112@intel.com>
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 646966E88E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 15:36:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1600788987;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=M9stahxOzRNkTPfogWABGAzDbqfQEN5CaSC00DILWaE=;
+ b=UVLOEBcIUjCC6haIpr8b7R+qsv7KIEU65BK3rgmhXmXGSeUVHFAWHEgS/dvc7w+KN0xVRn
+ o7qVwdz2KRTPycrMKMX8fKTX+PxqjrC2XA2sdmeNLG8uE1Wh5nQAYZ8yEoQRq5atiXA+E5
+ GCCQljO5PLgm/pklhSuIfo0GRRQrIlg=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-204-I9-kvhkYMUK4SIlfcsPtuA-1; Tue, 22 Sep 2020 11:36:25 -0400
+X-MC-Unique: I9-kvhkYMUK4SIlfcsPtuA-1
+Received: by mail-qt1-f198.google.com with SMTP id m13so16212065qtu.10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 08:36:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=M9stahxOzRNkTPfogWABGAzDbqfQEN5CaSC00DILWaE=;
+ b=DNRg3q6ocidyyN3vk7cTyKxDiodVawoBjqMsb2wjrZ3/CsxQtMMU9jhkRgeyPFj2cO
+ ccI21UevkcciEyuLvdzTtPYiDs1YwClHR1pYLEIVa8fv+5NmvKa7ZM+kaxoz+0CH3PiA
+ xj1r8IEsERWuPPa8CLmDMWieH8iVpU/ltiEf5POLt5AL5LVxLCFYWyiRV0GaUJT4USXG
+ qKGZ8hXtUNLh1Dw9tdiqqYktldqGMzbYKI0yGGzEBTnY4ZmkvO7pVnhlZG/Isxn8Cvcr
+ 4zUwEOUYKpY1BSI/9a2IQ88EjTlmWVzg0eMZt94r4/lUtxo/la02fyKcSGC57Uq+6Ged
+ N+eA==
+X-Gm-Message-State: AOAM533jv58h5th2KX5Up6nBv+SegZlubrrlO27ThiVzeAgJL7a7tT2M
+ BR0raAfi+qsUmetm/NFjyT42KBTc5P9Xy7OIpXb6vD2lVlR2dFXPpnordETMMBF/4QceimXKVGv
+ Z+LbWbnsxS9rBmkf5Pekrre7sRyy9
+X-Received: by 2002:a0c:e78c:: with SMTP id x12mr6526973qvn.3.1600788984251;
+ Tue, 22 Sep 2020 08:36:24 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxvBR7/3Pw+CRfSo3sNTYNlnI3uEbZ/HGsL91bDwJLlbuyvkLCEBrAzuDrtPjOKj9uTMTrDsg==
+X-Received: by 2002:a0c:e78c:: with SMTP id x12mr6526950qvn.3.1600788983996;
+ Tue, 22 Sep 2020 08:36:23 -0700 (PDT)
+Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net.
+ [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id s25sm12933610qtc.90.2020.09.22.08.36.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Sep 2020 08:36:23 -0700 (PDT)
+Message-ID: <efd573770a0d78a19e8805760a9a8d9f6f5fe61b.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Sean Paul <seanpaul@chromium.org>
+Date: Tue, 22 Sep 2020 11:36:22 -0400
+In-Reply-To: <CAOw6vb+chhRTvF0kHy55uXb9BKqbPAhwJCuJ=_1uOPEHbRXMcA@mail.gmail.com>
+References: <20200918002845.32766-1-sean@poorly.run>
+ <470a3a448a80ae6f8e6e6f6a82f5ffc01c1d6033.camel@redhat.com>
+ <CAOw6vb+chhRTvF0kHy55uXb9BKqbPAhwJCuJ=_1uOPEHbRXMcA@mail.gmail.com>
+Organization: Red Hat
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200922132705.GS6112@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915: Simplify the link training
- functions
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Tweak initial dpcd
+ backlight.enabled value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,252 +83,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Kevin Chowski <chowski@chromium.org>, Jani Nikula <jani.nikula@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, David Airlie <airlied@linux.ie>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 22, 2020 at 04:27:05PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Tue, Sep 22, 2020 at 03:51:02PM +0300, Imre Deak wrote:
-> > Split the prepare, link training, fallback-handling steps into their own
-> > functions for clarity and as a preparation for the upcoming LTTPR chang=
-es.
-> > =
-
-> > While at it also add some documentation to exported functions.
-> > =
-
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  .../drm/i915/display/intel_dp_link_training.c | 80 ++++++++++++++-----
-> >  1 file changed, 62 insertions(+), 18 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/dr=
-ivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > index 6d13d00db5e6..0c3809891bd2 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > @@ -162,14 +162,13 @@ static bool intel_dp_link_max_vswing_reached(stru=
-ct intel_dp *intel_dp)
-> >  	return true;
-> >  }
-> >  =
-
-> > -/* Enable corresponding port and start training pattern 1 */
-> > -static bool
-> > -intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
-> > +/*
-> > + * Prepare link training by configuring the link parameters and enabli=
-ng the
-> > + * corresponding port.
-> > + */
-> > +static void intel_dp_prepare_link_train(struct intel_dp *intel_dp)
-> >  {
-> >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> > -	u8 voltage;
-> > -	int voltage_tries, cr_tries, max_cr_tries;
-> > -	bool max_vswing_reached =3D false;
-> >  	u8 link_config[2];
-> >  	u8 link_bw, rate_select;
-> >  =
-
-> > @@ -203,6 +202,16 @@ intel_dp_link_training_clock_recovery(struct intel=
-_dp *intel_dp)
-> >  	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
-> >  =
-
-> >  	intel_dp->DP |=3D DP_PORT_EN;
-> =
-
-> I guess we no longer actually enable the port here? The comment ^ still s=
-ays
-> we do.
-> =
-
-> Hmm. Seems we do enable the port on ddi platforms, but not on older
-> platforms. I guess the docs could still use a tweak to reflect
-> reality a bit better.
-
-Yes, missed the old platform part, will update the comment.
-
-> =
-
-> > +}
-> > +
-> > +/* Perform the link training clock recovery phase using training patte=
-rn 1. */
-> > +static bool
-> > +intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
-> > +{
-> > +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> > +	u8 voltage;
-> > +	int voltage_tries, cr_tries, max_cr_tries;
-> > +	bool max_vswing_reached =3D false;
-> >  =
-
-> >  	/* clock recovery */
-> >  	if (!intel_dp_reset_link_train(intel_dp,
-> > @@ -325,6 +334,10 @@ static u32 intel_dp_training_pattern(struct intel_=
-dp *intel_dp)
-> >  	return DP_TRAINING_PATTERN_2;
-> >  }
-> >  =
-
-> > +/*
-> > + * Perform the link training channel equalization phase using one of t=
-raining
-> > + * pattern 2, 3 or 4 depending on the the source and sink capabilities.
-> > + */
-> >  static bool
-> >  intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
-> >  {
-> > @@ -395,6 +408,15 @@ intel_dp_link_training_channel_equalization(struct=
- intel_dp *intel_dp)
-> >  =
-
-> >  }
-> >  =
-
-> > +/**
-> > + * intel_dp_stop_link_train - stop link training
-> > + * @intel_dp: DP struct
-> > + *
-> > + * Stop the link training of the @intel_dp port, programming the port =
-to
-> > + * output an idle pattern =
-
-> =
-
-> I don't think we use the idle pattern on all platforms.
-
-Yes, just DDI, this also needs a doc update.
-
-> BTW intel_dp_set_idle_link_train() looks pretty pointless. Could just
-> inline it into its only caller, or at least move it into
-> intel_dp_link_training.c.
-
-Ok, can unexport/inline it. Btw, this part made me wonder what's the
-exact reason for keeping the idle pattern output and corresponding DPCD
-programming separate, that is why can't we disable the training pattern
-in DPCD after intel_dp_set_idle_link_train()? That would make things
-more uniform on all platforms.
-
-> =
-
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> > on the link and  disabling the training pattern in
-> > + * the sink's DPCD.
-> > + * This function must be called after intel_dp_start_link_train().
-> > + */
-> >  void intel_dp_stop_link_train(struct intel_dp *intel_dp)
-> >  {
-> >  	intel_dp->link_trained =3D true;
-> > @@ -403,30 +425,37 @@ void intel_dp_stop_link_train(struct intel_dp *in=
-tel_dp)
-> >  				DP_TRAINING_PATTERN_DISABLE);
-> >  }
-> >  =
-
-> > -void
-> > -intel_dp_start_link_train(struct intel_dp *intel_dp)
-> > +static bool
-> > +intel_dp_link_train(struct intel_dp *intel_dp)
-> >  {
-> >  	struct intel_connector *intel_connector =3D intel_dp->attached_connec=
-tor;
-> > +	bool ret =3D false;
-> > +
-> > +	intel_dp_prepare_link_train(intel_dp);
-> >  =
-
-> >  	if (!intel_dp_link_training_clock_recovery(intel_dp))
-> > -		goto failure_handling;
-> > +		goto out;
-> > +
-> >  	if (!intel_dp_link_training_channel_equalization(intel_dp))
-> > -		goto failure_handling;
-> > +		goto out;
-> >  =
-
-> > -	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> > -		    "[CONNECTOR:%d:%s] Link Training Passed at Link Rate =3D %d, Lan=
-e count =3D %d",
-> > -		    intel_connector->base.base.id,
-> > -		    intel_connector->base.name,
-> > -		    intel_dp->link_rate, intel_dp->lane_count);
-> > -	return;
-> > +	ret =3D true;
-> >  =
-
-> > - failure_handling:
-> > +out:
-> >  	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> > -		    "[CONNECTOR:%d:%s] Link Training failed at link rate =3D %d, lan=
-e count =3D %d",
-> > +		    "[CONNECTOR:%d:%s] Link Training %s at Link Rate =3D %d, Lane co=
-unt =3D %d",
-> >  		    intel_connector->base.base.id,
-> >  		    intel_connector->base.name,
-> > +		    ret ? "passed" : "failed",
-> >  		    intel_dp->link_rate, intel_dp->lane_count);
-> >  =
-
-> > +	return ret;
-> > +}
-> > +
-> > +static void intel_dp_schedule_fallback_link_training(struct intel_dp *=
-intel_dp)
-> > +{
-> > +	struct intel_connector *intel_connector =3D intel_dp->attached_connec=
-tor;
-> > +
-> >  	if (intel_dp->hobl_active) {
-> >  		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> >  			    "Link Training failed with HOBL active, not enabling it from no=
-w on");
-> > @@ -440,3 +469,18 @@ intel_dp_start_link_train(struct intel_dp *intel_d=
-p)
-> >  	/* Schedule a Hotplug Uevent to userspace to start modeset */
-> >  	schedule_work(&intel_connector->modeset_retry_work);
-> >  }
-> > +
-> > +/**
-> > + * intel_dp_start_link_train - start link training
-> > + * @intel_dp: DP struct
-> > + *
-> > + * Start the link training of the @intel_dp port, scheduling a fallback
-> > + * retraining with reduced link rate/lane parameters if the link train=
-ing
-> > + * fails.
-> > + * After calling this function intel_dp_stop_link_train() must be call=
-ed.
-> > + */
-> > +void intel_dp_start_link_train(struct intel_dp *intel_dp)
-> > +{
-> > +	if (!intel_dp_link_train(intel_dp))
-> > +		intel_dp_schedule_fallback_link_training(intel_dp);
-> > +}
-> > -- =
-
-> > 2.17.1
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyMDIwLTA5LTIyIGF0IDA5OjM5IC0wNDAwLCBTZWFuIFBhdWwgd3JvdGU6Cj4gT24g
+TW9uLCBTZXAgMjEsIDIwMjAgYXQgNjozNSBQTSBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29t
+PiB3cm90ZToKPiA+IFNvIGlmIEkgdW5kZXJzdGFuZCB0aGlzIGNvcnJlY3RseSwgaXQgc291bmRz
+IGxpa2UgdGhhdCBzb21lIFBpeGVsYm9va3MKPiA+IGJvb3QgdXAKPiA+IHdpdGggRFBfRURQX0JB
+Q0tMSUdIVF9CUklHSFRORVNTX01TQiBzZXQgdG8gYSBub24temVybyB2YWx1ZSwgd2l0aG91dCB0
+aGUKPiA+IHBhbmVsIGFjdHVhbGx5IGhhdmluZyBEUENEIGJhY2tsaWdodCBjb250cm9scyBlbmFi
+bGVkPwo+IAo+IEl0IGJvb3RzIHdpdGggRFBfRURQX0JBQ0tMSUdIVF9CUklHSFRORVNTX01TQiA9
+PSAwLCB3aGljaCB1c2VkIHRvIHNldAo+IGJhY2tsaWdodC5lbmFibGVkID0gZmFsc2UuIEJ5IGNo
+YW5naW5nIGJhY2tsaWdodC5sZXZlbCA9IG1heCwKPiBiYWNrbGlnaHQuZW5hYmxlZCBpcyBub3cg
+c2V0IHRvIHRydWUuIFRoaXMgcmVzdWx0cyBpbiBsb3NpbmcgYmFja2xpZ2h0Cj4gY29udHJvbCBv
+biBib290IChzaW5jZSB0aGUgZW5hYmxlIHJvdXRpbmUgaXMgbm8gbG9uZ2VyIGludm9rZWQpLgo+
+IApBaGhoIG9rLCBJJ20gZmluZSB3aXRoIHRoYXQgLSByZXZpZXcgc3RpbGwgc3RhbmRzIDopCgo+
+IFNlYW4KPiAKPiA+IElmIEknbSB1bmRlcnN0YW5kaW5nIHRoYXQgY29ycmVjdGx5LCB0aGVuIHRo
+aXMgcGF0Y2ggbG9va3MgZ29vZCB0byBtZToKPiA+IAo+ID4gUmV2aWV3ZWQtYnk6IEx5dWRlIFBh
+dWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4gPiAKPiA+IE9uIFRodSwgMjAyMC0wOS0xNyBhdCAyMDoy
+OCAtMDQwMCwgU2VhbiBQYXVsIHdyb3RlOgo+ID4gPiBGcm9tOiBTZWFuIFBhdWwgPHNlYW5wYXVs
+QGNocm9taXVtLm9yZz4KPiA+ID4gCj4gPiA+IEluIGNvbW1pdCA3OTk0NjcyMzA5MmIgKCJkcm0v
+aTkxNTogQXNzdW1lIDEwMCUgYnJpZ2h0bmVzcyB3aGVuIG5vdCBpbgo+ID4gPiBEUENEIGNvbnRy
+b2wgbW9kZSIpLCB3ZSBmaXhlZCB0aGUgYnJpZ2h0bmVzcyBsZXZlbCB3aGVuIERQQ0QgY29udHJv
+bCB3YXMKPiA+ID4gbm90IGFjdGl2ZSB0byBtYXggYnJpZ2h0bmVzcy4gVGhpcyBpcyBhcyBnb29k
+IGFzIHdlIGNhbiBndWVzcyBzaW5jZSBtb3N0Cj4gPiA+IGJhY2tsaWdodHMgZ28gb24gZnVsbCB3
+aGVuIHVuY29udHJvbGxlZC4KPiA+ID4gCj4gPiA+IEhvd2V2ZXIgaW4gZG9pbmcgc28gd2UgY2hh
+bmdlZCB0aGUgc2VtYW50aWNzIG9mIHRoZSBpbml0aWFsCj4gPiA+ICdiYWNrbGlnaHQuZW5hYmxl
+ZCcgdmFsdWUuIEF0IGxlYXN0IG9uIFBpeGVsYm9va3MsIHRoZXkgIHdlcmUgcmVseWluZwo+ID4g
+PiBvbiB0aGUgYnJpZ2h0bmVzcyBsZXZlbCBpbiBEUF9FRFBfQkFDS0xJR0hUX0JSSUdIVE5FU1Nf
+TVNCIHRvIGJlIDAgb24KPiA+ID4gYm9vdCBzdWNoIHRoYXQgZW5hYmxlZCB3b3VsZCBiZSBmYWxz
+ZS4gVGhpcyBjYXVzZXMgdGhlIGRldmljZSB0byBiZQo+ID4gPiBlbmFibGVkIHdoZW4gdGhlIGJy
+aWdodG5lc3MgaXMgc2V0LiBXaXRob3V0IHRoaXMsIGJyaWdodG5lc3MgY29udHJvbAo+ID4gPiBk
+b2Vzbid0IHdvcmsuIFNvIGJ5IGNoYW5naW5nIGJyaWdodG5lc3MgdG8gbWF4LCB3ZSBhbHNvIGZs
+aXBwZWQgZW5hYmxlZAo+ID4gPiB0byBiZSB0cnVlIG9uIGJvb3QuCj4gPiA+IAo+ID4gPiBUbyBm
+aXggdGhpcywgbWFrZSBlbmFibGVkIGEgZnVuY3Rpb24gb2YgYnJpZ2h0bmVzcyBhbmQgYmFja2xp
+Z2h0IGNvbnRyb2wKPiA+ID4gbWVjaGFuaXNtLgo+ID4gPiAKPiA+ID4gRml4ZXM6IDc5OTQ2NzIz
+MDkyYiAoImRybS9pOTE1OiBBc3N1bWUgMTAwJSBicmlnaHRuZXNzIHdoZW4gbm90IGluIERQQ0QK
+PiA+ID4gY29udHJvbCBtb2RlIikKPiA+ID4gQ2M6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5j
+b20+Cj4gPiA+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+ID4gPiBD
+YzogSnVoYS1QZWtrYSBIZWlra2lsYSA8anVoYXBla2thLmhlaWtraWxhQGdtYWlsLmNvbT4KPiA+
+ID4gQ2M6ICJWaWxsZSBTeXJqw6Rsw6QiIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
+PiA+ID4gQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KPiA+ID4gQ2M6
+IEtldmluIENob3dza2kgPGNob3dza2lAY2hyb21pdW0ub3JnPj4KPiA+ID4gU2lnbmVkLW9mZi1i
+eTogU2VhbiBQYXVsIDxzZWFucGF1bEBjaHJvbWl1bS5vcmc+Cj4gPiA+IC0tLQo+ID4gPiAgLi4u
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5jIHwgMzEgKysrKysrKysr
+KysrLS0tLS0tLQo+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDIwIGluc2VydGlvbnMoKyksIDExIGRl
+bGV0aW9ucygtKQo+ID4gPiAKPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5jCj4gPiA+IGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXhfYmFja2xpZ2h0LmMKPiA+ID4gaW5kZXggYWNiZDdl
+YjY2Y2JlLi4wMzZmNTA0YWM3ZGIgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5jCj4gPiA+ICsrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5jCj4gPiA+IEBAIC01
+MiwxNyArNTIsMTEgQEAgc3RhdGljIHZvaWQgc2V0X2F1eF9iYWNrbGlnaHRfZW5hYmxlKHN0cnVj
+dCBpbnRlbF9kcAo+ID4gPiAqaW50ZWxfZHAsIGJvb2wgZW5hYmxlKQo+ID4gPiAgICAgICB9Cj4g
+PiA+ICB9Cj4gPiA+IAo+ID4gPiAtLyoKPiA+ID4gLSAqIFJlYWQgdGhlIGN1cnJlbnQgYmFja2xp
+Z2h0IHZhbHVlIGZyb20gRFBDRCByZWdpc3RlcihzKSBiYXNlZAo+ID4gPiAtICogb24gaWYgOC1i
+aXQoTVNCKSBvciAxNi1iaXQoTVNCIGFuZCBMU0IpIHZhbHVlcyBhcmUgc3VwcG9ydGVkCj4gPiA+
+IC0gKi8KPiA+ID4gLXN0YXRpYyB1MzIgaW50ZWxfZHBfYXV4X2dldF9iYWNrbGlnaHQoc3RydWN0
+IGludGVsX2Nvbm5lY3Rvcgo+ID4gPiAqY29ubmVjdG9yKQo+ID4gPiArc3RhdGljIGJvb2wgaW50
+ZWxfZHBfYXV4X2JhY2tsaWdodF9kcGNkX21vZGUoc3RydWN0IGludGVsX2Nvbm5lY3Rvcgo+ID4g
+PiAqY29ubmVjdG9yKQo+ID4gPiAgewo+ID4gPiAgICAgICBzdHJ1Y3QgaW50ZWxfZHAgKmludGVs
+X2RwID0gaW50ZWxfYXR0YWNoZWRfZHAoY29ubmVjdG9yKTsKPiA+ID4gICAgICAgc3RydWN0IGRy
+bV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBkcF90b19pOTE1KGludGVsX2RwKTsKPiA+ID4gLSAgICAg
+dTggcmVhZF92YWxbMl0gPSB7IDB4MCB9Owo+ID4gPiAgICAgICB1OCBtb2RlX3JlZzsKPiA+ID4g
+LSAgICAgdTE2IGxldmVsID0gMDsKPiA+ID4gCj4gPiA+ICAgICAgIGlmIChkcm1fZHBfZHBjZF9y
+ZWFkYigmaW50ZWxfZHAtPmF1eCwKPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIERQ
+X0VEUF9CQUNLTElHSFRfTU9ERV9TRVRfUkVHSVNURVIsCj4gPiA+IEBAIC03MCwxNSArNjQsMjkg
+QEAgc3RhdGljIHUzMiBpbnRlbF9kcF9hdXhfZ2V0X2JhY2tsaWdodChzdHJ1Y3QKPiA+ID4gaW50
+ZWxfY29ubmVjdG9yICpjb25uZWN0b3IpCj4gPiA+ICAgICAgICAgICAgICAgZHJtX2RiZ19rbXMo
+Jmk5MTUtPmRybSwKPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAiRmFpbGVkIHRvIHJl
+YWQgdGhlIERQQ0QgcmVnaXN0ZXIgMHgleFxuIiwKPiA+ID4gICAgICAgICAgICAgICAgICAgICAg
+ICAgICBEUF9FRFBfQkFDS0xJR0hUX01PREVfU0VUX1JFR0lTVEVSKTsKPiA+ID4gLSAgICAgICAg
+ICAgICByZXR1cm4gMDsKPiA+ID4gKyAgICAgICAgICAgICByZXR1cm4gZmFsc2U7Cj4gPiA+ICAg
+ICAgIH0KPiA+ID4gCj4gPiA+ICsgICAgIHJldHVybiAobW9kZV9yZWcgJiBEUF9FRFBfQkFDS0xJ
+R0hUX0NPTlRST0xfTU9ERV9NQVNLKSA9PQo+ID4gPiArICAgICAgICAgICAgRFBfRURQX0JBQ0tM
+SUdIVF9DT05UUk9MX01PREVfRFBDRDsKPiA+ID4gK30KPiA+ID4gKwo+ID4gPiArLyoKPiA+ID4g
+KyAqIFJlYWQgdGhlIGN1cnJlbnQgYmFja2xpZ2h0IHZhbHVlIGZyb20gRFBDRCByZWdpc3Rlcihz
+KSBiYXNlZAo+ID4gPiArICogb24gaWYgOC1iaXQoTVNCKSBvciAxNi1iaXQoTVNCIGFuZCBMU0Ip
+IHZhbHVlcyBhcmUgc3VwcG9ydGVkCj4gPiA+ICsgKi8KPiA+ID4gK3N0YXRpYyB1MzIgaW50ZWxf
+ZHBfYXV4X2dldF9iYWNrbGlnaHQoc3RydWN0IGludGVsX2Nvbm5lY3Rvcgo+ID4gPiAqY29ubmVj
+dG9yKQo+ID4gPiArewo+ID4gPiArICAgICBzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwID0gaW50
+ZWxfYXR0YWNoZWRfZHAoY29ubmVjdG9yKTsKPiA+ID4gKyAgICAgc3RydWN0IGRybV9pOTE1X3By
+aXZhdGUgKmk5MTUgPSBkcF90b19pOTE1KGludGVsX2RwKTsKPiA+ID4gKyAgICAgdTggcmVhZF92
+YWxbMl0gPSB7IDB4MCB9Owo+ID4gPiArICAgICB1MTYgbGV2ZWwgPSAwOwo+ID4gPiArCj4gPiA+
+ICAgICAgIC8qCj4gPiA+ICAgICAgICAqIElmIHdlJ3JlIG5vdCBpbiBEUENEIGNvbnRyb2wgbW9k
+ZSB5ZXQsIHRoZSBwcm9ncmFtbWVkCj4gPiA+IGJyaWdodG5lc3MKPiA+ID4gICAgICAgICogdmFs
+dWUgaXMgbWVhbmluZ2xlc3MgYW5kIHdlIHNob3VsZCBhc3N1bWUgbWF4IGJyaWdodG5lc3MKPiA+
+ID4gICAgICAgICovCj4gPiA+IC0gICAgIGlmICgobW9kZV9yZWcgJiBEUF9FRFBfQkFDS0xJR0hU
+X0NPTlRST0xfTU9ERV9NQVNLKSAhPQo+ID4gPiAtICAgICAgICAgRFBfRURQX0JBQ0tMSUdIVF9D
+T05UUk9MX01PREVfRFBDRCkKPiA+ID4gKyAgICAgaWYgKCFpbnRlbF9kcF9hdXhfYmFja2xpZ2h0
+X2RwY2RfbW9kZShjb25uZWN0b3IpKQo+ID4gPiAgICAgICAgICAgICAgIHJldHVybiBjb25uZWN0
+b3ItPnBhbmVsLmJhY2tsaWdodC5tYXg7Cj4gPiA+IAo+ID4gPiAgICAgICBpZiAoZHJtX2RwX2Rw
+Y2RfcmVhZCgmaW50ZWxfZHAtPmF1eCwKPiA+ID4gRFBfRURQX0JBQ0tMSUdIVF9CUklHSFRORVNT
+X01TQiwKPiA+ID4gQEAgLTMxOSw3ICszMjcsOCBAQCBzdGF0aWMgaW50IGludGVsX2RwX2F1eF9z
+ZXR1cF9iYWNrbGlnaHQoc3RydWN0Cj4gPiA+IGludGVsX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+
+ID4gPiAKPiA+ID4gICAgICAgcGFuZWwtPmJhY2tsaWdodC5taW4gPSAwOwo+ID4gPiAgICAgICBw
+YW5lbC0+YmFja2xpZ2h0LmxldmVsID0gaW50ZWxfZHBfYXV4X2dldF9iYWNrbGlnaHQoY29ubmVj
+dG9yKTsKPiA+ID4gLSAgICAgcGFuZWwtPmJhY2tsaWdodC5lbmFibGVkID0gcGFuZWwtPmJhY2ts
+aWdodC5sZXZlbCAhPSAwOwo+ID4gPiArICAgICBwYW5lbC0+YmFja2xpZ2h0LmVuYWJsZWQgPQo+
+ID4gPiBpbnRlbF9kcF9hdXhfYmFja2xpZ2h0X2RwY2RfbW9kZShjb25uZWN0b3IpCj4gPiA+ICYm
+Cj4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBhbmVsLT5iYWNrbGlnaHQu
+bGV2ZWwgIT0gMDsKPiA+ID4gCj4gPiA+ICAgICAgIHJldHVybiAwOwo+ID4gPiAgfQo+ID4gLS0K
+PiA+IENoZWVycywKPiA+ICAgICAgICAgTHl1ZGUgUGF1bCAoc2hlL2hlcikKPiA+ICAgICAgICAg
+U29mdHdhcmUgRW5naW5lZXIgYXQgUmVkIEhhdAo+ID4gCi0tIApDaGVlcnMsCglMeXVkZSBQYXVs
+IChzaGUvaGVyKQoJU29mdHdhcmUgRW5naW5lZXIgYXQgUmVkIEhhdAoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
