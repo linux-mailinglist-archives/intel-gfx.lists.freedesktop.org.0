@@ -1,46 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D56F527373F
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 02:24:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7702827376B
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 02:30:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FBFE6E5CD;
-	Tue, 22 Sep 2020 00:24:17 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCA866E5CD
- for <Intel-GFX@lists.freedesktop.org>; Tue, 22 Sep 2020 00:24:14 +0000 (UTC)
-IronPort-SDR: nUPP0W/AAj44thN8JPXSe5hCxXgFUZKE880B6ZUOfHRghzgMZDLsZt9x+qLuBPHOloMcSIFjUh
- 8XMZGCsDOg7A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="140507635"
-X-IronPort-AV: E=Sophos;i="5.77,288,1596524400"; d="scan'208";a="140507635"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E95389B05;
+	Tue, 22 Sep 2020 00:30:20 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B0C689CF4
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 00:30:17 +0000 (UTC)
+IronPort-SDR: JGymacdTk9d/fM8IQ5T3Wk2dJtGuPBRiku+qr49JN9ecQCuv9bAQAHDDO03366VX7HOV4nA4jE
+ 3yYgw9HHXoIQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="161425401"
+X-IronPort-AV: E=Sophos;i="5.77,288,1596524400"; d="scan'208";a="161425401"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2020 17:24:12 -0700
-IronPort-SDR: 6+kaFQjPy2GgD70Oou+VG5JzcmrhVb6UEZ4E7zMHpbyG8zafrKtH1dYaAbrO0dXqt7X1E2WVn8
- 1Ebmx3XEoJKg==
-X-IronPort-AV: E=Sophos;i="5.77,288,1596524400"; d="scan'208";a="290200271"
-Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.212.26.61])
- ([10.212.26.61])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2020 17:24:10 -0700
-To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20200921175428.2914478-1-John.C.Harrison@Intel.com>
- <20200921175428.2914478-2-John.C.Harrison@Intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <20c3b327-9737-c2f3-6596-5ea06c7f1548@intel.com>
-Date: Mon, 21 Sep 2020 17:24:02 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2020 17:30:15 -0700
+IronPort-SDR: XxmBwCkFQnBv7el7ENXABUajPFYQWDnkiPSjfIISmi1wsuEYzT/vrKmJd8cKOU0NRqZvl3x64S
+ BLc+OSd3zBGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,288,1596524400"; d="scan'208";a="412481384"
+Received: from allen-box.sh.intel.com (HELO [10.239.159.139])
+ ([10.239.159.139])
+ by fmsmga001.fm.intel.com with ESMTP; 21 Sep 2020 17:30:13 -0700
+To: Logan Gunthorpe <logang@deltatee.com>, Joerg Roedel <joro@8bytes.org>,
+ Tom Murphy <murphyt7@tcd.ie>, David Woodhouse <dwmw2@infradead.org>,
+ Christoph Hellwig <hch@infradead.org>
+References: <20200912032200.11489-1-baolu.lu@linux.intel.com>
+ <776771a2-247a-d1be-d882-bee02d919ae0@deltatee.com>
+ <fe94760f-3c10-4222-ec87-291c01325fef@linux.intel.com>
+ <e95a55ea-b03f-4b3c-327a-b48d364577e9@deltatee.com>
+From: Lu Baolu <baolu.lu@linux.intel.com>
+Message-ID: <c8bde158-50f6-1656-4a7d-6323573ba501@linux.intel.com>
+Date: Tue, 22 Sep 2020 08:24:11 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200921175428.2914478-2-John.C.Harrison@Intel.com>
+In-Reply-To: <e95a55ea-b03f-4b3c-327a-b48d364577e9@deltatee.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/guc: Update to use firmware
- v49.0.1
+Subject: Re: [Intel-gfx] [PATCH v3 0/6] Convert the intel iommu driver to
+ the dma-iommu api
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,595 +57,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Oscar Mateo <oscar.mateo@intel.com>,
- Michal Winiarski <michal.winiarski@intel.com>,
- Michel Thierry <michel.thierry@intel.com>
+Cc: linux-kernel@vger.kernel.org, Intel-gfx@lists.freedesktop.org,
+ Ashok Raj <ashok.raj@intel.com>, iommu@lists.linux-foundation.org,
+ baolu.lu@linux.intel.com
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Logan,
 
+On 9/21/20 11:48 PM, Logan Gunthorpe wrote:
+> 
+> 
+> On 2020-09-20 12:36 a.m., Lu Baolu wrote:
+>> Hi Logan,
+>>
+>> On 2020/9/19 4:47, Logan Gunthorpe wrote:
+>>> Hi Lu,
+>>>
+>>> On 2020-09-11 9:21 p.m., Lu Baolu wrote:
+>>>> Tom Murphy has almost done all the work. His latest patch series was
+>>>> posted here.
+>>>>
+>>>> https://lore.kernel.org/linux-iommu/20200903201839.7327-1-murphyt7@tcd.ie/
+>>>>
+>>>> Thanks a lot!
+>>>>
+>>>> This series is a follow-up with below changes:
+>>>>
+>>>> 1. Add a quirk for the i915 driver issue described in Tom's cover
+>>>> letter.
+>>>> 2. Fix several bugs in patch "iommu: Allow the dma-iommu api to use
+>>>> bounce buffers" to make the bounce buffer work for untrusted devices.
+>>>> 3. Several cleanups in iommu/vt-d driver after the conversion.
+>>>>
+>>>
+>>> I'm trying to test this on an old Sandy Bridge, but found that I get
+>>> spammed with warnings on boot. I've put a sample of a few of them below.
+>>> They all seem to be related to ioat.
+>>>
+>>> I had the same issue with Tom's v2 but never saw this on his v1.
+>>
+>> Have you verified whether this could be reproduced with the lasted
+>> upstream kernel (without this patch series)?
+> 
+> Yes.
 
-On 9/21/2020 10:54 AM, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
->
-> The latest GuC firmware includes a number of interface changes that
-> require driver updates to match.
->
-> * Starting from Gen11, the ID to be provided to GuC needs to contain
->    the engine class in bits [0..2] and the instance in bits [3..6].
->
->    NOTE: this patch breaks pointer dereferences in some existing GuC
->    functions that use the guc_id to dereference arrays but these functions
->    are not used for now as we have GuC submission disabled and we will
->    update these functions in follow up patch which requires new IDs.
->
-> * The new GuC requires the additional data structure (ADS) and associated
->    'private_data' pointer to be setup. This is basically a scratch area
->    of memory that the GuC owns. The size is read from the CSS header.
->
-> * There is now a physical to logical engine mapping table in the ADS
->    which needs to be configured in order for the firmware to load. For
->    now, the table is initialised with a 1 to 1 mapping.
->
-> * GUC_CTL_CTXINFO has been removed from the initialization params.
->
-> * reg_state_buffer is maintained internally by the GuC as part of
->    the private data.
->
-> * The ADS layout has changed significantly. This patch updates the
->    shared structure and also adds better documentation of the layout.
->
-> * While i915 does not use GuC doorbells, the firmware now requires
->    that some initialisation is done.
->
-> * The number of engine classes and instances supported in the ADS has
->    been increased.
->
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Signed-off-by: Oscar Mateo <oscar.mateo@intel.com>
-> Signed-off-by: Michel Thierry <michel.thierry@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Michal Winiarski <michal.winiarski@intel.com>
-> Cc: Tomasz Lis <tomasz.lis@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c    |   3 +-
->   drivers/gpu/drm/i915/gt/uc/intel_guc.c       |  18 ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c   | 131 +++++++++++++++----
->   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h  |  82 +++++++-----
->   drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h   |   5 +
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c     |  27 ++--
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h     |   2 +
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h |   6 +-
->   8 files changed, 182 insertions(+), 92 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 1985772152bf..3fb52fac0d5d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -305,8 +305,9 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
->   	engine->i915 = i915;
->   	engine->gt = gt;
->   	engine->uncore = gt->uncore;
-> -	engine->hw_id = engine->guc_id = info->hw_id;
->   	engine->mmio_base = __engine_mmio_base(i915, info->mmio_bases);
-> +	engine->hw_id = info->hw_id;
-> +	engine->guc_id = MAKE_GUC_ID(info->class, info->instance);
->   
->   	engine->class = info->class;
->   	engine->instance = info->instance;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> index 942c7c187adb..6909da1e1a73 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> @@ -213,23 +213,6 @@ static u32 guc_ctl_feature_flags(struct intel_guc *guc)
->   	return flags;
->   }
->   
-> -static u32 guc_ctl_ctxinfo_flags(struct intel_guc *guc)
-> -{
-> -	u32 flags = 0;
-> -
-> -	if (intel_guc_submission_is_used(guc)) {
-> -		u32 ctxnum, base;
-> -
-> -		base = intel_guc_ggtt_offset(guc, guc->stage_desc_pool);
-> -		ctxnum = GUC_MAX_STAGE_DESCRIPTORS / 16;
-> -
-> -		base >>= PAGE_SHIFT;
-> -		flags |= (base << GUC_CTL_BASE_ADDR_SHIFT) |
-> -			(ctxnum << GUC_CTL_CTXNUM_IN16_SHIFT);
-> -	}
-> -	return flags;
-> -}
-> -
->   static u32 guc_ctl_log_params_flags(struct intel_guc *guc)
->   {
->   	u32 offset = intel_guc_ggtt_offset(guc, guc->log.vma) >> PAGE_SHIFT;
-> @@ -291,7 +274,6 @@ static void guc_init_params(struct intel_guc *guc)
->   
->   	BUILD_BUG_ON(sizeof(guc->params) != GUC_CTL_MAX_DWORDS * sizeof(u32));
->   
-> -	params[GUC_CTL_CTXINFO] = guc_ctl_ctxinfo_flags(guc);
->   	params[GUC_CTL_LOG_PARAMS] = guc_ctl_log_params_flags(guc);
->   	params[GUC_CTL_FEATURE] = guc_ctl_feature_flags(guc);
->   	params[GUC_CTL_DEBUG] = guc_ctl_debug_flags(guc);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> index d44061033f23..7950d28beb8c 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> @@ -10,11 +10,52 @@
->   
->   /*
->    * The Additional Data Struct (ADS) has pointers for different buffers used by
-> - * the GuC. One single gem object contains the ADS struct itself (guc_ads), the
-> - * scheduling policies (guc_policies), a structure describing a collection of
-> - * register sets (guc_mmio_reg_state) and some extra pages for the GuC to save
-> - * its internal state for sleep.
-> + * the GuC. One single gem object contains the ADS struct itself (guc_ads) and
-> + * all the extra buffers indirectly linked via the ADS struct's entries.
-> + *
-> + * Layout of the ADS blob allocated for the GuC:
-> + *
-> + *      +---------------------------------------+ <== base
-> + *      | guc_ads                               |
-> + *      +---------------------------------------+
-> + *      | guc_policies                          |
-> + *      +---------------------------------------+
-> + *      | guc_gt_system_info                    |
-> + *      +---------------------------------------+
-> + *      | guc_clients_info                      |
-> + *      +---------------------------------------+
-> + *      | guc_ct_pool_entry[size]               |
-> + *      +---------------------------------------+
-> + *      | padding                               |
-> + *      +---------------------------------------+ <== 4K aligned
-> + *      | private data                          |
-> + *      +---------------------------------------+
-> + *      | padding                               |
-> + *      +---------------------------------------+ <== 4K aligned
->    */
-> +struct __guc_ads_blob {
-> +	struct guc_ads ads;
-> +	struct guc_policies policies;
-> +	struct guc_gt_system_info system_info;
-> +	struct guc_clients_info clients_info;
-> +	struct guc_ct_pool_entry ct_pool[GUC_CT_POOL_SIZE];
-> +} __packed;
-> +
-> +static u32 guc_ads_private_data_size(struct intel_guc *guc)
-> +{
-> +	return PAGE_ALIGN(guc->fw.private_data_size);
-> +}
-> +
-> +static u32 guc_ads_private_data_offset(struct intel_guc *guc)
-> +{
-> +	return PAGE_ALIGN(sizeof(struct __guc_ads_blob));
-> +}
-> +
-> +static u32 guc_ads_blob_size(struct intel_guc *guc)
-> +{
-> +	return guc_ads_private_data_offset(guc) +
-> +	       guc_ads_private_data_size(guc);
-> +}
->   
->   static void guc_policy_init(struct guc_policy *policy)
->   {
-> @@ -48,26 +89,37 @@ static void guc_ct_pool_entries_init(struct guc_ct_pool_entry *pool, u32 num)
->   	memset(pool, 0, num * sizeof(*pool));
->   }
->   
-> +static void guc_mapping_table_init(struct intel_gt *gt,
-> +				   struct guc_gt_system_info *system_info)
-> +{
-> +	unsigned int i, j;
-> +	struct intel_engine_cs *engine;
-> +	enum intel_engine_id id;
-> +
-> +	/* Table must be set to invalid values for entries not used */
-> +	for (i = 0; i < GUC_MAX_ENGINE_CLASSES; ++i)
-> +		for (j = 0; j < GUC_MAX_INSTANCES_PER_CLASS; ++j)
-> +			system_info->mapping_table[i][j] =
-> +				GUC_MAX_INSTANCES_PER_CLASS;
-> +
-> +	for_each_engine(engine, gt, id) {
-> +		u8 guc_class = engine->class;
-> +
-> +		system_info->mapping_table[guc_class][engine->instance] =
-> +			engine->instance;
-> +	}
-> +}
-> +
->   /*
->    * The first 80 dwords of the register state context, containing the
->    * execlists and ppgtt registers.
->    */
->   #define LR_HW_CONTEXT_SIZE	(80 * sizeof(u32))
->   
-> -/* The ads obj includes the struct itself and buffers passed to GuC */
-> -struct __guc_ads_blob {
-> -	struct guc_ads ads;
-> -	struct guc_policies policies;
-> -	struct guc_mmio_reg_state reg_state;
-> -	struct guc_gt_system_info system_info;
-> -	struct guc_clients_info clients_info;
-> -	struct guc_ct_pool_entry ct_pool[GUC_CT_POOL_SIZE];
-> -	u8 reg_state_buffer[GUC_S3_SAVE_SPACE_PAGES * PAGE_SIZE];
-> -} __packed;
-> -
->   static void __guc_ads_init(struct intel_guc *guc)
->   {
->   	struct intel_gt *gt = guc_to_gt(guc);
-> +	struct drm_i915_private *i915 = gt->i915;
->   	struct __guc_ads_blob *blob = guc->ads_blob;
->   	const u32 skipped_size = LRC_PPHWSP_SZ * PAGE_SIZE + LR_HW_CONTEXT_SIZE;
->   	u32 base;
-> @@ -99,13 +151,25 @@ static void __guc_ads_init(struct intel_guc *guc)
->   	}
->   
->   	/* System info */
-> -	blob->system_info.slice_enabled = hweight8(gt->info.sseu.slice_mask);
-> -	blob->system_info.rcs_enabled = 1;
-> -	blob->system_info.bcs_enabled = 1;
-> +	blob->system_info.engine_enabled_masks[RENDER_CLASS] = 1;
-> +	blob->system_info.engine_enabled_masks[COPY_ENGINE_CLASS] = 1;
-> +	blob->system_info.engine_enabled_masks[VIDEO_DECODE_CLASS] = VDBOX_MASK(gt);
-> +	blob->system_info.engine_enabled_masks[VIDEO_ENHANCEMENT_CLASS] = VEBOX_MASK(gt);
-> +
-> +	blob->system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_SLICE_ENABLED] =
-> +		hweight8(gt->info.sseu.slice_mask);
-> +	blob->system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_VDBOX_SFC_SUPPORT_MASK] =
-> +		gt->info.vdbox_sfc_access;
-> +
-> +	if (INTEL_GEN(i915) >= 12 && !IS_DGFX(i915)) {
-> +		u32 distdbreg = intel_uncore_read(gt->uncore,
-> +						  GEN12_DIST_DBS_POPULATED);
-> +		blob->system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_DOORBELL_COUNT_PER_SQIDI] =
-> +			((distdbreg >> GEN12_DOORBELLS_PER_SQIDI_SHIFT) &
-> +			 GEN12_DOORBELLS_PER_SQIDI) + 1;
-> +	}
->   
-> -	blob->system_info.vdbox_enable_mask = VDBOX_MASK(gt);
-> -	blob->system_info.vebox_enable_mask = VEBOX_MASK(gt);
-> -	blob->system_info.vdbox_sfc_support_mask = gt->info.vdbox_sfc_access;
-> +	guc_mapping_table_init(guc_to_gt(guc), &blob->system_info);
->   
->   	base = intel_guc_ggtt_offset(guc, guc->ads_vma);
->   
-> @@ -118,11 +182,12 @@ static void __guc_ads_init(struct intel_guc *guc)
->   
->   	/* ADS */
->   	blob->ads.scheduler_policies = base + ptr_offset(blob, policies);
-> -	blob->ads.reg_state_buffer = base + ptr_offset(blob, reg_state_buffer);
-> -	blob->ads.reg_state_addr = base + ptr_offset(blob, reg_state);
->   	blob->ads.gt_system_info = base + ptr_offset(blob, system_info);
->   	blob->ads.clients_info = base + ptr_offset(blob, clients_info);
->   
-> +	/* Private Data */
-> +	blob->ads.private_data = base + guc_ads_private_data_offset(guc);
-> +
->   	i915_gem_object_flush_map(guc->ads_vma->obj);
->   }
->   
-> @@ -135,14 +200,15 @@ static void __guc_ads_init(struct intel_guc *guc)
->    */
->   int intel_guc_ads_create(struct intel_guc *guc)
->   {
-> -	const u32 size = PAGE_ALIGN(sizeof(struct __guc_ads_blob));
-> +	u32 size;
->   	int ret;
->   
->   	GEM_BUG_ON(guc->ads_vma);
->   
-> +	size = guc_ads_blob_size(guc);
-> +
->   	ret = intel_guc_allocate_and_map_vma(guc, size, &guc->ads_vma,
->   					     (void **)&guc->ads_blob);
-> -
->   	if (ret)
->   		return ret;
->   
-> @@ -156,6 +222,18 @@ void intel_guc_ads_destroy(struct intel_guc *guc)
->   	i915_vma_unpin_and_release(&guc->ads_vma, I915_VMA_RELEASE_MAP);
->   }
->   
-> +static void guc_ads_private_data_reset(struct intel_guc *guc)
-> +{
-> +	u32 size;
-> +
-> +	size = guc_ads_private_data_size(guc);
-> +	if (!size)
-> +		return;
-> +
-> +	memset((void *)guc->ads_blob + guc_ads_private_data_offset(guc), 0,
-> +	       size);
-> +}
-> +
->   /**
->    * intel_guc_ads_reset() - prepares GuC Additional Data Struct for reuse
->    * @guc: intel_guc struct
-> @@ -168,5 +246,8 @@ void intel_guc_ads_reset(struct intel_guc *guc)
->   {
->   	if (!guc->ads_vma)
->   		return;
-> +
->   	__guc_ads_init(guc);
-> +
-> +	guc_ads_private_data_reset(guc);
->   }
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> index a6b733c146c9..391053118869 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> @@ -26,8 +26,8 @@
->   #define GUC_VIDEO_ENGINE2		4
->   #define GUC_MAX_ENGINES_NUM		(GUC_VIDEO_ENGINE2 + 1)
->   
-> -#define GUC_MAX_ENGINE_CLASSES		5
-> -#define GUC_MAX_INSTANCES_PER_CLASS	16
-> +#define GUC_MAX_ENGINE_CLASSES		16
-> +#define GUC_MAX_INSTANCES_PER_CLASS	32
->   
->   #define GUC_DOORBELL_INVALID		256
->   
-> @@ -62,12 +62,7 @@
->   #define GUC_STAGE_DESC_ATTR_PCH		BIT(6)
->   #define GUC_STAGE_DESC_ATTR_TERMINATED	BIT(7)
->   
-> -/* New GuC control data */
-> -#define GUC_CTL_CTXINFO			0
-> -#define   GUC_CTL_CTXNUM_IN16_SHIFT	0
-> -#define   GUC_CTL_BASE_ADDR_SHIFT	12
-> -
-> -#define GUC_CTL_LOG_PARAMS		1
-> +#define GUC_CTL_LOG_PARAMS		0
->   #define   GUC_LOG_VALID			(1 << 0)
->   #define   GUC_LOG_NOTIFY_ON_HALF_FULL	(1 << 1)
->   #define   GUC_LOG_ALLOC_IN_MEGABYTE	(1 << 3)
-> @@ -79,11 +74,11 @@
->   #define   GUC_LOG_ISR_MASK	        (0x7 << GUC_LOG_ISR_SHIFT)
->   #define   GUC_LOG_BUF_ADDR_SHIFT	12
->   
-> -#define GUC_CTL_WA			2
-> -#define GUC_CTL_FEATURE			3
-> +#define GUC_CTL_WA			1
-> +#define GUC_CTL_FEATURE			2
->   #define   GUC_CTL_DISABLE_SCHEDULER	(1 << 14)
->   
-> -#define GUC_CTL_DEBUG			4
-> +#define GUC_CTL_DEBUG			3
->   #define   GUC_LOG_VERBOSITY_SHIFT	0
->   #define   GUC_LOG_VERBOSITY_LOW		(0 << GUC_LOG_VERBOSITY_SHIFT)
->   #define   GUC_LOG_VERBOSITY_MED		(1 << GUC_LOG_VERBOSITY_SHIFT)
-> @@ -97,12 +92,37 @@
->   #define   GUC_LOG_DISABLED		(1 << 6)
->   #define   GUC_PROFILE_ENABLED		(1 << 7)
->   
-> -#define GUC_CTL_ADS			5
-> +#define GUC_CTL_ADS			4
->   #define   GUC_ADS_ADDR_SHIFT		1
->   #define   GUC_ADS_ADDR_MASK		(0xFFFFF << GUC_ADS_ADDR_SHIFT)
->   
->   #define GUC_CTL_MAX_DWORDS		(SOFT_SCRATCH_COUNT - 2) /* [1..14] */
->   
-> +/* Generic GT SysInfo data types */
-> +#define GUC_GENERIC_GT_SYSINFO_SLICE_ENABLED		0
-> +#define GUC_GENERIC_GT_SYSINFO_VDBOX_SFC_SUPPORT_MASK	1
-> +#define GUC_GENERIC_GT_SYSINFO_DOORBELL_COUNT_PER_SQIDI	2
-> +#define GUC_GENERIC_GT_SYSINFO_MAX			16
+I am sorry. Just want to make sure I understand you correctly. :-) When
+you say "yes", do you mean you could reproduce this with pure upstream
+kernel (5.9-rc6)?
 
-nit: these names are long. Maybe drop the "GENERIC"? it's not like there 
-is a specialized_info array :)
+> Also, it's hitting a warning in the dma-iommu code which would not
+> be hit without this patch set.
 
-> +
-> +/*
-> + * The class goes in bits [0..2] of the GuC ID, the instance in bits [3..6].
-> + * Bit 7 can be used for operations that apply to all engine classes&instances.
-> + */
-> +#define GUC_ENGINE_CLASS_SHIFT		0
-> +#define GUC_ENGINE_CLASS_MASK		(0x7 << GUC_ENGINE_CLASS_SHIFT)
-> +#define GUC_ENGINE_INSTANCE_SHIFT	3
-> +#define GUC_ENGINE_INSTANCE_MASK	(0xf << GUC_ENGINE_INSTANCE_SHIFT)
-> +#define GUC_ENGINE_ALL_INSTANCES	BIT(7)
-> +
-> +#define MAKE_GUC_ID(class, instance) \
-> +	(((class) << GUC_ENGINE_CLASS_SHIFT) | \
-> +	 ((instance) << GUC_ENGINE_INSTANCE_SHIFT))
-> +
-> +#define GUC_ID_TO_ENGINE_CLASS(guc_id) \
-> +	(((guc_id) & GUC_ENGINE_CLASS_MASK) >> GUC_ENGINE_CLASS_SHIFT)
-> +#define GUC_ID_TO_ENGINE_INSTANCE(guc_id) \
-> +	(((guc_id) & GUC_ENGINE_INSTANCE_MASK) >> GUC_ENGINE_INSTANCE_SHIFT)
-> +
->   /* Work item for submitting workloads into work queue of GuC. */
->   struct guc_wq_item {
->   	u32 header;
-> @@ -338,7 +358,6 @@ struct guc_policies {
->   /* GuC MMIO reg state struct */
->   
->   
-> -#define GUC_REGSET_MAX_REGISTERS	64
->   #define GUC_S3_SAVE_SPACE_PAGES		10
+Without this series, DMA APIs don't go through dma-iommu. Do you mind
+posting the warning message?
 
-The S3 define can also be removed
-
->   
->   struct guc_mmio_reg {
-> @@ -348,28 +367,24 @@ struct guc_mmio_reg {
->   #define GUC_REGSET_MASKED		(1 << 0)
->   } __packed;
->   
-> -struct guc_mmio_regset {
-> -	struct guc_mmio_reg registers[GUC_REGSET_MAX_REGISTERS];
-> -	u32 values_valid;
-> -	u32 number_of_registers;
-> -} __packed;
-> -
->   /* GuC register sets */
-> -struct guc_mmio_reg_state {
-> -	struct guc_mmio_regset engine_reg[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-> -	u32 reserved[98];
-> +struct guc_mmio_reg_set {
-> +	u32 address;
-> +	union {
-> +		struct {
-> +			u32 count:16;
-> +			u32 reserved1:12;
-> +			u32 reserved2:4;
-
-I believe we usually try to avoid bitfield definitions in interfaces. In 
-this case, wouldn't it be simpler to just have a u16 count and a u16 
-reserved, entirely skipping the union and the inner struct? I know it 
-wouldn't match the GuC file 1:1 but IMO it's an acceptable difference 
-given its triviality.
-
-With the define removed and this struct cleaned up:
-
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-
-Daniele
-
-> +		};
-> +		u32 count_u32;
-> +	};
->   } __packed;
->   
->   /* HW info */
->   struct guc_gt_system_info {
-> -	u32 slice_enabled;
-> -	u32 rcs_enabled;
-> -	u32 reserved0;
-> -	u32 bcs_enabled;
-> -	u32 vdbox_enable_mask;
-> -	u32 vdbox_sfc_support_mask;
-> -	u32 vebox_enable_mask;
-> -	u32 reserved[9];
-> +	u8 mapping_table[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-> +	u32 engine_enabled_masks[GUC_MAX_ENGINE_CLASSES];
-> +	u32 generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_MAX];
->   } __packed;
->   
->   /* Clients info */
-> @@ -390,15 +405,16 @@ struct guc_clients_info {
->   
->   /* GuC Additional Data Struct */
->   struct guc_ads {
-> -	u32 reg_state_addr;
-> -	u32 reg_state_buffer;
-> +	struct guc_mmio_reg_set reg_state_list[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-> +	u32 reserved0;
->   	u32 scheduler_policies;
->   	u32 gt_system_info;
->   	u32 clients_info;
->   	u32 control_data;
->   	u32 golden_context_lrca[GUC_MAX_ENGINE_CLASSES];
->   	u32 eng_state_size[GUC_MAX_ENGINE_CLASSES];
-> -	u32 reserved[16];
-> +	u32 private_data;
-> +	u32 reserved[15];
->   } __packed;
->   
->   /* GuC logging structures */
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-> index 1949346e714e..b37fc2ffaef2 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-> @@ -118,6 +118,11 @@ struct guc_doorbell_info {
->   #define   GEN8_DRB_VALID		  (1<<0)
->   #define GEN8_DRBREGU(x)			_MMIO(0x1000 + (x) * 8 + 4)
->   
-> +#define GEN12_DIST_DBS_POPULATED		_MMIO(0xd08)
-> +#define   GEN12_DOORBELLS_PER_SQIDI_SHIFT	16
-> +#define   GEN12_DOORBELLS_PER_SQIDI		(0xff)
-> +#define   GEN12_SQIDIS_DOORBELL_EXIST		(0xffff)
-> +
->   #define DE_GUCRMR			_MMIO(0x44054)
->   
->   #define GUC_BCS_RCS_IER			_MMIO(0xC550)
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index 80e8b6c3bc8c..ee4ac3922277 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -44,23 +44,19 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
->    * List of required GuC and HuC binaries per-platform.
->    * Must be ordered based on platform + revid, from newer to older.
->    *
-> - * TGL 35.2 is interface-compatible with 33.0 for previous Gens. The deltas
-> - * between 33.0 and 35.2 are only related to new additions to support new Gen12
-> - * features.
-> - *
->    * Note that RKL uses the same firmware as TGL.
->    */
->   #define INTEL_UC_FIRMWARE_DEFS(fw_def, guc_def, huc_def) \
-> -	fw_def(ROCKETLAKE,  0, guc_def(tgl, 35, 2, 0), huc_def(tgl,  7, 5, 0)) \
-> -	fw_def(TIGERLAKE,   0, guc_def(tgl, 35, 2, 0), huc_def(tgl,  7, 5, 0)) \
-> -	fw_def(ELKHARTLAKE, 0, guc_def(ehl, 33, 0, 4), huc_def(ehl,  9, 0, 0)) \
-> -	fw_def(ICELAKE,     0, guc_def(icl, 33, 0, 0), huc_def(icl,  9, 0, 0)) \
-> -	fw_def(COMETLAKE,   5, guc_def(cml, 33, 0, 0), huc_def(cml,  4, 0, 0)) \
-> -	fw_def(COFFEELAKE,  0, guc_def(kbl, 33, 0, 0), huc_def(kbl,  4, 0, 0)) \
-> -	fw_def(GEMINILAKE,  0, guc_def(glk, 33, 0, 0), huc_def(glk,  4, 0, 0)) \
-> -	fw_def(KABYLAKE,    0, guc_def(kbl, 33, 0, 0), huc_def(kbl,  4, 0, 0)) \
-> -	fw_def(BROXTON,     0, guc_def(bxt, 33, 0, 0), huc_def(bxt,  2, 0, 0)) \
-> -	fw_def(SKYLAKE,     0, guc_def(skl, 33, 0, 0), huc_def(skl,  2, 0, 0))
-> +	fw_def(ROCKETLAKE,  0, guc_def(tgl, 49, 0, 1), huc_def(tgl,  7, 5, 0)) \
-> +	fw_def(TIGERLAKE,   0, guc_def(tgl, 49, 0, 1), huc_def(tgl,  7, 5, 0)) \
-> +	fw_def(ELKHARTLAKE, 0, guc_def(ehl, 49, 0, 1), huc_def(ehl,  9, 0, 0)) \
-> +	fw_def(ICELAKE,     0, guc_def(icl, 49, 0, 1), huc_def(icl,  9, 0, 0)) \
-> +	fw_def(COMETLAKE,   5, guc_def(cml, 49, 0, 1), huc_def(cml,  4, 0, 0)) \
-> +	fw_def(COFFEELAKE,  0, guc_def(kbl, 49, 0, 1), huc_def(kbl,  4, 0, 0)) \
-> +	fw_def(GEMINILAKE,  0, guc_def(glk, 49, 0, 1), huc_def(glk,  4, 0, 0)) \
-> +	fw_def(KABYLAKE,    0, guc_def(kbl, 49, 0, 1), huc_def(kbl,  4, 0, 0)) \
-> +	fw_def(BROXTON,     0, guc_def(bxt, 49, 0, 1), huc_def(bxt,  2, 0, 0)) \
-> +	fw_def(SKYLAKE,     0, guc_def(skl, 49, 0, 1), huc_def(skl,  2, 0, 0))
->   
->   #define __MAKE_UC_FW_PATH(prefix_, name_, major_, minor_, patch_) \
->   	"i915/" \
-> @@ -371,6 +367,9 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->   		}
->   	}
->   
-> +	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC)
-> +		uc_fw->private_data_size = css->private_data_size;
-> +
->   	obj = i915_gem_object_create_shmem_from_data(i915, fw->data, fw->size);
->   	if (IS_ERR(obj)) {
->   		err = PTR_ERR(obj);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> index 23d3a423ac0f..99bb1fe1af66 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> @@ -88,6 +88,8 @@ struct intel_uc_fw {
->   
->   	u32 rsa_size;
->   	u32 ucode_size;
-> +
-> +	u32 private_data_size;
->   };
->   
->   #ifdef CONFIG_DRM_I915_DEBUG_GUC
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> index 029214cdedd5..e41ffc7a7fbc 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> @@ -69,7 +69,11 @@ struct uc_css_header {
->   #define CSS_SW_VERSION_UC_MAJOR		(0xFF << 16)
->   #define CSS_SW_VERSION_UC_MINOR		(0xFF << 8)
->   #define CSS_SW_VERSION_UC_PATCH		(0xFF << 0)
-> -	u32 reserved[14];
-> +	u32 reserved0[13];
-> +	union {
-> +		u32 private_data_size; /* only applies to GuC */
-> +		u32 reserved1;
-> +	};
->   	u32 header_info;
->   } __packed;
->   static_assert(sizeof(struct uc_css_header) == 128);
-
+Best regards,
+baolu
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
