@@ -2,80 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84C752746A2
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 18:27:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B32742745F8
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 18:02:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 043856E8BE;
-	Tue, 22 Sep 2020 16:27:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 385806E89B;
+	Tue, 22 Sep 2020 16:02:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7254789EB8;
- Tue, 22 Sep 2020 15:34:51 +0000 (UTC)
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
- by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08MFXZ4A115377;
- Tue, 22 Sep 2020 15:34:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=corp-2020-01-29;
- bh=SQUZRxKbOrj7C5f6uXB0QaPDAWtQi5hHWGb3AMCGwok=;
- b=vXNxTqEaODuD+fyU1jUL8sgHm/70CoNspaljF2CVJy8YCkwoU79BXOLKh267UZHkplF8
- 8gDxgeFrbFB3MPy3LpGLNkXfd1SvSHwK+Aa1BHsHL6vvwsYit9kqi55PmIfQ5VEjTtfj
- xYG2uDen9YZs91OrBwjVJcj7oFo6Mv3iUblQ43Pm81r+jgqhZ/1Tcx8D1VYYb7+x69fb
- n+qGpLjCo2XbRGqid1wVg1IbrdOhxG/60xd/nbbzTVHN4KXX5ILRDFS7r3qd1qqYr6Ez
- qQJnMwFLIBPdG4ZIkFCq9APz0yHuY8A6pTbvyMU5RcXkzUXKRKPdNqjFklU4rSPXqE1a Hw== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
- by userp2120.oracle.com with ESMTP id 33ndnudj4p-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
- Tue, 22 Sep 2020 15:34:42 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
- by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08MFURVL072451;
- Tue, 22 Sep 2020 15:34:41 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
- by aserp3030.oracle.com with ESMTP id 33nujncaex-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 22 Sep 2020 15:34:41 +0000
-Received: from abhmp0018.oracle.com (abhmp0018.oracle.com [141.146.116.24])
- by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 08MFYdJl019605;
- Tue, 22 Sep 2020 15:34:39 GMT
-Received: from [10.74.86.236] (/10.74.86.236)
- by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Tue, 22 Sep 2020 08:34:38 -0700
-To: Christoph Hellwig <hch@lst.de>
-References: <20200918163724.2511-1-hch@lst.de>
- <20200918163724.2511-7-hch@lst.de>
- <0833b9a8-5096-d105-a850-1336150eada1@oracle.com>
- <20200922145819.GA28420@lst.de>
- <ebd69ba1-fc06-3cc7-348e-3cb0004c2a34@oracle.com>
- <20200922152706.GA30633@lst.de>
-From: boris.ostrovsky@oracle.com
-Organization: Oracle Corporation
-Message-ID: <a3daaf31-d1cd-2bf1-5b2f-aaae32baa7f6@oracle.com>
-Date: Tue, 22 Sep 2020 11:34:35 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.2.1
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
+ [IPv6:2607:f8b0:4864:20::244])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 009506E89B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 16:01:59 +0000 (UTC)
+Received: by mail-oi1-x244.google.com with SMTP id a3so21618997oib.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 09:01:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=jzGx9lNDQDNvXf55+zZV1XJczdG5Tj1hGWl7xVKxg1M=;
+ b=AbruHcePTxOWEF854e6hnz/8QaFNhQAY+slB4rUkja6Zj6kCCbk3umIijEqzQanieU
+ yeIQ1xS/LWBxCCGI5gpPR66Oa8uZl/04jVVfDBb0GtWtUkxkz1CcbrmWQ3Qwvl31mzpp
+ BL8DTdMQ49vHk7PU5rBIHpBnBg4g3ZlYD3v3Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=jzGx9lNDQDNvXf55+zZV1XJczdG5Tj1hGWl7xVKxg1M=;
+ b=DXWEgkx4fFSopECa5LSJs4ixuZVY0+fK7ajOj3Qbt/ma4F1FeHEGMAalofz7Mc89U4
+ /AJolbqQw0c3PbgQqz+0um0nP776jyyg02sci3NnKvDytfIJd8qXZjL4D8Qtslk6sf7m
+ 03V0y0prDvrLZbXtZBkbf24V00ISa9Lp7lbQz8n7fQO1e6fo4koHmLjoFRHUxqbZzMnQ
+ Mi6Y4RED2YZKa+CMVOUObtKXoNGnJn5Tn0LttMpgWiziBu/5KiH3iLI2oeZ0QZhEIxEW
+ wq8kYBa6+wlNUHVIQSPt1FFyDVneoo8chu1irFkq2ETxMcDomkILPgh6HRpgNQGKwGWt
+ R6Tw==
+X-Gm-Message-State: AOAM5317hruy7i8fx0Tues8UNcdhMGw3zb23X+fTeuGVylc8vBSataJL
+ zr+TPU40TX/gdgt6z7q5JUyqpbImAn0xf4r4/swN8Q==
+X-Google-Smtp-Source: ABdhPJxUCOo0K3uccb6V78Xey0Gvm3PTUf1Xm+2P+JTQizT3twxEF7VlbI4OYn7TQy4fV9tVym4U9rJE/5W8CN474ZY=
+X-Received: by 2002:aca:49c2:: with SMTP id w185mr2629161oia.101.1600790518782; 
+ Tue, 22 Sep 2020 09:01:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200922152706.GA30633@lst.de>
-Content-Language: en-US
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9752
- signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- malwarescore=0
- mlxlogscore=999 phishscore=0 adultscore=0 spamscore=0 suspectscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009220121
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9752
- signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
- priorityscore=1501 malwarescore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 suspectscore=0 bulkscore=0
- clxscore=1015 impostorscore=0 mlxlogscore=999 mlxscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2009220121
-X-Mailman-Approved-At: Tue, 22 Sep 2020 16:27:52 +0000
-Subject: Re: [Intel-gfx] [PATCH 6/6] x86/xen: open code alloc_vm_area in
- arch_gnttab_valloc
+References: <20180705101043.4883-1-daniel.vetter@ffwll.ch>
+ <20180705102121.5091-1-daniel.vetter@ffwll.ch>
+ <CAPj87rN48S8+pLd0ksOX4pdCTqtO=bDgjhkPxpWr_AnpVvgaSQ@mail.gmail.com>
+ <20200922133636.GA2369@xpredator>
+ <CAKMK7uHCeFan4+agMn0sr-z9UDyZwEJv0_dL-K-gA1n0=m+A2w@mail.gmail.com>
+ <CAPj87rNLzFjn7xyePmEBEY8teL7TnL-HrQHXbp7C1tXDdWgeUA@mail.gmail.com>
+In-Reply-To: <CAPj87rNLzFjn7xyePmEBEY8teL7TnL-HrQHXbp7C1tXDdWgeUA@mail.gmail.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Tue, 22 Sep 2020 18:01:47 +0200
+Message-ID: <CAKMK7uEyt0d0LidUCQL4oHZRYZdDEFhy=DnRF7WwD1S1+ackFQ@mail.gmail.com>
+To: Daniel Stone <daniel@fooishbar.org>
+Subject: Re: [Intel-gfx] [PATCH] drm: avoid spurious EBUSY due to
+ nonblocking atomic modesets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,37 +63,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>, linux-mm@kvack.org,
- Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- x86@kernel.org, linux-kernel@vger.kernel.org, Minchan Kim <minchan@kernel.org>,
- dri-devel@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Andrew Morton <akpm@linux-foundation.org>, Nitin Gupta <ngupta@vflare.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ stable <stable@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.co.uk>,
+ Marius Vlad <marius.vlad@collabora.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDkvMjIvMjAgMTE6MjcgQU0sIENocmlzdG9waCBIZWxsd2lnIHdyb3RlOgo+IE9uIFR1ZSwg
-U2VwIDIyLCAyMDIwIGF0IDExOjI0OjIwQU0gLTA0MDAsIGJvcmlzLm9zdHJvdnNreUBvcmFjbGUu
-Y29tIHdyb3RlOgo+PiBPbiA5LzIyLzIwIDEwOjU4IEFNLCBDaHJpc3RvcGggSGVsbHdpZyB3cm90
-ZToKPj4+IE9uIE1vbiwgU2VwIDIxLCAyMDIwIGF0IDA0OjQ0OjEwUE0gLTA0MDAsIGJvcmlzLm9z
-dHJvdnNreUBvcmFjbGUuY29tIHdyb3RlOgo+Pj4+IFRoaXMgd2lsbCBlbmQgdXAgaW5jcmVtZW50
-aW5nIGFyZWEtPnB0ZXMgcG9pbnRlci4gU28gcGVyaGFwcyBzb21ldGhpbmcgbGlrZQo+Pj4+Cj4+
-Pj4KPj4+PiBwdGVfdCAqKnB0ZXMgPSBhcmVhLT5wdGVzOwo+Pj4+Cj4+Pj4gaWYgKGFwcGx5X3Rv
-X3BhZ2VfcmFuZ2UoJmluaXRfbW0sICh1bnNpZ25lZCBsb25nKWFyZWEtPmFyZWEtPmFkZHIsCj4+
-Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBQQUdFX1NJ
-WkUgKiBucl9mcmFtZXMsIGdudHRhYl9hcHBseSwgJnB0ZXMpKSB7Cj4+Pj4KPj4+PiDCoMKgwqDC
-oMKgwqAgLi4uCj4+PiBZZWFoLiAgV2hhdCBkbyB5b3UgdGhpbmsgb2YgdGhpcyB2ZXJzaW9uPyAK
-Pj4KPj4gT2ggeWVzLCB0aGlzIGlzIHdheSBiZXR0ZXIuIFRoaXMgbm93IGNhbiBhY3R1YWxseSBi
-ZSByZWFkIHdpdGhvdXQgdHJ5aW5nIHRvIG1lbnRhbGx5IHVud2luZCB0cmlwbGUgcG9pbnRlcnMu
-IChZb3UgcHJvYmFibHkgd2FudCB0byBpbml0aWFsaXplIGlkeCB0byB6ZXJvIGJlZm9yZSBjYWxs
-aW5nIGFwcGx5X3RvX3BhZ2VfcmFuZ2UoKSwgSSBhbSBub3Qgc3VyZSBpdCdzIGd1YXJhbnRlZWQg
-dG8gYmUgemVybykuCj4gQm90aCBpbnN0YW5jZXMgYXJlIHN0YXRpYyB2YXJpYWJsZXMsIHRodXMg
-aW4gLmJzcyBhbmQgaW5pdGlhbGl6ZWQuCj4gU28gdW5sZXNzIHlvdSBpbnNpc3QgSSBkb24ndCB0
-aGluayB3ZSBuZWVkIGEgbWFudWFsIG9uZS4KCgpZZXMsIHlvdSBhcmUgcmlnaHQuIChJIHRob3Vn
-aHQgcGVyaGFwcyB0aGlzIGNvZGUgY291bGQgYmUgY2FsbGVkIG1vcmUgdGhhbiBvbmNlIGJ1dCBu
-bywgaXQgY2FuJ3QpLgoKCi1ib3JpcwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4Cg==
+On Tue, Sep 22, 2020 at 4:14 PM Daniel Stone <daniel@fooishbar.org> wrote:
+>
+> On Tue, 22 Sep 2020 at 15:04, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> > On Tue, Sep 22, 2020 at 3:36 PM Marius Vlad <marius.vlad@collabora.com> wrote:
+> > > Gentle ping. I've tried out Linus's master tree and, and like Pekka,
+> > > I've noticed this isn't integrated/added.
+> >
+> > Defacto the uapi we have now is that userspace needs to ignore "spurious" EBUSY.
+>
+> This really, really, really, bites.
+>
+> I think we need a guarantee that this never happens if ALLOW_MODESET
+> is always used in blocking mode, plus in future a cap we can use to
+> detect that we won't be getting spurious EBUSY events.
+>
+> I really don't want to ever paper over this, because it's one of the
+> clearest indications that userspace has its timing/signalling wrong.
+
+Ok so the hang-up last time around iirc was that I broke igt by making
+a few things more synchronous. Let's hope I'm not also breaking stuff
+with the WARN_ON ...
+
+New plan:
+- make this patch here only document existing behaviour and enforce it
+with the WARN_ON
+- new uapi would be behind a flag or something, with userspace and
+everything hanging off it.
+
+Thoughts?
+
+Cheers, Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
