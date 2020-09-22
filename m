@@ -2,63 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E2B8274578
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 17:38:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B9822746A3
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 18:27:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA9006E896;
-	Tue, 22 Sep 2020 15:38:44 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from ale.deltatee.com (ale.deltatee.com [204.191.154.188])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0220D6E896
- for <Intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 15:38:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=deltatee.com; s=20200525; h=Subject:Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=w91K0ySdj6J2fRTRA20OaGy7pb8BTxgzgdk9b0RyflE=; b=trj3yemx5Kb1/rvGL2tc2bAfA9
- T7dYUvEy8FYqlxJjS8Z1diE8qMOqIEVe2s0c+tDldX74S0XFfx1OLHwiycrmbyJBS7wxX4MqYGjY8
- Y+Hm0R/o6N3DRSM8YhfIhAMeXB4hYX47gab9Jz3x5oc6r1mpYg7NADVPs1FMmw8Uw4+zywSR1Unyf
- bxdrwI7WYbKFrYdPEhQZuqDgtMnaBcAkOlbdePklM96zB5V0wz0hyo3PPZ7iRZhszcmDVLH3+1M/g
- GVlt2q3igxqRzemAeg8na4VCEAdXc7JrPli8jWFI0Dh9/WN/uuizfLf/j3va35wPUwn80YKn3SxzF
- yuDkz7JQ==;
-Received: from guinness.priv.deltatee.com ([172.16.1.162])
- by ale.deltatee.com with esmtp (Exim 4.92)
- (envelope-from <logang@deltatee.com>)
- id 1kKkNM-000140-Vs; Tue, 22 Sep 2020 09:38:41 -0600
-To: Lu Baolu <baolu.lu@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
- Tom Murphy <murphyt7@tcd.ie>, David Woodhouse <dwmw2@infradead.org>,
- Christoph Hellwig <hch@infradead.org>
-References: <20200912032200.11489-1-baolu.lu@linux.intel.com>
- <776771a2-247a-d1be-d882-bee02d919ae0@deltatee.com>
- <fe94760f-3c10-4222-ec87-291c01325fef@linux.intel.com>
- <e95a55ea-b03f-4b3c-327a-b48d364577e9@deltatee.com>
- <c8bde158-50f6-1656-4a7d-6323573ba501@linux.intel.com>
-From: Logan Gunthorpe <logang@deltatee.com>
-Message-ID: <0047a398-3246-9363-5092-adeab6a8b2b9@deltatee.com>
-Date: Tue, 22 Sep 2020 09:38:37 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF1096E8BF;
+	Tue, 22 Sep 2020 16:27:55 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5915389DEC;
+ Tue, 22 Sep 2020 15:24:40 +0000 (UTC)
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+ by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08MF99uD108659;
+ Tue, 22 Sep 2020 15:24:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2020-01-29;
+ bh=r25X6J1q+Ighced5STv1N+Q9x56TJMr0M8XmPWVmk4w=;
+ b=bB8Tp/a2lSI+UwYmqXXKz5Y23TH5yE09ciN0f0sy3qt19cNhEhgksqgJ9nY6Q7FHdqr5
+ Bj6NZjV37L+9k30k+sStCWjIWjb3Ku8CSL6l1POKFNXfXE7HYCIV82SAjw7MQKGPgnDR
+ Kw5X2XpfKcODiRMBXcg9wFTOahB8pyoEu3wJaCPA3pS5RO6mExJgFsqXBwcDKafq5t6B
+ hQMtnhiJ37dQzyVQCoh1oa9eh/nLFNekem8w4gp1vbNpKm+sEpYKhcbEqKkOoPjQ1OAn
+ 1TucTPU5tN6rNwjoHoSKQdXi9Gtq8zA8k12iNAEJCTzdfjm7ZqUf68EhJIGFWJhinzYg 9Q== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+ by aserp2120.oracle.com with ESMTP id 33q5rgbsn3-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Tue, 22 Sep 2020 15:24:29 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+ by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08MFAMQ1168760;
+ Tue, 22 Sep 2020 15:24:29 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+ by aserp3030.oracle.com with ESMTP id 33nujnbted-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 22 Sep 2020 15:24:29 +0000
+Received: from abhmp0011.oracle.com (abhmp0011.oracle.com [141.146.116.17])
+ by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 08MFOPZn012709;
+ Tue, 22 Sep 2020 15:24:25 GMT
+Received: from [10.74.86.236] (/10.74.86.236)
+ by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Tue, 22 Sep 2020 08:24:25 -0700
+To: Christoph Hellwig <hch@lst.de>
+References: <20200918163724.2511-1-hch@lst.de>
+ <20200918163724.2511-7-hch@lst.de>
+ <0833b9a8-5096-d105-a850-1336150eada1@oracle.com>
+ <20200922145819.GA28420@lst.de>
+From: boris.ostrovsky@oracle.com
+Organization: Oracle Corporation
+Message-ID: <ebd69ba1-fc06-3cc7-348e-3cb0004c2a34@oracle.com>
+Date: Tue, 22 Sep 2020 11:24:20 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.2.1
 MIME-Version: 1.0
-In-Reply-To: <c8bde158-50f6-1656-4a7d-6323573ba501@linux.intel.com>
-Content-Language: en-CA
-X-SA-Exim-Connect-IP: 172.16.1.162
-X-SA-Exim-Rcpt-To: iommu@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, Intel-gfx@lists.freedesktop.org,
- ashok.raj@intel.com, hch@infradead.org, dwmw2@infradead.org, murphyt7@tcd.ie,
- joro@8bytes.org, baolu.lu@linux.intel.com
-X-SA-Exim-Mail-From: logang@deltatee.com
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ale.deltatee.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-8.7 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- GREYLIST_ISWHITE,MYRULES_FREE,NICE_REPLY_A autolearn=ham
- autolearn_force=no version=3.4.2
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on ale.deltatee.com)
-Subject: Re: [Intel-gfx] [PATCH v3 0/6] Convert the intel iommu driver to
- the dma-iommu api
+In-Reply-To: <20200922145819.GA28420@lst.de>
+Content-Language: en-US
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9752
+ signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
+ malwarescore=0
+ mlxlogscore=999 phishscore=0 adultscore=0 spamscore=0 suspectscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009220120
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9752
+ signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+ impostorscore=0
+ clxscore=1015 suspectscore=0 phishscore=0 malwarescore=0
+ priorityscore=1501 mlxlogscore=999 adultscore=0 bulkscore=0 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009220120
+X-Mailman-Approved-At: Tue, 22 Sep 2020 16:27:52 +0000
+Subject: Re: [Intel-gfx] [PATCH 6/6] x86/xen: open code alloc_vm_area in
+ arch_gnttab_valloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,98 +86,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Ashok Raj <ashok.raj@intel.com>,
- iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>, linux-mm@kvack.org,
+ Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ x86@kernel.org, linux-kernel@vger.kernel.org, Minchan Kim <minchan@kernel.org>,
+ dri-devel@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Andrew Morton <akpm@linux-foundation.org>, Nitin Gupta <ngupta@vflare.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 2020-09-21 6:24 p.m., Lu Baolu wrote:
->>>> I'm trying to test this on an old Sandy Bridge, but found that I get
->>>> spammed with warnings on boot. I've put a sample of a few of them below.
->>>> They all seem to be related to ioat.
->>>>
->>>> I had the same issue with Tom's v2 but never saw this on his v1.
->>>
->>> Have you verified whether this could be reproduced with the lasted
->>> upstream kernel (without this patch series)?
->>
->> Yes.
-> 
-> I am sorry. Just want to make sure I understand you correctly. :-) When
-> you say "yes", do you mean you could reproduce this with pure upstream
-> kernel (5.9-rc6)?
-
-I mean I've verified the bug does *not* exist without this patch set.
-
-> 
->> Also, it's hitting a warning in the dma-iommu code which would not
->> be hit without this patch set.
-> 
-> Without this series, DMA APIs don't go through dma-iommu. Do you mind
-> posting the warning message?
-
-It was on my original email but here it is again:
-
-
-[   44.057877] ------------[ cut here ]------------
-[   44.063167] WARNING: CPU: 4 PID: 84 at drivers/iommu/dma-iommu.c:496
-__iommu_dma_unmap+0x115/0x130
-[   44.073351] Modules linked in:
-[   44.076882] CPU: 4 PID: 84 Comm: kworker/4:1 Tainted: G        W
-   5.9.0-rc4-00006-g110da1e703a2 #216
-[   44.087935] Hardware name: Supermicro SYS-7047GR-TRF/X9DRG-QF, BIOS
-3.0a 12/05/2013
-[   44.096650] Workqueue: events work_for_cpu_fn
-[   44.101644] RIP: 0010:__iommu_dma_unmap+0x115/0x130
-[   44.107225] Code: 48 8b 0c 24 48 c7 44 24 10 00 00 00 00 48 c7 44 24
-18 00 00 00 00 48 c7 44 24 20 00 00 00 00 48 c7 44 24 08 ff ff ff ff eb
-8d <0f> 0b e9 74 ff ff ff e8 1f 36 66 00 66 66 2e 0f 1f 84 00 00 00 00
-[   44.128443] RSP: 0000:ffffc90002397c38 EFLAGS: 00010206
-[   44.134413] RAX: 0000000000200000 RBX: 0000000000080000 RCX:
-0000000000000000
-[   44.144487] RDX: 0000000000000403 RSI: ffffffff82a7fb20 RDI:
-ffff888477804f30
-[   44.152613] RBP: 00000000fec00000 R08: 00000000000fec00 R09:
-00000000000fedff
-[   44.160733] R10: 0000000000000002 R11: 0000000000000004 R12:
-ffff888270c39000
-[   44.168861] R13: ffff888472d85ee8 R14: 0000000000080000 R15:
-0000000000000000
-[   44.176980] FS:  0000000000000000(0000) GS:ffff888479800000(0000)
-knlGS:0000000000000000
-[   44.186198] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   44.192761] CR2: 0000000000000000 CR3: 0000000002a20001 CR4:
-00000000000606e0
-[   44.200871] Call Trace:
-[   44.203716]  ? lockdep_hardirqs_on_prepare+0xad/0x180
-[   44.209509]  iommu_dma_free+0x18/0x30
-[   44.213734]  ioat_free_chan_resources+0x19e/0x300
-[   44.219133]  ioat_dma_self_test+0x2a0/0x3d0
-[   44.223964]  ioat_pci_probe+0x60e/0x903
-[   44.228387]  local_pci_probe+0x42/0x80
-[   44.232721]  work_for_cpu_fn+0x16/0x20
-[   44.237037]  process_one_work+0x292/0x630
-[   44.241644]  ? __schedule+0x344/0x970
-[   44.245868]  worker_thread+0x227/0x3e0
-[   44.250185]  ? process_one_work+0x630/0x630
-[   44.254989]  kthread+0x136/0x150
-[   44.258718]  ? kthread_use_mm+0x100/0x100
-[   44.263334]  ret_from_fork+0x22/0x30
-[   44.267474] irq event stamp: 1881262
-[   44.271602] hardirqs last  enabled at (1881272): [<ffffffff811b8465>]
-console_unlock+0x435/0x570
-[   44.281593] hardirqs last disabled at (1881281): [<ffffffff811b845b>]
-console_unlock+0x42b/0x570
-[   44.291588] softirqs last  enabled at (1747140): [<ffffffff817da3e5>]
-ioat_cleanup+0x65/0x470
-[   44.301285] softirqs last disabled at (1747144): [<ffffffff817d797a>]
-ioat_free_chan_resources+0x6a/0x300
-[   44.312153] ---[ end trace ed0f88fd959a5a39 ]---
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDkvMjIvMjAgMTA6NTggQU0sIENocmlzdG9waCBIZWxsd2lnIHdyb3RlOgo+IE9uIE1vbiwg
+U2VwIDIxLCAyMDIwIGF0IDA0OjQ0OjEwUE0gLTA0MDAsIGJvcmlzLm9zdHJvdnNreUBvcmFjbGUu
+Y29tIHdyb3RlOgo+PiBUaGlzIHdpbGwgZW5kIHVwIGluY3JlbWVudGluZyBhcmVhLT5wdGVzIHBv
+aW50ZXIuIFNvIHBlcmhhcHMgc29tZXRoaW5nIGxpa2UKPj4KPj4KPj4gcHRlX3QgKipwdGVzID0g
+YXJlYS0+cHRlczsKPj4KPj4gaWYgKGFwcGx5X3RvX3BhZ2VfcmFuZ2UoJmluaXRfbW0sICh1bnNp
+Z25lZCBsb25nKWFyZWEtPmFyZWEtPmFkZHIsCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgUEFHRV9TSVpFICogbnJfZnJhbWVzLCBnbnR0YWJfYXBwbHks
+ICZwdGVzKSkgewo+Pgo+PiDCoMKgwqDCoMKgwqAgLi4uCj4gWWVhaC4gIFdoYXQgZG8geW91IHRo
+aW5rIG9mIHRoaXMgdmVyc2lvbj8gCgoKT2ggeWVzLCB0aGlzIGlzIHdheSBiZXR0ZXIuIFRoaXMg
+bm93IGNhbiBhY3R1YWxseSBiZSByZWFkIHdpdGhvdXQgdHJ5aW5nIHRvIG1lbnRhbGx5IHVud2lu
+ZCB0cmlwbGUgcG9pbnRlcnMuIChZb3UgcHJvYmFibHkgd2FudCB0byBpbml0aWFsaXplIGlkeCB0
+byB6ZXJvIGJlZm9yZSBjYWxsaW5nIGFwcGx5X3RvX3BhZ2VfcmFuZ2UoKSwgSSBhbSBub3Qgc3Vy
+ZSBpdCdzIGd1YXJhbnRlZWQgdG8gYmUgemVybykuCgoKPiAgSSB0aGluayBpdCBpcyBhIGxpdHRs
+ZQo+IGNsZWFuZXIgYW5kIG1hdGNoZXMgd2hhdCB4ZW5idXMgZG9lcy4gIEF0IHRoaXMgcG9pbnQg
+aXQgcHJvYmFibHkgc2hvdWxkCj4gYmUgc3BsaXQgaW50byBhIFhlbiBhbmQgYSBhbGxvY192bV9h
+cmVhIHJlbW92YWwgcGF0Y2gsIHRob3VnaC4KCgpSaWdodC4KCgotYm9yaXMKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
