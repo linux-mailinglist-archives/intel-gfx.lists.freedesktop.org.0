@@ -1,32 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 559F92742C2
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 15:17:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6E2274301
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 15:27:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C92A86E13B;
-	Tue, 22 Sep 2020 13:17:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73F906E86B;
+	Tue, 22 Sep 2020 13:27:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C52A56E101;
- Tue, 22 Sep 2020 13:17:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ACDA0A7DFC;
- Tue, 22 Sep 2020 13:17:32 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Tue, 22 Sep 2020 13:17:32 -0000
-Message-ID: <160078065267.13390.13973914789961063719@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90FA26E86B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 13:27:08 +0000 (UTC)
+IronPort-SDR: vy6ESpWYaJmkJxSPevWMwSex3iWsDPIpjauqTg2QCkeBO3j1CLe+0Zh12t9RmyVnPwcsERZm/1
+ X4eSeiVNN2JA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="222194635"
+X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; d="scan'208";a="222194635"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2020 06:27:08 -0700
+IronPort-SDR: O2IeJ2zCn56XWpnJyVH5D80otf1v9lnLhGZGBDZ68kw27mRoWiVCIwWbnXaNiZe9LlA0NMAutq
+ dVM7xKWLanEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; d="scan'208";a="348485976"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 22 Sep 2020 06:27:06 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 22 Sep 2020 16:27:05 +0300
+Date: Tue, 22 Sep 2020 16:27:05 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200922132705.GS6112@intel.com>
 References: <20200922125106.30540-1-imre.deak@intel.com>
-In-Reply-To: <20200922125106.30540-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_support_for_LTTPR_non-transparent_link_training_mo?=
- =?utf-8?q?de?=
+ <20200922125106.30540-4-imre.deak@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200922125106.30540-4-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915: Simplify the link training
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,232 +54,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0615398082=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0615398082==
-Content-Type: multipart/alternative;
- boundary="===============4150409622737701486=="
+On Tue, Sep 22, 2020 at 03:51:02PM +0300, Imre Deak wrote:
+> Split the prepare, link training, fallback-handling steps into their own
+> functions for clarity and as a preparation for the upcoming LTTPR changes.
+> =
 
---===============4150409622737701486==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> While at it also add some documentation to exported functions.
+> =
 
-== Series Details ==
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 80 ++++++++++++++-----
+>  1 file changed, 62 insertions(+), 18 deletions(-)
+> =
 
-Series: drm/i915: Add support for LTTPR non-transparent link training mode
-URL   : https://patchwork.freedesktop.org/series/81968/
-State : success
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 6d13d00db5e6..0c3809891bd2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -162,14 +162,13 @@ static bool intel_dp_link_max_vswing_reached(struct=
+ intel_dp *intel_dp)
+>  	return true;
+>  }
+>  =
 
-== Summary ==
+> -/* Enable corresponding port and start training pattern 1 */
+> -static bool
+> -intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
+> +/*
+> + * Prepare link training by configuring the link parameters and enabling=
+ the
+> + * corresponding port.
+> + */
+> +static void intel_dp_prepare_link_train(struct intel_dp *intel_dp)
+>  {
+>  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> -	u8 voltage;
+> -	int voltage_tries, cr_tries, max_cr_tries;
+> -	bool max_vswing_reached =3D false;
+>  	u8 link_config[2];
+>  	u8 link_bw, rate_select;
+>  =
 
-CI Bug Log - changes from CI_DRM_9033 -> Patchwork_18544
-====================================================
+> @@ -203,6 +202,16 @@ intel_dp_link_training_clock_recovery(struct intel_d=
+p *intel_dp)
+>  	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
+>  =
 
-Summary
--------
+>  	intel_dp->DP |=3D DP_PORT_EN;
 
-  **SUCCESS**
+I guess we no longer actually enable the port here? The comment ^ still says
+we do.
 
-  No regressions found.
+Hmm. Seems we do enable the port on ddi platforms, but not on older
+platforms. I guess the docs could still use a tweak to reflect
+reality a bit better.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/index.html
+> +}
+> +
+> +/* Perform the link training clock recovery phase using training pattern=
+ 1. */
+> +static bool
+> +intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
+> +{
+> +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> +	u8 voltage;
+> +	int voltage_tries, cr_tries, max_cr_tries;
+> +	bool max_vswing_reached =3D false;
+>  =
 
-Known issues
-------------
+>  	/* clock recovery */
+>  	if (!intel_dp_reset_link_train(intel_dp,
+> @@ -325,6 +334,10 @@ static u32 intel_dp_training_pattern(struct intel_dp=
+ *intel_dp)
+>  	return DP_TRAINING_PATTERN_2;
+>  }
+>  =
 
-  Here are the changes found in Patchwork_18544 that come from known issues:
+> +/*
+> + * Perform the link training channel equalization phase using one of tra=
+ining
+> + * pattern 2, 3 or 4 depending on the the source and sink capabilities.
+> + */
+>  static bool
+>  intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
+>  {
+> @@ -395,6 +408,15 @@ intel_dp_link_training_channel_equalization(struct i=
+ntel_dp *intel_dp)
+>  =
 
-### IGT changes ###
+>  }
+>  =
 
-#### Issues hit ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][1] -> [DMESG-WARN][2] ([i915#165])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [DMESG-FAIL][5] ([i915#62] / [i915#95]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@b-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92]) -> [PASS][10] +30 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@b-dp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@b-dp1.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][12] +12 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (43 -> 37)
-------------------------------
-
-  Missing    (6): fi-kbl-soraka fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9033 -> Patchwork_18544
-
-  CI-20190529: 20190529
-  CI_DRM_9033: afeb3835029ad70d17802a9c7148a8372fb08479 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5787: 0ec962017c8131de14e0cb038f7f76b1f17ed637 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18544: 91260e606734a4fc95f326bb4eb13f45f8793794 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-91260e606734 drm/i915: Switch to LTTPR non-transparent mode link training
-4fbcfbcb1a33 drm/i915: Switch to LTTPR transparent mode link training
-6a20187d3dfa drm/dp: Add LTTPR helpers
-0b95955d4877 drm/i915: Factor out a helper to disable the DPCD training pattern
-b7d02e6b76cc drm/i915: Simplify the link training functions
-b688f7336e26 drm/i915: Move intel_dp_get_link_status to intel_dp_link_training.c
-154fc7783917 drm/i915: Fix DP link training pattern mask
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/index.html
-
---===============4150409622737701486==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> +/**
+> + * intel_dp_stop_link_train - stop link training
+> + * @intel_dp: DP struct
+> + *
+> + * Stop the link training of the @intel_dp port, programming the port to
+> + * output an idle pattern =
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+I don't think we use the idle pattern on all platforms.
 
+BTW intel_dp_set_idle_link_train() looks pretty pointless. Could just
+inline it into its only caller, or at least move it into
+intel_dp_link_training.c.
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Add support for LTTPR non-transparent link training mode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81968/">https://patchwork.freedesktop.org/series/81968/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/index.html</a></td></tr>
+> on the link and  disabling the training pattern in
+> + * the sink's DPCD.
+> + * This function must be called after intel_dp_start_link_train().
+> + */
+>  void intel_dp_stop_link_train(struct intel_dp *intel_dp)
+>  {
+>  	intel_dp->link_trained =3D true;
+> @@ -403,30 +425,37 @@ void intel_dp_stop_link_train(struct intel_dp *inte=
+l_dp)
+>  				DP_TRAINING_PATTERN_DISABLE);
+>  }
+>  =
 
-</table>
+> -void
+> -intel_dp_start_link_train(struct intel_dp *intel_dp)
+> +static bool
+> +intel_dp_link_train(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_connector *intel_connector =3D intel_dp->attached_connecto=
+r;
+> +	bool ret =3D false;
+> +
+> +	intel_dp_prepare_link_train(intel_dp);
+>  =
 
+>  	if (!intel_dp_link_training_clock_recovery(intel_dp))
+> -		goto failure_handling;
+> +		goto out;
+> +
+>  	if (!intel_dp_link_training_channel_equalization(intel_dp))
+> -		goto failure_handling;
+> +		goto out;
+>  =
 
-    <h1>CI Bug Log - changes from CI_DRM_9033 -&gt; Patchwork_18544</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18544 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_chamelium@dp-crc-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@b-dp1:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@b-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset@b-dp1.html">PASS</a> +30 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9033/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18544/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">PASS</a> +12 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 37)</h2>
-<p>Missing    (6): fi-kbl-soraka fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9033 -&gt; Patchwork_18544</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9033: afeb3835029ad70d17802a9c7148a8372fb08479 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5787: 0ec962017c8131de14e0cb038f7f76b1f17ed637 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18544: 91260e606734a4fc95f326bb4eb13f45f8793794 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>91260e606734 drm/i915: Switch to LTTPR non-transparent mode link training<br />
-4fbcfbcb1a33 drm/i915: Switch to LTTPR transparent mode link training<br />
-6a20187d3dfa drm/dp: Add LTTPR helpers<br />
-0b95955d4877 drm/i915: Factor out a helper to disable the DPCD training pattern<br />
-b7d02e6b76cc drm/i915: Simplify the link training functions<br />
-b688f7336e26 drm/i915: Move intel_dp_get_link_status to intel_dp_link_training.c<br />
-154fc7783917 drm/i915: Fix DP link training pattern mask</p>
+> -	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+> -		    "[CONNECTOR:%d:%s] Link Training Passed at Link Rate =3D %d, Lane =
+count =3D %d",
+> -		    intel_connector->base.base.id,
+> -		    intel_connector->base.name,
+> -		    intel_dp->link_rate, intel_dp->lane_count);
+> -	return;
+> +	ret =3D true;
+>  =
 
-</body>
-</html>
+> - failure_handling:
+> +out:
+>  	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+> -		    "[CONNECTOR:%d:%s] Link Training failed at link rate =3D %d, lane =
+count =3D %d",
+> +		    "[CONNECTOR:%d:%s] Link Training %s at Link Rate =3D %d, Lane coun=
+t =3D %d",
+>  		    intel_connector->base.base.id,
+>  		    intel_connector->base.name,
+> +		    ret ? "passed" : "failed",
+>  		    intel_dp->link_rate, intel_dp->lane_count);
+>  =
 
---===============4150409622737701486==--
+> +	return ret;
+> +}
+> +
+> +static void intel_dp_schedule_fallback_link_training(struct intel_dp *in=
+tel_dp)
+> +{
+> +	struct intel_connector *intel_connector =3D intel_dp->attached_connecto=
+r;
+> +
+>  	if (intel_dp->hobl_active) {
+>  		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+>  			    "Link Training failed with HOBL active, not enabling it from now =
+on");
+> @@ -440,3 +469,18 @@ intel_dp_start_link_train(struct intel_dp *intel_dp)
+>  	/* Schedule a Hotplug Uevent to userspace to start modeset */
+>  	schedule_work(&intel_connector->modeset_retry_work);
+>  }
+> +
+> +/**
+> + * intel_dp_start_link_train - start link training
+> + * @intel_dp: DP struct
+> + *
+> + * Start the link training of the @intel_dp port, scheduling a fallback
+> + * retraining with reduced link rate/lane parameters if the link training
+> + * fails.
+> + * After calling this function intel_dp_stop_link_train() must be called.
+> + */
+> +void intel_dp_start_link_train(struct intel_dp *intel_dp)
+> +{
+> +	if (!intel_dp_link_train(intel_dp))
+> +		intel_dp_schedule_fallback_link_training(intel_dp);
+> +}
+> -- =
 
---===============0615398082==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> 2.17.1
+> =
 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0615398082==--
