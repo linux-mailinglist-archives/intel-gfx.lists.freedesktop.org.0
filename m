@@ -2,41 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7A72740A1
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 13:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8DDA2741A0
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 13:52:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA5016E848;
-	Tue, 22 Sep 2020 11:22:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9FFA6E137;
+	Tue, 22 Sep 2020 11:52:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A59346E848;
- Tue, 22 Sep 2020 11:22:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=v+IUea/CGhLMdjL8zbCOPAxfGNu+qZhlo3dcebaU5kY=; b=iLgsfzwxwT611QKOl+WmOf2wbN
- /apXK6gTmDsVL/BXsA2nSeYw00AYm7of+qlZIT5seKhZdu6vVFYUh9VHKNyMaCNUtuxTWQsjq/fQb
- o+HH9FqL3yy9RUdN/gEnhHaw8zj6LjLVf/SMpazertMDW0M+AsMsYpsjEY6RqiGrpxc2TfV1v186b
- /dak9QRJGkXVmw5CYmBXsQSP0ryzf3Fj1FCPgdtdTrj8+Ud5C+5S63kHgzqMV4tMTbzbXE/7lodhh
- 8x3U5eQq2tiq0PS1EC76b9HHLbxCqMbJHon71YuO6JArA0Hf33RL3+JVtd3CmHZv47m4GshGX8kOv
- xhVaWjtQ==;
-Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kKgMi-000579-Gi; Tue, 22 Sep 2020 11:21:44 +0000
-Date: Tue, 22 Sep 2020 12:21:44 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: Christoph Hellwig <hch@lst.de>
-Message-ID: <20200922112144.GB32101@casper.infradead.org>
-References: <20200918163724.2511-1-hch@lst.de>
- <20200918163724.2511-4-hch@lst.de>
- <20200921191157.GX32101@casper.infradead.org>
- <20200922062249.GA30831@lst.de>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49C0D6E137;
+ Tue, 22 Sep 2020 11:52:07 +0000 (UTC)
+IronPort-SDR: 9uCavif+KnR14WA8zW0AovBNHAsU9EXfZS4gzTdMTnRIzsu3Diu+AjjAtcVbYA5GVr0CVDuI4P
+ Ygm3PXw84lRw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="148335781"
+X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; d="scan'208";a="148335781"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2020 04:52:06 -0700
+IronPort-SDR: BXUn+8811XDPDoALAr7VLlQ3yeVJd6dvA0kF+63F5KK5ZgjWKrXW9Nv+CY3iIKrQQuC8oBuKpG
+ SitCBk1dvGFw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; d="scan'208";a="291271762"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by fmsmga008.fm.intel.com with ESMTP; 22 Sep 2020 04:52:04 -0700
+Received: from [10.251.84.40] (163.33.253.164) by IRSMSX606.ger.corp.intel.com
+ (163.33.146.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 22 Sep
+ 2020 12:52:03 +0100
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Nikula, Jani"
+ <jani.nikula@intel.com>, intel-gfx <intel-gfx@lists.freedesktop.org>, "Joonas
+ Lahtinen" <joonas.lahtinen@linux.intel.com>, "Yuan, Hang"
+ <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>, intel-gvt-dev
+ <intel-gvt-dev@lists.freedesktop.org>, "Wang, Zhi A" <zhi.a.wang@intel.com>
+From: "Wang, Zhi A" <zhi.a.wang@intel.com>
+Message-ID: <4b78ef66-a74f-9156-62fb-bb733947b57e@intel.com>
+Date: Tue, 22 Sep 2020 14:51:42 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200922062249.GA30831@lst.de>
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: use vmap in shmem_pin_map
+X-Originating-IP: [163.33.253.164]
+X-ClientProxiedBy: irsmsx604.ger.corp.intel.com (163.33.146.137) To
+ IRSMSX606.ger.corp.intel.com (163.33.146.139)
+Subject: [Intel-gfx] [PULL] topic/gvt-ww-lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,36 +58,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>, linux-mm@kvack.org,
- Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- x86@kernel.org, linux-kernel@vger.kernel.org, Minchan Kim <minchan@kernel.org>,
- dri-devel@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Andrew Morton <akpm@linux-foundation.org>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 22, 2020 at 08:22:49AM +0200, Christoph Hellwig wrote:
-> On Mon, Sep 21, 2020 at 08:11:57PM +0100, Matthew Wilcox wrote:
-> > This is awkward.  I'd like it if we had a vfree() variant which called
-> > put_page() instead of __free_pages().  I'd like it even more if we
-> > used release_pages() instead of our own loop that called put_page().
-> 
-> Note that we don't need a new vfree variant, we can do this manually if
-> we want, take a look at kernel/dma/remap.c.  But I thought this code
-> intentionally doesn't want to do that to avoid locking in the memory
-> for the pages array.  Maybe the i915 maintainers can clarify.
-
-Actually, vfree() will work today; I cc'd you on a documentation update
-to make it clear that this is permitted.
-
-From my current experience with the i915 shmem code, I think that the
-i915 maintainers are experts at graphics, and are unfamiliar with the MM.
-There are a number of places where they do things the hard way.
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CkhpLAoKSGVyZSdzIHRoZSBwYXRjaCB3aGljaCBpbnRyb2R1Y2VzIEdWVC1nIHd3IGxvY2sgc3Vw
+cG9ydCBhZ2FpbnN0IApkcm0taW50ZWwtZ3QtbmV4dCBicmFuY2guCgpUaGFua3MKCi0tCgpUaGUg
+Zm9sbG93aW5nIGNoYW5nZXMgc2luY2UgY29tbWl0IDQzMTZiMTlkZWUyN2NjNWNkMzRhOTVmZGJj
+MGEzYTUyMzc1MDc3MDE6CgogwqAgZHJtL2k5MTU6IEZpeCB1bmluaXRpYWxpc2VkIHZhcmlhYmxl
+IGluIGludGVsX2NvbnRleHRfY3JlYXRlX3JlcXVlc3QuIAooMjAyMC0wOS0yMSAxMTowOTo0NiAr
+MDIwMCkKCmFyZSBhdmFpbGFibGUgaW4gdGhlIGdpdCByZXBvc2l0b3J5IGF0OgoKIMKgIGh0dHBz
+Oi8vZ2l0aHViLmNvbS9pbnRlbC9ndnQtbGludXguZ2l0IHRhZ3MvZ3Z0LXd3LWxvY2stMDktMjIt
+MjAyMAoKZm9yIHlvdSB0byBmZXRjaCBjaGFuZ2VzIHVwIHRvIGUxYjQ5YWUxNTU0NTFhYWEwMzll
+ZWIyM2ZjZTgwOGM3MWEwMzgyODM6CgogwqAgZHJtL2k5MTUvZ3Z0OiBJbnRyb2R1Y2UgcGVyIG9i
+amVjdCBsb2NraW5nIGluIEdWVCBzY2hlZHVsZXIuIAooMjAyMC0wOS0yMiAxMjowOTo1NiArMDMw
+MCkKCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0KZ3Z0LXd3LWxvY2stMDktMjItMjAyMDoKCi0gSW50cm9kdWNlIHd3IGxvY2sg
+c3VwcG9ydCBpbnRvIEdWVC1nLgoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpaaGkgV2FuZyAoMSk6CiDCoMKgwqDCoMKgIGRy
+bS9pOTE1L2d2dDogSW50cm9kdWNlIHBlciBvYmplY3QgbG9ja2luZyBpbiBHVlQgc2NoZWR1bGVy
+LgoKIMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Z0L3NjaGVkdWxlci5jIHwgNjggCisrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKy0tLS0tLQogwqAxIGZpbGUgY2hhbmdlZCwgNTcgaW5zZXJ0
+aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZngK
