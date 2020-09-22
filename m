@@ -1,76 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68AE2274565
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 17:36:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E2B8274578
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 17:38:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A7F16E88E;
-	Tue, 22 Sep 2020 15:36:30 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 646966E88E
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 15:36:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1600788987;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=M9stahxOzRNkTPfogWABGAzDbqfQEN5CaSC00DILWaE=;
- b=UVLOEBcIUjCC6haIpr8b7R+qsv7KIEU65BK3rgmhXmXGSeUVHFAWHEgS/dvc7w+KN0xVRn
- o7qVwdz2KRTPycrMKMX8fKTX+PxqjrC2XA2sdmeNLG8uE1Wh5nQAYZ8yEoQRq5atiXA+E5
- GCCQljO5PLgm/pklhSuIfo0GRRQrIlg=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-204-I9-kvhkYMUK4SIlfcsPtuA-1; Tue, 22 Sep 2020 11:36:25 -0400
-X-MC-Unique: I9-kvhkYMUK4SIlfcsPtuA-1
-Received: by mail-qt1-f198.google.com with SMTP id m13so16212065qtu.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 08:36:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=M9stahxOzRNkTPfogWABGAzDbqfQEN5CaSC00DILWaE=;
- b=DNRg3q6ocidyyN3vk7cTyKxDiodVawoBjqMsb2wjrZ3/CsxQtMMU9jhkRgeyPFj2cO
- ccI21UevkcciEyuLvdzTtPYiDs1YwClHR1pYLEIVa8fv+5NmvKa7ZM+kaxoz+0CH3PiA
- xj1r8IEsERWuPPa8CLmDMWieH8iVpU/ltiEf5POLt5AL5LVxLCFYWyiRV0GaUJT4USXG
- qKGZ8hXtUNLh1Dw9tdiqqYktldqGMzbYKI0yGGzEBTnY4ZmkvO7pVnhlZG/Isxn8Cvcr
- 4zUwEOUYKpY1BSI/9a2IQ88EjTlmWVzg0eMZt94r4/lUtxo/la02fyKcSGC57Uq+6Ged
- N+eA==
-X-Gm-Message-State: AOAM533jv58h5th2KX5Up6nBv+SegZlubrrlO27ThiVzeAgJL7a7tT2M
- BR0raAfi+qsUmetm/NFjyT42KBTc5P9Xy7OIpXb6vD2lVlR2dFXPpnordETMMBF/4QceimXKVGv
- Z+LbWbnsxS9rBmkf5Pekrre7sRyy9
-X-Received: by 2002:a0c:e78c:: with SMTP id x12mr6526973qvn.3.1600788984251;
- Tue, 22 Sep 2020 08:36:24 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxvBR7/3Pw+CRfSo3sNTYNlnI3uEbZ/HGsL91bDwJLlbuyvkLCEBrAzuDrtPjOKj9uTMTrDsg==
-X-Received: by 2002:a0c:e78c:: with SMTP id x12mr6526950qvn.3.1600788983996;
- Tue, 22 Sep 2020 08:36:23 -0700 (PDT)
-Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net.
- [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id s25sm12933610qtc.90.2020.09.22.08.36.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Sep 2020 08:36:23 -0700 (PDT)
-Message-ID: <efd573770a0d78a19e8805760a9a8d9f6f5fe61b.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Sean Paul <seanpaul@chromium.org>
-Date: Tue, 22 Sep 2020 11:36:22 -0400
-In-Reply-To: <CAOw6vb+chhRTvF0kHy55uXb9BKqbPAhwJCuJ=_1uOPEHbRXMcA@mail.gmail.com>
-References: <20200918002845.32766-1-sean@poorly.run>
- <470a3a448a80ae6f8e6e6f6a82f5ffc01c1d6033.camel@redhat.com>
- <CAOw6vb+chhRTvF0kHy55uXb9BKqbPAhwJCuJ=_1uOPEHbRXMcA@mail.gmail.com>
-Organization: Red Hat
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA9006E896;
+	Tue, 22 Sep 2020 15:38:44 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from ale.deltatee.com (ale.deltatee.com [204.191.154.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0220D6E896
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 15:38:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=deltatee.com; s=20200525; h=Subject:Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Sender:
+ Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+ :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=w91K0ySdj6J2fRTRA20OaGy7pb8BTxgzgdk9b0RyflE=; b=trj3yemx5Kb1/rvGL2tc2bAfA9
+ T7dYUvEy8FYqlxJjS8Z1diE8qMOqIEVe2s0c+tDldX74S0XFfx1OLHwiycrmbyJBS7wxX4MqYGjY8
+ Y+Hm0R/o6N3DRSM8YhfIhAMeXB4hYX47gab9Jz3x5oc6r1mpYg7NADVPs1FMmw8Uw4+zywSR1Unyf
+ bxdrwI7WYbKFrYdPEhQZuqDgtMnaBcAkOlbdePklM96zB5V0wz0hyo3PPZ7iRZhszcmDVLH3+1M/g
+ GVlt2q3igxqRzemAeg8na4VCEAdXc7JrPli8jWFI0Dh9/WN/uuizfLf/j3va35wPUwn80YKn3SxzF
+ yuDkz7JQ==;
+Received: from guinness.priv.deltatee.com ([172.16.1.162])
+ by ale.deltatee.com with esmtp (Exim 4.92)
+ (envelope-from <logang@deltatee.com>)
+ id 1kKkNM-000140-Vs; Tue, 22 Sep 2020 09:38:41 -0600
+To: Lu Baolu <baolu.lu@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
+ Tom Murphy <murphyt7@tcd.ie>, David Woodhouse <dwmw2@infradead.org>,
+ Christoph Hellwig <hch@infradead.org>
+References: <20200912032200.11489-1-baolu.lu@linux.intel.com>
+ <776771a2-247a-d1be-d882-bee02d919ae0@deltatee.com>
+ <fe94760f-3c10-4222-ec87-291c01325fef@linux.intel.com>
+ <e95a55ea-b03f-4b3c-327a-b48d364577e9@deltatee.com>
+ <c8bde158-50f6-1656-4a7d-6323573ba501@linux.intel.com>
+From: Logan Gunthorpe <logang@deltatee.com>
+Message-ID: <0047a398-3246-9363-5092-adeab6a8b2b9@deltatee.com>
+Date: Tue, 22 Sep 2020 09:38:37 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Tweak initial dpcd
- backlight.enabled value
+In-Reply-To: <c8bde158-50f6-1656-4a7d-6323573ba501@linux.intel.com>
+Content-Language: en-CA
+X-SA-Exim-Connect-IP: 172.16.1.162
+X-SA-Exim-Rcpt-To: iommu@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Intel-gfx@lists.freedesktop.org,
+ ashok.raj@intel.com, hch@infradead.org, dwmw2@infradead.org, murphyt7@tcd.ie,
+ joro@8bytes.org, baolu.lu@linux.intel.com
+X-SA-Exim-Mail-From: logang@deltatee.com
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ale.deltatee.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-8.7 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ GREYLIST_ISWHITE,MYRULES_FREE,NICE_REPLY_A autolearn=ham
+ autolearn_force=no version=3.4.2
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on ale.deltatee.com)
+Subject: Re: [Intel-gfx] [PATCH v3 0/6] Convert the intel iommu driver to
+ the dma-iommu api
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,115 +71,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kevin Chowski <chowski@chromium.org>, Jani Nikula <jani.nikula@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, David Airlie <airlied@linux.ie>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel-gfx@lists.freedesktop.org, Ashok Raj <ashok.raj@intel.com>,
+ iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTA5LTIyIGF0IDA5OjM5IC0wNDAwLCBTZWFuIFBhdWwgd3JvdGU6Cj4gT24g
-TW9uLCBTZXAgMjEsIDIwMjAgYXQgNjozNSBQTSBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29t
-PiB3cm90ZToKPiA+IFNvIGlmIEkgdW5kZXJzdGFuZCB0aGlzIGNvcnJlY3RseSwgaXQgc291bmRz
-IGxpa2UgdGhhdCBzb21lIFBpeGVsYm9va3MKPiA+IGJvb3QgdXAKPiA+IHdpdGggRFBfRURQX0JB
-Q0tMSUdIVF9CUklHSFRORVNTX01TQiBzZXQgdG8gYSBub24temVybyB2YWx1ZSwgd2l0aG91dCB0
-aGUKPiA+IHBhbmVsIGFjdHVhbGx5IGhhdmluZyBEUENEIGJhY2tsaWdodCBjb250cm9scyBlbmFi
-bGVkPwo+IAo+IEl0IGJvb3RzIHdpdGggRFBfRURQX0JBQ0tMSUdIVF9CUklHSFRORVNTX01TQiA9
-PSAwLCB3aGljaCB1c2VkIHRvIHNldAo+IGJhY2tsaWdodC5lbmFibGVkID0gZmFsc2UuIEJ5IGNo
-YW5naW5nIGJhY2tsaWdodC5sZXZlbCA9IG1heCwKPiBiYWNrbGlnaHQuZW5hYmxlZCBpcyBub3cg
-c2V0IHRvIHRydWUuIFRoaXMgcmVzdWx0cyBpbiBsb3NpbmcgYmFja2xpZ2h0Cj4gY29udHJvbCBv
-biBib290IChzaW5jZSB0aGUgZW5hYmxlIHJvdXRpbmUgaXMgbm8gbG9uZ2VyIGludm9rZWQpLgo+
-IApBaGhoIG9rLCBJJ20gZmluZSB3aXRoIHRoYXQgLSByZXZpZXcgc3RpbGwgc3RhbmRzIDopCgo+
-IFNlYW4KPiAKPiA+IElmIEknbSB1bmRlcnN0YW5kaW5nIHRoYXQgY29ycmVjdGx5LCB0aGVuIHRo
-aXMgcGF0Y2ggbG9va3MgZ29vZCB0byBtZToKPiA+IAo+ID4gUmV2aWV3ZWQtYnk6IEx5dWRlIFBh
-dWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4gPiAKPiA+IE9uIFRodSwgMjAyMC0wOS0xNyBhdCAyMDoy
-OCAtMDQwMCwgU2VhbiBQYXVsIHdyb3RlOgo+ID4gPiBGcm9tOiBTZWFuIFBhdWwgPHNlYW5wYXVs
-QGNocm9taXVtLm9yZz4KPiA+ID4gCj4gPiA+IEluIGNvbW1pdCA3OTk0NjcyMzA5MmIgKCJkcm0v
-aTkxNTogQXNzdW1lIDEwMCUgYnJpZ2h0bmVzcyB3aGVuIG5vdCBpbgo+ID4gPiBEUENEIGNvbnRy
-b2wgbW9kZSIpLCB3ZSBmaXhlZCB0aGUgYnJpZ2h0bmVzcyBsZXZlbCB3aGVuIERQQ0QgY29udHJv
-bCB3YXMKPiA+ID4gbm90IGFjdGl2ZSB0byBtYXggYnJpZ2h0bmVzcy4gVGhpcyBpcyBhcyBnb29k
-IGFzIHdlIGNhbiBndWVzcyBzaW5jZSBtb3N0Cj4gPiA+IGJhY2tsaWdodHMgZ28gb24gZnVsbCB3
-aGVuIHVuY29udHJvbGxlZC4KPiA+ID4gCj4gPiA+IEhvd2V2ZXIgaW4gZG9pbmcgc28gd2UgY2hh
-bmdlZCB0aGUgc2VtYW50aWNzIG9mIHRoZSBpbml0aWFsCj4gPiA+ICdiYWNrbGlnaHQuZW5hYmxl
-ZCcgdmFsdWUuIEF0IGxlYXN0IG9uIFBpeGVsYm9va3MsIHRoZXkgIHdlcmUgcmVseWluZwo+ID4g
-PiBvbiB0aGUgYnJpZ2h0bmVzcyBsZXZlbCBpbiBEUF9FRFBfQkFDS0xJR0hUX0JSSUdIVE5FU1Nf
-TVNCIHRvIGJlIDAgb24KPiA+ID4gYm9vdCBzdWNoIHRoYXQgZW5hYmxlZCB3b3VsZCBiZSBmYWxz
-ZS4gVGhpcyBjYXVzZXMgdGhlIGRldmljZSB0byBiZQo+ID4gPiBlbmFibGVkIHdoZW4gdGhlIGJy
-aWdodG5lc3MgaXMgc2V0LiBXaXRob3V0IHRoaXMsIGJyaWdodG5lc3MgY29udHJvbAo+ID4gPiBk
-b2Vzbid0IHdvcmsuIFNvIGJ5IGNoYW5naW5nIGJyaWdodG5lc3MgdG8gbWF4LCB3ZSBhbHNvIGZs
-aXBwZWQgZW5hYmxlZAo+ID4gPiB0byBiZSB0cnVlIG9uIGJvb3QuCj4gPiA+IAo+ID4gPiBUbyBm
-aXggdGhpcywgbWFrZSBlbmFibGVkIGEgZnVuY3Rpb24gb2YgYnJpZ2h0bmVzcyBhbmQgYmFja2xp
-Z2h0IGNvbnRyb2wKPiA+ID4gbWVjaGFuaXNtLgo+ID4gPiAKPiA+ID4gRml4ZXM6IDc5OTQ2NzIz
-MDkyYiAoImRybS9pOTE1OiBBc3N1bWUgMTAwJSBicmlnaHRuZXNzIHdoZW4gbm90IGluIERQQ0QK
-PiA+ID4gY29udHJvbCBtb2RlIikKPiA+ID4gQ2M6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5j
-b20+Cj4gPiA+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+ID4gPiBD
-YzogSnVoYS1QZWtrYSBIZWlra2lsYSA8anVoYXBla2thLmhlaWtraWxhQGdtYWlsLmNvbT4KPiA+
-ID4gQ2M6ICJWaWxsZSBTeXJqw6Rsw6QiIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
-PiA+ID4gQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KPiA+ID4gQ2M6
-IEtldmluIENob3dza2kgPGNob3dza2lAY2hyb21pdW0ub3JnPj4KPiA+ID4gU2lnbmVkLW9mZi1i
-eTogU2VhbiBQYXVsIDxzZWFucGF1bEBjaHJvbWl1bS5vcmc+Cj4gPiA+IC0tLQo+ID4gPiAgLi4u
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5jIHwgMzEgKysrKysrKysr
-KysrLS0tLS0tLQo+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDIwIGluc2VydGlvbnMoKyksIDExIGRl
-bGV0aW9ucygtKQo+ID4gPiAKPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5jCj4gPiA+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXhfYmFja2xpZ2h0LmMKPiA+ID4gaW5kZXggYWNiZDdl
-YjY2Y2JlLi4wMzZmNTA0YWM3ZGIgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5jCj4gPiA+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5jCj4gPiA+IEBAIC01
-MiwxNyArNTIsMTEgQEAgc3RhdGljIHZvaWQgc2V0X2F1eF9iYWNrbGlnaHRfZW5hYmxlKHN0cnVj
-dCBpbnRlbF9kcAo+ID4gPiAqaW50ZWxfZHAsIGJvb2wgZW5hYmxlKQo+ID4gPiAgICAgICB9Cj4g
-PiA+ICB9Cj4gPiA+IAo+ID4gPiAtLyoKPiA+ID4gLSAqIFJlYWQgdGhlIGN1cnJlbnQgYmFja2xp
-Z2h0IHZhbHVlIGZyb20gRFBDRCByZWdpc3RlcihzKSBiYXNlZAo+ID4gPiAtICogb24gaWYgOC1i
-aXQoTVNCKSBvciAxNi1iaXQoTVNCIGFuZCBMU0IpIHZhbHVlcyBhcmUgc3VwcG9ydGVkCj4gPiA+
-IC0gKi8KPiA+ID4gLXN0YXRpYyB1MzIgaW50ZWxfZHBfYXV4X2dldF9iYWNrbGlnaHQoc3RydWN0
-IGludGVsX2Nvbm5lY3Rvcgo+ID4gPiAqY29ubmVjdG9yKQo+ID4gPiArc3RhdGljIGJvb2wgaW50
-ZWxfZHBfYXV4X2JhY2tsaWdodF9kcGNkX21vZGUoc3RydWN0IGludGVsX2Nvbm5lY3Rvcgo+ID4g
-PiAqY29ubmVjdG9yKQo+ID4gPiAgewo+ID4gPiAgICAgICBzdHJ1Y3QgaW50ZWxfZHAgKmludGVs
-X2RwID0gaW50ZWxfYXR0YWNoZWRfZHAoY29ubmVjdG9yKTsKPiA+ID4gICAgICAgc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBkcF90b19pOTE1KGludGVsX2RwKTsKPiA+ID4gLSAgICAg
-dTggcmVhZF92YWxbMl0gPSB7IDB4MCB9Owo+ID4gPiAgICAgICB1OCBtb2RlX3JlZzsKPiA+ID4g
-LSAgICAgdTE2IGxldmVsID0gMDsKPiA+ID4gCj4gPiA+ICAgICAgIGlmIChkcm1fZHBfZHBjZF9y
-ZWFkYigmaW50ZWxfZHAtPmF1eCwKPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIERQ
-X0VEUF9CQUNLTElHSFRfTU9ERV9TRVRfUkVHSVNURVIsCj4gPiA+IEBAIC03MCwxNSArNjQsMjkg
-QEAgc3RhdGljIHUzMiBpbnRlbF9kcF9hdXhfZ2V0X2JhY2tsaWdodChzdHJ1Y3QKPiA+ID4gaW50
-ZWxfY29ubmVjdG9yICpjb25uZWN0b3IpCj4gPiA+ICAgICAgICAgICAgICAgZHJtX2RiZ19rbXMo
-Jmk5MTUtPmRybSwKPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAiRmFpbGVkIHRvIHJl
-YWQgdGhlIERQQ0QgcmVnaXN0ZXIgMHgleFxuIiwKPiA+ID4gICAgICAgICAgICAgICAgICAgICAg
-ICAgICBEUF9FRFBfQkFDS0xJR0hUX01PREVfU0VUX1JFR0lTVEVSKTsKPiA+ID4gLSAgICAgICAg
-ICAgICByZXR1cm4gMDsKPiA+ID4gKyAgICAgICAgICAgICByZXR1cm4gZmFsc2U7Cj4gPiA+ICAg
-ICAgIH0KPiA+ID4gCj4gPiA+ICsgICAgIHJldHVybiAobW9kZV9yZWcgJiBEUF9FRFBfQkFDS0xJ
-R0hUX0NPTlRST0xfTU9ERV9NQVNLKSA9PQo+ID4gPiArICAgICAgICAgICAgRFBfRURQX0JBQ0tM
-SUdIVF9DT05UUk9MX01PREVfRFBDRDsKPiA+ID4gK30KPiA+ID4gKwo+ID4gPiArLyoKPiA+ID4g
-KyAqIFJlYWQgdGhlIGN1cnJlbnQgYmFja2xpZ2h0IHZhbHVlIGZyb20gRFBDRCByZWdpc3Rlcihz
-KSBiYXNlZAo+ID4gPiArICogb24gaWYgOC1iaXQoTVNCKSBvciAxNi1iaXQoTVNCIGFuZCBMU0Ip
-IHZhbHVlcyBhcmUgc3VwcG9ydGVkCj4gPiA+ICsgKi8KPiA+ID4gK3N0YXRpYyB1MzIgaW50ZWxf
-ZHBfYXV4X2dldF9iYWNrbGlnaHQoc3RydWN0IGludGVsX2Nvbm5lY3Rvcgo+ID4gPiAqY29ubmVj
-dG9yKQo+ID4gPiArewo+ID4gPiArICAgICBzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwID0gaW50
-ZWxfYXR0YWNoZWRfZHAoY29ubmVjdG9yKTsKPiA+ID4gKyAgICAgc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmk5MTUgPSBkcF90b19pOTE1KGludGVsX2RwKTsKPiA+ID4gKyAgICAgdTggcmVhZF92
-YWxbMl0gPSB7IDB4MCB9Owo+ID4gPiArICAgICB1MTYgbGV2ZWwgPSAwOwo+ID4gPiArCj4gPiA+
-ICAgICAgIC8qCj4gPiA+ICAgICAgICAqIElmIHdlJ3JlIG5vdCBpbiBEUENEIGNvbnRyb2wgbW9k
-ZSB5ZXQsIHRoZSBwcm9ncmFtbWVkCj4gPiA+IGJyaWdodG5lc3MKPiA+ID4gICAgICAgICogdmFs
-dWUgaXMgbWVhbmluZ2xlc3MgYW5kIHdlIHNob3VsZCBhc3N1bWUgbWF4IGJyaWdodG5lc3MKPiA+
-ID4gICAgICAgICovCj4gPiA+IC0gICAgIGlmICgobW9kZV9yZWcgJiBEUF9FRFBfQkFDS0xJR0hU
-X0NPTlRST0xfTU9ERV9NQVNLKSAhPQo+ID4gPiAtICAgICAgICAgRFBfRURQX0JBQ0tMSUdIVF9D
-T05UUk9MX01PREVfRFBDRCkKPiA+ID4gKyAgICAgaWYgKCFpbnRlbF9kcF9hdXhfYmFja2xpZ2h0
-X2RwY2RfbW9kZShjb25uZWN0b3IpKQo+ID4gPiAgICAgICAgICAgICAgIHJldHVybiBjb25uZWN0
-b3ItPnBhbmVsLmJhY2tsaWdodC5tYXg7Cj4gPiA+IAo+ID4gPiAgICAgICBpZiAoZHJtX2RwX2Rw
-Y2RfcmVhZCgmaW50ZWxfZHAtPmF1eCwKPiA+ID4gRFBfRURQX0JBQ0tMSUdIVF9CUklHSFRORVNT
-X01TQiwKPiA+ID4gQEAgLTMxOSw3ICszMjcsOCBAQCBzdGF0aWMgaW50IGludGVsX2RwX2F1eF9z
-ZXR1cF9iYWNrbGlnaHQoc3RydWN0Cj4gPiA+IGludGVsX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+
-ID4gPiAKPiA+ID4gICAgICAgcGFuZWwtPmJhY2tsaWdodC5taW4gPSAwOwo+ID4gPiAgICAgICBw
-YW5lbC0+YmFja2xpZ2h0LmxldmVsID0gaW50ZWxfZHBfYXV4X2dldF9iYWNrbGlnaHQoY29ubmVj
-dG9yKTsKPiA+ID4gLSAgICAgcGFuZWwtPmJhY2tsaWdodC5lbmFibGVkID0gcGFuZWwtPmJhY2ts
-aWdodC5sZXZlbCAhPSAwOwo+ID4gPiArICAgICBwYW5lbC0+YmFja2xpZ2h0LmVuYWJsZWQgPQo+
-ID4gPiBpbnRlbF9kcF9hdXhfYmFja2xpZ2h0X2RwY2RfbW9kZShjb25uZWN0b3IpCj4gPiA+ICYm
-Cj4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBhbmVsLT5iYWNrbGlnaHQu
-bGV2ZWwgIT0gMDsKPiA+ID4gCj4gPiA+ICAgICAgIHJldHVybiAwOwo+ID4gPiAgfQo+ID4gLS0K
-PiA+IENoZWVycywKPiA+ICAgICAgICAgTHl1ZGUgUGF1bCAoc2hlL2hlcikKPiA+ICAgICAgICAg
-U29mdHdhcmUgRW5naW5lZXIgYXQgUmVkIEhhdAo+ID4gCi0tIApDaGVlcnMsCglMeXVkZSBQYXVs
-IChzaGUvaGVyKQoJU29mdHdhcmUgRW5naW5lZXIgYXQgUmVkIEhhdAoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+
+On 2020-09-21 6:24 p.m., Lu Baolu wrote:
+>>>> I'm trying to test this on an old Sandy Bridge, but found that I get
+>>>> spammed with warnings on boot. I've put a sample of a few of them below.
+>>>> They all seem to be related to ioat.
+>>>>
+>>>> I had the same issue with Tom's v2 but never saw this on his v1.
+>>>
+>>> Have you verified whether this could be reproduced with the lasted
+>>> upstream kernel (without this patch series)?
+>>
+>> Yes.
+> 
+> I am sorry. Just want to make sure I understand you correctly. :-) When
+> you say "yes", do you mean you could reproduce this with pure upstream
+> kernel (5.9-rc6)?
+
+I mean I've verified the bug does *not* exist without this patch set.
+
+> 
+>> Also, it's hitting a warning in the dma-iommu code which would not
+>> be hit without this patch set.
+> 
+> Without this series, DMA APIs don't go through dma-iommu. Do you mind
+> posting the warning message?
+
+It was on my original email but here it is again:
+
+
+[   44.057877] ------------[ cut here ]------------
+[   44.063167] WARNING: CPU: 4 PID: 84 at drivers/iommu/dma-iommu.c:496
+__iommu_dma_unmap+0x115/0x130
+[   44.073351] Modules linked in:
+[   44.076882] CPU: 4 PID: 84 Comm: kworker/4:1 Tainted: G        W
+   5.9.0-rc4-00006-g110da1e703a2 #216
+[   44.087935] Hardware name: Supermicro SYS-7047GR-TRF/X9DRG-QF, BIOS
+3.0a 12/05/2013
+[   44.096650] Workqueue: events work_for_cpu_fn
+[   44.101644] RIP: 0010:__iommu_dma_unmap+0x115/0x130
+[   44.107225] Code: 48 8b 0c 24 48 c7 44 24 10 00 00 00 00 48 c7 44 24
+18 00 00 00 00 48 c7 44 24 20 00 00 00 00 48 c7 44 24 08 ff ff ff ff eb
+8d <0f> 0b e9 74 ff ff ff e8 1f 36 66 00 66 66 2e 0f 1f 84 00 00 00 00
+[   44.128443] RSP: 0000:ffffc90002397c38 EFLAGS: 00010206
+[   44.134413] RAX: 0000000000200000 RBX: 0000000000080000 RCX:
+0000000000000000
+[   44.144487] RDX: 0000000000000403 RSI: ffffffff82a7fb20 RDI:
+ffff888477804f30
+[   44.152613] RBP: 00000000fec00000 R08: 00000000000fec00 R09:
+00000000000fedff
+[   44.160733] R10: 0000000000000002 R11: 0000000000000004 R12:
+ffff888270c39000
+[   44.168861] R13: ffff888472d85ee8 R14: 0000000000080000 R15:
+0000000000000000
+[   44.176980] FS:  0000000000000000(0000) GS:ffff888479800000(0000)
+knlGS:0000000000000000
+[   44.186198] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   44.192761] CR2: 0000000000000000 CR3: 0000000002a20001 CR4:
+00000000000606e0
+[   44.200871] Call Trace:
+[   44.203716]  ? lockdep_hardirqs_on_prepare+0xad/0x180
+[   44.209509]  iommu_dma_free+0x18/0x30
+[   44.213734]  ioat_free_chan_resources+0x19e/0x300
+[   44.219133]  ioat_dma_self_test+0x2a0/0x3d0
+[   44.223964]  ioat_pci_probe+0x60e/0x903
+[   44.228387]  local_pci_probe+0x42/0x80
+[   44.232721]  work_for_cpu_fn+0x16/0x20
+[   44.237037]  process_one_work+0x292/0x630
+[   44.241644]  ? __schedule+0x344/0x970
+[   44.245868]  worker_thread+0x227/0x3e0
+[   44.250185]  ? process_one_work+0x630/0x630
+[   44.254989]  kthread+0x136/0x150
+[   44.258718]  ? kthread_use_mm+0x100/0x100
+[   44.263334]  ret_from_fork+0x22/0x30
+[   44.267474] irq event stamp: 1881262
+[   44.271602] hardirqs last  enabled at (1881272): [<ffffffff811b8465>]
+console_unlock+0x435/0x570
+[   44.281593] hardirqs last disabled at (1881281): [<ffffffff811b845b>]
+console_unlock+0x42b/0x570
+[   44.291588] softirqs last  enabled at (1747140): [<ffffffff817da3e5>]
+ioat_cleanup+0x65/0x470
+[   44.301285] softirqs last disabled at (1747144): [<ffffffff817d797a>]
+ioat_free_chan_resources+0x6a/0x300
+[   44.312153] ---[ end trace ed0f88fd959a5a39 ]---
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
