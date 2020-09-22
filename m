@@ -1,34 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B31F92746B9
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 18:33:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73C112746F6
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 18:49:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B82176E8BC;
-	Tue, 22 Sep 2020 16:33:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5B146E8DD;
+	Tue, 22 Sep 2020 16:49:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 166D66E8BC;
- Tue, 22 Sep 2020 16:33:50 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id DF8FD67373; Tue, 22 Sep 2020 18:33:46 +0200 (CEST)
-Date: Tue, 22 Sep 2020 18:33:46 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20200922163346.GA1701@lst.de>
-References: <20200918163724.2511-1-hch@lst.de>
- <20200918163724.2511-4-hch@lst.de>
- <20200921191157.GX32101@casper.infradead.org> <20200922062249.GA30831@lst.de>
- <43d10588-2033-038b-14e4-9f41cd622d7b@linux.intel.com>
- <20200922143141.GA26637@lst.de>
- <e429c3e6-2143-f51a-4c1c-c1470076ad3e@linux.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1FEC6E8C3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 16:49:20 +0000 (UTC)
+IronPort-SDR: jbTW6WI0+QsF3ZWBgMACfT3GSOKfcOg2b8/uPblgOWqEFMnM7MEt2105LLh+J1ABK1AoD99t1s
+ ok7xkJrfgoLw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9752"; a="148409002"
+X-IronPort-AV: E=Sophos;i="5.77,291,1596524400"; d="scan'208";a="148409002"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2020 09:49:20 -0700
+IronPort-SDR: fsIxjMW1yvqEGhDSeNOW+7OYLDc8lmJjEfR3BaPEjeFAbJAKXFUCNdLYoh61acaILJE9Xi/LtN
+ xNFzH+RfcD8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,291,1596524400"; d="scan'208";a="338344095"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga008.jf.intel.com with SMTP; 22 Sep 2020 09:49:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 22 Sep 2020 19:49:17 +0300
+Date: Tue, 22 Sep 2020 19:49:17 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200922164917.GT6112@intel.com>
+References: <20200922125106.30540-1-imre.deak@intel.com>
+ <20200922125106.30540-4-imre.deak@intel.com>
+ <20200922132705.GS6112@intel.com>
+ <20200922153035.GF23028@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <e429c3e6-2143-f51a-4c1c-c1470076ad3e@linux.intel.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: use vmap in shmem_pin_map
+In-Reply-To: <20200922153035.GF23028@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915: Simplify the link training
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,70 +56,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, Minchan Kim <minchan@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- x86@kernel.org, linux-kernel@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, Chris Wilson <chris@chris-wilson.co.uk>,
- linux-mm@kvack.org, dri-devel@lists.freedesktop.org,
- xen-devel@lists.xenproject.org, Boris Ostrovsky <boris.ostrovsky@oracle.com>,
- Christoph Hellwig <hch@lst.de>, Nitin Gupta <ngupta@vflare.org>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 22, 2020 at 05:13:45PM +0100, Tvrtko Ursulin wrote:
->>   void *shmem_pin_map(struct file *file)
->>   {
->> -	const size_t n_pte = shmem_npte(file);
->> -	pte_t *stack[32], **ptes, **mem;
->
-> Chris can comment how much he'd miss the 32 page stack shortcut.
+On Tue, Sep 22, 2020 at 06:30:35PM +0300, Imre Deak wrote:
+> On Tue, Sep 22, 2020 at 04:27:05PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Tue, Sep 22, 2020 at 03:51:02PM +0300, Imre Deak wrote:
+> > > Split the prepare, link training, fallback-handling steps into their =
+own
+> > > functions for clarity and as a preparation for the upcoming LTTPR cha=
+nges.
+> > > =
 
-I'd like to see a profile that claim that kmalloc matters in a
-path that does a vmap and reads pages through the page cache.
-Especially when the kmalloc saves doing another page cache lookup
-on the free side.
+> > > While at it also add some documentation to exported functions.
+> > > =
 
-> Is there something in vmap() preventing us from freeing the pages array 
-> here? I can't spot anything that is holding on to the pointer. Or it was 
-> just a sketch before you realized we could walk the vm_area?
->
-> Also, I may be totally misunderstanding something, but I think you need to 
-> assign area->pages manually so shmem_unpin_map can access it below.
+> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > ---
+> > >  .../drm/i915/display/intel_dp_link_training.c | 80 ++++++++++++++---=
+--
+> > >  1 file changed, 62 insertions(+), 18 deletions(-)
+> > > =
 
-We need area->pages to hold the pages for the free side.  That being
-said the patch I posted is broken because it never assigned to that.
-As said it was a sketch.  This is the patch I just rebooted into on
-my Laptop:
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/=
+drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > index 6d13d00db5e6..0c3809891bd2 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > @@ -162,14 +162,13 @@ static bool intel_dp_link_max_vswing_reached(st=
+ruct intel_dp *intel_dp)
+> > >  	return true;
+> > >  }
+> > >  =
 
-http://git.infradead.org/users/hch/misc.git/commitdiff/048522dfa26b6667adfb0371ff530dc263abe829
+> > > -/* Enable corresponding port and start training pattern 1 */
+> > > -static bool
+> > > -intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
+> > > +/*
+> > > + * Prepare link training by configuring the link parameters and enab=
+ling the
+> > > + * corresponding port.
+> > > + */
+> > > +static void intel_dp_prepare_link_train(struct intel_dp *intel_dp)
+> > >  {
+> > >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> > > -	u8 voltage;
+> > > -	int voltage_tries, cr_tries, max_cr_tries;
+> > > -	bool max_vswing_reached =3D false;
+> > >  	u8 link_config[2];
+> > >  	u8 link_bw, rate_select;
+> > >  =
 
-it needs extra prep patches from the series:
+> > > @@ -203,6 +202,16 @@ intel_dp_link_training_clock_recovery(struct int=
+el_dp *intel_dp)
+> > >  	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, =
+2);
+> > >  =
 
-http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/alloc_vm_area
+> > >  	intel_dp->DP |=3D DP_PORT_EN;
+> > =
 
->>   	mapping_clear_unevictable(file->f_mapping);
->> -	__shmem_unpin_map(file, ptr, shmem_npte(file));
->> +	for (i = 0; i < shmem_npages(file); i++)
->> +		put_page(area->pages[i]);
->> +	kvfree(area->pages);
->> +	vunmap(ptr);
->
-> Is the verdict from mm experts that we can't use vfree due __free_pages vs 
-> put_page differences?
+> > I guess we no longer actually enable the port here? The comment ^ still=
+ says
+> > we do.
+> > =
 
-Switched to vfree now.
+> > Hmm. Seems we do enable the port on ddi platforms, but not on older
+> > platforms. I guess the docs could still use a tweak to reflect
+> > reality a bit better.
+> =
 
-> Could we get from ptes to pages, so that we don't have to keep the 
-> area->pages array allocated for the duration of the pin?
+> Yes, missed the old platform part, will update the comment.
+> =
 
-We could do vmalloc_to_page, but that is fairly expensive (not as bad
-as reading from the page cache..).  Are you really worried about the
-allocation?
+> > =
+
+> > > +}
+> > > +
+> > > +/* Perform the link training clock recovery phase using training pat=
+tern 1. */
+> > > +static bool
+> > > +intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
+> > > +{
+> > > +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> > > +	u8 voltage;
+> > > +	int voltage_tries, cr_tries, max_cr_tries;
+> > > +	bool max_vswing_reached =3D false;
+> > >  =
+
+> > >  	/* clock recovery */
+> > >  	if (!intel_dp_reset_link_train(intel_dp,
+> > > @@ -325,6 +334,10 @@ static u32 intel_dp_training_pattern(struct inte=
+l_dp *intel_dp)
+> > >  	return DP_TRAINING_PATTERN_2;
+> > >  }
+> > >  =
+
+> > > +/*
+> > > + * Perform the link training channel equalization phase using one of=
+ training
+> > > + * pattern 2, 3 or 4 depending on the the source and sink capabiliti=
+es.
+> > > + */
+> > >  static bool
+> > >  intel_dp_link_training_channel_equalization(struct intel_dp *intel_d=
+p)
+> > >  {
+> > > @@ -395,6 +408,15 @@ intel_dp_link_training_channel_equalization(stru=
+ct intel_dp *intel_dp)
+> > >  =
+
+> > >  }
+> > >  =
+
+> > > +/**
+> > > + * intel_dp_stop_link_train - stop link training
+> > > + * @intel_dp: DP struct
+> > > + *
+> > > + * Stop the link training of the @intel_dp port, programming the por=
+t to
+> > > + * output an idle pattern =
+
+> > =
+
+> > I don't think we use the idle pattern on all platforms.
+> =
+
+> Yes, just DDI, this also needs a doc update.
+> =
+
+> > BTW intel_dp_set_idle_link_train() looks pretty pointless. Could just
+> > inline it into its only caller, or at least move it into
+> > intel_dp_link_training.c.
+> =
+
+> Ok, can unexport/inline it. Btw, this part made me wonder what's the
+> exact reason for keeping the idle pattern output and corresponding DPCD
+> programming separate, that is why can't we disable the training pattern
+> in DPCD after intel_dp_set_idle_link_train()? That would make things
+> more uniform on all platforms.
+
+Hmm. I guess we're violating the DP spec a bit with the current
+sequence:
+"The Source device shall start sending the idle pattern after it has
+ cleared the Training_Pattern byte in the DPCD"
+
+Currently we start sending the idle pattern way earlier. And even
+on platform where we don't send the idle pattern [1] we are disabling
+the training pattern before we do the corresponding DPCD write.
+
+So we may want to change the order to follow the spec.
+
+[1] I guess the hw must send a few idle patterns automagically
+    since IIRC the spec requires it?
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
