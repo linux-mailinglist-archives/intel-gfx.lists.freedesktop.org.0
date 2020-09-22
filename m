@@ -2,48 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F07042747AD
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 19:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13A362747CC
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 19:54:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 711406E8CD;
-	Tue, 22 Sep 2020 17:48:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB51D89E2A;
+	Tue, 22 Sep 2020 17:54:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34EF888FFE
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 17:48:00 +0000 (UTC)
-IronPort-SDR: Sd9pyVRl5CXxuJqNQvCYgW0/7fAkX+zYoSjZGficnRSEimcxxGFNLsIHjObalxVUj+OMl9+aaq
- bzfCqkmTHX9Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9752"; a="159963739"
-X-IronPort-AV: E=Sophos;i="5.77,291,1596524400"; d="scan'208";a="159963739"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2020 10:47:59 -0700
-IronPort-SDR: BanLXbIl2qk3Y1woqjsj4VroS+nSlIV1FlaRMMphqFMC4bprEoN91q4EwoN4pCmPct6O1f/bDK
- 6nFQFL3kA6Kg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,291,1596524400"; d="scan'208";a="322301445"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 22 Sep 2020 10:47:57 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 22 Sep 2020 20:47:56 +0300
-Date: Tue, 22 Sep 2020 20:47:56 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200922174756.GX6112@intel.com>
-References: <20200922125106.30540-1-imre.deak@intel.com>
- <20200922125106.30540-5-imre.deak@intel.com>
- <20200922165420.GU6112@intel.com>
- <20200922174128.GK23028@ideak-desk.fi.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7621789DD8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 17:54:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1600797254;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=jbgzaUIaC3I5CqsNeSXK2pw89V07O3bxrn1V2PULJZw=;
+ b=hyxWqDCqOF6yXo9NVlm3UL8dlTI7O/yBj/rMYZWnxRLC8RfrGX8olOPl/R+9UCrFM55DYi
+ fEi77um4aKxvioq7p/40O2uDTpMLccHMW4PG2yeZxTVGvw/6+3ScEMb1XKaElRAI9dEEw7
+ JehTYL8LpQmG+SUOMew7myb7Fu/KXU4=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-115-QEuWgwRFOfmN2XnJ5gyx_Q-1; Tue, 22 Sep 2020 13:54:11 -0400
+X-MC-Unique: QEuWgwRFOfmN2XnJ5gyx_Q-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 31B289CC00;
+ Tue, 22 Sep 2020 17:54:10 +0000 (UTC)
+Received: from Ruby.redhat.com (unknown [10.10.115.243])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id AFF657368D;
+ Tue, 22 Sep 2020 17:54:09 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 22 Sep 2020 13:53:55 -0400
+Message-Id: <20200922175357.42998-1-lyude@redhat.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200922174128.GK23028@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915: Factor out a helper to
- disable the DPCD training pattern
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Intel-gfx] [RESEND PATCH 0/2] drm/i915: kernel-doc fixes for new
+ DP helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,103 +59,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 22, 2020 at 08:41:28PM +0300, Imre Deak wrote:
-> On Tue, Sep 22, 2020 at 07:54:20PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Sep 22, 2020 at 03:51:03PM +0300, Imre Deak wrote:
-> > > To prepare for a follow-up LTTPR change factor out a helper to disable
-> > > the training pattern in DPCD. We'll need to do this for each LTTPR
-> > > (without programming the port to output the idle pattern) when traini=
-ng
-> > > in LTTPR non-transparent mode.
-> > > =
+Note that none of the code that this touches is in i915, however at the
+time I posted this patch all of the DP helpers that concern these
+patches were added through drm-intel-next-queued, not drm-misc-next, so
+it makes more sense to merge it through drm-intel-next-queued. As such,
+I'm just sending this onto intel-gfx so that it gets a patch ID.
 
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  .../drm/i915/display/intel_dp_link_training.c | 28 +++++++++++------=
---
-> > >  1 file changed, 16 insertions(+), 12 deletions(-)
-> > > =
+This should introduce no functional changes, and is already reviewed by
+me.
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/=
-drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > > index 0c3809891bd2..6994a32244dc 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > > @@ -102,30 +102,34 @@ void intel_dp_get_adjust_train(struct intel_dp =
-*intel_dp,
-> > >  		intel_dp->train_set[lane] =3D v | p;
-> > >  }
-> > >  =
+Mauro Carvalho Chehab (2):
+  drm/dp: fix kernel-doc warnings at drm_dp_helper.c
+  drm/dp: fix a kernel-doc issue at drm_edid.c
 
-> > > +static bool intel_dp_disable_dpcd_training_pattern(struct intel_dp *=
-intel_dp)
-> > > +{
-> > > +	u8 val =3D DP_TRAINING_PATTERN_DISABLE;
-> > > +
-> > > +	return drm_dp_dpcd_write(&intel_dp->aux, DP_TRAINING_PATTERN_SET, &=
-val, 1) =3D=3D 1;
-> > > +}
-> > =
+ drivers/gpu/drm/drm_dp_helper.c | 5 +++++
+ drivers/gpu/drm/drm_edid.c      | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-> > =
+-- 
+2.26.2
 
-> > > +
-> > >  static bool
-> > >  intel_dp_set_link_train(struct intel_dp *intel_dp,
-> > >  			u8 dp_train_pat)
-> > >  {
-> > >  	u8 buf[sizeof(intel_dp->train_set) + 1];
-> > > -	int ret, len;
-> > > +	int len;
-> > >  =
-
-> > >  	intel_dp_program_link_training_pattern(intel_dp, dp_train_pat);
-> > >  =
-
-> > > -	buf[0] =3D dp_train_pat;
-> > >  	if ((dp_train_pat & ~DP_LINK_SCRAMBLING_DISABLE) =3D=3D
-> > > -	    DP_TRAINING_PATTERN_DISABLE) {
-> > > +	    DP_TRAINING_PATTERN_DISABLE)
-> > >  		/* don't write DP_TRAINING_LANEx_SET on disable */
-> > =
-
-> > As mentioned in the other patch I think we're doing things in the wrong
-> > order here. I suspect it'll be cleaner to just stop doing
-> > intel_dp_set_link_train(DISABLE) entirely and just have a dedicated
-> > function for disabling link training. We can then trivially do a
-> > followup to swap the order of operations to match the spec.
-> =
-
-> intel_dp_disable_dpcd_training_pattern() would be needed after each
-> LTTPR link training phase, where the port should not output idle
-> patterns, that's the only reason for this change.
-> =
-
-> Do you mean to remove intel_dp_stop_link_train() then and do the idle
-> pattern programming + corresponding DPCD training pattern disable
-> programming at the end of the link training sequence (and remove the
-> DP_TRAINING_PATTERN_DISABLE case handling from above)? I agree with
-> that, but I see that too as a follow-up material (along with changing
-> the order as you suggested).
-
-Yeah, followup shuld be fine. I was just thinking of doing
-s/intel_dp_set_link_train(DP_TRAINING_PATTERN_DISABLE)/intel_dp_set_normal_=
-link_train()/
-or
-s/intel_dp_set_link_train(DP_TRAINING_PATTERN_DISABLE)/intel_dp_disable_lin=
-k_train()/
-or something along those lines.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
