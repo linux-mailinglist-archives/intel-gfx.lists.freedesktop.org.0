@@ -2,39 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55BC1273D83
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 10:40:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E97D8273E3E
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 11:12:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A767E6E844;
-	Tue, 22 Sep 2020 08:40:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27ED26E841;
+	Tue, 22 Sep 2020 09:12:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 895C86E22A;
- Tue, 22 Sep 2020 08:40:14 +0000 (UTC)
-Received: from localhost (unknown [213.57.247.131])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 8F1D123A7A;
- Tue, 22 Sep 2020 08:40:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1600764014;
- bh=h9rFTp2cY1cCW7PPaasSWRxT8TazEpwM3hRasp7X/k4=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=tu99uOeB/lioA+H+0JqwuIkhF3i1afaGTCFBMQ9UVF2/UjwVm2joSf4RAqkUFnU4F
- IXekd/mIIkS/PaZ5tYGb0Xv1VCmQQ2Gus8mmUKg6eIE1TpCYvEidcz3c5cmmHIa9qb
- JxpCiH3mWCKt3eHQ8NhtS6ObpFA04tzXmTiakdL0=
-From: Leon Romanovsky <leon@kernel.org>
-To: Christoph Hellwig <hch@lst.de>, Doug Ledford <dledford@redhat.com>,
- Jason Gunthorpe <jgg@nvidia.com>
-Date: Tue, 22 Sep 2020 11:39:57 +0300
-Message-Id: <20200922083958.2150803-2-leon@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200922083958.2150803-1-leon@kernel.org>
-References: <20200922083958.2150803-1-leon@kernel.org>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E6896E841
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 09:12:26 +0000 (UTC)
+IronPort-SDR: 4VV7CgGDaPx8Y+l3jqhv1f2Ep/YPssGvwmCOzWj4VKvwsN2lti9rkvvGRLzWhU2g73Mnlq2O2y
+ aYoa4h1VV03Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="140570498"
+X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; d="scan'208";a="140570498"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2020 02:12:26 -0700
+IronPort-SDR: wIt7neWVUgymLVsomTF4sLZKZ1Hhq9J40fz6rH5ooMs/kIXukfZYVQmc35VzbWvPtuo2xYcV8N
+ 0p9209AFc/bQ==
+X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; d="scan'208";a="454422873"
+Received: from atroib-mobl2.ger.corp.intel.com (HELO [10.214.238.184])
+ ([10.214.238.184])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2020 02:12:23 -0700
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
+ intel-gfx@lists.freedesktop.org
+References: <20200917185945.11734-1-thomas_os@shipmail.org>
+ <20200917185945.11734-3-thomas_os@shipmail.org>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <ea271d9d-5697-481a-457b-7377bfa7364c@linux.intel.com>
+Date: Tue, 22 Sep 2020 10:12:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH rdma-next v3 1/2] lib/scatterlist: Add support
- in dynamic allocation of SG table from pages
+In-Reply-To: <20200917185945.11734-3-thomas_os@shipmail.org>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC PATCH v2 2/2] drm/i915: Introduce a
+ i915_gem_do_ww(){} utility
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,483 +55,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Roland Scheidegger <sroland@vmware.com>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Maor Gottlieb <maorg@nvidia.com>, Maor Gottlieb <maorg@mellanox.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@intel.com>,
+ maarten.lankhorst@intel.com, chris@chris-wilson.co.uk
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Maor Gottlieb <maorg@mellanox.com>
-
-Extend __sg_alloc_table_from_pages to support dynamic allocation of
-SG table from pages. It should be used by drivers that can't supply
-all the pages at one time.
-
-This function returns the last populated SGE in the table. Users should
-pass it as an argument to the function from the second call and forward.
-As before, nents will be equal to the number of populated SGEs (chunks).
-
-With this new extension, drivers can benefit the optimization of merging
-contiguous pages without a need to allocate all pages in advance and
-hold them in a large buffer.
-
-E.g. with the Infiniband driver that allocates a single page for hold
-the
-pages. For 1TB memory registration, the temporary buffer would consume
-only
-4KB, instead of 2GB.
-
-Signed-off-by: Maor Gottlieb <maorg@nvidia.com>
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c |  12 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c  |  15 +-
- include/linux/scatterlist.h                 |  43 +++---
- lib/scatterlist.c                           | 158 +++++++++++++++-----
- lib/sg_pool.c                               |   3 +-
- tools/testing/scatterlist/main.c            |   9 +-
- 6 files changed, 163 insertions(+), 77 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 12b30075134a..f2eaed6aca3d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -403,6 +403,7 @@ __i915_gem_userptr_alloc_pages(struct drm_i915_gem_object *obj,
- 	unsigned int max_segment = i915_sg_segment_size();
- 	struct sg_table *st;
- 	unsigned int sg_page_sizes;
-+	struct scatterlist *sg;
- 	int ret;
-
- 	st = kmalloc(sizeof(*st), GFP_KERNEL);
-@@ -410,13 +411,12 @@ __i915_gem_userptr_alloc_pages(struct drm_i915_gem_object *obj,
- 		return ERR_PTR(-ENOMEM);
-
- alloc_table:
--	ret = __sg_alloc_table_from_pages(st, pvec, num_pages,
--					  0, num_pages << PAGE_SHIFT,
--					  max_segment,
--					  GFP_KERNEL);
--	if (ret) {
-+	sg = __sg_alloc_table_from_pages(st, pvec, num_pages, 0,
-+					 num_pages << PAGE_SHIFT, max_segment,
-+					 NULL, 0, GFP_KERNEL);
-+	if (IS_ERR(sg)) {
- 		kfree(st);
--		return ERR_PTR(ret);
-+		return ERR_CAST(sg);
- 	}
-
- 	ret = i915_gem_gtt_prepare_pages(obj, st);
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-index ab524ab3b0b4..f22acd398b1f 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-@@ -419,6 +419,7 @@ static int vmw_ttm_map_dma(struct vmw_ttm_tt *vmw_tt)
- 	int ret = 0;
- 	static size_t sgl_size;
- 	static size_t sgt_size;
-+	struct scatterlist *sg;
-
- 	if (vmw_tt->mapped)
- 		return 0;
-@@ -441,13 +442,15 @@ static int vmw_ttm_map_dma(struct vmw_ttm_tt *vmw_tt)
- 		if (unlikely(ret != 0))
- 			return ret;
-
--		ret = __sg_alloc_table_from_pages
--			(&vmw_tt->sgt, vsgt->pages, vsgt->num_pages, 0,
--			 (unsigned long) vsgt->num_pages << PAGE_SHIFT,
--			 dma_get_max_seg_size(dev_priv->dev->dev),
--			 GFP_KERNEL);
--		if (unlikely(ret != 0))
-+		sg = __sg_alloc_table_from_pages(&vmw_tt->sgt, vsgt->pages,
-+				vsgt->num_pages, 0,
-+				(unsigned long) vsgt->num_pages << PAGE_SHIFT,
-+				dma_get_max_seg_size(dev_priv->dev->dev),
-+				NULL, 0, GFP_KERNEL);
-+		if (IS_ERR(sg)) {
-+			ret = PTR_ERR(sg);
- 			goto out_sg_alloc_fail;
-+		}
-
- 		if (vsgt->num_pages > vmw_tt->sgt.nents) {
- 			uint64_t over_alloc =
-diff --git a/include/linux/scatterlist.h b/include/linux/scatterlist.h
-index 45cf7b69d852..c24cc667b56b 100644
---- a/include/linux/scatterlist.h
-+++ b/include/linux/scatterlist.h
-@@ -165,6 +165,22 @@ static inline void sg_set_buf(struct scatterlist *sg, const void *buf,
- #define for_each_sgtable_dma_sg(sgt, sg, i)	\
- 	for_each_sg((sgt)->sgl, sg, (sgt)->nents, i)
-
-+static inline void __sg_chain(struct scatterlist *chain_sg,
-+			      struct scatterlist *sgl)
-+{
-+	/*
-+	 * offset and length are unused for chain entry. Clear them.
-+	 */
-+	chain_sg->offset = 0;
-+	chain_sg->length = 0;
-+
-+	/*
-+	 * Set lowest bit to indicate a link pointer, and make sure to clear
-+	 * the termination bit if it happens to be set.
-+	 */
-+	chain_sg->page_link = ((unsigned long) sgl | SG_CHAIN) & ~SG_END;
-+}
-+
- /**
-  * sg_chain - Chain two sglists together
-  * @prv:	First scatterlist
-@@ -178,18 +194,7 @@ static inline void sg_set_buf(struct scatterlist *sg, const void *buf,
- static inline void sg_chain(struct scatterlist *prv, unsigned int prv_nents,
- 			    struct scatterlist *sgl)
- {
--	/*
--	 * offset and length are unused for chain entry.  Clear them.
--	 */
--	prv[prv_nents - 1].offset = 0;
--	prv[prv_nents - 1].length = 0;
--
--	/*
--	 * Set lowest bit to indicate a link pointer, and make sure to clear
--	 * the termination bit if it happens to be set.
--	 */
--	prv[prv_nents - 1].page_link = ((unsigned long) sgl | SG_CHAIN)
--					& ~SG_END;
-+	__sg_chain(&prv[prv_nents - 1], sgl);
- }
-
- /**
-@@ -283,13 +288,15 @@ typedef void (sg_free_fn)(struct scatterlist *, unsigned int);
- void __sg_free_table(struct sg_table *, unsigned int, unsigned int,
- 		     sg_free_fn *);
- void sg_free_table(struct sg_table *);
--int __sg_alloc_table(struct sg_table *, unsigned int, unsigned int,
--		     struct scatterlist *, unsigned int, gfp_t, sg_alloc_fn *);
-+int __sg_alloc_table(struct sg_table *, struct scatterlist *, unsigned int,
-+		unsigned int, struct scatterlist *, unsigned int,
-+		gfp_t, sg_alloc_fn *);
- int sg_alloc_table(struct sg_table *, unsigned int, gfp_t);
--int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
--				unsigned int n_pages, unsigned int offset,
--				unsigned long size, unsigned int max_segment,
--				gfp_t gfp_mask);
-+struct scatterlist *__sg_alloc_table_from_pages(struct sg_table *sgt,
-+		struct page **pages, unsigned int n_pages, unsigned int offset,
-+		unsigned long size, unsigned int max_segment,
-+		struct scatterlist *prv, unsigned int left_pages,
-+		gfp_t gfp_mask);
- int sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
- 			      unsigned int n_pages, unsigned int offset,
- 			      unsigned long size, gfp_t gfp_mask);
-diff --git a/lib/scatterlist.c b/lib/scatterlist.c
-index 5d63a8857f36..91587560497d 100644
---- a/lib/scatterlist.c
-+++ b/lib/scatterlist.c
-@@ -245,6 +245,7 @@ EXPORT_SYMBOL(sg_free_table);
- /**
-  * __sg_alloc_table - Allocate and initialize an sg table with given allocator
-  * @table:	The sg table header to use
-+ * @prv:	Last populated sge in sgt
-  * @nents:	Number of entries in sg list
-  * @max_ents:	The maximum number of entries the allocator returns per call
-  * @nents_first_chunk: Number of entries int the (preallocated) first
-@@ -263,17 +264,15 @@ EXPORT_SYMBOL(sg_free_table);
-  *   __sg_free_table() to cleanup any leftover allocations.
-  *
-  **/
--int __sg_alloc_table(struct sg_table *table, unsigned int nents,
--		     unsigned int max_ents, struct scatterlist *first_chunk,
--		     unsigned int nents_first_chunk, gfp_t gfp_mask,
--		     sg_alloc_fn *alloc_fn)
-+int __sg_alloc_table(struct sg_table *table, struct scatterlist *prv,
-+		unsigned int nents, unsigned int max_ents,
-+		struct scatterlist *first_chunk,
-+		unsigned int nents_first_chunk, gfp_t gfp_mask,
-+		sg_alloc_fn *alloc_fn)
- {
--	struct scatterlist *sg, *prv;
--	unsigned int left;
--	unsigned curr_max_ents = nents_first_chunk ?: max_ents;
--	unsigned prv_max_ents;
--
--	memset(table, 0, sizeof(*table));
-+	unsigned int curr_max_ents = nents_first_chunk ?: max_ents;
-+	unsigned int left, prv_max_ents = 0;
-+	struct scatterlist *sg;
-
- 	if (nents == 0)
- 		return -EINVAL;
-@@ -283,7 +282,6 @@ int __sg_alloc_table(struct sg_table *table, unsigned int nents,
- #endif
-
- 	left = nents;
--	prv = NULL;
- 	do {
- 		unsigned int sg_size, alloc_size = left;
-
-@@ -308,7 +306,7 @@ int __sg_alloc_table(struct sg_table *table, unsigned int nents,
- 			 * linkage.  Without this, sg_kfree() may get
- 			 * confused.
- 			 */
--			if (prv)
-+			if (prv_max_ents)
- 				table->nents = ++table->orig_nents;
-
- 			return -ENOMEM;
-@@ -321,10 +319,18 @@ int __sg_alloc_table(struct sg_table *table, unsigned int nents,
- 		 * If this is the first mapping, assign the sg table header.
- 		 * If this is not the first mapping, chain previous part.
- 		 */
--		if (prv)
--			sg_chain(prv, prv_max_ents, sg);
--		else
-+		if (!prv)
- 			table->sgl = sg;
-+		else if (prv_max_ents)
-+			sg_chain(prv, prv_max_ents, sg);
-+		else {
-+			__sg_chain(prv, sg);
-+			/*
-+			 * We decrease one since the prvious last sge in used to
-+			 * chain the chunks together.
-+			 */
-+			table->nents = table->orig_nents -= 1;
-+		}
-
- 		/*
- 		 * If no more entries after this one, mark the end
-@@ -356,7 +362,8 @@ int sg_alloc_table(struct sg_table *table, unsigned int nents, gfp_t gfp_mask)
- {
- 	int ret;
-
--	ret = __sg_alloc_table(table, nents, SG_MAX_SINGLE_ALLOC,
-+	memset(table, 0, sizeof(*table));
-+	ret = __sg_alloc_table(table, NULL, nents, SG_MAX_SINGLE_ALLOC,
- 			       NULL, 0, gfp_mask, sg_kmalloc);
- 	if (unlikely(ret))
- 		__sg_free_table(table, SG_MAX_SINGLE_ALLOC, 0, sg_kfree);
-@@ -365,6 +372,30 @@ int sg_alloc_table(struct sg_table *table, unsigned int nents, gfp_t gfp_mask)
- }
- EXPORT_SYMBOL(sg_alloc_table);
-
-+static struct scatterlist *get_next_sg(struct sg_table *table,
-+		struct scatterlist *prv, unsigned long left_npages,
-+		gfp_t gfp_mask)
-+{
-+	struct scatterlist *next_sg;
-+	int ret;
-+
-+	/* If table was just allocated */
-+	if (!prv)
-+		return table->sgl;
-+
-+	/* Check if last entry should be keeped for chainning */
-+	next_sg = sg_next(prv);
-+	if (!sg_is_last(next_sg) || left_npages == 1)
-+		return next_sg;
-+
-+	ret = __sg_alloc_table(table, next_sg,
-+			min_t(unsigned long, left_npages, SG_MAX_SINGLE_ALLOC),
-+			SG_MAX_SINGLE_ALLOC, NULL, 0, gfp_mask, sg_kmalloc);
-+	if (ret)
-+		return ERR_PTR(ret);
-+	return sg_next(prv);
-+}
-+
- /**
-  * __sg_alloc_table_from_pages - Allocate and initialize an sg table from
-  *			         an array of pages
-@@ -374,29 +405,47 @@ EXPORT_SYMBOL(sg_alloc_table);
-  * @offset:      Offset from start of the first page to the start of a buffer
-  * @size:        Number of valid bytes in the buffer (after offset)
-  * @max_segment: Maximum size of a scatterlist node in bytes (page aligned)
-+ * @prv:	 Last populated sge in sgt
-+ * @left_pages:  Left pages caller have to set after this call
-  * @gfp_mask:	 GFP allocation mask
-  *
-- *  Description:
-- *    Allocate and initialize an sg table from a list of pages. Contiguous
-- *    ranges of the pages are squashed into a single scatterlist node up to the
-- *    maximum size specified in @max_segment. An user may provide an offset at a
-- *    start and a size of valid data in a buffer specified by the page array.
-- *    The returned sg table is released by sg_free_table.
-+ * Description:
-+ *    If @prv is NULL, allocate and initialize an sg table from a list of pages,
-+ *    else reuse the scatterlist passed in at @prv.
-+ *    Contiguous ranges of the pages are squashed into a single scatterlist
-+ *    entry up to the maximum size specified in @max_segment.  A user may
-+ *    provide an offset at a start and a size of valid data in a buffer
-+ *    specified by the page array.
-  *
-  * Returns:
-- *   0 on success, negative error on failure
-+ *   Last SGE in sgt on success, PTR_ERR on otherwise.
-+ *   The allocation in @sgt must be released by sg_free_table.
-+ *
-+ * Notes:
-+ *   If this function returns non-0 (eg failure), the caller must call
-+ *   sg_free_table() to cleanup any leftover allocations.
-  */
--int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
--				unsigned int n_pages, unsigned int offset,
--				unsigned long size, unsigned int max_segment,
--				gfp_t gfp_mask)
-+struct scatterlist *__sg_alloc_table_from_pages(struct sg_table *sgt,
-+		struct page **pages, unsigned int n_pages, unsigned int offset,
-+		unsigned long size, unsigned int max_segment,
-+		struct scatterlist *prv, unsigned int left_pages,
-+		gfp_t gfp_mask)
- {
--	unsigned int chunks, cur_page, seg_len, i;
-+	unsigned int chunks, cur_page, seg_len, i, prv_len = 0;
-+	unsigned int tmp_nents = sgt->nents;
-+	struct scatterlist *s = prv;
-+	unsigned int table_size;
- 	int ret;
--	struct scatterlist *s;
-
- 	if (WARN_ON(!max_segment || offset_in_page(max_segment)))
--		return -EINVAL;
-+		return ERR_PTR(-EINVAL);
-+	if (IS_ENABLED(CONFIG_ARCH_NO_SG_CHAIN) && prv)
-+		return ERR_PTR(-EOPNOTSUPP);
-+
-+	if (prv &&
-+	    page_to_pfn(sg_page(prv)) + (prv->length >> PAGE_SHIFT) ==
-+	    page_to_pfn(pages[0]))
-+		prv_len = prv->length;
-
- 	/* compute number of contiguous chunks */
- 	chunks = 1;
-@@ -410,13 +459,17 @@ int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
- 		}
- 	}
-
--	ret = sg_alloc_table(sgt, chunks, gfp_mask);
--	if (unlikely(ret))
--		return ret;
-+	if (!prv) {
-+		/* Only the last allocation could be less than the maximum */
-+		table_size = left_pages ? SG_MAX_SINGLE_ALLOC : chunks;
-+		ret = sg_alloc_table(sgt, table_size, gfp_mask);
-+		if (unlikely(ret))
-+			return ERR_PTR(ret);
-+	}
-
- 	/* merging chunks and putting them into the scatterlist */
- 	cur_page = 0;
--	for_each_sg(sgt->sgl, s, sgt->orig_nents, i) {
-+	for (i = 0; i < chunks; i++) {
- 		unsigned int j, chunk_size;
-
- 		/* look for the end of the current chunk */
-@@ -425,19 +478,41 @@ int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
- 			seg_len += PAGE_SIZE;
- 			if (seg_len >= max_segment ||
- 			    page_to_pfn(pages[j]) !=
--			    page_to_pfn(pages[j - 1]) + 1)
-+				    page_to_pfn(pages[j - 1]) + 1)
- 				break;
- 		}
-
- 		chunk_size = ((j - cur_page) << PAGE_SHIFT) - offset;
--		sg_set_page(s, pages[cur_page],
--			    min_t(unsigned long, size, chunk_size), offset);
-+		chunk_size = min_t(unsigned long, size, chunk_size);
-+		if (!i && prv_len) {
-+			if (max_segment - prv->length >= chunk_size) {
-+				sg_set_page(s, sg_page(s),
-+					    s->length + chunk_size, s->offset);
-+				goto next;
-+			}
-+		}
-+
-+		/* Pass how many chunks might left */
-+		s = get_next_sg(sgt, s, chunks - i + left_pages, gfp_mask);
-+		if (IS_ERR(s)) {
-+			/*
-+			 * Adjust entry length to be as before function was
-+			 * called.
-+			 */
-+			if (prv_len)
-+				prv->length = prv_len;
-+			goto out;
-+		}
-+		sg_set_page(s, pages[cur_page], chunk_size, offset);
-+		tmp_nents++;
-+next:
- 		size -= chunk_size;
- 		offset = 0;
- 		cur_page = j;
- 	}
--
--	return 0;
-+	sgt->nents = tmp_nents;
-+out:
-+	return s;
- }
- EXPORT_SYMBOL(__sg_alloc_table_from_pages);
-
-@@ -465,8 +540,9 @@ int sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
- 			      unsigned int n_pages, unsigned int offset,
- 			      unsigned long size, gfp_t gfp_mask)
- {
--	return __sg_alloc_table_from_pages(sgt, pages, n_pages, offset, size,
--					   SCATTERLIST_MAX_SEGMENT, gfp_mask);
-+	return PTR_ERR_OR_ZERO(__sg_alloc_table_from_pages(sgt, pages, n_pages,
-+			offset, size, SCATTERLIST_MAX_SEGMENT, NULL, 0,
-+			gfp_mask));
- }
- EXPORT_SYMBOL(sg_alloc_table_from_pages);
-
-diff --git a/lib/sg_pool.c b/lib/sg_pool.c
-index db29e5c1f790..c449248bf5d5 100644
---- a/lib/sg_pool.c
-+++ b/lib/sg_pool.c
-@@ -129,7 +129,8 @@ int sg_alloc_table_chained(struct sg_table *table, int nents,
- 		nents_first_chunk = 0;
- 	}
-
--	ret = __sg_alloc_table(table, nents, SG_CHUNK_SIZE,
-+	memset(table, 0, sizeof(*table));
-+	ret = __sg_alloc_table(table, NULL, nents, SG_CHUNK_SIZE,
- 			       first_chunk, nents_first_chunk,
- 			       GFP_ATOMIC, sg_pool_alloc);
- 	if (unlikely(ret))
-diff --git a/tools/testing/scatterlist/main.c b/tools/testing/scatterlist/main.c
-index 0a1464181226..4899359a31ac 100644
---- a/tools/testing/scatterlist/main.c
-+++ b/tools/testing/scatterlist/main.c
-@@ -55,14 +55,13 @@ int main(void)
- 	for (i = 0, test = tests; test->expected_segments; test++, i++) {
- 		struct page *pages[MAX_PAGES];
- 		struct sg_table st;
--		int ret;
-+		struct scatterlist *sg;
-
- 		set_pages(pages, test->pfn, test->num_pages);
-
--		ret = __sg_alloc_table_from_pages(&st, pages, test->num_pages,
--						  0, test->size, test->max_seg,
--						  GFP_KERNEL);
--		assert(ret == test->alloc_ret);
-+		sg = __sg_alloc_table_from_pages(&st, pages, test->num_pages, 0,
-+				test->size, test->max_seg, NULL, 0, GFP_KERNEL);
-+		assert(PTR_ERR_OR_ZERO(sg) == test->alloc_ret);
-
- 		if (test->alloc_ret)
- 			continue;
---
-2.26.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDE3LzA5LzIwMjAgMTk6NTksIFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCkgd3JvdGU6Cj4g
+RnJvbTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgo+IAo+
+IFdpdGggdGhlIGh1Z2UgbnVtYmVyIG9mIHNpdGVzIHdoZXJlIG11bHRpcGxlLW9iamVjdCBsb2Nr
+aW5nIGlzCj4gbmVlZGVkIGluIHRoZSBkcml2ZXIsIGl0IGJlY29tZXMgZGlmZmljdWx0IHRvIGF2
+b2lkIHJlY3Vyc2l2ZQo+IHd3X2FjcXVpcmVfY3R4IGluaXRpYWxpemF0aW9uLCBhbmQgdGhlIGZ1
+bmN0aW9uIHByb3RvdHlwZXMgYmVjb21lCj4gYmxvYXRlZCBwYXNzaW5nIHRoZSB3d19hY3F1aXJl
+X2N0eCBhcm91bmQuIEZ1cnRoZXJtb3JlIGl0J3Mgbm90Cj4gYWx3YXlzIGVhc3kgdG8gZ2V0IHRo
+ZSAtRURFQURMSyBoYW5kbGluZyBjb3JyZWN0IGFuZCB0byBmb2xsb3cgaXQuCj4gCj4gSW50cm9k
+dWNlIGEgaTkxNV9nZW1fZG9fd3cgdXRpbGl0eSB0aGF0IHRyaWVzIHRvIHJlbWVkeSBhbGwgdGhl
+c2UgcHJvYmxlbXMKPiBieSBlbmNsb3NpbmcgcGFydHMgb2YgYSB3dyB0cmFuc2FjdGlvbiBpbiB0
+aGUgZm9sbG93aW5nIHdheToKPiAKPiBteV9mdW5jdGlvbigpIHsKPiAJc3RydWN0IGk5MTVfZ2Vt
+X3d3X2N0eCAqd3csIHRlbXBsYXRlOwo+IAlpbnQgZXJyOwo+IAlib29sIGludGVycnVwdGlibGUg
+PSB0cnVlOwo+IAo+IAlpOTE1X2RvX3d3KHd3LCAmdGVtcGxhdGUsIGVyciwgaW50ZXJydXB0aWJs
+ZSkgewo+IAkJZXJyID0gd3dfdHJhbnNhY3Rpb25fcGFydCh3dyk7Cj4gCX0KPiAJcmV0dXJuIGVy
+cjsKPiB9Cj4gCj4gVGhlIHV0aWxpdHkgd2lsbCBhdXRvbWF0aWNhbGx5IGxvb2sgdXAgYW4gYWN0
+aXZlIHd3X2FjcXVpcmVfY3R4IGlmIG9uZQo+IGlzIGluaXRpYWxpemVkIHByZXZpb3VzbHkgaW4g
+dGhlIGNhbGwgY2hhaW4sIGFuZCBpZiBvbmUgZm91bmQgd2lsbAo+IGZvcndhcmQgdGhlIC1FREVB
+RExLIGluc3RlYWQgb2YgaGFuZGxpbmcgaXQsIHdoaWNoIHRha2VzIGNhcmUgb2YgdGhlCj4gcmVj
+dXJzaXZlIGluaXRhbGl6YXRpb24uIFVzaW5nIHRoZSB1dGlsaXR5IGFsc28gZGlzY291cmFnZXMg
+bmVzdGVkIHd3Cj4gdW5sb2NraW5nIC8gcmVsb2NraW5nIHRoYXQgaXMgYm90aCB2ZXJ5IGZyYWdp
+bGUgYW5kIGhhcmQgdG8gZm9sbG93Lgo+IAo+IFRvIGxvb2sgdXAgYW5kIHJlZ2lzdGVyIGFuIGFj
+dGl2ZSB3d19hY3F1aXJlX2N0eCwgdXNlIGEKPiBkcml2ZXItd2lkZSBoYXNoIHRhYmxlIGZvciBu
+b3cuIEJ1dCBub3RpbmcgdGhhdCBhIHRhc2sgY291bGQgb25seSBoYXZlCj4gYSBzaW5nbGUgYWN0
+aXZlIHd3X2FjcXVyaWVfY3R4IHBlciB3d19jbGFzcywgdGhlIGFjdGl2ZSBDVFggaXMgcmVhbGx5
+Cj4gdGFzayBzdGF0ZSBhbmQgYSBnZW5lcmljIHZlcnNpb24gb2YgdGhpcyB1dGlsaXR5IGluIHRo
+ZSB3d19tdXRleCBjb2RlCj4gY291bGQgdGh1cyBwcm9iYWJseSB1c2UgYSBxdWljayBsb29rdXAg
+ZnJvbSBhIGxpc3QgaW4gdGhlCj4gc3RydWN0IHRhc2tfc3RydWN0LgoKTWF5YmUgYSBzdHVwaWQg
+cXVlc3Rpb24sIGJ1dCBpcyBpdCBzYWZlIHRvIGFzc3VtZSBwcm9jZXNzIGNvbnRleHQgaXMgdGhl
+IApvbmx5IGVudHJ5IHBvaW50IHRvIGEgd3cgdHJhbnNhY3Rpb24/IEkgZ3Vlc3MgSSB3YXMgdGhp
+bmtpbmcgYWJvdXQgCnRoaW5ncyBsaWtlIGJhY2tncm91bmQgc2NydWIvbWlncmF0ZSB0aHJlYWRz
+LCBidXQgeWVzLCB0aGV5IHdvdWxkIGJlIAp0aHJlYWRzIHNvIHdvdWxkIHdvcmsuIE90aGVyIHRo
+YW4gdGhvc2UgSSBoYXZlIG5vIGlkZWFzIHdobyBjb3VsZCBuZWVkIApsb2NraW5nIG11bHRpcGxl
+IG9iamVjdHMgc28gZnJvbSB0aGlzIGFzcGVjdCBpdCBsb29rcyBva2F5LgoKQnV0IGl0IGlzIGtp
+bmQgb2YgbmVhdCB0byBhdm9pZCBjaGFuZ2luZyBkZWVwIGhpZXJhcmNoaWVzIG9mIGZ1bmN0aW9u
+IApwcm90b3R5cGVzLgoKTXkgY29uY2VybiBpcyB0aGF0IHRoZSBhcHByb2FjaCBpc24ndCB0byAi
+bWFnaWNreSI/IEkgbWVhbiB0b28gaGlkZGVuIAphbmQgdG9vIHN0YXRlZnVsLCBhbmQgdGhhdCBz
+b21lIHVud2FudGVkIHN1cnByaXNlcyBjb3VsZCBiZSBjb21pbmcgaW4gCnVzZSB3aXRoIHRoaXMg
+bW9kZWwuIEJ1dCBpdCBpcyBhIHZlcnkgdmFndWUgZmVlbGluZyBhdCB0aGlzIHBvaW50IHNvIApk
+b24ndCBrbm93LgoKSSBhbHNvIHdvcnJ5IHRoYXQgaWYgdGhlIGdyYXBoaWNzIHN1YnN5c3RlbSB3
+b3VsZCBzdGFydCB0aGlua2luZyBpdCBpcyAKc28gc3BlY2lhbCB0aGF0IGl0IG5lZWRzIGRlZGlj
+YXRlZCBoYW5kbGluZyBpbiB0YXNrX3N0cnVjdCwgdGhhdCBpdCAKbWlnaHQgbWFrZSBpdCAoc3Vi
+c3lzdGVtKSBzb3VuZCBhIGJpdCBwcmV0ZW50aW91cy4gSSBoYWQgYSBxdWljayBicm93c2UgCnRo
+cm91Z2ggc3RydWN0IHRhc2tfc3RydWN0IGFuZCBjb3VsZG4ndCBzcG90IGFueSBwcmVjZWRlbnQg
+dG8gc3VjaCAKdGhpbmdzIHNvIEkgZG9uJ3Qga25vdyB3aGF0IGNvcmUga2VybmVsIHdvdWxkIHNh
+eS4KClJlZ2FyZHMsCgpUdnJ0a28KCj4gCj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIEhlbGxzdHLD
+tm0gPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9nZW1fd3cuYyAgfCA3NCArKysrKysrKysrKysrKysrKysrKysrKysrKysrLQo+
+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cuaCAgfCA1NiArKysrKysrKysrKysr
+KysrKysrKystCj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dsb2JhbHMuYyB8ICAxICsK
+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2xvYmFscy5oIHwgIDEgKwo+ICAgNCBmaWxl
+cyBjaGFuZ2VkLCAxMzAgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZ2VtX3d3LmMKPiBpbmRleCAzNDkwYjcyY2Y2MTMuLjYyNDdhZjFkYmE4NyAx
+MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbV93dy5jCj4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cuYwo+IEBAIC0xLDEwICsxLDEyIEBACj4g
+ICAvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUCj4gICAvKgo+IC0gKiBDb3B5cmlnaHQg
+wqkgMjAyMCBJbnRlbCBDb3Jwb3JhdGlvbgo+ICsgKiBDb3B5cmlnaHQgwqkgMjAxOSBJbnRlbCBD
+b3Jwb3JhdGlvbgo+ICAgICovCj4gKyNpbmNsdWRlIDxsaW51eC9yaGFzaHRhYmxlLmg+Cj4gICAj
+aW5jbHVkZSA8bGludXgvZG1hLXJlc3YuaD4KPiAgICNpbmNsdWRlIDxsaW51eC9zdGFja3RyYWNl
+Lmg+Cj4gICAjaW5jbHVkZSAiaTkxNV9nZW1fd3cuaCIKPiArI2luY2x1ZGUgImk5MTVfZ2xvYmFs
+cy5oIgo+ICAgI2luY2x1ZGUgImdlbS9pOTE1X2dlbV9vYmplY3QuaCIKPiAgIAo+ICAgdm9pZCBp
+OTE1X2dlbV93d19jdHhfaW5pdChzdHJ1Y3QgaTkxNV9nZW1fd3dfY3R4ICp3dywgYm9vbCBpbnRy
+KQo+IEBAIC03MCwzICs3Miw3MyBAQCBpbnQgX19tdXN0X2NoZWNrIGk5MTVfZ2VtX3d3X2N0eF9i
+YWNrb2ZmKHN0cnVjdCBpOTE1X2dlbV93d19jdHggKnd3KQo+ICAgCj4gICAJcmV0dXJuIHJldDsK
+PiAgIH0KPiArCj4gK3N0YXRpYyBzdHJ1Y3Qgcmhhc2h0YWJsZSB3d19odDsKPiArc3RhdGljIGNv
+bnN0IHN0cnVjdCByaGFzaHRhYmxlX3BhcmFtcyB3d19wYXJhbXMgPSB7Cj4gKwkua2V5X2xlbiA9
+IHNpemVvZihzdHJ1Y3QgdGFza19zdHJ1Y3QgKiksCj4gKwkua2V5X29mZnNldCA9IG9mZnNldG9m
+KHN0cnVjdCBpOTE1X2dlbV93d19jdHgsIGN0eC50YXNrKSwKPiArCS5oZWFkX29mZnNldCA9IG9m
+ZnNldG9mKHN0cnVjdCBpOTE1X2dlbV93d19jdHgsIGhlYWQpLAo+ICsJLm1pbl9zaXplID0gMTI4
+LAo+ICt9Owo+ICsKPiArc3RhdGljIHZvaWQgaTkxNV93d19pdGVtX2ZyZWUodm9pZCAqcHRyLCB2
+b2lkICphcmcpCj4gK3sKPiArCVdBUk5fT05fT05DRSgxKTsKPiArfQo+ICsKPiArc3RhdGljIHZv
+aWQgaTkxNV9nbG9iYWxfd3dfZXhpdCh2b2lkKQo+ICt7Cj4gKwlyaGFzaHRhYmxlX2ZyZWVfYW5k
+X2Rlc3Ryb3koJnd3X2h0LCBpOTE1X3d3X2l0ZW1fZnJlZSwgTlVMTCk7Cj4gK30KPiArCj4gK3N0
+YXRpYyB2b2lkIGk5MTVfZ2xvYmFsX3d3X3Nocmluayh2b2lkKQo+ICt7Cj4gK30KPiArCj4gK3N0
+YXRpYyBzdHJ1Y3QgaTkxNV9nbG9iYWwgZ2xvYmFsID0gewo+ICsJLnNocmluayA9IGk5MTVfZ2xv
+YmFsX3d3X3NocmluaywKPiArCS5leGl0ID0gaTkxNV9nbG9iYWxfd3dfZXhpdCwKPiArfTsKPiAr
+Cj4gK2ludCBfX2luaXQgaTkxNV9nbG9iYWxfd3dfaW5pdCh2b2lkKQo+ICt7Cj4gKwlpbnQgcmV0
+ID0gcmhhc2h0YWJsZV9pbml0KCZ3d19odCwgJnd3X3BhcmFtcyk7Cj4gKwo+ICsJaWYgKHJldCkK
+PiArCQlyZXR1cm4gcmV0Owo+ICsKPiArCWk5MTVfZ2xvYmFsX3JlZ2lzdGVyKCZnbG9iYWwpOwo+
+ICsKPiArCXJldHVybiAwOwo+ICt9Cj4gKwo+ICt2b2lkIF9faTkxNV9nZW1fd3dfbWFya191bnVz
+ZWQoc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3cpCj4gK3sKPiArCUdFTV9XQVJOX09OKHJoYXNo
+dGFibGVfcmVtb3ZlX2Zhc3QoJnd3X2h0LCAmd3ctPmhlYWQsIHd3X3BhcmFtcykpOwo+ICt9Cj4g
+Kwo+ICsvKioKPiArICogX19pOTE1X2dlbV93d19sb2NhdGVfb3JfdXNlIC0gcmV0dXJuIHRoZSB0
+YXNrJ3MgaTkxNV9nZW1fd3dfY3R4IGNvbnRleHQKPiArICogdG8gdXNlLgo+ICsgKgo+ICsgKiBA
+dGVtcGxhdGU6IFRoZSBjb250ZXh0IHRvIHVzZSBpZiB0aGVyZSB3YXMgbm9uZSBpbml0aWFsaXpl
+ZCBwcmV2aW91c2x5Cj4gKyAqIGluIHRoZSBjYWxsIGNoYWluLgo+ICsgKgo+ICsgKiBSRVRVUk46
+IFRoZSB0YXNrJ3MgaTkxNV9nZW1fd3dfY3R4IGNvbnRleHQuCj4gKyAqLwo+ICtzdHJ1Y3QgaTkx
+NV9nZW1fd3dfY3R4ICoKPiArX19pOTE1X2dlbV93d19sb2NhdGVfb3JfdXNlKHN0cnVjdCBpOTE1
+X2dlbV93d19jdHggKnRlbXBsYXRlKQo+ICt7Cj4gKwlzdHJ1Y3QgaTkxNV9nZW1fd3dfY3R4ICp0
+bXA7Cj4gKwo+ICsJLyogY3R4LnRhc2sgaXMgdGhlIGhhc2gga2V5LCBzbyBzZXQgaXQgZmlyc3Qu
+ICovCj4gKwl0ZW1wbGF0ZS0+Y3R4LnRhc2sgPSBjdXJyZW50Owo+ICsKPiArCS8qCj4gKwkgKiBJ
+ZGVhbGx5IHdlJ2QganVzdCBob29rIHRoZSBhY3RpdmUgY29udGV4dCB0byB0aGUKPiArCSAqIHN0
+cnVjdCB0YXNrX3N0cnVjdC4gQnV0IGZvciBub3cgdXNlIGEgaGFzaCB0YWJsZS4KPiArCSAqLwo+
+ICsJdG1wID0gcmhhc2h0YWJsZV9sb29rdXBfZ2V0X2luc2VydF9mYXN0KCZ3d19odCwgJnRlbXBs
+YXRlLT5oZWFkLAo+ICsJCQkJCQl3d19wYXJhbXMpOwo+ICsJcmV0dXJuIHRtcDsKPiArfQo+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbV93dy5oIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cuaAo+IGluZGV4IDk0ZmRmOGM1Zjg5Yi4uYjg0NDU5NjA2
+N2M3IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmgKPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbV93dy5oCj4gQEAgLTYsMTggKzYsNzIg
+QEAKPiAgICNkZWZpbmUgX19JOTE1X0dFTV9XV19IX18KPiAgIAo+ICAgI2luY2x1ZGUgPGxpbnV4
+L3N0YWNrZGVwb3QuaD4KPiArI2luY2x1ZGUgPGxpbnV4L3JoYXNodGFibGUtdHlwZXMuaD4KPiAg
+ICNpbmNsdWRlIDxkcm0vZHJtX2Rydi5oPgo+ICAgCj4gICBzdHJ1Y3QgaTkxNV9nZW1fd3dfY3R4
+IHsKPiAgIAlzdHJ1Y3Qgd3dfYWNxdWlyZV9jdHggY3R4Owo+ICsJc3RydWN0IHJoYXNoX2hlYWQg
+aGVhZDsKPiAgIAlzdHJ1Y3QgbGlzdF9oZWFkIG9ial9saXN0Owo+ICAgCXN0cnVjdCBkcm1faTkx
+NV9nZW1fb2JqZWN0ICpjb250ZW5kZWQ7Cj4gICAJZGVwb3Rfc3RhY2tfaGFuZGxlX3QgY29udGVu
+ZGVkX2J0Owo+IC0JYm9vbCBpbnRyOwo+ICsJdTMyIGNhbGxfZGVwdGg7Cj4gKwl1bnNpZ25lZCBz
+aG9ydCBpbnRyOwo+ICsJdW5zaWduZWQgc2hvcnQgbG9vcDsKPiAgIH07Cj4gICAKPiAgIHZvaWQg
+aTkxNV9nZW1fd3dfY3R4X2luaXQoc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqY3R4LCBib29sIGlu
+dHIpOwo+ICAgdm9pZCBpOTE1X2dlbV93d19jdHhfZmluaShzdHJ1Y3QgaTkxNV9nZW1fd3dfY3R4
+ICpjdHgpOwo+ICAgaW50IF9fbXVzdF9jaGVjayBpOTE1X2dlbV93d19jdHhfYmFja29mZihzdHJ1
+Y3QgaTkxNV9nZW1fd3dfY3R4ICpjdHgpOwo+ICAgdm9pZCBpOTE1X2dlbV93d191bmxvY2tfc2lu
+Z2xlKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopOwo+ICsKPiArLyogSW50ZXJuYWwg
+ZnVuY3Rpb25zIHVzZWQgYnkgdGhlIGlubGluZXMhIERvbid0IHVzZS4gKi8KPiArdm9pZCBfX2k5
+MTVfZ2VtX3d3X21hcmtfdW51c2VkKHN0cnVjdCBpOTE1X2dlbV93d19jdHggKnd3KTsKPiArc3Ry
+dWN0IGk5MTVfZ2VtX3d3X2N0eCAqCj4gK19faTkxNV9nZW1fd3dfbG9jYXRlX29yX3VzZShzdHJ1
+Y3QgaTkxNV9nZW1fd3dfY3R4ICp0ZW1wbGF0ZSk7Cj4gKwo+ICtzdGF0aWMgaW5saW5lIGludCBf
+X2k5MTVfZ2VtX3d3X2Zpbmkoc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3csIGludCBlcnIpCj4g
+K3sKPiArCXd3LT5sb29wID0gMDsKPiArCWlmICh3dy0+Y2FsbF9kZXB0aCkgewo+ICsJCXd3LT5j
+YWxsX2RlcHRoLS07Cj4gKwkJcmV0dXJuIGVycjsKPiArCX0KPiArCj4gKwlpZiAoZXJyID09IC1F
+REVBRExLKSB7Cj4gKwkJZXJyID0gaTkxNV9nZW1fd3dfY3R4X2JhY2tvZmYod3cpOwo+ICsJCWlm
+ICghZXJyKQo+ICsJCQl3dy0+bG9vcCA9IDE7Cj4gKwl9Cj4gKwo+ICsJaWYgKCF3dy0+bG9vcCkg
+ewo+ICsJCWk5MTVfZ2VtX3d3X2N0eF9maW5pKHd3KTsKPiArCQlfX2k5MTVfZ2VtX3d3X21hcmtf
+dW51c2VkKHd3KTsKPiArCX0KPiArCj4gKwlyZXR1cm4gZXJyOwo+ICt9Cj4gKwo+ICtzdGF0aWMg
+aW5saW5lIHN0cnVjdCBpOTE1X2dlbV93d19jdHggKgo+ICtfX2k5MTVfZ2VtX3d3X2luaXQoc3Ry
+dWN0IGk5MTVfZ2VtX3d3X2N0eCAqdGVtcGxhdGUsIGJvb2wgaW50cikKPiArewo+ICsJc3RydWN0
+IGk5MTVfZ2VtX3d3X2N0eCAqd3cgPSBfX2k5MTVfZ2VtX3d3X2xvY2F0ZV9vcl91c2UodGVtcGxh
+dGUpOwo+ICsKPiArCWlmICghd3cpIHsKPiArCQl3dyA9IHRlbXBsYXRlOwo+ICsJCXd3LT5jYWxs
+X2RlcHRoID0gMDsKPiArCQlpOTE1X2dlbV93d19jdHhfaW5pdCh3dywgaW50cik7Cj4gKwl9IGVs
+c2Ugewo+ICsJCXd3LT5jYWxsX2RlcHRoKys7Cj4gKwl9Cj4gKwo+ICsJd3ctPmxvb3AgPSAxOwo+
+ICsKPiArCXJldHVybiB3dzsKPiArfQo+ICsKPiArI2RlZmluZSBpOTE1X2dlbV9kb193dyhfd3cs
+IF90ZW1wbGF0ZSwgX2VyciwgX2ludHIpCQkJXAo+ICsJZm9yICgoX3d3KSA9IF9faTkxNV9nZW1f
+d3dfaW5pdChfdGVtcGxhdGUsIF9pbnRyKTsgKF93dyktPmxvb3A7IFwKPiArCSAgICAgX2VyciA9
+IF9faTkxNV9nZW1fd3dfZmluaShfd3csIF9lcnIpKQo+ICsKPiAgICNlbmRpZgo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dsb2JhbHMuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZ2xvYmFscy5jCj4gaW5kZXggM2FhMjEzNjg0MjkzLi45MDg3Y2M4YzJlZTMg
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nbG9iYWxzLmMKPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dsb2JhbHMuYwo+IEBAIC05NCw2ICs5NCw3IEBA
+IHN0YXRpYyBfX2luaXRjb25zdCBpbnQgKCogY29uc3QgaW5pdGZuW10pKHZvaWQpID0gewo+ICAg
+CWk5MTVfZ2xvYmFsX3JlcXVlc3RfaW5pdCwKPiAgIAlpOTE1X2dsb2JhbF9zY2hlZHVsZXJfaW5p
+dCwKPiAgIAlpOTE1X2dsb2JhbF92bWFfaW5pdCwKPiArCWk5MTVfZ2xvYmFsX3d3X2luaXQsCj4g
+ICB9Owo+ICAgCj4gICBpbnQgX19pbml0IGk5MTVfZ2xvYmFsc19pbml0KHZvaWQpCj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2xvYmFscy5oIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9nbG9iYWxzLmgKPiBpbmRleCBiMmY1Y2Q5YjliMWEuLjU5NzZiNDYwZWUz
+OSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dsb2JhbHMuaAo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2xvYmFscy5oCj4gQEAgLTM0LDUgKzM0LDYg
+QEAgaW50IGk5MTVfZ2xvYmFsX29iamVjdHNfaW5pdCh2b2lkKTsKPiAgIGludCBpOTE1X2dsb2Jh
+bF9yZXF1ZXN0X2luaXQodm9pZCk7Cj4gICBpbnQgaTkxNV9nbG9iYWxfc2NoZWR1bGVyX2luaXQo
+dm9pZCk7Cj4gICBpbnQgaTkxNV9nbG9iYWxfdm1hX2luaXQodm9pZCk7Cj4gK2ludCBpOTE1X2ds
+b2JhbF93d19pbml0KHZvaWQpOwo+ICAgCj4gICAjZW5kaWYgLyogX0k5MTVfR0xPQkFMU19IXyAq
+Lwo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
+bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
