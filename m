@@ -1,50 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34817273F99
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 12:27:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B7A72740A1
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Sep 2020 13:22:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 859CB6E2D6;
-	Tue, 22 Sep 2020 10:27:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA5016E848;
+	Tue, 22 Sep 2020 11:22:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C55406E2D6
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 10:27:38 +0000 (UTC)
-IronPort-SDR: tiDEUrFOAUs48DXMMJPVh2ki+8TpRqNVbmpxzWw9+D0fnvPvHpfzi6QpXBkT2cGXBxI7BvYYov
- Jwvn6vSpMi/A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="161500407"
-X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; d="scan'208";a="161500407"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2020 03:27:38 -0700
-IronPort-SDR: iJ0taQpb/qTkW+W8BfSS4pqmI98XsyYMRRJpS+7hgJ6GWMrU+rE4nt1miMwvFarPU98zRETvNy
- aAW1ifmCjD7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; d="scan'208";a="412616060"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 22 Sep 2020 03:27:35 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 22 Sep 2020 13:27:35 +0300
-Date: Tue, 22 Sep 2020 13:27:35 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Navare, Manasi" <manasi.d.navare@intel.com>
-Message-ID: <20200922102735.GO6112@intel.com>
-References: <20200715224222.7557-1-manasi.d.navare@intel.com>
- <20200715224222.7557-10-manasi.d.navare@intel.com>
- <20200903192335.GB6112@intel.com>
- <20200914192118.GA29202@labuser-Z97X-UD5H>
- <20200921211833.GA19413@labuser-Z97X-UD5H>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A59346E848;
+ Tue, 22 Sep 2020 11:22:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=v+IUea/CGhLMdjL8zbCOPAxfGNu+qZhlo3dcebaU5kY=; b=iLgsfzwxwT611QKOl+WmOf2wbN
+ /apXK6gTmDsVL/BXsA2nSeYw00AYm7of+qlZIT5seKhZdu6vVFYUh9VHKNyMaCNUtuxTWQsjq/fQb
+ o+HH9FqL3yy9RUdN/gEnhHaw8zj6LjLVf/SMpazertMDW0M+AsMsYpsjEY6RqiGrpxc2TfV1v186b
+ /dak9QRJGkXVmw5CYmBXsQSP0ryzf3Fj1FCPgdtdTrj8+Ud5C+5S63kHgzqMV4tMTbzbXE/7lodhh
+ 8x3U5eQq2tiq0PS1EC76b9HHLbxCqMbJHon71YuO6JArA0Hf33RL3+JVtd3CmHZv47m4GshGX8kOv
+ xhVaWjtQ==;
+Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1kKgMi-000579-Gi; Tue, 22 Sep 2020 11:21:44 +0000
+Date: Tue, 22 Sep 2020 12:21:44 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <20200922112144.GB32101@casper.infradead.org>
+References: <20200918163724.2511-1-hch@lst.de>
+ <20200918163724.2511-4-hch@lst.de>
+ <20200921191157.GX32101@casper.infradead.org>
+ <20200922062249.GA30831@lst.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200921211833.GA19413@labuser-Z97X-UD5H>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v6 10/11] drm/i915: Add
- intel_update_bigjoiner handling.
+In-Reply-To: <20200922062249.GA30831@lst.de>
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: use vmap in shmem_pin_map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,233 +49,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>, linux-mm@kvack.org,
+ Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ x86@kernel.org, linux-kernel@vger.kernel.org, Minchan Kim <minchan@kernel.org>,
+ dri-devel@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 21, 2020 at 02:18:33PM -0700, Navare, Manasi wrote:
-> On Mon, Sep 14, 2020 at 12:21:26PM -0700, Navare, Manasi wrote:
-> > On Thu, Sep 03, 2020 at 10:23:35PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Wed, Jul 15, 2020 at 03:42:21PM -0700, Manasi Navare wrote:
-> > > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > =
+On Tue, Sep 22, 2020 at 08:22:49AM +0200, Christoph Hellwig wrote:
+> On Mon, Sep 21, 2020 at 08:11:57PM +0100, Matthew Wilcox wrote:
+> > This is awkward.  I'd like it if we had a vfree() variant which called
+> > put_page() instead of __free_pages().  I'd like it even more if we
+> > used release_pages() instead of our own loop that called put_page().
+> 
+> Note that we don't need a new vfree variant, we can do this manually if
+> we want, take a look at kernel/dma/remap.c.  But I thought this code
+> intentionally doesn't want to do that to avoid locking in the memory
+> for the pages array.  Maybe the i915 maintainers can clarify.
 
-> > > > Enabling is done in a special sequence and so should plane updates
-> > > > be. Ideally the end user never notices the second pipe is used,
-> > > > so use the vblank evasion to cover both pipes.
-> > > > =
+Actually, vfree() will work today; I cc'd you on a documentation update
+to make it clear that this is permitted.
 
-> > > > This way ideally everything will be tear free, and updates are
-> > > > really atomic as userspace expects it.
-> > > > =
-
-> > > > ****This needs to be checked if it still works since lot of refacto=
-ring
-> > > > in skl_commit_modeset_enables
-> > > > =
-
-> > > > v2:
-> > > > * Manual Rebase (Manasi)
-> > > > * Refactoring on intel_update_crtc and enable_crtc and removing
-> > > > special trans_port_sync_update (Manasi)
-> > > > =
-
-> > > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_display.c | 120 +++++++++++++++=
-++--
-> > > >  drivers/gpu/drm/i915/display/intel_sprite.c  |  25 +++-
-> > > >  drivers/gpu/drm/i915/display/intel_sprite.h  |   3 +-
-> > > >  3 files changed, 129 insertions(+), 19 deletions(-)
-> > > > =
-
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
-/gpu/drm/i915/display/intel_display.c
-> > > > index a1011414da6d..00b26863ffc6 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > @@ -15656,7 +15656,7 @@ static void intel_update_crtc(struct intel_=
-atomic_state *state,
-> > > >  	else
-> > > >  		i9xx_update_planes_on_crtc(state, crtc);
-> > > >  =
-
-> > > > -	intel_pipe_update_end(new_crtc_state);
-> > > > +	intel_pipe_update_end(new_crtc_state, NULL);
-> > > >  =
-
-> > > >  	/*
-> > > >  	 * We usually enable FIFO underrun interrupts as part of the
-> > > > @@ -15754,6 +15754,52 @@ static void intel_commit_modeset_disables(=
-struct intel_atomic_state *state)
-> > > >  	}
-> > > >  }
-> > > >  =
-
-> > > > +static void intel_update_bigjoiner(struct intel_crtc *crtc,
-> > > > +				   struct intel_atomic_state *state,
-> > > > +				   struct intel_crtc_state *old_crtc_state,
-> > > > +				   struct intel_crtc_state *new_crtc_state)
-> > > > +{
-> > > > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > > +	bool modeset =3D needs_modeset(new_crtc_state);
-> > > > +	struct intel_crtc *slave =3D new_crtc_state->bigjoiner_linked_crt=
-c;
-> > > > +	struct intel_crtc_state *new_slave_crtc_state =3D
-> > > > +		intel_atomic_get_new_crtc_state(state, slave);
-> > > > +
-> > > > +	if (modeset) {
-> > > > +		/* Enable slave first */
-> > > > +		intel_crtc_update_active_timings(new_slave_crtc_state);
-> > > > +		dev_priv->display.crtc_enable(state, slave);
-> > > > +
-> > > > +		/* Then master */
-> > > > +		intel_crtc_update_active_timings(new_crtc_state);
-> > > > +		dev_priv->display.crtc_enable(state, crtc);
-> > > > +
-> > > > +		/* vblanks work again, re-enable pipe CRC. */
-> > > > +		intel_crtc_enable_pipe_crc(crtc);
-> > > > +
-> > > > +	} else {
-> > > > +		intel_pre_plane_update(state, crtc);
-> > > > +		intel_pre_plane_update(state, slave);
-> > > > +
-> > > > +		if (new_crtc_state->update_pipe)
-> > > > +			intel_encoders_update_pipe(state, crtc);
-> > > > +	}
-> > > > +
-> > > > +	/*
-> > > > +	 * Perform vblank evasion around commit operation, and make sure =
-to
-> > > > +	 * commit both planes simultaneously for best results.
-> > > > +	 */
-> > > > +	intel_pipe_update_start(new_crtc_state);
-> > > > +
-> > > > +	commit_pipe_config(state, crtc);
-> > > > +	commit_pipe_config(state, slave);
-> > > > +
-> > > > +	skl_update_planes_on_crtc(state, crtc);
-> > > > +	skl_update_planes_on_crtc(state, slave);
-> > > > +
-> > > > +	intel_pipe_update_end(new_crtc_state, new_slave_crtc_state);
-> > > > +}
-> > > =
-
-> > > I think this should ideally all go away and just the normal logic
-> > > in commit_modeset_enables() should deal with it. Just like it does
-> > > for port sync/mst pipe dependencies.
-> > >
-> > =
-
-> > Yes I think so too. Except for the intel_pipe_update_end where
-> > now we send the new_slave_crtc_state() so thats still something I need =
-to figure
-> > how it will work in normal code without special bigjoiner handling.
-> > =
-
-> > I think the 2p2p transcoder ports sync code initially had a special tra=
-ns port sync handling
-> > function and thats why this was written this way but with the new code =
-we just use
-> > the regular modeset_enables function with no special handling
-> > =
-
-> > Manasi
-> >  =
-
-> > > > +
-> > > >  static void intel_commit_modeset_enables(struct intel_atomic_state=
- *state)
-> > > >  {
-> > > >  	struct intel_crtc_state *new_crtc_state;
-> > > > @@ -15772,15 +15818,22 @@ static void intel_commit_modeset_enables(=
-struct intel_atomic_state *state)
-> > > >  static void skl_commit_modeset_enables(struct intel_atomic_state *=
-state)
-> > > >  {
-> > > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > > -	struct intel_crtc *crtc;
-> > > > +	struct intel_crtc *crtc, *slave;
-> > > >  	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
-> > > >  	struct skl_ddb_entry entries[I915_MAX_PIPES] =3D {};
-> > > > +	struct skl_ddb_entry new_entries[I915_MAX_PIPES] =3D {};
-> > > >  	u8 update_pipes =3D 0, modeset_pipes =3D 0;
-> > > > +	const struct intel_crtc_state *slave_crtc_state;
-> > > >  	int i;
-> > > >  =
-
-> > > >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, =
-new_crtc_state, i) {
-> > > >  		enum pipe pipe =3D crtc->pipe;
-> > > >  =
-
-> > > > +		if (new_crtc_state->bigjoiner_slave) {
-> > > > +			/* We're updated from master */
-> > > > +			continue;
-> > > > +		}
-> > > > +
-> > > >  		if (!new_crtc_state->hw.active)
-> > > >  			continue;
-> > > >  =
-
-> > > > @@ -15791,6 +15844,34 @@ static void skl_commit_modeset_enables(str=
-uct intel_atomic_state *state)
-> > > >  		} else {
-> > > >  			modeset_pipes |=3D BIT(pipe);
-> > > >  		}
-> > > > +
-> > > > +		if (new_crtc_state->bigjoiner) {
-> > > > +			slave =3D new_crtc_state->bigjoiner_linked_crtc;
-> > > > +			slave_crtc_state =3D
-> > > > +				intel_atomic_get_new_crtc_state(state,
-> > > > +								slave);
-> > > > +
-> > > > +			/* put both entries in */
-> > > > +			new_entries[i].start =3D new_crtc_state->wm.skl.ddb.start;
-> > > > +			new_entries[i].end =3D slave_crtc_state->wm.skl.ddb.end;
-> > > > +		} else {
-> > > > +			new_entries[i] =3D new_crtc_state->wm.skl.ddb;
-> > > > +		}
-> > > > +
-> > > > +		/* ignore allocations for crtc's that have been turned off durin=
-g modeset. */
-> > > > +		if (needs_modeset(new_crtc_state))
-> > > > +			continue;
-> > > > +
-> > > > +		if (old_crtc_state->bigjoiner) {
-> > > > +			slave =3D old_crtc_state->bigjoiner_linked_crtc;
-> > > > +			slave_crtc_state =3D
-> > > > +				intel_atomic_get_old_crtc_state(state, slave);
-> > > > +
-> > > > +			entries[i].start =3D old_crtc_state->wm.skl.ddb.start;
-> > > > +			entries[i].end =3D slave_crtc_state->wm.skl.ddb.end;
-> > > > +		} else {
-> > > > +			entries[i] =3D old_crtc_state->wm.skl.ddb;
-> > > > +		}
-> > > =
-
-> > > Why is this here? Can't see why the current code wouldn't work just f=
-ine
-> > > for bigjoiner too.
-> > >
-> =
-
-> Ville, could you provide inputs on how intel_pipe_update_end() should cha=
-nge so that we can use
-> the current code, now this takes an additional input new_slave_crtc_state
-
-I would not change it at all. What I would do as the first step is to
-treat the pipes entirely separately, just like we do for port sync/etc.
-Later we can think what would be needed to make 100% sure they update
-atomically.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+From my current experience with the i915 shmem code, I think that the
+i915 maintainers are experts at graphics, and are unfamiliar with the MM.
+There are a number of places where they do things the hard way.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
