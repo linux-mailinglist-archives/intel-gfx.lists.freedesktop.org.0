@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17EAA275C55
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 17:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20709275C6A
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 17:53:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 499C36E9E1;
-	Wed, 23 Sep 2020 15:47:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 742106E933;
+	Wed, 23 Sep 2020 15:53:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 042916E9E1;
- Wed, 23 Sep 2020 15:47:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F101CA0003;
- Wed, 23 Sep 2020 15:47:23 +0000 (UTC)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7270D6E933;
+ Wed, 23 Sep 2020 15:53:03 +0000 (UTC)
+Received: from oasis.local.home (cpe-66-24-58-225.stny.res.rr.com
+ [66.24.58.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 492262223E;
+ Wed, 23 Sep 2020 15:52:54 +0000 (UTC)
+Date: Wed, 23 Sep 2020 11:52:51 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: peterz@infradead.org
+Message-ID: <20200923115251.7cc63a7e@oasis.local.home>
+In-Reply-To: <20200923084032.GU1362448@hirez.programming.kicks-ass.net>
+References: <20200919091751.011116649@linutronix.de>
+ <CAHk-=wiYGyrFRbA1cc71D2-nc5U9LM9jUJesXGqpPnB7E4X1YQ@mail.gmail.com>
+ <87mu1lc5mp.fsf@nanos.tec.linutronix.de>
+ <87k0wode9a.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgbmwsTOKs23Z=71EBTrULoeaH2U3TNqT2atHEWvkBKdw@mail.gmail.com>
+ <87eemwcpnq.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
+ <87a6xjd1dw.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
+ <87sgbbaq0y.fsf@nanos.tec.linutronix.de>
+ <20200923084032.GU1362448@hirez.programming.kicks-ass.net>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Wed, 23 Sep 2020 15:47:23 -0000
-Message-ID: <160087604395.4495.7051380475133038121@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200923105737.2943649-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200923105737.2943649-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_drm/atomic=3A_document_and_enforce_rul?=
- =?utf-8?q?es_around_=22spurious=22_EBUSY_=28rev2=29?=
+Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
+ variant of kmap_atomic & friends
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,64 +50,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Juri Lelli <juri.lelli@redhat.com>, David Airlie <airlied@linux.ie>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
+ Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
+ Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
+ Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
+ Mel Gorman <mgorman@suse.de>,
+ "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
+ linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Greentime Hu <green.hu@gmail.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ LKML <linux-kernel@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Vineet Gupta <vgupta@synopsys.com>, Paul Mackerras <paulus@samba.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 23 Sep 2020 10:40:32 +0200
+peterz@infradead.org wrote:
 
-Series: series starting with drm/atomic: document and enforce rules around "spurious" EBUSY (rev2)
-URL   : https://patchwork.freedesktop.org/series/82023/
-State : warning
+> However, with migrate_disable() we can have each task preempted in a
+> migrate_disable() region, worse we can stack them all on the _same_ CPU
+> (super ridiculous odds, sure). And then we end up only able to run one
+> task, with the rest of the CPUs picking their nose.
 
-== Summary ==
+What if we just made migrate_disable() a local_lock() available for !RT?
 
-$ dim checkpatch origin/drm-tip
-2ae63b2182d7 drm/atomic: document and enforce rules around "spurious" EBUSY
--:47: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#47: 
-References: https://lists.freedesktop.org/archives/dri-devel/2018-July/182281.html
+I mean make it a priority inheritance PER CPU lock.
 
--:74: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#74: FILE: drivers/gpu/drm/drm_atomic.c:1269:
-+	unsigned requested_crtc = 0;
+That is, no two tasks could do a migrate_disable() on the same CPU? If
+one task does a migrate_disable() and then gets preempted and the
+preempting task does a migrate_disable() on the same CPU, it will block
+and wait for the first task to do a migrate_enable().
 
--:75: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#75: FILE: drivers/gpu/drm/drm_atomic.c:1270:
-+	unsigned affected_crtc = 0;
+No two tasks on the same CPU could enter the migrate_disable() section
+simultaneously, just like no two tasks could enter a preempt_disable()
+section.
 
--:112: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+In essence, we just allow local_lock() to be used for both RT and !RT.
 
-total: 0 errors, 4 warnings, 0 checks, 51 lines checked
-126d6b5ccc51 drm/atomic: debug output for EBUSY
--:52: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#52: FILE: drivers/gpu/drm/drm_atomic_helper.c:1741:
-+		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] inflight previous commit preventing async commit\n",
-+			plane->base.id, plane->name);
+Perhaps make migrate_disable() an anonymous local_lock()?
 
--:63: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#63: FILE: drivers/gpu/drm/drm_atomic_helper.c:1962:
-+				DRM_DEBUG_ATOMIC("[CRTC:%d:%s] busy with a previous commit\n",
-+					crtc->base.id, crtc->name);
+This should lower the SHC in theory, if you can't have stacked migrate
+disables on the same CPU.
 
--:75: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#75: FILE: drivers/gpu/drm/drm_atomic_helper.c:2140:
-+			DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] busy with a previous commit\n",
-+				conn->base.id, conn->name);
-
--:89: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#89: FILE: drivers/gpu/drm/drm_atomic_helper.c:2159:
-+			DRM_DEBUG_ATOMIC("[PLANE:%d:%s] busy with a previous commit\n",
-+				plane->base.id, plane->name);
-
--:95: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 4 checks, 63 lines checked
-
-
+-- Steve
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
