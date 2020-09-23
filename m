@@ -2,41 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0EBA2756F8
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 13:16:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E62F2756F0
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 13:14:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D8406E970;
-	Wed, 23 Sep 2020 11:16:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02FDC6E962;
+	Wed, 23 Sep 2020 11:14:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58CD66E970
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 11:16:43 +0000 (UTC)
-IronPort-SDR: 6PhnwRbmEJmPaz1Wa2IBgdQDA4XDwG+GS6SuLHaYNCsDTwNnGEXgnjMPvJIms0Tpnn89KePq11
- kJdtkC6K0Uqw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9752"; a="178932849"
-X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="178932849"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2020 04:16:43 -0700
-IronPort-SDR: 8OGHgsz5GZDCUm5vf4Xh13r1wqCzcFwvCY5k8TTzGl6G2MZD7osuy9JisWwQeoJ9kqEQF4RkSi
- pn6dhYgjntaw==
-X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="511610364"
-Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2020 04:16:41 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Sep 2020 16:35:27 +0530
-Message-Id: <20200923110527.28661-5-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200923110527.28661-1-anshuman.gupta@intel.com>
-References: <20200923110527.28661-1-anshuman.gupta@intel.com>
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CE706E960;
+ Wed, 23 Sep 2020 11:14:48 +0000 (UTC)
+Received: from xpredator (unknown
+ [IPv6:2a02:2f08:4c14:a400:24d7:51ff:fed6:906d])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: mvlad)
+ by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 2885629C364;
+ Wed, 23 Sep 2020 12:14:47 +0100 (BST)
+Date: Wed, 23 Sep 2020 14:14:43 +0300
+From: Marius Vlad <marius.vlad@collabora.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200923111443.GA8478@xpredator>
+References: <20180705101043.4883-1-daniel.vetter@ffwll.ch>
+ <20180705102121.5091-1-daniel.vetter@ffwll.ch>
+ <CAPj87rN48S8+pLd0ksOX4pdCTqtO=bDgjhkPxpWr_AnpVvgaSQ@mail.gmail.com>
+ <20200922133636.GA2369@xpredator>
+ <CAKMK7uHr3dKu8o4e3hoSe3S5MfVtZ92nLk1VGZTqSuDsH6kphg@mail.gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP
- MST support
+In-Reply-To: <CAKMK7uHr3dKu8o4e3hoSe3S5MfVtZ92nLk1VGZTqSuDsH6kphg@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] drm: avoid spurious EBUSY due to
+ nonblocking atomic modesets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,128 +44,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: seanpaul@chromium.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ stable <stable@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+Content-Type: multipart/mixed; boundary="===============1516733958=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable HDCP 1.4 over DP MST for Gen12.
-This also enable the stream encryption support for
-older generations, which was missing earlier.
 
-v2:
-- Added debug print for stream encryption.
-- Disable the hdcp on port after disabling last stream
-  encryption.
+--===============1516733958==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RnlQjJ0d97Da+TV1"
+Content-Disposition: inline
 
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 10 ++---
- drivers/gpu/drm/i915/display/intel_hdcp.c   | 46 ++++++++++++++-------
- 2 files changed, 35 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 79060b2aefcd..9223d57ef3e3 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -813,13 +813,9 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 	intel_attach_force_audio_property(connector);
- 	intel_attach_broadcast_rgb_property(connector);
- 
--
--	/* TODO: Figure out how to make HDCP work on GEN12+ */
--	if (INTEL_GEN(dev_priv) < 12) {
--		ret = intel_dp_init_hdcp(dig_port, intel_connector);
--		if (ret)
--			DRM_DEBUG_KMS("HDCP init failed, skipping.\n");
--	}
-+	ret = intel_dp_init_hdcp(dig_port, intel_connector);
-+	if (ret)
-+		drm_dbg_kms(&dev_priv->drm, "HDCP init failed, skipping.\n");
- 
- 	/*
- 	 * Reuse the prop from the SST connector because we're
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index f401fdaa7336..744cefc0c35d 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -612,7 +612,12 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
- 	return ret;
- }
- 
--/* Implements Part 1 of the HDCP authorization procedure */
-+/*
-+ * Implements Part 1 of the HDCP authorization procedure.
-+ * Authentication Part 1 steps for Multi-stream DisplayPort.
-+ * Step 1. Auth Part 1 sequence on the driving MST Trasport Link.
-+ * Step 2. Enable encryption for each stream that requires encryption.
-+ */
- static int intel_hdcp_auth(struct intel_connector *connector)
- {
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-@@ -766,10 +771,16 @@ static int intel_hdcp_auth(struct intel_connector *connector)
- 		return -ETIMEDOUT;
- 	}
- 
--	/*
--	 * XXX: If we have MST-connected devices, we need to enable encryption
--	 * on those as well.
--	 */
-+	/* DP MST Auth Part 1 Step 2.a and Step 2.b */
-+	if (shim->stream_encryption) {
-+		ret = shim->stream_encryption(dig_port, true);
-+		if (ret) {
-+			drm_err(&dev_priv->drm, "Failed to enable HDCP 1.4 stream enc\n");
-+			return ret;
-+		}
-+		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 tras %s stream encrypted\n",
-+			    transcoder_name(hdcp->stream_transcoder));
-+	}
- 
- 	if (repeater_present)
- 		return intel_hdcp_auth_downstream(connector);
-@@ -790,19 +801,26 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
- 
- 	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being disabled...\n",
- 		    connector->base.name, connector->base.base.id);
-+	/*
-+	 * Step 1: Deselect HDCP Multiplestream Bit.
-+	 * Step 2: poll for stream encryption status to be disable.
-+	 */
-+	if (hdcp->shim->stream_encryption) {
-+		ret = hdcp->shim->stream_encryption(dig_port, false);
-+		if (ret) {
-+			drm_err(&dev_priv->drm, "Failed to disable HDCP 1.4 stream enc\n");
-+			return ret;
-+		}
-+		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 trans %s stream encryption disabled\n",
-+			    transcoder_name(hdcp->stream_transcoder));
-+	}
- 
- 	/*
--	 * If there are other connectors on this port using HDCP, don't disable
--	 * it. Instead, toggle the HDCP signalling off on that particular
--	 * connector/pipe and exit.
-+	 * If there are other connectors on this port using HDCP, don't disable it.
-+	 * Repeat steps 1-2 for each stream that no longer requires encryption.
- 	 */
--	if (dig_port->num_hdcp_streams > 0) {
--		ret = hdcp->shim->toggle_signalling(dig_port,
--						    cpu_transcoder, false);
--		if (ret)
--			DRM_ERROR("Failed to disable HDCP signalling\n");
-+	if (dig_port->num_hdcp_streams > 0)
- 		return ret;
--	}
- 
- 	hdcp->hdcp_encrypted = false;
- 	intel_de_write(dev_priv, HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
--- 
-2.26.2
+--RnlQjJ0d97Da+TV1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Sep 23, 2020 at 12:58:30PM +0200, Daniel Vetter wrote:
+> On Tue, Sep 22, 2020 at 3:36 PM Marius Vlad <marius.vlad@collabora.com> w=
+rote:
+> >
+> > On Fri, Jan 31, 2020 at 07:34:00AM +0000, Daniel Stone wrote:
+> > > On Thu, 5 Jul 2018 at 11:21, Daniel Vetter <daniel.vetter@ffwll.ch> w=
+rote:
+> > > > When doing an atomic modeset with ALLOW_MODESET drivers are allowed=
+ to
+> > > > pull in arbitrary other resources, including CRTCs (e.g. when
+> > > > reconfiguring global resources).
+> > > >
+> > > > But in nonblocking mode userspace has then no idea this happened,
+> > > > which can lead to spurious EBUSY calls, both:
+> > > > - when that other CRTC is currently busy doing a page_flip the
+> > > >   ALLOW_MODESET commit can fail with an EBUSY
+> > > > - on the other CRTC a normal atomic flip can fail with EBUSY because
+> > > >   of the additional commit inserted by the kernel without userspace=
+'s
+> > > >   knowledge
+> > > >
+> > > > For blocking commits this isn't a problem, because everyone else wi=
+ll
+> > > > just block until all the CRTC are reconfigured. Only thing userspace
+> > > > can notice is the dropped frames without any reason for why frames =
+got
+> > > > dropped.
+> > > >
+> > > > Consensus is that we need new uapi to handle this properly, but no =
+one
+> > > > has any idea what exactly the new uapi should look like. As a stop-=
+gap
+> > > > plug this problem by demoting nonblocking commits which might cause
+> > > > issues by including CRTCs not in the original request to blocking
+> > > > commits.
+> > Gentle ping. I've tried out Linus's master tree and, and like Pekka,
+> > I've noticed this isn't integrated/added.
+> >
+> > Noticed this is fixing (also) DPMS when multiple outputs are in use.
+> > Wondering if we can just use a _ONCE() variant instead of WARN_ON(). I'=
+m seeing
+> > the warning quite often.
+>=20
+> On which driver/chip does this happen?
+I've tried it out on i915.
+> -Daniel
+>=20
+> >
+> > >
+> > > Thanks for writing this up Daniel, and for reminding me about it some
+> > > time later as well ...
+> > >
+> > > Reviewed-by: Daniel Stone <daniels@collabora.com>
+> > >
+> > > Cheers,
+> > > Daniel
+> > > _______________________________________________
+> > > dri-devel mailing list
+> > > dri-devel@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>=20
+>=20
+>=20
+> --=20
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+
+--RnlQjJ0d97Da+TV1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEcDKHej6x6uPk3J379jQS5glH1u8FAl9rLiAACgkQ9jQS5glH
+1u8bSxAAqdQ/WtRkNdIfWUw7AI0LWFLlPvcZxqgPN5pgZRHHuXPCjCwtiXLyiyHW
+RotgvgPcLFfnxJ6jR8VAwkDp+J052yDidV2L5j10mvWIHzh3PCWYw/kJKovejCtQ
+rE6hBktEMbKaQhWX0AysPQvlzLO8JFfXMuC/0Ubva19X85LZvlYfUA2ulfUAdStY
+N+vlp5s3V3XO0bvGf1nmOm1W12I3G++egVs2KkTg0kW7OTlsqUhTlBkhSCRGGiCP
+4PKY+X7J1Nfn44QYfvMmoZGwsbMX1JxYIJWoKc7SB/d9UDCN2s743BdJw6XxbIZ2
+x7KJf6rTd3eh1YACSvDpZZf1b+h10SyAKmoIh5zitMlhCtUT7iywCHu0R/WMva7O
+u/Sk+sAs02t+U8mpQywlNiZnrf8B2COjm/RSdCZWpBSoR+x69yVF9fULA99kVDaZ
+tH5CrMdtgKcue/8Dc9ckVKbVrAPhly6tjo4Hwkx0hJ5u+0R04GLqMHVg/snRYDpW
+j/PEddhpaXtvgL+UDLGUYCsURfVD0lGmHruHV7XA9wOhSmeSH/ySgcd3Uys0saFD
+Ih6mCZHCFOwYXx0JBRvTgpbq8EIndjgbkoNw8/xWp9RMV/W6evI9YwkcRY7jLcZw
+OdMunC3GeeMED3CtJq57vwMuvucCAKd2kAb7FL1YhupAcbGmb2c=
+=xLmh
+-----END PGP SIGNATURE-----
+
+--RnlQjJ0d97Da+TV1--
+
+--===============1516733958==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1516733958==--
