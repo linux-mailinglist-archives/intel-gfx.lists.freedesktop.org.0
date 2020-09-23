@@ -2,61 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4EBF2754DF
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 11:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4084B2754E7
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 11:57:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27CDE6E25B;
-	Wed, 23 Sep 2020 09:55:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DED06E8E4;
+	Wed, 23 Sep 2020 09:57:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com
- [IPv6:2a00:1450:4864:20::142])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29A746E25B;
- Wed, 23 Sep 2020 09:55:08 +0000 (UTC)
-Received: by mail-lf1-x142.google.com with SMTP id w11so21392866lfn.2;
- Wed, 23 Sep 2020 02:55:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=rZX18Nb4B451H35fKxXNz+FOKZsolDgT7G8y6qr1qK8=;
- b=uLypUFcA0E5rVNI+RHeLjOrO4R8ls0qGgb1mQ4xXOjxL4P+SVeUDySQixtaLA2ndbU
- lKcSyW3bD8EfQEQePh+TxLXQHxTA5s9ePEm7DRnXLtO3CcHWhqZqJBUi7rmsPrqW1G3F
- aCE3b230KvbVW9TzmlxeIa/DQtape50xveN6eMW7kVr2rZsGQ4Gl8V8P3RCmkZHESKfu
- J2jVGJJQFNAYEwJGbTeSfY+Ze/HzUlJ6JtsJfqdBBk0OgU47cITD9UbcexFrXZGOmdao
- 7vRp5+KY9kApwJ2iq+ikXE60TBTjqa6Ug80zU7x8A5ddtDqP94hAxuFZvPqGgSh7/zbY
- czVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=rZX18Nb4B451H35fKxXNz+FOKZsolDgT7G8y6qr1qK8=;
- b=Ar0wpUKhQbpTKs8+IgmFLk+Q8MYpQL2lZs8tN5PASB/rV7s8017z2xr73HRIVdBqpN
- PG+gQOoGPVGUMXWwA2sikxUT1YhpUo3StFQ9XV+9Vuy13Nc8dUsAYsUHYKQEu+tWIXZT
- o9uDA9MvPHVeDp9RIb+lxxu7A3hDhtnYhkPUNMEelWbgvTBBkfXgxKFgFmziZbSVXm2f
- T0am64IOQRMo+2FKUIr078rKNw2VzsR9/fZJx2iPgIqCVAKZ4K08TVgyJR2wS+kpSoyq
- iDHP4jQMC28EbwGxWhX6YIsmeDJaOwYDHPKoiYGUHuYJwQdyQlmaM1iMLCCKm7SR1Z+Y
- /JXw==
-X-Gm-Message-State: AOAM531io4ByidVGPqTUE1cB8nYlgURdVvAOAibccvwrHANXT7/KNJwP
- N2UH70fsQqAEQvKjCdN+Nyw=
-X-Google-Smtp-Source: ABdhPJyFeme2PzRuZLADYLxEONkLoODcIN2LPNtvFAqYLkEDt5nJjxLqw/RieypMiZXXaxpboW4iuA==
-X-Received: by 2002:a05:6512:3606:: with SMTP id
- f6mr3398610lfs.282.1600854906538; 
- Wed, 23 Sep 2020 02:55:06 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id 78sm4635269lfi.81.2020.09.23.02.55.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Sep 2020 02:55:06 -0700 (PDT)
-Date: Wed, 23 Sep 2020 12:55:02 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200923125502.4735f720@eldfell>
-In-Reply-To: <CAKMK7uFvaMRK3Zh-s21OG=V3sPQZjn7Z_WQaNMcL=_R36enR2g@mail.gmail.com>
-References: <20200922181834.2913552-1-daniel.vetter@ffwll.ch>
- <20200923111717.68d9eb51@eldfell>
- <CAKMK7uFvaMRK3Zh-s21OG=V3sPQZjn7Z_WQaNMcL=_R36enR2g@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34F186E8E4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 09:57:20 +0000 (UTC)
+IronPort-SDR: 8SnkVVFiMOSI6Z38tjgw3O2a2x6GZmN/xn8nuA08D+VLqe0x1PQwZPMaNDm40FHdTXffahW2/U
+ Wcf0aqGD3rtw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9752"; a="158229085"
+X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="158229085"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2020 02:57:19 -0700
+IronPort-SDR: wU7jYPAHv1LJKrFNQiDfuedQBuB6G9jGhZl8Px5EvR9fEu4GFmcdUybtZ7WoJRIlhxfIoNGkAk
+ kGxw5DdhpriQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="347289730"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 23 Sep 2020 02:57:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 23 Sep 2020 12:57:17 +0300
+Date: Wed, 23 Sep 2020 12:57:17 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Message-ID: <20200923095717.GA6112@intel.com>
+References: <20200715224222.7557-1-manasi.d.navare@intel.com>
+ <20200715224222.7557-4-manasi.d.navare@intel.com>
+ <20200907112056.GF6112@intel.com>
+ <20200914190026.GB28760@labuser-Z97X-UD5H>
+ <20200914191757.GX6112@intel.com>
+ <20200914193857.GB29235@labuser-Z97X-UD5H>
+ <20200914194756.GA6112@intel.com>
+ <20200915230345.GA14516@labuser-Z97X-UD5H>
+ <20200917122046.GU6112@intel.com>
+ <20200923054651.GA24830@labuser-Z97X-UD5H>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm: document and enforce rules around
- "spurious" EBUSY from atomic_commit
+Content-Disposition: inline
+In-Reply-To: <20200923054651.GA24830@labuser-Z97X-UD5H>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v6 04/11] drm/i915/dp: Allow big joiner
+ modes in intel_dp_mode_valid(), v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,89 +62,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI Development <dri-devel@lists.freedesktop.org>,
- Simon Ser <contact@emersion.fr>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- stable <stable@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: multipart/mixed; boundary="===============1160557271=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1160557271==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/HSKGjOiwSV7m_k8F45bc62z"; protocol="application/pgp-signature"
-
---Sig_/HSKGjOiwSV7m_k8F45bc62z
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, 23 Sep 2020 11:26:39 +0200
-Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-
-> I'm really not awake yet ...
->=20
-> On Wed, Sep 23, 2020 at 10:17 AM Pekka Paalanen <ppaalanen@gmail.com> wro=
+On Tue, Sep 22, 2020 at 10:46:52PM -0700, Navare, Manasi wrote:
+> On Thu, Sep 17, 2020 at 03:20:46PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Tue, Sep 15, 2020 at 04:03:45PM -0700, Navare, Manasi wrote:
+> > > On Mon, Sep 14, 2020 at 10:47:56PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > > On Mon, Sep 14, 2020 at 12:38:57PM -0700, Navare, Manasi wrote:
+> > > > > On Mon, Sep 14, 2020 at 10:17:57PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > > > > On Mon, Sep 14, 2020 at 12:00:33PM -0700, Navare, Manasi wrote:
+> > > > > > > On Mon, Sep 07, 2020 at 02:20:56PM +0300, Ville Syrj=E4l=E4 w=
+rote:
+> > > > > > > > On Wed, Jul 15, 2020 at 03:42:15PM -0700, Manasi Navare wro=
 te:
-> >
-> > On Tue, 22 Sep 2020 20:18:34 +0200
-> > Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > =20
-> > > When doing an atomic modeset with ALLOW_MODESET drivers are allowed to
-> > > pull in arbitrary other resources, including CRTCs (e.g. when
-> > > reconfiguring global resources).
+> > > > > > > > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.co=
+m>
+> > > > > > > > > =
 
-> > If yes, and *if* userspace is single-threaded wrt. to KMS updates,
-> > that might offer a way to work around it in userspace. But if userspace
-> > is flipping other CRTCs from other threads, TEST_ONLY commit does not
-> > help because another thread may cut in and make a CRTC busy. =20
->=20
-> This is not a legit programming model for atomic. An atomic commit is
-> always relative to the current state. If that state changes, then you
-> need to re-run your TEST_ONLY commit. So multiple threads changing
-> state in parallel isn't really a good idea anyway. Minimally we'd need
-> some kind of TEST_ONLY pile-up, so you can validate a change assuming
-> another commit has already happened. That's even harder than deep
-> queues on the commit side, we'd probably need full rollback of
-> commits.
+> > > > > > > > > Small changes to intel_dp_mode_valid(), allow listing mod=
+es that
+> > > > > > > > > can only be supported in the bigjoiner configuration, whi=
+ch is
+> > > > > > > > > not supported yet.
+> > > > > > > > > =
 
-Yes, very good point. I forgot that for a moment.
+> > > > > > > > > eDP does not support bigjoiner, so do not expose bigjoine=
+r only
+> > > > > > > > > modes on the eDP port.
+> > > > > > > > > =
 
+> > > > > > > > > v5:
+> > > > > > > > > * Increase max plane width to support 8K with bigjoiner (=
+Maarten)
+> > > > > > > > > v4:
+> > > > > > > > > * Rebase (Manasi)
+> > > > > > > > > =
 
-Thanks,
-pq
+> > > > > > > > > Changes since v1:
+> > > > > > > > > - Disallow bigjoiner on eDP.
+> > > > > > > > > Changes since v2:
+> > > > > > > > > - Rename intel_dp_downstream_max_dotclock to intel_dp_max=
+_dotclock,
+> > > > > > > > >   and split off the downstream and source checking to its=
+ own function.
+> > > > > > > > >   (Ville)
+> > > > > > > > > v3:
+> > > > > > > > > * Rebase (Manasi)
+> > > > > > > > > =
 
---Sig_/HSKGjOiwSV7m_k8F45bc62z
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+> > > > > > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > > > > > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux=
+.intel.com>
+> > > > > > > > > ---
+> > > > > > > > >  drivers/gpu/drm/i915/display/intel_display.c |   2 +-
+> > > > > > > > >  drivers/gpu/drm/i915/display/intel_dp.c      | 119 +++++=
++++++++++-----
+> > > > > > > > >  2 files changed, 91 insertions(+), 30 deletions(-)
+> > > > > > > > > =
 
------BEGIN PGP SIGNATURE-----
+> > > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c=
+ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > > > > index 78cbfefbfa62..3ecb642805a6 100644
+> > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > > > > @@ -17400,7 +17400,7 @@ intel_mode_valid_max_plane_size(s=
+truct drm_i915_private *dev_priv,
+> > > > > > > > >  	 * too big for that.
+> > > > > > > > >  	 */
+> > > > > > > > >  	if (INTEL_GEN(dev_priv) >=3D 11) {
+> > > > > > > > > -		plane_width_max =3D 5120;
+> > > > > > > > > +		plane_width_max =3D 7680;
+> > > > > > > > =
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl9rG3YACgkQI1/ltBGq
-qqeSUA//X6te+sf+nLiLiPV9iiFduKqr69eeaBnYPlJXqr1GWWR+3jQ16GV39RUT
-E+kx2ZmlTm8eJ0lQFbrbvbEpyikbOv+gH4s4E1t7GHOBjEldzGD30xtylfSUDIJJ
-YdJw3bxYFt3bPGshSWIub6p0ig3OuBe9jvonzNggWRqwBMY/zVvVwrpVBhZDy10T
-jHZ0HQT2OwFoxqbF46WO87+Dc6i+HHvQPHMjfj7Otk10ZuGAiWUKq+ry58iDliGn
-KNbc5QWaSMInsTDq/anoMaB36yFG/s1/eYc8mEjjSj6Xh+GGPfrT1vxZHjIOB0qd
-JvW2wW9bTEKOjaNlj7KIipGbpnvjFyAxX7kF6xarTkgLUbNoRw7xSTUNPOEatW9R
-/3b/k2voBaagpdVEnUyxxjQYkrO36SCSrUHn5wFnJUXCfO/FyijqWGg7EDdc2Apr
-no9vATwKFSNPI4Ilr6pe0wLTw8ETDUAtu2XCkaWuAQDvPg4759/MBPZjZgWAEFX0
-XaddqM8nOm2+zZzGkx7L5XGcFta09TbaMqKFIO5KlypU6tapZf7u44dw1az4ninm
-aAoX4kGBNQAEaB1ryfA+1hGR8OWwzl2fluArXiSOP+7OZNXgLv/i0Uu44YE/uN68
-FqvTbwEuwMIAtKd/kTyoh7AOYK5W8/D/l7U/dpfGt96xge17R4o=
-=BdYf
------END PGP SIGNATURE-----
+> > > > > > > > This looks misplaced. Planes do no know whether bigjoiner c=
+an be used or
+> > > > > > > > not. They should not care in fact. The caller should have t=
+hat knowledge
+> > > > > > > > and can deal with it properly.
+> > > > > > > =
 
---Sig_/HSKGjOiwSV7m_k8F45bc62z--
+> > > > > > > Hmm, so the caller of intel_mode_valid_max_plane_size() shoul=
+d check on the bigjoiner
+> > > > > > > flag and perhaps if bigjoiner is true then increase the plane=
+_width_max to 7680?
+> > > > > > > =
 
---===============1160557271==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> > > > > > > Am still not sure where this should happen? We need to have t=
+he plane max width to be 7680
+> > > > > > > before we prune the 8K mode in intel_mode_valid
+> > > > > > > =
 
+> > > > > > > Where should this be added according to you?
+> > > > > > =
+
+> > > > > > Hmm. I guess we do need to put it into this function given the =
+way this
+> > > > > > is structured. However we still can't assume bigjoiner can be u=
+sed since
+> > > > > > it can't be used on DDI A on icl. So we should probably just pa=
+ss in a
+> > > > > > bool here to indicate whether bigjoiner can be used or not.
+> > > > > >
+> > > > > =
+
+> > > > > So in intel_dp_mode_valid() we set bigjoiner =3D true if not edp =
+and higher clock.
+> > > > > I think here we need to do the platform check also, 1. because no=
+w we are enabling this for TGL+
+> > > > > where big joiner on all pipes. But we should still I think add GE=
+N >=3D12 check before setting bigjoiner
+> > > > > to true in intel_dp_mode_valid() and then pass that to intel_mode=
+_valid_max_plane_size(..., book bigjoiner)
+> > > > =
+
+> > > > can_bigjoiner() {
+> > > > 	return gen >=3D 12 || (gen=3D=3D11 && port!=3DA);
+> =
+
+> On Gen 11, Port A is eDP or MIPI DSI so I could check:
+> =
+
+> can_bigjoiner()
+> {
+> 	return gen >=3D12 || (gen =3D=3D 11 && !intel_dp_is_edp())
+> }
+> =
+
+> The above should be okay right?
+
+No. Check for port A.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1160557271==--
