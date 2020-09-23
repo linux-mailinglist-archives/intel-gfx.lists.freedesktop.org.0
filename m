@@ -1,45 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C98062762EF
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 23:12:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13DD5276302
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 23:23:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B6AC6EA02;
-	Wed, 23 Sep 2020 21:12:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F9FF6EA04;
+	Wed, 23 Sep 2020 21:23:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F90E6EA00;
- Wed, 23 Sep 2020 21:12:41 +0000 (UTC)
-Received: from oasis.local.home (cpe-66-24-58-225.stny.res.rr.com
- [66.24.58.225])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 0CA3D2145D;
- Wed, 23 Sep 2020 21:12:35 +0000 (UTC)
-Date: Wed, 23 Sep 2020 17:12:34 -0400
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Thomas Gleixner <tglx@linutronix.de>
-Message-ID: <20200923171234.0001402d@oasis.local.home>
-In-Reply-To: <874kno9pr9.fsf@nanos.tec.linutronix.de>
-References: <20200919091751.011116649@linutronix.de>
- <CAHk-=wiYGyrFRbA1cc71D2-nc5U9LM9jUJesXGqpPnB7E4X1YQ@mail.gmail.com>
- <87mu1lc5mp.fsf@nanos.tec.linutronix.de>
- <87k0wode9a.fsf@nanos.tec.linutronix.de>
- <CAHk-=wgbmwsTOKs23Z=71EBTrULoeaH2U3TNqT2atHEWvkBKdw@mail.gmail.com>
- <87eemwcpnq.fsf@nanos.tec.linutronix.de>
- <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
- <87a6xjd1dw.fsf@nanos.tec.linutronix.de>
- <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
- <87sgbbaq0y.fsf@nanos.tec.linutronix.de>
- <20200923084032.GU1362448@hirez.programming.kicks-ass.net>
- <20200923115251.7cc63a7e@oasis.local.home>
- <874kno9pr9.fsf@nanos.tec.linutronix.de>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22DE56EA04
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 21:23:15 +0000 (UTC)
+IronPort-SDR: PslphPLlzpLwkE+3zdHD8C3F7ZGIDr8dskB4bj1ko15AEIt0p1Qcpxpec+/jNtXi6AqVbe8hvq
+ gl6GmRE03YoQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="148768120"
+X-IronPort-AV: E=Sophos;i="5.77,295,1596524400"; d="scan'208";a="148768120"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2020 14:23:14 -0700
+IronPort-SDR: K5fxhB48g1297lSRmZ4gvxA2hpPh9+J+nkIbCpOSwMMiKb8t6de/5LpOldM+TlDnGfoRC/ud4S
+ fYKeKMFC7Wbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,295,1596524400"; d="scan'208";a="342568604"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by fmsmga002.fm.intel.com with ESMTP; 23 Sep 2020 14:23:14 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 23 Sep 2020 14:23:13 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 23 Sep 2020 14:23:12 -0700
+Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
+ fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.1713.004;
+ Wed, 23 Sep 2020 14:23:12 -0700
+From: "Hampson, Steven T" <steven.t.hampson@intel.com>
+To: "Hampson, Steven T" <steven.t.hampson@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] Fix NULL pointer found by static analysis
+Thread-Index: AQHWkWPLpjWt6mTOgkyXU+bTLbHgDql2vH1Q
+Date: Wed, 23 Sep 2020 21:23:11 +0000
+Message-ID: <ea4fc16616ea449d8eaf9f2a1071c354@intel.com>
+References: <20200923044054.5653-1-steven.t.hampson@intel.com>
+In-Reply-To: <20200923044054.5653-1-steven.t.hampson@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.1.200.100]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
- variant of kmap_atomic & friends
+Subject: Re: [Intel-gfx] [PATCH] Fix NULL pointer found by static analysis
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,78 +69,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, peterz@infradead.org,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
- Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
- Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
- Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
- Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Michael Ellerman <mpe@ellerman.id.au>,
- the arch/x86 maintainers <x86@kernel.org>,
- Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Mel Gorman <mgorman@suse.de>,
- "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
- linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Greentime Hu <green.hu@gmail.com>, Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- LKML <linux-kernel@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Vineet Gupta <vgupta@synopsys.com>, Paul Mackerras <paulus@samba.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>,
- "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 23 Sep 2020 22:55:54 +0200
-Thomas Gleixner <tglx@linutronix.de> wrote:
+Never mind.  This is a false positive.
 
-> > Perhaps make migrate_disable() an anonymous local_lock()?
-> >
-> > This should lower the SHC in theory, if you can't have stacked migrate
-> > disables on the same CPU.  
-> 
-> I'm pretty sure this ends up in locking hell pretty fast and aside of
-> that it's not working for scenarios like:
-> 
->      kmap_local();
->        migrate_disable();
->        ...
-> 
->      copy_from_user()
->         -> #PF
->            -> schedule()  
-> 
-> which brought us into that discussion in the first place. You would stop
-> any other migrate disable user from running until the page fault is
-> resolved...
+-----Original Message-----
+From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Steve Hampson
+Sent: Tuesday, September 22, 2020 9:41 PM
+To: intel-gfx@lists.freedesktop.org
+Subject: [Intel-gfx] [PATCH] Fix NULL pointer found by static analysis
 
-Then scratch the idea of having anonymous local_lock() and just bring
-local_lock in directly? Then have a kmap local lock, which would only
-block those that need to do a kmap.
+A static analysis tool has reveiled a NULL pointer error in __i915_gem_object_lock.  This appears to be correct as many calls pass a NULL into the ww parameter.
 
-Now as for migration disabled nesting, at least now we would have
-groupings of this, and perhaps the theorists can handle that. I mean,
-how is this much different that having a bunch of tasks blocked on a
-mutex with the owner is pinned on a CPU?
+Signed-off-by: Steve Hampson <steven.t.hampson@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-migrate_disable() is a BKL of pinning affinity. If we only have
-local_lock() available (even on !RT), then it makes the blocking in
-groups. At least this way you could grep for all the different
-local_locks in the system and plug that into the algorithm for WCS,
-just like one would with a bunch of mutexes.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index d46db8d8f38e..9b18ead42991 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -126,7 +126,7 @@ static inline int __i915_gem_object_lock(struct drm_i915_gem_object *obj,
+ 	if (ret == -EALREADY)
+ 		ret = 0;
+ 
+-	if (ret == -EDEADLK)
++	if (ret == -EDEADLK && ww)
+ 		ww->contended = obj;
+ 
+ 	return ret;
+--
+2.21.0
 
--- Steve
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
