@@ -2,43 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F92427540C
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 11:09:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0316275433
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 11:16:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2DFA6E48E;
-	Wed, 23 Sep 2020 09:09:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79B4A6E3C6;
+	Wed, 23 Sep 2020 09:16:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 326B46E48E
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 09:09:27 +0000 (UTC)
-IronPort-SDR: cXQTLnnR/CcriuZ86xW5ijcr0m06MBrVctukzDNsKOofqOukP2YtaIpeJH2SfsNuEuKIMlW93E
- npU5RsKCW0bg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9752"; a="140305814"
-X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="140305814"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2020 02:09:26 -0700
-IronPort-SDR: 6TnkbyKNB6GohYXGmxflkwRYsZlKiZpNoEZ4Dtv7o+hAFt+jXAg6FGcU6ZQ6R7FM8ySDFEQRrP
- j1absZErM1/w==
-X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="511576290"
-Received: from bravinar-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.9.250])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2020 02:09:25 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <20200917170525.GA6112@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200917165056.29766-1-jani.nikula@intel.com>
- <20200917170525.GA6112@intel.com>
-Date: Wed, 23 Sep 2020 12:09:37 +0300
-Message-ID: <87blhwrh9q.fsf@intel.com>
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com
+ [IPv6:2607:f8b0:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCBD86E11C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 09:16:22 +0000 (UTC)
+Received: by mail-ot1-x344.google.com with SMTP id g96so18280732otb.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 02:16:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=xx0elKkoqWt7m+sCqzFWJsTw/Aq7bHK/TIsEYQIB+Kw=;
+ b=Kda1GqkfVMWLKwtHkGejsRapj3CscIBeM63GCgpNfbguApi3aJegx7lRDECtlhvtM6
+ cpvdg4qCsObLab+1sj7k4OcgQ5VhQ3Uje5FAk/U66q9FlFGFDYo/+Zt8NlnHJ+tMLiCB
+ hUO2r8x7vwtOzK80zcBtGdY12RAGRChzDFiGE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=xx0elKkoqWt7m+sCqzFWJsTw/Aq7bHK/TIsEYQIB+Kw=;
+ b=GuuzskQKXZ/19Dih9FYUeqd9xVGeP1LbgVXxX85UQak6/ue2FMXCuO42U9FpDBT2pV
+ qbdjWV2xWXgx+xtXgNd04Z1UGi8dcQZOYi0E1cdWWwfN1F4lczbG3tiYIBgfiA5k7Msc
+ 652QtlOgnlLZIAI/LRcDKDjcWlfCXvH3yJIJbULB+pptpFBnqP5XJKki/Waa7xaAjGP+
+ t6A7kpz0KDQzFk9ItzZcUD255HuSmNCHoCc4+OTfvI3XIZg/ln1fOs2sBO6f/VrVoTgk
+ glTM1N9J6CNexnoqe8Jv8mz82a6xJ8tjCubBgd9CuO7rvCYfR1mIm/fsFh8BzwiUNNz3
+ N/aA==
+X-Gm-Message-State: AOAM532dr5Y5D0lwWSNbvVBvo8me4nob+pa3GFYtfUC3VuvXTvQ2GSLi
+ Pw+FfaaIUnnPCVRt+/s8h0LtpvO6hGaSMR8zkfn2uw==
+X-Google-Smtp-Source: ABdhPJwCztWczfYQgjICqeAPa0u/oulXSCDaMET7lWOtt0q6htifXm+6w9u41E2ol9CyiZNqPJhaL5xEPPsNNGr5QWU=
+X-Received: by 2002:a05:6830:14d9:: with SMTP id
+ t25mr5782676otq.188.1600852582007; 
+ Wed, 23 Sep 2020 02:16:22 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/uc: tune down GuC communication
- enabled/disabled messages
+References: <20200922181834.2913552-1-daniel.vetter@ffwll.ch>
+ <20200923111717.68d9eb51@eldfell>
+In-Reply-To: <20200923111717.68d9eb51@eldfell>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 23 Sep 2020 11:16:11 +0200
+Message-ID: <CAKMK7uF02DVRm9cEOnVbSQVXiOqk0_pFdDbX2igae1gfREK1GQ@mail.gmail.com>
+To: Pekka Paalanen <ppaalanen@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] drm: document and enforce rules around
+ "spurious" EBUSY from atomic_commit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,49 +60,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: DRI Development <dri-devel@lists.freedesktop.org>,
+ Simon Ser <contact@emersion.fr>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ stable <stable@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAxNyBTZXAgMjAyMCwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
-LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gVGh1LCBTZXAgMTcsIDIwMjAgYXQgMDc6NTA6NTZQTSAr
-MDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IFRoZSBHdUMgY29tbXVuaWNhdGlvbiBlbmFibGVk
-L2Rpc2FibGVkIG1lc3NhZ2VzIGFyZSB0b28gbm9pc3kgaW4gaW5mbwo+PiBsZXZlbC4gQ29udmVy
-dCB0aGVtIGZyb20gaW5mbyB0byBkZWJ1ZyBsZXZlbCwgYW5kIHN3aXRjaCB0byBkZXZpY2UgYmFz
-ZWQKPj4gbG9nZ2luZyB3aGlsZSBhdCBpdC4KPj4gCj4+IFJlcG9ydGVkLWJ5OiBLYXJvbCBIZXJi
-c3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KPj4gQ2M6IEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRo
-YXQuY29tPgo+PiBTaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwu
-Y29tPgo+Cj4gUmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
-eC5pbnRlbC5jb20+CgpUaGFua3MsIHB1c2hlZCB0byBkcm0taW50ZWwtZ3QtbmV4dC4KCkJSLApK
-YW5pLgoKCj4KPj4gLS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5j
-IHwgNiArKysrLS0KPj4gIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDIgZGVsZXRp
-b25zKC0pCj4+IAo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50
-ZWxfdWMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjLmMKPj4gaW5kZXgg
-ZDZmNTVmNzA4ODlkLi40ZTYwNzBlOTVmZTkgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2d0L3VjL2ludGVsX3VjLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
-dWMvaW50ZWxfdWMuYwo+PiBAQCAtMjMxLDEzICsyMzEsMTUgQEAgc3RhdGljIGludCBndWNfZW5h
-YmxlX2NvbW11bmljYXRpb24oc3RydWN0IGludGVsX2d1YyAqZ3VjKQo+PiAgCWludGVsX2d1Y19j
-dF9ldmVudF9oYW5kbGVyKCZndWMtPmN0KTsKPj4gIAlzcGluX3VubG9ja19pcnEoJmk5MTUtPmly
-cV9sb2NrKTsKPj4gIAo+PiAtCURSTV9JTkZPKCJHdUMgY29tbXVuaWNhdGlvbiBlbmFibGVkXG4i
-KTsKPj4gKwlkcm1fZGJnKCZpOTE1LT5kcm0sICJHdUMgY29tbXVuaWNhdGlvbiBlbmFibGVkXG4i
-KTsKPj4gIAo+PiAgCXJldHVybiAwOwo+PiAgfQo+PiAgCj4+ICBzdGF0aWMgdm9pZCBndWNfZGlz
-YWJsZV9jb21tdW5pY2F0aW9uKHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKPj4gIHsKPj4gKwlzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IGd1Y190b19ndChndWMpLT5pOTE1Owo+PiArCj4+
-ICAJLyoKPj4gIAkgKiBFdmVudHMgZ2VuZXJhdGVkIGR1cmluZyBvciBhZnRlciBDVCBkaXNhYmxl
-IGFyZSBsb2dnZWQgYnkgZ3VjIGluCj4+ICAJICogdmlhIG1taW8uIE1ha2Ugc3VyZSB0aGUgcmVn
-aXN0ZXIgaXMgY2xlYXIgYmVmb3JlIGRpc2FibGluZyBDVCBzaW5jZQo+PiBAQCAtMjU3LDcgKzI1
-OSw3IEBAIHN0YXRpYyB2b2lkIGd1Y19kaXNhYmxlX2NvbW11bmljYXRpb24oc3RydWN0IGludGVs
-X2d1YyAqZ3VjKQo+PiAgCSAqLwo+PiAgCWd1Y19nZXRfbW1pb19tc2coZ3VjKTsKPj4gIAo+PiAt
-CURSTV9JTkZPKCJHdUMgY29tbXVuaWNhdGlvbiBkaXNhYmxlZFxuIik7Cj4+ICsJZHJtX2RiZygm
-aTkxNS0+ZHJtLCAiR3VDIGNvbW11bmljYXRpb24gZGlzYWJsZWRcbiIpOwo+PiAgfQo+PiAgCj4+
-ICBzdGF0aWMgdm9pZCBfX3VjX2ZldGNoX2Zpcm13YXJlcyhzdHJ1Y3QgaW50ZWxfdWMgKnVjKQo+
-PiAtLSAKPj4gMi4yMC4xCj4+IAo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwo+PiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4+IEludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKPj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZngKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2Ug
-R3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+On Wed, Sep 23, 2020 at 10:17 AM Pekka Paalanen <ppaalanen@gmail.com> wrote:
+>
+> On Tue, 22 Sep 2020 20:18:34 +0200
+> Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+> > When doing an atomic modeset with ALLOW_MODESET drivers are allowed to
+> > pull in arbitrary other resources, including CRTCs (e.g. when
+> > reconfiguring global resources).
+> >
+> > But in nonblocking mode userspace has then no idea this happened,
+> > which can lead to spurious EBUSY calls, both:
+> > - when that other CRTC is currently busy doing a page_flip the
+> >   ALLOW_MODESET commit can fail with an EBUSY
+> > - on the other CRTC a normal atomic flip can fail with EBUSY because
+> >   of the additional commit inserted by the kernel without userspace's
+> >   knowledge
+> >
+> > For blocking commits this isn't a problem, because everyone else will
+> > just block until all the CRTC are reconfigured. Only thing userspace
+> > can notice is the dropped frames without any reason for why frames got
+> > dropped.
+> >
+> > Consensus is that we need new uapi to handle this properly, but no one
+> > has any idea what exactly the new uapi should look like. Since this
+> > has been shipping for years already compositors need to deal no matter
+> > what, so as a first step just try to enforce this across drivers
+> > better with some checks.
+> >
+> > v2: Add comments and a WARN_ON to enforce this only when allowed - we
+> > don't want to silently convert page flips into blocking plane updates
+> > just because the driver is buggy.
+> >
+> > v3: Fix inverted WARN_ON (Pekka).
+> >
+> > v4: Drop the uapi changes, only add a WARN_ON for now to enforce some
+> > rules for drivers.
+>
+> Dropped all addresses, because gmail refused to send this email
+> otherwise.
+>
+> > ---
+> >  drivers/gpu/drm/drm_atomic.c | 27 +++++++++++++++++++++++++++
+> >  1 file changed, 27 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> > index 58527f151984..ef106e7153a6 100644
+> > --- a/drivers/gpu/drm/drm_atomic.c
+> > +++ b/drivers/gpu/drm/drm_atomic.c
+> > @@ -281,6 +281,10 @@ EXPORT_SYMBOL(__drm_atomic_state_free);
+> >   * needed. It will also grab the relevant CRTC lock to make sure that the state
+> >   * is consistent.
+> >   *
+> > + * WARNING: Drivers may only add new CRTC states to a @state if
+> > + * drm_atomic_state.allow_modeset is set, or if it's a driver-internal commit
+> > + * not created by userspace through an IOCTL call.
+> > + *
+> >   * Returns:
+> >   *
+> >   * Either the allocated state or the error code encoded into the pointer. When
+> > @@ -1262,10 +1266,15 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+> >       struct drm_crtc_state *new_crtc_state;
+> >       struct drm_connector *conn;
+> >       struct drm_connector_state *conn_state;
+> > +     unsigned requested_crtc = 0;
+> > +     unsigned affected_crtc = 0;
+> >       int i, ret = 0;
+> >
+> >       DRM_DEBUG_ATOMIC("checking %p\n", state);
+> >
+> > +     for_each_new_crtc_in_state(state, crtc, old_crtc_state, i)
+> > +             requested_crtc |= drm_crtc_mask(crtc);
+> > +
+> >       for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
+> >               ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
+> >               if (ret) {
+> > @@ -1313,6 +1322,24 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+> >               }
+> >       }
+> >
+> > +     for_each_new_crtc_in_state(state, crtc, old_crtc_state, i)
+> > +             affected_crtc |= drm_crtc_mask(crtc);
+> > +
+> > +     /*
+> > +      * For commits that allow modesets drivers can add other CRTCs to the
+> > +      * atomic commit, e.g. when they need to reallocate global resources.
+> > +      * This can cause spurious EBUSY, which robs compositors of a very
+> > +      * effective sanity check for their drawing loop. Therefor only allow
+> > +      * this for modeset commits.
+> > +      *
+> > +      * FIXME: Should add affected_crtc mask to the ATOMIC IOCTL as an output
+> > +      * so compositors know what's going on.
+>
+> Hi,
+>
+> I think telling userspace the affected_crtc mask would only solve half
+> of the problem: it would allow userspace to avoid attempting flips on
+> the other affected CRTCs until this modeset is done, but it doesn't
+> stop this non-blocking modeset from EBUSY'ing because other affected
+> CRTCs are busy flipping.
+>
+> If the aim is to indicate userspace bugs with EBUSY, then EBUSY because
+> of other CRTCs needs to be differentiable from EBUSY due to a mistake
+> on this CRTC. Maybe the CRTC mask should instead be "conflicting/busy
+> CRTCs", not simply "affected CRTCS"?
+>
+> Userspace might also be designed to always avoid modesets while any
+> CRTC is busy flipping. In that case any EBUSY would be an indication of
+> a (userspace) bug and a "busy CRTCs" mask could help pinpoint the issue.
+>
+> If userspace does a TEST_ONLY commit with a modeset on one CRTC and the
+> driver pulls in another CRTC that is currently busy, will the test
+> commit return with EBUSY?
+>
+> If yes, and *if* userspace is single-threaded wrt. to KMS updates,
+> that might offer a way to work around it in userspace. But if userspace
+> is flipping other CRTCs from other threads, TEST_ONLY commit does not
+> help because another thread may cut in and make a CRTC busy.
+
+You'd also get this from TEST_ONLY commit, so userspace can:
+- wait for any affected crtc to complete out their pending updates,
+which avoids the EBUSY
+- do a blocking modeset (which avoids the EBUSY since it stalls either way)
+- insert a note into it's per-crtc draw loop/tracking that there will
+be another event inserted by the kernel that needs to be waited on
+
+As long as this doesn't race with any other atomic commit or
+processing the event queue, this should be race free. And allow you to
+handle spurious EBUSY both here because of other pending flips, and in
+the next atomic flips because of this commit here.
+
+Also I don't think the kernel needs to tell you which of these crtc
+are busy, since userspace knows that (by tracking outstanding events).
+Plus that information is racy anyway, you'll just have to synchronize
+with your drm event processing.
+-Daniel
+
+>
+>
+> Thanks,
+> pq
+>
+> > +      */
+> > +     if (affected_crtc != requested_crtc) {
+> > +             /* adding other CRTC is only allowed for modeset commits */
+> > +             WARN_ON(!state->allow_modeset);
+> > +     }
+> > +
+> >       return 0;
+> >  }
+> >  EXPORT_SYMBOL(drm_atomic_check_only);
+>
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
