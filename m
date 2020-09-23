@@ -1,31 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E4CC275736
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 13:33:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D134D275738
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 13:37:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D8B56E97E;
-	Wed, 23 Sep 2020 11:33:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5206C6E983;
+	Wed, 23 Sep 2020 11:37:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3269B6E976;
- Wed, 23 Sep 2020 11:33:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2E0F4A0003;
- Wed, 23 Sep 2020 11:33:27 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38A586E99F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 11:37:26 +0000 (UTC)
+IronPort-SDR: xRk4RYI43Zw8sjr4HzvLc1372uIEX6OwJXrYk4+wdSrA0ggrksyDtqTi5lbKE/uMCxy2NGZzHl
+ tZLZteI+UQEA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9752"; a="160143197"
+X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="160143197"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2020 04:37:25 -0700
+IronPort-SDR: sUJ1i1v4Ia/sPWc+tLSugzAodbW7O9ffm9KmN3sVPK+jZ/i6rX0BcXJyjC0hXFu13UZ/mDv3ma
+ qtx3pDOet2xw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="305345950"
+Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
+ by orsmga003.jf.intel.com with ESMTP; 23 Sep 2020 04:37:25 -0700
+Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
+ irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 23 Sep 2020 12:37:23 +0100
+Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
+ BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.1713.004;
+ Wed, 23 Sep 2020 17:07:22 +0530
+From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [V13 5/5] drm/i915/dsi: Enable software vblank counter
+Thread-Index: AQHWkOd8eMFB3K76OUOlFAnigQ7elal1on2AgABfqkD//6pFAIAAao9A
+Date: Wed, 23 Sep 2020 11:37:22 +0000
+Message-ID: <ea3998e40541419585fbc7e29b20a038@intel.com>
+References: <20200922134426.9840-1-vandita.kulkarni@intel.com>
+ <20200922134426.9840-6-vandita.kulkarni@intel.com>
+ <20200923095939.GB6112@intel.com>
+ <28ae2dd8415448fd90f0f2ee6c40130d@intel.com>
+ <20200923103512.GF6112@intel.com>
+In-Reply-To: <20200923103512.GF6112@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Wed, 23 Sep 2020 11:33:27 -0000
-Message-ID: <160086080718.4493.18143057907159872549@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200923110527.28661-1-anshuman.gupta@intel.com>
-In-Reply-To: <20200923110527.28661-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Gen12_HDCP_1=2E4_support_on_DP_MST_=28rev2=29?=
+Subject: Re: [Intel-gfx] [V13 5/5] drm/i915/dsi: Enable software vblank
+ counter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,64 +69,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Wednesday, September 23, 2020 4:05 PM
+> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>
+> Subject: Re: [V13 5/5] drm/i915/dsi: Enable software vblank counter
+> =
 
-Series: Gen12 HDCP 1.4 support on DP MST (rev2)
-URL   : https://patchwork.freedesktop.org/series/81289/
-State : warning
+> On Wed, Sep 23, 2020 at 10:16:05AM +0000, Kulkarni, Vandita wrote:
+> > > -----Original Message-----
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Sent: Wednesday, September 23, 2020 3:30 PM
+> > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
+> > > <jani.nikula@intel.com>
+> > > Subject: Re: [V13 5/5] drm/i915/dsi: Enable software vblank counter
+> > >
+> > > On Tue, Sep 22, 2020 at 07:14:26PM +0530, Vandita Kulkarni wrote:
+> > > > In case of DSI cmd mode, we get hw vblank counter updated after
+> > > > the TE comes in, if we try to read the hw vblank counter in te
+> > > > handler we wouldnt have the udpated vblank counter yet.
+> > > > This will lead to a state where we would send the vblank event to
+> > > > the user space in the next te, though the frame update would have
+> > > > completed in the first TE duration itself.
+> > > > Hence switch to using software timestamp based vblank counter.
+> > > >
+> > > > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_display.c | 11 +++++++++++
+> > > >  drivers/gpu/drm/i915/i915_irq.c              |  4 ++++
+> > > >  2 files changed, 15 insertions(+)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > index c4f331f2af45..8b9e59e52708 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -1808,6 +1808,17 @@ enum pipe intel_crtc_pch_transcoder(struct
+> > > > intel_crtc *crtc)  static u32 intel_crtc_max_vblank_count(const
+> > > > struct intel_crtc_state *crtc_state)  {
+> > > >  	struct drm_i915_private *dev_priv =3D
+> > > > to_i915(crtc_state->uapi.crtc->dev);
+> > > > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> > > > +	u32 flags =3D crtc->mode_flags;
+> > >
+> > > That's wrong. You need to look at the crtc_state instead.
+> >
+> > Thanks,
+> > I will use crtc_state.
+> =
 
-== Summary ==
+> I'd also frop the 'flags' variable. Single use so not much point.
+> Or at the very least call it 'mode_flags' so we know what it actually is.
+Ok, will use mode_flags.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1311:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gvt/mmio.c:290:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1440:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1494:15: warning: memset with byte count of 16777216
-+./include/linux/seqlock.h:752:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:778:16: warning: trying to copy expression type 31
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+Thanks,
+Vandita
+> =
 
-
+> --
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
