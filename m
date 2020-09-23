@@ -2,30 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2604F2760D9
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 21:17:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2879227618D
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 22:01:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FE4A6E9F2;
-	Wed, 23 Sep 2020 19:17:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C9856E9F5;
+	Wed, 23 Sep 2020 20:01:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A3C46E9EE;
- Wed, 23 Sep 2020 19:17:30 +0000 (UTC)
-Received: from xpredator (unknown
- [IPv6:2a02:2f08:4c14:a400:24d7:51ff:fed6:906d])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: mvlad)
- by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 4CC8929963E;
- Wed, 23 Sep 2020 20:17:28 +0100 (BST)
-Date: Wed, 23 Sep 2020 22:17:24 +0300
-From: Marius Vlad <marius.vlad@collabora.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200923191724.GA62596@xpredator>
+Received: from mail-oo1-xc44.google.com (mail-oo1-xc44.google.com
+ [IPv6:2607:f8b0:4864:20::c44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E7F96E9F5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 20:01:37 +0000 (UTC)
+Received: by mail-oo1-xc44.google.com with SMTP id k13so192358oor.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 13:01:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=j5oO1n4ho7MUOULH+MmnqkXnHcxsy6tx3LctuS9ijvI=;
+ b=aBhUGNexhVtx48ltaytT+A4fq9LDAWWPDSTas6YfTArT6HABLX7JkMqtxQKYFuov5w
+ 7TQ9Gt2uQQsmh3Mu4GfeY71xJAQFYMbf64tr8G+DLtLMWgMVnRhCCE2aZSY7SCYVfufs
+ J8y+dFvkQomQWihIbQs4+2Wa4qBaV1D6Fh3aE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=j5oO1n4ho7MUOULH+MmnqkXnHcxsy6tx3LctuS9ijvI=;
+ b=sFmHlb/wcwgy1I16XBtyuUJpimnl+EQWUuOWCG568eFNSut3w7kDZoMQ3tVvDo8b6+
+ 73N5lZBAxhZsBWfHYX/vAco4Hvt0sBrDJigrQOfqA00vxLbF8srijyLNLezefDIrxf+c
+ Qv+W2P8+Z8xs8zGUXjp22E0nHE4bL1CPmbSlkAMcM9KWcIDOp19uUcODl47U4bvhsdAP
+ E4r1HzjRzAt2ieLFrK5f467S47xs5m/NbkYpGQKupDmplk+bDHXhEjlPe819Vp93iaHS
+ FbZGFlrmChgelcTs+gj5mvNK3yPRz+rYVgbcD32rzEWCrISiYRP2nVbl72EETrmA3yBL
+ cOAQ==
+X-Gm-Message-State: AOAM533LkKEoXX+ZkTH6fp0VuKtS01H2fp5mWyALzy4mEmKhbQ3HSErZ
+ E43YYDCtzu1R1fp1qpNuPL9Ox9UJ5C2pq9bwE04/7Q==
+X-Google-Smtp-Source: ABdhPJze88vEss9ym3RtySoqCpf6xzAz/LrBVjMKAq2vFZKgUR5KUE8tVrpJMv2SX3j1MrP57gZ2Jh/IE+1pWx0+Cv4=
+X-Received: by 2002:a4a:344b:: with SMTP id n11mr918325oof.89.1600891296401;
+ Wed, 23 Sep 2020 13:01:36 -0700 (PDT)
+MIME-Version: 1.0
 References: <20200923105737.2943649-1-daniel.vetter@ffwll.ch>
  <20200923151852.2952812-1-daniel.vetter@ffwll.ch>
-MIME-Version: 1.0
-In-Reply-To: <20200923151852.2952812-1-daniel.vetter@ffwll.ch>
+ <20200923191724.GA62596@xpredator>
+In-Reply-To: <20200923191724.GA62596@xpredator>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 23 Sep 2020 22:01:25 +0200
+Message-ID: <CAKMK7uH0WiEPP1H1DZPdE4mJdStTTtnZJQN5rjnkG_6va_1Tdg@mail.gmail.com>
+To: Marius Vlad <marius.vlad@collabora.com>
 Subject: Re: [Intel-gfx] [PATCH] drm/atomic: document and enforce rules
  around "spurious" EBUSY
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -44,185 +65,121 @@ Cc: Daniel Vetter <daniel.vetter@intel.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
  Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-Content-Type: multipart/mixed; boundary="===============1052615191=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1052615191==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="17pEHd4RhPHOinZp"
-Content-Disposition: inline
-
-
---17pEHd4RhPHOinZp
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Sep 23, 2020 at 05:18:52PM +0200, Daniel Vetter wrote:
-> When doing an atomic modeset with ALLOW_MODESET drivers are allowed to
-> pull in arbitrary other resources, including CRTCs (e.g. when
-> reconfiguring global resources).
->=20
-> But in nonblocking mode userspace has then no idea this happened,
-> which can lead to spurious EBUSY calls, both:
-> - when that other CRTC is currently busy doing a page_flip the
->   ALLOW_MODESET commit can fail with an EBUSY
-> - on the other CRTC a normal atomic flip can fail with EBUSY because
->   of the additional commit inserted by the kernel without userspace's
->   knowledge
->=20
-> For blocking commits this isn't a problem, because everyone else will
-> just block until all the CRTC are reconfigured. Only thing userspace
-> can notice is the dropped frames without any reason for why frames got
-> dropped.
->=20
-> Consensus is that we need new uapi to handle this properly, but no one
-> has any idea what exactly the new uapi should look like. Since this
-> has been shipping for years already compositors need to deal no matter
-> what, so as a first step just try to enforce this across drivers
-> better with some checks.
->=20
-> v2: Add comments and a WARN_ON to enforce this only when allowed - we
-> don't want to silently convert page flips into blocking plane updates
-> just because the driver is buggy.
->=20
-> v3: Fix inverted WARN_ON (Pekka).
->=20
-> v4: Drop the uapi changes, only add a WARN_ON for now to enforce some
-> rules for drivers.
->=20
-> v5: Make the WARNING more informative (Daniel)
->=20
-> v6: Add unconditional debug output for compositor hackers to figure
-> out what's going on when they get an EBUSY (Daniel)
->=20
-> References: https://lists.freedesktop.org/archives/dri-devel/2018-July/18=
-2281.html
-> Bugzilla: https://gitlab.freedesktop.org/wayland/weston/issues/24#note_95=
-68
-> Cc: Daniel Stone <daniel@fooishbar.org>
-> Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-> Cc: Simon Ser <contact@emersion.fr>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->  drivers/gpu/drm/drm_atomic.c | 29 +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index 58527f151984..f1a912e80846 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -281,6 +281,10 @@ EXPORT_SYMBOL(__drm_atomic_state_free);
->   * needed. It will also grab the relevant CRTC lock to make sure that th=
-e state
->   * is consistent.
->   *
-> + * WARNING: Drivers may only add new CRTC states to a @state if
-> + * drm_atomic_state.allow_modeset is set, or if it's a driver-internal c=
-ommit
-> + * not created by userspace through an IOCTL call.
-> + *
->   * Returns:
->   *
->   * Either the allocated state or the error code encoded into the pointer=
-=2E When
-> @@ -1262,10 +1266,15 @@ int drm_atomic_check_only(struct drm_atomic_state=
- *state)
->  	struct drm_crtc_state *new_crtc_state;
->  	struct drm_connector *conn;
->  	struct drm_connector_state *conn_state;
-> +	unsigned requested_crtc =3D 0;
-> +	unsigned affected_crtc =3D 0;
->  	int i, ret =3D 0;
-> =20
->  	DRM_DEBUG_ATOMIC("checking %p\n", state);
-> =20
-> +	for_each_new_crtc_in_state(state, crtc, old_crtc_state, i)
-> +		requested_crtc |=3D drm_crtc_mask(crtc);
-> +
->  	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane=
-_state, i) {
->  		ret =3D drm_atomic_plane_check(old_plane_state, new_plane_state);
->  		if (ret) {
-> @@ -1313,6 +1322,26 @@ int drm_atomic_check_only(struct drm_atomic_state =
-*state)
->  		}
->  	}
-> =20
-> +	for_each_new_crtc_in_state(state, crtc, old_crtc_state, i)
-> +		affected_crtc |=3D drm_crtc_mask(crtc);
-> +
-> +	/*
-> +	 * For commits that allow modesets drivers can add other CRTCs to the
-> +	 * atomic commit, e.g. when they need to reallocate global resources.
-> +	 * This can cause spurious EBUSY, which robs compositors of a very
-> +	 * effective sanity check for their drawing loop. Therefor only allow
-> +	 * drivers to add unrelated CRTC states for modeset commits.
-> +	 *
-> +	 * FIXME: Should add affected_crtc mask to the ATOMIC IOCTL as an output
-> +	 * so compositors know what's going on.
-> +	 */
-> +	if (affected_crtc !=3D requested_crtc) {
-> +		DRM_DEBUG_ATOMIC("driver added CRTC to commit: requested 0x%x, affecte=
-d 0x%0x\n",
-> +				 requested_crtc, affected_crtc);
-> +		WARN(!state->allow_modeset, "adding CRTC not allowed without modesets:=
- requested 0x%x, affected 0x%0x\n",
-> +		     requested_crtc, affected_crtc);
-Previous patch had the warn on state->allow_modeset now is
-!state->allow_modeset. Is that correct?
-
-I haven't followed the entire thread on this matter, but I guess the idea
-is that somehow the kernel would pass to userspace a CRTC mask of
-affected_crtc (somehow, we don't know how atm) and with it, userspace
-can then issue a new commit (this commit blocking) with those?
-> +	}
-> +
->  	return 0;
->  }
->  EXPORT_SYMBOL(drm_atomic_check_only);
-> --=20
-> 2.28.0
->=20
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
---17pEHd4RhPHOinZp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEcDKHej6x6uPk3J379jQS5glH1u8FAl9rn0EACgkQ9jQS5glH
-1u943RAAmNIK2ma1gGkqyOtPhcLahZ6hWAmlY+cb3cJdpKAG+zCDuNw16NHCuXDP
-bLSKCR+c9yOaqWDJjsl1RPexR+BBINyBLEccgK+OajE10ZkDazEtGfl70uHUQQd9
-a7j6FW8OpmvmKxR8r/iaC/A1V4UUomjkDznplmN+0HJChzKt2DwMU4+Q2/UgSHkL
-F8qR/nSaHhAYsVnjwSrFzfZYNR8UMMld0f8vNZdFJD9YDRvL1Ef+BIG43gvo6UUs
-z5QJBlglmBKI8+fnHXj+9U+VtsfITVn2XgSsDxnMlBMbcdqi6l+WgYq8rqGvpJP8
-EPKAX6WE++wq/58OeerJYp6fYLqvHn2nL00wcpC9wMGglS03NQbMixCGPa2+1lh/
-64prR4mfKeHFgxRXLmd8PMRU0jPeSAHAidR9I4APXfp5GtF+cLfswUKYomCFfILx
-jooVR2D5V4BVlUSllAT1WQYErP4FO9RugqaXdzcUkFlrhWpPGppgnqp1DGFQNhWz
-aXji7y2NbqFAOwUIRpWpUGPOqZ1kzKJwR7T5e60N4A/6K8J3E84hndtIP14Mqg6Y
-cVrNrQT2gTbDTIFbm/itb3xeWkYvqIEEoO+XB8bDBtNtc7V431bcfJ2UNSUP8F/6
-l3Mk+MQXhnd74Kelkyvo2NrokrcGEJm6XLlJN6aI0mFmHuL6rBo=
-=6uDo
------END PGP SIGNATURE-----
-
---17pEHd4RhPHOinZp--
-
---===============1052615191==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1052615191==--
+T24gV2VkLCBTZXAgMjMsIDIwMjAgYXQgOToxNyBQTSBNYXJpdXMgVmxhZCA8bWFyaXVzLnZsYWRA
+Y29sbGFib3JhLmNvbT4gd3JvdGU6Cj4KPiBPbiBXZWQsIFNlcCAyMywgMjAyMCBhdCAwNToxODo1
+MlBNICswMjAwLCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+ID4gV2hlbiBkb2luZyBhbiBhdG9taWMg
+bW9kZXNldCB3aXRoIEFMTE9XX01PREVTRVQgZHJpdmVycyBhcmUgYWxsb3dlZCB0bwo+ID4gcHVs
+bCBpbiBhcmJpdHJhcnkgb3RoZXIgcmVzb3VyY2VzLCBpbmNsdWRpbmcgQ1JUQ3MgKGUuZy4gd2hl
+bgo+ID4gcmVjb25maWd1cmluZyBnbG9iYWwgcmVzb3VyY2VzKS4KPiA+Cj4gPiBCdXQgaW4gbm9u
+YmxvY2tpbmcgbW9kZSB1c2Vyc3BhY2UgaGFzIHRoZW4gbm8gaWRlYSB0aGlzIGhhcHBlbmVkLAo+
+ID4gd2hpY2ggY2FuIGxlYWQgdG8gc3B1cmlvdXMgRUJVU1kgY2FsbHMsIGJvdGg6Cj4gPiAtIHdo
+ZW4gdGhhdCBvdGhlciBDUlRDIGlzIGN1cnJlbnRseSBidXN5IGRvaW5nIGEgcGFnZV9mbGlwIHRo
+ZQo+ID4gICBBTExPV19NT0RFU0VUIGNvbW1pdCBjYW4gZmFpbCB3aXRoIGFuIEVCVVNZCj4gPiAt
+IG9uIHRoZSBvdGhlciBDUlRDIGEgbm9ybWFsIGF0b21pYyBmbGlwIGNhbiBmYWlsIHdpdGggRUJV
+U1kgYmVjYXVzZQo+ID4gICBvZiB0aGUgYWRkaXRpb25hbCBjb21taXQgaW5zZXJ0ZWQgYnkgdGhl
+IGtlcm5lbCB3aXRob3V0IHVzZXJzcGFjZSdzCj4gPiAgIGtub3dsZWRnZQo+ID4KPiA+IEZvciBi
+bG9ja2luZyBjb21taXRzIHRoaXMgaXNuJ3QgYSBwcm9ibGVtLCBiZWNhdXNlIGV2ZXJ5b25lIGVs
+c2Ugd2lsbAo+ID4ganVzdCBibG9jayB1bnRpbCBhbGwgdGhlIENSVEMgYXJlIHJlY29uZmlndXJl
+ZC4gT25seSB0aGluZyB1c2Vyc3BhY2UKPiA+IGNhbiBub3RpY2UgaXMgdGhlIGRyb3BwZWQgZnJh
+bWVzIHdpdGhvdXQgYW55IHJlYXNvbiBmb3Igd2h5IGZyYW1lcyBnb3QKPiA+IGRyb3BwZWQuCj4g
+Pgo+ID4gQ29uc2Vuc3VzIGlzIHRoYXQgd2UgbmVlZCBuZXcgdWFwaSB0byBoYW5kbGUgdGhpcyBw
+cm9wZXJseSwgYnV0IG5vIG9uZQo+ID4gaGFzIGFueSBpZGVhIHdoYXQgZXhhY3RseSB0aGUgbmV3
+IHVhcGkgc2hvdWxkIGxvb2sgbGlrZS4gU2luY2UgdGhpcwo+ID4gaGFzIGJlZW4gc2hpcHBpbmcg
+Zm9yIHllYXJzIGFscmVhZHkgY29tcG9zaXRvcnMgbmVlZCB0byBkZWFsIG5vIG1hdHRlcgo+ID4g
+d2hhdCwgc28gYXMgYSBmaXJzdCBzdGVwIGp1c3QgdHJ5IHRvIGVuZm9yY2UgdGhpcyBhY3Jvc3Mg
+ZHJpdmVycwo+ID4gYmV0dGVyIHdpdGggc29tZSBjaGVja3MuCj4gPgo+ID4gdjI6IEFkZCBjb21t
+ZW50cyBhbmQgYSBXQVJOX09OIHRvIGVuZm9yY2UgdGhpcyBvbmx5IHdoZW4gYWxsb3dlZCAtIHdl
+Cj4gPiBkb24ndCB3YW50IHRvIHNpbGVudGx5IGNvbnZlcnQgcGFnZSBmbGlwcyBpbnRvIGJsb2Nr
+aW5nIHBsYW5lIHVwZGF0ZXMKPiA+IGp1c3QgYmVjYXVzZSB0aGUgZHJpdmVyIGlzIGJ1Z2d5Lgo+
+ID4KPiA+IHYzOiBGaXggaW52ZXJ0ZWQgV0FSTl9PTiAoUGVra2EpLgo+ID4KPiA+IHY0OiBEcm9w
+IHRoZSB1YXBpIGNoYW5nZXMsIG9ubHkgYWRkIGEgV0FSTl9PTiBmb3Igbm93IHRvIGVuZm9yY2Ug
+c29tZQo+ID4gcnVsZXMgZm9yIGRyaXZlcnMuCj4gPgo+ID4gdjU6IE1ha2UgdGhlIFdBUk5JTkcg
+bW9yZSBpbmZvcm1hdGl2ZSAoRGFuaWVsKQo+ID4KPiA+IHY2OiBBZGQgdW5jb25kaXRpb25hbCBk
+ZWJ1ZyBvdXRwdXQgZm9yIGNvbXBvc2l0b3IgaGFja2VycyB0byBmaWd1cmUKPiA+IG91dCB3aGF0
+J3MgZ29pbmcgb24gd2hlbiB0aGV5IGdldCBhbiBFQlVTWSAoRGFuaWVsKQo+ID4KPiA+IFJlZmVy
+ZW5jZXM6IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8y
+MDE4LUp1bHkvMTgyMjgxLmh0bWwKPiA+IEJ1Z3ppbGxhOiBodHRwczovL2dpdGxhYi5mcmVlZGVz
+a3RvcC5vcmcvd2F5bGFuZC93ZXN0b24vaXNzdWVzLzI0I25vdGVfOTU2OAo+ID4gQ2M6IERhbmll
+bCBTdG9uZSA8ZGFuaWVsQGZvb2lzaGJhci5vcmc+Cj4gPiBDYzogUGVra2EgUGFhbGFuZW4gPHBl
+a2thLnBhYWxhbmVuQGNvbGxhYm9yYS5jby51az4KPiA+IENjOiBTaW1vbiBTZXIgPGNvbnRhY3RA
+ZW1lcnNpb24uZnI+Cj4gPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4KPiA+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0
+ZXJAaW50ZWwuY29tPgo+ID4gLS0tCj4gPiAgZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWMuYyB8
+IDI5ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDI5
+IGluc2VydGlvbnMoKykKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9h
+dG9taWMuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljLmMKPiA+IGluZGV4IDU4NTI3ZjE1
+MTk4NC4uZjFhOTEyZTgwODQ2IDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9h
+dG9taWMuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWMuYwo+ID4gQEAgLTI4
+MSw2ICsyODEsMTAgQEAgRVhQT1JUX1NZTUJPTChfX2RybV9hdG9taWNfc3RhdGVfZnJlZSk7Cj4g
+PiAgICogbmVlZGVkLiBJdCB3aWxsIGFsc28gZ3JhYiB0aGUgcmVsZXZhbnQgQ1JUQyBsb2NrIHRv
+IG1ha2Ugc3VyZSB0aGF0IHRoZSBzdGF0ZQo+ID4gICAqIGlzIGNvbnNpc3RlbnQuCj4gPiAgICoK
+PiA+ICsgKiBXQVJOSU5HOiBEcml2ZXJzIG1heSBvbmx5IGFkZCBuZXcgQ1JUQyBzdGF0ZXMgdG8g
+YSBAc3RhdGUgaWYKPiA+ICsgKiBkcm1fYXRvbWljX3N0YXRlLmFsbG93X21vZGVzZXQgaXMgc2V0
+LCBvciBpZiBpdCdzIGEgZHJpdmVyLWludGVybmFsIGNvbW1pdAo+ID4gKyAqIG5vdCBjcmVhdGVk
+IGJ5IHVzZXJzcGFjZSB0aHJvdWdoIGFuIElPQ1RMIGNhbGwuCj4gPiArICoKPiA+ICAgKiBSZXR1
+cm5zOgo+ID4gICAqCj4gPiAgICogRWl0aGVyIHRoZSBhbGxvY2F0ZWQgc3RhdGUgb3IgdGhlIGVy
+cm9yIGNvZGUgZW5jb2RlZCBpbnRvIHRoZSBwb2ludGVyLiBXaGVuCj4gPiBAQCAtMTI2MiwxMCAr
+MTI2NiwxNSBAQCBpbnQgZHJtX2F0b21pY19jaGVja19vbmx5KHN0cnVjdCBkcm1fYXRvbWljX3N0
+YXRlICpzdGF0ZSkKPiA+ICAgICAgIHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqbmV3X2NydGNfc3Rh
+dGU7Cj4gPiAgICAgICBzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubjsKPiA+ICAgICAgIHN0cnVj
+dCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlOwo+ID4gKyAgICAgdW5zaWduZWQgcmVx
+dWVzdGVkX2NydGMgPSAwOwo+ID4gKyAgICAgdW5zaWduZWQgYWZmZWN0ZWRfY3J0YyA9IDA7Cj4g
+PiAgICAgICBpbnQgaSwgcmV0ID0gMDsKPiA+Cj4gPiAgICAgICBEUk1fREVCVUdfQVRPTUlDKCJj
+aGVja2luZyAlcFxuIiwgc3RhdGUpOwo+ID4KPiA+ICsgICAgIGZvcl9lYWNoX25ld19jcnRjX2lu
+X3N0YXRlKHN0YXRlLCBjcnRjLCBvbGRfY3J0Y19zdGF0ZSwgaSkKPiA+ICsgICAgICAgICAgICAg
+cmVxdWVzdGVkX2NydGMgfD0gZHJtX2NydGNfbWFzayhjcnRjKTsKPiA+ICsKPiA+ICAgICAgIGZv
+cl9lYWNoX29sZG5ld19wbGFuZV9pbl9zdGF0ZShzdGF0ZSwgcGxhbmUsIG9sZF9wbGFuZV9zdGF0
+ZSwgbmV3X3BsYW5lX3N0YXRlLCBpKSB7Cj4gPiAgICAgICAgICAgICAgIHJldCA9IGRybV9hdG9t
+aWNfcGxhbmVfY2hlY2sob2xkX3BsYW5lX3N0YXRlLCBuZXdfcGxhbmVfc3RhdGUpOwo+ID4gICAg
+ICAgICAgICAgICBpZiAocmV0KSB7Cj4gPiBAQCAtMTMxMyw2ICsxMzIyLDI2IEBAIGludCBkcm1f
+YXRvbWljX2NoZWNrX29ubHkoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlKQo+ID4gICAg
+ICAgICAgICAgICB9Cj4gPiAgICAgICB9Cj4gPgo+ID4gKyAgICAgZm9yX2VhY2hfbmV3X2NydGNf
+aW5fc3RhdGUoc3RhdGUsIGNydGMsIG9sZF9jcnRjX3N0YXRlLCBpKQo+ID4gKyAgICAgICAgICAg
+ICBhZmZlY3RlZF9jcnRjIHw9IGRybV9jcnRjX21hc2soY3J0Yyk7Cj4gPiArCj4gPiArICAgICAv
+Kgo+ID4gKyAgICAgICogRm9yIGNvbW1pdHMgdGhhdCBhbGxvdyBtb2Rlc2V0cyBkcml2ZXJzIGNh
+biBhZGQgb3RoZXIgQ1JUQ3MgdG8gdGhlCj4gPiArICAgICAgKiBhdG9taWMgY29tbWl0LCBlLmcu
+IHdoZW4gdGhleSBuZWVkIHRvIHJlYWxsb2NhdGUgZ2xvYmFsIHJlc291cmNlcy4KPiA+ICsgICAg
+ICAqIFRoaXMgY2FuIGNhdXNlIHNwdXJpb3VzIEVCVVNZLCB3aGljaCByb2JzIGNvbXBvc2l0b3Jz
+IG9mIGEgdmVyeQo+ID4gKyAgICAgICogZWZmZWN0aXZlIHNhbml0eSBjaGVjayBmb3IgdGhlaXIg
+ZHJhd2luZyBsb29wLiBUaGVyZWZvciBvbmx5IGFsbG93Cj4gPiArICAgICAgKiBkcml2ZXJzIHRv
+IGFkZCB1bnJlbGF0ZWQgQ1JUQyBzdGF0ZXMgZm9yIG1vZGVzZXQgY29tbWl0cy4KPiA+ICsgICAg
+ICAqCj4gPiArICAgICAgKiBGSVhNRTogU2hvdWxkIGFkZCBhZmZlY3RlZF9jcnRjIG1hc2sgdG8g
+dGhlIEFUT01JQyBJT0NUTCBhcyBhbiBvdXRwdXQKPiA+ICsgICAgICAqIHNvIGNvbXBvc2l0b3Jz
+IGtub3cgd2hhdCdzIGdvaW5nIG9uLgo+ID4gKyAgICAgICovCj4gPiArICAgICBpZiAoYWZmZWN0
+ZWRfY3J0YyAhPSByZXF1ZXN0ZWRfY3J0Yykgewo+ID4gKyAgICAgICAgICAgICBEUk1fREVCVUdf
+QVRPTUlDKCJkcml2ZXIgYWRkZWQgQ1JUQyB0byBjb21taXQ6IHJlcXVlc3RlZCAweCV4LCBhZmZl
+Y3RlZCAweCUweFxuIiwKPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZXF1ZXN0
+ZWRfY3J0YywgYWZmZWN0ZWRfY3J0Yyk7Cj4gPiArICAgICAgICAgICAgIFdBUk4oIXN0YXRlLT5h
+bGxvd19tb2Rlc2V0LCAiYWRkaW5nIENSVEMgbm90IGFsbG93ZWQgd2l0aG91dCBtb2Rlc2V0czog
+cmVxdWVzdGVkIDB4JXgsIGFmZmVjdGVkIDB4JTB4XG4iLAo+ID4gKyAgICAgICAgICAgICAgICAg
+IHJlcXVlc3RlZF9jcnRjLCBhZmZlY3RlZF9jcnRjKTsKPiBQcmV2aW91cyBwYXRjaCBoYWQgdGhl
+IHdhcm4gb24gc3RhdGUtPmFsbG93X21vZGVzZXQgbm93IGlzCj4gIXN0YXRlLT5hbGxvd19tb2Rl
+c2V0LiBJcyB0aGF0IGNvcnJlY3Q/CgpXZSBuZWVkIHRvIGZpcmUgYSB3YXJuaW5nIHdoZW4gYWxs
+b3dfbW9kZXNldCBpcyBfbm90XyBzZXQuIEFuIGVhcmxpZXIKdmVyc2lvbiBnb3QgdGhhdCB3cm9u
+ZywgYW5kIHllcyB0aGF0IHdvdWxkIGhhdmUgY2F1c2VkIGEgX3Rvbl8gb2YKd2FybmluZ3Mgb24g
+YW55IGZhaXJseSBuZXcgaW50ZWwgcGxhdGZvcm0uCgo+IEkgaGF2ZW4ndCBmb2xsb3dlZCB0aGUg
+ZW50aXJlIHRocmVhZCBvbiB0aGlzIG1hdHRlciwgYnV0IEkgZ3Vlc3MgdGhlIGlkZWEKPiBpcyB0
+aGF0IHNvbWVob3cgdGhlIGtlcm5lbCB3b3VsZCBwYXNzIHRvIHVzZXJzcGFjZSBhIENSVEMgbWFz
+ayBvZgo+IGFmZmVjdGVkX2NydGMgKHNvbWVob3csIHdlIGRvbid0IGtub3cgaG93IGF0bSkgYW5k
+IHdpdGggaXQsIHVzZXJzcGFjZQo+IGNhbiB0aGVuIGlzc3VlIGEgbmV3IGNvbW1pdCAodGhpcyBj
+b21taXQgYmxvY2tpbmcpIHdpdGggdGhvc2U/CgpFaXRoZXIgdGhhdCwgb3IganVzdCB1c2UgdGhh
+dCB0byB0cmFjayBhbGwgdGhlIGluLWZsaWdodCBkcm0gZXZlbnRzLgpVc2Vyc3BhY2Ugd2lsbCBn
+ZXQgZXZlbnRzIGZvciBhbGwgdGhlIGNydGMsIG5vdCBqdXN0IHRoZSBvbmUgaXQgYXNrZWQKdG8g
+dXBkYXRlLiBJZiB0aGF0J3MgZWFzaWVyIHRvIGRvIGJ5IHJlLWlzc3VpbmcgdGhlIGNvbW1pdCB3
+aXRoIHRoZQpmdWxsIHNldCBvZiBjcnRjLCB0aGVuIEkgZ3Vlc3MgdGhhdCdzIGFuIG9wdGlvbi4g
+QnV0IG5vdCByZXF1aXJlZCAoSQp0aGluayBhdCBsZWFzdCwgd291bGQgbmVlZCB0byB0ZXN0IHRo
+YXQgdG8gbWFrZSBzdXJlKS4KLURhbmllbAoKPiA+ICsgICAgIH0KPiA+ICsKPiA+ICAgICAgIHJl
+dHVybiAwOwo+ID4gIH0KPiA+ICBFWFBPUlRfU1lNQk9MKGRybV9hdG9taWNfY2hlY2tfb25seSk7
+Cj4gPiAtLQo+ID4gMi4yOC4wCj4gPgo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KPiA+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiA+IGRyaS1kZXZl
+bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCgoKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJl
+IEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
+ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
