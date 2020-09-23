@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D7352756CD
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 13:03:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 945A12756F4
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 13:16:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE7FD6E951;
-	Wed, 23 Sep 2020 11:03:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D770F6E94B;
+	Wed, 23 Sep 2020 11:16:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 40AAF6E951;
- Wed, 23 Sep 2020 11:03:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 37F73A8169;
- Wed, 23 Sep 2020 11:03:21 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 567B96E966
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 11:16:36 +0000 (UTC)
+IronPort-SDR: 9EM/yrMFmaX1NQ5FYelMPoMfmgsf5qY/pzc7l82WGWy4X3V/w9BX+tJzXxt47RprDmSE6Ln2oV
+ r17Xakvb463Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9752"; a="178932832"
+X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="178932832"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2020 04:16:35 -0700
+IronPort-SDR: RmsamhgXiOh+cD1rxZTB4Jfou7nc3Ih+kLdVSWtTrWLAmXg1DLYRV0qPxmVlZBVNzt1vzZcRNO
+ Li4DMU24jZNA==
+X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="511610337"
+Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2020 04:16:34 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Sep 2020 16:35:23 +0530
+Message-Id: <20200923110527.28661-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Wed, 23 Sep 2020 11:03:21 -0000
-Message-ID: <160085900122.4495.16240488675496054280@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200923105737.2943649-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200923105737.2943649-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/atomic=3A_document_and_e?=
- =?utf-8?q?nforce_rules_around_=22spurious=22_EBUSY?=
+Subject: [Intel-gfx] [PATCH v2 0/4] Gen12 HDCP 1.4 support on DP MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,63 +46,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: seanpaul@chromium.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This is the v2 version after testing DP with some rough
+changes in kms_content_protection IGT in order to test stream
+encryption with multiple streams.
+DP MST link authentication, stream encryption and link integrity
+check has been tested with this series on TGL platform.
 
-Series: series starting with [1/2] drm/atomic: document and enforce rules around "spurious" EBUSY
-URL   : https://patchwork.freedesktop.org/series/82023/
-State : warning
+Anshuman Gupta (4):
+  drm/i915/hdcp: DP MST transcoder for link and stream
+  drm/i915/hdcp: Move HDCP enc status timeout to header
+  drm/i915/hdcp: HDCP stream encryption support
+  drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP MST support
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 12 +--
+ drivers/gpu/drm/i915/display/intel_ddi.h      |  6 +-
+ .../drm/i915/display/intel_display_types.h    |  6 ++
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 80 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 12 +--
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 70 ++++++++++------
+ drivers/gpu/drm/i915/display/intel_hdcp.h     |  4 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 14 ++--
+ drivers/gpu/drm/i915/i915_reg.h               |  1 +
+ 9 files changed, 147 insertions(+), 58 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-a59f0f6c784d drm/atomic: document and enforce rules around "spurious" EBUSY
--:44: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#44: 
-References: https://lists.freedesktop.org/archives/dri-devel/2018-July/182281.html
-
--:71: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#71: FILE: drivers/gpu/drm/drm_atomic.c:1269:
-+	unsigned requested_crtc = 0;
-
--:72: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#72: FILE: drivers/gpu/drm/drm_atomic.c:1270:
-+	unsigned affected_crtc = 0;
-
--:107: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 4 warnings, 0 checks, 49 lines checked
-03a8bf062d50 drm/atomic: debug output for EBUSY
--:52: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#52: FILE: drivers/gpu/drm/drm_atomic_helper.c:1741:
-+		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] inflight previous commit preventing async commit\n",
-+			plane->base.id, plane->name);
-
--:63: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#63: FILE: drivers/gpu/drm/drm_atomic_helper.c:1962:
-+				DRM_DEBUG_ATOMIC("[CRTC:%d:%s] busy with a previous commit\n",
-+					crtc->base.id, crtc->name);
-
--:75: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#75: FILE: drivers/gpu/drm/drm_atomic_helper.c:2140:
-+			DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] busy with a previous commit\n",
-+				conn->base.id, conn->name);
-
--:89: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#89: FILE: drivers/gpu/drm/drm_atomic_helper.c:2159:
-+			DRM_DEBUG_ATOMIC("[PLANE:%d:%s] busy with a previous commit\n",
-+				plane->base.id, plane->name);
-
--:95: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 4 checks, 63 lines checked
-
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
