@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED8927589B
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 15:25:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E89BB2758CD
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 15:35:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1F836E150;
-	Wed, 23 Sep 2020 13:25:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA3D36E156;
+	Wed, 23 Sep 2020 13:35:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AEDD56E0D0;
- Wed, 23 Sep 2020 13:25:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A6F70A47E6;
- Wed, 23 Sep 2020 13:25:38 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA9E76E0D0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 13:35:32 +0000 (UTC)
+IronPort-SDR: yP6QClQK8yvUA8agGVpHkgq+uaMzrCmATT+ugsH+e1PJKR9tOTcxiUOBLO+gWz/cBqtzO17yEU
+ puYy6dsWL9Zw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9752"; a="148628183"
+X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="148628183"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2020 06:35:31 -0700
+IronPort-SDR: BtME/66cSdTPGjMKhXRwiK6tGOVRtiMt1hJnyEw2ZLdf7tVek/TKsVIXfrXGkMBB4JlSowJAZ7
+ fEacMzsCKHsg==
+X-IronPort-AV: E=Sophos;i="5.77,293,1596524400"; d="scan'208";a="454916527"
+Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2020 06:35:30 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Sep 2020 18:54:33 +0530
+Message-Id: <20200923132435.17039-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Date: Wed, 23 Sep 2020 13:25:38 -0000
-Message-ID: <160086753865.4494.7661567529708955822@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200923123205.30671-1-tzimmermann@suse.de>
-In-Reply-To: <20200923123205.30671-1-tzimmermann@suse.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_dma-buf=3A_Flag_vmap=27ed_memory_as_system_or_I/O_memory_?=
- =?utf-8?b?KHJldjIp?=
+Subject: [Intel-gfx] [PATCH v4 0/2] HDCP misc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,60 +46,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Rebased of a older series which has been pending to merge.
+original series : https://patchwork.freedesktop.org/series/73345/
 
-Series: dma-buf: Flag vmap'ed memory as system or I/O memory (rev2)
-URL   : https://patchwork.freedesktop.org/series/81647/
-State : warning
+Ramalingam C (2):
+  drm/i915: terminate reauth at stream management failure
+  drm/i915: dont retry stream management at seq_num_m roll over
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 89 ++++++++++++++---------
+ 1 file changed, 56 insertions(+), 33 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-757ce74a1b9b dma-buf: Add struct dma-buf-map for storing struct dma_buf.vaddr_ptr
--:52: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#52: FILE: drivers/dma-buf/dma-buf.c:1212:
-+		BUG_ON(dma_buf_map_is_null(&dmabuf->vmap_ptr));
-
--:58: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#58: FILE: drivers/dma-buf/dma-buf.c:1217:
-+	BUG_ON(dma_buf_map_is_set(&dmabuf->vmap_ptr));
-
--:76: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#76: FILE: drivers/dma-buf/dma-buf.c:1244:
-+	BUG_ON(dma_buf_map_is_null(&dmabuf->vmap_ptr));
-
--:79: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#79: FILE: drivers/dma-buf/dma-buf.c:1246:
-+	BUG_ON(!dma_buf_map_is_vaddr(&dmabuf->vmap_ptr, vaddr));
-
--:91: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#91: 
-new file mode 100644
-
--:145: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!map->vaddr_iomem"
-#145: FILE: include/linux/dma-buf-map.h:50:
-+		return map->vaddr_iomem == NULL;
-
--:146: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!map->vaddr"
-#146: FILE: include/linux/dma-buf-map.h:51:
-+	return map->vaddr == NULL;
-
-total: 0 errors, 5 warnings, 2 checks, 152 lines checked
-3ed40eba3c1e dma-buf: Use struct dma_buf_map in dma_buf_vmap() interfaces
-a23bd28000a3 dma-buf: Use struct dma_buf_map in dma_buf_vunmap() interfaces
--:43: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#43: FILE: drivers/dma-buf/dma-buf.c:1250:
-+	BUG_ON(!dma_buf_map_is_equal(&dmabuf->vmap_ptr, map));
-
-total: 0 errors, 1 warnings, 0 checks, 287 lines checked
-
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
