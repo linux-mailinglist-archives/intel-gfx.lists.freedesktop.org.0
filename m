@@ -1,58 +1,91 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01C952756FC
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 13:16:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0916627570B
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Sep 2020 13:18:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E81A6E051;
-	Wed, 23 Sep 2020 11:16:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5FF16E97D;
+	Wed, 23 Sep 2020 11:18:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com
- [IPv6:2607:f8b0:4864:20::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D4A36E051
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 11:16:54 +0000 (UTC)
-Received: by mail-oi1-x242.google.com with SMTP id x14so24614981oic.9
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Sep 2020 04:16:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rTSXpPPpcxIeMmfzwprfzSe0gqeoKE7piFOaQTAnR88=;
- b=U3ePQ6UANsmOqJvqkSDwhxC0dOVjzUOwE4x0udnLdKAnZwfoH54D6zA2aFyQNBZ6wx
- 2nPN0NSQMoR5XgpW6AE5wFrsDvhtBtVH1i8rDX+nIRku/Hn3aKl/NydxLBvMqP61YHXK
- klri+iTBjmr1dXBgHh5qcNJuaXoUc/kGEvHXM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=rTSXpPPpcxIeMmfzwprfzSe0gqeoKE7piFOaQTAnR88=;
- b=tysW9L+GRWPOk3ipz3if/Zr3V4IKXiFR8IvNIz1Vr16aboHYuYIvW0nIyokZ6IM+Zf
- IzrvVPLwHO9q7Hf2i/BmEDLfg9RTvibNfBYZ079hJA1EhtJC6U7LWNO5AEbxZR+T1rBZ
- 25PY/BQcgTGwwzj0F4+0ytUXcvxZsQwdquraw2BOQA4BtC3a7/idyFizuQn6ay2QCD6/
- dIITOpD5l5b2HxITSgpR9xZAIwAzD1H+lvP2F4QQPMiUJCJVToJKxEFqMf/297GgM8HL
- 9FDj8lU2WI18fIKRDUWhP0b3NfwCBAW8yo0mirEQgZKcx0smQDXwpOQhbu+5eFQ37ncD
- J57Q==
-X-Gm-Message-State: AOAM532EjK96XN2tWdOwUG3AlCkd+eML0xVnOi+6/3+EkiOSAor9SlQU
- sZPhjZy0aeHn32VMdpu+SVCn419IiXyxgeQhaVkUSA==
-X-Google-Smtp-Source: ABdhPJym2IcGvMv5rOZjsbiRqhxPjtR71Yu3t2aEm8NnZePkvZj0lvdMkwwEEHrfVsZ043SiVMMfQ1JGyPCTmC7z9Bw=
-X-Received: by 2002:a05:6808:206:: with SMTP id
- l6mr5446894oie.128.1600859813680; 
- Wed, 23 Sep 2020 04:16:53 -0700 (PDT)
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com
+ (mail-am6eur05on2066.outbound.protection.outlook.com [40.107.22.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 337BF6E97B;
+ Wed, 23 Sep 2020 11:18:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WCaP/uGNXw6HZ2ZCO69SxY5dXzWEo50Zx1xnmgdDLLd/DjdG1Pham7z/dRotdz4TA8Mn0MmGWhfq/3ZbgnpxFHBVXlNfHk8Kh68q12XCV92Tq4Xbsz574n1I6WhRBw9LEkQSNl+OnCca+ncycRet8j+cc+jnY9kDilLW6Y91/uTgkQ+9KPoZeTsqTbf776tDQW3NXjI/bMi6+jIkcEFuraO+eMXCTZMNDRvtHC63bVqCSRXbavhdAs/s6Su7GsukyqMy/3dZqbrSGOfbZxhshX+RQihuUIyvpAvfPnAk1yHydBv+WtamiR6Iqzr7x+uIvOA7m1D2EZa/PeKm+Hi0/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iAkLMJGw7Vv/vvyJ1mi700q4G3h4xSaJtX4PCcR/n8Q=;
+ b=SF4lHP3dTItZIoxSOnx/sUplrrIw9qEgg+WqEOfvO7jnpCB4MB3ag95aRbsMOWq/e0JCVWtemQSpTHGutCpg8pBCTVv+5NaA+XnVuFFTN73DcCaRCJbpYtj0BWtYYkPjFsi1Hswv8EQnGPOR/7UKXiaNNFiy9iZtpZJZxTplqPgSkx1zQvsmJsQh9dXVMc1p3SdnQzDGNVbjec3/5TQ1d0PPJz+LQ0Wv7MrJ+TaJSDqsTt8jr4HEHb12m8TzZlUorvHlVKALwLlSDd0NsoSb45zHp0skT/xQEV3aVqOwTfCTPY4Tq+3sTEfeTniy+PybaCf8tqDTZoz0UqqpIMLJlw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com; 
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iAkLMJGw7Vv/vvyJ1mi700q4G3h4xSaJtX4PCcR/n8Q=;
+ b=IhaOeAiLhydbVcliIEHIxwHK8uy+OFYk24U03M6rPJ3678PrAOUVPaRY1ZuprY4ya7UN5z6Wq5hrgRHr9x6apoNer+HEktwoAznNrjHep2kx4Npy2+kc0awqfbNc//sb+1Tw6PjGG66mBfjAZLGSFqhaBZtNVSVfy7Xoe358A9w=
+Authentication-Results: suse.de; dkim=none (message not signed)
+ header.d=none;suse.de; dmarc=none action=none header.from=oss.nxp.com;
+Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
+ (2603:10a6:803:22::27) by VI1PR04MB5789.eurprd04.prod.outlook.com
+ (2603:10a6:803:e2::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Wed, 23 Sep
+ 2020 11:18:37 +0000
+Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
+ ([fe80::5d66:84a7:26de:67c3]) by VI1PR0402MB3902.eurprd04.prod.outlook.com
+ ([fe80::5d66:84a7:26de:67c3%6]) with mapi id 15.20.3412.021; Wed, 23 Sep 2020
+ 11:18:36 +0000
+Date: Wed, 23 Sep 2020 14:18:27 +0300
+From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20200923111827.dtpgxpa7ydd4kxio@fsr-ub1864-141>
+References: <20200923102159.24084-1-tzimmermann@suse.de>
+ <20200923102159.24084-8-tzimmermann@suse.de>
+Content-Disposition: inline
+In-Reply-To: <20200923102159.24084-8-tzimmermann@suse.de>
+User-Agent: NeoMutt/20171215
+X-ClientProxiedBy: AM4PR05CA0036.eurprd05.prod.outlook.com (2603:10a6:205::49)
+ To VI1PR0402MB3902.eurprd04.prod.outlook.com
+ (2603:10a6:803:22::27)
 MIME-Version: 1.0
-References: <20180705101043.4883-1-daniel.vetter@ffwll.ch>
- <20180705102121.5091-1-daniel.vetter@ffwll.ch>
- <CAPj87rN48S8+pLd0ksOX4pdCTqtO=bDgjhkPxpWr_AnpVvgaSQ@mail.gmail.com>
- <20200922133636.GA2369@xpredator>
- <CAKMK7uHr3dKu8o4e3hoSe3S5MfVtZ92nLk1VGZTqSuDsH6kphg@mail.gmail.com>
- <20200923111443.GA8478@xpredator>
-In-Reply-To: <20200923111443.GA8478@xpredator>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Wed, 23 Sep 2020 13:16:42 +0200
-Message-ID: <CAKMK7uGwTbt4OdfVGVLk_0i_F5LNTx1RAaNz_D8LxnpwJo-i2Q@mail.gmail.com>
-To: Marius Vlad <marius.vlad@collabora.com>, 
- "Syrjala, Ville" <ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm: avoid spurious EBUSY due to
- nonblocking atomic modesets
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from fsr-ub1864-141 (83.217.231.2) by
+ AM4PR05CA0036.eurprd05.prod.outlook.com (2603:10a6:205::49) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3391.14 via Frontend Transport; Wed, 23 Sep 2020 11:18:31 +0000
+X-Originating-IP: [83.217.231.2]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: d8600018-cf47-486d-b728-08d85fb269f7
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5789:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB5789EE9EDF94E109850D8E27BE380@VI1PR04MB5789.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:198;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Cmbn5QGDKVdeukmXn+cSl5AnvEvL0ckzdWVYbUbIiFKDufVmovnsHe9+cBwKmqrhGAG48LjAdqYsNoRhOEb8u9iyvPYM0ZS6zY56r6wNCrzz8xYAd8cTMnCpD9nBU8fXCCd6WoyUShskT4fo1a+IxvsJe/kG4XvCooOWlcINdPn8JeKfPw6JwN7e3dkIREdzpkPWplfEFUUCO7CV1zJRiDfS4vfBYCKYoKXYi2vz+1T659axyOmJJzPzkLvzd4tN0P12rR2TZ/GO7jzB8wV6ciy9akEwGjTLGpBlmXJXFl4h/s5Q8mv/EEkORN7auCVwZMC12OryeiWc3X4P2c+I9g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR0402MB3902.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(39850400004)(346002)(376002)(136003)(396003)(86362001)(7366002)(7416002)(7406005)(83380400001)(5660300002)(2906002)(6666004)(8936002)(66946007)(33716001)(1076003)(55016002)(66556008)(66476007)(9686003)(6496006)(6916009)(4326008)(8676002)(52116002)(16526019)(44832011)(316002)(956004)(26005)(478600001)(186003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: YH6/GixFZP1cMd5wQlgyMojaOxfMwE5sHkpGKdNK74B/W7U0HBFvECepHtetZN8rzrviI1iMfCLKDW6lNqlv4ioK0DKlIsG2ebDfGpMMW96aopjhu1hB1B9+gXrgtenHXJVj5REKsiC/svUeV6FUMjb/v7dyoVtvzJoX6gfpMUwaX3tCfMJO6VeNyz6vnQB7FkXduiUjyInDToTOH+xRSPwfIlgP8TLl5/RsRSZi4bmbDm25Ia/ssmlIODu0sI8hlggBQf4+mGRb3V5tHuAx3ry6L6vjkR73gjnxwPDPLukIUoE+HKx33w82c5FZa9zDuyxvpMByPJ+O4HNbZo42DUV4/bc7x5Ze8t+eXxA8D9djSiHDOHiCezBcCj38npuRNUEfqlXS6237vyUofgkZkQZfM7XeJdM4BhdApgB8j/lXXiHuT7+3dlSKCirJpEOhqJu3HYhh9yCrJjm4Dpt36Wik0MqNkX8cO9LdOQkoB+GRgia88YzrBIHWrUZvogM7UF6hOBCG43Jf1vTLZ3rSZzJvDgvgA1G/T6Gy5HRQetklf5l1AMEsAKH0qsXPXiqMfNWKHfHvIQ+Lt8Mlvj2TaDH9r5pDH3Rf/3H3rO3q40NorExRF5I7cPzo1fto2cqq8KE8tGIDDo0c5fz1qFMM2w==
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8600018-cf47-486d-b728-08d85fb269f7
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3902.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2020 11:18:36.6980 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5lZLGbhnJQjJpuaMRljf8APd1c9V2G5Oo5JlPEh+eK3QI/loeb5TW6ThgWbwHNTOGTy7vQTpDlxVPdBJxYiV8w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5789
+Subject: Re: [Intel-gfx] [PATCH v3 07/22] drm/imx/dcss: Initialize DRM
+ driver instance with CMA helper macro
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,89 +98,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- stable <stable@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>,
- Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+Cc: hamohammed.sa@gmail.com, heiko@sntech.de, andrey.grodzovsky@amd.com,
+ airlied@linux.ie, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, michal.simek@xilinx.com, eric@anholt.net,
+ krzk@kernel.org, sam@ravnborg.org, sumit.semwal@linaro.org,
+ emil.velikov@collabora.com, linux-samsung-soc@vger.kernel.org,
+ jy0922.shim@samsung.com, oleksandr_andrushchenko@epam.com,
+ tomi.valkeinen@ti.com, linux-tegra@vger.kernel.org, linux@armlinux.org.uk,
+ jonathanh@nvidia.com, freedreno@lists.freedesktop.org, kgene@kernel.org,
+ bskeggs@redhat.com, intel-gfx@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, miaoqinglang@huawei.com,
+ s.hauer@pengutronix.de, matthew.auld@intel.com, chunkuang.hu@kernel.org,
+ linux-arm-msm@vger.kernel.org, marek.olsak@amd.com, tianci.yin@amd.com,
+ etnaviv@lists.freedesktop.org, inki.dae@samsung.com,
+ christian.gmeiner@gmail.com, linux-mediatek@lists.infradead.org,
+ mripard@kernel.org, festevam@gmail.com, matthias.bgg@gmail.com,
+ linux-imx@nxp.com, evan.quan@amd.com, kernel@pengutronix.de,
+ linux-arm-kernel@lists.infradead.org, xen-devel@lists.xenproject.org,
+ amd-gfx@lists.freedesktop.org, laurent.pinchart@ideasonboard.com,
+ hyun.kwon@xilinx.com, rodrigosiqueiramelo@gmail.com, aaron.liu@amd.com,
+ Felix.Kuehling@amd.com, xinhui.pan@amd.com, sw0312.kim@samsung.com,
+ hjc@rock-chips.com, chris@chris-wilson.co.uk, kyungmin.park@samsung.com,
+ nirmoy.das@amd.com, p.zabel@pengutronix.de, alexander.deucher@amd.com,
+ Hawking.Zhang@amd.com, shawnguo@kernel.org, christian.koenig@amd.com,
+ l.stach@pengutronix.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 23, 2020 at 1:14 PM Marius Vlad <marius.vlad@collabora.com> wrote:
->
-> On Wed, Sep 23, 2020 at 12:58:30PM +0200, Daniel Vetter wrote:
-> > On Tue, Sep 22, 2020 at 3:36 PM Marius Vlad <marius.vlad@collabora.com> wrote:
-> > >
-> > > On Fri, Jan 31, 2020 at 07:34:00AM +0000, Daniel Stone wrote:
-> > > > On Thu, 5 Jul 2018 at 11:21, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > > > > When doing an atomic modeset with ALLOW_MODESET drivers are allowed to
-> > > > > pull in arbitrary other resources, including CRTCs (e.g. when
-> > > > > reconfiguring global resources).
-> > > > >
-> > > > > But in nonblocking mode userspace has then no idea this happened,
-> > > > > which can lead to spurious EBUSY calls, both:
-> > > > > - when that other CRTC is currently busy doing a page_flip the
-> > > > >   ALLOW_MODESET commit can fail with an EBUSY
-> > > > > - on the other CRTC a normal atomic flip can fail with EBUSY because
-> > > > >   of the additional commit inserted by the kernel without userspace's
-> > > > >   knowledge
-> > > > >
-> > > > > For blocking commits this isn't a problem, because everyone else will
-> > > > > just block until all the CRTC are reconfigured. Only thing userspace
-> > > > > can notice is the dropped frames without any reason for why frames got
-> > > > > dropped.
-> > > > >
-> > > > > Consensus is that we need new uapi to handle this properly, but no one
-> > > > > has any idea what exactly the new uapi should look like. As a stop-gap
-> > > > > plug this problem by demoting nonblocking commits which might cause
-> > > > > issues by including CRTCs not in the original request to blocking
-> > > > > commits.
-> > > Gentle ping. I've tried out Linus's master tree and, and like Pekka,
-> > > I've noticed this isn't integrated/added.
-> > >
-> > > Noticed this is fixing (also) DPMS when multiple outputs are in use.
-> > > Wondering if we can just use a _ONCE() variant instead of WARN_ON(). I'm seeing
-> > > the warning quite often.
-> >
-> > On which driver/chip does this happen?
-> I've tried it out on i915.
+Hi Thomas,
 
-lspci -nn please.
+On Wed, Sep 23, 2020 at 12:21:44PM +0200, Thomas Zimmermann wrote:
+> The i.MX DCSS driver uses CMA helpers with default callback functions.
+> Initialize the driver structure with the rsp CMA helper macro. The
+> driver is being converted to use GEM object functions as part of
+> this change.
+> 
+> Two callbacks, .gem_prime_export and .gem_prime_import, were initialized
+> to their default implementations, so they are just kept empty now.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Reported-by: kernel test robot <lkp@intel.com>
+> ---
 
-Also adding Ville, who has an idea where this can all go wrong. The
-one he pointed out thus far is gen12+ only though.
--Daniel
+Reviewed-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
 
-> > -Daniel
-> >
-> > >
-> > > >
-> > > > Thanks for writing this up Daniel, and for reminding me about it some
-> > > > time later as well ...
-> > > >
-> > > > Reviewed-by: Daniel Stone <daniels@collabora.com>
-> > > >
-> > > > Cheers,
-> > > > Daniel
-> > > > _______________________________________________
-> > > > dri-devel mailing list
-> > > > dri-devel@lists.freedesktop.org
-> > > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> >
-> >
-> >
-> > --
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
+Thanks,
+laurentiu
 
-
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+>  drivers/gpu/drm/imx/dcss/dcss-kms.c | 14 +-------------
+>  1 file changed, 1 insertion(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/imx/dcss/dcss-kms.c b/drivers/gpu/drm/imx/dcss/dcss-kms.c
+> index 135a62366ab8..b72e5cef7e40 100644
+> --- a/drivers/gpu/drm/imx/dcss/dcss-kms.c
+> +++ b/drivers/gpu/drm/imx/dcss/dcss-kms.c
+> @@ -28,19 +28,7 @@ static const struct drm_mode_config_funcs dcss_drm_mode_config_funcs = {
+>  
+>  static struct drm_driver dcss_kms_driver = {
+>  	.driver_features	= DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+> -	.gem_free_object_unlocked = drm_gem_cma_free_object,
+> -	.gem_vm_ops		= &drm_gem_cma_vm_ops,
+> -	.dumb_create		= drm_gem_cma_dumb_create,
+> -
+> -	.prime_handle_to_fd	= drm_gem_prime_handle_to_fd,
+> -	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
+> -	.gem_prime_import	= drm_gem_prime_import,
+> -	.gem_prime_export	= drm_gem_prime_export,
+> -	.gem_prime_get_sg_table	= drm_gem_cma_prime_get_sg_table,
+> -	.gem_prime_import_sg_table = drm_gem_cma_prime_import_sg_table,
+> -	.gem_prime_vmap		= drm_gem_cma_prime_vmap,
+> -	.gem_prime_vunmap	= drm_gem_cma_prime_vunmap,
+> -	.gem_prime_mmap		= drm_gem_cma_prime_mmap,
+> +	DRM_GEM_CMA_DRIVER_OPS,
+>  	.fops			= &dcss_cma_fops,
+>  	.name			= "imx-dcss",
+>  	.desc			= "i.MX8MQ Display Subsystem",
+> -- 
+> 2.28.0
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
