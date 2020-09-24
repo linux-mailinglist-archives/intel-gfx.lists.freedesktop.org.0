@@ -1,51 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ADDD2770CE
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 14:22:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2ECC277111
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 14:32:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7A376EACC;
-	Thu, 24 Sep 2020 12:22:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D32346EAD4;
+	Thu, 24 Sep 2020 12:32:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8D096EACC;
- Thu, 24 Sep 2020 12:22:47 +0000 (UTC)
-IronPort-SDR: ulleF8tQRgiVZXb9Wdm2mk30VDIBE41TpvOwOo3viKlk510gOWapfb41WfdGxO/FhE/YoCwPae
- RGtOFzj7jVsQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="162093271"
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="162093271"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2020 05:22:47 -0700
-IronPort-SDR: yIaT7aSfYZLzy7NAr4/+/fx09KzEzHT9W6js9dSXcbin5XmBb1ZJrTzhIomLZahY1XxX9OeT67
- NyrfUrRrFMnA==
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="455327432"
-Received: from dsmahang-mobl2.ger.corp.intel.com (HELO [10.252.48.167])
- ([10.252.48.167])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2020 05:22:44 -0700
-To: Christoph Hellwig <hch@lst.de>
-References: <20200918163724.2511-1-hch@lst.de>
- <20200918163724.2511-5-hch@lst.de>
- <9b5d40af-7378-9e68-ca51-73b2148287f3@linux.intel.com>
- <20200923134117.GB9893@lst.de>
- <1a421e7f-6255-c534-5403-715c2e809bd0@linux.intel.com>
- <20200923144455.GA15036@lst.de>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <17f81582-f087-aeac-c06a-4cd1a5457fbb@linux.intel.com>
-Date: Thu, 24 Sep 2020 13:22:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46BAE6EACD;
+ Thu, 24 Sep 2020 12:32:48 +0000 (UTC)
+Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com
+ [66.24.58.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 3E4EA205F4;
+ Thu, 24 Sep 2020 12:32:43 +0000 (UTC)
+Date: Thu, 24 Sep 2020 08:32:41 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Thomas Gleixner <tglx@linutronix.de>
+Message-ID: <20200924083241.314f2102@gandalf.local.home>
+In-Reply-To: <871riracgf.fsf@nanos.tec.linutronix.de>
+References: <20200919091751.011116649@linutronix.de>
+ <CAHk-=wiYGyrFRbA1cc71D2-nc5U9LM9jUJesXGqpPnB7E4X1YQ@mail.gmail.com>
+ <87mu1lc5mp.fsf@nanos.tec.linutronix.de>
+ <87k0wode9a.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgbmwsTOKs23Z=71EBTrULoeaH2U3TNqT2atHEWvkBKdw@mail.gmail.com>
+ <87eemwcpnq.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
+ <87a6xjd1dw.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
+ <87sgbbaq0y.fsf@nanos.tec.linutronix.de>
+ <20200923084032.GU1362448@hirez.programming.kicks-ass.net>
+ <20200923115251.7cc63a7e@oasis.local.home>
+ <874kno9pr9.fsf@nanos.tec.linutronix.de>
+ <20200923171234.0001402d@oasis.local.home>
+ <871riracgf.fsf@nanos.tec.linutronix.de>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20200923144455.GA15036@lst.de>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915: use vmap in
- i915_gem_object_map
+Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
+ variant of kmap_atomic & friends
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,54 +54,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>, Minchan Kim <minchan@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- x86@kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, xen-devel@lists.xenproject.org,
+Cc: Juri Lelli <juri.lelli@redhat.com>, peterz@infradead.org,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
+ Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
+ Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
+ Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, Mel Gorman <mgorman@suse.de>,
+ "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
+ linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Greentime Hu <green.hu@gmail.com>, Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ LKML <linux-kernel@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Vineet Gupta <vgupta@synopsys.com>, Paul Mackerras <paulus@samba.org>,
  Andrew Morton <akpm@linux-foundation.org>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 24 Sep 2020 08:57:52 +0200
+Thomas Gleixner <tglx@linutronix.de> wrote:
 
-On 23/09/2020 15:44, Christoph Hellwig wrote:
-> On Wed, Sep 23, 2020 at 02:58:43PM +0100, Tvrtko Ursulin wrote:
->>>> Series did not get a CI run from our side because of a different base so I
->>>> don't know if you would like to have a run there? If so you would need to
->>>> rebase against git://anongit.freedesktop.org/drm-tip drm-tip and you could
->>>> even send a series to intel-gfx-trybot@lists.freedesktop.org, suppressing
->>>> cc, to check it out without sending a copy to the real mailing list.
->>>
->>> It doesn't seem like I can post to any freedesktop list, as I always
->>> get rejection messages.  But I'll happily prepare a branch if one
->>> of you an feed it into your CI.
->>
->> That's fine, just ping me and I will forward it for testing, thanks!
+> > Now as for migration disabled nesting, at least now we would have
+> > groupings of this, and perhaps the theorists can handle that. I mean,
+> > how is this much different that having a bunch of tasks blocked on a
+> > mutex with the owner is pinned on a CPU?
+> >
+> > migrate_disable() is a BKL of pinning affinity.  
 > 
->      git://git.infradead.org/users/hch/misc.git i915-vmap-wip
+> No. That's just wrong. preempt disable is a concurrency control,
+
+I think you totally misunderstood what I was saying. The above wasn't about
+comparing preempt_disable to migrate_disable. It was comparing
+migrate_disable to a chain of tasks blocked on mutexes where the top owner
+has preempt_disable set. You still have a bunch of tasks that can't move to
+other CPUs.
+
+
+> > If we only have local_lock() available (even on !RT), then it makes
+> > the blocking in groups. At least this way you could grep for all the
+> > different local_locks in the system and plug that into the algorithm
+> > for WCS, just like one would with a bunch of mutexes.  
 > 
-> Gitweb:
+> You cannot do that on RT at all where migrate disable is substituting
+> preempt disable in spin and rw locks. The result would be the same as
+> with a !RT kernel just with horribly bad performance.
+
+Note, the spin and rwlocks already have a lock associated with them. Why
+would it be any different on RT? I wasn't suggesting adding another lock
+inside a spinlock. Why would I recommend THAT? I wasn't recommending
+blindly replacing migrate_disable() with local_lock(). I just meant expose
+local_lock() but not migrate_disable().
+
 > 
->      http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/i915-vmap-wip
+> That means the stacking problem has to be solved anyway.
 > 
-> note that this includes a new commit to clean up one of the recent
-> commits in the code.
+> So why on earth do you want to create yet another special duct tape case
+> for kamp_local() which proliferates inconsistency instead of aiming for
+> consistency accross all preemption models?
 
-CI says series looks good from the i915 perspective (*).
+The idea was to help with the scheduling issue.
 
-I don't know how will you handle it logistically, but when you have 
-final version I am happy to re-read and r-b the i915 patches.
+Anyway, instead of blocking. What about having a counter of number of
+migrate disabled tasks per cpu, and when taking a migrate_disable(), and there's
+already another task with migrate_disabled() set, and the current task has
+an affinity greater than 1, it tries to migrate to another CPU?
 
+This way migrate_disable() is less likely to have a bunch of tasks blocked
+on one CPU serialized by each task exiting the migrate_disable() section.
 
-Regards,
+Yes, there's more overhead, but it only happens if multiple tasks are in a
+migrate disable section on the same CPU.
 
-Tvrtko
+-- Steve
 
-*)
-https://patchwork.freedesktop.org/series/82051/
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
