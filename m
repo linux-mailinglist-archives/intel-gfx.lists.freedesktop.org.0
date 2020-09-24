@@ -2,52 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43825277000
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 13:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BB07277048
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 13:50:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 254F36EAC1;
-	Thu, 24 Sep 2020 11:33:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDAE36E3FE;
+	Thu, 24 Sep 2020 11:50:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4F86E288;
- Thu, 24 Sep 2020 11:33:02 +0000 (UTC)
-IronPort-SDR: dCKcZ4XFB6hgjwaRrJ35eYYZ5DS6avNU5phwk8hhOaZ2CezjySfdmIhniDMPYYQHDc+kgTyKH6
- 70AbuHvUfBhw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="140629578"
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="140629578"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CBA16E3FE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 11:50:29 +0000 (UTC)
+IronPort-SDR: lfrEgbqoDXfpYw4IYY8p7+W8aosYl6Y0aloyaeh7RSIk1VAMgWPCgl8aDoq4NNnidGPVfc3DFX
+ Da1i7gGPCvWQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="148827456"
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="148827456"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2020 04:33:02 -0700
-IronPort-SDR: C1K5PhPPxAZil++SaDaFrop63fsVu9yNThaN/H5JLWB9++RyZZFFOU78nqMqypDoGnhKdFEhUJ
- q3efoNZ5ZzIQ==
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2020 04:50:28 -0700
+IronPort-SDR: c9cWecWgpY5gTOE6v9dZkg+oODu6KaL/hdr+Jd4mSFvTmkPNgQ0SqOr+//GiY6xmwvQXGl6Q/X
+ SumZKt5rCVng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="322935005"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 24 Sep 2020 04:32:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 24 Sep 2020 14:32:58 +0300
-Date: Thu, 24 Sep 2020 14:32:58 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200924113258.GK6112@intel.com>
-References: <20200923105737.2943649-1-daniel.vetter@ffwll.ch>
- <20200923151852.2952812-1-daniel.vetter@ffwll.ch>
- <20200923191724.GA62596@xpredator>
- <CAKMK7uH0WiEPP1H1DZPdE4mJdStTTtnZJQN5rjnkG_6va_1Tdg@mail.gmail.com>
- <20200924104101.63be1c13@eldfell>
- <CAKMK7uHwU0r7Z699qw3Y2HPuvzL3-B12fw3gDbdrxOX1V6iK2w@mail.gmail.com>
- <20200924131056.54beb12e@eldfell> <20200924110135.GJ6112@intel.com>
- <CAKMK7uHvj9r179zgQuAxVOBuGSpj5JtxaWJzZmLEc_wNNsJjrw@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="455318421"
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
+ by orsmga004.jf.intel.com with ESMTP; 24 Sep 2020 04:50:27 -0700
+Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 24 Sep 2020 12:50:25 +0100
+Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
+ BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.1713.004;
+ Thu, 24 Sep 2020 17:20:24 +0530
+From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [V13 4/5] drm/i915/dsi: Initiate fame request in cmd mode
+Thread-Index: AQHWkOd7k0io5IgONECqzMzlrx7D+Kl1orKAgABcnUD//6x6gIAB/NBg
+Date: Thu, 24 Sep 2020 11:50:24 +0000
+Message-ID: <18b4da9e7fc34add918c4aa7109edcac@intel.com>
+References: <20200922134426.9840-1-vandita.kulkarni@intel.com>
+ <20200922134426.9840-5-vandita.kulkarni@intel.com>
+ <20200923100023.GC6112@intel.com>
+ <ba3d4da2dfc54c8a86947b6b7fc59310@intel.com>
+ <20200923103254.GE6112@intel.com>
+In-Reply-To: <20200923103254.GE6112@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKMK7uHvj9r179zgQuAxVOBuGSpj5JtxaWJzZmLEc_wNNsJjrw@mail.gmail.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic: document and enforce rules
- around "spurious" EBUSY
+Subject: Re: [Intel-gfx] [V13 4/5] drm/i915/dsi: Initiate fame request in
+ cmd mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,134 +69,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Pekka Paalanen <ppaalanen@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Marius Vlad <marius.vlad@collabora.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 24, 2020 at 01:13:17PM +0200, Daniel Vetter wrote:
-> On Thu, Sep 24, 2020 at 1:01 PM Ville Syrj=E4l=E4
-> <ville.syrjala@linux.intel.com> wrote:
-> >
-> > On Thu, Sep 24, 2020 at 01:10:56PM +0300, Pekka Paalanen wrote:
-> > > On Thu, 24 Sep 2020 10:04:12 +0200
-> > > Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > >
-> > > > On Thu, Sep 24, 2020 at 9:41 AM Pekka Paalanen <ppaalanen@gmail.com=
-> wrote:
-> > > > >
-> > > > > On Wed, 23 Sep 2020 22:01:25 +0200
-> > > > > Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > > > >
-> > > > > > On Wed, Sep 23, 2020 at 9:17 PM Marius Vlad <marius.vlad@collab=
-ora.com> wrote:
-> > > > > > >
-> > > > > > > On Wed, Sep 23, 2020 at 05:18:52PM +0200, Daniel Vetter wrote:
-> > > > > > > > When doing an atomic modeset with ALLOW_MODESET drivers are=
- allowed to
-> > > > > > > > pull in arbitrary other resources, including CRTCs (e.g. wh=
-en
-> > > > > > > > reconfiguring global resources).
-> > > > >
-> > > > > ...
-> > > > >
-> > > > > > > > @@ -1313,6 +1322,26 @@ int drm_atomic_check_only(struct drm=
-_atomic_state *state)
-> > > > > > > >               }
-> > > > > > > >       }
-> > > > > > > >
-> > > > > > > > +     for_each_new_crtc_in_state(state, crtc, old_crtc_stat=
-e, i)
-> > > > > > > > +             affected_crtc |=3D drm_crtc_mask(crtc);
-> > > > > > > > +
-> > > > > > > > +     /*
-> > > > > > > > +      * For commits that allow modesets drivers can add ot=
-her CRTCs to the
-> > > > > > > > +      * atomic commit, e.g. when they need to reallocate g=
-lobal resources.
-> > > > > > > > +      * This can cause spurious EBUSY, which robs composit=
-ors of a very
-> > > > > > > > +      * effective sanity check for their drawing loop. The=
-refor only allow
-> > > > > > > > +      * drivers to add unrelated CRTC states for modeset c=
-ommits.
-> > > > > > > > +      *
-> > > > > > > > +      * FIXME: Should add affected_crtc mask to the ATOMIC=
- IOCTL as an output
-> > > > > > > > +      * so compositors know what's going on.
-> > > > > > > > +      */
-> > > > > > > > +     if (affected_crtc !=3D requested_crtc) {
-> > > > > > > > +             DRM_DEBUG_ATOMIC("driver added CRTC to commit=
-: requested 0x%x, affected 0x%0x\n",
-> > > > > > > > +                              requested_crtc, affected_crt=
-c);
-> > > > > > > > +             WARN(!state->allow_modeset, "adding CRTC not =
-allowed without modesets: requested 0x%x, affected 0x%0x\n",
-> > > > > > > > +                  requested_crtc, affected_crtc);
-> > > > > > > Previous patch had the warn on state->allow_modeset now is
-> > > > > > > !state->allow_modeset. Is that correct?
-> > > > > >
-> > > > > > We need to fire a warning when allow_modeset is _not_ set. An e=
-arlier
-> > > > > > version got that wrong, and yes that would have caused a _ton_ =
-of
-> > > > > > warnings on any fairly new intel platform.
-> > > > > >
-> > > > > > > I haven't followed the entire thread on this matter, but I gu=
-ess the idea
-> > > > > > > is that somehow the kernel would pass to userspace a CRTC mas=
-k of
-> > > > > > > affected_crtc (somehow, we don't know how atm) and with it, u=
-serspace
-> > > > > > > can then issue a new commit (this commit blocking) with those?
-> > > > > >
-> > > > > > Either that, or just use that to track all the in-flight drm ev=
-ents.
-> > > > > > Userspace will get events for all the crtc, not just the one it=
- asked
-> > > > > > to update.
-> > > > >
-> > > > > Wait, does that happen already? Getting CRTC events for CRTCs use=
-rspace
-> > > > > didn't include in the atomic commit?
-> > > >
-> > > > Yeah I'm pretty sure. With the affected_crtc mask you could update
-> > > > your internal book-keeping to catch these, which should also prevent
-> > > > all the spurious EBUSY. But I'm not entirely sure, I just read the
-> > > > code, haven't tested.
-> > >
-> > > If that actually happens, how does userspace know whether the
-> > > userdata argument with the event is valid or not?
-> >
-> > At some point I was worried about the kernel potentially sending spurio=
-us
-> > events, but IIRC I managed to convince myself that it shouldn't happen.
-> > I think I came to the conclusion the events were populated before the
-> > core calls into the driver. But maybe I misanalyzed it, or something
-> > has since broken?
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Wednesday, September 23, 2020 4:03 PM
+> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>
+> Subject: Re: [V13 4/5] drm/i915/dsi: Initiate fame request in cmd mode
 > =
 
-> Hm right this shouldn't happen, I misread the code. So if userspace
-> wants events for all affected crtc, it needs to add them explicitly to
-> the atomic ioctl (just set an arbitrary property on each crtc to its
-> current value or something like that).
+> On Wed, Sep 23, 2020 at 10:02:49AM +0000, Kulkarni, Vandita wrote:
+> > > -----Original Message-----
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Sent: Wednesday, September 23, 2020 3:30 PM
+> > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
+> > > <jani.nikula@intel.com>
+> > > Subject: Re: [V13 4/5] drm/i915/dsi: Initiate fame request in cmd
+> > > mode
+> > >
+> > > On Tue, Sep 22, 2020 at 07:14:25PM +0530, Vandita Kulkarni wrote:
+> > > > In TE Gate mode or TE NO_GATE mode on every flip we need to set
+> > > > the frame update request bit.
+> > > > After this  bit is set transcoder hardware will automatically send
+> > > > the frame data to the panel in case of TE NO_GATE mode, where it
+> > > > sends after it receives the TE event in case of TE_GATE mode.
+> > > > Once the frame data is sent to the panel, we see the frame counter
+> > > > updating.
+> > > >
+> > > > v2: Use intel_de_read/write
+> > > >
+> > > > v3: remove the usage of private_flags
+> > > >
+> > > > v4: Use icl_dsi in func names if non static,
+> > > >     fix code formatting issues. (Jani)
+> > > >
+> > > > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/icl_dsi.c       | 26
+> ++++++++++++++++++++
+> > > >  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++
+> > > >  drivers/gpu/drm/i915/display/intel_dsi.h     |  1 +
+> > > >  3 files changed, 37 insertions(+)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > > > b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > > > index 2789020e20db..7d2abc7f6ba3 100644
+> > > > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > > > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > > > @@ -205,6 +205,32 @@ static int dsi_send_pkt_payld(struct
+> > > > intel_dsi_host
+> > > *host,
+> > > >  	return 0;
+> > > >  }
+> > > >
+> > > > +void icl_dsi_frame_update(struct intel_crtc_state *crtc_state) {
+> > > > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> > > > +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> > > > +	u32 tmp, flags;
+> > > > +	enum port port;
+> > > > +
+> > > > +	flags =3D crtc->mode_flags;
+> > > > +
+> > > > +	/*
+> > > > +	 * case 1 also covers dual link
+> > > > +	 * In case of dual link, frame update should be set on
+> > > > +	 * DSI_0
+> > > > +	 */
+> > > > +	if (flags & I915_MODE_FLAG_DSI_USE_TE0)
+> > > > +		port =3D PORT_A;
+> > > > +	else if (flags & I915_MODE_FLAG_DSI_USE_TE1)
+> > > > +		port =3D PORT_B;
+> > > > +	else
+> > > > +		return;
+> > > > +
+> > > > +	tmp =3D intel_de_read(dev_priv, DSI_CMD_FRMCTL(port));
+> > > > +	tmp |=3D DSI_FRAME_UPDATE_REQUEST;
+> > > > +	intel_de_write(dev_priv, DSI_CMD_FRMCTL(port), tmp); }
+> > > > +
+> > > >  static void dsi_program_swing_and_deemphasis(struct intel_encoder
+> > > > *encoder)  {
+> > > >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> > > diff
+> > > > --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > index 5a9d933e425a..c4f331f2af45 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -15616,6 +15616,16 @@ static void
+> > > > intel_atomic_commit_tail(struct
+> > > intel_atomic_state *state)
+> > > >  		intel_set_cdclk_post_plane_update(state);
+> > > >  	}
+> > > >
+> > > > +	/*
+> > > > +	 * Incase of mipi dsi command mode, we need to set frame update
+> > > > +	 * for every commit
+> > > > +	 */
+> > > > +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+> > > > +		if (INTEL_GEN(dev_priv) >=3D 11 &&
+> > > > +		    intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))
+> > > > +			if (new_crtc_state->hw.active)
+> > > > +				icl_dsi_frame_update(new_crtc_state);
+> > > > +
+> > >
+> > > Still the wrong place.
+> > Should I be adding it at the end of pipe update? As we need TE to be
+> enabled when we send frame update.
+> =
 
-Hmm. I thought we wouldn't even need the dummy prop. But looking at
-the code we do in fact need it. The ioctl structure itself should
-allow adding an object without any properties, but the code then
-skips the get_crtc_state() and thus no event for that crtc. I guess
-it's been like that forever so not much point in trying to change
-that anymore.
+> If it needs te then it should probably enable te.
 
--- =
+Thanks for pointing this out.
+Just to make sure on my assumption of keeping TE enabled before sending fra=
+me update,
+I cross checked with the hw team and there seems to be no such rule.
+Frame update request will be valid until the transcoder starts the frame.
+Like you pointed out will add this to the beginning of pipe_update_end,
+And send the next version.
 
-Ville Syrj=E4l=E4
-Intel
+Thanks,
+Vandita
+
+
+> =
+
+> --
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
