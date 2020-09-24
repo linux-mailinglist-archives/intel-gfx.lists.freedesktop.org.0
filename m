@@ -2,84 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC8027796F
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 21:37:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3555A277976
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 21:37:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 447236E993;
-	Thu, 24 Sep 2020 19:37:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 489F46EB55;
+	Thu, 24 Sep 2020 19:37:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAB726E993
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 19:36:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1600976218;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=twNrygaxLsVZPNKYCHY3ZfHX7UvhS+LdDIfmkCz5FTg=;
- b=Kr4u0+wKDT4eE4Ovfk8dVq+zwEnG3+m9nBXV98aP7EduhHCHW16A+CAkoAsez2npbw8dyM
- F42oliu8ePZ+iErn6O4Kku3QUN9ZIpqaI29BaqqCM/MwyQAJ1jE7qUu8VTcTnyor0Tjv1G
- AGafI+2TkSoImau4U/fywK786XFkk6M=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-564-6fJyZcApNLiXn5AIwmZFcA-1; Thu, 24 Sep 2020 15:36:56 -0400
-X-MC-Unique: 6fJyZcApNLiXn5AIwmZFcA-1
-Received: by mail-wm1-f71.google.com with SMTP id x6so151423wmi.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 12:36:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=twNrygaxLsVZPNKYCHY3ZfHX7UvhS+LdDIfmkCz5FTg=;
- b=i3hCazuZejZDhr49myTYKE0fj0zEBSnRNtrpl5RQMmmGz7cQusXX1Bi63TrJ9UKzP1
- JpZV90CArruh0M+0pLmDbSyK7V2krXioQf9NV3LGTXFXj6AgBTXhvUdjgPFrO2AGGekt
- 3iDbpKKYMQ9lua1jZpWEkL8UWqFQxX7jpw31+ELJ2JUKmmLQ9mgJIeEZMhtXDNMtaHR0
- Ge5wDwpXcswwdXr/CyPK+did9DjHacGeMff48QMLSjQxU5c3KEESI/zyxKjS1kIY2So/
- etzQQTwm7Z4n9KVyHEYNUqyFnOlbsMZW92U0JnuZmmUGCOfevd80fJmLQ9QIu9Z8g2KZ
- XugA==
-X-Gm-Message-State: AOAM532H4Mw+J+Wl+Xr2qsYXomhGkhHyEUzeP/z6xmlCeRtixuURO9AM
- ojCI5OT3THf/DLGhvGGqQQ7SbEJhfNgiBJQSM/Zyv2bAQ5H0o3+qzyyo1+KqBk6J3+7RqsSC677
- x+Bg/ggpaPHa7uJv3YlSm5n7804A7
-X-Received: by 2002:adf:f34a:: with SMTP id e10mr491672wrp.91.1600976215217;
- Thu, 24 Sep 2020 12:36:55 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJynpHjsvPmbyspQelrDSoXiAKotSicrrWAZZ3D0g/KyVrY5rzQz/w0XAUEKgRr9DXJGglK1Gg==
-X-Received: by 2002:adf:f34a:: with SMTP id e10mr491615wrp.91.1600976214950;
- Thu, 24 Sep 2020 12:36:54 -0700 (PDT)
-Received: from x1.bristot.me (host-87-17-196-109.retail.telecomitalia.it.
- [87.17.196.109])
- by smtp.gmail.com with ESMTPSA id h204sm302746wmf.35.2020.09.24.12.36.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 24 Sep 2020 12:36:54 -0700 (PDT)
-To: peterz@infradead.org, Steven Rostedt <rostedt@goodmis.org>
-References: <87mu1lc5mp.fsf@nanos.tec.linutronix.de>
- <87k0wode9a.fsf@nanos.tec.linutronix.de>
- <CAHk-=wgbmwsTOKs23Z=71EBTrULoeaH2U3TNqT2atHEWvkBKdw@mail.gmail.com>
- <87eemwcpnq.fsf@nanos.tec.linutronix.de>
- <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
- <87a6xjd1dw.fsf@nanos.tec.linutronix.de>
- <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
- <87sgbbaq0y.fsf@nanos.tec.linutronix.de>
- <20200923084032.GU1362448@hirez.programming.kicks-ass.net>
- <20200923115251.7cc63a7e@oasis.local.home>
- <20200924082717.GA1362448@hirez.programming.kicks-ass.net>
-From: Daniel Bristot de Oliveira <bristot@redhat.com>
-Message-ID: <7541acd1-65a0-0d55-4028-71cab544e90d@redhat.com>
-Date: Thu, 24 Sep 2020 21:36:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D3A096EB55;
+ Thu, 24 Sep 2020 19:37:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CAF0EA8169;
+ Thu, 24 Sep 2020 19:37:01 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200924082717.GA1362448@hirez.programming.kicks-ass.net>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=bristot@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
- variant of kmap_atomic & friends
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Thu, 24 Sep 2020 19:37:01 -0000
+Message-ID: <160097622182.24490.7370029017762511927@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200924184624.20522-1-manasi.d.navare@intel.com>
+In-Reply-To: <20200924184624.20522-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv9=2C01/11=5D_HAX_to_make_DSC_work_?=
+ =?utf-8?q?on_the_icelake_test_system?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,56 +39,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, David Airlie <airlied@linux.ie>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
- Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
- Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
- Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
- Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Michael Ellerman <mpe@ellerman.id.au>,
- the arch/x86 maintainers <x86@kernel.org>,
- Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
- Mel Gorman <mgorman@suse.de>,
- "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
- linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Greentime Hu <green.hu@gmail.com>, Thomas Gleixner <tglx@linutronix.de>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
- Vineet Gupta <vgupta@synopsys.com>, LKML <linux-kernel@vger.kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, Paul Mackerras <paulus@samba.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- "David S. Miller" <davem@davemloft.net>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 9/24/20 10:27 AM, peterz@infradead.org wrote:
-> So my current todo list is:
-> 
->  - Change RT PULL
->  - Change DL PULL
->  - Add migrate_disable() tracer; exactly like preempt/irqoff, except
->    measuring task-runtime instead of cpu-time.
->  - Add a mode that measures actual interference.
->  - Add a traceevent to detect preemption in migrate_disable().
-> 
-> 
-> And then I suppose I should twist Daniel's arm to update his model to
-> include these scenarios and numbers.
+== Series Details ==
 
-Challenge accepted :-)
+Series: series starting with [v9,01/11] HAX to make DSC work on the icelake test system
+URL   : https://patchwork.freedesktop.org/series/82068/
+State : warning
 
--- Daniel
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+82d24d08f989 HAX to make DSC work on the icelake test system
+88e15167a8c1 drm/i915/display: Rename pipe_timings to transcoder_timings
+-:11: WARNING:TYPO_SPELLING: 'halfs' may be misspelled - perhaps 'halves'?
+#11: 
+With Bigjoiner, there are 2 pipes driving 2 halfs of 1
+
+total: 0 errors, 1 warnings, 0 checks, 82 lines checked
+272de0c782b9 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
+-:7: WARNING:TYPO_SPELLING: 'halfs' may be misspelled - perhaps 'halves'?
+#7: 
+With bigjoiner, there will be 2 pipes driving 2 halfs of 1 transcoder,
+
+-:134: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#134: FILE: drivers/gpu/drm/i915/display/intel_display.c:13289:
++	crtc_state->hw.pipe_mode = crtc_state->hw.adjusted_mode = crtc_state->uapi.adjusted_mode;
+
+total: 0 errors, 1 warnings, 1 checks, 364 lines checked
+0abe7d3083f0 drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.
+d44b7997fa69 drm/i915: Try to make bigjoiner work in atomic check
+-:145: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#145: FILE: drivers/gpu/drm/i915/display/intel_display.c:13301:
++								  crtc_state->bigjoiner_linked_crtc);
+
+-:205: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#205: FILE: drivers/gpu/drm/i915/display/intel_display.c:13372:
++	crtc_state->nv12_planes = crtc_state->c8_planes = crtc_state->update_planes = 0;
+
+-:300: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#300: FILE: drivers/gpu/drm/i915/display/intel_display.c:14974:
++	slave = new_crtc_state->bigjoiner_linked_crtc =
+
+-:334: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#334: FILE: drivers/gpu/drm/i915/display/intel_display.c:15008:
++		slave_crtc_state->bigjoiner = master_crtc_state->bigjoiner = false;
+
+-:335: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#335: FILE: drivers/gpu/drm/i915/display/intel_display.c:15009:
++		slave_crtc_state->bigjoiner_slave = master_crtc_state->bigjoiner_slave = false;
+
+-:336: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#336: FILE: drivers/gpu/drm/i915/display/intel_display.c:15010:
++		slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
+
+-:336: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#336: FILE: drivers/gpu/drm/i915/display/intel_display.c:15010:
++		slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
+
+-:391: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#391: FILE: drivers/gpu/drm/i915/display/intel_display.c:15405:
++	if (new_crtc_state->bigjoiner) {
+[...]
++	} else if (INTEL_GEN(dev_priv) >= 9)
+[...]
+ 	else
+[...]
+
+total: 0 errors, 3 warnings, 5 checks, 403 lines checked
+0e7a5e2ca045 drm/i915: Enable big joiner support in enable and disable sequences.
+-:178: WARNING:LONG_LINE_COMMENT: line length of 106 exceeds 100 columns
+#178: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:4452:
++		/* Our own transcoder needs to be disabled when reading it in intel_ddi_read_func_ctl() */
+
+-:180: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#180: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:4454:
++		pipe_config->cpu_transcoder = (enum transcoder)pipe_config->bigjoiner_linked_crtc->pipe;
+
+-:829: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#829: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:826:
++#define PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE      (1<<1) /* bigjoiner slave, partial readout */
+                                                  ^
+
+total: 0 errors, 2 warnings, 1 checks, 1031 lines checked
+94713c471ecf drm/i915: Make hardware readout work on i915.
+-:33: WARNING:TABSTOP: Statements should start on a tabstop
+#33: FILE: drivers/gpu/drm/i915/display/intel_display.c:3611:
++	 struct intel_crtc_state *crtc_state =
+
+-:76: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#76: FILE: drivers/gpu/drm/i915/display/intel_display.c:10751:
++		    (intel_de_read(dev_priv, PLANE_SURF(pipe, plane_id)) & 0xfffff000) == plane_config->base) {
+
+total: 0 errors, 2 warnings, 0 checks, 118 lines checked
+1fe02779c38a drm/i915: Link planes in a bigjoiner configuration, v3.
+-:206: ERROR:CODE_INDENT: code indent should use tabs where possible
+#206: FILE: drivers/gpu/drm/i915/display/intel_display.c:12692:
++         * Setup and teardown the new bigjoiner plane mappings.$
+
+-:207: ERROR:CODE_INDENT: code indent should use tabs where possible
+#207: FILE: drivers/gpu/drm/i915/display/intel_display.c:12693:
++         */$
+
+-:292: ERROR:CODE_INDENT: code indent should use tabs where possible
+#292: FILE: drivers/gpu/drm/i915/display/intel_display.c:12774:
++         *$
+
+-:308: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#308: FILE: drivers/gpu/drm/i915/display/intel_display.c:12788:
++		for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
+
+-:324: ERROR:CODE_INDENT: code indent should use tabs where possible
+#324: FILE: drivers/gpu/drm/i915/display/intel_display.c:12804:
++         * Make sure bigjoiner slave crtc's are also pulled in. This is not done automatically$
+
+-:325: ERROR:CODE_INDENT: code indent should use tabs where possible
+#325: FILE: drivers/gpu/drm/i915/display/intel_display.c:12805:
++         * when adding slave planes, because plane_state->crtc is null.$
+
+-:326: ERROR:CODE_INDENT: code indent should use tabs where possible
+#326: FILE: drivers/gpu/drm/i915/display/intel_display.c:12806:
++         */$
+
+-:438: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 8)
+#438: FILE: drivers/gpu/drm/i915/display/intel_display.h:472:
++	for_each_intel_plane_mask(((crtc_state)->uapi.state->dev), (iter), \
+[...]
++	for_each_if ((((plane_state) = \
+
+-:444: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#444: FILE: drivers/gpu/drm/i915/display/intel_display.h:478:
++	for_each_if ((((plane_state) = \
+
+-:445: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#445: FILE: drivers/gpu/drm/i915/display/intel_display.h:479:
++		       to_intel_plane_state(__drm_atomic_get_current_plane_state((crtc_state)->uapi.state, &iter->base))), \
+
+-:446: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#446: FILE: drivers/gpu/drm/i915/display/intel_display.h:480:
++		      ((plane) = (plane_state)->bigjoiner_slave ? (plane_state)->bigjoiner_plane : (iter)), \
+
+-:448: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
+#448: FILE: drivers/gpu/drm/i915/display/intel_display.h:482:
++		       to_intel_plane_state(__drm_atomic_get_current_plane_state((crtc_state)->uapi.state, &plane->base)) : \
+
+total: 6 errors, 6 warnings, 0 checks, 482 lines checked
+ac42376dfbf8 drm/i915: Add bigjoiner aware plane clipping checks
+2c9e17e3a556 drm/i915: Add intel_update_bigjoiner handling.
+9a7657e3dcf8 drm/i915: Add debugfs dumping for bigjoiner, v3.
+-:46: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:782:
++	seq_printf(m, "\t\tuapi: fb=%d,%s,%dx%d, visible=%s, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
+
+-:56: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#56: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:792:
++			   plane_state->planar_linked_plane->base.base.id, plane_state->planar_linked_plane->base.name,
+
+-:60: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#60: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:796:
++			   plane_state->bigjoiner_plane->base.base.id, plane_state->bigjoiner_plane->base.name,
+
+total: 0 errors, 3 warnings, 0 checks, 52 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
