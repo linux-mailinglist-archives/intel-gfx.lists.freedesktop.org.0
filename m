@@ -2,45 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E4392771FF
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 15:16:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F06927720D
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 15:23:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C28066EB11;
-	Thu, 24 Sep 2020 13:16:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C92E6EB13;
+	Thu, 24 Sep 2020 13:23:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 787066EAD5
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 13:16:30 +0000 (UTC)
-IronPort-SDR: gtqVBJOSXacHtTDmbg/3LMRahRsVB2K6oc54JBXoZg1LQ95x99TP49dhFm1eatz2tcAOHyGPpz
- aKf9hxjR46qw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="245989744"
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="245989744"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2020 06:16:29 -0700
-IronPort-SDR: WY06ZyfFjBsY5f4/0+3kkLERDMAfJskmTTpTU7wBlDaBISUBxCZruTxsofjzBt1+MskUkvnAmk
- 5qMgr6LcuP9A==
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="486898073"
-Received: from dsmahang-mobl2.ger.corp.intel.com (HELO [10.252.48.167])
- ([10.252.48.167])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2020 06:16:28 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200915093010.30573-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <e9123c83-ef8f-ec26-b878-300610899dee@linux.intel.com>
-Date: Thu, 24 Sep 2020 14:16:26 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B63AA6EB04;
+ Thu, 24 Sep 2020 13:23:33 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 110DA68AFE; Thu, 24 Sep 2020 15:23:29 +0200 (CEST)
+Date: Thu, 24 Sep 2020 15:23:28 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20200924132328.GA3698@lst.de>
+References: <20200918163724.2511-1-hch@lst.de>
+ <20200918163724.2511-5-hch@lst.de>
+ <9b5d40af-7378-9e68-ca51-73b2148287f3@linux.intel.com>
+ <20200923134117.GB9893@lst.de>
+ <1a421e7f-6255-c534-5403-715c2e809bd0@linux.intel.com>
+ <20200923144455.GA15036@lst.de>
+ <17f81582-f087-aeac-c06a-4cd1a5457fbb@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200915093010.30573-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Redo "Remove i915_request.lock
- requirement for execution callbacks"
+Content-Disposition: inline
+In-Reply-To: <17f81582-f087-aeac-c06a-4cd1a5457fbb@linux.intel.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915: use vmap in
+ i915_gem_object_map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,58 +43,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, Minchan Kim <minchan@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ x86@kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, xen-devel@lists.xenproject.org,
+ Andrew Morton <akpm@linux-foundation.org>, Christoph Hellwig <hch@lst.de>,
+ Nitin Gupta <ngupta@vflare.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Sep 24, 2020 at 01:22:35PM +0100, Tvrtko Ursulin wrote:
+> CI says series looks good from the i915 perspective (*).
+>
+> I don't know how will you handle it logistically, but when you have final 
+> version I am happy to re-read and r-b the i915 patches.
 
-On 15/09/2020 10:30, Chris Wilson wrote:
-> The reordering and rebasing of commit 2e4c6c1a9db5 ("drm/i915: Remove
-> i915_request.lock requirement for execution callbacks") caused it to
-> revert an earlier correction. Let us restore commit 99f0a640d464
-> ("drm/i915: Remove requirement for holding i915_request.lock for
-> breadcrumbs")
-> 
-> Fixes: 2e4c6c1a9db5 ("drm/i915: Remove i915_request.lock requirement for execution callbacks")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_request.c | 12 ++----------
->   1 file changed, 2 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index 11e272422fb7..436ce368ddaa 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -593,16 +593,8 @@ bool __i915_request_submit(struct i915_request *request)
->   	__notify_execute_cb_irq(request);
->   
->   	/* We may be recursing from the signal callback of another i915 fence */
-> -	if (!i915_request_signaled(request)) {
-> -		spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
-> -
-> -		if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
-> -			     &request->fence.flags) &&
-> -		    !i915_request_enable_breadcrumb(request))
-> -			intel_engine_signal_breadcrumbs(engine);
-> -
-> -		spin_unlock(&request->lock);
-> -	}
-> +	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags))
-> +		i915_request_enable_breadcrumb(request);
->   
->   	return result;
->   }
-> 
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
+I'll resend the series later today, and will make sure you are on the
+Cc list.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
