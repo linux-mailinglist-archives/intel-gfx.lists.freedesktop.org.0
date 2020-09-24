@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1427A277B40
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 23:49:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E016277B6B
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 00:01:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77FFD6E4AE;
-	Thu, 24 Sep 2020 21:49:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C840E6EB6A;
+	Thu, 24 Sep 2020 22:01:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D3C706E4AD;
- Thu, 24 Sep 2020 21:49:52 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CEF466E4B0;
+ Thu, 24 Sep 2020 22:01:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CB56AA47E1;
- Thu, 24 Sep 2020 21:49:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C7DCBA47E6;
+ Thu, 24 Sep 2020 22:01:29 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Souza, Jose" <jose.souza@intel.com>
-Date: Thu, 24 Sep 2020 21:49:52 -0000
-Message-ID: <160098419280.24489.11563252403165505390@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Thu, 24 Sep 2020 22:01:29 -0000
+Message-ID: <160098488979.24490.12172341547908768619@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200924174201.44021-1-jose.souza@intel.com>
-In-Reply-To: <20200924174201.44021-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv4=2C1/3=5D_drm/i915/display=3A_Ignore_IGN?=
- =?utf-8?q?ORE=5FPSR2=5FHW=5FTRACKING_for_platforms_without_sel_fetch?=
+References: <20200924184805.294493-1-imre.deak@intel.com>
+In-Reply-To: <20200924184805.294493-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Add_support_for_LTTPR_non-transparent_link_training?=
+ =?utf-8?q?_mode_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,597 +41,329 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0623903408=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0623903408==
-Content-Type: multipart/alternative;
- boundary="===============6413198924025657376=="
-
---===============6413198924025657376==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [v4,1/3] drm/i915/display: Ignore IGNORE_PSR2_HW_TRACKING for platforms without sel fetch
-URL   : https://patchwork.freedesktop.org/series/82066/
-State : success
+Series: drm/i915: Add support for LTTPR non-transparent link training mode (rev2)
+URL   : https://patchwork.freedesktop.org/series/81968/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9050_full -> Patchwork_18564_full
-====================================================
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1019:47:    expected unsigned int [addressable] [usertype] ulClockParams
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1019:47:    got restricted __le32 [usertype]
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1019:47: warning: incorrect type in assignment (different base types)
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1028:50: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1029:49: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1037:47: warning: too many warnings
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:184:44: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:283:14: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:320:14: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:323:14: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:326:14: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:329:18: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:330:26: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:338:30: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:340:38: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:342:30: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:346:30: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:348:30: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:353:33: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:367:43: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:369:38: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:374:67: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:375:53: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:378:66: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:389:80: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:395:57: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:402:69: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:403:53: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:406:66: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:414:66: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:423:69: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:424:69: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:473:30: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:476:45: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:477:45: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:484:54: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:52:28: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:531:35: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:53:29: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:533:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:54:26: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:55:27: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:56:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:57:26: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:577:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:581:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:58:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:583:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:586:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:590:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:59:26: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:598:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:600:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:617:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:621:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:623:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:630:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:632:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:644:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:648:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:650:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:657:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:659:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:662:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:664:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:676:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:688:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:691:47: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:697:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:796:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:797:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:800:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:801:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:804:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:805:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:812:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:813:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:816:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:817:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:820:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:821:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:828:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:829:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:832:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:833:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:836:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:837:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:844:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:845:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:848:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:849:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:852:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:853:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:916:47: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:918:49: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:920:52: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:934:47: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:936:49: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:938:52: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:956:47: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:958:49: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:960:52: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:328:34: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:365:34: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:395:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:397:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:404:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:418:40: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:441:40: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:44:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:482:53: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:486:33: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:489:61: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:490:64: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:492:54: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:518:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:521:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:64:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:80:17: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:80:17: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:80:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:85:30: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:86:24: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:98:39: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:222:29: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:226:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:226:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:226:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:227:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:233:43: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:236:44: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:239:51: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:458:41: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:458:41: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:458:41: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:464:39: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:465:30: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:466:39: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:468:24: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:140:26:    expected unsigned long long [usertype] *chunk_array_user
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:140:26:    got void [noderef] __user *
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:140:26: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:141:41:    expected void const [noderef] __user *from
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:141:41:    got unsigned long long [usertype] *chunk_array_user
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:141:41: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:160:27:    expected struct drm_amdgpu_cs_chunk [noderef] __user **chunk_ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:160:27:    got void [noderef] __user *
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:160:27: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:161:49:    expected void const [noderef] __user *from
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:161:49:    got struct drm_amdgpu_cs_chunk [noderef] __user **chunk_ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:161:49: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1624:21:    expected struct drm_amdgpu_fence *fences_user
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1624:21:    got void [noderef] __user *
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1624:21: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1625:36:    expected void const [noderef] __user *from
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1625:36:    got struct drm_amdgpu_fence *fences_user
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1625:36: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1364:25: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1364:25:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1364:25:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1365:17: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1365:17:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1365:17:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1424:17: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1424:17:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1424:17:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:143:17:    expected restricted __poll_t ( *poll )( ... )
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:143:17:    got unsigned int ( * )( ... )
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:143:17: warning: incorrect type in initializer (different base types)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: too many warnings
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1735:65: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1743:55: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1744:50: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1745:50: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1746:56: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1748:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1749:45: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1750:51: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1751:55: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1752:57: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1754:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1755:53: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1757:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1759:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1760:46: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1764:73: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1766:33: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1768:33: warning: cast to restricted __l
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_18564_full:
-
-### Piglit changes ###
-
-#### Possible regressions ####
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_frontsecondarycolor-smooth-distance (NEW):
-    - {pig-icl-1065g7}:   NOTRUN -> [CRASH][1] +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/pig-icl-1065g7/spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_frontsecondarycolor-smooth-distance.html
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-smooth-other-smooth-distance (NEW):
-    - {pig-icl-1065g7}:   NOTRUN -> [INCOMPLETE][2] +7 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/pig-icl-1065g7/spec@glsl-1.30@execution@interpolation@interpolation-smooth-other-smooth-distance.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9050_full and Patchwork_18564_full:
-
-### New Piglit tests (10) ###
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_backcolor-smooth-none:
-    - Statuses : 1 incomplete(s)
-    - Exec time: [0.0] s
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_backsecondarycolor-flat-distance:
-    - Statuses : 1 incomplete(s)
-    - Exec time: [0.0] s
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_frontcolor-flat-fixed:
-    - Statuses : 1 incomplete(s)
-    - Exec time: [0.0] s
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_frontsecondarycolor-smooth-distance:
-    - Statuses : 1 crash(s)
-    - Exec time: [0.34] s
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-none-gl_frontsecondarycolor-smooth-distance:
-    - Statuses : 1 incomplete(s)
-    - Exec time: [0.0] s
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-noperspective-gl_backcolor-flat-fixed:
-    - Statuses : 1 crash(s)
-    - Exec time: [0.37] s
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-noperspective-gl_backsecondarycolor-flat-vertex:
-    - Statuses : 1 incomplete(s)
-    - Exec time: [0.0] s
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-noperspective-gl_frontcolor-flat-vertex:
-    - Statuses : 1 incomplete(s)
-    - Exec time: [0.0] s
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-smooth-gl_backcolor-smooth-vertex:
-    - Statuses : 1 incomplete(s)
-    - Exec time: [0.0] s
-
-  * spec@glsl-1.30@execution@interpolation@interpolation-smooth-other-smooth-distance:
-    - Statuses : 1 incomplete(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18564_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_userptr_blits@unsync-unmap-cycles:
-    - shard-skl:          [PASS][3] -> [TIMEOUT][4] ([i915#1958])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl5/igt@gem_userptr_blits@unsync-unmap-cycles.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl6/igt@gem_userptr_blits@unsync-unmap-cycles.html
-
-  * igt@i915_selftest@mock@contexts:
-    - shard-skl:          [PASS][5] -> [INCOMPLETE][6] ([i915#198] / [i915#2278])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl10/igt@i915_selftest@mock@contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl9/igt@i915_selftest@mock@contexts.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - shard-skl:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +7 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl7/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@busy-flip@b-hdmi-a2:
-    - shard-glk:          [PASS][9] -> [FAIL][10] ([i915#275])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-glk8/igt@kms_flip@busy-flip@b-hdmi-a2.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-glk2/igt@kms_flip@busy-flip@b-hdmi-a2.html
-
-  * igt@kms_flip@flip-vs-suspend-interruptible@c-edp1:
-    - shard-skl:          [PASS][11] -> [INCOMPLETE][12] ([i915#198]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl3/igt@kms_flip@flip-vs-suspend-interruptible@c-edp1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl5/igt@kms_flip@flip-vs-suspend-interruptible@c-edp1.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-indfb-draw-mmap-cpu:
-    - shard-skl:          [PASS][13] -> [FAIL][14] ([i915#49])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl2/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-indfb-draw-mmap-cpu.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl2/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-indfb-draw-mmap-cpu.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-move:
-    - shard-iclb:         [PASS][15] -> [DMESG-WARN][16] ([i915#1982])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb4/igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-move.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb7/igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-move.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render:
-    - shard-tglb:         [PASS][17] -> [DMESG-WARN][18] ([i915#1982]) +4 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-tglb3/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-tglb3/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
-    - shard-skl:          [PASS][19] -> [FAIL][20] ([fdo#108145] / [i915#265])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl2/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl2/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-
-  * igt@kms_psr2_su@page_flip:
-    - shard-iclb:         [PASS][21] -> [SKIP][22] ([fdo#109642] / [fdo#111068])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb2/igt@kms_psr2_su@page_flip.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb8/igt@kms_psr2_su@page_flip.html
-
-  * igt@kms_psr@psr2_sprite_plane_move:
-    - shard-iclb:         [PASS][23] -> [SKIP][24] ([fdo#109441]) +2 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb8/igt@kms_psr@psr2_sprite_plane_move.html
-
-  * igt@perf@blocking:
-    - shard-skl:          [PASS][25] -> [FAIL][26] ([i915#1542])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl1/igt@perf@blocking.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl5/igt@perf@blocking.html
-
-  
-#### Possible fixes ####
-
-  * igt@feature_discovery@psr2:
-    - shard-iclb:         [SKIP][27] ([i915#658]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb3/igt@feature_discovery@psr2.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb2/igt@feature_discovery@psr2.html
-
-  * igt@gem_mmap_offset@blt-coherency:
-    - shard-apl:          [FAIL][29] ([i915#1635]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-apl6/igt@gem_mmap_offset@blt-coherency.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-apl4/igt@gem_mmap_offset@blt-coherency.html
-
-  * igt@gem_workarounds@basic-read-context:
-    - shard-snb:          [TIMEOUT][31] ([i915#1958]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-snb5/igt@gem_workarounds@basic-read-context.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-snb1/igt@gem_workarounds@basic-read-context.html
-
-  * igt@gem_workarounds@suspend-resume:
-    - shard-skl:          [INCOMPLETE][33] ([i915#198]) -> [PASS][34] +1 similar issue
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl1/igt@gem_workarounds@suspend-resume.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl2/igt@gem_workarounds@suspend-resume.html
-
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-iclb:         [FAIL][35] ([i915#1899]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb4/igt@i915_pm_dc@dc6-psr.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb7/igt@i915_pm_dc@dc6-psr.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-gtt:
-    - shard-tglb:         [DMESG-WARN][37] ([i915#1982]) -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-tglb1/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-gtt.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-tglb2/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-gtt.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-pgflip-blt:
-    - shard-apl:          [DMESG-WARN][39] ([i915#1635] / [i915#1982]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-apl1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-pgflip-blt.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-apl8/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-pgflip-blt.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [FAIL][41] ([i915#1188]) -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl6/igt@kms_hdr@bpc-switch-suspend.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl3/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_psr@psr2_cursor_blt:
-    - shard-iclb:         [SKIP][43] ([fdo#109441]) -> [PASS][44] +1 similar issue
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb3/igt@kms_psr@psr2_cursor_blt.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb2/igt@kms_psr@psr2_cursor_blt.html
-
-  * igt@sw_sync@alloc_fence:
-    - shard-skl:          [DMESG-WARN][45] ([i915#1982]) -> [PASS][46] +3 similar issues
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl5/igt@sw_sync@alloc_fence.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl10/igt@sw_sync@alloc_fence.html
-
-  
-#### Warnings ####
-
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-kbl:          [DMESG-WARN][47] ([i915#1436] / [i915#716]) -> [INCOMPLETE][48] ([i915#1436])
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-kbl7/igt@gen9_exec_parse@allowed-all.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-kbl7/igt@gen9_exec_parse@allowed-all.html
-
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-skl:          [FAIL][49] ([i915#1899]) -> [FAIL][50] ([i915#454])
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl3/igt@i915_pm_dc@dc6-psr.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl5/igt@i915_pm_dc@dc6-psr.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1899]: https://gitlab.freedesktop.org/drm/intel/issues/1899
-  [i915#1958]: https://gitlab.freedesktop.org/drm/intel/issues/1958
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2278]: https://gitlab.freedesktop.org/drm/intel/issues/2278
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#275]: https://gitlab.freedesktop.org/drm/intel/issues/275
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
-
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9050 -> Patchwork_18564
-
-  CI-20190529: 20190529
-  CI_DRM_9050: 9a9b636c74cacd2a9fe8c693792998d8d5983e24 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5787: 0ec962017c8131de14e0cb038f7f76b1f17ed637 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18564: e295c73e50256e19a4fc5060e720d231e98bc0e7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/index.html
-
---===============6413198924025657376==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v4,1/3] drm/i915/display: Ignore IGNORE_PSR2_HW_TRACKING for platforms without sel fetch</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82066/">https://patchwork.freedesktop.org/series/82066/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9050_full -&gt; Patchwork_18564_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_18564_full:</p>
-<h3>Piglit changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_frontsecondarycolor-smooth-distance (NEW):</p>
-<ul>
-<li>{pig-icl-1065g7}:   NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/pig-icl-1065g7/spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_frontsecondarycolor-smooth-distance.html">CRASH</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-smooth-other-smooth-distance (NEW):</p>
-<ul>
-<li>{pig-icl-1065g7}:   NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/pig-icl-1065g7/spec@glsl-1.30@execution@interpolation@interpolation-smooth-other-smooth-distance.html">INCOMPLETE</a> +7 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9050_full and Patchwork_18564_full:</p>
-<h3>New Piglit tests (10)</h3>
-<ul>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_backcolor-smooth-none:</p>
-<ul>
-<li>Statuses : 1 incomplete(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_backsecondarycolor-flat-distance:</p>
-<ul>
-<li>Statuses : 1 incomplete(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_frontcolor-flat-fixed:</p>
-<ul>
-<li>Statuses : 1 incomplete(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-flat-gl_frontsecondarycolor-smooth-distance:</p>
-<ul>
-<li>Statuses : 1 crash(s)</li>
-<li>Exec time: [0.34] s</li>
-</ul>
-</li>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-none-gl_frontsecondarycolor-smooth-distance:</p>
-<ul>
-<li>Statuses : 1 incomplete(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-noperspective-gl_backcolor-flat-fixed:</p>
-<ul>
-<li>Statuses : 1 crash(s)</li>
-<li>Exec time: [0.37] s</li>
-</ul>
-</li>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-noperspective-gl_backsecondarycolor-flat-vertex:</p>
-<ul>
-<li>Statuses : 1 incomplete(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-noperspective-gl_frontcolor-flat-vertex:</p>
-<ul>
-<li>Statuses : 1 incomplete(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-smooth-gl_backcolor-smooth-vertex:</p>
-<ul>
-<li>Statuses : 1 incomplete(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>spec@glsl-1.30@execution@interpolation@interpolation-smooth-other-smooth-distance:</p>
-<ul>
-<li>Statuses : 1 incomplete(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18564_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_userptr_blits@unsync-unmap-cycles:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl5/igt@gem_userptr_blits@unsync-unmap-cycles.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl6/igt@gem_userptr_blits@unsync-unmap-cycles.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1958">i915#1958</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@mock@contexts:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl10/igt@i915_selftest@mock@contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl9/igt@i915_selftest@mock@contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2278">i915#2278</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl7/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@busy-flip@b-hdmi-a2:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-glk8/igt@kms_flip@busy-flip@b-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-glk2/igt@kms_flip@busy-flip@b-hdmi-a2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/275">i915#275</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-suspend-interruptible@c-edp1:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl3/igt@kms_flip@flip-vs-suspend-interruptible@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl5/igt@kms_flip@flip-vs-suspend-interruptible@c-edp1.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-indfb-draw-mmap-cpu:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl2/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-indfb-draw-mmap-cpu.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl2/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-indfb-draw-mmap-cpu.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/49">i915#49</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-move:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb4/igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb7/igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-move.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render:</p>
-<ul>
-<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-tglb3/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-tglb3/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl2/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl2/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=108145">fdo#108145</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/265">i915#265</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_su@page_flip:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb2/igt@kms_psr2_su@page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb8/igt@kms_psr2_su@page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109642">fdo#109642</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111068">fdo#111068</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_sprite_plane_move:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb8/igt@kms_psr@psr2_sprite_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109441">fdo#109441</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@perf@blocking:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl1/igt@perf@blocking.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl5/igt@perf@blocking.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1542">i915#1542</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@feature_discovery@psr2:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb3/igt@feature_discovery@psr2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/658">i915#658</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb2/igt@feature_discovery@psr2.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_offset@blt-coherency:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-apl6/igt@gem_mmap_offset@blt-coherency.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-apl4/igt@gem_mmap_offset@blt-coherency.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_workarounds@basic-read-context:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-snb5/igt@gem_workarounds@basic-read-context.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1958">i915#1958</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-snb1/igt@gem_workarounds@basic-read-context.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_workarounds@suspend-resume:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl1/igt@gem_workarounds@suspend-resume.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl2/igt@gem_workarounds@suspend-resume.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_dc@dc6-psr:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb4/igt@i915_pm_dc@dc6-psr.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1899">i915#1899</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb7/igt@i915_pm_dc@dc6-psr.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-gtt:</p>
-<ul>
-<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-tglb1/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-gtt.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-tglb2/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-gtt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-pgflip-blt:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-apl1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-pgflip-blt.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-apl8/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-pgflip-blt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@bpc-switch-suspend:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl6/igt@kms_hdr@bpc-switch-suspend.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1188">i915#1188</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl3/igt@kms_hdr@bpc-switch-suspend.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_cursor_blt:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-iclb3/igt@kms_psr@psr2_cursor_blt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109441">fdo#109441</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-iclb2/igt@kms_psr@psr2_cursor_blt.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@sw_sync@alloc_fence:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl5/igt@sw_sync@alloc_fence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl10/igt@sw_sync@alloc_fence.html">PASS</a> +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gen9_exec_parse@allowed-all:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-kbl7/igt@gen9_exec_parse@allowed-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/716">i915#716</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-kbl7/igt@gen9_exec_parse@allowed-all.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_dc@dc6-psr:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9050/shard-skl3/igt@i915_pm_dc@dc6-psr.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1899">i915#1899</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18564/shard-skl5/igt@i915_pm_dc@dc6-psr.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/454">i915#454</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9050 -&gt; Patchwork_18564</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9050: 9a9b636c74cacd2a9fe8c693792998d8d5983e24 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5787: 0ec962017c8131de14e0cb038f7f76b1f17ed637 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18564: e295c73e50256e19a4fc5060e720d231e98bc0e7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============6413198924025657376==--
-
---===============0623903408==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0623903408==--
