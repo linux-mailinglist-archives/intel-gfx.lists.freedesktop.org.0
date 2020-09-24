@@ -1,41 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E65FF277179
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 14:49:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED213277144
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 14:43:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A3706EADC;
-	Thu, 24 Sep 2020 12:49:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B78E56EAE2;
+	Thu, 24 Sep 2020 12:43:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B63C6E40B
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 12:49:13 +0000 (UTC)
-IronPort-SDR: Qe93GymCc4V3WNVAQtxhkhlovTsWwio9s8w39381OLhn0LrkywiXAW5ZVV3E1JxIbOckeItOwh
- WFt5zH+g6Zuw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="160480091"
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="160480091"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2020 05:49:13 -0700
-IronPort-SDR: eYffqMdSm9TpjezNPNGMyW4pQUpEj+lDFXBTExQYUlRyAx04JwcK793pX6qMIUWWogdgO6HBaP
- B2NKPP3i59YQ==
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="486889805"
-Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 24 Sep 2020 05:49:11 -0700
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 24 Sep 2020 18:12:09 +0530
-Message-Id: <20200924124209.17916-6-vandita.kulkarni@intel.com>
-X-Mailer: git-send-email 2.21.0.5.gaeb582a
-In-Reply-To: <20200924124209.17916-1-vandita.kulkarni@intel.com>
-References: <20200924124209.17916-1-vandita.kulkarni@intel.com>
+Received: from merlin.infradead.org (merlin.infradead.org
+ [IPv6:2001:8b0:10b:1231::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF966EADA;
+ Thu, 24 Sep 2020 12:43:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=merlin.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=SdhPXkSs5ZPBi948PCp3uVHmQU1pxaOPhPPF1KHSOtI=; b=cfpXNMYzVRlId2AJBOa+GyLPt6
+ zTFRf6xk7foaFg4tpi+0P2wk3EKKrMLVo5gmNxHWe7qOcz3Hmx3VWmRHmwVx/FwsBrIZ4LPXgFqji
+ cbVT02P2X6YSp/qAxsPzP7xWma/nd4gLtLGrrxZddBcakdrjDZddjCYlGyyVHu59U4aaO6z8FZ60s
+ 49IhfEr0KMLRog0k4Y5qS0akYgifDqnz2qj8WKdCAn3F5dxbkr8x0mpQnMaztMPQpwH5mtFjW59VG
+ NHALCniQ15G9RJsPp0Y7Yvd0LIio3hjjsinuCY0H4Jgz5zGhVlW6aMgLPr7GKSkFGiFv6cxeg9duh
+ Tyn/G/Dw==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=noisy.programming.kicks-ass.net)
+ by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kLQaG-0005M9-J5; Thu, 24 Sep 2020 12:42:48 +0000
+Received: from hirez.programming.kicks-ass.net
+ (hirez.programming.kicks-ass.net [192.168.1.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (Client did not present a certificate)
+ by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id C0F753007CD;
+ Thu, 24 Sep 2020 14:42:41 +0200 (CEST)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+ id A98B620297EC5; Thu, 24 Sep 2020 14:42:41 +0200 (CEST)
+Date: Thu, 24 Sep 2020 14:42:41 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Steven Rostedt <rostedt@goodmis.org>
+Message-ID: <20200924124241.GK2628@hirez.programming.kicks-ass.net>
+References: <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
+ <87a6xjd1dw.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
+ <87sgbbaq0y.fsf@nanos.tec.linutronix.de>
+ <20200923084032.GU1362448@hirez.programming.kicks-ass.net>
+ <20200923115251.7cc63a7e@oasis.local.home>
+ <874kno9pr9.fsf@nanos.tec.linutronix.de>
+ <20200923171234.0001402d@oasis.local.home>
+ <871riracgf.fsf@nanos.tec.linutronix.de>
+ <20200924083241.314f2102@gandalf.local.home>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [V14 5/5] drm/i915/dsi: Enable software vblank counter
+Content-Disposition: inline
+In-Reply-To: <20200924083241.314f2102@gandalf.local.home>
+Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
+ variant of kmap_atomic & friends
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,73 +66,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Juri Lelli <juri.lelli@redhat.com>, David Airlie <airlied@linux.ie>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
+ Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
+ Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
+ Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
+ Mel Gorman <mgorman@suse.de>,
+ "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
+ linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Greentime Hu <green.hu@gmail.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ LKML <linux-kernel@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Vineet Gupta <vgupta@synopsys.com>, Paul Mackerras <paulus@samba.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In case of DSI cmd mode, we get hw vblank counter
-updated after the TE comes in, if we try to read
-the hw vblank counter in te handler we wouldnt have
-the udpated vblank counter yet.
-This will lead to a state where we would send the
-vblank event to the user space in the next te,
-though the frame update would have completed in
-the first TE duration itself.
-Hence switch to using software timestamp based
-vblank counter.
+On Thu, Sep 24, 2020 at 08:32:41AM -0400, Steven Rostedt wrote:
+> Anyway, instead of blocking. What about having a counter of number of
+> migrate disabled tasks per cpu, and when taking a migrate_disable(), and there's
+> already another task with migrate_disabled() set, and the current task has
+> an affinity greater than 1, it tries to migrate to another CPU?
 
-v2: Use mode_flags from crtc_state (Ville)
+That doesn't solve the problem. On wakeup we should already prefer an
+idle CPU over one running a (RT) task, but you can always wake more
+tasks than there's CPUs around and you'll _have_ to stack at some point.
 
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 11 +++++++++++
- drivers/gpu/drm/i915/i915_irq.c              |  4 ++++
- 2 files changed, 15 insertions(+)
+The trick is how to unstack them correctly. We need to detect when a
+migrate_disable() task _should_ start running again, and migrate away
+whoever is in the way at that point.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 5a9d933e425a..bb495947ccd5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1808,6 +1808,17 @@ enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc)
- static u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	u32 mode_flags = crtc->mode_flags;
-+
-+	/*
-+	 * From Gen 11, In case of dsi cmd mode, frame counter wouldnt
-+	 * have updated at the beginning of TE, if we want to use
-+	 * the hw counter, then we would find it updated in only
-+	 * the next TE, hence switching to sw counter.
-+	 */
-+	if (mode_flags & (I915_MODE_FLAG_DSI_USE_TE0 | I915_MODE_FLAG_DSI_USE_TE1))
-+		return 0;
- 
- 	/*
- 	 * On i965gm the hardware frame counter reads
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index c2e4b227bdf3..634c60befe7e 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -682,8 +682,12 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
- u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->dev);
-+	struct drm_vblank_crtc *vblank = &dev_priv->drm.vblank[drm_crtc_index(crtc)];
- 	enum pipe pipe = to_intel_crtc(crtc)->pipe;
- 
-+	if (!vblank->max_vblank_count)
-+		return 0;
-+
- 	return I915_READ(PIPE_FRMCOUNT_G4X(pipe));
- }
- 
--- 
-2.21.0.5.gaeb582a
-
+It turns out, that getting selected for pull-balance is exactly that
+condition, and clearly a migrate_disable() task cannot be pulled, but we
+can use that signal to try and pull away the running task that's in the
+way.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
