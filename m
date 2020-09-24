@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3555A277976
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 21:37:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B4EF277981
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 21:38:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 489F46EB55;
-	Thu, 24 Sep 2020 19:37:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97EBF6EB58;
+	Thu, 24 Sep 2020 19:38:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D3A096EB55;
- Thu, 24 Sep 2020 19:37:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 18A5F6EB58;
+ Thu, 24 Sep 2020 19:38:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CAF0EA8169;
- Thu, 24 Sep 2020 19:37:01 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 10C40A8169;
+ Thu, 24 Sep 2020 19:38:46 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Thu, 24 Sep 2020 19:37:01 -0000
-Message-ID: <160097622182.24490.7370029017762511927@emeril.freedesktop.org>
+Date: Thu, 24 Sep 2020 19:38:46 -0000
+Message-ID: <160097632606.24491.15502475871717473349@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200924184624.20522-1-manasi.d.navare@intel.com>
 In-Reply-To: <20200924184624.20522-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv9=2C01/11=5D_HAX_to_make_DSC_work_?=
- =?utf-8?q?on_the_icelake_test_system?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5Bv9=2C01/11=5D_HAX_to_make_DSC_work_on_t?=
+ =?utf-8?q?he_icelake_test_system?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,157 +54,314 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-82d24d08f989 HAX to make DSC work on the icelake test system
-88e15167a8c1 drm/i915/display: Rename pipe_timings to transcoder_timings
--:11: WARNING:TYPO_SPELLING: 'halfs' may be misspelled - perhaps 'halves'?
-#11: 
-With Bigjoiner, there are 2 pipes driving 2 halfs of 1
-
-total: 0 errors, 1 warnings, 0 checks, 82 lines checked
-272de0c782b9 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
--:7: WARNING:TYPO_SPELLING: 'halfs' may be misspelled - perhaps 'halves'?
-#7: 
-With bigjoiner, there will be 2 pipes driving 2 halfs of 1 transcoder,
-
--:134: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#134: FILE: drivers/gpu/drm/i915/display/intel_display.c:13289:
-+	crtc_state->hw.pipe_mode = crtc_state->hw.adjusted_mode = crtc_state->uapi.adjusted_mode;
-
-total: 0 errors, 1 warnings, 1 checks, 364 lines checked
-0abe7d3083f0 drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.
-d44b7997fa69 drm/i915: Try to make bigjoiner work in atomic check
--:145: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#145: FILE: drivers/gpu/drm/i915/display/intel_display.c:13301:
-+								  crtc_state->bigjoiner_linked_crtc);
-
--:205: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#205: FILE: drivers/gpu/drm/i915/display/intel_display.c:13372:
-+	crtc_state->nv12_planes = crtc_state->c8_planes = crtc_state->update_planes = 0;
-
--:300: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#300: FILE: drivers/gpu/drm/i915/display/intel_display.c:14974:
-+	slave = new_crtc_state->bigjoiner_linked_crtc =
-
--:334: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#334: FILE: drivers/gpu/drm/i915/display/intel_display.c:15008:
-+		slave_crtc_state->bigjoiner = master_crtc_state->bigjoiner = false;
-
--:335: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#335: FILE: drivers/gpu/drm/i915/display/intel_display.c:15009:
-+		slave_crtc_state->bigjoiner_slave = master_crtc_state->bigjoiner_slave = false;
-
--:336: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#336: FILE: drivers/gpu/drm/i915/display/intel_display.c:15010:
-+		slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
-
--:336: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#336: FILE: drivers/gpu/drm/i915/display/intel_display.c:15010:
-+		slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
-
--:391: WARNING:BRACES: braces {} are not necessary for any arm of this statement
-#391: FILE: drivers/gpu/drm/i915/display/intel_display.c:15405:
-+	if (new_crtc_state->bigjoiner) {
-[...]
-+	} else if (INTEL_GEN(dev_priv) >= 9)
-[...]
- 	else
-[...]
-
-total: 0 errors, 3 warnings, 5 checks, 403 lines checked
-0e7a5e2ca045 drm/i915: Enable big joiner support in enable and disable sequences.
--:178: WARNING:LONG_LINE_COMMENT: line length of 106 exceeds 100 columns
-#178: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:4452:
-+		/* Our own transcoder needs to be disabled when reading it in intel_ddi_read_func_ctl() */
-
--:180: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#180: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:4454:
-+		pipe_config->cpu_transcoder = (enum transcoder)pipe_config->bigjoiner_linked_crtc->pipe;
-
--:829: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#829: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:826:
-+#define PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE      (1<<1) /* bigjoiner slave, partial readout */
-                                                  ^
-
-total: 0 errors, 2 warnings, 1 checks, 1031 lines checked
-94713c471ecf drm/i915: Make hardware readout work on i915.
--:33: WARNING:TABSTOP: Statements should start on a tabstop
-#33: FILE: drivers/gpu/drm/i915/display/intel_display.c:3611:
-+	 struct intel_crtc_state *crtc_state =
-
--:76: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
-#76: FILE: drivers/gpu/drm/i915/display/intel_display.c:10751:
-+		    (intel_de_read(dev_priv, PLANE_SURF(pipe, plane_id)) & 0xfffff000) == plane_config->base) {
-
-total: 0 errors, 2 warnings, 0 checks, 118 lines checked
-1fe02779c38a drm/i915: Link planes in a bigjoiner configuration, v3.
--:206: ERROR:CODE_INDENT: code indent should use tabs where possible
-#206: FILE: drivers/gpu/drm/i915/display/intel_display.c:12692:
-+         * Setup and teardown the new bigjoiner plane mappings.$
-
--:207: ERROR:CODE_INDENT: code indent should use tabs where possible
-#207: FILE: drivers/gpu/drm/i915/display/intel_display.c:12693:
-+         */$
-
--:292: ERROR:CODE_INDENT: code indent should use tabs where possible
-#292: FILE: drivers/gpu/drm/i915/display/intel_display.c:12774:
-+         *$
-
--:308: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#308: FILE: drivers/gpu/drm/i915/display/intel_display.c:12788:
-+		for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
-
--:324: ERROR:CODE_INDENT: code indent should use tabs where possible
-#324: FILE: drivers/gpu/drm/i915/display/intel_display.c:12804:
-+         * Make sure bigjoiner slave crtc's are also pulled in. This is not done automatically$
-
--:325: ERROR:CODE_INDENT: code indent should use tabs where possible
-#325: FILE: drivers/gpu/drm/i915/display/intel_display.c:12805:
-+         * when adding slave planes, because plane_state->crtc is null.$
-
--:326: ERROR:CODE_INDENT: code indent should use tabs where possible
-#326: FILE: drivers/gpu/drm/i915/display/intel_display.c:12806:
-+         */$
-
--:438: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 8)
-#438: FILE: drivers/gpu/drm/i915/display/intel_display.h:472:
-+	for_each_intel_plane_mask(((crtc_state)->uapi.state->dev), (iter), \
-[...]
-+	for_each_if ((((plane_state) = \
-
--:444: WARNING:SPACING: space prohibited between function name and open parenthesis '('
-#444: FILE: drivers/gpu/drm/i915/display/intel_display.h:478:
-+	for_each_if ((((plane_state) = \
-
--:445: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
-#445: FILE: drivers/gpu/drm/i915/display/intel_display.h:479:
-+		       to_intel_plane_state(__drm_atomic_get_current_plane_state((crtc_state)->uapi.state, &iter->base))), \
-
--:446: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#446: FILE: drivers/gpu/drm/i915/display/intel_display.h:480:
-+		      ((plane) = (plane_state)->bigjoiner_slave ? (plane_state)->bigjoiner_plane : (iter)), \
-
--:448: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
-#448: FILE: drivers/gpu/drm/i915/display/intel_display.h:482:
-+		       to_intel_plane_state(__drm_atomic_get_current_plane_state((crtc_state)->uapi.state, &plane->base)) : \
-
-total: 6 errors, 6 warnings, 0 checks, 482 lines checked
-ac42376dfbf8 drm/i915: Add bigjoiner aware plane clipping checks
-2c9e17e3a556 drm/i915: Add intel_update_bigjoiner handling.
-9a7657e3dcf8 drm/i915: Add debugfs dumping for bigjoiner, v3.
--:46: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
-#46: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:782:
-+	seq_printf(m, "\t\tuapi: fb=%d,%s,%dx%d, visible=%s, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
-
--:56: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
-#56: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:792:
-+			   plane_state->planar_linked_plane->base.base.id, plane_state->planar_linked_plane->base.name,
-
--:60: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
-#60: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:796:
-+			   plane_state->bigjoiner_plane->base.base.id, plane_state->bigjoiner_plane->base.name,
-
-total: 0 errors, 3 warnings, 0 checks, 52 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1019:47:    expected unsigned int [addressable] [usertype] ulClockParams
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1019:47:    got restricted __le32 [usertype]
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1019:47: warning: incorrect type in assignment (different base types)
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1028:50: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1029:49: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1037:47: warning: too many warnings
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:184:44: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:283:14: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:320:14: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:323:14: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:326:14: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:329:18: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:330:26: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:338:30: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:340:38: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:342:30: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:346:30: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:348:30: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:353:33: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:367:43: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:369:38: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:374:67: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:375:53: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:378:66: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:389:80: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:395:57: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:402:69: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:403:53: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:406:66: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:414:66: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:423:69: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:424:69: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:473:30: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:476:45: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:477:45: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:484:54: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:52:28: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:531:35: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:53:29: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:533:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:54:26: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:55:27: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:56:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:57:26: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:577:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:581:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:58:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:583:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:586:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:590:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:59:26: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:598:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:600:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:617:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:621:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:623:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:630:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:632:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:644:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:648:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:650:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:657:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:659:21: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:662:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:664:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:676:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:688:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:691:47: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:697:25: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:796:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:797:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:800:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:801:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:804:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:805:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:812:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:813:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:816:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:817:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:820:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:821:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:828:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:829:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:832:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:833:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:836:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:837:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:844:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:845:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:848:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:849:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:852:46: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:853:40: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:916:47: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:918:49: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:920:52: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:934:47: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:936:49: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:938:52: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:956:47: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:958:49: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:960:52: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:328:34: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:365:34: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:395:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:397:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:404:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:418:40: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:441:40: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:44:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:482:53: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:486:33: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:489:61: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:490:64: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:492:54: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:518:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:521:21: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:64:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:80:17: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:80:17: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:80:17: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:85:30: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:86:24: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c:98:39: warning: cast to restricted __le16
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:222:29: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:226:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:226:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:226:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:227:37: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:233:43: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:236:44: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:239:51: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:458:41: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:458:41: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:458:41: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:464:39: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:465:30: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:466:39: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c:468:24: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:140:26:    expected unsigned long long [usertype] *chunk_array_user
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:140:26:    got void [noderef] __user *
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:140:26: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:141:41:    expected void const [noderef] __user *from
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:141:41:    got unsigned long long [usertype] *chunk_array_user
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:141:41: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:160:27:    expected struct drm_amdgpu_cs_chunk [noderef] __user **chunk_ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:160:27:    got void [noderef] __user *
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:160:27: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:161:49:    expected void const [noderef] __user *from
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:161:49:    got struct drm_amdgpu_cs_chunk [noderef] __user **chunk_ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:161:49: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1624:21:    expected struct drm_amdgpu_fence *fences_user
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1624:21:    got void [noderef] __user *
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1624:21: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1625:36:    expected void const [noderef] __user *from
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1625:36:    got struct drm_amdgpu_fence *fences_user
++drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1625:36: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1364:25: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1364:25:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1364:25:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1365:17: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1365:17:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1365:17:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1424:17: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1424:17:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1424:17:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:143:17:    expected restricted __poll_t ( *poll )( ... )
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:143:17:    got unsigned int ( * )( ... )
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:143:17: warning: incorrect type in initializer (different base types)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:266:29: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:268:29: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:359:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:417:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:478:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:536:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:597:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:655:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21:    expected void const volatile [noderef] __user *ptr
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21:    got unsigned int [usertype] *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: cast removes address space '__user' of expression
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:752:21: warning: too many warnings
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1735:65: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1743:55: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1744:50: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1745:50: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1746:56: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1748:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1749:45: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1750:51: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1751:55: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1752:57: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1754:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1755:53: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1757:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1759:25: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1760:46: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1764:73: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1766:33: warning: cast to restricted __le32
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1768:33: warning: cast to restricted _
 
 
 _______________________________________________
