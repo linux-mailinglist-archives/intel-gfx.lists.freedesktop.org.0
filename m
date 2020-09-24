@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9182B2778A5
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 20:45:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A6892778AA
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 20:45:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09E196EB35;
-	Thu, 24 Sep 2020 18:45:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFED16E8CA;
+	Thu, 24 Sep 2020 18:45:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3AE56E480
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6D396E332
  for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 18:45:38 +0000 (UTC)
-IronPort-SDR: mRC4KiORx2Q66tMeJqCVuuHGcT+y3/0en5MdOXI+QX0MXs72blLIX7ttEN9C2zsPsguJ6CVmm0
- w+Yr8NWlEkeQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="161378268"
-X-IronPort-AV: E=Sophos;i="5.77,298,1596524400"; d="scan'208";a="161378268"
+IronPort-SDR: CT/Xy12kt9wdvAicV7oklbYiVbi7ix6TFL4lhQbPay0xfDmRBRgXpEGgLiTKdak/sg2wPsAGYg
+ Z+Vc5f8rNkwQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="161378270"
+X-IronPort-AV: E=Sophos;i="5.77,298,1596524400"; d="scan'208";a="161378270"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2020 11:45:37 -0700
-IronPort-SDR: Zo+Y4GJIlwbh985xrb/1DSkOkpyT5t9lSCL5BYscQ2DFfBaYR0R4BKIVUfwBp0fedvZiVNhaQZ
- UZrWXIUU+OSg==
-X-IronPort-AV: E=Sophos;i="5.77,298,1596524400"; d="scan'208";a="347935789"
+ 24 Sep 2020 11:45:38 -0700
+IronPort-SDR: CgkEk8aYyUhF6l6MUQHDkvom7nXjLUXfwRgqcCuvlI6RRWGMDxqmmuAAo9oixJDwP2iY+jLBH/
+ pEqLbiYqSQzg==
+X-IronPort-AV: E=Sophos;i="5.77,298,1596524400"; d="scan'208";a="347935793"
 Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
  24 Sep 2020 11:45:37 -0700
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 24 Sep 2020 11:46:15 -0700
-Message-Id: <20200924184624.20522-2-manasi.d.navare@intel.com>
+Date: Thu, 24 Sep 2020 11:46:16 -0700
+Message-Id: <20200924184624.20522-3-manasi.d.navare@intel.com>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20200924184624.20522-1-manasi.d.navare@intel.com>
 References: <20200924184624.20522-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v9 02/11] drm/i915/display: Rename pipe_timings
- to transcoder_timings
+Subject: [Intel-gfx] [PATCH v9 03/11] drm/i915: Add hw.pipe_mode to allow
+ bigjoiner pipe/transcoder split
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,99 +49,451 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tm8gZnVuY3Rpb25hbCBjaGFuZ2VzIGluIHRoaXMgcGF0Y2guCgpXaXRoIEJpZ2pvaW5lciwgdGhl
-cmUgYXJlIDIgcGlwZXMgZHJpdmluZyAyIGhhbGZzIG9mIDEKdHJhbnNjb2Rlci4gVGhlIHRyYW5z
-Y29kZXJfbW9kZSBoYXMgdGhlIGZ1bGwgdGltaW5ncywgYW5kIGlzIHVzZWQKZm9yIGNvbmZpZ3Vy
-aW5nIHRoZSB0cmFuc2NvZGVyIHdpdGggdGhlIGludGVuZGVkIG1vZGUgYWZ0ZXIKam9pbmluZyB0
-aGUgMiBoYWx2ZXMuClRvIGNsZWFyIHRoZSBjb25mdXNpb24sIHdlIHJlbmFtZSBpbnRlbF9zZXRf
-cGlwZV90aW1pbmdzIHRvCmludGVsX3NldF90cmFuc2NvZGVyX3RpbWluZ3MKCnYyOgoqIFNwbGl0
-IHRoZSByZW5hbWluZyBpbnRvIHNlcGFyYXRlIHBhdGNoIChWaWxsZSkKCkNjOiBNYWFydGVuIExh
-bmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgpDYzogVmlsbGUgU3ly
-asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWFu
-YXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IEFuaW1l
-c2ggTWFubmEgPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogVmlsbGUgU3ly
-asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDIyICsrKysrKysrKystLS0tLS0tLS0t
-CiAxIGZpbGUgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCgpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwppbmRleCA1YTlkOTMz
-ZTQyNWEuLjQ4NTA2NDRhYjQzZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kaXNwbGF5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kaXNwbGF5LmMKQEAgLTE1NCw3ICsxNTQsNyBAQCBzdGF0aWMgdm9pZCBpbGtfcGNoX2Ns
-b2NrX2dldChzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywKIHN0YXRpYyBpbnQgaW50ZWxfZnJhbWVi
-dWZmZXJfaW5pdChzdHJ1Y3QgaW50ZWxfZnJhbWVidWZmZXIgKmlmYiwKIAkJCQkgIHN0cnVjdCBk
-cm1faTkxNV9nZW1fb2JqZWN0ICpvYmosCiAJCQkJICBzdHJ1Y3QgZHJtX21vZGVfZmJfY21kMiAq
-bW9kZV9jbWQpOwotc3RhdGljIHZvaWQgaW50ZWxfc2V0X3BpcGVfdGltaW5ncyhjb25zdCBzdHJ1
-Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7CitzdGF0aWMgdm9pZCBpbnRlbF9zZXRf
-dHJhbnNjb2Rlcl90aW1pbmdzKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0
-YXRlKTsKIHN0YXRpYyB2b2lkIGludGVsX3NldF9waXBlX3NyY19zaXplKGNvbnN0IHN0cnVjdCBp
-bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKTsKIHN0YXRpYyB2b2lkIGludGVsX2NwdV90cmFu
-c2NvZGVyX3NldF9tX24oY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUs
-CiAJCQkJCSBjb25zdCBzdHJ1Y3QgaW50ZWxfbGlua19tX24gKm1fbiwKQEAgLTY5NDMsNyArNjk0
-Myw3IEBAIHN0YXRpYyB2b2lkIGlsa19jcnRjX2VuYWJsZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0
-YXRlICpzdGF0ZSwKIAlpZiAoaW50ZWxfY3J0Y19oYXNfZHBfZW5jb2RlcihuZXdfY3J0Y19zdGF0
-ZSkpCiAJCWludGVsX2RwX3NldF9tX24obmV3X2NydGNfc3RhdGUsIE0xX04xKTsKIAotCWludGVs
-X3NldF9waXBlX3RpbWluZ3MobmV3X2NydGNfc3RhdGUpOworCWludGVsX3NldF90cmFuc2NvZGVy
-X3RpbWluZ3MobmV3X2NydGNfc3RhdGUpOwogCWludGVsX3NldF9waXBlX3NyY19zaXplKG5ld19j
-cnRjX3N0YXRlKTsKIAogCWlmIChuZXdfY3J0Y19zdGF0ZS0+aGFzX3BjaF9lbmNvZGVyKQpAQCAt
-NzA4OCw3ICs3MDg4LDcgQEAgc3RhdGljIHZvaWQgaHN3X2NydGNfZW5hYmxlKHN0cnVjdCBpbnRl
-bF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCWludGVsX2VuY29kZXJzX3ByZV9lbmFibGUoc3RhdGUs
-IGNydGMpOwogCiAJaWYgKCF0cmFuc2NvZGVyX2lzX2RzaShjcHVfdHJhbnNjb2RlcikpCi0JCWlu
-dGVsX3NldF9waXBlX3RpbWluZ3MobmV3X2NydGNfc3RhdGUpOworCQlpbnRlbF9zZXRfdHJhbnNj
-b2Rlcl90aW1pbmdzKG5ld19jcnRjX3N0YXRlKTsKIAogCWludGVsX3NldF9waXBlX3NyY19zaXpl
-KG5ld19jcnRjX3N0YXRlKTsKIApAQCAtNzQ4Myw3ICs3NDgzLDcgQEAgc3RhdGljIHZvaWQgdmFs
-bGV5dmlld19jcnRjX2VuYWJsZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAlp
-ZiAoaW50ZWxfY3J0Y19oYXNfZHBfZW5jb2RlcihuZXdfY3J0Y19zdGF0ZSkpCiAJCWludGVsX2Rw
-X3NldF9tX24obmV3X2NydGNfc3RhdGUsIE0xX04xKTsKIAotCWludGVsX3NldF9waXBlX3RpbWlu
-Z3MobmV3X2NydGNfc3RhdGUpOworCWludGVsX3NldF90cmFuc2NvZGVyX3RpbWluZ3MobmV3X2Ny
-dGNfc3RhdGUpOwogCWludGVsX3NldF9waXBlX3NyY19zaXplKG5ld19jcnRjX3N0YXRlKTsKIAog
-CWlmIChJU19DSEVSUllWSUVXKGRldl9wcml2KSAmJiBwaXBlID09IFBJUEVfQikgewpAQCAtNzU1
-MSw3ICs3NTUxLDcgQEAgc3RhdGljIHZvaWQgaTl4eF9jcnRjX2VuYWJsZShzdHJ1Y3QgaW50ZWxf
-YXRvbWljX3N0YXRlICpzdGF0ZSwKIAlpZiAoaW50ZWxfY3J0Y19oYXNfZHBfZW5jb2RlcihuZXdf
-Y3J0Y19zdGF0ZSkpCiAJCWludGVsX2RwX3NldF9tX24obmV3X2NydGNfc3RhdGUsIE0xX04xKTsK
-IAotCWludGVsX3NldF9waXBlX3RpbWluZ3MobmV3X2NydGNfc3RhdGUpOworCWludGVsX3NldF90
-cmFuc2NvZGVyX3RpbWluZ3MobmV3X2NydGNfc3RhdGUpOwogCWludGVsX3NldF9waXBlX3NyY19z
-aXplKG5ld19jcnRjX3N0YXRlKTsKIAogCWk5eHhfc2V0X3BpcGVjb25mKG5ld19jcnRjX3N0YXRl
-KTsKQEAgLTg4MDUsNyArODgwNSw3IEBAIHN0YXRpYyB2b2lkIGk4eHhfY29tcHV0ZV9kcGxsKHN0
-cnVjdCBpbnRlbF9jcnRjICpjcnRjLAogCWNydGNfc3RhdGUtPmRwbGxfaHdfc3RhdGUuZHBsbCA9
-IGRwbGw7CiB9CiAKLXN0YXRpYyB2b2lkIGludGVsX3NldF9waXBlX3RpbWluZ3MoY29uc3Qgc3Ry
-dWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCitzdGF0aWMgdm9pZCBpbnRlbF9zZXRf
-dHJhbnNjb2Rlcl90aW1pbmdzKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0
-YXRlKQogewogCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhjcnRjX3N0
-YXRlLT51YXBpLmNydGMpOwogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRv
-X2k5MTUoY3J0Yy0+YmFzZS5kZXYpOwpAQCAtODg5MSw4ICs4ODkxLDggQEAgc3RhdGljIGJvb2wg
-aW50ZWxfcGlwZV9pc19pbnRlcmxhY2VkKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpj
-cnRjX3N0YXRlKQogCQlyZXR1cm4gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwgUElQRUNPTkYoY3B1
-X3RyYW5zY29kZXIpKSAmIFBJUEVDT05GX0lOVEVSTEFDRV9NQVNLOwogfQogCi1zdGF0aWMgdm9p
-ZCBpbnRlbF9nZXRfcGlwZV90aW1pbmdzKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjLAotCQkJCSAg
-IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpwaXBlX2NvbmZpZykKK3N0YXRpYyB2b2lkIGludGVs
-X2dldF90cmFuc2NvZGVyX3RpbWluZ3Moc3RydWN0IGludGVsX2NydGMgKmNydGMsCisJCQkJCSBz
-dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9jb25maWcpCiB7CiAJc3RydWN0IGRybV9kZXZp
-Y2UgKmRldiA9IGNydGMtPmJhc2UuZGV2OwogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZf
-cHJpdiA9IHRvX2k5MTUoZGV2KTsKQEAgLTk1MTUsNyArOTUxNSw3IEBAIHN0YXRpYyBib29sIGk5
-eHhfZ2V0X3BpcGVfY29uZmlnKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjLAogCWlmIChJTlRFTF9H
-RU4oZGV2X3ByaXYpIDwgNCkKIAkJcGlwZV9jb25maWctPmRvdWJsZV93aWRlID0gdG1wICYgUElQ
-RUNPTkZfRE9VQkxFX1dJREU7CiAKLQlpbnRlbF9nZXRfcGlwZV90aW1pbmdzKGNydGMsIHBpcGVf
-Y29uZmlnKTsKKwlpbnRlbF9nZXRfdHJhbnNjb2Rlcl90aW1pbmdzKGNydGMsIHBpcGVfY29uZmln
-KTsKIAlpbnRlbF9nZXRfcGlwZV9zcmNfc2l6ZShjcnRjLCBwaXBlX2NvbmZpZyk7CiAKIAlpOXh4
-X2dldF9wZml0X2NvbmZpZyhwaXBlX2NvbmZpZyk7CkBAIC0xMDc5Niw3ICsxMDc5Niw3IEBAIHN0
-YXRpYyBib29sIGlsa19nZXRfcGlwZV9jb25maWcoc3RydWN0IGludGVsX2NydGMgKmNydGMsCiAJ
-CXBpcGVfY29uZmlnLT5waXhlbF9tdWx0aXBsaWVyID0gMTsKIAl9CiAKLQlpbnRlbF9nZXRfcGlw
-ZV90aW1pbmdzKGNydGMsIHBpcGVfY29uZmlnKTsKKwlpbnRlbF9nZXRfdHJhbnNjb2Rlcl90aW1p
-bmdzKGNydGMsIHBpcGVfY29uZmlnKTsKIAlpbnRlbF9nZXRfcGlwZV9zcmNfc2l6ZShjcnRjLCBw
-aXBlX2NvbmZpZyk7CiAKIAlpbGtfZ2V0X3BmaXRfY29uZmlnKHBpcGVfY29uZmlnKTsKQEAgLTEx
-MjEzLDcgKzExMjEzLDcgQEAgc3RhdGljIGJvb2wgaHN3X2dldF9waXBlX2NvbmZpZyhzdHJ1Y3Qg
-aW50ZWxfY3J0YyAqY3J0YywKIAlpZiAoIXRyYW5zY29kZXJfaXNfZHNpKHBpcGVfY29uZmlnLT5j
-cHVfdHJhbnNjb2RlcikgfHwKIAkgICAgSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMSkgewogCQlo
-c3dfZ2V0X2RkaV9wb3J0X3N0YXRlKGNydGMsIHBpcGVfY29uZmlnKTsKLQkJaW50ZWxfZ2V0X3Bp
-cGVfdGltaW5ncyhjcnRjLCBwaXBlX2NvbmZpZyk7CisJCWludGVsX2dldF90cmFuc2NvZGVyX3Rp
-bWluZ3MoY3J0YywgcGlwZV9jb25maWcpOwogCX0KIAogCWludGVsX2dldF9waXBlX3NyY19zaXpl
-KGNydGMsIHBpcGVfY29uZmlnKTsKLS0gCjIuMTkuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+With bigjoiner, there will be 2 pipes driving 2 halfs of 1 transcoder,
+because of this, we need a pipe_mode for various calculations, including
+for example watermarks, plane clipping, etc.
+
+v6:
+* renaming in separate function, only pipe_mode here (Ville)
+* Add description (Maarten)
+v5:
+* Rebase (Manasi)
+v4:
+* Manual rebase (Manasi)
+v3:
+* Change state to crtc_state, fix rebase err  (Manasi)
+v2:
+* Manual Rebase (Manasi)
+
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+Reviewed-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c  | 40 +++++-----
+ .../drm/i915/display/intel_display_types.h    | 11 ++-
+ drivers/gpu/drm/i915/intel_pm.c               | 76 +++++++++----------
+ 3 files changed, 69 insertions(+), 58 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 4850644ab43f..a218ff7d32ec 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6152,18 +6152,16 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 
+ static int skl_update_scaler_crtc(struct intel_crtc_state *crtc_state)
+ {
+-	const struct drm_display_mode *adjusted_mode =
+-		&crtc_state->hw.adjusted_mode;
++	const struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
+ 	int width, height;
+ 
+ 	if (crtc_state->pch_pfit.enabled) {
+ 		width = drm_rect_width(&crtc_state->pch_pfit.dst);
+ 		height = drm_rect_height(&crtc_state->pch_pfit.dst);
+ 	} else {
+-		width = adjusted_mode->crtc_hdisplay;
+-		height = adjusted_mode->crtc_vdisplay;
++		width = pipe_mode->crtc_hdisplay;
++		height = pipe_mode->crtc_vdisplay;
+ 	}
+-
+ 	return skl_update_scaler(crtc_state, !crtc_state->hw.active,
+ 				 SKL_CRTC_INDEX,
+ 				 &crtc_state->scaler_state.scaler_id,
+@@ -8025,7 +8023,7 @@ static bool intel_crtc_supports_double_wide(const struct intel_crtc *crtc)
+ 
+ static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *crtc_state)
+ {
+-	u32 pixel_rate = crtc_state->hw.adjusted_mode.crtc_clock;
++	u32 pixel_rate = crtc_state->hw.pipe_mode.crtc_clock;
+ 	unsigned int pipe_w, pipe_h, pfit_w, pfit_h;
+ 
+ 	/*
+@@ -8062,7 +8060,7 @@ static void intel_crtc_compute_pixel_rate(struct intel_crtc_state *crtc_state)
+ 	if (HAS_GMCH(dev_priv))
+ 		/* FIXME calculate proper pipe pixel rate for GMCH pfit */
+ 		crtc_state->pixel_rate =
+-			crtc_state->hw.adjusted_mode.crtc_clock;
++			crtc_state->hw.pipe_mode.crtc_clock;
+ 	else
+ 		crtc_state->pixel_rate =
+ 			ilk_pipe_pixel_rate(crtc_state);
+@@ -8072,7 +8070,7 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
+ 				     struct intel_crtc_state *pipe_config)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
++	const struct drm_display_mode *pipe_mode = &pipe_config->hw.pipe_mode;
+ 	int clock_limit = dev_priv->max_dotclk_freq;
+ 
+ 	if (INTEL_GEN(dev_priv) < 4) {
+@@ -8083,16 +8081,16 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
+ 		 * is > 90% of the (display) core speed.
+ 		 */
+ 		if (intel_crtc_supports_double_wide(crtc) &&
+-		    adjusted_mode->crtc_clock > clock_limit) {
++		    pipe_mode->crtc_clock > clock_limit) {
+ 			clock_limit = dev_priv->max_dotclk_freq;
+ 			pipe_config->double_wide = true;
+ 		}
+ 	}
+ 
+-	if (adjusted_mode->crtc_clock > clock_limit) {
++	if (pipe_mode->crtc_clock > clock_limit) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "requested pixel clock (%d kHz) too high (max: %d kHz, double wide: %s)\n",
+-			    adjusted_mode->crtc_clock, clock_limit,
++			    pipe_mode->crtc_clock, clock_limit,
+ 			    yesno(pipe_config->double_wide));
+ 		return -EINVAL;
+ 	}
+@@ -8135,7 +8133,7 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
+ 	 * WaPruneModeWithIncorrectHsyncOffset:ctg,elk,ilk,snb,ivb,vlv,hsw.
+ 	 */
+ 	if ((INTEL_GEN(dev_priv) > 4 || IS_G4X(dev_priv)) &&
+-		adjusted_mode->crtc_hsync_start == adjusted_mode->crtc_hdisplay)
++		pipe_mode->crtc_hsync_start == pipe_mode->crtc_hdisplay)
+ 		return -EINVAL;
+ 
+ 	intel_crtc_compute_pixel_rate(pipe_config);
+@@ -12659,15 +12657,15 @@ static bool c8_planes_changed(const struct intel_crtc_state *new_crtc_state)
+ 
+ static u16 hsw_linetime_wm(const struct intel_crtc_state *crtc_state)
+ {
+-	const struct drm_display_mode *adjusted_mode =
+-		&crtc_state->hw.adjusted_mode;
++	const struct drm_display_mode *pipe_mode =
++		&crtc_state->hw.pipe_mode;
+ 	int linetime_wm;
+ 
+ 	if (!crtc_state->hw.enable)
+ 		return 0;
+ 
+-	linetime_wm = DIV_ROUND_CLOSEST(adjusted_mode->crtc_htotal * 1000 * 8,
+-					adjusted_mode->crtc_clock);
++	linetime_wm = DIV_ROUND_CLOSEST(pipe_mode->crtc_htotal * 1000 * 8,
++					pipe_mode->crtc_clock);
+ 
+ 	return min(linetime_wm, 0x1ff);
+ }
+@@ -13288,7 +13286,7 @@ intel_crtc_copy_uapi_to_hw_state(struct intel_crtc_state *crtc_state)
+ 	crtc_state->hw.enable = crtc_state->uapi.enable;
+ 	crtc_state->hw.active = crtc_state->uapi.active;
+ 	crtc_state->hw.mode = crtc_state->uapi.mode;
+-	crtc_state->hw.adjusted_mode = crtc_state->uapi.adjusted_mode;
++	crtc_state->hw.pipe_mode = crtc_state->hw.adjusted_mode = crtc_state->uapi.adjusted_mode;
+ 	intel_crtc_copy_uapi_to_hw_state_nomodeset(crtc_state);
+ }
+ 
+@@ -13390,7 +13388,7 @@ intel_modeset_pipe_config(struct intel_crtc_state *pipe_config)
+ 	 * computation to clearly distinguish it from the adjusted mode, which
+ 	 * can be changed by the connectors in the below retry loop.
+ 	 */
+-	drm_mode_get_hv_timing(&pipe_config->hw.mode,
++	drm_mode_get_hv_timing(&pipe_config->hw.pipe_mode,
+ 			       &pipe_config->pipe_src_w,
+ 			       &pipe_config->pipe_src_h);
+ 
+@@ -13484,6 +13482,9 @@ intel_modeset_pipe_config(struct intel_crtc_state *pipe_config)
+ 		    "hw max bpp: %i, pipe bpp: %i, dithering: %i\n",
+ 		    base_bpp, pipe_config->pipe_bpp, pipe_config->dither);
+ 
++	/* without bigjoiner, pipe_mode == adjusted_mode */
++	pipe_config->hw.pipe_mode = pipe_config->hw.adjusted_mode;
++
+ 	return 0;
+ }
+ 
+@@ -18583,6 +18584,9 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+ 			 */
+ 			crtc_state->inherited = true;
+ 
++			/* initialize pipe_mode */
++			crtc_state->hw.pipe_mode = crtc_state->hw.adjusted_mode;
++
+ 			intel_crtc_compute_pixel_rate(crtc_state);
+ 
+ 			intel_crtc_update_active_timings(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 3d4bf9b6a0a2..3562cefa12c2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -796,15 +796,22 @@ struct intel_crtc_state {
+ 	 * The following members are used to verify the hardware state:
+ 	 * - enable
+ 	 * - active
+-	 * - mode / adjusted_mode
++	 * - mode/adjusted_mode
+ 	 * - color property blobs.
+ 	 *
+ 	 * During initial hw readout, they need to be copied to uapi.
++	 *
++	 * Bigjoiner will allow a transcoder mode that spans 2 pipes;
++	 * Use the pipe_mode for calculations like watermarks, pipe
++	 * scaler, and bandwidth.
++	 *
++	 * Use adjusted_mode for things that need to know the full
++	 * mode on the transcoder, which spans all pipes.
+ 	 */
+ 	struct {
+ 		bool active, enable;
+ 		struct drm_property_blob *degamma_lut, *gamma_lut, *ctm;
+-		struct drm_display_mode mode, adjusted_mode;
++		struct drm_display_mode mode, pipe_mode, adjusted_mode;
+ 	} hw;
+ 
+ 	/**
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 34e0d22d456b..5123d8e1065a 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -899,12 +899,12 @@ static void pnv_update_wm(struct intel_crtc *unused_crtc)
+ 
+ 	crtc = single_enabled_crtc(dev_priv);
+ 	if (crtc) {
+-		const struct drm_display_mode *adjusted_mode =
+-			&crtc->config->hw.adjusted_mode;
++		const struct drm_display_mode *pipe_mode =
++			&crtc->config->hw.pipe_mode;
+ 		const struct drm_framebuffer *fb =
+ 			crtc->base.primary->state->fb;
+ 		int cpp = fb->format->cpp[0];
+-		int clock = adjusted_mode->crtc_clock;
++		int clock = pipe_mode->crtc_clock;
+ 
+ 		/* Display SR */
+ 		wm = intel_calculate_wm(clock, &pnv_display_wm,
+@@ -1135,8 +1135,8 @@ static u16 g4x_compute_wm(const struct intel_crtc_state *crtc_state,
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+-	const struct drm_display_mode *adjusted_mode =
+-		&crtc_state->hw.adjusted_mode;
++	const struct drm_display_mode *pipe_mode =
++		&crtc_state->hw.pipe_mode;
+ 	unsigned int latency = dev_priv->wm.pri_latency[level] * 10;
+ 	unsigned int clock, htotal, cpp, width, wm;
+ 
+@@ -1163,8 +1163,8 @@ static u16 g4x_compute_wm(const struct intel_crtc_state *crtc_state,
+ 	    level != G4X_WM_LEVEL_NORMAL)
+ 		cpp = max(cpp, 4u);
+ 
+-	clock = adjusted_mode->crtc_clock;
+-	htotal = adjusted_mode->crtc_htotal;
++	clock = pipe_mode->crtc_clock;
++	htotal = pipe_mode->crtc_htotal;
+ 
+ 	width = drm_rect_width(&plane_state->uapi.dst);
+ 
+@@ -1660,8 +1660,8 @@ static u16 vlv_compute_wm_level(const struct intel_crtc_state *crtc_state,
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+-	const struct drm_display_mode *adjusted_mode =
+-		&crtc_state->hw.adjusted_mode;
++	const struct drm_display_mode *pipe_mode =
++		&crtc_state->hw.pipe_mode;
+ 	unsigned int clock, htotal, cpp, width, wm;
+ 
+ 	if (dev_priv->wm.pri_latency[level] == 0)
+@@ -1671,8 +1671,8 @@ static u16 vlv_compute_wm_level(const struct intel_crtc_state *crtc_state,
+ 		return 0;
+ 
+ 	cpp = plane_state->hw.fb->format->cpp[0];
+-	clock = adjusted_mode->crtc_clock;
+-	htotal = adjusted_mode->crtc_htotal;
++	clock = pipe_mode->crtc_clock;
++	htotal = pipe_mode->crtc_htotal;
+ 	width = crtc_state->pipe_src_w;
+ 
+ 	if (plane->id == PLANE_CURSOR) {
+@@ -2261,12 +2261,12 @@ static void i965_update_wm(struct intel_crtc *unused_crtc)
+ 	if (crtc) {
+ 		/* self-refresh has much higher latency */
+ 		static const int sr_latency_ns = 12000;
+-		const struct drm_display_mode *adjusted_mode =
+-			&crtc->config->hw.adjusted_mode;
++		const struct drm_display_mode *pipe_mode =
++			&crtc->config->hw.pipe_mode;
+ 		const struct drm_framebuffer *fb =
+ 			crtc->base.primary->state->fb;
+-		int clock = adjusted_mode->crtc_clock;
+-		int htotal = adjusted_mode->crtc_htotal;
++		int clock = pipe_mode->crtc_clock;
++		int htotal = pipe_mode->crtc_htotal;
+ 		int hdisplay = crtc->config->pipe_src_w;
+ 		int cpp = fb->format->cpp[0];
+ 		int entries;
+@@ -2345,8 +2345,8 @@ static void i9xx_update_wm(struct intel_crtc *unused_crtc)
+ 	fifo_size = dev_priv->display.get_fifo_size(dev_priv, PLANE_A);
+ 	crtc = intel_get_crtc_for_plane(dev_priv, PLANE_A);
+ 	if (intel_crtc_active(crtc)) {
+-		const struct drm_display_mode *adjusted_mode =
+-			&crtc->config->hw.adjusted_mode;
++		const struct drm_display_mode *pipe_mode =
++			&crtc->config->hw.pipe_mode;
+ 		const struct drm_framebuffer *fb =
+ 			crtc->base.primary->state->fb;
+ 		int cpp;
+@@ -2356,7 +2356,7 @@ static void i9xx_update_wm(struct intel_crtc *unused_crtc)
+ 		else
+ 			cpp = fb->format->cpp[0];
+ 
+-		planea_wm = intel_calculate_wm(adjusted_mode->crtc_clock,
++		planea_wm = intel_calculate_wm(pipe_mode->crtc_clock,
+ 					       wm_info, fifo_size, cpp,
+ 					       pessimal_latency_ns);
+ 		enabled = crtc;
+@@ -2372,8 +2372,8 @@ static void i9xx_update_wm(struct intel_crtc *unused_crtc)
+ 	fifo_size = dev_priv->display.get_fifo_size(dev_priv, PLANE_B);
+ 	crtc = intel_get_crtc_for_plane(dev_priv, PLANE_B);
+ 	if (intel_crtc_active(crtc)) {
+-		const struct drm_display_mode *adjusted_mode =
+-			&crtc->config->hw.adjusted_mode;
++		const struct drm_display_mode *pipe_mode =
++			&crtc->config->hw.pipe_mode;
+ 		const struct drm_framebuffer *fb =
+ 			crtc->base.primary->state->fb;
+ 		int cpp;
+@@ -2383,7 +2383,7 @@ static void i9xx_update_wm(struct intel_crtc *unused_crtc)
+ 		else
+ 			cpp = fb->format->cpp[0];
+ 
+-		planeb_wm = intel_calculate_wm(adjusted_mode->crtc_clock,
++		planeb_wm = intel_calculate_wm(pipe_mode->crtc_clock,
+ 					       wm_info, fifo_size, cpp,
+ 					       pessimal_latency_ns);
+ 		if (enabled == NULL)
+@@ -2421,12 +2421,12 @@ static void i9xx_update_wm(struct intel_crtc *unused_crtc)
+ 	if (HAS_FW_BLC(dev_priv) && enabled) {
+ 		/* self-refresh has much higher latency */
+ 		static const int sr_latency_ns = 6000;
+-		const struct drm_display_mode *adjusted_mode =
+-			&enabled->config->hw.adjusted_mode;
++		const struct drm_display_mode *pipe_mode =
++			&enabled->config->hw.pipe_mode;
+ 		const struct drm_framebuffer *fb =
+ 			enabled->base.primary->state->fb;
+-		int clock = adjusted_mode->crtc_clock;
+-		int htotal = adjusted_mode->crtc_htotal;
++		int clock = pipe_mode->crtc_clock;
++		int htotal = pipe_mode->crtc_htotal;
+ 		int hdisplay = enabled->config->pipe_src_w;
+ 		int cpp;
+ 		int entries;
+@@ -2474,7 +2474,7 @@ static void i845_update_wm(struct intel_crtc *unused_crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(unused_crtc->base.dev);
+ 	struct intel_crtc *crtc;
+-	const struct drm_display_mode *adjusted_mode;
++	const struct drm_display_mode *pipe_mode;
+ 	u32 fwater_lo;
+ 	int planea_wm;
+ 
+@@ -2482,8 +2482,8 @@ static void i845_update_wm(struct intel_crtc *unused_crtc)
+ 	if (crtc == NULL)
+ 		return;
+ 
+-	adjusted_mode = &crtc->config->hw.adjusted_mode;
+-	planea_wm = intel_calculate_wm(adjusted_mode->crtc_clock,
++	pipe_mode = &crtc->config->hw.pipe_mode;
++	planea_wm = intel_calculate_wm(pipe_mode->crtc_clock,
+ 				       &i845_wm_info,
+ 				       dev_priv->display.get_fifo_size(dev_priv, PLANE_A),
+ 				       4, pessimal_latency_ns);
+@@ -2573,7 +2573,7 @@ static u32 ilk_compute_pri_wm(const struct intel_crtc_state *crtc_state,
+ 		return method1;
+ 
+ 	method2 = ilk_wm_method2(crtc_state->pixel_rate,
+-				 crtc_state->hw.adjusted_mode.crtc_htotal,
++				 crtc_state->hw.pipe_mode.crtc_htotal,
+ 				 drm_rect_width(&plane_state->uapi.dst),
+ 				 cpp, mem_value);
+ 
+@@ -2601,7 +2601,7 @@ static u32 ilk_compute_spr_wm(const struct intel_crtc_state *crtc_state,
+ 
+ 	method1 = ilk_wm_method1(crtc_state->pixel_rate, cpp, mem_value);
+ 	method2 = ilk_wm_method2(crtc_state->pixel_rate,
+-				 crtc_state->hw.adjusted_mode.crtc_htotal,
++				 crtc_state->hw.pipe_mode.crtc_htotal,
+ 				 drm_rect_width(&plane_state->uapi.dst),
+ 				 cpp, mem_value);
+ 	return min(method1, method2);
+@@ -2626,7 +2626,7 @@ static u32 ilk_compute_cur_wm(const struct intel_crtc_state *crtc_state,
+ 	cpp = plane_state->hw.fb->format->cpp[0];
+ 
+ 	return ilk_wm_method2(crtc_state->pixel_rate,
+-			      crtc_state->hw.adjusted_mode.crtc_htotal,
++			      crtc_state->hw.pipe_mode.crtc_htotal,
+ 			      drm_rect_width(&plane_state->uapi.dst),
+ 			      cpp, mem_value);
+ }
+@@ -3883,7 +3883,7 @@ static bool skl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
+ 	if (!crtc_state->hw.active)
+ 		return true;
+ 
+-	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
++	if (crtc_state->hw.pipe_mode.flags & DRM_MODE_FLAG_INTERLACE)
+ 		return false;
+ 
+ 	intel_atomic_crtc_state_for_each_plane_state(plane, plane_state, crtc_state) {
+@@ -4174,8 +4174,8 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
+ 	 */
+ 	total_slice_mask = dbuf_slice_mask;
+ 	for_each_new_intel_crtc_in_state(intel_state, crtc, crtc_state, i) {
+-		const struct drm_display_mode *adjusted_mode =
+-			&crtc_state->hw.adjusted_mode;
++		const struct drm_display_mode *pipe_mode =
++			&crtc_state->hw.pipe_mode;
+ 		enum pipe pipe = crtc->pipe;
+ 		int hdisplay, vdisplay;
+ 		u32 pipe_dbuf_slice_mask;
+@@ -4205,7 +4205,7 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
+ 		if (dbuf_slice_mask != pipe_dbuf_slice_mask)
+ 			continue;
+ 
+-		drm_mode_get_hv_timing(adjusted_mode, &hdisplay, &vdisplay);
++		drm_mode_get_hv_timing(pipe_mode, &hdisplay, &vdisplay);
+ 
+ 		total_width_in_range += hdisplay;
+ 
+@@ -5093,7 +5093,7 @@ intel_get_linetime_us(const struct intel_crtc_state *crtc_state)
+ 	if (drm_WARN_ON(&dev_priv->drm, pixel_rate == 0))
+ 		return u32_to_fixed16(0);
+ 
+-	crtc_htotal = crtc_state->hw.adjusted_mode.crtc_htotal;
++	crtc_htotal = crtc_state->hw.pipe_mode.crtc_htotal;
+ 	linetime_us = div_fixed16(crtc_htotal * 1000, pixel_rate);
+ 
+ 	return linetime_us;
+@@ -5282,14 +5282,14 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 	method1 = skl_wm_method1(dev_priv, wp->plane_pixel_rate,
+ 				 wp->cpp, latency, wp->dbuf_block_size);
+ 	method2 = skl_wm_method2(wp->plane_pixel_rate,
+-				 crtc_state->hw.adjusted_mode.crtc_htotal,
++				 crtc_state->hw.pipe_mode.crtc_htotal,
+ 				 latency,
+ 				 wp->plane_blocks_per_line);
+ 
+ 	if (wp->y_tiled) {
+ 		selected_result = max_fixed16(method2, wp->y_tile_minimum);
+ 	} else {
+-		if ((wp->cpp * crtc_state->hw.adjusted_mode.crtc_htotal /
++		if ((wp->cpp * crtc_state->hw.pipe_mode.crtc_htotal /
+ 		     wp->dbuf_block_size < 1) &&
+ 		     (wp->plane_bytes_per_line / wp->dbuf_block_size < 1)) {
+ 			selected_result = method2;
+-- 
+2.19.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
