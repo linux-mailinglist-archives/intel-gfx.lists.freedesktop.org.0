@@ -2,49 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C43A276692
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 04:42:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7032769D9
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 08:57:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5875B6EA65;
-	Thu, 24 Sep 2020 02:42:03 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 392096EA65
- for <Intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 02:42:02 +0000 (UTC)
-IronPort-SDR: XQ0+bW0nNPGaAPLZ4RCbl8jjBWjv9yUftKBUpQxMo1gp0hFOq6kyBAaVqgyGBEUmp8jmnW8FNM
- 0Pw6L/jYRKoQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="179148991"
-X-IronPort-AV: E=Sophos;i="5.77,296,1596524400"; d="scan'208";a="179148991"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2020 19:42:01 -0700
-IronPort-SDR: asylT+JbdLNXq6L0zm+GPs77pxTgYnTgoBkQW1BuBc8Pi7Q6+pWojFR9A2tsXYVeeHZ1BtbX+s
- 9RGRjnVy7Jyg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,296,1596524400"; d="scan'208";a="413193282"
-Received: from allen-box.sh.intel.com (HELO [10.239.159.139])
- ([10.239.159.139])
- by fmsmga001.fm.intel.com with ESMTP; 23 Sep 2020 19:41:59 -0700
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joerg Roedel <joro@8bytes.org>, Tom Murphy <murphyt7@tcd.ie>,
- David Woodhouse <dwmw2@infradead.org>, Christoph Hellwig <hch@infradead.org>
-References: <20200912032200.11489-1-baolu.lu@linux.intel.com>
- <51a1baec-48d1-c0ac-181b-1fba92aa428d@linux.intel.com>
- <001f4446-7c43-9832-42d8-55dc4a13c2ae@linux.intel.com>
- <9173fed9-e60f-5189-e17d-b23bfabdaa38@linux.intel.com>
-From: Lu Baolu <baolu.lu@linux.intel.com>
-Message-ID: <a689dd8f-5390-fd4e-ab91-5ba5549faa9c@linux.intel.com>
-Date: Thu, 24 Sep 2020 10:35:55 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CC9D6EAB0;
+	Thu, 24 Sep 2020 06:57:56 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 061356EAAE;
+ Thu, 24 Sep 2020 06:57:54 +0000 (UTC)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1600930672;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=5rTYnFSI7MvYdctqS1tc/c91OuHk2uQv9NNDSCQ04XQ=;
+ b=ToSaPZLxQ2AH6wpji2/x8TcisM3A51I/7u6foK9kSTrf7OV6+B/sYvPqQhMtEJrg0N9zIx
+ Cxs2etUyPDaehZQCOzhxH7PpvSyJSfy+zT5nw6FTVB78t6JNp7mDPmryw8BrJtWSznRbjf
+ 8WXrnLC1goQovtz1OVkxeDIie+039a2C5Ao2dLue3fpVFSN5R/cBi6m5tXzS9aMxE6UJwX
+ Uwp2HtahcdV3lHGQhtB2rKe1baF/Au/D2y5x0sKC4vrpIL/XuoPxLZOPdKWgIlvAl5aFPa
+ sm2IQ31/n393ddHyPDhkeJ4Ev5cXAXShQDmJK93cRSzGvYG6PFna1CfbOLLbSA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1600930672;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=5rTYnFSI7MvYdctqS1tc/c91OuHk2uQv9NNDSCQ04XQ=;
+ b=EvF/NhfcVha3UwOSEREyL46c1SondfygAd7QtbHcK6NXwedthX3cPGyjT7D4JChbCJd2jo
+ pNgVY6bwfByW4sDA==
+To: Steven Rostedt <rostedt@goodmis.org>
+In-Reply-To: <20200923171234.0001402d@oasis.local.home>
+References: <20200919091751.011116649@linutronix.de>
+ <CAHk-=wiYGyrFRbA1cc71D2-nc5U9LM9jUJesXGqpPnB7E4X1YQ@mail.gmail.com>
+ <87mu1lc5mp.fsf@nanos.tec.linutronix.de>
+ <87k0wode9a.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgbmwsTOKs23Z=71EBTrULoeaH2U3TNqT2atHEWvkBKdw@mail.gmail.com>
+ <87eemwcpnq.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
+ <87a6xjd1dw.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
+ <87sgbbaq0y.fsf@nanos.tec.linutronix.de>
+ <20200923084032.GU1362448@hirez.programming.kicks-ass.net>
+ <20200923115251.7cc63a7e@oasis.local.home>
+ <874kno9pr9.fsf@nanos.tec.linutronix.de>
+ <20200923171234.0001402d@oasis.local.home>
+Date: Thu, 24 Sep 2020 08:57:52 +0200
+Message-ID: <871riracgf.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <9173fed9-e60f-5189-e17d-b23bfabdaa38@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3 0/6] Convert the intel iommu driver to
- the dma-iommu api
+Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
+ variant of kmap_atomic & friends
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,74 +66,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Intel-gfx@lists.freedesktop.org,
- Ashok Raj <ashok.raj@intel.com>, iommu@lists.linux-foundation.org,
- baolu.lu@linux.intel.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Juri Lelli <juri.lelli@redhat.com>, peterz@infradead.org,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
+ Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
+ Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
+ Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, Mel Gorman <mgorman@suse.de>,
+ "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
+ linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Greentime Hu <green.hu@gmail.com>, Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ LKML <linux-kernel@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Vineet Gupta <vgupta@synopsys.com>, Paul Mackerras <paulus@samba.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgVHZydGtvLAoKT24gOS8xNS8yMCA0OjMxIFBNLCBUdnJ0a28gVXJzdWxpbiB3cm90ZToKPj4+
-IFdpdGggdGhlIHByZXZpb3VzIHZlcnNpb24gb2YgdGhlIHNlcmllcyBJIGhpdCBhIHByb2JsZW0g
-b24gSXZ5YnJpZGdlIAo+Pj4gd2hlcmUgYXBwYXJlbnRseSB0aGUgZG1hIGVuZ2luZSB3aWR0aCBp
-cyBub3QgcmVzcGVjdGVkLiBBdCBsZWFzdCB0aGF0IAo+Pj4gaXMgbXkgbGF5bWFuIGludGVycHJl
-dGF0aW9uIG9mIHRoZSBlcnJvcnMuIEZyb20gdGhlIG9sZGVyIHRocmVhZDoKPj4+Cj4+PiA8Mz4g
-WzIwOS41MjY2MDVdIERNQVI6IGludGVsX2lvbW11X21hcDogaW9tbXUgd2lkdGggKDM5KSBpcyBu
-b3QgCj4+PiBzdWZmaWNpZW50IGZvciB0aGUgbWFwcGVkIGFkZHJlc3MgKGZmZmYwMDgwMDApCj4+
-Pgo+Pj4gUmVsZXZhbnQgaW9tbXUgYm9vdCByZWxhdGVkIG1lc3NhZ2VzIGFyZToKPj4+Cj4+PiA8
-Nj5bwqDCoMKgIDAuMTg0MjM0XSBETUFSOiBIb3N0IGFkZHJlc3Mgd2lkdGggMzYKPj4+IDw2PlvC
-oMKgwqAgMC4xODQyNDVdIERNQVI6IERSSEQgYmFzZTogMHgwMDAwMDBmZWQ5MDAwMCBmbGFnczog
-MHgwCj4+PiA8Nj5bwqDCoMKgIDAuMTg0Mjg4XSBETUFSOiBkbWFyMDogcmVnX2Jhc2VfYWRkciBm
-ZWQ5MDAwMCB2ZXIgMTowIGNhcCAKPj4+IGMwMDAwMDIwZTYwMjYyIGVjYXAgZjAxMDFhCj4+PiA8
-Nj5bwqDCoMKgIDAuMTg0MzA4XSBETUFSOiBEUkhEIGJhc2U6IDB4MDAwMDAwZmVkOTEwMDAgZmxh
-Z3M6IDB4MQo+Pj4gPDY+W8KgwqDCoCAwLjE4NDMzN10gRE1BUjogZG1hcjE6IHJlZ19iYXNlX2Fk
-ZHIgZmVkOTEwMDAgdmVyIDE6MCBjYXAgCj4+PiBjOTAwODAyMDY2MDI2MiBlY2FwIGYwMTA1YQo+
-Pj4gPDY+W8KgwqDCoCAwLjE4NDM1N10gRE1BUjogUk1SUiBiYXNlOiAweDAwMDAwMGQ4ZDI4MDAw
-IGVuZDogCj4+PiAweDAwMDAwMGQ4ZDQ2ZmZmCj4+PiA8Nj5bwqDCoMKgIDAuMTg0Mzc3XSBETUFS
-OiBSTVJSIGJhc2U6IDB4MDAwMDAwZGIwMDAwMDAgZW5kOiAKPj4+IDB4MDAwMDAwZGYxZmZmZmYK
-Pj4+IDw2PlvCoMKgwqAgMC4xODQzOThdIERNQVItSVI6IElPQVBJQyBpZCAyIHVuZGVyIERSSEQg
-YmFzZcKgIDB4ZmVkOTEwMDAgCj4+PiBJT01NVSAxCj4+PiA8Nj5bwqDCoMKgIDAuMTg0NDE0XSBE
-TUFSLUlSOiBIUEVUIGlkIDAgdW5kZXIgRFJIRCBiYXNlIDB4ZmVkOTEwMDAKPj4+IDw2PlvCoMKg
-wqAgMC4xODQ0MjhdIERNQVItSVI6IFF1ZXVlZCBpbnZhbGlkYXRpb24gd2lsbCBiZSBlbmFibGVk
-IHRvIAo+Pj4gc3VwcG9ydCB4MmFwaWMgYW5kIEludHItcmVtYXBwaW5nLgo+Pj4gPDY+W8KgwqDC
-oCAwLjE4NTE3M10gRE1BUi1JUjogRW5hYmxlZCBJUlEgcmVtYXBwaW5nIGluIHgyYXBpYyBtb2Rl
-Cj4+Pgo+Pj4gPDY+W8KgwqDCoCAwLjg3ODkzNF0gRE1BUjogTm8gQVRTUiBmb3VuZAo+Pj4gPDY+
-W8KgwqDCoCAwLjg3ODk2Nl0gRE1BUjogZG1hcjA6IFVzaW5nIFF1ZXVlZCBpbnZhbGlkYXRpb24K
-Pj4+IDw2PlvCoMKgwqAgMC44NzkwMDddIERNQVI6IGRtYXIxOiBVc2luZyBRdWV1ZWQgaW52YWxp
-ZGF0aW9uCj4+Pgo+Pj4gPDY+W8KgwqDCoCAwLjkxNTAzMl0gRE1BUjogSW50ZWwoUikgVmlydHVh
-bGl6YXRpb24gVGVjaG5vbG9neSBmb3IgCj4+PiBEaXJlY3RlZCBJL08KPj4+IDw2PlvCoMKgwqAg
-MC45MTUwNjBdIFBDSS1ETUE6IFVzaW5nIHNvZnR3YXJlIGJvdW5jZSBidWZmZXJpbmcgZm9yIElP
-IAo+Pj4gKFNXSU9UTEIpCj4+PiA8Nj5bwqDCoMKgIDAuOTE1MDg0XSBzb2Z0d2FyZSBJTyBUTEI6
-IG1hcHBlZCBbbWVtIDB4YzgwZDQwMDAtMHhjYzBkNDAwMF0gCj4+PiAoNjRNQikKPj4+Cj4+PiAo
-RnVsbCBib290IGxvZyBhdCAKPj4+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
-bS10aXAvVHJ5Ym90XzcwNTQvZmktaXZiLTM3NzAvYm9vdDAudHh0LCAKPj4+IGZhaWx1cmVzIGF0
-IAo+Pj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9Ucnlib3RfNzA1
-NC9maS1pdmItMzc3MC9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGJsdC5odG1sLikgCj4+Pgo+Pj4K
-Pj4+IERvZXMgdGhpcyBsb29rIGZhbWlsaWFyIG9yIGF0IGxlYXN0IHBsYXVzaWJsZSB0byB5b3U/
-IElzIHRoaXMgCj4+PiBzb21ldGhpbmcgeW91ciBuZXcgc2VyaWVzIGhhcyBmaXhlZD8KPj4KPj4g
-VGhpcyBoYXBwZW5zIGR1cmluZyBhdHRhY2hpbmcgYSBkb21haW4gdG8gZGV2aWNlLiBJdCBoYXMg
-bm90aGluZyB0byBkbwo+PiB3aXRoIHRoaXMgcGF0Y2ggc2VyaWVzLiBJIHdpbGwgbG9vayBpbnRv
-IHRoaXMgaXNzdWUsIGJ1dCBub3QgaW4gdGhpcwo+PiBlbWFpbCB0aHJlYWQgY29udGV4dC4KPiAK
-PiBJIGFtIG5vdCBzdXJlIHdoYXQgc3RlcCBpcyBhdHRhY2hpbmcgZG9tYWluIHRvIGRldmljZSwg
-YnV0IHRoZXNlIHR5cGUgCj4gbWVzc2FnZXM6Cj4gCj4gPDM+IFsyMDkuNTI2NjA1XSBETUFSOiBp
-bnRlbF9pb21tdV9tYXA6IGlvbW11IHdpZHRoICgzOSkgaXMgbm90Cj4gID4+IHN1ZmZpY2llbnQg
-Zm9yIHRoZSBtYXBwZWQgYWRkcmVzcyAoZmZmZjAwODAwMCkKPiAKPiBUaGV5IGRlZmluaXRlbHkg
-YXBwZWFyIHRvIGhhcHBlbiBhdCBydW50aW1lLCBhcyBpOTE1IGlzIGdldHRpbmcgCj4gZXhlcmNp
-c2VkIGJ5IHVzZXJzcGFjZS4KCkNhbiB5b3UgcGxlYXNlIGNoZWNrIHdoZXRoZXIgYmVsb3cgY2hh
-bmdlIGhlbHBzIGhlcmU/CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9pb21tdS9pbnRlbC9pb21tdS5j
-IGIvZHJpdmVycy9pb21tdS9pbnRlbC9pb21tdS5jCmluZGV4IGM4MzIzYTlmOGJkZS4uMDQ4NGM1
-MzlkZWJjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2lvbW11L2ludGVsL2lvbW11LmMKKysrIGIvZHJp
-dmVycy9pb21tdS9pbnRlbC9pb21tdS5jCkBAIC03MjQsNiArNzI0LDcgQEAgc3RhdGljIGludCBk
-b21haW5fdXBkYXRlX2RldmljZV9ub2RlKHN0cnVjdCAKZG1hcl9kb21haW4gKmRvbWFpbikKICAv
-KiBTb21lIGNhcGFiaWxpdGllcyBtYXkgYmUgZGlmZmVyZW50IGFjcm9zcyBpb21tdXMgKi8KICBz
-dGF0aWMgdm9pZCBkb21haW5fdXBkYXRlX2lvbW11X2NhcChzdHJ1Y3QgZG1hcl9kb21haW4gKmRv
-bWFpbikKICB7CisgICAgICAgZG9tYWluLT5nZW9tZXRyeS5hcGVydHVyZV9lbmQgPSBfX0RPTUFJ
-Tl9NQVhfQUREUihkbWFyX2RvbWFpbi0+Z2F3KTsKICAgICAgICAgZG9tYWluX3VwZGF0ZV9pb21t
-dV9jb2hlcmVuY3koZG9tYWluKTsKICAgICAgICAgZG9tYWluLT5pb21tdV9zbm9vcGluZyA9IGRv
-bWFpbl91cGRhdGVfaW9tbXVfc25vb3BpbmcoTlVMTCk7CiAgICAgICAgIGRvbWFpbi0+aW9tbXVf
-c3VwZXJwYWdlID0gZG9tYWluX3VwZGF0ZV9pb21tdV9zdXBlcnBhZ2UoZG9tYWluLCAKTlVMTCk7
-CgpCZXN0IHJlZ2FyZHMsCmJhb2x1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+On Wed, Sep 23 2020 at 17:12, Steven Rostedt wrote:
+> On Wed, 23 Sep 2020 22:55:54 +0200
+> Then scratch the idea of having anonymous local_lock() and just bring
+> local_lock in directly? Then have a kmap local lock, which would only
+> block those that need to do a kmap.
+
+That's still going to end up in lock ordering nightmares and you lose
+the ability to use kmap_local from arbitrary contexts which was again
+one of the goals of this exercise.
+
+Aside of that you're imposing reentrancy protections on something which
+does not need it in the first place.
+
+> Now as for migration disabled nesting, at least now we would have
+> groupings of this, and perhaps the theorists can handle that. I mean,
+> how is this much different that having a bunch of tasks blocked on a
+> mutex with the owner is pinned on a CPU?
+>
+> migrate_disable() is a BKL of pinning affinity.
+
+No. That's just wrong. preempt disable is a concurrency control,
+i.e. protecting against reentrancy on a given CPU. But it's a cpu global
+protection which means that it's not protecting a specific code path.
+
+Contrary to preempt disable, migrate disable is not protecting against
+reentrancy on a given CPU. It's a temporary restriction to the scheduler
+on placement.
+
+The fact that disabling preemption implicitely disables migration does
+not make them semantically equivalent.
+
+> If we only have local_lock() available (even on !RT), then it makes
+> the blocking in groups. At least this way you could grep for all the
+> different local_locks in the system and plug that into the algorithm
+> for WCS, just like one would with a bunch of mutexes.
+
+You cannot do that on RT at all where migrate disable is substituting
+preempt disable in spin and rw locks. The result would be the same as
+with a !RT kernel just with horribly bad performance.
+
+That means the stacking problem has to be solved anyway.
+
+So why on earth do you want to create yet another special duct tape case
+for kamp_local() which proliferates inconsistency instead of aiming for
+consistency accross all preemption models?
+
+Thanks,
+
+        tglx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
