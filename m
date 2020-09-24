@@ -2,58 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED213277144
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 14:43:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E4392771FF
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 15:16:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B78E56EAE2;
-	Thu, 24 Sep 2020 12:43:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C28066EB11;
+	Thu, 24 Sep 2020 13:16:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from merlin.infradead.org (merlin.infradead.org
- [IPv6:2001:8b0:10b:1231::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF966EADA;
- Thu, 24 Sep 2020 12:43:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=merlin.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=SdhPXkSs5ZPBi948PCp3uVHmQU1pxaOPhPPF1KHSOtI=; b=cfpXNMYzVRlId2AJBOa+GyLPt6
- zTFRf6xk7foaFg4tpi+0P2wk3EKKrMLVo5gmNxHWe7qOcz3Hmx3VWmRHmwVx/FwsBrIZ4LPXgFqji
- cbVT02P2X6YSp/qAxsPzP7xWma/nd4gLtLGrrxZddBcakdrjDZddjCYlGyyVHu59U4aaO6z8FZ60s
- 49IhfEr0KMLRog0k4Y5qS0akYgifDqnz2qj8WKdCAn3F5dxbkr8x0mpQnMaztMPQpwH5mtFjW59VG
- NHALCniQ15G9RJsPp0Y7Yvd0LIio3hjjsinuCY0H4Jgz5zGhVlW6aMgLPr7GKSkFGiFv6cxeg9duh
- Tyn/G/Dw==;
-Received: from j217100.upc-j.chello.nl ([24.132.217.100]
- helo=noisy.programming.kicks-ass.net)
- by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLQaG-0005M9-J5; Thu, 24 Sep 2020 12:42:48 +0000
-Received: from hirez.programming.kicks-ass.net
- (hirez.programming.kicks-ass.net [192.168.1.225])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (Client did not present a certificate)
- by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id C0F753007CD;
- Thu, 24 Sep 2020 14:42:41 +0200 (CEST)
-Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
- id A98B620297EC5; Thu, 24 Sep 2020 14:42:41 +0200 (CEST)
-Date: Thu, 24 Sep 2020 14:42:41 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Steven Rostedt <rostedt@goodmis.org>
-Message-ID: <20200924124241.GK2628@hirez.programming.kicks-ass.net>
-References: <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
- <87a6xjd1dw.fsf@nanos.tec.linutronix.de>
- <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
- <87sgbbaq0y.fsf@nanos.tec.linutronix.de>
- <20200923084032.GU1362448@hirez.programming.kicks-ass.net>
- <20200923115251.7cc63a7e@oasis.local.home>
- <874kno9pr9.fsf@nanos.tec.linutronix.de>
- <20200923171234.0001402d@oasis.local.home>
- <871riracgf.fsf@nanos.tec.linutronix.de>
- <20200924083241.314f2102@gandalf.local.home>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 787066EAD5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 13:16:30 +0000 (UTC)
+IronPort-SDR: gtqVBJOSXacHtTDmbg/3LMRahRsVB2K6oc54JBXoZg1LQ95x99TP49dhFm1eatz2tcAOHyGPpz
+ aKf9hxjR46qw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="245989744"
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="245989744"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2020 06:16:29 -0700
+IronPort-SDR: WY06ZyfFjBsY5f4/0+3kkLERDMAfJskmTTpTU7wBlDaBISUBxCZruTxsofjzBt1+MskUkvnAmk
+ 5qMgr6LcuP9A==
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="486898073"
+Received: from dsmahang-mobl2.ger.corp.intel.com (HELO [10.252.48.167])
+ ([10.252.48.167])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2020 06:16:28 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200915093010.30573-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <e9123c83-ef8f-ec26-b878-300610899dee@linux.intel.com>
+Date: Thu, 24 Sep 2020 14:16:26 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200924083241.314f2102@gandalf.local.home>
-Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
- variant of kmap_atomic & friends
+In-Reply-To: <20200915093010.30573-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Redo "Remove i915_request.lock
+ requirement for execution callbacks"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,58 +53,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, David Airlie <airlied@linux.ie>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
- Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
- Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
- Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
- Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Michael Ellerman <mpe@ellerman.id.au>,
- the arch/x86 maintainers <x86@kernel.org>,
- Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
- Mel Gorman <mgorman@suse.de>,
- "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
- linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Greentime Hu <green.hu@gmail.com>, Thomas Gleixner <tglx@linutronix.de>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- LKML <linux-kernel@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Vineet Gupta <vgupta@synopsys.com>, Paul Mackerras <paulus@samba.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>,
- "David S. Miller" <davem@davemloft.net>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 24, 2020 at 08:32:41AM -0400, Steven Rostedt wrote:
-> Anyway, instead of blocking. What about having a counter of number of
-> migrate disabled tasks per cpu, and when taking a migrate_disable(), and there's
-> already another task with migrate_disabled() set, and the current task has
-> an affinity greater than 1, it tries to migrate to another CPU?
 
-That doesn't solve the problem. On wakeup we should already prefer an
-idle CPU over one running a (RT) task, but you can always wake more
-tasks than there's CPUs around and you'll _have_ to stack at some point.
+On 15/09/2020 10:30, Chris Wilson wrote:
+> The reordering and rebasing of commit 2e4c6c1a9db5 ("drm/i915: Remove
+> i915_request.lock requirement for execution callbacks") caused it to
+> revert an earlier correction. Let us restore commit 99f0a640d464
+> ("drm/i915: Remove requirement for holding i915_request.lock for
+> breadcrumbs")
+> 
+> Fixes: 2e4c6c1a9db5 ("drm/i915: Remove i915_request.lock requirement for execution callbacks")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_request.c | 12 ++----------
+>   1 file changed, 2 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 11e272422fb7..436ce368ddaa 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -593,16 +593,8 @@ bool __i915_request_submit(struct i915_request *request)
+>   	__notify_execute_cb_irq(request);
+>   
+>   	/* We may be recursing from the signal callback of another i915 fence */
+> -	if (!i915_request_signaled(request)) {
+> -		spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+> -
+> -		if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+> -			     &request->fence.flags) &&
+> -		    !i915_request_enable_breadcrumb(request))
+> -			intel_engine_signal_breadcrumbs(engine);
+> -
+> -		spin_unlock(&request->lock);
+> -	}
+> +	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags))
+> +		i915_request_enable_breadcrumb(request);
+>   
+>   	return result;
+>   }
+> 
 
-The trick is how to unstack them correctly. We need to detect when a
-migrate_disable() task _should_ start running again, and migrate away
-whoever is in the way at that point.
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-It turns out, that getting selected for pull-balance is exactly that
-condition, and clearly a migrate_disable() task cannot be pulled, but we
-can use that signal to try and pull away the running task that's in the
-way.
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
