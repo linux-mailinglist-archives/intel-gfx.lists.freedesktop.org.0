@@ -2,53 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A299276CB0
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 11:02:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F229276CDA
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 11:12:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AE556EABE;
-	Thu, 24 Sep 2020 09:02:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4B256E1A3;
+	Thu, 24 Sep 2020 09:12:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com
- [IPv6:2607:f8b0:4864:20::a43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6FB66EABE
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 09:02:03 +0000 (UTC)
-Received: by mail-vk1-xa43.google.com with SMTP id n193so699742vkf.12
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 02:02:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=RPNX/Jntc8uqMJoV2v4tqGUSdeJxRL7jFSbZHVhhU/o=;
- b=EvWOqfYE84WNYRR+R+Jyq0/XuUfQqOONnjHwuaHy8cgZCTqKPknjAQs4vxdfggMEo2
- 4hkXBvR2OoGpss99jpbqrkVmAkrBL1WKsoLzb5xB7R/wC2EOiDlm6YbPvr6m7G3O9tKi
- 5Yz5RjKvMOv2UmjaH6zVOGXCwW4+wPvZOPjx6ZY3801vJw4E0mBfrXjUi2AmZLnJIrMp
- w4v2MxN0S4dXVrbmDS2GhjU+DZwmbYgevY9g4cPvwOr8+e711mAeRhEZ6q+v1ChjYr2t
- 6QJ6CK1wXcchvT/1EASxwCVv40iHSmaGYiVREyADqHtXiyn4yQ1/ffVu+Kec/LnCwFeX
- rksA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=RPNX/Jntc8uqMJoV2v4tqGUSdeJxRL7jFSbZHVhhU/o=;
- b=UYXj39fIKxxD+CtpjYv+YrQjns/V0AWqiyqvTJAHf0cm9c252g9kiAcNzP/cVN6ETJ
- d5nyFp58dXYXxW7LhCdE34bqjuGLjWyID6XA7uXFIQRvDBX5slHw1bmXUJL6enGqtVnZ
- ZvqVf35vMQ+hplu7iBNrOEbd/eGTG2oGyJRi4Do2dP72dMGu2Z14Pw+hWzuOGdA0Z4VZ
- uOkZh2ltDRJVuXvp+J5ctiD134EUZHo18IqyUTQ4BTAjDLgvT2p+SBgwJzjEqmIybcMI
- lIOs33eIIEir8Qzxiv+uo37DZ4mDjcYzOShy6pbtfmHmXqk58KpyxbsXcK/ygjvEBIYw
- R8HA==
-X-Gm-Message-State: AOAM533d2qaEnlAV5Ez1PbdQZxLNNwnVu7u1xxNSVA/6Spu1u04bDaq8
- ESCOJtHcj8DKIcgpgfwpgPIFryMXqSE1eypiTfyqoYxq0Bg=
-X-Google-Smtp-Source: ABdhPJz+/3TQiT/8tys66GWxsyQ+oU5+bI/Phf8beW37pZ4Ilo01dCKcPElfeG5eMukWAfHKm5fCGj/pJv0LCQpQ168=
-X-Received: by 2002:a1f:2450:: with SMTP id k77mr2911956vkk.13.1600938122837; 
- Thu, 24 Sep 2020 02:02:02 -0700 (PDT)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76D496E194;
+ Thu, 24 Sep 2020 09:12:09 +0000 (UTC)
+IronPort-SDR: qpHfHcG4LrAntDb4K+2hYSmz17YJAeOQq6GPVIcb+hrl5oLZ4wCxQiUXrDjK/2rycBa/2h0FsF
+ SZeZxPA81sbg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="225289152"
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="225289152"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2020 02:12:08 -0700
+IronPort-SDR: P86bosMa7MQ29QaYgRe2bSFcPqEnCcFL8li00en4Qjd3ZxRHeM95deyu2fA0Mv8RpPSrOnBjZf
+ IYR3n27sbXDA==
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="486825788"
+Received: from echristi-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.10.63])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2020 02:12:05 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 24 Sep 2020 12:12:17 +0300
+Message-ID: <87zh5fpmha.fsf@intel.com>
 MIME-Version: 1.0
-References: <20200923114156.17749-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200923114156.17749-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 24 Sep 2020 10:01:36 +0100
-Message-ID: <CAM0jSHPNeYy5+kY4Bhj-Vh77fKnHq6uQ0DAiuJ0GyxSMbo3xHA@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Switch 4k kmalloc to
- use get_free_page for alignment
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,26 +47,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, "Gote,
- Nitin R" <nitin.r.gote@intel.com>
+Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 23 Sep 2020 at 12:42, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> In generating the reference LRC, we want a page-aligned address for
-> simplicity in computing the offsets within. This then shares the
-> computation for the HW LRC which is mapped and so page aligned, making
-> the comparison straightforward. It seems that kmalloc(4k) is not always
-> returning from a 4k-aligned slab cache (which would give us a page aligned
-> address) so force alignment by explicitly allocating a page.
->
-> Reported-by: "Gote, Nitin R" <nitin.r.gote@intel.com>
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: "Gote, Nitin R" <nitin.r.gote@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+Hi Dave & Daniel -
+
+Just a couple of simple fixes.
+
+With Daniel's irc ack I backmerged Linus' tree at an arbitrary commit
+due to a build failure in v5.9-rc6 that blocked CI.
+
+
+drm-intel-fixes-2020-09-24:
+drm/i915 fixes for v5.9-rc7:
+- Fix selftest reference to stack data out of scope
+- Fix GVT null pointer dereference
+- Backmerge from Linus' master to fix build
+
+BR,
+Jani.
+
+The following changes since commit 98477740630f270aecf648f1d6a9dbc6027d4ff1:
+
+  Merge branch 'rcu/urgent' of git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu (2020-09-21 12:42:31 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-09-24
+
+for you to fetch changes up to 16cce04cdb200ba905d1241b425ac48da5a9ace5:
+
+  drm/i915/selftests: Push the fake iommu device from the stack to data (2020-09-23 10:15:46 +0300)
+
+----------------------------------------------------------------
+drm/i915 fixes for v5.9-rc7:
+- Fix selftest reference to stack data out of scope
+- Fix GVT null pointer dereference
+- Backmerge from Linus' master to fix build
+
+----------------------------------------------------------------
+Chris Wilson (1):
+      drm/i915/selftests: Push the fake iommu device from the stack to data
+
+Jani Nikula (2):
+      Merge remote-tracking branch 'origin/master' into drm-intel-fixes
+      Merge tag 'gvt-fixes-2020-09-17' of https://github.com/intel/gvt-linux into drm-intel-fixes
+
+Zhenyu Wang (1):
+      drm/i915/gvt: Fix port number for BDW on EDID region setup
+
+ drivers/gpu/drm/i915/gvt/vgpu.c                  |  6 +++++-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c | 12 +++++-------
+ 2 files changed, 10 insertions(+), 8 deletions(-)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
