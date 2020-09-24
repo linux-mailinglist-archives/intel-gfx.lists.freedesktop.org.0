@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2793927717A
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 14:49:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E65FF277179
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 14:49:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8FB76EAF0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A3706EADC;
 	Thu, 24 Sep 2020 12:49:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C1FB6E408
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 12:49:11 +0000 (UTC)
-IronPort-SDR: oL/S+tE4d4mb3US+BBzcL3VfZ4gNB2d3chbRTIqpTfY1Q1X/dL+tjvgD2bWboX3F75nyacfJLF
- jNwhupTKj6LQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="160480088"
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="160480088"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B63C6E40B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 12:49:13 +0000 (UTC)
+IronPort-SDR: Qe93GymCc4V3WNVAQtxhkhlovTsWwio9s8w39381OLhn0LrkywiXAW5ZVV3E1JxIbOckeItOwh
+ WFt5zH+g6Zuw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="160480091"
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="160480091"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2020 05:49:11 -0700
-IronPort-SDR: Qbw0IfXXOAz4B+n7RFieEC1NRFT+jIuv4oJ8fiE2kocoE5rYU6tNgEL7EpfBMDHyfhsidL/Duh
- crlSReRxmByA==
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="486889794"
+ 24 Sep 2020 05:49:13 -0700
+IronPort-SDR: eYffqMdSm9TpjezNPNGMyW4pQUpEj+lDFXBTExQYUlRyAx04JwcK793pX6qMIUWWogdgO6HBaP
+ B2NKPP3i59YQ==
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="486889805"
 Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 24 Sep 2020 05:49:09 -0700
+ 24 Sep 2020 05:49:11 -0700
 From: Vandita Kulkarni <vandita.kulkarni@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 24 Sep 2020 18:12:08 +0530
-Message-Id: <20200924124209.17916-5-vandita.kulkarni@intel.com>
+Date: Thu, 24 Sep 2020 18:12:09 +0530
+Message-Id: <20200924124209.17916-6-vandita.kulkarni@intel.com>
 X-Mailer: git-send-email 2.21.0.5.gaeb582a
 In-Reply-To: <20200924124209.17916-1-vandita.kulkarni@intel.com>
 References: <20200924124209.17916-1-vandita.kulkarni@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [V14 4/5] drm/i915/dsi: Initiate frame request in cmd
- mode
+Subject: [Intel-gfx] [V14 5/5] drm/i915/dsi: Enable software vblank counter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,106 +54,64 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In TE Gate mode or TE NO_GATE mode on every flip
-we need to set the frame update request bit.
-After this  bit is set transcoder hardware will
-automatically send the frame data to the panel
-in case of TE NO_GATE mode, where it sends after
-it receives the TE event in case of TE_GATE mode.
-Once the frame data is sent to the panel, we see
-the frame counter updating.
+In case of DSI cmd mode, we get hw vblank counter
+updated after the TE comes in, if we try to read
+the hw vblank counter in te handler we wouldnt have
+the udpated vblank counter yet.
+This will lead to a state where we would send the
+vblank event to the user space in the next te,
+though the frame update would have completed in
+the first TE duration itself.
+Hence switch to using software timestamp based
+vblank counter.
 
-v2: Use intel_de_read/write
-
-v3: remove the usage of private_flags
-
-v4: Use icl_dsi in func names if non static,
-    fix code formatting issues. (Jani)
-
-v5: Send frame update request at the beginning of
-    pipe_update_end, use crtc_state mode_flags (Ville)
+v2: Use mode_flags from crtc_state (Ville)
 
 Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c      | 26 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dsi.h    |  1 +
- drivers/gpu/drm/i915/display/intel_sprite.c |  7 ++++++
- 3 files changed, 34 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 11 +++++++++++
+ drivers/gpu/drm/i915/i915_irq.c              |  4 ++++
+ 2 files changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 2789020e20db..fe946a2e2082 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -205,6 +205,32 @@ static int dsi_send_pkt_payld(struct intel_dsi_host *host,
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 5a9d933e425a..bb495947ccd5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1808,6 +1808,17 @@ enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc)
+ static u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	u32 mode_flags = crtc->mode_flags;
++
++	/*
++	 * From Gen 11, In case of dsi cmd mode, frame counter wouldnt
++	 * have updated at the beginning of TE, if we want to use
++	 * the hw counter, then we would find it updated in only
++	 * the next TE, hence switching to sw counter.
++	 */
++	if (mode_flags & (I915_MODE_FLAG_DSI_USE_TE0 | I915_MODE_FLAG_DSI_USE_TE1))
++		return 0;
+ 
+ 	/*
+ 	 * On i965gm the hardware frame counter reads
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index c2e4b227bdf3..634c60befe7e 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -682,8 +682,12 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
+ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->dev);
++	struct drm_vblank_crtc *vblank = &dev_priv->drm.vblank[drm_crtc_index(crtc)];
+ 	enum pipe pipe = to_intel_crtc(crtc)->pipe;
+ 
++	if (!vblank->max_vblank_count)
++		return 0;
++
+ 	return I915_READ(PIPE_FRMCOUNT_G4X(pipe));
  }
  
-+void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	u32 tmp, mode_flags;
-+	enum port port;
-+
-+	mode_flags = crtc_state->mode_flags;
-+
-+	/*
-+	 * case 1 also covers dual link
-+	 * In case of dual link, frame update should be set on
-+	 * DSI_0
-+	 */
-+	if (mode_flags & I915_MODE_FLAG_DSI_USE_TE0)
-+		port = PORT_A;
-+	else if (mode_flags & I915_MODE_FLAG_DSI_USE_TE1)
-+		port = PORT_B;
-+	else
-+		return;
-+
-+	tmp = intel_de_read(dev_priv, DSI_CMD_FRMCTL(port));
-+	tmp |= DSI_FRAME_UPDATE_REQUEST;
-+	intel_de_write(dev_priv, DSI_CMD_FRMCTL(port), tmp);
-+}
-+
- static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i915/display/intel_dsi.h
-index 19f78a4022d3..625f2f1ae061 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsi.h
-@@ -167,6 +167,7 @@ static inline u16 intel_dsi_encoder_ports(struct intel_encoder *encoder)
- 
- /* icl_dsi.c */
- void icl_dsi_init(struct drm_i915_private *dev_priv);
-+void icl_dsi_frame_update(struct intel_crtc_state *crtc_state);
- 
- /* intel_dsi.c */
- int intel_dsi_bitrate(const struct intel_dsi *intel_dsi);
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 63040cb0d4e1..eaee29e0f535 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -47,6 +47,7 @@
- #include "intel_frontbuffer.h"
- #include "intel_pm.h"
- #include "intel_psr.h"
-+#include "intel_dsi.h"
- #include "intel_sprite.h"
- 
- int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
-@@ -202,6 +203,12 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
- 
- 	trace_intel_pipe_update_end(crtc, end_vbl_count, scanline_end);
- 
-+	/*
-+	 * Incase of mipi dsi command mode, we need to set frame update
-+	 * request for every commit.
-+	 */
-+	icl_dsi_frame_update(new_crtc_state);
-+
- 	/* We're still in the vblank-evade critical section, this can't race.
- 	 * Would be slightly nice to just grab the vblank count and arm the
- 	 * event outside of the critical section - the spinlock might spin for a
 -- 
 2.21.0.5.gaeb582a
 
