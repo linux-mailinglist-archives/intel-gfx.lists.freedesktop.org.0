@@ -1,47 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E0222778C2
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 20:57:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F83A2778C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 20:58:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 334A66EB4F;
-	Thu, 24 Sep 2020 18:57:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 929F66EB50;
+	Thu, 24 Sep 2020 18:58:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 283136EB50
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 18:57:18 +0000 (UTC)
-IronPort-SDR: O+NFZ/NzPLQVHQbsEav/mDRQvoO8WnEU6C176+Mg9GziOSmjE7zOoKgZ5GDi0UKJDPLY6iuEBZ
- 3K+mkjUKBqsA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="225449423"
-X-IronPort-AV: E=Sophos;i="5.77,299,1596524400"; d="scan'208";a="225449423"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2020 11:57:17 -0700
-IronPort-SDR: qTMZR13i7ULCQgCQW6UL4R/Rbz3wUIiL82gaAPEAf3k99rjcxgfOp6F8TWIndG9NyVwp5y4Qlq
- crUvnQ0J/bvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,299,1596524400"; d="scan'208";a="292202947"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 24 Sep 2020 11:57:15 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 24 Sep 2020 21:57:14 +0300
-Date: Thu, 24 Sep 2020 21:57:14 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200924185714.GO6112@intel.com>
-References: <20200924184805.294493-1-imre.deak@intel.com>
- <20200924184805.294493-4-imre.deak@intel.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEAAA6EB50;
+ Thu, 24 Sep 2020 18:58:17 +0000 (UTC)
+Received: from rorschach.local.home (cpe-66-24-58-225.stny.res.rr.com
+ [66.24.58.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 8D88323600;
+ Thu, 24 Sep 2020 18:58:12 +0000 (UTC)
+Date: Thu, 24 Sep 2020 14:58:10 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Thomas Gleixner <tglx@linutronix.de>
+Message-ID: <20200924145810.2f0b806f@rorschach.local.home>
+In-Reply-To: <875z8383gh.fsf@nanos.tec.linutronix.de>
+References: <20200919091751.011116649@linutronix.de>
+ <CAHk-=wiYGyrFRbA1cc71D2-nc5U9LM9jUJesXGqpPnB7E4X1YQ@mail.gmail.com>
+ <87mu1lc5mp.fsf@nanos.tec.linutronix.de>
+ <87k0wode9a.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgbmwsTOKs23Z=71EBTrULoeaH2U3TNqT2atHEWvkBKdw@mail.gmail.com>
+ <87eemwcpnq.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wgF-upZVpqJWK=TK7MS9H-Rp1ZxGfOG+dDW=JThtxAzVQ@mail.gmail.com>
+ <87a6xjd1dw.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
+ <87sgbbaq0y.fsf@nanos.tec.linutronix.de>
+ <20200923084032.GU1362448@hirez.programming.kicks-ass.net>
+ <20200923115251.7cc63a7e@oasis.local.home>
+ <874kno9pr9.fsf@nanos.tec.linutronix.de>
+ <20200923171234.0001402d@oasis.local.home>
+ <871riracgf.fsf@nanos.tec.linutronix.de>
+ <20200924083241.314f2102@gandalf.local.home>
+ <875z8383gh.fsf@nanos.tec.linutronix.de>
+X-Mailer: Claws Mail 3.17.4git76 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200924184805.294493-4-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 3/6] drm/i915: Factor out a helper to
- disable the DPCD training pattern
+Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
+ variant of kmap_atomic & friends
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,123 +56,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Juri Lelli <juri.lelli@redhat.com>, peterz@infradead.org,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
+ Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
+ Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
+ Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, Mel Gorman <mgorman@suse.de>,
+ "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
+ linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Greentime Hu <green.hu@gmail.com>, Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ LKML <linux-kernel@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Vineet Gupta <vgupta@synopsys.com>, Paul Mackerras <paulus@samba.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 24, 2020 at 09:48:02PM +0300, Imre Deak wrote:
-> To prepare for a follow-up LTTPR change factor out a helper to disable
-> the training pattern in DPCD. We'll need to do this for each LTTPR
-> (without programming the port to output the idle pattern) when training
-> in LTTPR non-transparent mode.
-> =
+On Thu, 24 Sep 2020 19:55:10 +0200
+Thomas Gleixner <tglx@linutronix.de> wrote:
 
-> While at it also move the disable-link-training logic from
-> intel_dp_set_link_train() to intel_dp_stop_link_train(), since the
-> latter is the only user of this.
-> =
+> On Thu, Sep 24 2020 at 08:32, Steven Rostedt wrote:
+> > On Thu, 24 Sep 2020 08:57:52 +0200
+> > Thomas Gleixner <tglx@linutronix.de> wrote:
+> >  
+> >> > Now as for migration disabled nesting, at least now we would have
+> >> > groupings of this, and perhaps the theorists can handle that. I mean,
+> >> > how is this much different that having a bunch of tasks blocked on a
+> >> > mutex with the owner is pinned on a CPU?
+> >> >
+> >> > migrate_disable() is a BKL of pinning affinity.    
+> >> 
+> >> No. That's just wrong. preempt disable is a concurrency control,  
+> >
+> > I think you totally misunderstood what I was saying. The above wasn't about
+> > comparing preempt_disable to migrate_disable. It was comparing
+> > migrate_disable to a chain of tasks blocked on mutexes where the top owner
+> > has preempt_disable set. You still have a bunch of tasks that can't move to
+> > other CPUs.  
+> 
+> What? The top owner does not prevent any task from moving. The tasks
+> cannot move because they are blocked on the mutex, which means they are
+> not runnable and non runnable tasks are not migrated at all.
 
-> v2:
-> - Move the disable-link-training logic to intel_dp_stop_link_train()
->   (Ville)
-> =
+And neither are migrated disabled tasks preempted by a high priority
+task.
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  .../drm/i915/display/intel_dp_link_training.c | 32 +++++++++----------
->  1 file changed, 16 insertions(+), 16 deletions(-)
-> =
+> 
+> I really don't understand what you are trying to say.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
-ers/gpu/drm/i915/display/intel_dp_link_training.c
-> index 78b0f165fadd..38d4553670a1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -91,25 +91,17 @@ intel_dp_set_link_train(struct intel_dp *intel_dp,
->  			u8 dp_train_pat)
->  {
->  	u8 buf[sizeof(intel_dp->train_set) + 1];
-> -	int ret, len;
-> +	int len;
->  =
+Don't worry about it. I was just making a high level comparison of how
+migrate disabled tasks blocked on a higher priority task is similar to
+that of tasks blocked on a mutex held by a pinned task that is
+preempted by a high priority task. But we can forget this analogy as
+it's not appropriate for the current conversation.
 
->  	intel_dp_program_link_training_pattern(intel_dp, dp_train_pat);
->  =
+> 
+> >> > If we only have local_lock() available (even on !RT), then it makes
+> >> > the blocking in groups. At least this way you could grep for all the
+> >> > different local_locks in the system and plug that into the algorithm
+> >> > for WCS, just like one would with a bunch of mutexes.    
+> >> 
+> >> You cannot do that on RT at all where migrate disable is substituting
+> >> preempt disable in spin and rw locks. The result would be the same as
+> >> with a !RT kernel just with horribly bad performance.  
+> >
+> > Note, the spin and rwlocks already have a lock associated with them. Why
+> > would it be any different on RT? I wasn't suggesting adding another lock
+> > inside a spinlock. Why would I recommend THAT? I wasn't recommending
+> > blindly replacing migrate_disable() with local_lock(). I just meant expose
+> > local_lock() but not migrate_disable().  
+> 
+> We already exposed local_lock() to non RT and it's for places which do
+> preempt_disable() or local_irq_disable() without having a lock
+> associated. But both primitives are scope less and therefore behave like
+> CPU local BKLs. What local_lock() provides in these cases is:
+> 
+>   - Making the protection scope clear by associating a named local
+>     lock which is coverred by lockdep.
+> 
+>   - It still maps to preempt_disable() or local_irq_disable() in !RT
+>     kernels
+> 
+>   - The scope and the named lock allows RT kernels to substitute with
+>     real (recursion aware) locking primitives which keep preemption and
+>     interupts enabled, but provide the fine grained protection for the
+>     scoped critical section.
 
->  	buf[0] =3D dp_train_pat;
-> -	if (intel_dp_training_pattern_symbol(dp_train_pat) =3D=3D
-> -	    DP_TRAINING_PATTERN_DISABLE) {
-> -		/* don't write DP_TRAINING_LANEx_SET on disable */
-> -		len =3D 1;
-> -	} else {
-> -		/* DP_TRAINING_LANEx_SET follow DP_TRAINING_PATTERN_SET */
-> -		memcpy(buf + 1, intel_dp->train_set, intel_dp->lane_count);
-> -		len =3D intel_dp->lane_count + 1;
-> -	}
-> +	/* DP_TRAINING_LANEx_SET follow DP_TRAINING_PATTERN_SET */
-> +	memcpy(buf + 1, intel_dp->train_set, intel_dp->lane_count);
-> +	len =3D intel_dp->lane_count + 1;
->  =
+I'm very much aware of the above.
 
-> -	ret =3D drm_dp_dpcd_write(&intel_dp->aux, DP_TRAINING_PATTERN_SET,
-> -				buf, len);
-> -
-> -	return ret =3D=3D len;
-> +	return drm_dp_dpcd_write(&intel_dp->aux, DP_TRAINING_PATTERN_SET,
-> +				 buf, len) =3D=3D len;
+>   
+> So how would you substitute migrate_disable() with a local_lock()? You
+> can't. Again migrate_disable() is NOT a concurrency control and
+> therefore it cannot be substituted by any concurrency control primitive.
 
-Much nicer without the silly if() cluttering things.
+When I was first writing my email, I was writing about a way to replace
+migrate_disable with a construct similar to local locks without
+actually mentioning local locks, but then rewrote it to state local
+locks, trying to simplify what I was writing. I shouldn't have done
+that, because it portrayed that I wanted to use local_lock()
+unmodified. I was actually thinking of a new construct that was similar
+but not exactly the same as local lock.
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+But this will just make things more complex and we can forget about it.
 
->  }
->  =
+I'll wait to see what Peter produces.
 
->  static bool
-> @@ -392,6 +384,13 @@ intel_dp_link_training_channel_equalization(struct i=
-ntel_dp *intel_dp)
->  	return channel_eq;
->  }
->  =
-
-> +static bool intel_dp_disable_dpcd_training_pattern(struct intel_dp *inte=
-l_dp)
-> +{
-> +	u8 val =3D DP_TRAINING_PATTERN_DISABLE;
-> +
-> +	return drm_dp_dpcd_write(&intel_dp->aux, DP_TRAINING_PATTERN_SET, &val,=
- 1) =3D=3D 1;
-> +}
-> +
->  /**
->   * intel_dp_stop_link_train - stop link training
->   * @intel_dp: DP struct
-> @@ -411,8 +410,9 @@ void intel_dp_stop_link_train(struct intel_dp *intel_=
-dp)
->  {
->  	intel_dp->link_trained =3D true;
->  =
-
-> -	intel_dp_set_link_train(intel_dp,
-> -				DP_TRAINING_PATTERN_DISABLE);
-> +	intel_dp_program_link_training_pattern(intel_dp,
-> +					       DP_TRAINING_PATTERN_DISABLE);
-> +	intel_dp_disable_dpcd_training_pattern(intel_dp);
->  }
->  =
-
->  static bool
-> -- =
-
-> 2.25.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-- Steve
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
