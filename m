@@ -2,46 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50143276EF4
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 12:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87313276EF5
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 12:47:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E16489C1C;
-	Thu, 24 Sep 2020 10:46:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7E966E1CF;
+	Thu, 24 Sep 2020 10:47:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 267A989C1C
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Sep 2020 10:46:23 +0000 (UTC)
-IronPort-SDR: pY8/KtDJ4f2t5L2tmlkNMrBRQEPEbO6QbBxJgQoKn8EHKIsyzsp6I9G2asD2W7U/iVGRNqDrBk
- fMIyJAD9BsUg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="148818183"
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="148818183"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A99FD6E1BA;
+ Thu, 24 Sep 2020 10:47:09 +0000 (UTC)
+IronPort-SDR: BU6UaC0WVAwqJPsmi6wrZaGD5v1fSIlhUaBsL3LzJm+czhdb1E+s5de7EOLYPzt0Gegd6SqzCn
+ a4rX6+L/zrMA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="148922924"
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="148922924"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2020 03:46:22 -0700
-IronPort-SDR: xJ51sOD/hLiHm16yBxG/2S+Uk6xQIyFAwPdcGQycgujImwTNQfgpi+RBP0jgRgZwyQl3w1BR9J
- SsqcHXdFnd8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="339003798"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 24 Sep 2020 03:46:20 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 24 Sep 2020 13:46:19 +0300
-Date: Thu, 24 Sep 2020 13:46:19 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-Message-ID: <20200924104619.GG6112@intel.com>
-References: <20200716172106.2656-1-ville.syrjala@linux.intel.com>
- <20200716172106.2656-5-ville.syrjala@linux.intel.com>
- <5eaf7a6e770841e1abac61b686acdde8@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2020 03:47:09 -0700
+IronPort-SDR: GL65Yuwc+QJlKzw3HP6MsYar/L1nd0RjVRUB4thcCknSyPn7RpuyNzk+UWQjgDPaEiAxST7Dya
+ NwZFwFXrnWlA==
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; d="scan'208";a="486852741"
+Received: from mwiktor-mobl.ger.corp.intel.com (HELO [10.249.47.51])
+ ([10.249.47.51])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2020 03:47:06 -0700
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <4106c21e-f52c-4c05-6cdb-daa743bb8617@linux.intel.com>
+Date: Thu, 24 Sep 2020 12:47:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <5eaf7a6e770841e1abac61b686acdde8@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 04/14] drm/i915: Add SKL GT1.5 PCI IDs
+Content-Language: en-US
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,104 +49,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 24, 2020 at 12:37:47AM +0000, Srivatsa, Anusha wrote:
-> =
+drm-misc-fixes-2020-09-24:
+drm-misc-fixes for v5.9:
+- Single null pointer deref fix for dma-buf.
+The following changes since commit 74ea06164cda81dc80e97790164ca533fd7e3087:
 
-> =
+  drm/sun4i: mixer: Extend regmap max_register (2020-09-10 13:08:48 +0200)
 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of =
-Ville
-> > Syrjala
-> > Sent: Thursday, July 16, 2020 10:21 AM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [Intel-gfx] [PATCH 04/14] drm/i915: Add SKL GT1.5 PCI IDs
-> > =
+are available in the Git repository at:
 
-> > From: Alexei Podtelezhnikov <apodtele@gmail.com>
-> > =
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2020-09-24
 
-> > Add three new devices 0x1913, 0x1915, and 0x1917 also known as
-> > iSKLULTGT15, iSKLULXGT15, and iSKLDTGT15.
-> > =
+for you to fetch changes up to 19a508bd1ad8e444de86873bf2f2b2ab8edd6552:
 
-> > Signed-off-by: Alexei Podtelezhnikov <apodtele@gmail.com>
-> > [vsyrjala: Split separate changes into separate patchs,
-> >            Sort the IDs]
-> The above comment appears in every patch. If this is v2 of the patches th=
-en it goes right after the commit message as:
-> =
+  dmabuf: fix NULL pointer dereference in dma_buf_release() (2020-09-21 11:17:06 +0200)
 
->  V2: Split separate changes into separate patches, sort the IDs (Ville)
+----------------------------------------------------------------
+drm-misc-fixes for v5.9:
+- Single null pointer deref fix for dma-buf.
 
-No. I use the [vsyrjala: blah] notation to indicate I modified the
-original patch which was authored by someone else.
+----------------------------------------------------------------
+Charan Teja Reddy (1):
+      dmabuf: fix NULL pointer dereference in dma_buf_release()
 
->  =
-
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> The code changes itself look good.
-> =
-
-> Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> =
-
-> > ---
-> >  include/drm/i915_pciids.h | 9 ++++++---
-> >  1 file changed, 6 insertions(+), 3 deletions(-)
-> > =
-
-> > diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h index
-> > 9df3697f074d..c906088ccffe 100644
-> > --- a/include/drm/i915_pciids.h
-> > +++ b/include/drm/i915_pciids.h
-> > @@ -329,17 +329,20 @@
-> >  	INTEL_VGA_DEVICE(0x22b3, info)
-> > =
-
-> >  #define INTEL_SKL_ULT_GT1_IDS(info) \
-> > -	INTEL_VGA_DEVICE(0x1906, info) /* ULT GT1 */
-> > +	INTEL_VGA_DEVICE(0x1906, info), /* ULT GT1 */ \
-> > +	INTEL_VGA_DEVICE(0x1913, info)  /* ULT GT1.5 */
-> > =
-
-> >  #define INTEL_SKL_ULX_GT1_IDS(info) \
-> > -	INTEL_VGA_DEVICE(0x190E, info) /* ULX GT1 */
-> > +	INTEL_VGA_DEVICE(0x190E, info), /* ULX GT1 */ \
-> > +	INTEL_VGA_DEVICE(0x1915, info)  /* ULX GT1.5 */
-> > =
-
-> >  #define INTEL_SKL_GT1_IDS(info)	\
-> >  	INTEL_SKL_ULT_GT1_IDS(info), \
-> >  	INTEL_SKL_ULX_GT1_IDS(info), \
-> >  	INTEL_VGA_DEVICE(0x1902, info), /* DT  GT1 */ \
-> >  	INTEL_VGA_DEVICE(0x190B, info), /* Halo GT1 */ \
-> > -	INTEL_VGA_DEVICE(0x190A, info) /* SRV GT1 */
-> > +	INTEL_VGA_DEVICE(0x190A, info), /* SRV GT1 */ \
-> > +	INTEL_VGA_DEVICE(0x1917, info)  /* DT  GT1.5 */
-> > =
-
-> >  #define INTEL_SKL_ULT_GT2_IDS(info) \
-> >  	INTEL_VGA_DEVICE(0x1916, info), /* ULT GT2 */ \
-> > --
-> > 2.26.2
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+ drivers/dma-buf/dma-buf.c | 2 ++
+ 1 file changed, 2 insertions(+)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
