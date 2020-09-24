@@ -2,58 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02308277354
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 15:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE6CC27734C
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Sep 2020 15:59:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 432DE6EB28;
-	Thu, 24 Sep 2020 13:59:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF6E76EB1E;
+	Thu, 24 Sep 2020 13:59:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from casper.infradead.org (casper.infradead.org
  [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 840B06EB14;
- Thu, 24 Sep 2020 13:59:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86A736EB1B;
+ Thu, 24 Sep 2020 13:59:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=MOgC9OGGeZJDv1+n6/wlwMjXb8lCrwqJ2Nw3weXr+Qc=; b=JsDPpGvHCaRJKTjEp4jfBvIc6f
- pXZLbwXBu5W8wOQFQmAslu3rcVo3QzDGQFkjChuW6FIVMUFcn9IGZif/AfN2U01WzpkVAz+KFjobU
- 0jWaSlW3Xn2GQ84V721qkLjzWf+wjf87oufz3kW5JH8rWv+6T3T3JVoKiDNY9dD7MOcGuNMH2PZBs
- SnzOi2M6Zof+/P1qbt2Khez267c1eK7X/9CbdBAMVey/kVf/aLifYALWXQaU/QkCvZXO+P5xD/kVr
- VMyquwF/LWZfEYgUe0JzptxCjKKCYhp2fTxOVreYNbgMOT1pBTJrHrmgCpfvBdVmz9xgyChNoHSwP
- aldNLPLA==;
-Received: from j217100.upc-j.chello.nl ([24.132.217.100]
- helo=noisy.programming.kicks-ass.net)
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
+ Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:In-Reply-To:References;
+ bh=dr6dZs3VFHA+kNUsKD0hzBTElVLKOQakCcBlV/ZNErM=; b=bBQO05VwDwAfaDqhekxajuofQQ
+ bb+lb4i3TKVtAyCr2iKg1X8aUn1bdOY06BtcZKEUPCPJtazgELgC/vFbSI7vij62OU7cmoS4Lvp4J
+ HeFUAy34D9c2sIi29BVo8WSJNoo9JaIHBXsP95f4sWbTsfn3hoxVg4re0K37rJI6FFIX4dKQNQ4qi
+ wfy/IU/xQP3fhkdpdco0xb2XcZ5VH/JIoM+BRD8a3NgAFOiUbXH1CBYUN6/Wme9eQ0VGwp1cdaydU
+ G8A1Rfo80MP8zwb3Qv4JgG75vxpJs/kFWWto8tgyBgmVyD0urYVmuY8SbsxiVEvcP/dgcqoII8P4f
+ gsCE6STw==;
+Received: from p4fdb0c34.dip0.t-ipconnect.de ([79.219.12.52] helo=localhost)
  by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kLRlA-0003sC-Q7; Thu, 24 Sep 2020 13:58:08 +0000
-Received: from hirez.programming.kicks-ass.net
- (hirez.programming.kicks-ass.net [192.168.1.225])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (Client did not present a certificate)
- by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 671203007CD;
- Thu, 24 Sep 2020 15:58:05 +0200 (CEST)
-Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
- id 51F872010B5FA; Thu, 24 Sep 2020 15:58:05 +0200 (CEST)
-Date: Thu, 24 Sep 2020 15:58:05 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Steven Rostedt <rostedt@goodmis.org>
-Message-ID: <20200924135805.GN2628@hirez.programming.kicks-ass.net>
-References: <CAHk-=wjhxzx3KHHOMvdDj3Aw-_Mk5eRiNTUBB=tFf=vTkw1FeA@mail.gmail.com>
- <87sgbbaq0y.fsf@nanos.tec.linutronix.de>
- <20200923084032.GU1362448@hirez.programming.kicks-ass.net>
- <20200923115251.7cc63a7e@oasis.local.home>
- <874kno9pr9.fsf@nanos.tec.linutronix.de>
- <20200923171234.0001402d@oasis.local.home>
- <871riracgf.fsf@nanos.tec.linutronix.de>
- <20200924083241.314f2102@gandalf.local.home>
- <20200924124241.GK2628@hirez.programming.kicks-ass.net>
- <20200924095138.5318d242@oasis.local.home>
+ id 1kLRlu-0003uT-GF; Thu, 24 Sep 2020 13:58:54 +0000
+From: Christoph Hellwig <hch@lst.de>
+To: Andrew Morton <akpm@linux-foundation.org>
+Date: Thu, 24 Sep 2020 15:58:42 +0200
+Message-Id: <20200924135853.875294-1-hch@lst.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200924095138.5318d242@oasis.local.home>
-Subject: Re: [Intel-gfx] [patch RFC 00/15] mm/highmem: Provide a preemptible
- variant of kmap_atomic & friends
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ casper.infradead.org. See http://www.infradead.org/rpr.html
+Subject: [Intel-gfx] remove alloc_vm_area v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,57 +47,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juri Lelli <juri.lelli@redhat.com>, David Airlie <airlied@linux.ie>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
- Ben Segall <bsegall@google.com>, Max Filippov <jcmvbkbc@gmail.com>,
- Guo Ren <guoren@kernel.org>, linux-sparc <sparclinux@vger.kernel.org>,
- Vincent Chen <deanbo422@gmail.com>, Will Deacon <will@kernel.org>,
- Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Michael Ellerman <mpe@ellerman.id.au>,
- the arch/x86 maintainers <x86@kernel.org>,
- Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
- Mel Gorman <mgorman@suse.de>,
- "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
- linux-xtensa@linux-xtensa.org, Paul McKenney <paulmck@kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Greentime Hu <green.hu@gmail.com>, Thomas Gleixner <tglx@linutronix.de>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- LKML <linux-kernel@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Vineet Gupta <vgupta@synopsys.com>, Paul Mackerras <paulus@samba.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Daniel Bristot de Oliveira <bristot@redhat.com>,
- "David S. Miller" <davem@davemloft.net>
+Cc: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Matthew Wilcox <willy@infradead.org>, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, Peter Zijlstra <peterz@infradead.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, x86@kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Minchan Kim <minchan@kernel.org>,
+ Matthew Auld <matthew.auld@intel.com>, xen-devel@lists.xenproject.org,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 24, 2020 at 09:51:38AM -0400, Steven Rostedt wrote:
+Hi Andrew,
 
-> > It turns out, that getting selected for pull-balance is exactly that
-> > condition, and clearly a migrate_disable() task cannot be pulled, but we
-> > can use that signal to try and pull away the running task that's in the
-> > way.
-> 
-> Unless of course that running task is in a migrate disable section
-> itself ;-)
+this series removes alloc_vm_area, which was left over from the big
+vmalloc interface rework.  It is a rather arkane interface, basicaly
+the equivalent of get_vm_area + actually faulting in all PTEs in
+the allocated area.  It was originally addeds for Xen (which isn't
+modular to start with), and then grew users in zsmalloc and i915
+which seems to mostly qualify as abuses of the interface, especially
+for i915 as a random driver should not set up PTE bits directly.
 
-See my ramblings here:
+Note that the i915 patches apply to the drm-tip branch of the drm-tip
+tree, as that tree has recent conflicting commits in the same area.
 
-  https://lkml.kernel.org/r/20200924082717.GA1362448@hirez.programming.kicks-ass.net
+A git tree is also available here:
 
-My plan was to have the migrate_enable() of the running task trigger the
-migration in that case.
+    git://git.infradead.org/users/hch/misc.git alloc_vm_area
 
+Gitweb:
+
+    http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/alloc_vm_area
+
+Changes since v1:
+ - fix a bug in the zsmalloc changes
+ - fix a bug and rebase to include the recent changes in i915
+ - add a new vmap flag that allows to free the page array and pages
+   using vfree
+ - add a vfree documentation updated from Matthew
+
+Diffstat:
+ arch/x86/xen/grant-table.c                |   27 ++++--
+ drivers/gpu/drm/i915/Kconfig              |    1 
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c |  131 +++++++++++++-----------------
+ drivers/gpu/drm/i915/gt/shmem_utils.c     |   76 ++++-------------
+ drivers/xen/xenbus/xenbus_client.c        |   30 +++---
+ include/linux/vmalloc.h                   |    7 -
+ mm/Kconfig                                |    3 
+ mm/memory.c                               |   16 ++-
+ mm/nommu.c                                |    7 -
+ mm/vmalloc.c                              |  123 ++++++++++++++--------------
+ mm/zsmalloc.c                             |   10 +-
+ 11 files changed, 200 insertions(+), 231 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
