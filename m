@@ -2,52 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F034278A0D
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 15:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB45A278A6A
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 16:09:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BBA06ECD9;
-	Fri, 25 Sep 2020 13:54:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C9F76ECE0;
+	Fri, 25 Sep 2020 14:09:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16DA46E489;
- Fri, 25 Sep 2020 13:54:46 +0000 (UTC)
-IronPort-SDR: Gy/tFrByITJXxGRCce/xNj3AX0AXfb30+MD3xFXVEztdkrv3IBwABJCoFo65wyjqGsP2ebTB2T
- IMoWJ2igS8gA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="158879208"
-X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="158879208"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2020 06:54:45 -0700
-IronPort-SDR: dk03fEEi9qPyhqM7EwMAHy0s+gOrBDoBRLjKg62nh1DCt22erA2Hjz2fGiIdaCN+F1Vla5tS05
- r4RnbuAL/0xQ==
-X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="455841547"
-Received: from mlevy2-mobl.ger.corp.intel.com (HELO [10.251.176.131])
- ([10.251.176.131])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2020 06:54:41 -0700
-To: Maor Gottlieb <maorg@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Leon Romanovsky <leon@kernel.org>
-References: <20200922083958.2150803-1-leon@kernel.org>
- <20200922083958.2150803-2-leon@kernel.org>
- <118a03ef-d160-e202-81cc-16c9c39359fc@linux.intel.com>
- <20200925071330.GA2280698@unreal> <20200925115544.GY9475@nvidia.com>
- <65ca566b-7a5e-620f-13a4-c59eb836345a@nvidia.com>
- <33942b10-8eef-9180-44c5-b7379b92b824@linux.intel.com>
- <9d69d68d-7868-609b-c703-dfe9fec93a0f@nvidia.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <45919218-9a73-e3e3-cc03-5255a227f341@linux.intel.com>
-Date: Fri, 25 Sep 2020 14:54:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mail-ua1-x944.google.com (mail-ua1-x944.google.com
+ [IPv6:2607:f8b0:4864:20::944])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AAB76ECDD;
+ Fri, 25 Sep 2020 14:09:27 +0000 (UTC)
+Received: by mail-ua1-x944.google.com with SMTP id h15so976710uab.3;
+ Fri, 25 Sep 2020 07:09:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=W4ybNDBj3JkG7xwtC+pQm/GVM9Ki73UbHYGcb1DNgoE=;
+ b=VAE/JCw4Kc2YKn1yJ8L/Q9+LADI9BPVrPzMbIS0mOQDh1e+IitPGEnQLZfakaeotSX
+ fJpnesPgh6fudFH4hBFOTUzOvja6IHah1EG+sAlo5mDeRe30T7WE5Z+EmmrqyLBVjPT2
+ Y6MypsxJU5ecTFL5KTTnudzV3iHFKzBhkicIF7nAwXtRPFhwdOi9g9/Y/qXRPNUiOlZ/
+ S833Agy78MEYaybNf9Tk+M+dZyKRMHoBkxs25nGIJGGXWhSky07MsU9xI+7dnENL4I7l
+ bH2CDxH5hj1vhP5g8v/h/6Mm80YH+iZTF4wuYNk0h7j6DAwbRzp57D1NpHpN8KHRNu/G
+ TlSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=W4ybNDBj3JkG7xwtC+pQm/GVM9Ki73UbHYGcb1DNgoE=;
+ b=iT+rGlEO8i49daiE7JlxXd5aVJhQ1exTWoxm46UeUdAZebvdC/es70NBQQiBD+kqih
+ 63RNhn887ffcA6O3+BXbcNoVDj8CECE+iUAxVsq4dlmzDHjHbcA1mTPT9T/9fvffjRAD
+ mw5A/Nu53iZVNeBnzluU/+HYUvc1Ub1exWLOVpI588VkLPiyakUE9QdpPAVot5TjNc97
+ hevOMa+FcPwMLgDd2pIzAGiaNs/5JZDdJIo0qBuF4bARnUgGmVMU9i9gNA+4AmL1Xi5/
+ F0+wITliEA207dds+og9lg1W7S/Xz4M8EYaNHjio06dmwK1zOQxAwbftz7jjDhAZWL7f
+ 9w8A==
+X-Gm-Message-State: AOAM5324kCxQ0zqiAPqBIe8hOssvJMFq10SIMb8sD57iaS1Ihu6OlTSJ
+ 8gS7AZ2YnqNfBEgM7WQkMjr+QrB1cnna9cIUeds=
+X-Google-Smtp-Source: ABdhPJy0IxUr4anWia0Qm7ztGxjztU5H4LAKNIvZHwQZc9rZ+mSfXU53xRXTbzCYoiyClMt8qe//fl65KD/2aNPSkzU=
+X-Received: by 2002:ab0:6f91:: with SMTP id f17mr2536965uav.129.1601042966264; 
+ Fri, 25 Sep 2020 07:09:26 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <9d69d68d-7868-609b-c703-dfe9fec93a0f@nvidia.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH rdma-next v3 1/2] lib/scatterlist: Add
- support in dynamic allocation of SG table from pages
+References: <20200924135853.875294-1-hch@lst.de>
+ <20200924135853.875294-9-hch@lst.de>
+In-Reply-To: <20200924135853.875294-9-hch@lst.de>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 25 Sep 2020 15:08:59 +0100
+Message-ID: <CAM0jSHPaqpX2A5T4iybfLF+F=cBX05GW8u54cUe7AG0QKDJt2g@mail.gmail.com>
+To: Christoph Hellwig <hch@lst.de>
+Subject: Re: [Intel-gfx] [PATCH 08/11] drm/i915: use vmap in
+ i915_gem_object_map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,71 +62,229 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Roland Scheidegger <sroland@vmware.com>, dri-devel@lists.freedesktop.org,
- Maor Gottlieb <maorg@mellanox.com>, David Airlie <airlied@linux.ie>,
- Doug Ledford <dledford@redhat.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Christoph Hellwig <hch@lst.de>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>, Minchan Kim <minchan@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, x86@kernel.org,
+ kernel list <linux-kernel@vger.kernel.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ Matthew Wilcox <willy@infradead.org>, xen-devel@lists.xenproject.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDI1LzA5LzIwMjAgMTQ6MzksIE1hb3IgR290dGxpZWIgd3JvdGU6Cj4gCj4gT24gOS8yNS8y
-MDIwIDM6MzMgUE0sIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+Pgo+PiBPbiAyNS8wOS8yMDIwIDEz
-OjE4LCBNYW9yIEdvdHRsaWViIHdyb3RlOgo+Pj4gT24gOS8yNS8yMDIwIDI6NTUgUE0sIEphc29u
-IEd1bnRob3JwZSB3cm90ZToKPj4+PiBPbiBGcmksIFNlcCAyNSwgMjAyMCBhdCAxMDoxMzozMEFN
-ICswMzAwLCBMZW9uIFJvbWFub3Zza3kgd3JvdGU6Cj4+Pj4+Pj4gZGlmZiAtLWdpdCBhL3Rvb2xz
-L3Rlc3Rpbmcvc2NhdHRlcmxpc3QvbWFpbi5jIAo+Pj4+Pj4+IGIvdG9vbHMvdGVzdGluZy9zY2F0
-dGVybGlzdC9tYWluLmMKPj4+Pj4+PiBpbmRleCAwYTE0NjQxODEyMjYuLjQ4OTkzNTlhMzFhYyAx
-MDA2NDQKPj4+Pj4+PiArKysgYi90b29scy90ZXN0aW5nL3NjYXR0ZXJsaXN0L21haW4uYwo+Pj4+
-Pj4+IEBAIC01NSwxNCArNTUsMTMgQEAgaW50IG1haW4odm9pZCkKPj4+Pj4+PiDCoMKgwqDCoMKg
-wqAgZm9yIChpID0gMCwgdGVzdCA9IHRlc3RzOyB0ZXN0LT5leHBlY3RlZF9zZWdtZW50czsgdGVz
-dCsrLCAKPj4+Pj4+PiBpKyspIHsKPj4+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3Qg
-cGFnZSAqcGFnZXNbTUFYX1BBR0VTXTsKPj4+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1
-Y3Qgc2dfdGFibGUgc3Q7Cj4+Pj4+Pj4gLcKgwqDCoMKgwqDCoMKgIGludCByZXQ7Cj4+Pj4+Pj4g
-K8KgwqDCoMKgwqDCoMKgIHN0cnVjdCBzY2F0dGVybGlzdCAqc2c7Cj4+Pj4+Pj4KPj4+Pj4+PiDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBzZXRfcGFnZXMocGFnZXMsIHRlc3QtPnBmbiwgdGVzdC0+bnVt
-X3BhZ2VzKTsKPj4+Pj4+Pgo+Pj4+Pj4+IC3CoMKgwqDCoMKgwqDCoCByZXQgPSBfX3NnX2FsbG9j
-X3RhYmxlX2Zyb21fcGFnZXMoJnN0LCBwYWdlcywgCj4+Pj4+Pj4gdGVzdC0+bnVtX3BhZ2VzLAo+
-Pj4+Pj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCAwLCB0ZXN0LT5zaXplLCB0ZXN0LT5tYXhfc2VnLAo+Pj4+Pj4+IC3CoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBHRlBfS0VSTkVMKTsKPj4+Pj4+PiAt
-wqDCoMKgwqDCoMKgwqAgYXNzZXJ0KHJldCA9PSB0ZXN0LT5hbGxvY19yZXQpOwo+Pj4+Pj4+ICvC
-oMKgwqDCoMKgwqDCoCBzZyA9IF9fc2dfYWxsb2NfdGFibGVfZnJvbV9wYWdlcygmc3QsIHBhZ2Vz
-LCAKPj4+Pj4+PiB0ZXN0LT5udW1fcGFnZXMsIDAsCj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCB0ZXN0LT5zaXplLCB0ZXN0LT5tYXhfc2VnLCBOVUxMLCAwLCBHRlBfS0VS
-TkVMKTsKPj4+Pj4+PiArwqDCoMKgwqDCoMKgwqAgYXNzZXJ0KFBUUl9FUlJfT1JfWkVSTyhzZykg
-PT0gdGVzdC0+YWxsb2NfcmV0KTsKPj4+Pj4+IFNvbWUgdGVzdCBjb3ZlcmFnZSBmb3IgcmVsYXRp
-dmVseSBjb21wbGV4IGNvZGUgd291bGQgYmUgdmVyeSAKPj4+Pj4+IHdlbGNvbWVkLiBTaW5jZQo+
-Pj4+Pj4gdGhlIHRlc3RpbmcgZnJhbWV3b3JrIGlzIGFscmVhZHkgdGhlcmUsIGV2ZW4gaWYgaXQg
-Yml0LXJvdHRlZCBhIAo+Pj4+Pj4gYml0LCBidXQKPj4+Pj4+IHNob3VsZG4ndCBiZSBoYXJkIHRv
-IGZpeC4KPj4+Pj4+Cj4+Pj4+PiBBIGZldyB0ZXN0cyB0byBjaGVjayBhcHBlbmQvZ3JvdyB3b3Jr
-cyBhcyBleHBlY3RlZCwgaW4gdGVybXMgb2YgCj4+Pj4+PiBob3cgdGhlIGVuZAo+Pj4+Pj4gdGFi
-bGUgbG9va3MgbGlrZSBnaXZlbiB0aGUgaW5pdGlhbCBzdGF0ZSBhbmQgc29tZSBkaWZmZXJlbnQg
-cGFnZSAKPj4+Pj4+IHBhdHRlcm5zCj4+Pj4+PiBhZGRlZCB0byBpdC4gQW5kIGJvdGggY3Jvc3Np
-bmcgYW5kIG5vdCBjcm9zc2luZyBpbnRvIHNnIGNoYWluaW5nIAo+Pj4+Pj4gc2NlbmFyaW9zLgo+
-Pj4+PiBUaGlzIGZ1bmN0aW9uIGlzIGJhc2ljIGZvciBhbGwgUkRNQSBkZXZpY2VzIGFuZCB3ZSBh
-cmUgcHJldHR5IAo+Pj4+PiBjb25maWRlbnQKPj4+Pj4gdGhhdCB0aGUgb2xkIGFuZCBuZXcgZmxv
-d3MgYXJlIHRlc3RlZCB0aG9yb3VnaGx5Lgo+Pj4+IFdlbGwsIHNpbmNlIDAtZGF5IGlzIHJlcG9y
-dGluZyB0aGF0IF9faTkxNV9nZW1fdXNlcnB0cl9hbGxvY19wYWdlcyBpcwo+Pj4+IGNyYXNoaW5n
-IG9uIHRoaXMsIGl0IHByb2JhYmx5IGRvZXMgbmVlZCBzb21lIHRlc3RzIDpcCj4+Pj4KPj4+PiBK
-YXNvbgo+Pj4KPj4+IEl0IGlzIGNyYXNoaW5nIGluIHRoZSByZWd1bGFyIG9sZCBmbG93IHdoaWNo
-IGFscmVhZHkgdGVzdGVkLgo+Pj4gSG93ZXZlciwgSSB3aWxsIGFkZCBtb3JlIHRlc3RzLgo+Pgo+
-PiBEbyB5b3Ugd2FudCB0byB0YWtlIHNvbWUgb2YgdGhlIGNvbW1pdHMgZnJvbSAKPj4gZ2l0Oi8v
-cGVvcGxlLmZyZWVkZXNrdG9wLm9yZy9+dHVyc3VsaW4vZHJtLWludGVsIHNndGVzdD8gSXQgd291
-bGQgYmUgCj4+IGZpbmUgYnkgbWUuIEkgY2FuIGNsZWFuIHVwIHRoZSBjb21taXQgbWVzc2FnZXMg
-aWYgeW91IHdhbnQuCj4gCj4gSSB3aWxsIHZlcnkgYXBwcmVjaWF0ZSBpdC4gVGhhbmtzCgpJJ3Zl
-IHB1c2hlZCBhIGJyYW5jaCB3aXRoIHRpZGllZCBjb21taXQgbWVzc2FnZXMgYW5kIGEgYml0IHJl
-LW9yZGVyZWQgdG8gCnRoZSBzYW1lIGxvY2F0aW9uLiBZb3UgY2FuIHB1bGwgYW5kIGluY2x1ZGUg
-aW4geW91ciBzZXJpZXM6CgogIHRvb2xzL3Rlc3Rpbmcvc2NhdHRlcmxpc3Q6IFJlanV2ZW5hdGUg
-Yml0LXJvdHRlbiB0ZXN0CiAgdG9vbHMvdGVzdGluZy9zY2F0dGVybGlzdDogU2hvdyBlcnJvcnMg
-aW4gaHVtYW4gcmVhZGFibGUgZm9ybQoKQW5kICJ0ZXN0IGZpeGVzIGZvciBzZyBhcHBlbmQiIHlv
-dSBjYW4gc3F1YXNoIChtaW51cyB0aGUgc2dfdGFibGUgCnplcm9pbmcpIGludG8geW91ciBwYXRj
-aC4KCklmIHRoaXMgcGxhbiBkb2VzIG5vdCB3b3JrIGZvciB5b3UsIEkgY2FuIHNlbmQgdHdvIG9m
-IG15IHBhdGNoZXMgdG8gbGttbCAKaW5kZXBlbmRlbnRseS4gV2hhdCBldmVyIHlvdSBwcmVmZXIu
-CgpSZWdhcmRzLAoKVHZydGtvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+On Thu, 24 Sep 2020 at 14:59, Christoph Hellwig <hch@lst.de> wrote:
+>
+> i915_gem_object_map implements fairly low-level vmap functionality in
+> a driver.  Split it into two helpers, one for remapping kernel memory
+> which can use vmap, and one for I/O memory that uses vmap_pfn.
+>
+> The only practical difference is that alloc_vm_area prefeaults the
+> vmalloc area PTEs, which doesn't seem to be required here for the
+> kernel memory case (and could be added to vmap using a flag if actually
+> required).
+>
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  drivers/gpu/drm/i915/Kconfig              |   1 +
+>  drivers/gpu/drm/i915/gem/i915_gem_pages.c | 126 ++++++++++------------
+>  2 files changed, 59 insertions(+), 68 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index 9afa5c4a6bf006..1e1cb245fca778 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -25,6 +25,7 @@ config DRM_I915
+>         select CRC32
+>         select SND_HDA_I915 if SND_HDA_CORE
+>         select CEC_CORE if CEC_NOTIFIER
+> +       select VMAP_PFN
+>         help
+>           Choose this option if you have a system that has "Intel Graphics
+>           Media Accelerator" or "HD Graphics" integrated graphics,
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> index 6550c0bc824ea2..b519417667eb4b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> @@ -232,34 +232,21 @@ int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
+>         return err;
+>  }
+>
+> -static inline pte_t iomap_pte(resource_size_t base,
+> -                             dma_addr_t offset,
+> -                             pgprot_t prot)
+> -{
+> -       return pte_mkspecial(pfn_pte((base + offset) >> PAGE_SHIFT, prot));
+> -}
+> -
+>  /* The 'mapping' part of i915_gem_object_pin_map() below */
+> -static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
+> -                                enum i915_map_type type)
+> +static void *i915_gem_object_map_page(struct drm_i915_gem_object *obj,
+> +               enum i915_map_type type)
+>  {
+> -       unsigned long n_pte = obj->base.size >> PAGE_SHIFT;
+> -       struct sg_table *sgt = obj->mm.pages;
+> -       pte_t *stack[32], **mem;
+> -       struct vm_struct *area;
+> +       unsigned long n_pages = obj->base.size >> PAGE_SHIFT, i;
+> +       struct page *stack[32], **pages = stack, *page;
+> +       struct sgt_iter iter;
+>         pgprot_t pgprot;
+> +       void *vaddr;
+>
+> -       if (!i915_gem_object_has_struct_page(obj) && type != I915_MAP_WC)
+> -               return NULL;
+> -
+> -       if (GEM_WARN_ON(type == I915_MAP_WC &&
+> -                       !static_cpu_has(X86_FEATURE_PAT)))
+> -               return NULL;
+> -
+> -       /* A single page can always be kmapped */
+> -       if (n_pte == 1 && type == I915_MAP_WB) {
+> -               struct page *page = sg_page(sgt->sgl);
+> -
+> +       switch (type) {
+> +       default:
+> +               MISSING_CASE(type);
+> +               fallthrough;    /* to use PAGE_KERNEL anyway */
+> +       case I915_MAP_WB:
+>                 /*
+>                  * On 32b, highmem using a finite set of indirect PTE (i.e.
+>                  * vmap) to provide virtual mappings of the high pages.
+> @@ -277,30 +264,8 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
+>                  * So if the page is beyond the 32b boundary, make an explicit
+>                  * vmap.
+>                  */
+> -               if (!PageHighMem(page))
+> -                       return page_address(page);
+> -       }
+> -
+> -       mem = stack;
+> -       if (n_pte > ARRAY_SIZE(stack)) {
+> -               /* Too big for stack -- allocate temporary array instead */
+> -               mem = kvmalloc_array(n_pte, sizeof(*mem), GFP_KERNEL);
+> -               if (!mem)
+> -                       return NULL;
+> -       }
+> -
+> -       area = alloc_vm_area(obj->base.size, mem);
+> -       if (!area) {
+> -               if (mem != stack)
+> -                       kvfree(mem);
+> -               return NULL;
+> -       }
+> -
+> -       switch (type) {
+> -       default:
+> -               MISSING_CASE(type);
+> -               fallthrough;    /* to use PAGE_KERNEL anyway */
+> -       case I915_MAP_WB:
+> +               if (n_pages == 1 && !PageHighMem(sg_page(obj->mm.pages->sgl)))
+> +                       return page_address(sg_page(obj->mm.pages->sgl));
+>                 pgprot = PAGE_KERNEL;
+>                 break;
+>         case I915_MAP_WC:
+> @@ -308,30 +273,49 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
+>                 break;
+>         }
+>
+> -       if (i915_gem_object_has_struct_page(obj)) {
+> -               struct sgt_iter iter;
+> -               struct page *page;
+> -               pte_t **ptes = mem;
+> +       if (n_pages > ARRAY_SIZE(stack)) {
+> +               /* Too big for stack -- allocate temporary array instead */
+> +               pages = kvmalloc_array(n_pages, sizeof(*pages), GFP_KERNEL);
+> +               if (!pages)
+> +                       return NULL;
+> +       }
+>
+> -               for_each_sgt_page(page, iter, sgt)
+> -                       **ptes++ = mk_pte(page, pgprot);
+> -       } else {
+> -               resource_size_t iomap;
+> -               struct sgt_iter iter;
+> -               pte_t **ptes = mem;
+> -               dma_addr_t addr;
+> +       i = 0;
+> +       for_each_sgt_page(page, iter, obj->mm.pages)
+> +               pages[i++] = page;
+> +       vaddr = vmap(pages, n_pages, 0, pgprot);
+> +       if (pages != stack)
+> +               kvfree(pages);
+> +       return vaddr;
+> +}
+>
+> -               iomap = obj->mm.region->iomap.base;
+> -               iomap -= obj->mm.region->region.start;
+> +static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
+> +               enum i915_map_type type)
+> +{
+> +       resource_size_t iomap = obj->mm.region->iomap.base -
+> +               obj->mm.region->region.start;
+> +       unsigned long n_pfn = obj->base.size >> PAGE_SHIFT;
+> +       unsigned long stack[32], *pfns = stack, i;
+> +       struct sgt_iter iter;
+> +       dma_addr_t addr;
+> +       void *vaddr;
+> +
+> +       if (type != I915_MAP_WC)
+> +               return NULL;
+>
+> -               for_each_sgt_daddr(addr, iter, sgt)
+> -                       **ptes++ = iomap_pte(iomap, addr, pgprot);
+> +       if (n_pfn > ARRAY_SIZE(stack)) {
+> +               /* Too big for stack -- allocate temporary array instead */
+> +               pfns = kvmalloc_array(n_pfn, sizeof(*pfns), GFP_KERNEL);
+> +               if (!pfns)
+> +                       return NULL;
+>         }
+>
+> -       if (mem != stack)
+> -               kvfree(mem);
+> -
+> -       return area->addr;
+> +       for_each_sgt_daddr(addr, iter, obj->mm.pages)
+> +               pfns[i++] = (iomap + addr) >> PAGE_SHIFT;
+
+Missing the i = 0 fix from Dan?
+
+> +       vaddr = vmap_pfn(pfns, n_pfn, pgprot_writecombine(PAGE_KERNEL_IO));
+> +       if (pfns != stack)
+> +               kvfree(pfns);
+> +       return vaddr;
+>  }
+>
+>  /* get, pin, and map the pages of the object into kernel space */
+> @@ -383,7 +367,13 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
+>         }
+>
+>         if (!ptr) {
+> -               ptr = i915_gem_object_map(obj, type);
+> +               if (GEM_WARN_ON(type == I915_MAP_WC &&
+> +                               !static_cpu_has(X86_FEATURE_PAT)))
+> +                       ptr = NULL;
+> +               else if (i915_gem_object_has_struct_page(obj))
+> +                       ptr = i915_gem_object_map_page(obj, type);
+> +               else
+> +                       ptr = i915_gem_object_map_pfn(obj, type);
+>                 if (!ptr) {
+>                         err = -ENOMEM;
+>                         goto err_unpin;
+> --
+> 2.28.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
