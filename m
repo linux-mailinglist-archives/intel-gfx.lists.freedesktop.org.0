@@ -2,43 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEDBE2786DB
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 14:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4421027873F
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 14:30:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E065A6ECB2;
-	Fri, 25 Sep 2020 12:17:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90A6C6ECA2;
+	Fri, 25 Sep 2020 12:29:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9235D6ECB2
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 12:17:55 +0000 (UTC)
-IronPort-SDR: 6X6PSZ/6Xjk7jsaOXluHW0TOxKW3pen5QUHHaU1PV7SxOUM2pC/22RatvOT+IfD29rEKbZqzBx
- MKaTGShQChNA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="149277148"
-X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; d="scan'208";a="149277148"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F38266ECA2;
+ Fri, 25 Sep 2020 12:29:58 +0000 (UTC)
+IronPort-SDR: +wh+9JjWD6SR3YeNt7AWNYC2AyoHzKNGJncEUhpRb/DanJ9mbEsjJD2H5kOD4oUcNfZkVKpRDz
+ AuJg8Wad6qzQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="225671247"
+X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="225671247"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2020 05:17:54 -0700
-IronPort-SDR: iOQyouy1weduCaC7AdKsi5qdI51kxjJCTn51qJy6FSJgGuO5l7+co4DF7aa+vVL+RSJNSgkgKo
- TpNjkYVGzp3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; d="scan'208";a="348361599"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 25 Sep 2020 05:17:52 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 25 Sep 2020 15:17:52 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 25 Sep 2020 15:17:49 +0300
-Message-Id: <20200925121749.708-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200925121749.708-1-ville.syrjala@linux.intel.com>
-References: <20200925121749.708-1-ville.syrjala@linux.intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 05:29:58 -0700
+IronPort-SDR: OatOg+mI2cktpFK85pdpyPjv0iQQ+N/4tqSMOhX/do3enQSWt2VmuP8C841vmZkqHsUfbL0sie
+ MthwJq7tkFmA==
+X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="455808533"
+Received: from mlevy2-mobl.ger.corp.intel.com (HELO [10.251.176.131])
+ ([10.251.176.131])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 05:29:53 -0700
+To: Jason Gunthorpe <jgg@nvidia.com>
+References: <20200922083958.2150803-1-leon@kernel.org>
+ <20200922083958.2150803-2-leon@kernel.org>
+ <118a03ef-d160-e202-81cc-16c9c39359fc@linux.intel.com>
+ <20200925071330.GA2280698@unreal>
+ <adff5752-582c-2065-89e2-924ef732911a@linux.intel.com>
+ <20200925115833.GZ9475@nvidia.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <c5956163-1769-ee40-e4ed-45532d8c4e19@linux.intel.com>
+Date: Fri, 25 Sep 2020 13:29:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Don't hide the
- intel_crtc_atomic_check() call
+In-Reply-To: <20200925115833.GZ9475@nvidia.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH rdma-next v3 1/2] lib/scatterlist: Add
+ support in dynamic allocation of SG table from pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,30 +58,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Leon Romanovsky <leon@kernel.org>, linux-rdma@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Roland Scheidegger <sroland@vmware.com>,
+ dri-devel@lists.freedesktop.org, Maor Gottlieb <maorg@mellanox.com>,
+ David Airlie <airlied@linux.ie>, Doug Ledford <dledford@redhat.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Maor Gottlieb <maorg@nvidia.com>, Christoph Hellwig <hch@lst.de>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCk1v
-dmUgdGhlIGludGVsX2NydGNfYXRvbWljX2NoZWNrKCkgY2FsbCBvdXQgZnJvbSB0aGUgdmFyaWFi
-bGUKZGVjbGFyYXRpb25zIHRvIGEgcGxhY2Ugd2hlcmUgd2UgY2FuIGFjdHVhbGx5IHNlZSBpdC4K
-ClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
-bC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMg
-fCA0ICsrKy0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IDVh
-OWQ5MzNlNDI1YS4uMTE4NjJkZTNkNzcyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMTQ4NDQsOCArMTQ4NDQsMTAgQEAgc3RhdGljIGludCBp
-bnRlbF9hdG9taWNfY2hlY2tfY3J0Y3Moc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUp
-CiAJaW50IGk7CiAKIAlmb3JfZWFjaF9uZXdfaW50ZWxfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0
-YywgY3J0Y19zdGF0ZSwgaSkgewotCQlpbnQgcmV0ID0gaW50ZWxfY3J0Y19hdG9taWNfY2hlY2so
-c3RhdGUsIGNydGMpOwogCQlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUo
-Y3J0Yy0+YmFzZS5kZXYpOworCQlpbnQgcmV0OworCisJCXJldCA9IGludGVsX2NydGNfYXRvbWlj
-X2NoZWNrKHN0YXRlLCBjcnRjKTsKIAkJaWYgKHJldCkgewogCQkJZHJtX2RiZ19hdG9taWMoJmk5
-MTUtPmRybSwKIAkJCQkgICAgICAgIltDUlRDOiVkOiVzXSBhdG9taWMgZHJpdmVyIGNoZWNrIGZh
-aWxlZFxuIiwKLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+
+On 25/09/2020 12:58, Jason Gunthorpe wrote:
+> On Fri, Sep 25, 2020 at 12:41:29PM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 25/09/2020 08:13, Leon Romanovsky wrote:
+>>> On Thu, Sep 24, 2020 at 09:21:20AM +0100, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 22/09/2020 09:39, Leon Romanovsky wrote:
+>>>>> From: Maor Gottlieb <maorg@mellanox.com>
+>>>>>
+>>>>> Extend __sg_alloc_table_from_pages to support dynamic allocation of
+>>>>> SG table from pages. It should be used by drivers that can't supply
+>>>>> all the pages at one time.
+>>>>>
+>>>>> This function returns the last populated SGE in the table. Users should
+>>>>> pass it as an argument to the function from the second call and forward.
+>>>>> As before, nents will be equal to the number of populated SGEs (chunks).
+>>>>
+>>>> So it's appending and growing the "list", did I get that right? Sounds handy
+>>>> indeed. Some comments/questions below.
+>>>
+>>> Yes, we (RDMA) use this function to chain contiguous pages.
+>>
+>> I will eveluate if i915 could start using it. We have some loops which build
+>> page by page and coalesce.
+> 
+> Christoph H doesn't like it, but if there are enough cases we should
+> really have a pin_user_pages_to_sg() rather than open code this all
+> over the place.
+> 
+> With THP the chance of getting a coalescing SG is much higher, and
+> everything is more efficient with larger SGEs.
+
+Right, I was actually referring to i915 sites where we build sg tables 
+out of shmem and plain kernel pages. In those areas we have some open 
+coded coalescing loops (see for instance our shmem_get_pages). Plus a 
+local "trim" to discard the unused entries, since we allocate 
+pessimistically not knowing how coalescing will pan out. This kind of 
+core function which appends pages could replace some of that. Maybe it 
+would be slightly less efficient but I will pencil in to at least 
+evaluate it.
+
+Otherwise I do agree that coalescing is a win and in the past I have 
+measured savings in a few MiB range just for struct scatterlist storage.
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
