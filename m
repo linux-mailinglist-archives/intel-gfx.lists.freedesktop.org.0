@@ -2,54 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB45A278A6A
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 16:09:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B18EB278AA1
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 16:13:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C9F76ECE0;
-	Fri, 25 Sep 2020 14:09:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE8DC6ECE4;
+	Fri, 25 Sep 2020 14:13:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ua1-x944.google.com (mail-ua1-x944.google.com
- [IPv6:2607:f8b0:4864:20::944])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AAB76ECDD;
- Fri, 25 Sep 2020 14:09:27 +0000 (UTC)
-Received: by mail-ua1-x944.google.com with SMTP id h15so976710uab.3;
- Fri, 25 Sep 2020 07:09:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=W4ybNDBj3JkG7xwtC+pQm/GVM9Ki73UbHYGcb1DNgoE=;
- b=VAE/JCw4Kc2YKn1yJ8L/Q9+LADI9BPVrPzMbIS0mOQDh1e+IitPGEnQLZfakaeotSX
- fJpnesPgh6fudFH4hBFOTUzOvja6IHah1EG+sAlo5mDeRe30T7WE5Z+EmmrqyLBVjPT2
- Y6MypsxJU5ecTFL5KTTnudzV3iHFKzBhkicIF7nAwXtRPFhwdOi9g9/Y/qXRPNUiOlZ/
- S833Agy78MEYaybNf9Tk+M+dZyKRMHoBkxs25nGIJGGXWhSky07MsU9xI+7dnENL4I7l
- bH2CDxH5hj1vhP5g8v/h/6Mm80YH+iZTF4wuYNk0h7j6DAwbRzp57D1NpHpN8KHRNu/G
- TlSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=W4ybNDBj3JkG7xwtC+pQm/GVM9Ki73UbHYGcb1DNgoE=;
- b=iT+rGlEO8i49daiE7JlxXd5aVJhQ1exTWoxm46UeUdAZebvdC/es70NBQQiBD+kqih
- 63RNhn887ffcA6O3+BXbcNoVDj8CECE+iUAxVsq4dlmzDHjHbcA1mTPT9T/9fvffjRAD
- mw5A/Nu53iZVNeBnzluU/+HYUvc1Ub1exWLOVpI588VkLPiyakUE9QdpPAVot5TjNc97
- hevOMa+FcPwMLgDd2pIzAGiaNs/5JZDdJIo0qBuF4bARnUgGmVMU9i9gNA+4AmL1Xi5/
- F0+wITliEA207dds+og9lg1W7S/Xz4M8EYaNHjio06dmwK1zOQxAwbftz7jjDhAZWL7f
- 9w8A==
-X-Gm-Message-State: AOAM5324kCxQ0zqiAPqBIe8hOssvJMFq10SIMb8sD57iaS1Ihu6OlTSJ
- 8gS7AZ2YnqNfBEgM7WQkMjr+QrB1cnna9cIUeds=
-X-Google-Smtp-Source: ABdhPJy0IxUr4anWia0Qm7ztGxjztU5H4LAKNIvZHwQZc9rZ+mSfXU53xRXTbzCYoiyClMt8qe//fl65KD/2aNPSkzU=
-X-Received: by 2002:ab0:6f91:: with SMTP id f17mr2536965uav.129.1601042966264; 
- Fri, 25 Sep 2020 07:09:26 -0700 (PDT)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 997B86ECE4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 14:13:15 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 22536260-1500050 for multiple; Fri, 25 Sep 2020 15:13:12 +0100
 MIME-Version: 1.0
-References: <20200924135853.875294-1-hch@lst.de>
- <20200924135853.875294-9-hch@lst.de>
-In-Reply-To: <20200924135853.875294-9-hch@lst.de>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 25 Sep 2020 15:08:59 +0100
-Message-ID: <CAM0jSHPaqpX2A5T4iybfLF+F=cBX05GW8u54cUe7AG0QKDJt2g@mail.gmail.com>
-To: Christoph Hellwig <hch@lst.de>
-Subject: Re: [Intel-gfx] [PATCH 08/11] drm/i915: use vmap in
- i915_gem_object_map
+In-Reply-To: <a3ecdcec-5274-99b4-6dcb-f1c34695c30d@linux.intel.com>
+References: <20200916094219.3878-1-chris@chris-wilson.co.uk>
+ <20200916094219.3878-3-chris@chris-wilson.co.uk>
+ <6be94225-9d54-0a4b-d1d0-d5b46d8b6fdb@linux.intel.com>
+ <160102809807.30248.12041152856672975142@build.alporthouse.com>
+ <a3ecdcec-5274-99b4-6dcb-f1c34695c30d@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Fri, 25 Sep 2020 15:13:11 +0100
+Message-ID: <160104319162.28040.2956055792545950778@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/gt: Always send a pulse down
+ the engine after disabling heartbeat
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,228 +44,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>, Minchan Kim <minchan@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>, x86@kernel.org,
- kernel list <linux-kernel@vger.kernel.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
- Matthew Wilcox <willy@infradead.org>, xen-devel@lists.xenproject.org,
- Andrew Morton <akpm@linux-foundation.org>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 24 Sep 2020 at 14:59, Christoph Hellwig <hch@lst.de> wrote:
->
-> i915_gem_object_map implements fairly low-level vmap functionality in
-> a driver.  Split it into two helpers, one for remapping kernel memory
-> which can use vmap, and one for I/O memory that uses vmap_pfn.
->
-> The only practical difference is that alloc_vm_area prefeaults the
-> vmalloc area PTEs, which doesn't seem to be required here for the
-> kernel memory case (and could be added to vmap using a flag if actually
-> required).
->
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> ---
->  drivers/gpu/drm/i915/Kconfig              |   1 +
->  drivers/gpu/drm/i915/gem/i915_gem_pages.c | 126 ++++++++++------------
->  2 files changed, 59 insertions(+), 68 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-> index 9afa5c4a6bf006..1e1cb245fca778 100644
-> --- a/drivers/gpu/drm/i915/Kconfig
-> +++ b/drivers/gpu/drm/i915/Kconfig
-> @@ -25,6 +25,7 @@ config DRM_I915
->         select CRC32
->         select SND_HDA_I915 if SND_HDA_CORE
->         select CEC_CORE if CEC_NOTIFIER
-> +       select VMAP_PFN
->         help
->           Choose this option if you have a system that has "Intel Graphics
->           Media Accelerator" or "HD Graphics" integrated graphics,
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> index 6550c0bc824ea2..b519417667eb4b 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> @@ -232,34 +232,21 @@ int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
->         return err;
->  }
->
-> -static inline pte_t iomap_pte(resource_size_t base,
-> -                             dma_addr_t offset,
-> -                             pgprot_t prot)
-> -{
-> -       return pte_mkspecial(pfn_pte((base + offset) >> PAGE_SHIFT, prot));
-> -}
-> -
->  /* The 'mapping' part of i915_gem_object_pin_map() below */
-> -static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
-> -                                enum i915_map_type type)
-> +static void *i915_gem_object_map_page(struct drm_i915_gem_object *obj,
-> +               enum i915_map_type type)
->  {
-> -       unsigned long n_pte = obj->base.size >> PAGE_SHIFT;
-> -       struct sg_table *sgt = obj->mm.pages;
-> -       pte_t *stack[32], **mem;
-> -       struct vm_struct *area;
-> +       unsigned long n_pages = obj->base.size >> PAGE_SHIFT, i;
-> +       struct page *stack[32], **pages = stack, *page;
-> +       struct sgt_iter iter;
->         pgprot_t pgprot;
-> +       void *vaddr;
->
-> -       if (!i915_gem_object_has_struct_page(obj) && type != I915_MAP_WC)
-> -               return NULL;
-> -
-> -       if (GEM_WARN_ON(type == I915_MAP_WC &&
-> -                       !static_cpu_has(X86_FEATURE_PAT)))
-> -               return NULL;
-> -
-> -       /* A single page can always be kmapped */
-> -       if (n_pte == 1 && type == I915_MAP_WB) {
-> -               struct page *page = sg_page(sgt->sgl);
-> -
-> +       switch (type) {
-> +       default:
-> +               MISSING_CASE(type);
-> +               fallthrough;    /* to use PAGE_KERNEL anyway */
-> +       case I915_MAP_WB:
->                 /*
->                  * On 32b, highmem using a finite set of indirect PTE (i.e.
->                  * vmap) to provide virtual mappings of the high pages.
-> @@ -277,30 +264,8 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
->                  * So if the page is beyond the 32b boundary, make an explicit
->                  * vmap.
->                  */
-> -               if (!PageHighMem(page))
-> -                       return page_address(page);
-> -       }
-> -
-> -       mem = stack;
-> -       if (n_pte > ARRAY_SIZE(stack)) {
-> -               /* Too big for stack -- allocate temporary array instead */
-> -               mem = kvmalloc_array(n_pte, sizeof(*mem), GFP_KERNEL);
-> -               if (!mem)
-> -                       return NULL;
-> -       }
-> -
-> -       area = alloc_vm_area(obj->base.size, mem);
-> -       if (!area) {
-> -               if (mem != stack)
-> -                       kvfree(mem);
-> -               return NULL;
-> -       }
-> -
-> -       switch (type) {
-> -       default:
-> -               MISSING_CASE(type);
-> -               fallthrough;    /* to use PAGE_KERNEL anyway */
-> -       case I915_MAP_WB:
-> +               if (n_pages == 1 && !PageHighMem(sg_page(obj->mm.pages->sgl)))
-> +                       return page_address(sg_page(obj->mm.pages->sgl));
->                 pgprot = PAGE_KERNEL;
->                 break;
->         case I915_MAP_WC:
-> @@ -308,30 +273,49 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
->                 break;
->         }
->
-> -       if (i915_gem_object_has_struct_page(obj)) {
-> -               struct sgt_iter iter;
-> -               struct page *page;
-> -               pte_t **ptes = mem;
-> +       if (n_pages > ARRAY_SIZE(stack)) {
-> +               /* Too big for stack -- allocate temporary array instead */
-> +               pages = kvmalloc_array(n_pages, sizeof(*pages), GFP_KERNEL);
-> +               if (!pages)
-> +                       return NULL;
-> +       }
->
-> -               for_each_sgt_page(page, iter, sgt)
-> -                       **ptes++ = mk_pte(page, pgprot);
-> -       } else {
-> -               resource_size_t iomap;
-> -               struct sgt_iter iter;
-> -               pte_t **ptes = mem;
-> -               dma_addr_t addr;
-> +       i = 0;
-> +       for_each_sgt_page(page, iter, obj->mm.pages)
-> +               pages[i++] = page;
-> +       vaddr = vmap(pages, n_pages, 0, pgprot);
-> +       if (pages != stack)
-> +               kvfree(pages);
-> +       return vaddr;
-> +}
->
-> -               iomap = obj->mm.region->iomap.base;
-> -               iomap -= obj->mm.region->region.start;
-> +static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
-> +               enum i915_map_type type)
-> +{
-> +       resource_size_t iomap = obj->mm.region->iomap.base -
-> +               obj->mm.region->region.start;
-> +       unsigned long n_pfn = obj->base.size >> PAGE_SHIFT;
-> +       unsigned long stack[32], *pfns = stack, i;
-> +       struct sgt_iter iter;
-> +       dma_addr_t addr;
-> +       void *vaddr;
-> +
-> +       if (type != I915_MAP_WC)
-> +               return NULL;
->
-> -               for_each_sgt_daddr(addr, iter, sgt)
-> -                       **ptes++ = iomap_pte(iomap, addr, pgprot);
-> +       if (n_pfn > ARRAY_SIZE(stack)) {
-> +               /* Too big for stack -- allocate temporary array instead */
-> +               pfns = kvmalloc_array(n_pfn, sizeof(*pfns), GFP_KERNEL);
-> +               if (!pfns)
-> +                       return NULL;
->         }
->
-> -       if (mem != stack)
-> -               kvfree(mem);
-> -
-> -       return area->addr;
-> +       for_each_sgt_daddr(addr, iter, obj->mm.pages)
-> +               pfns[i++] = (iomap + addr) >> PAGE_SHIFT;
+Quoting Tvrtko Ursulin (2020-09-25 14:19:22)
+> 
+> On 25/09/2020 11:01, Chris Wilson wrote:
+> > Quoting Tvrtko Ursulin (2020-09-24 14:43:08)
+> >>
+> >> On 16/09/2020 10:42, Chris Wilson wrote:
+> >>> Currently, we check we can send a pulse prior to disabling the
+> >>> heartbeat to verify that we can change the heartbeat, but since we may
+> >>> re-evaluate execution upon changing the heartbeat interval we need another
+> >>> pulse afterwards to refresh execution.
+> >>>
+> >>> Fixes: 9a40bddd47ca ("drm/i915/gt: Expose heartbeat interval via sysfs")
+> >>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> >>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> >>> Cc: <stable@vger.kernel.org> # v5.7+
+> >>> ---
+> >>>    drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 6 ++++--
+> >>>    1 file changed, 4 insertions(+), 2 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> >>> index 8ffdf676c0a0..d09df370f7cd 100644
+> >>> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> >>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> >>> @@ -192,10 +192,12 @@ int intel_engine_set_heartbeat(struct intel_engine_cs *engine,
+> >>>        WRITE_ONCE(engine->props.heartbeat_interval_ms, delay);
+> >>>    
+> >>>        if (intel_engine_pm_get_if_awake(engine)) {
+> >>> -             if (delay)
+> >>> +             if (delay) {
+> >>>                        intel_engine_unpark_heartbeat(engine);
+> >>> -             else
+> >>> +             } else {
+> >>>                        intel_engine_park_heartbeat(engine);
+> >>> +                     intel_engine_pulse(engine); /* recheck execution */
+> >>> +             }
+> >>>                intel_engine_pm_put(engine);
+> >>>        }
+> >>>    
+> >>>
+> >>
+> >> I did not immediately get this one. Do we really need two pulses or
+> >> maybe we could re-order the code a bit and just undo the heartbeat park
+> >> if pulse after parking did not work?
+> > 
+> > We use the first pulse to determine if it's legal for the parameter to
+> > be changed (checking we support the preemptive pulse to remove
+> > non-persistent contexts). Then the second pulse after changing the
+> > parameter to flush the changes through.
+> > 
+> > I like checking for support before making the change, although we could
+> > try and fixup after failure, there would still be a window where the
+> > change would be visible to the system. We don't need to use the pulse per
+> > se for that check, that's pure convenience as it performs the checking
+> > already.
+> 
+> Hm second pulse also has a problem that sneaky user can nerf it with a 
+> precisely timed SIGINT on itself. It's a bit ridiculous isn't it? :)
 
-Missing the i = 0 fix from Dan?
+Sufficient pause for concern. In both this and the kill_context path, we
+are using the pulse to evict hostile contexts, that could be reasonable
+grounds to have the pulse not be interrupted.
+ 
+> Have engine preemption check open coded first and uninterruptible 
+> flavour of pulse sending? It's also not good since we do want it to be 
+> interruptible..
 
-> +       vaddr = vmap_pfn(pfns, n_pfn, pgprot_writecombine(PAGE_KERNEL_IO));
-> +       if (pfns != stack)
-> +               kvfree(pfns);
-> +       return vaddr;
->  }
->
->  /* get, pin, and map the pages of the object into kernel space */
-> @@ -383,7 +367,13 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
->         }
->
->         if (!ptr) {
-> -               ptr = i915_gem_object_map(obj, type);
-> +               if (GEM_WARN_ON(type == I915_MAP_WC &&
-> +                               !static_cpu_has(X86_FEATURE_PAT)))
-> +                       ptr = NULL;
-> +               else if (i915_gem_object_has_struct_page(obj))
-> +                       ptr = i915_gem_object_map_page(obj, type);
-> +               else
-> +                       ptr = i915_gem_object_map_pfn(obj, type);
->                 if (!ptr) {
->                         err = -ENOMEM;
->                         goto err_unpin;
-> --
-> 2.28.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Right, allowing it to be interruptible does ensure we have an escape
+plan. That escape plan is often invaluable. :|
+
+> Unwind the change and report error back to write(2) if 
+> intel_engine_pulse failed for any reason?
+
+The concern then is how atomic do we want the change to appear to be.
+Would it be sufficient to only rollback after error if the value still
+matches (multiple users), cmpxchg for paranoia. Then anything that
+observes the intermediate value will just have to obey the new rules
+temporarily, as they would have to in future if the change succeeded.
+
+	new = strtoull_from_user();
+	/* validate new */
+
+	old = xchg(&heartbeat, new);
+	/* apply changes */
+	if (err)
+		cmpxchg(&heartbeat, new, old);
+
+If heartbeat is changed in the interval, the pulse either uses the new
+or the new-new value, fail/pass regardless. That could mean we report an
+error for another heartbeat value from a second user. That's arguing for
+a mutex guard for the sysfs writes.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
