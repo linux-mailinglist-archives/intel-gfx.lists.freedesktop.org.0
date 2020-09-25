@@ -2,46 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9DF5278580
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 13:01:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A05E2278586
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 13:04:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC056EC95;
-	Fri, 25 Sep 2020 11:00:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1701E6EC7E;
+	Fri, 25 Sep 2020 11:04:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 660B56E09A
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 11:00:58 +0000 (UTC)
-IronPort-SDR: Bk4bAwGmkt/KTIBF11rWEFQK0vY4DOr1VErqqDx9aNf2z9iTR+DAjjW4AyAb8C5/0idMJT3vnb
- u5LwNTxAoZcw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="161581386"
-X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; d="scan'208";a="161581386"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B40BD6EC7E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 11:04:15 +0000 (UTC)
+IronPort-SDR: r4y+1CC9r9o1PmZL/CJo4pOH3hnzQToqYnM7lxWcAMxdoD4+33pgv/xXRPu8pr/bfmkEtzudOA
+ KTR2zIXf1QfA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="246277266"
+X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; d="scan'208";a="246277266"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2020 04:00:57 -0700
-IronPort-SDR: hwJGooIskxcWJwQFN+gqcTXgvUeeR6TVnmgCgjFhg4qcv8+WFqra9LMaAJgk8VaFqeDNVE7IG3
- TV8aaVNCn5kg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; d="scan'208";a="310769160"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 25 Sep 2020 04:00:55 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 25 Sep 2020 14:00:54 +0300
-Date: Fri, 25 Sep 2020 14:00:54 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200925110054.GP6112@intel.com>
-References: <20200924194810.10293-1-ville.syrjala@linux.intel.com>
- <1187052a52622a66b89267cc7573370419bcf832.camel@intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 04:04:15 -0700
+IronPort-SDR: CZKxz2YcHMrBDhdnoMh8DD78AiwgTgMk1XCVVcCYnfZJQLRgFcQ81bh37+XfqstdE/qgjOUxwZ
+ n4owsiso+BtA==
+X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; d="scan'208";a="455786504"
+Received: from gkeaveny-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.30.201])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 04:04:12 -0700
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1187052a52622a66b89267cc7573370419bcf832.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Implement display WA #1142:kbl,
- cfl, cml
+In-Reply-To: <20200916094219.3878-2-chris@chris-wilson.co.uk>
+References: <20200916094219.3878-1-chris@chris-wilson.co.uk>
+ <20200916094219.3878-2-chris@chris-wilson.co.uk>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <160103184907.9735.4650760110326834457@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Fri, 25 Sep 2020 14:04:09 +0300
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Cancel outstanding work after
+ disabling heartbeats on an engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,110 +52,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 24, 2020 at 08:43:33PM +0000, Souza, Jose wrote:
-> On Thu, 2020-09-24 at 22:48 +0300, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <
-> > ville.syrjala@linux.intel.com
-> > >
-> > =
+Quoting Chris Wilson (2020-09-16 12:42:17)
+> We only allow persistent requests to remain on the GPU past the closure
+> of their containing context (and process) so long as they are continuously
+> checked for hangs or allow other requests to preempt them, as we need to
+> ensure forward progress of the system. If we allow persistent contexts
+> to remain on the system after the the hangcheck mechanism is disabled,
+> the system may grind to a halt. On disabling the mechanism, we sent a
+> pulse along the engine to remove all executing contexts from the engine
+> which would check for hung contexts -- but we did not prevent those
+> contexts from being resubmitted if they survived the final hangcheck.
+> 
+> Fixes: 9a40bddd47ca ("drm/i915/gt: Expose heartbeat interval via sysfs")
+> Testcase: igt/gem_ctx_persistence/heartbeat-stop
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: <stable@vger.kernel.org> # v5.7+
 
-> > Implement display w/a #1142. This supposedly fixes some underruns
-> > with FBC+VTd. Bspec says we should use the same programming regardless
-> > of circumstances. Apparently we should flip the magic bits before
-> > turning on any planes so let's put this into the early w/as.
-> > =
+Definitely makes sense to ensure.
 
-> > Cc: Lee Shawn C <
-> > shawn.c.lee@intel.com
-> > >
-> > Signed-off-by: Ville Syrj=E4l=E4 <
-> > ville.syrjala@linux.intel.com
-> > >
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 9 +++++++++
-> >  drivers/gpu/drm/i915/i915_reg.h              | 3 +++
-> >  2 files changed, 12 insertions(+)
-> > =
+Acked-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 5a9d933e425a..9d64187cfd56 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -18677,6 +18677,15 @@ static void intel_early_display_was(struct drm=
-_i915_private *dev_priv)
-> >  		intel_de_write(dev_priv, CHICKEN_PAR1_1,
-> >  			       intel_de_read(dev_priv, CHICKEN_PAR1_1) | FORCE_ARB_IDLE_PLA=
-NES);
-> >  	}
-> > +
-> > +	if (IS_KABYLAKE(dev_priv) || IS_COFFEELAKE(dev_priv) || IS_COMETLAKE(=
-dev_priv)) {
-> =
+Regards, Joonas
 
-> WA mentions that it is required only for KBL, but if Lee says that this h=
-elps with his CML issues.
-
-I think there's a note somewhere that says cfl+ are derived from the
-last kbl, and I don't think there's are specific cfl/cml tags for w/as.
-
-> =
-
-> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-
-Ta.
-
-> =
-
-> > +		/* Display WA #1142:kbl,cfl,cml */
-> > +		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
-> > +			     KBL_ARB_FILL_SPARE_22, KBL_ARB_FILL_SPARE_22);
-> > +		intel_de_rmw(dev_priv, CHICKEN_MISC_2,
-> > +			     KBL_ARB_FILL_SPARE_13 | KBL_ARB_FILL_SPARE_14,
-> > +			     KBL_ARB_FILL_SPARE_14);
-> > +	}
-> >  }
-> >  =
-
-> >  static void ibx_sanitize_pch_hdmi_port(struct drm_i915_private *dev_pr=
-iv,
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i91=
-5_reg.h
-> > index d805d4da6181..3f97cc0fcbf1 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -7865,6 +7865,7 @@ enum {
-> >  # define CHICKEN3_DGMG_DONE_FIX_DISABLE		(1 << 2)
-> >  =
-
-> >  #define CHICKEN_PAR1_1			_MMIO(0x42080)
-> > +#define  KBL_ARB_FILL_SPARE_22		REG_BIT(22)
-> >  #define  DIS_RAM_BYPASS_PSR2_MAN_TRACK	(1 << 16)
-> >  #define  SKL_DE_COMPRESSED_HASH_MODE	(1 << 15)
-> >  #define  DPA_MASK_VBLANK_SRD		(1 << 15)
-> > @@ -7877,6 +7878,8 @@ enum {
-> >  =
-
-> >  #define CHICKEN_MISC_2		_MMIO(0x42084)
-> >  #define  CNL_COMP_PWR_DOWN	(1 << 23)
-> > +#define  KBL_ARB_FILL_SPARE_14	REG_BIT(14)
-> > +#define  KBL_ARB_FILL_SPARE_13	REG_BIT(13)
-> >  #define  GLK_CL2_PWR_DOWN	(1 << 12)
-> >  #define  GLK_CL1_PWR_DOWN	(1 << 11)
-> >  #define  GLK_CL0_PWR_DOWN	(1 << 10)
-> > =
-
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine.h | 9 +++++++++
+>  drivers/gpu/drm/i915/i915_request.c    | 5 +++++
+>  2 files changed, 14 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index 08e2c000dcc3..7c3a1012e702 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -337,4 +337,13 @@ intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
+>         return intel_engine_has_preemption(engine);
+>  }
+>  
+> +static inline bool
+> +intel_engine_has_heartbeat(const struct intel_engine_cs *engine)
+> +{
+> +       if (!IS_ACTIVE(CONFIG_DRM_I915_HEARTBEAT_INTERVAL))
+> +               return false;
+> +
+> +       return READ_ONCE(engine->props.heartbeat_interval_ms);
+> +}
+> +
+>  #endif /* _INTEL_RINGBUFFER_H_ */
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 436ce368ddaa..0e813819b041 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -542,8 +542,13 @@ bool __i915_request_submit(struct i915_request *request)
+>         if (i915_request_completed(request))
+>                 goto xfer;
+>  
+> +       if (unlikely(intel_context_is_closed(request->context) &&
+> +                    !intel_engine_has_heartbeat(engine)))
+> +               intel_context_set_banned(request->context);
+> +
+>         if (unlikely(intel_context_is_banned(request->context)))
+>                 i915_request_set_error_once(request, -EIO);
+> +
+>         if (unlikely(fatal_error(request->fence.error)))
+>                 __i915_request_skip(request);
+>  
+> -- 
+> 2.20.1
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
