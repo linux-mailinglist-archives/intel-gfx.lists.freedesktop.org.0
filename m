@@ -2,48 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26AD627861E
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 13:41:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 319E6278660
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 13:56:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBD806EC96;
-	Fri, 25 Sep 2020 11:41:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 004686EC9C;
+	Fri, 25 Sep 2020 11:56:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 955576EC75;
- Fri, 25 Sep 2020 11:41:37 +0000 (UTC)
-IronPort-SDR: JGENP5wRN4COqy9NMYpIFUsRYG7jLsY98WIexDOMr+zLhOCebRpP7ORxAFszqizx3v1Wp3ak38
- AEqLjn8pWDnA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="140916174"
-X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; d="scan'208";a="140916174"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2020 04:41:37 -0700
-IronPort-SDR: Bh89z21wP4UPubbehDOPSbIFlU2kCItKkV3v2WG82ykGMvVdjwVsVhZN8AyzuwWxlFpZ9elKTb
- cyawhtmjpDcg==
-X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; d="scan'208";a="455798120"
-Received: from mlevy2-mobl.ger.corp.intel.com (HELO [10.251.176.131])
- ([10.251.176.131])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2020 04:41:32 -0700
-To: Leon Romanovsky <leon@kernel.org>
-References: <20200922083958.2150803-1-leon@kernel.org>
- <20200922083958.2150803-2-leon@kernel.org>
- <118a03ef-d160-e202-81cc-16c9c39359fc@linux.intel.com>
- <20200925071330.GA2280698@unreal>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <adff5752-582c-2065-89e2-924ef732911a@linux.intel.com>
-Date: Fri, 25 Sep 2020 12:41:29 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA4796EC9B;
+ Fri, 25 Sep 2020 11:56:06 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 44E1DAEF5;
+ Fri, 25 Sep 2020 11:56:05 +0000 (UTC)
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: sumit.semwal@linaro.org, christian.koenig@amd.com, afd@ti.com,
+ corbet@lwn.net, benjamin.gaignard@linaro.org, lmark@codeaurora.org,
+ labbott@redhat.com, Brian.Starkey@arm.com, john.stultz@linaro.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@linux.ie,
+ daniel@ffwll.ch, l.stach@pengutronix.de, linux+etnaviv@armlinux.org.uk,
+ christian.gmeiner@gmail.com, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ thierry.reding@gmail.com, jonathanh@nvidia.com, pawel@osciak.com,
+ m.szyprowski@samsung.com, kyungmin.park@samsung.com, tfiga@chromium.org,
+ mchehab@kernel.org, matthew.auld@intel.com, robin.murphy@arm.com,
+ thomas.hellstrom@intel.com, sam@ravnborg.org, kraxel@redhat.com,
+ arnd@arndb.de, gregkh@linuxfoundation.org
+Date: Fri, 25 Sep 2020 13:55:57 +0200
+Message-Id: <20200925115601.23955-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <20200925071330.GA2280698@unreal>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH rdma-next v3 1/2] lib/scatterlist: Add
- support in dynamic allocation of SG table from pages
+Subject: [Intel-gfx] [PATCH v3 0/4] dma-buf: Flag vmap'ed memory as system
+ or I/O memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,97 +47,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Roland Scheidegger <sroland@vmware.com>, dri-devel@lists.freedesktop.org,
- Maor Gottlieb <maorg@mellanox.com>, David Airlie <airlied@linux.ie>,
- Doug Ledford <dledford@redhat.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Jason Gunthorpe <jgg@nvidia.com>, Maor Gottlieb <maorg@nvidia.com>,
- Christoph Hellwig <hch@lst.de>
+Cc: linux-doc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-tegra@vger.kernel.org, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Dma-buf provides vmap() and vunmap() for retriving and releasing mappings
+of dma-buf memory in kernel address space. The functions operate with plain
+addresses and the assumption is that the memory can be accessed with load
+and store operations. This is not the case on some architectures (e.g.,
+sparc64) where I/O memory can only be accessed with dedicated instructions.
 
-On 25/09/2020 08:13, Leon Romanovsky wrote:
-> On Thu, Sep 24, 2020 at 09:21:20AM +0100, Tvrtko Ursulin wrote:
->>
->> On 22/09/2020 09:39, Leon Romanovsky wrote:
->>> From: Maor Gottlieb <maorg@mellanox.com>
->>>
->>> Extend __sg_alloc_table_from_pages to support dynamic allocation of
->>> SG table from pages. It should be used by drivers that can't supply
->>> all the pages at one time.
->>>
->>> This function returns the last populated SGE in the table. Users should
->>> pass it as an argument to the function from the second call and forward.
->>> As before, nents will be equal to the number of populated SGEs (chunks).
->>
->> So it's appending and growing the "list", did I get that right? Sounds handy
->> indeed. Some comments/questions below.
-> 
-> Yes, we (RDMA) use this function to chain contiguous pages.
+This patchset introduces struct dma_buf_map, which contains the address of
+a buffer and a flag that tells whether system- or I/O-memory instructions
+are required.
 
-I will eveluate if i915 could start using it. We have some loops which 
-build page by page and coalesce.
+Some background: updating the DRM framebuffer console on sparc64 makes the
+kernel panic. This is because the framebuffer memory cannot be accessed with
+system-memory instructions. We currently employ a workaround in DRM to
+address this specific problem. [1]
 
-[snip]
+To resolve the problem, we'd like to address it at the most common point,
+which is the dma-buf framework. The dma-buf mapping ideally knows if I/O
+instructions are required and exports this information to it's users. The
+new structure struct dma_buf_map stores the buffer address and a flag that
+signals I/O memory. Affected users of the buffer (e.g., drivers, frameworks)
+can then access the memory accordingly.
 
->>>    	if (unlikely(ret))
->>> diff --git a/tools/testing/scatterlist/main.c b/tools/testing/scatterlist/main.c
->>> index 0a1464181226..4899359a31ac 100644
->>> --- a/tools/testing/scatterlist/main.c
->>> +++ b/tools/testing/scatterlist/main.c
->>> @@ -55,14 +55,13 @@ int main(void)
->>>    	for (i = 0, test = tests; test->expected_segments; test++, i++) {
->>>    		struct page *pages[MAX_PAGES];
->>>    		struct sg_table st;
->>> -		int ret;
->>> +		struct scatterlist *sg;
->>>
->>>    		set_pages(pages, test->pfn, test->num_pages);
->>>
->>> -		ret = __sg_alloc_table_from_pages(&st, pages, test->num_pages,
->>> -						  0, test->size, test->max_seg,
->>> -						  GFP_KERNEL);
->>> -		assert(ret == test->alloc_ret);
->>> +		sg = __sg_alloc_table_from_pages(&st, pages, test->num_pages, 0,
->>> +				test->size, test->max_seg, NULL, 0, GFP_KERNEL);
->>> +		assert(PTR_ERR_OR_ZERO(sg) == test->alloc_ret);
->>
->> Some test coverage for relatively complex code would be very welcomed. Since
->> the testing framework is already there, even if it bit-rotted a bit, but
->> shouldn't be hard to fix.
->>
->> A few tests to check append/grow works as expected, in terms of how the end
->> table looks like given the initial state and some different page patterns
->> added to it. And both crossing and not crossing into sg chaining scenarios.
-> 
-> This function is basic for all RDMA devices and we are pretty confident
-> that the old and new flows are tested thoroughly.
-> 
-> We will add proper test in next kernel cycle.
+This patchset only introduces struct dma_buf_map, and updates struct dma_buf
+and it's interfaces. Further patches can update dma-buf users. For example,
+there's a prototype patchset for DRM that fixes the framebuffer problem. [2]
 
-Patch seems to be adding a requirement that all callers of 
-(__)sg_alloc_table_from_pages pass in zeroed struct sg_table, which 
-wasn't the case so far.
+Further work: TTM, one of DRM's memory managers, already exports an
+is_iomem flag of its own. It could later be switched over to exporting struct
+dma_buf_map, thus simplifying some code. Several DRM drivers expect their
+fbdev console to operate on I/O memory. These could possibly be switched over
+to the generic fbdev emulation, as soon as the generic code uses struct
+dma_buf_map.
 
-Have you audited all the callers and/or fixed them? There seems to be 
-quite a few. Gut feel says problem would probably be better solved in 
-lib/scatterlist.c and not by making all the callers memset. Should be 
-possible if you make sure you only read st->nents if prev was passed in?
+v3:
+	* update fastrpc driver (kernel test robot)
+	* expand documentation (Daniel)
+	* move documentation into separate patch
+v2:
+	* always clear map parameter in dma_buf_vmap() (Daniel)
+	* include dma-buf-heaps and i915 selftests (kernel test robot)
+	* initialize cma_obj before using it in drm_gem_cma_free_object()
+	  (kernel test robot)
 
-I've fixed the unit test and with this change the existing tests do 
-pass. But without zeroing it does fail on the very first, single page, 
-test scenario.
+[1] https://lore.kernel.org/dri-devel/20200725191012.GA434957@ravnborg.org/
+[2] https://lore.kernel.org/dri-devel/20200806085239.4606-1-tzimmermann@suse.de/
 
-You can pull the unit test hacks from 
-git://people.freedesktop.org/~tursulin/drm-intel sgtest.
+Thomas Zimmermann (4):
+  dma-buf: Add struct dma-buf-map for storing struct dma_buf.vaddr_ptr
+  dma-buf: Use struct dma_buf_map in dma_buf_vmap() interfaces
+  dma-buf: Use struct dma_buf_map in dma_buf_vunmap() interfaces
+  dma-buf: Document struct dma_buf_map
 
-Regards,
+ Documentation/driver-api/dma-buf.rst          |   9 +
+ drivers/dma-buf/dma-buf.c                     |  42 ++--
+ drivers/dma-buf/heaps/heap-helpers.c          |  10 +-
+ drivers/gpu/drm/drm_gem_cma_helper.c          |  20 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c        |  17 +-
+ drivers/gpu/drm/drm_prime.c                   |  15 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |  13 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  13 +-
+ .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  18 +-
+ .../gpu/drm/i915/gem/selftests/mock_dmabuf.c  |  14 +-
+ drivers/gpu/drm/tegra/gem.c                   |  23 ++-
+ .../common/videobuf2/videobuf2-dma-contig.c   |  17 +-
+ .../media/common/videobuf2/videobuf2-dma-sg.c |  19 +-
+ .../common/videobuf2/videobuf2-vmalloc.c      |  21 +-
+ drivers/misc/fastrpc.c                        |   6 +-
+ include/drm/drm_prime.h                       |   5 +-
+ include/linux/dma-buf-map.h                   | 193 ++++++++++++++++++
+ include/linux/dma-buf.h                       |  11 +-
+ 18 files changed, 372 insertions(+), 94 deletions(-)
+ create mode 100644 include/linux/dma-buf-map.h
 
-Tvrtko
+--
+2.28.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
