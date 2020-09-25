@@ -2,45 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46290278D8A
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 18:02:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67237278D8E
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 18:03:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EAA66ED3B;
-	Fri, 25 Sep 2020 16:02:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FC886ED41;
+	Fri, 25 Sep 2020 16:03:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6D926ED39;
- Fri, 25 Sep 2020 16:02:52 +0000 (UTC)
-IronPort-SDR: kr0g8CKE+TPVwylPXtkVUKdPUBFNkjLnNYEPMUB9G3hofxDKu8v+m+JrVuFtXoVouQK3L01pU2
- S6xhZhC7Q58Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9755"; a="141590321"
-X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="141590321"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5A476ED41
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 16:03:54 +0000 (UTC)
+IronPort-SDR: S3pKdNDQpGB0WOaI2F9duBDKLYeUPZKfEezNUk8jaiWnheNNJBkpySneNVaCv0NcGzN9gKmO5M
+ x2xq6dlP0zTA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9755"; a="179643280"
+X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="179643280"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2020 09:02:52 -0700
-IronPort-SDR: 52r8Z1QnkIaOG3G+o7Rm7jRTDJC2Duk57WnuP5OEFpOyP68tui4oAlC6dKnfYjiG41rX44IOC7
- CM2i/kdT71sg==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 09:03:53 -0700
+IronPort-SDR: ci0zwpIRAiEIHFlvlxLNEGscUzorNZX9b+NITVgbSwfqphCYl72uU5EFuSJbowoCtIvd4PcNKz
+ gx4e8beqk3aQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="291825012"
+X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="343664369"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 25 Sep 2020 09:02:48 -0700
+ by fmsmga002.fm.intel.com with SMTP; 25 Sep 2020 09:03:51 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 25 Sep 2020 19:02:47 +0300
-Date: Fri, 25 Sep 2020 19:02:47 +0300
+ Fri, 25 Sep 2020 19:03:50 +0300
+Date: Fri, 25 Sep 2020 19:03:50 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200925160247.GR6112@intel.com>
+Message-ID: <20200925160350.GS6112@intel.com>
 References: <20200924184805.294493-1-imre.deak@intel.com>
- <20200924184805.294493-5-imre.deak@intel.com>
+ <20200924184805.294493-6-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200924184805.294493-5-imre.deak@intel.com>
+In-Reply-To: <20200924184805.294493-6-imre.deak@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 4/6] drm/dp: Add LTTPR helpers
+Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915: Switch to LTTPR
+ transparent mode link training
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,472 +54,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 24, 2020 at 09:48:03PM +0300, Imre Deak wrote:
-> Add the helpers and register definitions needed to read out the common
-> and per-PHY LTTPR capabilities and perform link training in the LTTPR
-> non-transparent mode.
+On Thu, Sep 24, 2020 at 09:48:04PM +0300, Imre Deak wrote:
+> By default LTTPRs should be in transparent link training mode,
+> nevertheless in this patch we switch to this default mode explicitly.
+> =
+
+> The DP Standard recommends this, supposedly because an LTTPR may be left
+> in the non-transparent mode (by BIOS, previous kernel, or after reset
+> due to a firmware bug). I haven't seen this happening, but let's follow
+> the DP Standard.
 > =
 
 > v2:
-> - Add drm_dp_dpcd_read_phy_link_status() and DP_PHY_LTTPR() here instead
->   of adding these to i915. (Ville)
+> - Add a code comment about the explicit disabling of non-transparent
+>   mode.
 > =
 
-> Cc: dri-devel@lists.freedesktop.org
 > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  drivers/gpu/drm/drm_dp_helper.c | 244 +++++++++++++++++++++++++++++++-
->  include/drm/drm_dp_helper.h     |  62 ++++++++
->  2 files changed, 302 insertions(+), 4 deletions(-)
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  3 ++
+>  .../drm/i915/display/intel_dp_link_training.c | 52 +++++++++++++++++++
+>  .../drm/i915/display/intel_dp_link_training.h |  2 +
+>  4 files changed, 58 insertions(+)
 > =
 
-> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_hel=
-per.c
-> index 478dd51f738d..6014c858b06b 100644
-> --- a/drivers/gpu/drm/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -150,11 +150,8 @@ void drm_dp_link_train_clock_recovery_delay(const u8=
- dpcd[DP_RECEIVER_CAP_SIZE])
->  }
->  EXPORT_SYMBOL(drm_dp_link_train_clock_recovery_delay);
->  =
-
-> -void drm_dp_link_train_channel_eq_delay(const u8 dpcd[DP_RECEIVER_CAP_SI=
-ZE])
-> +static void __drm_dp_link_train_channel_eq_delay(unsigned long rd_interv=
-al)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 3d4bf9b6a0a2..b04921eba73b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1280,6 +1280,7 @@ struct intel_dp {
+>  	u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS];
+>  	u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE];
+>  	u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE];
+> +	u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE];
+>  	u8 fec_capable;
+>  	/* source rates */
+>  	int num_source_rates;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index b21f42193a11..64bf4aa384d3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4726,6 +4726,9 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
 >  {
-> -	unsigned long rd_interval =3D dpcd[DP_TRAINING_AUX_RD_INTERVAL] &
-> -					 DP_TRAINING_AUX_RD_MASK;
-> -
->  	if (rd_interval > 4)
->  		DRM_DEBUG_KMS("AUX interval %lu, out of range (max 4)\n",
->  			      rd_interval);
-> @@ -166,8 +163,35 @@ void drm_dp_link_train_channel_eq_delay(const u8 dpc=
-d[DP_RECEIVER_CAP_SIZE])
+>  	int ret;
 >  =
 
->  	usleep_range(rd_interval, rd_interval * 2);
->  }
-> +
-> +void drm_dp_link_train_channel_eq_delay(const u8 dpcd[DP_RECEIVER_CAP_SI=
-ZE])
-> +{
-> +	__drm_dp_link_train_channel_eq_delay(dpcd[DP_TRAINING_AUX_RD_INTERVAL] &
-> +					     DP_TRAINING_AUX_RD_MASK);
-> +}
->  EXPORT_SYMBOL(drm_dp_link_train_channel_eq_delay);
->  =
+> +	if (!intel_dp_is_edp(intel_dp))
+> +		intel_dp_lttpr_init(intel_dp);
 
-> +void drm_dp_lttpr_link_train_clock_recovery_delay(void)
-> +{
-> +	usleep_range(100, 200);
-> +}
-> +EXPORT_SYMBOL(drm_dp_lttpr_link_train_clock_recovery_delay);
-> +
-> +static u8 dp_lttpr_phy_cap(const u8 phy_cap[DP_LTTPR_PHY_CAP_SIZE], int =
-r)
-> +{
-> +	return phy_cap[r - DP_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1];
-> +}
-> +
-> +void drm_dp_lttpr_link_train_channel_eq_delay(const u8 phy_cap[DP_LTTPR_=
-PHY_CAP_SIZE])
-> +{
-> +	u8 interval =3D dp_lttpr_phy_cap(phy_cap,
-> +				       DP_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1) &
-> +		      DP_TRAINING_AUX_RD_MASK;
-> +
-> +	__drm_dp_link_train_channel_eq_delay(interval);
-> +}
-> +EXPORT_SYMBOL(drm_dp_lttpr_link_train_channel_eq_delay);
-> +
->  u8 drm_dp_link_rate_to_bw_code(int link_rate)
->  {
->  	/* Spec says link_bw =3D link_rate / 0.27Gbps */
-> @@ -363,6 +387,71 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *=
-aux,
->  }
->  EXPORT_SYMBOL(drm_dp_dpcd_read_link_status);
->  =
-
-> +/**
-> + * drm_dp_dpcd_read_phy_link_status - get the link status information fo=
-r a DP PHY
-> + * @aux: DisplayPort AUX channel
-> + * @dp_phy: the DP PHY to get the link status for
-> + * @link_status: buffer to return the status in
-> + *
-> + * Fetch the AUX DPCD registers for the DPRX or an LTTPR PHY link status=
-. The
-> + * layout of the returned @link_status matches the DPCD register layout =
-of the
-> + * DPRX PHY link status.
-> + *
-> + * Returns 0 if the information was read successfully or a negative erro=
-r code
-> + * on failure.
-> + */
-> +int drm_dp_dpcd_read_phy_link_status(struct drm_dp_aux *aux,
-> +				     enum drm_dp_phy dp_phy,
-> +				     u8 link_status[DP_LINK_STATUS_SIZE])
-> +{
-> +	u8 lttpr_status[DP_LINK_STATUS_SIZE - 1];
-> +	int ret;
-> +
-> +	if (dp_phy =3D=3D DP_PHY_DPRX) {
-> +		ret =3D drm_dp_dpcd_read(aux,
-> +				       DP_LANE0_1_STATUS,
-> +				       link_status,
-> +				       DP_LINK_STATUS_SIZE);
-> +
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		WARN_ON(ret !=3D DP_LINK_STATUS_SIZE);
-> +
-> +		return 0;
-> +	}
-> +
-> +	ret =3D drm_dp_dpcd_read(aux,
-> +			       DP_LANE0_1_STATUS_PHY_REPEATER(dp_phy),
-> +			       lttpr_status,
-> +			       sizeof(lttpr_status));
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	WARN_ON(ret !=3D sizeof(lttpr_status));
-> +
-> +#define link_reg(reg)	link_status[(reg) - DP_LANE0_1_STATUS]
-> +#define lttpr_reg(reg)	lttpr_status[(reg) - DP_LANE0_1_STATUS_PHY_REPEAT=
-ER1]
-> +
-> +	/* Convert the LTTPR to the sink PHY link status layout */
-> +	link_reg(DP_LANE0_1_STATUS) =3D lttpr_reg(DP_LANE0_1_STATUS_PHY_REPEATE=
-R1);
-> +	link_reg(DP_LANE2_3_STATUS) =3D lttpr_reg(DP_LANE2_3_STATUS_PHY_REPEATE=
-R1);
-> +	link_reg(DP_LANE_ALIGN_STATUS_UPDATED) =3D
-> +		lttpr_reg(DP_LANE_ALIGN_STATUS_UPDATED_PHY_REPEATER1);
-> +	link_reg(DP_SINK_STATUS) =3D 0;
-> +	link_reg(DP_ADJUST_REQUEST_LANE0_1) =3D
-> +		lttpr_reg(DP_ADJUST_REQUEST_LANE0_1_PHY_REPEATER1);
-> +	link_reg(DP_ADJUST_REQUEST_LANE2_3) =3D
-> +		lttpr_reg(DP_ADJUST_REQUEST_LANE2_3_PHY_REPEATER1);
-> +
-> +#undef link_reg
-> +#undef lttpr_reg
-
-Alternative might be to read to the target buffer directly
-and just memmove() the stuff around a bit. Would avoid having
-the second buffer on stack. But it's a small buffer so meh.
+I was initially a bit confused why this is before we read dpcd[], but
+looks like the spec says that is the expected order.
 
 Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
 > +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_dp_dpcd_read_phy_link_status);
-> +
->  static bool is_edid_digital_input_dp(const struct edid *edid)
->  {
->  	return edid && edid->revision >=3D 4 &&
-> @@ -2098,6 +2187,153 @@ int drm_dp_dsc_sink_supported_input_bpcs(const u8=
- dsc_dpcd[DP_DSC_RECEIVER_CAP_S
+>  	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd))
+>  		return false;
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 38d4553670a1..4f8f42cc25fa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -34,6 +34,52 @@ intel_dp_dump_link_status(const u8 link_status[DP_LINK=
+_STATUS_SIZE])
+>  		      link_status[3], link_status[4], link_status[5]);
 >  }
->  EXPORT_SYMBOL(drm_dp_dsc_sink_supported_input_bpcs);
 >  =
 
-> +/**
-> + * drm_dp_read_lttpr_common_caps - read the LTTPR common capabilities
-> + * @aux: DisplayPort AUX channel
-> + * @caps: buffer to return the capability info in
-> + *
-> + * Read capabilities common to all LTTPRs.
-> + *
-> + * Returns 0 on success or a negative error code on failure.
-> + */
-> +int drm_dp_read_lttpr_common_caps(struct drm_dp_aux *aux,
-> +				  u8 caps[DP_LTTPR_COMMON_CAP_SIZE])
+> +static bool intel_dp_read_lttpr_common_caps(struct intel_dp *intel_dp)
 > +{
-> +	int ret;
-> +
-> +	ret =3D drm_dp_dpcd_read(aux,
-> +			       DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV,
-> +			       caps, DP_LTTPR_COMMON_CAP_SIZE);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	WARN_ON(ret !=3D DP_LTTPR_COMMON_CAP_SIZE);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_dp_read_lttpr_common_caps);
-> +
-> +/**
-> + * drm_dp_read_lttpr_phy_caps - read the capabilities for a given LTTPR =
-PHY
-> + * @aux: DisplayPort AUX channel
-> + * @dp_phy: LTTPR PHY to read the capabilities for
-> + * @caps: buffer to return the capability info in
-> + *
-> + * Read the capabilities for the given LTTPR PHY.
-> + *
-> + * Returns 0 on success or a negative error code on failure.
-> + */
-> +int drm_dp_read_lttpr_phy_caps(struct drm_dp_aux *aux,
-> +			       enum drm_dp_phy dp_phy,
-> +			       u8 caps[DP_LTTPR_PHY_CAP_SIZE])
-> +{
-> +	int ret;
-> +
-> +	ret =3D drm_dp_dpcd_read(aux,
-> +			       DP_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER(dp_phy),
-> +			       caps, DP_LTTPR_PHY_CAP_SIZE);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	WARN_ON(ret !=3D DP_LTTPR_PHY_CAP_SIZE);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_dp_read_lttpr_phy_caps);
-> +
-> +static u8 dp_lttpr_common_cap(const u8 caps[DP_LTTPR_COMMON_CAP_SIZE], i=
-nt r)
-> +{
-> +	return caps[r - DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
-> +}
-> +
-> +/**
-> + * drm_dp_lttpr_count - get the number of detected LTTPRs
-> + * @caps: LTTPR common capabilities
-> + *
-> + * Get the number of detected LTTPRs from the LTTPR common capabilities =
-info.
-> + *
-> + * Returns:
-> + *   -ERANGE if more than supported number (8) of LTTPRs are detected
-> + *   -EINVAL if the DP_PHY_REPEATER_CNT register contains an invalid val=
-ue
-> + *   otherwise the number of detected LTTPRs
-> + */
-> +int drm_dp_lttpr_count(const u8 caps[DP_LTTPR_COMMON_CAP_SIZE])
-> +{
-> +	u8 count =3D dp_lttpr_common_cap(caps, DP_PHY_REPEATER_CNT);
-> +
-> +	switch (hweight8(count)) {
-> +	case 0:
-> +		return 0;
-> +	case 1:
-> +		return 8 - ilog2(count);
-> +	case 8:
-> +		return -ERANGE;
-> +	default:
-> +		return -EINVAL;
+> +	if (drm_dp_read_lttpr_common_caps(&intel_dp->aux,
+> +					  intel_dp->lttpr_common_caps) < 0) {
+> +		memset(intel_dp->lttpr_common_caps, 0,
+> +		       sizeof(intel_dp->lttpr_common_caps));
+> +		return false;
 > +	}
+> +
+> +	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+> +		    "LTTPR common capabilities: %*ph\n",
+> +		    (int)sizeof(intel_dp->lttpr_common_caps),
+> +		    intel_dp->lttpr_common_caps);
+> +
+> +	return true;
 > +}
-> +EXPORT_SYMBOL(drm_dp_lttpr_count);
+> +
+> +static bool
+> +intel_dp_set_lttpr_transparent_mode(struct intel_dp *intel_dp, bool enab=
+le)
+> +{
+> +	u8 val =3D enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
+> +			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
+> +
+> +	return drm_dp_dpcd_write(&intel_dp->aux, DP_PHY_REPEATER_MODE, &val, 1)=
+ =3D=3D 1;
+> +}
 > +
 > +/**
-> + * drm_dp_lttpr_max_link_rate - get the maximum link rate supported by a=
-ll LTTPRs
-> + * @caps: LTTPR common capabilities
+> + * intel_dp_lttpr_init - detect LTTPRs and init the LTTPR link training =
+mode
+> + * @intel_dp: Intel DP struct
 > + *
-> + * Returns the maximum link rate supported by all detected LTTPRs.
+> + * Read the LTTPR common capabilities and switch to transparent link tra=
+ining
+> + * mode.
 > + */
-> +int drm_dp_lttpr_max_link_rate(const u8 caps[DP_LTTPR_COMMON_CAP_SIZE])
+> +int intel_dp_lttpr_init(struct intel_dp *intel_dp)
 > +{
-> +	u8 rate =3D dp_lttpr_common_cap(caps, DP_MAX_LINK_RATE_PHY_REPEATER);
+> +	intel_dp_read_lttpr_common_caps(intel_dp);
 > +
-> +	return drm_dp_bw_code_to_link_rate(rate);
+> +	/*
+> +	 * See DP Standard v2.0 3.6.6.1. about the explicit disabling of
+> +	 * non-transparent mode.
+> +	 */
+> +	intel_dp_set_lttpr_transparent_mode(intel_dp, true);
+> +
+> +	return 0;
 > +}
-> +EXPORT_SYMBOL(drm_dp_lttpr_max_link_rate);
 > +
-> +/**
-> + * drm_dp_lttpr_max_lane_count - get the maximum lane count supported by=
- all LTTPRs
-> + * @caps: LTTPR common capabilities
-> + *
-> + * Returns the maximum lane count supported by all detected LTTPRs.
-> + */
-> +int drm_dp_lttpr_max_lane_count(const u8 caps[DP_LTTPR_COMMON_CAP_SIZE])
-> +{
-> +	u8 max_lanes =3D dp_lttpr_common_cap(caps, DP_MAX_LANE_COUNT_PHY_REPEAT=
-ER);
+>  static u8 dp_voltage_max(u8 preemph)
+>  {
+>  	switch (preemph & DP_TRAIN_PRE_EMPHASIS_MASK) {
+> @@ -471,6 +517,12 @@ static void intel_dp_schedule_fallback_link_training=
+(struct intel_dp *intel_dp)
+>   */
+>  void intel_dp_start_link_train(struct intel_dp *intel_dp)
+>  {
+> +	/*
+> +	 * TODO: Reiniting LTTPRs here won't be needed once proper connector
+> +	 * HW state readout is added.
+> +	 */
+> +	intel_dp_lttpr_init(intel_dp);
 > +
-> +	return max_lanes & DP_MAX_LANE_COUNT_MASK;
-> +}
-> +EXPORT_SYMBOL(drm_dp_lttpr_max_lane_count);
-> +
-> +/**
-> + * drm_dp_lttpr_voltage_swing_level_3_supported - check for LTTPR vswing=
-3 support
-> + * @caps: LTTPR PHY capabilities
-> + *
-> + * Returns true if the @caps for an LTTPR TX PHY indicate support for
-> + * voltage swing level 3.
-> + */
-> +bool
-> +drm_dp_lttpr_voltage_swing_level_3_supported(const u8 caps[DP_LTTPR_PHY_=
-CAP_SIZE])
-> +{
-> +	u8 txcap =3D dp_lttpr_phy_cap(caps, DP_TRANSMITTER_CAPABILITY_PHY_REPEA=
-TER1);
-> +
-> +	return txcap & DP_VOLTAGE_SWING_LEVEL_3_SUPPORTED;
-> +}
-> +EXPORT_SYMBOL(drm_dp_lttpr_voltage_swing_level_3_supported);
-> +
-> +/**
-> + * drm_dp_lttpr_pre_emphasis_level_3_supported - check for LTTPR preemph=
-3 support
-> + * @caps: LTTPR PHY capabilities
-> + *
-> + * Returns true if the @caps for an LTTPR TX PHY indicate support for
-> + * pre-emphasis level 3.
-> + */
-> +bool
-> +drm_dp_lttpr_pre_emphasis_level_3_supported(const u8 caps[DP_LTTPR_PHY_C=
-AP_SIZE])
-> +{
-> +	u8 txcap =3D dp_lttpr_phy_cap(caps, DP_TRANSMITTER_CAPABILITY_PHY_REPEA=
-TER1);
-> +
-> +	return txcap & DP_PRE_EMPHASIS_LEVEL_3_SUPPORTED;
-> +}
-> +EXPORT_SYMBOL(drm_dp_lttpr_pre_emphasis_level_3_supported);
-> +
->  /**
->   * drm_dp_get_phy_test_pattern() - get the requested pattern from the si=
-nk.
->   * @aux: DisplayPort AUX channel
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index e144b4b9d79a..42b6ab14920a 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1118,15 +1118,58 @@ struct drm_device;
->  #define DP_MAX_LANE_COUNT_PHY_REPEATER			    0xf0004 /* 1.4a */
->  #define DP_Repeater_FEC_CAPABILITY			    0xf0004 /* 1.4 */
->  #define DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT		    0xf0005 /* 1.4a */
-> +
-> +enum drm_dp_phy {
-> +	DP_PHY_DPRX,
-> +
-> +	DP_PHY_LTTPR1,
-> +	DP_PHY_LTTPR2,
-> +	DP_PHY_LTTPR3,
-> +	DP_PHY_LTTPR4,
-> +	DP_PHY_LTTPR5,
-> +	DP_PHY_LTTPR6,
-> +	DP_PHY_LTTPR7,
-> +	DP_PHY_LTTPR8,
-> +
-> +	DP_MAX_LTTPR_COUNT =3D DP_PHY_LTTPR8,
-> +};
-> +
-> +#define DP_PHY_LTTPR(i)					    (DP_PHY_LTTPR1 + (i))
-> +
-> +#define __DP_LTTPR1_BASE				    0xf0010 /* 1.3 */
-> +#define __DP_LTTPR2_BASE				    0xf0060 /* 1.3 */
-> +#define DP_LTTPR_BASE(dp_phy) \
-> +	(__DP_LTTPR1_BASE + (__DP_LTTPR2_BASE - __DP_LTTPR1_BASE) * \
-> +		((dp_phy) - DP_PHY_LTTPR1))
-> +
-> +#define DP_LTTPR_REG(dp_phy, lttpr1_reg) \
-> +	(DP_LTTPR_BASE(dp_phy) - DP_LTTPR_BASE(DP_PHY_LTTPR1) + (lttpr1_reg))
-> +
->  #define DP_TRAINING_PATTERN_SET_PHY_REPEATER1		    0xf0010 /* 1.3 */
-> +#define DP_TRAINING_PATTERN_SET_PHY_REPEATER(dp_phy) \
-> +	DP_LTTPR_REG(dp_phy, DP_TRAINING_PATTERN_SET_PHY_REPEATER1)
-> +
->  #define DP_TRAINING_LANE0_SET_PHY_REPEATER1		    0xf0011 /* 1.3 */
-> +#define DP_TRAINING_LANE0_SET_PHY_REPEATER(dp_phy) \
-> +	DP_LTTPR_REG(dp_phy, DP_TRAINING_LANE0_SET_PHY_REPEATER1)
-> +
->  #define DP_TRAINING_LANE1_SET_PHY_REPEATER1		    0xf0012 /* 1.3 */
->  #define DP_TRAINING_LANE2_SET_PHY_REPEATER1		    0xf0013 /* 1.3 */
->  #define DP_TRAINING_LANE3_SET_PHY_REPEATER1		    0xf0014 /* 1.3 */
->  #define DP_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1	    0xf0020 /* 1.4a */
-> +#define DP_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER(dp_phy)	\
-> +	DP_LTTPR_REG(dp_phy, DP_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1)
-> +
->  #define DP_TRANSMITTER_CAPABILITY_PHY_REPEATER1		    0xf0021 /* 1.4a */
-> +# define DP_VOLTAGE_SWING_LEVEL_3_SUPPORTED		    BIT(0)
-> +# define DP_PRE_EMPHASIS_LEVEL_3_SUPPORTED		    BIT(1)
-> +
->  #define DP_LANE0_1_STATUS_PHY_REPEATER1			    0xf0030 /* 1.3 */
-> +#define DP_LANE0_1_STATUS_PHY_REPEATER(dp_phy) \
-> +	DP_LTTPR_REG(dp_phy, DP_LANE0_1_STATUS_PHY_REPEATER1)
-> +
->  #define DP_LANE2_3_STATUS_PHY_REPEATER1			    0xf0031 /* 1.3 */
-> +
->  #define DP_LANE_ALIGN_STATUS_UPDATED_PHY_REPEATER1	    0xf0032 /* 1.3 */
->  #define DP_ADJUST_REQUEST_LANE0_1_PHY_REPEATER1		    0xf0033 /* 1.3 */
->  #define DP_ADJUST_REQUEST_LANE2_3_PHY_REPEATER1		    0xf0034 /* 1.3 */
-> @@ -1236,9 +1279,13 @@ u8 drm_dp_get_adjust_request_post_cursor(const u8 =
-link_status[DP_LINK_STATUS_SIZ
->  #define DP_DSC_RECEIVER_CAP_SIZE        0xf
->  #define EDP_PSR_RECEIVER_CAP_SIZE	2
->  #define EDP_DISPLAY_CTL_CAP_SIZE	3
-> +#define DP_LTTPR_COMMON_CAP_SIZE	8
-> +#define DP_LTTPR_PHY_CAP_SIZE		3
+>  	if (!intel_dp_link_train(intel_dp))
+>  		intel_dp_schedule_fallback_link_training(intel_dp);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.h
+> index 518d834dbc98..3536ce73a123 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> @@ -10,6 +10,8 @@
 >  =
 
->  void drm_dp_link_train_clock_recovery_delay(const u8 dpcd[DP_RECEIVER_CA=
-P_SIZE]);
-> +void drm_dp_lttpr_link_train_clock_recovery_delay(void);
->  void drm_dp_link_train_channel_eq_delay(const u8 dpcd[DP_RECEIVER_CAP_SI=
-ZE]);
-> +void drm_dp_lttpr_link_train_channel_eq_delay(const u8 caps[DP_LTTPR_PHY=
-_CAP_SIZE]);
+>  struct intel_dp;
 >  =
 
->  u8 drm_dp_link_rate_to_bw_code(int link_rate);
->  int drm_dp_bw_code_to_link_rate(u8 link_bw);
-> @@ -1697,6 +1744,10 @@ int drm_dp_read_dpcd_caps(struct drm_dp_aux *aux,
->  int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
->  				 u8 status[DP_LINK_STATUS_SIZE]);
->  =
-
-> +int drm_dp_dpcd_read_phy_link_status(struct drm_dp_aux *aux,
-> +				     enum drm_dp_phy dp_phy,
-> +				     u8 link_status[DP_LINK_STATUS_SIZE]);
+> +int intel_dp_lttpr_init(struct intel_dp *intel_dp);
 > +
->  bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
->  				    u8 real_edid_checksum);
->  =
-
-> @@ -1746,6 +1797,17 @@ bool drm_dp_read_sink_count_cap(struct drm_connect=
-or *connector,
->  				const struct drm_dp_desc *desc);
->  int drm_dp_read_sink_count(struct drm_dp_aux *aux);
->  =
-
-> +int drm_dp_read_lttpr_common_caps(struct drm_dp_aux *aux,
-> +				  u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
-> +int drm_dp_read_lttpr_phy_caps(struct drm_dp_aux *aux,
-> +			       enum drm_dp_phy dp_phy,
-> +			       u8 caps[DP_LTTPR_PHY_CAP_SIZE]);
-> +int drm_dp_lttpr_count(const u8 cap[DP_LTTPR_COMMON_CAP_SIZE]);
-> +int drm_dp_lttpr_max_link_rate(const u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
-> +int drm_dp_lttpr_max_lane_count(const u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
-> +bool drm_dp_lttpr_voltage_swing_level_3_supported(const u8 caps[DP_LTTPR=
-_PHY_CAP_SIZE]);
-> +bool drm_dp_lttpr_pre_emphasis_level_3_supported(const u8 caps[DP_LTTPR_=
-PHY_CAP_SIZE]);
-> +
->  void drm_dp_remote_aux_init(struct drm_dp_aux *aux);
->  void drm_dp_aux_init(struct drm_dp_aux *aux);
->  int drm_dp_aux_register(struct drm_dp_aux *aux);
+>  void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+>  			       const u8 link_status[DP_LINK_STATUS_SIZE]);
+>  void intel_dp_start_link_train(struct intel_dp *intel_dp);
 > -- =
 
 > 2.25.1
