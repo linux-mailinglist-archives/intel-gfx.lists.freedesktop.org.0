@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72F6C278DCA
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 18:15:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF90E278ED4
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 18:40:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D30126EC92;
-	Fri, 25 Sep 2020 16:15:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DB256ECD7;
+	Fri, 25 Sep 2020 16:40:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30B796EC92;
- Fri, 25 Sep 2020 16:15:06 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id A108268AFE; Fri, 25 Sep 2020 18:09:14 +0200 (CEST)
-Date: Fri, 25 Sep 2020 18:09:14 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <20200925160914.GA18533@lst.de>
-References: <20200924135853.875294-1-hch@lst.de>
- <20200924135853.875294-9-hch@lst.de>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE9C86ECD7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 16:40:30 +0000 (UTC)
+IronPort-SDR: jcH4BkPHbCJ23OXxzsWz529RZqq5HItE2p5JhGPzY5IuVeZvmzjgXhOYYiaEyZFgYsGwh4Eluz
+ LNQC5pYodRSg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9755"; a="246366516"
+X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="246366516"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 09:40:30 -0700
+IronPort-SDR: VO+AlG8ULL1V4K6AfTbCszZjRrg+0wZRjz75PeOuv1oNZPdCqccFBW86udIw/5djZOEPD4Tpwo
+ fOp6JKjlioGA==
+X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="291837898"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 09:40:29 -0700
+Date: Fri, 25 Sep 2020 19:40:25 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200925164025.GA365783@ideak-desk.fi.intel.com>
+References: <20200924184805.294493-1-imre.deak@intel.com>
+ <20200924184805.294493-6-imre.deak@intel.com>
+ <20200925160350.GS6112@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200924135853.875294-9-hch@lst.de>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: [Intel-gfx] [PATCH 08/11,
- fixed] drm/i915: use vmap in i915_gem_object_map
+In-Reply-To: <20200925160350.GS6112@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915: Switch to LTTPR
+ transparent mode link training
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,217 +51,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Matthew Wilcox <willy@infradead.org>, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, Peter Zijlstra <peterz@infradead.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, x86@kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Minchan Kim <minchan@kernel.org>,
- Matthew Auld <matthew.auld@intel.com>, xen-devel@lists.xenproject.org,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915_gem_object_map implements fairly low-level vmap functionality in
-a driver.  Split it into two helpers, one for remapping kernel memory
-which can use vmap, and one for I/O memory that uses vmap_pfn.
+On Fri, Sep 25, 2020 at 07:03:50PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Thu, Sep 24, 2020 at 09:48:04PM +0300, Imre Deak wrote:
+> > By default LTTPRs should be in transparent link training mode,
+> > nevertheless in this patch we switch to this default mode explicitly.
+> > =
 
-The only practical difference is that alloc_vm_area prefeaults the
-vmalloc area PTEs, which doesn't seem to be required here for the
-kernel memory case (and could be added to vmap using a flag if actually
-required).
+> > The DP Standard recommends this, supposedly because an LTTPR may be left
+> > in the non-transparent mode (by BIOS, previous kernel, or after reset
+> > due to a firmware bug). I haven't seen this happening, but let's follow
+> > the DP Standard.
+> > =
 
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- drivers/gpu/drm/i915/Kconfig              |   1 +
- drivers/gpu/drm/i915/gem/i915_gem_pages.c | 127 ++++++++++------------
- 2 files changed, 60 insertions(+), 68 deletions(-)
+> > v2:
+> > - Add a code comment about the explicit disabling of non-transparent
+> >   mode.
+> > =
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 9afa5c4a6bf006..1e1cb245fca778 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -25,6 +25,7 @@ config DRM_I915
- 	select CRC32
- 	select SND_HDA_I915 if SND_HDA_CORE
- 	select CEC_CORE if CEC_NOTIFIER
-+	select VMAP_PFN
- 	help
- 	  Choose this option if you have a system that has "Intel Graphics
- 	  Media Accelerator" or "HD Graphics" integrated graphics,
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 6550c0bc824ea2..f60ca6dc911f29 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -232,34 +232,21 @@ int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
- 	return err;
- }
- 
--static inline pte_t iomap_pte(resource_size_t base,
--			      dma_addr_t offset,
--			      pgprot_t prot)
--{
--	return pte_mkspecial(pfn_pte((base + offset) >> PAGE_SHIFT, prot));
--}
--
- /* The 'mapping' part of i915_gem_object_pin_map() below */
--static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
--				 enum i915_map_type type)
-+static void *i915_gem_object_map_page(struct drm_i915_gem_object *obj,
-+		enum i915_map_type type)
- {
--	unsigned long n_pte = obj->base.size >> PAGE_SHIFT;
--	struct sg_table *sgt = obj->mm.pages;
--	pte_t *stack[32], **mem;
--	struct vm_struct *area;
-+	unsigned long n_pages = obj->base.size >> PAGE_SHIFT, i;
-+	struct page *stack[32], **pages = stack, *page;
-+	struct sgt_iter iter;
- 	pgprot_t pgprot;
-+	void *vaddr;
- 
--	if (!i915_gem_object_has_struct_page(obj) && type != I915_MAP_WC)
--		return NULL;
--
--	if (GEM_WARN_ON(type == I915_MAP_WC &&
--			!static_cpu_has(X86_FEATURE_PAT)))
--		return NULL;
--
--	/* A single page can always be kmapped */
--	if (n_pte == 1 && type == I915_MAP_WB) {
--		struct page *page = sg_page(sgt->sgl);
--
-+	switch (type) {
-+	default:
-+		MISSING_CASE(type);
-+		fallthrough;	/* to use PAGE_KERNEL anyway */
-+	case I915_MAP_WB:
- 		/*
- 		 * On 32b, highmem using a finite set of indirect PTE (i.e.
- 		 * vmap) to provide virtual mappings of the high pages.
-@@ -277,30 +264,8 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
- 		 * So if the page is beyond the 32b boundary, make an explicit
- 		 * vmap.
- 		 */
--		if (!PageHighMem(page))
--			return page_address(page);
--	}
--
--	mem = stack;
--	if (n_pte > ARRAY_SIZE(stack)) {
--		/* Too big for stack -- allocate temporary array instead */
--		mem = kvmalloc_array(n_pte, sizeof(*mem), GFP_KERNEL);
--		if (!mem)
--			return NULL;
--	}
--
--	area = alloc_vm_area(obj->base.size, mem);
--	if (!area) {
--		if (mem != stack)
--			kvfree(mem);
--		return NULL;
--	}
--
--	switch (type) {
--	default:
--		MISSING_CASE(type);
--		fallthrough;	/* to use PAGE_KERNEL anyway */
--	case I915_MAP_WB:
-+		if (n_pages == 1 && !PageHighMem(sg_page(obj->mm.pages->sgl)))
-+			return page_address(sg_page(obj->mm.pages->sgl));
- 		pgprot = PAGE_KERNEL;
- 		break;
- 	case I915_MAP_WC:
-@@ -308,30 +273,50 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
- 		break;
- 	}
- 
--	if (i915_gem_object_has_struct_page(obj)) {
--		struct sgt_iter iter;
--		struct page *page;
--		pte_t **ptes = mem;
-+	if (n_pages > ARRAY_SIZE(stack)) {
-+		/* Too big for stack -- allocate temporary array instead */
-+		pages = kvmalloc_array(n_pages, sizeof(*pages), GFP_KERNEL);
-+		if (!pages)
-+			return NULL;
-+	}
- 
--		for_each_sgt_page(page, iter, sgt)
--			**ptes++ = mk_pte(page, pgprot);
--	} else {
--		resource_size_t iomap;
--		struct sgt_iter iter;
--		pte_t **ptes = mem;
--		dma_addr_t addr;
-+	i = 0;
-+	for_each_sgt_page(page, iter, obj->mm.pages)
-+		pages[i++] = page;
-+	vaddr = vmap(pages, n_pages, 0, pgprot);
-+	if (pages != stack)
-+		kvfree(pages);
-+	return vaddr;
-+}
- 
--		iomap = obj->mm.region->iomap.base;
--		iomap -= obj->mm.region->region.start;
-+static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
-+		enum i915_map_type type)
-+{
-+	resource_size_t iomap = obj->mm.region->iomap.base -
-+		obj->mm.region->region.start;
-+	unsigned long n_pfn = obj->base.size >> PAGE_SHIFT;
-+	unsigned long stack[32], *pfns = stack, i;
-+	struct sgt_iter iter;
-+	dma_addr_t addr;
-+	void *vaddr;
-+
-+	if (type != I915_MAP_WC)
-+		return NULL;
- 
--		for_each_sgt_daddr(addr, iter, sgt)
--			**ptes++ = iomap_pte(iomap, addr, pgprot);
-+	if (n_pfn > ARRAY_SIZE(stack)) {
-+		/* Too big for stack -- allocate temporary array instead */
-+		pfns = kvmalloc_array(n_pfn, sizeof(*pfns), GFP_KERNEL);
-+		if (!pfns)
-+			return NULL;
- 	}
- 
--	if (mem != stack)
--		kvfree(mem);
--
--	return area->addr;
-+	i = 0;
-+	for_each_sgt_daddr(addr, iter, obj->mm.pages)
-+		pfns[i++] = (iomap + addr) >> PAGE_SHIFT;
-+	vaddr = vmap_pfn(pfns, n_pfn, pgprot_writecombine(PAGE_KERNEL_IO));
-+	if (pfns != stack)
-+		kvfree(pfns);
-+	return vaddr;
- }
- 
- /* get, pin, and map the pages of the object into kernel space */
-@@ -383,7 +368,13 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
- 	}
- 
- 	if (!ptr) {
--		ptr = i915_gem_object_map(obj, type);
-+		if (GEM_WARN_ON(type == I915_MAP_WC &&
-+				!static_cpu_has(X86_FEATURE_PAT)))
-+			ptr = NULL;
-+		else if (i915_gem_object_has_struct_page(obj))
-+			ptr = i915_gem_object_map_page(obj, type);
-+		else
-+			ptr = i915_gem_object_map_pfn(obj, type);
- 		if (!ptr) {
- 			err = -ENOMEM;
- 			goto err_unpin;
--- 
-2.28.0
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_types.h    |  1 +
+> >  drivers/gpu/drm/i915/display/intel_dp.c       |  3 ++
+> >  .../drm/i915/display/intel_dp_link_training.c | 52 +++++++++++++++++++
+> >  .../drm/i915/display/intel_dp_link_training.h |  2 +
+> >  4 files changed, 58 insertions(+)
+> > =
 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drive=
+rs/gpu/drm/i915/display/intel_display_types.h
+> > index 3d4bf9b6a0a2..b04921eba73b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -1280,6 +1280,7 @@ struct intel_dp {
+> >  	u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS];
+> >  	u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE];
+> >  	u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE];
+> > +	u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE];
+> >  	u8 fec_capable;
+> >  	/* source rates */
+> >  	int num_source_rates;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
+i915/display/intel_dp.c
+> > index b21f42193a11..64bf4aa384d3 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -4726,6 +4726,9 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+> >  {
+> >  	int ret;
+> >  =
+
+> > +	if (!intel_dp_is_edp(intel_dp))
+> > +		intel_dp_lttpr_init(intel_dp);
+> =
+
+> I was initially a bit confused why this is before we read dpcd[], but
+> looks like the spec says that is the expected order.
+
+Yes. It's strange but reading the spec makes me think that even reading
+regs could have side-effects, here the LTTPR caps reading is the first
+according to the spec.
+
+Btw, the other less clearly specified things are the order of
+(explicitly) switching to transparent mode vs. reading the LTTPR common
+caps, and in what case to perform the switch. I decided the correct
+order is to read the caps first, and switch unconditionally. The latter
+has the downside of an AUX timeout/NAK on platforms w/o LTTPRs, but this
+seemed to be the more robust way.
+
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Thanks. I mucked up the eDP check, missing it from
+intel_dp_start_link_train(), will move it to intel_dp_lttpr_init()
+instead.
+
+> =
+
+> > +
+> >  	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd))
+> >  		return false;
+> >  =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/dr=
+ivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > index 38d4553670a1..4f8f42cc25fa 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > @@ -34,6 +34,52 @@ intel_dp_dump_link_status(const u8 link_status[DP_LI=
+NK_STATUS_SIZE])
+> >  		      link_status[3], link_status[4], link_status[5]);
+> >  }
+> >  =
+
+> > +static bool intel_dp_read_lttpr_common_caps(struct intel_dp *intel_dp)
+> > +{
+> > +	if (drm_dp_read_lttpr_common_caps(&intel_dp->aux,
+> > +					  intel_dp->lttpr_common_caps) < 0) {
+> > +		memset(intel_dp->lttpr_common_caps, 0,
+> > +		       sizeof(intel_dp->lttpr_common_caps));
+> > +		return false;
+> > +	}
+> > +
+> > +	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+> > +		    "LTTPR common capabilities: %*ph\n",
+> > +		    (int)sizeof(intel_dp->lttpr_common_caps),
+> > +		    intel_dp->lttpr_common_caps);
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +static bool
+> > +intel_dp_set_lttpr_transparent_mode(struct intel_dp *intel_dp, bool en=
+able)
+> > +{
+> > +	u8 val =3D enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
+> > +			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
+> > +
+> > +	return drm_dp_dpcd_write(&intel_dp->aux, DP_PHY_REPEATER_MODE, &val, =
+1) =3D=3D 1;
+> > +}
+> > +
+> > +/**
+> > + * intel_dp_lttpr_init - detect LTTPRs and init the LTTPR link trainin=
+g mode
+> > + * @intel_dp: Intel DP struct
+> > + *
+> > + * Read the LTTPR common capabilities and switch to transparent link t=
+raining
+> > + * mode.
+> > + */
+> > +int intel_dp_lttpr_init(struct intel_dp *intel_dp)
+> > +{
+> > +	intel_dp_read_lttpr_common_caps(intel_dp);
+> > +
+> > +	/*
+> > +	 * See DP Standard v2.0 3.6.6.1. about the explicit disabling of
+> > +	 * non-transparent mode.
+> > +	 */
+> > +	intel_dp_set_lttpr_transparent_mode(intel_dp, true);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  static u8 dp_voltage_max(u8 preemph)
+> >  {
+> >  	switch (preemph & DP_TRAIN_PRE_EMPHASIS_MASK) {
+> > @@ -471,6 +517,12 @@ static void intel_dp_schedule_fallback_link_traini=
+ng(struct intel_dp *intel_dp)
+> >   */
+> >  void intel_dp_start_link_train(struct intel_dp *intel_dp)
+> >  {
+> > +	/*
+> > +	 * TODO: Reiniting LTTPRs here won't be needed once proper connector
+> > +	 * HW state readout is added.
+> > +	 */
+> > +	intel_dp_lttpr_init(intel_dp);
+> > +
+> >  	if (!intel_dp_link_train(intel_dp))
+> >  		intel_dp_schedule_fallback_link_training(intel_dp);
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/dr=
+ivers/gpu/drm/i915/display/intel_dp_link_training.h
+> > index 518d834dbc98..3536ce73a123 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> > @@ -10,6 +10,8 @@
+> >  =
+
+> >  struct intel_dp;
+> >  =
+
+> > +int intel_dp_lttpr_init(struct intel_dp *intel_dp);
+> > +
+> >  void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+> >  			       const u8 link_status[DP_LINK_STATUS_SIZE]);
+> >  void intel_dp_start_link_train(struct intel_dp *intel_dp);
+> > -- =
+
+> > 2.25.1
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
