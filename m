@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A0E9277F22
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 06:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F31E278151
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 09:13:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD9276EB98;
-	Fri, 25 Sep 2020 04:46:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DFE56EC23;
+	Fri, 25 Sep 2020 07:13:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AB9AE6EB97;
- Fri, 25 Sep 2020 04:46:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A3597A47E9;
- Fri, 25 Sep 2020 04:46:06 +0000 (UTC)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C51266EC20;
+ Fri, 25 Sep 2020 07:13:34 +0000 (UTC)
+Received: from localhost (unknown [213.57.247.131])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9DB0D20759;
+ Fri, 25 Sep 2020 07:13:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1601018014;
+ bh=FLpqVWgSqTcNzNQkmPuNcN8MvbswI6zQzJ76hN4Pdkk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=S+x2p8u58Y3GWUmjbB4NPnzVdmpBGbn8w9xNt/WkGjNQcCF94HrSKi03dMigcrhAS
+ jirIqPJeQUe5nxg4TsGdB0ZAb+4B/1Zgkc/i9/SpmTWn6IXuM5N47Tef52jC1rRp3P
+ MrXOXGBJh6thDfcHSP9Lyyd5abgwVQbfXX39ySN0=
+Date: Fri, 25 Sep 2020 10:13:30 +0300
+From: Leon Romanovsky <leon@kernel.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20200925071330.GA2280698@unreal>
+References: <20200922083958.2150803-1-leon@kernel.org>
+ <20200922083958.2150803-2-leon@kernel.org>
+ <118a03ef-d160-e202-81cc-16c9c39359fc@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 25 Sep 2020 04:46:06 -0000
-Message-ID: <160100916663.10249.12395307844877532004@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200924194810.10293-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200924194810.10293-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Implement_display_WA_=231142=3Akbl=2C_cfl=2C_cml?=
+Content-Disposition: inline
+In-Reply-To: <118a03ef-d160-e202-81cc-16c9c39359fc@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH rdma-next v3 1/2] lib/scatterlist: Add
+ support in dynamic allocation of SG table from pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,457 +48,541 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1552187982=="
+Cc: linux-rdma@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Roland Scheidegger <sroland@vmware.com>, dri-devel@lists.freedesktop.org,
+ Maor Gottlieb <maorg@mellanox.com>, David Airlie <airlied@linux.ie>,
+ Doug Ledford <dledford@redhat.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Jason Gunthorpe <jgg@nvidia.com>, Maor Gottlieb <maorg@nvidia.com>,
+ Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1552187982==
-Content-Type: multipart/alternative;
- boundary="===============3021759347705554660=="
+On Thu, Sep 24, 2020 at 09:21:20AM +0100, Tvrtko Ursulin wrote:
+>
+> On 22/09/2020 09:39, Leon Romanovsky wrote:
+> > From: Maor Gottlieb <maorg@mellanox.com>
+> >
+> > Extend __sg_alloc_table_from_pages to support dynamic allocation of
+> > SG table from pages. It should be used by drivers that can't supply
+> > all the pages at one time.
+> >
+> > This function returns the last populated SGE in the table. Users should
+> > pass it as an argument to the function from the second call and forward.
+> > As before, nents will be equal to the number of populated SGEs (chunks).
+>
+> So it's appending and growing the "list", did I get that right? Sounds handy
+> indeed. Some comments/questions below.
 
---===============3021759347705554660==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Yes, we (RDMA) use this function to chain contiguous pages.
 
-== Series Details ==
+>
+> >
+> > With this new extension, drivers can benefit the optimization of merging
+> > contiguous pages without a need to allocate all pages in advance and
+> > hold them in a large buffer.
+> >
+> > E.g. with the Infiniband driver that allocates a single page for hold
+> > the
+> > pages. For 1TB memory registration, the temporary buffer would consume
+> > only
+> > 4KB, instead of 2GB.
+> >
+> > Signed-off-by: Maor Gottlieb <maorg@nvidia.com>
+> > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+> > ---
+> >   drivers/gpu/drm/i915/gem/i915_gem_userptr.c |  12 +-
+> >   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c  |  15 +-
+> >   include/linux/scatterlist.h                 |  43 +++---
+> >   lib/scatterlist.c                           | 158 +++++++++++++++-----
+> >   lib/sg_pool.c                               |   3 +-
+> >   tools/testing/scatterlist/main.c            |   9 +-
+> >   6 files changed, 163 insertions(+), 77 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> > index 12b30075134a..f2eaed6aca3d 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> > @@ -403,6 +403,7 @@ __i915_gem_userptr_alloc_pages(struct drm_i915_gem_object *obj,
+> >   	unsigned int max_segment = i915_sg_segment_size();
+> >   	struct sg_table *st;
+> >   	unsigned int sg_page_sizes;
+> > +	struct scatterlist *sg;
+> >   	int ret;
+> >
+> >   	st = kmalloc(sizeof(*st), GFP_KERNEL);
+> > @@ -410,13 +411,12 @@ __i915_gem_userptr_alloc_pages(struct drm_i915_gem_object *obj,
+> >   		return ERR_PTR(-ENOMEM);
+> >
+> >   alloc_table:
+> > -	ret = __sg_alloc_table_from_pages(st, pvec, num_pages,
+> > -					  0, num_pages << PAGE_SHIFT,
+> > -					  max_segment,
+> > -					  GFP_KERNEL);
+> > -	if (ret) {
+> > +	sg = __sg_alloc_table_from_pages(st, pvec, num_pages, 0,
+> > +					 num_pages << PAGE_SHIFT, max_segment,
+> > +					 NULL, 0, GFP_KERNEL);
+> > +	if (IS_ERR(sg)) {
+> >   		kfree(st);
+> > -		return ERR_PTR(ret);
+> > +		return ERR_CAST(sg);
+> >   	}
+> >
+> >   	ret = i915_gem_gtt_prepare_pages(obj, st);
+> > diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> > index ab524ab3b0b4..f22acd398b1f 100644
+> > --- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> > +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> > @@ -419,6 +419,7 @@ static int vmw_ttm_map_dma(struct vmw_ttm_tt *vmw_tt)
+> >   	int ret = 0;
+> >   	static size_t sgl_size;
+> >   	static size_t sgt_size;
+> > +	struct scatterlist *sg;
+> >
+> >   	if (vmw_tt->mapped)
+> >   		return 0;
+> > @@ -441,13 +442,15 @@ static int vmw_ttm_map_dma(struct vmw_ttm_tt *vmw_tt)
+> >   		if (unlikely(ret != 0))
+> >   			return ret;
+> >
+> > -		ret = __sg_alloc_table_from_pages
+> > -			(&vmw_tt->sgt, vsgt->pages, vsgt->num_pages, 0,
+> > -			 (unsigned long) vsgt->num_pages << PAGE_SHIFT,
+> > -			 dma_get_max_seg_size(dev_priv->dev->dev),
+> > -			 GFP_KERNEL);
+> > -		if (unlikely(ret != 0))
+> > +		sg = __sg_alloc_table_from_pages(&vmw_tt->sgt, vsgt->pages,
+> > +				vsgt->num_pages, 0,
+> > +				(unsigned long) vsgt->num_pages << PAGE_SHIFT,
+> > +				dma_get_max_seg_size(dev_priv->dev->dev),
+> > +				NULL, 0, GFP_KERNEL);
+> > +		if (IS_ERR(sg)) {
+> > +			ret = PTR_ERR(sg);
+> >   			goto out_sg_alloc_fail;
+> > +		}
+> >
+> >   		if (vsgt->num_pages > vmw_tt->sgt.nents) {
+> >   			uint64_t over_alloc =
+> > diff --git a/include/linux/scatterlist.h b/include/linux/scatterlist.h
+> > index 45cf7b69d852..c24cc667b56b 100644
+> > --- a/include/linux/scatterlist.h
+> > +++ b/include/linux/scatterlist.h
+> > @@ -165,6 +165,22 @@ static inline void sg_set_buf(struct scatterlist *sg, const void *buf,
+> >   #define for_each_sgtable_dma_sg(sgt, sg, i)	\
+> >   	for_each_sg((sgt)->sgl, sg, (sgt)->nents, i)
+> >
+> > +static inline void __sg_chain(struct scatterlist *chain_sg,
+> > +			      struct scatterlist *sgl)
+> > +{
+> > +	/*
+> > +	 * offset and length are unused for chain entry. Clear them.
+> > +	 */
+> > +	chain_sg->offset = 0;
+> > +	chain_sg->length = 0;
+> > +
+> > +	/*
+> > +	 * Set lowest bit to indicate a link pointer, and make sure to clear
+> > +	 * the termination bit if it happens to be set.
+> > +	 */
+> > +	chain_sg->page_link = ((unsigned long) sgl | SG_CHAIN) & ~SG_END;
+> > +}
+> > +
+> >   /**
+> >    * sg_chain - Chain two sglists together
+> >    * @prv:	First scatterlist
+> > @@ -178,18 +194,7 @@ static inline void sg_set_buf(struct scatterlist *sg, const void *buf,
+> >   static inline void sg_chain(struct scatterlist *prv, unsigned int prv_nents,
+> >   			    struct scatterlist *sgl)
+> >   {
+> > -	/*
+> > -	 * offset and length are unused for chain entry.  Clear them.
+> > -	 */
+> > -	prv[prv_nents - 1].offset = 0;
+> > -	prv[prv_nents - 1].length = 0;
+> > -
+> > -	/*
+> > -	 * Set lowest bit to indicate a link pointer, and make sure to clear
+> > -	 * the termination bit if it happens to be set.
+> > -	 */
+> > -	prv[prv_nents - 1].page_link = ((unsigned long) sgl | SG_CHAIN)
+> > -					& ~SG_END;
+> > +	__sg_chain(&prv[prv_nents - 1], sgl);
+> >   }
+> >
+> >   /**
+> > @@ -283,13 +288,15 @@ typedef void (sg_free_fn)(struct scatterlist *, unsigned int);
+> >   void __sg_free_table(struct sg_table *, unsigned int, unsigned int,
+> >   		     sg_free_fn *);
+> >   void sg_free_table(struct sg_table *);
+> > -int __sg_alloc_table(struct sg_table *, unsigned int, unsigned int,
+> > -		     struct scatterlist *, unsigned int, gfp_t, sg_alloc_fn *);
+> > +int __sg_alloc_table(struct sg_table *, struct scatterlist *, unsigned int,
+> > +		unsigned int, struct scatterlist *, unsigned int,
+> > +		gfp_t, sg_alloc_fn *);
+> >   int sg_alloc_table(struct sg_table *, unsigned int, gfp_t);
+> > -int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
+> > -				unsigned int n_pages, unsigned int offset,
+> > -				unsigned long size, unsigned int max_segment,
+> > -				gfp_t gfp_mask);
+> > +struct scatterlist *__sg_alloc_table_from_pages(struct sg_table *sgt,
+> > +		struct page **pages, unsigned int n_pages, unsigned int offset,
+> > +		unsigned long size, unsigned int max_segment,
+> > +		struct scatterlist *prv, unsigned int left_pages,
+> > +		gfp_t gfp_mask);
+> >   int sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
+> >   			      unsigned int n_pages, unsigned int offset,
+> >   			      unsigned long size, gfp_t gfp_mask);
+> > diff --git a/lib/scatterlist.c b/lib/scatterlist.c
+> > index 5d63a8857f36..91587560497d 100644
+> > --- a/lib/scatterlist.c
+> > +++ b/lib/scatterlist.c
+> > @@ -245,6 +245,7 @@ EXPORT_SYMBOL(sg_free_table);
+> >   /**
+> >    * __sg_alloc_table - Allocate and initialize an sg table with given allocator
+> >    * @table:	The sg table header to use
+> > + * @prv:	Last populated sge in sgt
+> >    * @nents:	Number of entries in sg list
+> >    * @max_ents:	The maximum number of entries the allocator returns per call
+> >    * @nents_first_chunk: Number of entries int the (preallocated) first
+> > @@ -263,17 +264,15 @@ EXPORT_SYMBOL(sg_free_table);
+> >    *   __sg_free_table() to cleanup any leftover allocations.
+> >    *
+> >    **/
+> > -int __sg_alloc_table(struct sg_table *table, unsigned int nents,
+> > -		     unsigned int max_ents, struct scatterlist *first_chunk,
+> > -		     unsigned int nents_first_chunk, gfp_t gfp_mask,
+> > -		     sg_alloc_fn *alloc_fn)
+> > +int __sg_alloc_table(struct sg_table *table, struct scatterlist *prv,
+> > +		unsigned int nents, unsigned int max_ents,
+> > +		struct scatterlist *first_chunk,
+> > +		unsigned int nents_first_chunk, gfp_t gfp_mask,
+> > +		sg_alloc_fn *alloc_fn)
+> >   {
+> > -	struct scatterlist *sg, *prv;
+> > -	unsigned int left;
+> > -	unsigned curr_max_ents = nents_first_chunk ?: max_ents;
+> > -	unsigned prv_max_ents;
+> > -
+> > -	memset(table, 0, sizeof(*table));
+> > +	unsigned int curr_max_ents = nents_first_chunk ?: max_ents;
+> > +	unsigned int left, prv_max_ents = 0;
+> > +	struct scatterlist *sg;
+> >
+> >   	if (nents == 0)
+> >   		return -EINVAL;
+> > @@ -283,7 +282,6 @@ int __sg_alloc_table(struct sg_table *table, unsigned int nents,
+> >   #endif
+> >
+> >   	left = nents;
+> > -	prv = NULL;
+> >   	do {
+> >   		unsigned int sg_size, alloc_size = left;
+> >
+> > @@ -308,7 +306,7 @@ int __sg_alloc_table(struct sg_table *table, unsigned int nents,
+> >   			 * linkage.  Without this, sg_kfree() may get
+> >   			 * confused.
+> >   			 */
+> > -			if (prv)
+> > +			if (prv_max_ents)
+> >   				table->nents = ++table->orig_nents;
+> >
+> >   			return -ENOMEM;
+> > @@ -321,10 +319,18 @@ int __sg_alloc_table(struct sg_table *table, unsigned int nents,
+> >   		 * If this is the first mapping, assign the sg table header.
+> >   		 * If this is not the first mapping, chain previous part.
+> >   		 */
+> > -		if (prv)
+> > -			sg_chain(prv, prv_max_ents, sg);
+> > -		else
+> > +		if (!prv)
+> >   			table->sgl = sg;
+> > +		else if (prv_max_ents)
+> > +			sg_chain(prv, prv_max_ents, sg);
+> > +		else {
+> > +			__sg_chain(prv, sg);
+> > +			/*
+> > +			 * We decrease one since the prvious last sge in used to
+> > +			 * chain the chunks together.
+> > +			 */
+> > +			table->nents = table->orig_nents -= 1;
+> > +		}
+> >
+> >   		/*
+> >   		 * If no more entries after this one, mark the end
+> > @@ -356,7 +362,8 @@ int sg_alloc_table(struct sg_table *table, unsigned int nents, gfp_t gfp_mask)
+> >   {
+> >   	int ret;
+> >
+> > -	ret = __sg_alloc_table(table, nents, SG_MAX_SINGLE_ALLOC,
+> > +	memset(table, 0, sizeof(*table));
+> > +	ret = __sg_alloc_table(table, NULL, nents, SG_MAX_SINGLE_ALLOC,
+> >   			       NULL, 0, gfp_mask, sg_kmalloc);
+> >   	if (unlikely(ret))
+> >   		__sg_free_table(table, SG_MAX_SINGLE_ALLOC, 0, sg_kfree);
+> > @@ -365,6 +372,30 @@ int sg_alloc_table(struct sg_table *table, unsigned int nents, gfp_t gfp_mask)
+> >   }
+> >   EXPORT_SYMBOL(sg_alloc_table);
+> >
+> > +static struct scatterlist *get_next_sg(struct sg_table *table,
+> > +		struct scatterlist *prv, unsigned long left_npages,
+> > +		gfp_t gfp_mask)
+> > +{
+> > +	struct scatterlist *next_sg;
+> > +	int ret;
+> > +
+> > +	/* If table was just allocated */
+> > +	if (!prv)
+> > +		return table->sgl;
+> > +
+> > +	/* Check if last entry should be keeped for chainning */
+> > +	next_sg = sg_next(prv);
+> > +	if (!sg_is_last(next_sg) || left_npages == 1)
+> > +		return next_sg;
+> > +
+> > +	ret = __sg_alloc_table(table, next_sg,
+> > +			min_t(unsigned long, left_npages, SG_MAX_SINGLE_ALLOC),
+> > +			SG_MAX_SINGLE_ALLOC, NULL, 0, gfp_mask, sg_kmalloc);
+> > +	if (ret)
+> > +		return ERR_PTR(ret);
+> > +	return sg_next(prv);
+> > +}
+> > +
+> >   /**
+> >    * __sg_alloc_table_from_pages - Allocate and initialize an sg table from
+> >    *			         an array of pages
+> > @@ -374,29 +405,47 @@ EXPORT_SYMBOL(sg_alloc_table);
+> >    * @offset:      Offset from start of the first page to the start of a buffer
+> >    * @size:        Number of valid bytes in the buffer (after offset)
+> >    * @max_segment: Maximum size of a scatterlist node in bytes (page aligned)
+> > + * @prv:	 Last populated sge in sgt
+> > + * @left_pages:  Left pages caller have to set after this call
+> >    * @gfp_mask:	 GFP allocation mask
+> >    *
+> > - *  Description:
+> > - *    Allocate and initialize an sg table from a list of pages. Contiguous
+> > - *    ranges of the pages are squashed into a single scatterlist node up to the
+> > - *    maximum size specified in @max_segment. An user may provide an offset at a
+> > - *    start and a size of valid data in a buffer specified by the page array.
+> > - *    The returned sg table is released by sg_free_table.
+> > + * Description:
+> > + *    If @prv is NULL, allocate and initialize an sg table from a list of pages,
+> > + *    else reuse the scatterlist passed in at @prv.
+> > + *    Contiguous ranges of the pages are squashed into a single scatterlist
+> > + *    entry up to the maximum size specified in @max_segment.  A user may
+> > + *    provide an offset at a start and a size of valid data in a buffer
+> > + *    specified by the page array.
+> >    *
+> >    * Returns:
+> > - *   0 on success, negative error on failure
+> > + *   Last SGE in sgt on success, PTR_ERR on otherwise.
+> > + *   The allocation in @sgt must be released by sg_free_table.
+> > + *
+> > + * Notes:
+> > + *   If this function returns non-0 (eg failure), the caller must call
+> > + *   sg_free_table() to cleanup any leftover allocations.
+> >    */
+> > -int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
+> > -				unsigned int n_pages, unsigned int offset,
+> > -				unsigned long size, unsigned int max_segment,
+> > -				gfp_t gfp_mask)
+> > +struct scatterlist *__sg_alloc_table_from_pages(struct sg_table *sgt,
+> > +		struct page **pages, unsigned int n_pages, unsigned int offset,
+> > +		unsigned long size, unsigned int max_segment,
+> > +		struct scatterlist *prv, unsigned int left_pages,
+> > +		gfp_t gfp_mask)
+> >   {
+> > -	unsigned int chunks, cur_page, seg_len, i;
+> > +	unsigned int chunks, cur_page, seg_len, i, prv_len = 0;
+> > +	unsigned int tmp_nents = sgt->nents;
+> > +	struct scatterlist *s = prv;
+> > +	unsigned int table_size;
+> >   	int ret;
+> > -	struct scatterlist *s;
+> >
+> >   	if (WARN_ON(!max_segment || offset_in_page(max_segment)))
+> > -		return -EINVAL;
+> > +		return ERR_PTR(-EINVAL);
+> > +	if (IS_ENABLED(CONFIG_ARCH_NO_SG_CHAIN) && prv)
+> > +		return ERR_PTR(-EOPNOTSUPP);
+>
+> I would consider trying to make the failure caught at compile time. It would
+> probably need a static inline wrapper to BUILD_BUG_ON is prv is not compile
+> time constant. Because my gut feeling is runtime is a bit awkward.
 
-Series: drm/i915: Implement display WA #1142:kbl, cfl, cml
-URL   : https://patchwork.freedesktop.org/series/82073/
-State : success
+In second patch [1], priv is dynamic pointer that can't be checked at
+compile time.
 
-== Summary ==
+[1] https://lore.kernel.org/linux-rdma/20200923054251.GA15249@lst.de/T/#m19b0836f23db9d626309c3e70939ce884946e2f6
 
-CI Bug Log - changes from CI_DRM_9053_full -> Patchwork_18569_full
-====================================================
+>
+> Hm, but also isn't the check too strict? It would be possible to append to
+> the last sgt as long as under max_ents, no? (Like the current check in
+> __sg_alloc_table.)
 
-Summary
--------
+It can be, but it is corner case that doesn't worth to code. Right now,
+RDMA is the single user of this append thing and our setups are
+!CONFIG_ARCH_NO_SG_CHAIN.
 
-  **SUCCESS**
+>
+> > +
+> > +	if (prv &&
+> > +	    page_to_pfn(sg_page(prv)) + (prv->length >> PAGE_SHIFT) ==
+> > +	    page_to_pfn(pages[0]))
+> > +		prv_len = prv->length;
+> >
+> >   	/* compute number of contiguous chunks */
+> >   	chunks = 1;
+> > @@ -410,13 +459,17 @@ int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
+> >   		}
+> >   	}
+> >
+> > -	ret = sg_alloc_table(sgt, chunks, gfp_mask);
+> > -	if (unlikely(ret))
+> > -		return ret;
+> > +	if (!prv) {
+> > +		/* Only the last allocation could be less than the maximum */
+> > +		table_size = left_pages ? SG_MAX_SINGLE_ALLOC : chunks;
+> > +		ret = sg_alloc_table(sgt, table_size, gfp_mask);
+> > +		if (unlikely(ret))
+> > +			return ERR_PTR(ret);
+> > +	}
+> >
+> >   	/* merging chunks and putting them into the scatterlist */
+> >   	cur_page = 0;
+> > -	for_each_sg(sgt->sgl, s, sgt->orig_nents, i) {
+> > +	for (i = 0; i < chunks; i++) {
+> >   		unsigned int j, chunk_size;
+> >
+> >   		/* look for the end of the current chunk */
+> > @@ -425,19 +478,41 @@ int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
+> >   			seg_len += PAGE_SIZE;
+> >   			if (seg_len >= max_segment ||
+> >   			    page_to_pfn(pages[j]) !=
+> > -			    page_to_pfn(pages[j - 1]) + 1)
+> > +				    page_to_pfn(pages[j - 1]) + 1)
+> >   				break;
+> >   		}
+> >
+> >   		chunk_size = ((j - cur_page) << PAGE_SHIFT) - offset;
+> > -		sg_set_page(s, pages[cur_page],
+> > -			    min_t(unsigned long, size, chunk_size), offset);
+> > +		chunk_size = min_t(unsigned long, size, chunk_size);
+> > +		if (!i && prv_len) {
+> > +			if (max_segment - prv->length >= chunk_size) {
+> > +				sg_set_page(s, sg_page(s),
+> > +					    s->length + chunk_size, s->offset);
+> > +				goto next;
+> > +			}
+> > +		}
+> > +
+> > +		/* Pass how many chunks might left */
+> > +		s = get_next_sg(sgt, s, chunks - i + left_pages, gfp_mask);
+> > +		if (IS_ERR(s)) {
+> > +			/*
+> > +			 * Adjust entry length to be as before function was
+> > +			 * called.
+> > +			 */
+> > +			if (prv_len)
+> > +				prv->length = prv_len;
+> > +			goto out;
+> > +		}
+> > +		sg_set_page(s, pages[cur_page], chunk_size, offset);
+> > +		tmp_nents++;
+> > +next:
+> >   		size -= chunk_size;
+> >   		offset = 0;
+> >   		cur_page = j;
+> >   	}
+> > -
+> > -	return 0;
+> > +	sgt->nents = tmp_nents;
+> > +out:
+> > +	return s;
+> >   }
+> >   EXPORT_SYMBOL(__sg_alloc_table_from_pages);
+> >
+> > @@ -465,8 +540,9 @@ int sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
+> >   			      unsigned int n_pages, unsigned int offset,
+> >   			      unsigned long size, gfp_t gfp_mask)
+> >   {
+> > -	return __sg_alloc_table_from_pages(sgt, pages, n_pages, offset, size,
+> > -					   SCATTERLIST_MAX_SEGMENT, gfp_mask);
+> > +	return PTR_ERR_OR_ZERO(__sg_alloc_table_from_pages(sgt, pages, n_pages,
+> > +			offset, size, SCATTERLIST_MAX_SEGMENT, NULL, 0,
+> > +			gfp_mask));
+> >   }
+> >   EXPORT_SYMBOL(sg_alloc_table_from_pages);
+> >
+> > diff --git a/lib/sg_pool.c b/lib/sg_pool.c
+> > index db29e5c1f790..c449248bf5d5 100644
+> > --- a/lib/sg_pool.c
+> > +++ b/lib/sg_pool.c
+> > @@ -129,7 +129,8 @@ int sg_alloc_table_chained(struct sg_table *table, int nents,
+> >   		nents_first_chunk = 0;
+> >   	}
+> >
+> > -	ret = __sg_alloc_table(table, nents, SG_CHUNK_SIZE,
+> > +	memset(table, 0, sizeof(*table));
+> > +	ret = __sg_alloc_table(table, NULL, nents, SG_CHUNK_SIZE,
+> >   			       first_chunk, nents_first_chunk,
+> >   			       GFP_ATOMIC, sg_pool_alloc);
+> >   	if (unlikely(ret))
+> > diff --git a/tools/testing/scatterlist/main.c b/tools/testing/scatterlist/main.c
+> > index 0a1464181226..4899359a31ac 100644
+> > --- a/tools/testing/scatterlist/main.c
+> > +++ b/tools/testing/scatterlist/main.c
+> > @@ -55,14 +55,13 @@ int main(void)
+> >   	for (i = 0, test = tests; test->expected_segments; test++, i++) {
+> >   		struct page *pages[MAX_PAGES];
+> >   		struct sg_table st;
+> > -		int ret;
+> > +		struct scatterlist *sg;
+> >
+> >   		set_pages(pages, test->pfn, test->num_pages);
+> >
+> > -		ret = __sg_alloc_table_from_pages(&st, pages, test->num_pages,
+> > -						  0, test->size, test->max_seg,
+> > -						  GFP_KERNEL);
+> > -		assert(ret == test->alloc_ret);
+> > +		sg = __sg_alloc_table_from_pages(&st, pages, test->num_pages, 0,
+> > +				test->size, test->max_seg, NULL, 0, GFP_KERNEL);
+> > +		assert(PTR_ERR_OR_ZERO(sg) == test->alloc_ret);
+>
+> Some test coverage for relatively complex code would be very welcomed. Since
+> the testing framework is already there, even if it bit-rotted a bit, but
+> shouldn't be hard to fix.
+>
+> A few tests to check append/grow works as expected, in terms of how the end
+> table looks like given the initial state and some different page patterns
+> added to it. And both crossing and not crossing into sg chaining scenarios.
 
-  No regressions found.
+This function is basic for all RDMA devices and we are pretty confident
+that the old and new flows are tested thoroughly.
 
-  
+We will add proper test in next kernel cycle.
 
-Known issues
-------------
+Thanks
 
-  Here are the changes found in Patchwork_18569_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_ctx_isolation@preservation-s3@rcs0:
-    - shard-skl:          [PASS][1] -> [INCOMPLETE][2] ([i915#198])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl7/igt@gem_ctx_isolation@preservation-s3@rcs0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl5/igt@gem_ctx_isolation@preservation-s3@rcs0.html
-
-  * igt@i915_selftest@mock@contexts:
-    - shard-apl:          [PASS][3] -> [INCOMPLETE][4] ([i915#1635] / [i915#2278])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-apl8/igt@i915_selftest@mock@contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-apl1/igt@i915_selftest@mock@contexts.html
-
-  * igt@i915_selftest@mock@requests:
-    - shard-skl:          [PASS][5] -> [INCOMPLETE][6] ([i915#198] / [i915#2278])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl4/igt@i915_selftest@mock@requests.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl2/igt@i915_selftest@mock@requests.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
-    - shard-skl:          [PASS][7] -> [INCOMPLETE][8] ([i915#300]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl5/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl6/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - shard-skl:          [PASS][9] -> [DMESG-WARN][10] ([i915#1982]) +4 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl10/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
-    - shard-skl:          [PASS][11] -> [FAIL][12] ([fdo#108145] / [i915#265])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-
-  * igt@kms_psr@psr2_suspend:
-    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#109441]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-iclb2/igt@kms_psr@psr2_suspend.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-iclb4/igt@kms_psr@psr2_suspend.html
-
-  * igt@kms_setmode@basic:
-    - shard-apl:          [PASS][15] -> [FAIL][16] ([i915#1635] / [i915#31])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-apl1/igt@kms_setmode@basic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-apl7/igt@kms_setmode@basic.html
-    - shard-skl:          [PASS][17] -> [FAIL][18] ([i915#31])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl8/igt@kms_setmode@basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl7/igt@kms_setmode@basic.html
-
-  * igt@kms_vblank@pipe-a-ts-continuation-suspend:
-    - shard-kbl:          [PASS][19] -> [DMESG-WARN][20] ([i915#180]) +5 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-kbl1/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-kbl6/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-
-  * igt@kms_vblank@pipe-b-query-busy:
-    - shard-apl:          [PASS][21] -> [DMESG-WARN][22] ([i915#1635] / [i915#1982])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-apl6/igt@kms_vblank@pipe-b-query-busy.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-apl3/igt@kms_vblank@pipe-b-query-busy.html
-
-  * igt@kms_vblank@pipe-d-wait-idle:
-    - shard-tglb:         [PASS][23] -> [DMESG-WARN][24] ([i915#1982])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-tglb3/igt@kms_vblank@pipe-d-wait-idle.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-tglb2/igt@kms_vblank@pipe-d-wait-idle.html
-
-  * igt@perf@polling-parameterized:
-    - shard-glk:          [PASS][25] -> [FAIL][26] ([i915#1542])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-glk4/igt@perf@polling-parameterized.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-glk3/igt@perf@polling-parameterized.html
-    - shard-skl:          [PASS][27] -> [FAIL][28] ([i915#1542])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl1/igt@perf@polling-parameterized.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl8/igt@perf@polling-parameterized.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_persistence@engines-mixed-process@rcs0:
-    - shard-glk:          [FAIL][29] ([i915#2374]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-glk7/igt@gem_ctx_persistence@engines-mixed-process@rcs0.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-glk1/igt@gem_ctx_persistence@engines-mixed-process@rcs0.html
-
-  * igt@gem_exec_reloc@basic-many-active@rcs0:
-    - shard-glk:          [FAIL][31] ([i915#2389]) -> [PASS][32] +3 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-glk6/igt@gem_exec_reloc@basic-many-active@rcs0.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-glk5/igt@gem_exec_reloc@basic-many-active@rcs0.html
-
-  * igt@gem_exec_whisper@basic-fds-forked-all:
-    - shard-glk:          [DMESG-WARN][33] ([i915#118] / [i915#95]) -> [PASS][34] +1 similar issue
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-glk7/igt@gem_exec_whisper@basic-fds-forked-all.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-glk3/igt@gem_exec_whisper@basic-fds-forked-all.html
-
-  * igt@kms_fbcon_fbt@psr-suspend:
-    - shard-skl:          [INCOMPLETE][35] ([i915#198]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl1/igt@kms_fbcon_fbt@psr-suspend.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl8/igt@kms_fbcon_fbt@psr-suspend.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render:
-    - shard-tglb:         [DMESG-WARN][37] ([i915#1982]) -> [PASS][38] +2 similar issues
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-tglb8/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-tglb5/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [FAIL][39] ([i915#1188]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl6/igt@kms_hdr@bpc-switch-suspend.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl3/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_plane_scaling@pipe-c-plane-scaling:
-    - shard-skl:          [DMESG-WARN][41] ([i915#1982]) -> [PASS][42] +4 similar issues
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl1/igt@kms_plane_scaling@pipe-c-plane-scaling.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl8/igt@kms_plane_scaling@pipe-c-plane-scaling.html
-
-  * igt@kms_psr@psr2_cursor_mmap_cpu:
-    - shard-iclb:         [SKIP][43] ([fdo#109441]) -> [PASS][44] +1 similar issue
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-iclb5/igt@kms_psr@psr2_cursor_mmap_cpu.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
-
-  
-#### Warnings ####
-
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-kbl:          [INCOMPLETE][45] ([i915#1436]) -> [DMESG-WARN][46] ([i915#1436] / [i915#716])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-kbl4/igt@gen9_exec_parse@allowed-all.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-kbl1/igt@gen9_exec_parse@allowed-all.html
-
-  * igt@i915_pm_dc@dc3co-vpb-simulation:
-    - shard-iclb:         [SKIP][47] ([i915#588]) -> [SKIP][48] ([i915#658])
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-iclb2/igt@i915_pm_dc@dc3co-vpb-simulation.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-iclb8/igt@i915_pm_dc@dc3co-vpb-simulation.html
-
-  * igt@kms_dp_dsc@basic-dsc-enable-edp:
-    - shard-iclb:         [SKIP][49] ([fdo#109349]) -> [DMESG-WARN][50] ([i915#1226])
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-iclb1/igt@kms_dp_dsc@basic-dsc-enable-edp.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html
-
-  * igt@runner@aborted:
-    - shard-skl:          [FAIL][51] ([i915#1611] / [i915#1814] / [i915#2029] / [i915#2439]) -> [FAIL][52] ([i915#1436] / [i915#2439])
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl3/igt@runner@aborted.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl2/igt@runner@aborted.html
-
-  
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109349]: https://bugs.freedesktop.org/show_bug.cgi?id=109349
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1226]: https://gitlab.freedesktop.org/drm/intel/issues/1226
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#1611]: https://gitlab.freedesktop.org/drm/intel/issues/1611
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2278]: https://gitlab.freedesktop.org/drm/intel/issues/2278
-  [i915#2374]: https://gitlab.freedesktop.org/drm/intel/issues/2374
-  [i915#2389]: https://gitlab.freedesktop.org/drm/intel/issues/2389
-  [i915#2439]: https://gitlab.freedesktop.org/drm/intel/issues/2439
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#300]: https://gitlab.freedesktop.org/drm/intel/issues/300
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#588]: https://gitlab.freedesktop.org/drm/intel/issues/588
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9053 -> Patchwork_18569
-
-  CI-20190529: 20190529
-  CI_DRM_9053: 1cf86dfa098540e161420c4e6814d5629c8eceb4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5787: 0ec962017c8131de14e0cb038f7f76b1f17ed637 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18569: 556aaf201fc91ab79c2cdf9ee4f9a551563357de @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/index.html
-
---===============3021759347705554660==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Implement display WA #1142:kbl, cfl, cml</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82073/">https://patchwork.freedesktop.org/series/82073/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9053_full -&gt; Patchwork_18569_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18569_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_isolation@preservation-s3@rcs0:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl7/igt@gem_ctx_isolation@preservation-s3@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl5/igt@gem_ctx_isolation@preservation-s3@rcs0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@mock@contexts:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-apl8/igt@i915_selftest@mock@contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-apl1/igt@i915_selftest@mock@contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2278">i915#2278</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@mock@requests:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl4/igt@i915_selftest@mock@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl2/igt@i915_selftest@mock@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2278">i915#2278</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-c-cursor-suspend:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl5/igt@kms_cursor_crc@pipe-c-cursor-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl6/igt@kms_cursor_crc@pipe-c-cursor-suspend.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/300">i915#300</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl10/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=108145">fdo#108145</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/265">i915#265</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_suspend:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-iclb2/igt@kms_psr@psr2_suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-iclb4/igt@kms_psr@psr2_suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109441">fdo#109441</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic:</p>
-<ul>
-<li>
-<p>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-apl1/igt@kms_setmode@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-apl7/igt@kms_setmode@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/31">i915#31</a>)</p>
-</li>
-<li>
-<p>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl8/igt@kms_setmode@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl7/igt@kms_setmode@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/31">i915#31</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vblank@pipe-a-ts-continuation-suspend:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-kbl1/igt@kms_vblank@pipe-a-ts-continuation-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-kbl6/igt@kms_vblank@pipe-a-ts-continuation-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a>) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vblank@pipe-b-query-busy:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-apl6/igt@kms_vblank@pipe-b-query-busy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-apl3/igt@kms_vblank@pipe-b-query-busy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vblank@pipe-d-wait-idle:</p>
-<ul>
-<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-tglb3/igt@kms_vblank@pipe-d-wait-idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-tglb2/igt@kms_vblank@pipe-d-wait-idle.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@perf@polling-parameterized:</p>
-<ul>
-<li>
-<p>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-glk4/igt@perf@polling-parameterized.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-glk3/igt@perf@polling-parameterized.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1542">i915#1542</a>)</p>
-</li>
-<li>
-<p>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl1/igt@perf@polling-parameterized.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl8/igt@perf@polling-parameterized.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1542">i915#1542</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_persistence@engines-mixed-process@rcs0:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-glk7/igt@gem_ctx_persistence@engines-mixed-process@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2374">i915#2374</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-glk1/igt@gem_ctx_persistence@engines-mixed-process@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_reloc@basic-many-active@rcs0:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-glk6/igt@gem_exec_reloc@basic-many-active@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2389">i915#2389</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-glk5/igt@gem_exec_reloc@basic-many-active@rcs0.html">PASS</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_whisper@basic-fds-forked-all:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-glk7/igt@gem_exec_whisper@basic-fds-forked-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-glk3/igt@gem_exec_whisper@basic-fds-forked-all.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_fbcon_fbt@psr-suspend:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl1/igt@kms_fbcon_fbt@psr-suspend.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl8/igt@kms_fbcon_fbt@psr-suspend.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render:</p>
-<ul>
-<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-tglb8/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-tglb5/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-render.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@bpc-switch-suspend:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl6/igt@kms_hdr@bpc-switch-suspend.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1188">i915#1188</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl3/igt@kms_hdr@bpc-switch-suspend.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@pipe-c-plane-scaling:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl1/igt@kms_plane_scaling@pipe-c-plane-scaling.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl8/igt@kms_plane_scaling@pipe-c-plane-scaling.html">PASS</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_cursor_mmap_cpu:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-iclb5/igt@kms_psr@psr2_cursor_mmap_cpu.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109441">fdo#109441</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gen9_exec_parse@allowed-all:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-kbl4/igt@gen9_exec_parse@allowed-all.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-kbl1/igt@gen9_exec_parse@allowed-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/716">i915#716</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_dc@dc3co-vpb-simulation:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-iclb2/igt@i915_pm_dc@dc3co-vpb-simulation.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/588">i915#588</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-iclb8/igt@i915_pm_dc@dc3co-vpb-simulation.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/658">i915#658</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dp_dsc@basic-dsc-enable-edp:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-iclb1/igt@kms_dp_dsc@basic-dsc-enable-edp.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109349">fdo#109349</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1226">i915#1226</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9053/shard-skl3/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1611">i915#1611</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2439">i915#2439</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18569/shard-skl2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2439">i915#2439</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (10 -&gt; 10)</h2>
-<p>No changes in participating hosts</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9053 -&gt; Patchwork_18569</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9053: 1cf86dfa098540e161420c4e6814d5629c8eceb4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5787: 0ec962017c8131de14e0cb038f7f76b1f17ed637 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18569: 556aaf201fc91ab79c2cdf9ee4f9a551563357de @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============3021759347705554660==--
-
---===============1552187982==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+> Regards,
+>
+> Tvrtko
+>
+> >
+> >   		if (test->alloc_ret)
+> >   			continue;
+> > --
+> > 2.26.2
+> >
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> >
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1552187982==--
