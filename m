@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A700E278866
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 14:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 924C42788EB
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 14:59:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BED36E0CF;
-	Fri, 25 Sep 2020 12:55:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A74FF6E212;
+	Fri, 25 Sep 2020 12:59:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9E19B6E0CF;
- Fri, 25 Sep 2020 12:55:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id EBD806E214;
+ Fri, 25 Sep 2020 12:59:30 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 96B1FAA0EA;
- Fri, 25 Sep 2020 12:55:34 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E3556AA0EA;
+ Fri, 25 Sep 2020 12:59:30 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 25 Sep 2020 12:55:34 -0000
-Message-ID: <160103853458.10249.9260753893827963585@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Date: Fri, 25 Sep 2020 12:59:30 -0000
+Message-ID: <160103877090.10246.8003420003341897034@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200925121749.708-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200925121749.708-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Make_intel=5F=7Benable?=
- =?utf-8?b?LCBkaXNhYmxlfV9zYWd2KCkgc3RhdGlj?=
+References: <20200925121340.29497-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20200925121340.29497-1-ankit.k.nautiyal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_support_for_DP-HDMI2=2E1_PCON?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,274 +40,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0933523207=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0933523207==
-Content-Type: multipart/alternative;
- boundary="===============7890318189819251716=="
-
---===============7890318189819251716==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/2] drm/i915: Make intel_{enable, disable}_sagv() static
-URL   : https://patchwork.freedesktop.org/series/82096/
-State : success
+Series: Add support for DP-HDMI2.1 PCON
+URL   : https://patchwork.freedesktop.org/series/82098/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9056 -> Patchwork_18573
-====================================================
+$ dim checkpatch origin/drm-tip
+ca36191ea8ce drm/edid: Add additional HFVSDB fields for HDMI2.1
+-:57: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Swati Sharma <swati2.sharma@intel.com>'
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+085ed8f42a16 drm/edid: Parse MAX_FRL field from HFVSDB block
+-:27: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#27: FILE: drivers/gpu/drm/drm_edid.c:4857:
++    u8 max_frl_rate_per_lane;$
 
-  **SUCCESS**
+-:28: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#28: FILE: drivers/gpu/drm/drm_edid.c:4858:
++    struct drm_hdmi_info *hdmi = &connector->display_info.hdmi;$
 
-  No regressions found.
+-:30: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#30: FILE: drivers/gpu/drm/drm_edid.c:4860:
++    max_frl_rate_per_lane = (db[7] & DRM_EDID_MAX_FRL_RATE_MASK) >> 4;$
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/index.html
+-:32: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#32: FILE: drivers/gpu/drm/drm_edid.c:4862:
++    switch(max_frl_rate_per_lane) {$
 
-Known issues
-------------
+-:32: ERROR:SPACING: space required before the open parenthesis '('
+#32: FILE: drivers/gpu/drm/drm_edid.c:4862:
++    switch(max_frl_rate_per_lane) {
 
-  Here are the changes found in Patchwork_18573 that come from known issues:
+-:33: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#33: FILE: drivers/gpu/drm/drm_edid.c:4863:
++    case 0:$
 
-### IGT changes ###
+-:36: WARNING:TABSTOP: Statements should start on a tabstop
+#36: FILE: drivers/gpu/drm/drm_edid.c:4866:
++	    break;
 
-#### Issues hit ####
+-:37: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#37: FILE: drivers/gpu/drm/drm_edid.c:4867:
++    case 1:$
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+-:40: WARNING:TABSTOP: Statements should start on a tabstop
+#40: FILE: drivers/gpu/drm/drm_edid.c:4870:
++	    break;
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982]) +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+-:41: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#41: FILE: drivers/gpu/drm/drm_edid.c:4871:
++    case 2:$
 
-  * igt@vgem_basic@unload:
-    - fi-skl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#2203])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-skl-guc/igt@vgem_basic@unload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-skl-guc/igt@vgem_basic@unload.html
+-:44: WARNING:TABSTOP: Statements should start on a tabstop
+#44: FILE: drivers/gpu/drm/drm_edid.c:4874:
++	    break;
 
-  
-#### Possible fixes ####
+-:45: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#45: FILE: drivers/gpu/drm/drm_edid.c:4875:
++    case 3:$
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
+-:48: WARNING:TABSTOP: Statements should start on a tabstop
+#48: FILE: drivers/gpu/drm/drm_edid.c:4878:
++	    break;
 
-  * igt@kms_busy@basic@flip:
-    - {fi-tgl-dsi}:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-tgl-dsi/igt@kms_busy@basic@flip.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-tgl-dsi/igt@kms_busy@basic@flip.html
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+-:49: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#49: FILE: drivers/gpu/drm/drm_edid.c:4879:
++    case 4:$
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
-    - fi-icl-u2:          [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+-:52: WARNING:TABSTOP: Statements should start on a tabstop
+#52: FILE: drivers/gpu/drm/drm_edid.c:4882:
++	    break;
 
-  
-#### Warnings ####
+-:53: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#53: FILE: drivers/gpu/drm/drm_edid.c:4883:
++    case 5:$
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#1982] / [i915#62] / [i915#92] / [i915#95])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+-:56: WARNING:TABSTOP: Statements should start on a tabstop
+#56: FILE: drivers/gpu/drm/drm_edid.c:4886:
++	    break;
 
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+-:57: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#57: FILE: drivers/gpu/drm/drm_edid.c:4887:
++    case 6:$
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +4 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+-:60: WARNING:TABSTOP: Statements should start on a tabstop
+#60: FILE: drivers/gpu/drm/drm_edid.c:4890:
++	    break;
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:63: WARNING:TABSTOP: Statements should start on a tabstop
+#63: FILE: drivers/gpu/drm/drm_edid.c:4893:
++	    break;
 
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+-:64: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#64: FILE: drivers/gpu/drm/drm_edid.c:4894:
++    }$
 
+-:74: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 20)
+#74: FILE: drivers/gpu/drm/drm_edid.c:4950:
++	if (hf_vsdb[7]) {
++		    DRM_DEBUG_KMS("hdmi_21 sink detected. parsing edid\n");
 
-Participating hosts (46 -> 39)
-------------------------------
+-:98: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Swati Sharma <swati2.sharma@intel.com>'
 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+total: 1 errors, 22 warnings, 0 checks, 74 lines checked
+57e6b62ff35a drm/dp_helper: Add FRL training support for a DP-HDMI2.1 PCON
+35c096404566 drm/i915: Add support for starting FRL training for HDMI2.1 via PCON
+-:174: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#174: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3936:
++	wait_for(is_active = drm_dp_pcon_is_frl_ready(&intel_dp->aux) == true, TIMEOUT_FRL_READY_MS);
 
+-:193: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#193: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3955:
++	wait_for(is_active = drm_dp_pcon_hdmi_link_active(&intel_dp->aux) == true, TIMEOUT_HDMI_LINK_ACTIVE_MS);
 
-Build changes
--------------
+-:200: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#200: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3962:
++	if (DP_PCON_HDMI_MODE_FRL != drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, &frl_trained_mask)) {
 
-  * Linux: CI_DRM_9056 -> Patchwork_18573
+-:200: WARNING:CONSTANT_COMPARISON: Comparisons should place the constant on the right side of the test
+#200: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3962:
++	if (DP_PCON_HDMI_MODE_FRL != drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, &frl_trained_mask)) {
 
-  CI-20190529: 20190529
-  CI_DRM_9056: 637f215bda901249b97da25ee2983f72cc12e1c5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5788: a7520973a210b7268c3039902789f433ee0f5ef7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18573: e16990ceabace59d8e415ccbf4deb0faee81a67a @ git://anongit.freedesktop.org/gfx-ci/linux
+-:204: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#204: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3966:
++	drm_dbg(&i915->drm, "MAX_FRL_MASK = %u, FRL_TRAINED_MASK = %u\n", max_frl_mask, frl_trained_mask);
 
+-:247: CHECK:BRACES: braces {} should be used on all arms of this statement
+#247: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4009:
++	if (intel_dp_pcon_start_frl_training(intel_dp) < 0) {
+[...]
++	else
+[...]
 
-== Linux commits ==
+total: 0 errors, 5 warnings, 1 checks, 244 lines checked
+b8761d77210f drm/i915: Check for FRL training before DP Link training
+0c9c23579c4a drm/dp_helper: Add support for link status and link recovery
+-:36: ERROR:OPEN_BRACE: that open brace { should be on the previous line
+#36: FILE: drivers/gpu/drm/drm_dp_helper.c:2682:
++	for (i = 0; i < hdmi->max_lane; i++)
++	{
 
-e16990ceabac drm/i915: Don't hide the intel_crtc_atomic_check() call
-31b1ac187cad drm/i915: Make intel_{enable, disable}_sagv() static
+-:38: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#38: FILE: drivers/gpu/drm/drm_dp_helper.c:2684:
++		if (drm_dp_dpcd_readb(aux, DP_PCON_HDMI_ERROR_STATUS_LN0 + i , &buf) < 0)
+ 		                                                             ^
 
-== Logs ==
+-:43: ERROR:SPACING: space required before the open parenthesis '('
+#43: FILE: drivers/gpu/drm/drm_dp_helper.c:2689:
++	switch(error_count) {
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/index.html
+total: 3 errors, 0 warnings, 0 checks, 68 lines checked
+5215ca3211f4 drm/i915: Add support for enabling link status and recovery
+-:47: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_dp.c:5935:
++		drm_dp_pcon_hdmi_frl_link_error_count(&intel_dp->aux, &intel_dp->attached_connector->base);
 
---===============7890318189819251716==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 77 lines checked
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Make intel_{enable, disable}_sagv() static</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82096/">https://patchwork.freedesktop.org/series/82096/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9056 -&gt; Patchwork_18573</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18573 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@unload:</p>
-<ul>
-<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-skl-guc/igt@vgem_basic@unload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-skl-guc/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>
-<p>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-tgl-dsi/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-tgl-dsi/igt@kms_busy@basic@flip.html">PASS</a></p>
-</li>
-<li>
-<p>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-kbl-x1275/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-kbl-x1275/igt@kms_busy@basic@flip.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-edid:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9056/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18573/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +4 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (46 -&gt; 39)</h2>
-<p>Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9056 -&gt; Patchwork_18573</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9056: 637f215bda901249b97da25ee2983f72cc12e1c5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5788: a7520973a210b7268c3039902789f433ee0f5ef7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18573: e16990ceabace59d8e415ccbf4deb0faee81a67a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e16990ceabac drm/i915: Don't hide the intel_crtc_atomic_check() call<br />
-31b1ac187cad drm/i915: Make intel_{enable, disable}_sagv() static</p>
-
-</body>
-</html>
-
---===============7890318189819251716==--
-
---===============0933523207==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0933523207==--
