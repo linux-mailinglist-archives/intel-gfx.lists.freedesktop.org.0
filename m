@@ -2,43 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50EAD27893F
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 15:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E218E27894D
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 15:19:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97EED6ECF3;
-	Fri, 25 Sep 2020 13:17:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 506146ECC9;
+	Fri, 25 Sep 2020 13:19:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 119476ECF4
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:17:27 +0000 (UTC)
-IronPort-SDR: 3mrio8y5QVsBt+xPYI/l0G2FUF3nxjVrNds2Av54wrwl0OUtOfuaMILWOEirxRgWdAXx2k3Wjp
- 67B98xs/xzfg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="161610418"
-X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="161610418"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BEFD6ECC9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:19:27 +0000 (UTC)
+IronPort-SDR: e4YcJj0HvUDScX7vBzB9+qytqc33MgTSxWlPXrNlu6KuPfxm8ikuzqnu1MJouFt5636+s1bJxl
+ R+NVKAq8JldA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="246303222"
+X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="246303222"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2020 06:17:26 -0700
-IronPort-SDR: 2wz1uADnFGhVBkXsCZ4fkAVgGDWT1J/VE7/QPJ2hcakds3P1J8deA+hBrESJHpTQviZg0+TAFe
- kDTFejyIbA1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="310815890"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 25 Sep 2020 06:17:24 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 25 Sep 2020 16:17:23 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 25 Sep 2020 16:16:56 +0300
-Message-Id: <20200925131656.10022-10-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200925131656.10022-1-ville.syrjala@linux.intel.com>
-References: <20200925131656.10022-1-ville.syrjala@linux.intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 06:19:27 -0700
+IronPort-SDR: lSBLfSU2e1fS0KUpca7p1qSY+kA1P84VBXS8kPyjA+4bS9lAukn+RrF2bcVCW32YokoKj/iCKC
+ pHEIi3Zb+Kww==
+X-IronPort-AV: E=Sophos;i="5.77,302,1596524400"; d="scan'208";a="455831389"
+Received: from mlevy2-mobl.ger.corp.intel.com (HELO [10.251.176.131])
+ ([10.251.176.131])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 06:19:25 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200916094219.3878-1-chris@chris-wilson.co.uk>
+ <20200916094219.3878-3-chris@chris-wilson.co.uk>
+ <6be94225-9d54-0a4b-d1d0-d5b46d8b6fdb@linux.intel.com>
+ <160102809807.30248.12041152856672975142@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <a3ecdcec-5274-99b4-6dcb-f1c34695c30d@linux.intel.com>
+Date: Fri, 25 Sep 2020 14:19:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 9/9] drm/i915: Replace some gamma_mode ifs with
- switches
+In-Reply-To: <160102809807.30248.12041152856672975142@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/gt: Always send a pulse down
+ the engine after disabling heartbeat
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,125 +56,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: stable@vger.kernel.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClNp
-bmNlIGdhbW1hX21vZGUgY2FuIGhhdmUgbW9yZSB0aGFuIHR3byB2YWx1ZXMgb24gaWxrKwpsZXQn
-cyB1c2Ugc3dpdGNoIHN0YXRlbWVudHMgd2hlbiBpbnRlcnByZXRpbmcgdGhlbS4KCnYyOiBGaXgg
-dHlwbyAoVW1hKQoKUmV2aWV3ZWQtYnk6IFVtYSBTaGFua2FyIDx1bWEuc2hhbmthckBpbnRlbC5j
-b20+ClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5p
-bnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xvci5j
-IHwgOTIgKysrKysrKysrKysrKysrKy0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDcwIGluc2VydGlv
-bnMoKyksIDIyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfY29sb3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfY29sb3IuYwppbmRleCAyOTBkMTg3MWVmNTcuLjE3MmQzOTgwODFlZSAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xvci5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29sb3IuYwpAQCAtNjM4LDEwICs2MzgsMTcgQEAg
-c3RhdGljIHZvaWQgaWxrX2xvYWRfbHV0cyhjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAq
-Y3J0Y19zdGF0ZSkKIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMoY3J0
-Y19zdGF0ZS0+dWFwaS5jcnRjKTsKIAljb25zdCBzdHJ1Y3QgZHJtX3Byb3BlcnR5X2Jsb2IgKmdh
-bW1hX2x1dCA9IGNydGNfc3RhdGUtPmh3LmdhbW1hX2x1dDsKIAotCWlmIChjcnRjX3N0YXRlLT5n
-YW1tYV9tb2RlID09IEdBTU1BX01PREVfTU9ERV84QklUKQorCXN3aXRjaCAoY3J0Y19zdGF0ZS0+
-Z2FtbWFfbW9kZSkgeworCWNhc2UgR0FNTUFfTU9ERV9NT0RFXzhCSVQ6CiAJCWlsa19sb2FkX2x1
-dF84KGNydGMsIGdhbW1hX2x1dCk7Ci0JZWxzZQorCQlicmVhazsKKwljYXNlIEdBTU1BX01PREVf
-TU9ERV8xMEJJVDoKIAkJaWxrX2xvYWRfbHV0XzEwKGNydGMsIGdhbW1hX2x1dCk7CisJCWJyZWFr
-OworCWRlZmF1bHQ6CisJCU1JU1NJTkdfQ0FTRShjcnRjX3N0YXRlLT5nYW1tYV9tb2RlKTsKKwkJ
-YnJlYWs7CisJfQogfQogCiBzdGF0aWMgaW50IGl2Yl9sdXRfMTBfc2l6ZSh1MzIgcHJlY19pbmRl
-eCkKQEAgLTc0NSwyMSArNzUyLDI3IEBAIHN0YXRpYyB2b2lkIGl2Yl9sb2FkX2x1dHMoY29uc3Qg
-c3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCiAJc3RydWN0IGludGVsX2NydGMg
-KmNydGMgPSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0Yyk7CiAJY29uc3Qgc3Ry
-dWN0IGRybV9wcm9wZXJ0eV9ibG9iICpnYW1tYV9sdXQgPSBjcnRjX3N0YXRlLT5ody5nYW1tYV9s
-dXQ7CiAJY29uc3Qgc3RydWN0IGRybV9wcm9wZXJ0eV9ibG9iICpkZWdhbW1hX2x1dCA9IGNydGNf
-c3RhdGUtPmh3LmRlZ2FtbWFfbHV0OworCWNvbnN0IHN0cnVjdCBkcm1fcHJvcGVydHlfYmxvYiAq
-YmxvYiA9IGdhbW1hX2x1dCA/OiBkZWdhbW1hX2x1dDsKIAotCWlmIChjcnRjX3N0YXRlLT5nYW1t
-YV9tb2RlID09IEdBTU1BX01PREVfTU9ERV84QklUKSB7Ci0JCWlsa19sb2FkX2x1dF84KGNydGMs
-IGdhbW1hX2x1dCk7Ci0JfSBlbHNlIGlmIChjcnRjX3N0YXRlLT5nYW1tYV9tb2RlID09IEdBTU1B
-X01PREVfTU9ERV9TUExJVCkgeworCXN3aXRjaCAoY3J0Y19zdGF0ZS0+Z2FtbWFfbW9kZSkgewor
-CWNhc2UgR0FNTUFfTU9ERV9NT0RFXzhCSVQ6CisJCWlsa19sb2FkX2x1dF84KGNydGMsIGJsb2Ip
-OworCQlicmVhazsKKwljYXNlIEdBTU1BX01PREVfTU9ERV9TUExJVDoKIAkJaXZiX2xvYWRfbHV0
-XzEwKGNydGMsIGRlZ2FtbWFfbHV0LCBQQUxfUFJFQ19TUExJVF9NT0RFIHwKIAkJCQlQQUxfUFJF
-Q19JTkRFWF9WQUxVRSgwKSk7CiAJCWl2Yl9sb2FkX2x1dF9leHRfbWF4KGNydGNfc3RhdGUpOwog
-CQlpdmJfbG9hZF9sdXRfMTAoY3J0YywgZ2FtbWFfbHV0LCBQQUxfUFJFQ19TUExJVF9NT0RFIHwK
-IAkJCQlQQUxfUFJFQ19JTkRFWF9WQUxVRSg1MTIpKTsKLQl9IGVsc2UgewotCQljb25zdCBzdHJ1
-Y3QgZHJtX3Byb3BlcnR5X2Jsb2IgKmJsb2IgPSBnYW1tYV9sdXQgPzogZGVnYW1tYV9sdXQ7Ci0K
-KwkJYnJlYWs7CisJY2FzZSBHQU1NQV9NT0RFX01PREVfMTBCSVQ6CiAJCWl2Yl9sb2FkX2x1dF8x
-MChjcnRjLCBibG9iLAogCQkJCVBBTF9QUkVDX0lOREVYX1ZBTFVFKDApKTsKIAkJaXZiX2xvYWRf
-bHV0X2V4dF9tYXgoY3J0Y19zdGF0ZSk7CisJCWJyZWFrOworCWRlZmF1bHQ6CisJCU1JU1NJTkdf
-Q0FTRShjcnRjX3N0YXRlLT5nYW1tYV9tb2RlKTsKKwkJYnJlYWs7CiAJfQogfQogCkBAIC03Njgs
-MjEgKzc4MSwyOCBAQCBzdGF0aWMgdm9pZCBiZHdfbG9hZF9sdXRzKGNvbnN0IHN0cnVjdCBpbnRl
-bF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQogCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9f
-aW50ZWxfY3J0YyhjcnRjX3N0YXRlLT51YXBpLmNydGMpOwogCWNvbnN0IHN0cnVjdCBkcm1fcHJv
-cGVydHlfYmxvYiAqZ2FtbWFfbHV0ID0gY3J0Y19zdGF0ZS0+aHcuZ2FtbWFfbHV0OwogCWNvbnN0
-IHN0cnVjdCBkcm1fcHJvcGVydHlfYmxvYiAqZGVnYW1tYV9sdXQgPSBjcnRjX3N0YXRlLT5ody5k
-ZWdhbW1hX2x1dDsKKwljb25zdCBzdHJ1Y3QgZHJtX3Byb3BlcnR5X2Jsb2IgKmJsb2IgPSBnYW1t
-YV9sdXQgPzogZGVnYW1tYV9sdXQ7CiAKLQlpZiAoY3J0Y19zdGF0ZS0+Z2FtbWFfbW9kZSA9PSBH
-QU1NQV9NT0RFX01PREVfOEJJVCkgewotCQlpbGtfbG9hZF9sdXRfOChjcnRjLCBnYW1tYV9sdXQp
-OwotCX0gZWxzZSBpZiAoY3J0Y19zdGF0ZS0+Z2FtbWFfbW9kZSA9PSBHQU1NQV9NT0RFX01PREVf
-U1BMSVQpIHsKKwlzd2l0Y2ggKGNydGNfc3RhdGUtPmdhbW1hX21vZGUpIHsKKwljYXNlIEdBTU1B
-X01PREVfTU9ERV84QklUOgorCQlpbGtfbG9hZF9sdXRfOChjcnRjLCBibG9iKTsKKwkJYnJlYWs7
-CisJY2FzZSBHQU1NQV9NT0RFX01PREVfU1BMSVQ6CiAJCWJkd19sb2FkX2x1dF8xMChjcnRjLCBk
-ZWdhbW1hX2x1dCwgUEFMX1BSRUNfU1BMSVRfTU9ERSB8CiAJCQkJUEFMX1BSRUNfSU5ERVhfVkFM
-VUUoMCkpOwogCQlpdmJfbG9hZF9sdXRfZXh0X21heChjcnRjX3N0YXRlKTsKIAkJYmR3X2xvYWRf
-bHV0XzEwKGNydGMsIGdhbW1hX2x1dCwgUEFMX1BSRUNfU1BMSVRfTU9ERSB8CiAJCQkJUEFMX1BS
-RUNfSU5ERVhfVkFMVUUoNTEyKSk7Ci0JfSBlbHNlIHsKLQkJY29uc3Qgc3RydWN0IGRybV9wcm9w
-ZXJ0eV9ibG9iICpibG9iID0gZ2FtbWFfbHV0ID86IGRlZ2FtbWFfbHV0OworCQlicmVhazsKKwlj
-YXNlIEdBTU1BX01PREVfTU9ERV8xMEJJVDoKIAogCQliZHdfbG9hZF9sdXRfMTAoY3J0YywgYmxv
-YiwKIAkJCQlQQUxfUFJFQ19JTkRFWF9WQUxVRSgwKSk7CiAJCWl2Yl9sb2FkX2x1dF9leHRfbWF4
-KGNydGNfc3RhdGUpOworCQlicmVhazsKKwlkZWZhdWx0OgorCQlNSVNTSU5HX0NBU0UoY3J0Y19z
-dGF0ZS0+Z2FtbWFfbW9kZSk7CisJCWJyZWFrOwogCX0KIH0KIApAQCAtODc1LDExICs4OTUsMTcg
-QEAgc3RhdGljIHZvaWQgZ2xrX2xvYWRfbHV0cyhjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
-ZSAqY3J0Y19zdGF0ZSkKIAllbHNlCiAJCWdsa19sb2FkX2RlZ2FtbWFfbHV0X2xpbmVhcihjcnRj
-X3N0YXRlKTsKIAotCWlmIChjcnRjX3N0YXRlLT5nYW1tYV9tb2RlID09IEdBTU1BX01PREVfTU9E
-RV84QklUKSB7CisJc3dpdGNoIChjcnRjX3N0YXRlLT5nYW1tYV9tb2RlKSB7CisJY2FzZSBHQU1N
-QV9NT0RFX01PREVfOEJJVDoKIAkJaWxrX2xvYWRfbHV0XzgoY3J0YywgZ2FtbWFfbHV0KTsKLQl9
-IGVsc2UgeworCQlicmVhazsKKwljYXNlIEdBTU1BX01PREVfTU9ERV8xMEJJVDoKIAkJYmR3X2xv
-YWRfbHV0XzEwKGNydGMsIGdhbW1hX2x1dCwgUEFMX1BSRUNfSU5ERVhfVkFMVUUoMCkpOwogCQlp
-dmJfbG9hZF9sdXRfZXh0X21heChjcnRjX3N0YXRlKTsKKwkJYnJlYWs7CisJZGVmYXVsdDoKKwkJ
-TUlTU0lOR19DQVNFKGNydGNfc3RhdGUtPmdhbW1hX21vZGUpOworCQlicmVhazsKIAl9CiB9CiAK
-QEAgLTEwMTEsOSArMTAzNywxMyBAQCBzdGF0aWMgdm9pZCBpY2xfbG9hZF9sdXRzKGNvbnN0IHN0
-cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQogCQlpY2xfcHJvZ3JhbV9nYW1tYV9z
-dXBlcmZpbmVfc2VnbWVudChjcnRjX3N0YXRlKTsKIAkJaWNsX3Byb2dyYW1fZ2FtbWFfbXVsdGlf
-c2VnbWVudChjcnRjX3N0YXRlKTsKIAkJYnJlYWs7Ci0JZGVmYXVsdDoKKwljYXNlIEdBTU1BX01P
-REVfTU9ERV8xMEJJVDoKIAkJYmR3X2xvYWRfbHV0XzEwKGNydGMsIGdhbW1hX2x1dCwgUEFMX1BS
-RUNfSU5ERVhfVkFMVUUoMCkpOwogCQlpdmJfbG9hZF9sdXRfZXh0X21heChjcnRjX3N0YXRlKTsK
-KwkJYnJlYWs7CisJZGVmYXVsdDoKKwkJTUlTU0lOR19DQVNFKGNydGNfc3RhdGUtPmdhbW1hX21v
-ZGUpOworCQlicmVhazsKIAl9CiAKIAlpbnRlbF9kc2JfY29tbWl0KGNydGNfc3RhdGUpOwpAQCAt
-MTczNyw3ICsxNzY3LDcgQEAgYm9vbCBpbnRlbF9jb2xvcl9sdXRfZXF1YWwoc3RydWN0IGRybV9w
-cm9wZXJ0eV9ibG9iICpibG9iMSwKIAkJYnJlYWs7CiAJZGVmYXVsdDoKIAkJTUlTU0lOR19DQVNF
-KGdhbW1hX21vZGUpOwotCQkJcmV0dXJuIGZhbHNlOworCQlyZXR1cm4gZmFsc2U7CiAJfQogCiAJ
-cmV0dXJuIHRydWU7CkBAIC0xOTE3LDEwICsxOTQ3LDE3IEBAIHN0YXRpYyB2b2lkIGlsa19yZWFk
-X2x1dHMoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCiAJaWYgKChjcnRjX3N0
-YXRlLT5jc2NfbW9kZSAmIENTQ19QT1NJVElPTl9CRUZPUkVfR0FNTUEpID09IDApCiAJCXJldHVy
-bjsKIAotCWlmIChjcnRjX3N0YXRlLT5nYW1tYV9tb2RlID09IEdBTU1BX01PREVfTU9ERV84QklU
-KQorCXN3aXRjaCAoY3J0Y19zdGF0ZS0+Z2FtbWFfbW9kZSkgeworCWNhc2UgR0FNTUFfTU9ERV9N
-T0RFXzhCSVQ6CiAJCWNydGNfc3RhdGUtPmh3LmdhbW1hX2x1dCA9IGlsa19yZWFkX2x1dF84KGNy
-dGMpOwotCWVsc2UKKwkJYnJlYWs7CisJY2FzZSBHQU1NQV9NT0RFX01PREVfMTBCSVQ6CiAJCWNy
-dGNfc3RhdGUtPmh3LmdhbW1hX2x1dCA9IGlsa19yZWFkX2x1dF8xMChjcnRjKTsKKwkJYnJlYWs7
-CisJZGVmYXVsdDoKKwkJTUlTU0lOR19DQVNFKGNydGNfc3RhdGUtPmdhbW1hX21vZGUpOworCQli
-cmVhazsKKwl9CiB9CiAKIC8qIE9uIEJEVysgdGhlIGluZGV4IGF1dG8gaW5jcmVtZW50IG1vZGUg
-YWN0dWFsbHkgd29ya3MgKi8KQEAgLTE5NjUsMTAgKzIwMDIsMTcgQEAgc3RhdGljIHZvaWQgZ2xr
-X3JlYWRfbHV0cyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIAlpZiAoIWNy
-dGNfc3RhdGUtPmdhbW1hX2VuYWJsZSkKIAkJcmV0dXJuOwogCi0JaWYgKGNydGNfc3RhdGUtPmdh
-bW1hX21vZGUgPT0gR0FNTUFfTU9ERV9NT0RFXzhCSVQpCisJc3dpdGNoIChjcnRjX3N0YXRlLT5n
-YW1tYV9tb2RlKSB7CisJY2FzZSBHQU1NQV9NT0RFX01PREVfOEJJVDoKIAkJY3J0Y19zdGF0ZS0+
-aHcuZ2FtbWFfbHV0ID0gaWxrX3JlYWRfbHV0XzgoY3J0Yyk7Ci0JZWxzZQorCQlicmVhazsKKwlj
-YXNlIEdBTU1BX01PREVfTU9ERV8xMEJJVDoKIAkJY3J0Y19zdGF0ZS0+aHcuZ2FtbWFfbHV0ID0g
-YmR3X3JlYWRfbHV0XzEwKGNydGMsIFBBTF9QUkVDX0lOREVYX1ZBTFVFKDApKTsKKwkJYnJlYWs7
-CisJZGVmYXVsdDoKKwkJTUlTU0lOR19DQVNFKGNydGNfc3RhdGUtPmdhbW1hX21vZGUpOworCQli
-cmVhazsKKwl9CiB9CiAKIHN0YXRpYyBzdHJ1Y3QgZHJtX3Byb3BlcnR5X2Jsb2IgKgpAQCAtMjAy
-MCwxMSArMjA2NCwxNSBAQCBzdGF0aWMgdm9pZCBpY2xfcmVhZF9sdXRzKHN0cnVjdCBpbnRlbF9j
-cnRjX3N0YXRlICpjcnRjX3N0YXRlKQogCWNhc2UgR0FNTUFfTU9ERV9NT0RFXzhCSVQ6CiAJCWNy
-dGNfc3RhdGUtPmh3LmdhbW1hX2x1dCA9IGlsa19yZWFkX2x1dF84KGNydGMpOwogCQlicmVhazsK
-KwljYXNlIEdBTU1BX01PREVfTU9ERV8xMEJJVDoKKwkJY3J0Y19zdGF0ZS0+aHcuZ2FtbWFfbHV0
-ID0gYmR3X3JlYWRfbHV0XzEwKGNydGMsIFBBTF9QUkVDX0lOREVYX1ZBTFVFKDApKTsKKwkJYnJl
-YWs7CiAJY2FzZSBHQU1NQV9NT0RFX01PREVfMTJCSVRfTVVMVElfU0VHTUVOVEVEOgogCQljcnRj
-X3N0YXRlLT5ody5nYW1tYV9sdXQgPSBpY2xfcmVhZF9sdXRfbXVsdGlfc2VnbWVudChjcnRjKTsK
-IAkJYnJlYWs7CiAJZGVmYXVsdDoKLQkJY3J0Y19zdGF0ZS0+aHcuZ2FtbWFfbHV0ID0gYmR3X3Jl
-YWRfbHV0XzEwKGNydGMsIFBBTF9QUkVDX0lOREVYX1ZBTFVFKDApKTsKKwkJTUlTU0lOR19DQVNF
-KGNydGNfc3RhdGUtPmdhbW1hX21vZGUpOworCQlicmVhazsKIAl9CiB9CiAKLS0gCjIuMjYuMgoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+On 25/09/2020 11:01, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-09-24 14:43:08)
+>>
+>> On 16/09/2020 10:42, Chris Wilson wrote:
+>>> Currently, we check we can send a pulse prior to disabling the
+>>> heartbeat to verify that we can change the heartbeat, but since we may
+>>> re-evaluate execution upon changing the heartbeat interval we need another
+>>> pulse afterwards to refresh execution.
+>>>
+>>> Fixes: 9a40bddd47ca ("drm/i915/gt: Expose heartbeat interval via sysfs")
+>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>> Cc: <stable@vger.kernel.org> # v5.7+
+>>> ---
+>>>    drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 6 ++++--
+>>>    1 file changed, 4 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+>>> index 8ffdf676c0a0..d09df370f7cd 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+>>> @@ -192,10 +192,12 @@ int intel_engine_set_heartbeat(struct intel_engine_cs *engine,
+>>>        WRITE_ONCE(engine->props.heartbeat_interval_ms, delay);
+>>>    
+>>>        if (intel_engine_pm_get_if_awake(engine)) {
+>>> -             if (delay)
+>>> +             if (delay) {
+>>>                        intel_engine_unpark_heartbeat(engine);
+>>> -             else
+>>> +             } else {
+>>>                        intel_engine_park_heartbeat(engine);
+>>> +                     intel_engine_pulse(engine); /* recheck execution */
+>>> +             }
+>>>                intel_engine_pm_put(engine);
+>>>        }
+>>>    
+>>>
+>>
+>> I did not immediately get this one. Do we really need two pulses or
+>> maybe we could re-order the code a bit and just undo the heartbeat park
+>> if pulse after parking did not work?
+> 
+> We use the first pulse to determine if it's legal for the parameter to
+> be changed (checking we support the preemptive pulse to remove
+> non-persistent contexts). Then the second pulse after changing the
+> parameter to flush the changes through.
+> 
+> I like checking for support before making the change, although we could
+> try and fixup after failure, there would still be a window where the
+> change would be visible to the system. We don't need to use the pulse per
+> se for that check, that's pure convenience as it performs the checking
+> already.
+
+Hm second pulse also has a problem that sneaky user can nerf it with a 
+precisely timed SIGINT on itself. It's a bit ridiculous isn't it? :)
+
+Have engine preemption check open coded first and uninterruptible 
+flavour of pulse sending? It's also not good since we do want it to be 
+interruptible.. Unwind the change and report error back to write(2) if 
+intel_engine_pulse failed for any reason?
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
