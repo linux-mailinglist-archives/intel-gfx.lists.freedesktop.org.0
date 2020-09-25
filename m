@@ -1,59 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10FC2783A9
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 11:12:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 669BB2783E9
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Sep 2020 11:25:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E43AB6EC66;
-	Fri, 25 Sep 2020 09:11:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6327B6EC84;
+	Fri, 25 Sep 2020 09:25:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com
- [IPv6:2a00:1450:4864:20::141])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C7296EC66;
- Fri, 25 Sep 2020 09:11:58 +0000 (UTC)
-Received: by mail-lf1-x141.google.com with SMTP id x69so2014519lff.3;
- Fri, 25 Sep 2020 02:11:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=unpbWfhbNUvAm8U48dnsh3o85sr3kUdiLNKs33mxuPc=;
- b=ukpXSwmGdEKM/a1BgktI36RmiBcoZh6E8KVTrV/GSdoNpeAKyo5C+jph7CPazhc40x
- msh2ywq+ETqTfSW7Xc5vZNbSonMWpASOlrCS1viFJ0Pkk7+udf1PVT8IH2+Gtqhwq1e1
- XaZjgNvSP340iz66j+dfuI6TJBJpa1cH9dx6uKNFbA5EUkelmuAmIW22ZZeZhifk5ry5
- 3td1nKNAB8USvVcwM5Hft5H7coiYNEqxe1ucMbPWvgolE7bqLAEZJtGYusDt7SRPjQXe
- OERTRPyGo52ksdVtIGP+LL91H42KQb31rUUvvDU0ejOTRZ+VnB6CGIIU6BJdSP9vfGjA
- UtbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=unpbWfhbNUvAm8U48dnsh3o85sr3kUdiLNKs33mxuPc=;
- b=NzRcb5DJ2NBjlaXa4L/+H78uvF0/11HsaSIigvlalPnRynoHan5KCIgnHp5pNvuQSq
- iEUtht4GK5DTzDD70wGLOLciQugj2aoDP7nob2NykmhGLbTCyCnETW42nwQ41u0crMxu
- G40hFf8r1XDujLAsH6LcFg9xiGnLTDNW7ZPS5uCTNiJpXe600jNeuU1LcDDPbCMsCvcF
- b+QQd42RzZ5huNtq8Vqi23C83o6z6XgzChc2Ul7fL2fyW3LuH+Xk3rAmgXhgDpTWAnxE
- YRJ1n4llmPTjlIrxj6MU4xLLUjJNpQlE6yjiacjjSahzL8XdrtzRHcwMzClxPxDN/BvZ
- WyyQ==
-X-Gm-Message-State: AOAM530P/kK2Li6zeBH4pyIiysHr8DxkSNcPAAyVruvWwYvi24/uY2gv
- IcyM56Ul+uEi1ndQnF48qyM=
-X-Google-Smtp-Source: ABdhPJyJKW01SOgRu4nDjxv92QAAy49QKRTw5T55DlKuqMG45XiWOqOcL+2yBFcv73XnzWGzbA6AqA==
-X-Received: by 2002:a19:50d:: with SMTP id 13mr920156lff.500.1601025116968;
- Fri, 25 Sep 2020 02:11:56 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id a192sm1776717lfd.51.2020.09.25.02.11.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 02:11:56 -0700 (PDT)
-Date: Fri, 25 Sep 2020 12:11:47 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200925121147.791ea941@eldfell>
-In-Reply-To: <20200925084651.3250104-2-daniel.vetter@ffwll.ch>
-References: <20200925084651.3250104-1-daniel.vetter@ffwll.ch>
- <20200925084651.3250104-2-daniel.vetter@ffwll.ch>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA3E96EC83;
+ Fri, 25 Sep 2020 09:25:34 +0000 (UTC)
+IronPort-SDR: QaaoZKOykxukKuSy0QUOB+rGxXLjyhSLu5jjwtalqnaOqO+O/FHkMaB8D1GdaBO3WFDVVlIBDF
+ kbreCEjQBcjQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="140894587"
+X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; d="scan'208";a="140894587"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 02:25:34 -0700
+IronPort-SDR: xEsRrprn87w6fr6MLb9ZVkmHlH94C3vApTY8esWOV6xQzhcZARbxrJpFAuIQymygYr0lYkSpJC
+ 6+7wuIzpqrAw==
+X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; d="scan'208";a="512758054"
+Received: from lewando-mobl2.ger.corp.intel.com (HELO zkempczy-mobl2)
+ ([10.213.27.118])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2020 02:25:33 -0700
+Date: Fri, 25 Sep 2020 11:25:29 +0200
+From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200925092529.GA55357@zkempczy-mobl2>
+References: <20200925084148.351563-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/atomic: debug output for EBUSY
+Content-Disposition: inline
+In-Reply-To: <20200925084148.351563-1-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Only avoid relocations with
+ full-ppgtt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,72 +50,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Sean Paul <seanpaul@chromium.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1500434166=="
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1500434166==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/7LK.RtQplWEQivx6GV828S."; protocol="application/pgp-signature"
-
---Sig_/7LK.RtQplWEQivx6GV828S.
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, 25 Sep 2020 10:46:51 +0200
-Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-
-> Hopefully we'll have the drm crash recorder RSN, but meanwhile
-> compositors would like to know a bit better why they get an EBUSY.
->=20
-> v2: Move misplaced hunk to the right patch (Pekka)
-
-Hi,
-
-both patches
-
-Acked-by: Pekka Paalanen <pekka.paalanen@collabora.com>
-
-
-Thanks,
-pq
-
---Sig_/7LK.RtQplWEQivx6GV828S.
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl9ttFMACgkQI1/ltBGq
-qqfggRAAjsmSK5GFhOAwb8lwZXoa7S4lHH/tTQTjUDiEN9Dv6bF8wC9wHb6LHktr
-FFhXpGJtpXALkzI8pHmi4cU7Y7tuX0RADA0EIthLQS2ni2H2JS+X7xpJ4hQeFJuP
-JdC5qVcN/svnUXAcdMgzqzoMnMuoMkLJHsPUA4QUi2KWwtYmM2jU9caI7c3nsle+
-JjG41sbbLkg6ukRtJgA+wbhkSKwN9kSXYQFTKyVxim6EwwpHYSCkN9MtUquS6F5T
-VySWylR5AGfxf076TUPQShn64akCugPFz6V3WOLSLjMVVETqKqOdYgdTn/Ybq1Le
-mopSVd16rqJjuAq1AI8JVmBm56xQjCnVMu6aDlnpIHw1J6K+3yw+oItqEg2KhI6y
-eNGO5TZUgH6C6ZKkzLsa6OsE1ku+tdpK05mQTxHazQRre4NYg/Z805SumnrcHC5T
-6ULt6zU/1Qi6l2U3RkVNmbRKfqic2937C8FhM2ptFZQHzXblCfyaStpQbcfcleCZ
-5kReV6z5FRc4G4gy/ZKMZ8Y4VMzdnZNJZs7yUaj29LnM4gPqGyBCqM02aAteKygq
-fnipLN7H1uQSsY0Vp5LVGLEM6qMGR2DoyfOFEKRAh7yujVthy6OhJyjNI8Pv4puJ
-pKkDfl+3eK78kJA41hsjripHkv8Nd/tIMWDdZcF8W6dkcvTwS/o=
-=Ua5v
------END PGP SIGNATURE-----
-
---Sig_/7LK.RtQplWEQivx6GV828S.--
-
---===============1500434166==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1500434166==--
+T24gRnJpLCBTZXAgMjUsIDIwMjAgYXQgMDk6NDE6NDhBTSArMDEwMCwgQ2hyaXMgV2lsc29uIHdy
+b3RlOgo+IFdlIGNhbiBvbmx5IGFzc2lnbmVkIHJhbmRvbSBhZGRyZXNzZXMgd2l0aCBpbXB1bml0
+eSBpZiB3ZSBrbm93IHdlIGhhdmUKPiBjb21wbGV0ZSBjb250cm9sIG92ZXIgdGhlIHBwR1RULiBJ
+ZiB0aGUgcHBHVFQgaXMgc2hhcmVkLCBlaXRoZXIgYWxpYXNlZAo+IHdpdGggdGhlIGdsb2JhbCBH
+VFQgb3Igc2ltcGx5IHRoZSBnbG9iYWwgR1RUIG9uIGFuY2llbnQgSFcsIHRoZW4gd2UgaGF2ZQo+
+IHRvIGJlIGNhcmVmdWwgaW4gY2FzZSB0aGV5IGFyZSBvYmplY3RzIGFscmVhZHkgZml4ZWQgaW4g
+cGxhY2UgaW5zaWRlIHRoZQo+IEdUVCwgZS5nLiBhY3RpdmUgZnJhbWVidWZmZXJzLiBBcyB0aGUg
+cmVsb2NhdGlvbiBjb2RlIGlzIHN0aWxsCj4gYXZhaWxhYmxlLCBvbmx5IGVuZm9yY2Ugbm8tcmVs
+b2NhdGlvbnMgYnkgZGVmYXVsdCB3aGVuIHRoZSBjb250ZXh0IGhhcwo+IGl0cyBvd24gcHBHVFQu
+Cj4gCj4gQ2xvc2VzOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0v
+aXNzdWVzLzI0OTEKPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdp
+bHNvbi5jby51az4KPiBDYzogWmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5
+bnNraUBpbnRlbC5jb20+Cj4gLS0tCj4gIGxpYi9pbnRlbF9iYXRjaGJ1ZmZlci5jIHwgMiArLQo+
+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZm
+IC0tZ2l0IGEvbGliL2ludGVsX2JhdGNoYnVmZmVyLmMgYi9saWIvaW50ZWxfYmF0Y2hidWZmZXIu
+Ywo+IGluZGV4IGJlNzY0NjQ2ZS4uNDJkN2NkMjUxIDEwMDY0NAo+IC0tLSBhL2xpYi9pbnRlbF9i
+YXRjaGJ1ZmZlci5jCj4gKysrIGIvbGliL2ludGVsX2JhdGNoYnVmZmVyLmMKPiBAQCAtMTMwNiw3
+ICsxMzA2LDcgQEAgX19pbnRlbF9iYl9jcmVhdGUoaW50IGk5MTUsIHVpbnQzMl90IHNpemUsIGJv
+b2wgZG9fcmVsb2NzKQo+ICAgKi8KPiAgc3RydWN0IGludGVsX2JiICppbnRlbF9iYl9jcmVhdGUo
+aW50IGk5MTUsIHVpbnQzMl90IHNpemUpCj4gIHsKPiAtCXJldHVybiBfX2ludGVsX2JiX2NyZWF0
+ZShpOTE1LCBzaXplLCBmYWxzZSk7Cj4gKwlyZXR1cm4gX19pbnRlbF9iYl9jcmVhdGUoaTkxNSwg
+c2l6ZSwgIWdlbV91c2VzX2Z1bGxfcHBndHQoaTkxNSkpOwo+ICB9Cj4gIAo+ICAvKioKPiAtLSAK
+PiAyLjI4LjAKCklmIHdlIHdvbid0IGVuZm9yY2UgRVhFQ19PQkpFQ1RfUElOTkVEIGFuZCBzZXQg
+STkxNV9FWEVDX05PX1JFTE9DIGZvciBleGVjYnVmCnN0aWxsIGRyaXZlciB3aWxsIHRyeSB0byB1
+c2Ugb2Zmc2V0cyBjb25maWd1cmVkIGluIHRoZSBvYmplY3RzIGFycmF5PyBJIHRob3VnaHQKTk9f
+UkVMT0MgKyAhUElOTkVEIHdpbGwgcmVsb2NhdGUgbm90IHByb3Blcmx5IGNvbmZpZ3VyZWQgb2Jq
+ZWN0cyBidXQgSSdtIGxpa2VseQp3cm9uZy4gSSBkb24ndCBoYXZlIG11Y2ggZXhwZXJpZW5jZSB3
+aXRoICFwcGd0dCB0YWJsZXMgYnV0IGlmIHRoZXkgYXJlIHNoYXJlZApJIGd1ZXNzIHdlIGNhbiBy
+ZWx5IG9uIGtlcm5lbCByZWxvY2F0aW9ucyBvbmx5LiBTbwoKUmV2aWV3ZWQtYnk6IFpiaWduaWV3
+IEtlbXBjennFhHNraSA8emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwuY29tPgoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
