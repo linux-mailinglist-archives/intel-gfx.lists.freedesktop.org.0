@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C7D7279F0E
-	for <lists+intel-gfx@lfdr.de>; Sun, 27 Sep 2020 08:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11E43279F0F
+	for <lists+intel-gfx@lfdr.de>; Sun, 27 Sep 2020 08:48:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F394A6E249;
-	Sun, 27 Sep 2020 06:47:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 543876E24D;
+	Sun, 27 Sep 2020 06:48:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9C5A56E249;
- Sun, 27 Sep 2020 06:47:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 818DD6E24B;
+ Sun, 27 Sep 2020 06:48:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9468CA0009;
- Sun, 27 Sep 2020 06:47:22 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7D6CCA0009;
+ Sun, 27 Sep 2020 06:48:17 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lu Baolu" <baolu.lu@linux.intel.com>
-Date: Sun, 27 Sep 2020 06:47:22 -0000
-Message-ID: <160118924260.14965.5296843436576951080@emeril.freedesktop.org>
+To: "Leon Romanovsky" <leon@kernel.org>
+Date: Sun, 27 Sep 2020 06:48:17 -0000
+Message-ID: <160118929751.14965.4143946506827949690@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200927063437.13988-1-baolu.lu@linux.intel.com>
-In-Reply-To: <20200927063437.13988-1-baolu.lu@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBD?=
- =?utf-8?q?onvert_the_intel_iommu_driver_to_the_dma-iommu_api_=28rev3=29?=
+References: <20200927064647.3106737-1-leon@kernel.org>
+In-Reply-To: <20200927064647.3106737-1-leon@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBE?=
+ =?utf-8?q?ynamicaly_allocate_SG_table_from_the_pages_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,17 +47,17 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Convert the intel iommu driver to the dma-iommu api (rev3)
-URL   : https://patchwork.freedesktop.org/series/71260/
+Series: Dynamicaly allocate SG table from the pages (rev2)
+URL   : https://patchwork.freedesktop.org/series/81962/
 State : failure
 
 == Summary ==
 
-Applying: iommu: Handle freelists when using deferred flushing in iommu drivers
-error: sha1 information is lacking or useless (drivers/iommu/dma-iommu.c).
+Applying: This series extends __sg_alloc_table_from_pages to allow chaining of
+error: sha1 information is lacking or useless (tools/testing/scatterlist/main.c).
 error: could not build fake ancestor
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 iommu: Handle freelists when using deferred flushing in iommu drivers
+Patch failed at 0001 This series extends __sg_alloc_table_from_pages to allow chaining of
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
