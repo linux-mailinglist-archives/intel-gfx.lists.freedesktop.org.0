@@ -2,37 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE8B7279775
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Sep 2020 09:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07598279EE8
+	for <lists+intel-gfx@lfdr.de>; Sun, 27 Sep 2020 08:40:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A238B6EDB7;
-	Sat, 26 Sep 2020 07:13:48 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BFC36EDA9;
- Sat, 26 Sep 2020 07:13:46 +0000 (UTC)
-Received: from ravnborg.org (unknown [188.228.123.71])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id 25FB6200E6;
- Sat, 26 Sep 2020 09:13:35 +0200 (CEST)
-Date: Sat, 26 Sep 2020 09:13:34 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20200926071334.GA42915@ravnborg.org>
-References: <20200925115601.23955-1-tzimmermann@suse.de>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200925115601.23955-1-tzimmermann@suse.de>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=CaYmGojl c=1 sm=1 tr=0
- a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
- a=kj9zAlcOel0A:10 a=VwQbUJbxAAAA:8 a=7gkXJVJtAAAA:8
- a=VHCyA-Zl7a4LrUxzt10A:9 a=MWUCcgKsKLDUXRMs:21 a=VnMhorO1uwyDQjeY:21
- a=CjuIK1q_8ugA:10 a=AjGcO6oz07-iQ99wixmX:22 a=E9Po1WZjFZOl8hwRPBS3:22
-Subject: Re: [Intel-gfx] [PATCH v3 0/4] dma-buf: Flag vmap'ed memory as
- system or I/O memory
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B9246E03F;
+	Sun, 27 Sep 2020 06:40:51 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 362A36E03F
+ for <Intel-gfx@lists.freedesktop.org>; Sun, 27 Sep 2020 06:40:50 +0000 (UTC)
+IronPort-SDR: JMXa1RUuD/j4BMz98sp+xlJtxAIaIox8RhN7eDI2KdBomdUZ8rZnUMAZ+a5OLa/sMgs5W3Iu52
+ sRLEY+rwY+qw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9756"; a="141863644"
+X-IronPort-AV: E=Sophos;i="5.77,309,1596524400"; d="scan'208";a="141863644"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2020 23:40:49 -0700
+IronPort-SDR: BcD1OrQHfpsDohmg8zEQeY/oyfp6Yvh2Q4v/w6YCEht/PqSE8MrvvNg8OhReoQQwT6f09GASjt
+ oqbuR5dl6czA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,309,1596524400"; d="scan'208";a="349457807"
+Received: from allen-box.sh.intel.com ([10.239.159.139])
+ by FMSMGA003.fm.intel.com with ESMTP; 26 Sep 2020 23:40:47 -0700
+From: Lu Baolu <baolu.lu@linux.intel.com>
+To: Joerg Roedel <joro@8bytes.org>, Tom Murphy <murphyt7@tcd.ie>,
+ David Woodhouse <dwmw2@infradead.org>,
+ Christoph Hellwig <hch@infradead.org>
+Date: Sun, 27 Sep 2020 14:34:30 +0800
+Message-Id: <20200927063437.13988-1-baolu.lu@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH v4 0/7] Convert the intel iommu driver to the
+ dma-iommu api
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,135 +48,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: christian.koenig@amd.com, airlied@linux.ie, dri-devel@lists.freedesktop.org,
- kraxel@redhat.com, benjamin.gaignard@linaro.org, tfiga@chromium.org,
- sumit.semwal@linaro.org, m.szyprowski@samsung.com, arnd@arndb.de,
- corbet@lwn.net, linux-doc@vger.kernel.org, jonathanh@nvidia.com,
- matthew.auld@intel.com, linux+etnaviv@armlinux.org.uk, labbott@redhat.com,
- linux-media@vger.kernel.org, pawel@osciak.com, intel-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- christian.gmeiner@gmail.com, thomas.hellstrom@intel.com,
- john.stultz@linaro.org, mripard@kernel.org, linux-tegra@vger.kernel.org,
- mchehab@kernel.org, gregkh@linuxfoundation.org, lmark@codeaurora.org,
- afd@ti.com, kyungmin.park@samsung.com, robin.murphy@arm.com,
- l.stach@pengutronix.de
+Cc: Ashok Raj <ashok.raj@intel.com>, Intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
+ Lu Baolu <baolu.lu@linux.intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas.
+Hi,
 
-Sorry for chiming in late here, have been offline for a while.
+The previous post of this series could be found here.
 
-On Fri, Sep 25, 2020 at 01:55:57PM +0200, Thomas Zimmermann wrote:
-> Dma-buf provides vmap() and vunmap() for retriving and releasing mappings
-> of dma-buf memory in kernel address space. The functions operate with plain
-> addresses and the assumption is that the memory can be accessed with load
-> and store operations. This is not the case on some architectures (e.g.,
-> sparc64) where I/O memory can only be accessed with dedicated instructions.
-> 
-> This patchset introduces struct dma_buf_map, which contains the address of
-> a buffer and a flag that tells whether system- or I/O-memory instructions
-> are required.
+https://lore.kernel.org/linux-iommu/20200912032200.11489-1-baolu.lu@linux.intel.com/
 
-The whole idea with a struct that can represent both a pointer to system
-memory and io memory is very nice.
-dma-buf is one user of this but we may/will see other users. So the
-naming seems of as this should be a concept independent of dma-buf.
+This version introduce a new patch [4/7] to fix an issue reported here.
 
-And then the struct definition and all the helpers should be moved away
-from dma-buf.
+https://lore.kernel.org/linux-iommu/51a1baec-48d1-c0ac-181b-1fba92aa428d@linux.intel.com/
 
-Maybe something like this:
+There aren't any other changes.
 
-struct simap {
-       union {
-               void __iomem *vaddr_iomem;
-               void *vaddr;
-       };
-       bool is_iomem;
-};
+Please help to test and review.
 
-Where simap is a shorthand for system_iomem_map
-And it could al be stuffed into a include/linux/simap.h file.
+Best regards,
+baolu
 
-Not totally sold on the simap name - but wanted to come up with
-something.
+Lu Baolu (3):
+  iommu: Add quirk for Intel graphic devices in map_sg
+  iommu/vt-d: Update domain geometry in iommu_ops.at(de)tach_dev
+  iommu/vt-d: Cleanup after converting to dma-iommu ops
 
-With this approach users do not have to pull in dma-buf to use it and
-users will not confuse that this is only for dma-buf usage.
+Tom Murphy (4):
+  iommu: Handle freelists when using deferred flushing in iommu drivers
+  iommu: Add iommu_dma_free_cpu_cached_iovas()
+  iommu: Allow the dma-iommu api to use bounce buffers
+  iommu/vt-d: Convert intel iommu driver to the iommu ops
 
-I am sorry for being late with the feedback.
+ .../admin-guide/kernel-parameters.txt         |   5 -
+ drivers/iommu/dma-iommu.c                     | 228 ++++-
+ drivers/iommu/intel/Kconfig                   |   1 +
+ drivers/iommu/intel/iommu.c                   | 901 +++---------------
+ include/linux/dma-iommu.h                     |   8 +
+ include/linux/iommu.h                         |   1 +
+ 6 files changed, 336 insertions(+), 808 deletions(-)
 
-	Sam
+-- 
+2.17.1
 
-
-> Some background: updating the DRM framebuffer console on sparc64 makes the
-> kernel panic. This is because the framebuffer memory cannot be accessed with
-> system-memory instructions. We currently employ a workaround in DRM to
-> address this specific problem. [1]
-> 
-> To resolve the problem, we'd like to address it at the most common point,
-> which is the dma-buf framework. The dma-buf mapping ideally knows if I/O
-> instructions are required and exports this information to it's users. The
-> new structure struct dma_buf_map stores the buffer address and a flag that
-> signals I/O memory. Affected users of the buffer (e.g., drivers, frameworks)
-> can then access the memory accordingly.
-> 
-> This patchset only introduces struct dma_buf_map, and updates struct dma_buf
-> and it's interfaces. Further patches can update dma-buf users. For example,
-> there's a prototype patchset for DRM that fixes the framebuffer problem. [2]
-> 
-> Further work: TTM, one of DRM's memory managers, already exports an
-> is_iomem flag of its own. It could later be switched over to exporting struct
-> dma_buf_map, thus simplifying some code. Several DRM drivers expect their
-> fbdev console to operate on I/O memory. These could possibly be switched over
-> to the generic fbdev emulation, as soon as the generic code uses struct
-> dma_buf_map.
-> 
-> v3:
-> 	* update fastrpc driver (kernel test robot)
-> 	* expand documentation (Daniel)
-> 	* move documentation into separate patch
-> v2:
-> 	* always clear map parameter in dma_buf_vmap() (Daniel)
-> 	* include dma-buf-heaps and i915 selftests (kernel test robot)
-> 	* initialize cma_obj before using it in drm_gem_cma_free_object()
-> 	  (kernel test robot)
-> 
-> [1] https://lore.kernel.org/dri-devel/20200725191012.GA434957@ravnborg.org/
-> [2] https://lore.kernel.org/dri-devel/20200806085239.4606-1-tzimmermann@suse.de/
-> 
-> Thomas Zimmermann (4):
->   dma-buf: Add struct dma-buf-map for storing struct dma_buf.vaddr_ptr
->   dma-buf: Use struct dma_buf_map in dma_buf_vmap() interfaces
->   dma-buf: Use struct dma_buf_map in dma_buf_vunmap() interfaces
->   dma-buf: Document struct dma_buf_map
-> 
->  Documentation/driver-api/dma-buf.rst          |   9 +
->  drivers/dma-buf/dma-buf.c                     |  42 ++--
->  drivers/dma-buf/heaps/heap-helpers.c          |  10 +-
->  drivers/gpu/drm/drm_gem_cma_helper.c          |  20 +-
->  drivers/gpu/drm/drm_gem_shmem_helper.c        |  17 +-
->  drivers/gpu/drm/drm_prime.c                   |  15 +-
->  drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |  13 +-
->  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  13 +-
->  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  18 +-
->  .../gpu/drm/i915/gem/selftests/mock_dmabuf.c  |  14 +-
->  drivers/gpu/drm/tegra/gem.c                   |  23 ++-
->  .../common/videobuf2/videobuf2-dma-contig.c   |  17 +-
->  .../media/common/videobuf2/videobuf2-dma-sg.c |  19 +-
->  .../common/videobuf2/videobuf2-vmalloc.c      |  21 +-
->  drivers/misc/fastrpc.c                        |   6 +-
->  include/drm/drm_prime.h                       |   5 +-
->  include/linux/dma-buf-map.h                   | 193 ++++++++++++++++++
->  include/linux/dma-buf.h                       |  11 +-
->  18 files changed, 372 insertions(+), 94 deletions(-)
->  create mode 100644 include/linux/dma-buf-map.h
-> 
-> --
-> 2.28.0
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
