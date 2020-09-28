@@ -2,31 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5558827B75F
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 00:15:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61CB327B77D
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 01:07:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 943A889FDD;
-	Mon, 28 Sep 2020 22:15:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E575889F01;
+	Mon, 28 Sep 2020 23:07:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E29689FD3
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Sep 2020 22:15:14 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22561565-1500050 
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Sep 2020 23:15:07 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Sep 2020 23:15:10 +0100
-Message-Id: <20200928221510.26044-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200928221510.26044-1-chris@chris-wilson.co.uk>
-References: <20200928221510.26044-1-chris@chris-wilson.co.uk>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6F3D89F01;
+ Mon, 28 Sep 2020 23:07:40 +0000 (UTC)
+IronPort-SDR: L3UR5RZVDDQItRY9zY30xuOeQ23DHmrFeRacRmOCQ+f8xUwRc/89wZypBjwy/28KQshz3vSLQR
+ C3pE+klsiOVA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9758"; a="246817677"
+X-IronPort-AV: E=Sophos;i="5.77,315,1596524400"; d="scan'208";a="246817677"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2020 16:07:40 -0700
+IronPort-SDR: 9XkV9aLbK1uAODE88byKKp4MRaliHvhMU2hA+PTmt3T8XPM+w0ywCelOZNty1UJdqIhZAm4dv8
+ RTFYnpFF8n1g==
+X-IronPort-AV: E=Sophos;i="5.77,315,1596524400"; d="scan'208";a="340597549"
+Received: from pchilaka-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.247.146])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2020 16:07:39 -0700
+Date: Mon, 28 Sep 2020 16:07:39 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200928230739.vpj22bwebqhtehuk@ldmartin-desk1>
+References: <20200928080931.246347-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <20200928080931.246347-3-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <87a6xaow40.fsf@intel.com>
+ <SN6PR11MB3421725FE60CC7930FC02AB6DF350@SN6PR11MB3421.namprd11.prod.outlook.com>
+ <871rilq0um.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 3/3] drm/i915/gem: Always test execution status on
- closing the context
+Content-Disposition: inline
+In-Reply-To: <871rilq0um.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/edp/jsl: Update vswing table
+ for HBR and HBR2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,152 +54,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: "Pandey, Hariom" <hariom.pandey@intel.com>,
+ "airlied@linux.ie" <airlied@linux.ie>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Verify that if a context is active at the time it is closed, that it is
-either persistent and preemptible (with hangcheck running) or it shall
-be removed from execution.
+On Mon, Sep 28, 2020 at 08:15:29PM +0300, Jani Nikula wrote:
+>On Mon, 28 Sep 2020, "Surendrakumar Upadhyay, TejaskumarX"	<tejaskumarx.surendrakumar.upadhyay@intel.com> wrote:
+>> This is a good example of a potential trap that having
+>> IS_ELKHARTLAKE() cover both ELK and JSP creates. An unsuspecting coder
+>> might change the if ladder to have IS_ELKHARTLAKE() first, and the
+>> subsequent IS_JASPERLAKE() branch would never be taken.
+>>
+>> BR,
+>> Jani.
+>>
+>> Tejas : In that case I will put attention note in comment about
+>> platform checks such that ladder distrubance can be avoided. What you
+>> suggest?
 
-Fixes: 9a40bddd47ca ("drm/i915/gt: Expose heartbeat interval via sysfs")
-Testcase: igt/gem_ctx_persistence/heartbeat-close
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.7+
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Acked-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 48 +++++----------------
- 1 file changed, 10 insertions(+), 38 deletions(-)
+>The solution is to make IS_ELKHARTLAKE() mean ELK and only ELK.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index a548626fa8bc..4fd38101bb56 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -390,24 +390,6 @@ __context_engines_static(const struct i915_gem_context *ctx)
- 	return rcu_dereference_protected(ctx->engines, true);
- }
- 
--static bool __reset_engine(struct intel_engine_cs *engine)
--{
--	struct intel_gt *gt = engine->gt;
--	bool success = false;
--
--	if (!intel_has_reset_engine(gt))
--		return false;
--
--	if (!test_and_set_bit(I915_RESET_ENGINE + engine->id,
--			      &gt->reset.flags)) {
--		success = intel_engine_reset(engine, NULL) == 0;
--		clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id,
--				      &gt->reset.flags);
--	}
--
--	return success;
--}
--
- static void __reset_context(struct i915_gem_context *ctx,
- 			    struct intel_engine_cs *engine)
- {
-@@ -431,12 +413,7 @@ static bool __cancel_engine(struct intel_engine_cs *engine)
- 	 * kill the banned context, we fallback to doing a local reset
- 	 * instead.
- 	 */
--	if (IS_ACTIVE(CONFIG_DRM_I915_PREEMPT_TIMEOUT) &&
--	    !intel_engine_pulse(engine))
--		return true;
--
--	/* If we are unable to send a pulse, try resetting this engine. */
--	return __reset_engine(engine);
-+	return intel_engine_pulse(engine) == 0;
- }
- 
- static bool
-@@ -506,7 +483,7 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
- 	return engine;
- }
- 
--static void kill_engines(struct i915_gem_engines *engines)
-+static void kill_engines(struct i915_gem_engines *engines, bool ban)
- {
- 	struct i915_gem_engines_iter it;
- 	struct intel_context *ce;
-@@ -521,7 +498,7 @@ static void kill_engines(struct i915_gem_engines *engines)
- 	for_each_gem_engine(ce, engines, it) {
- 		struct intel_engine_cs *engine;
- 
--		if (intel_context_set_banned(ce))
-+		if (ban && intel_context_set_banned(ce))
- 			continue;
- 
- 		/*
-@@ -534,7 +511,7 @@ static void kill_engines(struct i915_gem_engines *engines)
- 		engine = active_engine(ce);
- 
- 		/* First attempt to gracefully cancel the context */
--		if (engine && !__cancel_engine(engine))
-+		if (engine && !__cancel_engine(engine) && ban)
- 			/*
- 			 * If we are unable to send a preemptive pulse to bump
- 			 * the context from the GPU, we have to resort to a full
-@@ -544,8 +521,10 @@ static void kill_engines(struct i915_gem_engines *engines)
- 	}
- }
- 
--static void kill_stale_engines(struct i915_gem_context *ctx)
-+static void kill_context(struct i915_gem_context *ctx)
- {
-+	bool ban = (!i915_gem_context_is_persistent(ctx) ||
-+		    !ctx->i915->params.enable_hangcheck);
- 	struct i915_gem_engines *pos, *next;
- 
- 	spin_lock_irq(&ctx->stale.lock);
-@@ -558,7 +537,7 @@ static void kill_stale_engines(struct i915_gem_context *ctx)
- 
- 		spin_unlock_irq(&ctx->stale.lock);
- 
--		kill_engines(pos);
-+		kill_engines(pos, ban);
- 
- 		spin_lock_irq(&ctx->stale.lock);
- 		GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
-@@ -570,11 +549,6 @@ static void kill_stale_engines(struct i915_gem_context *ctx)
- 	spin_unlock_irq(&ctx->stale.lock);
- }
- 
--static void kill_context(struct i915_gem_context *ctx)
--{
--	kill_stale_engines(ctx);
--}
--
- static void engines_idle_release(struct i915_gem_context *ctx,
- 				 struct i915_gem_engines *engines)
- {
-@@ -609,7 +583,7 @@ static void engines_idle_release(struct i915_gem_context *ctx,
- 
- kill:
- 	if (list_empty(&engines->link)) /* raced, already closed */
--		kill_engines(engines);
-+		kill_engines(engines, true);
- 
- 	i915_sw_fence_commit(&engines->fence);
- }
-@@ -667,9 +641,7 @@ static void context_close(struct i915_gem_context *ctx)
- 	 * case we opt to forcibly kill off all remaining requests on
- 	 * context close.
- 	 */
--	if (!i915_gem_context_is_persistent(ctx) ||
--	    !ctx->i915->params.enable_hangcheck)
--		kill_context(ctx);
-+	kill_context(ctx);
- 
- 	i915_gem_context_put(ctx);
- }
--- 
-2.20.1
+Since we are talking about the TLA for JSL in the other patch, for
+elkhartlake it is EHL, not ELK. ELK is something else, but I'm not sure
+what:
 
+$ git grep -w ELK -- drivers/gpu/drm/
+drivers/gpu/drm/i915/gem/i915_gem_stolen.c:             IS_GM45(i915) ? "CTG" : "ELK", reg_val);
+drivers/gpu/drm/i915/gem/i915_gem_stolen.c:      * Whether ILK really reuses the ELK register for this is unclear.
+drivers/gpu/drm/i915/intel_pm.c:         * Not 100% sure which way ELK should go here as the
+drivers/gpu/drm/i915/intel_pm.c:         * assume ELK doesn't need this.
+
+Lucas De Marchi
+
+>
+>BR,
+>Jani.
+>
+>
+>-- 
+>Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
