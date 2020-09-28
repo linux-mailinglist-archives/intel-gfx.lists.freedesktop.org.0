@@ -2,33 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E42EF27AC28
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Sep 2020 12:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FD2327AC3B
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Sep 2020 12:50:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D477882A9;
-	Mon, 28 Sep 2020 10:44:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8B216E145;
+	Mon, 28 Sep 2020 10:50:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77B4889F73;
- Mon, 28 Sep 2020 10:44:06 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22555708-1500050 for multiple; Mon, 28 Sep 2020 11:43:48 +0100
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A5EA6E12B;
+ Mon, 28 Sep 2020 10:50:35 +0000 (UTC)
+IronPort-SDR: 5DANsAC7pp5zjCSuVREv6JD7M3CPJOxElgRS3W5XiDZ/f0PQeURhBWO2W81EOry7HyuRDk0PIP
+ Kw6HIuFZ/06Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9757"; a="223565993"
+X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; d="scan'208";a="223565993"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2020 03:50:34 -0700
+IronPort-SDR: FzpR/ZfaSB8Uf24R0D0dXW/+m/C882HQs1f7nY2VvGhfSTwRbJSJ76a3tVA0BRr8NAmx5XGr5i
+ 8c3rajIdXIpg==
+X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; d="scan'208";a="488524883"
+Received: from jrcarrol-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.31.240])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2020 03:50:32 -0700
 MIME-Version: 1.0
-In-Reply-To: <20200928103507.2164-1-Jason@zx2c4.com>
-References: <CAHmME9ppPhLLtS4Vd5g-Yz9dZUUc7V_yjA8qOkYs4HsnGWtpcQ@mail.gmail.com>
- <20200928103507.2164-1-Jason@zx2c4.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Jason A. Donenfeld <Jason@zx2c4.com>, jgg@ziepe.ca, linux-mm@kvack.org,
- peterx@redhat.com
-Date: Mon, 28 Sep 2020 11:43:50 +0100
-Message-ID: <160128983096.13711.12861675638427541068@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] mm: do not rely on mm == current->mm in
- __get_user_pages_locked
+In-Reply-To: <20200803101458.2369-1-chris@chris-wilson.co.uk>
+References: <20200803093051.2112-1-chris@chris-wilson.co.uk>
+ <20200803101458.2369-1-chris@chris-wilson.co.uk>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <160129022865.8141.7177521062986891385@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Mon, 28 Sep 2020 13:50:29 +0300
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_exec_parallel: Add
+ basic userptr thrashing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,85 +52,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- torvalds@linux-foundation.org, akpm@linux-foundation.org,
- dri-devel@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jason A. Donenfeld (2020-09-28 11:35:07)
-> It seems likely this block was pasted from internal_get_user_pages_fast,
-> which is not passed an mm struct and therefore uses current's. But
-> __get_user_pages_locked is passed an explicit mm, and current->mm is not
-> always valid. This was hit when being called from i915, which uses:
+Quoting Chris Wilson (2020-08-03 13:14:58)
+> Mix in a modicum of generic userptr thrashing for a quick (1s) BAT pass,
+> as we have currently no coverage of userptr at all in BAT.
 > 
->   pin_user_pages_remote->
->     __get_user_pages_remote->
->       __gup_longterm_locked->
->         __get_user_pages_locked
-> 
-> Before, this would lead to an OOPS:
-> 
->   BUG: kernel NULL pointer dereference, address: 0000000000000064
->   #PF: supervisor write access in kernel mode
->   #PF: error_code(0x0002) - not-present page
->   PGD 0 P4D 0
->   Oops: 0002 [#1] SMP
->   CPU: 10 PID: 1431 Comm: kworker/u33:1 Tainted: P S   U     O      5.9.0-rc7+ #140
->   Hardware name: LENOVO 20QTCTO1WW/20QTCTO1WW, BIOS N2OET47W (1.34 ) 08/06/2020
->   Workqueue: i915-userptr-acquire __i915_gem_userptr_get_pages_worker [i915]
->   RIP: 0010:__get_user_pages_remote+0xd7/0x310
->   Code: f5 01 00 00 83 7d 00 01 0f 85 ed 01 00 00 f7 c1 00 00 04 00 0f 84 58 01 00 00 65 48 8b 04 25 00 6d 01 00 48 8b 80 40 03 00 00 <c7> 40 64 01 00 00 00 65 48 8b 04 25 00 6d 01 00 48 c7 44 24 18 00
->   RSP: 0018:ffff888fdfe47de0 EFLAGS: 00010206
->   RAX: 0000000000000000 RBX: 00007fe188531000 RCX: 0000000000040001
->   RDX: 0000000000000001 RSI: 00007fe188531000 RDI: ffff888ff0748f00
->   RBP: ffff888fdfe47e54 R08: ffff888fedc7d7c8 R09: 0000000000000000
->   R10: 0000000000000018 R11: fefefefefefefeff R12: ffff888ff0748f00
->   R13: ffff888fedc7d7c8 R14: ffff888f81fe3a40 R15: 0000000000042003
->   FS:  0000000000000000(0000) GS:ffff888ffc480000(0000) knlGS:0000000000000000
->   CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->   CR2: 0000000000000064 CR3: 0000000002009003 CR4: 00000000003706e0
->   DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
->   DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
->   Call Trace:
->    __i915_gem_userptr_get_pages_worker+0xc8/0x260 [i915]
->    process_one_work+0x1ca/0x390
->    worker_thread+0x48/0x3c0
->    ? rescuer_thread+0x3d0/0x3d0
->    kthread+0x114/0x130
->    ? kthread_create_worker_on_cpu+0x40/0x40
->    ret_from_fork+0x1f/0x30
->   CR2: 0000000000000064
-> 
-> This commit fixes the problem by using the mm pointer passed to the
-> function rather than the bogus one in current.
-> 
-> Fixes: 008cfe4418b3 ("mm: Introduce mm_struct.has_pinned")
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Peter Xu <peterx@redhat.com>
-> Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+Definitely makes sense as there was a reported userptr regression.
+
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+
+Regards, Joonas
+
 > ---
->  mm/gup.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  tests/i915/gem_exec_parallel.c | 31 +++++++++++++++++++++++++++++--
+>  1 file changed, 29 insertions(+), 2 deletions(-)
 > 
-> diff --git a/mm/gup.c b/mm/gup.c
-> index dfe781d2ad4c..e869c634cc9a 100644
-> --- a/mm/gup.c
-> +++ b/mm/gup.c
-> @@ -1256,7 +1256,7 @@ static __always_inline long __get_user_pages_locked(struct mm_struct *mm,
+> diff --git a/tests/i915/gem_exec_parallel.c b/tests/i915/gem_exec_parallel.c
+> index bf94b93d4..96feb8250 100644
+> --- a/tests/i915/gem_exec_parallel.c
+> +++ b/tests/i915/gem_exec_parallel.c
+> @@ -45,6 +45,7 @@ static inline uint32_t hash32(uint32_t val)
+>  
+>  #define CONTEXTS 0x1
+>  #define FDS 0x2
+> +#define USERPTR 0x4
+>  
+>  #define NUMOBJ 16
+>  
+> @@ -164,6 +165,30 @@ static void check_bo(int fd, uint32_t handle, int pass, struct thread *threads)
+>         igt_assert_eq_u32(result, x);
+>  }
+>  
+> +static uint32_t handle_create(int fd, unsigned int flags, void **data)
+> +{
+> +       if (flags & USERPTR) {
+> +               uint32_t handle;
+> +               void *ptr;
+> +
+> +               posix_memalign(&ptr, 4096, 4096);
+> +               gem_userptr(fd, ptr, 4096, 0, 0, &handle);
+> +               *data = ptr;
+> +
+> +               return handle;
+> +       }
+> +
+> +       return gem_create(fd, 4096);
+> +}
+> +
+> +static void handle_close(int fd, unsigned int flags, uint32_t handle, void *data)
+> +{
+> +       if (flags & USERPTR)
+> +               free(data);
+> +
+> +       gem_close(fd, handle);
+> +}
+> +
+>  static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
+>  {
+>         const int gen = intel_gen(intel_get_drm_devid(fd));
+> @@ -172,6 +197,7 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
+>         struct thread *threads;
+>         uint32_t scratch[NUMOBJ], handle[NUMOBJ];
+>         unsigned engines[16], nengine;
+> +       void *arg[NUMOBJ];
+>         int go;
+>         int i;
+>  
+> @@ -196,7 +222,7 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
+>         igt_require(nengine);
+>  
+>         for (i = 0; i < NUMOBJ; i++) {
+> -               scratch[i] = handle[i] = gem_create(fd, 4096);
+> +               scratch[i] = handle[i] = handle_create(fd, flags, &arg[i]);
+>                 if (flags & FDS)
+>                         scratch[i] = gem_flink(fd, handle[i]);
+>         }
+> @@ -233,7 +259,7 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
+>  
+>         for (i = 0; i < NUMOBJ; i++) {
+>                 check_bo(fd, handle[i], i, threads);
+> -               gem_close(fd, handle[i]);
+> +               handle_close(fd, flags, handle[i], arg[i]);
 >         }
 >  
->         if (flags & FOLL_PIN)
-> -               atomic_set(&current->mm->has_pinned, 1);
-> +               atomic_set(&mm->has_pinned, 1);
-
-That's literally the same diff as I was just testing :)
-
-I can attest that it fixes the i915 issue, but since that's also your
-test case, I'm not adding much information.
--Chris
+>         igt_assert_eq(intel_detect_and_clear_missed_interrupts(fd), 0);
+> @@ -251,6 +277,7 @@ igt_main
+>                 { "basic", 0 },
+>                 { "contexts", CONTEXTS },
+>                 { "fds", FDS },
+> +               { "userptr", USERPTR },
+>                 { NULL }
+>         };
+>         int fd;
+> -- 
+> 2.28.0
+> 
+> _______________________________________________
+> igt-dev mailing list
+> igt-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/igt-dev
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
