@@ -1,48 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4565327AB0C
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Sep 2020 11:44:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D652A27AB9B
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Sep 2020 12:13:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5D0C89F5B;
-	Mon, 28 Sep 2020 09:44:49 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0A1E89F5B
- for <Intel-gfx@lists.freedesktop.org>; Mon, 28 Sep 2020 09:44:48 +0000 (UTC)
-IronPort-SDR: Df2uSsfST/E/jzgX72JYus3hbkWiwfPMUeYyjqVkptiyTf8k0BT1OZ7FUjFYq0xaUVIpMJDJsI
- nxLrISU3yRlw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9757"; a="180121481"
-X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; d="scan'208";a="180121481"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02B5089F8E;
+	Mon, 28 Sep 2020 10:13:51 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 321AA89F8E;
+ Mon, 28 Sep 2020 10:13:50 +0000 (UTC)
+IronPort-SDR: ifmlwUl4aDrxFAMWZhMU2qhwXOe5rLot1YtYxn1NugFnSD4xvu3EWL6FodP41Pqjo55wHy13pr
+ VUvZTjiwUVWw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9757"; a="159312100"
+X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; d="scan'208";a="159312100"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2020 02:44:46 -0700
-IronPort-SDR: 2tjmcGEZ/+K7vGu4mwps+Jnj56puQNgH9yUuCen7PBQdlOZ1+OafMXAQ8apkeDOTbbN8SnOE58
- 9OPrz021udJw==
-X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; d="scan'208";a="456757836"
-Received: from agal3-mobl1.ger.corp.intel.com (HELO [10.214.224.94])
- ([10.214.224.94])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2020 03:13:47 -0700
+IronPort-SDR: oynyLpLaEo8E2hmYKjUK2eLejsF9h1nd7bvB1+8YkaeLPVcxKUTeXs7JzHnC+u3AXBq2RQNnIu
+ AssYzP9UKYBw==
+X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; d="scan'208";a="456766108"
+Received: from jrcarrol-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.31.240])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2020 02:44:43 -0700
-To: Lu Baolu <baolu.lu@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
- Tom Murphy <murphyt7@tcd.ie>, David Woodhouse <dwmw2@infradead.org>,
- Christoph Hellwig <hch@infradead.org>
-References: <20200927063437.13988-1-baolu.lu@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <e999e371-6d36-ffea-542f-a5f4b230b0ed@linux.intel.com>
-Date: Mon, 28 Sep 2020 10:44:40 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ 28 Sep 2020 03:13:41 -0700
 MIME-Version: 1.0
-In-Reply-To: <20200927063437.13988-1-baolu.lu@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 0/7] Convert the intel iommu driver to
- the dma-iommu api
+In-Reply-To: <20200926062959.GA3427@lst.de>
+References: <20200924135853.875294-1-hch@lst.de>
+ <20200925194349.d0ee9dbedb2ec48f0bfcd2ec@linux-foundation.org>
+ <20200926062959.GA3427@lst.de>
+To: Andrew Morton <akpm@linux-foundation.org>, Christoph Hellwig <hch@lst.de>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Stephen Rothwell <sfr@canb.auug.org.au>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <160128801808.6464.1013594053120198786@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Mon, 28 Sep 2020 13:13:38 +0300
+Subject: Re: [Intel-gfx] remove alloc_vm_area v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,60 +54,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Ashok Raj <ashok.raj@intel.com>,
- iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Cc: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Matthew Wilcox <willy@infradead.org>, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, Peter Zijlstra <peterz@infradead.org>,
+ intel-gfx@lists.freedesktop.org, x86@kernel.org, linux-kernel@vger.kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Minchan Kim <minchan@kernel.org>,
+ Matthew Auld <matthew.auld@intel.com>, xen-devel@lists.xenproject.org,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, Christoph Hellwig <hch@lst.de>,
+ Nitin Gupta <ngupta@vflare.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
++ Dave and Daniel
++ Stephen
 
-On 27/09/2020 07:34, Lu Baolu wrote:
-> Hi,
+Quoting Christoph Hellwig (2020-09-26 09:29:59)
+> On Fri, Sep 25, 2020 at 07:43:49PM -0700, Andrew Morton wrote:
+> > On Thu, 24 Sep 2020 15:58:42 +0200 Christoph Hellwig <hch@lst.de> wrote:
+> > 
+> > > this series removes alloc_vm_area, which was left over from the big
+> > > vmalloc interface rework.  It is a rather arkane interface, basicaly
+> > > the equivalent of get_vm_area + actually faulting in all PTEs in
+> > > the allocated area.  It was originally addeds for Xen (which isn't
+> > > modular to start with), and then grew users in zsmalloc and i915
+> > > which seems to mostly qualify as abuses of the interface, especially
+> > > for i915 as a random driver should not set up PTE bits directly.
+> > > 
+> > > Note that the i915 patches apply to the drm-tip branch of the drm-tip
+> > > tree, as that tree has recent conflicting commits in the same area.
+> > 
+> > Is the drm-tip material in linux-next yet?  I'm still seeing a non-trivial
+> > reject in there at present.
 > 
-> The previous post of this series could be found here.
-> 
-> https://lore.kernel.org/linux-iommu/20200912032200.11489-1-baolu.lu@linux.intel.com/
-> 
-> This version introduce a new patch [4/7] to fix an issue reported here.
-> 
-> https://lore.kernel.org/linux-iommu/51a1baec-48d1-c0ac-181b-1fba92aa428d@linux.intel.com/
-> 
-> There aren't any other changes.
-> 
-> Please help to test and review.
-> 
-> Best regards,
-> baolu
-> 
-> Lu Baolu (3):
->    iommu: Add quirk for Intel graphic devices in map_sg
+> I assumed it was, but the reject imply that they aren't.  Tvrtko, do you
+> know the details?
 
-Since I do have patches to fix i915 to handle this, do we want to 
-co-ordinate the two and avoid having to add this quirk and then later 
-remove it? Or you want to go the staged approach?
+I think we have a gap that after splitting the drm-intel-next pull requests into
+two the drm-intel/for-linux-next branch is now missing material from
+drm-intel/drm-intel-gt-next.
 
-Regards,
+I think a simple course of action might be to start including drm-intel-gt-next
+in linux-next, which would mean that we should update DIM tooling to add
+extra branch "drm-intel/gt-for-linux-next" or so.
 
-Tvrtko
+Which specific patches are missing in this case?
 
->    iommu/vt-d: Update domain geometry in iommu_ops.at(de)tach_dev
->    iommu/vt-d: Cleanup after converting to dma-iommu ops
-> 
-> Tom Murphy (4):
->    iommu: Handle freelists when using deferred flushing in iommu drivers
->    iommu: Add iommu_dma_free_cpu_cached_iovas()
->    iommu: Allow the dma-iommu api to use bounce buffers
->    iommu/vt-d: Convert intel iommu driver to the iommu ops
-> 
->   .../admin-guide/kernel-parameters.txt         |   5 -
->   drivers/iommu/dma-iommu.c                     | 228 ++++-
->   drivers/iommu/intel/Kconfig                   |   1 +
->   drivers/iommu/intel/iommu.c                   | 901 +++---------------
->   include/linux/dma-iommu.h                     |   8 +
->   include/linux/iommu.h                         |   1 +
->   6 files changed, 336 insertions(+), 808 deletions(-)
-> 
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
