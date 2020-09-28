@@ -2,44 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FD2327AC3B
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Sep 2020 12:50:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D1027AC7D
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Sep 2020 13:15:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8B216E145;
-	Mon, 28 Sep 2020 10:50:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9CA989B0C;
+	Mon, 28 Sep 2020 11:15:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A5EA6E12B;
- Mon, 28 Sep 2020 10:50:35 +0000 (UTC)
-IronPort-SDR: 5DANsAC7pp5zjCSuVREv6JD7M3CPJOxElgRS3W5XiDZ/f0PQeURhBWO2W81EOry7HyuRDk0PIP
- Kw6HIuFZ/06Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9757"; a="223565993"
-X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; d="scan'208";a="223565993"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60C3E89B0C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Sep 2020 11:15:49 +0000 (UTC)
+IronPort-SDR: B6hrN1YyDKydI+6Ozsgpxfk82vdIh4AtuqEwb6fm0hfVMlXwJ3qwxP8ADFlrAYZBhBYaJqhe61
+ Z8s1nocO7Nhg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9757"; a="223568875"
+X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; d="scan'208";a="223568875"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2020 03:50:34 -0700
-IronPort-SDR: FzpR/ZfaSB8Uf24R0D0dXW/+m/C882HQs1f7nY2VvGhfSTwRbJSJ76a3tVA0BRr8NAmx5XGr5i
- 8c3rajIdXIpg==
-X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; d="scan'208";a="488524883"
-Received: from jrcarrol-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.31.240])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2020 03:50:32 -0700
+ 28 Sep 2020 04:15:42 -0700
+IronPort-SDR: lsSa9ImtbFCzO+vNqKfjXoF1Jl2z3Miz3rGSmDfzzfbZZEwsvc6wflhtQF7JwFfh4f5dMkFUuE
+ V0pW2Kt4yKbQ==
+X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; d="scan'208";a="488533328"
+Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 28 Sep 2020 04:15:40 -0700
+From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 28 Sep 2020 16:38:34 +0530
+Message-Id: <20200928110834.15077-1-vandita.kulkarni@intel.com>
+X-Mailer: git-send-email 2.21.0.5.gaeb582a
+In-Reply-To: <20200924124209.17916-5-vandita.kulkarni@intel.com>
+References: <20200924124209.17916-5-vandita.kulkarni@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200803101458.2369-1-chris@chris-wilson.co.uk>
-References: <20200803093051.2112-1-chris@chris-wilson.co.uk>
- <20200803101458.2369-1-chris@chris-wilson.co.uk>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160129022865.8141.7177521062986891385@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Mon, 28 Sep 2020 13:50:29 +0300
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_exec_parallel: Add
- basic userptr thrashing
+Subject: [Intel-gfx] [15 4/5] drm/i915/dsi: Initiate frame request in cmd
+ mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,112 +49,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-08-03 13:14:58)
-> Mix in a modicum of generic userptr thrashing for a quick (1s) BAT pass,
-> as we have currently no coverage of userptr at all in BAT.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+In TE Gate mode or TE NO_GATE mode on every flip
+we need to set the frame update request bit.
+After this  bit is set transcoder hardware will
+automatically send the frame data to the panel
+in case of TE NO_GATE mode, where it sends after
+it receives the TE event in case of TE_GATE mode.
+Once the frame data is sent to the panel, we see
+the frame counter updating.
 
-Definitely makes sense as there was a reported userptr regression.
+v2: Use intel_de_read/write
 
-Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+v3: remove the usage of private_flags
 
-Regards, Joonas
+v4: Use icl_dsi in func names if non static,
+    fix code formatting issues. (Jani)
 
-> ---
->  tests/i915/gem_exec_parallel.c | 31 +++++++++++++++++++++++++++++--
->  1 file changed, 29 insertions(+), 2 deletions(-)
-> 
-> diff --git a/tests/i915/gem_exec_parallel.c b/tests/i915/gem_exec_parallel.c
-> index bf94b93d4..96feb8250 100644
-> --- a/tests/i915/gem_exec_parallel.c
-> +++ b/tests/i915/gem_exec_parallel.c
-> @@ -45,6 +45,7 @@ static inline uint32_t hash32(uint32_t val)
->  
->  #define CONTEXTS 0x1
->  #define FDS 0x2
-> +#define USERPTR 0x4
->  
->  #define NUMOBJ 16
->  
-> @@ -164,6 +165,30 @@ static void check_bo(int fd, uint32_t handle, int pass, struct thread *threads)
->         igt_assert_eq_u32(result, x);
->  }
->  
-> +static uint32_t handle_create(int fd, unsigned int flags, void **data)
-> +{
-> +       if (flags & USERPTR) {
-> +               uint32_t handle;
-> +               void *ptr;
-> +
-> +               posix_memalign(&ptr, 4096, 4096);
-> +               gem_userptr(fd, ptr, 4096, 0, 0, &handle);
-> +               *data = ptr;
-> +
-> +               return handle;
-> +       }
-> +
-> +       return gem_create(fd, 4096);
-> +}
-> +
-> +static void handle_close(int fd, unsigned int flags, uint32_t handle, void *data)
-> +{
-> +       if (flags & USERPTR)
-> +               free(data);
-> +
-> +       gem_close(fd, handle);
-> +}
-> +
->  static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
->  {
->         const int gen = intel_gen(intel_get_drm_devid(fd));
-> @@ -172,6 +197,7 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
->         struct thread *threads;
->         uint32_t scratch[NUMOBJ], handle[NUMOBJ];
->         unsigned engines[16], nengine;
-> +       void *arg[NUMOBJ];
->         int go;
->         int i;
->  
-> @@ -196,7 +222,7 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
->         igt_require(nengine);
->  
->         for (i = 0; i < NUMOBJ; i++) {
-> -               scratch[i] = handle[i] = gem_create(fd, 4096);
-> +               scratch[i] = handle[i] = handle_create(fd, flags, &arg[i]);
->                 if (flags & FDS)
->                         scratch[i] = gem_flink(fd, handle[i]);
->         }
-> @@ -233,7 +259,7 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
->  
->         for (i = 0; i < NUMOBJ; i++) {
->                 check_bo(fd, handle[i], i, threads);
-> -               gem_close(fd, handle[i]);
-> +               handle_close(fd, flags, handle[i], arg[i]);
->         }
->  
->         igt_assert_eq(intel_detect_and_clear_missed_interrupts(fd), 0);
-> @@ -251,6 +277,7 @@ igt_main
->                 { "basic", 0 },
->                 { "contexts", CONTEXTS },
->                 { "fds", FDS },
-> +               { "userptr", USERPTR },
->                 { NULL }
->         };
->         int fd;
-> -- 
-> 2.28.0
-> 
-> _______________________________________________
-> igt-dev mailing list
-> igt-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/igt-dev
+v5: Send frame update request at the beginning of
+    pipe_update_end, use crtc_state mode_flags (Ville)
+
+v6: Add platform and dsi checks (Ville)
+
+Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c      | 26 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dsi.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_sprite.c |  9 +++++++
+ 3 files changed, 36 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 2789020e20db..fe946a2e2082 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -205,6 +205,32 @@ static int dsi_send_pkt_payld(struct intel_dsi_host *host,
+ 	return 0;
+ }
+ 
++void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	u32 tmp, mode_flags;
++	enum port port;
++
++	mode_flags = crtc_state->mode_flags;
++
++	/*
++	 * case 1 also covers dual link
++	 * In case of dual link, frame update should be set on
++	 * DSI_0
++	 */
++	if (mode_flags & I915_MODE_FLAG_DSI_USE_TE0)
++		port = PORT_A;
++	else if (mode_flags & I915_MODE_FLAG_DSI_USE_TE1)
++		port = PORT_B;
++	else
++		return;
++
++	tmp = intel_de_read(dev_priv, DSI_CMD_FRMCTL(port));
++	tmp |= DSI_FRAME_UPDATE_REQUEST;
++	intel_de_write(dev_priv, DSI_CMD_FRMCTL(port), tmp);
++}
++
+ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i915/display/intel_dsi.h
+index 19f78a4022d3..625f2f1ae061 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi.h
++++ b/drivers/gpu/drm/i915/display/intel_dsi.h
+@@ -167,6 +167,7 @@ static inline u16 intel_dsi_encoder_ports(struct intel_encoder *encoder)
+ 
+ /* icl_dsi.c */
+ void icl_dsi_init(struct drm_i915_private *dev_priv);
++void icl_dsi_frame_update(struct intel_crtc_state *crtc_state);
+ 
+ /* intel_dsi.c */
+ int intel_dsi_bitrate(const struct intel_dsi *intel_dsi);
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index 63040cb0d4e1..2c07321eb1d0 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -47,6 +47,7 @@
+ #include "intel_frontbuffer.h"
+ #include "intel_pm.h"
+ #include "intel_psr.h"
++#include "intel_dsi.h"
+ #include "intel_sprite.h"
+ 
+ int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
+@@ -202,6 +203,14 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
+ 
+ 	trace_intel_pipe_update_end(crtc, end_vbl_count, scanline_end);
+ 
++	/*
++	 * Incase of mipi dsi command mode, we need to set frame update
++	 * request for every commit.
++	 */
++	if (INTEL_GEN(dev_priv) >= 11 &&
++	    intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))
++		icl_dsi_frame_update(new_crtc_state);
++
+ 	/* We're still in the vblank-evade critical section, this can't race.
+ 	 * Would be slightly nice to just grab the vblank count and arm the
+ 	 * event outside of the critical section - the spinlock might spin for a
+-- 
+2.21.0.5.gaeb582a
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
