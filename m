@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE91927B760
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 00:15:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5558827B75F
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 00:15:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60B6C6E027;
-	Mon, 28 Sep 2020 22:15:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 943A889FDD;
+	Mon, 28 Sep 2020 22:15:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 288E889FEC
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Sep 2020 22:15:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E29689FD3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Sep 2020 22:15:14 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22561564-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22561565-1500050 
  for <intel-gfx@lists.freedesktop.org>; Mon, 28 Sep 2020 23:15:07 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Sep 2020 23:15:09 +0100
-Message-Id: <20200928221510.26044-2-chris@chris-wilson.co.uk>
+Date: Mon, 28 Sep 2020 23:15:10 +0100
+Message-Id: <20200928221510.26044-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200928221510.26044-1-chris@chris-wilson.co.uk>
 References: <20200928221510.26044-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/3] drm/i915/gt: Always send a pulse down the
- engine after disabling heartbeat
+Subject: [Intel-gfx] [CI 3/3] drm/i915/gem: Always test execution status on
+ closing the context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,165 +44,143 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, we check we can send a pulse prior to disabling the
-heartbeat to verify that we can change the heartbeat, but since we may
-re-evaluate execution upon changing the heartbeat interval we need another
-pulse afterwards to refresh execution.
-
-v2: Tvrtko asked if we could reduce the double pulse to a single, which
-opened up a discussion of how we should handle the pulse-error after
-attempting to change the property, and the desire to serialise
-adjustment of the property with its validating pulse, and unwind upon
-failure.
+Verify that if a context is active at the time it is closed, that it is
+either persistent and preemptible (with hangcheck running) or it shall
+be removed from execution.
 
 Fixes: 9a40bddd47ca ("drm/i915/gt: Expose heartbeat interval via sysfs")
+Testcase: igt/gem_ctx_persistence/heartbeat-close
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Cc: <stable@vger.kernel.org> # v5.7+
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Acked-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 ---
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 105 +++++++++++-------
- 1 file changed, 66 insertions(+), 39 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 48 +++++----------------
+ 1 file changed, 10 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 8ffdf676c0a0..5f1b6a8e07bd 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -177,36 +177,81 @@ void intel_engine_init_heartbeat(struct intel_engine_cs *engine)
- 	INIT_DELAYED_WORK(&engine->heartbeat.work, heartbeat);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index a548626fa8bc..4fd38101bb56 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -390,24 +390,6 @@ __context_engines_static(const struct i915_gem_context *ctx)
+ 	return rcu_dereference_protected(ctx->engines, true);
  }
  
-+static int __intel_engine_pulse(struct intel_engine_cs *engine)
-+{
-+	struct i915_sched_attr attr = { .priority = I915_PRIORITY_BARRIER };
-+	struct intel_context *ce = engine->kernel_context;
-+	struct i915_request *rq;
-+
-+	lockdep_assert_held(&ce->timeline->mutex);
-+	GEM_BUG_ON(!intel_engine_has_preemption(engine));
-+	GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
-+
-+	intel_context_enter(ce);
-+	rq = __i915_request_create(ce, GFP_NOWAIT | __GFP_NOWARN);
-+	intel_context_exit(ce);
-+	if (IS_ERR(rq))
-+		return PTR_ERR(rq);
-+
-+	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
-+	idle_pulse(engine, rq);
-+
-+	__i915_request_commit(rq);
-+	__i915_request_queue(rq, &attr);
-+	GEM_BUG_ON(rq->sched.attr.priority < I915_PRIORITY_BARRIER);
-+
-+	return 0;
-+}
-+
-+static unsigned long set_heartbeat(struct intel_engine_cs *engine,
-+				   unsigned long delay)
-+{
-+	unsigned long old;
-+
-+	old = xchg(&engine->props.heartbeat_interval_ms, delay);
-+	if (delay)
-+		intel_engine_unpark_heartbeat(engine);
-+	else
-+		intel_engine_park_heartbeat(engine);
-+
-+	return old;
-+}
-+
- int intel_engine_set_heartbeat(struct intel_engine_cs *engine,
- 			       unsigned long delay)
- {
--	int err;
-+	struct intel_context *ce = engine->kernel_context;
-+	int err = 0;
- 
--	/* Send one last pulse before to cleanup persistent hogs */
--	if (!delay && IS_ACTIVE(CONFIG_DRM_I915_PREEMPT_TIMEOUT)) {
--		err = intel_engine_pulse(engine);
--		if (err)
--			return err;
+-static bool __reset_engine(struct intel_engine_cs *engine)
+-{
+-	struct intel_gt *gt = engine->gt;
+-	bool success = false;
+-
+-	if (!intel_has_reset_engine(gt))
+-		return false;
+-
+-	if (!test_and_set_bit(I915_RESET_ENGINE + engine->id,
+-			      &gt->reset.flags)) {
+-		success = intel_engine_reset(engine, NULL) == 0;
+-		clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id,
+-				      &gt->reset.flags);
 -	}
-+	if (!delay && !intel_engine_has_preempt_reset(engine))
-+		return -ENODEV;
-+
-+	intel_engine_pm_get(engine);
-+
-+	err = mutex_lock_interruptible(&ce->timeline->mutex);
-+	if (err)
-+		return err;
- 
--	WRITE_ONCE(engine->props.heartbeat_interval_ms, delay);
-+	if (delay != engine->props.heartbeat_interval_ms) {
-+		unsigned long saved = set_heartbeat(engine, delay);
- 
--	if (intel_engine_pm_get_if_awake(engine)) {
--		if (delay)
--			intel_engine_unpark_heartbeat(engine);
--		else
--			intel_engine_park_heartbeat(engine);
--		intel_engine_pm_put(engine);
-+		/* recheck current execution */
-+		if (intel_engine_has_preemption(engine)) {
-+			err = __intel_engine_pulse(engine);
-+			if (err)
-+				set_heartbeat(engine, saved);
-+		}
- 	}
- 
--	return 0;
-+	mutex_unlock(&ce->timeline->mutex);
-+	intel_engine_pm_put(engine);
-+
-+	return err;
+-
+-	return success;
+-}
+-
+ static void __reset_context(struct i915_gem_context *ctx,
+ 			    struct intel_engine_cs *engine)
+ {
+@@ -431,12 +413,7 @@ static bool __cancel_engine(struct intel_engine_cs *engine)
+ 	 * kill the banned context, we fallback to doing a local reset
+ 	 * instead.
+ 	 */
+-	if (IS_ACTIVE(CONFIG_DRM_I915_PREEMPT_TIMEOUT) &&
+-	    !intel_engine_pulse(engine))
+-		return true;
+-
+-	/* If we are unable to send a pulse, try resetting this engine. */
+-	return __reset_engine(engine);
++	return intel_engine_pulse(engine) == 0;
  }
  
- int intel_engine_pulse(struct intel_engine_cs *engine)
+ static bool
+@@ -506,7 +483,7 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+ 	return engine;
+ }
+ 
+-static void kill_engines(struct i915_gem_engines *engines)
++static void kill_engines(struct i915_gem_engines *engines, bool ban)
  {
--	struct i915_sched_attr attr = { .priority = I915_PRIORITY_BARRIER };
- 	struct intel_context *ce = engine->kernel_context;
--	struct i915_request *rq;
- 	int err;
+ 	struct i915_gem_engines_iter it;
+ 	struct intel_context *ce;
+@@ -521,7 +498,7 @@ static void kill_engines(struct i915_gem_engines *engines)
+ 	for_each_gem_engine(ce, engines, it) {
+ 		struct intel_engine_cs *engine;
  
- 	if (!intel_engine_has_preemption(engine))
-@@ -215,30 +260,12 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
- 	if (!intel_engine_pm_get_if_awake(engine))
- 		return 0;
+-		if (intel_context_set_banned(ce))
++		if (ban && intel_context_set_banned(ce))
+ 			continue;
  
--	if (mutex_lock_interruptible(&ce->timeline->mutex)) {
--		err = -EINTR;
--		goto out_rpm;
-+	err = -EINTR;
-+	if (!mutex_lock_interruptible(&ce->timeline->mutex)) {
-+		err = __intel_engine_pulse(engine);
-+		mutex_unlock(&ce->timeline->mutex);
+ 		/*
+@@ -534,7 +511,7 @@ static void kill_engines(struct i915_gem_engines *engines)
+ 		engine = active_engine(ce);
+ 
+ 		/* First attempt to gracefully cancel the context */
+-		if (engine && !__cancel_engine(engine))
++		if (engine && !__cancel_engine(engine) && ban)
+ 			/*
+ 			 * If we are unable to send a preemptive pulse to bump
+ 			 * the context from the GPU, we have to resort to a full
+@@ -544,8 +521,10 @@ static void kill_engines(struct i915_gem_engines *engines)
  	}
+ }
  
--	intel_context_enter(ce);
--	rq = __i915_request_create(ce, GFP_NOWAIT | __GFP_NOWARN);
--	intel_context_exit(ce);
--	if (IS_ERR(rq)) {
--		err = PTR_ERR(rq);
--		goto out_unlock;
--	}
+-static void kill_stale_engines(struct i915_gem_context *ctx)
++static void kill_context(struct i915_gem_context *ctx)
+ {
++	bool ban = (!i915_gem_context_is_persistent(ctx) ||
++		    !ctx->i915->params.enable_hangcheck);
+ 	struct i915_gem_engines *pos, *next;
+ 
+ 	spin_lock_irq(&ctx->stale.lock);
+@@ -558,7 +537,7 @@ static void kill_stale_engines(struct i915_gem_context *ctx)
+ 
+ 		spin_unlock_irq(&ctx->stale.lock);
+ 
+-		kill_engines(pos);
++		kill_engines(pos, ban);
+ 
+ 		spin_lock_irq(&ctx->stale.lock);
+ 		GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
+@@ -570,11 +549,6 @@ static void kill_stale_engines(struct i915_gem_context *ctx)
+ 	spin_unlock_irq(&ctx->stale.lock);
+ }
+ 
+-static void kill_context(struct i915_gem_context *ctx)
+-{
+-	kill_stale_engines(ctx);
+-}
 -
--	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
--	idle_pulse(engine, rq);
--
--	__i915_request_commit(rq);
--	__i915_request_queue(rq, &attr);
--	GEM_BUG_ON(rq->sched.attr.priority < I915_PRIORITY_BARRIER);
--	err = 0;
--
--out_unlock:
--	mutex_unlock(&ce->timeline->mutex);
--out_rpm:
- 	intel_engine_pm_put(engine);
- 	return err;
+ static void engines_idle_release(struct i915_gem_context *ctx,
+ 				 struct i915_gem_engines *engines)
+ {
+@@ -609,7 +583,7 @@ static void engines_idle_release(struct i915_gem_context *ctx,
+ 
+ kill:
+ 	if (list_empty(&engines->link)) /* raced, already closed */
+-		kill_engines(engines);
++		kill_engines(engines, true);
+ 
+ 	i915_sw_fence_commit(&engines->fence);
+ }
+@@ -667,9 +641,7 @@ static void context_close(struct i915_gem_context *ctx)
+ 	 * case we opt to forcibly kill off all remaining requests on
+ 	 * context close.
+ 	 */
+-	if (!i915_gem_context_is_persistent(ctx) ||
+-	    !ctx->i915->params.enable_hangcheck)
+-		kill_context(ctx);
++	kill_context(ctx);
+ 
+ 	i915_gem_context_put(ctx);
  }
 -- 
 2.20.1
