@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F27227A9F7
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Sep 2020 10:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4057B27A9FB
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Sep 2020 10:52:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2A9D89857;
-	Mon, 28 Sep 2020 08:51:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95C9B8955D;
+	Mon, 28 Sep 2020 08:52:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4061E89428;
- Mon, 28 Sep 2020 08:51:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3B3E689428;
+ Mon, 28 Sep 2020 08:52:49 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 36EE5A9F66;
- Mon, 28 Sep 2020 08:51:42 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37216A9F66;
+ Mon, 28 Sep 2020 08:52:49 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Mon, 28 Sep 2020 08:51:42 -0000
-Message-ID: <160128310222.8774.12426776201028838518@emeril.freedesktop.org>
+Date: Mon, 28 Sep 2020 08:52:49 -0000
+Message-ID: <160128316922.8774.17978895032040306415@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200928080931.246347-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 In-Reply-To: <20200928080931.246347-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/jsl=3A_Update_JasperLake_Voltage_swing_table?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/jsl=3A_Update_JasperLake_Voltage_swing_table?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,46 +53,47 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-7785c9b4e203 drm/i915/jsl: Split EHL/JSL platform info and PCI ids
--:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
-#20: FILE: drivers/gpu/drm/i915/i915_drv.h:1420:
-+#define IS_ELKHARTLAKE(dev_priv) (IS_PLATFORM(dev_priv, INTEL_ELKHARTLAKE) || \
-+				IS_PLATFORM(dev_priv, INTEL_JASPERLAKE))
-
--:98: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#98: FILE: include/drm/i915_pciids.h:592:
-+#define INTEL_JSL_IDS(info) \
-+	INTEL_VGA_DEVICE(0x4E71, info), \
- 	INTEL_VGA_DEVICE(0x4E61, info), \
- 	INTEL_VGA_DEVICE(0x4E57, info), \
- 	INTEL_VGA_DEVICE(0x4E55, info), \
-
--:98: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#98: FILE: include/drm/i915_pciids.h:592:
-+#define INTEL_JSL_IDS(info) \
-+	INTEL_VGA_DEVICE(0x4E71, info), \
- 	INTEL_VGA_DEVICE(0x4E61, info), \
- 	INTEL_VGA_DEVICE(0x4E57, info), \
- 	INTEL_VGA_DEVICE(0x4E55, info), \
-
-total: 1 errors, 0 warnings, 2 checks, 66 lines checked
-07ca5d2ec781 drm/i915/edp/jsl: Update vswing table for HBR and HBR2
--:77: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
-#77: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1143:
-+				return jsl_combo_phy_ddi_translations_edp_hbr2;
-+			} else {
-
--:82: WARNING:PREFER_FALLTHROUGH: Prefer 'fallthrough;' over fallthrough comment
-#82: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1148:
-+		/* fall through */
-
--:100: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#100: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:2325:
-+			jsl_get_combo_buf_trans(encoder, encoder->type,
-+					intel_dp->link_rate, &n_entries);
-
-total: 0 errors, 2 warnings, 1 checks, 98 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_reset.c:1311:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gvt/mmio.c:290:23: warning: memcpy with byte count of 279040
++drivers/gpu/drm/i915/i915_perf.c:1440:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1494:15: warning: memset with byte count of 16777216
++./include/linux/seqlock.h:752:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:778:16: warning: trying to copy expression type 31
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
 
 
 _______________________________________________
