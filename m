@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81A2C27B8DB
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 02:29:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B084B27B8DE
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 02:29:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C130389F06;
-	Tue, 29 Sep 2020 00:29:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E15A46E422;
+	Tue, 29 Sep 2020 00:29:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1266D89F06
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 00:29:37 +0000 (UTC)
-IronPort-SDR: ExBWnJQ/t3Z3aXGyrRTa7nJDCmJnYx5PwBXYeLEJbF5BDVlOwzJkEqFZOmoin2Gig8IeEx3y9u
- Nu7hRtSqIvkQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9758"; a="180242841"
-X-IronPort-AV: E=Sophos;i="5.77,315,1596524400"; d="scan'208";a="180242841"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3804C89F19
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 00:29:38 +0000 (UTC)
+IronPort-SDR: NfAMQuDmJap+2g0etbLM+mRWo+v7L9wDiksmVoLVt2puoF5Rpi95uHaP0j6RWsysowPVEtn0xe
+ 5nCf32bMy07Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9758"; a="180242845"
+X-IronPort-AV: E=Sophos;i="5.77,315,1596524400"; d="scan'208";a="180242845"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2020 17:29:36 -0700
-IronPort-SDR: CJ5h/s1+LtPqv47Vc2CT4ZolNtRA+iElQh4cOG9exouFp058YpDepviocsVdz2803vj7wffmhI
- YAilbg0qLSkQ==
-X-IronPort-AV: E=Sophos;i="5.77,315,1596524400"; d="scan'208";a="488817664"
+ 28 Sep 2020 17:29:37 -0700
+IronPort-SDR: Bm/R0H7ZF8/w+u3lrgBuLmH2IKu+lDVnvWg0pVs6bbjUqdwRljn0/yI1s0ro++JIfQ9CWOwcGA
+ 9XF2XCr34NJA==
+X-IronPort-AV: E=Sophos;i="5.77,315,1596524400"; d="scan'208";a="488817668"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2020 17:29:35 -0700
+ 28 Sep 2020 17:29:37 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Sep 2020 03:29:28 +0300
-Message-Id: <20200929002929.783620-5-imre.deak@intel.com>
+Date: Tue, 29 Sep 2020 03:29:29 +0300
+Message-Id: <20200929002929.783620-6-imre.deak@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200929002929.783620-1-imre.deak@intel.com>
 References: <20200929002929.783620-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/5] drm/i915/tgl: Fix Combo PHY DPLL fractional
- divider for 38.4MHz ref clock
+Subject: [Intel-gfx] [PATCH 5/5] drm/i915/tgl: Add workaround for incorrect
+ BIOS combo PHY DPLL programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,75 +49,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXBwbHkgRGlzcGxheSBXQSAjMjIwMTA0OTI0MzIgZm9yIGNvbWJvIFBIWSBQTExzIHRvby4gVGhp
-cyBzaG91bGQgZml4IGEKcHJvYmxlbSB3aGVyZSB0aGUgUExMIG91dHB1dCBmcmVxdWVuY3kgaXMg
-c2xpZ2h0bHkgb2ZmIHdpdGggdGhlIGN1cnJlbnQKUExMIGZyYWN0aW9uYWwgZGl2aWRlciB2YWx1
-ZS4KCkkgaGF2ZW4ndCBzZWVuIGFuIGFjdHVhbCBjYXNlIHdoZXJlIHRoaXMgY2F1c2VzIGEgcHJv
-YmxlbSwgYnV0IGxldCdzCmZvbGxvdyB0aGUgc3BlYy4gSXQncyBhbHNvIG5lZWRlZCBvbiBzb21l
-IEVITCBwbGF0Zm9ybXMsIGJ1dCBmb3IgdGhhdCB3ZQphbHNvIG5lZWQgYSB3YXkgdG8gZGlzdGlu
-Z3Vpc2ggdGhlIGFmZmVjdGVkIEVITCBTS1VzLCBzbyBJIGxlYXZlIHRoYXQKZm9yIGEgZm9sbG93
-LXVwLgoKdjI6Ci0gQXBwbHkgdGhlIFdBIGF0IG9uZSBwbGFjZSB3aGVuIGNhbGN1bGF0aW5nIHRo
-ZSBQTEwgZGl2aWRlcnMgZnJvbSB0aGUKICBmcmVxdWVuY3kgYW5kIHRoZSBmcmVxdWVuY3kgZnJv
-bSB0aGUgZGl2aWRlcnMgZm9yIGFsbCB0aGUgY29tYm8gUExMCiAgdXNlIGNhc2VzIChEUCwgSERN
-SSwgVEJUKS4gKFZpbGxlKQoKQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
-eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNv
-bT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMgfCAz
-NCArKysrKysrKysrKy0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMjAgaW5zZXJ0aW9ucygrKSwg
-MTQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcGxsX21nci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-cGxsX21nci5jCmluZGV4IGRlZDJiMmRmZTMxOS4uZTdiMDU4MzQwYTFhIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxsX21nci5jCkBAIC0yNjk0LDYgKzI2OTQs
-MTYgQEAgc3RhdGljIHZvaWQgY25sX3dycGxsX2RlY29kZV9kaXZzKGNvbnN0IHN0cnVjdCBza2xf
-d3JwbGxfcGFyYW1zICp3cnBsbF9wYXJhbXMsCiAJfQogfQogCisvKgorICogRGlzcGxheSBXQSAj
-MjIwMTA0OTI0MzI6IHRnbAorICogUHJvZ3JhbSBoYWxmIG9mIHRoZSBub21pbmFsIERDTyBkaXZp
-ZGVyIGZyYWN0aW9uIHZhbHVlLgorICovCitzdGF0aWMgYm9vbAordGdsX2NvbWJvX3BsbF9kaXZf
-ZnJhY193YV9uZWVkZWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCit7CisJcmV0dXJu
-IElTX1RJR0VSTEFLRShpOTE1KSAmJiBpOTE1LT5kcGxsLnJlZl9jbGtzLm5zc2MgPT0gMzg0MDA7
-Cit9CisKIHN0YXRpYyBpbnQgX19jbmxfZGRpX3dycGxsX2dldF9mcmVxKHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICpkZXZfcHJpdiwKIAkJCQkgICAgY29uc3Qgc3RydWN0IGludGVsX3NoYXJlZF9k
-cGxsICpwbGwsCiAJCQkJICAgIGludCByZWZfY2xvY2spCkBAIC0yNzE5LDYgKzI3MjksOSBAQCBz
-dGF0aWMgaW50IF9fY25sX2RkaV93cnBsbF9nZXRfZnJlcShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqZGV2X3ByaXYsCiAJZGNvX2ZyYWN0aW9uID0gKHBsbF9zdGF0ZS0+Y2ZnY3IwICYgRFBMTF9D
-RkdDUjBfRENPX0ZSQUNUSU9OX01BU0spID4+CiAJCSAgICAgICBEUExMX0NGR0NSMF9EQ09fRlJB
-Q1RJT05fU0hJRlQ7CiAKKwlpZiAodGdsX2NvbWJvX3BsbF9kaXZfZnJhY193YV9uZWVkZWQoZGV2
-X3ByaXYpKQorCQlkY29fZnJhY3Rpb24gKj0gMjsKKwogCXJldHVybiBza2xfd3JwbGxfY2FsY19m
-cmVxKHJlZl9jbG9jaywgZGNvX2ludGVnZXIsIGRjb19mcmFjdGlvbiwgcGRpdiwgcWRpdiwga2Rp
-dik7CiB9CiAKQEAgLTI5OTIsMTYgKzMwMDUsNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHNrbF93
-cnBsbF9wYXJhbXMgdGdsX3RidF9wbGxfMjRNSHpfdmFsdWVzID0gewogCS8qIHRoZSBmb2xsb3dp
-bmcgcGFyYW1zIGFyZSB1bnVzZWQgKi8KIH07CiAKLS8qCi0gKiBEaXNwbGF5IFdBICMyMjAxMDQ5
-MjQzMjogdGdsCi0gKiBEaXZpZGUgdGhlIG5vbWluYWwgLmRjb19mcmFjdGlvbiB2YWx1ZSBieSAy
-LgotICovCi1zdGF0aWMgY29uc3Qgc3RydWN0IHNrbF93cnBsbF9wYXJhbXMgdGdsX3RidF9wbGxf
-MzhfNE1Iel92YWx1ZXMgPSB7Ci0JLmRjb19pbnRlZ2VyID0gMHg1NCwgLmRjb19mcmFjdGlvbiA9
-IDB4MTgwMCwKLQkvKiB0aGUgZm9sbG93aW5nIHBhcmFtcyBhcmUgdW51c2VkICovCi0JLnBkaXYg
-PSAwLCAua2RpdiA9IDAsIC5xZGl2X21vZGUgPSAwLCAucWRpdl9yYXRpbyA9IDAsCi19OwotCiBz
-dGF0aWMgaW50IGljbF93cnBsbF9yZWZfY2xvY2soc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5
-MTUpOwogCiBzdGF0aWMgYm9vbCBpY2xfZHBfY29tYm9fcGxsX2Nsb2NrX21hdGNoKHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICppOTE1LCBpbnQgY2xvY2ssCkBAIC0zMDU5LDE0ICszMDYyLDEyIEBA
-IHN0YXRpYyBib29sIGljbF9jYWxjX3RidF9wbGwoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNy
-dGNfc3RhdGUsCiAJCQlNSVNTSU5HX0NBU0UoZGV2X3ByaXYtPmRwbGwucmVmX2Nsa3MubnNzYyk7
-CiAJCQlmYWxsdGhyb3VnaDsKIAkJY2FzZSAxOTIwMDoKKwkJY2FzZSAzODQwMDoKIAkJCSpwbGxf
-cGFyYW1zID0gdGdsX3RidF9wbGxfMTlfMk1Iel92YWx1ZXM7CiAJCQlicmVhazsKIAkJY2FzZSAy
-NDAwMDoKIAkJCSpwbGxfcGFyYW1zID0gdGdsX3RidF9wbGxfMjRNSHpfdmFsdWVzOwogCQkJYnJl
-YWs7Ci0JCWNhc2UgMzg0MDA6Ci0JCQkqcGxsX3BhcmFtcyA9IHRnbF90YnRfcGxsXzM4XzRNSHpf
-dmFsdWVzOwotCQkJYnJlYWs7CiAJCX0KIAl9IGVsc2UgewogCQlzd2l0Y2ggKGRldl9wcml2LT5k
-cGxsLnJlZl9jbGtzLm5zc2MpIHsKQEAgLTMxMzMsOSArMzEzNCwxNCBAQCBzdGF0aWMgdm9pZCBp
-Y2xfY2FsY19kcGxsX3N0YXRlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAogCQkJCWNv
-bnN0IHN0cnVjdCBza2xfd3JwbGxfcGFyYW1zICpwbGxfcGFyYW1zLAogCQkJCXN0cnVjdCBpbnRl
-bF9kcGxsX2h3X3N0YXRlICpwbGxfc3RhdGUpCiB7CisJdTMyIGRjb19mcmFjdGlvbiA9IHBsbF9w
-YXJhbXMtPmRjb19mcmFjdGlvbjsKKwogCW1lbXNldChwbGxfc3RhdGUsIDAsIHNpemVvZigqcGxs
-X3N0YXRlKSk7CiAKLQlwbGxfc3RhdGUtPmNmZ2NyMCA9IERQTExfQ0ZHQ1IwX0RDT19GUkFDVElP
-TihwbGxfcGFyYW1zLT5kY29fZnJhY3Rpb24pIHwKKwlpZiAodGdsX2NvbWJvX3BsbF9kaXZfZnJh
-Y193YV9uZWVkZWQoaTkxNSkpCisJCWRjb19mcmFjdGlvbiA9IERJVl9ST1VORF9DTE9TRVNUKGRj
-b19mcmFjdGlvbiwgMik7CisKKwlwbGxfc3RhdGUtPmNmZ2NyMCA9IERQTExfQ0ZHQ1IwX0RDT19G
-UkFDVElPTihkY29fZnJhY3Rpb24pIHwKIAkJCSAgICBwbGxfcGFyYW1zLT5kY29faW50ZWdlcjsK
-IAogCXBsbF9zdGF0ZS0+Y2ZnY3IxID0gRFBMTF9DRkdDUjFfUURJVl9SQVRJTyhwbGxfcGFyYW1z
-LT5xZGl2X3JhdGlvKSB8Ci0tIAoyLjI1LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+The TGL A stepping and some B stepping (display C stepping) BIOSes
+program the combo PHY DPLL fractional divider value incorrectly, not
+applying the Display #22010492432 workaround.
+
+Add a workaround for such BIOS versions, so that the driver selects the
+correct WRPLL parameter entry correctly (selecting the same entry from
+the table whether or not the fractional divider was adjusted or not by
+BIOS according to #22010492432).
+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index e7b058340a1a..7968ceb23ab6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -3026,7 +3026,15 @@ static bool icl_dp_combo_pll_clock_match(struct drm_i915_private *i915, int cloc
+ 	if (clock == pll_freq)
+ 		return true;
+ 
+-	return false;
++	if (!tgl_combo_pll_div_frac_wa_needed(i915) ||
++	    !IS_TGL_DISP_REVID(i915, TGL_REVID_A0, TGL_REVID_C0))
++		return false;
++
++	pll_freq = skl_wrpll_calc_freq(ref_clock,
++				       p->wrpll.dco_integer, p->wrpll.dco_fraction * 2,
++				       pdiv, qdiv, kdiv);
++
++	return clock == pll_freq;
+ }
+ 
+ static bool icl_calc_dp_combo_pll(struct intel_crtc_state *crtc_state,
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
