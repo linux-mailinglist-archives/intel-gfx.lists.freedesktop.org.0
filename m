@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4AB627BF11
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 10:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E778227BF12
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 10:19:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9E089996;
-	Tue, 29 Sep 2020 08:19:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49D4489B05;
+	Tue, 29 Sep 2020 08:19:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B569989996;
- Tue, 29 Sep 2020 08:19:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F06B89B05;
+ Tue, 29 Sep 2020 08:19:50 +0000 (UTC)
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1601367582;
+ t=1601367589;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
  bh=KFyfyEQCS1dcCR4BhfL+zwiQ3CuzyAy4x23tr+VkzjE=;
- b=SSpMjosSL8o4OPVa55QL9wIlM8PHwJpdBy+0T8Zs2+GxBxG6YA9l00PJ9Y66qcHmMfGLv9
- u+g+tcEvJ7RxAvAP57LRStfEelxtPsdHOGOgFzbQCNh9qQZDiKdnSarvXzcr1YnPqWmMjI
- wdLRjalKNBbwgyGfH1Q3bT+vgMo4axA=
+ b=WFaQTV+kmp2Dcf4ETP9+6ZNrPfy9q5pMDECagrCQ3MjluCnYeqMkFTw/YcJHGz2iksDQw9
+ srvpAmlMUEz2D9SjbkwSKNyTXnnl0c+U97e7qNgFVE9O8k3lMFBfs0YlvFJAzRLJyf+n+C
+ wZ5d1Zkp/fxHdHhoVK5syk5dxSgYigs=
 Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 3E86BADD8;
- Tue, 29 Sep 2020 08:19:42 +0000 (UTC)
-Date: Tue, 29 Sep 2020 10:19:38 +0200
+ by mx2.suse.de (Postfix) with ESMTP id C7EE3B29F;
+ Tue, 29 Sep 2020 08:19:48 +0000 (UTC)
+Date: Tue, 29 Sep 2020 10:19:48 +0200
 From: Michal Hocko <mhocko@suse.com>
 To: Daniel Vetter <daniel@ffwll.ch>
 Message-ID: <20200929081938.GC22035@dhcp22.suse.cz>
