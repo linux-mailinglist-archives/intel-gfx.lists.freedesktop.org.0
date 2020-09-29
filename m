@@ -1,51 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115B427D9C7
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 23:12:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C9DE27D9FA
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 23:26:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 809386E1F3;
-	Tue, 29 Sep 2020 21:11:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE7F16E1ED;
+	Tue, 29 Sep 2020 21:26:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A77C26E1EC;
- Tue, 29 Sep 2020 21:11:53 +0000 (UTC)
-IronPort-SDR: vkgce8qWYsediiJesM3dtGqedF0rR+0wdI7w5ktGlH9k8Y+N1EycWlst3EVuwwyaYixBrG13VG
- b7plSznmvKgQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9759"; a="247021694"
-X-IronPort-AV: E=Sophos;i="5.77,319,1596524400"; d="scan'208";a="247021694"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C36C96E1ED
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 21:26:05 +0000 (UTC)
+IronPort-SDR: RvI5loH6l98X6B62G3popQYUgMmVX3ubHY1mmUgxi28BGxrWC0rCquZnPj1XUUdK1cSOM3smlV
+ sCI36dfXMw1A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9759"; a="162353200"
+X-IronPort-AV: E=Sophos;i="5.77,319,1596524400"; d="scan'208";a="162353200"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2020 14:11:53 -0700
-IronPort-SDR: jWa+6osF7t7buvmXJEmL1EyMaCgRd+lglNeUdQMrDEQyVZlBI2JyXo5pJvp00X4S0+cE3JLYy6
- j0JSPa+LTMow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,319,1596524400"; d="scan'208";a="345408105"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 29 Sep 2020 14:11:48 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 30 Sep 2020 00:11:48 +0300
-Date: Wed, 30 Sep 2020 00:11:48 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200929211148.GJ6112@intel.com>
-References: <20200929121127.254086-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <d235e6f34182e327d8bb46383f6c3ef518b5fc23.camel@intel.com>
- <20200929200201.GH6112@intel.com>
- <a4a075597c7d3e65b25598ab696a59eccbd2a069.camel@intel.com>
- <20200929203022.GI6112@intel.com>
- <20200929210144.GA2214475@mdroper-desk1.amr.corp.intel.com>
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2020 14:26:04 -0700
+IronPort-SDR: qc8IpaBaJBhwsJ2B9lzpzVaYFpbL5GTHZecs8hJA0sqeyBYHnzQ7Q7/nHjbc3vBmK6y8fKvU2G
+ othbhzGVIZ2w==
+X-IronPort-AV: E=Sophos;i="5.77,319,1596524400"; d="scan'208";a="514032278"
+Received: from jaborah-mobl.amr.corp.intel.com (HELO
+ josouza-MOBL2.amr.corp.intel.com) ([10.254.33.153])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2020 14:26:04 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 29 Sep 2020 14:29:10 -0700
+Message-Id: <20200929212912.108706-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200929210144.GA2214475@mdroper-desk1.amr.corp.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/edp/jsl: Update vswing table
- for HBR and HBR2
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/vbt: Fix backlight parsing for VBT
+ 234+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,75 +48,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pandey, Hariom" <hariom.pandey@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 29, 2020 at 02:01:44PM -0700, Matt Roper wrote:
-> On Tue, Sep 29, 2020 at 11:30:22PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Sep 29, 2020 at 08:20:22PM +0000, Souza, Jose wrote:
-> > > On Tue, 2020-09-29 at 23:02 +0300, Ville Syrj=E4l=E4 wrote:
-> > > > On Tue, Sep 29, 2020 at 07:33:45PM +0000, Souza, Jose wrote:
-> > > > > On Tue, 2020-09-29 at 17:41 +0530, Tejas Upadhyay wrote:
-> > > > > > JSL has update in vswing table for eDP
-> > > > > =
-
-> > > > > Would be nice to mention in the commit description why PCH is bei=
-ng used, that would avoid Ville's question.
-> > > > =
-
-> > > > If the thing has nothing to do PCH then it should not use the PCH t=
-ype
-> > > > for the the check. Instead we should just do the EHL/JSL split.
-> > > =
-
-> > > In the first version Matt Roper suggested to use PCH to differentiate=
- between EHL and JSL, Jani also agreed with this solution.This 2 PCHs can o=
-nly be
-> > > associate with EHL and JSL respectively, so no downsides here.
-> > =
-
-> > The downside is that the code makes no sense on the first glance.
-> > It's going to generate a "wtf?" exception in the brain and require
-> > me to take a second look to figure what is going on. Exception
-> > handling is expensive and shouldn't be needed in cases where it's
-> > trivial to make the code 100% obvious.
-> =
-
-> The bspec documents EHL and JSL as being the same platform and identical
-> in all programming since they are literally the same display IP; this
-> vswing table is the one and only place where the two are treated in a
-> distinct manner for reasons that lie outside the display controller.  If
-> you had to stop and take a closer look at the code here, that's a
-> probably a good thing since in general there should generally never be a
-> difference in the behavior between the two.  Adding an additional
-> clarifying comment is probably in order too since this is a very
-> exceptional special case.
-> =
-
-> If we deviate from the bspec's guidance and try to split IS_ELKHARTLAKE
-> and IS_JASPERLAKE across the whole driver, that's going to be a lot more
-> pain to maintain down the road since we'll almost certainly have cases
-> where someone silently leaves one or the other off a condition and gets
-> unexepcted behavior.  I could see arguments for using a SUBPLATFORM here
-> like we do for TGL_U vs TGL_Y, but even that seems like overkill if we
-> already have a clear way to distinguish the two cases (PCH pairing) and
-> can just leave a clarifying comment.
-
-That fixed PCH pairing is totally undocumented AFAICS. And vswing has
-nothing to do with the south display, so the wtf will still happen.
-Comment or no comment.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q2hpbGQgbWluX2JyaWdodG5lc3MgaXMgb2Jzb2xldGUgZnJvbSBWQlQgMjM0KywgaW5zdGVhZCB0
+aGUgbmV3Cm1pbl9icmlnaHRuZXNzIGZpZWxkIGluIHRoZSBtYWluIHN0cnVjdHVyZSBzaG91bGQg
+YmUgdXNlZC4KClRoaXMgbmV3IGZpZWxkIGlzIDE2IGJpdHMgd2lkZSwgc28gYmFja2xpZ2h0X3By
+ZWNpc2lvbl9iaXRzIGlzIG5lZWRlZAp0byBjaGVjayBpZiB2YWx1ZSBuZWVkcyB0byBiZSBzY2Fs
+ZWQgZG93biBidXQgaXQgaXMgb25seSBhdmFpbGFibGUgaW4KVkJUIDIzNisgc28gd29ya2luZyBh
+cm91bmQgaXQgYnkgdXNpbmcgdGhlIGFsc28gbmV3IGJhY2tsaWdodF9sZXZlbAppbiB0aGUgbWFp
+biBzdHJ1Y3QuCgpCU3BlYzogMjAxNDkKU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBT
+b3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9iaW9zLmMgICAgIHwgMjMgKysrKysrKysrKysrKysrKysrLQogZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5oIHwgMTAgKysrKysrKy0KIDIgZmls
+ZXMgY2hhbmdlZCwgMzEgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jCmluZGV4IDQ3MTY0ODRhZjYyZC4uZmE3YTkz
+ZjExOGY0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jp
+b3MuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYwpAQCAt
+NDU5LDcgKzQ1OSwyOCBAQCBwYXJzZV9sZnBfYmFja2xpZ2h0KHN0cnVjdCBkcm1faTkxNV9wcml2
+YXRlICpkZXZfcHJpdiwKIAogCWRldl9wcml2LT52YnQuYmFja2xpZ2h0LnB3bV9mcmVxX2h6ID0g
+ZW50cnktPnB3bV9mcmVxX2h6OwogCWRldl9wcml2LT52YnQuYmFja2xpZ2h0LmFjdGl2ZV9sb3df
+cHdtID0gZW50cnktPmFjdGl2ZV9sb3dfcHdtOwotCWRldl9wcml2LT52YnQuYmFja2xpZ2h0Lm1p
+bl9icmlnaHRuZXNzID0gZW50cnktPm1pbl9icmlnaHRuZXNzOworCisJaWYgKGJkYi0+dmVyc2lv
+biA+PSAyMzQpIHsKKwkJdTE2IGxldmVsID0gYmFja2xpZ2h0X2RhdGEtPmJhY2tsaWdodF9taW5f
+bGV2ZWxbcGFuZWxfdHlwZV0ubGV2ZWw7CisJCWJvb2wgc2NhbGUgPSBmYWxzZTsKKworCQlpZiAo
+YmRiLT52ZXJzaW9uID49IDIzNikKKwkJCXNjYWxlID0gYmFja2xpZ2h0X2RhdGEtPmJhY2tsaWdo
+dF9wcmVjaXNpb25fYml0c1twYW5lbF90eXBlXSA9PSAxNjsKKwkJZWxzZQorCQkJc2NhbGUgPSBi
+YWNrbGlnaHRfZGF0YS0+YmFja2xpZ2h0X2xldmVsW3BhbmVsX3R5cGVdLmxldmVsID4gMjU1Owor
+CisJCWlmIChzY2FsZSkKKwkJCWxldmVsID0gbGV2ZWwgLyAyNTU7CisKKwkJaWYgKGxldmVsID4g
+MjU1KSB7CisJCQlkcm1fd2FybigmZGV2X3ByaXYtPmRybSwgIkJhY2tsaWdodCBtaW4gbGV2ZWwg
+PiAyNTVcbiIpOworCQkJbGV2ZWwgPSAyNTU7CisJCX0KKwkJZGV2X3ByaXYtPnZidC5iYWNrbGln
+aHQubWluX2JyaWdodG5lc3MgPSBsZXZlbDsKKwl9IGVsc2UgeworCQlkZXZfcHJpdi0+dmJ0LmJh
+Y2tsaWdodC5taW5fYnJpZ2h0bmVzcyA9IGVudHJ5LT5taW5fYnJpZ2h0bmVzczsKKwl9CisKIAlk
+cm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwKIAkJICAgICJWQlQgYmFja2xpZ2h0IFBXTSBtb2R1
+bGF0aW9uIGZyZXF1ZW5jeSAldSBIeiwgIgogCQkgICAgImFjdGl2ZSAlcywgbWluIGJyaWdodG5l
+c3MgJXUsIGxldmVsICV1LCBjb250cm9sbGVyICV1XG4iLApkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5oCmluZGV4IDU0YmNjNmE2OTQ3Yy4uMTJlYzRjMDc4
+MWNlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZidF9k
+ZWZzLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5o
+CkBAIC03ODIsNyArNzgyLDcgQEAgc3RydWN0IGxmcF9iYWNrbGlnaHRfZGF0YV9lbnRyeSB7CiAJ
+dTggYWN0aXZlX2xvd19wd206MTsKIAl1OCBvYnNvbGV0ZTE6NTsKIAl1MTYgcHdtX2ZyZXFfaHo7
+Ci0JdTggbWluX2JyaWdodG5lc3M7CisJdTggbWluX2JyaWdodG5lc3M7IC8qIE9ic29sZXRlIGZy
+b20gMjM0KyAqLwogCXU4IG9ic29sZXRlMjsKIAl1OCBvYnNvbGV0ZTM7CiB9IF9fcGFja2VkOwpA
+QCAtNzkyLDExICs3OTIsMTkgQEAgc3RydWN0IGxmcF9iYWNrbGlnaHRfY29udHJvbF9tZXRob2Qg
+ewogCXU4IGNvbnRyb2xsZXI6NDsKIH0gX19wYWNrZWQ7CiAKK3N0cnVjdCBsZnBfYmFja2xpZ2h0
+X2xldmVsIHsKKwl1MzIgbGV2ZWwgOiAxNjsKKwl1MzIgcmVzZXJ2ZWQgOiAxNjsKK30gX19wYWNr
+ZWQ7CisKIHN0cnVjdCBiZGJfbGZwX2JhY2tsaWdodF9kYXRhIHsKIAl1OCBlbnRyeV9zaXplOwog
+CXN0cnVjdCBsZnBfYmFja2xpZ2h0X2RhdGFfZW50cnkgZGF0YVsxNl07CiAJdTggbGV2ZWxbMTZd
+OwogCXN0cnVjdCBsZnBfYmFja2xpZ2h0X2NvbnRyb2xfbWV0aG9kIGJhY2tsaWdodF9jb250cm9s
+WzE2XTsKKwlzdHJ1Y3QgbGZwX2JhY2tsaWdodF9sZXZlbCBiYWNrbGlnaHRfbGV2ZWxbMTZdOwkJ
+LyogMjM0KyAqLworCXN0cnVjdCBsZnBfYmFja2xpZ2h0X2xldmVsIGJhY2tsaWdodF9taW5fbGV2
+ZWxbMTZdOwkvKiAyMzQrICovCisJdTggYmFja2xpZ2h0X3ByZWNpc2lvbl9iaXRzWzE2XTsJCQkJ
+CS8qIDIzNisgKi8KIH0gX19wYWNrZWQ7CiAKIC8qCi0tIAoyLjI4LjAKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
