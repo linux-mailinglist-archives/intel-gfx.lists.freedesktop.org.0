@@ -2,64 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FCF527C0A9
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 11:14:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D1327C0B6
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 11:15:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A0C26E457;
-	Tue, 29 Sep 2020 09:14:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11C626E45E;
+	Tue, 29 Sep 2020 09:15:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1D1A6E3BB
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 09:14:49 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id j2so4491166wrx.7
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 02:14:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=nL1RJ1CBsQM4FRjSLIq4hF2LWibhorMGgFGx7FERzoU=;
- b=gdHdOjUtbzxqgqGnhYkIQLu0EJiUF0CxOiu4yUaVxxsB4Y1RcTXJZcQOXBz5fuywkl
- 3wLF7s89+6APQbGCO/in/zuRexI7frcXl+jlrQB4dr5Rj/Ic/VLtFtQncOVf2Pof5qEi
- AuckYtsq3x9uMOT/b5FP7SeE6uEKI90YGf5II=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=nL1RJ1CBsQM4FRjSLIq4hF2LWibhorMGgFGx7FERzoU=;
- b=scmNVZcpHhA5zudMuEe+p5KdHM0z0axwbN7H/3imt6x+zVA+JFbJjKKLYGJBBSmxFt
- 5cMIy+kOCLDK2u7Qq8yIB5KrfWmO9EypYY9MvJPPYfSyuQ+DjcyVJcl5u/5F9Wm0HY3K
- udpAqiQ+MtlqswNhtpNFQjYh6zSi9Of6AxZffXXfuWY0x1zcGoIhj7Cr5vlQLXX2Gh3I
- OV1nllx8NUtC/U92bq0mklWger7xP5pNgoHNwpzBydGrl9QE/elMyDdo2WXFfyTxGHSJ
- YvIXwP6aM/+6WVvRXf7YeAS1m997dgqwg8zoiCv95FwuVUB6cuyYVyB4u7FnRO9Kxowd
- tuAg==
-X-Gm-Message-State: AOAM532JPQBWgWBF2MdLfMVoCMKYmqcBWLdU10ShdsS5NM3M52Zdf1+q
- Ut5RZOmCariGDdjbeIgzf3mYLg==
-X-Google-Smtp-Source: ABdhPJzUpk5sRYoMWrtr0UlpR9ORIRx/KJD45hyn02zRFIKDUXFqG2Is9+7QHPaCNhxuEtvE05yF9A==
-X-Received: by 2002:a5d:470e:: with SMTP id y14mr3112131wrq.354.1601370888619; 
- Tue, 29 Sep 2020 02:14:48 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l126sm4669148wmf.39.2020.09.29.02.14.46
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 29 Sep 2020 02:14:47 -0700 (PDT)
-Date: Tue, 29 Sep 2020 11:14:45 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <20200929091445.GI438822@phenom.ffwll.local>
-References: <20200925115601.23955-1-tzimmermann@suse.de>
- <20200926071334.GA42915@ravnborg.org>
- <8761e0dd-569e-0ea0-7bc5-25e4f7cb67cc@suse.de>
- <20200927191605.GA237178@ravnborg.org>
- <3f703297-7b4f-dcca-ea56-70b2413a1e3d@amd.com>
- <ef4400a7-397b-e550-7114-1d4238dd36f3@suse.de>
- <49c4dcec-cd69-510a-9781-e8fa5fb669f9@amd.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60E0C6E45C;
+ Tue, 29 Sep 2020 09:15:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22564886-1500050 
+ for multiple; Tue, 29 Sep 2020 10:14:56 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 29 Sep 2020 10:14:59 +0100
+Message-Id: <20200929091459.509146-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200928220027.417167-1-chris@chris-wilson.co.uk>
+References: <20200928220027.417167-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <49c4dcec-cd69-510a-9781-e8fa5fb669f9@amd.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH v3 0/4] dma-buf: Flag vmap'ed memory as
- system or I/O memory
+Subject: [Intel-gfx] [PATCH i-g-t v2] i915/gen9_exec_parse: Check parsing of
+ large objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,181 +39,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, airlied@linux.ie,
- dri-devel@lists.freedesktop.org, kraxel@redhat.com, tfiga@chromium.org,
- Sam Ravnborg <sam@ravnborg.org>, m.szyprowski@samsung.com, arnd@arndb.de,
- corbet@lwn.net, jonathanh@nvidia.com, matthew.auld@intel.com,
- linux+etnaviv@armlinux.org.uk, labbott@redhat.com, linux-media@vger.kernel.org,
- pawel@osciak.com, intel-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- thomas.hellstrom@intel.com, linux-tegra@vger.kernel.org, mchehab@kernel.org,
- gregkh@linuxfoundation.org, lmark@codeaurora.org, afd@ti.com,
- kyungmin.park@samsung.com, Thomas Zimmermann <tzimmermann@suse.de>,
- robin.murphy@arm.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 28, 2020 at 01:22:13PM +0200, Christian K=F6nig wrote:
-> Am 28.09.20 um 09:37 schrieb Thomas Zimmermann:
-> > Hi
-> > =
+Simply check that we support parsing of batches as large as the uAPI
+allows.
 
-> > Am 28.09.20 um 08:50 schrieb Christian K=F6nig:
-> > > Am 27.09.20 um 21:16 schrieb Sam Ravnborg:
-> > > > Hi Thomas.
-> > > > =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+Try a few intermediate object sizes since CI machines do not have enough
+memory to reach the upper bounds of the uAPI.
+---
+ tests/i915/gen9_exec_parse.c | 47 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
 
-> > > > > > struct simap {
-> > > > > >  =A0=A0=A0=A0=A0=A0=A0 union {
-> > > > > >  =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 void __iomem *va=
-ddr_iomem;
-> > > > > >  =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 void *vaddr;
-> > > > > >  =A0=A0=A0=A0=A0=A0=A0 };
-> > > > > >  =A0=A0=A0=A0=A0=A0=A0 bool is_iomem;
-> > > > > > };
-> > > > > > =
+diff --git a/tests/i915/gen9_exec_parse.c b/tests/i915/gen9_exec_parse.c
+index 8cd82f568..f735e7e1c 100644
+--- a/tests/i915/gen9_exec_parse.c
++++ b/tests/i915/gen9_exec_parse.c
+@@ -566,6 +566,50 @@ static void test_bb_start(const int i915, const uint32_t handle, int test)
+ 	gem_close(i915, target_bo);
+ }
+ 
++static void test_bb_large(int i915)
++{
++	const uint32_t bbe = MI_BATCH_BUFFER_END;
++	static const uint32_t sizes[] = {
++		(1ull << 30) - 4096,
++		(1ull << 30) + 4096,
++		(2ull << 30) - 4096,
++		(2ull << 30) + 4096,
++		(3ull << 30) - 4096,
++		(3ull << 30) + 4096,
++		(4ull << 30) - 4096,
++	};
++	struct drm_i915_gem_exec_object2 obj = {};
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(&obj),
++		.buffer_count = 1,
++		.flags = I915_EXEC_BLT,
++	};
++	uint64_t required, total;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(sizes); i++) {
++		if (!__intel_check_memory(2, sizes[i], CHECK_RAM,
++					  &required, &total))
++			break;
++
++		igt_debug("Using object size %#x\n", sizes[i]);
++		obj.handle = gem_create(i915, sizes[i]),
++		gem_write(i915, obj.handle, sizes[i] - 64, &bbe, sizeof(bbe));
++
++		execbuf.batch_start_offset = 0;
++		igt_assert_eq(__checked_execbuf(i915, &execbuf), 0);
++
++		execbuf.batch_start_offset = sizes[i] - 64;
++		igt_assert_eq(__checked_execbuf(i915, &execbuf), 0);
++
++		gem_close(i915, obj.handle);
++	}
++
++	igt_require_f(i > 0 && sizes[i - 1] > 1ull << 31,
++		      "Insufficient free memory, require at least %'"PRIu64"MiB but only have %'"PRIu64"MiB available",
++		      required >> 20, total >> 20);
++}
++
+ static void test_bb_chained(const int i915, const uint32_t handle)
+ {
+ 	const uint32_t batch[] = {
+@@ -1053,6 +1097,9 @@ igt_main
+ 	igt_subtest("bb-start-far")
+ 		test_bb_start(i915, handle, BB_START_FAR);
+ 
++	igt_subtest("bb-large")
++		test_bb_large(i915);
++
+ 	igt_fixture {
+ 		igt_stop_hang_detector();
+ 		gem_close(i915, handle);
+-- 
+2.28.0
 
-> > > > > > Where simap is a shorthand for system_iomem_map
-> > > > > > And it could al be stuffed into a include/linux/simap.h file.
-> > > > > > =
-
-> > > > > > Not totally sold on the simap name - but wanted to come up with
-> > > > > > something.
-> > > > > Yes. Others, myself included, have suggested to use a name that d=
-oes not
-> > > > > imply a connection to the dma-buf framework, but no one has come =
-up with
-> > > > >  =A0 a good name.
-> > > > > =
-
-> > > > > I strongly dislike simap, as it's entirely non-obvious what it do=
-es.
-> > > > > dma-buf-map is not actually wrong. The structures represents the =
-mapping
-> > > > > of a dma-able buffer in most cases.
-> > > > > =
-
-> > > > > > With this approach users do not have to pull in dma-buf to use =
-it and
-> > > > > > users will not confuse that this is only for dma-buf usage.
-> > > > > There's no need to enable dma-buf. It's all in the header file wi=
-thout
-> > > > > dependencies on dma-buf. It's really just the name.
-> > > > > =
-
-> > > > > But there's something else to take into account. The whole issue =
-here is
-> > > > > that the buffer is disconnected from its originating driver, so w=
-e don't
-> > > > > know which kind of memory ops we have to use. Thinking about it, I
-> > > > > realized that no one else seemed to have this problem until now.
-> > > > > Otherwise there would be a solution already. So maybe the dma-buf
-> > > > > framework *is* the native use case for this data structure.
-> > > > We have at least:
-> > > > linux/fb.h:
-> > > >  =A0=A0=A0=A0union {
-> > > >  =A0=A0=A0=A0=A0=A0=A0 char __iomem *screen_base;=A0=A0=A0=A0=A0 /*=
- Virtual address */
-> > > >  =A0=A0=A0=A0=A0=A0=A0 char *screen_buffer;
-> > > >  =A0=A0=A0=A0};
-> > > > =
-
-> > > > Which solve more or less the same problem.
-> > I thought this was for convenience. The important is_iomem bit is missi=
-ng.
-> > =
-
-> > > I also already noted that in TTM we have exactly the same problem and=
- a
-> > > whole bunch of helpers to allow operations on those pointers.
-> > How do you call this within TTM?
-> =
-
-> ttm_bus_placement, but I really don't like that name.
-> =
-
-> > =
-
-> > The data structure represents a pointer to either system or I/O memory,
-> > but not necessatrily device memory. It contains raw data. That would
-> > give something like
-> > =
-
-> >    struct databuf_map
-> >    struct databuf_ptr
-> >    struct dbuf_map
-> >    struct dbuf_ptr
-> > =
-
-> > My favorite would be dbuf_ptr. It's short and the API names would make
-> > sense: dbuf_ptr_clear() for clearing, dbuf_ptr_set_vaddr() to set an
-> > address, dbuf_ptr_incr() to increment, etc. Also, the _ptr indicates
-> > that it's a single address; not an offset with length.
-> =
-
-> Puh, no idea. All of that doesn't sound like it 100% hits the underlying
-> meaning of the structure.
-
-Imo first let's merge this and then second with more users we might come
-up with a better name. And cocci is fairly good at large-scale rename, to
-the point where we manged to rename struct fence to struct dma_fence.
-
-Also this entire thread here imo shows that we haven't yet figured out the
-perfect name anyway, and I don't think it's worth it to hold this up
-because of this bikeshed :-)
-
-Cheers, Daniel
-
-> =
-
-> Christian.
-> =
-
-> > =
-
-> > Best regards
-> > Thomas
-> > =
-
-> > > Christian.
-> > > =
-
-> > > > > Anyway, if a better name than dma-buf-map comes in, I'm willing to
-> > > > > rename the thing. Otherwise I intend to merge the patchset by the=
- end of
-> > > > > the week.
-> > > > Well, the main thing is that I think this shoud be moved away from
-> > > > dma-buf. But if indeed dma-buf is the only relevant user in drm then
-> > > > I am totally fine with the current naming.
-> > > > =
-
-> > > > One alternative named that popped up in my head: struct sys_io_map =
-{}
-> > > > But again, if this is kept in dma-buf then I am fine with the curre=
-nt
-> > > > naming.
-> > > > =
-
-> > > > In other words, if you continue to think this is mostly a dma-buf
-> > > > thing all three patches are:
-> > > > Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> > > > =
-
-> > > >  =A0=A0=A0=A0Sam
-> > > _______________________________________________
-> > > dri-devel mailing list
-> > > dri-devel@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
