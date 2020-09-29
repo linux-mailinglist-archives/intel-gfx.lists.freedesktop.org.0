@@ -2,46 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4EE427BF0F
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 10:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4AB627BF11
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 10:19:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF06F89893;
-	Tue, 29 Sep 2020 08:18:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9E089996;
+	Tue, 29 Sep 2020 08:19:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E729089893
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 08:18:42 +0000 (UTC)
-IronPort-SDR: ixATcm4jd72a/6RtvJffInXz5INOC+iAkitWMFctHaYyR73Cq/L2yXpYmdaEN1nNHIUfja2TbZ
- 7HP7vpx0Z7WQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9758"; a="159518235"
-X-IronPort-AV: E=Sophos;i="5.77,317,1596524400"; d="scan'208";a="159518235"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2020 01:18:40 -0700
-IronPort-SDR: v8sk/OfXNv3tLbDFTwNKKIUDe3RcBDXzfM+1oKbAn5iWLXRTGxCFZ4gl7ewLphKsyFCcb66N2V
- ec/iIRtf4cdQ==
-X-IronPort-AV: E=Sophos;i="5.77,317,1596524400"; d="scan'208";a="514592291"
-Received: from akoski1-mobl7.ger.corp.intel.com (HELO localhost)
- ([10.252.11.87])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2020 01:18:37 -0700
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B569989996;
+ Tue, 29 Sep 2020 08:19:43 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1601367582;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=KFyfyEQCS1dcCR4BhfL+zwiQ3CuzyAy4x23tr+VkzjE=;
+ b=SSpMjosSL8o4OPVa55QL9wIlM8PHwJpdBy+0T8Zs2+GxBxG6YA9l00PJ9Y66qcHmMfGLv9
+ u+g+tcEvJ7RxAvAP57LRStfEelxtPsdHOGOgFzbQCNh9qQZDiKdnSarvXzcr1YnPqWmMjI
+ wdLRjalKNBbwgyGfH1Q3bT+vgMo4axA=
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 3E86BADD8;
+ Tue, 29 Sep 2020 08:19:42 +0000 (UTC)
+Date: Tue, 29 Sep 2020 10:19:38 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20200929081938.GC22035@dhcp22.suse.cz>
+References: <CAHk-=win80rdof8Pb=5k6gT9j_v+hz-TQzKPVastZDvBe9RimQ@mail.gmail.com>
+ <871rj4owfn.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wj0eUuVQ=hRFZv_nY7g5ZLt7Fy3K7SMJL0ZCzniPtsbbg@mail.gmail.com>
+ <87bli75t7v.fsf@nanos.tec.linutronix.de>
+ <CAHk-=wht7kAeyR5xEW2ORj7m0hibVxZ3t+2ie8vNHLQfdbN2_g@mail.gmail.com>
+ <CAKMK7uHAk9-Vy2cof0ws=DrcD52GHiCDiyHbjLd19CgpBU2rKQ@mail.gmail.com>
+ <20200916152956.GV29330@paulmck-ThinkPad-P72>
+ <CAKMK7uGFyfhEyt=jmdk2jDO-hq0_Pf0ck+cKSELHjr2U3rPuYQ@mail.gmail.com>
+ <20200916205840.GD29330@paulmck-ThinkPad-P72>
+ <CAKMK7uHL2dMv80b8uBXr=BqHD2TQeODQQM1MGYhAfCYbX7sLrA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAOMV6SUP1=U3bqO=+f_HrnTYpaLLwvZY4muCdW-ixQU2M10_WQ@mail.gmail.com>
-References: <CAOMV6SUP1=U3bqO=+f_HrnTYpaLLwvZY4muCdW-ixQU2M10_WQ@mail.gmail.com>
-To: Tony Fischetti <tony.fischetti@gmail.com>, airlied@linux.ie,
- jani.nikula@linux.intel.com, linux-kernel@vger.kernel.org, peterx@redhat.com,
- rodrigo.vivi@intel.com, chris@chris-wilson.co.uk,
- intel-gfx@lists.freedesktop.org
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160136751431.9258.5367116987368823201@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Tue, 29 Sep 2020 11:18:34 +0300
-Subject: Re: [Intel-gfx] REGRESSION: in intel video driver following
- introduction of mm_struct.has_pinned
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uHL2dMv80b8uBXr=BqHD2TQeODQQM1MGYhAfCYbX7sLrA@mail.gmail.com>
+Subject: Re: [Intel-gfx] [patch 00/13] preempt: Make preempt count
+ unconditional
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,95 +56,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Juri Lelli <juri.lelli@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Lai Jiangshan <jiangshanlai@gmail.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Ben Segall <bsegall@google.com>,
+ Linux-MM <linux-mm@kvack.org>,
+ "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
+ Will Deacon <will@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+ linux-arch <linux-arch@vger.kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>, Brian Cain <bcain@codeaurora.org>,
+ linux-hexagon@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+ Ingo Molnar <mingo@kernel.org>, David Airlie <airlied@linux.ie>,
+ Ingo Molnar <mingo@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Mel Gorman <mgorman@suse.de>, Matt Turner <mattst88@gmail.com>,
+ Valentin Schneider <valentin.schneider@arm.com>, linux-xtensa@linux-xtensa.org,
+ Shuah Khan <shuah@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
+ Jeff Dike <jdike@addtoit.com>, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ alpha <linux-alpha@vger.kernel.org>, linux-um <linux-um@lists.infradead.org>,
+ Josh Triplett <josh@joshtriplett.org>, Steven Rostedt <rostedt@goodmis.org>,
+ rcu@vger.kernel.org, linux-m68k <linux-m68k@lists.linux-m68k.org>,
+ Ivan Kokshaysky <ink@jurassic.park.msu.ru>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Richard Henderson <rth@twiddle.net>, Chris Zankel <chris@zankel.net>,
+ Max Filippov <jcmvbkbc@gmail.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ LKML <linux-kernel@vger.kernel.org>, Richard Weinberger <richard@nod.at>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-(+ intel-gfx for being i915 related)
-(+ Chris who has looked into the issue)
+On Wed 16-09-20 23:43:02, Daniel Vetter wrote:
+> I can
+> then figure out whether it's better to risk not spotting issues with
+> call_rcu vs slapping a memalloc_noio_save/restore around all these
+> critical section which force-degrades any allocation to GFP_ATOMIC at
 
-Hi,
+did you mean memalloc_noreclaim_* here?
 
-Thanks for reporting!
+> most, but has the risk that we run into code that assumes "GFP_KERNEL
+> never fails for small stuff" and has a decidedly less tested fallback
+> path than rcu code.
 
-Could you open a bug report according to following instructions:
+Even if the above then please note that memalloc_noreclaim_* or
+PF_MEMALLOC should be used with an extreme care. Essentially only for
+internal memory reclaimers. It grants access to _all_ the available
+memory so any abuse can be detrimental to the overall system operation.
+Allocation failure in this mode means that we are out of memory and any
+code relying on such an allocation has to carefuly consider failure.
+This is not a random allocation mode.
 
-https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
-
-A full dmesg of a bad boot and git bisect logs will be helpful.
-
-Also, please describe when the problem happens, is it at boot? Are you
-getting the OOPS on every boot?
-
-For future reference, replying to a single thread helps keeping the
-attention focused.
-
-Regards, Joonas
-
-Quoting Tony Fischetti (2020-09-28 21:14:16)
-> After a length git bisection, I determined the commit that introduced
-> a change that ultimately caused a bug/oops null dereference (see below
-> for relevant syslog entries) was 008cfe4418b3dbda2ff.. (mm: Introduce
-> mm_struct.has_pinned)
-> 
-> The RIP (according to syslog) occurs in function
-> `__get_user_pages_remote` and the last function to call it from the
-> i915 code is `gem_userptr_get_pages_worker`
-> More specifically, it appears to be the call to
-> `pin_user_pages_remote` in `gem_userptr_get_pages_worker` in
-> drivers/gpu/drm/i915/gem/i915_gem_userptr.c that directly leads to the
-> oops.
-> 
-> Unfortunately, I don't know enough to try to fix and share the fix
-> myself, but I hope the information I provided is helpful. Please let
-> me know if there is any further information I can provide that might
-> be of use.
-> 
-> BUG: kernel NULL pointer dereference, address: 0000000000000054
-> #PF: supervisor write access in kernel mode
-> #PF: error_code(0x0002) - not-present page
-> Oops: 0002 [#1] PREEMPT SMP NOPTI
-> CPU: 8 PID: 497 Comm: kworker/u25:0 Not tainted
-> 5.9.0-rc7-alice-investigate-3+ #2
-> Hardware name: LENOVO 10ST001QUS/312A, BIOS M1UKT4BA 11/11/2019
-> Workqueue: i915-userptr-acquire __i915_gem_userptr_get_pages_worker [i915]
-> RIP: 0010:__get_user_pages_remote+0xa0/0x2d0
-> Code: 85 e7 01 00 00 83 3b 01 0f 85 e0 01 00 00 f7 c1 00 00 04 00 0f
-> 84 12 01 00 00 65 48 8b 04 25 00 6d 01 00 48 8b 80 58 03 00 00 <c7> 40
-> 54 01 00 00 00 c6 04 24 00 4d 8d 6f 68 48 c7 44 24 10 00 00
-> RSP: 0018:ffffa1a58086bde0 EFLAGS: 00010206
-> RAX: 0000000000000000 RBX: ffffa1a58086be64 RCX: 0000000000040001
-> RDX: 00000000000007e9 RSI: 00007f532f800000 RDI: ffff92f22d89c480
-> RBP: 00007f532f800000 R08: ffff92f23a188000 R09: 0000000000000000
-> R10: 0000000000000000 R11: ffffa1a58086bcfd R12: ffff92f23a188000
-> R13: ffff92f22d89c480 R14: 0000000000042003 R15: ffff92f22d89c480
-> FS:  0000000000000000(0000) GS:ffff92f23e400000(0000) knlGS:0000000000000000
-> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> CR2: 0000000000000054 CR3: 0000000016c0a002 CR4: 00000000001706e0
-> DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-> DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-> Call Trace:
->  __i915_gem_userptr_get_pages_worker+0x1ec/0x392 [i915]
->  process_one_work+0x1c7/0x310
->  worker_thread+0x28/0x3c0
->  ? set_worker_desc+0xb0/0xb0
->  kthread+0x123/0x140
->  ? kthread_use_mm+0xe0/0xe0
->  ret_from_fork+0x1f/0x30
-> Modules linked in: snd_hda_codec_hdmi snd_hda_codec_realtek
-> snd_hda_codec_generic ledtrig_audio iwlmvm mac80211 libarc4
-> x86_pkg_temp_thermal intel_powerclamp iwlwifi coretemp i915
-> crct10dif_pclmul crc32_pclmul crc32c_intel i2c_algo_bit
-> ghash_clmulni_intel drm_kms_helper syscopyarea sysfillrect sysimgblt
-> fb_sys_fops cec mei_hdcp wmi_bmof snd_hda_intel drm tpm_crb
-> snd_intel_dspcfg intel_wmi_thunderbolt snd_hda_codec snd_hwdep
-> aesni_intel crypto_simd glue_helper snd_hda_core cfg80211 i2c_i801
-> snd_pcm intel_cstate pcspkr snd_timer mei_me i2c_smbus mei i2c_core
-> thermal wmi tpm_tis tpm_tis_core tpm rng_core acpi_pad ppdev lp
-> ip_tables x_tables
-> CR2: 0000000000000054
-> ---[ end trace 8d080e8b96289c9e ]---
+-- 
+Michal Hocko
+SUSE Labs
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
