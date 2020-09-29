@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA80B27DB48
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 00:00:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD0127DB65
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 00:06:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6506D6E1E6;
-	Tue, 29 Sep 2020 22:00:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 560E989D1D;
+	Tue, 29 Sep 2020 22:06:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEDBE89DD2;
- Tue, 29 Sep 2020 22:00:08 +0000 (UTC)
-IronPort-SDR: PMPXAAlXCNHSvif0zxVWkGF4WPMUT3gGt6w4YnmU0kpNFDp7WJzqrMxCDDas+NmWIjBzfGGvbn
- LSRZWs49M5AQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9759"; a="142321948"
-X-IronPort-AV: E=Sophos;i="5.77,320,1596524400"; d="scan'208";a="142321948"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2020 15:00:02 -0700
-IronPort-SDR: BeM+jTnt5CDA7C9DmLMYwq+TeoAFvjXutzw9ZjutrPuigcIBUKKgzUU+sjmG4wZn9sOLgwrEz3
- 8Z9oSfwOCbIQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,320,1596524400"; d="scan'208";a="384927783"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 29 Sep 2020 14:59:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 30 Sep 2020 00:59:58 +0300
-Date: Wed, 30 Sep 2020 00:59:58 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200929215958.GK6112@intel.com>
-References: <20200929121127.254086-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <d235e6f34182e327d8bb46383f6c3ef518b5fc23.camel@intel.com>
- <20200929200201.GH6112@intel.com>
- <a4a075597c7d3e65b25598ab696a59eccbd2a069.camel@intel.com>
- <20200929203022.GI6112@intel.com>
- <20200929210144.GA2214475@mdroper-desk1.amr.corp.intel.com>
- <20200929211148.GJ6112@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32B6389D1D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 22:06:31 +0000 (UTC)
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1601417189;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=vumJlGpwUKK+qdTQHXc4b0hHir+AlD58BoyC7olPt8A=;
+ b=FhaYdgxXDv7Jh3FjezJjFlKtgJmPoNwdp5pQsy72YNEB0T487mqSEOEznAPIUPbzgL6wZu
+ B/so8duqmHKrztFMbfCKtrEF7Urk7VX2dVIVSORW1jMsBXo6wTloMWX2BLjxa4BMI8sBsx
+ t+/9G1EK7oIQWdaCSY9Mg/AzrNqnqog=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-491-iG-B3dcEO029IGk2dQjm0g-1; Tue, 29 Sep 2020 18:06:27 -0400
+X-MC-Unique: iG-B3dcEO029IGk2dQjm0g-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id AFAA3873081;
+ Tue, 29 Sep 2020 22:06:25 +0000 (UTC)
+Received: from x1.home (ovpn-112-71.phx2.redhat.com [10.3.112.71])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 101875D9CA;
+ Tue, 29 Sep 2020 22:06:24 +0000 (UTC)
+Date: Tue, 29 Sep 2020 16:06:24 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Fred Gao <fred.gao@intel.com>
+Message-ID: <20200929160624.767f0d9e@x1.home>
+In-Reply-To: <20200929161038.15465-1-fred.gao@intel.com>
+References: <20200929161038.15465-1-fred.gao@intel.com>
+Organization: Red Hat
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200929211148.GJ6112@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/edp/jsl: Update vswing table
- for HBR and HBR2
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+Subject: Re: [Intel-gfx] [PATCH v2] vfio/pci: Refine Intel IGD OpRegion
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,95 +59,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pandey, Hariom" <hariom.pandey@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Hang Yuan <hang.yuan@linux.intel.com>, kvm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 30, 2020 at 12:11:48AM +0300, Ville Syrj=E4l=E4 wrote:
-> On Tue, Sep 29, 2020 at 02:01:44PM -0700, Matt Roper wrote:
-> > On Tue, Sep 29, 2020 at 11:30:22PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Tue, Sep 29, 2020 at 08:20:22PM +0000, Souza, Jose wrote:
-> > > > On Tue, 2020-09-29 at 23:02 +0300, Ville Syrj=E4l=E4 wrote:
-> > > > > On Tue, Sep 29, 2020 at 07:33:45PM +0000, Souza, Jose wrote:
-> > > > > > On Tue, 2020-09-29 at 17:41 +0530, Tejas Upadhyay wrote:
-> > > > > > > JSL has update in vswing table for eDP
-> > > > > > =
+On Wed, 30 Sep 2020 00:10:38 +0800
+Fred Gao <fred.gao@intel.com> wrote:
 
-> > > > > > Would be nice to mention in the commit description why PCH is b=
-eing used, that would avoid Ville's question.
-> > > > > =
+> Bypass the IGD initialization for Intel's dgfx devices with own expansion
+> ROM and the host/LPC bridge config space are no longer accessed.
+> 
+> v2: simply test if discrete or integrated gfx device
+>     with root bus. (Alex Williamson)
+> 
+> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Cc: Xiong Zhang <xiong.y.zhang@intel.com>
+> Cc: Hang Yuan <hang.yuan@linux.intel.com>
+> Cc: Stuart Summers <stuart.summers@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Fred Gao <fred.gao@intel.com>
+> ---
+>  drivers/vfio/pci/vfio_pci.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/vfio/pci/vfio_pci.c b/drivers/vfio/pci/vfio_pci.c
+> index f634c81998bb..9258ccfadb79 100644
+> --- a/drivers/vfio/pci/vfio_pci.c
+> +++ b/drivers/vfio/pci/vfio_pci.c
+> @@ -336,10 +336,11 @@ static int vfio_pci_enable(struct vfio_pci_device *vdev)
+>  	if (!vfio_vga_disabled() && vfio_pci_is_vga(pdev))
+>  		vdev->has_vga = true;
+>  
+> -
+> +	/* Intel's dgfx should not appear on root bus */
+>  	if (vfio_pci_is_vga(pdev) &&
+>  	    pdev->vendor == PCI_VENDOR_ID_INTEL &&
+> -	    IS_ENABLED(CONFIG_VFIO_PCI_IGD)) {
+> +	    IS_ENABLED(CONFIG_VFIO_PCI_IGD) &&
+> +	    pci_is_root_bus(pdev->bus)) {
+>  		ret = vfio_pci_igd_init(vdev);
+>  		if (ret) {
+>  			pci_warn(pdev, "Failed to setup Intel IGD regions\n");
 
-> > > > > If the thing has nothing to do PCH then it should not use the PCH=
- type
-> > > > > for the the check. Instead we should just do the EHL/JSL split.
-> > > > =
 
-> > > > In the first version Matt Roper suggested to use PCH to differentia=
-te between EHL and JSL, Jani also agreed with this solution.This 2 PCHs can=
- only be
-> > > > associate with EHL and JSL respectively, so no downsides here.
-> > > =
+The comment seems rather misplaced here, it only refers to one switch,
+several lines down within the set of conditions, but looks like a
+header for the entire branch.  I think it would be better to either
+expand the comment to describe the entire branch, including the
+exclusion, or try to fit the exclusion comment alongside the test, ie.
 
-> > > The downside is that the code makes no sense on the first glance.
-> > > It's going to generate a "wtf?" exception in the brain and require
-> > > me to take a second look to figure what is going on. Exception
-> > > handling is expensive and shouldn't be needed in cases where it's
-> > > trivial to make the code 100% obvious.
-> > =
+	/*
+	 * Intel IGD requires quirks to support guest drivers.  IGD is
+	 * identified as an Intel VGA device on the root bus.
+	 */
 
-> > The bspec documents EHL and JSL as being the same platform and identical
-> > in all programming since they are literally the same display IP; this
-> > vswing table is the one and only place where the two are treated in a
-> > distinct manner for reasons that lie outside the display controller.  If
-> > you had to stop and take a closer look at the code here, that's a
-> > probably a good thing since in general there should generally never be a
-> > difference in the behavior between the two.  Adding an additional
-> > clarifying comment is probably in order too since this is a very
-> > exceptional special case.
-> > =
+Or
+	    pci_is_root_bus(pdev->bus)) { /* Skip discrete gfx */
 
-> > If we deviate from the bspec's guidance and try to split IS_ELKHARTLAKE
-> > and IS_JASPERLAKE across the whole driver, that's going to be a lot more
-> > pain to maintain down the road since we'll almost certainly have cases
-> > where someone silently leaves one or the other off a condition and gets
-> > unexepcted behavior.  I could see arguments for using a SUBPLATFORM here
-> > like we do for TGL_U vs TGL_Y, but even that seems like overkill if we
-> > already have a clear way to distinguish the two cases (PCH pairing) and
-> > can just leave a clarifying comment.
-> =
+The commit title should really include something about excluding
+discrete graphics from IGD quirks as well.  It might help downstreams
+backport it for support.
 
-> That fixed PCH pairing is totally undocumented AFAICS. And vswing has
-> nothing to do with the south display, so the wtf will still happen.
-> Comment or no comment.
+It also occurs to me that relying on the physical topology only works
+at the bare metal level.  We could for example assign a dgfx device at
+address 00:02.0 in the guest.  Nested assignment of that device would
+trigger calling vfio_pci_igd_init() and fail.  I see igd has a PCIe
+capability type of PCI_EXP_TYPE_RC_END and I'd expect dgfx to have a
+type of PCI_EXP_TYPE_LEG_END, but unfortunately QEMU does too good of a
+job emulating the PCIe capability and will mangle these to suit the
+guest topology.  I wonder then if our best course is to make the above
+branch more lenient, for example pruning the failure paths such that we
+could use -ENODEV as a non-terminal error like is done for the NVLink
+quirks below this code block.  Failure to find an OpRegion might be our
+differentiation, where on bare metal we might have both igd and dgfx,
+so we'd need the root bus test, but assigning dgfx to a VM and placing
+it on the VM root bus wouldn't generate an OpRegion, so both levels
+would take the dgfx path.  IGD placed on a non-root bus in the guest
+could probably just be considered a misconfiguration by the user...
+Thanks,
 
-Oh and JSP does not show up in bspec even once. MCC appears exactly once
-where it talks about the differences between MCC and ICL-N PCH (which I
-guess is the same as JSP?).
+Alex
 
-Furthermore the spec never really talks about EHL except in very select
-places. So the IS_ELKHARTLAKE is already totally confusing and IMO more
-likely to cause maintenance problems than the split. Making it
-IS_JSL||IS_EHL at least gives the reader some hint as to where they
-should look in the spec.
-
-Another argument why the split is fine is CFL/CML. Those are more
-or less exactly in the same boat as EHL. Ie. only really mentioned
-in the "configurations" section. Beyond that only KBL is ever really
-mentioned. And yet we have separate IS_FOOs for all of them, and
-apparently no one had any objections to that situation.
-
-tldr;we have an established way to handle these things, so IMO lets
-just follow it and stop adding special cases.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
