@@ -1,29 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 475D227C4FE
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 13:26:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E376827CA68
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 14:19:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7B786E198;
-	Tue, 29 Sep 2020 11:26:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7215A89C6B;
+	Tue, 29 Sep 2020 12:19:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9DCA6E198
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 11:26:46 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22566839-1500050 
- for multiple; Tue, 29 Sep 2020 12:26:35 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Sep 2020 12:26:39 +0100
-Message-Id: <20200929112639.24223-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D37F89C33;
+ Tue, 29 Sep 2020 12:19:32 +0000 (UTC)
+IronPort-SDR: Rb7Cb3mCfU8fsnQazMJGXZrBXTzX54u26MZPAgipDMsjx4IBHN/UPD2j9VCJ7LRdA/fF8MSlmS
+ dAcWV1uY2Juw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9758"; a="223765432"
+X-IronPort-AV: E=Sophos;i="5.77,318,1596524400"; d="scan'208";a="223765432"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2020 05:19:26 -0700
+IronPort-SDR: 25MjSkwi7vP4AMvFuMrG766nJoDhGJx/A52jGBDcgBDS6yZl1zeqNe5St/a0qlWPVOGbpH9ph8
+ jocOcmhfKHKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,318,1596524400"; d="scan'208";a="338614524"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by fmsmga004.fm.intel.com with ESMTP; 29 Sep 2020 05:19:23 -0700
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ james.ausmus@intel.com, matthew.d.roper@intel.com, jose.souza@intel.com,
+ ville.syrjala@linux.intel.com, lucas.demarchi@intel.com,
+ hariom.pandey@intel.com
+Date: Tue, 29 Sep 2020 17:41:27 +0530
+Message-Id: <20200929121127.254086-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Scrub HW state on remove
+Subject: [Intel-gfx] [PATCH v2] drm/i915/edp/jsl: Update vswing table for
+ HBR and HBR2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,68 +50,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we do a final scrub of the HW state upon release. However,
-when rebinding the device, this is too late as the device may either
-have been partially rebound or the device is no longer accessible. If
-the device has been removed before release, the reset goes astray
-leaving the device in an inconsistent state, unlikely to work without a
-full PCI reset. Furthermore, if the device is partially rebound before
-the HW scrubbing, there may be leftover HW state that should have been
-scrubbed. Either way, we need to push the scrubbing earlier before the
-removal, so into unregister. The danger is that on older machines,
-reseting the GPU also impact the display engine and so the reset should
-be after modesetting is disabled (and before reuse we need to recover
-modesetting).
+JSL has update in vswing table for eDP
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2508
-Testcase: igt/core_hotunplug
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+BSpec: 21257
+
+Changes since V1 : 
+	- IS_ELKHARTLAKE and IS_JASPERLAKE is replaced with
+          HAS_PCH_MCC(EHL) and HAS_PCH_JSP(JSL) respectively
+	- Reverted EHL/JSL PCI ids split change
+
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 67 ++++++++++++++++++++++--
+ 1 file changed, 64 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 39b428c5049c..44f1d51e5ae5 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -614,6 +614,8 @@ void intel_gt_driver_remove(struct intel_gt *gt)
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 4d06178cd76c..e6e93d01d0ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -582,6 +582,34 @@ static const struct cnl_ddi_buf_trans ehl_combo_phy_ddi_translations_dp[] = {
+ 	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 900   900      0.0   */
+ };
  
- void intel_gt_driver_unregister(struct intel_gt *gt)
- {
-+	intel_wakeref_t wakeref;
++static const struct cnl_ddi_buf_trans jsl_combo_phy_ddi_translations_edp_hbr[] = {
++						/* NT mV Trans mV db    */
++	{ 0x8, 0x7F, 0x3F, 0x00, 0x00 },	/* 200   200      0.0   */
++	{ 0x8, 0x7F, 0x38, 0x00, 0x07 },	/* 200   250      1.9   */
++	{ 0x1, 0x7F, 0x33, 0x00, 0x0C },	/* 200   300      3.5   */
++	{ 0xA, 0x35, 0x36, 0x00, 0x09 },	/* 200   350      4.9   */
++	{ 0x8, 0x7F, 0x3F, 0x00, 0x00 },	/* 250   250      0.0   */
++	{ 0x1, 0x7F, 0x38, 0x00, 0x07 },	/* 250   300      1.6   */
++	{ 0xA, 0x35, 0x35, 0x00, 0x0A },	/* 250   350      2.9   */
++	{ 0x1, 0x7F, 0x3F, 0x00, 0x00 },	/* 300   300      0.0   */
++	{ 0xA, 0x35, 0x38, 0x00, 0x07 },	/* 300   350      1.3   */
++	{ 0xA, 0x35, 0x3F, 0x00, 0x00 },	/* 350   350      0.0   */
++};
 +
- 	intel_rps_driver_unregister(&gt->rps);
- 
- 	/*
-@@ -622,16 +624,15 @@ void intel_gt_driver_unregister(struct intel_gt *gt)
- 	 * resources.
- 	 */
- 	intel_gt_set_wedged(gt);
++static const struct cnl_ddi_buf_trans jsl_combo_phy_ddi_translations_edp_hbr2[] = {
++						/* NT mV Trans mV db    */
++	{ 0x8, 0x7F, 0x3F, 0x00, 0x00 },	/* 200   200      0.0   */
++	{ 0x8, 0x7F, 0x3F, 0x00, 0x00 },	/* 200   250      1.9   */
++	{ 0x1, 0x7F, 0x3D, 0x00, 0x02 },	/* 200   300      3.5   */
++	{ 0xA, 0x35, 0x38, 0x00, 0x07 },	/* 200   350      4.9   */
++	{ 0x8, 0x7F, 0x3F, 0x00, 0x00 },	/* 250   250      0.0   */
++	{ 0x1, 0x7F, 0x3F, 0x00, 0x00 },	/* 250   300      1.6   */
++	{ 0xA, 0x35, 0x3A, 0x00, 0x05 },	/* 250   350      2.9   */
++	{ 0x1, 0x7F, 0x3F, 0x00, 0x00 },	/* 300   300      0.0   */
++	{ 0xA, 0x35, 0x38, 0x00, 0x07 },	/* 300   350      1.3   */
++	{ 0xA, 0x35, 0x3F, 0x00, 0x00 },	/* 350   350      0.0   */
++};
 +
-+	/* Scrub all HW state upon release */
-+	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-+		__intel_gt_reset(gt, ALL_ENGINES);
+ struct icl_mg_phy_ddi_buf_trans {
+ 	u32 cri_txdeemph_override_11_6;
+ 	u32 cri_txdeemph_override_5_0;
+@@ -1069,7 +1097,6 @@ icl_get_mg_buf_trans(struct intel_encoder *encoder, int type, int rate,
+ 	*n_entries = ARRAY_SIZE(icl_mg_phy_ddi_translations_rbr_hbr);
+ 	return icl_mg_phy_ddi_translations_rbr_hbr;
+ }
+-
+ static const struct cnl_ddi_buf_trans *
+ ehl_get_combo_buf_trans(struct intel_encoder *encoder, int type, int rate,
+ 			int *n_entries)
+@@ -1098,6 +1125,34 @@ ehl_get_combo_buf_trans(struct intel_encoder *encoder, int type, int rate,
+ 	}
  }
  
- void intel_gt_driver_release(struct intel_gt *gt)
- {
- 	struct i915_address_space *vm;
--	intel_wakeref_t wakeref;
--
--	/* Scrub all HW state upon release */
--	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
--		__intel_gt_reset(gt, ALL_ENGINES);
- 
- 	vm = fetch_and_zero(&gt->vm);
- 	if (vm) /* FIXME being called twice on error paths :( */
++static const struct cnl_ddi_buf_trans *
++jsl_get_combo_buf_trans(struct intel_encoder *encoder, int type, int rate,
++			int *n_entries)
++{
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++
++	switch (type) {
++	case INTEL_OUTPUT_HDMI:
++		*n_entries = ARRAY_SIZE(icl_combo_phy_ddi_translations_hdmi);
++		return icl_combo_phy_ddi_translations_hdmi;
++	case INTEL_OUTPUT_EDP:
++		if (dev_priv->vbt.edp.low_vswing) {
++			if (rate > 270000) {
++				*n_entries = ARRAY_SIZE(jsl_combo_phy_ddi_translations_edp_hbr2);
++				return jsl_combo_phy_ddi_translations_edp_hbr2;
++			} else {
++				*n_entries = ARRAY_SIZE(jsl_combo_phy_ddi_translations_edp_hbr);
++				return jsl_combo_phy_ddi_translations_edp_hbr;
++			}
++		}
++		/* fall through */
++	default:
++		/* All combo DP and eDP ports that do not support low_vswing */
++		*n_entries = ARRAY_SIZE(icl_combo_phy_ddi_translations_dp_hbr2);
++		return icl_combo_phy_ddi_translations_dp_hbr2;
++	}
++}
++
+ static const struct cnl_ddi_buf_trans *
+ tgl_get_combo_buf_trans(struct intel_encoder *encoder, int type, int rate,
+ 			int *n_entries)
+@@ -2265,7 +2320,10 @@ static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp)
+ 			tgl_get_dkl_buf_trans(encoder, encoder->type,
+ 					      intel_dp->link_rate, &n_entries);
+ 	} else if (INTEL_GEN(dev_priv) == 11) {
+-		if (IS_ELKHARTLAKE(dev_priv))
++		if (HAS_PCH_JSP(dev_priv))
++			jsl_get_combo_buf_trans(encoder, encoder->type,
++						intel_dp->link_rate, &n_entries);
++		else if (HAS_PCH_MCC(dev_priv))
+ 			ehl_get_combo_buf_trans(encoder, encoder->type,
+ 						intel_dp->link_rate, &n_entries);
+ 		else if (intel_phy_is_combo(dev_priv, phy))
+@@ -2454,7 +2512,10 @@ static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
+ 	if (INTEL_GEN(dev_priv) >= 12)
+ 		ddi_translations = tgl_get_combo_buf_trans(encoder, type, rate,
+ 							   &n_entries);
+-	else if (IS_ELKHARTLAKE(dev_priv))
++	else if (HAS_PCH_JSP(dev_priv))
++		ddi_translations = jsl_get_combo_buf_trans(encoder, type, rate,
++							   &n_entries);
++	else if (HAS_PCH_MCC(dev_priv))
+ 		ddi_translations = ehl_get_combo_buf_trans(encoder, type, rate,
+ 							   &n_entries);
+ 	else
 -- 
-2.20.1
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
