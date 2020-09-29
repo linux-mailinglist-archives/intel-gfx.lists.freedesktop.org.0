@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1699427BF65
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 10:29:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E4927BF64
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 10:29:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FE016E0C1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 272D389E05;
 	Tue, 29 Sep 2020 08:29:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37BE589E01
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 08:29:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36D2D89DFA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 08:29:06 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22564162-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22564163-1500050 
  for multiple; Tue, 29 Sep 2020 09:28:56 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Sep 2020 09:28:58 +0100
-Message-Id: <20200929082859.26652-2-chris@chris-wilson.co.uk>
+Date: Tue, 29 Sep 2020 09:28:59 +0100
+Message-Id: <20200929082859.26652-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200929082859.26652-1-chris@chris-wilson.co.uk>
 References: <20200929082859.26652-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/selftests: Finish pending mock
- requests on cancellation.
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Retire cancelled requests on
+ unload
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,63 +45,38 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Flush all the pending requests from the mock engine when they are
-cancelled.
+If we manage to hit the intel_gt_set_wedged_on_fini() while active, i.e.
+module unload during a stress test, we may cancel the requests but not
+clean up. This leads to a very slow module unload as we wait for
+something or other to trigger the retirement flushing, or timeout and
+unload with a bunch of warnings. Instead if we explicitly cancel then
+cleanup on an active unload, it should be instant and quiet.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/mock_engine.c | 29 +++++++++++++++++++++++----
- 1 file changed, 25 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_reset.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-index dfd1cfb8a7ec..df52fed3c0d0 100644
---- a/drivers/gpu/drm/i915/gt/mock_engine.c
-+++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-@@ -245,19 +245,40 @@ static void mock_reset_rewind(struct intel_engine_cs *engine, bool stalled)
- 	GEM_BUG_ON(stalled);
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index ac36b67fb46b..4e5e13dc95da 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -19,6 +19,7 @@
+ #include "intel_engine_pm.h"
+ #include "intel_gt.h"
+ #include "intel_gt_pm.h"
++#include "intel_gt_requests.h"
+ #include "intel_reset.h"
  
-+static void mark_eio(struct i915_request *rq)
-+{
-+	if (i915_request_completed(rq))
-+		return;
-+
-+	GEM_BUG_ON(i915_request_signaled(rq));
-+
-+	i915_request_set_error_once(rq, -EIO);
-+	i915_request_mark_complete(rq);
-+}
-+
- static void mock_reset_cancel(struct intel_engine_cs *engine)
+ #include "uc/intel_guc.h"
+@@ -1370,6 +1371,7 @@ void intel_gt_set_wedged_on_fini(struct intel_gt *gt)
  {
--	struct i915_request *request;
-+	struct mock_engine *mock =
-+		container_of(engine, typeof(*mock), base);
-+	struct i915_request *rq;
- 	unsigned long flags;
- 
-+	del_timer_sync(&mock->hw_delay);
-+
- 	spin_lock_irqsave(&engine->active.lock, flags);
- 
- 	/* Mark all submitted requests as skipped. */
--	list_for_each_entry(request, &engine->active.requests, sched.link) {
--		i915_request_set_error_once(request, -EIO);
--		i915_request_mark_complete(request);
-+	list_for_each_entry(rq, &engine->active.requests, sched.link)
-+		mark_eio(rq);
-+
-+	/* Cancel and submit all pending requests. */
-+	list_for_each_entry(rq, &mock->hw_queue, mock.link) {
-+		mark_eio(rq);
-+		__i915_request_submit(rq);
- 	}
-+	INIT_LIST_HEAD(&mock->hw_queue);
- 
-+	intel_engine_signal_breadcrumbs(engine);
- 	spin_unlock_irqrestore(&engine->active.lock, flags);
+ 	intel_gt_set_wedged(gt);
+ 	set_bit(I915_WEDGED_ON_FINI, &gt->reset.flags);
++	intel_gt_retire_requests(gt); /* cleanup any wedged requests */
  }
  
+ void intel_gt_init_reset(struct intel_gt *gt)
 -- 
 2.20.1
 
