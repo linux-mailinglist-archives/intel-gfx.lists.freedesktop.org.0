@@ -2,44 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F69D27C087
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 11:09:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FCF527C0A9
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Sep 2020 11:14:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C84FA89C53;
-	Tue, 29 Sep 2020 09:09:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A0C26E457;
+	Tue, 29 Sep 2020 09:14:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEC8989C56
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 09:09:31 +0000 (UTC)
-IronPort-SDR: bhNKdJsT6AkVrmNxQKLP2aeM5C9nxZUnsCaGgeHYh1apgJInfVt38zqKxOmuzkzkym5aszKQFh
- 4Qa+m7I9Lpcw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9758"; a="223738168"
-X-IronPort-AV: E=Sophos;i="5.77,317,1596524400"; 
- d="asc'?scan'208";a="223738168"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2020 02:09:29 -0700
-IronPort-SDR: V8B+5zTyvtgoVu447vuHYdkRQH8Z5TJxy2UP8i/0hZHyPQeN3SxAY9LP/badVJ3iuMTYBodH4Q
- Fl7WEtaA/4LA==
-X-IronPort-AV: E=Sophos;i="5.77,317,1596524400"; 
- d="asc'?scan'208";a="489399476"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2020 02:09:26 -0700
-Date: Tue, 29 Sep 2020 16:49:26 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Fred Gao <fred.gao@intel.com>
-Message-ID: <20200929084926.GH27141@zhen-hp.sh.intel.com>
-References: <20200929161038.15465-1-fred.gao@intel.com>
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1D1A6E3BB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 09:14:49 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id j2so4491166wrx.7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 02:14:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=nL1RJ1CBsQM4FRjSLIq4hF2LWibhorMGgFGx7FERzoU=;
+ b=gdHdOjUtbzxqgqGnhYkIQLu0EJiUF0CxOiu4yUaVxxsB4Y1RcTXJZcQOXBz5fuywkl
+ 3wLF7s89+6APQbGCO/in/zuRexI7frcXl+jlrQB4dr5Rj/Ic/VLtFtQncOVf2Pof5qEi
+ AuckYtsq3x9uMOT/b5FP7SeE6uEKI90YGf5II=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=nL1RJ1CBsQM4FRjSLIq4hF2LWibhorMGgFGx7FERzoU=;
+ b=scmNVZcpHhA5zudMuEe+p5KdHM0z0axwbN7H/3imt6x+zVA+JFbJjKKLYGJBBSmxFt
+ 5cMIy+kOCLDK2u7Qq8yIB5KrfWmO9EypYY9MvJPPYfSyuQ+DjcyVJcl5u/5F9Wm0HY3K
+ udpAqiQ+MtlqswNhtpNFQjYh6zSi9Of6AxZffXXfuWY0x1zcGoIhj7Cr5vlQLXX2Gh3I
+ OV1nllx8NUtC/U92bq0mklWger7xP5pNgoHNwpzBydGrl9QE/elMyDdo2WXFfyTxGHSJ
+ YvIXwP6aM/+6WVvRXf7YeAS1m997dgqwg8zoiCv95FwuVUB6cuyYVyB4u7FnRO9Kxowd
+ tuAg==
+X-Gm-Message-State: AOAM532JPQBWgWBF2MdLfMVoCMKYmqcBWLdU10ShdsS5NM3M52Zdf1+q
+ Ut5RZOmCariGDdjbeIgzf3mYLg==
+X-Google-Smtp-Source: ABdhPJzUpk5sRYoMWrtr0UlpR9ORIRx/KJD45hyn02zRFIKDUXFqG2Is9+7QHPaCNhxuEtvE05yF9A==
+X-Received: by 2002:a5d:470e:: with SMTP id y14mr3112131wrq.354.1601370888619; 
+ Tue, 29 Sep 2020 02:14:48 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id l126sm4669148wmf.39.2020.09.29.02.14.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 29 Sep 2020 02:14:47 -0700 (PDT)
+Date: Tue, 29 Sep 2020 11:14:45 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <20200929091445.GI438822@phenom.ffwll.local>
+References: <20200925115601.23955-1-tzimmermann@suse.de>
+ <20200926071334.GA42915@ravnborg.org>
+ <8761e0dd-569e-0ea0-7bc5-25e4f7cb67cc@suse.de>
+ <20200927191605.GA237178@ravnborg.org>
+ <3f703297-7b4f-dcca-ea56-70b2413a1e3d@amd.com>
+ <ef4400a7-397b-e550-7114-1d4238dd36f3@suse.de>
+ <49c4dcec-cd69-510a-9781-e8fa5fb669f9@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <20200929161038.15465-1-fred.gao@intel.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH v2] vfio/pci: Refine Intel IGD OpRegion
- support
+Content-Disposition: inline
+In-Reply-To: <49c4dcec-cd69-510a-9781-e8fa5fb669f9@amd.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH v3 0/4] dma-buf: Flag vmap'ed memory as
+ system or I/O memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,99 +72,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: Hang Yuan <hang.yuan@linux.intel.com>, kvm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: multipart/mixed; boundary="===============0481955914=="
+Cc: linux-doc@vger.kernel.org, airlied@linux.ie,
+ dri-devel@lists.freedesktop.org, kraxel@redhat.com, tfiga@chromium.org,
+ Sam Ravnborg <sam@ravnborg.org>, m.szyprowski@samsung.com, arnd@arndb.de,
+ corbet@lwn.net, jonathanh@nvidia.com, matthew.auld@intel.com,
+ linux+etnaviv@armlinux.org.uk, labbott@redhat.com, linux-media@vger.kernel.org,
+ pawel@osciak.com, intel-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ thomas.hellstrom@intel.com, linux-tegra@vger.kernel.org, mchehab@kernel.org,
+ gregkh@linuxfoundation.org, lmark@codeaurora.org, afd@ti.com,
+ kyungmin.park@samsung.com, Thomas Zimmermann <tzimmermann@suse.de>,
+ robin.murphy@arm.com
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Sep 28, 2020 at 01:22:13PM +0200, Christian K=F6nig wrote:
+> Am 28.09.20 um 09:37 schrieb Thomas Zimmermann:
+> > Hi
+> > =
 
---===============0481955914==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="HlL+5n6rz5pIUxbD"
-Content-Disposition: inline
+> > Am 28.09.20 um 08:50 schrieb Christian K=F6nig:
+> > > Am 27.09.20 um 21:16 schrieb Sam Ravnborg:
+> > > > Hi Thomas.
+> > > > =
+
+> > > > > > struct simap {
+> > > > > >  =A0=A0=A0=A0=A0=A0=A0 union {
+> > > > > >  =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 void __iomem *va=
+ddr_iomem;
+> > > > > >  =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 void *vaddr;
+> > > > > >  =A0=A0=A0=A0=A0=A0=A0 };
+> > > > > >  =A0=A0=A0=A0=A0=A0=A0 bool is_iomem;
+> > > > > > };
+> > > > > > =
+
+> > > > > > Where simap is a shorthand for system_iomem_map
+> > > > > > And it could al be stuffed into a include/linux/simap.h file.
+> > > > > > =
+
+> > > > > > Not totally sold on the simap name - but wanted to come up with
+> > > > > > something.
+> > > > > Yes. Others, myself included, have suggested to use a name that d=
+oes not
+> > > > > imply a connection to the dma-buf framework, but no one has come =
+up with
+> > > > >  =A0 a good name.
+> > > > > =
+
+> > > > > I strongly dislike simap, as it's entirely non-obvious what it do=
+es.
+> > > > > dma-buf-map is not actually wrong. The structures represents the =
+mapping
+> > > > > of a dma-able buffer in most cases.
+> > > > > =
+
+> > > > > > With this approach users do not have to pull in dma-buf to use =
+it and
+> > > > > > users will not confuse that this is only for dma-buf usage.
+> > > > > There's no need to enable dma-buf. It's all in the header file wi=
+thout
+> > > > > dependencies on dma-buf. It's really just the name.
+> > > > > =
+
+> > > > > But there's something else to take into account. The whole issue =
+here is
+> > > > > that the buffer is disconnected from its originating driver, so w=
+e don't
+> > > > > know which kind of memory ops we have to use. Thinking about it, I
+> > > > > realized that no one else seemed to have this problem until now.
+> > > > > Otherwise there would be a solution already. So maybe the dma-buf
+> > > > > framework *is* the native use case for this data structure.
+> > > > We have at least:
+> > > > linux/fb.h:
+> > > >  =A0=A0=A0=A0union {
+> > > >  =A0=A0=A0=A0=A0=A0=A0 char __iomem *screen_base;=A0=A0=A0=A0=A0 /*=
+ Virtual address */
+> > > >  =A0=A0=A0=A0=A0=A0=A0 char *screen_buffer;
+> > > >  =A0=A0=A0=A0};
+> > > > =
+
+> > > > Which solve more or less the same problem.
+> > I thought this was for convenience. The important is_iomem bit is missi=
+ng.
+> > =
+
+> > > I also already noted that in TTM we have exactly the same problem and=
+ a
+> > > whole bunch of helpers to allow operations on those pointers.
+> > How do you call this within TTM?
+> =
+
+> ttm_bus_placement, but I really don't like that name.
+> =
+
+> > =
+
+> > The data structure represents a pointer to either system or I/O memory,
+> > but not necessatrily device memory. It contains raw data. That would
+> > give something like
+> > =
+
+> >    struct databuf_map
+> >    struct databuf_ptr
+> >    struct dbuf_map
+> >    struct dbuf_ptr
+> > =
+
+> > My favorite would be dbuf_ptr. It's short and the API names would make
+> > sense: dbuf_ptr_clear() for clearing, dbuf_ptr_set_vaddr() to set an
+> > address, dbuf_ptr_incr() to increment, etc. Also, the _ptr indicates
+> > that it's a single address; not an offset with length.
+> =
+
+> Puh, no idea. All of that doesn't sound like it 100% hits the underlying
+> meaning of the structure.
+
+Imo first let's merge this and then second with more users we might come
+up with a better name. And cocci is fairly good at large-scale rename, to
+the point where we manged to rename struct fence to struct dma_fence.
+
+Also this entire thread here imo shows that we haven't yet figured out the
+perfect name anyway, and I don't think it's worth it to hold this up
+because of this bikeshed :-)
+
+Cheers, Daniel
+
+> =
+
+> Christian.
+> =
+
+> > =
+
+> > Best regards
+> > Thomas
+> > =
+
+> > > Christian.
+> > > =
+
+> > > > > Anyway, if a better name than dma-buf-map comes in, I'm willing to
+> > > > > rename the thing. Otherwise I intend to merge the patchset by the=
+ end of
+> > > > > the week.
+> > > > Well, the main thing is that I think this shoud be moved away from
+> > > > dma-buf. But if indeed dma-buf is the only relevant user in drm then
+> > > > I am totally fine with the current naming.
+> > > > =
+
+> > > > One alternative named that popped up in my head: struct sys_io_map =
+{}
+> > > > But again, if this is kept in dma-buf then I am fine with the curre=
+nt
+> > > > naming.
+> > > > =
+
+> > > > In other words, if you continue to think this is mostly a dma-buf
+> > > > thing all three patches are:
+> > > > Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> > > > =
+
+> > > >  =A0=A0=A0=A0Sam
+> > > _______________________________________________
+> > > dri-devel mailing list
+> > > dri-devel@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> =
 
 
---HlL+5n6rz5pIUxbD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+-- =
 
-
-On 2020.09.30 00:10:38 +0800, Fred Gao wrote:
-> Bypass the IGD initialization for Intel's dgfx devices with own expansion
-> ROM and the host/LPC bridge config space are no longer accessed.
->=20
-> v2: simply test if discrete or integrated gfx device
->     with root bus. (Alex Williamson)
->
-
-Patch title is somehow misleading that better change to what this one does
-that skip VFIO IGD setup for Intel discrete graphics card.
-
-With that,
-
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-
-> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> Cc: Xiong Zhang <xiong.y.zhang@intel.com>
-> Cc: Hang Yuan <hang.yuan@linux.intel.com>
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Fred Gao <fred.gao@intel.com>
-> ---
->  drivers/vfio/pci/vfio_pci.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/vfio/pci/vfio_pci.c b/drivers/vfio/pci/vfio_pci.c
-> index f634c81998bb..9258ccfadb79 100644
-> --- a/drivers/vfio/pci/vfio_pci.c
-> +++ b/drivers/vfio/pci/vfio_pci.c
-> @@ -336,10 +336,11 @@ static int vfio_pci_enable(struct vfio_pci_device *=
-vdev)
->  	if (!vfio_vga_disabled() && vfio_pci_is_vga(pdev))
->  		vdev->has_vga =3D true;
-> =20
-> -
-> +	/* Intel's dgfx should not appear on root bus */
->  	if (vfio_pci_is_vga(pdev) &&
->  	    pdev->vendor =3D=3D PCI_VENDOR_ID_INTEL &&
-> -	    IS_ENABLED(CONFIG_VFIO_PCI_IGD)) {
-> +	    IS_ENABLED(CONFIG_VFIO_PCI_IGD) &&
-> +	    pci_is_root_bus(pdev->bus)) {
->  		ret =3D vfio_pci_igd_init(vdev);
->  		if (ret) {
->  			pci_warn(pdev, "Failed to setup Intel IGD regions\n");
-> --=20
-> 2.24.1.1.gb6d4d82bd5
->=20
-
---=20
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---HlL+5n6rz5pIUxbD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCX3L1FQAKCRCxBBozTXgY
-J0HhAJ4zPRLTzVpVZIG1lz/KPtRhS21HnwCeN0l7hSLjgzmKH81NVxD5ObtDDfU=
-=fdQd
------END PGP SIGNATURE-----
-
---HlL+5n6rz5pIUxbD--
-
---===============0481955914==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0481955914==--
