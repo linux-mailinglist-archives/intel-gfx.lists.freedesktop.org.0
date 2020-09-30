@@ -2,28 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 514C627F081
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 19:28:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD74427F098
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 19:33:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE0D76E7D5;
-	Wed, 30 Sep 2020 17:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 435B46E7E2;
+	Wed, 30 Sep 2020 17:33:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C11C16E7D5
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 17:28:33 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22583181-1500050 
- for multiple; Wed, 30 Sep 2020 18:28:20 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 30 Sep 2020 18:28:25 +0100
-Message-Id: <20200930172825.30975-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B57816E7E2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 17:33:14 +0000 (UTC)
+IronPort-SDR: udVPqTqU77HKDUYXQdGD7EiR6V8nupwRsknuTdE+3Eru0QEIiq9IExSOF3VQzWClfqU036fQ11
+ +1FOjYGE9u0A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="180665539"
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="180665539"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 10:33:14 -0700
+IronPort-SDR: eN5W83YxAWIsSzN3CWQuXH0s2pdJ1Q4mw3snTqSjsR1+RNJDyVhUugM6t+Xh/CpXtATjPe+P+i
+ ZAIMWFRJMSpw==
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="294099532"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 10:33:14 -0700
+Date: Wed, 30 Sep 2020 10:33:13 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20200930173313.GC2245633@mdroper-desk1.amr.corp.intel.com>
+References: <20200930064234.85769-1-lucas.demarchi@intel.com>
+ <20200930064234.85769-20-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Skip over MI_NOOP when parsing
+Content-Disposition: inline
+In-Reply-To: <20200930064234.85769-20-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 19/24] drm/i915/dg1: enable PORT C/D aka
+ D/E
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,102 +51,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Though less likely in practice, igt uses MI_NOOP frequently to pad out
-its the batch buffers. The lookup and valiation of the MI_NOOP command
-description is noticeable, though the side-effect of poisoning the
-last-validate-command cache is more likely to impact upon real CS.
+On Tue, Sep 29, 2020 at 11:42:29PM -0700, Lucas De Marchi wrote:
+> For DG1 we have a little of mix up wrt to DDI/port names and indexes.
+> Bspec refers to the ports as DDIA, DDIB, DDI USBC1 and DDI USBC2
+> (besides the DDIA, DDIB, DDIC, DDID), but the previous naming is the
+> most unambiguous one. This means that for any register on Display Engine
+> we should use the index of A, B, D and E. However in some places this is
+> not true:
+> 
+> - VBT: uses C and D and have to be mapped to D/E
+> 
+> - IO/Combo: uses C and D, but we already differentiate those when
+>   we created the phy vs port distinction.
+> 
+> Ths additional mapping for VBT and phy are already covered in previous
+> patches, so now we can initialize the DDI as D/E.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/i915_cmd_parser.c | 58 +++++++++++++-------------
- 1 file changed, 30 insertions(+), 28 deletions(-)
+I don't see a pressing need to keep this separate from patch 13; it's
+probably easier to just roll patch 13 into this patch and enable all of
+the outputs at once after we have all the plumbing in place.
 
-diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
-index e88970256e8e..20014663cd5e 100644
---- a/drivers/gpu/drm/i915/i915_cmd_parser.c
-+++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
-@@ -1453,42 +1453,44 @@ int intel_engine_cmd_parser(struct intel_engine_cs *engine,
- 	 */
- 	batch_end = cmd + batch_length / sizeof(*batch_end);
- 	do {
--		u32 length;
-+		u32 length = 1;
- 
- 		if (*cmd == MI_BATCH_BUFFER_END)
- 			break;
- 
--		desc = find_cmd(engine, *cmd, desc, &default_desc);
--		if (!desc) {
--			DRM_DEBUG("CMD: Unrecognized command: 0x%08X\n", *cmd);
--			ret = -EINVAL;
--			break;
--		}
-+		if (*cmd) {
-+			desc = find_cmd(engine, *cmd, desc, &default_desc);
-+			if (!desc) {
-+				DRM_DEBUG("CMD: Unrecognized command: 0x%08X\n", *cmd);
-+				ret = -EINVAL;
-+				break;
-+			}
- 
--		if (desc->flags & CMD_DESC_FIXED)
--			length = desc->length.fixed;
--		else
--			length = (*cmd & desc->length.mask) + LENGTH_BIAS;
-+			if (desc->flags & CMD_DESC_FIXED)
-+				length = desc->length.fixed;
-+			else
-+				length = (*cmd & desc->length.mask) + LENGTH_BIAS;
- 
--		if ((batch_end - cmd) < length) {
--			DRM_DEBUG("CMD: Command length exceeds batch length: 0x%08X length=%u batchlen=%td\n",
--				  *cmd,
--				  length,
--				  batch_end - cmd);
--			ret = -EINVAL;
--			break;
--		}
-+			if ((batch_end - cmd) < length) {
-+				DRM_DEBUG("CMD: Command length exceeds batch length: 0x%08X length=%u batchlen=%td\n",
-+					  *cmd,
-+					  length,
-+					  batch_end - cmd);
-+				ret = -EINVAL;
-+				break;
-+			}
- 
--		if (!check_cmd(engine, desc, cmd, length)) {
--			ret = -EACCES;
--			break;
--		}
-+			if (!check_cmd(engine, desc, cmd, length)) {
-+				ret = -EACCES;
-+				break;
-+			}
- 
--		if (cmd_desc_is(desc, MI_BATCH_BUFFER_START)) {
--			ret = check_bbstart(cmd, offset, length, batch_length,
--					    batch_addr, shadow_addr,
--					    jump_whitelist);
--			break;
-+			if (cmd_desc_is(desc, MI_BATCH_BUFFER_START)) {
-+				ret = check_bbstart(cmd, offset, length, batch_length,
-+						    batch_addr, shadow_addr,
-+						    jump_whitelist);
-+				break;
-+			}
- 		}
- 
- 		if (!IS_ERR_OR_NULL(jump_whitelist))
+> 
+> Cc: Clinton Taylor <Clinton.A.Taylor@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++------
+>  1 file changed, 12 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 43fe5867a8ae..6a63fb0136d4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7332,10 +7332,7 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
+>  {
+>  	if (phy == PHY_NONE)
+>  		return false;
+> -	else if (IS_DG1(dev_priv))
+> -		/* FIXME: Enable only two ports for now */
+> -		return phy <= PHY_B;
+> -	else if (IS_ROCKETLAKE(dev_priv))
+> +	else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
+>  		return phy <= PHY_D;
+>  	else if (IS_ELKHARTLAKE(dev_priv))
+>  		return phy <= PHY_C;
+> @@ -7359,7 +7356,7 @@ bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
+>  
+>  enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
+>  {
+> -	if (IS_ROCKETLAKE(i915) && port >= PORT_D)
+> +	if ((IS_DG1(i915) || IS_ROCKETLAKE(i915)) && port >= PORT_D)
+>  		return (enum phy)port - 1;
+>  	else if (IS_ELKHARTLAKE(i915) && port == PORT_D)
+>  		return PHY_A;
+> @@ -17128,9 +17125,18 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>  		return;
+>  
+>  	if (IS_DG1(dev_priv)) {
+
+We could just add IS_DG1 to the IS_ROCKETLAKE condition for the block
+below since they're now the same thing.
+
+In fact it might be worth explicitly mentioning the similarity to RKL in
+the commit message.
+
+
+Matt
+
+> -		/* FIXME: Enable only two ports for now */
+>  		intel_ddi_init(dev_priv, PORT_A);
+>  		intel_ddi_init(dev_priv, PORT_B);
+> +
+> +		/*
+> +		 * Bspec lists the ports as A, B, C (USBC1) and D (USBC2).
+> +		 * However from the Display Engine perspective all registers are
+> +		 * actually wired to handle C and D as offsets of D/E. Instead
+> +		 * of fighting all our macros for handling them specially for
+> +		 * DG1, just call them D/E
+> +		 */
+> +		intel_ddi_init(dev_priv, PORT_D);
+> +		intel_ddi_init(dev_priv, PORT_E);
+>  	} else if (IS_ROCKETLAKE(dev_priv)) {
+>  		intel_ddi_init(dev_priv, PORT_A);
+>  		intel_ddi_init(dev_priv, PORT_B);
+> -- 
+> 2.28.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
 -- 
-2.20.1
-
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
