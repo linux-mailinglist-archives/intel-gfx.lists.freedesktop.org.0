@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D1727EA70
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 15:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B73E27EA7F
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 16:00:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BD9F6E0EC;
-	Wed, 30 Sep 2020 13:58:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D09489DBD;
+	Wed, 30 Sep 2020 14:00:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C5CF6E0EC
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 13:58:15 +0000 (UTC)
-IronPort-SDR: GX8JYiZkFr8u1CYGwoenAxCd9TH7zD+F6xrVIFTtd4ewKNfQl5NW5+2+Trrf7JDpR8NYqsVy99
- 9/39HtlCmraQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9759"; a="159834784"
-X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="159834784"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA54899F2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 14:00:10 +0000 (UTC)
+IronPort-SDR: abolWj6QCzIgd6OhOWMy7CZhHPP/V3ij1Li4kKqqkMoXBJTmw6Grc+B4m68IuJohzLzN5U3cBV
+ 4WQ+XOBFka1Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9759"; a="163310979"
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="163310979"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 06:58:15 -0700
-IronPort-SDR: vSY7WxbruSBh7vXdGTG18uQcqfYlESuNDx2bjQrvTlNYrynoZQfX4w9JSP9NJHfJ4C57lHjGOh
- k4vgGQPD/3yA==
-X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="294614412"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 06:58:14 -0700
-Date: Wed, 30 Sep 2020 16:58:10 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200930135810.GC867650@ideak-desk.fi.intel.com>
-References: <20200929233449.32323-1-ville.syrjala@linux.intel.com>
- <20200929233449.32323-4-ville.syrjala@linux.intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 07:00:06 -0700
+IronPort-SDR: DTiX11QxQ2QDnB7kir0O4qCZapBjWI9QTDEXrMBjA5Q2gR873ByjYGpackVjlGCstTaolZiDW5
+ jVl0NWlHckHg==
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="457665226"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 07:00:06 -0700
+Date: Wed, 30 Sep 2020 07:00:03 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20200930140003.GA2244993@mdroper-desk1.amr.corp.intel.com>
+References: <20200930064234.85769-1-lucas.demarchi@intel.com>
+ <20200930064234.85769-2-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200929233449.32323-4-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 03/11] drm/i915: Make
- intel_dp_process_phy_request() static
+In-Reply-To: <20200930064234.85769-2-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 01/24] drm/i915/dg1: add more PCI ids
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,70 +50,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 30, 2020 at 02:34:41AM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+On Tue, Sep 29, 2020 at 11:42:11PM -0700, Lucas De Marchi wrote:
+> Synchronize with the current list of DG1 PCI IDs.
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-> intel_dp_process_phy_request() has no business being externally
-> visible. Make it static.
-> =
-
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
->  drivers/gpu/drm/i915/display/intel_dp.h | 1 -
->  2 files changed, 1 insertion(+), 2 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 3586d79f5599..5c673080ecb1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5562,7 +5562,7 @@ intel_dp_autotest_phy_ddi_enable(struct intel_dp *i=
-ntel_dp, uint8_t lane_cnt)
->  		       trans_ddi_func_ctl_value);
->  }
->  =
-
-> -void intel_dp_process_phy_request(struct intel_dp *intel_dp)
-> +static void intel_dp_process_phy_request(struct intel_dp *intel_dp)
->  {
->  	struct drm_dp_phy_test_params *data =3D
->  		&intel_dp->compliance.test_data.phytest;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
-15/display/intel_dp.h
-> index a9580d1df35b..60f44f41fd08 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -123,7 +123,6 @@ void intel_read_dp_sdp(struct intel_encoder *encoder,
->  		       struct intel_crtc_state *crtc_state,
->  		       unsigned int type);
->  bool intel_digital_port_connected(struct intel_encoder *encoder);
-> -void intel_dp_process_phy_request(struct intel_dp *intel_dp);
->  =
-
->  static inline unsigned int intel_dp_unused_lane_mask(int lane_count)
->  {
-> -- =
-
-> 2.26.2
-> =
-
+>  include/drm/i915_pciids.h | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+> index 7eeecb07c9a1..095463ff7cb9 100644
+> --- a/include/drm/i915_pciids.h
+> +++ b/include/drm/i915_pciids.h
+> @@ -624,6 +624,9 @@
+>  
+>  /* DG1 */
+>  #define INTEL_DG1_IDS(info) \
+> -	INTEL_VGA_DEVICE(0x4905, info)
+> +	INTEL_VGA_DEVICE(0x4905, info), \
+> +	INTEL_VGA_DEVICE(0x4906, info), \
+> +	INTEL_VGA_DEVICE(0x4907, info), \
+> +	INTEL_VGA_DEVICE(0x4908, info)
+>  
+>  #endif /* _I915_PCIIDS_H */
+> -- 
+> 2.28.0
+> 
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
