@@ -2,43 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D36727EA26
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 15:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2F7427EA50
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 15:51:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53C5489CF8;
-	Wed, 30 Sep 2020 13:43:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FCD789DC1;
+	Wed, 30 Sep 2020 13:51:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43AA689BFE;
- Wed, 30 Sep 2020 13:35:31 +0000 (UTC)
-Received: from mail.kernel.org (unknown [95.90.213.196])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id A4DC323A69;
- Wed, 30 Sep 2020 13:25:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1601472321;
- bh=M1VGTHk8BLaW4v48n5cCYFm+g0FFa67u3wYgBuflCQw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=qSfGHHIJw6X3wEIno05gneQ4WBYcrHAUngS4AZyihCxenuy7FvkfFU2YTbufAjCSw
- Ui+08ntxMFq4/oIo/u4CZynST+DqPIRlt4j0zADfrcZmYqVCKkl6x1T5AEU+Q8PuZk
- 57AQ4W6n5kiSA7AESQqSE4TcyEiQ0x/pevO5MvII=
-Received: from mchehab by mail.kernel.org with local (Exim 4.94)
- (envelope-from <mchehab@kernel.org>)
- id 1kNc6h-001XKt-Ml; Wed, 30 Sep 2020 15:25:19 +0200
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Linux Doc Mailing List <linux-doc@vger.kernel.org>,
- Jonathan Corbet <corbet@lwn.net>
-Date: Wed, 30 Sep 2020 15:25:07 +0200
-Message-Id: <582d22c1ab6f2f6ca19963179dcde182c91d7c8b.1601467849.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.1601467849.git.mchehab+huawei@kernel.org>
-References: <cover.1601467849.git.mchehab+huawei@kernel.org>
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55C0B89DBC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 13:47:09 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id q9so1789652wmj.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 06:47:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=atcomputing.nl; s=atcomputing-nl;
+ h=message-id:subject:from:to:date:organization:user-agent
+ :mime-version:content-transfer-encoding;
+ bh=DYqXNtnLEfZnCBFKtbviH+9NWjsKFBRmS/kwN3GTpa0=;
+ b=HIYLfPKnGM8o5bdjc50HwUlCMAP3utMxQMs1kopwBfUxU4mwMV3d5yijzGxs5ccaEE
+ Mb2jzlTBU7zoV8gjbps5lidJzdaB/la8hU43FSjJ5BkSOE3M7bzi3TILrnUv26JyDgyn
+ pRPTdYNWmAHIHyIyFHpO8vwRmXbxbQSgRfsmA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:date:organization
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=DYqXNtnLEfZnCBFKtbviH+9NWjsKFBRmS/kwN3GTpa0=;
+ b=BbHDEwQ12elYoupZo6h5XHENurl1gZcdrPXh3rIZJ9uIzk2hUJkZscjbO9MIB8ytIW
+ gO/wAadM+4rLm4Hfeh3/WIgCbA/MYCYmQk+vSsT4xUIuwu2VrpvarWkfEwctLI+1l1wV
+ rtaEuDJ0G/fmc9CxLvcPZ5BAez80BwjgdTqKY7PH/bqlRyg4x9OItpi8KcyafwZkWKTv
+ UNiBULVTZ/G5qIzN8iwzlmwF9+phIXfGhiv7OJjYzhSmzXkxCKFqOqLWzBzSqqINAwLr
+ B8uNa9P6vApXqIp3hIiqGxAbRzj7wSGUbLUH+XCz0U5YoLy0tDZ5o0jGX6HxsXQPs6kY
+ asog==
+X-Gm-Message-State: AOAM530MPSPUbNeHxPEIRNlZ/tQM+pqAbj5cQqZARExfbLI78ZPddpPr
+ Wa9LK47hovz6GuxbmBkdmX/Oig==
+X-Google-Smtp-Source: ABdhPJzN/PZ6aGuW3RXOEPyUnQQ8HCa2Nbz6+quQg/MxuSdPTN35SEMoxvzwBkcsYYv5VfQ8XG4bUQ==
+X-Received: by 2002:a05:600c:283:: with SMTP id
+ 3mr3273113wmk.110.1601473627953; 
+ Wed, 30 Sep 2020 06:47:07 -0700 (PDT)
+Received: from nyx ([2001:980:74ee:1:1ec4:4a28:e4c9:705c])
+ by smtp.gmail.com with ESMTPSA id v128sm2797486wme.2.2020.09.30.06.47.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 30 Sep 2020 06:47:07 -0700 (PDT)
+Message-ID: <60a804aa6357eb17daa1729f4bce25e762344e9f.camel@atcomputing.nl>
+From: Stefan Joosten <stefan@atcomputing.nl>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Date: Wed, 30 Sep 2020 15:47:06 +0200
+Organization: AT Computing
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 30 Sep 2020 13:43:44 +0000
-Subject: [Intel-gfx] [PATCH v4 44/52] docs: gpu: i915.rst: Fix several C
- duplication warnings
+X-Mailman-Approved-At: Wed, 30 Sep 2020 13:51:34 +0000
+Subject: [Intel-gfx] [PATCH] Revert "drm/i915: Force state->modeset=true
+ when distrust_bios_wm==true"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,121 +70,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Maxime Ripard <mripard@kernel.org>,
- intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As reported by Sphinx:
+The fix of flagging state->modeset whenever distrust_bios_wm is set
+causes a regression when initializing display(s) attached to a Lenovo
+USB-C docking station. The display remains blank until the dock is
+reattached. Revert to bring the behavior of the functional v5.6 stable.
 
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:1147: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_wait_unlocked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:1169: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_poll_wait'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:1189: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_read'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:2669: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_stream_enable'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:2734: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_stream_disable'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:2820: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_stream_init'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3010: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_read'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3098: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_poll_locked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3129: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_poll'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3152: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_enable_locked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3181: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_disable_locked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3273: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_ioctl'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3296: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_destroy_locked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3321: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_release'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3379: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_open_ioctl_locked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3534: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'read_properties_unlocked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3717: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_open_ioctl'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3760: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_register'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3789: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_unregister'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4009: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_add_config_ioctl'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4162: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_remove_config_ioctl'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4260: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_init'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4423: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_fini'.
+This reverts commit 0f8839f5f323da04a800e6ced1136e4b1e1689a9.
 
-With Sphinx 3, C declarations can't be duplicated anymore,
-so let's exclude those from the other internals found on
-i915_perf.c file.
-
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+BugLink: https://bugzilla.redhat.com/show_bug.cgi?id=1879442
+Signed-off-by: Stefan Joosten <stefan@atcomputing.nl>
 ---
- Documentation/gpu/i915.rst | 29 +++++++++++++++++++++++++----
- 1 file changed, 25 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 14 --------------
+ 1 file changed, 14 deletions(-)
 
-diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-index 33cc6ddf8f64..cff1f154b473 100644
---- a/Documentation/gpu/i915.rst
-+++ b/Documentation/gpu/i915.rst
-@@ -636,15 +636,36 @@ i915 Perf Observation Architecture Stream
- .. kernel-doc:: drivers/gpu/drm/i915/i915_perf.c
-    :functions: i915_oa_poll_wait
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index b18c5ac2934d..ece1c28278f7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -14942,20 +14942,6 @@ static int intel_atomic_check(struct drm_device *dev,
+ 	if (ret)
+ 		goto fail;
  
--All i915 Perf Internals
-------------------------
-+Other i915 Perf Internals
-+-------------------------
- 
--This section simply includes all currently documented i915 perf internals, in
--no particular order, but may include some more minor utilities or platform
-+This section simply includes all other currently documented i915 perf internals,
-+in no particular order, but may include some more minor utilities or platform
- specific details than found in the more high-level sections.
- 
- .. kernel-doc:: drivers/gpu/drm/i915/i915_perf.c
-    :internal:
-+   :no-identifiers:
-+       i915_perf_init
-+       i915_perf_fini
-+       i915_perf_register
-+       i915_perf_unregister
-+       i915_perf_open_ioctl
-+       i915_perf_release
-+       i915_perf_add_config_ioctl
-+       i915_perf_remove_config_ioctl
-+       read_properties_unlocked
-+       i915_perf_open_ioctl_locked
-+       i915_perf_destroy_locked
-+       i915_perf_read i915_perf_ioctl
-+       i915_perf_enable_locked
-+       i915_perf_disable_locked
-+       i915_perf_poll i915_perf_poll_locked
-+       i915_oa_stream_init i915_oa_read
-+       i915_oa_stream_enable
-+       i915_oa_stream_disable
-+       i915_oa_wait_unlocked
-+       i915_oa_poll_wait
- 
- Style
- =====
+-	/*
+-	 * distrust_bios_wm will force a full dbuf recomputation
+-	 * but the hardware state will only get updated accordingly
+-	 * if state->modeset==true. Hence distrust_bios_wm==true &&
+-	 * state->modeset==false is an invalid combination which
+-	 * would cause the hardware and software dbuf state to get
+-	 * out of sync. We must prevent that.
+-	 *
+-	 * FIXME clean up this mess and introduce better
+-	 * state tracking for dbuf.
+-	 */
+-	if (dev_priv->wm.distrust_bios_wm)
+-		any_ms = true;
+-
+ 	intel_fbc_choose_crtc(dev_priv, state);
+ 	ret = calc_watermark_data(state);
+ 	if (ret)
 -- 
-2.26.2
+2.25.4
+
 
 _______________________________________________
 Intel-gfx mailing list
