@@ -1,58 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F21527EFB9
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 18:53:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8B2327EF3E
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 18:31:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA3B66E064;
-	Wed, 30 Sep 2020 16:53:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FA8B6E489;
+	Wed, 30 Sep 2020 16:31:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from hqnvemgate24.nvidia.com (hqnvemgate24.nvidia.com
- [216.228.121.143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4689589DB8;
- Wed, 30 Sep 2020 15:40:26 +0000 (UTC)
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B5f74a6830001>; Wed, 30 Sep 2020 08:38:43 -0700
-Received: from [172.27.13.156] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 30 Sep
- 2020 15:40:18 +0000
-To: Jason Gunthorpe <jgg@nvidia.com>
-References: <20200927064647.3106737-1-leon@kernel.org>
- <20200927064647.3106737-5-leon@kernel.org>
- <20200929195929.GA803555@nvidia.com> <20200930095321.GL3094@unreal>
- <20200930114527.GE816047@nvidia.com>
- <80c49ff1-52c7-638f-553f-9de8130b188d@nvidia.com>
- <20200930115837.GF816047@nvidia.com>
- <7e09167f-c57a-cdfe-a842-c920e9421e53@nvidia.com>
- <20200930151406.GM816047@nvidia.com>
-From: Maor Gottlieb <maorg@nvidia.com>
-Message-ID: <086a82d3-fd3a-7160-dba4-c7b223585b88@nvidia.com>
-Date: Wed, 30 Sep 2020 18:40:15 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB4376E4CD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 16:31:31 +0000 (UTC)
+IronPort-SDR: 4q8lut5rPu2NxCoUmrso11cvRXpeiFZIXc4pWRf+CKWZr+XVuYaEux1932iLmXE9AXIfnJRAOA
+ JAACYdYjXroQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="180647533"
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="180647533"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 09:31:29 -0700
+IronPort-SDR: HYWdbzaWGyTX4RWpVxFXlgmIoYM5bVsknOpUyNclV8CJRvWz3IrDjDvPoHiLXdrwOpDXFLdvOd
+ jDjetlgMYAXA==
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="457715588"
+Received: from jjgryzlo-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.105.223])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 09:31:28 -0700
+Date: Wed, 30 Sep 2020 09:31:26 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <20200930163126.6p4d6tfrfxwt7z6c@ldmartin-desk1>
+X-Patchwork-Hint: ignore
+References: <20200930153016.105711-1-lucas.demarchi@intel.com>
+ <CAM0jSHON6C2xvg9DezVYku2Ue-k94SGUZ9269ZZ49PjYqsTW4A@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200930151406.GM816047@nvidia.com>
-Content-Language: en-US
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1601480324; bh=q/MX2HPw+Rl/oCY6oRvBsm/gn1tjQ5WhgRmOnWsAgQA=;
- h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
- MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
- Content-Language:X-Originating-IP:X-ClientProxiedBy;
- b=WaVIxgyVk3b9bgUcy85wupDJhbbDtGuPqHhr8jyeRr1uTOTwPSn80cEQrT2VOHqgO
- V22dizW+QUZgEduNkEJDaPoCQxGyxuLgvEVVDNSShG1qgWKQng8Nm/usd/GFlZRFfx
- CnNMioOZOhW8AYxa+gyh+TiWnPzfJSgsIotUhHtpoxBcs2LEsS/xvvCBS441nIJT+9
- jDa9BufMDv2CW7O5OP72rhLeXweRy1sB/RbvVFOvruWdozkaqS2TG6T5EAs+xAnf/a
- uWEk9j6KrRowRZKFMYqnJXa6UqzUJr/iKZUhLABwhFOi4SxRKt8TxXB7eS2LlK/kWc
- zJqt9g7z1xCJw==
-X-Mailman-Approved-At: Wed, 30 Sep 2020 16:53:52 +0000
-Subject: Re: [Intel-gfx] [PATCH rdma-next v4 4/4] RDMA/umem: Move to
- allocate SG table from pages
+Content-Disposition: inline
+In-Reply-To: <CAM0jSHON6C2xvg9DezVYku2Ue-k94SGUZ9269ZZ49PjYqsTW4A@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: don't conflate is_dgfx with fake
+ lmem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,31 +52,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leon Romanovsky <leon@kernel.org>, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, Roland Scheidegger <sroland@vmware.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, Doug Ledford <dledford@redhat.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Christoph Hellwig <hch@lst.de>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDkvMzAvMjAyMCA2OjE0IFBNLCBKYXNvbiBHdW50aG9ycGUgd3JvdGU6Cj4gT24gV2VkLCBT
-ZXAgMzAsIDIwMjAgYXQgMDY6MDU6MTVQTSArMDMwMCwgTWFvciBHb3R0bGllYiB3cm90ZToKPj4g
-VGhpcyBpcyByaWdodCBvbmx5IGZvciB0aGUgbGFzdCBpdGVyYXRpb24uIEUuZy4gaW4gdGhlIGZp
-cnN0IGl0ZXJhdGlvbiBpbgo+PiBjYXNlIHRoYXQgdGhlcmUgYXJlIG1vcmUgcGFnZXMgKGxlZnRf
-cGFnZXMpLCB0aGVuIHdlIGFsbG9jYXRlCj4+IFNHX01BWF9TSU5HTEVfQUxMT0MuwqAgV2UgZG9u
-J3Qga25vdyBob3cgbWFueSBwYWdlcyBmcm9tIHRoZSBzZWNvbmQgaXRlcmF0aW9uCj4+IHdpbGwg
-YmUgc3F1YXNoZWQgdG8gdGhlIFNHRSBmcm9tIHRoZSBmaXJzdCBpdGVyYXRpb24uCj4gV2VsbCwg
-aXQgaXMgMCBvciAxIFNHRSdzLiBDaGVjayBpZiB0aGUgZmlyc3QgcGFnZSBpcyBtZXJnYWJsZSBh
-bmQKPiBzdWJ0cmFjdCBvbmUgZnJvbSB0aGUgcmVxdWlyZWQgbGVuZ3RoPwo+Cj4gSSBkaXNsaWtl
-IHRoaXMgc2dfbWFya19lbmQoKSBpdCBpcyBzb21ldGhpbmcgdGhhdCBzaG91bGQgYmUgaW50ZXJu
-YWwsCj4gSU1ITy4KCkkgY2FuIG1vdmUgaXQgdG8gX19zZ19hbGxvY190YWJsZV9mcm9tX3BhZ2Vz
-OgoKIMKgwqDCoMKgwqDCoMKgIHNndC0+bmVudHMgPSB0bXBfbmVudHM7CisgaWYgKCFsZWZ0X3Bh
-Z2VzKQorwqDCoMKgwqDCoMKgwqDCoCBzZ19tYXJrX2VuZChzKTsKIMKgb3V0OgogwqDCoMKgwqDC
-oMKgwqAgcmV0dXJuIHM7Cgo+Cj4gSmFzb24KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Sep 30, 2020 at 04:58:42PM +0100, Matthew Auld wrote:
+>On Wed, 30 Sep 2020 at 16:30, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>
+>> When using fake lmem for tests, we are overriding the setting in
+>> device info for dgfx devices. Current users of IS_DGFX() are correct,
+>> but as we add support for DG1, we are going to use it in additional
+>> places to trigger dgfx-only code path.
+>>
+>> In future if we need we can use HAS_LMEM() instead of IS_DGFX() in the
+>> places that make sense to also contemplate fake lmem use.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_drv.c | 2 --
+>>  1 file changed, 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+>> index 45e719c79183..3f6ed142198c 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.c
+>> +++ b/drivers/gpu/drm/i915/i915_drv.c
+>> @@ -840,9 +840,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>>                     i915->params.fake_lmem_start) {
+>>                         mkwrite_device_info(i915)->memory_regions =
+>>                                 REGION_SMEM | REGION_LMEM | REGION_STOLEN;
+>> -                       mkwrite_device_info(i915)->is_dgfx = true;
+>>                         GEM_BUG_ON(!HAS_LMEM(i915));
+>> -                       GEM_BUG_ON(!IS_DGFX(i915));
+>
+>Hmm, I guess this could work as an option c) but I think we will also
+>need to add something like:
+>
+>@@ -835,7 +835,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+>        u16 snb_gmch_ctl;
+>
+>        /* TODO: We're not aware of mappable constraints on gen8 yet */
+>-       if (!IS_DGFX(i915)) {
+>+       if (!IS_DGFX(i915) && !HAS_LMEM(i915)) {
+>                ggtt->gmadr = pci_resource(pdev, 2);
+>                ggtt->mappable_end = resource_size(&ggtt->gmadr);
+>        }
+>
+>The point is that we need to steal the mappable aperture later(which
+>is fine since it doesn't exist on "DGFX"), and use it as a substitute
+>for LMEMBAR. The !mappable aperture property is also useful since it
+>exercises some other parts of the code too.
+
+humn.. this was actually the one I was on the fence switching to
+HAS_LMEM().  It seemed to me we would not need to, but now I understand.
+
+But since !HAS_LMEM() implies !IS_DGFX(), I would rather just replace
+the check.
+
+@@ -835,7 +835,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+         u16 snb_gmch_ctl;
+
+         /* TODO: We're not aware of mappable constraints on gen8 yet */
+-       if (!IS_DGFX(i915)) {
++       if (!HAS_LMEM(i915)) {
+                 ggtt->gmadr = pci_resource(pdev, 2);
+                 ggtt->mappable_end = resource_size(&ggtt->gmadr);
+         }
+
+
+Lucas De Marchi
+
+>
+>Assuming CI is happy and this unbocks you then,
+>Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
