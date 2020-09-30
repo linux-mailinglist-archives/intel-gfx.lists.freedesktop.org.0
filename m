@@ -2,43 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B64A27EF99
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 18:50:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD50227EFA8
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 18:51:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 651C589CF9;
-	Wed, 30 Sep 2020 16:50:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C5FF89E33;
+	Wed, 30 Sep 2020 16:51:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB3BD89CF9
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 16:50:09 +0000 (UTC)
-IronPort-SDR: LyCKRj8ZFJTm6MDyAta89Wo2q5pJhcWKerZKvAxBPow/KmTZtQOjECbLmF37SZ2m8QVJEVUHV3
- 2DwhzEXt5bBA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="162547932"
-X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="162547932"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 09:50:09 -0700
-IronPort-SDR: zI0vN1SVQESjWFPzwJh67FfExDZ6SBFai9lf9hM0iRmFMwBXNuLirM+OEAFJe93zsY4WbZXYrG
- TJ+k7yDSbLiA==
-X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="325096343"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 09:50:09 -0700
-Date: Wed, 30 Sep 2020 09:50:07 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20200930165007.GA2245633@mdroper-desk1.amr.corp.intel.com>
-References: <20200930064234.85769-1-lucas.demarchi@intel.com>
- <20200930064234.85769-23-lucas.demarchi@intel.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2700989DD2;
+ Wed, 30 Sep 2020 16:51:47 +0000 (UTC)
+Received: from localhost (unknown [213.57.247.131])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 1FD65206C9;
+ Wed, 30 Sep 2020 16:51:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1601484706;
+ bh=MwdJW4mqrWOrBCkHeReFHIvPIJHWwvzq0/1WZ3thz34=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=0QiwqGrru7E0hnFByyf199zgzY5HfiHmMto2K2DP2GQaRpF+SQylW3LD64x0jYywQ
+ GcH0r71FBZ2SrN2dwCGbIV3fjNBJqBLpm/gW0SCLI6mvVwTGAH152XfnjfVFnYbu9N
+ wSMSXIznFZBAd5pNwXWXfAuppEMtLhJPcm6C38Ms=
+Date: Wed, 30 Sep 2020 19:51:42 +0300
+From: Leon Romanovsky <leon@kernel.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20200930165142.GS3094@unreal>
+References: <20200927064647.3106737-1-leon@kernel.org>
+ <20200927064647.3106737-5-leon@kernel.org>
+ <20200929195929.GA803555@nvidia.com> <20200930095321.GL3094@unreal>
+ <20200930114527.GE816047@nvidia.com>
+ <80c49ff1-52c7-638f-553f-9de8130b188d@nvidia.com>
+ <20200930115837.GF816047@nvidia.com>
+ <7e09167f-c57a-cdfe-a842-c920e9421e53@nvidia.com>
+ <20200930151406.GM816047@nvidia.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200930064234.85769-23-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v6 22/24] drm/i915/dg1: DG1 does not support
- DC6
+In-Reply-To: <20200930151406.GM816047@nvidia.com>
+Subject: Re: [Intel-gfx] [PATCH rdma-next v4 4/4] RDMA/umem: Move to
+ allocate SG table from pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,74 +53,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Roland Scheidegger <sroland@vmware.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ Doug Ledford <dledford@redhat.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Maor Gottlieb <maorg@nvidia.com>, Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 29, 2020 at 11:42:32PM -0700, Lucas De Marchi wrote:
-> From: Anshuman Gupta <anshuman.gupta@intel.com>
-> 
-> DC6 is not supported on DG1, so change the allowed DC mask for DG1.
-> 
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+On Wed, Sep 30, 2020 at 12:14:06PM -0300, Jason Gunthorpe wrote:
+> On Wed, Sep 30, 2020 at 06:05:15PM +0300, Maor Gottlieb wrote:
+> > This is right only for the last iteration. E.g. in the first iteration =
+in
+> > case that there are more pages (left_pages), then we allocate
+> > SG_MAX_SINGLE_ALLOC.=A0 We don't know how many pages from the second it=
+eration
+> > will be squashed to the SGE from the first iteration.
+>
+> Well, it is 0 or 1 SGE's. Check if the first page is mergable and
+> subtract one from the required length?
+>
+> I dislike this sg_mark_end() it is something that should be internal,
+> IMHO.
 
-Do we have a bspec reference for this?  I can't find anything specific
-about this from a casual skim of the pages I'd expect it to be mentioned
-on.
+I don't think so, but Maor provided possible solution.
+Can you take the patches?
 
-If we have a reference added (or a note clarifying that we have offline
-confirmation from hardware architects),
+Thanks
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-
-At some point I think we should re-write this section of the code in
-general.  The magic numbers used here are annoying, and a driver
-modparam named 'enable_dc' really sounds like it should be a bitmask of
-the exact DCs supported (rather than defining a combination of 'up to'
-values + DC3CO and omitting DC9 completely).  But we don't need to do
-that in a DG1 enabling patch.
-
-
-Matt
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 0827e68a9d89..7dfc697ccf78 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -4689,7 +4689,10 @@ static u32 get_allowed_dc_mask(const struct drm_i915_private *dev_priv,
->  	int max_dc;
->  
->  	if (INTEL_GEN(dev_priv) >= 12) {
-> -		max_dc = 4;
-> +		if (IS_DG1(dev_priv))
-> +			max_dc = 3;
-> +		else
-> +			max_dc = 4;
->  		/*
->  		 * DC9 has a separate HW flow from the rest of the DC states,
->  		 * not depending on the DMC firmware. It's needed by system
-> -- 
-> 2.28.0
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+>
+> Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
