@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33D7A27EFC7
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 18:57:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9DFD27EFE8
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 19:04:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 120BC89D49;
-	Wed, 30 Sep 2020 16:57:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E19FF6E214;
+	Wed, 30 Sep 2020 17:04:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2410089CCB;
- Wed, 30 Sep 2020 16:57:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1C310A011C;
- Wed, 30 Sep 2020 16:57:05 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 278986E214
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 17:04:50 +0000 (UTC)
+IronPort-SDR: ISgenupr1YB6S78IUT6ptNbox6+Dokgie5uZiQJCi/7Qb3CNygDM11ojXmUVnZ3vzXvTxRO/EO
+ H2TI1WFJGg6w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="224091455"
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="224091455"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 10:04:49 -0700
+IronPort-SDR: f6u45MuWv/el1mAYCuQJ5V91lIojecY0jeLJugjoVQwMpR+m3FTUlpc6oSCGFhRPSQ77mNbXS7
+ OXFJSq7G249A==
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="457734873"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 10:04:48 -0700
+Date: Wed, 30 Sep 2020 20:04:44 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200930170444.GK867650@ideak-desk.fi.intel.com>
+References: <20200929233449.32323-1-ville.syrjala@linux.intel.com>
+ <20200929233449.32323-12-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 30 Sep 2020 16:57:05 -0000
-Message-ID: <160148502508.17416.11507075947370331180@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200930163253.2789-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200930163253.2789-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915/gt=3A_Signal_cancelle?=
- =?utf-8?q?d_requests?=
+Content-Disposition: inline
+In-Reply-To: <20200929233449.32323-12-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 11/11] drm/i915: Eliminate
+ intel_dp.regs.dp_tp_{ctl, status}
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,265 +50,497 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1929638833=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1929638833==
-Content-Type: multipart/alternative;
- boundary="===============5353066782755534087=="
+On Wed, Sep 30, 2020 at 02:34:49AM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
---===============5353066782755534087==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Now that we've plumbed the crtc state all the way down we can
+> eliminate the DP_TP_{CTL,STATUS} register offsets from intel_dp,
+> and instead we derive them directly from the crtc state.
+> =
 
-== Series Details ==
+> And thus we can get rid of the nasty hack in intel_ddi_get_config()
+> which mutates intel_dp during the readout.
+> =
 
-Series: series starting with [CI,1/3] drm/i915/gt: Signal cancelled requests
-URL   : https://patchwork.freedesktop.org/series/82267/
-State : failure
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-== Summary ==
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-CI Bug Log - changes from CI_DRM_9079 -> Patchwork_18600
-====================================================
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 107 ++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_ddi.h      |   5 +
+>  .../drm/i915/display/intel_display_types.h    |   8 --
+>  drivers/gpu/drm/i915/display/intel_dp.c       |   2 -
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  24 ++--
+>  5 files changed, 76 insertions(+), 70 deletions(-)
+> =
 
-Summary
--------
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index cdf3e5540482..11297a8af3b7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3295,6 +3295,37 @@ icl_program_mg_dp_mode(struct intel_digital_port *=
+dig_port,
+>  	}
+>  }
+>  =
 
-  **FAILURE**
+> +static enum transcoder
+> +tgl_dp_tp_transcoder(const struct intel_crtc_state *crtc_state)
+> +{
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST))
+> +		return crtc_state->mst_master_transcoder;
+> +	else
+> +		return crtc_state->cpu_transcoder;
+> +}
+> +
+> +i915_reg_t dp_tp_ctl_reg(struct intel_encoder *encoder,
+> +			 const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+> +	if (INTEL_GEN(dev_priv) >=3D 12)
+> +		return TGL_DP_TP_CTL(tgl_dp_tp_transcoder(crtc_state));
+> +	else
+> +		return DP_TP_CTL(encoder->port);
+> +}
+> +
+> +i915_reg_t dp_tp_status_reg(struct intel_encoder *encoder,
+> +			    const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+> +	if (INTEL_GEN(dev_priv) >=3D 12)
+> +		return TGL_DP_TP_STATUS(tgl_dp_tp_transcoder(crtc_state));
+> +	else
+> +		return DP_TP_STATUS(encoder->port);
+> +}
+> +
+>  static void intel_dp_sink_set_fec_ready(struct intel_dp *intel_dp,
+>  					const struct intel_crtc_state *crtc_state)
+>  {
+> @@ -3319,11 +3350,12 @@ static void intel_ddi_enable_fec(struct intel_enc=
+oder *encoder,
+>  		return;
+>  =
 
-  Serious unknown changes coming with Patchwork_18600 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18600, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+>  	intel_dp =3D enc_to_intel_dp(encoder);
+> -	val =3D intel_de_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> +	val =3D intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+>  	val |=3D DP_TP_CTL_FEC_ENABLE;
+> -	intel_de_write(dev_priv, intel_dp->regs.dp_tp_ctl, val);
+> +	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/index.html
+> -	if (intel_de_wait_for_set(dev_priv, intel_dp->regs.dp_tp_status,
+> +	if (intel_de_wait_for_set(dev_priv,
+> +				  dp_tp_status_reg(encoder, crtc_state),
+>  				  DP_TP_STATUS_FEC_ENABLE_LIVE, 1))
+>  		drm_err(&dev_priv->drm,
+>  			"Timed out waiting for FEC Enable Status\n");
+> @@ -3340,10 +3372,10 @@ static void intel_ddi_disable_fec_state(struct in=
+tel_encoder *encoder,
+>  		return;
+>  =
 
-Possible new issues
--------------------
+>  	intel_dp =3D enc_to_intel_dp(encoder);
+> -	val =3D intel_de_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> +	val =3D intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+>  	val &=3D ~DP_TP_CTL_FEC_ENABLE;
+> -	intel_de_write(dev_priv, intel_dp->regs.dp_tp_ctl, val);
+> -	intel_de_posting_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> +	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
+> +	intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+>  }
+>  =
 
-  Here are the unknown changes that may have been introduced in Patchwork_18600:
+>  static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> @@ -3357,15 +3389,11 @@ static void tgl_ddi_pre_enable_dp(struct intel_at=
+omic_state *state,
+>  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+>  	bool is_mst =3D intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
+>  	int level =3D intel_ddi_dp_level(intel_dp);
+> -	enum transcoder transcoder =3D crtc_state->cpu_transcoder;
+>  =
 
-### IGT changes ###
+>  	intel_dp_set_link_params(intel_dp,
+>  				 crtc_state->port_clock,
+>  				 crtc_state->lane_count);
+>  =
 
-#### Possible regressions ####
+> -	intel_dp->regs.dp_tp_ctl =3D TGL_DP_TP_CTL(transcoder);
+> -	intel_dp->regs.dp_tp_status =3D TGL_DP_TP_STATUS(transcoder);
+> -
+>  	/*
+>  	 * 1. Enable Power Wells
+>  	 *
+> @@ -3682,12 +3710,10 @@ static void intel_disable_ddi_buf(struct intel_en=
+coder *encoder,
+>  	}
+>  =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-cfl-8109u:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+>  	if (intel_crtc_has_dp_encoder(crtc_state)) {
+> -		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> -
+> -		val =3D intel_de_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> +		val =3D intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+>  		val &=3D ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
+>  		val |=3D DP_TP_CTL_LINK_TRAIN_PAT1;
+> -		intel_de_write(dev_priv, intel_dp->regs.dp_tp_ctl, val);
+> +		intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
+>  	}
+>  =
 
-  
-Known issues
-------------
+>  	/* Disable FEC in DP Sink */
+> @@ -4184,13 +4210,13 @@ intel_ddi_pre_pll_enable(struct intel_atomic_stat=
+e *state,
+>  static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+>  					   const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+> -	struct drm_i915_private *dev_priv =3D to_i915(dig_port->base.base.dev);
+> -	enum port port =3D dig_port->base.port;
+> +	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	enum port port =3D encoder->port;
+>  	u32 dp_tp_ctl, ddi_buf_ctl;
+>  	bool wait =3D false;
+>  =
 
-  Here are the changes found in Patchwork_18600 that come from known issues:
+> -	dp_tp_ctl =3D intel_de_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> +	dp_tp_ctl =3D intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state=
+));
+>  =
 
-### IGT changes ###
+>  	if (dp_tp_ctl & DP_TP_CTL_ENABLE) {
+>  		ddi_buf_ctl =3D intel_de_read(dev_priv, DDI_BUF_CTL(port));
+> @@ -4202,8 +4228,8 @@ static void intel_ddi_prepare_link_retrain(struct i=
+ntel_dp *intel_dp,
+>  =
 
-#### Possible fixes ####
+>  		dp_tp_ctl &=3D ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
+>  		dp_tp_ctl |=3D DP_TP_CTL_LINK_TRAIN_PAT1;
+> -		intel_de_write(dev_priv, intel_dp->regs.dp_tp_ctl, dp_tp_ctl);
+> -		intel_de_posting_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> +		intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl=
+);
+> +		intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+>  =
 
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-x1275:       [DMESG-WARN][3] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-kbl-x1275/igt@kms_busy@basic@flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+>  		if (wait)
+>  			intel_wait_ddi_buf_idle(dev_priv, port);
+> @@ -4218,8 +4244,8 @@ static void intel_ddi_prepare_link_retrain(struct i=
+ntel_dp *intel_dp,
+>  		if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+>  			dp_tp_ctl |=3D DP_TP_CTL_ENHANCED_FRAME_ENABLE;
+>  	}
+> -	intel_de_write(dev_priv, intel_dp->regs.dp_tp_ctl, dp_tp_ctl);
+> -	intel_de_posting_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> +	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
+> +	intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+>  =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+>  	intel_dp->DP |=3D DDI_BUF_CTL_ENABLE;
+>  	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
+> @@ -4232,11 +4258,12 @@ static void intel_ddi_set_link_train(struct intel=
+_dp *intel_dp,
+>  				     const struct intel_crtc_state *crtc_state,
+>  				     u8 dp_train_pat)
+>  {
+> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> +	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	u8 train_pat_mask =3D drm_dp_training_pattern_mask(intel_dp->dpcd);
+>  	u32 temp;
+>  =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][7] ([i915#1982]) -> [PASS][8] +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+> -	temp =3D intel_de_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> +	temp =3D intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+>  =
 
-  
-#### Warnings ####
+>  	temp &=3D ~DP_TP_CTL_LINK_TRAIN_MASK;
+>  	switch (dp_train_pat & train_pat_mask) {
+> @@ -4257,7 +4284,7 @@ static void intel_ddi_set_link_train(struct intel_d=
+p *intel_dp,
+>  		break;
+>  	}
+>  =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#62] / [i915#92]) +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+> -	intel_de_write(dev_priv, intel_dp->regs.dp_tp_ctl, temp);
+> +	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), temp);
+>  }
+>  =
 
-  * igt@kms_flip@basic-flip-vs-dpms@a-dp1:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html
+>  static void intel_ddi_set_idle_link_train(struct intel_dp *intel_dp,
+> @@ -4268,10 +4295,10 @@ static void intel_ddi_set_idle_link_train(struct =
+intel_dp *intel_dp,
+>  	enum port port =3D encoder->port;
+>  	u32 val;
+>  =
 
-  * igt@vgem_basic@unload:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-kbl-x1275/igt@vgem_basic@unload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-kbl-x1275/igt@vgem_basic@unload.html
+> -	val =3D intel_de_read(dev_priv, intel_dp->regs.dp_tp_ctl);
+> +	val =3D intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+>  	val &=3D ~DP_TP_CTL_LINK_TRAIN_MASK;
+>  	val |=3D DP_TP_CTL_LINK_TRAIN_IDLE;
+> -	intel_de_write(dev_priv, intel_dp->regs.dp_tp_ctl, val);
+> +	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
+>  =
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+>  	/*
+>  	 * Until TGL on PORT_A we can have only eDP in SST mode. There the only
+> @@ -4283,7 +4310,8 @@ static void intel_ddi_set_idle_link_train(struct in=
+tel_dp *intel_dp,
+>  	if (port =3D=3D PORT_A && INTEL_GEN(dev_priv) < 12)
+>  		return;
+>  =
 
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+> -	if (intel_de_wait_for_set(dev_priv, intel_dp->regs.dp_tp_status,
+> +	if (intel_de_wait_for_set(dev_priv,
+> +				  dp_tp_status_reg(encoder, crtc_state),
+>  				  DP_TP_STATUS_IDLE_DONE, 1))
+>  		drm_err(&dev_priv->drm,
+>  			"Timed out waiting for DP idle patterns\n");
+> @@ -4381,7 +4409,6 @@ void intel_ddi_get_config(struct intel_encoder *enc=
+oder,
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	struct intel_crtc *intel_crtc =3D to_intel_crtc(pipe_config->uapi.crtc);
+>  	enum transcoder cpu_transcoder =3D pipe_config->cpu_transcoder;
+> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>  	u32 temp, flags =3D 0;
+>  =
 
+>  	/* XXX: DSI transcoder paranoia */
+> @@ -4451,12 +4478,7 @@ void intel_ddi_get_config(struct intel_encoder *en=
+coder,
+>  		intel_dp_get_m_n(intel_crtc, pipe_config);
+>  =
 
-Participating hosts (45 -> 37)
-------------------------------
+>  		if (INTEL_GEN(dev_priv) >=3D 11) {
+> -			i915_reg_t dp_tp_ctl;
+> -
+> -			if (IS_GEN(dev_priv, 11))
+> -				dp_tp_ctl =3D DP_TP_CTL(encoder->port);
+> -			else
+> -				dp_tp_ctl =3D TGL_DP_TP_CTL(pipe_config->cpu_transcoder);
+> +			i915_reg_t dp_tp_ctl =3D dp_tp_ctl_reg(encoder, pipe_config);
+>  =
 
-  Missing    (8): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+>  			pipe_config->fec_enable =3D
+>  				intel_de_read(dev_priv, dp_tp_ctl) & DP_TP_CTL_FEC_ENABLE;
+> @@ -4489,16 +4511,6 @@ void intel_ddi_get_config(struct intel_encoder *en=
+coder,
+>  		break;
+>  	}
+>  =
 
+> -	if (INTEL_GEN(dev_priv) >=3D 12) {
+> -		enum transcoder transcoder =3D
+> -			intel_dp_mst_is_slave_trans(pipe_config) ?
+> -			pipe_config->mst_master_transcoder :
+> -			pipe_config->cpu_transcoder;
+> -
+> -		intel_dp->regs.dp_tp_ctl =3D TGL_DP_TP_CTL(transcoder);
+> -		intel_dp->regs.dp_tp_status =3D TGL_DP_TP_STATUS(transcoder);
+> -	}
+> -
+>  	pipe_config->has_audio =3D
+>  		intel_ddi_is_audio_enabled(dev_priv, cpu_transcoder);
+>  =
 
-Build changes
--------------
+> @@ -4763,11 +4775,6 @@ intel_ddi_init_dp_connector(struct intel_digital_p=
+ort *dig_port)
+>  	dig_port->dp.voltage_max =3D intel_ddi_dp_voltage_max;
+>  	dig_port->dp.preemph_max =3D intel_ddi_dp_preemph_max;
+>  =
 
-  * Linux: CI_DRM_9079 -> Patchwork_18600
+> -	if (INTEL_GEN(dev_priv) < 12) {
+> -		dig_port->dp.regs.dp_tp_ctl =3D DP_TP_CTL(port);
+> -		dig_port->dp.regs.dp_tp_status =3D DP_TP_STATUS(port);
+> -	}
+> -
+>  	if (!intel_dp_init_connector(dig_port, connector)) {
+>  		kfree(connector);
+>  		return NULL;
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i=
+915/display/intel_ddi.h
+> index 9a2ac73164f8..dcc711cfe4fe 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+> @@ -7,6 +7,7 @@
+>  #define __INTEL_DDI_H__
+>  =
 
-  CI-20190529: 20190529
-  CI_DRM_9079: ff48b6adb2bf89b3e3eb8cd41e36d173b57a6c79 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5794: eeccb2a17453f90ad92d1ab6f81ad7d344119d72 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18600: a0dd43e5df1d18edec4f2b2d9d8b781ca3056ca4 @ git://anongit.freedesktop.org/gfx-ci/linux
+>  #include "intel_display.h"
+> +#include "i915_reg.h"
+>  =
 
+>  struct drm_connector_state;
+>  struct drm_i915_private;
+> @@ -18,6 +19,10 @@ struct intel_dpll_hw_state;
+>  struct intel_encoder;
+>  enum transcoder;
+>  =
 
-== Linux commits ==
+> +i915_reg_t dp_tp_ctl_reg(struct intel_encoder *encoder,
+> +			 const struct intel_crtc_state *crtc_state);
+> +i915_reg_t dp_tp_status_reg(struct intel_encoder *encoder,
+> +			    const struct intel_crtc_state *crtc_state);
+>  void intel_ddi_fdi_post_disable(struct intel_atomic_state *state,
+>  				struct intel_encoder *intel_encoder,
+>  				const struct intel_crtc_state *old_crtc_state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 66d197153c93..d5dc18cb8c39 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1338,14 +1338,6 @@ struct intel_dp {
+>  	bool is_mst;
+>  	int active_mst_links;
+>  =
 
-a0dd43e5df1d drm/i915/gt: Retire cancelled requests on unload
-a091040c73de drm/i915/selftests: Finish pending mock requests on cancellation.
-fde2074074ee drm/i915/gt: Signal cancelled requests
+> -	/*
+> -	 * DP_TP_* registers may be either on port or transcoder register space.
+> -	 */
+> -	struct {
+> -		i915_reg_t dp_tp_ctl;
+> -		i915_reg_t dp_tp_status;
+> -	} regs;
+> -
+>  	/* connector directly attached - won't be use for modeset in mst world =
+*/
+>  	struct intel_connector *attached_connector;
+>  =
 
-== Logs ==
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 5ac8a06575d4..208851296cce 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -8109,8 +8109,6 @@ bool intel_dp_init(struct drm_i915_private *dev_pri=
+v,
+>  =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/index.html
+>  	dig_port->dp.output_reg =3D output_reg;
+>  	dig_port->max_lanes =3D 4;
+> -	dig_port->dp.regs.dp_tp_ctl =3D DP_TP_CTL(port);
+> -	dig_port->dp.regs.dp_tp_status =3D DP_TP_STATUS(port);
+>  =
 
---===============5353066782755534087==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+>  	intel_encoder->type =3D INTEL_OUTPUT_DP;
+>  	intel_encoder->power_domain =3D intel_port_to_power_domain(port);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index 6a874b779b1f..82f38c386dbd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -318,19 +318,23 @@ intel_dp_mst_atomic_check(struct drm_connector *con=
+nector,
+>  	return ret;
+>  }
+>  =
 
+> -static void clear_act_sent(struct intel_dp *intel_dp)
+> +static void clear_act_sent(struct intel_encoder *encoder,
+> +			   const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>  =
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> -	intel_de_write(i915, intel_dp->regs.dp_tp_status,
+> +	intel_de_write(i915, dp_tp_status_reg(encoder, crtc_state),
+>  		       DP_TP_STATUS_ACT_SENT);
+>  }
+>  =
 
+> -static void wait_for_act_sent(struct intel_dp *intel_dp)
+> +static void wait_for_act_sent(struct intel_encoder *encoder,
+> +			      const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+> +	struct intel_dp_mst_encoder *intel_mst =3D enc_to_mst(encoder);
+> +	struct intel_dp *intel_dp =3D &intel_mst->primary->dp;
+>  =
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm/i915/gt: Signal cancelled requests</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82267/">https://patchwork.freedesktop.org/series/82267/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+> -	if (intel_de_wait_for_set(i915, intel_dp->regs.dp_tp_status,
+> +	if (intel_de_wait_for_set(i915, dp_tp_status_reg(encoder, crtc_state),
+>  				  DP_TP_STATUS_ACT_SENT, 1))
+>  		drm_err(&i915->drm, "Timed out waiting for ACT sent\n");
+>  =
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/index.html</a></td></tr>
+> @@ -392,7 +396,7 @@ static void intel_mst_post_disable_dp(struct intel_at=
+omic_state *state,
+>  =
 
-</table>
+>  	drm_dp_update_payload_part2(&intel_dp->mst_mgr);
+>  =
 
+> -	clear_act_sent(intel_dp);
+> +	clear_act_sent(encoder, old_crtc_state);
+>  =
 
-    <h1>CI Bug Log - changes from CI_DRM_9079 -&gt; Patchwork_18600</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_18600 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_18600, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_18600:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-cfl-8109u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18600 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-kbl-x1275/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-kbl-x1275/igt@kms_busy@basic@flip.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@a-dp1:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@unload:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9079/fi-kbl-x1275/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18600/fi-kbl-x1275/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 37)</h2>
-<p>Missing    (8): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9079 -&gt; Patchwork_18600</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9079: ff48b6adb2bf89b3e3eb8cd41e36d173b57a6c79 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5794: eeccb2a17453f90ad92d1ab6f81ad7d344119d72 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18600: a0dd43e5df1d18edec4f2b2d9d8b781ca3056ca4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>a0dd43e5df1d drm/i915/gt: Retire cancelled requests on unload<br />
-a091040c73de drm/i915/selftests: Finish pending mock requests on cancellation.<br />
-fde2074074ee drm/i915/gt: Signal cancelled requests</p>
+>  	val =3D intel_de_read(dev_priv,
+>  			    TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder));
+> @@ -401,7 +405,7 @@ static void intel_mst_post_disable_dp(struct intel_at=
+omic_state *state,
+>  		       TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder),
+>  		       val);
+>  =
 
-</body>
-</html>
+> -	wait_for_act_sent(intel_dp);
+> +	wait_for_act_sent(encoder, old_crtc_state);
+>  =
 
---===============5353066782755534087==--
+>  	drm_dp_mst_deallocate_vcpi(&intel_dp->mst_mgr, connector->port);
+>  =
 
---===============1929638833==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> @@ -535,7 +539,7 @@ static void intel_mst_enable_dp(struct intel_atomic_s=
+tate *state,
+>  =
 
+>  	drm_WARN_ON(&dev_priv->drm, pipe_config->has_pch_encoder);
+>  =
+
+> -	clear_act_sent(intel_dp);
+> +	clear_act_sent(encoder, pipe_config);
+>  =
+
+>  	intel_ddi_enable_transcoder_func(encoder, pipe_config);
+>  =
+
+> @@ -549,7 +553,7 @@ static void intel_mst_enable_dp(struct intel_atomic_s=
+tate *state,
+>  	drm_dbg_kms(&dev_priv->drm, "active links %d\n",
+>  		    intel_dp->active_mst_links);
+>  =
+
+> -	wait_for_act_sent(intel_dp);
+> +	wait_for_act_sent(encoder, pipe_config);
+>  =
+
+>  	drm_dp_update_payload_part2(&intel_dp->mst_mgr);
+>  =
+
+> -- =
+
+> 2.26.2
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1929638833==--
