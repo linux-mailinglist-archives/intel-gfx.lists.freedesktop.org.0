@@ -1,44 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A90C27F026
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 19:20:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 514C627F081
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 19:28:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 299206E7D1;
-	Wed, 30 Sep 2020 17:20:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE0D76E7D5;
+	Wed, 30 Sep 2020 17:28:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 308EC6E7D1
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 17:20:43 +0000 (UTC)
-IronPort-SDR: oH/fhGx5of3eSBBP1bIu2zJcMvslcdYQsX53FxZYmWvggwyR32cwQT1N+SWHR/0sisN3hqoC2Z
- 25gOpkG4hqig==
-X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="247224591"
-X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="247224591"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 10:20:42 -0700
-IronPort-SDR: rlbOWufWLX/IVZ8Z48Lwkvd9QXytFfcwg7pqz4RFheVwXDLsN8YhRplqKHZ5hBP2neyoc+rhm1
- GC/pyNzOO+EA==
-X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="339171675"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 10:20:42 -0700
-Date: Wed, 30 Sep 2020 10:20:41 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20200930172041.GB2245633@mdroper-desk1.amr.corp.intel.com>
-References: <20200930064234.85769-1-lucas.demarchi@intel.com>
- <20200930064234.85769-24-lucas.demarchi@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C11C16E7D5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 17:28:33 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22583181-1500050 
+ for multiple; Wed, 30 Sep 2020 18:28:20 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 30 Sep 2020 18:28:25 +0100
+Message-Id: <20200930172825.30975-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200930064234.85769-24-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v6 23/24] drm/i915/dg1: Change DMC_DEBUG{1,
- 2} registers
+Subject: [Intel-gfx] [PATCH] drm/i915: Skip over MI_NOOP when parsing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,86 +36,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 29, 2020 at 11:42:33PM -0700, Lucas De Marchi wrote:
-> From: Anshuman Gupta <anshuman.gupta@intel.com>
-> 
-> DGFX devices have different DMC_DEBUG* counter MMIO address
-> offset. Incorporate these changes in i915_reg.h for DG1
-> and handle i915_dmc_info accordingly.
-> 
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 9 +++++++--
->  drivers/gpu/drm/i915/i915_reg.h                      | 1 +
->  2 files changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 0bf31f9a8af5..472f119fe246 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -518,8 +518,13 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
->  		   CSR_VERSION_MINOR(csr->version));
->  
->  	if (INTEL_GEN(dev_priv) >= 12) {
-> -		dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
-> -		dc6_reg = TGL_DMC_DEBUG_DC6_COUNT;
-> +		if (IS_DG1(dev_priv)) {
+Though less likely in practice, igt uses MI_NOOP frequently to pad out
+its the batch buffers. The lookup and valiation of the MI_NOOP command
+description is noticeable, though the side-effect of poisoning the
+last-validate-command cache is more likely to impact upon real CS.
 
-I think we'd want IS_DGFX here since this change should hold true for
-any future dgfx platform as well.  Aside from that,
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/i915_cmd_parser.c | 58 +++++++++++++-------------
+ 1 file changed, 30 insertions(+), 28 deletions(-)
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-I notice the bspec does have a new DC6 residency register offset listed
-as well, which seems odd if we don't have DC6 support on this platform.
-
-
-Matt
-
-
-> +			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
-> +		} else {
-> +			dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
-> +			dc6_reg = TGL_DMC_DEBUG_DC6_COUNT;
-> +		}
-> +
->  		/*
->  		 * NOTE: DMC_DEBUG3 is a general purpose reg.
->  		 * According to B.Specs:49196 DMC f/w reuses DC5/6 counter
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index bb5094b80f15..b856a1fb0a32 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7538,6 +7538,7 @@ enum {
->  #define BXT_CSR_DC3_DC5_COUNT	_MMIO(0x80038)
->  #define TGL_DMC_DEBUG_DC5_COUNT	_MMIO(0x101084)
->  #define TGL_DMC_DEBUG_DC6_COUNT	_MMIO(0x101088)
-> +#define DG1_DMC_DEBUG_DC5_COUNT	_MMIO(0x134154)
->  
->  #define DMC_DEBUG3		_MMIO(0x101090)
->  
-> -- 
-> 2.28.0
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
+diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
+index e88970256e8e..20014663cd5e 100644
+--- a/drivers/gpu/drm/i915/i915_cmd_parser.c
++++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
+@@ -1453,42 +1453,44 @@ int intel_engine_cmd_parser(struct intel_engine_cs *engine,
+ 	 */
+ 	batch_end = cmd + batch_length / sizeof(*batch_end);
+ 	do {
+-		u32 length;
++		u32 length = 1;
+ 
+ 		if (*cmd == MI_BATCH_BUFFER_END)
+ 			break;
+ 
+-		desc = find_cmd(engine, *cmd, desc, &default_desc);
+-		if (!desc) {
+-			DRM_DEBUG("CMD: Unrecognized command: 0x%08X\n", *cmd);
+-			ret = -EINVAL;
+-			break;
+-		}
++		if (*cmd) {
++			desc = find_cmd(engine, *cmd, desc, &default_desc);
++			if (!desc) {
++				DRM_DEBUG("CMD: Unrecognized command: 0x%08X\n", *cmd);
++				ret = -EINVAL;
++				break;
++			}
+ 
+-		if (desc->flags & CMD_DESC_FIXED)
+-			length = desc->length.fixed;
+-		else
+-			length = (*cmd & desc->length.mask) + LENGTH_BIAS;
++			if (desc->flags & CMD_DESC_FIXED)
++				length = desc->length.fixed;
++			else
++				length = (*cmd & desc->length.mask) + LENGTH_BIAS;
+ 
+-		if ((batch_end - cmd) < length) {
+-			DRM_DEBUG("CMD: Command length exceeds batch length: 0x%08X length=%u batchlen=%td\n",
+-				  *cmd,
+-				  length,
+-				  batch_end - cmd);
+-			ret = -EINVAL;
+-			break;
+-		}
++			if ((batch_end - cmd) < length) {
++				DRM_DEBUG("CMD: Command length exceeds batch length: 0x%08X length=%u batchlen=%td\n",
++					  *cmd,
++					  length,
++					  batch_end - cmd);
++				ret = -EINVAL;
++				break;
++			}
+ 
+-		if (!check_cmd(engine, desc, cmd, length)) {
+-			ret = -EACCES;
+-			break;
+-		}
++			if (!check_cmd(engine, desc, cmd, length)) {
++				ret = -EACCES;
++				break;
++			}
+ 
+-		if (cmd_desc_is(desc, MI_BATCH_BUFFER_START)) {
+-			ret = check_bbstart(cmd, offset, length, batch_length,
+-					    batch_addr, shadow_addr,
+-					    jump_whitelist);
+-			break;
++			if (cmd_desc_is(desc, MI_BATCH_BUFFER_START)) {
++				ret = check_bbstart(cmd, offset, length, batch_length,
++						    batch_addr, shadow_addr,
++						    jump_whitelist);
++				break;
++			}
+ 		}
+ 
+ 		if (!IS_ERR_OR_NULL(jump_whitelist))
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
