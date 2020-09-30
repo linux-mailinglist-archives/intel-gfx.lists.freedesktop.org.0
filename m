@@ -2,41 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5FE027F0D2
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 19:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8BF27F138
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 20:21:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 112E06E824;
-	Wed, 30 Sep 2020 17:52:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FC106E5BD;
+	Wed, 30 Sep 2020 18:20:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D0706E5BE;
- Wed, 30 Sep 2020 17:52:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-Type:Content-ID:Content-Description;
- bh=ix+nhROFgS2R/TvryqxFuXEm6pOX6uuPKFVKed32kPg=; b=o71az0TAGIt+o23t9vEEPg9kBX
- 49t5J7kjHFOTFFFV1reywEKaB+iF5d6lYqgVAc7lLH43QPfngUbCNFDu6idG354NtO0I20tYUmc/S
- ZNAXVCDrReTupKXsw6F5l3EHk46VQsKDWXEuoaEZwsGrnxoyazLXMES+Zm9kzi1lpuCrDw+OOKSKn
- N9e7DoOAmhqH/Xf3idF4DAirJzTM4dZVdj0+5Xss/2Veo4YkuL/fEADv9DU6/Q4fO8Mv09yhcRXRO
- AJrpiNZlL0BIfp1/UyxfaKevrL7DT2VegvYl4HXyjB6G5Xg6D8J438SNVin3yQs9fbhbLooyU+aY6
- Vr5NdFSA==;
-Received: from [2001:4bb8:180:7b62:c70:4a89:bc61:4] (helo=localhost)
- by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNgGc-0001DO-6R; Wed, 30 Sep 2020 17:51:50 +0000
-From: Christoph Hellwig <hch@lst.de>
-To: Andrew Morton <akpm@linux-foundation.org>
-Date: Wed, 30 Sep 2020 19:51:33 +0200
-Message-Id: <20200930175133.1252382-11-hch@lst.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200930175133.1252382-1-hch@lst.de>
-References: <20200930175133.1252382-1-hch@lst.de>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C7526E057;
+ Wed, 30 Sep 2020 18:20:58 +0000 (UTC)
+IronPort-SDR: 0GTwuAEO5zgEGtKKFBo3FQfYm1xgR8DfuUL2x6ebHtTEDlCdJcIA33cugOqwk/bdYefuBUkEP4
+ ca/hvTuG+0Aw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="159902024"
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="159902024"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 11:20:52 -0700
+IronPort-SDR: 9Vb3E6ozvWB73NseKajot+EllQ2++xbyrAiunoR9Ya0+hNXa+vxD09CE21wMEW1aA14RUElCgw
+ hLBdRA89Be2A==
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="294112582"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 11:20:51 -0700
+Date: Wed, 30 Sep 2020 11:20:49 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200930182049.GD2245633@mdroper-desk1.amr.corp.intel.com>
+References: <d235e6f34182e327d8bb46383f6c3ef518b5fc23.camel@intel.com>
+ <20200929200201.GH6112@intel.com>
+ <a4a075597c7d3e65b25598ab696a59eccbd2a069.camel@intel.com>
+ <20200929203022.GI6112@intel.com>
+ <20200929210144.GA2214475@mdroper-desk1.amr.corp.intel.com>
+ <20200929211148.GJ6112@intel.com> <20200929215958.GK6112@intel.com>
+ <20200929233822.GC2214475@mdroper-desk1.amr.corp.intel.com>
+ <20200930103812.GL6112@intel.com> <87zh57mnft.fsf@intel.com>
 MIME-Version: 1.0
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
-Subject: [Intel-gfx] [PATCH 10/10] mm: remove alloc_vm_area
+Content-Disposition: inline
+In-Reply-To: <87zh57mnft.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/edp/jsl: Update vswing table
+ for HBR and HBR2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,131 +57,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Matthew Wilcox <willy@infradead.org>, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, Peter Zijlstra <peterz@infradead.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, x86@kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Minchan Kim <minchan@kernel.org>,
- Matthew Auld <matthew.auld@intel.com>, xen-devel@lists.xenproject.org,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Pandey, Hariom" <hariom.pandey@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-All users are gone now.
+On Wed, Sep 30, 2020 at 03:57:58PM +0300, Jani Nikula wrote:
+> On Wed, 30 Sep 2020, Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com> wr=
+ote:
+> > Now we have an actual difference between EHL and JSL so we
+> > should split. Granted it's a bit annoying to have to do it
+> > just for some vswing tables. Ideally that stuff would be
+> > specified in a sane way by the VBT. But since VBT is generally
+> > useless we need to deal with this on a platform level.
+> =
 
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- include/linux/vmalloc.h |  5 +----
- mm/nommu.c              |  7 ------
- mm/vmalloc.c            | 48 -----------------------------------------
- 3 files changed, 1 insertion(+), 59 deletions(-)
+> Just to recap, we have three basic approaches for differentiating
+> platforms based on PCI ID:
+> =
 
-diff --git a/include/linux/vmalloc.h b/include/linux/vmalloc.h
-index c77efeac242514..938eaf9517e266 100644
---- a/include/linux/vmalloc.h
-+++ b/include/linux/vmalloc.h
-@@ -169,6 +169,7 @@ extern struct vm_struct *__get_vm_area_caller(unsigned long size,
- 					unsigned long flags,
- 					unsigned long start, unsigned long end,
- 					const void *caller);
-+void free_vm_area(struct vm_struct *area);
- extern struct vm_struct *remove_vm_area(const void *addr);
- extern struct vm_struct *find_vm_area(const void *addr);
- 
-@@ -204,10 +205,6 @@ static inline void set_vm_flush_reset_perms(void *addr)
- }
- #endif
- 
--/* Allocate/destroy a 'vmalloc' VM area. */
--extern struct vm_struct *alloc_vm_area(size_t size, pte_t **ptes);
--extern void free_vm_area(struct vm_struct *area);
--
- /* for /dev/kmem */
- extern long vread(char *buf, char *addr, unsigned long count);
- extern long vwrite(char *buf, char *addr, unsigned long count);
-diff --git a/mm/nommu.c b/mm/nommu.c
-index 75a327149af127..9272f30e4c4726 100644
---- a/mm/nommu.c
-+++ b/mm/nommu.c
-@@ -354,13 +354,6 @@ void vm_unmap_aliases(void)
- }
- EXPORT_SYMBOL_GPL(vm_unmap_aliases);
- 
--struct vm_struct *alloc_vm_area(size_t size, pte_t **ptes)
--{
--	BUG();
--	return NULL;
--}
--EXPORT_SYMBOL_GPL(alloc_vm_area);
--
- void free_vm_area(struct vm_struct *area)
- {
- 	BUG();
-diff --git a/mm/vmalloc.c b/mm/vmalloc.c
-index e2a2ded8d93478..3bc5b832451ef2 100644
---- a/mm/vmalloc.c
-+++ b/mm/vmalloc.c
-@@ -3083,54 +3083,6 @@ int remap_vmalloc_range(struct vm_area_struct *vma, void *addr,
- }
- EXPORT_SYMBOL(remap_vmalloc_range);
- 
--static int f(pte_t *pte, unsigned long addr, void *data)
--{
--	pte_t ***p = data;
--
--	if (p) {
--		*(*p) = pte;
--		(*p)++;
--	}
--	return 0;
--}
--
--/**
-- * alloc_vm_area - allocate a range of kernel address space
-- * @size:	   size of the area
-- * @ptes:	   returns the PTEs for the address space
-- *
-- * Returns:	NULL on failure, vm_struct on success
-- *
-- * This function reserves a range of kernel address space, and
-- * allocates pagetables to map that range.  No actual mappings
-- * are created.
-- *
-- * If @ptes is non-NULL, pointers to the PTEs (in init_mm)
-- * allocated for the VM area are returned.
-- */
--struct vm_struct *alloc_vm_area(size_t size, pte_t **ptes)
--{
--	struct vm_struct *area;
--
--	area = get_vm_area_caller(size, VM_IOREMAP,
--				__builtin_return_address(0));
--	if (area == NULL)
--		return NULL;
--
--	/*
--	 * This ensures that page tables are constructed for this region
--	 * of kernel virtual address space and mapped into init_mm.
--	 */
--	if (apply_to_page_range(&init_mm, (unsigned long)area->addr,
--				size, f, ptes ? &ptes : NULL)) {
--		free_vm_area(area);
--		return NULL;
--	}
--
--	return area;
--}
--EXPORT_SYMBOL_GPL(alloc_vm_area);
--
- void free_vm_area(struct vm_struct *area)
- {
- 	struct vm_struct *ret;
--- 
-2.28.0
+> - Separate platforms, each with their own device info and enum
+>   intel_platform, using IS_<PLATFORM>() for checks.
+> =
 
+> - Same platform, with subplatforms, using IS_SUBPLATFORM() for
+>   checks. Generally only used for the ULT/ULX checks, but there's also
+>   the CNL/ICL port F case which is perhaps comparable.
+> =
+
+> - Same platform, each with their own device info, and a feature flag.
+> =
+
+> (In this case, checking the PCH is a proxy; there is no actual
+> difference in the PCHs to account for the different values to be
+> used. Mixing PCHs with the platforms would lead to problems.)
+> =
+
+> We've been told JSL and EHL are the same, which would argue for keeping
+> them INTEL_ELKHARTLAKE. We've done this with other platforms that are
+> identical. However, now it looks like they're not the same... why not if
+> they're supposed to be identical? What else is there?
+
+My understanding is that they are identical, but the design guidelines
+for the *motherboards* that they will plug into are different, which
+necessitates different electrical tuning values to guarantee clean
+display signals.  Ville's right that it would be nice if this kind of
+stuff was just available from something like the VBT instead of being
+hardcoded into the driver, but sadly that's just not the case today.
+
+So yes, none of this is related to the South Display which is the only
+place we usually care about the PCH in the graphics driver.  But PCH is
+correlated with board type, which is why I suggested matching on the PCH
+in the first place.
+
+If we really want to split these two platforms then I'd suggest we add a
+new macro like
+
+        #define IS_EHL_JSL(i915) ( \
+                IS_PLATFORM(dev_priv, INTEL_ELKHARTLAKE) || \
+                IS_PLATFORM(dev_priv, INTEL_JASPERLAKE))
+
+and use that everywhere else in the driver.  For the vswing code itself
+we'd just do a direct IS_PLATFORM() check with just one platform or the
+other provided; no need to add IS_ELKHARTLAKE/IS_JASPERLAKE macros in
+that case since it would be a bug to differentiate between the two
+anywhere else in the driver.
+
+
+Matt
+
+> =
+
+> BR,
+> Jani.
+> =
+
+> =
+
+> -- =
+
+> Jani Nikula, Intel Open Source Graphics Center
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
