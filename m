@@ -1,49 +1,81 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E3F327E7FB
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 13:54:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D679527E8D8
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 14:48:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE82989C6A;
-	Wed, 30 Sep 2020 11:54:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20D6C6E7D3;
+	Wed, 30 Sep 2020 12:48:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC4AF6E7D5;
- Wed, 30 Sep 2020 11:54:34 +0000 (UTC)
-IronPort-SDR: c88YqifepNDZLT2nfBvNWWBEgCKgXQOPdkBy44/SkBhBy/M8AMkOOWZUGuV9vnsBnFN5nTEhEw
- Tb/MxmofFOWA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9759"; a="180589829"
-X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="180589829"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 04:54:34 -0700
-IronPort-SDR: 5qpA4V3ZPbkkv3ITyNVIz4OkXzMWi4UascHYtuIBTYvn0NyRyZR46AddJYfuIjlznjXFxO1IZB
- 4VF7CaQpPGOg==
-X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="497191910"
-Received: from cbalasoi-mobl1.ger.corp.intel.com (HELO [10.249.36.189])
- ([10.249.36.189])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 04:54:32 -0700
-To: "Wang, Zhi A" <zhi.a.wang@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan, Hang"
- <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
-References: <4b78ef66-a74f-9156-62fb-bb733947b57e@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <505b138f-46d7-5599-3b41-646508b3bd5b@linux.intel.com>
-Date: Wed, 30 Sep 2020 13:54:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+Received: from nat-hk.nvidia.com (nat-hk.nvidia.com [203.18.50.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FE836E7D2;
+ Wed, 30 Sep 2020 11:45:38 +0000 (UTC)
+Received: from HKMAIL104.nvidia.com (Not Verified[10.18.92.77]) by
+ nat-hk.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+ id <B5f746fdf0000>; Wed, 30 Sep 2020 19:45:35 +0800
+Received: from HKMAIL101.nvidia.com (10.18.16.10) by HKMAIL104.nvidia.com
+ (10.18.16.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 30 Sep
+ 2020 11:45:32 +0000
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.176)
+ by HKMAIL101.nvidia.com (10.18.16.10) with Microsoft SMTP Server (TLS) id
+ 15.0.1473.3 via Frontend Transport; Wed, 30 Sep 2020 11:45:32 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=g5JS6ycCLA+ey6H6PEDfYh0txtdHz1oW146Y0mf0jzryp4nGgcAAzq6i+vm6IOOu9G2TiRIawxsTcsZkXQphwz1PgNABiNPK7FkgIRATEahh48D06/anI4mupMYpbXOB0RG5EkcMLsWuzGuO0QZlU3Sp7DfOxDx5ArO7Z7Q0wuVgdOC7BIyyRZ73BLu8pWR2ddQklAC+NTXHIuAmoHBZ3Kjd342DpPybvl8VSdCxZRqnFZUo/ZJNy71fUZUOoP30ClTYACic6jbffswZumEWl4Hw7Em6EX82bbREtzYec4k54ADalU29dnB51mu2Zk9vACrt9yR7CMRKvhwpCi/rcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oAsU320K5FEsVsUsGTXFF4o1tMt7feAUQkBKN7F74EI=;
+ b=Tf2u7n+4WPnZfJ4WHFScskEDaGF8K2Y5X685UCE/zLGMPYqAjil3nfl+fPXzGLb1u4EioztX5cVOjUo/VZU7/agUbS5ctxYwDUwPR4RBR+D0/cC6jfdxBjPj7z0iWLB65ieFG68hWEZVTA5nZrBa0X55J37MjLZ2WnqgSQCNVpPSv1ELtwPLM/ZLIKE3QmpRnQotx2WzLZ7UWEHlnqTlD8Al8Q07XInHWpNSMFdY6P9xbaoCjouzrhGu/3oZ/mS5iwntNPfU16osOfAnhVXVaEDaSolaeelrcpnZzRvUfZ/mLZfIkhXlBqYfVcKRqIZ5PPI2GsTurLEgkJAduN7Lbg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+Received: from DM6PR12MB3834.namprd12.prod.outlook.com (2603:10b6:5:14a::12)
+ by DM6PR12MB3402.namprd12.prod.outlook.com (2603:10b6:5:3b::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Wed, 30 Sep
+ 2020 11:45:29 +0000
+Received: from DM6PR12MB3834.namprd12.prod.outlook.com
+ ([fe80::cdbe:f274:ad65:9a78]) by DM6PR12MB3834.namprd12.prod.outlook.com
+ ([fe80::cdbe:f274:ad65:9a78%7]) with mapi id 15.20.3433.032; Wed, 30 Sep 2020
+ 11:45:29 +0000
+Date: Wed, 30 Sep 2020 08:45:27 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Leon Romanovsky <leon@kernel.org>
+Message-ID: <20200930114527.GE816047@nvidia.com>
+References: <20200927064647.3106737-1-leon@kernel.org>
+ <20200927064647.3106737-5-leon@kernel.org>
+ <20200929195929.GA803555@nvidia.com> <20200930095321.GL3094@unreal>
+Content-Disposition: inline
+In-Reply-To: <20200930095321.GL3094@unreal>
+X-ClientProxiedBy: MN2PR17CA0014.namprd17.prod.outlook.com
+ (2603:10b6:208:15e::27) To DM6PR12MB3834.namprd12.prod.outlook.com
+ (2603:10b6:5:14a::12)
 MIME-Version: 1.0
-In-Reply-To: <4b78ef66-a74f-9156-62fb-bb733947b57e@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PULL] topic/gvt-ww-lock
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from mlx.ziepe.ca (156.34.48.30) by
+ MN2PR17CA0014.namprd17.prod.outlook.com (2603:10b6:208:15e::27) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.32 via Frontend
+ Transport; Wed, 30 Sep 2020 11:45:28 +0000
+Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
+ <jgg@nvidia.com>)	id 1kNaY3-003vHg-7m; Wed, 30 Sep 2020 08:45:27 -0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1601466335; bh=oAsU320K5FEsVsUsGTXFF4o1tMt7feAUQkBKN7F74EI=;
+ h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:Date:
+ From:To:CC:Subject:Message-ID:References:Content-Type:
+ Content-Disposition:In-Reply-To:X-ClientProxiedBy:MIME-Version:
+ X-MS-Exchange-MessageSentRepresentingType;
+ b=C5kPdi9eRgMFb4rKx1OLDZtww0KV3jP/th3Ur0di8JyINjwi6q9IQ9iNfp4OFzsgy
+ TEXE36ZTXxnZVASfO3dw1c6V7wCGp4W9CBQKjn6uDBLTz1egDFRfrDCZVcgaxumwgD
+ 8+1W5RW0jj6YZ4ysoCcgfjAb50yuKFbwZGGZvH0x9hCodxZJWHjlqwLLj7Io4BFNoE
+ lpwPTwfkPZY7VatebKiU9bWBZeulYcXADWHx6OR5ABSvuD3eYoKvPVIza6lMRVX/AE
+ MsboprGFPIkmoYB7FqeBjsZbS+mK2FkTJTZfAXcqN6DG7E/8k09O8Xdj76LCToJCwp
+ Ud51rEIkwm7aw==
+X-Mailman-Approved-At: Wed, 30 Sep 2020 12:48:34 +0000
+Subject: Re: [Intel-gfx] [PATCH rdma-next v4 4/4] RDMA/umem: Move to
+ allocate SG table from pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,39 +88,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Roland Scheidegger <sroland@vmware.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ Doug Ledford <dledford@redhat.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Maor Gottlieb <maorg@nvidia.com>, Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGV5LAoKT3AgMjItMDktMjAyMCBvbSAxMzo1MSBzY2hyZWVmIFdhbmcsIFpoaSBBOgo+Cj4gSGks
-Cj4KPiBIZXJlJ3MgdGhlIHBhdGNoIHdoaWNoIGludHJvZHVjZXMgR1ZULWcgd3cgbG9jayBzdXBw
-b3J0IGFnYWluc3QgZHJtLWludGVsLWd0LW5leHQgYnJhbmNoLgo+Cj4gVGhhbmtzCj4KPiAtLSAK
-Pgo+IFRoZSBmb2xsb3dpbmcgY2hhbmdlcyBzaW5jZSBjb21taXQgNDMxNmIxOWRlZTI3Y2M1Y2Qz
-NGE5NWZkYmMwYTNhNTIzNzUwNzcwMToKPgo+IMKgIGRybS9pOTE1OiBGaXggdW5pbml0aWFsaXNl
-ZCB2YXJpYWJsZSBpbiBpbnRlbF9jb250ZXh0X2NyZWF0ZV9yZXF1ZXN0LiAoMjAyMC0wOS0yMSAx
-MTowOTo0NiArMDIwMCkKPgo+IGFyZSBhdmFpbGFibGUgaW4gdGhlIGdpdCByZXBvc2l0b3J5IGF0
-Ogo+Cj4gwqAgaHR0cHM6Ly9naXRodWIuY29tL2ludGVsL2d2dC1saW51eC5naXQgdGFncy9ndnQt
-d3ctbG9jay0wOS0yMi0yMDIwCj4KPiBmb3IgeW91IHRvIGZldGNoIGNoYW5nZXMgdXAgdG8gZTFi
-NDlhZTE1NTQ1MWFhYTAzOWVlYjIzZmNlODA4YzcxYTAzODI4MzoKPgo+IMKgIGRybS9pOTE1L2d2
-dDogSW50cm9kdWNlIHBlciBvYmplY3QgbG9ja2luZyBpbiBHVlQgc2NoZWR1bGVyLiAoMjAyMC0w
-OS0yMiAxMjowOTo1NiArMDMwMCkKPgo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KPiBndnQtd3ctbG9jay0wOS0yMi0yMDIw
-Ogo+Cj4gLSBJbnRyb2R1Y2Ugd3cgbG9jayBzdXBwb3J0IGludG8gR1ZULWcuCj4KPiAtLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-Cj4gWmhpIFdhbmcgKDEpOgo+IMKgwqDCoMKgwqAgZHJtL2k5MTUvZ3Z0OiBJbnRyb2R1Y2UgcGVy
-IG9iamVjdCBsb2NraW5nIGluIEdWVCBzY2hlZHVsZXIuCj4KPiDCoGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d2dC9zY2hlZHVsZXIuYyB8IDY4ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0t
-LS0tLQo+IMKgMSBmaWxlIGNoYW5nZWQsIDU3IGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygt
-KSAKCkkndmUgdGFrZW4gYSBsb29rIGF0IHRoaXMgYnJhbmNoLCBhbmQgSSBoYXZlIHNvbWUgZmVl
-ZGJhY2suCgpBZGRpbmcgd3dfY3R4IGJsaW5kbHkgbGlrZSBpcyBkb25lIGRvZXNuJ3Qgd29yay4g
-Rm9yIGV4YW1wbGUgSSdtIHdvcmtpbmcgb24gYSBwYXRjaCB0aGF0IGFkZHMgd3cgaGFuZGxpbmcg
-dG8KaTkxNV9nZW1fb2JqZWN0X2dndHRfcGluKCksIHNvIHlvdSBkb24ndCBoYXZlIHRvIHBlcmZv
-cm0gbWFudWFsbHkgaW4gcHJlcGFyZV9zaGFkb3dfd2FfY3R4KCkuIGludGVsX2NvbnRleHRfcGlu
-KCkgYWxyZWFkeSBoYXMgYSB3dyBkYW5jZSwgeW91IGNhbiBrZWVwIGNhbGxpbmcgaXQgd2l0aG91
-dCBvcGVuIGNvZGluZyBpdC4gSWYgeW91IGRvIGRlY2lkZSB0byBjYWxsIGl0IG1hbnVhbGx5LCBp
-bnRlbF9jb250ZXh0X3B1dCB3b3VsZCBoYXZlIHRvIGJlIGNhbGxlZCBhZnRlciBjdHhfZmluaS4g
-Q2hlZXJzLCBNYWFydGVuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZngK
+On Wed, Sep 30, 2020 at 12:53:21PM +0300, Leon Romanovsky wrote:
+> On Tue, Sep 29, 2020 at 04:59:29PM -0300, Jason Gunthorpe wrote:
+> > On Sun, Sep 27, 2020 at 09:46:47AM +0300, Leon Romanovsky wrote:
+> > > @@ -296,11 +223,17 @@ static struct ib_umem *__ib_umem_get(struct ib_device *device,
+> > >  			goto umem_release;
+> > >
+> > >  		cur_base += ret * PAGE_SIZE;
+> > > -		npages   -= ret;
+> > > -
+> > > -		sg = ib_umem_add_sg_table(sg, page_list, ret,
+> > > -			dma_get_max_seg_size(device->dma_device),
+> > > -			&umem->sg_nents);
+> > > +		npages -= ret;
+> > > +		sg = __sg_alloc_table_from_pages(
+> > > +			&umem->sg_head, page_list, ret, 0, ret << PAGE_SHIFT,
+> > > +			dma_get_max_seg_size(device->dma_device), sg, npages,
+> > > +			GFP_KERNEL);
+> > > +		umem->sg_nents = umem->sg_head.nents;
+> > > +		if (IS_ERR(sg)) {
+> > > +			unpin_user_pages_dirty_lock(page_list, ret, 0);
+> > > +			ret = PTR_ERR(sg);
+> > > +			goto umem_release;
+> > > +		}
+> > >  	}
+> > >
+> > >  	sg_mark_end(sg);
+> >
+> > Does it still need the sg_mark_end?
+> 
+> It is preserved here for correctness, the release logic doesn't rely on
+> this marker, but it is better to leave it.
+
+I mean, my read of __sg_alloc_table_from_pages() is that it already
+placed it, the final __alloc_table() does it?
+
+Jason
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
