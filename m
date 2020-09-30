@@ -1,55 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E62027EE15
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 17:59:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3D9327EE97
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 18:10:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9232088EBA;
-	Wed, 30 Sep 2020 15:59:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9038C89BBE;
+	Wed, 30 Sep 2020 16:10:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
- [IPv6:2607:f8b0:4864:20::e42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 935A889A35
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 15:59:09 +0000 (UTC)
-Received: by mail-vs1-xe42.google.com with SMTP id y190so1213025vsy.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 08:59:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0gNzoe5leZoRZpuC7OJ3cQvUHgxmjmB3tOocPOhMxmA=;
- b=sr9CL+Ibm6NL6+8Hz7Ur8BYLRTcjhhk0DCaig/lkb2vlP1pBbANgZviMWe15KygPX8
- TYX4zDZMKhmo2NjmHwynnx9lvHzPiRAmzQonJXXZhnDMPZ4cQX4/JUykzk1jNGXUsRfl
- RGbDQwhkDkRfe1+b2yErFPNHmCx9FMvexgCybGg1JgzORQrWB3n9LkaXB7aBHX34aRpH
- XMHnO3PzLPIRiQSk83XuRTWQWAZ/BNnvYltYKXYcEjyu8lWJrhvJ+OOOQeJxb6plaOYc
- W6McePsa7NGcQUp5Xp7pmb2uD8+vT2g9Jh1wITjSOosycUXuznXxwhMi5VSK2Y1i4otQ
- c9zA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=0gNzoe5leZoRZpuC7OJ3cQvUHgxmjmB3tOocPOhMxmA=;
- b=pMtSKGB5uCNJtZ0b1OWT3YD1TUcwq1QiNlk0sxgpLS+gtCIsyl65M7mwU9zGqPvN+6
- VdBOF7zZKWAOwVJhfbN4dmApSF2YIc7lAaZmicPRo9/vFaQjVEpiitFHVShlcNR3C7VE
- QU4BDanJo0JBLLWsu1Cy8Pp6N+nvXmrgV/kri3YKf7hVzRrHon73SvycaP1EHM47Jts8
- /3j0utSXrhdlpHQpmovnbDcCmuGuJ0NXJBOOIoz/tWJAj63QBW29FP5wOTK4E9UREJD/
- ZhQ86Se6E9QKDLYKbQAC0YEmlP6mvIm7OqkNmy75C+aM3wC/umHNkajebKO+Y658QbKt
- bohw==
-X-Gm-Message-State: AOAM531CJcu/EEd+t7nAiWqpqwkoaV5JiNUzLhynAW1lR6RqNre8LB7O
- K9lEEWWfosOR7oGQh36L40SZAl3+DQJiJDh0HbQ=
-X-Google-Smtp-Source: ABdhPJy1rtcq0pZYW2NUWs2EW43cT/dgPrPNlwz/cJsRLLC6emaAd/kCJx7N4sZZtzWgUXXCwrqnIY/iobXh9/NxZX4=
-X-Received: by 2002:a05:6102:2157:: with SMTP id
- h23mr1711310vsg.9.1601481548725; 
- Wed, 30 Sep 2020 08:59:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200930153016.105711-1-lucas.demarchi@intel.com>
-In-Reply-To: <20200930153016.105711-1-lucas.demarchi@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 30 Sep 2020 16:58:42 +0100
-Message-ID: <CAM0jSHON6C2xvg9DezVYku2Ue-k94SGUZ9269ZZ49PjYqsTW4A@mail.gmail.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84C8789346
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 16:10:45 +0000 (UTC)
+IronPort-SDR: /WBpAoTbpOWStzxKFS0uzMUH7QVMhULqIx6GnxykKml/q/EQV7PiRLo2qo9g/FxGZ3n1iqBYGe
+ rYtQwckmAK7A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="161709599"
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="161709599"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 09:10:44 -0700
+IronPort-SDR: 4cHzEG3jiwpS2j2pF9W9EFOLPZuxB0DpCb7X+kCLiRhxBBIu4v4Jr9oelYGc95xoWjjMlAKqyJ
+ Y1g7gbB40rsw==
+X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="515132324"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 09:10:44 -0700
+Date: Wed, 30 Sep 2020 09:10:43 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: don't conflate is_dgfx with fake
- lmem
+Message-ID: <20200930161043.GC2244993@mdroper-desk1.amr.corp.intel.com>
+References: <20200930064234.85769-1-lucas.demarchi@intel.com>
+ <20200930064234.85769-21-lucas.demarchi@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200930064234.85769-21-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 20/24] drm/i915/dg1: Load DMC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,60 +50,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 30 Sep 2020 at 16:30, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->
-> When using fake lmem for tests, we are overriding the setting in
-> device info for dgfx devices. Current users of IS_DGFX() are correct,
-> but as we add support for DG1, we are going to use it in additional
-> places to trigger dgfx-only code path.
->
-> In future if we need we can use HAS_LMEM() instead of IS_DGFX() in the
-> places that make sense to also contemplate fake lmem use.
->
+On Tue, Sep 29, 2020 at 11:42:30PM -0700, Lucas De Marchi wrote:
+> From: Matt Atwood <matthew.s.atwood@intel.com>
+> =
+
+> Add support to load DMC v2.0.2 on DG1
+> =
+
+> While we're at it, make TGL use the same GEN12 firmware size definition
+> and remove obsolete comment.
+> =
+
+> Bpec: 49230
+> =
+
+> v2: do not replace GEN12_CSR_MAX_FW_SIZE (from Jos=E9)
+>     and replace stale comment
+> =
+
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+I'm not sure if the pull request with the firmware has been sent yet,
+but the version here is correct, so
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/i915_drv.c | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-> index 45e719c79183..3f6ed142198c 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -840,9 +840,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->                     i915->params.fake_lmem_start) {
->                         mkwrite_device_info(i915)->memory_regions =
->                                 REGION_SMEM | REGION_LMEM | REGION_STOLEN;
-> -                       mkwrite_device_info(i915)->is_dgfx = true;
->                         GEM_BUG_ON(!HAS_LMEM(i915));
-> -                       GEM_BUG_ON(!IS_DGFX(i915));
+>  drivers/gpu/drm/i915/display/intel_csr.c | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
+> =
 
-Hmm, I guess this could work as an option c) but I think we will also
-need to add something like:
+> diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i=
+915/display/intel_csr.c
+> index d5db16764619..67dc64df78a5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_csr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_csr.c
+> @@ -40,13 +40,16 @@
+>  =
 
-@@ -835,7 +835,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
-        u16 snb_gmch_ctl;
+>  #define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
+>  =
 
-        /* TODO: We're not aware of mappable constraints on gen8 yet */
--       if (!IS_DGFX(i915)) {
-+       if (!IS_DGFX(i915) && !HAS_LMEM(i915)) {
-                ggtt->gmadr = pci_resource(pdev, 2);
-                ggtt->mappable_end = resource_size(&ggtt->gmadr);
-        }
+> +#define DG1_CSR_PATH			"i915/dg1_dmc_ver2_02.bin"
+> +#define DG1_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
+> +MODULE_FIRMWARE(DG1_CSR_PATH);
+> +
+>  #define RKL_CSR_PATH			"i915/rkl_dmc_ver2_02.bin"
+>  #define RKL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
+>  MODULE_FIRMWARE(RKL_CSR_PATH);
+>  =
 
-The point is that we need to steal the mappable aperture later(which
-is fine since it doesn't exist on "DGFX"), and use it as a substitute
-for LMEMBAR. The !mappable aperture property is also useful since it
-exercises some other parts of the code too.
+>  #define TGL_CSR_PATH			"i915/tgl_dmc_ver2_08.bin"
+>  #define TGL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 8)
+> -#define TGL_CSR_MAX_FW_SIZE		0x6000
+>  MODULE_FIRMWARE(TGL_CSR_PATH);
+>  =
 
-Assuming CI is happy and this unbocks you then,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>  #define ICL_CSR_PATH			"i915/icl_dmc_ver1_09.bin"
+> @@ -686,14 +689,17 @@ void intel_csr_ucode_init(struct drm_i915_private *=
+dev_priv)
+>  	 */
+>  	intel_csr_runtime_pm_get(dev_priv);
+>  =
+
+> -	if (IS_ROCKETLAKE(dev_priv)) {
+> +	if (IS_DG1(dev_priv)) {
+> +		csr->fw_path =3D DG1_CSR_PATH;
+> +		csr->required_version =3D DG1_CSR_VERSION_REQUIRED;
+> +		csr->max_fw_size =3D GEN12_CSR_MAX_FW_SIZE;
+> +	} else if (IS_ROCKETLAKE(dev_priv)) {
+>  		csr->fw_path =3D RKL_CSR_PATH;
+>  		csr->required_version =3D RKL_CSR_VERSION_REQUIRED;
+>  		csr->max_fw_size =3D GEN12_CSR_MAX_FW_SIZE;
+>  	} else if (INTEL_GEN(dev_priv) >=3D 12) {
+>  		csr->fw_path =3D TGL_CSR_PATH;
+>  		csr->required_version =3D TGL_CSR_VERSION_REQUIRED;
+> -		/* Allow to load fw via parameter using the last known size */
+>  		csr->max_fw_size =3D GEN12_CSR_MAX_FW_SIZE;
+>  	} else if (IS_GEN(dev_priv, 11)) {
+>  		csr->fw_path =3D ICL_CSR_PATH;
+> -- =
+
+> 2.28.0
+> =
+
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
