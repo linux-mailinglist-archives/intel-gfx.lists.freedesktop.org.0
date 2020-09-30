@@ -1,43 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CA8027F0C0
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 19:52:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55C6527F0C5
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 19:52:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02A6289D7D;
-	Wed, 30 Sep 2020 17:52:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F2F66E81A;
+	Wed, 30 Sep 2020 17:52:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from casper.infradead.org (casper.infradead.org
  [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B557889C52;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6E006E580;
  Wed, 30 Sep 2020 17:51:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=ggovDsPrY2tPPXwEEhp2BvATO0PndCnAzmG0yva7UFo=; b=M3Tbb4QDvZEB1jbyEf0zJWIKkr
- nsFTLnSIZqI8QYGmIiSkEVuDgyTbX11zpin6j4Xj4PAlzHD6EPbIFh4MYGfKcFDXGaIq9esb38glz
- BfxJg0Xoz/e4RdpmmFDnE5RCczkS/ME5mvb2gDl9n8kUi1sdaXtqZ5hZECsmk7hMidHWB9u0habxP
- bp5hPzRBRk4x3Rr8nBHcLZRwnezNOP5GK53mekiKxs7AbqdDPINnDba35L2IW+Wwca7AuUcGDzHpx
- WSaLvg3gVpyU3iVkbJPZCTDRLYwL+qFsKIZaO3/DfALtS7c3FigAmDk7P1enBSi89Kh7QrWQmC7C8
- lvDZP1tA==;
+ bh=FBifTnPA+3ODKD/Pp+vW9/Ge5GD+C3AXZd2dc0iyUCM=; b=irffWdqgufF/sWH2p3nzwLxebz
+ +W5xC88NFo2tHNxggYCSPvv6ZVXliMqnTe53iafY6xTKcxeuEfNdYBIDP7p9k5WY6i2G17z59YVCa
+ 1q9ya/k4ZYc44/RoxiDLw5zXh0bSXeVOasWsZ/4dvbLIwEM/M40okD5Pia8MOjV4X4r9DGI5/OyGx
+ k38RlfoHj5GBiCqnoSluQb+pc2BUJ8GtWFYfqA9s7ypbvnAQpeC0ZFS2x//BoNN9bwP0GaPp4DOt0
+ ysMoDdazmturHTmsDPiDGk4XtPMsPCWfi/dJfo9YXQTgUSFHs8mq2MxDvfzz7o4AbukdtQxpo8gM9
+ s8IAq6UA==;
 Received: from [2001:4bb8:180:7b62:c70:4a89:bc61:4] (helo=localhost)
  by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNgGT-0001CE-Ri; Wed, 30 Sep 2020 17:51:42 +0000
+ id 1kNgGV-0001CN-3O; Wed, 30 Sep 2020 17:51:43 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: Andrew Morton <akpm@linux-foundation.org>
-Date: Wed, 30 Sep 2020 19:51:28 +0200
-Message-Id: <20200930175133.1252382-6-hch@lst.de>
+Date: Wed, 30 Sep 2020 19:51:29 +0200
+Message-Id: <20200930175133.1252382-7-hch@lst.de>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20200930175133.1252382-1-hch@lst.de>
 References: <20200930175133.1252382-1-hch@lst.de>
 MIME-Version: 1.0
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
  casper.infradead.org. See http://www.infradead.org/rpr.html
-Subject: [Intel-gfx] [PATCH 05/10] zsmalloc: switch from alloc_vm_area to
- get_vm_area
+Subject: [Intel-gfx] [PATCH 06/10] drm/i915: use vmap in shmem_pin_map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +62,123 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Just manually pre-fault the PTEs using apply_to_page_range.
+shmem_pin_map somewhat awkwardly reimplements vmap using
+alloc_vm_area and manual pte setup.  The only practical difference
+is that alloc_vm_area prefeaults the vmalloc area PTEs, which doesn't
+seem to be required here (and could be added to vmap using a flag if
+actually required).  Switch to use vmap, and use vfree to free both the
+vmalloc mapping and the page array, as well as dropping the references
+to each page.
 
-Co-developed-by: Minchan Kim <minchan@kernel.org>
 Signed-off-by: Christoph Hellwig <hch@lst.de>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- mm/zsmalloc.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/shmem_utils.c | 76 +++++++--------------------
+ 1 file changed, 18 insertions(+), 58 deletions(-)
 
-diff --git a/mm/zsmalloc.c b/mm/zsmalloc.c
-index c36fdff9a37131..918c7b019b3d78 100644
---- a/mm/zsmalloc.c
-+++ b/mm/zsmalloc.c
-@@ -1122,10 +1122,16 @@ static inline int __zs_cpu_up(struct mapping_area *area)
- 	 */
- 	if (area->vm)
- 		return 0;
--	area->vm = alloc_vm_area(PAGE_SIZE * 2, NULL);
-+	area->vm = get_vm_area(PAGE_SIZE * 2, 0);
- 	if (!area->vm)
- 		return -ENOMEM;
--	return 0;
-+
-+	/*
-+	 * Populate ptes in advance to avoid pte allocation with GFP_KERNEL
-+	 * in non-preemtible context of zs_map_object.
-+	 */
-+	return apply_to_page_range(&init_mm, (unsigned long)area->vm->addr,
-+			PAGE_SIZE * 2, NULL, NULL);
+diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c b/drivers/gpu/drm/i915/gt/shmem_utils.c
+index 43c7acbdc79dea..f011ea42487e11 100644
+--- a/drivers/gpu/drm/i915/gt/shmem_utils.c
++++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
+@@ -49,80 +49,40 @@ struct file *shmem_create_from_object(struct drm_i915_gem_object *obj)
+ 	return file;
  }
  
- static inline void __zs_cpu_down(struct mapping_area *area)
+-static size_t shmem_npte(struct file *file)
+-{
+-	return file->f_mapping->host->i_size >> PAGE_SHIFT;
+-}
+-
+-static void __shmem_unpin_map(struct file *file, void *ptr, size_t n_pte)
+-{
+-	unsigned long pfn;
+-
+-	vunmap(ptr);
+-
+-	for (pfn = 0; pfn < n_pte; pfn++) {
+-		struct page *page;
+-
+-		page = shmem_read_mapping_page_gfp(file->f_mapping, pfn,
+-						   GFP_KERNEL);
+-		if (!WARN_ON(IS_ERR(page))) {
+-			put_page(page);
+-			put_page(page);
+-		}
+-	}
+-}
+-
+ void *shmem_pin_map(struct file *file)
+ {
+-	const size_t n_pte = shmem_npte(file);
+-	pte_t *stack[32], **ptes, **mem;
+-	struct vm_struct *area;
+-	unsigned long pfn;
+-
+-	mem = stack;
+-	if (n_pte > ARRAY_SIZE(stack)) {
+-		mem = kvmalloc_array(n_pte, sizeof(*mem), GFP_KERNEL);
+-		if (!mem)
+-			return NULL;
+-	}
++	struct page **pages;
++	size_t n_pages, i;
++	void *vaddr;
+ 
+-	area = alloc_vm_area(n_pte << PAGE_SHIFT, mem);
+-	if (!area) {
+-		if (mem != stack)
+-			kvfree(mem);
++	n_pages = file->f_mapping->host->i_size >> PAGE_SHIFT;
++	pages = kvmalloc_array(n_pages, sizeof(*pages), GFP_KERNEL);
++	if (!pages)
+ 		return NULL;
+-	}
+ 
+-	ptes = mem;
+-	for (pfn = 0; pfn < n_pte; pfn++) {
+-		struct page *page;
+-
+-		page = shmem_read_mapping_page_gfp(file->f_mapping, pfn,
+-						   GFP_KERNEL);
+-		if (IS_ERR(page))
++	for (i = 0; i < n_pages; i++) {
++		pages[i] = shmem_read_mapping_page_gfp(file->f_mapping, i,
++						       GFP_KERNEL);
++		if (IS_ERR(pages[i]))
+ 			goto err_page;
+-
+-		**ptes++ = mk_pte(page,  PAGE_KERNEL);
+ 	}
+ 
+-	if (mem != stack)
+-		kvfree(mem);
+-
++	vaddr = vmap(pages, n_pages, VM_MAP_PUT_PAGES, PAGE_KERNEL);
++	if (!vaddr)
++		goto err_page;
+ 	mapping_set_unevictable(file->f_mapping);
+-	return area->addr;
+-
++	return vaddr;
+ err_page:
+-	if (mem != stack)
+-		kvfree(mem);
+-
+-	__shmem_unpin_map(file, area->addr, pfn);
++	while (--i >= 0)
++		put_page(pages[i]);
++	kvfree(pages);
+ 	return NULL;
+ }
+ 
+ void shmem_unpin_map(struct file *file, void *ptr)
+ {
+ 	mapping_clear_unevictable(file->f_mapping);
+-	__shmem_unpin_map(file, ptr, shmem_npte(file));
++	vfree(ptr);
+ }
+ 
+ static int __shmem_rw(struct file *file, loff_t off,
 -- 
 2.28.0
 
