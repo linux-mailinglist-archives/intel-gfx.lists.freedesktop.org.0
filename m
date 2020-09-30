@@ -1,43 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B73E27EA7F
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 16:00:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F8327EB4E
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Sep 2020 16:48:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D09489DBD;
-	Wed, 30 Sep 2020 14:00:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 423FE89B12;
+	Wed, 30 Sep 2020 14:48:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA54899F2
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Sep 2020 14:00:10 +0000 (UTC)
-IronPort-SDR: abolWj6QCzIgd6OhOWMy7CZhHPP/V3ij1Li4kKqqkMoXBJTmw6Grc+B4m68IuJohzLzN5U3cBV
- 4WQ+XOBFka1Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9759"; a="163310979"
-X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="163310979"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 07:00:06 -0700
-IronPort-SDR: DTiX11QxQ2QDnB7kir0O4qCZapBjWI9QTDEXrMBjA5Q2gR873ByjYGpackVjlGCstTaolZiDW5
- jVl0NWlHckHg==
-X-IronPort-AV: E=Sophos;i="5.77,322,1596524400"; d="scan'208";a="457665226"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 07:00:06 -0700
-Date: Wed, 30 Sep 2020 07:00:03 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20200930140003.GA2244993@mdroper-desk1.amr.corp.intel.com>
-References: <20200930064234.85769-1-lucas.demarchi@intel.com>
- <20200930064234.85769-2-lucas.demarchi@intel.com>
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3580989B12;
+ Wed, 30 Sep 2020 14:48:44 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 873FE6736F; Wed, 30 Sep 2020 16:48:39 +0200 (CEST)
+Date: Wed, 30 Sep 2020 16:48:39 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <20200930144839.GA897@lst.de>
+References: <20200924135853.875294-1-hch@lst.de>
+ <20200925194349.d0ee9dbedb2ec48f0bfcd2ec@linux-foundation.org>
+ <20200926062959.GA3427@lst.de>
+ <160128801808.6464.1013594053120198786@jlahtine-mobl.ger.corp.intel.com>
+ <20200928123741.GA4999@lst.de>
+ <160138340987.15771.13645983702040612672@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200930064234.85769-2-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v6 01/24] drm/i915/dg1: add more PCI ids
+In-Reply-To: <160138340987.15771.13645983702040612672@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] remove alloc_vm_area v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,52 +41,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ Christoph Hellwig <hch@lst.de>, Stephen Rothwell <sfr@canb.auug.org.au>,
+ Stefano Stabellini <sstabellini@kernel.org>, x86@kernel.org,
+ Matthew Wilcox <willy@infradead.org>, Peter Zijlstra <peterz@infradead.org>,
+ Matthew Auld <matthew.auld@intel.com>, xen-devel@lists.xenproject.org,
+ Nitin Gupta <ngupta@vflare.org>, intel-gfx@lists.freedesktop.org,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, Juergen Gross <jgross@suse.com>,
+ linux-kernel@vger.kernel.org, Minchan Kim <minchan@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 29, 2020 at 11:42:11PM -0700, Lucas De Marchi wrote:
-> Synchronize with the current list of DG1 PCI IDs.
+On Tue, Sep 29, 2020 at 03:43:30PM +0300, Joonas Lahtinen wrote:
+> Hmm, those are both committed after our last -next pull request, so they
+> would normally only target next merge window. drm-next closes the merge
+> window around -rc5 already.
 > 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-> ---
->  include/drm/i915_pciids.h | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> But, in this specific case those are both Fixes: patches with Cc: stable,
+> so they should be pulled into drm-intel-next-fixes PR.
 > 
-> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-> index 7eeecb07c9a1..095463ff7cb9 100644
-> --- a/include/drm/i915_pciids.h
-> +++ b/include/drm/i915_pciids.h
-> @@ -624,6 +624,9 @@
->  
->  /* DG1 */
->  #define INTEL_DG1_IDS(info) \
-> -	INTEL_VGA_DEVICE(0x4905, info)
-> +	INTEL_VGA_DEVICE(0x4905, info), \
-> +	INTEL_VGA_DEVICE(0x4906, info), \
-> +	INTEL_VGA_DEVICE(0x4907, info), \
-> +	INTEL_VGA_DEVICE(0x4908, info)
->  
->  #endif /* _I915_PCIIDS_H */
-> -- 
-> 2.28.0
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> Rodrigo, can you cherry-pick those patches to -next-fixes that you send
+> to Dave?
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+They still haven't made it to linux-next.  I think for now I'll just
+rebase without them again and then you can handle the conflicts for
+5.11.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
