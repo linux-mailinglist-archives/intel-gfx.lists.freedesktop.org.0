@@ -1,52 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5847028010C
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Oct 2020 16:13:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507462801AA
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Oct 2020 16:51:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3E356E15A;
-	Thu,  1 Oct 2020 14:13:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF156E1E0;
+	Thu,  1 Oct 2020 14:51:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc44.google.com (mail-oo1-xc44.google.com
- [IPv6:2607:f8b0:4864:20::c44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C307A6E15A
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Oct 2020 14:13:53 +0000 (UTC)
-Received: by mail-oo1-xc44.google.com with SMTP id k13so1503447oor.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 01 Oct 2020 07:13:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=us8thQANzunB8liJvtH1u9KjYvMWBCN/6ee+Pda/bWA=;
- b=HOsJWxDxB4xVjDfa1aZ5JJBMlRAfvVPFyyu2Rh+RQ2NPZaSZofBx1uadVQmfF+1xHE
- 01o0lELbi++17LNc25VmGKUpiJmoJKu0Q67QKXYMG3vp5iZ34cn9XKsV4Vpfa3wk0h8a
- XkCxyWk1iGK/n7KrvdNWIv3phDHesCb4MRubs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=us8thQANzunB8liJvtH1u9KjYvMWBCN/6ee+Pda/bWA=;
- b=AEDGZ5wMXqn7OFSpE75PLPgula1IgoP/vM9NiaQHJFqMfdu7jEWk0xUEf9m+s9SDPn
- LXolQxqM1FRAzYLWZwZMDudInGS13MhIPPT6wIpM+VQNeRds1rOzfCPtvjH30wUzBxwU
- GupHPS3v/JtLO0c7CSL5CVR8bRnlLzlXoEovr+RNWFHcxHxuxFhOEOFufdxKR7AvZxzW
- CB0r4hFK7E8fcSqMtzH7PZiXRVhK+nHbjLX6Wg2+K2gWIMEbr7KrfchgytnzShqt4Fa9
- 0FjaTXdnjBUPdWXgRCYpw7MnHXdN6xagXQdgd7HnJQ8hFLyQhExuhEMvZRx5Blu3aBlB
- ypCw==
-X-Gm-Message-State: AOAM530fNFAUIhXBv6i8fSUHTGpwCZa71VU4wKT/sgDH/Ow+303rYxtb
- ZAGEVzy14RD5ZFQiE014masLhXGSblvdrKXoKW+tZ0I6SHfGNQ==
-X-Google-Smtp-Source: ABdhPJy+Qa1QnyOeGpgz2tEALV5zV/r+Mw/i+fe/ScEgQVuLKXLkdkccDTrTDmW6x67TiI0MqOdlBgeDXl3v04GVz3k=
-X-Received: by 2002:a4a:344b:: with SMTP id n11mr5774966oof.89.1601561633049; 
- Thu, 01 Oct 2020 07:13:53 -0700 (PDT)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B879A6E1E0
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Oct 2020 14:51:47 +0000 (UTC)
+IronPort-SDR: 6gbr79zj8QAR1TtwJow8EzrZx/sJbAD+ZRdnprlGDD2PY7rRMb2EO+EJqARSzKKdudDISQXwRm
+ za2z4WJCGjww==
+X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="226867457"
+X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="226867457"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2020 07:51:45 -0700
+IronPort-SDR: pZONzlKmWXknZ7krdYClQf9AZNe6ZO8ujMC4PGid3udvUtavcgljursFo2eNG78MSa2cGtq6ZV
+ pqyMqC6cZNIg==
+X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="514745886"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2020 07:51:44 -0700
+Date: Thu, 1 Oct 2020 07:51:43 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20201001145143.GH2245633@mdroper-desk1.amr.corp.intel.com>
+References: <20200930064234.85769-1-lucas.demarchi@intel.com>
+ <20200930064234.85769-24-lucas.demarchi@intel.com>
+ <20200930172041.GB2245633@mdroper-desk1.amr.corp.intel.com>
+ <20201001051602.ubchygho7jrrbdkk@ldmartin-desk1>
 MIME-Version: 1.0
-References: <20201001203917.43d46a3d@canb.auug.org.au>
- <20201001135350.GA14869@lst.de>
-In-Reply-To: <20201001135350.GA14869@lst.de>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Thu, 1 Oct 2020 16:13:42 +0200
-Message-ID: <CAKMK7uFfBLsZ=wetii4bc+BTiKObD5DJ7B-kDO4am6AhBY+AhQ@mail.gmail.com>
-To: Christoph Hellwig <hch@lst.de>
-Subject: Re: [Intel-gfx] linux-next: manual merge of the akpm tree with the
- drm-intel tree
+Content-Disposition: inline
+In-Reply-To: <20201001051602.ubchygho7jrrbdkk@ldmartin-desk1>
+Subject: Re: [Intel-gfx] [PATCH v6 23/24] drm/i915/dg1: Change DMC_DEBUG{1,
+ 2} registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,54 +53,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Dave Airlie <airlied@linux.ie>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Andrew Morton <akpm@linux-foundation.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 1, 2020 at 3:53 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> On Thu, Oct 01, 2020 at 08:39:17PM +1000, Stephen Rothwell wrote:
-> > Hi all,
-> >
-> > Today's linux-next merge of the akpm tree got a conflict in:
-> >
-> >   drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> >
-> > between commit:
-> >
-> >   4caf017ee937 ("drm/i915/gem: Avoid implicit vmap for highmem on x86-32")
-> >   ba2ebf605d5f ("drm/i915/gem: Prevent using pgprot_writecombine() if PAT is not supported")
+On Wed, Sep 30, 2020 at 10:16:02PM -0700, Lucas De Marchi wrote:
+> On Wed, Sep 30, 2020 at 10:20:41AM -0700, Matt Roper wrote:
+> > On Tue, Sep 29, 2020 at 11:42:33PM -0700, Lucas De Marchi wrote:
+> > > From: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > 
+> > > DGFX devices have different DMC_DEBUG* counter MMIO address
+> > > offset. Incorporate these changes in i915_reg.h for DG1
+> > > and handle i915_dmc_info accordingly.
+> > > 
+> > > Cc: Uma Shankar <uma.shankar@intel.com>
+> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 9 +++++++--
+> > >  drivers/gpu/drm/i915/i915_reg.h                      | 1 +
+> > >  2 files changed, 8 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > index 0bf31f9a8af5..472f119fe246 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > @@ -518,8 +518,13 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
+> > >  		   CSR_VERSION_MINOR(csr->version));
+> > > 
+> > >  	if (INTEL_GEN(dev_priv) >= 12) {
+> > > -		dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
+> > > -		dc6_reg = TGL_DMC_DEBUG_DC6_COUNT;
+> > > +		if (IS_DG1(dev_priv)) {
+> > 
+> > I think we'd want IS_DGFX here since this change should hold true for
+> > any future dgfx platform as well.  Aside from that,
+> 
+> not sure where this info came from, but it's not true. Not having DC6 is
+> not related to being DGFX an future platforms may as well support it.
 
-Uh these patches shouldn't be in linux-next because they're for 5.11,
-not the 5.10 merge window that will open soon. Joonas?
+My comment here was referring to the fact that the DMC_DEBUG registers
+move to the new sgunit offsets.  All future dgfx would be expected to
+follow that trend; future igfx could potentially go either way.
 
-> > from the drm-intel tree and patch:
-> >
-> >   "drm/i915: use vmap in i915_gem_object_map"
-> >
-> > from the akpm tree.
-> >
-> > I fixed it up (I just dropped the changes in the former commits) and
->
-> Sigh.  The solution is a bit more complicated, but I just redid my
-> patches to not depend on the above ones.  I can revert back to the old
-> version, though.  Andrew, let me know what works for you.
 
-Imo ignore, rebasing onto linux-next without those intel patches was
-the right thing for the 5.10 merge window.
--Daniel
+Matt
+
+> 
+> > 
+> > Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> > 
+> > I notice the bspec does have a new DC6 residency register offset listed
+> > as well, which seems odd if we don't have DC6 support on this platform.
+> > 
+> 
+> previous version of this patch was defining that but it's unused so I
+> removed it.
+> 
+> Lucas De Marchi
+> 
+> > 
+> > Matt
+> > 
+> > 
+> > > +			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
+> > > +		} else {
+> > > +			dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
+> > > +			dc6_reg = TGL_DMC_DEBUG_DC6_COUNT;
+> > > +		}
+> > > +
+> > >  		/*
+> > >  		 * NOTE: DMC_DEBUG3 is a general purpose reg.
+> > >  		 * According to B.Specs:49196 DMC f/w reuses DC5/6 counter
+> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > > index bb5094b80f15..b856a1fb0a32 100644
+> > > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > > @@ -7538,6 +7538,7 @@ enum {
+> > >  #define BXT_CSR_DC3_DC5_COUNT	_MMIO(0x80038)
+> > >  #define TGL_DMC_DEBUG_DC5_COUNT	_MMIO(0x101084)
+> > >  #define TGL_DMC_DEBUG_DC6_COUNT	_MMIO(0x101088)
+> > > +#define DG1_DMC_DEBUG_DC5_COUNT	_MMIO(0x134154)
+> > > 
+> > >  #define DMC_DEBUG3		_MMIO(0x101090)
+> > > 
+> > > --
+> > > 2.28.0
+> > > 
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > 
+> > -- 
+> > Matt Roper
+> > Graphics Software Engineer
+> > VTT-OSGC Platform Enablement
+> > Intel Corporation
+> > (916) 356-2795
+
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
