@@ -2,44 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC8327FA0B
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Oct 2020 09:17:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B53A627FA19
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Oct 2020 09:22:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64E5C6E84E;
-	Thu,  1 Oct 2020 07:17:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AC926E853;
+	Thu,  1 Oct 2020 07:21:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CB7B6E84E;
- Thu,  1 Oct 2020 07:17:48 +0000 (UTC)
-IronPort-SDR: AXoGyvV5sidbqoMJxUksGNNkNyrtUo3u6kwHGkC35bHASEFAgNKx/iqCNmQjhoKHkyww3QKxpL
- QBpMEfd3TApg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="142052871"
-X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="142052871"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60283892C9;
+ Thu,  1 Oct 2020 07:21:56 +0000 (UTC)
+IronPort-SDR: JXhEUwVzZD8kEe4DDNZx1psbtU0xkD0DTCTZ9oOItc4tBN+ZD5FyArV+tVpR3o0tJH5b2/hJ5T
+ zF1s2cqXH+ZQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="247373719"
+X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="247373719"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2020 00:17:47 -0700
-IronPort-SDR: hQAnFbHrggiNVBl/HoBC3opMLY2zRyjfFl5LSVDrrgjsbmHbQtlYBmz0TJCei/TsPZ/MpBtnX7
- msTS//YjxLvA==
-X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="458010142"
-Received: from liammcl-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.11.248])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2020 00:21:49 -0700
+IronPort-SDR: elh2mQK6gTiSopFBRhXwybHqAjYrYZvU8g7tQh5brAz6PHiUnmhG9Lh+o7jDYdWPmWTtBM1z+3
+ qYHqp+bre2bA==
+X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="458012968"
+Received: from jshanly-mobl1.ger.corp.intel.com (HELO [10.249.36.140])
+ ([10.249.36.140])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2020 00:17:40 -0700
+ 01 Oct 2020 00:21:46 -0700
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <8585daa2-fcbc-3924-ac4f-e7b5668808e0@linux.intel.com>
+Date: Thu, 1 Oct 2020 09:21:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-In-Reply-To: <20200928233102.24265-11-paulmck@kernel.org>
-References: <20200928233041.GA23230@paulmck-ThinkPad-P72>
- <20200928233102.24265-11-paulmck@kernel.org>
-To: paulmck@kernel.org, rcu@vger.kernel.org
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160153665673.4398.6268028176406103680@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Thu, 01 Oct 2020 10:17:37 +0300
-Subject: Re: [Intel-gfx] [PATCH tip/core/rcu 11/15] drm/i915: Cleanup
- PREEMPT_COUNT leftovers
+Content-Language: en-US
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,81 +49,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: peterz@infradead.org, fweisbec@gmail.com, jiangshanlai@gmail.com,
- dri-devel@lists.freedesktop.org, oleg@redhat.com, dhowells@redhat.com,
- edumazet@google.com, joel@joelfernandes.org, mingo@kernel.org,
- David Airlie <airlied@linux.ie>, kernel-team@fb.com,
- "Paul E . McKenney" <paulmck@kernel.org>, intel-gfx@lists.freedesktop.org,
- josh@joshtriplett.org, rostedt@goodmis.org, mathieu.desnoyers@efficios.com,
- tglx@linutronix.de, mhocko@kernel.org, mgorman@techsingularity.net,
- linux-kernel@vger.kernel.org, akpm@linux-foundation.org,
- torvalds@linux-foundation.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting paulmck@kernel.org (2020-09-29 02:30:58)
-> From: Thomas Gleixner <tglx@linutronix.de>
-> 
-> CONFIG_PREEMPT_COUNT is now unconditionally enabled and will be
-> removed. Cleanup the leftovers before doing so.
+drm-misc-fixes-2020-10-01:
+drm-misc-fixes for v5.9:
+- Small doc fix.
+- Re-add FB_ARMCLCD for android.
+- Fix global-out-of-bounds read in fbcon_get_font().
+The following changes since commit 19a508bd1ad8e444de86873bf2f2b2ab8edd6552:
 
-Change looks fine:
+  dmabuf: fix NULL pointer dereference in dma_buf_release() (2020-09-21 11:17:06 +0200)
 
-Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+are available in the Git repository at:
 
-Are you looking for us to merge or merge through another tree?
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2020-10-01
 
-If us, did the base patch always enabling PREEMPT_COUNT go into 5.9 or is
-it heading to 5.10? We can queue this earliest for 5.11 as drm-next closed
-for 5.10 at week of -rc5.
+for you to fetch changes up to 27204b99b08289d0993cb77c22470034b5eb974d:
 
-Regards, Joonas
+  drm: drm_dsc.h: fix a kernel-doc markup (2020-09-30 16:40:44 +0200)
 
-> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Paul E. McKenney <paulmck@kernel.org>
-> ---
->  drivers/gpu/drm/i915/Kconfig.debug | 1 -
->  drivers/gpu/drm/i915/i915_utils.h  | 3 +--
->  2 files changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-> index 1cb28c2..17d9b00 100644
-> --- a/drivers/gpu/drm/i915/Kconfig.debug
-> +++ b/drivers/gpu/drm/i915/Kconfig.debug
-> @@ -20,7 +20,6 @@ config DRM_I915_DEBUG
->         bool "Enable additional driver debugging"
->         depends on DRM_I915
->         select DEBUG_FS
-> -       select PREEMPT_COUNT
->         select I2C_CHARDEV
->         select STACKDEPOT
->         select DRM_DP_AUX_CHARDEV
-> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-> index 5477337..ecfed86 100644
-> --- a/drivers/gpu/drm/i915/i915_utils.h
-> +++ b/drivers/gpu/drm/i915/i915_utils.h
-> @@ -337,8 +337,7 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
->                                                    (Wmax))
->  #define wait_for(COND, MS)             _wait_for((COND), (MS) * 1000, 10, 1000)
->  
-> -/* If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports false. */
-> -#if defined(CONFIG_DRM_I915_DEBUG) && defined(CONFIG_PREEMPT_COUNT)
-> +#ifdef CONFIG_DRM_I915_DEBUG
->  # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) WARN_ON_ONCE((ATOMIC) && !in_atomic())
->  #else
->  # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) do { } while (0)
-> -- 
-> 2.9.5
-> 
+----------------------------------------------------------------
+drm-misc-fixes for v5.9:
+- Small doc fix.
+- Re-add FB_ARMCLCD for android.
+- Fix global-out-of-bounds read in fbcon_get_font().
+
+----------------------------------------------------------------
+Mauro Carvalho Chehab (1):
+      drm: drm_dsc.h: fix a kernel-doc markup
+
+Peilin Ye (3):
+      fbdev, newport_con: Move FONT_EXTRA_WORDS macros into linux/font.h
+      Fonts: Support FONT_EXTRA_WORDS macros for built-in fonts
+      fbcon: Fix global-out-of-bounds read in fbcon_get_font()
+
+Peter Collingbourne (1):
+      Partially revert "video: fbdev: amba-clcd: Retire elder CLCD driver"
+
+ MAINTAINERS                             |   5 +
+ drivers/video/console/newport_con.c     |   7 +-
+ drivers/video/fbdev/Kconfig             |  20 +
+ drivers/video/fbdev/Makefile            |   1 +
+ drivers/video/fbdev/amba-clcd.c         | 986 ++++++++++++++++++++++++++++++++
+ drivers/video/fbdev/core/fbcon.c        |  12 +
+ drivers/video/fbdev/core/fbcon.h        |   7 -
+ drivers/video/fbdev/core/fbcon_rotate.c |   1 +
+ drivers/video/fbdev/core/tileblit.c     |   1 +
+ include/drm/drm_dsc.h                   |   2 +-
+ include/linux/amba/clcd-regs.h          |  87 +++
+ include/linux/amba/clcd.h               | 290 ++++++++++
+ include/linux/font.h                    |  13 +
+ lib/fonts/font_10x18.c                  |   9 +-
+ lib/fonts/font_6x10.c                   |   9 +-
+ lib/fonts/font_6x11.c                   |   9 +-
+ lib/fonts/font_7x14.c                   |   9 +-
+ lib/fonts/font_8x16.c                   |   9 +-
+ lib/fonts/font_8x8.c                    |   9 +-
+ lib/fonts/font_acorn_8x8.c              |   9 +-
+ lib/fonts/font_mini_4x6.c               |   8 +-
+ lib/fonts/font_pearl_8x8.c              |   9 +-
+ lib/fonts/font_sun12x22.c               |   9 +-
+ lib/fonts/font_sun8x16.c                |   7 +-
+ lib/fonts/font_ter16x32.c               |   9 +-
+ 25 files changed, 1469 insertions(+), 68 deletions(-)
+ create mode 100644 drivers/video/fbdev/amba-clcd.c
+ create mode 100644 include/linux/amba/clcd-regs.h
+ create mode 100644 include/linux/amba/clcd.h
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
