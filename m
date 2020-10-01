@@ -2,45 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF6EF27F8F8
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Oct 2020 07:16:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A89B727F98E
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Oct 2020 08:39:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3457B6E133;
-	Thu,  1 Oct 2020 05:16:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C65C6E84D;
+	Thu,  1 Oct 2020 06:39:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B80066E133
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Oct 2020 05:16:10 +0000 (UTC)
-IronPort-SDR: htnkpPcnb39nNppnN2uQmXRBrAJ148IdVq6SO0ml/xFCxQwR8QNyWDFIv0FMI4Xc1PKCByIYyY
- 75EDWLMy4Dhg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="142033751"
-X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="142033751"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33B8F6E84D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Oct 2020 06:39:43 +0000 (UTC)
+IronPort-SDR: fpDwXOR/GchEwQ1kn6nOQmbbJS3P4/71d2Xs6CIw5k54axA8fkmDSKJoeX5jn0+73dD5ugdRy4
+ ECL4Nx93VLFA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="224255929"
+X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="224255929"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 22:16:09 -0700
-IronPort-SDR: BizJg/UHLVY4ohWr3IDv4H83TmU3NHIgBTTwZlrTtD0UNwKSDoHfsovun6GNIbYUrZW6FnlhA2
- Uk1h4c5OYpvQ==
-X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="515348179"
-Received: from jjgryzlo-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.212.105.223])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2020 22:16:09 -0700
-Date: Wed, 30 Sep 2020 22:16:02 -0700
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 23:39:41 -0700
+IronPort-SDR: GEjk8O3VBapSzszS/wDdMI55DRAoTHdIzgi3CddGLgv+pYtBACKW+FoRXJX36ETig5YlUJ8KWX
+ TtJ34R3K9IAA==
+X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="457985132"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2020 23:39:41 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20201001051602.ubchygho7jrrbdkk@ldmartin-desk1>
-X-Patchwork-Hint: ignore
-References: <20200930064234.85769-1-lucas.demarchi@intel.com>
- <20200930064234.85769-24-lucas.demarchi@intel.com>
- <20200930172041.GB2245633@mdroper-desk1.amr.corp.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 30 Sep 2020 23:39:16 -0700
+Message-Id: <20201001063917.3133475-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200930172041.GB2245633@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v6 23/24] drm/i915/dg1: Change DMC_DEBUG{1,
- 2} registers
+Subject: [Intel-gfx] [CI 1/2] drm/i915: don't conflate is_dgfx with fake lmem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,97 +46,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 30, 2020 at 10:20:41AM -0700, Matt Roper wrote:
->On Tue, Sep 29, 2020 at 11:42:33PM -0700, Lucas De Marchi wrote:
->> From: Anshuman Gupta <anshuman.gupta@intel.com>
->>
->> DGFX devices have different DMC_DEBUG* counter MMIO address
->> offset. Incorporate these changes in i915_reg.h for DG1
->> and handle i915_dmc_info accordingly.
->>
->> Cc: Uma Shankar <uma.shankar@intel.com>
->> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 9 +++++++--
->>  drivers/gpu/drm/i915/i915_reg.h                      | 1 +
->>  2 files changed, 8 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> index 0bf31f9a8af5..472f119fe246 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> @@ -518,8 +518,13 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
->>  		   CSR_VERSION_MINOR(csr->version));
->>
->>  	if (INTEL_GEN(dev_priv) >= 12) {
->> -		dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
->> -		dc6_reg = TGL_DMC_DEBUG_DC6_COUNT;
->> +		if (IS_DG1(dev_priv)) {
->
->I think we'd want IS_DGFX here since this change should hold true for
->any future dgfx platform as well.  Aside from that,
+When using fake lmem for tests, we are overriding the setting in
+device info for dgfx devices. Current users of IS_DGFX() except one are
+correct. However, as we add support for DG1, we are going to use it in
+additional places to trigger dgfx-only code path.
 
-not sure where this info came from, but it's not true. Not having DC6 is
-not related to being DGFX an future platforms may as well support it.
+In future if we need we can use HAS_LMEM() instead of IS_DGFX() in the
+places that make sense to also contemplate fake lmem use.
 
->
->Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->
->I notice the bspec does have a new DC6 residency register offset listed
->as well, which seems odd if we don't have DC6 support on this platform.
->
+v2: update gen8_gmch_probe() to use HAS_LMEM(): we need to steal the
+mappable aperture later(which is fine since it doesn't exist on "DGFX"),
+and use it as a substitute for LMEMBAR. The !mappable aperture property
+is also useful since it exercises some other parts of the code too.
+(Matthew Auld)
 
-previous version of this patch was defining that but it's unused so I
-removed it.
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 2 +-
+ drivers/gpu/drm/i915/i915_drv.c      | 2 --
+ 2 files changed, 1 insertion(+), 3 deletions(-)
 
-Lucas De Marchi
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 81c05f551b9c..188a5f70177d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -835,7 +835,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+ 	u16 snb_gmch_ctl;
+ 
+ 	/* TODO: We're not aware of mappable constraints on gen8 yet */
+-	if (!IS_DGFX(i915)) {
++	if (!HAS_LMEM(i915)) {
+ 		ggtt->gmadr = pci_resource(pdev, 2);
+ 		ggtt->mappable_end = resource_size(&ggtt->gmadr);
+ 	}
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 45e719c79183..3f6ed142198c 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -840,9 +840,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		    i915->params.fake_lmem_start) {
+ 			mkwrite_device_info(i915)->memory_regions =
+ 				REGION_SMEM | REGION_LMEM | REGION_STOLEN;
+-			mkwrite_device_info(i915)->is_dgfx = true;
+ 			GEM_BUG_ON(!HAS_LMEM(i915));
+-			GEM_BUG_ON(!IS_DGFX(i915));
+ 		}
+ 	}
+ #endif
+-- 
+2.28.0
 
->
->Matt
->
->
->> +			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
->> +		} else {
->> +			dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
->> +			dc6_reg = TGL_DMC_DEBUG_DC6_COUNT;
->> +		}
->> +
->>  		/*
->>  		 * NOTE: DMC_DEBUG3 is a general purpose reg.
->>  		 * According to B.Specs:49196 DMC f/w reuses DC5/6 counter
->> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->> index bb5094b80f15..b856a1fb0a32 100644
->> --- a/drivers/gpu/drm/i915/i915_reg.h
->> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> @@ -7538,6 +7538,7 @@ enum {
->>  #define BXT_CSR_DC3_DC5_COUNT	_MMIO(0x80038)
->>  #define TGL_DMC_DEBUG_DC5_COUNT	_MMIO(0x101084)
->>  #define TGL_DMC_DEBUG_DC6_COUNT	_MMIO(0x101088)
->> +#define DG1_DMC_DEBUG_DC5_COUNT	_MMIO(0x134154)
->>
->>  #define DMC_DEBUG3		_MMIO(0x101090)
->>
->> --
->> 2.28.0
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
->-- 
->Matt Roper
->Graphics Software Engineer
->VTT-OSGC Platform Enablement
->Intel Corporation
->(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
