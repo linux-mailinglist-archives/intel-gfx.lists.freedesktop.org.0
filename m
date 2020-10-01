@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A9DF280423
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Oct 2020 18:42:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8EB728042A
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Oct 2020 18:44:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0477A6E8C9;
-	Thu,  1 Oct 2020 16:42:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49F806E8CA;
+	Thu,  1 Oct 2020 16:44:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 897446E8C9
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Oct 2020 16:41:59 +0000 (UTC)
-IronPort-SDR: AbHKOuUGlCCoeqAxSuX05dj0Q/gHwpT43RM2RyIlQlFPc4K/1nZ4QlwWl64Mw9LoUcJNL0v5p3
- GLYGk2/xhI9w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9761"; a="162857536"
-X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="162857536"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 547826E8CA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Oct 2020 16:44:44 +0000 (UTC)
+IronPort-SDR: 02jyVXBGnHbqOcv0O3sqZOZ1wlZ5N4VdwKdGExgecAFabsuwRzPQ/Xqqt6O3bmTFzaYa+IFV4Y
+ dnAat/2IXIEQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9761"; a="142178540"
+X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="142178540"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2020 09:41:51 -0700
-IronPort-SDR: saY57zmqBzOT3n29G93HM8d3l2ff5hXZ8JuORtw1IY0WcAOti9qzrF11D1iLZAr2wNyAtZUezq
- RK/woVFgRIYQ==
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2020 09:44:32 -0700
+IronPort-SDR: L6LvS9APhOwA4NMmwTgJlkONHWAQQt5hL7z7b9ItA+P3A+UGuJABc/lMKd/uSxhOYv3ToBHJsQ
+ aa8LGoZKKJMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="352024686"
+X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; d="scan'208";a="325477077"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 01 Oct 2020 09:41:49 -0700
+ by orsmga002.jf.intel.com with SMTP; 01 Oct 2020 09:44:30 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 01 Oct 2020 19:41:48 +0300
-Date: Thu, 1 Oct 2020 19:41:48 +0300
+ Thu, 01 Oct 2020 19:44:29 +0300
+Date: Thu, 1 Oct 2020 19:44:29 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20201001164148.GU6112@intel.com>
+Message-ID: <20201001164429.GV6112@intel.com>
 References: <20200929002929.783620-1-imre.deak@intel.com>
- <20200929002929.783620-2-imre.deak@intel.com>
+ <20200929002929.783620-4-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200929002929.783620-2-imre.deak@intel.com>
+In-Reply-To: <20200929002929.783620-4-imre.deak@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/skl: Work around incorrect
- BIOS WRPLL PDIV programming
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/icl: Cross check the combo PLL
+ WRPLL parameters wrt. hard-coded PLL freqs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,90 +60,73 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 29, 2020 at 03:29:25AM +0300, Imre Deak wrote:
-> The BIOS of at least one ASUS-Z170M system with an SKL I have programs
-> the 101b WRPLL PDIV divider value, which is the encoding for PDIV=3D7 with
-> bit#0 incorrectly set.
-> =
+On Tue, Sep 29, 2020 at 03:29:27AM +0300, Imre Deak wrote:
+> When selecting the WRPLL dividers for a given port clock/PLL freq, the
+> hard-coded PLL freq in a table entry can be calculated using the rest of
+> parameters in the same entry. Cross-check if the hard coded values match
+> what we calculate with the formula.
 
-> This happens with the
-> =
+We've never done this on any other plaform I think. Why is this special?
+Also, shouldn't the state checker catch this anyway?
 
-> "3840x2160": 30 262750 3840 3888 3920 4000 2160 2163 2168 2191 0x48 0x9
-> =
-
-> HDMI mode (scaled from a 1024x768 src fb) set by BIOS and the
-> =
-
-> ref_clock=3D24000, dco_integer=3D383, dco_fraction=3D5802, pdiv=3D7, qdiv=
-=3D1, kdiv=3D1
-> =
-
-> WRPLL parameters (assuming PDIV=3D7 was the intended setting). This
-> corresponds to 262749 PLL frequency/port clock.
-> =
-
-> Later the driver sets the same mode for which it calculates the same
-> dco_int/dco_frac/div WRPLL parameters (with the correct PDIV=3D7 encoding=
-).
-> =
-
-> Based on the above, let's assume that PDIV=3D7 was intended and the HW
-> just ignores bit#0 in the PDIV register field for this setting, treating
-> 100b and 101b encodings the same way.
 > =
 
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 8 ++++++++
->  drivers/gpu/drm/i915/i915_reg.h               | 1 +
->  2 files changed, 9 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 26 ++++++++++++++++++-
+>  1 file changed, 25 insertions(+), 1 deletion(-)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
 drm/i915/display/intel_dpll_mgr.c
-> index e08684e34078..095b53fe3a21 100644
+> index e3370c8dccc8..ded2b2dfe319 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -1602,6 +1602,14 @@ static int skl_ddi_wrpll_get_freq(struct drm_i915_=
-private *i915,
->  	case DPLL_CFGCR2_PDIV_3:
->  		p0 =3D 3;
->  		break;
-> +	case DPLL_CFGCR2_PDIV_7 | (1 << DPLL_CFGCR2_PDIV_SHIFT):
+> @@ -3002,6 +3002,30 @@ static const struct skl_wrpll_params tgl_tbt_pll_3=
+8_4MHz_values =3D {
+>  	.pdiv =3D 0, .kdiv =3D 0, .qdiv_mode =3D 0, .qdiv_ratio =3D 0,
+>  };
+>  =
 
-Maybe we want a define for this?
+> +static int icl_wrpll_ref_clock(struct drm_i915_private *i915);
+> +
+> +static bool icl_dp_combo_pll_clock_match(struct drm_i915_private *i915, =
+int clock,
+> +					 const struct icl_combo_pll_params *p)
+> +{
+> +	int ref_clock =3D icl_wrpll_ref_clock(i915);
+> +	int pll_freq;
+> +	u32 pdiv;
+> +	u32 qdiv;
+> +	u32 kdiv;
+> +
+> +	cnl_wrpll_decode_divs(&p->wrpll, &pdiv, &qdiv, &kdiv);
+> +
+> +	pll_freq =3D skl_wrpll_calc_freq(ref_clock,
+> +				       p->wrpll.dco_integer, p->wrpll.dco_fraction,
+> +				       pdiv, qdiv, kdiv);
+> +	drm_WARN_ON(&i915->drm, pll_freq !=3D p->clock);
+> +
+> +	if (clock =3D=3D pll_freq)
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+>  static bool icl_calc_dp_combo_pll(struct intel_crtc_state *crtc_state,
+>  				  struct skl_wrpll_params *pll_params)
+>  {
+> @@ -3014,7 +3038,7 @@ static bool icl_calc_dp_combo_pll(struct intel_crtc=
+_state *crtc_state,
+>  	int i;
+>  =
 
-> +		/*
-> +		 * Incorrect ASUS-Z170M BIOS setting, the HW seems to ignore bit#0,
-> +		 * handling it the same way as PDIV_7.
-> +		 */
-> +		drm_err(&i915->drm, "Invalid WRPLL PDIV divider value, fixing it.\n");
-
-I wonder how many bug reports that will generate. Might want to make
-it debug insteead.
-
-> +		p0 =3D 7;
-> +		break;
-
-Or maybe fallthrough?
-
->  	case DPLL_CFGCR2_PDIV_7:
->  		p0 =3D 7;
->  		break;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 47730a176698..f70e45bd3810 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -10253,6 +10253,7 @@ enum skl_power_gate {
->  #define  DPLL_CFGCR2_KDIV_3 (2 << 5)
->  #define  DPLL_CFGCR2_KDIV_1 (3 << 5)
->  #define  DPLL_CFGCR2_PDIV_MASK		(7 << 2)
-> +#define  DPLL_CFGCR2_PDIV_SHIFT		2
->  #define  DPLL_CFGCR2_PDIV(x)		((x) << 2)
->  #define  DPLL_CFGCR2_PDIV_1 (0 << 2)
->  #define  DPLL_CFGCR2_PDIV_2 (1 << 2)
+>  	for (i =3D 0; i < ARRAY_SIZE(icl_dp_combo_pll_24MHz_values); i++) {
+> -		if (clock =3D=3D params[i].clock) {
+> +		if (icl_dp_combo_pll_clock_match(dev_priv, clock, &params[i])) {
+>  			*pll_params =3D params[i].wrpll;
+>  			return true;
+>  		}
 > -- =
 
 > 2.25.1
