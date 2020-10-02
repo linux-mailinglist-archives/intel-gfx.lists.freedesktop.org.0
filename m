@@ -1,26 +1,27 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03826281366
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 15:00:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C6AA281368
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 15:00:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 245B16E968;
-	Fri,  2 Oct 2020 12:59:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5DA36E95C;
+	Fri,  2 Oct 2020 12:59:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9DA36E975
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Oct 2020 12:59:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 887CD6E95A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Oct 2020 12:59:48 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  2 Oct 2020 14:59:09 +0200
-Message-Id: <20201002125939.50817-32-maarten.lankhorst@linux.intel.com>
+Date: Fri,  2 Oct 2020 14:59:10 +0200
+Message-Id: <20201002125939.50817-33-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201002125939.50817-1-maarten.lankhorst@linux.intel.com>
 References: <20201002125939.50817-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 31/61] drm/i915: Prepare for obj->mm.lock removal
+Subject: [Intel-gfx] [PATCH 32/61] drm/i915: Add igt_spinner_pin() to allow
+ for ww locking around spinner.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,90 +34,248 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgoKU3Rv
-bGVuIG9iamVjdHMgbmVlZCB0byBsb2NrLCBhbmQgd2UgbWF5IGNhbGwgcHV0X3BhZ2VzIHdoZW4K
-cmVmY291bnQgZHJvcHMgdG8gMCwgZW5zdXJlIGFsbCBjYWxscyBhcmUgaGFuZGxlZCBjb3JyZWN0
-bHkuCgpJZGVhLWZyb206IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGludGVs
-LmNvbT4KU2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0
-QGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-b2JqZWN0LmggfCAxNCArKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5
-MTVfZ2VtX3BhZ2VzLmMgIHwgMTQgKysrKysrKysrKysrLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2dlbS9pOTE1X2dlbV9zdG9sZW4uYyB8IDEwICsrKysrKysrKy0KIDMgZmlsZXMgY2hhbmdlZCwg
-MzUgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-ZW0vaTkxNV9nZW1fb2JqZWN0LmgKaW5kZXggODA0MjRjZTQ5ZjI2Li41MzRlMzZiOGQ0M2IgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaAorKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmgKQEAgLTExMiw2ICsx
-MTIsMjAgQEAgaTkxNV9nZW1fb2JqZWN0X3B1dChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAq
-b2JqKQogCiAjZGVmaW5lIGFzc2VydF9vYmplY3RfaGVsZChvYmopIGRtYV9yZXN2X2Fzc2VydF9o
-ZWxkKChvYmopLT5iYXNlLnJlc3YpCiAKKy8qCisgKiBJZiBtb3JlIHRoYW4gb25lIHBvdGVudGlh
-bCBzaW11bHRhbmVvdXMgbG9ja2VyLCBhc3NlcnQgaGVsZC4KKyAqLworc3RhdGljIGlubGluZSB2
-b2lkIGFzc2VydF9vYmplY3RfaGVsZF9zaGFyZWQoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Qg
-Km9iaikKK3sKKwkvKgorCSAqIE5vdGUgbW0gbGlzdCBsb29rdXAgaXMgcHJvdGVjdGVkIGJ5CisJ
-ICoga3JlZl9nZXRfdW5sZXNzX3plcm8oKS4KKwkgKi8KKwlpZiAoSVNfRU5BQkxFRChDT05GSUdf
-TE9DS0RFUCkgJiYKKwkgICAga3JlZl9yZWFkKCZvYmotPmJhc2UucmVmY291bnQpID4gMCkKKwkJ
-bG9ja2RlcF9hc3NlcnRfaGVsZCgmb2JqLT5tbS5sb2NrKTsKK30KKwogc3RhdGljIGlubGluZSBp
-bnQgX19pOTE1X2dlbV9vYmplY3RfbG9jayhzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2Jq
-LAogCQkJCQkgc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3csCiAJCQkJCSBib29sIGludHIpCmRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fcGFnZXMuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9wYWdlcy5jCmluZGV4IDcwZDhlMDlhOTE4
-OC4uNzU1NTZjNDE3ODczIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkx
-NV9nZW1fcGFnZXMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fcGFn
-ZXMuYwpAQCAtMTgsNyArMTgsNyBAQCB2b2lkIF9faTkxNV9nZW1fb2JqZWN0X3NldF9wYWdlcyhz
-dHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqLAogCXVuc2lnbmVkIGxvbmcgc3VwcG9ydGVk
-ID0gSU5URUxfSU5GTyhpOTE1KS0+cGFnZV9zaXplczsKIAlpbnQgaTsKIAotCWxvY2tkZXBfYXNz
-ZXJ0X2hlbGQoJm9iai0+bW0ubG9jayk7CisJYXNzZXJ0X29iamVjdF9oZWxkX3NoYXJlZChvYmop
-OwogCiAJaWYgKGk5MTVfZ2VtX29iamVjdF9pc192b2xhdGlsZShvYmopKQogCQlvYmotPm1tLm1h
-ZHYgPSBJOTE1X01BRFZfRE9OVE5FRUQ7CkBAIC02NSw2ICs2NSw3IEBAIHZvaWQgX19pOTE1X2dl
-bV9vYmplY3Rfc2V0X3BhZ2VzKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmosCiAJCXN0
-cnVjdCBsaXN0X2hlYWQgKmxpc3Q7CiAJCXVuc2lnbmVkIGxvbmcgZmxhZ3M7CiAKKwkJbG9ja2Rl
-cF9hc3NlcnRfaGVsZCgmb2JqLT5tbS5sb2NrKTsKIAkJc3Bpbl9sb2NrX2lycXNhdmUoJmk5MTUt
-Pm1tLm9ial9sb2NrLCBmbGFncyk7CiAKIAkJaTkxNS0+bW0uc2hyaW5rX2NvdW50Kys7CkBAIC04
-Niw2ICs4Nyw4IEBAIGludCBfX19faTkxNV9nZW1fb2JqZWN0X2dldF9wYWdlcyhzdHJ1Y3QgZHJt
-X2k5MTVfZ2VtX29iamVjdCAqb2JqKQogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0g
-dG9faTkxNShvYmotPmJhc2UuZGV2KTsKIAlpbnQgZXJyOwogCisJYXNzZXJ0X29iamVjdF9oZWxk
-X3NoYXJlZChvYmopOworCiAJaWYgKHVubGlrZWx5KG9iai0+bW0ubWFkdiAhPSBJOTE1X01BRFZf
-V0lMTE5FRUQpKSB7CiAJCWRybV9kYmcoJmk5MTUtPmRybSwKIAkJCSJBdHRlbXB0aW5nIHRvIG9i
-dGFpbiBhIHB1cmdlYWJsZSBvYmplY3RcbiIpOwpAQCAtMTEzLDYgKzExNiw4IEBAIGludCBfX2k5
-MTVfZ2VtX29iamVjdF9nZXRfcGFnZXMoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikK
-IAlpZiAoZXJyKQogCQlyZXR1cm4gZXJyOwogCisJYXNzZXJ0X29iamVjdF9oZWxkX3NoYXJlZChv
-YmopOworCiAJaWYgKHVubGlrZWx5KCFpOTE1X2dlbV9vYmplY3RfaGFzX3BhZ2VzKG9iaikpKSB7
-CiAJCUdFTV9CVUdfT04oaTkxNV9nZW1fb2JqZWN0X2hhc19waW5uZWRfcGFnZXMob2JqKSk7CiAK
-QEAgLTE0MCw3ICsxNDUsNyBAQCB2b2lkIGk5MTVfZ2VtX29iamVjdF90cnVuY2F0ZShzdHJ1Y3Qg
-ZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQogLyogVHJ5IHRvIGRpc2NhcmQgdW53YW50ZWQgcGFn
-ZXMgKi8KIHZvaWQgaTkxNV9nZW1fb2JqZWN0X3dyaXRlYmFjayhzdHJ1Y3QgZHJtX2k5MTVfZ2Vt
-X29iamVjdCAqb2JqKQogewotCWxvY2tkZXBfYXNzZXJ0X2hlbGQoJm9iai0+bW0ubG9jayk7CisJ
-YXNzZXJ0X29iamVjdF9oZWxkX3NoYXJlZChvYmopOwogCUdFTV9CVUdfT04oaTkxNV9nZW1fb2Jq
-ZWN0X2hhc19wYWdlcyhvYmopKTsKIAogCWlmIChvYmotPm9wcy0+d3JpdGViYWNrKQpAQCAtMTcx
-LDYgKzE3Niw4IEBAIF9faTkxNV9nZW1fb2JqZWN0X3Vuc2V0X3BhZ2VzKHN0cnVjdCBkcm1faTkx
-NV9nZW1fb2JqZWN0ICpvYmopCiB7CiAJc3RydWN0IHNnX3RhYmxlICpwYWdlczsKIAorCWFzc2Vy
-dF9vYmplY3RfaGVsZF9zaGFyZWQob2JqKTsKKwogCXBhZ2VzID0gZmV0Y2hfYW5kX3plcm8oJm9i
-ai0+bW0ucGFnZXMpOwogCWlmIChJU19FUlJfT1JfTlVMTChwYWdlcykpCiAJCXJldHVybiBwYWdl
-czsKQEAgLTE5OCw2ICsyMDUsOSBAQCBpbnQgX19pOTE1X2dlbV9vYmplY3RfcHV0X3BhZ2VzX2xv
-Y2tlZChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQogCWlmIChpOTE1X2dlbV9vYmpl
-Y3RfaGFzX3Bpbm5lZF9wYWdlcyhvYmopKQogCQlyZXR1cm4gLUVCVVNZOwogCisJLyogTWF5IGJl
-IGNhbGxlZCBieSBzaHJpbmtlciBmcm9tIHdpdGhpbiBnZXRfcGFnZXMoKSAob24gYW5vdGhlciBi
-bykgKi8KKwlhc3NlcnRfb2JqZWN0X2hlbGRfc2hhcmVkKG9iaik7CisKIAlpOTE1X2dlbV9vYmpl
-Y3RfcmVsZWFzZV9tbWFwX29mZnNldChvYmopOwogCiAJLyoKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9zdG9sZW4uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2dlbS9pOTE1X2dlbV9zdG9sZW4uYwppbmRleCA5YTkyNDJiNWE5OWYuLjFmZDI4N2NlODZmNCAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jCisr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9zdG9sZW4uYwpAQCAtNTkzLDEx
-ICs1OTMsMTkgQEAgX19pOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0b2xlbihzdHJ1Y3QgaW50ZWxf
-bWVtb3J5X3JlZ2lvbiAqbWVtLAogCWNhY2hlX2xldmVsID0gSEFTX0xMQyhtZW0tPmk5MTUpID8g
-STkxNV9DQUNIRV9MTEMgOiBJOTE1X0NBQ0hFX05PTkU7CiAJaTkxNV9nZW1fb2JqZWN0X3NldF9j
-YWNoZV9jb2hlcmVuY3kob2JqLCBjYWNoZV9sZXZlbCk7CiAKKwlpZiAoV0FSTl9PTighaTkxNV9n
-ZW1fb2JqZWN0X3RyeWxvY2sob2JqKSkpIHsKKwkJZXJyID0gLUVCVVNZOworCQlnb3RvIGNsZWFu
-dXA7CisJfQorCiAJZXJyID0gaTkxNV9nZW1fb2JqZWN0X3Bpbl9wYWdlcyhvYmopOwotCWlmIChl
-cnIpCisJaWYgKGVycikgeworCQlpOTE1X2dlbV9vYmplY3RfdW5sb2NrKG9iaik7CiAJCWdvdG8g
-Y2xlYW51cDsKKwl9CiAKIAlpOTE1X2dlbV9vYmplY3RfaW5pdF9tZW1vcnlfcmVnaW9uKG9iaiwg
-bWVtKTsKKwlpOTE1X2dlbV9vYmplY3RfdW5sb2NrKG9iaik7CiAKIAlyZXR1cm4gb2JqOwogCi0t
-IAoyLjI4LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+By default, we assume that it's called inside igt_create_request
+to keep existing selftests working, but allow for manual pinning
+when passing a ww context.
+
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/i915/selftests/igt_spinner.c | 136 ++++++++++++-------
+ drivers/gpu/drm/i915/selftests/igt_spinner.h |   5 +
+ 2 files changed, 95 insertions(+), 46 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/drm/i915/selftests/igt_spinner.c
+index ec0ecb4e4ca6..9c461edb0b73 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
++++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
+@@ -11,8 +11,6 @@
+ 
+ int igt_spinner_init(struct igt_spinner *spin, struct intel_gt *gt)
+ {
+-	unsigned int mode;
+-	void *vaddr;
+ 	int err;
+ 
+ 	memset(spin, 0, sizeof(*spin));
+@@ -23,6 +21,7 @@ int igt_spinner_init(struct igt_spinner *spin, struct intel_gt *gt)
+ 		err = PTR_ERR(spin->hws);
+ 		goto err;
+ 	}
++	i915_gem_object_set_cache_coherency(spin->hws, I915_CACHE_LLC);
+ 
+ 	spin->obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
+ 	if (IS_ERR(spin->obj)) {
+@@ -30,34 +29,83 @@ int igt_spinner_init(struct igt_spinner *spin, struct intel_gt *gt)
+ 		goto err_hws;
+ 	}
+ 
+-	i915_gem_object_set_cache_coherency(spin->hws, I915_CACHE_LLC);
+-	vaddr = i915_gem_object_pin_map(spin->hws, I915_MAP_WB);
+-	if (IS_ERR(vaddr)) {
+-		err = PTR_ERR(vaddr);
+-		goto err_obj;
+-	}
+-	spin->seqno = memset(vaddr, 0xff, PAGE_SIZE);
+-
+-	mode = i915_coherent_map_type(gt->i915);
+-	vaddr = i915_gem_object_pin_map(spin->obj, mode);
+-	if (IS_ERR(vaddr)) {
+-		err = PTR_ERR(vaddr);
+-		goto err_unpin_hws;
+-	}
+-	spin->batch = vaddr;
+-
+ 	return 0;
+ 
+-err_unpin_hws:
+-	i915_gem_object_unpin_map(spin->hws);
+-err_obj:
+-	i915_gem_object_put(spin->obj);
+ err_hws:
+ 	i915_gem_object_put(spin->hws);
+ err:
+ 	return err;
+ }
+ 
++static void *igt_spinner_pin_obj(struct intel_context *ce,
++				 struct i915_gem_ww_ctx *ww,
++				 struct drm_i915_gem_object *obj,
++				 unsigned int mode, struct i915_vma **vma)
++{
++	void *vaddr;
++	int ret;
++
++	*vma = i915_vma_instance(obj, ce->vm, NULL);
++	if (IS_ERR(*vma))
++		return ERR_CAST(*vma);
++
++	ret = i915_gem_object_lock(obj, ww);
++	if (ret)
++		return ERR_PTR(ret);
++
++	vaddr = i915_gem_object_pin_map(obj, mode);
++
++	if (!ww)
++		i915_gem_object_unlock(obj);
++
++	if (IS_ERR(vaddr))
++		return vaddr;
++
++	if (ww)
++		ret = i915_vma_pin_ww(*vma, ww, 0, 0, PIN_USER);
++	else
++		ret = i915_vma_pin(*vma, 0, 0, PIN_USER);
++
++	if (ret) {
++		i915_gem_object_unpin_map(obj);
++		return ERR_PTR(ret);
++	}
++
++	return vaddr;
++}
++
++int igt_spinner_pin(struct igt_spinner *spin,
++		    struct intel_context *ce,
++		    struct i915_gem_ww_ctx *ww)
++{
++	void *vaddr;
++
++	if (spin->ce && WARN_ON(spin->ce != ce))
++		return -ENODEV;
++	spin->ce = ce;
++
++	if (!spin->seqno) {
++		vaddr = igt_spinner_pin_obj(ce, ww, spin->hws, I915_MAP_WB, &spin->hws_vma);
++		if (IS_ERR(vaddr))
++			return PTR_ERR(vaddr);
++
++		spin->seqno = memset(vaddr, 0xff, PAGE_SIZE);
++	}
++
++	if (!spin->batch) {
++		unsigned int mode =
++			i915_coherent_map_type(spin->gt->i915);
++
++		vaddr = igt_spinner_pin_obj(ce, ww, spin->obj, mode, &spin->batch_vma);
++		if (IS_ERR(vaddr))
++			return PTR_ERR(vaddr);
++
++		spin->batch = vaddr;
++	}
++
++	return 0;
++}
++
+ static unsigned int seqno_offset(u64 fence)
+ {
+ 	return offset_in_page(sizeof(u32) * fence);
+@@ -102,27 +150,18 @@ igt_spinner_create_request(struct igt_spinner *spin,
+ 	if (!intel_engine_can_store_dword(ce->engine))
+ 		return ERR_PTR(-ENODEV);
+ 
+-	vma = i915_vma_instance(spin->obj, ce->vm, NULL);
+-	if (IS_ERR(vma))
+-		return ERR_CAST(vma);
+-
+-	hws = i915_vma_instance(spin->hws, ce->vm, NULL);
+-	if (IS_ERR(hws))
+-		return ERR_CAST(hws);
++	if (!spin->batch) {
++		err = igt_spinner_pin(spin, ce, NULL);
++		if (err)
++			return ERR_PTR(err);
++	}
+ 
+-	err = i915_vma_pin(vma, 0, 0, PIN_USER);
+-	if (err)
+-		return ERR_PTR(err);
+-
+-	err = i915_vma_pin(hws, 0, 0, PIN_USER);
+-	if (err)
+-		goto unpin_vma;
++	hws = spin->hws_vma;
++	vma = spin->batch_vma;
+ 
+ 	rq = intel_context_create_request(ce);
+-	if (IS_ERR(rq)) {
+-		err = PTR_ERR(rq);
+-		goto unpin_hws;
+-	}
++	if (IS_ERR(rq))
++		return ERR_CAST(rq);
+ 
+ 	err = move_to_active(vma, rq, 0);
+ 	if (err)
+@@ -185,10 +224,6 @@ igt_spinner_create_request(struct igt_spinner *spin,
+ 		i915_request_set_error_once(rq, err);
+ 		i915_request_add(rq);
+ 	}
+-unpin_hws:
+-	i915_vma_unpin(hws);
+-unpin_vma:
+-	i915_vma_unpin(vma);
+ 	return err ? ERR_PTR(err) : rq;
+ }
+ 
+@@ -202,6 +237,9 @@ hws_seqno(const struct igt_spinner *spin, const struct i915_request *rq)
+ 
+ void igt_spinner_end(struct igt_spinner *spin)
+ {
++	if (!spin->batch)
++		return;
++
+ 	*spin->batch = MI_BATCH_BUFFER_END;
+ 	intel_gt_chipset_flush(spin->gt);
+ }
+@@ -210,10 +248,16 @@ void igt_spinner_fini(struct igt_spinner *spin)
+ {
+ 	igt_spinner_end(spin);
+ 
+-	i915_gem_object_unpin_map(spin->obj);
++	if (spin->batch) {
++		i915_vma_unpin(spin->batch_vma);
++		i915_gem_object_unpin_map(spin->obj);
++	}
+ 	i915_gem_object_put(spin->obj);
+ 
+-	i915_gem_object_unpin_map(spin->hws);
++	if (spin->seqno) {
++		i915_vma_unpin(spin->hws_vma);
++		i915_gem_object_unpin_map(spin->hws);
++	}
+ 	i915_gem_object_put(spin->hws);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.h b/drivers/gpu/drm/i915/selftests/igt_spinner.h
+index ec62c9ef320b..fbe5b1625b05 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_spinner.h
++++ b/drivers/gpu/drm/i915/selftests/igt_spinner.h
+@@ -20,11 +20,16 @@ struct igt_spinner {
+ 	struct intel_gt *gt;
+ 	struct drm_i915_gem_object *hws;
+ 	struct drm_i915_gem_object *obj;
++	struct intel_context *ce;
++	struct i915_vma *hws_vma, *batch_vma;
+ 	u32 *batch;
+ 	void *seqno;
+ };
+ 
+ int igt_spinner_init(struct igt_spinner *spin, struct intel_gt *gt);
++int igt_spinner_pin(struct igt_spinner *spin,
++		    struct intel_context *ce,
++		    struct i915_gem_ww_ctx *ww);
+ void igt_spinner_fini(struct igt_spinner *spin);
+ 
+ struct i915_request *
+-- 
+2.28.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
