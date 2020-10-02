@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D5CC281382
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 15:00:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8FD1281387
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 15:00:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFE966E99E;
-	Fri,  2 Oct 2020 13:00:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 563B06E9A2;
+	Fri,  2 Oct 2020 13:00:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29C676E980
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4079B6E962
  for <intel-gfx@lists.freedesktop.org>; Fri,  2 Oct 2020 12:59:52 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  2 Oct 2020 14:59:27 +0200
-Message-Id: <20201002125939.50817-50-maarten.lankhorst@linux.intel.com>
+Date: Fri,  2 Oct 2020 14:59:28 +0200
+Message-Id: <20201002125939.50817-51-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201002125939.50817-1-maarten.lankhorst@linux.intel.com>
 References: <20201002125939.50817-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 49/61] drm/i915/selftests: Prepare igt_gem_utils
- for obj->mm.lock removal
+Subject: [Intel-gfx] [PATCH 50/61] drm/i915/selftests: Prepare context
+ selftest for obj->mm.lock removal
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,28 +39,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-igt_emit_store_dw needs to use the unlocked version, as it's not
-holding a lock. This fixes igt_gpu_fill_dw() which is used by
-some other selftests.
+Only needs to convert a single call to the unlocked version.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/selftest_context.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-index e21b5023ca7d..f4e85b4a347d 100644
---- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-@@ -54,7 +54,7 @@ igt_emit_store_dw(struct i915_vma *vma,
- 	if (IS_ERR(obj))
- 		return ERR_CAST(obj);
- 
--	cmd = i915_gem_object_pin_map(obj, I915_MAP_WC);
-+	cmd = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WC);
- 	if (IS_ERR(cmd)) {
- 		err = PTR_ERR(cmd);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
+index 1f4020e906a8..d9b0ebc938f1 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_context.c
++++ b/drivers/gpu/drm/i915/gt/selftest_context.c
+@@ -88,8 +88,8 @@ static int __live_context_size(struct intel_engine_cs *engine)
+ 	if (err)
  		goto err;
+ 
+-	vaddr = i915_gem_object_pin_map(ce->state->obj,
+-					i915_coherent_map_type(engine->i915));
++	vaddr = i915_gem_object_pin_map_unlocked(ce->state->obj,
++						 i915_coherent_map_type(engine->i915));
+ 	if (IS_ERR(vaddr)) {
+ 		err = PTR_ERR(vaddr);
+ 		intel_context_unpin(ce);
 -- 
 2.28.0
 
