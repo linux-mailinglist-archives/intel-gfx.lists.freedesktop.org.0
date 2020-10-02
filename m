@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0390528123A
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 14:22:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86402281232
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 14:22:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06F0F6E94A;
-	Fri,  2 Oct 2020 12:22:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 070786E945;
+	Fri,  2 Oct 2020 12:22:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from casper.infradead.org (casper.infradead.org
  [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC9A6E944;
- Fri,  2 Oct 2020 12:22:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F4C66E944;
+ Fri,  2 Oct 2020 12:22:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=EtVpkGxd0Kyhqnh/t2FVgPRi015JMv+YUxF5ITQDDnw=; b=YC9YSxhdMUjpAx+qZIqAtDibYf
- Ae57cee8hHW/s/lmclebw/+iy3/ZV0P1PMww16N92quPotDMxPBxb07u6e1KMiM9d2bOULOFjvktb
- edlyZ2ZS9sflTzcALRfF8JhArSlU0gXB0oVeULJ9otfAOLgM8GBmICIrOciBrAuS8iIc/qF+mTOZ4
- lMledsjicdXf60HJF7roTT2KjBQa2XH9zg+ogmvw2nsfbkk2h+DmtNF+0QHQDHWWi+Lg51UeQg8JV
- DX8S8Y22HEu2e2tNQOe0eTRtvQUuJACsJJyEx9C1jlsunp+HbZ+s0jWAyv2M7c+oqiwMIckAYtyvl
- S9PNbd9w==;
+ bh=71LvYnHcMs7/rXGs508r2vzZrQvLA4mfS9GwJnz8e8I=; b=Fz/pOMH6+ie/e1OSMd6JkfXPQC
+ JC5co7zAbmFu2k8+DrdE5486C8h+YCa1pn1Er8OGy8W+fjduwDJ6SfjCMYntlhgAc7GV7WLJPQnLV
+ tzwMDO1lMTe11hfYJrkRsnUwp7CQ8EmZBLhkvWMNMm4+v8ISlzfj3Y20uMh1T6tF4J6ngyYK4FcLe
+ qEuFVI944dPgAm4aI1KxiQu6NSETk1qw4RVOc+zM8uSpTHd/IT/VtB2Qxcbes3rwO8SoDqfr16DLT
+ +r0rTdtFHGOSLhe4UYcXEzoVUwdRYJOrErYqhu1cWi57CeoX1M2VxX5KVZ/orcBMld06RXibyZiwb
+ 9onDIZrw==;
 Received: from [2001:4bb8:180:7b62:f738:1861:1acc:15c8] (helo=localhost)
  by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kOK4d-0003KC-Iy; Fri, 02 Oct 2020 12:22:07 +0000
+ id 1kOK4e-0003KI-Qf; Fri, 02 Oct 2020 12:22:09 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: Andrew Morton <akpm@linux-foundation.org>
-Date: Fri,  2 Oct 2020 14:21:54 +0200
-Message-Id: <20201002122204.1534411-2-hch@lst.de>
+Date: Fri,  2 Oct 2020 14:21:55 +0200
+Message-Id: <20201002122204.1534411-3-hch@lst.de>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201002122204.1534411-1-hch@lst.de>
 References: <20201002122204.1534411-1-hch@lst.de>
 MIME-Version: 1.0
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
  casper.infradead.org. See http://www.infradead.org/rpr.html
-Subject: [Intel-gfx] [PATCH 01/11] mm: update the documentation for vfree
+Subject: [Intel-gfx] [PATCH 02/11] mm: add a VM_MAP_PUT_PAGES flag for vmap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,58 +62,55 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+Add a flag so that vmap takes ownership of the passed in page array.
+When vfree is called on such an allocation it will put one reference
+on each page, and free the page array itself.
 
- * Document that you can call vfree() on an address returned from vmap()
- * Remove the note about the minimum size -- the minimum size of a vmalloc
-   allocation is one page
- * Add a Context: section
- * Fix capitalisation
- * Reword the prohibition on calling from NMI context to avoid a double
-   negative
-
-Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- mm/vmalloc.c | 21 +++++++++++----------
- 1 file changed, 11 insertions(+), 10 deletions(-)
+ include/linux/vmalloc.h | 1 +
+ mm/vmalloc.c            | 9 +++++++--
+ 2 files changed, 8 insertions(+), 2 deletions(-)
 
+diff --git a/include/linux/vmalloc.h b/include/linux/vmalloc.h
+index 0221f852a7e1a3..b899681e3ff9f0 100644
+--- a/include/linux/vmalloc.h
++++ b/include/linux/vmalloc.h
+@@ -24,6 +24,7 @@ struct notifier_block;		/* in notifier.h */
+ #define VM_UNINITIALIZED	0x00000020	/* vm_struct is not fully initialized */
+ #define VM_NO_GUARD		0x00000040      /* don't add guard page */
+ #define VM_KASAN		0x00000080      /* has allocated kasan shadow memory */
++#define VM_MAP_PUT_PAGES	0x00000100	/* put pages and free array in vfree */
+ 
+ /*
+  * VM_KASAN is used slighly differently depending on CONFIG_KASAN_VMALLOC.
 diff --git a/mm/vmalloc.c b/mm/vmalloc.c
-index be4724b916b3e7..8770260419af06 100644
+index 8770260419af06..ffad65f052c3f9 100644
 --- a/mm/vmalloc.c
 +++ b/mm/vmalloc.c
-@@ -2321,20 +2321,21 @@ static void __vfree(const void *addr)
- }
- 
- /**
-- * vfree - release memory allocated by vmalloc()
-- * @addr:  memory base address
-+ * vfree - Release memory allocated by vmalloc()
-+ * @addr:  Memory base address
+@@ -2377,8 +2377,11 @@ EXPORT_SYMBOL(vunmap);
+  * @flags: vm_area->flags
+  * @prot: page protection for the mapping
   *
-- * Free the virtually continuous memory area starting at @addr, as
-- * obtained from vmalloc(), vmalloc_32() or __vmalloc(). If @addr is
-- * NULL, no operation is performed.
-+ * Free the virtually continuous memory area starting at @addr, as obtained
-+ * from one of the vmalloc() family of APIs.  This will usually also free the
-+ * physical memory underlying the virtual allocation, but that memory is
-+ * reference counted, so it will not be freed until the last user goes away.
+- * Maps @count pages from @pages into contiguous kernel virtual
+- * space.
++ * Maps @count pages from @pages into contiguous kernel virtual space.
++ * If @flags contains %VM_MAP_PUT_PAGES the ownership of the pages array itself
++ * (which must be kmalloc or vmalloc memory) and one reference per pages in it
++ * are transferred from the caller to vmap(), and will be freed / dropped when
++ * vfree() is called on the return value.
   *
-- * Must not be called in NMI context (strictly speaking, only if we don't
-- * have CONFIG_ARCH_HAVE_NMI_SAFE_CMPXCHG, but making the calling
-- * conventions for vfree() arch-depenedent would be a really bad idea)
-+ * If @addr is NULL, no operation is performed.
-  *
-+ * Context:
-  * May sleep if called *not* from interrupt context.
-- *
-- * NOTE: assumes that the object at @addr has a size >= sizeof(llist_node)
-+ * Must not be called in NMI context (strictly speaking, it could be
-+ * if we have CONFIG_ARCH_HAVE_NMI_SAFE_CMPXCHG, but making the calling
-+ * conventions for vfree() arch-depenedent would be a really bad idea).
+  * Return: the address of the area or %NULL on failure
   */
- void vfree(const void *addr)
- {
+@@ -2404,6 +2407,8 @@ void *vmap(struct page **pages, unsigned int count,
+ 		return NULL;
+ 	}
+ 
++	if (flags & VM_MAP_PUT_PAGES)
++		area->pages = pages;
+ 	return area->addr;
+ }
+ EXPORT_SYMBOL(vmap);
 -- 
 2.28.0
 
