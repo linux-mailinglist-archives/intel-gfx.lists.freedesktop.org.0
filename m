@@ -2,25 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B2C28135B
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 15:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA6DA281360
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 15:00:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAB726E971;
-	Fri,  2 Oct 2020 12:59:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08EBA6E97C;
+	Fri,  2 Oct 2020 12:59:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4E7E6E95F
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Oct 2020 12:59:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 243326E95F
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Oct 2020 12:59:48 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  2 Oct 2020 14:58:53 +0200
-Message-Id: <20201002125939.50817-16-maarten.lankhorst@linux.intel.com>
+Date: Fri,  2 Oct 2020 14:58:54 +0200
+Message-Id: <20201002125939.50817-17-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201002125939.50817-1-maarten.lankhorst@linux.intel.com>
 References: <20201002125939.50817-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 15/61] drm/i915: Flatten obj->mm.lock
+Subject: [Intel-gfx] [PATCH 16/61] drm/i915: Pin timeline map after first
+ timeline pin.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,215 +39,357 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With userptr fixed, there is no need for all separate lockdep classes
-now, and we can remove all lockdep tricks used. A trylock in the
-shrinker is all we need now to flatten the locking hierarchy.
+We're starting to require the reservation lock for pinning,
+so wait until we have that.
+
+Update the selftests to handle this correctly, and ensure pin is
+called in live_hwsp_rollover_user() and mock_hwsp_freelist().
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object.c   |  6 +---
- drivers/gpu/drm/i915/gem/i915_gem_object.h   | 20 ++----------
- drivers/gpu/drm/i915/gem/i915_gem_pages.c    | 34 ++++++++++----------
- drivers/gpu/drm/i915/gem/i915_gem_phys.c     |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c | 10 +++---
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c  |  2 +-
- 6 files changed, 27 insertions(+), 47 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_timeline.c    | 37 ++++++++----
+ drivers/gpu/drm/i915/gt/intel_timeline.h    |  2 +
+ drivers/gpu/drm/i915/gt/mock_engine.c       | 22 ++++++-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c | 63 +++++++++++----------
+ drivers/gpu/drm/i915/i915_selftest.h        |  2 +
+ 5 files changed, 82 insertions(+), 44 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 3c2a3965eb35..af5d561de7dc 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -62,7 +62,7 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
- 			  const struct drm_i915_gem_object_ops *ops,
- 			  struct lock_class_key *key, unsigned flags)
- {
--	__mutex_init(&obj->mm.lock, ops->name ?: "obj->mm.lock", key);
-+	mutex_init(&obj->mm.lock);
- 
- 	spin_lock_init(&obj->vma.lock);
- 	INIT_LIST_HEAD(&obj->vma.list);
-@@ -84,10 +84,6 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
- 	obj->mm.madv = I915_MADV_WILLNEED;
- 	INIT_RADIX_TREE(&obj->mm.get_page.radix, GFP_KERNEL | __GFP_NOWARN);
- 	mutex_init(&obj->mm.get_page.lock);
--
--	if (IS_ENABLED(CONFIG_LOCKDEP) && i915_gem_object_is_shrinkable(obj))
--		i915_gem_shrinker_taints_mutex(to_i915(obj->base.dev),
--					       &obj->mm.lock);
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 1c410770e47d..54e8678aff7a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -51,13 +51,27 @@ static int __timeline_active(struct i915_active *active)
+ 	return 0;
  }
  
- /**
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 2faebe1fd8be..d34c6e2424f9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -299,27 +299,10 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
- int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj);
- int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj);
- 
--enum i915_mm_subclass { /* lockdep subclass for obj->mm.lock/struct_mutex */
--	I915_MM_NORMAL = 0,
--	/*
--	 * Only used by struct_mutex, when called "recursively" from
--	 * direct-reclaim-esque. Safe because there is only every one
--	 * struct_mutex in the entire system.
--	 */
--	I915_MM_SHRINKER = 1,
--	/*
--	 * Used for obj->mm.lock when allocating pages. Safe because the object
--	 * isn't yet on any LRU, and therefore the shrinker can't deadlock on
--	 * it. As soon as the object has pages, obj->mm.lock nests within
--	 * fs_reclaim.
--	 */
--	I915_MM_GET_PAGES = 1,
--};
--
- static inline int __must_check
- i915_gem_object_pin_pages(struct drm_i915_gem_object *obj)
- {
--	might_lock_nested(&obj->mm.lock, I915_MM_GET_PAGES);
-+	might_lock(&obj->mm.lock);
- 
- 	if (atomic_inc_not_zero(&obj->mm.pages_pin_count))
- 		return 0;
-@@ -363,6 +346,7 @@ i915_gem_object_unpin_pages(struct drm_i915_gem_object *obj)
- }
- 
- int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj);
-+int __i915_gem_object_put_pages_locked(struct drm_i915_gem_object *obj);
- void i915_gem_object_truncate(struct drm_i915_gem_object *obj);
- void i915_gem_object_writeback(struct drm_i915_gem_object *obj);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 42946b1661c5..891bb32cfe3f 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -109,7 +109,7 @@ int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
- {
- 	int err;
- 
--	err = mutex_lock_interruptible_nested(&obj->mm.lock, I915_MM_GET_PAGES);
-+	err = mutex_lock_interruptible(&obj->mm.lock);
- 	if (err)
- 		return err;
- 
-@@ -191,21 +191,13 @@ __i915_gem_object_unset_pages(struct drm_i915_gem_object *obj)
- 	return pages;
- }
- 
--int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
-+int __i915_gem_object_put_pages_locked(struct drm_i915_gem_object *obj)
- {
- 	struct sg_table *pages;
--	int err;
- 
- 	if (i915_gem_object_has_pinned_pages(obj))
- 		return -EBUSY;
- 
--	/* May be called by shrinker from within get_pages() (on another bo) */
--	mutex_lock(&obj->mm.lock);
--	if (unlikely(atomic_read(&obj->mm.pages_pin_count))) {
--		err = -EBUSY;
--		goto unlock;
--	}
--
- 	i915_gem_object_release_mmap_offset(obj);
- 
- 	/*
-@@ -221,14 +213,22 @@ int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
- 	 * get_pages backends we should be better able to handle the
- 	 * cancellation of the async task in a more uniform manner.
- 	 */
--	if (!pages)
--		pages = ERR_PTR(-EINVAL);
--
--	if (!IS_ERR(pages))
-+	if (!IS_ERR_OR_NULL(pages))
- 		obj->ops->put_pages(obj, pages);
- 
--	err = 0;
--unlock:
++I915_SELFTEST_EXPORT int
++intel_timeline_pin_map(struct intel_timeline *timeline)
++{
++	struct drm_i915_gem_object *obj = timeline->hwsp_ggtt->obj;
++	void *vaddr;
++
++	vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
++	if (IS_ERR(vaddr))
++		return PTR_ERR(vaddr);
++
++	timeline->hwsp_map = vaddr;
++	timeline->hwsp_seqno = vaddr + offset_in_page(timeline->hwsp_seqno);
++	WRITE_ONCE(*(u32 *)timeline->hwsp_seqno, 0);
 +	return 0;
 +}
 +
-+int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
-+{
-+	int err;
+ static int intel_timeline_init(struct intel_timeline *timeline,
+ 			       struct intel_gt *gt,
+ 			       struct i915_vma *hwsp,
+ 			       unsigned int offset)
+ {
+-	void *vaddr;
+-
+ 	kref_init(&timeline->kref);
+ 	atomic_set(&timeline->pin_count, 0);
+ 
+@@ -73,14 +87,8 @@ static int intel_timeline_init(struct intel_timeline *timeline,
+ 			return PTR_ERR(hwsp);
+ 		timeline->hwsp_ggtt = hwsp;
+ 	}
+-
+-	vaddr = i915_gem_object_pin_map(hwsp->obj, I915_MAP_WB);
+-	if (IS_ERR(vaddr))
+-		return PTR_ERR(vaddr);
+-
+-	timeline->hwsp_map = vaddr;
+-	timeline->hwsp_seqno = vaddr + timeline->hwsp_offset;
+-	WRITE_ONCE(*(u32 *)timeline->hwsp_seqno, 0);
++	timeline->hwsp_map = NULL;
++	timeline->hwsp_seqno = NULL + timeline->hwsp_offset;
+ 
+ 	GEM_BUG_ON(timeline->hwsp_offset >= hwsp->size);
+ 
+@@ -111,7 +119,8 @@ static void intel_timeline_fini(struct intel_timeline *timeline)
+ 	GEM_BUG_ON(!list_empty(&timeline->requests));
+ 	GEM_BUG_ON(timeline->retire);
+ 
+-	i915_gem_object_unpin_map(timeline->hwsp_ggtt->obj);
++	if (timeline->hwsp_map)
++		i915_gem_object_unpin_map(timeline->hwsp_ggtt->obj);
+ 
+ 	i915_vma_put(timeline->hwsp_ggtt);
+ 	i915_active_fini(&timeline->active);
+@@ -151,6 +160,12 @@ int intel_timeline_pin(struct intel_timeline *tl, struct i915_gem_ww_ctx *ww)
+ 	if (atomic_add_unless(&tl->pin_count, 1, 0))
+ 		return 0;
+ 
++	if (!tl->hwsp_map) {
++		err = intel_timeline_pin_map(tl);
++		if (err)
++			return err;
++	}
 +
-+	if (i915_gem_object_has_pinned_pages(obj))
-+		return -EBUSY;
-+
-+	/* May be called by shrinker from within get_pages() (on another bo) */
-+	mutex_lock(&obj->mm.lock);
-+	err = __i915_gem_object_put_pages_locked(obj);
- 	mutex_unlock(&obj->mm.lock);
- 
- 	return err;
-@@ -350,7 +350,7 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
- 	    !i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_IOMEM))
- 		return ERR_PTR(-ENXIO);
- 
--	err = mutex_lock_interruptible_nested(&obj->mm.lock, I915_MM_GET_PAGES);
-+	err = mutex_lock_interruptible(&obj->mm.lock);
- 	if (err)
- 		return ERR_PTR(err);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-index 153de6538378..4322e35cfe48 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-@@ -186,7 +186,7 @@ int i915_gem_object_attach_phys(struct drm_i915_gem_object *obj, int align)
+ 	err = i915_ggtt_pin(tl->hwsp_ggtt, ww, 0, PIN_HIGH);
  	if (err)
  		return err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
+index 9882cd911d8e..1cfdc4679b62 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
+@@ -106,4 +106,6 @@ int intel_timeline_read_hwsp(struct i915_request *from,
+ void intel_gt_init_timelines(struct intel_gt *gt);
+ void intel_gt_fini_timelines(struct intel_gt *gt);
  
--	err = mutex_lock_interruptible_nested(&obj->mm.lock, I915_MM_GET_PAGES);
-+	err = mutex_lock_interruptible(&obj->mm.lock);
- 	if (err)
- 		goto err_unlock;
++I915_SELFTEST_DECLARE(int intel_timeline_pin_map(struct intel_timeline *tl));
++
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
+index 2f830017c51d..effbac877eec 100644
+--- a/drivers/gpu/drm/i915/gt/mock_engine.c
++++ b/drivers/gpu/drm/i915/gt/mock_engine.c
+@@ -32,9 +32,20 @@
+ #include "mock_engine.h"
+ #include "selftests/mock_request.h"
  
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-index dc8f052a0ffe..afc6e5b4dcf1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-@@ -48,9 +48,9 @@ static bool unsafe_drop_pages(struct drm_i915_gem_object *obj,
- 		flags = I915_GEM_OBJECT_UNBIND_TEST;
- 
- 	if (i915_gem_object_unbind(obj, flags) == 0)
--		__i915_gem_object_put_pages(obj);
-+		return true;
- 
--	return !i915_gem_object_has_pages(obj);
-+	return false;
+-static void mock_timeline_pin(struct intel_timeline *tl)
++static int mock_timeline_pin(struct intel_timeline *tl)
+ {
++	int err;
++
++	if (WARN_ON(!i915_gem_object_trylock(tl->hwsp_ggtt->obj)))
++		return -EBUSY;
++
++	err = intel_timeline_pin_map(tl);
++	i915_gem_object_unlock(tl->hwsp_ggtt->obj);
++	if (err)
++		return err;
++
+ 	atomic_inc(&tl->pin_count);
++	return 0;
  }
  
- static void try_to_writeback(struct drm_i915_gem_object *obj,
-@@ -199,10 +199,10 @@ i915_gem_shrink(struct drm_i915_private *i915,
+ static void mock_timeline_unpin(struct intel_timeline *tl)
+@@ -152,6 +163,8 @@ static void mock_context_destroy(struct kref *ref)
  
- 			spin_unlock_irqrestore(&i915->mm.obj_lock, flags);
+ static int mock_context_alloc(struct intel_context *ce)
+ {
++	int err;
++
+ 	ce->ring = mock_ring(ce->engine);
+ 	if (!ce->ring)
+ 		return -ENOMEM;
+@@ -162,7 +175,12 @@ static int mock_context_alloc(struct intel_context *ce)
+ 		return PTR_ERR(ce->timeline);
+ 	}
  
--			if (unsafe_drop_pages(obj, shrink)) {
-+			if (unsafe_drop_pages(obj, shrink) &&
-+			    mutex_trylock(&obj->mm.lock)) {
- 				/* May arrive from get_pages on another bo */
--				mutex_lock(&obj->mm.lock);
--				if (!i915_gem_object_has_pages(obj)) {
-+				if (!__i915_gem_object_put_pages_locked(obj)) {
- 					try_to_writeback(obj, shrink);
- 					count += obj->base.size >> PAGE_SHIFT;
- 				}
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index b25a1a8c514a..55aa6fc3b518 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -235,7 +235,7 @@ static int i915_gem_object_userptr_unbind(struct drm_i915_gem_object *obj, bool
- 	if (GEM_WARN_ON(i915_gem_object_has_pinned_pages(obj)))
- 		return -EBUSY;
+-	mock_timeline_pin(ce->timeline);
++	err = mock_timeline_pin(ce->timeline);
++	if (err) {
++		intel_timeline_put(ce->timeline);
++		ce->timeline = NULL;
++		return err;
++	}
  
--	mutex_lock_nested(&obj->mm.lock, I915_MM_GET_PAGES);
-+	mutex_lock(&obj->mm.lock);
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+index 98cd161b3925..6d6092a28e6b 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
++++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+@@ -33,7 +33,7 @@ static unsigned long hwsp_cacheline(struct intel_timeline *tl)
+ {
+ 	unsigned long address = (unsigned long)page_address(hwsp_page(tl));
  
- 	pages = __i915_gem_object_unset_pages(obj);
- 	if (!IS_ERR_OR_NULL(pages))
+-	return (address + tl->hwsp_offset) / CACHELINE_BYTES;
++	return (address + offset_in_page(tl->hwsp_offset)) / CACHELINE_BYTES;
+ }
+ 
+ #define CACHELINES_PER_PAGE (PAGE_SIZE / CACHELINE_BYTES)
+@@ -57,6 +57,7 @@ static void __mock_hwsp_record(struct mock_hwsp_freelist *state,
+ 	tl = xchg(&state->history[idx], tl);
+ 	if (tl) {
+ 		radix_tree_delete(&state->cachelines, hwsp_cacheline(tl));
++		intel_timeline_unpin(tl);
+ 		intel_timeline_put(tl);
+ 	}
+ }
+@@ -76,6 +77,12 @@ static int __mock_hwsp_timeline(struct mock_hwsp_freelist *state,
+ 		if (IS_ERR(tl))
+ 			return PTR_ERR(tl);
+ 
++		err = intel_timeline_pin(tl, NULL);
++		if (err) {
++			intel_timeline_put(tl);
++			return err;
++		}
++
+ 		cacheline = hwsp_cacheline(tl);
+ 		err = radix_tree_insert(&state->cachelines, cacheline, tl);
+ 		if (err) {
+@@ -83,6 +90,7 @@ static int __mock_hwsp_timeline(struct mock_hwsp_freelist *state,
+ 				pr_err("HWSP cacheline %lu already used; duplicate allocation!\n",
+ 				       cacheline);
+ 			}
++			intel_timeline_unpin(tl);
+ 			intel_timeline_put(tl);
+ 			return err;
+ 		}
+@@ -450,7 +458,7 @@ static int emit_ggtt_store_dw(struct i915_request *rq, u32 addr, u32 value)
+ }
+ 
+ static struct i915_request *
+-tl_write(struct intel_timeline *tl, struct intel_engine_cs *engine, u32 value)
++checked_tl_write(struct intel_timeline *tl, struct intel_engine_cs *engine, u32 value)
+ {
+ 	struct i915_request *rq;
+ 	int err;
+@@ -461,6 +469,13 @@ tl_write(struct intel_timeline *tl, struct intel_engine_cs *engine, u32 value)
+ 		goto out;
+ 	}
+ 
++	if (READ_ONCE(*tl->hwsp_seqno) != tl->seqno) {
++		pr_err("Timeline created with incorrect breadcrumb, found %x, expected %x\n",
++		       *tl->hwsp_seqno, tl->seqno);
++		intel_timeline_unpin(tl);
++		return ERR_PTR(-EINVAL);
++	}
++
+ 	rq = intel_engine_create_kernel_request(engine);
+ 	if (IS_ERR(rq))
+ 		goto out_unpin;
+@@ -482,25 +497,6 @@ tl_write(struct intel_timeline *tl, struct intel_engine_cs *engine, u32 value)
+ 	return rq;
+ }
+ 
+-static struct intel_timeline *
+-checked_intel_timeline_create(struct intel_gt *gt)
+-{
+-	struct intel_timeline *tl;
+-
+-	tl = intel_timeline_create(gt);
+-	if (IS_ERR(tl))
+-		return tl;
+-
+-	if (READ_ONCE(*tl->hwsp_seqno) != tl->seqno) {
+-		pr_err("Timeline created with incorrect breadcrumb, found %x, expected %x\n",
+-		       *tl->hwsp_seqno, tl->seqno);
+-		intel_timeline_put(tl);
+-		return ERR_PTR(-EINVAL);
+-	}
+-
+-	return tl;
+-}
+-
+ static int live_hwsp_engine(void *arg)
+ {
+ #define NUM_TIMELINES 4096
+@@ -533,13 +529,13 @@ static int live_hwsp_engine(void *arg)
+ 			struct intel_timeline *tl;
+ 			struct i915_request *rq;
+ 
+-			tl = checked_intel_timeline_create(gt);
++			tl = intel_timeline_create(gt);
+ 			if (IS_ERR(tl)) {
+ 				err = PTR_ERR(tl);
+ 				break;
+ 			}
+ 
+-			rq = tl_write(tl, engine, count);
++			rq = checked_tl_write(tl, engine, count);
+ 			if (IS_ERR(rq)) {
+ 				intel_timeline_put(tl);
+ 				err = PTR_ERR(rq);
+@@ -606,14 +602,14 @@ static int live_hwsp_alternate(void *arg)
+ 			if (!intel_engine_can_store_dword(engine))
+ 				continue;
+ 
+-			tl = checked_intel_timeline_create(gt);
++			tl = intel_timeline_create(gt);
+ 			if (IS_ERR(tl)) {
+ 				err = PTR_ERR(tl);
+ 				goto out;
+ 			}
+ 
+ 			intel_engine_pm_get(engine);
+-			rq = tl_write(tl, engine, count);
++			rq = checked_tl_write(tl, engine, count);
+ 			intel_engine_pm_put(engine);
+ 			if (IS_ERR(rq)) {
+ 				intel_timeline_put(tl);
+@@ -863,6 +859,10 @@ static int live_hwsp_rollover_user(void *arg)
+ 		if (!tl->has_initial_breadcrumb)
+ 			goto out;
+ 
++		err = intel_context_pin(ce);
++		if (err)
++			goto out;
++
+ 		tl->seqno = -4u;
+ 		WRITE_ONCE(*(u32 *)tl->hwsp_seqno, tl->seqno);
+ 
+@@ -872,7 +872,7 @@ static int live_hwsp_rollover_user(void *arg)
+ 			this = intel_context_create_request(ce);
+ 			if (IS_ERR(this)) {
+ 				err = PTR_ERR(this);
+-				goto out;
++				goto out_unpin;
+ 			}
+ 
+ 			pr_debug("%s: create fence.seqnp:%d\n",
+@@ -891,17 +891,18 @@ static int live_hwsp_rollover_user(void *arg)
+ 		if (i915_request_wait(rq[2], 0, HZ / 5) < 0) {
+ 			pr_err("Wait for timeline wrap timed out!\n");
+ 			err = -EIO;
+-			goto out;
++			goto out_unpin;
+ 		}
+ 
+ 		for (i = 0; i < ARRAY_SIZE(rq); i++) {
+ 			if (!i915_request_completed(rq[i])) {
+ 				pr_err("Pre-wrap request not completed!\n");
+ 				err = -EINVAL;
+-				goto out;
++				goto out_unpin;
+ 			}
+ 		}
+-
++out_unpin:
++		intel_context_unpin(ce);
+ out:
+ 		for (i = 0; i < ARRAY_SIZE(rq); i++)
+ 			i915_request_put(rq[i]);
+@@ -943,13 +944,13 @@ static int live_hwsp_recycle(void *arg)
+ 			struct intel_timeline *tl;
+ 			struct i915_request *rq;
+ 
+-			tl = checked_intel_timeline_create(gt);
++			tl = intel_timeline_create(gt);
+ 			if (IS_ERR(tl)) {
+ 				err = PTR_ERR(tl);
+ 				break;
+ 			}
+ 
+-			rq = tl_write(tl, engine, count);
++			rq = checked_tl_write(tl, engine, count);
+ 			if (IS_ERR(rq)) {
+ 				intel_timeline_put(tl);
+ 				err = PTR_ERR(rq);
+diff --git a/drivers/gpu/drm/i915/i915_selftest.h b/drivers/gpu/drm/i915/i915_selftest.h
+index d53d207ab6eb..f54de0499be7 100644
+--- a/drivers/gpu/drm/i915/i915_selftest.h
++++ b/drivers/gpu/drm/i915/i915_selftest.h
+@@ -107,6 +107,7 @@ int __i915_subtests(const char *caller,
+ 
+ #define I915_SELFTEST_DECLARE(x) x
+ #define I915_SELFTEST_ONLY(x) unlikely(x)
++#define I915_SELFTEST_EXPORT
+ 
+ #else /* !IS_ENABLED(CONFIG_DRM_I915_SELFTEST) */
+ 
+@@ -116,6 +117,7 @@ static inline int i915_perf_selftests(struct pci_dev *pdev) { return 0; }
+ 
+ #define I915_SELFTEST_DECLARE(x)
+ #define I915_SELFTEST_ONLY(x) 0
++#define I915_SELFTEST_EXPORT static
+ 
+ #endif
+ 
 -- 
 2.28.0
 
