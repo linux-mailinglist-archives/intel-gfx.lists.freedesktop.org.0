@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748D7281378
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 15:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3565C281362
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 15:00:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DA966E975;
-	Fri,  2 Oct 2020 12:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18E666E987;
+	Fri,  2 Oct 2020 12:59:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02F596E95D
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Oct 2020 12:59:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B2CA6E970
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Oct 2020 12:59:49 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  2 Oct 2020 14:59:04 +0200
-Message-Id: <20201002125939.50817-27-maarten.lankhorst@linux.intel.com>
+Date: Fri,  2 Oct 2020 14:59:05 +0200
+Message-Id: <20201002125939.50817-28-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201002125939.50817-1-maarten.lankhorst@linux.intel.com>
 References: <20201002125939.50817-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 26/61] drm/i915: Make __engine_unpark()
- compatible with ww locking.
+Subject: [Intel-gfx] [PATCH 27/61] drm/i915: Take obj lock around set_domain
+ ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +39,60 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Take the ww lock around engine_unpark. Because of the
-many many places where rpm is used, I chose the safest option
-and used a trylock to opportunistically take this lock for
-__engine_unpark.
+We need to lock the object to move it to the correct domain,
+add the missing lock.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_pm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index f7b2e07e2229..1ab9597a5c70 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -33,7 +33,8 @@ static int __engine_unpark(struct intel_wakeref *wf)
- 		GEM_BUG_ON(test_bit(CONTEXT_VALID_BIT, &ce->flags));
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+index 9adced5a6843..0c0a8579f495 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+@@ -531,6 +531,10 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
+ 		goto out;
+ 	}
  
- 		/* First poison the image to verify we never fully trust it */
--		if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM) && ce->state) {
-+		if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM) && ce->state &&
-+		    i915_gem_object_trylock(ce->state->obj)) {
- 			struct drm_i915_gem_object *obj = ce->state->obj;
- 			int type = i915_coherent_map_type(engine->i915);
- 			void *map;
-@@ -44,6 +45,7 @@ static int __engine_unpark(struct intel_wakeref *wf)
- 				i915_gem_object_flush_map(obj);
- 				i915_gem_object_unpin_map(obj);
- 			}
-+			i915_gem_object_unlock(obj);
- 		}
++	err = i915_gem_object_lock_interruptible(obj, NULL);
++	if (err)
++		goto out;
++
+ 	/*
+ 	 * Flush and acquire obj->pages so that we are coherent through
+ 	 * direct access in memory with previous cached writes through
+@@ -542,11 +546,7 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
+ 	 */
+ 	err = i915_gem_object_pin_pages(obj);
+ 	if (err)
+-		goto out;
+-
+-	err = i915_gem_object_lock_interruptible(obj, NULL);
+-	if (err)
+-		goto out_unpin;
++		goto out_unlock;
  
- 		ce->ops->reset(ce);
+ 	if (read_domains & I915_GEM_DOMAIN_WC)
+ 		err = i915_gem_object_set_to_wc_domain(obj, write_domain);
+@@ -558,13 +558,14 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
+ 	/* And bump the LRU for this access */
+ 	i915_gem_object_bump_inactive_ggtt(obj);
+ 
++	i915_gem_object_unpin_pages(obj);
++
++out_unlock:
+ 	i915_gem_object_unlock(obj);
+ 
+-	if (write_domain)
++	if (!err && write_domain)
+ 		i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
+ 
+-out_unpin:
+-	i915_gem_object_unpin_pages(obj);
+ out:
+ 	i915_gem_object_put(obj);
+ 	return err;
 -- 
 2.28.0
 
