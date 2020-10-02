@@ -2,30 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFD9A280FEB
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 11:32:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C762828103A
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 11:59:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8AB56E087;
-	Fri,  2 Oct 2020 09:32:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35D5B6E0A1;
+	Fri,  2 Oct 2020 09:59:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 16CC86E087;
- Fri,  2 Oct 2020 09:32:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0EF29A0003;
- Fri,  2 Oct 2020 09:32:23 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C2666E0A1;
+ Fri,  2 Oct 2020 09:59:05 +0000 (UTC)
+IronPort-SDR: 0oOW1fPXQPZZEz3Rw9NKOwz/0DpsHvlnKTOrmEZ+XnkWuR8wkBETudPMb75yRDdkeiXSLy5zoH
+ xHXYqR7kGpDA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9761"; a="163817944"
+X-IronPort-AV: E=Sophos;i="5.77,327,1596524400"; d="scan'208";a="163817944"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2020 02:59:00 -0700
+IronPort-SDR: Cvh5xeohecUQeKCzMty9e8wfaB1SEcbSOhCd0jBQAZ9wC3MAAwr85nQPUGXkW/Pdrw3HkZ7JAK
+ bheADbQERSCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,327,1596524400"; d="scan'208";a="295312046"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga008.fm.intel.com with SMTP; 02 Oct 2020 02:58:56 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 02 Oct 2020 12:58:56 +0300
+Date: Fri, 2 Oct 2020 12:58:56 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Message-ID: <20201002095856.GY6112@intel.com>
+References: <20201001212435.269840-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <20201001212435.269840-2-tejaskumarx.surendrakumar.upadhyay@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 02 Oct 2020 09:32:23 -0000
-Message-ID: <160163114302.3608.719903466043437136@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201002090446.21104-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20201002090446.21104-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Make_lspcon=5Finit=28=29_static?=
+Content-Disposition: inline
+In-Reply-To: <20201001212435.269840-2-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm/i915/jsl: Split EHL/JSL platform
+ info and PCI ids
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,256 +54,237 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0614559460=="
+Cc: hariom.pandey@intel.com, intel-gfx@lists.freedesktop.org,
+ lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0614559460==
-Content-Type: multipart/alternative;
- boundary="===============3930597850962757032=="
+On Fri, Oct 02, 2020 at 02:54:34AM +0530, Tejas Upadhyay wrote:
+> Split the basic platform definition, macros, and PCI IDs to
+> differentiate between EHL and JSL platforms.
+> =
 
---===============3930597850962757032==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Changes since V2 :
+> 	- Added IS_EHL_JSL to replace IS_ELKHARTLAKE
+> 	- EHL/JSL PCI ids split added
+> Changes since V1 :
+> 	- IS_ELKHARTLAKE and IS_JASPERLAKE is replaced with
+>           HAS_PCH_MCC(EHL) and HAS_PCH_JSP(JSL) respectively
+> 	- Reverted EHL/JSL PCI ids split change
+> =
 
-== Series Details ==
+> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.c=
+om>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c         |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_cdclk.c     |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_combo_phy.c |  6 +++---
+>  drivers/gpu/drm/i915/display/intel_display.c   |  8 ++++----
+>  drivers/gpu/drm/i915/display/intel_dp.c        |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c  | 16 ++++++++--------
+>  drivers/gpu/drm/i915/gt/intel_sseu.c           |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c    |  2 +-
+>  drivers/gpu/drm/i915/i915_drv.h                |  5 +++--
+>  drivers/gpu/drm/i915/i915_pci.c                |  9 +++++++++
+>  drivers/gpu/drm/i915/intel_device_info.c       |  1 +
+>  drivers/gpu/drm/i915/intel_device_info.h       |  1 +
+>  drivers/gpu/drm/i915/intel_pch.c               |  6 +++---
+>  include/drm/i915_pciids.h                      |  9 ++++++---
+>  14 files changed, 45 insertions(+), 30 deletions(-)
+> =
 
-Series: drm/i915: Make lspcon_init() static
-URL   : https://patchwork.freedesktop.org/series/82328/
-State : success
+<snip>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
+m/i915/gt/intel_workarounds.c
+> index 6c580d0d9ea8..5d81a55993e5 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1839,7 +1839,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, =
+struct i915_wa_list *wal)
+>  			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
+>  =
 
-== Summary ==
+>  		/* Wa_22010271021:ehl */
+> -		if (IS_ELKHARTLAKE(i915))
+> +		if (IS_EHL_JSL(i915))
+>  			wa_masked_en(wal,
+>  				     GEN9_CS_DEBUG_MODE1,
+>  				     FF_DOP_CLOCK_GATE_DISABLE);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index eef9a821c49c..2c75bcb76932 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1417,7 +1417,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  #define IS_COMETLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_COMETLAKE)
+>  #define IS_CANNONLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_CANNONLAKE)
+>  #define IS_ICELAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ICELAKE)
+> -#define IS_ELKHARTLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ELKHARTLAKE)
 
-CI Bug Log - changes from CI_DRM_9091 -> Patchwork_18611
-====================================================
+Why are we removing this? I would just keep it + add the IS_JASPERLAKE()
+too.
 
-Summary
--------
+> +#define IS_EHL_JSL(dev_priv)	(IS_PLATFORM(dev_priv, INTEL_ELKHARTLAKE) |=
+| \
+> +				IS_PLATFORM(dev_priv, INTEL_JASPERLAKE))
 
-  **SUCCESS**
+A bit non-standard thing, but I guess it's fine. We already have the =
 
-  No regressions found.
+oddball IS_GEN9_{LP,BC}() anyway.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/index.html
+But since JSL is the canonical name used by Bspec I would make that our
+"primary" name for this. Ie. I would call the macro IS_JSL_EHL(). And
+since I'm a bit ocd about ordering things I would generally make it so
+that JSL comes first, followed by EHL, everywhere.
 
-Known issues
-------------
+>  #define IS_TIGERLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_TIGERLAKE)
+>  #define IS_ROCKETLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ROCKETLAKE)
+>  #define IS_DG1(dev_priv)        IS_PLATFORM(dev_priv, INTEL_DG1)
+> @@ -1559,7 +1560,7 @@ extern const struct i915_rev_steppings kbl_revids[];
+>  #define EHL_REVID_A0            0x0
+>  =
 
-  Here are the changes found in Patchwork_18611 that come from known issues:
+>  #define IS_EHL_REVID(p, since, until) \
+> -	(IS_ELKHARTLAKE(p) && IS_REVID(p, since, until))
+> +	(IS_EHL_JSL(p) && IS_REVID(p, since, until))
 
-### IGT changes ###
+That is confusing. Either we want just IS_ELKHARTLAKE() here, or
+this macro should also be renamed to contain JSL in the name.
 
-#### Issues hit ####
+>  =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bxt-dsi:         [PASS][1] -> [DMESG-WARN][2] ([i915#1635] / [i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-bxt-dsi/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-bxt-dsi/igt@i915_pm_rpm@module-reload.html
+>  enum {
+>  	TGL_REVID_A0,
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
+pci.c
+> index 366ddfc8df6b..8690b69fcf33 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -846,6 +846,14 @@ static const struct intel_device_info ehl_info =3D {
+>  	.ppgtt_size =3D 36,
+>  };
+>  =
 
-  * igt@vgem_basic@unload:
-    - fi-skl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#2203])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-skl-guc/igt@vgem_basic@unload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-skl-guc/igt@vgem_basic@unload.html
+> +static const struct intel_device_info jsl_info =3D {
+> +	GEN11_FEATURES,
+> +	PLATFORM(INTEL_JASPERLAKE),
+> +	.require_force_probe =3D 1,
+> +	.platform_engine_mask =3D BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0=
+),
+> +	.ppgtt_size =3D 36,
+> +};
+> +
+>  #define GEN12_FEATURES \
+>  	GEN11_FEATURES, \
+>  	GEN(12), \
+> @@ -985,6 +993,7 @@ static const struct pci_device_id pciidlist[] =3D {
+>  	INTEL_CNL_IDS(&cnl_info),
+>  	INTEL_ICL_11_IDS(&icl_info),
+>  	INTEL_EHL_IDS(&ehl_info),
+> +	INTEL_JSL_IDS(&jsl_info),
+>  	INTEL_TGL_12_IDS(&tgl_info),
+>  	INTEL_RKL_IDS(&rkl_info),
+>  	{0, 0, 0}
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
+915/intel_device_info.c
+> index adc836f15fde..e67cec8fa2aa 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -62,6 +62,7 @@ static const char * const platform_names[] =3D {
+>  	PLATFORM_NAME(CANNONLAKE),
+>  	PLATFORM_NAME(ICELAKE),
+>  	PLATFORM_NAME(ELKHARTLAKE),
+> +	PLATFORM_NAME(JASPERLAKE),
+>  	PLATFORM_NAME(TIGERLAKE),
+>  	PLATFORM_NAME(ROCKETLAKE),
+>  	PLATFORM_NAME(DG1),
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i=
+915/intel_device_info.h
+> index 6a3d607218aa..d92fa041c700 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -79,6 +79,7 @@ enum intel_platform {
+>  	/* gen11 */
+>  	INTEL_ICELAKE,
+>  	INTEL_ELKHARTLAKE,
+> +	INTEL_JASPERLAKE,
+>  	/* gen12 */
+>  	INTEL_TIGERLAKE,
+>  	INTEL_ROCKETLAKE,
+> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/inte=
+l_pch.c
+> index 6c97192e9ca8..72ffb6d4d5fc 100644
+> --- a/drivers/gpu/drm/i915/intel_pch.c
+> +++ b/drivers/gpu/drm/i915/intel_pch.c
+> @@ -115,7 +115,7 @@ intel_pch_type(const struct drm_i915_private *dev_pri=
+v, unsigned short id)
+>  		return PCH_ICP;
+>  	case INTEL_PCH_MCC_DEVICE_ID_TYPE:
+>  		drm_dbg_kms(&dev_priv->drm, "Found Mule Creek Canyon PCH\n");
+> -		drm_WARN_ON(&dev_priv->drm, !IS_ELKHARTLAKE(dev_priv));
+> +		drm_WARN_ON(&dev_priv->drm, !IS_EHL_JSL(dev_priv));
+>  		return PCH_MCC;
+>  	case INTEL_PCH_TGP_DEVICE_ID_TYPE:
+>  	case INTEL_PCH_TGP2_DEVICE_ID_TYPE:
+> @@ -126,7 +126,7 @@ intel_pch_type(const struct drm_i915_private *dev_pri=
+v, unsigned short id)
+>  	case INTEL_PCH_JSP_DEVICE_ID_TYPE:
+>  	case INTEL_PCH_JSP2_DEVICE_ID_TYPE:
+>  		drm_dbg_kms(&dev_priv->drm, "Found Jasper Lake PCH\n");
+> -		drm_WARN_ON(&dev_priv->drm, !IS_ELKHARTLAKE(dev_priv));
+> +		drm_WARN_ON(&dev_priv->drm, !IS_EHL_JSL(dev_priv));
+>  		return PCH_JSP;
+>  	default:
+>  		return PCH_NONE;
+> @@ -157,7 +157,7 @@ intel_virt_detect_pch(const struct drm_i915_private *=
+dev_priv)
+>  =
 
-  
-#### Possible fixes ####
+>  	if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+>  		id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;
+> -	else if (IS_ELKHARTLAKE(dev_priv))
+> +	else if (IS_EHL_JSL(dev_priv))
+>  		id =3D INTEL_PCH_MCC_DEVICE_ID_TYPE;
+>  	else if (IS_ICELAKE(dev_priv))
+>  		id =3D INTEL_PCH_ICP_DEVICE_ID_TYPE;
+> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+> index 7eeecb07c9a1..1b5e09cfa11e 100644
+> --- a/include/drm/i915_pciids.h
+> +++ b/include/drm/i915_pciids.h
+> @@ -579,15 +579,18 @@
+>  	INTEL_VGA_DEVICE(0x8A51, info), \
+>  	INTEL_VGA_DEVICE(0x8A5D, info)
+>  =
 
-  * igt@kms_busy@basic@flip:
-    - {fi-tgl-dsi}:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-tgl-dsi/igt@kms_busy@basic@flip.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-tgl-dsi/igt@kms_busy@basic@flip.html
+> -/* EHL/JSL */
+> +/* EHL */
+>  #define INTEL_EHL_IDS(info) \
+>  	INTEL_VGA_DEVICE(0x4500, info),	\
+>  	INTEL_VGA_DEVICE(0x4571, info), \
+>  	INTEL_VGA_DEVICE(0x4551, info), \
+>  	INTEL_VGA_DEVICE(0x4541, info), \
+> -	INTEL_VGA_DEVICE(0x4E71, info), \
+>  	INTEL_VGA_DEVICE(0x4557, info), \
+> -	INTEL_VGA_DEVICE(0x4555, info), \
+> +	INTEL_VGA_DEVICE(0x4555, info)
+> +
+> +/* JSL */
+> +#define INTEL_JSL_IDS(info) \
+> +	INTEL_VGA_DEVICE(0x4E71, info), \
+>  	INTEL_VGA_DEVICE(0x4E61, info), \
+>  	INTEL_VGA_DEVICE(0x4E57, info), \
+>  	INTEL_VGA_DEVICE(0x4E55, info), \
+> -- =
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-7500u:       [DMESG-WARN][7] ([i915#2203]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+> 2.28.0
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+-- =
 
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#1982] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +5 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (45 -> 39)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9091 -> Patchwork_18611
-
-  CI-20190529: 20190529
-  CI_DRM_9091: 1e20b6560332c04881daeeac61536a9ae9a4d539 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5796: 19ae9421a5af7b03a1c9a577c57f2cf8b16a0116 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18611: 4113cdfd1006478a8271fb70c2ecca2194babff7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4113cdfd1006 drm/i915: Make lspcon_init() static
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/index.html
-
---===============3930597850962757032==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Make lspcon_init() static</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82328/">https://patchwork.freedesktop.org/series/82328/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9091 -&gt; Patchwork_18611</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18611 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-bxt-dsi/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-bxt-dsi/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@unload:</p>
-<ul>
-<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-skl-guc/igt@vgem_basic@unload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-skl-guc/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-tgl-dsi/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-tgl-dsi/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-edid:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9091/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18611/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +5 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 39)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9091 -&gt; Patchwork_18611</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9091: 1e20b6560332c04881daeeac61536a9ae9a4d539 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5796: 19ae9421a5af7b03a1c9a577c57f2cf8b16a0116 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18611: 4113cdfd1006478a8271fb70c2ecca2194babff7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4113cdfd1006 drm/i915: Make lspcon_init() static</p>
-
-</body>
-</html>
-
---===============3930597850962757032==--
-
---===============0614559460==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0614559460==--
