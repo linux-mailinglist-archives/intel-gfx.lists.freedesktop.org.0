@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C60428137A
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 15:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65B1628137E
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 15:00:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A63456E978;
-	Fri,  2 Oct 2020 12:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0B3A6E98B;
+	Fri,  2 Oct 2020 12:59:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86AE26E96A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88F216E96B
  for <intel-gfx@lists.freedesktop.org>; Fri,  2 Oct 2020 12:59:51 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  2 Oct 2020 14:59:34 +0200
-Message-Id: <20201002125939.50817-57-maarten.lankhorst@linux.intel.com>
+Date: Fri,  2 Oct 2020 14:59:35 +0200
+Message-Id: <20201002125939.50817-58-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201002125939.50817-1-maarten.lankhorst@linux.intel.com>
 References: <20201002125939.50817-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 56/61] drm/i915/selftests: Prepare i915_request
+Subject: [Intel-gfx] [PATCH 57/61] drm/i915/selftests: Prepare memory region
  tests for obj->mm.lock removal
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -39,55 +39,105 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Straightforward conversion by using unlocked versions.
+Use the unlocked variants for pin_map and pin_pages, and add lock
+around unpinning/putting pages.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/selftests/i915_request.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ .../drm/i915/selftests/intel_memory_region.c   | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 64bbb8288249..a677e6851573 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -619,7 +619,7 @@ static struct i915_vma *empty_batch(struct drm_i915_private *i915)
- 	if (IS_ERR(obj))
- 		return ERR_CAST(obj);
+diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+index 334b0648e253..ccd4b65a272f 100644
+--- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
++++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+@@ -31,10 +31,12 @@ static void close_objects(struct intel_memory_region *mem,
+ 	struct drm_i915_gem_object *obj, *on;
  
--	cmd = i915_gem_object_pin_map(obj, I915_MAP_WB);
-+	cmd = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
- 	if (IS_ERR(cmd)) {
- 		err = PTR_ERR(cmd);
- 		goto err;
-@@ -781,7 +781,7 @@ static struct i915_vma *recursive_batch(struct drm_i915_private *i915)
- 	if (err)
- 		goto err;
- 
--	cmd = i915_gem_object_pin_map(obj, I915_MAP_WC);
-+	cmd = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WC);
- 	if (IS_ERR(cmd)) {
- 		err = PTR_ERR(cmd);
- 		goto err;
-@@ -816,7 +816,7 @@ static int recursive_batch_resolve(struct i915_vma *batch)
- {
- 	u32 *cmd;
- 
--	cmd = i915_gem_object_pin_map(batch->obj, I915_MAP_WC);
-+	cmd = i915_gem_object_pin_map_unlocked(batch->obj, I915_MAP_WC);
- 	if (IS_ERR(cmd))
- 		return PTR_ERR(cmd);
- 
-@@ -1069,8 +1069,8 @@ static int live_sequential_engines(void *arg)
- 		if (!request[idx])
+ 	list_for_each_entry_safe(obj, on, objects, st_link) {
++		i915_gem_object_lock(obj, NULL);
+ 		if (i915_gem_object_has_pinned_pages(obj))
+ 			i915_gem_object_unpin_pages(obj);
+ 		/* No polluting the memory region between tests */
+ 		__i915_gem_object_put_pages(obj);
++		i915_gem_object_unlock(obj);
+ 		list_del(&obj->st_link);
+ 		i915_gem_object_put(obj);
+ 	}
+@@ -69,7 +71,7 @@ static int igt_mock_fill(void *arg)
  			break;
+ 		}
  
--		cmd = i915_gem_object_pin_map(request[idx]->batch->obj,
--					      I915_MAP_WC);
-+		cmd = i915_gem_object_pin_map_unlocked(request[idx]->batch->obj,
-+						       I915_MAP_WC);
- 		if (!IS_ERR(cmd)) {
- 			*cmd = MI_BATCH_BUFFER_END;
+-		err = i915_gem_object_pin_pages(obj);
++		err = i915_gem_object_pin_pages_unlocked(obj);
+ 		if (err) {
+ 			i915_gem_object_put(obj);
+ 			break;
+@@ -109,7 +111,7 @@ igt_object_create(struct intel_memory_region *mem,
+ 	if (IS_ERR(obj))
+ 		return obj;
  
+-	err = i915_gem_object_pin_pages(obj);
++	err = i915_gem_object_pin_pages_unlocked(obj);
+ 	if (err)
+ 		goto put;
+ 
+@@ -123,8 +125,10 @@ igt_object_create(struct intel_memory_region *mem,
+ 
+ static void igt_object_release(struct drm_i915_gem_object *obj)
+ {
++	i915_gem_object_lock(obj, NULL);
+ 	i915_gem_object_unpin_pages(obj);
+ 	__i915_gem_object_put_pages(obj);
++	i915_gem_object_unlock(obj);
+ 	list_del(&obj->st_link);
+ 	i915_gem_object_put(obj);
+ }
+@@ -280,7 +284,7 @@ static int igt_cpu_check(struct drm_i915_gem_object *obj, u32 dword, u32 val)
+ 	if (err)
+ 		return err;
+ 
+-	ptr = i915_gem_object_pin_map(obj, I915_MAP_WC);
++	ptr = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WC);
+ 	if (IS_ERR(ptr))
+ 		return PTR_ERR(ptr);
+ 
+@@ -385,7 +389,7 @@ static int igt_lmem_create(void *arg)
+ 	if (IS_ERR(obj))
+ 		return PTR_ERR(obj);
+ 
+-	err = i915_gem_object_pin_pages(obj);
++	err = i915_gem_object_pin_pages_unlocked(obj);
+ 	if (err)
+ 		goto out_put;
+ 
+@@ -424,7 +428,7 @@ static int igt_lmem_write_gpu(void *arg)
+ 		goto out_file;
+ 	}
+ 
+-	err = i915_gem_object_pin_pages(obj);
++	err = i915_gem_object_pin_pages_unlocked(obj);
+ 	if (err)
+ 		goto out_put;
+ 
+@@ -496,7 +500,7 @@ static int igt_lmem_write_cpu(void *arg)
+ 	if (IS_ERR(obj))
+ 		return PTR_ERR(obj);
+ 
+-	vaddr = i915_gem_object_pin_map(obj, I915_MAP_WC);
++	vaddr = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WC);
+ 	if (IS_ERR(vaddr)) {
+ 		err = PTR_ERR(vaddr);
+ 		goto out_put;
+@@ -600,7 +604,7 @@ create_region_for_mapping(struct intel_memory_region *mr, u64 size, u32 type,
+ 		return obj;
+ 	}
+ 
+-	addr = i915_gem_object_pin_map(obj, type);
++	addr = i915_gem_object_pin_map_unlocked(obj, type);
+ 	if (IS_ERR(addr)) {
+ 		i915_gem_object_put(obj);
+ 		if (PTR_ERR(addr) == -ENXIO)
 -- 
 2.28.0
 
