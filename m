@@ -1,53 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F1D62817B3
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 18:20:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D71DB2817AD
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 18:19:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A764D6E101;
-	Fri,  2 Oct 2020 16:20:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16C976E108;
+	Fri,  2 Oct 2020 16:19:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from hqnvemgate26.nvidia.com (hqnvemgate26.nvidia.com
- [216.228.121.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B3D26E0E9;
- Fri,  2 Oct 2020 16:11:55 +0000 (UTC)
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B5f77513e0001>; Fri, 02 Oct 2020 09:11:42 -0700
-Received: from [172.27.0.47] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 2 Oct
- 2020 16:11:36 +0000
-To: Jason Gunthorpe <jgg@nvidia.com>, Leon Romanovsky <leon@kernel.org>
-References: <20200927064647.3106737-1-leon@kernel.org>
- <20200927064647.3106737-2-leon@kernel.org>
- <20201002150227.GA1350139@nvidia.com>
-From: Maor Gottlieb <maorg@nvidia.com>
-Message-ID: <ba152cb1-db38-0d70-08a8-ba3c052b5b4e@nvidia.com>
-Date: Fri, 2 Oct 2020 19:11:33 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1EB696E101;
+ Fri,  2 Oct 2020 16:18:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 16744A8835;
+ Fri,  2 Oct 2020 16:18:59 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20201002150227.GA1350139@nvidia.com>
-Content-Language: en-US
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1601655102; bh=EynyS8/xmNH/jvPIX2n0LxQ51EmsDlmuClzFEzoFwtY=;
- h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
- MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
- Content-Language:X-Originating-IP:X-ClientProxiedBy;
- b=Ew/scpFv/p/DET27LPs1qCoK9j94h5PT7f3jVd6smC1vBRQjUbszjKiqgX+qBupVv
- C6Ap0r8CN73haCwUeNcoo6Qvqo3hdNNInzqCL4n7E/HsfEsqKVgqFv3O0KMzSwupuw
- RzZ06fdxXjrxpBA/XFdREHNdHHZPXltw4NaXEKbPvWDITA43waFAQwniY0dQO4EmCC
- FSvpqv++iX7ScnqVLK+t99lV0afYVEm0kREQriRvipkBUe+wsDI1l/t8HiMxZ5Yd+L
- pObyZTgYDV2byyHXLMJjj6ttCUIsz3Y9DqLaFc50bRq/5Q9UJSg2Xv8rRMAqZ74RhA
- OBJmWwKCnxY0Q==
-X-Mailman-Approved-At: Fri, 02 Oct 2020 16:20:00 +0000
-Subject: Re: [Intel-gfx] [PATCH rdma-next v4 1/4] lib/scatterlist: Add
- support in dynamic allocation of SG table from pages
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 02 Oct 2020 16:18:59 -0000
+Message-ID: <160165553906.3608.12909079137266831660@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201002144638.3266-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201002144638.3266-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Track_the_most_recent_pulse_for_the_heartbeat_=28re?=
+ =?utf-8?b?djIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,245 +39,242 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Roland Scheidegger <sroland@vmware.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>,
- linux-rdma@vger.kernel.org, Doug Ledford <dledford@redhat.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Maor Gottlieb <maorg@mellanox.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2133439500=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============2133439500==
+Content-Type: multipart/alternative;
+ boundary="===============9007270675949984841=="
 
-On 10/2/2020 6:02 PM, Jason Gunthorpe wrote:
-> On Sun, Sep 27, 2020 at 09:46:44AM +0300, Leon Romanovsky wrote:
->> +struct scatterlist *__sg_alloc_table_from_pages(struct sg_table *sgt,
->> +		struct page **pages, unsigned int n_pages, unsigned int offset,
->> +		unsigned long size, unsigned int max_segment,
->> +		struct scatterlist *prv, unsigned int left_pages,
->> +		gfp_t gfp_mask)
->>   {
->> -	unsigned int chunks, cur_page, seg_len, i;
->> +	unsigned int chunks, cur_page, seg_len, i, prv_len = 0;
->> +	struct scatterlist *s = prv;
->> +	unsigned int table_size;
->> +	unsigned int tmp_nents;
->>   	int ret;
->> -	struct scatterlist *s;
->>
->>   	if (WARN_ON(!max_segment || offset_in_page(max_segment)))
->> -		return -EINVAL;
->> +		return ERR_PTR(-EINVAL);
->> +	if (IS_ENABLED(CONFIG_ARCH_NO_SG_CHAIN) && prv)
->> +		return ERR_PTR(-EOPNOTSUPP);
->> +
->> +	tmp_nents = prv ? sgt->nents : 0;
->> +
->> +	if (prv &&
->> +	    page_to_pfn(sg_page(prv)) + (prv->length >> PAGE_SHIFT) ==
-> This calculation of the end doesn't consider sg->offset
+--===============9007270675949984841==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Right, should be fixed.
->
->> +	    page_to_pfn(pages[0]))
->> +		prv_len = prv->length;
->>
->>   	/* compute number of contiguous chunks */
->>   	chunks = 1;
->> @@ -410,13 +461,17 @@ int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
->>   		}
->>   	}
->>
->> -	ret = sg_alloc_table(sgt, chunks, gfp_mask);
->> -	if (unlikely(ret))
->> -		return ret;
->> +	if (!prv) {
->> +		/* Only the last allocation could be less than the maximum */
->> +		table_size = left_pages ? SG_MAX_SINGLE_ALLOC : chunks;
->> +		ret = sg_alloc_table(sgt, table_size, gfp_mask);
->> +		if (unlikely(ret))
->> +			return ERR_PTR(ret);
->> +	}
-> This is basically redundant right? Now that get_next_sg() can allocate
-> SGs it can just build them one by one, no need to preallocate.
->
-> Actually all the changes the the allocation seem like overkill, just
-> allocate a single new array directly in get_next_sg() whenever it
-> needs.
+== Series Details ==
 
-No, only the last allocation could be less than maximum. (as written in 
-the comment).
-I am preferring to stick with the current implementation and fix the offset.
->
-> Something like this:
->
-> @@ -365,6 +372,37 @@ int sg_alloc_table(struct sg_table *table, unsigned int nents, gfp_t gfp_mask)
->   }
->   EXPORT_SYMBOL(sg_alloc_table);
->   
-> +static struct scatterlist *get_next_sg(struct sg_table *table,
-> +		struct scatterlist *cur, unsigned long needed_sges,
-> +		gfp_t gfp_mask)
-> +{
-> +	struct scatterlist *new_sg;
-> +	unsigned int alloc_size;
-> +
-> +	if (cur) {
-> +		struct scatterlist *next_sg = sg_next(cur);
-> +
-> +		/* Check if last entry should be keeped for chainning */
-> +		if (!sg_is_last(next_sg) || needed_sges == 1)
-> +			return next_sg;
-> +	}
-> +
-> +	alloc_size = min_t(unsigned long, needed_sges, SG_MAX_SINGLE_ALLOC);
-> +	new_sg = sg_kmalloc(alloc_size, gfp_mask);
-> +	if (!new_sg)
-> +		return ERR_PTR(-ENOMEM);
-> +	sg_init_table(new_sg, alloc_size);
-> +	if (cur) {
-> +		__sg_chain(cur, new_sg);
-> +		table->orig_nents += alloc_size - 1;
-> +	} else {
-> +		table->sgl = new_sg;
-> +		table->orig_nents = alloc_size;
-> +		table->nents = 0;
-> +	}
-> +	return new_sg;
-> +}
-> +
->   /**
->    * __sg_alloc_table_from_pages - Allocate and initialize an sg table from
->    *			         an array of pages
-> @@ -374,29 +412,64 @@ EXPORT_SYMBOL(sg_alloc_table);
->    * @offset:      Offset from start of the first page to the start of a buffer
->    * @size:        Number of valid bytes in the buffer (after offset)
->    * @max_segment: Maximum size of a scatterlist node in bytes (page aligned)
-> + * @prv:	 Last populated sge in sgt
-> + * @left_pages:  Left pages caller have to set after this call
->    * @gfp_mask:	 GFP allocation mask
->    *
-> - *  Description:
-> - *    Allocate and initialize an sg table from a list of pages. Contiguous
-> - *    ranges of the pages are squashed into a single scatterlist node up to the
-> - *    maximum size specified in @max_segment. An user may provide an offset at a
-> - *    start and a size of valid data in a buffer specified by the page array.
-> - *    The returned sg table is released by sg_free_table.
-> + * Description:
-> + *    If @prv is NULL, allocate and initialize an sg table from a list of pages,
-> + *    else reuse the scatterlist passed in at @prv.
-> + *    Contiguous ranges of the pages are squashed into a single scatterlist
-> + *    entry up to the maximum size specified in @max_segment.  A user may
-> + *    provide an offset at a start and a size of valid data in a buffer
-> + *    specified by the page array.
->    *
->    * Returns:
-> - *   0 on success, negative error on failure
-> + *   Last SGE in sgt on success, PTR_ERR on otherwise.
-> + *   The allocation in @sgt must be released by sg_free_table.
-> + *
-> + * Notes:
-> + *   If this function returns non-0 (eg failure), the caller must call
-> + *   sg_free_table() to cleanup any leftover allocations.
->    */
-> -int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
-> -				unsigned int n_pages, unsigned int offset,
-> -				unsigned long size, unsigned int max_segment,
-> -				gfp_t gfp_mask)
-> +struct scatterlist *__sg_alloc_table_from_pages(struct sg_table *sgt,
-> +		struct page **pages, unsigned int n_pages, unsigned int offset,
-> +		unsigned long size, unsigned int max_segment,
-> +		struct scatterlist *prv, unsigned int left_pages,
-> +		gfp_t gfp_mask)
->   {
-> -	unsigned int chunks, cur_page, seg_len, i;
-> -	int ret;
-> -	struct scatterlist *s;
-> +	unsigned int chunks, cur_page, seg_len, i, prv_len = 0;
-> +	unsigned int added_nents = 0;
-> +	struct scatterlist *s = prv;
->   
->   	if (WARN_ON(!max_segment || offset_in_page(max_segment)))
-> -		return -EINVAL;
-> +		return ERR_PTR(-EINVAL);
-> +	if (IS_ENABLED(CONFIG_ARCH_NO_SG_CHAIN) && prv)
-> +		return ERR_PTR(-EOPNOTSUPP);
-> +
-> +	if (prv) {
-> +		unsigned long paddr = (page_to_pfn(sg_page(prv)) * PAGE_SIZE +
-> +				       prv->offset + prv->length) /
-> +				      PAGE_SIZE;
-> +
-> +		if (WARN_ON(offset))
-> +			return ERR_PTR(-EINVAL);
-> +
-> +		/* Merge contiguous pages into the last SG */
-> +		prv_len = prv->length;
-> +		while (n_pages && page_to_pfn(pages[0]) == paddr) {
-> +			if (prv->length + PAGE_SIZE > max_segment)
-> +				break;
-> +			prv->length += PAGE_SIZE;
-> +			paddr++;
-> +			pages++;
-> +			n_pages--;
-> +		}
-> +		if (!n_pages) {
-> +			sg_mark_end(sg_next(prv));
-> +			return prv;
-> +		}
-> +	}
->   
->   	/* compute number of contiguous chunks */
->   	chunks = 1;
-> @@ -410,13 +483,9 @@ int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
->   		}
->   	}
->   
-> -	ret = sg_alloc_table(sgt, chunks, gfp_mask);
-> -	if (unlikely(ret))
-> -		return ret;
-> -
->   	/* merging chunks and putting them into the scatterlist */
->   	cur_page = 0;
-> -	for_each_sg(sgt->sgl, s, sgt->orig_nents, i) {
-> +	for (i = 0; i < chunks; i++) {
->   		unsigned int j, chunk_size;
->   
->   		/* look for the end of the current chunk */
-> @@ -429,15 +498,28 @@ int __sg_alloc_table_from_pages(struct sg_table *sgt, struct page **pages,
->   				break;
->   		}
->   
-> +		/* Pass how many chunks might be left */
-> +		s = get_next_sg(sgt, s, chunks - i + left_pages, gfp_mask);
-> +		if (IS_ERR(s)) {
-> +			/*
-> +			 * Adjust entry length to be as before function was
-> +			 * called.
-> +			 */
-> +			if (prv)
-> +				prv->length = prv_len;
-> +			return s;
-> +		}
->   		chunk_size = ((j - cur_page) << PAGE_SHIFT) - offset;
->   		sg_set_page(s, pages[cur_page],
->   			    min_t(unsigned long, size, chunk_size), offset);
-> +		added_nents++;
->   		size -= chunk_size;
->   		offset = 0;
->   		cur_page = j;
->   	}
-> -
-> -	return 0;
-> +	sgt->nents += added_nents;
-> +	sg_mark_end(s);
-> +	return s;
->   }
->   EXPORT_SYMBOL(__sg_alloc_table_from_pages);
->   
+Series: drm/i915/gt: Track the most recent pulse for the heartbeat (rev2)
+URL   : https://patchwork.freedesktop.org/series/82339/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9092 -> Patchwork_18615
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18615 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-x1275:       [DMESG-WARN][3] ([i915#62] / [i915#92] / [i915#95]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-kbl-x1275/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-icl-u2:          [DMESG-WARN][5] ([i915#1982]) -> [PASS][6] +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@vgem_basic@unload:
+    - fi-skl-guc:         [DMESG-WARN][7] ([i915#2203]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-skl-guc/igt@vgem_basic@unload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-skl-guc/igt@vgem_basic@unload.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#1982] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#62] / [i915#92] / [i915#95])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (45 -> 39)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9092 -> Patchwork_18615
+
+  CI-20190529: 20190529
+  CI_DRM_9092: 4e9a7e28ea34e4b14e66cbc53fc004e4a93f5168 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5797: 1a7ef7eb5e99c9a8f4ffbc13cdae399a01a9aa12 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18615: a6637cb8f4717bf942b5a76b56bb2dc255373fa1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a6637cb8f471 drm/i915/gt: Track the most recent pulse for the heartbeat
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/index.html
+
+--===============9007270675949984841==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Track the most recent pulse for the heartbeat (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82339/">https://patchwork.freedesktop.org/series/82339/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9092 -&gt; Patchwork_18615</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18615 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-kbl-x1275/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-kbl-x1275/igt@kms_busy@basic@flip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@unload:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-skl-guc/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-skl-guc/igt@vgem_basic@unload.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9092/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18615/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 39)</h2>
+<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9092 -&gt; Patchwork_18615</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9092: 4e9a7e28ea34e4b14e66cbc53fc004e4a93f5168 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5797: 1a7ef7eb5e99c9a8f4ffbc13cdae399a01a9aa12 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18615: a6637cb8f4717bf942b5a76b56bb2dc255373fa1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>a6637cb8f471 drm/i915/gt: Track the most recent pulse for the heartbeat</p>
+
+</body>
+</html>
+
+--===============9007270675949984841==--
+
+--===============2133439500==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2133439500==--
