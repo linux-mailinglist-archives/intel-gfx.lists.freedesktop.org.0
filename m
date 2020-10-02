@@ -1,48 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E92C2811DC
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 13:59:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F225281230
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Oct 2020 14:22:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B41B6E059;
-	Fri,  2 Oct 2020 11:59:21 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 825E96E059
- for <Intel-gfx@lists.freedesktop.org>; Fri,  2 Oct 2020 11:59:20 +0000 (UTC)
-IronPort-SDR: KsqIOq3aNbhyW6ZjNj6JuF36nc0R+myvLPTJdToqCMaGk5PTDoMkAVCIzxxee5G1+I2/XQJvzy
- cAlqW/eTL8ng==
-X-IronPort-AV: E=McAfee;i="6000,8403,9761"; a="163059643"
-X-IronPort-AV: E=Sophos;i="5.77,327,1596524400"; d="scan'208";a="163059643"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2020 04:59:17 -0700
-IronPort-SDR: OtNiM2HO2Z1S5KtTbtVc5cavGbgWoRWySKGU2DCpD77OVe0Lf/vd46XtwcUK/2V8m0hld57YT/
- RCyoSYnCtHXQ==
-X-IronPort-AV: E=Sophos;i="5.77,327,1596524400"; d="scan'208";a="508270379"
-Received: from yili1-mobl.ccr.corp.intel.com (HELO [10.254.208.108])
- ([10.254.208.108])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2020 04:59:15 -0700
-To: Joerg Roedel <joro@8bytes.org>
-References: <20200927063437.13988-1-baolu.lu@linux.intel.com>
- <e999e371-6d36-ffea-542f-a5f4b230b0ed@linux.intel.com>
- <c2af9a9d-1cae-b8f7-a0b3-880574060a23@linux.intel.com>
- <20201001121701.GB30426@8bytes.org>
-From: Lu Baolu <baolu.lu@linux.intel.com>
-Message-ID: <5a9d7412-3d7a-f4f7-e3b9-c295718448aa@linux.intel.com>
-Date: Fri, 2 Oct 2020 19:59:13 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4DC36E93E;
+	Fri,  2 Oct 2020 12:22:28 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F0C56E93E;
+ Fri,  2 Oct 2020 12:22:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
+ Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:In-Reply-To:References;
+ bh=MTQ4vzPn+TUgUKKcoWUoAB8fcnSJCckabiOfgd7ojV4=; b=u+R89293VKjrL950PesPnUDIDe
+ Xgc19Gn/aakqGvWaf4OfcNjY+u4Rg5jRhl8xog5FaXEtduHCxwy7x81D97JMWgEx0DpXFyn6Nkoge
+ qMeAHTiEugkNO43SVoVkXGxSQcW9CJRLuexYC/zmXRysmDKTlkzsYuqt6uTWHc/LCKpHvQHAGG4ry
+ 9GmXzBAEH0N3vvw3bXPJrQ5YGZ4/zWMewOsOlwyZLOZCljy/cw7bfRH4n9HSRYjkXChFlLUhSXmrl
+ hOFwMnVf9EAUA8EtaEogxdb5y3fDWHiEAxsHulGIoXiirixmt0EolobjUTME1kfxKY53hjeOYZ6Al
+ SumZaBZw==;
+Received: from [2001:4bb8:180:7b62:f738:1861:1acc:15c8] (helo=localhost)
+ by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kOK4c-0003K8-4x; Fri, 02 Oct 2020 12:22:06 +0000
+From: Christoph Hellwig <hch@lst.de>
+To: Andrew Morton <akpm@linux-foundation.org>
+Date: Fri,  2 Oct 2020 14:21:53 +0200
+Message-Id: <20201002122204.1534411-1-hch@lst.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <20201001121701.GB30426@8bytes.org>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 0/7] Convert the intel iommu driver to
- the dma-iommu api
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ casper.infradead.org. See http://www.infradead.org/rpr.html
+Subject: [Intel-gfx] remove alloc_vm_area v4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,39 +47,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ashok Raj <ashok.raj@intel.com>, Intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Tom Murphy <murphyt7@tcd.ie>,
- Christoph Hellwig <hch@infradead.org>, iommu@lists.linux-foundation.org,
- David Woodhouse <dwmw2@infradead.org>, baolu.lu@linux.intel.com
+Cc: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Matthew Wilcox <willy@infradead.org>, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, Peter Zijlstra <peterz@infradead.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, x86@kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Minchan Kim <minchan@kernel.org>,
+ Matthew Auld <matthew.auld@intel.com>, xen-devel@lists.xenproject.org,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, Nitin Gupta <ngupta@vflare.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Joerg,
+Hi Andrew,
 
-On 2020/10/1 20:17, Joerg Roedel wrote:
-> Hi Baolu,
-> 
-> On Tue, Sep 29, 2020 at 08:11:35AM +0800, Lu Baolu wrote:
->> I have no preference. It depends on which patch goes first. Let the
->> maintainers help here.
-> 
-> No preference on my side, except that it is too late for this now to
-> make it into v5.10. Besides that I let the decission up to you when this
-> is ready. Just send me a pull-request when it should get into the
-> iommu-tree.
+this series removes alloc_vm_area, which was left over from the big
+vmalloc interface rework.  It is a rather arkane interface, basicaly
+the equivalent of get_vm_area + actually faulting in all PTEs in
+the allocated area.  It was originally addeds for Xen (which isn't
+modular to start with), and then grew users in zsmalloc and i915
+which seems to mostly qualify as abuses of the interface, especially
+for i915 as a random driver should not set up PTE bits directly.
 
-Sure.
+A git tree is also available here:
 
-Best regards,
-baolu
+    git://git.infradead.org/users/hch/misc.git alloc_vm_area
 
-> 
-> Regards,
-> 
-> 	Joerg
-> 
+Gitweb:
+
+    http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/alloc_vm_area
+
+Changes since v2:
+ - rebased to include the two conflicting i915 changes in drm-tip /
+   linux-next again.  No changes outside of drivers/gpu/drm/i915/
+
+Changes since v2:
+ - add another missing i initialization
+ - rebased to mainline instead of drm-tip again
+
+Changes since v1:
+ - fix a bug in the zsmalloc changes
+ - fix a bug and rebase to include the recent changes in i915
+ - add a new vmap flag that allows to free the page array and pages
+   using vfree
+ - add a vfree documentation updated from Matthew
+
+Diffstat:
+ arch/x86/xen/grant-table.c                |   27 ++++--
+ drivers/gpu/drm/i915/Kconfig              |    1 
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c |  131 +++++++++++++-----------------
+ drivers/gpu/drm/i915/gt/shmem_utils.c     |   76 ++++-------------
+ drivers/xen/xenbus/xenbus_client.c        |   30 +++---
+ include/linux/vmalloc.h                   |    7 -
+ mm/Kconfig                                |    3 
+ mm/memory.c                               |   16 ++-
+ mm/nommu.c                                |    7 -
+ mm/vmalloc.c                              |  123 ++++++++++++++--------------
+ mm/zsmalloc.c                             |   10 +-
+ 11 files changed, 200 insertions(+), 231 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
