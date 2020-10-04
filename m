@@ -1,66 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0A0B282924
-	for <lists+intel-gfx@lfdr.de>; Sun,  4 Oct 2020 08:12:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3230D282B81
+	for <lists+intel-gfx@lfdr.de>; Sun,  4 Oct 2020 17:43:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E0546E0A6;
-	Sun,  4 Oct 2020 06:12:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9A1D89CB5;
+	Sun,  4 Oct 2020 15:43:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A4516E0A6
- for <intel-gfx@lists.freedesktop.org>; Sun,  4 Oct 2020 06:12:23 +0000 (UTC)
-IronPort-SDR: aXMjNvdTWQ4mWzxCUxB5z4ahbwz5O3N81CjkS1rhLJ40M/QRMhxYlLupF2q8amCy0przCciSoe
- 5Yz2FSUVhe9A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9763"; a="181389963"
-X-IronPort-AV: E=Sophos;i="5.77,334,1596524400"; d="scan'208";a="181389963"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2020 23:12:19 -0700
-IronPort-SDR: DxUYpsDTP15PxAskNzR9Erg11Nje7TwC3Lb/Su/lLlvf80cn+fEzQej9K4dKRUersGQzIQDXC8
- h7Ag8140XTxw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,334,1596524400"; d="scan'208";a="459083188"
-Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
- by orsmga004.jf.intel.com with ESMTP; 03 Oct 2020 23:12:19 -0700
-Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
- IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Sun, 4 Oct 2020 07:12:17 +0100
-Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
- pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.1713.004;
- Sun, 4 Oct 2020 14:12:15 +0800
-From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "Sarvela, Tomi P"
- <tomi.p.sarvela@intel.com>
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5MTUvdGdsOiBGaXgg?=
- =?utf-8?B?Q29tYm8gUEhZIERQTEwgZnJhY3Rpb25hbCBkaXZpZGVyIGZvciAzOC40TUh6?=
- =?utf-8?Q?_ref_clock_(rev3)?=
-Thread-Index: AQHWmYv0es761jxI5EKL903Kqgmn8qmG92Qg
-Date: Sun, 4 Oct 2020 06:12:15 +0000
-Message-ID: <5e8b6ede06264165847cf43a1ae1d2df@intel.com>
-References: <20201003001846.1271151-1-imre.deak@intel.com>
- <160169736013.24066.4200219438161051461@emeril.freedesktop.org>
- <20201003134854.GA1278041@ideak-desk.fi.intel.com>
-In-Reply-To: <20201003134854.GA1278041@ideak-desk.fi.intel.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-x-originating-ip: [10.22.254.132]
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5107189C99;
+ Sun,  4 Oct 2020 15:43:47 +0000 (UTC)
+Received: from localhost (unknown [213.57.247.131])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 5CCDD206C1;
+ Sun,  4 Oct 2020 15:43:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1601826227;
+ bh=7kcJRhYO8i8a8NUKH4udVbO1HkOL8u4Fb50Z6E77+LI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=H+BZCGU5zKMw0E4CuPMwdOlui4sRFV1k6qd+Zztd0AqnYH/Uuu2wXnkFzbKmDPqUu
+ oDmIYyWjMJMq+Nw0734D5+yiw04lOPVHCfc+9fooZPZZOOacYE4aBXO7i4rNT0a9Q7
+ /AaNSm6AsTTkWa+263mOggATwZ5UYuk6iNawyyic=
+From: Leon Romanovsky <leon@kernel.org>
+To: Doug Ledford <dledford@redhat.com>,
+	Jason Gunthorpe <jgg@nvidia.com>
+Date: Sun,  4 Oct 2020 18:43:36 +0300
+Message-Id: <20201004154340.1080481-1-leon@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/tgl=3A_Fix_Combo_PHY_DPLL_fractional_divider_for_38=2E4MH?=
- =?utf-8?q?z_ref_clock_=28rev3=29?=
+Subject: [Intel-gfx] [PATCH rdma-next v5 0/4] Dynamicaly allocate SG table
+ from the pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,67 +45,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: David Airlie <airlied@linux.ie>, Maor Gottlieb <maorg@nvidia.com>,
+ intel-gfx@lists.freedesktop.org, Roland Scheidegger <sroland@vmware.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhhbmtzIGZvciB0aGUgcG9pbnRlcnMgSW1yZS4gSSBoYXZlIHJlLXJlcG9ydGVkIHRoZSByZXN1
-bHRzLg0KDQpMYWtzaG1pLg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEltcmUg
-RGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4gDQpTZW50OiBTYXR1cmRheSwgT2N0b2JlciAzLCAy
-MDIwIDY6NDkgQU0NClRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBWdWR1bSwg
-TGFrc2htaW5hcmF5YW5hIDxsYWtzaG1pbmFyYXlhbmEudnVkdW1AaW50ZWwuY29tPjsgU2FydmVs
-YSwgVG9taSBQIDx0b21pLnAuc2FydmVsYUBpbnRlbC5jb20+DQpTdWJqZWN0OiBSZTog4pyXIEZp
-LkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5MTUvdGdsOiBGaXggQ29tYm8gUEhZIERQTEwgZnJh
-Y3Rpb25hbCBkaXZpZGVyIGZvciAzOC40TUh6IHJlZiBjbG9jayAocmV2MykNCg0KSGkgTGFrc2ht
-aSwgVG9taSwNCg0KT24gU2F0LCBPY3QgMDMsIDIwMjAgYXQgMDM6NTY6MDBBTSArMDAwMCwgUGF0
-Y2h3b3JrIHdyb3RlOg0KPiA9PSBTZXJpZXMgRGV0YWlscyA9PQ0KPiANCj4gU2VyaWVzOiBkcm0v
-aTkxNS90Z2w6IEZpeCBDb21ibyBQSFkgRFBMTCBmcmFjdGlvbmFsIGRpdmlkZXIgZm9yIDM4LjRN
-SHogcmVmIGNsb2NrIChyZXYzKQ0KPiBVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNr
-dG9wLm9yZy9zZXJpZXMvODIxNzMvDQo+IFN0YXRlIDogZmFpbHVyZQ0KPiANCj4gPT0gU3VtbWFy
-eSA9PQ0KPiANCj4gQ0kgQnVnIExvZyAtIGNoYW5nZXMgZnJvbSBDSV9EUk1fOTA5M19mdWxsIC0+
-IFBhdGNod29ya18xODYyMF9mdWxsIA0KPiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09DQo+IA0KPiBTdW1tYXJ5DQo+IC0tLS0tLS0NCj4gDQo+ICAg
-KipGQUlMVVJFKioNCj4gDQo+ICAgU2VyaW91cyB1bmtub3duIGNoYW5nZXMgY29taW5nIHdpdGgg
-UGF0Y2h3b3JrXzE4NjIwX2Z1bGwgYWJzb2x1dGVseSBuZWVkIHRvIGJlDQo+ICAgdmVyaWZpZWQg
-bWFudWFsbHkuDQo+ICAgDQo+ICAgSWYgeW91IHRoaW5rIHRoZSByZXBvcnRlZCBjaGFuZ2VzIGhh
-dmUgbm90aGluZyB0byBkbyB3aXRoIHRoZSBjaGFuZ2VzDQo+ICAgaW50cm9kdWNlZCBpbiBQYXRj
-aHdvcmtfMTg2MjBfZnVsbCwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93IHRo
-ZW0NCj4gICB0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwgcmVk
-dWNlIGZhbHNlIHBvc2l0aXZlcyBpbiBDSS4NCj4gDQo+ICAgDQo+IA0KPiBQb3NzaWJsZSBuZXcg
-aXNzdWVzDQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gDQo+ICAgSGVyZSBhcmUgdGhlIHVua25v
-d24gY2hhbmdlcyB0aGF0IG1heSBoYXZlIGJlZW4gaW50cm9kdWNlZCBpbiBQYXRjaHdvcmtfMTg2
-MjBfZnVsbDoNCj4gDQo+ICMjIyBJR1QgY2hhbmdlcyAjIyMNCj4gDQo+ICMjIyMgUG9zc2libGUg
-cmVncmVzc2lvbnMgIyMjIw0KPiANCj4gICAqIGlndEBnZW1fdXNlcnB0cl9ibGl0c0B1bnN5bmMt
-dW5tYXAtY3ljbGVzOg0KPiAgICAgLSBzaGFyZC1za2w6ICAgICAgICAgIFtQQVNTXVsxXSAtPiBb
-VElNRU9VVF1bMl0NCj4gICAgWzFdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
-cm0tdGlwL0NJX0RSTV85MDkzL3NoYXJkLXNrbDYvaWd0QGdlbV91c2VycHRyX2JsaXRzQHVuc3lu
-Yy11bm1hcC1jeWNsZXMuaHRtbA0KPiAgICBbMl06IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xODYyMC9zaGFyZC1za2w0L2lnDQo+IHRAZ2Vt
-X3VzZXJwdHJfYmxpdHNAdW5zeW5jLXVubWFwLWN5Y2xlcy5odG1sDQoNClRoaXMgbG9va3MgbGlr
-ZQ0KaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8yNDI0
-DQpzdGlsbCBoYXBwZW5pbmcgYXQNCmh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
-bS10aXAvQ0lfRFJNXzkwOTAvc2hhcmQtc2tsNS9pZ3RAZ2VtX3VzZXJwdHJfYmxpdHNAc3luYy11
-bm1hcC1jeWNsZXMuaHRtbA0KDQpDb3VsZCB5b3UgdXBkYXRlIHRoZSBmaWx0ZXIgdG8gaW5jbHVk
-ZSBzeW5jLXVubWFwLWN5Y2xlcyBhcyB3ZWxsPw0KDQoNCj4gICAqIGlndEBrbXNfZmxpcEBmbGlw
-LXZzLXN1c3BlbmRAYy1lZHAxOg0KPiAgICAgLSBzaGFyZC1pY2xiOiAgICAgICAgIFtQQVNTXVsz
-XSAtPiBbSU5DT01QTEVURV1bNF0NCj4gICAgWzNdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL0NJX0RSTV85MDkzL3NoYXJkLWljbGIzL2lndEBrbXNfZmxpcEBmbGlw
-LXZzLXN1c3BlbmRAYy1lZHAxLmh0bWwNCj4gICAgWzRdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTg2MjAvc2hhcmQtaWNsYjMvaQ0KPiBn
-dEBrbXNfZmxpcEBmbGlwLXZzLXN1c3BlbmRAYy1lZHAxLmh0bWwNCg0KTG9va3MgbGlrZSBzaGFy
-ZC1pY2xiMyBoYXMgYSBmaWxlIHN5c3RlbSBjb3JydXB0aW9uLCBvciBqdXN0IGJyb2tlbiBzdG9y
-YWdlIGRldmljZS9ob3N0Og0KPDM+WyAgMjQwLjAxMjc4MF0gYmxrX3VwZGF0ZV9yZXF1ZXN0OiBJ
-L08gZXJyb3IsIGRldiBzZGEsIHNlY3RvciA3Njg2MzEyMCBvcCAweDE6KFdSSVRFKSBmbGFncyAw
-eDgwMCBwaHlzX3NlZyAxMCBwcmlvIGNsYXNzIDANCg0KVGhpcyBoYXMgYmVlbiBjb25zaXN0ZW50
-bHkgaGFwcGVuaW5nIG5vdyBmb3IgYSB3aGlsZSBvbiB0aGUgc2hhcmQtaWNsYjMgbWFjaGluZSBs
-ZWFkaW5nIHRvIHRoZSBzYW1lIGhhbmcsIHNlZSBmb3IgaW5zdGFuY2UgaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fOTA2My9zaGFyZC1pY2xiMy9wc3RvcmU3
-LTE2MDEzMDI3NzBfUGFuaWNfMS50eHQNCg0KU2ltaWxhciBzcG9yYWRpYyBmaWxlc3lzdGVtIGVy
-cm9ycyBoYXZlIGJlZW4gYWxzbyBoYXBwZW5pbmcgb24gc2hhcmQtaWNsYjQuDQoNCkkgaGF2ZW4n
-dCBzZWVuIGFueSByZWNlbnQgSS9PIGVycm9ycyBvbiBhbnkgb2YgdGhlIG90aGVyIDcgc2hhcmQt
-aWNsIG1hY2hpbmVzLg0KDQpzaGFyZC1pY2xiMy80IHdvdWxkIHByb2JhYmx5IG5lZWQgcmVpbnN0
-YWxsL25ldyBzdG9yYWdlIGRldmljZS9uZXcgaG9zdC4NCg0KLS1JbXJlDQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
-CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+From: Leon Romanovsky <leonro@nvidia.com>
+
+Changelog:
+v5:
+ * Use sg_init_table to allocate table and avoid changes is __sg_alloc_table
+ * Fix offset issue
+v4: https://lore.kernel.org/lkml/20200927064647.3106737-1-leon@kernel.org
+ * Fixed formatting in first patch.
+ * Added fix (clear tmp_netnts) in first patch to fix i915 failure.
+ * Added test patches
+v3: https://lore.kernel.org/linux-rdma/20200922083958.2150803-1-leon@kernel.org/
+ * Squashed Christopher's suggestion to avoid introduced new API, but extend existing one.
+v2: https://lore.kernel.org/linux-rdma/20200916140726.839377-1-leon@kernel.org
+ * Fixed indentations and comments
+ * Deleted sg_alloc_next()
+ * Squashed lib/scatterlist patches into one
+v1: https://lore.kernel.org/lkml/20200910134259.1304543-1-leon@kernel.org
+ * Changed _sg_chain to be __sg_chain
+ * Added dependency on ARCH_NO_SG_CHAIN
+ * Removed struct sg_append
+v0:
+ * https://lore.kernel.org/lkml/20200903121853.1145976-1-leon@kernel.org
+
+--------------------------------------------------------------------------
+From Maor:
+
+This series extends __sg_alloc_table_from_pages to allow chaining of
+new pages to already initialized SG table.
+
+This allows for the drivers to utilize the optimization of merging contiguous
+pages without a need to pre allocate all the pages and hold them in
+a very large temporary buffer prior to the call to SG table initialization.
+
+The second patch changes the Infiniband driver to use the new API. It
+removes duplicate functionality from the code and benefits the
+optimization of allocating dynamic SG table from pages.
+
+In huge pages system of 2MB page size, without this change, the SG table
+would contain x512 SG entries.
+E.g. for 100GB memory registration:
+
+             Number of entries      Size
+    Before        26214400          600.0MB
+    After            51200            1.2MB
+
+Thanks
+
+Maor Gottlieb (2):
+  lib/scatterlist: Add support in dynamic allocation of SG table from
+    pages
+  RDMA/umem: Move to allocate SG table from pages
+
+Tvrtko Ursulin (2):
+  tools/testing/scatterlist: Rejuvenate bit-rotten test
+  tools/testing/scatterlist: Show errors in human readable form
+
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c |  12 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c  |  15 ++-
+ drivers/infiniband/core/umem.c              |  94 ++-------------
+ include/linux/scatterlist.h                 |  38 +++---
+ lib/scatterlist.c                           | 125 ++++++++++++++++----
+ tools/testing/scatterlist/Makefile          |   3 +-
+ tools/testing/scatterlist/linux/mm.h        |  35 ++++++
+ tools/testing/scatterlist/main.c            |  53 ++++++---
+ 8 files changed, 225 insertions(+), 150 deletions(-)
+
+--
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
