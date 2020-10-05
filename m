@@ -1,31 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6667283556
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Oct 2020 14:04:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 313DA283F04
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Oct 2020 20:50:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55FCD89DA8;
-	Mon,  5 Oct 2020 12:04:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC05889C1C;
+	Mon,  5 Oct 2020 18:50:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0C74589C80;
- Mon,  5 Oct 2020 12:04:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0409FA363D;
- Mon,  5 Oct 2020 12:04:05 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B92689C16;
+ Mon,  5 Oct 2020 18:50:28 +0000 (UTC)
+IronPort-SDR: NYhv5Yce4220djfLWPIDoFdW/hHt+no+bFqt9gMJkOtCbJPesorQp0BUCO7cwL2d84bug7ge9o
+ OB3b7TTwIeQQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="160813285"
+X-IronPort-AV: E=Sophos;i="5.77,340,1596524400"; d="scan'208";a="160813285"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2020 11:50:11 -0700
+IronPort-SDR: fgSRMQa4nUqrMFo6w7Zgp6nY59sOmc97GJADZ6wNyO+iZE9VCMUup+a/BVVDyXedDZNZe7rorC
+ Hqht0I0pTJrg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,340,1596524400"; d="scan'208";a="341225847"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by fmsmga004.fm.intel.com with ESMTP; 05 Oct 2020 09:35:35 -0700
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ james.ausmus@intel.com, matthew.d.roper@intel.com, jose.souza@intel.com,
+ ville.syrjala@linux.intel.com, lucas.demarchi@intel.com,
+ hariom.pandey@intel.com
+Date: Mon,  5 Oct 2020 21:57:34 +0530
+Message-Id: <20201005162736.280653-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: rwright@hpe.com
-Date: Mon, 05 Oct 2020 12:04:05 -0000
-Message-ID: <160189944501.25154.13495141244295574705@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201004203631.GA6686@rfwz62>
-In-Reply-To: <20201004203631.GA6686@rfwz62>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/gt=3A_reduce_context_clear_batch_size_to_avoid_gpu_hang?=
+Subject: [Intel-gfx] [PATCH v4 0/2] drm/i915/jsl: Update JSL Voltage swing
+ table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,33 +50,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Patch series covers following thigns:
 
-Series: drm/i915/gt: reduce context clear batch size to avoid gpu hang
-URL   : https://patchwork.freedesktop.org/series/82377/
-State : failure
+1. Split and differentiate between EHL and JSL platfrom
+2. Update voltage swing table for eDP on JSL platform
 
-== Summary ==
+Changes since V3 :
+        - Changed IS_EHL_JSL to IS_JSL_EHL
+        - Renamed IS_EHL_REVID to IS_JSL_EHL_REVID
+        - Reverted removal of IS_ELKHARTLAKE and also
+          added IS_JASPERLAKE
+	- Corrected mistake of using IS_ELKHARTLAKE twice 
+	  and missing IS_JASPERLAKE in intel_ddi
 
-Applying: drm/i915/gt: reduce context clear batch size to avoid gpu hang
-error: patch failed: drivers/gpu/drm/i915/gt/gen7_renderclear.c:49
-error: drivers/gpu/drm/i915/gt/gen7_renderclear.c: patch does not apply
-error: Did you hand edit your patch?
-It does not apply to blobs recorded in its index.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Using index info to reconstruct a base tree...
-Patch failed at 0001 drm/i915/gt: reduce context clear batch size to avoid gpu hang
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Changes since V2 :
+        - Added IS_EHL_JSL to replace IS_ELKHARTLAKE
+        - EHL/JSL PCI ids split added
+        - Rebased to drm master commit
 
+Changes since V1 :
+        - IS_ELKHARTLAKE and IS_JASPERLAKE is replaced with
+          HAS_PCH_MCC(EHL) and HAS_PCH_JSP(JSL) respectively
+        - Reverted EHL/JSL PCI ids split change
+
+Tejas Upadhyay (2):
+  drm/i915/jsl: Split EHL/JSL platform info and PCI ids
+  drm/i915/edp/jsl: Update vswing table for HBR and HBR2
+
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  4 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  6 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 93 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_display.c  |  8 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 16 ++--
+ drivers/gpu/drm/i915/gt/intel_sseu.c          |  2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |  4 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  9 +-
+ drivers/gpu/drm/i915/i915_pci.c               |  9 ++
+ drivers/gpu/drm/i915/intel_device_info.c      |  1 +
+ drivers/gpu/drm/i915/intel_device_info.h      |  1 +
+ drivers/gpu/drm/i915/intel_pch.c              |  2 +-
+ include/drm/i915_pciids.h                     |  9 +-
+ 15 files changed, 135 insertions(+), 35 deletions(-)
+
+-- 
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
