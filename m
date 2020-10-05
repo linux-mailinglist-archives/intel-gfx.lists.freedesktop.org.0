@@ -2,42 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D5B828430C
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 01:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECF93284308
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 01:45:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B31DE6E1B4;
-	Mon,  5 Oct 2020 23:52:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3724489C9A;
+	Mon,  5 Oct 2020 23:45:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5189D6E1B4
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Oct 2020 23:52:48 +0000 (UTC)
-IronPort-SDR: y3YxA0x/s1X3197SNaQPv4Gp3ubK0PfJYeGN54HGguPP8yfpma8wn0VrQLlNd3htY7SGBFmkpS
- ++nwJZmKnXZw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="161633786"
-X-IronPort-AV: E=Sophos;i="5.77,341,1596524400"; d="scan'208";a="161633786"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC9BD89C9A
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Oct 2020 23:45:12 +0000 (UTC)
+IronPort-SDR: HCvRZVArhH1JatrFbi7j2J3SuDNTXwFooLAHh8yY02NERlhp8mg+M61nd+YYT1XhiwUn2hjcI6
+ Ma86VQU27rFQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="144151481"
+X-IronPort-AV: E=Sophos;i="5.77,341,1596524400"; d="scan'208";a="144151481"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2020 16:51:04 -0700
-IronPort-SDR: SYT4U7Et6v87z/FYzeauyK8Cnu/txtFo8KIb/N8fCpVdku42wLz6aG2AyEO5Yj/hUAVdSH5ymE
- 5dQEif7IOVMw==
-X-IronPort-AV: E=Sophos;i="5.77,341,1596524400"; d="scan'208";a="315042419"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2020 16:45:10 -0700
+IronPort-SDR: TfY3nyfbJeYx1/OJYPaasO1qWJDCQ61ekrYB4pSD2A5P6LFYGoN82qFdbrm3ZgDQe26poiROUI
+ 25FBLNCBR7HA==
+X-IronPort-AV: E=Sophos;i="5.77,341,1596524400"; d="scan'208";a="341619406"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2020 16:01:10 -0700
-Date: Tue, 6 Oct 2020 02:00:46 +0300
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2020 16:01:58 -0700
 From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20201005230046.GE1378377@ideak-desk.fi.intel.com>
-References: <20201003001846.1271151-1-imre.deak@intel.com>
- <20201003001846.1271151-5-imre.deak@intel.com>
- <20201005205102.GO6112@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  6 Oct 2020 02:01:54 +0300
+Message-Id: <20201005230154.1477653-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201005215311.1475666-2-imre.deak@intel.com>
+References: <20201005215311.1475666-2-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201005205102.GO6112@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915: Add an encoder hook to
+Subject: [Intel-gfx] [PATCH v3 4/5] drm/i915: Add an encoder hook to
  sanitize its state during init/resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -51,244 +49,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 05, 2020 at 11:51:02PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Sat, Oct 03, 2020 at 03:18:45AM +0300, Imre Deak wrote:
-> > Atm, if a full modeset is performed during the initial modeset the link
-> > training will happen with uninitialized max DP rate and lane count. Make
-> > sure the corresponding encoder state is initialized by adding an encoder
-> > hook called during driver init and system resume.
-> > =
-
-> > A better alternative would be to store all states in the CRTC state and
-> > make this state available for the link re-training code. Also instead of
-> > the DPCD read in the hook there should be really a proper sink HW
-> > readout in place. Both of these require a bigger rework, so for now opt=
-ing
-> > for this minimal fix to make at least full initial modesets work.
-> > =
-
-> > The patch is based on
-> > https://patchwork.freedesktop.org/patch/101473/?series=3D10354&rev=3D3
-> > =
-
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c      |  8 +++++
-> >  drivers/gpu/drm/i915/display/intel_display.c  |  4 +++
-> >  .../drm/i915/display/intel_display_types.h    |  7 +++++
-> >  drivers/gpu/drm/i915/display/intel_dp.c       | 31 +++++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_dp.h       |  2 ++
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 10 ++++++
-> >  6 files changed, 62 insertions(+)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm=
-/i915/display/intel_ddi.c
-> > index 4e54c55ec99f..a0805260b224 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -4564,6 +4564,13 @@ void intel_ddi_get_config(struct intel_encoder *=
-encoder,
-> >  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
-> >  }
-> >  =
-
-> > +static void intel_ddi_sanitize_state(struct intel_encoder *encoder,
-> > +				     const struct intel_crtc_state *crtc_state)
-> > +{
-> > +	if (crtc_state && intel_crtc_has_dp_encoder(crtc_state))
-> > +		intel_dp_sanitize_state(encoder, crtc_state);
-> > +}
-> > +
-> >  static bool intel_ddi_initial_fastset_check(struct intel_encoder *enco=
-der,
-> >  					    struct intel_crtc_state *crtc_state)
-> >  {
-> > @@ -5182,6 +5189,7 @@ void intel_ddi_init(struct drm_i915_private *dev_=
-priv, enum port port)
-> >  	encoder->update_pipe =3D intel_ddi_update_pipe;
-> >  	encoder->get_hw_state =3D intel_ddi_get_hw_state;
-> >  	encoder->get_config =3D intel_ddi_get_config;
-> > +	encoder->sanitize_state =3D intel_ddi_sanitize_state;
-> >  	encoder->initial_fastset_check =3D intel_ddi_initial_fastset_check;
-> >  	encoder->suspend =3D intel_dp_encoder_suspend;
-> >  	encoder->get_power_domains =3D intel_ddi_get_power_domains;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 31be63225b10..e61311ee8b8c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -18725,8 +18725,12 @@ static void intel_modeset_readout_hw_state(str=
-uct drm_device *dev)
-> >  =
-
-> >  			encoder->base.crtc =3D &crtc->base;
-> >  			encoder->get_config(encoder, crtc_state);
-> > +			if (encoder->sanitize_state)
-> > +				encoder->sanitize_state(encoder, crtc_state);
-> >  		} else {
-> >  			encoder->base.crtc =3D NULL;
-> > +			if (encoder->sanitize_state)
-> > +				encoder->sanitize_state(encoder, NULL);
-> >  		}
-> >  =
-
-> >  		drm_dbg_kms(&dev_priv->drm,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drive=
-rs/gpu/drm/i915/display/intel_display_types.h
-> > index 5297b2f08ff9..b2b458144f5a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -188,6 +188,13 @@ struct intel_encoder {
-> >  	void (*get_config)(struct intel_encoder *,
-> >  			   struct intel_crtc_state *pipe_config);
-> >  =
-
-> > +	 /*
-> > +	  * Optional hook called during init/resume to sanitize any state
-> > +	  * stored in the encoder (eg. DP link parameters).
-> > +	  */
-> > +	void (*sanitize_state)(struct intel_encoder *encoder,
-> > +			       const struct intel_crtc_state *crtc_state);
-> > +
-> >  	/*
-> >  	 * Optional hook, returning true if this encoder allows a fastset
-> >  	 * during the initial commit, false otherwise.
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
-i915/display/intel_dp.c
-> > index df5277c2b9ba..9b6fe3b3b5b2 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -3703,6 +3703,36 @@ static void intel_dp_get_config(struct intel_enc=
-oder *encoder,
-> >  	}
-> >  }
-> >  =
-
-> > +static bool
-> > +intel_dp_get_dpcd(struct intel_dp *intel_dp);
-> > +
-> > +/**
-> > + * intel_dp_sanitize_state - sanitize the encoder state during init/re=
-sume
-> > + * @encoder: intel encoder to sanitize
-> > + * @crtc_state: state for the CRTC connected to the encoder
-> > + *
-> > + * Sanitize any state stored in the encoder during driver init and sys=
-tem
-> > + * resume.
-> > + */
-> > +void intel_dp_sanitize_state(struct intel_encoder *encoder,
-> > +			     const struct intel_crtc_state *crtc_state)
-> > +{
-> > +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> > +
-> > +	if (!crtc_state)
-> > +		return;
-> > +
-> > +	/*
-> > +	 * Don't clobber DPCD if it's been already read out during output
-> > +	 * setup (eDP) or detect.
-> > +	 */
-> > +	if (!memchr_inv(intel_dp->dpcd, 0, sizeof(intel_dp->dpcd)))
-> > +		intel_dp_get_dpcd(intel_dp);
-> =
-
-> Oh, and I'd probably just have checked DPCD_REV !=3D0 here. That's what we
-> already do somewhere else IIRC.
-
-Ok.
-
-> =
-
-> > +
-> > +	intel_dp->max_link_lane_count =3D intel_dp_max_common_lane_count(inte=
-l_dp);
-> > +	intel_dp->max_link_rate =3D intel_dp_max_common_rate(intel_dp);
-> > +}
-> > +
-> >  bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
-> >  				    struct intel_crtc_state *crtc_state)
-> >  {
-> > @@ -8090,6 +8120,7 @@ bool intel_dp_init(struct drm_i915_private *dev_p=
-riv,
-> >  	intel_encoder->compute_config =3D intel_dp_compute_config;
-> >  	intel_encoder->get_hw_state =3D intel_dp_get_hw_state;
-> >  	intel_encoder->get_config =3D intel_dp_get_config;
-> > +	intel_encoder->sanitize_state =3D intel_dp_sanitize_state;
-> >  	intel_encoder->initial_fastset_check =3D intel_dp_initial_fastset_che=
-ck;
-> >  	intel_encoder->update_pipe =3D intel_panel_update_backlight;
-> >  	intel_encoder->suspend =3D intel_dp_encoder_suspend;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/=
-i915/display/intel_dp.h
-> > index 977585aea3c8..1ab741e0be67 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> > @@ -143,5 +143,7 @@ int intel_dp_init_hdcp(struct intel_digital_port *d=
-ig_port,
-> >  =
-
-> >  bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
-> >  				    struct intel_crtc_state *crtc_state);
-> > +void intel_dp_sanitize_state(struct intel_encoder *encoder,
-> > +			     const struct intel_crtc_state *crtc_state);
-> >  =
-
-> >  #endif /* __INTEL_DP_H__ */
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/=
-drm/i915/display/intel_dp_mst.c
-> > index e948aacbd4ab..0831d1ee7978 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -591,6 +591,15 @@ static void intel_dp_mst_enc_get_config(struct int=
-el_encoder *encoder,
-> >  	intel_ddi_get_config(&dig_port->base, pipe_config);
-> >  }
-> >  =
-
-> > +static void intel_dp_mst_sync_state(struct intel_encoder *encoder,
-> > +				    const struct intel_crtc_state *crtc_state)
-> > +{
-> > +	struct intel_dp_mst_encoder *intel_mst =3D enc_to_mst(encoder);
-> > +	struct intel_digital_port *dig_port =3D intel_mst->primary;
-> > +
-> > +	return intel_dp_sanitize_state(&dig_port->base, crtc_state);
-> > +}
-> > +
-> >  static bool intel_dp_mst_initial_fastset_check(struct intel_encoder *e=
-ncoder,
-> >  					       struct intel_crtc_state *crtc_state)
-> >  {
-> > @@ -906,6 +915,7 @@ intel_dp_create_fake_mst_encoder(struct intel_digit=
-al_port *dig_port, enum pipe
-> >  	intel_encoder->enable =3D intel_mst_enable_dp;
-> >  	intel_encoder->get_hw_state =3D intel_dp_mst_enc_get_hw_state;
-> >  	intel_encoder->get_config =3D intel_dp_mst_enc_get_config;
-> > +	intel_encoder->sanitize_state =3D intel_dp_mst_sync_state;
-> >  	intel_encoder->initial_fastset_check =3D intel_dp_mst_initial_fastset=
-_check;
-> >  =
-
-> >  	return intel_mst;
-> > -- =
-
-> > 2.25.1
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QXRtLCBpZiBhIGZ1bGwgbW9kZXNldCBpcyBwZXJmb3JtZWQgZHVyaW5nIHRoZSBpbml0aWFsIG1v
+ZGVzZXQgdGhlIGxpbmsKdHJhaW5pbmcgd2lsbCBoYXBwZW4gd2l0aCB1bmluaXRpYWxpemVkIG1h
+eCBEUCByYXRlIGFuZCBsYW5lIGNvdW50LiBNYWtlCnN1cmUgdGhlIGNvcnJlc3BvbmRpbmcgZW5j
+b2RlciBzdGF0ZSBpcyBpbml0aWFsaXplZCBieSBhZGRpbmcgYW4gZW5jb2Rlcgpob29rIGNhbGxl
+ZCBkdXJpbmcgZHJpdmVyIGluaXQgYW5kIHN5c3RlbSByZXN1bWUuCgpBIGJldHRlciBhbHRlcm5h
+dGl2ZSB3b3VsZCBiZSB0byBzdG9yZSBhbGwgc3RhdGVzIGluIHRoZSBDUlRDIHN0YXRlIGFuZApt
+YWtlIHRoaXMgc3RhdGUgYXZhaWxhYmxlIGZvciB0aGUgbGluayByZS10cmFpbmluZyBjb2RlLiBB
+bHNvIGluc3RlYWQgb2YKdGhlIERQQ0QgcmVhZCBpbiB0aGUgaG9vayB0aGVyZSBzaG91bGQgYmUg
+cmVhbGx5IGEgcHJvcGVyIHNpbmsgSFcKcmVhZG91dCBpbiBwbGFjZS4gQm90aCBvZiB0aGVzZSBy
+ZXF1aXJlIGEgYmlnZ2VyIHJld29yaywgc28gZm9yIG5vdyBvcHRpbmcKZm9yIHRoaXMgbWluaW1h
+bCBmaXggdG8gbWFrZSBhdCBsZWFzdCBmdWxsIGluaXRpYWwgbW9kZXNldHMgd29yay4KClRoZSBw
+YXRjaCBpcyBiYXNlZCBvbgpodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gv
+MTAxNDczLz9zZXJpZXM9MTAzNTQmcmV2PTMKCnYyOiAoVmlsbGUpCi0gcy9zYW5pdGl6ZV9zdGF0
+ZS9zeW5jX3N0YXRlLwotIE5vIHBvaW50IGluIGNhbGxpbmcgdGhlIGhvb2sgd2hlbiBDUlRDIGlz
+IGRpc2FibGVkLCByZW1vdmUgdGhlIGNhbGwuCi0gTm8gcG9pbnQgaW4gY2FsbGluZyB0aGUgaG9v
+ayBmb3IgTVNULCByZW1vdmUgaXQuCgp2MzogQ2hlY2sgb25seSBEUENEX1JFViB0byBhdm9pZCBj
+bG9iYmVyaW5nIGludGVsX2RwLT5kcGNkLiAoVmlsbGUpCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2
+aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSW1yZSBEZWFrIDxp
+bXJlLmRlYWtAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGRpLmMgICAgICB8ICA4ICsrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kaXNwbGF5LmMgIHwgIDIgKysKIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
+YXlfdHlwZXMuaCAgICB8ICA3ICsrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2RwLmMgICAgICAgfCAyOCArKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2RwLmggICAgICAgfCAgMiArKwogNSBmaWxlcyBjaGFuZ2VkLCA0
+NyBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMK
+aW5kZXggNGU1NGM1NWVjOTlmLi42ZjdiZDY3NzMyZjIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kZGkuYwpAQCAtNDU2NCw2ICs0NTY0LDEzIEBAIHZvaWQgaW50ZWxfZGRp
+X2dldF9jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJaW50ZWxfcmVhZF9k
+cF9zZHAoZW5jb2RlciwgcGlwZV9jb25maWcsIERQX1NEUF9WU0MpOwogfQogCitzdGF0aWMgdm9p
+ZCBpbnRlbF9kZGlfc3luY19zdGF0ZShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKKwkJ
+CQkgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCit7CisJaWYgKGlu
+dGVsX2NydGNfaGFzX2RwX2VuY29kZXIoY3J0Y19zdGF0ZSkpCisJCWludGVsX2RwX3N5bmNfc3Rh
+dGUoZW5jb2RlciwgY3J0Y19zdGF0ZSk7Cit9CisKIHN0YXRpYyBib29sIGludGVsX2RkaV9pbml0
+aWFsX2Zhc3RzZXRfY2hlY2soc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJCQkJCSAg
+ICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIHsKQEAgLTUxODIsNiArNTE4
+OSw3IEBAIHZvaWQgaW50ZWxfZGRpX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
+cml2LCBlbnVtIHBvcnQgcG9ydCkKIAllbmNvZGVyLT51cGRhdGVfcGlwZSA9IGludGVsX2RkaV91
+cGRhdGVfcGlwZTsKIAllbmNvZGVyLT5nZXRfaHdfc3RhdGUgPSBpbnRlbF9kZGlfZ2V0X2h3X3N0
+YXRlOwogCWVuY29kZXItPmdldF9jb25maWcgPSBpbnRlbF9kZGlfZ2V0X2NvbmZpZzsKKwllbmNv
+ZGVyLT5zeW5jX3N0YXRlID0gaW50ZWxfZGRpX3N5bmNfc3RhdGU7CiAJZW5jb2Rlci0+aW5pdGlh
+bF9mYXN0c2V0X2NoZWNrID0gaW50ZWxfZGRpX2luaXRpYWxfZmFzdHNldF9jaGVjazsKIAllbmNv
+ZGVyLT5zdXNwZW5kID0gaW50ZWxfZHBfZW5jb2Rlcl9zdXNwZW5kOwogCWVuY29kZXItPmdldF9w
+b3dlcl9kb21haW5zID0gaW50ZWxfZGRpX2dldF9wb3dlcl9kb21haW5zOwpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwppbmRleCA3NTViODNkNDdmOWMuLjkw
+N2UxZDE1NTQ0MyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
+bGF5LmMKQEAgLTE4NzIzLDYgKzE4NzIzLDggQEAgc3RhdGljIHZvaWQgaW50ZWxfbW9kZXNldF9y
+ZWFkb3V0X2h3X3N0YXRlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAKIAkJCWVuY29kZXItPmJh
+c2UuY3J0YyA9ICZjcnRjLT5iYXNlOwogCQkJZW5jb2Rlci0+Z2V0X2NvbmZpZyhlbmNvZGVyLCBj
+cnRjX3N0YXRlKTsKKwkJCWlmIChlbmNvZGVyLT5zeW5jX3N0YXRlKQorCQkJCWVuY29kZXItPnN5
+bmNfc3RhdGUoZW5jb2RlciwgY3J0Y19zdGF0ZSk7CiAJCX0gZWxzZSB7CiAJCQllbmNvZGVyLT5i
+YXNlLmNydGMgPSBOVUxMOwogCQl9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCmluZGV4IDUyOTdiMmYwOGZmOS4uNjVhZTIwNzA1NzZm
+IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
+dHlwZXMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
+dHlwZXMuaApAQCAtMTg4LDYgKzE4OCwxMyBAQCBzdHJ1Y3QgaW50ZWxfZW5jb2RlciB7CiAJdm9p
+ZCAoKmdldF9jb25maWcpKHN0cnVjdCBpbnRlbF9lbmNvZGVyICosCiAJCQkgICBzdHJ1Y3QgaW50
+ZWxfY3J0Y19zdGF0ZSAqcGlwZV9jb25maWcpOwogCisJLyoKKwkgKiBPcHRpb25hbCBob29rIGNh
+bGxlZCBkdXJpbmcgaW5pdC9yZXN1bWUgdG8gc3luYyBhbnkgc3RhdGUKKwkgKiBzdG9yZWQgaW4g
+dGhlIGVuY29kZXIgKGVnLiBEUCBsaW5rIHBhcmFtZXRlcnMpIHdydC4gdGhlIEhXIHN0YXRlLgor
+CSAqLworCXZvaWQgKCpzeW5jX3N0YXRlKShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwK
+KwkJCSAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKTsKKwogCS8q
+CiAJICogT3B0aW9uYWwgaG9vaywgcmV0dXJuaW5nIHRydWUgaWYgdGhpcyBlbmNvZGVyIGFsbG93
+cyBhIGZhc3RzZXQKIAkgKiBkdXJpbmcgdGhlIGluaXRpYWwgY29tbWl0LCBmYWxzZSBvdGhlcndp
+c2UuCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKaW5kZXggZGY1Mjc3YzJi
+OWJhLi4yMzkwMTZkY2Q1NDQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZHAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
+LmMKQEAgLTM3MDMsNiArMzcwMywzMyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kcF9nZXRfY29uZmln
+KHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCX0KIH0KIAorc3RhdGljIGJvb2wKK2lu
+dGVsX2RwX2dldF9kcGNkKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApOworCisvKioKKyAqIGlu
+dGVsX2RwX3N5bmNfc3RhdGUgLSBzeW5jIHRoZSBlbmNvZGVyIHN0YXRlIGR1cmluZyBpbml0L3Jl
+c3VtZQorICogQGVuY29kZXI6IGludGVsIGVuY29kZXIgdG8gc3luYworICogQGNydGNfc3RhdGU6
+IHN0YXRlIGZvciB0aGUgQ1JUQyBjb25uZWN0ZWQgdG8gdGhlIGVuY29kZXIKKyAqCisgKiBTeW5j
+IGFueSBzdGF0ZSBzdG9yZWQgaW4gdGhlIGVuY29kZXIgd3J0LiBIVyBzdGF0ZSBkdXJpbmcgZHJp
+dmVyIGluaXQKKyAqIGFuZCBzeXN0ZW0gcmVzdW1lLgorICovCit2b2lkIGludGVsX2RwX3N5bmNf
+c3RhdGUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCisJCQkgY29uc3Qgc3RydWN0IGlu
+dGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCit7CisJc3RydWN0IGludGVsX2RwICppbnRlbF9k
+cCA9IGVuY190b19pbnRlbF9kcChlbmNvZGVyKTsKKworCS8qCisJICogRG9uJ3QgY2xvYmJlciBE
+UENEIGlmIGl0J3MgYmVlbiBhbHJlYWR5IHJlYWQgb3V0IGR1cmluZyBvdXRwdXQKKwkgKiBzZXR1
+cCAoZURQKSBvciBkZXRlY3QuCisJICovCisJaWYgKGludGVsX2RwLT5kcGNkW0RQX0RQQ0RfUkVW
+XSA9PSAwKQorCQlpbnRlbF9kcF9nZXRfZHBjZChpbnRlbF9kcCk7CisKKwlpbnRlbF9kcC0+bWF4
+X2xpbmtfbGFuZV9jb3VudCA9IGludGVsX2RwX21heF9jb21tb25fbGFuZV9jb3VudChpbnRlbF9k
+cCk7CisJaW50ZWxfZHAtPm1heF9saW5rX3JhdGUgPSBpbnRlbF9kcF9tYXhfY29tbW9uX3JhdGUo
+aW50ZWxfZHApOworfQorCiBib29sIGludGVsX2RwX2luaXRpYWxfZmFzdHNldF9jaGVjayhzdHJ1
+Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJCQkgICAgc3RydWN0IGludGVsX2NydGNfc3Rh
+dGUgKmNydGNfc3RhdGUpCiB7CkBAIC04MDkwLDYgKzgxMTcsNyBAQCBib29sIGludGVsX2RwX2lu
+aXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAogCWludGVsX2VuY29kZXItPmNv
+bXB1dGVfY29uZmlnID0gaW50ZWxfZHBfY29tcHV0ZV9jb25maWc7CiAJaW50ZWxfZW5jb2Rlci0+
+Z2V0X2h3X3N0YXRlID0gaW50ZWxfZHBfZ2V0X2h3X3N0YXRlOwogCWludGVsX2VuY29kZXItPmdl
+dF9jb25maWcgPSBpbnRlbF9kcF9nZXRfY29uZmlnOworCWludGVsX2VuY29kZXItPnN5bmNfc3Rh
+dGUgPSBpbnRlbF9kcF9zeW5jX3N0YXRlOwogCWludGVsX2VuY29kZXItPmluaXRpYWxfZmFzdHNl
+dF9jaGVjayA9IGludGVsX2RwX2luaXRpYWxfZmFzdHNldF9jaGVjazsKIAlpbnRlbF9lbmNvZGVy
+LT51cGRhdGVfcGlwZSA9IGludGVsX3BhbmVsX3VwZGF0ZV9iYWNrbGlnaHQ7CiAJaW50ZWxfZW5j
+b2Rlci0+c3VzcGVuZCA9IGludGVsX2RwX2VuY29kZXJfc3VzcGVuZDsKZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZHAuaAppbmRleCA5Nzc1ODVhZWEzYzguLjZjMjAxMzc3ZmRjMCAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaApAQCAtMTQzLDUgKzE0Myw3
+IEBAIGludCBpbnRlbF9kcF9pbml0X2hkY3Aoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGln
+X3BvcnQsCiAKIGJvb2wgaW50ZWxfZHBfaW5pdGlhbF9mYXN0c2V0X2NoZWNrKHN0cnVjdCBpbnRl
+bF9lbmNvZGVyICplbmNvZGVyLAogCQkJCSAgICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0
+Y19zdGF0ZSk7Cit2b2lkIGludGVsX2RwX3N5bmNfc3RhdGUoc3RydWN0IGludGVsX2VuY29kZXIg
+KmVuY29kZXIsCisJCQkgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUp
+OwogCiAjZW5kaWYgLyogX19JTlRFTF9EUF9IX18gKi8KLS0gCjIuMjUuMQoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
