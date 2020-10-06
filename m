@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9426F284BAF
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 14:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FF77284BB0
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 14:33:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95B776E48B;
-	Tue,  6 Oct 2020 12:33:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B50866E489;
+	Tue,  6 Oct 2020 12:33:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B0D46E48E
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 12:33:19 +0000 (UTC)
-IronPort-SDR: nxKYYzMz4lZQyFnEItMp9vPr3Ak4MvlGe25MqonQSFe3l3ssSAQRtI0fjQLdtNc9zCdtiP4mv9
- qVzXk7IVSLew==
-X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="161851714"
-X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="161851714"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD2CC6E48E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 12:33:20 +0000 (UTC)
+IronPort-SDR: nsruq8pNYKcpMP4oS2JYpfmswxhhRiz0Sjk7DpzSYMK3nKiLdmDC+iUI/cfF0hoicqnaKy4Um0
+ TD/dMOmIIzBA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="161851720"
+X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="161851720"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 05:33:19 -0700
-IronPort-SDR: 4PUQ7lh7DSNkQEF71mYcCtgHuKKc0r7gVllGHVYOM/0nuVOwkgzEORqZZEFmnYCIhIzroA1Wxc
- pJeyN0oPGXmQ==
-X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="527333668"
+ 06 Oct 2020 05:33:20 -0700
+IronPort-SDR: CIsyByJoH5Uk3gjzkMgSNsh9Ww7e5W5IdWu0zYagzu99gLhYo6s401uU80iIu/WWnV4E5Z+mli
+ d1C153DNLCPg==
+X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="527333675"
 Received: from unknown (HELO linux-desktop.iind.intel.com) ([10.223.34.173])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 05:33:17 -0700
+ 06 Oct 2020 05:33:19 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  6 Oct 2020 18:36:49 +0530
-Message-Id: <20201006130654.331-6-uma.shankar@intel.com>
+Date: Tue,  6 Oct 2020 18:36:50 +0530
+Message-Id: <20201006130654.331-7-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20201006130654.331-1-uma.shankar@intel.com>
 References: <20201006130654.331-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v7 05/10] drm/i915/display: Enable HDR for Parade
- based lspcon
+Subject: [Intel-gfx] [v7 06/10] drm/i915/display: Implement infoframes
+ readback for LSPCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,69 +49,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Vipin Anand <vipin.anand@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable HDR for LSPCON based on Parade along with MCA.
+Implemented Infoframes enabled readback for LSPCON devices.
+This will help align the implementation with state readback
+infrastructure.
 
-v2: Added a helper for status reg as suggested by Ville.
+v2: Added proper bitmask of enabled infoframes as per Ville's
+recommendation.
+
+v3: Added pcon specific infoframe types instead of using the HSW
+one's, as recommended by Ville.
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Vipin Anand <vipin.anand@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lspcon.c | 20 ++++++++++++++------
- 1 file changed, 14 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lspcon.c | 57 ++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_reg.h             |  2 +
+ 2 files changed, 57 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index 9ffa36797daf..7ae01f2a8596 100644
+index 7ae01f2a8596..70f4ae6bbda9 100644
 --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
 +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -36,6 +36,7 @@
- #define LSPCON_VENDOR_MCA_OUI 0x0060AD
- 
- #define DPCD_MCA_LSPCON_HDR_STATUS	0x70003
-+#define DPCD_PARADE_LSPCON_HDR_STATUS	0x00511
- 
- /* AUX addresses to write MCA AVI IF */
- #define LSPCON_MCA_AVI_IF_WRITE_OFFSET 0x5C0
-@@ -106,21 +107,28 @@ static bool lspcon_detect_vendor(struct intel_lspcon *lspcon)
- 	return true;
+@@ -572,11 +572,64 @@ void lspcon_set_infoframes(struct intel_encoder *encoder,
+ 				  buf, ret);
  }
  
-+static u32 get_hdr_status_reg(struct intel_lspcon *lspcon)
++static bool _lspcon_read_avi_infoframe_enabled_mca(struct drm_dp_aux *aux)
 +{
-+	if (lspcon->vendor == LSPCON_VENDOR_MCA)
-+		return DPCD_MCA_LSPCON_HDR_STATUS;
-+	else
-+		return DPCD_PARADE_LSPCON_HDR_STATUS;
++	int ret;
++	u32 val = 0;
++	u16 reg = LSPCON_MCA_AVI_IF_CTRL;
++
++	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
++	if (ret < 0) {
++		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
++		return false;
++	}
++
++	return val & LSPCON_MCA_AVI_IF_KICKOFF;
 +}
 +
- static void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
- {
- 	struct intel_digital_port *intel_dig_port =
- 		container_of(lspcon, struct intel_digital_port, lspcon);
- 	struct drm_device *dev = intel_dig_port->base.base.dev;
- 	struct intel_dp *dp = lspcon_to_intel_dp(lspcon);
-+	u32 lspcon_hdr_status_reg;
- 	u8 hdr_caps;
- 	int ret;
- 
--	/* Enable HDR for MCA based LSPCON devices */
--	if (lspcon->vendor == LSPCON_VENDOR_MCA)
--		ret = drm_dp_dpcd_read(&dp->aux, DPCD_MCA_LSPCON_HDR_STATUS,
--				       &hdr_caps, 1);
--	else
--		return;
-+	lspcon_hdr_status_reg = get_hdr_status_reg(lspcon);
++static bool _lspcon_read_avi_infoframe_enabled_parade(struct drm_dp_aux *aux)
++{
++	int ret;
++	u32 val = 0;
++	u16 reg = LSPCON_PARADE_AVI_IF_CTRL;
 +
-+	ret = drm_dp_dpcd_read(&dp->aux, lspcon_hdr_status_reg,
-+			       &hdr_caps, 1);
++	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
++	if (ret < 0) {
++		DRM_ERROR("DPCD read failed, address 0x%x\n", reg);
++		return false;
++	}
++
++	return val & LSPCON_PARADE_AVI_IF_KICKOFF;
++}
++
+ u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *pipe_config)
+ {
+-	/* FIXME actually read this from the hw */
+-	return 0;
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	struct intel_lspcon *lspcon = enc_to_intel_lspcon(encoder);
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	bool infoframes_enabled;
++	u32 val = 0;
++	u32 mask, tmp;
++
++	if (lspcon->vendor == LSPCON_VENDOR_MCA)
++		infoframes_enabled = _lspcon_read_avi_infoframe_enabled_mca(&intel_dp->aux);
++	else
++		infoframes_enabled = _lspcon_read_avi_infoframe_enabled_parade(&intel_dp->aux);
++
++	if (infoframes_enabled)
++		val |= VIDEO_DIP_ENABLE_AVI_PCON;
++
++	if (lspcon->hdr_supported) {
++		tmp = intel_de_read(dev_priv,
++				    HSW_TVIDEO_DIP_CTL(pipe_config->cpu_transcoder));
++		mask = VIDEO_DIP_ENABLE_GMP_PCON;
++
++		if (tmp & mask)
++			val |= mask;
++	}
++
++	return val;
+ }
  
- 	if (ret < 0) {
- 		drm_dbg_kms(dev, "hdr capability detection failed\n");
+ void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon)
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 88c215cf97d4..8e2e2f7007d0 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -4977,6 +4977,8 @@ enum {
+ #define   VIDEO_DIP_ENABLE_VS_HSW	(1 << 8)
+ #define   VIDEO_DIP_ENABLE_GMP_HSW	(1 << 4)
+ #define   VIDEO_DIP_ENABLE_SPD_HSW	(1 << 0)
++#define   VIDEO_DIP_ENABLE_AVI_PCON	(1 << 12)
++#define   VIDEO_DIP_ENABLE_GMP_PCON	(1 << 4)
+ 
+ /* Panel power sequencing */
+ #define PPS_BASE			0x61200
 -- 
 2.26.2
 
