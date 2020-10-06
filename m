@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6382328506E
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 19:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFAE02848E4
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 10:58:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AECFA6E4CF;
-	Tue,  6 Oct 2020 17:03:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFE1D6E02B;
+	Tue,  6 Oct 2020 08:58:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DFB88913B;
- Tue,  6 Oct 2020 08:48:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
- s=20170329; 
- h=MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID;
- bh=B6IlmCjekqif+t616Ax228HYiFyy1jBul9azecGXGdU=; 
- b=geZKcgdaXju0bL8gRGOeUyvkSMBYsw+tzWrb2nldtRplQlj96kTyLTzKGWzVLBDvg3Vv3DuvC7t3x7LRJisRpV05u2vagDLVV/Qfluc2YoeteExiYTJlj+4hJZrGk/M0km8hQ911sN1+MKqfth/5BTpVRr6yEBZgWk03/rPn9TvD895jFTHmqthkwD2t1hob4rMGgbe/sRpG0XkGXBWoLZ2WpxjFlEr2zROlcPj+IEyAvdcjTZGtn6ayTL36IlgoHwKYWcoM2sbvTgEyIs9KqAeNKU63fQOuXKJjKCVxxIFMGOdURWZ7lorJwn1O3SmT/PgAYJBnv2P4pqs4VNa8iw==;
-Received: from 11.red-79-157-245.dynamicip.rima-tde.net ([79.157.245.11]
- helo=fourier) by fanzine.igalia.com with esmtpsa 
- (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
- id 1kPidq-0005Cc-Uk; Tue, 06 Oct 2020 10:48:15 +0200
-Message-ID: <ee5153f7dc037ab96aff6795c5514da3fea3af94.camel@igalia.com>
-From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
-To: "members@x.org" <members@x.org>, "events@lists.x.org"
- <events@lists.x.org>,  "xorg-devel@lists.freedesktop.org"
- <xorg-devel@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org"
- <wayland-devel@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org"
- <mesa-dev@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org"
- <etnaviv@lists.freedesktop.org>, "freedreno@lists.freedesktop.org"
- <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
- <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Date: Tue, 06 Oct 2020 10:48:04 +0200
-In-Reply-To: <a171fea35e5dab03873876e221ab15b74ab24d62.camel@redhat.com>
-References: <a171fea35e5dab03873876e221ab15b74ab24d62.camel@redhat.com>
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0466E02B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 08:58:37 +0000 (UTC)
+IronPort-SDR: z7JjVlOFoM5Gq618SaWvGsWHxiOBTnb+yz1ogKtLoDZQUBkKGq7hQI5vKwVb2zi4pr+knznKei
+ R05ixyBmDGpw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="228552326"
+X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="228552326"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2020 01:58:36 -0700
+IronPort-SDR: YMT9F8QwahPMdt4prNXCIdfLuT8fI3RfEaRaHwnaqTtjoC+A6zirF5TDN8IZ/4yygmsXh9nkiS
+ qBK6GWtQKAfA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="348375656"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 06 Oct 2020 01:58:33 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 06 Oct 2020 11:58:33 +0300
+Date: Tue, 6 Oct 2020 11:58:33 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20201006085833.GR6112@intel.com>
+References: <20201005215311.1475666-2-imre.deak@intel.com>
+ <20201005230154.1477653-1-imre.deak@intel.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 06 Oct 2020 17:03:46 +0000
-Subject: Re: [Intel-gfx] [Freedreno] [RESEND] Requests For Proposals for
- hosting XDC2021 are now open
+Content-Disposition: inline
+In-Reply-To: <20201005230154.1477653-1-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 4/5] drm/i915: Add an encoder hook to
+ sanitize its state during init/resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,107 +54,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "X.Org Foundation Board" <board@foundation.x.org>
-Content-Type: multipart/mixed; boundary="===============1706350236=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Oct 06, 2020 at 02:01:54AM +0300, Imre Deak wrote:
+> Atm, if a full modeset is performed during the initial modeset the link
+> training will happen with uninitialized max DP rate and lane count. Make
+> sure the corresponding encoder state is initialized by adding an encoder
+> hook called during driver init and system resume.
+> =
 
---===============1706350236==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-i8Rt81kDKlWriGrdIRjk"
+> A better alternative would be to store all states in the CRTC state and
+> make this state available for the link re-training code. Also instead of
+> the DPCD read in the hook there should be really a proper sink HW
+> readout in place. Both of these require a bigger rework, so for now opting
+> for this minimal fix to make at least full initial modesets work.
+> =
 
+> The patch is based on
+> https://patchwork.freedesktop.org/patch/101473/?series=3D10354&rev=3D3
+> =
 
---=-i8Rt81kDKlWriGrdIRjk
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> v2: (Ville)
+> - s/sanitize_state/sync_state/
+> - No point in calling the hook when CRTC is disabled, remove the call.
+> - No point in calling the hook for MST, remove it.
+> =
 
-Deadline is November 1st, just in a few weeks!
+> v3: Check only DPCD_REV to avoid clobbering intel_dp->dpcd. (Ville)
+> =
 
-Don't forget to submit your XDC 2021 proposal to board@foundation.x.org
-.
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-Sam
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-On Thu, 2020-09-03 at 12:16 -0400, Lyude Paul wrote:
-> (Including a bunch more emails in the To: that got missed the first
-> time)
->=20
-> Hello everyone!
->=20
-> The X.org board is soliciting proposals to host XDC in 2021. Since
-> XDC2020 is being held virtually this year, we've decided to host in
-> either North America or Europe. However, the board is open to other
-> locations, especially if there's an interesting co-location with
-> another
-> conference.
->=20
-> Of course though, due to the ongoing COVID-19 pandemic it's not yet
-> clear whether or not it will be possible to host XDC2021 in person.
-> Because of this, we would like to make it clear that sponsors should
-> prepare for both the possibility of an in person conference, and the
-> possibility of a virtual conference. We will work with organizers on
-> coming up with a deadline for deciding whether or not we'll be going
-> virtual, likely sometime around July.
->=20
-> If you're considering hosting XDC, we've assembled a wiki page with
-> what's generally expected and needed:
->=20
-> https://www.x.org/wiki/Events/RFP/
->=20
-> When submitting your proposal, please make sure to include at least
-> the
-> key information about the potential location in question, possible
-> dates
-> along with estimated costs. Proposals can be submitted to board at
-> foundation.x.org until the deadline of November 1st. Additionally, an
-> quirk early heads-up to the board if you're considering hosting would
-> be
-> appreciated, in case we need to adjust the schedule a bit. Also,
-> earlier
-> is better since there generally will be a bit of Q&A with organizers.
->=20
-> And if you just have some questions about what organizing XDC
-> entails,
-> please feel free to chat with previous organizers, or someone from
-> the
-> board.
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  8 ++++++
+>  drivers/gpu/drm/i915/display/intel_display.c  |  2 ++
+>  .../drm/i915/display/intel_display_types.h    |  7 +++++
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 28 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.h       |  2 ++
+>  5 files changed, 47 insertions(+)
+> =
 
---=-i8Rt81kDKlWriGrdIRjk
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 4e54c55ec99f..6f7bd67732f2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4564,6 +4564,13 @@ void intel_ddi_get_config(struct intel_encoder *en=
+coder,
+>  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
+>  }
+>  =
 
------BEGIN PGP SIGNATURE-----
+> +static void intel_ddi_sync_state(struct intel_encoder *encoder,
+> +				 const struct intel_crtc_state *crtc_state)
+> +{
+> +	if (intel_crtc_has_dp_encoder(crtc_state))
+> +		intel_dp_sync_state(encoder, crtc_state);
+> +}
+> +
+>  static bool intel_ddi_initial_fastset_check(struct intel_encoder *encode=
+r,
+>  					    struct intel_crtc_state *crtc_state)
+>  {
+> @@ -5182,6 +5189,7 @@ void intel_ddi_init(struct drm_i915_private *dev_pr=
+iv, enum port port)
+>  	encoder->update_pipe =3D intel_ddi_update_pipe;
+>  	encoder->get_hw_state =3D intel_ddi_get_hw_state;
+>  	encoder->get_config =3D intel_ddi_get_config;
+> +	encoder->sync_state =3D intel_ddi_sync_state;
+>  	encoder->initial_fastset_check =3D intel_ddi_initial_fastset_check;
+>  	encoder->suspend =3D intel_dp_encoder_suspend;
+>  	encoder->get_power_domains =3D intel_ddi_get_power_domains;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 755b83d47f9c..907e1d155443 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -18723,6 +18723,8 @@ static void intel_modeset_readout_hw_state(struct=
+ drm_device *dev)
+>  =
 
-iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAl98L0QACgkQf/S6MvF9
-w0MB5Q//ZfxA9TMZbNgz2V21T4oNCgQg7w3bkzftP1l10UHVSfnpbz3mKGctMm6K
-csjdcmQgVJ6n4gs2VlDGhluukN5hMnBQPe+py1Oyu7SmBYyB6TjhjExHGnd/TX1j
-G/KqpyAnXCZOE1JzuK4u4fmLenGbzqywXgciRuWria6QxG0z06K+8yjZMMk3C1Dv
-O0dRGMt7SLzXwojjWSZQqsY50wBeafdfsP5l1encOn8/KEqSIhf2fnnrKhdt24UT
-8Sravrz1bN0MaCEVFqA51Vq5/RxgA/VY8+VVP+fXRdJdvoJzozlTr7Oj1OtIz9KC
-2aJp+BzV9zlVyPyEOe9aFJUeCUpa8PulNSi6Yuoy6l8Bbqu1KqdGC8rOT2A2eFHo
-yIxHkXDBr+PTb59k6tXzCL6usuUgNFcExnJxIjEJ1XZLscm5hq2aGb9EzeiSYPVE
-Y+W0/x5EyoIGzd1owJQM1GqrXnDqcyNiSAqi/6J7Gae8FS4k4qTg8nRu6wxzYNnt
-aJ4ZuOplyLrFAnP+Wz1b80S/i5kl6sVpopytFMp3biLTXg6z1FfnCKiF1u9SrHYM
-P7c4WS8L3aWrOLh0eZI2Q1Lfiu8EPeAWk4Dkt6gBkjdHbDmKuOZnLgm7rStu4gWm
-th2pTohkIOJtv2QRJ1ysnK5QaR1294jB+fUfLN+PultZiPunLEA=
-=4OiG
------END PGP SIGNATURE-----
+>  			encoder->base.crtc =3D &crtc->base;
+>  			encoder->get_config(encoder, crtc_state);
+> +			if (encoder->sync_state)
+> +				encoder->sync_state(encoder, crtc_state);
+>  		} else {
+>  			encoder->base.crtc =3D NULL;
+>  		}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 5297b2f08ff9..65ae2070576f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -188,6 +188,13 @@ struct intel_encoder {
+>  	void (*get_config)(struct intel_encoder *,
+>  			   struct intel_crtc_state *pipe_config);
+>  =
 
---=-i8Rt81kDKlWriGrdIRjk--
+> +	/*
+> +	 * Optional hook called during init/resume to sync any state
+> +	 * stored in the encoder (eg. DP link parameters) wrt. the HW state.
+> +	 */
+> +	void (*sync_state)(struct intel_encoder *encoder,
+> +			   const struct intel_crtc_state *crtc_state);
+> +
+>  	/*
+>  	 * Optional hook, returning true if this encoder allows a fastset
+>  	 * during the initial commit, false otherwise.
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index df5277c2b9ba..239016dcd544 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3703,6 +3703,33 @@ static void intel_dp_get_config(struct intel_encod=
+er *encoder,
+>  	}
+>  }
+>  =
 
+> +static bool
+> +intel_dp_get_dpcd(struct intel_dp *intel_dp);
+> +
+> +/**
+> + * intel_dp_sync_state - sync the encoder state during init/resume
+> + * @encoder: intel encoder to sync
+> + * @crtc_state: state for the CRTC connected to the encoder
+> + *
+> + * Sync any state stored in the encoder wrt. HW state during driver init
+> + * and system resume.
+> + */
+> +void intel_dp_sync_state(struct intel_encoder *encoder,
+> +			 const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> +
+> +	/*
+> +	 * Don't clobber DPCD if it's been already read out during output
+> +	 * setup (eDP) or detect.
+> +	 */
+> +	if (intel_dp->dpcd[DP_DPCD_REV] =3D=3D 0)
+> +		intel_dp_get_dpcd(intel_dp);
+> +
+> +	intel_dp->max_link_lane_count =3D intel_dp_max_common_lane_count(intel_=
+dp);
+> +	intel_dp->max_link_rate =3D intel_dp_max_common_rate(intel_dp);
+> +}
+> +
+>  bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+>  				    struct intel_crtc_state *crtc_state)
+>  {
+> @@ -8090,6 +8117,7 @@ bool intel_dp_init(struct drm_i915_private *dev_pri=
+v,
+>  	intel_encoder->compute_config =3D intel_dp_compute_config;
+>  	intel_encoder->get_hw_state =3D intel_dp_get_hw_state;
+>  	intel_encoder->get_config =3D intel_dp_get_config;
+> +	intel_encoder->sync_state =3D intel_dp_sync_state;
+>  	intel_encoder->initial_fastset_check =3D intel_dp_initial_fastset_check;
+>  	intel_encoder->update_pipe =3D intel_panel_update_backlight;
+>  	intel_encoder->suspend =3D intel_dp_encoder_suspend;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
+15/display/intel_dp.h
+> index 977585aea3c8..6c201377fdc0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -143,5 +143,7 @@ int intel_dp_init_hdcp(struct intel_digital_port *dig=
+_port,
+>  =
 
---===============1706350236==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+>  bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+>  				    struct intel_crtc_state *crtc_state);
+> +void intel_dp_sync_state(struct intel_encoder *encoder,
+> +			 const struct intel_crtc_state *crtc_state);
+>  =
 
+>  #endif /* __INTEL_DP_H__ */
+> -- =
+
+> 2.25.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1706350236==--
-
